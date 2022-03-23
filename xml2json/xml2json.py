@@ -621,6 +621,28 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             apiname.text = href_text.strip()
             print(apiname.text)
 
+    for apiname in root.iter("parmname"):
+        # print(xref.get("keyref"))
+        # For each xref, perform the following operations:
+        # 1. Get the ditamap file per platform
+        # 2. Extract href text from ditamap
+        # 3. Set href text in current dita
+        href_text = ""
+        if apiname.get("keyref") is not None:
+            # xref.text = str(xref.get("keyref"))
+            # ET.SubElement(xref, "text")
+            # dita_file_tree = ET.parse(defined_path)
+            dita_file_tree = ET.parse(defined_path)
+            dita_file_root = dita_file_tree.getroot()
+            for keydef in dita_file_root.iter("keydef"):
+                if keydef.get("keys").strip() == apiname.get("keyref").strip():
+                    href_text = "".join(keydef.itertext()).strip()
+            print("----------------------parmname text--------------------")
+            print(href_text.strip())
+            print("----------------------parmname text--------------------")
+            apiname.text = href_text.strip()
+            print(apiname.text)
+
     for pt in root.iter("ph"):
         # print(xref.get("keyref"))
         # For each xref, perform the following operations:
@@ -1085,8 +1107,8 @@ def replace_newline():
     file_text = input_file.read()
     replaced_file_text = re.sub(r':[\s]{0,100}"[\s]{0,100}\\n[\s]{0,100}', ': "', file_text)
 
-    replaced_file_text = re.sub(r'[\s]{0,100}\\n[\s]{0,100}\\n[\s]{0,100}\\n', '', replaced_file_text)
-    replaced_file_text = re.sub(r'[\s]{0,100}\\n[\s]{0,100}\\n[\s]{0,100}', '', replaced_file_text)
+    replaced_file_text = re.sub(r'[\s]{0,100}\\n[\s]{0,100}\\n[\s]{0,100}\\n', ' ', replaced_file_text)
+    replaced_file_text = re.sub(r'[\s]{0,100}\\n[\s]{0,100}\\n[\s]{0,100}', ' ', replaced_file_text)
     replaced_file_text = re.sub(r'[\s]{2,100}', ' ', replaced_file_text)
 
 
@@ -1120,6 +1142,8 @@ def replace_newline():
 
     replaced_file_text = re.sub('class_rtc_remote_view_surfaceview', 'class_rtcremotesurfaceview', replaced_file_text)
     replaced_file_text = re.sub('rtc_remote_view: SurfaceView', 'RtcRemoteSurfaceView', replaced_file_text)
+
+    replaced_file_text = re.sub('enum_cloudproxytype', 'enum_proxytype', replaced_file_text)
     # ------------------ Special processing for Flutter classes ------------------------------------------
     
 

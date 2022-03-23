@@ -236,7 +236,7 @@
         <section id="parameters">
             <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>
             <parml>
-            <plentry props="android windows electron unity">
+            <plentry props="android windows electron unity flutter">
                 <pt>width</pt>
                 <pd>
                     <p>The width of the output media stream in pixels. The default value is 360.</p>
@@ -249,7 +249,7 @@
  as 0.                            </li>
                     </ul> </pd>
             </plentry>
-            <plentry props="android windows electron unity">
+            <plentry props="android windows electron unity flutter">
                 <pt>height</pt>
                 <pd>
                     <p>The height of the output media stream in pixels. The default value is 640.</p>
@@ -275,7 +275,8 @@ set this parameter.
                         </ph> </pd>
             </plentry>
             <plentry>
-                <pt>videoFrameRate</pt>
+                <pt props="native">videoFrameRate</pt>
+                <pt props="flutter">videoFramerate</pt>
                 <pd>The video frame rate (fps) of the output media stream. The default value is 15, and the value range is [1, 30].<note type="attention">The Agora server adjusts
 any frame rate higher than 30 fps to 30 fps.</note>
                 </pd>
@@ -434,6 +435,10 @@ means light pink. The default is
                 <pd props="ios mac">An array of background images on the live video. See <xref keyref="RtcImage" />. You can use <parmname>backgroundImageArray</parmname> to add one or more background images. The image format needs to be PNG. The total number of watermarks and background images on a live video must be greater than or equal to 0 and less than or equal to 10.</pd>
                 <pd props="windows">The number of background images on the live video. The total number of watermarks and background images must be greater than or equal to 0 and less than or equal to 10. This parameter is used with <parmname>backgroundImage</parmname>.</pd>
                 <pd props="android">An array of background images on the live video. See <xref keyref="RtcImage" />. You can use <parmname>backgroundImageList</parmname> to add one or more background images. The image format needs to be PNG. The total number of watermarks and background images on a live video must be greater than or equal to 0 and less than or equal to 10.</pd>
+            </plentry>
+            <plentry props="rtc">
+                <pt>userConfigExtraInfo</pt>
+                <pd>Reserved property. Extra user-defined information to send the Supplemental Enhancement Information (SEI) for the H.264/H.265 video stream to the CDN live client. Maximum length: 4096 Bytes.</pd>
             </plentry>
             </parml> </section>
     </refbody>
