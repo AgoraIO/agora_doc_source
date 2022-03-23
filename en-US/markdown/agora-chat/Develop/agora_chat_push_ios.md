@@ -48,7 +48,7 @@ Log in to [iOS Developer Center](https://developer.apple.com/), click **Account*
     - **Distribution**: Select **Ad Hoc**. For an official release on the App Store, select **App Store**.
     - **App ID**: Fill in the App ID created in [step 2](#step1-2).
     - **Select Certificates**: Select the push certificate created in [step 3](#step1-3).
-    - **Select Devices**: Select the device to develop.
+    - **Select Devices**: Select the device used to develop.
     - **Provisioning Profile Name**: Fill in the name of the Provisioning Profile file.  
 
     Click **Generate** to generate the Provisioning Profile file.
