@@ -134,63 +134,70 @@
             </p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/>
-   </title>
-   <parml>
-       <plentry props="windows unity">
-  <pt>type</pt>
-  <pd>
-      <p>音频帧类型，详见 <xref keyref="AUDIO_FRAME_TYPE"/>。</p>
-      </pd>
-       </plentry>
-       <plentry>
-                    <pt props="rtc"><ph props="android">numOfSamples</ph><ph props="windows unity">samples</ph><ph props="ios mac">samplesPerChannel</ph></pt>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/>
+            </title>
+            <parml>
+                <plentry props="windows unity">
+                    <pt>type</pt>
+                    <pd>
+                        <p>音频帧类型，详见 <xref keyref="AUDIO_FRAME_TYPE"/>。</p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt props="rtc"><ph props="android">numOfSamples</ph><ph props="windows unity"
+                            >samples</ph><ph props="ios mac">samplesPerChannel</ph></pt>
                     <pt props="rtc-ng">samplesPerChannel</pt>
                     <pd>每个声道的采样点数。</pd>
                 </plentry>
-       <plentry>
-  <pt>bytesPerSample</pt>
-  <pd>每个采样点的字节数: 对于 PCM 来说，一般使用 16 bit，即两个字节。</pd>
-       </plentry>
-       <plentry>
-  <pt props="rtc">channels</pt>
-  <pt props="rtc-ng"><ph props="windows ios mac">channels</ph><ph props="android">channelNums</ph></pt>
-  <pd>
-      <p>声道数量(如果是立体声，数据是交叉的)。<ul id="ul_zxz_2wt_r4b">
-     <li>1: 单声道</li>
-     <li>2: 双声道</li>
- </ul></p>
-  </pd>
-       </plentry>
-       <plentry>
-           <pt props="rtc">samplesPerSec</pt>
-           <pt props="rtc-ng"><ph props="windows ios mac">samplesPerSec</ph><ph props="android">sampleRataHz</ph></pt>
-  <pd>每声道每秒的采样点数。</pd>
-       </plentry>
-       <plentry>
-   <pt props="rtc-ng"><ph props="windows ios mac">buffer</ph><ph props="android">bytes</ph></pt>
-  <pt props="rtc"><ph props="windows unity">buffer</ph><ph props="android">samples</ph></pt>
-  <pd>
-      <p>声音数据缓存区（如果是立体声，数据是交叉存储的）。</p>
-      <p>缓存区数据大小 <codeph>buffer</codeph> = <codeph>samples</codeph> ×
-     <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>。</p>
-  </pd>
-       </plentry>
-       <plentry props="windows unity ios mac">
-  <pt>renderTimeMs</pt>
-  <pd>
-      <p>外部音频帧的渲染时间戳。</p>
-      <p>你可以使用该时间戳还原音频帧顺序；在有视频的场景中（包含使用外部视频源的场景），该参数可以用于实现音视频同步。</p>
-  </pd>
-       </plentry>
-       <plentry props="ios mac windows unity">
-           <pt><ph props="ios mac">avsyncType</ph><ph props="windows unity">avsync_type</ph></pt>
+                <plentry>
+                    <pt>bytesPerSample</pt>
+                    <pd>每个采样点的字节数: 对于 PCM 来说，一般使用 16 bit，即两个字节。</pd>
+                </plentry>
+                <plentry>
+                    <pt props="rtc">channels</pt>
+                    <pt props="rtc-ng"><ph props="windows ios mac">channels</ph><ph props="android"
+                            >channelNums</ph></pt>
+                    <pd>
+                        <p>声道数量(如果是立体声，数据是交叉的)。<ul id="ul_zxz_2wt_r4b">
+                                <li>1: 单声道</li>
+                                <li>2: 双声道</li>
+                            </ul></p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt props="rtc">samplesPerSec</pt>
+                    <pt props="rtc-ng"><ph props="windows ios mac">samplesPerSec</ph><ph
+                            props="android">sampleRataHz</ph></pt>
+                    <pd>每声道每秒的采样点数。</pd>
+                </plentry>
+                <plentry>
+                    <pt props="rtc-ng"><ph props="windows ios mac">buffer</ph><ph props="android"
+                            >bytes</ph></pt>
+                    <pt props="rtc"><ph props="windows unity">buffer</ph><ph props="android"
+                            >samples</ph></pt>
+                    <pd>
+                        <p>声音数据缓存区（如果是立体声，数据是交叉存储的）。</p>
+                        <p>缓存区数据大小 <codeph>buffer</codeph> = <codeph>samples</codeph> ×
+                                <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>。</p>
+                    </pd>
+                </plentry>
+                <plentry props="windows unity ios mac">
+                    <pt>renderTimeMs</pt>
+                    <pd>
+                        <p>外部音频帧的渲染时间戳。</p>
+                        <p>你可以使用该时间戳还原音频帧顺序；在有视频的场景中（包含使用外部视频源的场景），该参数可以用于实现音视频同步。</p>
+                    </pd>
+                </plentry>
+                <plentry props="ios mac windows unity">
+                    <pt><ph props="ios mac">avsyncType</ph><ph props="windows unity"
+                            >avsync_type</ph></pt>
                     <pd>保留参数。</pd>
                 </plentry>
-        <plentry props="rtc-ng">
+                <plentry props="rtc-ng">
                     <pt props="android">timestamp</pt>
                     <pd props="android">音频帧的时间戳</pd>
                 </plentry>
-   </parml>
-        </section></refbody>
+            </parml>
+        </section>
+    </refbody>
 </reference>

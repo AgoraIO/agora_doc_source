@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onstreampublished">
-    <title><ph keyref="onStreamPublished" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when an RTMP or RTMPS stream is published.</ph></shortdesc>
+    <title><ph keyref="onStreamPublished"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when an RTMP or RTMPS stream is
+        published.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="onStreamPublished" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="onStreamPublished"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public void onStreamPublished(String url, int error) {}</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
     streamPublishedWithUrl:(NSString * _Nonnull)url
@@ -22,25 +24,25 @@
     }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.STREAM_PUBLISHED, cb: (url: string, error: number) =&gt; void): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnStreamPublished(string url, int error)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart">UrlWithErrorCallback? streamPublished;</codeblock>
-        </p>
+            </p>
         </section>
         <section id="detailed_desc">
-
-   <dl outputclass="deprecated">
-       <dlentry>
-  <dt>Deprecated:</dt>
-  <dd>Please use <xref keyref="onRtmpStreamingStateChanged" /> instead.</dd>
-       </dlentry>
-   </dl>
-   <p>Reports the result of publishing an RTMP or RTMPS stream.</p>
+            <dl outputclass="deprecated">
+                <dlentry>
+                    <dt>Deprecated:</dt>
+                    <dd>Please use <xref keyref="onRtmpStreamingStateChanged"/> instead.</dd>
+                </dlentry>
+            </dl>
+            <p>Reports the result of publishing an RTMP or RTMPS stream.</p>
         </section>
-        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-   <parml>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <parml>
                 <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                    <pt />
-                    <pd />
+                    <pt/>
+                    <pd/>
                 </plentry>
                 <plentry>
                     <pt>url</pt>
@@ -51,32 +53,38 @@
                     <pt props="ios mac">errorCode</pt>
                     <pd>
                         <p>Error codes of the RTMP or RTMPS streaming.<ul>
-                            <li><codeph>ERR_OK</codeph> (0): The publishing succeeds.</li>
-                            <li><codeph>ERR_FAILED</codeph> (1): The publishing fails.</li>
-                            <li><codeph>ERR_INVALID_ARGUMENT</codeph> (-2): Invalid argument used.
-                                If you do not call <xref keyref="setLiveTranscoding" /> to configure
-                                <xref keyref="LiveTranscoding" /> before calling <xref keyref="addPublishStreamUrl" />, the SDK reports
-                                <codeph>ERR_INVALID_ARGUMENT</codeph>.</li>
-                            <li><codeph>ERR_TIMEDOUT</codeph> (10): The publishing timed out.</li>
-                            <li><codeph>ERR_ALREADY_IN_USE</codeph> (19): The chosen URL address is
-                                already in use for CDN live streaming.</li>
-                            <li><codeph>ERR_ENCRYPTED_STREAM_NOT_ALLOWED_PUBLISH</codeph> (130): You
-                                cannot publish an encrypted stream.</li>
-                            <li><codeph>ERR_PUBLISH_STREAM_CDN_ERROR</codeph> (151): CDN related
-                                error. Remove the original URL address and add a new one by calling
-                                the <xref keyref="removePublishStreamUrl" /> and <xref keyref="addPublishStreamUrl" /> methods.</li>
-                            <li><codeph>ERR_PUBLISH_STREAM_NUM_REACH_LIMIT</codeph> (152): The host
-                                manipulates more than 10 URLs. Delete the unnecessary URLs before
-                                adding new ones.</li>
-                            <li><codeph>ERR_PUBLISH_STREAM_NOT_AUTHORIZED</codeph> (153): The host
-                                manipulates other hosts' URLs. Please check your app logic.</li>
-                            <li><codeph>ERR_PUBLISH_STREAM_INTERNAL_SERVER_ERROR</codeph> (154): An
-                                error occurs in Agora's streaming server. Call the <xref keyref="removePublishStreamUrl" /> method to publish the streaming
-                                again.</li>
-                            <li><codeph>ERR_PUBLISH_STREAM_FORMAT_NOT_SUPPORTED</codeph> (156): The
-                                format of the CDN streaming URL is not supported. Check whether the
-                                URL format is correct.</li>
-                            </ul> </p>
+                                <li><codeph>ERR_OK</codeph> (0): The publishing succeeds.</li>
+                                <li><codeph>ERR_FAILED</codeph> (1): The publishing fails.</li>
+                                <li><codeph>ERR_INVALID_ARGUMENT</codeph> (-2): Invalid argument
+                                    used. If you do not call <xref keyref="setLiveTranscoding"/> to
+                                    configure <xref keyref="LiveTranscoding"/> before calling <xref
+                                        keyref="addPublishStreamUrl"/>, the SDK reports
+                                        <codeph>ERR_INVALID_ARGUMENT</codeph>.</li>
+                                <li><codeph>ERR_TIMEDOUT</codeph> (10): The publishing timed
+                                    out.</li>
+                                <li><codeph>ERR_ALREADY_IN_USE</codeph> (19): The chosen URL address
+                                    is already in use for CDN live streaming.</li>
+                                <li><codeph>ERR_ENCRYPTED_STREAM_NOT_ALLOWED_PUBLISH</codeph> (130):
+                                    You cannot publish an encrypted stream.</li>
+                                <li><codeph>ERR_PUBLISH_STREAM_CDN_ERROR</codeph> (151): CDN related
+                                    error. Remove the original URL address and add a new one by
+                                    calling the <xref keyref="removePublishStreamUrl"/> and <xref
+                                        keyref="addPublishStreamUrl"/> methods.</li>
+                                <li><codeph>ERR_PUBLISH_STREAM_NUM_REACH_LIMIT</codeph> (152): The
+                                    host manipulates more than 10 URLs. Delete the unnecessary URLs
+                                    before adding new ones.</li>
+                                <li><codeph>ERR_PUBLISH_STREAM_NOT_AUTHORIZED</codeph> (153): The
+                                    host manipulates other hosts' URLs. Please check your app
+                                    logic.</li>
+                                <li><codeph>ERR_PUBLISH_STREAM_INTERNAL_SERVER_ERROR</codeph> (154):
+                                    An error occurs in Agora's streaming server. Call the <xref
+                                        keyref="removePublishStreamUrl"/> method to publish the
+                                    streaming again.</li>
+                                <li><codeph>ERR_PUBLISH_STREAM_FORMAT_NOT_SUPPORTED</codeph> (156):
+                                    The format of the CDN streaming URL is not supported. Check
+                                    whether the URL format is correct.</li>
+                            </ul>
+                        </p>
                     </pd>
                 </plentry>
             </parml>

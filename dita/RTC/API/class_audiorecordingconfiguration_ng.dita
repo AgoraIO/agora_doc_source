@@ -6,7 +6,7 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public class AudioRecordingConfiguration {
+                <codeblock props="android" outputclass="language-java">public class AudioRecordingConfiguration {
   public String filePath;
   public int sampleRate;
   public boolean codec;
@@ -20,14 +20,14 @@
     quality = Constants.AUDIO_RECORDING_QUALITY_LOW;
   }
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioRecordingConfiguration: NSObject
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioRecordingConfiguration: NSObject
 @property (copy, nonatomic) NSString * _Nullable filePath;
 @property (assign, nonatomic) BOOL codec;
 @property (assign, nonatomic) NSUInteger sampleRate;
 @property (assign, nonatomic) AgoraAudioFileRecordingType fileRecordOption;
 @property (assign, nonatomic) AgoraAudioRecordingQuality quality;
 @end</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">struct AudioRecordingConfiguration {
+                <codeblock props="windows" outputclass="language-cpp">struct AudioRecordingConfiguration {
   const char* filePath;
   bool encode;
   int sampleRate;
@@ -62,19 +62,20 @@
       fileRecordingType(rhs.fileRecordingType),
       quality(rhs.quality) {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
             </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+                /></title>
             <parml>
                 <plentry id="filepath">
                     <pt>filePath</pt>
-                    <pd>录音文件在本地保存的绝对路径，需精确到文件名及格式。例如：<codeph><ph keyref="filePath-example"/></codeph>。
-                        <note id="note_scm_klz_mqb" type="attention">
+                    <pd>录音文件在本地保存的绝对路径，需精确到文件名及格式。例如：<codeph><ph keyref="filePath-example"
+                            /></codeph>。 <note id="note_scm_klz_mqb" type="attention">
                             <p>请确保你指定的路径存在并且可写。</p>
                         </note></pd>
                 </plentry>
@@ -94,34 +95,42 @@
                             <li>44100</li>
                             <li>48000</li>
                         </ul><note type="attention" id="note_gdq_zlz_mqb">
-                            <p>如果把该参数设为 44100 或 48000，为保证录音效果，Agora 推荐录制 WAV 文件或 <parmname>quality</parmname> 为 <ph keyref="AUDIO_RECORDING_QUALITY_MEDIUM"/> 或 <ph keyref="AUDIO_RECORDING_QUALITY_HIGH"/> 的 AAC 文件。</p>
+                            <p>如果把该参数设为 44100 或 48000，为保证录音效果，Agora 推荐录制 WAV 文件或
+                                    <parmname>quality</parmname> 为 <ph
+                                    keyref="AUDIO_RECORDING_QUALITY_MEDIUM"/> 或 <ph
+                                    keyref="AUDIO_RECORDING_QUALITY_HIGH"/> 的 AAC 文件。</p>
                         </note></pd>
                 </plentry>
                 <plentry>
                     <pt props="windows">fileRecordingType</pt>
                     <pt props="android ios mac">fileRecordOption</pt>
-                    <pd><p props="ios mac windows">录音内容。详见 <xref keyref="AUDIO_RECORDING_POSITION"/>。</p>
-                        <p props="android">录音内容：
-                        <ul>
-                            <li><ph keyref="AUDIO_RECORDING_POSITION_RECORDING"/> (1)：仅录制本地用户的音频。</li>
-                            <li><ph keyref="AUDIO_RECORDING_POSITION_MIXED_PLAYBACK"/> (2)：仅录制所有远端用户的音频。</li>
-                            <li><ph keyref="AUDIO_RECORDING_POSITION_MIXED_RECORDING_AND_PLAYBACK"/> (3): （默认）录制本地和所有远端用户混音后的音频。</li>
-                        </ul>
-                    </p>
+                    <pd><p props="ios mac windows">录音内容。详见 <xref keyref="AUDIO_RECORDING_POSITION"
+                            />。</p>
+                        <p props="android">录音内容： <ul>
+                                <li><ph keyref="AUDIO_RECORDING_POSITION_RECORDING"/>
+                                    (1)：仅录制本地用户的音频。</li>
+                                <li><ph keyref="AUDIO_RECORDING_POSITION_MIXED_PLAYBACK"/>
+                                    (2)：仅录制所有远端用户的音频。</li>
+                                <li><ph
+                                        keyref="AUDIO_RECORDING_POSITION_MIXED_RECORDING_AND_PLAYBACK"
+                                    /> (3): （默认）录制本地和所有远端用户混音后的音频。</li>
+                            </ul>
+                        </p>
                     </pd>
                 </plentry>
                 <plentry>
                     <pt>quality</pt>
-                    <pd><p props="ios mac windows">录音音质。详见 <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>。</p>
-                        <p props="android">录音音质：
-                            <ul>
-                                <li><ph keyref="AUDIO_RECORDING_QUALITY_LOW"/> (0)：低音质。例如，采样率为 32000 Hz，录音时长为 10 分钟的 AAC 文件大小约为 1.2 MB。</li>
-                                <li><ph keyref="AUDIO_RECORDING_QUALITY_MEDIUM"/> (1)：（默认）中音质。例如，采样率为 32000 Hz，录音时长为 10 分钟的 AAC 文件大小约为 2 MB。</li>
-                                <li><ph keyref="AUDIO_RECORDING_QUALITY_HIGH"/> (2)：高音质。例如，采样率为 32000 Hz，录音时长为 10 分钟的 AAC 文件大小约为 3.75 MB。
-                                </li>
+                    <pd><p props="ios mac windows">录音音质。详见 <xref
+                                keyref="AUDIO_RECORDING_QUALITY_TYPE"/>。</p>
+                        <p props="android">录音音质： <ul>
+                                <li><ph keyref="AUDIO_RECORDING_QUALITY_LOW"/> (0)：低音质。例如，采样率为 32000
+                                    Hz，录音时长为 10 分钟的 AAC 文件大小约为 1.2 MB。</li>
+                                <li><ph keyref="AUDIO_RECORDING_QUALITY_MEDIUM"/>
+                                    (1)：（默认）中音质。例如，采样率为 32000 Hz，录音时长为 10 分钟的 AAC 文件大小约为 2 MB。</li>
+                                <li><ph keyref="AUDIO_RECORDING_QUALITY_HIGH"/> (2)：高音质。例如，采样率为
+                                    32000 Hz，录音时长为 10 分钟的 AAC 文件大小约为 3.75 MB。 </li>
                             </ul>
                         </p>
-
                         <note id="note_hrx_mmz_mqb" type="attention">
                             <p>该参数仅适用于 AAC 文件。</p>
                         </note></pd>

@@ -5,13 +5,14 @@
     <shortdesc id="short"><ph id="shortdesc">旁路推流已开启回调。</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="onStreamPublished"/>
-   </keywords>
+            <keywords>
+                <indexterm keyref="onStreamPublished"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public void onStreamPublished(String url, int error) {}</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
     streamPublishedWithUrl:(NSString * _Nonnull)url
@@ -24,18 +25,20 @@
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnStreamPublished(string url, int error)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart">UrlWithErrorCallback? streamPublished;</codeblock>
-        </p>
+            </p>
         </section>
         <section id="detailed_desc">
-
-   <dl outputclass="deprecated">
-       <dlentry>
-  <dt>弃用：</dt>
-  <dd>请改用 <xref keyref="onRtmpStreamingStateChanged"/>。</dd></dlentry></dl>
-   <p>该回调用于通知主播推流状态。</p>
+            <dl outputclass="deprecated">
+                <dlentry>
+                    <dt>弃用：</dt>
+                    <dd>请改用 <xref keyref="onRtmpStreamingStateChanged"/>。</dd>
+                </dlentry>
+            </dl>
+            <p>该回调用于通知主播推流状态。</p>
         </section>
-        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-   <parml>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <parml>
                 <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                     <pt/>
                     <pd/>
@@ -51,7 +54,10 @@
                         <p>推流错误码。<ul>
                                 <li><codeph>ERR_OK</codeph> (0): 推流成功。</li>
                                 <li><codeph>ERR_FAILED</codeph> (1): 推流失败。</li>
-                                <li><codeph>ERR_INVALID_ARGUMENT</codeph> (2): 参数错误。如果你在调用 <xref keyref="addPublishStreamUrl"/> 前没有调用 <xref keyref="setLiveTranscoding"/> 配置 <xref keyref="LiveTranscoding"/> ，SDK 会回调
+                                <li><codeph>ERR_INVALID_ARGUMENT</codeph> (2): 参数错误。如果你在调用 <xref
+                                        keyref="addPublishStreamUrl"/> 前没有调用 <xref
+                                        keyref="setLiveTranscoding"/> 配置 <xref
+                                        keyref="LiveTranscoding"/> ，SDK 会回调
                                         <codeph>ERR_INVALID_ARGUMENT</codeph>。</li>
                                 <li><codeph>ERR_TIMEDOUT</codeph> (10): 推流超时未成功。</li>
                                 <li><codeph>ERR_ALREADY_IN_USE</codeph> (19): 推流地址已推流。</li>

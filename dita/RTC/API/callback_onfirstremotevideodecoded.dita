@@ -5,13 +5,14 @@
     <shortdesc id="short"><ph id="shortdesc">已接收到远端视频并完成解码回调。</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="onFirstRemoteVideoDecoded"/>
-   </keywords>
+            <keywords>
+                <indexterm keyref="onFirstRemoteVideoDecoded"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public void onFirstRemoteVideoDecoded(int uid, int width, int height, int elapsed) {}</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
         firstRemoteVideoDecodedOfUid:(NSUInteger)uid size:(CGSize)size elapsed:(NSInteger)elapsed;</codeblock>
@@ -33,22 +34,20 @@
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstRemoteVideoDecoded(uint uid, int width, int height, int elapsed)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart">VideoFrameWithUidCallback? firstRemoteVideoDecoded;</codeblock>
-        </p>
+            </p>
         </section>
         <section id="detailed_desc">
-
-   <dl outputclass="deprecated">
-       <dlentry>
-  <dt>弃用：</dt>
-  <dd>请改用 <xref keyref="onRemoteVideoStateChanged"/> 回调中的：
-  <ul>
-      <li><apiname keyref="REMOTE_VIDEO_STATE_STARTING"/> (1)。</li>
-      <li><apiname keyref="REMOTE_VIDEO_STATE_DECODING"/> (2)。</li>
-  </ul>
-  </dd>
-       </dlentry>
-   </dl>
-   <p>SDK 会在以下时机触发该回调：  <ul id="ul_xcz_f34_npb">
+            <dl outputclass="deprecated">
+                <dlentry>
+                    <dt>弃用：</dt>
+                    <dd>请改用 <xref keyref="onRemoteVideoStateChanged"/> 回调中的： <ul>
+                            <li><apiname keyref="REMOTE_VIDEO_STATE_STARTING"/> (1)。</li>
+                            <li><apiname keyref="REMOTE_VIDEO_STATE_DECODING"/> (2)。</li>
+                        </ul>
+                    </dd>
+                </dlentry>
+            </dl>
+            <p>SDK 会在以下时机触发该回调： <ul id="ul_xcz_f34_npb">
                     <li>远端用户首次上线后发送视频。</li>
                     <li>远端用户视频离线再上线后发送视频。出现这种中断的可能原因包括： <ul id="ul_ycz_f34_npb">
                             <li>远端用户离开频道。</li>
@@ -60,8 +59,9 @@
                 </ul>
             </p>
         </section>
-        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-   <parml>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <parml>
                 <plentry>
                     <pt>uid</pt>
                     <pd>用户 ID，指定是哪个用户的视频流。</pd>
