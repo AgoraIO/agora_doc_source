@@ -36,8 +36,8 @@
             <p>成功连接云代理后，SDK 会触发 <xref keyref="onConnectionStateChanged"/> (<ph keyref="CONNECTION_STATE_CONNECTING"/>, <ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER"/>) 回调。
             </p>
             <p props="rtc">自 v3.6.2 起，当用户调用该方法并成功加入频道后，SDK 会触发 <xref keyref="onProxyConnected"/> 回调，报告用户 ID、连接的代理类型和用户调用 <xref keyref="joinChannel1"/> 到 SDK 触发该回调的经过的时间等。</p>
-            <p>如果你想关闭已设置的 Force UDP 或 Force TCP 云代理，请调用 <apiname keyref="setCloudProxy"/> (<ph keyref="NONE_PROXY"/>)。</p>
-            <p>如果你想更改已设置的云代理类型，请先调用 <apiname keyref="setCloudProxy"/> (<ph keyref="NONE_PROXY"/>)， 再调用 <apiname keyref="setCloudProxy"/> 并传入你期望的 <parmname>proxyType</parmname> 值。
+            <p>如果你想关闭已设置的 Force UDP 或 Force TCP 云代理，请调用 <apiname keyref="setCloudProxy"/> (<apiname keyref="NONE_PROXY"/>)。</p>
+            <p>如果你想更改已设置的云代理类型，请先调用 <apiname keyref="setCloudProxy"/> (<apiname keyref="NONE_PROXY"/>)， 再调用 <apiname keyref="setCloudProxy"/> 并传入你期望的 <parmname>proxyType</parmname> 值。
             </p>
             <note type="attention">
             <ul>
@@ -50,14 +50,25 @@
             <parml>
             <plentry>
                 <pt>proxyType</pt>
-                <pd>云代理类型，详见 <xref keyref="CLOUD_PROXY_TYPE"/>。该参数为必填参数，如果你不赋值，SDK 会报错。</pd>
+                <pd><p props="ios mac windows electron unity flutter">云代理类型，详见 <xref keyref="CLOUD_PROXY_TYPE"/>。</p>
+                    <p props="android"><ph>云代理类型。</ph>
+                    <ul>
+                        <li><ph keyref="NONE_PROXY"/><ph>（0）：自动模式。</ph><ph props="rtc-ng">SDK 默认开启该模式。</ph><ph>在该模式下，SDK 优先连接 SD-RTN™，如果连接失败，自动切换到 TLS 443。</ph><ph props="rtc">自 v3.6.2 起，SDK 默认开启该模式。</ph></li>
+                        <li><ph keyref="UDP_PROXY"/>（1）：UDP 协议的云代理，即 Force UDP 云代理模式。在该模式下，SDK 始终通过 UDP 协议传输数据。</li>
+                        <li><ph keyref="TCP_PROXY"/>（2）：TCP（加密）协议的云代理，即 Force TCP 云代理模式。在该模式下，SDK 始终通过 TLS 443 传输数据。</li>
+                    </ul></p>
+                    <p>该参数为必填参数，如果你不赋值，SDK 会报错。</p></pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native windows unity electron">
             <title>返回值</title>
             <ul>
-            <li>0: 方法调用成功。</li>
-            <li> &lt; 0: 方法调用失败。</li>
-            </ul> </section>
+                <li>0: 方法调用成功。</li>
+                <li> &lt; 0: 方法调用失败。 
+                    <ul>
+                    <li>-2: 传入的参数无效。</li>
+                    <li>-7: SDK 尚未初始化。</li>
+                    </ul> </li>
+            </ul></section>
     </refbody>
 </reference>
