@@ -468,7 +468,7 @@ message.chatType = AgoraChatTypeChat;
 
 ### Extensions
 
-If you target platform is iOS 10.0 or later, you can enable the
+If the device of your receiver uses iOS 10.0 or later, you can enable the
 [`UNNotificationServiceExtension`](https://developer.apple.com/documentation/usernotifications/unnotificationserviceextension?language=objc) extension.  
 The following sample code enables the `UNNotificationServiceExtension` extension:
 ```swift
