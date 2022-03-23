@@ -238,7 +238,7 @@
             conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
             /> </title>
             <parml>
-            <plentry props="android windows electron unity">
+            <plentry props="android windows electron unity flutter">
                 <pt>width</pt>
                 <pd>
                     <p>输出媒体流的宽，单位为像素。默认值为 360。</p>
@@ -255,7 +255,7 @@
                             </li>
                     </ul> </pd>
             </plentry>
-            <plentry props="android windows electron unity">
+            <plentry props="android windows electron unity flutter">
                 <pt>height</pt>
                 <pd>
                     <p>输出媒体流的高，单位为像素。默认值为 640。</p>
@@ -289,7 +289,8 @@
                         </ph> </pd>
             </plentry>
             <plentry>
-                <pt>videoFrameRate</pt>
+                <pt props="native">videoFrameRate</pt>
+                <pt props="flutter">videoFramerate</pt>
                 <pd>
                         输出媒体流的视频帧率（fps）。默认值为 15，取值范围是 [1,30]。
                         
@@ -501,6 +502,10 @@
                     >直播视频上的背景图的数量。水印和背景图的总数量需大于等于 0 且小于等于 10。该参数与 <parmname>backgroundImage</parmname> 搭配使用。</pd>
                 <pd props="android"> 直播视频上的背景图数组。详见 <xref keyref="RtcImage"
                         />。你可以使用 <parmname>backgroundImageList</parmname> 添加一张或多张背景图。图片格式需为 PNG。直播视频上的水印和背景图的总数量需大于等于 0 且小于等于 10。 </pd>
+            </plentry>
+            <plentry props="rtc">
+                <pt>userConfigExtraInfo</pt>
+                <pd>预留参数。 用户自定义的发送到旁路推流客户端的信息，用于填充 H264/H265 视频中 SEI 帧内容。长度限制：4096字节。</pd>
             </plentry>
             </parml> </section>
     </refbody>
