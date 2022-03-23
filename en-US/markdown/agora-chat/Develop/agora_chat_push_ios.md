@@ -1,6 +1,6 @@
 # Set up Push Notifications
 
-Agora Chat supports the integration of Apple Push Notification service (APNs). This enables iOS developers with an offline push notification service. This service features low latency, high delivery, high concurrency, and no violation of the users' personal data.
+Agora Chat supports the integration of Apple Push Notification service (APNs). This enables iOS developers to use an offline push notification service. The service features low latency, high delivery, high concurrency, and no violation of the users' personal data.
 
 When a user closes the app and goes offline, Agora Chat pushes notifications to the device of the user through APNs. Once online, the user will receive all the messages.
 
@@ -12,10 +12,10 @@ The following figure shows the basic workflow of Agora Chat:
 
 ## Prerequisites
 
-Before proceeding, ensure your project has the following:
-- A valid [Agora Account](#https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up).
-- An [Agora project](#https://docs.agora.io/en/Agora%5DPlatform/get_appid_token?platform=AllPlatforms#create-an-agora-project) with Agora Chat enabled.  To enable the Agora Chat service for private BETA, contact support@agora.io.
-- Xcoode 12.3 or later.
+Before proceeding, ensure that you meet the following requirements:
+- A valid [Agora Account](https://docs.agora.io/en/AgoraPlatform/get_appid_token?platform=AllPlatforms#create-an-agora-account).  
+- An [Agora project](https://docs.agora.io/en/AgoraPlatform/get_appid_token?platform=AllPlatforms#create-an-agora-project) with Agora Chat enabled. To enable the Agora Chat service for private BETA, contact support@agora.io.
+- Xcoode, preferrably the latest version.
 - A device runnning iOS 10 or later.
 
 ## Enable the APNs service<a name="step1"></a>
@@ -23,12 +23,12 @@ Before proceeding, ensure your project has the following:
 Follow the steps to enable the APNs service
 
 1. Request a Certificate Signing Request (CSR) file.<a name="step1-1"></a>   
-i. Open the **Keychain Access** app on your device and click **Keychain Access** > **Certificate Assistant** > **Request a Certificate from a Certificate Authority** in the top navigation bar.  
-ii. In the **Certificate Assistant** dialog box, fill in the **User Email Address** and **Common Name**, select **Saved to disk**, and click **Contitue** to specify a path to save the file.  
+    1. Open the **Keychain Access** app on your device and click **Keychain Access** > **Certificate Assistant** > **Request a Certificate from a Certificate Authority** in the top navigation bar.  
+    2. In the **Certificate Assistant** dialog box, fill in the **User Email Address** and **Common Name**, select **Saved to disk**, and click **Contitue** to specify a path to save the file.  
 ![](https://web-cdn.agora.io/docs-files/1647878103996)  
-iii. You can get a CSR file named `CertificateSigningRequest.certSigningRequest` in the specified path.
+    3. You can get a CSR file named `CertificateSigningRequest.certSigningRequest` in the specified path.
 
-2. Request an App ID.<a name="step1-2"></a>  
+2. Create an App ID.<a name="step1-2"></a>  
 Log in to the [iOS Developer Center](https://developer.apple.com/), click **Account** > **Certificates, Identifiers & Profiles** > **Identifiers** to add an App ID, and configure the following fields:
     - **Select a type**: Select **App**.
     - **Description**: Fill in the description of the App ID.
