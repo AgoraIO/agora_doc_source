@@ -1,8 +1,8 @@
 # Set up Push Notifications
 
-Agora Chat supports the integration of Apple Push Notification service (APNs). This provides iOS developers with an offline push notification service that has low latency, high delivery, high concurrency, and no violation of users' personal data.
+Agora Chat supports the integration of Apple Push Notification service (APNs). This enables iOS developers with an offline push notification service. This service features low latency, high delivery, high concurrency, and no violation of the users' personal data.
 
-When a user closes the app and goes offline, Agora Chat will push notifications to the offline user's device through APNs. Once online, the user will receive all the messages.
+When a user closes the app and goes offline, Agora Chat pushes notifications to the device of the user through APNs. Once online, the user will receive all the messages.
 
 ## Understand the tech
 
@@ -12,17 +12,21 @@ The following figure shows the basic workflow of Agora Chat:
 
 ## Prerequisites
 
-- Enable Agora Chat in Agora Console. For details, see [Enable and Configure Agora Chat Service](./enable_agora_chat?platform=iOS)。
-- Enable the APNs service and upload the APNs certificate to Agora Console.  
-To do so, perform the following operations:
+Before proceeding, ensure your project has the following:
+- A valid [Agora Account](#https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up).
+- An [Agora project](#https://docs.agora.io/en/Agora%5DPlatform/get_appid_token?platform=AllPlatforms#create-an-agora-project) with Agora Chat enabled.  To enable the Agora Chat service for private BETA, contact support@agora.io.
+- Xcoode 12.3 or later.
+- A device runnning iOS 10 or later.
 
-### Step 1 Enable the APNs service<a name="step1"></a>
+## Enable the APNs service<a name="step1"></a>
+
+Follow the steps to enable the APNs service
 
 1. Request a Certificate Signing Request (CSR) file.<a name="step1-1"></a>   
-i. Click **Keychain Access** > **Certificate Assistant** > **Request a Certificate from a Certificate Authority**.  
+i. Open the **Keychain Access** app on your device and click **Keychain Access** > **Certificate Assistant** > **Request a Certificate from a Certificate Authority** in the top navigation bar.  
 ii. In the **Certificate Assistant** dialog box, fill in the **User Email Address** and **Common Name**, select **Saved to disk**, and click **Contitue** to specify a path to save the file.  
 ![](https://web-cdn.agora.io/docs-files/1647878103996)  
-iii. You will get a CSR file named `CertificateSigningRequest.certSigningRequest` in the specified path.
+iii. You can get a CSR file named `CertificateSigningRequest.certSigningRequest` in the specified path.
 
 2. Request an App ID.<a name="step1-2"></a>  
 Log in to the [iOS Developer Center](https://developer.apple.com/), click **Account** > **Certificates, Identifiers & Profiles** > **Identifiers** to add an App ID, and configure the following fields:
@@ -37,7 +41,7 @@ Log in to the [iOS Developer Center](https://developer.apple.com/), click **Acco
     ii. Select **iOS** for **Platform**, select the CSR file created in [step 1](#step1-1) for **Choose File**, and click **Continue**. This generates an [Apple Development IOS Push Services](https://help.apple.com/xcode/mac/current/?spm=a2c4g.11186623.0.0.14864088B1zf4p#/dev80c6204ec) file.  
     - **Production environment**  
     i. Click **app** > **Push Notifications** > **Production SSL Certificate** > **Create Certificate**.  
-    ii. Select **iOS** for **Platform**, select the CSR file created in [step 1](#step1-1) for **Choose File**, and click **Continue**. This geneerates an [Apple Development IOS Push Services](https://help.apple.com/xcode/mac/current/?spm=a2c4g.11186623.0.0.14864088B1zf4p#/dev80c6204ec) file.
+    ii. Select **iOS** for **Platform**, select the CSR file created in [step 1](#step1-1) for **Choose File**, and click **Continue**. This generates an [Apple Development IOS Push Services](https://help.apple.com/xcode/mac/current/?spm=a2c4g.11186623.0.0.14864088B1zf4p#/dev80c6204ec) file.
 
 4. Get the push certificate.<a name="step1-4"></a>  
 Double-click to import the push certificate created in [step 3](#step1-3). Go to **Keychain Access** > **login** > **My Certificates**, locate the imported certificate, right-click the certificate to export as a .p12 file, and set the certificate key.
@@ -53,27 +57,26 @@ Log in to [iOS Developer Center](https://developer.apple.com/), click **Account*
 
     Click **Generate** to generate the Provisioning Profile file.
 
-### Step 2 Upload the push certificate to Agora Console
+## Upload the push certificate to Agora Console
 
-To upload the push certificate to Agora Console, perform the following operations:
+ Follow the steps to upload the certificates to Agora Console:
 
 1. Log in to [Agora Console](https://sso2.agora.io/) and click **Project Management** in the left navigation bar.
 
-2. On the **Project Maanagement** page, select the item used to enable Agora Chat and click **Config** in the **Action** column.
+2. On the **Project Management** page, select the item used to enable Agora Chat and click **Config** in the **Action** column.
 ![](https://web-cdn.agora.io/docs-files/1647923143179)
 
-3. Under **Real-time engagement extensions**, find **Agora Chat** and click **Enable**.
-![](https://web-cdn.agora.io/docs-files/1642564694699)
+3. Add `/chat` after the URL of the project config page and press **Enter**.
 
 4. In the **Push Notifications** module, click **Add Push Certificate**.
 ![](https://web-cdn.agora.io/docs-files/1647923153068)
 
 5. In the pop-up window, select the **APPLE** tab and configure the following fields:
-   - **Bind ID**: Fill in the bundle ID specified when the App ID was created in [Step 1](#step1-2).
-   - **Certificate Type**: Select the file type specified when the certificate was exported in [Step 1](#step1-4). You can select p8 or p12.
-   - **Certificate Name**: Fill in the name specified when the certificate was created in [Step 1](#step1-3).
-   - **Certificate Secret**: Fill in the secret specified when the certificate was exported in [Step 1](#step1-4).
-   - **Upload**: Upload the certificate created in [Step 1](#step1-3).
+   - **Bind ID**: Fill in the [bundle ID](#step1-2) specified when the App ID was created.
+   - **Certificate Type**: Select the [file type](#step1-4) specified when the certificate was exported. You can select p8 or p12.
+   - **Certificate Name**: Fill in the [name](#step1-3) specified when the certificate was created.
+   - **Certificate Secret**: Fill in the [secret](#step1-4) specified when the certificate was exported.
+   - **Upload**: Upload the [certificate](#step1-3) created.
    - **Environment**: Select the environment based on your business needs. Upload the certificate for the development and production environment respectively.
 
     Click **Save**.
@@ -147,9 +150,9 @@ The following sample code specifies the display style of push notifications:
 
 | Parameter         | Description                                                         |
 | :----------- | :----------------------------------------------------------- |
-| `DisplayStyle` | `AgoraPushDisplayStyleSimpleBanner`: Displays "You have a new message".</br>`AgoraPushDisplayStyleMessageSummary`：Displays the content of the message. |
+| `DisplayStyle` | The display style of the push notification:<br>* `AgoraPushDisplayStyleSimpleBanner`: Displays "You have a new message".</br>* `AgoraPushDisplayStyleMessageSummary`：Displays the content of the message. |
 
-**Mute a group**
+**Set a chat group to do-not-disturb mode**
 
 After you mute a group, you will not receive push notifications from this group when you go offline.  
 The following sample code mutes the specified groups:
@@ -168,7 +171,7 @@ The following sample code mutes the specified groups:
 | :------- | :------------- |
 | `groupIds` | The IDs of groups. |
 
-**Retrieve the mute group list**
+**Retrieve the do-not-disturb group list**
 
 The following sample code retrieves the list of mute groups:
 
@@ -180,7 +183,7 @@ NSArray<NSString*>* groupIds = [AgoraChatClient.sharedClient.pushManager noPushG
 | :------- | :--------------------- |
 | `groupIds` | The list of group IDs. |
 
-**Mute a user**
+**Set a user to do-not-disturb mode**
 
 After you mute a user, you will not receive push notifications from this user when you go offline.  
 The following sample code mutes the specified users:
@@ -197,7 +200,7 @@ The following sample code mutes the specified users:
 | :------ | :----------- |
 | `userIds` | The IDs of users. |
 
-**Retrieve the mute user list**
+**Retrieve the do-not-disturb user list**
 
 The following sample code retrieves the list of mute users:
 
@@ -207,9 +210,9 @@ NSArray<NSString*>* userIds = [EMClient.sharedClient.pushManager noPushUIds];
 
 | Parameter    | Description                 |
 | :------ | :------------------- |
-| `userIds` | The list of user IDs. |
+| `userIds` | The list of usernames. |
 
-**Disable push notifications**
+**Set the time period for the global do-not-disturb mode**
 
 The following sample code specifies the mute time period when push notifications are disabled:
 
@@ -223,12 +226,11 @@ if (aError)
 
 | Parameter | Type | Description |
 | :------ | :----------------- |:---------------------------- |
-| `start` | Int | The start time of the mute time period. This value ranges from 0 to 24. |
-| `end`   | Int | The end time of the mute time period. This value ranges from 0 to 24. |
+| `start` | Int | The start time of the global do-not-disturb mode. The value range is [0,24]. |
+| `end`   | Int | The end time of the global do-not-disturb mode. The value range is [0,24]. |
 
 **Enable push notifications**
 
-You can cut short the mute time period and enable push notifications based on your needs.  
 The following sample code enables push notifications:
     
 ```swift
@@ -258,8 +260,8 @@ The following sample code retrieves the attributes of push notifications:
 | :------------------- | :------------------- |
 | `displayName`        | The display name of push notifications.    |
 | `displayStyle`       | The display style of push notifications.       |
-| `noDisturbingStartH` | The start time of the mute time period.   |
-| `noDisturbingEndH`   | The end time of the mute time period.   |
+| `noDisturbingStartH` | The start time of the global do-not-disturb mode.   |
+| `noDisturbingEndH`   | The end time of the global do-not-disturb mode.   |
 | `isNoDisturbEnable`  | Whether push notifications are enabled.|
 
 5. When a user receives and clicks a push notification, the app parses this push notification as follows:
@@ -293,16 +295,17 @@ An example of a push notification is as follows:
 | `body`  | The displayed content of the message.                      |
 | `badge` | The number of push notifications.                            |
 | `sound` | The sound of push notifications.                          |
-| `f`     | The user ID of the sender.                  |
-| `t`     | The user ID of the receiver.                  |
+| `f`     | The username of the sender.                  |
+| `t`     | The username of the receiver.                  |
 | `g`     | The ID of the group.<br>If the push notification comes from a one-on-one chat instead of a group chat, this field doesn't exist. |
 | `m`     | The ID of the message. The unique identifier of the message.        |
 
-## Configure more features
+## What's next
+
+This section includes more advanced features of push notification. You can implement these features according to your needs.
 
 ### Custom fields
 
-You can add custom fields to push notifications based on your business needs.
 The following sample code redirects to an event page through this push notification:
 
 ```swift
@@ -317,8 +320,8 @@ message.chatType = AgoraChatTypeChat;
 | :--------------- | :------------------ |
 | `body`           | The displayed content of the message.      |
 | `ConversationID` | The ID of the session to which the message belongs. |
-| `from`           | The user ID of the sender.  |
-| `to`             | The user ID of the receiver. |
+| `from`           | The username of the sender.  |
+| `to`             | The username of the receiver. |
 | `em_apns_ext`    | The message extension field.      |
 | `extern`         | The message extension content.  |
 
@@ -345,8 +348,8 @@ An example is as follows:
 | `body`  | The displayed content of the message.   |
 | `badge` | The number of push notifications.       |
 | `sound` | The sound of push notifications.      |
-| `f`     | The user ID of the sender. |
-| `t`     | The user ID of the receiver. |
+| `f`     | The username of the sender. |
+| `t`     | The username of the receiver. |
 | `e`     | The custom message.  |
 | `m`     | The ID of the message.      |
 
@@ -366,8 +369,8 @@ message.chatType = AgoraChatTypeChat;
 | :---------------- | :------------------ |
 | `body`            | The displayed content of the message.      |
 | `ConversationID`  | The ID of the session to which the message belongs. |
-| `from`            | The user ID of the sender.  |
-| `to`              | The user ID of the receiver. |
+| `from`            | The username of the sender.  |
+| `to`              | The username of the receiver. |
 | `em_apns_ext`     | The extension field.     |
 | `em_push_content` | The extension content.  |
 
@@ -393,8 +396,8 @@ An example is as follows:
 | `body`  | The displayed content of the message.           |
 | `badge` | The number of push notifications.                  |
 | `sound` | The sound of push notifications.                |
-| `f`     | The user ID of the sender.       |
-| `t`     | The user ID of the receiver.      |
+| `f`     | The username of the sender.       |
+| `t`     | The username of the receiver.      |
 | `m`     | The ID of the message. The unique identifier of the message. |
 
 ### Custom sounds
@@ -414,8 +417,8 @@ message.chatType = AgoraChatTypeChat;
 | :--------------- | :------------------- |
 | `body`           | The displayed content of the message.     |
 | `ConversationID` | The ID of the session to which the message belongs.  |
-| `from`           | The user ID of the sender.    |
-| `to`             | The user ID of the receiver.   |
+| `from`           | The username of the sender.    |
+| `to`             | The username of the receiver.   |
 | `em_apns_ext`    | The extension field.        |
 | `em_push_sound`  | The cusom sound.     |
 | `custom.caf`     | The filename of the sound. |
@@ -441,13 +444,13 @@ An example is as follows:
 | `body`  | The displayed content of the message.           |
 | `badge` | The number of push notifications.                 |
 | `sound` | The sound of push notifications.                |
-| `f`     | The user ID of the sender.        |
-| `t`     | The user ID of the receiver.       |
+| `f`     | The username of the sender.        |
+| `t`     | The username of the receiver.       |
 | `m`     | The ID of the message. The unique identifier of the message. |
 
 ### Force push notifications
 
-Once you force a push notification to a user, the user receives the message regardless of the mute settings.  
+Once you force a push notification to a user, the user receives the message regardless of the do-not-disturb settings.  
 The following sample code forces a push notification:
 
 ```swift
@@ -462,15 +465,15 @@ message.chatType = AgoraChatTypeChat;
 | :---------------------- | :------------------------------------------ |
 | `body`                  | The displayed content of the message.                              |
 | `ConversationID`        | The ID of the session to which the message belongs.                         |
-| `from`                  | The user ID of the sender.                 |
-| `to`                    | The user ID of the receiver.                       |
+| `from`                  | The username of the sender.                 |
+| `to`                    | The username of the receiver.                       |
 | `em_force_notification` | Whether to force a push notification.<br>- YES: Force the push notification.<br>- NO: Do not force the push notification. |
 
 ### Extensions
 
-If the device of your receiver uses iOS 10.0 or later, you can enable the
-[`UNNotificationServiceExtension`](https://developer.apple.com/documentation/usernotifications/unnotificationserviceextension?language=objc) extension.  
-The following sample code enables the `UNNotificationServiceExtension` extension:
+If the notification receiver uses devices running iOS 10.0 or later, you can refer to the following code sample to enable the
+[`UNNotificationServiceExtension`](https://developer.apple.com/documentation/usernotifications/unnotificationserviceextension?language=objc) extension. 
+
 ```swift
 TextMessageBody *body = [[TextMessageBody alloc] initWithText:@"test"];
 Message *message = [[Message alloc] initWithConversationID:conversationId from:currentUsername to:conversationId body:body ext:nil];
@@ -483,8 +486,8 @@ message.chatType = AgoraChatTypeChat;
 | :------------------------ | :----------------------------- |
 | `body`                    | The displayed content of the message.                 |
 | `ConversationID`          | The ID of the session to which the message belongs.            |
-| `from`                    | The user ID of the sender.             |
-| `to`                      | The user ID of the receiver.             |
+| `from`                    | The username of the sender.             |
+| `to`                      | The username of the receiver.             |
 | `em_apns_ext`             | The extension field. |
 | `em_push_mutable_content` | Whether to use `em_apns_ext`.       |
 
@@ -511,6 +514,6 @@ An example is as follows:
 | `badge`           | The number of push notifications.                            |
 | `sound`           | The sound of push notifications.                     |
 | `mutable-content` | Set the value to 1 to enable `UNNotificationServiceExtension`. |
-| `f`               | The user ID of the sender.        |
-| `t`               | The user ID of the receiver.                                 |
+| `f`               | The username of the sender.        |
+| `t`               | The username of the receiver.                                 |
 | `m`               | The ID of the message.                               |
