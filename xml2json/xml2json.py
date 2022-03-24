@@ -1096,8 +1096,32 @@ def merge_JsonFiles(files):
         with open(file, 'r', encoding="utf-8") as infile:
             result.append(json.load(infile))
 
+    error = json.dumps({
+"id": "enum_errorcode",
+"name": "ErrorCode",
+"description": "Error codes. See https://docs.agora.io/en/Interactive%20Broadcast/error_rtc.",
+"parameters": [
+],
+"returns": ""
+})
+
+    warning = json.dumps({
+        "id": "enum_warningcode",
+        "name": "WarningCode",
+        "description": "Warning codes. See https://docs.agora.io/en/Interactive%20Broadcast/error_rtc.",
+        "parameters": [
+        ],
+        "returns": ""
+    })
+
+    result.append(error)
+    result.append(warning)    
+
     with open(json_file, 'w', encoding="utf-8") as output_file:
         json.dump(result, output_file, ensure_ascii=False, indent=4)
+
+
+    
 
 
 def replace_newline():
@@ -1146,7 +1170,6 @@ def replace_newline():
     replaced_file_text = re.sub('enum_cloudproxytype', 'enum_proxytype', replaced_file_text)
     # ------------------ Special processing for Flutter classes ------------------------------------------
     
-
     input_file.close()
 
     output_file = open(json_file, 'w', encoding="utf-8")
