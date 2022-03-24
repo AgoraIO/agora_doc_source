@@ -20,25 +20,4 @@ jobs:
       run: |
           cd scripts/oxygen/scripts
           ./validateCheckDITA.sh -i ../../../dita/rtc_api.xpr -r ditaValidationReport_cn.xml
-          
-          if [ $? -eq 0 ]
-            then
-              echo "Validation successful for cn DITA files"
-              exit 0
-            else
-              echo "Validation failure for cn DITA files"
-              echo ditaValidationReport_cn.xml
-              exit 1
-          fi
-          
           ./validateCheckDITA.sh -i ../../../en-US/dita/rtc_api.xpr -r ditaValidationReport_en.xml
- 
-          if [ $? -eq 0 ]
-            then
-              echo "Validation successful for en DITA files"
-              exit 0
-            else
-              echo "Validation failure for en DITA files"
-              echo ditaValidationReport_en.xml
-              exit 1
-          fi
