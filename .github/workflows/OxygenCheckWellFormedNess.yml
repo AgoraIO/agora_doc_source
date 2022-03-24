@@ -19,5 +19,5 @@ jobs:
     - name: DITA wellformedness check
       run: |
           cd scripts/oxygen/scripts
-          ./validateCheckDITA.sh -i ../../../dita/rtc_api.xpr -r ditaValidationReport_cn.xml
-          ./validateCheckDITA.sh -i ../../../en-US/dita/rtc_api.xpr -r ditaValidationReport_en.xml
+          ./validateCheckDITA.sh -i ../../../dita/rtc_api.xpr -r ditaValidationReport_cn.xml || cat ditaValidationReport_cn.xml
+          ./validateCheckDITA.sh -i ../../../en-US/dita/rtc_api.xpr -r ditaValidationReport_en.xml || ditaValidationReport_en.xml
