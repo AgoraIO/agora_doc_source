@@ -19,13 +19,13 @@ jobs:
     - name: DITA wellformedness check
       run: |
           cd scripts/oxygen/scripts
-          ./validateCheckDITA.sh -i ../../../dita/rtc_api.xpr -r ../../ditaValidationReport_cn.xml
-          ./validateCheckDITA.sh -i ../../../en-US/dita/rtc_api.xpr -r ../../ditaValidationReport_en.xml
+          ./validateCheckDITA.sh -i ../../../dita/rtc_api.xpr -r ditaValidationReport_cn.xml
+          ./validateCheckDITA.sh -i ../../../en-US/dita/rtc_api.xpr -r ditaValidationReport_en.xml
     - name: Upload cn validation report to release
       uses: svenstaro/upload-release-action@v2
       with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: scripts/ditaValidationReport_cn.xml
+          file: scripts/oxygen/scripts/ditaValidationReport_cn.xml
           asset_name: ditaValidationReport_cn
           tag: main
           overwrite: true
@@ -34,7 +34,7 @@ jobs:
       uses: svenstaro/upload-release-action@v2
       with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: scripts/ditaValidationReport_en.xml
+          file: scripts/oxygen/scripts/ditaValidationReport_en.xml
           asset_name: ditaValidationReport_en
           tag: main
           overwrite: true
