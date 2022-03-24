@@ -15,55 +15,58 @@ The following figure shows the basic workflow of Agora Chat:
 Before proceeding, ensure that you meet the following requirements:
 - A valid [Agora Account](https://docs.agora.io/en/AgoraPlatform/get_appid_token?platform=AllPlatforms#create-an-agora-account).  
 - An [Agora project](https://docs.agora.io/en/AgoraPlatform/get_appid_token?platform=AllPlatforms#create-an-agora-project) with Agora Chat enabled. To enable the Agora Chat service for private BETA, contact support@agora.io.
-- Xcoode, preferrably the latest version.
-- A device runnning iOS 10 or later.
+- Xcode, preferrably the latest version.
 
 ## Enable the APNs service<a name="step1"></a>
 
-Follow the steps to enable the APNs service
+Follow the steps to enable the APNs service:
 
 1. Request a Certificate Signing Request (CSR) file.<a name="step1-1"></a>   
-    1. Open the **Keychain Access** app on your device and click **Keychain Access** > **Certificate Assistant** > **Request a Certificate from a Certificate Authority** in the top navigation bar.  
-    2. In the **Certificate Assistant** dialog box, fill in the **User Email Address** and **Common Name**, select **Saved to disk**, and click **Contitue** to specify a path to save the file.  
-![](https://web-cdn.agora.io/docs-files/1647878103996)  
+    1. Open the **Keychain Access** app on your device and click **Keychain Access** > **Certificate Assistant** > **Request a Certificate from a Certificate Authority**.
+    2. In the **Certificate Assistant** dialog box, fill in **User Email Address** and **Common Name**, select **Saved to disk**, and click **Contitue** to specify a path to save the file.  
+    ![](https://web-cdn.agora.io/docs-files/1647878103996)  
     3. You can get a CSR file named `CertificateSigningRequest.certSigningRequest` in the specified path.
 
 2. Create an App ID.<a name="step1-2"></a>  
-Log in to the [iOS Developer Center](https://developer.apple.com/), click **Account** > **Certificates, Identifiers & Profiles** > **Identifiers** to add an App ID, and configure the following fields:
-    - **Select a type**: Select **App**.
-    - **Description**: Fill in the description of the App ID.
-    - **Bundle ID**: Set the value to `com.YourCompany.YourProjectName`.
-    - **Capabilities**: Select **Push Notification**.  
+    1. Log in to the [iOS Developer Center](https://developer.apple.com/) and click **Account** > **Certificates, Identifiers & Profiles** > **Identifiers**.
+    2. In the **Identifiers** tab, click the **+** icon to the right of **Identifiers**.
+    3. In the **Register a new identifier** page, select **App** for the type and click **Continue**.
+    4. In the **Register an App ID** page, configure the following fields:
+        - **Description**: Fill in the description of the App ID.
+        - **Bundle ID**: Specify a value in `com.YourCompany.YourProjectName` format.
+        - **Capabilities**: Select **Push Notifications**.
+    5. Confirm the information and click **Register** to generate the App ID.  
 
 3. Create a push certificate for the development environment and the production environment respectively.<a name="step1-3"></a>  
-    - **Development environment**  
-    i. Click **app** > **Push Notifications** > **Development SSL Certificate** > **Create Certificate**.  
-    ii. Select **iOS** for **Platform**, select the CSR file created in [step 1](#step1-1) for **Choose File**, and click **Continue**. This generates an [Apple Development IOS Push Services](https://help.apple.com/xcode/mac/current/?spm=a2c4g.11186623.0.0.14864088B1zf4p#/dev80c6204ec) file.  
-    - **Production environment**  
-    i. Click **app** > **Push Notifications** > **Production SSL Certificate** > **Create Certificate**.  
-    ii. Select **iOS** for **Platform**, select the CSR file created in [step 1](#step1-1) for **Choose File**, and click **Continue**. This generates an [Apple Development IOS Push Services](https://help.apple.com/xcode/mac/current/?spm=a2c4g.11186623.0.0.14864088B1zf4p#/dev80c6204ec) file.
+    1. Go back to the **Identifiers** tab and select the **App ID** created in [step 2](#step1-2).
+    2. In the **Edit your App ID Configuration** page, locate **Push Notifications** and click **Configure**.
+    3. In the **Apple Push Notification service SSL Certificates** dialog box, click **Create Certificate** to create the push certificate for the development environment and the production environment respectively.
+    4. In the **Create a New Certificate** page, select **iOS** for **Platform**, upload the CSR file created in [step 1](#step1-1), and click **Continue**.
+    5. In the **Download Your Certificate** page, click **Download** to generate the [Apple Push Services](https://help.apple.com/xcode/mac/current/?spm=a2c4g.11186623.0.0.14864088B1zf4p#/dev80c6204ec) certificate.
 
-4. Get the push certificate.<a name="step1-4"></a>  
-Double-click to import the push certificate created in [step 3](#step1-3). Go to **Keychain Access** > **login** > **My Certificates**, locate the imported certificate, right-click the certificate to export as a .p12 file, and set the certificate key.
+4. Generate the push certificate.<a name="step1-4"></a>  
+    1. Double-click to import the push certificate created in [step 3](#step1-3) to the Keychains.
+    2. Open **Keychain Access**, click **login** > **Certificates**, right-click the push certificate to export as a `.p12` file, and set the certificate key.
 
 5. Generate a Provisioning Profile file.  
-Log in to [iOS Developer Center](https://developer.apple.com/), click **Account** > **Certificates, Identifiers & Profiles** > **Profiles** to add a Provisioning Profile file, and click **Continue** to configure the following fields:
-    - **Development**: Select **iOS App Development**.
-    - **Distribution**: Select **Ad Hoc**. For an official release on the App Store, select **App Store**.
-    - **App ID**: Fill in the App ID created in [step 2](#step1-2).
-    - **Select Certificates**: Select the push certificate created in [step 3](#step1-3).
-    - **Select Devices**: Select the device used to develop.
-    - **Provisioning Profile Name**: Fill in the name of the Provisioning Profile file.  
-
-    Click **Generate** to generate the Provisioning Profile file.
+    1. Log in to [iOS Developer Center](https://developer.apple.com/) and click **Account** > **Certificates, Identifiers & Profiles** > **Profiles**.
+    2. In the **Profiles** tab, click the **+** icon to the right of **Profiles**.
+    3. In the **Register a New Provisioning Profile** page, select **iOS App Development** for **Development**, select **Ad Hoc** for **Distribution**, and click **Continue**.  
+    For an official release on the App Store, select **App Store** instead for **Distribution**.
+    4. In the **Generate a Provisioning Profile** page, configure the following fields:
+        - **App ID**: Fill in the App ID created in [step 2](#step1-2).
+        - **Select Certificates**: Select the push certificate created in [step 3](#step1-3).
+        - **Select Devices**: Select the device used to develop.
+        - **Provisioning Profile Name**: Fill in the name used to identify the profile.  
+    5. Confirm the information and click **Download** to generate the Provisioning Profile file.
 
 ## Upload the push certificate to Agora Console
 
- Follow the steps to upload the certificates to Agora Console:
+Follow the steps to upload the certificates to Agora Console:
 
-1. Log in to [Agora Console](https://sso2.agora.io/) and click **Project Management** in the left navigation bar.
+1. Log in to [Agora Console](https://console.agora.io/) and click **Project Management** in the left navigation bar.
 
-2. On the **Project Management** page, select the item used to enable Agora Chat and click **Config** in the **Action** column.
+2. In the **Project Management** page, select the project item used to enable Agora Chat and click **Config** in the **Action** column.  
 ![](https://web-cdn.agora.io/docs-files/1647923143179)
 
 3. Add `/chat` after the URL of the project config page and press **Enter**.
@@ -73,17 +76,17 @@ Log in to [iOS Developer Center](https://developer.apple.com/), click **Account*
 
 5. In the pop-up window, select the **APPLE** tab and configure the following fields:
    - **Bind ID**: Fill in the [bundle ID](#step1-2) specified when the App ID was created.
-   - **Certificate Type**: Select the [file type](#step1-4) specified when the certificate was exported. You can select p8 or p12.
-   - **Certificate Name**: Fill in the [name](#step1-3) specified when the certificate was created.
+   - **Certificate Type**: Select the [file type](#step1-4) specified when the certificate was exported. In this case, select **p12**.
+   - **Certificate Name**: Fill in the [name](#step1-4) specified when the certificate was exported.
    - **Certificate Secret**: Fill in the [secret](#step1-4) specified when the certificate was exported.
-   - **Upload**: Upload the [certificate](#step1-3) created.
-   - **Environment**: Select the environment based on your business needs. Upload the certificate for the development and production environment respectively.
+   - **Upload**: Upload the [certificate](#step1-4) exported.
+   - **Environment**: Upload the certificate for the development and production environment respectively.
 
-    Click **Save**.
+    Click **Save** to add the push certificate.
 
 ## Set up push notifications
 
-1. Open Xcode and click **Targets** > **Capability** > **Push Notifications** to enable push notifications.
+1. Open Xcode and click **TARGETS** > **Capability** > **Push Notifications** to enable push notifications.
 
 2. Pass the certificate name to the SDK.
 
@@ -119,11 +122,11 @@ Log in to [iOS Developer Center](https://developer.apple.com/), click **Account*
 }
 ```
 
-4. Configure the notification attributes, including the display name, the display style, and the mute feature.
+4. Configure the notification attributes, including the display name, the display style, and the do-not-disturb feature.
 
 **Set the display name**
 
-The following sample code specifies the display name of push notifications:
+The following sample code specifies whether to display the username of the sender in push notifications:
 
 ```swift
 [AgoraChatClient.sharedClient.pushManager updatePushDisplayName:@"displayName" completion:^(NSString * aDisplayName, AgoraError * aError) {
@@ -136,7 +139,7 @@ The following sample code specifies the display name of push notifications:
 
 **Set the display style**
 
-The following sample code specifies the display style of push notifications:
+The following sample code specifies whether to display the message details in push notifications:
 
 ```swift
 [AgoraChatClient.sharedClient.pushManager updatePushDisplayStyle:AgoraPushDisplayStyleSimpleBanner completion:^(AgoraError * aError)
@@ -150,12 +153,12 @@ The following sample code specifies the display style of push notifications:
 
 | Parameter         | Description                                                         |
 | :----------- | :----------------------------------------------------------- |
-| `DisplayStyle` | The display style of the push notification:<br>* `AgoraPushDisplayStyleSimpleBanner`: Displays "You have a new message".</br>* `AgoraPushDisplayStyleMessageSummary`：Displays the content of the message. |
+| `DisplayStyle` | The display style of push notifications:<br>* `AgoraPushDisplayStyleSimpleBanner`: Displays "You have a new message".</br>* `AgoraPushDisplayStyleMessageSummary`：Displays the message details. |
 
 **Set a chat group to do-not-disturb mode**
 
-After you mute a group, you will not receive push notifications from this group when you go offline.  
-The following sample code mutes the specified groups:
+After you set a group to do-not-disturb mode, you will not receive push notifications from this group when you go offline.  
+The following sample code sets the specified groups to do-not-disturb mode:
 
 ```
 [AgoraChatClient.sharedClient.pushManager updatePushServiceForGroups:groupIds disablePush:YES completion:^(AgoraError * aError)
@@ -173,7 +176,7 @@ The following sample code mutes the specified groups:
 
 **Retrieve the do-not-disturb group list**
 
-The following sample code retrieves the list of mute groups:
+The following sample code retrieves the list of do-not-disturb groups:
 
 ```swift
 NSArray<NSString*>* groupIds = [AgoraChatClient.sharedClient.pushManager noPushGroups];
@@ -185,8 +188,8 @@ NSArray<NSString*>* groupIds = [AgoraChatClient.sharedClient.pushManager noPushG
 
 **Set a user to do-not-disturb mode**
 
-After you mute a user, you will not receive push notifications from this user when you go offline.  
-The following sample code mutes the specified users:
+After you set a user to do-not-disturb mode, you will not receive push notifications from this user when you go offline.  
+The following sample code sets the specified users to do-not-disturb mode:
 
 ```swift
 [AgoraChatClient.sharedClient.pushManager updatePushServiceForUsers:userIds disablePush:YES completion:^(EMError * _Nonnull aError) {
@@ -202,7 +205,7 @@ The following sample code mutes the specified users:
 
 **Retrieve the do-not-disturb user list**
 
-The following sample code retrieves the list of mute users:
+The following sample code retrieves the list of do-not-disturb users:
 
 ```swift
 NSArray<NSString*>* userIds = [EMClient.sharedClient.pushManager noPushUIds];
@@ -212,9 +215,9 @@ NSArray<NSString*>* userIds = [EMClient.sharedClient.pushManager noPushUIds];
 | :------ | :------------------- |
 | `userIds` | The list of usernames. |
 
-**Set the time period for the global do-not-disturb mode**
+**Set the do-not-disturb time period**
 
-The following sample code specifies the mute time period when push notifications are disabled:
+The following sample code specifies the do-not-disturb time period when push notifications are disabled:
 
 ```swift
 AgoraError *aError = [AgoraChatClient.sharedClient.pushManager disableOfflinePushStart:22 end:7];
@@ -226,8 +229,8 @@ if (aError)
 
 | Parameter | Type | Description |
 | :------ | :----------------- |:---------------------------- |
-| `start` | Int | The start time of the global do-not-disturb mode. The value range is [0,24]. |
-| `end`   | Int | The end time of the global do-not-disturb mode. The value range is [0,24]. |
+| `start` | Int | The start time of the do-not-disturb time period. The value range is [0,24]. |
+| `end`   | Int | The end time of the do-not-disturb time period. The value range is [0,24]. |
 
 **Enable push notifications**
 
@@ -258,10 +261,10 @@ The following sample code retrieves the attributes of push notifications:
 
 | Field                 | Description                 |
 | :------------------- | :------------------- |
-| `displayName`        | The display name of push notifications.    |
-| `displayStyle`       | The display style of push notifications.       |
-| `noDisturbingStartH` | The start time of the global do-not-disturb mode.   |
-| `noDisturbingEndH`   | The end time of the global do-not-disturb mode.   |
+| `displayName`        | Whether to display the username of the sender in push notifications.    |
+| `displayStyle`       | Whether to display the message details in push notifications.       |
+| `noDisturbingStartH` | The start time of the do-not-disturb time period.   |
+| `noDisturbingEndH`   | The end time of the do-not-disturb time period.   |
 | `isNoDisturbEnable`  | Whether push notifications are enabled.|
 
 5. When a user receives and clicks a push notification, the app parses this push notification as follows:
@@ -306,7 +309,7 @@ This section includes more advanced features of push notification. You can imple
 
 ### Custom fields
 
-The following sample code redirects to an event page through this push notification:
+The following sample code redirects to an event page through the push notification:
 
 ```swift
 TextMessageBody *body = [[TextMessageBody alloc] initWithText:@"test"];
@@ -471,7 +474,7 @@ message.chatType = AgoraChatTypeChat;
 
 ### Extensions
 
-If the notification receiver uses devices running iOS 10.0 or later, you can refer to the following code sample to enable the
+If the receiver uses a device running iOS 10.0 or later, you can refer to the following sample code to enable the
 [`UNNotificationServiceExtension`](https://developer.apple.com/documentation/usernotifications/unnotificationserviceextension?language=objc) extension. 
 
 ```swift
