@@ -435,9 +435,7 @@
                 <pd>
                     <p>推流视频的总尺寸（宽和高），单位为像素。</p>
                     <ul>
-                    <li>如果推视频流，请注意： 
-                            
-                        
+                    <li>如果推视频流，请注意：                      
                         <ul>
                         <li>宽的取值范围为 [64,1920]。如果取值低于 64，Agora 服务器会自动调整为 64；如果取值高于 1920，Agora 服务器会自动调整为 1920。</li>
                         <li>高的取值范围为 [64,1080]。如果取值低于 64，Agora 服务器会自动调整为 64；如果取值高于 1080，Agora 服务器会自动调整为 1080。</li>
@@ -483,9 +481,9 @@
                 <pd>
                     <p>用于旁路直播的输出视频的编码规格。</p>
                     <p>可以设置为 66、77 或 100，详见 <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/>。</p>
-                    <note type="attention">如果你把这个参数设为其他值，Agora 服务器会将其调整为默认值。</note> </pd>
+                    <note type="attention">如果你把这个参数设为其他值，Agora 服务器会将其调整为默认值。</note></pd>
             </plentry>
-            <plentry props="windows android ios mac electron flutter">
+            <plentry>
                 <pt>videoCodecType</pt>
                 <pd>用于旁路直播的输出视频的编解码类型。详见 <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/>。</pd>
             </plentry>
@@ -537,7 +535,8 @@
                     <dl outputclass="deprecated">
                     <dlentry>
                         <dt>弃用</dt>
-                        <dd>已废弃，Agora 不推荐使用。请改用 <xref keyref="getUserCount"/> 方法。</dd>
+                        <dd>已废弃，Agora 不推荐使用。请改用 <xref keyref="getUserCount"
+                            /> 方法。</dd>
                     </dlentry>
                     </dl>
                     <p>参与合图的用户数量，默认 0。取值范围为 [0,17]。</p>
@@ -585,7 +584,8 @@
                     </dlentry>
                     </dl>
                     <p>直播视频上的背景图。图片格式需为 PNG。详见 <xref keyref="RtcImage"/>。</p>
-                    <p props="windows">你可以添加一张背景图，或使用数组的方式添加多张背景图。该参数与<parmname>backgroundImageCount</parmname> 搭配使用。</p>
+                    <p props="windows"
+                    >你可以添加一张背景图，或使用数组的方式添加多张背景图。该参数与<parmname>backgroundImageCount</parmname> 搭配使用。</p>
                 </pd>
             </plentry>
             <plentry props="ios mac">
@@ -639,10 +639,11 @@
             <plentry props="ios mac">
                 <pt>backgroundArray</pt>
                 <pd>输出媒体流的视频背景图 (backgroundImage) 的数量。
-                   <ul>
+                  <ul>
                     <li>如果你不添加背景图，或仅添加一个背景图，该参数为选填。</li>
                     <li>如果你添加多个背景图，该参数为必填。</li>
-                    </ul> </pd>
+                    </ul>
+                    </pd>
             </plentry>
             <plentry props="windows">
                 <pt>backgroundImageCount</pt>
