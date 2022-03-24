@@ -19,14 +19,22 @@ jobs:
     - name: DITA wellformedness check
       run: |
           cd scripts/oxygen/scripts
+          echo "Checking dita/RTC/RTC_NG_API_Android.ditamap ..."
           ./validateCheckDITA.sh -i ../../../dita/RTC/RTC_NG_API_Android.ditamap -r ditaValidationReport_cn.xml || cat ditaValidationReport_cn.xml
+          echo "Checking dita/RTC/RTC_NG_API_Windows.ditamap ..."
           ./validateCheckDITA.sh -i ../../../dita/RTC/RTC_NG_API_Windows.ditamap -r ditaValidationReport_cn.xml || cat ditaValidationReport_cn.xml
+          echo "Checking dita/RTC/RTC_NG_API_iOS.ditamap ..."
           ./validateCheckDITA.sh -i ../../../dita/RTC/RTC_NG_API_iOS.ditamap -r ditaValidationReport_cn.xml || cat ditaValidationReport_cn.xml
+          echo "Checking dita/RTC/RTC_API_Flutter.ditamap ..."
           ./validateCheckDITA.sh -i ../../../dita/RTC/RTC_API_Flutter.ditamap -r ditaValidationReport_cn.xml || cat ditaValidationReport_cn.xml
           
+          echo "Checking dita/RTC/RTC_NG_API_Android.ditamap ..."
           ./validateCheckDITA.sh -i ../../../en-US/dita/RTC/RTC_NG_API_Android.ditamap -r ditaValidationReport_en.xml || cat ditaValidationReport_en.xml
+          echo "Checking dita/RTC/RTC_NG_API_Windows.ditamap ..."
           ./validateCheckDITA.sh -i ../../../en-US/dita/RTC/RTC_NG_API_Windows.ditamap -r ditaValidationReport_en.xml || cat ditaValidationReport_en.xml
+          echo "Checking dita/RTC/RTC_NG_API_iOS.ditamap ..."
           ./validateCheckDITA.sh -i ../../../en-US/dita/RTC/RTC_NG_API_iOS.ditamap -r ditaValidationReport_en.xml || cat ditaValidationReport_en.xml
+          echo "Checking dita/RTC/RTC_API_Flutter.ditamap ..."
           ./validateCheckDITA.sh -i ../../../en-US/dita/RTC/RTC_API_Flutter.ditamap -r ditaValidationReport_en.xml || cat ditaValidationReport_en.xml
           
           # Just wanna an exit 0
