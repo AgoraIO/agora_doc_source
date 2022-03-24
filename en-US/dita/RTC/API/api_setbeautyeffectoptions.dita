@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setbeautyeffectoptions">
     <title><ph keyref="setBeautyEffectOptions" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the image enhancement options.</ph></shortdesc>
+    <shortdesc id="short">Sets the image enhancement options.<ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -31,20 +31,20 @@
    </dl>
    <p>Enables or disables image enhancement, and sets the options.</p>
             <p props="rtc-ng">Enabling the image enhancement function involves a series of method calls. The calling sequence is as follows:<ol>
-                <li props="android">Call <codeph><xref keyref="addExtension" />(<q>agora_video_process</q>)</codeph> during <xref keyref="IRtcEngine" /> initialization to integrate the video enhancement dynamic library in the project.</li>
-                <li props="ios">Link the extension library in the project file: <codeph>AgoraVideoProcessExtension.xcframework</codeph></li>
-                <li props="mac">Link the extension library in the project file: <codeph>AgoraVideoProcessExtension.framework</codeph></li>
-                <li props="windows">Call <codeph><xref keyref="loadExtensionProvider" />(<q>libagora_video_process_extension.dll</q>)</codeph> during <xref keyref="IRtcEngine" /> initialization to specify the extension's library path.</li>
-                <li>Call <codeph><xref keyref="enableExtension" />(<q>agora</q>, <q>beauty</q>, <q><ph keyref="true" /></q>)</codeph> to enable the extension.</li>
-                <li>Call <xref keyref="enableVideo" /> to enable the video module.</li>
+                <li props="android">Call (agora_video_process) during  initialization to integrate the video enhancement dynamic library in the project.<xref keyref="IRtcEngine"/><codeph><xref keyref="addExtension"/><q></q></codeph></li>
+                <li props="ios">Link the extension library in the project file: AgoraVideoProcessExtension.xcframework<codeph></codeph></li>
+                <li props="mac">Link the extension library in the project file: AgoraVideoProcessExtension.framework<codeph></codeph></li>
+                <li props="windows">Call (libagora_video_process_extension.dll)during  initialization to specify the extension library path.<xref keyref="IRtcEngine"/><codeph><xref keyref="loadExtensionProvider"/><q></q></codeph></li>
+                <li>Call (agora, beauty, ) to enable the extension.<codeph><xref keyref="enableExtension"/><q></q><q></q><q><ph keyref="true"/></q></codeph></li>
+                <li>Call <xref keyref="enableVideo"/> to enable the video module.</li>
                 <li>Call this method to enable the image enhancement function.</li>
                 </ol></p>
             <p props="rtc"><ul><li>Call this method after <xref keyref="enableVideo" />.</li>
                     <li>Agora has updated the Agora image enhancement algorithm from v3.6.0 to enhance image enhancement effects and support sharpness adjustment.  If you want to experience optimized image enhancement effects or set the sharpness, integrate the following dynamic library into the project before calling this method:<ul>
-                        <li>Android: <codeph>libagora_video_process_extension.so</codeph></li>
-                        <li>iOS: <codeph>AgoraVideoProcessExtension.xcframework</codeph></li>
-                        <li>macOS: <codeph>AgoraVideoProcessExtension.framework</codeph></li>
-                        <li>Windows: <codeph>libagora_video_process_extension.dll</codeph></li>
+                        <li>Android: libagora_video_process_extension.so<codeph></codeph></li>
+                        <li>iOS: AgoraVideoProcessExtension.xcframework<codeph></codeph></li>
+                        <li>macOS: AgoraVideoProcessExtension.framework<codeph></codeph></li>
+                        <li>Windows: libagora_video_process_extension.dll<codeph></codeph></li>
                         </ul></li></ul></p>
             <note type="note" props="android">This method only applies to Android 5.0 or later.</note>
         </section>
@@ -54,8 +54,8 @@
   <pt props="android windows unity flutter">enabled</pt>
            <pt props="ios mac">enable</pt>
   <pd>Whether to enable the image enhancement function:<ul>
-      <li><codeph><ph keyref="true" /></codeph>: Enable the image enhancement function.</li>
-      <li><codeph><ph keyref="false" /></codeph>: (Default) Disable the image enhancement function.</li>
+      <li><codeph><ph keyref="true" /></codeph>: Enable virtual background.</li>
+      <li><codeph><ph keyref="false" /></codeph>: (Default) Disable the mage enhancement function.</li>
   </ul></pd>
        </plentry>
        <plentry>
