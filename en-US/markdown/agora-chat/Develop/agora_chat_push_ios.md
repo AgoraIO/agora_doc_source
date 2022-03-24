@@ -153,7 +153,7 @@ The following sample code specifies whether to display the message details in pu
 
 | Parameter         | Description                                                         |
 | :----------- | :----------------------------------------------------------- |
-| `DisplayStyle` | The display style of push notifications:<br>* `AgoraPushDisplayStyleSimpleBanner`: Displays "You have a new message".</br>* `AgoraPushDisplayStyleMessageSummary`：Displays the message details. |
+| `DisplayStyle` | The display style of push notifications:<li>`AgoraPushDisplayStyleSimpleBanner`: Displays "You have a new message".<li>`AgoraPushDisplayStyleMessageSummary`：Displays the message details. |
 
 **Set a chat group to do-not-disturb mode**
 
@@ -265,7 +265,7 @@ The following sample code retrieves the attributes of push notifications:
 | `displayStyle`       | Whether to display the message details in push notifications.       |
 | `noDisturbingStartH` | The start time of the do-not-disturb time period.   |
 | `noDisturbingEndH`   | The end time of the do-not-disturb time period.   |
-| `isNoDisturbEnable`  | Whether push notifications are enabled.|
+| `isNoDisturbEnable`  | Whether to enable the do-not-disturb feature. |
 
 5. When a user receives and clicks a push notification, the app parses this push notification as follows:
 
@@ -470,7 +470,7 @@ message.chatType = AgoraChatTypeChat;
 | `ConversationID`        | The ID of the session to which the message belongs.                         |
 | `from`                  | The username of the sender.                 |
 | `to`                    | The username of the receiver.                       |
-| `em_force_notification` | Whether to force a push notification.<br>- YES: Force the push notification.<br>- NO: Do not force the push notification. |
+| `em_force_notification` | Whether to force a push notification:<li>YES: Force the push notification.<li>- NO: Do not force the push notification. |
 
 ### Extensions
 
