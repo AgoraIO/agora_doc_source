@@ -17,7 +17,7 @@ Before proceeding, ensure that you meet the following requirements:
 - An [Agora project](https://docs.agora.io/en/AgoraPlatform/get_appid_token?platform=AllPlatforms#create-an-agora-project) with Agora Chat enabled. To enable the Agora Chat service for private BETA, contact support@agora.io.
 - Xcode, preferrably the latest version.
 
-## Enable the APNs service<a name="step1"></a>
+## Enable APNs<a name="step1"></a>
 
 Follow the steps to enable the APNs service:
 
@@ -60,7 +60,7 @@ Follow the steps to enable the APNs service:
         - **Provisioning Profile Name**: Fill in the name used to identify the profile.  
     5. Confirm the information and click **Download** to generate the Provisioning Profile file.
 
-## Upload the push certificate to Agora Console
+## Upload push certificates
 
 Follow the steps to upload the certificates to Agora Console:
 
