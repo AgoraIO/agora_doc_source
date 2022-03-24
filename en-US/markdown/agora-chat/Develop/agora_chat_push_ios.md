@@ -470,7 +470,7 @@ message.chatType = AgoraChatTypeChat;
 | `ConversationID`        | The ID of the session to which the message belongs.                         |
 | `from`                  | The username of the sender.                 |
 | `to`                    | The username of the receiver.                       |
-| `em_force_notification` | Whether to force a push notification:<li>YES: Force the push notification.<li>- NO: Do not force the push notification. |
+| `em_force_notification` | Whether to force a push notification:<li>YES: Force the push notification.<li> NO: Do not force the push notification. |
 
 ### Extensions
 
