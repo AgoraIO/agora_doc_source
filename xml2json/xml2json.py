@@ -1096,23 +1096,9 @@ def merge_JsonFiles(files):
         with open(file, 'r', encoding="utf-8") as infile:
             result.append(json.load(infile))
 
-    error = json.dumps({
-"id": "enum_errorcode",
-"name": "ErrorCode",
-"description": "Error codes. See https://docs.agora.io/en/Interactive%20Broadcast/error_rtc.",
-"parameters": [
-],
-"returns": ""
-})
+    error = json.loads("{\"id\": \"enum_errorcode\", \"name\": \"ErrorCode\", \"description\": \"Error codes. See https://docs.agora.io/en/Interactive%20Broadcast/error_rtc.\", \"parameters\": [], \"returns\": \"\"}")
 
-    warning = json.dumps({
-        "id": "enum_warningcode",
-        "name": "WarningCode",
-        "description": "Warning codes. See https://docs.agora.io/en/Interactive%20Broadcast/error_rtc.",
-        "parameters": [
-        ],
-        "returns": ""
-    })
+    warning = json.loads("{\"id\": \"enum_warningcode\", \"name\": \"WarningCode\", \"description\": \"Warning codes. See https://docs.agora.io/en/Interactive%20Broadcast/error_rtc.\", \"parameters\": [], \"returns\": \"\"}")
 
     result.append(error)
     result.append(warning)    
