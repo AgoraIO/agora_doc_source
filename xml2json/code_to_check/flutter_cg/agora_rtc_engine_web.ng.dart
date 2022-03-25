@@ -10,8 +10,8 @@ import 'dart:async';
 import 'dart:html';
 import 'dart:ui' as ui;
 
-import 'package:agora_rtc_engine/src/enum_converter.dart';
 import 'package:agora_rtc_engine/src/enums.dart';
+import 'package:agora_rtc_engine/src/impl/enum_converter.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:js/js.dart';

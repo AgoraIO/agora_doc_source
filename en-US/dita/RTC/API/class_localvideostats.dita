@@ -118,12 +118,12 @@
      encodedFrameCount: number;
      codecType: VIDEO_CODEC_TYPE;
      txPacketLossRate: number;
-     captureFrameRate: number;   
+     captureFrameRate: number;
      captureBrightnessLevel: CAPTURE_BRIGHTNESS_LEVEL_TYPE;
      }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">class LocalVideoStats {
-  
+
   int sentBitrate;
   int sentFrameRate;
   int encoderOutputFrameRate;
@@ -166,8 +166,7 @@
             </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry props="rtc-ng">
                 <pt>uid</pt>
@@ -176,12 +175,14 @@
             <plentry>
                 <pt>sentBitrate</pt>
                 <pd>
-                    <p>The actual bitrate (Kbps) while sending the local video stream.<note type="attention">This value does not include the bitrate for resending the video after packet loss.</note></p>
+                    <p>The actual bitrate (Kbps) for sending the local video stream.
+                    <note type="attention">This value does not include the bitrate for resending the video after packet loss.</note></p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>sentFrameRate</pt>
-                <pd>The actual frame rate (Kbps) while sending the local video stream.<note type="attention">This value does not include the frame rate for resending the video after packet loss.</note></pd>
+                <pd>The actual frame rate (Kbps) while sending the local video stream.
+                    <note type="attention">This value does not include the frame rate for resending the video after packet loss.</note></pd>
             </plentry>
             <plentry>
                 <pt>encoderOutputFrameRate</pt>
@@ -201,24 +202,20 @@
             </plentry>
             <plentry>
                 <pt>qualityAdaptIndication</pt>
-                <pd>
-                    <dl outputclass="since" props="rtc">
-                    <dlentry>
-                        <dt>Since</dt>
-                        <dd>v2.4.0</dd>
-                    </dlentry>
-                    </dl>Quality adaption of the local video stream in the reported interval (based on the target frame rate and target bitrate). <ph props="windows ios mac unity">For details, see <xref keyref="QUALITY_ADAPT_INDICATION"/>.</ph><p props="android">
+                <pd>Quality change of the local video in terms of target frame rate and target bit rate in this reported interval. <ph props="windows ios mac unity flutter">For details, see <xref keyref="QUALITY_ADAPT_INDICATION" />.</ph>
+                    <p props="android">
                     <ul>
-                    <li><ph keyref="ADAPT_NONE"/>(0): The local video quality stays the same.</li>
-                    <li><ph keyref="ADAPT_UP_BANDWIDTH"/>(1): The local video quality improves because the network bandwidth increases.</li>
-                    <li><ph keyref="ADAPT_DOWN_BANDWIDTH"/>(2): The local video quality deteriorates because the network bandwidth decreases.</li>
+                    <li><ph keyref="ADAPT_NONE" /> (0): The local video quality stays the same.</li>
+                    <li><ph keyref="ADAPT_UP_BANDWIDTH" /> (1): The local video quality improves because the network bandwidth increases.</li>
+                    <li><ph keyref="ADAPT_DOWN_BANDWIDTH" /> (2): The local video quality deteriorates because the network bandwidth decreases.</li>
                     </ul> </p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>encodedBitrate</pt>
                 <pd>
-                    <p>The bitrate (Kbps) while encoding the local video stream.<note type="attention">This value does not include the bitrate for resending the video after packet loss.</note></p>
+                    <p>The bitrate (Kbps) for encoding the local video stream.
+                    <note type="attention">This value does not include the bitrate for resending the video after packet loss.</note></p>
                 </pd>
             </plentry>
             <plentry>
@@ -252,14 +249,7 @@
             </plentry>
             <plentry props="rtc">
                 <pt>captureBrightnessLevel</pt>
-                <pd>
-                    <dl outputclass="since" props="rtc">
-                    <dlentry>
-                        <dt>Since</dt>
-                        <dd>v3.3.0</dd>
-                    </dlentry>
-                    </dl>
-                    <p>The brightness level of the video image captured by the local camera. See <xref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE"/> for details.</p>
+                <pd><p>The brightness level of the video image captured by the local camera. For details, see <xref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE" />.</p>
                 </pd>
             </plentry>
             </parml> </section>

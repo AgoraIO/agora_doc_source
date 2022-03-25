@@ -1,0 +1,1355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    
+Oxygen WebHelp Plugin
+Copyright (c) 1998-2022 Syncro Soft SRL, Romania.  All rights reserved.
+
+-->
+
+<!-- Extend the toolkit's HTML5 processing to generate WebHelp output. -->
+<project name="webhelp.responsive.integrator" default="dita2webhelp-responsive" basedir="."
+  xmlns:dita="http://dita-ot.sourceforge.net"
+  xmlns:if="ant:if"
+  xmlns:unless="ant:unless">
+ 
+
+  <property name="com.oxygenxml.common.dir" value="${dita.plugin.com.oxygenxml.common.dir}"/>
+  <!-- 
+    Task definition for ant-contrib library.
+  -->
+  <taskdef resource="net/sf/antcontrib/antlib.xml">
+    <classpath>
+      <pathelement location="${com.oxygenxml.common.dir}/lib/ant-contrib-1.0b3.jar"/>
+    </classpath>
+  </taskdef>
+  
+  <!--
+    Main target to create WebHelp Responsive output.
+  -->
+  <target name="dita2webhelp-responsive" 
+    dita:depends="
+      whr-init,       
+      {com.oxygenxml.responsive.internal.target.dependencies.preprocess},
+      {com.oxygenxml.responsive.internal.target.dependencies.html5.init},
+     
+      whr-detect-lang,
+      whr-collect-indexterms,
+      whr-create-props-file,
+      whr-toc-xml,
+      whr-nav-links,
+      whr-context-help-map,
+      whr-sitemap,
+      whr-copy-resources,
+      html5.css,    
+  	  whr-clean-css,
+      
+      {com.oxygenxml.responsive.internal.target.dependencies.topics.html},      
+      
+      whr-create-topic-pages,      
+      
+      {com.oxygenxml.responsive.internal.target.dependencies.outer.topics},
+      
+      whr-create-main-files,
+      whr-search-index"
+      
+    dita:extension="depends org.dita.dost.platform.InsertDependsAction">    
+  </target>
+  
+  <!--
+    Main target to create WebHelp Responsive output.
+  -->
+  <target name="dita2webhelp-responsive-preprocess2" 
+    dita:depends="
+    whr-init, 
+    {com.oxygenxml.responsive.internal.target.dependencies.preprocess2},
+    {com.oxygenxml.responsive.internal.target.dependencies.html5.init},
+    
+    whr-detect-lang,
+    whr-collect-indexterms,
+    whr-create-props-file,
+    whr-toc-xml,
+    whr-nav-links,
+    whr-context-help-map,
+    whr-sitemap,
+    whr-copy-resources,
+    html5.css,
+  	whr-clean-css,
+    
+    {com.oxygenxml.responsive.internal.target.dependencies.topics.html},      
+    
+    whr-create-topic-pages,      
+    
+    {com.oxygenxml.responsive.internal.target.dependencies.outer.topics},
+    
+    whr-create-main-files,
+    whr-search-index"
+    
+    dita:extension="depends org.dita.dost.platform.InsertDependsAction">    
+  </target>
+  
+  <!-- Extension points to execute before and after whr-init target -->
+  <extension-point name="whr-init-pre" />
+  <extension-point name="whr-init-post"/>	
+	
+  <!-- Targets used to inialize the WebHelp Responsive build -->
+  <target name="whr-init" 
+    depends="whr-init-pre, init-whr-version, build-init, whr-init-classpath, whr-init-publishing-template, whr-init-properties, whr-init-collection-type-prop">
+  	<!-- Call the post extentsion point target -->
+  	<antcall target="whr-init-post" />
+  </target>
+
+  <target name="init-whr-version">
+    <!-- WebHelp version & build number. -->
+    <property name="webhelp.version" value="24.1"/>
+    <property name="webhelp.build.number" value="2022030800"/>
+    <echo>Oxygen XML WebHelp ${webhelp.version} build ${webhelp.build.number}</echo>
+  </target>
+  
+  <target name="whr-init-classpath">    
+    <!-- Plugin classpath. -->
+    <!-- Directory of the WebHelp plugin. -->
+    <property name="webhelp.responsive.dir" value="${dita.plugin.com.oxygenxml.webhelp.responsive.dir}"/>  
+
+    <path id="wh_classpath">   
+      <fileset dir="${com.oxygenxml.common.dir}/lib">
+        <include name="*.jar"/>
+      </fileset>
+    </path>
+  </target>
+  
+  <!--
+    Load the WebHelp Responsive custom template.
+  -->
+  <target name="whr-init-publishing-template">
+    <!--
+      Use oXygen Tiles template as default. 
+    -->    
+    <property name="webhelp.publishing.template" value="${webhelp.responsive.dir}/templates/oxygen/oxygen-tiles.opt"/>
+    
+    <!-- Task used to load properties for a custom template. -->
+    <taskdef name="templatetask" 
+      classname="com.oxygenxml.publishing.template.PublishingTemplateTask" 
+      classpathref="wh_classpath"/>
+        
+    <condition property="template.descriptor.name" value="${webhelp.publishing.template.descriptor}" else="">
+      <isset property="webhelp.publishing.template.descriptor"/>
+    </condition>
+    
+	<!-- WH-1827 Use default XML catalog -->    
+    <makeurl 
+      property="webhelp.default.xml.catalog.url" 
+      file="${dita.plugin.com.oxygenxml.webhelp.responsive.dir}/xsl/template_catalog.xml"/>
+    
+    <templatetask 
+      outputDir="${output.dir}"
+      tempDir="${dita.temp.dir}"
+      pluginDir="${webhelp.responsive.dir}"
+      templateDescriptor="${template.descriptor.name}"
+      templateRootPath="${webhelp.publishing.template}"
+      defaultXMLCatalog="${webhelp.default.xml.catalog.url}"
+      transtype="webhelp-responsive"/>    
+  </target>
+
+  <!--
+    Initialize the WebHelp Responsive properties.
+  -->
+  <target name="whr-init-properties">     
+    <!--
+      =======================
+        DITA-OT Properties
+      =======================
+    -->
+    
+    <!-- We load the ditaotversion param from this DITA-OT configuration properties file.-->
+    <loadproperties srcfile="${dita.dir}/lib/configuration.properties"  unless:set="otversion" xmlns:unless="ant:unless"/>
+    
+    <!-- The extension for the output files. It is expanded by DITA-OT to ".${args.outext}" -->
+    <property name="out.ext" value=".html"/>
+    
+    <!-- 
+      EXM-39143 / WH-1370: Setting this to true ensures that unique output files are created for each instance of a 
+      resource when a map contains multiple references to a single topic. 
+    -->
+    <property name="force-unique" value="true"/>
+    
+    <!-- Default language for translated strings in HTML pages. Should be set by caller process. -->
+    <property name="args.default.language" value="en-US"/>
+    
+    <!--
+      =============================
+        WebHelp general properties
+      =============================
+    -->    
+    <!-- The file where all build properties are serialized. This file is used to read the properties into the XSLT stylesheets. -->
+    <property name="webhelp.responsive.parameters.file" location="${dita.temp.dir}/props.xml"/>
+    
+    <property name="webhelp.reload.stylesheet" value="false"/>    
+    
+    <!-- Test if custom resources directory exists -->
+    <available file="${webhelp.custom.resources}" property="webhelp.custom.resources.present" />
+    
+    <!--
+      ==========================================
+        WebHelp Responsive template properties
+      ==========================================
+    -->    
+    <property name="webhelp.enable.html.fragments.cleanup" value="true"/>
+    
+    <!-- WebHelp Responsive template related properties. -->     
+    <property name="webhelp.responsive.assets.dir" location="${webhelp.responsive.dir}/oxygen-webhelp" />
+
+    <!-- The WebHelp HTML template files. -->
+    <property name="webhelp.template.search.file" value="${webhelp.responsive.assets.dir}/page-templates/wt_search.html" />
+    <property name="webhelp.template.index.file" value="${webhelp.responsive.assets.dir}/page-templates/wt_index.html"/>
+    <property name="webhelp.template.index.terms.file" value="${webhelp.responsive.assets.dir}/page-templates/wt_terms.html"/>
+    <property name="webhelp.template.file.path" value="${webhelp.responsive.assets.dir}/page-templates/wt_topic.html"/>
+    
+    <!-- The WebHelp template components properties. -->
+    <property name="webhelp.publication.toc.links" value="chapter"></property>
+    <property name="webhelp.publication.toc.tooltip.position" value="right"/>
+    <property name="webhelp.publication.toc.hide.chunked.topics" value="yes"></property>
+    
+    <property name="webhelp.show.topic.toc" value="yes"></property>
+    
+    <property name="webhelp.top.menu.depth" value="3"/>
+    
+    <!-- WH-1938 Enable/Disable the loading of the template's custom JS module loading -->
+    <property name="webhelp.enable.template.js.module.loading" value="no"/>
+  	
+  	<!--WH-2613 Enable/Disable automatic generation of data-ofbid -->
+  	<property name="webhelp.enable.block.elements.id.generation" value="no"/>
+    
+    <!-- Google search parameters: convert the file paths to URLs -->
+    <if>
+      <isset property="webhelp.google.search.script"/>
+      <then>
+        <makeurl property="webhelp.google.search.script.url" file="${webhelp.google.search.script}"/>
+      </then>
+    </if>
+    <if>
+      <isset property="webhelp.google.search.results"/>
+      <then>
+        <makeurl property="webhelp.google.search.results.url"
+          file="${webhelp.google.search.results}"/>
+      </then>
+    </if>
+    
+    <!-- Navigation links -->
+    <property name="webhelp.top.menu.temp.file" value="${dita.temp.dir}/webhelp-top-menu.xml"/>
+    <makeurl property="webhelp.top.menu.temp.file.url" file="${webhelp.top.menu.temp.file}" validate="false"/>
+
+    <!-- PDF link -->
+    <property name="webhelp.show.pdf.link" value="yes"/>
+    <property name="webhelp.pdf.link.name.destination.enabled" value="yes"/>
+    
+    <!--
+      =============================
+        WebHelp search properties
+      =============================
+    -->
+    <!-- WebHelp search related properties -->
+    <property name="webhelp.search.ranking" value="true"/>
+  	
+  	<property name="use.stemming" value="false"/>
+    
+   <!-- 
+		Property used to disable search autocomplete 
+	-->
+    <property name="webhelp.enable.search.autocomplete" value="true" />
+    <!--
+      Property used to disable Kuromoji analyzer
+    -->
+    <property name="webhelp.enable.search.kuromoji.js" value="true" />
+    
+  	<!--
+  	  Property used to exclude stop words from the default set. 
+  	-->
+  	<property name="webhelp.search.stop.words.exclude" value="" />
+  	
+  	<!--
+  	  Property used to include stop words to the default set. 
+  	-->
+  	<property name="webhelp.search.stop.words.include" value="" />
+  	
+  	<!--
+  	  Property used to exclude elements from index. 
+  	-->
+  	<property name="webhelp.search.index.elements.to.exclude" value="" />
+  	<loadfile property="webhelp.not.indexed.elements" 
+  	  		srcfile="${dita.plugin.com.oxygenxml.webhelp.responsive.dir}/oxygen-webhelp/search.index.elements.to.exclude.txt"/>
+  	
+  	<!-- 
+		Property used to enable the header section to be sticky in the output.
+	-->
+  	<property name="webhelp.enable.sticky.header" value="yes" />
+  	
+  	<!-- 
+		Property used to enable the publication toc to be sticky in the output.
+	-->
+  	<property name="webhelp.enable.sticky.publication.toc" value="yes" />
+  	
+  	<!-- 
+		Property used to enable the topic toc to be sticky in the output.
+	-->
+  	<property name="webhelp.enable.sticky.topic.toc" value="yes" />
+  	
+    <!-- 
+		Property used to disable search pagination
+	-->
+    <property name="webhelp.search.enable.pagination" value="true" />
+    
+    <property name="webhelp.search.page.numberOfItems" value="10"/>
+  	
+    <!-- Specify the prefix to be used when accessing environment variables. -->
+    <property environment="env" />
+    
+    <property 
+      name="xsl.extensions.xml.catalog.file.path" 
+      value="${dita.plugin.com.oxygenxml.webhelp.responsive.dir}/xsl/template_catalog.xml"></property>
+    
+    <!--
+      WH-200 - webhelp.default.collection.type.sequence parameter is use to always generate Next and Previous buttons.
+    -->
+    <condition property="webhelp.default.collection.type.sequence.prop">
+      <istrue value="${webhelp.default.collection.type.sequence}"/>
+    </condition>
+    
+    <!-- Expand / collapse related properties -->
+    <property name="webhelp.topic.collapsible.elements.initial.state" value="expanded"/>
+     
+   <!-- <!-\- 
+      The file where properties available for preprocess steps are serialized. 
+      This file is used to read the properties into the XSLT stylesheets. 
+    -\->
+    <property name="preprocess.props.file" location="${dita.temp.dir}/preprocess_props.xml"/>
+    <echoproperties 
+      destfile="${preprocess.props.file}" 
+      format="xml" 
+      prefix="webhelp.default.collection.type.sequence.prop"/>   --> 
+    
+    <!-- 
+		Property used to disable image zoom.
+	-->
+    <property name="webhelp.show.full.size.image" value="true" />
+    
+    <!-- The list of elements to activate feedback block level comments -->    
+    <loadfile 
+      property="webhelp.feedback.block.level.comments" 
+      srcFile="${dita.plugin.com.oxygenxml.webhelp.responsive.dir}/oxygen-webhelp/feedback.block.level.elements.txt"/>  
+  	
+  	<!-- The list of elements to exclude for feedback block level comments -->    
+    <loadfile 
+      property="webhelp.feedback.block.level.comments.elements.to.exclude" 
+      srcFile="${dita.plugin.com.oxygenxml.webhelp.responsive.dir}/oxygen-webhelp/feedback.block.level.elements.to.exclude.txt"/>  
+  	
+  	<!-- Property that sepcifies if the custom search engine is enabled --> 
+  	<condition property="webhelp.custom.search.engine.enabled">
+  	  <and>
+  	    <isset property="webhelp.fragment.custom.search.engine.script"/>
+  	  	<isset property="webhelp.fragment.custom.search.engine.results"/>
+  	  </and>
+  	</condition>
+    
+    <echo>Load file from temp: ${dita.temp.dir}</echo>
+  </target>
+  
+  <target name="whr-after.preprocess">
+  	<pathconvert property="user.input.file">
+      <first>
+        <ditafileset format="ditamap" input="true"/>
+      </first>
+	</pathconvert>
+  </target>
+  
+  <!--
+      WH-200 - 'webhelp.default.collection.type.sequence.prop' system property is used from XSLT to always generate Next and Previous buttons.
+  -->
+  <target name="whr-init-collection-type-prop" if="webhelp.default.collection.type.sequence.prop">
+      <taskdef name="set-system-property" classname="com.oxygenxml.dita.antextensions.SetSystemProperty" classpathref="wh_classpath"/>
+  	  <set-system-property name="webhelp.default.collection.type.sequence.prop" value="yes"/>
+  </target>
+    
+  
+  <!--
+		Copy favicon in the output directory.
+	-->
+  <target name="whr-copy-favicon">
+    <!-- Test if favicon resource is available -->
+    <available file="${webhelp.favicon}" property="webhelp.favicon.present" type="file"/>
+    <if>
+      <isset property="webhelp.favicon.present" />
+      <then>
+        <copy file="${webhelp.favicon}" todir="${output.dir}" overwrite="true" />
+        <basename file="${webhelp.favicon}" property="webhelp.favicon.relpath" />
+      </then>
+      <else>
+        <condition property="webhelp.favicon.relpath" value="${webhelp.favicon}">
+          <isset property="webhelp.favicon" />
+        </condition>
+      </else>
+    </if>
+    
+  </target>
+
+  <target name="whr-copy-custom-resources" if="${webhelp.custom.resources.present}">
+    <!-- All custom resources set with param webhelp.custom.resources will be copied in output directory. -->
+    <copy todir="${output.dir}" overwrite="true" encoding="UTF-8" failonerror="true">
+      <fileset dir="${webhelp.custom.resources}">
+        <include name="**/*" />
+      </fileset>
+    </copy>
+  </target>
+  
+  <!-- 
+		Copy logo image to the output folder 
+	-->
+  <target name="whr-copy-logo-image">
+    <available type="file" file="${webhelp.logo.image}" property="webhelp.logo.image.file" />
+    <if>
+      <isset property="webhelp.logo.image.file" />
+      <then>
+        <copy file="${webhelp.logo.image}" todir="${output.dir}" overwrite="true" />
+        <basename file="${webhelp.logo.image}" property="webhelp.logo.image.output" />
+        <property 
+          name="webhelp.logo.image.output.file" 
+          value="${output.dir}/${webhelp.logo.image.output}"/>
+      </then>
+      <else>
+        <condition property="webhelp.logo.image.output" value="${webhelp.logo.image}">
+          <isset property="webhelp.logo.image" />
+        </condition>
+      </else>
+    </if>
+  </target>
+  
+  <!-- Extension points to execute before and after whr-create-topic-pages target -->
+  <extension-point name="whr-create-topic-pages-pre" />
+  <extension-point name="whr-create-topic-pages-post"/>
+	
+  <target 
+    name="whr-create-topic-pages" 
+    depends="whr-create-topic-pages-pre, whr-process-reviews, whr-dita-inner-topics" unless="noTopic">
+  	<!-- Call the post extentsion point target -->
+  	<antcall target="whr-create-topic-pages-post" />
+  </target>
+  
+  <!-- Extension points to execute before and after whr-search-index target -->
+  <extension-point name="whr-search-index-pre" />
+  <extension-point name="whr-search-index-post"/>
+	
+  <!-- Create the JavaScript files with the search database. -->
+  <target name="whr-search-index" depends="whr-search-index-pre, whr-search-index-preprocess" unless="${webhelp.custom.search.engine.enabled}">
+    <!-- Extract search JS from jar and copy them to the 'oxygen-webhelp/search' folder -->
+    
+    <copy todir="${output.dir}/oxygen-webhelp/app/search/">
+      <resources>
+        <javaresource name="responsive/searchEngineJS/nwSearchFnt.LICENSE.txt" classpathref="wh_classpath" />
+        <javaresource name="responsive/searchEngineJS/nwSearchFnt.js"  classpathref="wh_classpath"/>
+      </resources>
+      <flattenmapper/>
+    </copy>
+    <copy todir="${output.dir}/oxygen-webhelp/app/search/index/">
+      <resources>
+        <javaresource name="responsive/searchEngineJS/index/index.js"  classpathref="wh_classpath"/>
+      </resources>
+      <flattenmapper/>
+    </copy>
+    <copy todir="${output.dir}/oxygen-webhelp/app/search/stemmers/">
+      <resources>
+        <javaresource name="responsive/searchEngineJS/stemmers/en_stemmer.js"  classpathref="wh_classpath"/>
+        <javaresource name="responsive/searchEngineJS/stemmers/fr_stemmer.js"  classpathref="wh_classpath"/>
+        <javaresource name="responsive/searchEngineJS/stemmers/de_stemmer.js"  classpathref="wh_classpath"/>
+        <javaresource name="responsive/searchEngineJS/stemmers/stemmer.js"  classpathref="wh_classpath"/>
+      </resources>
+      <flattenmapper/>
+    </copy>
+
+    <taskdef name="indexertask" classname="ro.sync.exml.indexer.IndexerTask" classpathref="wh_classpath"/>
+    
+    <!-- Remove the leading "." from the output extension -->
+    <propertyregex property="noDotExt" input="${out.ext}"
+      regexp="^\.(.*)" replace="\1"
+      defaultValue="${out.ext}" casesensitive="false" />
+    
+    <propertyregex property="webhelp.language.short" input="${webhelp.language}" regexp="(..)"
+      select="\1" defaultvalue="en" override="true"/>
+    
+    <echo>Indexing html files in ${output.dir}, indexer language is: ${webhelp.language.short}</echo>
+    <indexertask 
+      outputDir="${output.dir}/oxygen-webhelp/app/search/index"
+      tempDir="${dita.temp.dir}"
+      propsDir="${webhelp.responsive.dir}/indexer"
+      indexerLanguage="${webhelp.language.short}" 
+      htmlExtension="${noDotExt}"
+      stem="${use.stemming}"
+      enableAutocomplete="${webhelp.enable.search.autocomplete}"
+      userDictionary="${webhelp.search.japanese.dictionary}"
+      outputType="WH_RESPONSIVE"
+      stopWordsExclude="${webhelp.search.stop.words.exclude}"
+      stopWordsInclude="${webhelp.search.stop.words.include}"
+      doNotIndex="${webhelp.not.indexed.elements}"
+      searchIndexElementsToExclude="${webhelp.search.index.elements.to.exclude}">
+    	
+      
+      
+      <fileset dir="${output.dir}">
+        <patternset>
+          <!-- Index only html files -->
+          <include name="**/*.${noDotExt}" />
+          <!-- Exclude html files should not be indexed -->
+          <exclude name="index.${noDotExt}" />
+          <exclude name="toc.${noDotExt}" />
+          <exclude name="search.${noDotExt}" />
+          <exclude name="indexTerms.${noDotExt}" />
+          <!-- Exclude the resources dir -->
+          <exclude name="oxygen-webhelp/" />
+        </patternset>
+        <patternset>
+          <excludesfile name="${webhelp.search.custom.excludes.file}" if:set="webhelp.search.custom.excludes.file" />
+          <!-- File containig name exclusion patterns generated from the @search="no" attribute from the DITA Map. -->
+          <excludesfile name="${search.excludes.file}" if:set="search.excludes.file.exists" />
+        </patternset>
+      </fileset>
+    </indexertask>
+  	
+  	<!-- Call the post extentsion point target -->
+  	<antcall target="whr-search-index-post" />
+  </target>  
+  
+  <!-- 
+             The JavaScript, CSS image and localization files are copied to output folder. 
+             They are referenced in the output HTML pages.
+      -->
+  <target name="whr-copy-common-resources">
+    <propertyregex property="corrected.output.dir" input="${output.dir}" regexp="\\" replace="/"
+      defaultvalue="${output.dir}" global="true"/>
+    
+    <condition property="use.kuromoji" value="true">
+      <and>
+        <equals arg1="${webhelp.language}" arg2="ja-JP" casesensitive="false"/>
+        <istrue value="${webhelp.enable.search.kuromoji.js}" />
+      </and>
+    </condition>
+    
+  	<tstamp>
+  	     <format property="timestamp" pattern="yyyyMMddHHmmss"/>
+  	</tstamp>
+  	
+    <copy todir="${output.dir}/oxygen-webhelp" overwrite="true" encoding="ISO-8859-1">
+      <fileset dir="${webhelp.responsive.dir}/oxygen-webhelp">
+        <include name="**/*" />
+        <exclude name="**/.svn" />
+        <exclude name="lib/kuromoji/**" unless="${use.kuromoji}"/>
+      	<exclude name="app/search/nwSearchFnt.LICENSE.txt" if="${webhelp.custom.search.engine.enabled}"/>
+      	<exclude name="app/search/search.js" if="${webhelp.custom.search.engine.enabled}"/>
+      	<exclude name="app/search/searchAutocomplete.js" if="${webhelp.custom.search.engine.enabled}"/>
+      	<exclude name="app/search/searchHistoryItems.js" if="${webhelp.custom.search.engine.enabled}"/>
+      	<exclude name="page-templates/**"/>
+        <exclude name="page-templates-fragments/**"/>
+        <exclude name="resources/**" />        
+      	<exclude name="feedback.block.level.elements.txt"/>
+      	<exclude name="feedback.block.level.elements.to.exclude.txt"/>
+      	<exclude name="search.index.elements.to.exclude.txt"/>
+      	<exclude name="app/context-help/cshelp.html"/>
+      </fileset>
+      <filterset begintoken="@" endtoken="@">
+        <filter token="PRODUCT_ID" value="${webhelp.product.id}" />
+        <filter token="PRODUCT_VERSION" value="${webhelp.product.version}" />
+        <filter token="FOLDER_OUTPUT_PATH" value="${corrected.output.dir}" />
+        <filter token="WEBHELP_PAGE_DIRECTION" value="${webhelp.page.direction}" />
+      	<filter token="WEBHELP_BUILD_ID" value="${webhelp.build.number}"/>
+      	<filter token="TIMESTAMP" value="${timestamp}"/>
+      </filterset>
+    </copy>
+    <copy file="${webhelp.responsive.dir}/license-3rd-party.txt" todir="${output.dir}" />
+  	
+    <copy file="${webhelp.responsive.dir}/oxygen-webhelp/app/context-help/cshelp.html" todir="${output.dir}" />
+  	
+  </target>
+  
+  <!--
+    Write properties to an XML file so they can be read from XSLT processing steps. 
+  -->
+   <target name="whr-create-props-file">
+    <touch file="${webhelp.responsive.parameters.file}" mkdirs="true"/>
+    <echoproperties destfile="${webhelp.responsive.parameters.file}" format="xml"/>
+    
+    <!-- URL to the XML file that lists all the available properties -->
+    <makeurl property="webhelp.responsive.parameters.file.url" file="${webhelp.responsive.parameters.file}"/>
+    
+    <!-- Convert the properties XML file to JSON -->
+    <property name="properties.json.file" value="${output.dir}/oxygen-webhelp/app/options/properties.js"/>
+  	<pipeline>
+    <xslt 
+      in="${webhelp.responsive.parameters.file}"
+      out="${properties.json.file}"
+      style="${webhelp.responsive.dir}/xsl/options/jsonProperties.xsl" 
+      reloadstylesheet="${webhelp.reload.stylesheet}">
+      
+      <xmlcatalog classpath="">
+        <catalogpath path="${xsl.extensions.xml.catalog.file.path}"/>
+        <catalogpath path="${dita.plugin.org.dita.base.dir}/catalog-dita.xml"/>
+      </xmlcatalog>	
+    </xslt>
+  	</pipeline>
+  </target>
+  
+
+  <!--
+    Detect documentation language by looking into DITAMAP file. 
+    If not detected use the value of 'default.language' property.
+  -->
+  <target name="whr-detect-lang">
+    <property name="inputMap" value="${dita.temp.dir}/${user.input.file}"/>
+
+        <taskdef name="detect-lang" classname="com.oxygenxml.dita.antextensions.DetectLang">
+       	  <classpath path="${com.oxygenxml.common.dir}/lib/oxygen-dita-publishing-ant-extensions.jar"/>
+        </taskdef>
+
+    <!-- Set document.locale from xml:lang -->
+    <!-- The map takes precedence, followed by the first topic -->
+    <detect-lang documentPath="${inputMap}"/>
+    
+    <!-- Set webhelp.language property -->
+    <if>
+      <isset property="document.locale"/>
+      <then>
+        <!-- Use use propertyregex from antcontrib -->
+        <propertyregex property="webhelp.language" input="${document.locale}" regexp="([a-z]+)[_\-]([a-z]*)"
+          replace="\1-\2" defaultvalue="${document.locale}" override="true" casesensitive="false"/>
+      </then>
+      <else>
+        <if>
+          <isset property="default.language"/>
+          <then>
+            <!-- Use use propertyregex from antcontrib -->
+            <property name="webhelp.language" value="${default.language}"/>
+            <!--<propertyregex property="webhelp.language" input="${default.language}"
+              regexp="(..)" select="\1" defaultvalue="en" override="true"/>-->
+          </then>
+          <else>
+            <if>
+              <isset property="args.default.language"/>
+              <then>
+                <!-- Use use propertyregex from antcontrib -->
+                <property name="webhelp.language" value="${args.default.language}"/>
+                <!--<propertyregex property="webhelp.language" input="${args.default.language}"
+                  regexp="(..)" select="\1" defaultvalue="en" override="true"/>-->
+              </then>
+            </if>
+          </else>
+        </if>
+      </else>
+    </if>
+    
+    <!--
+      Set the 'webhelp.page.direction' property depending detected language.
+    -->    
+    <condition property="webhelp.page.direction" value="rtl" else="ltr">
+      <or>
+        <equals arg1="ar" arg2="${webhelp.language}" casesensitive="false"/>
+        <equals arg1="ar-eg" arg2="${webhelp.language}" casesensitive="false"/>
+        <equals arg1="he" arg2="${webhelp.language}" casesensitive="false"/>
+        <equals arg1="he-il" arg2="${webhelp.language}" casesensitive="false"/>
+        <equals arg1="ur" arg2="${webhelp.language}" casesensitive="false"/>
+        <equals arg1="ur-pk" arg2="${webhelp.language}" casesensitive="false"/>
+      </or>
+    </condition>
+    
+    <echo>Indexer language=${webhelp.language}</echo>
+  </target>
+
+  
+  
+  <!-- Extension points to execute before and after whr-collect-indexterms target -->
+  <extension-point name="whr-collect-indexterms-pre" />
+  <extension-point name="whr-collect-indexterms-post" />
+	
+  <!--
+    Collect index terms from DITA topics and write they in ${output.dir}/index.xml. 
+    
+    The 'index.xml' file will be used to generate the 'indexTerms.html' file. 
+  -->
+  <target name="whr-collect-indexterms" depends="whr-collect-indexterms-pre" description="Build list of index terms" unless="noTopic">
+  	<!-- The properties file where indexterms related properties will be serialized by the xslt transformation below --> 
+    <property name="indexterms.properties.file" value="${output.dir}/indexterms.properties"/>
+    <touch file="${indexterms.properties.file}"/>
+    <makeurl property="indexterms.properties.url" file="${indexterms.properties.file}"/>
+  	
+  	
+  	<property name="args.extract.indexterms.xsl"
+      value="${webhelp.responsive.dir}/xsl/indexterms/extractIndexterms.xsl"/>
+    <makeurl property="dita.temp.dir.url" file="${dita.temp.dir}"/>
+  	<pipeline>
+    <xslt basedir="${dita.temp.dir}" destdir="${dita.temp.dir}" style="${args.extract.indexterms.xsl}"
+      reloadstylesheet="${webhelp.reload.stylesheet}">
+      <ditafileset format="dita" processingRole="normal"/>
+      <param name="TEMPFOLDER" expression="${dita.temp.dir.url}"/>
+      <param name="OUT_EXT" expression="${out.ext}"/>
+      <mapper type="regexp" from="^(.*?)$$" to="\1.indexterms"/>
+      
+      <xmlcatalog classpath="">
+        <catalogpath path="${xsl.extensions.xml.catalog.file.path}"/>
+        <catalogpath path="${dita.plugin.org.dita.base.dir}/catalog-dita.xml"/>
+      </xmlcatalog>	
+    </xslt>
+  	</pipeline>   
+    
+  	<pipeline>
+    <xslt  in="${dita.temp.dir}/${user.input.file}" out="${output.dir}/index.xml"
+      style="${webhelp.responsive.dir}/xsl/indexterms/collectIndexterms.xsl" classpathref="dost.class.path"
+      reloadstylesheet="${webhelp.reload.stylesheet}">
+      <param name="TEMPFOLDER" expression="${dita.temp.dir}"/>
+      <param name="JOB_FILE" expression="${dita.temp.dir}/.job.xml"/>
+      <param name="INDEXTERMS_PROPERTIES_URL" expression="${indexterms.properties.url}"/>
+      <param name="WEBHELP_PARAMETERS_URL" expression="${webhelp.responsive.parameters.file.url}"/>
+      
+      
+      <xmlcatalog classpath="">
+        <catalogpath path="${xsl.extensions.xml.catalog.file.path}"/>
+        <catalogpath path="${dita.plugin.org.dita.base.dir}/catalog-dita.xml"/>
+      </xmlcatalog>	
+    </xslt>
+  	</pipeline>
+
+  	<!-- Load the indexterms related properties -->
+    <property file="${indexterms.properties.file}"/>
+  	
+  	<!-- Call the post extentsion point target -->
+  	<antcall target="whr-collect-indexterms-post" />
+  </target>
+
+
+  <!--
+		Converts the oXygen review PIs (change tracking, comments, etc..) into elements, and 
+		structures the replies into the parent comments. 
+	-->
+  <target name="whr-process-reviews" if="${webhelp.show.changes.and.comments}" unless="noTopic">
+    <echo>Transforming Oxygen PIs into elements.</echo>
+    
+    <pipeline>
+      <xslt basedir="${dita.temp.dir}" destdir="${dita.temp.dir}" style="${dita.plugin.com.oxygenxml.webhelp.responsive.dir}/xsl/review/review-pis-to-elements.xsl" reloadstylesheet="${webhelp.reload.stylesheet}">
+        <ditafileset format="dita" processingRole="normal"/>
+        <param name="show.changes.and.comments" expression="${webhelp.show.changes.and.comments}"/>
+        
+        <xmlcatalog classpath="">
+          <catalogpath path="${xsl.extensions.xml.catalog.file.path}"/>
+          <catalogpath path="${dita.plugin.org.dita.base.dir}/catalog-dita.xml"/>
+        </xmlcatalog>	
+        <mapper type="identity"/>
+      </xslt>
+    </pipeline>
+    
+    
+    <echo>Grouping comments into threads.</echo>
+    <pipeline>
+      <xslt basedir="${dita.temp.dir}" destdir="${dita.temp.dir}" style="${dita.plugin.com.oxygenxml.webhelp.responsive.dir}/xsl/review/review-group-replies.xsl" reloadstylesheet="${webhelp.reload.stylesheet}">
+        <ditafileset format="dita" processingRole="normal"/>
+        <param name="show.changes.and.comments" expression="${webhelp.show.changes.and.comments}"/>
+        
+        <xmlcatalog classpath="">
+          <catalogpath path="${xsl.extensions.xml.catalog.file.path}"/>
+          <catalogpath path="${dita.plugin.org.dita.base.dir}/catalog-dita.xml"/>
+        </xmlcatalog>	
+        <mapper type="identity"/>
+      </xslt>
+    </pipeline>
+  </target>
+  
+
+  <!-- 
+    Create the index.html, search.html and indexTerms.html files. 
+  -->
+  <target 
+    name="whr-create-main-files" 
+    depends="whr-create-main-page, whr-create-search-page, whr-create-indexterms-page, whr-create-localization-files"/>
+
+  <!-- Extension points to execute before and after whr-create-main-page target -->
+  <extension-point name="whr-create-main-page-pre" />
+  <extension-point name="whr-create-main-page-post"/>
+	
+  <!-- 
+    Create the index.html. 
+  -->
+  <target name="whr-create-main-page" depends="whr-create-main-page-pre">
+    <property name="args.whr.create.main.page.xsl" value="${webhelp.responsive.dir}/xsl/mainFiles/createMainPage.xsl"/>
+	<pipeline>
+    <xslt in="${webhelp.template.index.file}" out="${output.dir}/index${out.ext}"
+      style="${args.whr.create.main.page.xsl}" classpathref="dost.class.path">
+      <param name="TOC_XML_FILEPATH" expression="${dita.temp.dir}/toc.xml"/>
+      <param name="XHTML_FOLDER" expression="${output.dir}"/>
+      <param name="OUTPUTDIR" expression="${output.dir}"/>
+      <param name="BASEDIR" expression="${webhelp.responsive.dir}"/>
+      <param name="OUTEXT" expression="${out.ext}" if:set="out.ext"/>
+      <param name="DEFAULTLANG" expression="${webhelp.language}" if:set="webhelp.language"/>
+      <param name="CSS" expression="${args.css.file}" if:set="args.css.file"/>
+      <param name="CSSPATH" expression="${user.csspath}" if:set="user.csspath"/>
+      <param name="WEBHELP_LOGO_IMAGE" expression="${webhelp.logo.image.output}"
+        if:set="webhelp.logo.image.output"/>
+      <param name="WEBHELP_LOGO_IMAGE_TARGET_URL" expression="${webhelp.logo.image.target.url}"
+        if:set="webhelp.logo.image.target.url"/>
+      <param name="WEBHELP_FAVICON" expression="${webhelp.favicon.relpath}" if:set="webhelp.favicon.relpath"/>
+      <param name="WEBHELP_SEARCH_RANKING" expression="${webhelp.search.ranking}"
+        if:set="webhelp.search.ranking"/>
+      <param name="WEBHELP_SEARCH_SCRIPT" expression="${webhelp.google.search.script.url}"
+        if:set="webhelp.google.search.script.url"/>
+      <param name="WEBHELP_SEARCH_RESULT" expression="${webhelp.google.search.results.url}"
+        if:set="webhelp.google.search.results.url"/>
+      <param name="WEBHELP_VERSION" expression="${webhelp.version}" if:set="webhelp.version"/>
+      <param name="WEBHELP_BUILD_NUMBER" expression="${webhelp.build.number}"
+        if:set="webhelp.build.number"/>
+      <param name="WEBHELP_TRIAL_LICENSE" expression="${webhelp.trial.license}"
+        if:set="webhelp.trial.license"/>
+
+      <param name="WEBHELP_DITAMAP_URL" expression="${org.dita-ot.html.map.url}"/>
+
+      <param name="WEBHELP_PARAMETERS_URL" expression="${webhelp.responsive.parameters.file.url}"/>
+      <param name="show.changes.and.comments" expression="${webhelp.show.changes.and.comments}"/>
+      
+      <!-- Navigation links params -->
+      <param name="WEBHELP_TOP_MENU_TEMP_FILE_URL" expression="${webhelp.top.menu.temp.file.url}"/>
+
+      <!-- 
+        Extension point to pass parameters to the XSLT transformation that creates the main HTML page.
+      -->
+      <dita:extension id="com.oxygenxml.webhelp.xsl.createMainPage.param"
+        behavior="org.dita.dost.platform.InsertAction"/>      
+      
+      
+      <xmlcatalog classpath="">
+        <catalogpath path="${xsl.extensions.xml.catalog.file.path}"/>
+        <catalogpath path="${dita.plugin.org.dita.base.dir}/catalog-dita.xml"/>
+      </xmlcatalog>	
+    </xslt>
+	</pipeline>
+		
+    <replaceregexp file="${output.dir}/index${out.ext}"
+      match="&lt;\?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;\?&gt;" replace=""
+      encoding="UTF-8"/>
+  	
+  	<!-- Call the post extentsion point target -->
+  	<antcall target="whr-create-main-page-post" />
+  </target>
+
+  <!-- Extension points to execute before and after whr-create-search-page target -->
+  <extension-point name="whr-create-search-page-pre" />
+  <extension-point name="whr-create-search-page-post"/>
+	
+  <!--
+    Create WebHelp Search Page, search.html.
+  -->
+  <target name="whr-create-search-page" depends="whr-create-search-page-pre">    
+    <property name="args.whr.create.search.page.xsl" value="${webhelp.responsive.dir}/xsl/mainFiles/createSearchPage.xsl"/>
+    <pipeline>
+    <xslt 
+      in="${webhelp.template.search.file}" 
+      out="${output.dir}/search${out.ext}"
+      style="${args.whr.create.search.page.xsl}" 
+      classpathref="dost.class.path">
+      <param name="TOC_XML_FILEPATH" expression="${dita.temp.dir}/toc.xml"/>
+      <param name="INDEX_XML_FILEPATH" expression="${output.dir}/index.xml"/>
+      <param name="XHTML_FOLDER" expression="${output.dir}"/>
+      <param name="OUTPUTDIR" expression="${output.dir}"/>
+      <param name="BASEDIR" expression="${webhelp.responsive.dir}"/>
+      <param name="OUTEXT" expression="${out.ext}" if:set="out.ext"/>
+      <param name="DEFAULTLANG" expression="${webhelp.language}" if:set="webhelp.language"/>
+      <param name="CSS" expression="${args.css.file}" if:set="args.css.file"/>
+      <param name="CSSPATH" expression="${user.csspath}" if:set="user.csspath"/>
+      <param name="WEBHELP_LOGO_IMAGE" expression="${webhelp.logo.image.output}"
+        if:set="webhelp.logo.image.output"/>
+      <param name="WEBHELP_LOGO_IMAGE_TARGET_URL" expression="${webhelp.logo.image.target.url}"
+        if:set="webhelp.logo.image.target.url"/>
+      <param name="WEBHELP_FAVICON" expression="${webhelp.favicon.relpath}" if:set="webhelp.favicon.relpath"/>
+      <param name="WEBHELP_SEARCH_RANKING" expression="${webhelp.search.ranking}"
+        if:set="webhelp.search.ranking"/>
+      <param name="WEBHELP_SEARCH_SCRIPT" expression="${webhelp.google.search.script.url}"
+        if:set="webhelp.google.search.script.url"/>
+      <param name="WEBHELP_SEARCH_RESULT" expression="${webhelp.google.search.results.url}"
+        if:set="webhelp.google.search.results.url"/>
+      <param name="WEBHELP_VERSION" expression="${webhelp.version}" if:set="webhelp.version"/>
+      <param name="WEBHELP_BUILD_NUMBER" expression="${webhelp.build.number}"
+        if:set="webhelp.build.number"/>
+      <param name="WEBHELP_TRIAL_LICENSE" expression="${webhelp.trial.license}"
+        if:set="webhelp.trial.license"/>
+      
+      <param name="WEBHELP_DITAMAP_URL" expression="${org.dita-ot.html.map.url}"/>
+      <param name="WEBHELP_PARAMETERS_URL" expression="${webhelp.responsive.parameters.file.url}"/>
+      <param name="show.changes.and.comments" expression="${webhelp.show.changes.and.comments}"/>
+      <!-- Navigation links params -->
+      <param name="WEBHELP_TOP_MENU_TEMP_FILE_URL" expression="${webhelp.top.menu.temp.file.url}"/>
+      
+      <!-- 
+        Extension point to pass parameters to the XSLT transformation that creates the main HTML page.
+      -->
+      <dita:extension id="com.oxygenxml.webhelp.xsl.createSearchPage.param"
+        behavior="org.dita.dost.platform.InsertAction"/>
+      
+      
+      <xmlcatalog classpath="">
+        <catalogpath path="${xsl.extensions.xml.catalog.file.path}"/>
+        <catalogpath path="${dita.plugin.org.dita.base.dir}/catalog-dita.xml"/>
+      </xmlcatalog>	
+    </xslt>
+   	</pipeline>
+  	<!-- Call the post extentsion point target -->
+  	<antcall target="whr-create-search-page-post" />
+  </target>
+
+
+  <!-- Extension points to execute before and after whr-create-indexterms-page target -->
+  <extension-point name="whr-create-indexterms-page-pre" />
+  <extension-point name="whr-create-indexterms-page-post"/>
+	
+  <!--
+    Create WebHelp indexterms page, indexTerms.html
+  -->
+  <target name="whr-create-indexterms-page" depends="whr-create-indexterms-page-pre">
+    <property name="args.whr.create.indexterms.page.xsl" value="${webhelp.responsive.dir}/xsl/mainFiles/createIndextermsPage.xsl"/>
+  	<pipeline>
+    <xslt 
+      in="${webhelp.template.index.terms.file}" 
+      out="${output.dir}/indexTerms${out.ext}"
+      style="${args.whr.create.indexterms.page.xsl}" 
+      >
+      <param name="TOC_XML_FILEPATH" expression="${dita.temp.dir}/toc.xml"/>
+      <param name="INDEX_XML_FILEPATH" expression="${output.dir}/index.xml"/>
+      <param name="XHTML_FOLDER" expression="${output.dir}"/>
+      <param name="OUTPUTDIR" expression="${output.dir}"/>
+      <param name="BASEDIR" expression="${webhelp.responsive.dir}"/>
+      <param name="OUTEXT" expression="${out.ext}" if:set="out.ext"/>
+      <param name="DEFAULTLANG" expression="${webhelp.language}" if:set="webhelp.language"/>
+      <param name="CSS" expression="${args.css.file}" if:set="args.css.file"/>
+      <param name="CSSPATH" expression="${user.csspath}" if:set="user.csspath"/>
+      <param name="WEBHELP_LOGO_IMAGE" expression="${webhelp.logo.image.output}"
+        if:set="webhelp.logo.image.output"/>
+      <param name="WEBHELP_LOGO_IMAGE_TARGET_URL" expression="${webhelp.logo.image.target.url}"
+        if:set="webhelp.logo.image.target.url"/>
+      <param name="WEBHELP_FAVICON" expression="${webhelp.favicon.relpath}" if:set="webhelp.favicon.relpath"/>
+      <param name="WEBHELP_SEARCH_RANKING" expression="${webhelp.search.ranking}"
+        if:set="webhelp.search.ranking"/>
+      <param name="WEBHELP_SEARCH_SCRIPT" expression="${webhelp.google.search.script.url}"
+        if:set="webhelp.google.search.script.url"/>
+      <param name="WEBHELP_SEARCH_RESULT" expression="${webhelp.google.search.results.url}"
+        if:set="webhelp.google.search.results.url"/>
+      <param name="WEBHELP_VERSION" expression="${webhelp.version}" if:set="webhelp.version"/>
+      <param name="WEBHELP_BUILD_NUMBER" expression="${webhelp.build.number}"
+        if:set="webhelp.build.number"/>
+      <param name="WEBHELP_TRIAL_LICENSE" expression="${webhelp.trial.license}"
+        if:set="webhelp.trial.license"/>
+      
+      <param name="WEBHELP_DITAMAP_URL" expression="${org.dita-ot.html.map.url}"/>
+      <param name="WEBHELP_PARAMETERS_URL" expression="${webhelp.responsive.parameters.file.url}"/>
+      <param name="show.changes.and.comments" expression="${webhelp.show.changes.and.comments}"/>
+      
+      <!-- Navigation links params -->
+      <param name="WEBHELP_TOP_MENU_TEMP_FILE_URL" expression="${webhelp.top.menu.temp.file.url}"/>
+      
+      <!-- 
+        TODO Extension point for indexterms.
+      -->
+      <dita:extension id="com.oxygenxml.webhelp.xsl.createIndexTermsPage.param"
+        behavior="org.dita.dost.platform.InsertAction"/>
+      
+      
+      <xmlcatalog classpath="">
+        <catalogpath path="${xsl.extensions.xml.catalog.file.path}"/>
+        <catalogpath path="${dita.plugin.org.dita.base.dir}/catalog-dita.xml"/>
+      </xmlcatalog>	
+    </xslt>
+  	</pipeline>
+    
+  	<!-- Call the post extentsion point target -->
+  	<antcall target="whr-create-indexterms-page-post" />
+  </target>
+  
+  <!--
+    Create WebHelp JS & PHP localization files (strings.js & strings.php).
+  -->
+  <target name="whr-create-localization-files">    
+    <property 
+       name="strings.list.file" 
+       value="${webhelp.responsive.dir}/oxygen-webhelp/resources/localization/strings.xml"/>
+    <available file="${dita.dir}/resources/plugins.xml" property="DITA_OT_PLUGINS_FILE_PATH" value="${dita.dir}/resources/plugins.xml"/>
+    <available file="${dita.dir}/config/plugins.xml" property="DITA_OT_PLUGINS_FILE_PATH" value="${dita.dir}/config/plugins.xml"/>
+	<pipeline>    
+    <xslt 
+      in="${strings.list.file}" 
+      style="${webhelp.responsive.dir}/xsl/mainFiles/createLocalizationFiles.xsl" 
+      out="${dita.temp.dir}/dummy.html"
+      classpathref="dost.class.path">
+      <param name="TOC_XML_FILEPATH" expression="${dita.temp.dir}/toc.xml"/>
+      <param name="INDEX_XML_FILEPATH" expression="${output.dir}/index.xml"/>
+      <param name="XHTML_FOLDER" expression="${output.dir}"/>
+      <param name="OUTPUTDIR" expression="${output.dir}"/>
+      <param name="BASEDIR" expression="${webhelp.responsive.dir}"/>
+      <param name="OUTEXT" expression="${out.ext}" if:set="out.ext"/>
+      <param name="DEFAULTLANG" expression="${webhelp.language}" if:set="webhelp.language"/>
+      <param name="CSS" expression="${args.css.file}" if:set="args.css.file"/>
+      <param name="CSSPATH" expression="${user.csspath}" if:set="user.csspath"/>
+      
+      <param name="DITA_OT_PLUGINS_FILE_PATH" expression="${DITA_OT_PLUGINS_FILE_PATH}"/>
+      
+      <param name="WEBHELP_LOGO_IMAGE" expression="${webhelp.logo.image.output}"
+        if:set="webhelp.logo.image.output"/>
+      <param name="WEBHELP_LOGO_IMAGE_TARGET_URL" expression="${webhelp.logo.image.target.url}"
+        if:set="webhelp.logo.image.target.url"/>
+      <param name="WEBHELP_FAVICON" expression="${webhelp.favicon.relpath}" if:set="webhelp.favicon.relpath"/>
+      <param name="WEBHELP_SEARCH_RANKING" expression="${webhelp.search.ranking}"
+        if:set="webhelp.search.ranking"/>
+      <param name="WEBHELP_SEARCH_SCRIPT" expression="${webhelp.google.search.script.url}"
+        if:set="webhelp.google.search.script.url"/>
+      <param name="WEBHELP_SEARCH_RESULT" expression="${webhelp.google.search.results.url}"
+        if:set="webhelp.google.search.results.url"/>
+      <param name="WEBHELP_VERSION" expression="${webhelp.version}" if:set="webhelp.version"/>
+      <param name="WEBHELP_BUILD_NUMBER" expression="${webhelp.build.number}"
+        if:set="webhelp.build.number"/>
+      <param name="WEBHELP_TRIAL_LICENSE" expression="${webhelp.trial.license}"
+        if:set="webhelp.trial.license"/>
+      
+      <param name="WEBHELP_DITAMAP_URL" expression="${org.dita-ot.html.map.url}"/>
+      <param name="WEBHELP_PARAMETERS_URL" expression="${webhelp.responsive.parameters.file.url}"/>
+      <param name="show.changes.and.comments" expression="${webhelp.show.changes.and.comments}"/>
+      
+      <!-- 
+        Extension point to pass parameters to the XSLT transformation that creates the main HTML page.
+      -->
+      <dita:extension id="com.oxygenxml.webhelp.xsl.createMainFiles.param"
+        behavior="org.dita.dost.platform.InsertAction"/>
+      
+      
+      <xmlcatalog classpath="">
+        <catalogpath path="${xsl.extensions.xml.catalog.file.path}"/>
+        <catalogpath path="${dita.plugin.org.dita.base.dir}/catalog-dita.xml"/>
+      </xmlcatalog>	
+    </xslt>
+    </pipeline>
+		
+    <delete dir="${dita.temp.dir}">
+      <include name="dummy.html"/>
+    </delete>
+  </target>
+  
+
+
+  <!-- 
+    DITA topics are converted to HTML files. 
+  -->
+  <target name="whr-dita-inner-topics" description="Build WebHelp output from dita topics"
+    unless="noTopic">
+    <property name="out.ext" value=".html"/>
+    <property name="transtype.ext" value=".xsl"/>
+
+    <property name="args.whr.topic.xsl" value="${webhelp.responsive.dir}/xsl/dita2webhelp/dita2webhelp.xsl"/>
+
+    <!-- URL to the DITA Map -->
+    <makeurl property="org.dita-ot.html.map.url" file="${dita.temp.dir}/${user.input.file}" validate="no"/>
+
+    <makeurl file="${dita.input.valfile}" property="dita.input.valfile.url" validate="no"/>
+    <makeurl property="webhelp.template.file.path.url" file="${webhelp.template.file.path}"/>
+    
+  	<!-- Test if args.input is already URL -->
+  	<condition property="args.input.url" value="${args.input}">
+  		<matches pattern="^file\:/" string="${args.input}"/>
+  	</condition>
+    <makeurl file="${args.input}" property="args.input.url" validate="no" unless:set="args.input.url"/>
+    
+    <sequential>
+      <pipeline>
+        <xslt basedir="${dita.temp.dir}" destdir="${dita.output.dir}" 
+        reloadstylesheet="${webhelp.reload.stylesheet}" classpathref="dost.class.path" extension="${out.ext}" 
+        style="${args.whr.topic.xsl}" filenameparameter="FILENAME" filedirparameter="FILEDIR">
+          <ditafileset format="dita" processingRole="normal"/>
+          <param name="TRANSTYPE" expression="${transtype}"/>
+          <param name="DITAEXT" expression="${dita.ext}" if:set="dita.ext"/>
+          <param name="FILTERFILE" expression="${dita.input.valfile.url}" if:set="dita.input.valfile"/>
+          <param name="HDF" expression="${args.hdf}" if:set="args.hdf"/>
+          <param name="HDR" expression="${args.hdr}" if:set="args.hdr"/>
+          <param name="FTR" expression="${args.ftr}" if:set="args.ftr"/>
+          <param name="DRAFT" expression="${args.draft}" if:set="args.draft"/>
+          <param name="ARTLBL" expression="${args.artlbl}" if:set="args.artlbl"/>
+          <param name="GENERATE-TASK-LABELS" expression="${args.gen.task.lbl}" if:set="args.gen.task.lbl"/>
+          <param name="PRESERVE-DITA-CLASS" expression="${args.xhtml.classattr}"
+            if:set="args.xhtml.classattr"/>
+          <param name="NOPARENTLINK" expression="${args.hide.parent.link}" if:set="args.hide.parent.link"/>
+          <param name="include.rellinks" expression="${include.rellinks}" if:set="include.rellinks"/>
+          <param name="BREADCRUMBS" expression="${args.breadcrumbs}" if:set="args.breadcrumbs"/>
+          <param name="INDEXSHOW" expression="${args.indexshow}" if:set="args.indexshow"/>
+          <param name="genDefMeta" expression="${args.gen.default.meta}" if:set="args.gen.default.meta"/>
+          <param name="OUTEXT" expression="${out.ext}" if:set="out.ext"/>
+          <param name="BASEDIR" expression="${basedir}"/>
+          <param name="OUTPUTDIR" expression="${output.dir}"/>
+          <!-- WH-257: Parameter used in commonComponentsExpander.xsl -->
+          <param name="TEMPDIR" expression="${dita.temp.dir}"/>
+          <param name="LANGUAGE" expression="${webhelp.language}" if:set="webhelp.language"/>
+          <param name="DBG" expression="${args.debug}" if:set="args.debug"/>
+          <param name="CSS" expression="${args.css.file}" if:set="args.css.file"/>
+          <param name="CSSPATH" expression="${user.csspath}" if:set="user.csspath"/>
+          <param name="CUSTOM_BASEDIR" expression="${dita.temp.dir}"/>
+          <param name="WEBHELP_FOOTER_INCLUDE" expression="${webhelp.footer.include}"
+            if:set="webhelp.footer.include"/>
+          <param name="WEBHELP_FOOTER_FILE" expression="${webhelp.footer.file}" if:set="webhelp.footer.file"/>
+          <param name="WEBHELP_TRIAL_LICENSE" expression="${webhelp.trial.license}"
+            if:set="webhelp.trial.license"/>
+          <param name="WEBHELP_SEARCH_SCRIPT" expression="${webhelp.google.search.script.url}"
+            if:set="webhelp.google.search.script.url"/>
+          <param name="WEBHELP_VERSION" expression="${webhelp.version}" if:set="webhelp.version"/>
+          <param name="WEBHELP_BUILD_NUMBER" expression="${webhelp.build.number}"
+            if:set="webhelp.build.number"/>
+          <param name="INDEX_XML_FILEPATH" expression="${output.dir}/index.xml"/>
+          <param name="WEBHELP_FAVICON" expression="${webhelp.favicon.relpath}" if:set="webhelp.favicon.relpath"/>
+          
+          <!-- URL to the DITA map is necesary only for responsive webhelp -->
+          <param name="TOC_XML_FILEPATH" expression="${dita.temp.dir}/toc.xml"/>
+          <param name="WEBHELP_DITAMAP_URL" expression="${org.dita-ot.html.map.url}"/>
+          <param name="WEBHELP_TEMPLATE_URL" expression="${webhelp.template.file.path.url}"/>
+          <param name="WEBHELP_LOGO_IMAGE" expression="${webhelp.logo.image.output}"
+            if:set="webhelp.logo.image.output"/>
+          <param name="WEBHELP_LOGO_IMAGE_TARGET_URL" expression="${webhelp.logo.image.target.url}"
+            if:set="webhelp.logo.image.target.url"/>
+          <param name="WEBHELP_DEBUG_DITA_OT_OUTPUT" expression="${webhelp.debug.dita.ot.output}"/>
+          <param name="WEBHELP_PARAMETERS_URL" expression="${webhelp.responsive.parameters.file.url}"/>
+          <param name="show.changes.and.comments" expression="${webhelp.show.changes.and.comments}"/>
+          
+          <!-- Navigation links params -->
+          <param name="WEBHELP_TOP_MENU_TEMP_FILE_URL" expression="${webhelp.top.menu.temp.file.url}"/>
+          <param name="DEFAULTLANG" expression="${webhelp.language}" if:set="webhelp.language"/>
+          
+          <param name="DATA_OFBID_ELEMENTS" expression="${webhelp.feedback.block.level.comments}" if:set="webhelp.feedback.block.level.comments"/>
+          <param name="DATA_OFBID_ELEMENTS_TO_EXCLUDE" expression="${webhelp.feedback.block.level.comments.elements.to.exclude}" if:set="webhelp.feedback.block.level.comments.elements.to.exclude"/>
+        	
+          <param name="DITAMAP_URL" expression="${args.input.url}"/>
+          
+          <param name="args.rellinks.group.mode" expression="${webhelp.rellinks.group.mode}" if:set="webhelp.rellinks.group.mode"/>
+          
+          <param name="figure.title.placement" expression="${webhelp.figure.title.placement}" if:set="webhelp.figure.title.placement"/>
+          <param name="table.title.placement" expression="${webhelp.table.title.placement}" if:set="webhelp.table.title.placement"/>
+          
+          <dita:extension id="dita.conductor.html5.param" behavior="org.dita.dost.platform.InsertAction"/>
+          <!-- 
+        Extension point to pass parameters to the XSLT transformation.
+      -->
+          <dita:extension id="com.oxygenxml.webhelp.xsl.dita2webhelp.param"
+            behavior="org.dita.dost.platform.InsertAction"/>
+<!--          -->
+          
+          <xmlcatalog classpath="">
+            <catalogpath path="${xsl.extensions.xml.catalog.file.path}"/>
+            <catalogpath path="${dita.plugin.org.dita.base.dir}/catalog-dita.xml"/>
+          </xmlcatalog>	
+          <mapper classname="org.dita.dost.ant.types.JobMapper" to="${out.ext}"/>
+        </xslt>
+      </pipeline>
+    </sequential>
+  </target>
+
+  <!-- Extension points to execute before and after whr-context-help-map target -->
+  <extension-point name="whr-context-help-map-pre" />
+  <extension-point name="whr-context-help-map-post"/>
+	
+  <!-- 
+    Generate 'context-help-map.xml' used by Context Sensitive Help system.
+  -->
+   <target name="whr-context-help-map" depends="whr-context-help-map-pre">
+    <!-- Create context-help-map.xml -->
+   	<pipeline>
+    <xslt in="${dita.temp.dir}/${user.input.file}"
+      out="${output.dir}/context-help-map.xml"
+      style="${webhelp.responsive.dir}/xsl/contextHelp/contextHelpMapDita.xsl" 
+      classpathref="dost.class.path" reloadstylesheet="${webhelp.reload.stylesheet}">
+      <param name="OUT_EXT" expression="${out.ext}"/>
+      
+      <xmlcatalog classpath="">
+        <catalogpath path="${xsl.extensions.xml.catalog.file.path}"/>
+        <catalogpath path="${dita.plugin.org.dita.base.dir}/catalog-dita.xml"/>
+      </xmlcatalog>	
+    </xslt>
+    </pipeline>
+    
+    <!-- Create context-help-map.js -->
+   	<pipeline>
+    <xslt in="${output.dir}/context-help-map.xml"
+      out="${output.dir}/oxygen-webhelp/app/context-help/context-help-map.js"
+      style="${webhelp.responsive.dir}/xsl/contextHelp/contextHelpMapDitaJS.xsl" 
+      classpathref="dost.class.path" reloadstylesheet="${webhelp.reload.stylesheet}">
+      
+      <xmlcatalog classpath="">
+        <catalogpath path="${xsl.extensions.xml.catalog.file.path}"/>
+        <catalogpath path="${dita.plugin.org.dita.base.dir}/catalog-dita.xml"/>
+      </xmlcatalog>	
+    </xslt>
+   	</pipeline>
+    
+   	<!-- Call the post extentsion point target -->
+   	<antcall target="whr-context-help-map-post" />
+  </target>
+
+  <!-- Extension points to execute before and after whr-toc-xml target -->
+  <extension-point name="whr-toc-xml-pre" />
+  <extension-point name="whr-toc-xml-post"/>
+	
+  <!-- 
+    Create toc.xml containing the documentation hierarchy. 
+  -->
+  <target name="whr-toc-xml" depends="whr-toc-xml-pre"
+	    description="Build WebHelp Responsive toc.xml file">
+    <makeurl file="${dita.input.valfile}" property="dita.input.valfile.url" validate="no"/>
+
+    <makeurl file="${dita.temp.dir}" property="dita.temp.dir.url"/>
+
+    <property name="args.whr.createTocXML.xsl" value="${webhelp.responsive.dir}/xsl/navLinks/tocDita.xsl"/>
+  	<pipeline>
+    <xslt in="${dita.temp.dir}/${user.input.file}" out="${dita.temp.dir}/toc.xml"
+      style="${args.whr.createTocXML.xsl}" classpathref="dost.class.path"
+      reloadstylesheet="${webhelp.reload.stylesheet}">
+      <param name="OUT_EXT" expression="${out.ext}"/>
+      <param name="FILTERFILE" expression="${dita.input.valfile.url}" if:set="dita.input.valfile"/>
+      <param name="WEBHELP_PARAMETERS_URL" expression="${webhelp.responsive.parameters.file.url}"/>
+      <param name="TEMP_DIR_URL" expression="${dita.temp.dir.url}"/>  
+
+      <!-- 
+        Extension point to pass parameters to the XSLT transformation that creates the 'toc.xml' file.
+      -->
+      <dita:extension id="com.oxygenxml.webhelp.xsl.createTocXML.param"
+        behavior="org.dita.dost.platform.InsertAction"/>
+
+      
+      <outputproperty name="method" value="xhtml"/>
+      
+      <xmlcatalog classpath="">
+        <catalogpath path="${xsl.extensions.xml.catalog.file.path}"/>
+        <catalogpath path="${dita.plugin.org.dita.base.dir}/catalog-dita.xml"/>
+      </xmlcatalog>	
+    </xslt>
+  	</pipeline>
+  	
+  	<!-- Call the post extentsion point target -->
+  	<antcall target="whr-toc-xml-post" />
+  </target>
+  
+  <target name="whr-nav-links">
+    <makeurl file="${dita.temp.dir}" property="dita.temp.dir.url"/>
+    
+    <property name="nav.json.out.dir" value="${output.dir}/oxygen-webhelp/app/nav-links/json"/>
+    <makeurl property="nav.json.out.dir.url" file="${nav.json.out.dir}" validate="false"/>
+    
+  	<pipeline>
+    <xslt 
+      in="${dita.temp.dir}/toc.xml"
+      out="${dita.temp.dir}/navlinks-dummy.html"
+      style="${webhelp.responsive.dir}/xsl/navLinks/navLinks.xsl" 
+      classpathref="dost.class.path"
+      reloadstylesheet="${webhelp.reload.stylesheet}">
+      <param name="TEMP_DIR_URL" expression="${dita.temp.dir.url}"/>
+      <param name="WEBHELP_SIDE_TOC_LINKS" expression="${webhelp.side.toc.links}" if:set="webhelp.side.toc.links"/>
+      <param name="WEBHELP_PUBLICATION_TOC_LINKS" expression="${webhelp.publication.toc.links}"/>
+      <param name="WEBHELP_PUBLICATION_TOC_HIDE_CHUNKED_TOPICS" expression="${webhelp.publication.toc.hide.chunked.topics}"/>
+      <param name="MENU_TEMP_FILE_URI" expression="${webhelp.top.menu.temp.file.url}"/>
+      <param name="WEBHELP_TOP_MENU_DEPTH" expression="${webhelp.top.menu.depth}"/>
+      <param name="JSON_OUTPUT_DIR_URI" expression="${nav.json.out.dir.url}"/>
+      
+      <!-- 
+        Extension point to pass parameters to the XSLT transformation that creates the navigation links files.
+      -->
+      <dita:extension id="com.oxygenxml.webhelp.xsl.createNavLinks.param"
+        behavior="org.dita.dost.platform.InsertAction"/>
+      
+      <xmlcatalog classpath="">
+        <catalogpath path="${xsl.extensions.xml.catalog.file.path}"/>
+        <catalogpath path="${dita.plugin.org.dita.base.dir}/catalog-dita.xml"/>
+      </xmlcatalog>	
+    </xslt>
+  	</pipeline>
+    <delete file="${dita.temp.dir}/navlinks-dummy.html"/>
+  </target>
+  
+  <!-- Extension points to execute before and after whr-sitemap target -->
+  <extension-point name="whr-sitemap-pre" />
+  <extension-point name="whr-sitemap-post"/>
+	
+  <!--
+    Generate the 'sitemap.xml' file. It can be used for search engine optiomization. 
+    See https://www.oxygenxml.com/doc/versions/19.0/ug-editor/topics/webhelp-seo-x-publishing3.html.
+  -->
+  <target name="whr-sitemap" depends="whr-sitemap-pre">
+    <tstamp>
+      <format property="webhelp.sitemap.date" pattern="yyyy-MM-dd'T'hh:mm:ssX" timezone="UTC"/>
+    </tstamp>
+	<pipeline>
+    <xslt in="${dita.temp.dir}/${user.input.file}" out="${output.dir}/sitemap.xml"
+      style="${webhelp.responsive.dir}/xsl/search/sitemapDita.xsl" classpathref="dost.class.path"
+      reloadstylesheet="${webhelp.reload.stylesheet}">
+      <param name="OUT_EXT" expression="${out.ext}"/>
+      <param name="WEBHELP_BASE_URL" expression="${webhelp.sitemap.base.url}"
+        if:set="webhelp.sitemap.base.url"/>
+      <param name="WEBHELP_LAST_MODIFIED" expression="${webhelp.sitemap.date}"/>
+      <param name="WEBHELP_CHANGE_FREQUENCY" expression="${webhelp.sitemap.change.frequency}"
+        if:set="webhelp.sitemap.change.frequency"/>
+      <param name="WEBHELP_PRIORITY" expression="${webhelp.sitemap.priority}"
+        if:set="webhelp.sitemap.priority"/>
+      
+      
+      <xmlcatalog classpath="">
+        <catalogpath path="${xsl.extensions.xml.catalog.file.path}"/>
+        <catalogpath path="${dita.plugin.org.dita.base.dir}/catalog-dita.xml"/>
+      </xmlcatalog>	
+    </xslt>
+	</pipeline>
+  	<!-- Call the post extentsion point target -->
+  	<antcall target="whr-sitemap-post" />
+  </target>
+	
+  <!-- Remove the default css files generated by the HTML5 plugin -->
+  <target name="whr-clean-css">
+    <delete file="${output.dir}/commonltr.css" />
+  	<delete file="${output.dir}/commonrtl.css" />
+  </target>
+
+  <!-- Extension points to execute before and after whr-copy-resources target -->
+  <extension-point name="whr-copy-resources-pre" />
+  <extension-point name="whr-copy-resources-post"/>
+	
+  <target name="whr-copy-resources"
+    depends="
+  	   whr-copy-resources-pre,
+       whr-copy-logo-image,
+       whr-copy-favicon,
+       whr-copy-custom-resources,
+       whr-copy-common-resources,
+       whr-copy-template-resources">
+  	<!-- Call the post extentsion point target -->
+  	<antcall target="whr-copy-resources-post" />
+  </target>
+
+  <!-- Copy additional template resources. -->
+  <target name="whr-copy-template-resources">    
+    <echo>Copying custom template resources. Ant file: ${webhelp.copy.resources.ant.file.path}</echo>
+    <ant antfile="${webhelp.copy.resources.ant.file.path}" target="copy-template-resources" usenativebasedir="true"/>
+  </target>
+  
+  <!-- Target executed before indexing the HTML files -->
+  <target name="whr-search-index-preprocess" unless="${webhelp.custom.search.engine.enabled}">
+    <!-- Collect the topics marked with @search="no" in order to exclude them from search indexer -->
+    <property name="create.search.excludes.xsl"
+      value="${webhelp.responsive.dir}/xsl/search/createSearchExcludesFile.xsl"/>
+    <property name="search.excludes.file"
+      value="${dita.temp.dir}/search-excludes.txt"/>
+  	<pipeline>
+    <xslt in="${dita.temp.dir}/${user.input.file}" out="${search.excludes.file}"
+      style="${create.search.excludes.xsl}" classpathref="dost.class.path"
+      reloadstylesheet="${webhelp.reload.stylesheet}">
+
+      <outputproperty name="method" value="text"/>
+      <outputproperty name="omit-xml-declaration" value="yes"/>
+
+      <param name="OUT_EXTENSION" expression="${out.ext}"/>
+      
+      <xmlcatalog classpath="">
+        <catalogpath path="${xsl.extensions.xml.catalog.file.path}"/>
+        <catalogpath path="${dita.plugin.org.dita.base.dir}/catalog-dita.xml"/>
+      </xmlcatalog>	
+    </xslt>
+  	</pipeline>
+    <available file="${search.excludes.file}" property="search.excludes.file.exists"/>
+  	
+  </target>
+</project>

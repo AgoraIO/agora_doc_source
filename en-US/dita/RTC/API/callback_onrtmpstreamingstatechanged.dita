@@ -41,27 +41,27 @@
         </section>
         <section id="detailed_desc">
 
-   <p>The SDK triggers this callback to report the result of the local user calling the <xref keyref="addPublishStreamUrl"/> or <xref keyref="removePublishStreamUrl"/> method. When the media push state changes, the SDK triggers this callback and reports the URL address and the current state of the media push. This callback indicates the state of the media push. When exceptions occur, you can troubleshoot issues by referring to the detailed error descriptions in the error code.</p>
+   <p>When the media push state changes, the SDK triggers this callback to report the current state and the reason why the state has changed. When exceptions occur, you can troubleshoot issues by referring to the detailed error descriptions in the error code parameter.</p>
         </section>
         <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
    <parml>
-                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                    <pt/>
-                    <pd/>
-                </plentry>
-                <plentry id="url">
-                    <pt>url</pt>
-                    <pd>The URL address where the state of the media push changes.</pd>
-                </plentry>
-                <plentry id="state">
-                    <pt>state</pt>
-                    <pd>The current state of the media push. See <xref keyref="RTMP_STREAM_PUBLISH_STATE"/>. When the streaming state is <apiname keyref="RTMP_STREAM_PUBLISH_STATE_FAILURE"/> (4), you can view the error information in the <parmname>errorCode</parmname> parameter.</pd>
-                </plentry>
-                <plentry id="errCode">
-                    <pt>errCode</pt>
-                    <pd>The detailed error information for the media push. See <xref keyref="RTMP_STREAM_PUBLISH_ERROR"/>.</pd>
-                </plentry>
-            </parml>
+       <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                  <pt />
+                  <pd />
+              </plentry>
+       <plentry id="url">
+  <pt>url</pt>
+  <pd><p>The URL address where the state of the media push changes.</p></pd>
+       </plentry>
+       <plentry id="state">
+  <pt>state</pt>
+  <pd>The current state of the media push. See <xref keyref="RTMP_STREAM_PUBLISH_STATE"/>. When the streaming state is <apiname keyref="RTMP_STREAM_PUBLISH_STATE_FAILURE"/> (4), you can view the error information in the <parmname>errorCode</parmname> parameter.</pd>
+       </plentry>
+       <plentry id="errCode">
+  <pt>errCode</pt>
+  <pd>The detailed error information for the media push. See <xref keyref="RTMP_STREAM_PUBLISH_ERROR"/>.</pd>
+       </plentry>
+   </parml>
         </section>
     </refbody>
 </reference>

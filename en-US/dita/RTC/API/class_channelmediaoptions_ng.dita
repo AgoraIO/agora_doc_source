@@ -17,6 +17,7 @@
   public Boolean publishMediaPlayerVideoTrack;
   public Integer publishMediaPlayerId;
   public Boolean publishAudioTrack;
+  public Integer publishCustomAudioSourceId;
   public Boolean autoSubscribeAudio;
   public Boolean autoSubscribeVideo;
   public Boolean enableAudioRecordingOrPlayout;
@@ -27,7 +28,6 @@
   public String token;
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcChannelMediaOptions : NSObject
-
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCameraTrack;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishScreenTrack;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCustomAudioTrack;
@@ -37,6 +37,7 @@
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishMediaPlayerAudioTrack;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishMediaPlayerVideoTrack;
 @property(strong, nonatomic) AgoraRtcIntOptional* _Nullable publishMediaPlayerId;
+@property(strong, nonatomic) AgoraRtcIntOptional* _Nullable publishCustomAudioSourceId;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishAudioTrack;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable autoSubscribeAudio;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable autoSubscribeVideo;
@@ -48,35 +49,35 @@
 @property(copy, nonatomic) NSString * _Nullable token;
 @end</codeblock>
             <codeblock props="windows" outputclass="language-cpp">struct ChannelMediaOptions {
-  Optional&lt;bool> publishCameraTrack;
-  Optional&lt;bool> publishSecondaryCameraTrack;
-  Optional&lt;bool> publishAudioTrack;
-  Optional&lt;bool> publishScreenTrack;
-  Optional&lt;bool> publishSecondaryScreenTrack;
-  Optional&lt;bool> publishCustomAudioTrack;
-  Optional&lt;bool> publishCustomAudioTrackEnableAec;
-  Optional&lt;bool> publishCustomVideoTrack;
-  Optional&lt;bool> publishEncodedVideoTrack;
-  Optional&lt;bool> publishMediaPlayerAudioTrack;
-  Optional&lt;bool> publishMediaPlayerVideoTrack;
-  Optional&lt;bool> publishTrancodedVideoTrack;
-  Optional&lt;bool> autoSubscribeAudio;
-  Optional&lt;bool> autoSubscribeVideo;
-  Optional&lt;bool> enableAudioRecordingOrPlayout;
-  Optional&lt;int> publishMediaPlayerId;
-  Optional&lt;CLIENT_ROLE_TYPE> clientRoleType;
-  Optional&lt;VIDEO_STREAM_TYPE> defaultVideoStreamType;
-  Optional&lt;CHANNEL_PROFILE_TYPE> channelProfile;
-  Optional&lt;int> audioDelayMs;
-  Optional&lt;char*> token;
+  Optional&lt;bool&gt; publishCameraTrack;
+  Optional&lt;bool&gt; publishSecondaryCameraTrack;
+  Optional&lt;bool&gt; publishAudioTrack;
+  Optional&lt;bool&gt; publishScreenTrack;
+  Optional&lt;bool&gt; publishSecondaryScreenTrack;
+  Optional&lt;bool&gt; publishCustomAudioTrack;
+  Optional&lt;bool&gt; publishCustomAudioTrackEnableAec;
+  Optional&lt;bool&gt; publishCustomVideoTrack;
+  Optional&lt;bool&gt; publishEncodedVideoTrack;
+  Optional&lt;bool&gt; publishMediaPlayerAudioTrack;
+  Optional&lt;bool&gt; publishMediaPlayerVideoTrack;
+  Optional&lt;bool&gt; publishTrancodedVideoTrack;
+  Optional&lt;int&gt; publishCustomAudioSourceId;
+  Optional&lt;bool&gt; autoSubscribeAudio;
+  Optional&lt;bool&gt; autoSubscribeVideo;
+  Optional&lt;bool&gt; enableAudioRecordingOrPlayout;
+  Optional&lt;int&gt; publishMediaPlayerId;
+  Optional&lt;CLIENT_ROLE_TYPE&gt; clientRoleType;
+  Optional&lt;VIDEO_STREAM_TYPE&gt; defaultVideoStreamType;
+  Optional&lt;CHANNEL_PROFILE_TYPE&gt; channelProfile;
+  Optional&lt;int&gt; audioDelayMs;
+  Optional&lt;char*&gt; token;
   ChannelMediaOptions() {}
   ~ChannelMediaOptions() {}
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/>
-            </p>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">Agora supports publishing multiple audio streams and one video stream at the same time and in the same  <xref keyref="RtcConnection"/>. For example, <parmname>publishAudioTrack</parmname>, <parmname>publishCustomAudioTrack</parmname> and <parmname>publishMediaPlayerAudioTrack</parmname> can be <codeph><ph keyref="true"/></codeph> at the same time;
 but only one of <parmname>publishCameraTrack</parmname>, <parmname>publishScreenTrack</parmname>, <parmname>publishCustomVideoTrack</parmname>, and <parmname>publishEncodedVideoTrack</parmname> can be <codeph><ph keyref="true"/></codeph> at the same time.</section>
@@ -138,6 +139,11 @@ but only one of <parmname>publishCameraTrack</parmname>, <parmname>publishScreen
                         <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the captured audio from the custom source.</li>
                     </ul></pd>
                 </plentry>
+            <plentry>
+                <pt>publishCustomAudioSourceId</pt>
+                <pd>The ID of the custom audio source to publish. The default value is 0.<p>If you have set the value of <parmname>sourceNumber</parmname> greater than 1 in <xref keyref="setExternalAudioSource2" />, the SDK creates the corresponding number of custom audio tracks and assigns an ID to each audio track starting from 0.</p>
+                </pd>
+            </plentry>
                 <plentry props="windows">
                     <pt>publishCustomAudioTrackEnableAec</pt>
                     <pd>Whether to enable AEC when publishing the captured audio from a custom source:<ul>

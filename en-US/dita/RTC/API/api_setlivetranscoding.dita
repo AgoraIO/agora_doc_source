@@ -5,12 +5,13 @@
     <shortdesc id="short"><ph id="shortdesc">Sets the transcoding configurations for media push.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="setLiveTranscoding" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="setLiveTranscoding" />
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
+    <refbody>
+        <section id="prototype">
         <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract int setLiveTranscoding(LiveTranscoding transcoding);</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLiveTranscoding:(AgoraLiveTranscoding *_Nullable)transcoding;</codeblock>
@@ -22,7 +23,14 @@
         </p>
         </section>
         <section id="detailed_desc">
-
+            <dl outputclass="deprecated" props="rtc">
+                <dlentry>
+                    <dt>Deprecated:</dt>
+                    <dd>
+                        This method is deprecated. See <xref keyref="release-notes">Release Notes</xref> for an alternative solution.
+                    </dd>
+                </dlentry>
+            </dl>
    <p>This method sets the video layout and audio settings for media push. The SDK triggers the <xref keyref="onTranscodingUpdated" /> callback when you call this method to update the transcoding settings.</p>
    <note type="attention" id="note">
        <ul>

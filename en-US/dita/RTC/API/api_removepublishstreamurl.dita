@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_removepublishstreamurl">
-    <title><ph keyref="removePublishStreamUrl" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Removes an RTMP or RTMPS stream from the CDN.</ph></shortdesc>
+    <title>
+        <ph keyref="removePublishStreamUrl" />
+    </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">Removes an RTMP or RTMPS stream from the CDN.</ph>
+    </shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="removePublishStreamUrl" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="removePublishStreamUrl" />
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
+    <refbody>
+        <section id="prototype">
         <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract int removePublishStreamUrl(String url);</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (int)removePublishStreamUrl:(NSString * _Nonnull)url;</codeblock>
@@ -22,7 +27,14 @@
         </p>
         </section>
         <section id="detailed_desc">
-
+            <dl outputclass="deprecated" props="rtc">
+                <dlentry>
+                    <dt>Deprecated:</dt>
+                    <dd>
+                        This method is deprecated. See <xref keyref="release-notes">Release Notes</xref> for an alternative solution.
+                    </dd>
+                </dlentry>
+            </dl>
    <p>After a successful method call, the SDK triggers <xref keyref="onRtmpStreamingStateChanged" /> on the local client to report the result of deleting the URL.</p>
    <note type="attention" id="note">
        <ul>
