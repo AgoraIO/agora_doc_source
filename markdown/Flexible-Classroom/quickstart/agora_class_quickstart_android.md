@@ -1,4 +1,4 @@
-根据本文指导快速启动并体验灵动课堂。
+本文介绍如何获取灵动课堂 Android 端源码并运行项目，快速启动并体验灵动课堂。
 
 ## 技术原理
 
@@ -9,10 +9,17 @@
 ## 前提条件
 
 -   已在 Agora 控制台创建 Agora 项目，获取 <a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id" target="_blank">Agora App ID</a>、<a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6" target="_blank">App 证书</a>并<a href="/cn/agora-class/agora_class_enable?platform=Android" target="_blank">开通灵动课堂服务</a>。
+-   一台 Android 设备。模拟机可能出现功能缺失或者性能问题，所以 Agora 推荐使用真机。
+
+## 准备开发环境
+
+在你的设备上运行灵动课堂依赖于 Git（用于下载源码）、Node.js（用于构建运行项目）、Yarn（源码包管理工具）、Lerna（源码包管理工具）和 nvm（Node.js 版本管理命令行工具）。
+
+你可参考以下步骤准备开发环境：
+
 -   [Java Development Kit](https://www.oracle.com/java/technologies/javase-downloads.html)。
 -   Android Studio 4.0 及以上。
 -   Android 5.0 或以上版本。
--   一台 Android 设备。模拟机可能出现功能缺失或者性能问题，所以 Agora 推荐使用真机。
 
 ## 启动灵动课堂
 
