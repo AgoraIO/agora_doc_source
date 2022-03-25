@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refactoringOperationDescriptor 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.oxygenxml.com/ns/xmlRefactoring" 
+    id="accept-all-changes"
+    name="${i18n(Accept_track_changes_remove_comments_highlights)}">
+    <description>${i18n(Accept_application_specific_track_changes_remove_comments_highlights_description)}</description>    
+    <script type="XSLT" href="accept-all-changes.xsl"/>
+    <category>${i18n(Processing_Instructions)}</category>
+    <parameters>
+        <description>${i18n(Accept_application_specific_track_changes_remove_comments_highlights_description)}</description>
+        <parameter type="BOOLEAN" name="accept.all.oxygen.track.changes.markers" label="${i18n(Accept_all_track_changes)}">
+            <description>${i18n(Accept_all_track_changes_markers_option_description)}</description>
+            <possibleValues>
+                <value name="true" default="true">true</value>
+                <value name="false">false</value>
+            </possibleValues>
+        </parameter>
+        <parameter type="BOOLEAN" name="remove.oxygen.comments" label="${i18n(Remove_comments_label)}">
+            <description>${i18n(Remove_comments_description)}</description>
+            <possibleValues>
+                <value name="true" default="true">true</value>
+                <value name="false">false</value>
+            </possibleValues>
+        </parameter>
+        <parameter type="BOOLEAN" name="remove.oxygen.highlights" label="${i18n(Review_remove_highlights)}">
+            <description>${i18n(Remove_highlights_description)}</description>
+            <possibleValues>
+                <value name="true" default="true">true</value>
+                <value name="false">false</value>
+            </possibleValues>
+        </parameter>
+    </parameters>
+</refactoringOperationDescriptor>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_livetranscoding">
-    <title> <ph keyref="LiveTranscoding" /> </title>
-    <shortdesc id="short"><ph id="shortdesc">Transcoding configurations for CDN live streaming.</ph></shortdesc>
+    <title><ph keyref="LiveTranscoding"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Transcoding configurations for the media push.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
@@ -157,56 +157,56 @@
 
                 @JsonKey(includeIfNull: false)
                 int? width;
-              
+
                 @JsonKey(includeIfNull: false)
                 int? height;
-              
+
                 @JsonKey(includeIfNull: false)
                 int? videoBitrate;
 
                 @JsonKey(includeIfNull: false)
                 VideoFrameRate? videoFramerate;
-              
+
                 @Deprecated(
                     'This attribute is deprecated since v2.8.0, and Agora does not recommend it.')
                 @JsonKey(includeIfNull: false)
                 bool? lowLatency;
-              
+
                 @JsonKey(includeIfNull: false)
                 int? videoGop;
 
                 @JsonKey(includeIfNull: false)
                 List&lt;AgoraImage&gt;? watermark;
-              
+
                 @JsonKey(includeIfNull: false)
                 List&lt;AgoraImage&gt;? backgroundImage;
-              
+
                 @JsonKey(includeIfNull: false)
                 AudioSampleRateType? audioSampleRate;
-              
+
                 @JsonKey(includeIfNull: false)
                 int? audioBitrate;
-              
+
                 @JsonKey(includeIfNull: false)
                 AudioChannel? audioChannels;
-              
+
                 @JsonKey(includeIfNull: false)
                 AudioCodecProfileType? audioCodecProfile;
-              
+
                 @JsonKey(includeIfNull: false)
                 VideoCodecProfileType? videoCodecProfile;
-              
+
                 @JsonKey(includeIfNull: false)
                 int? backgroundColor;
-              
+
                 @JsonKey(includeIfNull: false)
                 VideoCodecTypeForStream? videoCodecType;
 
                 @JsonKey(includeIfNull: false)
                 String? userConfigExtraInfo;
-              
+
                 List&lt;TranscodingUser&gt; transcodingUsers;
-              
+
                 LiveTranscoding(
                   this.transcodingUsers, {
                   this.width,
@@ -226,22 +226,22 @@
                   this.videoCodecType,
                   this.userConfigExtraInfo,
                 });
-              
+
                 factory LiveTranscoding.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
                     _$LiveTranscodingFromJson(json);
-              
+
                 Map&lt;String, dynamic&gt; toJson() =&gt; _$LiveTranscodingToJson(this);
               }</codeblock> </p>
         </section>
         <section id="parameters">
             <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>
             <parml>
-            <plentry props="android windows electron unity">
+            <plentry props="android windows electron unity flutter">
                 <pt>width</pt>
                 <pd>
                     <p>The width of the output media stream in pixels. The default value is 360.</p>
                     <ul>
-                    <li>When pushing video streams to the CDN, 
+                    <li>When pushing video streams to the CDN,
 <codeph>width</codeph>
  is less than 64, Agora server automatically adjusts it to 64.                            </li>
                     <li>When pushing audio streams to the CDN,
@@ -249,12 +249,12 @@
  as 0.                            </li>
                     </ul> </pd>
             </plentry>
-            <plentry props="android windows electron unity">
+            <plentry props="android windows electron unity flutter">
                 <pt>height</pt>
                 <pd>
                     <p>The height of the output media stream in pixels. The default value is 640.</p>
                     <ul>
-                    <li>When pushing video streams to the CDN, 
+                    <li>When pushing video streams to the CDN,
 <codeph>height</codeph>
  is less than 64, Agora server automatically adjusts it to 64.                            </li>
                     <li>When pushing audio streams to the CDN,
@@ -275,7 +275,8 @@ set this parameter.
                         </ph> </pd>
             </plentry>
             <plentry>
-                <pt>videoFrameRate</pt>
+                <pt props="native">videoFrameRate</pt>
+                <pt props="flutter">videoFramerate</pt>
                 <pd>The video frame rate (fps) of the output media stream. The default value is 15, and the value range is [1, 30].<note type="attention">The Agora server adjusts
 any frame rate higher than 30 fps to 30 fps.</note>
                 </pd>
@@ -386,8 +387,8 @@ means light pink. The default is
             </plentry>
             <plentry>
                 <pt>audioSampleRate</pt>
-                <pd>The audio sampling rate (Hz) of the output media stream. See .
-<xref keyref="AUDIO_SAMPLE_RATE_TYPE" />.</pd>
+                <pd>The audio sampling rate (Hz) of the output media stream. See
+ <xref keyref="AUDIO_SAMPLE_RATE_TYPE" />.</pd>
             </plentry>
             <plentry>
                 <pt>audioBitrate</pt>
@@ -405,8 +406,7 @@ means light pink. The default is
             </plentry>
             <plentry>
                 <pt>audioCodecProfile</pt>
-                <pd>The audio codec of the media stream. For more details, see
-<xref keyref="AUDIO_CODEC_PROFILE_TYPE" />.</pd>
+                <pd>The audio codec of the media stream. For more details, see <xref keyref="AUDIO_CODEC_PROFILE_TYPE"></xref>.</pd>
             </plentry>
             <plentry props="rtc-ng">
                 <pt props="ios mac">watermarkArray</pt>
@@ -435,6 +435,10 @@ means light pink. The default is
                 <pd props="ios mac">An array of background images on the live video. See <xref keyref="RtcImage" />. You can use <parmname>backgroundImageArray</parmname> to add one or more background images. The image format needs to be PNG. The total number of watermarks and background images on a live video must be greater than or equal to 0 and less than or equal to 10.</pd>
                 <pd props="windows">The number of background images on the live video. The total number of watermarks and background images must be greater than or equal to 0 and less than or equal to 10. This parameter is used with <parmname>backgroundImage</parmname>.</pd>
                 <pd props="android">An array of background images on the live video. See <xref keyref="RtcImage" />. You can use <parmname>backgroundImageList</parmname> to add one or more background images. The image format needs to be PNG. The total number of watermarks and background images on a live video must be greater than or equal to 0 and less than or equal to 10.</pd>
+            </plentry>
+            <plentry props="rtc">
+                <pt>userConfigExtraInfo</pt>
+                <pd>Reserved property. Extra user-defined information to send the Supplemental Enhancement Information (SEI) for the H.264/H.265 video stream to the CDN live client. Maximum length: 4096 Bytes.</pd>
             </plentry>
             </parml> </section>
     </refbody>

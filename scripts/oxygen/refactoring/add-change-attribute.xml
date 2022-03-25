@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Descriptor for 'Add/Change Attribute' XML Refactory operation. 
+-->
+<refactoringOperationDescriptor 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.oxygenxml.com/ns/xmlRefactoring" id="add-change-attribute" name="${i18n(xr_add_change_attribute)}">
+    <description>${i18n(xr_add_change_attribute_description)}</description>    
+    <script type="XQUERY_UPDATE" href="add-change-attribute.xq"/>
+    <category>${i18n(Attributes)}</category>
+    <parameters>
+        <description>${i18n(xr_add_change_attribute_parameters_description)}</description>
+        <section label="${i18n(xr_parent_element)}">
+            <elementLocation name="element_xpath" useCurrentContext="true">
+                <element label="${i18n(Element)}">
+                    <description>${i18n(attribute_parent_element_param_description)}</description>
+                </element>
+            </elementLocation>
+        </section>
+        <section label="${i18n(Attribute)}">
+            <attributeParameter useCurrentContext="true">
+                <localName 
+                    label="${i18n(Local_name)}" 
+                    name="attribute_name" allowsAny="false">
+                    <description>${i18n(xr_add_change_attribute_attr_name_description)}</description>
+                </localName>
+                <namespace 
+                    label="${i18n(Namespace)}" 
+                    name="attribute_namespace"
+                    allowsAny="true">
+                    <description>${i18n(xr_add_change_attribute_attr_namespace_description)}</description>
+                </namespace>
+            </attributeParameter>
+            <parameter 
+                label="${i18n(Value)}" 
+                type="TEXT" 
+                name="attribute_value">
+                <description>${i18n(xr_add_change_attribute_attr_value_description)}</description>
+            </parameter>
+        </section>
+        
+        <section label="${i18n(Options)}">
+            <parameter name="affected_elements" label="${i18n(xr_add_change_attribute_operation_mode)}" type="TEXT_CHOICE">
+                <description/>
+                <possibleValues onlyPossibleValuesAllowed="true">
+                    <value name="selected_elements_attr_missing">${i18n(xr_add_change_attribute_attr_missing)}</value>
+                    <value name="selected_elements_attr_exists">${i18n(xr_add_change_attribute_attr_exists)}</value>
+                    <value name="selected_elements" default="true">${i18n(xr_add_change_attribute_both)}</value>
+                </possibleValues>
+            </parameter>
+        </section>
+    </parameters>
+</refactoringOperationDescriptor>

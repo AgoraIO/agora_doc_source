@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setrecordingaudioframeparameters">
     <title><ph keyref="setRecordingAudioFrameParameters" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Set the format of the captured raw audio data.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the format of the captured raw audio data.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -50,12 +50,12 @@
                 <plentry>
                     <pt>sampleRate</pt>
                     <pd props="android ios mac windows unity">The sample rate returned in the <apiname keyref="onRecordAudioFrame" /> callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
-                    <pd props="electron">The sample rate returned in the callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
+                    <pd props="electron">The sample rate returned in the SDK, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
                 </plentry>
                 <plentry>
                     <pt>channel</pt>
                     <pd props="android ios mac windows unity">
-                        <p>The number of channels (channels) returned in the <apiname keyref="onRecordAudioFrame" /> callback:<ul>
+                        <p>The number of channels returned in the <apiname keyref="onRecordAudioFrame" /> callback:<ul>
                                 <li>1: Mono.</li>
                                 <li>2: Stereo.</li>
                             </ul></p>
@@ -71,12 +71,12 @@
                         <p props="ios mac windows unity">The use mode of the audio frame. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />.</p>
                         <p conkeyref="registerAudioFrameObserver2_IMediaPlayer/mode" props="android" />
                     </pd>
-                    <pd props="electron">The use mode of the returned data, see <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />.</pd>
+                    <pd props="electron">The use mode of the returned data from the SDK. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />.</pd>
                 </plentry>
                 <plentry>
                     <pt>samplesPerCall</pt>
-                    <pd props="android ios mac windows unity"> The number of samples returned in the <apiname keyref="onRecordAudioFrame" /> callback. Usually set as 1024 for RTMP or RTMPS streaming.</pd>
-                    <pd props="electron">The number of samples returned by the SDK. Usually set as 1024 for RTMP or RTMPS streaming.</pd>
+                    <pd props="android ios mac windows unity">The number of data samples returned in the <apiname keyref="onRecordAudioFrame" /> callback, such as 1024 for the media push.</pd>
+                    <pd props="electron">The number of data samples returned in the SDK, such as 1024 for the media push.</pd>
                 </plentry>
             </parml>
         </section>
