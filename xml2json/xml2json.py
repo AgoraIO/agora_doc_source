@@ -1154,6 +1154,8 @@ def replace_newline():
     replaced_file_text = re.sub('rtc_remote_view: SurfaceView', 'RtcRemoteSurfaceView', replaced_file_text)
 
     replaced_file_text = re.sub('enum_cloudproxytype', 'enum_proxytype', replaced_file_text)
+
+    replaced_file_text = re.sub('callback_airplayconnected', 'callback_onairplayconnected', replaced_file_text)
     # ------------------ Special processing for Flutter classes ------------------------------------------
     
     input_file.close()
