@@ -22,6 +22,7 @@
     public int avSyncTimeMs;
     public long totalActiveTime;
     public long publishDuration;
+    public int superResolutionType;
   }</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcRemoteVideoStats : NSObject
 @property(assign, nonatomic) NSUInteger uid;
@@ -40,6 +41,7 @@
 @property(assign, nonatomic) NSUInteger totalActiveTime;
 @property(assign, nonatomic) NSInteger publishDuration;
 @property(assign, nonatomic) NSInteger avSyncTimeMs;
+@property(assign, nonatomic) NSInteger superResolutionType;
 @end</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">struct RemoteVideoStats {
   uid_t uid;
@@ -57,6 +59,7 @@
   int avSyncTimeMs;
   int totalActiveTime;
   int publishDuration;
+  int superResolutionType;
 };</codeblock>
             </p>
             <p props="rtc" outputclass="codeblock">
@@ -257,6 +260,14 @@ class RemoteVideoStats {
                             </dlentry>
                         </dl>
                         <p>远端视频流的累计发布时长（毫秒）。</p></pd>
+                </plentry>
+                <plentry  props="rtc-ng">
+                    <pt>superResolutionType</pt>
+                    <pd>超分辨率的开启状态：
+                        <ul>
+                            <li>>0：超分辨率已开启。</li>
+                            <li>=0：超分辨率未开启。</li></ul>
+                    </pd>
                 </plentry>
                 <plentry props="rtc-ng">
                     <pt>avSyncTimeMs</pt>
