@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Descriptor for the 'Rename element' operation.
+-->
+<refactoringOperationDescriptor 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.oxygenxml.com/ns/xmlRefactoring" 
+    id="rename-element" 
+    name="${i18n(xr_rename_element)}">
+    <description>${i18n(xr_rename_element_description)}</description>    
+    <script type="XQUERY_UPDATE" href="rename-element.xq"/>
+    <category>${i18n(Elements)}</category>
+    <parameters>
+        <description>${i18n(xr_rename_element_parameters_description)}</description>
+        <elementLocation name="element_xpath" useCurrentContext="true">
+            <element label="${i18n(xr_target_elements)}">
+                <description>${i18n(xr_rename_element_xpath_param_description)}</description>
+            </element>
+        </elementLocation>
+        <parameter label="${i18n(xr_new_local_name)}" type="NC_NAME" name="new_element_localname">    			
+            <description>${i18n(xr_rename_element_new_local_name_param_description)}</description>
+    	</parameter>    		
+    </parameters>
+</refactoringOperationDescriptor>

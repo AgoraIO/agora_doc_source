@@ -1,0 +1,160 @@
+
+<!--
+DTD module gaiji. generated from ODD source 2021-08-31T10:24:14Z. This material is dual-licensed.
+[http://creativecommons.org/licenses/by/3.0/] Distributed under a Creative Commons Attribution 3.0 Unported License.  [http://www.opensource.org/licenses/BSD-2-Clause] Copyright 2021 TEI Consortium. All rights reserved. Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met: Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. This software is provided by the copyright holders and contributors "as is" and any express or implied warranties, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose are disclaimed. In no event shall the copyright holder or contributors be liable for any direct, indirect, incidental, special, exemplary, or consequential damages (including, but not limited to, procurement of substitute goods or services; loss of use, data, or profits; or business interruption) however caused and on any theory of liability, whether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of the use of this software, even if advised of the possibility of such damage. TEI material can be licensed differently depending on the use you intend to make of it. Hence it is made available under both the CC+BY and BSD-2 licences. The CC+BY licence is generally appropriate for usages which treat TEI content as data or documentation. The BSD-2 licence is generally appropriate for usage of TEI content in a software environment. For further information or clarification, please contact the TEI Consortium.
+Edition: Version 4.3.0. Last updated on
+        31st August 2021, revision b4f72b1ff
+Character and glyph documentation
+-->
+
+<!ENTITY % char 'INCLUDE' >
+<![ %char; [
+
+<!--doc:(character) provides descriptive information about a character. [] -->
+<!ELEMENT %n.char; %om.RR; (%n.charName;|%n.charProp;|%n.unicodeProp;|%n.unihanProp;|%n.localProp;|%n.mapping;|%n.figure;|%model.graphicLike;|%model.noteLike;|%model.descLike;)*>
+<!ATTLIST %n.char; xmlns CDATA "http://www.tei-c.org/ns/1.0">
+<!ATTLIST %n.char;
+ %att.global.attributes; >
+]]>
+
+<!ENTITY % charDecl 'INCLUDE' >
+<![ %charDecl; [
+
+<!--doc:(character declarations) provides information about nonstandard characters and glyphs. [] -->
+<!ELEMENT %n.charDecl; %om.RR; (((%n.desc;)?,(%n.char;|%n.glyph;)+))>
+<!ATTLIST %n.charDecl; xmlns CDATA "http://www.tei-c.org/ns/1.0">
+<!ATTLIST %n.charDecl;
+ %att.global.attributes; >
+]]>
+
+<!ENTITY % charName 'INCLUDE' >
+<![ %charName; [
+
+<!--doc:(character name) contains the name of a character, expressed following Unicode conventions. [] -->
+<!ELEMENT %n.charName; %om.RR; (#PCDATA)>
+<!ATTLIST %n.charName; xmlns CDATA "http://www.tei-c.org/ns/1.0">
+<!ATTLIST %n.charName;
+ %att.global.attributes; >
+]]>
+
+<!ENTITY % charProp 'INCLUDE' >
+<![ %charProp; [
+
+<!--doc:(character property) provides a name and value for some property of the parent character or glyph. [] -->
+<!ELEMENT %n.charProp; %om.RR; (((%n.unicodeName;|%n.localName;),%n.value;))>
+<!ATTLIST %n.charProp; xmlns CDATA "http://www.tei-c.org/ns/1.0">
+<!ATTLIST %n.charProp;
+ %att.global.attributes;
+ %att.typed.attributes; >
+]]>
+
+<!ENTITY % g 'INCLUDE' >
+<![ %g; [
+
+<!--doc:(character or glyph) represents a glyph, or a non-standard character. [] -->
+<!ELEMENT %n.g; %om.RR; (#PCDATA)>
+<!ATTLIST %n.g; xmlns CDATA "http://www.tei-c.org/ns/1.0">
+<!ATTLIST %n.g;
+ %att.global.attributes;
+ %att.typed.attributes;
+ref %teidata.pointer;  #IMPLIED >
+]]>
+
+<!ENTITY % glyph 'INCLUDE' >
+<![ %glyph; [
+
+<!--doc:(character glyph) provides descriptive information about a character glyph. [] -->
+<!ELEMENT %n.glyph; %om.RR; (%n.glyphName;|%n.charProp;|%n.unicodeProp;|%n.unihanProp;|%n.localProp;|%n.mapping;|%n.figure;|%model.graphicLike;|%model.noteLike;|%model.descLike;)*>
+<!ATTLIST %n.glyph; xmlns CDATA "http://www.tei-c.org/ns/1.0">
+<!ATTLIST %n.glyph;
+ %att.global.attributes; >
+]]>
+
+<!ENTITY % glyphName 'INCLUDE' >
+<![ %glyphName; [
+
+<!--doc:(character glyph name) contains the name of a glyph, expressed following Unicode conventions for character names. [] -->
+<!ELEMENT %n.glyphName; %om.RR; (#PCDATA)>
+<!ATTLIST %n.glyphName; xmlns CDATA "http://www.tei-c.org/ns/1.0">
+<!ATTLIST %n.glyphName;
+ %att.global.attributes; >
+]]>
+
+<!ENTITY % localName 'INCLUDE' >
+<![ %localName; [
+
+<!--doc:(locally-defined property name) contains a locally defined name for some property. [] -->
+<!ELEMENT %n.localName; %om.RR; (#PCDATA)>
+<!ATTLIST %n.localName; xmlns CDATA "http://www.tei-c.org/ns/1.0">
+<!ATTLIST %n.localName;
+ %att.global.attributes; >
+]]>
+
+<!ENTITY % localProp 'INCLUDE' >
+<![ %localProp; [
+
+<!--doc:(locally defined property) provides a locally defined character (or glyph) property. [] -->
+<!ELEMENT %n.localProp; %om.RR;  EMPTY>
+<!ATTLIST %n.localProp; xmlns CDATA "http://www.tei-c.org/ns/1.0">
+<!ATTLIST %n.localProp;
+ %att.global.attributes;
+ %att.gaijiProp.attributes; >
+]]>
+
+<!ENTITY % mapping 'INCLUDE' >
+<![ %mapping; [
+
+<!--doc:(character mapping) contains one or more characters which are related to the parent character or glyph in some respect, as specified by the type attribute. [] -->
+<!ELEMENT %n.mapping; %om.RR; %macro.xtext;>
+<!ATTLIST %n.mapping; xmlns CDATA "http://www.tei-c.org/ns/1.0">
+<!ATTLIST %n.mapping;
+ %att.global.attributes;
+ %att.typed.attributes; >
+]]>
+
+<!ENTITY % unicodeName 'INCLUDE' >
+<![ %unicodeName; [
+
+<!--doc:(Unicode property name) contains the name of a registered Unicode normative or informative property. [] -->
+<!ELEMENT %n.unicodeName; %om.RR; (#PCDATA)>
+<!ATTLIST %n.unicodeName; xmlns CDATA "http://www.tei-c.org/ns/1.0">
+<!ATTLIST %n.unicodeName;
+ %att.global.attributes;
+version %teidata.version;  #IMPLIED >
+]]>
+
+<!ENTITY % unicodeProp 'INCLUDE' >
+<![ %unicodeProp; [
+
+<!--doc:(unicode property) provides a Unicode property for a character (or glyph). [] -->
+<!ELEMENT %n.unicodeProp; %om.RR;  EMPTY>
+<!ATTLIST %n.unicodeProp; xmlns CDATA "http://www.tei-c.org/ns/1.0">
+<!ATTLIST %n.unicodeProp;
+ %att.global.attributes;
+ %att.gaijiProp.attribute.version;
+name (Age|AHex|Alpha|Alphabetic|ASCII_Hex_Digit|bc|Bidi_C|Bidi_Class|Bidi_Control|Bidi_M|Bidi_Mirrored|Bidi_Mirroring_Glyph|Bidi_Paired_Bracket|Bidi_Paired_Bracket_Type|blk|Block|bmg|bpb|bpt|Canonical_Combining_Class|Case_Folding|Case_Ignorable|Cased|ccc|CE|cf|Changes_When_Casefolded|Changes_When_Casemapped|Changes_When_Lowercased|Changes_When_NFKC_Casefolded|Changes_When_Titlecased|Changes_When_Uppercased|CI|Comp_Ex|Composition_Exclusion|CWCF|CWCM|CWKCF|CWL|CWT|CWU|Dash|Decomposition_Mapping|Decomposition_Type|Default_Ignorable_Code_Point|Dep|Deprecated|DI|Dia|Diacritic|dm|dt|ea|East_Asian_Width|EqUIdeo|Equivalent_Unified_Ideograph|Expands_On_NFC|Expands_On_NFD|Expands_On_NFKC|Expands_On_NFKD|Ext|Extender|FC_NFKC|FC_NFKC_Closure|Full_Composition_Exclusion|gc|GCB|General_Category|Gr_Base|Gr_Ext|Gr_Link|Grapheme_Base|Grapheme_Cluster_Break|Grapheme_Extend|Grapheme_Link|Hangul_Syllable_Type|Hex|Hex_Digit|hst|Hyphen|ID_Continue|ID_Start|IDC|Ideo|Ideographic|IDS|IDS_Binary_Operator|IDS_Trinary_Operator|IDSB|IDST|Indic_Positional_Category|Indic_Syllabic_Category|InPC|InSC|isc|ISO_Comment|Jamo_Short_Name|jg|Join_C|Join_Control|Joining_Group|Joining_Type|JSN|jt|kAccountingNumeric|kCompatibilityVariant|kIICore|kIRG_GSource|kIRG_HSource|kIRG_JSource|kIRG_KPSource|kIRG_KSource|kIRG_MSource|kIRG_TSource|kIRG_USource|kIRG_VSource|kOtherNumeric|kPrimaryNumeric|kRSUnicode|lb|lc|Line_Break|LOE|Logical_Order_Exception|Lower|Lowercase|Lowercase_Mapping|Math|na|na1|Name|Name_Alias|NChar|NFC_QC|NFC_Quick_Check|NFD_QC|NFD_Quick_Check|NFKC_Casefold|NFKC_CF|NFKC_QC|NFKC_Quick_Check|NFKD_QC|NFKD_Quick_Check|Noncharacter_Code_Point|nt|Numeric_Type|Numeric_Value|nv|OAlpha|ODI|OGr_Ext|OIDC|OIDS|OLower|OMath|Other_Alphabetic|Other_Default_Ignorable_Code_Point|Other_Grapheme_Extend|Other_ID_Continue|Other_ID_Start|Other_Lowercase|Other_Math|Other_Uppercase|OUpper|Pat_Syn|Pat_WS|Pattern_Syntax|Pattern_White_Space|PCM|Prepended_Concatenation_Mark|QMark|Quotation_Mark|Radical|Regional_Indicator|RI|SB|sc|scf|Script|Script_Extensions|scx|SD|Sentence_Break|Sentence_Terminal|Simple_Case_Folding|Simple_Lowercase_Mapping|Simple_Titlecase_Mapping|Simple_Uppercase_Mapping|slc|Soft_Dotted|stc|STerm|suc|tc|Term|Terminal_Punctuation|Titlecase_Mapping|uc|UIdeo|Unicode_1_Name|Unified_Ideograph|Upper|Uppercase|Uppercase_Mapping|Variation_Selector|Vertical_Orientation|vo|VS|WB|White_Space|Word_Break|WSpace|XID_Continue|XID_Start|XIDC|XIDS|XO_NFC|XO_NFD|XO_NFKC|XO_NFKD) #REQUIRED
+value %teidata.text;  #REQUIRED >
+]]>
+
+<!ENTITY % unihanProp 'INCLUDE' >
+<![ %unihanProp; [
+
+<!--doc:(unihan property) holds the name and value of a normative or informative Unihan character (or glyph) property as part of its attributes. [] -->
+<!ELEMENT %n.unihanProp; %om.RR;  EMPTY>
+<!ATTLIST %n.unihanProp; xmlns CDATA "http://www.tei-c.org/ns/1.0">
+<!ATTLIST %n.unihanProp;
+ %att.global.attributes;
+ %att.gaijiProp.attribute.version;
+name (kZVariant|kAccountingNumeric|kBigFive|kCCCII|kCNS1986|kCNS1992|kCangjie|kCantonese|kCheungBauer|kCheungBauerIndex|kCihaiT|kCompatibilityVariant|kCowles|kDaeJaweon|kDefinition|kEACC|kFenn|kFennIndex|kFourCornerCode|kFrequency|kGB0|kGB1|kGB3|kGB5|kGB7|kGB8|kGSR|kGradeLevel|kHDZRadBreak|kHKGlyph|kHKSCS|kHanYu|kHangul|kHanyuPinlu|kHanyuPinyin|kIBMJapan|kIICore|kIRGDaeJaweon|kIRGDaiKanwaZiten|kIRGHanyuDaZidian|kIRGKangXi|kIRG_GSource|kIRG_HSource|kIRG_JSource|kIRG_KPSource|kIRG_KSource|kIRG_MSource|kIRG_TSource|kIRG_USource|kIRG_VSource|kJIS0213|kJa|kJapaneseKun|kJapaneseOn|kJinmeiyoKanji|kJis0|kJis1|kJoyoKanji|kKPS0|kKPS1|kKSC0|kKSC1|kKangXi|kKarlgren|kKorean|kKoreanEducationHanja|kKoreanName|kLau|kMainlandTelegraph|kMandarin|kMatthews|kMeyerWempe|kMorohashi|kNelson|kOtherNumeric|kPhonetic|kPrimaryNumeric|kPseudoGB1|kRSAdobe_Japan1_6|kRSJapanese|kRSKanWa|kRSKangXi|kRSKorean|kRSUnicode|kSBGY|kSemanticVariant|kSimplifiedVariant|kSpecializedSemanticVariant|kTGH|kTaiwanTelegraph|kTang|kTotalStrokes|kTraditionalVariant|kVietnamese|kXHC1983|kXerox) #REQUIRED
+value %teidata.word;  #REQUIRED >
+]]>
+
+<!ENTITY % value 'INCLUDE' >
+<![ %value; [
+
+<!--doc:(value) contains a single value for some property, attribute, or other analysis. [] -->
+<!ELEMENT %n.value; %om.RR; %macro.xtext;>
+<!ATTLIST %n.value; xmlns CDATA "http://www.tei-c.org/ns/1.0">
+<!ATTLIST %n.value;
+ %att.global.attributes; >
+]]>
