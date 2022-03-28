@@ -1,4 +1,4 @@
-The Agora Chat SDK supports sendsing and receiving various types of messages:
+The Agora Chat SDK supports sending and receiving various types of messages:
 - Text messages, including hyperlinks and emojis.
 - Attachment messages, including image, voice, video, and file messages.
 - Location messages.
@@ -81,7 +81,7 @@ ChatClient.getInstance().chatManager().removeMessageListener(msgListener);
 ### Attachment messages
 
 Attachment messages include voice, image, video, and file message. When you send an attachment message, the attachment is uploaded to the Agora Chat server.
-- For voive, image, and video messages, the SDK automatically downloads the audio, image, or video thumbnail when they arrive.
+- For voice, image, and video messages, the SDK automatically downloads the audio, image, or video thumbnail when they arrive.
 - For file messages, the SDK does not automatically download the attachment. You need to call APIs to download the file on the receiver's client.
 
 #### Creat an attachment message
