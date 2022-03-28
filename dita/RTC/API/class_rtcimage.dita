@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_rtcimage">
-    <title><ph keyref="RtcImage"/></title>
+    <title><ph keyref="RtcImage" /></title>
     <shortdesc id="short"><ph id="shortdesc">图像属性。</ph></shortdesc>
     <refbody>
       <section id="prototype">
@@ -59,7 +59,83 @@
             return url;
             }
             }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp"></codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class RtcImage
+    {
+        public RtcImage()
+        {
+        }
+        public RtcImage(string url, int x, int y, int width, int height, int zOrder)
+        {
+            this.url = url;
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+            this.zOrder = zOrder;
+        }
+        
+        public string url { set; get; }
+        
+        public int x { set; get; }
+        
+        public int y { set; get; }
+        
+        public int width { set; get; }
+        
+        public int height { set; get; }
+        
+        public int zOrder { set; get; }
+    }
+    
+    public enum CONNECTION_STATE_TYPE
+    {
+        
+        CONNECTION_STATE_DISCONNECTED = 1,
+        
+        CONNECTION_STATE_CONNECTING = 2,
+        
+        CONNECTION_STATE_CONNECTED = 3,
+        
+        CONNECTION_STATE_RECONNECTING = 4,
+        
+        CONNECTION_STATE_FAILED = 5,
+    };
+    
+    public class TranscodingUser
+    {
+        public TranscodingUser()
+        {
+            alpha = 1.0;
+        }
+        public TranscodingUser(uint uid, int x, int y, int width, int height, int zOrder, double alpha,
+            int audioChannel)
+        {
+            this.uid = uid;
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+            this.zOrder = zOrder;
+            this.alpha = alpha;
+            this.audioChannel = audioChannel;
+        }
+        
+        public uint uid { set; get; }
+        
+        public int x { set; get; }
+        
+        public int y { set; get; }
+        
+        public int width { set; get; }
+        
+        public int height { set; get; }
+        
+        public int zOrder { set; get; }
+        
+        public double alpha { set; get; }
+        
+        public int audioChannel { set; get; }
+    }</codeblock>
         </p>
             <p outputclass="codeblock" props="rtc">
                 <codeblock props="windows" outputclass="language-cpp">typedef struct RtcImage {
@@ -108,7 +184,7 @@
     height: number,
     url: string
     }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="rn" outputclass="language-typescript" />
                 <codeblock props="flutter" outputclass="language-dart">class AgoraImage {
   
   String url;
@@ -132,7 +208,7 @@
    <p>用于设置直播视频的水印和背景图片的属性。</p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
    <parml>
        <plentry>
   <pt>url</pt>

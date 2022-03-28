@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_livetranscoding">
-    <title><ph keyref="LiveTranscoding"/></title>
+    <title><ph keyref="LiveTranscoding" /></title>
     <shortdesc id="short"><ph id="shortdesc">CDN 直播推流的转码属性。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -93,7 +93,31 @@
         audioChannels(1),
         audioCodecProfile(AUDIO_CODEC_PROFILE_LC_AAC) {}
 };</codeblock>
-                <codeblock props="unity" outputclass="language-csharp"></codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class LiveTranscoding
+    {
+        public LiveTranscoding()
+        {
+            width = 360;
+            height = 640;
+            videoBitrate = 400;
+            videoFramerate = 15;
+            lowLatency = false;
+            videoGop = 30;
+            videoCodecProfile = VIDEO_CODEC_PROFILE_TYPE.VIDEO_CODEC_PROFILE_HIGH;
+            backgroundColor = 0x000000;
+            userCount = 0;
+            transcodingUsers = new TranscodingUser[0];
+            transcodingExtraInfo = null;
+            metadata = null;
+            watermark = null;
+            watermarkCount = 0;
+            backgroundImage = null;
+            backgroundImageCount = 0;
+            audioSampleRate = AUDIO_SAMPLE_RATE_TYPE.AUDIO_SAMPLE_RATE_48000;
+            audioBitrate = 48;
+            audioChannels = 1;
+            audioCodecProfile = AUDIO_CODEC_PROFILE_TYPE.AUDIO_CODEC_PROFILE_LC_AAC;
+        }</codeblock>
             </p>
             <p outputclass="codeblock" props="rtc">
                 <codeblock props="windows unity" outputclass="language-cpp">typedef struct LiveTranscoding {
@@ -196,7 +220,7 @@
             </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
                 <plentry props="android windows electron unity">
                     <pt>width</pt>
@@ -241,8 +265,8 @@
                             </dlentry>
                         </dl>
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: 低延时，不保证画质。</li>
-                            <li><codeph><ph keyref="false"/></codeph>:（默认值）高延时，保证画质。</li>
+                            <li><codeph><ph keyref="true" /></codeph>: 低延时，不保证画质。</li>
+                            <li><codeph><ph keyref="false" /></codeph>:（默认值）高延时，保证画质。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -253,18 +277,18 @@
                 <plentry>
                     <pt>videoCodecProfile</pt>
                     <pd>
-                        <p>输出媒体流的视频编码规格，详见 <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/>。</p>
+                        <p>输出媒体流的视频编码规格，详见 <xref keyref="VIDEO_CODEC_PROFILE_TYPE" />。</p>
                         <note type="attention">如果你把这个参数设为其他值，Agora 服务器会将其调整为默认值。</note>
                     </pd>
                 </plentry>
                 <plentry props="electron">
                     <pt>videoCodecType</pt>
-                    <pd>输出视频的编解码类型。详见 <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/>。</pd>
+                    <pd>输出视频的编解码类型。详见 <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM" />。</pd>
                 </plentry>
                 <plentry>
                     <pt>transcodingUsers</pt>
                     <pd>
-                        <p>参与转码合流的每个主播的设置。Agora 频道内最多支持 17 个主播。详见 <xref keyref="TranscodingUser"/>。</p>
+                        <p>参与转码合流的每个主播的设置。Agora 频道内最多支持 17 个主播。详见 <xref keyref="TranscodingUser" />。</p>
                     </pd>
                 </plentry>
                 <plentry>
@@ -292,15 +316,15 @@
                 </plentry>
                 <plentry>
                     <pt>watermark</pt>
-                    <pd>输出媒体流的视频水印。必须为 PNG 格式。详见 <xref keyref="RtcImage"/>。</pd>
+                    <pd>输出媒体流的视频水印。必须为 PNG 格式。详见 <xref keyref="RtcImage" />。</pd>
                 </plentry>
                 <plentry>
                     <pt>backgroundImage</pt>
-                    <pd> 输出媒体流的视频背景图。详见 <xref keyref="RtcImage"/>。</pd>
+                    <pd> 输出媒体流的视频背景图。详见 <xref keyref="RtcImage" />。</pd>
                 </plentry>
                 <plentry>
                     <pt>audioSampleRate</pt>
-                    <pd>输出媒体流的音频采样率 (Hz)，详见 <xref keyref="AUDIO_SAMPLE_RATE_TYPE"/>。</pd>
+                    <pd>输出媒体流的音频采样率 (Hz)，详见 <xref keyref="AUDIO_SAMPLE_RATE_TYPE" />。</pd>
                 </plentry>
                 <plentry>
                     <pt>audioBitrate</pt>
@@ -319,7 +343,7 @@
                 </plentry>
                 <plentry>
                     <pt>audioCodecProfile</pt>
-                    <pd>输出媒体流的音频编码规格。详见 <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/>。</pd>
+                    <pd>输出媒体流的音频编码规格。详见 <xref keyref="AUDIO_CODEC_PROFILE_TYPE" />。</pd>
                 </plentry>
             </parml>
             <parml props="rtc-ng">

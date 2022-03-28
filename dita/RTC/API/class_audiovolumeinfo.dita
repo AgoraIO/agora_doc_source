@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audiovolumeinfo">
-    <title><ph keyref="AudioVolumeInfo"/></title>
+    <title><ph keyref="AudioVolumeInfo" /></title>
     <shortdesc id="short"><ph id="shortdesc">用户音量信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -25,7 +25,88 @@
                     double voicePitch;
                     AudioVolumeInfo() : uid(0), volume(0), vad(0), voicePitch(0.0) {}
                     };</codeblock>
-                    <codeblock props="unity" outputclass="language-csharp"></codeblock>
+                    <codeblock props="unity" outputclass="language-csharp">public class AudioVolumeInfo
+    {
+        public AudioVolumeInfo()
+        {
+        }
+        public AudioVolumeInfo(uint uid, uint volume, uint vad)
+        {
+            this.uid = uid;
+            this.volume = volume;
+            this.vad = vad;
+        }
+        
+        public uint uid { set; get; }
+        
+        public uint volume { set; get; }
+        
+        public uint vad { set; get; }
+    }
+    
+    public class Packet
+    {
+        public Packet()
+        {
+            buffer = new byte[0];
+        }
+        public Packet(byte[] buffer, uint size)
+        {
+            this.buffer = buffer;
+            this.size = size;
+        }
+        
+        public byte[] buffer { set; get; }
+        
+        public uint size { set; get; }
+    }
+    
+    public enum AUDIO_SAMPLE_RATE_TYPE {
+        
+        AUDIO_SAMPLE_RATE_32000 = 32000,
+        
+        AUDIO_SAMPLE_RATE_44100 = 44100,
+        
+        AUDIO_SAMPLE_RATE_48000 = 48000,
+    };
+    
+    public enum VIDEO_CODEC_PROFILE_TYPE {
+        
+        VIDEO_CODEC_PROFILE_BASELINE = 66,
+        
+        VIDEO_CODEC_PROFILE_MAIN = 77,
+        
+        VIDEO_CODEC_PROFILE_HIGH = 100,
+    };
+    
+    public enum AUDIO_CODEC_PROFILE_TYPE {
+        
+        AUDIO_CODEC_PROFILE_LC_AAC = 0,
+        
+        AUDIO_CODEC_PROFILE_HE_AAC = 1,
+    };
+    
+    public class LocalAudioStats
+    {
+        public LocalAudioStats()
+        {
+        }
+        public LocalAudioStats(int numChannels, int sentSampleRate, int sentBitrate, int internalCodec)
+        {
+            this.numChannels = numChannels;
+            this.sentSampleRate = sentSampleRate;
+            this.sentBitrate = sentBitrate;
+            this.internalCodec = internalCodec;
+        }
+        
+        public int numChannels { set; get; }
+        
+        public int sentSampleRate { set; get; }
+        
+        public int sentBitrate { set; get; }
+        
+        public int internalCodec { set; get; }
+    }</codeblock>
             </p>
             <p props="rtc" outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public static class AudioVolumeInfo {
@@ -54,7 +135,7 @@
     vad: number
     channelId: string
     }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="rn" outputclass="language-typescript" />
                 <codeblock props="flutter" outputclass="language-dart">class AudioVolumeInfo {
   int uid;
   int volume;
@@ -71,7 +152,7 @@
             </p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
    <parml>
        <plentry>
                     <pt>uid</pt>
@@ -84,7 +165,7 @@
                 </plentry>
        <plentry>
   <pt>volume</pt>
-           <pd><ph>用户的音量，取值范围为 [0,255]。</ph><ph props="native">如果用户调用了 <xref keyref="startAudioMixing2"/>，则 <parmname>volume</parmname> 为用户混音后的音量。</ph></pd>
+           <pd><ph>用户的音量，取值范围为 [0,255]。</ph><ph props="native">如果用户调用了 <xref keyref="startAudioMixing2" />，则 <parmname>volume</parmname> 为用户混音后的音量。</ph></pd>
        </plentry>
        <plentry>
                     <pt>vad</pt>
@@ -96,8 +177,8 @@
                         <note type="attention">
                             <ul>
                                 <li><parmname>vad</parmname> 无法报告远端用户的人声状态。对于远端用户，<parmname>vad</parmname> 的值始终为 0。</li>
-                                <li props="rtc">如需使用此参数，请在调用 <xref keyref="enableAudioVolumeIndication"/> 时设置 <parmname props="ios mac windows android electron">report_vad</parmname><parmname props="unity">reportVad</parmname> 为 <codeph><ph keyref="true"/></codeph>。</li>
-                                <li props="rtc-ng">如需使用此参数，请在调用 <xref keyref="enableAudioVolumeIndication"/> 时设置 <parmname>reportVad</parmname> 为 <codeph><ph keyref="true"/></codeph>。</li>
+                                <li props="rtc">如需使用此参数，请在调用 <xref keyref="enableAudioVolumeIndication" /> 时设置 <parmname props="ios mac windows android electron">report_vad</parmname><parmname props="unity">reportVad</parmname> 为 <codeph><ph keyref="true" /></codeph>。</li>
+                                <li props="rtc-ng">如需使用此参数，请在调用 <xref keyref="enableAudioVolumeIndication" /> 时设置 <parmname>reportVad</parmname> 为 <codeph><ph keyref="true" /></codeph>。</li>
                             </ul>
                         </note>
                     </pd>
