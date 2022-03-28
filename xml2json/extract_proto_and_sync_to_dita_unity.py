@@ -275,7 +275,7 @@ def main():
 
             for child in root.iter('*'):
                 if child.get("props") == "unity" and child.tag == "codeblock":
-                    if proto != "There are no corresponding names available" and child.text is null:
+                    if proto != "There are no corresponding names available" and child.text is None:
                         child.text = proto
 
 
