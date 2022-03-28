@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_beautyoptions">
-    <title><ph keyref="BeautyOptions"/></title>
+    <title><ph keyref="BeautyOptions" /></title>
     <shortdesc id="short"><ph id="shortdesc">美颜选项。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -40,11 +40,69 @@
     BeautyOptions() : lighteningContrastLevel(LIGHTENING_CONTRAST_NORMAL), lighteningLevel(0), smoothnessLevel(0), rednessLevel(0), sharpnessLevel(0) {}
 };
 </codeblock>
-<codeblock props="unity" outputclass="language-csharp"></codeblock>
+<codeblock props="unity" outputclass="language-csharp">public class BeautyOptions
+    {
+        public BeautyOptions()
+        {
+            lighteningContrastLevel = LIGHTENING_CONTRAST_LEVEL.LIGHTENING_CONTRAST_NORMAL;
+        }
+        public BeautyOptions(
+            LIGHTENING_CONTRAST_LEVEL lighteningContrastLevel, float lighteningLevel, float smoothnessLevel,
+            float rednessLevel, float sharpnessLevel)
+        {
+            this.lighteningContrastLevel = lighteningContrastLevel;
+            this.lighteningLevel = lighteningLevel;
+            this.smoothnessLevel = smoothnessLevel;
+            this.rednessLevel = rednessLevel;
+            this.sharpnessLevel = sharpnessLevel;
+        }
+        
+        public LIGHTENING_CONTRAST_LEVEL lighteningContrastLevel { set; get; }
+        
+        public float lighteningLevel { set; get; }
+        
+        public float smoothnessLevel { set; get; }
+        
+        public float rednessLevel { set; get; }
+        
+        public float sharpnessLevel { set; get; }
+    }
+    
+    
+    [Flags]
+    public enum VOICE_BEAUTIFIER_PRESET
+    {
+        
+        VOICE_BEAUTIFIER_OFF = 0x00000000,
+        
+        CHAT_BEAUTIFIER_MAGNETIC = 0x01010100,
+        
+        CHAT_BEAUTIFIER_FRESH = 0x01010200,
+        
+        CHAT_BEAUTIFIER_VITALITY = 0x01010300,
+        
+        SINGING_BEAUTIFIER = 0x01020100,
+        
+        TIMBRE_TRANSFORMATION_VIGOROUS = 0x01030100,
+        
+        TIMBRE_TRANSFORMATION_DEEP = 0x01030200,
+        
+        TIMBRE_TRANSFORMATION_MELLOW = 0x01030300,
+        
+        TIMBRE_TRANSFORMATION_FALSETTO = 0x01030400,
+        
+        TIMBRE_TRANSFORMATION_FULL = 0x01030500,
+        
+        TIMBRE_TRANSFORMATION_CLEAR = 0x01030600,
+        
+        TIMBRE_TRANSFORMATION_RESOUNDING = 0x01030700,
+        
+        TIMBRE_TRANSFORMATION_RINGING = 0x01030800
+    }</codeblock>
             </p>
             <p props="rtc" outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java" />
+                <codeblock props="ios mac" outputclass="language-objectivec" />
                 <codeblock props="windows unity" outputclass="language-cpp">struct BeautyOptions {
     enum LIGHTENING_CONTRAST_LEVEL
     {
@@ -76,7 +134,7 @@
     smoothnessLevel: number;
     rednessLevel: number;
     }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="rn" outputclass="language-typescript" />
                 <codeblock props="flutter" outputclass="language-dart">class BeautyOptions {
  
   LighteningContrastLevel? lighteningContrastLevel;
@@ -94,11 +152,11 @@
             </p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
    <parml>
        <plentry props="native">
            <pt>lighteningContrastLevel</pt>
-  <pd>亮度明暗对比度。详见 <xref keyref="LIGHTENING_CONTRAST_LEVEL"/>。</pd>
+  <pd>亮度明暗对比度。详见 <xref keyref="LIGHTENING_CONTRAST_LEVEL" />。</pd>
        </plentry>
        <plentry>
   <pt>lighteningLevel</pt>

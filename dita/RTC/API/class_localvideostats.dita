@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_localvideostats">
-    <title><ph keyref="LocalVideoStats"/></title>
+    <title><ph keyref="LocalVideoStats" /></title>
     <shortdesc id="short"><ph id="shortdesc">本地视频流统计信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -55,7 +55,57 @@
     VIDEO_CODEC_TYPE codecType;
     int txPacketLossRate;
 };</codeblock>
-            <codeblock props="unity" outputclass="language-csharp"/> </p>
+            <codeblock props="unity" outputclass="language-csharp">public class LocalVideoStats
+    {
+        public LocalVideoStats()
+        {
+        }
+        public LocalVideoStats(uint uid, int sentBitrate, int sentFrameRate, int encoderOutputFrameRate,
+            int rendererOutputFrameRate, int targetBitrate, int targetFrameRate, QUALITY_ADAPT_INDICATION qualityAdaptIndication,
+            int encodedBitrate, int encodedFrameWidth,int encodedFrameHeight, int encodedFrameCount, 
+            VIDEO_CODEC_TYPE codecType)
+        {
+            this.uid = uid;
+            this.sentBitrate = sentBitrate;
+            this.sentFrameRate = sentFrameRate;
+            this.encoderOutputFrameRate = encoderOutputFrameRate;
+            this.rendererOutputFrameRate = rendererOutputFrameRate;
+            this.targetBitrate = targetBitrate;
+            this.targetFrameRate = targetFrameRate;
+            this.qualityAdaptIndication = qualityAdaptIndication;
+            this.encodedBitrate = encodedBitrate;
+            this.encodedFrameWidth = encodedFrameWidth;
+            this.encodedFrameHeight = encodedFrameHeight;
+            this.encodedFrameCount = encodedFrameCount;
+            this.codecType = codecType;
+        }
+        
+        public uint uid { set; get; }
+        
+        public int sentBitrate { set; get; }
+        
+        public int sentFrameRate { set; get; }
+        
+        public int encoderOutputFrameRate { set; get; }
+        
+        public int rendererOutputFrameRate { set; get; }
+        
+        public int targetBitrate { set; get; }
+        
+        public int targetFrameRate { set; get; }
+        
+        public QUALITY_ADAPT_INDICATION qualityAdaptIndication;
+        
+        public int encodedBitrate { set; get; }
+        
+        public int encodedFrameWidth { set; get; }
+        
+        public int encodedFrameHeight { set; get; }
+        
+        public int encodedFrameCount { set; get; }
+        
+        public VIDEO_CODEC_TYPE codecType { set; get; }
+    }</codeblock> </p>
             <p props="rtc" outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public static class LocalVideoStats {
     public int sentBitrate;
@@ -125,7 +175,7 @@
      captureFrameRate: number;   
      captureBrightnessLevel: CAPTURE_BRIGHTNESS_LEVEL_TYPE;
      }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">class LocalVideoStats {
   
   int sentBitrate;
@@ -164,9 +214,7 @@
 }</codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry props="rtc-ng">
                 <pt>uid</pt>
@@ -209,14 +257,12 @@
                         <dd>v2.4.0</dd>
                     </dlentry>
                     </dl>
-<p><ph>统计周期内本地视频质量（基于目标帧率和目标码率）的自适应情况。</ph><ph props="windows ios mac unity">详见 <xref keyref="QUALITY_ADAPT_INDICATION"/>。</ph></p>
+<p><ph>统计周期内本地视频质量（基于目标帧率和目标码率）的自适应情况。</ph><ph props="windows ios mac unity">详见 <xref keyref="QUALITY_ADAPT_INDICATION" />。</ph></p>
                     <p props="android">
                     <ul>
-                    <li><ph keyref="ADAPT_NONE"/> (0): 本地视频质量不变。</li>
-                    <li><ph keyref="ADAPT_UP_BANDWIDTH"
-                        /> (1): 因网络带宽增加，本地视频质量改善。</li>
-                    <li><ph keyref="ADAPT_DOWN_BANDWIDTH"
-                        /> (2): 因网络带宽减少，本地视频质量变差。</li>
+                    <li><ph keyref="ADAPT_NONE" /> (0): 本地视频质量不变。</li>
+                    <li><ph keyref="ADAPT_UP_BANDWIDTH" /> (1): 因网络带宽增加，本地视频质量改善。</li>
+                    <li><ph keyref="ADAPT_DOWN_BANDWIDTH" /> (2): 因网络带宽减少，本地视频质量变差。</li>
                     </ul> </p>
                 </pd>
             </plentry>
@@ -241,17 +287,16 @@
             </plentry>
             <plentry>
                 <pt>codecType</pt>
-                <pd>视频的编码类型。<ph props="ios mac windows unity">详见 <xref
-                    keyref="VIDEO_CODEC_TYPE"/>。</ph>
+                <pd>视频的编码类型。<ph props="ios mac windows unity">详见 <xref keyref="VIDEO_CODEC_TYPE" />。</ph>
                     <p props="android">
                     <ul>
-                    <li><ph keyref="VIDEO_CODEC_VP8"/> (1): VP8。</li>
-                    <li><ph keyref="VIDEO_CODEC_H264"/> (2): （默认值） H.264。</li>
+                    <li><ph keyref="VIDEO_CODEC_VP8" /> (1): VP8。</li>
+                    <li><ph keyref="VIDEO_CODEC_H264" /> (2): （默认值） H.264。</li>
                     </ul> </p>
                 </pd>
             </plentry>
             <plentry>
-                <pt><ph props="rtc"/>txPacketLossRate</pt>
+                <pt><ph props="rtc" />txPacketLossRate</pt>
                 <pt props="rtc-ng"><ph props="native">txPacketLossRate</ph></pt>
                 <pd>弱网对抗前本端到 Agora 边缘服务器的视频丢包率 (%)。</pd>
             </plentry>
@@ -268,8 +313,7 @@
                         <dd>v3.3.0</dd>
                     </dlentry>
                     </dl>
-                    <p><ph>本地采集的画质亮度级别。</ph><ph props="native">详见 <xref
-                    keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE"/>。</ph></p>
+                    <p><ph>本地采集的画质亮度级别。</ph><ph props="native">详见 <xref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE" />。</ph></p>
                 </pd>
             </plentry>
             </parml> </section>
