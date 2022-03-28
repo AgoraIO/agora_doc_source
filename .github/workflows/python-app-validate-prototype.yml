@@ -23,31 +23,41 @@ jobs:
                   python -m pip install --upgrade pip
                   pip install coverage
                   if  [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-            - name: Run CPP validation
+            - name: Run CPP NG validation
               run: |
                   cd xml2json
                   python check_cpp_ng_prototype.py --code_location ./code_to_check/cpp_ng --dita_location ../dita/RTC/API --dita_map_location ../dita/RTC/config/keys-rtc-ng-api-cpp.ditamap --decomment_code_location ./code_to_check/decommented
+                  echo "The prototype validation starts ..."
                   cat prototype_check_cpp_ng.txt
-            - name: Run Java validation
+                  echo "The prototype validation ends ..."
+            - name: Run Java NG validation
               run: |
                   cd xml2json
                   python check_java_ng_prototype.py --code_location ./code_to_check/java_ng --dita_location ../dita/RTC/API --dita_map_location ../dita/RTC/config/keys-rtc-ng-api-java.ditamap --decomment_code_location ./code_to_check/decommented
+                  echo "The prototype validation starts ..."
                   cat prototype_check_java_ng.txt
-            - name: Run OC validation
+                  echo "The prototype validation ends ..."
+            - name: Run OC NG validation
               run: |
                   cd xml2json
                   python check_oc_ng_prototype.py --code_location ./code_to_check/oc_ng --dita_location ../dita/RTC/API --dita_map_location ../dita/RTC/config/keys-rtc-ng-api-oc.ditamap --decomment_code_location ./code_to_check/decommented
+                  echo "The prototype validation starts ..."
                   cat prototype_check_oc_ng.txt
+                  echo "The prototype validation ends ..."
             - name: Run Flutter CG validation
               run: |
                   cd xml2json
                   python check_dart_cg_prototype.py --code_location ./code_to_check/flutter_cg --dita_location ../dita/RTC/API --dita_map_location ../dita/RTC/config/keys-rtc-api-flutter.ditamap --decomment_code_location ./code_to_check/decommented
+                  echo "The prototype validation starts ..."
                   cat prototype_check_dart_cg.txt
+                  echo "The prototype validation ends ..."
             - name: Run Unity NG validation
               run: |
                   cd xml2json
                   python check_unity_ng_prototype.py --code_location ./code_to_check/unity_ng --dita_location ../dita/RTC/API --dita_map_location ../dita/RTC/config/keys-rtc-ng-api-unity.ditamap --decomment_code_location ./code_to_check/decommented
+                  echo "The prototype validation starts ..."
                   cat prototype_check_unity_ng.txt
+                  echo "The prototype validation ends ..."
             - name: Upload CPP NG log TXT to release
               uses: svenstaro/upload-release-action@v2
               with:
