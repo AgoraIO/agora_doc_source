@@ -27,7 +27,7 @@
         </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="deprecated">
+            <dl outputclass="deprecated" props="rtc">
                 <dlentry>
                     <dt>Deprecated:</dt>
                     <dd>
@@ -35,42 +35,29 @@
                     </dd>
                 </dlentry>
             </dl>
-            <p>
-                After a successful method call, the SDK triggers
-                <xref keyref="onRtmpStreamingStateChanged" />
-                on the local client to report the result of deleting the address.
-            </p>
-            <note type="attention" id="note">
-                <ul>
-                    <li>
-                        Ensure that you enable the RTMP Converter service before using this function.
-                        <ph props="android ios">
-                            See
-                            <xref keyref="guide-cdn-streaming" format="html" scope="external">Push Streams to CDN</xref>
-                            in Prerequisites.
-                        </ph>
-                    </li>
-                    <li>This method takes effect only when you are a host in live interactive streaming.</li>
-                    <li>Call this method after joining a channel.</li>
-                    <li>This method removes only one CDN streaming URL each time it is called. To remove multiple URLs, call this method multiple times.</li>
-                </ul>
-            </note>
+   <p>After a successful method call, the SDK triggers <xref keyref="onRtmpStreamingStateChanged" /> on the local client to report the result of deleting the URL.</p>
+   <note type="attention" id="note">
+       <ul>
+           <li>Before calling this method, make sure that the media push function has been enabled. <ph props="android ios">For details, see the prerequisites in <xref keyref="guide-cdn-streaming" format="html" scope="external">Media Push</xref></ph>.</li>
+           <li>This method takes effect only when you are a host in live interactive streaming.</li>
+           <li>Call this method after joining a channel.</li>
+           <li>This method removes only one media push URL each time it is called. To remove multiple URLs, call this method multiple times.</li>
+       </ul>
+   </note>
         </section>
-        <section id="parameters">
-            <title>Parameters</title>
-            <parml>
-                <plentry>
-                    <pt>url</pt>
-                    <pd>The CDN streaming URL to be removed. The maximum length of this parameter is 1024 bytes. The CDN streaming URL must not contain special characters, such as Chinese characters.</pd>
-                </plentry>
-            </parml>
+        <section id="parameters"><title>Parameters</title>
+   <parml>
+       <plentry>
+  <pt>url</pt>
+  <pd>The media push URL to be removed. The maximum length of this parameter is 1024 bytes. The media push URL must not contain special characters, such as Chinese characters.</pd>
+       </plentry>
+   </parml>
         </section>
         <section id="return_values" props="native electron unity">
-            <title>Returns</title>
-            <ul>
-                <li>0: Success.</li>
-                <li>&lt; 0: Failure.</li>
-            </ul>
-        </section>
-    </refbody>
+   <title>Returns</title>
+   <ul>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
+   </ul>
+        </section></refbody>
 </reference>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." name="reviews" xmlns:if="ant:if">
+	
+    <target name="process-reviews" if="${show.changes.and.comments}">
+        <property name="tmpProcess1" value="temp_ct1.fo"/>
+        <property name="tmpProcess2" value="temp_ct2.fo"/>
+        <property name="tmpProcess3" value="temp_ct3.fo"/>
+        
+        <!-- Convertion of PIs to elements is done in another stage... -->
+		<antcall target="transform-reviews" inheritrefs="true"/>
+    	
+        <!--Let the pipeline continue...-->
+        <copy file="${pdf2.temp.dir}/${tmpProcess3}" tofile="${pdf2.temp.dir}/topicReview.fo" failonerror="yes"/>
+        <move file="${pdf2.temp.dir}/topicReview.fo" tofile="${pdf2.temp.dir}/topic.fo"/>
+    </target>
+	
+	<target name="transform-reviews">
+        <!-- Properly nest threaded PIs -->
+        <pipeline>
+            <xslt in="${pdf2.temp.dir}/topic.fo"
+                out="${pdf2.temp.dir}/${tmpProcess2}"
+                style="${dita.plugin.com.oxygenxml.pdf.review.dir}/review/review-group-replies.xsl">
+                <param name="show.changes.and.comments" expression="${show.changes.and.comments}"/>
+            </xslt>
+        </pipeline>
+        
+        <!-- Elements to FO elements -->
+        <pipeline>
+            <xslt in="${pdf2.temp.dir}/${tmpProcess2}"
+                out="${pdf2.temp.dir}/${tmpProcess3}"
+                style="${dita.plugin.com.oxygenxml.pdf.review.dir}/review/review-elements-to-fo.xsl">
+                <param name="show.changes.and.comments" expression="${show.changes.and.comments}" if:set="show.changes.and.comments"/>
+                <param name="show.changebars" expression="${show.changebars}" if:set="show.changebars"/>
+                <param name="show.changes.and.comments.as.changebars.only" expression="${show.changes.and.comments.as.changebars.only}" if:set="show.changes.and.comments.as.changebars.only"/>            	
+                <param name="insert.color" expression="${ct.insert.color}" if:set="ct.insert.color"/>
+                <param name="delete.color" expression="${ct.delete.color}" if:set="ct.delete.color"/>
+                <param name="comment.bg.color" expression="${ct.comment.bg.color}" if:set="ct.comment.bg.color"/>
+            </xslt>
+        </pipeline>
+	</target>
+	
+</project>

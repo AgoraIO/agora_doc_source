@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Descriptor for the 'Delete attribute' operation. This operation allows you to delete an attribute from an XML document. 
+-->
+<refactoringOperationDescriptor 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.oxygenxml.com/ns/xmlRefactoring" id="delete-attribute" name="${i18n(xr_delete_attribute)}">
+    <description>${i18n(xr_delete_attribute_description)}</description>    
+    <script type="XSLT" href="delete-attribute.xsl"/>
+    <!--<script type="XQUERY_UPDATE" href="delete-attribute.xq"/>-->
+    <category>${i18n(Attributes)}</category>
+    <parameters>
+        <description>${i18n(xr_delete_attribute_parameters_description)}</description>        
+        <attributeLocation name="attribute_xpath" useCurrentContext="true">
+            <element label="${i18n(Element)}">
+                <description>${i18n(attribute_parent_element_param_description)}</description>
+            </element>
+            <attribute label="${i18n(Attribute)}">
+                <description>${i18n(attribute_param_description)}</description>
+            </attribute>
+        </attributeLocation>
+    </parameters>
+</refactoringOperationDescriptor>

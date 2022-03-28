@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="urn:oasis:names:tc:dita:rng:vocabularyModuleDesc.rng"
+                         schematypens="http://relaxng.org/ns/structure/1.0"?>
+<grammar xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+  xmlns:dita="http://dita.oasis-open.org/architecture/2005/"
+  xmlns="http://relaxng.org/ns/structure/1.0">
+  <moduleDesc xmlns="http://dita.oasis-open.org/architecture/2005/">
+    <moduleTitle>DITA Hardware Domain</moduleTitle>
+    <headerComment xml:space="preserve"><![CDATA[
+============================================================= 
+                    HEADER                                     
+ ============================================================= 
+  MODULE:    DITA Hardware Domain                             
+  VERSION:   2.0                                                
+  DATE:      [[[Release date]]]                                      
+                                                               
+ ============================================================= 
+
+ =============================================================      
+ ]]></headerComment>
+    <moduleMetadata>
+      <moduleType>elementdomain</moduleType>
+      <moduleShortName>hw-d</moduleShortName>
+      <modulePublicIds>
+        <dtdMod>-//OASIS//ELEMENTS DITA<var presep=" " name="ditaver"/> Hardware Domain//EN</dtdMod>
+        <dtdEnt>-//OASIS//ENTITIES DITA<var presep=" " name="ditaver"/> Hardware Domain//EN</dtdEnt>
+        <rngMod>urn:oasis:names:tc:dita:rng:hwDomain.rng<var presep=":" name="ditaver"/></rngMod>
+      </modulePublicIds>
+    </moduleMetadata>
+  </moduleDesc>
+  
+  <div>
+    <a:documentation>DOMAIN EXTENSION PATTERNS</a:documentation>
+    <define name="hw-d-ph">
+      <ref name="hwcontrol.element"/>
+      <ref name="partno.element"/>
+    </define>
+    <define name="ph" combine="choice">
+      <ref name="hw-d-ph"/>
+    </define>
+  </div>
+  
+  <div>
+    <a:documentation>ELEMENT TYPE NAME PATTERNS</a:documentation>
+    <define name="hwcontrol">
+      <ref name="hwcontrol.element"/>
+    </define>
+    <define name="partno">
+      <ref name="partno.element"/>
+    </define>
+  </div>
+  
+  <div>
+    <a:documentation>ELEMENT TYPE DECLARATIONS</a:documentation>
+    <div>
+      <a:documentation> LONG NAME: Hardware control </a:documentation>
+      <define name="hwcontrol.content">
+        <zeroOrMore>
+          <choice>
+            <text/>
+            <ref name="data"/>
+            <ref name="draft-comment"/>
+            <ref name="image"/>
+            <ref name="keyword"/>
+            <ref name="ph"/>
+            <ref name="text"/>
+          </choice>
+        </zeroOrMore>
+      </define>
+      <define name="hwcontrol.attributes">
+        <optional>
+          <attribute name="keyref"/>
+        </optional>
+        <ref name="univ-atts"/>
+      </define>
+      <define name="hwcontrol.element">
+        <element name="hwcontrol" dita:longName="Hardware Control" dita:since="2.0">
+          <a:documentation>The hwcontrol (&lt;hwcontrol&gt;) element is used to ... </a:documentation>
+          <ref name="hwcontrol.attlist"/>
+          <ref name="hwcontrol.content"/>
+        </element>
+      </define>
+      <define name="hwcontrol.attlist" combine="interleave">
+        <ref name="hwcontrol.attributes"/>
+      </define>
+    </div>
+    
+    <div>
+      <a:documentation>LONG NAME: Part number</a:documentation>
+      <define name="partno.content">
+        <zeroOrMore>
+          <choice>
+            <text/>
+            <ref name="data"/>
+            <ref name="draft-comment"/>
+            <ref name="keyword"/>
+            <ref name="text"/>
+          </choice>
+        </zeroOrMore>
+      </define>
+      <define name="partno.attributes">
+        <optional>
+          <attribute name="keyref"/>
+        </optional>
+        <ref name="univ-atts"/>
+      </define>
+      <define name="partno.element">
+        <element name="partno" dita:longName="Part number">
+          <a:documentation>The &lt;partno> element ... </a:documentation>
+          <ref name="partno.attlist"/>
+          <ref name="partno.content"/>
+        </element>
+      </define>
+      <define name="partno.attlist" combine="interleave">
+        <ref name="partno.attributes"/>
+      </define>
+    </div>
+  </div>
+  
+  <div>
+    <a:documentation>SPECIALIZATION ATTRIBUTE DECLARATIONS</a:documentation>
+    <define name="hwcontrol.attlist" combine="interleave">
+      <optional>
+        <attribute name="class" a:defaultValue="+ topic/ph hw-d/hwcontrol "/>
+      </optional>
+    </define>
+    <define name="partno.attlist" combine="interleave">
+      <optional>
+        <attribute name="class" a:defaultValue="+ topic/ph hw-d/partno "/>
+      </optional>
+    </define>
+  </div>
+  
+</grammar>

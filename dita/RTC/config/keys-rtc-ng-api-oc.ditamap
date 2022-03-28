@@ -1528,7 +1528,35 @@
                 </topicmeta>
             </keydef>
         </topichead>
-        <topichead navtitle="CDN 推流">
+        <topichead navtitle="旁路推流">
+            <keydef keys="startRtmpStreamWithoutTranscoding" href="../API/api_startrtmpstreamwithouttranscoding.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>startRtmpStreamWithoutTranscoding</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="startRtmpStreamWithTranscoding" href="../API/api_startrtmpstreamwithtranscoding.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>startRtmpStreamWithTranscoding</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="updateRtmpTranscoding" href="../API/api_updatertmptranscoding.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>updateRtmpTranscoding</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="stopRtmpStream" href="../API/api_stoprtmpstream.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>stopRtmpStream</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
             <keydef keys="addUser" href="../API/api_livetranscoding_adduser.dita">
                 <topicmeta>
                     <keywords>
@@ -2409,6 +2437,13 @@
             </keydef>
         </topichead>
         <topichead navtitle="其他方法">
+            <keydef keys="setAVSyncSource" href="../API/api_setavsyncsource.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>setAVSyncSource</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
             <keydef keys="complain" href="../API/api_complain.dita">
                 <topicmeta>
                     <keywords>
@@ -2967,11 +3002,18 @@
                 </topicmeta>
             </keydef>
         </topichead>
-        <topichead navtitle="CDN 推流事件">
+        <topichead navtitle="旁路推流事件">
             <keydef keys="onRtmpStreamingStateChanged" href="../API/callback_onrtmpstreamingstatechanged.dita">
                 <topicmeta>
                     <keywords>
                         <keyword>rtmpStreamingChangedToState</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onRtmpStreamingEvent" href="../API/callback_onrtmpstreamingevent.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>rtmpStreamingEventWithUrl</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
@@ -3701,7 +3743,7 @@
                 </keywords>
             </topicmeta>
         </keydef>
-        <keydef keys="WatermarkOptions" href="../API/class_watermarkoptions.dita">
+        <keydef keys="WatermarkOptions" href="../API/class_watermarkoptions_ng.dita">
             <topicmeta>
                 <keywords>
                     <keyword>WatermarkOptions</keyword>
@@ -7453,42 +7495,49 @@
         <keydef keys="RTMP_STREAM_PUBLISH_STATE" href="../API/enum_rtmpstreampublishstate.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>AgoraRtmpStreamPublishState</keyword>
+                    <keyword>AgoraRtmpStreamingState</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RTMP_STREAM_PUBLISH_STATE_IDLE">
             <topicmeta>
                 <keywords>
-                    <keyword>RTMP_STREAM_PUBLISH_STATE_IDLE</keyword>
+                    <keyword>AgoraRtmpStreamingStateIdle</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RTMP_STREAM_PUBLISH_STATE_CONNECTING">
             <topicmeta>
                 <keywords>
-                    <keyword>RTMP_STREAM_PUBLISH_STATE_CONNECTING</keyword>
+                    <keyword>AgoraRtmpStreamingStateConnecting</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RTMP_STREAM_PUBLISH_STATE_RUNNING">
             <topicmeta>
                 <keywords>
-                    <keyword>RTMP_STREAM_PUBLISH_STATE_RUNNING</keyword>
+                    <keyword>AgoraRtmpStreamingStateRunning</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RTMP_STREAM_PUBLISH_STATE_RECOVERING">
             <topicmeta>
                 <keywords>
-                    <keyword>RTMP_STREAM_PUBLISH_STATE_RECOVERING</keyword>
+                    <keyword>AgoraRtmpStreamingStateRecovering</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RTMP_STREAM_PUBLISH_STATE_FAILURE">
             <topicmeta>
                 <keywords>
-                    <keyword>RTMP_STREAM_PUBLISH_STATE_FAILURE</keyword>
+                    <keyword>AgoraRtmpStreamingStateFailure</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="RTMP_STREAM_PUBLISH_STATE_DISCONNECTING">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraRtmpStreamingStateDisconnecting</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -7926,6 +7975,27 @@
                 </keywords>
             </topicmeta>
         </keydef>
+        <keydef keys="VIDEO_CODEC_TYPE_FOR_STREAM" href="../API/enum_videocodectypeforstream.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoCodecTypeForStream</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VIDEO_CODEC_H264_FOR_STREAM">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoCodecTypeH264ForStream</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VIDEO_CODEC_H265_FOR_STREAM">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoCodecTypeH265ForStream</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>         
         <keydef keys="VIDEO_FRAME_PROCESS_MODE" href="../API/enum_videoframeprocessmode.dita">
             <topicmeta>
                 <keywords>
