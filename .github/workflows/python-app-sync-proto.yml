@@ -2,10 +2,10 @@
 name: Awesome prototype syncs
 
 on:
-    pull_request:
-        branches:
-            - master
-            - 'release/**'
+    # pull_request:
+    #    branches:
+    #        - master
+    #        - 'release/**'
     push:
         branches:
             - master
@@ -35,8 +35,10 @@ jobs:
                   token: ${{ secrets.GITHUB_TOKEN }}
                   commit-message: Sync cn prototype to en prototype
                   title: "[AUTO: MERGE AT YOUR EARLIEST CONVENIENCE] Sync cn prototype to en prototype in a flash"
-                  branch: sync-patch
-                  base: master
+                  branch: auto/sync-cn-proto-to-en-patch
+                  branch-suffix: timestamp
+                  delete-branch: true
+                  base: GITHUB_HEAD_REF
                   reviewers: lemon-chen
                   body: >
                       This PR is auto-generated to sync prototypes from cn DITA files to en DITA files. @HeatherWYL  @Cilla-luodan
