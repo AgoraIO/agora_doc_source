@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns:xi="http://www.w3.org/2001/XInclude"
+     xmlns="http://www.tei-c.org/ns/1.0"    
+     xml:lang="en">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>TEI with maximal setup, plus external additions</title>
+        <author>Sebastian Rahtz</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>TEI Consortium</publisher>
+        <availability status="free">
+          <p>This template file is freely available and you are hereby
+          authorised to copy, modify, and redistribute it in any way without
+          further reference or permissions.</p>
+          <p>When making such modifications, you are strongly recommended to
+          change the present text to include an accurate statement of the
+          licencing conditions applicable to your modified text.</p>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <p>This digital file is the original, although it is heavily
+        based on the file <name>tei_all.odd</name>.</p>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <head>TEI Complete, Plus</head>
+      <p>This TEI customization describes a schema that includes
+      <emph>all</emph> of the TEI P5 modules and also allows MathML
+      elements inside the <gi>formula</gi> element and Scaleable
+      Vector Graphics (SVG) elements inside the <gi>figure</gi>
+      element, per the <name>tei_math</name> and <name>tei_svg</name>
+      customizations, respectively. This is a very useful starting
+      place for manually creating your own customizations — it is much
+      easier to delete the modules you do not want than to add the
+      modules you do. Furthermore this customization often proves
+      helpful for testing TEI software.</p>
+      <p>However, this particular TEI customization is <emph>not
+      recommended</emph> for actual use for encoding documents. It
+      produces schemas and reference documentation that will be much
+      larger and include many more elements than almost anyone could
+      conceivably ever need. Tempting though it may be simply to have
+      absolutely everything, and <q>just ignore</q> elements not
+      required, experience has shown that their presence makes the
+      documentation harder to read and use, and makes a schema that is
+      far more lax than desired.</p>
+      <p>Note that the modules are referred to below in the order they
+      are defined by the TEI <title>Guidelines</title>, and that the
+      value of thte <att>n</att> attribute reflects the chapter number
+      in which the module is defined. The first four modules are often
+      called the <soCalled>required</soCalled> modules. However, these
+      modules are not themselves technically required to create a TEI
+      conformant markup language (let alone a useful non-TEI
+      conformant markup language). Rather, they each contain one or
+      more <emph>elements</emph> which are required for TEI
+      conformance.</p>
+      <schemaSpec xmlns:teix="http://www.tei-c.org/ns/Examples"
+                  ident="tei_allPlus"
+                  prefix="tei_"
+                  start="TEI teiCorpus"
+                  defaultExceptions="http://www.tei-c.org/ns/1.0 http://www.w3.org/1998/Math/MathML http://www.w3.org/2000/svg teix:egXML">
+        <moduleRef n="01" key="tei"/>
+        <moduleRef n="02" key="header"/>
+        <moduleRef n="03" key="core"/>
+        <moduleRef n="04" key="textstructure"/>
+        <moduleRef n="05" key="gaiji"/>
+        <moduleRef n="06" key="verse"/>
+        <moduleRef n="07" key="drama"/>
+        <moduleRef n="08" key="spoken"/>
+        <moduleRef n="09" key="dictionaries"/>
+        <moduleRef n="10" key="msdescription"/>
+        <moduleRef n="11" key="transcr"/>
+        <moduleRef n="12" key="textcrit"/>
+        <moduleRef n="13" key="namesdates"/>
+        <moduleRef n="14" key="figures"/>
+        <moduleRef n="15" key="corpus"/>
+        <moduleRef n="16" key="linking"/>
+        <moduleRef n="17" key="analysis"/>
+        <moduleRef n="18" key="iso-fs"/>
+        <moduleRef n="19" key="nets"/>
+        <moduleRef n="21" key="certainty"/>
+        <moduleRef n="22" key="tagdocs"/>
+        <xi:include href="tei_svg.odd"
+                    xpointer="xmlns(t=http://www.tei-c.org/ns/1.0)xpointer(//t:moduleRef[@url])">
+          <xi:fallback> ERROR: cannot locate ODD changes for SVG </xi:fallback>
+        </xi:include>
+        <xi:include href="tei_math.odd"
+                    xpointer="xmlns(t=http://www.tei-c.org/ns/1.0)xpointer(//t:moduleRef[@url]|//t:elementSpec[@ident='formula'])">
+          <xi:fallback> ERROR: cannot locate ODD changes for MathML </xi:fallback>
+        </xi:include>
+      </schemaSpec>
+    </body>
+  </text>
+</TEI>

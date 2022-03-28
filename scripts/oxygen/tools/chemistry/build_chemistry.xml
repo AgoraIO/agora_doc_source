@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." name="" default="dist">
+  <target name="dist"
+      xmlns:if="ant:if"
+      xmlns:unless="ant:unless">
+          
+      <exec executable="${executableScript}" failonerror="yes">
+          <!--Set the input xml file-->
+          <arg value="-in"/>
+          <arg value="${xmlURL}"/>
+          
+          <!--Set the input css file if this exists-->
+          <arg value="-css" if:set="cssURL" unless:blank="cssURL"/>
+          <arg line="${cssURL}" if:set="cssURL" unless:blank="cssURL"/>
+      	
+          <!--Set the output file-->
+          <arg value="-out"/>
+          <arg value="${outputPath}"/>
+          
+          <!--Set debugging options-->
+          <arg value="-dump-fo" if:true="${dumpFO}" />
+          <arg value="-dump-styled-content" if:true="${dumpStyledContent}" />
+
+          <!--Set to produce output that conforms to PDF/UA-1 accessibility standards-->
+          <arg value="-pdf-ua" if:true="${pdfUA}" />
+          
+         <!--Set proxy--> 
+          <arg value="-http-proxy-host" if:set="http.proxyHost" />
+          <arg value="${http.proxyHost}" if:set="http.proxyHost" />
+          <arg value="-http-proxy-port" if:set="http.proxyPort" />
+          <arg value="${http.proxyPort}" if:set="http.proxyPort" />
+          
+          <!--Set the maximum amount of memory that is available to the Oxygen PDF Chemistry process-->
+          <arg value="-Xmx${maxAllowedMemory}m" if:set="maxAllowedMemory" />
+          
+          <!--Set the catalogs-->
+          <env key="XML_CATALOG_FILES" value="${catalogs}" if:set="catalogs"/>
+      </exec>
+  </target>
+</project>
