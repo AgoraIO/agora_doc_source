@@ -15,7 +15,47 @@
                     jitter(0),
                     availableBandwidth(0) {}
                     };</codeblock>
-                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="unity" outputclass="language-csharp">public class LastmileProbeOneWayResult
+    {
+        public LastmileProbeOneWayResult()
+        {
+        }
+        public LastmileProbeOneWayResult(uint packetLossRate, uint jitter, uint availableBandwidth)
+        {
+            this.packetLossRate = packetLossRate;
+            this.jitter = jitter;
+            this.availableBandwidth = availableBandwidth;
+        }
+        
+        public uint packetLossRate { set; get; }
+        
+        public uint jitter { set; get; }
+        
+        public uint availableBandwidth { set; get; }
+    }
+    
+    public class LastmileProbeResult
+    {
+        public LastmileProbeResult()
+        {
+        }
+        public LastmileProbeResult(LASTMILE_PROBE_RESULT_STATE state, LastmileProbeOneWayResult uplinkReport,
+            LastmileProbeOneWayResult downlinkReport, uint rtt)
+        {
+            this.state = state;
+            this.uplinkReport = uplinkReport;
+            this.downlinkReport = downlinkReport;
+            this.rtt = rtt;
+        }
+        
+        public LASTMILE_PROBE_RESULT_STATE state { set; get; }
+        
+        public LastmileProbeOneWayResult uplinkReport { set; get; }
+        
+        public LastmileProbeOneWayResult downlinkReport { set; get; }
+        
+        public uint rtt { set; get; }
+    }</codeblock>
             </p>
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public static class LastmileProbeOneWayResult {

@@ -6,7 +6,59 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="unity" outputclass="language-csharp">public class ChannelMediaInfo
+    {
+        public ChannelMediaInfo()
+        {
+        }
+        public ChannelMediaInfo(string channelName, string token, uint uid)
+        {
+            this.channelName = channelName;
+            this.token = token;
+            this.uid = uid;
+        }
+        
+        public string channelName { set; get; }
+        
+        public string token { set; get; }
+        
+        public uint uid { set; get; }
+    }
+    
+    public class ChannelMediaRelayConfiguration
+    {
+        public ChannelMediaRelayConfiguration()
+        {
+            srcInfo = null;
+            destInfos = new ChannelMediaInfo[0];
+            destCount = 0;
+        }
+        public ChannelMediaRelayConfiguration(ChannelMediaInfo srcInfo, ChannelMediaInfo[] destInfos, int destCount)
+        {
+            this.srcInfo = srcInfo;
+            this.destInfos = destInfos ?? new ChannelMediaInfo[0];
+            this.destCount = destCount;
+        }
+        
+        public ChannelMediaInfo srcInfo { set; get; }
+        
+        public ChannelMediaInfo[] destInfos { set; get; }
+        
+        public int destCount { set; get; }
+    }
+    
+    public class UplinkNetworkInfo
+    {
+        public UplinkNetworkInfo()
+        {
+        }
+        public UplinkNetworkInfo(int video_encoder_target_bitrate_bps)
+        {
+            this.video_encoder_target_bitrate_bps = video_encoder_target_bitrate_bps;
+        }
+        
+        public int video_encoder_target_bitrate_bps;
+    }</codeblock>
             </p>
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public class ChannelMediaInfo {

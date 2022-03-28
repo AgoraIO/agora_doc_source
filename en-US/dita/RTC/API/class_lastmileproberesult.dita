@@ -15,7 +15,70 @@
                     LastmileProbeResult() : state(LASTMILE_PROBE_RESULT_UNAVAILABLE),
                     rtt(0) {}
                     };</codeblock>
-                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="unity" outputclass="language-csharp">public class LastmileProbeResult
+    {
+        public LastmileProbeResult()
+        {
+        }
+        public LastmileProbeResult(LASTMILE_PROBE_RESULT_STATE state, LastmileProbeOneWayResult uplinkReport,
+            LastmileProbeOneWayResult downlinkReport, uint rtt)
+        {
+            this.state = state;
+            this.uplinkReport = uplinkReport;
+            this.downlinkReport = downlinkReport;
+            this.rtt = rtt;
+        }
+        
+        public LASTMILE_PROBE_RESULT_STATE state { set; get; }
+        
+        public LastmileProbeOneWayResult uplinkReport { set; get; }
+        
+        public LastmileProbeOneWayResult downlinkReport { set; get; }
+        
+        public uint rtt { set; get; }
+    }
+    
+    public enum CONNECTION_CHANGED_REASON_TYPE
+    {
+        
+        CONNECTION_CHANGED_CONNECTING = 0,
+        
+        CONNECTION_CHANGED_JOIN_SUCCESS = 1,
+        
+        CONNECTION_CHANGED_INTERRUPTED = 2,
+        
+        CONNECTION_CHANGED_BANNED_BY_SERVER = 3,
+        
+        CONNECTION_CHANGED_JOIN_FAILED = 4,
+        
+        CONNECTION_CHANGED_LEAVE_CHANNEL = 5,
+        
+        CONNECTION_CHANGED_INVALID_APP_ID = 6,
+        
+        CONNECTION_CHANGED_INVALID_CHANNEL_NAME = 7,
+        
+        CONNECTION_CHANGED_INVALID_TOKEN = 8,
+        
+        CONNECTION_CHANGED_TOKEN_EXPIRED = 9,
+        
+        CONNECTION_CHANGED_REJECTED_BY_SERVER = 10,
+        
+        CONNECTION_CHANGED_SETTING_PROXY_SERVER = 11,
+        
+        CONNECTION_CHANGED_RENEW_TOKEN = 12,
+        
+        CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED = 13,
+        
+        CONNECTION_CHANGED_KEEP_ALIVE_TIMEOUT = 14,
+        
+        CONNECTION_CHANGED_REJOIN_SUCCESS = 15,
+        
+        CONNECTION_CHANGED_LOST = 16,
+        
+        CONNECTION_CHANGED_ECHO_TEST = 17,
+        
+        CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED_BY_USER = 18,
+    }</codeblock>
             </p>
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public static class LastmileProbeResult {

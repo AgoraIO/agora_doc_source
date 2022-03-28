@@ -6,7 +6,72 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="unity" outputclass="language-csharp">public class LastmileProbeConfig
+    {
+        public LastmileProbeConfig()
+        {
+        }
+        public LastmileProbeConfig(bool probeUplink, bool probeDownlink, uint expectedUplinkBitrate,
+            uint expectedDownlinkBitrate)
+        {
+            this.probeUplink = probeUplink;
+            this.probeDownlink = probeDownlink;
+            this.expectedUplinkBitrate = expectedUplinkBitrate;
+            this.expectedDownlinkBitrate = expectedDownlinkBitrate;
+        }
+        
+        public bool probeUplink { set; get; }
+        
+        public bool probeDownlink { set; get; }
+        
+        public uint expectedUplinkBitrate { set; get; }
+        
+        public uint expectedDownlinkBitrate { set; get; }
+    }
+    
+    public enum LASTMILE_PROBE_RESULT_STATE {
+        
+        LASTMILE_PROBE_RESULT_COMPLETE = 1,
+        
+        LASTMILE_PROBE_RESULT_INCOMPLETE_NO_BWE = 2,
+        
+        LASTMILE_PROBE_RESULT_UNAVAILABLE = 3
+    };
+    
+    public class LastmileProbeOneWayResult
+    {
+        public LastmileProbeOneWayResult()
+        {
+        }
+        public LastmileProbeOneWayResult(uint packetLossRate, uint jitter, uint availableBandwidth)
+        {
+            this.packetLossRate = packetLossRate;
+            this.jitter = jitter;
+            this.availableBandwidth = availableBandwidth;
+        }
+        
+        public uint packetLossRate { set; get; }
+        
+        public uint jitter { set; get; }
+        
+        public uint availableBandwidth { set; get; }
+    }
+    
+    public class LastmileProbeResult
+    {
+        public LastmileProbeResult()
+        {
+        }
+        public LastmileProbeResult(LASTMILE_PROBE_RESULT_STATE state, LastmileProbeOneWayResult uplinkReport,
+            LastmileProbeOneWayResult downlinkReport, uint rtt)
+        {
+            this.state = state;
+            this.uplinkReport = uplinkReport;
+            this.downlinkReport = downlinkReport;
+            this.rtt = rtt;
+        }
+        
+        public LASTMILE_PROBE_RESULT_STATE state { set; get; }</codeblock>
             </p>
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public class LastmileProbeConfig {
