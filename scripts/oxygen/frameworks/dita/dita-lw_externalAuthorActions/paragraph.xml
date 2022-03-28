@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<a:authorAction xmlns:a="http://www.oxygenxml.com/ns/author/external-action"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.oxygenxml.com/ns/author/external-action http://www.oxygenxml.com/ns/author/external-action/authorAction.xsd"
+  id="paragraph">
+  <a:name>${i18n(paragraph)}</a:name>
+  <a:description>${i18n(paragraph_description)}</a:description>
+  <a:smallIconPath href="/images/Paragraph16.png"/>
+  <a:largeIconPath href="/images/Paragraph24.png"/>
+  <a:operations>
+    <a:operation id="InsertFragmentOperation">
+      <a:xpathCondition>parent::body</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><p/></a:argument>
+        <a:argument name="insertLocation">.</a:argument>
+        <a:argument name="insertPosition">After</a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="InsertFragmentOperation">
+      <a:xpathCondition>oxy:allows-child-element("*", "class", " topic/p ")</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><p/></a:argument>
+        <a:argument name="insertPosition">After</a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="InsertFragmentOperation">
+      <a:xpathCondition>ancestor-or-self::p</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><p/></a:argument>
+        <a:argument name="insertLocation">ancestor-or-self::p[1]</a:argument>
+        <a:argument name="insertPosition">After</a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="SurroundWithFragmentOperation">
+      <a:arguments>
+        <a:argument name="fragment"><p/></a:argument>
+      </a:arguments>
+    </a:operation>
+  </a:operations>
+  <a:accelerator>M1 M2 P</a:accelerator>
+  <a:accessKey>P</a:accessKey>
+  <a:enabledInReadOnlyContext>false</a:enabledInReadOnlyContext>
+</a:authorAction>

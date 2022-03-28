@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script 
+  base="DITA" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.oxygenxml.com/ns/framework/extend"
+  xsi:schemaLocation="http://www.oxygenxml.com/ns/framework/extend http://www.oxygenxml.com/ns/framework/extend/frameworkExtensionScript.xsd">
+  
+  <name>DITA Map with Resolved Topics</name>
+  <description>Darwin Information Typing Architecture</description>
+  <priority>Normal</priority>
+  
+  <classpath>
+    <addEntry path="${framework}/expanded map resources/"/>
+    <removeEntry path="${framework}/refactoring/"/>
+  </classpath>
+  
+  <associationRules inherit="none">
+    <addRule 
+      namespace="*" 
+      rootElementLocalName="*"
+      fileName="*" 
+      publicID="*" 
+      javaRuleClass="ro.sync.ecss.extensions.dita.map.DITAMapResolvedReferencesCustomRuleMatcher" 
+      attributeLocalName="*" 
+      attributeNamespace="*" 
+      attributeValue="*"/>
+  </associationRules>
+  
+  <documentTemplates inherit="none"/>
+  
+  <validationScenarios>
+    <addScenarios href ="dita_map_with_resolved_topics_validation.scenarios"/>
+    <removeScenario name="Accessibility"/>
+    <removeScenario name="DITA"/>
+    <defaultScenarios>
+      <name>DITA Map</name>
+    </defaultScenarios>
+  </validationScenarios>
+  
+  <transformationScenarios inherit="none"/>
+  
+  <extensionPoints>
+    <extension name="extensionsBundle" value="ro.sync.ecss.extensions.dita.map.DITAMapExtensionsBundle"/>
+  </extensionPoints>
+  
+  <author>
+    <toolbars>
+      <toolbar name="DITA">
+        <addAction id="insert.new.dita.resource" position="before"/>
+        <addAction id="insert.topicref" position="before"/>
+        <separator position="before"/>
+      </toolbar>
+    </toolbars>
+  </author>
+</script>

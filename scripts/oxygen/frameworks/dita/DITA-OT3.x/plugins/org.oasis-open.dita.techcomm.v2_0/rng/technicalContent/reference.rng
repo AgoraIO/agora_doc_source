@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="urn:oasis:names:tc:dita:rng:checkShell.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="urn:oasis:names:tc:dita:rng:vocabularyModuleDesc.rng"
+                         schematypens="http://relaxng.org/ns/structure/1.0"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:dita="http://dita.oasis-open.org/architecture/2005/" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">
+  <moduleDesc xmlns="http://dita.oasis-open.org/architecture/2005/">
+    <moduleTitle>DITA Reference Topic Shell</moduleTitle>
+    <headerComment xml:space="preserve">
+=============================================================
+                   HEADER                                    
+=============================================================
+Darwin Information Typing Architecture (DITA) Version 2.0
+[[[Draft level]]]
+[[[Release date]]] 
+Copyright (c) OASIS Open 2018. All rights reserved. 
+Source: [[[Source link]]]
+
+============================================================
+ MODULE:    DITA Reference DTD                               
+ VERSION:   2.0                                              
+ DATE:      [[[Release date]]]                                    
+ PURPOSE:   DTD to describe DITA References                  
+                                                             
+=============================================================
+
+=============================================================
+                   PUBLIC DOCUMENT TYPE DEFINITION           
+                   TYPICAL INVOCATION                        
+                                                             
+ Refer to this file by the following public identifier or an 
+      appropriate system identifier 
+      
+PUBLIC "-//OASIS//DTD DITA 2.x Reference//EN"
+
+The public ID above refers to the latest version of this DTD.
+     To refer to this specific version, use this value:
+     
+PUBLIC "-//OASIS//DTD DITA 2.0 Reference//EN"                     
+
+=============================================================
+            (C) Copyright OASIS Open 2005, 2014.             
+            (C) Copyright IBM Corporation 2001, 2004.        
+            All Rights Reserved.                             
+                                                             
+ UPDATES:                                                    
+=============================================================
+    
+  </headerComment>
+    <moduleMetadata>
+      <moduleType>topicshell</moduleType>
+      <moduleShortName>reference</moduleShortName>
+      <shellPublicIds>
+        <dtdShell>-//OASIS//DTD DITA<var presep=" " name="ditaver"/> Reference//EN</dtdShell>
+        <rngShell>urn:oasis:names:tc:dita:rng:reference.rng<var presep=":" name="ditaver"/></rngShell>
+      </shellPublicIds>
+    </moduleMetadata>
+  </moduleDesc>
+  <div>
+    <a:documentation>ROOT ELEMENT DECLARATION</a:documentation>
+    <start>
+      <ref name="reference.element"/>
+    </start>
+  </div>
+  <div>
+    <a:documentation>DOMAINS ATTRIBUTE</a:documentation>
+    <define name="specializations-att" combine="interleave">
+      <optional>
+        <attribute name="specializations"
+          a:defaultValue="@props/audience
+                         @props/deliveryTarget
+                         @props/platform
+                         @props/product
+                         @props/otherprops"
+        />
+      </optional>
+    </define>
+
+  </div>
+  <div>
+    <a:documentation>MODULE INCLUSIONS</a:documentation>
+    <include href="urn:oasis:names:tc:dita:rng:topicMod.rng:2.0"/>
+    <include href="referenceMod.rng">
+      <define name="reference-info-types">
+        <ref name="reference.element"/>
+      </define>
+    </include>
+    <include href="abbreviateDomain.rng"/>
+    <include href="urn:oasis:names:tc:dita:rng:alternativeTitlesDomain.rng:2.0" dita:since="2.0"/>
+    <include href="urn:oasis:names:tc:dita:rng:audienceAttDomain.rng:2.0"/>
+    <include href="urn:oasis:names:tc:dita:rng:deliveryTargetAttDomain.rng:2.0" dita:since="1.3"/>
+    <include href="urn:oasis:names:tc:dita:rng:platformAttDomain.rng:2.0"/>
+    <include href="urn:oasis:names:tc:dita:rng:productAttDomain.rng:2.0"/>
+    <include href="urn:oasis:names:tc:dita:rng:otherpropsAttDomain.rng:2.0"/>
+    <include href="urn:oasis:names:tc:dita:rng:emphasisDomain.rng:2.0"/>
+    <include href="equationDomain.rng" dita:since="1.3"/>
+    <include href="urn:oasis:names:tc:dita:rng:hazardDomain.rng:2.0"/>
+    <include href="urn:oasis:names:tc:dita:rng:highlightDomain.rng:2.0"/>
+    <include href="hwDomain.rng" dita:since="2.0"/>
+    <include href="markupDomain.rng" dita:since="1.3"/>
+    <include href="mathmlDomain.rng" dita:since="1.3"/>
+    <include href="programmingDomain.rng"/>
+    <include href="releaseManagementDomain.rng" dita:since="1.3"/>
+    <include href="softwareDomain.rng"/>
+    <include href="svgDomain.rng" dita:since="1.3"/>
+    <include href="syntaxdiagramDomain.rng" dita:since="2.0"/>
+    <include href="uiDomain.rng"/>
+    <include href="urn:oasis:names:tc:dita:rng:utilitiesDomain.rng:2.0"/>
+    <include href="xmlDomain.rng" dita:since="1.3"/>
+
+  </div>
+  <div>
+    <a:documentation>ID-DEFINING-ELEMENT OVERRIDES</a:documentation>
+    <define name="any">
+      <zeroOrMore>
+        <choice>
+          <ref name="idElements"/>
+          <element>
+            <anyName>
+              <except>
+                <name>topic</name>
+                <name>reference</name>
+                <nsName ns="http://www.w3.org/2000/svg"/>
+                <nsName ns="http://www.w3.org/1998/Math/MathML"/>
+              </except>
+            </anyName>
+            <zeroOrMore>
+              <attribute>
+                <anyName/>
+              </attribute>
+            </zeroOrMore>
+            <ref name="any"/>
+          </element>
+          <text/>
+        </choice>
+      </zeroOrMore>
+    </define>
+  </div>
+</grammar>

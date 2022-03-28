@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="com.oxygenxml.editlink">
+  <feature extension="package.support.name" value="Oxygen XML Editor Support"/>
+  <feature extension="package.support.email" value="support@oxygenxml.com"/>
+  <feature extension="package.version" value="24.1"/>
+
+  <!-- HTML5 extension points -->   
+  <feature extension="dita.xsl.html5" value="xhtml.xsl" type="file"/>
+  <feature extension="dita.conductor.html5.param" value="params.xml" type="file"/>
+  
+  <!-- XHTML extension points -->
+  <feature extension="dita.xsl.xhtml" value="xhtml.xsl" type="file"/>
+  <feature extension="dita.conductor.xhtml.param" value="params.xml" type="file"/>
+  
+  <transtype name="webhelp-responsive" desc="WebHelp Responsive">
+    <param name="editlink.remote.ditamap.url" desc="(deprecated. Use editlink.ditamap.edit.url instead) The custom URL of the DITA Map suitable for opening in oXygen XML Web Author" type="string"/>
+      <param name="editlink.web.author.url" desc="(deprecated. Use editlink.ditamap.edit.url instead) The URL of the Web Author installation" type="string">
+      <val desc="oXygen XML Web Author Demo" default="true">https://www.oxygenxml.com/oxygen-xml-web-author/</val>
+    </param>
+    <param name="editlink.ditamap.edit.url" desc="The URL of DITA Map opened in Web Auhtor or Content Fusion.
+        For Web Author simply open the root DITA Map in Web Author and copy from browser's address bar the whole URL. The value may look like 'https://www.oxygenxml.com/oxygen-xml-web-author/app/oxygen.html?url=webdav-https%3A%2F%2Fwww.oxygenxml.com%2Foxygen-xml-web-author%2Fplugins-dispatcher%2Fwebdav-server%2Fdita%2Fflowers%2Fflowers.ditamap&amp;author=Anonymous'.
+        For Content Fusion create a task with all DITA files including the Map, open the task in browser, go to the root DITA Map file and copy from browser's address bar the whole URL. The value may look like 'https://fusion.oxygenxml.com/tasks/asdalongidasd/edit/flowers.ditamap'." type="string">
+    </param>
+    <param name="editlink.additional.query.parameters" 
+      desc="Additional query parameters to be appended at each edit URL. E.g: '&amp;showDitaMapView=true'" type="string">
+    </param>
+    <param name="editlink.present.only.path.to.topic" 
+      desc="Present a relative reference to the original topic file before each topic title." type="enum">
+      <val>true</val>
+      <val default="true">false</val>
+    </param>
+  </transtype>
+  
+  <!-- PDF -->
+  <feature extension="dita.xsl.xslfo" value="xslfo.xsl" type="file"/>
+  <feature extension="dita.conductor.pdf2.param" value="params.xml" type="file"/>
+  <transtype name="pdf" desc="PDF">
+    <param name="editlink.remote.ditamap.url" desc="(deprecated. Use editlink.ditamap.edit.url instead) The custom URL of the DITA Map suitable for opening in oXygen XML Web Author" type="string"/>
+    <param name="editlink.web.author.url" desc="(deprecated. Use editlink.ditamap.edit.url instead) The URL of the Web Author installation" type="string">
+      <val desc="oXygen XML Web Author Demo" default="true">https://www.oxygenxml.com/oxygen-xml-web-author/</val>
+    </param>
+    <param name="editlink.ditamap.edit.url" desc="The URL of DITA Map opened in Web Auhtor or Content Fusion.
+        For Web Author simply open the root DITA Map in Web Author and copy from browser's address bar the whole URL. The value may look like 'https://www.oxygenxml.com/oxygen-xml-web-author/app/oxygen.html?url=webdav-https%3A%2F%2Fwww.oxygenxml.com%2Foxygen-xml-web-author%2Fplugins-dispatcher%2Fwebdav-server%2Fdita%2Fflowers%2Fflowers.ditamap&amp;author=Anonymous'.
+        For Content Fusion create a task with all DITA files including the Map, open the task in browser, go to the root DITA Map file and copy from browser's address bar the whole URL. The value may look like 'https://fusion.oxygenxml.com/tasks/asdalongidasd/edit/flowers.ditamap'." type="string">
+    </param>
+    <param name="editlink.additional.query.parameters" 
+      desc="Additional query parameters to be appended at each edit URL. E.g: '&amp;showDitaMapView=true'" type="string">
+    </param>
+    <param name="editlink.present.only.path.to.topic" 
+      desc="Present a relative reference to the original topic file before each topic title." type="enum">
+      <val>true</val>
+      <val default="true">false</val>
+    </param>
+  </transtype>
+  
+  <!-- PDF-CSS -->
+  <feature extension="com.oxygenxml.pdf.css.xsl.merged2merged" value="pdf-css.xsl" type="file"/>
+  <feature extension="com.oxygenxml.pdf.css.xsl.merged2merged.parameters" value="params.xml" type="file"/>
+  <feature extension="com.oxygenxml.pdf.css.init" file="pdf-css-init.xml"/>
+  <transtype name="pdf-css-base" desc="PDF (CSS Formatter)" abstract="true">
+    <param name="editlink.remote.ditamap.url" desc="(deprecated. Use editlink.ditamap.edit.url instead) The custom URL of the DITA Map suitable for opening in oXygen XML Web Author" type="string"/>
+    <param name="editlink.web.author.url" desc="(deprecated. Use editlink.ditamap.edit.url instead) The URL of the Web Author installation" type="string">
+      <val desc="oXygen XML Web Author Demo" default="true">https://www.oxygenxml.com/oxygen-xml-web-author/</val>
+    </param>
+    <param name="editlink.additional.query.parameters" 
+      desc="Additional query parameters to be appended at each edit URL. E.g: '&amp;showDitaMapView=true'" type="string">
+    </param>
+  <param name="editlink.ditamap.edit.url" desc="The URL of DITA Map opened in Web Auhtor or Content Fusion.
+        For Web Author simply open the root DITA Map in Web Author and copy from browser's address bar the whole URL. The value may look like 'https://www.oxygenxml.com/oxygen-xml-web-author/app/oxygen.html?url=webdav-https%3A%2F%2Fwww.oxygenxml.com%2Foxygen-xml-web-author%2Fplugins-dispatcher%2Fwebdav-server%2Fdita%2Fflowers%2Fflowers.ditamap&amp;author=Anonymous'.
+        For Content Fusion create a task with all DITA files including the Map, open the task in browser, go to the root DITA Map file and copy from browser's address bar the whole URL. The value may look like 'https://fusion.oxygenxml.com/tasks/asdalongidasd/edit/flowers.ditamap'." type="string">
+    </param>
+  </transtype>
+  
+  <!--PDF5-ml -->
+  <!-- Uncomment these lines to make the plugin work with the PDF5 plugin.
+  <feature extension="com.antennahouse.pdf5.ml.param" value="params.xml" type="file"/>
+  <feature extension="com.antennahouse.pdf5.ml.saxon.param" value="params.xml" type="file"/>
+  <feature extension="com.antennahouse.pdf5.ml.psmi.param" value="params.xml" type="file"/>
+  -->
+</plugin>
