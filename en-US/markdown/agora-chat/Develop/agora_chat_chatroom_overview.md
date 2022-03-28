@@ -8,19 +8,19 @@ Chat rooms have the following roles and privileges:
 - Chat room admins: They are specified by the chat group owner. Apart from sending and receiving chat room messages, they have some administrative privileges. You can add up to 99 admins for each chat room.
 - Chat room owner: The creator of the chat room. Chat room owners have the highest privileges, including specifying the chat room admin, disbanding the chat room, modifying the chat room attributes, and managing other chat room members.
 
-## Differences between chat group and chat room
+## Chat groups vs. chat rooms
 
-Both chat group and chat room support instant messaging among multiple users. The major difference lies in whether mmebers have a stable relationship. Chat group members tend to remain for a long time, whereas chat room members join and leave freely.
+Chat groups and chat rooms both support instant messaging among multiple users. However, chat groups typically have a more consistent membership than chat rooms. Chat group users are normally connected to the group itself; chat room users are more likely to be connected by their interest in the subject of the chat room, and so they tend to join and leave more freely.
 
-The following table shows the feature comparisons between a chat group and a chat room:
+The specific feature differences are listed in the following table:
 
 | Feature    | Chat group   | Chat room     |
 | --- | --- | --- |
-| Use cases  | Group chat scenarios in Signal and Skype, where all members have a stable relationship. | Stream chat scenarios in Twitch, where viewers have no relationship with each other. Once a member quits the stream chat channel, this member leaves the chat room.  |
-| Maximum number of members | 5,000 | 20,000 and more  |
-| Message push support | Members receive push messages when they go offline. | Members do not recieve push messages when they go offline. |
+| Use cases  | Group chat scenarios in Signal and Skype, where members have a preexisting relationship with each other. | Stream chat scenarios in Twitch, where viewers have no relationship with each other. Once a member quits the stream channel, they leave the chat room.  |
+| Maximum number of members | 5,000 | 20,000+  |
+| Message push support | Members receive push messages when they go offline. | Members do not receive push messages when they go offline. |
 | Message storage support | Supports message storage when a member is offline. Once online, this member receives all the stored messages. A maximum number of 200 messages can be stored for each group chat thread.   | This feature can be enabled and disabled. If you enable this feature, the SDK supports message storage when a member is offline. Once online, this member receives all the stored messages. By default, 10 messages can be stored for each chat room thread, and you can set this number to a maximum value of 200. |
-| Message reliablity | All members can receive all the messages in the chat group. | When message overload occurs, the SDK discards the messages based on the threshold, which is 100 messages per second. You can adjust this threshold according to your needs.  |
+| Message reliablity | All members receive all the messages in the chat group. | Members might not see all messages. The SDK discards messages if the chat group message threshold is exceeded. The deffault threshold is 100 messages per second. You can adjust this threshold according to your needs.  |
 
 ## Chat room features
 

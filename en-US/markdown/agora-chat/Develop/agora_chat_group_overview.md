@@ -1,32 +1,32 @@
-Chat groups are systems that allow instant messaging among multiple chat users. The relationship between chat group members is quite stable: chat group members can send and receive messages in the group; when a chat group member goes offline, this member can receive push messages.
+Chat groups are features that enable instant messaging among multiple chat users. The relationship between chat group members is persistent: chat group members can send and receive messages in the group and also receive push messages when they are offline.
 
 ## Chat group types
 
-Agora Chat has the following two chat group types: 
+Agora Chat has two types of chat group: 
 - Public. Public chat groups can be searched, and users can join a public chat group with or without the authorization of the group owner or admin.
-- Private. Private chat groups cannot be searched, and users can only join a private group if the group owner or admin sends an invitation.
+- Private. Private chat groups cannot be searched, and users cannot join private groups unless they are invited by a group owner or admin.
 
 ## Chat group roles and privileges
 
 Chat groups have the following roles and privileges:
 
-- Chat group members: Regular members that can send and receive group messages. They do not have any administrative privileges.
-- Chat group admins: They are specified by the chat group owner. Apart from sending and receiving group messages, they have some administrative privileges, including modifying the group notification and managing chat group members.
-- Chat group owner: The creator of the chat group. Chat group owners have the highest privileges, including specifying the chat group admin, disbanding the group, transferring the chat group ownership, modifying group notifications, and managing other chat group members.
+- Chat group members: Members can send and receive group messages. They do not have any administrative privileges.
+- Chat group admins: Admins are members that also have some administrative privileges, including modifying the group annoucenments and managing chat group members (but not other admins). Admins are appointed by the chat group owner.
+- Chat group owner: The owner is the group member with the most authority. When a user creates a chat group, they automatically become the group owner. Owners have the most privileges in a chat group, including appointing group admins, modifying group announcements, and managing group members (including admins). Owners can also disband the group or transfer ownership to another member.
 
-## Differences between chat group and chat room
+## Chat groups vs. chat rooms
 
-Both chat group and chat room support instant messaging among multiple users. The major difference lies in whether members have a stable relationship. Chat group members tend to remain for a long time, whereas chat room members join and leave freely.
+Chat groups and chat rooms both support instant messaging among multiple users. However, chat groups typically have a more consistent membership than chat rooms. Chat group users are normally connected to the group itself; chat room users are more likely to be connected by their interest in the subject of the chat room, and so they tend to join and leave more freely.
 
-The following table shows the feature comparisons between a chat group and a chat room:
+The specific feature differences are listed in the following table:
 
 | Feature    | Chat group   | Chat room     |
 | --- | --- | --- |
-| Use cases  | Group chat scenarios in Signal and Skype, where all members have a stable relationship. | Stream chat scenarios in Twitch, where viewers have no relationship with each other. Once a member quits the stream chat channel, this member leaves the chat room.  |
-| Maximum number of members | 5,000 | 20,000 and more  |
-| Message push support | Members receive push messages when they go offline. | Members do not recieve push messages when they go offline. |
+| Use cases  | Group chat scenarios in Signal and Skype, where members have a preexisting relationship with each other. | Stream chat scenarios in Twitch, where viewers have no relationship with each other. Once a member quits the stream channel, they leave the chat room.  |
+| Maximum number of members | 5,000 | 20,000+  |
+| Message push support | Members receive push messages when they go offline. | Members do not receive push messages when they go offline. |
 | Message storage support | Supports message storage when a member is offline. Once online, this member receives all the stored messages. A maximum number of 200 messages can be stored for each group chat thread.   | This feature can be enabled and disabled. If you enable this feature, the SDK supports message storage when a member is offline. Once online, this member receives all the stored messages. By default, 10 messages can be stored for each chat room thread, and you can set this number to a maximum value of 200. |
-| Message reliablity | All members can receive all the messages in the chat group. | When message overload occurs, the SDK discards the messages based on the threshold, which is 100 messages per second. You can adjust this threshold according to your needs.  |
+| Message reliablity | All members receive all the messages in the chat group. | Members might not see all messages. The SDK discards messages if the chat group message threshold is exceeded. The deffault threshold is 100 messages per second. You can adjust this threshold according to your needs.  |
 
 
 ## Chat group features
@@ -37,39 +37,39 @@ You can implement the following features with the chat group APIs.
 
 ###  Create a chat group
 
-Any chat user can create a chat group, and once you do so, you are the chat group owner. The maximum number of chat group numbers and group members supported vary accroding to the pricing plan. For details, see [Limitations of chat group member count](./limitations).
+Any chat user can create a chat group. A user that creates a chat group becomes its owner. The maximum number of chat groups and group members supported varies accroding to the pricing plan. For details, see [Chat group total member limits](./limitations).
 
 ### Join a chat group
 
-Users can join chat groups. For public chat groups, you can search them with the group ID and request to join it. For private chat groups, you can only join the group if the group owner or admin sends you a group chat invitation.
+Users can search for public chat groups and request to join them by the group ID. For private chat groups, you can only join the group if the group owner or admin sends you a group chat invitation.
 
 ### Leave a chat group
 
-Chat group members can quit a chat group and once they do, they no longer receive the group messages. Group owners cannot quit the chat group; instead, they disband the chat group. When a chat group is disbanded, all the chat group members quit the group involuntarily.
+Chat group members and admins can quit a chat group. Once they do, they no longer receive the group messages. Group owners cannot quit the chat group; instead, they must transfer ownship or disband the chat group. When a chat group is disbanded, all of its members are forced to leave the group.
 
 ### Add a chat group member
 
-Whether public or private chat groups, the group owner and admin can invite other users to join the chat group. 
+Owners and admins for both public and private chat groups can invite other users to join their group. 
 
 ### Remove a chat group member
 
-The group owner and admin can remove the specified member from the group.
+Chat group owners and admins can remove a specified member from their group.
 
 ### Disband a chat group
 
-Only the group owner can disband the chat group. Once a chat group is disbanded, all the local group data are deleted, and all the group messages receive the callback event.
+Only the group owner can disband a chat group. Once a chat group is disbanded, all local group data is deleted, and all the group members are forced to leave the group.
 
-### Retrieve the group memberlist
+### Retrieve a list of group members
 
-All the chat group users can retrieve the group members from the server with pagination. And the retrieved members are in the descending order of the timestamp when these members join the chat group.
+All the chat group users can retrieve a paginated list of the group's membership from the server. The members are displayed in descending order according to the timestamp when they joined the chat group.
 
-### Retrieve the chat group list
+### Retrieve a list of chat groups
 
-You can retrieve the list of groups that you have created or joined.
+Users can retrieve the list of groups they have created or joined.
 
 ### Block and unblock group messages
 
-All chat group members can block and unblock group messages. Once you block the group messages, you no longer receive messages from the specified chat group.
+All chat group members can block and unblock group messages. Once a user blocks group messages, they no longer receive messages from the specified chat group.
 
 ### Listen for chat group events
 
@@ -77,55 +77,54 @@ You can listen for chat group events such as when a user joins and leaves the gr
 
 ### Manage the chat group block list
 
-The group owner or admin can add the specified group members to the block list and remove them from it. Once a member is added to the block list, this member is removed from the chat group and can no longer join it.
+Group owners or admins can add a specified group members to the block list; they can also remove blocked users from the list. Members added to the block list are forced to leave the chat group and can no longer join it.
 
-### Retrieve the chat group block list
+### Retrieve a chat group block list
 
-You need to be a chat group owner or admin to retrieve the chat group block list. Members in the group block list cannot join the chat group.
+Group owners and admins can retrieve the chat group block list. Members on the group block list cannot join the chat group.
 
-### Manage the chat group allow list
+### Manage a chat group allow list
 
-The chat group owner and admin can add the specified group members to the group allow list and remove them from it. Once a member is added to the allow list, this member can send group messages when the group owner or admin has muted all the group members.
+Chat group owners and admins can add specified group members to the group allow list; they can also remove users from the list. Members on the allow list can send group messages when a group owner or an admin has muted all group members.
 
-### Retrieve the chat group allow list
+### Retrieve a chat group allow list
 
-You need to be a chat group owner or admin to retrieve the chat group allow list. Members in the group allow list can send group messages when the chat group owner or admin has muted all the group members.
+Chat group owners and admins can retrieve the chat group allow list. Members on the group allow list can still send group messages when a chat group owner or admin has muted all the group members.
 
-### Manage the chat group mute list
+### Manage a chat group mute list
 
-The group owner or admin can add the specifed group members to the group mute list and remove them from it. Once a member is added to the mute list, this member can no longer send chat group messages. Muted members can still receive group messages. 
+Chat group owner or admin can add specifed group members to the group mute list. They can also remove them from list. Members on the mute list can no longer send chat group messages. Muted members still receive group messages. 
 
 ### Mute all chat group members
 
-The group owner or admin can mute or unmute all the chat group members. Once all the members can muted, none of the group members can send group messages except the group owner, admin, and the group members in the group allow list.
+Chat group owners and admins can mute or unmute all the chat group members simultaneously. Muting all members prevents anyone from sending group messages except the group owner, admins, and the group members on the group allow list. Muted members still receive group messages.
 
-### Retrieve the chat group mute list
+### Retrieve a chat group mute list
 
-You need to be a chat group owner or admin to retrieve the chat group mute list. Members in the group mute list cannot send group messages.
+Chat group owners and admins can retrieve the chat group mute list. Members in the group mute list cannot send group messages.
 
-### Transfer the chat group ownership
+### Transfer chat group ownership
 
-The group owner can transfer the ownership to the specified group member. Once the ownership is transferred, the group owner becomes a regular group member.
+A chat group owner can transfer ownership of the group to a specified group member. Once the ownership is transferred, the group owner becomes a regular group member.
 
-### Add and remove the group admin
+### Add and remove a group admin
 
-The group owner can add or delete the chat group admin list.
+Chat group owners can add members to the chat group admin list; they can also remove them from the list. Members on the admin list gain all admin privileges.
 
+### Modify chat group attributes
 
-### Modify the chat group attributes
+Chat group owners and admins can modify their chat group name and description. They can also set or update the group announcements. Chat group members can retrieve group announcements.
 
-The chat group owner or admin can modify the chat group name and descriptions. They can also set or update the group announcements. Chat group members can retrieve the group notifications.
+### Manage chat group shared files
 
-### Manage the chat group shared files
-
-All the chat group members can upload or download group shared files. The chat group owner or admin can delete all the group shared files, whereas group members can only delete the shared files that are uploaded by themselves.
+All the chat group members can upload or download group shared files. Chat group owners and admins can delete all group shared files, whereas group members can only delete shared files whey have personally uploaded.
 
 ### Set chat group extensions
 
-The chat group owner or admin can update the extesnion information of the chat group. Extension information can be used to customize group extensions. The data length of the extension information cannot exceed 8 KB.
+Chat group owners and admins can update the extesnion information of the chat group. Extension information can be used to customize group extensions. The data length of the extension information cannot exceed 8 KB.
 
 <a name="limitations"></a>
 
-## Limitations of chat group member count
+## Chat group total member limits
 
-The maximum number of chat group members vary according to your pricing plan. For the Free pricing plan, the maximum number of members for each chat group is 100, for Starter, 250, and for Enterprise, 5,000.
+The maximum number of members per chat group depends on your pricing plan, as follows: 100 for Free, 250 for Starter, and 5,000 for Enterprise.
