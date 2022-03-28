@@ -1,0 +1,1183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Allows contributing to the values presented on content completion for element and attribute values.
+    You can append to the values obtained from the schema or replace them all together.
+    These values can be given as literal values or they can be obtained by executing an XSLT script.
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.oxygenxml.com/ns/ccfilter/config http://www.oxygenxml.com/ns/ccfilter/config/ccConfigSchemaFilter.xsd"
+	xmlns="http://www.oxygenxml.com/ns/ccfilter/config">
+
+	<!-- DITA 1.3 cascade attribute -->
+	<match attributeName="cascade">
+		<items action="addIfEmpty">
+			<item value="merge"
+				annotation="The metadata attributes cascade; the values of the metadata attributes are additive. This is the processing default for the @cascade attribute and was the only defined behavior for DITA 1.2 and earlier."/>
+			<item value="nomerge"
+				annotation="The metadata attributes cascade; however, they are not additive for &lt;topicref> elements that specify a different value for a specific metadata attribute. If the cascading value for an attribute is already merged based on multiple ancestor elements, that merged value continues to cascade until a new value is encountered (that is, setting cascade=&quot;nomerge&quot; does not undo merging that took place on ancestors)."
+			/>
+		</items>
+	</match>
+
+	<match elementName="permissions" attributeName="view">
+		<items action="addIfEmpty">
+            <item value="internal"
+                annotation="For internal use only. "/>
+            <item value="classified"
+                annotation="For a certain group, only. "/>
+            <item value="all"
+                annotation="The world."/>
+            <item value="entitled"
+                annotation="Special folks, only. "/>
+			<item value="-dita-use-​conref-​target"/>
+		</items>
+	</match>
+
+	<match elementName="shape">
+		<items action="addIfEmpty">
+			<item value="rect"/>
+			<item value="circle"/>
+			<item value="poly"/>
+			<item value="default"/>
+		</items>
+	</match>
+
+	<match elementName="lcAreaShape">
+		<items action="addIfEmpty">
+			<item value="rect"/>
+			<item value="circle"/>
+			<item value="poly"/>
+			<item value="default"/>
+		</items>
+	</match>
+
+	<match elementName="ux-window" attributeName="on-top">
+		<items action="addIfEmpty">
+			<item value="yes"/>
+			<item value="no"/>
+			<item value="-dita-use-conref-target"/>
+		</items>
+	</match>
+
+	<match elementName="ux-window" attributeName="relative">
+		<items action="addIfEmpty">
+			<item value="yes"/>
+			<item value="no"/>
+			<item value="-dita-use-conref-target"/>
+		</items>
+	</match>
+
+	<match elementName="ux-window" attributeName="full-screen">
+		<items action="addIfEmpty">
+			<item value="yes"/>
+			<item value="no"/>
+			<item value="-dita-use-conref-target"/>
+		</items>
+	</match>
+
+	<match elementName="copyright" attributeName="type">
+		<items action="addIfEmpty">
+			<item value="primary"/>
+			<item value="secondary"/>
+		</items>
+	</match>
+
+	<!-- Contributes values to the given attribute from the given element -->
+	<match elementName="codeblock" attributeName="outputclass">
+		<items action="addIfEmpty">
+			<item value="language-xml"
+				annotation="Provide content highlight in the DITA-OT WebHelp and PDF outputs for XML."/>
+     	 <item value="language-xquery"
+       		 annotation="Provide content highlight in the DITA-OT WebHelp and PDF outputs for XQuery."/>
+			<item value="language-java"
+				annotation="Provide content highlight in the DITA-OT WebHelp and PDF outputs for Java."/>
+			<item value="language-css"
+				annotation="Provide content highlight in the DITA-OT WebHelp and PDF outputs for CSS."/>
+			<item value="language-javascript"
+				annotation="Provide content highlight in the DITA-OT WebHelp and PDF outputs for JavaScript."/>
+			<item value="language-json"
+				annotation="Provide content highlight in the DITA-OT WebHelp and PDF outputs for JSON."/>
+			<item value="language-sql"
+				annotation="Provide content highlight in the DITA-OT WebHelp and PDF outputs for SQL."/>
+			<item value="language-c"
+				annotation="Provide content highlight in the DITA-OT WebHelp and PDF outputs for C."/>
+			<item value="language-cpp"
+				annotation="Provide content highlight in the DITA-OT WebHelp and PDF outputs for C++."/>
+			<item value="language-csharp"
+				annotation="Provide content highlight in the DITA-OT WebHelp and PDF outputs for C#."/>
+			<item value="language-ini"
+				annotation="Provide content highlight in the DITA-OT WebHelp and PDF outputs for ini scripts."/>
+			<item value="language-python"
+				annotation="Provide content highlight in the DITA-OT WebHelp and PDF outputs for Python."/>
+			<item value="language-ruby"
+				annotation="Provide content highlight in the DITA-OT WebHelp and PDF outputs for Ruby."/>
+			<item value="language-perl"
+				annotation="Provide content highlight in the DITA-OT WebHelp and PDF outputs for Perl."/>
+			<item value="language-bourne"
+				annotation="Provide content highlight in the DITA-OT WebHelp and PDF outputs for Bourne Shell."/>
+			<item value="language-php"
+                annotation="Provide content highlight in the DITA-OT WebHelp and PDF outputs for PHP."
+            />
+			<item value="language-lua"
+				annotation="Provide content highlight in the DITA-OT WebHelp and PDF outputs for Lua."
+			/>
+		</items>
+	</match>
+	<match elementName="object" attributeName="outputclass">
+		<items action="addIfEmpty">
+			<item value="video"
+				annotation="Video type, will be converted to the HTML 5 video element."> </item>
+			<item value="audio"
+				annotation="Audio type, will be converted to the HTML 5 audion element."/>
+			<item value="iframe"
+                annotation="Will be converted to an iframe which can be used to embed for example YouTube videos."/>
+		</items>
+	</match>
+	<match elementName="object" attributeName="type">
+		<items action="addIfEmpty">
+			<item value="video/mp4"/>
+			<item value="video/ogg"/>
+			<item value="audio/mpeg"/>
+			<item value="audio/ogg"/>
+			<item value="audio/wav"/>
+		</items>
+	</match>
+	<match elementName="foreign" attributeName="outputclass">
+		<items action="addIfEmpty">
+			<item value="html-embed"
+                annotation="Include a CDATA section containing well-formed HTML content which will appear in the HTML-based outputs."> </item>
+		</items>
+	</match>
+	<match elementName="image" attributeName="outputclass">
+		<items action="addIfEmpty">
+			<item value="float-left"
+				annotation="Float the image to the left of the paragraph in the published output."/>
+			<item value="float-right"
+                annotation="Float the image to the right of the paragraph in the published output."/>
+		</items>
+	</match>
+
+	<!-- Colsep and rowsep values -->
+	<match elementName="table" attributeName="colsep">
+		<items action="addIfEmpty">
+            <item value="0"
+                annotation="Hide column separators."/>
+            <item value="1"
+                annotation="Show column separators."> </item>
+		</items>
+	</match>
+	<match elementName="table" attributeName="rowsep">
+		<items action="addIfEmpty">
+            <item value="0"
+                annotation="Hide row separators."/>
+            <item value="1"
+                annotation="Show row separators."> </item>
+		</items>
+	</match>
+
+	<match attributeName="format">
+		<items action="addIfEmpty">
+			<item value="dita"/>
+			<item value="ditamap"/>
+			<item value="html"/>
+			<item value="pdf"/>
+			<item value="markdown">
+				<annotation>Markdown documents that are referenced in the DITA map using the &quot;markdown&quot; value get dynamically converted to DITA topics during publishing.</annotation>
+			</item>
+			<item value="mdita"/>
+			<item value="word-to-dita">
+				<annotation>Microsoft Word documents that are referenced in the DITA map using the &quot;word-to-dita&quot; value get dynamically converted to DITA topics during publishing.</annotation>
+			</item>
+			<item value="html-to-dita">
+				<annotation>HTML documents that are referenced in the DITA map using the &quot;html-to-dita&quot; value get dynamically converted to DITA topics during publishing</annotation>
+			</item>
+			<item value="excel-to-dita">
+				<annotation>Microsoft Excel documents that are referenced in the DITA map using the &quot;excel-to-dita&quot; value get dynamically converted to DITA topics that contain one or more tables during publishing.</annotation>
+			</item>
+			<item value="markdown-to-dita">
+				<annotation>Markdown documents that are referenced in the DITA map using the &quot;markdown-to-dita&quot; value get dynamically converted to DITA topics during publishing using the special conversion plugin provided by Oxygen. This format conversion is more flexible that the built-in markdown conversion, allowing the conversion of Markdown documents that do not have consistent heading levels.</annotation>
+			</item>
+			<item value="png"/>
+			<item value="svg"/>
+			<item value="gif"/>
+			<item value="jpg"/>
+			<item value="zip"/>
+		</items>
+	</match>
+
+	<!-- EXM-47499 -->
+	<match elementName="author" attributeName="type">
+		<items action="addIfEmpty">
+			<item value="creator"/>
+			<item value="contributor"/>
+			<item value="-dita-use-conref-target"/>
+		</items>
+	</match>
+
+	<!-- EXM-37665 -->
+	<match attributeName="type">
+		<items action="addIfEmpty">
+			<item value="topic"/>
+			<item value="task"/>
+			<item value="concept"/>
+			<item value="reference"/>
+			<!-- EXM-47180 - added subjectScheme as possible value -->
+			<item value="subjectScheme"/>
+		</items>
+	</match>
+	
+	<!-- EXM-46772 Added "fn" value for xref and link types -->
+	<match elementName="xref" attributeName="type">
+		<items action="addIfEmpty">
+			<item value="topic"/>
+			<item value="task"/>
+			<item value="concept"/>
+			<item value="reference"/>
+			<item value="fn">
+				<annotation>
+					A reference to a &lt;fn> element which has an @id attribute defined on it.
+				</annotation>
+			</item>
+		</items>
+	</match>
+	<match elementName="link" attributeName="type">
+		<items action="addIfEmpty">
+			<item value="topic"/>
+			<item value="task"/>
+			<item value="concept"/>
+			<item value="reference"/>
+			<item value="fn">
+				<annotation>
+					A reference to a &lt;fn> element which has an @id attribute defined on it.
+				</annotation>
+			</item>
+		</items>
+	</match>	
+
+	<match elementName="audience" attributeName="type">
+		<items action="addIfEmpty">
+			<item value="user"/>
+			<item value="purchaser"/>
+			<item value="administrator"/>
+			<item value="programmer"/>
+			<item value="executive"/>
+			<item value="services"/>
+			<item value="other"/>
+			<item value="-dita-use-conref-target"/>
+		</items>
+	</match>
+
+	<match elementName="audience" attributeName="experiencelevel">
+		<items action="addIfEmpty">
+			<item value="novice"/>
+			<item value="general"/>
+			<item value="expert"/>
+			<item value="-dita-use-conref-target"/>
+		</items>
+	</match>
+
+	<match elementName="audience" attributeName="job">
+		<items action="addIfEmpty">
+			<item value="installing"/>
+			<item value="customizing"/>
+			<item value="administering"/>
+			<item value="programming"/>
+			<item value="using"/>
+			<item value="maintaining"/>
+			<item value="troubleshooting"/>
+			<item value="evaluating"/>
+			<item value="planning"/>
+			<item value="migrating"/>
+			<item value="other"/>
+			<item value="-dita-use-conref-target"/>
+		</items>
+	</match>
+
+	<match elementName="entry" attributeName="rotate">
+		<items action="addIfEmpty">
+			<item value="1"/>
+			<item value="0"/>
+			<item value="-dita-use-conref-target"/>
+		</items>
+	</match>
+
+	<match attributeName="align">
+		<items action="addIfEmpty">
+			<item value="left"/>
+			<item value="right"/>
+			<item value="center"/>
+		</items>
+	</match>
+
+	<match attributeName="chunk">
+		<items action="addIfEmpty">
+			<item value="select-topic"
+				annotation="The &quot;select-topic&quot; token is used to select an individual topic without any ancestors, descendents, or peers from within the same document."/>
+			<item value="select-document"
+				annotation="The &quot;select-document&quot; token is used to select the target topic together with all ancestors, descendents, and peers within the target document."/>
+			<item value="select-branch"
+				annotation="The &quot;select-branch&quot; token is used to select the target topic together with its descendents."/>
+			<item value="by-topic"
+				annotation="The &quot;by-topic&quot; token establishes a policy for the current topicref (or topicref specialization) where a separate output chunk is produced for each of the selected topics."/>
+			<item value="by-document"
+				annotation="The &quot;by-document&quot; token establishes a policy for the current topicref (or topicref specialization) where a single output chunk is produced for the referenced topic or topics."/>
+			<item value="to-content">
+				<annotation>The &quot;to-content&quot; token indicates that the selection should be
+					rendered as a new chunk of content. - When specified on a topicref or topicref
+					specialization, this means that the topics selected by this topicref and its
+					children will be rendered as a single chunk of content. - When specified on the
+					map element, this indicates that the contents of all topics referenced by the
+					map are to be rendered as a single document. - When specified on a topicref or
+					topicref specialization that contains a title but no target, this indicates that
+					a title-only topic must be generated in the rendered result, along with any
+					topics referenced by child topicrefs (and topicref specializations) of this
+					topicref. The rendition address of the generated topic is determined as defined
+					for the copy-to attribute. If the copy-to attribute is not specified and the
+					topicref has no id attribute, the address of the generated topic is not required
+					to be predictable or consistent across rendition instances. For cross references
+					to topicref elements, if the value of the chunk attribute is
+					&quot;to-content&quot; or is unspecified, the cross reference is treated as a
+					reference to the target topic. If the reference is to a topicref with no target,
+					it is treated as a reference to the generated title-only topic.</annotation>
+			</item>
+			<item value="to-navigation"
+				annotation="The &quot;to-navigation&quot; token indicates that a new chunk of navigation should be used to render the current selection (such as an individual Table of Contents or related links). When specified on the map element, this token indicates that the map should be presented as a single navigation chunk. If a cross reference is made to a topicref that has a title but no target, and the chunk value of that topicref is set to &quot;to-navigation&quot;, the resulting cross reference is treated as a reference to the rendered navigation document (such as an entry in the table of contents)."
+			/>
+		</items>
+	</match>
+
+	<match attributeName="translate">
+		<items action="addIfEmpty">
+			<item value="yes"/>
+			<item value="no"/>
+		</items>
+	</match>
+
+	<match attributeName="dir">
+		<items action="addIfEmpty">
+			<item value="ltr" annotation="right-to-left text"/>
+			<item value="rtl" annotation="left-to-right text"/>
+			<item value="lro" annotation="left-to-right override"/>
+			<item value="rto" annotation="right-to-left override"/>
+		</items>
+	</match>
+
+	<!-- Contributes values for xml:lang attribute -->
+	<match attributeName="lang">
+		<items action="addIfEmpty">
+			<item value="de" annotation="German"/>
+			<item value="de-DE" annotation="German"/>
+			<item value="en" annotation="English"/>
+			<item value="en-US" annotation="English (US)"/>
+			<item value="es" annotation="Spanish"/>
+			<item value="fi" annotation="Finnish"/>
+			<item value="fr" annotation="French"/>
+			<item value="fr-FR" annotation="French"/>
+			<item value="he" annotation="Hebrew"/>
+			<item value="it" annotation="Italian"/>
+			<item value="it-IT" annotation="Italian"/>
+			<item value="ja" annotation="Japanese"/>
+			<item value="ja-JP" annotation="Japanese"/>
+			<item value="nl" annotation="Dutch"/>
+			<item value="ro" annotation="Romanian"/>
+			<item value="ru" annotation="Russian"/>
+			<item value="sl" annotation="Slovenian"/>
+			<item value="sv" annotation="Swedish"/>
+			<item value="zh" annotation="Chinese"/>
+			<item value="zh-CN" annotation="Chinese (simplified)"/>
+		</items>
+	</match>
+	<!--Possible outputclass values for enumerationdef-->
+	<match elementName="enumerationdef" attributeName="outputclass">
+		<items action="addIfEmpty">
+			<item value="single_value"
+				annotation="The attribute must allow as value a choice of possible value tokens."> </item>
+			<item value="multi_value"
+				annotation="The attribute must allow as value a space separated sequence of possible value tokens."/>
+		</items>
+	</match>
+
+	<!--
+     Element proposals samples.  
+     Make sure you restart the editor or press F5 after changing/adding elementProposals configuration.
+     
+     Example 1:
+        If you need to have a "p" element in your list items, 
+        or in the table cell entries, use:
+                
+            <elementProposals path="ol/li" insertElements="p"/>
+            <elementProposals path="ul/li" insertElements="p"/>
+            
+            <elementProposals path="row/entry" insertElements="p"/>
+            
+     Note: The accepted values for elementProposals/@path are a form of simplified XPath expressions that can accept one of the following attribute conditions 
+           (default attribute values are not taken into account):
+            
+            element[@attr] - Matches all instances of the specified element that include the specified attribute.
+            element[not(@attr)] - Matches all instances of the specified element that do not include the specified attribute.
+            element[@attr = "value"] - Matches all instances of the specified element that include the specified attribute with the given value.
+            element[@attr != "value"] - Matches all instances of the specified element that include the specified attribute and its value is different than the one given.
+            
+            Example: <elementProposals path="row[@importance='high']/entry[@importance]" possibleElements="p"/>
+            
+
+     Example 2:     
+        If you do not want the content completion assistant to 
+        offer element names when editing a title:
+        
+            <elementProposals path="title" possibleElements="_NONE_"/>
+            
+     Example 3: 
+        If you want to limit the elements from a short description to only
+        bold and italic:
+        
+            <elementProposals path="shortdesc" possibleElements="b i"/>
+            
+            
+     Example 4: 
+	    In case you need to modify the list of attributes for an element, or to mark some attributes as being required (i.e. inserted):
+
+        If you want to limit the attributes from an element:
+        
+            <elementProposals path="note" possibleAttributes="audience product platform"/>
+
+
+        If you want to automatically insert the 'id' attribute for all paragraphs:
+             <elementProposals path="p" insertAttributes="id"/>
+        
+        
+     Example 5:
+     
+		If you want to translate the element names and annotations based on the user interface language
+		set in the applications's preferences, you can use the ${i18n()} editor variable, as shown below.
+		More information can be found at
+		https://www.oxygenxml.com/doc/versions/20.1/ug-editor/topics/rendering-elements-cc-author.html?hl=cc_config%2Clang#rendering-elements-cc-author__configuration_file
+		and https://www.oxygenxml.com/doc/versions/20.1/ug-editor/topics/editor-variables.html#editor-variables__localization.
+				
+		The translations corresponding to the tags given as the arguments of ${i18n()} must be defined
+		in ${framework}/i18n/translation-cc.xml, where ${framework} represents
+		the path of the current framework directory (e.g. D:/oXygen/frameworks/dita).
+		     	
+		<elementRenderings>
+		    <render element="p" as="${i18n(cc_p)}">
+		        <annotation>${i18n(cc_p_annotation)}</annotation>
+		    </render>
+		</elementRenderings>
+    -->
+
+	<!-- 
+    	Add a title element to the section.
+    -->
+	<elementProposals path="section" insertElements="title p"/>
+
+
+	<!--
+	This is a more complex example, inspired from Lightweight DITA. 
+	It is not yet complete, but may be a starting point for further customization.
+	
+    <elementProposals
+        possibleElements="
+	    	
+	    	topic title shortdesc body section p 
+	    	ph xref ul ol li dl 
+	    	dlhead dthd dlentry dt dd pre 
+	    	simpletable sthead strow stentry 
+	    	image object desc alt note audio
+	    	steps step cmd
+	    	video localref webref
+	    	
+	    	map topicref topicmeta navtitle data	    	
+	    	"
+	    
+        possibleAttributes="
+        	DITAArchVersion 
+        	domains class outputclass 
+        	id href conref keyref keys 
+        	scope format type 
+        	props others dir xml:lang translate"/>
+
+    <elementRenderings>
+        <render element="topic" as="Topic"/>
+        <render element="p" as="${i18n(cc_p)}">
+			<annotation>${i18n(cc_p_annotation)}</annotation>
+		</render>
+        <render element="title" as="Title">
+            <annotation>
+                <html xmlns="http://www.w3.org/1999/xhtml">
+                    <head>
+                        <title>Documentation for the Title Element</title>
+                    </head>
+                    <body>
+                        <p>A <i>heading</i> or <b>label</b> for the main parts of a topic</p>
+                    </body>
+                </html></annotation>
+        </render>
+        <render element="shortdesc" as="Short Description"/>
+
+        <render element="body" as="Body"/>
+        <render element="section" as="Section"/>
+        <render element="ph" as="Phrase"/>
+        <render element="xref" as="Cross Reference"/>
+        <render element="ul" as="Unordered List"/>
+        <render element="ol" as="Ordered List"/>
+        <render element="li" as="Item"/>
+        <render element="dl" as="Definition List"/>
+        <render element="dlhead" as="Definition List Head"/>
+        <render element="dthd" as="Term Heading"/>
+        <render element="dlentry" as="Definition"/>
+        <render element="dt" as="Term"/>
+        <render element="dd" as="Description"/>
+        <render element="pre" as="Preformatted Text"/>
+        <render element="simpletable" as="Simple Table"/>
+        <render element="sthead" as="Table Heading"/>
+        <render element="strow" as="Row"/>
+        <render element="stentry" as="Cell"/>
+        <render element="image" as="Image"/>
+        <render element="desc" as="Description"/>
+        <render element="alt" as="Alternate Text"/>
+        <render element="object" as="External Object"/>
+        <render element="note" as="Note"/>
+        <render element="audio" as="Audio"/>
+        <render element="video" as="Video"/>
+        <render element="localref" as="Local Reference"/>
+        <render element="webref" as="Web Reference"/>
+
+        <render element="i" as="Italic"/>
+        <render element="u" as="Underline"/>
+        <render element="b" as="Bold"/>
+
+        <render element="task" as="Task"/>
+        <render element="taskbody" as="Body"/>
+        <render element="context" as="About"/>
+        <render element="steps" as="Steps"/>
+        <render element="step" as="Step"/>
+        <render element="cmd" as="Action"/>
+
+    </elementRenderings>
+-->
+
+	<elementRenderings platform="webapp">
+		<render element="abbreviated-form" as="${i18n(cc_abbreviated-form)}"/>
+		<render element="abbrevlist" as="${i18n(cc_abbrevlist)}"/>
+		<render element="abstract" as="${i18n(cc_abstract)}"/>
+		<render element="addressdetails" as="${i18n(cc_addressdetails)}"/>
+		<render element="administrativearea" as="${i18n(cc_administrativearea)}"/>
+		<render element="alt-text" as="${i18n(cc_alt-text)}"/>
+		<render element="alt" as="${i18n(cc_alt)}"/>
+		<render element="amendments" as="${i18n(cc_amendments)}"/>
+		<render element="anchor" as="${i18n(cc_anchor)}"/>
+		<render element="anchorid" as="${i18n(cc_anchorid)}"/>
+		<render element="anchorkey" as="${i18n(cc_anchorkey)}"/>
+		<render element="anchorref" as="${i18n(cc_anchorref)}"/>
+		<render element="apiname" as="${i18n(cc_apiname)}"/>
+		<render element="appendix" as="${i18n(cc_appendix)}"/>
+		<render element="approved" as="${i18n(cc_approved)}"/>
+		<render element="area" as="${i18n(cc_area)}"/>
+		<render element="attributedef" as="${i18n(cc_attributedef)}"/>
+		<render element="audience" as="${i18n(cc_audience)}"/>
+		<render element="author" as="${i18n(cc_author)}"/>
+		<render element="authorinformation" as="${i18n(cc_authorinformation)}"/>
+		<render element="b" as="${i18n(cc_b)}"/>
+		<render element="backmatter" as="${i18n(cc_backmatter)}"/>
+		<render element="bibliolist" as="${i18n(cc_bibliolist)}"/>
+		<render element="body" as="${i18n(cc_body)}"/>
+		<render element="bodydiv" as="${i18n(cc_bodydiv)}"/>
+		<render element="bookabstract" as="${i18n(cc_bookabstract)}"/>
+		<render element="bookchangehistory" as="${i18n(cc_bookchangehistory)}"/>
+		<render element="bookevent" as="${i18n(cc_bookevent)}"/>
+		<render element="bookeventtype" as="${i18n(cc_bookeventtype)}"/>
+		<render element="bookid" as="${i18n(cc_bookid)}"/>
+		<render element="booklibrary" as="${i18n(cc_booklibrary)}"/>
+		<render element="booklist" as="${i18n(cc_booklist)}"/>
+		<render element="booklists" as="${i18n(cc_booklists)}"/>
+		<render element="bookmap" as="${i18n(cc_bookmap)}"/>
+		<render element="bookmeta" as="${i18n(cc_bookmeta)}"/>
+		<render element="booknumber" as="${i18n(cc_booknumber)}"/>
+		<render element="bookowner" as="${i18n(cc_bookowner)}"/>
+		<render element="bookpartno" as="${i18n(cc_bookpartno)}"/>
+		<render element="bookrestriction" as="${i18n(cc_bookrestriction)}"/>
+		<render element="bookrights" as="${i18n(cc_bookrights)}"/>
+		<render element="booktitle" as="${i18n(cc_booktitle)}"/>
+		<render element="booktitlealt" as="${i18n(cc_booktitlealt)}"/>
+		<render element="boolean" as="${i18n(cc_boolean)}"/>
+		<render element="brand" as="${i18n(cc_brand)}"/>
+		<render element="category" as="${i18n(cc_category)}"/>
+		<render element="cause" as="${i18n(cc_cause)}"/>
+		<render element="chapter" as="${i18n(cc_chapter)}"/>
+		<render element="chdesc" as="${i18n(cc_chdesc)}"/>
+		<render element="chdeschd" as="${i18n(cc_chdeschd)}"/>
+		<render element="chhead" as="${i18n(cc_chhead)}"/>
+		<render element="choice" as="${i18n(cc_choice)}"/>
+		<render element="choices" as="${i18n(cc_choices)}"/>
+		<render element="choicetable" as="${i18n(cc_choicetable)}"/>
+		<render element="choption" as="${i18n(cc_choption)}"/>
+		<render element="choptionhd" as="${i18n(cc_choptionhd)}"/>
+		<render element="chrow" as="${i18n(cc_chrow)}"/>
+		<render element="cite" as="${i18n(cc_cite)}"/>
+		<render element="closereqs" as="${i18n(cc_closereqs)}"/>
+		<render element="cmd" as="${i18n(cc_cmd)}"/>
+		<render element="cmdname" as="${i18n(cc_cmdname)}"/>
+		<render element="codeblock" as="${i18n(cc_codeblock)}"/>
+		<render element="codeph" as="${i18n(cc_codeph)}"/>
+		<render element="coderef" as="${i18n(cc_coderef)}"/>
+		<render element="colophon" as="${i18n(cc_colophon)}"/>
+		<render element="colspec" as="${i18n(cc_colspec)}"/>
+		<render element="completed" as="${i18n(cc_completed)}"/>
+		<render element="component" as="${i18n(cc_component)}"/>
+		<render element="conbody" as="${i18n(cc_conbody)}"/>
+		<render element="conbodydiv" as="${i18n(cc_conbodydiv)}"/>
+		<render element="concept" as="${i18n(cc_concept)}"/>
+		<render element="condition" as="${i18n(cc_condition)}"/>
+		<render element="consequence" as="${i18n(cc_consequence)}"/>
+		<render element="contactnumber" as="${i18n(cc_contactnumber)}"/>
+		<render element="contactnumbers" as="${i18n(cc_contactnumbers)}"/>
+		<render element="context" as="${i18n(cc_context)}"/>
+		<render element="coords" as="${i18n(cc_coords)}"/>
+		<render element="copyrfirst" as="${i18n(cc_copyrfirst)}"/>
+		<render element="copyrholder" as="${i18n(cc_copyrholder)}"/>
+		<render element="copyright" as="${i18n(cc_copyright)}"/>
+		<render element="copyrlast" as="${i18n(cc_copyrlast)}"/>
+		<render element="copyryear" as="${i18n(cc_copyryear)}"/>
+		<render element="country" as="${i18n(cc_country)}"/>
+		<render element="created" as="${i18n(cc_created)}"/>
+		<render element="critdates" as="${i18n(cc_critdates)}"/>
+		<render element="data-about" as="${i18n(cc_data-about)}"/>
+		<render element="day" as="${i18n(cc_day)}"/>
+		<render element="dd" as="${i18n(cc_dd)}"/>
+		<render element="ddhd" as="${i18n(cc_ddhd)}"/>
+		<render element="dedication" as="${i18n(cc_dedication)}"/>
+		<render element="defaultSubject" as="${i18n(cc_defaultSubject)}"/>
+		<render element="delim" as="${i18n(cc_delim)}"/>
+		<render element="desc" as="${i18n(cc_desc)}"/>
+		<render element="dita" as="${i18n(cc_dita)}"/>
+		<render element="ditavalmeta" as="${i18n(cc_ditavalmeta)}"/>
+		<render element="ditavalref" as="${i18n(cc_ditavalref)}"/>
+		<render element="div" as="${i18n(cc_div)}"/>
+		<render element="dl" as="${i18n(cc_dl)}"/>
+		<render element="dlentry" as="${i18n(cc_dlentry)}"/>
+		<render element="dlhead" as="${i18n(cc_dlhead)}"/>
+		<render element="draft-comment" as="${i18n(cc_draft-comment)}"/>
+		<render element="draftintro" as="${i18n(cc_draftintro)}"/>
+		<render element="dt" as="${i18n(cc_dt)}"/>
+		<render element="dthd" as="${i18n(cc_dthd)}"/>
+		<render element="dvrKeyscopePrefix" as="${i18n(cc_dvrKeyscopePrefix)}"/>
+		<render element="dvrKeyscopeSuffix" as="${i18n(cc_dvrKeyscopeSuffix)}"/>
+		<render element="dvrResourcePrefix" as="${i18n(cc_dvrResourcePrefix)}"/>
+		<render element="dvrResourceSuffix" as="${i18n(cc_dvrResourceSuffix)}"/>
+		<render element="edited" as="${i18n(cc_edited)}"/>
+		<render element="edition" as="${i18n(cc_edition)}"/>
+		<render element="elementdef" as="${i18n(cc_elementdef)}"/>
+		<render element="emailaddress" as="${i18n(cc_emailaddress)}"/>
+		<render element="emailaddresses" as="${i18n(cc_emailaddresses)}"/>
+		<render element="endflag" as="${i18n(cc_endflag)}"/>
+		<render element="entry" as="${i18n(cc_entry)}"/>
+		<render element="enumerationdef" as="${i18n(cc_enumerationdef)}"/>
+		<render element="equation-block" as="${i18n(cc_equation-block)}"/>
+		<render element="equation-figure" as="${i18n(cc_equation-figure)}"/>
+		<render element="equation-inline" as="${i18n(cc_equation-inline)}"/>
+		<render element="equation-number" as="${i18n(cc_equation-number)}"/>
+		<render element="esttime" as="${i18n(cc_esttime)}"/>
+		<render element="example" as="${i18n(cc_example)}"/>
+		<render element="exportanchors" as="${i18n(cc_exportanchors)}"/>
+		<render element="featnum" as="${i18n(cc_featnum)}"/>
+		<render element="fig" as="${i18n(cc_fig)}"/>
+		<render element="figgroup" as="${i18n(cc_figgroup)}"/>
+		<render element="figurelist" as="${i18n(cc_figurelist)}"/>
+		<render element="filepath" as="${i18n(cc_filepath)}"/>
+		<render element="firstname" as="${i18n(cc_firstname)}"/>
+		<render element="fn" as="${i18n(cc_fn)}"/>
+		<render element="fragment" as="${i18n(cc_fragment)}"/>
+		<render element="fragref" as="${i18n(cc_fragref)}"/>
+		<render element="frontmatter" as="${i18n(cc_frontmatter)}"/>
+		<render element="generationidentifier" as="${i18n(cc_generationidentifier)}"/>
+		<render element="glossAbbreviation" as="${i18n(cc_glossAbbreviation)}"/>
+		<render element="glossAcronym" as="${i18n(cc_glossAcronym)}"/>
+		<render element="glossAlt" as="${i18n(cc_glossAlt)}"/>
+		<render element="glossarylist" as="${i18n(cc_glossarylist)}"/>
+		<render element="glossbody" as="${i18n(cc_glossbody)}"/>
+		<render element="glossdef" as="${i18n(cc_glossdef)}"/>
+		<render element="glossentry" as="${i18n(cc_glossentry)}"/>
+		<render element="glossgroup" as="${i18n(cc_glossgroup)}"/>
+		<render element="glossPartOfSpeech" as="${i18n(cc_glossPartOfSpeech)}"/>
+		<render element="glossProperty" as="${i18n(cc_glossProperty)}"/>
+		<render element="glossref" as="${i18n(cc_glossref)}"/>
+		<render element="glossScopeNote" as="${i18n(cc_glossScopeNote)}"/>
+		<render element="glossShortForm" as="${i18n(cc_glossShortForm)}"/>
+		<render element="glossStatus" as="${i18n(cc_glossStatus)}"/>
+		<render element="glossSurfaceForm" as="${i18n(cc_glossSurfaceForm)}"/>
+		<render element="glossSymbol" as="${i18n(cc_glossSymbol)}"/>
+		<render element="glossSynonym" as="${i18n(cc_glossSynonym)}"/>
+		<render element="glossterm" as="${i18n(cc_glossterm)}"/>
+		<render element="glossUsage" as="${i18n(cc_glossUsage)}"/>
+		<render element="groupchoice" as="${i18n(cc_groupchoice)}"/>
+		<render element="groupcomp" as="${i18n(cc_groupcomp)}"/>
+		<render element="groupseq" as="${i18n(cc_groupseq)}"/>
+		<render element="hasInstance" as="${i18n(cc_hasInstance)}"/>
+		<render element="hasKind" as="${i18n(cc_hasKind)}"/>
+		<render element="hasNarrower" as="${i18n(cc_hasNarrower)}"/>
+		<render element="hasPart" as="${i18n(cc_hasPart)}"/>
+		<render element="hasRelated" as="${i18n(cc_hasRelated)}"/>
+		<render element="hazardstatement" as="${i18n(cc_hazardstatement)}"/>
+		<render element="hazardsymbol" as="${i18n(cc_hazardsymbol)}"/>
+		<render element="honorific" as="${i18n(cc_honorific)}"/>
+		<render element="howtoavoid" as="${i18n(cc_howtoavoid)}"/>
+		<render element="i" as="${i18n(cc_i)}"/>
+		<render element="image" as="${i18n(cc_image)}"/>
+		<render element="imagemap" as="${i18n(cc_imagemap)}"/>
+		<render element="index-base" as="${i18n(cc_index-base)}"/>
+		<render element="index-see-also" as="${i18n(cc_index-see-also)}"/>
+		<render element="index-see" as="${i18n(cc_index-see)}"/>
+		<render element="index-sort-as" as="${i18n(cc_index-sort-as)}"/>
+		<render element="indexlist" as="${i18n(cc_indexlist)}"/>
+		<render element="indexterm" as="${i18n(cc_indexterm)}"/>
+		<render element="indextermref" as="${i18n(cc_indextermref)}"/>
+		<render element="info" as="${i18n(cc_info)}"/>
+		<render element="isbn" as="${i18n(cc_isbn)}"/>
+		<render element="itemgroup" as="${i18n(cc_itemgroup)}"/>
+		<render element="keydef" as="${i18n(cc_keydef)}"/>
+		<render element="keyword" as="${i18n(cc_keyword)}"/>
+		<render element="keywords" as="${i18n(cc_keywords)}"/>
+		<render element="kwd" as="${i18n(cc_kwd)}"/>
+		<render element="lastname" as="${i18n(cc_lastname)}"/>
+		<render element="lcAge" as="${i18n(cc_lcAge)}"/>
+		<render element="lcAnswerContent" as="${i18n(cc_lcAnswerContent)}"/>
+		<render element="lcAnswerContent2" as="${i18n(cc_lcAnswerContent2)}"/>
+		<render element="lcAnswerOption" as="${i18n(cc_lcAnswerOption)}"/>
+		<render element="lcAnswerOption2" as="${i18n(cc_lcAnswerOption2)}"/>
+		<render element="lcAnswerOptionGroup" as="${i18n(cc_lcAnswerOptionGroup)}"/>
+		<render element="lcAnswerOptionGroup2" as="${i18n(cc_lcAnswerOptionGroup2)}"/>
+		<render element="lcArea" as="${i18n(cc_lcArea)}"/>
+		<render element="lcArea2" as="${i18n(cc_lcArea2)}"/>
+		<render element="lcAreaCoords" as="${i18n(cc_lcAreaCoords)}"/>
+		<render element="lcAreaCoords2" as="${i18n(cc_lcAreaCoords2)}"/>
+		<render element="lcAreaShape" as="${i18n(cc_lcAreaShape)}"/>
+		<render element="lcAreaShape2" as="${i18n(cc_lcAreaShape2)}"/>
+		<render element="lcAssessment" as="${i18n(cc_lcAssessment)}"/>
+		<render element="lcAsset" as="${i18n(cc_lcAsset)}"/>
+		<render element="lcAsset2" as="${i18n(cc_lcAsset2)}"/>
+		<render element="lcAttitude" as="${i18n(cc_lcAttitude)}"/>
+		<render element="lcAudience" as="${i18n(cc_lcAudience)}"/>
+		<render element="lcBackground" as="${i18n(cc_lcBackground)}"/>
+		<render element="lcChallenge" as="${i18n(cc_lcChallenge)}"/>
+		<render element="lcCIN" as="${i18n(cc_lcCIN)}"/>
+		<render element="lcClassroom" as="${i18n(cc_lcClassroom)}"/>
+		<render element="lcClient" as="${i18n(cc_lcClient)}"/>
+		<render element="lcConstraints" as="${i18n(cc_lcConstraints)}"/>
+		<render element="lcCorrectResponse" as="${i18n(cc_lcCorrectResponse)}"/>
+		<render element="lcCorrectResponse2" as="${i18n(cc_lcCorrectResponse2)}"/>
+		<render element="lcDelivDate" as="${i18n(cc_lcDelivDate)}"/>
+		<render element="lcDelivery" as="${i18n(cc_lcDelivery)}"/>
+		<render element="lcDownloadTime" as="${i18n(cc_lcDownloadTime)}"/>
+		<render element="lcDuration" as="${i18n(cc_lcDuration)}"/>
+		<render element="lcEdLevel" as="${i18n(cc_lcEdLevel)}"/>
+		<render element="lcFeedback" as="${i18n(cc_lcFeedback)}"/>
+		<render element="lcFeedback2" as="${i18n(cc_lcFeedback2)}"/>
+		<render element="lcFeedbackCorrect" as="${i18n(cc_lcFeedbackCorrect)}"/>
+		<render element="lcFeedbackCorrect2" as="${i18n(cc_lcFeedbackCorrect2)}"/>
+		<render element="lcFeedbackIncorrect" as="${i18n(cc_lcFeedbackIncorrect)}"/>
+		<render element="lcFeedbackIncorrect2" as="${i18n(cc_lcFeedbackIncorrect2)}"/>
+		<render element="lcFileSizeLimitations" as="${i18n(cc_lcFileSizeLimitations)}"/>
+		<render element="lcGapAnalysis" as="${i18n(cc_lcGapAnalysis)}"/>
+		<render element="lcGapItem" as="${i18n(cc_lcGapItem)}"/>
+		<render element="lcGapItemDelta" as="${i18n(cc_lcGapItemDelta)}"/>
+		<render element="lcGeneralDescription" as="${i18n(cc_lcGeneralDescription)}"/>
+		<render element="lcGoals" as="${i18n(cc_lcGoals)}"/>
+		<render element="lcGraphics" as="${i18n(cc_lcGraphics)}"/>
+		<render element="lcHandouts" as="${i18n(cc_lcHandouts)}"/>
+		<render element="lcHotspot" as="${i18n(cc_lcHotspot)}"/>
+		<render element="lcHotspot2" as="${i18n(cc_lcHotspot2)}"/>
+		<render element="lcHotspotMap" as="${i18n(cc_lcHotspotMap)}"/>
+		<render element="lcHotspotMap2" as="${i18n(cc_lcHotspotMap2)}"/>
+		<render element="lcInstruction" as="${i18n(cc_lcInstruction)}"/>
+		<render element="lcInstructornote" as="${i18n(cc_lcInstructornote)}"/>
+		<render element="lcInstructornote2" as="${i18n(cc_lcInstructornote2)}"/>
+		<render element="lcInteraction" as="${i18n(cc_lcInteraction)}"/>
+		<render element="lcInteractionBase" as="${i18n(cc_lcInteractionBase)}"/>
+		<render element="lcInteractionBase2" as="${i18n(cc_lcInteractionBase2)}"/>
+		<render element="lcInteractionLabel2" as="${i18n(cc_lcInteractionLabel2)}"/>
+		<render element="lcIntervention" as="${i18n(cc_lcIntervention)}"/>
+		<render element="lcInterventionItem" as="${i18n(cc_lcInterventionItem)}"/>
+		<render element="lcIntro" as="${i18n(cc_lcIntro)}"/>
+		<render element="lcItem" as="${i18n(cc_lcItem)}"/>
+		<render element="lcItem2" as="${i18n(cc_lcItem2)}"/>
+		<render element="lcJtaItem" as="${i18n(cc_lcJtaItem)}"/>
+		<render element="lcKnowledge" as="${i18n(cc_lcKnowledge)}"/>
+		<render element="lcLearnStrat" as="${i18n(cc_lcLearnStrat)}"/>
+		<render element="lcLMS" as="${i18n(cc_lcLMS)}"/>
+		<render element="lcLom" as="${i18n(cc_lcLom)}"/>
+		<render element="lcMatching" as="${i18n(cc_lcMatching)}"/>
+		<render element="lcMatching2" as="${i18n(cc_lcMatching2)}"/>
+		<render element="lcMatchingHeader" as="${i18n(cc_lcMatchingHeader)}"/>
+		<render element="lcMatchingHeader2" as="${i18n(cc_lcMatchingHeader2)}"/>
+		<render element="lcMatchingItem" as="${i18n(cc_lcMatchingItem)}"/>
+		<render element="lcMatchingItem2" as="${i18n(cc_lcMatchingItem2)}"/>
+		<render element="lcMatchingItemFeedback" as="${i18n(cc_lcMatchingItemFeedback)}"/>
+		<render element="lcMatchingItemFeedback2" as="${i18n(cc_lcMatchingItemFeedback2)}"/>
+		<render element="lcMatchingPair" as="${i18n(cc_lcMatchingPair)}"/>
+		<render element="lcMatchingPair2" as="${i18n(cc_lcMatchingPair2)}"/>
+		<render element="lcMatchTable" as="${i18n(cc_lcMatchTable)}"/>
+		<render element="lcMatchTable2" as="${i18n(cc_lcMatchTable2)}"/>
+		<render element="lcModDate" as="${i18n(cc_lcModDate)}"/>
+		<render element="lcMotivation" as="${i18n(cc_lcMotivation)}"/>
+		<render element="lcMultipleSelect" as="${i18n(cc_lcMultipleSelect)}"/>
+		<render element="lcMultipleSelect2" as="${i18n(cc_lcMultipleSelect2)}"/>
+		<render element="lcNeeds" as="${i18n(cc_lcNeeds)}"/>
+		<render element="lcNeedsAnalysis" as="${i18n(cc_lcNeedsAnalysis)}"/>
+		<render element="lcNextSteps" as="${i18n(cc_lcNextSteps)}"/>
+		<render element="lcNoLMS" as="${i18n(cc_lcNoLMS)}"/>
+		<render element="lcObjective" as="${i18n(cc_lcObjective)}"/>
+		<render element="lcObjectives" as="${i18n(cc_lcObjectives)}"/>
+		<render element="lcObjectivesGroup" as="${i18n(cc_lcObjectivesGroup)}"/>
+		<render element="lcObjectivesStem" as="${i18n(cc_lcObjectivesStem)}"/>
+		<render element="lcOJT" as="${i18n(cc_lcOJT)}"/>
+		<render element="lcOpenAnswer" as="${i18n(cc_lcOpenAnswer)}"/>
+		<render element="lcOpenAnswer2" as="${i18n(cc_lcOpenAnswer2)}"/>
+		<render element="lcOpenQuestion" as="${i18n(cc_lcOpenQuestion)}"/>
+		<render element="lcOpenQuestion2" as="${i18n(cc_lcOpenQuestion2)}"/>
+		<render element="lcOrganizational" as="${i18n(cc_lcOrganizational)}"/>
+		<render element="lcOrgConstraints" as="${i18n(cc_lcOrgConstraints)}"/>
+		<render element="lcPlanAudience" as="${i18n(cc_lcPlanAudience)}"/>
+		<render element="lcPlanDescrip" as="${i18n(cc_lcPlanDescrip)}"/>
+		<render element="lcPlanObjective" as="${i18n(cc_lcPlanObjective)}"/>
+		<render element="lcPlanPrereqs" as="${i18n(cc_lcPlanPrereqs)}"/>
+		<render element="lcPlanResources" as="${i18n(cc_lcPlanResources)}"/>
+		<render element="lcPlanSubject" as="${i18n(cc_lcPlanSubject)}"/>
+		<render element="lcPlanTitle" as="${i18n(cc_lcPlanTitle)}"/>
+		<render element="lcPlayers" as="${i18n(cc_lcPlayers)}"/>
+		<render element="lcPrereqs" as="${i18n(cc_lcPrereqs)}"/>
+		<render element="lcProcesses" as="${i18n(cc_lcProcesses)}"/>
+		<render element="lcProject" as="${i18n(cc_lcProject)}"/>
+		<render element="lcQuestion" as="${i18n(cc_lcQuestion)}"/>
+		<render element="lcQuestion2" as="${i18n(cc_lcQuestion2)}"/>
+		<render element="lcQuestionBase" as="${i18n(cc_lcQuestionBase)}"/>
+		<render element="lcQuestionBase2" as="${i18n(cc_lcQuestionBase2)}"/>
+		<render element="lcResolution" as="${i18n(cc_lcResolution)}"/>
+		<render element="lcResources" as="${i18n(cc_lcResources)}"/>
+		<render element="lcReview" as="${i18n(cc_lcReview)}"/>
+		<render element="lcSecurity" as="${i18n(cc_lcSecurity)}"/>
+		<render element="lcSequence" as="${i18n(cc_lcSequence)}"/>
+		<render element="lcSequence2" as="${i18n(cc_lcSequence2)}"/>
+		<render element="lcSequenceOption" as="${i18n(cc_lcSequenceOption)}"/>
+		<render element="lcSequenceOption2" as="${i18n(cc_lcSequenceOption2)}"/>
+		<render element="lcSequenceOptionGroup" as="${i18n(cc_lcSequenceOptionGroup)}"/>
+		<render element="lcSequenceOptionGroup2" as="${i18n(cc_lcSequenceOptionGroup2)}"/>
+		<render element="lcSequencing" as="${i18n(cc_lcSequencing)}"/>
+		<render element="lcSequencing2" as="${i18n(cc_lcSequencing2)}"/>
+		<render element="lcSingleSelect" as="${i18n(cc_lcSingleSelect)}"/>
+		<render element="lcSingleSelect2" as="${i18n(cc_lcSingleSelect2)}"/>
+		<render element="lcSkills" as="${i18n(cc_lcSkills)}"/>
+		<render element="lcSpecChars" as="${i18n(cc_lcSpecChars)}"/>
+		<render element="lcSummary" as="${i18n(cc_lcSummary)}"/>
+		<render element="lcTask" as="${i18n(cc_lcTask)}"/>
+		<render element="lcTaskItem" as="${i18n(cc_lcTaskItem)}"/>
+		<render element="lcTechnical" as="${i18n(cc_lcTechnical)}"/>
+		<render element="lcTime" as="${i18n(cc_lcTime)}"/>
+		<render element="lcTrueFalse" as="${i18n(cc_lcTrueFalse)}"/>
+		<render element="lcTrueFalse2" as="${i18n(cc_lcTrueFalse2)}"/>
+		<render element="lcValues" as="${i18n(cc_lcValues)}"/>
+		<render element="lcViewers" as="${i18n(cc_lcViewers)}"/>
+		<render element="lcW3C" as="${i18n(cc_lcW3C)}"/>
+		<render element="lcWorkEnv" as="${i18n(cc_lcWorkEnv)}"/>
+		<render element="lcWorkEnvDescription" as="${i18n(cc_lcWorkEnvDescription)}"/>
+		<render element="learningAssessment" as="${i18n(cc_learningAssessment)}"/>
+		<render element="learningAssessmentbody" as="${i18n(cc_learningAssessmentbody)}"/>
+		<render element="learningBase" as="${i18n(cc_learningBase)}"/>
+		<render element="learningBasebody" as="${i18n(cc_learningBasebody)}"/>
+		<render element="learningContent" as="${i18n(cc_learningContent)}"/>
+		<render element="learningContentbody" as="${i18n(cc_learningContentbody)}"/>
+		<render element="learningContentRef" as="${i18n(cc_learningContentRef)}"/>
+		<render element="learningGroup" as="${i18n(cc_learningGroup)}"/>
+		<render element="learningGroupMap" as="${i18n(cc_learningGroupMap)}"/>
+		<render element="learningGroupMapRef" as="${i18n(cc_learningGroupMapRef)}"/>
+		<render element="learningObject" as="${i18n(cc_learningObject)}"/>
+		<render element="learningObjectMap" as="${i18n(cc_learningObjectMap)}"/>
+		<render element="learningObjectMapRef" as="${i18n(cc_learningObjectMapRef)}"/>
+		<render element="learningOverview" as="${i18n(cc_learningOverview)}"/>
+		<render element="learningOverviewbody" as="${i18n(cc_learningOverviewbody)}"/>
+		<render element="learningOverviewRef" as="${i18n(cc_learningOverviewRef)}"/>
+		<render element="learningPlan" as="${i18n(cc_learningPlan)}"/>
+		<render element="learningPlanbody" as="${i18n(cc_learningPlanbody)}"/>
+		<render element="learningPlanRef" as="${i18n(cc_learningPlanRef)}"/>
+		<render element="learningPostAssessmentRef" as="${i18n(cc_learningPostAssessmentRef)}"/>
+		<render element="learningPreAssessmentRef" as="${i18n(cc_learningPreAssessmentRef)}"/>
+		<render element="learningSummary" as="${i18n(cc_learningSummary)}"/>
+		<render element="learningSummarybody" as="${i18n(cc_learningSummarybody)}"/>
+		<render element="learningSummaryRef" as="${i18n(cc_learningSummaryRef)}"/>
+		<render element="li" as="${i18n(cc_li)}"/>
+		<render element="line-through" as="${i18n(cc_line-through)}"/>
+		<render element="lines" as="${i18n(cc_lines)}"/>
+		<render element="link" as="${i18n(cc_link)}"/>
+		<render element="linkinfo" as="${i18n(cc_linkinfo)}"/>
+		<render element="linklist" as="${i18n(cc_linklist)}"/>
+		<render element="linkpool" as="${i18n(cc_linkpool)}"/>
+		<render element="linktext" as="${i18n(cc_linktext)}"/>
+		<render element="locality" as="${i18n(cc_locality)}"/>
+		<render element="localityname" as="${i18n(cc_localityname)}"/>
+		<render element="lomAggregationLevel" as="${i18n(cc_lomAggregationLevel)}"/>
+		<render element="lomContext" as="${i18n(cc_lomContext)}"/>
+		<render element="lomCoverage" as="${i18n(cc_lomCoverage)}"/>
+		<render element="lomDifficulty" as="${i18n(cc_lomDifficulty)}"/>
+		<render element="lomInstallationRemarks" as="${i18n(cc_lomInstallationRemarks)}"/>
+		<render element="lomIntendedUserRole" as="${i18n(cc_lomIntendedUserRole)}"/>
+		<render element="lomInteractivityLevel" as="${i18n(cc_lomInteractivityLevel)}"/>
+		<render element="lomInteractivityType" as="${i18n(cc_lomInteractivityType)}"/>
+		<render element="lomLearningResourceType" as="${i18n(cc_lomLearningResourceType)}"/>
+		<render element="lomOtherPlatformRequirements" as="${i18n(cc_lomOtherPlatformRequirements)}"/>
+		<render element="lomSemanticDensity" as="${i18n(cc_lomSemanticDensity)}"/>
+		<render element="lomStructure" as="${i18n(cc_lomStructure)}"/>
+		<render element="lomTechRequirement" as="${i18n(cc_lomTechRequirement)}"/>
+		<render element="lomTypicalAgeRange" as="${i18n(cc_lomTypicalAgeRange)}"/>
+		<render element="lomTypicalLearningTime" as="${i18n(cc_lomTypicalLearningTime)}"/>
+		<render element="lq" as="${i18n(cc_lq)}"/>
+		<render element="mainbooktitle" as="${i18n(cc_mainbooktitle)}"/>
+		<render element="maintainer" as="${i18n(cc_maintainer)}"/>
+		<render element="map" as="${i18n(cc_map)}"/>
+		<render element="mapref" as="${i18n(cc_mapref)}"/>
+		<render element="markupname" as="${i18n(cc_markupname)}"/>
+		<render element="menucascade" as="${i18n(cc_menucascade)}"/>
+		<render element="messagepanel" as="${i18n(cc_messagepanel)}"/>
+		<render element="metadata" as="${i18n(cc_metadata)}"/>
+		<render element="middlename" as="${i18n(cc_middlename)}"/>
+		<render element="month" as="${i18n(cc_month)}"/>
+		<render element="msgblock" as="${i18n(cc_msgblock)}"/>
+		<render element="msgnum" as="${i18n(cc_msgnum)}"/>
+		<render element="msgph" as="${i18n(cc_msgph)}"/>
+		<render element="namedetails" as="${i18n(cc_namedetails)}"/>
+		<render element="navref" as="${i18n(cc_navref)}"/>
+		<render element="navtitle" as="${i18n(cc_navtitle)}"/>
+		<render element="noconds" as="${i18n(cc_noconds)}"/>
+		<render element="nosafety" as="${i18n(cc_nosafety)}"/>
+		<render element="nospares" as="${i18n(cc_nospares)}"/>
+		<render element="nosupeq" as="${i18n(cc_nosupeq)}"/>
+		<render element="nosupply" as="${i18n(cc_nosupply)}"/>
+		<render element="note" as="${i18n(cc_note)}"/>
+		<render element="notices" as="${i18n(cc_notices)}"/>
+		<render element="numcharref" as="${i18n(cc_numcharref)}"/>
+		<render element="object" as="${i18n(cc_object)}"/>
+		<render element="ol" as="${i18n(cc_ol)}"/>
+		<render element="oper" as="${i18n(cc_oper)}"/>
+		<render element="option" as="${i18n(cc_option)}"/>
+		<render element="organization" as="${i18n(cc_organization)}"/>
+		<render element="organizationinfo" as="${i18n(cc_organizationinfo)}"/>
+		<render element="organizationname" as="${i18n(cc_organizationname)}"/>
+		<render element="organizationnamedetails" as="${i18n(cc_organizationnamedetails)}"/>
+		<render element="otherinfo" as="${i18n(cc_otherinfo)}"/>
+		<render element="othermeta" as="${i18n(cc_othermeta)}"/>
+		<render element="overline" as="${i18n(cc_overline)}"/>
+		<render element="p" as="${i18n(cc_p)}"/>
+		<render element="param" as="${i18n(cc_param)}"/>
+		<render element="parameterentity" as="${i18n(cc_parameterentity)}"/>
+		<render element="parml" as="${i18n(cc_parml)}"/>
+		<render element="parmname" as="${i18n(cc_parmname)}"/>
+		<render element="part" as="${i18n(cc_part)}"/>
+		<render element="pd" as="${i18n(cc_pd)}"/>
+		<render element="permissions" as="${i18n(cc_permissions)}"/>
+		<render element="perscat" as="${i18n(cc_perscat)}"/>
+		<render element="perskill" as="${i18n(cc_perskill)}"/>
+		<render element="person" as="${i18n(cc_person)}"/>
+		<render element="personinfo" as="${i18n(cc_personinfo)}"/>
+		<render element="personname" as="${i18n(cc_personname)}"/>
+		<render element="personnel" as="${i18n(cc_personnel)}"/>
+		<render element="ph" as="${i18n(cc_ph)}"/>
+		<render element="platform" as="${i18n(cc_platform)}"/>
+		<render element="plentry" as="${i18n(cc_plentry)}"/>
+		<render element="postalcode" as="${i18n(cc_postalcode)}"/>
+		<render element="postreq" as="${i18n(cc_postreq)}"/>
+		<render element="pre" as="${i18n(cc_pre)}"/>
+		<render element="preface" as="${i18n(cc_preface)}"/>
+		<render element="prelreqs" as="${i18n(cc_prelreqs)}"/>
+		<render element="prereq" as="${i18n(cc_prereq)}"/>
+		<render element="printlocation" as="${i18n(cc_printlocation)}"/>
+		<render element="prodinfo" as="${i18n(cc_prodinfo)}"/>
+		<render element="prodname" as="${i18n(cc_prodname)}"/>
+		<render element="prognum" as="${i18n(cc_prognum)}"/>
+		<render element="prolog" as="${i18n(cc_prolog)}"/>
+		<render element="prop" as="${i18n(cc_prop)}"/>
+		<render element="propdesc" as="${i18n(cc_propdesc)}"/>
+		<render element="propdeschd" as="${i18n(cc_propdeschd)}"/>
+		<render element="properties" as="${i18n(cc_properties)}"/>
+		<render element="property" as="${i18n(cc_property)}"/>
+		<render element="prophead" as="${i18n(cc_prophead)}"/>
+		<render element="proptype" as="${i18n(cc_proptype)}"/>
+		<render element="proptypehd" as="${i18n(cc_proptypehd)}"/>
+		<render element="propvalue" as="${i18n(cc_propvalue)}"/>
+		<render element="propvaluehd" as="${i18n(cc_propvaluehd)}"/>
+		<render element="pt" as="${i18n(cc_pt)}"/>
+		<render element="published" as="${i18n(cc_published)}"/>
+		<render element="publisher" as="${i18n(cc_publisher)}"/>
+		<render element="publisherinformation" as="${i18n(cc_publisherinformation)}"/>
+		<render element="publishtype" as="${i18n(cc_publishtype)}"/>
+		<render element="q" as="${i18n(cc_q)}"/>
+		<render element="refbody" as="${i18n(cc_refbody)}"/>
+		<render element="refbodydiv" as="${i18n(cc_refbodydiv)}"/>
+		<render element="reference" as="${i18n(cc_reference)}"/>
+		<render element="refsyn" as="${i18n(cc_refsyn)}"/>
+		<render element="related-links" as="${i18n(cc_related-links)}"/>
+		<render element="relatedSubjects" as="${i18n(cc_relatedSubjects)}"/>
+		<render element="relcell" as="${i18n(cc_relcell)}"/>
+		<render element="relcolspec" as="${i18n(cc_relcolspec)}"/>
+		<render element="relheader" as="${i18n(cc_relheader)}"/>
+		<render element="relrow" as="${i18n(cc_relrow)}"/>
+		<render element="reltable" as="${i18n(cc_reltable)}"/>
+		<render element="remedy" as="${i18n(cc_remedy)}"/>
+		<render element="repsep" as="${i18n(cc_repsep)}"/>
+		<render element="reqcond" as="${i18n(cc_reqcond)}"/>
+		<render element="reqconds" as="${i18n(cc_reqconds)}"/>
+		<render element="reqcontp" as="${i18n(cc_reqcontp)}"/>
+		<render element="reqpers" as="${i18n(cc_reqpers)}"/>
+		<render element="required-cleanup" as="${i18n(cc_required-cleanup)}"/>
+		<render element="resourceid" as="${i18n(cc_resourceid)}"/>
+		<render element="responsibleParty" as="${i18n(cc_responsibleParty)}"/>
+		<render element="result" as="${i18n(cc_result)}"/>
+		<render element="reviewed" as="${i18n(cc_reviewed)}"/>
+		<render element="revised" as="${i18n(cc_revised)}"/>
+		<render element="revisionid" as="${i18n(cc_revisionid)}"/>
+		<render element="revprop" as="${i18n(cc_revprop)}"/>
+		<render element="row" as="${i18n(cc_row)}"/>
+		<render element="safecond" as="${i18n(cc_safecond)}"/>
+		<render element="safety" as="${i18n(cc_safety)}"/>
+		<render element="schemeref" as="${i18n(cc_schemeref)}"/>
+		<render element="screen" as="${i18n(cc_screen)}"/>
+		<render element="searchtitle" as="${i18n(cc_searchtitle)}"/>
+		<render element="section" as="${i18n(cc_section)}"/>
+		<render element="sectiondiv" as="${i18n(cc_sectiondiv)}"/>
+		<render element="sep" as="${i18n(cc_sep)}"/>
+		<render element="series" as="${i18n(cc_series)}"/>
+		<render element="shape" as="${i18n(cc_shape)}"/>
+		<render element="shortcut" as="${i18n(cc_shortcut)}"/>
+		<render element="shortdesc" as="${i18n(cc_shortdesc)}"/>
+		<render element="simpletable" as="${i18n(cc_simpletable)}"/>
+		<render element="sl" as="${i18n(cc_sl)}"/>
+		<render element="sli" as="${i18n(cc_sli)}"/>
+		<render element="sort-as" as="${i18n(cc_sort-as)}"/>
+		<render element="source" as="${i18n(cc_source)}"/>
+		<render element="spare" as="${i18n(cc_spare)}"/>
+		<render element="spares" as="${i18n(cc_spares)}"/>
+		<render element="sparesli" as="${i18n(cc_sparesli)}"/>
+		<render element="started" as="${i18n(cc_started)}"/>
+		<render element="startflag" as="${i18n(cc_startflag)}"/>
+		<render element="state" as="${i18n(cc_state)}"/>
+		<render element="stentry" as="${i18n(cc_stentry)}"/>
+		<render element="step" as="${i18n(cc_step)}"/>
+		<render element="stepresult" as="${i18n(cc_stepresult)}"/>
+		<render element="steps-informal" as="${i18n(cc_steps-informal)}"/>
+		<render element="steps-unordered" as="${i18n(cc_steps-unordered)}"/>
+		<render element="steps" as="${i18n(cc_steps)}"/>
+		<render element="stepsection" as="${i18n(cc_stepsection)}"/>
+		<render element="steptroubleshooting" as="${i18n(cc_steptroubleshooting)}"/>
+		<render element="stepxmp" as="${i18n(cc_stepxmp)}"/>
+		<render element="sthead" as="${i18n(cc_sthead)}"/>
+		<render element="strow" as="${i18n(cc_strow)}"/>
+		<render element="style-conflict" as="${i18n(cc_style-conflict)}"/>
+		<render element="sub" as="${i18n(cc_sub)}"/>
+		<render element="subjectCell" as="${i18n(cc_subjectCell)}"/>
+		<render element="subjectdef" as="${i18n(cc_subjectdef)}"/>
+		<render element="subjectHead" as="${i18n(cc_subjectHead)}"/>
+		<render element="subjectHeadMeta" as="${i18n(cc_subjectHeadMeta)}"/>
+		<render element="subjectref" as="${i18n(cc_subjectref)}"/>
+		<render element="subjectRel" as="${i18n(cc_subjectRel)}"/>
+		<render element="subjectRelHeader" as="${i18n(cc_subjectRelHeader)}"/>
+		<render element="subjectRelTable" as="${i18n(cc_subjectRelTable)}"/>
+		<render element="subjectRole" as="${i18n(cc_subjectRole)}"/>
+		<render element="subjectScheme" as="${i18n(cc_subjectScheme)}"/>
+		<render element="substep" as="${i18n(cc_substep)}"/>
+		<render element="substeps" as="${i18n(cc_substeps)}"/>
+		<render element="summary" as="${i18n(cc_summary)}"/>
+		<render element="sup" as="${i18n(cc_sup)}"/>
+		<render element="supeqli" as="${i18n(cc_supeqli)}"/>
+		<render element="supequi" as="${i18n(cc_supequi)}"/>
+		<render element="supequip" as="${i18n(cc_supequip)}"/>
+		<render element="supplies" as="${i18n(cc_supplies)}"/>
+		<render element="supply" as="${i18n(cc_supply)}"/>
+		<render element="supplyli" as="${i18n(cc_supplyli)}"/>
+		<render element="synblk" as="${i18n(cc_synblk)}"/>
+		<render element="synnote" as="${i18n(cc_synnote)}"/>
+		<render element="synnoteref" as="${i18n(cc_synnoteref)}"/>
+		<render element="synph" as="${i18n(cc_synph)}"/>
+		<render element="syntaxdiagram" as="${i18n(cc_syntaxdiagram)}"/>
+		<render element="systemoutput" as="${i18n(cc_systemoutput)}"/>
+		<render element="table" as="${i18n(cc_table)}"/>
+		<render element="tablelist" as="${i18n(cc_tablelist)}"/>
+		<render element="task" as="${i18n(cc_task)}"/>
+		<render element="taskbody" as="${i18n(cc_taskbody)}"/>
+		<render element="tasktroubleshooting" as="${i18n(cc_tasktroubleshooting)}"/>
+		<render element="tbody" as="${i18n(cc_tbody)}"/>
+		<render element="term" as="${i18n(cc_term)}"/>
+		<render element="tested" as="${i18n(cc_tested)}"/>
+		<render element="text" as="${i18n(cc_text)}"/>
+		<render element="textentity" as="${i18n(cc_textentity)}"/>
+		<render element="tgroup" as="${i18n(cc_tgroup)}"/>
+		<render element="thead" as="${i18n(cc_thead)}"/>
+		<render element="thoroughfare" as="${i18n(cc_thoroughfare)}"/>
+		<render element="title" as="${i18n(cc_title)}"/>
+		<render element="titlealts" as="${i18n(cc_titlealts)}"/>
+		<render element="tm" as="${i18n(cc_tm)}"/>
+		<render element="toc" as="${i18n(cc_toc)}"/>
+		<render element="topic" as="${i18n(cc_topic)}"/>
+		<render element="topicapply" as="${i18n(cc_topicapply)}"/>
+		<render element="topicCell" as="${i18n(cc_topicCell)}"/>
+		<render element="topicgroup" as="${i18n(cc_topicgroup)}"/>
+		<render element="topichead" as="${i18n(cc_topichead)}"/>
+		<render element="topicmeta" as="${i18n(cc_topicmeta)}"/>
+		<render element="topicref" as="${i18n(cc_topicref)}"/>
+		<render element="topicset" as="${i18n(cc_topicset)}"/>
+		<render element="topicsetref" as="${i18n(cc_topicsetref)}"/>
+		<render element="topicsubject" as="${i18n(cc_topicsubject)}"/>
+		<render element="topicSubjectHeader" as="${i18n(cc_topicSubjectHeader)}"/>
+		<render element="topicSubjectRow" as="${i18n(cc_topicSubjectRow)}"/>
+		<render element="topicSubjectTable" as="${i18n(cc_topicSubjectTable)}"/>
+		<render element="trademarklist" as="${i18n(cc_trademarklist)}"/>
+		<render element="troublebody" as="${i18n(cc_troublebody)}"/>
+		<render element="troubleshooting" as="${i18n(cc_troubleshooting)}"/>
+		<render element="troubleSolution" as="${i18n(cc_troubleSolution)}"/>
+		<render element="tt" as="${i18n(cc_tt)}"/>
+		<render element="tutorialinfo" as="${i18n(cc_tutorialinfo)}"/>
+		<render element="typeofhazard" as="${i18n(cc_typeofhazard)}"/>
+		<render element="u" as="${i18n(cc_u)}"/>
+		<render element="uicontrol" as="${i18n(cc_uicontrol)}"/>
+		<render element="ul" as="${i18n(cc_ul)}"/>
+		<render element="url" as="${i18n(cc_url)}"/>
+		<render element="urls" as="${i18n(cc_urls)}"/>
+		<render element="userinput" as="${i18n(cc_userinput)}"/>
+		<render element="ux-window" as="${i18n(cc_ux-window)}"/>
+		<render element="val" as="${i18n(cc_val)}"/>
+		<render element="var" as="${i18n(cc_var)}"/>
+		<render element="varname" as="${i18n(cc_varname)}"/>
+		<render element="volume" as="${i18n(cc_volume)}"/>
+		<render element="vrm" as="${i18n(cc_vrm)}"/>
+		<render element="vrmlist" as="${i18n(cc_vrmlist)}"/>
+		<render element="wintitle" as="${i18n(cc_wintitle)}"/>
+		<render element="xmlatt" as="${i18n(cc_xmlatt)}"/>
+		<render element="xmlelement" as="${i18n(cc_xmlelement)}"/>
+		<render element="xmlnsname" as="${i18n(cc_xmlnsname)}"/>
+		<render element="xmlpi" as="${i18n(cc_xmlpi)}"/>
+		<render element="xref" as="${i18n(cc_xref)}"/>
+		<render element="year" as="${i18n(cc_year)}"/>
+
+
+    <!-- Not Translatable -->
+		<render element="data" as="Data"/>
+		<render element="foreign" as="Foreign"/>
+		<render element="mathml" as="MathML"/>
+		<render element="unknown" as="Unknown"/>
+		<render element="change-completed" as="Completed Change"/>
+		<render element="change-historylist" as="Change History List"/>
+		<render element="change-item" as="Change Item"/>
+		<render element="change-person" as="Change Person"/>
+		<render element="change-request-id" as="Change Request Id"/>
+		<render element="change-request-reference" as="Change Request Reference"/>
+    	<render element="change-request-system" as="Change Request System"/>
+		<render element="change-revisionid" as="Change Revision Id"/>
+		<render element="change-started" as="Change Started"/>
+		<render element="change-organization" as="Change Organization"/>
+		<render element="change-summary" as="Change Summary"/>
+		<render element="longdesc" as="Long Description"/>
+		<render element="longdescref" as="Long Description Reference"/>
+		<render element="mathmlref" as="MathML Reference"/>
+		<render element="svgref" as="SVG Reference"/>
+		<render element="no-topic-nesting" as="No Topic Nesting"/>
+		<render element="longquoteref" as="Long Quote Reference"/>
+	</elementRenderings>
+
+
+</config>

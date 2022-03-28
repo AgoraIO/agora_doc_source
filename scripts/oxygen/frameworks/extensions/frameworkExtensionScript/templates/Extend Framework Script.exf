@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+
+The file must be saved inside a framework directory, the same place where a *.framework file should sit.
+
+To generate a *.framework file out of the script, you need to use the "Compile Framework Extension script" action 
+from the contextual menu.
+-->
+<script xmlns="http://www.oxygenxml.com/ns/framework/extend"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.oxygenxml.com/ns/framework/extend http://www.oxygenxml.com/ns/framework/extend/frameworkExtensionScript.xsd"
+  base="">
+  <name>Framework name</name>
+  <description/>
+  <priority>High</priority>
+  
+  <author>
+    <!-- 
+      Author Actions are loaded from these directories:
+      {framework_directory}/externalAuthorActions
+      {framework_directory}/{framework_file_name}_externalAuthorActions
+      
+      https://www.oxygenxml.com/doc/versions/22.1/ug-editor/topics/dg-create-custom-actions.html#dg-create-custom-actions__section_2
+    -->
+    <toolbars>
+      <toolbar>
+        <separator/>
+        <addAction id="insert.note"/>
+      </toolbar>
+      
+    </toolbars>
+    
+    <contextualMenu>
+      <submenu name="Other actions">
+        <addAction id="insert.note"/>
+      </submenu>
+    </contextualMenu>
+    
+    <contentCompletion>
+      <authorActions>
+        <addAction id="insert.note" replacedElement="note" inCCWindow="true"/> 
+      </authorActions>
+    </contentCompletion>
+  </author>
+  
+  
+</script>
