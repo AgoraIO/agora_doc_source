@@ -4,7 +4,7 @@
     <title>
         <ph keyref="addPublishStreamUrl" />
     </title>
-    <shortdesc id="short"><ph id="shortdesc">Publishes the local stream to a specified CDN live address.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Publishes the local stream to a specified CDN live streaming URL.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -28,15 +28,14 @@
             <dl outputclass="deprecated">
                 <dlentry>
                     <dt>Deprecated:</dt>
-                    <dd><ph>This method is deprecated. </ph><ph props="rtc">替代方案请参考 <xref keyref="release-notes">发版说明</xref>。</ph>
-                    </dd>
+                    <dd><ph>This method is deprecated. </ph><ph props="rtc">See <xref keyref="release-notes">Release Notes</xref> for an alternative solution.</ph></dd>
                 </dlentry>
             </dl>
    <p>After calling this method, you can push media streams in RTMP or RTMPS protocol to the CDN. The SDK triggers the<xref keyref="onRtmpStreamingStateChanged"/>  callback on the local client to report the state of adding a local stream to the CDN.</p>
    <note type="attention" id="note">
        <ul>
   <li>Call this method after joining a channel.</li>
-           <li>Ensure that the media push function is enabled. <ph props="rtc">For details, see the prerequisites in <xref keyref="guide-cdn-streaming">Media Push</xref>.</ph></li>
+           <li><ph>Ensure that the media push function is enabled. </ph><ph>For details, see the prerequisites in <ph props="rtc">Media Push</ph>.</ph></li>
   <li>This method takes effect only when you are a host in live interactive streaming.</li>
   <li>This method adds only one streaming URL to the CDN each time it is called. To push multiple URLs, call this method multiple times.</li>
   <li>Agora only supports pushing media streams to the CDN in RTMPS protocol when you enable transcoding.</li>
@@ -67,8 +66,8 @@
                 <li>0: Success.</li>
                 <li>
                     &lt; 0: Failure.<ul>
-                        <li>ERR_INVALID_ARGUMENT(-2): <codeph>Invalid argument</codeph>, usually because the URL address is null or the string length is 0.</li>
-                        <li>ERR_NOT_INITIALIZED(-7): You have <codeph>not initialized</codeph> the RTC Engine when publishing the stream.</li>
+                        <li>-2: Invalid parameter, usually an empty URL or a string with a length of 0.</li>
+                        <li>-7: The engine is not initialized when streaming.</li>
                     </ul>
                 </li>
             </ul>
