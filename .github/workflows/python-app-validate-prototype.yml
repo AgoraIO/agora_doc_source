@@ -2,14 +2,12 @@
 name: Awesome DITA API doc prototype validation
 
 on:
-    push:
-        branches:
-            - master
-            - main
+    # push:
+    #    branches:
+    #        - 'release/**'
     pull_request:
         branches:
-            - master
-            - main
+            - 'release/**'
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -29,21 +27,34 @@ jobs:
               run: |
                   cd xml2json
                   python check_cpp_ng_prototype.py --code_location ./code_to_check/cpp_ng --dita_location ../dita/RTC/API --dita_map_location ../dita/RTC/config/keys-rtc-ng-api-cpp.ditamap --decomment_code_location ./code_to_check/decommented
+                  cat xml2json/prototype_check_cpp_ng.txt
             - name: Run Java validation
               run: |
                   cd xml2json
                   python check_java_ng_prototype.py --code_location ./code_to_check/java_ng --dita_location ../dita/RTC/API --dita_map_location ../dita/RTC/config/keys-rtc-ng-api-java.ditamap --decomment_code_location ./code_to_check/decommented
+                  cat xml2json/prototype_check_java_ng.txt
             - name: Run OC validation
               run: |
                   cd xml2json
                   python check_oc_ng_prototype.py --code_location ./code_to_check/oc_ng --dita_location ../dita/RTC/API --dita_map_location ../dita/RTC/config/keys-rtc-ng-api-oc.ditamap --decomment_code_location ./code_to_check/decommented
+                  cat xml2json/prototype_check_oc_ng.txt
+            - name: Run Flutter CG validation
+              run: |
+                  cd xml2json
+                  python check_dart_cg_prototype.py --code_location ./code_to_check/flutter_cg --dita_location ../dita/RTC/API --dita_map_location ../dita/RTC/config/keys-rtc-api-flutter.ditamap --decomment_code_location ./code_to_check/decommented
+                  cat xml2json/prototype_check_dart_cg.txt
+            - name: Run Unity NG validation
+              run: |
+                  cd xml2json
+                  python check_unity_ng_prototype.py --code_location ./code_to_check/unity_ng --dita_location ../dita/RTC/API --dita_map_location ../dita/RTC/config/keys-rtc-ng-api-unity.ditamap --decomment_code_location ./code_to_check/decommented
+                  cat xml2json/prototype_check_unity_ng.txt
             - name: Upload CPP NG log TXT to release
               uses: svenstaro/upload-release-action@v2
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
                   file: xml2json/prototype_check_cpp_ng.txt
                   asset_name: prototype_check_cpp_ng.txt
-                  tag: ${{ github.ref }}
+                  tag: main
                   overwrite: true
                   body: "Comment release"
             - name: Upload Java NG log TXT to release
@@ -52,7 +63,7 @@ jobs:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
                   file: xml2json/prototype_check_java_ng.txt
                   asset_name: prototype_check_java_ng.txt
-                  tag: ${{ github.ref }}
+                  tag: main
                   overwrite: true
                   body: "Comment release"
             - name: Upload OC NG log TXT to release
@@ -61,6 +72,24 @@ jobs:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
                   file: xml2json/prototype_check_oc_ng.txt
                   asset_name: prototype_check_oc_ng.txt
-                  tag: ${{ github.ref }}
+                  tag: main
+                  overwrite: true
+                  body: "Comment release"
+            - name: Upload Flutter CG log TXT to release
+              uses: svenstaro/upload-release-action@v2
+              with:
+                  repo_token: ${{ secrets.GITHUB_TOKEN }}
+                  file: xml2json/prototype_check_dart_cg.txt
+                  asset_name: prototype_check_dart_cg.txt
+                  tag: main
+                  overwrite: true
+                  body: "Comment release"
+            - name: Upload Unity NG log TXT to release
+              uses: svenstaro/upload-release-action@v2
+              with:
+                  repo_token: ${{ secrets.GITHUB_TOKEN }}
+                  file: xml2json/prototype_check_unity_ng.txt
+                  asset_name: prototype_check_unity_ng.txt
+                  tag: main
                   overwrite: true
                   body: "Comment release"
