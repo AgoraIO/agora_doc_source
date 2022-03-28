@@ -4,11 +4,9 @@ name: Awesome DITA API doc prototype validation
 on:
     push:
         branches:
-            - master
             - 'release/**'
     pull_request:
         branches:
-            - master
             - 'release/**'
 jobs:
     build:
@@ -41,6 +39,10 @@ jobs:
               run: |
                   cd xml2json
                   python check_dart_cg_prototype.py --code_location ./code_to_check/flutter_cg --dita_location ../dita/RTC/API --dita_map_location ../dita/RTC/config/keys-rtc-api-flutter.ditamap --decomment_code_location ./code_to_check/decommented
+            - name: Run Unity NG validation
+              run: |
+                  cd xml2json
+                  python check_unity_ng_prototype.py --code_location ./code_to_check/unity_ng --dita_location ../dita/RTC/API --dita_map_location ../dita/RTC/config/keys-rtc-ng-api-unity.ditamap --decomment_code_location ./code_to_check/decommented                  
             - name: Upload CPP NG log TXT to release
               uses: svenstaro/upload-release-action@v2
               with:
@@ -74,6 +76,15 @@ jobs:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
                   file: xml2json/prototype_check_dart_cg.txt
                   asset_name: prototype_check_dart_cg.txt
+                  tag: main
+                  overwrite: true
+                  body: "Comment release"
+            - name: Upload Unity NG log TXT to release
+              uses: svenstaro/upload-release-action@v2
+              with:
+                  repo_token: ${{ secrets.GITHUB_TOKEN }}
+                  file: xml2json/prototype_check_unity_ng.txt
+                  asset_name: prototype_check_unity_ng.txt
                   tag: main
                   overwrite: true
                   body: "Comment release"
