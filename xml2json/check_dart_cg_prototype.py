@@ -2,16 +2,16 @@
 # -*- coding: utf-8 -*-
 
 # Developed by Lutkin Wang
-# Check prototype in code blocks such as:
-#  <codeblock props="android" outputclass="language-java">
-#  public abstract int addVideoWatermark(String watermarkUrl, WatermarkOptions options);
-#  </codeblock>
+# Check prototype in
+# <codeblock props="windows" outputclass="language-cpp">
+# virtual int adjustAudioMixingPlayoutVolume(int volume) = 0;
+# </codeblock>
 
 import os
 import re
 import argparse
 
-log_name = "prototype_check_java_ng.txt"
+log_name = "prototype_check_dart_cg.txt"
 
 
 def removeComments(string):
@@ -51,7 +51,6 @@ def main():
     dita_map_location = args['dita_map_location']
     decomment_code_location = args['decomment_code_location']
 
-
     # A list of DITA files
     dita_file_list = []
 
@@ -65,46 +64,52 @@ def main():
     code_proto_list = []
 
     ditamap_content = read_ditamap(dita_map_location)
-    print(ditamap_content)
 
     # Handle the DITA files
     for file in os.scandir(dita_location):
-
         if (file.path.endswith(".dita")) and not file.path.startswith(dita_location + "/enum_") and not file.path.startswith(dita_location + "/rtc_") and file.is_file() and os.path.basename(file) in ditamap_content:
             print(file.path)
             dita_file_list.append(file.path)
             with open(file.path, encoding='utf8') as f:
                 content = f.read()
                 # Use substring methods to get the proto from DITA
-                after_codeblock_start_tag = re.split('<codeblock props="android" outputclass="language-java">', content)
+                # Here, we assume that the DITA file contains a single codeblock for each programming language
+                after_codeblock_start_tag = re.split('<codeblock props="flutter" outputclass="language-dart">',
+                                                     content)
                 try:
                     before_codeblock_end_tag = re.split('</codeblock>', after_codeblock_start_tag[1])
                     proto_text = before_codeblock_end_tag[0]
                 except IndexError:
                     proto_text = "Error: No prototype"
+                    before_codeblock_end_tag = ["",""]
+
+                try:
+                    cg_codeblock_end_tag = re.split('<codeblock props="flutter" outputclass="language-dart">', before_codeblock_end_tag[1])
+                    proto_text = cg_codeblock_end_tag[1]
+                except IndexError:
+                    print("No special prototype for this one")
 
                 proto_text = proto_text.replace("&amp;", "&")
                 proto_text = proto_text.replace("&lt;", "<")
                 proto_text = proto_text.replace("&gt;", ">")
 
                 print(proto_text)
-
                 dita_proto_list.append(proto_text)
 
     dictionary = dict(zip(dita_file_list, dita_proto_list))
 
     # Handle the interface files
 
-    # Decomment all java files
+    # Decomment all oc files
     for root, dirs, files in os.walk(code_location):
         for file in files:
-            if file.endswith(".java"):
+            if file.endswith(".dart"):
                 with open(os.path.join(root, file), encoding='utf8', mode='r') as f:
                     text = removeComments(f.read())
-                    with open(decomment_code_location + "/" + "concatenated.java", encoding='utf8', mode='a') as f1:
+                    with open(decomment_code_location + "/" + "concatenated.dart", encoding='utf8', mode='a') as f1:
                         f1.write(text)
 
-    with open(decomment_code_location + "/" + "concatenated.java", encoding='utf8', mode='r') as f:
+    with open(decomment_code_location + "/" + "concatenated.dart", encoding='utf8', mode='r') as f:
         content = f.read()
         content1 = content.replace("&amp;", "&")
         content2 = content1.replace("&lt;", "<")
