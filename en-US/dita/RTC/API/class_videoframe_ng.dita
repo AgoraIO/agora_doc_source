@@ -5,9 +5,11 @@
     <shortdesc id="short"><ph id="shortdesc">Configurations of the video frame</ph></shortdesc>
     <refbody>
         <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="unity" outputclass="language-csharp" /> </p>
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraOutputVideoFrame : NSObject
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraOutputVideoFrame : NSObject
 @property (nonatomic, assign) NSInteger type;
 @property (nonatomic, assign) int width;
 @property (nonatomic, assign) int height;
@@ -23,25 +25,38 @@
 @property(assign, nonatomic) CVPixelBufferRef _Nullable pixelBuffer;
 
 @end</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">struct VideoFrame {
-   VIDEO_PIXEL_FORMAT type;
-   int width;
-   int height;
-   int yStride;
-   int uStride;
-   int vStride;
-   void* yBuffer;
-   void* uBuffer;
-   void* vBuffer;
-   int rotation;
-   int64_t renderTimeMs;
-   int avsync_type;
-   };</codeblock>
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp" />
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
-            </p>
+            <codeblock props="windows" outputclass="language-cpp">struct VideoFrame {
+  VideoFrame():
+  type(VIDEO_PIXEL_UNKNOWN),
+  width(0),
+  height(0),
+  yStride(0),
+  uStride(0),
+  vStride(0),
+  yBuffer(NULL),
+  uBuffer(NULL),
+  vBuffer(NULL),
+  rotation(0),
+  renderTimeMs(0),
+  avsync_type(0),
+  VIDEO_PIXEL_FORMAT type;
+  int width;
+  int height;
+  int yStride;
+  int uStride;
+  int vStride;
+  uint8_t* yBuffer;
+  uint8_t* uBuffer;
+  uint8_t* vBuffer;
+  int rotation;
+  int64_t renderTimeMs;
+  int avsync_type;
+};
+</codeblock>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
    
