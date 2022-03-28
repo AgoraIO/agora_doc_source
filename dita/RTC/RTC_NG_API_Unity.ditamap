@@ -38,10 +38,10 @@
             <topicref keyref="createDataStreamEx1" toc="no"/>
             <topicref keyref="createDataStreamEx2" toc="no"/>
             <topicref keyref="disableAudio" toc="no"/>
-            <topicref keyref="disableAudioSpectrumMonitor" toc="no"/>
+            <topicref keyref="disableAudioSpectrumMonitor" toc="no" props="hide"/>
             <topicref keyref="disableVideo" toc="no"/>
             <topicref keyref="enableAudio" toc="no"/>
-            <topicref keyref="enableAudioSpectrumMonitor" toc="no"/>
+            <topicref keyref="enableAudioSpectrumMonitor" toc="no" props="hide"/>
             <topicref keyref="enableAudioVolumeIndication" toc="no"/>
             <topicref keyref="enableContentInspect" toc="no" props="hide"/>
             <topicref keyref="enableEchoCancellationExternal" toc="no" props="hide"/>
@@ -63,6 +63,8 @@
             <topicref keyref="enableWebSdkInteroperability" toc="no"/>
             <topicref keyref="getAgoraRtcAudioPlaybackDeviceManager" toc="no"/>
             <topicref keyref="getAgoraRtcAudioRecordingDeviceManager" toc="no"/>
+            <topicref keyref="getAgoraRtcCloudSpatialAudioEngine" toc="no"/>
+            <topicref keyref="getAgoraRtcSpatialAudioEngine" toc="no"/>
             <topicref keyref="getAgoraRtcMediaPlayer" toc="no"/>
             <topicref keyref="getAgoraRtcVideoDeviceManager" toc="no"/>
             <topicref keyref="getAudioMixingCurrentPosition" toc="no"/>
@@ -247,10 +249,6 @@
             <topicref keyref="updateLocalTranscoderConfiguration" toc="no" props="hide"/>
             <topicref keyref="updateScreenCaptureParameters" toc="no"/>
             <topicref keyref="updateScreenCaptureRegion1" toc="no"/>
-            <topicref keyref="getAgoraRtcAudioRecordingDeviceManager"/>
-            <topicref keyref="getAgoraRtcAudioPlaybackDeviceManager"/>
-            <topicref keyref="getAgoraRtcVideoDeviceManager"/>
-            <topicref keyref="getAgoraRtcMediaPlayer"/>
         </topicref>
         <topicref keyref="IRtcEngineEventHandler" chunk="to-content">
             <topicref keyref="onActiveSpeaker" toc="no"/>
@@ -264,6 +262,7 @@
             <topicref keyref="onAudioQuality" toc="no"/>
             <topicref keyref="onAudioSubscribeStateChanged" toc="no"/>
             <topicref keyref="onAudioVolumeIndication" toc="no"/>
+            <topicref keyref="onAudioRouteChanged" toc="no"/>
             <topicref keyref="onCameraExposureAreaChanged" toc="no"/>
             <topicref keyref="onCameraFocusAreaChanged" toc="no"/>
             <topicref keyref="onCameraReady" toc="no"/>
@@ -377,8 +376,8 @@
             <topicref keyref="unloadSrc" toc="no" props="hide"/>
             <topicref keyref="unregisterAudioFrameObserver_IMediaPlayer" toc="no"/>
             <topicref keyref="unregisterVideoFrameObserver_IMediaPlayer" toc="no"/>
-            <topicref href="API/api_dispose.dita"/>
-            <topicref href="API/api_initeventhandler.dita"/>
+            <topicref keyref="dispose_IMediaPlayer" toc="no"/>
+            <topicref keyref="initEventHandler_IMediaPlayer" toc="no"/>
         </topicref>
         <topicref keyref="IMediaPlayerCustomDataProvider" chunk="to-content">
             <topicref keyref="onReadData" toc="no"/>
@@ -455,6 +454,7 @@
         </topicref>
         <topicref keyref="ICloudSpatialAudioEngine" chunk="to-content">
             <topicref keyref="addEventHandler" toc="no"/>
+            <topicref keyref="dispose_ICloudSpatialAudioEngine" toc="no"/>
             <topicref keyref="enableSpatializer" toc="no"/>
             <topicref keyref="enterRoom" toc="no"/>
             <topicref keyref="exitRoom" toc="no"/>
@@ -462,11 +462,9 @@
             <topicref keyref="initialize_ICloudSpatialAudioEngine" toc="no"/>
             <topicref keyref="muteAllRemoteAudioStreams_IBaseSpatialAudioEngine" toc="no"/>
             <topicref keyref="muteLocalAudioStream_IBaseSpatialAudioEngine" toc="no"/>
-            <topicref keyref="release_ICloudSpatialAudioEngine" toc="no"/>
             <topicref keyref="setAudioRangeMode" toc="no"/>
             <topicref keyref="setTeamId" toc="no"/>
             <topicref keyref="CloudSpatialAudioConfig" toc="no"/>
-            <topicref keyref="release_IBaseSpatialAudioEngine" toc="no"/>
             <topicref keyref="setAudioRecvRange" toc="no"/>
             <topicref keyref="setDistanceUnit" toc="no"/>
             <topicref keyref="setMaxAudioRecvCount" toc="no"/>
@@ -485,12 +483,12 @@
         </topicref>
         <topicref keyref="ILocalSpatialAudioEngine" chunk="to-content">
             <topicref keyref="clearRemotePositions" toc="no"/>
+            <topicref keyref="dispose_ILocalSpatialAudioEngine" toc="no"/>
             <topicref keyref="initialize_ILocalSpatialAudioEngine" toc="no"/>
             <topicref keyref="muteAllRemoteAudioStreams_IBaseSpatialAudioEngine" toc="no"/>
             <topicref keyref="muteLocalAudioStream_IBaseSpatialAudioEngine" toc="no"/>
             <topicref keyref="removeRemotePosition" toc="no"/>
             <topicref keyref="updateRemotePosition" toc="no"/>
-            <topicref keyref="release_IBaseSpatialAudioEngine" toc="no"/>
             <topicref keyref="setAudioRecvRange" toc="no"/>
             <topicref keyref="setDistanceUnit" toc="no"/>
             <topicref keyref="setMaxAudioRecvCount" toc="no"/>
@@ -520,6 +518,7 @@
             <topicref keyref="AUDIO_RECORDING_QUALITY_TYPE" toc="no"/>
             <topicref keyref="AUDIO_REVERB_PRESET" toc="no"/>
             <topicref keyref="AUDIO_REVERB_TYPE" toc="no"/>
+            <topicref keyref="AUDIO_ROUTE_TYPE" toc="no"/>
             <topicref keyref="AUDIO_SAMPLE_RATE_TYPE" toc="no"/>
             <topicref keyref="AUDIO_SCENARIO_TYPE" toc="no"/>
             <topicref keyref="AUDIO_SESSION_OPERATION_RESTRICTION" toc="no"/>
@@ -594,6 +593,7 @@
             <topicref keyref="VOICE_CONVERSION_PRESET" toc="no"/>
             <topicref keyref="AgoraRhythmPlayerConfig" toc="no"/>
             <topicref keyref="AudioEncodedFrameObserverConfig" toc="no"/>
+            <topicref keyref="AudioPcmFrame" toc="no"/>
             <topicref keyref="AudioRecordingConfiguration" toc="no"/>
             <topicref keyref="AudioVolumeInfo" toc="no"/>
             <topicref keyref="BeautyOptions" toc="no"/>
@@ -643,6 +643,7 @@
             <topicref keyref="VideoDimensions" toc="no"/>
             <topicref keyref="VideoEncoderConfiguration" toc="no"/>
             <topicref keyref="VideoFrame" toc="no"/>
+            <topicref keyref="VideoFrameBufferConfig" toc="no"/>
             <topicref keyref="VideoFormat" toc="no"/>
             <topicref keyref="VirtualBackgroundSource" toc="no">
                 <topicref keyref="BACKGROUND_SOURCE_TYPE" toc="no"/>
