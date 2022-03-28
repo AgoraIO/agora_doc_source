@@ -31,15 +31,15 @@ namespace agora.rtc
 
         public abstract int SetParameters(string @params);
 
-        public abstract int MuteLocalAudioStream(bool mute);
+        public abstract int EnableMic(bool enable);
 
-        public abstract int MuteAllRemoteAudioStreams(bool mute);
+        public abstract int EnableSpeaker(bool enable);
 
         public abstract int EnableSpatializer(bool enable, bool applyToTeam);
 
         public abstract int SetTeamId(int teamId);
   
-        public abstract int SetAudioRangeMode(RANGE_AUDIO_MODE_TYPE rangeMode);
+        public abstract int SetRangeAudioMode(RANGE_AUDIO_MODE_TYPE rangeAudioMode);
 
         public abstract int EnterRoom(string token, string roomName, uint uid);
 
@@ -51,8 +51,6 @@ namespace agora.rtc
     public abstract class IAgoraRtcSpatialAudioEngine
     {
         public abstract void Dispose();
-
-        public abstract int Initialize();
 
         public abstract int SetMaxAudioRecvCount(int maxCount);
 
@@ -68,9 +66,9 @@ namespace agora.rtc
 
         public abstract int SetParameters(string @params);
 
-        public abstract int MuteLocalAudioStream(bool mute);
+        public abstract int EnableMic(bool enable);
 
-        public abstract int MuteAllRemoteAudioStreams(bool mute);
+        public abstract int EnableSpeaker(bool enable);
 
         public abstract int UpdateRemotePosition(uint uid, float[] position, float[] forward);
 
