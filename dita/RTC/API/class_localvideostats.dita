@@ -20,6 +20,7 @@
     public int encodedFrameHeight;
     public int encodedFrameCount;
     public int codecType;
+    public int txPacketLossRate;
   }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcLocalVideoStats : NSObject
 @property(assign, nonatomic) NSUInteger sentBitrate;
@@ -35,6 +36,7 @@
 @property(assign, nonatomic) NSInteger encodedFrameHeight;
 @property(assign, nonatomic) NSInteger encodedFrameCount;
 @property(assign, nonatomic) AgoraVideoCodecType codecType;
+@property(assign, nonatomic) NSInteger txPacketLossRate;
 @end</codeblock>
             <codeblock props="windows" outputclass="language-cpp">struct LocalVideoStats
 {
@@ -51,6 +53,7 @@
     int encodedFrameHeight;
     int encodedFrameCount;
     VIDEO_CODEC_TYPE codecType;
+    unsigned short txPacketLossRate;
 };</codeblock> </p>
             <p props="rtc" outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public static class LocalVideoStats {
@@ -162,8 +165,7 @@
       _$LocalVideoStatsFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$LocalVideoStatsToJson(this);
-}</codeblock>
-            </p>
+}</codeblock> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
@@ -205,11 +207,11 @@
                 <pt>qualityAdaptIndication</pt>
                 <pd>
                     <dl outputclass="since" props="rtc">
-                    <dlentry>
+                    <dlentry props="native">
                         <dt>自从</dt>
                         <dd>v2.4.0</dd>
                     </dlentry>
-                    </dl>统计周期内本地视频质量（基于目标帧率和目标码率）的自适应情况。<ph props="windows ios mac unity">详见 <xref keyref="QUALITY_ADAPT_INDICATION"/>。</ph>
+                    </dl>统计周期内本地视频质量（基于目标帧率和目标码率）的自适应情况。<ph props="windows ios mac unity">详见 <xref  keyref="QUALITY_ADAPT_INDICATION"/>。</ph>
                     <p props="android">
                     <ul>
                     <li><ph keyref="ADAPT_NONE"/> (0): 本地视频质量不变。</li>
@@ -247,7 +249,7 @@
                     </ul> </p>
                 </pd>
             </plentry>
-            <plentry props="rtc">
+            <plentry>
                     <pt>txPacketLossRate</pt>
                     <pd>弱网对抗前本端到 Agora 边缘服务器的视频丢包率 (%)。</pd>
                 </plentry>
@@ -259,7 +261,7 @@
                 <pt>captureBrightnessLevel</pt>
                 <pd>
                     <dl outputclass="since" props="rtc">
-                    <dlentry>
+                    <dlentry props="native">
                         <dt>自从</dt>
                         <dd>v3.3.0</dd>
                     </dlentry>
