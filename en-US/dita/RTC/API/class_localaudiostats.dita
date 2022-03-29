@@ -29,7 +29,40 @@
   int internalCodec;
   int txPacketLossRate;
 };</codeblock>
-                <codeblock props="unity" outputclass="language-csharp" /> 
+                <codeblock props="unity" outputclass="language-csharp">public class LocalAudioStats
+    {
+        public LocalAudioStats()
+        {
+        }
+        public LocalAudioStats(int numChannels, int sentSampleRate, int sentBitrate, int internalCodec)
+        {
+            this.numChannels = numChannels;
+            this.sentSampleRate = sentSampleRate;
+            this.sentBitrate = sentBitrate;
+            this.internalCodec = internalCodec;
+        }
+        
+        public int numChannels { set; get; }
+        
+        public int sentSampleRate { set; get; }
+        
+        public int sentBitrate { set; get; }
+        
+        public int internalCodec { set; get; }
+    }
+    
+    public enum RTMP_STREAM_PUBLISH_STATE {
+        
+        RTMP_STREAM_PUBLISH_STATE_IDLE = 0,
+        
+        RTMP_STREAM_PUBLISH_STATE_CONNECTING = 1,
+        
+        RTMP_STREAM_PUBLISH_STATE_RUNNING = 2,
+        
+        RTMP_STREAM_PUBLISH_STATE_RECOVERING = 3,
+        
+        RTMP_STREAM_PUBLISH_STATE_FAILURE = 4,
+    }</codeblock> 
             </p>
             <p props="rtc" outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public static class LocalAudioStats {
