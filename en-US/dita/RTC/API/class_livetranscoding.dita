@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_livetranscoding">
     <title> <ph keyref="LiveTranscoding"/> </title>
-    <shortdesc id="short"><ph id="shortdesc">Transcoding configurations for the media push.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">A class for managing user-specific CDN live audio/video transcoding settings.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
@@ -420,7 +420,7 @@
                 <pd>
                     <p>The width of the video in pixels. The default value is 360.</p>
                     <ul>
-                    <li>如果推视频流，<codeph>width</codeph> 取值范围为 [64,1920]。 如果取值低于 64，Agora 服务器会自动调整为 64； 如果取值高于 1920，Agora 服务器会自动调整为 1920。</li>
+                    <li>When pushing video streams to the CDN, the value range of <codeph>width</codeph> is [64,1920].  If the value is less than 64, Agora server automatically adjusts it to 64; if the value is greater than 1920, Agora server automatically adjusts it to 1920.</li>
                     <li>When pushing audio streams to the CDN, set <codeph>width</codeph> and <codeph>height</codeph> as 0.</li>
                     </ul> </pd>
             </plentry>
@@ -429,37 +429,36 @@
                 <pd>
                     <p>The height of the video in pixels. The default value is 640.</p>
                     <ul>
-                    <li>如果推视频流，<codeph>height</codeph> 取值范围为 [64,1080]。 如果取值低于 64，Agora 服务器会自动调整为 64； 如果取值高于 1080，Agora 服务器会自动调整为 1080。</li>
+                    <li>When pushing video streams to the CDN, the value range of <codeph>height</codeph> is [64,1080]. If the value is less than 64, Agora server automatically adjusts it to 64; if the value is greater than 1080, Agora server automatically adjusts it to 1080.</li>
                     <li>When pushing audio streams to the CDN, set <codeph>width</codeph> and <codeph>height</codeph> as 0.</li>
                     </ul> </pd>
             </plentry>
             <plentry props="ios mac">
                 <pt>size</pt>
                 <pd>
-                    <p>推流视频的总尺寸（宽和高），单位为像素。</p>
+                    <p>The size of the video (width and height in pixels).</p>
                     <ul>
-                    <li>如果推视频流，请注意：                      
-                        <ul>
-                        <li>宽的取值范围为 [64,1920]。 如果取值低于 64，Agora 服务器会自动调整为 64；如果取值高于 1920，Agora 服务器会自动调整为 1920。</li>
-                        <li>高的取值范围为 [64,1080]。 如果取值低于 64，Agora 服务器会自动调整为 64；如果取值高于 1080，Agora 服务器会自动调整为 1080。</li>
+                    <li>When pushing video streams to the CDN, note the following:<ul>
+                        <li>The value range of the width is [64,1920].  If the value is less than 64, Agora server automatically adjusts it to 64; if the value is greater than 1920, Agora server automatically adjusts it to 1920.</li>
+                        <li>The value range of the height is [64,1080]. If the value is less than 64, Agora server automatically adjusts it to 64; if the value is greater than 1080, Agora server automatically adjusts it to 1080.</li>
                         </ul></li>
-                    <li>如果推音频流，请将宽和高都设为 0。</li>
+                    <li>When pushing audio streams to the CDN, set the width and height as 0.</li>
                     </ul> </pd>
             </plentry>
             <plentry props="android windows ios mac electron unity">
                 <pt>videoBitrate</pt>
                 <pd>
-                    <p>Bitrate of the CDN live output video stream. 单位为 Kbps。 The default value is 400 Kbps.</p>
-                    <p props="rtc-ng">Set this parameter according to the <xref keyref="video-profile-table">Video Bitrate</xref> Table. If you set a bitrate beyond the proper range, the SDK automatically adapts it to a value within the range.</p>
-                    <p props="rtc">You can refer to <xref keyref="guide-cdn-streaming">Media Push </xref>for how to set this parameter.</p>
+                    <p>Bitrate of the CDN live output video stream in Kbps. The default value is 400 Kbps.</p>
+                    <p props="rtc-ng">Set this parameter according to the <xref keyref="video-profile-table">Video profile table</xref>. If you set a bitrate beyond the proper range, the SDK automatically adapts it to a value within the range.</p>
+                    <p props="rtc">You can refer to <xref keyref="guide-cdn-streaming">Media Push</xref>for how to set this parameter.</p>
                 </pd>
             </plentry>
             <plentry>
               <pt props="native">videoFrameRate</pt>
               <pt props="flutter">videoFramerate</pt>
                 <pd>
-                    <p>Frame rate of the output video stream set for the CDN live streaming. 取值范围是 (0,30]，单位为 fps。 15 fps 为默认值。</p>
-                    <note type="attention">The Agora server adjusts any value over 30 fps to 30 fps.</note></pd>
+                    <p>Frame rate (in fps) of the output video stream set for the CDN live streaming.  The default value is 15 , and the value range is (0,30].</p>
+                    <note type="attention">The Agora server adjusts any value over 30 to 30.</note></pd>
             </plentry>
             <plentry>
                 <pt>lowLatency</pt>
@@ -478,38 +477,37 @@
             </plentry>
             <plentry>
                 <pt>videoGop</pt>
-                <pd>The video GOP (Group of Pictures) of the output media stream. 单位为帧。 The default value is 30.</pd>
+                <pd>GOP (Group of Pictures) in fps of the video frames  in the CDN live stream. The default value is 30.</pd>
             </plentry>
             <plentry>
                 <pt>videoCodecProfile</pt>
                 <pd>
-                    <p>Video GOP (in frames) of the injected stream in the interactive live streaming.</p>
-                    <p>Set it as 66, 77, or 100 (default)<xref keyref="VIDEO_CODEC_PROFILE_TYPE"/>.</p>
+                    <p>Video codec profile type for CDN live streaming.</p>
+                    <p> See <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/> for details.</p>
                     <note type="attention">If you set this parameter to any other value, Agora adjusts it to the default value.</note></pd>
             </plentry>
             <plentry>
                 <pt>videoCodecType</pt>
-                <pd>Video codec profile types. See <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/> for details.</pd>
+                <pd>Video codec profile types for CDN live streaming. See  for details.<xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/></pd>
             </plentry>
             <plentry>
                 <pt>transcodingUsers</pt>
                 <pd>
-                    <p>用于管理参与旁路backgroundColor直播的视频转码合图的用户。 Agora supports a maximum of 17 transcoding users in a CDN streaming channel. See <xref keyref="TranscodingUser"/> for details.</p>
+                    <p>The video and audio properties of the user displaying the video in the CDN live. Agora supports a maximum of 17 transcoding users in a CDN streaming channel. See  for details.<xref keyref="TranscodingUser"/></p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>transcodingExtraInfo</pt>
                 <pd>
-                    <p>Reserved property. Extra user-defined information to send SEI for the H.264/H.265 video stream to the CDN live client. Maximum length: 4096 Bytes. For detailed information about SEI, see<xref keyref="faq-sei"> SEI frame related issues</xref>.</p>
+                    <p>Reserved property. Extra user-defined information to send SEI for the H.264/H.265 video stream to the CDN live client. Maximum length: 4096 bytes.  For more information on SEI, see <xref keyref="faq-sei">SEI-related questions</xref>.</p>
                 </pd>
             </plentry>
             <plentry props="ios mac">
                 <pt>backgroundColor</pt>
                 <pd>
-                    <p>The background image added to the CDN live publishing stream.</p>
+                    <p>The background color in RGB hex.</p>
                     <p>The color of the custom background image. The format is a hexadecimal integer defined by RGB, without the # sign, such as 0xFFB6C1 for light pink.  The default value is 0x000000(black).</p>
-                    <p>COLOR_CLASS 为类型统称，具体为：                                               
-                    <ul>
+                    <p>COLOR_CLASS is a general name for the type:<ul>
                     <li>iOS: UIColor</li>
                     <li>macOS: NSColor</li>
                     </ul></p>
@@ -521,7 +519,7 @@
                     <dl outputclass="deprecated">
                     <dlentry>
                         <dt>Deprecated</dt>
-                        <dd>已废弃，Agora 不推荐使用。 Use <xref keyref="setBackgroundColor"/> instead.</dd>
+                        <dd>This parameter is deprecated. Use <xref keyref="setBackgroundColor"/> instead.</dd>
                     </dlentry>
                     </dl>
                 </pd>
@@ -531,7 +529,7 @@
             </plentry>
             <plentry props="windows electron unity">
                 <pt>userCount</pt>
-                <pd>The number of users in the interactive live streaming. The value range is 0,100.</pd>
+                <pd>The number of users in the interactive live streaming. The value range is [0,17].</pd>
             </plentry>
             <plentry props="android">
                 <pt>userCount</pt>
@@ -539,10 +537,10 @@
                     <dl outputclass="deprecated">
                     <dlentry>
                         <dt>Deprecated</dt>
-                        <dd>已废弃，Agora 不推荐使用。 Use <xref keyref="getUserCount"/> instead.</dd>
+                        <dd>This parameter is deprecated. Use <xref keyref="getUserCount"/> instead.</dd>
                     </dlentry>
                     </dl>
-                    <p>The number of users in the interactive live streaming. The value range is 0,100.</p>
+                    <p>The number of users in the interactive live streaming. The value range is [0,17].</p>
                 </pd>
             </plentry>
             <plentry props="android windows unity">
@@ -551,21 +549,21 @@
                     <dl outputclass="deprecated">
                     <dlentry>
                         <dt>Deprecated</dt>
-                        <dd>已废弃，Agora 不推荐使用。</dd>
+                        <dd>This parameter is deprecated.</dd>
                     </dlentry>
                     </dl>
                     <p>The metadata sent to the CDN client.</p></pd>
             </plentry>
             <plentry props="rtc">
                 <pt>backgroundImage</pt>
-                <pd props="windows">The number of background images on the live video. See <xref keyref="RtcImage"/> for details.  You can add a background image or use an array to add multiple background images. This parameter is used with <parmname>backgroundImageCount</parmname>.</pd>
+                <pd props="windows">The number of background images on the live video. See  for details. <xref keyref="RtcImage"/> You can add a background image or use an array to add multiple background images. This parameter is used with <parmname>backgroundImageCount</parmname>.</pd>
                 <pd props="ios mac">
                     <p>Deprecated as of v3.6.0. Use <parmname>backgroundImageArray </parmname>instead.</p>
-                    <p>The number of background images on the live video. The image format needs to be PNG. See <xref keyref="RtcImage"/> for details.</p>
+                    <p>The number of background images on the live video. The image format needs to be PNG. See  for details.<xref keyref="RtcImage"/></p>
                 </pd>
                 <pd props="android">
                     <p>Deprecated as of v3.6.0. Use <parmname>backgroundImageList </parmname>instead.</p>
-                    <p>The number of background images on the live video. Ensure that the format of the watermark image is PNG. See <xref keyref="RtcImage"/> for details.</p>
+                    <p>The number of background images on the live video. Ensure that the format of the watermark image is PNG. See  for details.<xref keyref="RtcImage"/></p>
                 </pd>
             </plentry>
             <plentry props="ios mac android electron unity flutter">
@@ -578,14 +576,14 @@
                         <dd props="ios mac">Use <parmname>watermarkArray</parmname>.</dd>
                     </dlentry>
                     </dl>
-                    <p>The watermark on the live video. Ensure that the format of the watermark image is PNG. See <xref keyref="RtcImage"/> for details.</p>
+                    <p>The watermark on the live video. Ensure that the format of the watermark image is PNG. See  for details.<xref keyref="RtcImage"/></p>
                 </pd>
             </plentry>
             <plentry props="windows electron unity flutter">
                 <pt>watermark</pt>
                 <pd>
-                    <p>The watermark on the live video. Ensure that the format of the watermark image is PNG. See <xref keyref="RtcImage"/> for details.</p>
-                    <p>You can add one watermark, or add multiple watermarks using an array. This parameter is used in conjunction with <parmname>watermarkCount</parmname>.</p>
+                    <p>The watermark on the live video. Ensure that the format of the watermark image is PNG. See  for details.<xref keyref="RtcImage"/></p>
+                    <p>You can add one watermark, or add multiple watermarks using an array. This parameter is used with <parmname>watermarkCount</parmname>.</p>
                 </pd>
             </plentry>
             <plentry>
@@ -594,34 +592,34 @@
                     <dl props="android" outputclass="deprecated">
                     <dlentry>
                         <dt>Deprecated</dt>
-                        <dd>请改用 <parmname>addBackgroundImage</parmname>。</dd>
+                        <dd>Use <parmname>addBackgroundImage</parmname> instead.</dd>
                     </dlentry>
                     </dl>
-                    <p>The number of background images on the live video. The image format needs to be PNG. See <xref keyref="RtcImage"/> for details.</p>
+                    <p>The number of background images on the live video. The image format needs to be PNG. See  for details.<xref keyref="RtcImage"/></p>
                     <p props="windows"
                     > You can add a background image or use an array to add multiple background images. This parameter is used with <parmname>backgroundImageCount</parmname>.</p>
                 </pd>
             </plentry>
             <plentry props="ios mac">
                 <pt>backgroundImageArray</pt>
-                <pd>The number of background images on the live video. The image format needs to be PNG. See <xref keyref="RtcImage"/> for details.</pd>
+                <pd>The number of background images on the live video. The image format needs to be PNG. See  for details.<xref keyref="RtcImage"/></pd>
             </plentry>
             <plentry>
                 <pt>audioSampleRate</pt>
                 <pd>
-                    <p>自定义音频采样率。 See <xref keyref="AUDIO_SAMPLE_RATE_TYPE"/> for details.</p>
+                    <p>Self-defined audio sample rate. See  for details.<xref keyref="AUDIO_SAMPLE_RATE_TYPE"/></p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>audioBitrate</pt>
                 <pd>
-                    <p>Bitrate of the CDN live audio output stream. The default value is 48 Kbps, and the highest value is 128.</p>
+                    <p>Bitrate (Kbps) of the CDN live audio output stream.  The default value is 48, and the highest value is 128.</p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>audioChannels</pt>
                 <pd>
-                    <p>The numbder of audio channels for the CDN live stream. Agora recommends choosing 1 (mono), or 2 (stereo) audio channels. Special players are required if you choose option 3, 4, or Special players are required if you choose 3, 4, or 5.</p>
+                    <p>The number of audio channels for the CDN live stream. Agora recommends choosing 1 (mono), or 2 (stereo) audio channels. Special players are required if you choose 3, 4, or 5.</p>
                     <ul>
                     <li>1: (Default) Mono</li>
                     <li>2: Stereo.</li>
@@ -633,21 +631,21 @@
             <plentry>
                 <pt>audioCodecProfile</pt>
                 <pd>
-                    <p>用于旁路直播输出音频的编码规格。 See <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/> for details.</p>
+                    <p>Audio codec profile type for CDN live streaming. See  for details.<xref keyref="AUDIO_CODEC_PROFILE_TYPE"/></p>
                 </pd>
             </plentry>
             <plentry props="ios mac">
                 <pt>watermarkArray</pt>
                 <pd>
-                    <p>An array of watermarks on the live video. 详见 <xref keyref="RtcImage"/>。 </p>
+                    <p>The array of watermarks on the live video. See <xref keyref="RtcImage"/> for details.</p>
                     <p>You can add one or more <parmname>watermarks </parmname>using <parmname>watermarkArray</parmname>. The image format needs to be PNG. The total number of watermarks and background images on a live video must be greater than or equal to 0 and less than or equal to 10.</p>
                 </pd>
             </plentry>
             <plentry props="windows">
                 <pt>watermarkCount</pt>
                 <pd>
-                    <p>An array of watermarks on the live video. 详见 <xref keyref="RtcImage"/>。 </p>
-                    <p>The total number of watermarks and background images must be greater than or equal to 0 and less than or equal to 10. This parameter is used with <parmname>watermark</parmname>.</p>
+                    <p>The array of watermarks on the live video. See <xref keyref="RtcImage"/> for details.</p>
+                    <p>The total number of watermarks and background images can ranges from 0 to 10. This parameter is used with <parmname>watermark</parmname>.</p>
                 </pd>
             </plentry>
             <plentry props="ios mac">
@@ -662,12 +660,12 @@
                 <pt>backgroundImageCount</pt>
                 <pd>
                     <p>The number of background images on the live video.</p>
-                    <p>The total number of watermarks and background images must be greater than or equal to 0 and less than or equal to 10. This parameter is used with <parmname>backgroundImage</parmname>.</p>
+                    <p>The total number of watermarks and background images can ranges from 0 to 10. This parameter is used with <parmname>backgroundImage</parmname>.</p>
                 </pd>
             </plentry>
             <plentry props="rtc">
                 <pt>userConfigExtraInfo</pt>
-                <pd>Reserved for future use. Reserved property. Extra user-defined information to send SEI for the H.264/H.265 video stream to the CDN live client. Maximum length: 4096 Bytes.</pd>
+                <pd>Reserved for future use. Extra user-defined information to send the Supplemental Enhancement Information (SEI) for the H.264/H.265 video stream to the CDN live client.  Maximum length: 4096 Bytes. </pd>
             </plentry>
             </parml> </section>
     </refbody>
