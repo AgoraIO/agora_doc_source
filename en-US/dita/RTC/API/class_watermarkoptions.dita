@@ -6,7 +6,42 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="unity" outputclass="language-csharp">public class WatermarkOptions
+    {
+        public WatermarkOptions()
+        {
+            visibleInPreview = true;
+            positionInLandscapeMode = new Rectangle();
+            positionInPortraitMode = new Rectangle();
+            watermarkRatio = new WatermarkRatio();
+            mode = WATERMARK_FIT_MODE.FIT_MODE_COVER_POSITION;
+        }
+        public WatermarkOptions(bool visibleInPreview, Rectangle positionInLandscapeMode,
+            Rectangle positionInPortraitMode, WatermarkRatio ratio, WATERMARK_FIT_MODE mode)
+        {
+            this.visibleInPreview = visibleInPreview;
+            this.positionInLandscapeMode = positionInLandscapeMode ?? new Rectangle();
+            this.positionInPortraitMode = positionInPortraitMode ?? new Rectangle();
+            this.watermarkRatio = ratio ?? new WatermarkRatio();
+            this.mode = mode;
+        }
+        
+        public bool visibleInPreview { set; get; }
+        
+        public Rectangle positionInLandscapeMode { set; get; }
+        
+        public Rectangle positionInPortraitMode { set; get; }
+        
+        public WatermarkRatio watermarkRatio { set; get; }
+        
+        public WATERMARK_FIT_MODE mode { set; get; }
+    }
+    
+    public class RtcStats
+    {
+        public RtcStats()
+        {
+        }</codeblock>
             </p>
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public class WatermarkOptions {

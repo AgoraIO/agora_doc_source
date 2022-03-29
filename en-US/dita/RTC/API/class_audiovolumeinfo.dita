@@ -25,7 +25,88 @@
                     double voicePitch;
                     AudioVolumeInfo() : uid(0), volume(0), vad(0), voicePitch(0.0) {}
                     };</codeblock>
-                    <codeblock props="unity" outputclass="language-csharp" />
+                    <codeblock props="unity" outputclass="language-csharp">public class AudioVolumeInfo
+    {
+        public AudioVolumeInfo()
+        {
+        }
+        public AudioVolumeInfo(uint uid, uint volume, uint vad)
+        {
+            this.uid = uid;
+            this.volume = volume;
+            this.vad = vad;
+        }
+        
+        public uint uid { set; get; }
+        
+        public uint volume { set; get; }
+        
+        public uint vad { set; get; }
+    }
+    
+    public class Packet
+    {
+        public Packet()
+        {
+            buffer = new byte[0];
+        }
+        public Packet(byte[] buffer, uint size)
+        {
+            this.buffer = buffer;
+            this.size = size;
+        }
+        
+        public byte[] buffer { set; get; }
+        
+        public uint size { set; get; }
+    }
+    
+    public enum AUDIO_SAMPLE_RATE_TYPE {
+        
+        AUDIO_SAMPLE_RATE_32000 = 32000,
+        
+        AUDIO_SAMPLE_RATE_44100 = 44100,
+        
+        AUDIO_SAMPLE_RATE_48000 = 48000,
+    };
+    
+    public enum VIDEO_CODEC_PROFILE_TYPE {
+        
+        VIDEO_CODEC_PROFILE_BASELINE = 66,
+        
+        VIDEO_CODEC_PROFILE_MAIN = 77,
+        
+        VIDEO_CODEC_PROFILE_HIGH = 100,
+    };
+    
+    public enum AUDIO_CODEC_PROFILE_TYPE {
+        
+        AUDIO_CODEC_PROFILE_LC_AAC = 0,
+        
+        AUDIO_CODEC_PROFILE_HE_AAC = 1,
+    };
+    
+    public class LocalAudioStats
+    {
+        public LocalAudioStats()
+        {
+        }
+        public LocalAudioStats(int numChannels, int sentSampleRate, int sentBitrate, int internalCodec)
+        {
+            this.numChannels = numChannels;
+            this.sentSampleRate = sentSampleRate;
+            this.sentBitrate = sentBitrate;
+            this.internalCodec = internalCodec;
+        }
+        
+        public int numChannels { set; get; }
+        
+        public int sentSampleRate { set; get; }
+        
+        public int sentBitrate { set; get; }
+        
+        public int internalCodec { set; get; }
+    }</codeblock>
             </p>
             <p props="rtc" outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public static class AudioVolumeInfo {
