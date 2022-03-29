@@ -2,7 +2,8 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_contentinspectmodule">
     <title><ph keyref="ContentInspectModule"/></title>
-    <shortdesc id="short"><ph id="shortdesc"><apiname keyref="ContentInspectModule"/>
+    <shortdesc id="short"><ph id="shortdesc"><apiname
+        keyref="ContentInspectModule"/>
             结构体，用于配置内容审核模块的类型和频率。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -26,12 +27,14 @@
 };
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="unity" outputclass="language-csharp">public class ContentInspectModule {
+        public CONTENT_INSPECT_TYPE type;
+        public uint frequency;
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/>
-            </p>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
             <p outputclass="codeblock" props="rtc">
-                <codeblock props="android" outputclass="language-java">public static class ContentInspectModule {
+            <codeblock props="android" outputclass="language-java">public static class ContentInspectModule {
     public int type;
     public int interval;
     public ContentInspectModule() {
@@ -40,12 +43,12 @@
     }
   }
 </codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraContentInspectModule) __attribute__((visibility("default"))) @interface AgoraContentInspectModule : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraContentInspectModule) __attribute__((visibility("default"))) @interface AgoraContentInspectModule : NSObject
 @property(assign, nonatomic) AgoraContentInspectType type NS_SWIFT_NAME(type);
 @property(assign, nonatomic) NSInteger interval NS_SWIFT_NAME(interval);
 @end
 </codeblock>
-                <codeblock props="windows" outputclass="language-cpp">struct ContentInspectModule {
+            <codeblock props="windows" outputclass="language-cpp">struct ContentInspectModule {
   ContentInspectType type;
   int interval;
   ContentInspectModule() {
@@ -54,33 +57,33 @@
   }
 };
 </codeblock>
-                <codeblock props="electron" outputclass="language-typescript"/>
-                <codeblock props="unity" outputclass="language-csharp"/>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
-            </p>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
-                <dlentry props="rtc">
-                    <dt>自从</dt>
-                    <dd>v3.5.2</dd>
-                </dlentry>
+            <dlentry props="rtc">
+                <dt>自从</dt>
+                <dd>v3.5.2</dd>
+            </dlentry>
             </dl>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
-                <plentry>
-                    <pt>type</pt>
-                    <pd>内容审核模块的类型。详见 <xref keyref="CONTENT_INSPECT_TYPE"/>。</pd>
-                </plentry>
-                <plentry>
-                    <pt props="rtc-ng">frequency</pt>
-                    <pt props="rtc">interval</pt>
-                    <pd>内容审核的频率，单位为秒，取值必须大于 0。默认值为 0，表示不进行内容审核。</pd>
-                </plentry>
-            </parml>
-        </section>
+            <plentry>
+                <pt>type</pt>
+                <pd>内容审核模块的类型。详见 <xref keyref="CONTENT_INSPECT_TYPE"/>。</pd>
+            </plentry>
+            <plentry>
+                <pt props="rtc-ng">frequency</pt>
+                <pt props="rtc">interval</pt>
+                <pd>内容审核的频率，单位为秒，取值必须大于 0。默认值为 0，表示不进行内容审核。</pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

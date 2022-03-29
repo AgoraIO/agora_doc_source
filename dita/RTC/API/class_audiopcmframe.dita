@@ -9,7 +9,15 @@
             <codeblock props="ios mac" outputclass="language-objectivec"/>
             <codeblock props="windows" outputclass="language-cpp"/>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="unity" outputclass="language-csharp">
+        public struct AudioPcmFrame {
+        public UInt32 capture_timestamp;
+        public UInt64 samples_per_channel_;
+        public int sample_rate_hz_;
+        public UInt64 num_channels_;
+        public BYTES_PER_SAMPLE bytes_per_sample;
+        public Int16[] data_;
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </section>
         <section id="parameters">
@@ -19,26 +27,26 @@
                 <pt>capture_timestamp</pt>
                 <pd>音频帧的时间戳 (ms)。</pd>
             </plentry>
-                <plentry>
-                    <pt>samples_per_channel_</pt>
-                    <pd>每个声道的采样点数。</pd>
-                </plentry>
-                <plentry>
-                    <pt>sample_rate_hz_</pt>
-                    <pd>音频采样率 (Hz)。</pd>
-                </plentry>
-                <plentry>
-                    <pt>num_channels_</pt>
-                    <pd>音频声道数。</pd>
-                </plentry>
-                <plentry>
-                    <pt>bytes_per_sample</pt>
-                    <pd>音频数据的字节数。</pd>
-                </plentry>
-                <plentry>
-                    <pt>data_</pt>
-                    <pd>音频数据的最大字节。</pd>
-                </plentry>
+            <plentry>
+                <pt>samples_per_channel_</pt>
+                <pd>每个声道的采样点数。</pd>
+            </plentry>
+            <plentry>
+                <pt>sample_rate_hz_</pt>
+                <pd>音频采样率 (Hz)。</pd>
+            </plentry>
+            <plentry>
+                <pt>num_channels_</pt>
+                <pd>音频声道数。</pd>
+            </plentry>
+            <plentry>
+                <pt>bytes_per_sample</pt>
+                <pd>音频数据的字节数。</pd>
+            </plentry>
+            <plentry>
+                <pt>data_</pt>
+                <pd>音频数据的最大字节。</pd>
+            </plentry>
             </parml> </section>
     </refbody>
 </reference>
