@@ -156,13 +156,13 @@
                 </plentry>
                 <plentry props="android">
                   <pt>mNativeLibPath</pt>
-                  <pd><p>Specifies the storage directory for .so files. 存储目录必须为有效的 app 的私有目录，可以通过 <codeph>Context.getDir()</codeph> 获取。<codeph></codeph></p>
+                  <pd><p>Specifies the storage directory for the <codeph>.so</codeph> files. The storage directory must be a valid and private directory of the app, which can be obtained using <codeph>Context.getDir()</codeph>.</p>
                     <ul>
-                      <li>如果你设置了该参数，SDK 会在你指定的目录下自动加载 <codeph>.so</codeph> 文件，使 app 在运行时动态加载需要的 <codeph>.so</codeph> 文件，从而减小 app 的包体积。</li>
-                      <li>如果你不设置该参数或将其设置为 null，SDK 会从 app 默认的 <codeph>nativeLibraryPath</codeph> 中加载打包所需的 <codeph>.so</codeph> 文件，相对于上一种方式，app 的包体积会增加。</li></ul>
+                      <li>If you set this parameter, the SDK automatically loads the <codeph>.so</codeph> files in the directory you specify, so that the app dynamically loads the required <codeph>.so</codeph> files when it runs, thereby the package size is reduced.</li>
+                      <li>If you do not set this parameter or set it to null, the SDK loads the <codeph>.so</codeph> files from the default app's <codeph>nativeLibraryPath</codeph> when compiling the app, which will increase the package size compared to the previous method.</li></ul>
                     <note type="attention"><ul>
-                      <li>该设置仅适用于手动集成 SDK，不适用于通过 Maven Central 或 JitPack 集成 SDK 的情况。</li>
-                      <li>务必确保你设置的路径为有效路径，否则会导致 <xref keyref="IRtcEngine"/> 创建失败。</li></ul></note>
+                      <li>This method is applicable when you integrate the SDK manually but not when you integrate the SDK with Maven Central or JitPack.</li>
+                      <li>Ensure the specified directory exists; otherwise, the <xref keyref="IRtcEngine"/> fails.</li></ul></note>
                   </pd>
                 </plentry>
                 <plentry props="android windows">
@@ -197,7 +197,7 @@
                     <pt props="windows ios mac">logConfig</pt>
                     <pt props="android">mLogConfig</pt>
                     <pd>
-                        <p>The log files that the SDK outputs. See  for details.<xref keyref="LogConfig"/></p>
+                        <p>The log files that the SDK outputs. See <xref keyref="LogConfig"/> for details.</p>
                         <p>By default, the SDK outputs four log files: <codeph>agorasdk.log</codeph>, <codeph>agorasdk1.log</codeph>, <codeph>agoraapi.log</codeph>, and <codeph>agoraapi1.log</codeph>. The <codeph>agorasdk.log</codeph> and <codeph>agorasdk1.log</codeph> files each have a default size of 1024 KB, and the <codeph>agoraapi.log</codeph> and <codeph>agoraapi1.log</codeph> files each have a default size of 2,048 KB. These log files are encoded in UTF-8.</p>
                         <p>The SDK writes the latest logs in <codeph>agorasdk.log</codeph> or <codeph>agoraapi.log</codeph>. When <codeph>agorasdk.log</codeph> or <codeph>agoraapi.log</codeph> is full, the SDK deletes <codeph>agorasdk1.log</codeph> or <codeph>agoraapi1.log</codeph>, renames <codeph>agorasdk.log</codeph> to <codeph>agorasdk1.log</codeph> and <codeph>agoraapi.log</codeph> to <codeph>agorasapi1.log</codeph>, and creates a new <codeph>agorasdk.log</codeph> or <codeph>agoraapi.log</codeph> to record the latest logs.</p>
                     </pd>
