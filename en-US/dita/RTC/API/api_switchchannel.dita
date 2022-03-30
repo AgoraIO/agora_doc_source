@@ -28,7 +28,7 @@
         </section>
         <section id="detailed_desc">
    <p>This method allows the audience of an interactive live streaming channel to switch to a different channel.</p>
-   <p>After the user successfully switches to another channel, the <xref keyref="onLeaveChannel"/> and  callbacks are triggered to indicate that the user has left the original channel and joined a new one.<xref keyref="onJoinChannelSuccess"/></p>
+   <p>After the user successfully switches to another channel, the <xref keyref="onLeaveChannel"/> and <xref keyref="onJoinChannelSuccess"/> callbacks are triggered to indicate that the user has left the original channel and joined a new one.</p>
    <p>Once the user switches to another channel, the user subscribes to the audio and video streams of all the other users in the channel by default, giving rise to usage and billing calculation. To stop subscribing to a specified stream or all remote streams, call the corresponding <apiname>mute</apiname> methods.</p>
         </section>
         <section id="parameters"><title>Parameters</title>
@@ -39,7 +39,7 @@
                                 <li>In scenarios with low security requirements, token is optional and can be set as <ph keyref="NULL"/>.</li>
                                 <li>In scenarios with high security requirements, set the value to the token generated from your server. If you enable the App Certificate, you must use a token to join the channel.</li>
                             </ul>
-                            <note type="caution">Ensure that the App ID used for creating the token is the<xref keyref="create2"/> sameApp ID used by the  method for initializing the RTC engine.</note>
+                            <note type="caution">Ensure that the App ID used for creating the token is the same App ID used by the <xref keyref="create2"/> method for initializing the RTC engine.</note>
                         </p></pd>
        </plentry>
        <plentry>
@@ -64,10 +64,10 @@
        <li>&lt; 0: Failure.<ul>
   <li>-1: A general error occurs (no specified reason).</li>
   <li>-2: The parameter is invalid.</li>
-  <li>-5: The request is rejected. The role of the remote user is not AUDIENCE.</li>
+  <li>-5: The request is rejected. Probably because the user is not an audience.</li>
   <li>-7: The SDK is not initialized.</li>
-  <li>-102: 频道名无效。 Please use a valid channel name.</li>
-  <li>-113: 用户不在频道内。</li>
+  <li>-102: The channel name is invalid. Please use a valid channel name.</li>
+  <li>-113: The user is not in the channel.</li>
        </ul></li>
    </ul>
         </section></refbody>
