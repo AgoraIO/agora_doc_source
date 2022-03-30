@@ -20,31 +20,32 @@ The Agora Chat SDK provides a `GroupManager` and a `Group` class for chat group 
 
 Before proceeding, ensure that you meet the following requirements:
 - You have initialized the Agora Chat SDK. For details, see [Get Started with Android](agora_chat_get_started_android).
-- You understand the call frequency of the Agora Chat APIs supported by different pricing plans as described in [Limitations](agora_caht_limitation_android).
+- You understand the call frequency of the Agora Chat APIs supported by different pricing plans as described in [Limitations](agora_caht_limitation).
 - You understand the number of chat groups and chat group members supported by different pricing plans as described in [Pricing Plan Details](agora_chat_plan).
 
 
 ## Implementation
 
-This section describes how to call the APIs provided by the Agora Chat SDK to implement the feature listed above.
+This section describes how to call the APIs provided by the Agora Chat SDK to implement the features listed above.
 
 ### Create and destroy a chat group
 
-You can create a chat group and set the chat group attributes such as the name, description, group members, and reasons to create the group. You can also set the `GroupOptions` parameter to specify the group size and group type. Once a chat group is created, the creator of the chat group becomes the chat group owner automatically.
+You can create a chat group and set the chat group attributes such as the name, description, group members, and reasons to create the group. You can also set the `GroupOptions` parameter to specify the size and type of the chat group. Once a chat group is created, the creator of the chat group becomes the chat group owner automatically.
 
 Only chat group owners can destroy chat groups. Once a chat group is destroyed, all the chat group members receive the `onGroupDestroyed` callback and are immediately removed from the chat group. Data related to the chat group are also removed from the database and memory.
 
 Refer to the following sample code to create and destroy a chat group:
 
 ```java
+GroupOptions option = new GroupOptions();
+// Set the size of a chat group to 100 members.
+option.maxUsers = 100;
+// Set the type of a chat group to private. Allow chat group members to invite other users to join the chat group.
+option.style = GroupStyle.GroupStylePrivateMemberCanInvite;
+
 // Call createGroup to create a chat group.
 ChatClient.getInstance().groupManager().createGroup(groupName, desc, allMembers, reason, option);
 
-GroupOptions option = new GroupOptions();
-// Set the group size to 100 members.
-option.maxUsers = 100;
-// Set the group type to private. Allow chat group members to invite other users to join the group.
-option.style = GroupStyle.GroupStylePrivateMemberCanInvite;
 
 // Call destroyGroup to destroy a chat group.
 ChatClient.getInstance().groupManager().destroyGroup(groupId);
@@ -129,7 +130,7 @@ ChatClient.getInstance().groupManager().unblockGroupMessage(groupId);
 ### Manage chat group members
 
 1. Add users to a chat group.  
-Whether a chat group is public or private, the chat group owner and chat group admins can add users to the chat group. As for private groups, if the group type is set to `GroupStylePrivateMemberCanInvite`, group members can invite users to join the chat group.
+Whether a chat group is public or private, the chat group owner and chat group admins can add users to the chat group. As for private groups, if the type of a chat group is set to `GroupStylePrivateMemberCanInvite`, group members can invite users to join the chat group.
 
 2. Implement chat group invitations.   
 After a user is invited to join a chat group, the implementation logic varies based on the settings of the user:
@@ -158,7 +159,7 @@ ChatClient.getInstance().groupManager().removeUserFromGroup(groupId, username);
 ### Manage chat group ownership and admin
 
 1. Transfer the chat group ownership.  
-The chat group owner can transfer the ownership to the specified chat group member. Once the ownership is transferred, the original chat group owner becomes a regular member. All the other chat group members receive the `onOwnerChanged` callback.
+The chat group owner can transfer the ownership to the specified chat group member. Once the ownership is transferred, the original chat group owner becomes a group member. All the other chat group members receive the `onOwnerChanged` callback.
 
 2. Add chat group admins.  
 The chat group owner can add admins. Once added to the chat group admin list, the newly added admin and the other chat group admins receive the `onAdminAdded` callback.
@@ -200,7 +201,7 @@ ChatClient.getInstance().groupManager().getBlockedUsers(groupId);
 
 ### Manage the chat group mute list
 
-The chat group owner and chat group admins can add the specified member to the chat group mute list and remove them from it. Once a chat group member is added to the mute list, this member can no longer send chat group message, not even after being added to the chat group allow list.
+The chat group owner and chat group admins can add the specified member to the chat group mute list and remove them from it. Once a chat group member is added to the mute list, this member can no longer send chat group messages, not even after being added to the chat group allow list.
 
 Refer to the following sample code to manage the chat group mute list:
 
