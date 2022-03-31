@@ -141,14 +141,14 @@
                 <plentry>
                     <pt props="windows ios mac">appId</pt>
                     <pt props="android">mAppId</pt>
-                    <pd id="appid">The App ID issued by Agora for your project. Only users in apps with the same App ID can join the same channel and communicate with each other. An App ID can only be used to create one <apiname keyref="IRtcEngine"/> instance. To change your App ID, call <xref keyref="release"/> to destroy the current <apiname keyref="IRtcEngine"/> instance and then create a new one.</pd>
+                    <pd id="appid">The App ID issued by Agora for your project. Only users in apps with the same App ID can join the same channel and communicate with each other. An App ID can only be used to create one <apiname keyref="IRtcEngine"/> instance. To change your App ID, call <xref keyref="release"/> to destroy the current <apiname keyref="IRtcEngine"/> instance, and then create a new one.</pd>
                 </plentry>
                 <plentry props="android windows">
                     <pt props="windows">context</pt>
                     <pt props="android">mContext</pt>
                     <pd id="context">
                         <ul props="windows">
-                            <li>For Windows, it is the window handle of the app. Once set, this parameter enables you to plug or unplug the video devices while they are powered.</li>
+                            <li>For Windows, it is the window handle of the app. Once set, this parameter enables you to connect or disconnect the video devices while they are powered.</li>
                             <li>For Android, it is the context of Android Activity.</li>
                         </ul>
                         <p props="android">The context of Android Activity.</p>
@@ -158,8 +158,8 @@
                   <pt>mNativeLibPath</pt>
                   <pd><p>Specifies the storage directory for the <codeph>.so</codeph> files. The storage directory must be a valid and private directory of the app, which can be obtained using <codeph>Context.getDir()</codeph>.</p>
                     <ul>
-                      <li>If you set this parameter, the SDK automatically loads the <codeph>.so</codeph> files in the directory you specify, so that the app dynamically loads the required <codeph>.so</codeph> files when it runs, thereby the package size is reduced.</li>
-                      <li>If you do not set this parameter or set it to null, the SDK loads the <codeph>.so</codeph> files from the default app's <codeph>nativeLibraryPath</codeph> when compiling the app, which will increase the package size compared to the previous method.</li></ul>
+                      <li>If you set this parameter, the SDK automatically loads the <codeph>.so</codeph> files in the directory you specify, so that the app dynamically loads the required <codeph>.so</codeph> files when it runs, thereby reducing the package size.</li>
+                      <li>If you do not set this parameter or set it to null, the SDK loads the <codeph>.so</codeph> files from the default app's <codeph>nativeLibraryPath</codeph> when compiling the app, which increases the package size compared to the previous method.</li></ul>
                     <note type="attention"><ul>
                       <li>This method is applicable when you integrate the SDK manually but not when you integrate the SDK with Maven Central or JitPack.</li>
                       <li>Ensure the specified directory exists; otherwise, the <xref keyref="IRtcEngine"/> fails.</li></ul></note>
@@ -198,7 +198,7 @@
                     <pt props="android">mLogConfig</pt>
                     <pd>
                         <p>The log files that the SDK outputs. See <xref keyref="LogConfig"/> for details.</p>
-                        <p>By default, the SDK generates 5 SDK log files and 5 API call log files with the following rules:</p>
+                        <p>By default, the SDK generates five SDK log files and five API call log files with the following rules:</p>
                         <ul conkeyref="setLogFileSize/logprinciple"><li></li></ul>
                       </pd>
                 </plentry>
