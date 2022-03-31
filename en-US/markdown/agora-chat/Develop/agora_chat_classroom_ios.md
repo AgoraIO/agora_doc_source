@@ -21,7 +21,7 @@ The Agora Chat SDK provides a `IAgoraChatroomManager`, a `AgoraChatroomManagerDe
 
 Before proceeding, ensure that you meet the following requirements:
 
-- You have initialized the Agora Chat SDK. For details, see [Get Started with iOS.](agora_chat_get_started_ios).
+- You have initialized the Agora Chat SDK. For details, see [Get Started with iOS](agora_chat_get_started_ios).
 - You understand the call frequency of the Agora Chat APIs supported by different pricing plans as described in [Limitations](agora_chat_limitation).
 - You understand the number of chat rooms supported by different pricing plans as described in [Pricing Plan Details](agora_chat_plan).
 - Only the app super admin has the privilege of creating a chat room. Ensure that you have added an app super admin by [calling the super-admin RESTful API](agora_chat_restful_chatroom_superadmin).
@@ -33,9 +33,9 @@ This section describes how to call the APIs provided by the Agora Chat SDK to im
 
 ### Create and destroy a chat room
 
-The [app super admin](agora_chat_restful_chatroom_superadmin) can create a chat room and set the chat room attributes such as the chat room subject, description, and the maximum number of members. Once the chat room is created, the super admin becomes the chat room owner automatically.
+The [app super admin](agora_chat_restful_chatroom_superadmin) can create a chat room and set the chat room attributes such as the chat room subject, description, and the maximum number of members. Once a chat room is created, the super admin becomes the chat room owner automatically.
 
-Only the chat room owner can disband a chat room. Once the chat room is disbanded, all the chat room members recieve the `didDismissFromChatroom` callback and are immediately removed from the chat room.
+Only the chat room owner can disband a chat room. Once a chat room is disbanded, all the chat room members receive the `didDismissFromChatroom` callback and are immediately removed from the chat room.
 
 ```objective-c
 // The super admin can call createChatroomWithSubject to create a chat room.
@@ -53,7 +53,7 @@ AgoraError *error = nil;
 All chat users can get the chat room list from the server and retrieve the basic information of the specified chat room using the chat room ID.
 
 ```objective-c
-// Chat room members can call getChatroomsFromServerWithPage to get the specified number of chat rooms from the server by page. The maximum value of pageSize is 1,000.
+// Chat room members can call getChatroomsFromServerWithPage to retrieve the specified number of chat rooms from the server by page. The maximum value of pageSize is 1,000.
 AgoraError *error = nil;
 [[AgoraChatClient sharedClient].roomManager getChatroomsFromServerWithPage:1 pageSize:50 error:&error];
 														
@@ -66,7 +66,7 @@ AgoraChatroom *chatRoom = [AgoraChatroom chatroomWithId:@"chatroomId"];
 
 All chat users can call `joinChatroom` to join the specified chat room. Once a chat user joins a chat room, all the other chat room members receive the `userDidJoinChatroom` callback.
 
-All the chat room members can call `leaveChatroom` to leave the specified chat room. Once a chat room member leaves the chat room, all the other members receive the `userDidLeaveChatroom` callback and all the local data are deleted by default. To retain data on the local device, Set the `isDeleteMessagesWhenExitChatRoom` parameter of `AgoraOptions` to `NO`.
+All the chat room members can call `leaveChatroom` to leave the specified chat room. Once a chat room member leaves a chat room, all the other members receive the `userDidLeaveChatroom` callback and all the local data are deleted by default. To retain data on the local device, set the `isDeleteMessagesWhenExitChatRoom` parameter of `AgoraOptions` to `NO`.
 
 ```objective-c
 // All the chat users can call joinChatroom to join the specified chat room.
@@ -81,7 +81,7 @@ AgoraError *error = nil;
 
 ### Retrieve and modify the chat room attributes
 
-All the chat room members can retrieve the detailed information of the current chat room, including the subject, annoucenments, description, member type, and admin list.
+All the chat room members can retrieve the detailed information of the current chat room, including the subject, annoucements, description, member type, and admin list.
 
 The chat room owner and admins can also set and update the chat room information.
 
@@ -130,7 +130,7 @@ AgoraError *error = nil;
 AgoraError *error = nil;
 [[AgoraChatClient sharedClient].roomManager unblockMembers:@[@"userName"] fromChatroom:@"chatroomId" error:&error];
 
-// The chat room owner or admin call getChatroomBlacklistFromServerWithId to reveive the block list of the current chat room.
+// The chat room owner or admin call getChatroomBlacklistFromServerWithId to retrieve the block list of the current chat room.
 AgoraError *error = nil;
 [[AgoraChatClient sharedClient].roomManager getChatroomBlacklistFromServerWithId:@"chatroomId" pageNumber:1 pageSize:20 error:&error];
 ```
@@ -138,7 +138,7 @@ AgoraError *error = nil;
 
 ### Manage the chat room mute list
 
-The chat room owner and admins can add the specified member to the chat room mute list and remove them from it. Once a chat room member is added to the mute list, this member can no longer send chat room message, not even after being added to the chat room allow list.
+The chat room owner and admins can add the specified member to the chat room mute list and remove them from it. Once a chat room member is added to the mute list, this member can no longer send chat room messages, not even after being added to the chat room allow list.
 
 ```objective-c
 // The chat room owner or admin call muteMembers to add the specified user to the chat room block list.
@@ -147,7 +147,7 @@ AgoraError *error = nil;
 [[AgoraChatClient sharedClient].roomManager muteMembers:@[@"userName"] muteMilliseconds:-1 fromChatroom:@"chatroomId" error:&error];
 
 // The chat room owner or admin can call unMuteChatRoomMembers to remove the specified user from the chat room mute list.
-// The unmuted member and all the other chat room admins or owner recieve the chatroomMuteListDidUpdate callback.
+// The unmuted member and all the other chat room admins or owner receive the chatroomMuteListDidUpdate callback.
 AgoraError *error = nil;
 [[AgoraChatClient sharedClient].roomManager unmuteMembers:@[@"userName"] fromChatroom:@"chatroomId" error:&error];
 
@@ -192,7 +192,7 @@ AgoraError *error = nil;
 AgoraError *error = nil;
 [AgoraChatClient.sharedClient.roomManager isMemberInWhiteListFromServerWithChatroomId:@"aChatroomId" error:&error];
 
-// The chat room owner or admin can call getChatroomWhiteListFromServerWithId to retrive the allow list of the current chat room.
+// The chat room owner or admin can call getChatroomWhiteListFromServerWithId to retrieve the allow list of the current chat room.
 AgoraError *error = nil;
 [AgoraChatClient.sharedClient.roomManager getChatroomWhiteListFromServerWithId:@"aChatroomId" error:&error];
 ```
@@ -292,7 +292,7 @@ To monitor the chat room events, you can listen for the callbacks in the `ChatRo
 /**
  *  Occurs when a member is removed from the chat room mute list.
  *  @param aChatroom        The chat room ID
- *  @param aMutedMembers    The usernames of the member removed from the mute list
+ *  @param aMutedMembers    The username of the member removed from the mute list
  */
 - (void)chatroomMuteListDidUpdate:(AgoraChatroom *)aChatroom
               removedMutedMembers:(NSArray *)aMutes {
