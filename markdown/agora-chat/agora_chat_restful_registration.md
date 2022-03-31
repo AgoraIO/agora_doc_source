@@ -689,6 +689,239 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 }
 ```
 
+### 获取用户在线状态
+
+ 查看一个用户的在线状态。
+
+ #### 基本信息
+
+ 方法名：`GET`
+ 接入点：`https://{host}/{org_name}/{app_name}/users/{username}/status`
+
+ #### 路径参数
+
+ |   参数    | 类型   | 是否必需 | 描述         |
+ | :-------: | :----- | :------- | ------------ |
+ | `host`     | String | 必需     | 你在环信即时通讯云控制台注册项目时所在的集群服务器地址。  ｜
+ | `org_name` | String | 必需     | 你在环信即时通讯云控制台注册项目时填入的公司（组织）名称。  |
+ | `app_name` | String | 必需     | 你在环信即时通讯云控制台注册项目时填入的应用名称。|
+ | `username` | String |   必需| 用户名（用户 ID）。|
+
+ #### 请求头参数
+
+ | 参数            | 类型   | 是否必需 | 描述                                                         |
+ | :-------------- | :----- | :------- | :----------------------------------------------------------- |
+ | `Content-Type`  | String | 必需     | 内容类型：`application/json`                                 |
+ | `Authorization` | String | 必需     | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 |
+
+ #### 响应参数
+
+ | 参数     | 说明                                                         |
+ | :------- | :----------------------------------------------------------- |
+ | `username` | 数据格式为：“用户名：当前在线状态”，例如，user1 的在线和离线状态分别为 "user1": "online" 和"user1": "offline"。 |
+
+ #### 请求示例
+
+ ```
+ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer YWMte3bGuOukEeiTkNP4grL7iwAAAAAAAAAAAAAAAAAAAAGL4CTw6XgR6LaXXVmNX4QCAgMAAAFnKdc-ZgBPGgBFTrLhhyK8woMEI005emtrLJFJV6aoxsZSioSIZkr5kw' 'http://a1.easemob.com/easemob-demo/testapp/users/user1/status'
+ ```
+
+ #### 响应示例
+
+ ```
+ {
+   "action": "get",
+   "uri": "http://a1.easemob.com/easemob-demo/testapp/users/user1/status",
+   "entities": [],
+   "data": {
+     "user1": "offline"
+   },
+   "timestamp": 1542601284531,
+   "duration": 4,
+   "count": 0
+ }
+ ```
+
+ #### 响应码
+
+ |   响应码   |           意义           |
+ | :--------: | :----------------------: |
+ |    200     |           成功。           |
+ |    401     | 鉴权失败（无 token，token 错误或者过期），请重新获取 token 再试。 |
+ |    404     |        用户不存在。        |
+ | 429 或者 5xx |    被限流或者发生异常。    |
+
+ ### 批量获取用户在线状态
+
+ 批量查看用户的在线状态，最多可同时查看 100 个用户的状态。
+
+ #### 基本信息
+
+ 方法：`POST`
+ 接入点：`https://{host}{org_name}/{app_name}/users/batch/status`
+
+ #### 路径参数
+
+ |   参数    | 类型   | 是否必需 | 描述         |
+ | :-------: | :----- | :------- | ------------ |
+ | `host`     | String | 必需     | 你在环信即时通讯云控制台注册项目时所在的集群服务器地址。  ｜
+ | `org_name` | String | 必需     | 你在环信即时通讯云控制台注册项目时填入的公司（组织）名称。  |
+ | `app_name` | String | 必需     | 你在环信即时通讯云控制台注册项目时填入的应用名称。|
+
+ #### 请求头参数
+
+ | 参数            | 类型   | 是否必需 | 描述                                                         |
+ | :-------------- | :----- | :------- | :----------------------------------------------------------- |
+ | `Content-Type`  | String | 必需     | 内容类型：`application/json`                                 |
+ | `Authorization` | String | 必需     | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 |
+
+ #### 请求体参数
+
+ | 参数      | 说明                                                         |
+ | :-------- | :----------------------------------------------------------- |
+ | `usernames` | 要查询状态的用户名，以数组方式提交，**最多不能超过 100 个**。 |
+
+ #### 响应参数
+
+ | 参数     | 说明                                                         |
+ | :------- | :----------------------------------------------------------- |
+ | `username` | 数据格式为：“用户名：当前在线状态”，例如，user1 的在线和离线状态分别为 "user1": "online" 和"user1": "offline"。|
+
+ #### 请求示例
+
+ ```
+ curl -X POST http://a1.easemob.com/easemob-demo/chatdemoui/users/batch/status -H 'Authorization: Bearer YWMte3bGuOukEeiTkNP4grL7iwAAAAAAAAAAAAAAAAAAAAGL4CTw6XgR6LaXXVmNX4QCAgMAAAFnKdc-ZgBPGgBFTrLhhyK8woMEI005emtrLJFJV6aoxsZSioSIZkr5kw' -H 'Content-Type: application/json' -d '{"usernames":["user1","user2"]}'
+ ```
+
+ #### 响应示例
+
+ 该接口不对用户名进行校验。若查询不存在的用户名的状态，则返回的状态为 offline。
+
+ ```
+ {
+     "action": "get batch user status",
+     "data": [
+         {
+             "user1": "offline"
+         },
+         {
+             "user2": "offline"
+         }
+     ],
+     "timestamp": 1552280231926,
+     "duration": 4
+ }
+ ```
+
+### 获取用户离线消息数量
+
+获取 IM 用户的离线消息数量。
+
+### HTTP 请求
+
+```http
+GET https://api.agora.io/{org_name}/{app_name}/users/{owner_username}/offline_msg_count
+```
+
+#### 路径参数
+
+ |   参数    | 类型   | 是否必需 | 描述         |
+ | :-------: | :----- | :------- | ------------ |
+ | `host`     | String | 必需     | 你在环信即时通讯云控制台注册项目时所在的集群服务器地址。  ｜
+ | `org_name` | String | 必需     | 你在环信即时通讯云控制台注册项目时填入的公司（组织）名称。  |
+ | `app_name` | String | 必需     | 你在环信即时通讯云控制台注册项目时填入的应用名称。|
+ | `owner_username` | String |   必需| 要获取离线消息数的用户名（用户 ID）。|
+
+#### 请求头参数
+
+ | 参数            | 类型   | 是否必需 | 描述                                                         |
+ | :-------------- | :----- | :------- | :----------------------------------------------------------- |
+ | `Content-Type`  | String | 必需     | 内容类型：`application/json`                                 |
+ | `Authorization` | String | 必需     | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 |
+
+#### 响应参数
+
+ | 参数     | 说明                                                         |
+ | :------- | :----------------------------------------------------------- |
+ | `username` | 数据格式为：“用户名：当前离线消息的数量“，例如，"user1: 0”。 |
+
+ #### 请求示例
+
+ ```
+ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer YWMte3bGuOukEeiTkNP4grL7iwAAAAAAAAAAAAAAAAAAAAGL4CTw6XgR6LaXXVmNX4QCAgMAAAFnKdc-ZgBPGgBFTrLhhyK8woMEI005emtrLJFJV6aoxsZSioSIZkr5kw' 'http://api.agora.io/demo/testapp/users/user1/offline_msg_count'
+ ```
+
+ #### 响应示例
+
+ ```
+ {
+   "action": "get",
+   "uri": "http://XXXX/XXX/XXXX/users/XXX/offline_msg_count",
+   "entities": [],
+   "data": {
+     "user1": 0
+   },
+   "timestamp": 1542601518137,
+   "duration": 3,
+   "count": 0
+ }
+ ```
+
+## 获取某条离线消息状态
+
+获取用户的离线消息的状态，即是否已投递。
+
+### HTTP 请求
+
+```http
+GET https://api.agora.io/{org_name}/{app_name}/users/{username}/offline_msg_status/{msg_id}
+```
+
+ #### 路径参数
+
+ |   参数    | 类型   | 是否必需 | 描述         |
+ | :-------: | :----- | :------- | ------------ |
+ | `host`     | String | 必需     | 你在环信即时通讯云控制台注册项目时所在的集群服务器地址。  ｜
+ | `org_name` | String | 必需     | 你在环信即时通讯云控制台注册项目时填入的公司（组织）名称。  |
+ | `app_name` | String | 必需     | 你在环信即时通讯云控制台注册项目时填入的应用名称。|
+ | `username` | String |   必需| 要获取离线消息状态的用户名（用户 ID）。|
+ | `msg_id` | String |   必需| 要查看离线消息状态的 ID。|
+
+ #### 请求头参数
+
+ | 参数            | 类型   | 是否必需 | 描述                                                         |
+ | :-------------- | :----- | :------- | :----------------------------------------------------------- |
+ | `Content-Type`  | String | 必需     | 内容类型：`application/json`                                 |
+ | `Authorization` | String | 必需     | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 |
+
+ #### 响应参数
+
+ | 参数   | 说明                                                         |
+ | :----- | :----------------------------------------------------------- |
+ | `msg_id` | 数据格式为“消息 ID”：“离线状态”。消息的离线状态有两种： “delivered”  表示已投递，`undelivered“  表示未投递。 |
+
+ #### 请求示例
+
+ ```
+ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer YWMte3bGuOukEeiTkNP4grL7iwAAAAAAAAAAAAAAAAAAAAGL4CTw6XgR6LaXXVmNX4QCAgMAAAFnKdc-ZgBPGgBFTrLhhyK8woMEI005emtrLJFJV6aoxsZSioSIZkr5kw' 'http://a1.easemob.com/easemob-demo/testapp/users/user1/offline_msg_status/123'
+ ```
+
+ #### 响应示例
+
+ ```
+ {
+   "action": "get",
+   "uri": "http://a1.easemob.com/easemob-demo/testapp/users/user1/offline_msg_status/123",
+   "entities": [],
+   "data": {
+     "123": "delivered"
+   },
+   "timestamp": 1542601830084,
+   "duration": 5,
+   "count": 0
+ }
+ ```
+    
 ## 封禁用户
 
 禁用一个用户账户。该用户会立即下线，且无法登录直到解除封禁。
