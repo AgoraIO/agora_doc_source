@@ -505,8 +505,22 @@
                     <stentry><xref keyref="onRemoteVideoStats"/></stentry>
                     <stentry><ph conkeyref="onRemoteVideoStats/shortdesc"/></stentry>
                 </strow>
-            </simpletable>
-        </section>
+		</simpletable> </section>
+        <section id="audio_preprocessing_and_postprocessing" props="android ios windows">
+            <title>Audio pre-process and post-process</title>
+            <note props="windows" type="attention">
+            <p>This group of methods are for Android and iOS only.</p>
+            </note>
+            <simpletable>
+            <sthead>
+                <stentry>Method</stentry>
+                <stentry>Description</stentry>
+            </sthead>
+            <strow>
+                <stentry><xref keyref="setAdvancedAudioOptions"/></stentry>
+                <stentry><ph conkeyref="setAdvancedAudioOptions/shortdesc"/></stentry>
+            </strow>
+            </simpletable> </section>
         <section id="video_preprocessing_and_postprocessing">
             <title>Video pre-process and post-process</title>
             <simpletable>
@@ -522,12 +536,40 @@
                     <stentry><xref keyref="enableVirtualBackground"/></stentry>
                     <stentry><ph conkeyref="enableVirtualBackground/shortdesc"/></stentry>
                 </strow>
+		<strow props="android ios windows">
+                <stentry><xref keyref="enableRemoteSuperResolution"/></stentry>
+                <stentry><ph conkeyref="enableRemoteSuperResolution/shortdesc"/></stentry>
+            </strow>
             </simpletable>
         </section>
+        <section props="android ios windows">
+            <title>Face detection</title>
+            <note props="windows">This group of methods are for Android and iOS only.</note>
+            <simpletable>
+                <sthead>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="enableFaceDetection"/></stentry>
+                    <stentry><ph conkeyref="enableFaceDetection/shortdesc"/></stentry>
+                </strow>
+                </simpletable>
+                <simpletable>
+                    <sthead>
+                        <stentry>Event</stentry>
+                        <stentry>Description</stentry>
+                    </sthead>
+                    <strow>
+                        <stentry><xref keyref="onFacePositionChanged"/></stentry>
+                        <stentry><ph conkeyref="onFacePositionChanged/shortdesc"/></stentry>
+                    </strow>
+                    </simpletable>
+            </section>
         <section id="in-ear_monitoring" props="android ios windows">
             <title>In-ear monitoring</title>
             <note props="windows" type="attention">
-                <p>This method is for Android and iOS only.</p>
+                <p>This group of methods are for Android and iOS only.</p>
             </note>
             <simpletable id="simpletable_xq2_m4b_jqb">
                 <sthead>
@@ -687,7 +729,7 @@
         <section id="rhythm_player" props="windows android ios">
             <title>Virtual metronome</title>
             <note props="windows" type="attention">
-                <p>This method is for Android and iOS only.</p>
+                <p>This group of methods are for Android and iOS only.</p>
             </note>
             <simpletable>
                 <sthead>
@@ -816,6 +858,10 @@
                     <stentry>Method</stentry>
                     <stentry>Description</stentry>
                 </sthead>
+		<strow props="windows">
+                <stentry><xref keyref="getScreenCaptureSources"/></stentry>
+                <stentry><ph conkeyref="getScreenCaptureSources/shortdesc"/> (For Windows only)</stentry>
+            </strow>
                 <strow props="windows mac">
                     <stentry><xref keyref="startScreenCaptureByWindowId"/></stentry>
                     <stentry><ph conkeyref="startScreenCaptureByWindowId/shortdesc"/> (For Windows and macOS only)</stentry>
@@ -1582,7 +1628,7 @@
         </section>
         <section id="camera_control" props="android ios windows">
             <title>Camera management</title>
-            <note props="windows" type="attention">This method is for Android and iOS only.</note>
+            <note props="windows" type="attention">This group of methods are for Android and iOS only.</note>
             <simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -1679,7 +1725,7 @@
         </section>
         <section id="audio_routing_control" props="android ios windows">
             <title>Audio route</title>
-            <p props="windows">This method is for Android and iOS only.</p>
+            <p props="windows">This group of methods are for Android and iOS only.</p>
             <simpletable id="simpletable_ns1_shw_jqb">
                 <sthead>
                     <stentry>Method</stentry>
@@ -2085,6 +2131,14 @@
                     <stentry>Method</stentry>
                     <stentry>Description</stentry>
                 </sthead>
+            <strow props="hide">
+                <stentry><xref keyref="setAVSyncSource"/></stentry>
+                <stentry><ph conkeyref="setAVSyncSource/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="setCloudProxy"/></stentry>
+                <stentry><ph conkeyref="setCloudProxy/shortdesc"/></stentry>
+            </strow>
                 <strow>
                     <stentry><xref keyref="sendCustomReportMessageEx"/></stentry>
                     <stentry><ph conkeyref="sendCustomReportMessageEx/shortdesc"/></stentry>
