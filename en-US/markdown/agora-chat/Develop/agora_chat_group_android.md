@@ -57,8 +57,8 @@ ChatClient.getInstance().groupManager().destroyGroup(groupId);
 You can request to join a public chat group as follows:
 
 1. Call `getJoinedGroupsFromServer` to retrieve the list of the groups that you are already in. This prevents repetitive join requests.
-2. Call `getAllGroups` to retrieve the list of all groups. You can obtain the ID of the group that you want to join.
-3. Call `joinGroup` to send a join chat group request:
+2. Call `getPublicGroupsFromServer` to retrieve the list of public groups by page. You can obtain the ID of the group that you want to join.
+3. Call `joinGroup` to send a join request to the chat group:
     - If the type of the chat group is set to `GroupStylePublicJoin`, your request is accepted automatically and the chat group memebers receive the `onMemberJoined` callback.
     - If the type of the chat group is set to `GroupStylePublicNeedApproval`, the chat group owner and chat group admins receive the `onRequestToJoinReceived` callback and determine whether to accept your request.
 
@@ -78,7 +78,7 @@ CursorResult<GroupInfo> result = ChatClient.getInstance().groupManager().getPubl
 List<GroupInfo> groupsList = List<GroupInfo> returnGroups = result.getData();
 String cursor = result.getCursor();
 
-// Call joinGroup to send a join chat group request.
+// Call joinGroup to send a join request to a chat group.
 ChatClient.getInstance().groupManager().joinGroup(groupId);
 
 // Call leaveGroup to leave a chat group.
@@ -135,9 +135,9 @@ Whether a chat group is public or private, the chat group owner and chat group a
 2. Implement chat group invitations.   
 After a user is invited to join a chat group, the implementation logic varies based on the settings of the user:
 
-    - If the user requires a group invitation request, the invitor receives the `onInvitationReceived` callback. Once the user accepts the request and joins the group, the invitor receives the `onInvitationAccepted` callback and all the group members receive the `onMemberJoined` callback. Otherwise, the invitor receives the `onInvitationDeclined` callback.
+    - If the user requires a group invitation confirmation, the invitor receives the `onInvitationReceived` callback. Once the user accepts the request and joins the group, the invitor receives the `onInvitationAccepted` callback and all the group members receive the `onMemberJoined` callback. Otherwise, the invitor receives the `onInvitationDeclined` callback.
 
-    - If the user doesn't require a group invitation request, the invitor receives the `onAutoAcceptInvitationFromGroup` callback. In this case, the user automatically accepts the group invitation and receives the `onInvitationAccepted` callback. All the group members receive the `onMemberJoined` callback.
+    - If the user doesn't require a group invitation confirmation, the invitor receives the `onAutoAcceptInvitationFromGroup` callback. In this case, the user automatically accepts the group invitation and receives the `onInvitationAccepted` callback. All the group members receive the `onMemberJoined` callback.
 
 3. Remove chat group members from a chat group.  
 The chat group owner and chat group admins can remove chat group members from a chat group, whereas chat group members do not have this privilege. Once a group member is removed, all the other group members receive the `onMemberExited` callback.
@@ -188,13 +188,13 @@ The chat group owner and chat group admins can add the specified member to the c
 Refer to the following sample code to manage the chat group block list:
 
 ```java
-// The chat group owner or admins call blockUser to add the specified member to the chat group block list.
+// The chat group owner and admins can call blockUser to add the specified member to the chat group block list.
 ChatClient.getInstance().groupManager().blockUser(groupId, username);
 
-// The chat group owner or admins call unblockUser to remove the specified member from the chat group block list.
+// The chat group owner and admins can call unblockUser to remove the specified member from the chat group block list.
 ChatClient.getInstance().groupManager().unblockUser(groupId, username);
 
-// The chat group owner or admins call getBlockedUsers to retrieve the chat group block list.
+// The chat group owner and admins can call getBlockedUsers to retrieve the chat group block list.
 ChatClient.getInstance().groupManager().getBlockedUsers(groupId);
 ```
 
@@ -206,10 +206,10 @@ The chat group owner and chat group admins can add the specified member to the c
 Refer to the following sample code to manage the chat group mute list:
 
 ```java
-// The chat group owner or admins can call muteGroupMember to add the specified member to the chat group mute list. The muted member and all the other chat group admins or owner receive the onMuteListAdded callback. 
+// The chat group owner and admins can call muteGroupMember to add the specified member to the chat group mute list. The muted member and all the other chat group admins or owner receive the onMuteListAdded callback. 
 ChatClient.getInstance().groupManager().muteGroupMembers(groupId, muteMembers, duration);
 
-// The chat group owner or admins can call unmuteGroupMember to remove the specified user from the chat group mute list. The unmuted member and all the other chat group admins or owner recieve the onMuteListRemoved callback.
+// The chat group owner and admins can call unmuteGroupMember to remove the specified user from the chat group mute list. The unmuted member and all the other chat group admins or owner recieve the onMuteListRemoved callback.
 ChatClient.getInstance().groupManager().unMuteGroupMembers(String groupId, List<String> members);
 
 // The chat group owner or admin can call fetchGroupMuteList to retrieve the chat group mute list.
@@ -311,120 +311,142 @@ Refer to the following sample code to listen for chat group events:
 
 ```java
 GroupChangeListener groupListener = new GroupChangeListener() { 
+    // Occurs when an invitee receives a group invitation.
     @Override
     public void onInvitationReceived(String groupId, String groupName, String inviter, String reason) {
         
     }
 
+    // Occurs when a user sends a join request to a chat group.
     @Override
     public void onRequestToJoinReceived(String groupId, String groupName, String applyer, String reason) {
         
     }
 
+    // Occurs when the chat group owner or admin approves a join request.
     @Override
     public void onRequestToJoinAccepted(String groupId, String groupName, String accepter) {
         
     }
 
+    // Occurs when the chat group owner or admin rejects a join request.
     @Override
     public void onRequestToJoinDeclined(String groupId, String groupName, String decliner, String reason) {
         
     }
 
+    // Occurs when an invitee accepts a group invitation.
     @Override
     public void onInvitationAccepted(String groupId, String inviter, String reason) {
         
     }
 
+    // Occurs when an invitee declines a group invitation.
     @Override
     public void onInvitationDeclined(String groupId, String invitee, String reason) {
         
     }
 
+    // Occurs when a member is removed from a chat group.
     @Override
     public void onUserRemoved(String groupId, String groupName) {
         
     }
 
+    // Occurs when the chat group owner destroys a chat group.
     @Override
     public void onGroupDestroyed(String groupId, String groupName) {
 
     }
-    
+
+    // Occurs when an invitee accepts a group invitation automatically.   
     @Override
     public void onAutoAcceptInvitationFromGroup(String groupId, String inviter, String inviteMessage) {
         
     }
 
+    // Occurs when a member is added to the chat group mute list.
     @Override
     public void onMuteListAdded(String groupId, final List<String> mutes, final long muteExpire) {
         
     }
 
+    // Occurs when a member is removed from the chat group mute list.
     @Override
     public void onMuteListRemoved(String groupId, final List<String> mutes) {
         
     }
-    
+
+    // Occurs when a member is added to the chat group allow list.
     @Override
     public void onWhiteListAdded(String groupId, List<String> whitelist) {
           
     }
 
+    // Occurs when a member is removed from the chat group allow list.
     @Override
     public void onWhiteListRemoved(String groupId, List<String> whitelist) {
          
     }
 
+    // Occurs when all the chat group members are muted or unmuted.
     @Override
     public void onAllMemberMuteStateChanged(String groupId, boolean isMuted) {
           
     }
 
+    // Occurs when a member is added to the chat group admin list.
     @Override
     public void onAdminAdded(String groupId, String administrator) {
         
     }
 
+    // Occurs when an admin is removed from the chat group admin list.
     @Override
     public void onAdminRemoved(String groupId, String administrator) {
         
     }
 
+    // Occurs when the chat group owner is changed.
     @Override
     public void onOwnerChanged(String groupId, String newOwner, String oldOwner) {
         
     }
 
+    // Occurs when a user joins a chat group.
     @Override
     public void onMemberJoined(final String groupId, final String member){
         
     }
 
+    // Occurs when a member leaves a chat group.
     @Override
     public void onMemberExited(final String groupId, final String member) {
         
     }
 
+    // Occurs when a member updates the chat group announcement.
     @Override
     public void onAnnouncementChanged(String groupId, String announcement) {
         
     }
 
+    // Occurs when a member uploads a chat group shared file.
     @Override
     public void onSharedFileAdded(String groupId, MucSharedFile sharedFile) {
         
     }
 
+    // Occurs when a member deletes a chat group shared file.
     @Override
     public void onSharedFileDeleted(String groupId, String fileId) {
         
     }
 };
 
-// Set group listener.
+// Set the group listener.
 ChatClient.getInstance().groupManager().addGroupChangeListener(groupListener);
 
-// Remove group listener if not use.
+// Remove the group listener if not use.
 ChatClient.getInstance().groupManager().removeGroupChangeListener(groupListener);
 ```

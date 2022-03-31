@@ -41,7 +41,7 @@ Refer to the following sample code to create and destroy a chat group:
 AgoraChatGroupOptions *options = [[AgoraChatGroupOptions alloc] init];
 // Set the size of a chat group.
 options.maxUsersCount = self.maxMemNum;
-// Set IsInviteNeedConfirm to YES to send group invitation requests to invitees. If IsInviteNeedConfrim is set to NO, invitees are added to the chat group automatically without their confirmations.
+// Set IsInviteNeedConfirm to YES to send a group invitation to invitees. If IsInviteNeedConfrim is set to NO, invitees are added to the chat group automatically without their confirmations.
 options.IsInviteNeedConfirm = YES;
 // Set the type of a chat group to private. Allow chat group members to invite other users to join the group.
 options.style = AgoraChatGroupStylePrivateMemberCanInvite;
@@ -65,8 +65,8 @@ NSArray *members = @{@"memeber1",@"member2"};
 You can request to join a public chat group as follows:
 
 1. Call `getJoinedGroupsFromServerWithPage` to retrieve the list of the groups that you are already in. This prevents repetitive join requests.
-2. Call `getPublicGroupsFromServerWithCursor` to retrieve the list of public groups. You can obtain the ID of the group that you want to join.
-3. Call `joinPublicGroup` to send a join chat group request:
+2. Call `getPublicGroupsFromServerWithCursor` to retrieve the list of public groups by page. You can obtain the ID of the group that you want to join.
+3. Call `joinPublicGroup` to send a join request to the chat group:
     - If the type of the chat group is set to `AgoraChatGroupStylePublicOpenJoin`, your request is accepted automatically and the chat group memebers receive the `userDidJoinGroup` callback.
     - If the type of the chat group is set to `AgoraChatGroupStylePublicJoinNeedApproval`, the chat group owner and chat group admins receive the `joinGroupRequestDidReceive` callback and determine whether to accept your request. Once the join request is approved, you receive the `joinGroupRequestDidApprove` callback. Otherwise, you receive the `joinGroupRequestDidDecline` callback.
 
@@ -98,7 +98,7 @@ do {
   cursor = result.cursor;
 } while (result && result.list < pageSize);
 
-// Call joinPublicGroup to send a join chat group request.
+// Call joinPublicGroup to send a join request to a chat group.
 [[AgoraChatClient sharedClient].groupManager joinPublicGroup:@"groupID" error:nil];
 
 // Call leaveGroup to leave a chat group.
@@ -165,8 +165,8 @@ Whether a chat group is public or private, the chat group owner and chat group a
 
 2. Implement chat group invitations.  
 After a user is invited to join a chat group, the implementation logic varies based on the settings of the user:
-    - If the user requires a group invitation request, the invitor receives the `groupInvitationDidReceive` callback. Once the user accepts the request and joins the group, the invitor receives the `groupInvitationDidAccept` callback and all the group members receive the `userDidJoinGroup` callback. Otherwise, the invitor receives the `groupInvitationDidDecline` callback.
-    - If the user doesn't require a group invitation request, the invitor receives the `groupInvitationDidAccept` callback. In this case, the user automatically accepts the group invitation and receives the `didJoinGroup` callback. All the group members receive the `userDidJoinGroup` callback.  
+    - If the user requires a group invitation confirmation, the invitor receives the `groupInvitationDidReceive` callback. Once the user accepts the request and joins the group, the invitor receives the `groupInvitationDidAccept` callback and all the group members receive the `userDidJoinGroup` callback. Otherwise, the invitor receives the `groupInvitationDidDecline` callback.
+    - If the user doesn't require a group invitation confirmation, the invitor receives the `groupInvitationDidAccept` callback. In this case, the user automatically accepts the group invitation and receives the `didJoinGroup` callback. All the group members receive the `userDidJoinGroup` callback.  
 
 3. Remove chat group members from a chat group.  
 The chat group owner and chat group admins can remove chat group members from a chat group, whereas chat group members do not have this privilege. Once a group member is removed, this group member receives the `didLeaveGroup` callback and all the other group members receive the `userDidLeaveGroup` callback.
@@ -225,17 +225,17 @@ The chat group owner and chat group admins can add the specified member to the c
 Refer to the following sample code to manage the chat group block list:
 
 ```objective-c
-// The chat group owner or admins call blockMembers to add the specified member to the chat group block list.
+// The chat group owner and admins can call blockMembers to add the specified member to the chat group block list.
 [[AgoraChatClient sharedClient].groupManager blockMembers:members 
  																								fromGroup:@"groupID" 
  																							 completion:nil];
 
-// The chat group owner or admins call unblockMembers to remove the specified member from the chat group block list.
+// The chat group owner and admins can call unblockMembers to remove the specified member from the chat group block list.
 [[AgoraChatClient sharedClient].groupManager unblockMembers:members
                                                       fromGroup:@"groupId"
                                                      completion:nil];
 
-// The chat group owner or admins call getGroupBlacklistFromServerWithId to retrieve the chat group block list.
+// The chat group owner and admins can call getGroupBlacklistFromServerWithId to retrieve the chat group block list.
 [[AgoraChatClient sharedClient].groupManager getGroupBlacklistFromServerWithId:@"groupId" 
  											 pageNumber:pageNumber 
  												 pageSize:pageSize 
@@ -250,14 +250,14 @@ The chat group owner and chat group admins can add the specified member to the c
 Refer to the following sample code to manage the chat group mute list:
 
 ```objective-c
-// The chat group owner or admins can call muteMembers to add the specified member to the chat group mute list.
+// The chat group owner and admins can call muteMembers to add the specified member to the chat group mute list.
 // The muted member and all the other chat group admins or owner receive the groupMuteListDidUpdate callback. 
 [[AgoraChatClient sharedClient].groupManager muteMembers:members 
  																				muteMilliseconds:60 
  																							 fromGroup:@"groupID" 
  																									 error:nil];
 
-// The chat group owner or admins can call unmuteMembers to remove the specified user from the chat group mute list.
+// The chat group owner and admins can call unmuteMembers to remove the specified user from the chat group mute list.
 // The unmuted member and all the other chat group admins or owner recieve the groupMuteListDidUpdate callback.
 [[AgoraChatClient sharedClient].groupManager unmuteMembers:members 
  																								 fromGroup:@"groupID" 
@@ -415,37 +415,37 @@ Refer to the following sample code to add callbacks:
 // Occurs when the chat group owner approves a join request.
 - (void)joinGroupRequestDidApprove:(AgoraChatGroup *)aGroup
 
-// Occurs when the chat group owner declines a join request.
+// Occurs when the chat group owner rejects a join request.
 - (void)joinGroupRequestDidDecline:(NSString *)aGroupId reason:(NSString *)aReason
 
-// Occurs when the group invitation is accepted.
+// Occurs when a user accepts a group invitation.
 - (void)groupInvitationDidAccept:(AgoraChatGroup *)aGroup invitee:(NSString *)aInvitee
 
-// Occurs when the group invitation is declined.
+// Occurs when a user declines a group invitation.
 - (void)groupInvitationDidDecline:(AgoraChatGroup *)aGroup invitee:(NSString *)aInvitee reason:(NSString *)aReason
 
-// Occurs when a user joins the chat group.
+// Occurs when a user joins a chat group.
 - (void)didJoinGroup:(AgoraChatGroup *)aGroup inviter:(NSString *)aInviter message:(NSString *)aMessage
 
-// Occurs when users are added to the chat group mute list.
+// Occurs when a user is added to the chat group mute list.
 - (void)groupMuteListDidUpdate:(AgoraChatGroup *)aGroup addedMutedMembers:(NSArray *)aMutedMembers muteExpire:(NSInteger)aMuteExpire
 
-// Occurs when users are removed from the chat group mute list.
+// Occurs when a user is removed from the chat group mute list.
 - (void)groupMuteListDidUpdate:(AgoraChatGroup *)aGroup removedMutedMembers:(NSArray *)aMutedMembers
 
-// Occurs when users are added to the chat group allow list.
+// Occurs when a user is added to the chat group allow list.
 - (void)groupWhiteListDidUpdate:(AgoraChatGroup *)aGroup addedWhiteListMembers:(NSArray *)aMembers
 
-// Occurs when users are removed from the chat group allow list.
+// Occurs when a user is removed from the chat group allow list.
 - (void)groupWhiteListDidUpdate:(AgoraChatGroup *)aGroup removedWhiteListMembers:(NSArray *)aMembers
 
 // Occurs when all the group members are muted.
 - (void)groupAllMemberMuteChanged:(AgoraChatGroup *)aGroup isAllMemberMuted:(BOOL)aMuted
 
-// Occurs when a group member is added to the admin list.
+// Occurs when a chat group member is added to the admin list.
 - (void)groupAdminListDidUpdate:(AgoraChatGroup *)aGroup addedAdmin:(NSString *)aAdmin
 
-// Occurs when a group member is removed from the admin list.
+// Occurs when a chat group admin is removed from the admin list.
 - (void)groupAdminListDidUpdate:(AgoraChatGroup *)aGroup removedAdmin:(NSString *)aAdmin
 
 // Occurs when the chat group owner is changed.
