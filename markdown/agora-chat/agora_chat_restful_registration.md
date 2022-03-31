@@ -719,7 +719,8 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
  #### 请求示例
 
  ```
- curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer YWMte3bGuOukEeiTkNP4grL7iwAAAAAAAAAAAAAAAAAAAAGL4CTw6XgR6LaXXVmNX4QCAgMAAAFnKdc-ZgBPGgBFTrLhhyK8woMEI005emtrLJFJV6aoxsZSioSIZkr5kw' 'http://a1.easemob.com/easemob-demo/testapp/users/user1/status'
+ # 将 <YourAppToken> 替换为你在服务端生成的 app token
+ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://a1.agora.com/demo/testapp/users/user1/status'
  ```
 
  #### 响应 body
@@ -729,7 +730,7 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
  ```
  {
    "action": "get",
-   "uri": "http://a1.easemob.com/easemob-demo/testapp/users/user1/status",
+   "uri": "http://a1.agora.com/easemob-demo/testapp/users/user1/status",
    "entities": [],
    "data": {
      "user1": "offline"
@@ -776,7 +777,8 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 #### 请求示例
 
  ```
- curl -X POST http://a1.easemob.com/easemob-demo/chatdemoui/users/batch/status -H 'Authorization: Bearer YWMte3bGuOukEeiTkNP4grL7iwAAAAAAAAAAAAAAAAAAAAGL4CTw6XgR6LaXXVmNX4QCAgMAAAFnKdc-ZgBPGgBFTrLhhyK8woMEI005emtrLJFJV6aoxsZSioSIZkr5kw' -H 'Content-Type: application/json' -d '{"usernames":["user1","user2"]}'
+# 将 <YourAppToken> 替换为你在服务端生成的 app token
+ curl -X POST http://a1.easemob.com/easemob-demo/chatdemoui/users/batch/status -H 'Authorization: Bearer <YourAppToken>' -H 'Content-Type: application/json' -d '{"usernames":["user1","user2"]}'
  ```
 
  #### 响应示例
@@ -834,7 +836,8 @@ GET https://api.agora.io/{org_name}/{app_name}/users/{owner_username}/offline_ms
  #### 请求示例
 
  ```
- curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer YWMte3bGuOukEeiTkNP4grL7iwAAAAAAAAAAAAAAAAAAAAGL4CTw6XgR6LaXXVmNX4QCAgMAAAFnKdc-ZgBPGgBFTrLhhyK8woMEI005emtrLJFJV6aoxsZSioSIZkr5kw' 'http://api.agora.io/demo/testapp/users/user1/offline_msg_count'
+# 将 <YourAppToken> 替换为你在服务端生成的 app token
+ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://api.agora.io/demo/testapp/users/user1/offline_msg_count'
  ```
 
  #### 响应 body
@@ -890,7 +893,8 @@ GET https://api.agora.io/{org_name}/{app_name}/users/{username}/offline_msg_stat
  #### 请求示例
 
  ```
- curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer YWMte3bGuOukEeiTkNP4grL7iwAAAAAAAAAAAAAAAAAAAAGL4CTw6XgR6LaXXVmNX4QCAgMAAAFnKdc-ZgBPGgBFTrLhhyK8woMEI005emtrLJFJV6aoxsZSioSIZkr5kw' 'http://a1.easemob.com/easemob-demo/testapp/users/user1/offline_msg_status/123'
+# 将 <YourAppToken> 替换为你在服务端生成的 app token
+ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://a1.agora.com/easemob-demo/testapp/users/user1/offline_msg_status/123'
  ```
 
  #### 响应 body
