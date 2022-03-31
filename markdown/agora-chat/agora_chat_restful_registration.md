@@ -689,32 +689,28 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 }
 ```
 
-### 获取用户在线状态
+## 获取用户在线状态
 
- 查看一个用户的在线状态。
+查看一个用户的在线状态。
 
- #### 基本信息
+### HTTP 请求
 
- 方法名：`GET`
- 接入点：`https://{host}/{org_name}/{app_name}/users/{username}/status`
+```http
+ GET https://{host}/{org_name}/{app_name}/users/{username}/status
+```
 
- #### 路径参数
+#### 路径参数
 
- |   参数    | 类型   | 是否必需 | 描述         |
- | :-------: | :----- | :------- | ------------ |
- | `host`     | String | 必需     | 你在环信即时通讯云控制台注册项目时所在的集群服务器地址。  ｜
- | `org_name` | String | 必需     | 你在环信即时通讯云控制台注册项目时填入的公司（组织）名称。  |
- | `app_name` | String | 必需     | 你在环信即时通讯云控制台注册项目时填入的应用名称。|
- | `username` | String |   必需| 用户名（用户 ID）。|
+参数及说明详见[公共参数](#param)。
 
- #### 请求头参数
+#### 请求 header
 
- | 参数            | 类型   | 是否必需 | 描述                                                         |
- | :-------------- | :----- | :------- | :----------------------------------------------------------- |
- | `Content-Type`  | String | 必需     | 内容类型：`application/json`                                 |
- | `Authorization` | String | 必需     | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 |
+| 参数            | 类型   | 描述                   | 是否必填 |
+| :-------------- | :----- | :--------------------- | :------- |
+| `Content-Type`  | String | `application/json`     | 是       |
+| `Authorization` | String | Bearer ${YourAppToken} | 是       |
 
- #### 响应参数
+#### 响应参数
 
  | 参数     | 说明                                                         |
  | :------- | :----------------------------------------------------------- |
@@ -726,7 +722,9 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
  curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer YWMte3bGuOukEeiTkNP4grL7iwAAAAAAAAAAAAAAAAAAAAGL4CTw6XgR6LaXXVmNX4QCAgMAAAFnKdc-ZgBPGgBFTrLhhyK8woMEI005emtrLJFJV6aoxsZSioSIZkr5kw' 'http://a1.easemob.com/easemob-demo/testapp/users/user1/status'
  ```
 
- #### 响应示例
+ #### 响应 body
+
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
  ```
  {
@@ -742,52 +740,40 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
  }
  ```
 
- #### 响应码
+## 批量获取用户在线状态
 
- |   响应码   |           意义           |
- | :--------: | :----------------------: |
- |    200     |           成功。           |
- |    401     | 鉴权失败（无 token，token 错误或者过期），请重新获取 token 再试。 |
- |    404     |        用户不存在。        |
- | 429 或者 5xx |    被限流或者发生异常。    |
+批量查看用户的在线状态，最多可同时查看 100 个用户的状态。
 
- ### 批量获取用户在线状态
+### HTTP 请求
 
- 批量查看用户的在线状态，最多可同时查看 100 个用户的状态。
+```http
+ POST https://{host}{org_name}/{app_name}/users/batch/status
+```
 
- #### 基本信息
+#### 路径参数
 
- 方法：`POST`
- 接入点：`https://{host}{org_name}/{app_name}/users/batch/status`
+参数及说明详见[公共参数](#param)。
 
- #### 路径参数
+#### 请求 header
 
- |   参数    | 类型   | 是否必需 | 描述         |
- | :-------: | :----- | :------- | ------------ |
- | `host`     | String | 必需     | 你在环信即时通讯云控制台注册项目时所在的集群服务器地址。  ｜
- | `org_name` | String | 必需     | 你在环信即时通讯云控制台注册项目时填入的公司（组织）名称。  |
- | `app_name` | String | 必需     | 你在环信即时通讯云控制台注册项目时填入的应用名称。|
+| 参数            | 类型   | 描述                   | 是否必填 |
+| :-------------- | :----- | :--------------------- | :------- |
+| `Content-Type`  | String | `application/json`     | 是       |
+| `Authorization` | String | Bearer ${YourAppToken} | 是       |
 
- #### 请求头参数
-
- | 参数            | 类型   | 是否必需 | 描述                                                         |
- | :-------------- | :----- | :------- | :----------------------------------------------------------- |
- | `Content-Type`  | String | 必需     | 内容类型：`application/json`                                 |
- | `Authorization` | String | 必需     | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 |
-
- #### 请求体参数
+#### 请求体参数
 
  | 参数      | 说明                                                         |
  | :-------- | :----------------------------------------------------------- |
  | `usernames` | 要查询状态的用户名，以数组方式提交，**最多不能超过 100 个**。 |
 
- #### 响应参数
+#### 响应参数
 
  | 参数     | 说明                                                         |
  | :------- | :----------------------------------------------------------- |
  | `username` | 数据格式为：“用户名：当前在线状态”，例如，user1 的在线和离线状态分别为 "user1": "online" 和"user1": "offline"。|
 
- #### 请求示例
+#### 请求示例
 
  ```
  curl -X POST http://a1.easemob.com/easemob-demo/chatdemoui/users/batch/status -H 'Authorization: Bearer YWMte3bGuOukEeiTkNP4grL7iwAAAAAAAAAAAAAAAAAAAAGL4CTw6XgR6LaXXVmNX4QCAgMAAAFnKdc-ZgBPGgBFTrLhhyK8woMEI005emtrLJFJV6aoxsZSioSIZkr5kw' -H 'Content-Type: application/json' -d '{"usernames":["user1","user2"]}'
@@ -795,6 +781,7 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 
  #### 响应示例
 
+ 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
  该接口不对用户名进行校验。若查询不存在的用户名的状态，则返回的状态为 offline。
 
  ```
@@ -813,7 +800,7 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
  }
  ```
 
-### 获取用户离线消息数量
+## 获取用户离线消息数量
 
 获取 IM 用户的离线消息数量。
 
@@ -827,17 +814,16 @@ GET https://api.agora.io/{org_name}/{app_name}/users/{owner_username}/offline_ms
 
  |   参数    | 类型   | 是否必需 | 描述         |
  | :-------: | :----- | :------- | ------------ |
- | `host`     | String | 必需     | 你在环信即时通讯云控制台注册项目时所在的集群服务器地址。  ｜
- | `org_name` | String | 必需     | 你在环信即时通讯云控制台注册项目时填入的公司（组织）名称。  |
- | `app_name` | String | 必需     | 你在环信即时通讯云控制台注册项目时填入的应用名称。|
  | `owner_username` | String |   必需| 要获取离线消息数的用户名（用户 ID）。|
 
-#### 请求头参数
+其他参数及说明详见[公共参数](#param)。
 
- | 参数            | 类型   | 是否必需 | 描述                                                         |
- | :-------------- | :----- | :------- | :----------------------------------------------------------- |
- | `Content-Type`  | String | 必需     | 内容类型：`application/json`                                 |
- | `Authorization` | String | 必需     | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 |
+#### 请求 header
+
+| 参数            | 类型   | 描述                   | 是否必填 |
+| :-------------- | :----- | :--------------------- | :------- |
+| `Content-Type`  | String | `application/json`     | 是       |
+| `Authorization` | String | Bearer ${YourAppToken} | 是       |
 
 #### 响应参数
 
@@ -851,7 +837,9 @@ GET https://api.agora.io/{org_name}/{app_name}/users/{owner_username}/offline_ms
  curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer YWMte3bGuOukEeiTkNP4grL7iwAAAAAAAAAAAAAAAAAAAAGL4CTw6XgR6LaXXVmNX4QCAgMAAAFnKdc-ZgBPGgBFTrLhhyK8woMEI005emtrLJFJV6aoxsZSioSIZkr5kw' 'http://api.agora.io/demo/testapp/users/user1/offline_msg_count'
  ```
 
- #### 响应示例
+ #### 响应 body
+ 
+ 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
  ```
  {
@@ -881,18 +869,17 @@ GET https://api.agora.io/{org_name}/{app_name}/users/{username}/offline_msg_stat
 
  |   参数    | 类型   | 是否必需 | 描述         |
  | :-------: | :----- | :------- | ------------ |
- | `host`     | String | 必需     | 你在环信即时通讯云控制台注册项目时所在的集群服务器地址。  ｜
- | `org_name` | String | 必需     | 你在环信即时通讯云控制台注册项目时填入的公司（组织）名称。  |
- | `app_name` | String | 必需     | 你在环信即时通讯云控制台注册项目时填入的应用名称。|
  | `username` | String |   必需| 要获取离线消息状态的用户名（用户 ID）。|
  | `msg_id` | String |   必需| 要查看离线消息状态的 ID。|
 
- #### 请求头参数
+其他参数及说明详见[公共参数](#param)。
 
- | 参数            | 类型   | 是否必需 | 描述                                                         |
- | :-------------- | :----- | :------- | :----------------------------------------------------------- |
- | `Content-Type`  | String | 必需     | 内容类型：`application/json`                                 |
- | `Authorization` | String | 必需     | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 |
+#### 请求 header
+
+| 参数            | 类型   | 描述                   | 是否必填 |
+| :-------------- | :----- | :--------------------- | :------- |
+| `Content-Type`  | String | `application/json`     | 是       |
+| `Authorization` | String | Bearer ${YourAppToken} | 是       |
 
  #### 响应参数
 
@@ -906,7 +893,9 @@ GET https://api.agora.io/{org_name}/{app_name}/users/{username}/offline_msg_stat
  curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer YWMte3bGuOukEeiTkNP4grL7iwAAAAAAAAAAAAAAAAAAAAGL4CTw6XgR6LaXXVmNX4QCAgMAAAFnKdc-ZgBPGgBFTrLhhyK8woMEI005emtrLJFJV6aoxsZSioSIZkr5kw' 'http://a1.easemob.com/easemob-demo/testapp/users/user1/offline_msg_status/123'
  ```
 
- #### 响应示例
+ #### 响应 body
+   
+ 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
  ```
  {
