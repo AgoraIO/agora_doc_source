@@ -33,7 +33,7 @@ This section describes how to call the APIs provided by the Agora Chat SDK to im
 
 You can create a chat group and set the chat group attributes such as the name, description, group members, and reasons to create the group. You can also specify the size and type of a chat group. Once a chat group is created, the creator of the chat group becomes the chat group owner automatically.
 
-Only chat group owners can destroy chat groups. Once a chat group is destroyed, all the chat group members are immediately removed from the chat group. Data related to the chat group are also removed from the database and memory.
+Only chat group owners can disband chat groups. Once a chat group is disbanded, all the chat group members are immediately removed from the chat group. All the local data of the chat group are also removed from the database and memory.
 
 Refer to the following sample code to create and destroy a chat group:
 
@@ -55,7 +55,7 @@ NSArray *members = @{@"memeber1",@"member2"};
                                                                                                                              error:nil];
 
 
-// Call destroyGroup to destroy a chat group. Once a chat group is destroyed, all the chat group members receive the didLeaveGroup callback.
+// Call destroyGroup to disband a chat group. Once a chat group is disbanded, all the chat group members receive the didLeaveGroup callback.
 [[AgoraChatClient sharedClient].groupManager destroyGroup:@"groupID"];
 ```
 
@@ -388,8 +388,6 @@ Refer to the following sample code to manage chat group shared files:
 
 To monitor the chat group events, you can listen for the callbacks in the `AgoraChatGroupManagerDelegate` class and add app logics accordingly. If you want to stop listening for the callbacks, make sure that you remove the listener to prevent memory leakage.
 
-Refer to the following sample code to listen for chat group events:
-
 ```objective-c
 - (void)viewDidLoad
 {
@@ -402,8 +400,6 @@ Refer to the following sample code to listen for chat group events:
     [[AgoraChatClient sharedClient].groupManager removeDelegate:self];
 }
 ```
-
-Refer to the following sample code to add callbacks:
 
 ```objective-c
 // Occurs when a user receives a group invitation.

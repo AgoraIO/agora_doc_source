@@ -32,7 +32,7 @@ This section describes how to call the APIs provided by the Agora Chat SDK to im
 
 You can create a chat group and set the chat group attributes such as the name, description, group members, and reasons to create the group. You can also set the `GroupOptions` parameter to specify the size and type of the chat group. Once a chat group is created, the creator of the chat group becomes the chat group owner automatically.
 
-Only chat group owners can destroy chat groups. Once a chat group is destroyed, all the chat group members receive the `onGroupDestroyed` callback and are immediately removed from the chat group. Data related to the chat group are also removed from the database and memory.
+Only chat group owners can disband chat groups. Once a chat group is disbanded, all the chat group members receive the `onGroupDestroyed` callback and are immediately removed from the chat group. All the local data of the chat group are also removed from the database and memory.
 
 Refer to the following sample code to create and destroy a chat group:
 
@@ -47,7 +47,7 @@ option.style = GroupStyle.GroupStylePrivateMemberCanInvite;
 ChatClient.getInstance().groupManager().createGroup(groupName, desc, allMembers, reason, option);
 
 
-// Call destroyGroup to destroy a chat group.
+// Call destroyGroup to disband a chat group.
 ChatClient.getInstance().groupManager().destroyGroup(groupId);
 ```
 
@@ -353,7 +353,7 @@ GroupChangeListener groupListener = new GroupChangeListener() {
         
     }
 
-    // Occurs when the chat group owner destroys a chat group.
+    // Occurs when the chat group owner disbands a chat group.
     @Override
     public void onGroupDestroyed(String groupId, String groupName) {
 

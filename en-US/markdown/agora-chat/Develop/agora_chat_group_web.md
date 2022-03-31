@@ -34,7 +34,7 @@ This section describes how to call the APIs provided by the Agora Chat SDK to im
 
 You can create a chat group and set the chat group attributes such as the name, description, group members, and reasons to create the group. You can also set the `GroupOptions` parameter to specify the size and type of the chat group. Once a chat group is created, the creator of the chat group becomes the chat group owner automatically.
 
-Only chat group owners can destroy chat groups. Once a chat group is destroyed, all the chat group members receive the `deleteGroupChat` callback and are immediately removed from the chat group. Data related to the chat group are also removed from the database and memory.
+Only chat group owners can disband chat groups. Once a chat group is disbanded, all the chat group members receive the `deleteGroupChat` callback and are immediately removed from the chat group. All the local data of the chat group are also removed from the database and memory.
 
 Refer to the following sample code to create and destroy a chat group:
 
@@ -56,7 +56,7 @@ let option = {
 conn.createGroup(option).then(res => console.log(res))
 
 
-// Call destroyGroup to destroy a chat group.
+// Call destroyGroup to disband a chat group.
 let option = {
     groupId: "groupId"
 };
@@ -370,26 +370,26 @@ Refer to the following sample code to manage chat group shared files:
 let option = {
     groupId: "groupId",
     file: file, // <input type="file"/>Choose the file to upload and share.                         
-    onFileUploadProgress: function(resp) {},   // The callback of the upload progress.
-    onFileUploadComplete: function(resp) {},   // The callback of the upload success.
-    onFileUploadError: function(e) {},         // The callback of the upload failure.
-    onFileUploadCanceled: function(e) {}       // The callback of the upload cancelation.
+    onFileUploadProgress: function(resp) {},   // The callback of the upload progress
+    onFileUploadComplete: function(resp) {},   // The callback of the upload success
+    onFileUploadError: function(e) {},         // The callback of the upload failure
+    onFileUploadCanceled: function(e) {}       // The callback of the upload cancelation
 };
 conn.uploadGroupSharedFile(option);
 
 // All the chat group members can call downloadGroupSharedFile to delete group shared files.
 let option = {
     groupId: "groupId",
-    fileId: "fileId", // The ID of the file.                  
-    onFileDownloadComplete: function(resp) {}, // The callback of the upload success.
-    onFileDownloadError: function(e) {},       // The callback of the upload failure.
+    fileId: "fileId", // The ID of the file                 
+    onFileDownloadComplete: function(resp) {}, // The callback of the upload success
+    onFileDownloadError: function(e) {},       // The callback of the upload failure
 };
 conn.downloadGroupSharedFile(option);
 
 // All the chat group members can call deleteGroupSharedFile to delete group shared files.
 let option = {
     groupId: "groupId",
-    fileId: "fileId", // The ID of the file.
+    fileId: "fileId", // The ID of the file
 };
 conn.deleteGroupSharedFile(option).then(res => console.log(res))
 
@@ -486,7 +486,7 @@ conn.listen({
     // Occurs when a user joins a chat group.
     case 'join':
       break;
-    // Occurs when the chat group owner destroys the chat group.
+    // Occurs when the chat group owner disbands the chat group.
     case 'deleteGroupChat':
       break;
     default:
