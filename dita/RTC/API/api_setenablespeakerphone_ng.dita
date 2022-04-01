@@ -19,18 +19,18 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetEnableSpeakerphone(bool speakerOn);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> 
-        </p></section>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
         <section id="detailed_desc">
             <note>
-            <p props="windows">该方法仅适用于 Android 和 iOS 平台。</p>
+            <p props="windows unity">该方法仅适用于 Android 和 iOS 平台。</p>
             </note>
             <p>成功改变音频路由后，SDK 会触发 <xref keyref="onAudioRouteChanged"/> 回调。</p>
             <p>该 API 可以在加入频道前、频道中、离开频道后调用。但是由于该 API 为暂态行为，我们推荐你在频道中调用，用来临时改变音频路由。</p>
             <note type="attention" id="note_nvp_trf_3qb">
             <p>该方法设置的是暂时的音频路由。任何音频路由的相关行为，如用户插拔耳机，或者在部分 Audio scenario 中重启 ADM
                     音频模块来调整媒体音量，都会导致音频路由发生改变。详细的路由变化规律请参考 <xref keyref="guide-audio-route">音频路由</xref>。</p>
-            <p props="ios windows">由于系统限制，在 iOS 设备上，如果用户使用了蓝牙耳机、有线耳机等外接音频播放设备，则该方法无法将音频路由设置为扬声器。</p>
+            <p props="ios windows unity">由于系统限制，在 iOS 设备上，如果用户使用了蓝牙耳机、有线耳机等外接音频播放设备，则该方法无法将音频路由设置为扬声器。</p>
             </note> </section>
         <section id="parameters">
             <title>参数</title>
@@ -41,6 +41,7 @@
                 <pt props="windows unity">speakerOn</pt>
                 <pd>
                     <p>是否使用扬声器作为当前音频路由：     
+                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 暂时设置扬声器为音频路由。</li>
                     <li><codeph><ph keyref="false"/></codeph>: 不将当前音频路由设为扬声器。</li>

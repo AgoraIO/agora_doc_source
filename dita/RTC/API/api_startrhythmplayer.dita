@@ -17,7 +17,7 @@
     String sound1, String sound2, AgoraRhythmPlayerConfig config);</codeblock>
             <codeblock props="ios" outputclass="language-objectivec">- (int)startRhythmPlayer:(NSString * _Nonnull)sound1 sound2:(NSString * _Nonnull)sound2 config:(AgoraRhythmPlayerConfig *  _Nullable)config;</codeblock>
             <codeblock props="windows" outputclass="language-cpp">virtual int startRhythmPlayer(const char* sound1, const char* sound2, const AgoraRhythmPlayerConfig&amp; config) = 0;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp"/> </p>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int StartRhythmPlayer(string sound1, string sound2, AgoraRhythmPlayerConfig config);</codeblock></p>
             <p outputclass="codeblock" props="rtc">
             <codeblock props="android" outputclass="language-java">public int startRhythmPlayer(String sound1, String sound2, AgoraRhythmPlayerConfig config);</codeblock>
             <codeblock props="ios" outputclass="language-objectivec">- (int)startRhythmPlayer:(NSString* _Nonnull)sound1 sound2:(NSString* _Nonnull)sound2 config:(AgoraRtcRhythmPlayerConfig* _Nonnull)config;</codeblock>
@@ -65,6 +65,7 @@
             <ul>
             <li>0: 方法调用成功</li>
             <li>&lt; 0: 方法调用失败
+                
                 <ul>
                 <li>-22: 无法找到音频文件。请填写正确的 <parmname>sound1</parmname> 和 <parmname>sound2</parmname>。</li>
                 </ul></li>
