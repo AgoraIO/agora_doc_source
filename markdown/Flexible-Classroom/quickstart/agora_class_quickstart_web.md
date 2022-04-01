@@ -1,4 +1,4 @@
-本文介绍如何获取灵动课堂 Web 端源码并运行项目，快速启动并体验灵动课堂。
+本文介绍如何获取灵动课堂 Web 端 GitHub 源码并运行项目，快速启动并体验灵动课堂。
 
 ## 技术原理
 
@@ -8,7 +8,11 @@
 
 ## 前提条件
 
--   在 Agora 控制台创建 Agora 项目，获取 [Agora App ID](/cn/Agora%20Platform/get_appid_token#获取-app-id)、[App 证书](/cn/Agora%20Platform/get_appid_token#获取-app-证书)并[配置 aPaaS 服务](/cn/agora-class/agora_class_prep?platform=Web)。
+-   在 Agora 控制台[开通灵动课堂服务](/cn/agora-class/agora_class_enable?platform=Web)。
+-   在 Agora 控制台获取 [Agora App ID](/cn/Agora%20Platform/get_appid_token#获取-app-id) 和 [App 证书](/cn/Agora%20Platform/get_appid_token#获取-app-证书)。
+-   推荐安装最新稳定版桌面端 [Google Chrome 浏览器](https://www.google.cn/chrome/)。
+
+<a name="dev-env"></a>
 
 ## 准备开发环境
 
