@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_livetranscoding">
     <title> <ph keyref="LiveTranscoding"/> </title>
-    <shortdesc id="short"><ph id="shortdesc">A class for managing user-specific CDN live audio/video transcoding settings.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Transcoding configurations for Media Push.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
@@ -448,7 +448,7 @@
             <plentry props="android windows ios mac electron unity">
                 <pt>videoBitrate</pt>
                 <pd>
-                    <p>Bitrate of the CDN live output video stream in Kbps. The default value is 400 Kbps.</p>
+                    <p>Bitrate of the output video stream for Media Push in Kbps. The default value is 400 Kbps.</p>
                     <p props="rtc-ng">Set this parameter according to the <xref keyref="video-profile-table">Video profile table</xref>. If you set a bitrate beyond the proper range, the SDK automatically adapts it to a value within the range.</p>
                     <p props="rtc">You can refer to <xref keyref="guide-cdn-streaming">Media Push</xref>for how to set this parameter.</p>
                 </pd>
@@ -457,7 +457,7 @@
               <pt props="native">videoFrameRate</pt>
               <pt props="flutter">videoFramerate</pt>
                 <pd>
-                    <p>Frame rate (in fps) of the output video stream set for the CDN live streaming.  The default value is 15 , and the value range is (0,30].</p>
+                    <p>Frame rate (in fps) of the output video stream set for Media Push.  The default value is 15 , and the value range is (0,30].</p>
                     <note type="attention">The Agora server adjusts any value over 30 to 30.</note></pd>
             </plentry>
             <plentry>
@@ -477,23 +477,23 @@
             </plentry>
             <plentry>
                 <pt>videoGop</pt>
-                <pd>GOP (Group of Pictures) in fps of the video frames  in the CDN live stream. The default value is 30.</pd>
+                <pd>GOP (Group of Pictures) in fps of the video frames  for Media Push. The default value is 30.</pd>
             </plentry>
             <plentry>
                 <pt>videoCodecProfile</pt>
                 <pd>
-                    <p>Video codec profile type for CDN live streaming.</p>
-                    <p> See <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/> for details.</p>
+                    <p>Video codec profile type for Media Push.</p>
+                    <p>Set it as 66, 77, or 100 (default). See <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/> for details.</p>
                     <note type="attention">If you set this parameter to any other value, Agora adjusts it to the default value.</note></pd>
             </plentry>
             <plentry>
                 <pt>videoCodecType</pt>
-                <pd>Video codec profile types for CDN live streaming. See <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/> for details.</pd>
+                <pd>Video codec profile types for Media Push. See <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/> for details.</pd>
             </plentry>
             <plentry>
                 <pt>transcodingUsers</pt>
                 <pd>
-                    <p>The video and audio properties of the user displaying the video in the CDN live. Agora supports a maximum of 17 transcoding users in a CDN streaming channel. See <xref keyref="TranscodingUser"/> for details.</p>
+                    <p>Manages the user layout configuration in the CDN live streaming. Agora supports a maximum of 17 transcoding users in a Media Push channel. See <xref keyref="TranscodingUser"/> for details.</p>
                 </pd>
             </plentry>
             <plentry>
@@ -612,13 +612,13 @@
             <plentry>
                 <pt>audioBitrate</pt>
                 <pd>
-                    <p>Bitrate (Kbps) of the CDN live audio output stream.  The default value is 48, and the highest value is 128.</p>
+                    <p>Bitrate (Kbps) of the audio output stream for Media Push.  The default value is 48, and the highest value is 128.</p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>audioChannels</pt>
                 <pd>
-                    <p>The number of audio channels for the CDN live stream. Agora recommends choosing 1 (mono), or 2 (stereo) audio channels. Special players are required if you choose 3, 4, or 5.</p>
+                    <p>The number of audio channels for Media Push. Agora recommends choosing 1 (mono), or 2 (stereo) audio channels. Special players are required if you choose 3, 4, or 5.</p>
                     <ul>
                     <li>1: (Default) Mono</li>
                     <li>2: Stereo.</li>
@@ -630,7 +630,7 @@
             <plentry>
                 <pt>audioCodecProfile</pt>
                 <pd>
-                    <p>Audio codec profile type for CDN live streaming. See <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/> for details.</p>
+                    <p>Audio codec profile type for Media Push. See <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/> for details.</p>
                 </pd>
             </plentry>
             <plentry props="ios mac">
