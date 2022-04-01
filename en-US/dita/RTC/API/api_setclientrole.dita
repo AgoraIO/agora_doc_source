@@ -26,7 +26,7 @@
             <p conkeyref="setClientRole2/preview"/>
             <p>If you call this method to switch the user role after joining the channel, the SDK triggers the following callbacks:<ul>
             <li>The local client: <xref keyref="onClientRoleChanged"/>.</li>
-            <li>The remote client: <xref keyref="onUserJoined"/> or <xref keyref="onUserOffline"/>(USER_OFFLINE_BECOME_AUDIENCE).</li>
+            <li>远端会触发 <xref keyref="onUserJoined"/> 或 <codeph><xref keyref="onUserOffline"/>(<apiname keyref="USER_OFFLINE_BECOME_AUDIENCE"/>)</codeph> 回调。</li>
             </ul></p>
             <note type="attention" props="rtc">This method only takes effect when the channel profile is live interactive streaming (when the <parmname>profile</parmname> parameter in <xref keyref="setChannelProfile"/> set as <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING"/>).</note> </section>
         <section id="parameters">
@@ -48,9 +48,9 @@
             <ul>
             <li>0(ERR_OK): Success.</li>
             <li>&lt; 0: Failure.<ul>
-                <li>-1(ERR_FAILED): A general error occurs (no specified reason).</li>
-                <li>-2(ERR_INALID_ARGUMENT): The parameter is invalid.</li>
-                <li>-7(ERR_NOT_INITIALIZED): The SDK is not initialized.</li>
+                <li>-1: A general error occurs (no specified reason).</li>
+                <li>-2: The parameter is invalid.</li>
+                <li>-7: The SDK is not initialized.</li>
                 </ul> </li>
             </ul> </section>
     </refbody>
