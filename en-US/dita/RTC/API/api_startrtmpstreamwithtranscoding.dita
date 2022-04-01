@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startrtmpstreamwithtranscoding">
     <title> <ph keyref="startRtmpStreamWithTranscoding"/> </title>
-    <shortdesc id="short"><ph id="shortdesc">Starts pushing media streams to a CDN and sets the transcoding configuration.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Starts pushing media streams to a CDN address and sets the transcoding configuration.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -25,7 +25,7 @@
             <p>After you call this method, the SDK triggers the <xref keyref="onRtmpStreamingStateChanged"/> callback on the local client to report the state of the streaming.</p>
             <note type="attention" id="note">
             <ul>
-            <li props="rtc-ng">Ensure that you enable the RTMP Converter service before using this function.</li>
+            <li props="rtc-ng">Ensure that you enable the Media Push service before using this function.</li>
             <li props="rtc">Ensure that you enable the RTMP Converter service before using this function. See Prerequisites in <xref keyref="guide-cdn-streaming">Push Streams to CDN</xref>.</li>
             <li>Call this method after joining a channel.</li>
             <li>Only hosts in the LIVE_BROADCASTING profile can call this method.</li>
@@ -36,12 +36,12 @@
             <parml>
             <plentry id="url">
                 <pt>url</pt>
-                <pd>The address of the CDN live streaming. The format is RTMP or RTMPS. The character length cannot exceed 1024 bytes. Special characters such as Chinese characters are not supported.</pd>
+                <pd>The address of Media Push. The format is RTMP or RTMPS. The character length cannot exceed 1024 bytes. Special characters such as Chinese characters are not supported.</pd>
             </plentry>
             <plentry id="transcoding">
                 <pt>transcoding</pt>
                 <pd>
-                    <p>The transcoding configuration for CDN live streaming.See <xref keyref="LiveTranscoding"/>.</p>
+                    <p>The transcoding configuration for Media Push. See <xref keyref="LiveTranscoding"/>.</p>
                 </pd>
             </plentry>
             </parml> </section>
