@@ -235,12 +235,12 @@ Refer to the following sample code to manage the chat group mute list:
 let option = {
     groupId: "groupId"，
     username: "user",
-    muteDuration: 886400000 // The mute length. Unit: millisecond.
+    muteDuration: 886400000 // The mute duration. Unit: millisecond.
 };
 conn.muteGroupMember(option).then(res => console.log(res))
 
 // The chat group owner and admins can call unmuteGroupMember to remove the specified user from the chat group mute list.
-// The unmuted member and all the other chat group admins or owner recieve the removeMute callback.
+// The unmuted member and all the other chat group admins or owner receive the removeMute callback.
 let option = {
     groupId: "groupId",
     username: "user"
@@ -294,7 +294,7 @@ let option = {
 };
 conn.addUsersToGroupWhitelist(option).then(res => console.log(res));
 
-// The chat group owner or admin can call removeGroupWhitelistMember to remove the specifeid member from the chat group list.
+// The chat group owner or admin can call removeGroupWhitelistMember to remove the specified member from the chat group list.
 // Once the member is removed, all the other chat group admins or owner receive the rmUserFromGroupWhiteList callback.
 let option = {
     groupId: "groupId",

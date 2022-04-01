@@ -258,7 +258,7 @@ Refer to the following sample code to manage the chat group mute list:
  																									 error:nil];
 
 // The chat group owner and admins can call unmuteMembers to remove the specified user from the chat group mute list.
-// The unmuted member and all the other chat group admins or owner recieve the groupMuteListDidUpdate callback.
+// The unmuted member and all the other chat group admins or owner receive the groupMuteListDidUpdate callback.
 [[AgoraChatClient sharedClient].groupManager unmuteMembers:members 
  																								 fromGroup:@"groupID" 
  																										 error:nil];
@@ -303,7 +303,7 @@ Refer to the following sample code to manage the chat group allow list:
  																										   fromGroup:@"groupID" 
  																													 error:nil];
 
-// The chat group owner or admin can call removeWhiteListMembers to remove the specifeid member from the chat group list.
+// The chat group owner or admin can call removeWhiteListMembers to remove the specified member from the chat group list.
 // Once the member is removed, all the other chat group admins or owner receive the groupWhiteListDidUpdate callback.
 [[AgoraChatClient sharedClient].groupManager removeWhiteListMembers:members
  																										      fromGroup:@"groupID" 

@@ -209,7 +209,7 @@ Refer to the following sample code to manage the chat group mute list:
 // The chat group owner and admins can call muteGroupMember to add the specified member to the chat group mute list. The muted member and all the other chat group admins or owner receive the onMuteListAdded callback. 
 ChatClient.getInstance().groupManager().muteGroupMembers(groupId, muteMembers, duration);
 
-// The chat group owner and admins can call unmuteGroupMember to remove the specified user from the chat group mute list. The unmuted member and all the other chat group admins or owner recieve the onMuteListRemoved callback.
+// The chat group owner and admins can call unmuteGroupMember to remove the specified user from the chat group mute list. The unmuted member and all the other chat group admins or owner receive the onMuteListRemoved callback.
 ChatClient.getInstance().groupManager().unMuteGroupMembers(String groupId, List<String> members);
 
 // The chat group owner or admin can call fetchGroupMuteList to retrieve the chat group mute list.
@@ -242,7 +242,7 @@ Refer to the following sample code to manage the chat group allow list:
 // The chat group owner or admin can call addToChatGroupWhiteList to add the specified member to the chat group allow list. Once the member is added, all the other chat group admins or owner receive the onWhiteListAdded callback.
 public void addToGroupWhiteList(final String groupId, final List<String> members, final CallBack callBack);
 
-// The chat group owner or admin can call removeFromChatGroupWhiteList to remove the specifeid member from the chat group list. Once the member is removed, all the other chat group admins or owner receive the onWhiteListRemoved callback.
+// The chat group owner or admin can call removeFromChatGroupWhiteList to remove the specified member from the chat group list. Once the member is removed, all the other chat group admins or owner receive the onWhiteListRemoved callback.
 public void removeFromGroupWhiteList(final String groupId, final List<String> members, final CallBack callBack);
 
 // Chat group members can call checkIfInChatGroupWhiteList to check whether they are in the chat group allow list.
