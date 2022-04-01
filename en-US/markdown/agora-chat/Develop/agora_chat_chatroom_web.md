@@ -319,12 +319,6 @@ conn.listen({
         // Occurs when a member is added to the chat room allow list.
         case 'addUserToChatRoomWhiteList':
             break;
-        // Occurs when a member deletes a chat room shared file.
-        case 'deleteFile':
-            break;
-        // Occurs when a member uploads a chat room shared file.
-        case 'uploadFile':
-            break;
         // Occurs when a member deletes a chat room announcement.
         case 'deleteAnnouncement':
             break;
