@@ -86,7 +86,7 @@ All the chat room members can retrieve the detailed information of the current c
 The chat room owner and admins can also set and update the chat room information.
 
 ```objective-c
-// The chat room members can call getChatroomSpecificationFromServerWithId to get the information of the specifeid chat room.
+// Chat room members can call getChatroomSpecificationFromServerWithId to get the information of the specified chat room.
 AgoraError *error = nil;
 AgoraChatroom *chatroom = [[AgoraChatClient sharedClient].roomManager getChatroomSpecificationFromServerWithId:@“chatroomId” error:&error];
 
@@ -184,7 +184,7 @@ Members in the chat room allow list can send chat room messages even when the ch
 AgoraError *error = nil;  
 [AgoraChatClient.sharedClient.roomManager addWhiteListMembers:@[@"userId1",@"userId2"] fromChatroom:@"aChatroomId" error:&error];
 
-// The chat room owner or admin can call removeWhiteListMembers to remove the specifeid member from the chat room allow list.
+// The chat room owner or admin can call removeWhiteListMembers to remove the specified member from the chat room allow list.
 AgoraError *error = nil;  
 [AgoraChatClient.sharedClient.roomManager removeWhiteListMembers:@[@"userId1",@"userId2"] fromChatroom:@"aChatroomId" error:&error];
 

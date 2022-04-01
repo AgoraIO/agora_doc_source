@@ -76,9 +76,9 @@ conn.getChatRoomDetails(option).then(res => console.log(res))
 
 ### Join and leave a chat room
 
-All chat users can join the specified chat room. Once a chat user joins a chat room, all the other chat room members receive the `memberJoinChatRoomSuccess` callback.
+All chat users can call `joinChatRoom` to join the specified chat room. Once a chat user joins a chat room, all the other chat room members receive the `memberJoinChatRoomSuccess` callback.
 
-All the chat room members can leave the specified chat room. Once a chat room member leaves a chat room, all the other members receive the `leaveChatRoom` callback.
+All the chat room members can call `quitChatRoom` to leave the specified chat room. Once a chat room member leaves a chat room, all the other members receive the `leaveChatRoom` callback.
 
 ```javascript
 // All the chat users can call joinChatRoom to join the specified chat room.
@@ -232,7 +232,7 @@ let option = {
 };
 conn.addUsersToChatRoomWhitelist(option);
 
-// The chat room owner or admin can call removeChatRoomWhitelistMember to remove the specifeid member from the chat room allow list.
+// The chat room owner or admin can call removeChatRoomWhitelistMember to remove the specified member from the chat room allow list.
 let option = {
     chatRoomId: "chatRoomId",
     userName: "user"
