@@ -93,7 +93,31 @@
         audioChannels(1),
         audioCodecProfile(AUDIO_CODEC_PROFILE_LC_AAC) {}
 };</codeblock>
-                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="unity" outputclass="language-csharp">public class LiveTranscoding
+    {
+        public LiveTranscoding()
+        {
+            width = 360;
+            height = 640;
+            videoBitrate = 400;
+            videoFramerate = 15;
+            lowLatency = false;
+            videoGop = 30;
+            videoCodecProfile = VIDEO_CODEC_PROFILE_TYPE.VIDEO_CODEC_PROFILE_HIGH;
+            backgroundColor = 0x000000;
+            userCount = 0;
+            transcodingUsers = new TranscodingUser[0];
+            transcodingExtraInfo = null;
+            metadata = null;
+            watermark = null;
+            watermarkCount = 0;
+            backgroundImage = null;
+            backgroundImageCount = 0;
+            audioSampleRate = AUDIO_SAMPLE_RATE_TYPE.AUDIO_SAMPLE_RATE_48000;
+            audioBitrate = 48;
+            audioChannels = 1;
+            audioCodecProfile = AUDIO_CODEC_PROFILE_TYPE.AUDIO_CODEC_PROFILE_LC_AAC;
+        }</codeblock>
             </p>
             <p outputclass="codeblock" props="rtc">
                 <codeblock props="windows unity" outputclass="language-cpp">typedef struct LiveTranscoding {
