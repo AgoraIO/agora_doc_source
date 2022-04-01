@@ -177,7 +177,7 @@ The chat room owner and admins can add the specified member to the chat room mut
 let option = {
     chatRoomId: "chatRoomId", // The ID of the chat room
     username: 'username',     // The username of the muted user
-    muteDuration: -1000       // The mute duration. Unit: milliseconds. The value of "-1000" means permanant mute.
+    muteDuration: -1000       // The mute duration. Unit: millisecond. The value of "-1000" means permanant mute.
 };
 conn.muteChatRoomMember(option).then(res => console.log(res))
 

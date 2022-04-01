@@ -204,6 +204,8 @@ The chat room owner can transfer the ownership to the specified chat room member
 
 The chat room owner can add admins. Once added to the chat group admin list, the newly added admin and the other chat room admins receive the `chatroomAdminListDidUpdate` callback.
 
+The chat room owner can remove admins. Once removed from the chat group admin list, the removed admin and the other chat room admins receive the `chatroomAdminListDidUpdate` callback.
+
 ```objective-c
 // The chat room owner can call updateChatroomOwner to transfer the ownership to the other chat room member.
 AgoraError *error = nil;
