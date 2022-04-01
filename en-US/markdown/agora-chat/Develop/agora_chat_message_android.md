@@ -21,7 +21,7 @@ The Agora Chat SDK provides a `ChatMessage` class that defines the message type,
 Before proceeding, ensure that you meet the following requirements:
 
 - You have integrated the Agora Chat SDK, initialized the SDK and implemented the functionality of registering accounts and login. For details, see [Get Started with Agora Chat](agora_chat_get_started_android?platform=Android).
-- You understand the [API call frequency limits](./agora_chat_limitation_android?platform=Androids).
+- You understand the [API call frequency limits](./agora_chat_limitation_android?platform=Android).
 
 
 ## Send and recieve messages
