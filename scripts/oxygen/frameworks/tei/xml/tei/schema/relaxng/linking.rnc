@@ -1,0 +1,610 @@
+namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
+namespace ns1 = "http://www.w3.org/1999/xhtml"
+namespace rng = "http://relaxng.org/ns/structure/1.0"
+namespace sch = "http://purl.oclc.org/dsdl/schematron"
+namespace tei = "http://www.tei-c.org/ns/1.0"
+namespace teix = "http://www.tei-c.org/ns/Examples"
+namespace xi = "http://www.w3.org/2001/XInclude"
+
+# Schema generated 2021-08-31T10:24:16Z
+# Edition: Version 4.3.0. Last updated on
+#         31st August 2021, revision b4f72b1ff
+# This material is dual-licensed.
+# [http://creativecommons.org/licenses/by/3.0/] Distributed under a Creative Commons Attribution 3.0 Unported License.  [http://www.opensource.org/licenses/BSD-2-Clause] Copyright 2021 TEI Consortium. All rights reserved. Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met: Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. This software is provided by the copyright holders and contributors "as is" and any express or implied warranties, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose are disclaimed. In no event shall the copyright holder or contributors be liable for any direct, indirect, incidental, special, exemplary, or consequential damages (including, but not limited to, procurement of substitute goods or services; loss of use, data, or profits; or business interruption) however caused and on any theory of liability, whether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of the use of this software, even if advised of the possibility of such damage. TEI material can be licensed differently depending on the use you intend to make of it. Hence it is made available under both the CC+BY and BSD-2 licences. The CC+BY licence is generally appropriate for usages which treat TEI content as data or documentation. The BSD-2 licence is generally appropriate for usage of TEI content in a software environment. For further information or clarification, please contact the  TEI
+#           Consortium . Linking, segmentation, and alignment
+
+# Definitions from module linking
+
+# Set global predeclared macros
+
+# Set predeclared macros
+
+# 0. predeclared macros
+
+# 1. classes
+att.global.linking.attributes =
+  att.global.linking.attribute.corresp,
+  att.global.linking.attribute.synch,
+  att.global.linking.attribute.sameAs,
+  att.global.linking.attribute.copyOf,
+  att.global.linking.attribute.next,
+  att.global.linking.attribute.prev,
+  att.global.linking.attribute.exclude,
+  att.global.linking.attribute.select
+att.global.linking.attribute.corresp =
+  
+  ## (corresponds) points to elements that correspond to the current element in some way.
+  attribute corresp {
+    list { xsd:anyURI+ }
+  }?
+att.global.linking.attribute.synch =
+  
+  ## (synchronous) points to elements that are synchronous with the current element.
+  attribute synch {
+    list { xsd:anyURI+ }
+  }?
+att.global.linking.attribute.sameAs =
+  
+  ## points to an element that is the same as the current element.
+  attribute sameAs { xsd:anyURI }?
+att.global.linking.attribute.copyOf =
+  
+  ## points to an element of which the current element is a copy.
+  attribute copyOf { xsd:anyURI }?
+att.global.linking.attribute.next =
+  
+  ## points to the next element of a virtual aggregate of which the current element is part.
+  attribute next { xsd:anyURI }?
+att.global.linking.attribute.prev =
+  
+  ## (previous) points to the previous element of a virtual aggregate of which the current element is part.
+  attribute prev { xsd:anyURI }?
+att.global.linking.attribute.exclude =
+  
+  ## points to elements that are in exclusive alternation with the current element.
+  attribute exclude {
+    list { xsd:anyURI+ }
+  }?
+att.global.linking.attribute.select =
+  
+  ## selects one or more alternants; if one alternant is selected, the ambiguity or uncertainty is marked as resolved. If more than one alternant is selected, the degree of ambiguity or uncertainty is marked as reduced by the number of alternants not selected.
+  attribute select {
+    list { xsd:anyURI+ }
+  }?
+# 2. elements
+ab =
+  
+  ## (anonymous block) contains any arbitrary component-level unit of text, acting as an anonymous container for phrase or inter level elements analogous to, but without the semantic baggage of, a paragraph. []
+  element ab { ab.content, ab.localattributes }
+ab.content =
+  macro.paraContent
+  >> sch:pattern [
+       id = "ab-abstractModel-structure-ab-constraint-report-24"
+       "\x{a}" ~
+       "         "
+       sch:rule [
+         context = "tei:ab"
+         "\x{a}" ~
+         "            "
+         sch:report [
+           test =
+             "not(ancestor::tei:floatingText) and (ancestor::tei:p or ancestor::tei:ab)          and not(parent::tei:exemplum         |parent::tei:item         |parent::tei:note         |parent::tei:q         |parent::tei:quote         |parent::tei:remarks         |parent::tei:said         |parent::tei:sp         |parent::tei:stage         |parent::tei:cell         |parent::tei:figure)"
+           "\x{a}" ~
+           "        Abstract model violation: ab may not occur inside paragraphs or other ab elements.\x{a}" ~
+           "      "
+         ]
+         "\x{a}" ~
+         "         "
+       ]
+       "\x{a}" ~
+       "      "
+     ]
+  >> sch:pattern [
+       id = "ab-abstractModel-structure-l-constraint-report-25"
+       "\x{a}" ~
+       "         "
+       sch:rule [
+         context = "tei:ab"
+         "\x{a}" ~
+         "            "
+         sch:report [
+           test =
+             "(ancestor::tei:l or ancestor::tei:lg) and not(parent::tei:figure or parent::tei:note or ancestor::tei:floatingText)"
+           "\x{a}" ~
+           "        Abstract model violation: Lines may not contain higher-level divisions such as p or ab, unless ab is a child of figure or note, or is a descendant of floatingText.\x{a}" ~
+           "      "
+         ]
+         "\x{a}" ~
+         "         "
+       ]
+       "\x{a}" ~
+       "      "
+     ]
+ab.localattributes =
+  att.global.attributes,
+  att.typed.attributes,
+  att.declaring.attributes,
+  att.fragmentable.attributes,
+  att.written.attributes,
+  empty
+alt =
+  
+  ## (alternation) identifies an alternation or a set of choices among elements or passages. []
+  element alt { alt.content, alt.localattributes }
+alt.content = empty
+alt.localattributes =
+  att.global.attributes,
+  att.typed.attributes,
+  att.pointing.attribute.targetLang,
+  att.pointing.attribute.evaluate,
+  
+  ## specifies the destination of the reference by supplying one or more URI References
+  attribute target {
+    list { xsd:anyURI, xsd:anyURI, xsd:anyURI* }
+  }?,
+  
+  ## states whether the alternations gathered in this collection are exclusive or inclusive.
+  attribute mode {
+    
+    ## (exclusive) indicates that the alternation is exclusive, i.e. that at most one of the alternatives occurs.
+    "excl"
+    | 
+      ## (inclusive) indicates that the alternation is not exclusive, i.e. that one or more of the alternatives occur.
+      "incl"
+  }?,
+  [
+    a:documentation [
+      "If "
+      ns1:code [ "@mode" ]
+      " is excl, each weight states the probability that the corresponding alternative occurs. If "
+      ns1:code [ "@mode" ]
+      " is incl each weight states the probability that the corresponding alternative occurs given that at least one of the other alternatives occurs."
+    ]
+  ]
+  attribute weights {
+    list { xsd:double, xsd:double, xsd:double* }
+  }?,
+  empty
+altGrp =
+  [
+    a:documentation [
+      "(alternation group) groups a collection of "
+      ns1:code [ "<alt>" ]
+      " elements and possibly pointers. []"
+    ]
+  ]
+  element altGrp { altGrp.content, altGrp.localattributes }
+altGrp.content = model.descLike*, (alt | ptr)*
+altGrp.localattributes =
+  att.global.attributes,
+  att.pointing.group.attributes,
+  
+  ## states whether the alternations gathered in this collection are exclusive or inclusive.
+  [ a:defaultValue = "excl" ]
+  attribute mode {
+    
+    ## (exclusive) indicates that the alternation is exclusive, i.e. that at most one of the alternatives occurs.
+    "excl"
+    | 
+      ## (inclusive) indicates that the alternation is not exclusive, i.e. that one or more of the alternatives occur.
+      "incl"
+  }?,
+  empty
+anchor =
+  
+  ## (anchor point) attaches an identifier to a point within a text, whether or not it corresponds with a textual element. [ ]
+  element anchor { anchor.content, anchor.localattributes }
+anchor.content = empty
+anchor.localattributes =
+  att.global.attributes, att.typed.attributes, empty
+annotation =
+  [
+    a:documentation [
+      "represents an annotation following the "
+      ns1:a [
+        href = "#WADM"
+        "Web\x{a}" ~
+        "      Annotation Data Model"
+      ]
+      ". []"
+    ]
+  ]
+  element annotation { annotation.content, annotation.localattributes }
+annotation.content =
+  respStmt*, revisionDesc*, licence*, model.annotationPart.body*
+annotation.localattributes =
+  att.global.attribute.n,
+  att.global.attribute.xmllang,
+  att.global.attribute.xmlbase,
+  att.global.attribute.xmlspace,
+  att.global.rendition.attribute.rend,
+  att.global.rendition.attribute.style,
+  att.global.rendition.attribute.rendition,
+  att.global.linking.attribute.corresp,
+  att.global.linking.attribute.synch,
+  att.global.linking.attribute.sameAs,
+  att.global.linking.attribute.copyOf,
+  att.global.linking.attribute.next,
+  att.global.linking.attribute.prev,
+  att.global.linking.attribute.exclude,
+  att.global.linking.attribute.select,
+  att.global.analytic.attribute.ana,
+  att.global.facs.attribute.facs,
+  att.global.change.attribute.change,
+  att.global.responsibility.attribute.cert,
+  att.global.responsibility.attribute.resp,
+  att.global.source.attribute.source,
+  att.pointing.attribute.targetLang,
+  att.pointing.attribute.evaluate,
+  
+  ## (identifier) provides a unique identifier for the element bearing the attribute.
+  attribute xml:id { xsd:ID },
+  
+  ## specifies the destination of the reference by supplying one or more URI References
+  attribute target {
+    list { xsd:anyURI+ }
+  },
+  
+  ##
+  attribute motivation {
+    list {
+      (
+       ## intent is to assess the target resource in some way, rather than simply make a comment about it
+       "assessing"
+       | 
+         ## intent is to create a bookmark to the target or part thereof
+         "bookmarking"
+       | 
+         ## intent is to classify the target in some way
+         "classifying"
+       | 
+         ## intent is to comment about the target
+         "commenting"
+       | 
+         ## intent is to describe the target, rather than (for example) comment on it
+         "describing"
+       | 
+         ## intent is to request an edit or a change to the target resource
+         "editing"
+       | 
+         ## intent is to highlight the target resource or a segment thereof
+         "highlighting"
+       | 
+         ## intent is to assign an identity to the target
+         "identifying"
+       | 
+         ## intent is to link to a resource related to the target
+         "linking"
+       | 
+         ## intent is to assign some value or quality to the target
+         "moderating"
+       | 
+         ## intent is to ask a question about the target
+         "questioning"
+       | 
+         ## intent is to reply to a previous statement, either an annotation or another resource
+         "replying"
+       | 
+         ## intent is to associate a tag with the target
+         "tagging")+
+    }
+  }?,
+  empty
+join =
+  
+  ## (join) identifies a possibly fragmented segment of text, by pointing at the possibly discontiguous elements which compose it. []
+  element join { join.content, join.localattributes }
+join.content =
+  ((model.descLike | model.certLike)*)
+  >> sch:pattern [
+       id = "join-joinTargets3-constraint-assert-30"
+       "\x{a}" ~
+       "         "
+       sch:rule [
+         context = "tei:join"
+         "\x{a}" ~
+         "            "
+         sch:assert [
+           test = "contains(@target,' ')"
+           "\x{a}" ~
+           "You must supply at least two values for @target on "
+           sch:name [ ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ]
+       "\x{a}" ~
+       "      "
+     ]
+join.localattributes =
+  att.global.attributes,
+  att.pointing.attributes,
+  att.typed.attributes,
+  
+  ## specifies the name of an element which this aggregation may be understood to represent.
+  attribute result { xsd:Name }?,
+  
+  ## indicates whether the targets to be joined include the entire element indicated (the entire subtree including its root), or just the children of the target (the branches of the subtree).
+  [ a:defaultValue = "root" ]
+  attribute scope {
+    [
+      a:documentation [
+        "the rooted subtrees indicated by the "
+        ns1:code [ "@target" ]
+        " attribute are joined, each subtree become a child of the virtual element created by the join"
+      ]
+    ]
+    "root"
+    | [
+        a:documentation [
+          "the children of the subtrees indicated by the "
+          ns1:code [ "@target" ]
+          " attribute become the children of the virtual element (i.e. the roots of the subtrees are discarded)"
+        ]
+      ]
+      "branches"
+  }?,
+  empty
+joinGrp =
+  [
+    a:documentation [
+      "(join group) groups a collection of "
+      ns1:code [ "<join>" ]
+      " elements and possibly pointers. []"
+    ]
+  ]
+  element joinGrp { joinGrp.content, joinGrp.localattributes }
+joinGrp.content = (equiv | gloss | model.descLike)*, (join | ptr)+
+joinGrp.localattributes =
+  att.global.attributes,
+  att.pointing.group.attributes,
+  [
+    a:documentation [
+      "supplies the default value for the "
+      ns1:code [ "@result" ]
+      " on each "
+      ns1:code [ "<join>" ]
+      " included within the group."
+    ]
+  ]
+  attribute result { xsd:Name }?,
+  empty
+link =
+  
+  ## (link) defines an association or hypertextual link among elements or passages, of some type not more precisely specifiable by other elements. []
+  element link { link.content, link.localattributes }
+link.content =
+  empty
+  >> sch:pattern [
+       id = "link-linkTargets3-constraint-assert-29"
+       "\x{a}" ~
+       "         "
+       sch:rule [
+         context = "tei:link"
+         "\x{a}" ~
+         "            "
+         sch:assert [
+           test = "contains(normalize-space(@target),' ')"
+           "You must supply at least two values for @target or  on "
+           sch:name [ ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ]
+       "\x{a}" ~
+       "      "
+     ]
+link.localattributes =
+  att.global.attributes,
+  att.pointing.attributes,
+  att.typed.attributes,
+  empty
+linkGrp =
+  
+  ## (link group) defines a collection of associations or hypertextual links. []
+  element linkGrp { linkGrp.content, linkGrp.localattributes }
+linkGrp.content = model.descLike*, (link | ptr)+
+linkGrp.localattributes =
+  att.global.attributes, att.pointing.group.attributes, empty
+listAnnotation =
+  [
+    a:documentation [
+      "contains a list of annotations, typically encoded as "
+      ns1:code [ "<annotation>" ]
+      ", "
+      ns1:code [ "<annotationBlock>" ]
+      ", or "
+      ns1:code [ "<note>" ]
+      ", possibly organized with nested "
+      ns1:code [ "<listAnnotation>" ]
+      " elements. []"
+    ]
+  ]
+  element listAnnotation {
+    listAnnotation.content, listAnnotation.localattributes
+  }
+listAnnotation.content =
+  model.headLike*,
+  model.labelLike*,
+  (model.annotationLike | listAnnotation)+
+listAnnotation.localattributes =
+  att.global.attributes,
+  att.typed.attributes,
+  att.notated.attributes,
+  att.declaring.attributes,
+  empty
+seg =
+  
+  ## (arbitrary segment) represents any segmentation of text below the chunk level. [  ]
+  element seg { seg.content, seg.localattributes }
+seg.content = macro.paraContent
+seg.localattributes =
+  att.global.attributes,
+  att.segLike.attributes,
+  att.typed.attributes,
+  att.written.attributes,
+  att.notated.attributes,
+  empty
+standOff =
+  
+  ## Functions as a container element for linked data, contextual information, and stand-off annotations embedded in a TEI document. []
+  element standOff { standOff.content, standOff.localattributes }
+standOff.content =
+  (model.standOffPart+)
+  >> sch:pattern [
+       id =
+         "standOff-nested_standOff_should_be_typed-constraint-assert-31"
+       "\x{a}" ~
+       "         "
+       sch:rule [
+         context = "tei:standOff"
+         "\x{a}" ~
+         "            "
+         sch:assert [
+           test = "@type or not(ancestor::tei:standOff)"
+           "This\x{a}" ~
+           "      "
+           sch:name [ ]
+           " element must have a @type attribute, since it is\x{a}" ~
+           "      nested inside a "
+           sch:name [ ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ]
+       "\x{a}" ~
+       "      "
+     ]
+standOff.localattributes =
+  att.global.attributes,
+  att.typed.attributes,
+  att.declaring.attributes,
+  empty
+timeline =
+  
+  ## (timeline) provides a set of ordered points in time which can be linked to elements of a spoken text to create a temporal alignment of that text. []
+  element timeline { timeline.content, timeline.localattributes }
+timeline.content = when+
+timeline.localattributes =
+  att.global.attributes,
+  
+  ## designates the origin of the timeline, i.e. the time at which it begins.
+  attribute origin { xsd:anyURI }?,
+  [
+    a:documentation [
+      "specifies the unit of time corresponding to the "
+      ns1:code [ "@interval" ]
+      " value of the timeline or of its constituent points in time.\x{a}" ~
+      "Suggested values include: 1] d (days); 2] h (hours); 3] min (minutes); 4] s (seconds); 5] ms (milliseconds)"
+    ]
+  ]
+  attribute unit {
+    
+    ## (days) 
+    "d"
+    | 
+      ## (hours) 
+      "h"
+    | 
+      ## (minutes) 
+      "min"
+    | 
+      ## (seconds) 
+      "s"
+    | 
+      ## (milliseconds) 
+      "ms"
+    | xsd:token { pattern = "[^\p{C}\p{Z}]+" }
+  }?,
+  
+  ## specifies a time interval either as a positive integral value or using one of a set of predefined codes.
+  attribute interval {
+    xsd:float
+    | (
+       ##
+       "regular"
+       | 
+         ##
+         "irregular"
+       | 
+         ##
+         "unknown")
+  }?,
+  empty
+when =
+  
+  ## indicates a point in time either relative to other elements in the same timeline tag, or absolutely. []
+  element when { when.content, when.localattributes }
+when.content = empty
+when.localattributes =
+  att.global.attributes,
+  
+  ## supplies an absolute value for the time.
+  attribute absolute {
+    xsd:date
+    | xsd:gYear
+    | xsd:gMonth
+    | xsd:gDay
+    | xsd:gYearMonth
+    | xsd:gMonthDay
+    | xsd:time
+    | xsd:dateTime
+  }?,
+  [
+    a:documentation [
+      "specifies the unit of time in which the "
+      ns1:code [ "@interval" ]
+      " value is expressed, if this is not inherited from the parent "
+      ns1:code [ "<timeline>" ]
+      ".\x{a}" ~
+      "Suggested values include: 1] d (days); 2] h (hours); 3] min (minutes); 4] s (seconds); 5] ms (milliseconds)"
+    ]
+  ]
+  attribute unit {
+    
+    ## (days) 
+    "d"
+    | 
+      ## (hours) 
+      "h"
+    | 
+      ## (minutes) 
+      "min"
+    | 
+      ## (seconds) 
+      "s"
+    | 
+      ## (milliseconds) 
+      "ms"
+    | xsd:token { pattern = "[^\p{C}\p{Z}]+" }
+  }?,
+  
+  ## specifies a time interval either as a number or as one of the keywords defined by the datatype teidata.interval
+  attribute interval {
+    xsd:float
+    | (
+       ##
+       "regular"
+       | 
+         ##
+         "irregular"
+       | 
+         ##
+         "unknown")
+  }?,
+  [
+    a:documentation [
+      "identifies the reference point for determining the time of the current "
+      ns1:code [ "<when>" ]
+      " element, which is obtained by adding the interval to the time of the reference point."
+    ]
+  ]
+  attribute since { xsd:anyURI }?,
+  empty
+# 3. macros

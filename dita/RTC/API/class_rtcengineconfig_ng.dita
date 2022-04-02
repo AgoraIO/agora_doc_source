@@ -154,6 +154,17 @@
                         <p props="android">安卓活动上下文。</p>
                     </pd>
                 </plentry>
+                <plentry props="android">
+                  <pt>mNativeLibPath</pt>
+                  <pd><p>指定 <codeph>.so</codeph> 文件的存储目录。存储目录必须为有效的 app 的私有目录，可以通过 <codeph>Context.getDir()</codeph> 获取。</p>
+                    <ul>
+                      <li>如果你设置了该参数，SDK 会在你指定的目录下自动加载 <codeph>.so</codeph> 文件，使 app 在运行时动态加载需要的 <codeph>.so</codeph> 文件，从而减小 app 的包体积。</li>
+                      <li>如果你不设置该参数或将其设置为 null，SDK 会从 app 默认的 <codeph>nativeLibraryPath</codeph> 中加载打包所需的 <codeph>.so</codeph> 文件，相对于上一种方式，app 的包体积会增加。</li></ul>
+                    <note type="attention"><ul>
+                      <li>该设置仅适用于手动集成 SDK，不适用于通过 Maven Central 或 JitPack 集成 SDK 的情况。</li>
+                      <li>务必确保你设置的路径为有效路径，否则会导致 <xref keyref="IRtcEngine"/> 创建失败。</li></ul></note>
+                  </pd>
+                </plentry>
                 <plentry props="android windows">
                     <pt props="windows">enableAudioDevice</pt>
                     <pt props="android">mEnableAudioDevice</pt>
@@ -187,9 +198,9 @@
                     <pt props="android">mLogConfig</pt>
                     <pd>
                         <p>设置 Agora SDK 输出的日志文件。详见 <xref keyref="LogConfig"/>。</p>
-                        <p>默认情况下，SDK 会生成<codeph>agorasdk.log</codeph>、<codeph>agorasdk1.log</codeph>、<codeph>agoraapi.log</codeph>、<codeph>agoraapi1.log</codeph> 这 4 个日志文件。<codeph>agorasdk.log</codeph> 和 <codeph>agorasdk1.log</codeph> 默认大小为 1,024 KB；<codeph>agoraapi.log</codeph> 和 <codeph>agoraapi1.log</codeph> 默认大小为 2,048 KB。 日志文件为 UTF-8 编码。</p>
-                        <p>最新的日志永远写在 <codeph>agorasdk.log</codeph> 和 <codeph>agoraapi.log</codeph> 中。当 <codeph>agorasdk.log</codeph> 和 <codeph>agoraapi.log</codeph> 写满后，SDK 会删除 <codeph>agorasdk1.log</codeph> 和 <codeph>agoraapi1.log</codeph>，将 <codeph>agorasdk.log</codeph> 和 <codeph>agoraapi.log</codeph> 重命名为 <codeph>agorasdk1.log</codeph> 和 <codeph>agorasapi1.log</codeph>，并创建新的 <codeph>agorasdk.log</codeph> 和 <codeph>agoraapi.log</codeph> 写入最新的日志。</p>
-                    </pd>
+                        <p>默认情况下，SDK 会生成 5 个 SDK 日志文件和 5 个 API 调用日志文件，规则如下：</p>
+                        <ul conkeyref="setLogFileSize/logprinciple"><li></li></ul>
+                      </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>mExtensionList</pt>

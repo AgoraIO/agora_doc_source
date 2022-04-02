@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." name="Zendesk">
+	
+	<target name="zendesk-classpath-init">
+		<property name="zendesk.plugin.dir" value="${dita.plugin.com.oxygenxml.zendesk.dir}"/> 
+		<property name="com.oxygenxml.common.dir" value="${dita.plugin.com.oxygenxml.common.dir}"/>
+	
+		<path id="zd_classpath">   
+		        <fileset dir="${com.oxygenxml.common.dir}/lib">
+		            <include name="*.jar"/>
+		        </fileset>
+				<fileset dir="${dita.plugin.com.oxygenxml.zendesk.dir}/lib">
+		            <include name="*.jar"/>
+		        </fileset>
+		</path>
+	</target>
+    
+    
+    <target name="zendesk-props">
+        <echo>Test Zendesk properties if set.</echo>
+        
+        <!-- If any of these properties are not set we want to pass empty strings to the upload task. -->
+        <condition property="zendesk.username" value="">
+            <not>  
+                <isset property="zendesk.username"/>
+            </not>
+        </condition>
+        <condition property="zendesk.token" value="">
+            <not>  
+                <isset property="zendesk.token"/>
+            </not>
+        </condition>
+        <condition property="zendesk.host" value="">
+            <not>  
+                <isset property="zendesk.host"/>
+            </not>
+        </condition>
+        
+        <condition property="zendesk.section.name" value="">
+            <not>  
+                <isset property="zendesk.section.name"/>
+            </not>
+        </condition>
+        
+        <condition property="zendesk.category.name" value="">
+            <not>  
+                <isset property="zendesk.category.name"/>
+            </not>
+        </condition>
+        
+        <condition property="zendesk.create.drafts" value="false">
+            <not>  
+                <isset property="zendesk.create.drafts"/>
+            </not>
+        </condition>
+        
+        <condition property="zendesk.permission.group.name" value="">
+            <not>  
+                <isset property="zendesk.permission.group.name"/>
+            </not>
+        </condition>
+    </target>
+    
+    <target name="zendesk-param-validate" depends="zendesk-classpath-init, zendesk-props">
+        <taskdef 
+            name="zendeskHelpCenterParamCheck" 
+            classname="com.oxygenxml.zendesk.ant.ZendeskHelpCenterParamCheckTask"
+            classpathref="zd_classpath">
+        </taskdef>  
+        
+        <echo>Check Zendesk Help Center upload parameters.</echo>
+        
+        <zendeskHelpCenterParamCheck
+            zendeskHost="${zendesk.host}"
+            username="${zendesk.username}"
+            token="${zendesk.token}"
+            sectionName="${zendesk.section.name}"
+            categoryName="${zendesk.category.name}"
+            createDrafts="${zendesk.create.drafts}"
+            permissionGroupName="${zendesk.permission.group.name}"
+            pluginDir="${zendesk.plugin.dir}"
+        />
+    </target>
+    
+    <target name="dita2zendesk-xhtml" depends="zendesk-param-validate, dita2xhtml">
+        <echo>Upload ${dita.output.dir}</echo>
+		
+		<taskdef 
+	        name="zendeskHelpCenterUpdate" 
+	        classname="com.oxygenxml.zendesk.ant.ZendeskHelpCenterUpdateTask"
+	        classpathref="zd_classpath">
+	    </taskdef>
+        
+        <zendeskHelpCenterUpdate
+            dir="${dita.output.dir}"
+            zendeskHost="${zendesk.host}"
+            username="${zendesk.username}"
+            token="${zendesk.token}"
+            sectionName="${zendesk.section.name}"
+            categoryName="${zendesk.category.name}"
+            createDrafts="${zendesk.create.drafts}"
+            permissionGroupName="${zendesk.permission.group.name}"
+            pluginDir="${zendesk.plugin.dir}"
+        />
+    </target>
+    
+</project>
