@@ -1155,6 +1155,13 @@ def replace_newline():
 
     replaced_file_text = re.sub('enum_cloudproxytype', 'enum_proxytype', replaced_file_text)
 
+    replaced_file_text = re.sub('callback_onrecorderstatechanged', 'callback_imediarecorder_onrecorderstatechanged', replaced_file_text)
+    replaced_file_text = re.sub('api_stoprecording', 'api_imediarecorder_stoprecording', replaced_file_text)
+    replaced_file_text = re.sub('api_startrecording', 'api_imediarecorder_startrecording', replaced_file_text)
+    replaced_file_text = re.sub('callback_onrecorderinfoupdated', 'callback_imediarecorder_onrecorderinfoupdated', replaced_file_text)
+    replaced_file_text = re.sub('api_getmediarecorder', 'api_imediarecorder_getmediarecorder', replaced_file_text)
+    replaced_file_text = re.sub('api_releaserecorder', 'api_imediarecorder_releaserecorder', replaced_file_text)
+
     replaced_file_text = re.sub('callback_airplayconnected', 'callback_onairplayconnected', replaced_file_text)
 
     replaced_file_text = re.sub('"": ""', '', replaced_file_text)
