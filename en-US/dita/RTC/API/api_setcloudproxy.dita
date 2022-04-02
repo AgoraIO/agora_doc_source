@@ -40,7 +40,7 @@
             <note type="attention">
             <ul>
             <li>Agora recommends that you call this method before joining the channel or after leaving the channel.</li>
-            <li>When a user is behind a firewall and uses the Force UDP cloud proxy, the services for Media Push and cohosting across channels are not available.</li>
+            <li><ph props="rtc">对 3.3.x 版 SDK，使用 Force UDP 云代理时，旁路推流和跨频道媒体流转发功能不可用。 When</ph><ph> a user is behind a firewall</ph> and<ph> uses the Force UDP cloud proxy, the services for Media Push and cohosting across channels are not available.</ph></li>
             <li>When you use the Force TCP cloud proxy, note that an error would occur when calling the <xref keyref="startAudioMixing2"/> method to play online music files in the HTTP protocol. The services for Media Push and cohosting across channels use the cloud proxy with the TCP protocol.</li>
             </ul></note></section>
         <section id="parameters">
@@ -48,23 +48,25 @@
             <parml>
             <plentry>
                 <pt>proxyType</pt>
-                <pd><p props="ios mac windows electron unity flutter">The type of the cloud proxy. See <xref keyref="CLOUD_PROXY_TYPE"/>.</p>
+                <pd>
+                    <p props="ios mac windows electron unity flutter">The type of the cloud proxy. See <xref keyref="CLOUD_PROXY_TYPE"/>.</p>
                     <p props="android"><ph>Type of the cloud proxy.</ph><ul>
-                        <li><ph keyref="NONE_PROXY"/><ph>(0): The automatic mode.  </ph><ph props="rtc-ng">The SDK has this mode enabled by default. </ph><ph>In this mode, the SDK attempts a direct connection to SD-RTN™ and automatically switches to TCP/TLS 443 if the attempt fails. </ph><ph props="rtc">As of v3.6.2, the SDK has this mode enabled by default.</ph></li>
-                        <li><ph keyref="UDP_PROXY"/>(1): The cloud proxy for the UDP protocol, that is, the Force UDP cloud proxy mode. In this mode, the SDK always transmits data over UDP.</li>
-                        <li><ph keyref="TCP_PROXY"/>(2): The cloud proxy for the TCP (encryption) protocol, that is, the Force TCP cloud proxy mode. In this mode, the SDK always transmits data over TCP/TLS 443.</li>
+                    <li><ph keyref="NONE_PROXY"/><ph>(0): The automatic mode.  </ph><ph props="rtc-ng">The SDK has this mode enabled by default. </ph><ph>In this mode, the SDK attempts a direct connection to SD-RTN™ and automatically switches to TCP/TLS 443 if the attempt fails. </ph><ph props="rtc">As of v3.6.2, the SDK has this mode enabled by default.</ph></li>
+                    <li><ph keyref="UDP_PROXY"/>(1): The cloud proxy for the UDP protocol, that is, the Force UDP cloud proxy mode. In this mode, the SDK always transmits data over UDP.</li>
+                    <li><ph keyref="TCP_PROXY"/>(2): The cloud proxy for the TCP (encryption) protocol, that is, the Force TCP cloud proxy mode. In this mode, the SDK always transmits data over TCP/TLS 443.</li>
                     </ul></p>
-                    <p>This parameter is mandatory. The SDK reports an error if you do not pass in a value.</p></pd>
+                    <p>This parameter is mandatory. The SDK reports an error if you do not pass in a value.</p>
+                </pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native windows unity electron">
             <title>Returns</title>
             <ul>
-                <li>0: Success.</li>
-                <li> &lt; 0: Failure.<ul>
-                    <li>-2: The parameter is invalid.</li>
-                    <li>-7: The SDK is not initialized.</li>
-                    </ul> </li>
+            <li>0: Success.</li>
+            <li> &lt; 0: Failure.<ul>
+                <li>-2: The parameter is invalid.</li>
+                <li>-7: The SDK is not initialized.</li>
+                </ul> </li>
             </ul></section>
     </refbody>
 </reference>
