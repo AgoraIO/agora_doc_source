@@ -2,14 +2,14 @@
 name: Awesome prototype syncs
 
 on:
-    # pull_request:
-    #    branches:
-    #        - master
-    #        - 'release/**'
+    pull_request:
+        branches:
+            - master
+            - main
     push:
         branches:
             - master
-            - 'release/**'
+            - main
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -35,17 +35,9 @@ jobs:
                   token: ${{ secrets.GITHUB_TOKEN }}
                   commit-message: Sync cn prototype to en prototype
                   title: "[AUTO: MERGE AT YOUR EARLIEST CONVENIENCE] Sync cn prototype to en prototype in a flash"
-                  branch: auto/sync-cn-proto-to-en-patch
-                  branch-suffix: timestamp
-                  delete-branch: true
-                  # reviewers: lemon-chen
+                  branch: sync-patch
+                  base: master
+                  reviewers: lemon-chen
                   body: >
                       This PR is auto-generated to sync prototypes from cn DITA files to en DITA files. @HeatherWYL  @Cilla-luodan
-                  labels: automerge
-            - name: Enable Pull Request Automerge
-              if: steps.cpr.outputs.pull-request-operation == 'created'
-              uses: peter-evans/enable-pull-request-automerge@v2
-              with:
-                      token: ${{ secrets.PAT }}
-                      pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
-                      merge-method: squash  
+                  labels: report, automated pr

@@ -93,7 +93,11 @@
     }
     return backgroundImageList.remove(backgroundImage);
   }
+  public ArrayList&lt;AgoraImage> getBackgroundImageList() {
     return backgroundImageList;
+  }
+  public AudioSampleRateType audioSampleRate;
+  public int audioBitrate;
   public int audioChannels;
   public AudioCodecProfileType audioCodecProfile;
   public VideoCodecProfileType videoCodecProfile;
@@ -326,7 +330,7 @@
     transcodingUsers: Array&lt;TranscodingUser&gt;
     }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class LiveTranscoding {
-
+  
   @JsonKey(includeIfNull: false)
   int? width;
 
@@ -660,10 +664,6 @@
             <plentry props="rtc">
                 <pt>userConfigExtraInfo</pt>
                 <pd>Reserved for future use. Extra user-defined information to send the Supplemental Enhancement Information (SEI) for the H.264/H.265 video stream to the CDN live client. Maximum length: 4096 Bytes.</pd>
-            </plentry>
-            <plentry props="rtc">
-                <pt>userConfigExtraInfo</pt>
-                <pd>Reserved property. Extra user-defined information to send the Supplemental Enhancement Information (SEI) for the H.264/H.265 video stream to the CDN live client. Maximum length: 4096 Bytes.</pd>
             </plentry>
             </parml> </section>
     </refbody>

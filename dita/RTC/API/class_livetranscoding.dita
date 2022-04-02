@@ -336,56 +336,56 @@
 
                 @JsonKey(includeIfNull: false)
                 int? width;
-
+              
                 @JsonKey(includeIfNull: false)
                 int? height;
-
+              
                 @JsonKey(includeIfNull: false)
                 int? videoBitrate;
 
                 @JsonKey(includeIfNull: false)
                 VideoFrameRate? videoFramerate;
-
+              
                 @Deprecated(
                     'This attribute is deprecated since v2.8.0, and Agora does not recommend it.')
                 @JsonKey(includeIfNull: false)
                 bool? lowLatency;
-
+              
                 @JsonKey(includeIfNull: false)
                 int? videoGop;
 
                 @JsonKey(includeIfNull: false)
                 List&lt;AgoraImage&gt;? watermark;
-
+              
                 @JsonKey(includeIfNull: false)
                 List&lt;AgoraImage&gt;? backgroundImage;
-
+              
                 @JsonKey(includeIfNull: false)
                 AudioSampleRateType? audioSampleRate;
-
+              
                 @JsonKey(includeIfNull: false)
                 int? audioBitrate;
-
+              
                 @JsonKey(includeIfNull: false)
                 AudioChannel? audioChannels;
-
+              
                 @JsonKey(includeIfNull: false)
                 AudioCodecProfileType? audioCodecProfile;
-
+              
                 @JsonKey(includeIfNull: false)
                 VideoCodecProfileType? videoCodecProfile;
-
+              
                 @JsonKey(includeIfNull: false)
                 int? backgroundColor;
-
+              
                 @JsonKey(includeIfNull: false)
                 VideoCodecTypeForStream? videoCodecType;
 
                 @JsonKey(includeIfNull: false)
                 String? userConfigExtraInfo;
-
+              
                 List&lt;TranscodingUser&gt; transcodingUsers;
-
+              
                 LiveTranscoding(
                   this.transcodingUsers, {
                   this.width,
@@ -405,17 +405,17 @@
                   this.videoCodecType,
                   this.userConfigExtraInfo,
                 });
-
+              
                 factory LiveTranscoding.fromJson(Map&lt;String, dynamic&gt; json) =>
                     _$LiveTranscodingFromJson(json);
-
+              
                 Map&lt;String, dynamic&gt; toJson() => _$LiveTranscodingToJson(this);
               }</codeblock> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry props="android windows electron unity flutter">
+            <plentry props="android windows electron unity">
                 <pt>width</pt>
                 <pd>
                     <p>推流视频的总宽度，默认值 360，单位为像素。</p>
@@ -424,7 +424,7 @@
                     <li>如果推音频流，请将 <codeph>width</codeph> 和 <codeph>height</codeph> 设为 0。</li>
                     </ul> </pd>
             </plentry>
-            <plentry props="android windows electron unity flutter">
+            <plentry props="android windows electron unity">
                 <pt>height</pt>
                 <pd>
                     <p>推流视频的总高度，默认值 640，单位为像素。</p>
@@ -455,8 +455,7 @@
                 </pd>
             </plentry>
             <plentry>
-              <pt props="native">videoFrameRate</pt>
-              <pt props="flutter">videoFramerate</pt>
+                <pt>videoFrameRate</pt>
                 <pd>
                     <p>用于旁路直播的输出视频的帧率。取值范围是 (0,30]，单位为 fps。15 fps 为默认值。</p>
                     <note type="attention">Agora 服务器会将高于 30 fps 的帧率统一调整为 30 fps。</note></pd>
@@ -483,7 +482,8 @@
             <plentry>
                 <pt>videoCodecProfile</pt>
                 <pd>
-                    <p>用于旁路直播的输出视频的编码规格。可以设置为 66、77 或 100，详见 <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/>。</p>
+                    <p>用于旁路直播的输出视频的编码规格。</p>
+                    <p>可以设置为 66、77 或 100，详见 <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/>。</p>
                     <note type="attention">如果你把这个参数设为其他值，Agora 服务器会将其调整为默认值。</note></pd>
             </plentry>
             <plentry>
@@ -493,7 +493,7 @@
             <plentry>
                 <pt>transcodingUsers</pt>
                 <pd>
-                    <p>用于管理参与旁路直播的视频转码合图的用户。最多支持 17 人同时参与转码合图。详见 <xref keyref="TranscodingUser"/>。</p>
+                    <p>用于管理参与旁路backgroundColor直播的视频转码合图的用户。最多支持 17 人同时参与转码合图。详见 <xref keyref="TranscodingUser"/>。</p>
                 </pd>
             </plentry>
             <plentry>
@@ -553,18 +553,7 @@
                         <dd>已废弃，Agora 不推荐使用。</dd>
                     </dlentry>
                     </dl>
-                    <p>发送给 CDN 客户端的 metadata。</p></pd>
-            </plentry>
-            <plentry props="rtc">
-                <pt>backgroundImage</pt>
-                <pd props="windows">直播视频上的背景图。详见 <xref keyref="RtcImage"/>。你可以添加一张背景图，或使用数组的方式添加多张背景图。该参数与 <parmname>backgroundImageCount</parmname> 搭配使用。</pd>
-                <pd props="ios mac">
-                    <p>自 v3.6.0 废弃。请改用 <parmname>backgroundImageArray</parmname>。</p>
-                    <p>直播视频上的背景图。图片格式需为 PNG。详见 <xref keyref="RtcImage"/>。</p>
-                </pd>
-                <pd props="android">
-                    <p>自 v3.6.0 废弃。请改用 <parmname>backgroundImageList</parmname>。</p>
-                    <p>直播视频上的背景图。必须为 PNG 格式。详见 <xref keyref="RtcImage"/>。</p>
+                    <p>发送给 CDN 客户端的 metadata。</p>
                 </pd>
             </plentry>
             <plentry props="ios mac android electron unity flutter">
@@ -597,7 +586,8 @@
                     </dlentry>
                     </dl>
                     <p>直播视频上的背景图。图片格式需为 PNG。详见 <xref keyref="RtcImage"/>。</p>
-                    <p props="windows">你可以添加一张背景图，或使用数组的方式添加多张背景图。该参数与<parmname>backgroundImageCount</parmname> 搭配使用。</p>
+                    <p props="windows"
+                    >你可以添加一张背景图，或使用数组的方式添加多张背景图。该参数与<parmname>backgroundImageCount</parmname> 搭配使用。</p>
                 </pd>
             </plentry>
             <plentry props="ios mac">
@@ -619,7 +609,7 @@
             <plentry>
                 <pt>audioChannels</pt>
                 <pd>
-                    <p>用于旁路直播的输出音频的声道数，默认值为 1。取值范围为 [1,5] 中的整型，建议取 1 或 2。3、4、5 需要特殊播放器支持： </p>
+                    <p>用于旁路直播的输出音频的声道数，默认值为 1。取值范围为 [1,5] 中的整型，建议取 1 或 2。3、4、5需要特殊播放器支持： </p>
                     <ul>
                     <li>1: （默认）单声道</li>
                     <li>2: 双声道</li>
@@ -663,10 +653,6 @@
                     <p>直播视频上的背景图的数量。</p>
                     <p>水印和背景图的总数量需大于等于 0 且小于等于 10。该参数与 <parmname>backgroundImage</parmname> 搭配使用。</p>
                 </pd>
-            </plentry>
-            <plentry props="rtc">
-                <pt>userConfigExtraInfo</pt>
-                <pd>预留参数。 用户自定义的发送到旁路推流客户端的信息，用于填充 H264/H265 视频中 SEI 帧内容。长度限制：4096字节。</pd>
             </plentry>
             </parml> </section>
     </refbody>
