@@ -68,7 +68,7 @@ conn.destroyGroup(option).then(res => console.log(res))
 
 You can request to join a public chat group as follows:
 
-1. Call `getGroup` to retrieve the list of the groups that you are already in.
+1. Call `getGroup` to retrieve the list of the groups that you are already in from the server.
 2. Call `listGroups` to retrieve the list of public groups by page. You can obtain the ID of the group that you want to join.
 3. Call `joinGroup` to send a join request to the chat group:
     - If the `approval` parameter of the group type is set to `false`, your request is accepted automatically and the chat group members receive the `memberJoinPublicGroupSuccess` callback.

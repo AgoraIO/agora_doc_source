@@ -56,9 +56,10 @@ ChatClient.getInstance().groupManager().destroyGroup(groupId);
 
 You can request to join a public chat group as follows:
 
-1. Call `getJoinedGroupsFromServer` to retrieve the list of the groups that you are already in. This prevents repetitive join requests.
-2. Call `getPublicGroupsFromServer` to retrieve the list of public groups by page. You can obtain the ID of the group that you want to join.
-3. Call `joinGroup` to send a join request to the chat group:
+1. Call `getJoinedGroupsFromServer` to retrieve the list of the groups that you are already in from the server. This prevents repetitive join requests.
+2. Call `getAllGroups` to retrieve the list of the groups that you are already in from your local database.
+3. Call `getPublicGroupsFromServer` to retrieve the list of public groups by page. You can obtain the ID of the group that you want to join.
+4. Call `joinGroup` to send a join request to the chat group:
     - If the type of the chat group is set to `GroupStylePublicJoin`, your request is accepted automatically and the chat group memebers receive the `onMemberJoined` callback.
     - If the type of the chat group is set to `GroupStylePublicNeedApproval`, the chat group owner and chat group admins receive the `onRequestToJoinReceived` callback and determine whether to accept your request.
 
@@ -67,10 +68,10 @@ You can call `leaveGroup` to leave a chat group. Once you leave the group, all t
 Refer to the following sample code to join and leave a chat group:
 
 ```java
-// Call getJoinedGroups to retrieve the list of joined groups.
+// Call getJoinedGroups to retrieve the list of joined groups from the server.
 List<Group> grouplist = ChatClient.getInstance().groupManager().getJoinedGroupsFromServer();
 
-// Call getAllGroups to retrieve the list of all groups.
+// Call getAllGroups to retrieve the list of joined groups from your local database.
 List<Group> grouplist = ChatClient.getInstance().groupManager().getAllGroups();
 
 // List public groups by page.

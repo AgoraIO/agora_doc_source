@@ -64,9 +64,10 @@ NSArray *members = @{@"memeber1",@"member2"};
 
 You can request to join a public chat group as follows:
 
-1. Call `getJoinedGroupsFromServerWithPage` to retrieve the list of the groups that you are already in. This prevents repetitive join requests.
-2. Call `getPublicGroupsFromServerWithCursor` to retrieve the list of public groups by page. You can obtain the ID of the group that you want to join.
-3. Call `joinPublicGroup` to send a join request to the chat group:
+1. Call `getJoinedGroupsFromServerWithPage` to retrieve the list of the groups that you are already in from the server. This prevents repetitive join requests.
+2. Call `getJoinedGroups` to retrieve the list of the groups that you are already in from your local database.
+3. Call `getPublicGroupsFromServerWithCursor` to retrieve the list of public groups by page. You can obtain the ID of the group that you want to join.
+4. Call `joinPublicGroup` to send a join request to the chat group:
     - If the type of the chat group is set to `AgoraChatGroupStylePublicOpenJoin`, your request is accepted automatically and the chat group memebers receive the `userDidJoinGroup` callback.
     - If the type of the chat group is set to `AgoraChatGroupStylePublicJoinNeedApproval`, the chat group owner and chat group admins receive the `joinGroupRequestDidReceive` callback and determine whether to accept your request. Once the join request is approved, you receive the `joinGroupRequestDidApprove` callback. Otherwise, you receive the `joinGroupRequestDidDecline` callback.
 
@@ -75,13 +76,13 @@ You can call `leaveGroup` to leave a chat group. Once you leave the chat group, 
 Refer to the following sample code to join and leave a chat group:
 
 ```objective-c
-// Call getJoinedGroupsFromServerWithPage to retrieve the list of joined groups by page.
+// Call getJoinedGroupsFromServerWithPage to retrieve the list of joined groups from the server by page.
 NSArray *groupList = [[AgoraChatClient sharedClient].groupManager
                       				 getJoinedGroupsFromServerWithPage:nil 
                       																  pageSize:-1 
                       																     error:nil];
 
-// Call getJoinedGroups to retrieve the list of joined groups.
+// Call getJoinedGroups to retrieve the list of joined groups from your local database.
 NSArray *groupList = [[AgoraChatClient sharedClient].groupManager getJoinedGroups];
 
 // Call getPublicGroupsFromServerWithCursor to retrieve the list of public groups by page.
