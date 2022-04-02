@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--OXYGEN PATCH FOR EXM-18224-->
+<project basedir="." name="Build Eclipse Contexts">
+    <target name="generate.contexts">
+        <echo>Generate contexts.xml file from topic output files.</echo>
+        <xslt in="${dita.output.dir}/${dita.map.filename.root}.xml" out="${dita.output.dir}/contexts.xml" style="${dita.plugin.org.dita.eclipsehelp.dir}/xsl/contexts.xsl">
+            <xmlcatalog>
+                <catalogpath>
+                    <pathelement location="${dita.dir}/catalog-dita.xml"/>
+                    <pathelement location="${dita.plugin.org.dita.eclipsehelp.dir}/xhtml-dtd/xhtmlcatalog.xml"/>
+                </catalogpath>
+            </xmlcatalog>
+        </xslt>
+    </target>
+    
+</project>

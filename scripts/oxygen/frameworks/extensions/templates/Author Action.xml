@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+
+An author action saved in its own file instead of the framework configuration file.
+
+The file must be saved inside one of the following locations:
+1. {framework_directory}/externalAuthorActions - please note that if you have multiple frameworks saved in the same
+directory, this action will appear in all of them.
+2. {framework_directory}/{framework_file_name}_externalAuthorActions - this location is useful when you have multiple 
+frameworks in the same directory, but you want to have this action only in one of them.
+Only the framework saved inside {framework_file_name}.framework will have this particular action.
+-->
+<a:authorAction xmlns:a="http://www.oxygenxml.com/ns/author/external-action"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.oxygenxml.com/ns/author/external-action http://www.oxygenxml.com/ns/author/external-action/authorAction.xsd"
+  id="section">
+  <a:name>Section</a:name>
+  <a:description>Inserts a new section.</a:description>
+  <a:operations>
+    <a:operation id="InsertFragmentOperation">
+      <a:xpathCondition>true()</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment">
+<section>
+    <title/>
+    <p/>
+</section>
+        </a:argument>
+      </a:arguments>
+    </a:operation>
+  </a:operations>
+  <a:accessKey/>
+</a:authorAction>

@@ -7,8 +7,7 @@
     </topicmeta>
     <topichead navtitle="Configurations" toc="no">
         <topicref href="conref/conref_api_metadata.dita" processing-role="resource-only"/>
-        <topicref href="config/subject-scheme-rtc.ditamap" format="ditamap" type="subjectScheme"
-            navtitle="Conditional processing attributes"/>
+        <topicref href="config/subject-scheme-rtc.ditamap" format="ditamap" type="subjectScheme" navtitle="Conditional processing attributes"/>
         <topicref href="config/keys-rtc-ng-api-java.ditamap" format="ditamap"/>
         <topicref href="config/keys-rtc-ng-links.ditamap" format="ditamap"/>
         <topicref href="config/keys-rtc-ng-links-android.ditamap" format="ditamap"/>
@@ -58,6 +57,7 @@
             <topicref keyref="enableInEarMonitoring2" toc="no"/>
             <topicref keyref="enableLocalAudio" toc="no"/>
             <topicref keyref="enableLocalVideo" toc="no"/>
+	        <topicref keyref="enableRemoteSuperResolution" toc="no"/>
             <topicref keyref="enableSpatialAudio" toc="no" props="hide"/>
             <topicref keyref="enableSoundPositionIndication" toc="no"/>
             <topicref keyref="enableVideo" toc="no"/>
@@ -127,11 +127,13 @@
             <topicref keyref="resumeAudioMixing" toc="no"/>
             <topicref keyref="sendCustomReportMessage" toc="no"/>
             <topicref keyref="sendStreamMessage" toc="no"/>
+            <topicref keyref="setAdvancedAudioOptions" toc="no"/>
             <topicref keyref="setAudioEffectParameters" toc="no"/>
             <topicref keyref="setAudioEffectPreset" toc="no"/>
             <topicref keyref="setAudioMixingPosition" toc="no"/>
             <topicref keyref="setAudioProfile" toc="no"/>
             <topicref keyref="setAudioProfile2" toc="no"/>
+            <topicref keyref="setAVSyncSource" toc="no" props="hide"/>
             <topicref keyref="setBeautyEffectOptions" toc="no"/>
             <topicref keyref="setCameraAutoFocusFaceModeEnabled" toc="no"/>
             <topicref keyref="setCameraCapturerConfiguration" toc="no"/>
@@ -140,6 +142,7 @@
             <topicref keyref="setCameraTorchOn" toc="no"/>
             <topicref keyref="setCameraZoomFactor" toc="no"/>
             <topicref keyref="setChannelProfile" toc="no"/>
+            <topicref keyref="setCloudProxy" toc="no"/>
             <topicref keyref="setClientRole1" toc="no"/>
             <topicref keyref="setClientRole2" toc="no"/>
             <topicref keyref="setDefaultAudioRouteToSpeakerphone" toc="no"/>
@@ -201,6 +204,8 @@
             <topicref keyref="startLastmileProbeTest" toc="no"/>
             <topicref keyref="startPreview" toc="no"/>
             <topicref keyref="startRhythmPlayer" toc="no"/>
+            <topicref keyref="startRtmpStreamWithoutTranscoding" toc="no"/>
+            <topicref keyref="startRtmpStreamWithTranscoding" toc="no"/>
             <topicref keyref="startScreenCapture" toc="no"/>
             <topicref keyref="stopAudioMixing" toc="no"/>
             <topicref keyref="stopAudioRecording" toc="no"/>
@@ -210,13 +215,16 @@
             <topicref keyref="stopLastmileProbeTest" toc="no"/>
             <topicref keyref="stopPreview" toc="no"/>
             <topicref keyref="stopRhythmPlayer" toc="no"/>
+            <topicref keyref="stopRtmpStream" toc="no"/>
             <topicref keyref="stopScreenCapture" toc="no"/>
             <topicref keyref="switchCamera" toc="no"/>
+            <topicref keyref="switchChannel1" toc="no"/>
             <topicref keyref="takeSnapshot" toc="no"/>
             <topicref keyref="unregisterAudioSpectrumObserver" toc="no"/>
             <topicref keyref="unregisterMediaMetadataObserver" toc="no"/>
             <topicref keyref="updateChannelMediaOptions" toc="no"/>
             <topicref keyref="updateChannelMediaRelay" toc="no"/>
+            <topicref keyref="updateRtmpTranscoding" toc="no"/>
         </topicref>
         <topicref keyref="IRtcEngineEx" chunk="to-content">
             <topicref keyref="addPublishStreamUrlEx" toc="no"/>
@@ -299,6 +307,7 @@
             <topicref keyref="onRemoteVideoTransportStats" toc="no"/>
             <topicref keyref="onRequestToken" toc="no"/>
             <topicref keyref="onRtcStats" toc="no"/>
+            <topicref keyref="onRtmpStreamingEvent" toc="no"/>
             <topicref keyref="onRtmpStreamingStateChanged" toc="no"/>
             <topicref keyref="onSnapshotTaken" toc="no"/>
             <topicref keyref="onStreamMessage" toc="no"/>
@@ -549,12 +558,16 @@
             <topicref keyref="VIDEO_CAPTURE_TYPE" toc="no"/>
             <topicref keyref="VIDEO_CODEC_PROFILE_TYPE" toc="no"/>
             <topicref keyref="VIDEO_CODEC_TYPE" toc="no"/>
+            <topicref keyref="VIDEO_CODEC_TYPE_FOR_STREAM" toc="no"/>
             <topicref keyref="VIDEO_CONTENT_HINT" toc="no"/>
             <topicref keyref="VIDEO_FRAME_TYPE" toc="no"/>
             <topicref keyref="VIDEO_MIRROR_MODE_TYPE" toc="no"/>
             <topicref keyref="VIDEO_ORIENTATION" toc="no"/>
             <topicref keyref="VIDEO_PROFILE_TYPE" toc="no"/>
             <topicref keyref="VIDEO_SOURCE_TYPE" toc="no"/>
+            <topicref keyref="AdvancedAudioOptions" toc="no">
+            <topicref keyref="AUDIO_PROCESSING_CHANNELS" toc="no"/>
+            </topicref>
             <topicref keyref="AgoraFacePositionInfo" toc="no"/>
             <topicref keyref="AudioEncodedFrameObserverConfig" toc="no"/>
             <topicref keyref="AudioFrame" toc="no"/>
@@ -584,7 +597,25 @@
             <topicref keyref="LastmileProbeOneWayResult" toc="no"/>
             <topicref keyref="LastmileProbeResult" toc="no"/>
             <topicref keyref="LeaveChannelOptions" toc="no"/>
-            <topicref keyref="LiveTranscoding" toc="no"/>
+            <topicref keyref="LiveTranscoding" toc="no">
+                <topicref keyref="addUser" toc="no"/>
+                <topicref keyref="addWatermark" toc="no"/>
+                <topicref keyref="addBackgroundImage" toc="no"/>
+                <topicref keyref="getAdvancedFeatures" toc="no"/>
+                <topicref keyref="getBackgroundColor" toc="no"/>
+                <topicref keyref="setBackgroundColor" toc="no"/>
+                <topicref keyref="setBackgroundColor2" toc="no"/>
+                <topicref keyref="getBackgroundImageList" toc="no"/>
+                <topicref keyref="getUsers" toc="no"/>
+                <topicref keyref="getUserCount" toc="no"/>
+                <topicref keyref="getWatermarkList" toc="no"/>
+                <topicref keyref="removeBackgroundImage" toc="no"/>
+                <topicref keyref="removeUser" toc="no"/>
+                <topicref keyref="removeWatermark" toc="no"/>
+                <topicref keyref="setAdvancedFeatures" toc="no"/>
+                <topicref keyref="setUsers" toc="no"/>
+                <topicref keyref="setUsers2" toc="no"/>
+            </topicref>
             <topicref keyref="LocalAudioStats" toc="no"/>
             <topicref keyref="LocalVideoStats" toc="no"/>
             <topicref keyref="LogConfig" toc="no"/>
