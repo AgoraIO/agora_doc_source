@@ -30,9 +30,9 @@ jobs:
                   cd xml2json
                   python sync_prototype.py --src_dir ../dita/RTC/API  --dest_dir ../en-US/dita/RTC/API
             - name: Create Pull Request
-              uses: peter-evans/create-pull-request@v3
+              uses: peter-evans/create-pull-request@v4
               with:
-                  token: ${{ secrets.GITHUB_TOKEN }}
+                  token: ${{ secrets.GH_PAT }}
                   commit-message: Sync cn prototype to en prototype
                   title: "[AUTO: MERGE AT YOUR EARLIEST CONVENIENCE] Sync cn prototype to en prototype in a flash"
                   branch: auto/sync-cn-proto-to-en-patch
@@ -46,6 +46,6 @@ jobs:
               if: steps.cpr.outputs.pull-request-operation == 'created'
               uses: peter-evans/enable-pull-request-automerge@v2
               with:
-                      token: ${{ secrets.PAT }}
-                      pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
-                      merge-method: squash  
+                   token: ${{ secrets.GH_PAT }}
+                   pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
+                   merge-method: squash
