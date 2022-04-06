@@ -714,6 +714,8 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 
 #### 响应 body
 
+如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 的 data 字段中包含如下内容：
+
  | 参数     | 说明                                                         |
  | :------- | :----------------------------------------------------------- |
  | `username` | 指定查询的用户名。数据格式为 "用户名": "当前在线状态"。例如用户 user1 的在线状态：如果该用户在线，则返回 "user1": "online"；如果不在线，则返回 "user1": "offline"。 |
