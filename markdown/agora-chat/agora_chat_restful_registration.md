@@ -811,7 +811,7 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 ### HTTP 请求
 
 ```http
-GET https://api.agora.io/{org_name}/{app_name}/users/{owner_username}/offline_msg_count
+GET https://{host}/{org_name}/{app_name}/users/{owner_username}/offline_msg_count
 ```
 
 #### 路径参数
