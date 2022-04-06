@@ -867,7 +867,7 @@ GET https://api.agora.io/{org_name}/{app_name}/users/{owner_username}/offline_ms
 ### HTTP 请求
 
 ```http
-GET https://api.agora.io/{org_name}/{app_name}/users/{username}/offline_msg_status/{msg_id}
+GET https://{host}/{org_name}/{app_name}/users/{username}/offline_msg_status/{msg_id}
 ```
 
  #### 路径参数
