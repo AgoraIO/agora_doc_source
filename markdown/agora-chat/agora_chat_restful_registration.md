@@ -710,7 +710,9 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 | `Content-Type`  | String | 内容类型。填入 `application/json` 。    | 是       |
 | `Authorization` | String | 该用户或管理员的鉴权 token，格式为 Bearer ${token}，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
 
-#### 响应参数
+### HTTP 响应
+
+#### 响应 body
 
  | 参数     | 说明                                                         |
  | :------- | :----------------------------------------------------------- |
