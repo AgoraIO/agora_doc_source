@@ -691,7 +691,7 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 
 ## 获取用户在线状态
 
-查看一个用户的在线状态。
+该方法获取单个用户的在线状态。你可以调用该方法查询指定用户是否在线。
 
 ### HTTP 请求
 
