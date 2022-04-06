@@ -752,7 +752,7 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 
 ## 批量获取用户在线状态
 
-批量查看用户的在线状态，最多可同时查看 100 个用户的状态。
+该方法批量查看用户的在线状态。你可以调用该方法查询多个用户是否在线。一次调用最多可以同时获取 100 个用户的在线状态。
 
 ### HTTP 请求
 
