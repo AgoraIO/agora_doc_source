@@ -792,7 +792,6 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 
  #### 响应示例
 
- 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
  该接口不对用户名进行校验。若查询不存在的用户名的状态，则返回的状态为 offline。
 
  ```
