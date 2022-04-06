@@ -787,7 +787,7 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 
  ```
 # 将 <YourAppToken> 替换为你在服务端生成的 app token
- curl -X POST http://a1.easemob.com/easemob-demo/chatdemoui/users/batch/status -H 'Authorization: Bearer <YourAppToken>' -H 'Content-Type: application/json' -d '{"usernames":["user1","user2"]}'
+ curl -X POST http://XXXX/XXXX/XXXX/users/batch/status -H 'Authorization: Bearer <YourAppToken>' -H 'Content-Type: application/json' -d '{"usernames":["user1","user2"]}'
  ```
 
  #### 响应示例
