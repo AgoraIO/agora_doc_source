@@ -716,7 +716,12 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 
  | 参数     | 说明                                                         |
  | :------- | :----------------------------------------------------------- |
- | `username` | 数据格式为：“用户名：当前在线状态”，例如，user1 的在线和离线状态分别为 "user1": "online" 和"user1": "offline"。 |
+ | `username` | 指定查询的用户名。数据格式为 "用户名": "当前在线状态"。例如用户 user1 的在线状态：如果该用户在线，则返回 "user1": "online"；如果不在线，则返回 "user1": "offline"。 |
+ 
+ 其他字段说明详见 [公共参数](https://github.com/AgoraDoc/doc_source/pull/606/files#pubparam)。
+
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考状态码汇总表了解可能的原因。
+
 
  #### 请求示例
 
