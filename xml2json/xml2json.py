@@ -1164,6 +1164,10 @@ def replace_newline():
 
     replaced_file_text = re.sub('callback_airplayconnected', 'callback_onairplayconnected', replaced_file_text)
 
+    replaced_file_text = re.sub('"": When this parameter is set as null, the encryption mode is set as "aes-128-gcm" by default.', '', replaced_file_text)
+
+    replaced_file_text = re.sub('"": When setting as NULL, the encryption mode is set as "aes-128-xts" by default.', '', replaced_file_text)
+
     replaced_file_text = re.sub('"": ""', '', replaced_file_text)
 
     
