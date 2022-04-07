@@ -787,7 +787,7 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 
 #### 请求示例
 
- ```
+ ```json
 # 将 <YourAppToken> 替换为你在服务端生成的 app token
  curl -X POST http://XXXX/XXXX/XXXX/users/batch/status -H 'Authorization: Bearer <YourAppToken>' -H 'Content-Type: application/json' -d '{"usernames":["user1","user2"]}'
  ```
