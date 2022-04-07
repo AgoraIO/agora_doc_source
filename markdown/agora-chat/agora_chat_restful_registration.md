@@ -725,7 +725,9 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考状态码汇总表了解可能的原因。
 
 
- #### 请求示例
+### 示例
+
+#### 请求示例
 
  ```
  # 将 <YourAppToken> 替换为你在服务端生成的 app token
