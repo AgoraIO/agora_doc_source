@@ -19,7 +19,7 @@
 
 你可参考以下步骤准备开发环境：
 
-1. 打开 App Store，下载并安装 Xcode。要求 Xcode 10.0 或以上版本。
+1. 打开 App Store，下载并安装 Xcode。要求 Xcode 12.5 或以上版本。
 2. 点击[链接](https://guides.cocoapods.org/using/getting-started.html#getting-started)前往下载 CocoaPods。要求 CocoaPods 1.10 或以上版本。
 
 <div class="alert info">如果你使用 Swift 开发，需要使用 Swift 5.0 或以上版本。</div>

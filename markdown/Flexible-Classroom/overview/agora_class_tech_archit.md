@@ -2,6 +2,8 @@
 
 下图展示了灵动课堂的整体技术架构：
 
+![](https://web-cdn.agora.io/docs-files/1647941211009)
+
 ## 模块说明
 
 ### 灵动课堂教室 SDK
@@ -23,17 +25,17 @@
 
 ### Edu Context (Native)
 
--   仅适用于 Native 端，包含 Android 和 iOS。
+-   适用于 Native 端，包含 Android 和 iOS。
 -   负责串联 Edu 交互层与 Edu Core 层，支持开发者以少量代码快速启动灵动课堂。
 -   此层开源，提供用户、房间、流、组件等模块的 API。
 
-### Edu UI Store (Web)
+### Edu UI Store (Web/Electron)
 
--   仅适用于 Web 端。
--   负责为 Web 端 Edu 交互层的 Container 组件提供业务逻辑，向 Edu 交互层提供组件需要的状态和 API。
+-   适用于 Web 和 Electron 端。
+-   负责为 Edu 交互层的 Container 组件提供业务逻辑，向 Edu 交互层提供组件需要的状态和 API。
 -   此层开源，Agora 在 GitHub 上提供源码，客户可基于源码根据实际业务场景修改代码。
 
 ### Edu Core 层
 
--   提供在线教育场景的底层业务能力与数据支持。客户可利用公开协议来灵活调用 API，自由组合来实现所需的业务场景。
+-   提供在线教育场景的底层业务能力与数据支持。
 -   此层闭源，提供了用户、房间、流、组件、组、设备等模块的能力和方法，客户可通过这些方法来控制教室内的操作和行为。
