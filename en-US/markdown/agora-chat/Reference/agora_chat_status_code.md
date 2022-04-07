@@ -13,6 +13,7 @@ These HTTP status codes indicate that the API request fails due to a client erro
 
 ### `400` Bad Request
 This status code indicates that the API request could not be understood by the server due to malformed syntax.
+
 | Status code | Error code | Error message | Description |
 | :---------- | :-------- | :----------------| :----------------------- |
 | `400` | `invalid_grant` | Invalid username or password. | The error message returned because the specified username or password is invalid. |
@@ -33,6 +34,7 @@ This status code indicates that the API request could not be understood by the s
 
 ### `401` Unauthorized
 This status code indicates that the authentication process could not be implemented due to invalid tokens.
+
 | Status code | Error code  | Error message | Description   |
 | :-----  | :------------ | :----------------------------------------------------------- | :------------------------------------------------|
 | `401`            | `unauthorized`   | Registration is not open, please contact the app admin.      | The error message returned because the app token is not included in the request header when registering users. |
@@ -42,6 +44,7 @@ This status code indicates that the authentication process could not be implemen
 
 ### `403` Forbidden
 This status code indicates that the API request is rejected by the server due to forbidden operations.
+
 | Status code | Error code  | Error message | Description   |
 | :-----  | :------------ | :----------------------------------------------------------- | :------------------------------------------------|
 | `403` | `forbidden_op`  | Can not join this group, reason: user: {username} already in group: {group_id}. | The error message returned because the user being added is already in the chat group. |
@@ -54,6 +57,7 @@ This status code indicates that the API request is rejected by the server due to
 
 ### `404` Not Found
 This status code indicates that the specified resources of the API request could not be found by the server.
+
 | Status code | Error code  | Error message | Description   |
 | :-----  | :------------ | :----------------------------------------------------------- | :------------------------------------------------|
 | `404` | `organization_application_not_found` | Could not find application for {org_url} from URI: {app_url}/token. | The error message returned because the specified organization or application does not exist.      |
@@ -69,18 +73,21 @@ This status code indicates that the server does not receive the API request with
 
 ### `413` Payload Too Large
 This status code indicates that the API request is larger than the server can process.
+
 | Status code | Error code  | Error message | Description   |
 | :-----  | :------------ | :----------------------------------------------------------- | :------------------------------------------------|
 | `413`            | `Request Entity Too Large`           | Request Entity Too Large.   | The error message returned because the size of the client request exceeds the maximum size limit of the server. For example, the message body exceeds 5 KB or the uploaded files exceed 10 MB. |
 
 ### `415` Unsupported Media Type
 This status code indicates that the format of the API request is not supported by the server.
+
 | Status code | Error code  | Error message | Description   |
 | :-----  | :------------ | :----------------------------------------------------------- | :------------------------------------------------|
 | `415`  | `web_application`   | Unsupported Media Type.  | The error message returned because the format of the client request is not supported by the server. For example, the request header includes extra parameters, the request header does not include `"Content-Type":"application/json"`, or the request body does not conform to the standard JSON format.  |
 
 ### `429` Too Many Requests
 This status code indicates that the API request surpasses the limitation.
+
 | Status code | Error code  | Error message | Description   |
 | :-----  | :------------ | :----------------------------------------------------------- | :------------------------------------------------|
 | `429`   | `resource_limited`  | You have exceeded the limit of the "Pricing Plan" edition. Please upgrade to higher edition. | The error message returned because the usage of Agora Chat exceeds the upper limit of the current pricing plan. For details, see [Pricing](./agora_chat_pricing?platform=RESTful). To upgrade the pricing plan, contact support@agora.io. |
@@ -92,6 +99,7 @@ These HTTP status codes indicate that the API request fails due to a server erro
 
 ### `500` Internal Server Error
 This status code indicates that the server encounters an unexpected condition that prevents it from fulfilling the request.
+
 | Status code | Error code  | Error message | Description   |
 | :-----  | :------------ | :----------------------------------------------------------- | :------------------------------------------------|
 | `500` | `no_full_text_index`    | Entity 'user' with property named 'username' is not full text indexed. You cannot use the 'contains' operand on this field. | The error message returned because the `contains` operand cannot be used on the `username` property as this property does not support full-text indexing. |
