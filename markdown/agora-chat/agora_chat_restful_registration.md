@@ -741,7 +741,7 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
  ```
  {
    "action": "get",
-   "uri": "http://a1.agora.com/easemob-demo/testapp/users/user1/status",
+   "uri": "http://XXXX/XXXX/XXXX/users/user1/status",
    "entities": [],
    "data": {
      "user1": "offline"
