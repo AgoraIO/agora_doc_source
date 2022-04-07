@@ -706,6 +706,6 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 
 <a name="code"></a>
 
-## Status code
+## Status codes
 
 For details, see [HTTP Status Codes](./agora_chat_status_code?platform=RESTful).

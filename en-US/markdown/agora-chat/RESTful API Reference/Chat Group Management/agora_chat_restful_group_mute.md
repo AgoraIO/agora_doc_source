@@ -258,6 +258,6 @@ curl -X GET -H 'Accept: application/json' 'http://XXXX/XXXX/XXXX/chatgroups/1013
 
 <a name="code"></a>
 
-## Status code
+## Status codes
 
 For details, see [HTTP Status Codes](./agora_chat_status_code?platform=RESTful).

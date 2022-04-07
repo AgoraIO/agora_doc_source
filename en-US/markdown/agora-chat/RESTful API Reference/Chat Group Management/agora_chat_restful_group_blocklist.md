@@ -431,6 +431,6 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 
 <a name="code"></a>
 
-## Status code
+## Status codes
 
 For details, see [HTTP Status Codes](./agora_chat_status_code?platform=RESTful).

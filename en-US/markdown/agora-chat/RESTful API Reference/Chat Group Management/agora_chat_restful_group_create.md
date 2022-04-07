@@ -558,6 +558,6 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 <a name="code"></a>
 
-## Status code
+## Status codes
 
 For details, see [HTTP Status Codes](./agora_chat_status_code?platform=RESTful).
