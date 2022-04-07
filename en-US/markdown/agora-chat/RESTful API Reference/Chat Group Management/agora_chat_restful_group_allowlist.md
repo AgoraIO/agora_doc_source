@@ -70,7 +70,7 @@ For other parameters and detailed desctiptions, see [Common parameters](#param).
 
 #### Response body
 
-If the returned HTTP status code is 200, the request succeeds, and the `data` field in the response body contains the usernames in the group allow list.
+If the returned HTTP status code is 200, the request succeeds, and the `data` field in the response body contains the usernames in the group allow list. For other parameters and detailed desctiptions, see [Common parameters](#param).
 
 If the returned HTTP status code is not 200, the request fails. You can refer to [Status code](./agora_chat_status_code?platform=RESTful) for possible causes.
 
@@ -145,6 +145,8 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 | `action` | String | The operation of the method call. |
 | `user` | String | The username added to the allow list. |
 
+For other parameters and detailed desctiptions, see [Common parameters](#param).
+
 If the returned HTTP status code is not 200, the request fails. You can refer to [Status code](./agora_chat_status_code?platform=RESTful) for possible causes.
 
 ### Example
@@ -215,6 +217,8 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 | `groupid` | String | The chat group ID. |
 | `action` | String | The operation of the method call. |
 | `user` | String | The username added to the allow list. |
+
+For other parameters and detailed desctiptions, see [Common parameters](#param).
 
 If the returned HTTP status code is not 200, the request fails. You can refer to [Status code](./agora_chat_status_code?platform=RESTful) for possible causes.
 
@@ -292,6 +296,8 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 | `groupid` | String | The chat group ID. |
 | `action` | String | The operation of the method call. |
 | `user` | String | The username removed from to the allow list. |
+
+For other parameters and detailed desctiptions, see [Common parameters](#param).
 
 If the returned HTTP status code is not 200, the request fails. You can refer to [Status code](./agora_chat_status_code?platform=RESTful) for possible causes.
 
