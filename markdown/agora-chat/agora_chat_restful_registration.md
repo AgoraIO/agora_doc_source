@@ -796,7 +796,7 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 
  该接口不对用户名进行校验。若查询不存在的用户名的状态，则返回的状态为 offline。
 
- ```
+ ```json
  {
      "action": "get batch user status",
      "data": [
