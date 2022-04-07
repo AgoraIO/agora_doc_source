@@ -734,7 +734,7 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
  curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/user1/status'
  ```
 
- #### 响应 body
+ #### 响应示例
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
