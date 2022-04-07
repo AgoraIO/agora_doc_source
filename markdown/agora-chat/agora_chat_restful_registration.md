@@ -770,7 +770,7 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Content-Type`  | String | `application/json`     | 是       |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。   | 是       |
 | `Authorization` | String | Bearer ${YourAppToken} | 是       |
 
 #### 请求体参数
