@@ -40,7 +40,7 @@ Agora Chat RESTful APIs require Bearer HTTP authentication. Every time an HTTP r
 Authorization: Bearer ${YourAppToken}
 ```
 
-In order to improve the security of the project, Agora uses a token (dynamic key) to authenticate users before they log into the chat system. The Agora Chat RESTful API only supports authenticating users using app tokens. For details, see [Authentication using App Token](./generate_app_tokens).
+In order to improve the security of the project, Agora uses a token (dynamic key) to authenticate users before they log into the chat system. The Agora Chat RESTful API only supports authenticating users using app tokens. For details, see [Authentication using App Token](./generate_app_tokens?platform=RESTful).
 
 ## Muting a chat group member
 
@@ -89,7 +89,7 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 
 For other fields and descriptions, see [Public parameter](#param).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status code](./agora_chat_status_code?platform=RESTful) for possible causes.
 
 ### Example
 
@@ -159,7 +159,7 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 
 For other fields and descriptions, see [Public parameter](#param).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status code](./agora_chat_status_code?platform=RESTful) for possible causes.
 
 ### Example
 
@@ -210,7 +210,6 @@ For other parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
-| Parameter | Type | Description | Required |
 | `Accept` | String | The parameter type. Set it as `application/json`. | Yes |
 | `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
@@ -227,7 +226,7 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 
 For other fields and descriptions, see [Public parameter](#param).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status code](./agora_chat_status_code?platform=RESTful) for possible causes.
 
 ### Example
 
@@ -256,14 +255,150 @@ curl -X GET -H 'Accept: application/json' 'http://XXXX/XXXX/XXXX/chatgroups/1013
 }
 ```
 
-<a name="code"></a>
+## Muting all chat group members
 
-## Status code
+This method mutes all the chat group members. If this method call succeeds, none of the chat group members can send messages, except those in the group [allow list]().
 
-| Status code | Description |
-| :------------------ | :----------------------------------------------------------- |
-| 200 | The request succeeds. |
-| 401 | Authentication fails. Possible reasons are missing token, invalid token or expired token. You need to retrieve a new token and call the method again. |
-| 404 | The group ID does not exist. |
-| 429, 503 or 5xx | Call frequency exceeds the limit. Pause and try again later. If you need a higher call frequency, contact technical support. |
-| 500 | An internal server error occurs and the server is unable to complete the request. Please contact technical support. |
+### HTTP request
+
+```shell
+POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/ban
+```
+
+#### Path parameter
+
+| Parameter | Type | Description | Required |
+| --- | --- | --- | --- |
+| `group_id` | String | The chat group ID. | Yes |
+
+For other parameters and detailed descriptions, see [Common parameters](#param).
+
+#### Request header
+
+| Parameter | Type | Description | Required |
+| :------------ | :----- | :----------------------------------------------------------- | :------- |
+| `Content-Type` | String | The parameter type. Set it as `application/json`. | Yes |
+| `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
+
+#### Request body
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `mute-duration` | Long | The time duration when all the group members are muted, in milliseconds. |
+
+### HTTP response
+
+#### Response body
+
+If the returned HTTP status code is 200, the request succeeds, and the `data` field in the response body contains the following parameters.
+
+| Parameter | Type | Description |
+| :----- | :----- | :---------------------------- |
+| `result`| Boolean | Whether all the chat group members are muted.<ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> |
+| `expire` | Long | The Unix timestamp when the mute state expires, in milliseconds. |
+
+For other fields and descriptions, see [Public parameter](#param).
+
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status code](./agora_chat_status_code?platform=RESTful) for possible causes.
+
+### Example
+
+#### Request example
+
+```shell
+curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer {Your app token}' 'http://XXXX/XXXX/XXXX/chatgroups/{The group ID}/ban'
+```
+
+#### Response example
+
+```json
+{
+    "action": "put",
+    "application": "5cf28979-XXXX-XXXX-b969-60141fb9c75d",
+    "uri": "http://XXXX/XXXX/XXXX/chatgroups/1208XXXX5169153/ban",
+    "entities": [],
+    "data": {
+        "mute": true
+    },
+    "timestamp": 1594628861058,
+    "duration": 1,
+    "organization": "XXXX",
+    "applicationName": "XXXX"
+} 
+```
+
+## Unmuting all chat group members
+
+This method unmutes all the chat group members. Once unmuted, the chat group members resume the privilege to send messages in the group.
+
+### HTTP request
+
+```shell
+PUT https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/ban
+```
+
+#### Path parameter
+
+| Parameter | Type | Description | Required |
+| --- | --- | --- | --- |
+| `group_id` | String | The chat group ID. | Yes |
+
+For other parameters and detailed descriptions, see [Common parameters](#param).
+
+#### Request header
+
+| Parameter | Type | Description | Required |
+| :------------ | :----- | :----------------------------------------------------------- | :------- |
+| `Content-Type` | String | The parameter type. Set it as `application/json`. | Yes |
+| `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
+
+### HTTP response
+
+#### Response body
+
+If the returned HTTP status code is 200, the request succeeds, and the `data` field in the response body contains the following parameters.
+
+| Parameter | Type | Description |
+| :----- | :----- | :---------------------------- |
+| `result`| Boolean | Whether all the chat group members are unmuted.<ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> |
+
+For other fields and descriptions, see [Public parameter](#param).
+
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status code](./agora_chat_status_code?platform=RESTful) for possible causes.
+
+### Example
+
+#### Request example
+
+```shell
+curl -X DELETE -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer {Your app token}' 'http://XXXX/XXXX/XXXX/chatgroups/1208XXXX5169153/ban'
+```
+
+#### Response example
+
+```json
+{
+    "action": "put",
+    "application": "527cd7e0-XXXX-XXXX-9f59-ef10ecd81ff0",
+    "uri": "http://XXXX/XXXX/XXXX/chatgroups/120824965169153/ban",
+    "entities": [],
+    "data": {
+        "mute": false
+    },
+    "timestamp": 1594628899502,
+    "duration": 1,
+    "organization": "XXXX",
+    "applicationName": "XXXX"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
