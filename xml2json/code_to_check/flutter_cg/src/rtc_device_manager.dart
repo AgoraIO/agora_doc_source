@@ -8,7 +8,6 @@ import 'package:agora_rtc_engine/src/impl/rtc_device_manager_impl.dart';
 ///
 ///
 abstract class RtcDeviceManager {
-  /// Constructs the [RtcDeviceManager].
   factory RtcDeviceManager() {
     return RtcDeviceManagerImpl();
   }
@@ -86,13 +85,9 @@ abstract class RtcDeviceManager {
 
   ///
   /// Starts the audio playback device test.
-  /// This method tests whether the audio playback device works properly. Once a user starts the test, the SDK plays an audio file specified by the user. If the user can hear the audio, the playback device works properly.
-  /// After calling this method, the SDK triggers the audioVolumeIndication callback every 100 ms, reporting uid = 1 and the volume information of the playback device.
-  /// Ensure that you call this method before joining a channel.
+  ///
   ///
   /// Param [testAudioFilePath] The path of the audio file for the audio playback device test in UTF-8.
-  /// Supported file formats: wav, mp3, m4a, and aac.
-  /// Supported file sample rates: 8000, 16000, 32000, 44100, and 48000 Hz.
   ///
   ///
   Future<void> startAudioPlaybackDeviceTest(String testAudioFilePath);
@@ -176,10 +171,9 @@ abstract class RtcDeviceManager {
 
   ///
   /// Starts the audio capture device test.
-  /// This method tests whether the audio capture device works properly. After calling this method, the SDK triggers the audioVolumeIndication callback at the time interval set in this method, which reports uid = 0 and the volume information of the capture device.
-  /// Ensure that you call this method before joining a channel.
   ///
-  /// Param [indicationInterval] The time interval (ms) at which the SDK triggers the audioVolumeIndication callback. Agora recommends a setting greater than 200 ms. This value must not be less than 10 ms; otherwise, you can not receive the audioVolumeIndication callback.
+  ///
+  /// Param [indicationInterval]
   ///
   Future<void> startAudioRecordingDeviceTest(int indicationInterval);
 
@@ -192,12 +186,9 @@ abstract class RtcDeviceManager {
 
   ///
   /// Starts an audio device loopback test.
-  /// This method tests whether the local audio capture device and playback device are working properly. After starting the test, the audio capture device records the local audio, and the audio playback device plays the captured audio. The SDK triggers two independent audioVolumeIndication callbacks at the time interval set in this method, which reports the volume information of the capture device (uid = 0) and the volume information of the playback device (uid = 1) respectively.
   ///
-  /// Ensure that you call this method before joining a channel.
-  /// This method tests local audio devices and does not report the network conditions.
   ///
-  /// Param [indicationInterval] The time interval (ms) at which the SDK triggers the audioVolumeIndication callback. Agora recommends a setting greater than 200 ms. This value must not be less than 10 ms; otherwise, you can not receive the audioVolumeIndication callback.
+  /// Param [indicationInterval]
   ///
   Future<void> startAudioDeviceLoopbackTest(int indicationInterval);
 
@@ -208,33 +199,18 @@ abstract class RtcDeviceManager {
   ///
   Future<void> stopAudioDeviceLoopbackTest();
 
-  ///
-  /// Enumerates the video devices.
-  ///
-  ///
-  /// **return** Success: Returns a MediaDeviceInfo that contains all the video devices.
-  /// Failure: null.
-  ///
+  /* TODO(doc): api-audio-enumerateVideoDevices */
   Future<List<MediaDeviceInfo>> enumerateVideoDevices();
 
-  ///
-  /// Specifies the video capture device with the device ID.
-  /// Plugging or unplugging a device does not change its device ID.
-  ///
-  /// Param [deviceId] The device ID. You can get the device ID by calling enumerateVideoDevices.
-  ///
-  ///
+  /* TODO(doc): api-audio-setVideoDevice */
   Future<void> setVideoDevice(String deviceId);
 
-  ///
-  /// Retrieves the current video capture device.
-  ///
-  ///
-  /// **return** The video capture device.
-  ///
+  /* TODO(doc): api-audio-getVideoDevice */
   Future<String?> getVideoDevice();
 
+  /* TODO(doc): api-audio-followSystemPlaybackDevice */
   Future<void> followSystemPlaybackDevice(bool enable);
 
+  /* TODO(doc): api-audio-followSystemRecordingDevice */
   Future<void> followSystemRecordingDevice(bool enable);
 }

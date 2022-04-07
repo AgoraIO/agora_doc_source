@@ -5,11 +5,9 @@ on:
     push:
         branches:
             - master
-            - main
     pull_request:
         branches:
             - master
-            - main
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -24,7 +22,7 @@ jobs:
                   cd xml2json
                   python -m pip install --upgrade pip
                   if  [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-            - name: Run json creation
+            - name: Run json creation for Flutter CG and C++ NG
               run: |
                   cd xml2json
                   python xml2json.py --working_dir ../en-US/dita/RTC --platform_tag flutter --json_file flutter_newer.json --sdk_type sdk --remove_sdk_type sdk-ng --defined_path flutter
@@ -37,7 +35,7 @@ jobs:
                   asset_name: flutter_doc_template.json
                   tag: main
                   overwrite: true
-                  body: "Template file for auto comment population."
+                  body: "Template file for automatic comment population."
             - name: Upload C++ NG JSON to release
               uses: svenstaro/upload-release-action@v2
               with:
@@ -46,4 +44,4 @@ jobs:
                   asset_name: cpp_ng_doc_template.json
                   tag: main
                   overwrite: true
-                  body: "Template file for auto comment population."
+                  body: "Template file for automatic comment population."

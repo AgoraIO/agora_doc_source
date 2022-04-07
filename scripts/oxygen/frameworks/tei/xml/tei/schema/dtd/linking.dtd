@@ -1,0 +1,211 @@
+
+<!--
+DTD module linking. generated from ODD source 2021-08-31T10:24:14Z. This material is dual-licensed.
+[http://creativecommons.org/licenses/by/3.0/] Distributed under a Creative Commons Attribution 3.0 Unported License.  [http://www.opensource.org/licenses/BSD-2-Clause] Copyright 2021 TEI Consortium. All rights reserved. Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met: Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. This software is provided by the copyright holders and contributors "as is" and any express or implied warranties, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose are disclaimed. In no event shall the copyright holder or contributors be liable for any direct, indirect, incidental, special, exemplary, or consequential damages (including, but not limited to, procurement of substitute goods or services; loss of use, data, or profits; or business interruption) however caused and on any theory of liability, whether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of the use of this software, even if advised of the possibility of such damage. TEI material can be licensed differently depending on the use you intend to make of it. Hence it is made available under both the CC+BY and BSD-2 licences. The CC+BY licence is generally appropriate for usages which treat TEI content as data or documentation. The BSD-2 licence is generally appropriate for usage of TEI content in a software environment. For further information or clarification, please contact the TEI Consortium.
+Edition: Version 4.3.0. Last updated on
+        31st August 2021, revision b4f72b1ff
+Linking, segmentation, and alignment
+-->
+
+<!ENTITY % ab 'INCLUDE' >
+<![ %ab; [
+
+<!--doc:(anonymous block) contains any arbitrary component-level unit of text, acting as an anonymous container for phrase or inter level elements analogous to, but without the semantic baggage of, a paragraph. [] -->
+<!ELEMENT %n.ab; %om.RR; %macro.paraContent;>
+<!ATTLIST %n.ab; xmlns CDATA "http://www.tei-c.org/ns/1.0">
+<!ATTLIST %n.ab;
+ %att.global.attributes;
+ %att.typed.attributes;
+ %att.declaring.attributes;
+ %att.fragmentable.attributes;
+ %att.written.attributes; >
+]]>
+
+<!ENTITY % alt 'INCLUDE' >
+<![ %alt; [
+
+<!--doc:(alternation) identifies an alternation or a set of choices among elements or passages. [] -->
+<!ELEMENT %n.alt; %om.RR;  EMPTY>
+<!ATTLIST %n.alt; xmlns CDATA "http://www.tei-c.org/ns/1.0">
+<!ATTLIST %n.alt;
+ %att.global.attributes;
+ %att.typed.attributes;
+ %att.pointing.attribute.targetLang;
+ %att.pointing.attribute.evaluate;
+target CDATA  #IMPLIED
+mode (excl|incl) #IMPLIED
+weights CDATA  #IMPLIED >
+]]>
+
+<!ENTITY % altGrp 'INCLUDE' >
+<![ %altGrp; [
+
+<!--doc:(alternation group) groups a collection of alt elements and possibly pointers. [] -->
+<!ELEMENT %n.altGrp; %om.RR; (((%model.descLike;)*,(%n.alt;|%n.ptr;)*))>
+<!ATTLIST %n.altGrp; xmlns CDATA "http://www.tei-c.org/ns/1.0">
+<!ATTLIST %n.altGrp;
+ %att.global.attributes;
+ %att.pointing.group.attributes;
+mode (excl|incl) "excl"  >
+]]>
+
+<!ENTITY % anchor 'INCLUDE' >
+<![ %anchor; [
+
+<!--doc:(anchor point) attaches an identifier to a point within a text, whether or not it corresponds with a textual element. [ ] -->
+<!ELEMENT %n.anchor; %om.RR;  EMPTY>
+<!ATTLIST %n.anchor; xmlns CDATA "http://www.tei-c.org/ns/1.0">
+<!ATTLIST %n.anchor;
+ %att.global.attributes;
+ %att.typed.attributes; >
+]]>
+
+<!ENTITY % annotation 'INCLUDE' >
+<![ %annotation; [
+
+<!--doc:represents an annotation following the Web Annotation Data Model. [] -->
+<!ELEMENT %n.annotation; %om.RR; (((%n.respStmt;)*,(%n.revisionDesc;)*,(%n.licence;)*,(%model.annotationPart.body;)*))>
+<!ATTLIST %n.annotation; xmlns CDATA "http://www.tei-c.org/ns/1.0">
+<!ATTLIST %n.annotation;
+ %att.global.attribute.n;
+ %att.global.attribute.xmllang;
+ %att.global.attribute.xmlbase;
+ %att.global.attribute.xmlspace;
+ %att.global.rendition.attribute.rend;
+ %att.global.rendition.attribute.style;
+ %att.global.rendition.attribute.rendition;
+ %att.global.linking.attribute.corresp;
+ %att.global.linking.attribute.synch;
+ %att.global.linking.attribute.sameAs;
+ %att.global.linking.attribute.copyOf;
+ %att.global.linking.attribute.next;
+ %att.global.linking.attribute.prev;
+ %att.global.linking.attribute.exclude;
+ %att.global.linking.attribute.select;
+ %att.global.analytic.attribute.ana;
+ %att.global.facs.attribute.facs;
+ %att.global.change.attribute.change;
+ %att.global.responsibility.attribute.cert;
+ %att.global.responsibility.attribute.resp;
+ %att.global.source.attribute.source;
+ %att.pointing.attribute.targetLang;
+ %att.pointing.attribute.evaluate;
+xml:id ID #REQUIRED
+target CDATA  #REQUIRED
+motivation NMTOKENS  #IMPLIED >
+]]>
+
+<!ENTITY % join 'INCLUDE' >
+<![ %join; [
+
+<!--doc:(join) identifies a possibly fragmented segment of text, by pointing at the possibly discontiguous elements which compose it. [] -->
+<!ELEMENT %n.join; %om.RR; (%model.descLike;|%model.certLike;)*>
+<!ATTLIST %n.join; xmlns CDATA "http://www.tei-c.org/ns/1.0">
+<!ATTLIST %n.join;
+ %att.global.attributes;
+ %att.pointing.attributes;
+ %att.typed.attributes;
+result %teidata.name;  #IMPLIED
+scope (root|branches) "root"  >
+]]>
+
+<!ENTITY % joinGrp 'INCLUDE' >
+<![ %joinGrp; [
+
+<!--doc:(join group) groups a collection of join elements and possibly pointers. [] -->
+<!ELEMENT %n.joinGrp; %om.RR; (((%n.equiv;|%n.gloss;|%model.descLike;)*,(%n.join;|%n.ptr;)+))>
+<!ATTLIST %n.joinGrp; xmlns CDATA "http://www.tei-c.org/ns/1.0">
+<!ATTLIST %n.joinGrp;
+ %att.global.attributes;
+ %att.pointing.group.attributes;
+result %teidata.name;  #IMPLIED >
+]]>
+
+<!ENTITY % link 'INCLUDE' >
+<![ %link; [
+
+<!--doc:(link) defines an association or hypertextual link among elements or passages, of some type not more precisely specifiable by other elements. [] -->
+<!ELEMENT %n.link; %om.RR;  EMPTY>
+<!ATTLIST %n.link; xmlns CDATA "http://www.tei-c.org/ns/1.0">
+<!ATTLIST %n.link;
+ %att.global.attributes;
+ %att.pointing.attributes;
+ %att.typed.attributes; >
+]]>
+
+<!ENTITY % linkGrp 'INCLUDE' >
+<![ %linkGrp; [
+
+<!--doc:(link group) defines a collection of associations or hypertextual links. [] -->
+<!ELEMENT %n.linkGrp; %om.RR; (((%model.descLike;)*,(%n.link;|%n.ptr;)+))>
+<!ATTLIST %n.linkGrp; xmlns CDATA "http://www.tei-c.org/ns/1.0">
+<!ATTLIST %n.linkGrp;
+ %att.global.attributes;
+ %att.pointing.group.attributes; >
+]]>
+
+<!ENTITY % listAnnotation 'INCLUDE' >
+<![ %listAnnotation; [
+
+<!--doc:contains a list of annotations, typically encoded as annotation, annotationBlock, or note, possibly organized with nested listAnnotation elements. [] -->
+<!ELEMENT %n.listAnnotation; %om.RR; (((%model.headLike;)*,(%model.labelLike;)*,(%model.annotationLike;|%n.listAnnotation;)+))>
+<!ATTLIST %n.listAnnotation; xmlns CDATA "http://www.tei-c.org/ns/1.0">
+<!ATTLIST %n.listAnnotation;
+ %att.global.attributes;
+ %att.typed.attributes;
+ %att.notated.attributes;
+ %att.declaring.attributes; >
+]]>
+
+<!ENTITY % seg 'INCLUDE' >
+<![ %seg; [
+
+<!--doc:(arbitrary segment) represents any segmentation of text below the chunk level. [  ] -->
+<!ELEMENT %n.seg; %om.RR; %macro.paraContent;>
+<!ATTLIST %n.seg; xmlns CDATA "http://www.tei-c.org/ns/1.0">
+<!ATTLIST %n.seg;
+ %att.global.attributes;
+ %att.segLike.attributes;
+ %att.typed.attributes;
+ %att.written.attributes;
+ %att.notated.attributes; >
+]]>
+
+<!ENTITY % standOff 'INCLUDE' >
+<![ %standOff; [
+
+<!--doc:Functions as a container element for linked data, contextual information, and stand-off annotations embedded in a TEI document. [] -->
+<!ELEMENT %n.standOff; %om.RR; (%model.standOffPart;)+>
+<!ATTLIST %n.standOff; xmlns CDATA "http://www.tei-c.org/ns/1.0">
+<!ATTLIST %n.standOff;
+ %att.global.attributes;
+ %att.typed.attributes;
+ %att.declaring.attributes; >
+]]>
+
+<!ENTITY % timeline 'INCLUDE' >
+<![ %timeline; [
+
+<!--doc:(timeline) provides a set of ordered points in time which can be linked to elements of a spoken text to create a temporal alignment of that text. [] -->
+<!ELEMENT %n.timeline; %om.RR; (%n.when;)+>
+<!ATTLIST %n.timeline; xmlns CDATA "http://www.tei-c.org/ns/1.0">
+<!ATTLIST %n.timeline;
+ %att.global.attributes;
+origin %teidata.pointer;  #IMPLIED
+unit %teidata.enumerated;  #IMPLIED
+interval %teidata.interval;  #IMPLIED >
+]]>
+
+<!ENTITY % when 'INCLUDE' >
+<![ %when; [
+
+<!--doc:indicates a point in time either relative to other elements in the same timeline tag, or absolutely. [] -->
+<!ELEMENT %n.when; %om.RR;  EMPTY>
+<!ATTLIST %n.when; xmlns CDATA "http://www.tei-c.org/ns/1.0">
+<!ATTLIST %n.when;
+ %att.global.attributes;
+absolute %teidata.temporal.w3c;  #IMPLIED
+unit %teidata.enumerated;  #IMPLIED
+interval %teidata.interval;  #IMPLIED
+since %teidata.pointer;  #IMPLIED >
+]]>

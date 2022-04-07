@@ -15,19 +15,31 @@
             <codeblock props="windows unity" outputclass="language-cpp"/>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">class VideoDenoiserOptions {
+                  final VideoDenoiserMode mode;
+                  final VideoDenoiserLevel level;
+                
+                  const VideoDenoiserOptions(
+                      {this.mode = VideoDenoiserMode.Auto,
+                      this.level = VideoDenoiserLevel.HighQuality});
+                
+                  factory VideoDenoiserOptions.fromJson(Map&lt;String, dynamic&gt; json) =>
+                      _$VideoDenoiserOptionsFromJson(json);
+
+                  Map&lt;String, dynamic&gt; toJson() => _$VideoDenoiserOptionsToJson(this);
+                }</codeblock> </p>
         </section>
         <section id="parameters">
             <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/> </title>
             <parml>
             <plentry>
                 <pt>level</pt>
-                <pd>视频降噪等级。详见 <xref keyref="VIDEO_DENOISER_LEVEL"/>。
+                <pd><p>视频降噪等级。详见 <xref keyref="VIDEO_DENOISER_LEVEL"/>。</p>
                     </pd>
             </plentry>
             <plentry>
                 <pt>mode</pt>
-                <pd>视频降噪模式。详见 <xref keyref="VIDEO_DENOISER_MODE"/>。
+                <pd><p>视频降噪模式。详见 <xref keyref="VIDEO_DENOISER_MODE"/>。</p>
                     </pd>
             </plentry>
             </parml> </section>

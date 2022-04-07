@@ -1,0 +1,18 @@
+<!ELEMENT scanner (runtime)>
+<!ATTLIST scanner name CDATA #REQUIRED>
+<!ATTLIST scanner class CDATA #REQUIRED>
+<!ATTLIST scanner description CDATA #REQUIRED>
+<!ATTLIST scanner version CDATA #REQUIRED>
+<!ATTLIST scanner engineVersion CDATA #REQUIRED>
+<!ATTLIST scanner vendor CDATA #REQUIRED>
+<!ATTLIST scanner licenseFile CDATA #IMPLIED>
+<!-- doc: The archive type. -->
+<!ATTLIST scanner archives (epub|zip|jar|odf) 'epub'>
+
+<!ELEMENT runtime (library)*>
+
+<!-- doc: Set a library to be used with the transformer -->
+<!ELEMENT library EMPTY>
+<!-- doc: The library path -->
+<!ATTLIST library name CDATA #REQUIRED>
+

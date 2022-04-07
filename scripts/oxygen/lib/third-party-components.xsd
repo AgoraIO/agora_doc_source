@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:element name="third-party">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="component"/>
+            </xs:sequence>
+            <xs:attribute name="base-dir" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="component">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+                <xs:element maxOccurs="unbounded" ref="file-path" minOccurs="0"/>
+                <xs:element name="version" type="xs:string"/>
+                <xs:element ref="project-info"/>
+                <xs:element ref="license"/>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:string" use="required"/>
+            <xs:attribute name="product" use="required">
+                <xs:simpleType>
+                    <xs:list>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="editor"/>
+                                <xs:enumeration value="author"/>
+                                <xs:enumeration value="author-comp"/>
+                                <xs:enumeration value="author-sdk"/>
+                                <xs:enumeration value="developer"/>
+                                <xs:enumeration value="webhelp"/>
+                                <xs:enumeration value="diff"/>
+                                <xs:enumeration value="svn"/>
+                                <xs:enumeration value="webapp"/>
+                                <xs:enumeration value="chemistry"/>
+                                <xs:enumeration value="publishing-engine"/>                                
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:list>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="file-path">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute default="false" name="isDir" type="xs:boolean"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="project-info">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="about" type="xs:string"/>
+                <xs:element maxOccurs="unbounded" name="licensor" nillable="false" type="xs:string"/>
+                <xs:element name="start-year">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="[0-9]*"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="project-url" type="xs:anyURI"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="license">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="type" type="xs:string"/>
+                <xs:choice>
+                    <xs:element name="path" type="xs:string"/>
+                    <xs:element name="content" type="xs:string"/>
+                </xs:choice>
+                <xs:element name="url" type="xs:anyURI"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
