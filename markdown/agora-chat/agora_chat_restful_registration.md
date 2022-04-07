@@ -731,7 +731,7 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 
  ```
  # 将 <YourAppToken> 替换为你在服务端生成的 app token
- curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://a1.agora.com/demo/testapp/users/user1/status'
+ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/user1/status'
  ```
 
  #### 响应 body
