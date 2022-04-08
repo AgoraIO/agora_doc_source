@@ -431,12 +431,6 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 
 <a name="code"></a>
 
-## Status code
+## Status codes
 
-| Status code | Description |
-| :------------------ | :----------------------------------------------------------- |
-| 200 | The request succeeds. |
-| 401 | Authentication fails. Possible reasons are missing token, invalid token or expired token. You need to retrieve a new token and call the method again. |
-| 404 | The group ID does not exist. |
-| 429, 503 or 5xx | Call frequency exceeds the limit. Pause and try again later. If you need a higher call frequency, contact technical support. |
-| 500 | An internal server error occurs and the server is unable to complete the request. Please contact technical support. |
+For details, see [HTTP Status Codes](./agora_chat_status_code?platform=RESTful).
