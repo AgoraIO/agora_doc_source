@@ -324,7 +324,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
     "duration": 1,
     "organization": "XXXX",
     "applicationName": "XXXX"
-} 
+}
 ```
 
 ## Unmuting all chat group members
@@ -391,14 +391,3 @@ curl -X DELETE -H 'Content-Type: application/json' -H 'Accept: application/json'
     "applicationName": "XXXX"
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
