@@ -496,6 +496,126 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 	
 <a name="code"></a>
 
+
+## Retrieving chat room announcements
+Retrieves the announcements of one or more specified chat rooms.
+
+### HTTP request
+
+```
+GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/announcement
+```
+
+#### Path parameter
+
+| Parameter         | Type   | Required | Description                                                       |
+| :------------ | :----- | :------- | :--------------------------------------------------------- |
+| `host`        | String | Yes     | The domain name assigned by the Agora Chat service to access RESTful APIs. For how to get the domain name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). |
+| `org_name`    | String | Yes     | The unique identifier assigned to each company (organization) by the Agora Chat service. For how to get the org name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). |
+| `app_name`    | String | Yes     | The unique identifier assigned to each app by the Agora Chat service. For how to get the app name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). |
+| `chatroom_id` | String | Yes     | The chat room ID. This is the unique identifier assigned to each chat room by the Agora Chat. You can get the chat room ID from the response body of [Retrieve basic information of all chat rooms](./agora_chat_restful_chatroom?platform=RESTful#retrieving-basic-information-of-all-chat-rooms).                                              |
+
+#### Request header
+
+| Parameter            | Type   | Required | Description                                                         |
+| :-------------- | :----- | :------- | :----------------------------------------------------------- |
+| `Content-Type`  | String | Yes     | Set to `application/json`.                                 |
+| `Authorization` | String | Yes     | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
+
+### HTTP response
+The response body contains the following fields:
+
+| Parameter      | Type    | Description                                                       |
+| :-------- | :------ | :--------------------------------------------------------- |
+| announcement | String | 聊天室公告内容。The announcements of the specified chat rooms. |
+
+### Example
+
+#### Request example
+
+```
+curl -X GET -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer YWMt4LqJIul7EeizhBO5TSO_UgAAAAAAAAAAAAAAAAAAAAGL4CTw6XgR6LaXXVmNX4QCAgMAAAFnG7GyAQBPGgDv4ENRUku7fg05Kev0a_aVC8NyA6O6PgpxIRjajSVN3g' 'http://XXXX/XXXX/XXXX/chatrooms/XXXX/announcement'
+```
+
+#### Response example
+
+```
+{
+  "action": "get",
+  "application": "5cf28979-XXXX-XXXX-b969-60141fb9c75d",
+  "uri": "http://XXXX/XXXX/XXXX/chatrooms/XXXX/announcement",
+  "entities": [],
+  "data": {
+    "announcement" : "Chat room announcements..."
+  },
+  "timestamp": 1542363546590,
+  "duration": 0,
+  "organization": "XXXX",
+  "applicationName": "XXXX"
+}
+```
+
+## Modifying chat room announcements
+Modifies the announcements of the specified chat room. The announcement length cannot exceed 512 characters.
+
+### HTTP request
+
+```
+POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/announcement
+```
+
+#### Path parameter
+
+| Parameter          | Type   | Required | Description                                                       |
+| :------------ | :----- | :------- | :--------------------------------------------------------- |
+| `host`        | String | Yes     | The domain name assigned by the Agora Chat service to access RESTful APIs. For how to get the domain name, see [Get the information of your projec](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). |
+| `org_name`    | String | Yes     | The unique identifier assigned to each company (organization) by the Agora Chat service.  For how to get the org name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). |
+| `app_name`    | String | Yes     | The unique identifier assigned to each app by the Agora Chat service. For how to get the app name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project).   |
+| `chatroom_id` | String | Yes     | The chat room ID.                                               |
+
+#### Request header
+
+| Parameter            | Type   | Required | Description                                                         |
+| :-------------- | :----- | :------- | :----------------------------------------------------------- |
+| `Content-Type`  | String | Yes     | Set to `application/json`.                                 |
+| `Authorization` | String | Yes     | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
+
+### HTTP response
+
+#### Response body
+
+| Parameter      | Type    | Description                                                       |
+| :-------- | :------ | :--------------------------------------------------------- |
+| id | String | The chat room ID. |
+| result | Boolean | Whether the chat room announcement is successfully modified: <br/> - `true`: Success<br/> - `false`: Failure |
+
+### Example
+
+#### Request example
+
+```
+curl -X GET -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer YWMt4LqJIul7EeizhBO5TSO_UgAAAAAAAAAAAAAAAAAAAAGL4CTw6XgR6LaXXVmNX4QCAgMAAAFnG7GyAQBPGgDv4ENRUku7fg05Kev0a_aVC8NyA6O6PgpxIRjajSVN3g' 'http://XXXX/XXXX/XXXX/chatrooms/XXXX/announcement'
+```
+
+#### Response example
+
+```
+{
+  "action": "post",
+  "application": "5cf28979-XXXX-XXXX-b969-60141fb9c75d",
+  "uri": "http://XXXX/XXXX/XXXX/chatrooms/XXXX/announcement",
+  "entities": [],
+  "data": {
+    "id": "XXXX",
+    "result": true
+  },
+  "timestamp": 1594808604236,
+  "duration": 0,
+  "organization": "XXXX",
+  "applicationName": "XXXX"
+}
+```
+
 ## Status codes
 
 For details, see [HTTP Status Codes](./agora_chat_status_code?platform=RESTful).
