@@ -123,7 +123,17 @@ def main():
             code4 = code3.replace(" ", "")
             code5 = code4.replace("\n", "")
 
-            if content5.find(code5) == -1:
+            if code5 == "":
+                write_log("No. " + str(i) + " Mismatch found")
+                write_log("\n")
+                write_log("-------------------------------------------------------------------------------")
+                write_log("-------------------------------------------------------------------------------")
+                write_log("For the DITA file: " + file)
+                write_log("This prototype is empty!!!")
+                write_log("-------------------------------------------------------------------------------")
+                write_log("-------------------------------------------------------------------------------")
+                write_log("\n")
+            elif content5.find(code5) == -1:
                 write_log("No. " + str(i) + " Mismatch found")
                 i = i + 1
                 write_log("\n")
@@ -134,7 +144,6 @@ def main():
                 write_log("-------------------------------------------------------------------------------")
                 write_log("-------------------------------------------------------------------------------")
                 write_log("\n")
-
 
     # Clean folder
     for root, dirs, files in os.walk(decomment_code_location):
