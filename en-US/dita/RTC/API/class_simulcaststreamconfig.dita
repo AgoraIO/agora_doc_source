@@ -5,9 +5,6 @@
     <shortdesc id="short"><ph id="shortdesc">The configuration of the low-quality video stream.</ph></shortdesc>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
-                <codeblock props="unity" outputclass="language-csharp" />
-            </p>
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class SimulcastStreamConfig {
   public VideoEncoderConfiguration.VideoDimensions dimensions;
@@ -42,10 +39,26 @@
   }
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="unity" outputclass="language-csharp">public class SimulcastStreamConfig {
+        public SimulcastStreamConfig()
+        {
+            dimensions = new VideoDimensions(160, 120);
+            bitrate = 65;
+            framerate = 5;
+        }
+
+        public SimulcastStreamConfig(VideoDimensions dimensions, int bitrate, int framerate)
+        {
+            this.dimensions = dimensions;
+            this.bitrate = bitrate;
+            this.framerate = framerate;
+        }
+        public VideoDimensions dimensions { set; get; }
+        public int bitrate { set; get; }
+        public int framerate { set; get; }
+    }</codeblock>
             <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" />
-            </p>
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
