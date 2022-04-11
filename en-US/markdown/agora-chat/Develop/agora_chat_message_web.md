@@ -5,9 +5,9 @@ The Agora Chat SDK supports sending and receiving various types of messages:
 - Extended messages.
 - Custom messages.
 
-You can send a message to a peer user, a chat group, or a chat room. After sending a message, you can recall the message, listen for the message read receipt. 
+You can send a message to a peer user, a chat group, or a chat room. After sending a message, you can listen for the message read receipt. You can also recall the message. 
 
-To manage the messages, for example, to delete a conversation, you can also retrieve historical messages from the local device or from the server.
+To manage messages, for example, to delete a conversation, you can also retrieve historical messages from the local device or from the server.
 
 This page introduces how to use the Agora Chat SDK to implement these functionalities in your app.
 
@@ -19,7 +19,7 @@ The Agora Chat SDK provides a `Message` class that defines the message type, and
 
 Before proceeding, ensure that you meet the following requirements:
 
-- You have integrated the Agora Chat SDK, initialized the SDK and implemented the functionality of registering accounts and login. For details, see [Get Started with Agora Chat](agora_chat_get_started_web?platform=Web).
+- You have integrated the Agora Chat SDK, initialized the SDK and implemented the functionality of users logged in. For details, see [Get Started with Agora Chat](agora_chat_get_started_web?platform=Web).
 - You understand the [API call frequency limits](./agora_chat_limitation_web?platform=Web).
 
 
@@ -30,7 +30,7 @@ The process of sending and receiving a message is as follows:
 1. On the sender's client, create a message and send it. The message is sent to the Agora Chat server.
 2. The server delivers the message to the receiver.
 3. When the receiver receives the message, the SDK triggers an event.
-4. On the receiver's client, listen for the event and get the message.
+4. On the receiver's client, listen for the event, and get the message.
 
 ### Send a text message
 
@@ -124,7 +124,7 @@ WebIM.conn.listen({
 
 ### Send attachment messages
 
-Attachment messages include voice, image, video, and file message. When you send an attachment message, the attachment is uploaded to the Agora Chat server.
+Attachment messages include voice, image, video, and file messages. When you send an attachment message, the attachment is uploaded to the Agora Chat server.
 - For voice, image, and video messages, the SDK automatically downloads the audio, image, or video thumbnail when they arrive.
 - For file messages, the SDK does not automatically download the attachment. You need to call APIs to download the file on the receiver's client.
 
@@ -413,7 +413,7 @@ conn.send(msg.body);
 
 ### Custom messages
 
-Custom messages are self-defind key-value pairs that include the message type and the message content.
+Custom messages are self-defined key-value pairs that include the message type and the message content.
 
 The following code sample shows how to send a custom message:
 
@@ -473,7 +473,7 @@ function sendPrivateText() {
 
 ### Recall messages
 
-After sending a message, you can recall it using the `recallMessage` method. The default time limit for recalling a message is 2 minutes after this message is sent. To custom this time limit, contact sales@agora.io.
+After sending a message, you can recall it using the `recallMessage` method. The default time limit for recalling a message is two minutes after the message. To customize this time limit, contact sales@agora.io.
 
 Refer to the following code sample to recall a message:
 
@@ -505,9 +505,9 @@ WebIM.conn.addEventHandler('MESSAGES',{
 
 ## Manage local messages
 
-The Agora Chat SDK stores the sent and received messages in the local database, and you can manage these messages on conversations. 
+The Agora Chat SDK stores the sent and received messages in the local database, and you can manage these messages in conversations. 
 
-Followings are the core methods for managing the local messages:
+The followings are the core methods for managing the local messages:
 - `getSessionList`: Retrieves all the conversations on the local device.
 - `fetchHistoryMessages`: Retrieves the messages in the specified conversation.
 
@@ -552,9 +552,9 @@ var options = {
 WebIM.conn.fetchHistoryMessages(options);
 ```
 
-## Message receipt
+## Message receipts
 
-The Agora Chat SDK supports message delivery and read receipt to inform the message sendser that the message has been delivered or sent.
+The Agora Chat SDK supports message delivery and read receipt to inform the message sendser that the message is delivered or read.
 
 ### Message delievery receipt
 
@@ -571,13 +571,13 @@ WebIM.conn.listen({
 });
 ```
 
-### Message Read receipt
+### Message Read receipts
 
 Once the message is read by the receiver, the SDK sends a message read receipt to the message sender.
 
-#### Conversation read receipt
+#### Conversation read receipts
 
-Refer to the following code to implement read receipt for all the messages in the specified conversation:
+Refer to the following code to implement read receipts for all the messages in the specified conversation:
 
 ```javascript
 // Send a message in one-to-one chat.
@@ -603,9 +603,9 @@ WebIM.conn.listen({
 })
 ```
 
-#### Message read receipt
+#### Message read receipts
 
-Refer to the following code to implement read receipt for the specified message:
+Refer to the following code to implement read receipts for the specified message:
 
 - The message receiver
     
@@ -629,7 +629,7 @@ Refer to the following code to implement read receipt for the specified message:
         })
     ```
 
-#### Group message read receipt
+#### Group message read receipts
 
 For chat group messages, when the group owner or admin sends a messge, they can set whether to require a message read receipt.
 

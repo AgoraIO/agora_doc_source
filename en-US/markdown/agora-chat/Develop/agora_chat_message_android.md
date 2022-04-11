@@ -6,9 +6,9 @@ The Agora Chat SDK supports sending and receiving various types of messages:
 - Extended messages.
 - Custom messages.
 
-You can send a message to a peer user, a chat group, or a chat room. After sending a message, you can recall the message, listen for the message read receipt. 
+You can send a message to a peer user, a chat group, or a chat room. After sending a message, you can listen for the message read receipt. You can also recall the message. 
 
-To manage the messages, for example, to delete a conversation, you can also retrieve historical messages from the local device or from the server.
+To manage messages, for example, to delete a conversation, you can also retrieve historical messages from the local device or from the server.
 
 This page introduces how to use the Agora Chat SDK to implement these functionalities in your app.
 
@@ -20,7 +20,7 @@ The Agora Chat SDK provides a `ChatMessage` class that defines the message type,
 
 Before proceeding, ensure that you meet the following requirements:
 
-- You have integrated the Agora Chat SDK, initialized the SDK and implemented the functionality of registering accounts and login. For details, see [Get Started with Agora Chat](agora_chat_get_started_android?platform=Android).
+- You have integrated the Agora Chat SDK, initialized the SDK, and implemented the functionality of users logging in. For details, see [Get Started with Agora Chat](agora_chat_get_started_android?platform=Android).
 - You understand the [API call frequency limits](./agora_chat_limitation_android?platform=Android).
 
 
@@ -31,11 +31,11 @@ The process of sending and receiving a message is as follows:
 1. On the sender's client, create a message and send it. The message is sent to the Agora Chat server.
 2. The server delivers the message to the receiver.
 3. When the receiver receives the message, the SDK triggers an event.
-4. On the receiver's client, listen for the event and get the message.
+4. On the receiver's client, listen for the event, and get the message.
 
 Followings are the core methods for sending, receiving, and recalling messages:
 - `sendMessage`: Sends a message to the specified user, chat group, or chat room.
-- `recallMessage`: Recall a message that has been sent.
+- `recallMessage`: Recalls a message that has been sent.
 - `addMessageListener`: Adds a message event listener.
 
 ### Text messages
@@ -43,11 +43,11 @@ Followings are the core methods for sending, receiving, and recalling messages:
 Refer to the following code sample to create, send, and receive a text message:
 
 ```java
- // Call createTxtSendMessage to create a text message. Setcontent as the text content and toChatUsername to the username to whom you want to send this text message.
+ // Call createTxtSendMessage to create a text message. Set content as the text content and toChatUsername to the username to whom you want to send this text message.
  ChatMessage message = ChatMessage.createTxtSendMessage(content, toChatUsername);
  // Call setChatType to set the chat type. You can set it as chat (one-to-one chat), group chat, or chat room.
  message.setChatType(ChatType.GroupChat);
-// Call setMessageStatusCallback to listen for the status of the message sending. You can implement subsequence settings in this callback, for example, popping a tip if the message sending fails.
+// Call setMessageStatusCallback to listen for the status of the message sending. You can implement subsequence settings in this callback, for example, adding a tip pop-up if the message sending fails.
  message.setMessageStatusCallback(new CallBack() {
      @Override
      public void onSuccess() {
@@ -80,11 +80,11 @@ ChatClient.getInstance().chatManager().removeMessageListener(msgListener);
 
 ### Attachment messages
 
-Attachment messages include voice, image, video, and file message. When you send an attachment message, the attachment is uploaded to the Agora Chat server.
+Attachment messages include voice, image, video, and file messages. When you send an attachment message, the attachment is uploaded to the Agora Chat server.
 - For voice, image, and video messages, the SDK automatically downloads the audio, image, or video thumbnail when they arrive.
 - For file messages, the SDK does not automatically download the attachment. You need to call APIs to download the file on the receiver's client.
 
-#### Creat an attachment message
+#### Create an attachment message
 
 Before you create an attachment message, you need to implement the function of getting the attachment in your app, for example, to send an audio message, you need to implement the recording function.
 
@@ -102,7 +102,7 @@ ChatMessage message = ChatMessage.createImageSendMessage(imageUri, false, toChat
 ```
 ```java
 // Create a video message
-// Set videoUri as the URI of the video file, thumbPath as the URI of the thumbnail, videoLength as the video duration (in seconds).
+// Set videoUri as the URI of the video file, thumbPath as the URI of the thumbnail and videoLength as the video duration (in seconds).
 ChatMessage message = ChatMessage.createVideoSendMessage(videoUri, thumbPath, videoLength, toChatUsername);
 ```
 ```java
@@ -183,12 +183,12 @@ ChatClient.getInstance().chatManager().removeMessageListener(msgListener);
 
 ### Location messages
 
-To send and receive a location message, you need to integrate a third-party map service provider. When sending a location message, you get the longtitude and latitude information of the location from the map service provider; when receiving the location message, you extract the received longtitude and latitude information and displays the location on the third-party map.
+To send and receive a location message, you need to integrate a third-party map service provider. When sending a location message, you get the longtitude and latitude information of the location from the map service provider; when receiving the location message, you extract the received longitude and latitude information and display the location on the third-party map.
 
 The following code sample shows how to send a location message:
 
 ```java
-// Set the longtitude and latitude information and descriptions of the position.
+// Set the longitude and latitude information and descriptions of the position.
 ChatMessage message = ChatMessage.createLocationSendMessage(latitude, longitude, locationAddress, toChatUsername);
 // Set the chat group type. You can set it as chat (one-to-one chat), group chat, or chat room.
 if (chatType == CHATTYPE_GROUP)    message.setChatType(ChatType.GroupChat);ChatClient.getInstance().chatManager().sendMessage(message);
@@ -206,7 +206,7 @@ The following code sample shows how to send and receive a CMD message:
 ChatMessage cmdMsg = ChatMessage.createSendMessage(ChatMessage.Type.CMD);
 // Set the chat type. You can set it as chat (one-to-one chat), group chat, or chat room.
 cmdMsg.setChatType(ChatType.GroupChat)String action="action1";
-// Set the CMD message body. You can custom the action.
+// Set the CMD message body. You can customize the action.
 CmdMessageBody cmdBody = new CmdMessageBody(action);String toUsername = "test1";
 // Send the CMD message.
 cmdMsg.setTo(toUsername);cmdMsg.addBody(cmdBody); ChatClient.getInstance().chatManager().sendMessage(cmdMsg);
@@ -227,7 +227,7 @@ MessageListener msgListener = new MessageListener()
 
 ### Custom messages
 
-Custom messages are self-defind key-value pairs that include the message type and the message content.
+Custom messages are self-defined key-value pairs that include the message type and the message content.
 
 The following code sample shows how to send a custom message:
 
@@ -260,7 +260,7 @@ message.getStringAttribute("attribute1",null);message.getBooleanAttribute("attri
 
 ### Recall messages
 
-After sending a message, you can recall it using the `recallMessage` method. The default time limit for recalling a message is 2 minutes after this message is sent. To custom this time limit, contact sales@agora.io.
+After sending a message, you can recall it using the `recallMessage` method. The default time limit for recalling a message is two minutes after the message. To customize this time limit, contact sales@agora.io.
 
 Refer to the following code sample to recall a message:
 
@@ -270,16 +270,16 @@ ChatClient.getInstance().chatManager().recallMessage(contextMenuMessage);
 
 ## Manage local messages
 
-The Agora Chat SDK stores the sent and received messages in the local database, and you can manage these messages on conversations. 
+The Agora Chat SDK stores the sent and received messages in the local database, and you can manage these messages in conversations. 
 
-Followings are the core methods for managing the local messages:
+The followings are the core methods for managing the local messages:
 - `loadAllConversations`: Loads all the conversations on the local device.
-- `deleteConversation`: Deletes the concersation on the local device.
+- `deleteConversation`: Deletes the conversation on the local device.
 - `getUnreadMsgCount`: Retrieves the count of the unread messages in the specified conversation.
 - `getUnreadMessageCount`: Retrieves the count of all the unread messages.
-- `searchMsgFromDS`: Searches the specified message from the local database.
+- `searchMsgFromDS`: Searches for messages using keywords or the timestamp from the local database.
 - `importMessages`: Imports the specified historial message to the database.
-- `insertMessage`: Inserts the specified historial message to the converation.
+- `insertMessage`: Inserts the specified historial message into the conversation.
 
 ### Retrieve local conversations
 
@@ -302,12 +302,12 @@ List<ChatMessage> messages = conversation.getAllMessages();
 List<ChatMessage> messages = conversation.loadMoreMsgFromDB(startMsgId, pagesize);
 ```
 
-### Retrieve the count of unread messages in the specified conversation
+### Retrieve the count of the unread messages in the specified conversation
 
-Call `getUnreadMsgCount` to retrieve the count of unread messages in the current conversation.
+Call `getUnreadMsgCount` to retrieve the count of the unread messages in the current conversation.
 
 ```java
-// Retrieve the count of unread messages in the current conversation.
+// Retrieve the count of the unread messages in the current conversation.
 Conversation conversation = ChatClient.getInstance().chatManager().getConversation(username);
 conversation.getUnreadMsgCount();
 ```
@@ -336,7 +336,7 @@ ChatClient.getInstance().chatManager().markAllConversationsAsRead();
 
 ### Delete local conversations and messages
 
-You can delete the specified conversation, or the specified message in the current conversation from the local device. Refer to the following code:
+You can delete the specified conversation or the specified message in the current conversation from the local device. Refer to the following code:
 
 ```java
 // Delete the specified conversation
@@ -366,10 +366,10 @@ ChatClient.getInstance().chatManager().importMessages(msgs);
 
 ### Insert messages
 
-Refer to the following code sample to insert a message in the current conversation:
+Refer to the following code sample to insert a message into the current conversation:
 
 ```java
-// Insert a message in the current conversation.
+// Insert a message into the current conversation.
 Conversation conversation = ChatClient.getInstance().chatManager().getConversation(username);
 conversation.insertMessage(message);
 // Store the message in the local database.
@@ -380,7 +380,7 @@ ChatClient.getInstance().chatManager().saveMessage(message);
 
 The Agora Chat SDK also stores historial messages on the chat server, and you can retrieve these historial messages by conversations.
 
-Followings are the core methods for retrieving historical messages from the server
+The followings are the core methods for retrieving historical messages from the server
 - `asyncFetchConversationsFromServer`: Retrieves the conversation list from the server.
 - `fetchHistoryMesssages`: Retrieves the messages in the specified conversation from the server.
 
@@ -388,7 +388,7 @@ Agora recommends calling these methods when the app is first installed or before
 
 ### Retrieve the conversation list
 
-Refer to the following code sample to retrieve the conversation list from the server. For each message call, a maximum number of 100 conversations is returned.
+Refer to the following code sample to retrieve the conversation list from the server. For each message call, a maximum number of 100 conversations are returned.
 
 ```java
 ChatClient.getInstance().chatManager().asyncFetchConversationsFromServer(new ValueCallBack<Map<String, Conversation>>() {
@@ -396,7 +396,7 @@ ChatClient.getInstance().chatManager().asyncFetchConversationsFromServer(new Val
     @Override
     public void onSuccess(Map<String, Conversation> value) {
     }
-    // Occurs when the conversation fails to the fetched from the server.
+    // Occurs when the conversation fails to be fetched from the server.
     @Override
     public void onError(int error, String errorMsg) {
     }
@@ -405,7 +405,7 @@ ChatClient.getInstance().chatManager().asyncFetchConversationsFromServer(new Val
 
 ### Retrieve the historical messages of the specified conversation by pagination
 
-Refer to the following code to retrieve the historial messages from the specified conversation buy pagination. For each method call, a maximum number of 50 messages is returned.
+Refer to the following code to retrieve the historial messages from the specified conversation by pagination. For each method call, a maximum number of 50 messages are returned.
 
 ```java
 try {
@@ -426,23 +426,23 @@ try {
 }
 ```
 
-## Message delivery and read receipt
+## Message delivery and read receipts
 
-After you send a message, once this message is delivered or read, the Agora Chat SDK supports sending a receipt to you, informing you that your message has been delievered or read.
+After you send a message, once this message is delivered or read, the Agora Chat SDK supports sending a receipt to you, informing you that the message is delivered or read.
 
-Followings are the core methods for implementing message delievery and read receipt:
-- `setRequireAck`: Enables message read receipt.
-- `setRequireDeliveryAck`: Enables message delivery receipt.
+The followings are the core methods for implementing message delivery and read receipts:
+- `setRequireAck`: Enables message read receipts.
+- `setRequireDeliveryAck`: Enables message delivery receipts.
 - `ackConversationRead`: Sends the receipt when the specified conversation is read.
 - `ackMessageRead`: Sends the receipt when the specified message is read.
 - `ackGroupMessageRead`: Sends the receipt when the specified group message is read.
 
-### Message delievery receipt
+### Message delivery receipts
 
-Call `setRequireDeliveryAck` to enable the message delievery receipt feature. The following code sample shows how to implement message delivery receipt:
+Call `setRequireDeliveryAck` to enable the message delivery receipt feature. The following code sample shows how to implement message delivery receipts:
 
 ```java
-// Call setRequireDeliveryAck to enable message delievery receipt. Once you enable this feature, the message sender receives the delivery receipt once the messgage arrives the reciever.
+// Call setRequireDeliveryAck to enable message delivery receipts. Once you enable this feature, the message sender receives the delivery receipt once the messgage is successfully received.
 options.setRequireDeliveryAck(true);
 
 // Add a message listener to listen for the receipt message.
@@ -451,7 +451,7 @@ MessageListener msgListener = new MessageListener() {
     @Override
       public void onMessageReceived(List<ChatMessage> messages) {
     }
-    // Occurs when the message deliery receipt is received
+    // Occurs when the message delivery receipt is received
     @Override
       public void onMessageDelivered(List<ChatMessage> message) {
     }
@@ -460,18 +460,18 @@ MessageListener msgListener = new MessageListener() {
 ChatClient.getInstance().chatManager().removeMessageListener(msgListener);
 ```
 
-### Read receipt
+### Read receipts
 
-Once the message sender enables message read receipt by calling `setRequireAck`, the message receiver sends this receipt after reading the message.
+Once the message sender enables message read receipts by calling `setRequireAck`, the message receiver sends this receipt after reading the message.
 
-#### Conversation read receipt
+#### Conversation read receipts
 
-Refer to the following code to implement read receipt for all the messages in the specified conversation:
+Refer to the following code to implement read receipts for all the messages in the specified conversation:
 
 - The message receiver
 
     ```java
-    // The message receiver calls ackConversationRead to send the converation read receipt.
+    // The message receiver calls ackConversationRead to send the conversation read receipt.
     // This is an asynchronous method.
     try {
         ChatClient.getInstance().chatManager().ackConversationRead(conversationId);
@@ -483,29 +483,29 @@ Refer to the following code to implement read receipt for all the messages in th
 - The message sender
 
     ```java
-    // The message sender calls addConversationListener to listen for converation events.
+    // The message sender calls addConversationListener to listen for conversation events.
     ChatClient.getInstance().chatManager().addConversationListener(new ConversationListener() {
                 ...
                 @Override
-                // Occurs when the all the messages in the converation is read.
+                // Occurs when the all the messages in the conversation are read.
                 public void onConversationRead(String from, String to) {
-                    // Add follow-up logics such as poping up a notification.
+                    // Add follow-up logics such as popping up a notification.
                 }
             });
     ```
 
-In scenarios where a user has logged into multiple devices, once the read receipt is sent from one of these devices, the server marks the unmessage on the other devices as read as well.
+In scenarios where a user has logged in to multiple devices, once the read receipt is sent from one of these devices, the server marks the unread messages on the other devices as read as well.
 
-#### Message read receipt
+#### Message read receipts
 
-Refer to the following code to implement read receipt for the specified message:
+Refer to the following code to implement read receipts for the specified message:
 
 - The message receiver
     
   You can send the message read receipt when entering the conversation:
 
     ```java
-    // The message receiver calls ackMessageRead to send the converation read receipt.
+    // The message receiver calls ackMessageRead to send the conversation read receipt.
     try {
         ChatClient.getInstance().chatManager().ackMessageRead(conversationId);
     }catch (ChatException e) {
@@ -559,17 +559,17 @@ Refer to the following code to implement read receipt for the specified message:
         @Override
         // Occurs when the specified message is read.
         public void onMessageRead(List<ChatMessage> messages) {
-            // Add follow-up logics such as poping up a notification.
+            // Add follow-up logics such as popping up a notification.
         }
         ......
     });
     ```
 
-#### Group message read receipt
+#### Group message read receipts
 
-For chat group messages, when the group owner or admin sends a messge, they can set whether to require a message read receipt.
+For chat group messages, when the group owner or an admin sends a messge, they can set whether to require a message read receipt.
 
-<div class="alert note">You need to contact sales@agora.io to enable the group message read receipt feature. Once enabled, this feature applies to the chat group owner and chat group admin only.</div>
+<div class="alert note">You need to contact sales@agora.io to enable the group message read receipt feature. Once enabled, this feature applies to the chat group owner and chat group admins only.</div>
 
 To receive the chat message receipt, the message sender needs to set `setIsNeedGroupAck` as true when sending the message.
 
@@ -595,7 +595,7 @@ The following code sample shows how to implement chat message receipts:
                 return;
             }
 
-            // May a user login from multiple devices, so do not need to send the ack msg.
+            // If a user can log in from multiple devices, the ack messasg does not need to be sent.
             if (ChatClient.getInstance().getCurrentUser().equalsIgnoreCase(message.getFrom())) {
                 return;
             }
