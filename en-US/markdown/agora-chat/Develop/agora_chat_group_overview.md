@@ -3,7 +3,7 @@ Chat groups are features that enable instant messaging among multiple chat users
 ## Chat group types
 
 Agora Chat has two types of chat group: 
-- Public. Public chat groups can be searched, and users can join a public chat group with or without the authorization of the group owner or admin.
+- Public. Public chat groups can be searched, and, depending on the settings of the group, users can join a public chat group directly or with the approval of the group owner or admin.
 - Private. Private chat groups cannot be searched, and users cannot join private groups unless they are invited by a group owner or admin.
 
 ## Chat group roles and privileges
@@ -11,7 +11,7 @@ Agora Chat has two types of chat group:
 Chat groups have the following roles and privileges:
 
 - Chat group members: Members can send and receive group messages. They do not have any administrative privileges.
-- Chat group admins: Admins are members that also have some administrative privileges, including modifying the group annoucenments and managing chat group members (but not other admins). Admins are appointed by the chat group owner.
+- Chat group admins: Admins are members that also have some administrative privileges, including modifying the group announcenments and managing chat group members (but not other admins). Admins are appointed by the chat group owner.
 - Chat group owner: The owner is the group member with the most authority. When a user creates a chat group, they automatically become the group owner. Owners have the most privileges in a chat group, including appointing group admins, modifying group announcements, and managing group members (including admins). Owners can also disband the group or transfer ownership to another member.
 
 ## Chat groups vs. chat rooms
@@ -26,7 +26,7 @@ The specific feature differences are listed in the following table:
 | Maximum number of members | 5,000 | 20,000+  |
 | Message push support | Members receive push messages when they go offline. | Members do not receive push messages when they go offline. |
 | Message storage support | Supports message storage when a member is offline. Once online, this member receives all the stored messages. A maximum number of 200 messages can be stored for each group chat thread.   | This feature can be enabled and disabled. If you enable this feature, the SDK supports message storage when a member is offline. Once online, this member receives all the stored messages. By default, 10 messages can be stored for each chat room thread, and you can set this number to a maximum value of 200. |
-| Message reliablity | All members receive all the messages in the chat group. | Members might not see all messages. The SDK discards messages if the chat group message threshold is exceeded. The deffault threshold is 100 messages per second. You can adjust this threshold according to your needs.  |
+| Message reliablity | All members receive all the messages in the chat group. | Members might not see all messages. The SDK discards messages if the chat group message threshold is exceeded. The default threshold is 100 messages per second. You can adjust this threshold according to your needs.  |
 
 
 ## Chat group features

@@ -1,12 +1,12 @@
-Chat rooms enable real-time messaging among multiple users. Chat rooms do not have a strict membership and members do not have any relationship with each other. Once a chat room member exits the chat room, this member does not receive any push message from the chat room, and within 5 minutes, automatically leaves the chat room. Chat rooms are widely applied in live broadcast use cases as stream chat in Twitch.
+Chat rooms enable real-time messaging among multiple users. Chat rooms do not have a strict membership, and members do not members do not retain any permanent relationship with each other. Once a chat room member goes offline, this member does not receive any push messages from the chat room, and within 5 minutes, automatically leaves the chat room. Chat rooms are widely applied in live broadcast use cases as stream chat in Twitch.
 
 ## Chat room roles and privileges
 
 Chat rooms have the following roles and privileges:
 
-- Chat room members: Regular members that can send and recieve chat room messages. 
-- Chat room admins: They are specified by the chat group owner. Apart from sending and receiving chat room messages, they have some administrative privileges. You can add up to 99 admins for each chat room.
-- Chat room owner: The creator of the chat room. Chat room owners have the highest privileges, including specifying the chat room admin, disbanding the chat room, modifying the chat room attributes, and managing other chat room members.
+- Chat room members: Members can send and receive chat room messages. 
+- Chat room admins: Admins are appointed by the chat group owner. Apart from sending and receiving chat room messages, admins have some administrative privileges. Chat rooms can be configured to have up to 99 admins.
+- Chat room owner: When a user creates a chat room, they automatically become the owner. Owners have the most privileges in a chat room, including appointing admins, modifying chat room attributes, and managing other chat room members (including admins). Owners can also disband the chat room or transfer ownership to another member.
 
 ## Chat groups vs. chat rooms
 
@@ -20,7 +20,7 @@ The specific feature differences are listed in the following table:
 | Maximum number of members | 5,000 | 20,000+  |
 | Message push support | Members receive push messages when they go offline. | Members do not receive push messages when they go offline. |
 | Message storage support | Supports message storage when a member is offline. Once online, this member receives all the stored messages. A maximum number of 200 messages can be stored for each group chat thread.   | This feature can be enabled and disabled. If you enable this feature, the SDK supports message storage when a member is offline. Once online, this member receives all the stored messages. By default, 10 messages can be stored for each chat room thread, and you can set this number to a maximum value of 200. |
-| Message reliablity | All members receive all the messages in the chat group. | Members might not see all messages. The SDK discards messages if the chat group message threshold is exceeded. The deffault threshold is 100 messages per second. You can adjust this threshold according to your needs.  |
+| Message reliablity | All members receive all the messages in the chat group. | Members might not see all messages. The SDK discards messages if the chat group message threshold is exceeded. The default threshold is 100 messages per second. You can adjust this threshold according to your needs.  |
 
 ## Chat room features
 
@@ -31,11 +31,11 @@ You can implement the following features with the chat room APIs:
 
 ### Create a chat room
 
-Only the [chat room super admin](./agora_chat_restful_chatroom_superadmin) can create a chat room, and the user that creates the chat room becomes the chat room owner. The maximum number of chat room member supported vary according to the pricing plan. For details, see [Limitations of chat room](#limitations).
+Only the [chat room super admin](./agora_chat_restful_chatroom_superadmin) can create a chat room, and the user that creates the chat room becomes the chat room owner. The maximum number of chat room members supported varies according to the pricing plan. For details, see [Limitations of chat room](#limitations).
 
 ### Join and leave a chat room
 
-All the chat users can join and leave the chat rooms freely.
+All the chat users can join and leave the chat room freely.
 
 ### Disband a chat room
 
@@ -47,35 +47,35 @@ All the chat users can retrieve the chat room list from the server with paginati
 
 ### Retrieve the chat room attributes
 
-All the chat room members can retrieve the chat room attributes including the chat room name and descriptions.
+All the chat room members can retrieve the chat room attributes, including the chat room name and descriptions.
 
 ### Modify the chat room name
 
 Only the chat room owner has the privilege to modify the chat room name.
 
-### Modify the chat room notification
+### Modify chat room notifications
 
-Only the chat room owner has the privilege to edit and delete the chat room notification. Once the notification is updated, all the chat room member is informed of this update by callback events.
+Only the chat room owner has the privilege to edit and delete chat room notifications. Once the notification is updated, all the chat room members are informed of this update by callback events.
 
 ### Transfer the chat room ownership
 
-The chat room owner can transfer the ownership to the specified chat room member.
+The chat room owner can transfer the ownership to a specified chat room member.
 
 ### Add and remove the chat room admin
 
-The chat room owner can add and remove the chat room admin.
+The chat room owner can add and remove a chat room admin.
 
-### Mute the specified chat room member
+### Mute a specified chat room member
 
-The chat room owner or admin can mute the specified chat room member.
+The chat room owner or an admin can mute a specified chat room member.
 
-### Mute all the chat room members
+### Mute all chat room members
 
-The chat room owner or admin can mute all the chat room members. By default, the chat room owner and admin are excluded from the chat room mute list.
+The chat room owner or an admin can mute all the chat room members at once. By default, the chat room owner and all admins are excluded from the chat room mute list, as are any members on the allow list.
 
 ### Manage the chat room allow list
 
-The chat room owner or admin can add the specified members to the chat room allow list, and remove them from the list. Once added to the chat room allow list, the members can send messages to the chat room even when the chat room owner or admin has muted all the chat room members.
+The chat room owner or admin add or remove specified members from the chat room allow list. Members on the allow list can send messages to the chat room even when the chat room owner or an admin has muted all the chat room members.
 
 ### Manage the chat room block list
 
@@ -84,7 +84,7 @@ The chat room owner or admin can add the specified members to the chat room bloc
 
 <a name="limitations"></a>
 
-## Limitations of chat room
+## Chat room limitations
 
 The maximum number of chat room members, the total number of chat rooms you can create, and the maximum number of chat rooms a user can join vary according to your pricing plan.
 
