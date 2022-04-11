@@ -84,7 +84,55 @@
   ScreenCaptureParameters(int width, int height, int f, int b, bool cur, bool fcs, view_t *ex, int cnt)
     : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(cur), windowFocus(fcs), excludeWindowList(ex), excludeWindowCount(cnt) {}
 };</codeblock>
-                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="unity" outputclass="language-csharp">public class ScreenCaptureParameters
+    {
+        public ScreenCaptureParameters()
+        {
+            dimensions = new VideoDimensions(1920, 1080);
+            frameRate = 5;
+            bitrate = (int) BITRATE.STANDARD_BITRATE;
+            captureMouseCursor = true;
+            windowFocus = false;
+            excludeWindowList = new view_t[0];
+            excludeWindowCount = 0;
+        }
+        public ScreenCaptureParameters(int width, int height, int frameRate, BITRATE bitrate, bool captureMouseCursor,
+            bool windowFocus, view_t[] excludeWindowList = null, int excludeWindowCount = 0)
+        {
+            dimensions = new VideoDimensions(width, height);
+            this.frameRate = frameRate;
+            this.bitrate = (int) bitrate;
+            this.captureMouseCursor = captureMouseCursor;
+            this.windowFocus = windowFocus;
+            this.excludeWindowList = excludeWindowList ?? new view_t[0];
+            this.excludeWindowCount = excludeWindowCount;
+        }
+        public ScreenCaptureParameters(VideoDimensions dimensions, int frameRate, BITRATE bitrate,
+            bool captureMouseCursor, bool windowFocus, view_t[] excludeWindowList = null, int excludeWindowCount = 0)
+        {
+            this.dimensions = dimensions;
+            this.frameRate = frameRate;
+            this.bitrate = (int) bitrate;
+            this.captureMouseCursor = captureMouseCursor;
+            this.windowFocus = windowFocus;
+            this.excludeWindowList = excludeWindowList ?? new view_t[0];
+            this.excludeWindowCount = excludeWindowCount;
+        }
+        
+        public VideoDimensions dimensions { set; get; }
+        
+        public int frameRate { set; get; }
+        
+        public int bitrate { set; get; }
+        
+        public bool captureMouseCursor { set; get; }
+        
+        public bool windowFocus { set; get; }
+        
+        public view_t[] excludeWindowList { set; get; }
+        
+        public int excludeWindowCount { set; get; }
+    }</codeblock>
             </p>
             <p props="rtc" outputclass="codeblock">
                 <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenCaptureParameters : NSObject
