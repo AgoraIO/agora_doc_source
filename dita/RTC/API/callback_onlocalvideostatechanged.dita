@@ -31,7 +31,8 @@
                 LOCAL_VIDEO_STREAM_ERROR error) {
                 (void)localVideoState;
                 (void)error;
-                }</codeblock>
+                }</codeblock> </p>
+            <p outputclass="codeblock">
             <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.LOCAL_VIDEO_STATE_CHANGED, cb: (
     localVideoState: number,
     error: number
@@ -39,8 +40,8 @@
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnLocalVideoStateChanged(LOCAL_VIDEO_STREAM_STATE localVideoState,
             LOCAL_VIDEO_STREAM_ERROR error)</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">LocalVideoStateCallback? localVideoStateChanged;</codeblock> 
-        </p></section>
+            <codeblock props="flutter" outputclass="language-dart">LocalVideoStateCallback? localVideoStateChanged;</codeblock> </p>
+        </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
             <dlentry props="native">
@@ -55,7 +56,7 @@
             <li>应用退到后台，系统回收摄像头。</li>
             <li>摄像头正常启动，但连续 4 秒都没有输出采集的视频。</li>
             </ul></p>
-            <p>摄像头输出采集的视频帧时，如果连续 15 帧中，所有视频帧都一样，SDK 触发 <apiname keyref="onLocalVideoStateChanged"/> 回调，状态为 <codeph><ph keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/></codeph>，错误码为 <codeph><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/></codeph>。注意，帧重复检测仅针对分辨率大于 200 × 200、帧率大于等于 10 fps、码率小于 20 Kbps 的视频帧。
+            <p>摄像头输出采集的视频帧时，如果连续 15 帧中，所有视频帧都一样，SDK 触发 <apiname keyref="onLocalVideoStateChanged"/> 回调，状态为 <apiname keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/>，错误码为 <apiname keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/>。注意，帧重复检测仅针对分辨率大于 200 × 200、帧率大于等于 10 fps、码率小于 20 Kbps 的视频帧。
             </p>
             <note id="note" type="attention">对某些机型而言，当本地视频采集设备正在使用中时，SDK 不会在本地视频状态发生改变时触发该回调，你需要自行做超时判断。</note> </section>
         <section id="parameters">
@@ -100,7 +101,6 @@
                     <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_NO_PERMISSION"/>(2): 没有权限启动本地视频采集设备。</li>
                     <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY"/> (3): 本地视频采集设备正在使用中。</li>
                     <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/> (4): 本地视频采集失败，建议检查采集设备是否正常工作。
-                        
                         <ul id="ul_ygj_tdx_qqb">
                         <li>Android 9 及以上版本，app 切后台一段时间后，系统收回相机权限。</li>
                         <li>Android 6 及以上版本，如果相机被第三方应用占用，且未被及时释放。如果一段时间后，相机被释放，则 SDK会再次出发该回调，并报告 <codeph>state</codeph> 为 <codeph>CAPTURING</codeph>，<codeph>error</codeph> 为 <codeph>ERROR_OK</codeph>。</li>

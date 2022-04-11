@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audiorecordingconfiguration">
-    <title><ph keyref="AudioRecordingConfiguration" /></title>
-    <shortdesc id="short"><ph id="shortdesc">客户端录音配置。</ph></shortdesc>
+    <title>
+        <ph keyref="AudioRecordingConfiguration" />
+    </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">客户端录音配置。</ph>
+    </shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -60,18 +64,24 @@
                         recordingSampleRate(sampleRate)
                       {}
                     };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">export interface AudioRecordingConfiguration {
+                <codeblock props="electron" outputclass="language-typescript">export interface AudioRecordingConfiguration {
   filePath: string;
   recordingQuality: AUDIO_RECORDING_QUALITY_TYPE;
   recordingPosition: AUDIO_RECORDING_POSITION;
   recordingSampleRate: number;
 }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">class AudioRecordingConfiguration {
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">class AudioRecordingConfiguration {
 
   String filePath;
+
+  @JsonKey(includeIfNull: false)
   AudioRecordingQuality? recordingQuality;
+
+  @JsonKey(includeIfNull: false)
   AudioRecordingPosition? recordingPosition;
+
+  @JsonKey(includeIfNull: false)
   AudioSampleRateType? recordingSampleRate;
 
   AudioRecordingConfiguration(
@@ -80,6 +90,11 @@
     this.recordingPosition,
     this.recordingSampleRate,
   });
+
+  factory AudioRecordingConfiguration.fromJson(Map&lt;String, dynamic> json) =>
+      _$AudioRecordingConfigurationFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$AudioRecordingConfigurationToJson(this);
 }</codeblock>
             </p>
         </section>
@@ -99,6 +114,23 @@
                     <pd>
                         <p>录音文件在本地保存的绝对路径，需精确到文件名及格式。例如：<codeph><ph keyref="recordingPath-example" /></codeph>。</p>
                         <note type="attention">请确保你指定的路径存在并且可写。</note>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>recordingChannel</pt>
+                    <pd>
+                        录制的音频声道。支持如下取值：
+                        <ul>
+                            <li>1: （默认）单声道。</li>
+                            <li>2: 双声道。</li>
+                        </ul>
+                        <note type="attention">
+                            实际录制的音频声道与你采集的音频声道有关：如果采集的音频为单声道，
+                            <parmname>recordingChannel</parmname>
+                            为 2，则录制的音频为经过单声道数据拷贝后的双声道数据，而不是立体声。如果采集的音频为双声道，
+                            <parmname>recordingChannel</parmname>
+                            为 1，则录制的音频为经过双声道数据混合后的单声道数据。此外，集成方案也会影响最终录制的音频声道。因此，如果你希望录制立体声，请联系技术支持协助。
+                        </note>
                     </pd>
                 </plentry>
                 <plentry>

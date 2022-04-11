@@ -36,9 +36,16 @@
                 <codeblock props="rn" outputclass="language-typescript" />
                 <codeblock props="flutter" outputclass="language-dart">class CameraCapturerConfiguration {
 
+  @JsonKey(includeIfNull: false)
   CameraCaptureOutputPreference? preference;
+
+  @JsonKey(includeIfNull: false)
   int? captureWidth;
+
+  @JsonKey(includeIfNull: false)
   int? captureHeight;
+
+  @JsonKey(includeIfNull: false)
   CameraDirection? cameraDirection;
 
   CameraCapturerConfiguration({
@@ -47,6 +54,11 @@
     this.captureHeight,
     this.cameraDirection,
   });
+
+  factory CameraCapturerConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$CameraCapturerConfigurationFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$CameraCapturerConfigurationToJson(this);
 }</codeblock>
             </p>
         </section>

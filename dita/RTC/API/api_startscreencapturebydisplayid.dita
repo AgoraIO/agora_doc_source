@@ -28,28 +28,24 @@
                 ScreenCaptureParameters captureParams);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startScreenCaptureByDisplayId(int displayId,
-      [Rectangle? regionRect, ScreenCaptureParameters? captureParams]);</codeblock> 
-        </p></section>
+      [Rectangle? regionRect, ScreenCaptureParameters? captureParams]);</codeblock> </p>
+        </section>
         <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>自从</dt>
-                <dd>v2.4.0</dd>
-            </dlentry>
-            </dl>
             <p>共享一个屏幕或该屏幕的部分区域。用户需要在该方法中指定想要共享的屏幕 ID。</p>
             <note type="attention">
             <p props="mac">该方法需要在加入频道后调用。</p>
             <ul props="windows flutter">
-            <li>该方法仅适用于 macOS。</li>
+            <li>该方法仅适用于 macOS 和 Windows。</li>
             <li>该方法需要在加入频道后调用。</li>
+            <li>Windows 平台上，如果用户设备外接其他显示屏，为避免屏幕共享出现问题，请使用该方法开启共享，不要使用 <xref keyref="startScreenCaptureByScreenRect"/>。</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry>
                 <pt>displayId</pt>
-                <pd>指定待共享的屏幕 ID。开发者需要通过该参数指定你要共享的那个屏幕。</pd>
+                <pd><p>指定待共享的屏幕 ID。开发者需要通过该参数指定你要共享的那个屏幕。关于如何获取屏幕 ID，请参考 <xref keyref="guide-screensharing"/>，或从
+                <xref keyref="getScreenCaptureSources"/> 返回的 <parmname>sourceId</parmname> 获取。</p></pd>
             </plentry>
             <plentry props="windows unity flutter">
                 <pt>regionRect</pt>
@@ -59,6 +55,7 @@
                 <pt props="rtc">rectangle</pt>
                 <pt props="rtc-ng">regionRect</pt>
                 <pd>（可选）待共享区域相对于整个屏幕的位置。如不填，则表示共享整个屏幕。由如下参数组成：
+                    
                     <ul>
                     <li>x：左上角的横向偏移。</li>
                     <li>y：左上角的纵向偏移。</li>

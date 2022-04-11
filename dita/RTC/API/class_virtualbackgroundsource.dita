@@ -82,9 +82,8 @@
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
-            <p outputclass="codeblock">
-            <codeblock props="windows unity" outputclass="language-cpp">struct VirtualBackgroundSource {
+            <codeblock props="flutter" outputclass="language-dart"/>
+            <codeblock props="windows" outputclass="language-cpp">struct VirtualBackgroundSource {
                     enum BACKGROUND_SOURCE_TYPE {
                     BACKGROUND_COLOR = 1,
                     BACKGROUND_IMG,
@@ -103,17 +102,30 @@
                 </codeblock>
             <codeblock props="flutter" outputclass="language-dart">class VirtualBackgroundSource {
 
-  VirtualBackgroundSourceType? backgroundSourceType;
-  Color? color;
-  String? source;
-  VirtualBackgroundBlurDegree blurDegree;
-
-  VirtualBackgroundSource({
-    this.backgroundSourceType,
-    this.color,
-    this.source,
-    this.blurDegree = VirtualBackgroundBlurDegree.High,
-  });</codeblock> </p>
+                    @JsonKey(includeIfNull: false)
+                    VirtualBackgroundSourceType? backgroundSourceType;
+                  
+                    @JsonKey(includeIfNull: false)
+                    int? color;
+                  
+                    @JsonKey(includeIfNull: false)
+                    String? source;
+                  
+                    @JsonKey(name: 'blur_degree')
+                    VirtualBackgroundBlurDegree blurDegree;
+                  
+                    VirtualBackgroundSource({
+                      this.backgroundSourceType,
+                      this.color,
+                      this.source,
+                      this.blurDegree = VirtualBackgroundBlurDegree.High,
+                    });
+                  
+                    factory VirtualBackgroundSource.fromJson(Map&lt;String, dynamic&gt; json) =>
+                        _$VirtualBackgroundSourceFromJson(json);
+                  
+                    Map&lt;String, dynamic&gt; toJson() => _$VirtualBackgroundSourceToJson(this);
+                  }</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
@@ -144,12 +156,14 @@
                 <pt>color</pt>
                 <pd>自定义的背景图颜色。格式为 RGB 定义下的十六进制整数，不要带 # 号，如 0xFFB6C1 表示浅粉色。 默认值为 0xFFFFFF，表示白色。 取值范围为 [0x000000，0xffffff]。如果取值非法，SDK 会用白色背景图替换原背景图。
                         
+                    
                     <note type="attention">该参数仅在自定义背景图类型为 <ph
                     keyref="BACKGROUND_COLOR"/> 时生效。</note></pd>
             </plentry>
             <plentry>
                 <pt>source</pt>
                 <pd>自定义背景图的本地绝对路径。支持 PNG 和 JPG 格式。如果路径无效，SDK 会用白色背景图替换原背景图。
+                    
                     <note type="attention">该参数仅在自定义背景图类型为 <ph
                     keyref="BACKGROUND_IMG"/> 时生效。</note></pd>
             </plentry>

@@ -2,18 +2,16 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setlivetranscoding">
     <title><ph keyref="setLiveTranscoding" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the transcoding configurations for CDN live streaming.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the transcoding configurations for media push.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="setLiveTranscoding" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="setLiveTranscoding" />
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="unity" outputclass="language-csharp" />
-        </p>
+    <refbody>
+        <section id="prototype">
         <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract int setLiveTranscoding(LiveTranscoding transcoding);</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLiveTranscoding:(AgoraLiveTranscoding *_Nullable)transcoding;</codeblock>
@@ -25,15 +23,22 @@
         </p>
         </section>
         <section id="detailed_desc">
-
-   <p>This method sets the video layout and audio settings for CDN live streaming. The SDK triggers the <xref keyref="onTranscodingUpdated" /> callback when you call this method to update the transcoding settings.</p>
+            <dl outputclass="deprecated" props="rtc">
+                <dlentry>
+                    <dt>Deprecated:</dt>
+                    <dd>
+                        This method is deprecated. See <xref keyref="release-notes">Release Notes</xref> for an alternative solution.
+                    </dd>
+                </dlentry>
+            </dl>
+   <p>This method sets the video layout and audio settings for media push. The SDK triggers the <xref keyref="onTranscodingUpdated" /> callback when you call this method to update the transcoding settings.</p>
    <note type="attention" id="note">
        <ul>
   <li>This method takes effect only when you are a host in live interactive streaming.</li>
-  <li>Ensure that you enable the RTMP Converter service before using this function. See Prerequisites in the advanced guide Push Streams to CDN.</li>
+  <li>Ensure that you enable the Media Push service before using this function. See Prerequisites in the advanced guide Media Push.</li>
   <li>If you call this method to set the transcoding configuration for the first time, the SDK does not trigger the <apiname keyref="onTranscodingUpdated" /> callback.</li>
   <li>Call this method after joining a channel.</li>
-  <li>Agora supports pushing media streams in RTMPS protocol to the CDN only when you enable transcoding.</li>
+  <li>Agora only supports pushing media streams to the CDN in RTMPS protocol when you enable transcoding.</li>
        </ul>
    </note>
    </section>
@@ -42,7 +47,7 @@
        <plentry>
   <pt>transcoding</pt>
   <pd>
-      <p>The transcoding configurations for CDN live streaming. For details, see <xref href="class_livetranscoding.dita" />.</p></pd>
+      <p>The transcoding configurations for the media push. See <xref href="class_livetranscoding.dita" /> for details.</p></pd>
        </plentry>
    </parml>
         </section><section id="return_values" props="native electron unity">

@@ -51,6 +51,7 @@
             <codeblock props="windows" outputclass="language-cpp">struct ContentInspectModule {
   ContentInspectType type;
   int interval;
+  
   ContentInspectModule() {
     type = kContentInspectInvalid;
     interval = 0;
@@ -77,12 +78,11 @@
             <parml>
             <plentry>
                 <pt>type</pt>
-                <pd>内容审核模块的类型。详见 <xref keyref="CONTENT_INSPECT_TYPE"/>。</pd>
+                <pd>内容审核模块的类型。详见 <xref keyref="ContentInspectType"/>。</pd>
             </plentry>
             <plentry>
-                <pt props="rtc-ng">frequency</pt>
-                <pt props="rtc">interval</pt>
-                <pd>内容审核的频率，单位为秒，取值必须大于 0。默认值为 0，表示不进行内容审核。</pd>
+                <pt>interval</pt>
+                <pd>内容审核的间隔，单位为秒，取值必须大于 0。默认值为 0，表示不进行内容审核。推荐值为 10 秒，你也可以根据业务需求自行调整。</pd>
             </plentry>
             </parml> </section>
     </refbody>

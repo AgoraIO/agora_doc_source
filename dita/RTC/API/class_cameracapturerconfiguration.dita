@@ -36,9 +36,16 @@
                 <codeblock props="rn" outputclass="language-typescript" />
                 <codeblock props="flutter" outputclass="language-dart">class CameraCapturerConfiguration {
 
+  @JsonKey(includeIfNull: false)
   CameraCaptureOutputPreference? preference;
+
+  @JsonKey(includeIfNull: false)
   int? captureWidth;
+
+  @JsonKey(includeIfNull: false)
   int? captureHeight;
+
+  @JsonKey(includeIfNull: false)
   CameraDirection? cameraDirection;
 
   CameraCapturerConfiguration({
@@ -47,17 +54,22 @@
     this.captureHeight,
     this.cameraDirection,
   });
+
+  factory CameraCapturerConfiguration.fromJson(Map&lt;String, dynamic> json) =>
+      _$CameraCapturerConfigurationFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$CameraCapturerConfigurationToJson(this);
 }</codeblock>
             </p>
         </section>
         <section id="parameters">
    <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
    <parml>
-       <plentry props="windows unity">
+       <plentry props="windows unity flutter">
   <pt>preference</pt>
   <pd>摄像头采集偏好。详见 <xref keyref="CAPTURER_OUTPUT_PREFERENCE" />。</pd>
        </plentry>
-       <plentry props="windows unity">
+       <plentry props="windows unity flutter">
                     <pt>captureWidth</pt>
                     <pd>
                         <dl outputclass="since">
@@ -69,7 +81,7 @@
                         <p>本地采集的视频宽度 (px)。如果你需要自定义本地采集的视频宽度，请先将 <parmname>preference</parmname> 设为 <ph keyref="CAPTURER_OUTPUT_PREFERENCE_MANUAL" />(3)，再通过 <parmname>captureWidth</parmname> 设置采集的视频宽度。</p>
                     </pd>
                 </plentry>
-       <plentry props="windows unity">
+       <plentry props="windows unity flutter">
                     <pt>captureHeight</pt>
                     <pd>
                         <dl outputclass="since">
@@ -89,11 +101,11 @@
                <li><codeph>fps</codeph>: 本地采集的视频帧率 (fps)。</li>
                         </ul></pd>
        </plentry>
-       <plentry props="android ios windows unity">
+       <plentry props="android ios windows unity flutter">
   <pt>cameraDirection</pt>
   <pd>
-      <p props="windows unity">该参数仅适用于 Android 和 iOS 平台。</p>
-      <p props="ios windows unity">摄像头方向。详见 <xref keyref="CAMERA_DIRECTION" />。</p>
+      <p props="windows unity flutter">该参数仅适用于 Android 和 iOS 平台。</p>
+      <p props="ios windows unity flutter">摄像头方向。详见 <xref keyref="CAMERA_DIRECTION"/>。</p>
       <p props="android">摄像头方向：
       <ul>
           <li><ph keyref="CAMERA_REAR" /> (0)：使用后置摄像头。</li>

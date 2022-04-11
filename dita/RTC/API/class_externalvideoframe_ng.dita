@@ -5,11 +5,8 @@
     <shortdesc id="short"><ph id="shortdesc">外部视频帧。</ph></shortdesc>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
-                <codeblock props="unity" outputclass="language-csharp"></codeblock>
-            </p>
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public class AgoraVideoFrame {
+            <codeblock props="android" outputclass="language-java">public class AgoraVideoFrame {
                     public static final int FORMAT_NONE = -1;
                     public static final int FORMAT_TEXTURE_2D = 10;
                     public static final int FORMAT_TEXTURE_OES = 11;
@@ -37,7 +34,7 @@
                     public int cropBottom;
                     public int rotation;
                     }</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoFrame : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoFrame : NSObject
 @property(assign, nonatomic) NSInteger format;
 @property(assign, nonatomic) CMTime time;
 @property(assign, nonatomic) int stride DEPRECATED_MSG_ATTRIBUTE("use strideInPixels instead");
@@ -51,7 +48,7 @@
 @property(assign, nonatomic) int cropBottom;
 @property(assign, nonatomic) int rotation;
 @end</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">struct ExternalVideoFrame {
+            <codeblock props="windows" outputclass="language-cpp">struct ExternalVideoFrame {
                     ExternalVideoFrame()
                     : type(VIDEO_BUFFER_RAW_DATA),
                     format(VIDEO_PIXEL_UNKNOWN),
@@ -95,7 +92,60 @@
                     uint8_t* metadata_buffer;
                     int metadata_size;
                     };</codeblock>
-            </p>
+                    <codeblock props="unity" outputclass="language-csharp">public class ExternalVideoFrame
+    {
+        public ExternalVideoFrame()
+        {
+        }
+
+        public ExternalVideoFrame(VIDEO_BUFFER_TYPE type, VIDEO_PIXEL_FORMAT format, byte[] buffer, int stride,
+            int height, long timestamp, byte[] eglContext, EGL_CONTEXT_TYPE eglType, int textureId, byte[] metadata_buffer,
+            int metadata_size, int cropLeft = 0, int cropTop = 0, int cropRight = 0, int cropBottom = 0,
+            int rotation = 0)
+        {
+            this.type = type;
+            this.format = format;
+            this.buffer = buffer;
+            this.stride = stride;
+            this.height = height;
+            this.cropLeft = cropLeft;
+            this.cropTop = cropTop;
+            this.cropRight = cropRight;
+            this.cropBottom = cropBottom;
+            this.rotation = rotation;
+            this.timestamp = timestamp;
+            this.eglContext = eglContext;
+            this.eglType = eglType;
+            this.textureId = textureId;
+            this.metadata_buffer = metadata_buffer;
+            this.metadata_size = metadata_size;
+        }
+
+        public VIDEO_BUFFER_TYPE type { set; get; }
+        public VIDEO_PIXEL_FORMAT format { set; get; }
+        public byte[] buffer { set; get; }
+        public int stride { set; get; }
+        public int height { set; get; }
+        public int cropLeft { set; get; }
+        public int cropTop { set; get; }
+        public int cropRight { set; get; }
+        public int cropBottom { set; get; }
+        public int rotation { set; get; }
+        public long timestamp { set; get; }
+        public byte[] eglContext { set; get; }
+        public EGL_CONTEXT_TYPE eglType { set; get; }
+        public int textureId { set; get; }
+        public byte[] metadata_buffer { set; get; }
+        public int metadata_size { set; get; }
+    }</codeblock> </p>
+        </section>
+        <section id="detailed_desc" props="rtc-ng">
+            <dl outputclass="deprecated">
+       <dlentry>
+  <dt>弃用：</dt>
+  <dd>该类已废弃。</dd>
+       </dlentry>
+   </dl>
         </section>
         <section id="parameters">
    <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>

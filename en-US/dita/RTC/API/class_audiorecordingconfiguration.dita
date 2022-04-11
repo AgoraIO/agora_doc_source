@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audiorecordingconfiguration">
-    <title><ph keyref="AudioRecordingConfiguration" /></title>
-    <shortdesc id="short"><ph id="shortdesc">The configuration of audio recording on the app client.</ph></shortdesc>
+    <title>
+        <ph keyref="AudioRecordingConfiguration" />
+    </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">The configuration of audio recording on the app client.</ph>
+    </shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -60,18 +64,24 @@
                         recordingSampleRate(sampleRate)
                       {}
                     };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">export interface AudioRecordingConfiguration {
+                <codeblock props="electron" outputclass="language-typescript">export interface AudioRecordingConfiguration {
   filePath: string;
   recordingQuality: AUDIO_RECORDING_QUALITY_TYPE;
   recordingPosition: AUDIO_RECORDING_POSITION;
   recordingSampleRate: number;
 }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">class AudioRecordingConfiguration {
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">class AudioRecordingConfiguration {
 
   String filePath;
+
+  @JsonKey(includeIfNull: false)
   AudioRecordingQuality? recordingQuality;
+
+  @JsonKey(includeIfNull: false)
   AudioRecordingPosition? recordingPosition;
+
+  @JsonKey(includeIfNull: false)
   AudioSampleRateType? recordingSampleRate;
 
   AudioRecordingConfiguration(
@@ -80,6 +90,11 @@
     this.recordingPosition,
     this.recordingSampleRate,
   });
+
+  factory AudioRecordingConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$AudioRecordingConfigurationFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$AudioRecordingConfigurationToJson(this);
 }</codeblock>
             </p>
         </section>
@@ -92,33 +107,75 @@
             </dl>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title>
+                <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" />
+            </title>
             <parml>
                 <plentry id="filepath">
                     <pt>filePath</pt>
                     <pd>
-                        <p>The absolute path (including the filename extensions) of the recording file. For example: <codeph><ph keyref="recordingPath-example" /></codeph>.</p>
+                        <p>
+                            The absolute path (including the filename extensions) of the recording file. For example:
+                            <codeph>
+                                <ph keyref="recordingPath-example" />
+                            </codeph>
+                            .
+                        </p>
                         <note type="attention">Ensure that the directory for the log files exists and is writable.</note>
                     </pd>
                 </plentry>
                 <plentry>
+                    <pt>recordingChannel</pt>
+                    <pd>
+                        The recorded audio channel. The following values are supported:
+                        <ul>
+                            <li>1: (Default) Mono channel.</li>
+                            <li>Dual channel.</li>
+                        </ul>
+                        <note type="attention"> The actual recorded audio channel is related to the audio channel that you capture. If the captured audio is mono and  <parmname>recordingChannel</parmname> is 2, the recorded audio is the dual-channel data that is copied from mono data, not stereo. If the captured audio is dual channel and  <parmname>recordingChannel</parmname> is 1, the recorded audio is the mono data that is mixed by dual-channel data. The integration scheme also affects the final recorded audio channel. Therefore, to record in stereo, contact technical support for assistance.
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry>
                     <pt>recordingQuality</pt>
-                    <pd><p>Recording quality. For details, see <xref keyref="AUDIO_RECORDING_QUALITY_TYPE" />.</p>
-                    <note type="attention">Note: This parameter applies to AAC files only.</note></pd>
+                    <pd>
+                        <p>
+                            Recording quality. For details, see
+                            <xref keyref="AUDIO_RECORDING_QUALITY_TYPE" />
+                            .
+                        </p>
+                        <note type="attention">Note: This parameter applies to AAC files only.</note>
+                    </pd>
+        
                 </plentry>
                 <plentry>
                     <pt>recordingPosition</pt>
-                    <pd>The recording content. For details, see <xref keyref="AUDIO_RECORDING_POSITION" />.</pd>
+                    <pd>
+                        The recording content. For details, see
+                        <xref keyref="AUDIO_RECORDING_POSITION" />
+                        .
+                    </pd>
                 </plentry>
                 <plentry>
                     <pt>recordingSampleRate</pt>
-                    <pd>Recording sample rate (Hz).<ul>
-                        <li>16000</li>
-                        <li>(Default) 32000</li>
-                        <li>44100</li>
-                        <li>48000</li>
-                    </ul>
-                        <note type="attention">If you set this parameter as 44100 or 48000, Agora recommends recording WAV files or AAV files whose <parmname>recordingQuality</parmname> is <ph keyref="AUDIO_RECORDING_QUALITY_MEDIUM" /> or <ph keyref="AUDIO_RECORDING_QUALITY_HIGH" /> for better recording quality.</note></pd>
+                    <pd>
+                        Recording sample rate (Hz).
+                        <ul>
+                            <li>16000</li>
+                            <li>(Default) 32000</li>
+                            <li>44100</li>
+                            <li>48000</li>
+                        </ul>
+                        <note type="attention">
+                            If you set this parameter as 44100 or 48000, Agora recommends recording WAV files or AAV files whose
+                            <parmname>recordingQuality</parmname>
+                            is
+                            <ph keyref="AUDIO_RECORDING_QUALITY_MEDIUM" />
+                            or
+                            <ph keyref="AUDIO_RECORDING_QUALITY_HIGH" />
+                            for better recording quality.
+                        </note>
+                    </pd>
                 </plentry>
             </parml>
         </section>

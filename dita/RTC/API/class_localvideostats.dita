@@ -20,7 +20,6 @@
     public int encodedFrameHeight;
     public int encodedFrameCount;
     public int codecType;
-    public int txPacketLossRate;
   }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcLocalVideoStats : NSObject
 @property(assign, nonatomic) NSUInteger sentBitrate;
@@ -36,7 +35,6 @@
 @property(assign, nonatomic) NSInteger encodedFrameHeight;
 @property(assign, nonatomic) NSInteger encodedFrameCount;
 @property(assign, nonatomic) AgoraVideoCodecType codecType;
-@property(assign, nonatomic) NSInteger txPacketLossRate;
 @end</codeblock>
             <codeblock props="windows" outputclass="language-cpp">struct LocalVideoStats
 {
@@ -175,7 +173,7 @@
      captureFrameRate: number;   
      captureBrightnessLevel: CAPTURE_BRIGHTNESS_LEVEL_TYPE;
      }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">class LocalVideoStats {
   
   int sentBitrate;
@@ -211,10 +209,17 @@
     this.captureFrameRate,
     this.captureBrightnessLevel,
   );
-}</codeblock> </p>
+
+  factory LocalVideoStats.fromJson(Map&lt;String, dynamic> json) =>
+      _$LocalVideoStatsFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$LocalVideoStatsToJson(this);
+}</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry props="rtc-ng">
                 <pt>uid</pt>
@@ -256,13 +261,12 @@
                         <dt>自从</dt>
                         <dd>v2.4.0</dd>
                     </dlentry>
-                    </dl>
-<p><ph>统计周期内本地视频质量（基于目标帧率和目标码率）的自适应情况。</ph><ph props="windows ios mac unity">详见 <xref keyref="QUALITY_ADAPT_INDICATION" />。</ph></p>
+                    </dl>统计周期内本地视频质量（基于目标帧率和目标码率）的自适应情况。<ph props="windows ios mac unity">详见 <xref keyref="QUALITY_ADAPT_INDICATION"/>。</ph>
                     <p props="android">
                     <ul>
-                    <li><ph keyref="ADAPT_NONE" /> (0): 本地视频质量不变。</li>
-                    <li><ph keyref="ADAPT_UP_BANDWIDTH" /> (1): 因网络带宽增加，本地视频质量改善。</li>
-                    <li><ph keyref="ADAPT_DOWN_BANDWIDTH" /> (2): 因网络带宽减少，本地视频质量变差。</li>
+                    <li><ph keyref="ADAPT_NONE"/> (0): 本地视频质量不变。</li>
+                    <li><ph keyref="ADAPT_UP_BANDWIDTH"/> (1): 因网络带宽增加，本地视频质量改善。</li>
+                    <li><ph keyref="ADAPT_DOWN_BANDWIDTH"/> (2): 因网络带宽减少，本地视频质量变差。</li>
                     </ul> </p>
                 </pd>
             </plentry>

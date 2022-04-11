@@ -17,7 +17,7 @@
                 channelId:(NSString * _Nonnull)channelId
               userAccount:(NSString * _Nonnull)userAccount
               joinSuccess:(void(^ _Nullable)(NSString * _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp"/> </p>
+            <codeblock props="unity" outputclass="language-csharp"/>public abstract int JoinChannelWithUserAccount(string token, string channelId, string userAccount);</p>
             <p outputclass="codeblock" props="rtc">
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)joinChannelByUserAccount:(NSString* _Nonnull)userAccount token:(NSString* _Nullable)token channelId:(NSString* _Nonnull)channelId joinSuccess:(void (^_Nullable)(NSString* _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock>
             
@@ -29,8 +29,8 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int JoinChannelWithUserAccount(string token, string channelId, string userAccount);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> 
-        </p></section>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
             <dlentry>
@@ -40,7 +40,6 @@
             </dl>
             <p>该方法允许本地用户使用 User Account 加入频道。成功加入频道后，会触发以下回调：
    
-            
             <ul>
             <li>本地：<xref keyref="onLocalUserRegistered"/>、<xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/> 回调。</li>
             <li>通信场景下的用户和直播场景下的主播加入频道后，远端会依次触发 <xref keyref="onUserJoined"/> 和 <xref keyref="onUserInfoUpdated"/> 回调。</li>
@@ -75,12 +74,11 @@
             <ul>
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。
-       
-                
                 <ul>
                 <li>-2(ERR_INVALID_ARGUMENT): 参数无效。</li>
                 <li>-3(ERR_NOT_READY): SDK 初始化失败，请尝试重新初始化 SDK。</li>
                 <li>-5(ERR_REFUSED): 调用被拒绝。</li>
+                    <li>-17(ERR_JOIN_CHANNEL_REJECTED): 加入频道被拒绝。由于 SDK 仅支持用户同一时间加入一个 <xref keyref="IRtcEngine"/> 频道， 当已经加入 <xref keyref="IRtcEngine"/> 频道的用户使用有效的频道名再次调用 <xref keyref="IRtcEngine"/> 类中的加入频道方法时，会返回此错误码。</li>
                 </ul></li>
             </ul> </section>
     </refbody>

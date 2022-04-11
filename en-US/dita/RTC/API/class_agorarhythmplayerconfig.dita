@@ -61,8 +61,13 @@
             <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">class RhythmPlayerConfig {
 
+  @JsonKey(includeIfNull: false)
   int? beatsPerMeasure;
+
+  @JsonKey(includeIfNull: false)
   int? beatsPerMinute;
+
+  @JsonKey(includeIfNull: false)
   bool? publish;
 
   RhythmPlayerConfig({
@@ -70,6 +75,11 @@
     this.beatsPerMinute,
     this.publish,
   });
+
+  factory RhythmPlayerConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$RhythmPlayerConfigFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$RhythmPlayerConfigToJson(this);
 }</codeblock>
             </p>
         </section>

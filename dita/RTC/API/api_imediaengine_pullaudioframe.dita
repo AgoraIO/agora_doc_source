@@ -28,6 +28,7 @@
    <p>调用该方法后，app 会采取主动拉取的方式获取远端已解码和混音后的音频数据，用于音频播放。</p>
    <note type="attention">
        <ul>
+           <li props="rtc-ng">该方法仅支持拉取自采集的数据。如果你需要拉取 SDK 采集的数据，请不要调用该方法。</li>
            <li>该方法需要在加入频道后调用。</li>
            <li>开启外部音频渲染后，app 将无法从 <xref keyref="onPlaybackAudioFrame" /> 回调中获得数据。</li>
            <li>该方法和 <apiname keyref="onPlaybackAudioFrame" /> 回调相比，区别在于：

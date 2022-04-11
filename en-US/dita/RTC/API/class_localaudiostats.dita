@@ -11,14 +11,12 @@
   public int sentSampleRate;
   public int sentBitrate;
   public int internalCodec;
-  public int txPacketLossRate;
 };</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcLocalAudioStats : NSObject
 @property(assign, nonatomic) NSUInteger numChannels;
 @property(assign, nonatomic) NSUInteger sentSampleRate;
 @property(assign, nonatomic) NSUInteger sentBitrate;
 @property(assign, nonatomic) NSUInteger internalCodec;
-@property(assign, nonatomic) NSInteger txPacketLossRate;
 
 @end</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">struct LocalAudioStats
@@ -27,7 +25,6 @@
   int sentSampleRate;
   int sentBitrate;
   int internalCodec;
-  int txPacketLossRate;
 };</codeblock>
                 <codeblock props="unity" outputclass="language-csharp" /> 
             </p>
@@ -70,6 +67,11 @@
     this.sentBitrate,
     this.txPacketLossRate,
   );
+
+  factory LocalAudioStats.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$LocalAudioStatsFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$LocalAudioStatsToJson(this);
 }</codeblock>
             </p>
         </section>
@@ -88,7 +90,7 @@
   <pt>sentBitrate</pt>
   <pd>The average bitrate (Kbps) of sending the local user's audio stream.</pd>
        </plentry>
-       <plentry>
+       <plentry props="rtc">
                     <pt>txPacketLossRate</pt>
                     <pd>The packet loss rate (%) from the local client to the Agora server before applying the anti-packet loss strategies.</pd>
                 </plentry>

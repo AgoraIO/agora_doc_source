@@ -21,7 +21,7 @@
                 <codeblock props="electron" outputclass="language-typescript">setLocalVoiceReverbPreset(reverbPreset: AUDIO_REVERB_PRESET)</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int SetLocalVoiceReverbPreset(AUDIO_REVERB_PRESET reverbPreset);</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLocalVoiceReverbPreset(AudioReverbPreset reverbPreset);</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLocalVoiceReverbPreset(AudioReverbPreset preset);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -46,7 +46,8 @@
         <section id="parameters"><title>Parameters</title>
    <parml>
        <plentry>
-  <pt>reverbPreset</pt>
+  <pt props="android apple windows">reverbPreset</pt>
+  <pt props="flutter">preset</pt>
   <pd><p props="ios mac windows unity flutter">The local voice reverberation option. The default value is <apiname keyref="AUDIO_REVERB_OFF" />, which means the original voice. For more details, see <xref keyref="AUDIO_REVERB_PRESET" />. To achieve better voice effects, Agora recommends the enumeration whose name begins with <codeph>AUDIO_REVERB_FX</codeph>.</p></pd>
       <pd><p props="android">The local voice reverberation option. To achieve better voice effects, Agora recommends the enumeration whose name begins with <codeph>AUDIO_REVERB_FX</codeph>.<ul>
                                 <li><ph keyref="AUDIO_REVERB_OFF" />: (Default) Turn off local voice reverberation, that is, to use the original voice.</li>

@@ -178,10 +178,13 @@
     totalActiveTime: number;
     publishDuration: number;
     }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">class RemoteVideoStats {
-  
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">
+class RemoteVideoStats {
   int uid;
+
+  @Deprecated(
+      'In scenarios where audio and video are synchronized, you can get the video  delay data from networkTransportDelay and jitterBufferDelay in RemoteAudioStats.')
   int delay;
   int width;
   int height;
@@ -210,6 +213,11 @@
     this.totalActiveTime,
     this.publishDuration,
   );
+
+  factory RemoteVideoStats.fromJson(Map&lt;String, dynamic&gt; json) =>
+      _$RemoteVideoStatsFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() => _$RemoteVideoStatsToJson(this);
 }</codeblock>
             </p>
         </section>

@@ -87,6 +87,8 @@
                 <codeblock props="flutter" outputclass="language-dart">class ChannelMediaInfo {
   
   String channelName;
+
+  @JsonKey(includeIfNull: false)
   String? token;
   int uid;
 
@@ -95,6 +97,11 @@
     this.uid, {
     this.token,
   });
+
+  factory ChannelMediaInfo.fromJson(Map&lt;String, dynamic> json) =>
+      _$ChannelMediaInfoFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$ChannelMediaInfoToJson(this);
 }</codeblock>
             </p>
         </section>
