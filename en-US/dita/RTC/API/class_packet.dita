@@ -19,7 +19,82 @@
 	unsigned int size;
 	};</codeblock>
                 <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="unity" outputclass="language-csharp">public class Packet
+    {
+        public Packet()
+        {
+            buffer = new byte[0];
+        }
+        public Packet(byte[] buffer, uint size)
+        {
+            this.buffer = buffer;
+            this.size = size;
+        }
+        
+        public byte[] buffer { set; get; }
+        
+        public uint size { set; get; }
+    }
+    
+    public enum AUDIO_SAMPLE_RATE_TYPE {
+        
+        AUDIO_SAMPLE_RATE_32000 = 32000,
+        
+        AUDIO_SAMPLE_RATE_44100 = 44100,
+        
+        AUDIO_SAMPLE_RATE_48000 = 48000,
+    };
+    
+    public enum VIDEO_CODEC_PROFILE_TYPE {
+        
+        VIDEO_CODEC_PROFILE_BASELINE = 66,
+        
+        VIDEO_CODEC_PROFILE_MAIN = 77,
+        
+        VIDEO_CODEC_PROFILE_HIGH = 100,
+    };
+    
+    public enum AUDIO_CODEC_PROFILE_TYPE {
+        
+        AUDIO_CODEC_PROFILE_LC_AAC = 0,
+        
+        AUDIO_CODEC_PROFILE_HE_AAC = 1,
+    };
+    
+    public class LocalAudioStats
+    {
+        public LocalAudioStats()
+        {
+        }
+        public LocalAudioStats(int numChannels, int sentSampleRate, int sentBitrate, int internalCodec)
+        {
+            this.numChannels = numChannels;
+            this.sentSampleRate = sentSampleRate;
+            this.sentBitrate = sentBitrate;
+            this.internalCodec = internalCodec;
+        }
+        
+        public int numChannels { set; get; }
+        
+        public int sentSampleRate { set; get; }
+        
+        public int sentBitrate { set; get; }
+        
+        public int internalCodec { set; get; }
+    }
+    
+    public enum RTMP_STREAM_PUBLISH_STATE {
+        
+        RTMP_STREAM_PUBLISH_STATE_IDLE = 0,
+        
+        RTMP_STREAM_PUBLISH_STATE_CONNECTING = 1,
+        
+        RTMP_STREAM_PUBLISH_STATE_RUNNING = 2,
+        
+        RTMP_STREAM_PUBLISH_STATE_RECOVERING = 3,
+        
+        RTMP_STREAM_PUBLISH_STATE_FAILURE = 4,
+    }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
                 <codeblock props="flutter" outputclass="language-dart" />
             </p>

@@ -87,7 +87,36 @@
         degradationPreference(MAINTAIN_QUALITY),
         mirrorMode(VIDEO_MIRROR_MODE_DISABLED) {}
 };</codeblock>
-                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="unity" outputclass="language-csharp">public class VideoEncoderConfiguration
+    {
+        public VideoEncoderConfiguration()
+        {
+            dimensions = null;
+            frameRate = FRAME_RATE.FRAME_RATE_FPS_15;
+            codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_GENERIC_H264;
+            bitrate = (int) BITRATE.STANDARD_BITRATE;
+            minBitrate = (int) BITRATE.DEFAULT_MIN_BITRATE;
+            orientationMode = ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE;
+            degradationPreference = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
+            mirrorMode = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_AUTO;
+        }
+        public VideoEncoderConfiguration(VideoDimensions dimensions,
+            FRAME_RATE frameRate = FRAME_RATE.FRAME_RATE_FPS_15, 
+            VIDEO_CODEC_TYPE codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_GENERIC_H264,
+            BITRATE bitrate = BITRATE.STANDARD_BITRATE, BITRATE minBitrate = BITRATE.DEFAULT_MIN_BITRATE,
+            ORIENTATION_MODE orientationMode = ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE,
+            DEGRADATION_PREFERENCE degradationPreference = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY,
+            VIDEO_MIRROR_MODE_TYPE mirrorMode = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_AUTO)
+        {
+            this.dimensions = dimensions ?? new VideoDimensions();
+            this.frameRate = frameRate;
+            this.codecType = codecType;
+            this.bitrate = (int) bitrate;
+            this.minBitrate = (int) minBitrate;
+            this.orientationMode = orientationMode;
+            this.degradationPreference = degradationPreference;
+            this.mirrorMode = mirrorMode;
+        }</codeblock>
             </p>
             <p props="rtc" outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public class VideoEncoderConfiguration {

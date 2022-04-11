@@ -5,8 +5,8 @@
      <shortdesc id="short"> <ph id="shortdesc">Image properties.</ph> </shortdesc>
      <refbody>
           <section id="prototype">
-               <p outputclass="codeblock" props="rtc-ng">
-               <codeblock props="windows" outputclass="language-cpp">typedef struct RtcImage {
+            <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="windows" outputclass="language-cpp">typedef struct RtcImage {
             const char* url;
             int x;
             int y;
@@ -16,12 +16,12 @@
 
             RtcImage() : url(NULL), x(0), y(0), width(0), height(0), zOrder(0) {}
             } RtcImage;</codeblock>
-               <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraImage : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraImage : NSObject
             @property(strong, nonatomic) NSURL *_Nonnull url;
             @property(assign, nonatomic) CGRect rect;
             @property (assign, nonatomic) NSInteger zOrder;
             @end</codeblock>
-               <codeblock props="android" outputclass="language-java">public class AgoraImage {
+            <codeblock props="android" outputclass="language-java">public class AgoraImage {
             public String url;
             public int x;
             public int y;
@@ -58,13 +58,109 @@
             public String getUrl() {
             return url;
             }
-            }</codeblock> </p>
-               <p outputclass="codeblock" props="rtc">
-               <codeblock props="windows" outputclass="language-cpp" />
-               <codeblock props="ios mac" outputclass="language-objectivec" />
-               <codeblock props="android" outputclass="language-java" /> </p>
-               <p outputclass="codeblock">
-               <codeblock props="unity" outputclass="language-cpp">typedef struct RtcImage {
+            }</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class RtcImage
+    {
+        public RtcImage()
+        {
+        }
+        public RtcImage(string url, int x, int y, int width, int height, int zOrder)
+        {
+            this.url = url;
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+            this.zOrder = zOrder;
+        }
+        
+        public string url { set; get; }
+        
+        public int x { set; get; }
+        
+        public int y { set; get; }
+        
+        public int width { set; get; }
+        
+        public int height { set; get; }
+        
+        public int zOrder { set; get; }
+    }
+    
+    public enum CONNECTION_STATE_TYPE
+    {
+        
+        CONNECTION_STATE_DISCONNECTED = 1,
+        
+        CONNECTION_STATE_CONNECTING = 2,
+        
+        CONNECTION_STATE_CONNECTED = 3,
+        
+        CONNECTION_STATE_RECONNECTING = 4,
+        
+        CONNECTION_STATE_FAILED = 5,
+    };
+    
+    public class TranscodingUser
+    {
+        public TranscodingUser()
+        {
+            alpha = 1.0;
+        }
+        public TranscodingUser(uint uid, int x, int y, int width, int height, int zOrder, double alpha,
+            int audioChannel)
+        {
+            this.uid = uid;
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+            this.zOrder = zOrder;
+            this.alpha = alpha;
+            this.audioChannel = audioChannel;
+        }
+        
+        public uint uid { set; get; }
+        
+        public int x { set; get; }
+        
+        public int y { set; get; }
+        
+        public int width { set; get; }
+        
+        public int height { set; get; }
+        
+        public int zOrder { set; get; }
+        
+        public double alpha { set; get; }
+        
+        public int audioChannel { set; get; }
+    }</codeblock> </p>
+            <p outputclass="codeblock" props="rtc">
+            <codeblock props="windows" outputclass="language-cpp">typedef struct RtcImage {
+  RtcImage() : url(NULL), x(0), y(0), width(0), height(0) {}
+  const char* url;
+  int x;
+  int y;
+  int width;
+  int height;
+  } RtcImage;</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraImage : NSObject
+@property(strong, nonatomic) NSURL* _Nonnull url;
+@property(assign, nonatomic) CGRect rect;
+@end</codeblock>
+            <codeblock props="android" outputclass="language-java">public class AgoraImage {
+    public String url;
+    public int x;
+    public int y;
+    public int width;
+    public int height;
+
+    public AgoraImage() {
+    }
+}</codeblock> </p>
+            <p outputclass="codeblock">
+            <codeblock props="unity" outputclass="language-cpp">typedef struct RtcImage {
     RtcImage() :
        url(NULL),
        x(0),
@@ -79,15 +175,15 @@
     int width;
     int height;
     } RtcImage;</codeblock>
-               <codeblock props="electron" outputclass="language-typescript">export interface RtcImage {
+            <codeblock props="electron" outputclass="language-typescript">export interface RtcImage {
     x: number,
     y: number,
     width: number,
     height: number,
     url: string
     }</codeblock>
-               <codeblock props="rn" outputclass="language-typescript" />
-               <codeblock props="flutter" outputclass="language-dart">class AgoraImage {
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">class AgoraImage {
 
   String url;
   @JsonKey(includeIfNull: false)
@@ -110,8 +206,8 @@
 
   Map&lt;String, dynamic&gt; toJson() =&gt; _$AgoraImageToJson(this);
 }</codeblock> </p>
-          </section>
-          <section id="detailed_desc">
+        </section>
+        <section id="detailed_desc">
                <p>This class sets the properties of the watermark and background images in the live video.</p>
           </section>
           <section id="parameters">
