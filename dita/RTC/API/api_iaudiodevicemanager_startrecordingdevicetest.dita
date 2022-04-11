@@ -15,8 +15,7 @@
             <p outputclass="codeblock" props="rtc-ng">
             <codeblock props="windows" outputclass="language-cpp">virtual int startRecordingDeviceTest(int indication_Interval) = 0;</codeblock> </p>
             <p outputclass="codeblock" props="windows rtc">
-                <codeblock props="native windows" outputclass="language-cpp">virtual int startRecordingDeviceTest(int indicationInterval) = 0;</codeblock>
-            </p>
+            <codeblock props="native windows" outputclass="language-cpp">virtual int startRecordingDeviceTest(int indicationInterval) = 0;</codeblock> </p>
             <p outputclass="codeblock">
             <codeblock props="mac" outputclass="language-objectivec">- (int)startRecordingDeviceTest:(int)indicationInterval;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">startAudioRecordingDeviceTest(indicationInterval: number): number</codeblock>
@@ -30,9 +29,13 @@
             <p>该方法测试音频采集设备是否能正常工作。</p>
             <p>自 v3.6.2 起，该方法在加入频道前后均可调用，并按设置的时间间隔触发如下回调，报告采集设备的音量信息： 
                 
+            
+            
             <ul id="ul_p2s_qys_tsb">
             <li>在加入频道前调用该方法，SDK 触发 <xref keyref="onAudioVolumeIndication"/> 和 <xref keyref="onAudioDeviceTestVolumeIndication"/> 回调，其中： 
                     
+                
+                
                 <ul id="ul_qwn_vys_tsb">
                 <li><apiname keyref="onAudioVolumeIndication"/> 报告 <codeph>uid = 0</codeph> 和 <codeph>volume</codeph>。</li>
                 <li><apiname keyref="onAudioDeviceTestVolumeIndication"/> 报告 <codeph>volumeType = <apiname keyref="AudioTestRecordingVolume"/>(0)</codeph> 和 <codeph>volume</codeph>。</li>
