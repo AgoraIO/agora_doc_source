@@ -814,7 +814,7 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 
 ## 获取用户离线消息数量
 
-获取 IM 用户的离线消息数量。
+获取 Chat 用户的离线消息数量。
 
 ### HTTP 请求
 
