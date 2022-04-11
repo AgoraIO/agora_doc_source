@@ -1,4 +1,4 @@
-Chat rooms enable real-time messaging among multiple users. Chat rooms do not have a strict membership and members do not have any relationship with each other. Once a chat room member exits the chat room, this member does not recieve any push message from the chat room, and within five minutes, automatically leaves the chat room. Chat rooms are widely applied in live broadcast use cases as Stream Chat in Twitch.
+Chat rooms enable real-time messaging among multiple users. Chat rooms do not have a strict membership, and members do not retain any permanent relationship with each other. Once a chat room member goes offline, this member does not receive any push messages from the chat room and automatically leaves the chat room in five minutes. Chat rooms are widely applied in live broadcast use cases as stream chat in Twitch.
 
 This page shows how to use the Agora Chat SDK to create and manage a chat room in your app.
 
@@ -15,17 +15,17 @@ The Agora Chat SDK provides a `ChatManager` and a `ChatRoom` class for chat room
 
 Before proceeding, ensure that you have the following:
 - Initialized the SDK. For details, see [Get Started with Agora Chat](/agora_chat_get_started_android?platform=Android).
-- Understand the call frequency limit of the Agora Chat APIs as described in [Limitations](/agora_chat_limitation_android?platform=Android).
+- Understand the call frequency limits of the Agora Chat APIs as described in [Limitations](/agora_chat_limitation_android?platform=Android).
 - Understand the number of chat rooms supported by different pricing plans as described in [Pricing Plan Details](/agora_chat_limitation?platform=Android).
 - Only the app super admin has the privilege of creating a chat room. Ensure that you have added an app super admin by calling the [super-admin RESTful API](./agora_chat_restful_chatroom_superadmin?platform=RESTful#adding-a-chat-room-super-admin).
 
 ## Implementation
 
-This section introduces how to call the APIs provided by the Agora Chat SDK to implement the features listed above.
+This section introduces how to call the APIs provided by the Agora Chat SDK to implement chat room features.
 
 ### Create and destroy a chat room
 
-[The app super admin](./agora_chat_restful_chatroom_superadmin?platform=RESTful#adding-a-chat-room-super-admin) can call `createChatRoom` to create a chat room and set the chat room attributes such as the chat room subject, description, and the maximum number of members.
+[The app super admin](./agora_chat_restful_chatroom_superadmin?platform=RESTful#adding-a-chat-room-super-admin) can call `createChatRoom` to create a chat room and set the chat room attributes such as the chat room subject, description, and the maximum number of members. Once a chat room is created, the super admin automatically becomes the chat room owner.
 
 ```java
 // The app super admin calls createChatRoom to create a chat room.
@@ -33,7 +33,7 @@ This section introduces how to call the APIs provided by the Agora Chat SDK to i
 ChatRoom  chatRoom = ChatClient.getInstance().chatroomManager().createChatRoom(subject, description, welcomMessage, maxUserCount, members);
 
 // Only the chat room owner can call destroyChatRoom to disband the chat room.
-// Once the chat room is disbanded, all the chat room members recieve the onChatRoomDestroyed callback and are immediately removed from the chat room.
+// Once the chat room is disbanded, all members of that chat room recieve the onChatRoomDestroyed callback and are immediately removed from the chat room.
 ChatClient.getInstance().chatroomManager().destroyChatRoom(chatRoomId);
 ```
 
@@ -52,10 +52,10 @@ ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().fetchChatRoomFrom
 
 ### Join and leave a chat room
 
-All the chat users can all `joinChatRoom` to join the specified chat room.
+All chat users can call `joinChatRoom` to join and `leaveChatRoom` to leave a specified chat room.
 
 ```java
-// Once the chat user successfully joins the chat room, all the other chat room members receive the onMemberJoined callback.
+// Once chat users successfully joins the chat room, all the other chat room members receive the onMemberJoined callback.
 ChatClient.getInstance().chatroomManager().joinChatRoom(chatRoomId, new ValueCallBack<ChatRoom>() {
     @Override
     public void onSuccess(ChatRoom value) {
@@ -68,7 +68,7 @@ ChatClient.getInstance().chatroomManager().joinChatRoom(chatRoomId, new ValueCal
     }
 });
 
-// All the chat room members can call leaveChatRoom to leave the specified chat room. Once a member leaves the chat room, all the other members receive the onMemberExited callback.
+// All chat room members can call leaveChatRoom to leave the specified chat room. Once a member leaves the chat room, all the other members receive the onMemberExited callback.
 ChatClient.getInstance().chatroomManager().leaveChatRoom(chatRoomId);
 ```
 
@@ -76,28 +76,28 @@ By default, when you leave a chat room, the SDK removes all the chat room messag
 
 ### Retrieve and modify the chat room attributes
 
-All the chat room members can call `fetchChatRoomFromServer` to retrieve the detailed information of the current chat room, including the subject, annoucenments, description, member type, and admin list. The chat room owner and admin can also set and update the chat room information.
+All chat room members can call `fetchChatRoomFromServer` to retrieve the detailed information of the current chat room, including the subject, announcenments, description, member type, and admin list. The chat room owner and admin can also set and update the chat room information.
 
 ```java
-// The chat room member call fetchChatRoomFromServer to get the information of the specifeid chat room.
+// The chat room member can call fetchChatRoomFromServer to get the information of the specifeid chat room.
 ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().fetchChatRoomFromServer(chatRoomId);
 
-// The chat room owner and admin call changeChatRoomSubject to modify the chat room subject.
+// The chat room owner and admin can call changeChatRoomSubject to modify the chat room subject.
 ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().changeChatRoomSubject(chatRoomId, newSubject);
 
-// The chat room owner and admin call changeChatroomDescription to modify the chat room description.
+// The chat room owner and admin can call changeChatroomDescription to modify the chat room description.
 ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().changeChatroomDescription(chatRoomId, newDescription);
 ```
 
 ### Manage chat room members
 
-All the chat room members can call `fetchChatRoomMembers` to retrieve the member list of the current chat room.
+All chat room members can call `fetchChatRoomMembers` to retrieve the member list of the current chat room.
 
 ```java
 Map<String, Long> members = ChatClient.getInstance().chatroomManager().fetchChatRoomMembers(chatRoomId, cursor, pageSize);
 ```
 
-The chat room owner and admin can call `removeChatRoomMember` to remove the specified member from the chat room. Once a member is removed, this member receives the `onRemovedFromChatRoom` callback, and the other chat room members receive the `onMemberExited` callback. After being removed from a chat room, you can join this chat room again.
+The chat room owner and admin can call `removeChatRoomMember` to remove the specified member from the chat room. Once a member is removed, this member receives the `onRemovedFromChatRoom` callback, and all the other chat room members receive the `onMemberExited` callback. After being removed from a chat room, the chat user can join this chat room again.
 
 ```java
 ChatClient.getInstance().chatroomManager().removeChatRoomMembers(chatRoomId, members);
@@ -105,16 +105,16 @@ ChatClient.getInstance().chatroomManager().removeChatRoomMembers(chatRoomId, mem
 
 ### Manage the chat room block list
 
-The chat room owner and admin can add the specified member into the chat room block list and remove them from it. Once a chat room member is added to the block list, this member cannot send or receive chat room messages, nor can this member join the chat room again.
+The chat room owner and admin can add and remove the specified members from the chat room block list. Once a chat room member is added to the block list, this member cannot send or receive chat room messages, nor can they join the chat room again.
 
 ```java
-// The chat room owner or admin call blockChatroomMembers to add the specified member to the chat room block list.
+// The chat room owner or admin can call blockChatroomMembers to add the specified member to the chat room block list.
 ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().blockChatroomMembers(chatRoomId, members);
 
-// The chat room owner or admin call unblockChatroomMembers to remove the specified user out of the block list.
+// The chat room owner or admin can call unblockChatroomMembers to remove the specified user out of the block list.
 ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().unblockChatRoomMembers(chatRoomId, members);
 
-// The chat room owner or admin call fetchChatRoomBlackList to reveive the block list of the current chat room.
+// The chat room owner or admin can call fetchChatRoomBlackList to reveive the block list of the current chat room.
 ChatClient.getInstance().chatroomManager().fetchChatRoomBlackList(chatRoomId, new ValueCallBack<List<String>>() {
     @Override
     public void onSuccess(List<String> value) {
@@ -130,10 +130,10 @@ ChatClient.getInstance().chatroomManager().fetchChatRoomBlackList(chatRoomId, ne
 
 ### Manage the chat room mute list
 
-To manage the messages in the chat room, the chat room owner and admin can add the specified member to the chat room mute list and remove them from it. Once a chat room member is added to the mute list, this member can no longer send chat room message, not even after being added to the chat room allow list.
+To manage the messages in the chat room, the chat room owner and admin can add and remove the specified member from the chat room mute list. Once added to the mute list, the chat room member can no longer send chat room message, not even after being added to the chat room allow list.
 
 ```java
-// The chat room owner or admin call muteChatRoomMembers to add the specified user to the chat room block list. The muted member and all the other chat room admins or owner receive the onMuteListAdded callback.
+// The chat room owner or admin can call muteChatRoomMembers to add the specified user to the chat room block list. The muted member and all the other chat room admins or owner receive the onMuteListAdded callback.
 ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().muteChatRoomMembers(chatRoomId, members, duration);
 
 // The chat room owner or admin can call unMuteChatRoomMembers to remove the specified user from the chat room block list. The unmuted member and all the other chat room admins or owner recieve the onMuteListRemoved callback.
@@ -145,7 +145,7 @@ Map<String, Long> memberMap =  ChatClient.getInstance().chatroomManager().fetchC
 
 ### Mute and unmute all the chat room members
 
-The chat room owner or admin can mute or unmute all the chat room members using `muteAllMembers`. Once all the members are muted, only those in the chat room allow list can send messages in the chat group.
+The chat room owner or admin can mute or unmute all the chat room members using `muteAllMembers`. Once all the members are muted, only those in the chat room allow list can send messages in the chat room.
 
 ```java
 // The chat room owner or admin can call muteAllMembers to mute all the chat room members. Once all the members are muted, these members receive the onAllMemberMuteStateChanged callback.
@@ -177,7 +177,7 @@ ChatClient.getInstance().chatroomManager().unmuteAllMembers(chatRoomId, new Valu
 
 ### Manage the chat room allow list
 
-Members in the chat room allow list can send chat room messages even when the chat room owner or admin has muted all the chat room members using `muteAllMembers`. However, if a member is already in the chat room mute list, adding this member to the allow list does not take effect.
+Members in the chat room allow list can send chat room messages even when the chat room owner or an admin has muted all the chat room members using `muteAllMembers`. However, if a member is already in the chat room mute list, adding this member to the allow list does not take effect.
 
 ```java
 // The chat room owner or admin can call addToChatRoomWhiteList to add the specified member to the chat room allow list.
@@ -237,7 +237,7 @@ ChatClient.getInstance().chatroomManager().fetchChatRoomWhiteList(chatRoomId, ne
 
 The chat room owner can transfer the ownership to the specified chat room member. Once the ownership is transferred, the originial chat room owner becomes a regular member. The new chat room owner and the chat room admins receive the `onOwnerChanged` callback.
 
-The chat room owner can also add admins. Once added to the chat group admin list, the newly added admin and the other chat room admins receive the `onAdminAdded` callback.
+The chat room owner can also add annd remove admins. Once added to the chat room admin list, the newly added admin and the other chat room admins receive the `onAdminAdded` callback.
 
 ```java
 // The chat room owner can call changeOwner to transfer the ownership to the other chat room member.
@@ -246,16 +246,16 @@ ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().changeOwner(chatR
 // The chat room owner can call addChatRoomAdmin to add the chat room admin.
 ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().addChatRoomAdmin(chatRoomId, admin);
 
-// The chat room owner can call removeChatRoomAdmin to remove the chat room admin. The removed admin and the other admins receive the onAdminRemoved callback.
+// The chat room owner can call removeChatRoomAdmin to remove admins. Once removed from the chat group admin list, the removed admin and the other chat room admins receive the onAdminRemoved callback.
 ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().removeChatRoomAdmin(chatRoomId, admin);
 ```
 
 ### Manage chat room announcements
 
-All the chat room members can retrieve the chat room announcements. The chat room owner and admin can set and update the announcements. Once the announcements are updated, all the chat room members receive the `onAnnouncementChanged` callback.
+All chat room members can retrieve the chat room announcements. The chat room owner and admin can set and update the announcements. Once the announcements are updated, all the chat room members receive the `onAnnouncementChanged` callback.
 
 ```java
-// Chat room members can call fetchChatRoomAnnouncement to retrieve the chat room annoucements.
+// Chat room members can call fetchChatRoomAnnouncement to retrieve the chat room announcements.
 String announcement = ChatClient.getInstance().chatroomManager().fetchChatRoomAnnouncement(chatRoomId);
 
 // The chat room owner and admin can call updateChatRoomAnnouncement to set or update the chat room announcements.
