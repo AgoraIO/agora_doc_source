@@ -6,7 +6,7 @@
     <refbody>
         <section id="prototype">
             <p props="rtc-ng" outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public class VideoCanvas {
+            <codeblock props="android" outputclass="language-java">public class VideoCanvas {
 
   public static final int RENDER_MODE_HIDDEN = 1;
   public static final int RENDER_MODE_FIT = 2;
@@ -18,7 +18,7 @@
   public int sourceId;
   public int uid;
 }</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcVideoCanvas : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcVideoCanvas : NSObject
 
 @property(strong, nonatomic) VIEW_CLASS *_Nullable view;
 @property(assign, nonatomic) AgoraVideoRenderMode renderMode;
@@ -29,12 +29,47 @@
 @property(nonatomic, assign) int sourceId;
 
 @end</codeblock>
-                <codeblock props="unity" outputclass="language-csharp" />
-            </p>
+            <codeblock props="unity" outputclass="language-csharp">public class VideoCanvas
+    {
+        public VideoCanvas()
+        {
+            view = 0;
+            renderMode = (int) RENDER_MODE_TYPE.RENDER_MODE_HIDDEN;
+            uid = 0;
+            mirrorMode = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_AUTO;
+            isScreenView = false;
+            priv = null;
+            priv_size = 0;
+            sourceType = VIDEO_SOURCE_TYPE.VIDEO_SOURCE_CAMERA_PRIMARY;
+        }
+
+        public VideoCanvas(view_t? view, RENDER_MODE_TYPE renderMode,  
+             bool isScreenView, byte[] priv, uint priv_size,
+            VIDEO_SOURCE_TYPE sourceType, uint uid = 0, 
+            VIDEO_MIRROR_MODE_TYPE mirrorMode = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_AUTO)
+        {
+            this.view = view ?? 0;
+            this.renderMode = (int) renderMode;
+            this.uid = uid;
+            this.mirrorMode = mirrorMode;
+            this.isScreenView = isScreenView;
+            this.priv = priv;
+            this.priv_size = priv_size;
+            this.sourceType = sourceType;
+        }
+        public view_t view { set; get; }
+        public int renderMode { set; get; }
+        public VIDEO_MIRROR_MODE_TYPE mirrorMode { set; get; }
+        public uint uid { set; get; }
+        public bool isScreenView { set; get; }
+        public byte[] priv { set; get; }
+        public uint priv_size { set; get; }
+        public VIDEO_SOURCE_TYPE sourceType { set; get; }
+    }</codeblock> </p>
             <p props="rtc" outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="windows" outputclass="language-cpp">struct VideoCanvas {
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="windows" outputclass="language-cpp">struct VideoCanvas {
   view_t view;
   media::base::RENDER_MODE_TYPE renderMode;
   VIDEO_MIRROR_MODE_TYPE mirrorMode;
@@ -44,11 +79,10 @@
       : view(v), renderMode(m), mirrorMode(mt), uid(u), sourceType(VIDEO_SOURCE_CAMERA_PRIMARY) {}
 };
 </codeblock>
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp" />
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
-            </p>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
    
