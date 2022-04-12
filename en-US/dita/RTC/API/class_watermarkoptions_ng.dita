@@ -50,7 +50,33 @@
 };
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="unity" outputclass="language-csharp">public class WatermarkOptions
+    {
+        public WatermarkOptions()
+        {
+            visibleInPreview = true;
+            positionInLandscapeMode = new Rectangle();
+            positionInPortraitMode = new Rectangle();
+            watermarkRatio = new WatermarkRatio();
+            mode = WATERMARK_FIT_MODE.FIT_MODE_COVER_POSITION;
+        }
+
+        public WatermarkOptions(bool visibleInPreview, Rectangle positionInLandscapeMode,
+            Rectangle positionInPortraitMode, WatermarkRatio ratio, WATERMARK_FIT_MODE mode)
+        {
+            this.visibleInPreview = visibleInPreview;
+            this.positionInLandscapeMode = positionInLandscapeMode ?? new Rectangle();
+            this.positionInPortraitMode = positionInPortraitMode ?? new Rectangle();
+            this.watermarkRatio = ratio ?? new WatermarkRatio();
+            this.mode = mode;
+        }
+
+        public bool visibleInPreview { set; get; } 
+        public Rectangle positionInLandscapeMode { set; get; }
+        public Rectangle positionInPortraitMode { set; get; }
+        public WatermarkRatio watermarkRatio { set; get; }
+        public WATERMARK_FIT_MODE mode { set; get; }
+    }</codeblock>
             <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
