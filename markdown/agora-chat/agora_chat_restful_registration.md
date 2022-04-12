@@ -891,7 +891,7 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/offline_msg_status/{ms
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Content-Type`  | String | `application/json`     | 是       |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。    | 是       |
 | `Authorization` | String | Bearer ${YourAppToken} | 是       |
 
  #### 响应参数
