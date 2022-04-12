@@ -870,7 +870,7 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/offline_msg_coun
 
 ## 获取某条离线消息状态
 
-获取用户的离线消息的状态，即是否已投递。
+该方法获取指定离线消息的投递状态。
 
 ### HTTP 请求
 
