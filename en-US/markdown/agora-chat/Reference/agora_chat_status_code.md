@@ -4,7 +4,7 @@ This page describes the HTTP status codes that are frequently returned when usin
 
 
 ## `200` - Success
-This HTTP status code indicate that the API request succeeds.
+This HTTP status code indicats that the API request succeeds.
 
 
 ## `4xx` - Client error
@@ -17,17 +17,17 @@ This status code indicates that the API request could not be understood by the s
 | Status code | Error code | Error message | Description |
 | :---------- | :-------- | :----------------| :----------------------- |
 | `400` | `invalid_grant` | Invalid username or password. | The error message returned because the specified username or password is invalid. |
-| `400` | `json_parse` | Unexpected character. | The error message returned because the request body does not conform to the standard JSON format. Hence the server cannot parse it properly. |
+| `400` | `json_parse` | Unexpected character. | The error message returned because the request body does not conform to the standard JSON format, as a consequence the server cannot parse it properly. |
 | `400` | `illegal_argument` | Entity 'user' requires a property named username. | The error message returned because the username is not specified when registering users. |
 | `400` | `illegal_argument` | Password or pin must provided. | The error message returned because the password is not specified when registering users. |
 | `400` | `illegal_argument` | New password is required. Old password is required. | The error message returned because the new password or old password is not provided when changing passwords. |
-| `400` | `illegal_argument` | Group member "Username" doesn’t exist. | The error message returned because the specified username does not exist when adding users to a chat group. |
+| `400` | `illegal_argument` | Group member {username} doesn’t exist. | The error message returned because the specified username does not exist when adding users to a chat group. |
 | `400` | `illegal_argument` | This is an invalid request. | The error message returned because the request URL, the request header, or the request body is invalid. |
 | `400` | `illegal_argument` | 'From' can't be empty. | The error message returned because the sender is not specified when sending messages. |
-| `400` | `illegal_argument` | 'Target_type' can only be 'users' or 'chatgroups' or 'chatrooms'. | The error message returned because the values other than `users`, `chatgroups`, and `chatrooms` are passed to `target_type` when sending messages |
+| `400` | `illegal_argument` | 'Target_type' can only be 'users' or 'chatgroups' or 'chatrooms'. | The error message returned because the values other than `users`, `chatgroups`, or `chatrooms` is passed to `target_type` when sending messages |
 | `400` | `illegal_argument` | {username} is not legal. | The error message returned because the specified username is invalid when registering users. For details, see [Registering a user](./agora_chat_restful_registration?platform=RESTful#registering-a-user). |
 | `400` | `illegal_argument` | This 'chatmessage' request is not supported. | The error message returned because the specified time format is incorrect when querying chat history. The correct time format is YYYYMMDDHH. |
-| `400` | `illegal_argument` | Illegal arguments: appkey: {app_key}, time: {yyyymmddhh}, maybe chat message history is expired or unstored. | The error message returned because the chat history within the queried time period has expired or hasn't been generated. For details, see [Retrieving historical messages](./agora_chat_restful_message?platform=RESTful#retrieving-historical-messages). |
+| `400` | `illegal_argument` | Illegal arguments: appkey: {app_key}, time: {yyyymmddhh}, maybe chat message history is expired or unstored. | The error message returned because the chat history within the queried time period has expired or has not been generated. For details, see [Retrieving historical messages](./agora_chat_restful_message?platform=RESTful#retrieving-historical-messages). |
 | `400` | `invalid_parameter` | Some of {group_id} are not valid fields. | The error message returned because the specified name, description, or size of the chat group is invalid when creating chat groups. |
 | `400` | `required_property_not_found` | Entity user requires a property named 'username'. | The error message returned because the usename is not provided when changing passwords. |
 | `400` | `duplicate_unique_property_exists` | Application null Entity user requires that property named 'username' be unique, value of {username} exists. | The error message returned because the specified username already exists when registering users. |
@@ -38,9 +38,9 @@ This status code indicates that the authentication process could not be implemen
 | Status code | Error code  | Error message | Description   |
 | :-----  | :------------ | :----------------------------------------------------------- | :------------------------------------------------|
 | `401`            | `unauthorized`   | Registration is not open, please contact the app admin.      | The error message returned because the app token is not included in the request header when registering users. |
-| `401`            | `unauthorized`   | Unable to authenticate due to expired access token. | The error message returned because the token expires.      |
+| `401`            | `unauthorized`   | Unable to authenticate due to expired access token. | The error message returned because the token has expired.      |
 | `401`            | `auth_bad_access_token`  | Unable to authenticate due to corrupt access token. | The error message returned because the token format is invalid.     |
-| `401`            | `auth_bad_access_token`  | Unable to authenticate.       | The error message returned because the token is not generated by the server that receives the request. Hence the server cannot recognize the token. |
+| `401`            | `auth_bad_access_token`  | Unable to authenticate.       | The error message returned because the token is not generated by the server that receives the request, and as a consequence the server cannot recognize the token. |
 
 ### 403 Forbidden
 This status code indicates that the API request is rejected by the server due to forbidden operations.
@@ -48,12 +48,12 @@ This status code indicates that the API request is rejected by the server due to
 | Status code | Error code  | Error message | Description   |
 | :-----  | :------------ | :----------------------------------------------------------- | :------------------------------------------------|
 | `403` | `forbidden_op`  | Can not join this group, reason: user: {username} already in group: {group_id}. | The error message returned because the user being added is already in the chat group. |
-| `403` | `forbidden_op`  | Users "Username" are not members of this group!              | The error message returned because the user being removed does not exist in the chat group.    |
-| `403` | `forbidden_op`  | User: username doesn't exist in group: "Group ID".    | The error message returned because the user being granted the ownership does not exist in the chat group.                     |
+| `403` | `forbidden_op`  | Users {username} are not members of this group!              | The error message returned because the user being removed does not exist in the chat group.    |
+| `403` | `forbidden_op`  | User: {username} doesn't exist in group: {group_id}.    | The error message returned because the user being granted the ownership does not exist in the chat group.                     |
 | `403` | `forbidden_op`  | New owner and old owner are the same.          | The error message returned because the specified user being granted the ownership is already the chat group owner.                  |
 | `403` | `forbidden_op`  | Forbidden operation on group owner!                          | The error message returned because the specified operation cannot be performed on chat group owners, such as adding the chat group owner to block list.                |
-| `403` | `forbidden_op`  | Can not join this group, reason：user: "Username" has joined too many groups/chatroom! | The error message returned because the number of chat groups or chat rooms joined by a user has reached the upper limit.         |
-| `403` | `forbidden_op`  | This appKey has create too many groups/chatrooms!            | The number of chat groups or chat rooms created by using an App key has reached the upper limit. For details, see [Pricing plans](./agora_chat_plan?platform=RESTful). |
+| `403` | `forbidden_op`  | Can not join this group, reason：user: {username} has joined too many groups/chatroom! | The error message returned because the number of chat groups or chat rooms joined by a user has reached the limit.         |
+| `403` | `forbidden_op`  | This appKey has create too many groups/chatrooms!            | The number of chat groups or chat rooms created by using an App key has reached the limit. For details, see [Pricing plans](./agora_chat_plan?platform=RESTful). |
 
 ### 404 Not Found
 This status code indicates that the specified resources of the API request could not be found by the server.
@@ -62,7 +62,7 @@ This status code indicates that the specified resources of the API request could
 | :-----  | :------------ | :----------------------------------------------------------- | :------------------------------------------------|
 | `404` | `organization_application_not_found` | Could not find application for {org_url} from URI: {app_url}/token. | The error message returned because the specified organization or application does not exist.      |
 | `404` | `service_resource_not_found` | Service resource not found. | The error message returned because the specified user, chat group, or chat room does not exist. |
-| `404` | `service_resource_not_found` | Service resource not found. | The error message returned because either the specified user being queried or removed does not exist, or the dirty data blocks the proper read operation. To address the dirty read problem, you can pass in the UUID to delete the existing user and register with the same username again. |
+| `404` | `service_resource_not_found` | Service resource not found. | The error message returned because either the specified user being queried or removed does not exist, or dirty data blocks the proper read operation. To address the dirty read problem, you can pass in the UUID to delete the existing user and register with the same username again. |
 | `404` | `storage_object_not_found` | Failed to find chat message history download url for appkey: {app_key}, time: {yyyymmddhh}. | The error message returned because no chat history exists within the queried time period. To double check, [submit a ticket]((https://agora-ticket.agora.io/)) to Agora Support. |
 
 ### 405 Method Not Allowed
@@ -86,12 +86,12 @@ This status code indicates that the format of the API request is not supported b
 | `415`  | `web_application`   | Unsupported Media Type.  | The error message returned because the format of the client request is not supported by the server. For example, the request header includes extra parameters, the request header does not include `"Content-Type":"application/json"`, or the request body does not conform to the standard JSON format.  |
 
 ### 429 Too Many Requests
-This status code indicates that the API request surpasses the limitation.
+This status code indicates that the API request surpasses the call limit.
 
 | Status code | Error code  | Error message | Description   |
 | :-----  | :------------ | :----------------------------------------------------------- | :------------------------------------------------|
-| `429`   | `resource_limited`  | You have exceeded the limit of the "Pricing Plan" edition. Please upgrade to higher edition. | The error message returned because the usage of Agora Chat exceeds the upper limit of the current pricing plan. For details, see [Pricing](./agora_chat_pricing?platform=RESTful). To upgrade the pricing plan, contact support@agora.io. |
-| `429`   | `reach_limit`    | This request has reached api limit. | The error message returned because the calling frequency of Agora Chat API surpasses the rate limit. For details, see [Limitations](./agora_chat_limitation?platform=RESTful). To upgrade the pricing plan, contact support@agora.io。 |
+| `429`   | `resource_limited`  | You have exceeded the limit of the {pricing_plan} edition. Please upgrade to higher edition. | The error message returned because the usage of Agora Chat exceeds the limit of the current pricing plan. For details, see [Pricing](./agora_chat_pricing?platform=RESTful). To upgrade the pricing plan, contact support@agora.io. |
+| `429`   | `reach_limit`    | This request has reached api limit. | The error message returned because the calling frequency of the Agora Chat API surpasses the call limit. For details, see [Limitations](./agora_chat_limitation?platform=RESTful). To upgrade the pricing plan, contact support@agora.io。 |
 
 
 ## `5xx` - Server error
@@ -116,4 +116,4 @@ This status code indicates that the server, while acting as a gateway or proxy, 
 This status code indicates that the server is unavailable to handle the request.
 
 ### 504 Gateway Timeout
-This status code indicates that the server, when acting as a gateway or proxy, does not get a response in time from the upstream server.
+This status code indicates that the server, when acting as a gateway or proxy, does not get a timely response from the upstream server.
