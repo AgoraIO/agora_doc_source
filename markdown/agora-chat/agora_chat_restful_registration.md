@@ -878,7 +878,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 ### HTTP 请求
 
 ```http
-  GET https://{host}/{org_name}/{app_name}/users/{username}/status
+GET https://{host}/{org_name}/{app_name}/users/{username}/status
 ```
 
 #### 路径参数
@@ -896,11 +896,13 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 #### 响应 body
 
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码汇总表](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+
 | 参数     | 说明                                                         |
 | :------- | :----------------------------------------------------------- |
-| `username` | 数据格式为 "用户名": "当前在线状态"。例如用户 user1 的在线状态：如果该用户在线，则返回 "user1": "online"；如果不在线，则返回 "user1": "offline"。 |
+| `username` | 数据格式为 "用户 ID": "当前在线状态"。例如用户 user1 的在线状态：如果该用户在线，则返回 "user1": "online"；如果不在线，则返回 "user1": "offline"。 |
 
-其他字段说明详见 [公共参数](https://github.com/AgoraDoc/doc_source/pull/606/files#pubparam)。
+其他字段说明详见[公共参数](#param)。
 
 如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考状态码汇总表了解可能的原因。
 
@@ -915,25 +917,25 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 #### 响应示例
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
-
 ```json
-  {
-    "action": "get",
-    "uri": "http://XXXX/XXXX/XXXX/users/user1/status",
-    "entities": [],
-    "data": {
-      "user1": "offline"
-    },
-    "timestamp": 1542601284531,
-    "duration": 4,
-    "count": 0
-  }
+{
+  "action": "get",
+  "uri": "http://XXXX/XXXX/XXXX/users/user1/status",
+  "entities": [],
+  "data": {
+    "user1": "offline"
+  },
+  "timestamp": 1542601284531,
+  "duration": 4,
+  "count": 0
+}
 ```
 
 ## 批量获取用户在线状态
 
 该方法批量查看用户的在线状态。你可以调用该方法查询多个用户是否在线。一次调用最多可以同时获取 100 个用户的在线状态。
+
+该接口不对用户 ID 进行校验。若查询不存在的用户 ID 的状态，则返回的状态为 offline。
 
 ### HTTP 请求
 
@@ -952,17 +954,23 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 | `Content-Type`  | String | 内容类型。填入 `application/json`。   | 是       |
 | `Authorization` | String | 该用户或管理员的鉴权 token，格式为 Bearer ${token}，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
 
-#### 请求体参数
+#### 请求 body
 
 | 参数      | 说明                                                         |
 | :-------- | :----------------------------------------------------------- |
-| `usernames` | 批量查询在线状态的用户名，数据格式为数组。注意传入的用户名不能超过 100 个。 |
+| `usernames` | 批量查询在线状态的用户 ID，数据格式为数组。注意传入的用户 ID 不能超过 100 个。 |
 
-#### 响应参数
+### HTTP 响应
+
+#### 响应 body
+
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码汇总表](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 | 参数     | 说明                                                         |
 | :------- | :----------------------------------------------------------- |
-| `username` | 数据格式为：“用户名：当前在线状态”，例如，user1 的在线和离线状态分别为 "user1": "online" 和"user1": "offline"。|
+| `username` | 数据格式为：“用户 ID：当前在线状态”，例如，user1 的在线和离线状态分别为 "user1": "online" 和"user1": "offline"。|
+
+### 示例
 
 #### 请求示例
 
@@ -973,22 +981,22 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 #### 响应示例
 
-该接口不对用户名进行校验。若查询不存在的用户名的状态，则返回的状态为 offline。
+该接口不对用户 ID 进行校验。若查询不存在的用户 ID 的状态，则返回的状态为 offline。
 
 ```json
-  {
-      "action": "get batch user status",
-      "data": [
-          {
-              "user1": "offline"
-          },
-          {
-              "user2": "offline"
-          }
-      ],
-      "timestamp": 1552280231926,
-      "duration": 4
-  }
+{
+  "action": "get batch user status",
+  "data": [
+    {
+      "user1": "offline"
+      },
+    {
+      "user2": "offline"
+      }
+    ],
+  "timestamp": 1552280231926,
+  "duration": 4
+}
 ```
 
 ## 获取用户离线消息数量
@@ -998,14 +1006,14 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 ### HTTP 请求
 
 ```http
- GET https://{host}/{org_name}/{app_name}/users/{owner_username}/offline_msg_count
+GET https://{host}/{org_name}/{app_name}/users/{owner_username}/offline_msg_count
 ```
 
 #### 路径参数
 
 |   参数    | 类型   | 是否必需 | 描述         |
 | :-------: | :----- | :------- | ------------ |
-| `owner_username` | String |   必需| 要获取离线消息数的用户名（用户 ID）。|
+| `owner_username` | String |   必需| 要获取离线消息数的用户 ID。|
 
 其他参数及说明详见[公共参数](#param)。
 
@@ -1016,33 +1024,39 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 | `Content-Type`  | String | 内容类型。填入 `application/json`。  | 是       |
 | `Authorization` | String | 该用户或管理员的鉴权 token，格式为 Bearer ${token}，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
 
-#### 响应参数
+### HTTP 响应
+
+#### 响应 body
+
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码汇总表](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 | 参数     | 说明                                                         |
 | :------- | :----------------------------------------------------------- |
-| `username` | 数据格式为：“用户名：当前离线消息的数量“，例如，"user1: 0”。 |
+| `username` | 数据格式为：“用户 ID：当前离线消息的数量“，例如，"user1: 0”。 |
+
+### 示例
 
 #### 请求示例
 
 ```shell
- # 将 <YourAppToken> 替换为你在服务端生成的 app token
-  curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/user1/offline_msg_count'
+# 将 <YourAppToken> 替换为你在服务端生成的 app token
+curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/user1/offline_msg_count'
 ```
 
-#### 响应 body
+#### 响应示例
 
 ```json
-  {
-    "action": "get",
-    "uri": "http://XXXX/XXX/XXXX/users/XXX/offline_msg_count",
-    "entities": [],
-    "data": {
-      "user1": 0
-    },
-    "timestamp": 1542601518137,
-    "duration": 3,
-    "count": 0
-  }
+{
+  "action": "get",
+  "uri": "http://XXXX/XXX/XXXX/users/XXX/offline_msg_count",
+  "entities": [],
+  "data": {
+    "user1": 0
+  },
+  "timestamp": 1542601518137,
+  "duration": 3,
+  "count": 0
+}
 ```
 
 ## 获取某条离线消息状态
@@ -1052,14 +1066,14 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 ### HTTP 请求
 
 ```http
- GET https://{host}/{org_name}/{app_name}/users/{username}/offline_msg_status/{msg_id}
+GET https://{host}/{org_name}/{app_name}/users/{username}/offline_msg_status/{msg_id}
 ```
 
 #### 路径参数
 
 |   参数    | 类型   | 是否必需 | 描述         |
 | :-------: | :----- | :------- | ------------ |
-| `username` | String |   必需| 要获取离线消息状态的用户名（用户 ID）。|
+| `username` | String |   必需| 要获取离线消息状态的用户 ID。|
 | `msg_id` | String |   必需| 要查看离线消息状态的 ID。|
 
 其他参数及说明详见[公共参数](#param)。
@@ -1071,31 +1085,37 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 | `Content-Type`  | String | 内容类型。填入 `application/json`。    | 是       |
 | `Authorization` | String | 该用户或管理员的鉴权 token，格式为 Bearer ${token}，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
 
-#### 响应参数
+### HTTP 响应
+
+#### 响应 body
+
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码汇总表](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 | 参数   | 说明                                                         |
 | :----- | :----------------------------------------------------------- |
-| `msg_id` | 数据格式为“消息 ID”：“离线消息的投递状态”。有两种：<br/> - “delivered”  表示已投递； <br/> - `undelivered“  表示未投递。 |
+| `msg_id` | 数据格式为“消息 ID”：“离线消息的投递状态”。有两种：<li> “delivered”  表示已投递； <li> `undelivered“  表示未投递。 |
+
+### 示例
 
 #### 请求示例
 
 ```shell
- # 将 <YourAppToken> 替换为你在服务端生成的 app token
-  curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/user1/offline_msg_status/123'
+# 将 <YourAppToken> 替换为你在服务端生成的 app token
+curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/user1/offline_msg_status/123'
 ```
 
-#### 响应 body
+#### 响应示例
 
 ```json
-  {
-    "action": "get",
-    "uri": "http://XXXX/XXXX/XXXX/users/user1/offline_msg_status/123",
-    "entities": [],
-    "data": {
-      "123": "delivered"
-    },
-    "timestamp": 1542601830084,
-    "duration": 5,
-    "count": 0
-  }
+{
+  "action": "get",
+  "uri": "http://XXXX/XXXX/XXXX/users/user1/offline_msg_status/123",
+  "entities": [],
+  "data": {
+    "123": "delivered"
+  },
+  "timestamp": 1542601830084,
+  "duration": 5,
+  "count": 0
+}
 ```
