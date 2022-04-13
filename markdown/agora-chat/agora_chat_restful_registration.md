@@ -911,8 +911,8 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/status
 #### 请求示例
 
 ```shell
-  # 将 <YourAppToken> 替换为你在服务端生成的 app token
-  curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/user1/status'
+# 将 <YourAppToken> 替换为你在服务端生成的 app token
+curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/user1/status'
 ```
 
 #### 响应示例
@@ -940,7 +940,7 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/status
 ### HTTP 请求
 
 ```http
-  POST https://{host}{org_name}/{app_name}/users/batch/status
+POST https://{host}{org_name}/{app_name}/users/batch/status
 ```
 
 #### 路径参数
@@ -975,9 +975,9 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/status
 #### 请求示例
 
 ```shell
- # 将 <YourAppToken> 替换为你在服务端生成的 app token
-  curl -X POST http://XXXX/XXXX/XXXX/users/batch/status -H 'Authorization: Bearer <YourAppToken>' -H 'Content-Type: application/json' -d '{"usernames":["user1","user2"]}'
-  ```
+# 将 <YourAppToken> 替换为你在服务端生成的 app token
+curl -X POST http://XXXX/XXXX/XXXX/users/batch/status -H 'Authorization: Bearer <YourAppToken>' -H 'Content-Type: application/json' -d '{"usernames":["user1","user2"]}'
+```
 
 #### 响应示例
 
