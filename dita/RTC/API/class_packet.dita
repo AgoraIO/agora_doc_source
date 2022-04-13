@@ -1,25 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_packet">
-    <title><ph keyref="Packet" /></title>
-    <shortdesc id="short"><ph id="shortdesc"><apiname keyref="Packet" /> 定义。</ph></shortdesc>
+    <title><ph keyref="Packet"/></title>
+    <shortdesc id="short"><ph id="shortdesc"><apiname keyref="Packet"/> 定义。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-                <codeblock props="windows" outputclass="language-cpp">struct Packet {
+            <codeblock props="windows" outputclass="language-cpp">struct Packet {
                     const unsigned char* buffer;
                     unsigned int size;
                     
                     Packet() : buffer(NULL), size(0) {}
                     };</codeblock>
-            </p>
-            <p outputclass="codeblock" props="rtc">
-                <codeblock props="windows unity" outputclass="language-cpp">struct Packet {
-	const unsigned char* buffer;
-	unsigned int size;
-	};</codeblock>
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp">public class Packet
+            <codeblock props="unity" outputclass="language-csharp">public class Packet
     {
         public Packet()
         {
@@ -35,84 +28,38 @@
         
         public uint size { set; get; }
     }
-    
-    public enum AUDIO_SAMPLE_RATE_TYPE {
-        
-        AUDIO_SAMPLE_RATE_32000 = 32000,
-        
-        AUDIO_SAMPLE_RATE_44100 = 44100,
-        
-        AUDIO_SAMPLE_RATE_48000 = 48000,
-    };
-    
-    public enum VIDEO_CODEC_PROFILE_TYPE {
-        
-        VIDEO_CODEC_PROFILE_BASELINE = 66,
-        
-        VIDEO_CODEC_PROFILE_MAIN = 77,
-        
-        VIDEO_CODEC_PROFILE_HIGH = 100,
-    };
-    
-    public enum AUDIO_CODEC_PROFILE_TYPE {
-        
-        AUDIO_CODEC_PROFILE_LC_AAC = 0,
-        
-        AUDIO_CODEC_PROFILE_HE_AAC = 1,
-    };
-    
-    public class LocalAudioStats
-    {
-        public LocalAudioStats()
-        {
-        }
-        public LocalAudioStats(int numChannels, int sentSampleRate, int sentBitrate, int internalCodec)
-        {
-            this.numChannels = numChannels;
-            this.sentSampleRate = sentSampleRate;
-            this.sentBitrate = sentBitrate;
-            this.internalCodec = internalCodec;
-        }
-        
-        public int numChannels { set; get; }
-        
-        public int sentSampleRate { set; get; }
-        
-        public int sentBitrate { set; get; }
-        
-        public int internalCodec { set; get; }
-    }
-    
-    public enum RTMP_STREAM_PUBLISH_STATE {
-        
-        RTMP_STREAM_PUBLISH_STATE_IDLE = 0,
-        
-        RTMP_STREAM_PUBLISH_STATE_CONNECTING = 1,
-        
-        RTMP_STREAM_PUBLISH_STATE_RUNNING = 2,
-        
-        RTMP_STREAM_PUBLISH_STATE_RECOVERING = 3,
-        
-        RTMP_STREAM_PUBLISH_STATE_FAILURE = 4,
-    }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
-            </p>
+    </codeblock></p>
+            <p outputclass="codeblock" props="rtc">
+            <codeblock props="windows" outputclass="language-cpp">struct Packet {
+	const unsigned char* buffer;
+	unsigned int size;
+	};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+             <codeblock props="unity" outputclass="language-csharp">public struct Packet
+	{
+		public IntPtr buffer;
+		public IntPtr size;
+	};</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
-   <parml>
-       <plentry>
-  <pt>buffer</pt>
-  <pd>
-      <p>需要发送或接收的数据的缓存地址。</p>
-      <note type="attention">Agora 建议 <parmname>buffer</parmname> 值不要小于 2048 字节，否则有可能会出现未定义行为（例如崩溃）。</note>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt>size</pt>
-  <pd>将要发送或接收的数据的缓存大小。</pd>
-       </plentry>
-   </parml>
-        </section></refbody>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
+            <parml>
+            <plentry>
+                <pt>buffer</pt>
+                <pd>
+                    <p>需要发送或接收的数据的缓存地址。</p>
+                    <note type="attention"
+                    >Agora 建议 <parmname>buffer</parmname> 值不要小于 2048 字节，否则有可能会出现未定义行为（例如崩溃）。</note>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>size</pt>
+                <pd>将要发送或接收的数据的缓存大小。</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
 </reference>

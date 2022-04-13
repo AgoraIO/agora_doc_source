@@ -19,7 +19,7 @@
             <codeblock props="unity" outputclass="language-csharp">public abstract int StartAudioDeviceLoopbackTest(int indicationInterval);</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startAudioDeviceLoopbackTest(int indicationInterval)</codeblock> </p>
         </section>
-        <section id="detailed_desc" props="unity electron flutter">
+        <section id="detailed_desc" props="unity electron flutter rtc-ng">
             <p>该方法测试音频采集和播放设备是否能正常工作。一旦测试开始，音频采集设备会采集本地音频，然后使用音频播放设备播放出来。SDK 会按设置的时间间隔触发两个 <xref keyref="onAudioVolumeIndication"/> 回调，分别报告音频采集设备（<parmname>uid</parmname> = 0）和音频播放设置（<parmname>uid</parmname> = 1）的音量信息。</p>
             <note type="attention">
             <ul>
@@ -31,9 +31,11 @@
             <p>自 v3.6.2 起，该方法在加入频道前后均可调用，并按设置的时间间隔触发如下回调，分别报告采集设备和播放设备的音量信息：
                 
             
+            
             <ul id="ul_bqx_b3h_5sb">
             <li>在加入频道前调用该方法，SDK 触发 <xref keyref="onAudioVolumeIndication"/> 和 <xref keyref="onAudioDeviceTestVolumeIndication"/> 回调，每个回调触发两次，其中： 
                     
+                
                 <ul id="ul_d5n_23h_5sb">
                 <li><apiname keyref="onAudioVolumeIndication"/> 分别报告 <codeph>uid = 0</codeph> 和 <codeph>volume</codeph>，以及 <codeph>uid = 1</codeph> 和 <codeph>volume</codeph>。</li>
                 <li><apiname keyref="onAudioDeviceTestVolumeIndication"/> 分别报告 <codeph>volumeType = <apiname keyref="AudioTestRecordingVolume"/>(0)</codeph> 和 <codeph>volume</codeph>，以及 <codeph>volumeType = <apiname keyref="AudioTestPlaybackVolume"/>(1)</codeph> 和 <codeph>volume</codeph>。</li>
