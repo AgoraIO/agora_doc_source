@@ -7,7 +7,7 @@ This page describes how to use the Agora Chat SDK to create and manage a chat gr
 
 ## Understand the tech
 
-The Agora Chat SDK provides a `GroupManager` and a `Group` class for chat group management, which allows you to implement the following features:
+The Agora Chat SDK provides the `GroupManager` and `Group` classes for chat group management, which allows you to implement the following features:
 
 - Create and destroy a chat group
 - Join and leave a chat group
@@ -22,19 +22,19 @@ The Agora Chat SDK provides a `GroupManager` and a `Group` class for chat group 
 Before proceeding, ensure that you meet the following requirements:
 
 - You have initialized the Agora Chat SDK. For details, see [Get Started with Web](agora_chat_get_started_web).
-- You understand the call frequency of the Agora Chat APIs supported by different pricing plans as described in [Limitations](agora_chat_limitation).
+- You understand the call frequency limits of the Agora Chat APIs supported by different pricing plans as described in [Limitations](agora_chat_limitation).
 - You understand the number of chat groups and chat group members supported by different pricing plans as described in [Pricing Plan Details](agora_chat_plan).
 
 
 ## Implementation
 
-This section describes how to call the APIs provided by the Agora Chat SDK to implement the features listed above.
+This section describes how to call the APIs provided by the Agora Chat SDK to implement chat group features.
 
 ### Create and destroy a chat group
 
-You can create a chat group and set the chat group attributes such as the name, description, group members, and reasons to create the group. You can also set the `GroupOptions` parameter to specify the size and type of the chat group. Once a chat group is created, the creator of the chat group becomes the chat group owner automatically.
+Users can create a chat group and set the chat group attributes such as the name, description, group members, and reasons for creating the group. Users can also set the `GroupOptions` parameter to specify the size and type of the chat group. Once a chat group is created, the creator of the chat group automatically becomes the chat group owner.
 
-Only chat group owners can disband chat groups. Once a chat group is disbanded, all the chat group members receive the `deleteGroupChat` callback and are immediately removed from the chat group. All the local data of the chat group are also removed from the database and memory.
+Only chat group owners can disband chat groups. Once a chat group is disbanded, all members of that chat group receive the `deleteGroupChat` callback and are immediately removed from the chat group. All local data for the chat group is also removed from the database and memory.
 
 Refer to the following sample code to create and destroy a chat group:
 
@@ -66,15 +66,15 @@ conn.destroyGroup(option).then(res => console.log(res))
 
 ### Join and leave a chat group
 
-You can request to join a public chat group as follows:
+Users can request to join a public chat group as follows:
 
-1. Call `getGroup` to retrieve the list of the groups that you are already in from the server.
-2. Call `listGroups` to retrieve the list of public groups by page. You can obtain the ID of the group that you want to join.
+1. Call `getGroup` to retrieve the list of the groups that the user is already in from the server.
+2. Call `listGroups` to retrieve the list of public groups by page. Users can obtain the ID of the group that they want to join.
 3. Call `joinGroup` to send a join request to the chat group:
-    - If the `approval` parameter of the group type is set to `false`, your request is accepted automatically and the chat group members receive the `memberJoinPublicGroupSuccess` callback.
-    - If the `approval` parameter is set to `true`, the chat group owner and chat group admins receive the `joinGroupNotifications` callback and determine whether to accept your request.
+    - If the `approval` parameter of the group type is set to `false`, the request from the user is accepted automatically and the chat group members receive the `memberJoinPublicGroupSuccess` callback.
+    - If the `approval` parameter is set to `true`, the chat group owner and chat group admins receive the `joinGroupNotifications` callback and determine whether to accept the request from the user.
 
-You can call `leaveGroup` to leave a chat group. Once you leave the group, all the other group members receive the `leaveGroup` callback.
+Users can call `leaveGroup` to leave a chat group. Once a user leaves the group, all the other group members receive the `leaveGroup` callback.
 
 Refer to the following sample code to join and leave a chat group:
 
@@ -108,7 +108,7 @@ conn.quitGroup(option).then(res => console.log(res))
 
 ### Retrieve the member list of a chat group
 
-You can call `listGroupMembers` to retrieve the member list of a chat group by page.
+Users can call `listGroupMembers` to retrieve the member list of a chat group by page.
 
 Refer to the following sample code to retrieve the member list of a chat group:
 
@@ -131,8 +131,8 @@ Whether a chat group is public or private, the chat group owner and chat group a
 
 2. Implement chat group invitations.  
 After a user is invited to join a chat group, the implementation logic varies based on the settings of the user:  
-    - If the user requires a group invitation confirmation, the user receives the `invite` callback. Once the user accepts the request and joins the group, the invitor receives the `invite_accept` callback and all the group members receive the `memberJoinPublicGroupSuccess` callback.
-    - If the user doesn't require a group invitation confirmation, the invitor receives the `direct_joined` callback. In this case, the user automatically joins the group and all the group members receive the `memberJoinPublicGroupSuccess` callback.
+    - If the user requires a group invitation confirmation, the user receives the `invite` callback. Once the user accepts the request and joins the group, the inviter receives the `invite_accept` callback and all group members receive the `memberJoinPublicGroupSuccess` callback.
+    - If the user does not require a group invitation confirmation, the inviter receives the `direct_joined` callback. In this case, the user automatically joins the group and all group members receive the `memberJoinPublicGroupSuccess` callback.
 
 3. Remove chat group members from a chat group.  
 The chat group owner and chat group admins can remove chat group members from a chat group, whereas chat group members do not have this privilege. Once a group member is removed, this group member receives the `removedFromGroup` callback and all the other group members receive the `leaveGroup` callback.
@@ -159,7 +159,7 @@ conn.removeGroupMember(option).then(res => console.log(res))
 ### Manage chat group ownership and admin
 
 1. Transfer the chat group ownership.  
-The chat group owner can transfer the ownership to the specified chat group member. Once the ownership is transferred, the original chat group owner becomes a group member. All the other chat group members receive the `changeOwner` callback.
+The chat group owner can transfer ownership to the specified chat group member. Once ownership is transferred, the original chat group owner becomes a group member. All the other chat group members receive the `changeOwner` callback.
 
 2. Add chat group admins.  
 The chat group owner can add admins. Once added to the chat group admin list, the newly added admin and the other chat group admins receive the `addAdmin` callback.
@@ -170,7 +170,7 @@ The chat group owner can remove admins. Once removed from the chat group admin l
 Refer to the following sample code to manage chat group ownership and admin:
 
 ```javascript
-// The chat group owner can call chageGroupOwner to transfer the ownership to the specified chat group member.
+// The chat group owner can call changeGroupOwner to transfer ownership to the specified chat group member.
 let option = {
     groupId: "groupId",
     newOwner: "username"
@@ -195,7 +195,7 @@ conn.removeAdmin(option).then(res => console.log(res))
 
 ### Manage the chat group block list
 
-The chat group owner and chat group admins can add the specified member to the chat group block list and remove them from it. Once a chat group member is added to the block list, this member cannot send or receive chat group messages, nor can this member join the chat group again.
+The chat group owner and chat group admins can add or remove the specified member to the chat group block list. Once a chat group member is added to the block list, this member cannot send or receive chat group messages, nor can this member join the chat group again.
 
 Refer to the following sample code to manage the chat group block list:
 
@@ -208,7 +208,7 @@ let option = {
 conn.blockGroupMember(option).then(res => console.log(res))
 
 // The chat group owner and admins can call unblockGroupMembers to remove the specified member from the chat group block list.
-// Once removed, the removed member can rerquest to join the chat group again.
+// Once removed, the removed member can request to join the chat group again.
 let option = {
     groupId: "groupId",
     username: ["user1", "user2"]
@@ -225,7 +225,7 @@ conn.getGroupBlacklist(option).then(res => console.log(res))
 
 ### Manage the chat group mute list
 
-The chat group owner and chat group admins can add the specified member to the chat group mute list and remove them from it. Once a chat group member is added to the mute list, this member can no longer send chat group messages, not even after being added to the chat group allow list.
+The chat group owner and chat group admins can add or remove the specified member to the chat group mute list. Once a chat group member is added to the mute list, this member can no longer send chat group messages, not even after being added to the chat group allow list.
 
 Refer to the following sample code to manage the chat group mute list:
 
@@ -280,7 +280,7 @@ conn.enableSendGroupMsg(options).then(res => console.log(res))
 
 ### Manage the chat group allow list
 
-Members in the chat group allow list can send chat group messages even when the chat group owner or admin has muted all the chat group members. However, if a member is already in the chat group mute list, adding this member to the allow list does not take effect.
+Members in the chat group allow list can send chat group messages even when the chat group owner or admin has muted all chat group members. However, if a member is already in the chat group mute list, adding this member to the allow list does not take effect.
 
 Refer to the following sample code to manage the chat group allow list:
 
@@ -325,7 +325,7 @@ Refer to the following sample code to modify the chat group name and description
 
 ```javascript
 // The chat group owner and chat group admins can call modifyGroup to modify the name and description of a chat group.
-// Thd name length can be up to 128 characters. The description length can be up to 512 characters.
+// The name length can be up to 128 characters. The description length can be up to 512 characters.
 let option = {
     groupId: "groupId",
     groupName: "groupName",
@@ -337,7 +337,7 @@ conn.modifyGroup(option).then(res => console.log(res))
 
 ### Manage chat group announcements
 
-The chat group owner and chat group admins can set and update the announcements. Once the announcements are updated, all the chat group members receive the `updateAnnouncement` callback. All the chat group members can retrieve the chat group announcements.
+The chat group owner and chat group admins can set and update chat group announcements. Once the announcements are updated, all chat group members receive the `updateAnnouncement` callback. All chat group members can retrieve chat group announcements.
 
 Refer to the following sample code to manage chat group announcements:
 
@@ -350,7 +350,7 @@ let option = {
 };
 conn.updateGroupAnnouncement(option).then(res => console.log(res))
 
-// Chat group members can call fetchGroupAnnouncement to retrieve the chat group announcements.
+// All chat group members can call fetchGroupAnnouncement to retrieve the chat group announcements.
 let option = {
     groupId: "groupId"
 };
@@ -360,12 +360,12 @@ conn.fetchGroupAnnouncement(option).then(res => console.log(res))
 
 ### Manage chat group shared files
 
-All the chat group members can upload or download group shared files. The chat group owner and chat group admins can delete all the group shared files, whereas group members can only delete the shared files that they have personally uploaded.
+All chat group members can upload or download group shared files. The chat group owner and chat group admins can delete all of the group shared files, whereas group members can only delete the shared files that they have personally uploaded.
 
 Refer to the following sample code to manage chat group shared files:
 
 ```javascript
-// All the chat group members can call uploadGroupSharedFile to upload group shared files. The file size can be up to 10 MB.
+// All chat group members can call uploadGroupSharedFile to upload group shared files. The file size can be up to 10 MB.
 // Once shared files are uploaded, group members receive the onSharedFileAdded callback.
 let option = {
     groupId: "groupId",
@@ -377,7 +377,7 @@ let option = {
 };
 conn.uploadGroupSharedFile(option);
 
-// All the chat group members can call downloadGroupSharedFile to delete group shared files.
+// All chat group members can call downloadGroupSharedFile to delete group shared files.
 let option = {
     groupId: "groupId",
     fileId: "fileId", // The ID of the file                 
@@ -386,14 +386,14 @@ let option = {
 };
 conn.downloadGroupSharedFile(option);
 
-// All the chat group members can call deleteGroupSharedFile to delete group shared files.
+// All chat group members can call deleteGroupSharedFile to delete group shared files.
 let option = {
     groupId: "groupId",
     fileId: "fileId", // The ID of the file
 };
 conn.deleteGroupSharedFile(option).then(res => console.log(res))
 
-// All the chat group members can call fetchGroupSharedFileList to retrieve the list of the shared files in the chat group.
+// All chat group members can call fetchGroupSharedFileList to retrieve the list of shared files in the chat group.
 let option = {
     groupId: "groupId"
 };
@@ -403,7 +403,7 @@ conn.fetchGroupSharedFileList(option).then(res => console.log(res))
 
 ### Listen for chat group events
 
-You can call `listen` to listen for chat group events.
+Users can call `listen` to listen for chat group events.
 
 Refer to the following sample code to listen for chat group events:
 
@@ -411,10 +411,10 @@ Refer to the following sample code to listen for chat group events:
 conn.listen({
   onPresence: function(msg){
     switch(msg.type){
-    // Occurs when all the chat group members are unmuted.
+    // Occurs when all chat group members are unmuted.
     case 'rmGroupMute':
       break;
-    // Occurs when all the chat group members are muted.
+    // Occurs when all chat group members are muted.
     case 'muteGroup':
       break;
     // Occurs when a member is removed from the chat group allow list.

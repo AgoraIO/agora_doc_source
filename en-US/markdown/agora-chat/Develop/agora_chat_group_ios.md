@@ -7,7 +7,7 @@ This page describes how to use the Agora Chat SDK to create and manage a chat gr
 
 ## Understand the tech
 
-The Agora Chat SDK provides a `IAgoraChatGroupManager`, a `AgoraChatGroupManagerDelegate`, and a `AgoraChatGroup` class for chat group management, which allows you to implement the following features:
+The Agora Chat SDK provides the `IAgoraChatGroupManager`, `AgoraChatGroupManagerDelegate`, and `AgoraChatGroup` classes for chat group management, which allows you to implement the following features:
 - Create and destroy a chat group
 - Join and leave a chat group
 - Retrieve the member list of a chat group
@@ -21,19 +21,19 @@ The Agora Chat SDK provides a `IAgoraChatGroupManager`, a `AgoraChatGroupManager
 Before proceeding, ensure that you meet the following requirements:
 
 - You have initialized the Agora Chat SDK. For details, see [Get Started with iOS](agora_chat_get_started_ios).
-- You understand the call frequency of the Agora Chat APIs supported by different pricing plans as described in [Limitations](agora_chat_limitation).
+- You understand the call frequency limits of the Agora Chat APIs supported by different pricing plans as described in [Limitations](agora_chat_limitation).
 - You understand the number of chat groups and chat group members supported by different pricing plans as described in [Pricing Plan Details](agora_chat_plan).
 
 
 ## Implementation
 
-This section describes how to call the APIs provided by the Agora Chat SDK to implement the features listed above.
+This section describes how to call the APIs provided by the Agora Chat SDK to implement chat group features.
 
 ### Create and destroy a chat group
 
-You can create a chat group and set the chat group attributes such as the name, description, group members, and reasons to create the group. You can also specify the size and type of a chat group. Once a chat group is created, the creator of the chat group becomes the chat group owner automatically.
+Users can create a chat group and set the chat group attributes such as the name, description, group members, and reasons for creating the group. Users can also specify the size and type of a chat group. Once a chat group is created, the creator of the chat group automatically becomes the chat group owner.
 
-Only chat group owners can disband chat groups. Once a chat group is disbanded, all the chat group members are immediately removed from the chat group. All the local data of the chat group are also removed from the database and memory.
+Only chat group owners can disband chat groups. Once a chat group is disbanded, all members of that chat group are immediately removed from the chat group. All local data for the chat group is also removed from the database and memory.
 
 Refer to the following sample code to create and destroy a chat group:
 
@@ -55,23 +55,23 @@ NSArray *members = @{@"memeber1",@"member2"};
                                                                                                                              error:nil];
 
 
-// Call destroyGroup to disband a chat group. Once a chat group is disbanded, all the chat group members receive the didLeaveGroup callback.
+// Call destroyGroup to disband a chat group. Once a chat group is disbanded, all chat group members receive the didLeaveGroup callback.
 [[AgoraChatClient sharedClient].groupManager destroyGroup:@"groupID"];
 ```
 
 
 ### Join and leave a chat group
 
-You can request to join a public chat group as follows:
+Users can request to join a public chat group as follows:
 
-1. Call `getJoinedGroupsFromServerWithPage` to retrieve the list of the groups that you are already in from the server. This prevents repetitive join requests.
-2. Call `getJoinedGroups` to retrieve the list of the groups that you are already in from your local database.
-3. Call `getPublicGroupsFromServerWithCursor` to retrieve the list of public groups by page. You can obtain the ID of the group that you want to join.
+1. Call `getJoinedGroupsFromServerWithPage` to retrieve the list of the groups that the user is already in from the server. This prevents repetitive join requests.
+2. Call `getJoinedGroups` to retrieve the list of the groups that the user is already in from the local database.
+3. Call `getPublicGroupsFromServerWithCursor` to retrieve the list of public groups by page. Users can obtain the ID of the group that they want to join.
 4. Call `joinPublicGroup` to send a join request to the chat group:
-    - If the type of the chat group is set to `AgoraChatGroupStylePublicOpenJoin`, your request is accepted automatically and the chat group memebers receive the `userDidJoinGroup` callback.
-    - If the type of the chat group is set to `AgoraChatGroupStylePublicJoinNeedApproval`, the chat group owner and chat group admins receive the `joinGroupRequestDidReceive` callback and determine whether to accept your request. Once the join request is approved, you receive the `joinGroupRequestDidApprove` callback. Otherwise, you receive the `joinGroupRequestDidDecline` callback.
+    - If the type of the chat group is set to `AgoraChatGroupStylePublicOpenJoin`, the request from the user is accepted automatically and the chat group members receive the `userDidJoinGroup` callback.
+    - If the type of the chat group is set to `AgoraChatGroupStylePublicJoinNeedApproval`, the chat group owner and chat group admins receive the `joinGroupRequestDidReceive` callback and determine whether to accept the request from the user. Once the join request is approved, the user receives the `joinGroupRequestDidApprove` callback. Otherwise, the user receives the `joinGroupRequestDidDecline` callback.
 
-You can call `leaveGroup` to leave a chat group. Once you leave the chat group, all the other group members receive the `didLeaveGroup` callback.
+Users can call `leaveGroup` to leave a chat group. Once a user leaves the chat group, all the other group members receive the `didLeaveGroup` callback.
 
 Refer to the following sample code to join and leave a chat group:
 
@@ -82,7 +82,7 @@ NSArray *groupList = [[AgoraChatClient sharedClient].groupManager
                       																  pageSize:-1 
                       																     error:nil];
 
-// Call getJoinedGroups to retrieve the list of joined groups from your local database.
+// Call getJoinedGroups to retrieve the list of joined groups from the local database.
 NSArray *groupList = [[AgoraChatClient sharedClient].groupManager getJoinedGroups];
 
 // Call getPublicGroupsFromServerWithCursor to retrieve the list of public groups by page.
@@ -143,7 +143,7 @@ NSArray *memeberList = [group.memberList];
 
 ### Mute and unmute a chat group
 
-Group members can mute and unmute a chat group, whereas the chat group owner and chat group admins cannot perform such operations. Once you mute a chat group, you won't receive push notifications from this chat group.
+Group members can mute and unmute a chat group, whereas the chat group owner and chat group admins cannot perform such operations. Once members mute a chat group, they no longer receive push notifications from this chat group.
 
 Refer to the following sample code to mute and unmute a chat group:
 
@@ -166,8 +166,8 @@ Whether a chat group is public or private, the chat group owner and chat group a
 
 2. Implement chat group invitations.  
 After a user is invited to join a chat group, the implementation logic varies based on the settings of the user:
-    - If the user requires a group invitation confirmation, the invitor receives the `groupInvitationDidReceive` callback. Once the user accepts the request and joins the group, the invitor receives the `groupInvitationDidAccept` callback and all the group members receive the `userDidJoinGroup` callback. Otherwise, the invitor receives the `groupInvitationDidDecline` callback.
-    - If the user doesn't require a group invitation confirmation, the invitor receives the `groupInvitationDidAccept` callback. In this case, the user automatically accepts the group invitation and receives the `didJoinGroup` callback. All the group members receive the `userDidJoinGroup` callback.  
+    - If the user requires a group invitation confirmation, the inviter receives the `groupInvitationDidReceive` callback. Once the user accepts the request and joins the group, the inviter receives the `groupInvitationDidAccept` callback and all group members receive the `userDidJoinGroup` callback. Otherwise, the inviter receives the `groupInvitationDidDecline` callback.
+    - If the user does not require a group invitation confirmation, the inviter receives the `groupInvitationDidAccept` callback. In this case, the user automatically accepts the group invitation and receives the `didJoinGroup` callback. All group members receive the `userDidJoinGroup` callback.  
 
 3. Remove chat group members from a chat group.  
 The chat group owner and chat group admins can remove chat group members from a chat group, whereas chat group members do not have this privilege. Once a group member is removed, this group member receives the `didLeaveGroup` callback and all the other group members receive the `userDidLeaveGroup` callback.
@@ -191,7 +191,7 @@ Refer to the following sample code to add and remove a user:
 ### Manage chat group ownership and admin
 
 1. Transfer the chat group ownership.  
-The chat group owner can transfer the ownership to the specified chat group member. Once the ownership is transferred, the original chat group owner becomes a group member. All the other chat group members receive the `groupOwnerDidUpdate` callback.
+The chat group owner can transfer ownership to the specified chat group member. Once ownership is transferred, the original chat group owner becomes a group member. All the other chat group members receive the `groupOwnerDidUpdate` callback.
 
 2. Add chat group admins.  
 The chat group owner can add admins. Once added to the chat group admin list, the newly added admin and the other chat group admins receive the `groupAdminListDidUpdate` callback.
@@ -202,7 +202,7 @@ The chat group owner can remove admins. Once removed from the chat group admin l
 Refer to the following sample code to manage chat group ownership and admin:
 
 ```objective-c
-// The chat group owner can call updateGroupOwner to transfer the ownership to the specified chat group member.
+// The chat group owner can call updateGroupOwner to transfer ownership to the specified chat group member.
 [[AgoraChatClient sharedClient].groupManager updateGroupOwner:@"groupID"
  																										newOwner:@"newOwner"
  																												error:nil];
@@ -221,7 +221,7 @@ Refer to the following sample code to manage chat group ownership and admin:
 
 ### Manage the chat group block list
 
-The chat group owner and chat group admins can add the specified member to the chat group block list and remove them from it. Once a chat group member is added to the block list, this member cannot send or receive chat group messages, nor can this member join the chat group again.
+The chat group owner and chat group admins can add or remove the specified member to the chat group block list. Once a chat group member is added to the block list, this member cannot send or receive chat group messages, nor can this member join the chat group again.
 
 Refer to the following sample code to manage the chat group block list:
 
@@ -246,7 +246,7 @@ Refer to the following sample code to manage the chat group block list:
 
 ### Manage the chat group mute list
 
-The chat group owner and chat group admins can add the specified member to the chat group mute list and remove them from it. Once a chat group member is added to the mute list, this member can no longer send chat group messages, not even after being added to the chat group allow list.
+The chat group owner and chat group admins can add or remove the specified member to the chat group mute list. Once a chat group member is added to the mute list, this member can no longer send chat group messages, not even after being added to the chat group allow list.
 
 Refer to the following sample code to manage the chat group mute list:
 
@@ -293,7 +293,7 @@ Refer to the following sample code to mute and unmute all the chat group members
 
 ### Manage the chat group allow list
 
-Members in the chat group allow list can send chat group messages even when the chat group owner or admin has muted all the chat group members. However, if a member is already in the chat group mute list, adding this member to the allow list does not take effect.
+Members in the chat group allow list can send chat group messages even when the chat group owner or admin has muted all chat group members. However, if a member is already in the chat group mute list, adding this member to the allow list does not take effect.
 
 Refer to the following sample code to manage the chat group allow list:
 
@@ -327,12 +327,12 @@ The chat group owner and chat group admins can modify the name and description o
 Refer to the following sample code to modify the chat group name and description:
 
 ```objective-c
-// The chat group owner and chat group admins can call changeGroupSubject to modify the name of the chat group. Thd name length can be up to 128 characters.
+// The chat group owner and chat group admins can call changeGroupSubject to modify the name of the chat group. The name length can be up to 128 characters.
 [[AgoraChatClient sharedClient].groupManager changeGroupSubject:@"subject"
  																											 forGroup:@"groupID" 
  																												  error:nil];
 
-// The chat group owner and chat group admins can call changeDescription to modify the description of the caht group. The description length can be up to 512 characters.
+// The chat group owner and chat group admins can call changeDescription to modify the description of the chat group. The description length can be up to 512 characters.
 [[AgoraChatClient sharedClient].groupManager changeDescription:@"desc"
  																											forGroup:@"groupID" 
  																										 	   error:nil];
@@ -341,7 +341,7 @@ Refer to the following sample code to modify the chat group name and description
 
 ### Manage chat group announcements
 
-The chat group owner and chat group admins can set and update the announcements. Once the announcements are updated, all the chat group members receive the `groupAnnouncementDidUpdate` callback. All the chat group members can retrieve the chat group announcements.
+The chat group owner and chat group admins can set and update chat group announcements. Once the announcements are updated, all chat group members receive the `groupAnnouncementDidUpdate` callback. All chat group members can retrieve chat group announcements.
 
 Refer to the following sample code to manage chat group announcements:
 
@@ -351,7 +351,7 @@ Refer to the following sample code to manage chat group announcements:
  																														 announcement:@"announcement" 
  																										 	   					  error:nil];
 
-// Chat group members can call getGroupAnnouncementWithId to retrieve the chat group announcements.
+// All chat group members can call getGroupAnnouncementWithId to retrieve the chat group announcements.
 [[AgoraChatClient sharedClient].groupManager getGroupAnnouncementWithId:@"groupID" 
  																																  error:nil];
 ```
@@ -359,25 +359,25 @@ Refer to the following sample code to manage chat group announcements:
 
 ### Manage chat group shared files
 
-All the chat group members can upload or download group shared files. The chat group owner and chat group admins can delete all the group shared files, whereas group members can only delete the shared files that they have personally uploaded.
+All chat group members can upload or download group shared files. The chat group owner and chat group admins can delete all of the group shared files, whereas group members can only delete the shared files that they have personally uploaded.
 
 Refer to the following sample code to manage chat group shared files:
 
 ```objective-c
-// All the chat group members can call uploadGroupSharedFileWithId to upload group shared files. The file size can be up to 10 MB.
+// All chat group members can call uploadGroupSharedFileWithId to upload group shared files. The file size can be up to 10 MB.
 // Once shared files are uploaded, group members receive the groupFileListDidUpdate callback.
 [[AgoraChatClient sharedClient].groupManager uploadGroupSharedFileWithId:@"groupID"
  																																filePath:@"filePath" 
  																															  progress:nil 
  																															completion:nil];
 
-// All the chat group members can call removeGroupSharedFileWithId to delete group shared files.
+// All chat group members can call removeGroupSharedFileWithId to delete group shared files.
 // Once shared files are deleted, chat group members receive the groupFileListDidUpdate callback.
 [[AgoraChatClient sharedClient].groupManager removeGroupSharedFileWithId:@"groupID"
  																													  sharedFileId:@"fileID" 
  																															     error:nil];
 
-// All the chat group memebers can call getGroupFileListWithId to retrieve the list of the shared files in the chat group.
+// All chat group members can call getGroupFileListWithId to retrieve the list of shared files in the chat group.
 [[AgoraChatClient sharedClient].groupManager getGroupFileListWithId:@"groupID"
  																												 pageNumber:pageNumber 
  																												   pageSize:pageSize 
@@ -387,7 +387,7 @@ Refer to the following sample code to manage chat group shared files:
 
 ### Listen for chat group events
 
-To monitor the chat group events, you can listen for the callbacks in the `AgoraChatGroupManagerDelegate` class and add app logics accordingly. If you want to stop listening for the callbacks, make sure that you remove the listener to prevent memory leakage.
+To monitor the chat group events, users can listen for the callbacks in the `AgoraChatGroupManagerDelegate` class and add app logics accordingly. If a user wants to stop listening for the callbacks, make sure that the user removes the listener to prevent memory leakage.
 
 ```objective-c
 - (void)viewDidLoad
@@ -436,7 +436,7 @@ To monitor the chat group events, you can listen for the callbacks in the `Agora
 // Occurs when a user is removed from the chat group allow list.
 - (void)groupWhiteListDidUpdate:(AgoraChatGroup *)aGroup removedWhiteListMembers:(NSArray *)aMembers
 
-// Occurs when all the group members are muted.
+// Occurs when all group members are muted.
 - (void)groupAllMemberMuteChanged:(AgoraChatGroup *)aGroup isAllMemberMuted:(BOOL)aMuted
 
 // Occurs when a chat group member is added to the admin list.
