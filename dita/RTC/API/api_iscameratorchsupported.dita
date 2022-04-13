@@ -16,7 +16,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)isCameraTorchSupported;</codeblock>
             <codeblock props="windows" outputclass="language-cpp">virtual bool isCameraTorchSupported() = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="unity" outputclass="language-csharp">public abstract int IsCameraTorchSupported();</codeblock>
             <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">Future&lt;bool?&gt; isCameraTorchSupported();</codeblock>
         </p>
@@ -25,7 +25,7 @@
    <p>该方法需要在相机启动（如通过调用 <xref keyref="startPreview" /> 或 <xref keyref="joinChannel2" /> 实现）后调用。</p>
             <note type="attention">
                 <ul>
-                <li props="windows">该方法仅适用于 Android 和 iOS。</li>
+                <li props="windows unity">该方法仅适用于 Android 和 iOS。</li>
                 <li>一般情况下，App 默认开启前置摄像头，因此如果你的前置摄像头不支持闪光灯常开，直接使用该方法会返回 <ph keyref="false" />。
                     如果需要检查后置摄像头是否支持闪光灯常开，需要先使用 <xref keyref="switchCamera" /> 切换摄像头，再使用该方法。</li>
                 </ul></note>
