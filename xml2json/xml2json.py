@@ -1170,6 +1170,8 @@ def replace_newline():
 
     replaced_file_text = re.sub('"": ""', '', replaced_file_text)
 
+
+    replaced_file_text = re.sub('id="callback_iaudioframeobserverbase_', 'id="callback_iaudioframeobserver_', replaced_file_text)
     
     # ------------------ Special processing for Flutter classes ------------------------------------------
     
