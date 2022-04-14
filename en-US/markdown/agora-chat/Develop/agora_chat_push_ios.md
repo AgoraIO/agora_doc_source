@@ -8,7 +8,7 @@ When a user closes the app and goes offline, Agora Chat pushes notifications to 
 
 The following figure shows the basic workflow of Agora Chat:
 
-![](https://web-cdn.agora.io/docs-files/1647946470817)
+![](https://web-cdn.agora.io/docs-files/1649907965723)
 
 ## Prerequisites
 
@@ -17,7 +17,9 @@ Before proceeding, ensure that you meet the following requirements:
 - An [Agora project](https://docs.agora.io/en/AgoraPlatform/get_appid_token?platform=AllPlatforms#create-an-agora-project) with Agora Chat enabled. To enable the Agora Chat service for private BETA, contact support@agora.io.
 - Xcode, preferably the latest version.
 
-## Enable APNs<a name="step1"></a>
+## Integrate APN with Agora Chat
+
+### 1. Create push certificates<a name="step1"></a>
 
 Follow these steps to enable the APNs service:
 
@@ -60,19 +62,17 @@ Follow these steps to enable the APNs service:
         - **Provisioning Profile Name**: Fill in the name used to identify the profile.  
     5. Confirm the information, and click **Download** to generate the Provisioning Profile file.
 
-## Upload push certificates
+### 2. Upload push certificates
 
 Follow the steps to upload the certificates to Agora Console:
 
 1. Log in to [Agora Console](https://console.agora.io/), and click **Project Management** in the left navigation bar.
 
 2. In the **Project Management** page, select the project item used to enable Agora Chat, and click **Config** in the **Action** column.  
-![](https://web-cdn.agora.io/docs-files/1647923143179)
 
 3. Add `/chat` after the URL of the project config page, and press **Enter**.
 
 4. In the **Push Notifications** module, click **Add Push Certificate**.
-![](https://web-cdn.agora.io/docs-files/1647923153068)
 
 5. In the pop-up window, select the **APPLE** tab, and configure the following fields:
    - **Bind ID**: Fill in the [bundle ID](#step1-2) specified when the App ID was created.
@@ -80,11 +80,13 @@ Follow the steps to upload the certificates to Agora Console:
    - **Certificate Name**: Fill in the [name](#step1-4) specified when the certificate was exported.
    - **Certificate Secret**: Fill in the [secret](#step1-4) specified when the certificate was exported.
    - **Upload**: Upload the [certificate](#step1-4) exported.
-   - **Environment**: Select **Development**or **Production Environment**. Upload the `p12` file for the development and production environments in turn.
+   - **Environment**: Select **Development** or **Production Environment**. Upload the `p12` file for the development and production environments in turn.
 
     Click **Save** to add the push certificate.
 
-## Set up push notifications
+![](https://web-cdn.agora.io/docs-files/1649907692419)
+
+## 3. Enable APN in Agora Chat SDK
 
 1. Open Xcode, and select **TARGETS** > **Capability** > **Push Notifications** to enable push notifications.
 
@@ -122,9 +124,11 @@ Follow the steps to upload the certificates to Agora Console:
 }
 ```
 
-4. Configure the notification attributes, including the display name, the display style, and the do-not-disturb feature.
+## Set up push notifications
 
-**Set the display name**
+After integrating APN with Agora Chat, you can specify the notification attributes, including the display name, the display style, and the do-not-disturb feature.
+
+### Set the display name
 
 The following sample code specifies whether to display the username of the sender in push notifications:
 
@@ -137,7 +141,7 @@ The following sample code specifies whether to display the username of the sende
 }];
 ```
 
-**Set the display style**
+### Set the display style
 
 The following sample code specifies whether to display the message details in push notifications:
 
@@ -155,7 +159,7 @@ The following sample code specifies whether to display the message details in pu
 | :----------- | :----------------------------------------------------------- |
 | `DisplayStyle` | The display style of push notifications:<li>`AgoraPushDisplayStyleSimpleBanner`: Displays "You have a new message".<li>`AgoraPushDisplayStyleMessageSummary`：Displays the message details. |
 
-**Set a chat group to do-not-disturb mode**
+### Set a chat group to do-not-disturb mode
 
 After you set a group to do-not-disturb mode, you do not receive push notifications from this group when you go offline.  
 The following sample code sets the specified groups to do-not-disturb mode:
@@ -174,7 +178,7 @@ The following sample code sets the specified groups to do-not-disturb mode:
 | :------- | :------------- |
 | `groupIds` | The IDs of groups. |
 
-**Retrieve the do-not-disturb group list**
+### Retrieve the do-not-disturb group list
 
 The following sample code retrieves the list of do-not-disturb groups:
 
@@ -186,7 +190,7 @@ NSArray<NSString*>* groupIds = [AgoraChatClient.sharedClient.pushManager noPushG
 | :------- | :--------------------- |
 | `groupIds` | The list of group IDs. |
 
-**Set a user to do-not-disturb mode**
+### Set a user to do-not-disturb mode
 
 After you set a user to do-not-disturb mode, you do not receive push notifications from this user when you go offline.  
 The following sample code sets the specified users to do-not-disturb mode:
@@ -203,7 +207,7 @@ The following sample code sets the specified users to do-not-disturb mode:
 | :------ | :----------- |
 | `userIds` | The IDs of users. |
 
-**Retrieve the do-not-disturb user list**
+### Retrieve the do-not-disturb user list
 
 The following sample code retrieves the list of do-not-disturb users:
 
@@ -232,7 +236,7 @@ if (aError)
 | `start` | Int | The start time of the do-not-disturb time period. The value range is [0,24]. Unit: hours. |
 | `end`   | Int | The end time of the do-not-disturb time period. The value range is [0,24]. Unit: hours. |
 
-**Enable push notifications**
+### Enable push notifications
 
 The following sample code enables push notifications:
     
@@ -244,7 +248,7 @@ if (aError)
 }
 ```
 
-**Retrieve the attributes of push notifications**
+### Retrieve the attributes of push notifications
 
 The following sample code retrieves the attributes of push notifications:
 

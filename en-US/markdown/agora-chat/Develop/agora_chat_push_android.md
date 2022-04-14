@@ -6,12 +6,12 @@ Agora Chat supports the integration of Google Firebase Cloud Messaging (FCM). Th
 
 ![Set up Push Notifications (Android)](https://web-cdn.agora.io/docs-files/1649843666791)
 
-Assume that User A sends messages to User B, and User B goes offline. Agora Chat server pushes notifications to the device of User B via FCM, and temporarily stores these messages. Once User B comes back online, Agora Chat SDK pulls the messages from the server, and pushes the messages to User B using persistent connections.
+Assume that User A sends a message to User B, and User B goes offline. Agora Chat server pushes a notification to the device of User B via FCM, and temporarily stores this message. Once User B comes back online, Agora Chat SDK pulls the message from the server, and pushes the message to User B using persistent connections.
 
 ## Prerequisites
 
 Before proceeding, ensure that you meet the following requirements:
-- A valid [Agora Account](https://docs.agora.io/en/AgoraPlatform/get_appid_token?platform=AllPlatforms#create-an-agora-account).  
+- An [Agora Account](https://docs.agora.io/en/AgoraPlatform/get_appid_token?platform=AllPlatforms#create-an-agora-account).  
 - An [Agora project](https://docs.agora.io/en/AgoraPlatform/get_appid_token?platform=AllPlatforms#create-an-agora-project) with Agora Chat enabled. To enable the Agora Chat service for private BETA, contact support@agora.io.
 
 ## Integrate FCM with Agora Chat
@@ -28,13 +28,15 @@ This section guides you through how to integrate FCM with Agora Chat.
 
 4. In the **Add Firebase to your Android app** page, perform the following operations:
     1. In the **Register app** step, enter a Android package name, app nickname (optional), and debug signing certificate SHA-1 (optional), and click **Register app**.
-    2. In the **Download google-services.json** step, download `google-services.json`, move this file into your Android app module root directory as prompted, and click **Next**.
-    3. In the **Add Firebase SDK** step, modify your `build.gradle` files to use Firebase as prompted, and click **Next**.
+    2. In the **Download google-services.json** step, download `google-services.json`, move this file into your Android app module root directory, and click **Next**.
+    3. In the **Add Firebase SDK** step, modify your `build.gradle` files to use Firebase, and click **Next**.
     4. In the **Next steps** step, click **Continue to console** to go back to the project page.
 
 5. In the project page, click the Android project you have created.
 
 6. In the **Project settings** page, select the **Cloud Messaging** tab, and locate the **Server key** and **Sender ID**.<a name="token"></a>
+
+![](https://web-cdn.agora.io/docs-files/1649906356504)
 
 ### 2. Upload FCM certificate to Agora Console
 
@@ -50,6 +52,8 @@ This section guides you through how to integrate FCM with Agora Chat.
   - **Certificate Name**: Fill in the [Sender ID](#token).
   - **Push Secret**: Fill in the [Server Key](#token).
 
+![](https://web-cdn.agora.io/docs-files/1649906171334)
+
 ### 3. Enable FCM in Agora Chat
 
 1. In the `build.gradle` file of your project, configure dependencies on the FCM library. <a name="integrate"> </a>
@@ -57,14 +61,14 @@ This section guides you through how to integrate FCM with Agora Chat.
 ```java
 dependencies {
     // ...
-    // FCM: Import the Firebase BoM
+    // FCM: Import the Firebase BoM.
     implementation platform('com.google.firebase:firebase-bom:28.4.1')
-    // FCM: Declare the dependencies for the Firebase Cloud Messaging
-    // When using the BoM, do not specify versions in Firebase library dependencies
+    // FCM: Declare the dependencies for the Firebase Cloud Messaging.
+    // When using the BoM, do not specify versions in Firebase library dependencies.
     implementation 'com.google.firebase:firebase-messaging'
 }
 ```
->**Note**: For Gradle 5.0 and later, BoM is automatically enabled, whereas you need to enable the BoM feature for earlier versions of Gradle. For details, see [Firebase Android BoM](https://firebase.google.cn/docs/android/learn-more#bom). For the latest version of BoM, see: [Firebase Android SDK Release Notes](https://firebase.google.cn/support/release-notes/android).
+>**Note**: For Gradle 5.0 and later, BoM is automatically enabled, whereas for earlier versions of Gradle, you need to enable the BoM feature. See [Firebase Android BoM](https://firebase.google.cn/docs/android/learn-more#bom) and [Firebase Android SDK Release Notes](https://firebase.google.cn/support/release-notes/android) for details.
 
 2. Sync project with gradle files, extend `FirebaseMessagingService`, and register `FirebaseMessagingService` in the `AndroidManifest.xml` file of your project.
 
@@ -120,7 +124,7 @@ FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteL
             EMLog.d("PushClient", "Fetching FCM registration token failed:"+task.getException());
             return;
         }
-        // Get new FCM registration token.
+        // Get a new FCM registration token.
         String token = task.getResult();
         EMLog.d("FCM", token);
         ChatClient.getInstance().sendFCMTokenToServer(token);
@@ -130,7 +134,7 @@ FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteL
 
 5. Listen for device token generation.
 
-Rewrite the `onNewToken` callback of `FirebaseMessagingService`. Once the new device token is generated, this callback passes the token to Agora Chat SDK at the earliest opportunity.
+Rewrite the `onNewToken` callback of `FirebaseMessagingService`. Once a device token is generated, this callback passes the new device token to Agora Chat SDK at the earliest opportunity.
 
 ```java
 @Override
@@ -153,9 +157,12 @@ The following sample code specifies whether to display the username of the sende
 
 ```java
 // Asynchronous processing is required.
-// Set pushNickname to the display name of the sender.
+// Set updatePushNickname to the display name of the sender.
 ChatClient.getInstance().pushManager().updatePushNickname("pushNickname");
 ```
+| Parameter              | Description                   |
+| ---------------- | ---------------------- |
+| `updatePushNickname`   | The display name of the sender. |
 
 ### Set the display style<a name="style"></a> 
 
@@ -163,7 +170,6 @@ The following sample code specifies whether to display the message details in pu
 
 ```java
 // Set DisplayStyle to SimpleBanner.
-// DisplayStyle is an enum.
 PushManager.DisplayStyle displayStyle = PushManager.DisplayStyle.SimpleBanner;
 // Asynchronous processing is required.
 ChatClient.getInstance().pushManager().updatePushDisplayStyle(displayStyle);
@@ -171,8 +177,7 @@ ChatClient.getInstance().pushManager().updatePushDisplayStyle(displayStyle);
 
 | Parameter              | Description                   |
 | ---------------- | ---------------------- |
-| `SimpleBanner`   | Displays "You have a new message". |
-| `MessageSummary` | Displays the message details.         |
+| `DisplayStyle`   | The display style of push notifications:<li>`SimpleBanner`: Displays "You have a new message".<li>`MessageSummary`: Displays the message details. |
 
 ### Set a chat group to do-not-disturb mode
 
@@ -189,7 +194,7 @@ ChatClient.getInstance().pushManager().updatePushServiceForGroup(groupIds, true)
 ```
 | Parameter              | Description                   |
 | ---------------- | ---------------------- |
-| `groupIds`   | The ID of groups. |
+| `groupIds`   | The IDs of groups. |
 
 ### Retrieve the do-not-disturb group list
 
@@ -202,7 +207,7 @@ List<String> noPushGroups = ChatClient.getInstance().pushManager().getNoPushGrou
 ```
 | Parameter              | Description                   |
 | ---------------- | ---------------------- |
-| `noPushGroup`   | Stores the IDs of the groups that are not allowed to push notifications. |
+| `noPushGroup`   | The IDs of the groups that are not allowed to push notifications. |
 
 ### Set a user to do-not-disturb mode
 
@@ -230,7 +235,7 @@ List<String> noPushUsers = ChatClient.getInstance().pushManager().getNoPushUsers
 
 | Parameter              | Description                   |
 | ---------------- | ---------------------- |
-| `noPushUsers`   | Stores the usernames that are not allowed to push notifications. |
+| `noPushUsers`   | The usernames that are not allowed to push notifications. |
 
 ### Set a do-not-disturb time period
 
@@ -248,7 +253,7 @@ ChatClient.getInstance().pushManager().disableOfflinePush(start, end);
 | `start` | int | The start time of the do-not-disturb time period. The value range is [0,24]. Unit: hours. |
 | `end`   | int | 	The end time of the do-not-disturb time period. The value range is [0,24]. Unit: hours. |
 
-Assume that you set `start` to `22`, and set `end` to `7`. You do not receive push notifications from 22 pm to 7 am.
+Assume that you set `start` to `22`, and set `end` to `7`. You do not receive push notifications from 22pm to 7am.
 
 ### Enable push notifications
 
@@ -261,7 +266,7 @@ ChatClient.getInstance().pushManager().enableOfflinePush();
 
 ### Retrieve the attributes of push notifications <a name="getPushOptions"></a>
 
-The following sample code retrieves the attributes of push notifications from the server
+The following sample code retrieves the attributes of push notifications from the server:
 
 ```java
 // Asynchronous processing is required.
@@ -275,13 +280,13 @@ PushConfigs pushConfigs = ChatClient.getInstance().pushManager().getPushConfigsF
 | `getDisplayStyle()`       | Whether to display the message details in push notifications.                                               |
 | `getSilentModeStart()` | The start time of the do-not-disturb time period.                                       |
 | `getSilentModeEnd()` | The end time of the do-not-disturb time period.                                       |
-| `silentModeEnabled()` | Whether to enable the do-not-disturb feature. If the do-not-disturb time period is specified, returns `YES`.|
+| `silentModeEnabled()` | Whether to enable the do-not-disturb feature. If the do-not-disturb time period is specified, this field returns `YES`.|
 
 ### Parse push notifications
 
 To receive push notifications when offline, you must rewrite the `onMessageReceived` callback and act according to the received `RemoteMessage` object.
 
-The following sample code listens for the `onMessageReceived` callback and receives the `remoteMessage` object:
+The following sample code listens for the `onMessageReceived` callback:
 
 ```java
 @Override
