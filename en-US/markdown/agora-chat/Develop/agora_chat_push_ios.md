@@ -86,7 +86,7 @@ Follow the steps to upload the certificates to Agora Console:
 
 ![](https://web-cdn.agora.io/docs-files/1649907692419)
 
-## 3. Enable APN in Agora Chat SDK
+### 3. Enable APN in Agora Chat SDK
 
 1. Open Xcode, and select **TARGETS** > **Capability** > **Push Notifications** to enable push notifications.
 
