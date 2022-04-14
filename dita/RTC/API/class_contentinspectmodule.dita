@@ -18,13 +18,24 @@
     type = kContentInspectInvalid;
     interval = 0;
   }
-};</codeblock> </section>
+};</codeblock><codeblock props="flutter" outputclass="language-dart">class ContentInspectModule {
+      final int type;
+    
+      final int interval;
+    
+      const ContentInspectModule({this.type = 0, this.interval = 0});
+    
+      factory ContentInspectModule.fromJson(Map&lt;String, dynamic&gt; json) =>
+          _$ContentInspectModuleFromJson(json);
+    
+      Map&lt;String, dynamic&gt; toJson() => _$ContentInspectModuleToJson(this);
+    }</codeblock> </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
                 <pt>type</pt>
-                <pd props="android apple windows">内容审核模块的类型。详见 <xref keyref="ContentInspectType"/>。</pd>
+                <pd props="android apple windows flutter">内容审核模块的类型。详见 <xref keyref="ContentInspectType"/>。</pd>
                 <pd props="unity"><p>内容审核模块的类型。<ul>
                     <li>0: （默认）该功能模块无实际功能。请不要设为该值。</li>
                     <li>1: 鉴黄。SDK 会对本地用户发送的视频进行截图、鉴黄，并将截图和审核结果上传。</li>
