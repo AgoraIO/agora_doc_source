@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_rtcimage">
-    <title> <ph keyref="RtcImage"/> </title>
+    <title> <ph keyref="RtcImage" /> </title>
     <shortdesc id="short"> <ph id="shortdesc">Image properties.</ph> </shortdesc>
     <refbody>
         <section id="prototype">
@@ -109,7 +109,7 @@
 
     public AgoraImage() {
     }
-}</codeblock>
+}</codeblock> 
             <codeblock props="unity" outputclass="language-cpp">typedef struct RtcImage {
     RtcImage() :
        url(NULL),
@@ -132,7 +132,7 @@
     height: number,
     url: string
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">class AgoraImage {
 
   String url;
@@ -161,9 +161,7 @@
             <p>This class sets the properties of the watermark and background images in the live video.</p>
         </section>
         <section id="parameters">
-            <title> <text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /> </title>
+            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>
             <parml>
             <plentry>
                 <pt>url</pt>
@@ -191,8 +189,7 @@
             </plentry>
             <plentry>
                 <pt>zOrder</pt>
-                <pd props="rtc-ng"
-                    >The layer index of the video frame. An integer. The value range is [0, 100]. 1 represents the lowest layer. 100 represents the top layer.</pd>
+                <pd props="rtc-ng">The layer index of the video frame. An integer. The value range is [0, 100]. 1 represents the lowest layer. 100 represents the top layer.</pd>
                 <pd props="rtc">
                     <p>The layer number of the watermark or background image.</p>
                     <p>When you use the watermark array to add a watermark or multiple watermarks, you must pass a value to <parmname>zOrder</parmname> in the range [1,255]; otherwise, the SDK reports an error. In other cases, <parmname>zOrder</parmname> can optionally be passed in the range [0,255], with 0 being the default value. 0 means the bottom layer and 255 means the top layer. </p>
