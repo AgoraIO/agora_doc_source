@@ -5,6 +5,33 @@
     <shortdesc id="short"><ph id="shortdesc">频道媒体设置选项。</ph></shortdesc>
     <refbody>
         <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="unity" outputclass="language-csharp">public class ChannelMediaOptions {
+        public bool publishCameraTrack { set; get; }
+        public bool publishSecondaryCameraTrack { set; get; }
+        public bool publishAudioTrack { set; get; }
+        public bool publishScreenTrack { set; get; }
+        public bool publishSecondaryScreenTrack { set; get; }
+        public bool publishCustomAudioTrack { set; get; }
+        public bool publishCustomAudioTrackEnableAec { set; get; }
+        public bool publishDirectCustomAudioTrack { set; get; }
+        public bool publishCustomVideoTrack { set; get; }
+        public bool publishEncodedVideoTrack { set; get; }
+        public bool publishMediaPlayerAudioTrack { set; get; }
+        public bool publishMediaPlayerVideoTrack { set; get; }
+        public bool publishTrancodedVideoTrack { set; get; }
+        public bool autoSubscribeAudio { set; get; }
+        public bool autoSubscribeVideo { set; get; }
+        public bool enableAudioRecordingOrPlayout { set; get; }
+        public int publishMediaPlayerId { set; get; }
+        public CLIENT_ROLE_TYPE clientRoleType { set; get; }
+        public AUDIENCE_LATENCY_LEVEL_TYPE audienceLatencyLevel { set; get; }
+        public VIDEO_STREAM_TYPE defaultVideoStreamType { set; get; }
+        public CHANNEL_PROFILE_TYPE channelProfile { set; get; }
+        public int audioDelayMs { set; get; }
+        public int mediaPlayerAudioDelayMs { set; get; }
+        public string token { set; get; }
+    };</codeblock></p>
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class ChannelMediaOptions {
   public Boolean publishCameraTrack;
@@ -75,32 +102,6 @@
   ~ChannelMediaOptions() {}
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public class ChannelMediaOptions {
-        public bool publishCameraTrack { set; get; }
-        public bool publishSecondaryCameraTrack { set; get; }
-        public bool publishAudioTrack { set; get; }
-        public bool publishScreenTrack { set; get; }
-        public bool publishSecondaryScreenTrack { set; get; }
-        public bool publishCustomAudioTrack { set; get; }
-        public bool publishCustomAudioTrackEnableAec { set; get; }
-        public bool publishDirectCustomAudioTrack { set; get; }
-        public bool publishCustomVideoTrack { set; get; }
-        public bool publishEncodedVideoTrack { set; get; }
-        public bool publishMediaPlayerAudioTrack { set; get; }
-        public bool publishMediaPlayerVideoTrack { set; get; }
-        public bool publishTrancodedVideoTrack { set; get; }
-        public bool autoSubscribeAudio { set; get; }
-        public bool autoSubscribeVideo { set; get; }
-        public bool enableAudioRecordingOrPlayout { set; get; }
-        public int publishMediaPlayerId { set; get; }
-        public CLIENT_ROLE_TYPE clientRoleType { set; get; }
-        public AUDIENCE_LATENCY_LEVEL_TYPE audienceLatencyLevel { set; get; }
-        public VIDEO_STREAM_TYPE defaultVideoStreamType { set; get; }
-        public CHANNEL_PROFILE_TYPE channelProfile { set; get; }
-        public int audioDelayMs { set; get; }
-        public int mediaPlayerAudioDelayMs { set; get; }
-        public string token { set; get; }
-    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
@@ -118,6 +119,7 @@
             <plentry>
                 <pt>publishCameraTrack</pt>
                 <pd>设置是否发布摄像头采集的视频：
+                    
                     <ul id="ul_vx5_np5_3qb">
                     <li><codeph><ph keyref="true"
                         /></codeph>：（默认）发布摄像头采集的视频。</li>
@@ -127,6 +129,7 @@
             <plentry props="windows unity">
                 <pt>publishSecondaryCameraTrack</pt>
                 <pd>设置是否发布第二个摄像头采集的视频：
+                    
                     <ul>
                     <li><codeph><ph keyref="true"
                         /></codeph>：（默认）发布第二个摄像头采集的视频。</li>
@@ -137,6 +140,7 @@
             <plentry>
                 <pt>publishAudioTrack</pt>
                 <pd>设置是否发布采集到的音频：
+                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：（默认）发布采集到的音频。</li>
                     <li><codeph><ph keyref="false"/></codeph>：不发布采集到的音频。</li>
@@ -146,6 +150,7 @@
                 <pt>publishScreenTrack</pt>
                 <pd>
                     <p>设置是否发布屏幕采集的视频：
+                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：发布屏幕采集到的视频。</li>
                     <li><codeph><ph keyref="false"
@@ -157,6 +162,7 @@
                 <pt>publishSecondaryScreenTrack</pt>
                 <pd>
                     <p>设置是否发布第二个屏幕采集的视频：
+                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：发布第二个屏幕采集到的视频。</li>
                     <li><codeph><ph keyref="false"
@@ -168,6 +174,7 @@
                 <pt>publishTrancodedVideoTrack</pt>
                 <pd>
                     <p>设置是否发布本地的转码视频：
+                    
                     <ul>
                     <li><codeph><ph keyref="true"/>：发布本地的转码视频。</codeph></li>
                     <li><codeph><ph keyref="false"
@@ -178,16 +185,18 @@
             <plentry>
                 <pt>publishCustomAudioTrack</pt>
                 <pd>设置是否发布自定义采集的音频：
+                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：发布自定义采集到的音频。</li>
                     <li><codeph><ph keyref="false"
                         /></codeph>：（默认）不发布自定义采集到的音频。</li>
                     </ul></pd>
             </plentry>
-            <plentry>
+            <plentry props="native">
                 <pt>publishCustomAudioSourceId</pt>
                 <pd>待发布的自定义音频源的 ID。默认值为 0。
                         
+                    
                     <p>如果你已在 <xref keyref="setExternalAudioSource2"
                     /> 中设置了 <parmname>sourceNumber</parmname> 大于 1，SDK 会创建对应数量的自采集音频轨道，并从 0 开始为每一个音频轨道分配一个 ID。</p>
                 </pd>
@@ -195,6 +204,7 @@
             <plentry props="windows unity">
                 <pt>publishCustomAudioTrackEnableAec</pt>
                 <pd>设置发布自定义采集的音频时是否启用 AEC：
+                    
                     <ul>
                     <li><codeph><ph keyref="true"
                         /></codeph>：发布自定义采集的音频时启用 AEC。</li>
@@ -205,6 +215,7 @@
             <plentry>
                 <pt>publishCustomVideoTrack</pt>
                 <pd>设置是否发布自定义采集的视频：
+                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：发布自定义采集的视频。</li>
                     <li><codeph><ph keyref="false"
@@ -214,6 +225,7 @@
             <plentry>
                 <pt>publishEncodedVideoTrack</pt>
                 <pd>设置是否发布编码后的视频：
+                    
                     <ul id="ul_ljg_4q5_3qb">
                     <li><codeph><ph keyref="true"/></codeph>：发布编码后的视频 。</li>
                     <li><codeph><ph keyref="false"
@@ -223,6 +235,7 @@
             <plentry>
                 <pt>publishMediaPlayerAudioTrack</pt>
                 <pd>设置是否发布媒体播放器的音频： 
+                    
                     <ul id="ul_gr3_rq5_3qb">
                     <li><codeph><ph keyref="true"/></codeph>：发布媒体播放器的音频。</li>
                     <li><codeph><ph keyref="false"
@@ -232,6 +245,7 @@
             <plentry>
                 <pt>publishMediaPlayerVideoTrack</pt>
                 <pd>设置是否发布媒体播放器的视频： 
+                    
                     <ul id="ul_gtd_tq5_3qb">
                     <li><codeph><ph keyref="true"/></codeph>：发布媒体播放器的视频。</li>
                     <li><codeph><ph keyref="false"
@@ -241,6 +255,7 @@
             <plentry>
                 <pt>autoSubscribeAudio</pt>
                 <pd>设置是否自动订阅所有音频流：  
+                    
                     <ul id="ul_gxf_vq5_3qb">
                     <li><codeph><ph keyref="true"/></codeph>：（默认）自动订阅所有音频流。</li>
                     <li><codeph><ph keyref="false"/></codeph>：不自动订阅任何音频流。</li>
@@ -249,6 +264,7 @@
             <plentry>
                 <pt>autoSubscribeVideo</pt>
                 <pd>设置是否自动订阅所有视频流：  
+                    
                     <ul id="ul_gfh_xq5_3qb">
                     <li><codeph><ph keyref="true"/></codeph>：（默认）自动订阅所有视频流。</li>
                     <li><codeph><ph keyref="false"/></codeph>：不自动订阅任何视频流。</li>
@@ -257,6 +273,7 @@
             <plentry>
                 <pt>enableAudioRecordingOrPlayout</pt>
                 <pd>设置是否开启音频录制或播放：
+                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：（默认）开启音频录制和播放。</li>
                     <li><codeph><ph keyref="false"/></codeph>：不开启音频录制或播放。</li>
@@ -291,6 +308,7 @@
                 <pt>publishCustomAudioTrackAec</pt>
                 <pd>设置是否发布经过外部回声消除模块处理的音频帧。
                         
+                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：发布。</li>
                     <li><codeph><ph keyref="false"/></codeph>：不发布。</li>

@@ -15,11 +15,12 @@
             <p outputclass="codeblock" props="rtc-ng">
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnConnectionInterrupted(RtcConnection connection) {}</codeblock></p>
             <p outputclass="codeblock" props="rtc">
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnConnectionInterrupted()</codeblock></p>
+            <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onConnectionInterrupted() {}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngineConnectionDidInterrupted:(AgoraRtcEngineKit * _Nonnull)engine;</codeblock>
             <codeblock props="windows" outputclass="language-cpp">virtual void onConnectionInterrupted() {}</codeblock>
             <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.CONNECTION_INTERRUPTED, cb: () =&gt; void): this;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnConnectionInterrupted()</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">EmptyCallback? connectionInterrupted;</codeblock> </p>
         </section>
@@ -31,7 +32,6 @@
             </dlentry>
             </dl>
             <p>SDK 在和服务器建立连接后，失去了网络连接超过 4 秒，会触发该回调。在触发事件后，SDK 会主动重连服务器，所以该事件可以用于 UI 提示。该回调与 <xref keyref="onConnectionLost"/> 的区别是： 
-            
             <ul>
             <li><apiname keyref="onConnectionInterrupted"/> 回调一定是发生在成功加入频道后，且 SDK
                         刚失去和服务器连接超过 4 秒时触发。</li>
@@ -47,9 +47,9 @@
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry conkeyref="joinChannelEx/connection" props="unity">
-                <pt/>
-                <pd/>
+            <plentry props="rtc-ng">
+                <pt props="unity">connection</pt>
+                <pd props="unity">Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
             </plentry>
             </parml> </section>
     </refbody>

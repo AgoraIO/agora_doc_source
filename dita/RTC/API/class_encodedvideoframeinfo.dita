@@ -18,7 +18,6 @@
             rotation = VIDEO_ORIENTATION.VIDEO_ORIENTATION_0;
             trackId = 0;
             renderTimeMs = 0;
-            internalSendTs = 0;
             uid = 0;
             streamType = VIDEO_STREAM_TYPE.VIDEO_STREAM_HIGH;
             
@@ -34,7 +33,6 @@
             rotation = rhs.rotation;
             trackId = rhs.trackId;;
             renderTimeMs = rhs.renderTimeMs;
-            internalSendTs = rhs.internalSendTs;
             uid = rhs.uid;
             streamType = rhs.streamType;
         }
@@ -47,7 +45,6 @@
         public VIDEO_ORIENTATION rotation { set; get; }
         public int trackId { set; get; }  
         public int64_t renderTimeMs { set; get; }
-        public uint64_t internalSendTs { set; get; }
         public uint uid { set; get; }
         public VIDEO_STREAM_TYPE streamType { set; get; }
     }</codeblock></p>
@@ -188,6 +185,7 @@
                 <pd props="android">视频编解码类型：
                     
                     
+                    
                     <ul id="ul_hkm_4qy_4qb">
                     <li>1：VP8。</li>
                     <li>2：（默认）H264。</li>
@@ -214,8 +212,6 @@
                 <pd props="windows unity">视频帧的类型，详见 <xref
                     keyref="VIDEO_FRAME_TYPE"/>。</pd>
                 <pd props="android">视频帧的类型：
-                    
-                    
                     <ul id="ul_djl_sqy_4qb">
                     <li>0：（默认）<ph keyref="VIDEO_FRAME_TYPE_BLANK_FRAME"
                         />，空白帧。</li>
@@ -231,9 +227,6 @@
                 <pd props="windows unity">视频帧的旋转信息，详见 <xref
                     keyref="VIDEO_ORIENTATION"/>。</pd>
                 <pd props="android">视频帧的旋转信息，取值如下：
-                        
-                    
-                    
                     <ul>
                     <li>0：（默认）不旋转。</li>
                     <li>90：顺时针旋转 90 度。</li>

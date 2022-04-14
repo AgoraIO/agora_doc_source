@@ -39,7 +39,7 @@
             <p>你需要在该方法中设置强拍和弱拍的文件路径、每小节的拍数、节拍速度以及是否将节拍器的声音发送至远端。</p>
             <note type="attention" id="rhythm_play">
             <ul>
-            <li props="windows">该方法仅适用于 Android 和 iOS。</li>
+            <li props="windows unity">该方法仅适用于 Android 和 iOS。</li>
             <li>开启虚拟节拍器后，SDK 会从头开始播放指定的音频文件，并根据你在 <xref keyref="AgoraRhythmPlayerConfig"/> 中设置的 <parmname>beatsPerMinute</parmname> 控制每个文件的播放时长。例如，将 <parmname>beatsPerMinute</parmname> 设为 <codeph>60</codeph>，则 SDK 会 1 秒播放 1 个节拍。如果文件时长超过了节拍时长，则 SDK 只播放节拍时长部分的音频。</li>
             </ul></note> </section>
         <section id="parameters">
@@ -65,6 +65,7 @@
             <ul>
             <li>0: 方法调用成功</li>
             <li>&lt; 0: 方法调用失败
+                
                 
                 <ul>
                 <li>-22: 无法找到音频文件。请填写正确的 <parmname>sound1</parmname> 和 <parmname>sound2</parmname>。</li>

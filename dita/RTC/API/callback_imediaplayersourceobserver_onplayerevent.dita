@@ -13,9 +13,8 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnPlayerEvent(int playerId, MEDIA_PLAYER_EVENT @event, Int64 elapsedTime, string message) {}</codeblock>
-            </p>
-            <p outputclass="codeblock" props="rtc">
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnPlayerEvent(int playerId, MEDIA_PLAYER_EVENT @event, Int64 elapsedTime, string message) {}</codeblock> </p>
+            <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">void onPlayerEvent(Constants.MediaPlayerEvent eventCode, long elapsedTime, String message);
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">(void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol> _Nonnull)playerKit
@@ -26,7 +25,6 @@
             <codeblock props="windows" outputclass="language-cpp">virtual void onPlayerEvent(media::base::MEDIA_PLAYER_EVENT eventCode, int64_t elapsedTime, const char* message) = 0;
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
@@ -46,12 +44,15 @@
                 <pt props="unity">playerId</pt>
                 <pd props="unity">播放器 ID。</pd>
             </plentry>
-            <plentry>
-                <pt props="native">eventCode</pt>
-                <pt props="unity"><ph props="rtc-ng">@event</ph></pt>
+            <plentry props="native">
+                <pt>eventCode</pt>
                 <pd>播放器事件，详见 <xref keyref="MEDIA_PLAYER_EVENT"/>。</pd>
             </plentry>
-            <plentry>
+                <plentry props="rtc-ng">
+                    <pt props="unity">@event</pt>
+                    <pd props="unity">播放器事件，详见 <xref keyref="MEDIA_PLAYER_EVENT"/>。</pd>
+                </plentry>
+                <plentry>
                 <pt>elapsedTime</pt>
                 <pd>发生事件的时间 (毫秒)。</pd>
             </plentry>
