@@ -14,10 +14,26 @@
                     };</codeblock>
             </p>
             <p outputclass="codeblock" props="rtc">
-                <codeblock props="windows unity" outputclass="language-cpp">struct Packet {
+                <codeblock props="windows" outputclass="language-cpp">struct Packet {
 	const unsigned char* buffer;
 	unsigned int size;
 	};</codeblock>
+    <codeblock props="unity" outputclass="language-csharp">public class Packet
+    {
+        public Packet()
+        {
+            buffer = new byte[0];
+        }
+
+        public Packet(byte[] buffer, uint size)
+        {
+            this.buffer = buffer;
+            this.size = size;
+        }
+
+        public byte[] buffer { set; get; }
+        public uint size { set; get; }
+    }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript" />
                 <codeblock props="unity" outputclass="language-csharp" />
                 <codeblock props="rn" outputclass="language-typescript" />

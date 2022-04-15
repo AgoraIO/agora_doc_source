@@ -113,7 +113,7 @@
 
 - (instancetype _Nonnull)initWithWidth:(NSInteger)width height:(NSInteger)height frameRate:(AgoraVideoFrameRate)frameRate bitrate:(NSInteger)bitrate orientationMode:(AgoraVideoOutputOrientationMode)orientationMode;
 @end</codeblock>
-                <codeblock props="windows unity" outputclass="language-cpp">struct VideoEncoderConfiguration {
+                <codeblock props="windows" outputclass="language-cpp">struct VideoEncoderConfiguration {
     VideoDimensions dimensions;
     FRAME_RATE frameRate;
     int minFrameRate;
@@ -149,6 +149,63 @@
         , mirrorMode(VIDEO_MIRROR_MODE_AUTO)
     {}
     };</codeblock>
+    <codeblock props="unity" outputclass="language-csharp">public class VideoEncoderConfiguration
+    {
+        public VideoEncoderConfiguration()
+        {
+            dimensions = null;
+            frameRate = FRAME_RATE.FRAME_RATE_FPS_15;
+            minBitrate = -1;
+            bitrate = (int) BITRATE.STANDARD_BITRATE;
+            minBitrate = (int) BITRATE.DEFAULT_MIN_BITRATE;
+            orientationMode = ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE;
+            degradationPreference = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
+            mirrorMode = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_AUTO;
+        }
+
+        public VideoEncoderConfiguration(VideoDimensions dimensions,
+            FRAME_RATE frameRate = FRAME_RATE.FRAME_RATE_FPS_15, int minFrameRate = -1,
+            BITRATE bitrate = BITRATE.STANDARD_BITRATE, BITRATE minBitrate = BITRATE.DEFAULT_MIN_BITRATE,
+            ORIENTATION_MODE orientationMode = ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE,
+            DEGRADATION_PREFERENCE degradationPreference = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY,
+            VIDEO_MIRROR_MODE_TYPE mirrorMode = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_AUTO)
+        {
+            this.dimensions = dimensions ?? new VideoDimensions();
+            this.frameRate = frameRate;
+            this.minFrameRate = minFrameRate;
+            this.bitrate = (int) bitrate;
+            this.minBitrate = (int) minBitrate;
+            this.orientationMode = orientationMode;
+            this.degradationPreference = degradationPreference;
+            this.mirrorMode = mirrorMode;
+        }
+
+        public VideoEncoderConfiguration(int width, int height, FRAME_RATE frameRate = FRAME_RATE.FRAME_RATE_FPS_15,
+            int minFrameRate = -1, BITRATE bitrate = BITRATE.STANDARD_BITRATE,
+            BITRATE minBitrate = BITRATE.DEFAULT_MIN_BITRATE,
+            ORIENTATION_MODE orientationMode = ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE,
+            DEGRADATION_PREFERENCE degradationPreference = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY,
+            VIDEO_MIRROR_MODE_TYPE mirrorMode = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_AUTO)
+        {
+            dimensions = new VideoDimensions(width, height);
+            this.frameRate = frameRate;
+            this.minFrameRate = minFrameRate;
+            this.bitrate = (int) bitrate;
+            this.minBitrate = (int) minBitrate;
+            this.orientationMode = orientationMode;
+            this.degradationPreference = degradationPreference;
+            this.mirrorMode = mirrorMode;
+        }
+
+        public VideoDimensions dimensions { set; get; }
+        public FRAME_RATE frameRate { set; get; }
+        public int minFrameRate { set; get; }
+        public int bitrate { set; get; }
+        public int minBitrate { set; get; }
+        public ORIENTATION_MODE orientationMode { set; get; }
+        public DEGRADATION_PREFERENCE degradationPreference { set; get; }
+        public VIDEO_MIRROR_MODE_TYPE mirrorMode { set; get; }
+    }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">export interface VideoEncoderConfiguration {
     dimensions: VideoDimensions;
     frameRate: FRAME_RATE;
@@ -210,7 +267,7 @@
        <plentry>
   <pt>dimensions</pt>
   <pd>
-      <p props="android windows">视频编码的分辨率（px），详见 <xref keyref="VideoDimensions"/>。该参数用于衡量编码质量，以长 × 宽表示，默认值为 640 × 360。用户可以自行设置分辨率。</p>
+      <p props="android windows unity">视频编码的分辨率（px），详见 <xref keyref="VideoDimensions"/>。该参数用于衡量编码质量，以长 × 宽表示，默认值为 640 × 360。用户可以自行设置分辨率。</p>
       <p props="ios mac">视频编码的分辨率 (px)，用于衡量编码质量，以长x宽表示，默认值为 640 x 360。用户可以自行设置分辨率，也可以在如下列表中直接选择想要的分辨率：
           <ul>
               <li>AgoraVideoDimension120x120：视频分辨率为 120 * 120。</li>
@@ -490,7 +547,7 @@
            <pd><p props="android">发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。<ph props="rtc-ng">详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE" />。</ph>
                <ul conkeyref="setLocalRenderMode2/videomirrormodetype" props="rtc"><li/></ul>
            </p>
-               <p props="ios mac windows electron">发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE" />。</p>
+               <p props="ios mac windows electron unity">发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE" />。</p>
       <note type="attention">默认关闭镜像模式。</note>
   </pd>
        </plentry>

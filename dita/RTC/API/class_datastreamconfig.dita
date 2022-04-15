@@ -14,10 +14,25 @@
 @property (assign, nonatomic) BOOL ordered;
 @property (assign, nonatomic) BOOL syncWithAudio;
 @end</codeblock>
-                <codeblock props="windows unity" outputclass="language-cpp">struct DataStreamConfig {
+                <codeblock props="windows" outputclass="language-cpp">struct DataStreamConfig {
     bool syncWithAudio;
     bool ordered;
     };</codeblock>
+    <codeblock props="unity" outputclass="language-csharp">public class DataStreamConfig
+    {
+        public DataStreamConfig()
+        {
+        }
+
+        public DataStreamConfig(bool syncWithAudio, bool ordered)
+        {
+            this.syncWithAudio = syncWithAudio;
+            this.ordered = ordered;
+        }
+
+        public bool syncWithAudio { set; get; }
+        public bool ordered { set; get; }
+    }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">export interface DataStreamConfig {
   syncWithAudio: boolean;
   ordered: boolean;

@@ -87,7 +87,7 @@
 @property(assign, nonatomic) NSInteger captureFrameRate;
 @property(assign, nonatomic) AgoraCaptureBrightnessLevelType captureBrightnessLevel;
 @end</codeblock>
-            <codeblock props="windows unity" outputclass="language-cpp">struct LocalVideoStats {
+            <codeblock props="windows" outputclass="language-cpp">struct LocalVideoStats {
   int sentBitrate;
   int sentFrameRate;
   int encoderOutputFrameRate;
@@ -104,6 +104,49 @@
   int captureFrameRate;
   CAPTURE_BRIGHTNESS_LEVEL_TYPE captureBrightnessLevel;
 };</codeblock>
+<codeblock props="unity" outputclass="language-csharp">public class LocalVideoStats
+    {
+        public LocalVideoStats()
+        {
+        }
+
+        public LocalVideoStats(int sentBitrate, int sentFrameRate, int encoderOutputFrameRate,
+            int rendererOutputFrameRate, int targetBitrate, int targetFrameRate,
+            QUALITY_ADAPT_INDICATION qualityAdaptIndication, int encodedBitrate, int encodedFrameWidth,
+            int encodedFrameHeight, int encodedFrameCount, VIDEO_CODEC_TYPE codecType, ushort txPacketLossRate,
+            int captureFrameRate)
+        {
+            this.sentBitrate = sentBitrate;
+            this.sentFrameRate = sentFrameRate;
+            this.encoderOutputFrameRate = encoderOutputFrameRate;
+            this.rendererOutputFrameRate = rendererOutputFrameRate;
+            this.targetBitrate = targetBitrate;
+            this.targetFrameRate = targetFrameRate;
+            this.qualityAdaptIndication = qualityAdaptIndication;
+            this.encodedBitrate = encodedBitrate;
+            this.encodedFrameWidth = encodedFrameWidth;
+            this.encodedFrameHeight = encodedFrameHeight;
+            this.encodedFrameCount = encodedFrameCount;
+            this.codecType = codecType;
+            this.txPacketLossRate = txPacketLossRate;
+            this.captureFrameRate = captureFrameRate;
+        }
+
+        public int sentBitrate { set; get; }
+        public int sentFrameRate { set; get; }
+        public int encoderOutputFrameRate { set; get; }
+        public int rendererOutputFrameRate { set; get; }
+        public int targetBitrate { set; get; }
+        public int targetFrameRate { set; get; }
+        public QUALITY_ADAPT_INDICATION qualityAdaptIndication { set; get; }
+        public int encodedBitrate { set; get; }
+        public int encodedFrameWidth { set; get; }
+        public int encodedFrameHeight { set; get; }
+        public int encodedFrameCount { set; get; }
+        public VIDEO_CODEC_TYPE codecType { set; get; }
+        public ushort txPacketLossRate { set; get; }
+        public int captureFrameRate { set; get; }
+    }</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export interface LocalVideoStats {
      sentBitrate: number;
      sentFrameRate: number;

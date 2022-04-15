@@ -94,7 +94,7 @@
         audioCodecProfile(AUDIO_CODEC_PROFILE_LC_AAC) {}
 };</codeblock> </p>
             <p outputclass="codeblock" props="rtc">
-            <codeblock props="windows unity" outputclass="language-cpp">typedef struct LiveTranscoding {
+            <codeblock props="windows" outputclass="language-cpp">typedef struct LiveTranscoding {
     int width;
     int height;
     int videoBitrate;
@@ -132,6 +132,90 @@
     , audioChannels(1)
     {}
     } LiveTranscoding;</codeblock>
+    <codeblock props="unity" outputclass="language-csharp">public class LiveTranscoding
+    {
+        public LiveTranscoding()
+        {
+            width = 360;
+            height = 640;
+            videoBitrate = 400;
+            videoFramerate = 15;
+            lowLatency = false;
+            videoGop = 30;
+            videoCodecProfile = VIDEO_CODEC_PROFILE_TYPE.VIDEO_CODEC_PROFILE_HIGH;
+            backgroundColor = 0x000000;
+            videoCodecType = VIDEO_CODEC_TYPE_FOR_STREAM.VIDEO_CODEC_H264_FOR_STREAM;
+            userCount = 0;
+            transcodingUsers = new TranscodingUser[0];
+            transcodingExtraInfo = null;
+            metadata = null;
+            watermark = null;
+            backgroundImage = null;
+            audioSampleRate = AUDIO_SAMPLE_RATE_TYPE.AUDIO_SAMPLE_RATE_48000;
+            audioBitrate = 48;
+            audioChannels = 1;
+            audioCodecProfile = AUDIO_CODEC_PROFILE_TYPE.AUDIO_CODEC_PROFILE_LC_AAC;
+            advancedFeatures = new LiveStreamAdvancedFeature[0];
+            advancedFeatureCount = 0;
+        }
+
+        public LiveTranscoding(int width, int height, int videoBitrate, int videoFramerate, bool lowLatency,
+            int videoGop, VIDEO_CODEC_PROFILE_TYPE videoCodecProfile, uint backgroundColor,
+            VIDEO_CODEC_TYPE_FOR_STREAM videoCodecType, uint userCount, TranscodingUser[] transcodingUsers,
+            string transcodingExtraInfo, string metadata, RtcImage[] watermark, uint watermarkCount, RtcImage[] backgroundImage, uint backgroundImageCount,
+            AUDIO_SAMPLE_RATE_TYPE audioSampleRate, int audioBitrate, int audioChannels,
+            AUDIO_CODEC_PROFILE_TYPE audioCodecProfile, LiveStreamAdvancedFeature[] advancedFeatures,
+            uint advancedFeatureCount)
+        {
+            this.width = width;
+            this.height = height;
+            this.videoBitrate = videoBitrate;
+            this.videoFramerate = videoFramerate;
+            this.lowLatency = lowLatency;
+            this.videoGop = videoGop;
+            this.videoCodecProfile = videoCodecProfile;
+            this.backgroundColor = backgroundColor;
+            this.videoCodecType = videoCodecType;
+            this.userCount = userCount;
+            this.transcodingUsers = transcodingUsers;
+            this.transcodingExtraInfo = transcodingExtraInfo;
+            this.metadata = metadata;
+            this.watermark = watermark;
+            this.watermarkCount = watermarkCount;
+            this.backgroundImage = backgroundImage;
+            this.backgroundImageCount = backgroundImageCount;
+            this.audioSampleRate = audioSampleRate;
+            this.audioBitrate = audioBitrate;
+            this.audioChannels = audioChannels;
+            this.audioCodecProfile = audioCodecProfile;
+            this.advancedFeatures = advancedFeatures;
+            this.advancedFeatureCount = advancedFeatureCount;
+        }
+
+        public int width { set; get; }
+        public int height { set; get; }
+        public int videoBitrate { set; get; }
+        public int videoFramerate { set; get; }
+        public bool lowLatency { set; get; }
+        public int videoGop { set; get; }
+        public VIDEO_CODEC_PROFILE_TYPE videoCodecProfile { set; get; }
+        public uint backgroundColor { set; get; }
+        public VIDEO_CODEC_TYPE_FOR_STREAM videoCodecType { set; get; }
+        public uint userCount { set; get; }
+        public TranscodingUser[] transcodingUsers { set; get; }
+        public string transcodingExtraInfo { set; get; }
+        public string metadata { set; get; }
+        public RtcImage[] watermark { set; get; }
+        public uint watermarkCount { set; get; }
+        public RtcImage[] backgroundImage { set; get; }
+        public uint backgroundImageCount { set; get; }
+        public AUDIO_SAMPLE_RATE_TYPE audioSampleRate { set; get; }
+        public int audioBitrate { set; get; }
+        public int audioChannels { set; get; }
+        public AUDIO_CODEC_PROFILE_TYPE audioCodecProfile { set; get; }
+        public LiveStreamAdvancedFeature[] advancedFeatures { set; get; }
+        public uint advancedFeatureCount { set; get; }
+    }</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export interface LiveTranscoding {
     width: number;
     height: number;

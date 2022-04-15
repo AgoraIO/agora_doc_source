@@ -20,12 +20,32 @@
 @property (assign, nonatomic) NSUInteger expectedUplinkBitrate;
 @property (assign, nonatomic) NSUInteger expectedDownlinkBitrate;
 @end</codeblock>
-                <codeblock props="windows unity" outputclass="language-cpp">struct LastmileProbeConfig {
+                <codeblock props="windows" outputclass="language-cpp">struct LastmileProbeConfig {
     bool probeUplink;
     bool probeDownlink;
     unsigned int expectedUplinkBitrate;
     unsigned int expectedDownlinkBitrate;
     };</codeblock>
+    <codeblock props="unity" outputclass="language-csharp">public class LastmileProbeConfig
+    {
+        public LastmileProbeConfig()
+        {
+        }
+
+        public LastmileProbeConfig(bool probeUplink, bool probeDownlink, uint expectedUplinkBitrate,
+            uint expectedDownlinkBitrate)
+        {
+            this.probeUplink = probeUplink;
+            this.probeDownlink = probeDownlink;
+            this.expectedUplinkBitrate = expectedUplinkBitrate;
+            this.expectedDownlinkBitrate = expectedDownlinkBitrate;
+        }
+
+        public bool probeUplink { set; get; }
+        public bool probeDownlink { set; get; }
+        public uint expectedUplinkBitrate { set; get; }
+        public uint expectedDownlinkBitrate { set; get; }
+    }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">export interface LastmileProbeConfig {
     probeUplink: boolean;
     probeDownlink: boolean;

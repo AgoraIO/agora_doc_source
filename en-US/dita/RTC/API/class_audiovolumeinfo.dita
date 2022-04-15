@@ -40,12 +40,31 @@
 @property(assign, nonatomic) NSUInteger vad;
 @property(copy, nonatomic) NSString* channelId;
 </codeblock>
-                <codeblock props="windows unity" outputclass="language-cpp">struct AudioVolumeInfo {
+                <codeblock props="windows" outputclass="language-cpp">struct AudioVolumeInfo {
     uid_t uid;
     unsigned int volume;
     unsigned int vad;
     const char * channelId;
     };  </codeblock>
+    <codeblock props="unity" outputclass="language-csharp">public class AudioVolumeInfo
+    {
+        public AudioVolumeInfo()
+        {
+        }
+
+        public AudioVolumeInfo(uint uid, uint volume, uint vad, string channelId)
+        {
+            this.uid = uid;
+            this.volume = volume;
+            this.vad = vad;
+            this.channelId = channelId;
+        }
+
+        public uint uid { set; get; }
+        public uint volume { set; get; }
+        public uint vad { set; get; }
+        public string channelId { set; get; }
+    }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">export interface AudioVolumeInfo
     {
     uid: number,

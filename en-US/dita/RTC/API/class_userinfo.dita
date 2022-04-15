@@ -22,7 +22,7 @@
  @property(assign, nonatomic) NSUInteger uid;
  @property (copy, nonatomic) NSString * _Nullable userAccount;
  @end</codeblock>
-                <codeblock props="windows unity" outputclass="language-cpp">struct UserInfo {
+                <codeblock props="windows" outputclass="language-cpp">struct UserInfo {
                     uid_t uid;
                     char userAccount[MAX_USER_ACCOUNT_LENGTH];
                     UserInfo()
@@ -30,6 +30,22 @@
                     userAccount[0] = '\0';
                     }
                     };</codeblock>
+        <codeblock props="unity" outputclass="language-csharp">ublic class UserInfo
+    {
+        public UserInfo()
+        {
+            userAccount = "";
+        }
+
+        public UserInfo(uint uid = 0, string userAccount = "")
+        {
+            this.uid = uid;
+            this.userAccount = userAccount;
+        }
+
+        public uint uid { set; get; }
+        public string userAccount { set; get; }
+    }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">export interface UserInfo {
     uid: number;
     userAccount: string;

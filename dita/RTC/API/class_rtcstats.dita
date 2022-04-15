@@ -115,7 +115,7 @@
             <p outputclass="codeblock" props="rtc">
                 <codeblock props="android" outputclass="language-java"/>
                 <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows unity" outputclass="language-cpp">struct RtcStats {
+                <codeblock props="windows" outputclass="language-cpp">struct RtcStats {
     unsigned int duration;
     unsigned int txBytes;
     unsigned int rxBytes;
@@ -165,6 +165,67 @@
     , memoryTotalUsageRatio(0)
     , memoryAppUsageInKbytes(0) {}
     };</codeblock>
+    <codeblock props="unity" outputclass="language-csharp">public class RtcStats
+    {
+        public RtcStats()
+        {
+        }
+
+        public RtcStats(uint duration, uint txBytes, uint rxBytes, uint txAudioBytes, uint txVideoBytes,
+            uint rxAudioBytes, uint rxVideoBytes, ushort txKBitRate, ushort rxKBitRate, ushort rxAudioKBitRate,
+            ushort txAudioKBitRate, ushort rxVideoKBitRate, ushort txVideoKBitRate, ushort lastmileDelay,
+            ushort txPacketLossRate, ushort rxPacketLossRate, uint userCount, double cpuAppUsage, double cpuTotalUsage,
+            int gatewayRtt, double memoryAppUsageRatio, double memoryTotalUsageRatio, int memoryAppUsageInKbytes)
+        {
+            this.duration = duration;
+            this.txBytes = txBytes;
+            this.rxBytes = rxBytes;
+            this.txAudioBytes = txAudioBytes;
+            this.txVideoBytes = txVideoBytes;
+            this.rxAudioBytes = rxAudioBytes;
+            this.rxVideoBytes = rxVideoBytes;
+            this.txKBitRate = txKBitRate;
+            this.rxKBitRate = rxKBitRate;
+            this.rxAudioKBitRate = rxAudioKBitRate;
+            this.txAudioKBitRate = txAudioKBitRate;
+            this.rxVideoKBitRate = rxVideoKBitRate;
+            this.txVideoKBitRate = txVideoKBitRate;
+            this.lastmileDelay = lastmileDelay;
+            this.txPacketLossRate = txPacketLossRate;
+            this.rxPacketLossRate = rxPacketLossRate;
+            this.userCount = userCount;
+            this.cpuAppUsage = cpuAppUsage;
+            this.cpuTotalUsage = cpuTotalUsage;
+            this.gatewayRtt = gatewayRtt;
+            this.memoryAppUsageRatio = memoryAppUsageRatio;
+            this.memoryTotalUsageRatio = memoryTotalUsageRatio;
+            this.memoryAppUsageInKbytes = memoryAppUsageInKbytes;
+        }
+        
+        public uint duration { set; get; }
+        public uint txBytes { set; get; }
+        public uint rxBytes { set; get; }
+        public uint txAudioBytes { set; get; }
+        public uint txVideoBytes { set; get; }
+        public uint rxAudioBytes { set; get; }
+        public uint rxVideoBytes { set; get; }
+        public ushort txKBitRate { set; get; }
+        public ushort rxKBitRate { set; get; }
+        public ushort rxAudioKBitRate { set; get; }
+        public ushort txAudioKBitRate { set; get; }
+        public ushort rxVideoKBitRate { set; get; }
+        public ushort txVideoKBitRate { set; get; }
+        public ushort lastmileDelay { set; get; }
+        public ushort txPacketLossRate { set; get; }
+        public ushort rxPacketLossRate { set; get; }
+        public uint userCount { set; get; }
+        public double cpuAppUsage { set; get; }
+        public double cpuTotalUsage { set; get; }
+        public int gatewayRtt { set; get; }
+        public double memoryAppUsageRatio { set; get; }
+        public double memoryTotalUsageRatio { set; get; }
+        public int memoryAppUsageInKbytes { set; get; }
+    }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">export interface RtcStats {
   duration: number;
   txBytes: number;

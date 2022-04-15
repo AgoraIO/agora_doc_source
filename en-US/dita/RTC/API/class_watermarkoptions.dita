@@ -18,7 +18,7 @@
 @property(assign, nonatomic) CGRect positionInLandscapeMode;
 @property(assign, nonatomic) CGRect positionInPortraitMode;
 @end</codeblock>
-                <codeblock props="windows unity" outputclass="language-cpp">typedef struct WatermarkOptions {
+                <codeblock props="windows" outputclass="language-cpp">typedef struct WatermarkOptions {
     bool visibleInPreview;
     Rectangle positionInLandscapeMode;
     Rectangle positionInPortraitMode;
@@ -29,6 +29,27 @@
         , positionInPortraitMode(0, 0, 0, 0)
     {}
     } WatermarkOptions;</codeblock>
+    <codeblock props="unity" outputclass="language-csharp">public class WatermarkOptions
+    {
+        public WatermarkOptions()
+        {
+            visibleInPreview = true;
+            positionInLandscapeMode = new Rectangle();
+            positionInPortraitMode = new Rectangle();
+        }
+
+        public WatermarkOptions(bool visibleInPreview, Rectangle positionInLandscapeMode,
+            Rectangle positionInPortraitMode)
+        {
+            this.visibleInPreview = visibleInPreview;
+            this.positionInLandscapeMode = positionInLandscapeMode ?? new Rectangle();
+            this.positionInPortraitMode = positionInPortraitMode ?? new Rectangle();
+        }
+
+        public bool visibleInPreview { set; get; }
+        public Rectangle positionInLandscapeMode { set; get; }
+        public Rectangle positionInPortraitMode { set; get; }
+    }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">export interface WatermarkOptions {
     visibleInPreview: boolean,
     positionInPortraitMode: Rectangle,

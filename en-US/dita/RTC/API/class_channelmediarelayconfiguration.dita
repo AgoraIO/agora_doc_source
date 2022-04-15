@@ -26,7 +26,7 @@
 - (BOOL)setDestinationInfo:(AgoraChannelMediaRelayInfo *_Nonnull)destinationInfo forChannelName:(NSString *_Nonnull)channelName;
 - (BOOL)removeDestinationInfoForChannelName:(NSString *_Nonnull)channelName;
 @end</codeblock>
-                <codeblock props="windows unity" outputclass="language-cpp">struct ChannelMediaRelayConfiguration {
+                <codeblock props="windows" outputclass="language-cpp">struct ChannelMediaRelayConfiguration {
 	ChannelMediaInfo *srcInfo;
 	ChannelMediaInfo *destInfos;
 	int destCount;
@@ -37,6 +37,26 @@
 			, destCount(0)
 	{}
     };</codeblock>
+    <codeblock props="unity" outputclass="language-csharp">public class ChannelMediaRelayConfiguration
+    {
+        public ChannelMediaRelayConfiguration()
+        {
+            srcInfo = null;
+            destInfos = new ChannelMediaInfo[0];
+            destCount = 0;
+        }
+
+        public ChannelMediaRelayConfiguration(ChannelMediaInfo srcInfo, ChannelMediaInfo[] destInfos, int destCount)
+        {
+            this.srcInfo = srcInfo;
+            this.destInfos = destInfos ?? new ChannelMediaInfo[0];
+            this.destCount = destCount;
+        }
+        
+        public ChannelMediaInfo srcInfo { set; get; }
+        public ChannelMediaInfo[] destInfos { set; get; }
+        public int destCount { set; get; }
+    }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">export interface ChannelMediaRelayConfiguration {
     srcInfo: ChannelMediaInfo;
     destInfos: [ChannelMediaInfo];

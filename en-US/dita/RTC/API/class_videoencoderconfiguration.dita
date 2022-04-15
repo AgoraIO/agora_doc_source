@@ -113,7 +113,7 @@
 
 - (instancetype _Nonnull)initWithWidth:(NSInteger)width height:(NSInteger)height frameRate:(AgoraVideoFrameRate)frameRate bitrate:(NSInteger)bitrate orientationMode:(AgoraVideoOutputOrientationMode)orientationMode;
 @end</codeblock>
-                <codeblock props="windows unity" outputclass="language-cpp">struct VideoEncoderConfiguration {
+                <codeblock props="windows" outputclass="language-cpp">struct VideoEncoderConfiguration {
     VideoDimensions dimensions;
     FRAME_RATE frameRate;
     int minFrameRate;
@@ -149,6 +149,63 @@
         , mirrorMode(VIDEO_MIRROR_MODE_AUTO)
     {}
     };</codeblock>
+    <codeblock props="unity" outputclass="language-csharp">public class VideoEncoderConfiguration
+    {
+        public VideoEncoderConfiguration()
+        {
+            dimensions = null;
+            frameRate = FRAME_RATE.FRAME_RATE_FPS_15;
+            minBitrate = -1;
+            bitrate = (int) BITRATE.STANDARD_BITRATE;
+            minBitrate = (int) BITRATE.DEFAULT_MIN_BITRATE;
+            orientationMode = ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE;
+            degradationPreference = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
+            mirrorMode = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_AUTO;
+        }
+
+        public VideoEncoderConfiguration(VideoDimensions dimensions,
+            FRAME_RATE frameRate = FRAME_RATE.FRAME_RATE_FPS_15, int minFrameRate = -1,
+            BITRATE bitrate = BITRATE.STANDARD_BITRATE, BITRATE minBitrate = BITRATE.DEFAULT_MIN_BITRATE,
+            ORIENTATION_MODE orientationMode = ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE,
+            DEGRADATION_PREFERENCE degradationPreference = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY,
+            VIDEO_MIRROR_MODE_TYPE mirrorMode = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_AUTO)
+        {
+            this.dimensions = dimensions ?? new VideoDimensions();
+            this.frameRate = frameRate;
+            this.minFrameRate = minFrameRate;
+            this.bitrate = (int) bitrate;
+            this.minBitrate = (int) minBitrate;
+            this.orientationMode = orientationMode;
+            this.degradationPreference = degradationPreference;
+            this.mirrorMode = mirrorMode;
+        }
+
+        public VideoEncoderConfiguration(int width, int height, FRAME_RATE frameRate = FRAME_RATE.FRAME_RATE_FPS_15,
+            int minFrameRate = -1, BITRATE bitrate = BITRATE.STANDARD_BITRATE,
+            BITRATE minBitrate = BITRATE.DEFAULT_MIN_BITRATE,
+            ORIENTATION_MODE orientationMode = ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE,
+            DEGRADATION_PREFERENCE degradationPreference = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY,
+            VIDEO_MIRROR_MODE_TYPE mirrorMode = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_AUTO)
+        {
+            dimensions = new VideoDimensions(width, height);
+            this.frameRate = frameRate;
+            this.minFrameRate = minFrameRate;
+            this.bitrate = (int) bitrate;
+            this.minBitrate = (int) minBitrate;
+            this.orientationMode = orientationMode;
+            this.degradationPreference = degradationPreference;
+            this.mirrorMode = mirrorMode;
+        }
+
+        public VideoDimensions dimensions { set; get; }
+        public FRAME_RATE frameRate { set; get; }
+        public int minFrameRate { set; get; }
+        public int bitrate { set; get; }
+        public int minBitrate { set; get; }
+        public ORIENTATION_MODE orientationMode { set; get; }
+        public DEGRADATION_PREFERENCE degradationPreference { set; get; }
+        public VIDEO_MIRROR_MODE_TYPE mirrorMode { set; get; }
+    }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">export interface VideoEncoderConfiguration {
     dimensions: VideoDimensions;
     frameRate: FRAME_RATE;
@@ -210,7 +267,7 @@
             <plentry>
                 <pt>dimensions</pt>
                 <pd>
-                    <p props="android windows">The dimensions of the encoded video (px). See <xref keyref="VideoDimensions" />. This parameter measures the video encoding quality in the format of length × width. The default value is 640 × 360. You can set a custom value.</p>
+                    <p props="android windows unity">The dimensions of the encoded video (px). See <xref keyref="VideoDimensions" />. This parameter measures the video encoding quality in the format of length × width. The default value is 640 × 360. You can set a custom value.</p>
                     <p props="ios mac">The dimensions of the encoded video (px). This parameter measures the video encoding quality in the format of length × width. The default value is 640 × 360. You can set a custom value, or select from the following list:
                     <ul>
                     <li>AgoraVideoDimension120x120</li>
@@ -486,7 +543,7 @@
                     <ul conkeyref="setLocalRenderMode2/videomirrormodetype" props="rtc">
                     <li />
                     </ul> </p>
-                    <p props="ios mac windows electron">Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees. See <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</p>
+                    <p props="ios mac windows electron unity">Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees. See <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</p>
                     <note type="attention">By default, the video is not mirrored.</note> </pd>
             </plentry>
             </parml> </section>

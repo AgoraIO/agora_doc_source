@@ -74,12 +74,26 @@
 @property(nonatomic, assign) AgoraBlurDegree blur_degree;
 @end
 </codeblock>
+<codeblock props="unity" outputclass="language-csharp">public class VirtualBackgroundSource
+    {
+        public VirtualBackgroundSource()
+        {
+            color = 0xFFFFFF;
+            source = null;
+            background_source_type = BACKGROUND_SOURCE_TYPE.BACKGROUND_COLOR;
+        }
+
+        public BACKGROUND_SOURCE_TYPE background_source_type { set; get; }
+        public uint color { set; get; }
+        public string source { set; get; }
+        public BACKGROUND_BLUR_DEGREE blur_degree { set; get; }
+    }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
             </p>
             <p outputclass="codeblock">
-                <codeblock props="windows unity" outputclass="language-cpp">struct VirtualBackgroundSource {
+                <codeblock props="windows" outputclass="language-cpp">struct VirtualBackgroundSource {
                     enum BACKGROUND_SOURCE_TYPE {
                     BACKGROUND_COLOR = 1,
                     BACKGROUND_IMG,

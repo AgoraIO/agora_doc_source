@@ -118,7 +118,7 @@
 @property(assign, nonatomic) int64_t renderTimeMs NS_SWIFT_NAME(renderTimeMs);
 @property(assign, nonatomic) NSInteger avSyncType NS_SWIFT_NAME(avSyncType);
 </codeblock>
-                <codeblock props="windows unity" outputclass="language-cpp">struct AudioFrame {
+                <codeblock props="windows" outputclass="language-cpp">struct AudioFrame {
     AUDIO_FRAME_TYPE type;
     int samples;
     int bytesPerSample;
@@ -128,6 +128,35 @@
     int64_t renderTimeMs;
     int avsync_type;
     };</codeblock>
+    <codeblock props="unity" outputclass="language-csharp">public class AudioFrame
+    {
+        public AudioFrame()
+        {
+        }
+
+        public AudioFrame(AUDIO_FRAME_TYPE type, int samples, int bytesPerSample, int channels, int samplesPerSec,
+            byte[] buffer, long renderTimeMs, int avsync_type)
+        {
+            this.type = type;
+            this.samples = samples;
+            this.bytesPerSample = bytesPerSample;
+            this.channels = channels;
+            this.samplesPerSec = samplesPerSec;
+            this.buffer = buffer;
+            this.renderTimeMs = renderTimeMs;
+            this.avsync_type = avsync_type;
+        }
+
+        public AUDIO_FRAME_TYPE type { set; get; }
+        public int samples { set; get; }
+        public int bytesPerSample { set; get; }
+        public int channels { set; get; } 
+        public int samplesPerSec { set; get; } //sampling rate
+        public byte[] buffer { set; get; } 
+        public IntPtr bufferPtr { set; get; }
+        public long renderTimeMs { set; get; }
+        public int avsync_type { set; get; }
+    }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript" />
                 <codeblock props="rn" outputclass="language-typescript" />
                 <codeblock props="flutter" outputclass="language-dart" />

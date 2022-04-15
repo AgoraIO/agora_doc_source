@@ -27,11 +27,28 @@
 @property (assign, nonatomic) NSUInteger jitter;
 @property (assign, nonatomic) NSUInteger availableBandwidth;
 @end</codeblock>
-                <codeblock props="windows unity" outputclass="language-cpp">struct LastmileProbeOneWayResult {
+                <codeblock props="windows" outputclass="language-cpp">struct LastmileProbeOneWayResult {
     unsigned int packetLossRate;
     unsigned int jitter;
     unsigned int availableBandwidth;
     };</codeblock>
+    <codeblock props="unity" outputclass="language-csharp">public class LastmileProbeOneWayResult
+    {
+        public LastmileProbeOneWayResult()
+        {
+        }
+
+        public LastmileProbeOneWayResult(uint packetLossRate, uint jitter, uint availableBandwidth)
+        {
+            this.packetLossRate = packetLossRate;
+            this.jitter = jitter;
+            this.availableBandwidth = availableBandwidth;
+        }
+
+        public uint packetLossRate { set; get; }
+        public uint jitter { set; get; }
+        public uint availableBandwidth { set; get; }
+    }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">export interface LastmileProbeOneWayResult {
     packetLossRate: number;
     jitter: number;

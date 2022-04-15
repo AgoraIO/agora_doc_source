@@ -39,7 +39,7 @@
     @property(assign, nonatomic) AgoraAudioRecordingPosition recordingPosition;
     @property(assign, nonatomic) NSInteger recordingSampleRate;
     @end</codeblock>
-                <codeblock props="windows unity" outputclass="language-cpp">struct AudioRecordingConfiguration {
+                <codeblock props="windows" outputclass="language-cpp">struct AudioRecordingConfiguration {
 
     const char* filePath;
     AUDIO_RECORDING_QUALITY_TYPE recordingQuality;
@@ -64,6 +64,33 @@
                         recordingSampleRate(sampleRate)
                       {}
                     };</codeblock>
+    <codeblock props="unity" outputclass="language-csharp">public class AudioRecordingConfiguration
+    {
+        public AudioRecordingConfiguration()
+        {
+            filePath = null;
+            recordingQuality = AUDIO_RECORDING_QUALITY_TYPE.AUDIO_RECORDING_QUALITY_MEDIUM;
+            recordingPosition = AUDIO_RECORDING_POSITION.AUDIO_RECORDING_POSITION_MIXED_RECORDING_AND_PLAYBACK;
+            recordingSampleRate = 32000;
+            recordingChannel = 1;
+        }
+
+        public AudioRecordingConfiguration(string filePath, AUDIO_RECORDING_QUALITY_TYPE recordingQuality,
+            AUDIO_RECORDING_POSITION recordingPosition, int recordingSampleRate, int recordingChannel )
+        {
+            this.filePath = filePath;
+            this.recordingQuality = recordingQuality;
+            this.recordingPosition = recordingPosition;
+            this.recordingSampleRate = recordingSampleRate;
+            this.recordingChannel = recordingChannel;
+        }
+
+        public string filePath { set; get; }
+        public AUDIO_RECORDING_QUALITY_TYPE recordingQuality { set; get; }
+        public AUDIO_RECORDING_POSITION recordingPosition { set; get; }
+        public int recordingSampleRate { set; get; }
+        public int recordingChannel  { set; get; }
+    }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">export interface AudioRecordingConfiguration {
   filePath: string;
   recordingQuality: AUDIO_RECORDING_QUALITY_TYPE;

@@ -44,7 +44,7 @@
 };</codeblock>
             </p>
             <p outputclass="codeblock" props="rtc">
-                <codeblock props="windows unity" outputclass="language-cpp">struct EncryptionConfig {
+                <codeblock props="windows" outputclass="language-cpp">struct EncryptionConfig {
   ENCRYPTION_MODE encryptionMode;
   const char* encryptionKey;
   uint8_t encryptionKdfSalt[32];
@@ -79,6 +79,33 @@
     return "aes-128-gcm-2";
   }
 };</codeblock>
+<codeblock props="unity" outputclass="language-csharp">public class EncryptionConfig
+    {
+        public EncryptionConfig()
+        {
+            encryptionMode = ENCRYPTION_MODE.AES_128_XTS;
+            encryptionKey = "";
+            encryptionKdfSalt = new byte[32];
+        }
+
+        public EncryptionConfig(ENCRYPTION_MODE encryptionMode, string encryptionKey, byte[] encryptionKdfSalt)
+        {
+            this.encryptionMode = encryptionMode;
+            this.encryptionKey = encryptionKey;
+            this.encryptionKdfSalt = encryptionKdfSalt;
+        }
+
+        public ENCRYPTION_MODE encryptionMode { set; get; }
+        public string encryptionKey { set; get; }
+        
+        private byte[] encryptionKdfSalt32 = new byte[32];
+        public byte[] encryptionKdfSalt
+        {
+            set { Buffer.BlockCopy(encryptionKdfSalt, 0, encryptionKdfSalt32, 0, 32); }
+
+            get { return encryptionKdfSalt32; }
+        }
+    }</codeblock>
             </p>
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public class EncryptionConfig {
