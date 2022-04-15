@@ -1,6 +1,6 @@
-With inscreasingly strict rules and regulatins on app compliance, content supervision is now playing a crucial part in the lifecycle of most apps. To meet this need, Agora Chat provides the global-mute feature, which enables you to mute any user ID in one-to-one chats, group chats, or chat rooms, preventing these users from sending any one-to-one, chat group, or chat room messages. When global-mute expires, the chat server automatically unmutes the user ID and this user resumes the privilege of sending messages.
+With inscreasingly strict rules and regulatins on app compliance, content supervision is now playing a crucial part in the app lifecycle. To meet this need, Agora Chat provides the global-mute feature, which enables you to mute any user ID in one-to-one chats, group chats, or chat rooms, preventing these users from sending messages to other chat users, chat groups or chat rooms. When global-mute expires, the chat server automatically unmutes the user ID and this user resumes the privilege of sending messages.
 
-This feature can be widely applied in apps that power real-time engagements. For example, if a user frequently sends illegit advertisements to multiple chat rooms, you can use global-mute to prevent this user from sending chat room messages for 15 days; if a user makes improper statements concerning politics, you can use global-mute to permanently prevent this user from sending any messages in one-to-one chats, chat groups, and chat rooms.
+This feature can be widely applied in apps that power real-time engagements. For example, if a user frequently sends illegit advertisements to multiple chat rooms, you can use global-mute to prevent this user from sending chat room messages for 15 days; if a user makes improper statements concerning politics, global-mute can permanently prevent this user from sending any messages in one-to-one chats, chat groups, and chat rooms.
 
 <a name="param"></a>
 
@@ -67,9 +67,9 @@ For parameters and the detailed descriptions, see [Commom parameters](#param).
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
 | `username` | String | Yes | The user ID that you want to globally mute. |
-| `chat` | Number | No | The time duration for muting this user ID in one-to-one chats, in seconds. The maximum value is 2,147,483,647.<ul><li>&gt; 0: The time duration for muting the user in one-to-one chats.</li><li>0: Unmutes the user in one-to-one chats.</li><li>-1: Permanently mutes the user in one-to-one chats.</li><li>If you set this parameter as any other negative values, the setting does not take effect.</li> |
-| `groupchat` | Number | No | The time duration for muting this user in group chats, in seconds. The value setting rules are the same as those of `chat`. |
-| `chatroom` | Number | No | The time duration for muting this user in chat rooms, in seconds. The value setting rules are the same as those of `chat`. |
+| `chat` | Number | No | The time duration for muting this user ID in one-to-one chats, in seconds. The maximum value is 2,147,483,647.<ul><li>&gt; 0: The time duration for muting the user in one-to-one chats.</li><li>0: Unmutes the user in one-to-one chats.</li><li>-1: Permanently mutes the user in one-to-one chats.</li><li>If you set this parameter as any other negative values, the setting does not take effect.</li></ul> |
+| `groupchat` | Number | No | The time duration for muting this user in group chats, in seconds. The maximum value is 2,147,483,647.<ul><li>&gt; 0: The time duration for muting the user in group chats.</li><li>0: Unmutes the user in group chats.</li><li>-1: Permanently mutes the user in group chats.</li><li>If you set this parameter as any other negative values, the setting does not take effect.</li></ul> |
+| `chatroom` | Number | No | The time duration for muting this user in chat rooms, in seconds. The maximum value is 2,147,483,647.<ul><li>&gt; 0: The time duration for muting the user in chat rooms.</li><li>0: Unmutes the user in chat rooms.</li><li>-1: Permanently mutes the user in chat rooms</li><li>If you set this parameter as any other negative values, the setting does not take effect.</li></ul> |
 
 #### Request header
 
@@ -157,8 +157,8 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 | --- | --- | --- |
 | `userid` | String | The user ID whose global-mute settings you want to query. |
 | `chat` | Number | The remaining time duration when this user is muted in one-to-one chats, in seconds. The maximum value is 2,147,483,647.<ul><li>&gt; 0: The remaining duration for muting this user in one-to-one chats.</li><li>0: This user is unmuted in one-to-one chats.</li><li>-1: This user is permanently muted in one-to-one chats.</li></ul> |
-| `groupchat` | Number | The remaining time duration when this user is muted in group chats, in seconds. The rules of the returned data are the same with those of `chat`. |
-| `chatroom` | Number | The remaining time duration when this user is muted in group rooms, in seconds. The rules of the returned data are the same with those of `chat`. |
+| `groupchat` | Number | The remaining time duration when this user is muted in group chats, in seconds. The maximum value is 2,147,483,647.<ul><li>&gt; 0: The remaining duration for muting this user in group chats.</li><li>0: This user is unmuted in group chats.</li><li>-1: This user is permanently muted in group chats.</li></ul> |
+| `chatroom` | Number | The remaining time duration when this user is muted in group rooms, in seconds. The maximum value is 2,147,483,647.<ul><li>&gt; 0: The remaining duration for muting this user in chat rooms.</li><li>0: This user is unmuted in chat rooms.</li><li>-1: This user is permanently muted in chat rooms.</li></ul> |
 | `unixtime` | Number | The Unix timestamp of the current operation. |
 
 For other fields and detailed descriptions, see [Common parameters](#param).
@@ -199,7 +199,7 @@ curl -L -X GET 'https://XXXX/XXXX/XXXX/mutes/{username}' \
 
 ## Retrieve all globally muted users in the app
 
-This method retrieves all the users that have been globally muted in the app, together with the remaining time duration when each user is muted.
+This method retrieves all the users that have been globally muted in the app. It also returns the remaining time duration when each user is muted.
 
 ### HTTP request
 
@@ -233,8 +233,8 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 | --- | --- | --- |
 | `username` | String | The user ID whose global-mute settings you want to query. |
 | `chat` | Number | The remaining time duration when this user is muted in one-to-one chats, in seconds. The maximum value is 2,147,483,647.<ul><li>&gt; 0: The remaining duration for muting this user in one-to-one chats.</li><li>0: This user is unmuted in one-to-one chats.</li><li>-1: This user is permanently muted in one-to-one chats.</li></ul> |
-| `groupchat` | Number | The remaining time duration when this user is muted in group chats, in seconds. The rules of the returned data are the same with those of `chat`. |
-| `chatroom` | Number | The remaining time duration when this user is muted in group rooms, in seconds. The rules of the returned data are the same with those of `chat`. |
+| `groupchat` | Number | The remaining time duration when this user is muted in group chats, in seconds. The maximum value is 2,147,483,647.<ul><li>&gt; 0: The remaining duration for muting this user in chat groups.</li><li>0: This user is unmuted in chat groups.</li><li>-1: This user is permanently muted in chat groups.</li></ul> |
+| `chatroom` | Number | The remaining time duration when this user is muted in group rooms, in seconds. The maximum value is 2,147,483,647.<ul><li>&gt; 0: The remaining duration for muting this user in chat rooms.</li><li>0: This user is unmuted in chat rooms.</li><li>-1: This user is permanently muted in chat rooms.</li></ul> |
 | `unixtime` | Number | The Unix timestamp of the current operation. |
 
 For other fields and detailed descriptions, see [Common parameters](#param).
