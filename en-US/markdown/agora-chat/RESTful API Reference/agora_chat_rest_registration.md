@@ -912,7 +912,7 @@ If the returned HTTP status code is `200`, the request succeeds and the response
 
 | Parameter     | Description                                                         |
 | :------- | :----------------------------------------------------------- |
-| `username` | The online state of a user, in the format of `"username": "state"`. For example, if user1 is online, returns `user1: online`. Otherwise, returns `"user1: offline"`. |
+| `username` | The online state of a user, in the format of `"username": "online state"`. For example, if user1 is online, returns `"user1": "online"`. Otherwise, returns `"user1": "offline"`. |
 
 For the parameters and detailed descriptions, see [Common parameters](#param).
 
@@ -945,9 +945,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 ## Querying the online state of multiple users
 
-Queries whether multiple users are online. You can query the online state of up to 100 users at the same time.
-
-This API does not check whether the specified usernames are valid. If the specified username does not exist, the state of this user is determined as offline.
+Queries whether multiple users are online.
 
 ### HTTP request
 
@@ -980,7 +978,7 @@ If the returned HTTP status code is `200`, the request succeeds and the response
 
 | Parameter     | Description                                                         |
 | :------- | :----------------------------------------------------------- |
-| `username` | The online state of a user, in the format of `"username": "state"`. For example, if user1 is online, returns `user1: online`. Otherwise, returns `"user1: offline"`.|
+| `username` | The online state of a user, in the format of `"username": "online state"`. For example, if user1 is online, returns `"user1": "online"`. Otherwise, returns `"user1": "offline"`.|
 
 If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
 
@@ -994,6 +992,8 @@ curl -X POST http://XXXX/XXXX/XXXX/users/batch/status -H 'Authorization: Bearer 
 ```
 
 #### Response example
+
+This API does not check whether the specified usernames are valid. If the specified username does not exist, the state of this user is determined as offline.
 
 ```json
 {
@@ -1011,9 +1011,9 @@ curl -X POST http://XXXX/XXXX/XXXX/users/batch/status -H 'Authorization: Bearer 
 }
 ```
 
-## Querying the number of offline messages received by a user
+## Querying the number of offline messages
 
-Queries the number of offline messages received by a user.
+Queries the number of offline messages that have and have not been delivered to a user.
 
 ### HTTP request
 
@@ -1044,7 +1044,7 @@ If the returned HTTP status code is `200`, the request succeeds and the response
 
 | Parameter     | Description                                                         |
 | :------- | :----------------------------------------------------------- |
-| `username` | The number of offline messages received by a user, in the format of `"username": "number of offline messages"`. For example, if user1 does not receive any offline messages, returns `user1: 0`. |
+| `username` | The number of offline messages that have and have not been delivered to a user, in the format of `"username": "number of offline messages"`. For example, if user1 does not have offline messages, returns `"user1": "0"`. |
 
 If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
 
@@ -1073,9 +1073,9 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 }
 ```
 
-## Querying the delivery status of an offline message
+## Querying the delivery state of an offline message
 
-该方法获取指定离线消息的投递状态。
+Queries the delivery state of an offline message.
 
 ### HTTP request
 
@@ -1085,29 +1085,31 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/offline_msg_status/{ms
 
 #### Path parameter
 
-|   参数    | 类型   | 是否必需 | 描述         |
+|   Parameter    | Type   | Required | Description         |
 | :-------: | :----- | :------- | ------------ |
-| `username` | String |   必需| 要获取离线消息状态的用户 ID。|
-| `msg_id` | String |   必需| 要查看离线消息状态的 ID。|
+| `username` | String |   Yes| The user of whom you want to query the delivery state of offline messages. |
+| `msg_id` | String |   Yes| The message of which you want to query the delivery state.  |
 
 For the parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Request header
 
-| 参数            | 类型   | 描述                   | 是否必填 |
+| Parameter            | Type   | Description                   | Required |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Content-Type`  | String | 内容类型。填入 `application/json`。    | 是       |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 Bearer ${token}，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Content-Type`  | String | `application/json`    | Yes       |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       |
 
 ### HTTP response
 
 #### Response body
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码汇总表](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+If the returned HTTP status code is `200`, the request succeeds and the response body contains the following fields:
 
-| 参数   | 说明                                                         |
+| Parameter   | Description                                                       |
 | :----- | :----------------------------------------------------------- |
-| `msg_id` | 数据格式为“消息 ID”：“离线消息的投递状态”。有两种：<li> “delivered”  表示已投递； <li> `undelivered“  表示未投递。 |
+| `msg_id` | The delivery state of an offline message, in the format of `"message id": "delivery state"`. The delivery state contains: <li> `delivered`: The offline message has been delivered to the user. <li> `undelivered`: The offline message is temporarily stored at the server and has not been delivered to the user. |
+
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
 
 ### Example
 
