@@ -1107,7 +1107,7 @@ If the returned HTTP status code is `200`, the request succeeds and the response
 
 | Parameter   | Description                                                       |
 | :----- | :----------------------------------------------------------- |
-| `msg_id` | The delivery state of an offline message, in the format of `"message id": "delivery state"`. The delivery state contains: <li> `delivered`: The offline message has been delivered to the user. <li> `undelivered`: The offline message is temporarily stored at the server and has not been delivered to the user. |
+| `msg_id` | The delivery state of an offline message, in the format of `"message id": "delivery state"`. The delivery state contains: <li> `delivered`: The offline message has been delivered to the user. <li> `undelivered`: The offline message is temporarily stored at the server and has not been pulled from the server and delivered to the user. |
 
 If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
 
