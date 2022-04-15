@@ -948,7 +948,7 @@ Example of custom type message format
 
 This method enables app admins to recall harmful information to maintain a healthy chat environment.
 
-The default time limit on recalling a message is two minutes, with a maximum of seven days. You can modify this value in [Agora Console](https://console.agora.io/).
+The default time limit on recalling a message is two minutes, with a maximum of seven days. To modify this value, contact support@agora.io.
 
 ### HTTP request
 
