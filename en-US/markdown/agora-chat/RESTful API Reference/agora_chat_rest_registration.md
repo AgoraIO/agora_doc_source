@@ -883,6 +883,257 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 <a name="code"></a>
 
+## Querying the online state of a user
+
+Queries whether a user is online.
+
+### HTTP request
+
+```http
+GET https://{host}/{org_name}/{app_name}/users/{username}/status
+```
+
+#### Path parameter
+
+For the parameters and detailed descriptions, see [Common parameters](#param).
+
+#### Request header
+
+| Parameter            | Type   | Description                   | Required |
+| :-------------- | :----- | :--------------------- | :------- |
+| `Content-Type`  | String | `application/json`   | Yes      |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes      |
+
+### HTTP response
+
+#### Response body
+
+If the returned HTTP status code is `200`, the request succeeds and the response body contains the following fields:
+
+| Parameter     | Description                                                         |
+| :------- | :----------------------------------------------------------- |
+| `username` | The online state of a user, in the format of `"username": "state"`. For example, if user1 is online, returns `user1: online`. Otherwise, returns `"user1: offline"`. |
+
+For the parameters and detailed descriptions, see [Common parameters](#param).
+
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
+
+### Example
+
+#### Request example
+
+```shell
+# Replace <YourAppToken> with the app token generated in your server.
+curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/user1/status'
+```
+
+#### Response example
+
+```json
+{
+  "action": "get",
+  "uri": "http://XXXX/XXXX/XXXX/users/user1/status",
+  "entities": [],
+  "data": {
+    "user1": "offline"
+  },
+  "timestamp": 1542601284531,
+  "duration": 4,
+  "count": 0
+}
+```
+
+## Querying the online state of multiple users
+
+Queries whether multiple users are online. You can query the online state of up to 100 users at the same time.
+
+This API does not check whether the specified usernames are valid. If the specified username does not exist, the state of this user is determined as offline.
+
+### HTTP request
+
+```http
+POST https://{host}{org_name}/{app_name}/users/batch/status
+```
+
+#### Path parameter
+
+For the parameters and detailed descriptions, see [Common parameters](#param).
+
+#### Request header
+
+| Parameter            | Type   | Description                   | Required |
+| :-------------- | :----- | :--------------------- | :------- |
+| `Content-Type`  | String | `application/json`   | Yes       |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       |
+
+#### Request body
+
+| Parameter      | Type | Description                                                         |
+| :-------- | :---- | :----------------------------------------------------------- |
+| `usernames` | Array | The users of whom you want to query the online state. You can specify a maximum of 100 usernames at the same time. |
+
+### HTTP response
+
+#### Response body
+
+If the returned HTTP status code is `200`, the request succeeds and the response body contains the following fields:
+
+| Parameter     | Description                                                         |
+| :------- | :----------------------------------------------------------- |
+| `username` | The online state of a user, in the format of `"username": "state"`. For example, if user1 is online, returns `user1: online`. Otherwise, returns `"user1: offline"`.|
+
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
+
+### Example
+
+#### Request example
+
+```shell
+# Replace <YourAppToken> with the app token generated in your server.
+curl -X POST http://XXXX/XXXX/XXXX/users/batch/status -H 'Authorization: Bearer <YourAppToken>' -H 'Content-Type: application/json' -d '{"usernames":["user1","user2"]}'
+```
+
+#### Response example
+
+```json
+{
+  "action": "get batch user status",
+  "data": [
+    {
+      "user1": "offline"
+      },
+    {
+      "user2": "offline"
+      }
+    ],
+  "timestamp": 1552280231926,
+  "duration": 4
+}
+```
+
+## Querying the number of offline messages received by a user
+
+Queries the number of offline messages received by a user.
+
+### HTTP request
+
+```http
+GET https://{host}/{org_name}/{app_name}/users/{owner_username}/offline_msg_count
+```
+
+#### Path parameter
+
+|   Parameter    | Type   | Required | Description         |
+| :-------: | :----- | :------- | ------------ |
+| `owner_username` | String |   Yes| The users of whom you want to query the number of offline messages. |
+
+For the parameters and detailed descriptions, see [Common parameters](#param).
+
+#### Request header
+
+| Parameter            | Type   | Description                   | Required |
+| :-------------- | :----- | :--------------------- | :------- |
+| `Content-Type`  | String | `application/json`  | Yes   |
+| `Authorization` | String |  The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes      |
+
+### HTTP response
+
+#### Request body
+
+If the returned HTTP status code is `200`, the request succeeds and the response body contains the following fields:
+
+| Parameter     | Description                                                         |
+| :------- | :----------------------------------------------------------- |
+| `username` | The number of offline messages received by a user, in the format of `"username": "number of offline messages"`. For example, if user1 does not receive any offline messages, returns `user1: 0`. |
+
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
+
+### Example
+
+#### Request example
+
+```shell
+# Replace <YourAppToken> with the app token generated in your server.
+curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/user1/offline_msg_count'
+```
+
+#### Response example
+
+```json
+{
+  "action": "get",
+  "uri": "http://XXXX/XXX/XXXX/users/XXX/offline_msg_count",
+  "entities": [],
+  "data": {
+    "user1": 0
+  },
+  "timestamp": 1542601518137,
+  "duration": 3,
+  "count": 0
+}
+```
+
+## Querying the delivery status of an offline message
+
+该方法获取指定离线消息的投递状态。
+
+### HTTP request
+
+```http
+GET https://{host}/{org_name}/{app_name}/users/{username}/offline_msg_status/{msg_id}
+```
+
+#### Path parameter
+
+|   参数    | 类型   | 是否必需 | 描述         |
+| :-------: | :----- | :------- | ------------ |
+| `username` | String |   必需| 要获取离线消息状态的用户 ID。|
+| `msg_id` | String |   必需| 要查看离线消息状态的 ID。|
+
+For the parameters and detailed descriptions, see [Common parameters](#param).
+
+#### Request header
+
+| 参数            | 类型   | 描述                   | 是否必填 |
+| :-------------- | :----- | :--------------------- | :------- |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。    | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 Bearer ${token}，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+
+### HTTP response
+
+#### Response body
+
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码汇总表](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+
+| 参数   | 说明                                                         |
+| :----- | :----------------------------------------------------------- |
+| `msg_id` | 数据格式为“消息 ID”：“离线消息的投递状态”。有两种：<li> “delivered”  表示已投递； <li> `undelivered“  表示未投递。 |
+
+### Example
+
+#### Request example
+
+```shell
+# Replace <YourAppToken> with the app token generated in your server.
+curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/user1/offline_msg_status/123'
+```
+
+#### Response example
+
+```json
+{
+  "action": "get",
+  "uri": "http://XXXX/XXXX/XXXX/users/user1/offline_msg_status/123",
+  "entities": [],
+  "data": {
+    "123": "delivered"
+  },
+  "timestamp": 1542601830084,
+  "duration": 5,
+  "count": 0
+}
+```
+
 ## Status codes
 
 For details, see [HTTP Status Codes](./agora_chat_status_code?platform=RESTful).
