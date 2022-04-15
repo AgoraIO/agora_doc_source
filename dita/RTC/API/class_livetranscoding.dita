@@ -288,16 +288,14 @@
             </plentry>
             <plentry>
                 <pt>videoBitrate</pt>
-                <pd>输出媒体流的视频码率（Kbps）。默认值为 400。<ph props="ios android windows"
-                    >你可以参考 <xref keyref="guide-cdn-streaming"
-                    >旁路推流</xref> 设置该参数的值。</ph></pd>
+                <pd>输出媒体流的视频码率（Kbps）。默认值为 400。<ph props="ios android windows">你可以参考 <xref keyref="guide-cdn-streaming">旁路推流</xref> 设置该参数的值。</ph></pd>
             </plentry>
             <plentry>
-                <pt props="native">videoFrameRate</pt>
+                <pt props="native unity">videoFrameRate</pt>
                 <pt props="flutter">videoFramerate</pt>
                 <pd>输出媒体流的视频帧率（fps）。默认值为 15，取值范围是 [1,30]。
-                    <note type="attention"
-                    >Agora 服务器会将高于 30 fps 的帧率统一调整为 30 fps。</note></pd>
+                    
+                    <note type="attention">Agora 服务器会将高于 30 fps 的帧率统一调整为 30 fps。</note></pd>
             </plentry>
             <plentry>
                 <pt>lowLatency</pt>
@@ -321,25 +319,18 @@
             <plentry>
                 <pt>videoCodecProfile</pt>
                 <pd>
-                    <p>
-                            输出媒体流的视频编码规格，详见
-                            <xref
-                    keyref="VIDEO_CODEC_PROFILE_TYPE"/>
-                            。
+                    <p>输出媒体流的视频编码规格，详见<xref keyref="VIDEO_CODEC_PROFILE_TYPE"/>。
                         </p>
-                    <note type="attention"
-                    >如果你把这个参数设为其他值，Agora 服务器会将其调整为默认值。</note> </pd>
+                    <note type="attention">如果你把这个参数设为其他值，Agora 服务器会将其调整为默认值。</note> </pd>
             </plentry>
-            <plentry props="windows electron flutter">
+            <plentry props="electron flutter">
                 <pt>videoCodecType</pt>
-                <pd> 输出视频的编解码类型。详见  <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"
-                    />。 </pd>
+                <pd> 输出视频的编解码类型。详见  <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/>。</pd>
             </plentry>
             <plentry>
                 <pt>transcodingUsers</pt>
                 <pd>
-                    <p>参与转码合流的每个主播的设置。Agora 频道内最多支持 17 个主播。详见 <xref
-                    keyref="TranscodingUser"/>。</p>
+                    <p>参与转码合流的每个主播的设置。Agora 频道内最多支持 17 个主播。详见 <xref keyref="TranscodingUser"/>。</p>
                 </pd>
             </plentry>
             <plentry>
@@ -351,7 +342,7 @@
                 <pt>backgroundColor</pt>
                 <pd>输出媒体流的视频背景色。格式为 RGB 定义下的十六进制整数，不要带 # 号。如 <codeph>0xFFB6C1</codeph> 表示浅粉色。默认值为 <codeph>0x000000</codeph>，表示黑色。</pd>
             </plentry>
-            <plentry props="android windows electron unity">
+            <plentry props="windows electron unity">
                 <pt>userCount</pt>
                 <pd>参与转码合流的主播数量。默认值为 0。</pd>
             </plentry>
@@ -364,15 +355,12 @@
                         <dd>该属性已废弃。</dd>
                     </dlentry>
                     </dl>
-                    
-
-                        发送给 CDN 客户端的 metadata。
+                    发送给 CDN 客户端的 metadata。
                     </pd>
             </plentry>
             <plentry props="rtc">
                 <pt>backgroundImage</pt>
-                <pd props="windows">直播视频上的背景图。详见 <xref keyref="RtcImage"
-                    />。你可以添加一张背景图，或使用数组的方式添加多张背景图。该参数与 <parmname>backgroundImageCount</parmname> 搭配使用。</pd>
+                <pd props="windows">直播视频上的背景图。详见 <xref keyref="RtcImage"/>。你可以添加一张背景图，或使用数组的方式添加多张背景图。该参数与 <parmname>backgroundImageCount</parmname> 搭配使用。</pd>
                 <pd props="ios mac">
                     <p>自 v3.6.0 废弃。请改用 <parmname>backgroundImageArray</parmname>。</p>
                     <p>直播视频上的背景图。图片格式需为 PNG。详见 <xref keyref="RtcImage"/>。</p>
@@ -415,8 +403,7 @@
             <plentry>
                 <pt>audioSampleRate</pt>
                 <pd>
-                        输出媒体流的音频采样率 (Hz)，详见 <xref
-                    keyref="AUDIO_SAMPLE_RATE_TYPE"/>。
+                        输出媒体流的音频采样率 (Hz)，详见 <xref keyref="AUDIO_SAMPLE_RATE_TYPE"/>。
                     </pd>
             </plentry>
             <plentry>
@@ -425,11 +412,8 @@
             </plentry>
             <plentry>
                 <pt>audioChannels</pt>
-                <pd>
-                        输出媒体流的音频声道数。默认值为 1。建议取值为 1 或 2。
-
-                    
-                    <ul>
+                <pd>输出媒体流的音频声道数。默认值为 1。建议取值为 1 或 2。
+                <ul>
                     <li>1: （默认）单声道</li>
                     <li>2: 双声道</li>
                     <li>3: 三声道</li>
@@ -439,9 +423,7 @@
             </plentry>
             <plentry>
                 <pt>audioCodecProfile</pt>
-                <pd>
-                        输出媒体流的音频编码规格。详见 <xref
-                    keyref="AUDIO_CODEC_PROFILE_TYPE"/>。
+                <pd>输出媒体流的音频编码规格。详见 <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/>。
                     </pd>
             </plentry>
             <plentry props="rtc-ng">
@@ -449,8 +431,7 @@
                 <pt props="windows unity">watermarkCount</pt>
                 <pd props="ios mac"> 直播视频上的水印数组。详见 <xref keyref="RtcImage"
                     />。你可以使用 <parmname>watermarkArray</parmname> 添加一张或多张水印。图片格式需为 PNG。直播视频上的水印和背景图的总数量需大于等于 0 且小于等于 10。 </pd>
-                <pd props="windows"
-                    >直播视频上的水印的数量。水印和背景图的总数量需大于等于 0 且小于等于 10。该参数与 <parmname>watermark</parmname> 搭配使用。</pd>
+                <pd props="windows unity">直播视频上的水印的数量。水印和背景图的总数量需大于等于 0 且小于等于 10。该参数与 <parmname>watermark</parmname> 搭配使用。</pd>
             </plentry>
             <plentry props="rtc-ng">
                 <pt props="ios mac">backgroundArray</pt>
