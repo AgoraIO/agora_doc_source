@@ -29,11 +29,20 @@
                     public int uid;
                     public String userAccount;
                     }</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">struct UserInfo {
+                    uid_t uid;
+                    char userAccount[MAX_USER_ACCOUNT_LENGTH];
+                    UserInfo()
+                    : uid(0) {
+                    userAccount[0] = '\0';
+                    }
+                    };</codeblock></p>
+         <p outputclass="codeblock">
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraUserInfo: NSObject
  @property(assign, nonatomic) NSUInteger uid;
  @property (copy, nonatomic) NSString * _Nullable userAccount;
  @end</codeblock>
-            <codeblock props="windows unity" outputclass="language-cpp">struct UserInfo {
+            <codeblock props="windows" outputclass="language-cpp">struct UserInfo {
                     uid_t uid;
                     char userAccount[MAX_USER_ACCOUNT_LENGTH];
                     UserInfo()
