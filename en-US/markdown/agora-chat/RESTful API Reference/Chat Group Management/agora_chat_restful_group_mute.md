@@ -15,7 +15,7 @@ The following table lists common request and response parameters of the Agora Ch
 | `host` | String | The domain name assigned by the Agora Chat service to access RESTful APIs. For how to get the domain name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
 | `org_name` | String | The unique identifier assigned to each company (organization) by the Agora Chat service. For how to get the org name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
 | `app_name` | String | The unique identifier assigned to each app by the Agora Chat service. For how to get the app name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
-| `username` | String | The unique login username. The username must be 64 characters or less and cannot be empty. The following character sets are supported:<li>26 lowercase English letters (a-z)</li><li>26 uppercase English letters (A-Z)</li><li>10 numbers (0-9)</li><li>"\_", "-", "."</li><div class="alert note"><ul><li>The username is case insensitive,  so `Aa` and `aa` are the same username. </li><li>Ensure that each username under the same app must be unique.</li></ul></div> | Yes |
+| `username` | String | The unique login username. The username must be 64 characters or less and cannot be empty. The following character sets are supported:<li>26 lowercase English letters (a-z)</li><li>26 uppercase English letters (A-Z)</li><li>10 numbers (0-9)</li><li>"\_", "-", "."</li><div class="alert note"><ul><li>The username is case insensitive,  so `Aa` and `aa` are the same username. </li><li>Make sure that each username under the same app is unique.</li></ul></div> | Yes |
 
 ### Response parameters
 
@@ -40,7 +40,7 @@ Agora Chat RESTful APIs require Bearer HTTP authentication. Every time an HTTP r
 Authorization: Bearer ${YourAppToken}
 ```
 
-In order to improve the security of the project, Agora uses a token (dynamic key) to authenticate users before they log into the chat system. The Agora Chat RESTful API only supports authenticating users using app tokens. For details, see [Authentication using App Token](./generate_app_tokens?platform=RESTful).
+In order to improve the security of the project, Agora uses a token (dynamic key) to authenticate users before they log in to the chat system. The Agora Chat RESTful API only supports authenticating users using app tokens. For details, see [Authentication using App Token](./generate_app_tokens?platform=RESTful).
 
 ## Muting a chat group member
 
@@ -255,6 +255,8 @@ curl -X GET -H 'Accept: application/json' 'http://XXXX/XXXX/XXXX/chatgroups/1013
 }
 ```
 
+<a name="mute-all"></a>
+
 ## Muting all chat group members
 
 This method mutes all the chat group members. If this method call succeeds, none of the chat group members can send messages, except those in the group [allow list]().
@@ -284,13 +286,13 @@ For other parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `mute-duration` | Long | The time duration when all the group members are muted, in milliseconds. |
+| `mute-duration` | Long | The amount of time the group members remain muted, in milliseconds. |
 
 ### HTTP response
 
 #### Response body
 
-If the returned HTTP status code is 200, the request succeeds, and the `data` field in the response body contains the following parameters.
+If the returned HTTP status code is 200, the request succeeds, and the `data` field in the response body contains the following parameters:
 
 | Parameter | Type | Description |
 | :----- | :----- | :---------------------------- |
@@ -356,7 +358,7 @@ For other parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Response body
 
-If the returned HTTP status code is 200, the request succeeds, and the `data` field in the response body contains the following parameters.
+If the returned HTTP status code is 200, the request succeeds, and the `data` field in the response body contains the following parameters:
 
 | Parameter | Type | Description |
 | :----- | :----- | :---------------------------- |
