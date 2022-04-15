@@ -41,10 +41,40 @@
         mirror(false) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="unity" outputclass="language-csharp">public class TranscodingVideoStream
+    {
+        public TranscodingVideoStream()
+        {
+        }
+
+        public TranscodingVideoStream(VIDEO_SOURCE_TYPE sourceType, uint remoteUserUid,
+            string imageUrl, int x, int y, int width, int height, int zOrder, double alpha,
+            bool mirror)
+        {
+            this.sourceType = sourceType;
+            this.remoteUserUid = remoteUserUid;
+            this.imageUrl = imageUrl;
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+            this.zOrder = zOrder;
+            this.alpha = alpha;
+            this.mirror = mirror;
+        }
+        public VIDEO_SOURCE_TYPE sourceType { set; get; }
+        public uint remoteUserUid { set; get; }
+        public string imageUrl { set; get; } 
+        public int x { set; get; }
+        public int y { set; get; }
+        public int width { set; get; }
+        public int height { set; get; }
+        public int zOrder { set; get; }
+        public double alpha { set; get; }
+        public bool mirror { set; get; }
+    }</codeblock>
             <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" />
-            </p>
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>

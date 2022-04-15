@@ -5,8 +5,51 @@
     <shortdesc id="short"><ph id="shortdesc">Information about externally encoded video frames.</ph></shortdesc>
     <refbody>
         <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="unity" outputclass="language-csharp">public class EncodedVideoFrameInfo
+    {
+        public EncodedVideoFrameInfo()
+        {
+            codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_H264;
+            width = 0;
+            height = 0;
+            framesPerSecond = 0;
+            frameType = VIDEO_FRAME_TYPE_NATIVE.VIDEO_FRAME_TYPE_BLANK_FRAME;
+            rotation = VIDEO_ORIENTATION.VIDEO_ORIENTATION_0;
+            trackId = 0;
+            renderTimeMs = 0;
+            uid = 0;
+            streamType = VIDEO_STREAM_TYPE.VIDEO_STREAM_HIGH;
+            
+        }
+
+        public EncodedVideoFrameInfo(ref EncodedVideoFrameInfo rhs)
+        {
+            codecType = rhs.codecType;
+            width = rhs.width;
+            height = rhs.width;
+            framesPerSecond = rhs.framesPerSecond;
+            frameType = rhs.frameType;
+            rotation = rhs.rotation;
+            trackId = rhs.trackId;;
+            renderTimeMs = rhs.renderTimeMs;
+            uid = rhs.uid;
+            streamType = rhs.streamType;
+        }
+
+        public VIDEO_CODEC_TYPE codecType { set; get; }
+        public int width { set; get; }
+        public int height { set; get; }
+        public int framesPerSecond { set; get; }
+        public VIDEO_FRAME_TYPE_NATIVE frameType { set; get; }
+        public VIDEO_ORIENTATION rotation { set; get; }
+        public int trackId { set; get; }  
+        public int64_t renderTimeMs { set; get; }
+        public uint uid { set; get; }
+        public VIDEO_STREAM_TYPE streamType { set; get; }
+    }</codeblock></p>
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public class EncodedVideoFrameInfo {
+            <codeblock props="android" outputclass="language-java">public class EncodedVideoFrameInfo {
   public int codecType;
   public int width;
   public int height;
@@ -92,8 +135,8 @@
   }
 }
 </codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="windows" outputclass="language-cpp">struct EncodedVideoFrameInfo {
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="windows" outputclass="language-cpp">struct EncodedVideoFrameInfo {
                     EncodedVideoFrameInfo()
                     : codecType(VIDEO_CODEC_H264),
                     width(0),
@@ -127,8 +170,7 @@
                     uid_t uid;
                     VIDEO_STREAM_TYPE streamType;
                     };
-                </codeblock>
-            </p> 
+                </codeblock> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>

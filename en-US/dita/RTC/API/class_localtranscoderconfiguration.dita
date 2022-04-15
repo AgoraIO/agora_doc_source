@@ -23,10 +23,20 @@
 };
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="unity" outputclass="language-csharp">public class LocalTranscoderConfiguration {
+        public LocalTranscoderConfiguration(uint streamCount, TranscodingVideoStream[] VideoInputStreams,
+                                            VideoEncoderConfiguration videoOutputConfiguration)
+        {
+            this.streamCount = streamCount;
+            this.VideoInputStreams = VideoInputStreams;
+            this.videoOutputConfiguration = videoOutputConfiguration;
+        }
+        public uint streamCount { set; get; }
+        public TranscodingVideoStream[] VideoInputStreams { set; get; }
+        public VideoEncoderConfiguration videoOutputConfiguration { set; get; }
+    }</codeblock>
             <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" />
-            </p>
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
