@@ -17,12 +17,10 @@
                     }
                     }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">
-            public class UserInfo
-    {
-        
-        public string userId { set; get; }
-        public bool hasAudio { set; get; 
-        public bool hasVideo { set; get; }
+            public struct UserInfo
+    {  
+        public uint uid; 
+        public string userAccount; 
     }</codeblock></p>
             <p outputclass="codeblock" props="rtc">
             <codeblock props="android" outputclass="language-java">public class UserInfo {
@@ -37,7 +35,7 @@
                     userAccount[0] = '\0';
                     }
                     };</codeblock></p>
-         <p outputclass="codeblock">
+            <p outputclass="codeblock">
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraUserInfo: NSObject
  @property(assign, nonatomic) NSUInteger uid;
  @property (copy, nonatomic) NSString * _Nullable userAccount;
@@ -88,9 +86,9 @@
                 <pt>uid</pt>
                 <pd>用户 ID。</pd>
             </plentry>
-            <plentry props="native electron flutter">
+            <plentry>
                 <pt>userAccount</pt>
-                <pd>用户 Account。<ph props="windows">长度限制为<xref
+                <pd>用户 Account。<ph props="windows unity">长度限制为<xref
                     keyref="MAX_USER_ACCOUNT_LENGTH_TYPE"/>。</ph></pd>
             </plentry>
             </parml> </section>
