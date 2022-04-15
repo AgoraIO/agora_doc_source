@@ -964,7 +964,7 @@ POST https://{host}{org_name}/{app_name}/users/batch/status
 
 #### 响应 body
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码汇总表](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码是 200，则表示请求成功。响应包体中包含如下字段：
 
 | 参数     | 说明                                                         |
 | :------- | :----------------------------------------------------------- |
