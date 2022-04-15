@@ -1,4 +1,4 @@
-A chat group allow list refers to a list of chat room members that can send group messages after the group owner or admins have muted all the group members using the [mute-all]() method. Agora Chat provides a complete set of allow list management methods, including adding users to the allow list, and removing and retrieving members from the allow list.
+A chat group allow list refers to a list of chat room members that can send group messages after the group owner or admins have muted all the group members using the [mute-all]() method. Agora Chat provides a complete set of allow list management methods, including adding users to the allow list and removing them from it, as well as retrieving the members on the allow list.
 
 This page shows how to manage a chat group allow list using the Agora Chat RESTful APIs. Before calling the following methods, ensure that you understand the call frequency limit described in [Limitations](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side).
 
@@ -15,7 +15,7 @@ The following table lists the common request and response parameters of the Agor
 | `host` | String | The domain name assigned by the Agora Chat service to access RESTful APIs. For how to get the domain name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
 | `org_name` | String | The unique identifier assigned to each company (organization) by the Agora Chat service. For how to get the org name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
 | `app_name` | String | The unique identifier assigned to each app by the Agora Chat service. For how to get the app name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
-| `username` | String | The unique login username. The username must be 64 characters or less and cannot be empty. The following character sets are supported:<li>26 lowercase English letters (a-z)</li><li>26 uppercase English letters (A-Z)</li><li>10 numbers (0-9)</li><li>"\_", "-", "."</li><div class="alert note"><ul><li>The username is case insensitive, so `Aa` and `aa` are the same username. </li><li>Ensure that each username under the same app must be unique.</li></ul></div> | Yes |
+| `username` | String | The unique login user ID. The user ID must be 64 characters or less and cannot be empty. The following character sets are supported:<li>26 lowercase English letters (a-z)</li><li>26 uppercase English letters (A-Z)</li><li>10 numbers (0-9)</li><li>"\_", "-", "."</li><div class="alert note"><ul><li>The user ID is case insensitive, so `Aa` and `aa` are the same user ID. </li><li>Make sure that each user ID under the same app is unique.</li></ul></div> | Yes |
 
 ### Response parameters
 
@@ -40,11 +40,11 @@ Agora Chat RESTful APIs require Bearer HTTP authentication. Every time an HTTP r
 Authorization: Bearer ${YourAppToken}
 ```
 
-In order to improve the security of the project, Agora uses a token (dynamic key) to authenticate users before they log into the chat system. The Agora Chat RESTful API only supports authenticating users using app tokens. For details, see [Authentication using App Token](generate_app_tokens?platform=RESTful).
+In order to improve the security of the project, Agora uses a token (dynamic key) to authenticate users before they log in to the chat system. The Agora Chat RESTful API only supports authenticating users using app tokens. For details, see [Authentication using App Token](generate_app_tokens?platform=RESTful).
 
 ## Retrieving the group allow list
 
-This method retrives the list of all the members in the chat group allow list. 
+This method retrieves the list of all the members on the chat group allow list. 
 
 ### HTTP request
 
@@ -57,7 +57,7 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/white/users
 | --- | --- | --- | --- |
 | `group_id` | String | The chat group ID. | Yes |
 
-For other parameters and detailed desctiptions, see [Common parameters](#param).
+For other parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Request header
 
@@ -70,7 +70,7 @@ For other parameters and detailed desctiptions, see [Common parameters](#param).
 
 #### Response body
 
-If the returned HTTP status code is 200, the request succeeds, and the `data` field in the response body contains the usernames in the group allow list. For other parameters and detailed desctiptions, see [Common parameters](#param).
+If the returned HTTP status code is 200, the request succeeds, and the `data` field in the response body contains the user IDs on the group allow list. For other parameters and detailed descriptions, see [Common parameters](#param).
 
 If the returned HTTP status code is not 200, the request fails. You can refer to [Status code](./agora_chat_status_code?platform=RESTful) for possible causes.
 
@@ -120,9 +120,9 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/white/users/{use
 | Parameter | Type | Description | Required |
 | --- | --- | --- | --- |
 | `group_id` | String | The chat group ID. | Yes |
-| `username` | String | The username that you want to add to the group allow list. | Yes |
+| `username` | String | The user ID that you want to add to the group allow list. | Yes |
 
-For other parameters and detailed desctiptions, see [Common parameters](#param).
+For other parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Request header
 
@@ -143,9 +143,9 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 | `reason` | String | The reason for failing to add the member to the allow list. |
 | `groupid` | String | The chat group ID. |
 | `action` | String | The operation of the method call. |
-| `user` | String | The username added to the allow list. |
+| `user` | String | The user ID added to the allow list. |
 
-For other parameters and detailed desctiptions, see [Common parameters](#param).
+For other parameters and detailed descriptions, see [Common parameters](#param).
 
 If the returned HTTP status code is not 200, the request fails. You can refer to [Status code](./agora_chat_status_code?platform=RESTful) for possible causes.
 
@@ -179,7 +179,7 @@ curl -X POST -H 'Accept: application/json' -H 'Authorization: Bearer {Your app t
 
 ## Adding multiple members to the group allow list
 
-This method adds multiple chat group members to the group allow list. For each method call, you can add at most 60 group members to the allow list.
+This method adds multiple chat group members to the group allow list. You can add a maximum of 60 group members to the allow list per method call.
 
 ### HTTP request
 
@@ -191,7 +191,7 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/white/users
 | --- | --- | --- | --- |
 | `group_id` | String | The chat group ID. | Yes |
 
-For other parameters and detailed desctiptions, see [Common parameters](#param).
+For other parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Request header
 
@@ -204,7 +204,7 @@ For other parameters and detailed desctiptions, see [Common parameters](#param).
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `usernames` | Array | The usernames that you want to add to the group allow list. |
+| `usernames` | Array | The user IDs that you want to add to the group allow list. |
 
 ### HTTP response
 
@@ -216,9 +216,9 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 | `reason` | String | The reason for failing to add the member to the allow list. |
 | `groupid` | String | The chat group ID. |
 | `action` | String | The operation of the method call. |
-| `user` | String | The username added to the allow list. |
+| `user` | String | The user ID added to the allow list. |
 
-For other parameters and detailed desctiptions, see [Common parameters](#param).
+For other parameters and detailed descriptions, see [Common parameters](#param).
 
 If the returned HTTP status code is not 200, the request fails. You can refer to [Status code](./agora_chat_status_code?platform=RESTful) for possible causes.
 
@@ -261,7 +261,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 ## Removing members from the group allow list
 
-This method removes the specified chat group member(s) from the group allow list. For each method call, you can remove at most 60 group members.
+This method removes the specified chat group member(s) from the group allow list. You can remove a maximum of 60 group members from the allow list per method call.
 
 ### HTTP request
 
@@ -274,9 +274,9 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/white/users/{u
 | Parameter | Type | Description | Required |
 | --- | --- | --- | --- |
 | `group_id` | String | The chat group ID. | Yes |
-| `username` | String | The username(s) that you want to remove from the allow list. For multiple usernames, use the English comma "," to seperate each username.| Yes |
+| `username` | String | The user ID(s) that you want to remove from the allow list. For multiple user IDs, use the English comma "," to separate each user ID.| Yes |
 
-For other parameters and detailed desctiptions, see [Common parameters](#param).
+For other parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Request header
 
@@ -295,9 +295,9 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 | `reason` | String | The reason for failing to remove the member from the allow list. |
 | `groupid` | String | The chat group ID. |
 | `action` | String | The operation of the method call. |
-| `user` | String | The username removed from to the allow list. |
+| `user` | String | The user ID removed from the allow list. |
 
-For other parameters and detailed desctiptions, see [Common parameters](#param).
+For other parameters and detailed descriptions, see [Common parameters](#param).
 
 If the returned HTTP status code is not 200, the request fails. You can refer to [Status code](./agora_chat_status_code?platform=RESTful) for possible causes.
 
