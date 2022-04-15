@@ -944,11 +944,11 @@ Example of custom type message format
 	
 	<a name="code"></a>
 
-## Recalling a message from the server
+## Recalling a message
 
 This method enables app admins to recall harmful information to maintain a healthy chat environment.
 
-The default time limit on recalling a message is two minutes. You can modify this value in [Agora Console](https://console.agora.io/). The maximum message storage duration varies based on different pricing plans. For details, see [Limitations](./agora_chat_limitation?platform=Android#message-storage-duration).
+The default time limit on recalling a message is two minutes, with a maximum of seven days. You can modify this value in [Agora Console](https://console.agora.io/).
 
 ### HTTP request
 
@@ -972,10 +972,10 @@ For the parameters and detailed descriptions, see [Common parameters ](#param).
 | Parameter        | Type | Required | Description                                                         |
 | :---------- | :------- | :------- | :----------------------------------------------------------- |
 | `msg_id`    | String   | Yes     | The ID of the recalled message.                                      |
-| `to`        | String   | No   | The user, chat group, or chat room that receives the recalled message. You can specify a username, a chat group ID, or a chat room ID.</br>**Note**: If the recalled message exceeds the message storage duration of the server and no longer exits in the server, this message cannot be recalled on the server side. You can only recall the message on the receiver client instead. |
-| `chat_type` | String   | Yes     | The chat where the recalled message resides. <li>`chat`: An one-on-one chat.<li>`group_chat`: A chat group.<li>`chatroom`: A chat room. |
-| `from`      | String   | No   | The user who recalls the message. By default, the recaller is the app admin. You can also specify a username. |
-| `force`     | bool     | Yes     | Whether to force a recall if the recalled message exceeds the message storage duration of the server and no longer exits in the server. <li>`true`: Force the recall on the client that receives the message.<li>`false`: The recall fails. |
+| `to`        | String   | No   | The user, chat group, or chat room that receives the recalled message. You can specify a username, a chat group ID, or a chat room ID.</br>**Note**: If the recalled message exceeds the message storage duration and no longer exits in the server, this message cannot be recalled on the server side. You can only recall the message on the receiver client instead. |
+| `chat_type` | String   | Yes     | The type of the chat where the recalled message locates. <li>`chat`: An one-on-one chat.<li>`group_chat`: A chat group.<li>`chatroom`: A chat room. |
+| `from`      | String   | No   | The user who recalls the message. By default, the recaller is the app admin. You can also specify another user as the recaller. |
+| `force`     | bool     | Yes     | Whether to force a recall if the recalled message exceeds the message storage duration and no longer exits in the server. <li>`true`: Force the recall on the client that receives the message.<li>`false`: The recall fails.</br>The maximum message storage duration varies based on different pricing plans. For details, see [Message storage duration](./agora_chat_limitation?platform=Android#message-storage-duration). |
 
 ### HTTP response
 
@@ -987,9 +987,9 @@ If the returned HTTP status code is `200`, the request is successful, and the re
 | :--------- | :----------------------------------------------------------- |
 | `msg_id`   | The ID of the recalled message.                                          |
 | `recalled` | Returns `yes` if the request is successful.                         |
-| `from`     | The user who recalls the message. The value of this parameter is set to admin by default.           |
+| `from`     | The user who recalls the message. By default, the recaller is the app admin.          |
 | `to`       | The user, chat group, or chat room that receives the recalled message.                      |
-| `chattype` | The chat where the recalled message resides. <li>`chat`: An one-on-one chat.<li>`group_chat`: A chat group.<li>`chatroom`: A chat room. |
+| `chattype` | The type of the chat where the recalled message locates. <li>`chat`: An one-on-one chat.<li>`group_chat`: A chat group.<li>`chatroom`: A chat room. |
 
 For other fields and detailed descriptions, see [Common parameters](#param).
 
