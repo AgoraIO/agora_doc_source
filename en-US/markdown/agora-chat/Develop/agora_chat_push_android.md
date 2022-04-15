@@ -72,6 +72,28 @@ dependencies {
 
 2. Sync project with gradle files, extend `FirebaseMessagingService`, and register `FirebaseMessagingService` in the `AndroidManifest.xml` file of your project.
 
+```java
+public class EMFCMMSGService extends FirebaseMessagingService {
+    private static final String TAG = "EMFCMMSGService";
+
+    @Override
+    public void onMessageReceived(RemoteMessage remoteMessage) {
+        super.onMessageReceived(remoteMessage);
+        if (remoteMessage.getData().size() > 0) {
+            String message = remoteMessage.getData().get("alert");
+            Log.d(TAG, "onMessageReceived: " + message);
+        }
+    }
+
+    @Override
+    public void onNewToken(@NonNull String token) {
+        super.onNewToken(token);
+        Log.d(TAG, "onNewToken: " + token);
+        ChatClient.getInstance().sendFCMTokenToServer(token);
+    }
+}
+```
+
 ```xml
 <service
     android:name=".java.MyFirebaseMessagingService"
@@ -81,6 +103,7 @@ dependencies {
     </intent-filter>
 </service>
 ```
+
 3. Initialize and enable FCM in Agora Chat SDK.
 ```java
 ChatOptions options = new ChatOptions();
@@ -88,11 +111,11 @@ ChatOptions options = new ChatOptions();
 PushConfig.Builder builder = new PushConfig.Builder(this);
 // Replace with your FCM Sender ID.
 builder.enableFCM("Your FCM sender id");
-// Set pushConfig to ChatOptions.
+// Set push configurations in the ChatOptions class.
 options.setPushConfig(builder.build());
-// To initialize Agora Chat SDK
+// Initialize the Agora Chat SDK.
 ChatClient.getInstance().init(this, options);
-// After the SDK is initialized
+// After the SDK is initialized, set the push listener.
 PushHelper.getInstance().setPushListener(new PushListener() {
     @Override
     public void onError(PushType pushType, long errorCode) {
@@ -349,7 +372,7 @@ ChatClient.getInstance().chatManager().sendMessage(message);
 | ---------------- | ------------------------------------------------------------ |
 | `txtBody`        | The displayed content of push notifications.                                  |
 | `toChatUsername` | The username of the sender.  |
-| `em_apns_ext`    | The custom extensions. This field cannot be modified. |
+| `em_apns_ext`    | The custom extensions. <br>**Note**: Do not modify the key. Modify the value of the key only. |
 | `test1`          | The custom key.                               |
 
 
@@ -406,9 +429,9 @@ ChatClient.getInstance().chatManager().sendMessage(message);
 | Parameter             | Description                                                         |
 | ---------------- | ------------------------------------------------------------ |
 | `toChatUsername` | The username of the sender. |
-| `em_apns_ext`    | The custom extensions. This field cannot be modified. |
-| `em_push_title`   | The custom key used to specify custom titles of push notifications. This field cannot be modified. |
-| `em_push_content`| The custom key used to specify custom displayed content of push notifications. This field cannot be modified. |
+| `em_apns_ext`    | The custom extensions. <br>**Note**: Do not modify the key. Modify the value of the key only. |
+| `em_push_title`   | The custom key used to specify custom titles of push notifications.<br>**Note**: Do not modify the key. Modify the value of the key only. |
+| `em_push_content`| The custom key used to specify custom displayed content of push notifications.<br>**Note**: Do not modify the key. Modify the value of the key only. |
 | `push_title`   | The custom key used to specify custom titles of push notifications. You can modify this field based on your needs. |
 | `push_content`| The custom key used to specify custom displayed content of push notifications. You can modify this field based on your needs. |
 
@@ -458,4 +481,4 @@ ChatClient.getInstance().chatManager().sendMessage(message);
 | ----------------------- | ---------------------------------------- |
 | `txtBody`               | The message body.                                 |
 | `toChatUsername`        | The username of the sender.                    |
-| `em_force_notification` | Whether to force a push notification. You cannot modify this field.  |
+| `em_force_notification` | Whether to force a push notification.<li>`true`: Yes<li>`false`: No  |
