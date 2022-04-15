@@ -896,7 +896,7 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/status
 
 #### 响应 body
 
-如果返回的 HTTP 状态码是 200，则表示请求成功。响应包体中包含如下字段：
+如果返回的 HTTP 状态码是 `200`，则表示请求成功。响应包体中包含如下字段：
 
 | 参数     | 说明                                                         |
 | :------- | :----------------------------------------------------------- |
@@ -904,7 +904,7 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/status
 
 其他字段说明详见[公共参数](#param)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码汇总表](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考[状态码汇总表](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -964,11 +964,15 @@ POST https://{host}{org_name}/{app_name}/users/batch/status
 
 #### 响应 body
 
-如果返回的 HTTP 状态码是 200，则表示请求成功。响应包体中包含如下字段：
+如果返回的 HTTP 状态码是 `200`，则表示请求成功。响应包体中包含如下字段：
 
 | 参数     | 说明                                                         |
 | :------- | :----------------------------------------------------------- |
 | `username` | 数据格式为：“用户 ID：当前在线状态”，例如，user1 的在线和离线状态分别为 "user1": "online" 和"user1": "offline"。|
+
+其他字段说明详见[公共参数](#param)。
+
+如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考[状态码汇总表](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -1028,12 +1032,15 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/offline_msg_coun
 
 #### 响应 body
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码汇总表](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码是 `200`，则表示请求成功。响应包体中包含如下字段：
 
 | 参数     | 说明                                                         |
 | :------- | :----------------------------------------------------------- |
 | `username` | 数据格式为：“用户 ID：当前离线消息的数量“，例如，"user1: 0”。 |
 
+其他字段说明详见[公共参数](#param)。
+
+如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考[状态码汇总表](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 ### 示例
 
 #### 请求示例
@@ -1089,11 +1096,15 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/offline_msg_status/{ms
 
 #### 响应 body
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码汇总表](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码是 `200`，则表示请求成功。响应包体中包含如下字段：
 
 | 参数   | 说明                                                         |
 | :----- | :----------------------------------------------------------- |
 | `msg_id` | 数据格式为“消息 ID”：“离线消息的投递状态”。有两种：<li> “delivered”  表示已投递； <li> `undelivered“  表示未投递。 |
+
+其他字段说明详见[公共参数](#param)。
+
+如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考[状态码汇总表](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
