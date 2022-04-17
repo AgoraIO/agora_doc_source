@@ -1,9 +1,8 @@
 This page shows how to perform chat room member mute management by calling the Agora Chat RESTful APIs, including adding, retrieving, and removing muted members in a chat room.
+
 Before calling the following methods, ensure that you understand the call frequency limit of the Agora Chat RESTful APIs described in [Limitations](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side).
 
-
- <a name="param"></a>
-## Common parameters
+## Common parameters<a name="param"></a>
 
 The following table lists common request and response parameters of the Agora Chat RESTful APIs:
 
@@ -15,6 +14,7 @@ The following table lists common request and response parameters of the Agora Ch
 | `org_name` | String | The unique identifier assigned to each company (organization) by the Agora Chat service. For how to get the org name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
 | `app_name` | String | The unique identifier assigned to each app by the Agora Chat service. For how to get the app name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
 | `username` | String | The username. The unique login account of the user. The username must be 64 characters or less and cannot be empty.  The following character sets are supported:<li>26 lowercase English letters (a-z)</li><li>26 uppercase English letters (A-Z)</li><li>10 numbers (0-9)</li><li>"\_", "-", "."</li><div class="alert note"><ul><li>The username is case insensitive,  so `Aa` and `aa` are the same username. </li><li>Ensure that each username under the same app must be unique.</li></ul></div> | Yes |
+| `chatroom_id` | String | The unique identifier of the chat room. | Yes |
 
 ### Response parameters
 
@@ -260,8 +260,135 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 }
 ```
 
-<a name="code"></a>
+## Muting all chat room members
 
-## Status codes
+Mutes all chat room members. Once this method call succeeds, only the members in the chat room allow list can send messages. For details, see [Manage Chat Room Allow List](./agora_chat_restful_chatroom_mute?platform=RESTful).
+
+### HTTP request
+
+```http
+POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/ban
+```
+
+#### Path parameter
+
+For the parameters and detailed descriptions, see [Common parameters](#param).
+
+#### Request header
+
+| Parameter | Type | Required | Description | 
+| :-------------- | :----- | :--------------------- | :------- |
+| `Content-Type` | String | Yes | `application/json` |
+| `Authorization` | String | Yes |  The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
+
+#### Request body
+
+| Parameter | Type | Description 
+| :-------------- | :----- | :--------------------------------------------------------------------------------------------------------------------------------- | 
+| `mute_duration` | Long | The duration of how long all members are muted, starting from the current time. Unit: milliseconds. |
+
+### HTTP response
+
+#### Response body
+
+If the returned HTTP status code is `200`, the request succeeds. The response body contains the following fields:
+
+| Parameter | Type | Description |
+| :------- | :----- | :------------------------------------------------------ |
+| `result` | Bool | The mute result Whether all members are successfully muted:<li>`true`: Yes.<li>`false`: No.|
+| `expire` | Long | The Unix timestamp when the global mute state expires. Unit: milliseconds. |
+
+For other fields and detailed descriptions, see [Common parameters](#param).
+
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#code) for possible reasons.
+
+### Example
+
+#### Request example
+
+```
+curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer YWMt4LqJIul7EeizhBO5TSO_UgAAAAAAAAAAAAAAAAAAAAGL4CTw6XgR6LaXXVmNX4QCAgMAAAFnG7GyAQBPGgDv4ENRUku7fg05Kev0a_aVC8NyA6O6PgpxIRjajSVN3g' 'http://XXXX/XXXX/XXXX/chatrooms/1265710621211/ban'
+```
+
+#### Response example
+
+```
+{
+  "action": "put",
+  "application": "5cf28979-XXXX-XXXX-b969-60141fb9c75d",
+  "uri": "http://XXXX/XXXX/XXXX/chatrooms/XXXX/ban",
+  "entities": [],
+  "data": {
+    "mute": true
+  },
+  "timestamp": 1594628861058,
+  "duration": 1,
+  "organization": "XXXX",
+  "applicationName": "XXXX"
+} 
+```
+
+## Unmuting all chat room members
+
+Unmutes all chat room members. Once unmuted, the chat room members resume the right to send messages in the chat room.
+
+### HTTP request
+
+```http
+DELETE https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/ban
+```
+
+#### Path parameter
+
+For the parameters and detailed descriptions, see [Common parameters](#param).
+
+#### Request header
+
+| Parameter | Type | Required | Description | 
+| :-------------- | :----- | :--------------------- | :------- |
+| `Content-Type` | String | Yes | `application/json` |
+| `Authorization` | String | Yes |  The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
+
+### HTTP response
+
+#### Response body
+
+If the returned HTTP status code is `200`, the request succeeds. The response body contains the following fields:
+
+| Parameter     | Type    | Description                                              |
+| :------- | :------ | :---------------------------------------------------- |
+| `result` | Boolean | Whether all chat room members are successfully unmuted:<li>`true`: Yes.<li>`false`: No. |
+
+For other fields and detailed descriptions, see [Common parameters](#param).
+
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#code) for possible reasons.
+
+### Example
+
+#### Request example
+
+```
+curl -X DELETE -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer YWMt4LqJIul7EeizhBO5TSO_UgAAAAAAAAAAAAAAAAAAAAGL4CTw6XgR6LaXXVmNX4QCAgMAAAFnG7GyAQBPGgDv4ENRUku7fg05Kev0a_aVC8NyA6O6PgpxIRjajSVN3g' 'http://XXXX/XXXX/XXXX/chatrooms/XXXX/ban'
+```
+
+#### Response example
+
+```
+{
+  "action": "put",
+  "application": "5cf28979-XXXX-XXXX-b969-60141fb9c75d",
+  "uri": "http://XXXX/XXXX/XXXX/chatrooms/XXXX/ban",
+  "entities": [],
+  "data": {
+    "mute": false
+  },
+  "timestamp": 1594628899502,
+  "duration": 1,
+  "organization": "XXXX",
+  "applicationName": "XXXX"
+}
+```
+
+## Status codes <a name="code"></a>
 
 For details, see [HTTP Status Codes](./agora_chat_status_code?platform=RESTful).
