@@ -17,7 +17,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec" />
             <codeblock props="windows" outputclass="language-cpp">virtual int startRecording(const MediaRecorderConfiguration&amp; config) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="unity" outputclass="language-csharp">public abstract int StartRecording(MediaRecorderConfiguration config);</codeblock>
             <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startRecording(MediaRecorderConfiguration config);</codeblock> </p>
         </section>
@@ -58,7 +58,7 @@
                         <li>The recording is ongoing.</li>
                         <li>The recording stops because an error occurs.</li>
                         </ul></li>
-                    <li><codeph>-7(ERR_NOT_INITIALIZED)</codeph>: This method is called before the initialization of <xref keyref="IRtcEngine" />. Ensure that you have called <xref keyref="getMediaRecorder" /> before calling this method.</li>
+                    <li><codeph>-7(ERR_NOT_INITIALIZED)</codeph>: <ph>This method is called before the initialization of <xref keyref="IRtcEngine" />. </ph><ph props="android ios mac windows">Ensure that you have called <xref keyref="getMediaRecorder" /> before calling this method.</ph></li>
                     </ul></li>
             </ul>
         </section>

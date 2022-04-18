@@ -5,6 +5,22 @@
     <shortdesc id="short"><ph id="shortdesc">Configurations of the video frame</ph></shortdesc>
     <refbody>
         <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="unity" outputclass="language-csharp">public class VideoFrame
+    {
+        public VIDEO_PIXEL_FORMAT type;
+        public int width;
+        public int height;
+        public int yStride; 
+        public int uStride; 
+        public int vStride; 
+        public byte[] yBuffer;
+        public byte[] uBuffer; 
+        public byte[] vBuffer; 
+        public int rotation; 
+        public long renderTimeMs;
+        public int avsync_type;
+    };</codeblock></p>
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java" />
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraOutputVideoFrame : NSObject
@@ -52,7 +68,6 @@
 };
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
             <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>

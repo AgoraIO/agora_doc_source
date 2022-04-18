@@ -63,10 +63,44 @@
       quality(rhs.quality) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="unity" outputclass="language-csharp">public class AudioRecordingConfiguration
+    {
+        public AudioRecordingConfiguration()
+        {
+            filePath = null;
+            encode = false;
+            sampleRate = 32000;
+            fileRecordingType = AUDIO_FILE_RECORDING_TYPE.AUDIO_FILE_RECORDING_MIXED;
+            quality = AUDIO_RECORDING_QUALITY_TYPE.AUDIO_RECORDING_QUALITY_LOW;
+        }
+
+        public AudioRecordingConfiguration(string file_path, int sample_rate, AUDIO_RECORDING_QUALITY_TYPE quality_type)
+        {
+            this.filePath = file_path;
+            this.encode = false;
+            this.sampleRate = sample_rate;
+            this.fileRecordingType = AUDIO_FILE_RECORDING_TYPE.AUDIO_FILE_RECORDING_MIXED;
+            this.quality = quality_type;
+        }
+
+        public AudioRecordingConfiguration(string file_path, bool enc, int sample_rate, 
+                                        AUDIO_FILE_RECORDING_TYPE type, AUDIO_RECORDING_QUALITY_TYPE quality_type)
+        {
+            this.filePath = file_path;
+            this.encode = enc;
+            this.sampleRate = sample_rate;
+            this.fileRecordingType = type;
+            this.quality = quality_type;
+        }
+
+        public string filePath { set; get; }
+        public bool encode { set; get; }
+        public int sampleRate { set; get; }
+        public AUDIO_FILE_RECORDING_TYPE fileRecordingType { set; get; }
+        public AUDIO_RECORDING_QUALITY_TYPE quality { set; get; }
+    }</codeblock>
             <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" />
-            </p>
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_remoteaudiostats">
-    <title><ph keyref="RemoteAudioStats"/></title>
+    <title><ph keyref="RemoteAudioStats" /></title>
     <shortdesc id="short"><ph id="shortdesc">远端用户的音频统计数据。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -70,7 +70,58 @@
     totalActiveTime(0),
     publishDuration(0){}
     qoeQuality(0) {}
-};</codeblock> </p>
+};</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class RemoteAudioStats
+    {
+        public RemoteAudioStats()
+        {
+        }
+        public RemoteAudioStats(uint uid, int quality, int networkTransportDelay, int jitterBufferDelay,
+            int audioLossRate, int numChannels, int receivedSampleRate, int receivedBitrate, int totalFrozenTime,
+            int frozenRate, int mosValue, int totalActiveTime, int publishDuration)
+        {
+            this.uid = uid;
+            this.quality = quality;
+            this.networkTransportDelay = networkTransportDelay;
+            this.jitterBufferDelay = jitterBufferDelay;
+            this.audioLossRate = audioLossRate;
+            this.numChannels = numChannels;
+            this.receivedSampleRate = receivedSampleRate;
+            this.receivedBitrate = receivedBitrate;
+            this.totalFrozenTime = totalFrozenTime;
+            this.frozenRate = frozenRate;
+            this.mosValue = mosValue;
+            this.totalActiveTime = totalActiveTime;
+            this.publishDuration = publishDuration;
+        }
+
+        public uint uid { set; get; }
+
+        public int quality { set; get; }
+
+        public int networkTransportDelay { set; get; }
+
+        public int jitterBufferDelay { set; get; }
+
+        public int audioLossRate { set; get; }
+
+        public int numChannels { set; get; }
+
+        public int receivedSampleRate { set; get; }
+
+        public int receivedBitrate { set; get; }
+
+        public int totalFrozenTime { set; get; }
+
+        public int frozenRate { set; get; }
+
+        public int mosValue { set; get; }
+
+        public int totalActiveTime { set; get; }
+
+        public int publishDuration { set; get; }
+    }</codeblock>
+            </p>
             <p props="rtc" outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public static class RemoteAudioStats {
     public int uid;
@@ -246,7 +297,7 @@
                     <dl outputclass="since" props="rtc">
                     <dlentry props="native">
                         <dt>自从</dt>
-                        <dd>v3.0.0</dd>
+                        <dd>v3.3.0</dd>
                     </dlentry>
                     </dl>
                     <p>远端用户在音频通话开始到本次回调之间的有效时长（毫秒）。</p>

@@ -18,7 +18,13 @@
   EchoTestConfiguration(view_t v, bool ea, bool ev, const char* t, const char* c) : view(v), enableAudio(ea), enableVideo(ev), token(t), channelId(c) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="unity" outputclass="language-csharp">public struct EchoTestConfiguration {
+        public IntPtr view;
+        public bool enableAudio;
+        public bool enableVideo;
+        public string token;
+        public string channelId;
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">class EchoTestConfiguration {
                   @JsonKey(includeIfNull: false)

@@ -91,7 +91,53 @@
                     int textureId;
                     uint8_t* metadata_buffer;
                     int metadata_size;
-                    };</codeblock> </p>
+                    };</codeblock>
+                    <codeblock props="unity" outputclass="language-csharp">public class ExternalVideoFrame
+    {
+        public ExternalVideoFrame()
+        {
+        }
+
+        public ExternalVideoFrame(VIDEO_BUFFER_TYPE type, VIDEO_PIXEL_FORMAT format, byte[] buffer, int stride,
+            int height, long timestamp, byte[] eglContext, EGL_CONTEXT_TYPE eglType, int textureId, byte[] metadata_buffer,
+            int metadata_size, int cropLeft = 0, int cropTop = 0, int cropRight = 0, int cropBottom = 0,
+            int rotation = 0)
+        {
+            this.type = type;
+            this.format = format;
+            this.buffer = buffer;
+            this.stride = stride;
+            this.height = height;
+            this.cropLeft = cropLeft;
+            this.cropTop = cropTop;
+            this.cropRight = cropRight;
+            this.cropBottom = cropBottom;
+            this.rotation = rotation;
+            this.timestamp = timestamp;
+            this.eglContext = eglContext;
+            this.eglType = eglType;
+            this.textureId = textureId;
+            this.metadata_buffer = metadata_buffer;
+            this.metadata_size = metadata_size;
+        }
+
+        public VIDEO_BUFFER_TYPE type { set; get; }
+        public VIDEO_PIXEL_FORMAT format { set; get; }
+        public byte[] buffer { set; get; }
+        public int stride { set; get; }
+        public int height { set; get; }
+        public int cropLeft { set; get; }
+        public int cropTop { set; get; }
+        public int cropRight { set; get; }
+        public int cropBottom { set; get; }
+        public int rotation { set; get; }
+        public long timestamp { set; get; }
+        public byte[] eglContext { set; get; }
+        public EGL_CONTEXT_TYPE eglType { set; get; }
+        public int textureId { set; get; }
+        public byte[] metadata_buffer { set; get; }
+        public int metadata_size { set; get; }
+    }</codeblock> </p>
         </section>
         <section id="detailed_desc" props="rtc-ng">
             <dl outputclass="deprecated">

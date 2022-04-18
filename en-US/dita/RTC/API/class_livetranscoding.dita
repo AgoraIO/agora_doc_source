@@ -280,7 +280,32 @@
   LiveStreamAdvancedFeature* advancedFeatures;
   unsigned int advancedFeatureCount;
   LiveTranscoding() : width(360), height(640), videoBitrate(400), videoFramerate(15), lowLatency(false), videoGop(30), videoCodecProfile(VIDEO_CODEC_PROFILE_HIGH), backgroundColor(0x000000), videoCodecType(VIDEO_CODEC_H264_FOR_STREAM), userCount(0), transcodingUsers(NULL), transcodingExtraInfo(NULL), metadata(NULL), watermark(NULL), watermarkCount(0), backgroundImage(NULL), backgroundImageCount(0), audioSampleRate(AUDIO_SAMPLE_RATE_48000), audioBitrate(48), audioChannels(1), audioCodecProfile(AUDIO_CODEC_PROFILE_LC_AAC), advancedFeatures(NULL), advancedFeatureCount(0) {}
-};</codeblock> </p>
+};</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class LiveTranscoding
+    {
+        public LiveTranscoding()
+        {
+            width = 360;
+            height = 640;
+            videoBitrate = 400;
+            videoFramerate = 15;
+            lowLatency = false;
+            videoGop = 30;
+            videoCodecProfile = VIDEO_CODEC_PROFILE_TYPE.VIDEO_CODEC_PROFILE_HIGH;
+            backgroundColor = 0x000000;
+            userCount = 0;
+            transcodingUsers = new TranscodingUser[0];
+            transcodingExtraInfo = null;
+            metadata = null;
+            watermark = null;
+            watermarkCount = 0;
+            backgroundImage = null;
+            backgroundImageCount = 0;
+            audioSampleRate = AUDIO_SAMPLE_RATE_TYPE.AUDIO_SAMPLE_RATE_48000;
+            audioBitrate = 48;
+            audioChannels = 1;
+            audioCodecProfile = AUDIO_CODEC_PROFILE_TYPE.AUDIO_CODEC_PROFILE_LC_AAC;
+        }</codeblock> </p>
             <p outputclass="codeblock" props="rtc">
             <codeblock props="windows unity" outputclass="language-cpp">struct LiveTranscoding {
     int width;
@@ -330,7 +355,7 @@
     transcodingUsers: Array&lt;TranscodingUser&gt;
     }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class LiveTranscoding {
-  
+
   @JsonKey(includeIfNull: false)
   int? width;
 
@@ -676,7 +701,7 @@
             <plentry props="rtc-ng">
                 <pt props="windows">advancedFeatureCount</pt>
                 <pd props="windows">The number of enabled advanced features. The default value is 0.</pd>
-            </plentry>            
+            </plentry>
             </parml> </section>
     </refbody>
 </reference>

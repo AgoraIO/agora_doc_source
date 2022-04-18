@@ -49,8 +49,36 @@
             int height;
             int zOrder;
             double alpha;
-            
+
             RtcImage() : url(NULL), x(0), y(0), width(0), height(0), zOrder(0), alpha(1.0) {}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class RtcImage
+    {
+        public RtcImage()
+        {
+        }
+        public RtcImage(string url, int x, int y, int width, int height, int zOrder)
+        {
+            this.url = url;
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+            this.zOrder = zOrder;
+        }
+
+        public string url { set; get; }
+
+        public int x { set; get; }
+
+        public int y { set; get; }
+
+        public int width { set; get; }
+
+        public int height { set; get; }
+
+        public int zOrder { set; get; }
+    }
+    }</codeblock>
             </p>
             <p outputclass="codeblock" props="rtc">
             <codeblock props="windows" outputclass="language-cpp">typedef struct RtcImage {
@@ -74,8 +102,7 @@
 
     public AgoraImage() {
     }
-}</codeblock> </p>
-            <p outputclass="codeblock">
+}</codeblock>
             <codeblock props="unity" outputclass="language-cpp">typedef struct RtcImage {
     RtcImage() :
        url(NULL),
@@ -90,7 +117,8 @@
     int y;
     int width;
     int height;
-    } RtcImage;</codeblock>
+    } RtcImage;</codeblock> </p>
+            <p outputclass="codeblock">
             <codeblock props="electron" outputclass="language-typescript">export interface RtcImage {
     x: number,
     y: number,
@@ -100,7 +128,6 @@
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">class AgoraImage {
-  
   String url;
   @JsonKey(includeIfNull: false)
   int? x;
@@ -127,7 +154,7 @@
             <p>This class sets the properties of the watermark and background images in the live video.</p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>
             <parml>
             <plentry>
                 <pt>url</pt>
@@ -159,7 +186,7 @@
             </plentry>
             <plentry props="rtc-ng">
                 <pt>alpha</pt>
-                <pd>The transparency of the watermark or background image.  The value ranges between 0.0 and 1.0:<ul>
+                <pd>The transparency of the watermark or background image. The value ranges between 0.0 and 1.0:<ul>
                     <li>0.0: Completely transparent.</li>
                     <li>1.0: (Default) Opaque.</li>
                     </ul></pd>
