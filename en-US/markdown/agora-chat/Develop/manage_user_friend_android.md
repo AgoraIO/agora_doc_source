@@ -1,8 +1,8 @@
-After joining an Agora Chat channel, a user can update information such as the nickname, avatar, age, and mobile phone number as needed. To enjoy real-time chattings with friends, they can also add, delete and manage contacts.
+After joining an Agora Chat channel, a user can update information such as the nickname, avatar, age, and mobile phone number as needed. To enjoy real-time chatting with friends, they can also add, delete, and manage contacts.
 
 This page shows how to use the Agora Chat SDK to implement managing user attributes and contacts.
 
-> User attributes are stored in the Agora Chat server. If you have concerns in this regard, we recommend you managing user attributes yourself.
+<div class="alert note"><ul><li>User attributes are stored on the Agora Chat server. If you have security concerns, Agora recommends that you manage user attributes yourself.</li><li></li>To ensure information security, app users can only modify their own user attributes. Only app admins can modify the user attributes of other users.</ul></div>
 
 
 ## Understand the tech
@@ -13,22 +13,22 @@ The following figure shows the workflow to manage user attribtues and contacts i
 
 The Agora Chat SDK provides the following classes:
 - [`UserInfoManager`]() sets and retrieves the various user attributes with a `UserInfo` struct.
-- [`ContactManager`]() enables users to add or delete contacts, accept or decline contact invitations, and add other users to the blocklist.
+- [`ContactManager`]() enables users to add or delete contacts, accept or decline contact invitations, and add other users to the block list.
 
 ## Prerequisites
 
 Before proceeding, ensure that you meet the following requirements:
 
-- Have a project that has implemented [the basic real-time chat functionalities](agora_chat_get_started_android).
-- Have a thorough understanding of the API call frequency limit, the maximum size of all the attributes of a specified user, and the maximum size of all user attribtues in an app. For details, see [Known limitations]().
+- Have a project that has implemented [the basic real-time chat functionalities](agora_chat_get_started_android?platform=Android).
+- Have a thorough understanding of the API call frequency limit, the maximum size of all the attributes of a specified user, and the maximum size of all user attribtues in an app. For details, see [Known limitations](./agora_chat_limitation_android?platform=Android).
 
 ## Implement managing user attributes and contacts
 
 This section shows how to manage user attributes and contacts with the methods provided by the Agora Chat SDK.
 
-### Set, retrieve and update user attributes
+### Set, retrieve, and update user attributes
 
-The Agora Chat SDK uses the `UserInfoManager` class to manage user attributes, which enables you to set, retrieve, and update all attributes of a specified user or a particular user attribute of many specified users.
+The Agora Chat SDK uses the `UserInfoManager` class to manage user attributes, which enables chat users to set and update their own attributes. They can also retrieve the user attributes of the specified user(s).
 
 Refer to the code snippets below to see how to set, retrieve, and update user attribtues:
 
@@ -81,7 +81,7 @@ ChatClient.getInstance().userInfoManager().updateOwnInfoByAttribute(UserInfoType
 
 ### Manage contacts
 
-In a real-time chat, users can add or remove contacts, accept or decline a contact invitation, and add other users to a blocklist. The Agora Chat SDK uses a `ContactManager` class to enable these functionalities in your app. Refer to the following sample code to see how to implement contact management.
+In a real-time chat, users can add or remove contacts, accept or decline a contact invitation, and add other users to a block list. The Agora Chat SDK uses a `ContactManager` class to enable these functionalities in your app. Refer to the following sample code to see how to implement contact management.
 
 ```java
 // Call addContact to send a contact invitation
@@ -113,17 +113,29 @@ AgoraChatClient.getInstance().contactManager().setContactListener(new ContactLis
     public void onContactAdded(String username) { }
 })
 
+// To get the contact list, you need to call getAllContactsFromServer to retrieve the contact list from server first
+List<String> usernames = ChatClient.getInstance().contactManager().getAllContactsFromServer();
+// Call getContactsFromLocal to retrieve the contact list from the local database
+List<String> usernames = ChatClient.getInstance().contactManager().getContactsFromLocal
+
 // Call deleteContact to delete a contact
 ChatClient.getInstance().contactManager().deleteContact(username);
 ```
 
-You can also add a specified user to your blocklist. Once you do that, you can still send chat messages to that user, but not receive messages from them. The following code shows how to add a user into a blocklist.
+You can also add a specified user to your block list. Once you do that, you can still send chat messages to that user, but not receive messages from them. The following code shows how to add a user into a block list.
+
+<div class="note alert">Users can add any other chat user to the block list, regardless of whether this other user is a contact or not. A contact added to the block list remains in the contact list.</div>
 
 ```java
-// Call addUserToBlacklist to add a user, whehter your contact or not, to your blocklist
+// Call addUserToBlacklist to add a user, whehter your contact or not, to your block list
 ChatClient.getInstance().contactManager().addUserToBlackList(username,true);
 
-// To remove a user from the blocklist, call removeUserFromBlackList
+// To retrieve the block list, you need to call getBlackListFromServer to retrieve the block list from the server first
+ChatClient.getInstance().contactManager().getBlackListFromServer();
+// Call getBlackListUsernames to retrieve the usernames from the local database
+ChatClient.getInstance().contactManager().getBlackListUsernames();
+
+// To remove a user from the block list, call removeUserFromBlackList
 ChatClient.getInstance().contactManager().removeUserFromBlackList(username);
 ```
 
@@ -139,14 +151,14 @@ To implement user avatar management in your app, take the following steps:
 
 1. Upload the avator file to the third-party file storage service. Once the file is successfully uploaded, you get a URL address of the avatar file.
 2. Set the `avatarUrl` parameter in user attributes as the URL address of the avatar file.
-3. To display the avatar, call `fetchUserInfoByUserId` to retrieve the URL of the avatar file and then render the image on the local UI.
+3. To display the avatar, call `fetchUserInfoByUserId` to retrieve the URL of the avatar file, and then render the image on the local UI.
 
 ### Create and send a namecard using user attributes
 
-Namecard messages are custom messages that include the user ID, nickname, avator, Email address, and phone number of the specified user. To create and send a namecard, take the following steps:
+Namecard messages are custom messages that include the user ID, nickname, avator, email address, and phone number of the specified user. To create and send a namecard, take the following steps:
 
 1. Set the messsage type as custom.
-2. Set the `event` of the custom message as "user card".
+2. Set the `event` of the custom message as `USER_CARD_EVENT`.
 3. Retrieve the values of the `userId`, `nickname`, and `avatarurl` of the user attributes and set them as the the cutom message body.
 
 Followings are the sample code for creating and sending a namecard message:
@@ -165,14 +177,6 @@ ChatMessage message = ChatMessage.createSendMessage(AgoraChatMessage.Type.CUSTOM
     message.setTo(toUser);
 ChatClient.getInstance().chatManager().sendMessage(message);
 ```
-
-### Retrieve contact list and blocklist
-
-To retrieve the contact list or blocklist, call the following methods in the `ContactManager` class:
-- `getAllContactsFromServer` and `getAllContactsFromLocal`
-- `getBlackListFromServer` and `getBlackListUsernames` 
-
-For both lists, only after retrieving them from the server can you retrieve them from the lcoal device.
 
 ## Reference
 

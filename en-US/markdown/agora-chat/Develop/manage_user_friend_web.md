@@ -1,16 +1,16 @@
-After joining an Agora Chat channel, a user can update information such as the nickname, avatar, age, and mobile phone number as needed. To enjoy real-time chattings with friends, they can also add, delete and manage contacts.
+After joining an Agora Chat channel, a user can update information such as their nickname, avatar, age, and mobile phone number as needed. To enjoy real-time chatting with friends, they can also add, delete, and manage contacts.
 
 This page shows how to use the Agora Chat SDK to implement managing user attributes and contacts.
 
-<div class="alert note"><ul><li>User attributes are stored in the Agora Chat server. If you have security concerns in this regard, we recommend you managing user attributes yourself.</li><li></li>To ensure information security, app users can only modify their own user attributes. Only app admins can modify the user attributes of other users.</ul></div>
+<div class="alert note"><ul><li>User attributes are stored on the Agora Chat server. If you have security concerns, Agora recommends that you manage user attributes yourself.</li><li></li>To ensure information security, app users can only modify their own user attributes. Only app admins can modify the user attributes of other users.</ul></div>
 
 
 ## Understand the tech
 
-The Agora Chat SDK provides the following methods in the `Connection` class for implementig user attributes and contact:
-- `updateOwnUserInfo` and `fetchUserInfoById` sets the user attributes, including the user ID, nickname, avatar, signature, phone number, Email address, and gender.
+The Agora Chat SDK provides the following methods in the `Connection` class for implementing user attributes and contacts:
+- `updateOwnUserInfo` sets the user attributes, including the user ID, nickname, avatar, signature, phone number, email address, and gender.
 - `fetchUserInfoById` retrieves the various attributes.
-- `ContactManager` enables users to add or delete contacts, accept or decline contact invitations, and add other users to the block list.
+- `ContactManager` enables users to add or delete contacts, accept or decline contact invitations, and add other users to a block list.
 
 ## Prerequisites
 
@@ -23,7 +23,7 @@ Before proceeding, ensure that you meet the following requirements:
 
 This section shows how to manage user attributes and contacts with the methods provided by the Agora Chat SDK.
 
-### Set, retrieve and update user attributes
+### Set, retrieve, and update user attributes
 
 The Agora Chat SDK uses the `updateOwnUserInfo` and `fetchUserInfoById` methods to manage user attributes, which enables chat users to set and update their own attributes. They can also retrieve the user attributes of the specified user(s).
 
@@ -109,13 +109,13 @@ WebIM.conn.addUsersToBlacklist({
     name: ["user1", "user2"],
 });
 
+// Call getBlacklist to retrieve the block list from the server.
+WebIM.conn.getBlacklist();
+
 // Call removeUserFromBlackList to remove user1 and user2 from the block list.
 WebIM.conn.removeUserFromBlackList({
     name: ["user1", "user2"],
 });
-
-// Call getBlacklist to retrieve the block list from the server.
-WebIM.conn.getBlacklist();
 ```
 
 ## Next steps
@@ -128,13 +128,13 @@ The Agora Chat SDK only supports storing the URL address of the avatar file, but
 
 To implement user avatar management in your app, take the following steps:
 
-1. Upload the avator file to the third-party file storage service. Once the file is successfully uploaded, you get a URL address of the avatar file.
+1. Upload the avatar file to the third-party file storage service. Once the file is successfully uploaded, you get a URL address of the avatar file.
 2. Set the `avatarUrl` parameter in user attributes as the URL address of the avatar file.
-3. To display the avatar, call `fetchUserInfoByUserId` to retrieve the URL of the avatar file and then render the image on the local UI.
+3. To display the avatar, call `fetchUserInfoByUserId` to retrieve the URL of the avatar file, and then render the image on the local UI.
 
 ### Create and send a namecard using user attributes
 
-Namecard messages are custom messages that include the user ID, nickname, avator, Email address, and phone number of the specified user. To create and send a namecard, take the following steps:
+Namecard messages are custom messages that include the user ID, nickname, avatar, email address, and phone number of the specified user. To create and send a namecard, take the following steps:
 
 1. Set the messsage type as `custom`.
 2. Set the `customEvent` of the custom message as `userCard`.
@@ -149,7 +149,7 @@ let id = conn.getUniqueId();
 let msg = new WebIM.message("custom", id);
 // Set custom event type as userCard
 let customEvent = "userCard";
-// Set nickname, avatarurl, and mail as the extension of the custom message using customExts. 
+// Set these attribtues as the extension of the custom message using customExts. 
 let customExts = {
     nickname: "昵称",
     avatarurl: "http://avatarurl",
@@ -178,7 +178,7 @@ WebIM.conn.send(msg.body);
 This section includes reference information that you may need to know during the implementation.
 
 - Agora provides an open source [sample project]() on GitHub for your reference.
-- For detailed information on user attributes, refer to the following API Reference:
+- For detailed information on user attributes, refer to the following API References:
   - [updateOwnUserInfo]()
   - [fetchUserInfoById]()
   - [ContactManager]()
