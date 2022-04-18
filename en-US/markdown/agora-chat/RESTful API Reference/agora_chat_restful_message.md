@@ -981,7 +981,7 @@ For the parameters and detailed descriptions, see [Common parameters ](#param).
 
 #### Response body
 
-If the returned HTTP status code is `200`, the request is successful, and the response body contains the following fields:
+If `yes` is returned for the `recalled` field, the request is successful, and the response body contains the following fields:
 
 | Parameter       | Description                                                         |
 | :--------- | :----------------------------------------------------------- |
@@ -993,7 +993,15 @@ If the returned HTTP status code is `200`, the request is successful, and the re
 
 For other fields and detailed descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
+If the request fails, refer to the following error messages for possible reasons:
+
+| Status code |  Error message | Description   |
+| :-----  | :----------------------------------------------------------- | :------------------------------------------------|
+| `200`  |  can't find msg to  | The error message returned because you have not specify the receiver of the recalled message or the specified receiver does not exist. |
+| `200`  |  exceed recall time limit | The error message returned because the specified message exceeds the time limit on recalling o message. |
+| `200`  |  not_found msg | The error message returned because the specified message does not exist. |
+| `200`  |  internal error | The error message returned because the server encounters an unexpected condition that prevents it from fulfilling the request. |
+| `403`  | message recall service is unopened | The error message returned because the recall service has not been activated. To activate this service, contact support@agora.io.  |
 
 ### Example
 
@@ -1025,6 +1033,8 @@ curl -i -X POST -H
 
 #### Response example
 
+**Successful response**
+
 ```
 {
     "path": "/messages/recall",
@@ -1046,6 +1056,34 @@ curl -i -X POST -H
     },
     "duration": 3,
     "applicationName": "chatdemoui"
+}
+```
+
+**Error response**
+
+```
+{
+	"msgs":
+    [
+        {
+            "msg_id":"673296797703079892",
+            "recalled":"not_found msg"
+        },
+        {
+            "msg_id":"673296797703079892",
+            "recalled":"not_found msg"
+        },
+    ] 
+}
+```
+
+```
+{ 
+    "error":"forbidden_op", 
+    "exception":"EasemobForbiddenOpException", 
+    "timestamp":1644402553845, 
+    "duration":0, 
+    "error_description":"message recall service is unopened" 
 }
 ```
 
