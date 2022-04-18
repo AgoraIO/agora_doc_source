@@ -27,9 +27,9 @@ This section shows how to manage user attributes and contacts with the methods p
 
 ### Set, retrieve, and update user attributes
 
-The Agora Chat SDK uses the `UserInfoManager` class to manage user attributes, which enables chat users to set and update their own attributes. They can also retrieve the user attributes of the specified user(s).
+The Agora Chat SDK uses the `UserInfoManager` class to manage user attributes. Chat users can set and update their own attributes. They can also retrieve the user attributes of other users.
 
-Refer to the code snippets below to see how to set, retrieve, and update user attribtues:
+Refer to the code snippets below to see how to set, retrieve, and update user attributes:
 
 ```Objective-C
 // Instantiate a UserInfo object
@@ -69,7 +69,7 @@ NSString *url = @"https://download-sdk.oss-cn-beijing.aliyuncs.com/downloads/IMD
 
 ### Manage contacts
 
-In a real-time chat, users can add or remove contacts, accept or decline a contact invitation, and add other users to a block list. The Agora Chat SDK uses a `ContactManager` class to enable these functionalities in your app. Refer to the following sample code to see how to implement contact management.
+In a real-time chat, users can add or remove contacts, accept or decline a contact invitation, and add other users to a block list. The Agora Chat SDK uses a `ContactManager` class to enable these functionalities in your app. Refer to the following sample code to see how to implement contact management:
 
 ```objecitve-c
 // Call addContact to send a contact invitation
@@ -140,7 +140,9 @@ To retrieve the contact list, you need to retrieve the contact list from the ser
 NSArray *userlist = [[EMClient sharedClient].contactManager getContacts];
 ```
 
-You can also add a specified user to your block list. Once you do that, you can still send chat messages to that user, but not receive messages from them. The following code shows how to add a user into a block list.
+You can also add a specified user to your block list. Once you do that, you can still send chat messages to that user, but you cannot receive messages from them. The following code shows how to add a user into a block list.
+
+<div class="note alert">Users can add any other chat user to their block list, regardless of whether this other user is a contact or not. A contact added to the block list remains in the contact list.</div>
 
 ```Objective-C
 // Gets the block list from the server
@@ -180,13 +182,13 @@ This section introduces extra functions you can implement in your app using user
 
 ### Manage user avatar
 
-The Agora Chat SDK only supports storing the URL address of the avatar file, but not the file itself. To manage user avatar, you need to use a third-party file storage service.
+The Agora Chat SDK only supports storing the URL address of the avatar file rather than the file itself. To manage user avatars, you need to use a third-party file storage service.
 
 To implement user avatar management in your app, take the following steps:
 
 1. Upload the avator file to the third-party file storage service. Once the file is successfully uploaded, you get a URL address of the avatar file.
 2. Set the `avatarUrl` parameter in user attributes as the URL address of the avatar file.
-3. To display the avatar, call `fetchUserInfoByUserId` to retrieve the URL of the avatar file and then render the image on the local UI.
+3. To display the avatar, call `fetchUserInfoByUserId` to retrieve the URL of the avatar file, and then render the image on the local UI.
 
 ### Create and send a namecard using user attributes
 

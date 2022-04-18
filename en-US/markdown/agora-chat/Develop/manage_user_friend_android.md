@@ -28,9 +28,9 @@ This section shows how to manage user attributes and contacts with the methods p
 
 ### Set, retrieve, and update user attributes
 
-The Agora Chat SDK uses the `UserInfoManager` class to manage user attributes, which enables chat users to set and update their own attributes. They can also retrieve the user attributes of the specified user(s).
+The Agora Chat SDK uses the `UserInfoManager` class to manage user attributes. Chat users can set and update their own attributes. They can also retrieve the user attributes of other users.
 
-Refer to the code snippets below to see how to set, retrieve, and update user attribtues:
+Refer to the code snippets below to see how to set, retrieve, and update user attributes:
 
 ```java
 // Instantiate a UserInfo object
@@ -81,7 +81,7 @@ ChatClient.getInstance().userInfoManager().updateOwnInfoByAttribute(UserInfoType
 
 ### Manage contacts
 
-In a real-time chat, users can add or remove contacts, accept or decline a contact invitation, and add other users to a block list. The Agora Chat SDK uses a `ContactManager` class to enable these functionalities in your app. Refer to the following sample code to see how to implement contact management.
+In a real-time chat, users can add or remove contacts, accept or decline a contact invitation, and add other users to a block list. The Agora Chat SDK uses a `ContactManager` class to enable these functionalities in your app. Refer to the following sample code to see how to implement contact management:
 
 ```java
 // Call addContact to send a contact invitation
@@ -122,9 +122,9 @@ List<String> usernames = ChatClient.getInstance().contactManager().getContactsFr
 ChatClient.getInstance().contactManager().deleteContact(username);
 ```
 
-You can also add a specified user to your block list. Once you do that, you can still send chat messages to that user, but not receive messages from them. The following code shows how to add a user into a block list.
+You can also add a specified user to your block list. Once you do that, you can still send chat messages to that user, but you cannot receive messages from them. The following code shows how to add a user into a block list.
 
-<div class="note alert">Users can add any other chat user to the block list, regardless of whether this other user is a contact or not. A contact added to the block list remains in the contact list.</div>
+<div class="note alert">Users can add any other chat user to their block list, regardless of whether this other user is a contact or not. A contact added to the block list remains in the contact list.</div>
 
 ```java
 // Call addUserToBlacklist to add a user, whehter your contact or not, to your block list
@@ -145,7 +145,7 @@ This section introduces extra functions you can implement in your app using user
 
 ### Manage user avatar
 
-The Agora Chat SDK only supports storing the URL address of the avatar file, but not the file itself. To manage user avatar, you need to use a third-party file storage service.
+The Agora Chat SDK only supports storing the URL address of the avatar file rather than the file itself. To manage user avatars, you need to use a third-party file storage service.
 
 To implement user avatar management in your app, take the following steps:
 
