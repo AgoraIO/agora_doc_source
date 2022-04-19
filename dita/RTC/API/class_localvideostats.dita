@@ -20,6 +20,7 @@
     public int encodedFrameHeight;
     public int encodedFrameCount;
     public int codecType;
+    public int txPacketLossRate;
   }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcLocalVideoStats : NSObject
 @property(assign, nonatomic) NSUInteger sentBitrate;
@@ -35,6 +36,7 @@
 @property(assign, nonatomic) NSInteger encodedFrameHeight;
 @property(assign, nonatomic) NSInteger encodedFrameCount;
 @property(assign, nonatomic) AgoraVideoCodecType codecType;
+@property(assign, nonatomic) NSInteger txPacketLossRate;
 @end</codeblock>
             <codeblock props="windows" outputclass="language-cpp">struct LocalVideoStats
 {
@@ -51,7 +53,7 @@
     int encodedFrameHeight;
     int encodedFrameCount;
     VIDEO_CODEC_TYPE codecType;
-    int txPacketLossRate;
+    unsigned short txPacketLossRate;
 };</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class LocalVideoStats
     {
@@ -60,7 +62,7 @@
         }
         public LocalVideoStats(uint uid, int sentBitrate, int sentFrameRate, int encoderOutputFrameRate,
             int rendererOutputFrameRate, int targetBitrate, int targetFrameRate, QUALITY_ADAPT_INDICATION qualityAdaptIndication,
-            int encodedBitrate, int encodedFrameWidth,int encodedFrameHeight, int encodedFrameCount, 
+            int encodedBitrate, int encodedFrameWidth,int encodedFrameHeight, int encodedFrameCount,
             VIDEO_CODEC_TYPE codecType)
         {
             this.uid = uid;
@@ -77,31 +79,31 @@
             this.encodedFrameCount = encodedFrameCount;
             this.codecType = codecType;
         }
-        
+
         public uint uid { set; get; }
-        
+
         public int sentBitrate { set; get; }
-        
+
         public int sentFrameRate { set; get; }
-        
+
         public int encoderOutputFrameRate { set; get; }
-        
+
         public int rendererOutputFrameRate { set; get; }
-        
+
         public int targetBitrate { set; get; }
-        
+
         public int targetFrameRate { set; get; }
-        
+
         public QUALITY_ADAPT_INDICATION qualityAdaptIndication;
-        
+
         public int encodedBitrate { set; get; }
-        
+
         public int encodedFrameWidth { set; get; }
-        
+
         public int encodedFrameHeight { set; get; }
-        
+
         public int encodedFrameCount { set; get; }
-        
+
         public VIDEO_CODEC_TYPE codecType { set; get; }
     }</codeblock> </p>
             <p props="rtc" outputclass="codeblock">
@@ -170,12 +172,12 @@
      encodedFrameCount: number;
      codecType: VIDEO_CODEC_TYPE;
      txPacketLossRate: number;
-     captureFrameRate: number;   
+     captureFrameRate: number;
      captureBrightnessLevel: CAPTURE_BRIGHTNESS_LEVEL_TYPE;
      }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">class LocalVideoStats {
-  
+
   int sentBitrate;
   int sentFrameRate;
   int encoderOutputFrameRate;
@@ -257,15 +259,11 @@
                 <pt>qualityAdaptIndication</pt>
                 <pd>
                     <dl outputclass="since" props="rtc">
-                    <dlentry>
+                    <dlentry props="native">
                         <dt>自从</dt>
                         <dd>v2.4.0</dd>
                     </dlentry>
-                    </dl>
-                    
-                    统计周期内本地视频质量（基于目标帧率和目标码率）的自适应情况。<ph
-                    props="windows ios mac unity">详见 <xref
-                    keyref="QUALITY_ADAPT_INDICATION"/>。</ph>
+                    </dl><ph>统计周期内本地视频质量（基于目标帧率和目标码率）的自适应情况。</ph><ph props="windows ios mac unity">详见 <xref  keyref="QUALITY_ADAPT_INDICATION"/>。</ph>
                     <p props="android">
                     <ul>
                     <li><ph keyref="ADAPT_NONE"/> (0): 本地视频质量不变。</li>
@@ -297,8 +295,7 @@
             </plentry>
             <plentry>
                 <pt>codecType</pt>
-                <pd>视频的编码类型。<ph props="ios mac windows unity">详见 <xref
-                    keyref="VIDEO_CODEC_TYPE"/>。</ph>
+                <pd><ph>视频的编码类型。</ph><ph props="ios mac windows unity">详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</ph>
                     <p props="android">
                     <ul>
                     <li><ph keyref="VIDEO_CODEC_VP8"/> (1): VP8。</li>
@@ -306,11 +303,11 @@
                     </ul> </p>
                 </pd>
             </plentry>
+            <plentry>
+                    <pt>txPacketLossRate</pt>
+                    <pd>弱网对抗前本端到 Agora 边缘服务器的视频丢包率 (%)。</pd>
+                </plentry>
             <plentry props="rtc">
-                <pt>txPacketLossRate</pt>
-                <pd>弱网对抗前本端到 Agora 边缘服务器的视频丢包率 (%)。</pd>
-            </plentry>
-                <plentry props="rtc">
                 <pt>captureFrameRate</pt>
                 <pd>本地视频采集帧率 (fps)。</pd>
             </plentry>
@@ -318,7 +315,7 @@
                 <pt>captureBrightnessLevel</pt>
                 <pd>
                     <dl outputclass="since" props="rtc">
-                    <dlentry>
+                    <dlentry props="native">
                         <dt>自从</dt>
                         <dd>v3.3.0</dd>
                     </dlentry>

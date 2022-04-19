@@ -127,9 +127,9 @@
             <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public class RtcEngineContext
     {
-        public RtcEngineContext(IAgoraRtcEngineEventHandler eventHandler, string appId, byte[] context, 
+        public RtcEngineContext(IAgoraRtcEngineEventHandler eventHandler, string appId, byte[] context,
             bool enableAudioDevice, CHANNEL_PROFILE_TYPE channelProfile, AUDIO_SCENARIO_TYPE audioScenario,
-            AREA_CODE areaCode = AREA_CODE.AREA_CODE_CN,  
+            AREA_CODE areaCode = AREA_CODE.AREA_CODE_CN,
             LogConfig logConfig = null)
         {
             this.eventHandler = eventHandler;
@@ -142,7 +142,7 @@
             this.logConfig = logConfig ?? new LogConfig();
         }
 
-        
+
         public IAgoraRtcEngineEventHandler eventHandler { set; get; }
         public string appId { set; get; }
         public byte[] context { set; get; }
@@ -165,23 +165,34 @@
                 <plentry props="windows android">
                     <pt props="windows">eventHandler</pt>
                     <pt props="android">mEventHandler</pt>
-                    <pd id="eventhandler"> The event handler for <xref keyref="IRtcEngine" />. See <xref keyref="IRtcEngineEventHandler" />.</pd>
+                    <pd id="eventhandler">The event handler for <xref keyref="IRtcEngine" />. See <xref keyref="IRtcEngineEventHandler" />.</pd>
                 </plentry>
                 <plentry>
                     <pt props="windows ios mac">appId</pt>
                     <pt props="android">mAppId</pt>
-                    <pd id="appid">The App ID issued by Agora for your project.  Only users in apps with the same App ID can join the same channel and communicate with each other. An App ID can only be used to create one <apiname keyref="IRtcEngine" /> instance. To change your App ID, call <xref keyref="release" /> to destroy the current <apiname keyref="IRtcEngine" /> instanceand then create a new one.</pd>
+                    <pd id="appid">The App ID issued by Agora for your project. Only users in apps with the same App ID can join the same channel and communicate with each other. An App ID can only be used to create one <apiname keyref="IRtcEngine" /> instance. To change your App ID, call <xref keyref="release" /> to destroy the current <apiname keyref="IRtcEngine" /> instance, and then create a new one.</pd>
                 </plentry>
                 <plentry props="android windows">
                     <pt props="windows">context</pt>
                     <pt props="android">mContext</pt>
                     <pd id="context">
                         <ul props="windows">
-                            <li>For Windows, it is the window handle of the app. Once set, this parameter enables you to plug or unplug the video devices while they are powered.</li>
+                            <li>For Windows, it is the window handle of the app. Once set, this parameter enables you to connect or disconnect the video devices while they are powered.</li>
                             <li>For Android, it is the context of Android Activity.</li>
                         </ul>
                         <p props="android">The context of Android Activity.</p>
                     </pd>
+                </plentry>
+                <plentry props="android">
+                  <pt>mNativeLibPath</pt>
+                  <pd><p>Specifies the storage directory for the <codeph>.so</codeph> files. The storage directory must be a valid and private directory of the app, which can be obtained using <codeph>Context.getDir()</codeph>.</p>
+                    <ul>
+                      <li>If you set this parameter, the SDK automatically loads the <codeph>.so</codeph> files in the directory you specify, so that the app dynamically loads the required <codeph>.so</codeph> files when it runs, thereby reducing the package size.</li>
+                      <li>If you do not set this parameter or set it to null, the SDK loads the <codeph>.so</codeph> files from the default app's <codeph>nativeLibraryPath</codeph> when compiling the app, which increases the package size compared to the previous method.</li></ul>
+                    <note type="attention"><ul>
+                      <li>This method is applicable when you integrate the SDK manually but not when you integrate the SDK with Maven Central or JitPack.</li>
+                      <li>Ensure the specified directory exists; otherwise, the <xref keyref="IRtcEngine" /> initialization fails.</li></ul></note>
+                  </pd>
                 </plentry>
                 <plentry props="android windows">
                     <pt props="windows">enableAudioDevice</pt>
@@ -215,10 +226,10 @@
                     <pt props="windows ios mac">logConfig</pt>
                     <pt props="android">mLogConfig</pt>
                     <pd>
-                        <p>The log files that the SDK outputs. See <xref keyref="LogConfig" />.</p>
-                        <p>By default, the SDK outputs four log files: <codeph>agorasdk.log</codeph>, <codeph>agorasdk1.log</codeph>, <codeph>agoraapi.log</codeph>, and <codeph>agoraapi1.log</codeph>. The <codeph>agorasdk.log</codeph> and <codeph>agorasdk1.log</codeph> files each have a default size of 1024 KB, and the <codeph>agoraapi.log</codeph> and <codeph>agoraapi1.log</codeph> files each have a default size of 2,048 KB.  These log files are encoded in UTF-8.</p>
-                        <p>The SDK writes the latest logs in <codeph>agorasdk.log</codeph> or <codeph>agoraapi.log</codeph>. When <codeph>agorasdk.log</codeph> or <codeph>agoraapi.log</codeph> is full, the SDK deletes <codeph>agorasdk1.log</codeph> or <codeph>agoraapi1.log</codeph>, renames <codeph>agorasdk.log</codeph> to <codeph>agorasdk1.log</codeph> and <codeph>agoraapi.log</codeph> to <codeph>agorasapi1.log</codeph>, and creates a new <codeph>agorasdk.log</codeph> or <codeph>agoraapi.log</codeph> to record the latest logs.</p>
-                    </pd>
+                        <p>The log files that the SDK outputs. See <xref keyref="LogConfig" /> for details.</p>
+                        <p>By default, the SDK generates five SDK log files and five API call log files with the following rules:</p>
+                        <ul conkeyref="setLogFileSize/logprinciple"><li /></ul>
+                      </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>mExtensionList</pt>
@@ -227,12 +238,11 @@
                 <plentry props="android ios mac">
                     <pt props="android">mExtensionObserver</pt>
                     <pt props="ios mac">eventDelegate</pt>
-                    <pd> The <xref keyref="IMediaExtensionObserver" /> instance.</pd>
+                    <pd>The <xref keyref="IMediaExtensionObserver" /> instance.</pd>
                 </plentry>
                 <plentry props="ios mac">
                     <pt>mediaFilterExtensions</pt>
-                    <pd>
-                                                 The <xref keyref="AgoraMediaFilterExtensionDelegate" /> instance.</pd>
+                    <pd>                        The <xref keyref="AgoraMediaFilterExtensionDelegate" /> instance.</pd>
                 </plentry>
             </parml>
         </section>

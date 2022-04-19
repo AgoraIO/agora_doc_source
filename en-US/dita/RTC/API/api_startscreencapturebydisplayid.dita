@@ -32,36 +32,31 @@
       [Rectangle? regionRect, ScreenCaptureParameters? captureParams]);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>Since</dt>
-                <dd>v2.4.0</dd>
-            </dlentry>
-            </dl>
             <p>This method shares a screen or part of the screen. You need to specify the ID of the screen to be shared in this method.</p>
             <note type="attention">
             <p props="mac">Call this method after joining a channel.</p>
             <ul props="windows flutter">
-            <li>This method applies to macOS only.</li>
+            <li>This method applies to macOS and Windows only.</li>
             <li>Call this method after joining a channel.</li>
-                    <li>On Windows platforms, if the user device is connected to another display, to avoid screen sharing issues, use <xref keyref="startScreenCaptureByDisplayId" /> to start sharing instead of using <xref keyref="startScreenCaptureByScreenRect" />. </li>
+            <li>On the Windows platform, if the user device is connected to another display, to avoid screen sharing issues, use this method to start sharing instead of using <xref keyref="startScreenCaptureByScreenRect" />.</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>displayId</pt>
-                <pd><p>The display ID of the screen to be shared. Use this parameter to specify which screen you want to share. </p><p props="android ios mac windows">For more information on how to get the display ID, see <xref keyref="guide-screensharing" /> or get the display ID from <parmname>sourceId</parmname> returned by <xref keyref="getScreenCaptureSources" />.</p></pd>
+                <pd>The display ID of the screen to be shared. This parameter specifies which screen you want to share.<p props="rtc">For more information on how to get the display ID, see <xref keyref="guide-screensharing" /> or get the display ID from<parmname> sourceId</parmname> returned by <xref keyref="getScreenCaptureSources" />.</p>
+                    <p props="rtc-ng">For more information on how to get the display ID, see <xref keyref="guide-screensharing" />.</p>
+                </pd>
             </plentry>
             <plentry props="windows unity flutter">
                 <pt>regionRect</pt>
-                <pd>(Optional) Sets the relative location of the region to the screen. If you do not set this parameter, the SDK shares the whole screen. For details, see <xref keyref="Rectangle" />. If the specified region overruns the screen, the SDK shares only the region within it; if you set width or height as 0, the SDK shares the whole screen.</pd>
+                <pd>(Optional) Sets the relative location of the region to the screen. If you do not set this parameter, the SDK shares the whole screen. See <xref keyref="Rectangle" /> for details. If the specified region overruns the screen, the SDK shares only the region within it; if you set width or height as 0, the SDK shares the whole screen.</pd>
             </plentry>
             <plentry props="mac">
                 <pt props="rtc">rectangle</pt>
                 <pt props="rtc-ng">regionRect</pt>
-                <pd>(Optional) Sets the relative location of the region to the screen. If you do not set this parameter, the SDK shares the whole screen. It consists of the following parameters:
-                    <ul>
+                <pd>(Optional) Sets the relative location of the region to the screen. If you do not set this parameter, the SDK shares the whole screen. It consists of the following parameters:<ul>
                     <li>x: The horizontal offset from the top-left corner.</li>
                     <li>y: The vertical offset from the top-left corner.</li>
                     <li>width: The width of the region.</li>
@@ -72,17 +67,14 @@
             </plentry>
             <plentry>
                 <pt>captureParams</pt>
-                <pd>Screen sharing configurations. The default video dimension is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges. For details, see <xref keyref="ScreenCaptureParameters" />.</pd>
+                <pd>Screen sharing configurations. The default video dimension is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges. See <xref keyref="ScreenCaptureParameters" /> for details.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="android apple windows electron unity">
+        <section id="return_values" props="native electron unity">
             <title>Returns</title>
             <ul>
             <li>0: Success.</li>
-            <li>&lt; 0: Failure.
-                    <ul>
-                    <li><parmname>ERR_INVALID_ARGUMENT</parmname>: The argument is invalid.</li>
-                    </ul></li>
+            <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
 </reference>

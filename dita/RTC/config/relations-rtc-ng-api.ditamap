@@ -615,6 +615,15 @@
                 <topicref keyref="AgoraRtcDeviceInfo"/>
             </relcell>
         </relrow>
+        <relrow props="android ios windows">
+            <relcell>
+                <topicref keyref="setAdvancedAudioOptions" toc="no"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="AdvancedAudioOptions"/>
+                <topicref keyref="AUDIO_PROCESSING_CHANNELS"/>
+            </relcell>
+        </relrow>
         <relrow>
             <relcell>
                 <topicref keyref="onConnectionStateChange"/>
@@ -1354,7 +1363,7 @@
                 <topicref keyref="LOG_LEVEL"/>
             </relcell>
         </relrow>
-        <relrow props="android ios">
+        <relrow>
             <relcell>
                 <topicref keyref="onFacePositionChanged"/>
             </relcell>
@@ -1401,6 +1410,25 @@
                 <topicref keyref="MEDIA_SOURCE_TYPE"/>
             </relcell>
         </relrow>
+        <relrow props="windows">
+            <relcell>
+                <topicref keyref="getScreenCaptureSources"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="SIZE" props="hide"/>
+                <topicref keyref="IScreenCaptureSourceList"/>
+            </relcell>
+        </relrow>
+        <relrow props="windows">
+            <relcell>
+                <topicref keyref="getSourceInfo"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="ScreenCaptureSourceInfo"/>
+                <topicref keyref="ScreenCaptureSourceType"/>
+                <topicref keyref="ThumbImageBuffer"/>
+            </relcell>
+        </relrow>
     </reltable>
     <reltable title="Method-Callback Relations">
         <!--Methods and corresponding callbacks.-->
@@ -1427,6 +1455,14 @@
                 <topicref keyref="onJoinChannelSuccess"/>
                 <topicref keyref="onUserJoined"/>
                 <topicref keyref="onRejoinChannelSuccess"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="setCloudProxy"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="onConnectionStateChanged"/>
             </relcell>
         </relrow>
         <relrow>
@@ -1505,6 +1541,7 @@
         <relrow>
             <relcell>
                 <topicref keyref="setLiveTranscoding"/>
+                <topicref keyref="updateRtmpTranscoding"/>
             </relcell>
             <relcell>
                 <topicref keyref="onTranscodingUpdated"/>
@@ -1522,6 +1559,9 @@
             <relcell>
                 <topicref keyref="addPublishStreamUrl"/>
                 <topicref keyref="removePublishStreamUrl"/>
+                <topicref keyref="startRtmpStreamWithoutTranscoding"/>
+                <topicref keyref="startRtmpStreamWithTranscoding"/>
+                <topicref keyref="stopRtmpStream"/>
             </relcell>
             <relcell>
                 <topicref keyref="onRtmpStreamingStateChanged"/>
@@ -1823,6 +1863,23 @@
                 <topicref keyref="onExtensionStarted"/>
                 <topicref keyref="onExtensionStopped"/>
                 <topicref keyref="onExtensionError"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="enableFaceDetection"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="onFacePositionChanged"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="enableContentInspect"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="onContentInspectResult"/>
+                <topicref keyref="ContentInspectConfig"/>
             </relcell>
         </relrow>
     </reltable>

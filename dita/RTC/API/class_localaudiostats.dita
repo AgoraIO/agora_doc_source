@@ -11,12 +11,14 @@
   public int sentSampleRate;
   public int sentBitrate;
   public int internalCodec;
+  public int txPacketLossRate;
 };</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcLocalAudioStats : NSObject
 @property(assign, nonatomic) NSUInteger numChannels;
 @property(assign, nonatomic) NSUInteger sentSampleRate;
 @property(assign, nonatomic) NSUInteger sentBitrate;
 @property(assign, nonatomic) NSUInteger internalCodec;
+@property(assign, nonatomic) NSUInteger txPacketLossRate;
 
 @end</codeblock>
             <codeblock props="windows" outputclass="language-cpp">struct LocalAudioStats
@@ -25,6 +27,7 @@
   int sentSampleRate;
   int sentBitrate;
   int internalCodec;
+  unsigned short txPacketLossRate;
 };</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class LocalAudioStats
     {
@@ -38,13 +41,13 @@
             this.sentBitrate = sentBitrate;
             this.internalCodec = internalCodec;
         }
-        
+
         public int numChannels { set; get; }
-        
+
         public int sentSampleRate { set; get; }
-        
+
         public int sentBitrate { set; get; }
-        
+
         public int internalCodec { set; get; }
     }</codeblock> </p>
             <p props="rtc" outputclass="codeblock">
@@ -74,7 +77,7 @@
      }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">class LocalAudioStats {
-  
+
   int numChannels;
   int sentSampleRate;
   int sentBitrate;
@@ -110,10 +113,10 @@
                 <pt>sentBitrate</pt>
                 <pd>发送本地音频的码率平均值，单位为 Kbps。</pd>
             </plentry>
-            <plentry props="rtc">
-                <pt>txPacketLossRate</pt>
-                <pd>弱网对抗前本端到 Agora 边缘服务器的丢包率 (%)。</pd>
-            </plentry>
+            <plentry>
+                    <pt>txPacketLossRate</pt>
+                    <pd>弱网对抗前本端到 Agora 边缘服务器的丢包率 (%)。</pd>
+                </plentry>
             <plentry props="rtc-ng">
                 <pt>internalCodec</pt>
                 <pd>内部的 payload 类型。</pd>
