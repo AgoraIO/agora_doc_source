@@ -1112,9 +1112,9 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter         | Type | Required | Description                                                         |
 | :------------ | :------- | :------- | :----------------------------------------------------------- |
-| `channel`     | String   | Yes     | The ID of the chat that you want to delete.                                  |
-| `type`        | String   | Yes     | The type of the chat.<li>`chat`: An one-on-one chat.<li>`groupchat`: A chat group. |
-| `delete_roam` | Bool     | Yes     | Whether to delete the chat from the server:<li>`true`: Yes<li>`false`: No |
+| `channel`     | String   | Yes     | The ID of the conversation that you want to delete.                                  |
+| `type`        | String   | Yes     | The type of the chat.<li>`chat`: An one-on-one chat.<li>`groupchat`: A group chat. |
+| `delete_roam` | Bool     | Yes     | Whether to delete the chat from the server:<li>`true`: Yes. You can no longer pull the chat from the server.<li>`false`: No. You can still pull the chat from the server through roaming. |
 
 ### HTTP response
 
