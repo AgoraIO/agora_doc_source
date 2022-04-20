@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
 <map>
-    <title>${ask('Programming language', editable_combobox, ('Java':'Java';'Objective-C':'Objective-C';'Swift':'Swift';'C++':'C++'),@programmingLanguage)} API Reference for ${ask('Platform', radio, ('Android':'Android';'iOS':'iOS';'macOS':'macOS';'All Platforms':'All';'Windows':'Windows'),@platform)}</title>
+    <title>
+        ${ask('Programming language', editable_combobox, ('Java':'Java';'Objective-C':'Objective-C';'Swift':'Swift';'C++':'C++';'C#':'C#'),@programmingLanguage)} API Reference for ${ask('Platform', radio, ('Android':'Android';'iOS':'iOS';'macOS':'macOS';'All Platforms':'All';'C++':'C++';'C#':'C#'),@platform)}
+    </title>
     <topicmeta>
         <navtitle>${answer(@programmingLanguage)} API Reference</navtitle>
     </topicmeta>
     <topichead navtitle="Configurations" toc="no">
         <topicref href="conref/conref_api_metadata.dita" processing-role="resource-only"/>
-        <topicref href="config/subject-scheme-rtc.ditamap" format="ditamap" type="subjectScheme"
-            navtitle="Conditional processing attributes"/>
+        <topicref href="config/subject-scheme-rtc.ditamap" format="ditamap" type="subjectScheme" navtitle="Conditional processing attributes"/>
         <topicref href="${ask('Location of the API key map', relative_url, 'config/keys-rtc-ng-api-cpp.ditamap')}" format="ditamap"/>
         <topicref href="config/keys-rtc-ng-links.ditamap" format="ditamap"/>
-        <topicref href="${ask('Location of the paltform link key map', relative_url, 'config/keys-rtc-ng-links-windows.ditamap')}" format="ditamap"/>
+        <topicref href="${ask('Location of the paltform link key map', relative_url, 'config/keys-rtc-ng-links-cpp.ditamap')}" format="ditamap"/>
         <topicref href="config/relations-rtc-ng-api.ditamap" format="ditamap"/>
     </topichead>
     <topichead navtitle="${answer(@programmingLanguage)} API Reference for ${answer(@platform)}">
@@ -32,7 +33,7 @@
             <topicref keyref="configRhythmPlayer" toc="no"/>
             <topicref keyref="create2" toc="no"/>
             <topicref keyref="createAgoraRtcEngine" toc="no"/>
-	       <topicref keyref="createDataStream1" toc="no"/>
+	    <topicref keyref="createDataStream1" toc="no"/>
             <topicref keyref="createDataStream2" toc="no"/>
             <topicref keyref="createMediaPlayer" toc="no"/>
             <topicref keyref="destroyMediaPlayer" toc="no"/>
