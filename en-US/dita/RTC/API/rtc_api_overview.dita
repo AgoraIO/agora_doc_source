@@ -59,7 +59,7 @@ replaced by <xref keyref="IRtcEngine"/>, please use the
                 <stentry> <xref keyref="setChannelProfile"/> </stentry>
                 <stentry> <ph conkeyref="setChannelProfile/shortdesc"/> </stentry>
             </strow>
-            <strow props="native">
+            <strow props="native unity">
                 <stentry> <xref keyref="setClientRole1"/> </stentry>
                 <stentry> <ph conkeyref="setClientRole1/shortdesc"/> </stentry>
             </strow>
@@ -166,6 +166,10 @@ replaced by <xref keyref="IRtcEngine"/>, please use the
             <strow>
                 <stentry> <xref keyref="setAudioProfile"/> </stentry>
                 <stentry> <ph conkeyref="setAudioProfile/shortdesc"/> </stentry>
+            </strow>
+            <strow>
+                <stentry> <xref keyref="adjustLoopbackRecordingVolume"/> </stentry>
+                <stentry> <ph conkeyref="adjustLoopbackRecordingVolume/shortdesc"/> </stentry>
             </strow>
             <strow>
                 <stentry> <xref keyref="adjustRecordingSignalVolume"/> </stentry>
@@ -311,6 +315,22 @@ replaced by <xref keyref="IRtcEngine"/>, please use the
                 <stentry> <xref keyref="onVideoPublishStateChanged"/> </stentry>
                 <stentry> <ph conkeyref="onVideoPublishStateChanged/shortdesc"/> </stentry>
             </strow>
+            <strow>
+                <stentry> <xref keyref="onUserMuteAudio"/> </stentry>
+                <stentry> <ph conkeyref="onUserMuteAudio/shortdesc"/> </stentry>
+            </strow>
+            <strow>
+                <stentry> <xref keyref="onUserMuteVideo"/> </stentry>
+                <stentry> <ph conkeyref="onUserMuteVideo/shortdesc"/> </stentry>
+            </strow>
+            <strow>
+                <stentry> <xref keyref="onUserEnableVideo"/> </stentry>
+                <stentry> <ph conkeyref="onUserEnableVideo/shortdesc"/> </stentry>
+            </strow>
+            <strow>
+                <stentry> <xref keyref="onUserEnableLocalVideo"/> </stentry>
+                <stentry> <ph conkeyref="onUserEnableLocalVideo/shortdesc"/> </stentry>
+            </strow>
             </simpletable> </section>
         <section id="remote_media_events">
             <title>Remote media events</title>
@@ -391,7 +411,7 @@ replaced by <xref keyref="IRtcEngine"/>, please use the
                 <stentry> <xref keyref="enableVirtualBackground"/> </stentry>
                 <stentry> <ph conkeyref="enableVirtualBackground/shortdesc"/> </stentry>
             </strow>
-            <strow>
+            <strow props="hide">
                 <stentry> <xref keyref="enableRemoteSuperResolution"/> </stentry>
                 <stentry> <ph conkeyref="enableRemoteSuperResolution/shortdesc"/> </stentry>
             </strow>
@@ -416,7 +436,7 @@ replaced by <xref keyref="IRtcEngine"/>, please use the
                 <stentry> <xref keyref="onVirtualBackgroundSourceEnabled"/> </stentry>
                 <stentry> <ph conkeyref="onVirtualBackgroundSourceEnabled/shortdesc"/> </stentry>
             </strow>
-            <strow>
+            <strow props="hide">
                 <stentry> <xref keyref="onUserSuperResolutionEnabled"/> </stentry>
                 <stentry> <ph conkeyref="onUserSuperResolutionEnabled/shortdesc"/> </stentry>
             </strow>
@@ -506,7 +526,7 @@ replaced by <xref keyref="IRtcEngine"/>, please use the
                 <stentry> <xref keyref="getScreensInfo"/> </stentry>
                 <stentry> <ph conkeyref="getScreensInfo/shortdesc"/> </stentry>
             </strow>
-            </simpletable> <simpletable props="windows flutter">
+            </simpletable> <simpletable props="windows flutter unity">
             <sthead>
                 <stentry>Event</stentry>
                 <stentry>Description</stentry>
@@ -564,8 +584,8 @@ replaced by <xref keyref="IRtcEngine"/>, please use the
                 <stentry> <ph conkeyref="getAudioMixingPublishVolume/shortdesc"/> </stentry>
             </strow>
             <strow>
-                <stentry> <xref keyref="getAudioMixingDuration2"/> </stentry>
-                <stentry> <ph conkeyref="getAudioMixingDuration2/shortdesc"/> </stentry>
+                <stentry> <xref keyref="getAudioMixingDuration"/> </stentry>
+                <stentry> <ph conkeyref="getAudioMixingDuration/shortdesc"/> </stentry>
             </strow>
             <strow>
                 <stentry> <xref keyref="getAudioMixingCurrentPosition"/> </stentry>
@@ -653,6 +673,10 @@ replaced by <xref keyref="IRtcEngine"/>, please use the
                 <stentry> <ph conkeyref="pauseEffect/shortdesc"/> </stentry>
             </strow>
             <strow>
+                <stentry> <xref keyref="pauseAllEffects"/> </stentry>
+                <stentry> <ph conkeyref="pauseAllEffects/shortdesc"/> </stentry>
+            </strow>
+            <strow>
                 <stentry> <xref keyref="resumeEffect"/> </stentry>
                 <stentry> <ph conkeyref="resumeEffect/shortdesc"/> </stentry>
             </strow>
@@ -682,7 +706,7 @@ replaced by <xref keyref="IRtcEngine"/>, please use the
                 <stentry> <ph conkeyref="onAudioEffectFinished/shortdesc"/> </stentry>
             </strow>
             </simpletable> </section>
-        <section id="audio_file_information" props="android ios windows flutter">
+        <section id="audio_file_information" props="android ios windows flutter unity">
             <title>Audio file info</title>
             <simpletable>
             <sthead>
@@ -883,17 +907,13 @@ replaced by <xref keyref="IRtcEngine"/>, please use the
                 <stentry> <ph conkeyref="onAudioVolumeIndication/shortdesc"/> </stentry>
             </strow>
             <strow>
-                <stentry> <xref keyref="onAudioDeviceTestVolumeIndication"/> </stentry>
-                <stentry> <ph conkeyref="onAudioDeviceTestVolumeIndication/shortdesc"/> </stentry>
-            </strow>
-            <strow>
                 <stentry> <xref keyref="onActiveSpeaker"/> </stentry>
                 <stentry> <ph conkeyref="onActiveSpeaker/shortdesc"/> </stentry>
             </strow>
             </simpletable> </section>
-        <section id="face_detection" props="android ios windows unity flutter">
+        <section id="face_detection" props="android ios windows flutter">
             <title>Face detection</title>
-            <p props="windows unity">This method is for Android and iOS only.</p>
+            <p props="windows">This method is for Android and iOS only.</p>
             <simpletable>
             <sthead>
                 <stentry>Method</stentry>
@@ -913,9 +933,9 @@ replaced by <xref keyref="IRtcEngine"/>, please use the
                 <stentry> <ph conkeyref="onFacePositionChanged/shortdesc"/> </stentry>
             </strow>
             </simpletable> </section>
-        <section id="audio_routing_control" props="android ios windows unity flutter">
+        <section id="audio_routing_control" props="android ios windows flutter">
             <title>Audio routing control</title>
-            <p props="windows unity flutter">This method is for Android and iOS only.</p>
+            <p props="windows flutter">This method is for Android and iOS only.</p>
             <simpletable>
             <sthead>
                 <stentry>Method</stentry>
@@ -943,9 +963,9 @@ replaced by <xref keyref="IRtcEngine"/>, please use the
                 <stentry> <ph conkeyref="onAudioRouteChanged/shortdesc"/> </stentry>
             </strow>
             </simpletable> </section>
-        <section id="in-ear_monitoring" props="android ios windows unity flutter">
+        <section id="in-ear_monitoring" props="android ios windows flutter">
             <title>In-ear monitoring</title>
-            <p props="windows unity flutter">This method is for Android and iOS only.</p>
+            <p props="windows flutter">This method is for Android and iOS only.</p>
             <simpletable>
             <sthead>
                 <stentry>Method</stentry>
@@ -1424,9 +1444,9 @@ replaced by <xref keyref="IRtcEngine"/>, please use the
                 <stentry> <ph conkeyref="onRecorderInfoUpdated/shortdesc"/> </stentry>
             </strow>
             </simpletable> </section>
-        <section id="camera_control">
+        <section id="camera_control" props="android ios flutter windows">
             <title>Camera control</title>
-            <simpletable props="android ios windows unity">
+            <simpletable>
             <sthead>
                 <stentry>Method</stentry>
                 <stentry>Description</stentry>
@@ -1439,7 +1459,7 @@ replaced by <xref keyref="IRtcEngine"/>, please use the
                 <stentry> <xref keyref="isCameraZoomSupported"/> </stentry>
                 <stentry> <ph conkeyref="isCameraZoomSupported/shortdesc"/> </stentry>
             </strow>
-            <strow props="android ios flutter unity">
+            <strow props="android ios flutter">
                 <stentry> <xref keyref="isCameraTorchSupported"/> </stentry>
                 <stentry> <ph conkeyref="isCameraTorchSupported/shortdesc"/> </stentry>
             </strow>
@@ -1593,11 +1613,11 @@ replaced by <xref keyref="IRtcEngine"/>, please use the
                 <stentry> <xref keyref="enumerateVideoDevices"/> </stentry>
                 <stentry> <ph conkeyref="enumerateVideoDevices/shortdesc"/> </stentry>
             </strow>
-            <strow props="windows">
+            <strow props="windows unity">
                 <stentry> <xref keyref="startDeviceTest"/> </stentry>
                 <stentry> <ph conkeyref="startDeviceTest/shortdesc"/> </stentry>
             </strow>
-            <strow props="windows">
+            <strow props="windows unity">
                 <stentry> <xref keyref="stopDeviceTest"/> </stentry>
                 <stentry> <ph conkeyref="stopDeviceTest/shortdesc"/> </stentry>
             </strow>
@@ -1625,6 +1645,10 @@ replaced by <xref keyref="IRtcEngine"/>, please use the
             <strow>
                 <stentry> <xref keyref="onAudioDeviceVolumeChanged"/> </stentry>
                 <stentry> <ph conkeyref="onAudioDeviceVolumeChanged/shortdesc"/> </stentry>
+            </strow>
+            <strow>
+                <stentry> <xref keyref="onAudioDeviceTestVolumeIndication"/> </stentry>
+                <stentry> <ph conkeyref="onAudioDeviceTestVolumeIndication/shortdesc"/> </stentry>
             </strow>
             <strow>
                 <stentry> <xref keyref="onVideoDeviceStateChanged"/> </stentry>

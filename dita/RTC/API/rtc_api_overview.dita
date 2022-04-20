@@ -83,7 +83,7 @@
                 <stentry> <xref keyref="setChannelProfile"/> </stentry>
                 <stentry> <ph conkeyref="setChannelProfile/shortdesc"/> </stentry>
             </strow>
-            <strow props="native">
+            <strow props="native unity">
                 <stentry> <xref keyref="setClientRole1"/> </stentry>
                 <stentry> <ph conkeyref="setClientRole1/shortdesc"/> </stentry>
             </strow>
@@ -194,6 +194,10 @@
             <strow>
                 <stentry> <xref keyref="adjustRecordingSignalVolume"/> </stentry>
                 <stentry> <ph conkeyref="adjustRecordingSignalVolume/shortdesc"/> </stentry>
+            </strow>
+            <strow>
+                <stentry> <xref keyref="adjustLoopbackRecordingSignalVolume"/> </stentry>
+                <stentry> <ph conkeyref="adjustLoopbackRecordingSignalVolume/shortdesc"/> </stentry>
             </strow>
             <strow>
                 <stentry> <xref keyref="adjustUserPlaybackSignalVolume"/> </stentry>
@@ -363,6 +367,22 @@
                 <stentry> <xref keyref="onVideoSubscribeStateChanged"/> </stentry>
                 <stentry> <ph conkeyref="onVideoSubscribeStateChanged/shortdesc"/> </stentry>
             </strow>
+            <strow>
+                <stentry> <xref keyref="onUserMuteAudio"/> </stentry>
+                <stentry> <ph conkeyref="onUserMuteAudio/shortdesc"/> </stentry>
+            </strow>
+            <strow>
+                <stentry> <xref keyref="onUserMuteVideo"/> </stentry>
+                <stentry> <ph conkeyref="onUserMuteVideo/shortdesc"/> </stentry>
+            </strow>
+            <strow>
+                <stentry> <xref keyref="onUserEnableVideo"/> </stentry>
+                <stentry> <ph conkeyref="onUserEnableVideo/shortdesc"/> </stentry>
+            </strow>
+            <strow>
+                <stentry> <xref keyref="onUserEnableLocalVideo"/> </stentry>
+                <stentry> <ph conkeyref="onUserEnableLocalVideo/shortdesc"/> </stentry>
+            </strow>
             </simpletable> </section>
         <section id="statistics_events">
             <title>数据统计事件</title>
@@ -417,7 +437,7 @@
                 <stentry> <xref keyref="enableVirtualBackground"/> </stentry>
                 <stentry> <ph conkeyref="enableVirtualBackground/shortdesc"/> </stentry>
             </strow>
-            <strow>
+            <strow props="hide">
                 <stentry> <xref keyref="enableRemoteSuperResolution"/> </stentry>
                 <stentry> <ph conkeyref="enableRemoteSuperResolution/shortdesc"/> </stentry>
             </strow>
@@ -442,7 +462,7 @@
                 <stentry> <xref keyref="onVirtualBackgroundSourceEnabled"/> </stentry>
                 <stentry> <ph conkeyref="onVirtualBackgroundSourceEnabled/shortdesc"/> </stentry>
             </strow>
-            <strow>
+            <strow props="hide">
                 <stentry> <xref keyref="onUserSuperResolutionEnabled"/> </stentry>
                 <stentry> <ph conkeyref="onUserSuperResolutionEnabled/shortdesc"/> </stentry>
             </strow>
@@ -536,7 +556,7 @@
                 <stentry> <xref keyref="getScreensInfo"/> </stentry>
                 <stentry> <ph conkeyref="getScreensInfo/shortdesc"/> </stentry>
             </strow>
-            </simpletable> <simpletable props="windows flutter">
+            </simpletable> <simpletable props="windows flutter unity">
             <sthead>
                 <stentry>事件</stentry>
                 <stentry>描述</stentry>
@@ -594,6 +614,10 @@
                 <stentry> <ph conkeyref="getAudioMixingPublishVolume/shortdesc"/> </stentry>
             </strow>
             <strow>
+                <stentry> <xref keyref="getAudioMixingDuration"/> </stentry>
+                <stentry> <ph conkeyref="getAudioMixingDuration/shortdesc"/> </stentry>
+            </strow>
+            <strow props="hide">
                 <stentry> <xref keyref="getAudioMixingDuration2"/> </stentry>
                 <stentry> <ph conkeyref="getAudioMixingDuration2/shortdesc"/> </stentry>
             </strow>
@@ -683,6 +707,10 @@
                 <stentry> <ph conkeyref="pauseEffect/shortdesc"/> </stentry>
             </strow>
             <strow>
+                <stentry> <xref keyref="pauseAllEffects"/> </stentry>
+                <stentry> <ph conkeyref="pauseAllEffects/shortdesc"/> </stentry>
+            </strow>
+            <strow>
                 <stentry> <xref keyref="resumeEffect"/> </stentry>
                 <stentry> <ph conkeyref="resumeEffect/shortdesc"/> </stentry>
             </strow>
@@ -712,7 +740,7 @@
                 <stentry> <ph conkeyref="onAudioEffectFinished/shortdesc"/> </stentry>
             </strow>
             </simpletable> </section>
-        <section id="audio_file_information" props="android ios windows flutter">
+        <section id="audio_file_information" props="android ios windows flutter unity">
             <title>音频文件信息</title>
             <simpletable>
             <sthead>
@@ -913,17 +941,13 @@
                 <stentry> <ph conkeyref="onAudioVolumeIndication/shortdesc"/> </stentry>
             </strow>
             <strow>
-                <stentry> <xref keyref="onAudioDeviceTestVolumeIndication"/> </stentry>
-                <stentry> <ph conkeyref="onAudioDeviceTestVolumeIndication/shortdesc"/> </stentry>
-            </strow>
-            <strow>
                 <stentry> <xref keyref="onActiveSpeaker"/> </stentry>
                 <stentry> <ph conkeyref="onActiveSpeaker/shortdesc"/> </stentry>
             </strow>
             </simpletable> </section>
-        <section id="face_detection" props="android ios windows unity flutter">
+        <section id="face_detection" props="android ios windows flutter">
             <title>人脸检测</title>
-            <p props="windows unity">该组功能仅适用于 Android 和 iOS 平台。</p>
+            <p props="windows">该组功能仅适用于 Android 和 iOS 平台。</p>
             <simpletable>
             <sthead>
                 <stentry>方法</stentry>
@@ -943,9 +967,9 @@
                 <stentry> <ph conkeyref="onFacePositionChanged/shortdesc"/> </stentry>
             </strow>
             </simpletable> </section>
-        <section id="audio_routing_control" props="android ios windows unity flutter">
+        <section id="audio_routing_control" props="android ios windows flutter">
             <title>音频播放路由</title>
-            <p props="windows unity flutter">该组方法仅适用于 Android 和 iOS 平台。</p>
+            <p props="windows flutter">该组方法仅适用于 Android 和 iOS 平台。</p>
             <simpletable>
             <sthead>
                 <stentry>方法</stentry>
@@ -973,9 +997,9 @@
                 <stentry> <ph conkeyref="onAudioRouteChanged/shortdesc"/> </stentry>
             </strow>
             </simpletable> </section>
-        <section id="in-ear_monitoring" props="android ios windows unity flutter">
+        <section id="in-ear_monitoring" props="android ios windows flutter">
             <title>耳返控制</title>
-            <p props="windows unity flutter">该组方法仅适用于 Android 和 iOS 平台。</p>
+            <p props="windows flutter">该组方法仅适用于 Android 和 iOS 平台。</p>
             <simpletable>
             <sthead>
                 <stentry>方法</stentry>
@@ -1064,7 +1088,7 @@
                 <stentry> <xref keyref="startEchoTest2"/> </stentry>
                 <stentry> <ph conkeyref="startEchoTest2/shortdesc"/> </stentry>
             </strow>
-            <strow props="android ios mac windows">
+            <strow props="android ios mac windows unity">
                 <stentry> <xref keyref="startEchoTest3"/> </stentry>
                 <stentry> <ph conkeyref="startEchoTest3/shortdesc"/> </stentry>
             </strow>
@@ -1140,6 +1164,10 @@
             <strow>
                 <stentry> <xref keyref="setExternalAudioSource"/> </stentry>
                 <stentry> <ph conkeyref="setExternalAudioSource/shortdesc"/> </stentry>
+            </strow>
+            <strow>
+                <stentry> <xref keyref="setExternalAudioSourceVolume"/> </stentry>
+                <stentry> <ph conkeyref="setExternalAudioSourceVolume/shortdesc"/> </stentry>
             </strow>
             <strow props="unity">
                 <stentry> <xref keyref="pushAudioFrame"/> </stentry>
@@ -1454,9 +1482,9 @@
                 <stentry> <ph conkeyref="onRecorderInfoUpdated/shortdesc"/> </stentry>
             </strow>
             </simpletable> </section>
-        <section id="camera_control">
+        <section id="camera_control" props="android ios windows flutter">
             <title>摄像头控制</title>
-            <simpletable props="android ios windows unity">
+            <simpletable props="android ios windows flutter">
             <sthead>
                 <stentry>方法</stentry>
                 <stentry>描述</stentry>
@@ -1469,7 +1497,7 @@
                 <stentry> <xref keyref="isCameraZoomSupported"/> </stentry>
                 <stentry> <ph conkeyref="isCameraZoomSupported/shortdesc"/> </stentry>
             </strow>
-            <strow props="android ios flutter unity">
+            <strow props="android ios flutter">
                 <stentry> <xref keyref="isCameraTorchSupported"/> </stentry>
                 <stentry> <ph conkeyref="isCameraTorchSupported/shortdesc"/> </stentry>
             </strow>
@@ -1623,11 +1651,11 @@
                 <stentry> <xref keyref="enumerateVideoDevices"/> </stentry>
                 <stentry> <ph conkeyref="enumerateVideoDevices/shortdesc"/> </stentry>
             </strow>
-            <strow props="windows">
+            <strow props="windows unity">
                 <stentry> <xref keyref="startDeviceTest"/> </stentry>
                 <stentry> <ph conkeyref="startDeviceTest/shortdesc"/> </stentry>
             </strow>
-            <strow props="windows">
+            <strow props="windows unity">
                 <stentry> <xref keyref="stopDeviceTest"/> </stentry>
                 <stentry> <ph conkeyref="stopDeviceTest/shortdesc"/> </stentry>
             </strow>
@@ -1655,6 +1683,10 @@
             <strow>
                 <stentry> <xref keyref="onAudioDeviceVolumeChanged"/> </stentry>
                 <stentry> <ph conkeyref="onAudioDeviceVolumeChanged/shortdesc"/> </stentry>
+            </strow>
+            <strow>
+                <stentry> <xref keyref="onAudioDeviceTestVolumeIndication"/> </stentry>
+                <stentry> <ph conkeyref="onAudioDeviceTestVolumeIndication/shortdesc"/> </stentry>
             </strow>
             <strow>
                 <stentry> <xref keyref="onVideoDeviceStateChanged"/> </stentry>
