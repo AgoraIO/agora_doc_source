@@ -428,10 +428,10 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 ```
 | 字段  | 数据类型 | 描述  |
 | --- | --- | --- |
+| `chat_type` | String | 事件类型。`muc` 表示群组或聊天室。 |
 | `callId` | String | 回调 ID。是每条 HTTP 回调的唯一标识。该字段由 `{appKey}_{uuid}` 组成，其中 `uuid` 为随机生成。 |
 | `eventType` | String | 消息类型：<ul><li>`chat`: 上行消息，即由客户端发送至服务端的消息</li><li>`chat_offline`: 离线消息，即用户离线未接收的消息</li></ul> |
 | `timestamp` | Long | 声网即时通讯 IM 服务器接收到此消息的 Unix 时间戳，单位为 ms。|
-| `chat_type` | String | 聊天类型。`muc` 表示群组或聊天室。 |
 | `group_id` | String | 消息回调所发生的群组或聊天室的 ID。当 `chat_type` 为 `groupchat` 时，才会有该参数。|
 | `from` | String | 消息的发送方。|
 | `to`  | String | 消息的接收方。 |
@@ -1066,8 +1066,36 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 当即时通讯 app 中有用户进行好友关系操作时，Agora 即时通讯服务会向你的应用服务器发送回调事件。示例如下：
 
 ```json
+{
+    "chat_type": "roster",
+    "callId": "orgname#appname_9664XXXX5536657404",
+    "security": "XXXXa9feXXXX69241e17b15e2783dbb1",
+    "payload": {
+        // 具体的回调事件
+    },
+    "host": "msync@ebs-ali-beijing-msync26",
+    "appkey":"orgname#appname",
+    "from":"tst",
+    "to":"tst01",
+    "eventType":"chat",
+    "msg_id":"9664XXXX5536657404",
+    "timestamp":1642589932646
+}
 ```
-【示例与参数解释待补充】
+
+| 字段  | 数据类型 | 描述  |
+| --- | --- | --- |
+| `chat_type` | String | 事件类型。`roster` 表示好友关系。 |
+| `callId` | String | 回调 ID。是每条 HTTP 回调的唯一标识。该字段由 `{appKey}_{uuid}` 组成，其中 `uuid` 为随机生成。 |
+| `eventType` | String | 消息类型：<ul><li>`chat`: 上行消息，即由客户端发送至服务端的消息</li><li>`chat_offline`: 离线消息，即用户离线未接收的消息</li></ul> |
+| `timestamp` | Long | 声网即时通讯 IM 服务器接收到此消息的 Unix 时间戳，单位为 ms。|
+| `from` | String | 发起好友操作的用户。|
+| `to`  | String | 被进行好友操作的用户。 |
+| `msg_id` | String | 该消息回调的 ID，与发送消息时的 `msg_id` 一致。|
+| `payload` | Object | 消息回调事件的内容结构体。各回调事件包含的 `payload` 详情见下文。 |
+| `security` | String | 消息回调请求中的签名，用来确认该回调是否来自 Agora 即时通讯服务器。格式为 `MD5({callId} + {secret} + {timestamp})`，其中 `secret` 可以在 Agora 控制台即时通讯的 IM 配置页面找到。|
+| `appkey`          | String | Agora 即时通讯服务分配给每个 app 的唯一标识。              |
+| `host`            | String | Agora 分配的 RESTful API 请求地址域名。  |
 
 ### 添加好友
 
@@ -1232,6 +1260,84 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 | `eventType` | String   | 聊天类型。`chat` 表示一对一聊天。                                               |
 | `timestamp` | long     | 回执事件到声网即时通讯 IM 服务器的 Unix 时间戳，单位为 ms。                  |
 | `msg_id`    | String   | 该回执的消息 ID。                                        |
+
+## 非好友发送消息事件
+
+当即时通讯 app 中有非好友向用户发送消息时，Agora 即时通讯服务会向你的应用服务器发送回调事件。示例如下：
+
+```json
+{ 
+    "callId": "XXXX#XXXX968665325555943556", 
+    "alertReason": "detected", 
+    "contentReceiver": "easemob-demo#wang_tst01@easemob.com", 
+    "eventType": "keyword_alert", 
+    "sensitiveWords": [], 
+    "contentOwner": "easemob-demo#wang_tst01@easemob.com", 
+    "security": "2318XXXX383aXXXXa16ab176f68415b4", 
+    "contentUri": "msync:1000195842260339688", 
+    "host": "msync@ebs-ali-beijing-msync162", 
+    "appkey": "easemob-demo#wang", 
+    "contentType": "message", 
+    "timestamp": 1650441041754, 
+    "chatType": "chat:user:text"
+}
+```
+
+| 字段        | 数据类型 | 含义                                                         |
+| :---------- | :------- | :----------------------------------------------------------- |
+| `callId`    | String   | 回调 ID，是每条 HTTP 回调的唯一标识。该字段由 `{appKey}_{uuid}` 组成，其中 `uuid` 为随机生成。 |
+| `alertReason` | String | 
+| `contentReceiver` | String |      |
+| `eventType` | String   | `keyword_alert` 表示什么  |
+| `sensitiveWords` | Array |        |
+| `contentOwner` | String |      |
+| `security`  | String   | 消息回调请求中的签名，用来确认该回调是否来自 Agora 即时通讯服务器。格式为 MD5(`callId` + `secret` + `timestamp`)，其中 `secret` 可以在 Agora 控制台即时通讯的 IM 配置页面找到。 |
+| `contentUri`   | String |     |
+| `host`      | String   | Agora 即时通讯服务分配的 RESTful API 请求地址域名。                                                 |
+| `appkey`    | String   | Agora 即时通讯服务分配给每个 app 的唯一标识。                         |
+| `contentType`  | String | `message` 表示什么？    |
+| `timestamp` | long     | 回执事件到声网即时通讯 IM 服务器的 Unix 时间戳，单位为 ms。                  |
+| `chatType` | String   | 事件类型。`chat:user:text` 表示有非好友用户发送消息。                                        |
+
+## 监测到敏感词事件
+
+当即时通讯监测到有用户发送敏感词信息时，即时通讯服务会向你的应用服务器发送回调事件。示例如下：
+
+```json
+{ 
+    "callId": "XXXX#XXXX968665325555943556", 
+    "alertReason": "intercepted", 
+    "contentReceiver": "easemob-demo#shuang_1111@easemob.com", 
+    "eventType": "keyword_alert", 
+    "sensitiveWords": [ "淫图" ], 
+    "contentOwner": "easemob-demo#shuang_1111@easemob.com", 
+    "security": "ade0ab8c13498079885d13fd50cb4c5a", 
+    "contentUri": "msync:967188545577945136", 
+    "host": "msync@ebs-ali-beijing-msync24", 
+    "appkey": "easemob-demo#shuang", 
+    "contentType": "message", 
+    "timestamp": 1642755931722, 
+    "chatType": "chat:group:text", 
+    "status": "refuse"
+}
+```
+
+| 字段        | 数据类型 | 含义                                                         |
+| :---------- | :------- | :----------------------------------------------------------- |
+| `callId`    | String   | 回调 ID，是每条 HTTP 回调的唯一标识。该字段由 `{appKey}_{uuid}` 组成，其中 `uuid` 为随机生成。 |
+| `alertReason` | String |      |
+| `contentReceiver` | String |      |
+| `eventType` | String   | `keyword_alert` 表示什么？            |
+| `sensitiveWords` | Array |        |
+| `contentOwner` | String |      |
+| `security`  | String   | 消息回调请求中的签名，用来确认该回调是否来自 Agora 即时通讯服务器。格式为 MD5(`callId` + `secret` + `timestamp`)，其中 `secret` 可以在 Agora 控制台即时通讯的 IM 配置页面找到。 |
+| `contentUri`   | String |     |
+| `host`      | String   | Agora 即时通讯服务分配的 RESTful API 请求地址域名。                                                 |
+| `appkey`    | String   | Agora 即时通讯服务分配给每个 app 的唯一标识。                         |
+| `contentType`  | String | `message` 表示什么？   |
+| `timestamp` | long     | 回执事件到声网即时通讯 IM 服务器的 Unix 时间戳，单位为 ms。                  |
+| `chatType` | String   | 事件类型。`chat:group:text` 表示群组中由用户发送敏感信息。                                        |
+| `status` | String |  `refuse` 表示什么？    |
 
 
 
