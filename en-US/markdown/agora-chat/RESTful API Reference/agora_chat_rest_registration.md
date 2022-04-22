@@ -968,7 +968,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter      | Type | Description                                                         |
 | :-------- | :---- | :----------------------------------------------------------- |
-| `usernames` | Array | The users of whom you want to query the online state. You can specify a maximum of 100 usernames at the same time. |
+| `usernames` | Array | The users whose online state you want to query. You can specify a maximum of 100 usernames at the same time. |
 
 ### HTTP response
 
@@ -993,7 +993,7 @@ curl -X POST http://XXXX/XXXX/XXXX/users/batch/status -H 'Authorization: Bearer 
 
 #### Response example
 
-This API does not check whether the specified usernames are valid. If the specified username does not exist, the state of this user is determined as offline.
+This API does not check whether the specified usernames are valid. If the specified username does not exist, the state of this user is reported as offline.
 
 ```json
 {
@@ -1013,7 +1013,7 @@ This API does not check whether the specified usernames are valid. If the specif
 
 ## Querying the number of offline messages
 
-Queries the number of offline messages that have and have not been delivered to a user.
+Queries the number of offline messages a user has, whether or not they have been delivered.
 
 ### HTTP request
 
@@ -1025,7 +1025,7 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/offline_msg_coun
 
 |   Parameter    | Type   | Required | Description         |
 | :-------: | :----- | :------- | ------------ |
-| `owner_username` | String |   Yes| The users of whom you want to query the number of offline messages. |
+| `owner_username` | String |   Yes| The users whose number of offline messages you want to query. |
 
 For the parameters and detailed descriptions, see [Common parameters](#param).
 
@@ -1044,7 +1044,7 @@ If the returned HTTP status code is `200`, the request succeeds and the response
 
 | Parameter     | Description                                                         |
 | :------- | :----------------------------------------------------------- |
-| `username` | The number of offline messages that have and have not been delivered to a user, in the format of `"username": "number of offline messages"`. For example, if user1 does not have offline messages, returns `"user1": "0"`. |
+| `username` | The number of offline messages a user has, whether or not they have been delivered, in the format of `"username": "number of offline messages"`. For example, if user1 does not have offline messages, returns `"user1": "0"`. |
 
 If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
 
@@ -1087,7 +1087,7 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/offline_msg_status/{ms
 
 |   Parameter    | Type   | Required | Description         |
 | :-------: | :----- | :------- | ------------ |
-| `username` | String |   Yes| The user of whom you want to query the delivery state of offline messages. |
+| `username` | String |   Yes| The user whose offline message's delivery states you want to query. |
 | `msg_id` | String |   Yes| The message of which you want to query the delivery state.  |
 
 For the parameters and detailed descriptions, see [Common parameters](#param).
