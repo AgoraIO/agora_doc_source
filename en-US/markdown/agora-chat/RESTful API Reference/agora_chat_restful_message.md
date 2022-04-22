@@ -944,6 +944,217 @@ Example of custom type message format
 	
 	<a name="code"></a>
 
+## Recalling a message
+
+This method enables app admins to recall harmful information to maintain a healthy chat environment.
+
+The default time limit for recalling a message is two minutes, with a maximum of seven days. To modify this value, contact support@agora.io.
+
+### HTTP request
+
+```http
+POST https://{host}/{org_name}/{app_name}/messages/recall
+```
+
+#### Path parameter
+
+For the parameters and detailed descriptions, see [Common parameters ](#param).
+
+#### Request header
+
+| Parameter            | Type | Required | Description                                                         |
+| :-------------- | :------- | :------- | :----------------------------------------------------------- |
+| `Content-Type`  | String   | Yes     | `application/json`                             |
+| `Authorization` | String   | Yes     | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
+
+#### Request body
+
+| Parameter        | Type | Required | Description                                                         |
+| :---------- | :------- | :------- | :----------------------------------------------------------- |
+| `msg_id`    | String   | Yes     | The ID of the recalled message.                                      |
+| `to`        | String   | No   | The user, chat group, or chat room that receives the recalled message. You can specify a username, a chat group ID, or a chat room ID.</br>**Note**: If the recalled message exceeds the message storage duration and no longer exists in the server, this message cannot be recalled on the server side. You can only recall the message on the receiver client instead. |
+| `chat_type` | String   | Yes     | The type of the chat where the recalled message is located. <li>`chat`: An one-on-one chat.<li>`group_chat`: A chat group.<li>`chatroom`: A chat room. |
+| `from`      | String   | No   | The user who recalls the message. By default, the recaller is the app admin. You can also specify another user as the recaller. |
+| `force`     | bool     | Yes     | Whether to force a recall if the recalled message exceeds the message storage duration and no longer exists in the server. <li>`true`: Force the recall on the client that receives the message.<li>`false`: The recall fails.</br>The maximum message storage duration varies based on different pricing plans. For details, see [Message storage duration](./agora_chat_limitation?platform=Android#message-storage-duration). |
+
+### HTTP response
+
+#### Response body
+
+If `yes` is returned for the `recalled` field, the request is successful, and the response body contains the following fields:
+
+| Parameter       | Description                                                         |
+| :--------- | :----------------------------------------------------------- |
+| `msg_id`   | The ID of the recalled message.                                          |
+| `recalled` | Returns `yes` if the request is successful.                         |
+| `from`     | The user who recalls the message. By default, the recaller is the app admin.          |
+| `to`       | The user, chat group, or chat room that receives the recalled message.                      |
+| `chattype` | The type of the chat where the recalled message is located. <li>`chat`: An one-on-one chat.<li>`group_chat`: A chat group.<li>`chatroom`: A chat room. |
+
+For other fields and detailed descriptions, see [Common parameters](#param).
+
+If the request fails, refer to the following error messages for possible reasons:
+
+| Status code |  Error message | Description   |
+| :-----  | :----------------------------------------------------------- | :------------------------------------------------|
+| `200`  |  can't find msg to  | The error message returned because you have not specified the receiver of the recalled message or the specified receiver does not exist. |
+| `200`  |  exceed recall time limit | The error message returned because the specified message exceeds the time limit for recalling o message. |
+| `200`  |  not_found msg | The error message returned because the specified message does not exist. |
+| `200`  |  internal error | The error message returned because the server encounters an unexpected condition that prevents it from fulfilling the request. |
+| `403`  | message recall service is unopened | The error message returned because the recall service has not been activated. To activate this service, contact support@agora.io.  |
+
+### Example
+
+#### Request example
+
+```
+curl -i -X POST -H 
+"Authorization: Bearer YWMtnIF_ZI-GEea1KgfxnnDmKAAAAVjnsTKe0OE4vMOBWCtOcrB-56YcrhOHMho" 
+"https://a1.easemob.com/{org_name}/{app_name}/messages/recall" -d 
+'{
+    "msgs": [ 
+         { 
+            "msg_id": "532680552327682060",
+            "to": "user1", 
+            "chat_type": "chat", 
+            "from": "op_user1",
+            "force": true,
+         },
+         { 
+            "msg_id": "532680552123456789",
+            "to": "groupId",
+            "chat_type": "groupchat",
+            "from": "op_user1",
+            "force": false
+         }
+    ],
+}' 
+```
+
+#### Response example
+
+**Successful response**
+
+```
+{
+    "path": "/messages/recall",
+    "uri": "https://a1.agora.com/agora-demo/chatdemoui/messages",
+    "timestamp": 1582782737304,
+    "organization": "agora-demo",
+    "application": "82d0bbe0-d2a3-11e8-a0af-cb2ab3ce6167",
+    "action": "post",
+    "data": {
+        "msgs": [
+            {
+                "msg_id": "682585701976385679",
+                "recalled": "yes",
+                "from": "op_user1",
+                "to": "hxtest1",
+                "chattype": "chat"
+            }
+        ]
+    },
+    "duration": 3,
+    "applicationName": "chatdemoui"
+}
+```
+
+**Error response**
+
+```
+{
+	"msgs":
+    [
+        {
+            "msg_id":"673296797703079892",
+            "recalled":"not_found msg"
+        },
+        {
+            "msg_id":"673296797703079892",
+            "recalled":"not_found msg"
+        },
+    ] 
+}
+```
+
+```
+{ 
+    "error":"forbidden_op", 
+    "exception":"EasemobForbiddenOpException", 
+    "timestamp":1644402553845, 
+    "duration":0, 
+    "error_description":"message recall service is unopened" 
+}
+```
+
+## Implement the one-way deletion of chats
+
+Once User A deletes the chat with User B, User A can no longer pull this chat from the server, whereas User B can sync the chat properly.
+
+### HTTP request
+
+```http
+DELETE https://{host}/{orgName}/{appName}/users/{userName}/user_channel
+```
+
+#### Path parameter
+
+For the parameters and detailed descriptions, see [Common parameters](#param).
+
+#### Request header
+
+| Parameter            | Type | Required | Description                                                         |
+| :-------------- | :------- | :------- | :----------------------------------------------------------- |
+| `Content-Type`  | String   | Yes     | `application/json`                                  |
+| `Authorization` | String   | Yes     | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
+
+#### Request body
+
+| Parameter         | Type | Required | Description                                                         |
+| :------------ | :------- | :------- | :----------------------------------------------------------- |
+| `channel`     | String   | Yes     | The ID of the conversation that you want to delete.                                  |
+| `type`        | String   | Yes     | The type of the chat.<li>`chat`: An one-on-one chat.<li>`groupchat`: A group chat. |
+| `delete_roam` | Bool     | Yes     | Whether to delete the chat from the server:<li>`true`: Yes. You can no longer pull the chat from the server.<li>`false`: No. You can still pull the chat from the server through roaming. |
+
+### HTTP response
+
+#### Response body
+
+If the returned HTTP status code is `200`, the request succeeds. The response body contains the following fields:
+
+| Parameter     | Description                                                  |
+| :------- | :---------------------------------------------------- |
+| `result` | Returns `ok` if the request is successful. |
+
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
+
+### Example
+
+#### Request example
+
+```
+curl -X DELETE -H "Authorization: Bearer YWMtxc6K0L1aEeKf9LWFzT9xEAAAAT7MNR_9OcNq-GwPsKwj_TruuxZfFSC2eIQ" "https://a1.agora.com/agora-demo/test-app/users/u1/user_channel"  -d  '{"channel":"u2", "type":"chat"，"delete_roam": true}'
+```
+
+#### Response example
+
+```
+{
+    "path": "/users/user_channel",
+    "uri": "https://a1.agora.com/agora-demo/test-app/users/u1/user_channel",
+    "timestamp": 1638440544078,
+    "organization": "agora-demo",
+    "application": "c3624975-3d51-4b0a-9da2-ee91ed4c5a76",
+    "entities": [],
+    "action": "delete",
+    "data": {
+        "result": "ok"
+    },
+    "duration": 3,
+    "applicationName": "test-app"
+}
+```
+
 ## Status codes
 
 For details, see [HTTP Status Codes](./agora_chat_status_code?platform=RESTful).
