@@ -948,7 +948,7 @@ Example of custom type message format
 
 This method enables app admins to recall harmful information to maintain a healthy chat environment.
 
-The default time limit on recalling a message is two minutes, with a maximum of seven days. To modify this value, contact support@agora.io.
+The default time limit for recalling a message is two minutes, with a maximum of seven days. To modify this value, contact support@agora.io.
 
 ### HTTP request
 
@@ -972,10 +972,10 @@ For the parameters and detailed descriptions, see [Common parameters ](#param).
 | Parameter        | Type | Required | Description                                                         |
 | :---------- | :------- | :------- | :----------------------------------------------------------- |
 | `msg_id`    | String   | Yes     | The ID of the recalled message.                                      |
-| `to`        | String   | No   | The user, chat group, or chat room that receives the recalled message. You can specify a username, a chat group ID, or a chat room ID.</br>**Note**: If the recalled message exceeds the message storage duration and no longer exits in the server, this message cannot be recalled on the server side. You can only recall the message on the receiver client instead. |
-| `chat_type` | String   | Yes     | The type of the chat where the recalled message locates. <li>`chat`: An one-on-one chat.<li>`group_chat`: A chat group.<li>`chatroom`: A chat room. |
+| `to`        | String   | No   | The user, chat group, or chat room that receives the recalled message. You can specify a username, a chat group ID, or a chat room ID.</br>**Note**: If the recalled message exceeds the message storage duration and no longer exists in the server, this message cannot be recalled on the server side. You can only recall the message on the receiver client instead. |
+| `chat_type` | String   | Yes     | The type of the chat where the recalled message is located. <li>`chat`: An one-on-one chat.<li>`group_chat`: A chat group.<li>`chatroom`: A chat room. |
 | `from`      | String   | No   | The user who recalls the message. By default, the recaller is the app admin. You can also specify another user as the recaller. |
-| `force`     | bool     | Yes     | Whether to force a recall if the recalled message exceeds the message storage duration and no longer exits in the server. <li>`true`: Force the recall on the client that receives the message.<li>`false`: The recall fails.</br>The maximum message storage duration varies based on different pricing plans. For details, see [Message storage duration](./agora_chat_limitation?platform=Android#message-storage-duration). |
+| `force`     | bool     | Yes     | Whether to force a recall if the recalled message exceeds the message storage duration and no longer exists in the server. <li>`true`: Force the recall on the client that receives the message.<li>`false`: The recall fails.</br>The maximum message storage duration varies based on different pricing plans. For details, see [Message storage duration](./agora_chat_limitation?platform=Android#message-storage-duration). |
 
 ### HTTP response
 
@@ -989,7 +989,7 @@ If `yes` is returned for the `recalled` field, the request is successful, and th
 | `recalled` | Returns `yes` if the request is successful.                         |
 | `from`     | The user who recalls the message. By default, the recaller is the app admin.          |
 | `to`       | The user, chat group, or chat room that receives the recalled message.                      |
-| `chattype` | The type of the chat where the recalled message locates. <li>`chat`: An one-on-one chat.<li>`group_chat`: A chat group.<li>`chatroom`: A chat room. |
+| `chattype` | The type of the chat where the recalled message is located. <li>`chat`: An one-on-one chat.<li>`group_chat`: A chat group.<li>`chatroom`: A chat room. |
 
 For other fields and detailed descriptions, see [Common parameters](#param).
 
@@ -997,8 +997,8 @@ If the request fails, refer to the following error messages for possible reasons
 
 | Status code |  Error message | Description   |
 | :-----  | :----------------------------------------------------------- | :------------------------------------------------|
-| `200`  |  can't find msg to  | The error message returned because you have not specify the receiver of the recalled message or the specified receiver does not exist. |
-| `200`  |  exceed recall time limit | The error message returned because the specified message exceeds the time limit on recalling o message. |
+| `200`  |  can't find msg to  | The error message returned because you have not specified the receiver of the recalled message or the specified receiver does not exist. |
+| `200`  |  exceed recall time limit | The error message returned because the specified message exceeds the time limit for recalling o message. |
 | `200`  |  not_found msg | The error message returned because the specified message does not exist. |
 | `200`  |  internal error | The error message returned because the server encounters an unexpected condition that prevents it from fulfilling the request. |
 | `403`  | message recall service is unopened | The error message returned because the recall service has not been activated. To activate this service, contact support@agora.io.  |
