@@ -15,8 +15,8 @@ The following table lists the common request and response parameters of the Agor
 | `host` | String | The domain name assigned by the Agora Chat service to access RESTful APIs. For how to get the domain name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
 | `org_name` | String | The unique identifier assigned to each company (organization) by the Agora Chat service. For how to get the org name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
 | `app_name` | String | The unique identifier assigned to each app by the Agora Chat service. For how to get the app name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
-| `username` | String | The unique login username. The username must be 64 characters or less and cannot be empty. The following character sets are supported:<li>26 lowercase English letters (a-z)</li><li>26 uppercase English letters (A-Z)</li><li>10 numbers (0-9)</li><li>"\_", "-", "."</li><div class="alert note"><ul><li>The username is case insensitive,  so `Aa` and `aa` are the same username. </li><li>Ensure that each username under the same app must be unique.</li></ul></div> | Yes |
-| `chatroom_id` | String | The unique identifier of the chat room. | Yes |
+| `username` | String | The username. The unique login account of the user. The username must be 64 characters or less and cannot be empty. The following character sets are supported:<li>26 lowercase English letters (a-z)</li><li>26 uppercase English letters (A-Z)</li><li>10 numbers (0-9)</li><li>"\_", "-", "."</li><div class="alert note"><ul><li>The username is case insensitive,  so `Aa` and `aa` are the same username. </li><li>Ensure that each username under the same app must be unique.</li></ul></div> | Yes |
+| `chatroom_id` | String | The chat room ID. The unique identifier assigned to each chat room by the Agora Chat service. You can get the chat room ID from the response body of [Retrieve basic information of all chat rooms](./agora_chat_restful_chatroom?platform=RESTful#retrieving-basic-information-of-all-chat-rooms). | Yes |
 
 ### Response parameters
 
@@ -27,7 +27,7 @@ The following table lists the common request and response parameters of the Agor
 | `application` | String | A unique internal ID assigned to each app by the Agora Chat service. You can safely ignore this parameter. |
 | `applicationName` | String | The unique identifier assigned to each app by the Agora Chat service. This is the same as `app_name`. |
 | `uri` | String | The request URI. |
-| `path` | String | The request path, which is part of the request URL. You can safely ignore this parameter. |
+| `path` | String | The request path, which is part of the request URI. You can safely ignore this parameter. |
 | `entities ` | JSON | The response entity. |
 | `data` | JSON | The details of the response. |
 | `timestamp` | Number | The Unix timestamp (ms) of the HTTP response. |
@@ -42,7 +42,7 @@ Agora Chat RESTful APIs require Bearer HTTP authentication. Every time an HTTP r
 Authorization: Bearer ${YourAppToken}
 ```
 
-In order to improve the security of the project, Agora uses a token (dynamic key) to authenticate users before they log into the chat system. The Agora Chat RESTful API only supports authenticating users using app tokens. For details, see [Authentication using App Token](./generate_app_tokens).
+In order to improve project security, Agora uses a token (dynamic key) to authenticate users before they log in to the chat system. The Agora Chat RESTful API only supports authenticating users using app tokens. For details, see [Authentication using App Token](./generate_app_tokens).
 
 ## Retrieving the chat room allow list
 
@@ -62,7 +62,6 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
-| Parameter | Type | Description | Required |
 | `Content-Type` | String | The parameter type. Set it as `application/json`. | Yes |
 | `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
@@ -107,7 +106,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer YWMt4LqJIul7
 
 ## Adding a user to the chat room allow list
 
-Adds the specified user to the chat room allow list. Members in the chat room allow list can still send messages after the chat room owner or admin has muted all the chat room members using the global mute method.
+Adds the specified user to the chat room allow list. Members in the chat room allow list can still send messages after the chat room owner or an admin has muted all the chat room members using the global mute method.
 
 ### HTTP request
 
@@ -123,7 +122,6 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
-| Parameter | Type | Description | Required |
 | `Content-Type` | String | The parameter type. Set it as `application/json`. | Yes |
 | `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
@@ -189,7 +187,6 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
-| Parameter | Type | Description | Required |
 | `Content-Type` | String | The parameter type. Set it as `application/json`. | Yes |
 | `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
@@ -270,7 +267,6 @@ For the parameters and detailed descriptions, see [Common parameters](#param).  
 
 | Parameter | Type | Description | Required |
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
-| Parameter | Type | Description | Required |
 | `Content-Type` | String | The parameter type. Set it as `application/json`. | Yes |
 | `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
@@ -282,7 +278,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the data fi
 
 | Parameter      | Type    | Description                                                         |
 | :-------- | :------ | :----------------------------------------------------------- |
-| `result`  | Boolean | Whether the users are successfully removed from the chat room sllow list.<li>`true`: Yes.<li>`false`: No. |
+| `result`  | Boolean | Whether the users are successfully removed from the chat room allow list.<li>`true`: Yes.<li>`false`: No. |
 | `user`    | String  | The username removed from the chat room allow list.                              |
 
 For the parameters and detailed descriptions, see [Common parameters](#param).
