@@ -6,7 +6,7 @@ Agora Chat supports the integration of Google Firebase Cloud Messaging (FCM). Th
 
 ![Set up Push Notifications (Android)](https://web-cdn.agora.io/docs-files/1649843666791)
 
-Assume that User A sends a message to User B, and User B goes offline. Agora Chat server pushes a notification to the device of User B via FCM, and temporarily stores this message. Once User B comes back online, Agora Chat SDK pulls the message from the server, and pushes the message to User B using persistent connections.
+Assume that User A sends a message to User B, but User B goes offline before receiving it. The Agora Chat server pushes a notification to the device of User B via FCM and temporarily stores this message. Once User B comes back online, the Agora Chat SDK pulls the message from the server and pushes the message to User B using persistent connections.
 
 ## Prerequisites
 
@@ -27,7 +27,7 @@ This section guides you through how to integrate FCM with Agora Chat.
 3. After the project is ready, click **Continue** to redirect to the project page, and click the **Android** icon to register an Android project.
 
 4. In the **Add Firebase to your Android app** page, perform the following operations:
-    1. In the **Register app** step, enter a Android package name, app nickname (optional), and debug signing certificate SHA-1 (optional), and click **Register app**.
+    1. In the **Register app** step, enter an Android package name, app nickname (optional), and debug signing certificate SHA-1 (optional), and click **Register app**.
     2. In the **Download google-services.json** step, download `google-services.json`, move this file into your Android app module root directory, and click **Next**.
     3. In the **Add Firebase SDK** step, modify your `build.gradle` files to use Firebase, and click **Next**.
     4. In the **Next steps** step, click **Continue to console** to go back to the project page.
@@ -70,7 +70,7 @@ dependencies {
 ```
 >**Note**: For Gradle 5.0 and later, BoM is automatically enabled, whereas for earlier versions of Gradle, you need to enable the BoM feature. See [Firebase Android BoM](https://firebase.google.cn/docs/android/learn-more#bom) and [Firebase Android SDK Release Notes](https://firebase.google.cn/support/release-notes/android) for details.
 
-2. Sync project with gradle files, extend `FirebaseMessagingService`, and register `FirebaseMessagingService` in the `AndroidManifest.xml` file of your project.
+2. Sync the project with the gradle files, extend `FirebaseMessagingService`, and register `FirebaseMessagingService` in the `AndroidManifest.xml` file of your project.
 
 ```java
 public class EMFCMMSGService extends FirebaseMessagingService {
@@ -104,7 +104,7 @@ public class EMFCMMSGService extends FirebaseMessagingService {
 </service>
 ```
 
-3. Initialize and enable FCM in Agora Chat SDK.
+3. Initialize and enable FCM in the Agora Chat SDK.
 ```java
 ChatOptions options = new ChatOptions();
 ...
@@ -133,7 +133,7 @@ PushHelper.getInstance().setPushListener(new PushListener() {
 });
 ```
 
-4. Pass the device token of FCM to Agora Chat SDK.
+4. Pass the device token of FCM to the Agora Chat SDK.
 
 ```java
 // Check whether FCM is enabled.
@@ -157,7 +157,7 @@ FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteL
 
 5. Listen for device token generation.
 
-Rewrite the `onNewToken` callback of `FirebaseMessagingService`. Once a device token is generated, this callback passes the new device token to Agora Chat SDK at the earliest opportunity.
+Rewrite the `onNewToken` callback of `FirebaseMessagingService`. Once a device token is generated, this callback passes the new device token to the Agora Chat SDK at the earliest opportunity.
 
 ```java
 @Override
@@ -340,7 +340,7 @@ An example of a `RemoteMessage` object is as follows:
 
 ## What's next
 
-This section includes more advanced push notification features. You can implement these features based on your needs, such as redirecting to an event page via push notifications.
+This section includes more advanced push notification features that you can use to implement additional functions if needed, such as redirecting to an event page via push notifications.
 
 ### Custom fields
 
@@ -459,7 +459,7 @@ An example of a received `RemoteMessage` object is as follows:
 
 ### Force push notifications
 
-Once you force a push notification to a user, the user receives the message regardless of the do-not-disturb settings.
+Once you force a push notification to a user, the user receives the message regardless of their do-not-disturb settings.
 
 The following sample code forces a push notification:
 
