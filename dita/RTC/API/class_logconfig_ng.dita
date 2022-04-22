@@ -24,7 +24,7 @@
   LogConfig() : filePath(NULL), fileSizeInKB(DEFAULT_LOG_SIZE_IN_KB), level(OPTIONAL_LOG_LEVEL_SPECIFIER LOG_LEVEL_INFO) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public class LogConfig
+            <codeblock props="cs" outputclass="language-csharp">public class LogConfig
     {
         public LogConfig()
         {
@@ -57,15 +57,15 @@
                 <pt>filePath</pt>
                 <pd>
                     <p>日志文件的完整路径。请确保你指定的目录存在且可写。你可以通过该参数修改日志文件名。</p>
-                    <p props="cpp unity electron rn">默认路径为：
+                    <p props="cpp cs electron rn">默认路径为：
                     
                     <ul>
-                    <li props="cpp unity rn">Android: <filepath
+                    <li props="cpp cs rn">Android: <filepath
                         id="android-path"
                         >/storage/emulated/0/Android/data/&lt;packagename&gt;/files/agorasdk.log</filepath>。</li>
-                    <li props="cpp unity rn">iOS: <filepath id="ios-path"
+                    <li props="cpp cs rn">iOS: <filepath id="ios-path"
                         >App Sandbox/Library/caches/agorasdk.log</filepath>。</li>
-                    <li props="cpp unity electron">macOS: 
+                    <li props="cpp cs electron">macOS: 
                         
                         <ul id="mac-path">
                         <li>开启沙盒: <filepath>App Sandbox/Library/Logs/agorasdk.log</filepath>，例如 <filepath>/Users/&lt;username&gt;/Library/Containers/&lt;App
@@ -73,7 +73,7 @@
                                                 Identifier&gt;/Data/Library/Logs/agorasdk.log</filepath>。</li>
                         <li>关闭沙盒: <filepath>～/Library/Logs/agorasdk.log</filepath></li>
                         </ul></li>
-                    <li props="cpp unity electron">Windows:
+                    <li props="cpp cs electron">Windows:
                                         <filepath>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\agorasdk.log</filepath>。</li>
                     </ul></p>
                     <p props="android"
@@ -97,7 +97,7 @@
             </plentry>
             <plentry>
                 <pt props="native">fileSizeInKB</pt>
-                <pt props="unity">fileSize</pt>
+                <pt props="cs">fileSize</pt>
                 <pd>单个 <codeph>agorasdk.log</codeph> 日志文件的大小，单位为 KB，取值范围为 [128,1024]，默认值为 1,024
                         KB。 如果你将 <codeph>fileSizeInKByte</codeph> 设为小于 128 KB，SDK 会自动调整到 128 KB；如果你将
                             <codeph>fileSizeInKByte</codeph> 设为大于 1,024 KB，SDK 会自动调整到 1,024 KB。</pd>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="callback_iaudioframeobserverbase_onmixedaudioframe">
+<reference id="callback_iaudioframeobserver_onmixedaudioframe">
     <title><ph keyref="onMixedAudioFrame"/></title>
     <shortdesc id="short"><ph id="shortdesc">获取采集和播放语音混音后的数据。</ph></shortdesc>
     <prolog>
@@ -13,12 +13,12 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnMixedAudioFrame(AudioFrame audio_frame)
+            <codeblock props="cs" outputclass="language-csharp">public virtual bool OnMixedAudioFrame(AudioFrame audio_frame)
         {
             return true;
         }</codeblock></p>
             <p outputclass="codeblock" props="rtc">
-            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnMixedAudioFrame(AudioFrame audioFrame)
+            <codeblock props="cs" outputclass="language-csharp">public virtual bool OnMixedAudioFrame(AudioFrame audioFrame)
         {
             return true;
         }</codeblock></p>
@@ -38,10 +38,10 @@
         </section>
         <section id="parameters">
             <title>参数</title>
-            <parml props="ios mac cpp unity">
+            <parml props="ios mac cpp cs">
             <plentry>
                 <pt props="cpp">audioFrame</pt>
-                <pt props="unity"><ph props="rtc">audioFrame</ph><ph props="rtc-ng">audio_frame</ph></pt>
+                <pt props="cs"><ph props="rtc">audioFrame</ph><ph props="rtc-ng">audio_frame</ph></pt>
                 <pt props="ios mac">frame</pt>
                 <pd>音频原始数据。详见 <xref keyref="AudioFrame"/>。</pd>
             </plentry>

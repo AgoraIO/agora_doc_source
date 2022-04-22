@@ -84,7 +84,7 @@
  @property (assign, nonatomic) int64_t renderTimeMs;
  @property (assign, nonatomic) NSInteger avSyncType;
 @end</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public AudioFrame(AUDIO_FRAME_TYPE type, int samplesPerChannel, int bytesPerSample, int channels, int samplesPerSec,
+            <codeblock props="cs" outputclass="language-csharp">public AudioFrame(AUDIO_FRAME_TYPE type, int samplesPerChannel, int bytesPerSample, int channels, int samplesPerSec,
             byte[] buffer, long renderTimeMs, int avsync_type)
         {
             this.type = type;
@@ -139,7 +139,7 @@
 @property(assign, nonatomic) int64_t renderTimeMs NS_SWIFT_NAME(renderTimeMs);
 @property(assign, nonatomic) NSInteger avSyncType NS_SWIFT_NAME(avSyncType);
 </codeblock>
-            <codeblock props="cpp unity" outputclass="language-cpp">struct AudioFrame {
+            <codeblock props="cpp cs" outputclass="language-cpp">struct AudioFrame {
     AUDIO_FRAME_TYPE type;
     int samples;
     int bytesPerSample;
@@ -158,7 +158,7 @@
             conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
             /> </title>
             <parml>
-            <plentry props="cpp unity">
+            <plentry props="cpp cs">
                 <pt>type</pt>
                 <pd>
                     <p>音频帧类型，详见 <xref keyref="AUDIO_FRAME_TYPE"/>。</p>
@@ -166,7 +166,7 @@
             </plentry>
             <plentry>
                 <pt props="rtc"><ph props="android">numOfSamples</ph><ph
-                    props="cpp unity">samples</ph><ph props="ios mac"
+                    props="cpp cs">samples</ph><ph props="ios mac"
                     >samplesPerChannel</ph></pt>
                 <pt props="rtc-ng">samplesPerChannel</pt>
                 <pd>每个声道的采样点数。</pd>
@@ -177,7 +177,7 @@
             </plentry>
             <plentry>
                 <pt props="rtc">channels</pt>
-                <pt props="rtc-ng"><ph props="cpp ios mac unity">channels</ph><ph
+                <pt props="rtc-ng"><ph props="cpp ios mac cs">channels</ph><ph
                     props="android">channelNums</ph></pt>
                 <pd>
                     <p>声道数量(如果是立体声，数据是交叉的)。
@@ -190,13 +190,13 @@
             </plentry>
             <plentry>
                 <pt props="rtc">samplesPerSec</pt>
-                <pt props="rtc-ng"><ph props="cpp ios mac unity">samplesPerSec</ph><ph props="android">sampleRataHz</ph></pt>
+                <pt props="rtc-ng"><ph props="cpp ios mac cs">samplesPerSec</ph><ph props="android">sampleRataHz</ph></pt>
                 <pd>每声道每秒的采样点数。</pd>
             </plentry>
             <plentry>
-                <pt props="rtc-ng"><ph props="cpp ios mac unity">buffer</ph><ph
+                <pt props="rtc-ng"><ph props="cpp ios mac cs">buffer</ph><ph
                     props="android">bytes</ph></pt>
-                <pt props="rtc"><ph props="cpp unity">buffer</ph><ph
+                <pt props="rtc"><ph props="cpp cs">buffer</ph><ph
                     props="android">samples</ph></pt>
                 <pd>
                     <p>声音数据缓存区（如果是立体声，数据是交叉存储的）。</p>
@@ -204,15 +204,15 @@
      <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>。</p>
                 </pd>
             </plentry>
-            <plentry props="cpp unity ios mac">
+            <plentry props="cpp cs ios mac">
                 <pt>renderTimeMs</pt>
                 <pd>
                     <p>外部音频帧的渲染时间戳。</p>
                     <p>你可以使用该时间戳还原音频帧顺序；在有视频的场景中（包含使用外部视频源的场景），该参数可以用于实现音视频同步。</p>
                 </pd>
             </plentry>
-            <plentry props="ios mac cpp unity">
-                <pt><ph props="ios mac">avsyncType</ph><ph props="cpp unity"
+            <plentry props="ios mac cpp cs">
+                <pt><ph props="ios mac">avsyncType</ph><ph props="cpp cs"
                     >avsync_type</ph></pt>
                 <pd>保留参数。</pd>
             </plentry>
