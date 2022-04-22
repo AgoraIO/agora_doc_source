@@ -2,9 +2,7 @@ This page shows how to manage chat rooms by calling Agora Chat RESTful APIs, inc
 
 Before calling the following methods, ensure that you understand the frequency limit of calling Agora Chat RESTful API calls described in [Limitations](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side).
 
-
-<a name="param"></a>
-## Common parameters
+## Common parameters <a name="param"></a>
 
 The following table lists common request and response parameters of the Agora Chat RESTful APIs:
 
@@ -364,7 +362,7 @@ PUT https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}
 
 | Parameter | Type | Description | Required |
 | :------------ | :----- | :------------------------------------------------------------------------------------------------------------ | :------- |
-| `chatroom_id` | String | The chat room ID. This is the unique identifier assigned to each chat room by the Agora Chat. You can get the chat room ID from the response body of [Retrieve basic information of all chat rooms](#getall). | Yes |
+| `chatroom_id` | String | The chat room ID. The unique identifier assigned to each chat room by the Agora Chat service. You can get the chat room ID from the response body of [Retrieve basic information of all chat rooms](#getall). | Yes |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
 
@@ -440,7 +438,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}
 
 | Parameter | Type | Description | Required |
 | :------------ | :----- | :----------------------------------------------------------------------------------------------------------- | :------- |
-| `chatroom_id` | String | The chat room ID. This is the unique identifier assigned to each chat room by the Agora Chat. You can get the chat room ID from the response body of  [Retrieve the basic information of all chat rooms](#getall). | Yes |
+| `chatroom_id` | String | The chat room ID. The unique identifier assigned to each chat room by the Agora Chat service. You can get the chat room ID from the response body of [Retrieve basic information of all chat rooms](#getall). | Yes |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
 
@@ -510,10 +508,9 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/announcement
 
 | Parameter         | Type   | Required | Description                                                       |
 | :------------ | :----- | :------- | :--------------------------------------------------------- |
-| `host`        | String | Yes     | The domain name assigned by the Agora Chat service to access RESTful APIs. For how to get the domain name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). |
-| `org_name`    | String | Yes     | The unique identifier assigned to each company (organization) by the Agora Chat service. For how to get the org name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). |
-| `app_name`    | String | Yes     | The unique identifier assigned to each app by the Agora Chat service. For how to get the app name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). |
-| `chatroom_id` | String | Yes     | The chat room ID. This is the unique identifier assigned to each chat room by the Agora Chat. You can get the chat room ID from the response body of [Retrieve basic information of all chat rooms](./agora_chat_restful_chatroom?platform=RESTful#retrieving-basic-information-of-all-chat-rooms).                                              |
+| `chatroom_id` | String | Yes | The chat room ID. The unique identifier assigned to each chat room by the Agora Chat service. You can get the chat room ID from the response body of [Retrieve basic information of all chat rooms](#getall). |
+
+For other parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Request header
 
@@ -527,7 +524,7 @@ The response body contains the following fields:
 
 | Parameter      | Type    | Description                                                       |
 | :-------- | :------ | :--------------------------------------------------------- |
-| announcement | String | 聊天室公告内容。The announcements of the specified chat rooms. |
+| announcement | String | The announcements of the specified chat rooms. |
 
 ### Example
 
@@ -566,12 +563,11 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/announcement
 
 #### Path parameter
 
-| Parameter          | Type   | Required | Description                                                       |
-| :------------ | :----- | :------- | :--------------------------------------------------------- |
-| `host`        | String | Yes     | The domain name assigned by the Agora Chat service to access RESTful APIs. For how to get the domain name, see [Get the information of your projec](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). |
-| `org_name`    | String | Yes     | The unique identifier assigned to each company (organization) by the Agora Chat service.  For how to get the org name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). |
-| `app_name`    | String | Yes     | The unique identifier assigned to each app by the Agora Chat service. For how to get the app name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project).   |
-| `chatroom_id` | String | Yes     | The chat room ID.                                               |
+| Parameter | Type | Description | Required |
+| :------------ | :----- | :----------------------------------------------------------------------------------------------------------- | :------- |
+| `chatroom_id` | String | The chat room ID. The unique identifier assigned to each chat room by the Agora Chat service. You can get the chat room ID from the response body of [Retrieve basic information of all chat rooms](#getall). | Yes |
+
+For other parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Request header
 
