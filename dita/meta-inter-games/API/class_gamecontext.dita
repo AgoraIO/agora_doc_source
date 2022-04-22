@@ -2,7 +2,8 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_gamecontext">
     <title><ph keyref="GameContext"/></title>
-    <shortdesc id="short"><ph id="shortdesc"><?oxy-placeholder content="Provide a short description for this class."?></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc"
+        ><?oxy-placeholder content="Provide a short description for this class."?></ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -20,7 +21,14 @@
     @Nullable
     public final IGameEngineEventHandler  eventHandler;     
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AGEGameContext : NSObject
+@property (nonatomic, copy) NSString *appId;                           
+@property (nonatomic, copy) NSString *uid;                              
+@property (nonatomic, copy) NSString *rtmToken;                         
+@property (nonatomic, weak) id&lt;AGEGameEngineEventProtocol> delegate;  
+@property (nonatomic, strong) AGELogConfig *logconfig;                  
+@end
+</codeblock>
             <codeblock props="windows" outputclass="language-cpp"/>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp"/>
@@ -31,35 +39,39 @@
             <p/>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
+            <plentry props="android">
+                    <pt>context</pt>
+                    <pd>安卓活动 (Android Activity) 的上下文。</pd>
+                </plentry>
             <plentry>
-                <pt>context</pt>
-                <pd><?oxy-placeholder content="The description of the attribute or property."?></pd>
+                <pt>appId</pt>
+                <pd>你的 Agora 项目的 App ID。</pd>
             </plentry>
-                <plentry>
-                    <pt>appId</pt>
-                    <pd>你的 Agora 项目的 App ID。</pd>
-                </plentry>
-                <plentry>
-                    <pt>uid</pt>
-                    <pd>用户 ID。由用户自行定义，用于生成 token。</pd>
-                </plentry>
-                <plentry>
-                    <pt>rtmToken</pt>
-                    <pd>用于鉴权的 RTM Token。你可以通过以下方式生成 RTM Token：<ul>
+            <plentry>
+                <pt>uid</pt>
+                <pd>用户 ID。由用户自行定义，用于生成 token。</pd>
+            </plentry>
+            <plentry>
+                <pt>rtmToken</pt>
+                <pd>用于鉴权的 RTM Token。你可以通过以下方式生成 RTM Token：
+                    <ul>
                     <li>使用 <xref keyref="token-builder"/>，生成临时 Token。</li>
                     <li>自行部署服务器签发 Token，详见<xref keyref="rtm-token"/>。</li>
                     </ul></pd>
-                </plentry>
-                <plentry>
-                    <pt>logConfig</pt>
-                    <pd>日志文件配置。详见 <xref keyref="logConfig"/>。</pd>
-                </plentry>
-                <plentry>
-                    <pt>eventHandler</pt>
-                    <pd>游戏模块的回调。详见 <xref keyref="IGameEngineEventHandler"/>。</pd>
-                </plentry>
+            </plentry>
+            <plentry>
+                <pt>logConfig</pt>
+                <pd>日志文件配置。详见 <xref keyref="logConfig"/>。</pd>
+            </plentry>
+            <plentry>
+                    <pt props="ios">delegate</pt>
+                <pt props="android">eventHandler</pt>
+                <pd>游戏模块的回调。详见 <xref keyref="IGameEngineEventHandler"/>。</pd>
+            </plentry>
             </parml> </section>
     </refbody>
 </reference>

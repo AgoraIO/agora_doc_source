@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="class_logconfig_ng">
+<reference id="class_logconfig">
     <title><ph keyref="LogConfig"/></title>
     <shortdesc id="short"><ph id="shortdesc">Agora SDK 日志文件的配置。</ph></shortdesc>
     <refbody>
@@ -11,7 +11,16 @@
   public int fileSizeInKB;
   public int level = Constants.LogLevel.getValue(Constants.LogLevel.LOG_LEVEL_INFO);
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AGELogConfig : NSObject
+@property (nonatomic, copy) NSString *filePath;
+@property (nonatomic, assign) NSInteger fileSizeInKB;
+@property (nonatomic, assign) AGELogLevel level;
+- (instancetype)initWithFilePath:(NSString *)filePath fileSizeInKB:(NSInteger)fileSizeInKB level:(AGELogLevel)level;
+- (instancetype)initWithFilePath:(NSString *)filePath fileSizeInKB:(NSInteger)fileSizeInKB;
+- (instancetype)initWithFilePath:(NSString *)filePath ;
+- (instancetype)init;
+@end
+</codeblock>
             <codeblock props="windows" outputclass="language-cpp"/>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp"/>
@@ -19,8 +28,7 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
                 <pt>filePath</pt>
@@ -38,8 +46,7 @@
                 <pt>level</pt>
                 <pd>
                     <p>Agora SDK 的日志输出等级，详见 <xref keyref="LOG_LEVEL"/>。</p>
-                    <p>Agora 推荐你将日志级别设为 <apiname keyref="LOG_LEVEL_DEBUG"
-                            />，可以看到所有日志信息。</p>
+                    <p>Agora 推荐你将日志级别设为 <apiname keyref="LOG_LEVEL_DEBUG"/>，可以看到所有日志信息。</p>
                 </pd>
             </plentry>
             </parml> </section>
