@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setoption">
+    <title><ph keyref="setOption"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置游戏选项，包括加入/结束游戏，或者在游戏过程中与其他用户互动。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setOption"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public int setOption(int operationId, String optionId, String args);
+</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="windows" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>对于本局游戏进行的操作，包括加入/准备/结束本局游戏，或者在游戏中向指定用户发送礼物。</p>
+        </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry id="operationid">
+                <pt>operationId</pt>
+                <pd>操作 ID，用于在回调中标识某个操作。</pd>
+            </plentry>
+            <plentry id="optionid">
+                <pt>optionId</pt>
+                <pd>在该局游戏中进行的操作类别：
+                    <ul>
+                    <li><apiname keyref="GAME_STATE"/>：加入/准备/结束本局游戏。             
+                        <ul>
+                        <li><parmname>isIn</parmname>：设置加入/准备/结束本局游戏。仅玩家或观众需要设置。          
+                            <ul>
+                            <li><codeph><ph keyref="true"/></codeph>：准备游戏、加入游戏。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：取消准备、离开游戏。</li>
+                            </ul></li>
+                        </ul><ul>
+                        <li><parmname>isReady</parmname>：设置准备/取消准备。仅玩家或观众需要设置。 
+                            <ul>
+                            <li><codeph><ph keyref="true"/></codeph>：准备。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：取消准备。</li>
+                            </ul></li>
+                        <li><parmname>isPlaying</parmname>：设置开始游戏，取值为 <codeph><ph keyref="true"/></codeph>，表示开始游戏。仅房主可设置。</li>
+                        <li><parmname>Null</parmname>：结束游戏，仅房主可设置。</li>
+                        </ul></li>
+                    <li><apiname keyref="SEND_GIFT"/>：向指定用户发送礼物。仅玩家或观众可设置。
+                        <ul>
+                        <li><parmname>to</parmname>：指定接收礼物的主播 ID （<parmname>to_user</parmname>）。</li>
+                        <li><parmname>giftCost</parmname>：加入房间后 <parmname>gift_info</parmname> 返回的key，详见 <xref keyref="onMessage"/>。</li>
+                        <li><parmname>count</parmname>：送礼物的次数。</li>
+                        </ul></li>
+                    </ul></pd>
+            </plentry>
+            <plentry id="args">
+                <pt>args</pt>
+                <pd>json 字符串格式。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>返回值</title><ul>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。</li>
+            </ul> 
+        </section>
+    </refbody>
+</reference>
