@@ -14,10 +14,10 @@
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
             <codeblock props="cpp" outputclass="language-cpp">virtual int getUserInfoByUid(uid_t uid, rtc::UserInfo* userInfo, const char* channelId = NULL, const char* localUserAccount = NULL) = 0;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int GetUserInfoByUid(uint uid, out UserInfo userInfo, string channelId = null, string localUserAccount = null);</codeblock> </p>
+            <codeblock props="cs" outputclass="language-csharp">public abstract int GetUserInfoByUid(uint uid, out UserInfo userInfo, string channelId = null, string localUserAccount = null);</codeblock> </p>
             <p outputclass="codeblock" props="rtc">
             <codeblock props="cpp" outputclass="language-cpp">virtual int getUserInfoByUid(uid_t uid, UserInfo* userInfo) = 0;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int GetUserInfoByUid(uint uid, out UserInfo userInfo);</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public abstract int GetUserInfoByUid(uint uid, out UserInfo userInfo);</codeblock>
             </p>
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int getUserInfoByUid(int uid, UserInfo userInfo);</codeblock>
@@ -42,7 +42,7 @@
                 <pt>uid</pt>
                 <pd>用户 ID。</pd>
             </plentry>
-            <plentry props="cpp unity android" id="userInfo">
+            <plentry props="cpp cs android" id="userInfo">
                 <pt>userInfo</pt>
                 <pd>输入和输出参数。标识用户的 <xref keyref="UserInfo"/> 对象：
                     <ul>
@@ -51,14 +51,14 @@
                     </ul> </pd>
             </plentry>
             <plentry props="rtc-ng" id="channelId">
-                <pt props="cpp unity">channelId</pt>
-                <pd props="cpp unity">
+                <pt props="cpp cs">channelId</pt>
+                <pd props="cpp cs">
                     <p conkeyref="joinChannel2/channelID_desc"/>
                 </pd>
             </plentry>
             <plentry props="rtc-ng" id="localUserAccount">
-                <pt props="cpp unity">localUserAccount</pt>
-                <pd props="cpp unity">本地用户的 User Account。</pd>
+                <pt props="cpp cs">localUserAccount</pt>
+                <pd props="cpp cs">本地用户的 User Account。</pd>
             </plentry>
             <plentry props="ios mac" id="error">
                 <pt>error</pt>
@@ -77,7 +77,7 @@
             <li props="ios mac">方法调用失败，则返回 <ph keyref="NULL"/>。</li>
             <li props="electron">方法调用失败，则返回错误码（<parmname>errCode</parmname>）。</li>
             </ul>
-            <ul props="cpp unity android">
+            <ul props="cpp cs android">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。</li>
             </ul> </section>
