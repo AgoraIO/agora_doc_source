@@ -22,7 +22,8 @@ This section guides you through how to integrate FCM with Agora Chat.
 
 1. Log in to [Firebase console](https://console.firebase.google.com/), and click **Add project**.
 
-2. In the **Create a project** page, enter a project name, toggle off **Enable Google Analytics for this project**, and click **Create project**.
+2. In the **Create a project** page, enter a project name, and click **Create project**.
+    > **Note**: You can toggle off **Enable Google Analytics for this project** if not needed.
 
 3. After the project is ready, click **Continue** to redirect to the project page, and click the **Android** icon to register an Android project.
 
