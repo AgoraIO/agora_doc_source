@@ -1,4 +1,4 @@
-This page shows how to perform chat room member mute management by calling the Agora Chat RESTful APIs, including adding, retrieving, and removing muted members in a chat room.
+This page shows how to perform chat room member mute management by calling the Agora Chat RESTful APIs, including muting and unmuting members in a chat room, and retrieving the list of muted members.
 
 Before calling the following methods, ensure that you understand the call frequency limit of the Agora Chat RESTful APIs described in [Limitations](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side).
 
@@ -13,8 +13,8 @@ The following table lists common request and response parameters of the Agora Ch
 | `host` | String | The domain name assigned by the Agora Chat service to access RESTful APIs. For how to get the domain name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
 | `org_name` | String | The unique identifier assigned to each company (organization) by the Agora Chat service. For how to get the org name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
 | `app_name` | String | The unique identifier assigned to each app by the Agora Chat service. For how to get the app name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
-| `username` | String | The username. The unique login account of the user. The username must be 64 characters or less and cannot be empty.  The following character sets are supported:<li>26 lowercase English letters (a-z)</li><li>26 uppercase English letters (A-Z)</li><li>10 numbers (0-9)</li><li>"\_", "-", "."</li><div class="alert note"><ul><li>The username is case insensitive,  so `Aa` and `aa` are the same username. </li><li>Ensure that each username under the same app must be unique.</li></ul></div> | Yes |
-| `chatroom_id` | String | The unique identifier of the chat room. | Yes |
+| `username` | String | The username. The unique login account of the user. The username must be 64 characters or less and cannot be empty. The following character sets are supported:<li>26 lowercase English letters (a-z)</li><li>26 uppercase English letters (A-Z)</li><li>10 numbers (0-9)</li><li>"\_", "-", "."</li><div class="alert note"><ul><li>The username is case insensitive,  so `Aa` and `aa` are the same username. </li><li>Ensure that each username under the same app must be unique.</li></ul></div> | Yes |
+| `chatroom_id` | String | The chat room ID. The unique identifier assigned to each chat room by the Agora Chat service. You can get the chat room ID from the response body of [Retrieve basic information of all chat rooms](./agora_chat_restful_chatroom?platform=RESTful#retrieving-basic-information-of-all-chat-rooms). | Yes |
 
 ### Response parameters
 
@@ -262,7 +262,7 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 
 ## Muting all chat room members
 
-Mutes all chat room members. Once this method call succeeds, only the members in the chat room allow list can send messages. For details, see [Manage Chat Room Allow List](./agora_chat_restful_chatroom_mute?platform=RESTful).
+Mutes all chat room members. Once this method call succeeds, only the members on the chat room allow list can send messages. For details, see [Manage Chat Room Allow List](./agora_chat_restful_chatroom_mute?platform=RESTful).
 
 ### HTTP request
 
@@ -295,7 +295,7 @@ If the returned HTTP status code is `200`, the request succeeds. The response bo
 
 | Parameter | Type | Description |
 | :------- | :----- | :------------------------------------------------------ |
-| `result` | Bool | The mute result Whether all members are successfully muted:<li>`true`: Yes.<li>`false`: No.|
+| `result` | Bool | Whether all members are successfully muted:<li>`true`: Yes.<li>`false`: No.|
 | `expire` | Long | The Unix timestamp when the global mute state expires. Unit: milliseconds. |
 
 For other fields and detailed descriptions, see [Common parameters](#param).
