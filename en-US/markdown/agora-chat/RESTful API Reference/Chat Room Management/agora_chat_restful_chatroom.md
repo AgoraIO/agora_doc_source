@@ -112,9 +112,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 }
 ```
 
-<a name="getall"></a>
-
-## Retrieving basic information of all chat rooms
+## Retrieving basic information of all chat rooms <a name="getall"></a>
 
 Retrieves the basic information of all chat rooms under the app.
 
@@ -245,7 +243,7 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}
 
 | Parameter | Type | Description | Required |
 | :------------ | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
-| `chatroom_id` | String | The chat room ID. This is the unique identifier assigned to each chat room by the Agora Chat. You can get the chat room ID from the response body of [Retrieve basic information of all chat rooms](#getall).<li>When retrieving multiple chat rooms, type multiple chatroom IDs (`chatroom_id`) separated with the comma (,). </li><li>A maximum of 100 chat rooms can be retrieved at one go.</li><li>In the URL, "," needs to be escaped as "%2C".</li> | Yes |
+| `chatroom_id` | String | The chat room ID. The unique identifier assigned to each chat room by the Agora Chat service. You can get the chat room ID from the response body of [Retrieve basic information of all chat rooms](#getall).<li>When retrieving multiple chat rooms, type multiple chatroom IDs (`chatroom_id`) separated with the comma (,). </li><li>A maximum of 100 chat rooms can be retrieved at one go.</li><li>In the URL, "," needs to be escaped as "%2C".</li> | Yes |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
 
