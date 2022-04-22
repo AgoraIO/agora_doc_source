@@ -276,7 +276,7 @@ ChatClient.getInstance().pushManager().disableOfflinePush(start, end);
 | `start` | int | The start time of the do-not-disturb time period. The value range is [0,24]. Unit: hours. |
 | `end`   | int | 	The end time of the do-not-disturb time period. The value range is [0,24]. Unit: hours. |
 
-Assume that you set `start` to `22`, and set `end` to `7`. You do not receive push notifications from 22pm to 7am.
+Assume that you set `start` to `22`, and set `end` to `7`. You do not receive push notifications from 22pm to 7am. Assume that you set `start` to `0`, and set `end` to `0`. You do not receive push notifications for 24 hours.
 
 ### Enable push notifications
 
