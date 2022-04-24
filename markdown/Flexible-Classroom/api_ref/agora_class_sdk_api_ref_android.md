@@ -1,8 +1,8 @@
 本页提供 Agora Classroom SDK for Android 的 Kotlin API 参考。
 
-## AgoraClassSdk
+## AgoraClassSDK
 
-`AgoraClassSdk` 是 Agora Classroom SDK 的基础接口类，包含供 App 调用的主要接口。
+`AgoraClassSDK` 是 Agora Classroom SDK 的基础接口类，包含供 App 调用的主要接口。
 
 ### setConfig
 
@@ -130,7 +130,7 @@ class AgoraEduLaunchConfig(val userName: String,
 | `rtmToken`           | 用于鉴权的 RTM Token，详见[前提条件中生成 RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5)。                                                                                                                                                                                                                                              |
 | `startTime`          | 课堂开始时间，单位为毫秒，以第一个进入课堂的用户传入的参数为准。                                                                                                                                                                                                                                                                                                 |
 | `duration`           | 课堂持续时间，单位为秒，以第一个进入课堂的用户传入的参数为准。                                                                                                                                                                                                                                                                                                   |
-| `region`             | 课堂所在区域。所有客户端必须设置相同的区域，否则无法互通。详见 [AgoraEduRegionStr](#agoraeduregionstr)。                                                                                                                                                                                                                                                         |
+| `region`             | 区域。建议设置为靠近你的课件或录制文件对象存储服务所在的区域，因为跨区域传输较大的静态资源会造成比较大的延迟。举例来说，如果你的 S3 服务在北美，则建议将 `region` 也设为北美区域。所有灵动课堂客户端必须设置相同的区域，否则无法互通。支持的区域详见 [AgoraEduRegion](#agoraeduregion)。                                                                         |
 | `videoEncoderConfig` | 视频编码参数配置，包含视频宽高、帧率、码率，详见 [EduVideoEncoderConfig](#eduvideoencoderconfig)                                                                                                                                                                                                                                                                 |
 | `mediaOptions`       | 媒体流相关设置，包含媒体流加密，详见 [AgoraEduMediaOptions](#agoraedumediaoptions)。                                                                                                                                                                                                                                                                             |
 | `streamState`        | 用于控制学生上台后是否发音视频流，详见 [AgoraEduStreamState](#agoraedustreamstate)。                                                                                                                                                                                                                                                                             |

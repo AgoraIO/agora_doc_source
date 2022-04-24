@@ -1,189 +1,103 @@
-## 概述
+## 教室与 UI 组件介绍
 
-Agora 在 CocoaPods 上提供完整的 Agora Classroom SDK 供你集成。但是，如果 Agora Classroom SDK 中默认的 UI 无法满足你的需求，你也可以获取 Agora Classroom SDK 的源码，自行开发、调试和编译。Agora Classroom SDK for iOS 的源码位于 GitHub 上 [CloudClass-iOS](https://github.com/AgoraIO-Community/CloudClass-iOS) 仓库（release/apaas/1.1.0 分支）。在 Agora Classroom SDK 中，灵动课堂的 UI 代码和核心业务逻辑相隔离，独立成 UIKit 和 EduCore 两个库，两者通过 [Agora Edu Context](https://docs.agora.io/cn/agora-class/edu_context_api_ref_ios_overview?platform=iOS) 产生关联。举例来说，对于灵动课堂中的文字聊天功能，需要通过一个按钮发送消息，同时需要接收其他用户发送的消息。这种情况下，我们在 UIKit 中可以调用 Chat Context 中的发送消息方法，并监听 Chat Context 中消息接收相关事件。
+### 数据交互流程
 
-![](https://web-cdn.agora.io/docs-files/1619696813295)
+在 Agora Classroom SDK 中，灵动课堂的 UI 层代码和核心业务逻辑相隔离，独立成 **AgoraEduUI** 和 **AgoraEduCore** 两个库，两者通过 [Agora Edu Context](/cn/agora-class/API%20Reference/edu_context_swift/API/edu_context_api_overview.html) 产生关联。举例来说，对于灵动课堂中的设备开关功能，需要通过一个按钮改变设备状态。为实现该功能，我们在 `AgoraEduUI` 中调用 `AgoraEduMediaContext` 的 `openLocalDevice` 方法，并监听 `AgoraEduMediaHandler` 抛出的设备状态改变相关事件。
 
-UIKit 中提供灵动课堂的 UI 组件代码。UIKit 的源码位于 GitHub 上 CloudClass-Android 仓库（release/apaas/1.1.0 分支）中 `Modules` 目录下，核心项目结构介绍如下：
+数据流转示意图如下：
 
-| 文件夹                | 描述                                                  |
-| :-------------------- | :---------------------------------------------------- |
-| `AgoraUIBaseViews`    | 灵动课堂使用的基础 UI 组件，如基础 btn、view。        |
-| `AgoraUIEduBaseViews` | 灵动课堂使用的高阶 UI 组件，如聊天区域 UI、渲染视图。 |
-| `AgoraUIManager`      | 在灵动课堂的各种教学场景中组装 UI 组件。              |
+![](https://web-cdn.agora.io/docs-files/1650273644082)
 
-## UI 修改示例
+### 教室和 UI 组件结构说明
 
-以下提供几个修改灵动课堂 UI 的示例。
+`AgoraEduUI` 中包含灵动课堂的 UI 组件代码。`AgoraEduUI` 的源码位于 GitHub 上 CloudClass-iOS 仓库 `/SDKs/AgoraEduUI` 目录下，核心项目结构介绍如下：
 
-### 修改导航栏颜色
+| 文件夹         | 描述                                                                                                                                             |
+| :------------- | :----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/Scene`       | 在灵动课堂的各种教学场景中组装 UI 组件的 `UIManager`，如 1v1 课堂，小班课等。                                                                    |
+| `/Components`  | 灵动课堂使用的高阶 UI 组件(**UIController**)，如花名册、状态栏等。                                                                               |
+| `/Config`      | 灵动课堂的 UI 配置，根据 AgoraUIMode 自动适配，如背景颜色、字体颜色、边框宽度。开发者可以在此文件中定义自己的 AgoraUIMode 即可便捷更换 UI 风格。 |
+| `/CustomViews` | 灵动课堂使用的基础 UI 组件，如视频渲染窗口、弹窗等。                                                                                             |
+| `/Utils`       | 灵动课堂常用的 x 扩展功能，如获取图片，context 数据类型转换为 UI 所需数据类型等。                                                                |
+| `WidgetModels` | AgoraEduUI 用于解析 widget 数据所定义的对应数据模型及解析方法。                                                                                  |
 
-以下示例演示了如何通过修改 `AgoraUIEduBaseViews/AgoraUIEduBaseViews/AgoraUINavigationBar/AgoraUINavigationBar.swift` 文件将导航栏组件的背景颜色从白色修改为灰色。
+### 类型说明
 
-#### 修改前
+-   `UIManager`
 
-```
-func initView() {
-        self.backgroundColor = UIColor.white
-        ...
-    }
-```
+    -   每种班型都对应一个 `UIManager`，类型为 `UIViewController`。
+    -   `UIManager` 管理多个 `UIController`，负责 `UIController` 之间的通讯。
+    -   `UIManager` 拥有一个 `contentView`，是当前教室界面最底部的容器视图，用于框出一块 16:9 的适配区域。
+    -   每个 `UIManager` 都持有一个 `contextPool`，用于使用 AgoraEduContext 层的功能。
 
-![](https://web-cdn.agora.io/docs-files/1619169606618)
+-   `UIController`
 
-#### 修改后
+    -   每个 `UIController` 即一个 UI 组件，类型为 `UIViewController`，对应一个交互模块。
 
-```
-func initView() {
-        self.backgroundColor = UIColor.init(rgb: UInt32("BFBFBF", radix: 16) ?? 0)
-        ...
-    }
-```
+    -   `UIController` 的 view 是 `UIManager.contentView` 的 subView，用于该功能的占位。
 
-![](https://web-cdn.agora.io/docs-files/1619169615790)
+    -   `UIController` 位于 `AgoraEduUI` 库的 `/Components` 文件夹下，分为以下两种：
 
-### 调整布局
+        -   `FlatComponents`: 一般为教室平铺类型的 UI。
+        -   `SuspendComponents`: 一般为弹窗类型的 UI。
 
-以下示例演示了如何通过修改 `AgoraUIEduBaseViews/AgoraUIEduBaseViews/AgoraUINavigationBar/AgoraUINavigationBar.swift` 文件将离开房间按钮与网络状态图标的位置对调。
+        如下图所示：
 
-#### 修改前
+### 教室结构示意图
 
-```
-func initLayout() {
-        signalImgView.agora_safe_x = 10
-        signalImgView.agora_width = 20
-        signalImgView.agora_height = 20
-        signalImgView.agora_center_y = 0
-         
-        leaveButton.agora_safe_right = 10
-        leaveButton.agora_width = 24
-        leaveButton.agora_height = 24
-        leaveButton.agora_center_y = 0
-        ...
-    }
-```
+以下以小班课教师端举例
 
-![](https://web-cdn.agora.io/docs-files/1619169626442)
+### 修改灵动课堂的默认 UI
 
-#### 修改后
+如果你想要修改灵动课堂的默认 UI，则参考以下步骤集成灵动课堂：
 
-```
-func initLayout() {
-        signalImgView.agora_safe_right = 10
-        signalImgView.agora_width = 20
-        signalImgView.agora_height = 20
-        signalImgView.agora_center_y = 0
-         
-        leaveButton.agora_safe_x = 10
-        leaveButton.agora_width = 24
-        leaveButton.agora_height = 24
-        leaveButton.agora_center_y = 0
-        ...
-    }
-```
+1. 将 [CloudClass-iOS](https://github.com/AgoraIO-Community/CloudClass-iOS) 和 [apaas-extapp-ios](https://github.com/AgoraIO-Community/apaas-extapp-ios) 项目克隆至本地，并切换至最新发版分支。
 
-![](https://web-cdn.agora.io/docs-files/1619169635097)
+    ```bash
+    git clone https://github.com/AgoraIO-Community/CloudClass-iOS.git
+    ```
 
-### 自定义 UI 组件
+    ```
+    git clone https://github.com/AgoraIO-Community/apaas-extapp-ios.git
+    ```
 
-以下示例演示了如何自定义一个 UI 组件并在灵动课堂中的 1 对 1 互动教学场景中使用。
+2. 通过 `git remote add <shortname> <url>` 命令为 CloudClass-iOS 和 apaas-extapp-ios 仓库添加远端仓库，指向你的项目仓库。
 
- 假设该 UI 组件的属性如下：
+3. 基于最新的发版分支创建一个你自己的分支，推向你的项目仓库。
 
-- 大小：100*100
-- 位置：居中
-- 背景色：#BFBFBF
-- 文字：“离开”/“Leave”
-- 文字颜色：UIColor.white
-- 点击按钮实现功能：离开房间
+<div class="alert info">发版分支为 release/apaas/x.y.z。x.y.z 为版本号。你可在<a href="/cn/agora-class/release_agora_class_ios?platform=iOS">发版说明</a>中获取最新版本号。</div>
 
-实现步骤如下：
+1. 在你的项目的 `Podfile` 文件中添加如下代码引用依赖库。
 
-1. 在以下文件中分别添加中文和英文文案。
+    ```
+    # Third-party libs
+    pod 'OpenSSL-Universal', '1.0.2.17'
+    pod 'Protobuf', '3.17.0'
+    pod "CocoaLumberjack", '3.6.1'
+    pod 'AliyunOSSiOS',  '2.10.8'
+    pod 'Armin',  '1.0.9'
+    pod 'Alamofire', '4.7.3'
+    pod 'SSZipArchive', '2.4.2'
+    pod 'SwifterSwift', '5.2.0'
+    pod 'Masonry'
+    pod 'SDWebImage', '5.12.0'
 
-   `AgoraUIEduBaseViews/AgoraUIEduBaseViews/AgoraResources/zh-Hans.lproj/Localizable.strings`
+    # Agora libs
+    pod 'AgoraRtm_iOS', '1.4.8'
+    pod 'Whiteboard', '2.15.8'
+    pod 'AgoraRtcEngine_iOS', '3.4.6'
+    pod 'HyphenateChat', '3.8.6'
 
-   ```
-   /*
-    * Operation:
-    *          add a function like below
-    */
-   DemoLeave = "离开";
-   ```
-   `AgoraUIEduBaseViews/AgoraUIEduBaseViews/AgoraResources/en.lproj/Localizable.strings`
+    # Open-source libs
+    pod 'AgoraClassroomSDK_iOS', :path => 'CloudClass-iOS/SDKs/AgoraClassroomSDK/AgoraClassroomSDK_Local.podspec'
+    pod 'AgoraEduContext', :path => 'CloudClass-iOS/SDKs/AgoraEduContext/AgoraEduContext_Local.podspec'
+    pod 'AgoraEduUI', :path => 'CloudClass-iOS/SDKs/AgoraEduUI/AgoraEduUI_Local.podspec'
 
-   ```
-   /*
-    * Operation:
-    *          add a function like below
-    */
-   DemoLeave = "Leave";
-   ```
+    # Open-source widgets and extApps
+    pod 'AgoraWidgets', :path => 'apaas-extapp-ios/Widgets/AgoraWidgets/AgoraWidgets_Local.podspec'
+    pod 'ChatWidget', :path => 'apaas-extapp-ios/Widgets/ChatWidget/ChatWidget_Local.podspec'
+    pod 'AgoraExtApps', :path => 'apaas-extapp-ios/ExtApps/AgoraExtApps_Local.podspec'
 
-
-   ```
-   
-   ```
-
-2. 在 `/AgoraUIEduAppViews/AgoraUIEduAppViews/AgoraUIManager.swift` 文件中添加属性。
-
-   ```
-   /*
-    * Operation:
-    *           add a property to the class AgoraUIManager
-    */
-   weak var demoButton: AgoraBaseUIButton?
-   ```
-
-   ```
-   
-   ```
-
-3. 在 `/AgoraUIEduAppViews/AgoraUIEduAppViews/AgoraUIManager.swift` 文件中添加如下代码。
-
-   ```
-   /*
-    * Function:
-    *          addContainerViews
-    * Operation:
-    *          add code like below
-    */
-   func addContainerViews() {
-   ···
-   let demoBtn = AgoraBaseUIButton()
-   demoBtn.setTitle(AgoraKitLocalizedString("DemoLeave"), for: UIControl.State.normal)
-   demoBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-   demoBtn.setTitleColor(UIColor.white, for: UIControl.State.normal)
-   demoBtn.backgroundColor = UIColor(rgb: UInt32("BFBFBF",radix: 16) ?? 0)
-   demoBtn.addTarget(self,
-                     action: #selector(onTouchLeaveDemo(_:)),
-                     for: UIControl.Event.touchUpInside)
-   self.demoButton = demoBtn
-   self.appView.addSubview(demoBtn)
-   }
- 
-   /*
-    * Function:
-    *          initLayout
-    * Operation:
-    *          add code like below
-    */
-   func layoutContainerViews() {
-        ···
-        demoButton?.agora_center_x = self.agora_center_x
-        demoButton?.agora_center_y = self.agora_center_y
-        demoButton?.agora_width = 100
-        demoButton?.agora_height = 100
-   }
-   /*
-    * Operation:
-    *          add a function like below
-    */
-   @objc func onTouchLeaveDemo(_ btn: AgoraBaseUIButton) {
-       self.roomListener?.onLeaveRoom()
-   }
-   ```
-
-   修改后，灵动课堂的 1 对 1 互动教学场景中，会出现如下图标。
-
-   ![](https://web-cdn.agora.io/docs-files/1619169646534)
+    # Closed-source libs
+    pod 'AgoraEduCore', '2.0.1'
+    ```

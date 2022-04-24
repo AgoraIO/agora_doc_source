@@ -28,7 +28,7 @@
 
 ### 使用灵动课堂的默认 UI
 
-如果你直接使用灵动课堂的默认 UI，无需修改灵动课堂的代码，则可选择 npm 或 CDN 集成：
+如果你直接使用灵动课堂的默认 UI，无需修改灵动课堂的代码，则可选择 npm 或 CDN 集成。
 
 #### 使用 npm 集成
 
@@ -52,7 +52,7 @@
     <script src="https://download.agora.io/edu-apaas/release/edu_sdk@2.1.1.bundle.js"></script>
     ```
 
-2. 在你的项目的 .js 文件中添加以下代码：
+2. 在你的项目的 `.js` 文件中添加以下代码：
 
     ```javascript
     window.AgoraEduSDK.config({
@@ -68,7 +68,7 @@
 
     参数说明：
 
-    - `config`: SDK 全局配置，支持的参数详见 [ConfigParams](/cn/agora-class/agora_class_api_ref_web?platform=Web#configparams)
+    - `config`: SDK 全局配置，支持的参数详见 [ConfigParams](/cn/agora-class/agora_class_api_ref_web?platform=Web#configparams)。
     - `dom`: 待渲染的浏览器的根结点。
     - `launchOption` 为课堂启动配置，支持的参数详见 [LaunchOption](/cn/agora-class/agora_class_api_ref_web?platform=Web#launchoption)。
 
@@ -115,7 +115,7 @@
 
         - 打包 SDK JS 文件：`yarn pack:classroom:sdk`
 
-            <div class="alert info">打包完成的 JS 文件会输出至 <code>packages/agora-classroom-sdk/lib/edu_sdk.bundle.js</code>。</div>
+              <div class="alert info">打包完成的 JS 文件会输出至 <code>packages/agora-classroom-sdk/lib/edu_sdk.bundle.js</code>。</div>
 
         - 打包 Electron macOS 客户端：`yarn pack:electron:mac`
         - 打包 Electron Windows 客户端：`yarn pack:electron:win`
