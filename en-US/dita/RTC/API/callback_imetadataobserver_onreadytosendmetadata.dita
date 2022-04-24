@@ -23,7 +23,7 @@
                 <codeblock props="ios mac" outputclass="language-objectivec">- (NSData* _Nullable)readyToSendMetadataAtTimestamp:(NSTimeInterval)timestamp;</codeblock>
                 <codeblock props="cpp" outputclass="language-cpp">virtual bool onReadyToSendMetadata(Metadata&amp; metadata) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.READY_TO_SEND_METADATA, cb: (metadata: Metadata) => void): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual bool OnReadyToSendMetadata(Metadata metadata)
+                <codeblock props="cs" outputclass="language-csharp">public virtual bool OnReadyToSendMetadata(Metadata metadata)
         {
             return true;
         }</codeblock>
@@ -34,7 +34,7 @@
         <section id="detailed_desc">
 
    <p>This callback is triggered when the SDK is ready to send metadata.</p>
-   <p props="electron unity">After receiving this callback, you can call <xref keyref="sendMetadata"/> to send the media metadata.</p>
+   <p props="electron cs">After receiving this callback, you can call <xref keyref="sendMetadata"/> to send the media metadata.</p>
    <note props="android ios mac cpp" type="attention">Ensure that the size of the metadata does not exceed the value set in the <xref keyref="getMaxMetadataSize"/> callback.</note>
         </section>
         <section id="parameters"><title>Parameters</title>
@@ -48,7 +48,7 @@
            <pt>sourceType</pt>
            <pd>Video data type. For details, see <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
        </plentry>
-       <plentry props="cpp unity">
+       <plentry props="cpp cs">
   <pt>metadata</pt>
   <pd>The metadata that the user wants to send. For details, see <xref keyref="Metadata"/>.</pd>
        </plentry>
@@ -56,7 +56,7 @@
         </section>
         <section id="return_values">
    <title>Returns</title>
-   <ul props="cpp unity">
+   <ul props="cpp cs">
        <li><codeph><ph keyref="true"/></codeph>: Send the metadata.</li>
        <li><codeph><ph keyref="false"/></codeph>: Do not send the metadata.</li>
    </ul>
