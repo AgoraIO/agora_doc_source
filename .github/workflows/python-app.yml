@@ -49,3 +49,12 @@ jobs:
                   tag: main
                   overwrite: true
                   body: "Template file for automatic comment population."
+            - name: Upload CS CG JSON to release
+              uses: svenstaro/upload-release-action@v2
+              with:
+                  repo_token: ${{ secrets.GITHUB_TOKEN }}
+                  file: xml2json/cs_cg.json
+                  asset_name: cs_cg_doc_template.json
+                  tag: main
+                  overwrite: true
+                  body: "Template file for automatic comment population."
