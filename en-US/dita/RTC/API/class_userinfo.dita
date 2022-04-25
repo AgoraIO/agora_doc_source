@@ -27,14 +27,22 @@
                     public int uid;
                     public String userAccount;
                     }</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">struct UserInfo {
-                    uid_t uid;
-                    char userAccount[MAX_USER_ACCOUNT_LENGTH];
-                    UserInfo()
-                    : uid(0) {
-                    userAccount[0] = '\0';
-                    }
-                    };</codeblock></p>
+            <codeblock props="cs" outputclass="language-csharp">ublic class UserInfo
+    {
+        public UserInfo()
+        {
+            userAccount = "";
+        }
+
+        public UserInfo(uint uid = 0, string userAccount = "")
+        {
+            this.uid = uid;
+            this.userAccount = userAccount;
+        }
+
+        public uint uid { set; get; }
+        public string userAccount { set; get; }
+    }</codeblock></p>
             <p outputclass="codeblock">
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraUserInfo: NSObject
  @property(assign, nonatomic) NSUInteger uid;

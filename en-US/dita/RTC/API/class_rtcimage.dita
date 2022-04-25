@@ -75,12 +75,13 @@
     public AgoraImage() {
     }
 }</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public class RtcImage
+        <codeblock props="cs" outputclass="language-csharp">public class RtcImage
     {
         public RtcImage()
         {
         }
-        public RtcImage(string url, int x, int y, int width, int height, int zOrder)
+
+        public RtcImage(string url, int x, int y, int width, int height, int zOrder, double alpha)
         {
             this.url = url;
             this.x = x;
@@ -88,20 +89,16 @@
             this.width = width;
             this.height = height;
             this.zOrder = zOrder;
+            this.alpha = alpha;
         }
-
+        
         public string url { set; get; }
-
         public int x { set; get; }
-
         public int y { set; get; }
-
         public int width { set; get; }
-
         public int height { set; get; }
-
         public int zOrder { set; get; }
-    }
+        public double alpha { set; get; }
     }</codeblock></p>
             <p outputclass="codeblock">
             <codeblock props="electron" outputclass="language-typescript">export interface RtcImage {
@@ -165,11 +162,11 @@
                 <pt>rect</pt>
                 <pd>The position and size of the image on the video frame. The data type is CGRect.</pd>
             </plentry>
-            <plentry props="rtc-ng">
+            <plentry props="cs">
                 <pt>zOrder</pt>
                 <pd>The layer index of the video frame. An integer. The value range is [0, 100]. 1 represents the lowest layer. 100 represents the top layer.</pd>
             </plentry>
-            <plentry props="rtc-ng">
+            <plentry props="cs">
                 <pt>alpha</pt>
                 <pd>The transparency of the watermark or background image. The value ranges between 0.0 and 1.0:<ul>
                     <li>0.0: Completely transparent.</li>

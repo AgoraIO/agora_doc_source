@@ -63,12 +63,31 @@
 @property(assign, nonatomic) NSUInteger sentBitrate;
 @property(assign, nonatomic) NSUInteger txPacketLossRate;
 @end</codeblock>
-            <codeblock props="cpp cs" outputclass="language-cpp">struct LocalAudioStats {
+            <codeblock props="cpp" outputclass="language-cpp">struct LocalAudioStats {
      int numChannels;
      int sentSampleRate;
      int sentBitrate;
      unsigned short txPacketLossRate;
      };</codeblock>
+    <codeblock props="cs" outputclass="language-csharp">public class LocalAudioStats
+    {
+        public LocalAudioStats()
+        {
+        }
+
+        public LocalAudioStats(int numChannels, int sentSampleRate, int sentBitrate, ushort txPacketLossRate)
+        {
+            this.numChannels = numChannels;
+            this.sentSampleRate = sentSampleRate;
+            this.sentBitrate = sentBitrate;
+            this.txPacketLossRate = txPacketLossRate;
+        }
+
+        public int numChannels { set; get; }
+        public int sentSampleRate { set; get; }
+        public int sentBitrate { set; get; }
+        public ushort txPacketLossRate { set; get; }
+    }</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export interface LocalAudioStats {
      numChannels: number;
      sentSampleRate: number;
