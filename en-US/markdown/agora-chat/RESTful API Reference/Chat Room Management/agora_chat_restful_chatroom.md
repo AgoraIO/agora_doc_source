@@ -2,9 +2,7 @@ This page shows how to manage chat rooms by calling Agora Chat RESTful APIs, inc
 
 Before calling the following methods, ensure that you understand the frequency limit of calling Agora Chat RESTful API calls described in [Limitations](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side).
 
-
-<a name="param"></a>
-## Common parameters
+## Common parameters <a name="param"></a>
 
 The following table lists common request and response parameters of the Agora Chat RESTful APIs:
 
@@ -114,9 +112,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 }
 ```
 
-<a name="getall"></a>
-
-## Retrieving basic information of all chat rooms
+## Retrieving basic information of all chat rooms <a name="getall"></a>
 
 Retrieves the basic information of all chat rooms under the app.
 
@@ -247,7 +243,7 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}
 
 | Parameter | Type | Description | Required |
 | :------------ | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
-| `chatroom_id` | String | The chat room ID. This is the unique identifier assigned to each chat room by the Agora Chat. You can get the chat room ID from the response body of [Retrieve basic information of all chat rooms](#getall).<li>When retrieving multiple chat rooms, type multiple chatroom IDs (`chatroom_id`) separated with the comma (,). </li><li>A maximum of 100 chat rooms can be retrieved at one go.</li><li>In the URL, "," needs to be escaped as "%2C".</li> | Yes |
+| `chatroom_id` | String | The chat room ID. The unique identifier assigned to each chat room by the Agora Chat service. You can get the chat room ID from the response body of [Retrieve basic information of all chat rooms](#getall).<li>When retrieving multiple chat rooms, type multiple chatroom IDs (`chatroom_id`) separated with the comma (,). </li><li>A maximum of 100 chat rooms can be retrieved at one go.</li><li>In the URL, "," needs to be escaped as "%2C".</li> | Yes |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
 
@@ -364,7 +360,7 @@ PUT https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}
 
 | Parameter | Type | Description | Required |
 | :------------ | :----- | :------------------------------------------------------------------------------------------------------------ | :------- |
-| `chatroom_id` | String | The chat room ID. This is the unique identifier assigned to each chat room by the Agora Chat. You can get the chat room ID from the response body of [Retrieve basic information of all chat rooms](#getall). | Yes |
+| `chatroom_id` | String | The chat room ID. The unique identifier assigned to each chat room by the Agora Chat service. You can get the chat room ID from the response body of [Retrieve basic information of all chat rooms](#getall). | Yes |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
 
@@ -440,7 +436,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}
 
 | Parameter | Type | Description | Required |
 | :------------ | :----- | :----------------------------------------------------------------------------------------------------------- | :------- |
-| `chatroom_id` | String | The chat room ID. This is the unique identifier assigned to each chat room by the Agora Chat. You can get the chat room ID from the response body of  [Retrieve the basic information of all chat rooms](#getall). | Yes |
+| `chatroom_id` | String | The chat room ID. The unique identifier assigned to each chat room by the Agora Chat service. You can get the chat room ID from the response body of [Retrieve basic information of all chat rooms](#getall). | Yes |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
 
@@ -495,6 +491,124 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 ```
 	
 <a name="code"></a>
+
+
+## Retrieving chat room announcements
+Retrieves the announcements of one or more specified chat rooms.
+
+### HTTP request
+
+```
+GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/announcement
+```
+
+#### Path parameter
+
+| Parameter         | Type   | Required | Description                                                       |
+| :------------ | :----- | :------- | :--------------------------------------------------------- |
+| `chatroom_id` | String | Yes | The chat room ID. The unique identifier assigned to each chat room by the Agora Chat service. You can get the chat room ID from the response body of [Retrieve basic information of all chat rooms](#getall). |
+
+For other parameters and detailed descriptions, see [Common parameters](#param).
+
+#### Request header
+
+| Parameter            | Type   | Required | Description                                                         |
+| :-------------- | :----- | :------- | :----------------------------------------------------------- |
+| `Content-Type`  | String | Yes     | Set to `application/json`.                                 |
+| `Authorization` | String | Yes     | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
+
+### HTTP response
+The response body contains the following fields:
+
+| Parameter      | Type    | Description                                                       |
+| :-------- | :------ | :--------------------------------------------------------- |
+| announcement | String | The announcements of the specified chat rooms. |
+
+### Example
+
+#### Request example
+
+```
+curl -X GET -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer YWMt4LqJIul7EeizhBO5TSO_UgAAAAAAAAAAAAAAAAAAAAGL4CTw6XgR6LaXXVmNX4QCAgMAAAFnG7GyAQBPGgDv4ENRUku7fg05Kev0a_aVC8NyA6O6PgpxIRjajSVN3g' 'http://XXXX/XXXX/XXXX/chatrooms/XXXX/announcement'
+```
+
+#### Response example
+
+```
+{
+  "action": "get",
+  "application": "5cf28979-XXXX-XXXX-b969-60141fb9c75d",
+  "uri": "http://XXXX/XXXX/XXXX/chatrooms/XXXX/announcement",
+  "entities": [],
+  "data": {
+    "announcement" : "Chat room announcements..."
+  },
+  "timestamp": 1542363546590,
+  "duration": 0,
+  "organization": "XXXX",
+  "applicationName": "XXXX"
+}
+```
+
+## Modifying chat room announcements
+Modifies the announcements of the specified chat room. The announcement length cannot exceed 512 characters.
+
+### HTTP request
+
+```
+POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/announcement
+```
+
+#### Path parameter
+
+| Parameter | Type | Description | Required |
+| :------------ | :----- | :----------------------------------------------------------------------------------------------------------- | :------- |
+| `chatroom_id` | String | The chat room ID. The unique identifier assigned to each chat room by the Agora Chat service. You can get the chat room ID from the response body of [Retrieve basic information of all chat rooms](#getall). | Yes |
+
+For other parameters and detailed descriptions, see [Common parameters](#param).
+
+#### Request header
+
+| Parameter            | Type   | Required | Description                                                         |
+| :-------------- | :----- | :------- | :----------------------------------------------------------- |
+| `Content-Type`  | String | Yes     | Set to `application/json`.                                 |
+| `Authorization` | String | Yes     | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
+
+### HTTP response
+
+#### Response body
+
+| Parameter      | Type    | Description                                                       |
+| :-------- | :------ | :--------------------------------------------------------- |
+| id | String | The chat room ID. |
+| result | Boolean | Whether the chat room announcement is successfully modified: <br/> - `true`: Success<br/> - `false`: Failure |
+
+### Example
+
+#### Request example
+
+```
+curl -X GET -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer YWMt4LqJIul7EeizhBO5TSO_UgAAAAAAAAAAAAAAAAAAAAGL4CTw6XgR6LaXXVmNX4QCAgMAAAFnG7GyAQBPGgDv4ENRUku7fg05Kev0a_aVC8NyA6O6PgpxIRjajSVN3g' 'http://XXXX/XXXX/XXXX/chatrooms/XXXX/announcement'
+```
+
+#### Response example
+
+```
+{
+  "action": "post",
+  "application": "5cf28979-XXXX-XXXX-b969-60141fb9c75d",
+  "uri": "http://XXXX/XXXX/XXXX/chatrooms/XXXX/announcement",
+  "entities": [],
+  "data": {
+    "id": "XXXX",
+    "result": true
+  },
+  "timestamp": 1594808604236,
+  "duration": 0,
+  "organization": "XXXX",
+  "applicationName": "XXXX"
+}
+```
 
 ## Status codes
 
