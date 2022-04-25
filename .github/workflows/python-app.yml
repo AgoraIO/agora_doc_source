@@ -22,11 +22,15 @@ jobs:
                   cd xml2json
                   python -m pip install --upgrade pip
                   if  [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-            - name: Run json creation for Flutter CG and C++ NG
+            - name: Run json creation
               run: |
                   cd xml2json
+                  echo "Running for Flutter CG"
                   python xml2json.py --working_dir ../en-US/dita/RTC --platform_tag flutter --json_file flutter_newer.json --sdk_type sdk --remove_sdk_type sdk-ng --defined_path flutter
-                  python xml2json.py --working_dir ../en-US/dita/RTC --platform_tag cpp --json_file cpp_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path cpp-ng
+                  echo "Running for CPP NG"
+                  python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag cpp --json_file cpp_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path cpp-ng
+                  echo "Running for CS CG"
+                  python xml2json.py --working_dir ../en-US/dita/RTC --platform_tag cs --json_file csharp_cg.json --sdk_type rtc --remove_sdk_type rtc-ng --defined_path cs
             - name: Upload Flutter CG JSON to release
               uses: svenstaro/upload-release-action@v2
               with:
