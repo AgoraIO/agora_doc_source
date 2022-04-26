@@ -12,7 +12,9 @@
     </prolog>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onFacePositionChanged(
+                int imageWidth, int imageHeight, AgoraFacePositionInfo[] faceRectArr) {}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine facePositionDidChangeWidth:(int)width previewHeight:(int)height faces:(NSArray&lt;AgoraFacePositionInfo*>* _Nullable)faces NS_SWIFT_NAME(rtcEngine(_:facePositionDidChangeWidth:previewHeight:faces:));</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void onFacePositionChanged(int imageWidth, int imageHeight,
                 const Rectangle* vecRectangle, const int* vecDistance,
@@ -23,40 +25,15 @@
                 (void) vecDistance;
                 (void) numFaces;
                 }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnFacePositionChanged(int imageWidth, int imageHeight, Rectangle vecRectangle, int[] vecDistance, int numFaces) {}</codeblock></p>
-            <p outputclass="codeblock" props="rtc">
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine facePositionDidChangeWidth:(int)width previewHeight:(int)height faces:(NSArray&lt;AgoraFacePositionInfo*&gt;* _Nullable)faces;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onFacePositionChanged(int imageWidth,
-                int imageHeight,
-                Rectangle* vecRectangle,
-                int* vecDistance,
-                int numFaces){
-                (void)imageWidth;
-                (void)imageHeight;
-                (void)vecRectangle;
-                (void)vecDistance;
-                (void)numFaces;
-                }</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnFacePositionChanged(int imageWidth, int imageHeight, Rectangle vecRectangle, int[] vecDistance, int numFaces) {}</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnFacePositionChanged(int imageWidth, int imageHeight, Rectangle vecRectangle,
-            int[] vecDistance, int numFaces)</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">FacePositionCallback? facePositionChanged;</codeblock>
-            </p>
-            <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public void onFacePositionChanged(
-                int imageWidth, int imageHeight, AgoraFacePositionInfo[] faceRectArr) {}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart"/>
             </p>
 
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>自从</dt>
-                <dd>v3.0.1</dd>
-            </dlentry>
-            </dl>
-            <p>调用 <xref keyref="enableFaceDetection"/>(<ph keyref="true"/>) 开启本地人脸检测后，你可以通过该回调实时获取以下人脸检测的信息：
+            <p>调用 <xref keyref="enableFaceDetection"/>(<codeph><ph keyref="true"/></codeph>) 开启本地人脸检测后，你可以通过该回调实时获取以下人脸检测的信息：
             <ul>
             <li>摄像头采集的画面大小</li>
             <li>人脸在画面中的位置</li>
