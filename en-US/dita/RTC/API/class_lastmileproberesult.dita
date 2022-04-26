@@ -91,26 +91,12 @@
   LastmileProbeOneWayResult downlinkReport;
   unsigned int rtt;
 };</codeblock>
-<codeblock props="cs" outputclass="language-csharp">public class LastmileProbeResult
-    {
-        public LastmileProbeResult()
-        {
-        }
-
-        public LastmileProbeResult(LASTMILE_PROBE_RESULT_STATE state, LastmileProbeOneWayResult uplinkReport,
-            LastmileProbeOneWayResult downlinkReport, uint rtt)
-        {
-            this.state = state;
-            this.uplinkReport = uplinkReport;
-            this.downlinkReport = downlinkReport;
-            this.rtt = rtt;
-        }
-
-        public LASTMILE_PROBE_RESULT_STATE state { set; get; }
-        public LastmileProbeOneWayResult uplinkReport { set; get; }
-        public LastmileProbeOneWayResult downlinkReport { set; get; }
-        public uint rtt { set; get; }
-    }</codeblock> </p>
+<codeblock props="cs" outputclass="language-csharp">struct LastmileProbeResult {
+    LASTMILE_PROBE_RESULT_STATE state;
+    LastmileProbeOneWayResult uplinkReport;
+    LastmileProbeOneWayResult downlinkReport;
+    unsigned int rtt;
+    };</codeblock> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
