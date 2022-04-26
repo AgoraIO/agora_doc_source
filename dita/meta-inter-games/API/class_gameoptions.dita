@@ -20,7 +20,14 @@
     @Nullable
     private final String options;                           
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AGEGameOptions : NSObject
+@property (nonatomic, copy) NSString *gameId;   
+@property (nonatomic, copy) NSString *roomId;   
+@property (nonatomic, copy) NSString *userId;   
+@property (nonatomic, copy) NSString *role;   
+@property (nonatomic, copy) NSString *language; 
+@property (nonatomic, copy) NSString *options; 
+@end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp"/>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp"/>
@@ -38,7 +45,7 @@
             <plentry>
                 <pt>gameId</pt>
                 <pd>待加载的游戏 ID。通过 <codeph><xref keyref="getOption"/>("<apiname
-                        keyref="GET_GAME_LIST"/>")</codeph> 获取。</pd>
+                    keyref="GET_GAME_LIST"/>")</codeph> 获取。</pd>
             </plentry>
             <plentry>
                 <pt>roomId</pt>
@@ -52,6 +59,7 @@
                 <pt>role</pt>
                 <pd>用户在游戏中的角色。 
                     
+                    
                     <ul>
                     <li><parmname>1</parmname>：该局游戏的房主。同一局游戏中只能有一个房主。</li>
                     <li><parmname>2</parmname>：玩家。</li>
@@ -61,10 +69,11 @@
             <plentry>
                 <pt>language</pt>
                 <pd>游戏语言。取值如下：
-                        <ul>
-                        <li><parmname>zh-CN</parmname>：中文简体</li>
-                        <li><parmname>en</parmname>：英文</li>
-                        </ul></pd>
+                        
+                    <ul>
+                    <li><parmname>zh-CN</parmname>：中文简体</li>
+                    <li><parmname>en</parmname>：英文</li>
+                    </ul></pd>
             </plentry>
             <plentry>
                 <pt>options</pt>
@@ -78,13 +87,13 @@
                     <strow>
                         <stentry><parmname>name</parmname></stentry>
                         <stentry>是</stentry>
-                        <stentry>string</stentry>
+                        <stentry>String</stentry>
                         <stentry>用户昵称。</stentry>
                     </strow>
                     <strow>
                         <stentry><parmname>avatar</parmname></stentry>
                         <stentry>是</stentry>
-                        <stentry>string</stentry>
+                        <stentry>String</stentry>
                         <stentry>用户头像。</stentry>
                     </strow>
                     <strow>
@@ -92,18 +101,19 @@
                         <stentry>否</stentry>
                         <stentry>number</stentry>
                         <stentry>观众在游戏中形象类型 ：
-                                <ul>
-                                <li>0：无头像昵称（默认）</li>
-                                <li>1：有昵称无头像</li>
-                                <li>2：有昵称有头像</li>
-                                <li>3：无昵称有头像</li>
-                                </ul></stentry>
+                                
+                            <ul>
+                            <li>0：无头像昵称（默认）</li>
+                            <li>1：有昵称无头像</li>
+                            <li>2：有昵称有头像</li>
+                            <li>3：无昵称有头像</li>
+                            </ul></stentry>
                     </strow>
                     <strow>
                         <stentry><parmname>to_user</parmname></stentry>
                         <stentry>是</stentry>
-                        <stentry>string</stentry>
-                        <stentry>王国激战观众加入对应阵营的主播 ID（只有观众需要填写）。</stentry>
+                        <stentry>String</stentry>
+                        <stentry>观众要加入的阵营的主播 ID。</stentry>
                     </strow>
                     <strow>
                         <stentry><parmname>left</parmname></stentry>
@@ -133,13 +143,13 @@
                         <stentry><parmname>level</parmname></stentry>
                         <stentry>否</stentry>
                         <stentry>number</stentry>
-                        <stentry>用户等级（保留字段）。</stentry>
+                        <stentry>预留字段</stentry>
                     </strow>
                     <strow>
                         <stentry><parmname>time_limit</parmname></stentry>
                         <stentry>否</stentry>
                         <stentry>number</stentry>
-                        <stentry>一局游戏的时间限制, 单位为秒, 默认值为 300。</stentry>
+                        <stentry>一局游戏的时间限制，单位为秒， 默认值为 300。</stentry>
                     </strow>
                     <strow>
                         <stentry><parmname>show_join</parmname></stentry>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setoption">
     <title><ph keyref="setOption"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置游戏选项，包括加入/结束游戏，或者在游戏过程中与其他用户互动。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">设置游戏选项，例如：加入、结束游戏或者在游戏过程中与其他用户互动。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -35,9 +35,10 @@
             </plentry>
             <plentry id="optionid">
                 <pt>optionId</pt>
-                <pd>在该局游戏中进行的具体操作。当设置该参数为不同的 Key 时，代表不同的操作： 
+                <pd><ph>在该局游戏中进行的具体操作。</ph><ph props="ios">详见 <xref keyref="OptionID"/>。</ph></pd>
+                    <pd>当设置该参数为不同的 Key 时，代表不同的操作： 
                         <ul>
-                        <li><apiname keyref="GAME_STATE"/>：加入/准备/结束 本局游戏。</li>
+                        <li><apiname keyref="GAME_STATE"/>：加入/准备/结束本局游戏。</li>
                         <li><apiname keyref="SEND_GIFT"/>：在游戏中进行送礼物等互动操作。</li>
                         </ul>
                         <p>在不同 Key 类型下的参数取值和描述如下表所示。</p>
@@ -59,7 +60,7 @@
                                 <row>
                                     <entry morerows="3"><apiname keyref="GAME_STATE"/></entry>
                                     <entry><parmname>isln</parmname></entry>
-                                    <entry>bool</entry>
+                                    <entry>Bool</entry>
                                     <entry>用户（玩家或观众）加入/退出游戏。 
                                         <ul>
                                         <li><codeph><ph keyref="true"/></codeph>：加入游戏。</li>
@@ -68,7 +69,7 @@
                                 </row>
                                 <row>
                                     <entry><parmname>isReady</parmname></entry>
-                                    <entry>bool</entry>
+                                    <entry>Bool</entry>
                                     <entry>用户准备/取消准备加入或退出游戏。 
                                         <ul>
                                         <li><codeph><ph keyref="true"/></codeph>：准备。</li>
@@ -77,24 +78,24 @@
                                 </row>
                                 <row>
                                     <entry><parmname>isPlaying</parmname></entry>
-                                    <entry>bool</entry>
+                                    <entry>Bool</entry>
                                     <entry>取值为 <codeph><ph keyref="true"/></codeph>，表示开始本局游戏。仅房主可设置。</entry>
                                 </row>
                                 <row>
-                                    <entry><parmname>Null</parmname></entry>
                                     <entry>-</entry>
-                                    <entry>结束游戏。仅房主可设置。</entry>
+                                    <entry>-</entry>
+                                    <entry>传空时结束游戏。仅房主可设置。</entry>
                                 </row>
                                 <row>
                                     <entry morerows="2"><apiname keyref="SEND_GIFT"/></entry>
                                     <entry><parmname>to</parmname></entry>
-                                    <entry>string</entry>
+                                    <entry>String</entry>
                                     <entry>指定接收礼物的主播 ID。</entry>
                                 </row>
                                 <row>
                                     <entry><parmname>giftCost</parmname></entry>
                                     <entry>number</entry>
-                                    <entry>加入房间后 <parmname>gift_info</parmname> 返回的 key，详见 <xref keyref="onMessage"/>。</entry>
+                                    <entry>加入房间后 <parmname>gift_info</parmname> 返回的 Key，详见 <xref keyref="onMessage"/>。</entry>
                                 </row>
                                 <row>
                                     <entry><parmname>count</parmname></entry>
@@ -106,8 +107,8 @@
                         </table>
                         <note>
                         <ul>
-                            <li>当用户加入游戏时，参数调用流程为：<parmname>isln</parmname>=<codeph><ph keyref="true"/></codeph> > <parmname>isReady</parmname>=<codeph><ph keyref="true"/></codeph>  > <parmname>isPlaying</parmname>=<codeph><ph keyref="true"/></codeph>。</li>
-                            <li>当用户离开游戏时，参数调用流程为：<parmname>isReady</parmname>=<codeph><ph keyref="false"/></codeph> > <parmname>isln</parmname>=<codeph><ph keyref="false"/></codeph>。</li>
+                            <li>当用户加入游戏时，参数调用流程为：<parmname>isln</parmname>=<codeph><ph keyref="true"/></codeph> -> <parmname>isReady</parmname>=<codeph><ph keyref="true"/></codeph> -> <parmname>isPlaying</parmname>=<codeph><ph keyref="true"/></codeph>。</li>
+                            <li>当用户离开游戏时，参数调用流程为：<parmname>isReady</parmname>=<codeph><ph keyref="false"/></codeph> -> <parmname>isln</parmname>=<codeph><ph keyref="false"/></codeph>。</li>
                         </ul>
                         </note></pd>
             </plentry>
