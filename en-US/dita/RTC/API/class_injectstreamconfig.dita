@@ -44,7 +44,7 @@
 @property(assign, nonatomic) NSInteger audioChannels;
 + (AgoraLiveInjectStreamConfig *_Nonnull)defaultConfig;
 @end</codeblock>
-                <codeblock props="cpp cs" outputclass="language-cpp">struct InjectStreamConfig {
+                <codeblock props="cpp" outputclass="language-cpp">struct InjectStreamConfig {
     int width;
     int height;
     int videoGop;
@@ -65,6 +65,42 @@
         , audioChannels(1)
     {}
     };</codeblock>
+    <codeblock props="cs" outputclass="language-csharp">public class InjectStreamConfig
+    {
+        public InjectStreamConfig()
+        {
+            width = 0;
+            height = 0;
+            videoGop = 30;
+            videoFramerate = 15;
+            videoBitrate = 400;
+            audioSampleRate = AUDIO_SAMPLE_RATE_TYPE.AUDIO_SAMPLE_RATE_48000;
+            audioBitrate = 48;
+            audioChannels = 1;
+        }
+
+        public InjectStreamConfig(int width, int height, int videoGop, int videoFramerate, int videoBitrate,
+            AUDIO_SAMPLE_RATE_TYPE audioSampleRate, int audioBitrate, int audioChannels)
+        {
+            this.width = width;
+            this.height = height;
+            this.videoGop = videoGop;
+            this.videoFramerate = videoFramerate;
+            this.videoBitrate = videoBitrate;
+            this.audioSampleRate = audioSampleRate;
+            this.audioBitrate = audioBitrate;
+            this.audioChannels = audioChannels;
+        }
+
+        public int width { set; get; }
+        public int height { set; get; }
+        public int videoGop { set; get; }
+        public int videoFramerate { set; get; }
+        public int videoBitrate { set; get; }
+        public AUDIO_SAMPLE_RATE_TYPE audioSampleRate { set; get; }
+        public int audioBitrate { set; get; }
+        public int audioChannels { set; get; }
+    }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">export interface InjectStreamConfig {
     width: number;
     height: number;

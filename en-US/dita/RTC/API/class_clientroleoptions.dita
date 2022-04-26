@@ -48,6 +48,20 @@
     ClientRoleOptions()
         : audienceLatencyLevel(AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY) {}
     };</codeblock>
+    <codeblock props="cs" outputclass="language-csharp">public class ClientRoleOptions
+    {
+        public ClientRoleOptions()
+        {
+            audienceLatencyLevel = AUDIENCE_LATENCY_LEVEL_TYPE.AUDIENCE_LATENCY_LEVEL_LOW_LATENCY;
+        }
+
+        public ClientRoleOptions(AUDIENCE_LATENCY_LEVEL_TYPE audienceLatencyLevel)
+        {
+            this.audienceLatencyLevel = audienceLatencyLevel;
+        }
+
+        public AUDIENCE_LATENCY_LEVEL_TYPE audienceLatencyLevel;
+    }</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export interface ClientRoleOptions {
     audienceLatencyLevel: AUDIENCE_LATENCY_LEVEL_TYPE;
     }</codeblock>
