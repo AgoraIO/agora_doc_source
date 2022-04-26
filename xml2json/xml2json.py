@@ -81,6 +81,7 @@ cpp_ng_path = "config/keys-rtc-ng-api-cpp.ditamap"
 rust_path = "config/keys-rtc-api-rust.ditamap"
 electron_path = "config/keys-rtc-api-electron.ditamap"
 unity_path = "config/keys-rtc-api-unity.ditamap"
+cs_path = "config/keys-rtc-api-cs.ditamap"
 flutter_path = "config/keys-rtc-api-flutter.ditamap"
 rn_path = "config/keys-rtc-api-rn.ditamap"
 electron_ng_path = "config/keys-rtc-ng-api-electron.ditamap"
@@ -97,6 +98,7 @@ if sys.platform == 'darwin' or sys.platform == 'linux':
     rust_full_path = path.join(working_dir, rust_path)
     electron_full_path = path.join(working_dir, electron_path)
     unity_full_path = path.join(working_dir, unity_path)
+    cs_full_path = path.join(working_dir, cs_path)
     flutter_full_path = path.join(working_dir, flutter_path)
 
     rn_full_path = path.join(working_dir, rn_path)
@@ -146,7 +148,8 @@ elif defined_path_text == "cpp":
     defined_path = cpp_full_path
 elif defined_path_text == "cpp-ng":
     defined_path = cpp_ng_full_path
-
+elif defined_path_text == "cs":
+    defined_path = cs_full_path
 #
 # defined_path = android_full_path
 # defined_path = cpp_full_path
@@ -894,6 +897,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                  # child.clear()
                  parent_map[child].remove(child)
                  # child.text = ""
+
     # Android
 
     # Rust
@@ -1172,8 +1176,14 @@ def replace_newline():
 
 
     replaced_file_text = re.sub('id="callback_iaudioframeobserverbase_', 'id="callback_iaudioframeobserver_', replaced_file_text)
+    replaced_file_text = re.sub('"LOCAL_VIDEO_STREAM_ERROR_DEVICE_NOT_FOUND": ""', '"LOCAL_VIDEO_STREAM_ERROR_DEVICE_NOT_FOUND": "8: Fails to find a local video capture device."', replaced_file_text)
+    replaced_file_text = re.sub('{ "LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY": "3: The local video capturing device is in use." },', '{ "LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY": "3: The local video capturing device is in use." }, { "LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE": "4: The local video capture fails. Check whether the capturing device is working properly." },', replaced_file_text)
+    
     
     # ------------------ Special processing for Flutter classes ------------------------------------------
+
+    # { "LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY": "3: The local video capturing device is in use." },
+    # { "LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY": "3: The local video capturing device is in use." }, { "LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE": "4: The local video capture fails. Check whether the capturing device is working properly." },
     
     input_file.close()
 
