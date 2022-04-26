@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_connectionstatetype">
+    <title><ph keyref="CONNECTION_STATE_TYPE"/></title>
+    <shortdesc id="short"><ph id="shortdesc">网络连接状态。</ph></shortdesc>
+    <refbody>
+        <section id="parameters">
+   <title>枚举值</title>
+   <parml>
+       <plentry>
+  <pt><ph keyref="CONNECTION_STATE_DISCONNECTED"/></pt>
+  <pd><p>1: 网络连接断开。该状态表示 SDK 处于:
+  <ul>
+      <li>调用 <apiname keyref="joinChannel2"/> 加入频道前的初始化阶段。</li>
+      <li>或调用 <xref keyref="leaveChannel"/> 后的离开频道阶段。</li>
+  </ul></p>
+  </pd>
+       </plentry>
+       <plentry>
+  <pt><ph keyref="CONNECTION_STATE_CONNECTING"/></pt>
+  <pd><p>2: 建立网络连接中。该状态表示 SDK 在调用 <apiname keyref="joinChannel2"/> 后正在与指定的频道建立连接。
+  <ul>
+      <li>如果成功加入频道，app 会收到 <xref keyref="onConnectionStateChanged"/> 回调，通知当前网络状态变成 <ph keyref="CONNECTION_STATE_CONNECTED"/>。</li>
+      <li>建立连接后，SDK 还会初始化媒体，一切就绪后会回调 <xref keyref="onJoinChannelSuccess"/>。</li>
+  </ul></p>
+  </pd>
+       </plentry>
+       <plentry>
+  <pt><ph keyref="CONNECTION_STATE_CONNECTED"/></pt>
+  <pd>3: 网络已连接。该状态表示用户已经加入频道，可以在频道内发布或订阅媒体流。如果因网络断开或切换而导致 SDK 与频道的连接中断，SDK 会自动重连，此时 app 会收到
+   <xref keyref="onConnectionStateChanged"/> 回调，通知当前网络状态变成 <ph keyref="CONNECTION_STATE_RECONNECTING"/>。</pd>
+       </plentry>
+       <plentry>
+  <pt><ph keyref="CONNECTION_STATE_RECONNECTING"/></pt>
+  <pd><p>4: 重新建立网络连接中。该状态表示 SDK 之前曾加入过频道，但因网络等原因连接中断了，此时 SDK 会自动尝试重新接入频道。<ul>
+      <li>如果 SDK 无法在 10 秒内重新加入频道，则 <xref keyref="onConnectionLost"/> 会被触发，SDK 会一直保持在 <ph keyref="CONNECTION_STATE_RECONNECTING"/> 的状态，并不断尝试重新加入频道。</li>
+      <li>如果 SDK 在断开连接后，20 分钟内还是没能重新加入频道，则应用程序会收到 <xref keyref="onConnectionStateChanged"/> 回调，通知 app 的网络状态进入 <ph keyref="CONNECTION_STATE_FAILED"/>，SDK 停止尝试重连。</li>
+  </ul></p></pd>
+       </plentry>
+       <plentry>
+  <pt><ph keyref="CONNECTION_STATE_FAILED"/></pt>
+  <pd><p>5: 网络连接失败。该状态表示 SDK 已不再尝试重新加入频道，需要调用 <xref keyref="leaveChannel"/> 离开频道。<ul>
+      <li>如果用户还想重新加入频道，则需要再次调用 <apiname keyref="joinChannel2"/>。</li>
+      <li>如果 SDK 因服务器端使用 RESTful API 禁止加入频道，则 app 会收到 <xref keyref="onConnectionStateChanged"/>。</li>
+  </ul></p></pd>
+       </plentry>
+   </parml>
+        </section></refbody>
+</reference>

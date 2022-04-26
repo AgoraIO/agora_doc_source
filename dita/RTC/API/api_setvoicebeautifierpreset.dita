@@ -15,9 +15,9 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setVoiceBeautifierPreset(int preset);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setVoiceBeautifierPreset:(AgoraVoiceBeautifierPreset)preset;</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">virtual int setVoiceBeautifierPreset(VOICE_BEAUTIFIER_PRESET preset) = 0;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setVoiceBeautifierPreset(VOICE_BEAUTIFIER_PRESET preset) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">setVoiceBeautifierPreset(preset: VOICE_BEAUTIFIER_PRESET): number</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int SetVoiceBeautifierPreset(VOICE_BEAUTIFIER_PRESET preset);</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public abstract int SetVoiceBeautifierPreset(VOICE_BEAUTIFIER_PRESET preset);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setVoiceBeautifierPreset(VoiceBeautifierPreset preset);</codeblock> </p>
         </section>
@@ -33,7 +33,7 @@
             <note type="attention">
             <ul>
             <li>该方法在加入频道前后都能调用。</li>
-            <li>请勿将 <apiname keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1)<ph props="windows"> 或 <apiname keyref="AUDIO_PROFILE_IOT"/>(6)</ph>，否则该方法不生效。</li>
+            <li>请勿将 <apiname keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1)<ph props="cpp"> 或 <apiname keyref="AUDIO_PROFILE_IOT"/>(6)</ph>，否则该方法不生效。</li>
             <li>该方法对人声的处理效果最佳，Agora 不推荐调用该方法处理含音乐的音频数据。</li>
             <li>调用 <apiname keyref="setVoiceBeautifierPreset"/>，Agora 不推荐调用以下方法，否则 <apiname keyref="setVoiceBeautifierPreset"/> 设置的效果会被覆盖：
       
@@ -55,7 +55,7 @@
             <plentry>
                 <pt>preset</pt>
                 <pd>
-                    <p props="ios mac windows unity flutter">预设的美声效果选项，详见 <xref keyref="VOICE_BEAUTIFIER_PRESET"/>。</p>
+                    <p props="ios mac cpp cs flutter">预设的美声效果选项，详见 <xref keyref="VOICE_BEAUTIFIER_PRESET"/>。</p>
                     <p props="android">预设的美声效果选项：
                    
                     <ul>
@@ -95,7 +95,7 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native electron cs">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功</li>

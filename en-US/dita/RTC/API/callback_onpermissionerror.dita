@@ -15,18 +15,18 @@
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public void onPermissionError(PERMISSION permission) {}</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine permissionError:(AgoraPermissionType)type;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual void onPermissionError(PERMISSION_TYPE permissionType) {
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onPermissionError(PERMISSION_TYPE permissionType) {
   (void)permissionType;
 }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="cs" outputclass="language-csharp" />
                 <codeblock props="rn" outputclass="language-typescript" />
                 <codeblock props="flutter" outputclass="language-dart" />
             </p>
         </section>
         <section id="detailed_desc">
             <p>When the SDK fails to get the device permission, the SDK triggers this callback to report which device permission cannot be got.</p>
-            <note type="attention" props="windows">This method is for Android and iOS only.</note>
+            <note type="attention" props="cpp">This method is for Android and iOS only.</note>
         </section>
         <section id="parameters"><title>Parameters</title>
             <parml>
@@ -37,7 +37,7 @@
                 <plentry>
                     <pt props="android">permission</pt>
                     <pt props="ios mac">type</pt>
-                    <pt props="windows">permissionType</pt>
+                    <pt props="cpp">permissionType</pt>
                     <pd>The type of the device permission. For details, see <xref keyref="PERMISSION_TYPE" />.</pd>
                 </plentry>
             </parml>

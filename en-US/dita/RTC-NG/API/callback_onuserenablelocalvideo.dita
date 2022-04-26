@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_onuserenablelocalvideo">
+    <title><ph keyref="onUserEnableLocalVideo" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when a specific remote user enables/disables the local video capturing function.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="onUserEnableLocalVideo" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public void onUserEnableLocalVideo(int uid, boolean enabled) {}</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+    didLocalVideoEnabled:(BOOL)enabled
+    byUid:(NSUInteger)uid</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onUserEnableLocalVideo(uid_t uid, bool enabled) {
+    (void)uid;
+    (void)enabled;
+    }</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.USER_ENABLE_LOCAL_VIDEO, cb: (
+    uid: number,
+    enabled: boolean) =&gt; void
+    ): this;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserEnableLocalVideo(uint uid, bool enabled)</codeblock>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">UidWithEnabledCallback? userEnableLocalVideo;</codeblock>
+        </p>
+        </section>
+        <section id="detailed_desc">
+
+   <dl outputclass="deprecated" props="hide">
+       <dlentry>
+  <dt>Deprecated:</dt>
+  <dd>Please use instead <xref keyref="onRemoteVideoStateChanged" />:<ul>
+ <li><apiname keyref="REMOTE_VIDEO_STATE_STOPPED" /> (0) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED" />(5).</li>
+ <li><apiname keyref="REMOTE_VIDEO_STATE_DECODING" /> (2) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED" />(6).</li>
+      </ul>
+  </dd>
+       </dlentry>
+   </dl>
+   <p id="desc">The SDK triggers this callback when the remote user resumes or stops capturing the video stream by calling the <xref keyref="enableLocalVideo" /> method.</p>
+        </section>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+   <parml>
+                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                    <pt />
+                    <pd />
+                </plentry>
+                <plentry>
+                    <pt>uid</pt>
+                    <pd>The user ID of the remote user.</pd>
+                </plentry>
+                <plentry>
+                    <pt>enabled</pt>
+                    <pd>
+                        <p>Whether the specified remote user enables/disables the local video
+                            capturing function:<ul>
+                            <li><codeph><ph keyref="true" /></codeph>: Enable. Other users in the
+                                channel can see the video of this remote user.</li>
+                            <li><codeph><ph keyref="false" /></codeph>: Disable. Other users in the
+                                channel can no longer receive the video stream from this remote
+                                user, while this remote user can still receive the video streams
+                                from other users.</li>
+                            </ul></p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

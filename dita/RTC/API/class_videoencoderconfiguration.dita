@@ -40,7 +40,7 @@
                        orientationMode:(AgoraVideoOutputOrientationMode)orientationMode
                             mirrorMode:(AgoraVideoMirrorMode)mirrorMode;
 @end</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">struct VideoEncoderConfiguration {
+            <codeblock props="cpp" outputclass="language-cpp">struct VideoEncoderConfiguration {
   VIDEO_CODEC_TYPE codecType;
   VideoDimensions dimensions;
   int frameRate;
@@ -87,7 +87,7 @@
         degradationPreference(MAINTAIN_QUALITY),
         mirrorMode(VIDEO_MIRROR_MODE_DISABLED) {}
 };</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class VideoEncoderConfiguration
+            <codeblock props="cs" outputclass="language-csharp">public class VideoEncoderConfiguration
     {
         public VideoEncoderConfiguration()
         {
@@ -151,7 +151,7 @@
 
 - (instancetype _Nonnull)initWithWidth:(NSInteger)width height:(NSInteger)height frameRate:(AgoraVideoFrameRate)frameRate bitrate:(NSInteger)bitrate orientationMode:(AgoraVideoOutputOrientationMode)orientationMode;
 @end</codeblock>
-            <codeblock props="windows unity" outputclass="language-cpp">struct VideoEncoderConfiguration {
+            <codeblock props="cpp cs" outputclass="language-cpp">struct VideoEncoderConfiguration {
     VideoDimensions dimensions;
     FRAME_RATE frameRate;
     int minFrameRate;
@@ -249,7 +249,7 @@
             <plentry>
                 <pt>dimensions</pt>
                 <pd>
-                    <p props="android windows unity">视频编码的分辨率（px），详见 <xref
+                    <p props="android cpp cs">视频编码的分辨率（px），详见 <xref
                     keyref="VideoDimensions"
                     />。该参数用于衡量编码质量，以长 × 宽表示，默认值为 640 × 360。用户可以自行设置分辨率。</p>
                     <p props="ios mac">视频编码的分辨率 (px)，用于衡量编码质量，以长x宽表示，默认值为 640 x 360。用户可以自行设置分辨率，也可以在如下列表中直接选择想要的分辨率：
@@ -286,8 +286,8 @@
                 </pd>
             </plentry>
             <plentry props="rtc-ng">
-                <pt props="ios mac windows unity">codecType</pt>
-                <pd props="ios mac windows unity">
+                <pt props="ios mac cpp cs">codecType</pt>
+                <pd props="ios mac cpp cs">
                     <p>视频编码类型，详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</p>
                 </pd>
             </plentry>
@@ -297,7 +297,7 @@
                     <p props="rtc-ng">视频编码的帧率(fps)，默认值为 15。详见 <xref
                     keyref="FRAME_RATE"/>。</p>
                     <p props="rtc">视频编码的帧率(fps)，默认值为 15。<ph
-                    props="electron flutter windows unity">详见 <xref
+                    props="electron flutter cpp cs">详见 <xref
                     keyref="FRAME_RATE"/>。</ph></p>
                 </pd>
             </plentry>
@@ -544,7 +544,7 @@
                     props="rtc">
                     <li/>
                     </ul> </p>
-                    <p props="ios mac windows unity electron"
+                    <p props="ios mac cpp cs electron"
                     >发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref
                     keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
                     <note type="attention">默认关闭镜像模式。</note> </pd>

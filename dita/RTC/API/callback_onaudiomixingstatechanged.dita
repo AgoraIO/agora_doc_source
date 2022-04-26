@@ -17,7 +17,7 @@
                 <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine
                     localAudioMixingStateDidChanged:(AgoraAudioMixingStateCode)state
                     reason:(AgoraAudioMixingReasonCode)reason;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual void onAudioMixingStateChanged(AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_REASON_TYPE reason)</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioMixingStateChanged(AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_REASON_TYPE reason)</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">on(
   evt: EngineEvents.AUDIO_MIXING_STATE_CHANGED,
   cb: (
@@ -25,7 +25,7 @@
     reason: AUDIO_MIXING_REASON_TYPE
   ) =&gt; void
 ): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioMixingStateChanged(AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_REASON_TYPE reason)</codeblock>
+                <codeblock props="cs" outputclass="language-csharp">public virtual void OnAudioMixingStateChanged(AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_REASON_TYPE reason)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart">AudioMixingStateCallback? audioMixingStateChanged;</codeblock>
             </p>
@@ -47,7 +47,7 @@
                 </plentry>
                 <plentry>
                     <pt>state</pt>
-                    <pd>音乐文件播放状态。<ph props="ios mac windows flutter unity">详见 <xref keyref="AUDIO_MIXING_STATE_TYPE"/>。</ph>
+                    <pd>音乐文件播放状态。<ph props="ios mac cpp flutter cs">详见 <xref keyref="AUDIO_MIXING_STATE_TYPE"/>。</ph>
                         <p props="android">
                             <ul>
                                 <li><ph keyref="AUDIO_MIXING_STATE_PLAYING"/> (710): 音乐文件正常播放。</li>
@@ -64,7 +64,7 @@
                 </plentry>
                 <plentry>
                     <pt>reason</pt>
-                    <pd>音乐文件播放状态改变的原因。<ph props="ios mac windows flutter unity">详见 <xref keyref="AUDIO_MIXING_REASON_TYPE"/>。</ph>
+                    <pd>音乐文件播放状态改变的原因。<ph props="ios mac cpp flutter cs">详见 <xref keyref="AUDIO_MIXING_REASON_TYPE"/>。</ph>
                         <p props="android">
                             <ul>
                                 <li><ph keyref="AUDIO_MIXING_REASON_CAN_NOT_OPEN"/> (701): 音乐文件打开出错。例如，本地音乐文件不存在、文件格式不支持或无法访问在线音乐文件 URL。</li>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setremoterendermode2">
+    <title><ph keyref="setRemoteRenderMode2"/></title>
+    <shortdesc id="short"><ph id="shortdesc">更新远端视图显示模式。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setRemoteRenderMode2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="unity" outputclass="language-csharp">public abstract int SetRemoteRenderMode(uint uid, RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode);</codeblock> </p>
+            <p outputclass="codeblock" props="rtc">
+            <codeblock props="unity" outputclass="language-csharp">public abstract int SetRemoteRenderMode(uint userId, RENDER_MODE_TYPE renderMode,
+            VIDEO_MIRROR_MODE_TYPE mirrorMode);</codeblock>
+        </p>
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setRemoteRenderMode(int userId, int renderMode, int mirrorMode);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setRemoteRenderMode:(NSUInteger)uid
+                      mode:(AgoraVideoRenderMode)mode
+                    mirror:(AgoraVideoMirrorMode)mirror;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setRemoteRenderMode(uid_t userId, RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/></p>
+         </section>
+        <section id="detailed_desc">
+            <dl outputclass="since" props="rtc">
+            <dlentry>
+                <dt>自从</dt>
+                <dd>v3.0.0</dd>
+            </dlentry>
+            </dl>
+            <p>初始化远端用户视图后，你可以调用该方法更新远端用户视图在本地显示时的渲染和镜像模式。该方法只影响本地用户看到的视频画面。</p>
+            <note type="attention">
+            <ul>
+            <li>请在调用 <xref keyref="setupRemoteVideo"/> 方法初始化远端视图后，调用该方法。</li>
+            <li>你可以在通话中多次调用该方法，多次更新远端用户视图的显示模式。</li>
+            </ul> </note> </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry props="rtc">
+                <pt props="ios mac">uid</pt>
+                <pt props="android cpp unity">userId</pt>
+                <pd>
+                    <p>远端用户 ID。</p>
+                </pd>
+            </plentry>
+                <plentry props="rtc-ng">
+                    <pt props="unity">uid</pt>
+                    <pd props="unity">远端用户 ID。</pd>
+                </plentry>
+                <plentry>
+                <pt props="android cpp unity">renderMode</pt>
+                    <pt props="ios mac">mode</pt>
+                <pd>
+                    <p props="ios mac cpp unity">远端用户视图的渲染模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</p>
+                    <p props="android">远端用户视图的渲染模式。
+
+                    <ul conkeyref="setLocalRenderMode2/rendermodetype">
+                    <li/>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt props="android cpp unity">mirrorMode</pt>
+                <pt props="ios mac">mirror</pt>
+                <pd>
+                    <p props="ios mac cpp unity">远端用户视图的镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
+                    <p props="android">远端用户视图的镜像模式。
+
+                    <ul conkeyref="setLocalRenderMode2/videomirrormodetype">
+                    <li/>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <ul>
+            <li>0：方法调用成功。</li>
+            <li>&lt; 0：方法调用失败。</li>
+            </ul> </section>
+    </refbody>
+</reference>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_leavechannel2">
+    <title><ph keyref="leaveChannel2" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Leaves a channel.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="leaveChannel2" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="unity" outputclass="language-csharp">public abstract int LeaveChannel(LeaveChannelOptions options); </codeblock></p>
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int leaveChannel(LeaveChannelOptions options);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)leaveChannel:(AgoraLeaveChannelOptions * _Nonnull)options
+  leaveChannelBlock:(void (^ _Nullable)(AgoraChannelStats * _Nonnull))leaveChannelBlock;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int leaveChannel(const LeaveChannelOptions&amp; options) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>This method lets the user leave the channel, for example, by hanging up or exiting the call.</p><p>After joining the channel, you must call this method or <xref keyref="leaveChannel" /> to end the call, otherwise, the next call cannot be started.</p><p>No matter whether you are currently in a call or not, you can call this method without side effects. This method releases all resources related to the session.</p>
+            <p>This method call is asynchronous, and the user has not left the channel when the method call returns. After you leave the channel, the SDK triggers the <xref keyref="onLeaveChannel" /> callback. A successful call of this method triggers the following callbacks: The local client: <apiname keyref="onLeaveChannel" />.The remote client: <xref keyref="onUserOffline" />, if the user joining the channel is in the COMMUNICATION profile, or is a host in the LIVE_BROADCASTING profile.</p>
+            <note conkeyref="leaveChannel/note" />
+        </section>
+        <section id="parameters"><title>Parameters</title>
+                <parml id="parml_jsr_dky_hqb">
+                    <plentry>
+                        <pt>options</pt>
+                        <pd>The options for leaving the channel. See <xref keyref="LeaveChannelOptions" />.</pd>
+                    </plentry>
+                <plentry props="ios mac" id="leavechannelblock">
+                    <pt>leaveChannelBlock</pt>
+                    <pd>
+                        <p>This callback indicates that a user leaves a channel, and provides the statistics of the call in <xref keyref="RtcStats" />.</p>
+                    </pd>
+                </plentry>
+                     </parml>
+           </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
+   </ul>
+        </section></refbody>
+</reference>

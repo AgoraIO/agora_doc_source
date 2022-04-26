@@ -255,7 +255,7 @@
 - (void)setAdvancedFeatures:(NSString* _Nonnull)featureName opened:(BOOL)opened;
 - (NSArray&lt;AgoraLiveStreamAdvancedFeature*>* _Nullable)getAdvancedFeatures;
 @end</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">struct LiveTranscoding {
+            <codeblock props="cpp" outputclass="language-cpp">struct LiveTranscoding {
   int width;
   int height;
   int videoBitrate;
@@ -281,7 +281,7 @@
   unsigned int advancedFeatureCount;
   LiveTranscoding() : width(360), height(640), videoBitrate(400), videoFramerate(15), lowLatency(false), videoGop(30), videoCodecProfile(VIDEO_CODEC_PROFILE_HIGH), backgroundColor(0x000000), videoCodecType(VIDEO_CODEC_H264_FOR_STREAM), userCount(0), transcodingUsers(NULL), transcodingExtraInfo(NULL), metadata(NULL), watermark(NULL), watermarkCount(0), backgroundImage(NULL), backgroundImageCount(0), audioSampleRate(AUDIO_SAMPLE_RATE_48000), audioBitrate(48), audioChannels(1), audioCodecProfile(AUDIO_CODEC_PROFILE_LC_AAC), advancedFeatures(NULL), advancedFeatureCount(0) {}
 };</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class LiveTranscoding
+            <codeblock props="cs" outputclass="language-csharp">public class LiveTranscoding
     {
         public LiveTranscoding()
         {
@@ -307,7 +307,7 @@
             audioCodecProfile = AUDIO_CODEC_PROFILE_TYPE.AUDIO_CODEC_PROFILE_LC_AAC;
         }</codeblock> </p>
             <p outputclass="codeblock" props="rtc">
-            <codeblock props="windows unity" outputclass="language-cpp">struct LiveTranscoding {
+            <codeblock props="cpp cs" outputclass="language-cpp">struct LiveTranscoding {
     int width;
     int height;
     int videoBitrate;
@@ -437,7 +437,7 @@
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry props="android windows electron unity flutter">
+            <plentry props="android cpp electron cs flutter">
                 <pt>width</pt>
                 <pd>
                     <p>推流视频的总宽度，默认值 360，单位为像素。</p>
@@ -446,7 +446,7 @@
                     <li>如果推音频流，请将 <codeph>width</codeph> 和 <codeph>height</codeph> 设为 0。</li>
                     </ul> </pd>
             </plentry>
-            <plentry props="android windows electron unity flutter">
+            <plentry props="android cpp electron cs flutter">
                 <pt>height</pt>
                 <pd>
                     <p>推流视频的总高度，默认值 640，单位为像素。</p>
@@ -468,7 +468,7 @@
                     <li>如果推音频流，请将宽和高都设为 0。</li>
                     </ul> </pd>
             </plentry>
-            <plentry props="android windows ios mac electron unity">
+            <plentry props="android cpp ios mac electron cs">
                 <pt>videoBitrate</pt>
                 <pd>
                     <p>用于旁路直播的输出视频的码率。单位为 Kbps。400 Kbps 为默认值。</p>
@@ -477,7 +477,7 @@
                 </pd>
             </plentry>
             <plentry>
-              <pt props="native unity">videoFrameRate</pt>
+              <pt props="native cs">videoFrameRate</pt>
               <pt props="flutter">videoFramerate</pt>
                 <pd>
                     <p>用于旁路直播的输出视频的帧率。取值范围是 (0,30]，单位为 fps。15 fps 为默认值。</p>
@@ -536,7 +536,7 @@
                     </ul></p>
                 </pd>
             </plentry>
-            <plentry props="android windows unity electron flutter">
+            <plentry props="android cpp cs electron flutter">
                 <pt>backgroundColor</pt>
                 <pd props="android">
                     <dl outputclass="deprecated">
@@ -546,11 +546,11 @@
                     </dlentry>
                     </dl>
                 </pd>
-                <pd props="windows unity electron flutter">
+                <pd props="cpp cs electron flutter">
                     <p>用于旁路直播的输出视频的背景色，格式为 RGB 定义下的十六进制整数，不要带 # 号，如 0xFFB6C1 表示浅粉色。默认0x000000，黑色。</p>
                 </pd>
             </plentry>
-            <plentry props="windows electron unity">
+            <plentry props="cpp electron cs">
                 <pt>userCount</pt>
                 <pd>参与合图的用户数量，默认 0。取值范围为 [0,17]。</pd>
             </plentry>
@@ -566,7 +566,7 @@
                     <p>参与合图的用户数量，默认 0。取值范围为 [0,17]。</p>
                 </pd>
             </plentry>
-            <plentry props="android windows unity">
+            <plentry props="android cpp cs">
                 <pt>metadata</pt>
                 <pd>
                     <dl outputclass="deprecated">
@@ -579,7 +579,7 @@
             </plentry>
             <plentry props="rtc">
                 <pt>backgroundImage</pt>
-                <pd props="windows">直播视频上的背景图。详见 <xref keyref="RtcImage"/>。你可以添加一张背景图，或使用数组的方式添加多张背景图。该参数与 <parmname>backgroundImageCount</parmname> 搭配使用。</pd>
+                <pd props="cpp">直播视频上的背景图。详见 <xref keyref="RtcImage"/>。你可以添加一张背景图，或使用数组的方式添加多张背景图。该参数与 <parmname>backgroundImageCount</parmname> 搭配使用。</pd>
                 <pd props="ios mac">
                     <p>自 v3.6.0 废弃。请改用 <parmname>backgroundImageArray</parmname>。</p>
                     <p>直播视频上的背景图。图片格式需为 PNG。详见 <xref keyref="RtcImage"/>。</p>
@@ -589,7 +589,7 @@
                     <p>直播视频上的背景图。必须为 PNG 格式。详见 <xref keyref="RtcImage"/>。</p>
                 </pd>
             </plentry>
-            <plentry props="ios mac android electron unity flutter">
+            <plentry props="ios mac android electron cs flutter">
                 <pt>watermark</pt>
                 <pd props="rtc-ng">
                     <dl outputclass="deprecated">
@@ -602,12 +602,12 @@
                     <p>直播视频上的水印。必须为 PNG 格式。详见 <xref keyref="RtcImage"/>。</p>
                 </pd>
                 <pd props="rtc">
-                    <p props="windows">直播视频上的水印。必须为 PNG 格式。详见 <xref keyref="RtcImage"/>。你可以添加一个水印，或使用数组的方式添加多个水印。该参数与 <parmname>watermarkCount</parmname> 搭配使用。</p>
+                    <p props="cpp">直播视频上的水印。必须为 PNG 格式。详见 <xref keyref="RtcImage"/>。你可以添加一个水印，或使用数组的方式添加多个水印。该参数与 <parmname>watermarkCount</parmname> 搭配使用。</p>
                     <p props="ios mac">自 v3.6.0 废弃。请改用 <parmname>watermarkArray</parmname>。</p>
                     <p props="ios mac">直播视频上的水印。图片格式需为 PNG。详见 <xref keyref="RtcImage"/>。</p>
                 </pd>
             </plentry>
-            <plentry props="windows electron unity flutter">
+            <plentry props="cpp electron cs flutter">
                 <pt>watermark</pt>
                 <pd>
                     <p>直播视频上的水印。必须为 PNG 格式。详见 <xref keyref="RtcImage"/>。</p>
@@ -625,7 +625,7 @@
                     </dlentry>
                     </dl>
                     <p>直播视频上的背景图。图片格式需为 PNG。详见 <xref keyref="RtcImage"/>。</p>
-                    <p props="windows">你可以添加一张背景图，或使用数组的方式添加多张背景图。该参数与<parmname>backgroundImageCount</parmname> 搭配使用。</p>
+                    <p props="cpp">你可以添加一张背景图，或使用数组的方式添加多张背景图。该参数与<parmname>backgroundImageCount</parmname> 搭配使用。</p>
                 </pd>
             </plentry>
             <plentry props="ios mac">
@@ -663,37 +663,37 @@
             </plentry>
             <plentry props="rtc-ng">
                 <pt props="ios mac">watermarkArray</pt>
-                <pt props="windows unity">watermarkCount</pt>
+                <pt props="cpp cs">watermarkCount</pt>
                 <pd props="ios mac"> 直播视频上的水印数组。详见 <xref keyref="RtcImage"
                     />。你可以使用 <parmname>watermarkArray</parmname> 添加一张或多张水印。图片格式需为 PNG。直播视频上的水印和背景图的总数量需大于等于 0 且小于等于 10。 </pd>
-                <pd props="windows unity">直播视频上的水印的数量。水印和背景图的总数量需大于等于 0 且小于等于 10。该参数与 <parmname>watermark</parmname> 搭配使用。</pd>
+                <pd props="cpp cs">直播视频上的水印的数量。水印和背景图的总数量需大于等于 0 且小于等于 10。该参数与 <parmname>watermark</parmname> 搭配使用。</pd>
             </plentry>
             <plentry props="rtc-ng">
                 <pt props="ios mac">backgroundArray</pt>
-                <pt props="windows unity">backgroundImageCount</pt>
+                <pt props="cpp cs">backgroundImageCount</pt>
                 <pd props="ios mac"> 直播视频上的背景图数组。详见 <xref keyref="RtcImage"
                     />。你可以使用 <parmname>backgroundImageArray</parmname> 添加一张或多张背景图。图片格式需为 PNG。直播视频上的水印和背景图的总数量需大于等于 0 且小于等于 10。 </pd>
-                <pd props="windows unity"
+                <pd props="cpp cs"
                     >直播视频上的背景图的数量。水印和背景图的总数量需大于等于 0 且小于等于 10。该参数与 <parmname>backgroundImage</parmname> 搭配使用。</pd>
             </plentry>
             <plentry props="rtc">
                 <pt props="ios mac">watermarkArray</pt>
-                <pt props="windows">watermarkCount</pt>
+                <pt props="cpp">watermarkCount</pt>
                 <pt props="android">watermarkList</pt>
                 <pd props="ios mac"> 直播视频上的水印数组。详见 <xref keyref="RtcImage"
                     />。你可以使用 <parmname>watermarkArray</parmname> 添加一张或多张水印。图片格式需为 PNG。直播视频上的水印和背景图的总数量需大于等于 0 且小于等于 10。 </pd>
-                <pd props="windows"
+                <pd props="cpp"
                     >直播视频上的水印的数量。水印和背景图的总数量需大于等于 0 且小于等于 10。该参数与 <parmname>watermark</parmname> 搭配使用。</pd>
                 <pd props="android"> 直播视频上的水印数组。详见 <xref keyref="RtcImage"
                     />。你可以使用 <parmname>watermarkList</parmname> 添加一张或多张水印。图片格式需为 PNG。直播视频上的水印和背景图的总数量需大于等于 0 且小于等于 10。 </pd>
             </plentry>
             <plentry props="rtc">
                 <pt props="ios mac">backgroundImageArray</pt>
-                <pt props="windows">backgroundImageCount</pt>
+                <pt props="cpp">backgroundImageCount</pt>
                 <pt props="android">backgroundImageList</pt>
                 <pd props="ios mac"> 直播视频上的背景图数组。详见 <xref keyref="RtcImage"
                     />。你可以使用 <parmname>backgroundImageArray</parmname> 添加一张或多张背景图。图片格式需为 PNG。直播视频上的水印和背景图的总数量需大于等于 0 且小于等于 10。 </pd>
-                <pd props="windows"
+                <pd props="cpp"
                     >直播视频上的背景图的数量。水印和背景图的总数量需大于等于 0 且小于等于 10。该参数与 <parmname>backgroundImage</parmname> 搭配使用。</pd>
                 <pd props="android"> 直播视频上的背景图数组。详见 <xref keyref="RtcImage"
                     />。你可以使用 <parmname>backgroundImageList</parmname> 添加一张或多张背景图。图片格式需为 PNG。直播视频上的水印和背景图的总数量需大于等于 0 且小于等于 10。 </pd>
@@ -703,12 +703,12 @@
                 <pd>预留参数。 用户自定义的发送到旁路推流客户端的信息，用于填充 H264/H265 视频中 SEI 帧内容。长度限制：4096字节。</pd>
             </plentry>
             <plentry props="rtc-ng">
-                <pt props="windows">advancedFeatures</pt>
-                <pd props="windows">转码推流的高级功能。详见 <xref keyref="LiveStreamAdvancedFeature"/>。</pd>
+                <pt props="cpp">advancedFeatures</pt>
+                <pd props="cpp">转码推流的高级功能。详见 <xref keyref="LiveStreamAdvancedFeature"/>。</pd>
             </plentry>
             <plentry props="rtc-ng">
-                <pt props="windows">advancedFeatureCount</pt>
-                <pd props="windows">开启的高级功能数量。默认值为 0。</pd>
+                <pt props="cpp">advancedFeatureCount</pt>
+                <pd props="cpp">开启的高级功能数量。默认值为 0。</pd>
             </plentry>
             </parml> </section>
     </refbody>

@@ -19,9 +19,9 @@
                            timestamp:(NSTimeInterval)timestamp;</codeblock> </p>
             <p outputclass="codeblock" props="rtc">
             <codeblock props="android" outputclass="language-java">public abstract int pushExternalAudioFrame(byte[] data, long timestamp);</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">virtual int pushAudioFrame(IAudioFrameObserver::AudioFrame* frame) = 0;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int pushAudioFrame(IAudioFrameObserver::AudioFrame* frame) = 0;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)pushExternalAudioFrameRawData:(void* _Nonnull)data samples:(NSUInteger)samples timestamp:(NSTimeInterval)timestamp;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int PushAudioFrame(AudioFrame frame);</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public abstract int PushAudioFrame(AudioFrame frame);</codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart" /> </p>
@@ -29,14 +29,14 @@
         <section id="detailed_desc">
 
             <dl outputclass="deprecated" props="rtc">
-       <dlentry props="windows android ios mac">
+       <dlentry props="cpp android ios mac">
   <dt>Deprecated:</dt>
            <dd>Please use <xref keyref="pushAudioFrame2" /> instead.</dd>
        </dlentry>
    </dl>
         </section>
         <section id="parameters"><title>Parameters</title>
-   <parml props="windows unity">
+   <parml props="cpp cs">
        <plentry id="frame">
   <pt>frame</pt>
   <pd>The audio frame. For details, see <xref keyref="AudioFrame" />.</pd>
@@ -72,7 +72,7 @@
                 </ul>
             </p>
             <p props="rtc">
-                <ul props="windows android electron unity rn flutter">
+                <ul props="cpp android electron cs rn flutter">
                     <li>0: Success.</li>
                     <li>&lt; 0: Failure.</li>
                 </ul>

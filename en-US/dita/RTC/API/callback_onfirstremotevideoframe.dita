@@ -15,7 +15,7 @@
      </prolog>
      <refbody><section id="prototype">
           <p outputclass="codeblock" props="rtc-ng">
-               <codeblock props="windows" outputclass="language-cpp">virtual void onFirstRemoteVideoFrame(uid_t userId, int width, int height, int elapsed) {
+               <codeblock props="cpp" outputclass="language-cpp">virtual void onFirstRemoteVideoFrame(uid_t userId, int width, int height, int elapsed) {
                     (void)userId;
                     (void)width;
                     (void)height;
@@ -32,12 +32,12 @@
      height: number,
      elapsed: number) =&gt; void
      ): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstRemoteVideoFrame(uint uid, int width, int height, int elapsed)</codeblock>
+                <codeblock props="cs" outputclass="language-csharp">public virtual void OnFirstRemoteVideoFrame(uint uid, int width, int height, int elapsed)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
                 <codeblock props="flutter" outputclass="language-dart">VideoFrameWithUidCallback? firstRemoteVideoFrame;</codeblock>
         </p>
           <p outputclass="codeblock" props="rtc">
-               <codeblock props="windows" outputclass="language-cpp">virtual void onFirstRemoteVideoFrame(uid_t uid,
+               <codeblock props="cpp" outputclass="language-cpp">virtual void onFirstRemoteVideoFrame(uid_t uid,
                     int width,
                     int height,
                     int elapsed) {
@@ -60,19 +60,19 @@
                          <pd />
                     </plentry>
                     <plentry>
-                         <pt props="ios mac android electron unity flutter">uid</pt>
-                         <pt props="windows"><ph props="rtc">uid</ph><ph props="rtc-ng">userId</ph></pt>
+                         <pt props="ios mac android electron cs flutter">uid</pt>
+                         <pt props="cpp"><ph props="rtc">uid</ph><ph props="rtc-ng">userId</ph></pt>
                          <pd>The user ID of the remote user sending the video stream.</pd>
                     </plentry>
                     <plentry props="ios mac">
                          <pt>size</pt>
                          <pd>Video dimensions.</pd>
                     </plentry>
-                    <plentry props="android windows unity flutter">
+                    <plentry props="android cpp cs flutter">
                          <pt>width</pt>
                          <pd>The width (px) of the video stream.</pd>
                     </plentry>
-                    <plentry props="android windows unity flutter">
+                    <plentry props="android cpp cs flutter">
                          <pt>height</pt>
                          <pd>The height (px) of the video stream.</pd>
                     </plentry>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setvideoprofile2">
+    <title><ph keyref="setVideoProfile2"/></title>
+    <shortdesc id="short"><ph id="shortdesc">手动设置视频编码配置。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setVideoProfile"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract int setVideoProfile(int width, int height, int frameRate, int bitrate);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)setVideoResolution:(CGSize)size andFrameRate:(NSInteger)frameRate bitrate:(NSInteger)bitrate;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp"/>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="deprecated">
+                <dlentry>
+                    <dt>弃用：</dt>
+                    <dd>该方法自 v2.3 起废弃。请改用 <xref keyref="setVideoEncoderConfiguration"/> 方法。</dd>
+                </dlentry>
+            </dl>
+            <p>该方法手动设置视频的编码属性。 该方法在加入频道前后都能调用。 如果用户加入频道后不需要重新设置视频编码属性，则 Agora 建议在 <xref keyref="enableVideo"/> 前调用该方法，可以加快首帧出图的时间。</p>
+        </section>
+        <section id="parameters"><title>参数</title>
+            <parml>
+                <plentry>
+                    <pt>width</pt>
+                    <pd>你想要设置的视频宽度，宽 × 高的最大值不超过 1280 × 720。</pd>
+                </plentry>
+                <plentry>
+                    <pt>height</pt>
+                    <pd>你想要设置的视频高度，宽 × 高的最大值不超过 1280 × 720。</pd>
+                </plentry>
+                <plentry>
+                    <pt>frameRate</pt>
+                    <pd>你想要设置的视频帧率，最高值不超过 30，如： 5、10、15、24、30 等。</pd>
+                </plentry>
+                <plentry>
+                    <pt>bitrate</pt>
+                    <pd>你想要设置的视频码率，需要开发者根据想要设置的视频的宽、高和帧率，根据 Bitrate
+                        中的码率参考表，手动推算出合适值。宽和高固定的情况下，码率随帧率的变化而变化： <ul>
+                            <li>如选取的帧率为 5 FPS，则推算码率为上表推荐码率除以 2。</li>
+                            <li>如选取的帧率为 15 FPS，则推算码率为上表推荐码率。</li>
+                            <li>如选取的帧率为 30 FPS，则推算码率为上表码率乘以 1.5。</li>
+                            <li>如选取其余帧率，等比例推算即可。</li>
+                            <li>如设置的视频码率超出合理范围，SDK 会自动按照合理区间处理码率。</li>
+                        </ul></pd>
+                </plentry>
+            </parml>
+
+        </section></refbody>
+</reference>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setlogfilesize_ng">
+    <title><ph keyref="setLogFileSize"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置 SDK 输出的日志文件的大小。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setLogFileSize"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setLogFileSize(long fileSizeInKBytes);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLogFileSize:(NSUInteger)fileSizeInKBytes;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setLogFileSize(unsigned int fileSizeInKBytes) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int SetLogFileSize(uint fileSizeInKBytes);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="deprecated">
+            <dlentry>
+                <dt>弃用：</dt>
+                <dd>此方法已废弃，请改用 <xref keyref="create2"/> 中的 <codeph>logConfig</codeph> 参数设置日志文件大小。</dd>
+            </dlentry>
+            </dl>
+            <p>默认情况下，SDK 会生成 5 个 SDK 日志文件和 5 个 API 调用日志文件，规则如下：</p>
+            <ul id="logprinciple">
+                <li>SDK 日志文件的名称分别为：<codeph>agorasdk.log</codeph>、<codeph>agorasdk.1.log</codeph>、<codeph>agorasdk.2.log</codeph>、<codeph>agorasdk.3.log</codeph>、<codeph>agorasdk.4.log</codeph>。</li>
+                <li>API 调用日志文件的名称分别为：<codeph>agoraapi.log</codeph>、<codeph>agoraapi.1.log</codeph>、<codeph>agoraapi.2.log</codeph>、<codeph>agoraapi.3.log</codeph>、<codeph>agoraapi.4.log</codeph>。</li>
+                <li>每个 SDK 日志文件的默认大小为 1,024 KB；API 调用日志文件的默认大小为 2,048 KB。日志文件均为 UTF-8 编码。</li>
+                <li>最新的日志永远写在 <codeph>agorasdk.log</codeph> 和 <codeph>agoraapi.log</codeph> 中。</li>
+                <li>当 <codeph>agorasdk.log</codeph> 写满后，SDK 会按照以下顺序对日志文件进行操作：
+                    <ol>
+                    <li>删除 <codeph>agorasdk.4.log</codeph> 文件（如有）。</li>
+                    <li>将<codeph>agorasdk.3.log</codeph> 重命名为 <codeph>agorasdk.4.log</codeph>。</li>
+                    <li>将<codeph>agorasdk.2.log</codeph> 重命名为 <codeph>agorasdk.3.log</codeph>。</li>
+                    <li>将<codeph>agorasdk.1.log</codeph> 重命名为 <codeph>agorasdk.2.log</codeph>。</li>
+                    <li>新建 <codeph>agorasdk.log</codeph> 文件。</li>
+                    </ol></li>
+                <li><codeph>agoraapi.log</codeph> 文件的覆盖规则与 <codeph>agorasdk.log</codeph> 相同。</li>
+            </ul>
+            <note id="note_qwq_w2g_3qb">
+            <p>该方法仅用于设置 <codeph>agorasdk.log</codeph> 文件的大小，对<codeph>agoraapi.log</codeph>不生效。</p>
+            </note> </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt>fileSizeInKBytes</pt>
+                <pd>
+                    <p>单个 <codeph>agorasdk.log</codeph> 日志文件的大小，单位为 KB，取值范围为 [128,20480]，默认值为 1,024 KB。 如果你将 <codeph>fileSizeInKByte</codeph> 设为小于 128 KB，SDK 会自动调整到 128 KB；如果你将 <codeph>fileSizeInKByte</codeph> 设为大于 20,480 KB，SDK 会自动调整到 20,480 KB。</p>
+                </pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <ul id="ul_ahk_23f_3qb">
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。</li>
+            </ul> </section>
+    </refbody>
+</reference>

@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_audioframe">
+    <title><ph keyref="AudioFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc"><apiname keyref="AudioFrame"
+        /> 定义。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p props="rtc-ng" outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class AudioFrame {
+    public byte[] bytes;
+    public int sampleRataHz;
+    public int bytesPerSample;
+    public int channelNums;
+    public int samplesPerChannel;
+    public long timestamp;
+    @CalledByNative
+    public AudioFrame(byte[] bytes, int sampleRataHz, int bytesPerSample, int channelNums,
+        int samplesPerChannel, long timestamp) {
+      this.sampleRataHz = sampleRataHz;
+      this.bytesPerSample = bytesPerSample;
+      this.channelNums = channelNums;
+      this.samplesPerChannel = samplesPerChannel;
+      this.timestamp = timestamp;
+      this.bytes = bytes;
+    }
+    @CalledByNative
+    public byte[] getBytes() {
+      return bytes;
+    }
+    @CalledByNative
+    public int getBytesPerSample() {
+      return bytesPerSample;
+    }
+    @CalledByNative
+    public int getChannelNums() {
+      return channelNums;
+    }
+    @CalledByNative
+    public int getSampleRataHz() {
+      return sampleRataHz;
+    }
+    @CalledByNative
+    public int getSamplesPerChannel() {
+      return samplesPerChannel;
+    }
+    @CalledByNative
+    public long getTimestamp() {
+      return timestamp;
+    }
+    @Override
+    public String toString() {
+      return "AudioFrame{sampleRataHz=" + sampleRataHz + ", bytesPerSample=" + bytesPerSample
+          + ", channelNums=" + channelNums + ", samplesPerChannel=" + samplesPerChannel
+          + ", timestamp=" + timestamp + '}';
+    }
+  }
+  </codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">struct AudioFrame {
+    AUDIO_FRAME_TYPE type;
+    int samplesPerChannel;
+    agora::rtc::BYTES_PER_SAMPLE bytesPerSample;
+    int channels;
+    int samplesPerSec;
+    void* buffer;
+    int64_t renderTimeMs;
+    int avsync_type;
+    AudioFrame() : type(FRAME_TYPE_PCM16),
+                   samplesPerChannel(0),
+                   bytesPerSample(rtc::TWO_BYTES_PER_SAMPLE),
+                   channels(0),
+                   samplesPerSec(0),
+                   buffer(NULL),
+                   renderTimeMs(0),
+                   avsync_type(0) {}
+  };
+</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioFrame: NSObject
+ @property (assign, nonatomic) NSInteger samplesPerChannel;
+ @property (assign, nonatomic) NSInteger bytesPerSample;
+ @property (assign, nonatomic) NSInteger channels;
+ @property (assign, nonatomic) NSInteger samplesPerSec;
+ @property (strong, nonatomic) NSData* _Nullable buffer;
+ @property (assign, nonatomic) int64_t renderTimeMs;
+ @property (assign, nonatomic) NSInteger avSyncType;
+@end</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public AudioFrame(AUDIO_FRAME_TYPE type, int samplesPerChannel, int bytesPerSample, int channels, int samplesPerSec,
+            byte[] buffer, long renderTimeMs, int avsync_type)
+        {
+            this.type = type;
+            this.samplesPerChannel = samplesPerChannel;
+            this.bytesPerSample = bytesPerSample;
+            this.channels = channels;
+            this.samplesPerSec = samplesPerSec;
+            this.buffer = buffer;
+            this.renderTimeMs = renderTimeMs;
+            this.avsync_type = avsync_type;
+        }
+        public AUDIO_FRAME_TYPE type { set; get; }
+        public int samplesPerChannel { set; get; } 
+        public int bytesPerSample { set; get; } 
+        public int channels { set; get; } 
+        public int samplesPerSec { set; get; } 
+        public byte[] buffer { set; get; }
+        public long renderTimeMs { set; get; }
+        public int avsync_type { set; get; }
+    }</codeblock></p>
+            <p props="rtc" outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class AudioFrame {
+    public ByteBuffer samples;
+	public int numOfSamples;
+	public int bytesPerSample;
+	public int channels;
+	public int samplesPerSec;
+    public AudioFrame(ByteBuffer samples, int numOfSamples, int bytesPerSample, int channels, int samplesPerSec) {
+        this.samples = samples;
+        this.numOfSamples = numOfSamples;
+        this.bytesPerSample = bytesPerSample;
+        this.channels = channels;
+        this.samplesPerSec = samplesPerSec;
+    }
+    @Override
+    public String toString() {
+        return "AgoraAudioFrame{" +
+                "samples=" + samples +
+                ", numOfSamples=" + numOfSamples +
+                ", bytesPerSample=" + bytesPerSample +
+                ", channels=" + channels +
+                ", samplesPerSec=" + samplesPerSec +
+                '}';
+    }
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioFrame : NSObject
+@property(assign, nonatomic) NSInteger samplesPerChannel NS_SWIFT_NAME(samplesPerChannel);
+@property(assign, nonatomic) NSInteger bytesPerSample NS_SWIFT_NAME(bytesPerSample);
+@property(assign, nonatomic) NSInteger channels NS_SWIFT_NAME(channels);
+@property(assign, nonatomic) NSInteger samplesPerSec NS_SWIFT_NAME(samplesPerSec);
+@property(assign, nonatomic) void* _Nullable buffer NS_SWIFT_NAME(buffer);
+@property(assign, nonatomic) int64_t renderTimeMs NS_SWIFT_NAME(renderTimeMs);
+@property(assign, nonatomic) NSInteger avSyncType NS_SWIFT_NAME(avSyncType);
+</codeblock>
+            <codeblock props="cpp unity" outputclass="language-cpp">struct AudioFrame {
+    AUDIO_FRAME_TYPE type;
+    int samples;
+    int bytesPerSample;
+    int channels;
+    int samplesPerSec;
+    void* buffer;
+    int64_t renderTimeMs;
+    int avsync_type;
+    };</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="parameters">
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /> </title>
+            <parml>
+            <plentry props="cpp unity">
+                <pt>type</pt>
+                <pd>
+                    <p>音频帧类型，详见 <xref keyref="AUDIO_FRAME_TYPE"/>。</p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt props="rtc"><ph props="android">numOfSamples</ph><ph
+                    props="cpp unity">samples</ph><ph props="ios mac"
+                    >samplesPerChannel</ph></pt>
+                <pt props="rtc-ng">samplesPerChannel</pt>
+                <pd>每个声道的采样点数。</pd>
+            </plentry>
+            <plentry>
+                <pt>bytesPerSample</pt>
+                <pd>每个采样点的字节数: 对于 PCM 来说，一般使用 16 bit，即两个字节。</pd>
+            </plentry>
+            <plentry>
+                <pt props="rtc">channels</pt>
+                <pt props="rtc-ng"><ph props="cpp ios mac unity">channels</ph><ph
+                    props="android">channelNums</ph></pt>
+                <pd>
+                    <p>声道数量(如果是立体声，数据是交叉的)。
+                    
+                    <ul id="ul_zxz_2wt_r4b">
+                    <li>1: 单声道</li>
+                    <li>2: 双声道</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt props="rtc">samplesPerSec</pt>
+                <pt props="rtc-ng"><ph props="cpp ios mac unity">samplesPerSec</ph><ph props="android">sampleRataHz</ph></pt>
+                <pd>每声道每秒的采样点数。</pd>
+            </plentry>
+            <plentry>
+                <pt props="rtc-ng"><ph props="cpp ios mac unity">buffer</ph><ph
+                    props="android">bytes</ph></pt>
+                <pt props="rtc"><ph props="cpp unity">buffer</ph><ph
+                    props="android">samples</ph></pt>
+                <pd>
+                    <p>声音数据缓存区（如果是立体声，数据是交叉存储的）。</p>
+                    <p>缓存区数据大小 <codeph>buffer</codeph> = <codeph>samples</codeph> ×
+     <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>。</p>
+                </pd>
+            </plentry>
+            <plentry props="cpp unity ios mac">
+                <pt>renderTimeMs</pt>
+                <pd>
+                    <p>外部音频帧的渲染时间戳。</p>
+                    <p>你可以使用该时间戳还原音频帧顺序；在有视频的场景中（包含使用外部视频源的场景），该参数可以用于实现音视频同步。</p>
+                </pd>
+            </plentry>
+            <plentry props="ios mac cpp unity">
+                <pt><ph props="ios mac">avsyncType</ph><ph props="cpp unity"
+                    >avsync_type</ph></pt>
+                <pd>保留参数。</pd>
+            </plentry>
+            <plentry props="rtc-ng">
+                <pt props="android">timestamp</pt>
+                <pd props="android">音频帧的时间戳</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

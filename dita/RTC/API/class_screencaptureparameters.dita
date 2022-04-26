@@ -62,7 +62,7 @@
     return bitrate;
   }
 }</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">struct ScreenCaptureParameters {
+            <codeblock props="cpp" outputclass="language-cpp">struct ScreenCaptureParameters {
   VideoDimensions dimensions;
   int frameRate;
   int bitrate;
@@ -84,7 +84,7 @@
   ScreenCaptureParameters(int width, int height, int f, int b, bool cur, bool fcs, view_t *ex, int cnt)
     : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(cur), windowFocus(fcs), excludeWindowList(ex), excludeWindowCount(cnt) {}
 };</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class ScreenCaptureParameters
+            <codeblock props="cs" outputclass="language-csharp">public class ScreenCaptureParameters
     {
         public ScreenCaptureParameters()
         {
@@ -144,7 +144,7 @@
 
 @end</codeblock>
             <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="windows unity" outputclass="language-cpp">struct ScreenCaptureParameters {
+            <codeblock props="cpp cs" outputclass="language-cpp">struct ScreenCaptureParameters {
     VideoDimensions dimensions;
     int frameRate;
     int bitrate;
@@ -205,10 +205,10 @@
             /></title>
             <parml>
             <plentry>
-                <pt props="ios mac windows unity flutter">dimensions</pt>
+                <pt props="ios mac cpp cs flutter">dimensions</pt>
                 <pt props="android">videoDimensions</pt>
                 <pd>
-                    <p>编码共享视频的最大像素值。<ph props="android windows">详见 <xref
+                    <p>编码共享视频的最大像素值。<ph props="android cpp">详见 <xref
                     keyref="VideoDimensions"
                     />。默认值为 1920 × 1080，即 2073600 像素。该像素值为计费标准。</ph></p>
                     <p>当共享的屏幕分辨率宽高比与该值设置不一致时，SDK 按如下策略进行编码。假设 <codeph>dimensions</codeph> 设为 1920 × 1080：
@@ -243,8 +243,8 @@
                 </pd>
             </plentry>
             <plentry props="rtc-ng">
-                <pt props="windows unity">captureMouseCursor</pt>
-                <pd props="windows unity">
+                <pt props="cpp cs">captureMouseCursor</pt>
+                <pd props="cpp cs">
                     <p>是否采集鼠标用于屏幕共享：
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>:（默认）采集鼠标。</li>
@@ -269,8 +269,8 @@
                 </pd>
             </plentry>
             <plentry props="rtc-ng">
-                <pt props="windows unity">windowFocus</pt>
-                <pd props="windows unity">
+                <pt props="cpp cs">windowFocus</pt>
+                <pd props="cpp cs">
                     <p>调用 <xref keyref="startScreenCaptureByWindowId"/> 方法共享窗口时，是否将该窗口前置：
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 前置窗口。</li>
@@ -295,8 +295,8 @@
                 </pd>
             </plentry>
             <plentry props="rtc-ng">
-                <pt props="windows unity">excludeWindowList</pt>
-                <pd props="windows unity">
+                <pt props="cpp cs">excludeWindowList</pt>
+                <pd props="cpp cs">
                     <p>待屏蔽窗口的 ID 列表。调用 <xref
                     keyref="startScreenCaptureByScreenRect"
                     />开启屏幕共享时，你可以通过该参数屏蔽指定的窗口。你可以在调用 <xref
@@ -304,7 +304,7 @@
                     /> 更新屏幕共享的配置参数时，通过该参数动态屏蔽指定的窗口。</p>
                 </pd>
             </plentry>
-            <plentry props="windows unity electron">
+            <plentry props="cpp cs electron">
                 <pt>excludeWindowCount</pt>
                 <pd>
                     <dl outputclass="since" props="rtc">

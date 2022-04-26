@@ -14,7 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine facePositionDidChangeWidth:(int)width previewHeight:(int)height faces:(NSArray&lt;AgoraFacePositionInfo*>* _Nullable)faces NS_SWIFT_NAME(rtcEngine(_:facePositionDidChangeWidth:previewHeight:faces:));</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">virtual void onFacePositionChanged(int imageWidth, int imageHeight,
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onFacePositionChanged(int imageWidth, int imageHeight,
                 const Rectangle* vecRectangle, const int* vecDistance,
                 int numFaces) {
                 (void) imageWidth;
@@ -23,10 +23,10 @@
                 (void) vecDistance;
                 (void) numFaces;
                 }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnFacePositionChanged(int imageWidth, int imageHeight, Rectangle vecRectangle, int[] vecDistance, int numFaces) {}</codeblock></p>
+            <codeblock props="cs" outputclass="language-csharp">public virtual void OnFacePositionChanged(int imageWidth, int imageHeight, Rectangle vecRectangle, int[] vecDistance, int numFaces) {}</codeblock></p>
             <p outputclass="codeblock" props="rtc">
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine facePositionDidChangeWidth:(int)width previewHeight:(int)height faces:(NSArray&lt;AgoraFacePositionInfo*&gt;* _Nullable)faces;</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">virtual void onFacePositionChanged(int imageWidth,
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onFacePositionChanged(int imageWidth,
                 int imageHeight,
                 Rectangle* vecRectangle,
                 int* vecDistance,
@@ -38,7 +38,7 @@
                 (void)numFaces;
                 }</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnFacePositionChanged(int imageWidth, int imageHeight, Rectangle vecRectangle,
+            <codeblock props="cs" outputclass="language-csharp">public virtual void OnFacePositionChanged(int imageWidth, int imageHeight, Rectangle vecRectangle,
             int[] vecDistance, int numFaces)</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">FacePositionCallback? facePositionChanged;</codeblock>
@@ -65,10 +65,10 @@
             <p>其中，人脸距设备屏幕的距离由 SDK 通过摄像头采集的画面大小和人脸在画面中的位置拟合计算得出。</p>
             <note type="attention">
             <ul>
-            <li props="windows unity flutter">该回调仅适用于 Android 和 iOS 平台。</li>
+            <li props="cpp cs flutter">该回调仅适用于 Android 和 iOS 平台。</li>
             <li>当检测到摄像头前的人脸消失时，该回调会立刻触发；在无人脸的状态下，该回调触发频率会降低，以节省设备耗能。</li>
             <li>当人脸距离设备屏幕过近时，SDK 不会触发该回调。</li>
-            <li props="windows android flutter">Android 平台上，人脸距设备屏幕的距离（<parmname>distance</parmname>）值有一定误差，请不要用它进行精确计算。</li>
+            <li props="cpp android flutter">Android 平台上，人脸距设备屏幕的距离（<parmname>distance</parmname>）值有一定误差，请不要用它进行精确计算。</li>
             </ul> </note> </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
@@ -79,12 +79,12 @@
                 <pd/>
             </plentry>
             <plentry>
-                <pt props="android windows">imageWidth</pt>
+                <pt props="android cpp">imageWidth</pt>
                 <pt props="ios mac">width</pt>
                 <pd>摄像头采集画面的宽度 (px)。</pd>
             </plentry>
             <plentry>
-                <pt props="android windows">imageHeight</pt>
+                <pt props="android cpp">imageHeight</pt>
                 <pt props="ios mac">hight</pt>
                 <pd>摄像头采集画面的高度 (px)。</pd>
             </plentry>
@@ -93,7 +93,7 @@
                 <pt props="flutter ios mac">faces</pt>
                 <pd>检测到的人脸信息，详见 <xref keyref="AgoraFacePositionInfo"/>。检测到几张人脸，就会报告几个 <apiname keyref="AgoraFacePositionInfo" /> 数组。数组长度可以为 0，表示没有检测到摄像头前出现人脸。</pd>
             </plentry>
-            <plentry props="windows unity">
+            <plentry props="cpp cs">
                 <pt>vecRectangle</pt>
                 <pd>
                     <p>检测到的人脸信息：
@@ -105,11 +105,11 @@
                     </ul> </p>
                 </pd>
             </plentry>
-            <plentry props="windows unity">
+            <plentry props="cpp cs">
                 <pt>vecDistance</pt>
                 <pd>人脸距设备屏幕的距离 (cm)。</pd>
             </plentry>
-            <plentry props="windows unity">
+            <plentry props="cpp cs">
                 <pt>numFaces</pt>
                 <pd>检测的人脸数量。如果为 0，则表示没有检测到人脸。</pd>
             </plentry>

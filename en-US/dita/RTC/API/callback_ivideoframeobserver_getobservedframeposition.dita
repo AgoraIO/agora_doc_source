@@ -15,17 +15,17 @@
             <p outputclass="codeblock" props="rtc-ng">
             <codeblock props="android" outputclass="language-java">int getObservedFramePosition();</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (unsigned int)getObservedFramePosition;</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">virtual uint32_t getObservedFramePosition() {
+            <codeblock props="cpp" outputclass="language-cpp">virtual uint32_t getObservedFramePosition() {
                 return base::POSITION_POST_CAPTURER | base::POSITION_PRE_RENDERER;
                 }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp"/> </p>
+            <codeblock props="cs" outputclass="language-csharp"/> </p>
             <p outputclass="codeblock" props="rtc">
             <codeblock props="android" outputclass="language-java"/>
             <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="windows" outputclass="language-cpp">virtual uint32_t getObservedFramePosition() { return static_cast&lt;uint32_t&gt;(POSITION_POST_CAPTURER | POSITION_PRE_RENDERER); }</codeblock> </p>
+            <codeblock props="cpp" outputclass="language-cpp">virtual uint32_t getObservedFramePosition() { return static_cast&lt;uint32_t&gt;(POSITION_POST_CAPTURER | POSITION_PRE_RENDERER); }</codeblock> </p>
             <p outputclass="codeblock">
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public virtual VIDEO_OBSERVER_POSITION GetObservedFramePosition()
+            <codeblock props="cs" outputclass="language-csharp">public virtual VIDEO_OBSERVER_POSITION GetObservedFramePosition()
         {
             return VIDEO_OBSERVER_POSITION.POSITION_POST_CAPTURER | VIDEO_OBSERVER_POSITION.POSITION_PRE_RENDERER;
         }</codeblock>
@@ -54,7 +54,7 @@
             </ul> </note> </section>
         <section id="return_values">
             <title>Returns</title>
-            <p props="windows">A bit mask that controls the frame position of the video observer. See <xref keyref="VIDEO_OBSERVER_POSITION"/> for details.</p>
+            <p props="cpp">A bit mask that controls the frame position of the video observer. See <xref keyref="VIDEO_OBSERVER_POSITION"/> for details.</p>
             <p props="ios mac">A bit mask that controls the frame position of the video observer. <ph props="rtc">See <xref keyref="VIDEO_OBSERVER_POSITION"/>.</ph><ul props="rtc-ng">
                 <li>(1 &lt;&lt; 0) : The position after capturing the video data, which corresponds to the <apiname keyref="onCaptureVideoFrame"/> callback.</li>
                 <li>(1 &lt;&lt; 1): The position before receiving the remote video data, which corresponds to the <apiname keyref="onRenderVideoFrame"/> callback.</li>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_idirectcdnstreamingeventhandler_ondirectcdnstreamingstats">
+    <title><ph keyref="onDirectCdnStreamingStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Reports the CDN streaming statistics.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onDirectCdnStreamingStats"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">void onDirectCdnStreamingStats(DirectCdnStreamingStats stats);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)onDirectCdnStreamingStats:(AgoraDirectCdnStreamStats *_Nonnull)stats;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onDirectCdnStreamingStats(const DirectCdnStreamStats&amp; stats)  {
+  (void)stats;
+};</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <p>When the host directly pushes streams to the CDN, the SDK triggers this callback every one second.</p>
+        </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <parml>
+                <plentry>
+                    <pt>stats</pt>
+                    <pd>The statistics of the current CDN streaming. See <xref keyref="DirectCdnStreamingStats"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

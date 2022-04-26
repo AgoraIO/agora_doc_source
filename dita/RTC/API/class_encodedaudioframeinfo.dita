@@ -13,7 +13,7 @@
  @property (assign, nonatomic) NSInteger samplesPerSec;
  @property (assign, nonatomic) AgoraAudioCodecType codecType;
 @end</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">struct EncodedAudioFrameInfo {
+            <codeblock props="cpp" outputclass="language-cpp">struct EncodedAudioFrameInfo {
   EncodedAudioFrameInfo()
       : codec(AUDIO_CODEC_AACLC),
         sampleRateHz(0),
@@ -32,7 +32,7 @@
   EncodedAudioFrameAdvancedSettings advancedSettings;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public class EncodedAudioFrameInfo
+            <codeblock props="cs" outputclass="language-csharp">public class EncodedAudioFrameInfo
     {
         public EncodedAudioFrameInfo()
         {
@@ -66,12 +66,12 @@
             /></title>
             <parml>
             <plentry>
-                <pt props="windows unity">codec</pt>
+                <pt props="cpp cs">codec</pt>
                 <pt props="ios mac">codecType</pt>
                 <pd>音频编码规格: <xref keyref="AUDIO_CODEC_TYPE"/>。</pd>
             </plentry>
             <plentry>
-                <pt props="windows unity">sampleRateHz</pt>
+                <pt props="cpp cs">sampleRateHz</pt>
                 <pt props="ios mac">samplesPerSec</pt>
                 <pd>音频采样率 (Hz)。</pd>
             </plentry>
@@ -80,11 +80,11 @@
                 <pd>每个声道的音频采样数。</pd>
             </plentry>
             <plentry>
-                <pt props="windows unity">numberOfChannels</pt>
+                <pt props="cpp cs">numberOfChannels</pt>
                 <pt props="ios mac">channels</pt>
                 <pd>声道数。</pd>
             </plentry>
-            <plentry props="windows unity">
+            <plentry props="cpp cs">
                 <pt>advancedSettings</pt>
                 <pd>该功能暂不支持。</pd>
             </plentry>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_screencaptureconfiguration">
+    <title><ph keyref="ScreenCaptureConfiguration" /></title>
+    <shortdesc id="short"><ph id="shortdesc">The configuration of the captured screen.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="cpp" outputclass="language-cpp">struct ScreenCaptureConfiguration {
+  bool isCaptureWindow;
+  uint32_t displayId;
+  Rectangle screenRect;
+  view_t windowId;
+  ScreenCaptureParameters params;
+  Rectangle regionRect;
+
+  ScreenCaptureConfiguration() : isCaptureWindow(false), displayId(0) {}
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp">public class ScreenCaptureConfiguration {
+        public bool isCaptureWindow { set; get; }
+        public uint displayId { set; get; }
+        public Rectangle screenRect { set; get; }
+        public uint windowId { set; get; }
+        public ScreenCaptureParameters parameters { set; get; }
+        public Rectangle regionRect { set; get; }
+    }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <parml>
+                <plentry>
+                    <pt>isCaptureWindow</pt>
+                    <pd>Whether to capture the window on the screen:<ul id="ul_ln3_hwd_mqb">
+                        <li><codeph><ph keyref="true" /></codeph>: Capture the window.</li>
+                        <li><codeph><ph keyref="false" /></codeph>: (Default) Capture the screen, not the window.</li>
+                        </ul></pd>
+                </plentry>
+                <plentry>
+                    <pt>displayId</pt>
+                    <pd>(macOS only) The display ID of the screen.<note id="note_w12_4wd_mqb" type="attention">This parameter takes effect
+                            only when you want to capture the screen on macOS.</note></pd>
+                </plentry>
+                <plentry>
+                    <pt>screenRect</pt>
+                    <pd>(Windows only) The relative position of the shared screen to the virtual screen.<note type="attention" id="note_ifh_swd_mqb">This parameter takes effect only when you want to capture the screen on Windows.</note></pd>
+                </plentry>
+                <plentry>
+                    <pt>windowId</pt>
+                    <pd>(For Windows and macOS only)<note type="attention">This parameter takes effect only when you want to capture the window.</note></pd>
+                </plentry>
+                <plentry>
+                    <pt>params</pt>
+                    <pd>(For Windows and macOS only) The screen capture configuration. For details, see <xref keyref="ScreenCaptureParameters" />.</pd>
+                </plentry>
+                <plentry>
+                    <pt>regionRect</pt>
+                    <pd><p>(For Windows and macOS only) The relative position of the shared region to the whole screen. For details, see <xref keyref="Rectangle" />.</p><p>If you do not set this parameter, the SDK shares the whole screen. If the region you set exceeds the boundary of the screen, only the region within in the screen is shared.  If you set width or height in <apiname keyref="Rectangle" />
+                            as 0, the whole screen is shared.</p></pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

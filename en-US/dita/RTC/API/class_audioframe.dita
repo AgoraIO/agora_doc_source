@@ -55,7 +55,7 @@
     }
   }
   </codeblock>
-            <codeblock props="windows" outputclass="language-cpp">struct AudioFrame {
+            <codeblock props="cpp" outputclass="language-cpp">struct AudioFrame {
     AUDIO_FRAME_TYPE type;
     int samplesPerChannel;
     agora::rtc::BYTES_PER_SAMPLE bytesPerSample;
@@ -83,7 +83,7 @@
  @property (assign, nonatomic) int64_t renderTimeMs;
  @property (assign, nonatomic) NSInteger avSyncType;
 @end</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public AudioFrame(AUDIO_FRAME_TYPE type, int samplesPerChannel, int bytesPerSample, int channels, int samplesPerSec,
+            <codeblock props="cs" outputclass="language-csharp">public AudioFrame(AUDIO_FRAME_TYPE type, int samplesPerChannel, int bytesPerSample, int channels, int samplesPerSec,
             byte[] buffer, long renderTimeMs, int avsync_type)
         {
             this.type = type;
@@ -138,7 +138,7 @@
 @property(assign, nonatomic) int64_t renderTimeMs NS_SWIFT_NAME(renderTimeMs);
 @property(assign, nonatomic) NSInteger avSyncType NS_SWIFT_NAME(avSyncType);
 </codeblock>
-            <codeblock props="windows unity" outputclass="language-cpp">struct AudioFrame {
+            <codeblock props="cpp cs" outputclass="language-cpp">struct AudioFrame {
     AUDIO_FRAME_TYPE type;
     int samples;
     int bytesPerSample;
@@ -156,14 +156,14 @@
    <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" />
    </title>
    <parml>
-       <plentry props="windows unity">
+       <plentry props="cpp cs">
   <pt>type</pt>
   <pd>
       <p>The type of the audio frame. See <xref keyref="AUDIO_FRAME_TYPE" />.</p>
       </pd>
        </plentry>
        <plentry>
-                    <pt props="rtc"><ph props="android">numOfSamples</ph><ph props="windows unity">samples</ph><ph props="ios mac">samplesPerChannel</ph></pt>
+                    <pt props="rtc"><ph props="android">numOfSamples</ph><ph props="cpp cs">samples</ph><ph props="ios mac">samplesPerChannel</ph></pt>
                     <pt props="rtc-ng">samplesPerChannel</pt>
                     <pd>The number of samples per channel in the audio frame.</pd>
                 </plentry>
@@ -173,7 +173,7 @@
        </plentry>
        <plentry>
   <pt props="rtc">channels</pt>
-  <pt props="rtc-ng"><ph props="windows ios mac">channels</ph><ph props="android">channelNums</ph></pt>
+  <pt props="rtc-ng"><ph props="cpp ios mac">channels</ph><ph props="android">channelNums</ph></pt>
   <pd>
       <p>The number of audio channels (the data are interleaved if stereo).<ul id="ul_zxz_2wt_r4b">
      <li>1: Mono.</li>
@@ -183,27 +183,27 @@
        </plentry>
        <plentry>
            <pt props="rtc">samplesPerSec</pt>
-           <pt props="rtc-ng"><ph props="windows ios mac">samplesPerSec</ph><ph props="android">sampleRataHz</ph></pt>
+           <pt props="rtc-ng"><ph props="cpp ios mac">samplesPerSec</ph><ph props="android">sampleRataHz</ph></pt>
   <pd>The number of samples per channel in the audio frame.</pd>
        </plentry>
        <plentry>
-   <pt props="rtc-ng"><ph props="windows ios mac">buffer</ph><ph props="android">bytes</ph></pt>
-  <pt props="rtc"><ph props="windows unity">buffer</ph><ph props="android">samples</ph></pt>
+   <pt props="rtc-ng"><ph props="cpp ios mac">buffer</ph><ph props="android">bytes</ph></pt>
+  <pt props="rtc"><ph props="cpp cs">buffer</ph><ph props="android">samples</ph></pt>
   <pd>
       <p>The data buffer of the audio frame. When the audio frame uses a stereo channel, the data buffer is interleaved.</p>
       <p>Buffer data size: <codeph>buffer</codeph> = <codeph>samples</codeph> ×
 <codeph>     channels</codeph> × <codeph>bytesPerSample</codeph>.</p>
   </pd>
        </plentry>
-       <plentry props="windows unity ios mac">
+       <plentry props="cpp cs ios mac">
   <pt>renderTimeMs</pt>
   <pd>
       <p>The timestamp (ms) of the external audio frame.</p>
       <p>You can use this timestamp to restore the order of the captured audio frame, and synchronize audio and video frames in video scenarios, including scenarios where external video sources are used.</p>
   </pd>
        </plentry>
-       <plentry props="ios mac windows unity">
-           <pt><ph props="ios mac">avsyncType</ph><ph props="windows unity">avsync_type</ph></pt>
+       <plentry props="ios mac cpp cs">
+           <pt><ph props="ios mac">avsyncType</ph><ph props="cpp cs">avsync_type</ph></pt>
                     <pd>A reserved parameter.</pd>
                 </plentry>
         <plentry props="rtc-ng">

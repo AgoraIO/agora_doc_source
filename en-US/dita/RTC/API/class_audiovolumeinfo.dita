@@ -18,14 +18,14 @@
 @property(assign, nonatomic) NSUInteger vad;
 @property (assign, nonatomic) double voicePitch;
 @end</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">struct AudioVolumeInfo {
+            <codeblock props="cpp" outputclass="language-cpp">struct AudioVolumeInfo {
                     uid_t uid;
                     unsigned int volume;
                     unsigned int vad;
                     double voicePitch;
                     AudioVolumeInfo() : uid(0), volume(0), vad(0), voicePitch(0.0) {}
                     };</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class AudioVolumeInfo
+            <codeblock props="cs" outputclass="language-csharp">public class AudioVolumeInfo
     {
         public AudioVolumeInfo()
         {
@@ -58,7 +58,7 @@
 @property(assign, nonatomic) NSUInteger vad;
 @property(copy, nonatomic) NSString* channelId;
 </codeblock>
-            <codeblock props="windows unity" outputclass="language-cpp">struct AudioVolumeInfo {
+            <codeblock props="cpp cs" outputclass="language-cpp">struct AudioVolumeInfo {
     uid_t uid;
     unsigned int volume;
     unsigned int vad;
@@ -119,7 +119,7 @@
                     <note type="attention">
                     <ul>
                     <li>The <parmname>vad</parmname> parameter does not report the voice activity status of remote users. In the remote users' callback, the value of <parmname>vad</parmname> is always 0.</li>
-                    <li props="rtc">To use this parameter, you must set <parmname props="ios mac windows android electron">report_vad</parmname><parmname props="unity">reportVad</parmname> to <codeph><ph keyref="true" /></codeph> when calling <xref keyref="enableAudioVolumeIndication" />.</li>
+                    <li props="rtc">To use this parameter, you must set <parmname props="ios mac cpp android electron">report_vad</parmname><parmname props="cs">reportVad</parmname> to <codeph><ph keyref="true" /></codeph> when calling <xref keyref="enableAudioVolumeIndication" />.</li>
                     <li props="rtc-ng">To use this parameter, you must set <parmname>reportVad</parmname> to <codeph><ph keyref="true" /></codeph> when calling <xref keyref="enableAudioVolumeIndication" />.</li>
                     </ul> </note> </pd>
             </plentry>

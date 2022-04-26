@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_cameracapturerconfiguration_ng">
+    <title><ph keyref="CameraCapturerConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc">摄像头采集配置。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class CameraCapturerConfiguration {
+  public enum CAMERA_DIRECTION {
+    CAMERA_REAR(0),
+    CAMERA_FRONT(1);
+  }
+  public CAMERA_DIRECTION cameraDirection;
+  static public class CaptureFormat {
+    public int width;
+    public int height;
+    public int fps;
+  }
+  public CaptureFormat captureFormat;
+}</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">struct CameraCapturerConfiguration {
+  CAMERA_DIRECTION cameraDirection;
+  char deviceId[MAX_DEVICE_ID_LENGTH];
+  VideoFormat format;
+};</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraCameraCapturerConfiguration: NSObject
+@property (assign, nonatomic) AgoraCameraDirection cameraDirection;
+@end</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class CameraCapturerConfiguration
+    {
+        public CameraCapturerConfiguration()
+        {
+            cameraDirection = null;
+        }
+
+        public CameraCapturerConfiguration(string deviceId, VideoFormat format,
+            CAMERA_DIRECTION? cameraDirection = null)
+        {
+            this.deviceId = deviceId;
+            this.format = format;
+            this.cameraDirection = cameraDirection;
+        }
+
+        public string deviceId { set; get; }
+        public VideoFormat format { set; get; }
+        public CAMERA_DIRECTION? cameraDirection { set; get; }
+    }</codeblock></p>
+        </section>
+        <section id="parameters">
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
+            <parml>
+            <plentry>
+                <pt>cameraDirection</pt>
+                <pd>
+                    <note type="attention" props="cpp unity"
+                    >该参数仅适用于 Android 和 iOS 平台。</note>摄像头方向设置。<ph
+                    props="ios cpp android">详见 <xref
+                    keyref="CAMERA_DIRECTION"/>。</ph></pd>
+            </plentry>
+            <plentry props="cpp android unity">
+                <pt props="cpp unity">format</pt>
+                <pt props="android">captureFormat</pt>
+                <pd>详见 <xref keyref="VideoFormat"/>。</pd>
+            </plentry>
+            <plentry props="cpp unity">
+                <pt>deviceId</pt>
+                <pd>播放设备的设备 ID。<ph props="cpp">最大长度为 <xref
+                    keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</ph></pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>
