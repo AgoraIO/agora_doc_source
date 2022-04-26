@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_gameoptions">
     <title><ph keyref="GameOptions"/></title>
-    <shortdesc id="short"><ph id="shortdesc">加载游戏所需要的参数。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">游戏参数。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -21,7 +21,7 @@
     private final String options;                           
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="windows" outputclass="language-cpp"/>
+            <codeblock props="cpp" outputclass="language-cpp"/>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
@@ -37,30 +37,34 @@
             <parml>
             <plentry>
                 <pt>gameId</pt>
-                <pd>待加载的游戏 ID。该参数通过 <xref keyref="getOption"/> 回调获取。</pd>
+                <pd>待加载的游戏 ID。通过 <codeph><xref keyref="getOption"/>("<apiname
+                        keyref="GET_GAME_LIST"/>")</codeph> 获取。</pd>
             </plentry>
             <plentry>
                 <pt>roomId</pt>
-                <pd>房间 ID。同一局游戏内，该参数唯一。如果需要参与或者观看同一局游戏，需要使用同一个 roomId。</pd>
+                <pd>房间 ID。同一局游戏内，该参数唯一。当多个用户使用相同 roomId 加入游戏时，会进入同一个房间。</pd>
             </plentry>
             <plentry>
                 <pt>userId</pt>
-                <pd>用户 ID。在同一局游戏内，该参数唯一，用于区分不同的用户。</pd>
+                <pd>用户 ID。用于在游戏中区分不同的用户。在同一局游戏内，该参数必须唯一，否则会影响断线、重新加入等逻辑。</pd>
             </plentry>
             <plentry>
                 <pt>role</pt>
-                <pd>用户在游戏中的角色。
-                        
+                <pd>用户在游戏中的角色。 
                     
                     <ul>
-                    <li>1：该局游戏的房主。同一局游戏中只能有一个房主。</li>
-                    <li>2：玩家。</li>
-                    <li>3：观众。</li>
+                    <li><parmname>1</parmname>：该局游戏的房主。同一局游戏中只能有一个房主。</li>
+                    <li><parmname>2</parmname>：玩家。</li>
+                    <li><parmname>3</parmname>：观众。</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>language</pt>
-                <pd>游戏语言。取值为 <q>zh-CN</q> (中文) 或 <q>en</q> (英文)。</pd>
+                <pd>游戏语言。取值如下：
+                        <ul>
+                        <li><parmname>zh-CN</parmname>：中文简体</li>
+                        <li><parmname>en</parmname>：英文</li>
+                        </ul></pd>
             </plentry>
             <plentry>
                 <pt>options</pt>
@@ -75,69 +79,67 @@
                         <stentry><parmname>name</parmname></stentry>
                         <stentry>是</stentry>
                         <stentry>string</stentry>
-                        <stentry>用户昵称</stentry>
+                        <stentry>用户昵称。</stentry>
                     </strow>
                     <strow>
                         <stentry><parmname>avatar</parmname></stentry>
                         <stentry>是</stentry>
                         <stentry>string</stentry>
-                        <stentry>用户头像</stentry>
+                        <stentry>用户头像。</stentry>
                     </strow>
                     <strow>
                         <stentry><parmname>avatar_type</parmname></stentry>
                         <stentry>否</stentry>
                         <stentry>number</stentry>
-                        <stentry>观众在游戏中形象类型
-                                
-                            
-                            <ul>
-                            <li>0：无头像昵称(默认)</li>
-                            <li>1：有昵称无头像</li>
-                            <li>2：有昵称有头像</li>
-                            <li>3：无昵称有头像</li>
-                            </ul></stentry>
+                        <stentry>观众在游戏中形象类型 ：
+                                <ul>
+                                <li>0：无头像昵称（默认）</li>
+                                <li>1：有昵称无头像</li>
+                                <li>2：有昵称有头像</li>
+                                <li>3：无昵称有头像</li>
+                                </ul></stentry>
                     </strow>
                     <strow>
                         <stentry><parmname>to_user</parmname></stentry>
                         <stentry>是</stentry>
                         <stentry>string</stentry>
-                        <stentry>王国激战观众加入对应阵营的主播 id <b>（只有观众需要填写）</b></stentry>
+                        <stentry>王国激战观众加入对应阵营的主播 ID（只有观众需要填写）。</stentry>
                     </strow>
                     <strow>
                         <stentry><parmname>left</parmname></stentry>
                         <stentry>否</stentry>
                         <stentry>number</stentry>
-                        <stentry>单位像素, 游戏内容左侧距离</stentry>
+                        <stentry>游戏内容左侧距离。单位为像素。</stentry>
                     </strow>
                     <strow>
                         <stentry><parmname>right</parmname></stentry>
                         <stentry>否</stentry>
                         <stentry>number</stentry>
-                        <stentry>单位像素, 游戏内容左侧距离</stentry>
+                        <stentry>游戏内容左侧距离。单位为像素。</stentry>
                     </strow>
                     <strow>
                         <stentry><parmname>top</parmname></stentry>
                         <stentry>否</stentry>
                         <stentry>number</stentry>
-                        <stentry>单位像素, 游戏内容顶部距离</stentry>
+                        <stentry>游戏内容顶部距离。单位为像素。</stentry>
                     </strow>
                     <strow>
                         <stentry><parmname>bottom</parmname></stentry>
                         <stentry>否</stentry>
                         <stentry>number</stentry>
-                        <stentry>单位像素, 游戏底部距离</stentry>
+                        <stentry>游戏底部距离。单位为像素。</stentry>
                     </strow>
                     <strow>
                         <stentry><parmname>level</parmname></stentry>
                         <stentry>否</stentry>
                         <stentry>number</stentry>
-                        <stentry>用户等级（保留字段）</stentry>
+                        <stentry>用户等级（保留字段）。</stentry>
                     </strow>
                     <strow>
                         <stentry><parmname>time_limit</parmname></stentry>
                         <stentry>否</stentry>
                         <stentry>number</stentry>
-                        <stentry>一局游戏的时间限制, 单位为秒, 默认值为 300</stentry>
+                        <stentry>一局游戏的时间限制, 单位为秒, 默认值为 300。</stentry>
                     </strow>
                     <strow>
                         <stentry><parmname>show_join</parmname></stentry>
@@ -145,7 +147,7 @@
                         <stentry>number</stentry>
                         <stentry>
                             <ul>
-                            <li>0：不显示游戏加入按钮(默认)</li>
+                            <li>0：不显示游戏加入按钮（默认）</li>
                             <li>1：显示游戏加入按钮</li>
                             </ul> </stentry>
                     </strow>
@@ -155,7 +157,7 @@
                         <stentry>number</stentry>
                         <stentry>
                             <ul>
-                            <li>0：不显示游戏准备按钮(默认)</li>
+                            <li>0：不显示游戏准备按钮（默认）</li>
                             <li>1：显示游戏准备按钮</li>
                             </ul> </stentry>
                     </strow>
@@ -165,7 +167,7 @@
                         <stentry>number</stentry>
                         <stentry>
                             <ul>
-                            <li>0：不显示游戏开始按钮(默认)</li>
+                            <li>0：不显示游戏开始按钮（默认）</li>
                             <li>1：显示游戏开始按钮</li>
                             </ul> </stentry>
                     </strow>
@@ -175,7 +177,7 @@
                         <stentry>number</stentry>
                         <stentry>
                             <ul>
-                            <li>0：不显示踢人按钮(默认)</li>
+                            <li>0：不显示踢人按钮（默认）</li>
                             <li>1：显示踢人按钮</li>
                             </ul> </stentry>
                     </strow>

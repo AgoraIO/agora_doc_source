@@ -17,21 +17,14 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)onMessage:(NSString *)messageId message:(NSString *)message;
 </codeblock>
-            <codeblock props="windows" outputclass="language-cpp"/>
+            <codeblock props="cpp" outputclass="language-cpp"/>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p>当游戏、房主、玩家、观众的状态发生变化时，会触发该回调。包括以下情况：
-                <ul>
-                <li>成功调用 <xref keyref="loadGame"/> 后，上报游戏加载完毕。</li>
-                <li>用户加入/离开房间时，上报用户当前的状态。</li>
-                <li>用户加入房间后，上报游戏房间信息，包括本局游戏时长、礼物效果列表等。</li>
-                <li>用户准备/取消准备时，上报用户当前状态。</li>
-                <li>房主开始/结束每局游戏，或用户离开本局游戏时，上报该事件。</li>
-                </ul></p>
+            <p>当游戏、房主、玩家、观众的状态发生变化时，会触发该回调。</p>
         </section>
         <section id="parameters">
             <title>参数</title>
@@ -42,7 +35,146 @@
             </plentry>
             <plentry>
                 <pt>message</pt>
-                <pd>事件，为 json 字符串格式。</pd>
+                <pd>事件详情，为 json 字符串格式。 常见事件场景以及参数解释如下：<table colsep="1" rowsep="1" frame="all">
+                        <tgroup cols="4" align="left">
+                            <colspec colname="c1" colnum="1" align="left" colwidth="1.06*"/>
+                            <colspec colname="c2" colnum="2" colwidth="1.05*"/>
+                            <colspec colname="c3" colnum="3" colwidth="1*"/>
+                            <colspec colname="c4" colnum="4" colwidth="1.76*"/>
+                            <thead>
+                                <row valign="middle">
+                                    <entry>事件场景</entry>
+                                    <entry>参数名</entry>
+                                    <entry>类型</entry>
+                                    <entry>说明</entry>
+                                </row>
+                            </thead>
+                            <tbody>
+                                <row>
+                                    <entry>游戏加载完毕</entry>
+                                    <entry><parmname>state</parmname></entry>
+                                    <entry>string</entry>
+                                    <entry/>
+                                </row>
+                                <row>
+                                    <entry morerows="1">用户加入房间</entry>
+                                    <entry><parmname>limit_time</parmname></entry>
+                                    <entry>
+                                        <p>number</p>
+                                    </entry>
+                                    <entry>
+                                        <p>单局游戏时长（单位：秒）</p>
+                                    </entry>
+                                </row>
+                                <row>
+                                    <entry><parmname>gift_info</parmname>
+                                        <ul>
+                                        <li><parmname>key</parmname></li>
+                                        <li><parmname>value</parmname></li>
+                                        </ul></entry>
+                                    <entry>
+                                        <p>object 
+                                            <ul>
+                                            <li>string</li>
+                                            <li>string</li>
+                                            </ul></p>
+                                    </entry>
+                                    <entry>
+                                        <p>礼物效果列表 
+                                            <ul>
+                                            <li>发送礼物的 <parmname>giftCost</parmname></li>
+                                            <li>礼物效果明细</li>
+                                            </ul></p>
+                                    </entry>
+                                </row>
+                                <row>
+                                    <entry morerows="4">用户加入/离开房间</entry>
+                                    <entry><parmname>userId</parmname></entry>
+                                    <entry>string</entry>
+                                    <entry>用户 ID</entry>
+                                </row>
+                                <row>
+                                    <entry><parmname>isIn</parmname></entry>
+                                    <entry>bool</entry>
+                                    <entry>
+                                        <ul>
+                                            <li><codeph><ph keyref="true"/></codeph>：进入房间</li>
+                                            <li><codeph><ph keyref="false"/></codeph>：离开房间</li>
+                                        </ul>
+                                    </entry>
+                                </row>
+                                <row>
+                                    <entry><parmname>reason</parmname></entry>
+                                    <entry>number</entry>
+                                    <entry>
+                                        <ul>
+                                            <li>-1：进入房间</li>
+                                            <li>0：主动退出房间</li>
+                                            <li>1：被踢出房间</li>
+                                        </ul>
+                                    </entry>
+                                </row>
+                                <row>
+                                    <entry><parmname>kickUID</parmname></entry>
+                                    <entry>number</entry>
+                                    <entry>预留参数</entry>
+                                </row>
+                                <row>
+                                    <entry><parmname>teamId</parmname></entry>
+                                    <entry>number</entry>
+                                    <entry>加入的队伍 ID</entry>
+                                </row>
+                                <row>
+                                    <entry morerows="1">用户准备/取消准备</entry>
+                                    <entry><parmname>userId</parmname></entry>
+                                    <entry>string</entry>
+                                    <entry>用户 ID</entry>
+                                </row>
+                                <row>
+                                    <entry><parmname>isReady</parmname></entry>
+                                    <entry>bool</entry>
+                                    <entry>
+                                        <ul>
+                                            <li><codeph><ph keyref="true"/></codeph>：准备</li>
+                                            <li><codeph><ph keyref="false"/></codeph>：取消准备</li>
+                                        </ul>
+                                    </entry>
+                                </row>
+                                <row>
+                                    <entry morerows="3">用户开始/结束游戏</entry>
+                                    <entry><parmname>userId</parmname></entry>
+                                    <entry>string</entry>
+                                    <entry>用户 ID</entry>
+                                </row>
+                                <row>
+                                    <entry><parmname>isPlaying</parmname></entry>
+                                    <entry>bool</entry>
+                                    <entry>
+                                        <ul>
+                                            <li><codeph><ph keyref="true"/></codeph>：游戏开始</li>
+                                            <li><codeph><ph keyref="false"/></codeph>：游戏结束</li>
+                                        </ul>
+                                    </entry>
+                                </row>
+                                <row>
+                                    <entry><parmname>gameRoundId</parmname></entry>
+                                    <entry>number</entry>
+                                    <entry>本局游戏 ID（由游戏服务商生成，在每一局游戏内唯一）</entry>
+                                </row>
+                                <row>
+                                    <entry><parmname>reason</parmname></entry>
+                                    <entry>number</entry>
+                                    <entry>仅在 <parmname>isPlaying</parmname> 为 <codeph><ph keyref="false"/></codeph> 时需要关注，详情如下：
+                                        <ul>
+                                        <li>0：本局游戏正常结束</li>
+                                        <li>1：玩家提前退出本局游戏</li>
+                                        <li>2：无真人玩家参与，本局游戏提前结束</li>
+                                        <li>3：所有玩家已退出，本局游戏提前结束</li>
+                                        </ul></entry>
+                                </row>
+                            </tbody>
+                        </tgroup>
+                        </table></pd>
             </plentry>
             </parml> </section>
     </refbody>
