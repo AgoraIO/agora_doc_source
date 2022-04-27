@@ -5,23 +5,6 @@
     <shortdesc id="short"><ph id="shortdesc">播放器媒体流的所有信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="unity" outputclass="language-csharp">public struct PlayerStreamInfo {
-
-      public int streamIndex;
-      public MEDIA_STREAM_TYPE streamType;
-      public string codecName;
-      public string language;
-      public int videoFrameRate;
-      public int videoBitRate;
-      public int videoWidth;
-      public int videoHeight;
-      public int videoRotation;
-      public int audioSampleRate;
-      public int audioChannels;
-      public int audioBitsPerSample;
-      public Int64 duration;
-   };</codeblock> </p>
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class MediaStreamInfo {
   private int streamIndex;
@@ -83,6 +66,22 @@
                        duration(0) {
     memset(codecName, 0, sizeof(codecName));
     memset(language, 0, sizeof(language));</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public struct PlayerStreamInfo {
+
+      public int streamIndex;
+      public MEDIA_STREAM_TYPE streamType;
+      public string codecName;
+      public string language;
+      public int videoFrameRate;
+      public int videoBitRate;
+      public int videoWidth;
+      public int videoHeight;
+      public int videoRotation;
+      public int audioSampleRate;
+      public int audioChannels;
+      public int audioBitsPerSample;
+      public Int64 duration;
+   };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
@@ -132,7 +131,7 @@
                 <pt>videoHeight</pt>
                 <pd>该参数仅对视频流生效，表示视频高度 (pixel)。</pd>
             </plentry>
-            <plentry props="android ios mac unity cpp">
+            <plentry>
                 <pt props="android unity cpp">videoRotation</pt>
                 <pt props="ios mac">rotation</pt>
                 <pd>该参数仅对视频流生效，表示旋转角度。</pd>
