@@ -21,7 +21,7 @@
   }
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp cs" outputclass="language-cpp">struct VideoDimensions {
+            <codeblock props="cpp" outputclass="language-cpp">struct VideoDimensions {
   int width;
   int height;
   VideoDimensions() : width(640), height(480) {}
@@ -30,6 +30,23 @@
     return width == rhs.width &amp;&amp; height == rhs.height;
   }
 };</codeblock>
+<codeblock props="cs" outputclass="language-csharp">public class VideoDimensions
+    {
+        public VideoDimensions()
+        {
+            width = 640;
+            height = 480;
+        }
+
+        public VideoDimensions(int width, int height)
+        {
+            this.width = width;
+            this.height = height;
+        }
+
+        public int width { set; get; }
+        public int height { set; get; }
+    }</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export interface VideoDimensions {
     width: number,
     height: number

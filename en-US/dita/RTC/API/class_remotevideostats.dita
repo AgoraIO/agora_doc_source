@@ -150,7 +150,7 @@
 @property(assign, nonatomic) NSUInteger totalActiveTime;
 @property(assign, nonatomic) NSInteger publishDuration;
 @end</codeblock>
-            <codeblock props="cpp cs" outputclass="language-cpp">struct RemoteVideoStats {
+            <codeblock props="cpp" outputclass="language-cpp">struct RemoteVideoStats {
   uid_t uid;
   int delay;
   int width;
@@ -165,6 +165,46 @@
   int totalActiveTime;
   int publishDuration;
 };</codeblock>
+<codeblock props="cs" outputclass="language-csharp">public class RemoteVideoStats
+    {
+        public RemoteVideoStats()
+        {
+        }
+
+        public RemoteVideoStats(uint uid, int delay, int width, int height, int receivedBitrate,
+            int decoderOutputFrameRate, int rendererOutputFrameRate, int packetLossRate,
+            REMOTE_VIDEO_STREAM_TYPE rxStreamType, int totalFrozenTime, int frozenRate, int totalActiveTime,
+            int publishDuration)
+        {
+            this.uid = uid;
+            this.delay = delay;
+            this.width = width;
+            this.height = height;
+            this.receivedBitrate = receivedBitrate;
+            this.decoderOutputFrameRate = decoderOutputFrameRate;
+            this.rendererOutputFrameRate = rendererOutputFrameRate;
+            this.packetLossRate = packetLossRate;
+            this.rxStreamType = rxStreamType;
+            this.totalFrozenTime = totalFrozenTime;
+            this.frozenRate = frozenRate;
+            this.totalActiveTime = totalActiveTime;
+            this.publishDuration = publishDuration;
+        }
+
+        public uint uid { set; get; }
+        public int delay { set; get; }
+        public int width { set; get; }
+        public int height { set; get; }
+        public int receivedBitrate { set; get; }
+        public int decoderOutputFrameRate { set; get; }
+        public int rendererOutputFrameRate { set; get; }
+        public int packetLossRate { set; get; }
+        public REMOTE_VIDEO_STREAM_TYPE rxStreamType { set; get; }
+        public int totalFrozenTime { set; get; }
+        public int frozenRate { set; get; }
+        public int totalActiveTime { set; get; }
+        public int publishDuration { set; get; }
+    }</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export interface RemoteVideoStats {
     uid: number;
     delay: number;
@@ -255,7 +295,7 @@ class RemoteVideoStats {
        </plentry>
        <plentry props="ios mac">
            <pt>receivedFramerate</pt>
-           <pd>The frame rate (Kbps) received since the last count.</pd>
+           <pd>The frame rate (fps) received since the last count.</pd>
        </plentry>
        <plentry>
   <pt>decoderOutputFrameRate</pt>

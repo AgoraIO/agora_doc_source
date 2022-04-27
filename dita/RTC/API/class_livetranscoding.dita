@@ -307,7 +307,7 @@
             audioCodecProfile = AUDIO_CODEC_PROFILE_TYPE.AUDIO_CODEC_PROFILE_LC_AAC;
         }</codeblock> </p>
             <p outputclass="codeblock" props="rtc">
-            <codeblock props="cpp cs" outputclass="language-cpp">struct LiveTranscoding {
+            <codeblock props="cpp" outputclass="language-cpp">struct LiveTranscoding {
     int width;
     int height;
     int videoBitrate;
@@ -333,6 +333,90 @@
     unsigned int advancedFeatureCount;
     LiveTranscoding() : width(360), height(640), videoBitrate(400), videoFramerate(15), lowLatency(false), videoGop(30), videoCodecProfile(VIDEO_CODEC_PROFILE_HIGH), backgroundColor(0x000000), videoCodecType(VIDEO_CODEC_H264_FOR_STREAM), userCount(0), transcodingUsers(NULL), transcodingExtraInfo(NULL), metadata(NULL), watermark(NULL), watermarkCount(0), backgroundImage(NULL), backgroundImageCount(0), audioSampleRate(AUDIO_SAMPLE_RATE_48000), audioBitrate(48), audioChannels(1), audioCodecProfile(AUDIO_CODEC_PROFILE_LC_AAC), advancedFeatures(NULL), advancedFeatureCount(0) {}
   }; LiveTranscoding;</codeblock>
+  <codeblock props="cs" outputclass="language-csharp">public class LiveTranscoding
+    {
+        public LiveTranscoding()
+        {
+            width = 360;
+            height = 640;
+            videoBitrate = 400;
+            videoFramerate = 15;
+            lowLatency = false;
+            videoGop = 30;
+            videoCodecProfile = VIDEO_CODEC_PROFILE_TYPE.VIDEO_CODEC_PROFILE_HIGH;
+            backgroundColor = 0x000000;
+            videoCodecType = VIDEO_CODEC_TYPE_FOR_STREAM.VIDEO_CODEC_H264_FOR_STREAM;
+            userCount = 0;
+            transcodingUsers = new TranscodingUser[0];
+            transcodingExtraInfo = null;
+            metadata = null;
+            watermark = null;
+            backgroundImage = null;
+            audioSampleRate = AUDIO_SAMPLE_RATE_TYPE.AUDIO_SAMPLE_RATE_48000;
+            audioBitrate = 48;
+            audioChannels = 1;
+            audioCodecProfile = AUDIO_CODEC_PROFILE_TYPE.AUDIO_CODEC_PROFILE_LC_AAC;
+            advancedFeatures = new LiveStreamAdvancedFeature[0];
+            advancedFeatureCount = 0;
+        }
+
+        public LiveTranscoding(int width, int height, int videoBitrate, int videoFramerate, bool lowLatency,
+            int videoGop, VIDEO_CODEC_PROFILE_TYPE videoCodecProfile, uint backgroundColor,
+            VIDEO_CODEC_TYPE_FOR_STREAM videoCodecType, uint userCount, TranscodingUser[] transcodingUsers,
+            string transcodingExtraInfo, string metadata, RtcImage[] watermark, uint watermarkCount, RtcImage[] backgroundImage, uint backgroundImageCount,
+            AUDIO_SAMPLE_RATE_TYPE audioSampleRate, int audioBitrate, int audioChannels,
+            AUDIO_CODEC_PROFILE_TYPE audioCodecProfile, LiveStreamAdvancedFeature[] advancedFeatures,
+            uint advancedFeatureCount)
+        {
+            this.width = width;
+            this.height = height;
+            this.videoBitrate = videoBitrate;
+            this.videoFramerate = videoFramerate;
+            this.lowLatency = lowLatency;
+            this.videoGop = videoGop;
+            this.videoCodecProfile = videoCodecProfile;
+            this.backgroundColor = backgroundColor;
+            this.videoCodecType = videoCodecType;
+            this.userCount = userCount;
+            this.transcodingUsers = transcodingUsers;
+            this.transcodingExtraInfo = transcodingExtraInfo;
+            this.metadata = metadata;
+            this.watermark = watermark;
+            this.watermarkCount = watermarkCount;
+            this.backgroundImage = backgroundImage;
+            this.backgroundImageCount = backgroundImageCount;
+            this.audioSampleRate = audioSampleRate;
+            this.audioBitrate = audioBitrate;
+            this.audioChannels = audioChannels;
+            this.audioCodecProfile = audioCodecProfile;
+            this.advancedFeatures = advancedFeatures;
+            this.advancedFeatureCount = advancedFeatureCount;
+        }
+
+        public int width { set; get; }
+        public int height { set; get; }
+        public int videoBitrate { set; get; }
+        public int videoFramerate { set; get; }
+        public bool lowLatency { set; get; }
+        public int videoGop { set; get; }
+        public VIDEO_CODEC_PROFILE_TYPE videoCodecProfile { set; get; }
+        public uint backgroundColor { set; get; }
+        public VIDEO_CODEC_TYPE_FOR_STREAM videoCodecType { set; get; }
+        public uint userCount { set; get; }
+        public TranscodingUser[] transcodingUsers { set; get; }
+        public string transcodingExtraInfo { set; get; }
+        public string metadata { set; get; }
+        public RtcImage[] watermark { set; get; }
+        public uint watermarkCount { set; get; }
+        public RtcImage[] backgroundImage { set; get; }
+        public uint backgroundImageCount { set; get; }
+        public AUDIO_SAMPLE_RATE_TYPE audioSampleRate { set; get; }
+        public int audioBitrate { set; get; }
+        public int audioChannels { set; get; }
+        public AUDIO_CODEC_PROFILE_TYPE audioCodecProfile { set; get; }
+        public LiveStreamAdvancedFeature[] advancedFeatures { set; get; }
+        public uint advancedFeatureCount { set; get; }
+    }</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export interface LiveTranscoding {
     width: number;
     height: number;
@@ -477,8 +561,8 @@
                 </pd>
             </plentry>
             <plentry>
-              <pt props="native cs">videoFrameRate</pt>
-              <pt props="flutter">videoFramerate</pt>
+              <pt props="native">videoFrameRate</pt>
+              <pt props="flutter cs">videoFramerate</pt>
                 <pd>
                     <p>用于旁路直播的输出视频的帧率。取值范围是 (0,30]，单位为 fps。15 fps 为默认值。</p>
                     <note type="attention">Agora 服务器会将高于 30 fps 的帧率统一调整为 30 fps。</note></pd>
@@ -579,7 +663,7 @@
             </plentry>
             <plentry props="rtc">
                 <pt>backgroundImage</pt>
-                <pd props="cpp">直播视频上的背景图。详见 <xref keyref="RtcImage"/>。你可以添加一张背景图，或使用数组的方式添加多张背景图。该参数与 <parmname>backgroundImageCount</parmname> 搭配使用。</pd>
+                <pd props="cpp cs flutter">直播视频上的背景图。详见 <xref keyref="RtcImage"/>。你可以添加一张背景图，或使用数组的方式添加多张背景图。该参数与 <parmname>backgroundImageCount</parmname> 搭配使用。</pd>
                 <pd props="ios mac">
                     <p>自 v3.6.0 废弃。请改用 <parmname>backgroundImageArray</parmname>。</p>
                     <p>直播视频上的背景图。图片格式需为 PNG。详见 <xref keyref="RtcImage"/>。</p>
@@ -589,7 +673,7 @@
                     <p>直播视频上的背景图。必须为 PNG 格式。详见 <xref keyref="RtcImage"/>。</p>
                 </pd>
             </plentry>
-            <plentry props="ios mac android electron cs flutter">
+            <plentry props="ios mac android electron flutter">
                 <pt>watermark</pt>
                 <pd props="rtc-ng">
                     <dl outputclass="deprecated">
@@ -614,19 +698,6 @@
                     <p>你可以添加一个水印，或使用数组的方式添加多个水印。该参数与 <parmname>watermarkCount</parmname>搭配使用。</p>
                 </pd>
                 <pd props="flutter">直播视频上的水印。必须为 PNG 格式。详见 <xref keyref="RtcImage"/>。你可以添加一个水印，或使用数组的方式添加多个水印。</pd>
-            </plentry>
-            <plentry>
-                <pt>backgroundImage</pt>
-                <pd>
-                    <dl props="android" outputclass="deprecated">
-                    <dlentry>
-                        <dt>弃用</dt>
-                        <dd>请改用 <parmname>addBackgroundImage</parmname>。</dd>
-                    </dlentry>
-                    </dl>
-                    <p>直播视频上的背景图。图片格式需为 PNG。详见 <xref keyref="RtcImage"/>。</p>
-                    <p props="cpp">你可以添加一张背景图，或使用数组的方式添加多张背景图。该参数与<parmname>backgroundImageCount</parmname> 搭配使用。</p>
-                </pd>
             </plentry>
             <plentry props="ios mac">
                 <pt>backgroundImageArray</pt>
@@ -678,37 +749,37 @@
             </plentry>
             <plentry props="rtc">
                 <pt props="ios mac">watermarkArray</pt>
-                <pt props="cpp">watermarkCount</pt>
+                <pt props="cpp cs">watermarkCount</pt>
                 <pt props="android">watermarkList</pt>
                 <pd props="ios mac"> 直播视频上的水印数组。详见 <xref keyref="RtcImage"
                     />。你可以使用 <parmname>watermarkArray</parmname> 添加一张或多张水印。图片格式需为 PNG。直播视频上的水印和背景图的总数量需大于等于 0 且小于等于 10。 </pd>
-                <pd props="cpp"
+                <pd props="cpp cs"
                     >直播视频上的水印的数量。水印和背景图的总数量需大于等于 0 且小于等于 10。该参数与 <parmname>watermark</parmname> 搭配使用。</pd>
                 <pd props="android"> 直播视频上的水印数组。详见 <xref keyref="RtcImage"
                     />。你可以使用 <parmname>watermarkList</parmname> 添加一张或多张水印。图片格式需为 PNG。直播视频上的水印和背景图的总数量需大于等于 0 且小于等于 10。 </pd>
             </plentry>
             <plentry props="rtc">
                 <pt props="ios mac">backgroundImageArray</pt>
-                <pt props="cpp">backgroundImageCount</pt>
+                <pt props="cpp cs">backgroundImageCount</pt>
                 <pt props="android">backgroundImageList</pt>
                 <pd props="ios mac"> 直播视频上的背景图数组。详见 <xref keyref="RtcImage"
                     />。你可以使用 <parmname>backgroundImageArray</parmname> 添加一张或多张背景图。图片格式需为 PNG。直播视频上的水印和背景图的总数量需大于等于 0 且小于等于 10。 </pd>
-                <pd props="cpp"
+                <pd props="cpp cs"
                     >直播视频上的背景图的数量。水印和背景图的总数量需大于等于 0 且小于等于 10。该参数与 <parmname>backgroundImage</parmname> 搭配使用。</pd>
                 <pd props="android"> 直播视频上的背景图数组。详见 <xref keyref="RtcImage"
                     />。你可以使用 <parmname>backgroundImageList</parmname> 添加一张或多张背景图。图片格式需为 PNG。直播视频上的水印和背景图的总数量需大于等于 0 且小于等于 10。 </pd>
             </plentry>
-            <plentry props="rtc">
+            <plentry props="android flutter">
                 <pt>userConfigExtraInfo</pt>
                 <pd>预留参数。 用户自定义的发送到旁路推流客户端的信息，用于填充 H264/H265 视频中 SEI 帧内容。长度限制：4096字节。</pd>
             </plentry>
-            <plentry props="rtc-ng">
-                <pt props="cpp">advancedFeatures</pt>
-                <pd props="cpp">转码推流的高级功能。详见 <xref keyref="LiveStreamAdvancedFeature"/>。</pd>
+            <plentry props="cpp cs">
+                <pt>advancedFeatures</pt>
+                <pd>转码推流的高级功能。</pd>
             </plentry>
-            <plentry props="rtc-ng">
-                <pt props="cpp">advancedFeatureCount</pt>
-                <pd props="cpp">开启的高级功能数量。默认值为 0。</pd>
+            <plentry props="cpp cs">
+                <pt>advancedFeatureCount</pt>
+                <pd>开启的高级功能数量。默认值为 0。</pd>
             </plentry>
             </parml> </section>
     </refbody>

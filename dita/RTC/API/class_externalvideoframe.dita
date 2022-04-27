@@ -47,7 +47,7 @@
                     @property(assign, nonatomic) int cropBottom;
                     @property(assign, nonatomic) int rotation;
                     @end</codeblock>
-                <codeblock props="cpp cs" outputclass="language-cpp">struct ExternalVideoFrame {
+                <codeblock props="cpp" outputclass="language-cpp">struct ExternalVideoFrame {
                 enum VIDEO_BUFFER_TYPE
                 {
                 VIDEO_BUFFER_RAW_DATA = 1,
@@ -77,6 +77,41 @@
                 int rotation;
                 long long timestamp;
                 };</codeblock>
+    <codeblock props="cs" outputclass="language-csharp">public class ExternalVideoFrame
+    {
+        public ExternalVideoFrame()
+        {
+        }
+
+        public ExternalVideoFrame(VIDEO_BUFFER_TYPE type, VIDEO_PIXEL_FORMAT format, byte[] buffer, int stride,
+            int height, long timestamp, int cropLeft = 0, int cropTop = 0, int cropRight = 0, int cropBottom = 0,
+            int rotation = 0)
+        {
+            this.type = type;
+            this.format = format;
+            this.buffer = buffer;
+            this.stride = stride;
+            this.height = height;
+            this.cropLeft = cropLeft;
+            this.cropTop = cropTop;
+            this.cropRight = cropRight;
+            this.cropBottom = cropBottom;
+            this.rotation = rotation;
+            this.timestamp = timestamp;
+        }
+
+        public VIDEO_BUFFER_TYPE type { set; get; }
+        public VIDEO_PIXEL_FORMAT format { set; get; }
+        public byte[] buffer { set; get; }
+        public int stride { set; get; }
+        public int height { set; get; }
+        public int cropLeft { set; get; }
+        public int cropTop { set; get; }
+        public int cropRight { set; get; }
+        public int cropBottom { set; get; }
+        public int rotation { set; get; }
+        public long timestamp { set; get; }
+    }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript" />
                 <codeblock props="rn" outputclass="language-typescript" />
                 <codeblock props="flutter" outputclass="language-dart" />
@@ -116,8 +151,8 @@
                </ul>
                </pd>
        </plentry>
-       <plentry props="android cpp ios mac">
-  <pt props="cpp">buffer</pt>
+       <plentry props="android cpp ios mac cs">
+  <pt props="cpp cs">buffer</pt>
   <pt props="android">buf</pt>
   <pt props="ios mac">dataBuf</pt>
   <pd>视频 buffer。</pd>
