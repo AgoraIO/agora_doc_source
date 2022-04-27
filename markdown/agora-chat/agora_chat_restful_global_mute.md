@@ -17,7 +17,7 @@
 | `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful)。                                                                                                              | 是       |
 | `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful)。                                                                                                         | 是       |
 | `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful)。                                                                                                                | 是       |
-| `username` | String | 用户名。用户的唯一登录账号。长度在 64 个字节内，不可设置为空。支持以下字符集：<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 0-9<li>"\_", "-", "."<div class="alert note"><ul><li>不区分大小写。<li>同一个 app 下，用户名唯一。</ul></div> | 是       |
+| `username` | String | 用户名。用户的唯一登录账号。长度在 64 个字节内，不可设置为空。支持以下字符集：</ul><li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字 0-9</li><li>"\_", "-", "."</li></ul><div class="alert note"><ul><li>不区分大小写。</li><li>同一个 app 下，用户名唯一。</li><li>请勿将该字段设置为 UUID、邮箱地址、手机号码或其它敏感信息。</li></ul></div> | 是       |
 
 ### 响应参数
 
@@ -29,13 +29,7 @@
 | `applicationName`    | String | 即时通讯服务分配给每个 app 的唯一标识。等同于 `app_name`。       |
 | `uri`                | String | 请求 URL。                |
 | `path`               | String | 请求路径，属于请求 URL 的一部分，无需关注。         |
-| `entities`           | JSON   | 返回实体信息。      |
-| `entities.uuid`      | String | 用户的 UUID。即时通讯服务为该请求中的 app 或用户生成的唯一内部标识，用于生成 user token。                                                       |
-| `entities.type`      | String | 对象类型，无需关注。         |
-| `entities.created`   | Long | 注册用户的 Unix 时间戳（毫秒）。        |
-| `entities.modified`  | Long | 最近一次修改用户信息的 Unix 时间戳（毫秒）。       |
-| `entities.username`  | String | 用户名。用户登录的唯一账号。              |
-| `entities.activated` | Bool   | 用户是否为活跃状态：<li> `true`：用户为活跃状态。<li> `false`：用户为封禁状态。如要使用已被封禁的用户账户，你需要调用[解禁用户](./agora_chat_restful_registration?platform=RESTful#unban)解除封禁。 |
+| `data`           | JSON   | 返回实体信息。      |
 | `timestamp`          | Long | HTTP 响应的 Unix 时间戳（毫秒）。              |
 | `duration`           | Number | 从发送 HTTP 请求到响应的时长（毫秒）。     |
 
