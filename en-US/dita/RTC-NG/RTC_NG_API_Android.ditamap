@@ -130,6 +130,7 @@
             <topicref keyref="setAdvancedAudioOptions" toc="no"/>
             <topicref keyref="setAudioEffectParameters" toc="no"/>
             <topicref keyref="setAudioEffectPreset" toc="no"/>
+            <topicref keyref="setAudioMixingPitch" toc="no"/>
             <topicref keyref="setAudioMixingPosition" toc="no"/>
             <topicref keyref="setAudioProfile" toc="no"/>
             <topicref keyref="setAudioProfile2" toc="no"/>
@@ -386,8 +387,8 @@
             <topicref keyref="resume" toc="no"/>
             <topicref keyref="seek" toc="no"/>
             <topicref keyref="selectAudioTrack" toc="no" props="hide"/>
-            <topicref keyref="setAudioMixingPitch" toc="no"/>
             <topicref keyref="setAudioDualMonoMode" toc="no"/>
+            <topicref keyref="setAudioPitch" toc="no"/>
             <topicref keyref="setLoopCount" toc="no"/>
             <topicref keyref="setPlaybackSpeed" toc="no"/>
             <topicref keyref="setPlayerOption" toc="no"/>
@@ -503,18 +504,14 @@
         <topicref href="API/rtc_api_data_type.dita" chunk="to-content">
             <topicref keyref="AREA_CODE" toc="no"/>
             <topicref keyref="AUDIO_CODEC_PROFILE_TYPE" toc="no"/>
-            <topicref keyref="AUDIO_CODEC_TYPE" toc="no"/>
             <topicref keyref="AUDIO_DUAL_MONO_MODE" toc="no"/>
-            <topicref keyref="AUDIO_EFFECT_PRESET" toc="no"/>
             <topicref keyref="AUDIO_EQUALIZATION_BAND_FREQUENCY" toc="no"/>
-            <topicref keyref="AUDIO_MIXING_REASON_TYPE" toc="no"/>
             <topicref keyref="AUDIO_PROFILE_TYPE" toc="no" processing-role="resource-only"/>
             <topicref keyref="AUDIO_REVERB_TYPE" toc="no"/>
             <topicref keyref="AUDIO_SAMPLE_RATE_TYPE" toc="no"/>
             <topicref keyref="AUDIO_SCENARIO_TYPE" toc="no" processing-role="resource-only"/>
-            <topicref keyref="AUDIO_SESSION_OPERATION_RESTRICTION" toc="no"/>
-            <topicref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE" toc="no"/>
-            <topicref keyref="CAPTURER_OUTPUT_PREFERENCE" toc="no"/>
+            <topicref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE" toc="no" props="hide"/>
+            <topicref keyref="CAPTURER_OUTPUT_PREFERENCE" toc="no" props="hide"/>
             <topicref keyref="CONTENT_INSPECT_DEVICE_TYPE" toc="no" props="hide"/>
             <topicref keyref="CONTENT_INSPECT_RESULT" toc="no" props="hide"/>
             <topicref keyref="CONTENT_INSPECT_TYPE" toc="no" props="hide"/>
@@ -523,29 +520,23 @@
             <topicref keyref="DIRECT_CDN_STREAMING_STATE" toc="no" props="hide"/>
             <topicref keyref="ENCRYPTION_ERROR_TYPE" toc="no"/>
             <topicref keyref="ENCRYPTION_MODE" toc="no"/>
-            <topicref keyref="EXPERIENCE_POOR_REASON" toc="no"/>
+            <topicref keyref="EXPERIENCE_POOR_REASON" toc="no" props="hide"/>
             <topicref keyref="EXPERIENCE_QUALITY_TYPE" toc="no"/>
             <topicref keyref="EXTERNAL_VIDEO_SOURCE_TYPE" toc="no"/>
             <topicref keyref="FRAME_RATE" toc="no"/>
-            <topicref keyref="LIGHTENING_CONTRAST_LEVEL" toc="no"/>
             <topicref keyref="LOCAL_AUDIO_STREAM_ERROR" toc="no"/>
             <topicref keyref="LOCAL_AUDIO_STREAM_STATE" toc="no"/>
-            <topicref keyref="LOG_FILTER_TYPE" toc="no"/>
             <topicref keyref="LOG_LEVEL" toc="no"/>
-            <topicref keyref="MEDIA_DEVICE_TYPE" toc="no"/>
-            <topicref keyref="MEDIA_PLAYER_PLAYBACK_SPEED" toc="no"/>
             <topicref keyref="MEDIA_PLAYER_ERROR" toc="no"/>
             <topicref keyref="MEDIA_PLAYER_EVENT" toc="no"/>
             <topicref keyref="MEDIA_PLAYER_METADATA_TYPE" toc="no"/>
             <topicref keyref="MEDIA_PLAYER_STATE" toc="no"/>
             <topicref keyref="MEDIA_SOURCE_TYPE" toc="no"/>
             <topicref keyref="MEDIA_STREAM_TYPE" toc="no"/>
-            <topicref keyref="METADATA_TYPE" toc="no"/>
             <topicref keyref="ORIENTATION_MODE" toc="no"/>
             <topicref keyref="PERMISSION_TYPE" toc="no"/>
             <topicref keyref="PLAYER_PRELOAD_EVENT" toc="no"/>
-            <topicref keyref="PRIORITY_TYPE" toc="no"/>
-            <topicref keyref="QUALITY_REPORT_FORMAT_TYPE" toc="no"/>
+            <topicref keyref="QUALITY_REPORT_FORMAT_TYPE" toc="no" props="hide"/>
             <topicref keyref="REMOTE_AUDIO_STATE_REASON" toc="no"/>
             <topicref keyref="REMOTE_AUDIO_STATE" toc="no"/>
             <topicref keyref="RTMP_STREAM_PUBLISH_ERROR" toc="no"/>
@@ -553,15 +544,10 @@
             <topicref keyref="RTMP_STREAMING_EVENT" toc="no"/>
             <topicref keyref="STREAM_PUBLISH_STATE" toc="no"/>
             <topicref keyref="STREAM_SUBSCRIBE_STATE" toc="no"/>
-            <topicref keyref="VIDEO_CAPTURE_TYPE" toc="no"/>
+            <topicref keyref="VIDEO_CAPTURE_TYPE" toc="no" props="hide"/>
             <topicref keyref="VIDEO_CODEC_PROFILE_TYPE" toc="no"/>
-            <topicref keyref="VIDEO_CODEC_TYPE" toc="no"/>
             <topicref keyref="VIDEO_CODEC_TYPE_FOR_STREAM" toc="no"/>
-            <topicref keyref="VIDEO_CONTENT_HINT" toc="no"/>
-            <topicref keyref="VIDEO_FRAME_TYPE" toc="no"/>
             <topicref keyref="VIDEO_MIRROR_MODE_TYPE" toc="no"/>
-            <topicref keyref="VIDEO_ORIENTATION" toc="no"/>
-            <topicref keyref="VIDEO_PROFILE_TYPE" toc="no"/>
             <topicref keyref="VIDEO_SOURCE_TYPE" toc="no"/>
             <topicref keyref="AdvancedAudioOptions" toc="no">
             <topicref keyref="AUDIO_PROCESSING_CHANNELS" toc="no"/>
@@ -596,21 +582,27 @@
             <topicref keyref="LastmileProbeResult" toc="no"/>
             <topicref keyref="LeaveChannelOptions" toc="no"/>
             <topicref keyref="LiveTranscoding" toc="no">
+                <topicref keyref="addBackgroundImage" toc="no"/>
                 <topicref keyref="addUser" toc="no"/>
                 <topicref keyref="addWatermark" toc="no"/>
-                <topicref keyref="addBackgroundImage" toc="no"/>
                 <topicref keyref="getAdvancedFeatures" toc="no"/>
                 <topicref keyref="getBackgroundColor" toc="no"/>
-                <topicref keyref="setBackgroundColor" toc="no"/>
-                <topicref keyref="setBackgroundColor2" toc="no"/>
                 <topicref keyref="getBackgroundImageList" toc="no"/>
-                <topicref keyref="getUsers" toc="no"/>
+                <topicref keyref="getBlue" toc="no"/>
+                <topicref keyref="getGreen" toc="no"/>
+                <topicref keyref="getRed" toc="no"/>
                 <topicref keyref="getUserCount" toc="no"/>
+                <topicref keyref="getUsers" toc="no"/>
                 <topicref keyref="getWatermarkList" toc="no"/>
                 <topicref keyref="removeBackgroundImage" toc="no"/>
                 <topicref keyref="removeUser" toc="no"/>
                 <topicref keyref="removeWatermark" toc="no"/>
                 <topicref keyref="setAdvancedFeatures" toc="no"/>
+                <topicref keyref="setBackgroundColor" toc="no"/>
+                <topicref keyref="setBackgroundColor2" toc="no"/>
+                <topicref keyref="setBlue" toc="no"/>
+                <topicref keyref="setGreen" toc="no"/>
+                <topicref keyref="setRed" toc="no"/>
                 <topicref keyref="setUsers" toc="no"/>
                 <topicref keyref="setUsers2" toc="no"/>
             </topicref>
@@ -642,6 +634,7 @@
             <topicref keyref="VideoDimensions" toc="no"/>
             <topicref keyref="VideoEncoderConfiguration" toc="no"/>
             <topicref keyref="VideoFormat" toc="no"/>
+            <topicref keyref="VideoFrame" toc="no"/>
             <topicref keyref="VirtualBackgroundSource" toc="no"/>
             <topicref keyref="WatermarkOptions" toc="no"/>
         </topicref>
