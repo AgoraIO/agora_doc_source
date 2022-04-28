@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setremoteuserpriority">
-     <title><ph keyref="setRemoteUserPriority" /></title>
+     <title>
+          <ph keyref="setRemoteUserPriority" />
+     </title>
      <shortdesc id="short"><ph id="shortdesc">Prioritizes a remote user's stream.</ph></shortdesc>
      <prolog>
           <metadata>
@@ -22,12 +24,6 @@
          </p>
           </section>
           <section id="detailed_desc">
-               <dl outputclass="since" props="rtc">
-                    <dlentry props="native">
-                         <dt>Since</dt>
-                         <dd>v2.4.0</dd>
-                    </dlentry>
-               </dl>
                <p>Prioritizes a remote user's stream. The SDK ensures the high-priority user gets the best possible stream quality. The SDK ensures the high-priority user gets the best possible stream quality.</p>
                <note type="attention">
                     <ul>
@@ -37,19 +33,23 @@
                </note>
           </section>
           <section id="parameters">
-               <title>Parameters</title>
+               <title>Parameter</title>
                <parml>
                     <plentry>
                          <pt>uid</pt>
-                         <pd>The ID of the remote user.</pd>
+                         <pd>远端用户的 ID。</pd>
                     </plentry>
                     <plentry>
                          <pt>userPriority</pt>
-                         <pd>The priority of the remote user. See <xref keyref="PRIORITY_TYPE" />.</pd>
+                         <pd><p>The priority of the remote user. <ph props="ios mac cpp unity">详见 <xref keyref="PRIORITY_TYPE"/>。</ph>
+                         <ul props="android">
+                              <li></li>
+                         </ul></p>
+                         </pd>
                     </plentry>
                </parml>
           </section>
-          <section id="return_values" props="native electron unity">
+          <section id="return_values" props="native unity electron">
                <title>Returns</title>
                <ul>
                     <li>0: Success.</li>
