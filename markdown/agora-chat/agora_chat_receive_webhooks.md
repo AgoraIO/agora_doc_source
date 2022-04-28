@@ -32,14 +32,14 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 | --- | --- | --- |
 | `callId` | String | 回调 ID，是每条 HTTP 回调的唯一标识。该字段由 `{appKey}_{uuid}` 组成，其中 `uuid` 为随机生成。|
 | `reason` | Object | 触发回调的原因。`login` 表示用户登录。|
-| `security` | String | 消息回调请求中的签名，用来确认该回调是否来自 Agora 即时通讯服务器。格式为 `MD5({callId} + {secret} + {timestamp})`，其中 `secret` 可以在 Agora 控制台即时通讯的 IM 配置页面找到。|
+| `security` | String | 消息回调请求中的签名，用来确认该回调是否来自 Agora 即时通讯服务器。该签名使用 MD5 算法对 `{callId} + {secret} + {timestamp}` 进行加密，其中 `secret` 可以在 Agora 控制台即时通讯的 IM 配置页面找到。|
 | `os` | String | 设备类型，指设备的操作系统。包含 `ios`、`android`、`linux`、`win` 及 `other`。|
 | `ip` | String | 用户登录的 IP 地址。|
 | `host` | String | Agora 即时通讯服务分配的 RESTful API 请求地址域名。|
 | `appkey` | String | Agora 即时通讯服务分配给每个 app 的唯一标识。|
-| `user` | String | 登录用户的识别号。该字段由 `{App Key/设备类型_设备 ID}` 组成。|
+| `user` | String | 登录用户的识别号。该字段由 `{appKey}/{OS}_{deviceId}` 组成。|
 | `version` | String | SDK 版本号。|
-| `timestamp` | Long | 登录请求到声网即时通讯服务器的 Unix 时间戳，单位为 ms。|
+| `timestamp` | Long | 登录请求到 Agora 即时通讯服务器的 Unix 时间戳，单位为 ms。|
 | `status` | String | 用户当前状态。`online` 表示该用户在线。|
 
 ### 用户登出
@@ -66,14 +66,14 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 | --- | --- | --- |
 | `callId` | String | 回调 ID，是每条 HTTP 回调的唯一标识。该字段由 `{appKey}_{uuid}` 组成，其中 uuid 为随机生成。|
 | `reason` | Object | 触发回调的原因。`logout` 表示用户登出。|
-| `security` | String | 消息回调请求中的签名，用来确认该回调是否来自 Agora 即时通讯服务器。格式为 `MD5({callId} + {secret} + {timestamp})`，其中 `secret` 可以在 Agora 控制台即时通讯的 IM 配置页面找到。|
+| `security` | String | 消息回调请求中的签名，用来确认该回调是否来自 Agora 即时通讯服务器。该签名使用 MD5 算法对 `{callId} + {secret} + {timestamp}` 进行加密，其中 `secret` 可以在 Agora 控制台即时通讯的 IM 配置页面找到。|
 | `os` | String | 设备类型，指设备的操作系统。包含 `ios`、`android`、`linux`、`win` 及 `other`。|
 | `ip` | String | 用户登出的 IP 地址。|
 | `host` | String | Agora 即时通讯服务分配的 RESTful API 请求地址域名。|
 | `appkey` | String | Agora 即时通讯服务分配给每个 app 的唯一标识。|
-| `user` | String | 登出用户的识别号。该字段由 `{App Key/设备类型_设备 ID}` 组成。|
+| `user` | String | 登出用户的识别号。该字段由 `{appKey}/{OS}_{deviceId}` 组成。|
 | `version` | String | SDK 版本号。|
-| `timestamp` | Long | 登出请求到声网即时通讯服务器的 Unix 时间戳，单位为 ms。|
+| `timestamp` | Long | 登出请求到 Agora 即时通讯服务器的 Unix 时间戳，单位为 ms。|
 | `status` | String | 用户在线状态。`offline` 表示该用户已下线。|
 
 ### 用户因被其他设备踢掉而登出
@@ -99,14 +99,14 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 | --- | --- | --- |
 | `callId` | String | 回调 ID，是每条 HTTP 回调的唯一标识。该字段由 `{appKey}_{uuid}` 组成，其中 `uuid` 为随机生成。|
 | `reason` | Object | 触发回调的原因。`replaced` 表示用户由于被其他设备踢掉而登出。|
-| `security` | String | 消息回调请求中的签名，用来确认该回调是否来自 Agora 即时通讯服务器。格式为 `MD5({callId} + {secret} + {timestamp})`，其中 `secret` 可以在 Agora 控制台即时通讯的 IM 配置页面找到。|
+| `security` | String | 消息回调请求中的签名，用来确认该回调是否来自 Agora 即时通讯服务器。该签名使用 MD5 算法对 `{callId} + {secret} + {timestamp}` 进行加密，其中 `secret` 可以在 Agora 控制台即时通讯的 IM 配置页面找到。|
 | `os` | String | 设备类型，指设备的操作系统。包含 `ios`、`android`、`linux`、`win` 及 `other`。|
 | `ip` | String | 用户登出的 IP 地址。|
 | `host` | String | Agora 即时通讯服务分配的 RESTful API 请求地址域名。|
 | `appkey` | String | Agora 即时通讯服务分配给每个 app 的唯一标识。|
-| `user` | String | 登出用户的识别号。该字段由 {App Key/设备类型_设备 ID} 组成。|
+| `user` | String | 登出用户的识别号。该字段由 {appKey}/{OS}_{deviceId} 组成。|
 | `version` | String | SDK 版本号。|
-| `timestamp` | Long | 登出请求到声网即时通讯服务器的 Unix 时间戳，单位为 ms。|
+| `timestamp` | Long | 登出请求到 Agora 即时通讯服务器的 Unix 时间戳，单位为 ms。|
 | `status` | String | 用户在线状态。`offline` 表示该用户已下线。|
 
 
@@ -135,8 +135,8 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 | 参数 | 类型 | 描述 |
 | -- | -- | -- |
 | `callId` | String | 回调 ID。是每条 HTTP 回调的唯一标识。该字段由 `{appKey}_{uuid}` 组成，其中 `uuid` 为随机生成。 |
-| `eventType` | String | 消息类型：<ul><li>`chat`: 上行消息，即由客户端发送至服务端的消息</li><li>`chat_offline`: 离线消息，即用户离线未接收的消息</li></ul> |
-| `timestamp` | Long | 声网即时通讯服务器接收到此消息的 Unix 时间戳，单位为 ms。|
+| `eventType` | String | 消息类型：<ul><li>`chat`: 上行消息，即消息服务器收到指令要下发的消息。</li><li>`chat_offline`: 离线消息，即因用户离线消息服务器未成功下发的消息。</li></ul> |
+| `timestamp` | Long | Agora 即时通讯服务器接收到此消息的 Unix 时间戳，单位为 ms。|
 | `chat_type` | String | 会话类型：<ul><li>`chat`: 单聊</li><li>`groupchat`: 群组和聊天室</li></ul> |
 | `group_id` | String | 消息回调所发生的群组或聊天室的 ID。当 `chat_type` 为 `groupchat` 时，才会有该参数。|
 | `from` | String | 消息的发送方。|
@@ -144,7 +144,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 | `msg_id` | String | 该消息回调的 ID，与用户发送消息时的 `msg_id` 一致。|
 | `payload` | Object | 消息回调事件的详细内容。根据用户在单聊、群聊、聊天室中发送的消息类型，回调事件中的 `payload` 包含的字段不同，具体示例及参数解释详见下文。|
 | `securityVersion` | String | 预留参数。 |
-| `security` | String | 消息回调请求中的签名，用来确认该回调是否来自 Agora 即时通讯服务器。格式为 `MD5({callId} + {secret} + {timestamp})`，其中 `secret` 可以在 Agora 控制台即时通讯的 IM 配置页面找到。|
+| `security` | String | 消息回调请求中的签名，用来确认该回调是否来自 Agora 即时通讯服务器。该签名使用 MD5 算法对 `{callId} + {secret} + {timestamp}` 进行加密，其中 `secret` 可以在 Agora 控制台即时通讯的 IM 配置页面找到。|
 | `appkey`          | String | Agora 即时通讯服务分配给每个 app 的唯一标识。              |
 | `host`            | String | Agora 分配的 RESTful API 请求地址域名。  |
 
@@ -239,7 +239,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 | `secret`          | String    | 成功上传语音文件后返回的密钥。  |
 | `file_length`  |  Long  | 语音文件大小，单位为字节（Byte）。 |
 | `length`    | Int | 语音时间，单位为秒。 |
-| `url`  | String  | 成功上传语音文件后返回的 UUID，格式为 `/org_name/app_name/chatfiles/`。 |
+| `url`  | String  | 语音文件的 URL 地址，格式为 `https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`，其中 `uuid` 为文件 ID。成功上传语音文件后，从文件上传的响应 body 中获取。|
 | `type`  | String | 消息类型。语音消息为 `audio`。 |
 
 ### 视频消息
@@ -277,10 +277,10 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 | `thumb_secret` | String | 成功上传视频缩略图后返回的秘钥。 |
 | `filename` | String | 视频文件的名称。|
 | `size` | Json | 缩略图图片尺寸，包含如下字段：<ul><li>`height`: 图片高度</li><li>`width`: 图片宽度</li></ul> |
-| `thumb` | String  | 成功上传视频缩略图后返回的 UUID。 |
+| `thumb` | String  | 视频缩略图的 URL 地址，格式为 `https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`，其中 `uuid` 为文件 ID。成功上传视频缩略图文件后，从文件上传的响应 body 中获取。 |
 | `secret` | String | 成功上传视频文件后返回的秘钥。|
 | `file_length` | Long | 视频文件大小，单位为字节（Byte）。|
-| `url` | String | 成功上传视频文件返回的 UUID。|
+| `url` | String | 视频文件的 URL 地址，格式为 `https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`，其中 `uuid` 为文件 ID。成功上传视频文件后，从文件上传的响应 body 中获取。|
 | `type` | String | 消息类型。视频消息为 `video`。|
 
 ### 位置消息
@@ -389,9 +389,9 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 | 字段  | 数据类型 | 描述  |
 | --- | --- | --- |
-| `callId` | String | 回调 ID。是每条 HTTP 回调的唯一标识。该字段由 {appKey}_{uuid} 组成，其中 uuid 为随机生成。 |
-| `eventType` | String | 消息类型：<ul><li>`chat`: 上行消息，即由客户端发送至服务端的消息</li><li>`chat_offline`: 离线消息，即用户离线未接收的消息</li></ul> |
-| `timestamp` | Long | 声网即时通讯 IM 服务器接收到此消息的 Unix 时间戳，单位为 ms。|
+| `callId` | String | 回调 ID。是每条 HTTP 回调的唯一标识。该字段由 `{appKey}_{uuid}` 组成，其中 uuid 为随机生成。 |
+| `eventType` | String | 消息类型：<ul><li>`chat`: 上行消息，即消息服务器收到指令要下发的消息。</li><li>`chat_offline`: 离线消息，即因用户离线消息服务器未成功下发的消息。</li></ul> |
+| `timestamp` | Long | Agora 即时通讯 IM 服务器接收到此消息的 Unix 时间戳，单位为 ms。|
 | `chat_type` | String | 会话类型：<ul><li>`chat`: 单聊</li><li>`groupchat`: 群组和聊天室</li></ul> |
 | `group_id` | String | 消息回调所发生的群组或聊天室的 ID。当 `chat_type` 为 `groupchat` 时，才会有该参数。|
 | `from` | String | 消息的发送方。|
@@ -430,15 +430,15 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 | --- | --- | --- |
 | `chat_type` | String | 事件类型。`muc` 表示群组或聊天室。 |
 | `callId` | String | 回调 ID。是每条 HTTP 回调的唯一标识。该字段由 `{appKey}_{uuid}` 组成，其中 `uuid` 为随机生成。 |
-| `eventType` | String | 消息类型：<ul><li>`chat`: 上行消息，即由客户端发送至服务端的消息</li><li>`chat_offline`: 离线消息，即用户离线未接收的消息</li></ul> |
-| `timestamp` | Long | 声网即时通讯 IM 服务器接收到此消息的 Unix 时间戳，单位为 ms。|
+| `eventType` | String | 消息类型：<ul><li>`chat`: 上行消息，即消息服务器收到指令要下发的消息。</li><li>`chat_offline`: 离线消息，即因用户离线消息服务器未成功下发的消息。</li></ul> |
+| `timestamp` | Long | Agora 即时通讯 IM 服务器接收到此消息的 Unix 时间戳，单位为 ms。|
 | `group_id` | String | 消息回调所发生的群组或聊天室的 ID。当 `chat_type` 为 `groupchat` 时，才会有该参数。|
 | `from` | String | 消息的发送方。|
 | `to`  | String | 消息的接收方。 |
 | `msg_id` | String | 该消息回调的 ID，与发送消息时的 `msg_id` 一致。|
 | `payload` | Object | 消息回调事件的内容结构体。包含如下字段：<ul><li>`muc_id`: 该事件所在的群组或聊天室在服务器的唯一标识，格式为 `{appkey}_{群/聊天室 ID}@conference.easemob.com`。</li><li>`reason`: (非必需) 当前操作的详细信息。各操作的详细信息详见下文。</li><li>`is_chatroom`: 该事件是否发生在聊天室<ul><li>`true`: 是</li><li>`false`: 否，该事件发生在群组</li></ul><li>`operation`: 当前操作。各群组或聊天室的操作详见下文。</li><li>`status`: 当前操作状态。包含如下字段：<ul><li>`description`: 该操作失败的原因描述</li><li>`error_code`: 操作失败对应的错误码</li></ul> |
 | `securityVersion` | String | 预留参数。 |
-| `security` | String | 消息回调请求中的签名，用来确认该回调是否来自 Agora 即时通讯服务器。格式为 `MD5({callId} + {secret} + {timestamp})`，其中 `secret` 可以在 Agora 控制台即时通讯的 IM 配置页面找到。|
+| `security` | String | 消息回调请求中的签名，用来确认该回调是否来自 Agora 即时通讯服务器。该签名使用 MD5 算法对 `{callId} + {secret} + {timestamp}` 进行加密，其中 `secret` 可以在 Agora 控制台即时通讯的 IM 配置页面找到。|
 | `appkey`          | String | Agora 即时通讯服务分配给每个 app 的唯一标识。              |
 | `host`            | String | Agora 分配的 RESTful API 请求地址域名。  |
 
@@ -843,7 +843,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
     "muc_id": "XXXX#XXXX173560762007553XXXX", 
     "reason": "", 
     "is_chatroom": false, 
-    "operation": "ban", 
+    "operation": "add_mute", 
     "status":
     { 
         "description": "", 
@@ -852,7 +852,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 }
 ```
 
-其中 `operation` 为当前操作，即 `ban`。
+其中 `operation` 为当前操作，即 `add_mute`。
 
 
 ### 解除群组或聊天室成员禁言
@@ -1087,13 +1087,13 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 | --- | --- | --- |
 | `chat_type` | String | 事件类型。`roster` 表示好友关系。 |
 | `callId` | String | 回调 ID。是每条 HTTP 回调的唯一标识。该字段由 `{appKey}_{uuid}` 组成，其中 `uuid` 为随机生成。 |
-| `eventType` | String | 消息类型：<ul><li>`chat`: 上行消息，即由客户端发送至服务端的消息</li><li>`chat_offline`: 离线消息，即用户离线未接收的消息</li></ul> |
-| `timestamp` | Long | 声网即时通讯 IM 服务器接收到此消息的 Unix 时间戳，单位为 ms。|
+| `eventType` | String | 消息类型：<ul><li>`chat`: 上行消息，即消息服务器收到指令要下发的消息。</li><li>`chat_offline`: 离线消息，即因用户离线消息服务器未成功下发的消息。</li></ul> |
+| `timestamp` | Long | Agora 即时通讯 IM 服务器接收到此消息的 Unix 时间戳，单位为 ms。|
 | `from` | String | 发起好友操作的用户。|
 | `to`  | String | 被进行好友操作的用户。 |
 | `msg_id` | String | 该消息回调的 ID，与发送消息时的 `msg_id` 一致。|
 | `payload` | Object | 消息回调事件的内容结构体。各回调事件包含的 `payload` 详情见下文。 |
-| `security` | String | 消息回调请求中的签名，用来确认该回调是否来自 Agora 即时通讯服务器。格式为 `MD5({callId} + {secret} + {timestamp})`，其中 `secret` 可以在 Agora 控制台即时通讯的 IM 配置页面找到。|
+| `security` | String | 消息回调请求中的签名，用来确认该回调是否来自 Agora 即时通讯服务器。该签名使用 MD5 算法对 `{callId} + {secret} + {timestamp}` 进行加密，其中 `secret` 可以在 Agora 控制台即时通讯的 IM 配置页面找到。|
 | `appkey`          | String | Agora 即时通讯服务分配给每个 app 的唯一标识。              |
 | `host`            | String | Agora 分配的 RESTful API 请求地址域名。  |
 
@@ -1258,7 +1258,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 | `from`      | String   | 发送回执的用户 ID。                                        |
 | `to`        | String   | 接收回执的用户 ID。                                        |
 | `eventType` | String   | 聊天类型。`chat` 表示一对一聊天。                                               |
-| `timestamp` | long     | 回执事件到声网即时通讯 IM 服务器的 Unix 时间戳，单位为 ms。                  |
+| `timestamp` | long     | 回执事件到 Agora 即时通讯 IM 服务器的 Unix 时间戳，单位为 ms。                  |
 | `msg_id`    | String   | 该回执的消息 ID。                                        |
 
 
