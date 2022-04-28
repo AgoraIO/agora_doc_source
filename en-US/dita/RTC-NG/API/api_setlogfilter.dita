@@ -25,25 +25,24 @@
             <dl outputclass="deprecated">
             <dlentry>
                 <dt>Deprecated:</dt>
-                <dd>Use <xref keyref="create2"/><parmname>logConfig</parmname> in  instead.</dd>
+                <dd>Use <parmname>logConfig</parmname> in <xref keyref="create2"/> instead.</dd>
             </dlentry>
             </dl>
-            <p>This method sets the output log level of the SDK. You can use one or a combination of the log filter levels. 日志级别顺序依次为 <apiname keyref="LOG_FILTER_OFF"/>、<apiname keyref="LOG_FILTER_CRITICAL"/>、<apiname keyref="LOG_FILTER_ERROR"/>、<apiname keyref="LOG_FILTER_WARN"/>、<apiname keyref="LOG_FILTER_INFO"/> 和 <apiname keyref="LOG_FILTER_DEBUG"/>。 Choose a level to see the logs preceding that level.</p>
-            <p>例如，你选择 <apiname keyref="LOG_FILTER_WARN"/> 级别，就可以看到在 <apiname keyref="LOG_FILTER_CRITICAL"/>、<apiname keyref="LOG_FILTER_ERROR"/> 和 <apiname keyref="LOG_FILTER_WARN"/> 级别的日志信息。</p>
+            <p>This method sets the output log level of the SDK. You can use one or a combination of the log filter levels. The log level follows the sequence of <apiname keyref="LOG_FILTER_OFF"/>, <apiname keyref="LOG_FILTER_CRITICAL"/>, <apiname keyref="LOG_FILTER_ERROR"/>, <apiname keyref="LOG_FILTER_WARN"/>, <apiname keyref="LOG_FILTER_INFO"/>, and <apiname keyref="LOG_FILTER_DEBUG"/>. Choose a level to see the logs preceding that level.</p>
+            <p>If, for example, you set the log level to <apiname keyref="LOG_FILTER_WARN"/>, you see the logs within levels <apiname keyref="LOG_FILTER_CRITICAL"/>, <apiname keyref="LOG_FILTER_ERROR"/>, and <apiname keyref="LOG_FILTER_WARN"/>.</p>
         </section>
         <section id="parameters">
             <title>Parameter</title>
             <parml>
             <plentry>
                 <pt>filter</pt>
-                <pd><p>The output log level of the SDK. <ph props="ios mac cpp unity">详见 <xref keyref="LOG_FILTER_TYPE"/>。</ph>
-                <ul props="android">
-                    <li><ph keyref="LOG_FILTER_OFF"/>0: Do not output any log information.</li>
-                    <li><ph keyref="LOG_FILTER_DEBUG"/>0x080f: Output all log information. Set your log filter as DEBUG if you want to get the most complete log file.</li>
-                    <li><ph keyref="LOG_FILTER_INFO"/>(0x0f)：输出 <apiname keyref="LOG_FILTER_CRITICAL"/>、<apiname keyref="LOG_FILTER_ERROR"/>、<apiname keyref="LOG_FILTER_WARN"/> 和 <apiname keyref="LOG_FILTER_INFO"/> 级别的日志信息。 We recommend setting your log filter as this level.</li>
-                    <li><ph keyref="LOG_FILTER_WARN"/>(0x0e)：输出 <apiname keyref="LOG_FILTER_CRITICAL"/>、<apiname keyref="LOG_FILTER_ERROR"/> 和 <apiname keyref="LOG_FILTER_WARN"/> 级别的日志信息。</li>
-                    <li><ph keyref="LOG_FILTER_ERROR"/>(0x0c)：输出 <apiname keyref="LOG_FILTER_CRITICAL"/> 和 <apiname keyref="LOG_FILTER_ERROR"/> 级别的日志信息。</li>
-                    <li><ph keyref="LOG_FILTER_CRITICAL"/>(0x08)：输出 <apiname keyref="LOG_FILTER_CRITICAL"/> 级别的日志信息。</li>
+                <pd><p>The output log level of the SDK. <ph props="ios mac cpp unity">See <xref keyref="LOG_FILTER_TYPE"/>.</ph><ul props="android">
+                    <li><ph keyref="LOG_FILTER_OFF"/>(0): Do not output any log information.</li>
+                    <li><ph keyref="LOG_FILTER_DEBUG"/>(0x080f): Output all log information. Set your log filter to this level if you want to get the most complete log file.</li>
+                    <li><ph keyref="LOG_FILTER_INFO"/>(0x0f): Output <apiname keyref="LOG_FILTER_CRITICAL"/>, <apiname keyref="LOG_FILTER_ERROR"/>, <apiname keyref="LOG_FILTER_WARN"/>, and <apiname keyref="LOG_FILTER_INFO"/> level log information. We recommend setting your log filter as this level.</li>
+                    <li><ph keyref="LOG_FILTER_WARN"/>(0x0e): Output <apiname keyref="LOG_FILTER_CRITICAL"/>, <apiname keyref="LOG_FILTER_ERROR"/>, and <apiname keyref="LOG_FILTER_WARN"/> level log information.</li>
+                    <li><ph keyref="LOG_FILTER_ERROR"/>(0x0c): Output <apiname keyref="LOG_FILTER_CRITICAL"/> and <apiname keyref="LOG_FILTER_ERROR"/> level log information.</li>
+                    <li><ph keyref="LOG_FILTER_CRITICAL"/>(0x08): Output <apiname keyref="LOG_FILTER_CRITICAL"/> level log information.</li>
                 </ul></p></pd>
             </plentry>
             </parml> </section>
