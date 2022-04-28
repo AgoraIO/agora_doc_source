@@ -1257,7 +1257,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 | `appkey`    | String   | Agora 即时通讯服务分配给每个 app 的唯一标识。                         |
 | `from`      | String   | 发送回执的用户 ID。                                        |
 | `to`        | String   | 接收回执的用户 ID。                                        |
-| `eventType` | String   | 聊天类型。`chat` 表示一对一聊天。                                               |
+| `eventType` | String   | 消息类型：<ul><li>`chat`: 上行消息，即消息服务器收到指令要下发的消息。</li><li>`chat_offline`: 离线消息，即因用户离线消息服务器未成功下发的消息。</li></ul>                                               |
 | `timestamp` | long     | 回执事件到 Agora 即时通讯 IM 服务器的 Unix 时间戳，单位为 ms。                  |
 | `msg_id`    | String   | 该回执的消息 ID。                                        |
 
