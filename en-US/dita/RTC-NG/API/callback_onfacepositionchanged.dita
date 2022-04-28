@@ -12,7 +12,9 @@
     </prolog>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onFacePositionChanged(
+                int imageWidth, int imageHeight, AgoraFacePositionInfo[] faceRectArr) {}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine facePositionDidChangeWidth:(int)width previewHeight:(int)height faces:(NSArray&lt;AgoraFacePositionInfo*>* _Nullable)faces NS_SWIFT_NAME(rtcEngine(_:facePositionDidChangeWidth:previewHeight:faces:));</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void onFacePositionChanged(int imageWidth, int imageHeight,
                 const Rectangle* vecRectangle, const int* vecDistance,
@@ -22,40 +24,16 @@
                 (void) vecRectangle;
                 (void) vecDistance;
                 (void) numFaces;
-                }</codeblock> </p>
-            <p outputclass="codeblock" props="rtc">
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine facePositionDidChangeWidth:(int)width previewHeight:(int)height faces:(NSArray&lt;AgoraFacePositionInfo*&gt;* _Nullable)faces;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onFacePositionChanged(int imageWidth,
-                int imageHeight,
-                Rectangle* vecRectangle,
-                int* vecDistance,
-                int numFaces){
-                (void)imageWidth;
-                (void)imageHeight;
-                (void)vecRectangle;
-                (void)vecDistance;
-                (void)numFaces;
                 }</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnFacePositionChanged(int imageWidth, int imageHeight, Rectangle vecRectangle, int[] vecDistance, int numFaces) {}</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnFacePositionChanged(int imageWidth, int imageHeight, Rectangle vecRectangle,
-            int[] vecDistance, int numFaces)</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">FacePositionCallback? facePositionChanged;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart"/>
             </p>
-            <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public void onFacePositionChanged(
-                int imageWidth, int imageHeight, AgoraFacePositionInfo[] faceRectArr) {}</codeblock>
-            </p>
-          
+
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>Since</dt>
-                <dd>v3.0.1</dd>
-            </dlentry>
-            </dl>
-            <p>Once you enable face detection by calling <xref keyref="enableFaceDetection"/>(<ph keyref="true"/>), you can get the following information on the local user in real-time:<ul>
+            <p>Once you enable face detection by calling <codeph><xref keyref="enableFaceDetection"/>(<ph keyref="true"/>)</codeph>, you can get the following information on the local user in real-time:<ul>
             <li>The width and height of the local video.</li>
             <li>The position of the human face in the local video.</li>
             <li>The distance between the human face and the screen.</li>
@@ -89,16 +67,16 @@
             <plentry props="android flutter ios mac">
                 <pt props="android">faceRectArr</pt>
                 <pt props="flutter ios mac">faces</pt>
-                <pd>For the information of the detected face, see <xref keyref="AgoraFacePositionInfo"/> for details. If several faces are detected, this callback reports several <apiname keyref="AgoraFacePositionInfo" /> arrays. The length of the array can be 0, which means that no human face is detected in front of the camera.</pd>
+                <pd>For the information of the detected face, see  for details<xref keyref="AgoraFacePositionInfo"/>. If several faces are detected, this callback reports several<apiname keyref="AgoraFacePositionInfo" />  arrays. The length of the array can be 0, which means that no human face is detected in front of the camera.</pd>
             </plentry>
             <plentry props="cpp unity">
                 <pt>vecRectangle</pt>
                 <pd>
-                    <p>The information of the detected human face:<ul>
+                    <p>The position and size of the human face on the local video:<ul>
                     <li><codeph>x</codeph>: The x-coordinate (px) of the human face in the local video. The horizontal position relative to the origin, where the upper left corner of the captured video is the origin, and the x-coordinate is the upper left corner of the watermark.</li>
-                    <li><codeph>y</codeph>: The y-coordinate (px) of the human face in the local video. Taking the top left corner of the captured video as the origin, the y coordinate represents the relative longitudinal displacement of the top left corner of the human face to the origin.</li>
-                    <li><codeph>width</codeph>: The width (px) of the human face in the local view.</li>
-                    <li><codeph>height</codeph>: The height (px) of the human face in the local view.</li>
+                    <li><codeph>y</codeph>: The y-coordinate (px) of the human face in the local video. The vertical position relative to the origin, where the upper left corner of the captured video is the origin, and the y-coordinate is the upper left corner of the watermark.</li>
+                    <li><codeph>width</codeph>: The<codeph> width</codeph> (px) of the human face in the local view.</li>
+                    <li><codeph>height</codeph>: The<codeph> height</codeph> (px) of the human face in the local view.</li>
                     </ul> </p>
                 </pd>
             </plentry>
