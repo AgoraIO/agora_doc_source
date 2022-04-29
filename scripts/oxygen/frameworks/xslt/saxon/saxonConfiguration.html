@@ -1,0 +1,1028 @@
+<?xml version="1.0" encoding="UTF-8"?><xhtml:html xmlns:xhtml="http://www.w3.org/1999/xhtml">
+   <xhtml:head>
+      <xhtml:meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <xhtml:title>Saxon configuration annotations</xhtml:title>
+   </xhtml:head>
+   <xhtml:body>
+      <xhtml:div id="attribute-edition"> Defines which Saxon edition is to be used. </xhtml:div>
+      <xhtml:div id="attribute-licenseFileLocation"> Defines the location of the Saxon license file, as a URI relative to
+         the base URI of the configuration file. When made absolute, it must use the "file"
+         URI
+         scheme. 
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-label">A label to identify this configuration or otherwise transmit textual
+         information into the execution.
+      </xhtml:div>
+      <xhtml:div id="element-global"> Defines properties of the global configuration. </xhtml:div>
+      <xhtml:div id="attribute-allowExternalFunctions">
+         
+         <xhtml:p>True if calls to external Java or .NET functions are allowed.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-allowMultiThreading">
+         
+         <xhtml:p>True if <xhtml:a>
+               <xhtml:class></xhtml:class>
+               <xhtml:href></xhtml:href>saxon:threads</xhtml:a> attribute on <xhtml:code>xsl:for-each</xhtml:code> causes multi-threading
+            under Saxon-EE; false to disable multi-threading. Default is true (but
+            multi-threading only happens if explicitly requested using
+            <xhtml:code>saxon:threads</xhtml:code>).
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-allowOldJavaUriFormat">
+         
+         <xhtml:p>True if reflexive calls to external Java functions are allowed to use the "liberal"
+            syntax (for example "http://my.com/extensions/ java.util.Date"). The default is to
+            allow only the "strict" form of URI such as "java:java.util.Date".
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-allowStreamabilityExtensions"> Saxon 9.5 only. </xhtml:div>
+      <xhtml:div id="attribute-allowSyntaxExtensions">
+         
+         <xhtml:p>Enables use of (experimental and non-conformant) extensions to XPath syntax.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-collationUriResolver">
+         
+         <xhtml:p>User-supplied class used to interpret collation URIs.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-collectionFinder">
+         
+         <xhtml:p>User-supplied class used for retrieving the 
+            <xhtml:link>net.sf.saxon.lib.ResourceCollection</xhtml:link> to resolve the URI supplied to the <xhtml:a>
+               <xhtml:class></xhtml:class>
+               <xhtml:href></xhtml:href>collection()</xhtml:a>
+            function.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-collectionUriResolver">
+         
+         <xhtml:p>User-supplied class used for resolving the URI supplied to the <xhtml:a>
+               <xhtml:class></xhtml:class>
+               <xhtml:href></xhtml:href>collection()</xhtml:a>
+            function.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-compileWithTracing">
+         
+         <xhtml:p>Generates trace code in the expression tree, allowing a
+            
+            <xhtml:link>net.sf.saxon.lib.TraceListener</xhtml:link> to be used at run-time.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-debugByteCode">
+         
+         <xhtml:p>Causes bytecode generation to be run in debugging mode, for use when diagnosing a
+            problem. Only to be used if requested by Saxonica support.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-debugByteCodeDirectory">
+         
+         <xhtml:p>Identifies the directory for output files produced when <xhtml:code>displayByteCode</xhtml:code>
+            is set to true.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-defaultCollation">
+         
+         <xhtml:p>(Requires Saxon-PE.) The collation URI to be used when no explicit collation is
+            requested.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-defaultCollection">
+         
+         <xhtml:p>The collection URI to be used when no argument is passed to the <xhtml:a>
+               <xhtml:class></xhtml:class>
+               <xhtml:href></xhtml:href>collection()</xhtml:a>
+            function.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-defaultRegexEngine">
+         
+         <xhtml:p>Determines which regular expression engine should be used for evaluating regular expressions
+            occuring in constructs
+            such as <xhtml:code>fn:matches()</xhtml:code>, <xhtml:code>fn:replace</xhtml:code>, and <xhtml:code>xsl:analyze-string</xhtml:code>, and also
+            in the pattern facet of a schema.
+         </xhtml:p>
+         
+         <xhtml:p>On the Java platform the permitted values are "S" (default), and "J". The value "J"
+            selects the regex engine
+            provided in the JDK in preference to the Saxon regular expression engine. This means
+            that regular expressions must
+            follow the Java syntax and semantics rather than the XPath syntax and semantics.
+         </xhtml:p>
+         
+         <xhtml:p>On the .NET platform the permitted values are "S" (default), "J", and "N". The value
+            "J" selects the regex engine
+            provided in the IKVMC run-time, which is derived from OpenJDK. The value "N" selects
+            the regex engine provided
+            in the Microsoft .NET platform. In each case, the regular expression must follow the
+            syntax and semantics of the selected
+            regex engine.
+         </xhtml:p>
+         
+         <xhtml:p>The choice of regular expression may be overridden in a particular invocation by appending
+            the value ";s",
+            ";j", or ";n" to the flags argument of the relevant call. (This does not apply to
+            XSD patterns, where no flags argument is available)
+         </xhtml:p>
+         
+         <xhtml:p>Use of this feature is not conformant with W3C specifications. Use of the setting
+            "N", however, can be useful
+            when schemas have been written with the Microsoft schema processor in mind, since
+            this uses the Microsoft regular
+            expression dialect rather than the W3C dialect.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-displayByteCode">
+         
+         <xhtml:p>Causes files containing a human-readable print of the generated bytecode to be
+            output, to the directory identified by the <xhtml:code>debugByteCodeDir</xhtml:code> option.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-dtdValidation">
+         
+         <xhtml:p>Controls whether DTD validation is applied to input files.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-dtdValidationRecoverable">
+         
+         <xhtml:p>Controls whether DTD validation errors are recoverable or fatal.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-eagerEvaluation">
+         
+         <xhtml:p>Forces Saxon to do eager evaluation of expressions in contexts where normally it would
+            do lazy evaluation,
+            for example when evaluating variables and function results. This can make for easier
+            debugging.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-entityResolver">
+         
+         <xhtml:p>The class used whenever Saxon creates an <xhtml:code>XMLReader</xhtml:code> for parsing source
+            documents.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-environmentVariableResolver">
+         
+         <xhtml:p>Defines the environment variable resolver for all queries and transforms using this
+            configuration. This affects the result of the XPath functions <xhtml:a>
+               <xhtml:class></xhtml:class>
+               <xhtml:href></xhtml:href>available-environment-variables()</xhtml:a> and <xhtml:a>
+               <xhtml:class></xhtml:class>
+               <xhtml:href></xhtml:href>environment-variable()</xhtml:a>. 
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-errorListener">
+         
+         <xhtml:p>Defines the default <xhtml:code>ErrorListener</xhtml:code> for reporting both compile-time and
+            run-time errors.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-expandAttributeDefaults">
+         
+         <xhtml:p>Controls whether attribute default values found in a DTD or schema are expanded or
+            not.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-generateByteCode">
+         
+         <xhtml:p>By default, Saxon-EE attempts to generate Java bytecode for evaluation of certain
+            parts of a query or stylesheet. Setting this option to false disables this.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-ignoreSAXSourceParser">
+         
+         <xhtml:p>Set to true to ignore the <xhtml:code>XMLReader</xhtml:code> supplied as a <xhtml:code>SAXSource</xhtml:code>
+            as input to an XSLT transformation, to use one specified by the <xhtml:code>parser</xhtml:code>
+            option instead.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-lazyConstructionMode">
+         
+         <xhtml:p>If true, causes temporary trees to be constructed lazily.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-lineNumbering">
+         
+         <xhtml:p>Controls whether line and column number information is maintained for input
+            files.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-markDefaultedAttributes">
+         
+         <xhtml:p>Indicates that Saxon should retain the fact that attributes are derived
+            from defaults defined in a schema or DTD where this information is available from
+            the XML parser.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-maxCompiledClasses">
+         
+         <xhtml:p>Places a limit on the number of classes for which Saxon will generate bytecode.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-optimizationLevel">
+         
+         <xhtml:p>Defines the level of code optimization to be applied.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-parser">
+         
+         <xhtml:p>XML parser used for source documents.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-preEvaluateDoc">
+         
+         <xhtml:p>If true, allows calls on <xhtml:a>
+               <xhtml:class></xhtml:class>
+               <xhtml:href></xhtml:href>doc()</xhtml:a>
+            with a literal argument to be evaluated early, at compile time.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-preferJaxpParser">
+         
+         <xhtml:p>Relevant only on .NET, determines whether the Java Classpath parser is used in
+            preference to the Microsoft .NET parser.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-recognizeUriQueryParameters">
+         
+         <xhtml:p>If true, and the standard <xhtml:code>URIResolver</xhtml:code> is in use, query parameters such
+            as <xhtml:code>val=strict</xhtml:code> will be recognized on URIs supplied to the <xhtml:a>
+               <xhtml:class></xhtml:class>
+               <xhtml:href></xhtml:href>doc()</xhtml:a> or <xhtml:a>
+               <xhtml:class></xhtml:class>
+               <xhtml:href></xhtml:href>document()</xhtml:a>
+            functions.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-schemaValidation">
+         
+         <xhtml:p>Controls whether schema validation is applied to input files.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-serializerFactory">
+         
+         <xhtml:p>Allows the serialization pipeline to be customized, for example to handle
+            user-defined serialization parameters.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-sourceResolver">
+         
+         <xhtml:p>Name of a user-supplied class that resolves unknown implementations of the JAXP
+            <xhtml:code>Source</xhtml:code> class into a known implementation.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-stableCollectionUri">
+         
+         <xhtml:p>Indicates that collections read using the <xhtml:code>fn:collection()</xhtml:code> function are to be stable,
+            that is, repeated calls with the same collection URI return identical results.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-stableUnparsedText">
+         
+         <xhtml:p>Indicates that unparsed text files read using functions such as <xhtml:code>fn:unparsed-text()</xhtml:code>,
+            <xhtml:code></xhtml:code>function are to be stable,
+            that is, repeated calls with the same URI return identical results.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-standardErrorOutputFile">
+         
+         <xhtml:p>Redirects output which would otherwise go to the stardard error output stream
+            <xhtml:code>System.err</xhtml:code>, to this file.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-streamability">
+         
+         <xhtml:p>Determines the test applied to see if constructs are streamable (if streaming is
+            requested).
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-streamingFallback">
+         
+         <xhtml:p>If true, then constructs for which streaming is requested will be exectued in
+            non-streaming mode if the code is not actually streamable.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-stripSpace">
+         
+         <xhtml:p>Controls what whitespace is removed from input documents (all inter-element
+            whitespace, no inter-element whitespace, or all inter-element whitespace in elements
+            having element-only content models).
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-styleParser">
+         
+         <xhtml:p>XML parser used for stylesheets and schema documents.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-suppressEvaluationExpiryWarning">
+         
+         <xhtml:p>Suppresses the warning issued to indicate that an evaluation license in use is due
+            to
+            expire.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-suppressXsltNamespaceCheck">
+         
+         <xhtml:p>Suppresses the warning when there is no commonality between the namespaces used in
+            stylesheet match patterns and the namespaces used in the source document.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-timing">
+         
+         <xhtml:p>Outputs progress messages to <xhtml:code>System.err</xhtml:code>. Equivalent to the
+            <xhtml:code>-t</xhtml:code> option on the command line.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-traceExternalFunctions">
+         
+         <xhtml:p>Provides diagnostics when external functions are dynamically loaded.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-traceListener">
+         
+         <xhtml:p>User-defined class to be used for handling run-time trace output.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-traceListenerOutputFile">
+         
+         <xhtml:p>Supplies a file as destination for trace listener output.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-traceOptimizerDecisions">
+         
+         <xhtml:p>Causes tracing of decisions made by the optimizer.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-treeModel">
+         
+         <xhtml:p>Determines the tree model implementation used for input files: TinyTree, LinkedTree,
+            or TinyTree(condensed).
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-unparsedTextURIResolver">
+         
+         <xhtml:p>The class name of the <xhtml:code>UnparsedTextURIResolver</xhtml:code> to be used for deferencing URIs used in 
+            calls on <xhtml:code>fn:unparsed-text()</xhtml:code> and related functions.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-uriResolver">
+         
+         <xhtml:p>The <xhtml:code>URIResolver</xhtml:code> to be used for deferencing URIs used in <xhtml:a>
+               <xhtml:class></xhtml:class>
+               <xhtml:href></xhtml:href>xsl:include</xhtml:a>, <xhtml:a>
+               <xhtml:class></xhtml:class>
+               <xhtml:href></xhtml:href>xsl:import</xhtml:a>, <xhtml:a>
+               <xhtml:class></xhtml:class>
+               <xhtml:href></xhtml:href>doc()</xhtml:a>, and <xhtml:a>
+               <xhtml:class></xhtml:class>
+               <xhtml:href></xhtml:href>document()</xhtml:a>.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-usePiDisableOutputEscaping">
+         
+         <xhtml:p>When sending output to a user-defined content handler, indicates whether JAXP-defined
+            processing instructions are used to signal the start and end of text in which output
+            escaping is disabled.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-useTypedValueCache">
+         
+         <xhtml:p>If true, typed values of element and attribute nodes are cached in the TinyTree. Uses
+            extra memory, may make execution faster.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-validationComments">
+         
+         <xhtml:p>Only relevant when <xhtml:code>validationWarnings=true</xhtml:code>, indicates that validation
+            error messages should where possible be added as comments in the document instance
+            being validated rather than fatal errors.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-validationWarnings">
+         
+         <xhtml:p>For result trees subjected to schema validation, indicates whether validation
+            failures should be treated as warnings rather than fatal errors.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-versionOfXml">
+         
+         <xhtml:p>Determines whether XML 1.0 or XML 1.1 rules are used for names. (1.0 means the rules
+            before Edition 5.)
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-xInclude">
+         
+         <xhtml:p>Controls whether XInclude processing is applied to input files.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="element-xslt"> Defines configuration properties specific to XSLT processing.
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-disableXslEvaluate">
+         
+         <xhtml:p>If set, the use of the <xhtml:code>xsl:evaluate</xhtml:code> instruction in XSLT 3.0
+            is disabled.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-enableAssertions">
+         
+         <xhtml:p>Indicates whether assertions (XSLT 3.0 xsl:assert instructions) are enabled.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-initialMode">
+         
+         <xhtml:p>The name of a mode within a stylesheet in which execution should begin.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-initialTemplate">
+         
+         <xhtml:p>The name of a named template within a stylesheet where execution should begin.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-messageEmitter">
+         
+         <xhtml:p>Destination of <xhtml:a>
+               <xhtml:class></xhtml:class>
+               <xhtml:href></xhtml:href>xsl:message</xhtml:a>
+            output.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-outputUriResolver">
+         
+         <xhtml:p>Handles documents written using <xhtml:a>
+               <xhtml:class></xhtml:class>
+               <xhtml:href></xhtml:href>xsl:result-document</xhtml:a>. 
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-recoveryPolicy">
+         
+         <xhtml:p>Indicates how XSLT recoverable errors are handled (for example, ambiguous template
+            rules).
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-resultDocumentThreads">
+         
+         <xhtml:p>Indicates the maximum number of threads to be used for processing
+            <xhtml:code>xsl:result-document</xhtml:code> instructions in parallel.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-schemaAware">
+         
+         <xhtml:p>Indicates whether stylesheet should be compiled to be able to handle schema-typed
+            input, even if they contain no <xhtml:a>
+               <xhtml:class></xhtml:class>
+               <xhtml:href></xhtml:href>xsl:import-schema</xhtml:a> declaration.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-staticErrorListener">
+         
+         <xhtml:p>Receives reports of compile-time errors in a stylesheet.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-staticUriResolver">
+         
+         <xhtml:p>User-defined class for dereferencing URIs on <xhtml:a>
+               <xhtml:class></xhtml:class>
+               <xhtml:href></xhtml:href>xsl:include</xhtml:a> or <xhtml:a>
+               <xhtml:class></xhtml:class>
+               <xhtml:href></xhtml:href>xsl:import</xhtml:a>. 
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-strictStreamability">
+         
+         <xhtml:p>Causes the XSLT processor to verify that constructs that are declared streamable
+            are in fact "guaranteed streamable" according to the W3C rules.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-styleParser">
+         
+         <xhtml:p>XML parser used for stylesheets and schema documents.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-version">
+         
+         <xhtml:p>XSLT language version to be supported by the processor. The value 0.0 indicates that
+            the version is taken from the <xhtml:code>xsl:stylesheet</xhtml:code> element.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-versionWarning">
+         
+         <xhtml:p>False suppresses the warning produced when the XSLT processor version is not the same
+            as the version in the <xhtml:code>xsl:stylesheet</xhtml:code> element.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="element-extensionElement"> Describes a user-supplied library of XSLT extension instructions.
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-factory"> The Java class that implements the extension instructions.
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-namespace"> The namespace URI of the extension instructions implemented by this
+         extension library. 
+      </xhtml:div>
+      <xhtml:div id="element-xsltPackages"> Defines configuration properties specific to XSLT processing with packages.
+         
+      </xhtml:div>
+      <xhtml:div id="element-package"> Defines an XSLT 3.0 package, or version of a package.
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-name">
+         
+         <xhtml:p>The package name. Must match the value in the <xhtml:code>name</xhtml:code> attribute of the <xhtml:code>xsl:package</xhtml:code> element,
+            unless the <xhtml:code>base</xhtml:code> attribute is present. When <xhtml:code>xsl:use-package</xhtml:code> searches for an appropriate package to use,
+            it is this name that will be matched.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-version">
+         
+         <xhtml:p>The package version. Required. The numeric part of the version number must match the
+            value in the <xhtml:code>package-version</xhtml:code> 
+            attribute of the <xhtml:code>xsl:package</xhtml:code> element; the NamePart (if any) can differ. When <xhtml:code>xsl:use-package</xhtml:code>
+            searches for an appropriate package to use, it is the version number in the configuration
+            file that is used, not the version
+            in the XSLT source.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-base">
+         
+         <xhtml:p>The original package name. Required only if the package name defined in the <xhtml:code>name</xhtml:code> attribute differs from the
+            package name in the XSLT source. If present, the value must match the package name
+            defined in the XSLT source. Using this
+            attribute allows packages to be renamed. This is useful when a package has static
+            parameters whose values are bound in child
+            <xhtml:code>withParam</xhtml:code> elements: it allows two instances of a package to be made available (under different
+            names) with different
+            bindings for the static parameters.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-exportLocation">
+         
+         <xhtml:p>The location (relative to the configuration file) of a representation of this package
+            in SEF (stylesheet export format) form.
+            If this attribute is present then the SEF form will always be used in preference to
+            the source form; the <xhtml:code>sourceLocation</xhtml:code> is then ignored,
+            and it is an error if any <xhtml:code>withParam</xhtml:code> children are present (because static parameters will have been bound when the SEF
+            was created).                
+            It is entirely a user responsibility to keep the SEF form up-to-date with changes
+            to the source.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-priority">
+         
+         <xhtml:p>Used when there are several versions of a package available and the client does not
+            specify which version to use. The value
+            must be an integer. Versions
+            with higher priority are preferred over versions with lower priority or unspecified
+            priority; if the priorities are equal (or unspecified) 
+            then the highest available version is used. The rules for ordering of version numbers
+            are given in section §3.5.1 of the
+            W3C specification.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-shortName">
+         
+         <xhtml:p>Any convenient short name for the package name/version combination. This can be used
+            for convenience 
+            as the value of the <xhtml:code>-xsl</xhtml:code> option on the <xhtml:code>Transform</xhtml:code> command line. (We suggest using a value that
+            is unlikely to be confused with a filename, for example <xhtml:code>*</xhtml:code> if the same stylesheet package is used all the time.)
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-sourceLocation">
+         
+         <xhtml:p>The location (relative to the configuration file) of the source XSLT code of the top-level
+            module of the package.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="element-withParam"> Supplies values of static stylesheet parameters used during package
+         compilation.
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-name">
+         
+         <xhtml:p>The parameter name.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-select">
+         
+         <xhtml:p>An XPath expression that is evaluated to give the value of the parameter (so a boolean
+            parameter might be written
+            <xhtml:code>select="true()"</xhtml:code>, while a string parameter would be expressed as <xhtml:code>select="'London'"</xhtml:code>).
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="element-xquery"> Defines configuration properties specific to XQuery processing.
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-allowUpdate">
+         
+         <xhtml:p>Indicates whether XQuery Update syntax is accepted.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-constructionMode">
+         
+         <xhtml:p>Default value for construction mode in the static context.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-defaultElementNamespace">
+         
+         <xhtml:p>Default namespace for elements and types.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-defaultFunctionNamespace">
+         
+         <xhtml:p>Default namespace for functions.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-emptyLeast">
+         
+         <xhtml:p>True if the empty sequence comes first in sort order.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-inheritNamespaces">
+         
+         <xhtml:p>Default value for "inherit namespaces" in the static context.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-moduleUriResolver">
+         
+         <xhtml:p>Used for locating query modules referenced by "import module".</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-multipleModuleImports">
+         
+         <xhtml:p>If set to true, the XQuery processor attempts to fetch an XQuery module appearing
+            in
+            an <xhtml:code>import module</xhtml:code> directive, whether or not a module with that module URI has
+            already been loaded, unless the location URI of the existing module is the same as
+            that of the requested module.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-preserveBoundarySpace">
+         
+         <xhtml:p>Policy for preserving boundary space within direct element content.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-preserveNamespaces">
+         
+         <xhtml:p>Default value for "preserve namespaces" in the static context.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-requiredContextItemType">
+         
+         <xhtml:p>The required type for the context item.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-schemaAware">
+         
+         <xhtml:p>True if the query makes use of schema information.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-staticErrorListener">
+         
+         <xhtml:p>Receives notification of static errors occurring in a Query.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-version">
+         
+         <xhtml:p>Indicates whether XQuery 3.0 syntax is accepted.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="element-xsd"> Defines configuration properties specific to XML Schema processing.
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-assertionsCanSeeComments">
+         
+         <xhtml:p>Determines whether comment and processing instructions in a document being validated
+            are visible to assertions in an XSD 1.1 schema.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-implicitSchemaImports">
+         
+         <xhtml:p>If true, allows a schema document to reference components in a different target namespace
+            without an explicit
+            <xhtml:code>xs:import</xhtml:code> declaration, provided the referenced components are already known.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-multipleSchemaImports">
+         
+         <xhtml:p>If set to true, the schema processor attempts to fetch a schema document appearing
+            in
+            an <xhtml:code>xs:import</xhtml:code> directive, whether or not a schema for that namespace has
+            already been loaded.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-occurrenceLimits">
+         
+         <xhtml:p>Controls the limits applied to <xhtml:code>minOccurs</xhtml:code> and <xhtml:code>maxOccurs</xhtml:code>
+            values in XSD content models.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-schemaUriResolver">
+         
+         <xhtml:p>Controls the handling of URIs in <xhtml:code>xs:include</xhtml:code>, <xhtml:code>xs:import</xhtml:code> etc.
+            declarations, and also in <xhtml:code>xsi:schemaLocation</xhtml:code>. 
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-thresholdForCompilingTypes">
+         
+         <xhtml:p>Indicates how often an XSD simple type definition must be used before Saxon generates
+            bytecode to
+            implement validation of input data against that type.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-useXsiSchemaLocation">
+         
+         <xhtml:p>Indicates whether the schema processor takes account of
+            <xhtml:code>xsi:schemaLocation</xhtml:code> and <xhtml:code>xsi:noNamespaceSchemaLocation</xhtml:code>
+            attributes appearing in the instance document.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-version">
+         
+         <xhtml:p>Indicates whether XSD 1.1 syntax is accepted.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="element-serialization"> Defines defaults for serialization properties. </xhtml:div>
+      <xhtml:div id="attribute-allow-duplicate-names">
+         
+         <xhtml:p>Used only for JSON output. Determines whether duplicate keys with the
+            same string value are allowed in a JSON map; if not an error is raised.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-byte-order-mark">
+         
+         <xhtml:p>Indicates whether serialized output should include a byte order mark.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-cdata-section-elements">
+         
+         <xhtml:p>A list of element names whose content is to be serialized using CDATA sections.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-doctype-public">
+         
+         <xhtml:p>The public identifier to be used in the DOCTYPE declaration.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-doctype-system">
+         
+         <xhtml:p>The system identifier (URI) to be used in the DOCTYPE declaration.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-encoding">
+         
+         <xhtml:p>The output encoding, for example utf-8 or us-ascii.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-escape-uri-attributes">
+         
+         <xhtml:p>Defines whether URI-valued attributes in HTML/XHTML (for example href)
+            are to be %HH-encoded.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-html-version">
+         
+         <xhtml:p>When the output method is HTML or XHTML, then if this attribute takes 
+            decimal value 5.0, then the output produced is HTML 5.0 or XHTML 5.0 respectively.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-include-content-type">
+         
+         <xhtml:p>Defines whether a &lt;meta&gt; element should be added to the
+            HTML &lt;head&gt; element to identify the media type of the output.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-indent">
+         
+         <xhtml:p>Defines whether indentation is to be added to the output.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-item-separator">
+         
+         <xhtml:p>Defines separator to be used between items in serialized output.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-json-node-output-method">
+         
+         <xhtml:p>Used only for JSON output. Defines the serialization method for nodes, 
+            for example 'xml' or 'html' or 'text'.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-media-type">
+         
+         <xhtml:p>Defines the media type (MIME type) of the output.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-method">
+         
+         <xhtml:p>Defines the serialization method, for example 'xml' or 'html' or 'text'.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-normalization-form">
+         
+         <xhtml:p>Defines whether Unicode normalization should be applied during serialization,
+            and if so, which Unicode normalization form should be used.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-omit-xml-declaration">
+         
+         <xhtml:p>Defines whether the XML declaration should be omitted from XML output.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-standalone">
+         
+         <xhtml:p>Defines whether the XML declaration in XML output should have a 'standalone' attribute.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-suppress-indentation">
+         
+         <xhtml:p>Defines a list of element names whose content should not be indented
+            even when indent='yes' is specified.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-undeclare-prefixes">
+         
+         <xhtml:p>Defines whether namespaces present on a parent element but not on
+            its children should be undeclared using XML Namespaces 1.1 syntax.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-use-character-maps">
+         
+         <xhtml:p>Defines a list of the names of character maps which will be 
+            applied to transform individual characters during serialization.
+         </xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-version">
+         
+         <xhtml:p>Defines the version of XML or HTML to be used for the output.</xhtml:p>
+         
+      </xhtml:div>
+      <xhtml:div id="element-resources"> Defines additional classes available for integration purposes.
+         
+      </xhtml:div>
+      <xhtml:div id="element-externalObjectModel"> Defines an external object model (tree representation). The content is the
+         name of a Java class that implements <xhtml:code>net.sf.saxon.lib.ExternalObjectModel</xhtml:code>.
+         
+      </xhtml:div>
+      <xhtml:div id="element-extensionFunction"> Defines an external function, implemented in Java, that can be called from
+         within an XPath expression. The content is the name of a Java class that implements
+         <xhtml:code>net.sf.saxon.lib.ExtensionFunctionDefinition</xhtml:code>. 
+      </xhtml:div>
+      <xhtml:div id="element-fileExtension"> Defines a mapping from file extensions to media types. </xhtml:div>
+      <xhtml:div id="attribute-extension"> A file extension, for example "xq". </xhtml:div>
+      <xhtml:div id="attribute-mediaType"> A media type corresponding to the file extension, for example
+         "text/plain". The media types that are recognised by default are: application/xml,
+         text/xml, application/html, text/html, application/atom, application/xml+xslt, and
+         application/xml+xsd (which return an XML node); text/plain, and application/java (which
+         return a string); application/binary (returns base64Binary); and application/json
+         (returns the result of parsing the JSON, typically a map or array).
+      </xhtml:div>
+      <xhtml:div id="element-schemaDocument"> Provides the location of a schema document that will be preloaded into the
+         configuration and made available to all queries and stylesheets. 
+      </xhtml:div>
+      <xhtml:div id="element-schemaComponentModel"> Provides the location of a schema in Saxon's SCM format that will be
+         preloaded into the configuration and made available to all queries and stylesheets.
+         
+      </xhtml:div>
+      <xhtml:div id="element-collations"> Defines collation URIs for use in queries and stylesheets.
+         
+      </xhtml:div>
+      <xhtml:div id="element-collation"> Defines a collation URI for use in queries and stylesheets.
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-uri"> The collation URI as used in queries and stylesheets.
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-alphanumeric"> Indicates whether a sequence of digits within a string is to be treated
+         as a number, so that AB100 sorts after AB99. 
+      </xhtml:div>
+      <xhtml:div id="attribute-case-order"> Indicates whether lower-case letters sort before or after upper-case.
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-class"> The name of a Java class that performs the string comparison.
+         
+      </xhtml:div>
+      <xhtml:div id="attribute-decomposition"> Indicates whether composite (accented) Unicode characters should be
+         decomposed before sorting. 
+      </xhtml:div>
+      <xhtml:div id="attribute-ignore-case"> Indicates whether differences of case are to be ignored during
+         comparisons. 
+      </xhtml:div>
+      <xhtml:div id="attribute-ignore-modifiers"> Indicates whether modifiers (such as accents and diacritical marks) are
+         to be ignored during comparisons. 
+      </xhtml:div>
+      <xhtml:div id="attribute-ignore-symbols"> Indicates whether punctuation symbols are to be ignored during
+         comparisons (.NET only). 
+      </xhtml:div>
+      <xhtml:div id="attribute-ignore-width"> Indicates whether width differences between characters are to be
+         ignored during comparisons. 
+      </xhtml:div>
+      <xhtml:div id="attribute-lang"> Indicates the natural language of the text, for example 'en' for
+         English or 'de' for German. 
+      </xhtml:div>
+      <xhtml:div id="attribute-rules"> Provides detailed sorting rules in the format of the Java
+         RuleBasedCollator class. 
+      </xhtml:div>
+      <xhtml:div id="attribute-strength"> The strength of the collation: primary, secondary, or tertiary. These
+         terms are described in the Unicode Collation Algorithm. 
+      </xhtml:div>
+      <xhtml:div id="element-localizations"> Defines localization of the output of format-date(), format-number(), and
+         xsl:number. Note this relates to Saxon's native localization and has no effect when
+         ICU
+         localization is used. 
+      </xhtml:div>
+      <xhtml:div id="attribute-defaultCountry"> The default country code for format-date() and similar functions. For
+         example 'FR' for France. 
+      </xhtml:div>
+      <xhtml:div id="attribute-defaultLanguage"> The default language code for format-date() and similar functions. For
+         example 'en-GB' for British English. 
+      </xhtml:div>
+      <xhtml:div id="element-localization"> Defines localization of the output of format-date(), format-number(), and
+         xsl:number for a specific language. 
+      </xhtml:div>
+      <xhtml:div id="attribute-lang"> The language to which this localization applies, for example 'fr-CA'
+         for Canadian French. 
+      </xhtml:div>
+      <xhtml:div id="attribute-class"> The Java class used to perform the localization. </xhtml:div>
+   </xhtml:body>
+</xhtml:html>

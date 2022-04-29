@@ -1,0 +1,25 @@
+/*
+ * =================================================
+ * 
+ * CSS rules related to hyphenation.
+ * 
+ * =================================================
+ */
+ 
+*[outputclass ~= "hyphens"] {
+  hyphens: auto;
+}
+
+/* 
+ * By default tables are hyphenated.
+ */
+*[class~="topic/table"],
+*[class~="topic/simpletable"] {
+    hyphens: auto;
+}
+
+*[outputclass ~= "no-hyphens"],
+*[class~="topic/table"][outputclass ~= "no-hyphens"],
+*[class~="topic/simpletable"][outputclass ~= "no-hyphens"] {
+    hyphens: manual;
+}

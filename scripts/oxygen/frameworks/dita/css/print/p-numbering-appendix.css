@@ -1,0 +1,68 @@
+/*
+ * ======================================================
+ * 
+ * Appendices and appendix, both in TOC and
+ * in the content.
+ * 
+ * ======================================================
+ */
+
+/*
+ * ======================================= 
+ *  TOC
+ */
+
+/*
+ * Reset the appendix counter (chapter counter) on the first appendix that follows a chapter, so it starts with 'A'.
+ */
+*[class ~= "bookmap/chapter"] + *[class ~= "bookmap/appendix"] {
+    counter-reset: toc-chapter 0 toc-chapter-and-sections 0;
+}
+
+*[class ~= "map/map"][numbering ^= 'deep'] *[class ~= "bookmap/chapter"] + *[class ~= "bookmap/appendix"] {
+    counter-reset: toc-chapter 0 toc-chapter-and-sections 0 !important;
+}
+
+/* 
+ * Specific display for numbering='deep'
+ */
+*[class ~= "map/map"][numbering ^= 'deep'] *[class ~= "bookmap/appendix"][is-part] > *[class ~= "map/topicmeta"]:before,
+*[class ~= "map/map"][numbering ^= 'deep'] *[class ~= "bookmap/appendices"][is-part] > *[class ~= "map/topicmeta"]:before,
+*[class ~= "map/map"][numbering ^= 'deep'] *[class ~= "bookmap/appendices"][is-chapter]:not([is-part]) > *[class ~= "map/topicmeta"]:before,
+*[class ~= "map/map"][numbering ^= 'deep'] *[class ~= "bookmap/appendices"][is-chapter]:not([is-part]) > *[class ~= "bookmap/appendix"] > *[class ~= "map/topicmeta"]:before {
+    content: none;
+}
+
+*[class ~= "map/map"][numbering ^= 'deep'] *[class ~= "map/topicref"][class ~= "bookmap/appendix"][is-chapter]:not([is-part]) > *[class ~= "map/topicmeta"]:before {
+    content: counter(toc-chapter-and-sections, upper-latin) ". ";
+}
+
+/*
+ * ======================================= 
+ *  Content. 
+ */
+
+/*
+ * Reset the appendix counter (chapter counter) on the first appendix that follows a chapter, so it starts with 'A'.
+ * Matching the class that migrated from the topicref, as the class attribute is simply topic/topic.
+ */
+*[class ~= "topic/topic"][topicrefclass ~= "bookmap/part"] + *[topicrefclass ~= "bookmap/appendix"],
+*[class ~= "topic/topic"][topicrefclass ~= "bookmap/chapter"] + *[topicrefclass ~= "bookmap/appendix"],
+*[class ~= "map/map"][numbering ^= 'deep'] *[class ~= "topic/topic"][topicrefclass ~= "bookmap/part"] + *[topicrefclass ~= "bookmap/appendix"],
+*[class ~= "map/map"][numbering ^= 'deep'] *[class ~= "topic/topic"][topicrefclass ~= "bookmap/chapter"] + *[topicrefclass ~= "bookmap/appendix"] {
+    counter-reset: chapter 0 chapter-and-sections 0 !important;
+}
+
+/* 
+ * Specific display for numbering='deep'
+ */
+*[class ~= "map/map"][numbering ^= 'deep'] *[topicrefclass ~= "bookmap/appendix"][is-part] > *[class ~= "topic/title"]:before,
+*[class ~= "map/map"][numbering ^= 'deep'] *[class ~= "topic/topic"][topicrefclass ~= "bookmap/appendices"][is-part] > *[class ~= "topic/title"]:before,
+*[class ~= "map/map"][numbering ^= 'deep'] *[class ~= "topic/topic"][topicrefclass ~= "bookmap/appendices"][is-chapter]:not([is-part]) > *[class ~= "topic/title"]:before,
+*[class ~= "map/map"][numbering ^= 'deep'] *[class ~= "topic/topic"][is-chapter]:not([is-part]) > *[class ~= "topic/topic"][topicrefclass ~= "bookmap/appendix"] > *[class ~= "topic/title"]:before {
+    content: none;
+}
+
+*[class ~= "map/map"][numbering ^= 'deep'] *[class ~= "topic/topic"][topicrefclass ~= "bookmap/appendix"][is-chapter]:not([is-part]) > *[class ~= "topic/title"]:before {
+    content: counter(chapter-and-sections, upper-latin) ". ";
+}
