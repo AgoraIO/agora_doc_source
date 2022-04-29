@@ -28,7 +28,8 @@ jobs:
           ./transform.sh -i ../../../dita/RTC-NG/RTC_NG_API_CPP.ditamap -sn "DITA Map HTML5 - NG C++" -s ../../../.github/workflows/exported_scenarios.scenarios -v  
     - name: zip files
       run: |
-          cd dita/RTC-NG/out zip -qq -r cpp_ng.zip "c++ ng"
+          cd dita/RTC-NG/out
+          zip -qq -r cpp_ng.zip "c++ ng"
     - name: Upload C++ NG doc to release
       uses: svenstaro/upload-release-action@v2
       with:
