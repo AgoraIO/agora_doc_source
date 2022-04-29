@@ -1,0 +1,99 @@
+@charset "UTF-8";
+	  			
+	  			
+	  				
+	
+/*
+
+I18N file for lt    	
+
+*/
+
+/* Title in the Index page */
+*[class ~= "index/groups"]:lang(lt):before {
+  content: "Indeksas";
+}
+*[class ~= "index/groups"]:lang(lt) {
+  bookmark-label:"Indeksas";  
+  -ah-bookmark-label:"Indeksas";  
+}
+
+	  			
+	  			
+	  				  	
+	
+
+/* Title of the TOC page */
+*[class ~= "toc/title"][empty]:lang(lt):before {
+	content: "Turinys";
+}
+
+/* This string is used in the TOC page header. */
+*[class ~= "toc/title"]:lang(lt) {
+  string-set: toc-header "Turinys";
+}
+  	
+/* Titles in the TOC. */
+*[class ~= "map/topicref"][is-part] > *[class ~= "map/topicmeta"] > *[class ~= "topic/navtitle"]:lang(lt):before{
+  content: "Gaminys " counter(toc-part, upper-roman) "" ". ";
+}
+
+*[class ~= "map/topicref"][is-chapter]:not([is-part]) > *[class ~= "map/topicmeta"] > *[class ~= "topic/navtitle"]:lang(lt):before{
+  content: "Skyrius " counter(toc-chapter) "" ". ";
+}
+*[class ~= "bookmap/appendices"] > *[class ~= "map/topicmeta"] > *[class ~= "topic/navtitle"]:lang(lt):before,
+*[class ~= "bookmap/appendix"][is-part] > *[class ~= "map/topicmeta"] > *[class ~= "topic/navtitle"]:lang(lt):before{
+  content: none !important;
+}
+*[class ~= "bookmap/appendix"][is-chapter]:not([is-part]) > *[class ~= "map/topicmeta"] > *[class ~= "topic/navtitle"]:lang(lt):before{
+  content: "Priedas " counter(toc-chapter, upper-latin) "" ". ";
+}
+
+/* Titles in the content. */
+*[class ~= "topic/topic"][is-part] > *[class ~= "topic/title"]:lang(lt):before {
+ content: "Gaminys " counter(part, upper-roman) "" ". ";
+}
+*[class ~= "topic/topic"][is-chapter]:not([is-part]) > *[class ~= "topic/title"]:lang(lt):before {
+  content: "Skyrius " counter(chapter) "" ". ";
+}
+*[class ~= "topic/topic"][is-part][topicrefclass ~= "bookmap/appendices"] > *[class ~= "topic/title"]:lang(lt):before,
+*[class ~= "topic/topic"][is-chapter]:not([is-part])[topicrefclass ~= "bookmap/appendices"] > *[class ~= "topic/title"]:lang(lt):before,
+*[class ~= "topic/topic"][is-part][topicrefclass ~= "bookmap/appendix"] > *[class ~= "topic/title"]:lang(lt):before {
+  content: none;
+}
+*[class ~= "topic/topic"][is-chapter][topicrefclass ~= "bookmap/appendix"]:not([is-part]) > *[class ~= "topic/title"]:lang(lt):before {
+  content: "Priedas " counter(chapter, upper-latin) "" ". ";
+}
+
+/* Figures */  
+*[class ~= "topic/fig"] > *[class ~= "topic/title"]:lang(lt):before {
+  content: "Piešinys " counter(figcount) "" ": ";
+}
+
+/* Tables */
+*[class ~= "topic/table"] > *[class ~= "topic/title"]:lang(lt):before {
+  content: "Lentelė " counter(tablecount) "" ": ";
+}
+
+/* Links. */
+*[class ~= "map/map"] *[class ~= "topic/xref"][href]:lang(lt):after,
+*[class ~= "map/map"] *[class ~= "topic/link"][href]:lang(lt):after {
+  content: " (puslapyje " target-counter(attr(href), page) ")";
+}
+
+/* Links when having chapter scope numbering */
+*[class ~= "map/map"][numbering='deep-chapter-scope'] *[class ~= "topic/xref"][href]:lang(lt):after,
+*[class ~= "map/map"][numbering='deep-chapter-scope'] *[class ~= "topic/link"][href]:lang(lt):after {
+  content: " (puslapyje " target-counter(attr(href), chapter) "." target-counter(attr(href), page) ")";
+}
+
+	  			
+				  
+					  	
+	
+*[class~="topic/table"] > *[class~="topic/title"][data-is-repeated]:lang(lt):after(2) {
+    content: " " "";
+}
+
+			  		
+	  		

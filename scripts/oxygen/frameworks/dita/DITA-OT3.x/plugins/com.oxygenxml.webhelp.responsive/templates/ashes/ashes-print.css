@@ -1,0 +1,68 @@
+
+/* Use the WebHelp main CSS */
+@import "ashes.css";
+
+/* Now specific rules for the print output. */
+@page{
+	font-size: 10pt;
+	font-family: "PT Sans", sans-serif;
+}
+
+*[class ~= "front-page/front-page-title"] {
+    font-family: "PT Sans", sans-serif;
+}
+
+*[class ~= "topic/fn"] {
+    font-family: "PT Sans", sans-serif;
+}
+
+body {
+  font-size: 10pt;
+  background-color: inherit;
+  line-height: 1.7em;  
+}
+
+*[class ~= "topic/title"] {
+	line-height: 1.7em;
+}
+
+code {
+  padding:2px 0;
+  font-size: 0.8em; 
+}
+
+/* The code blocks generate a code inside a pre. Avoid padding on the code, it creates indent of the first line. */
+pre{
+	padding:2px 4px;
+	font-size: 0.8em;
+}
+pre > code{
+	padding:0;
+	font-size: 0.8em;
+}
+
+.related-links strong,
+.related-links a:after,
+.related-links a:before{
+  color:rgb(251, 251, 251) !important;
+}
+
+*[class ~= "index/label"]{
+  background-color: #293136;
+  color:white !important;
+  padding:0.5em;
+  text-align: center;
+}
+
+
+.wh_content_area{
+  background-color: inherit;
+}
+
+*[class ~= "topic/fn"]:footnote-call {
+	font-weight: bold;
+}
+
+*[class ~= "topic/fn"]:footnote-marker {
+	font-weight: bold;
+}

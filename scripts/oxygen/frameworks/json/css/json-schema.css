@@ -1,0 +1,233 @@
+@namespace oxy "http://www.oxygenxml.com/extensions/author";
+
+/* $schema */
+_X24_schema {
+    visibility: -oxy-collapse-text;
+    content: 
+    oxy_combobox(
+edit, "#text", 
+fontInherit, true, 
+values, "http://json-schema.org/draft-04/schema#, http://json-schema.org/draft-06/schema#, http://json-schema.org/draft-07/schema#");
+}
+
+/* type */
+type {
+    visibility: -oxy-collapse-text;
+    content: 
+    oxy_combobox(
+edit, "#text", 
+fontInherit, true, 
+values, "string, integer, number, object, array, boolean, null");
+}
+
+/* format */
+format {
+    visibility: -oxy-collapse-text;
+    content: 
+    oxy_combobox(
+edit, "#text", 
+fontInherit, true, 
+values, "email, date-time, date, time, hostname, ipv4, ipv6, uri");
+}
+
+/* title, id, $id, $comment, description */
+title:before,
+id:before,
+_X24_id:before,
+_X24_comment:before,
+description:before {
+    font-style: normal;
+}
+title,
+id,
+_X24_id,
+_X24_comment,
+description {
+    font-style: italic;
+}
+
+definition:before,
+property:before,
+patternProperty:before{
+    content: '';
+    font-weight:bold;
+    margin-left: 1em;
+    font-style: italic;
+}
+
+/* Properties */
+properties:before, patternProperties:before{
+    color: rgb(150, 0, 150);
+}
+property:before{
+    content: oxy_textfield(edit, '@name', 
+fontInherit, true, 
+columns, 12,
+color, rgb(150, 0, 50));
+}
+
+patternProperty:before{
+    content: oxy_textfield(edit, '@value', 
+fontInherit, true, 
+columns, 12,
+color, rgb(150, 0, 50));
+}
+
+property,
+definition,
+patternProperty,
+oneOf{
+    border: 1px solid #c5c5c5;
+    border-radius: 0.5em;
+    padding: 0.5em;
+    margin: 0.75em 0.75em 0.75em 0;
+}
+properties:before,
+definitions:before,
+patternProperties:before{
+    font-weight:bold;
+}
+
+/* Definitions */
+definitions:before {
+    color: rgb(50, 150, 50);
+}
+definition:before {
+    content: oxy_textfield(edit, '@name', 
+fontInherit, true, 
+columns, 15,
+color, rgb(0, 150, 0));
+}
+definition {
+    -oxy-folded:true;
+}
+
+/* $ref */
+_X24_ref:before {
+    content: '→ ';
+}
+_X24_ref {
+    link: oxy_xpath("text()");
+    display: inline-block;
+    color: rgb(0, 50, 250);
+    -oxy-display-tags:none;
+    padding-left: 0em;
+}
+JSON>_X24_ref {
+    padding-left: 1em;
+}
+
+/* arrays */
+examples,
+required,
+enum{
+    display: inline;
+    -oxy-display-tags: none;
+}
+
+examples ~ examples:before,
+required ~ required:before,
+enum ~ enum:before{
+    content:'';
+}
+
+definition, property {
+  list-style-type: none;
+  counter-reset: css-counters;
+}
+
+oneOf:before, anyOf:before, allOf:before {
+  font-weight:bold;
+  counter-increment: css-counters;
+  content: oxy_name() ' / {' counters(css-counters, ".") '}';
+}
+
+examples:first-of-type,
+required:first-of-type,
+enum:first-of-type{
+    content: "[ ";
+}
+
+examples:last-of-type:after,
+required:last-of-type:after,
+enum:last-of-type:after {
+    content: " ]"
+}
+
+/* require booleans */
+additionalProperties, uniqueItems{
+visibility: -oxy-collapse-text;
+    content:
+        oxy_combobox(
+edit, "#text", 
+fontInherit, true,
+values, "true, false");
+}
+
+/* 1-element array */
+array:before, array:after {
+    display:none;
+}
+array{
+    -oxy-display-tags: none;
+    margin:0;
+}
+
+* {
+    display: block;
+    padding-left: 1em;
+    margin: 0.25em;
+    color: rgb(0, 0, 0);
+}
+*:before:not(_X24_ref) {
+    width:10em;
+}
+
+*:before {
+    content: oxy_link-text() ' : ';
+    color: rgb(0, 0, 150);
+}
+
+:root {
+    -oxy-foldable: false;
+}
+*:has(*) {
+    -oxy-foldable:true;
+}
+*:only-child:not(property):not(patternProperty){
+    display: inline-block;
+    -oxy-display-tags: none;
+    padding: 0;
+}
+
+@media oxygen-dark-theme, oxygen-high-contrast-black {
+    properties:before, patternProperties:before {
+        color: rgb(207, 167, 233) !important;
+    }
+    property:before,
+    patternProperty:before,
+    definition:before,
+    definition,
+    property,
+    patternProperty {
+        border-color: #b8b8b8 !important;
+    }
+    definitions:before {
+        color: rgb(104, 164, 103) !important;
+    }
+    _X24_ref {
+        color: rgb(0, 150, 250) !important;
+    }
+    property{
+    content: oxy_textfield(edit, '@name', 
+        fontInherit, true,
+        columns, 12,
+        color, rgb(207, 127, 233));
+    }
+    patternProperty{
+    content: oxy_textfield(edit, '@value', 
+        fontInherit, true, 
+        columns, 12,
+        color, rgb(207, 127, 233));
+    }
+}

@@ -1,0 +1,102 @@
+@charset "UTF-8";
+	  			
+	  			
+	  				
+	
+/*
+
+I18N file for fr    	
+
+*/
+
+/* Title in the Index page */
+*[class ~= "index/groups"]:lang(fr):before {
+  content: "Index";
+}
+*[class ~= "index/groups"]:lang(fr) {
+  bookmark-label:"Index";  
+  -ah-bookmark-label:"Index";  
+}
+
+	  			
+	  			
+	  				  	
+	
+
+/* Title of the TOC page */
+*[class ~= "toc/title"][empty]:lang(fr):before {
+	content: "Table des matières";
+}
+
+/* This string is used in the TOC page header. */
+*[class ~= "toc/title"]:lang(fr) {
+  string-set: toc-header "Table des matières";
+}
+  	
+/* Titles in the TOC. */
+*[class ~= "map/topicref"][is-part] > *[class ~= "map/topicmeta"] > *[class ~= "topic/navtitle"]:lang(fr):before{
+  content: "Partie " counter(toc-part, upper-roman) "" ". ";
+}
+
+*[class ~= "map/topicref"][is-chapter]:not([is-part]) > *[class ~= "map/topicmeta"] > *[class ~= "topic/navtitle"]:lang(fr):before{
+  content: "Chapitre " counter(toc-chapter) "" ". ";
+}
+*[class ~= "bookmap/appendices"] > *[class ~= "map/topicmeta"] > *[class ~= "topic/navtitle"]:lang(fr):before,
+*[class ~= "bookmap/appendix"][is-part] > *[class ~= "map/topicmeta"] > *[class ~= "topic/navtitle"]:lang(fr):before{
+  content: none !important;
+}
+*[class ~= "bookmap/appendix"][is-chapter]:not([is-part]) > *[class ~= "map/topicmeta"] > *[class ~= "topic/navtitle"]:lang(fr):before{
+  content: "Annexe " counter(toc-chapter, upper-latin) "" ". ";
+}
+
+/* Titles in the content. */
+*[class ~= "topic/topic"][is-part] > *[class ~= "topic/title"]:lang(fr):before {
+ content: "Partie " counter(part, upper-roman) "" ". ";
+}
+*[class ~= "topic/topic"][is-chapter]:not([is-part]) > *[class ~= "topic/title"]:lang(fr):before {
+  content: "Chapitre " counter(chapter) "" ". ";
+}
+*[class ~= "topic/topic"][is-part][topicrefclass ~= "bookmap/appendices"] > *[class ~= "topic/title"]:lang(fr):before,
+*[class ~= "topic/topic"][is-chapter]:not([is-part])[topicrefclass ~= "bookmap/appendices"] > *[class ~= "topic/title"]:lang(fr):before,
+*[class ~= "topic/topic"][is-part][topicrefclass ~= "bookmap/appendix"] > *[class ~= "topic/title"]:lang(fr):before {
+  content: none;
+}
+*[class ~= "topic/topic"][is-chapter][topicrefclass ~= "bookmap/appendix"]:not([is-part]) > *[class ~= "topic/title"]:lang(fr):before {
+  content: "Annexe " counter(chapter, upper-latin) "" ". ";
+}
+
+/* Figures */  
+*[class ~= "topic/fig"] > *[class ~= "topic/title"]:lang(fr):before {
+  content: "Illustration " counter(figcount) "" ": ";
+}
+
+/* Tables */
+*[class ~= "topic/table"] > *[class ~= "topic/title"]:lang(fr):before {
+  content: "Tableau " counter(tablecount) "" ": ";
+}
+
+/* Links. */
+*[class ~= "map/map"] *[class ~= "topic/xref"][href]:lang(fr):after,
+*[class ~= "map/map"] *[class ~= "topic/link"][href]:lang(fr):after {
+  content: " (à la page " target-counter(attr(href), page) ")";
+}
+
+/* Links when having chapter scope numbering */
+*[class ~= "map/map"][numbering='deep-chapter-scope'] *[class ~= "topic/xref"][href]:lang(fr):after,
+*[class ~= "map/map"][numbering='deep-chapter-scope'] *[class ~= "topic/link"][href]:lang(fr):after {
+  content: " (à la page " target-counter(attr(href), chapter) "." target-counter(attr(href), page) ")";
+}
+
+	  			
+				  
+				  		
+			  			
+			  				
+	
+*[class~="topic/table"] > *[class~="topic/title"][data-is-repeated]:lang(fr):after(2) {
+    content: " " "(suite)";
+}
+
+			  			
+			  		
+	  		

@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="dita-ot/plugin.rnc" type="application/relax-ng-compact-syntax"?>
+<plugin id="com.oxygenxml.pdf.css">
+
+  <require plugin="org.dita.pdf2"/>
+  <feature extension="package.version" value="24.1"/>
+  <feature extension="dita.conductor.transtype.check" value="pdf-css-html5" type="text"/>
+  <feature extension="dita.conductor.transtype.check" value="pdf-css-html5-single-topic" type="text"/>
+  <feature extension="dita.transtype.print" value="pdf-css-html5"/>
+  <feature extension="dita.transtype.print" value="pdf-css-html5-single-topic"/>
+  <feature extension="dita.conductor.target.relative" value="integrator.xml" type="file"/>
+  <feature extension="dita.xsl.strings" file="resources/localization/strings.xml" xml:base="."/>
+
+  <feature extension="dita.xsl.topicpull" file="xsl/preprocess/topicpull.xsl" xml:base="."/>
+  <feature extension="dita.preprocess.topicpull.param" file="xsl/preprocess/topicpull.params.xml"/>
+
+  <extension-point id="com.oxygenxml.pdf.css.xsl.merged2html5.parameters"
+    name="Extension point to pass parameters to the XSLT transformation that creates the HTML from the merged map"/>
+  <extension-point id="com.oxygenxml.pdf.css.xsl.merged2html5"
+    name="XSLT extension point for the post-processed merged DITA map to HTML5 transformation"/>
+
+  <extension-point id="com.oxygenxml.pdf.css.xsl.merged2merged.parameters"
+    name="Extension point to pass parameters for the XSLT post-processing of the merged DITA map before other stages."/>
+  <extension-point id="com.oxygenxml.pdf.css.xsl.merged2merged"
+    name="XSLT extension point for post-processing the merged DITA map before other stages."/>
+
+  <extension-point id="com.oxygenxml.pdf.css.init" name="Initialization "/>
+
+  <template file="xsl/merged2html5/html5_template.xsl"/>
+  <template file="xsl/merged2merged/merged_template.xsl"/>
+
+  <template file="build-merged2html5_template.xml"/>
+  <template file="build-merged2merged_template.xml"/>
+  <template file="build-extensions_template.xml"/>
+
+  <!-- The set of common parameters. -->
+  <transtype name="pdf-css-base" extends="base" desc="PDF (CSS Formatter)" abstract="true">
+
+    <param name="figure.title.placement" type="enum"
+      desc="Controls the placement of the figure title relative to the image.">
+      <val default="true">top</val>
+      <val>bottom</val>
+    </param>
+    <param name="args.output.base"
+      desc="Specifies the name of the output file without file extension." type="string"/>
+    <param name="css.processor.path.prince" type="file"
+      desc="Path to the Prince executable file (eg: &quot;C:\path\to\prince.exe&quot; on Windows) which should be run to generate the PDF."/>
+    <param name="css.processor.path.antenna-house" type="file"
+      desc="Path to the Antenna House executable file (eg: &quot;C:\path\to\AHFCmd.exe&quot; on Windows) which should be run to generate the PDF."/>
+    <param name="css.processor.path.chemistry" type="file"
+      desc="Path to the Oxygen PDF Chemistry executable file (eg: &quot;C:\path\to\chemistry.bat&quot; on Windows) which should be run to generate the PDF.
+            If this parameter is not set and the publishing is done from Oxygen, then the custom installation directory specified in the &quot;XML / PDF Output / CSS-based Processors&quot;
+            preferences page will be used, otherwise the system's PATH environment variable is used to find and run the Oxygen PDF Chemistry executable."/>
+    <param name="css.processor.type" type="enum" desc="Choose the formatting processor.">
+      <val default="true">chemistry</val>
+      <val>prince</val>
+      <val>antenna-house</val>
+    </param>
+    
+    <param name="chemistry.security.policy" type="file"
+      desc="Path to the Java security policy file that will be used by the Chemistry process."/>
+
+    <param name="chemistry.security.workspace" type="file"
+      desc="Path to the folder that Chemistry will use to store its cache files and temporary files."/>
+
+    <param name="chemistry.security.resources.dir" type="file"
+      desc="Path to an additional folder that Chemistry will use to read its CSS, images. (The process is already having read access to the input map folder, the publishing templates folder, and the OPE install folder.) Should only be used when the chemistry.security.policy parameter is set."/>
+
+    <param name="chemistry.security.resources.host" type="text"
+      desc="The host, specified as name:port, that Chemistry will use to get CSS, images. Should only be used when the chemistry.security.policy parameter is set. "/>
+    
+    <param name="pdf.security.restrict.printhq" type="enum"
+      desc="Restricts printing to high quality. Used for protecting the PDF Document">
+      <val default="true">no</val>
+      <val>yes</val>
+    </param>
+    <param name="pdf.security.restrict.assembledoc" type="enum"
+      desc="Restricts assembling document. Used for protecting the PDF Document">
+      <val default="true">no</val>
+      <val>yes</val>
+    </param>
+    <param name="pdf.security.restrict.accesscontent" type="enum"
+      desc="Restricts extracting text and graphics. Used for protecting the PDF Document">
+      <val default="true">no</val>
+      <val>yes</val>
+    </param>
+    <param name="pdf.security.restrict.fillinforms" type="enum"
+      desc="Restricts filling in existing interactive forms. Used for protecting the PDF Document">
+      <val default="true">no</val>
+      <val>yes</val>
+    </param>
+    <param name="pdf.security.restrict.annotations" type="enum"
+      desc="Restricts annotations. Used for protecting the PDF Document">
+      <val default="true">no</val>
+      <val>yes</val>
+    </param>
+    <param name="pdf.security.restrict.print" type="enum"
+      desc="Restricts printing. Used for protecting the PDF Document">
+      <val default="true">no</val>
+      <val>yes</val>
+    </param>
+    <param name="pdf.security.restrict.copy" type="enum"
+      desc="Restricts printing. Used for protecting the PDF Document">
+      <val default="true">no</val>
+      <val>yes</val>
+    </param>
+    <param name="pdf.security.restrict.edit" type="enum"
+      desc="Restricts editing content. Used for protecting the PDF Document">
+      <val default="true">no</val>
+      <val>yes</val>
+    </param>
+    <param name="pdf.security.user.password" type="text"
+      desc="User password. The document can be opened using this password. When the owner password parameter is not specified, the user password gives full rights to the people using it. When the owner password parameter is specified, the people can open the document using the user password but restrictions will apply. Missing by default.">
+    </param>
+    <param name="pdf.security.owner.password" type="text"
+      desc="Owner password. There are no restrictions for people using this password.">
+    </param>
+    <param name="pdf.security.encrypt.structure.element" type="enum"
+      desc="Controls structure element encryption. Activating this parameter can lead to scrambled text.">
+      <val default="true">no</val>
+      <val>yes</val>
+    </param>
+    
+    <param name="show.changes.and.comments" type="enum"
+      desc="When set to 'yes', the user comments, colored highlights and tracked changes are shown in the output.">
+      <val default="true">no</val>
+      <val>yes</val>
+    </param>
+    <param name="show.changes.and.comments.as.pdf.sticky.notes" type="enum"
+      desc="When set to 'yes', the user comments and tracked changes are shown in the PDF output as sticky note annotations - this is the default.
+            When set to 'no' the comments and tracked changes are presented as footnotes. ">
+      <val default="true">yes</val>
+      <val>no</val>
+    </param>
+    <param name="show.changes.and.comments.as.changebars" type="enum"
+      desc="When set to 'yes', the user comments and tracked changes are shown in the PDF output as changebars - this is the default.
+            When set to 'no' the comments and tracked changes are presented as footnotes. ">
+      <val default="true">yes</val>
+      <val>no</val>
+    </param>
+    <param name="show.changed.text.in.pdf.sticky.notes.content" type="enum"
+      desc="When set to 'yes', the modified text is displayed in the PDF sticky note - this is the default.
+            When set to 'no', no text from document is used in the PDF sticky note. ">
+      <val default="true">yes</val>
+      <val>no</val>
+    </param>
+    <param name="hide.frontpage.toc.index.glossary" type="enum"
+      desc="When set to 'yes', the generated structures like table of contents, index list, front page, etc.. are removed from the output.">
+      <val>yes</val>
+      <val default="true">no</val>
+    </param>
+    <param name="args.css.param.numbering" type="enum"
+      desc="When set to 'shallow', only the first level topics (the chapters) are numbered. When set to 'deep', all the chapters and nested topics are numbered. When set to 'deep-chapter-scope' the pages, figures and tables numbers are reset at each chapter. The chapter number prefix all their labels.">
+      <val>deep</val>
+      <val>deep-chapter-scope</val>
+      <val>deep-chapter-scope-no-page-reset</val>
+      <val default="true">shallow</val>
+    </param>
+    <param name="args.css.param.numbering-sections" type="enum"
+      desc="When set to 'yes', the sections are also numbered and they are listed in the table of contents.">
+      <val default="true">no</val>
+      <val>yes</val>
+    </param>
+    <param name="args.chapter.layout" type="enum"
+      desc="Specifies whether chapter level TOCs are generated for bookmaps. When set to MINITOC, a small section with links is added at the beginning of each chapter. The default is BASIC.">
+      <val default="true">BASIC</val>
+      <val>MINITOC</val>
+      <val>MINITOC-BOTTOM-LINKS</val>
+    </param>
+    <param name="close.pdf.reader.before.transform" type="enum"
+      desc="Specifies that the PDF reader process should be closed before the final stage of the transformation. The readers are locking the PDF file and the transformation fails because it cannot overwrite this file. Available only when using the Chemistry processor on Windows, in conjunction with Acrobat Reader. ">
+      <val default="true">no</val>
+      <val>yes</val>
+    </param>
+    <param name="drop.block.margins.at.page.boundary" type="enum"
+      desc="Specifies that the top and bottom margins associated to a block element should be discarded when the block is at the top or bottom of the page.">
+      <val default="true">yes</val>
+      <val>no</val>
+    </param>
+    <param name="args.keep.output.debug.files" type="enum"
+      desc="Specifies if the debug files generated during the transformation should be kept in the output folder.">
+      <val default="true">yes</val>
+      <val>no</val>
+    </param>
+    <param name="args.allow.external.coderefs" type="enum"
+      desc="Enables the inclusion of code files that are located outside the DITA map folder hierarchy, referenced using the DITA coderef element. ">
+      <val>yes</val>
+      <val default="true">no</val>
+    </param>
+    <param name="use.navtitles.in.all.links" type="enum"
+      desc="Specifies whether the navigation title defined in the topic or topicref should be used as the links text. By default it is used only in the TOC structure.">
+      <val default="true">no</val>
+      <val>yes</val>
+    </param>
+    <param name="pdf.version" type="enum" desc="Specifies the version of the PDF.">
+      <val>1.4</val>
+      <val default="true">1.5</val>
+      <val>1.6</val>
+      <val>1.7</val>
+    </param>
+    <param name="pdf.accessibility" type="enum"
+      desc="When set to 'yes', the PDF output will be generated in compliance with the PDF/UA standard.">
+      <val default="true">no</val>
+      <val>yes</val>
+    </param>
+    <param name="enable.latin.glyph.substitutions" type="enum"
+      desc="When set to 'yes' (default), glyph substitution is enabled (if the particular font supports it). This applies to Latin scripts only (the substitutions are always enabled in other types of scripts). Note that disabling substitutions also disables Latin ligatures.">
+      <val default="true">yes</val>
+      <val>no</val>
+    </param>
+    <param name="image.resolution" type="enum"
+      desc="Specifies the images resolution.">
+      <val default="true">96</val>
+      <val>72</val>
+      <val>120</val>
+      <val>300</val>
+      <val>600</val>
+    </param>
+    <param name="args.rellinks.group.mode" type="enum"
+      desc="Indicates how related links should be grouped. Either as a single group or as multiple groups depending on the links target type (topic, task or concept).">
+      <val default="true">single-group</val>
+      <val>group-by-type</val>
+    </param>
+    <param name="show.media.as.link" type="enum"
+      desc="When set to 'yes' (default), media objects will not appear and an external link will be generated instead.">
+      <val default="true">yes</val>
+      <val>no</val>
+    </param>
+    <param name="sort.and.group.glossentries" type="enum"
+      desc="When set to 'no' (default), elements in the glossary will be inserted following their document apparition order. Otherwise, elements in the glossary will be sorted alphabetically and grouped by their first letter.">
+      <val default="true">no</val>
+      <val>yes</val>
+    </param>
+  </transtype>
+
+  <!-- The recommended transtype, based on HTML5 intermediate format. -->
+  <transtype name="pdf-css-html5" extends="pdf-css-base" desc="PDF (CSS Formatter - HTML5)">
+    <param name="pdf.publishing.template"
+      desc="Specifies the path to the folder containing the custom PDF template." type="file"/>
+    <param name="pdf.publishing.template.descriptor"
+      desc="Specifies the name of the descriptor to be loaded from the PDF template package. 
+        If it is not specified, the first encountered descriptor will be automatically loaded."
+      type="string"/>
+    <param name="args.css" type="file"
+      desc="You can use this to specify a list of CSS URLs to be used in addition to the default CSS list from the publishing template. The files must have URL syntax and be separated using semicolons."/>
+    <param name="args.css.param.show-onpage-lbl" type="enum"
+      desc="Specifies if the 'on page' label appears after links in the PDF output.">
+      <val default="true">yes</val>
+      <val>no</val>
+    </param>
+    <param name="args.css.param.title-layout" type="enum"
+      desc="Specifies the layout used for the titles.">
+      <val default="true" desc="The titles are displayed as inline.">normal</val>
+      <val desc="The titles are displayed in table rows.">table</val>
+    </param>
+    <param name="args.keep.output.debug.files" type="enum"
+      desc="Specifies if the debug files generated during the transformation should be kept in the output folder.">
+      <val default="true">yes</val>
+      <val>no</val>
+    </param>
+    <param name="use.css.for.embedded.svg" type="enum"
+      desc="Specifies if the CSS files specified in the publishing template or by the args.css parameter are applied on embedded SVG elements.">
+      <val default="true">yes</val>
+      <val>no</val>
+    </param>
+    <param name="table.title.placement" type="enum"
+      desc="Controls the placement of the table title.">
+      <val default="true">top</val>
+      <val>bottom</val>
+    </param>
+    <param name="table.title.repeat" type="enum"
+      desc="Specifies if a table caption should repeat on the other pages when the table spans on multiple pages.">
+      <val default="true">yes</val>
+      <val>no</val>
+    </param>
+    <param name="show.image.map.area.numbers" type="enum"
+      desc="Shows a number for each areas defined in an image map.">
+      <val default="true">no</val>
+      <val>yes</val>
+    </param>
+    <param name="show.image.map.area.shapes" type="enum"
+      desc="Shows the shapes of the areas defined in an image map, as a transparent overlay.">
+      <val default="true">no</val>
+      <val>yes</val>
+    </param>
+    <param name="args.hyph.dir" type="dir" desc="Path to the hyphenation dictionaries directory."/>
+  </transtype>
+
+  <!-- The single topic transtype, based on HTML5 intermediate format. -->
+  <transtype name="pdf-css-html5-single-topic" extends="pdf-css-html5"
+    desc="Single Topic PDF (CSS Formatter - HTML5)">
+    <param name="args.root.map"
+      desc="Specifies the path of the root map file used to expand the key references in the published topic."
+      type="file"/>
+    <param name="args.enable.root.map.key.processing"
+      desc="Indicates whether the keys should be processed using the root map parameter."
+      type="enum">
+      <val default="true">auto</val>
+      <val>yes</val>
+      <val>no</val>
+    </param>
+    <param name="args.css.param.show-onpage-lbl" type="enum"
+      desc="Specifies if the 'on page' label appears after links in the PDF output.">
+      <val>yes</val>
+      <val default="true">no</val>
+    </param>
+  </transtype>
+</plugin>
