@@ -1,0 +1,99 @@
+@charset "UTF-8";
+	  			
+	  			
+	  				
+	
+/*
+
+I18N file for no    	
+
+*/
+
+/* Title in the Index page */
+*[class ~= "index/groups"]:lang(no):before {
+  content: "Stikkordregister";
+}
+*[class ~= "index/groups"]:lang(no) {
+  bookmark-label:"Stikkordregister";  
+  -ah-bookmark-label:"Stikkordregister";  
+}
+
+	  			
+	  			
+	  				  	
+	
+
+/* Title of the TOC page */
+*[class ~= "toc/title"][empty]:lang(no):before {
+	content: "Innhold";
+}
+
+/* This string is used in the TOC page header. */
+*[class ~= "toc/title"]:lang(no) {
+  string-set: toc-header "Innhold";
+}
+  	
+/* Titles in the TOC. */
+*[class ~= "map/topicref"][is-part] > *[class ~= "map/topicmeta"] > *[class ~= "topic/navtitle"]:lang(no):before{
+  content: "Del " counter(toc-part, upper-roman) "" ". ";
+}
+
+*[class ~= "map/topicref"][is-chapter]:not([is-part]) > *[class ~= "map/topicmeta"] > *[class ~= "topic/navtitle"]:lang(no):before{
+  content: "Kapittel " counter(toc-chapter) "" ". ";
+}
+*[class ~= "bookmap/appendices"] > *[class ~= "map/topicmeta"] > *[class ~= "topic/navtitle"]:lang(no):before,
+*[class ~= "bookmap/appendix"][is-part] > *[class ~= "map/topicmeta"] > *[class ~= "topic/navtitle"]:lang(no):before{
+  content: none !important;
+}
+*[class ~= "bookmap/appendix"][is-chapter]:not([is-part]) > *[class ~= "map/topicmeta"] > *[class ~= "topic/navtitle"]:lang(no):before{
+  content: "Tillegg " counter(toc-chapter, upper-latin) "" ". ";
+}
+
+/* Titles in the content. */
+*[class ~= "topic/topic"][is-part] > *[class ~= "topic/title"]:lang(no):before {
+ content: "Del " counter(part, upper-roman) "" ". ";
+}
+*[class ~= "topic/topic"][is-chapter]:not([is-part]) > *[class ~= "topic/title"]:lang(no):before {
+  content: "Kapittel " counter(chapter) "" ". ";
+}
+*[class ~= "topic/topic"][is-part][topicrefclass ~= "bookmap/appendices"] > *[class ~= "topic/title"]:lang(no):before,
+*[class ~= "topic/topic"][is-chapter]:not([is-part])[topicrefclass ~= "bookmap/appendices"] > *[class ~= "topic/title"]:lang(no):before,
+*[class ~= "topic/topic"][is-part][topicrefclass ~= "bookmap/appendix"] > *[class ~= "topic/title"]:lang(no):before {
+  content: none;
+}
+*[class ~= "topic/topic"][is-chapter][topicrefclass ~= "bookmap/appendix"]:not([is-part]) > *[class ~= "topic/title"]:lang(no):before {
+  content: "Tillegg " counter(chapter, upper-latin) "" ". ";
+}
+
+/* Figures */  
+*[class ~= "topic/fig"] > *[class ~= "topic/title"]:lang(no):before {
+  content: "Figur " counter(figcount) "" ": ";
+}
+
+/* Tables */
+*[class ~= "topic/table"] > *[class ~= "topic/title"]:lang(no):before {
+  content: "Tabell " counter(tablecount) "" ": ";
+}
+
+/* Links. */
+*[class ~= "map/map"] *[class ~= "topic/xref"][href]:lang(no):after,
+*[class ~= "map/map"] *[class ~= "topic/link"][href]:lang(no):after {
+  content: " (på side " target-counter(attr(href), page) ")";
+}
+
+/* Links when having chapter scope numbering */
+*[class ~= "map/map"][numbering='deep-chapter-scope'] *[class ~= "topic/xref"][href]:lang(no):after,
+*[class ~= "map/map"][numbering='deep-chapter-scope'] *[class ~= "topic/link"][href]:lang(no):after {
+  content: " (på side " target-counter(attr(href), chapter) "." target-counter(attr(href), page) ")";
+}
+
+	  			
+				  
+					  	
+	
+*[class~="topic/table"] > *[class~="topic/title"][data-is-repeated]:lang(no):after(2) {
+    content: " " "";
+}
+
+			  		
+	  		

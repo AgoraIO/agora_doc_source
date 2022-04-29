@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:whc="http://www.oxygenxml.com/webhelp/components" whc:version="24.1">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />        
+        <whc:page_libraries page="main"/>
+        <whc:webhelp_skin_resources/>
+        <whc:include_html href="${args.hdf}"/>
+        <whc:include_html href="${webhelp.fragment.head}"/>
+        <whc:include_html href="${webhelp.fragment.head.main.page}"/>
+    </head>
+    <body class="wh_main_page">
+        <a href="#content" class="sr-only sr-only-focusable">
+            <whc:macro value="${i18n(jump.to.content)}" />
+        </a>
+        <whc:include_html href="${args.hdr}"/>
+        
+        <whc:include_html href="${webhelp.fragment.before.body}"/>
+        <whc:include_html href="${webhelp.fragment.before.body.main.page}"/>
+        
+        <whc:include_html href="${webhelp.fragment.header}"/>
+        
+        <whc:include_html href="${webhelp.fragment.after.header}"/>
+        <whc:include_html href="${webhelp.fragment.after.header.main.page}"/>        
+        
+        <whc:webhelp_search_input class="navbar-form wh_main_page_search search" role="form">
+            <whc:include_html href="${webhelp.fragment.before.search.input}"/>
+            <whc:include_html href="${webhelp.fragment.before.search.input.main.page}"/>
+            
+            <whc:include_html href="${webhelp.fragment.before.main.page.search}"/>
+            <div class="wh_welcome"><whc:include_html href="${webhelp.fragment.welcome}"/></div>          
+            <whc:component_content/>
+            <whc:include_html href="${webhelp.fragment.after.search.input}"/>
+            <whc:include_html href="${webhelp.fragment.after.search.input.main.page}"/>
+            
+            <whc:include_html href="${webhelp.fragment.after.main.page.search}"/>
+        </whc:webhelp_search_input>
+        
+        <whc:include_html href="${webhelp.fragment.before.main.content.area}"/>
+        <whc:include_html href="${webhelp.fragment.before.main.content.area.main.page}"/>
+        
+        <div class="wh_content_area " id="content">
+            <whc:include_html href="${webhelp.fragment.before.toc_or_tiles}"/>
+            <div class="container-fluid wh_content_flex_container">
+                <whc:webhelp_tiles>
+                    <whc:webhelp_tile>
+                        <div>
+                            <whc:webhelp_tile_image/>
+
+                            <div class="wh_tile_text">
+                                <whc:webhelp_tile_title/>
+
+                                <whc:webhelp_tile_shortdesc/>
+                            </div>
+                        </div>
+                    </whc:webhelp_tile>
+                </whc:webhelp_tiles>
+                <whc:webhelp_main_page_toc/>
+                <whc:include_html href="${webhelp.fragment.after.toc_or_tiles}"/>
+            </div>
+        </div>
+        
+        <whc:include_html href="${webhelp.fragment.after.main.content.area}"/>
+        <whc:include_html href="${webhelp.fragment.after.main.content.area.main.page}"/>
+        
+        <whc:include_html href="footer.xml"/>
+        
+        <whc:include_html href="${webhelp.fragment.after.body}"/>
+        <whc:include_html href="${webhelp.fragment.after.body.main.page}"/>
+    </body>
+</html>

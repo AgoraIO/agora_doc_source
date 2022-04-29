@@ -1,0 +1,53 @@
+/*
+ * ================================================
+ * 
+ * Bookmap List of Tables, List of Figures.
+ * 
+ * ================================================
+ */
+*[class~="placeholder/tablelist"], *[class~="placeholder/figurelist"] {
+  page: table-of-contents;
+  page-break-before: always;
+}
+
+/* As big as the first level topic titles from ../core/-topic-basic.css */
+*[class~="placeholder/tablelist"]>*[class~="topic/title"], 
+*[class~="placeholder/figurelist"]>*[class~="topic/title"] {
+  font-size: 2em;
+  margin-bottom: 1em;
+}
+
+*[class~="listentry/entry"] {
+  display: block;
+  link: attr(href);
+  -ah-link: attr(href);
+  -oxy-link: attr(href);
+  text-align: justify;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+*[class~="listentry/entry"]:after {
+  display: inline;
+  content: leader('.') target-counter(attr(href), page);
+}
+
+*[class~="listentry/entry"]>*[class~="topic/title"] {
+  display: inline;
+}
+
+*[class~="listentry/prefix"] {
+  display: inline;
+}
+
+*[class~="listentry/prefix"]:after {
+  content: " ";
+}
+
+*[class~="listentry/number"] {
+  display: inline;
+}
+
+*[class~="listentry/number"]:after {
+  content: ": ";
+}
