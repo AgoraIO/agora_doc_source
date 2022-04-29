@@ -1,0 +1,156 @@
+/*
+ * =====================================================
+ * 
+ * Defines the PDF bookmarks structure.
+ * 
+ * =====================================================
+ */
+
+
+/* 
+ * Publication title.
+ */
+*[class ~= "map/map"][title] {
+     prince-bookmark-level: 1;
+    -ah-bookmark-level: 1;
+    bookmark-level: 1;  
+    bookmark-label: content(before) attr(title);	
+    -ah-bookmark-label: content(before) attr(title);
+}
+
+*[class ~= "front-page/front-page-title"] > *[class ~= "topic/title"]:not([class ~= "bookmap/booktitle"]),
+*[class ~= "front-page/front-page-title"] > *[class ~= "bookmap/booktitle"] > *[class ~= "bookmap/mainbooktitle"] {
+    prince-bookmark-level: 1;
+    -ah-bookmark-level: 1;
+    bookmark-level: 1;  
+    bookmark-label: content(before) content();	
+    -ah-bookmark-label: content(before) content();
+}
+
+/* List of tables, list of figures */
+*[class ~= "placeholder/tablelist"] > *[class ~= "topic/title"],
+*[class ~= "placeholder/figurelist"] > *[class ~= "topic/title"] {
+    prince-bookmark-level: 1;
+    -ah-bookmark-level: 1;
+    bookmark-level: 1;  
+    bookmark-label: content(before) content();	
+    -ah-bookmark-label: content(before) content();
+}
+
+
+/* Table of Contents */
+*[class ~= "toc/title"]{
+    prince-bookmark-level: 1;
+    -ah-bookmark-level: 1;
+    bookmark-level: 1;  
+    bookmark-label: content(before);	
+    -ah-bookmark-label: content(before);
+}	
+
+
+/* Index */
+*[class ~= "index/groups"]{
+    prince-bookmark-level: 1;
+    -ah-bookmark-level: 1;
+    bookmark-level: 1;  	
+}
+	
+
+
+
+/*
+  The label for topic is collected from the title, and includes its :before.
+  The :after is not used, it may be a link to edit the topic online.
+  These pseudo elements contain the chapter numbering.
+  The label uses the navtitle if available.
+*/
+*[class~="topic/topic"] > *[class~="topic/title"],
+*[class~="topic/section"] > *[class~="topic/title"]{
+  bookmark-label: content(before) content(text);  
+  -ah-bookmark-label:content(before) content(); 
+}
+
+/* 
+  Hide label for topics with @toc="no", and the task components. 
+*/
+*[class~="tasklabel"],
+*[class ~= "topic/topic"][topicreftoc = "no"] > *[class~="topic/title"] {
+	bookmark-label: none;
+	-ah-bookmark-label:none;
+}
+
+*[class~="topic/topic"]:has(*[class~="topic/titlealts"]) > *[class~="topic/title"] {
+  bookmark-label:
+  		content(before)
+  		oxy_xpath(" \
+			let $navtitle:=following-sibling::*[contains(@class, 'topic/titlealts')][1]/*[contains(@class, 'topic/navtitle')][1] \
+			return if ($navtitle) then \
+				string-join($navtitle, '') \
+			else \
+				string-join(., '') \
+			");  
+  -ah-bookmark-label:content(before) content(); /* No navtitle support for antenna-house. */
+}
+
+/* 
+  Only the Glossary container has an entry in the Bookmarks view, its children do not. 
+*/
+*[class~="bookmap/glossarylist"] * *[class~="topic/title"] {
+	bookmark-label: none !important;  
+   -ah-bookmark-label:none !important; 	
+}
+
+
+/* 
+  This element contains the navigation title set on the topic (or set on the topicref in the map).
+  No matter where is set, it ends up in the topic content. We do not need it in the output.
+*/
+*[class~="topic/titlealts"] {
+	display:none;
+}
+
+	
+*[class~="topic/topic"] > *[class~="topic/title"] {
+  prince-bookmark-level: 1;
+  -ah-bookmark-level: 1;
+  bookmark-level: 1;  
+}
+*[class~="topic/topic"] *[class~="topic/topic"] > *[class~="topic/title"],
+*[class~="topic/topic"] *[class~="topic/section"] > *[class~="topic/title"] {
+  prince-bookmark-level: 2;
+  -ah-bookmark-level: 2;
+  bookmark-level: 2;
+  bookmark-state:closed; 
+}
+*[class~="topic/topic"] *[class~="topic/topic"] *[class~="topic/topic"] > *[class~="topic/title"],
+*[class~="topic/topic"] *[class~="topic/topic"] *[class~="topic/section"] > *[class~="topic/title"] {
+  prince-bookmark-level: 3;
+  -ah-bookmark-level: 3;
+  bookmark-level: 3;
+}
+*[class~="topic/topic"] *[class~="topic/topic"] *[class~="topic/topic"] *[class~="topic/topic"] > *[class~="topic/title"],
+*[class~="topic/topic"] *[class~="topic/topic"] *[class~="topic/topic"] *[class~="topic/section"] > *[class~="topic/title"] {
+  prince-bookmark-level: 4;
+  -ah-bookmark-level: 4;
+  bookmark-level: 4;
+}
+*[class~="topic/topic"] *[class~="topic/topic"] *[class~="topic/topic"] *[class~="topic/topic"] *[class~="topic/topic"] > *[class~="topic/title"],
+*[class~="topic/topic"] *[class~="topic/topic"] *[class~="topic/topic"] *[class~="topic/topic"] *[class~="topic/section"] > *[class~="topic/title"] {
+  prince-bookmark-level: 5;
+  -ah-bookmark-level: 5;
+  bookmark-level: 5;
+
+}
+*[class~="topic/topic"] *[class~="topic/topic"] *[class~="topic/topic"] *[class~="topic/topic"] *[class~="topic/topic"] *[class~="topic/topic"] > *[class~="topic/title"],
+*[class~="topic/topic"] *[class~="topic/topic"] *[class~="topic/topic"] *[class~="topic/topic"] *[class~="topic/topic"] *[class~="topic/section"] > *[class~="topic/title"] {
+  prince-bookmark-level: 6;
+  -ah-bookmark-level: 6;
+  bookmark-level: 6;
+
+}
+*[class~="topic/topic"] *[class~="topic/topic"] *[class~="topic/topic"] *[class~="topic/topic"] *[class~="topic/topic"] *[class~="topic/topic"] *[class~="topic/topic"] > *[class~="topic/title"],
+*[class~="topic/topic"] *[class~="topic/topic"] *[class~="topic/topic"] *[class~="topic/topic"] *[class~="topic/topic"] *[class~="topic/topic"] *[class~="topic/section"] > *[class~="topic/title"] {
+  prince-bookmark-level: 7;
+  -ah-bookmark-level: 7;
+  bookmark-level: 7;
+}

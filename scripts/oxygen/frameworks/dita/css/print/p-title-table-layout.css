@@ -1,0 +1,54 @@
+/*
+ * ======================================================
+ * 
+ * Title layout both in TOC and in the content.
+ * 
+ * ======================================================
+ */
+
+/*
+ * Avoid wrapping the text under the counter.
+ */
+*[class ~= "map/map"][title-layout='table'] *[class ~= "topic/topic"][is-part] > *[class ~= "topic/title"],
+*[class ~= "map/map"][title-layout='table'] *[class ~= "topic/topic"][is-chapter]:not([is-part]) > *[class ~= "topic/title"],
+*[class ~= "map/map"][title-layout='table'] *[class ~= "topic/topic"][is-chapter]:not([is-part]) > *[class ~= "topic/topic"] > *[class ~= "topic/title"],
+*[class ~= "map/map"][title-layout='table'] *[class ~= "topic/topic"][is-chapter]:not([is-part]) > *[class ~= "topic/topic"] > *[class ~= "topic/topic"] > *[class ~= "topic/title"],
+*[class ~= "map/map"][title-layout='table'] *[class ~= "topic/topic"][is-chapter]:not([is-part]) > *[class ~= "topic/topic"] > *[class ~= "topic/topic"] > *[class ~= "topic/topic"] > *[class ~= "topic/title"],
+*[class ~= "map/map"][title-layout='table'] *[class ~= "map/topicref"][is-part] > *[class ~= "map/topicmeta"],
+*[class ~= "map/map"][title-layout='table'] *[class ~= "map/topicref"][is-chapter]:not([is-part]) > *[class ~= "map/topicmeta"],
+*[class ~= "map/map"][title-layout='table'] *[class ~= "map/topicref"][is-chapter]:not([is-part]) > *[class ~= "map/topicref"] > *[class ~= "map/topicmeta"],
+*[class ~= "map/map"][title-layout='table'] *[class ~= "map/topicref"][is-chapter]:not([is-part]) > *[class ~= "map/topicref"] > *[class ~= "map/topicref"] > *[class ~= "map/topicmeta"],
+*[class ~= "map/map"][title-layout='table'] *[class ~= "map/topicref"][is-chapter]:not([is-part]) > *[class ~= "map/topicref"] > *[class ~= "map/topicref"] > *[class ~= "map/topicref"] > *[class ~= "map/topicmeta"] {
+	display:table-row;
+}
+
+
+*[class ~= "map/map"][title-layout='table'] *[class ~= "topic/topic"][is-part] > *[class ~= "topic/title"]:before,
+*[class ~= "map/map"][title-layout='table'] *[class ~= "topic/topic"][is-chapter]:not([is-part]) > *[class ~= "topic/title"]:before,
+*[class ~= "map/map"][title-layout='table'] *[class ~= "topic/topic"][is-chapter]:not([is-part]) > *[class ~= "topic/topic"] > *[class ~= "topic/title"]:before,
+*[class ~= "map/map"][title-layout='table'] *[class ~= "topic/topic"][is-chapter]:not([is-part]) > *[class ~= "topic/topic"] > *[class ~= "topic/topic"] > *[class ~= "topic/title"]:before,
+*[class ~= "map/map"][title-layout='table'] *[class ~= "topic/topic"][is-chapter]:not([is-part]) > *[class ~= "topic/topic"] > *[class ~= "topic/topic"] > *[class ~= "topic/topic"] > *[class ~= "topic/title"]:before,
+*[class ~= "map/map"][title-layout='table'] *[class ~= "map/topicref"][is-part] > *[class ~= "map/topicmeta"]:before,
+*[class ~= "map/map"][title-layout='table'] *[class ~= "map/topicref"][is-chapter]:not([is-part]) > *[class ~= "map/topicmeta"]:before,
+*[class ~= "map/map"][title-layout='table'] *[class ~= "map/topicref"][is-chapter]:not([is-part]) > *[class ~= "map/topicref"] > *[class ~= "map/topicmeta"]:before,
+*[class ~= "map/map"][title-layout='table'] *[class ~= "map/topicref"][is-chapter]:not([is-part]) > *[class ~= "map/topicref"] > *[class ~= "map/topicref"] > *[class ~= "map/topicmeta"]:before,
+*[class ~= "map/map"][title-layout='table'] *[class ~= "map/topicref"][is-chapter]:not([is-part]) > *[class ~= "map/topicref"] > *[class ~= "map/topicref"] > *[class ~= "map/topicref"] > *[class ~= "map/topicmeta"]:before {
+    display:table-cell;
+    padding-right:0.2em;
+}
+
+
+*[class ~= "map/map"][title-layout='table'] *[class ~= "topic/topic"][is-part] > *[class ~= "topic/title"] > *[class ~= "topic/title-wrapper"],
+*[class ~= "map/map"][title-layout='table'] *[class ~= "topic/topic"][is-chapter]:not([is-part]) > *[class ~= "topic/title"] > *[class ~= "topic/title-wrapper"],
+*[class ~= "map/map"][title-layout='table'] *[class ~= "topic/topic"][is-chapter]:not([is-part]) > *[class ~= "topic/topic"] > *[class ~= "topic/title"] > *[class ~= "topic/title-wrapper"],
+*[class ~= "map/map"][title-layout='table'] *[class ~= "topic/topic"][is-chapter]:not([is-part]) > *[class ~= "topic/topic"] > *[class ~= "topic/topic"] > *[class ~= "topic/title"] > *[class ~= "topic/title-wrapper"],
+*[class ~= "map/map"][title-layout='table'] *[class ~= "topic/topic"][is-chapter]:not([is-part]) > *[class ~= "topic/topic"] > *[class ~= "topic/topic"] > *[class ~= "topic/topic"] > *[class ~= "topic/title"] > *[class ~= "topic/title-wrapper"],
+*[class ~= "map/map"][title-layout='table'] *[class ~= "map/topicref"][is-part] > *[class ~= "map/topicmeta"] > *[class ~= "topic/navtitle"],
+*[class ~= "map/map"][title-layout='table'] *[class ~= "map/topicref"][is-chapter]:not([is-part]) > *[class ~= "map/topicmeta"]> *[class ~= "topic/navtitle"],
+*[class ~= "map/map"][title-layout='table'] *[class ~= "map/topicref"][is-chapter]:not([is-part]) > *[class ~= "map/topicref"] > *[class ~= "map/topicmeta"]> *[class ~= "topic/navtitle"],
+*[class ~= "map/map"][title-layout='table'] *[class ~= "map/topicref"][is-chapter]:not([is-part]) > *[class ~= "map/topicref"] > *[class ~= "map/topicref"] > *[class ~= "map/topicmeta"]> *[class ~= "topic/navtitle"],
+*[class ~= "map/map"][title-layout='table'] *[class ~= "map/topicref"][is-chapter]:not([is-part]) > *[class ~= "map/topicref"] > *[class ~= "map/topicref"] > *[class ~= "map/topicref"] > *[class ~= "map/topicmeta"]> *[class ~= "topic/navtitle"] {
+	display:table-cell;
+	width:fill;
+	page-break-inside:avoid;
+}

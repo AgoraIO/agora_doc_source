@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+
+    Does the same thing like the build.xml file from "org.dita.pdf2" plugin,
+    but skips some processing steps like generating the FO intermediate file and running FOP as they are not necessary
+    in the Prince processing.
+
+-->
+
+<project basedir=".">
+
+  <!--
+    
+    
+    The main target.
+    
+    
+    The same as "org.dita.pdf2:dita2pdf2"
+    but using
+      css.map2pdf2
+    instead of
+      map2pdf2
+      
+    Removed dependecy on:
+      topic2pdf2
+  -->
+  <target name="pdf-css.dita2pdf2" depends="dita2pdf2.init, build-init, preprocess, pdf-css.map2pdf2"/>
+
+  <!--
+    The same as "org.dita.pdf2:map2pdf2"
+    but calling
+      css.publish.map.pdf
+    instead of
+      publish.map.pdf
+  -->
+  <target name="pdf-css.map2pdf2" unless="noMap">
+    <dirname property="dita.temp.dir.fullpath" file="${dita.temp.dir}${file.separator}dummy.file"/>
+    <pipeline message="topicmerge"
+      inputmap="${dita.temp.dir.fullpath}${file.separator}${user.input.file}"
+      tempdir="${dita.temp.dir.fullpath}">
+      <module class="org.dita.dost.module.TopicMergeModule">
+        <param name="output"
+          location="${dita.temp.dir.fullpath}${file.separator}${dita.map.filename.root}_MERGED.xml"/>
+        <param name="style" location="${dita.plugin.org.dita.pdf2.dir}/xsl/common/topicmerge.xsl"/>
+      </module>
+    </pipeline>
+    <antcall target="pdf-css.publish.map.pdf" inheritrefs="true"/>
+  </target>
+
+  <!--
+    The same as "org.dita.pdf2:publish.map.pdf"
+    but using
+      css.transform.topic2pdf
+    instead of
+      transform.topic2pdf
+  -->
+  <target name="pdf-css.publish.map.pdf"
+    depends="
+        transform.topic2pdf.init,
+        publish.map.pdf.init,
+        pdf-css.transform.topic2pdf"/>
+  
+
+  <!--
+    The same as "org.dita.pdf2:transform.topic2pdf"
+    but using
+      css.transform.topic2fo
+    instead of
+      transform.topic2fo
+      
+    Removed dependency on:
+      transform.fo2pdf
+      delete.fo2pdf.topic.fo
+  -->
+  <target name="pdf-css.transform.topic2pdf"
+      depends="copyCoreArtwork,pdf-css.transform.topic2fo"/>
+  
+  
+
+  <!--
+    The same as "org.dita.pdf2:transform.topic2fo"
+    
+    Removed dependency on:
+      transform.topic2fo.main,
+      transform.topic2fo.i18n
+  -->
+  
+  <target name="pdf-css.transform.topic2fo"
+    depends="
+    transform.topic2fo.css.init,
+    transform.topic2fo.css.index"/>
+
+	 <!--
+	    The same as "transform.topic2fo.init"
+	    but using our own language detection code and it also works with store-type=memory
+	    also simplified.
+	  -->
+	<target name="transform.topic2fo.css.init">
+        <taskdef name="detect-lang" classname="com.oxygenxml.dita.antextensions.DetectLang">
+       	  <classpath path="${com.oxygenxml.common.dir}/lib/oxygen-dita-publishing-ant-extensions.jar"/>
+        </taskdef>
+
+    <makeurl file="${inputFile}" property="inputFile.url" validate="false"/>
+
+    <!-- Set document.locale from xml:lang -->
+    <!-- The map takes precedence, followed by the first topic -->
+    <detect-lang documentPath="${inputFile.url}"/>
+    
+    <property name="document.locale" value="${default.locale}"/>
+
+    <!-- WS runtime properties -->
+    <property file="${cfg.common.dir}/properties/${document.locale}.properties"/>
+
+    <property name="document.language" value="${default.language}"/>
+    <echo level="info">Using document.locale=${document.locale}</echo>
+
+    <property name="args.bookmark.style" value=""/>
+
+    <property name="args.chapter.layout" value=""/>
+
+    <property name="args.draft" value="no"/>
+
+    <condition property="publish.required.cleanup" value="${args.draft}">
+      <and>
+        <not><isset property="publish.required.cleanup"/></not>
+        <isset property="args.draft"/>
+      </and>
+    </condition>
+
+    <property name="args.gen.task.lbl" value=""/>
+    <property name="args.bookmap-order" value="discard"/>
+    <property name="args.figurelink.style" value="NUMTITLE"/>
+    <property name="args.tablelink.style" value="NUMTITLE"/>
+  </target>
+  
+  	 <!--
+	    The same as "transform.topic2fo.ndex"
+	    but using our own indexer class name for store-type memory.
+	  -->
+  <target name="transform.topic2fo.css.index" depends="transform.topic2fo.index.init">
+    <condition property="indexer.class.name" value="com.idiominc.ws.opentopic.fo.index2.IndexPreprocessorTask">
+      <not>
+        <equals arg1="${store-type}" arg2="memory"/>
+      </not>
+    </condition>
+    <property name="indexer.class.name" value="com.idiominc.ws.opentopic.fo.index2.IndexPreprocessorTaskJob"/>
+    <taskdef classname="${indexer.class.name}" name="index-preprocess" classpathref="project.class.path" onerror="ignore"/>
+    <condition property="index.config.file" value="${customization.dir}/common/index/${document.locale}.xml">
+      <and>
+        <not><isset property="index.config.file"/></not>
+        <available file="${customization.dir}/common/index/${document.locale}.xml"/>
+      </and>
+    </condition>
+    <condition property="index.config.file" value="${cfg.dir}/common/index/${document.locale}.xml">
+      <and>
+        <not><isset property="index.config.file"/></not>
+        <available file="${cfg.dir}/common/index/${document.locale}.xml"/>
+      </and>
+    </condition>
+    <condition property="index.config.file" value="${customization.dir}/common/index/${document.language}.xml">
+      <and>
+        <not><isset property="index.config.file"/></not>
+        <available file="${customization.dir}/common/index/${document.language}.xml"/>
+      </and>
+    </condition>
+    <condition property="index.config.file" value="${cfg.dir}/common/index/${document.language}.xml">
+      <and>
+        <not><isset property="index.config.file"/></not>
+        <available file="${cfg.dir}/common/index/${document.language}.xml"/>
+      </and>
+    </condition>
+    <property name="index.config.file" value="${cfg.dir}/common/index/${default.language}.xml"/>
+    
+    <echo level="info">Processing ${inputFile} to ${dita.temp.dir}/stage1.xml</echo>
+    <index-preprocess input="${inputFile.url}" output="${dita.temp.dir}/stage1.xml" indexConfig="${index.config.file}" locale="${document.locale}" draft="${args.draft}">
+      <xmlcatalog refid="xml.catalog"/>
+    </index-preprocess>
+  </target>
+</project>

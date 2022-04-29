@@ -1,0 +1,70 @@
+/*
+ * ======================================================
+ * 
+ * Page, Tables, Figures and Sections numbering, all reset at the Chapter scope.
+ *
+ * Similar to the deep numbering, but resets the counters at chapter scope and prefixes 
+ * all the table and figure titles and references by the chapter counter.
+ * 
+ * This CSS hides the XSLT computed figure and table numbers and replace them by target CSS counters.
+ * 
+ * ======================================================
+ */
+
+*[class ~= "map/map"][numbering ^= 'deep-chapter-scope'] *[class ~= "topic/topic"][is-chapter] {
+  counter-reset: page 1 section1 tablecount figcount !important;
+}
+
+/* Links and titles */
+*[class ~= "map/map"][numbering ^= 'deep-chapter-scope'] .table--title-label-number,
+*[class ~= "map/map"][numbering ^= 'deep-chapter-scope'] .table--title-label-punctuation,
+*[class ~= "map/map"][numbering ^= 'deep-chapter-scope'] .fig--title-label-number,
+*[class ~= "map/map"][numbering ^= 'deep-chapter-scope'] .fig--title-label-punctuation {
+  display: none;
+}
+
+/* Titles */
+*[class ~= "topic/table"] > caption:before,
+*[class ~= "topic/fig"] > figcaption:before {
+  display: none; /* Hide the counters coming from the WYSIWYG CSS */
+}
+
+*[class ~= "map/map"][numbering ^= 'deep-chapter-scope'] *[class ~= "topic/table"] > caption > .table--title-label:after {
+  content: " " counter(chapter) "-" counter(tablecount) "  ";
+}
+
+*[class ~= "map/map"][numbering ^= 'deep-chapter-scope'] *[class ~= "topic/fig"] > figcaption > .fig--title-label:after {
+  content: " " counter(chapter) "-" counter(figcount) "  ";
+}
+
+/* Links */
+*[class ~= "map/map"][numbering ^= 'deep-chapter-scope'] .table--title-label-number-placeholder {
+  content: target-counter(attr(href), chapter, decimal) "-" target-counter(attr(href), tablecount, decimal) "  ";
+}
+*[class ~= "map/map"][numbering ^= 'deep-chapter-scope'] .fig--title-label-number-placeholder {
+  content: target-counter(attr(href), chapter, decimal) "-" target-counter(attr(href), figcount, decimal) "  ";
+}
+
+
+/* List of Tables and List of Figures */
+*[class ~= "map/map"][numbering ^= 'deep-chapter-scope'] *[class ~= "placeholder/tablelist"] *[class ~= "listentry/number"],
+*[class ~= "map/map"][numbering ^= 'deep-chapter-scope'] *[class ~= "placeholder/figurelist"] *[class ~= "listentry/number"] {
+  display: none;
+}
+
+*[class ~= "map/map"][numbering ^= 'deep-chapter-scope'] *[class ~= "placeholder/tablelist"] *[class ~= "listentry/prefix"]:after {
+  content: " " target-counter(attr(href), chapter, decimal) "-" target-counter(attr(href), tablecount, decimal) "  ";
+}
+
+*[class ~= "map/map"][numbering ^= 'deep-chapter-scope'] *[class ~= "placeholder/figurelist"] *[class ~= "listentry/prefix"]:after {
+  content: " " target-counter(attr(href), chapter, decimal) "-" target-counter(attr(href), figcount, decimal) "  ";
+}
+
+
+/* Indexterms */
+*[class ~= "map/map"][numbering = 'deep-chapter-scope'] *[class ~= "index/groups"] *[class ~= "index/link"] {
+  content: target-counter(attr(href), chapter, decimal) "." target-counter(attr(href), page) ", ";
+}
+*[class ~= "map/map"][numbering = 'deep-chapter-scope'] *[class ~= "index/groups"] *[class ~= "index/link"]:last-child {
+  content: target-counter(attr(href), chapter, decimal) "." target-counter(attr(href), page);
+}
