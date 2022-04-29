@@ -37,7 +37,7 @@
                     <dd>v3.4.0</dd>
                 </dlentry>
             </dl>
-            <p id="audiomixing_detailed">This method mixes the specified local or online audio file with the audio from the microphone, or replaces the microphone's audio with the specified local or remote audio file. A successful method call triggers the <xref keyref="onAudioMixingStateChanged" /> (<apiname keyref="AUDIO_MIXING_STATE_PLAYING"/>) callback. When the audio mixing file playback finishes, the SDK triggers the <apiname keyref="onAudioMixingStateChanged" /> (<codeph>STOPPED</codeph>) callback on the local client.</p>
+            <p id="audiomixing_detailed">This method mixes the specified local or online audio file with the audio from the microphone, or replaces the microphone's audio with the specified local or remote audio file. A successful method call triggers the <codeph><xref keyref="onAudioMixingStateChanged"/>(<apiname keyref="AUDIO_MIXING_STATE_PLAYING"/>)</codeph> callback. When the audio mixing file playback finishes, the SDK triggers the <codeph><apiname keyref="onAudioMixingStateChanged"/>(<apiname keyref="AUDIO_MIXING_STATE_STOPPED"/>)</codeph> callback on the local client.</p>
    <note type="attention" id="audiomixing_note">
        <ul>
            <li>Call this method after joining a channel. If you need to call <apiname keyref="startAudioMixing2" /> multiple times, ensure that the time interval between calling this method is more than 500 ms.</li>
@@ -72,8 +72,8 @@
                 <plentry>
                     <pt>cycle</pt>
                     <pd><p>The number of times the music file plays.<ul>
-                               <li>≥ 0: The number of playback times.  For example, 0 means that the SDK does not play the music file while 1 means that the SDK plays once.</li>
-                               <li>-1: Play the audio effect in an infinite loop.</li>
+                               <li>≥ 0: The number of playback times. For example, 0 means that the SDK does not play the music file while 1 means that the SDK plays once.</li>
+                               <li>-1: Play the music file in an infinite loop.</li>
                            </ul></p></pd>
                 </plentry>
                 <plentry>
