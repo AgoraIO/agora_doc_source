@@ -35,7 +35,7 @@ jobs:
           
     - name: zip files
       run: |
-          cd dita/RTC-NG/out
+          cd dita/RTC/out
           zip -qq -r flutter_cg_cn_doc.zip "flutter_cg"
           zip -qq -r cs_cg_cn_doc.zip "csharp_cg"
           zip -qq -r flutter_cg_en_doc.zip "flutter_cg_en"
@@ -45,7 +45,7 @@ jobs:
       uses: svenstaro/upload-release-action@v2
       with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: dita/RTC-NG/out/flutter_cg_cn_doc.zip
+          file: dita/RTC/out/flutter_cg_cn_doc.zip
           asset_name: flutter_cg_cn_doc.zip
           tag: main
           overwrite: true
@@ -55,7 +55,7 @@ jobs:
       uses: svenstaro/upload-release-action@v2
       with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: dita/RTC-NG/out/cs_cg_cn_doc.zip
+          file: dita/RTC/out/cs_cg_cn_doc.zip
           asset_name: cs_cg_cn_doc.zip
           tag: main
           overwrite: true
@@ -65,7 +65,7 @@ jobs:
       uses: svenstaro/upload-release-action@v2
       with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: dita/RTC-NG/out/flutter_cg_en_doc.zip
+          file: dita/RTC/out/flutter_cg_en_doc.zip
           asset_name: flutter_cg_en_doc.zip
           tag: main
           overwrite: true
@@ -75,7 +75,7 @@ jobs:
       uses: svenstaro/upload-release-action@v2
       with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: dita/RTC-NG/out/cs_cg_en_doc.zip
+          file: dita/RTC/out/cs_cg_en_doc.zip
           asset_name: cs_cg_en_doc.zip
           tag: main
           overwrite: true
