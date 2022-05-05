@@ -1,0 +1,47 @@
+/*
+ * =====================================================
+ * 
+ * Defines the front page aspect.
+ * 
+ * It matches the XSL created <front-page/> element.
+ * 
+ * =====================================================
+ */
+
+*[class~="front-page/front-page"] {
+    page: front-page;
+}
+
+/* Prevents the front-page title margin collapsing */
+*[class~="front-page/front-page"]::before(1000) {
+    display:block;
+    content:"";
+    height:0.1px;
+}
+
+*[class~="front-page/front-page-title"] {
+    display:block;
+    text-align:center;
+    margin-top:3in;
+    font-size:2em;
+    font-family:arial, helvetica, sans-serif;
+    font-weight:bold;
+}
+
+*[class~="front-page/front-page-title"] *[class~="bookmap/booktitle"] > * {
+	/* booktitlealt, booklibrary and mainbooktitles should be blocks. They are converted to spans by the default HTML transformation.*/
+	display:block;
+}
+
+@page front-page {    	
+    @top-left-corner    {          content:none }
+    @top-left           {          content:none }
+    @top-center         {          content:none }
+    @top-right          {          content:none }
+    @top-right-corner   {          content:none }
+    @bottom-left-corner {          content:none }
+    @bottom-left        {          content:none }
+    @bottom-center      {          content:none }
+    @bottom-right       {          content:none }
+    @bottom-right-corner{          content:none }
+}

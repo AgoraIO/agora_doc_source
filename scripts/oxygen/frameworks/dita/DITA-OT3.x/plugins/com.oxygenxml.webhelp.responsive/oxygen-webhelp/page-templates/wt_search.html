@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:whc="http://www.oxygenxml.com/webhelp/components" whc:version="24.1">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Search Results</title>
+        <whc:page_libraries page="search"/>
+        <whc:webhelp_skin_resources/>
+        <whc:include_html href="${args.hdf}"/>
+        <whc:include_html href="${webhelp.fragment.head}"/>
+        <whc:include_html href="${webhelp.fragment.head.search.page}"/>
+    </head>
+    <body class="wh_search_page">
+        <a href="#results" class="sr-only sr-only-focusable">
+            <whc:macro value="${i18n(jump.to.results)}" />
+        </a>
+        <whc:include_html href="${args.hdr}"/>
+        <whc:include_html href="${webhelp.fragment.before.body}"/>
+        <whc:include_html href="${webhelp.fragment.before.body.search.page}"/>
+        
+        <whc:include_html href="${webhelp.fragment.header}"/>
+        
+        <whc:include_html href="${webhelp.fragment.after.header}"/>
+        <whc:include_html href="${webhelp.fragment.after.header.search.page}"/> 
+        
+        <whc:webhelp_search_input class="navbar-form wh_search_page_search search" role="form">
+            <whc:include_html href="${webhelp.fragment.before.search.input}"/>
+            <whc:include_html href="${webhelp.fragment.before.search.input.search.page}"/>
+            
+            <whc:component_content/>
+            
+            <whc:include_html href="${webhelp.fragment.after.search.input}"/>
+            <whc:include_html href="${webhelp.fragment.after.search.input.search.page}"/>
+        </whc:webhelp_search_input>
+        
+        <whc:include_html href="${webhelp.fragment.before.main.content.area}"/>
+        <whc:include_html href="${webhelp.fragment.before.main.content.area.search.page}"/>
+        
+        <div class="container-fluid wh_content_area" id="results">
+            <div class="row">
+                <whc:webhelp_search_results />
+            </div>
+        </div>
+        
+        <whc:include_html href="${webhelp.fragment.after.main.content.area}"/>
+        <whc:include_html href="${webhelp.fragment.after.main.content.area.search.page}"/>
+        
+        <whc:include_html href="footer.xml"/>
+        
+        <whc:include_html href="${webhelp.fragment.after.body}"/>
+        <whc:include_html href="${webhelp.fragment.after.body.search.page}"/>
+    </body>
+    <whc:include_html href="${webhelp.google.search.script}"/> 
+</html>
