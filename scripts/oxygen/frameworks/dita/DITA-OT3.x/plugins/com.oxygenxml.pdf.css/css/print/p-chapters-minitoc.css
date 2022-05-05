@@ -1,0 +1,59 @@
+/*
+ * =====================================================
+ * 
+ * Styles the minitoc of the chapters.
+ *
+ * The minitoc is a structure with two sections, the first one 
+ * being similar to a normal DITA related links section, and the 
+ * second simply containing the elements emitted by the chapter 
+ * topic body. 
+ * The child topics are placed below this minitoc.
+ * 
+ * =====================================================
+ */
+
+
+/* Place the links in the left, as an inline block, 
+	except for the case minitoc is in the bottom.  */
+*:not([class~="chapter/minitoc-bottom"]) > *[class~="chapter/minitoc-links"] {
+	display: inline-block;
+	width: 40%;
+}
+
+/* Place the description (this is the content from the chapter 
+	topic) - in the right, except for the case minitoc is in the bottom.  */
+*:not([class~="chapter/minitoc-bottom"]) > *[class~="chapter/minitoc-desc"] {
+	display: inline-block;
+	width: 56%;
+	padding-left: 1%;
+	border-left: 1pt solid;
+}
+
+*[class~="chapter/minitoc-links"] *[class~="topic/desc"]{
+	font-weight: bold;
+} 
+
+/* Is not enough space, skip the (page NN) postfix. */
+*[class~="chapter/minitoc-links"] *[class~="topic/link"]:after {
+	display:none;
+}
+
+*[class~="chapter/minitoc-links"] *[class~="topic/link"] {	
+	display:block;
+	margin-left:0;
+}
+
+*[class~="chapter/minitoc-links"] *[class~="topic/link"] br{
+	display:none;
+}
+
+
+/* Remove some margins and padding. */
+*[class~="chapter/minitoc-links"] *[class~="topic/linklist"],
+*[class~="chapter/minitoc-links"] .linklist {
+	margin-left: 0;
+	padding-left:0;
+}
+
+
+

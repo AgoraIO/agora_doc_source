@@ -1,0 +1,57 @@
+/*
+ * =====================================================
+ * 
+ * Defines the footnotes placement and aspect.
+ * 
+ * =====================================================
+ */
+
+*[class~="topic/fn"] {
+    float: footnote;
+    counter-increment: footnote;
+}
+
+*[class~="map/topicref"] *[class~="topic/fn"] {
+    float: none;
+    display: none;
+    counter-increment: none;
+}
+
+*[class~="topic/fn"]::footnote-call {
+    content: counter(footnote);
+    font-size: smaller;
+    vertical-align: super;
+    line-height: none;
+}
+
+/*
+  Footnote entered with an id attribute is a use-by-reference footnote. 
+  Upon output, it does not appear anywhere unless it has been referenced 
+  using an <xref> with the type attribute set to "fn". 
+ */
+*[class~="topic/fn"][id]:footnote-call {
+  display: none;
+}
+
+
+@page {
+    @footnote {
+    	border-top: solid black thin;
+    	padding-top: 8pt;
+    }
+}
+
+@media screen {
+  *[class~="topic/fn"]::before {
+    content: "[";
+  }
+  
+  *[class~="topic/fn"]::after {
+    content: "]";
+  }
+}
+
+*[class ~= "topic/fn"][callout]:footnote-call,
+*[class ~= "topic/fn"][callout]:footnote-marker {
+  content: attr(callout);
+}

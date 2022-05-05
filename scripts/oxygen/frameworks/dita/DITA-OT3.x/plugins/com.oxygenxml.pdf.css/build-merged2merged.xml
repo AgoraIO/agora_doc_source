@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+
+Applies the XSL transformation to get html5 from the merged map.
+
+--><project xmlns:if="ant:if" basedir=".">
+
+	
+
+	<!-- XSLT Pipe: Generic postprocessing of the merged file -->
+	<target name="pdf-css.xslt-pipeline-post-process">
+ 		<pipeline message="Process the merged map" taskname="m2m">
+	 		<xslt in="${dita.map.merged}" out="${dita.map.merged.post.processed}" style="${dita.plugin.com.oxygenxml.pdf.css.dir}/xsl/merged2merged/merged.xsl">
+			      <xmlcatalog classpath="">
+			      		<!-- 
+			      		If this empty classpath attribute is not set, the catalog resolver
+			      		will try to scan the full classpath-ul and the build will fail
+			      		when a security policy file is in place. 
+			      		-->
+			    	  <catalogpath path="${xsl.extensions.xml.catalog.file.path}"/>
+			    	  <catalogpath path="${dita.plugin.org.dita.base.dir}/catalog-dita.xml"/>
+			      </xmlcatalog>	
+				<param name="args.draft" expression="${args.draft}" if:set="args.draft"/>
+				<param name="args.chapter.layout" expression="${args.chapter.layout}" if:set="args.chapter.layout"/>
+				<param name="input.dir.url" expression="${user.input.dir.url}"/>
+				<param name="show.changes.and.comments" expression="${show.changes.and.comments}"/>
+	 			<param name="show.changes.and.comments.as.changebars" expression="${show.changes.and.comments.as.changebars}"/>
+				<param name="transtype" expression="${transtype}"/>
+				<param name="figure.title.placement" expression="${figure.title.placement}"/>
+		        <param name="css.params" expression="${css.params}" if:set="css.params"/>
+	            <param name="figurelink.style" expression="${args.figurelink.style}"/>
+	            <param name="tablelink.style" expression="${args.tablelink.style}"/>
+		    	<param name="hide.frontpage.toc.index.glossary" expression="${hide.frontpage.toc.index.glossary}" if:set="hide.frontpage.toc.index.glossary"/>
+	 			<param name="defaultLanguage" expression="${default.language}" if:set="default.language"/>
+
+				<!-- Extension parameters -->
+				
+    
+    <param xmlns:dita="http://dita-ot.sourceforge.net" name="editlink.remote.ditamap.url" expression="${editlink.remote.ditamap.url}" if:set="editlink.remote.ditamap.url"/>
+    
+
+    <param name="editlink.web.author.url" expression="${editlink.web.author.url}" if:set="editlink.web.author.url"/>
+    <param name="editlink.present.only.path.to.topic" expression="${editlink.present.only.path.to.topic}" if:set="editlink.present.only.path.to.topic"/>
+
+    <param name="editlink.local.ditamap.path" expression="${args.input}"/>
+    <param name="editlink.local.ditaval.path" expression="${args.filter}" if:set="args.filter"/>
+
+    <param name="editlink.ditamap.edit.url" expression="${editlink.ditamap.edit.url}" if:set="editlink.ditamap.edit.url"/>
+    <param name="editlink.additional.query.parameters" expression="${editlink.additional.query.parameters}" if:set="editlink.additional.query.parameters"/>
+
+
+			</xslt>
+		</pipeline>
+	</target>
+
+</project>

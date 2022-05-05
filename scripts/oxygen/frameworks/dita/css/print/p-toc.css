@@ -1,0 +1,125 @@
+/*
+ * ======================================================
+ * 
+ * Table of Contents.
+ * 
+ * ======================================================
+ */
+
+/*
+	Associates the opentopic:map to the TOC page.
+*/
+*[class ~= "map/map"] > *[class ~= "toc/toc"] {
+    display: block;
+    page: table-of-contents;
+}
+
+
+/*      
+     One can use the oxy:toc-title title element to give a title to the TOC.
+     If is marked as empty, use the static text: "Contents"         
+ */
+*[class ~= "toc/title"] {
+    display: block;
+    font-size: 2em;
+    margin-bottom: 1em;
+}
+*[class ~= "toc/title"][empty]:before {
+	/* p-i18n.css */
+}
+
+
+/* 
+    The bookmap title migrates into the opentopic:map element. Since it is already on the 
+    front page, it should be hidden. 
+*/
+*[class ~= "map/map"] > *[class ~= "toc/toc"] > *[class ~= "topic/title"] {
+    display: none;
+}
+
+*[class ~= "map/topicref"] {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+*[class ~= "map/topicref"] *[class ~= "map/topicref"] {
+    margin-left: 2em;
+}
+
+
+
+/*
+    Do not generate an extra indent for the containers.
+*/
+*[class ~= "bookmap/frontmatter"]:not([href]) > *[class ~= "map/topicref"],
+*[class ~= "bookmap/backmatter"]:not([href]) > *[class ~= "map/topicref"],
+*[class ~= "bookmap/booklists"]:not([href]) > *[class ~= "map/topicref"]{
+	margin-left: 0;
+}
+*[class ~= "bookmap/frontmatter"]:not([href]),
+*[class ~= "bookmap/backmatter"]:not([href]),
+*[class ~= "bookmap/booklists"]:not([href]){
+	margin-left: 0;	
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-right: 0;
+}
+*[class ~= "bookmap/frontmatter"]:not([href]):empty,
+*[class ~= "bookmap/backmatter"]:not([href]):empty,
+*[class ~= "bookmap/booklists"]:not([href]):empty{
+	display:none;
+}
+
+
+
+/* 
+   The chapters from the opentopic:map are bolded and larger, and 
+   also the ones that are direct children of parts. 
+ */
+*[class ~= "map/topicref"][is-chapter] {
+	margin-left:0;
+    font-weight: bold;
+}
+*[class ~= "map/topicref"][is-chapter]:not([is-part]) > *[class ~= "map/topicref"]:not(is-chapter) {
+    font-weight: normal;
+}
+
+/* Hide sections below level 3. */
+*[class ~= "map/topicref"][is-chapter] > 
+    *[class ~= "map/topicref"]:not([is-chapter]) > 
+    *[class ~= "map/topicref"] > 
+    *[class ~= "map/topicref"] {
+
+    display: none;
+}
+
+
+/* 
+ * TOC entries
+ */
+
+/* Remove the styling inherited from the editing stylesheets */
+*[class ~= "map/topicref"] *[class ~= "topic/navtitle"] {
+    font-weight: inherit;
+}
+*[class ~= "map/topicref"] *[class ~= "topic/navtitle"]:before {
+    content:none;
+}
+
+/* Ignore displaying other metadata elements, except the navtitle*/
+*[class ~= "map/topicmeta"] > *:not([class ~= "topic/navtitle"]) {
+    display: none;
+}
+
+/* Link on the topic title */
+*[class ~= "map/topicref"] *[class ~= "topic/navtitle"] {
+    link: attr(href);
+    -ah-link: attr(href);
+    -oxy-link: attr(href);
+}
+
+/* A dotted line between the topic name and the page number. 
+   Not the case for external references. */
+*[class ~= "map/topicref"]:not([scope = "external"]) *[class ~= "topic/navtitle"]:after {
+    content: leader('.') target-counter(attr(href), page);
+}

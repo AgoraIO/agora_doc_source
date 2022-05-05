@@ -1,0 +1,3090 @@
+@namespace oxy "http://www.oxygenxml.com/extensions/author";
+/* colors as variables */
+/*#FFFAD5*/
+/*#FFD34E*/
+/* before layer used for hints */
+/* hints styles */
+*:before(201) {
+  border: 1px solid #d89e36;
+  background-color: rgba(255, 250, 213, 0.6);
+}
+/* define mixins */
+/* Hints and placeholders */
+/* EXM-41121: don't let the hints go to PDF. */
+@media oxygen {
+  /* Topic types */
+  topic {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  topic:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('topic-hints', '-', oxy_local-name()), width, 100%);
+  }
+  topic:before(201) {
+    background-color: rgba(255, 211, 78, 0.6) !important;
+  }
+  topic:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter topic content";
+  }
+  concept {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  concept:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('concept-hints', '-', oxy_local-name()), width, 100%);
+  }
+  concept:before(201) {
+    background-color: rgba(255, 211, 78, 0.6) !important;
+  }
+  concept:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter concept content";
+  }
+  task {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  task:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('task-hints', '-', oxy_local-name()), width, 100%);
+  }
+  task:before(201) {
+    background-color: rgba(255, 211, 78, 0.6) !important;
+  }
+  task:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter task content";
+  }
+  reference {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  reference:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('reference-hints', '-', oxy_local-name()), width, 100%);
+  }
+  reference:before(201) {
+    background-color: rgba(255, 211, 78, 0.6) !important;
+  }
+  reference:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter reference content";
+  }
+  glossgroup {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  glossgroup:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('glossary-hints', '-', oxy_local-name()), width, 100%);
+  }
+  glossgroup:before(201) {
+    background-color: rgba(255, 211, 78, 0.6) !important;
+  }
+  glossgroup:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter glossary entries";
+  }
+  /* Main body elements */
+  body {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  body:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter main topic content";
+  }
+  taskbody {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  taskbody:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter main task content";
+  }
+  refbody {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  refbody:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter main reference content";
+  }
+  conbody {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  conbody:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter main concept content";
+  }
+  glossBody {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  glossBody:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter glossary body content";
+  }
+  /* titles */
+  title {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  title:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter title";
+  }
+  section > title {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  section > title:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter section title";
+  }
+  topic > title {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  topic > title:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('topic-hints', '-', oxy_local-name()), width, 100%);
+  }
+  topic > title:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter topic title";
+  }
+  reference > title {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  reference > title:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('reference-hints', '-', oxy_local-name()), width, 100%);
+  }
+  reference > title:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter reference title";
+  }
+  task > title {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  task > title:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('task-hints', '-', oxy_local-name()), width, 100%);
+  }
+  task > title:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter task title";
+  }
+  concept > title {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  concept > title:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('concept-hints', '-', oxy_local-name()), width, 100%);
+  }
+  concept > title:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter concept title";
+  }
+  glossterm {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  glossterm:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter term";
+  }
+  titlealts {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  titlealts:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('hints', '-', oxy_local-name()), width, 100%);
+  }
+  titlealts:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter alternative navigation and search title";
+  }
+  navtitle {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  navtitle:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter navigation title";
+  }
+  searchtitle {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  searchtitle:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter search title";
+  }
+  /* abstract and short descriptions */
+  abstract {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  abstract:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('hints', '-', oxy_local-name()), width, 100%);
+  }
+  abstract:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter abstract information";
+  }
+  shortdesc {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  shortdesc:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter short description";
+  }
+  topic > shortdesc:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('topic-hints', '-', oxy_local-name()), width, 100%);
+  }
+  topic > abstract > shortdesc:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('topic-hints', '-', oxy_local-name()), width, 100%);
+  }
+  task > shortdesc:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('task-hints', '-', oxy_local-name()), width, 100%);
+  }
+  task > abstract > shortdesc:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('task-hints', '-', oxy_local-name()), width, 100%);
+  }
+  concept > shortdesc:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('concept-hints', '-', oxy_local-name()), width, 100%);
+  }
+  concept > abstract > shortdesc:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('concept-hints', '-', oxy_local-name()), width, 100%);
+  }
+  reference > shortdesc:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('reference-hints', '-', oxy_local-name()), width, 100%);
+  }
+  reference > abstract > shortdesc:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('reference-hints', '-', oxy_local-name()), width, 100%);
+  }
+  /* lists */
+  sl {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  sl:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('hints', '-', oxy_local-name()), width, 100%);
+  }
+  sl:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter simple list items";
+  }
+  sli {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  sli:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter simple list item";
+  }
+  ul {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  ul:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter unordered list items";
+  }
+  ol {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  ol:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter ordered list items";
+  }
+  li {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  li:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter list item";
+  }
+  dl {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  dl:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('hints', '-', oxy_local-name()), width, 100%);
+  }
+  dl:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter definition list entries";
+  }
+  dlhead {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  dlhead:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter definition list head information";
+  }
+  dthd {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  dthd:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter definition term heading";
+  }
+  ddhd {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  ddhd:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter definition description heading";
+  }
+  dlentry {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  dlentry:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter definition list entry";
+  }
+  dt {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  dt:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter definition term";
+  }
+  dd {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  dd:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter definition description";
+  }
+  parml:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('hints', '-', oxy_local-name()), width, 100%);
+  }
+  plentry {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  plentry:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter parameter list entry";
+  }
+  pt {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  pt:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter parameter name";
+  }
+  pd {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  pd:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter parameter definition";
+  }
+  /* task steps */
+  steps {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  steps:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('task-hints', '-', oxy_local-name()), width, 100%);
+  }
+  steps:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter ordered steps information";
+  }
+  steps-unordered {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  steps-unordered:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('task-hints', '-', oxy_local-name()), width, 100%);
+  }
+  steps-unordered:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter unordered steps information";
+  }
+  steps-informal {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  steps-informal:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('task-hints', '-', oxy_local-name()), width, 100%);
+  }
+  steps-informal:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter informal steps information";
+  }
+  step {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  step:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "You need to enter a command for this step!";
+  }
+  cmd {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  cmd:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter step action";
+  }
+  /* hints and placeholders */
+  p {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  p:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter paragraph content";
+  }
+  pre {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  pre:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter preformated content";
+  }
+  codeblock {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  codeblock:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('hints', '-', oxy_local-name()), width, 100%);
+  }
+  codeblock:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter code fragments";
+  }
+  screen {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  screen:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('hints', '-', oxy_local-name()), width, 100%);
+  }
+  screen:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter screen content";
+  }
+  lines {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  lines:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('hints', '-', oxy_local-name()), width, 100%);
+  }
+  lines:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter lines";
+  }
+  bodydiv {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  bodydiv:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('topic-hints', '-', oxy_local-name()), width, 100%);
+  }
+  bodydiv:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter body div content";
+  }
+  sectiondiv {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  sectiondiv:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('topic-hints', '-', oxy_local-name()), width, 100%);
+  }
+  sectiondiv:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter section div content";
+  }
+  conbodydiv {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  conbodydiv:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('concept-hints', '-', oxy_local-name()), width, 100%);
+  }
+  conbodydiv:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter concept body div content";
+  }
+  refbodydiv {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  refbodydiv:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('reference-hints', '-', oxy_local-name()), width, 100%);
+  }
+  refbodydiv:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter reference body div content";
+  }
+  prolog {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  prolog:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('hints', '-', oxy_local-name()), width, 100%);
+  }
+  prolog:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter prolog information";
+  }
+  author {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  author:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter author name";
+  }
+  source {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  source:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter a reference to a resource";
+  }
+  publisher {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  publisher:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter publisher name";
+  }
+  copyrholder {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  copyrholder:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter copyright holder";
+  }
+  critdates {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  critdates:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter creation and revision dates";
+  }
+  metadata {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  metadata:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('hints', '-', oxy_local-name()), width, 100%);
+  }
+  metadata:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter metadata information";
+  }
+  audience {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  audience:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter audience";
+  }
+  category {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  category:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter category";
+  }
+  keywords {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  keywords:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter keywords";
+  }
+  prodinfo {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  prodinfo:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter product information";
+  }
+  prodname {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  prodname:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter product name";
+  }
+  vrmlist {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  vrmlist:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter product version information";
+  }
+  section {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  section:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('hints', '-', oxy_local-name()), width, 100%);
+  }
+  section:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter section content";
+  }
+  syntaxdiagram {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  syntaxdiagram:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('hints', '-', oxy_local-name()), width, 100%);
+  }
+  syntaxdiagram:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter syntax diagram content";
+  }
+  lq {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  lq:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('hints', '-', oxy_local-name()), width, 100%);
+  }
+  lq:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter long quote";
+  }
+  msgblock {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  msgblock:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('hints', '-', oxy_local-name()), width, 100%);
+  }
+  msgblock:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter message block content";
+  }
+  note {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  note:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('hints', '-', oxy_local-name()), width, 100%);
+  }
+  note:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter note content";
+  }
+  fig {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  fig:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('hints', '-', oxy_local-name()), width, 100%);
+  }
+  fig:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter figure content";
+  }
+  example {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  example:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('hints', '-', oxy_local-name()), width, 100%);
+  }
+  example:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter example";
+  }
+  desc {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  desc:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('hints', '-', oxy_local-name()), width, 100%);
+  }
+  desc:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter description";
+  }
+  draft-comment {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  draft-comment:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('hints', '-', oxy_local-name()), width, 100%);
+  }
+  draft-comment:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter commment";
+  }
+  related-links:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('hints', '-', oxy_local-name()), width, 100%);
+  }
+  linklist {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  linklist:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('hints', '-', oxy_local-name()), width, 100%);
+  }
+  linklist:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter link list content";
+  }
+  linkinfo {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  linkinfo:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('hints', '-', oxy_local-name()), width, 100%);
+  }
+  linkinfo:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter link information";
+  }
+  linkpool {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  linkpool:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('hints', '-', oxy_local-name()), width, 100%);
+  }
+  linkpool:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter link pool content";
+  }
+  hazardstatement {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  hazardstatement:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('hints', '-', oxy_local-name()), width, 100%);
+  }
+  hazardstatement:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter hazard information";
+  }
+  typeofhazard {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  typeofhazard:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Specify the hazard type";
+  }
+  consequence {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  consequence:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter the consequences of not avoiding the hazard";
+  }
+  howtoavoid {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  howtoavoid:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Specify how to avoid the hazard";
+  }
+  hazardsymbol:not([href]):not([keyref]) {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  hazardsymbol:not([href]):not([keyref]):empty {
+    color: #4ef5f5 !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Set href or keyref for this hazard symbol!";
+  }
+  imagemap:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('hints', '-', oxy_local-name()), width, 100%);
+  }
+  coords {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  coords:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter coordinates";
+  }
+  taskbody > prereq {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  taskbody > prereq:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('task-hints', '-', oxy_local-name()), width, 100%);
+  }
+  taskbody > prereq:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter pre-requisites";
+  }
+  taskbody > context {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  taskbody > context:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('task-hints', '-', oxy_local-name()), width, 100%);
+  }
+  taskbody > context:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter context information";
+  }
+  step > stepresult:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('task-hints', '-', oxy_local-name()), width, 100%);
+  }
+  substep > stepresult:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('task-hints', '-', oxy_local-name()), width, 100%);
+  }
+  stepresult {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  stepresult:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter the result of this step";
+  }
+  choices:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('task-hints', '-', oxy_local-name()), width, 100%);
+  }
+  choice {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  choice:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Provide an option";
+  }
+  step > info {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  step > info:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('task-hints', '-', oxy_local-name()), width, 100%);
+  }
+  step > info:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter step information";
+  }
+  substep > info {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  substep > info:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('task-hints', '-', oxy_local-name()), width, 100%);
+  }
+  substep > info:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter substep information";
+  }
+  step > tutorialinfo {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  step > tutorialinfo:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('task-hints', '-', oxy_local-name()), width, 100%);
+  }
+  step > tutorialinfo:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter tutorial information";
+  }
+  substep > tutorialinfo {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  substep > tutorialinfo:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('task-hints', '-', oxy_local-name()), width, 100%);
+  }
+  substep > tutorialinfo:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter tutorial information";
+  }
+  step > stepxmp {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  step > stepxmp:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('task-hints', '-', oxy_local-name()), width, 100%);
+  }
+  step > stepxmp:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Provide a step example";
+  }
+  substep > stepxmp {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  substep > stepxmp:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('task-hints', '-', oxy_local-name()), width, 100%);
+  }
+  substep > stepxmp:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Provide a step example";
+  }
+  step > substeps:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('task-hints', '-', oxy_local-name()), width, 100%);
+  }
+  taskbody > result {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  taskbody > result:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('task-hints', '-', oxy_local-name()), width, 100%);
+  }
+  taskbody > result:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter the result of the task";
+  }
+  taskbody > postreq {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  taskbody > postreq:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('task-hints', '-', oxy_local-name()), width, 100%);
+  }
+  taskbody > postreq:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter post-requisites";
+  }
+  stepsection {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  stepsection:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('task-hints', '-', oxy_local-name()), width, 100%);
+  }
+  stepsection:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter step section information";
+  }
+  refsyn {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  refsyn:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('reference-hints', '-', oxy_local-name()), width, 100%);
+  }
+  refsyn:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter reference syntax content";
+  }
+  properties:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('reference-hints', '-', oxy_local-name()), width, 100%);
+  }
+  /* links */
+  xref:not([href]):not([keyref]) {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  xref:not([href]):not([keyref]):empty {
+    color: #4ef5f5 !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Set href or keyref for this cross reference!";
+  }
+  /* references to long quote and long description */
+  longquoteref:not([href]):not([keyref]) {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  longquoteref:not([href]):not([keyref]):empty {
+    color: #4ef5f5 !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Set href or keyref on this long quote";
+  }
+  longdescref:not([href]):not([keyref]) {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  longdescref:not([href]):not([keyref]):empty {
+    color: #4ef5f5 !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Set href or keyref on this long description";
+  }
+  table:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('hints', '-', oxy_local-name()), width, 100%);
+  }
+  /* glossary */
+  glossentry {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  glossentry:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('glossary-hints', '-', oxy_local-name()), width, 100%);
+  }
+  glossentry:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter glossary entry";
+  }
+  glossdef {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  glossdef:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter definition";
+  }
+  glossAlt {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  glossAlt:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('glossary-hints', '-', oxy_local-name()), width, 100%);
+  }
+  glossAlt:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Alternative term";
+  }
+  glossAbbreviation {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  glossAbbreviation:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter abbreviated form of the term";
+  }
+  glossAcronym {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  glossAcronym:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter acronym";
+  }
+  glossShortForm {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  glossShortForm:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter short form alternative";
+  }
+  glossSynonym {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  glossSynonym:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter synonym";
+  }
+  glossUsage {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  glossUsage:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter usage information";
+  }
+  glossStatus {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  glossStatus:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter usage status";
+  }
+  glossProperty {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  glossProperty:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter additional details";
+  }
+  glossPartOfSpeech {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  glossPartOfSpeech:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter part of speech information";
+  }
+  glossSurfaceForm {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  glossSurfaceForm:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter surface form information";
+  }
+  glossScopeNote {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  glossScopeNote:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('glossary-hints', '-', oxy_local-name()), width, 100%);
+  }
+  glossScopeNote:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter scope note";
+  }
+  /* machine industry */
+  prelreqs {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  prelreqs:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('mi-hints', '-', oxy_local-name()), width, 100%);
+  }
+  prelreqs:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter preliminary requirements";
+  }
+  closereqs {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  closereqs:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('mi-hints', '-', oxy_local-name()), width, 100%);
+  }
+  closereqs:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter closing requirements";
+  }
+  reqconds {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  reqconds:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('mi-hints', '-', oxy_local-name()), width, 100%);
+  }
+  reqconds:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter required conditions";
+  }
+  reqcond {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  reqcond:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter required condition";
+  }
+  reqcontp {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  reqcontp:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter a technical publication";
+  }
+  reqpers {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  reqpers:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('mi-hints', '-', oxy_local-name()), width, 100%);
+  }
+  reqpers:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter required personnel";
+  }
+  personnel {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  personnel:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter the number of personnel";
+  }
+  perscat {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  perscat:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter required category level";
+  }
+  perskill {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  perskill:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter required skill level";
+  }
+  esttime {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  esttime:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter time estimate";
+  }
+  supequip {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  supequip:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('mi-hints', '-', oxy_local-name()), width, 100%);
+  }
+  supequip:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter support equipment";
+  }
+  supeqli {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  supeqli:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter support equipment items";
+  }
+  supequi {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  supequi:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter support equipment item";
+  }
+  supplies {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  supplies:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('mi-hints', '-', oxy_local-name()), width, 100%);
+  }
+  supplies:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter supplies";
+  }
+  supplyli {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  supplyli:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter supply items";
+  }
+  supply {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  supply:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter supply description";
+  }
+  spares {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  spares:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('mi-hints', '-', oxy_local-name()), width, 100%);
+  }
+  spares:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter spare parts";
+  }
+  sparesli {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  sparesli:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter spare parts items";
+  }
+  spare {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  spare:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter spare part description";
+  }
+  safety {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  safety:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('mi-hints', '-', oxy_local-name()), width, 100%);
+  }
+  safety:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter safety information";
+  }
+  safecond {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  safecond:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Enter safety condition";
+  }
+  /* troubleshooting */
+  troubleshooting:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('tr-hints', '-', oxy_local-name()), width, 100%);
+  }
+  troubleshooting:before(201) {
+    background-color: rgba(255, 211, 78, 0.6) !important;
+  }
+  condition {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  condition:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('tr-hints', '-', oxy_local-name()), width, 100%);
+  }
+  condition:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Describe the condition to be corrected";
+  }
+  troubleSolution {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  troubleSolution:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('tr-hints', '-', oxy_local-name()), width, 100%);
+  }
+  troubleSolution:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Describe a possible solution";
+  }
+  cause {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  cause:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('tr-hints', '-', oxy_local-name()), width, 100%);
+  }
+  cause:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Describe a possible cause";
+  }
+  remedy {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  remedy:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('tr-hints', '-', oxy_local-name()), width, 100%);
+  }
+  remedy:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Describe a possible remedy";
+  }
+  responsibleParty {
+    /* 
+     * EXM-41121: don't let the hints go to PDF. 
+     * Remove this rule to avoid nested media queries. 
+     */
+    /*@media oxygen-high-contrast-black, oxygen-dark-theme {
+        &:empty {
+            color:white!important;
+        }
+    }*/
+    /*&:empty:focus   {color:@focusedPlaceholderColor!important;}*/
+  }
+  responsibleParty:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('tr-hints', '-', oxy_local-name()), width, 100%);
+  }
+  responsibleParty:empty {
+    color: #99aaaa !important;
+    -oxy-show-placeholder: always;
+    -oxy-placeholder-content: "Who should perform the remedy procedure?";
+  }
+  troubleshooting > shortdesc:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('tr-hints', '-', oxy_local-name()), width, 100%);
+  }
+}
+/* Specific rules by platform */
+@media oxygen and (platform: standalone), oxygen and (platform: eclipse) {
+  simpletable:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('hints', '-', oxy_local-name()), width, 100%);
+  }
+  choicetable:before(201) {
+    display: block;
+    font-family: arial, helvetica, sans-serif;
+    line-height: 1rem;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+    content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('task-hints', '-', oxy_local-name()), width, 100%);
+  }
+}
