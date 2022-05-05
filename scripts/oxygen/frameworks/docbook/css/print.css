@@ -1,0 +1,72 @@
+@media print {
+	
+	/* Align text of the paragraphs from list items with the bullet. Workaround for the missing FOP relative-align=baseline  */
+	listitem > para {
+		display:inline;
+	}
+	
+	/* Footnotes */
+	footnote{
+	    float: footnote;
+	    font-size:0.8rem;
+	    margin-left:1em;	
+	}
+	
+	footnote:before {
+		display:none;
+	}
+	
+	footnote > para {
+		display:inline;
+	}
+	
+	title {
+		page-break-after: avoid;
+	}
+	
+	indexterm {
+	  display:none;
+	}
+	
+	
+    /* 
+      Put a number before the table title.
+      The counter is reset in p-page-titles-and-numbers.css
+    */
+	table > caption{ 
+	    counter-increment: tablecount;
+	}
+	table > caption:before{ 
+	    content: "Table " counter(tablecount) ": ";
+  	}
+	
+	
+
+  /*
+   * Deal with @rowsep and @colsep. 
+   * 
+   * These attributes can be set on "table", "tgroup", "row", and 
+   * "entry" elements. The "tbody"/"thead" do not have such attributes.
+   * 
+   * The values are inherited from the parents. The last row does 
+   * not have a row separator, and the cells from the last column do 
+   * not have column separators.
+   */
+  table[rowsep = '1']> tgroup:not([rowsep]) > * > row:not([rowsep]):not(:last-child) > entry:not([rowsep]),
+  tgroup[rowsep = '1'] > * > row:not([rowsep]):not(:last-child) > entry:not([rowsep]),
+  row[rowsep = '1']:not(:last-child) > entry:not([rowsep]),
+  row:not(:last-child) > entry[rowsep = '1'] {
+     border-bottom:1px solid;
+  }
+  /* Add a line between the header and the table body, if there is a rowsep on the table or tgroup */ 
+  table[rowsep = '1'] > tgroup > thead > row:last-child > entry,
+  tgroup[rowsep = '1'] > thead > row:last-child > entry {
+     border-bottom:1px solid;
+  } 
+  table[colsep = '1']  > tgroup:not([colsep]) > * > row:not([colsep]) > entry:not([colsep]):not(:last-child),
+  tgroup[colsep = '1'] > * > row:not([colsep]) > entry:not([colsep]):not(:last-child),
+  row[colsep = '1'] > entry:not([colsep]):not(:last-child),
+  entry[colsep = '1']:not(:last-child) {
+     border-right:1px solid;
+  }
+}

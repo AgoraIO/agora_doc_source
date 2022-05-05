@@ -1,0 +1,183 @@
+personnel:before {
+    display:block;    
+    padding: 1em;
+    font-size: 1.8em;
+    content: "Employees";
+    font-weight: bold;
+    color:#EEEEEE;    
+    background-color: rgba(50, 50, 50, 0.6);
+}
+
+personnel{
+    display:block;      
+    margin:2em;     
+    font-family: sans-serif;
+}
+
+person{
+    display:block;
+    /*Move children to the right*/
+    padding-left:15px;
+    padding-top: 0.5em;    
+    background-color: rgb(194, 218, 223);
+    
+    /*Each employee has a picture. It will be used as background*/
+    background-repeat:no-repeat;
+    background-position:top left;
+    min-width:20em;
+    border-right: 1px solid #999;
+    border-bottom: 1px solid #999;
+    margin-bottom: 2em;
+}
+
+person > id {
+    visibility:hidden;
+}
+
+person > * {
+    padding-bottom: 0.2em;
+    background-color: rgba(0,0,0, 0.3);
+}
+
+person:after{
+    padding:0 0 0.5em 0;
+    font-family:monospace;
+    font-size: 1em;
+    text-align:right;
+    width:100%;        
+    font-family:monospace;
+}
+
+person > name{
+    display:block;
+    padding-top:1em;
+    padding-bottom:1em;
+    padding-right:2em;
+    background-color: rgba(255,255,255, 0.7);    
+    font-size: 1.4em;
+    text-align: left;
+ 
+}
+
+email{
+    display:block;
+    -oxy-show-placeholder:always;
+    color:white;
+}
+
+email:before{
+    content:"Email:";
+    width:9em;
+}
+
+name:before, email:before, manager:before, subordinates:before {
+    color:white;
+    display:inline;
+    font-weight:bold;
+    padding-left: 1em;
+}
+
+manager, subordinates, link {
+    visibility:-oxy-collapse-text;
+    -oxy-display-tags:none;
+    color:white;
+    display:block;
+}
+manager:before {
+    content: 
+    oxy_label(
+          text, "Direct manager:", 
+          width, 8em)
+        oxy_combobox( 
+            edit, "#text",
+            columns, 15);
+}
+
+subordinates:before{
+    content:
+        oxy_label(text, "Subordinate:", width, 8em)
+        oxy_popup(
+            columns, 20,
+            fontInherit, true,
+            edit, '#text',  
+            selectionMode, multiple,
+            rendererSeparator, ", ");
+}
+
+family, given {
+       -oxy-display-tags:none;
+       padding-left: 0.2em;
+}
+
+
+/* Rules for when a person is in EDIT mode*/
+person:-oxy-edit-mode given:before {
+    font-size:14px;
+    content: oxy_label(text, "Given name: ", width, 30%, text-align, right) oxy_textfield(edit, '#text', width, 60%)
+}
+
+person:-oxy-edit-mode family:before {
+    font-size:14px;
+    content: oxy_label(text, "Family name: ", width, 30%, text-align, right) oxy_textfield(edit, '#text', width, 60%)
+}
+
+person:-oxy-edit-mode > email:before {
+    font-size:14px;
+    content: oxy_label(text, "Email: ", width, 30%, text-align, right) oxy_textfield(edit, '#text', width, 60%);
+}
+
+person:-oxy-edit-mode > link > subordinates:before {
+    font-size:14px;
+    content: oxy_label(text, "Subordinate: ", width, 30%, text-align, right) oxy_textfield(edit, '#text', width, 60%);
+}
+
+person:-oxy-edit-mode > link > manager:before {
+    font-size:14px;
+    content: oxy_label(text, "Manager: ", width, 30%, text-align, right) oxy_textfield(edit, '#text', width, 60%);
+}
+
+person:-oxy-edit-mode given,
+person:-oxy-edit-mode family,
+person:-oxy-edit-mode email {
+    visibility:-oxy-collapse-text;
+}
+
+person:-oxy-edit-mode given,
+person:-oxy-edit-mode family {
+    display:block;
+}
+
+person:-oxy-edit-mode name:before, 
+person:-oxy-edit-mode email:before, 
+person:-oxy-edit-mode link:before, 
+person:-oxy-edit-mode url:before{
+    padding-left: 0em;
+}
+
+person:-oxy-edit-mode family, 
+person:-oxy-edit-mode given {
+       padding-left: 0em;
+}
+
+person:-oxy-edit-mode > name {
+    padding-right:0px;
+    text-align: left;
+}
+
+@media oxygen-high-contrast-black, oxygen-dark-theme{
+    person > name{
+        background-color: rgba(85,85,85, 0.9);    
+    }
+}
+
+person:after{
+    content: 
+        oxy_editor(type, button, actionID, "add.person", transparent, true, fontInherit, true)
+        oxy_editor(type, button, actionID, "delete.person", transparent, true, fontInherit, true);
+}
+
+person:before {
+    content: oxy_button(actionID, 'toggle.edit.mode', transparent, true)
+}
+
+
