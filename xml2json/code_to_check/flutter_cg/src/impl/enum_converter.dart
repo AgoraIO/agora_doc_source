@@ -1,8 +1,9 @@
 // ignore_for_file: public_member_api_docs
 
+import 'package:agora_rtc_engine/src/enums.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import 'enums.dart';
+
 
 part 'enum_converter.g.dart';
 
@@ -11,7 +12,7 @@ abstract class EnumConverter<E extends Enum, T> {
 
   EnumConverter(this.e);
 
-  EnumConverter.fromValue(Map<E, T> map, T t) : e = $enumDecode<E,T>(map, t);
+  EnumConverter.fromValue(Map<E, T> map, T t) : e = $enumDecode<E, T>(map, t);
 
   T toValue(Map<E, T> map) {
     return map[e] as T;
