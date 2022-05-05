@@ -5,39 +5,45 @@
     <shortdesc id="short"><ph id="shortdesc">网络连接已被服务器禁止回调。</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="onConnectionBanned"/>
-   </keywords>
+            <keywords>
+                <indexterm keyref="onConnectionBanned"/>
+            </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="cs" outputclass="language-csharp">public virtual void OnConnectionBanned(RtcConnection connection) {}</codeblock> </p>
+            <p outputclass="codeblock" props="rtc">
+            <codeblock props="cs" outputclass="language-csharp">public virtual void OnConnectionBanned()</codeblock></p>
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public void onConnectionBanned() {}</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngineConnectionDidBanned:(AgoraRtcEngineKit * _Nonnull)engine;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual void onConnectionBanned()</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.CONNECTION_BANNED, cb: () =&gt; void): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnConnectionBanned()</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart">EmptyCallback? connectionBanned;</codeblock>
-            </p>
+            <codeblock props="android" outputclass="language-java">public void onConnectionBanned() {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngineConnectionDidBanned:(AgoraRtcEngineKit * _Nonnull)engine;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onConnectionBanned()</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.CONNECTION_BANNED, cb: () =&gt; void): this;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">EmptyCallback? connectionBanned;</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated">
-                <dlentry>
-                    <dt>弃用: </dt>
-                    <dd>请改用 <xref keyref="onConnectionStateChanged"/>。</dd>
-                </dlentry>
+            <dlentry>
+                <dt>弃用: </dt>
+                <dd>请改用 <xref keyref="onConnectionStateChanged"/>。</dd>
+            </dlentry>
             </dl>
         </section>
-        <section id="parameters" props="ios mac">
-            <title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+        <section id="parameters" props="ios mac cs">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
-                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                    <pt/>
-                    <pd/>
-                </plentry>
-            </parml>
-        </section>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry props="rtc-ng">
+                <pt props="cs">connection</pt>
+                <pd props="cs">Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

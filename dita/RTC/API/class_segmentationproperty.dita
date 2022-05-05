@@ -5,6 +5,13 @@
     <shortdesc id="short"><ph id="shortdesc">背景图像的处理属性。</ph></shortdesc>
     <refbody>
         <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+                <codeblock props="cs" outputclass="language-csharp">public class SegmentationProperty {
+        public SEG_MODEL_TYPE modelType;
+        public int preferVelocity;
+        public float greenCapacity;
+    };</codeblock>
+            </p>
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class SegmentationProperty {
   public static final int SEG_MODEL_AI = 1;
@@ -29,7 +36,7 @@
 @property(nonatomic, assign) float greenCapacity;
 @property(nonatomic, assign) NSUInteger preferVelocity;
 @end</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">struct SegmentationProperty {
+            <codeblock props="cpp" outputclass="language-cpp">struct SegmentationProperty {
     enum SEG_MODEL_TYPE {
     SEG_MODEL_AI = 1, 
     SEG_MODEL_GREEN = 2
@@ -41,7 +48,6 @@
 };
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
@@ -55,7 +61,7 @@
             <parml>
             <plentry>
                 <pt>modelType</pt>
-                <pd><ph>进行背景处理的算法。</ph><ph props="ios mac windows">详见 <xref
+                <pd><ph>进行背景处理的算法。</ph><ph props="ios mac cpp">详见 <xref
                     keyref="SEG_MODEL_TYPE"/>。</ph>
                     <ul props="android">
                     <li><ph keyref="SEG_MODEL_AI" />(1): (默认) 适用于所有场景下的背景处理算法。</li>

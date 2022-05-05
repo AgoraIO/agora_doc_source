@@ -12,13 +12,40 @@
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java" />
                 <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="windows unity" outputclass="language-cpp">struct VideoCanvas {
+                <codeblock props="cpp" outputclass="language-cpp">struct VideoCanvas {
     view_t view;
     int renderMode;
     char channelId[MAX_CHANNEL_ID_LENGTH];
     uid_t uid;
     void *priv;
     VIDEO_MIRROR_MODE_TYPE mirrorMode;
+    }</codeblock>
+                <codeblock props="cs" outputclass="language-csharp">public class VideoCanvas
+    {
+        public VideoCanvas()
+        {
+            view = 0;
+            renderMode = (int) RENDER_MODE_TYPE.RENDER_MODE_HIDDEN;
+            channelId = "";
+            uid = 0;
+            mirrorMode = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_AUTO;
+        }
+
+        public VideoCanvas(view_t? view, RENDER_MODE_TYPE renderMode, string channelId = "", uint uid = 0,
+            VIDEO_MIRROR_MODE_TYPE mirrorMode = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_AUTO)
+        {
+            this.view = view ?? 0;
+            this.renderMode = (int) renderMode;
+            this.channelId = channelId;
+            this.uid = uid;
+            this.mirrorMode = mirrorMode;
+        }
+
+        public view_t view { set; get; }
+        public int renderMode { set; get; }
+        public string channelId { set; get; }
+        public uint uid { set; get; }
+        public VIDEO_MIRROR_MODE_TYPE mirrorMode { set; get; }
     }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript" />
                 <codeblock props="rn" outputclass="language-typescript" />

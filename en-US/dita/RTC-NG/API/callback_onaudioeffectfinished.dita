@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_onaudioeffectfinished">
+    <title><ph keyref="onAudioEffectFinished" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the playback of the local audio effect file finishes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="onAudioEffectFinished" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public void onAudioEffectFinished(int soundId) {}</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngineDidAudioEffectFinish:(AgoraRtcEngineKit * _Nonnull)engine soundId:(int)soundId;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioEffectFinished(int soundId) {
+    }</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.AUDIO_EFFECT_FINISHED, cb: (soundId: number) =&gt; void): this;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioEffectFinished(int soundId)</codeblock>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">SoundIdCallback? audioEffectFinished;</codeblock>
+        </p>
+        </section>
+        <section id="detailed_desc">
+
+   <p id="desc">This callback occurs when the local audio effect file finishes playing.</p>
+        </section>
+        <section id="parameters">
+   <title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+   <parml>
+                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                    <pt />
+                    <pd />
+                </plentry>
+                <plentry>
+                    <pt>soundId</pt>
+                    <pd conkeyref="preloadEffect/soundId" />
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

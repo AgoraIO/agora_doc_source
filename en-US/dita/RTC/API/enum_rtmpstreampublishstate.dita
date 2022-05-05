@@ -1,82 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_rtmpstreampublishstate">
-     <title>
-          <ph keyref="RTMP_STREAM_PUBLISH_STATE" />
-     </title>
-     <shortdesc id="short">
-          <ph id="shortdesc">States of the RTMP or RTMPS streaming.</ph>
-     </shortdesc>
-     <refbody>
-          <section id="parameters">
-               <title>Enumerator</title>
-               <parml>
-                    <plentry>
-                         <pt>
-                              <ph keyref="RTMP_STREAM_PUBLISH_STATE_IDLE" />
-                         </pt>
-                         <pd>
-                              The RTMP or RTMPS streaming has not started or has ended. This state is also triggered after you remove an RTMP or RTMPS stream from the CDN by calling
-                              <xref keyref="removePublishStreamUrl" />
-                              .
-                         </pd>
-                    </plentry>
-                    <plentry>
-                         <pt>
-                              <ph keyref="RTMP_STREAM_PUBLISH_STATE_CONNECTING" />
-                         </pt>
-                         <pd>
-                              The SDK is connecting to Agora&apos;s streaming server and the CDN server. This state is triggered after you call the
-                              <xref keyref="addPublishStreamUrl" />
-                              method.
-                         </pd>
-                    </plentry>
-                    <plentry>
-                         <pt>
-                              <ph keyref="RTMP_STREAM_PUBLISH_STATE_RUNNING" />
-                         </pt>
-                         <pd>The RTMP or RTMPS streaming publishes. The SDK successfully publishes the RTMP or RTMPS streaming and returns this state.</pd>
-                    </plentry>
-                    <plentry>
-                         <pt>
-                              <ph keyref="RTMP_STREAM_PUBLISH_STATE_RECOVERING" />
-                         </pt>
-                         <pd>
-                              <p>The RTMP or RTMPS streaming is recovering. When exceptions occur to the CDN, or the streaming is interrupted, the SDK tries to resume RTMP or RTMPS streaming and returns this state.</p>
-                              <ul id="ul_sbd_ftk_p4b">
-                                   <li>
-                                        If the SDK successfully resumes the streaming,
-                                        <ph keyref="RTMP_STREAM_PUBLISH_STATE_RUNNING" />
-                                        (2) returns.
-                                   </li>
-                                   <li>
-                                        If the streaming does not resume within 60 seconds or server errors occur,
-                                        <ph keyref="RTMP_STREAM_PUBLISH_STATE_FAILURE" />
-                                        (4) returns. You can also reconnect to the server by calling the
-                                        <xref keyref="removePublishStreamUrl" />
-                                        and
-                                        <xref keyref="addPublishStreamUrl" />
-                                        methods.
-                                   </li>
-                              </ul>
-                         </pd>
-                    </plentry>
-                    <plentry>
-                         <pt>
-                              <ph keyref="RTMP_STREAM_PUBLISH_STATE_FAILURE" />
-                         </pt>
-                         <pd>
-                              The RTMP or RTMPS streaming fails. See the error code for the detailed error information. You can also call the
-                              <xref keyref="addPublishStreamUrl" />
-                              method to publish the RTMP or RTMPS stream again.
-                         </pd>
-                    </plentry>
-                    <plentry>
-                         <pt> <ph keyref="RTMP_STREAM_PUBLISH_STATE_DISCONNECTING"/> </pt>
-                         <pd>5: The SDK is disconnecting from the Agora streaming server and CDN. When you call <apiname>removePublishStreamUrl</apiname> or <apiname>stopRtmpStream</apiname> to stop the streaming normally, the SDK reports the streaming state as <parmname>RTMP_STREAM_PUBLISH_STATE_DISCONNECTING</parmname>, <ph keyref="RTMP_STREAM_PUBLISH_STATE_IDLE"/> in sequence.
-                         </pd>
-                    </plentry>
-               </parml>
-          </section>
-     </refbody>
+    <title><ph keyref="RTMP_STREAM_PUBLISH_STATE"/></title>
+    <shortdesc id="short"><ph id="shortdesc">States of the Media Push.</ph></shortdesc>
+    <refbody>
+        <section id="parameters">
+            <title>Enumerator</title>
+            <parml>
+            <plentry>
+                <pt><ph keyref="RTMP_STREAM_PUBLISH_STATE_IDLE"/></pt>
+                <pd>0: The Media Push has not started or has ended. This state is also triggered after you remove a RTMP or RTMPS stream from the CDN by calling <xref keyref="removePublishStreamUrl"/>.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="RTMP_STREAM_PUBLISH_STATE_CONNECTING"/></pt>
+                <pd>1: The SDK is connecting to Agora's streaming server and the CDN server. This state is triggered after you call the <xref keyref="addPublishStreamUrl"/>method.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="RTMP_STREAM_PUBLISH_STATE_RUNNING"/></pt>
+                <pd>2: The RTMP or RTMPS streaming publishes. The SDK successfully publishes the RTMP or RTMPS streaming and returns this state.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="RTMP_STREAM_PUBLISH_STATE_RECOVERING"/></pt>
+                <pd>
+                    <p>3: The RTMP or RTMPS streaming is recovering. When exceptions occur to the CDN, or the streaming is interrupted, the SDK tries to resume RTMP or RTMPS streaming and returns this state.</p>
+                    <ul>
+                    <li>If the SDK successfully resumes the streaming, <ph keyref="RTMP_STREAM_PUBLISH_STATE_RUNNING"/>(2) returns.</li>
+                    <li>If the streaming does not resume within 60 seconds or server errors occur, <ph keyref="RTMP_STREAM_PUBLISH_STATE_FAILURE"/>(4) returns. You can also reconnect to the server by calling the <xref keyref="removePublishStreamUrl"/> and <xref keyref="addPublishStreamUrl"/> methods.</li>
+                    </ul> </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="RTMP_STREAM_PUBLISH_STATE_FAILURE"/></pt>
+                <pd>4: The RTMP or RTMPS streaming fails. See the errCode parameter for the detailed error information. You can also call the <xref keyref="addPublishStreamUrl"/> method to publish the RTMP or RTMPS streaming again.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="RTMP_STREAM_PUBLISH_STATE_DISCONNECTING"/></pt>
+                <pd>5: The SDK is disconnecting from the Agora streaming server and CDN. When you call <xref keyref="removePublishStreamUrl"/> or <xref keyref="stopRtmpStream"/> to stop the streaming normally, the SDK reports the streaming state as <apiname keyref="RTMP_STREAM_PUBLISH_STATE_DISCONNECTING"/>, <apiname keyref="RTMP_STREAM_PUBLISH_STATE_IDLE"/> in sequence.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
 </reference>

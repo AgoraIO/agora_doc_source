@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediaplayersourceobserver_onplayerinfoupdated">
+    <title><ph keyref="onPlayerInfoUpdated"/></title>
+    <shortdesc id="short"><ph id="shortdesc">媒体播放器相关信息发生改变回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPlayerInfoUpdated"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+                <codeblock props="unity" outputclass="language-csharp"></codeblock>
+            </p>
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">void onPlayerInfoUpdated(PlayerUpdatedInfo info);
+</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol> _Nonnull)playerKit infoUpdated:(AgoraMediaPlayerUpdatedInfo *_Nonnull)info;
+</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onPlayerInfoUpdated(const media::base::PlayerUpdatedInfo&amp; info) = 0;
+</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <p>当媒体播放器相关信息发生改变时，SDK 会触发该回调。你可用其进行问题定位和排查。</p>
+        </section>
+        <section id="parameters"><title>参数</title>
+            <parml>
+                <plentry conkeyref="onPlayerEvent/playerkit" props="ios mac">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry>
+                    <pt>info</pt>
+                    <pd>媒体播放器相关信息。详见 <xref keyref="PlayerUpdatedInfo"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

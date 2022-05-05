@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_remotevoicepositioninfo">
-    <title><ph keyref="RemoteVoicePositionInfo"/></title>
+    <title><ph keyref="RemoteVoicePositionInfo" /></title>
     <shortdesc id="short"><ph id="shortdesc">The spatial position of the remote user or the media player.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -16,30 +16,40 @@
   }
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRemoteVoicePositionInfo : NSObject
-@property(strong, nonatomic) NSArray&lt;NSNumber*> * _Nonnull position;
-@property(strong, nonatomic) NSArray&lt;NSNumber*> * _Nullable forward;
+@property(strong, nonatomic) NSArray&lt;NSNumber*&gt; * _Nonnull position;
+@property(strong, nonatomic) NSArray&lt;NSNumber*&gt; * _Nullable forward;
 @end</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">struct RemoteVoicePositionInfo {
+            <codeblock props="cpp" outputclass="language-cpp">struct RemoteVoicePositionInfo {
   float position[3];
   float forward[3];
 
   RemoteVoicePositionInfo() = default;
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="cs" outputclass="language-csharp">public class RemoteVoicePositionInfo
+    {
+        public RemoteVoicePositionInfo(float[] position, float[] forward)
+        {
+            this.position= position;
+            this.forward = forward;
+        }
+      
+        public float[] position { set; get; }
+        public float[] forward { set; get; }
+    };</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry conkeyref="updateSelfPosition/position">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry>
                 <pt>forward</pt>
-                <pd conkeyref="updateSelfPosition/axisforward_desc"/>
+                <pd conkeyref="updateSelfPosition/axisforward_desc" />
             </plentry>
             </parml> </section>
     </refbody>

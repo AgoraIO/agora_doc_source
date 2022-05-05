@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_agorafacepositioninfo">
-    <title><ph keyref="AgoraFacePositionInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc"
-        >The information of the detected human face.</ph></shortdesc>
+    <title><ph keyref="AgoraFacePositionInfo" /></title>
+    <shortdesc id="short"><ph id="shortdesc">The information of the detected human face.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -14,11 +13,17 @@
   public int height;
   public int distance;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="windows" outputclass="language-cpp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraFacePositionInfo) __attribute__((visibility("default"))) @interface AgoraFacePositionInfo : NSObject
+@property(assign, nonatomic) NSInteger x NS_SWIFT_NAME(x);
+@property(assign, nonatomic) NSInteger y NS_SWIFT_NAME(y);
+@property(assign, nonatomic) NSInteger width NS_SWIFT_NAME(width);
+@property(assign, nonatomic) NSInteger height NS_SWIFT_NAME(height);
+@property(assign, nonatomic) NSInteger distance NS_SWIFT_NAME(distance);
+@end</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp" />
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">class FacePositionInfo {
 
   int x;
@@ -42,20 +47,18 @@
 }</codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>x</pt>
                 <pd>
-                    <p>The x coordinate (px) of the human face in the local video. Taking the top left corner of the captured video as the origin, the x coordinate represents the relative lateral displacement of the top left corner of the human face to the origin.</p>
+                    <p>The x-coordinate (px) of the human face in the local video. The horizontal position relative to the origin, where the upper left corner of the captured video is the origin, and the x-coordinate is the upper left corner of the watermark.</p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>y</pt>
                 <pd>
-                    <p>The y coordinate (px) of the human face in the local video. Taking the top left corner of the captured video as the origin, the y coordinate represents the relative longitudinal displacement of the top left corner of the human face to the origin.</p>
+                    <p>The y-coordinate (px) of the human face in the local video. Taking the top left corner of the captured video as the origin, the y coordinate represents the relative longitudinal displacement of the top left corner of the human face to the origin.</p>
                 </pd>
             </plentry>
             <plentry>

@@ -14,11 +14,11 @@
         <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java" />
                 <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="windows" outputclass="language-cpp">virtual void onRequestToken(IChannel *rtcChannel) {
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onRequestToken(IChannel *rtcChannel) {
     (void)rtcChannel;
     }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">on(evt: ChannelEvents.REQUEST_TOKEN, cb: (channelId: string) =&gt; void): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnRequestToken(string channelId)</codeblock>
+                <codeblock props="cs" outputclass="language-csharp">public virtual void OnRequestToken(string channelId)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
                 <codeblock props="flutter" outputclass="language-dart">EmptyCallback? requestToken;</codeblock>
         </p>
@@ -27,9 +27,9 @@
             <p>When the token expires during a call, the SDK triggers this callback to remind the app to renew the token.</p>
             <p>Once you receive this callback, generate a new token on your app server, and call <xref keyref="IChannel_joinChannel" /> to rejoin the channel.</p>
         </section>
-        <section props="android ios mac windows electron unity" id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+        <section props="android ios mac cpp electron cs" id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
    <parml>
-       <plentry conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
+       <plentry props="native cs" conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
   <pt />
   <pd />
        </plentry>

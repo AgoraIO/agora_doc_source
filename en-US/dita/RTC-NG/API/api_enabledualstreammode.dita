@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_enabledualstreammode">
+    <title><ph keyref="enableDualStreamMode" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Enables/Disables dual-stream mode.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="enableDualStreamMode" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int enableDualStreamMode(boolean enabled);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableDualStreamMode:(BOOL)enabled;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int enableDualStreamMode(bool enabled) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">enableDualStreamMode(enabled: boolean): number</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int EnableDualStreamMode(bool enabled);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableDualStreamMode(bool enabled);</codeblock> </p>
+        </section>
+        <section id="detailed_desc"><p>You can call this method to enable or disable the dual-stream mode on the publisher side. Dual streams are a hybrid of a high-quality video stream and a low-quality video stream:<ul>
+                    <li>High-quality video stream: High bitrate, high resolution.</li>
+                    <li>Low-quality video stream: Low bitrate, low resolution.</li>
+                </ul></p><p>After you enable the dual-stream mode, you can call <xref keyref="setRemoteVideoStreamType" /> to choose to receive the high-quality video stream or low-quality video stream on the subscriber side.</p>
+            <note props="rtc-ng" type="attention"><ul>
+                <li>This method only takes effect for the video stream captured by the SDK through the camera. If you use video streams from the custom video source or captured by the SDK through the screen, you need to call <xref keyref="enableDualStreamMode2" /> or <xref keyref="enableDualStreamMode3" /> to enable dual-stream mode.</li>
+                <li>You can call this method either before or after joining a channel.</li>
+            </ul>
+            </note></section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry id="enabled">
+                    <pt>enabled</pt>
+                    <pd>
+                        <p>Whether to enable dual-stream mode.<ul>
+ <li><codeph><ph keyref="true" /></codeph>: Enable dual-stream mode.</li>
+ <li><codeph><ph keyref="false" /></codeph>: Disable dual-stream mode.</li>
+      </ul>
+                        </p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="native electron unity">
+            <title>Returns</title>
+            <ul>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>

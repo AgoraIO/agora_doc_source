@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_onextensionerror">
+    <title><ph keyref="onExtensionError"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the extension runs incorrectly.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onExtensionError"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">void onError(String provider, String extension, int error, String message);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onExtensionError:(NSString * __nullable)provider
+                 extension:(NSString * __nullable)extension
+                     error:(int)error
+                   message:(NSString * __nullable)message;
+</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onExtensionError(const char* provider, const char* extension, int error, const char* message) {
+    (void)provider;
+    (void)extension;
+    (void)error;
+    (void)message;
+  }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>When calling <codeph><xref keyref="enableExtension"/>(<q><ph keyref="true"/></q>)</codeph> fails or the extension runs in error, the extension triggers this callback and reports the error code and reason.</p>
+        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry conkeyref="setExtensionProperty/vendor">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="setExtensionProperty/extension">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry>
+                <pt>error</pt>
+                <pd>Error code. For details, see the extension documentation provided by the extension provider.</pd>
+            </plentry>
+            <plentry>
+                <pt>message</pt>
+                <pd>Reason. For details, see the extension documentation provided by the extension provider.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

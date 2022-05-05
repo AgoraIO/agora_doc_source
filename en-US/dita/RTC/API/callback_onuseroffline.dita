@@ -16,7 +16,7 @@
                 <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
     didOfflineOfUid:(NSUInteger)uid
     reason:(AgoraUserOfflineReason)reason;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual void onUserOffline(uid_t uid, USER_OFFLINE_REASON_TYPE reason) {
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onUserOffline(uid_t uid, USER_OFFLINE_REASON_TYPE reason) {
     (void)uid;
     (void)reason;
     }</codeblock>
@@ -24,7 +24,7 @@
   evt: EngineEvents.USER_OFFLINE,
   cb: (uid: number, reason: USER_OFFLINE_REASON_TYPE) =&gt; void
 ): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserOffline(uint uid, USER_OFFLINE_REASON_TYPE reason)</codeblock>
+                <codeblock props="cs" outputclass="language-csharp">public virtual void OnUserOffline(uint uid, USER_OFFLINE_REASON_TYPE reason)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
                 <codeblock props="flutter" outputclass="language-dart">UserOfflineCallback? userOffline;</codeblock>
         </p>
@@ -49,7 +49,7 @@
                 </plentry>
                 <plentry id="reason">
                     <pt>reason</pt>
-                    <pd><p props="ios mac windows unity flutter">Reasons why the user goes offline: <xref keyref="USER_OFFLINE_REASON_TYPE" />.</p> <p props="android">Reasons why a
+                    <pd><p props="ios mac cpp cs flutter">Reasons why the user goes offline: <xref keyref="USER_OFFLINE_REASON_TYPE" />.</p> <p props="android">Reasons why a
                         remote user (COMMUNICATION) or a host (LIVE_BROADCASTING) goes offline:<ul>
                         <li><ph keyref="USER_OFFLINE_QUIT" /> (0): The user has quit the call. When
                             the user leaves the channel, the user sends a goodbye message. When this

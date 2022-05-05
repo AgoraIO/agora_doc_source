@@ -11,19 +11,18 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="windows" outputclass="language-cpp">virtual int startScreenCapture(WindowIDType windowId, 
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="cpp" outputclass="language-cpp">virtual int startScreenCapture(WindowIDType windowId, 
      int captureFreq, 
      const Rect* rect, 
      int bitrate) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp" />
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startScreenCapture(int windowId,
-      [int captureFreq, Rect? rect, int bitrate]);</codeblock>
-        </p>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startScreenCapture(int windowId,
+      [int captureFreq = 0, Rect? rect, int bitrate = 0]);</codeblock> </p>
         </section>
         <section id="detailed_desc">
    
@@ -32,7 +31,7 @@
   <dt>Deprecated:</dt>
   <dd>This method is deprecated as of v2.4.0. See the following methods instead:<ul>
       <li><xref keyref="startScreenCaptureByDisplayId" /></li>
-      <li props="windows"><xref keyref="startScreenCaptureByScreenRect" /></li>
+      <li props="cpp"><xref keyref="startScreenCaptureByScreenRect" /></li>
       <li><xref keyref="startScreenCaptureByWindowId" /></li>
   </ul></dd>
        </dlentry>
@@ -64,7 +63,7 @@
        </plentry>
    </parml>
         </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native electron cs">
    <title>Returns</title>
    <ul>
        <li>0: Success.</li>

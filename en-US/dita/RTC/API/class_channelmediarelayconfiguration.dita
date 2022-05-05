@@ -5,8 +5,31 @@
     <shortdesc>The definition of <apiname keyref="ChannelMediaRelayConfiguration" />.</shortdesc>
     <refbody>
         <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="cs" outputclass="language-csharp">public class ChannelMediaRelayConfiguration
+    {
+        public ChannelMediaRelayConfiguration()
+        {
+            srcInfo = null;
+            destInfos = new ChannelMediaInfo[0];
+            destCount = 0;
+        }
+        public ChannelMediaRelayConfiguration(ChannelMediaInfo srcInfo, ChannelMediaInfo[] destInfos, int destCount)
+        {
+            this.srcInfo = srcInfo;
+            this.destInfos = destInfos ?? new ChannelMediaInfo[0];
+            this.destCount = destCount;
+        }
+        
+        public ChannelMediaInfo srcInfo { set; get; }
+        
+        public ChannelMediaInfo[] destInfos { set; get; }
+        
+        public int destCount { set; get; }
+    }
+    }</codeblock> </p>
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public class ChannelMediaRelayConfiguration {
+            <codeblock props="android" outputclass="language-java">public class ChannelMediaRelayConfiguration {
   private ChannelMediaInfo srcInfo = null;
   private Map&lt;String, ChannelMediaInfo&gt; destInfos = null;
 
@@ -18,7 +41,7 @@
   public void setSrcChannelInfo(ChannelMediaInfo srcInfo) {
     this.srcInfo = srcInfo;
   }</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraChannelMediaRelayConfiguration: NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraChannelMediaRelayConfiguration: NSObject
 
 @property (strong, nonatomic, readonly) NSDictionary&lt;NSString *, AgoraChannelMediaRelayInfo *&gt; *_Nullable destinationInfos;
 @property (strong, nonatomic) AgoraChannelMediaRelayInfo *_Nonnull sourceInfo;
@@ -26,7 +49,7 @@
 - (BOOL)setDestinationInfo:(AgoraChannelMediaRelayInfo *_Nonnull)destinationInfo forChannelName:(NSString *_Nonnull)channelName;
 - (BOOL)removeDestinationInfoForChannelName:(NSString *_Nonnull)channelName;
 @end</codeblock>
-                <codeblock props="windows unity" outputclass="language-cpp">struct ChannelMediaRelayConfiguration {
+            <codeblock props="cpp" outputclass="language-cpp">struct ChannelMediaRelayConfiguration {
 	ChannelMediaInfo *srcInfo;
 	ChannelMediaInfo *destInfos;
 	int destCount;
@@ -37,12 +60,32 @@
 			, destCount(0)
 	{}
     };</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">export interface ChannelMediaRelayConfiguration {
+    <codeblock props="cs" outputclass="language-csharp">public class ChannelMediaRelayConfiguration
+    {
+        public ChannelMediaRelayConfiguration()
+        {
+            srcInfo = null;
+            destInfos = new ChannelMediaInfo[0];
+            destCount = 0;
+        }
+
+        public ChannelMediaRelayConfiguration(ChannelMediaInfo srcInfo, ChannelMediaInfo[] destInfos, int destCount)
+        {
+            this.srcInfo = srcInfo;
+            this.destInfos = destInfos ?? new ChannelMediaInfo[0];
+            this.destCount = destCount;
+        }
+        
+        public ChannelMediaInfo srcInfo { set; get; }
+        public ChannelMediaInfo[] destInfos { set; get; }
+        public int destCount { set; get; }
+    }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export interface ChannelMediaRelayConfiguration {
     srcInfo: ChannelMediaInfo;
     destInfos: [ChannelMediaInfo];
     }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">class ChannelMediaRelayConfiguration {
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">class ChannelMediaRelayConfiguration {
   
   ChannelMediaInfo srcInfo;
   List&lt;ChannelMediaInfo&gt; destInfos;
@@ -56,14 +99,13 @@
       _$ChannelMediaRelayConfigurationFromJson(json);
 
   Map&lt;String, dynamic&gt; toJson() =&gt; _$ChannelMediaRelayConfigurationToJson(this);
-}</codeblock>
-            </p>
+}</codeblock> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
                 <plentry>
-                    <pt props="android windows unity flutter">srcInfo</pt>
+                    <pt props="android cpp cs flutter">srcInfo</pt>
                     <pt props="ios mac">sourceInfo</pt>
                     <pd>
                         <p>The information of the source channel <xref keyref="ChannelMediaInfo" />. It contains the following members:<ul>
@@ -78,7 +120,7 @@
                     </pd>
                 </plentry>
                 <plentry>
-                    <pt props="android windows unity flutter">destInfos</pt>
+                    <pt props="android cpp cs flutter">destInfos</pt>
                     <pt props="ios mac">destinationInfos</pt>
                     <pd>
                         <p>The information of the destination channel <apiname keyref="ChannelMediaInfo" />. It contains the following members:<ul>
@@ -92,7 +134,7 @@
                         </p>
                     </pd>
                 </plentry>
-                <plentry props="windows unity">
+                <plentry props="cpp cs">
                     <pt>destCount</pt>
                     <pd>The number of destination channels. The default value is 0, and the value range is from 0 to 4. Ensure that the value of this parameter corresponds to the number of <apiname keyref="ChannelMediaInfo" /> structs you define in <codeph>destInfo</codeph>.</pd>
                 </plentry>

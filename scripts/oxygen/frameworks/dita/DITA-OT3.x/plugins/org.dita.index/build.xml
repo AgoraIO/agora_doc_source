@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+
+  <target name="org.dita.index.init">
+    <taskdef classname="org.dita.index.IndexPreprocessorTask" name="index-preprocess"/>
+    <condition property="_org.dita.index.skip" value="true">
+      <istrue value="${org.dita.index.skip}"/>
+    </condition>
+  </target>
+
+  <target name="org.dita.index" depends="org.dita.index.init" unless="_org.dita.index.skip">
+    <condition property="index.config.file" value="${dita.plugin.org.dita.index.dir}/index/${document.locale}.xml">
+      <available file="${dita.plugin.org.dita.index.dir}/index/${document.locale}.xml"/>
+    </condition>
+    <condition property="index.config.file" value="${dita.plugin.org.dita.index.dir}/index/${document.language}.xml">
+      <available file="${dita.plugin.org.dita.index.dir}/index/${document.language}.xml"/>
+    </condition>
+    <property name="index.config.file" value="${dita.plugin.org.dita.index.dir}/index/${default.language}.xml"/>
+
+    <echo level="info">Processing ${inputFile} to ${dita.temp.dir}/stage1.xml</echo>
+    <index-preprocess
+        input="${inputFile}"
+        output="${dita.temp.dir}/stage1.xml"
+        indexConfig="${index.config.file}"
+        locale="${document.locale}"
+        draft="${args.draft}"/>
+  </target>
+
+</project>

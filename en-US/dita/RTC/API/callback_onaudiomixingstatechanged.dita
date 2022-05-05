@@ -17,7 +17,7 @@
                 <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine
                     localAudioMixingStateDidChanged:(AgoraAudioMixingStateCode)state
                     reason:(AgoraAudioMixingReasonCode)reason;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual void onAudioMixingStateChanged(AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_REASON_TYPE reason)</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioMixingStateChanged(AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_REASON_TYPE reason)</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">on(
   evt: EngineEvents.AUDIO_MIXING_STATE_CHANGED,
   cb: (
@@ -25,7 +25,7 @@
     reason: AUDIO_MIXING_REASON_TYPE
   ) =&gt; void
 ): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioMixingStateChanged(AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_REASON_TYPE reason)</codeblock>
+                <codeblock props="cs" outputclass="language-csharp">public virtual void OnAudioMixingStateChanged(AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_REASON_TYPE reason)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
                 <codeblock props="flutter" outputclass="language-dart">AudioMixingStateCallback? audioMixingStateChanged;</codeblock>
             </p>
@@ -47,7 +47,7 @@
                 </plentry>
                 <plentry>
                     <pt>state</pt>
-                    <pd>The playback state of the music file. <ph props="ios mac windows">For details, see <xref keyref="AUDIO_MIXING_STATE_TYPE" />.</ph><p props="android">
+                    <pd>The playback state of the music file. <ph props="ios mac cpp cs">For details, see <xref keyref="AUDIO_MIXING_STATE_TYPE" />.</ph><p props="android">
                             <ul>
                                 <li><ph keyref="AUDIO_MIXING_STATE_PLAYING" /> (710): The music file is playing.</li>
                                 <li><ph keyref="AUDIO_MIXING_STATE_PAUSED" /> (711): The music file pauses playing.</li>
@@ -63,7 +63,7 @@
                 </plentry>
                 <plentry>
                     <pt>reason</pt>
-                    <pd>The reason why the playback state of the music file changes. <ph props="ios mac windows">For details, see <xref keyref="AUDIO_MIXING_REASON_TYPE" />.</ph><p props="android">
+                    <pd>The reason why the playback state of the music file changes. <ph props="ios mac cpp cs">For details, see <xref keyref="AUDIO_MIXING_REASON_TYPE" />.</ph><p props="android">
                             <ul>
                                 <li><ph keyref="AUDIO_MIXING_REASON_CAN_NOT_OPEN" /> 701: The SDK cannot open the music file. For example, the local music file does not exist, the SDK does not support the file format, or the the SDK cannot access the music file URL.</li>
                                 <li><ph keyref="AUDIO_MIXING_REASON_TOO_FREQUENT_CALL" /> 702: The SDK opens the music file too frequently. If you need to call this method multiple times, ensure that the time interval between calling this method is more than 500 ms.</li>

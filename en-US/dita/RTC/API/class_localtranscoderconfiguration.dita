@@ -12,7 +12,7 @@
 @property (strong, nonatomic) AgoraVideoEncoderConfiguration *_Nonnull videoOutputConfiguration;
 
 @end</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">struct LocalTranscoderConfiguration {
+            <codeblock props="cpp" outputclass="language-cpp">struct LocalTranscoderConfiguration {
   unsigned int streamCount;
   TranscodingVideoStream* VideoInputStreams;
   VideoEncoderConfiguration videoOutputConfiguration;
@@ -23,15 +23,25 @@
 };
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="cs" outputclass="language-csharp">public class LocalTranscoderConfiguration {
+        public LocalTranscoderConfiguration(uint streamCount, TranscodingVideoStream[] VideoInputStreams,
+                                            VideoEncoderConfiguration videoOutputConfiguration)
+        {
+            this.streamCount = streamCount;
+            this.VideoInputStreams = VideoInputStreams;
+            this.videoOutputConfiguration = videoOutputConfiguration;
+        }
+        public uint streamCount { set; get; }
+        public TranscodingVideoStream[] VideoInputStreams { set; get; }
+        public VideoEncoderConfiguration videoOutputConfiguration { set; get; }
+    }</codeblock>
             <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" />
-            </p>
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
-                <plentry props="windows">
+                <plentry props="cpp">
                     <pt>streamCount</pt>
                     <pd>
                         <p>The number of the video streams for the video mixing on the local client.</p>

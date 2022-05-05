@@ -1,40 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_iscreencapturesourcelist_getsourceinfo">
-    <title><ph keyref="IScreenCaptureSourceList_getSourceInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Gets the information about the specified shareable window or screen.</ph></shortdesc>
+    <title><ph keyref="getSourceInfo_IScreenCaptureSourceList" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Gets information about the specified shareable window or screen.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="IScreenCaptureSourceList_getSourceInfo"/>
+                <indexterm keyref="getSourceInfo_IScreenCaptureSourceList" />
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="windows" outputclass="language-cpp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="cpp" outputclass="language-cpp">virtual ScreenCaptureSourceInfo getSourceInfo(unsigned int index) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
-            <p>After you get the <xref keyref="IScreenCaptureSourceList"/> object, you can pass in the index value of the specified shareable window or screen to get the information about that window or screen from <xref keyref="ScreenCaptureSourceInfo"/>.</p>
+            <dl outputclass="since" props="rtc">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v3.5.2</dd>
+            </dlentry>
+            </dl>
+            <p>After you get <xref keyref="IScreenCaptureSourceList" />, you can pass in the index value of the specified shareable window or screen to get information about that window or screen from <apiname keyref="ScreenCaptureSourceInfo" />.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
-                <pt>index</pt>
-                <pd>The index of the specified shareable window or screen, The value range is [0,<xref keyref="IScreenCaptureSourceList_getCount"/>()).</pd>
+                <pt>index
+</pt>
+                <pd>The index of the specified shareable window or screen. The value range is [0, <xref keyref="getCount_IScreenCaptureSourceList" /><codeph>()</codeph>).</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title>Returns</title>
-            <p>The <xref keyref="ScreenCaptureSourceInfo"/> object.</p>
-        </section>
+            <xref keyref="ScreenCaptureSourceInfo" /> </section>
     </refbody>
 </reference>

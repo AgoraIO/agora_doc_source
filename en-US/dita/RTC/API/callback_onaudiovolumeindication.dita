@@ -16,7 +16,7 @@
                 <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
         reportAudioVolumeIndicationOfSpeakers:(NSArray&lt;AgoraRtcAudioVolumeInfo *&gt; * _Nonnull)speakers
         totalVolume:(NSInteger)totalVolume;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual void onAudioVolumeIndication(const AudioVolumeInfo* speakers,
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioVolumeIndication(const AudioVolumeInfo* speakers,
     unsigned int speakerNumber,
     int totalVolume) {
     (void)speakers;
@@ -29,7 +29,7 @@
     totalVolume: number
     ) =&gt; void
     ): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioVolumeIndication(AudioVolumeInfo[] speakers, uint speakerNumber, int totalVolume)</codeblock>
+                <codeblock props="cs" outputclass="language-csharp">public virtual void OnAudioVolumeIndication(AudioVolumeInfo[] speakers, uint speakerNumber, int totalVolume)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
                 <codeblock props="flutter" outputclass="language-dart">AudioVolumeCallback? audioVolumeIndication;</codeblock>
         </p>
@@ -53,7 +53,7 @@
   <pt>speakers</pt>
   <pd>The volume information of the users, see <xref keyref="AudioVolumeInfo" />. An empty <parmname>speakers</parmname> array in the callback indicates that no remote user is in the channel or sending a stream at the moment.</pd>
        </plentry>
-       <plentry props="windows unity">
+       <plentry props="cpp cs">
   <pt>speakerNumber</pt>
   <pd>
       <p>The total number of users.<ul>

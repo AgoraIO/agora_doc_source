@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_ivideoframeobserver_getrotationapplied">
+    <title><ph keyref="getRotationApplied"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs each time the SDK receives a video frame, and prompts you whether to rotate the captured video.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="getRotationApplied" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="android" outputclass="language-java">boolean getRotationApplied();</codeblock>
+                <codeblock props="ios mac">- (BOOL)getRotationApplied;</codeblock>
+                    </p>
+        <p outputclass="codeblock" props="rtc">
+            <codeblock props="android" outputclass="language-java">public boolean getRotationApplied() {
+    return false;
+}
+</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)getRotationApplied NS_SWIFT_NAME(getRotationApplied());</codeblock>
+        </p>
+        <p outputclass="codeblock">
+
+            <codeblock props="cpp" outputclass="language-cpp">virtual bool getRotationApplied() { return false; }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
+        </section>
+        <section id="detailed_desc">
+            <p props="cpp android">If you want to rotate the captured video according to the <parmname>rotation</parmname> member in the <apiname keyref="VideoFrame"/> class, register this callback by calling <xref keyref="registerVideoFrameObserver"/>. After you successfully register the video frame observer, the SDK triggers this callback each time it receives a video frame. You need to set whether to rotate the video frame in the return value of this callback.</p>
+            <p props="ios mac"><ph props="rtc">If you want to rotate the captured video according to the <parmname>rotation</parmname> member in the <xref keyref="VideoFrame"/> class, ensure that you register this callback when calling <xref keyref="registerVideoFrameObserver"/>. After you successfully register the video frame observer, the SDK triggers this callback each time it receives a video frame. You need to set whether to rotate the video frame in the return value of this callback.</ph></p>
+            <p props="ios mac"><ph props="rtc-ng">If the video has been rotated according to the <parmname>rotation</parmname> in <xref keyref="VideoFrame"/> on the capture device, you do not need to call this method to set the video rotation.</ph></p>
+   <note type="attention">This function only supports video data in RGBA or YUV420.</note>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+            <p>Sets whether to rotate the captured video:<ul>
+                <li><codeph><ph keyref="true"/></codeph>: Rotate the captured video.</li>
+                <li><codeph><ph keyref="false"/></codeph>: (Default) Do not rotate the captured video.</li>
+                </ul></p>
+        </section></refbody>
+</reference>

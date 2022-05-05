@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ichannel_joinchannelwithuseraccount">
-    <title><ph keyref="IChannel_joinChannelWithUserAccount"/></title>
+    <title><ph keyref="IChannel_joinChannelWithUserAccount" /></title>
     <shortdesc id="short"><ph id="shortdesc">Joins the channel with a user account.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="IChannel_joinChannelWithUserAccount"/>
+                <indexterm keyref="IChannel_joinChannelWithUserAccount" />
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="windows" outputclass="language-cpp">virtual int joinChannelWithUserAccount(const char* token,
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="cpp" outputclass="language-cpp">virtual int joinChannelWithUserAccount(const char* token,
      const char* userAccount,
      const ChannelMediaOptions&amp; options) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">joinChannelWithUserAccount(token: string,
      userAccount: string,
      options: ChannelMediaOptions
      ): number</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int JoinChannelWithUserAccount(string token, string userAccount, ChannelMediaOptions options);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="cs" outputclass="language-csharp">public abstract int JoinChannelWithUserAccount(string token, string userAccount, ChannelMediaOptions options);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; joinChannelWithUserAccount(
       String? token, String userAccount, ChannelMediaOptions options);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p props="android ios mac windows">This method differs from the <xref keyref="IRtcEngine"/> method in the <apiname keyref="joinChannelWithUserAccount1"/> class in the following aspects:<table id="table_diff">
+            <p props="android ios mac cpp">This method differs from the <xref keyref="IRtcEngine" /> method in the <apiname keyref="joinChannelWithUserAccount1" /> class in the following aspects:<table id="table_diff">
             <tgroup cols="2">
-                <colspec colnum="1" colname="col1"/>
-                <colspec colnum="2" colname="col2"/>
+                <colspec colnum="1" colname="col1" />
+                <colspec colnum="2" colname="col2" />
                 <thead>
                     <row>
                         <entry><apiname keyref="IChannel_joinChannelWithUserAccount">IChannel::joinChannelWithUserAccount</apiname></entry>
@@ -40,15 +40,15 @@
                 </thead>
                 <tbody>
                     <row>
-                        <entry>Does not contain the <parmname>channelId</parmname> parameter, because <parmname>channelId</parmname> is specified when creating the <xref keyref="IChannel"/> object.</entry>
+                        <entry>Does not contain the <parmname>channelId</parmname> parameter, because <parmname>channelId</parmname> is specified when creating the <xref keyref="IChannel" /> object.</entry>
                         <entry>You need to fill in the <parmname>channelId</parmname> that can identify the channel.</entry>
                     </row>
                     <row>
-                        <entry>Users can join multiple channels simultaneously by creating multiple <apiname keyref="IChannel"/> objects and calling the <apiname keyref="IChannel_joinChannelWithUserAccount"/> methods of each object.</entry>
+                        <entry>Users can join multiple channels simultaneously by creating multiple <apiname keyref="IChannel" /> objects and calling the <apiname keyref="IChannel_joinChannelWithUserAccount" /> methods of each object.</entry>
                         <entry>Users can join only one channel.</entry>
                     </row>
                     <row>
-                        <entry>By default, the SDK does not publish any stream after the user joins the channel. You need to call the <xref keyref="IChannel_publish"/> method to do that.</entry>
+                        <entry>By default, the SDK does not publish any stream after the user joins the channel. You need to call the <xref keyref="IChannel_publish" /> method to do that.</entry>
                         <entry>By default, the SDK publishes streams once the user joins the channel.</entry>
                     </row>
                 </tbody>
@@ -65,18 +65,18 @@
             <title>Parameters</title>
             <parml>
             <plentry conkeyref="joinChannel2/token">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry conkeyref="joinChannelWithUserAccount2/userAccount">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry conkeyref="joinChannel2/options">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             </parml> </section>
-        <section id="return_values" conkeyref="joinChannel2/return_values" props="native electron unity"/>
+        <section id="return_values" conkeyref="joinChannel2/return_values" props="native electron cs" />
     </refbody>
 </reference>

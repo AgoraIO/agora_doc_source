@@ -12,7 +12,7 @@
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="windows" outputclass="language-cpp">virtual void onStreamMessage(uid_t userId, int streamId, const char* data, size_t length, uint64_t sentTs) {
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onStreamMessage(uid_t userId, int streamId, const char* data, size_t length, uint64_t sentTs) {
   (void)userId;
   (void)streamId;
   (void)data;
@@ -21,7 +21,7 @@
 } </codeblock>
             </p>
         <p outputclass="codeblock" props="rtc">
-            <codeblock props="windows" outputclass="language-cpp">virtual void onStreamMessage(uid_t uid, int streamId, const char* data, size_t length) {
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onStreamMessage(uid_t uid, int streamId, const char* data, size_t length) {
   (void)uid;
   (void)streamId;
   (void)data;
@@ -38,7 +38,7 @@
  evt: EngineEvents.STREAM_MESSAGE,
  cb: (uid: number, streamId: number, data: string) =&gt; void
  ): this;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnStreamMessage(uint uid, int streamId, byte[] data, uint length)</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public virtual void OnStreamMessage(uint uid, int streamId, byte[] data, uint length)</codeblock>
             <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">StreamMessageCallback? streamMessage;</codeblock>
         </p>
@@ -54,8 +54,8 @@
                     <pd />
                 </plentry>
                 <plentry id="uid">
-                    <pt props="android ios mac unity flutter">uid</pt>
-                    <pt props="windows"><ph props="rtc-ng">userId</ph><ph props="rtc">uid</ph></pt>
+                    <pt props="android ios mac cs flutter">uid</pt>
+                    <pt props="cpp"><ph props="rtc-ng">userId</ph><ph props="rtc">uid</ph></pt>
                     <pd>The ID of the remote user sending the message.</pd>
                 </plentry>
                 <plentry id="streamId">
@@ -66,13 +66,13 @@
                     <pt>data</pt>
                     <pd>The data received.</pd>
                 </plentry>
-                <plentry id="length" props="windows unity">
+                <plentry id="length" props="cpp cs">
                     <pt>length</pt>
                     <pd>The data length (byte).</pd>
                 </plentry>
             </parml>
             <parml props="rtc-ng">
-                <plentry props="windows">
+                <plentry props="cpp">
                     <pt>sentTs</pt>
                     <pd>The time when the data stream is sent.</pd>
                 </plentry>

@@ -8,7 +8,7 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java" />
             <codeblock props="ios mac" outputclass="language-objectivec" />
-            <codeblock props="windows" outputclass="language-cpp">struct ScreenCaptureConfiguration {
+            <codeblock props="cpp" outputclass="language-cpp">struct ScreenCaptureConfiguration {
   bool isCaptureWindow;
   uint32_t displayId;
   Rectangle screenRect;
@@ -19,10 +19,16 @@
   ScreenCaptureConfiguration() : isCaptureWindow(false), displayId(0) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="cs" outputclass="language-csharp">public class ScreenCaptureConfiguration {
+        public bool isCaptureWindow { set; get; }
+        public uint displayId { set; get; }
+        public Rectangle screenRect { set; get; }
+        public uint windowId { set; get; }
+        public ScreenCaptureParameters parameters { set; get; }
+        public Rectangle regionRect { set; get; }
+    }</codeblock>
             <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" />
-            </p>
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>

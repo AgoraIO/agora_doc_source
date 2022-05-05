@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_externalvideoframe">
-    <title><ph keyref="ExternalVideoFrame"/></title>
+    <title><ph keyref="ExternalVideoFrame" /></title>
     <shortdesc id="short"><ph id="shortdesc">外部视频帧。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -47,7 +47,7 @@
                     @property(assign, nonatomic) int cropBottom;
                     @property(assign, nonatomic) int rotation;
                     @end</codeblock>
-                <codeblock props="windows unity" outputclass="language-cpp">struct ExternalVideoFrame {
+                <codeblock props="cpp" outputclass="language-cpp">struct ExternalVideoFrame {
                 enum VIDEO_BUFFER_TYPE
                 {
                 VIDEO_BUFFER_RAW_DATA = 1,
@@ -77,23 +77,58 @@
                 int rotation;
                 long long timestamp;
                 };</codeblock>
-                <codeblock props="electron" outputclass="language-typescript"/>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+    <codeblock props="cs" outputclass="language-csharp">public class ExternalVideoFrame
+    {
+        public ExternalVideoFrame()
+        {
+        }
+
+        public ExternalVideoFrame(VIDEO_BUFFER_TYPE type, VIDEO_PIXEL_FORMAT format, byte[] buffer, int stride,
+            int height, long timestamp, int cropLeft = 0, int cropTop = 0, int cropRight = 0, int cropBottom = 0,
+            int rotation = 0)
+        {
+            this.type = type;
+            this.format = format;
+            this.buffer = buffer;
+            this.stride = stride;
+            this.height = height;
+            this.cropLeft = cropLeft;
+            this.cropTop = cropTop;
+            this.cropRight = cropRight;
+            this.cropBottom = cropBottom;
+            this.rotation = rotation;
+            this.timestamp = timestamp;
+        }
+
+        public VIDEO_BUFFER_TYPE type { set; get; }
+        public VIDEO_PIXEL_FORMAT format { set; get; }
+        public byte[] buffer { set; get; }
+        public int stride { set; get; }
+        public int height { set; get; }
+        public int cropLeft { set; get; }
+        public int cropTop { set; get; }
+        public int cropRight { set; get; }
+        public int cropBottom { set; get; }
+        public int rotation { set; get; }
+        public long timestamp { set; get; }
+    }</codeblock>
+                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
                 </p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
    <parml>
-       <plentry props="windows unity">
+       <plentry props="cpp cs">
   <pt>type</pt>
   <pd>
-      <p>视频类型。详见 <xref keyref="VIDEO_BUFFER_TYPE"/>。</p>
+      <p>视频类型。详见 <xref keyref="VIDEO_BUFFER_TYPE" />。</p>
       </pd>
        </plentry>
        <plentry>
   <pt>format</pt>
-           <pd props="windows unity" id="windows-format">像素格式。详见 <xref keyref="VIDEO_PIXEL_FORMAT"/>。</pd>
+           <pd props="cpp cs" id="windows-format">像素格式。详见 <xref keyref="VIDEO_PIXEL_FORMAT" />。</pd>
            <pd props="ios mac" id="oc-format">传入的视频帧的格式，必须指定为下面的某一个值：
                <ul>
                    <li>1: I420。</li>
@@ -116,8 +151,8 @@
                </ul>
                </pd>
        </plentry>
-       <plentry props="android windows ios mac">
-  <pt props="windows">buffer</pt>
+       <plentry props="android cpp ios mac cs">
+  <pt props="cpp cs">buffer</pt>
   <pt props="android">buf</pt>
   <pt props="ios mac">dataBuf</pt>
   <pd>视频 buffer。</pd>
@@ -162,8 +197,8 @@
                 <plentry props="android">
                     <pt>syncMode</pt>
                     <pd>设置是否开启同步模式，开启后 SDK 会在 Texture 处理时进行等待。该参数仅适用于 Texture 格式的视频数据。<ul id="ul_oxx_wmy_4qb">
-                        <li><codeph><ph keyref="true"/></codeph>：开启同步模式。</li>
-                        <li><codeph><ph keyref="false"/></codeph>：不开启同步模式。</li>
+                        <li><codeph><ph keyref="true" /></codeph>：开启同步模式。</li>
+                        <li><codeph><ph keyref="false" /></codeph>：不开启同步模式。</li>
                         </ul></pd>
                 </plentry>
        <plentry props="android">
@@ -203,7 +238,7 @@
   <pd>原始数据相关字段。指定是否对传入的视频组做顺时针旋转操作，可选值为 0， 90， 180， 270。默认为 0。</pd>
        </plentry>
        <plentry>
-  <pt props="android windows unity">timestamp</pt>
+  <pt props="android cpp cs">timestamp</pt>
            <pt props="ios mac">time</pt>
   <pd>传入的视频帧的时间戳，以毫秒为单位。不正确的时间戳会导致丢帧或者音视频不同步。</pd>
        </plentry>

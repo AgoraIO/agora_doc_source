@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_screencapturesourceinfo">
+    <title><ph keyref="ScreenCaptureSourceInfo" /></title>
+    <shortdesc id="short"><ph id="shortdesc">The information about the specified shareable window or screen. It is returned in <xref keyref="IScreenCaptureSourceList" />.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="cpp" outputclass="language-cpp">struct ScreenCaptureSourceInfo {
+  ScreenCaptureSourceType type;
+  view_t sourceId;
+  const char* sourceName;
+  ThumbImageBuffer thumbImage;
+  ThumbImageBuffer iconImage;
+  const char* processPath;
+  const char* sourceTitle;
+  bool primaryMonitor;
+  ScreenCaptureSourceInfo() : type(ScreenCaptureSourceType_Unknown), sourceId(nullptr), sourceName(nullptr), processPath(nullptr), sourceTitle(nullptr), primaryMonitor(false) {}
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since" props="rtc">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v3.5.2</dd>
+            </dlentry>
+            </dl>
+            <p />
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <parml>
+            <plentry>
+                <pt>type</pt>
+                <pd>The type of the shared target. See <xref keyref="ScreenCaptureSourceType" /> for details.</pd>
+            </plentry>
+            <plentry>
+                <pt>sourceId</pt>
+                <pd>The window ID for a window or the display ID for a screen.</pd>
+            </plentry>
+            <plentry>
+                <pt>sourceName</pt>
+                <pd>The name of the window or screen. UTF-8 encoding.</pd>
+            </plentry>
+            <plentry>
+                <pt>thumbImage</pt>
+                <pd>The image content of the thumbnail. See <xref keyref="ThumbImageBuffer" /> for details.</pd>
+            </plentry>
+            <plentry>
+                <pt>iconImage</pt>
+                <pd>The image content of the icon. See <xref keyref="ThumbImageBuffer" /> for details.</pd>
+            </plentry>
+            <plentry>
+                <pt>processPath</pt>
+                <pd>The process to which the window belongs. UTF-8 encoding.</pd>
+            </plentry>
+            <plentry>
+                <pt>sourceTitle</pt>
+                <pd>The title of the window. UTF-8 encoding.</pd>
+            </plentry>
+            <plentry>
+                <pt>primaryMonitor</pt>
+                <pd>Determines whether the screen is the primary display:<ul>
+                    <li><codeph><ph keyref="true" /></codeph>: The screen is the primary display.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: The screen is not the primary display.</li>
+                    </ul></pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

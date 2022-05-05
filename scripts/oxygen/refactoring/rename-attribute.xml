@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Descriptor for 'Rename attribute' operation. 
+-->
+<refactoringOperationDescriptor 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.oxygenxml.com/ns/xmlRefactoring" id="rename-attribute" name="${i18n(xr_rename_attribute)}">
+    <description>${i18n(xr_rename_attribute_description)}</description>    
+    <script type="XQUERY_UPDATE" href="rename-attribute.xq"/>
+    <category>${i18n(Attributes)}</category>
+    <parameters>
+        <description>${i18n(xr_rename_attribute_parameters_description)}</description>
+        
+        <attributeLocation name="attribute_xpath" useCurrentContext="true" >
+            <element label="${i18n(Element)}">
+                <description>${i18n(attribute_parent_element_param_description)}</description>
+            </element>
+            <attribute label="${i18n(Attribute)}">
+                <description>${i18n(attribute_param_description)}</description>
+            </attribute>
+        </attributeLocation>
+        <parameter label="${i18n(xr_new_local_name)}" type="NC_NAME" name="new_attribute_localname">    			
+            <description>${i18n(xr_rename_attribute_new_local_name_description)}</description>
+        </parameter> 
+    </parameters>
+</refactoringOperationDescriptor>
