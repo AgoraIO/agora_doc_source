@@ -31,7 +31,13 @@ jobs:
           ./transform.sh -i ../../../dita/RTC-NG/RTC_NG_API_CPP.ditamap -sn "DITA Map HTML5 - NG C++" -s ../../../.github/workflows/exported_scenarios.scenarios -v
           ./transform.sh -i ../../../dita/RTC-NG/RTC_NG_API_Android.ditamap -sn "DITA Map HTML5 - NG Android" -s ../../../.github/workflows/exported_scenarios.scenarios -v 
           ./transform.sh -i ../../../dita/RTC-NG/RTC_NG_API_iOS.ditamap -sn "DITA Map HTML5 - NG iOS" -s ../../../.github/workflows/exported_scenarios.scenarios -v
-          ./transform.sh -i ../../../dita/RTC-NG/RTC_NG_API_iOS.ditamap -sn "DITA Map HTML5 - NG macOS" -s ../../../.github/workflows/exported_scenarios.scenarios -v  
+          ./transform.sh -i ../../../dita/RTC-NG/RTC_NG_API_iOS.ditamap -sn "DITA Map HTML5 - NG macOS" -s ../../../.github/workflows/exported_scenarios.scenarios -v
+          
+          
+          ./transform.sh -i ../../../en-US/dita/RTC-NG/RTC_NG_API_CPP.ditamap -sn "DITA Map HTML5 - NG C++" -s ../../../.github/workflows/exported_scenarios_en.scenarios -v
+          ./transform.sh -i ../../../en-US/dita/RTC-NG/RTC_NG_API_Android.ditamap -sn "DITA Map HTML5 - NG Android" -s ../../../.github/workflows/exported_scenarios_en.scenarios -v 
+          ./transform.sh -i ../../../en-US/dita/RTC-NG/RTC_NG_API_iOS.ditamap -sn "DITA Map HTML5 - NG iOS" -s ../../../.github/workflows/exported_scenarios_en.scenarios -v
+          ./transform.sh -i ../../../en-US/dita/RTC-NG/RTC_NG_API_iOS.ditamap -sn "DITA Map HTML5 - NG macOS" -s ../../../.github/workflows/exported_scenarios_en.scenarios -v 
     - name: zip files
       run: |
           cd dita/RTC-NG/out
@@ -40,7 +46,13 @@ jobs:
           zip -qq -r mac_ng_cn_doc.zip "mac-ng"
           zip -qq -r android_ng_cn_doc.zip "android-ng"
           
-    - name: Upload C++ NG doc to release
+          cd ../../../en-US/dita/RTC/out
+          zip -qq -r cpp_ng_en_doc.zip "c++ ng"
+          zip -qq -r ios_ng_en_doc.zip "ios-ng"
+          zip -qq -r mac_ng_en_doc.zip "mac-ng"
+          zip -qq -r android_ng_en_doc.zip "android-ng"
+          
+    - name: Upload C++ NG CN doc to release
       uses: svenstaro/upload-release-action@v2
       with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -49,7 +61,16 @@ jobs:
           tag: main
           overwrite: true
           body: "DITA docs."
-    - name: Upload Android NG doc to release
+    - name: Upload C++ NG EN doc to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: en-US/dita/RTC-NG/out/cpp_ng_en_doc.zip
+          asset_name: cpp_ng_en_doc.zip
+          tag: main
+          overwrite: true
+          body: "DITA docs."
+    - name: Upload Android NG CN doc to release
       uses: svenstaro/upload-release-action@v2
       with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -58,7 +79,16 @@ jobs:
           tag: main
           overwrite: true
           body: "DITA docs."
-    - name: Upload iOS NG doc to release
+    - name: Upload Android NG EN doc to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: en-US/dita/RTC-NG/out/android_ng_en_doc.zip
+          asset_name: android_ng_en_doc.zip
+          tag: main
+          overwrite: true
+          body: "DITA docs."
+    - name: Upload iOS NG CN doc to release
       uses: svenstaro/upload-release-action@v2
       with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -67,12 +97,30 @@ jobs:
           tag: main
           overwrite: true
           body: "DITA docs."
-    - name: Upload macOS NG doc to release
+    - name: Upload iOS NG EN doc to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: en-US/dita/RTC-NG/out/ios_ng_en_doc.zip
+          asset_name: ios_ng_en_doc.zip
+          tag: main
+          overwrite: true
+          body: "DITA docs."
+    - name: Upload macOS NG CN doc to release
       uses: svenstaro/upload-release-action@v2
       with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: dita/RTC-NG/out/mac_ng_cn_doc.zip
           asset_name: mac_ng_cn_doc.zip
+          tag: main
+          overwrite: true
+          body: "DITA docs."
+    - name: Upload macOS NG EN doc to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: en-US/dita/RTC-NG/out/mac_ng_en_doc.zip
+          asset_name: mac_ng_en_doc.zip
           tag: main
           overwrite: true
           body: "DITA docs."
