@@ -27,16 +27,38 @@ jobs:
     - name: DITA doc building
       run: |
           cd scripts/oxygen/scripts
-
+          echo "Start building docs for C++ CN"
+          echo "-----------------------------------------------------------------------------------------------"
+          echo "-----------------------------------------------------------------------------------------------"
           ./transform.sh -i ../../../dita/RTC-NG/RTC_NG_API_CPP.ditamap -sn "DITA Map HTML5 - NG C++" -s ../../../.github/workflows/exported_scenarios.scenarios -v
-          ./transform.sh -i ../../../dita/RTC-NG/RTC_NG_API_Android.ditamap -sn "DITA Map HTML5 - NG Android" -s ../../../.github/workflows/exported_scenarios.scenarios -v 
+          echo "Start building docs for Android CN"
+          echo "-----------------------------------------------------------------------------------------------"
+          echo "-----------------------------------------------------------------------------------------------"
+          ./transform.sh -i ../../../dita/RTC-NG/RTC_NG_API_Android.ditamap -sn "DITA Map HTML5 - NG Android" -s ../../../.github/workflows/exported_scenarios.scenarios -v
+          echo "Start building docs for iOS CN"
+          echo "-----------------------------------------------------------------------------------------------"
+          echo "-----------------------------------------------------------------------------------------------"
           ./transform.sh -i ../../../dita/RTC-NG/RTC_NG_API_iOS.ditamap -sn "DITA Map HTML5 - NG iOS" -s ../../../.github/workflows/exported_scenarios.scenarios -v
+          echo "Start building docs for macOS CN"
+          echo "-----------------------------------------------------------------------------------------------"
+          echo "-----------------------------------------------------------------------------------------------"
           ./transform.sh -i ../../../dita/RTC-NG/RTC_NG_API_iOS.ditamap -sn "DITA Map HTML5 - NG macOS" -s ../../../.github/workflows/exported_scenarios.scenarios -v
           
-          
+          echo "Start building docs for C++ EN"
+          echo "-----------------------------------------------------------------------------------------------"
+          echo "-----------------------------------------------------------------------------------------------"          
           ./transform.sh -i ../../../en-US/dita/RTC-NG/RTC_NG_API_CPP.ditamap -sn "DITA Map HTML5 - NG C++" -s ../../../.github/workflows/exported_scenarios_en.scenarios -v
-          ./transform.sh -i ../../../en-US/dita/RTC-NG/RTC_NG_API_Android.ditamap -sn "DITA Map HTML5 - NG Android" -s ../../../.github/workflows/exported_scenarios_en.scenarios -v 
+          echo "Start building docs for Android EN"
+          echo "-----------------------------------------------------------------------------------------------"
+          echo "-----------------------------------------------------------------------------------------------"              
+          ./transform.sh -i ../../../en-US/dita/RTC-NG/RTC_NG_API_Android.ditamap -sn "DITA Map HTML5 - NG Android" -s ../../../.github/workflows/exported_scenarios_en.scenarios -v
+          echo "Start building docs for iOS EN"
+          echo "-----------------------------------------------------------------------------------------------"
+          echo "-----------------------------------------------------------------------------------------------"   
           ./transform.sh -i ../../../en-US/dita/RTC-NG/RTC_NG_API_iOS.ditamap -sn "DITA Map HTML5 - NG iOS" -s ../../../.github/workflows/exported_scenarios_en.scenarios -v
+          echo "Start building docs for macOS EN"
+          echo "-----------------------------------------------------------------------------------------------"
+          echo "-----------------------------------------------------------------------------------------------"     
           ./transform.sh -i ../../../en-US/dita/RTC-NG/RTC_NG_API_iOS.ditamap -sn "DITA Map HTML5 - NG macOS" -s ../../../.github/workflows/exported_scenarios_en.scenarios -v 
     - name: zip files
       run: |
