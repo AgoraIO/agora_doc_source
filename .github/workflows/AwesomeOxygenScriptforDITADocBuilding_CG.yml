@@ -28,10 +28,21 @@ jobs:
       run: |
           cd scripts/oxygen/scripts
 
+          echo "Start building documentation for CSharp CN"
+          echo "-----------------------------------------------------------------------------------------------"
+          echo "-----------------------------------------------------------------------------------------------"
           ./transform.sh -i ../../../dita/RTC/RTC_API_CS.ditamap -sn "DITA Map HTML5 - CG CSharp" -s ../../../.github/workflows/exported_scenarios.scenarios -v
+          echo "Start building documentation for Flutter CN"
+          echo "-----------------------------------------------------------------------------------------------"
+          echo "-----------------------------------------------------------------------------------------------"
           ./transform.sh -i ../../../dita/RTC/RTC_API_Flutter.ditamap -sn "DITA Map HTML5 - CG Flutter" -s ../../../.github/workflows/exported_scenarios.scenarios -v
-
+          echo "Start building documentation for CSharp EN"
+          echo "-----------------------------------------------------------------------------------------------"
+          echo "-----------------------------------------------------------------------------------------------"
           ./transform.sh -i ../../../en-US/dita/RTC/RTC_API_CS.ditamap -sn "DITA Map HTML5 - CG CSharp" -s ../../../.github/workflows/exported_scenarios_en.scenarios -v
+          echo "Start building documentation for Flutter EN"
+          echo "-----------------------------------------------------------------------------------------------"
+          echo "-----------------------------------------------------------------------------------------------"
           ./transform.sh -i ../../../en-US/dita/RTC/RTC_API_Flutter.ditamap -sn "DITA Map HTML5 - CG Flutter" -s ../../../.github/workflows/exported_scenarios_en.scenarios -v  
           
     - name: zip files
