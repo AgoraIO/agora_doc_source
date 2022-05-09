@@ -52,9 +52,9 @@ The Gateway Server SDK can support the following scenarios:
 | Start a single process with multiple SDK instances.                 | Send and/or receive media streams to/from multiple channels at the same time.                       |
 | Use string user ID to join a channel.              | Supports joining a channel with a string user ID. |
 | Receive media streams from a specified uid.           | Supports receiving media streams from a specified user ID.                               |
-| Audio mixing.                           | Mix multiple audio streams.                              |
+| Audio mixing.                           | Supports mixing multiple audio streams.                              |
 | Media encryption. | Supports 128-bit SM4 encryption, ECB mode.  |
-| Cloud proxy. | Supports cloud proxy service. You need to add specified IPs and ports to your firewall allowlist to access Agora service from your internal network.|
+| Cloud proxy. | Supports cloud proxy service. You need to add specified IPs and ports to your firewall allowlist to access Agora service from restricted network.|
 
 ## Billing
 
