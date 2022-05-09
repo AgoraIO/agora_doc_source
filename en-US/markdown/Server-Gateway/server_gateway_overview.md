@@ -31,7 +31,7 @@ The Gateway Server SDK supports the following architectures:
 - arm64
 - x86-64
 
-If you need to support other archietctures, contact sales@agora.io.
+If you need to use the SDK on other architectures, contact sales@agora.io.
 
 ## Application scenarios
 
