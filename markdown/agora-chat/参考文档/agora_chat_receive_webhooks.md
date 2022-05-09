@@ -169,7 +169,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 | 字段          | 数据类型 | 描述                                        |
 | :------------ | :------- | :---------------------------------------- |
-| `msg`        | String   | 单聊中发送的文字或透传消息内容。                                  |
+| `msg`        | String   | 文字消息内容。                                  |
 | `type`       | String   | 消息类型。文字消息为 `txt`。 |
 
 
@@ -277,10 +277,10 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 | `thumb_secret` | String | 成功上传视频缩略图后返回的秘钥。 |
 | `filename` | String | 视频文件的名称。|
 | `size` | Json | 缩略图图片尺寸，包含如下字段：<ul><li>`height`: 图片高度</li><li>`width`: 图片宽度</li></ul> |
-| `thumb` | String  | 视频缩略图的 URL 地址，格式为 `https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`，其中 `uuid` 为文件 ID。成功上传视频缩略图文件后，从文件上传的响应 body 中获取。 |
+| `thumb` | String  | 视频缩略图的 URL 地址，格式为 `https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`，其中 `uuid` 为缩略图文件 ID。成功上传视频缩略图文件后，从文件上传的响应 body 中获取。 |
 | `secret` | String | 成功上传视频文件后返回的秘钥。|
 | `file_length` | Long | 视频文件大小，单位为字节（Byte）。|
-| `url` | String | 视频文件的 URL 地址，格式为 `https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`，其中 `uuid` 为文件 ID。成功上传视频文件后，从文件上传的响应 body 中获取。|
+| `url` | String | 视频文件的 URL 地址，格式为 `https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`，其中 `uuid` 为视频文件 ID。成功上传视频文件后，从文件上传的响应 body 中获取。|
 | `type` | String | 消息类型。视频消息为 `video`。|
 
 ### 位置消息
@@ -332,7 +332,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 | 字段          | 数据类型 | 描述                                        |
 | :------------ | :------- | :---------------------------------------- |
-| `msg`        | String   | 单聊中发送的透传消息内容。                                  |
+| `msg`        | String   | 透传消息内容。                                  |
 | `type`       | String   | 消息类型。透传消息为 `cmd`。 |
 
 ### 自定义消息
@@ -436,7 +436,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 | `from` | String | 消息的发送方。|
 | `to`  | String | 消息的接收方。 |
 | `msg_id` | String | 该消息回调的 ID，与发送消息时的 `msg_id` 一致。|
-| `payload` | Object | 消息回调事件的内容结构体。包含如下字段：<ul><li>`muc_id`: 该事件所在的群组或聊天室在服务器的唯一标识，格式为 `{appkey}_{群/聊天室 ID}@conference.easemob.com`。</li><li>`reason`: (非必需) 当前操作的详细信息。各操作的详细信息详见下文。</li><li>`is_chatroom`: 该事件是否发生在聊天室<ul><li>`true`: 是</li><li>`false`: 否，该事件发生在群组</li></ul><li>`operation`: 当前操作。各群组或聊天室的操作详见下文。</li><li>`status`: 当前操作状态。包含如下字段：<ul><li>`description`: 该操作失败的原因描述</li><li>`error_code`: 操作失败对应的错误码</li></ul> |
+| `payload` | Object | 回调事件的内容结构体。包含如下字段：<ul><li>`muc_id`: 该事件所在的群组或聊天室在服务器的唯一标识，格式为 `{appkey}_{group_ID}@conference.easemob.com`。</li><li>`reason`: (非必需) 当前操作的详细信息。各操作的详细信息详见下文。</li><li>`is_chatroom`: 该事件是否发生在聊天室<ul><li>`true`: 是</li><li>`false`: 否，该事件发生在群组</li></ul><li>`operation`: 当前操作。各群组或聊天室的操作详见下文。</li><li>`status`: 当前操作状态。包含如下字段：<ul><li>`description`: 该操作失败的原因描述</li><li>`error_code`: 操作失败对应的错误码</li></ul> |
 | `securityVersion` | String | 预留参数。 |
 | `security` | String | 消息回调请求中的签名，用来确认该回调是否来自 Agora 即时通讯服务器。该签名使用 MD5 算法对 `{callId} + {secret} + {timestamp}` 进行加密，其中 `secret` 可以在 Agora 控制台即时通讯的 IM 配置页面找到。|
 | `appkey`          | String | Agora 即时通讯服务分配给每个 app 的唯一标识。              |
@@ -509,7 +509,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 - `reason` 为申请加入群组的消息。
 - `operation` 为当前操作，即 `apply`。
 
-### 同意成员加入群组
+### 同意用户加入群组
 
 当本地用户同意其他用户加入群组时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
@@ -1249,7 +1249,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 | 字段        | 数据类型 | 含义                                                         |
 | :---------- | :------- | :----------------------------------------------------------- |
-| `chat_type` | String   | 事件类型：<ul><li>`read_ack` 表示消息已读回执</li><li>`delievery_ack` 表示消息已送达回执</li></ul>                                        |
+| `chat_type` | String   | 事件类型：<ul><li>`read_ack`: 表示消息已读回执</li><li>`delivery_ack`: 表示消息已送达回执</li></ul>                                        |
 | `callId`    | String   | 回调 ID，是每条 HTTP 回调的唯一标识。该字段由 `{appKey}_{uuid}` 组成，其中 `uuid` 为随机生成。 |
 | `security`  | String   | 消息回调请求中的签名，用来确认该回调是否来自 Agora 即时通讯服务器。格式为 MD5(`callId` + `secret` + `timestamp`)，其中 `secret` 可以在 Agora 控制台即时通讯的 IM 配置页面找到。 |
 | `payload`   | Object   | 回调的具体内容，包括如下字段：<ul><li>`ext`：消息的扩展字段</li><li>`ack_message_id`：发送回执的消息 ID</li><li>`bodies`：消息体内容</li></ul> |
