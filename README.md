@@ -1,3 +1,5 @@
+# 基于 DITA 的文档内容仓库
+
 <!-- vscode-markdown-toc -->
 * 1. [概览](#)
 	* 1.1. [DITA map 架构](#DITAmap)
@@ -26,7 +28,7 @@
 	numbering=true
 	autoSave=true
 	/vscode-markdown-toc-config -->
-<!-- /vscode-markdown-toc --># 基于 DITA 的文档内容仓库
+<!-- /vscode-markdown-toc -->
 
 [![Awesome JSON CI build](https://github.com/AgoraDoc/doc_source/actions/workflows/python-app.yml/badge.svg)](https://github.com/AgoraDoc/doc_source/actions/workflows/python-app.yml)
 [![Awesome prototype syncs](https://github.com/AgoraDoc/doc_source/actions/workflows/python-app-sync-proto.yml/badge.svg)](https://github.com/AgoraDoc/doc_source/actions/workflows/python-app-sync-proto.yml)
