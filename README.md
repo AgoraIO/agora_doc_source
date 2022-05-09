@@ -17,7 +17,7 @@
 		* 2.1.2. [回调 callback{-类名称}-C++ 原型](#callback--CIRtcEngineEventHandler)
 		* 2.1.3. [类（结构体） class-类名称-C++ 原型](#class--C)
 		* 2.1.4. [枚举 enum-枚举类名称](#enum-)
-	* 2.2. [Dita 文件命名规则](#Dita)
+	* 2.2. [DITA 文件命名规则](#Dita)
 * 3. [自动检查 API 文档中的原型与代码是否一致](#API-1)
 * 4. [API 文档代码原型从中文 DITA 文件自动同步到英文 DITA 文件](#APIDITADITA)
 * 5. [从 API 文档自动构建用于自动化填充代码注释的文档模板](#API-1)
@@ -247,9 +247,9 @@ dita 目录下为所有的中文文档的源内容及相关配置文件。对应
 
 例如：enum-voicebeautifierpreset
 
-###  2.2. <a name='Dita'></a>Dita 文件命名规则
+###  2.2. <a name='Dita'></a>DITA 文件命名规则
 
-RTC 所有的 API 文件全部放在 API 文件夹内。
+RTC 和 RTC-NG 所有的 API 文件全部放在 API 文件夹内。
 
 文件名规则：
 
