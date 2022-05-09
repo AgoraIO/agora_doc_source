@@ -1,4 +1,4 @@
-## 基于 DITA 的文档内容仓库
+# 基于 DITA 的文档内容仓库
 
 [![Awesome JSON CI build](https://github.com/AgoraDoc/doc_source/actions/workflows/python-app.yml/badge.svg)](https://github.com/AgoraDoc/doc_source/actions/workflows/python-app.yml)
 [![Awesome prototype syncs](https://github.com/AgoraDoc/doc_source/actions/workflows/python-app-sync-proto.yml/badge.svg)](https://github.com/AgoraDoc/doc_source/actions/workflows/python-app-sync-proto.yml)
@@ -7,7 +7,7 @@
 [![Awesome OxygenScript for DITA doc building (CG SDK)](https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding_CG.yml/badge.svg)](https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding_CG.yml)
 [![Awesome OxygenScript for DITA doc building (NG SDK)](https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding.yml/badge.svg)](https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding.yml)
 
-### DITA 构建逻辑
+## 概览
 
 文档内容主要分为两种文件格式：
 
@@ -16,26 +16,26 @@
 
 dita 目录下为所有的中文文档的源内容及相关配置文件。对应的英文内容在 en-US/dita 目录下。
 
--   *.xpr 文件  
-    Oxygen Project 文件，用于在 Oxygen 中管理文档项目，一般建议一个产品创建一个 Oxygen Project。具体见 [Oxygen 使用指南#OxygenProject](https://confluence.agoralab.co/pages/viewpage.action?pageId=849348288#Oxygen%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97-OxygenProject)。
+-   \*.xpr 文件  
+    Oxygen Project 文件，用于在 Oxygen 中管理文档项目，一般建议一个产品创建一个 Oxygen Project。
 -   .config 文件夹  
     用于存放全局的 DITA 相关配置。  
-    -   *.xml  
+    -   \*.xml  
         DITA project file，用于发布文档。
     -   custom-checks.sch  
         自定义的验证配置，目前会检查 topic ID 和文件名是否一致。
 -   templates-cn 文件夹
     -   产品文件夹，如 RTC。  
         各个产品根据需要自行创建模板。
-        -   *.dita  
+        - *.dita  
             DITA topic 模板文件
-        -   *.ditamap  
+        - *.ditamap  
             DITA map 模板文件
-        -   *.properties  
+        - *.properties  
             模板属性，可以用于设置模板的文件名前缀/后缀及模板在 Oxygen 中显示的名称。
--   RTC 文件夹  
+-   RTC 文件夹和 RTC-NG 文件夹  
     RTC 产品的文档源内容及相关配置
-    -   *.md  
+    -   \*.md  
         使用 lwdita 或者原生的 markdown 写作的文档。  
         如果一篇文档需要拆分为多个 topic，子 topic 放在单独的文档目录下，比如快速开始在 RTC 根目录下只有 get-started.md，其他的 topic 都放在 quick-start 文件夹下。
     -   API 文件夹
@@ -163,12 +163,47 @@ dita 目录下为所有的中文文档的源内容及相关配置文件。对应
 
 ### 内容重用机制
 
-内容重用主要分三个层级：
+我们的 DITA 文档用到了以下几种重用方式：
 
--   文件级别的重用，即直接重用一个 topic 或者一个 map。对于 md 和 dita 文件均适用。
--   段落级别的重用，即 conref 和 conkeyref。
-    -   dita 文件中主要使用 conkeyref。
-    -   对于 md 文件，只能使用 conref，并且需要用 XML 语法来写。
--   链接/短语级别的重用，即 keyref。
-    -   在 dita 文件中，keyref 可以用在多种不同的标记中，生成的 html 也会有所区别。
-    -   在 md 文件中，keyref 的写法只有一种，无论 key 的定义中有没有链接，生成的 html 中都会作为 xref 处理。
+-   topic  
+    一个产品不同平台的功能相同，因此每个 API topic 的描述大部分情况下可以用于所有平台。
+-   keyref  
+    不同平台的 API 名称、链接等可能会有差异，在同一个 API topic 中，对有平台差异的 API 名称使用 keyref，key 的具体值在单独的 ditamap 中定义。这样每个平台只需要定义好自己的 key，就可以共用一套 API topic。
+-   conref  
+    相当于文档后台的 fragment，在多个不同的 topic 中引用同样的一段内容。  
+    -   被 conref 的内容需要定义 id
+    -   插入设置了 conref 的元素必须和被 conref 的元素一致
+-   conditional output
+    -   使用 [subject scheme map](https://www.oxygenxml.com/dita/1.3/specs/archSpec/base/subject-scheme-maps-and-usage.html) 规定文档中可以使用的条件属性及取值。
+    -   写作时定义适用的条件  
+        DITA 中有很多支持条件化输出的属性，我们目前只使用 props 属性（和 Lightweight DITA 内容兼容）。
+    -   输出时应用 ditaval 进行过滤
+-   conkeyref
+    -   通过 key + element ID 指定要重用的内容
+    -   可以用于重用一个 API topic 中的一段内容。
+
+## API 注释自动化协作规范
+
+![企业微信20220509-090330](https://user-images.githubusercontent.com/10089260/167324076-0c4b0d8a-fb33-430c-91e6-8e31d18fd69e.png)
+
+### 代码配置：打 Tag
+
+拟采用给 API 打 Tag 的方式配置代码信息，便于与注释 Json 文件中的内容进行关联。
+
+-   在脚本验证阶段，文档组按照本页规定添加代码 Tag
+-   脚本成熟运行阶段，需要研发在进代码的时候添加代码配置信息；建议 CI 流程中做一层检查，提交时如新增或改动 API ，检查是否已打 Tag。
+
+如果类名称为本不该暴露的基类（仅发生于 C++），例如 callback-iaudioframeobserverbase-onmixedaudioframe，则必须把基类替换为它的扩展类，例如 callback-iaudioframeobserver-onplaybackaudioframebeforemixin。否则无法在不同平台之间通用。
+
+#### 方法：api{-类名称}-C++ 原型{n}
+
+- 如果类名为 RtcEngine，则类名称可省略；其余类不可省略
+- 如果该方法为平台特有，C++ 没有，确定 C++ 不需要添加之后原型
+- n 为重载方法的序号；如有两个同名方法，则先添加的无序号，后添加的加 2
+
+例如：api-joinchannel、api-joinchannel2、api-rtcchannel-joinchannel、api-iaudioframeobserver-onplaybackaudioframe
+
+
+> OC 与 C++ 类名称以 C++ 为准；OC 独有的以 OC 命名
+> 标记重载需要开发在添加一个方法时，先确认该方法是否有重载
+> 由于 SDK 包中无 Java 文件，因此本页不适用 Java
