@@ -14,7 +14,7 @@
 * 2. [API 注释自动化协作规范](#API)
 	* 2.1. [代码配置：打 Tag](#Tag)
 		* 2.1.1. [方法：api{-类名称}-C++ 原型{n}](#api--Cn)
-		* 2.1.2. [回调 callback{-类名称}-C++ 原型，如果类名称为 IRtcEngineEventHandler，则类名称可省略，其余类不可省略](#callback--CIRtcEngineEventHandler)
+		* 2.1.2. [回调 callback{-类名称}-C++ 原型](#callback--CIRtcEngineEventHandler)
 		* 2.1.3. [类（结构体） class-类名称-C++ 原型](#class--C)
 		* 2.1.4. [枚举 enum-枚举类名称](#enum-)
 	* 2.2. [Dita 文件命名规则](#Dita)
@@ -55,23 +55,20 @@ dita 目录下为所有的中文文档的源内容及相关配置文件。对应
   - custom-checks.sch  
         自定义的验证配置，目前会检查 topic ID 和文件名是否一致。
 - templates-cn 文件夹
-  - 产品文件夹，如 RTC。  
-        各个产品根据需要自行创建模板。
-    - *.dita  
+  - 产品文件夹，如 RTC。各个产品根据需要自行创建模板。
+     - *.dita  
             DITA topic 模板文件
-    - *.ditamap  
+     - *.ditamap  
             DITA map 模板文件
-    - *.properties  
+     - *.properties  
             模板属性，可以用于设置模板的文件名前缀/后缀及模板在 Oxygen 中显示的名称。
-- RTC 文件夹和 RTC-NG 文件夹  
-    RTC 产品的文档源内容及相关配置
+- RTC 文件夹和 RTC-NG 文件夹。包含 RTC 产品的文档源内容及相关配置。
   - \*.md  
         使用 lwdita 或者原生的 markdown 写作的文档。  
         如果一篇文档需要拆分为多个 topic，子 topic 放在单独的文档目录下，比如快速开始在 RTC 根目录下只有 get-started.md，其他的 topic 都放在 quick-start 文件夹下。
   - API 文件夹
     - RTC 所有 API 的 dita topic
-  - quick-start 文件夹  
-        用于存放快速开始的子 topic
+  - quick-start 文件夹。用于存放快速开始的子 topic。
   - config 文件夹
     - filter-***.ditaval  
             过滤条件配置
@@ -81,11 +78,10 @@ dita 目录下为所有的中文文档的源内容及相关配置文件。对应
             Topic 之间的关系
     - subject-scheme-rtc.ditamap  
             自定义的过滤属性值，用于控制文档中可以设置的 props 值。
-  - conref 文件夹  
-        用于存放所有被 conref 的 dita 源文件  
+  - conref 文件夹。用于存放所有被 conref 的 dita 源文件。  
     - conref_api_metatdata.dita  
             由于英文中不同平台的类的表达不一样，用于 conref + filter 在不同平台显示对应的英文表达。
-  - *.ditamap  
+  - \*.ditamap  
         一个 DITA map 对应一套文档。
 
 ###  1.1. <a name='DITAmap'></a>DITA map 架构
