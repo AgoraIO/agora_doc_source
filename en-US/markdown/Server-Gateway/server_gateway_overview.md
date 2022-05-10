@@ -47,14 +47,15 @@ The Gateway Server SDK can support the following scenarios:
 
 | Function                           | Description                                                         |
 | :----------------------------- | :----------------------------------------------------------- |
-| Send and receive video and audio data in various formats. | Supports sending media in the following formats：<ul><li>YUV + PCM</li><li>H.264 + PCM</li><li>H.264 + OPUS</li><li>YUV + AAC</li><li>H.264 + AAC</li></ul>Supports receiving media in the following formats:<ul><li>YUV + PCM</li><li>H.264 + PCM</li></ul> |
+| Sending and receiving video and audio data in various formats. | Supports sending and receiving video and audio data in various formats. See [Send and Receive Media streams](server_gateway_tx_rx_stream). |
 | Independent video/audio sending/receiving process.     | You can send and receive media streams at the same time, or choose to only send or receive audio or video streams. |
-| Start a single process with multiple SDK instances.                 | Send and/or receive media streams to/from multiple channels at the same time.                       |
-| Use string user ID to join a channel.              | Supports joining a channel with a string user ID. |
-| Receive media streams from a specified uid.           | Supports receiving media streams from a specified user ID.                               |
+| Using string user ID to join a channel.              | Supports joining a channel with a string user ID. See [Using String User ID](server_gateway_stringuid). |
+| Receiving media streams from a specified uid.           | Supports receiving media streams from a specified user ID.                               |
+| Starting a single process with multiple SDK instances.                 | Send and/or receive media streams to/from multiple channels at the same time.                       |
 | Audio mixing.                           | Supports mixing multiple audio streams.                              |
-| Media encryption. | Supports 128-bit SM4 encryption, ECB mode.  |
-| Cloud proxy. | Supports cloud proxy service. You need to add specified IPs and ports to your firewall allowlist to access Agora service from restricted network.|
+| Media encryption. | Supports media encryption. See [Media Encryption](server_gateway_encryption).  |
+| Cloud proxy. | Supports cloud proxy service. You need to add specified IPs and ports to your firewall allowlist to access Agora service from restricted network. See [Cloud Proxy](server_gateway_cloud_proxy).|
+| Network Geofencing | Supports network geofencing. After enabling geofencing, the Agora SDK only connects to Agora servers within the specified region. See [Network Geofencing](server_gateway_region).|
 
 ## Billing
 
