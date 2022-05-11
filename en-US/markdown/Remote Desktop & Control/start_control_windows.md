@@ -6,7 +6,7 @@ Use this guide to quickly implement the remote control feature with the Agora RD
 
 The following figure shows the workflow to implement a remote control:
 
-![](https://web-cdn.agora.io/docs-files/1652256426534)
+![](https://web-cdn.agora.io/docs-files/1652262875365)
 
 As shown in the figure, the workflow for implementing a remote control between a host side and controlled side is as follows:
 
