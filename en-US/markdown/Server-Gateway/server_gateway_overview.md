@@ -9,7 +9,9 @@ The following diagram shows typical application scenarios of the Server Gateway 
 
 <div class="alert note">When you use the <a href="https://docs.agora.io/en/Agora%20Platform/term_agora_rtc_sdk">Agora RTC SDK</a> to communicate with the Server Gateway SDK, set the channel scenario of the RTC SDK to <code>LIVE_BROADCASTING</code> </div>
 
-## Features
+## Advantages
+
+The Gateway Server SDK has the following advantages:
 
 | <span style="white-space:nowrap;">&emsp;Feature&emsp;</span>  | Description                                                         |
 | :----- | :----------------------------------------------------------- |
@@ -35,7 +37,7 @@ If you need to use the SDK on other architectures, contact sales@agora.io.
 
 ## Application scenarios
 
-The Gateway Server SDK can support the following scenarios:
+The Gateway Server SDK supports the following scenarios:
 
 |  <span style="white-space:nowrap;">&emsp;&emsp;Scenario&emsp;&emsp;</span>    | Description                                                     |
 | :---------- | :----------------------------------------------------------- |
@@ -44,6 +46,8 @@ The Gateway Server SDK can support the following scenarios:
 | Call center    | You use the Server Gateway SDK to create audio connection for traditional enterprise call centers (VoIP/PTSN). Users can conveniently call customer service from an app. |
 
 ## Functions
+
+The Gateway Server SDK supports the following functions:
 
 | Function                           | Description                                                         |
 | :----------------------------- | :----------------------------------------------------------- |
