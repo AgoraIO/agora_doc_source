@@ -6,17 +6,15 @@ Use this guide to quickly implement the remote control feature with the Agora RD
 
 The following figure shows the workflow to implement a remote control:
 
-![](https://web-cdn.agora.io/docs-files/1640747584026)
+![](https://web-cdn.agora.io/docs-files/1652246456471)
 
 As shown in the figure, the workflow for implementing the remote control between a host side and controlled side is as follows:
 
 1. Set up the role for the user. The role can be either a host side or a controlled side.
 2. The host side and controlled side log in to the Agora RDC service.
 3. The host side and controlled side call [`joinChannel`](./api_win_control?platform=Windows#a-namejoinchannelajoinchannel) and use the same channel ID to join the same channel.
-4. The controlled side sends a screen-sharing stream.
-5. The host side receives the screen-sharing stream.
-6. The host side sends a remote control message.
-7. The controlled side receives the remote control message and acts accordingly.
+4. The controlled side sends a screen-sharing stream, whereas the host side receives the screen-sharing stream.
+5. The host side sends a remote control message, whereas the controlled side receives the remote control message and acts accordingly.
 
 ## Prerequisites
 
@@ -61,7 +59,7 @@ This section introduces how to use the Agora RDC SDK to implement a remote contr
 
 The following figure shows the API call sequence of the remote control service:
 
-![](https://web-cdn.agora.io/docs-files/1640594630091)
+![](https://web-cdn.agora.io/docs-files/1652244656074)
 
 1. Add the following code to the `RDC-TestDlg.h` file in your project to import header files and declare variables.
 
