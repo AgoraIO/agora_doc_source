@@ -6,7 +6,7 @@ This page shows a sample code to add peer-to-peer messaging into your app by usi
 
 The following figure shows the workflow of how clients send and receive peer-to-peer messages.
 
-![](https://web-cdn.agora.io/docs-files/1636443945728)
+![](https://web-cdn.agora.io/docs-files/1643335864426)
 
 As shown in the figure, the workflow of peer-to-peer messaging is as follows:
 
@@ -101,11 +101,11 @@ Follow the steps to create the environment necessary to add video call into your
 
 ## Implement peer-to-peer messaging
 
-This section shows how to use the Agora Chat SDK to implement peer-to-peer messaging in your app step by step.
+This section shows how to use the Agora Chat UIKit to implement peer-to-peer messaging in your app step by step.
 
 ### Create the UI
 
-1. To add the text strings used by the UI, open `app/res/values/strings.xml ` and  replace the content with the following codes:
+1. To add the text strings used by the UI, open `app/res/values/strings.xml ` and  replace the content with the following:
 
 ```xml
 <resources>
@@ -133,7 +133,7 @@ This section shows how to use the Agora Chat SDK to implement peer-to-peer messa
 </resources>
 ```
 
-2. To add the UI framework, open `app/res/layout/activity_main.xml` and replace the content with the following codes:
+2. To add the UI framework, open `app/res/layout/activity_main.xml` and replace the content with the following:
 
     ```xml
     <?xml version="1.0" encoding="utf-8"?>
