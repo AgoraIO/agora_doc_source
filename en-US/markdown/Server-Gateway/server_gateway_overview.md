@@ -1,6 +1,6 @@
-Deployed on your server, the Agora Server Gateway SDK communicates with clients integrated with [Agora RTC SDK](https://docs.agora.io/en/Agora%20Platform/term_agora_rtc_sdk). You can use the Server Gateway SDK to transmit video/audio streams between the server and the client through [SD-RTN™](https://docs.agora.io/en/Agora%20Platform/terms?platform=All%20Platforms#sd-rtn).
+Deployed on your server, the Agora Server Gateway SDK communicates with clients integrated with the [Agora RTC SDK](https://docs.agora.io/en/Agora%20Platform/term_agora_rtc_sdk). You can use the Server Gateway SDK to transmit video/audio streams between the server and the client through [SD-RTN™](https://docs.agora.io/en/Agora%20Platform/terms?platform=All%20Platforms#sd-rtn).
 
-The following diagram shows typical application scenarios of the Server Gateway SDK, including playing local media files, pushing streams to CDN, and communicating with enterprise call centers. The Server Gateway SDK implements media stream transmission by:
+The following diagram shows typical application scenarios of the Server Gateway SDK, including playing local media files, pushing streams to CDN, and communicating with enterprise call centers. The Server Gateway SDK implements media stream transmission by the following means:
 
 - Converting incoming media streams from SD&#8209;RTN™ to a specified format.
 - Encoding and sending local media streams to SD&#8209;RTN™.
