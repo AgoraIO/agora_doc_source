@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_enablevirtualbackground">
-    <title><ph keyref="enableVirtualBackground"/></title>
+    <title><ph keyref="enableVirtualBackground" /></title>
     <shortdesc id="short"><ph id="shortdesc">Enables/Disables the virtual background. (beta feature)</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="enableVirtualBackground"/>
+                <indexterm keyref="enableVirtualBackground" />
             </keywords>
         </metadata>
     </prolog>
@@ -28,9 +28,9 @@
 </codeblock>
             <codeblock props="cpp">virtual int enableVirtualBackground(bool enabled, VirtualBackgroundSource backgroundSource) = 0;
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="cs" outputclass="language-csharp">public abstract int EnableVirtualBackground(bool enabled, VirtualBackgroundSource backgroundSource);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableVirtualBackground(
       bool enabled, VirtualBackgroundSource backgroundSource);</codeblock> </p>
         </section>
@@ -42,16 +42,16 @@
             </dlentry>
             </dl>
             <p>The virtual background function allows you to replace the original background image of the local user or to blur the background. After successfully enabling the virtual background function, all users in the channel can see the customized background.</p>
-            <p props="rtc">You can find out from the <xref keyref="onVirtualBackgroundSourceEnabled"/> callback whether the virtual background is successfully enabled or the cause of any errors.</p>
+            <p props="rtc">You can find out from the <xref keyref="onVirtualBackgroundSourceEnabled" /> callback whether the virtual background is successfully enabled or the cause of any errors.</p>
             <p props="rtc-ng">Enabling the virtual background function involves a series of method calls. The calling sequence is as follows:
             
             <ol>
-            <li props="android">Call <codeph><xref keyref="addExtension"/>(<q>agora_segmentation_extension</q>)</codeph> during <xref keyref="IRtcEngine"/> initialization to integrate the video enhancement library in the project.</li>
+            <li props="android">Call <codeph><xref keyref="addExtension" />(<q>agora_segmentation_extension</q>)</codeph> during <xref keyref="IRtcEngine" /> initialization to integrate the video enhancement library in the project.</li>
             <li props="ios">Link the extension library in the project file: <codeph>AgoraVideoSegmentationExtension.xcframework</codeph></li>
             <li props="mac">Link the extension library in the project file: <codeph>AgoraVideoSegmentationExtension.framework</codeph></li>
-            <li props="cpp">Call <codeph><xref keyref="loadExtensionProvider"/>(<q>libagora_segmentation_extension.dll</q>)</codeph> during <xref keyref="IRtcEngine"/> initialization to specify the extension's library path.</li>
-            <li>Call <codeph><xref keyref="enableExtension"/>(<q>agora_segmentation</q>, <q>PortraitSegmentation</q>, <q><ph keyref="true"/></q>)</codeph> to enable the extension.</li>
-            <li>Call <xref keyref="enableVideo"/> to enable the video module.</li>
+            <li props="cpp">Call <codeph><xref keyref="loadExtensionProvider" />(<q>libagora_segmentation_extension.dll</q>)</codeph> during <xref keyref="IRtcEngine" /> initialization to specify the extension's library path.</li>
+            <li>Call <codeph><xref keyref="enableExtension" />(<q>agora_segmentation</q>, <q>PortraitSegmentation</q>, <q><ph keyref="true" /></q>)</codeph> to enable the extension.</li>
+            <li>Call <xref keyref="enableVideo" /> to enable the video module.</li>
             <li>Call this method to enable the virtual background function.</li>
             </ol></p>
             <note type="attention">
@@ -64,7 +64,7 @@
                 <li props="mac cpp unity electron">macOS: <ph>AgoraVideoSegmentationExtension.framework</ph></li>
                 <li props="cpp">Windows: <ph>libagora_segmentation_extension.dll</ph></li>
                 </ul></li>
-            <li props="rtc">Call this method after <xref keyref="enableVideo"/>.</li>
+            <li props="rtc">Call this method after <xref keyref="enableVideo" />.</li>
             <li>This function requires a high-performance device. Agora recommends that you use this function on devices with the following chips:
                 
                 <ul>
@@ -100,29 +100,29 @@
                 <pd>Whether to enable virtual background:
                     
                     <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Enable virtual background.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Disable virtual background.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: Enable virtual background.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Disable virtual background.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt props="cpp android cs flutter">backgroundSource</pt>
                 <pt props="mac ios">backData</pt>
-                <pd>The custom background image. See <xref keyref="VirtualBackgroundSource"/> for details. To adapt the resolution of the custom background image to that of the video captured by the SDK, the SDK scales and crops the custom background image while ensuring that the content of the custom background image is not distorted.</pd>
+                <pd>The custom background image. See <xref keyref="VirtualBackgroundSource" /> for details. To adapt the resolution of the custom background image to that of the video captured by the SDK, the SDK scales and crops the custom background image while ensuring that the content of the custom background image is not distorted.</pd>
             </plentry>
             <plentry props="hide">
                 <pt props="android cpp">segproperty</pt>
                 <pt props="ios mac">segData</pt>
-                <pd>Processing properties for background images. See <xref keyref="SegmentationProperty"/> for details.</pd>
+                <pd>Processing properties for background images. See <xref keyref="SegmentationProperty" /> for details.</pd>
             </plentry>
             <plentry props="hide">
                 <pt>type</pt>
-                <pd>Type of the video source. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                <pd>Type of the video source. See <xref keyref="MEDIA_SOURCE_TYPE" />.
                     
                     <note type="attention">In this method, this parameter supports only the following two settings:
                     
                     <ul>
-                    <li>The default value is <apiname keyref="PRIMARY_CAMERA_SOURCE"/>.</li>
-                    <li>If you want to use the second camera to capture video, set this parameter to <apiname keyref="SECONDARY_CAMERA_SOURCE"/>.</li>
+                    <li>The default value is <apiname keyref="PRIMARY_CAMERA_SOURCE" />.</li>
+                    <li>If you want to use the second camera to capture video, set this parameter to <apiname keyref="SECONDARY_CAMERA_SOURCE" />.</li>
                     </ul></note></pd>
             </plentry>
             </parml> </section>
@@ -133,8 +133,8 @@
             <li>&lt; 0: Failure.
                 
                 <ul props="rtc-ng">
-                <li>-1: The custom background image does not exist. Please check the value of <parmname>source</parmname> in <xref keyref="VirtualBackgroundSource"/>.</li>
-                <li>-2: The color format of the custom background image is invalid. Please check the value of <parmname>color</parmname> in <xref keyref="VirtualBackgroundSource"/>.</li>
+                <li>-1: The custom background image does not exist. Please check the value of <parmname>source</parmname> in <xref keyref="VirtualBackgroundSource" />.</li>
+                <li>-2: The color format of the custom background image is invalid. Please check the value of <parmname>color</parmname> in <xref keyref="VirtualBackgroundSource" />.</li>
                 <li>-3: The device does not support using the virtual background.</li>
                 </ul></li>
             </ul> </section>
