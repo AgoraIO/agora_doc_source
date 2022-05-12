@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videocanvas">
-    <title> <ph keyref="VideoCanvas" /> </title>
+    <title> <ph keyref="VideoCanvas"/> </title>
     <shortdesc id="short"> <ph id="shortdesc">Video display configurations.</ph> </shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
-            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
             <codeblock props="cpp" outputclass="language-cpp">struct VideoCanvas {
     view_t view;
     int renderMode;
@@ -43,13 +43,15 @@
         public uint uid { set; get; }
         public VIDEO_MIRROR_MODE_TYPE mirrorMode { set; get; }
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
-        <section id="detailed_desc" />
+        <section id="detailed_desc"/>
         <section id="parameters">
-            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>
+            <title> <text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /> </title>
             <parml>
             <plentry>
                 <pt>view</pt>
@@ -58,6 +60,7 @@
                     <p props="android">
                             The following objects are supported:
                             
+                    
                     <ul>
                     <li><codeph>SurfaceView</codeph> created by the CreateRendererView method.
                                 </li>
@@ -72,7 +75,7 @@
                 <pt>renderMode</pt>
                 <pd>
                         The rendering mode of the video. See
-                        <xref keyref="RENDER_MODE_TYPE" />
+                        <xref keyref="RENDER_MODE_TYPE"/>
                         .
                     </pd>
             </plentry>
@@ -88,29 +91,35 @@
                     <p>
                             The unique channel name in the string format. Supported characters are (89 in total):
                             
+                    
                     <ul conkeyref="joinChannel2/char_support">
-                    <li />
+                    <li/>
                     </ul>
                     <note type="attention">
                     <ul>
                     <li>
                                         The default value is the empty string "". If the user joins the channel through the
-                                        <xref keyref="joinChannel2" />
+                                        <xref
+                        keyref="joinChannel2"/>
                                         method of the
-                                        <xref keyref="IRtcEngine" />
+                                        <xref
+                        keyref="IRtcEngine"/>
                                         class, set this parameter to the default value. In this case,
                                         <codeph>VideoCanvas</codeph>
                                         sets the user's view in the channel.
                                     </li>
                     <li>
                                         If the user joins the channel using the
-                                        <apiname keyref="joinChannel2" />
+                                        <apiname
+                        keyref="joinChannel2"/>
                                         method of the
-                                        <xref keyref="IChannel" />
+                                        <xref
+                        keyref="IChannel"/>
                                         class, set this parameter to the
                                         <codeph>channelId</codeph>
                                         of the
-                                        <apiname keyref="IChannel" />
+                                        <apiname
+                        keyref="IChannel"/>
                                         object. In this case,
                                         <codeph>VideoCanvas</codeph>
                                         sets the user's view in the channel corresponding to the
@@ -135,14 +144,17 @@
                     </dl>
                     <p>
                             The mirror mode of the view. See
-                            <xref keyref="VIDEO_MIRROR_MODE_TYPE" />
+                            <xref
+                    keyref="VIDEO_MIRROR_MODE_TYPE"/>
                             .
                             
+                    
                     <note type="attention">
                     <ul>
                     <li>
                                         For the local user:
                                         
+                        
                         <ul>
                         <li>If the user uses the front camera, the mirror mode is enabled by default.</li>
                         <li>If the user uses the rear camera, the mirror mode is disabled by default.</li>

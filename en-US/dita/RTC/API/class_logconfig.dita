@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_logconfig">
-    <title><ph keyref="LogConfig" /></title>
-    <shortdesc id="short"><ph id="shortdesc">The configuration of the SDK log files.</ph></shortdesc>
+    <title><ph keyref="LogConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc"
+        >The configuration of the SDK log files.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p props="rtc-ng" outputclass="codeblock">
@@ -18,8 +19,8 @@
 @end
 </codeblock> </p>
             <p props="rtc" outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
-            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
             <codeblock props="cpp" outputclass="language-cpp">struct LogConfig {
     const char* filePath;
     int fileSize;
@@ -55,7 +56,7 @@
     fileSize: number,
     level: LOG_LEVEL
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">class LogConfig {
   @JsonKey(includeIfNull: false)
   String? filePath;
@@ -87,19 +88,25 @@
             </dl>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>filePath</pt>
                 <pd>
                     <p>The absolute or relative path of the log file, which ends with \ or /. Ensure that the path for the log file exists and is writable. You can use this parameter to rename the log files.</p>
                     <p props="cpp electron rn">The default file path is:
+                    
                     <ul>
-                    <li props="cpp rn">Android: <filepath id="android-path">/storage/emulated/0/Android/data/&lt;package
+                    <li props="cpp rn">Android: <filepath id="android-path"
+                        >/storage/emulated/0/Android/data/&lt;package
                                         name&gt;/files/agorasdk.log/</filepath>.</li>
-                    <li props="cpp rn">iOS: <filepath id="ios-path">App
+                    <li props="cpp rn">iOS: <filepath id="ios-path"
+                        >App
                                         Sandbox/Library/caches/agorasdk.log</filepath>.</li>
                     <li props="cpp electron">macOS:
+                        
                         <ul id="mac-path">
                         <li>If Sandbox is enabled: <filepath>App
                                                 Sandbox/Library/Logs/agorasdk.log/</filepath>. For example, 
@@ -118,6 +125,7 @@
                     <p props="ios">The default path is <filepath>App
                                 Sandbox/Library/caches/agorasdk.log</filepath>.</p>
                     <p props="mac">The default file path is:
+                    
                     <ul>
                     <li>If Sandbox is enabled: <filepath>App
                                         Sandbox/Library/Logs/agorasdk.log/</filepath>. For example, 
@@ -135,7 +143,8 @@
             </plentry>
             <plentry>
                 <pt>level</pt>
-                <pd>The output level of the SDK log file. See <xref keyref="LOG_LEVEL" />.</pd>
+                <pd>The output level of the SDK log file. See <xref
+                    keyref="LOG_LEVEL"/>.</pd>
             </plentry>
             </parml> </section>
     </refbody>
