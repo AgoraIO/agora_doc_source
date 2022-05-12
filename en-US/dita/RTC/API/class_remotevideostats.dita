@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_remotevideostats">
-    <title><ph keyref="RemoteVideoStats" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Statistics of the remote video stream.</ph></shortdesc>
+    <title><ph keyref="RemoteVideoStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc"
+        >Statistics of the remote video stream.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p props="rtc-ng" outputclass="codeblock">
@@ -165,7 +166,7 @@
   int totalActiveTime;
   int publishDuration;
 };</codeblock>
-<codeblock props="cs" outputclass="language-csharp">public class RemoteVideoStats
+            <codeblock props="cs" outputclass="language-csharp">public class RemoteVideoStats
     {
         public RemoteVideoStats()
         {
@@ -220,7 +221,7 @@
     totalActiveTime: number;
     publishDuration: number;
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">
 class RemoteVideoStats {
   int uid;
@@ -263,110 +264,120 @@ class RemoteVideoStats {
 }</codeblock> </p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
-   <parml>
-       <plentry>
-  <pt>uid</pt>
-  <pd>The user ID of the remote user sending the video stream.</pd>
-       </plentry>
-       <plentry>
-  <pt>delay</pt>
-  <pd>
-      <dl outputclass="deprecated">
- <dlentry>
-     <dt>Deprecated:</dt>
-     <dd>In scenarios where audio and video are synchronized, you can get the video delay data from <parmname>networkTransportDelay</parmname> and <parmname>jitterBufferDelay</parmname> in <xref keyref="RemoteAudioStats" />.</dd>
- </dlentry>
-      </dl>
-      <p>The video delay (ms).</p>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt>width</pt>
-  <pd>The width (pixels) of the video.</pd>
-       </plentry>
-       <plentry>
-  <pt>height</pt>
-  <pd>The height (pixels) of the video.</pd>
-       </plentry>
-       <plentry>
-  <pt>receivedBitrate</pt>
-  <pd>The bitrate (Kbps) of the remote video received since the last count.</pd>
-       </plentry>
-       <plentry props="ios mac">
-           <pt>receivedFramerate</pt>
-           <pd>The frame rate (fps) received since the last count.</pd>
-       </plentry>
-       <plentry>
-  <pt>decoderOutputFrameRate</pt>
-  <pd>The frame rate (fps) of decoding the remote video.</pd>
-       </plentry>
-       <plentry>
-  <pt>rendererOutputFrameRate</pt>
-  <pd>The frame rate (fps) of rendering the remote video.</pd>
-       </plentry>
-       <plentry props="rtc-ng">
-           <pt>frameLossRate</pt>
-           <pd>The packet loss rate (%) of the remote video.</pd>
-       </plentry>
-       <plentry>
-  <pt>packetLossRate</pt>
-  <pd>The packet loss rate (%) of the remote video after using the anti-packet-loss technology.</pd>
-       </plentry>
-       <plentry>
-  <pt>rxStreamType</pt>
-           <pd>The type of the video stream. <ph props="ios mac cpp cs">See <xref keyref="REMOTE_VIDEO_STREAM_TYPE" />.</ph>
-               <p props="android">
-               <ul>
-                   <li><ph keyref="REMOTE_VIDEO_STREAM_HIGH" />(0): High-quality stream, that is, a high-resolution and high-bitrate video stream.</li>
-                   <li><ph keyref="REMOTE_VIDEO_STREAM_LOW" />(1): Low-quality stream, that is, a low-resolution and low-bitrate video stream.</li>
-               </ul>
-               </p>
-           </pd>
-       </plentry>
-       <plentry>
-  <pt>totalFrozenTime</pt>
-  <pd>The total freeze time (ms) of the remote video stream after the remote user joins the channel. In a video session where the frame rate is set to 5 fps or higher, video freezing occurs when the time interval between two adjacent video frames is more than 500
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
+            <parml>
+            <plentry>
+                <pt>uid</pt>
+                <pd>The user ID of the remote user sending the video stream.</pd>
+            </plentry>
+            <plentry>
+                <pt>delay</pt>
+                <pd>
+                    <dl outputclass="deprecated">
+                    <dlentry>
+                        <dt>Deprecated:</dt>
+                        <dd>In scenarios where audio and video are synchronized, you can get the video delay data from <parmname>networkTransportDelay</parmname> and <parmname>jitterBufferDelay</parmname> in <xref
+                            keyref="RemoteAudioStats"/>.</dd>
+                    </dlentry>
+                    </dl>
+                    <p>The video delay (ms).</p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>width</pt>
+                <pd>The width (pixels) of the video.</pd>
+            </plentry>
+            <plentry>
+                <pt>height</pt>
+                <pd>The height (pixels) of the video.</pd>
+            </plentry>
+            <plentry>
+                <pt>receivedBitrate</pt>
+                <pd>The bitrate (Kbps) of the remote video received since the last count.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>receivedFramerate</pt>
+                <pd>The frame rate (fps) received since the last count.</pd>
+            </plentry>
+            <plentry>
+                <pt>decoderOutputFrameRate</pt>
+                <pd>The frame rate (fps) of decoding the remote video.</pd>
+            </plentry>
+            <plentry>
+                <pt>rendererOutputFrameRate</pt>
+                <pd>The frame rate (fps) of rendering the remote video.</pd>
+            </plentry>
+            <plentry props="rtc-ng">
+                <pt>frameLossRate</pt>
+                <pd>The packet loss rate (%) of the remote video.</pd>
+            </plentry>
+            <plentry>
+                <pt>packetLossRate</pt>
+                <pd>The packet loss rate (%) of the remote video after using the anti-packet-loss technology.</pd>
+            </plentry>
+            <plentry>
+                <pt>rxStreamType</pt>
+                <pd>The type of the video stream. <ph props="ios mac cpp cs"
+                    >See <xref keyref="REMOTE_VIDEO_STREAM_TYPE"/>.</ph>
+                    <p props="android">
+                    <ul>
+                    <li><ph keyref="REMOTE_VIDEO_STREAM_HIGH"
+                        />(0): High-quality stream, that is, a high-resolution and high-bitrate video stream.</li>
+                    <li><ph keyref="REMOTE_VIDEO_STREAM_LOW"
+                        />(1): Low-quality stream, that is, a low-resolution and low-bitrate video stream.</li>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>totalFrozenTime</pt>
+                <pd>The total freeze time (ms) of the remote video stream after the remote user joins the channel. In a video session where the frame rate is set to 5 fps or higher, video freezing occurs when the time interval between two adjacent video frames is more than 500
 ms.</pd>
-       </plentry>
-       <plentry>
-  <pt>frozenRate</pt>
-  <pd>The total video freeze time as a percentage (%) of the total time the video is available. The video is considered available as long as that the remote user neither stops sending the video stream nor disables the video module after joining the channel.</pd>
-       </plentry>
-       <plentry>
-                    <pt>totalActiveTime</pt>
-                    <pd>
-                        <dl outputclass="since" props="rtc">
-                            <dlentry>
-                                <dt>Since</dt>
-                                <dd>v3.0.1</dd>
-                            </dlentry>
-                        </dl>
-                        <p>The total active time (ms) of the video.</p>
-                        <p>As long as the remote user/host neither stops sending the video stream nor disables the video module after joining the channel, the video is available.</p></pd>
-                </plentry>
-       <plentry>
-                    <pt>publishDuration</pt>
-                    <pd>
-                        <dl outputclass="since" props="rtc">
-                            <dlentry>
-                                <dt>Since</dt>
-                                <dd>v3.1.0</dd>
-                            </dlentry>
-                        </dl>
-                        <p>The total duration (ms) of the remote video stream.</p></pd>
-                </plentry>
-                <plentry props="rtc-ng">
-                    <pt>superResolutionType</pt>
-                    <pd>The state of super resolution:<ul>
-                            <li>&gt;0: Super resolution is enabled.</li>
-                            <li>=0: Super resolution is not enabled.</li></ul>
-                    </pd>
-                </plentry>
-                <plentry props="rtc-ng">
-                    <pt>avSyncTimeMs</pt>
-                    <pd>The amount of time (ms) that the audio is ahead of the video.<note type="attention">If this value is negative, the audio is lagging behind the video.</note></pd>
-                </plentry>
-   </parml>
-        </section></refbody>
+            </plentry>
+            <plentry>
+                <pt>frozenRate</pt>
+                <pd>The total video freeze time as a percentage (%) of the total time the video is available. The video is considered available as long as that the remote user neither stops sending the video stream nor disables the video module after joining the channel.</pd>
+            </plentry>
+            <plentry>
+                <pt>totalActiveTime</pt>
+                <pd>
+                    <dl outputclass="since" props="rtc">
+                    <dlentry>
+                        <dt>Since</dt>
+                        <dd>v3.0.1</dd>
+                    </dlentry>
+                    </dl>
+                    <p>The total active time (ms) of the video.</p>
+                    <p>As long as the remote user/host neither stops sending the video stream nor disables the video module after joining the channel, the video is available.</p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>publishDuration</pt>
+                <pd>
+                    <dl outputclass="since" props="rtc">
+                    <dlentry>
+                        <dt>Since</dt>
+                        <dd>v3.1.0</dd>
+                    </dlentry>
+                    </dl>
+                    <p>The total duration (ms) of the remote video stream.</p>
+                </pd>
+            </plentry>
+            <plentry props="rtc-ng">
+                <pt>superResolutionType</pt>
+                <pd>The state of super resolution:
+                    <ul>
+                    <li>&gt;0: Super resolution is enabled.</li>
+                    <li>=0: Super resolution is not enabled.</li>
+                    </ul> </pd>
+            </plentry>
+            <plentry props="rtc-ng">
+                <pt>avSyncTimeMs</pt>
+                <pd>The amount of time (ms) that the audio is ahead of the video.
+                    <note type="attention"
+                    >If this value is negative, the audio is lagging behind the video.</note></pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
 </reference>
