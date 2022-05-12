@@ -40,7 +40,7 @@
             <plentry>
                 <pt>result</pt>
                 <pd>设置自定义参数是否成功：
-                        
+                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：设置自定义参数成功。</li>
                     <li><codeph><ph keyref="false"/></codeph>：设置自定义参数失败。</li>
@@ -48,8 +48,33 @@
             </plentry>
             <plentry>
                 <pt>reason</pt>
-                <pd>错误信息。</pd>
+                <pd>错误信息。参数说明如下所示： 
+                        <p id="err">
+                        <ul>
+                            <li><parmname>state</parmname>： 
+                                <ul>
+                                <li><codeph>game_network_error</codeph>：网络错误</li>
+                                <li><codeph>game_platform_error</codeph>：其他错误</li>
+                                </ul></li>
+                            <li><parmname>code</parmname>： 
+                                <ul>
+                                <li><codeph>60400</codeph>：数据解析失败</li>
+                                <li><codeph>60408</codeph>：网络错误（请求失败/超时）</li>
+                                </ul></li>
+                            <li><parmname>msg</parmname>： 错误描述</li>
+                        </ul>
+                        </p>
+                    </pd>
             </plentry>
             </parml> </section>
+        <example id="error-example">
+            <title id="error">JSON 示例：错误信息</title>
+            <codeblock outputclass="language-json">{
+    "state": "game_platform_error",
+    "data": {
+        "code": 60400,
+        "msg": ""
+     }
+}</codeblock> </example>
     </refbody>
 </reference>

@@ -8,25 +8,25 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class GameOptions {
     @NonNull
-    private final String gameId;                            
+    private final String gameId;
     @NonNull
-    private final String roomId;                            
+    private final String roomId;
     @NonNull
-    private final String userId;                            
+    private final String userId;
     @NonNull
-    private final String role;                              
+    private final String role;
     @NonNull
-    private final String language;                          
+    private final String language;
     @Nullable
-    private final String options;                           
+    private final String options;
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">@interface AGEGameOptions : NSObject
-@property (nonatomic, copy) NSString *gameId;   
-@property (nonatomic, copy) NSString *roomId;   
-@property (nonatomic, copy) NSString *userId;   
-@property (nonatomic, copy) NSString *role;   
-@property (nonatomic, copy) NSString *language; 
-@property (nonatomic, copy) NSString *options; 
+@property (nonatomic, copy) NSString *gameId;
+@property (nonatomic, copy) NSString *roomId;
+@property (nonatomic, copy) NSString *userId;
+@property (nonatomic, copy) NSString *role;
+@property (nonatomic, copy) NSString *language;
+@property (nonatomic, copy) NSString *options;
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp"/>
             <codeblock props="electron" outputclass="language-typescript"/>
@@ -57,8 +57,10 @@
             </plentry>
             <plentry>
                 <pt>role</pt>
-                <pd>用户在游戏中的角色。 
-                    
+                <pd>用户在游戏中的角色。
+
+
+
                     
                     <ul>
                     <li><parmname>1</parmname>：该局游戏的房主。同一局游戏中只能有一个房主。</li>
@@ -69,129 +71,18 @@
             <plentry>
                 <pt>language</pt>
                 <pd>游戏语言。取值如下：
-                        
+
+
+                    
                     <ul>
                     <li><parmname>zh-CN</parmname>：中文简体</li>
                     <li><parmname>en</parmname>：英文</li>
+                    <li><parmname>ar</parmname>：阿拉伯文</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>options</pt>
-                <pd>可选参数，为 json 字符串，用于设置游戏选项。可参考以下示例。<simpletable>
-                    <sthead>
-                        <stentry>参数名</stentry>
-                        <stentry>是否必选</stentry>
-                        <stentry>类型</stentry>
-                        <stentry>说明</stentry>
-                    </sthead>
-                    <strow>
-                        <stentry><parmname>name</parmname></stentry>
-                        <stentry>是</stentry>
-                        <stentry>String</stentry>
-                        <stentry>用户昵称。</stentry>
-                    </strow>
-                    <strow>
-                        <stentry><parmname>avatar</parmname></stentry>
-                        <stentry>是</stentry>
-                        <stentry>String</stentry>
-                        <stentry>用户头像。</stentry>
-                    </strow>
-                    <strow>
-                        <stentry><parmname>avatar_type</parmname></stentry>
-                        <stentry>否</stentry>
-                        <stentry>number</stentry>
-                        <stentry>观众在游戏中形象类型 ：
-                                
-                            <ul>
-                            <li>0：无头像昵称（默认）</li>
-                            <li>1：有昵称无头像</li>
-                            <li>2：有昵称有头像</li>
-                            <li>3：无昵称有头像</li>
-                            </ul></stentry>
-                    </strow>
-                    <strow>
-                        <stentry><parmname>to_user</parmname></stentry>
-                        <stentry>是</stentry>
-                        <stentry>String</stentry>
-                        <stentry>观众要加入的阵营的主播 ID。</stentry>
-                    </strow>
-                    <strow>
-                        <stentry><parmname>left</parmname></stentry>
-                        <stentry>否</stentry>
-                        <stentry>number</stentry>
-                        <stentry>游戏内容左侧距离。单位为像素。</stentry>
-                    </strow>
-                    <strow>
-                        <stentry><parmname>right</parmname></stentry>
-                        <stentry>否</stentry>
-                        <stentry>number</stentry>
-                        <stentry>游戏内容左侧距离。单位为像素。</stentry>
-                    </strow>
-                    <strow>
-                        <stentry><parmname>top</parmname></stentry>
-                        <stentry>否</stentry>
-                        <stentry>number</stentry>
-                        <stentry>游戏内容顶部距离。单位为像素。</stentry>
-                    </strow>
-                    <strow>
-                        <stentry><parmname>bottom</parmname></stentry>
-                        <stentry>否</stentry>
-                        <stentry>number</stentry>
-                        <stentry>游戏底部距离。单位为像素。</stentry>
-                    </strow>
-                    <strow>
-                        <stentry><parmname>level</parmname></stentry>
-                        <stentry>否</stentry>
-                        <stentry>number</stentry>
-                        <stentry>预留字段</stentry>
-                    </strow>
-                    <strow>
-                        <stentry><parmname>time_limit</parmname></stentry>
-                        <stentry>否</stentry>
-                        <stentry>number</stentry>
-                        <stentry>一局游戏的时间限制，单位为秒， 默认值为 300。</stentry>
-                    </strow>
-                    <strow>
-                        <stentry><parmname>show_join</parmname></stentry>
-                        <stentry>否</stentry>
-                        <stentry>number</stentry>
-                        <stentry>
-                            <ul>
-                            <li>0：不显示游戏加入按钮（默认）</li>
-                            <li>1：显示游戏加入按钮</li>
-                            </ul> </stentry>
-                    </strow>
-                    <strow>
-                        <stentry><parmname>show_ready</parmname></stentry>
-                        <stentry>否</stentry>
-                        <stentry>number</stentry>
-                        <stentry>
-                            <ul>
-                            <li>0：不显示游戏准备按钮（默认）</li>
-                            <li>1：显示游戏准备按钮</li>
-                            </ul> </stentry>
-                    </strow>
-                    <strow>
-                        <stentry><parmname>show_start</parmname></stentry>
-                        <stentry>否</stentry>
-                        <stentry>number</stentry>
-                        <stentry>
-                            <ul>
-                            <li>0：不显示游戏开始按钮（默认）</li>
-                            <li>1：显示游戏开始按钮</li>
-                            </ul> </stentry>
-                    </strow>
-                    <strow>
-                        <stentry><parmname>show_kickout</parmname></stentry>
-                        <stentry>否</stentry>
-                        <stentry>number</stentry>
-                        <stentry>
-                            <ul>
-                            <li>0：不显示踢人按钮（默认）</li>
-                            <li>1：显示踢人按钮</li>
-                            </ul> </stentry>
-                    </strow>
-                    </simpletable></pd>
+                <pd>可选参数，为 JSON 字符串，用于设置游戏选项，在不同的游戏中，该参数的设置也不同。</pd>
             </plentry>
             </parml> </section>
     </refbody>

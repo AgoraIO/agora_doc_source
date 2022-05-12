@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_getoption">
     <title><ph keyref="getOption"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获取游戏列表。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">获取游戏属性。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -24,24 +24,31 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p>成功调用该方法后，SDK 会触发 <xref keyref="onGetOptionResult"/> 回调，上报游戏列表。</p>
+            <p>成功调用该方法后，SDK 会触发 <xref keyref="onGetOptionResult"/> 回调，上报游戏相关属性的回调。</p>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry conkeyref="onGetOptionResult/operationid">
-                <pt/>
-                <pd/>
+            <plentry id="operationid">
+                <pt>operationId</pt>
+                <pd>操作 ID，用于标识某一个操作。</pd>
             </plentry>
             <plentry>
                 <pt>optionId</pt>
-                <pd>当设置为 <apiname keyref="GET_GAME_LIST"/> 时，表示获取游戏列表。</pd>
+                <pd>操作类别。当设置为 <apiname keyref="GET_GAME_LIST"/> 时，表示获取游戏列表。</pd>
             </plentry>
-            <plentry conkeyref="setOption/args">
-                <pt/>
-                <pd/>
+            <plentry>
+                <pt>args</pt>
+                <pd>JSON 字符串。当获取游戏列表时，详见以下 JSON 示例。</pd>
             </plentry>
             </parml> </section>
+        <example>
+            <title id="list">JSON 示例：获取游戏列表</title>
+            <codeblock outputclass="language-json">{
+    "page":1,
+    "limit":10,
+    "language":"zh-CN"
+}</codeblock> </example>
         <section id="return_values">
             <title>返回值</title>
             <ul>

@@ -2,7 +2,8 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setoption">
     <title><ph keyref="setOption"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置游戏选项，例如：加入、结束游戏或者在游戏过程中与其他用户互动。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc"
+        >设置游戏选项，例如：加入、结束游戏或者在游戏过程中与其他用户互动。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -24,7 +25,8 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p>对于本局游戏进行的操作，包括：加入/准备/结束本局游戏，在游戏中向指定用户发送礼物。成功调用该方法后， SDK 会触发 <xref keyref="onSetOptionResult"/> 回调。</p>
+            <p>对于本局游戏进行的操作，包括：加入/准备/结束本局游戏，在游戏中向指定用户发送礼物。成功调用该方法后， SDK 会触发 <xref
+            keyref="onSetOptionResult"/> 回调。</p>
         </section>
         <section id="parameters">
             <title>参数</title>
@@ -35,88 +37,154 @@
             </plentry>
             <plentry id="optionid">
                 <pt>optionId</pt>
-                <pd><ph>在该局游戏中进行的具体操作。</ph><ph props="ios">详见 <xref keyref="OptionID"/>。</ph></pd>
-                    <pd>当设置该参数为不同的 Key 时，代表不同的操作： 
-                        <ul>
-                        <li><apiname keyref="GAME_STATE"/>：加入/准备/结束本局游戏。</li>
-                        <li><apiname keyref="SEND_GIFT"/>：在游戏中进行送礼物等互动操作。</li>
-                        </ul>
-                        <p>在不同 Key 类型下的参数取值和描述如下表所示。</p>
-                        <table>
-                        <tgroup cols="4" align="left">
-                            <colspec colname="c1" colnum="1" colwidth="2.22*" align="left"/>
-                            <colspec colname="c2" colnum="2" colwidth="1.27*" align="left"/>
-                            <colspec colname="c3" colnum="3" colwidth="1*" align="left"/>
-                            <colspec colname="c4" colnum="4" colwidth="5.4*" align="left"/>
-                            <thead>
-                                <row>
-                                    <entry>Key 类型</entry>
-                                    <entry>参数名</entry>
-                                    <entry>类型</entry>
-                                    <entry>说明</entry>
-                                </row>
-                            </thead>
-                            <tbody>
-                                <row>
-                                    <entry morerows="3"><apiname keyref="GAME_STATE"/></entry>
-                                    <entry><parmname>isln</parmname></entry>
-                                    <entry>Bool</entry>
-                                    <entry>用户（玩家或观众）加入/退出游戏。 
-                                        <ul>
-                                        <li><codeph><ph keyref="true"/></codeph>：加入游戏。</li>
-                                        <li><codeph><ph keyref="false"/></codeph>：退出游戏。</li>
-                                        </ul></entry>
-                                </row>
-                                <row>
-                                    <entry><parmname>isReady</parmname></entry>
-                                    <entry>Bool</entry>
-                                    <entry>用户准备/取消准备加入或退出游戏。 
-                                        <ul>
-                                        <li><codeph><ph keyref="true"/></codeph>：准备。</li>
-                                        <li><codeph><ph keyref="false"/></codeph>：取消准备。</li>
-                                        </ul></entry>
-                                </row>
-                                <row>
-                                    <entry><parmname>isPlaying</parmname></entry>
-                                    <entry>Bool</entry>
-                                    <entry>取值为 <codeph><ph keyref="true"/></codeph>，表示开始本局游戏。仅房主可设置。</entry>
-                                </row>
-                                <row>
-                                    <entry>-</entry>
-                                    <entry>-</entry>
-                                    <entry>传空时结束游戏。仅房主可设置。</entry>
-                                </row>
-                                <row>
-                                    <entry morerows="2"><apiname keyref="SEND_GIFT"/></entry>
-                                    <entry><parmname>to</parmname></entry>
-                                    <entry>String</entry>
-                                    <entry>指定接收礼物的主播 ID。</entry>
-                                </row>
-                                <row>
-                                    <entry><parmname>giftCost</parmname></entry>
-                                    <entry>number</entry>
-                                    <entry>加入房间后 <parmname>gift_info</parmname> 返回的 Key，详见 <xref keyref="onMessage"/>。</entry>
-                                </row>
-                                <row>
-                                    <entry><parmname>count</parmname></entry>
-                                    <entry>number</entry>
-                                    <entry>触发数量，代表单次送礼物的个数。</entry>
-                                </row>
-                            </tbody>
-                        </tgroup>
-                        </table>
-                        <note>
-                        <ul>
-                            <li>当用户加入游戏时，参数调用流程为：<parmname>isln</parmname>=<codeph><ph keyref="true"/></codeph> -> <parmname>isReady</parmname>=<codeph><ph keyref="true"/></codeph> -> <parmname>isPlaying</parmname>=<codeph><ph keyref="true"/></codeph>。</li>
-                            <li>当用户离开游戏时，参数调用流程为：<parmname>isReady</parmname>=<codeph><ph keyref="false"/></codeph> -> <parmname>isln</parmname>=<codeph><ph keyref="false"/></codeph>。</li>
-                        </ul>
-                        </note></pd>
+                <pd>在该局游戏中进行的具体操作。</pd>
+                <pd>当设置该参数为不同的 Key 时，代表不同的操作：
+                    
+                    <ul>
+                    <li><apiname keyref="GAME_STATE"/>：加入/准备/结束本局游戏。</li>
+                    <li><apiname keyref="SEND_GIFT"/>：在游戏中进行送礼物等互动操作。</li>
+                    </ul></pd>
             </plentry>
             <plentry id="args">
                 <pt>args</pt>
-                <pd>json 字符串格式。</pd>
+                <pd>JSON 字符串，根据 Key 的定义不同有所区别。</pd>
+                <pd>当 Key 为 <apiname keyref="GAME_STATE"/> 时，常见场景的 JSON 示例以及说明如下表所示。<table>
+                    <tgroup cols="3">
+                        <colspec colname="c1" colnum="1" colwidth="2.21*"/>
+                        <colspec colname="c2" colnum="2" colwidth="1*"/>
+                        <colspec colname="newCol3" colnum="3" colwidth="2.85*"/>
+                        <thead>
+                            <row>
+                                <entry align="left" valign="middle">场景</entry>
+                                <entry align="left" valign="middle">执行者</entry>
+                                <entry align="left" valign="middle">说明</entry>
+                            </row>
+                        </thead>
+                        <tbody>
+                            <row>
+                                <entry>用户（本人）加入或退出游戏</entry>
+                                <entry>所有人</entry>
+                                <entry>
+                                    <p><parmname>isIn</parmname>： </p>
+                                    <ul>
+                                    <li><codeph><ph keyref="true"
+                                        /></codeph>：加入游戏。</li>
+                                    <li><codeph><ph keyref="false"
+                                        /></codeph>：退出游戏。</li>
+                                    </ul></entry>
+                            </row>
+                            <row>
+                                <entry>用户（本人）准备或取消准备</entry>
+                                <entry>除房主以外的用户</entry>
+                                <entry>
+                                    <p><parmname>isReady</parmname>：</p>
+                                    <ul>
+                                    <li><codeph><ph keyref="true"
+                                        /></codeph>：准备。</li>
+                                    <li><codeph><ph keyref="false"
+                                        /></codeph>：取消准备。</li>
+                                    </ul></entry>
+                            </row>
+                            <row>
+                                <entry>开始游戏</entry>
+                                <entry>房主</entry>
+                                <entry>开始本局游戏。
+
+
+
+                                    
+                                    <p><parmname>isPlaying</parmname> 取值只能为 <codeph><ph
+                                    keyref="true"/></codeph>。</p>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>结束游戏</entry>
+                                <entry>房主</entry>
+                                <entry>结束本局游戏。</entry>
+                            </row>
+                        </tbody>
+                    </tgroup>
+                    </table>
+                    <note>
+                    <ul>
+                    <li>当用户加入游戏时，参数调用流程为：<parmname>isln</parmname>=<codeph><ph
+                        keyref="true"
+                        /></codeph> -> <parmname>isReady</parmname>=<codeph><ph
+                        keyref="true"
+                        /></codeph> -> <parmname>isPlaying</parmname>=<codeph><ph
+                        keyref="true"/></codeph>。</li>
+                    <li>当用户离开游戏时，参数调用流程为：<parmname>isReady</parmname>=<codeph><ph
+                        keyref="false"
+                        /></codeph> -> <parmname>isln</parmname>=<codeph><ph
+                        keyref="false"/></codeph>。</li>
+                    </ul> </note></pd>
+                <pd>当 Key 为 <apiname keyref="SEND_GIFT"
+                    /> 时，常见场景的 JSON 示例以及说明如下表所示。</pd>
+                <pd> <table>
+                    <tgroup cols="3">
+                        <thead>
+                            <row>
+                                <entry align="left" valign="middle">场景</entry>
+                                <entry align="left" valign="middle">执行者</entry>
+                                <entry align="left" valign="middle">说明</entry>
+                            </row>
+                        </thead>
+                        <tbody>
+                            <row>
+                                <entry>向指定用户发送礼物</entry>
+                                <entry>观众</entry>
+                                <entry>
+                                    <ul>
+                                    <li><parmname>to</parmname>：指定接收礼物的用户 ID。</li>
+                                    <li><parmname>giftCost</parmname>：加入房间后 <parmname>gift_info</parmname> 返回的 Key，详见 <xref
+                                        keyref="onMessage"/>。</li>
+                                    <li><parmname>count</parmname>：每次送出的礼物个数。</li>
+                                    </ul></entry>
+                            </row>
+                        </tbody>
+                    </tgroup>
+                    </table></pd>
             </plentry>
             </parml> </section>
+        <example>
+            <title id="in">JSON 示例：用户（本人）加入或退出游戏</title>
+            <codeblock outputclass="language-json">{
+    "state":"app_common_self_in",
+    "data":{
+        "isIn":true
+    }
+}</codeblock> </example>
+        <example>
+            <title id="ready">JSON 示例：用户（本人）准备或取消准备</title>
+            <codeblock outputclass="language-json">{
+    "state":"app_common_self_ready",
+    "data":{
+        "isReady":true
+    }
+}</codeblock> </example>
+        <example>
+            <title id="playing">JSON 示例：开始游戏</title>
+            <codeblock outputclass="language-json">{
+    "state":"app_common_self_playing",
+    "data":{
+        "isPlaying":true
+    }
+}</codeblock> </example>
+        <example>
+            <title id="end">JSON 示例：结束游戏</title>
+            <codeblock outputclass="language-json">{
+    "state":"app_common_self_end",
+    "data":{}
+}</codeblock> </example>
+        <example>
+            <title id="gift">JSON 示例：向主播发送礼物</title>
+            <codeblock outputclass="language-json">{
+    "to":"123",
+    "payload":{
+        "giftCost":1,
+        "count":1
+    }
+}</codeblock> </example>
         <section id="return_values">
             <title>返回值</title>
             <ul>

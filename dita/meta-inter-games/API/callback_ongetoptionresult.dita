@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_ongetoptionresult">
     <title><ph keyref="onGetOptionResult"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获取游戏列表回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">获取游戏属性回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -24,33 +24,48 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p>该回调在成功调用 <xref keyref="getOption"/> 后触发，上报游戏列表。</p>
+            <p>该回调在成功调用 <xref keyref="getOption"/> 后触发，上报游戏相关的属性（例如游戏列表）。</p>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry id="operationid">
-                <pt>operationId</pt>
-                <pd>操作 ID，用于标识操作类型。</pd>
+            <plentry conkeyref="getOption/operationid">
+                <pt/>
+                <pd/>
             </plentry>
             <plentry id="optionid">
                 <pt>optionId</pt>
-                <pd>游戏列表。</pd>
+                <pd>操作类别。</pd>
             </plentry>
             <plentry>
                 <pt>result</pt>
-                <pd>获取游戏列表是否成功： 
+                <pd>获取游戏属性是否成功：
+
+                    
                     <ul>
-                    <li><codeph><ph keyref="true"/></codeph>：获取游戏列表成功。</li>
-                    <li><codeph><ph keyref="false"/></codeph>：设获取游戏列表失败。</li>
+                    <li><codeph><ph keyref="true"/></codeph>：获取游戏属性成功。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：设获取游戏属性失败。</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>outOption</pt>
-                <pd><ul>
-                    <li>当获取游戏列表成功时，返回具体的数据结果。</li>
-                    <li>当获取游戏列表失败时，返回详细错误信息。</li></ul></pd>
+                <pd>
+                    <ul>
+                    <li>当获取游戏属性成功时，返回具体的数据结果。例如：用户调用  <apiname keyref="getOption"/> 获取游戏列表成功，此时会返回详细游戏列表。</li>
+                    <li>当获取游戏属性失败时，返回详细错误信息。参数说明如下所示： 
+                                <p conkeyref="onSetOptionResult/err"/>
+                            </li>
+                    </ul></pd>
             </plentry>
             </parml> </section>
+        <example id="error-example">
+            <title id="error">JSON 示例：错误信息</title>
+            <codeblock outputclass="language-json">{
+    "state": "game_platform_error",
+    "data": {
+        "code": 60400,
+        "msg": ""
+     }
+}</codeblock> </example>
     </refbody>
 </reference>
