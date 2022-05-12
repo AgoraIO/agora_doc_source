@@ -5,13 +5,13 @@
     <shortdesc id="short"><ph id="shortdesc">Retrieves the call ID.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="getCallId" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="getCallId" />
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-            
+    <refbody>
+        <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract String getCallId();</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (NSString * _Nullable)getCallId;</codeblock>
@@ -22,25 +22,22 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;String?&gt; getCallId();</codeblock> </p>
         </section>
         <section id="detailed_desc">
-   
-   <p>When a user joins a channel on a client, a <parmname>callId</parmname> is generated to identify the call from the client. Some methods, such as <xref keyref="rate" /> and <xref keyref="complain" />, must be called after the call ends to submit feedback to the SDK. These methods require the <parmname>callId</parmname> parameter.</p>
-   <note type="attention">Call this method after joining a channel.</note>
-        </section>
+            <p>When a user joins a channel on a client, a <parmname>callId</parmname> is generated to identify the call from the client. Some methods, such as <xref keyref="rate" /> and <xref keyref="complain" />, must be called after the call ends to submit feedback to the SDK. These methods require the <parmname>callId</parmname> parameter.</p>
+            <note type="attention">Call this method after joining a channel.</note> </section>
         <section id="parameters" props="cpp">
-   <title>Parameters</title>
-       <parml>
-  <plentry>
-      <pt>callId</pt>
-      <pd>Output parameter, the current call ID.</pd>
-  </plentry>
-       </parml>
-        </section>
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>callId</pt>
+                <pd>Output parameter, the current call ID.</pd>
+            </plentry>
+            </parml> </section>
         <section id="return_values">
-   <title>Returns</title>
-   <p props="android ios mac electron cs flutter">The current call ID.</p>
-   <ul props="cpp">
-       <li>0: Success.</li>
-       <li>&lt; 0: Failure.</li>
-   </ul>
-        </section></refbody>
+            <title>Returns</title>
+            <p props="android ios mac electron cs flutter">The current call ID.</p>
+            <ul props="cpp">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
+    </refbody>
 </reference>

@@ -153,7 +153,7 @@
     view_t* excludeWindowList;
     int excludeWindowCount;
 };</codeblock>
-<codeblock props="cs" outputclass="language-csharp">public class ScreenCaptureParameters
+            <codeblock props="cs" outputclass="language-csharp">public class ScreenCaptureParameters
     {
         public ScreenCaptureParameters()
         {
@@ -254,6 +254,7 @@
                     <p>The maximum dimensions of encoding the shared region.<ph props="android cpp cs"> For details, see <xref keyref="VideoDimensions" />.</ph> The default value is 1,920 × 1,080, that is,
                             2,073,600 pixels. Agora uses the value of this parameter to calculate the charges.</p>
                     <p>If the screen dimensions are different from the value of this parameter, Agora applies the following strategies for encoding. Suppose <codeph>dimensions</codeph> are set to 1,920 x 1,080:
+                    
                     <ul>
                     <li>If the value of the screen dimensions is lower than that of <codeph>dimensions</codeph>, for example, 1,000 x 1,000 pixels, the SDK uses 1,000 x 1,000 pixels
                                     for encoding.</li>
@@ -272,7 +273,8 @@
             </plentry>
             <plentry props="rtc">
                 <pt>captureMouseCursor</pt>
-                <pd><dl outputclass="since">
+                <pd>
+                    <dl outputclass="since">
                     <dlentry>
                         <dt>Since</dt>
                         <dd>v2.4.1</dd>
@@ -286,30 +288,37 @@
             </plentry>
             <plentry props="rtc-ng">
                 <pt props="cpp">captureMouseCursor</pt>
-                <pd props="cpp"><p>Whether to capture the mouse in screen sharing:
+                <pd props="cpp">
+                    <p>Whether to capture the mouse in screen sharing:
+                    
                     <ul>
                     <li><codeph><ph keyref="true" /></codeph>: (Default) Capture the mouse.</li>
                     <li><codeph><ph keyref="false" /></codeph>: Do not capture the mouse.</li>
-                    </ul></p></pd>
+                    </ul></p>
+                </pd>
             </plentry>
             <plentry props="rtc">
                 <pt>windowFocus</pt>
-                <pd><dl outputclass="since">
+                <pd>
+                    <dl outputclass="since">
                     <dlentry>
                         <dt>Since</dt>
                         <dd>v3.1.0</dd>
                     </dlentry>
                     </dl>
                     <p>Whether to bring the window to the front when calling the <xref keyref="startScreenCaptureByWindowId" /> method to share it:
+                    
                     <ul>
                     <li><codeph><ph keyref="true" /></codeph>:Bring the window to the front.</li>
                     <li><codeph><ph keyref="false" /></codeph>: (Default) Do not bring the window to the front.</li>
-                    </ul></p></pd>
+                    </ul></p>
+                </pd>
             </plentry>
             <plentry props="rtc-ng">
                 <pt props="cpp">windowFocus</pt>
                 <pd props="cpp">
                     <p>Whether to bring the window to the front when calling the <xref keyref="startScreenCaptureByWindowId" /> method to share it:
+                    
                     <ul>
                     <li><codeph><ph keyref="true" /></codeph>:Bring the window to the front.</li>
                     <li><codeph><ph keyref="false" /></codeph>: (Default) Do not bring the window to the front.</li>
@@ -318,13 +327,15 @@
             </plentry>
             <plentry props="rtc">
                 <pt>excludeWindowList</pt>
-                <pd><dl outputclass="since" props="rtc">
+                <pd>
+                    <dl outputclass="since" props="rtc">
                     <dlentry props="native">
                         <dt>Since</dt>
                         <dd>v3.1.0</dd>
                     </dlentry>
                     </dl>
-                    <p>The ID list of the cpp to be blocked. When calling <xref keyref="startScreenCaptureByScreenRect" /> to start screen sharing, you can use this parameter to block a specified window. When calling <xref keyref="updateScreenCaptureParameters" /> to update screen sharing configurations, you can use this parameter to dynamically block a specified window.</p></pd>
+                    <p>The ID list of the cpp to be blocked. When calling <xref keyref="startScreenCaptureByScreenRect" /> to start screen sharing, you can use this parameter to block a specified window. When calling <xref keyref="updateScreenCaptureParameters" /> to update screen sharing configurations, you can use this parameter to dynamically block a specified window.</p>
+                </pd>
             </plentry>
             <plentry props="rtc-ng">
                 <pt props="cpp">excludeWindowList</pt>
@@ -334,7 +345,8 @@
             </plentry>
             <plentry props="cpp cs electron">
                 <pt>excludeWindowCount</pt>
-                <pd><p>The number of cpp to be blocked.</p>
+                <pd>
+                    <p>The number of cpp to be blocked.</p>
                 </pd>
             </plentry>
             <plentry props="electron">

@@ -158,7 +158,7 @@
   int captureFrameRate;
   CAPTURE_BRIGHTNESS_LEVEL_TYPE captureBrightnessLevel;
 };</codeblock>
-<codeblock props="cs" outputclass="language-csharp">public class LocalVideoStats
+            <codeblock props="cs" outputclass="language-csharp">public class LocalVideoStats
     {
         public LocalVideoStats()
         {
@@ -271,12 +271,14 @@
             <plentry>
                 <pt>sentBitrate</pt>
                 <pd>
-                    <p>The actual bitrate (Kbps) while sending the local video stream.<note type="attention">This value does not include the bitrate for resending the video after packet loss.</note></p>
+                    <p>The actual bitrate (Kbps) while sending the local video stream.
+                    <note type="attention">This value does not include the bitrate for resending the video after packet loss.</note></p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>sentFrameRate</pt>
-                <pd>The actual frame rate (fps) while sending the local video stream.<note type="attention">This value does not include the frame rate for resending the video after packet loss.</note></pd>
+                <pd>The actual frame rate (fps) while sending the local video stream.
+                    <note type="attention">This value does not include the frame rate for resending the video after packet loss.</note></pd>
             </plentry>
             <plentry>
                 <pt>encoderOutputFrameRate</pt>
@@ -302,7 +304,9 @@
                         <dt>Since</dt>
                         <dd>v2.4.0</dd>
                     </dlentry>
-                    </dl><ph>Quality adaption of the local video stream in the reported interval (based on the target frame rate and target bitrate). </ph><ph props="cpp ios mac cs">For details, see <xref keyref="QUALITY_ADAPT_INDICATION" />.</ph><p props="android">
+                    </dl>
+                    <ph>Quality adaption of the local video stream in the reported interval (based on the target frame rate and target bitrate). </ph><ph props="cpp ios mac cs">For details, see <xref keyref="QUALITY_ADAPT_INDICATION" />.</ph>
+                    <p props="android">
                     <ul>
                     <li><ph keyref="ADAPT_NONE" />(0): The local video quality stays the same.</li>
                     <li><ph keyref="ADAPT_UP_BANDWIDTH" />(1): The local video quality improves because the network bandwidth increases.</li>
@@ -313,7 +317,8 @@
             <plentry>
                 <pt>encodedBitrate</pt>
                 <pd>
-                    <p>The bitrate (Kbps) while encoding the local video stream.<note type="attention">This value does not include the bitrate for resending the video after packet loss.</note></p>
+                    <p>The bitrate (Kbps) while encoding the local video stream.
+                    <note type="attention">This value does not include the bitrate for resending the video after packet loss.</note></p>
                 </pd>
             </plentry>
             <plentry>
@@ -330,7 +335,8 @@
             </plentry>
             <plentry>
                 <pt>codecType</pt>
-                <pd><ph>The codec type of the local video. </ph><ph props="ios mac cpp cs">For details, see <xref keyref="VIDEO_CODEC_TYPE" />.</ph><p props="android">
+                <pd><ph>The codec type of the local video. </ph><ph props="ios mac cpp cs">For details, see <xref keyref="VIDEO_CODEC_TYPE" />.</ph>
+                    <p props="android">
                     <ul>
                     <li><ph keyref="VIDEO_CODEC_VP8" />(1): VP8.</li>
                     <li><ph keyref="VIDEO_CODEC_H264" />(2): (Default) H.264.</li>
@@ -338,9 +344,9 @@
                 </pd>
             </plentry>
             <plentry>
-                    <pt>txPacketLossRate</pt>
-                    <pd>The video packet loss rate (%) from the local client to the Agora server before applying the anti-packet loss strategies.</pd>
-                </plentry>
+                <pt>txPacketLossRate</pt>
+                <pd>The video packet loss rate (%) from the local client to the Agora server before applying the anti-packet loss strategies.</pd>
+            </plentry>
             <plentry props="rtc">
                 <pt>captureFrameRate</pt>
                 <pd>The frame rate (fps) for capturing the local video stream.</pd>

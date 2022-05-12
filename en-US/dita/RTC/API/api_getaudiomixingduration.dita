@@ -5,12 +5,13 @@
     <shortdesc id="short"><ph id="shortdesc">Retrieves the duration (ms) of the music file.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="getAudioMixingDuration" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="getAudioMixingDuration" />
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
+    <refbody>
+        <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int getAudioMixingDuration();</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)getAudioMixingDuration;</codeblock>
@@ -22,20 +23,18 @@
         </section>
         <section id="detailed_desc">
             <dl>
-                <dlentry outputclass="deprecated" props="rtc">
-                    <dt>Deprecated:</dt>
-                    <dd>Deprecated as of v3.4.0. Please use <xref keyref="getAudioFileInfo" /> instead.</dd>
-                </dlentry>
+            <dlentry outputclass="deprecated" props="rtc">
+                <dt>Deprecated:</dt>
+                <dd>Deprecated as of v3.4.0. Please use <xref keyref="getAudioFileInfo" /> instead.</dd>
+            </dlentry>
             </dl>
-
-   <p>Retrieves the total duration (ms) of the audio.</p>
-            <note type="attention">You need to call this method after calling <xref keyref="startAudioMixing2" /> and receiving the <xref keyref="onAudioMixingStateChanged" />(<apiname keyref="AUDIO_MIXING_STATE_PLAYING" />) callback.</note>
-        </section>
+            <p>Retrieves the total duration (ms) of the audio.</p>
+            <note type="attention">You need to call this method after calling <xref keyref="startAudioMixing2" /> and receiving the <xref keyref="onAudioMixingStateChanged" />(<apiname keyref="AUDIO_MIXING_STATE_PLAYING" />) callback.</note> </section>
         <section id="return_values">
-   <title>Returns</title>
-   <ul>
-       <li>≥ 0: The audio mixing duration, if this method call succeeds.</li>
-       <li>&lt; 0: Failure.</li>
-   </ul>
-        </section></refbody>
+            <title>Returns</title>
+            <ul>
+            <li>≥ 0: The audio mixing duration, if this method call succeeds.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
+    </refbody>
 </reference>
