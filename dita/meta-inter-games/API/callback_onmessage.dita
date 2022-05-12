@@ -65,10 +65,10 @@
                                 <row>
                                     <entry>用户加入或离开房间</entry>
                                     <entry>所有人（排除已退出的用户）</entry>
-                                    <entry>用户加入或离开房间时触发。 
+                                    <entry>用户加入或离开房间时触发。
                                         <ul>
                                         <li><codeph>userId</codeph>：用户 ID</li>
-                                        <li><codeph>isIn</codeph> ： 
+                                        <li><codeph>isIn</codeph> ：
                                         <ul>
                                         <li><codeph><ph keyref="true"
                                         /></codeph>：进入房间</li>
@@ -76,7 +76,7 @@
                                         /></codeph>：离开房间</li>
                                         </ul></li>
                                         <li><codeph>teamId</codeph>：加入的队伍 ID</li>
-                                        <li><codeph>reason</codeph>： 
+                                        <li><codeph>reason</codeph>：
                                         <ul>
                                         <li><codeph>-1</codeph>：进入房间</li>
                                         <li><codeph>0</codeph>：主动退出房间</li>
@@ -88,10 +88,10 @@
                                 <row>
                                     <entry>用户准备或者取消准备</entry>
                                     <entry>所有人</entry>
-                                    <entry>用户准备或取消准备时触发。 
+                                    <entry>用户准备或取消准备时触发。
                                         <ul>
                                         <li><codeph>userId</codeph>：用户 ID</li>
-                                        <li><codeph>isReady</codeph> ： 
+                                        <li><codeph>isReady</codeph> ：
                                         <ul>
                                         <li><codeph><ph keyref="true"
                                         /></codeph>：准备</li>
@@ -103,7 +103,7 @@
                                 <row>
                                     <entry>游戏开始或者结束</entry>
                                     <entry>所有人</entry>
-                                    <entry>一局游戏开始或结束时触发。 
+                                    <entry>一局游戏开始或结束时触发。
                                         <ul>
                                         <li><codeph>userId</codeph>：用户 ID</li>
                                         <li><codeph>isPlaying</codeph>
@@ -115,7 +115,7 @@
                                         </ul></li>
                                         <li><codeph>gameRoundId</codeph>：本局游戏 ID（由游戏服务商生成，在每一局游戏内唯一）</li>
                                         <li><codeph>reason</codeph>：仅在 <parmname>isPlaying</parmname> 为 <codeph><ph
-                                        keyref="false"/></codeph> 时需要关注，详情如下： 
+                                        keyref="false"/></codeph> 时需要关注，详情如下：
                                         <ul>
                                         <li><codeph>0</codeph>：本局游戏正常结束</li>
                                         <li><codeph>1</codeph>：玩家提前退出本局游戏</li>
@@ -153,7 +153,7 @@
     }
 } </codeblock> </example>
         <example>
-            <title id="playerin">JSON 示例：用户加入或离开房间</title>
+            <title id="playerin">JSON 示例：用户加入房间</title>
             <codeblock outputclass="language-json">{
     "state":"game_common_player_in",
     "data":{
@@ -165,7 +165,7 @@
     }
 }        </codeblock> </example>
         <example>
-            <title id="ready">JSON 示例：用户准备或者取消准备</title>
+            <title id="ready">JSON 示例：用户准备</title>
             <codeblock outputclass="language-json">{
     "state":"game_common_player_ready",
     "data":{
@@ -174,7 +174,7 @@
     }
 }        </codeblock> </example>
         <example>
-            <title id="playing">JSON 示例：游戏开始或者结束</title>
+            <title id="playing">JSON 示例：游戏开始</title>
             <codeblock outputclass="language-json">
 {
     "state":"game_common_player_playing",
