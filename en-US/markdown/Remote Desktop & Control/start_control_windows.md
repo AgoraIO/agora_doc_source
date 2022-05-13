@@ -8,7 +8,7 @@ The following figure shows the workflow to implement a remote control:
 
 ![](https://web-cdn.agora.io/docs-files/1652262875365)
 
-As shown in the figure, the workflow for implementing a remote control between a host side and controlled side is as follows:
+As shown in the figure, the workflow for implementing a remote control between a host side and a controlled side is as follows:
 
 1. Set up the role for the user. The role can be either a host side or a controlled side.
 2. The host and controlled sides log in to the Agora RDC service.
@@ -16,8 +16,8 @@ As shown in the figure, the workflow for implementing a remote control between a
 <div class="alert info">
 Every user who joins the channel must have the following:   <ul><li> App ID: The unique identifier assigned to your app by the Agora service. You can generate an app ID for your project in <a href="https://console.agora.io/">Agora Console</a>.</li><li> User ID: The unique identifier of a user. You can set your own user ID.</li></ul>
 </div>
-4. The controlled side sends a screen-sharing stream, whereas the host side receives the screen-sharing stream.
-5. The host side sends a remote control message, whereas the controlled side receives the remote control message and acts accordingly.
+4. The controlled side sends a screen sharing stream, and the host side receives the screen sharing stream.
+5. The host side sends a remote control message, and the controlled side receives the remote control message and acts accordingly.
 
 ## Prerequisites
 
@@ -32,7 +32,7 @@ Before proceeding, ensure that your development environment meets the following 
 
 Skip to [Integrate the SDK](#integration) if a Windows project already exists. To create a Windows project from scratch, do the following:
 
-1. Open **Microsoft Visual Studio** and click **Create new project**.
+1. Open **Microsoft Visual Studio**, and click **Create new project**.
 2. On the **New Project** panel, choose **MFC Application** as the project type, input the project name, choose the project location, and click **OK**.
 3. On the **MFC Application** panel, choose **Application type** > **Dialog based**, and click **Finish**.
 
@@ -72,7 +72,7 @@ The following figure shows the API call sequence of the remote control service:
  
 #define DEFAULT_CHANNEL_ID "channelId" // Fill the channel ID.
 #define DEFAULT_APP_ID "appId" // Fill the App ID of your project generated in Agora Console.
-#define HOST_USER "rdc_host"  // Fill the user ID of the host side. T
+#define HOST_USER "rdc_host"  // Fill the user ID of the host side.
 #define CONTROLLED_USER "rdc_controlled"    // Fill the user ID of the controlled side.
  
 agora::rtc::IRtcEngine* g_lpEngine = nullptr; // Declare the RTC objects.
@@ -135,7 +135,7 @@ void CRDCTestDlg::onEvent(agora::rc::RDC_EVENT event, int code, const char* msg)
 }
 ```
 
-2. Add the following lines to the `RDC-TestDlg.cpp` file in your project folder to implement the logic for both the host side and controlled side in remote controls.
+2. Add the following lines to the `RDC-TestDlg.cpp` file in your project folder to implement the logic for both the host side and the controlled side in remote controls.
 
 ```C++
 // Implement the constructor.
@@ -147,7 +147,7 @@ CRDCTestDlg::CRDCTestDlg(CWnd* pParent /*=nullptr*/) {
   }
 }
  
-// Initialize the RTC SDK service and join the channel.
+// Initialize the RTC SDK service, and join the channel.
 int CRDCTestDlg::initAndLoginRTC() {
   // Create RtcEngine objects.
   g_lpEngine = createAgoraRtcEngine();
@@ -159,7 +159,7 @@ int CRDCTestDlg::initAndLoginRTC() {
   //Initialize the RtcEngine engine.
   g_lpEngine->initialize(ctx);
  
-  // The controlled side publishes the screen-sharing stream.
+  // The controlled side publishes the screen sharing stream.
   // The host side subscribes to the stream of the controlled side.
   if (!g_bMaster) {
  
@@ -241,4 +241,4 @@ Run the project on your Windows device. You can see the login screen when you su
 
 ## Next steps
 
-To ensure security in the formal production environment, you must generate tokens for authentication on your app server. The Agora RDC SDK uses the message service and authentication logic in the Agora RTM service. For details, see [Authenticate with RTM tokens](./token_server_rtm?platform=All%20Platforms).
+To ensure security in your formal production environment, you must generate tokens for authentication on your app server. The Agora RDC SDK uses the message service and authentication logic in the Agora RTM service. For details, see [Authenticate with RTM tokens](./token_server_rtm?platform=All%20Platforms).
