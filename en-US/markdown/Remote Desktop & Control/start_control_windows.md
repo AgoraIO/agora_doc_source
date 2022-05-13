@@ -137,16 +137,16 @@ void CRDCTestDlg::onEvent(agora::rc::RDC_EVENT event, int code, const char* msg)
 
 2. Add the following lines to the `RDC-TestDlg.cpp` file in your project folder to implement the logic for both the host side and the controlled side in remote controls.
 
-```C++
+```cpp
 // Implement the constructor.
 CRDCTestDlg::CRDCTestDlg(CWnd* pParent /*=nullptr*/) {
   if (MessageBox(L"Whether the current user is the host side.", L"Set up the role.", MB_YESNO | MB_ICONQUESTION)) {
-    m_bMaster = TRUE;
+    m_bHost = TRUE;
   } else {
-    m_bMaster = FALSE;
+    m_bHost = FALSE;
   }
 }
- 
+
 // Initialize the RTC SDK service, and join the channel.
 int CRDCTestDlg::initAndLoginRTC() {
   // Create RtcEngine objects.
@@ -158,15 +158,15 @@ int CRDCTestDlg::initAndLoginRTC() {
   ctx.eventHandler = reinterpret_cast<agora::rtc::IRtcEngineEventHandler*>(this);
   //Initialize the RtcEngine engine.
   g_lpEngine->initialize(ctx);
- 
+
   // The controlled side publishes the screen sharing stream.
   // The host side subscribes to the stream of the controlled side.
-  if (!g_bMaster) {
- 
+  if (!g_bHost) {
+
     g_lpEngine->setClientRole(agora::rtc::CLIENT_ROLE_BROADCASTER);
     g_lpEngine->enableAudio();
     g_lpEngine->enableVideo();
- 
+
     // The controlled side shares the screen or window to the host side. For details, see Share the Screen in Interactive Live Streaming.
     g_lpEngine->startScreenCaptureByScreenRect(...);
   } else {
@@ -174,7 +174,7 @@ int CRDCTestDlg::initAndLoginRTC() {
     g_lpEngine->disableAudio();
     g_lpEngine->disableVideo();
   }
- 
+
   // Join a channel.
   if (g_lpEngine->joinChannel(NULL, DEFAULT_CHANNEL_ID, NULL, 0) != 0) {
       // Error: Failed to join the channel.
@@ -182,7 +182,7 @@ int CRDCTestDlg::initAndLoginRTC() {
   }
   return 0;
 }
- 
+
 // The host side displays the window handler of the controlled side.
 int CRDCTestDlg::initAndLoginRDC(HWND hWnd) {
   // Create RDCEngine objects.
@@ -196,36 +196,35 @@ int CRDCTestDlg::initAndLoginRDC(HWND hWnd) {
   // Pass the window handler to RDCEngine.
   config.hwnd = hWnd;
   // Pass the role of the user to RDCEngine.
-  config.role = g_bMaster ? agora::rc::HOST : agora::rc::CONTROLLED
- 
+  config.role = g_bHost ? agora::rc::HOST : agora::rc::CONTROLLED;
+
   if (g_lpRDCEngine->initialize(config) != 0) {
       // Error: Failed to initialize the SDK.
       return -1001;
   }
- 
+
   if (g_lpRDCEngine->login(DEFAULT_USER_ID, NULL) != 0) {
       // Error: Failed to log in to the RDC service.
       return -1002;
   }
- 
+
   return 0;
 }
- 
- 
+
 // Initialize the RDCEngine engine.
-void CRDCTestDlg::onJoinChannelSuccess(const char* channel,
-                                           agora::rtc::uid_t userId,
+void CRDCTestDlg::onJoinChannelSuccess(const char* channel, 
+                                           agora::rtc::uid_t userId, 
                                            int elapsed) {
     if (!g_lpRDCEngine) {
         initAndLoginRDC(GetSafeHwnd());
     }
 }
- 
+
 // When the controlled side joins the channel, the RDC service starts to render its screen.
 void CRDCTestDlg::onUserJoined(agora::rtc::uid_t uid, int elapsed) {
- 
+
   // When the host side joins the channel, the RDC service starts to render the screen of the controlled side.
-  if (m_bMaster) {
+  if (m_bHost) {
     agora::rtc::VideoCanvas vc;
     vc.renderMode = agora::rtc::RENDER_MODE_FILL;
     vc.uid = uid;
