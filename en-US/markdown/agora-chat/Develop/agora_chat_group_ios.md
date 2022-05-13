@@ -11,7 +11,7 @@ The Agora Chat SDK provides the `IAgoraChatGroupManager`, `AgoraChatGroupManager
 - Create and destroy a chat group
 - Join and leave a chat group
 - Retrieve the member list of a chat group
-- Mute and unmute a chat group
+- Block and unblock a chat group
 - Manage chat group members
 - Manage the attributes, announcements, and shared files of a chat group
 
@@ -141,22 +141,22 @@ NSArray *memeberList = [group.memberList];
 ```
 
 
-### Mute and unmute a chat group
+### Block and unblock a chat group
 
-Group members can mute and unmute a chat group, whereas the chat group owner and chat group admins cannot perform such operations. Once members mute a chat group, they no longer receive push notifications from this chat group.
+Group members can block and unblock a chat group, whereas the chat group owner and chat group admins cannot perform such operations. Once members block a chat group, they no longer receive messages from this chat group.
 
-Refer to the following sample code to mute and unmute a chat group:
+Refer to the following sample code to block and unblock a chat group:
 
 ```objective-c
-// Call blockGroup to mute a chat group.
+// Call blockGroup to block a chat group.
 [[AgoraChatClient sharedClient].groupManager blockGroup:@"groupID"error:nil];
 
-// Call unblockGroup to unmute a chat group.
+// Call unblockGroup to unblock a chat group.
 [[AgoraChatClient sharedClient].groupManager unblockGroup:@"groupID" error:nil];
 ```
 
-The chat group owner and chat group admins can call `getGroupSpecificationFromServerWithId` to retrieve the member list of a chat group and call `isBlocked` to further retrieve the list of members who mute the chat group.  
-Chat group members can call `isBlocked` to check whether they mute the chat group.
+The chat group owner and chat group admins can call `getGroupSpecificationFromServerWithId` to retrieve the member list of a chat group and call `isBlocked` to further retrieve the list of members who block the chat group.  
+Chat group members can call `isBlocked` to check whether they block the chat group.
 
 
 ### Manage chat group members

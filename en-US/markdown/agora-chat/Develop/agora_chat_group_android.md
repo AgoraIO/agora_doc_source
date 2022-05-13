@@ -11,7 +11,7 @@ The Agora Chat SDK provides the `GroupManager` and `Group` classes for chat grou
 - Create and destroy a chat group
 - Join and leave a chat group
 - Retrieve the member list of a chat group
-- Mute and unmute a chat group
+- Block and unblock a chat group
 - Manage chat group members
 - Manage the attributes, announcements, and shared files of a chat group
 
@@ -113,17 +113,17 @@ List<String> memberList = group.getMembers();
 ```
 
 
-### Mute and unmute a chat group
+### Block and unblock a chat group
 
-Group members can mute and unmute a chat group, whereas the chat group owner and chat group admins cannot perform such operations. Once members mutes a chat group, they no longer receive notifications from this chat group.
+Group members can block and unblock a chat group, whereas the chat group owner and chat group admins cannot perform such operations. Once members block a chat group, they no longer receive messages from this chat group.
 
-Refer to the following sample code to mute and unmute a chat group:
+Refer to the following sample code to block and unblock a chat group:
 
 ```java
-// Call blockGroupMessage to mute a chat group.
+// Call blockGroupMessage to block a chat group.
 ChatClient.getInstance().groupManager().blockGroupMessage(groupId);
 
-// Call unblockGroupMessage to unmute a chat group.
+// Call unblockGroupMessage to unblock a chat group.
 ChatClient.getInstance().groupManager().unblockGroupMessage(groupId);
 ```
 
