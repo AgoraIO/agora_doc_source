@@ -333,7 +333,7 @@
     unsigned int advancedFeatureCount;
     LiveTranscoding() : width(360), height(640), videoBitrate(400), videoFramerate(15), lowLatency(false), videoGop(30), videoCodecProfile(VIDEO_CODEC_PROFILE_HIGH), backgroundColor(0x000000), videoCodecType(VIDEO_CODEC_H264_FOR_STREAM), userCount(0), transcodingUsers(NULL), transcodingExtraInfo(NULL), metadata(NULL), watermark(NULL), watermarkCount(0), backgroundImage(NULL), backgroundImageCount(0), audioSampleRate(AUDIO_SAMPLE_RATE_48000), audioBitrate(48), audioChannels(1), audioCodecProfile(AUDIO_CODEC_PROFILE_LC_AAC), advancedFeatures(NULL), advancedFeatureCount(0) {}
   }; LiveTranscoding;</codeblock>
-  <codeblock props="cs" outputclass="language-csharp">public class LiveTranscoding
+            <codeblock props="cs" outputclass="language-csharp">public class LiveTranscoding
     {
         public LiveTranscoding()
         {
@@ -544,7 +544,8 @@
                 <pd>
                     <p>The size of the video (width and height in pixels).</p>
                     <ul>
-                    <li>When pushing video streams to the CDN, note the following:<ul>
+                    <li>When pushing video streams to the CDN, note the following:
+                        <ul>
                         <li>The value range of the width is [64,1920].  If the value is less than 64, Agora server automatically adjusts it to 64; if the value is greater than 1920, Agora server automatically adjusts it to 1920.</li>
                         <li>The value range of the height is [64,1080]. If the value is less than 64, Agora server automatically adjusts it to 64; if the value is greater than 1080, Agora server automatically adjusts it to 1080.</li>
                         </ul></li>
@@ -560,8 +561,8 @@
                 </pd>
             </plentry>
             <plentry>
-              <pt props="native">videoFrameRate</pt>
-              <pt props="flutter cs">videoFramerate</pt>
+                <pt props="native">videoFrameRate</pt>
+                <pt props="flutter cs">videoFramerate</pt>
                 <pd>
                     <p>Frame rate (in fps) of the output video stream set for Media Push.  The default value is 15 , and the value range is (0,30].</p>
                     <note type="attention">The Agora server adjusts any value over 30 to 30.</note></pd>
@@ -612,7 +613,8 @@
                 <pd>
                     <p>The background color in RGB hex.</p>
                     <p>The color of the custom background image. The format is a hexadecimal integer defined by RGB, without the # sign, such as 0xFFB6C1 for light pink. The default value is 0x000000(black).</p>
-                    <p>COLOR_CLASS is a general name for the type:<ul>
+                    <p>COLOR_CLASS is a general name for the type:
+                    <ul>
                     <li>iOS: UIColor</li>
                     <li>macOS: NSColor</li>
                     </ul></p>
@@ -657,7 +659,8 @@
                         <dd>This parameter is deprecated.</dd>
                     </dlentry>
                     </dl>
-                    <p>The metadata sent to the CDN client.</p></pd>
+                    <p>The metadata sent to the CDN client.</p>
+                </pd>
             </plentry>
             <plentry>
                 <pt>backgroundImage</pt>
@@ -741,11 +744,11 @@
             </plentry>
             <plentry props="ios mac">
                 <pt>backgroundArray</pt>
-                <pd>The number of background images of the output media stream.<ul>
+                <pd>The number of background images of the output media stream.
+                    <ul>
                     <li>If you do not add a background image or add only one background image, this parameter is optional.</li>
                     <li>If you add more than one background images, ensure that you set this parameter.</li>
-                    </ul>
-                    </pd>
+                    </ul> </pd>
             </plentry>
             <plentry props="cpp cs">
                 <pt>backgroundImageCount</pt>
