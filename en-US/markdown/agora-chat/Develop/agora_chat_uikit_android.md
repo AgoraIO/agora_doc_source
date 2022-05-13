@@ -796,7 +796,7 @@ To validate the peer-to-peer messaging you have just integrated into your app us
 
    You see the following interface on your simulator or physical device:
    
-   ![](../images/uikit_android_1.png)
+   <img src="https://web-cdn.agora.io/docs-files/1652232540196" style="zoom:50%;" />
 
 2. Create a user account and click **SIGN UP**. Click **Sign in** and you will see a log that says Sign in success.
 
@@ -804,7 +804,7 @@ To validate the peer-to-peer messaging you have just integrated into your app us
 
 4. On the first device or simulator, enter the username you just created and click **START CHAT**. You can now start chatting between the two clients.
 
-   ![](../images/uikit_android_3.png)
+   <img src="https://web-cdn.agora.io/docs-files/1652232530394" style="zoom:50%;" />
 
    
 ## Next Step
