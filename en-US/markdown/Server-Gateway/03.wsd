@@ -1,7 +1,7 @@
 @startuml
 autonumber
 skinparam monochrome true
-participant IVideoSinkBase
+participant IVideoFrameObserver2
 participant IAudioFrameObserver
 participant "Engine App"
 
@@ -52,31 +52,22 @@ ILocalUser-->>IRemoteVideoTrack: Create an IRemoteVideoTrack object
 deactivate ILocalUser
 note left: Get IRemoteVideoTrack and related RemoteVideoTrackInfo
 
-create IVideoSinkBase
-"Engine App"->IVideoSinkBase: Create an IVideoSinkBase object
-
-"Engine App"->IRemoteVideoTrack: addRenderer
-note left: Add IVideoSinkBase to IRemoteVideoTrack
-activate IRemoteVideoTrack
-IRemoteVideoTrack-->>IVideoSinkBase: Register the IVideoSinkBase object
-deactivate IRemoteVideoTrack
-
+create IVideoFrameObserver2
+"Engine App"->IVideoFrameObserver2: Create an IVideoFrameObserver2 object
 
 == Receive video and audio ==
 group Receive video and audio frames
 IAudioFrameObserver-->>"Engine App": onPlaybackAudioFrameBeforeMixing
 
-IVideoSinkBase-->>"Engine App":onFrame
+IVideoFrameObserver2-->>"Engine App":onFrame
 end
 
 == Stop receiving video and audio from the client ==
 "Engine App"->ILocalUser: unregisterAudioFrameObserver
+"Engine App"->ILocalUser: unregisterVideoFrameObserver
 activate ILocalUser
 ILocalUser-->>IAudioFrameObserver: Unregister the IAudioFrameObserver object
-deactivate ILocalUser
-"Engine App"->ILocalUser: removeRenderer
-activate ILocalUser
-ILocalUser-->>IVideoSinkBase: Unregister IVideoSinkBase
+ILocalUser-->>IVideoFrameObserver2: Unregister the IVideoFrameObserver2 object
 deactivate ILocalUser
 "Engine App"->IRtcConnection: disconnect
 @enduml
