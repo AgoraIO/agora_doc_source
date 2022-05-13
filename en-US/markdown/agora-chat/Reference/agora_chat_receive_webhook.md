@@ -138,14 +138,14 @@ When a user sends a message in a one-to-one chat, chat group, or chat room of th
 | Field | Data Type | Description |
 | -- | -- | -- |
 | `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{uuid}`, among which `uuid` is randomly generated. |
-| `eventType` | String | The message type of the callback. <ul><li>`chat`: Uplink messages. The messages that are about to be sent by the Agora Chat server to end devices.</li><li>`chat_offline`: Offline messages. The messages that are not being sent by the Agora Chat server as end users are offline.</li></ul> |
+| `eventType` | String | The message type of the callback. <ul><li>`chat`: Uplink messages. The messages that are about to be sent by the Agora Chat server to end devices.</li><li>`chat_offline`: Offline messages. The messages that are not sent by the Agora Chat server as end users are offline.</li></ul> |
 | `timestamp` | Long | The Unix timestamp when the Agora Chat server receives the callback event, in milliseconds. |
 | `chat_type` | String | The type of chat. <ul><li>`chat`: One-to-one chats.</li><li>`groupchat`: Chat groups and chat rooms.</li></ul> |
 | `group_id` | String | The ID of the chat group or chat room where the message is sent. This field only exists if `chat_type` is set to `groupchat`. |
 | `from` | String | The sender of the message. |
 | `to`  | String | The recipient of the message. |
-| `msg_id` | String | The message ID of the callback. This ID is the same as the `msg_id` when the message is being sent. |
-| `payload` | Object | The structure of the callback event. This field varies according to the type of the message being sent in a one-to-one chat, chat group, or chat room. See below for details. |
+| `msg_id` | String | The message ID of the callback event. This ID is the same as the `msg_id` when the message is sent. |
+| `payload` | Object | The structure of the callback event. This field varies according to the type of the message sent in a one-to-one chat, chat group, or chat room. See below for details. |
 | `securityVersion` | String | This parameter is reserved for future use.  |
 | `security` | String | The signature in the callback request used to confirm whether this callback is sent from the Agora Chat server. The signature is the MD5 hash of the `{callId} + {secret} + {timestamp}` string, among which `secret` can be found on [Agora Console](https://console.agora.io/).|
 | `appkey` | String | The key of the app. The unique identifier assigned to each app by the Agora Chat service. |
@@ -392,15 +392,15 @@ When a user recalls a message in a one-to-one chat, chat group, or chat room of 
 | Field | Data Type | Description |
 | --- | --- | --- |
 | `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{uuid}`, among which `uuid` is randomly generated. |
-| `eventType` | String | The message type of the callback. <ul><li>`chat`: Uplink messages. The messages that are about to be sent by the Agora Chat server to end devices.</li><li>`chat_offline`: Offline messages. The messages that are not being sent by the Agora Chat server as the end user is offline.</li></ul> |
+| `eventType` | String | The message type of the callback. <ul><li>`chat`: Uplink messages. The messages that are about to be sent by the Agora Chat server to end devices.</li><li>`chat_offline`: Offline messages. The messages that are not sent by the Agora Chat server as the end user is offline.</li></ul> |
 | `timestamp` | Long | The Unix timestamp when the Agora Chat server receives the callback event, in milliseconds. |
 | `chat_type` | String | The type of chat. <ul><li>`chat`: One-to-one chats.</li><li>`groupchat`: Chat groups and chat rooms.</li></ul> |
 | `group_id` | String | The ID of the chat group or chat room where the message resides. This field only exists if `chat_type` is set to `groupchat`. |
 | `from` | String | The sender of the message. |
 | `to`  | String | The recipient of the message. |
 | `recall_id` | String | The ID of the message to recall. |
-| `msg_id` | String | The ID of the message callback. This ID is the same as the `msg_id` when the end user sends the message. |
-| `payload` | Object | The structure of the callback that contains the following fields:<ul><li>`ext`: The message extension. This field is empty when recalling a message.</li><li>`ack_message_id`: The ID of the message to recall. This ID is the same as `recall_id`. </li><li>`bodies`: The body of the message callback. This filed is empty when recalling a message.</ul> |
+| `msg_id` | String | The message ID of the callback event. This ID is the same as the `msg_id` when the end user sends the message. |
+| `payload` | Object | The structure of the callback event that contains the following fields:<ul><li>`ext`: The message extension. This field is empty when recalling a message.</li><li>`ack_message_id`: The ID of the message to recall. This ID is the same as `recall_id`. </li><li>`bodies`: The body of the message callback. This filed is empty when recalling a message.</ul> |
 | `securityVersion` | String | This parameter is reserved for future use.  |
 | `security` | String | The signature in the callback request used to confirm whether this callback is sent from the Agora Chat server. The signature is the MD5 hash of the `{callId} + {secret} + {timestamp}` string, among which `secret` can be found on [Agora Console](https://console.agora.io/).|
 | `appkey` | String | The key of the app. The unique identifier assigned to each app by the Agora Chat service. |
@@ -431,14 +431,14 @@ When a user performs operations on a chat group or chat room in the Agora Chat a
 
 | Field | Data Type | Description |
 | --- | --- | --- |
-| `chat_type` | String | The type of the event. `muc` indicates an event occurred in a chat group or chat room. |
+| `chat_type` | String | The type of the event. `muc` indicates a chat group or a chat room. |
 | `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{uuid}`, among which `uuid` is randomly generated. |
-| `eventType` | String | The message type of the callback. <ul><li>`chat`: Uplink messages. The messages that are about to be sent by the Agora Chat server to end devices.</li><li>`chat_offline`: Offline messages. The messages that are not being sent by the Agora Chat server as the end user is offline.</li></ul> |
+| `eventType` | String | The message type of the callback. <ul><li>`chat`: Uplink messages. The messages that are about to be sent by the Agora Chat server to end devices.</li><li>`chat_offline`: Offline messages. The messages that are not sent by the Agora Chat server as the end user is offline.</li></ul> |
 | `timestamp` | Long | The Unix timestamp when the Agora Chat server receives the callback event, in milliseconds. |
 | `group_id` | String | The ID of the chat group or chat room where the message resides. This field only exists if `chat_type` is set to `groupchat`. |
 | `from` | String | The sender of the message. |
 | `to`  | String | The recipient of the message. |
-| `msg_id` | String | The message ID of the callback. This ID is the same as the `msg_id` when sending the message. |
+| `msg_id` | String | The message ID of the callback event. This ID is the same as the `msg_id` when sending the message. |
 | `payload` | Object | The content structure of the callback event that contains the following fields: <ul><li>`muc_id`: The unique identifier of the chat group or chat room in the Agora Chat server, in the format of `{appkey}_{group_ID}@conference.easemob.com`. </li><li>`reason`: Optional. The detailed information about the current operation. See below for details.</li><li>`is_chatroom`: Whether this event occurs in a chat room.<ul><li>`true`: Yes.</li><li>`false`: No, this event occurs in a chat group.</li></ul><li>`operation`: The current operation. See below for details.</li><li>`status`: The status of the current operation.<ul><li>`description`: The status description.</li><li>`error_code`: The status code.</li></ul> |
 | `securityVersion` | String | This parameter is reserved for future use.  |
 | `security` | String | The signature in the callback request used to confirm whether this callback is sent from the Agora Chat server. The signature is the MD5 hash of the `{callId} + {secret} + {timestamp}` string, among which `secret` can be found on [Agora Console](https://console.agora.io/).|
@@ -623,14 +623,14 @@ When a member leaves a chat group or chat room, the Agora Chat server sends a ca
 }
 ```
 
-When the owner leaves a chat group or chat room, the Agora Chat server sends a callback to your app server. The sample code of the `payload` field is as follows:
+When the owner leaves a chat room, the Agora Chat server sends a callback to your app server. The sample code of the `payload` field is as follows:
 
 ```json
 "payload":
 { 
     "muc_id": "XXXX#XXXX173560762007553XXXX", 
     "is_chatroom": false, 
-    // "leave" indicates that the current operation is to leave a chat group or chat room.
+    // "leave" indicates that the current operation is to leave a chat room.
     "operation": "leave", 
     "status":
     { 
@@ -969,9 +969,9 @@ When the owner or an admin deletes the announcements of a chat group or chat roo
 }
 ```
 
-### Upload a shared file to a chat group or chat room
+### Upload a shared file to a chat group
 
-When a user uploads a shared file to a chat group or chat room, the Agora Chat server sends a callback to your app server. The sample code of the `payload` field is as follows:
+When a user uploads a shared file to a chat group, the Agora Chat server sends a callback to your app server. The sample code of the `payload` field is as follows:
 
 ```json
 "payload":
@@ -987,7 +987,7 @@ When a user uploads a shared file to a chat group or chat room, the Agora Chat s
             }
     }",
     "is_chatroom": false, 
-    // "upload_file" indicates that the current operation is to upload a shared file to a chat group or chat room.
+    // "upload_file" indicates that the current operation is to upload a shared file to a chat group.
     "operation": "upload_file", 
     "status":
     { 
@@ -1004,9 +1004,9 @@ When a user uploads a shared file to a chat group or chat room, the Agora Chat s
 - `file_size`: The size of the file in bytes.
 - `created`: The Unix timestamp when the file is created, in milliseconds.
 
-### Delete a shared file in a chat group or chat room
+### Delete a shared file in a chat group
 
-When a user deletes a shared file in a chat group or chat room, the Agora Chat server sends a callback to your app server. The sample code of the `payload` field is as follows:
+When a user deletes a shared file in a chat group, the Agora Chat server sends a callback to your app server. The sample code of the `payload` field is as follows:
 
 ```json
 "payload":
@@ -1015,7 +1015,7 @@ When a user deletes a shared file in a chat group or chat room, the Agora Chat s
     // "reason" specifies the ID of the shared file to delete. This ID is the same as the "file_id" used when uploading the file.
     "reason": "79ddf840-8e2f-11ec-bec3-ad40868b03f9", 
     "is_chatroom": false, 
-    // "delete_file" indicates that the current operation is to delete a shared file in a chat group or chat room.
+    // "delete_file" indicates that the current operation is to delete a shared file in a chat group.
     "operation": "delete_file", 
     "status":
     { 
@@ -1051,12 +1051,12 @@ When a user performs operations on the contacts in the Agora Chat app, the Agora
 | --- | --- | --- |
 | `chat_type` | String | The type of the event. `roster` indicates an event occurred in user contacts. |
 | `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{uuid}`, among which `uuid` is randomly generated. |
-| `eventType` | String | The message type of the callback. <ul><li>`chat`: Uplink messages. The messages that are about to be sent by the Agora Chat server to end devices.</li><li>`chat_offline`: Offline messages. The messages that are not being sent by the Agora Chat server as the end user is offline.</li></ul> |
+| `eventType` | String | The message type of the callback. <ul><li>`chat`: Uplink messages. The messages that are about to be sent by the Agora Chat server to end devices.</li><li>`chat_offline`: Offline messages. The messages that are not sent by the Agora Chat server as the end user is offline.</li></ul> |
 | `timestamp` | Long | The Unix timestamp when the Agora Chat server receives the callback event, in milliseconds. |
-| `from` | String | The ID of the user who operates the contact. |
-| `to`  | String | The ID of the contact that is being operated by the user. |
-| `msg_id` | String | The ID of the message. This ID is the same as the `msg_id` when sending the message. |
-| `payload` | Object | The content structure of the callback event. See below for details. |
+| `from` | String | The user who operates the contact. |
+| `to`  | String | The contact who is operated by the user. |
+| `msg_id` | String | The message ID of the callback event. This ID is the same as the `msg_id` when sending the message. |
+| `payload` | Object | The structure of the callback event. See below for details. |
 | `security` | String | The signature in the callback request used to confirm whether this callback is sent from the Agora Chat server. The signature is the MD5 hash of the `{callId} + {secret} + {timestamp}` string, among which `secret` can be found on [Agora Console](https://console.agora.io/).|
 | `appkey` | String | The key of the app. The unique identifier assigned to each app by the Agora Chat service. |
 | `host` | String | The domain name assigned by the Agora Chat service to access RESTful APIs. |
@@ -1170,9 +1170,9 @@ When a user removes a contact from the block list, the Agora Chat server sends a
 }
 ```
 
-## Acknowledgement receipt events
+## Receipt events
 
-When a user sends an acknowledgement receipt, the Agora Chat server sends a callback to your app server. The sample code is as follows:
+When a user sends an receipt, the Agora Chat server sends a callback to your app server. The sample code is as follows:
 
 ```json
 {
@@ -1199,11 +1199,11 @@ When a user sends an acknowledgement receipt, the Agora Chat server sends a call
 | `chat_type` | String   | The type of the event. <ul><li>`read_ack`: The read receipts.</li><li>`delivery_ack`: The delivery receipts.</li></ul>                                        |
 | `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{uuid}`, among which `uuid` is randomly generated. |
 | `security` | String | The signature in the callback request used to confirm whether this callback is sent from the Agora Chat server. The signature is the MD5 hash of the `{callId} + {secret} + {timestamp}` string, among which `secret` can be found on [Agora Console](https://console.agora.io/).|
-| `payload`   | Object   | The structure of the callback that contains the following fields:<ul><li>`ext`: The message extension field. </li><li>`ack_message_id`: The message ID of the receipt callback.</li><li>`bodies`: The message body.</li></ul> |
+| `payload`   | Object   | The structure of the callback event that contains the following fields:<ul><li>`ext`: The message extension field. </li><li>`ack_message_id`: The message ID of the receipt callback.</li><li>`bodies`: The message body.</li></ul> |
 | `host` | String | The domain name assigned by the Agora Chat service to access RESTful APIs. |
 | `appkey` | String | The key of the app. The unique identifier assigned to each app by the Agora Chat service. |
 | `from`      | String   | The ID of the user who sends the receipt.                                     |
 | `to`        | String   | The ID of the user who receives the receipt.                                     |
-| `eventType` | String | The message type of the callback. <ul><li>`chat`: Uplink messages. The messages that are about to be sent by the Agora Chat server to end devices.</li><li>`chat_offline`: Offline messages. The messages that are not being sent by the Agora Chat server as the end user is offline.</li></ul> |
-| `timestamp` | long     | The Unix timestamp when the Agora Chat server receives the event, in milliseconds.               |
-| `msg_id`    | String   | The message ID of the callback.                                    |
+| `eventType` | String | The message type of the callback. <ul><li>`chat`: Uplink messages. The messages that are about to be sent by the Agora Chat server to end devices.</li><li>`chat_offline`: Offline messages. The messages that are not sent by the Agora Chat server as the end user is offline.</li></ul> |
+| `timestamp` | long     | The Unix timestamp when the Agora Chat server receives the callback event, in milliseconds.               |
+| `msg_id`    | String   | The message ID of the receipt.                                    |

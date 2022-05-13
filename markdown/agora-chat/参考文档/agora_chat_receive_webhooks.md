@@ -391,7 +391,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 | --- | --- | --- |
 | `callId` | String | 回调 ID。是每条 HTTP 回调的唯一标识。该字段由 `{appKey}_{uuid}` 组成，其中 uuid 为随机生成。 |
 | `eventType` | String | 消息类型：<ul><li>`chat`: 上行消息，即消息服务器收到指令要下发的消息。</li><li>`chat_offline`: 离线消息，即因用户离线消息服务器未成功下发的消息。</li></ul> |
-| `timestamp` | Long | Agora 即时通讯 IM 服务器接收到此消息的 Unix 时间戳，单位为 ms。|
+| `timestamp` | Long | Agora 即时通讯服务器接收到此消息的 Unix 时间戳，单位为 ms。|
 | `chat_type` | String | 会话类型：<ul><li>`chat`: 单聊</li><li>`groupchat`: 群组和聊天室</li></ul> |
 | `group_id` | String | 消息回调所发生的群组或聊天室的 ID。当 `chat_type` 为 `groupchat` 时，才会有该参数。|
 | `from` | String | 消息的发送方。|
@@ -431,7 +431,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 | `chat_type` | String | 事件类型。`muc` 表示群组或聊天室。 |
 | `callId` | String | 回调 ID。是每条 HTTP 回调的唯一标识。该字段由 `{appKey}_{uuid}` 组成，其中 `uuid` 为随机生成。 |
 | `eventType` | String | 消息类型：<ul><li>`chat`: 上行消息，即消息服务器收到指令要下发的消息。</li><li>`chat_offline`: 离线消息，即因用户离线消息服务器未成功下发的消息。</li></ul> |
-| `timestamp` | Long | Agora 即时通讯 IM 服务器接收到此消息的 Unix 时间戳，单位为 ms。|
+| `timestamp` | Long | Agora 即时通讯服务器接收到此消息的 Unix 时间戳，单位为 ms。|
 | `group_id` | String | 消息回调所发生的群组或聊天室的 ID。当 `chat_type` 为 `groupchat` 时，才会有该参数。|
 | `from` | String | 消息的发送方。|
 | `to`  | String | 消息的接收方。 |
@@ -751,9 +751,9 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 其中 `operation` 为当前操作，即 `absence`。
 
-### 群主离开群组或所有者离开聊天室
+### 所有者离开聊天室
 
-当用户作为群主离开群组，或作为所有者离开聊天室时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户作为所有者离开聊天室时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -922,9 +922,9 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 - `reason` 为删除后的群公告，即为空。
 - `operation` 为当前操作，即 `delete_announcement`。
 
-### 上传群组或聊天室共享文件
+### 上传群组共享文件
 
-当用户上传群组或聊天室共享文件时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户上传群组共享文件时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -958,9 +958,9 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
     - `created`: 文件创建的 Unix 时间戳，单位为 ms。
 - `operation` 为当前操作，即 `upload_file`。
 
-### 删除群组或聊天室共享文件
+### 删除群组共享文件
 
-当用户删除群组或聊天室共享文件时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户删除群组共享文件时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -1088,7 +1088,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 | `chat_type` | String | 事件类型。`roster` 表示好友关系。 |
 | `callId` | String | 回调 ID。是每条 HTTP 回调的唯一标识。该字段由 `{appKey}_{uuid}` 组成，其中 `uuid` 为随机生成。 |
 | `eventType` | String | 消息类型：<ul><li>`chat`: 上行消息，即消息服务器收到指令要下发的消息。</li><li>`chat_offline`: 离线消息，即因用户离线消息服务器未成功下发的消息。</li></ul> |
-| `timestamp` | Long | Agora 即时通讯 IM 服务器接收到此消息的 Unix 时间戳，单位为 ms。|
+| `timestamp` | Long | Agora 即时通讯服务器接收到此消息的 Unix 时间戳，单位为 ms。|
 | `from` | String | 发起好友操作的用户。|
 | `to`  | String | 被进行好友操作的用户。 |
 | `msg_id` | String | 该消息回调的 ID，与发送消息时的 `msg_id` 一致。|
