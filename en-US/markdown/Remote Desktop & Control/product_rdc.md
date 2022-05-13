@@ -7,6 +7,7 @@ Agora Remote Desktop & Control (RDC) enables a speedy and secure cross-platform 
 The Agora RDC SDK works with the [Agora Real-time Communication (RTC) SDK](https://docs.agora.io/en/Interactive%20Broadcast/product_live?platform=Electron) and [Agora Real-time Messaging (RTM) SDK](https://docs.agora.io/en/Real-time-Messaging/product_rtm?platform=Android) to enable the remote control service.
 
 The following figure shows how these three SDKs work together:
+
 ![](https://web-cdn.agora.io/docs-files/1652409218831)
 
 ## Features
