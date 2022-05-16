@@ -31,51 +31,36 @@
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_ENCODE_FAILURE"/></pt>
                 <pd>5: 本地视频编码失败。</pd>
             </plentry>
-            <plentry props="ios mac flutter">
+            <plentry props="ios cpp flutter">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_INBACKGROUND"/></pt>
-                <pd>6: 应用处于后台。</pd>
-            </plentry>
-            <plentry props="ios mac flutter">
+                <pd>6: <ph props="cpp flutter">（仅支持 iOS）</ph>应用处于后台。</pd>
+                </plentry>
+            <plentry props="ios cpp flutter">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_MULTIPLE_FOREGROUND_APPS"/></pt>
-                <pd>7: 应用窗口处于侧拉、分屏、画中画模式。</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_SYSTEM_PRESSURE"/></pt>
-                <pd>8: 系统压力。</pd>
-            </plentry>
-            <plentry props="android cpp flutter">
+                <pd>7: <ph props="cpp flutter">（仅支持 iOS）</ph>应用窗口处于侧拉、分屏、画中画模式。</pd>
+                </plentry>
+            <plentry>
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_NOT_FOUND"/></pt>
-                <pd>
-                    <dl outputclass="since" props="rtc">
-                    <dlentry>
-                        <dt>自从</dt>
-                        <dd>v3.4.0</dd>
-                    </dlentry>
-                    </dl>
-                    <p>8: 找不到本地视频采集设备。</p>
-                </pd>
+                <pd>8: 找不到本地视频采集设备。</pd>
             </plentry>
-            <plentry props="rtc">
-                <pt props="mac cpp flutter"><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_INVALID_ID"/></pt>
-                <pd props="mac cpp flutter">10:（仅 macOS 和 Windows）SDK 无法在视频设备列表中找到该视频设备。请检查视频设备 ID 是否有效。</pd>
+            <plentry props="cpp mac">
+                <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_DISCONNECTED"/></pt>
+                <pd>9: （仅支持 macOS）当前正在使用的视频采集设备已经断开连接（例如，被拔出）。</pd>
             </plentry>
-            <plentry props="android cpp flutter">
+            <plentry props="mac cpp flutter">
+                <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_INVALID_ID"/></pt>
+                <pd>10:<ph props="cpp flutter">（仅支持 macOS 和 Windows）</ph>>SDK 无法在视频设备列表中找到该视频设备。请检查视频设备 ID 是否有效。</pd>
+            </plentry>
+            <plentry props="android cpp mac flutter">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_MINIMIZED"/></pt>
-                <pd>11: 调用 <xref keyref="startScreenCaptureByWindowId"/> 方法共享窗口时，共享窗口处于最小化的状态。</pd>
+                <pd>11:（<ph props="cpp flutter">（仅支持 macOS）</ph>调用 <xref keyref="startScreenCaptureByWindowId"/> 方法共享窗口时，共享窗口处于最小化的状态。</pd>
             </plentry>
-            <plentry props="android cpp flutter">
+            <plentry props="android cpp mac flutter">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_CLOSED"/></pt>
                 <pd>
-                    <dl outputclass="since" props="rtc">
-                    <dlentry>
-                        <dt>自从</dt>
-                        <dd>v3.2.0</dd>
-                    </dlentry>
-                    </dl>
-                    <p>12: 该错误码表示通过窗口 ID 共享的窗口已关闭，或通过窗口 ID 共享的全屏窗口已退出全屏。
+                    <p>12: <ph props="cpp flutter">（仅支持 macOS）</ph>该错误码表示通过窗口 ID 共享的窗口已关闭，或通过窗口 ID 共享的全屏窗口已退出全屏。
  退出全屏模式后，远端用户将无法看到共享的窗口。为避免远端用户看到黑屏，Agora 建议你立即结束本次共享。</p>
                     <p>报告该错误码的常见场景：
-      
                     <ul>
                     <li>本地用户关闭共享的窗口时，SDK 会报告该错误码。</li>
                     <li>本地用户先放映幻灯片，然后共享放映中的幻灯片。结束放映时，SDK 会报告该错误码。</li>
@@ -83,13 +68,29 @@
                     </ul></p>
                 </pd>
             </plentry>
-            <plentry props="rtc">
-                <pt props="cpp flutter electron"><ph keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_OCCLUDED"/></pt>
-                <pd props="cpp flutter">13:（仅 Windows）待共享的窗口被其他窗口遮挡住，被遮挡住的部分在共享时会被 SDK 涂黑。</pd>
+            <plentry props="cpp flutter">
+                <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_OCCLUDED"/></pt>
+                <pd>13:（仅支持 Windows）待共享的窗口被其他窗口遮挡住，被遮挡住的部分在共享时会被 SDK 涂黑。</pd>
             </plentry>
-            <plentry props="rtc">
-                <pt props="cpp flutter electron"><ph keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_NOT_SUPPORTED"/></pt>
-                <pd props="cpp flutter">20:SDK 不支持共享该类型的窗口。</pd>
+            <plentry props="cpp flutter">
+                <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_NOT_SUPPORTED"/></pt>
+                <pd>20：SDK 不支持共享该类型的窗口。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_SYSTEM_PRESSURE"/></pt>
+                <pd>101: </pd>
+            </plentry>
+            <plentry props="ios">
+                <pt><ph keyref="AgoraLocalVideoStreamErrorExtensionCaptureStarted"/></pt>
+                <pd>13: 屏幕共享 Extension 进程开启。</pd>
+            </plentry>
+            <plentry props="ios">
+                <pt><ph keyref="AgoraLocalVideoStreamErrorExtensionCaptureStoped"/></pt>
+                <pd>14: 屏幕共享 Extension 进程结束。</pd>
+            </plentry>
+            <plentry props="ios">
+                <pt><ph keyref="AgoraLocalVideoStreamErrorExtensionCaptureDisconnected"/></pt>
+                <pd>15: 屏幕共享 Extension 进程异常退出。</pd>
             </plentry>
             </parml> </section>
     </refbody>
