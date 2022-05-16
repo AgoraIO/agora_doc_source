@@ -31,9 +31,9 @@ When a user logs in to the Agora Chat app, the Agora Chat server sends a callbac
 
 | Field | Data Type | Description |
 | --- | --- | --- |
-| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{uuid}`, among which `uuid` is randomly generated. |
+| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{uuid}`, where the value of `uuid` is randomly generated. |
 | `reason` | Object | The reason that triggers the callback. `login` indicates that a user logs in to the app. |
-| `security` | String | The signature in the callback request used to confirm whether this callback is sent from the Agora Chat server. The signature is the MD5 hash of the `{callId} + {secret} + {timestamp}` string, among which `secret` can be found on [Agora Console](https://console.agora.io/).|
+| `security` | String | The signature in the callback request used to confirm whether this callback is sent from the Agora Chat server. The signature is the MD5 hash of the `{callId} + {secret} + {timestamp}` string, where the value of `secret` can be found on [Agora Console](https://console.agora.io/).|
 | `os` | String | The operating system of the device. Valid values: `ios`, `android`, `linux`, `win`, and `other.` |
 | `ip` | String | The IP address of the user who logs in to the app. |
 | `host` | String | The domain name assigned by the Agora Chat service to access RESTful APIs. |
@@ -65,9 +65,9 @@ When a user logs out of the Agora Chat app, the Agora Chat server sends a callba
 
 | Field | Data Type | Description |
 | --- | --- | --- |
-| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{uuid}`, among which `uuid` is randomly generated. |
+| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{uuid}`, where the value of `uuid` is randomly generated. |
 | `reason` | Object | The reason that triggers the callback. `logout` indicates that a user logs out of the app. |
-| `security` | String | The signature in the callback request used to confirm whether this callback is sent from the Agora Chat server. The signature is the MD5 hash of the `{callId} + {secret} + {timestamp}` string, among which `secret` can be found on [Agora Console](https://console.agora.io/).|
+| `security` | String | The signature in the callback request used to confirm whether this callback is sent from the Agora Chat server. The signature is the MD5 hash of the `{callId} + {secret} + {timestamp}` string, where the value of `secret` can be found on [Agora Console](https://console.agora.io/).|
 | `os` | String | The operating system of the device. Valid values: `ios`, `android`, `linux`, `win`, and `other.` |
 | `ip` | String | The IP address of the user who logs out of the app. |
 | `host` | String | The domain name assigned by the Agora Chat service to access RESTful APIs. |
@@ -98,9 +98,9 @@ When a user logs out of the Agora Chat app due to being kicked out by another de
 
 | Field | Data Type | Description |
 | --- | --- | --- |
-| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{uuid}`, among which `uuid` is randomly generated. |
+| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{uuid}`, where the value of `uuid` is randomly generated. |
 | `reason` | Object | The reason that triggers the callback. `replaced` indicates that a user logs out of the app due to being kicked out by another device. |
-| `security` | String | The signature in the callback request used to confirm whether this callback is sent from the Agora Chat server. The signature is the MD5 hash of the `{callId} + {secret} + {timestamp}` string, among which `secret` can be found on [Agora Console](https://console.agora.io/).|
+| `security` | String | The signature in the callback request used to confirm whether this callback is sent from the Agora Chat server. The signature is the MD5 hash of the `{callId} + {secret} + {timestamp}` string, where the value of `secret` can be found on [Agora Console](https://console.agora.io/).|
 | `os` | String | The operating system of the device. Valid values: `ios`, `android`, `linux`, `win`, and `other.` |
 | `ip` | String | The IP address of the user. |
 | `host` | String | The domain name assigned by the Agora Chat service to access RESTful APIs. |
@@ -137,7 +137,7 @@ When a user sends a message in a one-to-one chat, chat group, or chat room of th
 
 | Field | Data Type | Description |
 | -- | -- | -- |
-| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{uuid}`, among which `uuid` is randomly generated. |
+| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{uuid}`, where the value of `uuid` is randomly generated. |
 | `eventType` | String | The message type of the callback. <ul><li>`chat`: Uplink messages. The messages that are about to be sent by the Agora Chat server to end devices.</li><li>`chat_offline`: Offline messages. The messages that are not sent by the Agora Chat server as end users are offline.</li></ul> |
 | `timestamp` | Long | The Unix timestamp when the Agora Chat server receives the callback event, in milliseconds. |
 | `chat_type` | String | The type of chat. <ul><li>`chat`: One-to-one chats.</li><li>`groupchat`: Chat groups and chat rooms.</li></ul> |
@@ -145,9 +145,9 @@ When a user sends a message in a one-to-one chat, chat group, or chat room of th
 | `from` | String | The sender of the message. |
 | `to`  | String | The recipient of the message. |
 | `msg_id` | String | The message ID of the callback event. This ID is the same as the `msg_id` when the message is sent. |
-| `payload` | Object | The structure of the callback event. This field varies according to the type of the message sent in a one-to-one chat, chat group, or chat room. See below for details. |
+| `payload` | Object | The structure of the callback event. This field varies according to the type of the message sent in a one-to-one chat, chat group, or chat room. See payload example below for details. |
 | `securityVersion` | String | This parameter is reserved for future use.  |
-| `security` | String | The signature in the callback request used to confirm whether this callback is sent from the Agora Chat server. The signature is the MD5 hash of the `{callId} + {secret} + {timestamp}` string, among which `secret` can be found on [Agora Console](https://console.agora.io/).|
+| `security` | String | The signature in the callback request used to confirm whether this callback is sent from the Agora Chat server. The signature is the MD5 hash of the `{callId} + {secret} + {timestamp}` string, where the value of `secret` can be found on [Agora Console](https://console.agora.io/).|
 | `appkey` | String | The key of the app. The unique identifier assigned to each app by the Agora Chat service. |
 | `host` | String | The domain name assigned by the Agora Chat service to access RESTful APIs. |
 
@@ -335,7 +335,7 @@ When a user sends a command message in a one-to-one chat, chat group, or chat ro
 | Field | Data Type | Description |
 | :------------ | :------- | :---------------------------------------- |
 | `msg`        | String   | The content of the command message.                                 |
-| `type`       | String   | The type of the message. `cmd` indicates command message. |
+| `type`       | String   | The type of the message. `cmd` indicates a command message. |
 
 #### Send a custom message
 
@@ -359,7 +359,7 @@ When a user sends a custom message in a one-to-one chat, chat group, or chat roo
 
 | Field | Data Type | Description |
 | --- | --- | --- |
-| `customExts` | Json | The attribute of the custom event, in the `Map<String, String>` forma. The attribute can contain a maximum of 16 elements. |
+| `customExts` | Json | The attribute of the custom event, in the `Map<String, String>` format. The attribute can contain a maximum of 16 elements. |
 | `customEvent`| String | The type of the custom event. The type can be 1 to 32 characters. |
 | `type`       | String   | The type of the message. `custom` indicates a custom message. |
 
@@ -391,7 +391,7 @@ When a user recalls a message in a one-to-one chat, chat group, or chat room of 
 
 | Field | Data Type | Description |
 | --- | --- | --- |
-| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{uuid}`, among which `uuid` is randomly generated. |
+| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{uuid}`, where the value of `uuid` is randomly generated. |
 | `eventType` | String | The message type of the callback. <ul><li>`chat`: Uplink messages. The messages that are about to be sent by the Agora Chat server to end devices.</li><li>`chat_offline`: Offline messages. The messages that are not sent by the Agora Chat server as the end user is offline.</li></ul> |
 | `timestamp` | Long | The Unix timestamp when the Agora Chat server receives the callback event, in milliseconds. |
 | `chat_type` | String | The type of chat. <ul><li>`chat`: One-to-one chats.</li><li>`groupchat`: Chat groups and chat rooms.</li></ul> |
@@ -402,7 +402,7 @@ When a user recalls a message in a one-to-one chat, chat group, or chat room of 
 | `msg_id` | String | The message ID of the callback event. This ID is the same as the `msg_id` when the end user sends the message. |
 | `payload` | Object | The structure of the callback event that contains the following fields:<ul><li>`ext`: The message extension. This field is empty when recalling a message.</li><li>`ack_message_id`: The ID of the message to recall. This ID is the same as `recall_id`. </li><li>`bodies`: The body of the message callback. This filed is empty when recalling a message.</ul> |
 | `securityVersion` | String | This parameter is reserved for future use.  |
-| `security` | String | The signature in the callback request used to confirm whether this callback is sent from the Agora Chat server. The signature is the MD5 hash of the `{callId} + {secret} + {timestamp}` string, among which `secret` can be found on [Agora Console](https://console.agora.io/).|
+| `security` | String | The signature in the callback request used to confirm whether this callback is sent from the Agora Chat server. The signature is the MD5 hash of the `{callId} + {secret} + {timestamp}` string, where the value of `secret` can be found on [Agora Console](https://console.agora.io/).|
 | `appkey` | String | The key of the app. The unique identifier assigned to each app by the Agora Chat service. |
 | `host` | String | The domain name assigned by the Agora Chat service to access RESTful APIs. |
 
@@ -432,16 +432,16 @@ When a user performs operations on a chat group or chat room in the Agora Chat a
 | Field | Data Type | Description |
 | --- | --- | --- |
 | `chat_type` | String | The type of the event. `muc` indicates a chat group or a chat room. |
-| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{uuid}`, among which `uuid` is randomly generated. |
+| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{uuid}`, where the value of `uuid` is randomly generated. |
 | `eventType` | String | The message type of the callback. <ul><li>`chat`: Uplink messages. The messages that are about to be sent by the Agora Chat server to end devices.</li><li>`chat_offline`: Offline messages. The messages that are not sent by the Agora Chat server as the end user is offline.</li></ul> |
 | `timestamp` | Long | The Unix timestamp when the Agora Chat server receives the callback event, in milliseconds. |
 | `group_id` | String | The ID of the chat group or chat room where the message resides. This field only exists if `chat_type` is set to `groupchat`. |
 | `from` | String | The sender of the message. |
 | `to`  | String | The recipient of the message. |
 | `msg_id` | String | The message ID of the callback event. This ID is the same as the `msg_id` when sending the message. |
-| `payload` | Object | The content structure of the callback event that contains the following fields: <ul><li>`muc_id`: The unique identifier of the chat group or chat room in the Agora Chat server, in the format of `{appkey}_{group_ID}@conference.easemob.com`. </li><li>`reason`: Optional. The detailed information about the current operation. See below for details.</li><li>`is_chatroom`: Whether this event occurs in a chat room.<ul><li>`true`: Yes.</li><li>`false`: No, this event occurs in a chat group.</li></ul><li>`operation`: The current operation. See below for details.</li><li>`status`: The status of the current operation.<ul><li>`description`: The status description.</li><li>`error_code`: The status code.</li></ul> |
+| `payload` | Object | The content structure of the callback event that contains the following fields: <ul><li>`muc_id`: The unique identifier of the chat group or chat room in the Agora Chat server, in the format of `{appkey}_{group_ID}@conference.easemob.com`. </li><li>`reason`: Optional. The detailed information about the current operation. See payload example below for details.</li><li>`is_chatroom`: Whether this event occurs in a chat room.<ul><li>`true`: Yes.</li><li>`false`: No, this event occurs in a chat group.</li></ul><li>`operation`: The current operation. See payload example below for details.</li><li>`status`: The status of the current operation.<ul><li>`description`: The status description.</li><li>`error_code`: The status code.</li></ul> |
 | `securityVersion` | String | This parameter is reserved for future use.  |
-| `security` | String | The signature in the callback request used to confirm whether this callback is sent from the Agora Chat server. The signature is the MD5 hash of the `{callId} + {secret} + {timestamp}` string, among which `secret` can be found on [Agora Console](https://console.agora.io/).|
+| `security` | String | The signature in the callback request used to confirm whether this callback is sent from the Agora Chat server. The signature is the MD5 hash of the `{callId} + {secret} + {timestamp}` string, where the value of `secret` can be found on [Agora Console](https://console.agora.io/).|
 | `appkey` | String | The key of the app. The unique identifier assigned to each app by the Agora Chat service. |
 | `host` | String | The domain name assigned by the Agora Chat service to access RESTful APIs. |
 
@@ -1050,14 +1050,14 @@ When a user performs operations on the contacts in the Agora Chat app, the Agora
 | Field | Data Type | Description |
 | --- | --- | --- |
 | `chat_type` | String | The type of the event. `roster` indicates an event occurred in user contacts. |
-| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{uuid}`, among which `uuid` is randomly generated. |
+| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{uuid}`, where the value of `uuid` is randomly generated. |
 | `eventType` | String | The message type of the callback. <ul><li>`chat`: Uplink messages. The messages that are about to be sent by the Agora Chat server to end devices.</li><li>`chat_offline`: Offline messages. The messages that are not sent by the Agora Chat server as the end user is offline.</li></ul> |
 | `timestamp` | Long | The Unix timestamp when the Agora Chat server receives the callback event, in milliseconds. |
 | `from` | String | The user who operates the contact. |
 | `to`  | String | The contact who is operated by the user. |
 | `msg_id` | String | The message ID of the callback event. This ID is the same as the `msg_id` when sending the message. |
-| `payload` | Object | The structure of the callback event. See below for details. |
-| `security` | String | The signature in the callback request used to confirm whether this callback is sent from the Agora Chat server. The signature is the MD5 hash of the `{callId} + {secret} + {timestamp}` string, among which `secret` can be found on [Agora Console](https://console.agora.io/).|
+| `payload` | Object | The structure of the callback event. See payload example below for details. |
+| `security` | String | The signature in the callback request used to confirm whether this callback is sent from the Agora Chat server. The signature is the MD5 hash of the `{callId} + {secret} + {timestamp}` string, where the value of `secret` can be found on [Agora Console](https://console.agora.io/).|
 | `appkey` | String | The key of the app. The unique identifier assigned to each app by the Agora Chat service. |
 | `host` | String | The domain name assigned by the Agora Chat service to access RESTful APIs. |
 
@@ -1090,7 +1090,7 @@ When a user removes a contact in the Agora Chat app, the Agora Chat server sends
 
 ### Accept a contact invitation
 
-When you accept the contact invitation from the other users, the Agora Chat server sends a callback to your app server. The sample code of the `payload` field is as follows:
+When a user accepts the contact invitation from another user, the Agora Chat server sends a callback to your app server. The sample code of the `payload` field is as follows:
 
 ```json
 "payload":
@@ -1102,7 +1102,7 @@ When you accept the contact invitation from the other users, the Agora Chat serv
 }
 ```
 
-When the other users accept the contact invitation from you, the Agora Chat server sends a callback to your app server. The sample code of the `payload` field is as follows:
+When another user accepts the contact invitation from a user, the Agora Chat server sends a callback to your app server. The sample code of the `payload` field is as follows:
 
 ```json
 "payload": { 
@@ -1115,7 +1115,7 @@ When the other users accept the contact invitation from you, the Agora Chat serv
 
 ### Decline a contact invitation
 
-When you decline the contact invitation from the other users, the Agora Chat server sends a callback to your app server. The sample code of the `payload` field is as follows:
+When a user declines the contact invitation from another user, the Agora Chat server sends a callback to your app server. The sample code of the `payload` field is as follows:
 
 ```json
 "payload":
@@ -1127,7 +1127,7 @@ When you decline the contact invitation from the other users, the Agora Chat ser
 }
 ```
 
-When the other users decline the contact invitation from you, the Agora Chat server sends a callback to your app server. The sample code of the `payload` field is as follows:
+When another user declines the contact invitation from a user, the Agora Chat server sends a callback to your app server. The sample code of the `payload` field is as follows:
 
 ```json
 "payload": { 
@@ -1196,9 +1196,9 @@ When a user sends an receipt, the Agora Chat server sends a callback to your app
 
 | Field | Data Type | Description |
 | :---------- | :------- | :----------------------------------------------------------- |
-| `chat_type` | String   | The type of the event. <ul><li>`read_ack`: The read receipts.</li><li>`delivery_ack`: The delivery receipts.</li></ul>                                        |
-| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{uuid}`, among which `uuid` is randomly generated. |
-| `security` | String | The signature in the callback request used to confirm whether this callback is sent from the Agora Chat server. The signature is the MD5 hash of the `{callId} + {secret} + {timestamp}` string, among which `secret` can be found on [Agora Console](https://console.agora.io/).|
+| `chat_type` | String   | The type of the event. <ul><li>`read_ack`: Read receipts.</li><li>`delivery_ack`: Delivery receipts.</li></ul>                                        |
+| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{uuid}`, where the value of `uuid` is randomly generated. |
+| `security` | String | The signature in the callback request used to confirm whether this callback is sent from the Agora Chat server. The signature is the MD5 hash of the `{callId} + {secret} + {timestamp}` string, where the value of `secret` can be found on [Agora Console](https://console.agora.io/).|
 | `payload`   | Object   | The structure of the callback event that contains the following fields:<ul><li>`ext`: The message extension field. </li><li>`ack_message_id`: The message ID of the receipt callback.</li><li>`bodies`: The message body.</li></ul> |
 | `host` | String | The domain name assigned by the Agora Chat service to access RESTful APIs. |
 | `appkey` | String | The key of the app. The unique identifier assigned to each app by the Agora Chat service. |
