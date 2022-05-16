@@ -731,29 +731,9 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 其中 `operation` 为当前操作，即 `presence`。
 
-### 成员离开群组或聊天室
+### 离开群组或聊天室
 
-当用户离开群组或聊天室时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
-
-```json
-"payload":
-{ 
-    "muc_id": "XXXX#XXXX173560762007553XXXX", 
-    "is_chatroom": false, 
-    "operation": "absence", 
-    "status":
-    { 
-        "description": "", 
-        "error_code": "ok" 
-    }
-}
-```
-
-其中 `operation` 为当前操作，即 `absence`。
-
-### 所有者离开聊天室
-
-当用户作为所有者离开聊天室时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户主动离开聊天室时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -770,6 +750,24 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 ```
 
 其中 `operation` 为当前操作，即 `leave`。
+
+当用户自愿或非自愿离开群组或聊天室时，Agora 即时通讯服务会向你的应用服务器发送离开的结果。其中 `payload` 示例如下：
+
+```json
+"payload":
+{ 
+    "muc_id": "XXXX#XXXX173560762007553XXXX", 
+    "is_chatroom": false, 
+    "operation": "absence", 
+    "status":
+    { 
+        "description": "", 
+        "error_code": "ok" 
+    }
+}
+```
+
+其中 `operation` 为当前操作，即 `absence`。
 
 ### 转让群主或所有者权限
 

@@ -606,24 +606,7 @@ When a user joins a chat group or chat room, the Agora Chat server sends a callb
 
 ### Leave a chat group or chat room
 
-When a member leaves a chat group or chat room, the Agora Chat server sends a callback to your app server. The sample code of the `payload` field is as follows:
-
-```json
-"payload":
-{ 
-    "muc_id": "XXXX#XXXX173560762007553XXXX", 
-    "is_chatroom": false, 
-    // "absence" indicates that the current operation is to leave a chat group or chat room.
-    "operation": "absence", 
-    "status":
-    { 
-        "description": "", 
-        "error_code": "ok" 
-    }
-}
-```
-
-When the owner leaves a chat room, the Agora Chat server sends a callback to your app server. The sample code of the `payload` field is as follows:
+When a member voluntarily leaves a group or chat room, the Agora Chat server sends a callback to your app server. The sample code of the `payload` field is as follows:
 
 ```json
 "payload":
@@ -632,6 +615,23 @@ When the owner leaves a chat room, the Agora Chat server sends a callback to you
     "is_chatroom": false, 
     // "leave" indicates that the current operation is to leave a chat room.
     "operation": "leave", 
+    "status":
+    { 
+        "description": "", 
+        "error_code": "ok" 
+    }
+}
+```
+
+When a member voluntarily or passively leaves a chat group or chat room, the Agora Chat server sends the leave result to your app server. The sample code of the `payload` field is as follows:
+
+```json
+"payload":
+{ 
+    "muc_id": "XXXX#XXXX173560762007553XXXX", 
+    "is_chatroom": false, 
+    // "absence" indicates the result of leaving a chat group or chat room.
+    "operation": "absence", 
     "status":
     { 
         "description": "", 
