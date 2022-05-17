@@ -121,7 +121,7 @@ SDKClient.Instance.Login(username: Username.text, pwdOrToken: Password.text, han
 ));
 ```
 
-### 5.发送消息
+### 5. 发送消息
 
 创建和发送文本消息，在 `SendMessageAction` 方法尾部添加以下代码：
 
@@ -137,7 +137,7 @@ SDKClient.Instance.ChatManager.SendMessage(ref msg, new CallBack(
 ));
 ```
 
-### 6.接收消息
+### 6. 接收消息
 
 接收消息需要对象继承 `IChatManagerDelegate`、实现相关的回调方法并将对象加入到监听列表中。具体步骤如下：
 
