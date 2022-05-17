@@ -6,14 +6,14 @@
 
 下图展示在客户端发送和接收单聊文本消息的工作流程。
 
-[![img](https://docs-im.easemob.com/_media/ccim/web/sendandreceivemsg.png?w=800&tok=54ca33)](https://docs-im.easemob.com/_detail/ccim/web/sendandreceivemsg.png?id=ccim%3Aandroid%3Amessage2)
+![](https://web-cdn.agora.io/docs-files/1652784221855)
 
 如上图所示，发送和接收单聊消息的步骤如下：
 
 1. 客户端向你的应用服务器请求 Token，你的应用服务器返回 Token。
-2. 客户端 A 和客户端 B 使用获得的 Token 登录环信即时通讯系统。
-3. 客户端 A 发送消息到环信即时通讯服务器。
-4. 环信即时通讯服务器将消息发送到客户端 B，客户端 B 接收消息。
+2. 客户端 A 和客户端 B 使用获得的 Token 登录 Agora 即时通讯系统。
+3. 客户端 A 发送消息到 Agora 即时通讯服务器。
+4. Agora 即时通讯服务器将消息发送到客户端 B，客户端 B 接收消息。
 
 ## 前提条件
 
@@ -32,7 +32,7 @@
 - Visual Studio IDE 2019 或以上
 - 有效的 [Agora 账户](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#%E5%88%9B%E5%BB%BA-agora-%E8%B4%A6%E5%8F%B7) 和 [App ID](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#%E5%88%9B%E5%BB%BA-agora-%E8%B4%A6%E5%8F%B7)
 
-<div class="alert note">如果你的网络环境部署了防火墙，请参考<a href="https://docs.agora.io/cn/Agora%20Platform/firewall?platform=Unity">应用企业防火墙限制</a>以正常使用 Agora 服务。</div>
+<div class="alert note">如果你的网络环境部署了防火墙，请参考 <a href="https://docs.agora.io/cn/Agora%20Platform/firewall?platform=Unity">应用企业防火墙限制</a> 以正常使用 Agora 服务。</div>
 
 ## 项目设置
 
@@ -237,19 +237,19 @@ SDKClient.Instance.ChatManager.RemoveChatManagerDelegate(this);
 
 接下来，你可以在该界面中进行下列操作：
 
-1. 注册用户  
+### 1. 注册用户  
 在 `user id` 文本框中输入用户 ID，在 `password` 文本框中输入密码，点击 **Sign up** 进行用户注册。创建两个用户 (例如 `local_user` 和 `remote_user`) 分别用于发送和接收消息。
 
-2. 用户登录  
+### 2. 用户登录  
 在 `user id` 文本框中输入用户 ID (例如 `local_user`),在 `password` 文本框中输入密码，点击 **Sign in** 登录。
 
-3. 发送消息  
+### 3. 发送消息  
 在 `single chat id` 文本框中输入消息接收方的用户 ID (例如 `remote_user`)，在 `message content` 文本框中输入要发送的文本内容 (例如 “hello world”)，点击 **Send** 发送消息。
 
-4. 退出登录  
+### 4. 退出登录  
 直接点击 **Sign out** 退出登录当前用户。
 
-5. 接收消息  
+### 5. 接收消息  
 在 `user id` 文本框中输入接收消息的用户 ID (例如 `remote_user`)，在 `password` 文本框输入密码，点击 **Sign in** 登录。登录成功后，下方会显示收到步骤 3 中发送的消息 (例如 “hello world”)。
 
 以上每一步操作均会在 log 中显示：
