@@ -1,0 +1,104 @@
+# Manage Chat Room Attributes
+
+Chat rooms enable real-time messaging among multiple users.
+
+This page shows how to use the Agora Chat SDK to manage the attributes of a chat room in your app.
+
+## Understand the tech
+
+The Agora Chat SDK provides the `Room`, `IRoomManager`, and `IRoomManagerDelegate` classes for chat room management, which allows you to implement the following features:
+
+- Retrieve and update the announcements of a chat room
+- Retrieve the attributes of a chat room
+- Update the name and description of a chat room
+
+## Prerequisites
+
+Before proceeding, ensure that you meet the following requirements:
+
+- You have initialized the Agora Chat SDK. For details, see [Get Started with Unity](https://docs-preprod.agora.io/en/agora-chat/agora_chat_get_started_unity).
+- You understand the call frequency limit of the Agora Chat APIs supported by different pricing plans as described in [Limitations](https://docs-preprod.agora.io/en/agora-chat/agora_chat_limitation_unity).
+- You understand the number of chat rooms supported by different pricing plans as described in [Pricing Plan Details](https://docs-preprod.agora.io/cn/agora-chat/agora_chat_plan).
+
+## Implementation
+
+This section describes how to call the APIs provided by the Agora Chat SDK to implement chat room features.
+
+### Retrieve the chat room announcements
+
+All the chat room members can call `FetchRoomAnnouncement` to retrieve the chat room announcements. 
+
+The following code sample shows how to retrieve the chat room announcements:
+
+```c#
+SDKClient.Instance.RoomManager.FetchRoomAnnouncement(roomId, new ValueCallBack<string>(
+  onSuccess: (str) => {
+  },
+  onError: (code, desc) => {
+  }
+));
+```
+
+### Update the chat room announcements
+
+Only the chat room owner and admins can call `UpdateRoomAnnouncement` to set and update the announcements. Once the chat room announcements are updated, all the chat room members receive the `OnAnnouncementChangedFromRoom` callback.
+
+The following code sample shows how to update the chat room announcements:
+
+```c#
+SDKClient.Instance.RoomManager.UpdateRoomAnnouncement(roomId, announcement, new CallBack(
+  onSuccess: () => {
+  },
+  onError: (code, desc) => {
+  }
+));
+```
+
+### Retrieve the chat room attributes
+
+All the users can call `FetchRoomInfoFromServer` to retrieve the attributes of the a chat room, including the name, description, the maximum number of members, and so on.
+
+The following code sample shows how to retrieve the chat room attributes:
+
+```c#
+SDKClient.Instance.RoomManager.FetchRoomInfoFromServer(roomId, new ValueCallBack<Room>(
+  onSuccess: (room) => {
+  },
+  onError: (code, desc) => {
+  }
+));
+```
+
+### Update the chat room name
+
+The chat room owner and admins can call `ChangeRoomName` to set and update the chat room name, whereas chat room members can only retrieve it.
+
+The following code sample shows how to update the chat room name:
+
+```c#
+SDKClient.Instance.RoomManager.ChangeRoomName(roomId, name, new CallBack(
+  onSuccess: () => {
+  },
+  onError: (code, desc) => {
+  }
+));
+```
+
+### Update the chat room description
+
+The chat room owner and admins can call `ChangeRoomDescription` to set and update the chat room description, whereas chat room members can only retrieve it.
+
+The following code sample shows how to update the chat room description:
+
+```c#
+SDKClient.Instance.RoomManager.ChangeRoomDescription(currentRoomId, description, new CallBack(
+  onSuccess: () => {
+  },
+  onError: (code, desc) => {
+  }
+));
+```
+
+### Listen for chat room events
+
+For details, see [Chat room events](https://docs-preprod.agora.io/en/null/agora_chat_chatroom_unity?platform=Unity#listen-for-chat-room-events).
