@@ -36,26 +36,24 @@
 
 ## 项目设置
 
-本节介绍如何设置项目，将 Agora 即时通讯 Unity SDK 集成你的项目中。
+本节介绍如何设置项目，将 Agora 即时通讯 Unity SDK 集成到你的项目中。
 
 ### 1. 下载并设置 Unity 示例项目
 
 1. 克隆 [Unity 示例项目仓库](https://github.com/easemob/chat_unity_demo) 至本地。
 
-2. 打开 Unity Hub，选择左侧 **Projects** 页签，点击 **Open** 右边的下拉菜单，选择 **Add project from disk**，然后选择 `chat_unity_demo/chat_unity_quickstart`，将本地示例项目添加至 Unity Hub。
+2. 打开 Unity Hub，选择左侧 **Projects** 页签，点击 **Open** 右边的下拉菜单，选择 **Add project from disk**，然后选择仓库本地路径中的 `chat_unity_quickstart` 文件夹，将示例项目添加至 Unity Hub。
 
-3. 在 **Projects** 列表中，单击 **chat_unity_quickstart** 打开项目。
+3. 在 **Projects** 列表中，点击 **chat_unity_quickstart** 打开项目。
 
 <div class="alert info">
 如果示例项目与本地 Unity Editor 版本不一致，你需要进行以下操作：
-<ul><li>在弹出的 **Editor version not installed** 提示框下方，选择 **Choose another Editor version**。</li>
-<li>在弹出的 **Select Editor version and platform** 窗口中，选择本地安装的 Editor 版本，并根据后续提示打开项目。</li></ul>
+<ul><ol>1. 在弹出的 <b>Editor version not installed</b> 提示框下方，选择 <b>Choose another Editor version</b>。</ol><ol>2. 在弹出的 <b>Select Editor version and platform</b> 窗口中，选择本地安装的 Editor 版本，并根据后续提示打开项目。</ol></ul>
 </div>
-
 
 ### 2. 集成 Agora 即时通讯 SDK
 
-1. 前往 [SDK 下载页面](https://docs-preprod.agora.io/en/agora-chat/downloads?platform=Unity)，下载最新版的 Agora 即时通讯 Unity SDK，然后解压。
+1. 前往 [SDK 下载页面](https://docs-preprod.agora.io/cn/agora-chat/downloads?platform=Unity)，下载最新版的 Agora 即时通讯 Unity SDK，然后解压。
 
 2. 在 Unity Editor 的顶部菜单栏中，选择 **Assets** > **Import Package** > **Custom Package...**，然后选择解压的 Agora 即时通讯 SDK。
 
@@ -86,7 +84,7 @@ var options = new Options(appKey: "APPKEY");
 SDKClient.Instance.InitWithOptions(options);
 ```
 <div class="alert info">
-本项目用于演示目的，在正式环境中，请使用你在 [Agora 控制台](https://console.agora.io/) 申请的 App ID。
+本项目用于演示目的，在正式环境中，请使用你在 <a href="https://console.agora.io/">Agora 控制台</a> 申请的 App ID。
 </div>
 
 ### 3. 注册账号
@@ -105,7 +103,7 @@ SDKClient.Instance.CreateAccount(username: Username.text, Password.text, handle:
 ```
 
 <div class="alert info">
-本项目用于演示目的，账号注册在客户端实现。在正式环境中，应使用服务器端调用 Restful API 进行注册，详见 [注册单个用户](https://docs-preprod.agora.io/cn/agora-chat/agora_chat_restful_registration?platform=RESTful#%E6%B3%A8%E5%86%8C%E5%8D%95%E4%B8%AA%E7%94%A8%E6%88%B7)。
+本项目用于演示目的，账号注册在客户端实现。在正式环境中，应使用服务器端调用 Restful API 进行注册，详见 <a href="https://docs-preprod.agora.io/cn/agora-chat/agora_chat_restful_registration?platform=RESTful#%E6%B3%A8%E5%86%8C%E5%8D%95%E4%B8%AA%E7%94%A8%E6%88%B7">注册单个用户</a>。
 </div>
 
 ### 4. 登录账号
@@ -151,7 +149,7 @@ public class TestCode : MonoBehaviour, IChatManagerDelegate
 
 2. 在 `TestCode` 类内部添加回调方法，示例代码如下：
 
-**注意**：本项目仅用于演示消息接收回调，其他回调无需实现，保留空函数即可。
+本项目仅用于演示消息接收回调，其他回调无需实现，保留空函数即可。
 
 ```c#
 public void OnMessagesReceived(List<Message> messages)
@@ -232,7 +230,7 @@ SDKClient.Instance.ChatManager.RemoveChatManagerDelegate(this);
 
 在 Unity Editor 中，选择 **Project** 页签，选择 **Assets** > **Scenes**，双击 **SampleScene** 场景文件，然后点击 Unity Editor 上方的 Play 按钮运行场景。
 
-**注意**：如果没有安装 iOS Build Support，在运行项目前，将 `Assets/ChatSDK/Scripts/Editor` 路径下的 `iOSBuildSetting.cs` 文件移出项目文件夹。
+<div class="alert info">如果没有安装 iOS Build Support，在运行项目前，将 `Assets/ChatSDK/Scripts/Editor` 路径下的 `iOSBuildSetting.cs` 文件移出项目文件夹。</div>
 
 如运行成功，你可以看到以下界面：
 ![](https://web-cdn.agora.io/docs-files/1652780330067) 
