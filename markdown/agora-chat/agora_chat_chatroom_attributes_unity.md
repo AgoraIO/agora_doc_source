@@ -6,9 +6,10 @@
 
 Agora Chat SDK 提供 `Room`、`IRoomManager` 和 `IRoomManagerDelegate` 类用于聊天室管理，支持你通过调用 API 在项目中实现如下功能：
 
-- 获取、修改聊天室公告
-- 获取聊天室基本信息
-- 修改聊天室名称及描述
+- 获取聊天室公告
+- 更新聊天室公告
+- 修改聊天室名称
+- 修改聊天室描述
 
 ## 前提条件
 
@@ -24,7 +25,7 @@ Agora Chat SDK 提供 `Room`、`IRoomManager` 和 `IRoomManagerDelegate` 类用�
 
 ### 获取聊天室公告
 
-聊天室所有成员均可以调用 `FetchRoomAnnouncement` 获取聊天室公告。
+聊天室所有成员均可以调用 `FetchRoomAnnouncement` 方法获取聊天室公告。
 
 示例代码如下：
 
@@ -39,7 +40,7 @@ SDKClient.Instance.RoomManager.FetchRoomAnnouncement(roomId, new ValueCallBack<s
 
 ### 修改聊天室公告
 
-仅聊天室所有者和管理员可以调用 `UpdateRoomAnnouncement` 设置和更新聊天室公告。公告更新后，其他聊天室成员收到 `OnAnnouncementChangedFromRoom` 回调。
+仅聊天室所有者和聊天室管理员可以调用 `UpdateRoomAnnouncement` 方法设置和更新聊天室公告。公告更新后，其他聊天室成员收到 `OnAnnouncementChangedFromRoom` 回调。
 
 示例代码如下：
 
@@ -52,24 +53,9 @@ SDKClient.Instance.RoomManager.UpdateRoomAnnouncement(roomId, announcement, new 
 ));
 ```
 
-### 获取聊天室基本信息
-
-用户可调用 `FetchRoomInfoFromServer` 获取聊天室的基本信息，包括聊天室 ID、聊天室名称，聊天室描述、聊天室公告、管理员列表、成员列表、黑名单列表、禁言列表、最大成员数、聊天室所有者、是否全员禁言以及聊天室权限类型。
-
-示例代码如下：
-
-```c#
-SDKClient.Instance.RoomManager.FetchRoomInfoFromServer(roomId, new ValueCallBack<Room>(
-  onSuccess: (room) => {
-  },
-  onError: (code, desc) => {
-  }
-));
-```
-
 ### 修改聊天室名称
 
-仅聊天室所有者和管理员可以调用 `ChangeRoomName` 设置和修改聊天室名称，聊天室成员可以获取聊天室名称。
+仅聊天室所有者和聊天室管理员可以调用 `ChangeRoomName` 方法设置和修改聊天室名称，聊天室成员可以获取聊天室名称。
 
 示例代码如下：
 
@@ -84,7 +70,7 @@ SDKClient.Instance.RoomManager.ChangeRoomName(roomId, name, new CallBack(
 
 ### 修改聊天室描述
 
-仅聊天室所有者和管理员可以调用 `ChangeRoomDescription` 设置和修改聊天室描述，聊天室成员可以获取聊天室描述。
+仅聊天室所有者和聊天室管理员可以调用 `ChangeRoomDescription` 方法设置和修改聊天室描述，聊天室成员可以获取聊天室描述。
 
 示例代码如下：
 

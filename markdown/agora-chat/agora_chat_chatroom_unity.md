@@ -10,6 +10,7 @@ Agora Chat SDK 提供 `Room`、`IRoomManager` 和 `IRoomManagerDelegate` 类用�
 
 - 创建、解散聊天室
 - 加入、退出聊天室
+- 获取聊天室详情
 - 从服务器获取聊天室列表
 - 监听聊天室事件
 
@@ -28,7 +29,7 @@ Agora Chat SDK 提供 `Room`、`IRoomManager` 和 `IRoomManagerDelegate` 类用�
 
 ### 创建聊天室
 
-仅 [超级管理员](https://docs-preprod.agora.io/cn/agora-chat/agora_chat_restful_chatroom_superadmin) 可以调用 `CreateRoom` 方法创建聊天室，并设置聊天室的主题、描述、最大人数等信息。成功创建聊天室后，该超级管理员为该聊天室的所有者。
+仅 [超级管理员](https://docs-preprod.agora.io/cn/agora-chat/agora_chat_restful_chatroom_superadmin) 可以调用 `CreateRoom` 方法创建聊天室，并设置聊天室的主题、描述、最大人数等信息。成功创建聊天室后，该超级管理员为聊天室所有者。
 
 示例代码如下：
 
@@ -43,7 +44,7 @@ SDKClient.Instance.RoomManager.CreateRoom(subject, description, welcomeMsg, maxU
 
 ### 解散聊天室
 
-仅聊天室所有者可以调用 `DestroyRoom` 解散聊天室。聊天室解散时，其他聊天室成员收到 `OnDestroyedFromRoom` 回调并被踢出聊天室。
+仅聊天室所有者可以调用 `DestroyRoom` 方法解散聊天室。聊天室解散时，其他聊天室成员收到 `OnDestroyedFromRoom` 回调并被踢出聊天室。
 
 示例代码如下：
 
@@ -58,7 +59,7 @@ SDKClient.Instance.RoomManager.DestroyRoom(roomId, new CallBack(
 
 ### 加入聊天室
 
-所有用户均可以调用 `JoinRoom` 加入指定聊天室。新成员加入聊天室时，其他成员收到 `OnMemberJoinedFromRoom` 回调。
+所有用户均可以调用 `JoinRoom` 方法加入指定聊天室。新成员加入聊天室时，其他成员收到 `OnMemberJoinedFromRoom` 回调。
 
 示例代码如下：
 
@@ -73,7 +74,7 @@ SDKClient.Instance.RoomManager.JoinRoom(roomId, new ValueCallBack<Room>(
 
 ### 退出聊天室
 
-聊天室所有成员均可以调用 `LeaveRoom` 退出指定聊天室。成员退出聊天室时，其他成员收到 `OnMemberExitedFromRoom` 回调。
+聊天室所有成员均可以调用 `LeaveRoom` 方法退出指定聊天室。成员退出聊天室时，其他成员收到 `OnMemberExitedFromRoom` 回调。
 
 示例代码如下：
 
@@ -95,13 +96,30 @@ Options options = new Options();
 options. DeleteMessagesAsExitRoom = false;
 ```
 
+### 获取聊天室详情
+
+用户可以调用 `FetchRoomInfoFromServer` 获取聊天室详情，包括聊天室 ID、聊天室名称，聊天室描述、聊天室公告、管理员列表、成员列表、黑名单列表、禁言列表、最大成员数、聊天室所有者、是否全员禁言以及聊天室权限类型。
+
+示例代码如下：
+
+```c#
+SDKClient.Instance.RoomManager.FetchRoomInfoFromServer(roomId, new ValueCallBack<Room>(
+  onSuccess: (room) => {
+  },
+  onError: (code, desc) => {
+  }
+));
+```
+
 ### 从服务器获取指定数目的聊天室
 
-用户可以调用 `FetchPublicRoomsFromServer` 从服务器获取指定数目的聊天室列表，每次最多 (`pageSize`) 可获取 `1,000` 个。
+用户可以调用 `FetchPublicRoomsFromServer` 方法从服务器获取指定数目的聊天室列表，每次最多可获取 1,000 个。
+
+示例代码如下：
 
 ```c#
 SDKClient.Instance.RoomManager.FetchPublicRoomsFromServer(pageNum, pageSize, handle: new ValueCallBack<PageResult<Room>>(
-  // rooms 是 PageResult<Room> 类型。
+  // rooms 是 PageResult<Room> 类型
   onSuccess: (rooms) => {
   },
   onError:(code, desc) => {
@@ -124,7 +142,7 @@ public class RoomManagerDelegate : IRoomManagerDelegate {
     }
     ......
 }
-// 注册聊天室回调。
+// 注册聊天室回调
 RoomManagerDelegate adelegate = new RoomManagerDelegate();
 SDKClient.Instance.RoomManager.AddRoomManagerDelegate(adelegate);
 
@@ -138,7 +156,7 @@ SDKClient.Instance.RoomManager.AddRoomManagerDelegate(adelegate);
 public interface IRoomManagerDelegate
     {
         /**
-        * 聊天室被解散。
+        * 聊天室解散
         * 
         * @param roomId        聊天室 ID
         * @param roomName      聊天室名称
@@ -146,7 +164,7 @@ public interface IRoomManagerDelegate
         */
         void OnDestroyedFromRoom(string roomId, string roomName);
         /**
-        * 聊天室加入新成员。
+        * 有新成员加入聊天室
         * 
         * @param roomId        聊天室 ID
         * @param participant   新成员的用户 ID
@@ -154,7 +172,7 @@ public interface IRoomManagerDelegate
         */
         void OnMemberJoinedFromRoom(string roomId, string participant);
         /**
-        * 聊天室成员主动退出。
+        * 有成员离开聊天室
         * 
         * @param roomId        聊天室 ID
         * @param roomName      聊天室名称
@@ -163,16 +181,16 @@ public interface IRoomManagerDelegate
         */
         void OnMemberExitedFromRoom(string roomId, string roomName, string participant);
         /**
-        * 聊天室成员被移除。
+        * 聊天室成员被移出群组
         *
         * @param roomId        聊天室 ID
         * @param roomName      聊天室名称
-        * @param participant   被移除成员的用户 ID
+        * @param participant   移出成员的用户 ID
         *
         */
         void OnRemovedFromRoom(string roomId, string roomName, string participant);
         /**
-        * 聊天室成员被禁言。
+        * 聊天室成员被禁言
         *
         * @param roomId        聊天室 ID
         * @param mutes         被禁言的用户 ID
@@ -181,7 +199,7 @@ public interface IRoomManagerDelegate
         */
         void OnMuteListAddedFromRoom(string roomId, List<string> mutes, long expireTime);
         /**
-        * 聊天室成员被解除禁言。
+        * 聊天室成员被解除禁言
         *
         * @param roomId        聊天室 ID
         * @param mutes         被解禁的用户 ID
@@ -189,7 +207,7 @@ public interface IRoomManagerDelegate
         */
         void OnMuteListRemovedFromRoom(string roomId, List<string> mutes);
         /**
-        * 聊天室成员被设为管理员权限。
+        * 聊天室成员被设为管理员权限
         *
         * @param roomId        聊天室 ID
         * @param admin         被设为管理员的用户 ID
@@ -197,7 +215,7 @@ public interface IRoomManagerDelegate
         */
         void OnAdminAddedFromRoom(string roomId, string admin);
         /**
-        * 聊天室成员被移除管理员权限。
+        * 聊天室成员被移除管理员权限
         *
         * @param  roomId       聊天室 ID
         * @param  admin        被移除管理员的用户 ID
@@ -205,7 +223,7 @@ public interface IRoomManagerDelegate
         */
         void OnAdminRemovedFromRoom(string roomId, string admin);
         /**
-        * 聊天室所有者转让聊天室所有权。
+        * 聊天室所有者转让聊天室所有权
         *
         * @param roomId        聊天室 ID
         * @param newOwner      新聊天室所有者的用户 ID
@@ -214,7 +232,7 @@ public interface IRoomManagerDelegate
         */
         void OnOwnerChangedFromRoom(string roomId, string newOwner, string oldOwner);
         /**
-        * 聊天室公告更新。
+        * 聊天室公告更新
         * @param roomId        聊天室 ID
         * @param announcement  更新的公告内容
         *

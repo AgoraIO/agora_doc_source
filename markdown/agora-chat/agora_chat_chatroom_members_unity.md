@@ -27,7 +27,7 @@ Agora Chat SDK 提供 `Room`、`IRoomManager` 和 `IRoomManagerDelegate` 类用�
 
 #### 将成员移出聊天室
 
-仅聊天室所有者和管理员可以调用 `DeleteRoomMembers` 将指定成员移出聊天室。被移出后，该成员会收到 `OnRemovedFromRoom` 回调，其他成员会收到 `OnMemberExitedFromRoom` 回调。被移出聊天室后，该用户还可以再次加入聊天室。
+仅聊天室所有者和聊天室管理员可以调用 `DeleteRoomMembers` 方法将指定成员移出聊天室。被移出后，该成员收到 `OnRemovedFromRoom` 回调，其他成员收到 `OnMemberExitedFromRoom` 回调。被移出聊天室后，该用户还可以再次加入聊天室。
 
 示例代码如下：
 
@@ -42,7 +42,7 @@ SDKClient.Instance.RoomManager.DeleteRoomMembers(roomId, members, new CallBack(
 
 #### 获取聊天室成员列表
 
-所有聊天室成员均可以调用 `FetchRoomMembers` 方法获取当前聊天室成员列表。
+所有聊天室成员均可以调用 `FetchRoomMembers` 方法获取当前聊天室的成员列表。
 
 示例代码如下：
 
@@ -58,11 +58,9 @@ SDKClient.Instance.RoomManager.FetchRoomMembers(roomId, cursor, pageSize, handle
 
 ### 管理聊天室黑名单
 
-#### 添加成员至聊天室黑名单
+#### 将成员加入聊天室黑名单
 
-仅聊天室所有者和管理员可以调用 `BlockRoomMembers` 将指定成员添加至黑名单。被加入黑名单后，该成员会收到 `OnRemovedFromRoom` 回调，其他成员会收到 `OnMemberExitedFromRoom` 回调。
-
-被加入黑名单后，该成员无法再收发聊天室消息，黑名单中的成员如需再次加入聊天室，聊天室所有者或管理员必须先将其移除黑名单。
+仅聊天室所有者和管理员可以调用 `BlockRoomMembers` 方法将指定成员添加至黑名单。被加入黑名单后，该成员收到 `OnRemovedFromRoom` 回调，其他成员收到 `OnMemberExitedFromRoom` 回调。被加入黑名单后，该成员无法再收发聊天室消息并被移出聊天室，黑名单中的成员如想再次加入聊天室，聊天室所有者或管理员必须先将其移除黑名单。
 
 示例代码如下：
 
@@ -79,7 +77,7 @@ SDKClient.Instance.RoomManager.BlockRoomMembers(roomId, members, new CallBack(
 
 #### 将成员移出聊天室黑名单
 
-仅聊天室所有者和管理员可以调用 `UnBlockRoomMembers` 将成员移出聊天室黑名单。
+仅聊天室所有者和管理员可以调用 `UnBlockRoomMembers` 方法将成员移出聊天室黑名单。
 
 示例代码如下：
 
@@ -94,7 +92,7 @@ SDKClient.Instance.RoomManager.UnBlockRoomMembers(roomId, members, new CallBack(
 
 #### 获取聊天室黑名单
 
-仅聊天室所有者和管理员可以调用 `FetchRoomBlockList` 获取当前聊天室黑名单。
+仅聊天室所有者和管理员可以调用 `FetchRoomBlockList` 方法获取当前聊天室黑名单。
 
 示例代码如下：
 
@@ -112,7 +110,7 @@ SDKClient.Instance.RoomManager.FetchRoomBlockList(roomId, pageNum, pageSize, han
 
 #### 添加成员至聊天室禁言列表
 
-仅聊天室所有者和管理员可以调用 `MuteRoomMembers` 将指定成员添加至禁言列表。被禁言后，该成员和聊天室管理员会收到 `OnMuteListAddedFromRoom` 回调。
+仅聊天室所有者和管理员可以调用 `MuteRoomMembers` 方法将指定成员添加至聊天室禁言列表。被禁言后，该成员和其他未操作的聊天室管理员或聊天室所有者收到 `OnMuteListAddedFromRoom` 回调。
 
 **注意**：聊天室所有者可禁言聊天室所有成员，聊天室管理员可禁言聊天室普通成员。
 
@@ -129,7 +127,7 @@ SDKClient.Instance.RoomManager.MuteRoomMembers(roomId, members, new CallBack(
 
 #### 将成员移出聊天室禁言列表
 
-仅聊天室所有者和管理员可以调用 `UnMuteRoomMembers` 将成员移出聊天室禁言列表。被解除禁言后，该成员和聊天室管理员会收到 `OnMuteListRemovedFromRoom` 回调。
+仅聊天室所有者和管理员可以调用 `UnMuteRoomMembers` 方法将成员移出聊天室禁言列表。被解除禁言后，该成员和其他未操作的聊天室管理员或聊天室所有者收到 `OnMuteListRemovedFromRoom` 回调。
 
 **注意**：聊天室所有者可对聊天室所有成员解除禁言，聊天室管理员可对聊天室普通成员解除禁言。
 
@@ -146,13 +144,13 @@ SDKClient.Instance.RoomManager.UnMuteRoomMembers(roomId, members, new CallBack(
 
 #### 获取聊天室禁言列表
 
-仅聊天室所有者和管理员可以调用 `FetchRoomMuteList` 获取当前聊天室的禁言列表。
+仅聊天室所有者和管理员可以调用 `FetchRoomMuteList` 方法获取当前聊天室的禁言列表。
 
 示例代码如下：
 
 ```c#
 SDKClient.Instance.RoomManager.FetchRoomMuteList(roomId, pageSize, pageNum, handle: new ValueCallBack<List<string>>(
-  // list 类型为 List<string>。
+  // list 类型为 List<string>
   onSuccess: (list) => {
   },
   onError: (code, desc) => {
@@ -164,7 +162,7 @@ SDKClient.Instance.RoomManager.FetchRoomMuteList(roomId, pageSize, pageNum, hand
 
 #### 转让聊天室所有者
 
-仅聊天室所有者可以调用 `ChangeRoomOwner` 将权限移交给聊天室中指定成员。成功移交后，原聊天室所有者变为聊天室成员，新的聊天室所有者和聊天室管理员会收到 `OnOwnerChangedFromRoom` 回调。
+仅聊天室所有者可以调用 `ChangeRoomOwner` 方法将权限移交给聊天室中指定成员。成功移交后，原聊天室所有者变为聊天室成员，新的聊天室所有者和聊天室管理员收到 `OnOwnerChangedFromRoom` 回调。
 
 示例代码如下：
 
@@ -179,7 +177,7 @@ SDKClient.Instance.RoomManager.ChangeRoomOwner(roomId, newOwner, new CallBack(
 
 #### 添加聊天室管理员
 
-仅聊天室所有者可以调用 `AddRoomAdmin` 添加聊天室管理员。成功添加后，新管理员及其他管理员会收到 `OnAdminAddedFromRoom` 回调。
+仅聊天室所有者可以调用 `AddRoomAdmin` 方法添加聊天室管理员。成功添加后，新管理员及其他管理员收到 `OnAdminAddedFromRoom` 回调。
 
 示例代码如下：
 
@@ -194,7 +192,7 @@ SDKClient.Instance.RoomManager.AddRoomAdmin(roomId, adminId, new CallBack(
 
 #### 移除聊天室管理员
 
-仅聊天室所有者可以调用 `RemoveRoomAdmin` 移除聊天室管理员。成功移除后，被移除的管理员及其他管理员会收到 `OnAdminRemovedFromRoom` 回调。
+仅聊天室所有者可以调用 `RemoveRoomAdmin` 方法移除聊天室管理员。成功移除后，被移除的管理员及其他管理员收到 `OnAdminRemovedFromRoom` 回调。
 
 示例代码如下：
 

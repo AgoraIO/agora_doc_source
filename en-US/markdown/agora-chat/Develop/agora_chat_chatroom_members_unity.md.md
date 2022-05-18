@@ -114,7 +114,7 @@ SDKClient.Instance.RoomManager.FetchRoomBlockList(roomId, pageNum, pageSize, han
 
 #### Add a member to the chat room mute list
 
-Only the chat room owner and admins can call `MuteRoomMembers` to add the specified member to the chat room mute list. Once added to the mute list, this member and all the admins receive the `OnMuteListAddedFromRoom` callback.
+Only the chat room owner and admins can call `MuteRoomMembers` to add the specified member to the chat room mute list. Once added to the mute list, this member and all the other chat room admins or owner receive the `OnMuteListAddedFromRoom` callback.
 
 **Note**: The chat room owner can mute chat room admins, whereas chat room admins can mute regular members.
 
@@ -131,7 +131,7 @@ SDKClient.Instance.RoomManager.MuteRoomMembers(roomId, members, new CallBack(
 
 #### Remove a member from the chat room mute list
 
-Only the chat room owner and admins can call `UnMuteRoomMembers` to remove the specified member from the chat room mute list. Once removed from the mute list, this member and all the admins receive the `OnMuteListRemovedFromRoom` callback.
+Only the chat room owner and admins can call `UnMuteRoomMembers` to remove the specified member from the chat room mute list. Once removed from the mute list, this member and all the other chat room admins or owner receive the `OnMuteListRemovedFromRoom` callback.
 
 **Note**: The chat room owner can unmute chat room admins, whereas chat room admins can unmute regular members.
 
