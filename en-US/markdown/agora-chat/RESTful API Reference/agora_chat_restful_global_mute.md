@@ -165,7 +165,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 ```shell
 curl -L -X GET 'https://XXXX/XXXX/XXXX/mutes/{username}' \
--H 'Authorization: Bearer {{token}}' \
+-H 'Authorization: Bearer {YourAppToken}' \
 -H 'Content-Type: application/json'
 ```
 
@@ -241,7 +241,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 ```shell
 curl -L -X GET 'https://XXXX/XXXX/XXXX/mutes?pageNum=1&pageSize=10' \
--H 'Authorization: Bearer {{token}}' \
+-H 'Authorization: Bearer {YourAppToken}' \
 -H 'Content-Type: application/json'
 ```
 

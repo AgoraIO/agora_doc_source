@@ -63,4 +63,4 @@ SDKClient.Instance.ChatManager.FetchHistoryMessagesFromServer(conversationId, ty
 
 After implementing retrieving messages, you can refer to the following documents to add more messaging functionalities to your app:
 
-- [Manage message receipts]()
+- [Message receipts]()

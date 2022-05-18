@@ -421,6 +421,6 @@ After implementing sending and receiving messages, you can refer to the followin
 
 - [Manage local messages]()
 - [Retrieve conversations and messages from the server]()
-- [Manage message receipts]()
+- [Message receipts]()
 
 
