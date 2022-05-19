@@ -39,10 +39,10 @@ Agora Chat SDK 提供 `Group`、`IGroupManager` 和 `IGroupManagerDelegate` 类�
   - 用户设置手动确认群组邀请 (`AutoAcceptGroupInvitation` 设置为 `false`)。受邀用户收到 `IGroupManagerDelegate#OnInvitationReceivedFromGroup` 回调，选择同意或拒绝入群邀请：
     - 用户同意入群邀请后，邀请人收到 `IGroupManagerDelegate#OnInvitationAcceptedFromGroup` 回调和 `IGroupManagerDelegate#OnMemberJoinedFromGroup` 回调，其他群成员收到 `IGroupManagerDelegate#OnMemberJoinedFromGroup` 回调；
     - 用户拒绝入群邀请后，邀请人收到 `IGroupManagerDelegate#OnInvitationDeclinedFromGroup` 回调。
-- 进群邀请无需用户确认 (`option.InviteNeedConfirm` 设置为 `false`)。邀请人发出邀请后，无视用户的 `IsAutoAcceptGroupInvitation` 设置，受邀用户直接进群。用户收到 `IGroupManagerDelegate#OnAutoAcceptInvitationFromGroup` 回调，邀请人收到 `IGroupManagerDelegate#OnInvitationAcceptedFromGroup` 回调和 `IGroupManagerDelegate#OnMemberJoinedFromGroup` 回调，其他群成员收到 `IGroupManagerDelegate#OnMemberJoinedFromGroup` 回调。
 
-API 时序图如下：
 ![](https://web-cdn.agora.io/docs-files/1652856319322)
+
+- 进群邀请无需用户确认 (`option.InviteNeedConfirm` 设置为 `false`)。邀请人发出邀请后，无视用户的 `IsAutoAcceptGroupInvitation` 设置，受邀用户直接进群。用户收到 `IGroupManagerDelegate#OnAutoAcceptInvitationFromGroup` 回调，邀请人收到 `IGroupManagerDelegate#OnInvitationAcceptedFromGroup` 回调和 `IGroupManagerDelegate#OnMemberJoinedFromGroup` 回调，其他群成员收到 `IGroupManagerDelegate#OnMemberJoinedFromGroup` 回调。
 
 示例代码如下：
 
