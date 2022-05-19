@@ -8,7 +8,7 @@ The basic usage flow of the FPA SDK is as follows:
 
 ![](https://web-cdn.agora.io/docs-files/1652695467904)
 
-### Prerequisites
+## Prerequisites
 
 - Create an FPA service, and get the chain ID, domain/IP of the origin site, and port of the FPA service. For details, see [Enable FPA Service](enable_fpa). Ensure that the FPA service you have created is in SDK acceleration mode.
 - Get the App ID. For details, see [Get the App ID](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#get-the-app-id).
