@@ -28,7 +28,7 @@ This section describes how to call the APIs provided by the Agora Chat SDK to im
 
 ### Remove a member from a chat room
 
-Only the chat room owner and admins can call `DeleteRoomMembers` to remove the specified member from a chat room. Once removed from the chat room, this member receives the `OnRemovedFromRoom` callback, while all the other members receive the `OnMemberExitedFromRoom`. After being removed from a chat room, this user can join the chat room again.
+Only the chat room owner and admins can call `DeleteRoomMembers` to remove the specified member from a chat room. Once removed from the chat room, this member receives the `OnRemovedFromRoom` callback, while all the other members receive the `OnMemberExitedFromRoom`. Users can join the chat room again after being removed.
 
 The following code sample shows how to remove a member from a chat room:
 
@@ -61,9 +61,7 @@ SDKClient.Instance.RoomManager.FetchRoomMembers(roomId, cursor, pageSize, handle
 
 #### Add a member to the chat room block list
 
-Only the chat room owner and admins can call `BlockRoomMembers` to add the specified member to the chat room block list. Once added to the block list, this member receives the `OnRemovedFromRoom` callback, while all the other members receive the `OnMemberExitedFromRoom`.
-
-After being added to block list, this user cannot send or receive messages in the chat room. They can no longer join the chat room again until being removed from the block list.
+Only the chat room owner and admins can call `BlockRoomMembers` to add the specified member to the chat room block list. Once added to the block list, this member receives the `OnRemovedFromRoom` callback, while all the other members receive the `OnMemberExitedFromRoom`. After being added to block list, this user cannot send or receive messages in the chat room nor can they join the chat room again.
 
 The following code sample shows how to add a member to the chat room block list:
 
@@ -180,7 +178,7 @@ SDKClient.Instance.RoomManager.ChangeRoomOwner(roomId, newOwner, new CallBack(
 
 #### Add a chat room admin
 
-Only the chat room owner can call `AddRoomAdmin` to add an admin. Once promoted to an admin, the new admin and all the other chat room admins receive the `OnAdminAddedFromRoom` callback.
+Only the chat room owner can call `AddRoomAdmin` to add an admin. Once promoted to an admin, the new admin and the other chat room admins receive the `OnAdminAddedFromRoom` callback.
 
 The following code sample shows how to add a chat room admin:
 
@@ -195,7 +193,7 @@ SDKClient.Instance.RoomManager.AddRoomAdmin(roomId, adminId, new CallBack(
 
 #### Remove a chat room admin
 
-Only the chat room owner can call `RemoveRoomAdmin` to remove an admin. Once demoted to a regular member, the original admin and all the other chat room admins receive the `OnAdminRemovedFromRoom` callback.
+Only the chat room owner can call `RemoveRoomAdmin` to remove an admin. Once demoted to a regular member, the original admin and the other chat room admins receive the `OnAdminRemovedFromRoom` callback.
 
 The following code sample shows how to remove a chat room admin:
 

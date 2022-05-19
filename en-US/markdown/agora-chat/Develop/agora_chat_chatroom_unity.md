@@ -31,7 +31,7 @@ This section describes how to call the APIs provided by the Agora Chat SDK to im
 
 ### Create a chat room
 
-Only the [app super admin](https://docs-preprod.agora.io/en/agora-chat/agora_chat_restful_chatroom_superadmin) can call `CreateRoom` to create a chat room and set the chat room attributes such as the chat room subject, description, and the maximum number of members. Once a chat room is created, the super admin automatically becomes the chat room owner.
+Only the [app super admin](https://docs-preprod.agora.io/en/agora-chat/agora_chat_restful_chatroom_superadmin) can call `CreateRoom` to create a chat room and set the chat room attributes such as the chat room name, description, and the maximum number of members. Once a chat room is created, the super admin automatically becomes the chat room owner.
 
 The following code sample shows how to create a chat room:
 
@@ -46,7 +46,7 @@ SDKClient.Instance.RoomManager.CreateRoom(subject, description, welcomeMsg, maxU
 
 ### Destroy a chat room
 
-Only the chat room owner can call `DestroyRoom` to disband a chat room. Once a chat room is disbanded, all the chat room members receive the `OnDestroyedFromRoom` callback and are immediately removed from the chat room.
+Only the chat room owner can call `DestroyRoom` to disband a chat room. Once a chat room is disbanded, all chat room members receive the `OnDestroyedFromRoom` callback and are immediately removed from the chat room.
 
 The following code sample shows how to destroy a chat room:
 
@@ -61,11 +61,25 @@ SDKClient.Instance.RoomManager.DestroyRoom(roomId, new CallBack(
 
 ### Join a chat room
 
-Users can call `JoinRoom` to join the specified chat room. Once a user joins a chat room, all the other chat room members receive the `OnMemberJoinedFromRoom` callback.
+Refer to the following steps to join a chat room:
+
+1. Call `FetchPublicRoomsFromServer` to retrieve the list of chat rooms from the server and locate the ID of the chat room that you want to join.
+
+2. Call `JoinRoom` to pass in the chat room ID and join the specified chat room. Once a user joins a chat room, all the other chat room members receive the `OnMemberJoinedFromRoom` callback.
 
 The following code sample shows how to join a chat room:
 
 ```c#
+// Retrieve the list of chat rooms from the server
+SDKClient.Instance.RoomManager.FetchPublicRoomsFromServer(handle: new ValueCallBack<PageResult<Room>>(
+            // `result` is of PageResult<Room> type
+            onSuccess: (result) => {
+            },
+            onError:(code, desc) => {
+            }
+        ));
+
+// Join a chat room
 SDKClient.Instance.RoomManager.JoinRoom(roomId, new ValueCallBack<Room>(
   onSuccess: (room) => {
   },
@@ -76,7 +90,7 @@ SDKClient.Instance.RoomManager.JoinRoom(roomId, new ValueCallBack<Room>(
 
 ### Leave a chat room
 
-Chat room members can call `LeaveRoom` to leave the specified chat room. Once a member leaves the chat room, all the other chat room members receive the `OnMemberExitedFromRoom` callback.
+All chat room members can call `LeaveRoom` to leave the specified chat room. Once a member leaves the chat room, all the other chat room members receive the `OnMemberExitedFromRoom` callback.
 
 The following code sample shows how to leave a chat room:
 
@@ -89,7 +103,7 @@ SDKClient.Instance.RoomManager.LeaveRoom(roomId, new CallBack(
 ));
 ```
 
-By default, after leaving a chat room, the SDK removes all chat room messages on the local device. If you do not want these messages removed, set `Options#DeleteMessagesAsExitRoom` to `false`.
+By default, after leaving a chat room, the Agora Chat SDK removes all chat room messages on the local device. If you do not want these messages removed, set `Options#DeleteMessagesAsExitRoom` to `false` when initializing the SDK.
 
 The following code sample shows how to retain the chat room messages after leaving a chat room:
 
@@ -100,7 +114,7 @@ options. DeleteMessagesAsExitRoom = false;
 
 ### Retrieve the chat room attributes
 
-Users can call `FetchRoomInfoFromServer` to retrieve the attributes of the a chat room, including the name, description, the maximum number of members, and so on.
+All chat room members can call `FetchRoomInfoFromServer` to retrieve the attributes of the a chat room, including the chat room ID, name, description, announcements, owner, admin list, member list, block list, mute list, maximum number of members, and whether all members are muted.
 
 The following code sample shows how to retrieve the chat room attributes:
 

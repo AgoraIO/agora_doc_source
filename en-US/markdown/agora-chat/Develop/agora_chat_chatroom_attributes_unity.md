@@ -42,7 +42,7 @@ SDKClient.Instance.RoomManager.FetchRoomAnnouncement(roomId, new ValueCallBack<s
 
 ### Update the chat room announcements
 
-Only the chat room owner and admins can call `UpdateRoomAnnouncement` to set and update the announcements. Once the chat room announcements are updated, all the other chat room members receive the `OnAnnouncementChangedFromRoom` callback.
+Only the chat room owner and admins can call `UpdateRoomAnnouncement` to set and update the announcements. The length of the chat room announcements can be a maximum of 512 characters. Once the chat room announcements are updated, all the other chat room members receive the `OnAnnouncementChangedFromRoom` callback.
 
 The following code sample shows how to update the chat room announcements:
 
@@ -57,7 +57,7 @@ SDKClient.Instance.RoomManager.UpdateRoomAnnouncement(roomId, announcement, new 
 
 ### Update the chat room name
 
-The chat room owner and admins can call `ChangeRoomName` to set and update the chat room name, whereas chat room members can only retrieve it.
+The chat room owner and admins can call `ChangeRoomName` to set and update the chat room name. The length of a chat room name can be a maximum of 128 characters.
 
 The following code sample shows how to update the chat room name:
 
@@ -72,7 +72,7 @@ SDKClient.Instance.RoomManager.ChangeRoomName(roomId, name, new CallBack(
 
 ### Update the chat room description
 
-The chat room owner and admins can call `ChangeRoomDescription` to set and update the chat room description, whereas chat room members can only retrieve it.
+The chat room owner and admins can call `ChangeRoomDescription` to set and update the chat room description. The length of a chat room description can be a maximum of 512 characters.
 
 The following code sample shows how to update the chat room description:
 

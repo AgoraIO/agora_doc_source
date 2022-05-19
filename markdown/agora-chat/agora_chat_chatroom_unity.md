@@ -29,7 +29,7 @@ Agora Chat SDK 提供 `Room`、`IRoomManager` 和 `IRoomManagerDelegate` 类用�
 
 ### 创建聊天室
 
-仅 [超级管理员](https://docs-preprod.agora.io/cn/agora-chat/agora_chat_restful_chatroom_superadmin) 可以调用 `CreateRoom` 方法创建聊天室，并设置聊天室的主题、描述、最大人数等信息。成功创建聊天室后，该超级管理员为聊天室所有者。
+仅 [超级管理员](https://docs-preprod.agora.io/cn/agora-chat/agora_chat_restful_chatroom_superadmin) 可以调用 `CreateRoom` 方法创建聊天室，并设置聊天室的名称、描述、最大人数等信息。成功创建聊天室后，该超级管理员为聊天室所有者。
 
 示例代码如下：
 
@@ -59,11 +59,25 @@ SDKClient.Instance.RoomManager.DestroyRoom(roomId, new CallBack(
 
 ### 加入聊天室
 
-所有用户均可以调用 `JoinRoom` 方法加入指定聊天室。新成员加入聊天室时，其他成员收到 `OnMemberJoinedFromRoom` 回调。
+用户申请加入聊天室的步骤如下：
+
+1. 调用 `FetchPublicRoomsFromServer` 方法从服务器获取聊天室列表，查询到想要加入的聊天室 ID。
+
+2. 调用 `JoinPublicGroup` 方法传入聊天室 ID，申请加入对应聊天室。新成员加入聊天室时，其他成员收到 `OnMemberJoinedFromRoom` 回调。
 
 示例代码如下：
 
 ```c#
+// 获取公开聊天室列表
+SDKClient.Instance.RoomManager.FetchPublicRoomsFromServer(handle: new ValueCallBack<PageResult<Room>>(
+            //result 为 PageResult<Room> 类型
+            onSuccess: (result) => {
+            },
+            onError:(code, desc) => {
+            }
+        ));
+
+// 申请加入聊天室
 SDKClient.Instance.RoomManager.JoinRoom(roomId, new ValueCallBack<Room>(
   onSuccess: (room) => {
   },
@@ -87,7 +101,7 @@ SDKClient.Instance.RoomManager.LeaveRoom(roomId, new CallBack(
 ));
 ```
 
-离开聊天室时，SDK 默认删除该聊天室的所有本地消息，若要保留这些消息，可将 `Options#DeleteMessagesAsExitRoom` 设置为 `false`。
+离开聊天室时，SDK 默认删除该聊天室的所有本地消息，若要保留这些消息，在初始化 SDK 时将 `Options#DeleteMessagesAsExitRoom` 设置为 `false`。
 
 示例代码如下：
 
@@ -98,7 +112,7 @@ options. DeleteMessagesAsExitRoom = false;
 
 ### 获取聊天室详情
 
-用户可以调用 `FetchRoomInfoFromServer` 获取聊天室详情，包括聊天室 ID、聊天室名称，聊天室描述、聊天室公告、管理员列表、成员列表、黑名单列表、禁言列表、最大成员数、聊天室所有者、是否全员禁言以及聊天室权限类型。
+聊天室成员可以调用 `FetchRoomInfoFromServer` 获取聊天室详情，包括聊天室 ID、聊天室名称，聊天室描述、聊天室公告、管理员列表、成员列表、黑名单列表、禁言列表、最大成员数、聊天室所有者、是否全员禁言以及聊天室权限类型。
 
 示例代码如下：
 
@@ -181,7 +195,7 @@ public interface IRoomManagerDelegate
         */
         void OnMemberExitedFromRoom(string roomId, string roomName, string participant);
         /**
-        * 聊天室成员被移出群组
+        * 聊天室成员被移出聊天室
         *
         * @param roomId        聊天室 ID
         * @param roomName      聊天室名称
