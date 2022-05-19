@@ -210,4 +210,4 @@ SDKClient.Instance.RoomManager.RemoveRoomAdmin(roomId, adminId, new CallBack(
 
 ### Listen for chat Room Events
 
-For details, see [Chat room events](https://docs-preprod.agora.io/en/null/agora_chat_chatroom_unity?platform=Unity#listen-for-chat-room-events).
+For details, see [Chat Room Events](https://docs-preprod.agora.io/en/null/agora_chat_chatroom_unity?platform=Unity#listen-for-chat-room-events).
