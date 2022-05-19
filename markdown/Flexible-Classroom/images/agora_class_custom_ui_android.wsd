@@ -1,0 +1,14 @@
+@startuml
+autonumber
+skinparam monochrome true
+participant "AgoraEduUI" as ui
+participant "AgoraEduContext" as context
+participant "AgoraEduHandler" as handler
+participant "AgoraEduCore" as core
+ui -> context: 调用 Context API
+context -> core: 调用 Core API
+core -> core: 内部处理
+core -> handler: 调用 Handler，抛出处理结果的回调
+handler -> ui: 将回调事件抛给监听该 Handler 的 UI 层
+@enduml
+

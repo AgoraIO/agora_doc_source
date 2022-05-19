@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_inviteuserlisttosubroom">
+    <title><ph keyref="inviteUserListToSubRoom"/></title>
+    <shortdesc id="short"><ph id="shortdesc">邀请用户加入子房间。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="inviteUserListToSubRoom"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-kotlin">abstract fun inviteUserListToSubRoom(
+        userList: List&lt;String>,
+        appId: String,
+        roomUuid: String,
+        groupUuid: String,
+        callback: HttpCallback&lt;HttpBaseRes&lt;String>>?
+)</codeblock>
+                <codeblock props="ios mac" outputclass="language-swift">void inviteUserListToSubRoom(Array&lt;String> userList,
+                             String subRoomUuid,
+                             Callback&lt;Void> success,
+                             Callback&lt;AgoraEduContextError> failure)</codeblock>
+                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="web" outputclass="language-typescript"/>
+            </p>
+        </section>
+        <section id="parameters"><title>参数</title>
+            <parml>
+                <plentry>
+                    <pt>userList</pt>
+                    <pd>用户 ID 列表。</pd>
+                </plentry>
+                <plentry>
+                    <pt>subRoomUuid</pt>
+                    <pd>子房间 ID。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>success</pt>
+                    <pd>调用成功。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>fail</pt>
+                    <pd><ph conkeyref="getLocalDeviceState/fail-desc"/></pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>
