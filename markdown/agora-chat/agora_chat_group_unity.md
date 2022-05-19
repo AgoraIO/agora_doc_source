@@ -64,7 +64,7 @@ SDKClient.Instance.GroupManager.CreateGroup(groupname, option, desc, members, ha
 ));
 ```
 
-### 解散群组
+### 解散群组 <a name="destroy"></a>
 
 仅群主可以调用 `DestroyGroup` 方法解散群组。群组解散时，其他群组成员收到 `OnDestroyedFromGroup` 回调并被踢出群组。
 
@@ -126,7 +126,7 @@ SDKClient.Instance.GroupManager.JoinPublicGroup(groupId, new CallBack(
 
 ### 退出群组
 
-群成员可以调用 `LeaveGroup` 方法退出群组，其他成员收到 `IGroupManagerDelegate#OnMemberExitedFromGroup` 回调。退出群组后，该用户将不再收到群消息。
+群成员可以调用 `LeaveGroup` 方法退出群组，其他成员收到 `IGroupManagerDelegate#OnMemberExitedFromGroup` 回调。退出群组后，该用户将不再收到群消息。群主不能调用该接口退出群组，只能调用 [`DestroyGroup`](#destroy) 解散群组。
 
 示例代码如下：
 
@@ -143,9 +143,9 @@ SDKClient.Instance.GroupManager.LeaveGroup(groupId, new CallBack(
 
 ### 获取群组详情
 
-用户可以调用 `GetGroupWithId` 方法从内存获取群组详情。返回结果包括：群组 ID、群组名称、群组描述、群组基本属性、群主、群组管理员列表，默认不包含群成员。
+群成员可以调用 `GetGroupWithId` 方法从内存获取群组详情。返回结果包括：群组 ID、群组名称、群组描述、群组基本属性、群主、群组管理员列表，默认不包含群成员。
 
-用户也可以调用 `GetGroupSpecificationFromServer` 方法从服务器获取群组详情。返回结果包括：群组 ID、群组名称、群组描述、群组基本属性、群主、群组管理员列表以及群成员列表。
+群成员也可以调用 `GetGroupSpecificationFromServer` 方法从服务器获取群组详情。返回结果包括：群组 ID、群组名称、群组描述、群主、群组管理员列表以及群成员列表。
 
 示例代码如下：
 
@@ -165,7 +165,7 @@ SDKClient.Instance.GroupManager.GetGroupSpecificationFromServer(groupId, new Val
 
 ### 获取群成员列表
 
-用户可以调用 `GetGroupMemberListFromServer` 方法从服务器分页获取群成员列表。
+群成员可以调用 `GetGroupMemberListFromServer` 方法从服务器分页获取群成员列表。
 
 示例代码如下：
 
@@ -245,9 +245,9 @@ SDKClient.Instance.GroupManager.UnBlockGroup(groupId, new CallBack(
 ));
 ```
 
-#### 检查用户是否屏蔽群消息
+#### 检查自己是否屏蔽群消息
 
-可以通过 `Group#MessageBlocked` 检查用户是否屏蔽了该群的群消息。使用此方法检查时，为了保证结果的准确性，需要先调用 `IGroupManager#GetGroupSpecificationFromServer` 方法从服务器获取群组详情。
+群成员可以调用 `IGroupManager#GetGroupSpecificationFromServer` 方法并通过 `Group#MessageBlocked` 字段检查自己是否屏蔽了群消息。
 
 示例代码如下：
 

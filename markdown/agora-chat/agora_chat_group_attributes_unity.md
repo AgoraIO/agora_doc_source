@@ -94,9 +94,11 @@ SDKClient.Instance.GroupManager.GetGroupAnnouncementFromServer(currentGroupId, n
 
 ### 管理共享文件
 
-#### 上传文件
+#### 上传共享文件
 
-所有群组成员均可以调用 `UploadGroupSharedFile` 方法上传共享文件至群组，示例代码如下：
+所有群组成员均可以调用 `UploadGroupSharedFile` 方法上传共享文件至群组，群共享文件大小限制为 10 MB。上传共享文件后，其他群成员收到 `IGroupManagerDelegate#OnSharedFileAddedFromGroup` 回调。
+
+示例代码如下：
 
 ```c#
 SDKClient.Instance.GroupManager.UploadGroupSharedFile(groupId, filePath, new CallBack(
@@ -109,9 +111,9 @@ SDKClient.Instance.GroupManager.UploadGroupSharedFile(groupId, filePath, new Cal
 ));
 ```
 
-#### 删除文件
+#### 删除共享文件
 
-所有群成员均可以调用 `DeleteGroupSharedFile` 方法删除群共享文件。群主和群管理员可删除全部的群共享文件，群成员只能删除自己上传的群文件。
+所有群成员均可以调用 `DeleteGroupSharedFile` 方法删除群共享文件。删除共享文件后，其他群成员收到 `IGroupManagerDelegate#OnSharedFileDeletedFromGroup` 回调。群主和群管理员可删除全部的群共享文件，群成员只能删除自己上传的群文件。
 
 示例代码如下：
 
@@ -126,7 +128,7 @@ SDKClient.Instance.GroupManager.DeleteGroupSharedFile(groupId, id, new CallBack(
 ));
 ```
 
-#### 从服务器获取文件
+#### 从服务器获取共享文件
 
 所有群成员均可以调用 `GetGroupFileListFromServer` 方法从服务器获取群组的共享文件列表。
 

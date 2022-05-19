@@ -61,7 +61,7 @@ SDKClient.Instance.GroupManager.AddGroupMembers(groupId, members, new CallBack(
 
 ### Remove a member from a chat group
 
-Only the chat group owner and admins can call `DeleteGroupMembers` to remove the specified member from a chat group. Once removed from the chat group, this member receives the `IGroupManagerDelegate#OnUserRemovedFromGroup` callback, while the other members receive the `IGroupManagerDelegate#OnMemberExitedFromGroup`. After being removed from a chat group, this user can join the chat group again.
+Only the chat group owner and admins can call `DeleteGroupMembers` to remove the specified member from a chat group. Once removed from the chat group, this member receives the `IGroupManagerDelegate#OnUserRemovedFromGroup` callback, while all the other members receive the `IGroupManagerDelegate#OnMemberExitedFromGroup`. Users can join the chat group again after being removed.
 
 The following code sample shows how to remove a member from a chat group:
 
@@ -80,7 +80,7 @@ SDKClient.Instance.GroupManager.DeleteGroupMembers(groupId, list, new CallBack (
 
 #### Transfer the chat group ownership
 
-Only the chat group owner can call `ChangeGroupOwner` to transfer the ownership to the specified chat group member. Once the ownership is transferred, the original chat group owner becomes a regular member. The other chat group members receive the `IGroupManagerDelegate#OnOwnerChangedFromGroup` callback.
+Only the chat group owner can call `ChangeGroupOwner` to transfer the ownership to the specified chat group member. Once the ownership is transferred, the original chat group owner becomes a regular member and all the other chat group members receive the `IGroupManagerDelegate#OnOwnerChangedFromGroup` callback.
 
 The following code sample shows how to transfer the chat group ownership:
 
@@ -133,7 +133,7 @@ SDKClient.Instance.GroupManager.RemoveGroupAdmin(groupId, adminId, new CallBack(
 
 #### Add a member to the chat group block list
 
-Only the chat group owner and admins can call `BlockGroupMembers` to add the specified member to the chat group block list. Once added to the block list, this member receives the `IGroupManagerDelegate#OnUserRemovedFromGroup` callback, while the other members receive the `IGroupManagerDelegate#OnMemberExitedFromGroup`. After being added to block list, this user cannot send or receive messages in the chat group. They can no longer join the chat group again until being removed from the block list.
+Only the chat group owner and admins can call `BlockGroupMembers` to add the specified member to the chat group block list. Once added to the block list, this member receives the `IGroupManagerDelegate#OnUserRemovedFromGroup` callback, while all the other members receive the `IGroupManagerDelegate#OnMemberExitedFromGroup`. After being added to block list, this user cannot send or receive messages in the chat group nor can they join the chat group again.
 
 The following code sample shows how to add a member to the chat group block list:
 
@@ -305,6 +305,8 @@ SDKClient.Instance.GroupManager.RemoveGroupWhiteList(groupId, members, new CallB
 #### Check whether a user is added to the allow list
 
 All chat group members can call `checkIfInGroupWhiteList` to check whether they are added to the chat group allow list.
+
+The following code sample shows how to check whether a user is added to the chat group allow list:
 
 ```c#
 public void checkIfInGroupWhiteList(final String groupId, EMValueCallBack<Boolean> callBack)

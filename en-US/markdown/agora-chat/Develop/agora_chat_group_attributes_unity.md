@@ -98,7 +98,7 @@ SDKClient.Instance.GroupManager.GetGroupAnnouncementFromServer(currentGroupId, n
 
 #### Upload chat group shared files
 
-All chat group members can call `UploadGroupSharedFile` to upload shared files to a chat group. Once shared files are uploaded, all the other chat group members receive the `IGroupManagerDelegate#OnSharedFileAddedFromGroup` callback.
+All chat group members can call `UploadGroupSharedFile` to upload shared files to a chat group. The file size can be a maximum of 10 MB. Once a shared file is uploaded, all the other chat group members receive the `IGroupManagerDelegate#OnSharedFileAddedFromGroup` callback.
 
 The following code sample shows how to upload chat group shared files:
 
@@ -115,7 +115,7 @@ SDKClient.Instance.GroupManager.UploadGroupSharedFile(groupId, filePath, new Cal
 
 #### Delete chat group shared files
 
-All chat group members can call `DeleteGroupSharedFile` to delete shared files in a chat group. Once shared files are deleted, chat group members receive the `IGroupManagerDelegate#OnSharedFileAddedFromGroup#OnSharedFileDeletedFromGroup` callback. The chat group owner and chat group admins can delete all of the shared files, whereas chat group members can only delete the shared files that they have personally uploaded.
+All chat group members can call `DeleteGroupSharedFile` to delete shared files in a chat group. Once a shared file is deleted, all the other chat group members receive the `IGroupManagerDelegate#OnSharedFileAddedFromGroup#OnSharedFileDeletedFromGroup` callback. The chat group owner and chat group admins can delete all of the shared files, whereas chat group members can only delete the shared files that they have personally uploaded.
 
 The following code sample shows how to delete chat group shared files:
 

@@ -42,9 +42,9 @@ Set `GroupStyle` and `inviteNeedConfirm` before creating a chat group.
 2. Whether group invitations require the consent from invitees (`inviteNeedConfirm`):
 
 - Yes (`option.InviteNeedConfirm` is set to `true`). After creating a group and sending group invitations, the subsequent logic varies based on whether an invitee automatically consents the group invitation (`AutoAcceptGroupInvitation`):
-  - Yes (`AutoAcceptGroupInvitation` is set to `true`). The invitee automatically joins the chat group and receives the `IGroupManagerDelegate#OnAutoAcceptInvitationFromGroup` callback, the chat group owner receives the `IGroupManagerDelegate#OnInvitationAcceptedFromGroup` and `IGroupManagerDelegate#OnMemberJoinedFromGroup` callbacks, and all the other chat group members receives the `IGroupManagerDelegate#OnMemberJoinedFromGroup` callback.
+  - Yes (`AutoAcceptGroupInvitation` is set to `true`). The invitee automatically joins the chat group and receives the `IGroupManagerDelegate#OnAutoAcceptInvitationFromGroup` callback, the chat group owner receives the `IGroupManagerDelegate#OnInvitationAcceptedFromGroup` and `IGroupManagerDelegate#OnMemberJoinedFromGroup` callbacks, and the other chat group members receives the `IGroupManagerDelegate#OnMemberJoinedFromGroup` callback.
   - No (`AutoAcceptGroupInvitation` is set to `false`). The invitee receives the `IGroupManagerDelegate#OnInvitationReceivedFromGroup` callback and choose whether to join the chat group:
-    - If the invitee accepts the group invitation, the chat group owner receives the `IGroupManagerDelegate#OnInvitationAcceptedFromGroup` and `IGroupManagerDelegate#OnMemberJoinedFromGroup` callbacks and all the other chat group members receive the `IGroupManagerDelegate#OnMemberJoinedFromGroup` callback;
+    - If the invitee accepts the group invitation, the chat group owner receives the `IGroupManagerDelegate#OnInvitationAcceptedFromGroup` and `IGroupManagerDelegate#OnMemberJoinedFromGroup` callbacks and the other chat group members receive the `IGroupManagerDelegate#OnMemberJoinedFromGroup` callback;
     - If the invitee declines the group invitation, the chat group owner receives the`IGroupManagerDelegate#OnInvitationDeclinedFromGroup` callback.
 
 ![](https://web-cdn.agora.io/docs-files/1652923565779)
@@ -68,9 +68,9 @@ SDKClient.Instance.GroupManager.CreateGroup(groupname, option, desc, members, ha
 
 ### Destroy a chat group
 
-Only the chat group owner can call `DestroyGroup` to disband a chat group. Once a chat group is disbanded, all the chat group members receive the `OnDestroyedFromGroup` callback and are immediately removed from the chat group.
+Only the chat group owner can call `DestroyGroup` to disband a chat group. Once a chat group is disbanded, all chat group members receive the `OnDestroyedFromGroup` callback and are immediately removed from the chat group.
 
-<div class="alert note">After a chat group is destroyed, all chat group data is deleted from the local database and memory.</div>
+<div class="alert note">Once a chat group is destroyed, all chat group data is deleted from the local database and memory.</div>
 
 The following code sample shows how to destroy a chat group:
 
@@ -89,14 +89,14 @@ SDKClient.Instance.GroupManager.DestroyGroup(groupId, new CallBack(
 
 The logic of joining a chat group varies according to the `GroupStyle` setting when [creating the chat group](https://docs-preprod.agora.io/en/agora-chat/agora_chat_group_unity?platform=Unity#create-a-chat-group):
 
-- If the group type is set to `PublicOpenJoin`, all users can join the chat group without the consent from the chat group owner and admins. All the other chat group members receive the `IGroupManagerDelegate#OnMemberJoinedFromGroup` callback;
-- If the group type is set to `PublicJoinNeedApproval`, users can send join requests to the chat group. The chat group owner and chat group admins receive the `IGroupManagerDelegate#OnRequestToJoinReceivedFromGroup` callback and choose whether to accept the join request:
+- If the `GroupStyle` is set to `PublicOpenJoin`, all users can join the chat group without the consent from the chat group owner and admins. Once a user joins a chat group, all chat group members receive the `IGroupManagerDelegate#OnMemberJoinedFromGroup` callback;
+- If the `GroupStyle` is set to `PublicJoinNeedApproval`, users can send join requests to the chat group. The chat group owner and chat group admins receive the `IGroupManagerDelegate#OnRequestToJoinReceivedFromGroup` callback and choose whether to accept the join request:
   - Once accepted, the user joins the chat group and receives the `IGroupManagerDelegate#OnRequestToJoinAcceptedFromGroup` callback, while all the other chat group members receive the `IGroupManagerDelegate#OnMemberJoinedFromGroup` callback;
   - Once declined, the user receives the `IGroupManagerDelegate#OnRequestToJoinDeclinedFromGroup` callback.
 
 <div class="alert info">Users can only request to join public groups, whereas private groups do not allow for join requests.</div>
 
-Refer to the following steps to join a chat group:
+Users can refer to the following steps to join a chat group:
 
 1. Call `FetchPublicGroupsFromServer` to retrieve the list of public groups from the server and locate the ID of the chat group that you want to join.
 
@@ -128,7 +128,7 @@ SDKClient.Instance.GroupManager.JoinPublicGroup(groupId, new CallBack(
 
 ### Leave a chat group
 
-All the chat group members can call `LeaveGroup` to leave the specified chat group. Once a member leaves the chat group, all the other chat group members receive the `IGroupManagerDelegate#OnMemberExitedFromGroup` callback.
+Chat group members can call `LeaveGroup` to leave the specified chat group, whereas the chat group owner cannot perform this operation. Once a member leaves a chat group, all the other chat group members receive the `IGroupManagerDelegate#OnMemberExitedFromGroup` callback. 
 
 The following code sample shows how to leave a chat group:
 
@@ -145,9 +145,9 @@ SDKClient.Instance.GroupManager.LeaveGroup(groupId, new CallBack(
 
 ### Retrieve the attributes of a chat group
 
-Users can call `GetGroupWithId` to retrieve the chat group attributes from memory, including the name, description, the maximum number of members, owner, and admins of a chat group.
+All chat group members can call `GetGroupWithId` to retrieve the chat group attributes from memory, including the chat group ID, name, description, owner, and admin list.
 
-Users can also call `GetGroupSpecificationFromServer` to retrieve the chat group attributes from the server, including the name, description, the maximum number of members, owner, admins, and members of a chat group.
+All chat group members can also call `GetGroupSpecificationFromServer` to retrieve the chat group attributes from the server, including the chat group ID, name, description, owner, admin list, and member list.
 
 The following code sample shows how to retrieve the chat group attributes:
 
@@ -167,7 +167,7 @@ SDKClient.Instance.GroupManager.GetGroupSpecificationFromServer(groupId, new Val
 
 ### Retrieve the chat group member list
 
-Users can call `GetGroupMemberListFromServer` to retrieve the chat group member list from the server.
+All chat group members can call `GetGroupMemberListFromServer` to retrieve the chat group member list from the server.
 
 The following code sample shows how to retrieve the chat group member list:
 
@@ -219,7 +219,7 @@ SDKClient.Instance.GroupManager.FetchPublicGroupsFromServer(pageSize, cursor, ha
 
 #### Block a chat group
 
-Chat group members can call `BlockGroup` to block a chat group. Once a chat group is blocked, a member no longer receives messages from the chat group. The chat group owner and admins cannot call this method.
+Chat group members can call `BlockGroup` to block a chat group, whereas the chat group owner and admins cannot perform this operation. Once a member blocks a chat group, this member can no longer receive messages from the chat group.
 
 The following code sample shows how to block a chat group:
 
@@ -253,7 +253,7 @@ SDKClient.Instance.GroupManager.UnBlockGroup(groupId, new CallBack(
 
 #### Check whether a user blocks a chat group
 
-The chat group owner and chat group admins can call `Group#MessageBlocked` to check whether a user blocks a chat group. To ensure the accuracy of results, call `IGroupManager#GetGroupSpecificationFromServer` first to retrieve the chat group attributes from the server.
+All chat group members can call `GetGroupSpecificationFromServer` to check whether they block a chat group according to the `Group#MessageBlocked` field.
 
 The following code sample shows how to check whether a user blocks a chat group:
 
