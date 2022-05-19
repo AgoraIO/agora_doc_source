@@ -61,7 +61,7 @@ SDKClient.Instance.GroupManager.ChangeGroupDescription(groupId, description, new
 
 ### Update the chat group announcements
 
-Only the chat group owner and admins can call `UpdateGroupAnnouncement` to set and update the announcements. Once the chat group announcements are updated, all the other chat room members receive the `IGroupManagerDelegate#OnAnnouncementChangedFromGroup` callback. The length of chat group announcements can be a maximum of 512 characters.
+Only the chat group owner and admins can call `UpdateGroupAnnouncement` to set and update the announcements. Once the chat group announcements are updated, all the other chat group members receive the `IGroupManagerDelegate#OnAnnouncementChangedFromGroup` callback. The length of chat group announcements can be a maximum of 512 characters.
 
 The following code sample shows how to update the chat group announcements:
 
