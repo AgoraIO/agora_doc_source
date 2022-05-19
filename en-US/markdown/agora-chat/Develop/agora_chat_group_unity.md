@@ -167,9 +167,9 @@ SDKClient.Instance.GroupManager.GetGroupSpecificationFromServer(groupId, new Val
 
 ### Retrieve the chat group member list
 
-用户可以调用 `GetGroupMemberListFromServer` 方法从服务器分页获取群成员列表。
+Users can call `GetGroupMemberListFromServer` to retrieve the chat group member list from the server.
 
-示例代码如下：
+The following code sample shows how to retrieve the chat group member list:
 
 ```c#
 SDKClient.Instance.GroupManager.GetGroupMemberListFromServer(groupId, pageSize, cursor, handle: new ValueCallBack<CursorResult<string>>(
