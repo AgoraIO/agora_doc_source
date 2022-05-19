@@ -76,7 +76,7 @@ Add the following network permissions after `</application>` in the `/app/manife
 <uses-permission android:name="android.permission.INTERNET" />
 ```
 
-<a id="init-start"></a>
+<a id="init_sdk"></a>
 
 ## Initialize the SDK and start the FPA service
 
@@ -158,21 +158,21 @@ This section takes the OkHttp library as an example to process HTTP requests and
 
 ### Prerequisites
 
-- You have completed the SDK initialization and started the FPA service. For details, see Initialize the SDK and start the FPA service.
+- You have completed the SDK initialization and started the FPA service. For details, see <a href="#init_sdk">Initialize the SDK and start the FPA service</a>.
 - You have integrated [OkHttp Library](https://square.github.io/okhttp/) in your Android project.
 
 ### Implementation steps
 
-1. Call the `setorUpdateHttpProxyChainConfig` method to set the mapping table of the origin IP address or domain name to the chain ID. Call the `setListener` method to set the proxy event callback listener:
+1. Call the `setOrUpdateHttpProxyChainConfig` method to set the mapping table of the origin IP address or domain name to the chain ID. Call the `setListener` method to set the proxy event callback listener:
 
     ```java
     FpaHttpProxyChainConfig.Builder builder = new FpaHttpProxyChainConfig.Builder();
-    // Set the chain ID of the FPA service, such as 123
-    // Set the origin IP address or domain name
-    // Set the origin port, such as 80
-    // Set whether to allow this acceleration channel to fall back to the local connection when the FPA proxy connection fails
+    // Sets the chain ID of the FPA service, such as 123
+    // Sets the origin IP address or domain name
+    // Sets the origin port, such as 80
+    // Sets whether to allow this acceleration channel to fall back to the local connection when the FPA proxy connection fails
     builder.addChainInfo(123, "<Your IP or domain>", 80, true)
-        // Set whether to roll back to a local connection if the HTTP local agent cannot find the chain ID corresponding to the source site in the FPA SDK
+        // Sets whether to roll back to a local connection if the HTTP local agent cannot find the chain ID corresponding to the source site in the FPA SDK
     .fallbackWhenNoChainAvailable(true);
     FpaProxyService.getInstance().setOrUpdateHttpProxyChainConfig(builder.build());
     ```
@@ -182,11 +182,11 @@ This section takes the OkHttp library as an example to process HTTP requests and
     The life cycle of the `FpaProxyService` object and the `okhttpClient` object are bound. If you call `stop` to destroy the created `FpaProxyService` instance, the `FpaProxyService` bound to the `okHttpClient` cannot send HTTP requests to the FPA service.
 
     ```java
-    // Create an OkHttpClient object based on the OkHttpClient class
+    // Creates an OkHttpClient object based on the OkHttpClient class
     okHttpClient = new OkHttpClient.Builder()
         .readTimeout(300,TimeUnit.SECONDS)
         .writeTimeout(300,TimeUnit.SECONDS)
-        // Bind the okHttpClient object to the internal HTTP proxy provided by FpaProxyService. In the production environment, Agora recommends that you add logic here to avoid FPA proxy when getHttpProxyPort()<=0
+        // Binds the okHttpClient object to the internal HTTP proxy provided by FpaProxyService. In the production environment, Agora recommends that you add logic here to avoid FPA proxy when getHttpProxyPort()<=0
         .proxy(new Proxy(HTTP, new InetSocketAddress("127.0.0.1", FpaProxyService.getInstance().getHttpProxyPort())))
         .build();
     ```
@@ -195,7 +195,7 @@ This section takes the OkHttp library as an example to process HTTP requests and
 
     ```java
     okHttpClient  = oldOkHttpClient.newBuilder()
-                 // Register the internal HTTP proxy provided by the FpaProxyService object
+                 // Registers the internal HTTP proxy provided by the FpaProxyService object
                  .proxy(new Proxy(HTTP, new InetSocketAddress("127.0.0.1", FpaProxyService.getInstance().getHttpProxyPort())))
                  .build();
     ```
@@ -228,16 +228,16 @@ You have completed the SDK initialization and enabled the FPA service. For detai
 1. Call the `getTransparentProxyPort` method to get the transparent proxy port.
 
     ```java
-    // Set the chain ID of the FPA service, such as 123
+    // Sets the chain ID of the FPA service, such as 123
     int chainId = 123;
-    // Set the origin site domain name or IP
+    // Sets the origin site domain name or IP
     String address = "<Your domain or IP>";
-    // Set the origin port via the port parameter, such as 30103
+    // Sets the origin port via the port parameter, such as 30103
     int port = 30103;
-    // Set whether to allow this acceleration channel to fall back to the local connection when the FPA proxy connection fails
+    // Sets whether to allow this acceleration channel to fall back to the local connection when the FPA proxy connection fails
     boolean enableFallback = true;
     FpaChainInfo chainInfo = new FpaChainInfo(chainId, address, port, enableFallback);
-    // Call getTransparentProxyPort to get the port of the transparent proxy
+    // Calls getTransparentProxyPort to get the port of the transparent proxy
     // In the production environment, Agora recommends that you add logic here to avoid FPA proxy when t_port <= 0
     int t_port = FpaProxyService.getInstance().getTransparentProxyPort(chainInfo);
     ```
@@ -262,7 +262,7 @@ The following steps use Gradle as an example to manually copying SDK files for i
 1. In the [SDK Download](https://docs.agora.io/cn/global-accelerator/downloads) page, download the latest version of the Agora FPA SDK, and unzip it. Copy the following files and subfolders from the SDK package to your Android project path:
 
     | file or subfolder | project path |
-    | --------- | ------------ | 
+    | --------- | ------------ |
     |`jar` file | `/app/libs/` |
     |`arm-v8a` folder | `/app/src/main/jniLibs/` |
     |`armeabi-v7a` folder | `/app/src/main/jnilibs/` |
@@ -333,7 +333,7 @@ Once you have successfully used the token for acceleration, the FPA service base
 
 ### Build Example
 
-The following C++ sample code shows how to generate an FPA token using the FpaTokenBuilder class.
+The following C++ sample code shows how to generate an FPA token using the `FpaTokenBuilder` class.
 
 ```c++
 #include <iostream>
