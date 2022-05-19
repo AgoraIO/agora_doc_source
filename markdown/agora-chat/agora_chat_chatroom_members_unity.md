@@ -6,6 +6,7 @@
 
 Agora Chat SDK 提供 `Room`、`IRoomManager` 和 `IRoomManagerDelegate` 类用于聊天室管理，支持你通过调用 API 在项目中实现如下功能：
 
+- 将成员移除聊天室
 - 获取聊天室成员列表
 - 管理聊天室黑名单
 - 管理聊天室禁言列表
@@ -23,9 +24,7 @@ Agora Chat SDK 提供 `Room`、`IRoomManager` 和 `IRoomManagerDelegate` 类用�
 
 本节介绍如何使用 Agora Chat SDK 提供的 API 实现上述功能。
 
-### 管理聊天室成员
-
-#### 将成员移出聊天室
+### 将成员移出聊天室
 
 仅聊天室所有者和聊天室管理员可以调用 `DeleteRoomMembers` 方法将指定成员移出聊天室。被移出后，该成员收到 `OnRemovedFromRoom` 回调，其他成员收到 `OnMemberExitedFromRoom` 回调。被移出聊天室后，该用户还可以再次加入聊天室。
 
@@ -40,7 +39,7 @@ SDKClient.Instance.RoomManager.DeleteRoomMembers(roomId, members, new CallBack(
 ));
 ```
 
-#### 获取聊天室成员列表
+### 获取聊天室成员列表
 
 所有聊天室成员均可以调用 `FetchRoomMembers` 方法获取当前聊天室的成员列表。
 

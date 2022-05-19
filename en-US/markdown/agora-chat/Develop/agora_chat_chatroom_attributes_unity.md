@@ -8,9 +8,10 @@ This page shows how to use the Agora Chat SDK to manage the attributes of a chat
 
 The Agora Chat SDK provides the `Room`, `IRoomManager`, and `IRoomManagerDelegate` classes for chat room management, which allows you to implement the following features:
 
-- Retrieve and update the announcements of a chat room
-- Retrieve the attributes of a chat room
-- Update the name and description of a chat room
+- Retrieve the announcements of a chat room
+- Update the announcements of a chat room
+- Update the name of a chat room
+- Update the description of a chat room
 
 ## Prerequisites
 
@@ -26,7 +27,7 @@ This section describes how to call the APIs provided by the Agora Chat SDK to im
 
 ### Retrieve the chat room announcements
 
-All the chat room members can call `FetchRoomAnnouncement` to retrieve the chat room announcements. 
+All chat room members can call `FetchRoomAnnouncement` to retrieve the chat room announcements. 
 
 The following code sample shows how to retrieve the chat room announcements:
 
@@ -41,28 +42,13 @@ SDKClient.Instance.RoomManager.FetchRoomAnnouncement(roomId, new ValueCallBack<s
 
 ### Update the chat room announcements
 
-Only the chat room owner and admins can call `UpdateRoomAnnouncement` to set and update the announcements. Once the chat room announcements are updated, all the chat room members receive the `OnAnnouncementChangedFromRoom` callback.
+Only the chat room owner and admins can call `UpdateRoomAnnouncement` to set and update the announcements. Once the chat room announcements are updated, all the other chat room members receive the `OnAnnouncementChangedFromRoom` callback.
 
 The following code sample shows how to update the chat room announcements:
 
 ```c#
 SDKClient.Instance.RoomManager.UpdateRoomAnnouncement(roomId, announcement, new CallBack(
   onSuccess: () => {
-  },
-  onError: (code, desc) => {
-  }
-));
-```
-
-### Retrieve the chat room attributes
-
-All the users can call `FetchRoomInfoFromServer` to retrieve the attributes of the a chat room, including the name, description, the maximum number of members, and so on.
-
-The following code sample shows how to retrieve the chat room attributes:
-
-```c#
-SDKClient.Instance.RoomManager.FetchRoomInfoFromServer(roomId, new ValueCallBack<Room>(
-  onSuccess: (room) => {
   },
   onError: (code, desc) => {
   }
@@ -101,4 +87,4 @@ SDKClient.Instance.RoomManager.ChangeRoomDescription(currentRoomId, description,
 
 ### Listen for chat room events
 
-For details, see [Chat room events](https://docs-preprod.agora.io/en/null/agora_chat_chatroom_unity?platform=Unity#listen-for-chat-room-events).
+For details, see [Chat Room Events](https://docs-preprod.agora.io/en/null/agora_chat_chatroom_unity?platform=Unity#listen-for-chat-room-events).
