@@ -60,22 +60,24 @@
 
         val config = AgoraEduLaunchConfig(
             "xiaoming", // 用户名。
-            "xiaoming2", // 用户 ID。最后一位数字 2 表示学生。
+            "xiaoming2", // 用户 ID。
             "agoraclass", // 房间名。
-            "agoraclass4", // 房间 ID。最后一位数字代表房间类型：0 为 一对一，2 为大班课，4 为小班课。
+            "agoraclass4", // 房间 ID。
             2,  // 用户角色：1 为老师，2 为学生。
-            4,  // 房间类型：0 为 一对一，2 为大班课，4 为小班课。
+            4,  // 房间类型：0 为一对一，2 为大班课，4 为小班课。
             rtmToken,
-            System.currentTimeMillis(), // 课堂开始时间。
-            1800L, // 课堂持续时长。
-            AgoraEduRegion.cn, // 区域。
+            System.currentTimeMillis(), // 默认上课开始时间。
+            1800L, // 上课持续时长。
+            AgoraEduRegion.cn, // 默认区域。
             null,
             null,
-            streamState, //用户上台默认是否发流： 1 为是，0 为 否
+            streamState, // 用户上台默认是否发流： 1 为是，0 为 否
             AgoraEduLatencyLevel.AgoraEduLatencyLevelUltraLow, // 默认延时等级
             null,
             null
         )
+
+        config.appId = appId
         AgoraClassroomSDK.setConfig(AgoraClassSdkConfig(appId))
         AgoraClassroomSDK.launch(this, config, AgoraEduLaunchCallback { event ->
             Log.e(TAG, ":launch-课堂状态:" + event.name)

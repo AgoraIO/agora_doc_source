@@ -1,96 +1,94 @@
 ## UI 组件介绍
 
+灵动课堂的 UI 组件可分为功能组件、业务组件和场景组件三种。
+
 ### 功能组件
 
-功能组件指灵动课堂中最基础、不和业务逻辑绑定的 UI 组件，例如 `Button`、`Modal`、`Select`。功能组件维护一个功能的内部状态和逻辑，例如 `Tree` 组件有展开和关闭的逻辑状态。
+功能组件是灵动课堂中最基础的 UI 组件，不和业务逻辑绑定。一个功能组件维护一个功能的内部状态和逻辑，例如 `Button`、`Modal`、`Select`、 `Tree` 等。
 
-灵动课堂的功能组件在 `agora-scenario-ui-kit` 目录下，采用的架构是`react`+`ts`+`storybook`。每个功能组件文件夹均包含以下三个文件：
+功能组件在 `agora-scenario-ui-kit` 目录下，采用 `react`+`ts`+`storybook` 架构。每个功能组件文件夹均包含以下三个文件：
 
 -   `.tsx`: 实现 UI 组件的功能。
 -   `.css`: 实现 UI 组件的样式。
--   `.stories.tsx`: 用于 UI 组件在 Storybook 中的预览和调试。
-
-开发者可通过 `yarn dev:ui-kit ` 或 `npm run dev:ui-kit` 命令启动项目，在 Storybook 中查看各功能组件。
+-   `.stories.tsx`: 用于 UI 组件在 Storybook 中的预览和调试。开发者可通过 `yarn dev:ui-kit ` 或 `npm run dev:ui-kit` 命令启动项目，在 Storybook 中查看各功能组件。
 
 下表详细介绍灵动课堂中使用的功能组件：
 
-| 文件夹          | 对应的功能组件                                                                                                                                                                               |
-| :-------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `/affix`        | 固钉：用于将页面元素钉在可视范围。                                                                                                                                                           |
-| `/biz-header`   | 教室内头部导航栏。                                                                                                                                                                           |
-| `/button`       | 按钮组件。                                                                                                                                                                                   |
-| `/calendar`     | 日历组件。                                                                                                                                                                                   |
-| `/card`         | 通用卡片容器。                                                                                                                                                                               |
-| `/chat-new`     | 聊天组件：老师学生聊天的容器。                                                                                                                                                               |
-| `/checkbox`     | 复选框：用于在一组可选项中进行多项选择。单独使用可以表示两种状态之间的切换，和 `switch` 类似。区别在于切换 `switch` 会直接触发状态改变，而 `checkbox` 一般用于状态标记，需要和提交操作配合。 |
-| `/countdown`    | 倒计时组件。                                                                                                                                                                                 |
-| `/date-picker`  | 输入或选择日期的控件：当用户需要输入一个日期，可以点击标准输入框，弹出日期面板进行选择。                                                                                                     |
-| `/home-about`   | 首页关于的弹窗组件。                                                                                                                                                                         |
-| `/icon`         | `iconfont` 图标组件。                                                                                                                                                                        |
-| `/input`        | input 输入框：通过鼠标或键盘输入内容，是最基础的表单域的包装。                                                                                                                               |
-| `/layout`       | 布局组件：协助进行页面级整体布局。                                                                                                                                                           |
-| `/loading`      | 加载组件：用于加入教室的加载、文件上传中的加载等。                                                                                                                                           |
-| `/modal`        | 模态对话框：需要用户处理事务，又不希望跳转页面以致打断工作流程时，可以使用 `Modal` 在当前页面正中打开一个浮层，承载相应的操作。                                                              |
-| `/pagination`   | 分页组件：采用分页的形式分隔长列表，每次只加载一个页面。                                                                                                                                     |
-| `/placeholder`  | 占位图：用于视频占位图、云盘空文件占位图等。                                                                                                                                                 |
-| `/popover`      | 气泡卡片：用于点击/鼠标移入元素、弹出气泡式的卡片浮层等。                                                                                                                                    |
-| `/progress`     | 进度条：展示操作的当前进度。                                                                                                                                                                 |
-| `/radio`        | 单选框：用于在多个备选项中选中单个状态。                                                                                                                                                     |
-| `/root-box`     | 根容器：最外层包裹页面元素的组件。                                                                                                                                                           |
-| `/roster`       | 花名册：展示学生列表，可对学生上台发奖励踢出教室等操作。                                                                                                                                     |
-| `/select`       | 下拉框：弹出一个下拉菜单给用户选择操作，用于代替原生的选择器，或者需要一个更优雅的多选器。                                                                                                   |
-| `/slider`       | 滑动输入条：展示当前值和可选范围。                                                                                                                                                           |
-| `/sound-player` | 播放音频文件的组件。                                                                                                                                                                         |
-| `/svg-img`      | svg 图标：语义化的矢量图形。                                                                                                                                                                 |
-| `/table`        | 表格组件。                                                                                                                                                                                   |
-| `/tabs`         | 选项卡切换组件。                                                                                                                                                                             |
-| `/toast`        | 全局提示组件：全局展示操作反馈信息。                                                                                                                                                         |
-| `/toolbar`      | 工具栏：展示老师学生教具。                                                                                                                                                                   |
-| `/tooltip`      | 文字提示：简单的文字提示气泡框。                                                                                                                                                             |
-| `/tree`         | 树型选择控件。                                                                                                                                                                               |
-| `/video-player` | 视频渲染组件。                                                                                                                                                                               |
-| `/volume`       | 音量：显示说话声音。                                                                                                                                                                         |
+| 文件夹          | 功能组件                                                                   |
+| :-------------- | :------------------------------------------------------------------------- |
+| `/affix`        | 固钉，用于将页面元素钉在可视范围。                                         |
+| `/biz-header`   | 教室内头部导航栏。                                                         |
+| `/button`       | 按钮组件。                                                                 |
+| `/calendar`     | 日历组件。                                                                 |
+| `/card`         | 通用卡片容器。                                                             |
+| `/chat-new`     | 聊天组件。                                                                 |
+| `/checkbox`     | 复选框。                                                                   |
+| `/countdown`    | 倒计时组件。                                                               |
+| `/date-picker`  | 用于选择日期的组件。                                                       |
+| `/home-about`   | 首页关于的弹窗组件。                                                       |
+| `/icon`         | `iconfont` 图标组件。                                                      |
+| `/input`        | 输入框。                                                                   |
+| `/layout`       | 布局组件，协助进行页面级整体布局。                                         |
+| `/loading`      | 加载组件，用于加入教室的加载、文件上传中的加载等。                         |
+| `/modal`        | 模态对话框，用于不打断当前工作流程的用户操作。                             |
+| `/pagination`   | 分页组件，采用分页的形式分隔长列表，每次只加载一个页面。                   |
+| `/placeholder`  | 占位图，用于视频占位图、云盘空文件占位图等。                               |
+| `/popover`      | 气泡卡片，用于点击/鼠标移入元素、弹出气泡式的卡片浮层等。                  |
+| `/progress`     | 进度条，展示操作的当前进度。                                               |
+| `/radio`        | 单选框。                                                                   |
+| `/root-box`     | 根容器，最外层包裹页面元素的组件。                                         |
+| `/roster`       | 花名册，用于展示学生列表，可进行邀请学生上讲台、发放奖励、踢出教室等操作。 |
+| `/select`       | 下拉框组件。                                                               |
+| `/slider`       | 滑动输入条，用于展示当前值和可选范围。                                     |
+| `/sound-player` | 播放音频文件的组件。                                                       |
+| `/svg-img`      | svg 图标。                                                                 |
+| `/table`        | 表格组件。                                                                 |
+| `/tabs`         | 选项卡切换组件。                                                           |
+| `/toast`        | 全局提示组件。                                                             |
+| `/toolbar`      | 工具栏，用于展示老师学生教具。                                             |
+| `/tooltip`      | 简单的文字提示气泡框。                                                     |
+| `/tree`         | 树型选择组件。                                                             |
+| `/video-player` | 视频渲染组件。                                                             |
+| `/volume`       | 显示说话声音的组件。                                                       |
 
 ### 业务组件
 
-业务组件指灵动课堂中和业务逻辑绑定的 UI 组件。业务组件大部分是**由多个功能组件组合并注入相关的业务逻辑**。业务组件依赖于 UI Store 中注入的 Observable 对象和行为函数来自动更新 UI 和调用 API。以举手上讲台功能为例，业务组件可以根据当前举手数据展示举手的用户列表，用户可以点击按钮调用 API 发送举手请求。
+业务组件指灵动课堂中和业务逻辑绑定的 UI 组件。业务组件大部分是由多个功能组件组合并注入相关的业务逻辑。业务组件依赖于 UI Store 中注入的 Observable 对象和行为函数来自动更新 UI 和调用 API。以举手上讲台功能为例，此功能对应的业务组件可以根据当前举手数据展示举手的用户列表，并提供按钮供用户点击，业务组件内部会调用 API 发送举手请求。
 
 ![](https://web-cdn.agora.io/docs-files/1649917547117)
 
-业务组件位于 `packages/agora-classroom-sdk/src/ui-kit/capabilities/containers` 目录下。开发者可通过 `yarn dev` 或 `npm run dev`启动灵动课堂项目。
-
-> Electron 端的启动命令是 `yarn dev:electron` 或 `npm run dev:electron`。
+业务组件位于 `packages/agora-classroom-sdk/src/ui-kit/capabilities/containers` 目录下。
 
 下表详细介绍灵动课堂中使用的业务组件：
 
-| 文件夹                     | 对应的业务                                                           |
-| :------------------------- | :------------------------------------------------------------------- |
-| `/award`                   | 奖励组件：实现老师发放奖励给学生的业务。                             |
-| `/big-widget-window`       | Widget 大窗口：实现大窗口、可获取是否激活大窗口等业务。              |
-| `/board`                   | 白板：实现白板业务，包括设置白板高度、比例等。                       |
-| `/cloud-driver`            | 云盘：实现文件上传、文件删除等功能。                                 |
-| `/device-setting`          | 设备设置：可获取摄像头、麦克风、扬声器列表以及切换设备。             |
-| `/dialog`                  | Dialog 窗口：实现课中弹窗的功能。                                    |
-| `/extension-app-container` | extApp 容器：实现插件业务。                                          |
-| `/hand-up`                 | 举手：实现学生举手上讲台、老师接受或拒绝的业务。                     |
-| `/loading`                 | 加载：处理加载逻辑。                                                 |
-| `/nav`                     | 导航：处理网络状态、上课状态等。                                     |
-| `/pretest`                 | 设备预检：实现进入课堂前设备预检业务，可获取设备列表信息、切换设备。 |
-| `/root-box`                | 根容器：整个课堂的根组件。                                           |
-| `/roster`                  | 花名册：可以查看学生信息并可以处理上讲台、发奖励等业务。             |
-| `/scene-switch`            | 场景切换：处理分组相关业务。                                         |
-| `/scenes-controller`       | 白板场景控制：控制白板场景，可以新增页或删除页。                     |
-| `/screen-share`            | 屏幕共享：处理屏幕共享逻辑。                                         |
-| `/stream`                  | 音视频流：处理各班型音视频渲染。                                     |
-| `/toast`                   | toast 提示。                                                         |
-| `/toolbar`                 | 工具栏：实现白板老师学生教具相关业务。                               |
-| `/widget`                  | widget：处理 widget 渲染加载等逻辑。                                 |
+| 文件夹                     | 对应的业务                                                                       |
+| :------------------------- | :------------------------------------------------------------------------------- |
+| `/award`                   | 奖励组件，实现老师发放奖励给学生的业务。                                         |
+| `/big-widget-window`       | Widget 大窗口，实现大窗口、可获取是否激活大窗口等业务。                          |
+| `/board`                   | 白板组件，实现白板相关业务，包括设置白板高度、比例等。                           |
+| `/cloud-driver`            | 云盘组件，实现文件上传、文件删除等业务。                                         |
+| `/device-setting`          | 设备设置，实现获取摄像头、麦克风、扬声器列表以及切换设备等业务。                 |
+| `/dialog`                  | Dialog 窗口，实现课中弹窗的功能。                                                |
+| `/extension-app-container` | extApp 容器，实现插件业务。                                                      |
+| `/hand-up`                 | 举手组件，实现学生举手上讲台、老师接受或拒绝的业务。                             |
+| `/loading`                 | 加载组件，处理加载逻辑。                                                         |
+| `/nav`                     | 导航组件，处理网络状态、上课状态等。                                             |
+| `/pretest`                 | 设备预检组件，实现进入课堂前设备预检业务，包含获取设备列表信息、切换设备等功能。 |
+| `/root-box`                | 根容器，整个课堂的根组件。                                                       |
+| `/roster`                  | 花名册组件，实现查看学生信息、处理上讲台请求、发奖励等业务。                     |
+| `/scene-switch`            | 场景切换组件，处理分组相关业务。                                                 |
+| `/scenes-controller`       | 白板场景控制组件，实现新增或删除白板页。                                         |
+| `/screen-share`            | 屏幕共享组件，处理屏幕共享逻辑。                                                 |
+| `/stream`                  | 音视频流组件，处理各班型音视频渲染。                                             |
+| `/toast`                   | Toast 提示组件。                                                                 |
+| `/toolbar`                 | 工具栏，实现白板老师学生教具相关业务。                                           |
+| `/widget`                  | Widget 组件，处理 Widget 渲染加载等逻辑。                                        |
 
-### 场景布局
+### 场景组件
 
-场景是由多个业务组件组合。灵动课堂支持 1 对 1 互动教学、在线互动小班课、互动直播大班课三个场景。这些场景的布局位于在 `packages/agora-classroom-sdk/src/ui-kit/capabilities/scenarios` 目录下。如果你想改动某一个场景的布局，找到对应的场景修改即可。
+场景组件是由多个业务组件组合而成。灵动课堂支持一对一互动教学、在线互动小班课、互动直播大班课三个预设场景。场景组件位于 `packages/agora-classroom-sdk/src/ui-kit/capabilities/scenarios` 目录。如果你想改动某一个场景的布局，找到对应的场景组件修改即可。
 
-| 文件夹          | 场景描述                     |
+| 文件夹          | 场景组件                     |
 | :-------------- | :--------------------------- |
 | `/1v1`          | 1 对 1 互动教学场景          |
 | `/big-class`    | 互动直播大班课场景           |
@@ -154,7 +152,7 @@ export const Docs = () => (
 )
 ```
 
-该功能组件在 Stroybook 中的效果如下：
+该功能组件在 Storybook 中的效果如下：
 
 ![](https://web-cdn.agora.io/docs-files/1649914019254)
 
@@ -166,7 +164,7 @@ export const Docs = () => (
 
 你可修改 `packages/agora-scenario-ui-kit/src/components/biz-header/index.css` 文件，将导航栏组件 BizHeader 的背景颜色从白色修改为红色。
 
-修改前：
+**修改前**
 
 ```css
 .biz-header {
@@ -179,7 +177,7 @@ export const Docs = () => (
 
 ![](https://web-cdn.agora.io/docs-files/1649914581018)
 
-修改后：
+**修改后**
 
 ```css
 .biz-header {
@@ -192,11 +190,11 @@ export const Docs = () => (
 
 ![](https://web-cdn.agora.io/docs-files/1649914602349)
 
-#### 修改 input 组件的 placeholder 颜色
+#### 修改 input 组件占位文字的颜色
 
-你可修改 `packages/agora-scenario-ui-kit/src/components/input/index.css` 文件来修改 `input` 组件中 placeholder 的颜色。
+你可修改 `packages/agora-scenario-ui-kit/src/components/input/index.css` 文件来修改 input 组件中占位文字的颜色。
 
-修改前：
+**修改前**
 
 ```css
 .input-wrapper input::-webkit-input-placeholder {
@@ -208,7 +206,7 @@ export const Docs = () => (
 
 ![](https://web-cdn.agora.io/docs-files/1649914809363)
 
-修改后：
+**修改后**
 
 ```css
 .input-wrapper input::-webkit-input-placeholder {
@@ -224,7 +222,7 @@ export const Docs = () => (
 
 ### 新增业务组件
 
-如需新增业务组件，你可在 `packages/agora-classroom-sdk/src/ui-kit/capabilities/containers/` 下新建文件夹，包含以下文件：
+如需新增业务组件，你可在 `packages/agora-classroom-sdk/src/ui-kit/capabilities/containers` 下新建文件夹，包含以下文件：
 
 -   `index.tsx`: 组合你的功能组件，注入业务逻辑，实现业务功能。
 -   `index.css`: 实现业务组件的样式。
@@ -232,8 +230,6 @@ export const Docs = () => (
 实现业务组件后，你可直接导入该业务组件，启动项目查看效果。
 
 以下示例展示了如何新增一个实现在课堂中间显示上课状态及网络状态的业务组件：
-
-![](https://web-cdn.agora.aio/docs-files/1650366675782)
 
 ```tsx
 // index.css
@@ -275,8 +271,8 @@ export default function AgoraDemo() {
     )
 }
 
-// 在需要该业务的场景引入该组件
 // packages/agora-classroom-sdk/src/ui-kit/capabilities/scenarios/mid-class/index.tsx
+// 在小班课场景引入该组件
 import { Aside, Layout } from '~components/layout';
 import { observer } from 'mobx-react';
 import classnames from 'classnames';
@@ -299,7 +295,7 @@ import AgoraDemo from '../../containers/agora-demo';
 
 
 export const MidClassScenario = observer(() => {
-  // layout
+  // 场景布局
   const layoutCls = classnames('edu-room', 'mid-class-room');
 
   return (
@@ -362,7 +358,7 @@ const Setting: React.FC<SettingProps> = observer(({className, ...restProps}) => 
                         display: "flex",
                         justifyContent: "space-between",
                     }}>
-                    {/* 举例新增展示设备个数，这里-1是因为我们默认选项会添加个禁用，不算在设备个数里 */}
+                    {/* 展示设备个数。这里 -1 是因为要减去默认的禁用选项 */}
                     <div>
                         {transI18n("device.camera")} 设备个数: {cameraDevicesList.length - 1}
                     </div>
@@ -394,11 +390,11 @@ const Setting: React.FC<SettingProps> = observer(({className, ...restProps}) => 
 });
 ```
 
-修改前
+**修改前**
 
 ![](https://web-cdn.agora.io/docs-files/1650366786587)
 
-修改后
+**修改后**
 
 ![](https://web-cdn.agora.io/docs-files/1650366838206)
 
@@ -410,7 +406,7 @@ const Setting: React.FC<SettingProps> = observer(({className, ...restProps}) => 
 
 以下示例演示了如何将灵动课堂右侧的视频区域和聊天区域移动到左侧。这是一个跨组件的调整，因此需要修改这两个组件的父容器，也就是一对一互动教学场景容器 `packages/agora-classroom-sdk/src/ui-kit/capabilities/scenarios/1v1/index.tsx` 文件。
 
-修改前
+**修改前**
 
 ```tsx
 import classnames from "classnames";
@@ -473,7 +469,7 @@ export const OneToOneScenario = observer(() => {
 
 ![](https://web-cdn.agora.io/docs-files/1649915965800)
 
-修改后
+**修改后**
 
 ```tsx
 import classnames from "classnames";
@@ -538,7 +534,7 @@ export const OneToOneScenario = observer(() => {
 
 #### 添加 logo
 
-如果你想在右侧 `Aside` 添加一个`logo`，实现好对应的`Logo`组件后，你可以这样布局：
+如果你想在右侧 `<Aside>` 添加一个 logo，你需要先实现 `Logo`组件，然后这样布局：
 
 ```tsx
 ...
@@ -550,23 +546,23 @@ export const OneToOneScenario = observer(() => {
 ...
 ```
 
-## 修改 UIStore
+## 修改 UI Store
 
-业务组件由多个功能组件组合，且依赖 UIStore。本节介绍如何修改业务组件所依赖的 UIStore。
+业务组件由多个功能组件组合，且依赖 UI Store。本节介绍如何修改业务组件所依赖的 UI Store。
 
-UIStore 位于 `packages/agora-classroom-sdk/src/infra/stores` 目录下，具体介绍如下：
+UI Store 位于 `packages/agora-classroom-sdk/src/infra/stores` 目录下，具体介绍如下：
 
-| 文件名         | 说明                       |
-| :------------- | :------------------------- |
-| `/common`      | 各场景通用的 UIStore       |
-| `/interactive` | 为小班课定制的 UIStore     |
-| `/lecture`     | 为大班课定制的 UIStore     |
-| `/lecture-h5`  | 为 H5 大班课定制的 UIStore |
-| `/one-on-one`  | 为一对一场景定制的 UIStore |
+| 文件夹         | 说明                        |
+| :------------- | :-------------------------- |
+| `/common`      | 各场景通用的 UI Store       |
+| `/interactive` | 为小班课定制的 UI Store     |
+| `/lecture`     | 为大班课定制的 UI Store     |
+| `/lecture-h5`  | 为 H5 大班课定制的 UI Store |
+| `/one-on-one`  | 为一对一场景定制的 UI Store |
 
-`/common` 中的通用 UIStore 为基类。如果你需要定制某个场景的某个功能，则需要继承该类，重写对应的方法，然后实例化对应的子类，在各个班型的 constructor 中实例化，这样就能生效了。
+`/common` 中的 `EduClassroomUIStore` 为基类。如果你需要定制某个场景的某个功能，则需要继承该类，重写对应的 UI Store。
 
-以下示例代码展示了如何定制大班课的 UIStore。
+以下示例代码展示了如何定制大班课的 UI Store。
 
 ```typescript
 import {EduClassroomStore} from "agora-edu-core";
@@ -580,11 +576,11 @@ import {LectureWidgetUIStore} from "./widget-ui";
 export class EduLectureUIStore extends EduClassroomUIStore {
     constructor(store: EduClassroomStore) {
         super(store);
-        this._streamUIStore = new LectureRoomStreamUIStore(store, this.shareUIStore); // 重写了streamui，定制视频流
-        this._rosterUIStore = new LectureRosterUIStore(store, this.shareUIStore); // 重写了rosterui，定制花名册
-        this._boardUIStore = new LectureBoardUIStore(store, this.shareUIStore); // 重写了boardui，定制白板
-        this._toolbarUIStore = new LectrueToolbarUIStore(store, this.shareUIStore); // 重写了toolbarui，定制工具栏
-        this._widgetUIStore = new LectureWidgetUIStore(store, this.shareUIStore); // 重写了widgetui，定制widget
+        this._streamUIStore = new LectureRoomStreamUIStore(store, this.shareUIStore); // 重写 Stream UI Store
+        this._rosterUIStore = new LectureRosterUIStore(store, this.shareUIStore); // 重写 Roster UI Store
+        this._boardUIStore = new LectureBoardUIStore(store, this.shareUIStore); // 重写 Board UI Store
+        this._toolbarUIStore = new LectrueToolbarUIStore(store, this.shareUIStore); // 重写 Toolbar UI Store
+        this._widgetUIStore = new LectureWidgetUIStore(store, this.shareUIStore); // 重写 Widget UI Store
     }
 
     get streamUIStore() {
@@ -600,18 +596,20 @@ export class EduLectureUIStore extends EduClassroomUIStore {
 }
 ```
 
-### 修改老师向学生授权后的教具
+### 修改老师授权后学生的教具
 
-如果我们想修改各场景通用的 UIStore，则直接修改 `/common` 下的 `toolbar-ui`；如果只想修改某个场景的 UIStore，可以在对应的场景下，新建 `toolbar-ui` 并重写里面的方法。举例来说，如果你想修改 1 对 1 场景的教具，则可修改 `packages/agora-classroom-sdk/src/infra/stores/one-on-one/toolbar-ui.ts` 文件。
+如果你想在所有场景中修改老师授权后学生的教具，则直接修改 `/common` 下的 `toolbar-ui.ts`。如果你只想修改某个场景中老师授权后学生的教具，可以在对应的场景目录下，新建 `toolbar-ui.ts` 并重写方法。
+
+举例来说，如果你想修改一对一场景的教具，则可修改 `packages/agora-classroom-sdk/src/infra/stores/one-on-one/toolbar-ui.ts` 文件。
 
 ```typescript
 // packages/agora-classroom-sdk/src/infra/stores/one-on-one/toolbar-ui.ts
 ...
-// 需要继承基类ToolbarUIStore
+// 继承基类 Toolbar UI Store
 export class OneToOneToolbarUIStore extends ToolbarUIStore {
   ...
   get teacherTools(): ToolbarItem[] {
-    // 根据你需要的业务，筛选老师的教具
+    // 筛选老师的教具
     return [
       ToolbarItem.fromData({
         value: 'clicker',
@@ -619,7 +617,6 @@ export class OneToOneToolbarUIStore extends ToolbarUIStore {
         icon: 'select',
       }),
       ToolbarItem.fromData({
-        // selector use clicker icon
         value: 'selection',
         label: 'scaffold.selector',
         icon: 'clicker',
@@ -662,7 +659,7 @@ export class OneToOneToolbarUIStore extends ToolbarUIStore {
 
   @computed
   get studentTools(): ToolbarItem[] {
-    // 根据业务，筛选学生要的教具
+    // 筛选学生的教具
     const { sessionInfo } = EduClassroomConfig.shared;
     const whiteboardAuthorized = this.classroomStore.boardStore.grantUsers.has(
       sessionInfo.userUuid,
@@ -679,7 +676,6 @@ export class OneToOneToolbarUIStore extends ToolbarUIStore {
         icon: 'select',
       }),
       ToolbarItem.fromData({
-        // selector use clicker icon
         value: 'selection',
         label: 'scaffold.selector',
         icon: 'clicker',
@@ -705,7 +701,7 @@ export class OneToOneToolbarUIStore extends ToolbarUIStore {
 }
 ```
 
-新写的 1 对 1 场景教具能覆盖 `/common` 教具，效果如下：
+上述设置能覆盖 `/common` 中的教具，效果如下：
 
 ![](https://web-cdn.agora.io/docs-files/1649916757576)
 
@@ -713,7 +709,7 @@ export class OneToOneToolbarUIStore extends ToolbarUIStore {
 
 ### 修改视频窗口工具栏的位置
 
-当前灵动课堂中，视频窗口的工具栏会悬浮出现在视频窗口下面。如果你想在 1 对 1 场景中，将工具栏的位置改为出现在视频窗口的左侧，可在 `one-on-one` 目录下创建 `stream-ui.ts`，重写 `toolbarPlacement` 方法。
+当前灵动课堂中视频窗口的工具栏会悬浮出现在视频窗口下方。如果你想将一对一场景中的工具栏位置改为视频窗口的左侧，可在 `/one-on-one` 目录下创建 `stream-ui.ts`，重写 `toolbarPlacement` 方法。
 
 ```typescript
 // packages/agora-classroom-sdk/src/infra/stores/one-on-one/stream-ui.ts
@@ -723,7 +719,7 @@ import { StreamUIStore } from '../common/stream';
 
 export class OneToOneStreamUIStore extends StreamUIStore {
   ...
-  //override
+  // override
   @computed get toolbarPlacement(): 'bottom' | 'left' {
     return 'left';
   }
@@ -744,7 +740,7 @@ const LocalStreamPlayerTools = observer(({ isFullScreen = true }: { isFullScreen
         <Tooltip
           key={key}
           title={tool.toolTip}
-          // Tooltip组件，placement属性控制工具栏位置
+          // Tooltip 组件，placement 属性控制工具栏位置
           placement={isFullScreen ? fullScreenToolTipPlacement : toolbarPlacement}>
           <span>
             <SvgIcon
@@ -767,15 +763,19 @@ const LocalStreamPlayerTools = observer(({ isFullScreen = true }: { isFullScreen
 
 效果如下：
 
+**修改前**
+
 ![](https://web-cdn.agora.io/docs-files/1649917042806)
+
+**修改后**
 
 ![](https://web-cdn.agora.io/docs-files/1649917031341)
 
-## 常见问题
+## 更多示例
 
-### 如何修改教室背景色和白板背景色？
+### 修改教室背景色
 
-修改教师背景色：修改 `packages/agora-classroom-sdk/src/ui-kit/capabilities/containers/root-box/fixed-aspect-ratio.tsx` 文件中的代码。
+如需修改教室背景色，可修改 `packages/agora-classroom-sdk/src/ui-kit/capabilities/containers/root-box/fixed-aspect-ratio.tsx` 文件中的代码。
 
 ```tsx
 const FixedAspectRatioContainer: React.FC<FixedAspectRatioProps> = observer(
@@ -786,9 +786,9 @@ const FixedAspectRatioContainer: React.FC<FixedAspectRatioProps> = observer(
 
         return (
             <div
-                // 可以使用tailwind类名
+                // 可以使用 tailwind 类名
                 className="flex bg-black justify-center items-center h-screen w-screen"
-                // 也可以设置css属性
+                // 也可以设置 CSS 属性
                 style={{backgroundColor: "red"}}>
                 <div style={style} className={`w-full h-full relative ${shareUIStore.classroomViewportClassName}`}>
                     {children}
@@ -799,7 +799,9 @@ const FixedAspectRatioContainer: React.FC<FixedAspectRatioProps> = observer(
 );
 ```
 
-修改白板背景色：修改 `packages/agora-classroom-sdk/src/ui-kit/capabilities/containers/board/index.css` 文件中的代码。
+### 修改白板背景色
+
+如需修改白板背景色，可修改 `packages/agora-classroom-sdk/src/ui-kit/capabilities/containers/board/index.css` 文件中的代码。
 
 ```css
 .whiteboard {
@@ -813,9 +815,9 @@ const FixedAspectRatioContainer: React.FC<FixedAspectRatioProps> = observer(
 }
 ```
 
-### 如何修改白板布局比例？
+### 修改白板布局比例
 
-白板布局相关代码位于 `packages/agora-classroom-sdk/src/infra/stores/common/board-ui.ts` 文件中。
+如需调整白板布局，可修改 `packages/agora-classroom-sdk/src/infra/stores/common/board-ui.ts` 文件中的代码。灵动课堂根据 `heightRatio` 和 `viewportHeight` 计算出白板的高度，然后根据白板的比例动态设置白板的大小。
 
 ```typescript
 // packages/agora-classroom-sdk/src/infra/stores/common/board-ui.ts
@@ -844,7 +846,7 @@ const FixedAspectRatioContainer: React.FC<FixedAspectRatioProps> = observer(
 ...
 ```
 
-灵动课堂根据 `heightRatio` 和 `viewportHeight` 计算出白板的高度，然后根据白板的比例动态设置白板的大小。如果你想定制 1 对 1 场景中的白板高度，则可在 `packages/agora-classroom-sdk/src/infra/stores/one-on-one` 目录下新建 `board-ui.ts` 文件，代码如下：
+上述改动会应用于所有场景。如果你只想修改一对一场景中的白板高度，则可在 `packages/agora-classroom-sdk/src/infra/stores/one-on-one` 目录下新建 `board-ui.ts` 文件，代码如下：
 
 ```typescript
 // packages/agora-classroom-sdk/src/infra/stores/one-on-one/board-ui.ts

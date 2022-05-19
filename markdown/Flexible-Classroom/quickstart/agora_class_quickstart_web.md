@@ -35,7 +35,7 @@
     - 如果你安装了 Node.js 16.10 以下版本，需要使用以下命令先安装 Corepack，再启用 Yarn：
 
         ```bash
-        npm i -g corepackcorepack enable
+        npm i -g corepack enable
         ```
 
 4. 安装 Lerna：

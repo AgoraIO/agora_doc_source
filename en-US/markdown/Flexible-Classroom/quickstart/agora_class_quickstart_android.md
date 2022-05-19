@@ -8,7 +8,7 @@ This document introduces how to get the source code of Agora Flexible Classroom 
 
 ## Prerequisites
 
-- Enable the [Flexible Classroom service](/en/agora-class/agora_class_enable?platform=Web) in Agora console.
+- Enable the [Flexible Classroom service](/en/agora-class/agora_class_enable?platform=Android) in Agora console.
 - Get the [Agora App ID](/en/Agora%20Platform/get_appid_token#Get-app-id) and [App Certificate](/en/Agora%20Platform/get_appid_token#Get-app-certificate) in Agora console.
 - An Android device. You may encounter unexpected issues on simulators, so Agora recommends using a physical device. In addition, the Android client of Flexible Classroom must be run on Android 5.0 or later.
 

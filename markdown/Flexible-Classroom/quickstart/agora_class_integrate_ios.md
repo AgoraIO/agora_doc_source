@@ -8,7 +8,7 @@
 -   `AgoraEduUI`: 提供灵动课堂交互层的代码，并包含交互层所使用的文案信息和资源文件。`AgoraEduCore` 通过 `AgoraEduContext` 为该层提供灵动课堂中的能力与数据。`AgoraEduUI` 在 GitHub 与 CocoaPods 上开源发布。
 -   `AgoraEduContext`: 定义了 Context Protocol 和数据结构。`AgoraEduContext` 在 GitHub 与 CocoaPods 上开源发布。
 -   `AgoraEduCore`: 提供灵动课堂中的能力与数据，遵守 `AgoraEduContext` 中定义的协议。`AgoraEduCore` 闭源，以二进制包在 CocoaPods 上发布。
--   `Widget`: 包含界面与功能的独立插件，由 `AgoraClassroomSDK` 注入灵动课堂内。`Widget` 与 `Widget` 之间，以及与 UI 层中的其他组件都能进行通讯。
+-   `Widget`: 包含界面与功能的独立插件，由 `AgoraClassroomSDK` 注入灵动课堂内。Widget 之间、Widget 与 UI 层中的其他组件都能进行通讯。
 
 下图展示了灵动课堂的架构。
 
@@ -36,12 +36,12 @@
 
     # Agora libs
     pod 'AgoraRtm_iOS', '1.4.8'
-    pod 'Whiteboard', '2.15.18'
+    pod 'Whiteboard', '2.16.17'
     pod 'AgoraRtcEngine_iOS', '3.4.6'
     pod 'HyphenateChat', '3.8.6'
 
     # Open-source libs
-    pod 'AgoraClassroomSDK_iOS', '2.1.0'
+    pod 'AgoraClassroomSDK_iOS', '2.4.0'
     ```
 
     下图仅为示例：
@@ -93,6 +93,7 @@
     ```
 
     ```objc
+     // Objective-C
     AgoraEduMediaEncryptionConfig *config = [[AgoraEduMediaEncryptionConfig alloc] initWithMode:0 key:nil];
 
     AgoraEduMediaOptions *media = [[AgoraEduMediaOptions alloc] initWithEncryptionConfig:config videoEncoderConfig:nil latencyLevel:2 videoState:1 audioState:1];

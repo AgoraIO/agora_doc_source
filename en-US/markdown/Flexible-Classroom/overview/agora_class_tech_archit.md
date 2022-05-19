@@ -2,6 +2,8 @@
 
 The following figure shows the overall technical architecture of Flexible Classroom:
 
+![](https://web-cdn.agora.io/docs-files/1652864336850)
+
 ## Module description
 
 ### Agora Classroom SDK

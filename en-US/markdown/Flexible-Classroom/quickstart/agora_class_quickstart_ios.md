@@ -96,25 +96,25 @@ Follow these steps to launch a flexible classroom:
 
    The following image shows the process of installing dependencies.
 
-   ![](https://web-cdn.agora.io/docs-files/1648725475723)
+   <img src="https://web-cdn.agora.io/docs-files/1648725475723" style="zoom:50%;" />
 
 3. After all the dependencies are installed successfully, open the CloudClass-iOS folder in the Finder window, and double-click `AgoraEducation.xcworkspace` to open the project in Xcode.
 
-   ![](https://web-cdn.agora.io/docs-files/1648725644218)
+   <img src="https://web-cdn.agora.io/docs-files/1648725644218" style="zoom: 50%;" />
 
-   ![](https://web-cdn.agora.io/docs-files/1648725725804)
+   <img src="https://web-cdn.agora.io/docs-files/1648725725804" style="zoom:50%;" />
 
 4. In Signing & Capabilities under the project TARGETS, check Automatically manage signing, and configure your Apple developer account and Bundle Identifier.
 
-   ![](https://web-cdn.agora.io/docs-files/1648725848162)
+   <img src="https://web-cdn.agora.io/docs-files/1648725848162" style="zoom: 33%;" />
 
 5. After connecting an iOS device to your computer, to run the project, click the Run button in Xcode.
 
-   ![](https://web-cdn.agora.io/docs-files/1648725959472)
+   <img src="https://web-cdn.agora.io/docs-files/1648725959472" style="zoom:50%;" />
 
 6. You can see the following page: To join a classroom, pass in a room name and user name, select a room type, and click **Enter**.
 
-   ![](https://web-cdn.agora.io/docs-files/1648726024179)
+   <img src="https://web-cdn.agora.io/docs-files/1648726024179" style="zoom:50%;" />
 
 ## Next steps
 

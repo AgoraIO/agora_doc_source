@@ -35,7 +35,7 @@ To prepare your development environment, refer to the following steps:
    - If you have installed a Node.js version earlier than 16.10, you need to install Corepack first and then enable Yarn with the following command:
 
       ```bash
-      npm i -g corepackcorepack enable
+      npm i -g corepack enable
       ```
 
 4. To install Lerna, run the following command:

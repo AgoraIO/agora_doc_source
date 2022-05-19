@@ -104,6 +104,77 @@
     | operator.userName                      | String  | 用户名称                                                               |
     | operator.role                          | String  | 用户角色                                                               |
 
+#### 响应示例
+
+-   老师开启答题后，答题器的汇总数据发生变化：
+
+    ```json
+    "action": NumberInt("1"),
+    "changeProperties": {
+        "widgets.popupQuiz.extra.correctItems": [
+            "A",
+            "B",
+            "D"
+        ],
+        "widgets.popupQuiz.extra.totalCount": NumberInt("1"),
+        "widgets.popupQuiz.extra.answerState": NumberInt("1"),
+        "widgets.popupQuiz.state": NumberInt("1"),
+        "widgets.popupQuiz.extra.popupQuizId": "ab5b183238a74d5a9c955dc87c6397e0",
+        "widgets.popupQuiz.extra.averageAccuracy": 0,
+        "widgets.popupQuiz.extra.correctCount": NumberInt("0"),
+        "widgets.popupQuiz.extra.items": [
+            "A",
+            "C",
+            "B"
+        ],
+        "widgets.popupQuiz.extra.receiveQuestionTime": NumberLong("1652413962895")
+    },
+    "operator": {
+        "userName": "server",
+        "userUuid": "server",
+        "role": "server"
+    }
+    ```
+
+-   学生提交答案后，该学生的答题数据发生变化：
+
+    ```json
+    "action": NumberInt("1"),
+    "changeProperties": {
+        "widgets.popupQuiz.selectedItems": [
+            "A",
+            "B",
+            "D"
+        ],
+        "widgets.popupQuiz.isCorrect": true,
+        "widgets.popupQuiz.popupQuizId": "ab5b183238a74d5a9c955dc87c6397e0",
+        "widgets.popupQuiz.lastCommitTime": NumberLong("1652413989997")
+    },
+    "fromUser": {
+        "userName": "yerongzhe2",
+        "userUuid": "yerongzhe22",
+        "role": "audience"
+    }
+    ```
+
+-   老师结束答题后，答题器的汇总数据发生变化：
+
+    ```json
+    "action": NumberInt("1"),
+    "changeProperties": {
+        "widgets.popupQuiz.extra.totalCount": NumberInt("1"),
+        "widgets.popupQuiz.extra.answerState": NumberInt("0"),
+        "widgets.popupQuiz.extra.selectedCount": NumberInt("1"),
+        "widgets.popupQuiz.extra.averageAccuracy": 1,
+        "widgets.popupQuiz.extra.correctCount": NumberInt("1")
+    },
+    "operator": {
+        "userName": "server",
+        "userUuid": "server",
+        "role": "server"
+    }
+    ```
+
 ## 获取投票器事件
 
 #### 接口原型
@@ -207,3 +278,148 @@
     | operator.userUuid                             | String              | 用户 ID                                                                |
     | operator.userName                             | String              | 用户名称                                                               |
     | operator.role                                 | String              | 用户角色                                                               |
+
+#### 响应示例
+
+-   老师开启投票后，投票器的汇总数据发生变化：
+
+    ```json
+    "action": NumberInt("1"),
+    "changeProperties": {
+        "widgets.poll.extra.pollId": "e556ce3df5cd4c23941b03bf54d29ba3",
+        "widgets.poll.extra.pollState": NumberInt("1"),
+        "widgets.poll.extra.pollItems": [
+            "aaa",
+            "bbb",
+            "ccc",
+            "ddd",
+            "eee"
+        ],
+        "widgets.poll.extra.mode": NumberInt("2"),
+        "widgets.poll.state": NumberInt("1"),
+        "widgets.poll.extra.pollDetails": {
+            "0": {
+                "num": NumberInt("0"),
+                "percentage": 0
+            },
+            "1": {
+                "num": NumberInt("0"),
+                "percentage": 0
+            },
+            "2": {
+                "num": NumberInt("0"),
+                "percentage": 0
+            },
+            "3": {
+                "num": NumberInt("0"),
+                "percentage": 0
+            },
+            "4": {
+                "num": NumberInt("0"),
+                "percentage": 0
+            }
+        }
+    },
+    "operator": {
+        "userName": "server",
+        "userUuid": "server",
+        "role": "server"
+    }
+    ```
+
+-   学生提交选项后，该学生的投票数据发生变化：
+
+    ```json
+    "action": NumberInt("1"),
+    "changeProperties": {
+        "widgets.poll.pollId": "e556ce3df5cd4c23941b03bf54d29ba3",
+        "widgets.poll.selectIndex": [
+            NumberInt("1"),
+            NumberInt("2"),
+            NumberInt("4")
+        ]
+    },
+    "fromUser": {
+        "userName": "yerongzhe2",
+        "userUuid": "yerongzhe22",
+        "role": "audience"
+    },
+    "operator": {
+        "userName": "server",
+        "userUuid": "server",
+        "role": "server"
+    }
+    ```
+
+-   学生提交选项后，投票器的汇总数据发生变化：
+
+    ```json
+    "action": NumberInt("1"),
+    "changeProperties": {
+        "widgets.poll.extra.pollId": "e556ce3df5cd4c23941b03bf54d29ba3",
+        "widgets.poll.extra.pollDetails": {
+            "0": {
+                "num": NumberInt("0"),
+                "percentage": 0
+            },
+            "1": {
+                "num": NumberInt("1"),
+                "percentage": 1
+            },
+            "2": {
+                "num": NumberInt("1"),
+                "percentage": 1
+            },
+            "3": {
+                "num": NumberInt("0"),
+                "percentage": 0
+            },
+            "4": {
+                "num": NumberInt("1"),
+                "percentage": 1
+            }
+        }
+    },
+    "operator": {
+        "userName": "server",
+        "userUuid": "server",
+        "role": "server"
+    }
+    ```
+
+-   老师结束投票后，投票器的汇总数据会发生变化：
+
+    ```json
+    "action": NumberInt("1"),
+    "changeProperties": {
+        "widgets.poll.extra.pollId": "e556ce3df5cd4c23941b03bf54d29ba3",
+        "widgets.poll.extra.pollState": NumberInt("0"),
+        "widgets.poll.extra.pollDetails": {
+            "0": {
+                "num": NumberInt("0"),
+                "percentage": 0
+            },
+            "1": {
+                "num": NumberInt("1"),
+                "percentage": 1
+            },
+            "2": {
+                "num": NumberInt("1"),
+                "percentage": 1
+            },
+            "3": {
+                "num": NumberInt("0"),
+                "percentage": 0
+            },
+            "4": {
+                "num": NumberInt("1"),
+                "percentage": 1
+            }
+        }
+    },
+    "operator": {
+        "userName": "server",
+        "userUuid": "server",
+        "role": "server"
+    }
+    ```

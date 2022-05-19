@@ -1,4 +1,4 @@
-根据本文指导快速启动并体验灵动课堂。
+本文介绍如何获取灵动课堂 Electron 端 GitHub 源码并运行项目，快速启动并体验灵动课堂。
 
 ## 技术原理
 
@@ -8,93 +8,140 @@
 
 ## 前提条件
 
--   已在 Agora 控制台创建 Agora 项目，获取 <a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id" target="_blank">Agora App ID</a>、<a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6" target="_blank">App 证书</a>并<a href="/cn/agora-class/agora_class_enable?platform=Electron" target="_blank">开通灵动课堂服务</a>。
--   安装最新稳定版桌面端 [Google Chrome 浏览器](https://www.google.cn/chrome/)。
--   物理音视频采集设备，如内置摄像头和麦克风。
--   安装 [Node.js 和 npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)。
--   安装 [yarn](https://yarnpkg.com/getting-started/install)。
+-   在 Agora 控制台[开通灵动课堂服务](/cn/agora-class/agora_class_enable?platform=Web)。
+-   在 Agora 控制台获取 [Agora App ID](/cn/Agora%20Platform/get_appid_token#获取-app-id) 和 [App 证书](/cn/Agora%20Platform/get_appid_token#获取-app-证书)。
+
+<a name="dev-env"></a>
+
+## 准备开发环境
+
+在你的设备上运行灵动课堂依赖于 Git（用于下载源码）、Node.js（用于构建运行项目）、Yarn（源码包管理工具）、Lerna（源码包管理工具）和 nvm（Node.js 版本管理命令行工具）。
+
+你可参考以下步骤准备开发环境：
+
+1. 点击[链接](https://git-scm.com/downloads)前往下载 Git。
+
+2. 点击[链接](https://nodejs.org/zh-cn/download/)前往下载 Node.js，建议 Node.js 14 或以上版本。
+
+3. 安装 Yarn：
+
+    - 如果你安装了 Node.js 16.10 及以上版本，可使用以下命令直接启用 Yarn（Windows 系统需要管理员身份运行 CMD 执行命令）：
+
+        ```bash
+        corepack enable
+        ```
+
+    - 如果你安装了 Node.js 16.10 以下版本，需要使用以下命令先安装 Corepack，再启用 Yarn：
+
+        ```bash
+        npm i -g corepack enable
+        ```
+
+4. 安装 Lerna：
+
+    ```bash
+    yarn add global lerna
+    ```
+
+5. （可选）安装 nvm：
+
+    ```bash
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+    ```
+
+## 获取源码
+
+灵动课堂 Electron 端的源码位于 GitHub [CloudClass-Desktop](https://github.com/AgoraIO-Community/CloudClass-Desktop) 仓库，你可参考以下步骤获取源码：
+
+1. 运行以下命令克隆仓库到本地：
+
+    ```bash
+    git clone https://github.com/AgoraIO-Community/CloudClass-Desktop.git
+    ```
+
+2. 运行以下命令切换分支至指定版本，将 {VERSION} 替换为要切换的版本号：
+
+    ```bash
+    git checkout release/apaas/{VERSION}
+    ```
+
+    例如要切换到 2.1.2 版本分支，执行以下命令：
+
+    ```bash
+    git checkout release/apaas/2.1.2
+    ```
+
+    Agora 建议你切换到最新的发版分支。
 
 ## 启动灵动课堂
 
-参照以下步骤启动灵动课堂：
+按照以下步骤启动灵动课堂：
 
-1. 运行以下命令将 [CloudClass-Desktop](https://github.com/AgoraIO-Community/CloudClass-Desktop) 项目克隆至本地，并切换至最新发版分支 release/apaas/x.y.z。
+1. 运行以下命令安装项目依赖：
 
+    ```bash
+    yarn
     ```
-    https://github.com/AgoraIO-Community/CloudClass-Desktop.git
+
+2. 运行以下命令安装依赖包：
+
+    ```bash
+    yarn bootstrap
     ```
 
-    <div class="alert info">x.y.z 请替换为版本号。你可在<a href="/cn/agora-class/release_agora_class_web?platform=Web">发版说明</a>中获取最新版本号。</div>
+3. 将项目根目录下的 `.env.example` 文件移动至 `packages/agora-classroom-sdk` 并更名为 `.env`：
 
-2. 将 `.env.example` 重命名为 `.env.dev` 并移动至 `packages/agora-classroom-sdk` 目录下，然后传入你自己的 `Agora App ID` 和 `Agora App Certificate`。
-
+    ```bash
+    mv .env.example packages/agora-classroom-sdk/.env
     ```
-    REACT_APP_AGORA_APP_ID=
-    REACT_APP_AGORA_APP_CERTIFICATE=
+
+4. 将你的 App ID 和 App Certificate 填写到 `.env` 文件中指定位置：
+
+    ```typescript
+    REACT_APP_AGORA_APP_ID={your appid}
+    REACT_APP_AGORA_APP_CERTIFICATE={your app certificate}
     ```
 
     为方便你快速测试，CloudClass-Desktop 项目中已包含一个临时 RTM Token 生成器，会用你传入的 App ID 和 App 证书生成一个临时 RTM Token。但是在正式环境中，为确保安全，RTM Token 必须在服务端生成。
 
-3. 参考以下步骤分别在 macOS 或 Windows 设备上运行项目：
+5. 参考以下步骤分别在 macOS 或 Windows 设备上运行灵动课堂 Electron 端：
 
     **macOS**
 
-    1. 在 CloudClass-Desktop 项目根目录下运行以下命令安装项目依赖：
+    在项目根目录下运行以下命令编译项目：
 
-        ```bash
-        # Install global dev dependencies
-        yarn
-        # Install all dependencies via lerna and yarn
-        yarn bootstrap
-        ```
-
-    2. 在项目根目录下运行以下命令编译项目：
-
-        ```
-        yarn dev:electron
-        ```
-
-        编译成功后，你可以看到以下页面：
-
-        ![](https://web-cdn.agora.io/docs-files/1623404345070)
+    ```bash
+    yarn dev:electron
+    ```
 
     **Windows**
 
-    1. 在 CloudClass-Desktop 项目根目录下运行以下命令安装项目依赖：
+    1. 将 `packages/agora-electron-edu-demo/package.json` 文件中的 `"agora_electron"` 对象替换成以下内容：
 
-        ```bash
-        # Install global dev dependencies
-        yarn
-        # Install all dependencies via lerna and yarn
-        yarn bootstrap
+        ```json
+        "agora_electron": {
+          "electron_version": "12.0.0",
+          "prebuilt": true,
+          "platform": "win32",
+          "arch": "ia32"
+        },
         ```
 
-    2. 将 `packages/agora-electron-edu-demo/package.json` 文件中的 `"agora_electron"` 对象替换成以下内容：
-
-    ```json
-    "agora_electron": {
-      "electron_version": "12.0.0",
-      "prebuilt": true,
-      "platform": "win32",
-      "arch": "ia32"
-    },
-    ```
-
-    3. 运行以下命令安装 electron 12.0.0：
+    2. 运行以下命令安装 electron 12.0.0：
 
         ```bash
         npm install electron@12.0.0 --arch=ia32 --save-dev
         ```
 
-    4. 在根目录下运行以下命令编译项目：
+    3. 在项目根目录下运行以下命令编译项目：
 
         ```bash
         yarn dev:electron
         ```
 
-        编译成功后，你可以看到以下页面：
+6. 编译成功后，你可以看到以下页面：
 
-        ![](https://web-cdn.agora.io/docs-files/1623404345070)
+    ![](https://web-cdn.agora.io/docs-files/1623404345070)
 
 ## 后续步骤
 
