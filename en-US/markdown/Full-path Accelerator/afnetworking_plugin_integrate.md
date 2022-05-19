@@ -86,7 +86,7 @@ You must initialize the SDK and enable the FPA service before using the SDK for 
     NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     NSString *logFile = [NSString stringWithFormat:@"%@/fpa.log",docDir];
     config.logFilePath = logFile;
-    // Set log file size
+    // Set log file size in KB
     config.fileSize = 1024;
     ```
 
@@ -103,19 +103,19 @@ You must initialize the SDK and enable the FPA service before using the SDK for 
 
     ```objective-c
     - (void)onAccelerationSuccess:(FpaProxyServiceConnectionInfo * _Nonnull)connectionInfo {
-            // Successfully connected to the FPA proxy
+        // Successfully connected to the FPA proxy. Implement your logic here.
         }
     
     - (void)onConnected:(FpaProxyServiceConnectionInfo * _Nonnull)connectionInfo {
-        // FPA proxy acceleration success
+        // FPA proxy acceleration success. Implement your logic here.
         }
     
     - (void)onDisconnectedAndFallback:(FpaProxyServiceConnectionInfo * _Nonnull)connectionInfo reason:(FpaFailedReason)reason {
-        // The connection to the FPA proxy failed and did not fall back
+        // The connection to the FPA proxy failed and did not fall back. Implement your logic here.
         }
     
     - (void)onConnectionFailed:(FpaProxyServiceConnectionInfo * _Nonnull)connectionInfo reason:(FpaFailedReason)reason {
-        // Failed to connect to FPA proxy. Fall back to local connection.
+        // Failed to connect to FPA proxy. Fall back to local connection. Implement your logic here.
         }
     ```
 

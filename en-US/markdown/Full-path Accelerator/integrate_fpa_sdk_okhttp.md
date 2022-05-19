@@ -110,7 +110,7 @@ You must initialize the SDK and enable the FPA service before using the SDK for 
         builder.setAppId("<Your App ID>")
         // Set the token. If token authentication is not enabled, you do not need to call setToken ()
         .setToken("<Your Token>")
-        // Set log file size
+        // Set log file size in KB
         .setLogFileSizeKb(1024)
         // Set the log level
         .setLogLevel(LogLevel.LOG_ERROR);
