@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ivideodevicemanager_getcapability">
     <title><ph keyref="getCapability"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获取视频采集设备指定的分辨率 + 帧率组合。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">获取视频采集设备在指定的视频格式下的详细视频帧信息。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -24,24 +24,22 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p/>
+            <p>在调用 <xref keyref="numberOfCapabilities"/> 获取视频采集设备支持的视频格式数量后，你可以调用该方法获取指定索引号支持的具体视频帧信息。</p>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry>
-                <pt>deviceIdUTF8</pt>
-                <pd>采集视频的设备 ID。</pd>
+            <plentry conkeyref="numberOfCapabilities/id">
+                <pt></pt>
+                <pd></pd>
             </plentry>
             <plentry>
                 <pt>deviceCapabilityNumber</pt>
-                <pd>设备分辨率 + 帧率组合的索引。
-                        
-                    <note type="attention">该参数取值不得高于 <codeph><xref keyref="numberOfCapabilities"/>()</codeph>。</note> </pd>
+                <pd>视频格式的索引号。如果将 <apiname keyref="numberOfCapabilities"/> 的返回值定义为 i， 则该参数取值范围为[0,i)。</pd>
             </plentry>
             <plentry>
                 <pt>capability</pt>
-                <pd>采集视频设备的具体能力。详见 <xref keyref="VideoFormat"/>。</pd>
+                <pd>输出参数。表示指定视频格式的具体信息，包括宽度（px），高度（px）和帧率（fps）。详见 <xref keyref="VideoFormat"/>。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">

@@ -26,7 +26,7 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p>共享一个屏幕或该屏幕的部分区域。用户需要在该方法中指定想要共享的屏幕 ID。</p>
+            <p>共享一个屏幕或该屏幕的部分区域。</p>
             <p conkeyref="startScreenCapture/apisequence"/>
             <note type="attention" props="cpp flutter unity">该方法仅适用于 Windows 和 macOS。</note> </section>
         <section id="parameters">
@@ -34,8 +34,7 @@
             <parml>
             <plentry>
                 <pt>displayId</pt>
-                <pd>指定待共享的屏幕 ID。开发者需要通过该参数指定你要共享的那个屏幕。
-
+                <pd>指定待共享的屏幕 ID。
                     <p><ph props="native">关于如何获取屏幕 ID，请参考 <xref keyref="guide-screensharing">屏幕共享</xref>。</ph></p>
                 </pd>
             </plentry>
@@ -60,8 +59,9 @@
             <ul>
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。
+
                 <ul id="err">
-                <li><codeph>ERR_INVALID_STATE</codeph>：屏幕共享状态无效。可能因为你已经共享了别的屏幕或窗口。尝试调用 <xref keyref="stopScreenCapture"/> 停止共享，再重新开始共享屏幕。</li>
+                <li><codeph>ERR_INVALID_STATE</codeph>：屏幕共享状态无效。可能因为你已经共享了其他屏幕或窗口。尝试调用 <xref keyref="stopScreenCapture"/> 停止当前共享，再重新开始共享屏幕。</li>
                 <li><codeph>ERR_INVALID_ARGUMENT</codeph>：传入的参数无效。</li>
                 </ul> </li>
             </ul> </section>

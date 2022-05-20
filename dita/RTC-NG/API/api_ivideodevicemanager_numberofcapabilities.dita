@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ivideodevicemanager_numberofcapabilities">
     <title><ph keyref="numberOfCapabilities"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获取视频采集设备的采集能力（即分辨率 + 帧率的组合上限）。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">获取指定视频采集设备支持的视频格式数量。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -24,21 +24,22 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p/>
+            <p>视频采集设备可能支持多种视频格式，每一种格式都支持不同的视频帧宽度、视频帧高度、帧率组合。</p>
+            <p>你可以通过调用该方法，获取指定的视频采集设备可支持多少种视频格式，然后调用 <xref keyref="getCapability"/> 获取指定视频格式下的具体视频帧信息。</p>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry>
+            <plentry id="id">
                 <pt>deviceIdUTF8</pt>
-                <pd>采集视频的设备 ID。</pd>
+                <pd>视频采集视频的 ID。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title>返回值</title>
             <ul>
-            <li>≥ 0: 方法调用成功。返回该设备支持的分辨率和帧率组合的上限。</li>
-            <li>&lt; 0: 方法调用失败。</li>
+            <li>&gt; 0: 方法调用成功。返回该设备支持的视频格式数量。例如：如果指定的摄像头支持 10 种不同的视频格式，则返回值为 10。</li>
+            <li>≤ 0: 方法调用失败。</li>
             </ul> </section>
     </refbody>
 </reference>
