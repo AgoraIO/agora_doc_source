@@ -1,27 +1,28 @@
-This page shows how to call Agora Chat RESTful APIs to send different types of messages, upload and download files, and retrieve historical messages.
-Before calling the following methods, make sure you understand the call frequency limit of the Agora Chat RESTful APIs as described in [Limitations](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side).
+This page shows how to call Chat RESTful APIs to send different types of messages, upload and download files, and retrieve historical messages.
+
+Before calling the following methods, make sure you understand the call frequency limit of the Chat RESTful APIs as described in [Limitations](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side).
 
 ## <a name="param"></a>Common parameters
 
-The following table lists common request and response parameters of the Agora Chat RESTful APIs:
+The following table lists common request and response parameters of the Chat RESTful APIs:
 
 ### Request parameters
 
 | Parameter | Type | Description | Required |
 | :--------- | :----- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
-| `host` | String | The domain name assigned by the Agora Chat service to access RESTful APIs. For how to get the domain name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
-| `org_name` | String | The unique identifier assigned to each company (organization) by the Agora Chat service. For how to get org name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
-| `app_name` | String | The unique identifier assigned to each app by the Agora Chat service. For how to get the app name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
-| `username` | String | The unique login account of the user. The username must be 64 characters or less and cannot be empty.  The following character sets are supported:<li>26 lowercase English letters (a-z)<li>26 uppercase English letters (A-Z)<li>10 numbers (0-9)<li>"\_", "-", "."<div class="alert note"><ul><li>The username is case insensitive, so `Aa` and `aa` are the same username.<li>Ensure that each `username` under the same app is unique.</ul></div> | Yes |
+| `host` | String | The domain name assigned by the Chat service to access RESTful APIs. For how to get the domain name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
+| `org_name` | String | The unique identifier assigned to each company (organization) by the Chat service. For how to get org name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
+| `app_name` | String | The unique identifier assigned to each app by the Chat service. For how to get the app name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
+| `username` | String | The unique login account of the user. The user ID must be 64 characters or less and cannot be empty.  The following character sets are supported:<ul><li>26 lowercase English letters (a-z)</li><li>26 uppercase English letters (A-Z)</li><li>10 numbers (0-9)</li><li>"\_", "-", "."</li></ul><div class="alert note"><ul><li>The username is case insensitive, so `Aa` and `aa` are the same username.</li><li>Ensure that each `username` under the same app is unique.</li><li>Do not set this parameter as a UUID, email address, phone number, or other sensitive information.</li></ul></div> | Yes |
 
 ### Response parameters
 
 | Parameter | Type | Description |
 | :---------------- | :----- | :---------------------------------------------------------------- |
 | `action` | String | The request method. |
-| `organization` | String | The unique identifier assigned to each company (organization) by the Agora Chat service. This is the same as `org_name`. |
-| `application` | String | A unique internal ID assigned to each app by the Agora Chat service. You can safely ignore this parameter. |
-| `applicationName` | String | The unique identifier assigned to each app by the Agora Chat service. This is the same as `app_name`. |
+| `organization` | String | The unique identifier assigned to each company (organization) by the Chat service. This is the same as `org_name`. |
+| `application` | String | A unique internal ID assigned to each app by the Chat service. You can safely ignore this parameter. |
+| `applicationName` | String | The unique identifier assigned to each app by the Chat service. This is the same as `app_name`. |
 | `uri` | String | The request URL. |
 | `path` | String | The request path, which is part of the request URL. You can safely ignore this parameter. |
 | `entities ` | JSON | The response entity. |
@@ -30,15 +31,21 @@ The following table lists common request and response parameters of the Agora Ch
 
 ## Authorization
 
-Agora Chat RESTful APIs require Bearer HTTP authentication. Every time an HTTP request is sent, the following `Authorization` field must be filled in the request header:
+Chat RESTful APIs require Bearer HTTP authentication. Every time an HTTP request is sent, the following `Authorization` field must be filled in the request header:
 
-`Authorization`: Bearer ${YourAppToken}
+```http
+Authorization: Bearer ${YourAppToken}
+```
 
-In order to improve the security of the project, Agora uses a token (dynamic key) to authenticate users before they log in to the chat system. Agora Chat RESTful APIs only support authenticating users using app tokens. For details, see [Authentication using App Token](./generate_app_tokens?platform=RESTful).
+In order to improve the security of the project, Agora uses a token (dynamic key) to authenticate users before they log in to the chat system. Chat RESTful APIs only support authenticating users using app tokens. For details, see [Authentication using App Token](./generate_app_tokens?platform=RESTful).
 
-## Sending a message<a name="sendmessage"></a>
+<a name="sendmessage"></a>
+
+## Sending a message
 
 This group of methods enable you to send and receive peer-to-peer and group messages. Message types include text, image, voice, video, command, extension, file, and custom messages.
+
+For each App Key, the call frequency limit of this method is 100 per second.
 
 Follow the instructions below to implement sending messages:
 
@@ -46,6 +53,8 @@ Follow the instructions below to implement sending messages:
 - For image, voice, video, and file messages:
    1. Call the [upload-file](#upload) method to upload images, voice messages, videos, or other types of files, and get the file `uuid` from the response body.
    2. Call the send-message method, and pass the `uuid` in the request body.
+
+
 
 ### HTTP request
 
@@ -55,14 +64,14 @@ POST https://{host}/{org_name}/{app_name}/messages
 
 #### Path parameter
 
-For the parameters and detailed descriptions, see [Common parameters ](#param).
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Request header
 
 | Parameter | Type | Description | Required |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Content-Type` | String | `application/json` | Yes |
-| `Authorization` | String | Bearer ${YourAppToken} | Yes |
+| `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 #### Request body
 
@@ -76,7 +85,9 @@ The request body is a JSON object, which contains the following fields:
 | `from` | String | The username of the message sender, which cannot be empty.<br>If this field is not passed in the request body, the default message sender is `admin`. | Yes |
 | `sync_device` | Bool | Whether to synchronize the message state to the sender after the message is sent successfully.<li>`true`: Yes<li>(default) `false`: No | No |
 
-#### <a name="msg"></a>Descriptions of msg
+<a name="msg"></a>
+
+#### Descriptions of msg
 
 **Sending a text or command message**
 
@@ -92,7 +103,7 @@ The request body is a JSON object, which contains the following fields:
 | `filename` | String | The name of the image file. | Yes |
 | `secret` | String | The image access key, the `share-secret` you obtained from the response body of the [file-upload](#upload) method after the image file is successfully uploaded.  | This field is mandatory if you set the file access restrictions (`restrict-access`) when uploading the file. |
 | `size` | JSON | The image dimensions (in pixels), which contain the following fields:<li>`height`: The image height<li>`width`: The image width | Yes |
-| `url` | String | The image URL address: `https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`<br>, in which `uuid` is the file ID. After the image file is successfully uploaded, you can obtain it from the response body of the [file-upload](#upload) method.. | Yes |
+| `url` | String | The image URL address: `https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`<br>, in which `uuid` is the file ID. After the image file is successfully uploaded, you can obtain it from the response body of the [file-upload](#upload) method. | Yes |
 | `type` | String | The message type. For image messages, set it as `img`. | Yes |
 
 **Sending a voice message**
@@ -155,9 +166,9 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 **Sending a text message**
 
-```json
-# Replace <YourAppToken> with the app token generated in your server.
-curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' -d '
+```shell
+# Replace {YourAppToken} with the app token generated in your server.
+curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' -d '
 {
     "target_type": "users",
     "target": ["user2","user3"],
@@ -173,9 +184,9 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 **Sending an image message**
 
-```json
-# Replace <YourAppToken> with the app token generated in your server.
-curl -X POST -i 'https://XXXX/XXXX/XXXX/messages' -H 'Authorization: Bearer <YourAppToken>' -d '
+```shell
+# Replace {YourAppToken} with the app token generated in your server.
+curl -X POST -i 'https://XXXX/XXXX/XXXX/messages' -H 'Authorization: Bearer {YourAppToken}' -d '
 {
     "target_type":"users",
     "target":["user2"],
@@ -197,9 +208,9 @@ curl -X POST -i 'https://XXXX/XXXX/XXXX/messages' -H 'Authorization: Bearer <You
 
 **Sending a voice message**
 
-```json
-# Replace <YourAppToken> with the app token generated in your server.
-curl -X POST -H "Authorization: Bearer <YourAppToken>" "https://XXXX/XXXX/XXXX/messages" -d '
+```shell
+# Replace {YourAppToken} with the app token generated in your server.
+curl -X POST -H "Authorization: Bearer {YourAppToken}" "https://XXXX/XXXX/XXXX/messages" -d '
 {
     "target_type" : "users",
     "target" : [
@@ -219,9 +230,9 @@ curl -X POST -H "Authorization: Bearer <YourAppToken>" "https://XXXX/XXXX/XXXX/m
 
 **Sending a video message**
 
-```json
-# Replace <YourAppToken> with the app token generated in your server.
-curl -X POST -i 'https://XXXX/XXXX/XXXX/messages' -H 'Authorization: Bearer <YourAppToken>' -d '
+```shell
+# Replace {YourAppToken} with the app token generated in your server.
+curl -X POST -i 'https://XXXX/XXXX/XXXX/messages' -H 'Authorization: Bearer {YourAppToken}' -d '
 {
     "target_type":"users",
     "target":[
@@ -242,11 +253,30 @@ curl -X POST -i 'https://XXXX/XXXX/XXXX/messages' -H 'Authorization: Bearer <You
 }'
 ```
 
+**Sending a file message**
+
+```shell
+curl -X POST -i 'https://XXXX/XXXX/XXXX/messages'   -H 'Authorization: Bearer {YourAppToken}'  -d '
+{
+    "target_type":"users",
+    "target":[
+        "u1"
+    ],
+    "from":"u2",
+    "msg":{
+        "type":"file",
+        "filename":"test.txt",
+        "secret":"1-g0XXXXua",
+        "url":"https://a1.easemob.com/XXXX/XXXX/chatfiles/d7eXXXX7444"
+    }
+}'
+```
+
 **Sending a location message**
 
-```json
-# Replace <YourAppToken> with the app token generated in your server.
-curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' -d '
+```shell
+# Replace {YourAppToken} with the app token generated in your server.
+curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' -d '
 {
     "target_type": "users",
     "target":[
@@ -264,9 +294,9 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 **Sending a command message**
 
-```json
-# Replace <YourAppToken> with the app token generated in your server.
-curl -X POST -H "Authorization:Bearer <YourAppToken>" -i "https://XXXX/XXXX/XXXX/messages" -d '
+```shell
+# Replace {YourAppToken} with the app token generated in your server.
+curl -X POST -H "Authorization:Bearer {YourAppToken}" -i "https://XXXX/XXXX/XXXX/messages" -d '
     {
         "target_type":"users",
         "target":
@@ -285,9 +315,9 @@ curl -X POST -H "Authorization:Bearer <YourAppToken>" -i "https://XXXX/XXXX/XXXX
 
 **Sending a custom message**
 
-```json
-# Replace <YourAppToken> with the app token generated in your server.
-curl -L -X POST 'https://XXXX/XXXX/XXXX/messages' -H 'Accept: application/json' -H 'Content-Type: application/json' -H 'Authorization: Bearer ${<YourAppToken> }' -d '
+```shell
+# Replace {YourAppToken} with the app token generated in your server.
+curl -L -X POST 'https://XXXX/XXXX/XXXX/messages' -H 'Accept: application/json' -H 'Content-Type: application/json' -H 'Authorization: Bearer ${YourAppToken}' -d '
 {
     "target_type":"users",
     "target":[
@@ -311,9 +341,9 @@ curl -L -X POST 'https://XXXX/XXXX/XXXX/messages' -H 'Accept: application/json' 
 
 **Sending an extension message**
 
-```json
-# Replace <YourAppToken> with the app token generated in your server.
-curl -X POST -H "Authorization:Bearer <YourAppToken>" -i "https://a1.easemob.com/easemob-demo/testapp/messages" -d '
+```shell
+# Replace {YourAppToken} with the app token generated in your server.
+curl -X POST -H "Authorization:Bearer {YourAppToken}" -i "https://a1.easemob.com/easemob-demo/testapp/messages" -d '
 {
     "target_type":"users",
     "target":[
@@ -407,6 +437,24 @@ curl -X POST -H "Authorization:Bearer <YourAppToken>" -i "https://a1.easemob.com
 }
 ```
 
+**Sending a file message**
+
+```json
+{
+    "path":"/messages",
+    "uri":"https://XXXX/XXXX/XXXX/messages",
+    "timestamp":1651202759190,
+    "organization":"XXXX",
+    "application":"6b5XXXX0",
+    "action":"post",
+    "data":{
+        "u1":"success"
+    },
+    "duration":1,
+    "applicationName":"XXXX"
+}
+```
+
 **Sending a location message**
 
 ```json
@@ -481,12 +529,16 @@ curl -X POST -H "Authorization:Bearer <YourAppToken>" -i "https://a1.easemob.com
 }
 ```
 
-## <a name="upload"></a>Uploading files
+<a name="upload"></a>
+
+## Uploading files
 
 This method enables you to upload images, audio, video, or other types of files. Ensure that you read the following instructions before calling this method:
 
-- The Agora Chat service supports restricted access to uploaded files. Once you enable this feature, users need provide a key to download restricted access files.
-- When uploading an image or video file, the Agora Chat service creates a thumbnail of the image or video on the server so that users can preview the files when downloading them.
+- The Chat service supports restricted access to uploaded files. Once you enable this feature, users need to provide a key to download restricted access files.
+- When uploading an image or video file, the Chat service creates a thumbnail of the image or video on the server so that users can preview the files when downloading them.
+
+For each App Key, the call frequency limit of this method is 100 per second.
 
 ### HTTP request
 
@@ -496,14 +548,14 @@ POST https://{host}/{org_name}/{app_name}/chatfiles
 
 #### Path parameter
 
-For the parameters and detailed descriptions, see [Common parameters ](#param).
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Request header
 
 | Parameter | Type | Description | Required |
 | :---------------- | :----- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
 | `Content-Type` | String | The content type. Pass `multipart/form-data` | Yes |
-| `Authorization` | String | Bearer ${YourAppToken} | Yes |
+| `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 | `restrict-access` | Bool | Whether to restrict access to this file.<li>If you set this parameter, whether to `true` or `false`, the access is restricted. The user needs to provide a file access key (`share-secret)` to download the file. You can obtain the access key from the response body.<li>If you do not set this parameter, the access is not restricted. Users can download the file directly. | No |
 
 #### Request body
@@ -519,25 +571,25 @@ The request body is in the form-data format and contains the following fields:
 
 #### Response body
 
-If the returned HTTP status code is `200`, the request is successful, and the response body contains the following fields:
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
 | Field | Type | Description |
 | :---------------------- | :----- | :------------------------------------------------------------------------------------------------------------------- |
-| `entities.uuid` | String | The file ID, a unique ID assigned to the file by the Agora Chat service. <br>You need to save this `uuid` yourself, and provide it when calling the [Send-file-messages](#sendmessage) method. |
+| `entities.uuid` | String | The file ID, a unique ID assigned to the file by the Chat service. <br>You need to save this `uuid` yourself, and provide it when calling the [Send-file-messages](#sendmessage) method. |
 | `entities.type` | String | File type: `chatfile`. |
-| `entities.share-secret` | String | The file access key. <br>You need to save the `share-secret` yourself for use when [downloading the file ](#download). |
+| `entities.share-secret` | String | The file access key. <br>You need to save the `share-secret` yourself for use when [downloading the file](#download). |
 
 For other fields and detailed descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#code) for possible reasons.
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
 
 ### Example
 
 #### Request example
 
 ```shell
-# Replace <YourAppToken> with the app token you generated on the server, and replace the path of file with the local full path where the file to be uploaded is located
-curl -X POST https://XXXX/XXXX/XXXX/chatfiles -H 'Authorization: Bearer <YourAppToken>' -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' -H 'restrict -access: true' -F file=@/Users/test/9.2/Agora/image/IMG_2953.JPG
+# Replace {YourAppToken} with the app token you generated on the server, and replace the path of file with the local full path where the file to be uploaded is located
+curl -X POST https://XXXX/XXXX/XXXX/chatfiles -H 'Authorization: Bearer {YourAppToken}' -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' -H 'restrict -access: true' -F file=@/Users/test/9.2/Agora/image/IMG_2953.JPG
 ```
 
 #### Response example
@@ -562,9 +614,13 @@ curl -X POST https://XXXX/XXXX/XXXX/chatfiles -H 'Authorization: Bearer <YourApp
 }
 ```
 
-## <a name="download"></a>File download
+<a name="download"></a>
 
-Download images, audio, video, or other types of files.
+## Downloading files
+
+This method download images, audio, video, or other types of files. 
+
+For each App Key, the call frequency limit of this method is 100 per second.
 
 ### HTTP request
 
@@ -576,7 +632,7 @@ GET https://{HOST}/{org_name}/{app_name}/chatfiles/{uuid}
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------------------------------------------------------------------------------------------------------- | :------- |
-| `uuid` | String | File ID, the unique identifier assigned to the file by the Agora Chat system. After a file is uploaded successfully, you can obtain its `uuid` from the response body. | Yes |
+| `uuid` | String | File ID, the unique identifier assigned to the file by the Chat system. After a file is uploaded successfully, you can obtain its `uuid` from the response body. | Yes |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
 
@@ -593,7 +649,7 @@ For other parameters and detailed descriptions, see [Common parameters](#param).
 
 If the returned HTTP status code is `200`, it indicates that the request is successful, and the file binary data stream is returned.
 
-If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#code) for possible reasons.
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
 
 ### Example
 
@@ -606,7 +662,9 @@ curl -X GET -H 'Accept: application/octet-stream' -H 'Authorization: Bearer <You
 
 ## Retrieving historical messages
 
-Retrieves historical messages sent and received by the user. You can get all historical messages within one hour from the specified start time in one request.
+This method retrieves historical messages sent and received by the user. You can get all historical messages within one hour from the specified start time in one request.
+
+For each App Key, the call frequency limit of this method is 100 per second.
 
 The default storage time of historical messages differs by plan version. See [package details](./agora_chat_plan?platform=RESTful) for details.
 
@@ -629,7 +687,7 @@ For other parameters and detailed descriptions, see [Common parameters](#param).
 | Parameter | Description | Required |
 | :-------------- | :--------------------- | :------- |
 | `Content-Type` | `application/json` | Yes |
-| `Authorization` | Bearer ${YourAppToken} | Yes |
+| `Authorization` | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 ### HTTP response
 
@@ -643,15 +701,15 @@ If the returned HTTP status code is `200`, the request is successful, and the re
 
 For other fields and detailed descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#code) for possible reasons.
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
 
 ### Example
 
 #### Request example
 
 ```shell
-# Replace <YourAppToken> with the app token generated in your server.
-curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/chatmessages/2018112717'
+# Replace {YourAppToken} with the app token generated in your server.
+curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' 'http://XXXX/XXXX/XXXX/chatmessages/2018112717'
 ```
 
 #### Response example
@@ -673,7 +731,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 }
 ```
 
-### content of historical messages
+### Content of historical messages
 
 After successfully querying historical messages, you can visit the URL to download the historical message file and view the specific content of the historical message.
 
@@ -707,14 +765,14 @@ Historical messages contain the following fields:
 | :--------------- | :----- | :--------------------------------------------------------------------------------------------------------------------------------- |
 | `msg_id` | String | The message ID. The unique identifier for sending the message. |
 | `timestamp` | Number | The Unix timestamp in milliseconds when the message is sent, in UTC. |
-| `direction` | String | The message sending direction:<li>`incoming`: Upstream messages, which means that the message is sent by the user to the Agora Chat server.<li>`outgoing`: Downlink messages, which means that the message sent by the Agora Chat server to the user. |
+| `direction` | String | The message sending direction:<li>`incoming`: Upstream messages, which means that the message is sent by the user to the Chat server.<li>`outgoing`: Downlink messages, which means that the message sent by the Chat server to the user. |
 | `from` | String | The username of the message sender. |
 | `to` | String | The username or group ID of the message recipient. |
 | `chat_type` | String | Chat mode:<li>`chat`: One-to-one chat<li>`groupchat`: Group chat<li>`chatroom`: Chat room |
 | `payload` | JSON | The detailed content of the message. For example, message extension information or custom extension attributes. |
 | `payload.bodies` | JSON | For the detailed message content, see the `bodies` of each message type below. |
 
-#### Sending a text message
+#### Text messages
 
 The `bodies` of a text message contains the following fields:
 
@@ -736,7 +794,7 @@ Example
 }
 ```
 
-#### Sending an image message
+#### Image messages
 
 The `bodies` of an image message contains the following fields:
 
@@ -769,7 +827,7 @@ Example
 }
 ```
 
-#### Sending a location message
+#### Location messages
 
 The `bodies` of a location message contains the following fields:
 
@@ -795,7 +853,7 @@ Example
 }
 ```
 
-#### Sending a voice message
+#### Voice messages
 
 The `bodies` of a voice message contains the following fields:
 
@@ -825,7 +883,7 @@ Example
 }
 ```
 
-#### Sending a video message
+#### Video messages
 
 The `bodies` of a video message contains the following fields:
 
@@ -941,14 +999,115 @@ Example of custom type message format
     ]
 }
 ```
-	
-	<a name="code"></a>
+
+## Retrieving the conversation list
+
+This method retrieves a list of conversations of the specified user.
+
+For each App Key, the call frequency limit of this method is 100 per second. For each user ID, it is 5 per minute.
+
+### HTTP request
+
+```http
+GET https://{host}/{org_name}/{app_name}/user/{username}/user_channels
+```
+
+#### Path parameter
+
+For the parameters and detailed descriptions, see [Common parameters](#param).
+
+#### Request header
+
+| Parameter            | Type | Required | Description                                                         |
+| :-------------- | :------- | :------- | :----------------------------------------------------------- |
+| `Content-Type`  | String   | Yes     | `application/json`                             |
+| `Authorization` | String   | Yes     | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
+
+### HTTP response
+
+#### Response body
+
+If the status code is `200`, the request succeeds, and `data` in the response body contains the following fields:
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `result` | String | The result of this request. `ok` means that the request succeeds. |
+| `channel_infos` | Object | The information of the retrieved conversation. |
+| `unread_num` | Number | The number of unread messages in the conversaiton. |
+| `meta` | Object | The metadata of the message. |
+| `from` | String | The message sender. |
+| `to` | String | The message recipient. |
+| `timestamp` | Long | The timestamp when the server receives the message. |
+| `payload` | Object | The message body in the conversation. |
+| `bodies` | Object | The content of the message body. |
+| `type` | String | The message type:<ul><li>`text`: The text message.</li><li>`img`: The image message.</li><li>`loc`: The location message.</li><li>`audio`: The audio message.</li><li>`video`: The video message.</li><li>`file`: The file message.</li><li>`cmd`: The command message.</li></ul>|
+| `ext` | String | The message extension. |
+| `from` | String | The message sender. |
+| `meta` | String | Reserved parameter. |
+| `to` | String | The message recipient. |
+| `type` | String | The chat type:<ul><li>`chat`: The one-to-one chat.</li><li>`groupchat`: The group chat.</li></ul> |
+
+
+For other fields and the descriptins, see [Common parameters](#param).
+
+If the status code is not `200`, the reuest fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
+
+### Example
+
+#### Request example
+
+```shell
+curl --location --request GET 'XXXX.com/1XXXX6/fXXXXt/user/testa/user_channels' \
+--header 'Authorization: Bearer {YourAppToken}'
+```
+
+#### Response example
+
+```json
+{
+    "path": "/users/testa/user_channels",
+    "uri": "http://XXXX.com/10XXXX6/fXXXXt/users/testa/user_channels",
+    "timestamp": 1651221753992,
+    "organization": "10XXXX16",
+    "application": "0fXXXXca",
+    "entities": [],
+    "action": "get",
+    "data": {
+        "channel_infos": [
+            {
+                "channel_id": "10XXXX6#XXXX",
+                "unread_num": 0,
+                "meta": {
+                    "from": "10XXXX6#XXXXX/XXX",
+                    "to": "10XXXX6#XXXX",
+                    "id": "10XXXX620",
+                    "timestamp": 1651221583837,
+                    "payload": "{
+                      \"bodies\":[{
+                        //The message body content
+                        }],
+                      \"ext\":{},
+                      \"from\":\"fXXXX1\",
+                      \"meta\":{},
+                      \"to\":\"174XXXX65\",
+                      \"type\":\"groupchat\"
+                      }"
+                }
+            }
+        ]
+    },
+    "duration": 0,
+    "applicationName": "fXXXXt"
+}
+```
 
 ## Recalling a message
 
 This method enables app admins to recall harmful information to maintain a healthy chat environment.
 
-The default time limit for recalling a message is two minutes, with a maximum of seven days. To modify this value, contact support@agora.io.
+For each App Key, the call frequency limit of this method is 100 per second.
+
+The default time limit for recalling a message is two minutes, with a maximum of seven days. To modify this value, contact sales@agora.io.
 
 ### HTTP request
 
@@ -958,14 +1117,14 @@ POST https://{host}/{org_name}/{app_name}/messages/recall
 
 #### Path parameter
 
-For the parameters and detailed descriptions, see [Common parameters ](#param).
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Request header
 
 | Parameter            | Type | Required | Description                                                         |
 | :-------------- | :------- | :------- | :----------------------------------------------------------- |
 | `Content-Type`  | String   | Yes     | `application/json`                             |
-| `Authorization` | String   | Yes     | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
+| `Authorization` | String   | Yes     | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
 
 #### Request body
 
@@ -975,13 +1134,13 @@ For the parameters and detailed descriptions, see [Common parameters ](#param).
 | `to`        | String   | No   | The user, chat group, or chat room that receives the recalled message. You can specify a username, a chat group ID, or a chat room ID.</br>**Note**: If the recalled message exceeds the message storage duration and no longer exists in the server, this message cannot be recalled on the server side. You can only recall the message on the receiver client instead. |
 | `chat_type` | String   | Yes     | The type of the chat where the recalled message is located. <li>`chat`: An one-on-one chat.<li>`group_chat`: A chat group.<li>`chatroom`: A chat room. |
 | `from`      | String   | No   | The user who recalls the message. By default, the recaller is the app admin. You can also specify another user as the recaller. |
-| `force`     | bool     | Yes     | Whether to force a recall if the recalled message exceeds the message storage duration and no longer exists in the server. <li>`true`: Force the recall on the client that receives the message.<li>`false`: The recall fails.</br>The maximum message storage duration varies based on different pricing plans. For details, see [Message storage duration](./agora_chat_limitation?platform=Android#message-storage-duration). |
+| `force`     | bool     | Yes     | Whether to force a recall if the recalled message exceeds the message storage duration and no longer exists in the server. <li>`true`: Force the recall on the client that receives the message.<li>`false`: The recall fails.</br>The maximum message storage duration varies based on different pricing plans. For details, see [Message storage duration](./agora_chat_limitation?platform=RESTful#message-storage-duration). |
 
 ### HTTP response
 
 #### Response body
 
-If `yes` is returned for the `recalled` field, the request is successful, and the response body contains the following fields:
+If `yes` is returned for the `recalled` field, the request succeeds, and the response body contains the following fields:
 
 | Parameter       | Description                                                         |
 | :--------- | :----------------------------------------------------------- |
@@ -993,24 +1152,16 @@ If `yes` is returned for the `recalled` field, the request is successful, and th
 
 For other fields and detailed descriptions, see [Common parameters](#param).
 
-If the request fails, refer to the following error messages for possible reasons:
-
-| Status code |  Error message | Description   |
-| :-----  | :----------------------------------------------------------- | :------------------------------------------------|
-| `200`  |  can't find msg to  | The error message returned because you have not specified the receiver of the recalled message or the specified receiver does not exist. |
-| `200`  |  exceed recall time limit | The error message returned because the specified message exceeds the time limit for recalling o message. |
-| `200`  |  not_found msg | The error message returned because the specified message does not exist. |
-| `200`  |  internal error | The error message returned because the server encounters an unexpected condition that prevents it from fulfilling the request. |
-| `403`  | message recall service is unopened | The error message returned because the recall service has not been activated. To activate this service, contact support@agora.io.  |
+If the request fails, refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
 
 ### Example
 
 #### Request example
 
-```
+```shell
 curl -i -X POST -H 
-"Authorization: Bearer YWMtnIF_ZI-GEea1KgfxnnDmKAAAAVjnsTKe0OE4vMOBWCtOcrB-56YcrhOHMho" 
-"https://a1.easemob.com/{org_name}/{app_name}/messages/recall" -d 
+"Authorization: Bearer {YourAppToken}" 
+"https://XXXX/{org_name}/{app_name}/messages/recall" -d 
 '{
     "msgs": [ 
          { 
@@ -1035,7 +1186,7 @@ curl -i -X POST -H
 
 **Successful response**
 
-```
+```json
 {
     "path": "/messages/recall",
     "uri": "https://a1.agora.com/agora-demo/chatdemoui/messages",
@@ -1061,7 +1212,7 @@ curl -i -X POST -H
 
 **Error response**
 
-```
+```json
 {
 	"msgs":
     [
@@ -1077,19 +1228,11 @@ curl -i -X POST -H
 }
 ```
 
-```
-{ 
-    "error":"forbidden_op", 
-    "exception":"EasemobForbiddenOpException", 
-    "timestamp":1644402553845, 
-    "duration":0, 
-    "error_description":"message recall service is unopened" 
-}
-```
+## Deleting conversations from the server one way
 
-## Implement the one-way deletion of chats
+This method enables the chat user to delete conversations one way from the server. Once the conversation is deleted, this chat user can longer retrieve the conversation from the server. Other chat users can still get the conversation from the server.
 
-Once User A deletes the chat with User B, User A can no longer pull this chat from the server, whereas User B can sync the chat properly.
+For each App Key, the call frequency limit of this method is 100 per second.
 
 ### HTTP request
 
@@ -1106,7 +1249,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | Parameter            | Type | Required | Description                                                         |
 | :-------------- | :------- | :------- | :----------------------------------------------------------- |
 | `Content-Type`  | String   | Yes     | `application/json`                                  |
-| `Authorization` | String   | Yes     | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
+| `Authorization` | String   | Yes     | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
 
 #### Request body
 
@@ -1132,13 +1275,13 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 #### Request example
 
-```
-curl -X DELETE -H "Authorization: Bearer YWMtxc6K0L1aEeKf9LWFzT9xEAAAAT7MNR_9OcNq-GwPsKwj_TruuxZfFSC2eIQ" "https://a1.agora.com/agora-demo/test-app/users/u1/user_channel"  -d  '{"channel":"u2", "type":"chat"，"delete_roam": true}'
+```shell
+curl -X DELETE -H "Authorization: Bearer {YourAppToken}" "https://a1.agora.com/agora-demo/test-app/users/u1/user_channel"  -d  '{"channel":"u2", "type":"chat"，"delete_roam": true}'
 ```
 
 #### Response example
 
-```
+```json
 {
     "path": "/users/user_channel",
     "uri": "https://a1.agora.com/agora-demo/test-app/users/u1/user_channel",

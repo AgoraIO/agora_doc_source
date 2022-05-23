@@ -68,7 +68,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | Parameter | Type | Description | Required |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Content-Type` | String | `application/json` | Yes |
-| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
+| `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 #### Request body
 
@@ -155,7 +155,7 @@ For the parameters and detailed descriptions, see [Common parameters ](#param).
 | Parameter | Type | Description |
 | :-------------- | :------------- | :--------------------- |
 | `Content-Type` | String | `application/json` |
-| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
+| `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
 
 #### Request body
 
@@ -325,7 +325,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | Parameter | Type | Description | Required |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Accept` | String | `application/json` | Yes |
-| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
+| `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 ### HTTP response
 
@@ -403,7 +403,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | Parameter | Type | Description | Required |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Accept` | String | `application/json` | Yes |
-| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
+| `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 ### HTTP response
 
@@ -540,7 +540,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | Parameter | Type | Description | Required |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Accept` | String | `application/json` | Yes |
-| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
+| `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 ### HTTP response
 
@@ -606,7 +606,7 @@ For the parameters and detailed descriptions, see [Common parameters ](#param).
 | Parameter | Type | Description | Required |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Accept` | String | `application/json` | Yes |
-| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
+| `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 ### HTTP response
 
@@ -673,7 +673,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | :-------------- | :----- | :--------------------- | :------- |
 | `Content-Type` | String | `application/json` | Yes |
 | `Accept` | String | `application/json` | Yes |
-| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
+| `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 #### Request body
 
@@ -734,7 +734,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | :-------------- | :----- | :--------------------- | :------- |
 | `Content-Type` | String | `application/json` | Yes |
 | `Accept` | String | `application/json` | Yes |
-| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
+| `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 ### HTTP response
 
@@ -803,7 +803,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | :-------------- | :----- | :--------------------- | :------- |
 | `Content-Type` | String | `application/json` | Yes |
 | `Accept` | String | `application/json` | Yes |
-| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
+| `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 ### HTTP response
 
@@ -859,7 +859,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | :-------------- | :----- | :--------------------- | :------- |
 | `Content-Type` | String | `application/json` | Yes |
 | `Accept` | String | `application/json` | Yes |
-| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
+| `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 ### HTTP response
 
@@ -926,7 +926,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | Parameter            | Type   | Description                   | Required |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Content-Type`  | String | `application/json`   | Yes      |
-| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes      |
+| `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes      |
 
 ### HTTP response
 
@@ -988,7 +988,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | Parameter            | Type   | Description                   | Required |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Content-Type`  | String | `application/json`   | Yes       |
-| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       |
+| `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       |
 
 #### Request body
 
@@ -1062,7 +1062,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | Parameter            | Type   | Description                   | Required |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Content-Type`  | String | `application/json`  | Yes   |
-| `Authorization` | String |  The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes      |
+| `Authorization` | String |  The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes      |
 
 ### HTTP response
 
@@ -1127,7 +1127,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | Parameter            | Type   | Description                   | Required |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Content-Type`  | String | `application/json`    | Yes       |
-| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       |
+| `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       |
 
 ### HTTP response
 

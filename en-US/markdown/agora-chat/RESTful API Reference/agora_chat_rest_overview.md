@@ -67,7 +67,10 @@ This group of methods enables you to send text, image, voice, video, pass-throug
 | Sending a message | POST | /{org_name}/{app_name}/messages | App admins use this method to send messages to users or groups, and support sending text, image, voice, video, pass-through, extension, and file messages. |
 | Uploading files | POST | /{org_name}/{app_name}/chatfiles | Uploads voice and image files. |
 | Downloading files | POST | /{org_name}/{app_name}/chatfiles/{uuid} | Downloads voice and image files. |
-| Retrieving chat log files | GET | /{org_name}/{app_name}/chatmessages/${time} | Retrieves chat log files. |
+| Retrieving historical messages | GET | /{org_name}/{app_name}/chatmessages/${time} | Retrieves chat historical messages |
+| Retrieving the conversation list | GET | /{org_name}/{app_name}/user/{username}/user_channels | Retrieves a list of conversations of the specified user.|
+| Recalling a message | POST | {org_name}/{app_name}/messages/recall | Recalls a message two minutes after it is sent. |
+| Deleting conversations from the server | DELETE | /{orgName}/{appName}/users/{userName}/user_channel | Deletes the conversation from the server. |
 
 ### User attributes
 
