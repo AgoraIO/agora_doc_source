@@ -1,4 +1,4 @@
-This page describes how to implement SDK acceleration mode.
+This page describes how to implement the SDK acceleration mode.
 
 In SDK acceleration mode, FPA automatically completes proximity scheduling from the client to the acceleration point IP address through the SDK.
 
@@ -94,7 +94,7 @@ You must initialize the SDK and enable the FPA service before using the SDK for 
     import io.agora.fpa.proxy.LogLevel;
     ```
 
-2. Create an `FPAProxyServiceConfig` object, and set the relevant parameters such as App ID, token, and log:
+2. Create an `FpaProxyServiceConfig` object, and set the relevant parameters such as App ID, token, and log:
 
     ```java
     private String workDir;
@@ -168,8 +168,8 @@ This section takes the OkHttp library as an example to process HTTP requests and
     ```java
     FpaHttpProxyChainConfig.Builder builder = new FpaHttpProxyChainConfig.Builder();
     // Sets the chain ID of the FPA service, such as 123
-    // Sets the origin IP address or domain name
-    // Sets the origin port, such as 80
+    // Sets the origin site IP address or domain name
+    // Sets the origin site port, such as 80
     // Sets whether to allow this acceleration channel to fall back to the local connection when the FPA proxy connection fails
     builder.addChainInfo(123, "<Your IP or domain>", 80, true)
         // Sets whether to roll back to a local connection if the HTTP local agent cannot find the chain ID corresponding to the source site in the FPA SDK
@@ -282,7 +282,7 @@ The following steps use Gradle as an example to manually copying SDK files for i
 ### Considerations
 
 - If the app is switched to the background, you need to keep it alive.
-- You can set the SDK log file path using the `fpaProxyServiceConfig.builder` (LogFile) method.
+- You can set the SDK log file path using the `fpaProxyServiceConfig.builder` method.
 
 <a id="generate-token"></a>
 

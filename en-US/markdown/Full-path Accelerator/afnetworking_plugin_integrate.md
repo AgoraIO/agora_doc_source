@@ -1,4 +1,4 @@
-This page describes how to implement SDK acceleration mode.
+This page describes how to implement the SDK acceleration mode.
 
 In SDK acceleration mode, FPA automatically completes proximity scheduling from the client to the acceleration point IP address through the SDK.
 
@@ -76,7 +76,7 @@ You must initialize the SDK and enable the FPA service before using the SDK for 
 
     ```objective-c
     FpaProxyServiceConfig *config = [[FpaProxyServiceConfig alloc] init];
-    // Sets App ID
+    // Sets the App ID
     config.appId = @"<Your App ID>";
     // Sets the token. If token authentication is not enabled, you do not need to set the token
     config.token = @"<Your token>";
@@ -137,8 +137,8 @@ This section takes the AFNetworking library as an example to process HTTP reques
     NSMutableArray *array = [NSMutableArray array];
 
     // Sets the chain ID of the FPA service, such as 123
-    // Sets the origin IP address or domain name
-    // Sets the origin port, such as 80
+    // Sets the origin site IP address or domain name
+    // Sets the origin site port, such as 80
     // Sets whether to allow this acceleration channel to fall back to the local connection when the FPA proxy connection fails
     FpaChainInfo *info = [FpaChainInfo fpaChainInfoWithChainId:201 address:@"<Your domain or IP>" port:30113 enableFallback:YES];
     [array addObject:info];
@@ -225,7 +225,7 @@ After the `.framework` libraries are added, the Xcode project automatically link
 ### Considerations
 
 - If the app is switched to the background, you need to keep it alive.
-- You can set the SDK log file path using the `FpaProxyServiceConfig.logFilePath` (LogFile) method.
+- You can set the SDK log file path using the `FpaProxyServiceConfig.logFilePath` method.
 
 ### API reference
 
