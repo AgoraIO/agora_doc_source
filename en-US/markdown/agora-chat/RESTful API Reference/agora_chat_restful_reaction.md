@@ -1,15 +1,5 @@
 During one-to-one chats and group chats, users can reply to a specified message with emojis, which adds fun and diversity to real-time chatting. In Agora Chat, this feature is known as reaction. This page shows how to use the Agora Chat RESTful API to implement reaction in your project.
 
-## Authorization
-
-The Agora Chat RESTful API requires Bearer HTTP authentication. Every time an HTTP request is sent, the following `Authoriazation` field must be filled in the request header, in which `Bearer` is a fixed character, followed by an English space, and then the obtained app token value. 
-
-```http
-Authorization: Bearer ${YourAppToken}
-```
-
-In order to improve the security of the project, Agora uses a token (dynamic key) to authenticate users before they log in to the chat system. The Agora Chat RESTful API only supports authenticating users using app tokens. For how to generate an app token, see [Generate an App Token](/generate_app_tokens?platform=All%20Platforms).
-
 <a name="param"></a>
 
 ## Common parameters
@@ -38,6 +28,18 @@ This following table lists the common request and response parameters of the Ago
 | `data` | JSON | The returned data. |
 | `timestamp` | Number | The Unix timestamp (ms) of the HTTP response. |
 | `duration` | Number | The duration (ms) from when the HTTP request is sent to the time the response is received. |
+
+## Authorization
+
+The Agora Chat RESTful API requires Bearer HTTP authentication. Every time an HTTP request is sent, the following `Authoriazation` field must be filled in the request header, in which `Bearer` is a fixed character, followed by an English space, and then the obtained app token value. 
+
+```http
+Authorization: Bearer ${YourAppToken}
+```
+
+In order to improve the security of the project, Agora uses a token (dynamic key) to authenticate users before they log in to the chat system. The Agora Chat RESTful API only supports authenticating users using app tokens. For how to generate an app token, see [Generate an App Token](/generate_app_tokens?platform=All%20Platforms).
+
+<a name="create"></a>
 
 ## Create/Add a reaction
 
@@ -79,7 +81,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the `data` 
 | `msgId` | String | The message ID. |
 | `msgType` | String | The message type:<ul><li>`chat`: One-to-one chat.</li><li>`groupchat`: Group chat.</li></ul> |
 | `groupId` | String | The chat group ID. If the message type is `chat`, the server returns null. |
-| `reaction` | String | The reaction ID, same as `message` in the request body. |
+| `reaction` | String | The ID of the emoji added as the reaction, same as `message` in the request body. |
 | `createAt` | String | The time when the reaction is created. |
 | `updateAt` | String | The time when the reaction is updated. |
 
@@ -150,9 +152,209 @@ For the path parameters and the detailed descriptions, see [Common parameters](#
 
 #### Response body
 
+If the returned HTTP status code is `200`, the request succeeds, and the `data` in the response contains the following fields:
+
 | Parameter | Type | Description |
 | `msgId` | String | The message ID. |
-| `reactionId` | String | 
+| `reactionId` | String | The reaction ID returned in the data of the response body of [Create a reaction](#create). |
+| `reaction` | String | The ID of the emoji that is added as the reaction. |
+| `userCount` | Number | The number of users that have added a reaction to this message. |
+| `state` | Boolean | Whether the user sending this request has added a reaction to this message.<ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> |
+| `userList` | Array | The list of users that have added a reaction to this message. It contains a maximum of three users that have added that reaction. |
+
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
+
+### Example
+
+#### Request example
+
+```shell
+curl -X GET 'http://XXXX/XXXX/XXXX/XXXX/reaction?msgIdList=msg123,msg1234&msgType=groupchat&groupId=173446846808065' -H 'Authorization: {YourAppToken}' -H 'Content-Type: application/json'
+```
+
+#### Response example
+
+```json
+{
+    "requestStatusCode": "ok",
+    "timestamp": 1645774821181,
+    "data": [
+        {
+            "msgId": "msg123",
+            "reactionList": [
+                {
+                    "reactionId": "944330310986837168",
+                    "reaction": message123456,
+                    "userCount": 0,
+                    "state": false,
+                    "userList": [
+                        "test123",
+                        "test456",
+                        "test1"
+                    ]
+                }
+            ]
+        },
+        {
+            "msgId": "msg1234",
+            "reactionList": [
+                {
+                    "reactionId": "945272584050659838",
+                    "reaction": message123456,
+                    "userCount": 0,
+                    "state": false,
+                    "userList": [
+                        "test5"
+                    ]
+                }
+            ]
+        }
+    ]
+}
+```
+
+## Delete a reaction
+
+This method deletes a reaction.
+
+### HTTP request
+
+```shell
+DELETE https://{host}/{orgName}/{appName}/{userId}/reaction
+```
+
+#### Path parameter
+
+For the parameters and the detailed descriptions, see [Common parameters](#param).
+
+#### Reqest header
+
+| Parameter | Type | Description | Required |
+| :-------------- | :----- | :---------------------------------- | :------- |
+| `Content-Type` | String | `application/x-www-form-urlencoded` | Yes |
+| `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
+
+#### Query parameters
+
+| Parameter | Type | Description | Required |
+| --- | --- | --- | --- |
+| `msgId` | String | The message ID. | Yes |
+| `message` | String | The ID of the emoji that is added as the reaction. | Yes |
+
+### HTTP Response
+
+#### Response body
+
+If the returned HTTP status code is `200`, the request succeeds, and the `data` in the response contains the following fields:
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `requestStatusCode` | String | The status code of this request. `ok` means that the request succeeds. |
+| `timestamp` | Long | The Unix timestamp of this response, in miliseconds. |
+
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
+
+### Example
+
+#### Request example
+
+```shell
+curl -X DELETE 'http://localhost:8089/easemob-demo/easeim/wz1/reaction?msgId=msg123&message=message123' -H 'Authorization: {YourAppToken}' -H 'Content-Type: application/json'
+```
+
+#### Response example
+
+```json
+{
+    "requestStatusCode": "ok",
+    "timestamp": 1645774821181
+}
+```
+
+## Retrieve the information of the specified reaction
+
+This method retrieves the detailed information of the reaction by specifying the message ID and reaction ID.
+
+### HTTP request
+
+```shell
+GET https://{host}/{orgName}/{appName}/{userId}/reaction/detail
+```
+
+#### Path parameter
+
+For the parameters and the detailed description, see [Common parameters](#param).
+
+#### Request header
+
+| Parameter | Type | Description | Required |
+| :-------------- | :----- | :---------------------------------- | :------- |
+| `Content-Type` | String | `application/x-www-form-urlencoded` | Yes |
+| `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
+
+#### Query parameters
+
+| Parameter | Type | Description | Required |
+| --- | --- | --- | --- |
+| `msgId` | String | The message ID. | Yes |
+| `message` | String | The ID of the emoji that is added as the reaction. | Yes |
+| `limit` | Number | The number of reactions retrieved on each page when you retrieve the reactions with pagination. The value range is [1,100]. The default value is 100. | No |
+| `cursor` | String | The starting page from which to retrieve data if you retrieve the reactions with pagination.|
+
+### HTTP response
+
+#### Response body
+
+If the returned HTTP status code is `200`, the request succeeds, and the `data` in the response contains the following fields:
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `reactionId` | String | The reaction ID. |
+| `reaction` | String | The ID of the emoji that is added as the reaction. |
+| `userCount` | Number | The number of users that have added the reaction. |
+| `state` | String | The state of the this request. |
+| `userList` | Array | The list of the users that have added this reaction. It only contains the three user IDs that last used reaction. |
+| `cursor` | String | The starting page from which to retrieve data if you retrieve the reactions with pagination. |
+
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
+
+### Example
+
+#### Request example
+
+```shell
+// Starts querying from the first page
+curl -X GET 'http://localhost:8089/easemob-demo/easeim/wz1/reaction/detail?msgId=msg123456&message=message123456&cursor=944330529971449164&limit=4'
+
+// Starts querying from the second page
+curl -X GET 'http://localhost:8089/easemob-demo/easeim/wz1/reaction/detail?msgId=msg123456&message=message123456&cursor=944330529971449164&limit=4'
+```
+
+#### Response example
+
+```json
+{
+    "requestStatusCode": "ok",
+    "timestamp": 1645776986146,
+    "data": {
+        "reactionId": "946463470818405943",
+        "reaction": "message123456",
+        "userCount": 1,
+        "state": true,
+        "userList": [
+            "wz1"
+        ],
+        "cursor": "946463471296555192"
+    }
+}
+```
+
+
+
+
+
+
+
 
 
 

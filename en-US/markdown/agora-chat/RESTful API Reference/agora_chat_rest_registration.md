@@ -15,7 +15,7 @@ The following table lists common request and response parameters of the Agora Ch
 | `host` | String | The domain name assigned by the Agora Chat service to access RESTful APIs. For how to get the domain name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
 | `org_name` | String | The unique identifier assigned to each company (organization) by the Agora Chat service. For how to get the org name, see [Get the information of the Agora Chat project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
 | `app_name` | String | The unique identifier assigned to each app by the Agora Chat service. For how to get the app name, see [Get the information of the Agora Chat project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
-| `username` | String | The unique login account of the user. The username must be 64 characters or less and cannot be empty. The following character sets are supported:<li>26 lowercase English letters (a-z)<li>26 uppercase English letters (A-Z)<li>10 numbers (0-9)<li>"\_", "-", "."<div class="alert note"><ul><li>The username is case insensitive, so `Aa` and `aa` are the same username<li>Ensure that each username under the same app is unique.</ul></div> | Yes |
+| `username` | String | The unique login account of the user. The user ID must be 64 characters or less and cannot be empty.  The following character sets are supported:<ul><li>26 lowercase English letters (a-z)</li><li>26 uppercase English letters (A-Z)</li><li>10 numbers (0-9)</li><li>"\_", "-", "."</li></ul><div class="alert note"><ul><li>The username is case insensitive, so `Aa` and `aa` are the same username.</li><li>Ensure that each `username` under the same app is unique.</li><li>Do not set this parameter as a UUID, email address, phone number, or other sensitive information.</li></ul></div> | Yes |
 
 ### Response parameters
 
@@ -41,13 +41,15 @@ The following table lists common request and response parameters of the Agora Ch
 
 Agora Chat RESTful APIs require Bearer HTTP authentication. Every time an HTTP request is sent, the following `Authorization` field must be filled in the request header:
 
-`Authorization`: Bearer ${YourAppToken}
+```http
+Authorization: Bearer ${YourAppToken}
+```
 
 In order to improve the security of the project, Agora uses a token (dynamic key) to authenticate users before they log in to the chat system. Agora Chat RESTful APIs only support authenticating users using app tokens. For details, see [Authentication using App Token](./generate_app_tokens?platform=RESTful).
 
 ## Registering a user
 
-Creates a user account.
+This method creates a user account.
 
 ### HTTP request
 
