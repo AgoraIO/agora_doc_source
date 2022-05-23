@@ -234,11 +234,11 @@ Constructor of the `FpaProxyServiceConfig` class.
 
 | Parameter          | Description                                       |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| app_id           | App ID to use Agora service. See [Get an App ID](https://docs-preprod.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#get-the-app-id).  |
+| app_id           | App ID to use Agora service. See [Get an App ID](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#get-the-app-id).  |
 | token           |   Token generated from your app server for authentication. <ul><li>If your project uses **App ID** for authentication, you can assign the value of app ID to this parameter. You can also assign `null` or `""` to this parameter or skip this parameter.</li><li> If your project uses **App ID + token** for authentication, you need to assign the token generated from your app server to this parameter.</li></ul>  |
 | log_level           |   Log level. <ul><li>0: No logs.</li><li>1: Information.</li><li>2: Warning.</li><li>4: Error.</li><li>8: Fatal.</li></ul>  |
 | log_file_size_kb           |   The maximum size of a single log file (KB). The default is 1024. If you set this parameter to 1024, the maximum size of the log files is 5 MB. If you set this parameter to a value less than 1024, the maximum size of a single log file is still 1024.|
-| log_file_path       | The full path of the log file including the filename in String format. Make sure the path exists and is writable.                 |
+| log_file_path       | The full path of the log file including the filename in string format. Make sure the path exists and is writable.                 |
 
 #### Returns
 

@@ -1,4 +1,4 @@
-`io.agora.fpa.proxy` Package includes the following classes and enums:
+The `io.agora.fpa.proxy` Package includes the following classes and enums:
 
 ## `FpaProxyService` class
 
@@ -219,7 +219,7 @@ The `FpaProxyServiceConfig` class includes the following classes:
 
 The `Builder` class includes the following methods:
 
-**`Builder` method**
+#### `Builder` method
 
 ```java
 public Builder(@NonNull String logFile)
@@ -231,13 +231,13 @@ Constructor of the `Builder` class.
 
 | Parameter          | Description                                       |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| logFile       | The full path of the log file including the filename in String format. Make sure the path exists and is writable.                 |
+| logFile       | The full path of the log file including the filename in string format. Make sure the path exists and is writable.                 |
 
 ##### Returns
 
 A `Builder` object.
 
-**`build` method**
+#### `build` method
 
 Constructor of the `FpaProxyServiceConfig` class.
 
@@ -253,7 +253,7 @@ None.
 
 An `FpaProxyServiceConfig` object.
 
-**`setAppId` method**
+#### `setAppId` method
 
 ```java
 public Builder setAppId(String id)
@@ -265,13 +265,13 @@ Sets the App ID.
 
 | Parameter             | Description                                                                                                                                                                                        |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| id           | App ID to use Agora service. See [Get an App ID](https://docs-preprod.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#get-the-app-id).  |
+| id           | App ID to use Agora service. See [Get an App ID](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#get-the-app-id).  |
 
 ##### Returns
 
 A `Builder` object.
 
-**`setToken` method**
+#### `setToken` method
 
 ```java
 public Builder setToken(String token)
@@ -289,7 +289,7 @@ Sets the token.
 
 A `Builder` object.
 
-**`setLogLevel` method**
+#### `setLogLevel` method
 
 ```java
 public Builder setLogLevel(LogLevel level)
@@ -307,7 +307,7 @@ Sets the log level.
 
 A `Builder` object.
 
-**`setLogFileSizeKb` method**
+#### `setLogFileSizeKb` method
 
 ```java
 public Builder setLogFileSizeKb(int size)
@@ -335,7 +335,7 @@ The `FpaHttpProxyChainConfig` class includes the following classes:
 
 The `Builder` class includes the following methods:
 
-**`Builder` method**
+#### `Builder` method
 
 ```java
 public Builder()
@@ -351,7 +351,7 @@ None.
 
 A `Builder` object.
 
-**`addChainInfo` method**
+#### `addChainInfo` method
 
 ```java
 public Builder addChainInfo(int chainId, String address, int port, boolean enable)
@@ -368,7 +368,7 @@ Adds a mapping between the acceleration IP or domain and the chain ID.
 | port | Port of the source server for acceleration.                                                                                                                                        |
 | enable   | Whether to fall back to local connection if FPA connection fails for this acceleration chain. <ul><li>`true`: Falls back to local connection.</li><li>`false`: Does not fall back to local connection.|
 
-**`fallbackWhenNoChainAvailable` method**
+#### `fallbackWhenNoChainAvailable` method
 
 ```java
 public Builder fallbackWhenNoChainAvailable(boolean can)
@@ -382,7 +382,7 @@ public Builder fallbackWhenNoChainAvailable(boolean can)
 | ---- | ----------------------------------------------------------------------------------------------------------- |
 | can  | <ul><li>`true`: Falls back to local connection when the SDK cannot find the chain ID corresponding to the source server.</li><li>`false`: Does not fall back to local connection when the SDK cannot find the chain ID corresponding to the source server.</li></ul> |
 
-**build**
+#### `build` method
 
 ```java
 public FpaHttpProxyChainConfig build()
