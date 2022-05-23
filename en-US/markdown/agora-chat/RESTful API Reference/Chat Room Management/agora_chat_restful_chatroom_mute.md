@@ -281,12 +281,6 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | `Content-Type` | String | Yes | `application/json` |
 | `Authorization` | String | Yes |  The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
 
-#### Request body
-
-| Parameter | Type | Description 
-| :-------------- | :----- | :--------------------------------------------------------------------------------------------------------------------------------- | 
-| `mute_duration` | Long | The duration of how long all members are muted, starting from the current time. Unit: milliseconds. |
-
 ### HTTP response
 
 #### Response body
