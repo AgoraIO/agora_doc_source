@@ -50,9 +50,9 @@
             </dlentry>
             </dl>
             <p id="desc1">本地视频的状态发生改变时，SDK 会触发该回调返回当前的本地视频状态。你可以通过该回调了解当前视频的状态以及出现故障的原因，方便排查问题。</p>
-            <p> SDK 会在如下情况触发 <apiname keyref="onLocalVideoStateChanged"/> 回调，状态为 <codeph><ph keyref="LOCAL_VIDEO_STREAM_STATE_FAILED"/></codeph>，错误码为 <codeph><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/></codeph>： 
-            
-            
+            <p> SDK 会在如下情况触发 <apiname keyref="onLocalVideoStateChanged"/> 回调，状态为 <codeph><ph keyref="LOCAL_VIDEO_STREAM_STATE_FAILED"/></codeph>，错误码为 <codeph><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/></codeph>：
+
+
             <ul>
             <li>应用退到后台，系统回收摄像头。</li>
             <li>摄像头正常启动，但连续 4 秒都没有输出采集的视频。</li>
@@ -96,11 +96,10 @@
                     <ul>
                     <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_OK"/> (0): 本地视频状态正常。</li>
                     <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_FAILURE"/> (1): 出错原因不明确。</li>
-                    <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_NO_PERMISSION"/>(2): 没有权限启动本地视频采集设备。</li>
-                    <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY"/> (3): 本地视频采集设备正在使用中。</li>
-                    <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/> (4): 本地视频采集失败，建议检查采集设备是否正常工作。
-                        
-                        <ul id="ul_ygj_tdx_qqb">
+                    <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_NO_PERMISSION"/>(2): 没有权限启动本地视频采集设备。请提示用户开启权限再重新加入频道。</li>
+                    <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY"/> (3): 本地视频采集设备正在使用中。请提示用户检查摄像头是否被其他应用占用。</li>
+                    <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/> (4): 本地视频采集失败。请提示用户检查视频采集设备是否正常工作，检查摄像头是否被其他应用占用，或者尝试重新加入频道。
+                        <ul>
                         <li>Android 9 及以上版本，app 切后台一段时间后，系统收回相机权限。</li>
                         <li>Android 6 及以上版本，如果相机被第三方应用占用，且未被及时释放。如果一段时间后，相机被释放，则 SDK会再次出发该回调，并报告 <codeph>state</codeph> 为 <codeph>CAPTURING</codeph>，<codeph>error</codeph> 为 <codeph>ERROR_OK</codeph>。</li>
                         </ul></li>

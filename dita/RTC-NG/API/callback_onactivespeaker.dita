@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onactivespeaker">
     <title><ph keyref="onActiveSpeaker"/></title>
-    <shortdesc id="short"><ph id="shortdesc">监测到最活跃用户回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">监测到远端最活跃用户回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -12,15 +12,9 @@
     </prolog>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onActiveSpeaker(uid_t userId) { (void)userId; }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnActiveSpeaker(uint userId) {}</codeblock></p>
-            <p outputclass="codeblock" props="rtc">
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onActiveSpeaker(uid_t uid) {
-                (void)uid;
-                }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnActiveSpeaker(uint uid)</codeblock></p>
             <p outputclass="codeblock">
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onActiveSpeaker(uid_t userId) { (void)userId; }</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnActiveSpeaker(uint userId) {}</codeblock>
             <codeblock props="android" outputclass="language-java">public void onActiveSpeaker(int uid) {}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine activeSpeaker:(NSUInteger)speakerUid;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.ACTIVE_SPEAKER, cb: (uid: number) =&gt; void): this;</codeblock>
@@ -29,12 +23,10 @@
         </section>
         <section id="detailed_desc">
             <p>成功调用 <xref keyref="enableAudioVolumeIndication"/> 后，SDK 会持续监测音量最大的远端用户，并统计该用户被判断为音量最大者的次数。当前时间段内，该次数累积最多的远端用户为最活跃的用户。</p>
-            <p>当频道内用户数量大于或等于 2 且有活跃用户时，SDK 会触发该回调并报告最活跃用户的 <parmname>uid</parmname>。
-            
-            
+            <p>当频道内用户数量大于或等于 2 且有远端活跃用户时，SDK 会触发该回调并报告远端最活跃用户的 <parmname>uid</parmname>。
             <ul>
-            <li>如果最活跃用户一直是同一位用户，则 SDK 不会再次触发 <apiname keyref="onActiveSpeaker"/> 回调。</li>
-            <li>如果最活跃用户有变化，则 SDK 会再次触发该回调并报告新的最活跃用户的 <parmname>uid</parmname>。</li>
+            <li>如果远端最活跃用户一直是同一位用户，则 SDK 不会再次触发 <apiname keyref="onActiveSpeaker"/> 回调。</li>
+            <li>如果远端最活跃用户有变化，则 SDK 会再次触发该回调并报告新的远端最活跃用户的 <parmname>uid</parmname>。</li>
             </ul> </p>
         </section>
         <section id="parameters">
@@ -46,7 +38,7 @@
                 <pd/>
             </plentry>
             <plentry id="uid">
-                <pt props="cpp unity"><ph props="rtc">uid</ph><ph props="rtc-ng">userId</ph></pt>
+                <pt props="cpp unity">userId</pt>
                 <pt props="android electron flutter">uid</pt>
                 <pt props="ios mac">speakerUid</pt>
                 <pd>远端最活跃用户的 ID。</pd>
