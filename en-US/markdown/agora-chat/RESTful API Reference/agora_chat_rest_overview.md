@@ -38,6 +38,15 @@ This group of methods enables you to implement user system management, including
 | Deleting a user | DELETE | /{org_name}/{app_name}/users/{username} | Deletes the specified user. |
 | Deleting multiple users | DELETE | /{org_name}/{app_name}/users | Deletes all the users in the app. |
 | Modifying the password | PUT | /{org_name}/{app_name}/users/{username}/password | Changes the user's password. |
+| Banning a user | POST | /{org_name}/{app_name}/users/{username}/deactivate | Bans a user. |
+| Unbanning a user | POST | /{org_name}/{app_name}/users/{username}/activate | Unbans a user. |
+| Forcing a user offline | POST | /{org_name}/{app_name}/users/{username}/disconnect | Forcibly moves a user offline. |
+| Querying the online state | GET | /{org_name}/{app_name}/users/{username}/status | Queries whehter a user is online. |
+|
+| Querying the online state of multiple users | POST | /{org_name}/{app_name}/users/batch/status | Queries whether multiple users are online. |
+| Querying the number of offline messages | GET | /{org_name}/{app_name}/users/{owner_username}/offline_msg_count | Queries the number of offline messages a user has. |
+| Querying the delievery state of an offline message | GET | 
+/{org_name}/{app_name}/users/{username}/offline_msg_status/{msg_id} | Queries the delivery state of an offline message. |
 
 ### Message push
 

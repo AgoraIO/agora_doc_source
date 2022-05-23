@@ -73,7 +73,7 @@ For other parameters and detailed descriptions, see [Common parameters](#pubpara
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
 | `Content-Type` | String | The parameter type. Set it as `application/json`. | Yes |
 | `Accept` | String | The parameter type. Set it as `application/json`. | Yes |
-| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 ### HTTP response
 

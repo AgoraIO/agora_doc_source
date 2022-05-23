@@ -1,20 +1,20 @@
-This page shows how to call Agora Chat RESTful APIs to create and manage the user system, including how to register, modify, delete, ban, and unban a user, get user information, and force a user to log out.
+This page shows how to call Chat RESTful APIs to create and manage the user system, including how to register, modify, delete, ban, and unban a user, get user information, and force a user to log out.
 
-Before calling the following methods, make sure you understand the call frequency limit of the Agora Chat RESTful APIs as described in [Limitations](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side).
+Before calling the following methods, make sure you understand the call frequency limit of the Chat RESTful APIs as described in [Limitations](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side).
 
 <a name="param"></a>
 
 ## Common parameters
 
-The following table lists common request and response parameters of the Agora Chat RESTful APIs:
+The following table lists common request and response parameters of the Chat RESTful APIs:
 
 ### Request parameters
 
 | Parameter | Type | Description | Required |
 | :--------- | :----- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
-| `host` | String | The domain name assigned by the Agora Chat service to access RESTful APIs. For how to get the domain name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
-| `org_name` | String | The unique identifier assigned to each company (organization) by the Agora Chat service. For how to get the org name, see [Get the information of the Agora Chat project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
-| `app_name` | String | The unique identifier assigned to each app by the Agora Chat service. For how to get the app name, see [Get the information of the Agora Chat project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
+| `host` | String | The domain name assigned by the Chat service to access RESTful APIs. For how to get the domain name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
+| `org_name` | String | The unique identifier assigned to each company (organization) by the Chat service. For how to get the org name, see [Get the information of the Chat project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
+| `app_name` | String | The unique identifier assigned to each app by the Chat service. For how to get the app name, see [Get the information of the Chat project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
 | `username` | String | The unique login account of the user. The user ID must be 64 characters or less and cannot be empty.  The following character sets are supported:<ul><li>26 lowercase English letters (a-z)</li><li>26 uppercase English letters (A-Z)</li><li>10 numbers (0-9)</li><li>"\_", "-", "."</li></ul><div class="alert note"><ul><li>The username is case insensitive, so `Aa` and `aa` are the same username.</li><li>Ensure that each `username` under the same app is unique.</li><li>Do not set this parameter as a UUID, email address, phone number, or other sensitive information.</li></ul></div> | Yes |
 
 ### Response parameters
@@ -22,13 +22,13 @@ The following table lists common request and response parameters of the Agora Ch
 | Parameter | Type | Description |
 | :------------------- | :----- | :---------------------------------------------------------------------------------------------------------------------------------------------- |
 | `action` | String | The request method. |
-| `organization` | String | The unique identifier assigned to each company (organization) by the Agora Chat service. This is the same as `org_name`. |
-| `application` | String | A unique internal ID assigned to each app by the Agora Chat service. You can safely ignore this parameter. |
-| `applicationName` | String | The unique identifier assigned to each app by the Agora Chat service . This is the same as `app_name`. |
+| `organization` | String | The unique identifier assigned to each company (organization) by the Chat service. This is the same as `org_name`. |
+| `application` | String | A unique internal ID assigned to each app by the Chat service. You can safely ignore this parameter. |
+| `applicationName` | String | The unique identifier assigned to each app by the Chat service . This is the same as `app_name`. |
 | `uri` | String | The request URI. |
 | `path` | String | The request path, which is part of the request URL. You can safely ignore this parameter. |
 | `entities ` | JSON | The response entity. |
-| `entities.uuid` | String | The user's UUID. A unique internal identifier generated by the Agora Chat service for the user in this request. This is used for generating the user token. |
+| `entities.uuid` | String | The user's UUID. A unique internal identifier generated by the Chat service for the user in this request. This is used for generating the user token. |
 | `entities.type` | String | The type of the object. You can safely ignore this parameter. |
 | `entities.created` | Number | The Unix timestamp (ms) when the user is registered. |
 | `entities.modified` | Number | The Unix timestamp (ms) when the user information is last modified. |
@@ -39,17 +39,19 @@ The following table lists common request and response parameters of the Agora Ch
 
 ## Authorization
 
-Agora Chat RESTful APIs require Bearer HTTP authentication. Every time an HTTP request is sent, the following `Authorization` field must be filled in the request header:
+Chat RESTful APIs require Bearer HTTP authentication. Every time an HTTP request is sent, the following `Authorization` field must be filled in the request header:
 
 ```http
 Authorization: Bearer ${YourAppToken}
 ```
 
-In order to improve the security of the project, Agora uses a token (dynamic key) to authenticate users before they log in to the chat system. Agora Chat RESTful APIs only support authenticating users using app tokens. For details, see [Authentication using App Token](./generate_app_tokens?platform=RESTful).
+In order to improve the security of the project, Agora uses a token (dynamic key) to authenticate users before they log in to the chat system. Chat RESTful APIs only support authenticating users using app tokens. For details, see [Authentication using App Token](./generate_app_tokens?platform=RESTful).
 
 ## Registering a user
 
 This method creates a user account.
+
+For each App Key, the call frequency limit of this method is 100 per second.
 
 ### HTTP request
 
@@ -59,14 +61,14 @@ POST https://{host}/{org_name}/{app_name}/users
 
 #### Path parameter
 
-For the parameters and detailed descriptions, see [Common parameters ](#param).
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Request header
 
 | Parameter | Type | Description | Required |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Content-Type` | String | `application/json` | Yes |
-| `Authorization` | String | Bearer ${YourAppToken} | Yes |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 #### Request body
 
@@ -96,9 +98,9 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 #### Request example
 
-```json
-# Replace <YourAppToken> with the app token generated in your server.
-curl -X POST -H 'Content-Type: application/json' -H 'Authorization:Bearer <YourAppToken>' -i "https://XXXX/XXXX/XXXX/users" -d '
+```shell
+# Replace {YourAppToken} with the app token generated in your server.
+curl -X POST -H 'Content-Type: application/json' -H 'Authorization:Bearer {YourAppToken}' -i "https://XXXX/XXXX/XXXX/users" -d '
     {
       "username": "user1",
       "password": "123",
@@ -134,12 +136,14 @@ curl -X POST -H 'Content-Type: application/json' -H 'Authorization:Bearer <YourA
 
 ## Registering multiple users
 
-Registers multiple users within one request.
+This method registers multiple users within one request.
+
+For each App Key, the call frequency limit of this method is 100 per second.
 
 ### HTTP request
 
 ```http
-POST https://api.agora.io/{org_name}/{app_name}/users
+POST https://{host}/{org_name}/{app_name}/users
 ```
 
 #### Path parameter
@@ -151,7 +155,7 @@ For the parameters and detailed descriptions, see [Common parameters ](#param).
 | Parameter | Type | Description |
 | :-------------- | :------------- | :--------------------- |
 | `Content-Type` | String | `application/json` |
-| `Authorization` | String | Bearer ${YourAppToken} |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
 
 #### Request body
 
@@ -167,7 +171,7 @@ The request body is a JSON object, which contains the following fields:
 
 #### Response body
 
-If the returned HTTP status code is `200`, the request succeeds and the response body contains the following fields:
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
 | Field | Type | Description |
 | :------------------ | :--------- | :------------------------------------------------------------------------------------------- |
@@ -184,9 +188,9 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 Registering 2 users:
 
-```json
-# Replace <YourAppToken> with the app token generated in your server.
-curl -X POST -H 'Content-Type: application/json' -H 'Authorization:Bearer <YourAppToken>' -i "https://XXXX/XXXX/XXXX/users" -d '
+```shell
+# Replace {YourAppToken} with the app token generated in your server.
+curl -X POST -H 'Content-Type: application/json' -H 'Authorization:Bearer {YourAppToken}' -i "https://XXXX/XXXX/XXXX/users" -d '
     {
         "username":"user1",
         "password":"123",
@@ -240,8 +244,8 @@ curl -X POST -H 'Content-Type: application/json' -H 'Authorization:Bearer <YourA
 If the request body contains a user3 that has previously been registered, the registration of user3 fails while those of user1 and user2 succeed. The failure is reported in the `data` array of the response body.
 
 ```shell
-# Replace <YourAppToken> with the app token generated in your server.
-curl -X POST -H 'Content-Type: application/json' -H 'Authorization:Bearer <YourAppToken>' -i "https://XXXX/XXXX/XXXX/users" -d '
+# Replace {YourAppToken} with the app token generated in your server.
+curl -X POST -H 'Content-Type: application/json' -H 'Authorization:Bearer {YourAppToken}' -i "https://XXXX/XXXX/XXXX/users" -d '
     {
         "username":"user1",
         "password":"123",
@@ -302,24 +306,26 @@ curl -X POST -H 'Content-Type: application/json' -H 'Authorization:Bearer <YourA
 
 ## Querying a user
 
-Queries the detailed information of the specified user.
+This method queries the detailed information of the specified user.
+
+For each App Key, the call frequency limit of this method is 100 per second.
 
 ### HTTP request
 
 ```http
-GET https://api.agora.io/{org_name}/{app_name}/users/{username}
+GET https://{host}/{org_name}/{app_name}/users/{username}
 ```
 
 #### Path parameter
 
-For the parameters and detailed descriptions, see [Common parameters ](#param).
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Request header
 
 | Parameter | Type | Description | Required |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Accept` | String | `application/json` | Yes |
-| `Authorization` | String | Bearer ${YourAppToken} | Yes |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 ### HTTP response
 
@@ -341,8 +347,8 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```shell
-# Replace <YourAppToken> with the app token generated in your server.
-curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/XXXX'
+# Replace {YourAppToken} with the app token generated in your server.
+curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' 'http://XXXX/XXXX/XXXX/users/XXXX'
 ```
 
 #### Response example
@@ -371,17 +377,19 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 ## Querying multiple users
 
-Queries the information list of multiple users in ascending order of their registration time.
+This method queries the information of multiple users in ascending order of their registration time.
+
+For each App Key, the call frequency limit of this method is 100 per second.
 
 ### HTTP request
 
 ```http
-GET https://api.agora.io/{org_name}/{app_name}/users
+GET https://{host}/{org_name}/{app_name}/users
 ```
 
 #### Path parameter
 
-For the parameters and detailed descriptions, see [Common parameters ](#param).
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Query parameters
 
@@ -395,7 +403,7 @@ For the parameters and detailed descriptions, see [Common parameters ](#param).
 | Parameter | Type | Description | Required |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Accept` | String | `application/json` | Yes |
-| `Authorization` | String | Bearer ${YourAppToken} | Yes |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 ### HTTP response
 
@@ -420,8 +428,8 @@ If the returned HTTP status code is not 200, the request fails. You can refer to
 Querying the information list of two users in ascending order of their registration time:
 
 ```shell
-# Replace <YourAppToken> with the app token generated in your server.
-curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users?limit=2'
+# Replace {YourAppToken} with the app token generated in your server.
+curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' 'http://XXXX/XXXX/XXXX/users?limit=2'
 ```
 
 #### <a name="http1"></a>Response example 1
@@ -468,8 +476,8 @@ Return the information list of the 2 users:
 Use the `cursor` in response example 1 to query the user list on the next page in ascending order of their registration time. The number of users on this page is two:
 
 ```shell
-# Replace <YourAppToken> with the app token generated in your server.
-curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users?limit=2&cursor=LTgzNDAxMjM3OToxTEFnNE9sNEVlaVQ0UEdhdmJNR2tB'
+# Replace {YourAppToken} with the app token generated in your server.
+curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' 'http://XXXX/XXXX/XXXX/users?limit=2&cursor=LTgzNDAxMjM3OToxTEFnNE9sNEVlaVQ0UEdhdmJNR2tB'
 ```
 
 #### Response example 2
@@ -513,30 +521,32 @@ Continue to return a list of information for two users:
 
 ## Deleting a user
 
-Deletes the specified user. If the deleted user is the admin of a chat group or chat room, the group or chat room managed by that user is also deleted.
+This method deletes the specified user. If the deleted user is the admin of a chat group or chat room, the group or chat room managed by that user is also deleted.
+
+For each App Key, the call frequency limit of this method is 100 per second.
 
 ### HTTP request
 
 ```http
-DELETE https://api.agora.io/{org_name}/{app_name}/users/{username}
+DELETE https://{host}/{org_name}/{app_name}/users/{username}
 ```
 
 #### Path parameter
 
-For the parameters and detailed descriptions, see [Common parameters ](#param).
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Request header
 
 | Parameter | Type | Description | Required |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Accept` | String | `application/json` | Yes |
-| `Authorization` | String | Bearer ${YourAppToken} | Yes |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 ### HTTP response
 
 #### Response body
 
-If the returned HTTP status code is `200`, the request is successful. For fields and descriptions of the response body, see [Public parameter](#param).
+If the returned HTTP status code is `200`, the request succeeds. For fields and descriptions of the response body, see [Common parameters](#param).
 
 If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
 
@@ -545,8 +555,8 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```shell
-# Replace <YourAppToken> with the app token generated in your server.
-curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/user1'
+# Replace {YourAppToken} with the app token generated in your server.
+curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' 'http://XXXX/XXXX/XXXX/users/user1'
 ```
 
 #### Response example
@@ -577,12 +587,14 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 
 ## Deleting multiple users
 
-Deletes all the users in the app. If the deleted users include group or chat room admins, the groups and chat rooms managed by those users are also deleted.
+This method deletes all the users in the app. If the deleted users include group or chat room admins, the groups and chat rooms managed by those users are also deleted.
+
+For each App Key, the call frequency limit of this method is 30 per second.
 
 ### HTTP request
 
 ```http
-DELETE https://api.agora.io/{org_name}/{app_name}/users
+DELETE https://{host}/{org_name}/{app_name}/users
 ```
 
 #### Path parameter
@@ -594,7 +606,7 @@ For the parameters and detailed descriptions, see [Common parameters ](#param).
 | Parameter | Type | Description | Required |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Accept` | String | `application/json` | Yes |
-| `Authorization` | String | Bearer ${YourAppToken} | Yes |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 ### HTTP response
 
@@ -609,8 +621,8 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```shell
-# Replace <YourAppToken> with the app token generated in your server.
-curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users'
+# Replace {YourAppToken} with the app token generated in your server.
+curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' 'http://XXXX/XXXX/XXXX/users'
 ```
 
 #### Response example
@@ -641,17 +653,19 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 
 ## Modifying the password
 
-Modifies the user password. You do not need to provide the original password.
+This method modifies the user password. You do not need to provide the original password.
+
+For each App Key, the call frequency limit of this method is 100 per second.
 
 ### HTTP request
 
 ```http
-PUT https://api.agora.io/{org_name}/{app_name}/users/{username}/password
+PUT https://{host}/{org_name}/{app_name}/users/{username}/password
 ```
 
 #### Path parameter
 
-For the parameters and detailed descriptions, see [Common parameters ](#param).
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Request header
 
@@ -659,7 +673,7 @@ For the parameters and detailed descriptions, see [Common parameters ](#param).
 | :-------------- | :----- | :--------------------- | :------- |
 | `Content-Type` | String | `application/json` | Yes |
 | `Accept` | String | `application/json` | Yes |
-| `Authorization` | String | Bearer ${YourAppToken} | Yes |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 #### Request body
 
@@ -675,7 +689,7 @@ For other fields and detailed descriptions, see [Common parameters](#param).
 
 #### Response body
 
-If the returned HTTP status code is `200`, the request is successful. For fields and descriptions of the response body, see [Public parameter](#param).
+If the returned HTTP status code is `200`, the request succeeds. For fields and descriptions of the response body, see [Common parametes](#param).
 
 If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
 
@@ -684,8 +698,8 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```shell
-# Replace <YourAppToken> with the app token you generated on the server, and <YourPassword> with the new password you set
-curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' -d '{ "newpassword": "<YourPassword>" }' ' http://XXXX/XXXX/XXXX/users/user1/password'
+# Replace {YourAppToken} with the app token you generated on the server, and {YourPassword} with the new password you set
+curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' -d '{ "newpassword": "{YourPassword}" }' ' http://XXXX/XXXX/XXXX/users/user1/password'
 ```
 
 #### Response example
@@ -700,17 +714,19 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 
 ## Banning a user
 
-Disables a user account. The user goes offline immediately and is not able to log in until the ban is lifted.
+This method disables a user account. The user goes offline immediately and is not able to log in until the ban is lifted.
+
+For each App Key, the call frequency limit of this method is 100 per second.
 
 ### HTTP request
 
 ```http
-POST https://api.agora.io/{org_name}/{app_name}/users/{username}/deactivate
+POST https://{host}/{org_name}/{app_name}/users/{username}/deactivate
 ```
 
 #### Path parameter
 
-For the parameters and detailed descriptions, see [Common parameters ](#param).
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Request header
 
@@ -718,13 +734,13 @@ For the parameters and detailed descriptions, see [Common parameters ](#param).
 | :-------------- | :----- | :--------------------- | :------- |
 | `Content-Type` | String | `application/json` | Yes |
 | `Accept` | String | `application/json` | Yes |
-| `Authorization` | String | Bearer ${YourAppToken} | Yes |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 ### HTTP response
 
 #### Response body
 
-If the returned HTTP status code is `200`, the request is successful and the response body contains the following fields:
+If the returned HTTP status code is `200`, the request is succeeds and the response body contains the following fields:
 
 | Field | Type | Description |
 | :------------------ | :----- | :--------------------------------------------------------------------------------------------------------- |
@@ -732,15 +748,15 @@ If the returned HTTP status code is `200`, the request is successful and the res
 
 For other fields and detailed descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#code) for possible reasons.
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
 
 ### Example
 
 #### Request example
 
 ```shell
-# Replace <YourAppToken> with the app token generated in your server.
-curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/user1/deactivate'
+# Replace {YourAppToken} with the app token generated in your server.
+curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' 'http://XXXX/XXXX/XXXX/users/user1/deactivate'
 ```
 
 #### Response example
@@ -767,17 +783,19 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 ## Unbanning a user
 
-Unbans a deactivated user account. After the ban is lifted, the user can log in to Agora Chat.
+This method unbans a deactivated user account. After the ban is lifted, the user can log in to Chat.
+
+For each App Key, the call frequency limit of this method is 100 per second.
 
 ### HTTP request
 
 ```http
-POST https://api.agora.io/{org_name}/{app_name}/users/{username}/activate
+POST https://{host}/{org_name}/{app_name}/users/{username}/activate
 ```
 
 #### Path parameter
 
-For the parameters and detailed descriptions, see [Common parameters ](#param).
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Request header
 
@@ -785,7 +803,7 @@ For the parameters and detailed descriptions, see [Common parameters ](#param).
 | :-------------- | :----- | :--------------------- | :------- |
 | `Content-Type` | String | `application/json` | Yes |
 | `Accept` | String | `application/json` | Yes |
-| `Authorization` | String | Bearer ${YourAppToken} | Yes |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 ### HTTP response
 
@@ -805,8 +823,8 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```shell
-# Replace <YourAppToken> with the app token generated in your server.
-curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/user1/activate'
+# Replace {YourAppToken} with the app token generated in your server.
+curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' 'http://XXXX/XXXX/XXXX/users/user1/activate'
 ```
 
 #### Response example
@@ -821,17 +839,19 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 ## Forcing a user offline
 
-Forcibly moves a user offline. The offline user must log in again to use the Agora Chat service.
+This method forcibly moves a user offline. The offline user must log in again to use the Chat service.
+
+For each App Key, the call frequency limit of this method is 100 per second.
 
 ### HTTP request
 
 ```http
-POST https://api.agora.io/{org_name}/{app_name}/users/{username}/disconnect
+POST https://{host}/{org_name}/{app_name}/users/{username}/disconnect
 ```
 
 #### Path parameter
 
-For the parameters and detailed descriptions, see [Common parameters ](#param).
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Request header
 
@@ -839,7 +859,7 @@ For the parameters and detailed descriptions, see [Common parameters ](#param).
 | :-------------- | :----- | :--------------------- | :------- |
 | `Content-Type` | String | `application/json` | Yes |
 | `Accept` | String | `application/json` | Yes |
-| `Authorization` | String | Bearer ${YourAppToken} | Yes |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 ### HTTP response
 
@@ -854,15 +874,15 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 
 For other fields and detailed descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#code) for possible reasons.
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
 
 ### Example
 
 #### Request example
 
 ```shell
-# Replace <YourAppToken> with the app token generated in your server.
-curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/XXXX/disconnect'
+# Replace {YourAppToken} with the app token generated in your server.
+curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' 'http://XXXX/XXXX/XXXX/users/XXXX/disconnect'
 ```
 
 #### Response example
@@ -887,7 +907,9 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 ## Querying the online state of a user
 
-Queries whether a user is online.
+This method queries whether a user is online.
+
+For each App Key, the call frequency limit of this method is 100 per second.
 
 ### HTTP request
 
@@ -904,13 +926,13 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | Parameter            | Type   | Description                   | Required |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Content-Type`  | String | `application/json`   | Yes      |
-| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes      |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes      |
 
 ### HTTP response
 
 #### Response body
 
-If the returned HTTP status code is `200`, the request succeeds and the response body contains the following fields:
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
 | Parameter     | Description                                                         |
 | :------- | :----------------------------------------------------------- |
@@ -925,34 +947,36 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```shell
-# Replace <YourAppToken> with the app token generated in your server.
-curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/user1/status'
+# Replace {YourAppToken} with the app token generated in your server.
+curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' 'http://XXXX/XXXX/XXXX/users/user1/status'
 ```
 
 #### Response example
 
 ```json
 {
-  "action": "get",
-  "uri": "http://XXXX/XXXX/XXXX/users/user1/status",
-  "entities": [],
-  "data": {
-    "user1": "offline"
-  },
-  "timestamp": 1542601284531,
-  "duration": 4,
-  "count": 0
+    "action": "get",
+    "uri": "http://XXXX/XXXX/XXXX/users/user1/status",
+    "entities": [],
+    "data": {
+        "user1": "offline"
+    },
+    "timestamp": 1542601284531,
+    "duration": 4,
+    "count": 0
 }
 ```
 
 ## Querying the online state of multiple users
 
-Queries whether multiple users are online.
+This method queries whether multiple users are online.
+
+For each App Key, the call frequency limit of this method is 50 per second.
 
 ### HTTP request
 
 ```http
-POST https://{host}{org_name}/{app_name}/users/batch/status
+POST https://{host}/{org_name}/{app_name}/users/batch/status
 ```
 
 #### Path parameter
@@ -964,7 +988,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | Parameter            | Type   | Description                   | Required |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Content-Type`  | String | `application/json`   | Yes       |
-| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       |
 
 #### Request body
 
@@ -976,7 +1000,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Response body
 
-If the returned HTTP status code is `200`, the request succeeds and the response body contains the following fields:
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
 | Parameter     | Description                                                         |
 | :------- | :----------------------------------------------------------- |
@@ -989,8 +1013,8 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```shell
-# Replace <YourAppToken> with the app token generated in your server.
-curl -X POST http://XXXX/XXXX/XXXX/users/batch/status -H 'Authorization: Bearer <YourAppToken>' -H 'Content-Type: application/json' -d '{"usernames":["user1","user2"]}'
+# Replace {YourAppToken} with the app token generated in your server.
+curl -X POST http://XXXX/XXXX/XXXX/users/batch/status -H 'Authorization: Bearer {YourAppToken}' -H 'Content-Type: application/json' -d '{"usernames":["user1","user2"]}'
 ```
 
 #### Response example
@@ -1015,7 +1039,9 @@ This API does not check whether the specified usernames are valid. If the specif
 
 ## Querying the number of offline messages
 
-Queries the number of offline messages a user has, whether or not they have been delivered.
+This method queries the number of offline messages a user has, and whether or not they have been delivered.
+
+For each App Key, the call frequency limit of this method is 100 per second.
 
 ### HTTP request
 
@@ -1036,13 +1062,13 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | Parameter            | Type   | Description                   | Required |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Content-Type`  | String | `application/json`  | Yes   |
-| `Authorization` | String |  The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes      |
+| `Authorization` | String |  The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes      |
 
 ### HTTP response
 
 #### Request body
 
-If the returned HTTP status code is `200`, the request succeeds and the response body contains the following fields:
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
 | Parameter     | Description                                                         |
 | :------- | :----------------------------------------------------------- |
@@ -1055,8 +1081,8 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```shell
-# Replace <YourAppToken> with the app token generated in your server.
-curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/user1/offline_msg_count'
+# Replace {YourAppToken} with the app token generated in your server.
+curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' 'http://XXXX/XXXX/XXXX/users/user1/offline_msg_count'
 ```
 
 #### Response example
@@ -1077,7 +1103,9 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 ## Querying the delivery state of an offline message
 
-Queries the delivery state of an offline message.
+This method queries the delivery state of an offline message.
+
+For each App Key, the call frequency limit of this method is 100 per second.
 
 ### HTTP request
 
@@ -1099,13 +1127,13 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | Parameter            | Type   | Description                   | Required |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Content-Type`  | String | `application/json`    | Yes       |
-| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       |
 
 ### HTTP response
 
 #### Response body
 
-If the returned HTTP status code is `200`, the request succeeds and the response body contains the following fields:
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
 | Parameter   | Description                                                       |
 | :----- | :----------------------------------------------------------- |
@@ -1118,23 +1146,23 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```shell
-# Replace <YourAppToken> with the app token generated in your server.
-curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/user1/offline_msg_status/123'
+# Replace {YourAppToken} with the app token generated in your server.
+curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' 'http://XXXX/XXXX/XXXX/users/user1/offline_msg_status/123'
 ```
 
 #### Response example
 
 ```json
 {
-  "action": "get",
-  "uri": "http://XXXX/XXXX/XXXX/users/user1/offline_msg_status/123",
-  "entities": [],
-  "data": {
-    "123": "delivered"
-  },
-  "timestamp": 1542601830084,
-  "duration": 5,
-  "count": 0
+    "action": "get",
+    "uri": "http://XXXX/XXXX/XXXX/users/user1/offline_msg_status/123",
+    "entities": [],
+    "data": {
+        "123": "delivered"
+    },
+    "timestamp": 1542601830084,
+    "duration": 5,
+    "count": 0
 }
 ```
 
