@@ -173,8 +173,7 @@ This group of methods enable your chat users to reply the message with emojis.
 | Create a reaction | POST | /{org_name}/{app_name}/reaction/user/{userId} | Creats or adds a reaction to a specified message. |
 | Retrieve reactions with message IDs | GET | /{org_name}/{app_name}/reaction/user/{userId} | Retrieves the information of the reaction according to the message ID. |
 | Delete a reaction | DELETE | /{org_name}/{app_name}/reaction/user/{userId} | Deletes a reaction. |
-| Retrieve the detailed information of the reaction | GET | 
-/{org_name}/{app_name}/reaction/user/{userId}/detail | Retrieves the detailed information of the reaction by specifying the message ID and reaction ID. |
+| Retrieve the detailed information of the reaction | GET | /{org_name}/{app_name}/reaction/user/{userId}/detail | Retrieves the detailed information of the reaction by specifying the message ID and reaction ID. |
 
 
 ## Request structure
