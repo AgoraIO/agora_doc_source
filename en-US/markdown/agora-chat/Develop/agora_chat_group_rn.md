@@ -113,10 +113,10 @@ Users can refer to the following steps to join a chat group:
 The following code sample shows how to join a chat group:
 
 ```typescript
-// Retrieve the list of public groups with pagination
-// The maximum number of public groups to retrieve with pagination
+// Retrieve the list of public groups with pagination.
+// The maximum number of public groups to retrieve with pagination.
 const pageSize = 10;
-// The position from which to start getting data
+// The position from which to start getting data.
 const cursor = "";
 ChatClient.getInstance()
   .groupManager.fetchPublicGroupsFromServer(pageSize, cursor)
@@ -127,7 +127,7 @@ ChatClient.getInstance()
     console.log("get group list fail.", reason);
   });
 
-// Request to join the specified chat group
+// Request to join the specified chat group.
 const groupId = "100";
 const reason = "study typescript";
 ChatClient.getInstance()
@@ -166,7 +166,7 @@ All chat group members can also call `fetchGroupInfoFromServer` to retrieve the 
 The following code sample shows how to retrieve the chat group attributes:
 
 ```typescript
-// Retrieve the chat group attributes from memory
+// Retrieve the chat group attributes from memory.
 ChatClient.getInstance()
   .groupManager.getGroupWithId(groupId)
   .then((groupInfo) => {
@@ -176,7 +176,7 @@ ChatClient.getInstance()
     console.log("get group info fail.", reason);
   });
 
-// Retrieve the chat group attributes from the server
+// Retrieve the chat group attributes from the server.
 ChatClient.getInstance()
   .groupManager.fetchGroupInfoFromServer(groupId)
   .then((groupInfo) => {
@@ -194,10 +194,9 @@ All chat group members can call `fetchMemberListFromServer` to retrieve the chat
 The following code sample shows how to retrieve the chat group member list:
 
 ```typescript
-// The ID of the chat group
-// The maximum number of members to retrieve with pagination
-// The position from which to start getting data
-// `cursor` is set to `null` or an empty string by default at the first call
+// The ID of the chat group.
+// The maximum number of members to retrieve with pagination.
+// The position from which to start getting data. `cursor` is set to `null` or an empty string by default at the first call.
 ChatClient.getInstance()
   .groupManager.fetchMemberListFromServer(groupId, pageSize, cursor)
   .then((members) => {
@@ -213,9 +212,9 @@ ChatClient.getInstance()
 Users can call `fetchJoinedGroupsFromServer` to retrieve the joined chat group list from the server with pagination, as shown in the following code sample:
 
 ```typescript
-// The maximum number of chat groups on each page
+// The maximum number of chat groups to retrieve with pagination.
 const pageSize = 10;
-// The number of the page
+// The page number from which to start getting data.
 const pageNum = 1;
 ChatClient.getInstance()
   .groupManager.fetchJoinedGroupsFromServer(pageSize, pageNum)

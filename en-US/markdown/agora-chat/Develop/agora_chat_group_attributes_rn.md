@@ -102,8 +102,7 @@ All chat group members can call `uploadGroupSharedFile` to upload shared files t
 The following code sample shows how to upload chat group shared files:
 
 ```typescript
-// Set the file status callback
-// This callback is triggered to notify the upload and download progress, and the success and failure state of operations on shared files
+// Set the file status callback. This callback is triggered to notify the upload and download progress, and the success and failure state of operations on shared files.
 const callback = new (class implements ChatGroupFileStatusCallback {
   that: any;
   constructor(t: any) {
@@ -153,7 +152,7 @@ All chat group members can call `fetchGroupFileListFromServer` to retrieve the l
 The following code sample shows how to retrieve the list of shared files in a chat group:
 
 ```typescript
-// Retrieve the shared files with pagination
+// Retrieve the shared files with pagination.
 ChatClient.getInstance()
   .groupManager.fetchGroupFileListFromServer(groupId, pageSize, pageNum)
   .then(() => {
@@ -171,7 +170,7 @@ Only the chat group owner and admins can call `updateGroupExtension` to update t
 The following code sample shows how to update the chat group extension fields:
 
 ```typescript
-// Set the extension fields
+// Set the extension fields.
 const extension = { key: "value" };
 ChatClient.getInstance()
   .groupManager.updateGroupExtension(groupId, JSON.stringify(extension))

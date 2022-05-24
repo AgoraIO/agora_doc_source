@@ -49,7 +49,7 @@ ChatClient.getInstance()
 
 ### Remove a member from a chat group
 
-Only the chat group owner and admins can call `removeMembers` to remove the specified member from a chat group. Once removed from the chat group, this member receives the `ChatGroupEventListener#onUserRemoved` callback, while all the other members receive the `ChatGroupEventListener#onMemberExited`. Users can join the chat group again after being removed.
+Only the chat group owner and admins can call `removeMembers` to remove the specified member from a chat group. Once removed from the chat group, this member receives the `ChatGroupEventListener#onUserRemoved` callback, while all the other members receive the `ChatGroupEventListener#onMemberExited` callback. Users can join the chat group again after being removed.
 
 The following code sample shows how to remove a member from a chat group:
 
