@@ -351,6 +351,18 @@ public class GroupManagerDelegate : IGroupManagerDelegate {
     public void OnSharedFileDeletedFromGroup(string groupId, string fileId)
     {
     }
+    // 群成员被加入到白名单
+    public void OnAddWhiteListMembersFromGroup(string groupId, List<string> whiteList)
+    {
+    }   
+    // 群成员从白名单中移除
+    public void OnRemoveWhiteListMembersFromGroup(string groupId, List<string> whiteList)
+    {
+    }
+    // 群成员成员禁言状态变更
+    public void OnAllMemberMuteChangedFromGroup(string groupId, bool isAllMuted)
+    {
+    }
 }
 
 // 注册群组回调

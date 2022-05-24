@@ -357,6 +357,18 @@ public class GroupManagerDelegate : IGroupManagerDelegate {
     public void OnSharedFileDeletedFromGroup(string groupId, string fileId)
     {
     }
+    // Occurs when a member is added to the chat group allow list.
+    public void OnAddWhiteListMembersFromGroup(string groupId, List<string> whiteList)
+    {
+    }
+    // Occurs when a member is removed from the chat group allow list.
+    public void OnRemoveWhiteListMembersFromGroup(string groupId, List<string> whiteList)
+    {
+    }
+    // Occurs when all chat group members are muted or unmuted.
+    public void OnAllMemberMuteChangedFromGroup(string groupId, bool isAllMuted)
+    {
+    }
 }
 
 // Add the chat group listener.
