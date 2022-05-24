@@ -2,7 +2,7 @@
 
 Chat rooms enable real-time messaging among multiple users.
 
-Chat rooms do not have a strict membership, and members do not retain any permanent relationship with each other. Once a chat room member goes offline, this member does not receive any push messages from the chat room and automatically leaves the chat room in 5 minutes. Chat rooms are widely applied in live broadcast use cases as stream chat in Twitch.
+Chat rooms do not have a strict membership, and members do not retain any permanent relationship with each other. Once a chat room member goes offline, this member does not receive any push messages from the chat room and automatically leaves the chat room after 5 minutes. Chat rooms are widely applied in live broadcast use cases such as stream chat in Twitch.
 
 This page shows how to use the Agora Chat SDK to create and manage a chat room in your app.
 
@@ -31,7 +31,7 @@ This section describes how to call the APIs provided by the Agora Chat SDK to im
 
 ### Create a chat room
 
-Only the [app super admin](https://docs-preprod.agora.io/en/agora-chat/agora_chat_restful_chatroom_superadmin) can call `CreateRoom` to create a chat room and set the chat room attributes such as the chat room name, description, and the maximum number of members. Once a chat room is created, the super admin automatically becomes the chat room owner.
+Only the [app super admin](https://docs-preprod.agora.io/en/agora-chat/agora_chat_restful_chatroom_superadmin) can call `CreateRoom` to create a chat room and set the chat room attributes such as the chat room name, description, and maximum number of members. Once a chat room is created, the super admin automatically becomes the chat room owner.
 
 The following code sample shows how to create a chat room:
 
@@ -103,7 +103,7 @@ SDKClient.Instance.RoomManager.LeaveRoom(roomId, new CallBack(
 ));
 ```
 
-By default, after leaving a chat room, the Agora Chat SDK removes all chat room messages on the local device. If you do not want these messages removed, set `Options#DeleteMessagesAsExitRoom` to `false` when initializing the SDK.
+By default, after a user leaves a chat room, the Agora Chat SDK removes all chat room messages on the local device. If you do not want these messages removed, set `Options#DeleteMessagesAsExitRoom` to `false` when initializing the SDK.
 
 The following code sample shows how to retain the chat room messages after leaving a chat room:
 
@@ -242,12 +242,12 @@ public interface IRoomManagerDelegate
         *
         * @param roomId        The chat room ID
         * @param newOwner      The user ID of the new chat room owner
-        * @param oldOwner      The user ID of the original chat room owner
+        * @param oldOwner      The user ID of the former chat room owner
         *
         */
         void OnOwnerChangedFromRoom(string roomId, string newOwner, string oldOwner);
         /**
-        * Occurs when the chat room announcements is updated.
+        * Occurs when the chat room announcements are updated.
         * @param roomId        The chat room ID
         * @param announcement  The updated chat room announcements
         *
