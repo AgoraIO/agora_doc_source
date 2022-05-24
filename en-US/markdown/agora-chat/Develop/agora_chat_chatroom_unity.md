@@ -21,7 +21,7 @@ The Agora Chat SDK provides the `Room`, `IRoomManager`, and `IRoomManagerDelegat
 Before proceeding, ensure that you meet the following requirements:
 
 - You have initialized the Agora Chat SDK. For details, see [Get Started with Unity](https://docs-preprod.agora.io/en/agora-chat/agora_chat_get_started_unity).
-- You understand the call frequency limit of the Agora Chat APIs supported by different pricing plans as described in [Limitations](https://docs-preprod.agora.io/en/agora-chat/agora_chat_limitation_unity).
+- You understand the call frequency limit of the Agora Chat APIs supported by different pricing plans as described in [Limitations](https://docs-preprod.agora.io/en/agora-chat/agora_chat_limitation).
 - You understand the number of chat rooms supported by different pricing plans as described in [Pricing Plan Details](https://docs-preprod.agora.io/cn/agora-chat/agora_chat_plan).
 - Only the app super admin has the privilege of creating a chat room. Ensure that you have added an app super admin by [calling the super-admin RESTful API](https://docs-preprod.agora.io/en/agora-chat/agora_chat_restful_chatroom_superadmin#adding-a-chat-room-super-admin).
 
@@ -222,7 +222,7 @@ public interface IRoomManagerDelegate
         */
         void OnMuteListRemovedFromRoom(string roomId, List<string> mutes);
         /**
-        * Occurs when a member is promoted to a chat room admin
+        * Occurs when a member is promoted to a chat room admin.
         *
         * @param roomId        The chat room ID
         * @param admin         The user ID of the member promoted to an admin
@@ -230,7 +230,7 @@ public interface IRoomManagerDelegate
         */
         void OnAdminAddedFromRoom(string roomId, string admin);
         /**
-        * Occurs when an admin is demoted to a chat room member
+        * Occurs when an admin is demoted to a chat room member.
         *
         * @param  roomId       The chat room ID
         * @param  admin        The user ID of the admin demoted to a member
