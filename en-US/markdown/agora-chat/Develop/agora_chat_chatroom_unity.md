@@ -92,6 +92,8 @@ SDKClient.Instance.RoomManager.JoinRoom(roomId, new ValueCallBack<Room>(
 
 All chat room members can call `LeaveRoom` to leave the specified chat room. Once a member leaves the chat room, all the other chat room members receive the `OnMemberExitedFromRoom` callback.
 
+**Note**: Different from the chat group owner, the chat room owner can leave a chat room. After re-entering the chat room, this user remains the chat room owner.
+
 The following code sample shows how to leave a chat room:
 
 ```c#
