@@ -20,7 +20,7 @@ The Agora Chat SDK provides the `Group`, `IGroupManager`, and `IGroupManagerDele
 Before proceeding, ensure that you meet the following requirements:
 
 - You have initialized the Agora Chat SDK. For details, see [Get Started with Unity](https://docs-preprod.agora.io/en/agora-chat/agora_chat_get_started_unity).
-- You understand the call frequency limit of the Agora Chat APIs supported by different pricing plans as described in [Limitations](https://docs-preprod.agora.io/en/agora-chat/agora_chat_limitation_unity).
+- You understand the call frequency limit of the Agora Chat APIs supported by different pricing plans as described in [Limitations](https://docs-preprod.agora.io/en/agora-chat/agora_chat_limitation).
 - You understand the number of chat groups and chat group members supported by different pricing plans as described in [Pricing Plan Details](https://docs-preprod.agora.io/cn/agora-chat/agora_chat_plan).
 
 ## Implementation
@@ -238,7 +238,7 @@ SDKClient.Instance.GroupManager.GetGroupMuteListFromServer(groupId, handle: new 
 
 #### Mute all the chat group members
 
-Only the chat group owner and chat group admins can call `MuteGroupAllMembers` to mute or unmute all the chat group members. Once all the members are muted, only those in the chat group allow list can send messages in the chat group.
+Only the chat group owner and chat group admins can call `MuteGroupAllMembers` to mute all the chat group members. Once all the members are muted, only those in the chat group allow list can send messages in the chat group.
 
 The following sample code shows how to mute all the chat group members:
 
@@ -272,7 +272,7 @@ SDKClient.Instance.GroupManager.UnMuteGroupAllMembers(groupId, new CallBack(
 
 #### Add a member to the chat group allow list
 
-Only the chat group owner and admins can call `AddGroupWhiteList` to add the specified member to the chat group allow list. Once added to the mute list, this member and all the other chat group admins or owner receive the `IGroupManagerDelegate#OnMuteListAddedFromGroup` callback. Members in the chat group allow list can send chat group messages even when the chat group owner or admin has muted all chat group members. However, if a member is already in the chat group mute list, adding this member to the allow list does not take effect.
+Only the chat group owner and admins can call `AddGroupWhiteList` to add the specified member to the chat group allow list. Members in the chat group allow list can send chat group messages even when the chat group owner or admin has muted all chat group members. However, if a member is already in the chat group mute list, adding this member to the allow list does not take effect.
 
 The following code sample shows how to add a member to the chat group allow list:
 
