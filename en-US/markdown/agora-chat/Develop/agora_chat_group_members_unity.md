@@ -29,24 +29,9 @@ This section describes how to call the APIs provided by the Agora Chat SDK to im
 
 ### Add a user to a chat group
 
-The logic of adding a user to a chat group varies according to the `GroupStyle` and `inviteNeedConfirm` settings when [creating the chat group]((https://docs-preprod.agora.io/en/null/agora_chat_group_unity?platform=Unity#create-a-chat-group)).
+The logic of adding a user to a chat group varies according to the `GroupStyle` and `inviteNeedConfirm` settings when creating the chat group. For details, see [Create a Chat Group](./agora_chat_group_rn?platform=React%20Native#create-a-chat-group).
 
-1. Group types (`GroupStyle`):
-- No matter a chat group is public or private, the chat group owner and admins can call `IGroupManager#AddGroupMembers` to add users to a chat group;
-- For a private group, if `GroupStyle` is set to `PrivateMemberCanInvite`, chat group members can also add users to a chat group.
-
-2. Whether a group invitation requires the consent from an invitee (`inviteNeedConfirm`):
-- Yes (`option.InviteNeedConfirm` is set to `true`). After sending a group invitation, the subsequent logic varies based on whether the invitee automatically consents the group invitation (`AutoAcceptGroupInvitation`):
-  - Yes (`AutoAcceptGroupInvitation` is set to `true`). The invitee automatically joins the chat group and receives the `IGroupManagerDelegate#OnAutoAcceptInvitationFromGroup` callback, the inviter receives the `IGroupManagerDelegate#OnInvitationAcceptedFromGroup` and `IGroupManagerDelegate#OnMemberJoinedFromGroup` callbacks, and the other chat group members receives the `IGroupManagerDelegate#OnMemberJoinedFromGroup` callback.
-  - No (`AutoAcceptGroupInvitation` is set to `false`). The invitee receives the `IGroupManagerDelegate#OnInvitationReceivedFromGroup` callback and choose whether to join the chat group:
-    - If the invitee accepts the group invitation, the inviter receives the `IGroupManagerDelegate#OnInvitationAcceptedFromGroup` and `IGroupManagerDelegate#OnMemberJoinedFromGroup` callbacks and the other chat group members receive the `IGroupManagerDelegate#OnMemberJoinedFromGroup` callback;
-    - If the invitee declines the group invitation, the inviter receives the `IGroupManagerDelegate#OnInvitationDeclinedFromGroup` callback.
-
-![](https://web-cdn.agora.io/docs-files/1652918263861)
-
-- No (`option.InviteNeedConfirm` is set to `false`). After sending a group invitation, an invitee is added to the chat group regardless of their `IsAutoAcceptGroupInvitation` setting. The invitee receives the `IGroupManagerDelegate#OnAutoAcceptInvitationFromGroup` callback, the inviter receives the `IGroupManagerDelegate#OnInvitationAcceptedFromGroup` and `IGroupManagerDelegate#OnMemberJoinedFromGroup` callbacks, and the other chat group members receive the `IGroupManagerDelegate#OnMemberJoinedFromGroup` callback.
-
-The following code sample shows how to add a user to a chat group:
+The following code sample shows how to call `AddGroupMembers` to add a user to a chat group:
 
 ```c#
 SDKClient.Instance.GroupManager.AddGroupMembers(groupId, members, new CallBack(
@@ -61,7 +46,7 @@ SDKClient.Instance.GroupManager.AddGroupMembers(groupId, members, new CallBack(
 
 ### Remove a member from a chat group
 
-Only the chat group owner and admins can call `DeleteGroupMembers` to remove the specified member from a chat group. Once removed from the chat group, this member receives the `IGroupManagerDelegate#OnUserRemovedFromGroup` callback, while all the other members receive the `IGroupManagerDelegate#OnMemberExitedFromGroup`. Users can join the chat group again after being removed.
+Only the chat group owner and admins can call `DeleteGroupMembers` to remove the specified member from a chat group. Once removed from the chat group, this member receives the `IGroupManagerDelegate#OnUserRemovedFromGroup` callback, while all the other members receive the `IGroupManagerDelegate#OnMemberExitedFromGroup` callback. Users can join the chat group again after being removed.
 
 The following code sample shows how to remove a member from a chat group:
 
@@ -80,7 +65,7 @@ SDKClient.Instance.GroupManager.DeleteGroupMembers(groupId, list, new CallBack (
 
 #### Transfer the chat group ownership
 
-Only the chat group owner can call `ChangeGroupOwner` to transfer the ownership to the specified chat group member. Once the ownership is transferred, the original chat group owner becomes a regular member and all the other chat group members receive the `IGroupManagerDelegate#OnOwnerChangedFromGroup` callback.
+Only the chat group owner can call `ChangeGroupOwner` to transfer the ownership to the specified chat group member. Once the ownership is transferred, the former chat group owner becomes a regular member and all the other chat group members receive the `IGroupManagerDelegate#OnOwnerChangedFromGroup` callback.
 
 The following code sample shows how to transfer the chat group ownership:
 
@@ -114,7 +99,7 @@ SDKClient.Instance.GroupManager.AddGroupAdmin(groupId, adminId, new CallBack(
 
 #### Remove a chat group admin
 
-Only the chat group owner can call `RemoveGroupAdmin` to remove an admin. Once demoted to a regular member, the original admin and the other chat group admins receive the `IGroupManagerDelegate#OnAdminRemovedFromGroup` callback.
+Only the chat group owner can call `RemoveGroupAdmin` to remove an admin. Once demoted to a regular member, the former admin and the other chat group admins receive the `IGroupManagerDelegate#OnAdminRemovedFromGroup` callback.
 
 The following code sample shows how to remove a chat group admin:
 
@@ -133,7 +118,7 @@ SDKClient.Instance.GroupManager.RemoveGroupAdmin(groupId, adminId, new CallBack(
 
 #### Add a member to the chat group block list
 
-Only the chat group owner and admins can call `BlockGroupMembers` to add the specified member to the chat group block list. Once added to the block list, this member receives the `IGroupManagerDelegate#OnUserRemovedFromGroup` callback, while all the other members receive the `IGroupManagerDelegate#OnMemberExitedFromGroup`. After being added to block list, this user cannot send or receive messages in the chat group nor can they join the chat group again.
+Only the chat group owner and admins can call `BlockGroupMembers` to add the specified member to the chat group block list. Once added to the block list, this member receives the `IGroupManagerDelegate#OnUserRemovedFromGroup` callback, while all the other members receive the `IGroupManagerDelegate#OnMemberExitedFromGroup`. After being added to block list, this user cannot send or receive messages in the chat group. They can no longer join the chat group until they are removed from the block list.
 
 The following code sample shows how to add a member to the chat group block list:
 

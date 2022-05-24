@@ -49,7 +49,7 @@ Set `GroupStyle` and `inviteNeedConfirm` before creating a chat group.
 
 ![](https://web-cdn.agora.io/docs-files/1652923565779)
 
-- No (`option.InviteNeedConfirm` is set to `false`). After creating a chat group and sending group invitations, an invitee is added to the chat group regardless of their `IsAutoAcceptGroupInvitation` setting. The invitee receives the `IGroupManagerDelegate#OnAutoAcceptInvitationFromGroup` callback, the chat group owner receives the `IGroupManagerDelegate#OnInvitationAcceptedFromGroup` and `IGroupManagerDelegate#OnMemberJoinedFromGroup` callbacks.
+- No (`option.InviteNeedConfirm` is set to `false`). After creating a chat group and sending group invitations, an invitee is added to the chat group regardless of their `IsAutoAcceptGroupInvitation` setting. The invitee receives the `IGroupManagerDelegate#OnAutoAcceptInvitationFromGroup` callback, the chat group owner receives the `IGroupManagerDelegate#OnInvitationAcceptedFromGroup` and `IGroupManagerDelegate#OnMemberJoinedFromGroup` callbacks, and the other chat group members receive the `IGroupManagerDelegate#OnMemberJoinedFromGroup` callback.
 
 Users can call `CreateGroup` to create a chat group and set the chat group attributes such as the chat group name, description, and the maximum number of members, and the reason to create the group by specifying `GroupOptions`.
 
