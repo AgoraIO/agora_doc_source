@@ -1,10 +1,10 @@
-This page shows how to call Chat RESTful APIs to send different types of messages, upload and download files, and retrieve historical messages.
+This page shows how to call Agora Chat RESTful APIs to send different types of messages, upload and download files, and retrieve historical messages.
 
-Before calling the following methods, make sure you understand the call frequency limit of the Chat RESTful APIs as described in [Limitations](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side).
+Before calling the following methods, make sure you understand the call frequency limit of the Agora Chat RESTful APIs as described in [Limitations](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side).
 
 ## <a name="param"></a>Common parameters
 
-The following table lists common request and response parameters of the Chat RESTful APIs:
+The following table lists common request and response parameters of the Agora Chat RESTful APIs:
 
 ### Request parameters
 

@@ -154,6 +154,29 @@ This group of methods enables you to add, retrieve, modify, and delete members f
 | Adding a chat room admin | POST | /{org_name}/{app_name}/chatrooms/{chatroom_id}/admin | Adds the specified user to the chat room admin list. |
 | Removing a chat room admin | DELETE | /{org_name}/{app_name}/chatrooms/{chatroom_id}/admin/{oldadmin} | Remove the specified user from the chat room admin list. |
 
+### Global mute
+
+This group of methods enable you to mute any user ID in one-to-one chats, group chats, or chat rooms, preventing these users from sending messages to other chat users, chat groups, or chat rooms.
+
+| Name | Method | Request | Description |
+| --- | --- | --- | --- |
+| Globally mute a specified user | POST | /{orgName}/{appName}/mutes | Mutes a specified user in one-to-one chats, chat groups, or chat rooms. |
+| Query the detailed information of global-mute | GET | /{orgName}/{appName}/mutes/username | Queries the detailed information of the global-mute settings of the specified user in one-to-one chats, group chats, or chatrooms.|
+| Retrieve all globally muted users | GET | /{orgName}/{appName}/mutes | Retrieves all the users that have been globally muted in the app. |
+
+### Reaction
+
+This group of methods enable your chat users to reply the message with emojis.
+
+| Name | Method | Request | Description |
+| --- | --- | --- | --- |
+| Create a reaction | POST | /{org_name}/{app_name}/reaction/user/{userId} | Creats or adds a reaction to a specified message. |
+| Retrieve reactions with message IDs | GET | /{org_name}/{app_name}/reaction/user/{userId} | Retrieves the information of the reaction according to the message ID. |
+| Delete a reaction | DELETE | /{org_name}/{app_name}/reaction/user/{userId} | Deletes a reaction. |
+| Retrieve the detailed information of the reaction | GET | 
+/{org_name}/{app_name}/reaction/user/{userId}/detail | Retrieves the detailed information of the reaction by specifying the message ID and reaction ID. |
+
+
 ## Request structure
 
 ### Authorization

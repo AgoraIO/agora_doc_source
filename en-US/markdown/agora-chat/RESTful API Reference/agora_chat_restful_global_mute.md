@@ -2,6 +2,8 @@ With increasingly strict rules and regulations on app compliance, content superv
 
 This feature can be widely applied in apps that power real-time engagements. For example, if a user frequently sends illegitimate advertisements to multiple chat rooms, you can use global-mute to prevent this user from sending chat room messages for 15 days; if a user makes improper statements concerning politics, global-mute can permanently prevent this user from sending any messages in one-to-one chats, chat groups, or chat rooms.
 
+Before calling the following methods, make sure you understand the call frequency limit of the Chat RESTful APIs as described in [Limitations](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side).
+
 <a name="param"></a>
 
 ## Common parameters
@@ -15,7 +17,7 @@ The following table lists common request and response parameters of the Agora Ch
 | `host` | String | The domain name assigned by the Agora Chat service to access RESTful APIs. For how to get the domain name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
 | `org_name` | String | The unique identifier assigned to each company (organization) by the Agora Chat service. For how to get the org name, see [Get the information of the Agora Chat project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
 | `app_name` | String | The unique identifier assigned to each app by the Agora Chat service. For how to get the app name, see [Get the information of the Agora Chat project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
-| `username` | String | The unique login account of the user. The username must be 64 characters or less and cannot be empty. The following character sets are supported:<ul><li>26 lowercase English letters (a-z)</li><li>26 uppercase English letters (A-Z)</li><li>10 numbers (0-9)</li><li>"\_", "-", "."</li></ul><div class="alert note"><ul><li>The username is case insensitive, so `Aa` and `aa` are the same username.</li><li>Ensure that each username under the same app is unique.</li><li>Do not set this parameter as the UUID, email address, or phone number.</li></ul></div> | Yes |
+| `username` | String | The unique login account of the user. The username must be 64 characters or less and cannot be empty. The following character sets are supported:<ul><li>26 lowercase English letters (a-z)</li><li>26 uppercase English letters (A-Z)</li><li>10 numbers (0-9)</li><li>"\_", "-", "."</li></ul><div class="alert note"><ul><li>The username is case insensitive, so `Aa` and `aa` are the same username.</li><li>Ensure that each `username` under the same app is unique.</li><li>Do not set this parameter as a UUID, email address, phone number, or other sensitive information.</li></ul></div> | Yes |
 
 ### Response parameters
 
@@ -46,6 +48,8 @@ In order to improve project security, Agora uses a token (dynamic key) to authen
 
 This method mutes a specified user in one-to-one chats, chat groups, or chat rooms. After a successful method call, this user can no longer send messages in one-to-one chats, chat groups, or chat rooms, depending on your settings in the request parameter.
 
+For each App Key, the call frequency limit of this method is 100 per second.
+
 ### HTTP request
 
 ```http
@@ -70,7 +74,7 @@ For parameters and the detailed descriptions, see [Commom parameters](#param).
 | Parameter | Type | Description |
 | --- | --- | --- |
 | `Content-Type` | String | The content type. Set is as `application/json`. |
-| `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
+| `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
 
 ### HTTP response
 
@@ -90,7 +94,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 ```shell
 curl -L -X POST 'https://XXXX/XXXX/XXXX/mutes' \
--H 'Authorization: Bearer {{token}}' \
+-H 'Authorization: Bearer {YourAppToken}' \
 -H 'Content-Type: application/json' \
 --data-raw '{
     "username": "XXXX",
@@ -122,6 +126,8 @@ curl -L -X POST 'https://XXXX/XXXX/XXXX/mutes' \
 
 This method queries the detailed information of the global-mute settings of the specified user in one-to-one chats, group chats, or chatrooms.
 
+For each App Key, the call frequency limit of this method is 100 per second.
+
 ### HTTP request
 
 ```http
@@ -141,7 +147,7 @@ For other parameters and the detailed descriptions, see [Commom parameters](#par
 | Parameter | Type | Description |
 | --- | --- | --- |
 | `Content-Type` | String | The content type. Set is as `application/json`. |
-| `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
+| `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
 
 ### HTTP response
 
@@ -195,6 +201,8 @@ curl -L -X GET 'https://XXXX/XXXX/XXXX/mutes/{username}' \
 
 This method retrieves all the users that have been globally muted in the app, and returns the remaining time that each user is muted for each type of chat.
 
+For each App Key, the call frequency limit of this method is 100 per second.
+
 ### HTTP request
 
 ```http
@@ -210,7 +218,7 @@ For parameters and the detailed descriptions, see [Commom parameters](#param).
 | Parameter | Type | Description |
 | --- | --- | --- |
 | `Content-Type` | String | The content type. Set is as `application/json`. |
-| `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
+| `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
 
 #### Request body
 
@@ -292,6 +300,10 @@ curl -L -X GET 'https://XXXX/XXXX/XXXX/mutes?pageNum=1&pageSize=10' \
     "applicationName": "XXXX"
 }
 ```
+
+## Status codes
+
+For details, see [HTTP Status Codes](./agora_chat_status_code?platform=RESTful).
 
 
 

@@ -1,6 +1,7 @@
 User attributes refers to the label information added for the user, including key-value pairs.
 
 This page shows how to call Agora Chat RESTful APIs to manage user attributes, including adding, deleting, modifying, and retrieving user attributes.
+
 Before calling the following methods, make sure you understand the call frequency limit of the Agora Chat RESTful APIs as described in [Limitations](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side).
 
 <a name="param"></a>
@@ -16,7 +17,7 @@ The following table lists common request and response parameters of the Agora Ch
 | `host` | String | The domain name assigned by the Agora Chat service to access RESTful APIs. For how to get the domain name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
 | `org_name` | String | The unique identifier assigned to each company (organization) by the Agora Chat service. For how to get the org name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
 | `app_name` | String | The unique identifier assigned to each app by the Agora Chat service. For how to get the app name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
-| `username` | String | The unique login account of the user. The username must be 64 characters or less and cannot be empty.  The following character sets are supported:<li>26 lowercase English letters (a-z)<li>26 uppercase English letters (A-Z)<li>10 numbers (0-9)<li>"\_", "-", "."<div class="alert note"><ul><li>The username is case insensitive, so `Aa` and `aa` are the same username<li>Ensure that each username under the same app is unique.</ul></div> | Yes |
+| `username` | String | The unique login account of the user. The username must be 64 characters or less and cannot be empty.  The following character sets are supported:<li>26 lowercase English letters (a-z)<li>26 uppercase English letters (A-Z)<li>10 numbers (0-9)<li>"\_", "-", "."<div class="alert note"><ul><li>The username is case insensitive, so `Aa` and `aa` are the same username.</li><li>Ensure that each `username` under the same app is unique.</li><li>Do not set this parameter as a UUID, email address, phone number, or other sensitive information.</li></ul></div> | Yes |
 
 ### Response parameters
 
@@ -35,13 +36,17 @@ The following table lists common request and response parameters of the Agora Ch
 
 Agora Chat RESTful APIs require Bearer HTTP authentication. Every time an HTTP request is sent, the following `Authorization` field must be filled in the request header:
 
-`Authorization`: Bearer ${YourAppToken}
+```http
+Authorization: Bearer ${YourAppToken}
+```
 
 In order to improve the security of the project, Agora uses a token (dynamic key) to authenticate users before they log in to the chat system. Agora Chat RESTful APIs only support authenticating users using app tokens. For details, see [Authentication using App Token](./generate_app_tokens?platform=RESTful).
 
 ## Setting user attributes
 
 User attributes are composed of multiple key-value pairs of attribute names and attribute values, and each attribute name has one corresponding attribute value.
+
+For each App Key, the call frequency limit of this method is 100 per second.
 
 > The total length of attributes for one user cannot exceed 2 KB, and the total length of attributes for all users under an app cannot exceed 10 GB.
 
@@ -53,18 +58,18 @@ PUT https://{host}/{org_name}/{app_name}/metadata/user/{username}
 
 #### Path parameter
 
-For the parameters and detailed descriptions, see [Common parameters ](#param).
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Request header
 
 | Parameter | Type | Description | Required |
 | :-------------- | :----- | :---------------------------------- | :------- |
 | `Content-Type` | String | `application/x-www-form-urlencoded` | Yes |
-| `Authorization` | String | Bearer ${YourAppToken} | Yes |
+| `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 #### Request body
 
-The request body is in the format of `x-www-form-urlencoded`. The data type is JSON String, and the length cannot exceed 4 KB. The request body contains the following fields:
+The request body is in the format of JSON String, and the length cannot exceed 4 KB. The request body contains the following fields:
 
 | Field | Type | Description | Required |
 | :------ | :----- | :----- | :------- |
@@ -75,7 +80,7 @@ The request body is in the format of `x-www-form-urlencoded`. The data type is J
 
 #### Response body
 
-If the returned HTTP status code is `200`, the request is successful, and the response body contains the following fields:
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
 | Parameter | Type | Description |
 | :----- | :--- | :----------------------------------------------------- |
@@ -83,7 +88,7 @@ If the returned HTTP status code is `200`, the request is successful, and the re
 
 For other fields and detailed descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not `200`, the request fails. You can refer to [the status code summary table](#code) for possible reasons.
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
 
 ### Example
 
@@ -91,9 +96,9 @@ The user attributes used in this example are named `ext`, `nickname`, and `avata
 
 #### Request example
 
-```json
-# Replace <YourAppToken> with the app token generated in your server.
-curl -X PUT -H 'Content-Type: application/x-www-form-urlencoded' -H 'Authorization: Bearer <YourAppToken>' -d 'avatar=http://www.agorachat.com/avatar.png&ext=ext&nickname=nickname' 'http://XXXX/XXXX/XXXX/metadata/user/XXXX'
+```shell
+# Replace {YourAppToken} with the app token generated in your server.
+curl -X PUT -H 'Content-Type: application/x-www-form-urlencoded' -H 'Authorization: Bearer {YourAppToken}' -d 'avatar=http://www.agorachat.com/avatar.png&ext=ext&nickname=nickname' 'http://XXXX/XXXX/XXXX/metadata/user/XXXX'
 ```
 
 #### Response example
@@ -114,28 +119,30 @@ curl -X PUT -H 'Content-Type: application/x-www-form-urlencoded' -H 'Authorizati
 
 Retrieves the user attributes of the specified user.
 
+For each App Key, the call frequency limit of this method is 100 per second.
+
 ### HTTP request
 
 ```http
-GET https://{host} /{org_name}/{app_name}/metadata/user/{username}
+GET https://{host}/{org_name}/{app_name}/metadata/user/{username}
 ```
 
 #### Path parameter
 
-For the parameters and detailed descriptions, see [Common parameters ](#param).
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Request header
 
 | Parameter | Type | Description | Required |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Content-Type` | String | `application/json` | Yes |
-| `Authorization` | String | Bearer ${YourAppToken} | Yes |
+| `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 ### HTTP response
 
 #### Response body
 
-If the returned HTTP status code is `200`, the request is successful, and the response body contains the following fields:
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
 | Parameter | Type | Description |
 | :----- | :--- | :------------------------------------------------------------------------------------------------------------- |
@@ -143,15 +150,15 @@ If the returned HTTP status code is `200`, the request is successful, and the re
 
 For other fields and detailed descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#code) for possible reasons.
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
 
 ### Example
 
 #### Request example
 
-```json
-# Replace <YourAppToken> with the app token generated in your server.
-curl -X GET -H 'Authorization: Bearer <YourAppToken>' -H 'Content-Type:  application/json''http://XXXX/XXXX/XXXX/metadata/user/XXXX'
+```shell
+# Replace {YourAppToken} with the app token generated in your server.
+curl -X GET -H 'Authorization: Bearer {YourAppToken}' -H 'Content-Type:  application/json''http://XXXX/XXXX/XXXX/metadata/user/XXXX'
 ```
 
 #### Response example
@@ -172,22 +179,24 @@ curl -X GET -H 'Authorization: Bearer <YourAppToken>' -H 'Content-Type:  applica
 
 Retrieves the user attributes of multiple users by specifying the user name list and user attribute list.
 
+For each App Key, the call frequency limit of this method is 100 per second.
+
 ### HTTP request
 
 ```http
-POST https://{host} /{org_name}/{app_name}/metadata/user/get
+POST https://{host}/{org_name}/{app_name}/metadata/user/get
 ```
 
 #### Path parameter
 
-For the parameters and detailed descriptions, see [Common parameters ](#param).
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Request header
 
 | Parameter | Type | Description | Required |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Content-Type` | String | `application/json` | Yes |
-| `Authorization` | String | Bearer ${YourAppToken} | Yes |
+| `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 #### Request body
 
@@ -202,7 +211,7 @@ The request body is a JSON object with the following fields:
 
 #### Response body
 
-If the returned HTTP status code is `200`, the request is successful, and the response body contains the following fields:
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
 | Parameter | Type | Description |
 | :----- | :--- | :----------------------------------------------------------------------------------------------------------- |
@@ -210,15 +219,15 @@ If the returned HTTP status code is `200`, the request is successful, and the re
 
 For other fields and detailed descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#code) for possible reasons.
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
 
 ### Example
 
 #### Request example
 
-```json
-# Replace <YourAppToken> with the app token generated in your server.
-curl -X POST -H 'Authorization: Bearer <YourAppToken>' -H 'Content-Type:  application/json' -d '{
+```shell
+# Replace {YourAppToken} with the app token generated in your server.
+curl -X POST -H 'Authorization: Bearer {YourAppToken}' -H 'Content-Type:  application/json' -d '{
   "properties": [
     "avatar",
     "ext",
@@ -260,23 +269,25 @@ curl -X POST -H 'Authorization: Bearer <YourAppToken>' -H 'Content-Type:  applic
 
 ## Retrieving the total length of user attributes
 
-Retrieves the total length of the user attributes under the app.
+This method retrieves the total length of the user attributes under the app.
+
+For each App Key, the call frequency limit of this method is 100 per second.
 
 ### HTTP request
 
 ```http
-GET https://{host} /{org_name}/{app_name}/metadata/user/capacity
+GET https://{host}/{org_name}/{app_name}/metadata/user/capacity
 ```
 
 #### Path parameter
 
-For the parameters and detailed descriptions, see [Common parameters ](#param).
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Request header
 
 | Parameter | Type | Description | Required |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Authorization` | String | Bearer ${YourAppToken} | Yes |
+| `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 ### HTTP response
 
@@ -296,8 +307,8 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 #### Request example
 
-```json
-curl -X GET -H 'Authorization: Bearer <YourAppToken>''http://XXXX/XXXX/XXXX/metadata/user/capacity'
+```shell
+curl -X GET -H 'Authorization: Bearer {YourAppToken}''http://XXXX/XXXX/XXXX/metadata/user/capacity'
 ```
 
 #### Response example
@@ -312,29 +323,31 @@ curl -X GET -H 'Authorization: Bearer <YourAppToken>''http://XXXX/XXXX/XXXX/meta
 
 ## Deleting user attributes
 
-Deletes all the user attributes of the specified user.
+This method deletes all the user attributes of the specified user.
+
+For each App Key, the call frequency limit of this method is 100 per second.
 
 ### HTTP request
 
 ```http
-DELETE https://{host} /{org_name}/{app_name}/metadata/user/{username}
+DELETE https://{host}/{org_name}/{app_name}/metadata/user/{username}
 ```
 
 #### Path parameter
 
-For the parameters and detailed descriptions, see [Common parameters ](#param).
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Request header
 
 | Parameter | Type | Description | Required |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Authorization` | String | Bearer ${YourAppToken} | Yes |
+| `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 ### HTTP response
 
 #### Response body
 
-If the returned HTTP status code is `200`, the request is successful, and the response body contains the following fields:
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
 | Parameter | Type | Description |
 | :----- | :--- | :-------------------------------------------------------------------------------------------------------------------------- |
@@ -348,8 +361,8 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 #### Request example
 
-```json
-curl -X DELETE -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/metadata/user/XXXX'
+```shell
+curl -X DELETE -H 'Authorization: Bearer {YourAppToken}' 'http://XXXX/XXXX/XXXX/metadata/user/XXXX'
 ```
 
 #### Response example
@@ -361,8 +374,6 @@ curl -X DELETE -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/
     "data": true
 }
 ```
-
-<a name="code"></a>
 
 ## Status codes
 
