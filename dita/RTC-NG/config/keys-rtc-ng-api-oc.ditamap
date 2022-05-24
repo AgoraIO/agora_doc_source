@@ -115,6 +115,13 @@
                 </keywords>
             </topicmeta>
         </keydef>
+        <keydef keys="IVideoEncodedImageReceiver" href="../API/class_ivideoencodedimagereceiver.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraEncodedVideoFrameDelegate</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
         <keydef keys="IVideoFrameObserver" href="../API/class_ivideoframeobserver.dita">
             <topicmeta>
                 <keywords>
@@ -771,14 +778,28 @@
             <keydef keys="startPreview" href="../API/api_startpreview.dita">
                 <topicmeta>
                     <keywords>
-                        <keyword>startPreview</keyword>
+                        <keyword>startPreview [1/2]</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="startPreview2" href="../API/api_startpreview2.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>startPreview [2/2]</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
             <keydef keys="stopPreview" href="../API/api_stoppreview.dita">
                 <topicmeta>
                     <keywords>
-                        <keyword>stopPreview</keyword>
+                        <keyword>stopPreview [1/2]</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="stopPreview2" href="../API/api_stoppreview2.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>stopPreview [2/2]</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
@@ -1989,6 +2010,13 @@
             </keydef>
         </topichead>
         <topichead navtitle="原始视频数据">
+            <keydef keys="registerVideoEncodedImageReceiver" href="../API/api_imediaengine_registervideoencodedimagereceiver.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>setEncodedVideoFrameDelegate</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
             <keydef keys="registerVideoFrameObserver" href="../API/api_imediaengine_registervideoframeobserver.dita">
                 <topicmeta>
                     <keywords>
@@ -2005,6 +2033,20 @@
             </keydef>
         </topichead>
         <topichead navtitle="Extension">
+            <keydef keys="getExtensionProperty1" href="../API/api_getextensionproperty1.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>getExtensionProperty [1/2]</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="getExtensionProperty2" href="../API/api_getextensionproperty2.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>getExtensionProperty [2/2]</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
             <keydef keys="enableExtension" href="../API/api_enableextension.dita">
                 <topicmeta>
                     <keywords>
@@ -3168,6 +3210,13 @@
                     </keywords>
                 </topicmeta>
             </keydef>
+            <keydef keys="onEncodedVideoImageReceived" href="../API/callback_ivideoencodedimagereceiver_onencodedvideoimagereceived.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onEncodedVideoFrame</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
             <keydef keys="onMediaPlayerVideoFrame" href="../API/callback_ivideoframeobserver_onmediaplayervideoframe.dita">
                 <topicmeta>
                     <keywords>
@@ -3518,6 +3567,13 @@
             <topicmeta>
                 <keywords>
                     <keyword>AgoraEncodedAudioFrameInfo</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="EncodedVideoFrameInfo" href="../API/class_encodedvideoframeinfo.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraEncodedVideoFrameInfo</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -6766,6 +6822,48 @@
                 </keywords>
             </topicmeta>
         </keydef>
+        <keydef keys="MEDIA_SOURCE_TYPE" href="../API/enum_mediasourcetype.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraMediaSourceType</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="AUDIO_PLAYOUT_SOURCE">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraMediaSourceTypeAudioPlayout</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="AUDIO_RECORDING_SOURCE">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraMediaSourceTypeRecording</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="PRIMARY_CAMERA_SOURCE">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraMediaSourceTypePrimaryCamera</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="SECONDARY_CAMERA_SOURCE">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraMediaSourceTypeSecondaryCamera</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="UNKNOWN_MEDIA_SOURCE">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraMediaSourceTypeUnknown</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
         <keydef keys="MEDIA_STREAM_TYPE" href="../API/enum_mediastreamtype.dita">
             <topicmeta>
                 <keywords>
@@ -8079,6 +8177,55 @@
             <topicmeta>
                 <keywords>
                     <keyword>AgoraVideoFrameProcessModeReadWrite</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VIDEO_FRAME_TYPE" href="../API/enum_videoframetype_ng.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoFrameType</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VIDEO_FRAME_TYPE_BLANK_FRAME">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoFrameTypeBlankFrame</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VIDEO_FRAME_TYPE_KEY_FRAME">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoFrameTypeKeyFrame</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VIDEO_FRAME_TYPE_DELTA_FRAME">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoFrameTypeDeltaFrame</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VIDEO_FRAME_TYPE_B_FRAME">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoFrameTypeBFrame</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VIDEO_FRAME_TYPE_DROPPABLE_FRAME">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoFrameTypeDroppableFrame</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VIDEO_FRAME_TYPE_UNKNOWN">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoFrameTypeUnknow</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
