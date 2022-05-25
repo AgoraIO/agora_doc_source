@@ -32,7 +32,7 @@ Before proceeding, ensure that you meet the following requirements:
 
 - You have integrated the Agora Chat SDK, initialized the SDK, and implemented the functionality of users logging in. For details, see [Get Started with Agora Chat]().
 - You understand the [API call frequency limits]().
-- Message read receipts for chat groups are not enabled by default. To use this feature, contact sales@agora.io.
+- Message read receipts for chat groups are not enabled by default. To use this feature, contact support@agora.io.
 
 ## Implementation
 
