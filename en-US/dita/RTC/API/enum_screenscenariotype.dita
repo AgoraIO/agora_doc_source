@@ -2,34 +2,26 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_screencapturesourcetype">
     <title><ph keyref="ScreenCaptureSourceType"/></title>
-    <shortdesc id="short"><ph id="shortdesc">The type of the shared target. Set in <xref keyref="ScreenCaptureSourceInfo"/>.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">The screen sharing scenario. Set in <xref keyref="setScreenCaptureScenario"/>.</ph></shortdesc>
     <refbody>
-        <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>Since</dt>
-                <dd>v3.5.2</dd>
-            </dlentry>
-            </dl>
-        </section>
         <section id="parameters">
             <title>Enumerator</title>
             <parml>
             <plentry>
-                <pt><ph keyref="ScreenCaptureSourceType_Unknown"/></pt>
-                <pd>-1: Unknown type.</pd>
+                <pt><ph keyref="SCREEN_SCENARIO_DOCUMENT"/></pt>
+                <pd>1: (Default) Document. This scenario prioritizes the video quality of screen sharing and reduces the latency of the shared video for the receiver. If you share documents, slides, and tables, you can set this scenario.</pd>
             </plentry>
             <plentry>
-                <pt><ph keyref="ScreenCaptureSourceType_Window"/></pt>
-                <pd>0: The shared target is a window.</pd>
+                <pt><ph keyref="SCREEN_SCENARIO_GAMING"/></pt>
+                <pd>2: Game. This scenario prioritizes the smoothness of screen sharing. If you share games, you can set this scenario.</pd>
             </plentry>
             <plentry>
-                <pt><ph keyref="ScreenCaptureSourceType_Screen"/></pt>
-                <pd>1: The shared target is a screen of a particular monitor.</pd>
+                <pt><ph keyref="SCREEN_SCENARIO_VIDEO"/></pt>
+                <pd>3: Video. This scenario prioritizes the smoothness of screen sharing. If you share movies or live videos, you can set this scenario.</pd>
             </plentry>
             <plentry>
-                <pt><ph keyref="ScreenCaptureSourceType_Custom"/></pt>
-                <pd>2: Reserved parameter.</pd>
+                <pt><ph keyref="SCREEN_SCENARIO_RDC"/></pt>
+                <pd>4: Remote control. This scenario prioritizes the video quality of screen sharing and reduces the latency of the shared video for the receiver. If you share the device desktop being remotely controlled, you can set this scenario.</pd>
             </plentry>
             </parml> </section>
     </refbody>

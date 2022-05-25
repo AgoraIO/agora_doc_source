@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_setscreencapturecontenthint">
-    <title><ph keyref="setScreenCaptureContentHint" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the content hint for screen sharing.</ph></shortdesc>
+<reference id="api_setscreencapturescenario">
+    <title><ph keyref="setScreenCaptureScenario" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the screen sharing scenario.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setScreenCaptureContentHint" />
+                <indexterm keyref="setScreenCaptureScenario" />
             </keywords>
         </metadata>
     </prolog>
@@ -16,20 +16,14 @@
             <codeblock props="ios mac" outputclass="language-objectivec" />
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>Since</dt>
-                <dd>v2.4.0</dd>
-            </dlentry>
-            </dl>
-            <p id="desc">A content hint suggests the type of the content being shared, so that the SDK applies different optimization algorithms to different types of content. If you don't call this method, the default content hint is <ph keyref="CONTENT_HINT_NONE" />.</p>
-            <note type="attention" id="note">You can call this method either before or after you start screen sharing.</note> </section>
+            <p id="desc">When you start screen sharing or window sharing, you can call this method to set the screen sharing scenario. The SDK adjusts the video quality and experience of the sharing according to the scenario.</p>
+            <note type="attention" id="note" props="cpp">This method is only available for the macOS and Windows platforms.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
-                <pt>contentHint</pt>
-                <pd>The content hint for screen sharing. For details, see <xref keyref="VIDEO_CONTENT_HINT" />.</pd>
+                <pt>screenScenario</pt>
+                <pd>The screen sharing scenario. See <xref keyref="SCREEN_SCENARIO_TYPE"/>.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron cs">

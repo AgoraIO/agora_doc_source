@@ -47,7 +47,7 @@
           </section>
           <section id="detailed_desc">
                <p id="desc">
-                    The SDK triggers this callback when the first local video frame is displayed/rendered on the local video view.  The application can retrieve the time elapsed (the <parmname>elapsed</parmname> parameter) from a user joining the channel until the first video frame is displayed.</p>
+                    The SDK triggers this callback when the first local video frame is displayed/rendered on the local video view. The application can retrieve the time elapsed (the <parmname>elapsed</parmname> parameter) from a user joining the channel until the first video frame is displayed.</p>
           </section>
           <section id="parameters">
                <title><ph keyref="callback-section-title"/></title>
@@ -58,29 +58,26 @@
                     <pt/>
                     <pd/>
                </plentry>
-               <plentry>
-                    <pt props="ios mac android electron cs flutter">uid</pt>
-                    <pt props="cpp"><ph props="rtc">uid</ph><ph props="rtc-ng"
-                         >userId</ph></pt>
-                    <pd>The user ID of the remote user sending the video stream.</pd>
+               <plentry id="uid">
+                    <pt props="ios mac android electron flutter cpp cs">uid</pt>
+                    <pd>User ID of the remote user sending the video stream.</pd>
                </plentry>
-               <plentry props="ios mac">
+               <plentry props="ios mac" id="size">
                     <pt>size</pt>
-                    <pd>Video dimensions.</pd>
+                    <pd>The size of the video frame.</pd>
                </plentry>
-               <plentry props="android cpp cs flutter">
+               <plentry props="android cpp cs" id="width">
                     <pt>width</pt>
-                    <pd>The width (px) of the video stream.</pd>
+                    <pd>Width (px) of the video frame.</pd>
                </plentry>
-               <plentry props="android cpp cs flutter">
+               <plentry props="android cpp cs" id="height">
                     <pt>height</pt>
-                    <pd>The height (px) of the video stream.</pd>
+                    <pd>Height (px) of the video frame.</pd>
                </plentry>
-               <plentry>
+               <plentry id="elapsed">
                     <pt>elapsed</pt>
-                    <pd>Time elapsed (ms) from the local user calling <apiname
-                         keyref="joinChannel2"
-                         /> until the SDK triggers this callback.</pd>
+                    <pd>Time elapsed (ms) from the local user calling the <apiname keyref="joinChannel2" /> method until the SDK triggers this callback.
+                    </pd>
                </plentry>
                </parml> </section>
      </refbody>
