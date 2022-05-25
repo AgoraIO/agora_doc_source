@@ -12,7 +12,6 @@
     </prolog>
     <refbody>
         <section id="prototype">
-
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int getAudioMixingCurrentPosition();</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)getAudioMixingCurrentPosition;</codeblock>
@@ -24,11 +23,14 @@
         </section>
         <section id="detailed_desc">
             <p>This method retrieves the playback position (ms) of the current music file.</p>
-            <note type="attention"><ph>You need to call this method after calling <apiname keyref="startAudioMixing2" props="native"/><xref keyref="startAudioMixing" props="unity"/> and receiving the <codeph><apiname keyref="onAudioMixingStateChanged"/>(<apiname keyref="AUDIO_MIXING_STATE_PLAYING"/>)</codeph> callback.</ph></note> </section>
+            <note type="attention"><ul>
+            <li><ph>You need to call this method after calling <xref keyref="startAudioMixing2" props="native"/><xref keyref="startAudioMixing" props="unity"/> and receiving the <codeph><apiname keyref="onAudioMixingStateChanged"/>(<apiname keyref="AUDIO_MIXING_STATE_PLAYING"/>)</codeph> callback.</ph></li>
+            <li>If you need to call <apiname keyref="getAudioMixingCurrentPosition"/> multiple times, ensure that the time interval between calling this method is more than 500 ms.</li>
+            </ul></note> </section>
         <section id="return_values">
             <title>Returns</title>
             <ul>
-            <li>≥ 0: The current playback position of the audio mixing, if this method call succeeds.</li>
+            <li>≥ 0: The current playback position of the audio mixing, if this method call succeeds. 0 表示当前音乐文件未开始播放。</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
