@@ -29,9 +29,6 @@
   | macOS    | macOS 10.0 或以上 | Xcode 9.0 或以上                    |
   | Windows  | Windows 7 或以上   | Microsoft Visual Studio 2017 或以上 |
 
-- Visual Studio IDE 2019 或以上
-- 有效的 [Agora 账户](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#%E5%88%9B%E5%BB%BA-agora-%E8%B4%A6%E5%8F%B7) 和 [App ID](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#%E5%88%9B%E5%BB%BA-agora-%E8%B4%A6%E5%8F%B7)
-
 <div class="alert note">如果你的网络环境部署了防火墙，请参考 <a href="https://docs.agora.io/cn/Agora%20Platform/firewall?platform=Unity">应用企业防火墙限制</a> 以正常使用 Agora 服务。</div>
 
 ## 项目设置
@@ -83,9 +80,6 @@ using ChatSDK.MessageBody;
 var options = new Options(appKey: "APPKEY");
 SDKClient.Instance.InitWithOptions(options);
 ```
-<div class="alert info">
-本项目用于演示目的，在正式环境中，请使用你在 <a href="https://console.agora.io/">Agora 控制台</a> 申请的 App ID。
-</div>
 
 ### 3. 注册账号
 
@@ -101,10 +95,6 @@ SDKClient.Instance.CreateAccount(username: Username.text, Password.text, handle:
   }
 ));
 ```
-
-<div class="alert info">
-本项目用于演示目的，账号注册在客户端实现。在正式环境中，应使用服务器端调用 Restful API 进行注册，详见 <a href="https://docs-preprod.agora.io/cn/agora-chat/agora_chat_restful_registration?platform=RESTful#%E6%B3%A8%E5%86%8C%E5%8D%95%E4%B8%AA%E7%94%A8%E6%88%B7">注册单个用户</a>。
-</div>
 
 ### 4. 登录账号
 
@@ -237,24 +227,23 @@ SDKClient.Instance.ChatManager.RemoveChatManagerDelegate(this);
 
 接下来，你可以在该界面中进行下列操作：
 
-### 1. 注册用户  
+1. 注册用户  
 在 `user id` 文本框中输入用户 ID，在 `password` 文本框中输入密码，点击 **Sign up** 进行用户注册。创建两个用户 (例如 `local_user` 和 `remote_user`) 分别用于发送和接收消息。
 
-### 2. 用户登录  
+2. 用户登录  
 在 `user id` 文本框中输入用户 ID (例如 `local_user`),在 `password` 文本框中输入密码，点击 **Sign in** 登录。
 
-### 3. 发送消息  
+3. 发送消息和接收消息
 在 `single chat id` 文本框中输入消息接收方的用户 ID (例如 `remote_user`)，在 `message content` 文本框中输入要发送的文本内容 (例如 “hello world”)，点击 **Send** 发送消息。
 
-### 4. 退出登录  
-直接点击 **Sign out** 退出登录当前用户。
-
-### 5. 接收消息  
 在 `user id` 文本框中输入接收消息的用户 ID (例如 `remote_user`)，在 `password` 文本框输入密码，点击 **Sign in** 登录。登录成功后，下方会显示收到步骤 3 中发送的消息 (例如 “hello world”)。
+
+4. 退出登录  
+直接点击 **Sign out** 退出登录当前用户。
 
 以上每一步操作均会在 log 中显示：
 ![](https://web-cdn.agora.io/docs-files/1652781638358)
 
-## 后续步骤
+## 更多操作
 
-文中示例仅作为演示和测试用途。在生产环境中，为保障通信安全，你需要自行部署服务器签发 Token，详见使用 [User Token 鉴权](???)。
+为方便演示，本文搭建的 Demo 中使用 username + password 的用户注册方式。在生产环境中，为保证通信安全，我们建议你使用 username + password + token 的方式进行用户注册。token 需要在你的服务端部署生成，并在客户端实现获取 token、token 过期后重新生成的逻辑。具体实现方式请参考 [使用 User Token 鉴权](./generate_user_tokens)。
