@@ -1,0 +1,121 @@
+During one-to-one chats and group chats, users can reply a specified message with emojis, which adds fun and diversity to real-time chatting. In Agora Chat, this feature is known as reaction. This page shows how to use the Agora Chat SDK to implement reaction in your project.
+
+Reactions apply only on one-one chats and chat groups, but not chat rooms.
+
+## Understand the tech
+
+The SDK provides the following APIs to implement reaction functionalities.
+
+- `asyncAddReaction`: Adds a reaction to the specified message.
+- `asyncRemoveReaction`: Removes the reaction from the specified message.
+- `asyncGetReactionList`: Retrieves a list of reactions from the server.
+- `asyncGetReactionDetail`: Retrieves the details of the reaction from the server.
+- `ChatMessage.getMessageReaction`: Retrieves a list of reactions from the `ChatMessage` objects in the local database.
+
+##  Prerequisites
+
+Before proceeding, ensure that your environment has the following:
+
+- A project that integrates the Agora Chat SDK later than v1.0.3 and has implemented the [basic real-time chat functionalities](./agora_chat_get_started_android?platform=Android).
+- Understand the API call frequency limit as described in [Limitations](./agora_chat_limitation?platform=Android).
+- Reaction is not enabled by default. To use this feature, contact support@agora.io to enable it first.
+
+## Implementation
+
+This section introduces how to implement reaction functionalities in your project.
+
+### Add a reaction
+
+Call `asyncAddReaction` to add a reaction to the specified message. You can use `onReactionChanged` to listen for the state of adding the reaction.
+
+```java
+// Add a reaction
+ChatClient.getInstance().chatManager().asyncAddReaction(message.getMsgId(), reaction, new CallBack() {
+            @Override
+            public void onSuccess() {
+                
+            }
+            @Override
+            public void onError(int error, String errorMsg) {
+              
+            }
+            @Override
+            public void onProgress(int i, String s) {
+            }
+        });
+// Listen for the state of the reaction.
+public class MyClass implements MessageListener {
+    private void init() {
+        ChatClient.getInstance().chatManager().addMessageListener(this);
+    }
+    @Override
+    public void onReactionChanged(List<MessageReactionChange> list) {
+       
+    }
+}
+```
+
+### Remove a reaction
+
+Call `asyncRemoveReaction` to remove the specified reaction. You can also listen for the reaction change in `onReactionChanged`.
+
+```java
+// Remove the reaction.
+ChatClient.getInstance().chatManager().asyncRemoveReaction(message.getMsgId(), reaction, new CallBack() {
+            @Override
+            public void onSuccess() {
+               
+            }
+            @Override
+            public void onError(int error, String errorMsg) {
+                
+            }
+            @Override
+            public void onProgress(int i, String s) {
+            }
+        });
+// Listen for reaction state change.
+public class MyClass implements MessageListener {
+    private void init() {
+        ChatClient.getInstance().chatManager().addMessageListener(this);
+    }
+    @Override
+    public void onReactionChanged(List<MessageReactionChange> list) {
+      
+    }
+}
+```
+
+### Retrieve a list of reactions
+
+Call `asyncGetReactionList` to retrieve a list of reactions from the server.
+
+```java
+ChatClient.getInstance().chatManager().asyncGetReactionList(msgIdList, ChatMessage.ChatType.Chat, groupId, new ValueCallBack<Map<String, List<MessageReaction>>>() {
+            @Override
+            public void onSuccess(Map<String, List<MessageReaction>> stringListMap) {
+            
+            }
+            @Override
+            public void onError(int i, String s) {
+               
+            }
+   });
+```
+
+### Retrieve the details of the reaction
+
+Call `asyncGetReactionDetail` to get the detailed information of the reaction from the server.
+
+```java
+ChatClient.getInstance().chatManager().asyncGetReactionDetail(mMsgId, emojiconId, pageCurosr, 30, new ValueCallBack<CursorResult<MessageReaction>>() {
+                    @Override
+                    public void onSuccess(CursorResult<MessageReaction> messageReactionCursorResult) {
+                        
+                    }
+                    @Override
+                    public void onError(int i, String s) {
+			
+                    }
+                });
+```
