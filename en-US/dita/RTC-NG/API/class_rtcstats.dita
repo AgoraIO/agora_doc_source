@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_rtcstats">
     <title><ph keyref="RtcStats"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Statistics of a call session.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Statistics of the channel.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -166,15 +166,15 @@
             </plentry>
             <plentry>
                 <pt>txBytes</pt>
-                <pd>The number of bytes sent.</pd>
+                <pd>Total number of bytes transmitted, represented by an aggregate value.</pd>
             </plentry>
             <plentry>
                 <pt>rxBytes</pt>
-                <pd>The number of bytes received.</pd>
+                <pd>Total number of bytes received, represented by an aggregate value.</pd>
             </plentry>
             <plentry>
                 <pt>txAudioBytes</pt>
-                <pd>The total number of audio bytes sent, represented by an aggregate value.</pd>
+                <pd>Total number of audio bytes sent, represented by an aggregate value.</pd>
             </plentry>
             <plentry>
                 <pt>txVideoBytes</pt>
@@ -214,7 +214,7 @@
             </plentry>
             <plentry>
                 <pt>lastmileDelay</pt>
-                <pd>The client-to-server delay (milliseconds).</pd>
+                <pd>The client-to-server delay (ms).</pd>
             </plentry>
             <plentry>
                 <pt>txPacketLossRate</pt>
@@ -232,18 +232,18 @@
             <plentry>
                 <pt>cpuAppUsage</pt>
                 <pd>Application CPU usage (%).<note type="attention"><ul>
-                    <li><xref keyref="onLeaveChannel"/>The value of <parmname>cpuTotalUsage is</parmname> always reported as 0 in the  callback.</li>
-                    <li props="cpp unity android">自 Android 8.1 起，因系统限制，你可能无法通过该属性获取 CPU 使用率。</li>
+                    <li>The value of <parmname>cpuTotalUsage</parmname> is always reported as 0 in the <xref keyref="onLeaveChannel"/> callback.</li>
+                    <li props="cpp unity android">As of Android 8.1, you cannot get the CPU usage from this attribute due to system limitations.</li>
                     </ul></note></pd>
             </plentry>
             <plentry>
                 <pt>cpuTotalUsage</pt>
                 <pd>
                     <p>The system CPU usage (%).</p>
-                    <p props="cpp electron unity">For Windows, in the multi-kernel environment, this member represents the average CPU usage. The value = 100 - System Idle Progress in Task Manager.</p>
+                    <p props="cpp electron unity">For Windows, in the multi-kernel environment, this member represents the average CPU usage. The value = (100 - System Idle Progress in Task Manager)/100.</p>
                     <note type="attention"><ul>
-                    <li><xref keyref="onLeaveChannel"/>The value of <parmname>cpuTotalUsage</parmname> is always reported as 0 in the  callback.</li>
-                    <li props="cpp unity android">自 Android 8.1 起，因系统限制，你无法通过该属性获取 CPU 使用率。</li>
+                    <li>The value of <parmname>cpuTotalUsage</parmname> is always reported as 0 in the <xref keyref="onLeaveChannel"/> callback.</li>
+                    <li props="cpp unity android">As of Android 8.1, you cannot get the CPU usage from this attribute due to system limitations.</li>
                     </ul></note> </pd>
             </plentry>
             <plentry>
@@ -256,7 +256,7 @@
                     <p>This property is disabled on devices running iOS 14 or later, and enabled on devices running versions earlier than iOS 14 by default. </p>
                     <p>To enable this property on devices running iOS 14 or later, <xref keyref="ticket-link"/>.</p>
                     </note>
-                    <note props="android cpp unity">To get <parmname>gatewayRtt</parmname>, ensure that you add the <codeph>android.permission.ACCESS_WIFI_STATE </codeph><codeph>permission</codeph> after <codeph>&lt;/application></codeph> in the project <codeph>AndroidManifest.xml</codeph> file.</note></pd>
+                    <note props="android cpp unity">On Android, to get <parmname>gatewayRtt</parmname>, ensure that you add the <codeph>android.permission.ACCESS_WIFI_STATE</codeph> permission after <codeph>&lt;/application></codeph> in the <codeph>AndroidManifest.xml</codeph> file in your project.</note></pd>
             </plentry>
             <plentry>
                 <pt>memoryAppUsageRatio</pt>
