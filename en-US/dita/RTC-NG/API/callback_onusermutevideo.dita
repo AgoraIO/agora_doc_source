@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onusermutevideo">
     <title><ph keyref="onUserMuteVideo"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when a remote user's video stream playback pauses/resumes.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when a remote user stops or resumes publishing the video stream.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -34,8 +34,8 @@
                     </ul> </dd>
             </dlentry>
             </dl>
-            <p>当远端用户调用 <xref keyref="muteLocalVideoStream"/> 取消或恢复发布视频流时，SDK 会触发该回调向本地用户报告远端用户的发流状况。</p>
-            <note type="attention">This callback does not work properly when the number of users (in the voice/video call channel) or hosts (in the live streaming channel) in the channel exceeds 17.</note> </section>
+            <p>When a remote user calls <xref keyref="muteLocalVideoStream"/> to stop or resume publishing the video stream, the SDK triggers this callback to report the state of the remote user's publishing stream to the local user.</p>
+            <note type="attention">This callback can be inaccurate when the number of users (in the communication profile) or hosts (in the live broadcasting profile) in a channel exceeds 17.</note> </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
@@ -51,14 +51,13 @@
             <plentry>
                 <pt props="native electron flutter">uid</pt>
                 <pt props="unity">remoteUid</pt>
-                <pd>远端用户 ID。</pd>
+                <pd>The user ID of the remote user.</pd>
             </plentry>
             <plentry>
                 <pt>muted</pt>
-                <pd>远端用户是否取消发布视频流：
-                    <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: 取消发布视频流。</li>
-                    <li><codeph><ph keyref="false"/></codeph>: 发布视频流。</li>
+                <pd>Whether the remote user stops publishing the video stream:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Stop publishing the local video stream.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Publish the video stream.</li>
                     </ul> </pd>
             </plentry>
             </parml> </section>
