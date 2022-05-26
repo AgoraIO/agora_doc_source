@@ -39,12 +39,12 @@
                 <dd>Use <xref keyref="startAudioMixing2"/> instead.</dd>
             </dlentry>
             </dl>
-            <p id="audiomixing_detailed">This method mixes the specified local or online audio file with the audio from the microphone, or replaces the microphone's audio with the specified local or remote audio file. A successful method call triggers the<xref keyref="onAudioMixingStateChanged"/>  (<apiname keyref="AUDIO_MIXING_STATE_PLAYING"/>) callback. When the audio mixing file playback finishes, the SDK triggers the<apiname keyref="onAudioMixingStateChanged"/>  (<apiname keyref="AUDIO_MIXING_STATE_STOPPED"/>) callback on the local client.</p>
+            <p id="audiomixing_detailed">This method mixes the specified local or online audio file with the audio from the microphone, or replaces the microphone's audio with the specified local or remote audio file. A successful method call triggers the <xref keyref="onAudioMixingStateChanged"/> (<apiname keyref="AUDIO_MIXING_STATE_PLAYING"/>) callback. When the audio mixing file playback finishes, the SDK triggers the <apiname keyref="onAudioMixingStateChanged"/> (<apiname keyref="AUDIO_MIXING_STATE_STOPPED"/>) callback on the local client.</p>
             <note type="attention" id="audiomixing_note">
             <ul>
             <li>You can call this method either before or after joining a channel. If you need to call <apiname keyref="startAudioMixing"/> multiple times, ensure that the time interval between calling this method is more than 500 ms.</li>
             <li>If the local music file does not exist, the SDK does not support the file format, or the the SDK cannot access the music file URL, the SDK reports (701).</li>
-            <li props="android cpp unity" id="principle">在 Android 平台上调用该方法时，请注意如下事项：<ul>
+            <li props="android cpp unity" id="principle">On Android, there are following considerations:<ul>
             <li>To use this method, ensure that the Android device is v4.2 or later, and the API version is v16 or later.</li>
             <li>If you need to play an online music file, Agora does not recommend using the redirected URL address. Some Android devices may fail to open a redirected URL address.</li>
             <li>If you call this method on an emulator, ensure that the music file is in the <codeph>/sdcard/</codeph> directory and the format is MP3.</li></ul></li>
@@ -65,7 +65,7 @@
             <plentry id="loopback">
                 <pt>loopback</pt>
                 <pd>
-                    <p>Whether to only play music files on the local client:<ul>
+                    <p>Whether to play music files only on the local client:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Only play music files on the local client so that only the local user can hear the music.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Publish music files to remote clients so that both the local user and remote users can hear the music.</li>
                     </ul></p>
@@ -74,7 +74,7 @@
             <plentry id="replace">
                 <pt>replace</pt>
                 <pd>
-                    <p>Whether to replace the audio captured by the microphone with a music file: <ul>
+                    <p>Whether to replace the audio captured by the microphone with a music file:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Replace the audio captured by the microphone with a music file. Users can only hear the music.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Do not replace the audio captured by the microphone with a music file. Users can hear both music and audio captured by the microphone.</li>
                     </ul></p>
