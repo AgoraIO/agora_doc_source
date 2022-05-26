@@ -29,16 +29,16 @@
    <p>After pre-processing, you can send the processed video data back to the SDK by this callback.</p>
    <note type="attention" id="note">
        <ul>
-  <li>This callback does not support sending processed RGBA video data back to the SDK.</li>
-  <li>The video data that this callback gets has not been pre-processed, without the watermark, the cropped content, the rotation, and the image enhancement.</li>
+  <li>If you get the video data in RGBA color encoding format, Agora does not support using this callback to send the processed data in RGBA color encoding format back to the SDK.</li>
+  <li>The video data obtained through this callback has not undergone preprocessing, such as watermarking, cropping content, rotating, or image enhancement.</li>
        </ul>
    </note>
         </section>
         <section id="parameters"><title>Parameters</title>
    <parml>
        <plentry id="videoframe">
-           <pt>Video frame information.</pt>
-  <pd><ph>视频帧数据。 </ph><ph props="cpp ios mac unity">See <xref keyref="VideoFrame"/>.</ph></pd>
+           <pt>videoFrame</pt>
+  <pd><ph>The video frame. </ph><ph props="cpp ios mac unity">See <xref keyref="VideoFrame"/>.</ph></pd>
        </plentry>
    </parml>
         </section>
