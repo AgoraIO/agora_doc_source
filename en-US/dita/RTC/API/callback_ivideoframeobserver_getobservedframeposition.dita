@@ -33,12 +33,12 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-              <dl outputclass="since" props="rtc">
-                  <dlentry props="native">
-                      <dt>Since</dt>
-                      <dd>v3.0.1</dd>
-                  </dlentry>
-              </dl>
+            <dl outputclass="since" props="rtc">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v3.0.1</dd>
+            </dlentry>
+            </dl>
             <p>After successfully registering the video data observer, the SDK uses this callback to determine whether to trigger <xref keyref="onCaptureVideoFrame"/> , <xref keyref="onRenderVideoFrame"/> and <xref keyref="onPreEncodeVideoFrame"/> callback at each specific video frame processing position, so that you can observe the locally collected video data, the video data sent by the remote end, and the video data before encoding. You can set one or more positions you need to observe by modifying the return value according to your scenario:</p>
             <p>
             <ul>
@@ -55,17 +55,18 @@
         <section id="return_values">
             <title>Returns</title>
             <p props="cpp">A bit mask that controls the frame position of the video observer. See <xref keyref="VIDEO_OBSERVER_POSITION"/> for details.</p>
-            <p props="ios mac">A bit mask that controls the frame position of the video observer. <ph props="rtc">See <xref keyref="VIDEO_OBSERVER_POSITION"/>.</ph><ul props="rtc-ng">
-                <li>(1 &lt;&lt; 0) : The position after capturing the video data, which corresponds to the <apiname keyref="onCaptureVideoFrame"/> callback.</li>
-                <li>(1 &lt;&lt; 1): The position before receiving the remote video data, which corresponds to the <apiname keyref="onRenderVideoFrame"/> callback.</li>
-                <li>(1 &lt;&lt; 2): The position before encoding the video data, which corresponds to the <apiname keyref="onPreEncodeVideoFrame"/> callback.</li></ul>
-            </p>
-            <p props="android">A bit mask that controls the frame position of the video observer.<ul>
-                <li><apiname keyref="POSITION_POST_CAPTURER"/>(1 &lt;&lt; 0) : The position after capturing the video data, which corresponds to the <apiname keyref="onCaptureVideoFrame"/> callback.</li>
-                <li><apiname keyref="POSITION_PRE_RENDERER"/>(1 &lt;&lt; 1): The position before receiving the remote video data, which corresponds to the <apiname keyref="onRenderVideoFrame"/> callback.</li>
-                <li><apiname keyref="POSITION_PRE_ENCODER"/>(1 &lt;&lt; 2): The position before encoding the video data, which corresponds to the <apiname keyref="onPreEncodeVideoFrame"/> callback.</li>
-                </ul>
-                </p>
+            <p props="ios mac">A bit mask that controls the frame position of the video observer. <ph props="rtc">See <xref keyref="VIDEO_OBSERVER_POSITION"/>.</ph>
+            <ul props="rtc-ng">
+            <li>(1 &lt;&lt; 0) : The position after capturing the video data, which corresponds to the <apiname keyref="onCaptureVideoFrame"/> callback.</li>
+            <li>(1 &lt;&lt; 1): The position before receiving the remote video data, which corresponds to the <apiname keyref="onRenderVideoFrame"/> callback.</li>
+            <li>(1 &lt;&lt; 2): The position before encoding the video data, which corresponds to the <apiname keyref="onPreEncodeVideoFrame"/> callback.</li>
+            </ul> </p>
+            <p props="android">A bit mask that controls the frame position of the video observer.
+            <ul>
+            <li><apiname keyref="POSITION_POST_CAPTURER"/>(1 &lt;&lt; 0) : The position after capturing the video data, which corresponds to the <apiname keyref="onCaptureVideoFrame"/> callback.</li>
+            <li><apiname keyref="POSITION_PRE_RENDERER"/>(1 &lt;&lt; 1): The position before receiving the remote video data, which corresponds to the <apiname keyref="onRenderVideoFrame"/> callback.</li>
+            <li><apiname keyref="POSITION_PRE_ENCODER"/>(1 &lt;&lt; 2): The position before encoding the video data, which corresponds to the <apiname keyref="onPreEncodeVideoFrame"/> callback.</li>
+            </ul> </p>
         </section>
     </refbody>
 </reference>

@@ -39,6 +39,17 @@
 
 ##  1. <a name=''></a>概览
 
+DITA 文档体系架构如下。由于体量不大，暂不需要做 DITA Specialization。
+
+文档以 DITA 作为源，同时输出面向开发者的代码注释模板和文档：
+
+![11111](https://user-images.githubusercontent.com/10089260/168726228-7ec29a80-3810-42bc-a0a9-a20a8a4fc54a.svg)
+
+文档对 SDK 产品的 API 接口进行了如下建模：
+
+![22222](https://user-images.githubusercontent.com/10089260/168726238-38ab71da-d6d9-4d16-861a-b925bbdaa63a.svg)
+
+
 文档内容主要分为两种文件格式：
 
 - .dita 主要是 API 文档
