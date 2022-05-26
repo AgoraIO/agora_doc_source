@@ -15,8 +15,8 @@ The Agora Chat SDK uses `ChatUserInfoManager` to retrieve, set, and modify user 
 
 Before proceeding, ensure that you meet the following requirements:
 
-- Have a project that has implemented [the basic real-time chat functionalities]().
-- Have a thorough understanding of the API call frequency limit, the maximum size of all the attributes of a specified user, and the maximum size of all user attribtues in an app. For details, see [Known limitations]().
+- Have a project that has implemented [the basic real-time chat functionalities](./agora_chat_get_started_rn?platform=React%20Native).
+- Have a thorough understanding of the API call frequency limit, the maximum size of all the attributes of a specified user, and the maximum size of all user attribtues in an app. For details, see [Known limitations](./agora_chat_limitation?platform=React%20Native).
 
 ## Implementation
 

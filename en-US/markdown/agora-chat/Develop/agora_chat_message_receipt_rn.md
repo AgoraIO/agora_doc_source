@@ -30,8 +30,8 @@ The logic for implementing these receipts are as follows:
 
 Before proceeding, ensure that you meet the following requirements:
 
-- You have integrated the Agora Chat SDK, initialized the SDK, and implemented the functionality of users logging in. For details, see [Get Started with Agora Chat]().
-- You understand the [API call frequency limits]().
+- You have integrated the Agora Chat SDK, initialized the SDK, and implemented the functionality of users logging in. For details, see [Get Started with Agora Chat](./agora_chat_get_started_rn?platform=React%20Native).
+- You understand the [API call frequency limits](./agora_chat_limitation?platform=React%20Native).
 - Message read receipts for chat groups are not enabled by default. To use this feature, contact support@agora.io.
 
 ## Implementation
@@ -145,7 +145,7 @@ const listener = new ChatMessageEvent();
 ChatClient.getInstance().chatManager.addMessageListener(listener);
 ```
 
-<div class="alert note">In scenarios where a user is logged in multiple devices, if the user sends a conversation read receipt from one device, the server sets the count of unread messages in the conversation as 0, and all the other devices receive `OnConversationRead`.</note>
+<div class="alert note">In scenarios where a user is logged in multiple devices, if the user sends a conversation read receipt from one device, the server sets the count of unread messages in the conversation as 0, and all the other devices receive `OnConversationRead`.</div>
 
 ##### Message read receipts
 
@@ -284,7 +284,3 @@ Follow the steps to implement chat message read receipts.
         console.log("send message read fail.", reason);
     });
     ```
-
-## Next steps
-
-You can refer to the following documents for more features related to message.

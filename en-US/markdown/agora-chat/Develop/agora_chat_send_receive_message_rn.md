@@ -21,8 +21,8 @@ The process of sending and receiving a message is as follows:
 ## Prerequistes
 
 Before proceeding, ensure that you meet the following requirements:
-- You have integrated the Agora Chat SDK, initialized the SDK and implemented the functionality of registering accounts and login. For details, see [Get Started with Agora Chat]().
-- You understand the [API call frequency limits]().
+- You have integrated the Agora Chat SDK, initialized the SDK and implemented the functionality of registering accounts and login. For details, see [Get Started with Agora Chat](./agora_chat_get_started_rn?platform=React%20Native).
+- You understand the [API call frequency limits](/agora_chat_limitation?platform=React%20Native).
 
 ## Implementation
 
@@ -220,8 +220,9 @@ onMessagesRecalled(messages: ChatMessage[]): void;
 
 After implementing sending and receiving messages, you can refer to the following documents to add more messaging functionalities to your app:
 
-- [Manage local messages]()
-- [Retrieve conversations and messages from the server]()
-- [Message receipts]()
+- [Manage local messages](./agora_chat_manage_message_rn?platform=React%20Native)
+- [Retrieve conversations and messages from the server](./agora_chat_retrieve_message_rn?platform=React%20Native)
+- [Message receipts](./agora_chat_message_receipt_rn?platform=React%20Native)
+
 
 

@@ -18,8 +18,8 @@ The Agora Chat SDK uses `ChatManager` and `ChatConversation` to manage local mes
 
 Before proceeding, ensure that you meet the following requirements:
 
-- You have integrated the Agora Chat SDK, initialized the SDK, and implemented the functionality of users logging in. For details, see [Get Started with Agora Chat]().
-- You understand the [API call frequency limits]().
+- You have integrated the Agora Chat SDK, initialized the SDK, and implemented the functionality of users logging in. For details, see [Get Started with Agora Chat](./agora_chat_get_started_rn?platform=React%20Native).
+- You understand the [API call frequency limits](./agora_chat_limitation?platform=React%20Native).
 
 ## Implementation
 
@@ -229,6 +229,6 @@ ChatClient.getInstance()
 
 After implementing managing messages, you can refer to the following documents to add more messaging functionalities to your app:
 
-- [Retrieve conversations and messages from the server]()
-- [Manage message receipts]()
+- [Retrieve conversations and messages from the server](./agora_chat_retrieve_message_rn?platform=React%20Native)
+- [Message receipts](./agora_chat_message_receipt_rn?platform=React%20Native)
 
