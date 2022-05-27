@@ -1,6 +1,6 @@
 During one-to-one chats and group chats, users can reply a specified message with emojis, which adds fun and diversity to real-time chatting. In Agora Chat, this feature is known as reaction. This page shows how to use the Agora Chat SDK to implement reaction in your project.
 
-Reactions apply only on one-one chats and chat groups, but not chat rooms.
+Reactions apply only on one-to-one chats and chat groups, but not chat rooms.
 
 ## Understand the tech
 
@@ -88,7 +88,7 @@ public class MyClass implements MessageListener {
 
 ### Retrieve a list of reactions
 
-Call `asyncGetReactionList` to retrieve a list of reactions from the server.
+Call `asyncGetReactionList` to retrieve a list of reactions from the server. This method also returns the basic information of the reactions, including the content of the reaction, the number of users that added or removed the reaction, and a list of the first three user IDs that added or removed the reaction.
 
 ```java
 ChatClient.getInstance().chatManager().asyncGetReactionList(msgIdList, ChatMessage.ChatType.Chat, groupId, new ValueCallBack<Map<String, List<MessageReaction>>>() {
@@ -105,7 +105,7 @@ ChatClient.getInstance().chatManager().asyncGetReactionList(msgIdList, ChatMessa
 
 ### Retrieve the details of the reaction
 
-Call `asyncGetReactionDetail` to get the detailed information of the reaction from the server.
+Call `asyncGetReactionDetail` to get the detailed information of the reaction from the server. The detailed information includes the reaction content, the number of users that added or removed the reaction, and the complete list of user IDs that added or removed the reaction.
 
 ```java
 ChatClient.getInstance().chatManager().asyncGetReactionDetail(mMsgId, emojiconId, pageCurosr, 30, new ValueCallBack<CursorResult<MessageReaction>>() {
