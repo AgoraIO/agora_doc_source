@@ -148,10 +148,6 @@
                 <stentry><ph conkeyref="setAudioProfile/shortdesc"/></stentry>
             </strow>
             <strow>
-                <stentry><xref keyref="setAudioProfile2"/></stentry>
-                <stentry><ph conkeyref="setAudioProfile2/shortdesc"/></stentry>
-            </strow>
-            <strow>
                 <stentry><xref keyref="adjustRecordingSignalVolume"/></stentry>
                 <stentry><ph conkeyref="adjustRecordingSignalVolume/shortdesc"/></stentry>
             </strow>
@@ -368,13 +364,21 @@
                 <stentry><xref keyref="createMediaPlayer"/></stentry>
                 <stentry><ph conkeyref="createMediaPlayer/shortdesc"/></stentry>
             </strow>
-                <strow props="unity">
+            <strow props="unity">
                 <stentry><xref keyref="dispose_IMediaPlayer"/></stentry>
                 <stentry><ph conkeyref="dispose_IMediaPlayer/shortdesc"/></stentry>
+            </strow>
+            <strow props="android ios">
+                <stentry><xref keyref="getMediaPlayerCacheManager"/></stentry>
+                <stentry><ph conkeyref="getMediaPlayerCacheManager/shortdesc"/></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="IMediaPlayer"/></stentry>
                 <stentry><ph conkeyref="IMediaPlayer/shortdesc"/></stentry>
+            </strow>
+            <strow props="ios android">
+                <stentry><xref keyref="IMediaPlayerCacheManager"/></stentry>
+                <stentry><ph conkeyref="IMediaPlayerCacheManager/shortdesc"/></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="IMediaPlayerSourceObserver"/></stentry>
@@ -514,8 +518,7 @@
             <title>音频前后处理</title>
             <note props="cpp" type="attention">
             <p>本组方法仅适用于 Android 和 iOS。</p>
-            </note>
-            <simpletable>
+            </note> <simpletable>
             <sthead>
                 <stentry>方法</stentry>
                 <stentry>描述</stentry>
@@ -544,32 +547,28 @@
                 <stentry><xref keyref="enableRemoteSuperResolution"/></stentry>
                 <stentry><ph conkeyref="enableRemoteSuperResolution/shortdesc"/></stentry>
             </strow>
-            </simpletable>
-        </section>
+            </simpletable> </section>
         <section props="android ios cpp">
             <title>人脸检测</title>
-            <note props="cpp">该组功能仅适用于 Android 和 iOS 平台。</note>
-            <simpletable>
-                <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
-                </sthead>
-                <strow>
-                    <stentry><xref keyref="enableFaceDetection"/></stentry>
-                    <stentry><ph conkeyref="enableFaceDetection/shortdesc"/></stentry>
-                </strow>
-                </simpletable>
-                <simpletable>
-                    <sthead>
-                        <stentry>事件</stentry>
-                        <stentry>描述</stentry>
-                    </sthead>
-                    <strow>
-                        <stentry><xref keyref="onFacePositionChanged"/></stentry>
-                        <stentry><ph conkeyref="onFacePositionChanged/shortdesc"/></stentry>
-                    </strow>
-                    </simpletable>
-            </section>
+            <note props="cpp">该组功能仅适用于 Android 和 iOS 平台。</note> <simpletable>
+            <sthead>
+                <stentry>方法</stentry>
+                <stentry>描述</stentry>
+            </sthead>
+            <strow>
+                <stentry><xref keyref="enableFaceDetection"/></stentry>
+                <stentry><ph conkeyref="enableFaceDetection/shortdesc"/></stentry>
+            </strow>
+            </simpletable> <simpletable>
+            <sthead>
+                <stentry>事件</stentry>
+                <stentry>描述</stentry>
+            </sthead>
+            <strow>
+                <stentry><xref keyref="onFacePositionChanged"/></stentry>
+                <stentry><ph conkeyref="onFacePositionChanged/shortdesc"/></stentry>
+            </strow>
+            </simpletable> </section>
         <section id="in-ear_monitoring" props="android ios cpp">
             <title>耳返</title>
             <note props="cpp" type="attention">
@@ -587,6 +586,20 @@
                 <stentry><xref keyref="setInEarMonitoringVolume"/></stentry>
                 <stentry><ph conkeyref="setInEarMonitoringVolume/shortdesc"/></stentry>
             </strow>
+            <strow>
+                <stentry><xref keyref="setEarMonitoringAudioFrameParameters"/></stentry>
+                <stentry><ph conkeyref="setEarMonitoringAudioFrameParameters/shortdesc"/></stentry>
+            </strow>
+            </simpletable>
+           <simpletable>
+            <sthead>
+                <stentry>事件</stentry>
+                <stentry>描述</stentry>
+            </sthead>
+            <strow>
+                <stentry><xref keyref="onEarMonitoringAudioFrame"/></stentry>
+                <stentry><ph conkeyref="onEarMonitoringAudioFrame/shortdesc"/></stentry>
+            </strow>
             </simpletable> </section>
         <section id="audio_file_playback_and_mixing">
             <title>音乐文件播放及混音</title>
@@ -599,10 +612,10 @@
                 <stentry><xref keyref="startAudioMixing2"/></stentry>
                 <stentry><ph conkeyref="startAudioMixing2/shortdesc"/></stentry>
             </strow>
-                <strow props="unity">
-                    <stentry><xref keyref="startAudioMixing"/></stentry>
-                    <stentry><ph conkeyref="startAudioMixing/shortdesc"/></stentry>
-                </strow>
+            <strow props="unity">
+                <stentry><xref keyref="startAudioMixing"/></stentry>
+                <stentry><ph conkeyref="startAudioMixing/shortdesc"/></stentry>
+            </strow>
             <strow>
                 <stentry><xref keyref="stopAudioMixing"/></stentry>
                 <stentry><ph conkeyref="stopAudioMixing/shortdesc"/></stentry>
@@ -2083,7 +2096,7 @@
             </sthead>
             <strow>
                 <stentry><xref keyref="onAudioDeviceStateChanged"/></stentry>
-                <stentry><ph conkeyref="onAudioDeviceStateChanged/shortdesc"/>（仅适用于  Windows 和 macOS）</stentry>
+                <stentry><ph conkeyref="onAudioDeviceStateChanged/shortdesc"/>（仅适用于 Windows 和 macOS）</stentry>
             </strow>
             <strow props="hide">
                 <stentry><xref keyref="onAudioDeviceVolumeChanged"/></stentry>
