@@ -43,12 +43,25 @@
     ```
     dependencies {
           ...
-          implementation "io.github.agoraio-community:hyphenate:版本号"
-          implementation "io.github.agoraio-community:AgoraEduCore:版本号"
-          implementation "io.github.agoraio-community:AgoraEduUIKit:版本号"
-          implementation "io.github.agoraio-community:AgoraClassSDK:版本号"
+        implementation "io.github.agoraio-community:hyphenate:版本号"
+        implementation "io.github.agoraio-community:AgoraEduCore:版本号"
+        implementation "io.github.agoraio-community:AgoraEduUIKit:版本号"
+        implementation "io.github.agoraio-community:AgoraClassSDK:版本号"
     }
     ```
+
+    假设你想获取 2.2.0 的版本，可以这样写：
+
+    ```
+    dependencies {
+     implementation "io.github.agoraio-community:hyphenate:2.2.0"
+     implementation "io.github.agoraio-community:AgoraEduCore:2.2.0"
+     implementation "io.github.agoraio-community:AgoraEduUIKit:2.2.0"
+     implementation "io.github.agoraio-community:AgoraClassSDK:2.2.0"
+    }
+    ```
+
+    <div class="alert info">点击<a href="https://search.maven.org/search?q=io.github.agoraio-community" target="_blank">此处</a>查看灵动课堂最新版本。</div>
 
 3. 调用 [AgoraClassroomSDK.setConfig](/cn/agora-class/agora_class_api_ref_android?platform=Android#setconfig) 和 [AgoraClassroomSDK.launch](/cn/agora-class/agora_class_api_ref_android?platform=Android#launch) 方法启动课堂。示例代码如下：
 
@@ -83,6 +96,14 @@
             Log.e(TAG, ":launch-课堂状态:" + event.name)
         }
     }
+    ```
+
+4. 为防止代码混淆，在 `/Gradle Scripts/proguard-rules.pro` 文件中添加以下代码：
+
+    ```
+    -keep class io.agora.**{*;}
+    -keep class com.agora.**{*;}
+    -keep class com.hyphenate.**{*;}
     ```
 
 ## 更多信息

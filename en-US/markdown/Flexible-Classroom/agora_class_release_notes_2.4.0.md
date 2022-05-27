@@ -6,14 +6,7 @@ v2.4.0 was released on May xx, 2022.
 
 **Breakout rooms (Web only)**
 
-v2.4.0 adds the "Breakout rooms" feature in the toolbox of small classrooms. With breakout rooms, students can get together in small groups for discussion and brainstorming sessions. Teachers can create breakout rooms in either of the following ways:
-
-- Automatic grouping: The teacher sets up the number of breakout rooms. Then the system randomly assigns the whole class to breakout rooms.
-- Manual grouping: The teacher manually assigns students to each breakout room.
-
-No matter which way the teacher chooses, a class supports up to 20 breakout rooms with a maximum of 17 members in each room. The features that are available in breakout rooms include real-time audio and video interaction, messaging, whiteboarding, and screen sharing. 
-
-After the breakout session begins, the teacher and teaching assistants have the ability to dynamically join or leave any of the breakout rooms. They can also send announcements to all the breakout rooms. Students are notified in their chat to check for the announcements.
+v2.4.0 adds the "Breakout rooms" feature in the toolbox of small classrooms. With breakout rooms, students can get together in small groups for discussion and brainstorming sessions. Teachers can create breakout rooms and manually assign students to each breakout room. A class supports up to 20 breakout rooms with a maximum of 17 members in each room. The features that are available in breakout rooms include real-time audio and video interaction, messaging, whiteboarding, and screen sharing. After the breakout session begins, the teacher and teaching assistants have the ability to dynamically join or leave any of the breakout rooms. They can also send announcements to all the breakout rooms. Students are notified in their chat to check for the announcements.
 
 **Support for the teacher role on Android and iOS clients**
 
