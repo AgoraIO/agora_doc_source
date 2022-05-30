@@ -1,6 +1,10 @@
 During one-to-one chats and group chats, users can reply a specified message with emojis, which adds fun and diversity to real-time chatting. In Agora Chat, this feature is known as reaction. This page shows how to use the Agora Chat SDK to implement reaction in your project.
 
-Reactions apply only on one-to-one chats and chat groups, but not chat rooms.
+<div class="alert note">Reactions apply only on one-to-one chats and chat groups, but not chat rooms.</div>
+
+The following illustration shows the implementation of adding a reaction to a message, how a conversation looks with reactions, and retrieving the list and information of the reactions.
+
+![](../images/reaction.png)
 
 ## Understand the tech
 
@@ -12,7 +16,7 @@ The SDK provides the following APIs to implement reaction functionalities.
 - `asyncGetReactionDetail`: Retrieves the details of the reaction from the server.
 - `ChatMessage.getMessageReaction`: Retrieves a list of reactions from the `ChatMessage` objects in the local database.
 
-##  Prerequisites
+## Prerequisites
 
 Before proceeding, ensure that your environment has the following:
 
