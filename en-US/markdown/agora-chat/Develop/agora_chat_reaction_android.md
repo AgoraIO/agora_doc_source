@@ -1,10 +1,10 @@
-During one-to-one chats and group chats, users can reply a specified message with emojis, which adds fun and diversity to real-time chatting. In Agora Chat, this feature is known as reaction. This page shows how to use the Agora Chat SDK to implement reaction in your project.
-
-<div class="alert note">Reactions apply only on one-to-one chats and chat groups, but not chat rooms.</div>
+In real-time chats, emojis are widely used because they are more direct and vivid when expressing feelings. In Agora Chat, this is known as reaction, which enables chat users to respond to a message using emojis in one-to-one chats and chat groups. In group chats, reactions can also be used to cast a vote, for example, by calculating the number of different emojis attached to the message. 
 
 The following illustration shows the implementation of adding a reaction to a message, how a conversation looks with reactions, and retrieving the list and information of the reactions.
 
 ![](../images/reaction.png)
+
+This page shows how to use the Agora Chat SDK to implement reactions in your project.
 
 ## Understand the tech
 
@@ -123,3 +123,7 @@ ChatClient.getInstance().chatManager().asyncGetReactionDetail(mMsgId, emojiconId
                     }
                 });
 ```
+
+## Next steps
+
+Reactions are also supported in the [Chat UIKit](https://github.com/AgoraIO-Usecase/AgoraChat-UIKit-ios), which contains more enriched and diversified emojis. You can also with the UIKit to implement reactions in your project.
