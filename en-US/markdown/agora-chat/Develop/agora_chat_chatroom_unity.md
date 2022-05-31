@@ -92,7 +92,7 @@ SDKClient.Instance.RoomManager.JoinRoom(roomId, new ValueCallBack<Room>(
 
 All chat room members can call `LeaveRoom` to leave the specified chat room. Once a member leaves the chat room, all the other chat room members receive the `OnMemberExitedFromRoom` callback.
 
-**Note**: Different from the chat group owner, the chat room owner can leave a chat room. After re-entering the chat room, this user remains the chat room owner.
+**Note**: Unlike chat group owners (who cannot leave their groups), a chat room owner can leave a chat room. After re-entering the chat room, this user remains the chat room owner.
 
 The following code sample shows how to leave a chat room:
 
@@ -151,7 +151,7 @@ To monitor the chat room events, you can listen for the callbacks in the `IRoomM
 The following code sample shows how to add and remove the chat room listener:
 
 ```c#
-// Inherit and implement the IRoomManagerDelegate class.
+// Inherits and implements the IRoomManagerDelegate class.
 public class RoomManagerDelegate : IRoomManagerDelegate {
     ......
     public void OnDestroyedFromRoom(string roomId, string roomName)
@@ -159,11 +159,11 @@ public class RoomManagerDelegate : IRoomManagerDelegate {
     }
     ......
 }
-// Add the chat room listener.
+// Adds the chat room listener.
 RoomManagerDelegate adelegate = new RoomManagerDelegate();
 SDKClient.Instance.RoomManager.AddRoomManagerDelegate(adelegate);
 
-// Remove the chat room listener.
+// Removes the chat room listener.
 SDKClient.Instance.RoomManager.AddRoomManagerDelegate(adelegate);
 ```
 
