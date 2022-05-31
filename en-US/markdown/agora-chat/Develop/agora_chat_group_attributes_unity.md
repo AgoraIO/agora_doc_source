@@ -27,7 +27,7 @@ This section describes how to call the APIs provided by the Agora Chat SDK to im
 
 ### Update the chat group name
 
-The chat group owner and admins can call `ChangeGroupName` to set and update the chat group name. The length of a chat group name can be a maximum of 128 characters.
+The chat group owner and admins can call `ChangeGroupName` to set and update the chat group name. The maximum length of a chat group name is 128 characters.
 
 The following code sample shows how to update the chat group name:
 
@@ -44,7 +44,7 @@ SDKClient.Instance.GroupManager.ChangeGroupName(groupId, groupName, new CallBack
 
 ### Update the chat group description
 
-The chat group owner and admins can call `ChangeGroupDescription` to set and update the chat group description. The length of a chat group description can be a maximum of 512 characters.
+The chat group owner and admins can call `ChangeGroupDescription` to set and update the chat group description. The maximum length of a chat group description is 512 characters.
 
 The following code sample shows how to update the chat group description:
 
@@ -61,7 +61,7 @@ SDKClient.Instance.GroupManager.ChangeGroupDescription(groupId, description, new
 
 ### Update the chat group announcements
 
-Only the chat group owner and admins can call `UpdateGroupAnnouncement` to set and update the announcements. Once the chat group announcements are updated, all the other chat group members receive the `IGroupManagerDelegate#OnAnnouncementChangedFromGroup` callback. The length of chat group announcements can be a maximum of 512 characters.
+Only the chat group owner and admins can call `UpdateGroupAnnouncement` to set and update the announcements. Once the chat group announcements are updated, all the other chat group members receive the `IGroupManagerDelegate#OnAnnouncementChangedFromGroup` callback. The maximum total length of chat group announcements is 512 characters.
 
 The following code sample shows how to update the chat group announcements:
 
@@ -98,7 +98,7 @@ SDKClient.Instance.GroupManager.GetGroupAnnouncementFromServer(currentGroupId, n
 
 #### Upload chat group shared files
 
-All chat group members can call `UploadGroupSharedFile` to upload shared files to a chat group. The file size can be a maximum of 10 MB. Once a shared file is uploaded, all the other chat group members receive the `IGroupManagerDelegate#OnSharedFileAddedFromGroup` callback.
+All chat group members can call `UploadGroupSharedFile` to upload shared files to a chat group. The maximum file size is 10 MB. Once a shared file is uploaded, all the other chat group members receive the `IGroupManagerDelegate#OnSharedFileAddedFromGroup` callback.
 
 The following code sample shows how to upload chat group shared files:
 
@@ -149,7 +149,7 @@ SDKClient.Instance.GroupManager.GetGroupFileListFromServer(groupId, pageNum, pag
 
 ### Update the chat group extension fields
 
-Only the chat group owner and admins can call `UpdateGroupExt` to update the extension fields of a chat group. The extension fields enable users to perform customized operations on a chat group. The length of extension fields can be a maximum of 8 KB in JSON format.
+Only the chat group owner and admins can call `UpdateGroupExt` to update the extension fields of a chat group. The extension fields enable users to perform customized operations on a chat group. The maximum length of each extension field is 8 KB, and it must be in the JSON format.
 
 The following code sample shows how to update the chat group extension fields:
 
