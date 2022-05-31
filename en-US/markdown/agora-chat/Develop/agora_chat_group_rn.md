@@ -32,17 +32,17 @@ This section describes how to call the APIs provided by the Agora Chat SDK to im
 
 Set `GroupStyle` and `inviteNeedConfirm` before creating a chat group.
 
-1. Group types (`GroupStyle`):
-- `PrivateOnlyOwnerInvite`: A private group. Only the chat group owner and admins can add users to the chat group;
-- `PrivateMemberCanInvite`: A private group. All chat group members can add users to the chat group;
-- `PublicJoinNeedApproval`: A public group. The chat group owner and admins can add users, while users can send join requests to the chat group;
-- `PublicOpenJoin`: A public group. All users can join the chat group without the consent from the chat group owner and admins.
+1. Is the group public or private, and who can invite members (`GroupStyle`):
+- `PrivateOnlyOwnerInvite`: A private group. Only the chat group owner and admins can add users to the chat group.
+- `PrivateMemberCanInvite`: A private group. All chat group members can add users to the chat group.
+- `PublicJoinNeedApproval`: A public group. The chat group owner and admins can add users, and users can send join requests to the chat group.
+- `PublicOpenJoin`: A public group. All users can join the chat group automatically without any need for approval from the chat group owner and admins.
 
-2. Whether group invitations require the consent from invitees (`inviteNeedConfirm`):
+2. Does a group invitation require consent from an invitee to add them to the group (`inviteNeedConfirm`):
 
-- Yes (`ChatGroupOptions#inviteNeedConfirm` is set to `true`). After creating a group and sending group invitations, the subsequent logic varies based on whether an invitee automatically consents the group invitation (`autoAcceptGroupInvitation`):
+- Yes (`ChatGroupOptions#inviteNeedConfirm` is set to `true`). After creating a group and sending group invitations, the subsequent logic varies based on whether an invitee automatically consents to the group invitation (`autoAcceptGroupInvitation`):
     - Yes (`autoAcceptGroupInvitation` is set to `true`). The invitee automatically joins the chat group and receives the `ChatGroupEventListener#onAutoAcceptInvitation` callback, the chat group owner receives the `ChatGroupEventListener#onInvitationAccepted` and `ChatGroupEventListener#onMemberJoined` callbacks, and the other chat group members receives the `ChatGroupEventListener#onMemberJoined` callback.
-    - No (`autoAcceptGroupInvitation` is set to `false`). The invitee receives the `ChatGroupEventListener#onInvitationReceived` callback and choose whether to join the chat group:
+    - No (`autoAcceptGroupInvitation` is set to `false`). The invitee receives the `ChatGroupEventListener#onInvitationReceived` callback and chooses whether to join the chat group:
         - If the invitee accepts the group invitation, the chat group owner receives the `ChatGroupEventListener#onInvitationAccepted` and `ChatGroupEventListener#onMemberJoined` callbacks, and the other chat group members receive the `ChatGroupEventListener#onMemberJoined` callback;
         - If the invitee declines the group invitation, the chat group owner receives the `ChatGroupEventListener#onInvitationDeclined` callback.
 
@@ -50,7 +50,7 @@ Set `GroupStyle` and `inviteNeedConfirm` before creating a chat group.
 
 - No (`ChatGroupOptions#inviteNeedConfirm` is set to `false`). After creating a chat group and sending group invitations, an invitee is added to the chat group regardless of their `autoAcceptGroupInvitation` setting. The invitee receives the `ChatGroupEventListener#onAutoAcceptInvitation` callback, the chat group owner receives the `ChatGroupEventListener#onInvitationAccepted` and `ChatGroupEventListener#onMemberJoined` callbacks, and the other chat group members receive the `ChatGroupEventListener#onMemberJoined` callback.
 
-Users can call `createGroup` to create a chat group and set the chat group attributes such as the chat group name, description, and the maximum number of members, and the reason to create the group by specifying `ChatGroupOptions`.
+Users can call `createGroup` to create a chat group and set the chat group attributes such as the chat group name, description, maximum number of members, and reason for creating the group, by specifying `ChatGroupOptions`.
 
 The following code sample shows how to create a chat group:
 
@@ -95,18 +95,18 @@ ChatClient.getInstance()
 
 ### Join a chat group
 
-The logic of joining a chat group varies according to the GroupStyle setting when [creating the chat group](./agora_chat_group_rn?platform=React%20Native#create-a-chat-group):
+The logic of joining a chat group varies according to the GroupStyle setting you choose when [creating the chat group](./agora_chat_group_rn?platform=React%20Native#create-a-chat-group):
 
 - If the `GroupStyle` is set to `PublicOpenJoin`, all users can join the chat group without the consent from the chat group owner and admins. Once a user joins a chat group, all chat group members receive the `ChatGroupEventListener#onMemberJoined` callback;
 - If the `GroupStyle` is set to `PublicJoinNeedApproval`, users can send join requests to the chat group. The chat group owner and chat group admins receive the `ChatGroupEventListener#onRequestToJoinReceived` callback and choose whether to accept the join request:
-    - Once accepted, the user joins the chat group and receives the `ChatGroupEventListener#onRequestToJoinAccepted` callback, while all the other chat group members receive the `ChatGroupEventListener#onMemberJoined` callback;
-    - Once declined, the user receives the `ChatGroupEventListener#onRequestToJoinDeclined` callback.
+    - If the request is accepted, the user joins the chat group and receives the `ChatGroupEventListener#onRequestToJoinAccepted` callback, while all the other chat group members receive the `ChatGroupEventListener#onMemberJoined` callback.
+    - If the request is declined, the user receives the `ChatGroupEventListener#onRequestToJoinDeclined` callback.
 
-<div class="alert info">Users can only request to join public groups, whereas private groups do not allow for join requests.</div>
+<div class="alert info">Users can only request to join public groups; private groups do not allow join requests.</div>
 
 Users can refer to the following steps to join a chat group:
 
-1. Call `fetchPublicGroupsFromServer` to retrieve the list of public groups from the server and locate the ID of the chat group that you want to join.
+1. Call `fetchPublicGroupsFromServer` to retrieve the list of public groups from the server, and locate the ID of the chat group that you want to join.
 
 2. Call `requestToJoinPublicGroup` to pass in the chat group ID and request to join the specified chat group.
 
@@ -333,7 +333,7 @@ const groupListener: ChatGroupEventListener = new (class
       params.reason
     );
   }
-  // Occurs when the chat group owner and chat group admins accept a join request.
+  // Occurs when the chat group owner and chat group admins approve a join request.
   onRequestToJoinAccepted(params: {
     groupId: string;
     accepter: string;
