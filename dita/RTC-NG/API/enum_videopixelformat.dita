@@ -8,9 +8,12 @@
             <title>枚举值</title>
             <note type="attention">SDK 目前不支持 alpha 通道。传入的 alpha 值将被丢弃。</note>
             <parml>
-            <plentry props="android cpp unity">
-                <pt><ph keyref="VIDEO_PIXEL_UNKNOWN"/></pt>
-                <pd>0: 视频像素格式未知。</pd>
+            <plentry>
+                <pt><ph keyref="VIDEO_PIXEL_DEFAULT"/></pt>
+                <pd>0: 原始视频像素格式。在不同的平台上，原始视频像素格式不同：<ul>
+                    <li>Android： Texture 格式</li>
+                    <li>iOS 和 macOS：iOS 纹理 (CVPixelBufferRef)</li>
+                    <li>Windows：</li></ul></pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="VIDEO_PIXEL_I420"/></pt>
@@ -20,19 +23,19 @@
                 <pt><ph keyref="VIDEO_PIXEL_BGRA"/></pt>
                 <pd>2: BGRA 格式。</pd>
             </plentry>
-            <plentry props="android cpp unity">
+            <plentry>
                 <pt><ph keyref="VIDEO_PIXEL_NV21"/></pt>
                 <pd>3: NV21 格式。</pd>
             </plentry>
-            <plentry props="android cpp unity">
+            <plentry>
                 <pt><ph keyref="VIDEO_PIXEL_RGBA"/></pt>
                 <pd>4: RGBA 格式。</pd>
             </plentry>
-            <plentry props="android cpp">
+            <plentry props="hide">
                 <pt><ph keyref="VIDEO_PIXEL_IMC2"/></pt>
                 <pd>5: IMC2 格式。</pd>
             </plentry>
-            <plentry props="android cpp">
+            <plentry props="hide">
                 <pt><ph keyref="VIDEO_PIXEL_ARGB"/></pt>
                 <pd>7: ARGB 格式。</pd>
             </plentry>
@@ -40,7 +43,19 @@
                 <pt><ph keyref="VIDEO_PIXEL_NV12"/></pt>
                 <pd>8: NV12 格式。</pd>
             </plentry>
-            <plentry props="android cpp unity">
+            <plentry props="ios mac">
+                <pt><ph keyref="AgoraVideoFormatCVPixelNV12"/></pt>
+                <pd>12: CVPixelBufferRef NV12 格式。</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="AgoraVideoFormatCVPixelI420"/></pt>
+                <pd>13: CVPixelBufferRef I420 格式。</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="AgoraVideoFormatCVPixelBGRA"/></pt>
+                <pd>14: CVPixelBufferRef BGRA 格式。</pd>
+            </plentry>
+            <plentry>
                 <pt><ph keyref="VIDEO_PIXEL_I422"/></pt>
                 <pd>16: I422 格式。</pd>
             </plentry>
