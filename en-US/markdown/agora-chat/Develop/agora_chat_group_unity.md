@@ -32,18 +32,18 @@ This section describes how to call the APIs provided by the Agora Chat SDK to im
 
 Set `GroupStyle` and `inviteNeedConfirm` before creating a chat group.
 
-1. Group types (`GroupStyle`):
+1. Is the group public or private, and who can invite members (`GroupStyle`):
 
-- `PrivateOnlyOwnerInvite`: A private group. Only the chat group owner and admins can add users to the chat group;
-- `PrivateMemberCanInvite`: A private group. All chat group members can add users to the chat group;
-- `PublicJoinNeedApproval`: A public group. The chat group owner and admins can add users, while users can send join requests to the chat group;
-- `PublicOpenJoin`: A public group. All users can join the chat group without the consent from the chat group owner and admins.
+- `PrivateOnlyOwnerInvite`: A private group. Only the chat group owner and admins can add users to the chat group.
+- `PrivateMemberCanInvite`: A private group. All chat group members can add users to the chat group.
+- `PublicJoinNeedApproval`: A public group. The chat group owner and admins can add users, and users can send join requests to the chat group.
+- `PublicOpenJoin`: A public group. All users can join the chat group automatically without any need for approval from the chat group owner and admins.
 
-2. Whether group invitations require the consent from invitees (`inviteNeedConfirm`):
+2. Does a group invitation require consent from an invitee to add them to the group (`inviteNeedConfirm`):
 
-- Yes (`option.InviteNeedConfirm` is set to `true`). After creating a group and sending group invitations, the subsequent logic varies based on whether an invitee automatically consents the group invitation (`AutoAcceptGroupInvitation`):
+- Yes (`option.InviteNeedConfirm` is set to `true`). After creating a group and sending group invitations, the subsequent logic varies based on whether an invitee automatically consents to the group invitation (`AutoAcceptGroupInvitation`):
   - Yes (`AutoAcceptGroupInvitation` is set to `true`). The invitee automatically joins the chat group and receives the `IGroupManagerDelegate#OnAutoAcceptInvitationFromGroup` callback, the chat group owner receives the `IGroupManagerDelegate#OnInvitationAcceptedFromGroup` and `IGroupManagerDelegate#OnMemberJoinedFromGroup` callbacks, and the other chat group members receives the `IGroupManagerDelegate#OnMemberJoinedFromGroup` callback.
-  - No (`AutoAcceptGroupInvitation` is set to `false`). The invitee receives the `IGroupManagerDelegate#OnInvitationReceivedFromGroup` callback and choose whether to join the chat group:
+  - No (`AutoAcceptGroupInvitation` is set to `false`). The invitee receives the `IGroupManagerDelegate#OnInvitationReceivedFromGroup` callback and chooses whether to join the chat group:
     - If the invitee accepts the group invitation, the chat group owner receives the `IGroupManagerDelegate#OnInvitationAcceptedFromGroup` and `IGroupManagerDelegate#OnMemberJoinedFromGroup` callbacks and the other chat group members receive the `IGroupManagerDelegate#OnMemberJoinedFromGroup` callback;
     - If the invitee declines the group invitation, the chat group owner receives the`IGroupManagerDelegate#OnInvitationDeclinedFromGroup` callback.
 
@@ -51,7 +51,7 @@ Set `GroupStyle` and `inviteNeedConfirm` before creating a chat group.
 
 - No (`option.InviteNeedConfirm` is set to `false`). After creating a chat group and sending group invitations, an invitee is added to the chat group regardless of their `IsAutoAcceptGroupInvitation` setting. The invitee receives the `IGroupManagerDelegate#OnAutoAcceptInvitationFromGroup` callback, the chat group owner receives the `IGroupManagerDelegate#OnInvitationAcceptedFromGroup` and `IGroupManagerDelegate#OnMemberJoinedFromGroup` callbacks, and the other chat group members receive the `IGroupManagerDelegate#OnMemberJoinedFromGroup` callback.
 
-Users can call `CreateGroup` to create a chat group and set the chat group attributes such as the chat group name, description, and the maximum number of members, and the reason to create the group by specifying `GroupOptions`.
+Users can call `CreateGroup` to create a chat group and set the chat group attributes such as the chat group name, description, maximum number of members, and reason for creating the group, by specifying `GroupOptions`.
 
 The following code sample shows how to create a chat group:
 
@@ -87,18 +87,18 @@ SDKClient.Instance.GroupManager.DestroyGroup(groupId, new CallBack(
 
 ### Join a chat group
 
-The logic of joining a chat group varies according to the `GroupStyle` setting when [creating the chat group](https://docs-preprod.agora.io/en/agora-chat/agora_chat_group_unity?platform=Unity#create-a-chat-group):
+The logic of joining a chat group varies according to the `GroupStyle` setting you choose when [creating the chat group](https://docs-preprod.agora.io/en/agora-chat/agora_chat_group_unity?platform=Unity#create-a-chat-group):
 
 - If the `GroupStyle` is set to `PublicOpenJoin`, all users can join the chat group without the consent from the chat group owner and admins. Once a user joins a chat group, all chat group members receive the `IGroupManagerDelegate#OnMemberJoinedFromGroup` callback;
-- If the `GroupStyle` is set to `PublicJoinNeedApproval`, users can send join requests to the chat group. The chat group owner and chat group admins receive the `IGroupManagerDelegate#OnRequestToJoinReceivedFromGroup` callback and choose whether to accept the join request:
-  - Once accepted, the user joins the chat group and receives the `IGroupManagerDelegate#OnRequestToJoinAcceptedFromGroup` callback, while all the other chat group members receive the `IGroupManagerDelegate#OnMemberJoinedFromGroup` callback;
-  - Once declined, the user receives the `IGroupManagerDelegate#OnRequestToJoinDeclinedFromGroup` callback.
+- If the `GroupStyle` is set to `PublicJoinNeedApproval`, users can send join requests to the chat group. The chat group owner and chat group admins receive the `IGroupManagerDelegate#OnRequestToJoinReceivedFromGroup` callback and choose whether to approve the join request:
+  - If the request is accepted, the user joins the chat group and receives the `IGroupManagerDelegate#OnRequestToJoinAcceptedFromGroup` callback, while all the other chat group members receive the `IGroupManagerDelegate#OnMemberJoinedFromGroup` callback.
+  - If the request is declined, the user receives the `IGroupManagerDelegate#OnRequestToJoinDeclinedFromGroup` callback.
 
-<div class="alert info">Users can only request to join public groups, whereas private groups do not allow for join requests.</div>
+<div class="alert info">Users can only request to join public groups; private groups do not allow join requests.</div>
 
 Users can refer to the following steps to join a chat group:
 
-1. Call `FetchPublicGroupsFromServer` to retrieve the list of public groups from the server and locate the ID of the chat group that you want to join.
+1. Call `FetchPublicGroupsFromServer` to retrieve the list of public groups from the server, and locate the ID of the chat group that you want to join.
 
 2. Call `JoinPublicGroup` to pass in the chat group ID and request to join the specified chat group.
 
@@ -289,7 +289,7 @@ public class GroupManagerDelegate : IGroupManagerDelegate {
     public void OnRequestToJoinReceivedFromGroup(string groupId, string groupName, string applicant, string reason)
     {
     }
-    // Occurs when the chat group owner and chat group admins accept a join request.
+    // Occurs when the chat group owner and chat group admins approve a join request.
     public void OnRequestToJoinAcceptedFromGroup(string groupId, string groupName, string accepter)
     {
     }
