@@ -1,0 +1,73 @@
+@startuml
+autonumber
+skinparam monochrome true
+participant IVideoFrameObserver2
+participant IAudioFrameObserver
+participant "Engine App"
+
+== Initialization ==
+create IAgoraService
+"Engine App"->IAgoraService: createAgoraService
+"Engine App"->IAgoraService: initialize
+"Engine App"->IAgoraService: createRtcConnection
+activate IAgoraService
+create IRtcConnection
+IAgoraService-->>IRtcConnection: Create an IRtcConnection object
+deactivate IAgoraService
+"Engine App"->IRtcConnection: connect
+"Engine App"->IRtcConnection: getLocalUser
+activate IRtcConnection
+create ILocalUser
+IRtcConnection-->>ILocalUser: Create an ILocalUser object
+deactivate IRtcConnection
+
+== Register audio frame observer ==
+"Engine App"->ILocalUser: subscribeAudio
+ILocalUser-->>"Engine App": onUserAudioTrackSubscribed
+note left: This callback is triggered when remote audio frames are available
+activate ILocalUser
+create IRemoteAudioTrack
+ILocalUser-->>IRemoteAudioTrack: Create an IRemoteAudioTrack object
+deactivate ILocalUser
+create IAudioFrameObserver
+IAudioFrameObserver<-"Engine App": Create an IAudioFrameObserver object
+
+"Engine App"->ILocalUser: setPlaybackAudioFrameBeforeMixingParameters
+note right: Set audio parameters
+"Engine App"->ILocalUser: registerAudioFrameObserver
+activate ILocalUser
+ILocalUser-->>IAudioFrameObserver: Register the IAudioFrameObserver object
+deactivate ILocalUser
+
+
+
+
+== Register video frame observer ==
+"Engine App"->ILocalUser: subscribeVideo
+ILocalUser-->>"Engine App": onUserVideoTrackSubscribed
+note left: This callback is triggered after getting remote video frames
+activate ILocalUser
+create IRemoteVideoTrack
+ILocalUser-->>IRemoteVideoTrack: Create an IRemoteVideoTrack object
+deactivate ILocalUser
+note left: Get IRemoteVideoTrack and related RemoteVideoTrackInfo
+
+create IVideoFrameObserver2
+"Engine App"->IVideoFrameObserver2: Create an IVideoFrameObserver2 object
+
+== Receive video and audio ==
+group Receive video and audio frames
+IAudioFrameObserver-->>"Engine App": onPlaybackAudioFrameBeforeMixing
+
+IVideoFrameObserver2-->>"Engine App":onFrame
+end
+
+== Stop receiving video and audio from the client ==
+"Engine App"->ILocalUser: unregisterAudioFrameObserver
+"Engine App"->ILocalUser: unregisterVideoFrameObserver
+activate ILocalUser
+ILocalUser-->>IAudioFrameObserver: Unregister the IAudioFrameObserver object
+ILocalUser-->>IVideoFrameObserver2: Unregister the IVideoFrameObserver2 object
+deactivate ILocalUser
+"Engine App"->IRtcConnection: disconnect
+@enduml

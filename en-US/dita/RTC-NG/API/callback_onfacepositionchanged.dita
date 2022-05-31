@@ -30,15 +30,14 @@
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/>
             </p>
-
         </section>
         <section id="detailed_desc">
             <p>Once you enable face detection by calling <codeph><xref keyref="enableFaceDetection"/>(<ph keyref="true"/>)</codeph>, you can get the following information on the local user in real-time:<ul>
             <li>The width and height of the local video.</li>
-            <li>The position of the human face in the local video.</li>
+            <li>The position of the human face in the local view.</li>
             <li>The distance between the human face and the screen.</li>
             </ul> </p>
-            <p>The distance between the human face and the screen is based on the fitting calculation of the local video size and the position of the human face captured by the camera.</p>
+            <p>This value is based on the fitting calculation of the local video size and the position of the human face.</p>
             <note type="attention">
             <ul>
             <li props="cpp unity flutter">This callback is for Android and iOS only.</li>
@@ -73,10 +72,10 @@
                 <pt>vecRectangle</pt>
                 <pd>
                     <p>The information of the detected human face:<ul>
-                    <li><codeph>x</codeph>: The x-coordinate (px) of the human face in the local video. The horizontal position relative to the origin, where the upper left corner of the captured video is the origin, and the x-coordinate is the upper left corner of the watermark.</li>
-                    <li><codeph>y</codeph>: The y-coordinate (px) of the human face in the local video. Taking the top left corner of the captured video as the origin, the y coordinate represents the relative longitudinal displacement of the top left corner of the human face to the origin.</li>
-                    <li><codeph>width</codeph>: The width (px) of the human face in the local view.</li>
-                    <li><codeph>height</codeph>: The height (px) of the human face in the local view.</li>
+                    <li><codeph>x</codeph>: The x-coordinate (px) of the human face in the local view. Taking the top left corner of the view as the origin, the x-coordinate represents the horizontal position of the human face relative to the origin.</li>
+                    <li><codeph>y</codeph>: The y-coordinate (px) of the human face in the local view. Taking the top left corner of the view as the origin, the y-coordinate represents the vertical position of the human face relative to the origin.</li>
+                    <li><codeph>width</codeph>: The<codeph> width</codeph> (px) of the human face in the captured view.</li>
+                    <li><codeph>height</codeph>: The<codeph> height</codeph> (px) of the human face in the captured view.</li>
                     </ul> </p>
                 </pd>
             </plentry>

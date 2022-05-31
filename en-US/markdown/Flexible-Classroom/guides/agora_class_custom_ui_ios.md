@@ -1,189 +1,405 @@
-## Overview
+## Introduction to classrooms and UI components
 
-Agora provides the complete Agora Classroom SDK on CocoaPods. However, if you want to customize the user interfaces of classrooms, Agora provides the source code of the Agora Classroom SDK for you to further develop, debug, and compile. The source code of the Agora Classroom SDK for iOS is in the [CloudClass-iOS](https://github.com/AgoraIO-Community/CloudClass-iOS)repository on GitHub (branch release/apaas/1.1.0). The Agora Classroom SDK separates the code of the user interfaces from the code of core business logic and provides two libraries, UIKit and EduCore. These two libraries connect with each other through [Agora Edu Context](https://docs.agora.io/cn/agora-class/edu_context_api_ref_ios_overview?platform=iOS). For example, for the chat module in the  Flexible Classroom, a user needs to click on a button to send a message, and they also receive messages sent by other users. In this case, in UIKit, we can call a method in the Chat Context to send a message and listen for the events in the Chat Context to receive messages.
+### Data exchange process
 
-![](https://web-cdn.agora.io/docs-files/1619696813295)
+In the Agora Classroom SDK, the code of the user interfaces is separated from the code of core business logic. The Classroom SDK contains two libraries, **AgoraEduUI** and **AgoraEduCore**. These two libraries connect with each other through[ Agora Edu Context](/en/agora-class/API%20Reference/edu_context_swift/API/edu_context_api_overview.html). Supposing that we want to implement a button for turning on or off the camera, you can call the `openLocalDevice`method of `AgoraEduMediaContext` in `AgoraEduUI`, and listen to the event which indicates the device state change thrown by ` AgoraEduMediaHandler`.
 
-UIKit provides all the code for the user interfaces in Flexible Classroom. You can find the source code of the UIKit in the `Modules` folder in the CloudClass-Android repository on GitHub (Branch release/apaas/1.1.0). The project structure of UIKit is as follows:
+The data flow is as follows:
+
+![](https://web-cdn.agora.io/docs-files/1651746402754)
+
+### The structure of classrooms and UI components
+
+`AgoraEduUI` contains the code of UI components in Flexible Classroom. The source code of `AgoraEduUI` is in `/SDKs/AgoraEduUI` in the CloudClass-iOS repository. The project structure is as follows:
 
 | Folder | Description |
-| :-------------------- | :---------------------------------------------------- |
-| `AgoraUIBaseViews` | The source code of the basic UI components used by Flexible Classroom, including buttons and views. |
-| `AgoraUIEduBaseViews` | The source code of the function-level UI components used by Flexible Classroom, such as the chat area. |
-| `AgoraUIManager` | Assemble UI components in various classrooms. |
+| :------------- | :----------------------------------------------------------- |
+| `/Scene` | Arranges UI components for different classroom types of Flexible Classroom, such as One-to-one Classroom, Small Classroom, and Lecture Hall.`` |
+| `/Components` | The UI components for modular features in Flexible Classroom, such as the user list and navigation bar. |
+| `/Config` | The UI configurations of Flexible Classroom. The UI configurations, such as background color, font color, and border width, are automatically adapted according to` AgoraUIMode`. Developers can define their own `AgoraUIMode` in this folder. |
+| `/CustomViews` | The basic UI components used in Flexible Classroom, such as the video rendering window and the pop-up window. |
+| `/Utils` | The extensions used in Flexible Classroom, such as obtaining pictures and converting data type. |
+| `WidgetModels` | The corresponding data model and parsing method defined for parsing Widget data in` AgoraEduUI`. |
 
-## UI customization example
+### Type description
 
-This section provides examples of customizing the user interfaces of Flexible Classroom.
+- `UIManager`
 
-### Change the color of the navigation bar
+   - A `UIManager` represents a classroom type. The type of UIManager is  `UIViewController`.
+   - A `UIManager` manages multiple `UIController` and is responsible for the communication between `UIController`.
+   - Each `UIManager` has a `contentView`, which is the bottom container view of the current classroom interface. It is used to frame an area with an aspect ratio of 16:9.
+   - Each `UIManager` has a `contextPool` for using the abilities provided by `AgoraEduContext`.
 
-The following example demonstrates how to modify the background color of the navigation bar component from white to gray by modifying `AgoraUIEduBaseViews/AgoraUIEduBaseViews/AgoraUINavigationBar/AgoraUINavigationBar.swift`.
+- `UIController`
+   - A `UIController` represents a UI component. The type of UIController is `UIViewController`.
 
-#### Before
+   - The view of `UIController` is a subview of `UIManager.contentView`.
 
-```
-func initView() {
-        self.backgroundColor = UIColor.white
-        ...
-    }
-```
+   - `UIController` is in the `/Components` folder of the `AgoraEduUI` library, and is divided into the following two types:
+      - `FlatComponents`
+      - `SuspendComponents`
 
-![](https://web-cdn.agora.io/docs-files/1619169606618)
 
-#### After
+### UI structure
 
-```
-func initView() {
-        self.backgroundColor = UIColor.init(rgb: UInt32("BFBFBF", radix: 16) ??  0)
-        ...
-    }
-```
+![](https://web-cdn.agora.io/docs-files/1651750314208)
 
-![](https://web-cdn.agora.io/docs-files/1619169615790)
+Taking Small Classroom on the teacher side as an example, the layout of UI components is as follows:
 
-### Adjust the layout
+![](https://web-cdn.agora.io/docs-files/1651758759212)
 
-The following example demonstrates how to change the position of the leave room button and the network status icon by modifying `AgoraUIEduBaseViews/AgoraUIEduBaseViews/AgoraUINavigationBar/AgoraUINavigationBar.swift`.
+## Customizing the classroom UI
 
-#### Before
+To customize the classroom UI, follow these steps:
 
-```
-func initLayout() {
-        signalImgView.agora_safe_x = 10
-        signalImgView.agora_width = 20
-        signalImgView.agora_height = 20
-        signalImgView.agora_center_y = 0
-         
-                leaveButton.agora_safe_right = 10
-        leaveButton.agora_width = 24
-        leaveButton.agora_height = 24
-        leaveButton.agora_center_y = 0
-        ...
-    }
-```
+### 1. Get the source code of Flexible Classroom
 
-![](https://web-cdn.agora.io/docs-files/1619169626442)
+If you want to customize the classroom UI based on the default UI of Flexible Classroom, you need to integrate Flexible Classroom by downloading the source code on GitHub. Refer to the following steps:
 
-#### After
+1. Clone the [CloudClass-iOS](https://github.com/AgoraIO-Community/CloudClass-iOS) and [apaas-extapp-ios](https://github.com/AgoraIO-Community/apaas-extapp-ios) projects:
 
-```
-func initLayout() {
-        signalImgView.agora_safe_right = 10
-        signalImgView.agora_width = 20
-        signalImgView.agora_height = 20
-        signalImgView.agora_center_y = 0
-         
-                leaveButton.agora_safe_x = 10
-        leaveButton.agora_width = 24
-        leaveButton.agora_height = 24
-        leaveButton.agora_center_y = 0
-        ...
-    }
-```
-
-![](https://web-cdn.agora.io/docs-files/1619169635097)
-
-### Add a basic UI component
-
-The following example shows how to add a custom basic UI component and use it in Flexible Classroom:
-
-Suppose the properties of the UI component are defined as follows:
-
-- Size: 100*100
-- Position: Centered
-- Background color: #BFBFBF
-- Text: “离开”/“Leave”
-- Text color: UIColor.white
-- What happens when clicking the button: Leave the room
-
-Add a basic UI component, as follows:
-
-1. Add Chinese and English texts in the following files respectively.
-
-   `AgoraUIEduBaseViews/AgoraUIEduBaseViews/AgoraResources/zh-Hans.lproj/Localizable.strings`
-
-   ```
-   /*
- * Operation:
- *          add a function like below
- */
-DemoLeave = "离开";
-   ```
-   `AgoraUIEduBaseViews/AgoraUIEduBaseViews/AgoraResources/en.lproj/Localizable.strings`
-
-   ```
-   /*
- * Operation:
- *          add a function like below
- */
-DemoLeave = "Leave";
+   ```bash
+   git clone https://github.com/AgoraIO-Community/CloudClass-iOS.git
    ```
 
-
+   ```bash
+   git clone https://github.com/AgoraIO-Community/apaas-extapp-ios.git
    ```
+
+2. To add a remote repository to the local **CloudClass-iOS** and **apaas-extapp-ios** projects, run the `git remote add <shortname> <url>` command, pointing to your project.
+
+3. Create a branch based on the latest release branch of Flexible Classroom and push it to your project.
+
+4. Add the following code in your project's `Podfile` to make reference to `AgoraClassroomSDK_iOS.podspec`, `AgoraEduContext.podspec`, `AgoraEduUI.podspec`, `AgoraWidgets.podspec` and other dependencies.
+
+   ```swift
+   # Third-party libs
+   pod 'OpenSSL-Universal', '1.0.2.17'
+   pod 'Protobuf', '3.17.0'
+   pod "CocoaLumberjack", '3.6.1'
+   pod 'AliyunOSSiOS',  '2.10.8'
+   pod 'Armin',  '1.0.10'
+   pod 'Alamofire', '4.7.3'
+   pod 'SSZipArchive', '2.4.2'
+   pod 'SwifterSwift', '5.2.0'
+   pod 'Masonry', '1.1.0'
+   pod 'SDWebImage', '5.12.0'
+   pod 'WHToast', '0.0.7'
+   pod 'FLAnimatedImage', '1.0.16'
    
-   ```
-
-2. Add properties in `/AgoraUIEduAppViews/AgoraUIEduAppViews/AgoraUIManager.swift`.
-
-   ```
-   /*
- * Operation:
- *           add a property to the class AgoraUIManager
- */
-weak var demoButton: AgoraBaseUIButton?
-   ```
-
-   ```
+   # Agora libs
+   pod 'AgoraRtcEngine_iOS', '3.4.6'
+   pod 'AgoraRtm_iOS', '1.4.8'
+   pod 'HyphenateChat', '3.8.6'
+   pod 'Whiteboard', '2.16.13'
    
+   # Open-source libs
+   pod 'AgoraClassroomSDK_iOS', :path => '../AgoraClassroomSDK_iOS.podspec'
+   pod 'AgoraEduContext', :path => '../AgoraEduContext.podspec'
+   pod 'AgoraEduUI', :path => '../AgoraEduUI.podspec'
+   
+   # Open-source widgets and extApps
+   pod 'AgoraWidgets', :path => '../../apaas-extapp-ios/AgoraWidgets.podspec'
+   
+   # Closed-source libs
+   pod 'AgoraEduCore', '2.4.0'
    ```
 
-3. Add the following code in `/AgoraUIEduAppViews/AgoraUIEduAppViews/AgoraUIManager.swift`.
+### 2. Edit the existing UI components
 
-   ```
-   /*
- * Function:
- *          addContainerViews
- * Operation:
- *          add code like below
- */
-func addContainerViews() {
-···
-let demoBtn = AgoraBaseUIButton()
-demoBtn.setTitle(AgoraKitLocalizedString("DemoLeave"), for: UIControl.State.normal)
-demoBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-demoBtn.setTitleColor(UIColor.white, for: UIControl.State.normal)
-demoBtn.backgroundColor = UIColor(rgb: UInt32("BFBFBF",radix: 16) ??  0)
-demoBtn.addTarget(self,
-                  action: #selector(onTouchLeaveDemo(_:)),
-                  for: UIControl.Event.touchUpInside)
-self.demoButton = demoBtn
-self.appView.addSubview(demoBtn)
+#### Example one: Change the background color of the navigation bar
+
+You can change the background color of the navigation bar in one of the following ways:
+
+- Method one: Edit the code in `UIController`.
+
+- Method two: Customize the `AgoraUIMode`. Flexible Classroom uses the `agoraLight` mode by default.
+
+- Method three: Edit the default `agoraLight` mode.
+
+The following code is an example of the method three:
+
+**Before**
+
+```swift
+var room_state_bg_color: UIColor {
+    switch mode {
+    case .agoraLight:  return .white
+    case .akasuo:      return UIColor(hex: 0x1D35AD)!
+    }
+}
+```
+
+![](https://web-cdn.agora.io/docs-files/1651751702539)
+
+**After**
+
+```swift
+var room_state_bg_color: UIColor {
+    switch mode {
+    case .agoraLight:  return .systemTeal
+    case .akasuo:      return UIColor(hex: 0x1D35AD)!
+    }
+}
+```
+
+![](https://web-cdn.agora.io/docs-files/1651751774540)
+
+#### Example two: Change the icons used in the user list componet
+
+The code of the user list component is in the following two files:
+
+- AgoraEduUI/AgoraEduUI/Classes/Components/SuspendComponents/AgoraUserListUIController.swift
+- AgoraEduUI/AgoraEduUI/Classes/CustomViews/AgoraUserList/AgoraUserListItemCell.swift
+
+As the following picture shows, the student list includes six columns: Student Name, Stage, Auth, Camera, Micr, and Rewards:
+
+![](https://web-cdn.agora.io/docs-files/1651752243091)
+
+The data of the user list component comes from:
+
+- The changes in the total number of students and number of students "on the stage" are reported by callbacks in `AgoraEduUserHandler`.
+- The changes in the microphone state and camera state are reported by callbacks in `AgoraEduStreamHandler`.
+- The whiteboard authorization state is reported by the widget with the ID of `netlessBoard`.
+
+Taking the camera state as an example, the data flow is as follows:
+
+1. When the stream state changes, the `onStreamUpdated` callback in `AgoraEduStreamHandler` is triggered, and then the data is updated through the `updateModel` method.
+2. After the data is updated, `tableView.reloadData()` is called to refresh each cell of the tableView.
+3. Finally, the icon is updated in the `updateState` method of `AgoraUserListItemCell`.
+
+If you want to update the camera icon, refer to the following steps:
+
+1. Put the new camera icons **new_camera_on** and **new_camera_off** in the `AgoraEduUI/AgoraEduUI/Assets/images.xcassets/NameRoll` folder:
+
+   ![](https://web-cdn.agora.io/docs-files/1651755311560)
+
+2. Update the code in the `AgoraUserListItemCell.swift` file:
+
+**Before**
+
+```swift
+// colors
+let onColor = UIColor(hex: 0x0073FF)
+let offColor = UIColor(hex: 0xF04C36)
+let disabledColor = UIColor(hex: 0xE2E2EE)
+
+// state
+case .camera:
+    if !model.stageState.isOn {
+        // unCohost
+        let image = UIImage.agedu_named("ic_nameroll_camera_on")
+        if let i = image?.withRenderingMode(.alwaysTemplate) {
+            cameraButton.setImageForAllStates(i)
+        }
+        cameraButton.tintColor = disabledColor
+    } else if !model.cameraState.deviceOn {
+        // cohost + device off
+        let image = UIImage.agedu_named("ic_nameroll_camera_off")
+        if let i = image?.withRenderingMode(.alwaysTemplate) {
+            cameraButton.setImageForAllStates(i)
+        }
+        cameraButton.tintColor = disabledColor
+    } else if !model.cameraState.streamOn {
+        // cohost + device on + no video stream privilege
+        let image = UIImage.agedu_named("ic_nameroll_camera_off")
+        if let i = image?.withRenderingMode(.alwaysTemplate) {
+            cameraButton.setImageForAllStates(i)
+        }
+        cameraButton.tintColor = offColor
+    } else {
+        // cohost + device on + video stream privilege
+        let image = UIImage.agedu_named("ic_nameroll_camera_on")
+        if let i = image?.withRenderingMode(.alwaysTemplate) {
+            cameraButton.setImageForAllStates(i)
+        }
+        cameraButton.tintColor = onColor
+    }
+    cameraButton.isUserInteractionEnabled = model.cameraState.isEnable
+```
+
+**After**
+
+```swift
+case .camera:
+    if !model.stageState.isOn {
+        // unCohost
+        let image = UIImage.agedu_named("new_camera_on")
+        if let i = image?.withRenderingMode(.alwaysTemplate) {
+            cameraButton.setImageForAllStates(i)
+        }
+        cameraButton.tintColor = disabledColor
+    } else if !model.cameraState.deviceOn {
+        // cohost + device off
+        let image = UIImage.agedu_named("new_camera_off")
+        if let i = image?.withRenderingMode(.alwaysTemplate) {
+            cameraButton.setImageForAllStates(i)
+        }
+        cameraButton.tintColor = disabledColor
+    } else if !model.cameraState.streamOn {
+        // cohost + device on + no video stream privilege
+        let image = UIImage.agedu_named("new_camera_off")
+        if let i = image?.withRenderingMode(.alwaysTemplate) {
+            cameraButton.setImageForAllStates(i)
+        }
+        cameraButton.tintColor = offColor
+    } else {
+        // cohost + device on + video stream privilege
+        let image = UIImage.agedu_named("new_camera_on")
+        if let i = image?.withRenderingMode(.alwaysTemplate) {
+            cameraButton.setImageForAllStates(i)
+        }
+        cameraButton.tintColor = onColor
+    }
+    cameraButton.isUserInteractionEnabled = model.cameraState.isEnable
+```
+
+![](https://web-cdn.agora.io/docs-files/1651756155692)
+
+![](https://web-cdn.agora.io/docs-files/1651756204269)
+
+### 3. Add a UI component
+
+The basic steps for adding a new UI component are as follows:
+
+1. Add a `UIController` in the `/Components` folder.
+2. Add this `UIController` in `UIManager` and add the view.
+
+The following example shows how to add a button for uploading logs in the toolbar component `AgoraToolBarUIController`. The change involves the following two files:
+
+- AgoraEduUI/AgoraEduUI/Classes/Components/FlatComponents/AgoraToolBarUIController.swift
+- AgoraEduUI/Classes/Scene/Small/AgoraSmallUIManager.swift
+
+**Before**
+
+```swift
+// AgoraToolBarUIController.swift
+public enum ItemType {
+    case setting, nameRoll, message, handsup, handsList, brushTool, help
+
+    func cellImage() -> UIImage? {
+        switch self {
+        case .setting:          return UIImage.agedu_named("ic_func_setting")
+        case .nameRoll:         return UIImage.agedu_named("ic_func_name_roll")
+        case .message:          return UIImage.agedu_named("ic_func_message")
+        case .handsup:          return UIImage.agedu_named("ic_func_hands_up")
+        case .handsList:        return UIImage.agedu_named("ic_func_hands_list")
+        case .brushTool:        return UIImage.agedu_named("ic_brush_pencil")
+        case .help:             return UIImage.agedu_named("ic_func_help")
+        default:                return nil
+        }
+    }
 }
 
-/*
- * Function:
- *          initLayout
- * Operation:
- *          add code like below
- */
-func layoutContainerViews() {
-     ···
-     demoButton?.agora_center_x = self.agora_center_x
-     demoButton?.agora_center_y = self.agora_center_y
-     demoButton?.agora_width = 100
-     demoButton?.agora_height = 100
-}
-/*
- * Operation:
- *          add a function like below
- */
-@objc func onTouchLeaveDemo(_ btn: AgoraBaseUIButton) {
-    self.roomListener?.onLeaveRoom()
-}
-   ```
 
-   After modification, the following icon appears in the one-to-one classroom.
+// AgoraSmallUIManager.swift
+if contextPool.user.getLocalUserInfo().userRole == .teacher {
+    toolBarController.tools = [.setting, .message,.nameRoll, .handsList]
+}
 
-   ![](https://web-cdn.agora.io/docs-files/1619169646534)
+
+extension AgoraSmallUIManager: AgoraToolBarDelegate {
+    func toolsViewDidSelectTool(tool: AgoraToolBarUIController.ItemType,
+                                selectView: UIView) {
+        // button actions
+        switch tool {
+        case .setting:
+            settingViewController.view.frame = CGRect(origin: .zero,
+                                                      size: settingViewController.suggestSize)
+            ctrlView = settingViewController.view
+        case .nameRoll:
+            nameRollController.view.frame = CGRect(origin: .zero,
+                                                   size: nameRollController.suggestSize)
+            ctrlView = nameRollController.view
+        case .message:
+            chatController.view.frame = CGRect(origin: .zero,
+                                               size: chatController.suggestSize)
+            ctrlView = chatController.view
+        case .handsList:
+            if handsListController.dataSource.count > 0 {
+                handsListController.view.frame = CGRect(origin: .zero,
+                                                         size: handsListController.suggestSize)
+                ctrlView = handsListController.view
+            }
+        default:
+            break
+        }
+        ctrlViewAnimationFromView(selectView)
+    }
+
+    func toolsViewDidDeselectTool(tool: AgoraToolBarUIController.ItemType) {
+        ctrlView = nil
+    }
+}
+```
+
+**After**
+
+```swift
+// AgoraToolBarUIController.swift
+// add new ItemType like "upload"，and put new icon picture as "ic_func_upload@2x.png","ic_func_upload@3x.png" in the assets of AgoraEduUI
+public enum ItemType {
+    case setting, nameRoll, message, handsup, handsList, brushTool, help, upload
+
+    func cellImage() -> UIImage? {
+        switch self {
+        case .setting:          return UIImage.agedu_named("ic_func_setting")
+        case .nameRoll:         return UIImage.agedu_named("ic_func_name_roll")
+        case .message:          return UIImage.agedu_named("ic_func_message")
+        case .handsup:          return UIImage.agedu_named("ic_func_hands_up")
+        case .handsList:        return UIImage.agedu_named("ic_func_hands_list")
+        case .brushTool:        return UIImage.agedu_named("ic_brush_pencil")
+        case .help:             return UIImage.agedu_named("ic_func_help")
+        case .upload:           return UIImage.agedu_named("ic_func_upload")
+        default:                return nil
+        }
+    }
+}
+
+
+// AgoraSmallUIManager.swift
+// In the AgoraSmallaUIManager，find where to set tools for toolBarController and add your new type
+if contextPool.user.getLocalUserInfo().userRole == .teacher {
+    toolBarController.tools = [.setting, .message,.nameRoll, .handsList, .upload]
+}
+
+
+// button actions
+extension AgoraSmallUIManager: AgoraToolBarDelegate {
+    func toolsViewDidSelectTool(tool: AgoraToolBarUIController.ItemType,
+                                selectView: UIView) {
+        switch tool {
+        case .setting:
+            settingViewController.view.frame = CGRect(origin: .zero,
+                                                      size: settingViewController.suggestSize)
+            ctrlView = settingViewController.view
+        case .nameRoll:
+            nameRollController.view.frame = CGRect(origin: .zero,
+                                                   size: nameRollController.suggestSize)
+            ctrlView = nameRollController.view
+        case .message:
+            chatController.view.frame = CGRect(origin: .zero,
+                                               size: chatController.suggestSize)
+            ctrlView = chatController.view
+        case .handsList:
+            if handsListController.dataSource.count > 0 {
+                handsListController.view.frame = CGRect(origin: .zero,
+                                                         size: handsListController.suggestSize)
+                ctrlView = handsListController.view
+            }
+        // [new action]，call the context to upload log
+        case .upload:
+            contextPool.monitor.uploadLog(success: nil,
+                                          failure: nil)
+        default:
+            break
+        }
+        ctrlViewAnimationFromView(selectView)
+    }
+
+    func toolsViewDidDeselectTool(tool: AgoraToolBarUIController.ItemType) {
+        ctrlView = nil
+    }
+}
+```
+
