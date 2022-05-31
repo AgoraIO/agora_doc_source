@@ -68,7 +68,7 @@ ChatClient.getInstance()
 
 #### Transfer the chat group ownership
 
-Only the chat group owner can call `changeOwner` to transfer the ownership to the specified chat group member. Once the ownership is transferred, the former chat group owner becomes a regular member and all the other chat group members receive the `ChatGroupEventListener#OnOwnerChangedFromGroup` callback.
+Only the chat group owner can call `changeOwner` to transfer the ownership to the specified chat group member. Once the ownership is transferred, the former chat group owner becomes a regular member, and all the other chat group members receive the `ChatGroupEventListener#OnOwnerChangedFromGroup` callback.
 
 The following code sample shows how to transfer the chat group ownership:
 
@@ -121,7 +121,7 @@ ChatClient.getInstance()
 
 #### Add a member to the chat group block list
 
-Only the chat group owner and admins can call `blockMembers` to add the specified member to the chat group block list. Once added to the block list, this member receives the `ChatGroupEventListener#onUserRemoved` callback, while all the other members receive the `ChatGroupEventListener#onMemberExited` callback. After being added to block list, this user cannot send or receive messages in the chat group. They can no longer join the chat room again until they are removed from the block list.
+Only the chat group owner and admins can call `blockMembers` to add the specified member to the chat group block list. Once added to the block list, this member receives the `ChatGroupEventListener#onUserRemoved` callback, while all the other members receive the `ChatGroupEventListener#onMemberExited` callback. After being added to block list, this user cannot send or receive messages in the chat group. They can no longer join the chat room until they are removed from the block list.
 
 The following code sample shows how to add a member to the chat group block list:
 
@@ -174,18 +174,18 @@ ChatClient.getInstance()
 
 #### Add a member to the chat group mute list
 
-Only the chat group owner and admins can call `fetchBlockListFromServer` to add the specified member to the chat group mute list. Once added to the mute list, this member and all the other chat group admins or owner receive the `ChatGroupEventListener#onMuteListAdded` callback. Once a chat group member is added to the chat group mute list, they can no longer send chat group messages, not even after being added to the chat group allow list.
+Only the chat group owner and admins can call `muteMembers` to add the specified member to the chat group mute list. Once added to the mute list, this member and all the other chat group admins or owner receive the `ChatGroupEventListener#onMuteListAdded` callback. Once a chat group member is added to the chat group mute list, they can no longer send chat group messages, not even after being added to the chat group allow list.
 
 The following code sample shows how to add a member to the chat group mute list:
 
 ```typescript
 ChatClient.getInstance()
-  .groupManager.fetchBlockListFromServer(groupId, pageSize, pageNum)
+  .groupManager.muteMembers(groupId, members)
   .then(() => {
-    console.log("get block members success.");
+    console.log("mute members success.");
   })
   .catch((reason) => {
-    console.log("get block members fail.", reason);
+    console.log("mute members fail.", reason);
   });
 ```
 
@@ -263,7 +263,7 @@ ChatClient.getInstance()
 
 #### Add a member to the chat group allow list
 
-Only the chat group owner and admins can call `addWhiteList` to add the specified member to the chat group allow list. Members in the chat group allow list can send chat group messages even when the chat group owner or admin has muted all chat group members. However, if a member is already in the chat group mute list, adding this member to the allow list does not take effect.
+Only the chat group owner and admins can call `addWhiteList` to add the specified member to the chat group allow list. Members in the chat group allow list can send chat group messages even when the chat group owner or admin has muted all chat group members. However, if a member is already in the chat group mute list, adding this member to the allow list does not enable them to send messages. The mute list takes precedence.
 
 The following code sample shows how to add a member to the chat group allow list:
 
@@ -299,7 +299,7 @@ ChatClient.getInstance()
 
 All chat group members can call `isMemberInWhiteListFromServer` to check whether they are added to the chat group allow list.
 
-The following code sample shows how to check whether a user is added to the chat group allow list:
+The following code sample shows how to check whether a user is on the chat group allow list:
 
 ```typescript
 ChatClient.getInstance()
