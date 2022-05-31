@@ -65,7 +65,7 @@ SDKClient.Instance.GroupManager.DeleteGroupMembers(groupId, list, new CallBack (
 
 #### Transfer the chat group ownership
 
-Only the chat group owner can call `ChangeGroupOwner` to transfer the ownership to the specified chat group member. Once the ownership is transferred, the former chat group owner becomes a regular member and all the other chat group members receive the `IGroupManagerDelegate#OnOwnerChangedFromGroup` callback.
+Only the chat group owner can call `ChangeGroupOwner` to transfer the ownership to the specified chat group member. Once the ownership is transferred, the former chat group owner becomes a regular member, and all the other chat group members receive the `IGroupManagerDelegate#OnOwnerChangedFromGroup` callback.
 
 The following code sample shows how to transfer the chat group ownership:
 
@@ -257,7 +257,7 @@ SDKClient.Instance.GroupManager.UnMuteGroupAllMembers(groupId, new CallBack(
 
 #### Add a member to the chat group allow list
 
-Only the chat group owner and admins can call `AddGroupWhiteList` to add the specified member to the chat group allow list. Members in the chat group allow list can send chat group messages even when the chat group owner or admin has muted all chat group members. However, if a member is already in the chat group mute list, adding this member to the allow list does not take effect.
+Only the chat group owner and admins can call `AddGroupWhiteList` to add the specified member to the chat group allow list. Members in the chat group allow list can send chat group messages even when the chat group owner or admin has muted all chat group members. However, if a member is already in the chat group mute list, adding this member to the allow list does not enable them to send messages. The mute list takes precedence.
 
 The following code sample shows how to add a member to the chat group allow list:
 
@@ -291,7 +291,7 @@ SDKClient.Instance.GroupManager.RemoveGroupWhiteList(groupId, members, new CallB
 
 All chat group members can call `checkIfInGroupWhiteList` to check whether they are added to the chat group allow list.
 
-The following code sample shows how to check whether a user is added to the chat group allow list:
+The following code sample shows how to check whether a user is on the chat group allow list:
 
 ```c#
 public void checkIfInGroupWhiteList(final String groupId, EMValueCallBack<Boolean> callBack)
