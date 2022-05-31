@@ -99,7 +99,7 @@ ChatClient.getInstance()
 
 All chat room members can call `leaveChatRoom` to leave the specified chat room. Once a member leaves the chat room, all the other chat room members receive the `onMemberExited` callback.
 
-**Note**: Different from the chat group owner, the chat room owner can leave a chat room. After re-entering the chat room, this user remains the chat room owner.
+**Note**: Unlike chat group owners (who cannot leave their groups), a chat room owner can leave a chat room. After re-entering the chat room, this user remains the chat room owner.
 
 The following code sample shows how to leave a chat room:
 
@@ -163,7 +163,7 @@ To monitor the chat room events, you can listen for the callbacks in the `ChatRo
 The following code sample shows how to add and remove the chat room listener:
 
 ```typescript
-// Inherit and implement the ChatRoomEventListener class.
+// Inherits and implements the ChatRoomEventListener class.
 const roomListener: ChatRoomEventListener = new (class
   implements ChatRoomEventListener
 {
@@ -255,8 +255,8 @@ const roomListener: ChatRoomEventListener = new (class
   }
 })(this);
 
-// Remove the chat room listener.
+// Removes the chat room listener.
 ChatClient.getInstance().roomManager.removeAllRoomListener();
-// Add the chat room listener.
+// Adds the chat room listener.
 ChatClient.getInstance().roomManager.addRoomListener(roomListener);
 ```
