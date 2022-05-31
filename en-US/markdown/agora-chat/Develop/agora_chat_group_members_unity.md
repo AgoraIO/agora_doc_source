@@ -171,7 +171,7 @@ SDKClient.Instance.GroupManager.GetGroupBlockListFromServer(groupId, pageNum, pa
 
 #### Add a member to the chat group mute list
 
-Only the chat group owner and admins can call `MuteGroupMembers` to add the specified member to the chat group mute list. Once added to the mute list, this member and all the other chat group admins or owner receive the `IGroupManagerDelegate#OnMuteListAddedFromGroup` callback. Once a chat group member is added to the chat group mute list, this member can no longer send chat group messages, not even after being added to the chat group allow list.
+Only the chat group owner and admins can call `MuteGroupMembers` to add the specified member to the chat group mute list. Once added to the mute list, this member and all the other chat group admins or owner receive the `IGroupManagerDelegate#OnMuteListAddedFromGroup` callback. Once a chat group member is added to the chat group mute list, they can no longer send chat group messages, not even after being added to the chat group allow list.
 
 The following code sample shows how to add a member to the chat group mute list:
 
@@ -223,7 +223,7 @@ SDKClient.Instance.GroupManager.GetGroupMuteListFromServer(groupId, handle: new 
 
 #### Mute all the chat group members
 
-Only the chat group owner and chat group admins can call `MuteGroupAllMembers` to mute all the chat group members. Once all the members are muted, only those in the chat group allow list can send messages in the chat group.
+Only the chat group owner and admins can call `MuteGroupAllMembers` to mute all the chat group members. Once all the members are muted, only those in the chat group allow list can send messages in the chat group.
 
 The following sample code shows how to mute all the chat group members:
 
@@ -239,7 +239,7 @@ SDKClient.Instance.GroupManager.MuteGroupAllMembers(groupId, new CallBack(
 
 #### Unmute all the chat group members
 
-Only the chat group owner and chat group admins can call `UnMuteGroupAllMembers` to unmute all the chat group members.
+Only the chat group owner and admins can call `UnMuteGroupAllMembers` to unmute all the chat group members.
 
 The following sample code shows how to unmute all the chat group members:
 
