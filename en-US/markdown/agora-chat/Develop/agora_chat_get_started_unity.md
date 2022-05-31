@@ -2,7 +2,7 @@
 
 Instant messaging connects people wherever they are and allows them to communicate with others in real time. The Agora Chat SDK enables you to embed real-time messaging in any app, on any device, anywhere.
 
-This page shows a sample code to add peer-to-peer messaging into your game by using the Agora Chat SDK for Unity.
+This page shows a sample code to add peer-to-peer messaging into a game by using the Agora Chat SDK for Unity.
 
 ## Understand the tech
 
@@ -20,17 +20,17 @@ As shown in the figure, the workflow of peer-to-peer messaging is as follows:
 
 ## Prerequisites
 
-In order to follow the procedure in this page, you must have:
+In order to follow the procedure in this page, you must have the following:
 
 - [Unity Hub](https://unity.com/download)
-- Unity Editor 2019.4.28 or higher 
+- Unity Editor 2019.4.28 or later 
 - Target platform:
   - iOS:
     - iOS Build Support module
-    - Xcode 9.0 or higher
+    - Xcode 9.0 or later
   - macOS:
-    - Xcode 9.0 or higher
-    - macOS 10.0 or higher
+    - Xcode 9.0 or later
+    - macOS 10.0 or later
   - Android:
     - Android 4.1 or later
     - Android Studio 3.0 or later
@@ -41,7 +41,7 @@ Ensure that no firewall is blocking your network communication; otherwise, the p
 
 ## Project setup
 
-In this section, we prepare the development environment necessary to integrate Agora Chat into your game.
+This section shows how to prepare the development environment necessary to integrate Agora Chat into the game.
 
 ### 1. Download the Unity sample project
 
@@ -53,16 +53,16 @@ In this section, we prepare the development environment necessary to integrate A
 
 <div class="alert info">
 If your Unity Editor version is inconsistent with that of the sample project, do the following:
-<ul><ol>1. In the <b>Editor version not installed</b> dialog box, select <b>Choose another Editor version</b>.</ol><ol>2. In the <b>Select Editor version and platform</b> dialog box, select the version of your Unity Editor and follow the prompts to open the project.</ol></ul>
+<ul><ol>1. In the <b>Editor version not installed</b> dialog box, select <b>Choose another Editor version</b>.</ol><ol>2. In the <b>Select Editor version and platform</b> dialog box, select the version of your Unity Editor, and follow the prompts to open the project.</ol></ul>
 </div>
 
 ### 2. Integrate Agora Chat SDK
 
 1. Go to the [SDK download page](./downloads?platform=Unity), download the latest version of the Agora Chat SDK package for Unity, and decompress it.
 
-2. In Unity Editor, click **Assets** > **Import Package** > **Custom Package...** and select the decompressed SDK.
+2. In Unity Editor, click **Assets** > **Import Package** > **Custom Package...**, and select the decompressed SDK.
 
-3. In the **Import Unity Package** pop-up window, select all the items contained in the SDK and click **Import**.
+3. In the **Import Unity Package** pop-up window, select all the items contained in the SDK, and click **Import**.
 
 ## Implement peer-to-peer messaging
 
@@ -106,7 +106,7 @@ SDKClient.Instance.CreateAccount(username: Username.text, Password.text, handle:
 
 ### 4. Log in to an account
 
-At the end of the `SignInAction` method, add the following to add the log-in logic:
+At the end of the `SignInAction` method, add the following to add the login logic:
 
 ```c#
 SDKClient.Instance.Login(username: Username.text, pwdOrToken: Password.text, handle: new CallBack(
@@ -235,10 +235,10 @@ If the sample project runs properly, the following user interface appears:
 In the user interface, perform the following operations to test the project:
 
 1. Sign up  
-Fill in the username in the `user id` text box and password in the `password` text box, and click **Sign up** to register an account. In this example, we register two accounts (`local_user` and `remote_user`) used to send and receive messages.
+Fill in the username in the `user id` text box and password in the `password` text box, and click **Sign up** to register an account. In this example, register two accounts (`local_user` and `remote_user`) to enable sending and receiving messages.
 
 2. Log in  
-After signing up the accounts, fill in the username in `user id` textbox and password in the `password` text box, and click **Sign in** to log in to the app. In this example, we log in as `local_user`.
+After signing up the accounts, fill in the username in `user id` textbox and password in the `password` text box, and click **Sign in** to log in to the app. In this example, log in as `local_user`.
 
 3. Send a message
 Fill in the username of the receiver (`remote_user`) in the `single chat id` textbox and the message ("hello world") to send in the `message content` text box, and click **Send** to send the message.
@@ -247,9 +247,9 @@ Fill in the username of the receiver (`remote_user`) in the `single chat id` tex
 Click **Sign out** to log out of the app.
 
 5. Receive the message  
-After signing out, log in as `remote_user` and receive the message ("hello world") sent in step 3.
+After signing ou as `local_user`, log in as `remote_user` and receive the message ("hello world") sent in step 3.
 
-You can check logs of all operations above as shown in the following figure:
+You can check the log to see all the operations from this example, as shown in the following figure:
 ![](https://web-cdn.agora.io/docs-files/1652781638358)
 
 ## Next Steps
