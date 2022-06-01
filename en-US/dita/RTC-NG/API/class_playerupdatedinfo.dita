@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_playerupdatedinfo">
-    <title><ph keyref="PlayerUpdatedInfo" /></title>
+    <title><ph keyref="PlayerUpdatedInfo"/></title>
     <shortdesc id="short"><ph id="shortdesc">Information related to the media player.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -14,36 +14,40 @@
             <codeblock props="android" outputclass="language-java">public class PlayerUpdatedInfo {
   public String playerId;
   public String deviceId;
-
-  public PlayerUpdatedInfo() {
-    playerId = null;
-    deviceId = null;
-  }
+  public CacheStatistics cacheStatistics;
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaPlayerUpdatedInfo : NSObject
 @property(copy, nonatomic) NSString *_Nullable playerId;
 @property(copy, nonatomic) NSString *_Nullable deviceId;
+@property(strong, nonatomic) AgoraMediaPlayerCacheStatistics *_Nullable cacheStatistics;
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct PlayerUpdatedInfo {
-  Optional&lt;const char*&gt; playerId;
-  Optional&lt;const char*&gt; deviceId;
+  Optional&lt;const char*> playerId;
+  Optional&lt;const char*> deviceId;
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-                <plentry>
-                    <pt>playerId</pt>
-                    <pd>The ID of a media player.</pd>
-                </plentry>
-                <plentry>
-                    <pt>deviceId</pt>
-                    <pd>The ID of a deivce.</pd>
-                </plentry>
-            </parml>
-        </section>
+            <plentry>
+                <pt>playerId</pt>
+                <pd>The ID of a media player.</pd>
+            </plentry>
+            <plentry>
+                <pt>deviceId</pt>
+                <pd>The ID of a deivce.</pd>
+            </plentry>
+            <plentry props="android ios">
+                <pt>                    CacheStatistics
+                </pt>
+                <pd>
+                    <p>The statistics about the media file being cached. See <xref keyref="CacheStatistics"/>.</p>
+                    <p>When you call the <xref keyref="openWithMediaSource"/> method and set <parmname>enableCache</parmname> as <codeph><ph keyref="true"/></codeph>, the SDK triggers <parmname></parmname></p>
+                </pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>
