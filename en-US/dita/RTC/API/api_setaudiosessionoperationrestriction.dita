@@ -5,12 +5,13 @@
     <shortdesc id="short"><ph id="shortdesc">Sets the operational permission of the SDK on the audio session.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="setAudioSessionOperationRestriction" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="setAudioSessionOperationRestriction" />
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
+    <refbody>
+        <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java" />
             <codeblock props="ios mac" outputclass="language-objectivec" />
@@ -22,27 +23,26 @@
       AudioSessionOperationRestriction restriction);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-   
-   <p>The SDK and the app can both configure the audio session by default. If you need to only use the app to configure the audio session, this method restricts the operational permission of the SDK on the audio session.</p>
-   <p>You can call this method either before or after joining a channel. Once you call this method to restrict the operational permission of the SDK on the audio session, the restriction takes effect when the SDK needs to change the audio session.</p>
-   <note type="attention"><ul>
-       <li props="cpp flutter">This method is for iOS only.</li>
-       <li>This method does not restrict the operational permission of the app on the audio session.</li>
-   </ul></note>
-        </section>
-        <section id="parameters"><title>Parameters</title>
-   <parml>
-       <plentry>
-  <pt>restriction</pt>
-  <pd>The operational permission of the SDK on the audio session. See <xref keyref="AUDIO_SESSION_OPERATION_RESTRICTION" />. This parameter is in bit mask format, and each bit corresponds to a permission.</pd>
-       </plentry>
-   </parml>
-        </section>
+            <p>The SDK and the app can both configure the audio session by default. If you need to only use the app to configure the audio session, this method restricts the operational permission of the SDK on the audio session.</p>
+            <p>You can call this method either before or after joining a channel. Once you call this method to restrict the operational permission of the SDK on the audio session, the restriction takes effect when the SDK needs to change the audio session.</p>
+            <note type="attention">
+            <ul>
+            <li props="cpp flutter">This method is for iOS only.</li>
+            <li>This method does not restrict the operational permission of the app on the audio session.</li>
+            </ul></note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>restriction</pt>
+                <pd>The operational permission of the SDK on the audio session. See <xref keyref="AUDIO_SESSION_OPERATION_RESTRICTION" />. This parameter is in bit mask format, and each bit corresponds to a permission.</pd>
+            </plentry>
+            </parml> </section>
         <section id="return_values" props="native electron cs">
-   <title>Returns</title>
-   <ul>
-       <li>0: Success.</li>
-       <li>&lt; 0: Failure.</li>
-   </ul>
-        </section></refbody>
+            <title>Returns</title>
+            <ul>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
+    </refbody>
 </reference>

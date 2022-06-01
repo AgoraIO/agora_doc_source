@@ -29,27 +29,28 @@
         <section props="rtc">
             <p>This method tests whether the local audio capturing device and playback device work properly. After calling this method, the audio capturing device samples the local audio, and then the audio playback device plays the sampled audio.</p>
             <p>As of v3.6.2, you can call this method either before or after joining a channel. Depending on the call sequence, the SDK triggers the following callbacks at the set time interval to report the volume of the audio capturing and playback devices: 
+                
+            <ul>
+            <li>Two <xref keyref="onAudioVolumeIndication" /> callbacks and two <xref keyref="onAudioDeviceTestVolumeIndication" /> callbacks when you call this method before joining the channel, with the following values: 
+                    
                 <ul>
-                <li>Two <xref keyref="onAudioVolumeIndication" /> callbacks and two <xref keyref="onAudioDeviceTestVolumeIndication" /> callbacks when you call this method before joining the channel, with the following values: 
-                    <ul>
-                    <li><codeph>uid = 0</codeph> and <codeph>volume</codeph> in one <apiname keyref="onAudioVolumeIndication" /> callback; <codeph>uid = 1</codeph> and <codeph>volume</codeph> in the other <apiname keyref="onAudioVolumeIndication" /> callback.</li>
-                    <li><codeph>volumeType = <ph keyref="AudioTestRecordingVolume" />(0)</codeph> and <codeph>volume</codeph> in one <apiname keyref="onAudioDeviceTestVolumeIndication" /> callback; <codeph>volumeType = <ph keyref="AudioTestPlaybackVolume" />(1)</codeph> and <codeph>volume</codeph> in the other <apiname keyref="onAudioDeviceTestVolumeIndication" /> callback.</li>
-                    </ul>The <apiname keyref="onAudioVolumeIndication" /> and <apiname keyref="onAudioDeviceTestVolumeIndication" /> callbacks report the same volume information. Agora recommends using <apiname keyref="onAudioVolumeIndication" />.</li>
-                <li>Two <apiname keyref="onAudioDeviceTestVolumeIndication" /> callbacks when you call this method after joining a channel, with the following values: 
-                    <ul>
-                    <li><codeph>volumeType = <ph keyref="AudioTestRecordingVolume" />(0)</codeph> and <codeph>volume</codeph> in one callback;</li>
-                    <li><codeph>volumeType = <ph keyref="AudioTestPlaybackVolume" />(1)</codeph> and <codeph>volume</codeph> in the other one.</li>
-                    </ul></li>
-                </ul></p>
+                <li><codeph>uid = 0</codeph> and <codeph>volume</codeph> in one <apiname keyref="onAudioVolumeIndication" /> callback; <codeph>uid = 1</codeph> and <codeph>volume</codeph> in the other <apiname keyref="onAudioVolumeIndication" /> callback.</li>
+                <li><codeph>volumeType = <ph keyref="AudioTestRecordingVolume" />(0)</codeph> and <codeph>volume</codeph> in one <apiname keyref="onAudioDeviceTestVolumeIndication" /> callback; <codeph>volumeType = <ph keyref="AudioTestPlaybackVolume" />(1)</codeph> and <codeph>volume</codeph> in the other <apiname keyref="onAudioDeviceTestVolumeIndication" /> callback.</li>
+                </ul>The <apiname keyref="onAudioVolumeIndication" /> and <apiname keyref="onAudioDeviceTestVolumeIndication" /> callbacks report the same volume information. Agora recommends using <apiname keyref="onAudioVolumeIndication" />.</li>
+            <li>Two <apiname keyref="onAudioDeviceTestVolumeIndication" /> callbacks when you call this method after joining a channel, with the following values: 
+                    
+                <ul>
+                <li><codeph>volumeType = <ph keyref="AudioTestRecordingVolume" />(0)</codeph> and <codeph>volume</codeph> in one callback;</li>
+                <li><codeph>volumeType = <ph keyref="AudioTestPlaybackVolume" />(1)</codeph> and <codeph>volume</codeph> in the other one.</li>
+                </ul></li>
+            </ul></p>
             <note type="attention">
-                <ul>
-                    <li>When you call this method after joining a channel, ensure the audio capturing device is on ( <xref keyref="enableLocalAudio" /> is set as <codeph>true</codeph>); otherwise, the method call fails, and the SDK triggers the <xref keyref="onError" /> callback with <codeph>ERR_ADM_START_RECORDING(1012)</codeph>.</li>
-                    <li>Calling this method after joining a channel tests the audio capturing device that the SDK is using.</li>
-                    <li>This method tests local audio devices and does not report the network conditions.</li>
-                    <li>After calling <apiname>startRecordingDeviceTest</apiname>, you must call <xref keyref="stopAudioDeviceLoopbackTest" /> to stop the test.</li>
-                </ul>
-            </note>
-        </section>
+            <ul>
+            <li>When you call this method after joining a channel, ensure the audio capturing device is on ( <xref keyref="enableLocalAudio" /> is set as <codeph>true</codeph>); otherwise, the method call fails, and the SDK triggers the <xref keyref="onError" /> callback with <codeph>ERR_ADM_START_RECORDING(1012)</codeph>.</li>
+            <li>Calling this method after joining a channel tests the audio capturing device that the SDK is using.</li>
+            <li>This method tests local audio devices and does not report the network conditions.</li>
+            <li>After calling <apiname>startRecordingDeviceTest</apiname>, you must call <xref keyref="stopAudioDeviceLoopbackTest" /> to stop the test.</li>
+            </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
