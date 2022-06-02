@@ -78,20 +78,20 @@
               encryptionKey = "";
               encryptionKdfSalt = new byte[32];
           }
-  
+
           public EncryptionConfig(ENCRYPTION_MODE encryptionMode, string encryptionKey, byte[] encryptionKdfSalt)
           {
               this.encryptionMode = encryptionMode;
               this.encryptionKey = encryptionKey;
               this.encryptionKdfSalt = encryptionKdfSalt;
           }
-  
+
           public ENCRYPTION_MODE encryptionMode { set; get; }
           public string encryptionKey { set; get; }
           public byte[] encryptionKdfSalt
           {
               set { Buffer.BlockCopy(encryptionKdfSalt, 0, encryptionKdfSalt32, 0, 32); }
-  
+
               get { return encryptionKdfSalt32; }
           }
       }</codeblock>

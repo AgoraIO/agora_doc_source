@@ -166,9 +166,7 @@
                 <pd props="cpp unity" id="windows-format">像素格式。详见 <xref
                     keyref="VIDEO_PIXEL_FORMAT"/>。</pd>
                 <pd props="ios mac" id="oc-format">传入的视频帧的格式，必须指定为下面的某一个值：
-               
-                    
-                    
+
                     <ul>
                     <li>1: I420。</li>
                     <li>2: BGRA。</li>
@@ -180,9 +178,7 @@
                     <li>12: iOS 纹理 (CVPixelBufferRef)。</li>
                     </ul> </pd>
                 <pd props="android">视频数据的格式：
-               
-                    
-                    
+
                     <ul>
                     <li>10：TEXTURE_2D。</li>
                     <li>11：TEXTURE_OES，通常摄像头采集的数据为这种格式。</li>
@@ -206,9 +202,7 @@
             <plentry>
                 <pt>stride</pt>
                 <pd>传入视频帧的行间距，单位为像素而不是字节。对于 Texture，该值指的是 Texture 的宽度。
-      
-                    
-                    
+
                     <p props="ios mac">
                     <dl outputclass="deprecated">
                     <dlentry>
@@ -222,9 +216,7 @@
             <plentry props="ios mac">
                 <pt>strideInPixels</pt>
                 <pd>该帧的行跨度，即相邻两行视频帧之间的像素点数。
-           
-                    
-                    
+
                     <note type="attention">
                     <ul>
                     <li>该参数单位为像素，不是字节数。</li>
@@ -243,8 +235,6 @@
             <plentry props="android">
                 <pt>syncMode</pt>
                 <pd>设置是否开启同步模式，开启后 SDK 会在 Texture 处理时进行等待。该参数仅适用于 Texture 格式的视频数据。
-                    
-                    
                     <ul id="ul_oxx_wmy_4qb">
                     <li><codeph><ph keyref="true"/></codeph>：开启同步模式。</li>
                     <li><codeph><ph keyref="false"/></codeph>：不开启同步模式。</li>
@@ -265,8 +255,6 @@
             <plentry props="cpp unity">
                 <pt>eglContext</pt>
                 <pd>该参数仅适用于 Texture 格式的视频数据。
-                    
-                    
                     <ul id="ul_fsv_shd_krb">
                     <li>当使用 Khronos 定义的 OpenGL 接口 (javax.microedition.khronos.egl.*)时，需要将 eglContext 设置给这个字段。</li>
                     <li>当使用 Android 定义的 OpenGL 接口 (android.opengl.*)时，需要将 eglContext 设置给这个字段。</li>
