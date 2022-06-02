@@ -5,7 +5,7 @@
     <shortdesc id="short"><ph id="shortdesc">视频编码器的配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
-            <p props="rtc-ng" outputclass="codeblock">
+            <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class VideoEncoderConfiguration {
 
   public VideoDimensions dimensions;
@@ -87,6 +87,7 @@
         degradationPreference(MAINTAIN_QUALITY),
         mirrorMode(VIDEO_MIRROR_MODE_DISABLED) {}
 };</codeblock>
+            <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public class VideoEncoderConfiguration
     {
         public VideoEncoderConfiguration()
@@ -125,121 +126,9 @@
         public ORIENTATION_MODE orientationMode { set; get; }
         public DEGRADATION_PREFERENCE degradationPreference { set; get; }
         public VIDEO_MIRROR_MODE_TYPE mirrorMode { set; get; }
-        }</codeblock> </p>
-            <p props="rtc" outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public class VideoEncoderConfiguration {
-        public VideoDimensions dimensions;
-        public int frameRate;
-        public int minFrameRate;
-        public int bitrate;
-        public int minBitrate;
-        public ORIENTATION_MODE orientationMode;
-        public DEGRADATION_PREFERENCE degradationPrefer;
-        public int mirrorMode;
-}</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoEncoderConfiguration : NSObject
-@property(assign, nonatomic) CGSize dimensions;
-@property(assign, nonatomic) NSInteger frameRate;
-@property(assign, nonatomic) NSInteger minFrameRate;
-@property(assign, nonatomic) NSInteger bitrate;
-@property(assign, nonatomic) NSInteger minBitrate;
-@property(assign, nonatomic) AgoraVideoOutputOrientationMode orientationMode;
-@property(assign, nonatomic) AgoraDegradationPreference degradationPreference;
-@property(assign, nonatomic) AgoraVideoMirrorMode mirrorMode;
-
-- (instancetype _Nonnull)initWithSize:(CGSize)size frameRate:(AgoraVideoFrameRate)frameRate bitrate:(NSInteger)bitrate orientationMode:(AgoraVideoOutputOrientationMode)orientationMode;
-
-- (instancetype _Nonnull)initWithWidth:(NSInteger)width height:(NSInteger)height frameRate:(AgoraVideoFrameRate)frameRate bitrate:(NSInteger)bitrate orientationMode:(AgoraVideoOutputOrientationMode)orientationMode;
-@end</codeblock>
-            <codeblock props="cpp unity" outputclass="language-cpp">struct VideoEncoderConfiguration {
-    VideoDimensions dimensions;
-    FRAME_RATE frameRate;
-    int minFrameRate;
-    int bitrate;
-    int minBitrate;
-    ORIENTATION_MODE orientationMode;
-    DEGRADATION_PREFERENCE degradationPreference;
-    VIDEO_MIRROR_MODE_TYPE mirrorMode;
-
-    VideoEncoderConfiguration(
-        const VideoDimensions&amp;amp; d, FRAME_RATE f,
-        int b, ORIENTATION_MODE m, VIDEO_MIRROR_MODE_TYPE mr = VIDEO_MIRROR_MODE_AUTO)
-        : dimensions(d), frameRate(f), minFrameRate(-1), bitrate(b),
-        minBitrate(DEFAULT_MIN_BITRATE), orientationMode(m),
-        degradationPreference(MAINTAIN_QUALITY), mirrorMode(mr)
-    {}
-    VideoEncoderConfiguration(
-        int width, int height, FRAME_RATE f,
-        int b, ORIENTATION_MODE m, VIDEO_MIRROR_MODE_TYPE mr = VIDEO_MIRROR_MODE_AUTO)
-        : dimensions(width, height), frameRate(f),
-        minFrameRate(-1), bitrate(b),
-        minBitrate(DEFAULT_MIN_BITRATE), orientationMode(m),
-        degradationPreference(MAINTAIN_QUALITY), mirrorMode(mr)
-    {}
-    VideoEncoderConfiguration()
-        : dimensions(640, 480)
-        , frameRate(FRAME_RATE_FPS_15)
-        , minFrameRate(-1)
-        , bitrate(STANDARD_BITRATE)
-        , minBitrate(DEFAULT_MIN_BITRATE)
-        , orientationMode(ORIENTATION_MODE_ADAPTIVE)
-        , degradationPreference(MAINTAIN_QUALITY)
-        , mirrorMode(VIDEO_MIRROR_MODE_AUTO)
-    {}
-    };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">export interface VideoEncoderConfiguration {
-    dimensions: VideoDimensions;
-    frameRate: FRAME_RATE;
-    minFrameRate: number;
-    bitrate: number;
-    minBitrate: number;
-    orientationMode: ORIENTATION_MODE;
-    degradationPreference: DEGRADATION_PREFERENCE;
-    mirrorMode: VIDEO_MIRROR_MODE_TYPE;
-    }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">class VideoEncoderConfiguration {
-
-  @JsonKey(includeIfNull: false)
-  VideoDimensions? dimensions;
-
-  @JsonKey(includeIfNull: false)
-  VideoFrameRate? frameRate;
-
-  @JsonKey(includeIfNull: false)
-  VideoFrameRate? minFrameRate;
-
-  @JsonKey(includeIfNull: false)
-  int? bitrate;
-
-  @JsonKey(includeIfNull: false)
-  int? minBitrate;
-
-  @JsonKey(includeIfNull: false)
-  VideoOutputOrientationMode? orientationMode;
-
-  @JsonKey(includeIfNull: false)
-  DegradationPreference? degradationPrefer;
-
-  @JsonKey(includeIfNull: false)
-  VideoMirrorMode? mirrorMode;
-
-  VideoEncoderConfiguration({
-    this.dimensions,
-    this.frameRate,
-    this.minFrameRate,
-    this.bitrate,
-    this.minBitrate,
-    this.orientationMode,
-    this.degradationPrefer,
-    this.mirrorMode,
-  });
-
-  factory VideoEncoderConfiguration.fromJson(Map&lt;String, dynamic> json) =>
-      _$VideoEncoderConfigurationFromJson(json);
-
-  Map&lt;String, dynamic> toJson() => _$VideoEncoderConfigurationToJson(this);
-}</codeblock> </p>
+        }</codeblock>
+        <codeblock props="rn" outputclass="language-typescript"/>
+        <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="parameters">
             <title><text
