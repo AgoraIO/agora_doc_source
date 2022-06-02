@@ -31,8 +31,8 @@
         <section id="detailed_desc">
             <p id="desc1">该方法让用户加入通话频道，在同一个频道内的用户可以互相通话，多个用户加入同一个频道，可以群聊。 使用不同 App ID 的 App 不能互通。</p>
             <p id="desc2">成功调用该方法加入频道后会触发以下回调：
-            
-            
+
+
             <ul>
             <li>本地会触发 <xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/> 回调。</li>
             <li>通信场景下的用户和直播场景下的主播加入频道后，远端会触发 <xref keyref="onUserJoined"/> 回调。</li>
@@ -57,8 +57,7 @@
                 <pt>channelId</pt>
                 <pd>
                     <p id="channelID_desc">频道名。该参数标识用户进行实时音视频互动的频道。App ID 一致的前提下，填入相同频道名的用户会进入同一个频道进行音视频互动。该参数为长度在 64 字节以内的字符串。以下为支持的字符集范围（共 89 个字符）:
-                    
-                    
+
                     <ul id="char_support">
                     <li>26 个小写英文字母 a~z</li>
                     <li>26 个大写英文字母 A~Z</li>
@@ -89,7 +88,6 @@
             <ul>
             <li>0：方法调用成功。</li>
             <li>&lt; 0：方法调用失败。
-                
                 <ul>
                 <li>-2：传入的参数无效。例如，使用了不合法的 Token，<parmname>uid</parmname> 参数未设置为整型，<xref keyref="ChannelMediaOptions"/> 结构体成员值不合法。你需要填入有效的参数，重新加入频道。</li>
                 <li>-3：<xref keyref="IRtcEngine"/> 对象初始化失败。你需要重新初始化 <apiname keyref="IRtcEngine"/> 对象。</li>
