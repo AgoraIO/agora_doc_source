@@ -6,7 +6,34 @@
   <refbody>
     <section id="prototype">
       <p outputclass="codeblock">
-      <codeblock props="cpp" outputclass="language-cpp">struct EncryptionConfig {
+      <codeblock props="android" outputclass="language-java">public class EncryptionConfig {
+  public enum EncryptionMode {
+    AES_128_XTS(1),
+    AES_128_ECB(2),
+    AES_256_XTS(3),
+    SM4_128_ECB(4),
+    AES_128_GCM(5),
+    AES_256_GCM(6),
+    AES_128_GCM2(7),
+    AES_256_GCM2(8),
+    MODE_END(9);
+    private int value;
+
+    private EncryptionMode(int v) {
+      value = v;
+    }
+
+    public int getValue() {
+      return this.value;
+    }
+}</codeblock>
+      <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraEncryptionConfig: NSObject
+
+ @property (assign, nonatomic) AgoraEncryptionMode encryptionMode;
+ @property (copy, nonatomic) NSString * _Nullable encryptionKey;
+ @property (strong, nonatomic) NSData * _Nullable encryptionKdfSalt;
+ @end</codeblock>
+     <codeblock props="cpp" outputclass="language-cpp">struct EncryptionConfig {
   ENCRYPTION_MODE encryptionMode;
   const char* encryptionKey;
   uint8_t encryptionKdfSalt[32];
@@ -41,34 +68,7 @@
     }
     return "aes-128-gcm-2";
   }
-};</codeblock>
-      <codeblock props="android" outputclass="language-java">public class EncryptionConfig {
-  public enum EncryptionMode {
-    AES_128_XTS(1),
-    AES_128_ECB(2),
-    AES_256_XTS(3),
-    SM4_128_ECB(4),
-    AES_128_GCM(5),
-    AES_256_GCM(6),
-    AES_128_GCM2(7),
-    AES_256_GCM2(8),
-    MODE_END(9);
-    private int value;
-
-    private EncryptionMode(int v) {
-      value = v;
-    }
-
-    public int getValue() {
-      return this.value;
-    }
-}</codeblock>
-      <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraEncryptionConfig: NSObject
-
- @property (assign, nonatomic) AgoraEncryptionMode encryptionMode;
- @property (copy, nonatomic) NSString * _Nullable encryptionKey;
- @property (strong, nonatomic) NSData * _Nullable encryptionKdfSalt;
- @end</codeblock>
+};    </codeblock>
       <codeblock props="electron" outputclass="language-typescript"/>
       <codeblock props="unity" outputclass="language-csharp">public class EncryptionConfig
       {
