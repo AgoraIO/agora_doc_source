@@ -33,7 +33,7 @@ The error codes and error messages might be returned in the following ways:
 | 215        | `USER_MUTED`                     | The user is muted                                            | If the user is muted in the group or the chatroom, when the user sends a message, the SDK returns this error code. |
 | 216        | `USER_KICKED_BY_CHANGE_PASSWORD` | The user is kicked out due to a password change              | If the logged in user changes the present password, the SDK kicks the user out and returns this error code. |
 | 217        | `USER_KICKED_BY_OTHER_DEVICE`    | The user is kicked out from another device and logs out      | When the multi-device login function is enabled, if the user forces the user ID logged in at the current device to log out by calling APIs or managing the backend at another device, the SDK returns this error code. |
-| 221        | `USER_NOT_FRIEND`                | You cannot send messages to a user that is not your contact.   | When a peer user sets not to receive messages from a user that is not a contact, if you send a message to this peer user, the SDK reports this error code. You can enable this feature on Agora Console. | 
+| 221        | `USER_NOT_FRIEND`                | You cannot send messages to a user that is not your contact.   | When a peer user sets not to receive messages from a user that is not a contact, if you send a message to this peer user, the SDK reports this error code. You can enable this service on Agora Console. | 
 | 300        | `SERVER_NOT_REACHABLE`           | The requesting service fails                                 | The SDK disconnects from the Agora Chat system due to network problems. Try again later. |
 | 301        | `SERVER_TIMEOUT`                 | A timeout occurs in the requesting service                   | Some API calls require the SDK to return the execution result. This error occurs if the SDK takes too long (more than 30 seconds) to return the result. |
 | 302        | `SERVER_BUSY`                    | The server is busy                                           | The server is currently busy. Try again later.               |
@@ -64,6 +64,25 @@ The error codes and error messages might be returned in the following ways:
 | 703        | `CHATROOM_PERMISSION_DENIED`     | Chatroom permission is denied                                | The user does not have permission to control the chatroom, for example, the chatroom members do not have permission to set the chatroom administrator. Check whether the user has administrator permissions. |
 | 704        | `CHATROOM_MEMBERS_FULL`          | The chatroom is full                                         | The number of the chatroom members has reached the limit.    |
 | 705        | `CHATROOM_NOT_EXIST`             | The chatroom does not exist                                  | When you try controlling a chatroom that does not exist, the SDK returns this error code. |
-| 900        | `PUSH_NOT_SUPPORT`               | The third-party push is not supported                        | The device does not support the third-party push configured by the user. Check whether the current device supports the third-party push configured by the user. |
-| 901        | `PUSH_BIND_FAILED`               | The FCM Server Key binding fails                             | When the message is pushed, the FCM Server Key fails to be uploaded to the Agora Chat server. Try calling the method again. |
-| 902        | `PUSH_UNBIND_FAILED`             | The FCM Server Key unbinding fails                           | When the user logs out, the FCM Server Key unbinding fails. Try calling the method again. |
+| 900    | USERINFO_USERCOUNT_EXCEED     |  The number of users from whom you request to retrieve the attributes exceeds the upper limit of 100.   |
+| 901    | USERINFO_DATALENGTH_EXCEED       |设置的用户属性太长| The size of user attributes exceeds the upper limit. The size of attributes from each user cannot exceed 2 KB. The size of attributes from all users in an app cannot exceed 10 GB.   |
+| 903    | TRANSLATE_INVALID_PARAMS        | 翻译参数无效                            | The parameters you pass in when calling APIs of the translation service are invalid.  |
+| 904    | TRANSLATE_FAIL                  | 翻译失败                              | The request to translate fails.        |
+| 905    | TRANSLATE_NOT_INIT              | 翻译服务未初始化                      | The translation service has not been initialized.      |
+| 1000   | CONTACT_ADD_FAILED              | 添加联系人失败                      | The request to add a contact fails.        |
+| 1001   | CONTACT_REACH_LIMIT             | 邀请者联系人数量已经达到上限     |  You cannot add a contact because the number of your contacts has reached the upper limit.        |
+| 1002   | CONTACT_REACH_LIMIT_PEER        | 受邀请者联系人达到上限    |    You cannot add a contact because the number of the contacts of the peer has reached the upper limit.    |
+| 1100   | PRESENCE_PARAM_LENGTH_EXCEED    | 参数长度超出限制   |   The length of the parameters you pass in when calling APIs of the presence service exceed the upper limit.  |
+| 1110   | TRANSLATE_PARAM_INVALID      |  翻译参数错误 |  The parameters you pass in when calling APIs of the translation service are invalid.    |
+| 1111   | TRANSLATE_SERVICE_NOT_ENABLE   |  未启用服务    |  The translation service has not been activated.   |
+| 1112   | TRANSLATE_USAGE_LIMIT   | 翻译用量达到上限  |  The usage of the translation service exceeds the upper limit. |
+| 1113   | TRANSLATE_MESSAGE_FAIL  | 获取翻译服务失败 | The request to retrieve the translation service fails.  |
+| 1300   | REACTION_REACH_LIMIT            | 数量达到限制   |  The number of reactions exceeds the upper limit.   |
+| 1301   | REACTION_HAS_BEEN_OPERATED      | The reaction to add already exists in your reaction list.    |
+| 1302   | REACTION_OPERATION_IS_ILLEGAL   | 没有操作权限   | You do not have the permission to perform operations to a reaction. For example, you cannot delete a reaction if the reaction does not exist in your reaction list.    |
+| 1400   | THREAD_NOT_EXIST |  子区不存在 |  The thread does not exist.    |
+| 1401   | THREAD_ALREADY_EXIST | 该子区已存在  |   The thread to create already exists.    |
+| 1402  | THREAD_CREATE_MESSAGE_ILLEGAL | 创建子区的消息无效 | The message to send in a thread is invalid.     |
+| 1500    | PUSH_NOT_SUPPORT                | 第三方推送不支持                         | The third-party push service is not supported on the current device.  |
+| 1501    | PUSH_BIND_FAILED                | 绑定第三方推送 token 失败                | The token of the third-party push service fails to upload to the server.     |
+| 1502    | PUSH_UNBIND_FAILED              | 解绑第三方推送 token 失败                | The token of the third-party push service fails to unbind. |
