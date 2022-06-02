@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onvideopublishstatechanged">
-    <title><ph keyref="onVideoPublishStateChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc">视频发布状态改变回调。</ph></shortdesc>
+    <title> <ph keyref="onVideoPublishStateChanged"/> </title>
+    <shortdesc id="short"> <ph id="shortdesc">视频发布状态改变回调。</ph> </shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -26,16 +26,11 @@
      (void)newState;
      (void)elapseSinceLastState;
      }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.VIDEO_PUBLISH_STATE_CHANGED, cb: (
-     channel: string,
-     oldState: STREAM_PUBLISH_STATE,
-     newState: STREAM_PUBLISH_STATE,
-     elapseSinceLastState: number
-     ) =&gt; void): this;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnVideoPublishStateChanged(string channel, STREAM_PUBLISH_STATE oldState,
             STREAM_PUBLISH_STATE newState, int elapseSinceLastState)</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">StreamPublishStateCallback? videoPublishStateChanged;</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart"/></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
@@ -46,7 +41,7 @@
             </dl>
         </section>
         <section id="parameters">
-            <title><ph keyref="callback-section-title"/></title>
+            <title> <ph keyref="callback-section-title"/> </title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
@@ -60,11 +55,19 @@
             </plentry>
             <plentry>
                 <pt>oldState</pt>
-                <pd>之前的发布状态，详见 <xref keyref="STREAM_PUBLISH_STATE"/>。</pd>
+                <pd>
+                        之前的发布状态，详见
+                        <xref keyref="STREAM_PUBLISH_STATE"/>
+                        。
+                    </pd>
             </plentry>
             <plentry>
                 <pt>newState</pt>
-                <pd>当前的发布状态，详见 <apiname keyref="STREAM_PUBLISH_STATE"/>。</pd>
+                <pd>
+                        当前的发布状态，详见
+                        <apiname keyref="STREAM_PUBLISH_STATE"/>
+                        。
+                    </pd>
             </plentry>
             <plentry>
                 <pt>elapseSinceLastState</pt>
