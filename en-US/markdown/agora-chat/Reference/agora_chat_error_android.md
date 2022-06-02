@@ -78,11 +78,11 @@ The error codes and error messages might be returned in the following ways:
 | 1112   | TRANSLATE_USAGE_LIMIT   | 翻译用量达到上限  |  The usage of the translation service exceeds the upper limit. |
 | 1113   | TRANSLATE_MESSAGE_FAIL  | 获取翻译服务失败 | The request to retrieve the translation service fails.  |
 | 1300   | REACTION_REACH_LIMIT            | 数量达到限制   |  The number of reactions exceeds the upper limit.   |
-| 1301   | REACTION_HAS_BEEN_OPERATED      | The reaction to add already exists in your reaction list.    |
+| 1301   | REACTION_HAS_BEEN_OPERATED      | 重复添加     |  The reaction to add already exists in your reaction list.    |
 | 1302   | REACTION_OPERATION_IS_ILLEGAL   | 没有操作权限   | You do not have the permission to perform operations to a reaction. For example, you cannot delete a reaction if the reaction does not exist in your reaction list.    |
 | 1400   | THREAD_NOT_EXIST |  子区不存在 |  The thread does not exist.    |
-| 1401   | THREAD_ALREADY_EXIST | 该子区已存在  |   The thread to create already exists.    |
-| 1402  | THREAD_CREATE_MESSAGE_ILLEGAL | 创建子区的消息无效 | The message to send in a thread is invalid.     |
+| 1401   | THREAD_ALREADY_EXIST | 该子区已存在  |   The thread to create already exists in a chat group.    |
+| 1402  | THREAD_CREATE_MESSAGE_ILLEGAL | 创建子区的消息无效 | The request to send a message in a thread fails because the parent message of the thread is recalled.    |
 | 1500    | PUSH_NOT_SUPPORT                | 第三方推送不支持                         | The third-party push service is not supported on the current device.  |
 | 1501    | PUSH_BIND_FAILED                | 绑定第三方推送 token 失败                | The token of the third-party push service fails to upload to the server.     |
 | 1502    | PUSH_UNBIND_FAILED              | 解绑第三方推送 token 失败                | The token of the third-party push service fails to unbind. |
