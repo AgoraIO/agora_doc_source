@@ -38,4 +38,19 @@ During the run time of the Agora Chat SDK, the error codes and error messages mi
 | 603 | `PERMISSION_DENIED` | The permission is denied to the user | The user has no permission to operate. Check whether the user is banned. If the user is banned, unban the user and log in again. |
 | 604 | `WEBIM_LOAD_MSG_ERROR` | An internal error occurs with the callback | An internal error occurs when receiving the callback and in the subsequent logic handling |
 | 605 | `GROUP_NOT_EXIST` | The group does not exist | When you try controlling a group that does not exist, the SDK returns this error code. |
+| 606   | GROUP_MEMBERS_FULL | 群组人数达到上限 | The number of chat group members has reached the upper limit. |
+| 607   | GROUP_NOT_EXIST | 设置的群组最大人数超过限制 |The number of maximum chat group members that you specify when creating a chat group exceeds the upper limit of your current pricing plan. |
+| 700  | REST_PARAMS_STATUS |  没有 token 或 App Key  |  The token or app key is an empty string when calling RESTful APIs.  |
+| 704   | CHATROOM_MEMBERS_FULL | 聊天室已满 | The number of chat room members has reached the upper limit. |
+| 705   | CHATROOM_NOT_EXIST | 聊天室不存在 | The chat room to which you request to perform operations does not exist. |
+| 999   | SDK_RUNTIME_ERROR  | Websocket 发送消息错误 |  A Websocket error occurs when sending a message. |
+| 1100   | PRESENCE_PARAM_EXCEED  | 发布自定义在线状态时，参数长度超出限制 | The length of the parameters you pass in when calling APIs of the presence service exceed the upper limit. |
+| 1101   | REACTION_ALREADY_ADDED | Reaction 重复添加 | The reaction to add already exists in your reaction list. |
+| 1102  | REACTION_CREATING  | 创建 Reaction 时，其他人正在创建 |The reaction that you are creating is being created by another user at the same time. |
+| 1103  | REACTION_OPERATION_IS_ILLEGAL | 用户对该 Reaction 没有操作权限 | You do not have the permission to perform operations to a reaction. For example, you cannot delete a reaction if the reaction does not exist in your reaction list. |
+| 1200  | TRANSLATION_NOT_VALID  | 翻译参数错误 | The parameters you pass in when calling APIs of the translation service are invalid. |
+| 1201  | TRANSLATION_TEXT_TOO_LONG  |  翻译的文本过长 |  The length of the source text to translate exceeds the upper limit. |
+| 1204  | TRANSLATION_FAILED  | 获取翻译服务失败 | The request to retrieve the translation service fails. |
+| 1300   | THREAD_NOT_EXIST |  子区不存在 | The thread does not exist.    |
+| 1301   | THREAD_ALREADY_EXIST | 该子区已存在  |  The thread to create already exists.    |
 
