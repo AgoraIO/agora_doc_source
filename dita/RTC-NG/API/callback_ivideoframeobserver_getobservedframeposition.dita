@@ -12,28 +12,20 @@
     </prolog>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
+            <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">int getObservedFramePosition();</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (unsigned int)getObservedFramePosition;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual uint32_t getObservedFramePosition() {
                 return base::POSITION_POST_CAPTURER | base::POSITION_PRE_RENDERER;
                 }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual VIDEO_OBSERVER_POSITION GetObservedFramePosition()
-        {
-            return VIDEO_OBSERVER_POSITION.POSITION_POST_CAPTURER | VIDEO_OBSERVER_POSITION.POSITION_PRE_RENDERER;
-        }</codeblock> </p>
-            <p outputclass="codeblock" props="rtc">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">virtual uint32_t getObservedFramePosition() { return static_cast&lt;uint32_t&gt;(POSITION_POST_CAPTURER | POSITION_PRE_RENDERER); }</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual VIDEO_OBSERVER_POSITION GetObservedFramePosition()
         {
             return VIDEO_OBSERVER_POSITION.POSITION_POST_CAPTURER | VIDEO_OBSERVER_POSITION.POSITION_PRE_RENDERER;
         }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> 
-        </p></section>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
             <dlentry props="native">
@@ -64,7 +56,8 @@
             <li>(1 &lt;&lt; 2)：本地视频编码前的位置，对应 <apiname keyref="onPreEncodeVideoFrame"/> 回调。</li>
             </ul> </p>
             <p props="android">设置观测位置的 bit mask。
-                
+
+            
             <ul>
             <li><apiname keyref="POSITION_POST_CAPTURER"/>(1 &lt;&lt; 0)，本地采集视频数据后的位置，对应 <apiname keyref="onCaptureVideoFrame"/> 回调。</li>
             <li><apiname keyref="POSITION_PRE_RENDERER"/>(1 &lt;&lt; 1)，接收远端发送视频前的位置，对应 <apiname keyref="onRenderVideoFrame"/> 回调。</li>
