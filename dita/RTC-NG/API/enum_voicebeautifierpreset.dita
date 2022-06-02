@@ -5,89 +5,87 @@
     <shortdesc id="short"><ph id="shortdesc">预设的美声效果选项。</ph></shortdesc>
     <refbody>
         <section id="parameters">
-   <title>枚举值</title>
-   <parml>
-       <plentry>
-  <pt><ph keyref="VOICE_BEAUTIFIER_OFF"/></pt>
-  <pd>原声，即关闭美声效果。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CHAT_BEAUTIFIER_MAGNETIC"/></pt>
-  <pd><p>磁性（男）。</p>
-      <note type="attention">该设置仅对男声有效，请勿用于设置女声，否则音频会失真。</note></pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CHAT_BEAUTIFIER_FRESH"/></pt>
-  <pd>
-      <p>清新（女）。</p>
-      <note type="attention">该设置仅对女声有效，请勿用于设置男声，否则音频会失真。</note>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CHAT_BEAUTIFIER_VITALITY"/></pt>
-  <pd>
-      <p>活力（女）。</p>
-      <note type="attention">该设置仅对女声有效，请勿用于设置男声，否则音频会失真。</note>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="SINGING_BEAUTIFIER"/></pt>
-  <pd>
-      <dl outputclass="since" props="rtc">
- <dlentry>
-     <dt>自从</dt>
-     <dd>v3.3.0</dd>
- </dlentry>
-      </dl>
-      <p>歌唱美声。</p>
-      <ul id="ul_z2c_4zl_p4b">
- <li>如果调用 <xref keyref="setVoiceBeautifierPreset"/>(<ph keyref="SINGING_BEAUTIFIER"/>)，你可以美化男声并添加歌声在小房间的混响效果。请勿用于设置女声，否则音频会失真。</li>
- <li>如果调用 <xref keyref="setVoiceBeautifierParameters"/>(<ph keyref="SINGING_BEAUTIFIER"/>, param1, param2)，你可以美化男声或女声并添加混响效果。</li>
-      </ul>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="TIMBRE_TRANSFORMATION_VIGOROUS"/></pt>
-  <pd>浑厚。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="TIMBRE_TRANSFORMATION_DEEP"/></pt>
-  <pd>低沉。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="TIMBRE_TRANSFORMATION_MELLOW"/></pt>
-  <pd>圆润。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="TIMBRE_TRANSFORMATION_FALSETTO"/></pt>
-  <pd>假音。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="TIMBRE_TRANSFORMATION_FULL"/></pt>
-  <pd>饱满。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="TIMBRE_TRANSFORMATION_CLEAR"/></pt>
-  <pd>清澈。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="TIMBRE_TRANSFORMATION_RESOUNDING"/></pt>
-  <pd>高亢。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="TIMBRE_TRANSFORMATION_RINGING"/></pt>
-  <pd>嘹亮。</pd>
-       </plentry>
-       <plentry props="rtc-ng">
-           <pt><ph keyref="ULTRA_HIGH_QUALITY_VOICE"/></pt>
-           <pd>超高音质，即让音频更清晰、细节更丰富。
-           <ul>
-               <li>为达到更好的效果，我们推荐在调用 <xref keyref="setVoiceBeautifierPreset"/> 前将 <xref keyref="setAudioProfile2"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/>(4) 或 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>(5)，且 <parmname>scenario</parmname> 参数设置为 <apiname
-                                    keyref="AUDIO_SCENARIO_HIGH_DEFINITION"
-                                />(6)。</li>
-               <li>如果用户的音频采集设备可以高度还原音频细节，Agora 建议你不要开启超高音质，否则 SDK 会过度还原音频细节，达不到预期效果。</li>
-           </ul></pd>
-       </plentry>
-   </parml>
-        </section></refbody>
+            <title>枚举值</title>
+            <parml>
+            <plentry>
+                <pt><ph keyref="VOICE_BEAUTIFIER_OFF"/></pt>
+                <pd>原声，即关闭美声效果。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CHAT_BEAUTIFIER_MAGNETIC"/></pt>
+                <pd>
+                    <p>磁性（男）。</p>
+                    <note type="attention">该设置仅对男声有效，请勿用于设置女声，否则音频会失真。</note></pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CHAT_BEAUTIFIER_FRESH"/></pt>
+                <pd>
+                    <p>清新（女）。</p>
+                    <note type="attention">该设置仅对女声有效，请勿用于设置男声，否则音频会失真。</note> </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CHAT_BEAUTIFIER_VITALITY"/></pt>
+                <pd>
+                    <p>活力（女）。</p>
+                    <note type="attention">该设置仅对女声有效，请勿用于设置男声，否则音频会失真。</note> </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="SINGING_BEAUTIFIER"/></pt>
+                <pd>
+                    <dl outputclass="since" props="rtc">
+                    <dlentry>
+                        <dt>自从</dt>
+                        <dd>v3.3.0</dd>
+                    </dlentry>
+                    </dl>
+                    <p>歌唱美声。</p>
+                    <ul id="ul_z2c_4zl_p4b">
+                    <li>如果调用 <xref keyref="setVoiceBeautifierPreset"/>(<ph keyref="SINGING_BEAUTIFIER"/>)，你可以美化男声并添加歌声在小房间的混响效果。请勿用于设置女声，否则音频会失真。</li>
+                    <li>如果调用 <xref keyref="setVoiceBeautifierParameters"/>(<ph keyref="SINGING_BEAUTIFIER"/>, param1, param2)，你可以美化男声或女声并添加混响效果。</li>
+                    </ul> </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="TIMBRE_TRANSFORMATION_VIGOROUS"/></pt>
+                <pd>浑厚。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="TIMBRE_TRANSFORMATION_DEEP"/></pt>
+                <pd>低沉。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="TIMBRE_TRANSFORMATION_MELLOW"/></pt>
+                <pd>圆润。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="TIMBRE_TRANSFORMATION_FALSETTO"/></pt>
+                <pd>假音。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="TIMBRE_TRANSFORMATION_FULL"/></pt>
+                <pd>饱满。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="TIMBRE_TRANSFORMATION_CLEAR"/></pt>
+                <pd>清澈。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="TIMBRE_TRANSFORMATION_RESOUNDING"/></pt>
+                <pd>高亢。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="TIMBRE_TRANSFORMATION_RINGING"/></pt>
+                <pd>嘹亮。</pd>
+            </plentry>
+            <plentry props="rtc-ng">
+                <pt><ph keyref="ULTRA_HIGH_QUALITY_VOICE"/></pt>
+                <pd>超高音质，即让音频更清晰、细节更丰富。
+           
+                    
+                    <ul>
+                    <li>为达到更好的效果，我们推荐在调用 <xref keyref="setVoiceBeautifierPreset"/> 前将 <xref keyref="setAudioProfile2"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/>(4) 或 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>(5)，且 <parmname>scenario</parmname> 参数设置为 <apiname keyref="AUDIO_SCENARIO_HIGH_DEFINITION"/>(6)。</li>
+                    <li>如果用户的音频采集设备可以高度还原音频细节，Agora 建议你不要开启超高音质，否则 SDK 会过度还原音频细节，达不到预期效果。</li>
+                    </ul></pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
 </reference>

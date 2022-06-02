@@ -19,8 +19,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableVirtualBackground:(BOOL)enable backData:(AgoraVirtualBackgroundSource* _Nullable)backData segData:(AgoraSegmentationProperty* _Nullable)segData;</codeblock>
             <codeblock props="cpp">virtual int enableVirtualBackground(bool enabled, VirtualBackgroundSource backgroundSource, SegmentationProperty segproperty, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;
 </codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public abstract int EnableVirtualBackground(bool enabled, VirtualBackgroundSource backgroundSource, SegmentationProperty segproperty, MEDIA_SOURCE_TYPE type);</codeblock>
-            </p>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int EnableVirtualBackground(bool enabled, VirtualBackgroundSource backgroundSource, SegmentationProperty segproperty, MEDIA_SOURCE_TYPE type);</codeblock> </p>
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int enableVirtualBackground(
       boolean enabled, VirtualBackgroundSource backgroundSource);
@@ -30,7 +29,7 @@
             <codeblock props="cpp">virtual int enableVirtualBackground(bool enabled, VirtualBackgroundSource backgroundSource) = 0;
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-                <codeblock props="unity" outputclass="language-csharp">public abstract int EnableVirtualBackground(bool enabled, VirtualBackgroundSource backgroundSource);</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int EnableVirtualBackground(bool enabled, VirtualBackgroundSource backgroundSource);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableVirtualBackground(
       bool enabled, VirtualBackgroundSource backgroundSource);</codeblock> </p>
@@ -49,6 +48,8 @@
             
             
             
+            
+            
             <ol>
             <li props="android">在初始化 <xref keyref="IRtcEngine"/> 时调用 <codeph><xref keyref="addExtension"/>(<q>agora_segmentation_extension</q>)</codeph>，在项目中集成虚拟背景动态库。</li>
             <li props="ios">在项目文件中链接动态库 <codeph>AgoraVideoSegmentationExtension.xcframework</codeph></li>
@@ -62,6 +63,8 @@
             <ul>
             <li props="rtc">调用该方法前，请确保你已集成相应的动态库。
                 
+                
+                
                 <ul>
                 <li props="android cpp unity rn flutter">Android: <ph>libagora_segmentation_extension.so</ph></li>
                 <li props="ios cpp unity rn flutter">iOS: <ph>AgoraVideoSegmentationExtension.xcframework</ph></li>
@@ -70,6 +73,8 @@
                 </ul></li>
             <li props="rtc">该方法需要在 <xref keyref="enableVideo"/> 后调用。</li>
             <li>该功能对设备性能要求较高，Agora 推荐你在搭载如下芯片的设备上使用：
+                
+                
                 
                 <ul>
                 <li props="android unity cpp rn flutter">骁龙 700 系列 750G 及以上</li>
@@ -80,6 +85,8 @@
                 <li props="mac cpp unity electron">CPU 为 i5 及更好的设备</li>
                 <li props="ios cpp unity rn flutter">搭载 A9 及以上芯片的如下设备：
                     
+                    
+                    
                     <ul>
                     <li>iPhone 6S 及以上</li>
                     <li>iPad Air 第三代及以上</li>
@@ -89,6 +96,8 @@
                     </ul></li>
                 </ul></li>
             <li>Agora 建议你在满足如下条件的场景中使用该功能：
+                
+                
                 
                 <ul>
                 <li>使用高清摄像设备、摄像环境光照均匀。</li>
@@ -102,6 +111,8 @@
                 <pt props="cpp android unity flutter">enabled</pt>
                 <pt props="ios mac">enable</pt>
                 <pd>是否开启虚拟背景：
+                    
+                    
                     
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 开启。</li>
@@ -122,7 +133,11 @@
                 <pt>type</pt>
                 <pd>视频源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。
                     
+                    
+                    
                     <note type="attention">在该方法中，该参数仅支持以下两种设置： 
+                    
+                    
                     
                     <ul>
                     <li>默认值为 <apiname keyref="PRIMARY_CAMERA_SOURCE"/>。</li>
@@ -135,6 +150,8 @@
             <ul>
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。      
+                
+                
                 
                 <ul props="rtc-ng">
                 <li>-1：自定义的背景图不存在。请检查 <xref keyref="VirtualBackgroundSource"/> 中 <parmname>source</parmname> 的值。</li>
