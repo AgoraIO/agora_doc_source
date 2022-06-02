@@ -232,19 +232,27 @@
             <plentry>
                 <pt>cpuAppUsage</pt>
                 <pd>当前 App 的 CPU 使用率 (%)。
-                <note type="attention"><ul>
-                    <li><xref keyref="onLeaveChannel"/> 回调中报告的 <parmname>cpuAppUsage</parmname> 恒为 0。</li>
-                    <li props="cpp unity android">自 Android 8.1 起，因系统限制，你可能无法通过该属性获取 CPU 使用率。</li>
+                
+                    <note type="attention">
+                    <ul>
+                    <li><xref keyref="onLeaveChannel"
+                        /> 回调中报告的 <parmname>cpuAppUsage</parmname> 恒为 0。</li>
+                    <li props="cpp unity android"
+                        >自 Android 8.1 起，因系统限制，你可能无法通过该属性获取 CPU 使用率。</li>
                     </ul></note></pd>
             </plentry>
             <plentry>
                 <pt>cpuTotalUsage</pt>
                 <pd>
                     <p>当前系统的 CPU 使用率 (%)。</p>
-                    <p props="cpp electron unity">对于 Windows 平台，在多核环境中，该成员指多核 CPU 的平均使用率。 计算方式为 (100 - 任务管理中显示的系统空闲进程 CPU)/100。</p>
-                    <note type="attention"><ul>
-                    <li><xref keyref="onLeaveChannel"/> 回调中报告的 <parmname>cpuTotalUsage</parmname> 恒为 0。</li>
-                    <li props="cpp unity android">自 Android 8.1 起，因系统限制，你无法通过该属性获取 CPU 使用率。</li>
+                    <p props="cpp electron unity"
+                    >对于 Windows 平台，在多核环境中，该成员指多核 CPU 的平均使用率。 计算方式为 (100 - 任务管理中显示的系统空闲进程 CPU)/100。</p>
+                    <note type="attention">
+                    <ul>
+                    <li><xref keyref="onLeaveChannel"
+                        /> 回调中报告的 <parmname>cpuTotalUsage</parmname> 恒为 0。</li>
+                    <li props="cpp unity android"
+                        >自 Android 8.1 起，因系统限制，你无法通过该属性获取 CPU 使用率。</li>
                     </ul></note> </pd>
             </plentry>
             <plentry>
@@ -254,11 +262,14 @@
             <plentry>
                 <pt>gatewayRtt</pt>
                 <pd>客户端到本地路由器的往返时延 (ms)。
+                    
                     <note props="ios">
                     <p>该属性默认在 iOS 14 之前的设备上开启，在 iOS 14 及之后的设备上关闭。</p>
-                    <p>如需在 iOS 14 及之后的设备上启用该属性，请<xref keyref="ticket-link"/>。</p>
+                    <p>如需在 iOS 14 及之后的设备上启用该属性，请<xref keyref="ticket-link"
+                    />。</p>
                     </note>
-                    <note props="android cpp unity">在 Android 平台上，如需获取 <parmname>gatewayRtt</parmname>，请确保已在项目 <codeph>AndroidManifest.xml</codeph> 文件的 <codeph>&lt;/application&gt;</codeph> 后面添加 <codeph>android.permission.ACCESS_WIFI_STATE</codeph> 权限。
+                    <note props="android cpp unity"
+                    >在 Android 平台上，如需获取 <parmname>gatewayRtt</parmname>，请确保已在项目 <codeph>AndroidManifest.xml</codeph> 文件的 <codeph>&lt;/application&gt;</codeph> 后面添加 <codeph>android.permission.ACCESS_WIFI_STATE</codeph> 权限。
                     </note></pd>
             </plentry>
             <plentry>
