@@ -13,7 +13,6 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstRemoteVideoDecoded(RtcConnection connection, uint remoteUid, int width, int height, int elapsed) {}</codeblock>
             <codeblock props="android" outputclass="language-java">public void onFirstRemoteVideoDecoded(int uid, int width, int height, int elapsed) {}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
         firstRemoteVideoDecodedOfUid:(NSUInteger)uid size:(CGSize)size elapsed:(NSInteger)elapsed;</codeblock>
@@ -26,14 +25,10 @@
     (void)height;
     (void)elapsed;
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.FIRST_REMOTE_VIDEO_DECODED, cb: (
-    uid: number,
-    width: number,
-    height: number,
-    elapsed: number) =&gt; void
-    ): this;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstRemoteVideoDecoded(RtcConnection connection, uint remoteUid, int width, int height, int elapsed) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">VideoFrameWithUidCallback? firstRemoteVideoDecoded;</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
             <p>SDK 会在以下时机触发该回调：
