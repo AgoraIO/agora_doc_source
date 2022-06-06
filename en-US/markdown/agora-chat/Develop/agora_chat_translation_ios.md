@@ -9,8 +9,8 @@ The SDK supports transtion in the following use cases:
 
 Before proceeding, ensure that your development environment meets the following requirements:
 
-- Your project integrates a version of the Agora Chat SDK later than v1.0.3 and has implemented the basic [real-time chat functionalities](./agora_chat_get_started_android?platform=Android).
-- You understand the API call frequency limit as described in [Limitations](./agora_chat_limitation?platform=Android).
+- Your project integrates a version of the Agora Chat SDK later than v1.0.3 and has implemented the basic [real-time chat functionalities](./agora_chat_get_started_ios?platform=iOS).
+- You understand the API call frequency limit as described in [Limitations](./agora_chat_limitation?platform=iOS).
 - Translation is not enabled by default. To use this feature, contact support@agora.io to enable it.
 - Because this feature is enabled by the Microsoft Azure Translation API, ensure that you understand the supported target languages as described in [Language support](https://docs.microsoft.com/en-us/azure).
 
@@ -20,7 +20,7 @@ The Chat SDK provides the following methods for implementing translation functio
 
 - `fetchSupportLanguages`, which queries the supported languages for translation.
 - `translateMessage`, which translates the text message after it is received.
-- `MessageBody.setTargetLanguages`, which automatically translates the text message when it is being sent. When the recipient receives the message, it contains the message in both the original and target languages.
+- `AgoraChatTextMessageBody.targetLanguages`, which automatically translates the text message when it is being sent. When the recipient receives the message, it contains the message in both the original and target languages.
 
 ## Implementation
 
@@ -30,43 +30,33 @@ This section introduces how to integrate translation functionalities into your p
 
 In both on-demand translation and automatic translation scenarios, call `fetchSupportLanguages` to query the supported languages for translation first:
 
-```java
-ChatClient.getInstance().chatManager().fetchSupportLanguages(new ValueCallBack<List<Language>>{});
+```Objective-C
+[AgoraChatClient.sharedClient.chatManager fetchSupportedLangurages:^(NSArray<AgoraChatLanguage *> * _Nullable languages, AgoraChatError * _Nullable error) {
+                    
+}];
 ```
 
 ### On-demand translation
 
 When the recipient receives a text message, call `translateMessage` to translate the message:
 
-```java
-List<String> languageList = new ArrayList<>();
-languageList.add("en");
-...
-ChatClient.getInstance().chatManager().translateMessage(
-         message,
-         languageList,
-         new ValueCallBack<ChatMessage>() {});
+```Objective-C
+// Only text messages can be translated
+[AgoraChatClient.sharedClient.chatManager translateMessage:message targetLanguages:@[@"en"] completion:^(AgoraChatMessage *message, AgoraChatError *error) {
+}];
 ```
 
-When the translation finishes, the translated message is stored in the message. Call `getTranslations` to get the translated message:
-
-```java
-TextMessageBody body = (TextMessageBody)message.getBody();
-List<TranslationInfo> infoList = body.getTranslations();
-```
+When the translation finishes, the translated message is stored in the message. 
 
 ### Automatic translation
 
-When creating a text message, the sender enables automatic translation by setting `MessageBody.setTargetLanguage` as the target language for translation:
+When creating a text message, the sender enables automatic translation by setting `AgoraChatTextMessageBody.targetLanguages` as the target language for translation:
 
-```java
-TextMessageBody body = new TextMessageBody("The message content");
-body.setTargetLanguages(languageList);
+```Objective-C
+AgoraChatTextMessageBody* msgBody = [[AgoraChatTextMessageBody alloc] initWithText:@"Hello!!"];
+msgBody.targetLanguages = @[@"en",@"ja"];
+AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:@"to" from:@"from" to:@"to" body:msgBody ext:nil];
+[AgoraChatClient.sharedClient.chatManager sendMessage:message progress:nil completion:nil];
 ```
 
-The SDK sends both the original message and the translated message. After the recipient recieves the message, call `getTranslations` to retrieve the translated message:
-
-```java
-TextMessageBody body = (TextMessageBody)message.getBody();
-List<TranslationInfo> infoList = body.getTranslations();
-```
+The SDK sends both the original message and the translated message. 
