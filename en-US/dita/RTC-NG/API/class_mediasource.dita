@@ -50,7 +50,7 @@
                 <pt>url</pt>
                 <pd>
                     <p>The URL of the media file to be played.</p>
-                    <note><ph>If you need to open a custom media resource, you don't have to pass in value to the <parmname>url</parmname>.</ph></note></pd>
+                    <note><ph>If you need to open a custom media resource, you do not have to pass in a value to the <parmname>url</parmname>.</ph></note></pd>
             </plentry>
             <plentry conkeyref="open2/uri">
                 <pt/>
@@ -67,7 +67,7 @@
                     <li><codeph><ph keyref="false"/></codeph>: Disable autoplay.</li>
                     </ul>
                     <note>
-                    <p>Once the autoplay is diabled, you need to call the <xref keyref="play"/> method to play the media file after it is opened.</p>
+                    <p>If autoplay is disabled, you need to call the <xref keyref="play"/> method to play a media file after it is opened.</p>
                     </note></pd>
             </plentry>
             <plentry>
@@ -78,18 +78,18 @@
                     </ul>
                     <note>
                     <ul>
-                    <li>If you need to enable caching, pass in value to <parmname>uri</parmname>, otherwise, caching is based on <parmname>url</parmname>.</li>
-                    <li>If you enable this function, the Media Player caches part of the media file being played on your local device. Once a media file is cached, you can play it offline. The statistics about the media file being cached is updated every second after the media file is played. See <xref keyref="CacheStatistics"/>.</li>
+                    <li>If you need to enable caching, pass in a value to <parmname>uri</parmname>; otherwise, caching is based on the <parmname>url</parmname> of the media file.</li>
+                    <li>If you enable this function, the Media Player caches part of the media file being played on your local device, and you can play the cached media file without internet connection. The statistics about the media file being cached are updated every second after the media file is played. See <xref keyref="CacheStatistics"/>.</li>
                     </ul> </note></pd>
             </plentry>
             <plentry>
                 <pt>isAgoraSource</pt>
-                <pd>Whether the media resource to be opened is a live stream or on-demand video distributed through the Broadcasting Streaming:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: The media resource is a live stream or on-demand video distributed through the Broadcasting Streaming.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: The media resource is not a live stream or on-demand video distributed through the Broadcasting Streaming.</li>
+                <pd>Whether the media resource to be opened is a live stream or on-demand video distributed through Broadcasting Streaming service:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: The media resource is a live stream or on-demand video distributed through Broadcasting Streaming service.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: The media resource is not a live stream or on-demand video distributed through Broadcasting Streaming service.</li>
                     </ul>
                     <note>
-                    <p>If you need to open a live stream or on-demand video distributed through the Broadcasting Streaming, pass in the URL of the media resource to <parmname>url</parmname> and set <parmname>isAgoraSource</parmname> as <codeph><ph keyref="true"/></codeph>, otherwise, you don't need to set <parmname>isAgoraSource</parmname> parameter.</p>
+                    <p>If you need to open a live stream or on-demand video distributed through Broadcasting Streaming service, pass in the URL of the media resource to <parmname>url</parmname>, and set <parmname>isAgoraSource</parmname> as <codeph><ph keyref="true"/></codeph>; otherwise, you don't need to set the <parmname>isAgoraSource</parmname> parameter.</p>
                     </note></pd>
             </plentry>
             <plentry>
@@ -100,7 +100,7 @@
                     </ul>
                     <p>If the media resource you want to open is a live stream, Agora recommends that you set this parameter as <codeph><ph keyref="true"/></codeph> so that the live stream can be loaded more quickly.</p>
                     <note>
-                    <p>If the media resource you open is not a live stream, but you set <parmname>isLiveSource</parmname> as <codeph><ph keyref="true"/></codeph>, the media resource will not be loaded more quickly.</p>
+                    <p>If the media resource you open is not a live stream, but you set <parmname>isLiveSource</parmname> as <codeph><ph keyref="true"/></codeph>, the media resource is not to be loaded more quickly.</p>
                     </note> </pd>
             </plentry>
             <plentry props="android">
@@ -108,7 +108,7 @@
                 <pd>
                     <p>The callback for custom media resource files. See <xref keyref="IMediaPlayerCustomDataProvider"/>.</p>
                     <note>
-                    <p>If you need to open a custom media resource, such as an encrypted media file, pass in value to <parmname>provider</parmname> rather than <parmname>url</parmname>.</p>
+                    <p>If you need to open a custom media resource, such as an encrypted media file, pass in a value to <parmname>provider</parmname> rather than to <parmname>url</parmname>.</p>
                     </note></pd>
             </plentry>
             <plentry props="ios">
@@ -116,7 +116,7 @@
                 <pd>
                     <p>Occurs when the SDK reads the media resource data. See <xref keyref="onReadData"/>.</p>
                     <note id="note">
-                    <p>If you need to open a custom media resource, such as an encrypted media file, pass in value to <parmname>playerOnReadCallback</parmname> and <parmname>playerOnSeekCallback</parmname> instead of <parmname>url</parmname>.</p>
+                    <p>If you need to open a custom media resource, such as an encrypted media file, pass in values to <parmname>playerOnReadCallback</parmname> and <parmname>playerOnSeekCallback</parmname> instead of to <parmname>url</parmname>.</p>
                     </note></pd>
             </plentry>
             <plentry props="ios">
