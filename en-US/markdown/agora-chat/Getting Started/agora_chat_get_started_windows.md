@@ -6,15 +6,7 @@ This page shows a sample code to add peer-to-peer messaging into a Windows proje
 
 ## Understand the tech
 
-The following figure shows the workflow of how clients send and receive peer-to-peer messages.
-
-![](https://web-cdn.agora.io/docs-files/1636443945728)
-
-As shown in the figure, the workflow of peer-to-peer messaging is as follows:
-
-1. Clients retrieve a token from your app server.
-2. Client A and Client B log in to Agora Chat.
-3. Client A sends a message to Client B. The message is sent to the Agora Chat server and the server delivers the message to Client B. When Client B receives the message, the SDK triggers an event. Client B listens for the event and gets the message.
+~338e0e30-e568-11ec-8e95-1b7dfd4b7cb0~
 
 ## Prerequisites
 
@@ -22,7 +14,7 @@ In order to follow the procedure in this page, you must have the following:
 
 - A Windows device running Windows 10 or later
 - Visual Studio IDE 2019 or later
-- .Net Framework 4.7.2 or later, or .Net Core 5.0 or later
+- .Net Framework 4.5.2 or later, or .Net Core 5.0 or later
 
 <div class="alert note">If your network has a firewall, make sure that you open the ports specified in <a href="https://docs.agora.io/en/Agora%20Platform/firewall?platform=All%20Platforms">Firewall Requirements</a>.</div>
 
@@ -269,7 +261,7 @@ SDKClient.Instance.ChatManager.RemoveChatManagerDelegate(this);
 
 At the top of **Visual Studio**, click the **Start** button. If the sample project runs properly, the following user interface appears:
 
-![](https://web-cdn.agora.io/docs-files/1654075992948)
+![](https://web-cdn.agora.io/docs-files/1654504518175)
 
 In the user interface, perform the following operations to test the project:
 
@@ -298,4 +290,4 @@ You can check the log to see all the operations from this example, as shown in t
 For demonstration purposes, Agora Chat provides an app server that enables you to quickly retrieve a token using the App Key given in this guide. In a production context, the best practice is for you to deploy your own token server, use your own [App Key](./enable_agora_chat?platform=Unity#get-the-information-of-the-agora-chat-project) to generate a token, and retrieve the token on the client side to log in to the Agora Chat service. To see how to implement a server that generates and serves tokens on request, see [Generate a User Token](./generate_user_tokens).
 
 2. Avoid blocked callbacks  
-Each callback of an Agora Chat client instance runs in the same thread, for example, the `onSuccess` and `onError` callbacks in this sample project. Therefore, to avoid blocked callbacks, Agora recommends that you execute callbacks in one thread and perform other operations in the others within a production context.
+Each callback of an Agora Chat client instance is triggered from internal threads. Therefore, to avoid blocking internal threads, Agora recommends that you execute your operations in other threads when callbacks are triggered.
