@@ -27,8 +27,8 @@ SDKClient.Instance.Login(username, passwd,
 ```
 
 
-| Error code | Error message                        | Error description                                     | Error description                                                    |
-| :----- | :------------------------------ | :--------------------------------------- | :----------------------------------------------------------- |
+| Error code | Error message                        | Error description                                                |
+| :----- | :--------------------------------------- | :----------------------------------------------------------- |
 | 0      | EM_NO_ERROR                     | The operation succeeds.            |
 | 1      | GENERAL_ERROR                   | The SDK is not properly initialized or the server cannot identify this error. |
 | 2      | NETWORK_ERROR                   | The SDK is disconnected from the server due to network interruption.   |
@@ -63,7 +63,7 @@ SDKClient.Instance.Login(username, passwd,
 | 300    | SERVER_NOT_REACHABLE            | The SDK is disconnected from the server due to unstable networks when you send API requests. |
 | 301    | SERVER_TIMEOUT                  | The server does not respond to an API request within the allocated period, generally 30 seconds or 60 seconds. |
 | 302    | SERVER_BUSY                     | The server is busy. Retry later.         |
-| 303    | SERVER_UNKNOWN_ERROR            | 服务请求的通用错误码                     | A default error returned by the server. You need to further identify and troubleshoot this error with logs.  |
+| 303    | SERVER_UNKNOWN_ERROR            | A default error returned by the server. You need to further identify and troubleshoot this error with logs.  |
 | 304    | SERVER_GET_DNSLIST_FAILED       | The SDK fails to retrieve the DNS server information.                       |
 | 305    | SERVER_SERVICE_RESTRICTED       |  This error returned when the app server is restricted.                |
 | 400    | FILE_NOT_FOUND                  | The request to retrieve a log file or download an attachment fails.     |
