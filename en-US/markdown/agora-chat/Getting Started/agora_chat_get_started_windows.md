@@ -32,8 +32,8 @@ This section shows how to prepare the development environment necessary to integ
 
 ### 1. Download the Windows sample project
 
-1. Clone the [Windows demo repository](https://github.com/easemob/chat_windows_demo) to your local device.
-2. Locate the `windows-example` folder of the downloaded repo, and double-click to open the `windows-example.sln` file in **Visual Studio**.
+1. Clone the [Windows demo repository](https://github.com/AgoraIO/Agora-Chat-API-Examples) to your local device.
+2. Locate the `windows-example` folder in the downloaded repository, and double-click to open the `windows-example.sln` file in **Visual Studio**.
 3. In the top menu of **Visual Studio**, select **Active solution configuration** as **Debug** and **Active solution platform** as **x64**.
 
 ### 2. Integrate the Agora Chat SDK
@@ -258,6 +258,13 @@ public void OnConversationRead(string from, string to)
 SDKClient.Instance.ChatManager.AddChatManagerDelegate(this);
 ```
 
+4. In the `RemoveChatDelegate`function, add the following:
+
+```c#
+// Remove the listener when the object is released.
+SDKClient.Instance.ChatManager.RemoveChatManagerDelegate(this);
+```	
+
 ## Run and test the project
 
 At the top of **Visual Studio**, click the **Start** button. If the sample project runs properly, the following user interface appears:
@@ -267,13 +274,13 @@ At the top of **Visual Studio**, click the **Start** button. If the sample proje
 In the user interface, perform the following operations to test the project:
 
 1. Sign up  
-Fill in the username in the `user id` box and password in the `password` box, and click **Sign up** to register an account. In this example, register two accounts (`my_sender` and `my_receiver`) to enable sending and receiving messages.
+Fill in the username in the **user id** box and password in the **password** box, and click **Sign up** to register an account. In this example, register two accounts (`my_sender` and `my_receiver`) to enable sending and receiving messages.
 
 2. Log in  
-After signing up the accounts, fill in the username in `user id` box and password in the `password` box, and click **Sign in** to log in to the app. In this example, log in as `my_sender`.
+After signing up the accounts, fill in the username in **user id** box and password in the **password** box, and click **Sign in** to log in to the app. In this example, log in as `my_sender`.
 
 3. Send a message  
-Fill in the username of the receiver (`my_receiver`) in the `single chat id` box and type in the message ("hello world") you want to send in the `message content` box, and click **Send** to send the message.
+Fill in the username of the receiver (`my_receiver`) in the **single chat id** box and type in the message ("hello world") you want to send in the **message content** box, and click **Send** to send the message.
 
 4. Sign out  
 Click **Sign out** to log out of the app.
@@ -287,4 +294,8 @@ You can check the log to see all the operations from this example, as shown in t
 
 ## Next steps
 
+1. Generate a user token  
 For demonstration purposes, Agora Chat provides an app server that enables you to quickly retrieve a token using the App Key given in this guide. In a production context, the best practice is for you to deploy your own token server, use your own [App Key](./enable_agora_chat?platform=Unity#get-the-information-of-the-agora-chat-project) to generate a token, and retrieve the token on the client side to log in to the Agora Chat service. To see how to implement a server that generates and serves tokens on request, see [Generate a User Token](./generate_user_tokens).
+
+2. Avoid blocked callbacks  
+Each callback of an Agora Chat client instance runs in the same thread, for example, the `onSuccess` and `onError` callbacks in this sample project. Therefore, to avoid blocked callbacks, Agora recommends that you execute callbacks in one thread and perform other operations in the others within a production context.
