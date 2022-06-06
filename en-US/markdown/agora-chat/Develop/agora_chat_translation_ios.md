@@ -38,15 +38,16 @@ In both on-demand translation and automatic translation scenarios, call `fetchSu
 
 ### On-demand translation
 
-When the recipient receives a text message, call `translateMessage` to translate the message:
+When the recipient receives a text message, call `translateMessage` to translate the message. When the translation finishes, the translated message is stored in the message. 
 
 ```Objective-C
-// Only text messages can be translated
+// Only text messages can be translated.
 [AgoraChatClient.sharedClient.chatManager translateMessage:message targetLanguages:@[@"en"] completion:^(AgoraChatMessage *message, AgoraChatError *error) {
-}];
+    // Get the translation.
+    AgoraChatTextMessageBody* body = (AgoraChatTextMessageBody*)message.body;
+    NSDictionary* translations = body.translations;
+    }];
 ```
-
-When the translation finishes, the translated message is stored in the message. 
 
 ### Automatic translation
 
@@ -59,4 +60,17 @@ AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:@"t
 [AgoraChatClient.sharedClient.chatManager sendMessage:message progress:nil completion:nil];
 ```
 
-The SDK sends both the original message and the translated message. 
+The SDK sends both the original message and the translated message. Once the recipient receives the message, refer to the following code sample to get the translation:
+
+```Objective-C
+- (void)messagesDidReceive:(NSArray *)aMessages
+{
+    for (AgoraChatChatMessage *msg in aMessages) {
+        if (msg.body.type == AgoraChatMessageBodyTypeText) {
+            // Get the translation
+            AgoraChatTextMessageBody* body = (AgoraChatTextMessageBody*)message.body;
+            NSDictionary* translations = body.translations;
+        }
+    }
+}
+```
