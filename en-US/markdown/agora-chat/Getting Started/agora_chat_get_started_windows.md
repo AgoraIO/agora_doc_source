@@ -12,7 +12,7 @@ The following figure shows the workflow of how clients send and receive peer-to-
 
 As shown in the figure, the workflow of peer-to-peer messaging is as follows:
 
-1. The clients retrieve a token from your app server.
+1. Clients retrieve a token from your app server.
 2. Client A and Client B log in to Agora Chat.
 3. Client A sends a message to Client B. The message is sent to the Agora Chat server and the server delivers the message to Client B. When Client B receives the message, the SDK triggers an event. Client B listens for the event and gets the message.
 
@@ -24,21 +24,21 @@ In order to follow the procedure in this page, you must have the following:
 - Visual Studio IDE 2019 or later
 - .Net Framework 4.7.2 or later, or .Net Core 5.0 or later
 
-<div class="alert note">Open the specified ports in <a href="https://docs.agora.io/en/Agora%20Platform/firewall?platform=All%20Platforms">Firewall Requirements</a> if your network has a firewall.</div>
+<div class="alert note">If your network has a firewall, make sure that you open the ports specified in <a href="https://docs.agora.io/en/Agora%20Platform/firewall?platform=All%20Platforms">Firewall Requirements</a>.</div>
 
 ## Project setup
 
-This section shows how to prepare the development environment necessary to integrate Agora Chat into the project.
+This section shows how to prepare the development environment necessary to integrate Agora Chat into your project.
 
 ### 1. Download the Windows sample project
 
-1. Clone the [Windows demo repo](https://github.com/easemob/chat_windows_demo) to your local device.
+1. Clone the [Windows demo repository](https://github.com/easemob/chat_windows_demo) to your local device.
 2. Locate the `windows-example` folder of the downloaded repo, and double-click to open the `windows-example.sln` file in **Visual Studio**.
 3. In the top menu of **Visual Studio**, select **Active solution configuration** as **Debug** and **Active solution platform** as **x64**.
 
-### 2. Integrate Agora Chat SDK
+### 2. Integrate the Agora Chat SDK
 
-1. Go to the [SDK download page](./downloads?platform=Windows), download the latest version of the Agora Chat SDK package for Windows.
+1. Go to the [SDK download page](./downloads?platform=Windows), and download the latest version of the Agora Chat SDK package for Windows.
 2. Decompress the Windows SDK to the `windows-example\bin\x64\Debug` path.
 3. In **Solution Explorer** of **Visual Studio**, click the triangle icon to the left of the **windows-example** project to expand the drop-down menu, right-click **References**, and select **Add Reference...**.  
 4. In the **Reference Manager** pop-up window, click **Browse...** at the bottom right corner, select the `chatsdk.dll` file in the `windows-example\bin\x64\Debug` path, and click **Add** to import the SDK.  
@@ -53,10 +53,10 @@ This section shows how to use the Chat SDK to implement peer-to-peer messaging i
 In **Solution Explorer** of **Visual Studio**, select **windows-example** > **MainWindow.xaml**, and double-click to open the `MainWindow.xaml.cs` file.
 
 <div class="alert note">
-A <code>JsonConvert.Undefined</code> error occurs when Newtonsoft.Json has not been imported to your project. Follow the steps to fix this issue:
+A <code>JsonConvert.Undefined</code> error occurs when Newtonsoft.Json has not been imported to your project. Follow these steps to fix this issue:
 <ol>1. Right-click <b>windows-example</b>, and select <b>Manage NuGet Packages...</b> in the drop-down menu.</ol>
-<ol>2. In the <b>Installed</b> tab of the <b>NuGet: windows-example</b> page, select the <b>Newtonsoft.Json</b> entry and click <b>Uninstalled</b>.</ol>
-<ol>3. In the <b>Browse</b> tab of the <b>NuGet: windows-example</b> page, search <b>Newtonsoft.Json</b> and click <b>Install</b> to reinstall Newtonsoft.Json.</ol>
+<ol>2. In the <b>Installed</b> tab of the <b>NuGet: windows-example</b> page, select the <b>Newtonsoft.Json</b> entry, and click <b>Uninstalled</b>.</ol>
+<ol>3. In the <b>Browse</b> tab of the <b>NuGet: windows-example</b> page, search <b>Newtonsoft.Json</b>, and click <b>Install</b> to reinstall Newtonsoft.Json.</ol>
 </div>
 
 At the top lines of the `MainWindow.xaml.cs` file, add the following:
@@ -95,7 +95,7 @@ else
 
 ### 4. Log in to an account
 
-At the end of the `SignIn_Click` function, add the following to add the sign-up logic:
+At the end of the `SignIn_Click` function, add the following to add the login logic:
 
 ```c#
 // Call `LoginToAppServer` to retrieve the Agora token.
@@ -267,13 +267,13 @@ At the top of **Visual Studio**, click the **Start** button. If the sample proje
 In the user interface, perform the following operations to test the project:
 
 1. Sign up  
-Fill in the username in the `user id` text box and password in the `password` text box, and click **Sign up** to register an account. In this example, register two accounts (`my_sender` and `my_receiver`) to enable sending and receiving messages.
+Fill in the username in the `user id` box and password in the `password` box, and click **Sign up** to register an account. In this example, register two accounts (`my_sender` and `my_receiver`) to enable sending and receiving messages.
 
 2. Log in  
-After signing up the accounts, fill in the username in `user id` textbox and password in the `password` text box, and click **Sign in** to log in to the app. In this example, log in as `my_sender`.
+After signing up the accounts, fill in the username in `user id` box and password in the `password` box, and click **Sign in** to log in to the app. In this example, log in as `my_sender`.
 
 3. Send a message  
-Fill in the username of the receiver (`my_receiver`) in the `single chat id` textbox and the message ("hello world") to send in the `message content` text box, and click **Send** to send the message.
+Fill in the username of the receiver (`my_receiver`) in the `single chat id` box and type in the message ("hello world") you want to send in the `message content` box, and click **Send** to send the message.
 
 4. Sign out  
 Click **Sign out** to log out of the app.
@@ -287,4 +287,4 @@ You can check the log to see all the operations from this example, as shown in t
 
 ## Next steps
 
-For demonstration purposes, Agora Chat provides an app server that enables you to quickly retrieve a token using the App Key given in this guide. In a production context, the best practice is for you to deploy your own token server, use your own [App Key](./enable_agora_chat?platform=Unity#get-the-information-of-the-agora-chat-project) to generate a token, and retrieve the token on the client side to log in to Agora. To see how to implement a server that generates and serves tokens on request, see [Generate a User Token](./generate_user_tokens).
+For demonstration purposes, Agora Chat provides an app server that enables you to quickly retrieve a token using the App Key given in this guide. In a production context, the best practice is for you to deploy your own token server, use your own [App Key](./enable_agora_chat?platform=Unity#get-the-information-of-the-agora-chat-project) to generate a token, and retrieve the token on the client side to log in to the Agora Chat service. To see how to implement a server that generates and serves tokens on request, see [Generate a User Token](./generate_user_tokens).

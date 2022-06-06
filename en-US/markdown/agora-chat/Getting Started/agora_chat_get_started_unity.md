@@ -12,7 +12,7 @@ The following figure shows the workflow of how clients send and receive peer-to-
 
 As shown in the figure, the workflow of peer-to-peer messaging is as follows:
 
-1. The clients retrieve a token from your app server.
+1. Clients retrieve a token from your app server.
 2. Client A and Client B log in to Agora Chat.
 3. Client A sends a message to Client B.
 4. The message is sent to the Agora Chat server and the server delivers the message to Client B.
@@ -41,11 +41,11 @@ Ensure that no firewall is blocking your network communication; otherwise, the p
 
 ## Project setup
 
-This section shows how to prepare the development environment necessary to integrate Agora Chat into the game.
+This section shows how to prepare the development environment necessary to integrate Agora Chat into your game.
 
 ### 1. Download the Unity sample project
 
-1. Clone the [Unity demo repo](https://github.com/easemob/chat_unity_demo) to your local device.
+1. Clone the [Unity demo repository](https://github.com/easemob/chat_unity_demo) to your local device.
 
 2. In Unity Hub, select the **Projects** tab, click the down arrow next to the **Open** button, and select **Add project from disk** from the drop-down list. In the pop-up window, select the path to the downloaded `chat_unity_quickstart` folder to add the sample project into Unity Hub.
 
@@ -56,9 +56,9 @@ If your Unity Editor version is inconsistent with that of the sample project, do
 <ul><ol>1. In the <b>Editor version not installed</b> dialog box, select <b>Choose another Editor version</b>.</ol><ol>2. In the <b>Select Editor version and platform</b> dialog box, select the version of your Unity Editor, and follow the prompts to open the project.</ol></ul>
 </div>
 
-### 2. Integrate Agora Chat SDK
+### 2. Integrate the Agora Chat SDK
 
-1. Go to the [SDK download page](./downloads?platform=Unity), download the latest version of the Agora Chat SDK package for Unity, and decompress it.
+1. Go to the [SDK download page](./downloads?platform=Unity), and download the latest version of the Agora Chat SDK package for Unity, and decompress it.
 
 2. In Unity Editor, click **Assets** > **Import Package** > **Custom Package...**, and select the decompressed SDK.
 
@@ -235,23 +235,23 @@ If the sample project runs properly, the following user interface appears:
 In the user interface, perform the following operations to test the project:
 
 1. Sign up  
-Fill in the username in the `user id` text box and password in the `password` text box, and click **Sign up** to register an account. In this example, register two accounts (`local_user` and `remote_user`) to enable sending and receiving messages.
+Fill in the username in the `user id` box and password in the `password` box, and click **Sign up** to register an account. In this example, register two accounts (`local_user` and `remote_user`) to enable sending and receiving messages.
 
 2. Log in  
-After signing up the accounts, fill in the username in `user id` textbox and password in the `password` text box, and click **Sign in** to log in to the app. In this example, log in as `local_user`.
+After signing up the accounts, fill in the username in the `user id` box and password in the `password` box, and click **Sign in** to log in to the app. In this example, log in as `local_user`.
 
 3. Send a message
-Fill in the username of the receiver (`remote_user`) in the `single chat id` textbox and the message ("hello world") to send in the `message content` text box, and click **Send** to send the message.
+Fill in the username of the receiver (`remote_user`) in the `single chat id` box and type in the message ("hello world") to send in the `message content` box, and click **Send** to send the message.
 
 4. Sign out  
 Click **Sign out** to log out of the app.
 
 5. Receive the message  
-After signing ou as `local_user`, log in as `remote_user` and receive the message ("hello world") sent in step 3.
+After signing out as `local_user`, log in as `remote_user` and receive the message ("hello world") sent in step 3.
 
 You can check the log to see all the operations from this example, as shown in the following figure:
 ![](https://web-cdn.agora.io/docs-files/1652781638358)
 
-## Next Steps
+## Next steps
 
 For demonstration purposes, Agora Chat provides an app server that enables you to quickly retrieve a token using the App Key given in this guide. In a production context, the best practice is for you to deploy your own token server, use your own [App Key](./enable_agora_chat?platform=Unity#get-the-information-of-the-agora-chat-project) to generate a token, and retrieve the token on the client side to log in to Agora. To see how to implement a server that generates and serves tokens on request, see [Generate a User Token](./generate_user_tokens).
