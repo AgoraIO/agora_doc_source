@@ -19,8 +19,8 @@ SDKClient.Instance.Login(username, passwd,
                 },
                 onError: (code, desc) =>
                 {
-                    // code: USER_ALREADY_EXIST(203)
-                    // desc: User already exist.
+                    // code: 203
+                    // desc: USER_ALREADY_EXIST
                 }
             )
         );
