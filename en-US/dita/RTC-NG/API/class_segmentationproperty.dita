@@ -55,23 +55,23 @@
             <parml>
             <plentry>
                 <pt>modelType</pt>
-                <pd><ph>Algorithms for background processing. </ph><ph props="ios mac cpp">See <xref keyref="SEG_MODEL_TYPE"/>.</ph><ul props="android">
-                    <li><ph keyref="SEG_MODEL_AI" />(1): (Default) The algorithm suitable for all scenarios.</li>
-                    <li><ph keyref="SEG_MODEL_GREEN" />(2): The algorithm only suitable for green background scenario.</li>
+                <pd><ph>The type of algorithms to user for background processing. </ph><ph props="ios mac cpp">See <xref keyref="SEG_MODEL_TYPE"/>.</ph><ul props="android">
+                    <li><ph keyref="SEG_MODEL_AI" />(1): (Default) Use the algorithm suitable for all scenarios.</li>
+                    <li><ph keyref="SEG_MODEL_GREEN" />(2): Use the algorithm designed specifically for scenarios with a green screen background.</li>
                     </ul></pd>
             </plentry>
             <plentry props="hide">
                 <pt>preferVelocity</pt>
-                <pd>Whether to enable bilateral filtering.<ul>
+                <pd>Whether to enable bilateral filtering:<ul>
                     <li>0: Disable bilateral filtering.</li>
-                    <li>1: (Default) Enable bilateral filter, the virtual background effect is better in green background scenario.</li>
+                    <li>1: (Default) Enable bilateral filtering. This improves the virtual background effect in green screen background scenarios.</li>
                     </ul>
                     <note type="note">This parameter only takes effect when <parmname>modelType</parmname> is set to <apiname keyref="SEG_MODEL_GREEN"/>.</note></pd>
             </plentry>
             <plentry>
                 <pt>greenCapacity</pt>
                 <pd>
-                    <p>The range of accuracy for identifying green colors (ie, different degrees of green) in the view. The value range is [0,1], and the default value is 0.5. The larger the value, the larger the identifiable green range. When the value of this parameter is too large, the edge of the portrait and the green color in the portrait range will also be detected. Agora recommends that you dynamically adjust the value of this parameter according to the actual effect.</p>
+                    <p>The range of accuracy for identifying green colors (different shades of green) in the view. The value range is [0,1], and the default value is 0.5. The larger the value, the wider the range of identifiable shades of green. When the value of this parameter is too large, the edge of the portrait and the green color in the portrait range are also detected. Agora recommends that you dynamically adjust the value of this parameter according to the actual effect.</p>
                     <note type="note">This parameter only takes effect when <parmname>modelType</parmname> is set to <apiname keyref="SEG_MODEL_GREEN"/>.</note> </pd>
             </plentry>
             </parml> </section>
