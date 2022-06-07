@@ -66,20 +66,20 @@ During the run time of the Agora Chat SDK, if the method call succeeds, the SDK 
 | 705 | `AgoraChatErrorChatroomNotExist` | The chatroom does not exist	 | When you try controlling a chatroom that does not exist, the SDK returns this error code. |
 | 900 | `AgoraChatErrorUserCountExceed` | The number of users when retrieving user attributes exceeds 100 | When retrieiving user arrtributes, if the number of the specified users exceed 100, the SDK returns this error code. |
 | 901 | `AgoraChatErrorUserInfoDataLengthExceed` | The length of the user attribute exceeds the limit | The length of the set user attribute exceeds the limit. The sum of all user attributes for a single user cannot exceed 2 KB, and the sum of all user attributes for a single app cannot exceed 10 GB. |
-| 903    | EMErrorTranslateParamInvalid        | 翻译参数无效           | The parameters you pass when calling APIs of the translation service are invalid.   |
-| 904    | EMErrorTranslateFail                 | 翻译服务接口返回错误     | The request to translate fails.   |
-| 905    | EMErrorTranslateNotInit            | 翻译服务未初始化                      | The translation service has not been initialized.       |
-| 1000   | EMErrorContactAddFailed             | 添加联系人失败                      | The request to add a contact fails.         |
-| 1001   | EMErrorContactReachLimit            | 邀请者联系人数量已经达到上限     |  You cannot add a contact because the number of your contacts has reached the upper limit.       |
-| 1002   | EMErrorContactReachLimitPeer       | 受邀请者联系人达到上限    |     You cannot add a contact because the number of the contacts of the peer has reached the upper limit.  |
-| 1100   | EMErrorPresenceParamExceed    | 参数长度超出限制   |   The length of the parameters you pass in when calling APIs of the presence service exceed the upper limit.  |
-| 1110   | EMErrorTranslateParamError       |  翻译参数错误 |  The parameters you pass in when calling APIs of the translation service are invalid.   |
-| 1111   | EMErrorTranslateServiceNotEnabled   |  未启用服务    |  The translation service has not been activated.   |
-| 1112   | EMErrorTranslateUsageLimit   | 翻译用量达到上限  |  The usage of the translation service exceeds the upper limit. |
-| 1113   | EMErrorTranslateServiceFail  | 获取翻译服务失败 |   The request to retrieve the translation service fails. |
-| 1300   | EMErrorReactionReachLimit           | 数量达到限制   |  The number of reactions exceeds the upper limit.   |
-| 1301   | EMErrorReactionHasBeenOperated      | 重复添加     |  The reaction to add already exists in your reaction list.     |
-| 1302   | EMErrorReactionOperationIsIllegal   | 没有操作权限   | You do not have the permission to perform operations to a reaction. For example, you cannot delete a reaction if the reaction does not exist in your reaction list.   |
-| 1400   | THREAD_NOT_EXIST |  子区不存在 |  The thread does not exist.    |
-| 1401   | THREAD_ALREADY_EXIST | 该子区已存在  |  The thread to create already exists in a chat group.     |
-| 1402  | THREAD_CREATE_MESSAGE_ILLEGAL | 创建子区的消息无效 |  The request to send a message in a thread fails because the parent message of the thread is recalled. |
+| 903    | `EMErrorTranslateParamInvalid`        | 翻译参数无效           | The parameters you are attempting to pass when calling APIs of the translation service are invalid.   |
+| 904    | `EMErrorTranslateFail`                 | 翻译服务接口返回错误     | The request to translate fails.   |
+| 905    | `EMErrorTranslateNotInit`            | 翻译服务未初始化                      | The translation service has not been initialized.       |
+| 1000   | `EMErrorContactAddFailed`             | 添加联系人失败                      | The request to add a contact fails.         |
+| 1001   | `EMErrorContactReachLimit`            | 邀请者联系人数量已经达到上限     |  You cannot add a contact because the number of your contacts has reached the limit.       |
+| 1002   | `EMErrorContactReachLimitPeer`       | 受邀请者联系人达到上限    |     You cannot add a contact because the number of the peer contacts has reached the limit.  |
+| 1100   | `EMErrorPresenceParamExceed`    | 参数长度超出限制   |   The length of the parameters you are attempting to pass in when calling APIs of the presence service exceed the limit.  |
+| 1110   | `EMErrorTranslateParamError`       |  翻译参数错误 |  The parameters you are attempting to pass in when calling APIs of the translation service are invalid.   |
+| 1111   | `EMErrorTranslateServiceNotEnabled`   |  未启用服务    |  The translation service has not been activated.   |
+| 1112   | `EMErrorTranslateUsageLimit`   | 翻译用量达到上限  |  The usage of the translation service exceeds the limit. |
+| 1113   | `EMErrorTranslateServiceFail`  | 获取翻译服务失败 |   The request to retrieve the translation service fails. |
+| 1300   | `EMErrorReactionReachLimit`           | 数量达到限制   |  The number of reactions exceeds the limit.   |
+| 1301   | `EMErrorReactionHasBeenOperated`      | 重复添加     |  The reaction to be added already exists in your reaction list.     |
+| 1302   | `EMErrorReactionOperationIsIllegal`   | 没有操作权限   | You do not have permission to perform operations to a reaction. For example, you cannot delete a reaction if the reaction does not exist in your reaction list.   |
+| 1400   | `THREAD_NOT_EXIST` |  子区不存在 |  The thread does not exist.    |
+| 1401   | `THREAD_ALREADY_EXIST` | 该子区已存在  |  The thread to be created already exists in a chat group.     |
+| 1402  | `THREAD_CREATE_MESSAGE_ILLEGAL` | 创建子区的消息无效 |  The request to send a message in a thread fails because the parent message of the thread is recalled. |
