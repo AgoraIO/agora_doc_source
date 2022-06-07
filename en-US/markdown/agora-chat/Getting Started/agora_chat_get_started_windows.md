@@ -30,11 +30,19 @@ This section shows how to prepare the development environment necessary to integ
 
 ### 2. Integrate the Agora Chat SDK
 
-1. Go to the [SDK download page](./downloads?platform=Windows), and download the latest version of the Agora Chat SDK package for Windows.
-2. Decompress the Windows SDK to the `windows-example\bin\x64\Debug` path.
-3. In **Solution Explorer** of **Visual Studio**, click the triangle icon to the left of the **windows-example** project to expand the drop-down menu, right-click **References**, and select **Add Reference...**.  
-4. In the **Reference Manager** pop-up window, click **Browse...** at the bottom right corner, select the `chatsdk.dll` file in the `windows-example\bin\x64\Debug` path, and click **Add** to import the SDK.  
-Once the **chatsdk** item displays under **windows-example** > **References** in **Solution Explorer**, the integration succeeds.
+1. Go to the [SDK download page](https://downloadsdk.easemob.com/downloads/SDK/WinSDK/agora_chat_sdk.1.0.2-beta.nupkg) to download the NuGet package to your local device.
+
+2. In **Solution Explorer** of **Visual Studio**, right-click **windows-example**, and select **Manage NuGet Packages...** in the drop-down menu.
+
+3. On the **NuGet: windows-example** page, select the **Gear** icon at the top right.
+
+4. In the **Options** pop-up window, click the **+** button at the top right to add a package source. Select the new package source, specify its name in the **Name** box, set its path to the parent directory where the downloaded Nuget package resides in the **Source** box, and click **OK**.
+
+5. Go back to the **NuGet: windows-example** page, open the **Package source** drop-down list at the top right, and select the newly-added one.
+
+6. In the **Browse** tab of the **NuGet: windows-example** page, check the **Include prerelease** box, select the **agora_chat_sdk** item displayed below (if not, refresh the page), and click **Install**.
+
+7. In the pop-up **Preview Changes** windows, click **OK** to proceed and complete the installation.
 
 ## Implement peer-to-peer messaging
 
