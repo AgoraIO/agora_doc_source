@@ -4,8 +4,8 @@ Possible reasons for the errors are given to assist you in debugging.  If you re
 
 During the run time of the Agora Chat SDK, if the method call succeeds, the SDK returns `nil`; of not, the SDK returns the following error codes and error messages:
 
-| Error code | Error message | Description | Possible reason |
-| :----- | :----------------------------------- | :------------------------------- | :----------------------------------------------------------- |
+| Error code | Error message | Possible reason |
+| :----- | :----------------------------------- | :----------------------------------------------------------- |
 | 1 | `AgoraChatErrorGeneral` | The SDK has not been successfully initialized, or the specified reason for the error is not identified when you request the server. You can try reinitializing the SDK. |
 | 2 | `AgoraChatErrorNetworkUnavailable` | Disconnections between the SDK and the server happen due to the network problems. |
 | 3 | `AgoraChatErrorDatabaseOperationFailed` | Fails to open local database. Please contact Agora technical support. |
