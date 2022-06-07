@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayercachemanager_getcachedir">
+    <title><ph keyref="getCacheDir"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Gets the storage path of the cached media files.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getCacheDir"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">String getCacheDir();</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (NSString *)cacheDir;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int getCacheDir(char* path, int length) = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>If you haved not called the <xref keyref="setCacheDir"/> method to set the storage path for the media files to be cached before calling this method, you get the default storage path used by the SDK.</p>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul>
+            <li>0: The call succeeds and returns the storage path of the cached media files.</li>
+            <li>&lt; 0: Failure. See <xref keyref="MEDIA_PLAYER_ERROR"/>.</li>
+            </ul> </section>
+    </refbody>
+</reference>
