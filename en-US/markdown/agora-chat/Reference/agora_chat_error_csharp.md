@@ -4,7 +4,7 @@ This page introduces the error codes and error messages that might be returned b
 
 Possible reasons for the errors are given to assist you in debugging. If you receive an error code not included here, Agora recommends you contact support@agora.io so that the technical support team can help resolve the issue.
 
-During the run time of the Agora Chat SDK, the error codes and error messages might be returned in the following ways
+During the run time of the Agora Chat SDK, the error codes and error messages might be returned in the following ways:
 
 - The return value when a method call fails.
 - The error code reported through the `onError` callback.
@@ -30,7 +30,7 @@ SDKClient.Instance.Login(username, passwd,
 | Error code | Error message                        | Error description                                                |
 | :----- | :--------------------------------------- | :----------------------------------------------------------- |
 | 0      | EM_NO_ERROR                     | The operation succeeds.            |
-| 1      | GENERAL_ERROR                   | The SDK is not properly initialized or the server cannot identify this error. |
+| 1      | GENERAL_ERROR                   | The SDK is not properly initialized, or the server cannot identify this error. |
 | 2      | NETWORK_ERROR                   | The SDK is disconnected from the server due to network interruption.   |
 | 4      | EXCEED_SERVICE_LIMIT            | The usage exceeds the service limit. For example, the total number of registered user exceeds the upper limit of the current pricing plan. |
 | 100    | INVALID_APP_KEY                 | The App Key is invalid.                               |
