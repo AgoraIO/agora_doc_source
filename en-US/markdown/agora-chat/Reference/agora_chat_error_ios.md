@@ -6,80 +6,80 @@ During the run time of the Agora Chat SDK, if the method call succeeds, the SDK 
 
 | Error code | Error message | Description | Possible reason |
 | :----- | :----------------------------------- | :------------------------------- | :----------------------------------------------------------- |
-| 1 | `AgoraChatErrorGeneral` | A general error occurs (no specified reason) | The SDK has not been successfully initialized, or the specified reason for the error is not identified when you request the server. You can try reinitializing the SDK. |
-| 2 | `AgoraChatErrorNetworkUnavailable` | Network error | Disconnections between the SDK and the server happen due to the network problems. |
-| 3 | `AgoraChatErrorDatabaseOperationFailed` | The database operation fails | Fails to open local database. Please contact Agora technical support. |
-| 4 | `AgoraChatErrorExceedServiceLimit` | The service limit is exceeded | The service limit is exceeded, for example: the total number of registered users or their friends exceeds the plan limit described in [Package plan](./agora_chat_plan?platform=iOS). |
-| 100 | `AgoraChatErrorInvalidAppkey` | Invalid App Key | The App Key is invalid. Log in again using a valid App Key. For how to get the App Key, see [Get the information of theAgora Chat project](./enable_agora_chat?platform=iOS). |
-| 101 | `AgoraChatErrorInvalidUsername` | Invalid user ID | The user ID is empty, or the format of the parameter is incorrect. Use a valid user ID. |
-| 102 | `AgoraChatErrorInvalidPassword` | Invalid password | The password entered to log in is empty or incorrect. Log in again using the correct password. |
-| 104 | `AgoraChatErrorUsernameTooLong` | The user ID is too long | The user ID is too long. Log in again with a valid user ID. |
-| 200 | `AgoraChatErrorUserAlreadyLoginSame` | The user is already logged in | This user is already logged in. Do not log in repeatedly. |
-| 201 | `AgoraChatErrorUserNotLogin` | The user is not logged in | The user is not logged in when the method is called. Please check your code logic. |
-| 202 | `AgoraChatErrorUserAuthenticationFailed` | The user authentication fails | The user authentication fails. Check whether the token has expired. |
-| 203 | `AgoraChatErrorUserAlreadyExist` | User already exists | A user with the same user ID is already logged in. Do not register repeatedly. |
-| 204 | `AgoraChatErrorUserNotFound` | The user is not found | The user is not registered when the method is called. Register before doing any other operation. |
-| 205 | `AgoraChatErrorUserIllegalArgument` | The user parameter is invalid | An invalid parameter is used when you call the method.  For example, invalid characters are found in the specified user ID.  Reset the parameters. |
-| 206 | `AgoraChatErrorUserLoginOnAnotherDevice` | The user is logged in at another device | If the user does not enable multi-device login, the user is forced to log out when logging in at another device, and the SDK returns this error code. |
-| 207 | `AgoraChatErrorUserRemoved` | The user is removed | When the logged in user ID is deleted by the server, the SDK returns this error code. |
-| 208 | `AgoraChatErrorUserRegisterFailed` | The user registration fails | When you call the server registration method, the parameter passed is empty or invalid. For details, see [User registration RESTful API](./agora_chat_restful_reg?platform=RESTful). |
-| 209 | `AgoraChatErrorUpdateApnsConfigsFailed` | Fails to update the push message configurations | Fails to update the push message configurations, such as the push display nickname, do-not-disturb mode, etc. Try calling the method again. |
-| 210 | `AgoraChatErrorUserPermissionDenied` | The permission is denied to the user | The user has no permission to operate. Check whether the user is banned. If the user is banned, unban the user and log in again. |
-| 213 | `AgoraChatErrorUserBindAnotherDevice` | The user is already logged in at another device | If the user sets the device login priority, that is, to log in at the device with higher priority, when the logged in user tries logging in to another device, the login fails, and the SDK returns the error code. |
-| 214 | `AgoraChatErrorUserLoginTooManyDevices` | The user logs in at too many devices | If a user ID is logged in at four devices, when the user tries logging in at a fifth device, the SDK returns this error code. If you want a user to log in at more than four devices, contact support@agora.io. |
-| 215 | `AgoraChatErrorUserMuted` | The user is muted | If the user is muted in the group or the chatroom, when the user sends a message, the SDK returns this error code. |
-| 216 | `AgoraChatErrorUserKickedByChangePassword` | The user is kicked out due to a password change | If the logged in user changes the present password, the SDK kicks the user out and returns this error code. Try logging in again with the new password. |
-| 217 | `AgoraChatErrorUserKickedByOtherDevice` | The user is kicked out from another device and logs out | When the multi-device login function is enabled, if the user forces the user ID logged in at the current device to log out by calling APIs or managing the backend at another device, the SDK returns this error code. |
-| 221 | `AgoraChatErrorUSER_NOT_FRIEND` | You cannot send messages to a user that is not your contact.   | When a peer user sets not to receive messages from a user that is not a contact, if you send a message to this peer user, the SDK reports this error code. You can enable this feature on Agora Console. | 
-| 300 | `AgoraChatErrorServerNotReachable` | The requesting service fails | The SDK disconnects from the Agora Chat system due to network problems. Try again later. |
-| 301 | `AgoraChatErrorServerTimeout` | A timeout occurs in the requesting service | Some API calls require the SDK to return the execution result. This error occurs if the SDK takes too long (more than 30 seconds) to return the result. |
-| 302 | `AgoraChatErrorServerBusy` | The server is busy | The server is currently busy. Try again later. |
-| 303 | `AgoraChatErrorServerUnknownError` | The common error code of the requesting service | This common error occurs when the requesting service fails. Check the log for troubleshooting. |
-| 304 | `AgoraChatErrorServerGetDNSConfigFailed` | An error occurs in getting the server configuration information | The SDK fails in getting the configuration of the server that the app currently runs on.  Try calling the method again. |
-| 305 | `AgoraChatErrorServerServingForbidden` | The current app is banned | If the app is banned, the SDK returns this error code when the methods are called. |
-| 400 | `AgoraChatErrorFileNotFound` | The file is not found | When the user is unable to get the log file or download the attachment, the SDK returns this error code. |
-| 401 | `AgoraChatErrorFileInvalid` | The file is invalid | When the uploaded message attachment or the shared file in the group is invalid, the SDK returns this error code. |
-| 402 | `AgoraChatErrorFileUploadFailed` | The file cannot be uploaded | When the message attachment cannot be uploaded, the SDK returns this error code.  Try uploading again. |
-| 403 | `AgoraChatErrorFileDownloadFailed` | The file cannot be downloaded | When the message attachment cannot be downloaded, the SDK returns this error code. Try downloading again. |
-| 404 | `AgoraChatErrorFileDeleteFailed` | The file cannot be deleted | When getting the log file, the SDK deletes the old log file. If the old log files cannot be deleted, the SDK returns this error code. |
-| 405 | `AgoraChatErrorFileTooLarge` | The file is too large | When the size of the message attachment or the group shared file exceeds the limit, the SDK returns this error code.  Adjust the file size, and try uploading again. |
-| 406 | `AgoraChatErrorFileContentImproper` | The file content does not comply with certain rules. | This error can also be reported if you fail to upload a message attachment. |
-| 500 | `AgoraChatErrorMessageInvalid` | The message is invalid | The content of the message to be sent is empty, the message ID is empty, or the user ID of the sender is not the user ID that is currently logged in.  Check the problems, and try sending the message again. |
-| 502 | `AgoraChatErrorMessageTrafficLimit` | The message traffic is limited | The message-sending frequency is too high or the message size is too large. Agora recommends reducing the sending frequency or the message size. |
-| 504 | `AgoraChatErrorMessageRecallTimeLimit` | A timeout occurs when the message is recalled | When a timeout occurs during message recall, the SDK returns this error code. |
-| 505 | `AgoraChatErrorServiceNotEnable` | The service is not enabled | When you try using a service that is not enabled, the SDK returns this error code. |
-| 506 | `AgoraChatErrorMessageExpired` | The message expires | If you send a group receipt after the time limit (the default is three days), the SDK returns this error code. |
-| 507 | `AgoraChatErrorMessageIllegalWhiteList` | The user is not included in the whitelist | If all members are banned in the group chatroom and the user ID is not included in the whitelist, when this user tries sending a message, the SDK returns this error code. |
-| 508 | `AgoraChatErrorMessageExternalLogicBlocked` | The callback is triggered before the method is executed | The sent message is intercepted by the user-defined pre-send callback rule. Check your settings of the pre-send callback rule. |
-| 600 | `AgoraChatErrorGroupInvalidId` | The group ID is invalid | When you call the methods related to the group and the group ID provided is invalid, the SDK returns this error code. |
-| 601 | `AgoraChatErrorGroupAlreadyJoined` | The user has already joined the group | When you call the group joining method, if the user has already joined the group, the SDK returns this error code. |
-| 602 | `AgoraChatErrorGroupNotJoined` | You have not joined the group | When you try sending messages or controlling a group that you have not joined, the SDK returns this error code. |
-| 603 | `AgoraChatErrorGroupPermissionDenied` | Group permission is denied | The user does not have permission to control the group, for example the group members do not have permission to set the group administrator.  Check whether the user has administrator permissions. |
-| 604 | `AgoraChatErrorGroupMembersFull` | The group is full | The number of the group members has reached the limit. |
-| 605 | `AgoraChatErrorGroupNotExist` | The group does not exist | When you try controlling a group that does not exist, the SDK returns this error code. |
-| 606 | `AgoraChatErrorGroupSharedFileInvalidId` | The group shared file ID is empty | The group shared file ID is empty and the group shared file cannot be uploaded or downloaded. |
-| 700 | `AgoraChatErrorChatroomInvalidId` | The chatroom ID is invalid | When you call the methods related to the chatroom and the chatroom ID provided is empty, the SDK returns this error code. |
-| 701 | `AgoraChatErrorChatroomAlreadyJoined` | The user has already joined the chatroom | When you call the chatroom-joining method, if the user has already joined the chatroom, the SDK returns this error code. |
-| 702 | `AgoraChatErrorChatroomNotJoined` | You have not joined the chatroom | When you try sending messages or controlling a chatroom that you have not joined, the SDK returns this error code. |
-| 703 | `AgoraChatErrorChatroomPermissionDenied` | Chatroom permission is denied | The user does not have permission to control the chatroom, for example, the chatroom members do not have permission to set the chatroom administrator.  Check whether the user has administrator permissions. |
-| 704 | `AgoraChatErrorChatroomMembersFull` | The chatroom is full | The number of the chatroom members has reached the limit. |
-| 705 | `AgoraChatErrorChatroomNotExist` | The chatroom does not exist	 | When you try controlling a chatroom that does not exist, the SDK returns this error code. |
-| 900 | `AgoraChatErrorUserCountExceed` | The number of users when retrieving user attributes exceeds 100 | When retrieiving user arrtributes, if the number of the specified users exceed 100, the SDK returns this error code. |
-| 901 | `AgoraChatErrorUserInfoDataLengthExceed` | The length of the user attribute exceeds the limit | The length of the set user attribute exceeds the limit. The sum of all user attributes for a single user cannot exceed 2 KB, and the sum of all user attributes for a single app cannot exceed 10 GB. |
-| 903    | `EMErrorTranslateParamInvalid`        | 翻译参数无效           | The parameters you are attempting to pass when calling APIs of the translation service are invalid.   |
-| 904    | `EMErrorTranslateFail`                 | 翻译服务接口返回错误     | The request to translate fails.   |
-| 905    | `EMErrorTranslateNotInit`            | 翻译服务未初始化                      | The translation service has not been initialized.       |
-| 1000   | `EMErrorContactAddFailed`             | 添加联系人失败                      | The request to add a contact fails.         |
-| 1001   | `EMErrorContactReachLimit`            | 邀请者联系人数量已经达到上限     |  You cannot add a contact because the number of your contacts has reached the limit.       |
-| 1002   | `EMErrorContactReachLimitPeer`       | 受邀请者联系人达到上限    |     You cannot add a contact because the number of the peer contacts has reached the limit.  |
-| 1100   | `EMErrorPresenceParamExceed`    | 参数长度超出限制   |   The length of the parameters you are attempting to pass in when calling APIs of the presence service exceed the limit.  |
-| 1110   | `EMErrorTranslateParamError`       |  翻译参数错误 |  The parameters you are attempting to pass in when calling APIs of the translation service are invalid.   |
-| 1111   | `EMErrorTranslateServiceNotEnabled`   |  未启用服务    |  The translation service has not been activated.   |
-| 1112   | `EMErrorTranslateUsageLimit`   | 翻译用量达到上限  |  The usage of the translation service exceeds the limit. |
-| 1113   | `EMErrorTranslateServiceFail`  | 获取翻译服务失败 |   The request to retrieve the translation service fails. |
-| 1300   | `EMErrorReactionReachLimit`           | 数量达到限制   |  The number of reactions exceeds the limit.   |
-| 1301   | `EMErrorReactionHasBeenOperated`      | 重复添加     |  The reaction to be added already exists in your reaction list.     |
-| 1302   | `EMErrorReactionOperationIsIllegal`   | 没有操作权限   | You do not have permission to perform operations to a reaction. For example, you cannot delete a reaction if the reaction does not exist in your reaction list.   |
-| 1400   | `THREAD_NOT_EXIST` |  子区不存在 |  The thread does not exist.    |
-| 1401   | `THREAD_ALREADY_EXIST` | 该子区已存在  |  The thread to be created already exists in a chat group.     |
-| 1402  | `THREAD_CREATE_MESSAGE_ILLEGAL` | 创建子区的消息无效 |  The request to send a message in a thread fails because the parent message of the thread is recalled. |
+| 1 | `AgoraChatErrorGeneral` | The SDK has not been successfully initialized, or the specified reason for the error is not identified when you request the server. You can try reinitializing the SDK. |
+| 2 | `AgoraChatErrorNetworkUnavailable` | Disconnections between the SDK and the server happen due to the network problems. |
+| 3 | `AgoraChatErrorDatabaseOperationFailed` | Fails to open local database. Please contact Agora technical support. |
+| 4 | `AgoraChatErrorExceedServiceLimit` |  The service limit is exceeded, for example: the total number of registered users or their friends exceeds the plan limit described in [Package plan](./agora_chat_plan?platform=iOS). |
+| 100 | `AgoraChatErrorInvalidAppkey` |  The App Key is invalid. Log in again using a valid App Key. For how to get the App Key, see [Get the information of theAgora Chat project](./enable_agora_chat?platform=iOS). |
+| 101 | `AgoraChatErrorInvalidUsername` | The user ID is empty, or the format of the parameter is incorrect. Use a valid user ID. |
+| 102 | `AgoraChatErrorInvalidPassword` | The password entered to log in is empty or incorrect. Log in again using the correct password. |
+| 104 | `AgoraChatErrorUsernameTooLong` | The user ID is too long. Log in again with a valid user ID. |
+| 200 | `AgoraChatErrorUserAlreadyLoginSame` |  This user is already logged in. Do not log in repeatedly. |
+| 201 | `AgoraChatErrorUserNotLogin` | The user is not logged in when the method is called. Please check your code logic. |
+| 202 | `AgoraChatErrorUserAuthenticationFailed` |  The user authentication fails. Check whether the token has expired. |
+| 203 | `AgoraChatErrorUserAlreadyExist` | A user with the same user ID is already logged in. Do not register repeatedly. |
+| 204 | `AgoraChatErrorUserNotFound` |  The user is not registered when the method is called. Register before doing any other operation. |
+| 205 | `AgoraChatErrorUserIllegalArgument` |  An invalid parameter is used when you call the method.  For example, invalid characters are found in the specified user ID.  Reset the parameters. |
+| 206 | `AgoraChatErrorUserLoginOnAnotherDevice` |  If the user does not enable multi-device login, the user is forced to log out when logging in at another device, and the SDK returns this error code. |
+| 207 | `AgoraChatErrorUserRemoved` |  When the logged in user ID is deleted by the server, the SDK returns this error code. |
+| 208 | `AgoraChatErrorUserRegisterFailed` | When you call the server registration method, the parameter passed is empty or invalid. For details, see [User registration RESTful API](./agora_chat_restful_reg?platform=RESTful). |
+| 209 | `AgoraChatErrorUpdateApnsConfigsFailed` |  Fails to update the push message configurations, such as the push display nickname, do-not-disturb mode, etc. Try calling the method again. |
+| 210 | `AgoraChatErrorUserPermissionDenied` | The user has no permission to operate. Check whether the user is banned. If the user is banned, unban the user and log in again. |
+| 213 | `AgoraChatErrorUserBindAnotherDevice`  | If the user sets the device login priority, that is, to log in at the device with higher priority, when the logged in user tries logging in to another device, the login fails, and the SDK returns the error code. |
+| 214 | `AgoraChatErrorUserLoginTooManyDevices` | If a user ID is logged in at four devices, when the user tries logging in at a fifth device, the SDK returns this error code. If you want a user to log in at more than four devices, contact support@agora.io. |
+| 215 | `AgoraChatErrorUserMuted` | If the user is muted in the group or the chatroom, when the user sends a message, the SDK returns this error code. |
+| 216 | `AgoraChatErrorUserKickedByChangePassword`  | If the logged in user changes the present password, the SDK kicks the user out and returns this error code. Try logging in again with the new password. |
+| 217 | `AgoraChatErrorUserKickedByOtherDevice` | When the multi-device login function is enabled, if the user forces the user ID logged in at the current device to log out by calling APIs or managing the backend at another device, the SDK returns this error code. |
+| 221 | `AgoraChatErrorUSER_NOT_FRIEND` | When a peer user sets not to receive messages from a user that is not a contact, if you send a message to this peer user, the SDK reports this error code. You can enable this feature on Agora Console. | 
+| 300 | `AgoraChatErrorServerNotReachable` |  The SDK disconnects from the Agora Chat system due to network problems. Try again later. |
+| 301 | `AgoraChatErrorServerTimeout` |Some API calls require the SDK to return the execution result. This error occurs if the SDK takes too long (more than 30 seconds) to return the result. |
+| 302 | `AgoraChatErrorServerBusy` |The server is currently busy. Try again later. |
+| 303 | `AgoraChatErrorServerUnknownError` |  This common error occurs when the requesting service fails. Check the log for troubleshooting. |
+| 304 | `AgoraChatErrorServerGetDNSConfigFailed` |  The SDK fails in getting the configuration of the server that the app currently runs on.  Try calling the method again. |
+| 305 | `AgoraChatErrorServerServingForbidden` |  If the app is banned, the SDK returns this error code when the methods are called. |
+| 400 | `AgoraChatErrorFileNotFound` |  When the user is unable to get the log file or download the attachment, the SDK returns this error code. |
+| 401 | `AgoraChatErrorFileInvalid` |When the uploaded message attachment or the shared file in the group is invalid, the SDK returns this error code. |
+| 402 | `AgoraChatErrorFileUploadFailed` | When the message attachment cannot be uploaded, the SDK returns this error code.  Try uploading again. |
+| 403 | `AgoraChatErrorFileDownloadFailed` | When the message attachment cannot be downloaded, the SDK returns this error code. Try downloading again. |
+| 404 | `AgoraChatErrorFileDeleteFailed` | When getting the log file, the SDK deletes the old log file. If the old log files cannot be deleted, the SDK returns this error code. |
+| 405 | `AgoraChatErrorFileTooLarge` |  When the size of the message attachment or the group shared file exceeds the limit, the SDK returns this error code.  Adjust the file size, and try uploading again. |
+| 406 | `AgoraChatErrorFileContentImproper` | This error can also be reported if you fail to upload a message attachment. |
+| 500 | `AgoraChatErrorMessageInvalid` |  The content of the message to be sent is empty, the message ID is empty, or the user ID of the sender is not the user ID that is currently logged in.  Check the problems, and try sending the message again. |
+| 502 | `AgoraChatErrorMessageTrafficLimit` | The message-sending frequency is too high or the message size is too large. Agora recommends reducing the sending frequency or the message size. |
+| 504 | `AgoraChatErrorMessageRecallTimeLimit` |  When a timeout occurs during message recall, the SDK returns this error code. |
+| 505 | `AgoraChatErrorServiceNotEnable` |  When you try using a service that is not enabled, the SDK returns this error code. |
+| 506 | `AgoraChatErrorMessageExpired` |  If you send a group receipt after the time limit (the default is three days), the SDK returns this error code. |
+| 507 | `AgoraChatErrorMessageIllegalWhiteList` |  If all members are banned in the group chatroom and the user ID is not included in the whitelist, when this user tries sending a message, the SDK returns this error code. |
+| 508 | `AgoraChatErrorMessageExternalLogicBlocked` |The sent message is intercepted by the user-defined pre-send callback rule. Check your settings of the pre-send callback rule. |
+| 600 | `AgoraChatErrorGroupInvalidId` | When you call the methods related to the group and the group ID provided is invalid, the SDK returns this error code. |
+| 601 | `AgoraChatErrorGroupAlreadyJoined` |  When you call the group joining method, if the user has already joined the group, the SDK returns this error code. |
+| 602 | `AgoraChatErrorGroupNotJoined` | When you try sending messages or controlling a group that you have not joined, the SDK returns this error code. |
+| 603 | `AgoraChatErrorGroupPermissionDenied` | The user does not have permission to control the group, for example the group members do not have permission to set the group administrator.  Check whether the user has administrator permissions. |
+| 604 | `AgoraChatErrorGroupMembersFull` | The number of the group members has reached the limit. |
+| 605 | `AgoraChatErrorGroupNotExist` | When you try controlling a group that does not exist, the SDK returns this error code. |
+| 606 | `AgoraChatErrorGroupSharedFileInvalidId` | The group shared file ID is empty and the group shared file cannot be uploaded or downloaded. |
+| 700 | `AgoraChatErrorChatroomInvalidId`| When you call the methods related to the chatroom and the chatroom ID provided is empty, the SDK returns this error code. |
+| 701 | `AgoraChatErrorChatroomAlreadyJoined`  | When you call the chatroom-joining method, if the user has already joined the chatroom, the SDK returns this error code. |
+| 702 | `AgoraChatErrorChatroomNotJoined` | When you try sending messages or controlling a chatroom that you have not joined, the SDK returns this error code. |
+| 703 | `AgoraChatErrorChatroomPermissionDenied`  | The user does not have permission to control the chatroom, for example, the chatroom members do not have permission to set the chatroom administrator.  Check whether the user has administrator permissions. |
+| 704 | `AgoraChatErrorChatroomMembersFull` | The number of the chatroom members has reached the limit. |
+| 705 | `AgoraChatErrorChatroomNotExist`  | When you try controlling a chatroom that does not exist, the SDK returns this error code. |
+| 900 | `AgoraChatErrorUserCountExceed`  | When retrieiving user arrtributes, if the number of the specified users exceed 100, the SDK returns this error code. |
+| 901 | `AgoraChatErrorUserInfoDataLengthExceed` | The length of the set user attribute exceeds the limit. The sum of all user attributes for a single user cannot exceed 2 KB, and the sum of all user attributes for a single app cannot exceed 10 GB. |
+| 903    | `EMErrorTranslateParamInvalid`            | The parameters you are attempting to pass when calling APIs of the translation service are invalid.   |
+| 904    | `EMErrorTranslateFail`                   | The request to translate fails.   |
+| 905    | `EMErrorTranslateNotInit`                   | The translation service has not been initialized.       |
+| 1000   | `EMErrorContactAddFailed`               | The request to add a contact fails.         |
+| 1001   | `EMErrorContactReachLimit`           |  You cannot add a contact because the number of your contacts has reached the limit.       |
+| 1002   | `EMErrorContactReachLimitPeer`        |     You cannot add a contact because the number of the peer contacts has reached the limit.  |
+| 1100   | `EMErrorPresenceParamExceed`     |   The length of the parameters you are attempting to pass in when calling APIs of the presence service exceed the limit.  |
+| 1110   | `EMErrorTranslateParamError`       |  The parameters you are attempting to pass in when calling APIs of the translation service are invalid.   |
+| 1111   | `EMErrorTranslateServiceNotEnabled`     |  The translation service has not been activated.   |
+| 1112   | `EMErrorTranslateUsageLimit`    |  The usage of the translation service exceeds the limit. |
+| 1113   | `EMErrorTranslateServiceFail` |   The request to retrieve the translation service fails. |
+| 1300   | `EMErrorReactionReachLimit`        |  The number of reactions exceeds the limit.   |
+| 1301   | `EMErrorReactionHasBeenOperated`   |  The reaction to be added already exists in your reaction list.     |
+| 1302   | `EMErrorReactionOperationIsIllegal`   | You do not have permission to perform operations to a reaction. For example, you cannot delete a reaction if the reaction does not exist in your reaction list.   |
+| 1400   | `THREAD_NOT_EXIST`|  The thread does not exist.    |
+| 1401   | `THREAD_ALREADY_EXIST`  |  The thread to be created already exists in a chat group.     |
+| 1402  | `THREAD_CREATE_MESSAGE_ILLEGAL`  |  The request to send a message in a thread fails because the parent message of the thread is recalled. |
