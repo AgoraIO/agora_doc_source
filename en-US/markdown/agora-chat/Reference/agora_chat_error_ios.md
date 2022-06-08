@@ -30,7 +30,7 @@ During the run time of the Agora Chat SDK, if the method call succeeds, the SDK 
 | 215 | `AgoraChatErrorUserMuted` | If the user is muted in the group or the chatroom, when the user sends a message, the SDK returns this error code. |
 | 216 | `AgoraChatErrorUserKickedByChangePassword`  | If the logged in user changes the present password, the SDK kicks the user out and returns this error code. Try logging in again with the new password. |
 | 217 | `AgoraChatErrorUserKickedByOtherDevice` | When the multi-device login function is enabled, if the user forces the user ID logged in at the current device to log out by calling APIs or managing the backend at another device, the SDK returns this error code. |
-| 221 | `AgoraChatErrorUSER_NOT_FRIEND` | When a peer user sets not to receive messages from a user that is not a contact, if you send a message to this peer user, the SDK reports this error code. You can enable this feature on Agora Console. | 
+| 221 | `AgoraChatErrorUserNotOnRoster` | When a peer user sets not to receive messages from a user that is not a contact, if you send a message to this peer user, the SDK reports this error code. You can enable this feature on Agora Console. | 
 | 300 | `AgoraChatErrorServerNotReachable` |  The SDK disconnects from the Agora Chat system due to network problems. Try again later. |
 | 301 | `AgoraChatErrorServerTimeout` |Some API calls require the SDK to return the execution result. This error occurs if the SDK takes too long (more than 30 seconds) to return the result. |
 | 302 | `AgoraChatErrorServerBusy` |The server is currently busy. Try again later. |
@@ -66,20 +66,20 @@ During the run time of the Agora Chat SDK, if the method call succeeds, the SDK 
 | 705 | `AgoraChatErrorChatroomNotExist`  | When you try controlling a chatroom that does not exist, the SDK returns this error code. |
 | 900 | `AgoraChatErrorUserCountExceed`  | When retrieiving user arrtributes, if the number of the specified users exceed 100, the SDK returns this error code. |
 | 901 | `AgoraChatErrorUserInfoDataLengthExceed` | The length of the set user attribute exceeds the limit. The sum of all user attributes for a single user cannot exceed 2 KB, and the sum of all user attributes for a single app cannot exceed 10 GB. |
-| 903    | `EMErrorTranslateParamInvalid`            | The parameters you are attempting to pass when calling APIs of the translation service are invalid.   |
-| 904    | `EMErrorTranslateFail`                   | The request to translate fails.   |
-| 905    | `EMErrorTranslateNotInit`                   | The translation service has not been initialized.       |
-| 1000   | `EMErrorContactAddFailed`               | The request to add a contact fails.         |
-| 1001   | `EMErrorContactReachLimit`           |  You cannot add a contact because the number of your contacts has reached the limit.       |
-| 1002   | `EMErrorContactReachLimitPeer`        |     You cannot add a contact because the number of the peer contacts has reached the limit.  |
-| 1100   | `EMErrorPresenceParamExceed`     |   The length of the parameters you are attempting to pass in when calling APIs of the presence service exceed the limit.  |
-| 1110   | `EMErrorTranslateParamError`       |  The parameters you are attempting to pass in when calling APIs of the translation service are invalid.   |
-| 1111   | `EMErrorTranslateServiceNotEnabled`     |  The translation service has not been activated.   |
-| 1112   | `EMErrorTranslateUsageLimit`    |  The usage of the translation service exceeds the limit. |
-| 1113   | `EMErrorTranslateServiceFail` |   The request to retrieve the translation service fails. |
-| 1300   | `EMErrorReactionReachLimit`        |  The number of reactions exceeds the limit.   |
-| 1301   | `EMErrorReactionHasBeenOperated`   |  The reaction to be added already exists in your reaction list.     |
-| 1302   | `EMErrorReactionOperationIsIllegal`   | You do not have permission to perform operations to a reaction. For example, you cannot delete a reaction if the reaction does not exist in your reaction list.   |
-| 1400   | `THREAD_NOT_EXIST`|  The thread does not exist.    |
-| 1401   | `THREAD_ALREADY_EXIST`  |  The thread to be created already exists in a chat group.     |
-| 1402  | `THREAD_CREATE_MESSAGE_ILLEGAL`  |  The request to send a message in a thread fails because the parent message of the thread is recalled. |
+| 903    | `AgoraChatErrorTranslateParamInvalid`            | The parameters you are attempting to pass when calling APIs of the translation service are invalid.   |
+| 904    | `AgoraChatErrorTranslateFail`                   | The request to translate fails.   |
+| 905    | `AgoraChatErrorTranslateNotInit`                   | The translation service has not been initialized.       |
+| 1000   | `AgoraChatErrorContactAddFailed`               | The request to add a contact fails.         |
+| 1001   | `AgoraChatErrorContactReachLimit`           |  You cannot add a contact because the number of your contacts has reached the limit.       |
+| 1002   | `AgoraChatErrorContactReachLimitPeer`        |     You cannot add a contact because the number of the peer contacts has reached the limit.  |
+| 1100   | `AgoraChatErrorPresenceParamExceed`     |   The length of the parameters you are attempting to pass in when calling APIs of the presence service exceed the limit.  |
+| 1110   | `AgoraChatErrorTranslateParamError`       |  The parameters you are attempting to pass in when calling APIs of the translation service are invalid.   |
+| 1111   | `AgoraChatErrorTranslateServiceNotEnabled`     |  The translation service has not been activated.   |
+| 1112   | `AgoraChatErrorTranslateUsageLimit`    |  The usage of the translation service exceeds the limit. |
+| 1113   | `AgoraChatErrorTranslateServiceFail` |   The request to retrieve the translation service fails. |
+| 1300   | `AgoraChatErrorReactionReachLimit`        |  The number of reactions exceeds the limit.   |
+| 1301   | `AgoraChatErrorReactionHasBeenOperated`   |  The reaction to be added already exists in your reaction list.     |
+| 1302   | `AgoraChatErrorReactionOperationIsIllegal`   | You do not have permission to perform operations to a reaction. For example, you cannot delete a reaction if the reaction does not exist in your reaction list.   |
+| 1400   | `AgoraChatErrorThreadNotExist`|  The thread does not exist.    |
+| 1401   | `AgoraChatErrorThreadAlreadyExist`  |  The thread to be created already exists in a chat group.     |
+| 1402  | `AgoraChatErrorThreadCreateMessageIllegal`  |  The request to send a message in a thread fails because the parent message of the thread is recalled. |
