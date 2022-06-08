@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_cameracapturerconfiguration_ng">
-    <title><ph keyref="CameraCapturerConfiguration"/></title>
-    <shortdesc id="short"><ph id="shortdesc">摄像头采集配置。</ph></shortdesc>
+    <title> <ph keyref="CameraCapturerConfiguration"/> </title>
+    <shortdesc id="short"> <ph id="shortdesc">摄像头采集配置。</ph> </shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -19,14 +19,15 @@
   }
   public CaptureFormat captureFormat;
 }</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraCameraCapturerConfiguration: NSObject
+    @property (assign, nonatomic) AgoraCameraDirection cameraDirection;
+    @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct CameraCapturerConfiguration {
   CAMERA_DIRECTION cameraDirection;
   char deviceId[MAX_DEVICE_ID_LENGTH];
   VideoFormat format;
 };</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraCameraCapturerConfiguration: NSObject
-@property (assign, nonatomic) AgoraCameraDirection cameraDirection;
-@end</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public class CameraCapturerConfiguration
     {
         public CameraCapturerConfiguration()
@@ -45,12 +46,14 @@
         public string deviceId { set; get; }
         public VideoFormat format { set; get; }
         public CAMERA_DIRECTION? cameraDirection { set; get; }
-    }</codeblock></p>
+    }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="parameters">
-            <title><text
+            <title> <text
             conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            /> </title>
             <parml>
             <plentry>
                 <pt>cameraDirection</pt>
@@ -63,12 +66,22 @@
             <plentry props="cpp android unity">
                 <pt props="cpp unity">format</pt>
                 <pt props="android">captureFormat</pt>
-                <pd>详见 <xref keyref="VideoFormat"/>。</pd>
+                <pd>
+                        详见
+                        <xref keyref="VideoFormat"/>
+                        。
+                    </pd>
             </plentry>
             <plentry props="cpp unity">
                 <pt>deviceId</pt>
-                <pd>播放设备的设备 ID。<ph props="cpp">最大长度为 <xref
-                    keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</ph></pd>
+                <pd>
+                        播放设备的设备 ID。
+                        <ph props="cpp">
+                            最大长度为
+                            <xref
+                    keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>
+                            。
+                        </ph> </pd>
             </plentry>
             </parml> </section>
     </refbody>

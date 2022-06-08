@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audiovolumeinfo">
-    <title><ph keyref="AudioVolumeInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc">用户音量信息。</ph></shortdesc>
+    <title> <ph keyref="AudioVolumeInfo"/> </title>
+    <shortdesc id="short"> <ph id="shortdesc">用户音量信息。</ph> </shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -25,6 +25,7 @@
                     double voicePitch;
                     AudioVolumeInfo() : uid(0), volume(0), vad(0), voicePitch(0.0) {}
                     };</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public class AudioVolumeInfo
     {
         public AudioVolumeInfo()
@@ -43,25 +44,32 @@
 
         public uint vad { set; get; }
     }
-    </codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="parameters">
-            <title><text
+            <title> <text
             conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            /> </title>
             <parml>
             <plentry>
                 <pt>uid</pt>
                 <pd>
                     <p>用户 ID。
-                    
+
                     <ul id="ul_pfj_4dt_rqb">
-                    <li>在本地用户的回调中，<parmname>uid</parmname> 为 0。</li>
-                    <li>在远端用户的回调中，<parmname>uid</parmname> 为瞬时音量最高的远端用户（最多 3 位）的 ID。</li>
-                    </ul></p>
+                    <li>
+                                    在本地用户的回调中，
+                                    <parmname>uid</parmname>
+                                    为 0。
+                                </li>
+                    <li>
+                                    在远端用户的回调中，
+                                    <parmname>uid</parmname>
+                                    为瞬时音量最高的远端用户（最多 3 位）的 ID。
+                                </li>
+                    </ul> </p>
                 </pd>
             </plentry>
             <plentry>
@@ -74,7 +82,7 @@
                 <pt>vad</pt>
                 <pd>
                     <p>本地用户的人声状态。
-                    
+
                     <ul>
                     <li>0：本地无人声。</li>
                     <li>1：本地有人声。</li>

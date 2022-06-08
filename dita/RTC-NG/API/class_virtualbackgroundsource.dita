@@ -5,7 +5,7 @@
     <shortdesc id="short"><ph id="shortdesc">自定义的背景。</ph></shortdesc>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
+            <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class VirtualBackgroundSource {
   public static final int BACKGROUND_COLOR = 1;
   public static final int BACKGROUND_IMG = 2;
@@ -39,94 +39,33 @@
 @property(nonatomic, assign) AgoraBlurDegree blurDegree;
 @end
 </codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class VirtualBackgroundSource
-    {
-        public BACKGROUND_SOURCE_TYPE background_source_type
-        public uint color;
-        public string source;
-        public BACKGROUND_BLUR_DEGREE blur_degree;
-    };</codeblock> </p>
-            <p outputclass="codeblock" props="rtc">
-            <codeblock props="android" outputclass="language-java">public class VirtualBackgroundSource {
-    public static final int BACKGROUND_COLOR = 1;
-    public static final int BACKGROUND_IMG = 2;
-    public static final int BACKGROUND_BLUR = 3;
-    public static final int BLUR_DEGREE_LOW = 1;
-    public static final int BLUR_DEGREE_MEDIUM = 2;
-    public static final int BLUR_DEGREE_HIGH = 3;
-    public int backgroundSourceType;
-    public int color;
-    public String source = null;
-    public int blur_degree;
-    public VirtualBackgroundSource(
-      int backgroundSourceType, int color, String source, int blur_degree) {
-        this.backgroundSourceType = backgroundSourceType;
-        this.color = color;
-        this.source = source;
-        this.blur_degree = blur_degree;
-    }
-    public VirtualBackgroundSource() {
-        this.backgroundSourceType = BACKGROUND_COLOR;
-        this.color = 0xffffff;
-        this.source = "";
-        this.blur_degree = BLUR_DEGREE_HIGH;
-    }
-}
-</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraVirtualBackgroundSource) __attribute__((visibility("default"))) @interface AgoraVirtualBackgroundSource : NSObject
-@property(nonatomic, assign) AgoraVirtualBackgroundSourceType backgroundSourceType NS_SWIFT_NAME(backgroundSourceType);
-@property(nonatomic, assign) NSUInteger color NS_SWIFT_NAME(color);
-@property(nonatomic, copy) NSString* _Nullable source NS_SWIFT_NAME(source);
-@property(nonatomic, assign) AgoraBlurDegree blur_degree;
-@end
-</codeblock></p>
-            <p outputclass="codeblock">
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/>
             <codeblock props="cpp" outputclass="language-cpp">struct VirtualBackgroundSource {
-                    enum BACKGROUND_SOURCE_TYPE {
-                    BACKGROUND_COLOR = 1,
-                    BACKGROUND_IMG,
-                    BACKGROUND_BLUR,
-                    };
-                    enum BACKGROUND_BLUR_DEGREE {
-                    BLUR_DEGREE_LOW = 1,
-                    BLUR_DEGREE_MEDIUM,
-                    BLUR_DEGREE_HIGH,
-                    };
-                    BACKGROUND_SOURCE_TYPE background_source_type;
-                    unsigned int color;
-                    const char* source;
-                    BACKGROUND_BLUR_DEGREE blur_degree;
-                    VirtualBackgroundSource() : background_source_type(BACKGROUND_COLOR), color(0xffffff), source(NULL),  blur_degree(BLUR_DEGREE_HIGH) {}
-                </codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class VirtualBackgroundSource {
-
-                    @JsonKey(includeIfNull: false)
-                    VirtualBackgroundSourceType? backgroundSourceType;
-                  
-                    @JsonKey(includeIfNull: false)
-                    int? color;
-                  
-                    @JsonKey(includeIfNull: false)
-                    String? source;
-                  
-                    @JsonKey(name: 'blur_degree')
-                    VirtualBackgroundBlurDegree blurDegree;
-                  
-                    VirtualBackgroundSource({
-                      this.backgroundSourceType,
-                      this.color,
-                      this.source,
-                      this.blurDegree = VirtualBackgroundBlurDegree.High,
-                    });
-                  
-                    factory VirtualBackgroundSource.fromJson(Map&lt;String, dynamic&gt; json) =>
-                        _$VirtualBackgroundSourceFromJson(json);
-                  
-                    Map&lt;String, dynamic&gt; toJson() => _$VirtualBackgroundSourceToJson(this);
-                  }</codeblock> </p>
+    enum BACKGROUND_SOURCE_TYPE {
+    BACKGROUND_COLOR = 1,
+    BACKGROUND_IMG,
+    BACKGROUND_BLUR,
+    };
+    enum BACKGROUND_BLUR_DEGREE {
+    BLUR_DEGREE_LOW = 1,
+    BLUR_DEGREE_MEDIUM,
+    BLUR_DEGREE_HIGH,
+    };
+    BACKGROUND_SOURCE_TYPE background_source_type;
+    unsigned int color;
+    const char* source;
+    BACKGROUND_BLUR_DEGREE blur_degree;
+    VirtualBackgroundSource() : background_source_type(BACKGROUND_COLOR), color(0xffffff), source(NULL),  blur_degree(BLUR_DEGREE_HIGH) {}
+            </codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">public class VirtualBackgroundSource
+                {
+                    public BACKGROUND_SOURCE_TYPE background_source_type
+                    public uint color;
+                    public string source;
+                    public BACKGROUND_BLUR_DEGREE blur_degree;
+                };</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
@@ -156,19 +95,19 @@
             <plentry>
                 <pt>color</pt>
                 <pd>自定义的背景图颜色。格式为 RGB 定义下的十六进制整数，不要带 # 号，如 0xFFB6C1 表示浅粉色。 默认值为 0xFFFFFF，表示白色。 取值范围为 [0x000000，0xffffff]。如果取值非法，SDK 会用白色背景图替换原背景图。
-                        
-                    
-                    
-                    
+
+
+
+
                     <note type="attention">该参数仅在自定义背景图类型为 <ph
                     keyref="BACKGROUND_COLOR"/> 时生效。</note></pd>
             </plentry>
             <plentry>
                 <pt>source</pt>
                 <pd>自定义背景图的本地绝对路径。支持 PNG 和 JPG 格式。如果路径无效，SDK 会用白色背景图替换原背景图。
-                    
-                    
-                    
+
+
+
                     <note type="attention">该参数仅在自定义背景图类型为 <ph
                     keyref="BACKGROUND_IMG"/> 时生效。</note></pd>
             </plentry>
