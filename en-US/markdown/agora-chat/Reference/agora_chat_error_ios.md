@@ -30,7 +30,7 @@ During the run time of the Agora Chat SDK, if the method call succeeds, the SDK 
 | 215 | `AgoraChatErrorUserMuted` | If the user is muted in the group or the chatroom, when the user sends a message, the SDK returns this error code. |
 | 216 | `AgoraChatErrorUserKickedByChangePassword`  | If the logged in user changes the present password, the SDK kicks the user out and returns this error code. Try logging in again with the new password. |
 | 217 | `AgoraChatErrorUserKickedByOtherDevice` | When the multi-device login function is enabled, if the user forces the user ID logged in at the current device to log out by calling APIs or managing the backend at another device, the SDK returns this error code. |
-| 221 | `AgoraChatErrorUserNotFriend` | When a peer user sets not to receive messages from a user that is not a contact, if you send a message to this peer user, the SDK reports this error code. You can enable this feature on Agora Console. | 
+| 221 | `AgoraChatErrorUSER_NOT_FRIEND` | When a peer user sets not to receive messages from a user that is not a contact, if you send a message to this peer user, the SDK reports this error code. You can enable this feature on Agora Console. | 
 | 300 | `AgoraChatErrorServerNotReachable` |  The SDK disconnects from the Agora Chat system due to network problems. Try again later. |
 | 301 | `AgoraChatErrorServerTimeout` |Some API calls require the SDK to return the execution result. This error occurs if the SDK takes too long (more than 30 seconds) to return the result. |
 | 302 | `AgoraChatErrorServerBusy` |The server is currently busy. Try again later. |
