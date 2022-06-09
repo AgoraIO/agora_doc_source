@@ -12,7 +12,7 @@ As shown in the figure, the workflow of peer-to-peer messaging is as follows:
 
 1. Clients retrieve a token from your app server.
 2. Client A and Client B log in to Agora Chat.
-3. Client A sends a message to Client B. The message is sent to the Agora Chat server and the server delivers the message to Client B. When Client B receives the message, the SDK triggers an event. Client B listens for the event and gets the message.
+3. Client A sends a message to Client B. The message is sent to the Agora Chat server, and the server delivers the message to Client B. When Client B receives the message, the SDK triggers an event. Client B listens for the event and gets the message.
 
 ## Prerequisites
 

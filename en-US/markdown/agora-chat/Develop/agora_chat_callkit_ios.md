@@ -1,4 +1,4 @@
-AgoraChatCallKit, an open-source audio and video UI library, is developed upon Agora's real-time communications and signaling services. With this library, you can implement audio and video calling functionalities with enhanced synchronization between multiple devices. In scenarios where a user ID is logged into multiple devices, once the user deals with in-coming call ringings on one device, all the other devices stop ringing simultaneously.
+AgoraChatCallKit is an open-source audio and video UI library developed based on Agora's real-time communications and signaling services. With this library, you can implement audio and video calling functionalities with enhanced synchronization between multiple devices. In scenarios where a user ID is logged in to multiple devices, once the user deals with an incoming call that is ringing on one device, all the other devices stop ringing simultaneously.
 
 This page describes how to implement real-time audio and video communications using the AgoraChatCallKit.
 
@@ -29,9 +29,9 @@ AgoraChatCallKit is developed upon `Agora_Chat_iOS`, `Masonry`, `AgoraRtcEngine_
 
 1. Install CocoaPods if you have not. For details, see [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started).
 
-2. If your project does not have a `Podfile` file, navigate to the project root directory and run the `pod init` command to create a text file `Podfile` in the project folder.
+2. If your project does not have a `Podfile` file, navigate to the project root directory, and run the `pod init` command to create a text file `Podfile` in the project folder.
 
-3. Open the `Podfile` file and add `use_frameworks` and the `AgoraChatCallKit` framework. Remember to replace `AppName` with the target name of your project.
+3. Open the `Podfile` file, and add `use_frameworks` and the `AgoraChatCallKit` framework. Remember to replace `AppName` with the target name of your project.
 
    ```Objective-C
     use_frameworks!
@@ -48,7 +48,7 @@ AgoraChatCallKit is developed upon `Agora_Chat_iOS`, `Masonry`, `AgoraRtcEngine_
 
 ### Add permissions
 
-Open the `info.plist` file and add the following permissions:
+Open the `info.plist` file, and add the following permissions:
 
 | Key | Type | Value |
 | --- | --- | --- |
@@ -58,7 +58,7 @@ Open the `info.plist` file and add the following permissions:
 
 ## Implement audio and video calling
 
-This section introduces the core steps for implementing audio and video callings in your project.
+This section introduces the core steps for implementing audio and video calls in your project.
 
 ### Initialize AgoraChatCallKit
 
@@ -81,7 +81,7 @@ In this method, you need to set the `AgoraChatCallConfig` interface. Some of the
  */
 @property (nonatomic) UInt32 callTimeOut;
 /**
- * The dictionary of the user information. The data format is key-value pairs, where key represents the user ID and value `EaseCallUser`. 
+ * The dictionary of the user information. The data format is key-value pairs, where key represents the user ID and value is EaseCallUser. 
  */
 @property (nonatomic,strong) NSMutableDictionary<NSString*,AgoraChatCallUser*>* users;
 /**
@@ -89,13 +89,13 @@ In this method, you need to set the `AgoraChatCallConfig` interface. Some of the
  */
 @property (nonatomic,strong) NSURL* ringFileUrl;
 /**
- * The App ID of the project, which you can obtain on the Agora Console.
+ * The App ID of the project, which you can obtain from Agora Console.
  */
 @property (nonatomic,strong) NSString* agoraAppId;
 /**
  *  Whether to enable token authentication when users join the Agora channel:
- *  - (Default) YES: Yes. Once you set it as YES, you must implement the callDidRequestRTCTokenForAPPId callback. After receiving this callback, you need to call setRTCToken to pass in the token to start or join a call.
- *  - NO: No.
+ *  - (Default) YES: Enable token authentication. Once you set it as YES, you must implement the callDidRequestRTCTokenForAPPId callback. After receiving this callback, you need to call setRTCToken to pass in the token to start or join a call.
+ *  - NO: Do not enable token authentication.
  */
 @property (nonatomic) BOOL enableRTCTokenValidate;
 /**
@@ -108,7 +108,7 @@ In this method, you need to set the `AgoraChatCallConfig` interface. Some of the
 
 ### Send a call invitation
 
-From the caller's client, call `startSingleCallWithUId` or `startInviteUsers` to send a call invitation for one-to-one call or group call. You need to specify the call type when calling the method.
+From the caller's client, call `startSingleCallWithUId` or `startInviteUsers` to send a call invitation for a one-to-one call or group call. You need to specify the call type when calling the method.
 
 - One-to-one audio call
 
@@ -170,13 +170,13 @@ From the caller's client, call `startSingleCallWithUId` or `startInviteUsers` to
     [viewController presentViewController:controller animated:YES completion:nil];
     ```
 
-The following screenshop gives an example of the User Interface for one-to-one audio call:
+The following screenshot gives an example of the user interface for a one-to-one audio call:
 
 ![image](../images/outgoing.png)
 
 ### Receive the invitation
 
-Once a call invitaion is sent, the callee receive the invitation in the `callDidReceive` callback.
+Once a call invitaion is sent, the callee receives the invitation in the `callDidReceive` callback.
 
 ```Objective-C
 - (void)callDidReceive:(EaseCallType)aType inviter:(NSString*_Nonnull)user ext:(NSDictionary*)aExt
@@ -185,14 +185,14 @@ Once a call invitaion is sent, the callee receive the invitation in the `callDid
 }
 ```
 
-If the callee is online and available for a call, you can pop out a user interface that allows the callee to accept or decline the invitation. If you have enabled the iOS CallKit, the system call user interface will be launched. Otherwise, you can refer to the following screenshot to implement the interface.
+If the callee is online and available for a call, you can pop out a user interface that allows the callee to accept or decline the invitation. If you have enabled the iOS CallKit, the system call user interface is launched. Otherwise, you can refer to the following screenshot to implement the interface:
 
 ![image](../images/incoming.png)
 
 
 ### Send a call invitation during a group call
 
-In call sessions participated by multiple users, these users can also send call invitations to other users. After sending the invitation, the SDK triggers the `multiCallDidInvitingWithCurVC` callback in `AgoraChatCallDelegate` on the sender's client.
+In call sessions with multiple users, these users can also send call invitations to other users. After sending the invitation, the SDK triggers the `multiCallDidInvitingWithCurVC` callback in `AgoraChatCallDelegate` on the sender's client.
 
 ```Objective-C
 /**
@@ -229,7 +229,7 @@ In call sessions participated by multiple users, these users can also send call 
 
 ### Listen for callback events
 
-During the call, you can also listen for the following callback events.
+During the call, you can also listen for the following callback events:
 
 - `callDidJoinChannel`, occurs when the local user successfully joins the call.
 
@@ -310,7 +310,7 @@ If exceptions or errors occur during a call, the SDK triggers the `callDidOccurE
 
 ### Update the user avator or nickname
 
-After a user joins the call, you can call `setUser` to modify the avatar and nickname of the current user and the other user in the channel. 
+After a user joins the call, you can call `setUser` to modify the avatar and nickname of the current user and the other users in the channel. 
 
 ```Objective-C
 AgoraChatCallUser *user = [AgoraChatCallUser userWithNickName:info.nickname image:[NSURL URLWithString:info.avatarUrl]];
@@ -319,7 +319,7 @@ AgoraChatCallUser *user = [AgoraChatCallUser userWithNickName:info.nickname imag
 
 ### Authenticate users with the RTC token
 
-To enhance communication security, we recommend you authenticating app users with the RTC token before they join a call. To do this, you need to make sure that the [Primary Certificate of your project is enabled](), and `enableRTCTokenValidate` in the AgoraChatCallKit is set to `YES`.
+To enhance communication security, Agora recommends that you authenticate app users with the RTC token before they join a call. To do this, you need to make sure that the [Primary Certificate of your project is enabled](https://docs.agora.io/en/All/faq/appid_to_token), and `enableRTCTokenValidate` in the AgoraChatCallKit is set to `YES`.
 
 ```Objective-C
 config.enableRTCTokenValidate = YES;  
@@ -362,14 +362,14 @@ The following table lists the callbacks in `AgoraChatCallDelegate`:
 | callDidEnd:reason:time:type: | Occurs when the call ends. |
 | multiCallDidInvitingWithCurVC:callType:excludeUsers:ext: | Occurs when a member of the group call invites other users to the call. |
 | callDidReceive:inviter:ext: | Occurs when the call invitation is received and the device rings. |
-| callDidRequestRTCTokenForAppId:channelName:account:uid: | Request the RTC token. |
-| callDidOccurError: | Reports exceptions and errors durting the call. |
+| callDidRequestRTCTokenForAppId:channelName:account:uid: | Requests the RTC token. |
+| callDidOccurError: | Reports exceptions and errors during the call. |
 | remoteUserDidJoinChannel:uid:username: | Occurs when a remote user joins the call. |
 | callDidJoinChannel:uid: | Occurs when the current user joins the call. |
 
 ### Sample project
 
-Agora prpvides an open-source [AgoraChat-ios](https://github.com/AgoraIO-Usecase/AgoraChat-ios) sample project on GitHub. You can download the sample to try it out or view the source code.
+Agora provides an open-source [AgoraChat-ios](https://github.com/AgoraIO-Usecase/AgoraChat-ios) sample project on GitHub. You can download the sample to try it out or view the source code.
 
 The sample project uses the Agora Chat user ID to join a channel, which enables displaying the user ID in the view of the call. If you use the methods of the Agora RTC SDK to start a call, you can also use the Integer UID to join a channel.
 
@@ -380,15 +380,15 @@ The sample project uses the Agora Chat user ID to join a channel, which enables 
 
 Refer to the following steps to manually add AgoraChatCallKit to your project:
 
-1. [Download AgoraChatCallKit](https://github.com/AgoraIO-Usecase/AgoraChat-CallKit-ios) and extract the downloaded file.
+1. [Download AgoraChatCallKit](https://github.com/AgoraIO-Usecase/AgoraChat-CallKit-ios), and extract the downloaded file.
 2. Copy and paste `AgoraChatCallKit.framework` to the directory of your project.
-3. In Xcode, go to **TARGETS** > **Project Name** > **General**, under **Frameworks, Libraries, and Embedded Content**, drag `AgoraChatCallKit.framework` under it and set the **Embed** attribute of `AgoraChatCallKit.framework` as **Embed & Sign**.
+3. In Xcode, go to **TARGETS** > **Project Name** > **General**. Drag `AgoraChatCallKit.framework` under **Frameworks, Libraries, and Embedded Content**, and set the **Embed** attribute of `AgoraChatCallKit.framework` as **Embed & Sign**.
 
 ### Other project settings
 
-You can the following project settings according to your use case:
+You can configure the following project settings according to your use case:
 
-- To run the app in the background, go to `info.plist`, click `+`, and add `Required background modes`. Set `Type` as `Array`, and add `App plays audio or streams audio/video using AirPlay` as value under `Required background modes`.
-- To use the Apple `PushKit` and `CallKit`, go to **TARGETS** > **Project Name** > **Signing and Capabilities**, Under **Background Modes**, check `Voice over IP`.
+- To run the app in the background, go to `info.plist`, click `+`, and add `Required background modes`. Set `Type` as `Array`, and add `App plays audio or streams audio/video using AirPlay` as a value under `Required background modes`.
+- To use the Apple `PushKit` and `CallKit`, go to **TARGETS** > **Project Name** > **Signing and Capabilities**. Under **Background Modes**, check `Voice over IP`.
 
 

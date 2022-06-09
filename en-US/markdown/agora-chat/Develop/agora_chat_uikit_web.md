@@ -1,18 +1,16 @@
-Instant messaging connects people wherever they are and allows them to communicate with others in real time. With built-in user interfaces (UI) for the conversation list and contact list, the [Agora Chat UIKit](https://github.com/AgoraIO-Usecase/AgoraChat-UIKit-web) enables you to quickly embed real-time messaging into your app without extra efforts on the UI.
+Instant messaging connects people wherever they are and allows them to communicate with others in real time. With built-in user interfaces (UI) for the conversation list and contact list, the [Agora Chat UIKit](https://github.com/AgoraIO-Usecase/AgoraChat-UIKit-web) enables you to quickly embed real-time messaging into your app without requiring extra effort on the UI.
 
 This page shows a sample code to add peer-to-peer messaging into your app by using the Agora Chat UIKit.
 
 ## Understand the tech
 
-The following figure shows the workflow of how clients send and receive peer-to-peer messages.
+The following figure shows the workflow of how clients send and receive peer-to-peer messages:
 
 ![](https://web-cdn.agora.io/docs-files/1643335864426)
 
-As shown in the figure, the workflow of peer-to-peer messaging is as follows:
-
 1. Clients retrieve a token from your app server.
 2. Client A and Client B log in to Agora Chat.
-3. Client A sends a message to Client B. The message is sent to the Agora Chat server and the server delivers the message to Client B. When Client B receives the message, the SDK triggers an event. Client B listens for the event and gets the message.
+3. Client A sends a message to Client B. The message is sent to the Agora Chat server, and the server delivers the message to Client B. When Client B receives the message, the SDK triggers an event. Client B listens for the event and gets the message.
 
 ## Prerequisites
 
