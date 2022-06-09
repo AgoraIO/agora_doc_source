@@ -80,7 +80,7 @@ This sections introduces how to create an app and add the Chat UIKit to the proj
 The Web Chat UIKit has two components:
 
 - `EaseApp`, which contains the conversation list and applies to use cases where you want to quickly launch a real-time chat app.
-- `EaseChat`, which contains a conversation box and applies to most chat use cases such as sending and receiving messaging, displaying the message on the UI, and managing unread messages. 
+- `EaseChat`, which contains a conversation box and applies to most chat use cases such as sending and receiving messages, displaying the message on the UI, and managing unread messages. 
 
 This section introduces the steps you need to take to quickly implement one-to-one messaging with `EaseApp`.
 
