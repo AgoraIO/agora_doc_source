@@ -1,17 +1,12 @@
-//  IAgoraRtcSpatialAudioEngine.cs
-//
-//  Created by YuGuo Chen on December 12, 2021.
-//
-//  Copyright © 2021 Agora. All rights reserved.
-//
-
-using System;
-
 namespace agora.rtc
 {
-    public abstract class IAgoraRtcCloudSpatialAudioEngine
+    public abstract class ICloudSpatialAudioEngine
     {
-        public abstract void InitEventHandler(IAgoraRtcCloudSpatialAudioEngineEventHandler eh);
+        public abstract CloudSpatialAudioEventHandler GetCloudSpatialAudioEventHandler();
+        
+        public abstract void InitEventHandler(ICloudSpatialAudioEventHandler engineEventHandler);
+
+        public abstract void RemoveEventHandler();
 
         public abstract int Initialize(CloudSpatialAudioConfig config);
 
@@ -31,26 +26,30 @@ namespace agora.rtc
 
         public abstract int SetParameters(string @params);
 
-        public abstract int EnableMic(bool enable);
+        public abstract int MuteLocalAudioStream(bool mute);
 
-        public abstract int EnableSpeaker(bool enable);
+        public abstract int MuteAllRemoteAudioStreams(bool mute);
 
         public abstract int EnableSpatializer(bool enable, bool applyToTeam);
 
         public abstract int SetTeamId(int teamId);
   
-        public abstract int SetRangeAudioMode(RANGE_AUDIO_MODE_TYPE rangeAudioMode);
+        public abstract int SetAudioRangeMode(AUDIO_RANGE_MODE_TYPE rangeMode);
 
         public abstract int EnterRoom(string token, string roomName, uint uid);
 
         public abstract int ExitRoom();
 
-        public abstract int GetTeammates(ref uint[] uids, int[] userCount);
+        public abstract int GetTeammates(ref uint[] uids, ref int userCount);
+
+        public abstract int RenewToken(string token);
     }
 
-    public abstract class IAgoraRtcSpatialAudioEngine
+    public abstract class ILocalSpatialAudioEngine
     {
         public abstract void Dispose();
+
+        public abstract int Initialize();
 
         public abstract int SetMaxAudioRecvCount(int maxCount);
 
@@ -66,9 +65,9 @@ namespace agora.rtc
 
         public abstract int SetParameters(string @params);
 
-        public abstract int EnableMic(bool enable);
+        public abstract int MuteLocalAudioStream(bool mute);
 
-        public abstract int EnableSpeaker(bool enable);
+        public abstract int MuteAllRemoteAudioStreams(bool mute);
 
         public abstract int UpdateRemotePosition(uint uid, float[] position, float[] forward);
 
@@ -83,7 +82,7 @@ namespace agora.rtc
         public abstract int ClearRemotePositionsEx(RtcConnection connection);
     }
 
-    public abstract class IAgoraRtcCloudSpatialAudioEngineEventHandler
+    public abstract class ICloudSpatialAudioEventHandler
     {
         public virtual void OnTokenWillExpire() {}
   
