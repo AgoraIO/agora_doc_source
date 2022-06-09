@@ -41,7 +41,7 @@ This sections introduces how to create an app and add the Chat UIKit to the proj
    cd my-app
    ```
 
-   Once your successfully create the app, the project structure is as follows:
+   Once you successfully create the app, the project structure is as follows:
 
    ```shell
    my-app
@@ -61,15 +61,15 @@ This sections introduces how to create an app and add the Chat UIKit to the proj
     └── yarn.lock
    ```
 
-2. Run one of the following commands to add chat-uikit to your project.
+2. Run one of the following commands to add the Chat UIKit to your project.
 
-   To add the uikit using npm:
+   To add the UIKit using npm:
 
    ```shell
    npm install chat-uikit --save
    ```
 
-   To add the uikit using yarn
+   To add the UIKit using yarn
 
    ```shell
    yarn add chat-uikit
@@ -116,7 +116,7 @@ This section introduces the steps you need to take to quickly implement one-to-o
 
 2. Set the layout for the conversation.
 
-   Open `my-app/src/App.js`, and replace trhe content with the following:
+   Open `my-app/src/App.js`, and replace the content with the following:
 
    ```javascript
     /** App.css */ 
@@ -134,15 +134,15 @@ In your terminal, run the following command to launch the app:
 npm run start
 ```
 
-You can see the app launched in your browser. Before sending the message, refer to [Add a contact](./agora-chat/manage_user_friend_web?platform=Web#manage-contacts) or [Join a chat group](./agora-chat/agora_chat_group_web?platform=Web#join-and-leave-a-chat-group) to add a contact or join a chat group.
+You can see the app launch in your browser. Before you can send a message, refer to [Add a contact](./agora-chat/manage_user_friend_web?platform=Web#manage-contacts) or [Join a chat group](./agora-chat/agora_chat_group_web?platform=Web#join-and-leave-a-chat-group) to add a contact or join a chat group.
 
 ## Next steps
 
-This chapter includes more advanced features you can implement in your project.
+This section includes more advanced features you can implement in your project.
 
 ### Applicable use cases
 
-As a conversation component, `EaseChat` can be applied in a wide range of use cases, for example, by popping up the dialogue box with a click event, or adding callback events after the user is logged in.
+As a conversation component, `EaseChat` can be applied in a wide range of use cases, for example, by popping up the dialogue box for a click event, or adding callback events after the user is logged in.
 
 ```javascript
 import React, { useState } from "react";
@@ -193,15 +193,15 @@ import { EaseChat } from "chat-uikit";
 | `agoraToken` |String| Yes  | The Agora token.      |
 | `to`         |String| Yes  | In one-to-one messaging, it is the user ID of the recipient; in group chat, it is the group ID.|
 | `showByselfAvatar`|Bool| No  | Whether to display the avatar of the current user.<ul><li>`true`: Yes</li><li>(Default) `false`: No</li></ul>     |
-| `easeInputMenu`|String| No | Mode of the input menu.<ul><li>(Default) `all`: The complete mode.</li><li>`noAudio`: No audio.</li><li>`noEmoji`: No emoji.</li><li>`noAudioAndEmoji`: No audio or emoji.</li><li>`onlyText`: Only text.</li></ul>
+| `easeInputMenu`|String| No | The mode of the input menu.<ul><li>(Default) `all`: The complete mode.</li><li>`noAudio`: No audio.</li><li>`noEmoji`: No emoji.</li><li>`noAudioAndEmoji`: No audio or emoji.</li><li>`onlyText`: Only text.</li></ul>
 |`menuList`|Array| No  |The extensions of the input box on the right panel.<br/>(Default) menuList:[ {name:'Send a pic'，value:'img},{name:'Send a file'，value:'file}]  |
 |`handleMenuItem`|function({item, key}) | No | The callback event triggered by clicking on the right panel of the input box.|
 |`successLoginCallback`|function(res) | No | The callback event for a successful login. |
-|`failCallback`| function(err)| No | The callback for a failed method call.  |
+|`failCallback`| function(err)| No | The callback event for a failed method call.  |
 
 ### Add business logic
 
-In scenarios where you want to add your own business logic, you can use the various callback events provided by the Chat UIKit. Follow the steps to do so:
+In scenarios where you want to add your own business logic, you can use the various callback events provided by the Chat UIKit, as shown in the following steps:
 
 1. Get the SDK instance
 
@@ -221,7 +221,7 @@ In scenarios where you want to add your own business logic, you can use the vari
         .... })
     ```
 
-Refer to [EventHandlerType](./API%20Reference/im_ts/v1.0.1/interfaces/TYPS.EvevtHandlerType.EventHandlerType.html) for the complete callback events you can add.
+Refer to [EventHandlerType](./API%20Reference/im_ts/v1.0.1/interfaces/TYPS.EvevtHandlerType.EventHandlerType.html) for the complete list of callback events you can add.
 
 
 ## Reference
