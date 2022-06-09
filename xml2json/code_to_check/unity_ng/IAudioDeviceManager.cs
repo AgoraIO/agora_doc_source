@@ -1,15 +1,6 @@
-//  IAgoraRtcAudioDeviceManager.cs
-//
-//  Created by YuGuo Chen on October 4, 2021.
-//
-//  Copyright © 2021 Agora. All rights reserved.
-//
-
-using System;
-
 namespace agora.rtc
 {
-    public abstract class IAgoraRtcAudioPlaybackDeviceManager
+    public abstract class IAudioDeviceManager
     {
         public abstract DeviceInfo[] EnumeratePlaybackDevices();
 
@@ -31,13 +22,6 @@ namespace agora.rtc
 
         public abstract int StopPlaybackDeviceTest();
 
-        public abstract int StartAudioDeviceLoopbackTest(int indicationInterval);
-
-        public abstract int StopAudioDeviceLoopbackTest();
-    }
-
-    public abstract class IAgoraRtcAudioRecordingDeviceManager
-    {
         public abstract DeviceInfo[] EnumerateRecordingDevices();
 
         public abstract int SetRecordingDevice(string deviceId);
@@ -58,12 +42,8 @@ namespace agora.rtc
 
         public abstract int StopRecordingDeviceTest();
 
-        // public abstract int startAudioDeviceLoopbackTest(int indicationInterval);
+        public abstract int StartAudioDeviceLoopbackTest(int indicationInterval);
 
-        // public abstract int stopAudioDeviceLoopbackTest();
-    }
-
-    internal static partial class ObsoleteMethodWarning
-    {
+        public abstract int StopAudioDeviceLoopbackTest();
     }
 }

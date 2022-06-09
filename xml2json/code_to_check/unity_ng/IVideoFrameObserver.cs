@@ -1,22 +1,13 @@
-//  IAgoraRtcVideoFrameObserver.cs
-//
-//  Created by YuGuo Chen on October 6, 2021.
-//
-//  Copyright © 2021 Agora. All rights reserved.
-//
-
-using System;
-
 namespace agora.rtc
 {
-    public class IAgoraRtcVideoFrameObserver
+    public class IVideoFrameObserver
     {
         public virtual bool OnCaptureVideoFrame(VideoFrame videoFrame, VideoFrameBufferConfig config)
         {
             return true;
         }
 
-        public virtual bool OnPreEncodeVideoFrame(VideoFrame videoFrame)
+        public virtual bool OnPreEncodeVideoFrame(VideoFrame videoFrame, VideoFrameBufferConfig config)
         {
             return true;
         }
@@ -26,9 +17,9 @@ namespace agora.rtc
             return true;
         }
         
-        public virtual VIDEO_FRAME_TYPE GetVideoFormatPreference()
+        public virtual VIDEO_OBSERVER_FRAME_TYPE GetVideoFormatPreference()
         {
-            return VIDEO_FRAME_TYPE.FRAME_TYPE_RGBA;
+            return VIDEO_OBSERVER_FRAME_TYPE.FRAME_TYPE_RGBA;
         }
         
         public virtual VIDEO_OBSERVER_POSITION GetObservedFramePosition()
@@ -37,11 +28,6 @@ namespace agora.rtc
         }
 
         public virtual bool IsMultipleChannelFrameWanted()
-        {
-            return true;
-        }
-
-        public virtual bool OnRenderVideoFrameEx(string channelId, uint uid, VideoFrame videoFrame)
         {
             return true;
         }
