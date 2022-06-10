@@ -58,7 +58,7 @@ Only the chat group owner and admins can call `destroyChatThread` to disband a t
 
 Once a thread is disbanded, all chat group members receive the `AgoraChatThreadManagerDelegate#onChatThreadDestroyed` callback. In a multi-device scenario, all the other devices receive the `multiDevicesThreadEventDidReceive` callback triggered by the `AgoraChatMultiDevicesEventThreadDestroy` event. 
 
-<div class="alert note">Once a thread is destroyed, all data of the thread is deleted from the local database and memory.</div>
+<div class="alert note">Once a thread is destroyed or the chat group where a thread resides is destroyed, all data of the thread is deleted from the local database and memory.</div>
 
 The following code sample shows how to destroy a thread:
 
@@ -246,7 +246,7 @@ AgoraChatThreadManagerDelegate
 // Occurs when a thread is created.
 - (void)onChatThreadCreate:(AgoraChatThreadEvent *)event;
 
-// Occurs when a thread has a new message, a thread name is updated, or a message is recalled in a thread.
+// Occurs when a thread has a new message, a thread name is updated, or a thread message is recalled.
 - (void)onChatThreadUpdate:(AgoraChatThreadEvent *)event;
 
 // Occurs when a thread is destroyed.

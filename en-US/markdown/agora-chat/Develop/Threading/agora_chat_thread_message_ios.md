@@ -13,13 +13,7 @@ The Agora Chat SDK provides the `AgoraChatChatManager`, `AgoraChatMessage`, and 
 - Recall a thread message
 - Retrieve a thread message
 
-The following figure shows the workflow of how clients send and receive peer-to-peer messages.
-
-![](https://web-cdn.agora.io/docs-files/1643082196337)
-
-1. Clients retrieve a token from your app server.
-2. Client A and Client B log in to Agora Chat.
-3. Client A sends a message to Client B. The message is sent to the Agora Chat server and the server delivers the message to Client B. When Client B receives the message, the SDK triggers an event. Client B listens for the event and gets the message.
+~338e0e30-e568-11ec-8e95-1b7dfd4b7cb0~
 
 ## Prerequisites
 
