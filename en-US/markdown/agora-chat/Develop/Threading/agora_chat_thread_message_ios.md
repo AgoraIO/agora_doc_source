@@ -1,4 +1,4 @@
-# Thread Management
+# Thread Messages
 
 Threads enable users to create a separate conversation from a specific message within a chat group to keep the main chat uncluttered.
 
