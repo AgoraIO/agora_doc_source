@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audiorecordingconfiguration">
-    <title> <ph keyref="AudioRecordingConfiguration"/> </title>
+    <title> <ph keyref="AudioRecordingConfiguration" /> </title>
     <shortdesc id="short"> <ph id="shortdesc">客户端录音配置。</ph> </shortdesc>
     <refbody>
         <section id="prototype">
@@ -93,7 +93,7 @@
   recordingPosition: AUDIO_RECORDING_POSITION;
   recordingSampleRate: number;
 }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">class AudioRecordingConfiguration {
 
   String filePath;
@@ -114,10 +114,10 @@
     this.recordingSampleRate,
   });
 
-  factory AudioRecordingConfiguration.fromJson(Map&lt;String, dynamic> json) =>
+  factory AudioRecordingConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$AudioRecordingConfigurationFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$AudioRecordingConfigurationToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$AudioRecordingConfigurationToJson(this);
 }</codeblock> </p>
         </section>
         <section id="detailed_desc">
@@ -129,15 +129,12 @@
             </dl>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry id="filepath">
                 <pt>filePath</pt>
                 <pd>
-                    <p>录音文件在本地保存的绝对路径，需精确到文件名及格式。例如：<codeph><ph
-                    keyref="recordingPath-example"/></codeph>。</p>
+                    <p>录音文件在本地保存的绝对路径，需精确到文件名及格式。例如：<codeph><ph keyref="recordingPath-example" /></codeph>。</p>
                     <note type="attention">请确保你指定的路径存在并且可写。</note> </pd>
             </plentry>
             <plentry>
@@ -160,13 +157,12 @@
             <plentry>
                 <pt>recordingQuality</pt>
                 <pd>
-                    <p>录音音质。详见 <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"
-                    />。</p>
+                    <p>录音音质。详见 <xref keyref="AUDIO_RECORDING_QUALITY_TYPE" />。</p>
                     <note type="attention">该参数仅适用于 AAC 文件。</note></pd>
             </plentry>
             <plentry>
                 <pt>recordingPosition</pt>
-                <pd>录音内容。详见 <xref keyref="AUDIO_RECORDING_POSITION"/>。</pd>
+                <pd>录音内容。详见 <xref keyref="AUDIO_RECORDING_POSITION" />。</pd>
             </plentry>
             <plentry>
                 <pt>recordingSampleRate</pt>
@@ -177,12 +173,8 @@
                     <li>44100</li>
                     <li>48000</li>
                     </ul>
-                    <note type="attention"
-                    >如果把该参数设为 44100 或 48000，为保证录音效果，Agora 推荐录制 WAV 文件 或 <parmname>recordingQuality</parmname> 为
-                        <ph
-                    keyref="AUDIO_RECORDING_QUALITY_MEDIUM"/> 或 <ph
-                    keyref="AUDIO_RECORDING_QUALITY_HIGH"
-                    /> 的 AAV 文件。</note></pd>
+                    <note type="attention">如果把该参数设为 44100 或 48000，为保证录音效果，Agora 推荐录制 WAV 文件 或 <parmname>recordingQuality</parmname> 为
+                        <ph keyref="AUDIO_RECORDING_QUALITY_MEDIUM" /> 或 <ph keyref="AUDIO_RECORDING_QUALITY_HIGH" /> 的 AAV 文件。</note></pd>
             </plentry>
             </parml> </section>
     </refbody>

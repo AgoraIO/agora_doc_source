@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_contentinspectconfig">
-    <title><ph keyref="ContentInspectConfig"/></title>
+    <title><ph keyref="ContentInspectConfig" /></title>
     <shortdesc id="short"><ph id="shortdesc">内容审核配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -55,7 +55,7 @@
 @property (assign, nonatomic) NSInteger devicework;
 @property (assign, nonatomic) NSInteger cloudwork;
 @property (assign, nonatomic) AgoraContentInspectDeviceType deviceworkType;
-@property(copy, nonatomic) NSArray&lt;AgoraContentInspectModule*>* _Nullable modules;
+@property(copy, nonatomic) NSArray&lt;AgoraContentInspectModule*&gt;* _Nullable modules;
 @end
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct ContentInspectConfig {
@@ -65,8 +65,8 @@
 
   ContentInspectConfig() : extraInfo(NULL), moduleCount(0) {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">class ContentInspectConfig {
                   final String? extraInfo;
 
@@ -77,24 +77,22 @@
                   const ContentInspectConfig(
                       {required this.modules, this.extraInfo, this.moduleCount = 0});
 
-                  factory ContentInspectConfig.fromJson(Map&lt;String, dynamic&gt; json) =>
+                  factory ContentInspectConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
                       _$ContentInspectConfigFromJson(json);
 
-                  Map&lt;String, dynamic&gt; toJson() => _$ContentInspectConfigToJson(this);
+                  Map&lt;String, dynamic&gt; toJson() =&gt; _$ContentInspectConfigToJson(this);
                 }</codeblock> </p>
         </section>
-        <section id="detailed_desc"/>
+        <section id="detailed_desc" />
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry props="cpp">
                 <pt>enable</pt>
                 <pd>是否开启鉴黄功能。
                     <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: 开启鉴黄功能。</li>
-                    <li><codeph><ph keyref="false"/></codeph>:（默认）不开启鉴黄功能。</li>
+                    <li><codeph><ph keyref="true" /></codeph>: 开启鉴黄功能。</li>
+                    <li><codeph><ph keyref="false" /></codeph>:（默认）不开启鉴黄功能。</li>
                     </ul></pd>
             </plentry>
             <plentry props="native">
@@ -102,9 +100,8 @@
                 <pt props="ios mac">devicework</pt>
                 <pd>是否在设备端进行鉴黄。
                     <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: 在设备端进行鉴黄。</li>
-                    <li><codeph><ph keyref="false"
-                        /></codeph>:（默认）不在设备端进行鉴黄。</li>
+                    <li><codeph><ph keyref="true" /></codeph>: 在设备端进行鉴黄。</li>
+                    <li><codeph><ph keyref="false" /></codeph>:（默认）不在设备端进行鉴黄。</li>
                     </ul></pd>
             </plentry>
             <plentry props="native">
@@ -112,15 +109,14 @@
                 <pt props="ios mac">cloudwork</pt>
                 <pd>是否在云端进行鉴黄。
                     <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: 在云端进行鉴黄。</li>
-                    <li><codeph><ph keyref="false"/></codeph>:（默认）不在云端进行鉴黄。</li>
+                    <li><codeph><ph keyref="true" /></codeph>: 在云端进行鉴黄。</li>
+                    <li><codeph><ph keyref="false" /></codeph>:（默认）不在云端进行鉴黄。</li>
                     </ul></pd>
             </plentry>
             <plentry props="android cpp ios mac">
                 <pt props="android cpp">DeviceworkType</pt>
                 <pt props="ios mac">deviceworkType</pt>
-                <pd>在设备端进行鉴黄的具体类型。详见<xref keyref="CONTENT_INSPECT_DEVICE_TYPE"
-                    />。</pd>
+                <pd>在设备端进行鉴黄的具体类型。详见<xref keyref="CONTENT_INSPECT_DEVICE_TYPE" />。</pd>
             </plentry>
             <plentry>
                 <pt>extraInfo</pt>
@@ -132,15 +128,13 @@
             <plentry>
                 <pt>modules</pt>
                 <pd>
-                    <p>内容审核模块。详见 <xref keyref="ContentInspectModule"/>。</p>
-                    <p>最多支持配置 32 个 <xref keyref="ContentInspectModule"
-                    /> 实例，<parmname>MAX_CONTENT_INSPECT_MODULE_COUNT</parmname> 的取值范围为 [1,32] 中的整数。</p>
+                    <p>内容审核模块。详见 <xref keyref="ContentInspectModule" />。</p>
+                    <p>最多支持配置 32 个 <xref keyref="ContentInspectModule" /> 实例，<parmname>MAX_CONTENT_INSPECT_MODULE_COUNT</parmname> 的取值范围为 [1,32] 中的整数。</p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>moduleCount</pt>
-                <pd>内容审核模块数，即配置的 <xref keyref="ContentInspectModule"
-                    /> 实例的数量。最大值为 32。</pd>
+                <pd>内容审核模块数，即配置的 <xref keyref="ContentInspectModule" /> 实例的数量。最大值为 32。</pd>
             </plentry>
             </parml> </section>
     </refbody>
