@@ -30,7 +30,7 @@ This section describes how to call the APIs provided by the Agora Chat SDK to im
 
 ### Send a thread message
 
-Send a thread message is similar to send a message in a chat group. The difference lies in the `isThread` field, as shown in the following code sample:
+Send a thread message is similar to send a message in a chat group. The difference lies in the `isChatThread` field, as shown in the following code sample:
 
 ```ObjectiveC
 // Call `initWithConversationID` to create a text message. 
