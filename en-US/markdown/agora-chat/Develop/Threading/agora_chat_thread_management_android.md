@@ -12,7 +12,7 @@ The Agora Chat SDK provides the `ChatThreadManager`, `ChatThread`, `ChatThreadCh
 - Create and destroy a thread
 - Join and leave a thread
 - Remove a member from a thread
-- Retrieve the name of a thread
+- Update the name of a thread
 - Retrieve the attributes of a thread
 - Retrieve the thread member list
 - Retrieve the thread list
