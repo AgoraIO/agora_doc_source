@@ -45,9 +45,9 @@ The following code sample shows how to create a thread in a chat group:
 // parentId: The ID of a chat group where a thread resides.
 [[AgoraChatClient sharedClient].threadManager createChatThread:self.threadName messageId:self.message.message.messageId parentId:self.message.message.to completion:^(AgoraChatThread *thread, AgoraChatError *aError) {
     if (!aError) {
-        // Create thread success.
+
     } else {
-        // Create thread failure.
+
     }
 }];
 ```
@@ -65,9 +65,9 @@ The following code sample shows how to destroy a thread:
 ```ObjectiveC
 [AgoraChatClient.sharedClient.threadManager destroyChatThread:self.conversationId completion:^(AgoraChatError *aError) {
     if (!aError) {
-        // Destroy thread success.
+
     } else {
-        // Destroy thread failure.
+
     }
 }];
 ```
@@ -89,7 +89,7 @@ The following code sample shows how to join a thread:
 ```ObjectiveC
 [AgoraChatClient.sharedClient.threadManager joinChatThread:model.message.threadOverView.threadId completion:^(AgoraChatThread *thread,AgoraChatError *aError) {
     if (!aError || aError.code == AgoraChatErrorUserAlreadyExist) {
-        // Join thread success.    
+  
     }
 }];
 ```
@@ -105,9 +105,9 @@ The following code sample shows how to leave a thread:
 ```ObjectiveC
 [AgoraChatClient.sharedClient.threadManager leaveChatThread:self.conversationId completion:^(AgoraChatError *aError) {
     if (!aError) {
-        // Leave thread success.
+
     } else {
-        // Leave thread failure.
+
     }
 }];
 ```
@@ -125,9 +125,9 @@ The following code sample shows how to remove a member from a thread:
 // member: The ID of the user to be removed from a thread.
 [AgoraChatClient.sharedClient.threadManager removeMemberFromChatThread:member threadId:self.threadId completion:^(AgoraChatError *aError) {
     if (!aError) {
-        // Remove member success.
+
     } else {
-        // Remove member failure.
+
     }
 }];
 ```
@@ -145,9 +145,9 @@ The following code sample shows how to update the thread name:
 // subject: The updated thread name. The maximum length of a thread name is 64 characters.
 [AgoraChatClient.sharedClient.threadManager updateChatThreadSubject:self.threadNameField.text threadId:self.threadId completion:^(AgoraChatError *aError) {
     if (!aError) {
-        // Update name success.
+
     } else {
-        // Update name failure.
+
     }
 }];
 ```
@@ -162,9 +162,9 @@ The following code sample shows how to retrieve the thread attributes:
 // threadId: The thread ID.
 [AgoraChatClient.sharedClient.threadManager getChatThreadDetail:self.currentConversation.conversationId completion:^(AgoraChatThread *thread, AgoraChatError *aError) {
     if (!aError) {
-        // Retrieve attributes success.
+
     } else {
-        // Retrieve attributes failure.
+
     }
 }];
 ```
@@ -202,7 +202,7 @@ Users can call `getJoinedChatThreadsFromServer` to retrieve the joined threads i
 // cursor: The position from which to start getting data. Pass in `null` or an empty string at the first call. 
 [AgoraChatClient.sharedClient.threadManager getMineChatThreadsFromServerWithParentId:self.group.groupId cursor:self.cursor ? self.cursor.cursor:@"" pageSize:20 completion:^(AgoraChatCursorResult * _Nonnull result, AgoraChatError * _Nonnull aError) {
     if (!aError) {
-        // Retrieve thread success.
+
     }
 }];
 ```
@@ -215,7 +215,7 @@ Users can also call `getChatThreadsFromServer` to retrieve all threads in the sp
 // cursor: The position from which to start getting data. Pass in `null` or an empty string at the first call. 
 [[AgoraChatClient sharedClient].threadManager getChatThreadsFromServerWithParentId:self.group.groupId cursor:self.cursor ? self.cursor.cursor:@"" pageSize:20 completion:^(AgoraChatCursorResult *result, AgoraChatError *aError) {
     if (!aError) {
-        // Retrieve thread success.
+
     }
 }];
 ```
@@ -230,14 +230,14 @@ The following code sample shows how to retrieve the latest message from multiple
 // threadIds: The thread IDs. You can pass in a maximum of 20 thread IDs.
 [[AgoraChatClient sharedClient].threadManager getLastMessageFromSeverWithChatThreads:ids completion:^(NSDictionary<NSString *,AgoraChatMessage *> * _Nonnull messageMap, AgoraChatError * _Nonnull aError) {
     if (!aError) {
-        // Retrieve message success.
+
     }
 }];
 ```
 
 ### Listen for thread events
 
-To monitor the thread events, users can listen for the callbacks in the `AgoraChatThreadManagerDelegate` class and add app logics accordingly. If a user wants to stop listening for the callbacks, make sure that the user removes the listener to prevent memory leakage.
+To monitor the thread events, users can listen for the callbacks in the `AgoraChatThreadManager` class and add app logics accordingly. If a user wants to stop listening for the callbacks, make sure that the user removes the listener to prevent memory leakage.
 
 Refer to the following code sample to listen for thread events:
 

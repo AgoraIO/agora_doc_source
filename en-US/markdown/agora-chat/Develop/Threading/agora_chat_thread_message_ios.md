@@ -61,9 +61,11 @@ For more information about sending a message, see [Send Messages](./agora_chat_m
 Once a thread has a new message, all chat group members receive the `AgoraChatThreadManagerDelegate#onChatThreadUpdated` callback. For thread members, they can also listen for the `AgoraChatManagerDelegate#messagesDidReceive` callback to receive thread messages, as shown in the following code sample:
 
 ```ObjectiveC
+// The SDK triggers the `messagesDidReceive` callback when it receives a message.
+// After receiving this callback, the SDK parses the message and displays it.
 - (void)messagesDidReceive:(NSArray *)aMessages
 {
-    // The SDK triggers the `AgoraChatManagerDelegate#messagesDidReceive` callback to notify that the thread has a new message.
+    // You can implement subsequent settings in this callback.
 }
 // Call `addDelegate` to add a message listener.
 [[AgoraChatClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
@@ -78,9 +80,11 @@ For more information about receiving a message, see [Receive Messages](./agora_c
 
 For details about how to recall a message, refer to [Recall Messages](./agora_chat_message_ios?platform=iOS#recall-messages).
 
-Once a message is recalled in a thread, all chat group members receive the `AgoraChatThreadManagerDelegate#onChatThreadUpdated` callback. For thread members, they can also listen for the `AgoraChatManagerDelegate#messagesDidReceive` callback, as shown in the following code sample:
+Once a message is recalled in a thread, all chat group members receive the `AgoraChatThreadManagerDelegate#onChatThreadUpdated` callback. For thread members, they can also listen for the `AgoraChatManagerDelegate#messagesInfoDidRecall` callback, as shown in the following code sample:
 
 ```ObjectiveC
+// The SDK triggers the `messagesInfoDidRecall` callback when it recalls a message.
+// After receiving this callback, the SDK parses the message and updates its display.
 - (void)messagesInfoDidRecall:(NSArray<EMRecallMessageInfo *> *)aRecallMessagesInfo
 {}
 ```

@@ -101,7 +101,7 @@ Once a message is recalled in a thread, all chat group members receive the `Chat
 ```java
 MessageListener msgListener = new MessageListener() {
    // The SDK triggers the `onMessageRecalled` callback when it recalls a message.
-   // // After receiving this callback, the SDK parses the message and updates the display.
+   // After receiving this callback, the SDK parses the message and updates its display.
    @Override
    public void onMessageRecalled(List<ChatMessage> messages) {
        for (ChatMessage message : messages) {
