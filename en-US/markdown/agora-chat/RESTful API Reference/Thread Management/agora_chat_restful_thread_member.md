@@ -207,9 +207,16 @@ For the descriptions of request headers, see [Authorization](#auth).
 
 #### Response body
 
-If the returned HTTP status code is `200`, the request succeeds; otherwise, the request fails, and you can refer to [Status codes](#Status-codes) for possible causes.
+If the returned HTTP status code is `200`, the request succeeds, and the data field in the response body contains the following parameters.
+
+| Parameter      | Type           | Description |
+| :------- |:-------------|:-------------|
+| `result` | Bool | Whether the specified thread member is removed from the thread:<li>`true`: Yes.<li>`false`: No.| 
+| `user` | List | The usernames of thread members. | 
 
 For other fields and descriptions, see [Common parameters](#response).
+
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#Status-codes) for possible causes.
 
 ### Example
 
