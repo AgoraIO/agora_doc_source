@@ -72,7 +72,7 @@ When a group ([createGroup](https://hyphenateinc.github.io/android_reference/cla
 
 ## Chatroom-related limits
 
-### Nnumber of chatrooms
+### Number of chatrooms
 
 The total numbers of chatrooms ([ChatRoomManager](https://hyphenateinc.github.io/android_reference/classio_1_1agora_1_1chat_1_1_contact_manager.html)) allowed are as follows:
 
@@ -82,6 +82,8 @@ The total numbers of chatrooms ([ChatRoomManager](https://hyphenateinc.github.io
 | Starter         | 100             | Unlimited              | Unlimited                                       |
 | Pro             | Unlimited       | Unlimited              | Unlimited                                       |
 | Enterprise      | Unlimited       | Unlimited              | Unlimited                                       |
+
+The total number of the chat room owner and chat room admins cannot exceed 100, that is, the maximum number of chat room admins is 99.
 
 ### Chatroom attributes
 
