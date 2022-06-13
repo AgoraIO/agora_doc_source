@@ -285,7 +285,9 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 ## Removing a chat group member
 
-Removes the specified user from the chat group. If the specifeid user is not in the chat group, an error is returned.
+Removes the specified user from the chat group. If the specified user is not in the chat group, an error is returned.
+
+Once a member is removed from a chat group, this member is also removed from all threads they join in this chat group.
 
 ### HTTP request
 
@@ -357,6 +359,8 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 ## Removing multiple group members
 
 Removes multiple users from the chat group. You can remove a maximum of 60 members from the chat group at one time. If the specified users are not in the group, an error is returned.
+
+Once a member is removed from a chat group, this member is also removed from all threads they join in this chat group.
 
 ### HTTP request
 
