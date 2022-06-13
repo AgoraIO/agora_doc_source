@@ -116,7 +116,7 @@ The following code sample shows how to leave a thread:
 
 Only the chat group owner and admins can call `removeMemberFromChatThread` to remove the specified member from a thread.
 
-Once a member is removed from a thread, this member receives the `AgoraChatThreadManagerDelegate#onUserKickOutOfChatThread` callback and can no longer receive the thread messages. In a multi-device scenario, all the other devices receive the `multiDevicesThreadEventDidReceive` callback triggered by the `AgoraChatMultiDevicesEventThreadKick` event.
+Once a member is removed from a thread, this member receives the `AgoraChatThreadManagerDelegate#onUserKickOutOfChatThread` callback and can no longer receive the thread messages.
 
 The following code sample shows how to remove a member from a thread:
 
