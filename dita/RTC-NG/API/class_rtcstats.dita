@@ -121,14 +121,34 @@
         public RtcStats(uint duration, uint txBytes, uint rxBytes, uint txAudioBytes, uint txVideoBytes,
             uint rxAudioBytes, uint rxVideoBytes, UInt16 txKBitRate, UInt16 rxKBitRate, UInt16 rxAudioKBitRate,
             UInt16 txAudioKBitRate, UInt16 rxVideoKBitRate, UInt16 txVideoKBitRate, UInt16 lastmileDelay,
-            int txPacketLossRate, int rxPacketLossRate, uint userCount, double cpuAppUsage, double cpuTotalUsage, int gatewayRtt,
-            double memoryAppUsageRatio, double memoryTotalUsageRatio, int memoryAppUsageInKbytes,int connectTimeMs,
-            int firstAudioPacketDuration, int firstVideoPacketDuration, int firstVideoKeyFramePacketDuration,
-            int packetsBeforeFirstKeyFramePacket, int firstAudioPacketDurationAfterUnmute, int firstVideoPacketDurationAfterUnmute,
-            int firstVideoKeyFramePacketDurationAfterUnmute, int firstVideoKeyFrameDecodedDurationAfterUnmute,
-            int firstVideoKeyFrameRenderedDurationAfterUnmute)
+            uint userCount, double cpuAppUsage, double cpuTotalUsage, int gatewayRtt,
+            double memoryAppUsageRatio, double memoryTotalUsageRatio, int memoryAppUsageInKbytes, int connectTimeMs, int txPacketLossRate, int rxPacketLossRate)
         {
-
+            this.duration = duration;
+            this.txBytes = txBytes;
+            this.rxBytes = rxBytes;
+            this.txAudioBytes = txAudioBytes;
+            this.txVideoBytes = txVideoBytes;
+            this.rxAudioBytes = rxAudioBytes;
+            this.rxVideoBytes = rxVideoBytes;
+            this.txKBitRate = txKBitRate;
+            this.rxKBitRate = rxKBitRate;
+            this.rxAudioKBitRate = rxAudioKBitRate;
+            this.txAudioKBitRate = txAudioKBitRate;
+            this.rxVideoKBitRate = rxVideoKBitRate;
+            this.txVideoKBitRate = txVideoKBitRate;
+            this.lastmileDelay = lastmileDelay;
+            this.userCount = userCount;
+            this.cpuAppUsage = cpuAppUsage;
+            this.cpuTotalUsage = cpuTotalUsage;
+            this.gatewayRtt = gatewayRtt;
+            this.memoryAppUsageRatio = memoryAppUsageRatio;
+            this.memoryTotalUsageRatio = memoryTotalUsageRatio;
+            this.memoryAppUsageInKbytes = memoryAppUsageInKbytes;
+            this.connectTimeMs = connectTimeMs;
+            this.txPacketLossRate = txPacketLossRate;
+            this.rxPacketLossRate = rxPacketLossRate;
+        }
         public uint duration { set; get; }
         public uint txBytes { set; get; }
         public uint rxBytes { set; get; }
@@ -136,15 +156,13 @@
         public uint txVideoBytes { set; get; }
         public uint rxAudioBytes { set; get; }
         public uint rxVideoBytes { set; get; }
-        public UInt16 txKBitRate { set; get; }
-        public UInt16 rxKBitRate { set; get; }
-        public UInt16 rxAudioKBitRate { set; get; }
-        public UInt16 txAudioKBitRate { set; get; }
-        public UInt16 rxVideoKBitRate { set; get; }
-        public UInt16 txVideoKBitRate { set; get; }
-        public UInt16 lastmileDelay { set; get; }
-        public int txPacketLossRate { set; get; }
-        public int rxPacketLossRate { set; get; }
+        public ushort txKBitRate { set; get; }
+        public ushort rxKBitRate { set; get; }
+        public ushort rxAudioKBitRate { set; get; }
+        public ushort txAudioKBitRate { set; get; }
+        public ushort rxVideoKBitRate { set; get; }
+        public ushort txVideoKBitRate { set; get; }
+        public ushort lastmileDelay { set; get; }
         public uint userCount { set; get; }
         public double cpuAppUsage { set; get; }
         public double cpuTotalUsage { set; get; }
@@ -153,7 +171,9 @@
         public double memoryTotalUsageRatio { set; get; }
         public int memoryAppUsageInKbytes { set; get; }
         public int connectTimeMs { set; get; }
-        }</codeblock>
+        public int txPacketLossRate { set; get; }
+        public int rxPacketLossRate { set; get; }
+    }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
@@ -268,11 +288,9 @@
 
                     <note props="ios">
                     <p>该属性默认在 iOS 14 之前的设备上开启，在 iOS 14 及之后的设备上关闭。</p>
-                    <p>如需在 iOS 14 及之后的设备上启用该属性，请<xref keyref="ticket-link"
-                    />。</p>
+                    <p>如需在 iOS 14 及之后的设备上启用该属性，请<xref keyref="ticket-link"/>。</p>
                     </note>
-                    <note props="android cpp unity"
-                    >在 Android 平台上，如需获取 <parmname>gatewayRtt</parmname>，请确保已在项目 <codeph>AndroidManifest.xml</codeph> 文件的 <codeph>&lt;/application&gt;</codeph> 后面添加 <codeph>android.permission.ACCESS_WIFI_STATE</codeph> 权限。
+                    <note props="android cpp unity">在 Android 平台上，如需获取 <parmname>gatewayRtt</parmname>，请确保已在项目 <codeph>AndroidManifest.xml</codeph> 文件的 <codeph>&lt;/application&gt;</codeph> 后面添加 <codeph>android.permission.ACCESS_WIFI_STATE</codeph> 权限。
                     </note></pd>
             </plentry>
             <plentry>

@@ -19,14 +19,17 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual void onMetadataReceived(const Metadata &amp;metadata) = 0;
                 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnMetadataReceived(Metadata metadata)
+        {
+
+        }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry props="rtc-ng">
+            <plentry>
                 <pt props="android">buffer</pt>
                 <pt props="ios mac">data</pt>
                 <pd>接收到的数据。</pd>
@@ -40,9 +43,9 @@
                 <pt props="ios mac">timestamp</pt>
                 <pd>时间戳。</pd>
             </plentry>
-            <plentry props="cpp electron unity">
+            <plentry props="cpp unity">
                 <pt>metadata</pt>
-                <pd>接收到的 metadata。</pd>
+                <pd>接收到的 metadata，详见 <xref keyref="Metadata"/>。</pd>
             </plentry>
             </parml> </section>
     </refbody>

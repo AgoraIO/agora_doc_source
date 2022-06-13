@@ -77,9 +77,10 @@
         public RemoteAudioStats()
         {
         }
+
         public RemoteAudioStats(uint uid, int quality, int networkTransportDelay, int jitterBufferDelay,
             int audioLossRate, int numChannels, int receivedSampleRate, int receivedBitrate, int totalFrozenTime,
-            int frozenRate, int mosValue, int totalActiveTime, int publishDuration)
+            int frozenRate, int mosValue, int totalActiveTime, int publishDuration, int qoeQuality)
         {
             this.uid = uid;
             this.quality = quality;
@@ -94,41 +95,30 @@
             this.mosValue = mosValue;
             this.totalActiveTime = totalActiveTime;
             this.publishDuration = publishDuration;
+            this.qoeQuality = qoeQuality;
         }
 
         public uint uid { set; get; }
-
         public int quality { set; get; }
-
         public int networkTransportDelay { set; get; }
-
         public int jitterBufferDelay { set; get; }
-
         public int audioLossRate { set; get; }
-
         public int numChannels { set; get; }
-
         public int receivedSampleRate { set; get; }
-
         public int receivedBitrate { set; get; }
-
         public int totalFrozenTime { set; get; }
-
         public int frozenRate { set; get; }
-
         public int mosValue { set; get; }
-
         public int totalActiveTime { set; get; }
-
         public int publishDuration { set; get; }
+        public int qoeQuality { set; get; }
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="parameters">
             <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
                 <pt>uid</pt>
@@ -137,8 +127,7 @@
             <plentry>
                 <pt>quality</pt>
                 <pd>
-                    <p>远端用户发送的音频流质量。<ph props="ios mac cpp electron unity"
-                    >详见 <xref keyref="QUALITY_TYPE"/>。</ph></p>
+                    <p>远端用户发送的音频流质量。<ph props="ios mac cpp electron unity">详见 <xref keyref="QUALITY_TYPE"/>。</ph></p>
                     <p props="android">
                     <ul id="qualitytype">
                     <li><ph keyref="QUALITY_UNKNOWN"/> (0)：质量未知。</li>
@@ -159,11 +148,9 @@
             <plentry>
                 <pt>jitterBufferDelay</pt>
                 <pd>
-                    <p>音频接收端到网络抖动缓冲的网络延迟（毫秒）。
+                    <p>音频接收端到网络抖动缓冲的网络延迟（毫秒）。</p>
 
-                    <note type="attention">当接收端为观众且 <xref
-                    keyref="ClientRoleOptions"
-                    /> 的 <parmname>audienceLatencyLevel</parmname> 为 1 时，该参数不生效。</note></p>
+                    <note type="attention"><p>当接收端为观众且 <xref keyref="ClientRoleOptions"/> 的 <parmname>audienceLatencyLevel</parmname> 为 1 时，该参数不生效。</p></note>
                 </pd>
             </plentry>
             <plentry>
@@ -193,12 +180,6 @@
             <plentry>
                 <pt>totalActiveTime</pt>
                 <pd>
-                    <dl outputclass="since" props="rtc">
-                    <dlentry props="native">
-                        <dt>自从</dt>
-                        <dd>v3.3.0</dd>
-                    </dlentry>
-                    </dl>
                     <p>远端用户在音频通话开始到本次回调之间的有效时长（毫秒）。</p>
                     <p>有效时长是指去除了远端用户进入静音状态的总时长。</p>
                 </pd>
@@ -206,53 +187,26 @@
             <plentry>
                 <pt>publishDuration</pt>
                 <pd>
-                    <dl outputclass="since" props="rtc">
-                    <dlentry props="native">
-                        <dt>自从</dt>
-                        <dd>v3.1.0</dd>
-                    </dlentry>
-                    </dl>
                     <p>远端音频流的累计发布时长（毫秒）。</p>
                 </pd>
             </plentry>
-            <plentry props="native">
+            <plentry>
                 <pt>qoeQuality</pt>
                 <pd>
-                    <p>接收远端音频时，本地用户的主观体验质量。<ph props="ios mac cpp">详见 <xref
-                    keyref="EXPERIENCE_QUALITY_TYPE"/>。</ph>
+                    <p>接收远端音频时，本地用户的主观体验质量。<ph props="ios mac cpp">详见 <xref keyref="EXPERIENCE_QUALITY_TYPE"/>。</ph>
                     <ul props="android">
-                    <li><ph keyref="EXPERIENCE_QUALITY_GOOD"
-                        /> (0)：主观体验质量较好。</li>
+                    <li><ph keyref="EXPERIENCE_QUALITY_GOOD"/> (0)：主观体验质量较好。</li>
                     <li><ph keyref="EXPERIENCE_QUALITY_BAD"/> (1)：主观体验质量较差。</li>
                     </ul></p>
-                </pd>
-            </plentry>
-            <plentry props="rtc">
-                <pt>qualityChangedReason</pt>
-                <pd>
-                    <dl outputclass="since" props="rtc">
-                    <dlentry props="native">
-                        <dt>自从</dt>
-                        <dd>v3.3.0</dd>
-                    </dlentry>
-                    </dl>
-                    <p>接收远端音频时，本地用户主观体验质量较差的原因，详见 <xref
-                    keyref="EXPERIENCE_POOR_REASON"/>。</p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>mosValue</pt>
                 <pd>
-                    <dl outputclass="since" props="rtc">
-                    <dlentry props="native">
-                        <dt>自从</dt>
-                        <dd>v3.3.1</dd>
-                    </dlentry>
-                    </dl>
                     <p>统计周期内，Agora 实时音频 MOS（平均主观意见分）评估方法对接收到的远端音频流的质量评分。返回值范围为 [0,500]。返回值除以 100 即可得到 MOS 分数，范围为 [0,5] 分，分数越高，音频质量越好。</p>
                     <p>Agora 实时音频 MOS 评分对应的主观音质感受如下：<simpletable>
                     <sthead>
-                        <stentry>MOS分数</stentry>
+                        <stentry>MOS 分数</stentry>
                         <stentry>音质感受</stentry>
                     </sthead>
                     <strow>
