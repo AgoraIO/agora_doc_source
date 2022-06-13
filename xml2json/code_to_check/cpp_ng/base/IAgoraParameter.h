@@ -102,6 +102,20 @@
 #define KEY_RTC_AUDIO_OPENSL_MODE                    "rtc.audio.opensl.mode"
 
 /**
+  * enable estimated device delay or not
+  * @example
+  * enable estimated device delay       : "{\"rtc.audio.enable_estimated_device_delay\": true}"
+*/
+#define KEY_RTC_AUDIO_ENABLE_ESTIMATED_DEVICE_DELAY   "rtc.audio.enable_estimated_device_delay"
+
+/**
+  * enable preferred aec delay as audio device delay or not, enabled by default
+  * @example
+  * disable preferred aec delay as audio device delay    : "{\"rtc.audio.enable_preferred_aec_delay\": false}"
+*/
+#define KEY_RTC_AUDIO_ENABLE_PREFERRED_AEC_DELAY    "rtc.audio.enable_preferred_aec_delay"
+
+/**
   * enable/disable oboe, disabled by default
   * @example
   * enable oboe    : "{\"rtc.audio.oboe.enable\": true}"

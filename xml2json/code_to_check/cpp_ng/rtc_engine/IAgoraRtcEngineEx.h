@@ -72,8 +72,6 @@ class IRtcEngineEventHandlerEx : public IRtcEngineEventHandler {
   using IRtcEngineEventHandler::onFirstRemoteVideoDecoded;
   using IRtcEngineEventHandler::onVideoSizeChanged;
   using IRtcEngineEventHandler::onLocalVideoStateChanged;
-  using IRtcEngineEventHandler::onContentInspectResult;
-  using IRtcEngineEventHandler::onSnapshotTaken;
   using IRtcEngineEventHandler::onRemoteVideoStateChanged;
   using IRtcEngineEventHandler::onFirstRemoteVideoFrame;
   using IRtcEngineEventHandler::onUserJoined;
@@ -82,6 +80,7 @@ class IRtcEngineEventHandlerEx : public IRtcEngineEventHandler {
   using IRtcEngineEventHandler::onUserMuteVideo;
   using IRtcEngineEventHandler::onUserEnableVideo;
   using IRtcEngineEventHandler::onUserEnableLocalVideo;
+  using IRtcEngineEventHandler::onUserStateChanged;
   using IRtcEngineEventHandler::onLocalAudioStats;
   using IRtcEngineEventHandler::onRemoteAudioStats;
   using IRtcEngineEventHandler::onLocalVideoStats;
@@ -100,6 +99,7 @@ class IRtcEngineEventHandlerEx : public IRtcEngineEventHandler {
   using IRtcEngineEventHandler::onRemoteAudioStateChanged;
   using IRtcEngineEventHandler::onActiveSpeaker;
   using IRtcEngineEventHandler::onClientRoleChanged;
+  using IRtcEngineEventHandler::onClientRoleChangeFailed;
   using IRtcEngineEventHandler::onRemoteAudioTransportStats;
   using IRtcEngineEventHandler::onRemoteVideoTransportStats;
   using IRtcEngineEventHandler::onConnectionStateChanged;
@@ -295,27 +295,6 @@ class IRtcEngineEventHandlerEx : public IRtcEngineEventHandler {
     (void)height;
     (void)rotation;
   }
-      /** Reports result of Content Inspect*/
-  virtual void onContentInspectResult(media::CONTENT_INSPECT_RESULT result) { (void)result; }
-    /** Occurs when takeSnapshot API result is obtained
-   *
-   *
-   * @brief snapshot taken callback
-   *
-   * @param channel channel name
-   * @param uid user id
-   * @param filePath image is saveed file path
-   * @param width image width
-   * @param height image height
-   * @param errCode 0 is ok negative is error
-   */
-  virtual void onSnapshotTaken(const RtcConnection& connection, const char* filePath, int width, int height, int errCode) {
-    (void)connection;
-    (void)filePath;
-    (void)width;
-    (void)height;
-    (void)errCode;
-  }
   /** Occurs when the local video stream state changes
    *
    * This callback indicates the state of the local video stream, including camera capturing and video encoding,
@@ -325,7 +304,7 @@ class IRtcEngineEventHandlerEx : public IRtcEngineEventHandler {
    * while the local video capturing device is in use, so you have to make your own timeout judgment.
    * @param connection The connection of the local user.
    * @param state State type #LOCAL_VIDEO_STREAM_STATE. When the state is LOCAL_VIDEO_STREAM_STATE_FAILED (3), see the `error` parameter for details.
-   * @param error The detailed error information: #LOCAL_VIDEO_STREAM_ERROR.
+   * @param errorCode The detailed error information: #LOCAL_VIDEO_STREAM_ERROR.
    */
   virtual void onLocalVideoStateChanged(const RtcConnection& connection,
                                         LOCAL_VIDEO_STREAM_STATE state,
@@ -409,7 +388,7 @@ class IRtcEngineEventHandlerEx : public IRtcEngineEventHandler {
    * @param [in] muted
    *        true: the remote user muted the audio stream, false: the remote user unmuted the audio stream
    */
- virtual void onUserMuteAudio(const RtcConnection& connection, uid_t remoteUid, bool muted) {
+ virtual void onUserMuteAudio(const RtcConnection& connection, uid_t remoteUid, bool muted) __deprecated {
     (void)connection;
     (void)remoteUid;
     (void)muted;
@@ -423,7 +402,7 @@ class IRtcEngineEventHandlerEx : public IRtcEngineEventHandler {
    * @param [in] muted
    *        true: the remote user muted the video stream, false: the remote user unmuted the video stream
    */
- virtual void onUserMuteVideo(const RtcConnection& connection, uid_t remoteUid, bool muted) {
+ virtual void onUserMuteVideo(const RtcConnection& connection, uid_t remoteUid, bool muted) __deprecated {
     (void)connection;
     (void)remoteUid;
     (void)muted;
@@ -437,7 +416,7 @@ class IRtcEngineEventHandlerEx : public IRtcEngineEventHandler {
    * @param [in] enabled
    *        true: the remote user has enabled video function, false: the remote user has disabled video function
    */
- virtual void onUserEnableVideo(const RtcConnection& connection, uid_t remoteUid, bool enabled) {
+ virtual void onUserEnableVideo(const RtcConnection& connection, uid_t remoteUid, bool enabled) __deprecated {
     (void)connection;
     (void)remoteUid;
     (void)enabled;
@@ -451,10 +430,23 @@ class IRtcEngineEventHandlerEx : public IRtcEngineEventHandler {
    * @param [in] enabled
    *        true: the remote user has enabled local video function, false: the remote user has disabled local video function
    */
-  virtual void onUserEnableLocalVideo(const RtcConnection& connection, uid_t remoteUid, bool enabled) {
+  virtual void onUserEnableLocalVideo(const RtcConnection& connection, uid_t remoteUid, bool enabled) __deprecated {
     (void)connection;
     (void)remoteUid;
     (void)enabled;
+  }
+
+  /**
+   * Occurs when the remote user state is updated.
+   * @param [in] remoteUid
+   *        the uid of the remote user
+   * @param [in] state
+   *        The remote user state: Just & #REMOTE_USER_STATE
+   */
+  virtual void onUserStateChanged(const RtcConnection& connection, uid_t remoteUid, uint32_t state) {
+    (void)connection;
+    (void)remoteUid;
+    (void)state;
   }
 
   /** Reports the statistics of the local audio stream.
@@ -546,7 +538,8 @@ class IRtcEngineEventHandlerEx : public IRtcEngineEventHandler {
    * by calling the \ref agora::rtc::IRtcEngine::sendStreamMessage "sendStreamMessage" method
    * within 5 seconds.
    *
-   * @param userId ID of the user who sends the data stream.
+   * @param connection RtcConnection
+   * @param remoteUid uid_t
    * @param streamId The ID of the stream data.
    * @param data The data stream.
    * @param length The length (byte) of the data stream.
@@ -720,6 +713,20 @@ class IRtcEngineEventHandlerEx : public IRtcEngineEventHandler {
     (void)newRole;
   }
 
+  /**
+   * Occurs when the user role in a Live-Broadcast channel has switched, for example, from a broadcaster
+   * to an audience or vice versa.
+   *
+   * @param connection RtcConnection
+   * @param reason The reason of changing client role's failure: #CLIENT_ROLE_CHANGE_FAILED_REASON.
+   * @param currentRole The current role of the user:                 #CLIENT_ROLE_TYPE.
+   */
+  virtual void onClientRoleChangeFailed(const RtcConnection& connection, CLIENT_ROLE_CHANGE_FAILED_REASON reason, CLIENT_ROLE_TYPE currentRole) {
+    (void)connection;
+    (void)reason;
+    (void)currentRole;
+  }
+
   /** Reports the transport-layer statistics of each remote audio stream.
 
   This callback is triggered every two seconds once the user has received the
@@ -788,7 +795,8 @@ class IRtcEngineEventHandlerEx : public IRtcEngineEventHandler {
 
   /** Reports the error type of encryption.
 
-  @param type See #ENCRYPTION_ERROR_TYPE.
+  @param connection RtcConnection.
+  @param errorType See #ENCRYPTION_ERROR_TYPE.
    */
   virtual void onEncryptionError(const RtcConnection& connection, ENCRYPTION_ERROR_TYPE errorType) {
     (void)connection;
@@ -826,21 +834,12 @@ public:
      * - We recommend using different user IDs for different channels.
      * - If you want to join the same channel from different devices, ensure that the user IDs in all devices are different.
      * - Ensure that the app ID you use to generate the token is the same with the app ID used when creating the RtcEngine instance.
-     * @param token The token generated at your server:
-     * - In situations not requiring high security: You can use the temporary token generated at Console. For details, see [Get a temporary token](https://docs.agora.io/en/Agora%20Platform/token?platform=All%20Platforms#get-a-temporary-token).
-     * - In situations requiring high security: Set it as the token generated at your server. For details, see [Generate a token](https://docs.agora.io/en/Interactive%20Broadcast/token_server_cpp?platform=CPP).
-     * @param channelId The unique channel name for the AgoraRTC session in the string format. The string length must be less than 64 bytes. Supported character scopes are:
-     * - All lowercase English letters: a to z.
-     * - All uppercase English letters: A to Z.
-     * - All numeric characters: 0 to 9.
-     * - The space character.
-     * - Punctuation characters and other symbols, including: "!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "|", "~", ",".
-     * @param uid The user ID. A 32-bit unsigned integer with a value ranging from 1 to (2^32-1).
+     * @param connection RtcConnection
      * @param options The channel media options: ChannelMediaOptions.
      * @param eventHandler The pointer to the IRtcEngine event handler: IRtcEngineEventHandler.
      * you join the same channel multiple times.
      *
-     * @return
+     * @return int
      * - 0: Success.
      * - < 0: Failure.
      */
@@ -851,9 +850,8 @@ public:
     /**
      * Leaves the channel with the connection ID.
      *
-     * @param channelId The channel name.
-     * @param localUid The user ID.
-     * @return
+     * @param connection connection.
+     * @return int
      * - 0: Success.
      * - < 0: Failure.
      */
@@ -863,9 +861,8 @@ public:
      *  Updates the channel media options after joining the channel.
      *
      * @param options The channel media options: ChannelMediaOptions.
-     * @param channelId The channel name.
-     * @param uid The user ID.
-     * @return
+     * @param connection RtcConnection.
+     * @return int
      * - 0: Success.
      * - < 0: Failure.
      */
@@ -881,12 +878,16 @@ public:
 
     virtual int setRemoteVideoStreamTypeEx(uid_t uid, VIDEO_STREAM_TYPE streamType, const RtcConnection& connection) = 0;
 
+    virtual int setRemoteVideoSubscriptionOptionsEx(uid_t uid, const VideoSubscriptionOptions& options, const RtcConnection& connection) = 0;
+
     virtual int setRemoteVoicePositionEx(uid_t uid, double pan, double gain, const RtcConnection& connection) = 0;
+  
+    virtual int setRemoteUserSpatialAudioParamsEx(uid_t uid, const agora::SpatialAudioParams& params, const RtcConnection& connection) = 0;
 
     virtual int setRemoteRenderModeEx(uid_t uid, media::base::RENDER_MODE_TYPE renderMode,
                                       VIDEO_MIRROR_MODE_TYPE mirrorMode, const RtcConnection& connection) = 0;
 
-    virtual int enableLoopbackRecordingEx(bool enabled, const RtcConnection& connection) = 0;
+    virtual int enableLoopbackRecordingEx(const RtcConnection& connection, bool enabled, const char* deviceName = NULL) = 0;
 
     virtual CONNECTION_STATE_TYPE getConnectionStateEx(const RtcConnection& connection) = 0;
 
@@ -905,6 +906,38 @@ public:
     virtual int sendCustomReportMessageEx(const char* id, const char* category, const char* event, const char* label,
                                           int value, const RtcConnection& connection) = 0;
 
+    virtual int enableAudioVolumeIndicationEx(int interval, int smooth, bool reportVad, const RtcConnection& connection) = 0;
+
+   /** Gets the user information by passing in the user account.
+    *  It is same as agora::rtc::IRtcEngine::getUserInfoByUserAccount.
+    * 
+    * @param userAccount The user account of the user. Ensure that you set this parameter.
+    * @param [in,out] userInfo  A userInfo object that identifies the user:
+    * - Input: A userInfo object.
+    * - Output: A userInfo object that contains the user account and user ID of the user.
+    * @param connection The connection of the remote user account
+    *
+    * @return
+    * - 0: Success.
+    * - < 0: Failure.
+    */
+    virtual int getUserInfoByUserAccountEx(const char* userAccount, rtc::UserInfo* userInfo, const RtcConnection& connection) = 0;
+
+    /** Gets the user information by passing in the user ID.
+    *  It is same as agora::rtc::IRtcEngine::getUserInfoByUid.
+    *
+    * @param uid The user ID of the remote user. Ensure that you set this parameter.
+    * @param[in,out] userInfo A userInfo object that identifies the user:
+    * - Input: A userInfo object.
+    * - Output: A userInfo object that contains the user account and user ID of the user.
+    * @param connection The connection of the remote user ID
+    *
+    * @return
+    * - 0: Success.
+    * - < 0: Failure.
+    */
+    virtual int getUserInfoByUidEx(uid_t uid, rtc::UserInfo* userInfo, const RtcConnection& connection) = 0;
+
     /**
      * Specify video stream parameters based on video profile
      * @param [in] width
@@ -917,7 +950,26 @@ public:
      *        bit rate in kbps
      * @return return 0 if success or an error code
      */
-     virtual int setVideoProfileEx(int width, int height, int frameRate, int bitrate) = 0;
+    virtual int setVideoProfileEx(int width, int height, int frameRate, int bitrate) = 0;
+
+     /**
+     * Enables or disables the dual video stream mode.
+     *
+     * If dual-stream mode is enabled, the subscriber can choose to receive the high-stream
+     * (high-resolution high-bitrate video stream) or low-stream (low-resolution low-bitrate video
+     * stream) video using {@link setRemoteVideoStreamType setRemoteVideoStreamType}.
+     *
+     * @param sourceType The video source type.
+     * @param enabled
+     * - true: Enable the dual-stream mode.
+     * - false: (default) Disable the dual-stream mode.
+     * @param streamConfig The minor stream config
+     * @param connection An output parameter which is used to control different connection instances.
+     */
+    virtual int enableDualStreamModeEx(VIDEO_SOURCE_TYPE sourceType, bool enabled, const SimulcastStreamConfig& streamConfig,
+                                       const RtcConnection& connection) = 0;
+
+    virtual int addPublishStreamUrlEx(const char* url, bool transcodingEnabled, const RtcConnection& connection) = 0;
 };
 
 }  // namespace rtc
