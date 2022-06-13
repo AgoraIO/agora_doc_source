@@ -7,7 +7,7 @@ This page shows how to use the Agora Chat SDK to create and manage a thread in y
 
 ## Understand the tech
 
-The Agora Chat SDK provides the `xxx`, `xxx`, and `xxx` classes for thread management, which allows you to implement the following features:
+The Agora Chat SDK allows you to implement the following features:
 
 - Create and destroy a thread
 - Join and leave a thread
@@ -38,7 +38,7 @@ This section describes how to call the APIs provided by the Agora Chat SDK to im
 
 All chat group members can call `createChatThread` to create a thread from a specific message in a chat group.
 
-Once a thread is created in a chat group, all chat group members receive the `xxx#onChatThreadChange` callback triggered by the `create` event. In a multi-device scenario, all the other devices receive the `xxx#onMultiDeviceEvent` callback triggered by the `xxx` event.
+Once a thread is created in a chat group, all chat group members receive the `onChatThreadChange` callback triggered by the `create` event. In a multi-device scenario, all the other devices receive the `onMultiDeviceEvent` callback triggered by the `chatThreadCreate` event.
 
 The following code sample shows how to create a thread in a chat group:
 
@@ -59,7 +59,7 @@ conn.addEventHandler('THREAD',{
 
 Only the chat group owner and admins can call `destroyChatThread` to disband a thread in a chat group.
 
-Once a thread is disbanded, all chat group members receive the `xxx#onChatThreadChange` callback triggered by the `destroy` event. In a multi-device scenario, all the other devices receive the `xxx#onMultiDeviceEvent` callback triggered by the `xxx` event.
+Once a thread is disbanded, all chat group members receive the `onChatThreadChange` callback triggered by the `destroy` event. In a multi-device scenario, all the other devices receive the `onMultiDeviceEvent` callback triggered by the `chatThreadDestroy` event.
 
 <div class="alert note">Once a thread is destroyed or the chat group where a thread resides is destroyed, all data of the thread is deleted from the local database and memory.</div>
 
@@ -82,10 +82,10 @@ All chat group members can refer to the following steps to join a thread:
 
 1. Use either of the following two approaches to retrieve the thread ID:
 - Retrieve the thread list in a chat group by calling `getChatThreads`, and locate the ID of the thread that you want to join.
-- Retrieve the thread ID within the `xxx#onChatThreadChange` callback that you receive.
+- Retrieve the thread ID within the `onChatThreadChange` callback that you receive.
 2. Call `joinChatThread` to pass in the thread ID and join the specified thread.
 
-In a multi-device scenario, all the other devices receive the `xxx#onMultiDeviceEvent` callback triggered by the `xxx` event.
+In a multi-device scenario, all the other devices receive the `onMultiDeviceEvent` callback triggered by the `chatThreadJoin` event.
 
 The following code sample shows how to join a thread:
 
@@ -99,7 +99,7 @@ conn.joinChatThread({chatThreadId: 'chatThreadId'});
 
 All thread members can call `leaveChatThread` to leave a thread. Once a member leaves a thread, this member can no longer receive the thread messages.
 
-In a multi-device scenario, all the other devices receive the `xxx#onMultiDeviceEvent` callback triggered by the `xxx` event.
+In a multi-device scenario, all the other devices receive the `onMultiDeviceEvent` callback triggered by the `chatThreadLeave` event.
 
 The following code sample shows how to leave a thread:
 
@@ -113,7 +113,7 @@ conn.leaveChatThread({chatThreadId: 'chatThreadId'});
 
 Only the chat group owner and admins can call `removeChatThreadMember` to remove the specified member from a thread.
 
-Once a member is removed from a thread, this member receives the `xxx#onChatThreadChange` callback triggered by the `userRemove` event and can no longer receive the thread messages. In a multi-device scenario, all the other devices receive the `xxx#onMultiDeviceEvent` callback triggered by the `xxx` event.
+Once a member is removed from a thread, this member receives the `onChatThreadChange` callback triggered by the `userRemove` event and can no longer receive the thread messages. In a multi-device scenario, all the other devices receive the `onMultiDeviceEvent` callback triggered by the `xxx` event.
 
 The following code sample shows how to remove a member from a thread:
 
@@ -128,7 +128,7 @@ conn.removeChatThreadMember({chatThreadId: 'chatThreadId',username:'username'});
 
 Only the chat group owner, chat group admins, and thread creator can call `changeChatThreadName` to update the thread name.
 
-Once the thread name is updated, all chat group members receive the `xxx#onChatThreadChange` callback. In a multi-device scenario, all the other devices receive the `xxx#onMultiDeviceEvent` callback triggered by the `xxx` event.
+Once the thread name is updated, all chat group members receive the `onChatThreadChange` callback triggered by the `update` event. In a multi-device scenario, all the other devices receive the `onMultiDeviceEvent` callback triggered by the `chatThreadNameUpdate` event.
 
 The following code sample shows how to update the thread name:
 

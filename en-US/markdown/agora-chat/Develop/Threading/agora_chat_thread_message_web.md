@@ -6,7 +6,7 @@ This page shows how to use the Agora Chat SDK to send, receive, recall, and retr
 
 ## Understand the tech
 
-The Agora Chat SDK provides the `xxx`, `xxx`, and `xxx` classes for thread messages, which allows you to implement the following features:
+The Agora Chat SDK allows you to implement the following features:
 
 - Send a thread message
 - Receive a thread message
@@ -59,7 +59,7 @@ For more information about sending a message, see [Send Messages](./agora_chat_m
 
 ### Receive a thread message
 
-Once a thread has a new message, all chat group members receive the `xxx#onChatThreadChange` callback. For thread members, they can also listen for the `xxx#onTextMessage` callback to receive thread messages, as shown in the following code sample:
+Once a thread has a new message, all chat group members receive the `onChatThreadChange` callback triggered by the `update` event. For thread members, they can also listen for the `onTextMessage` callback to receive thread messages, as shown in the following code sample:
 
 ```javascript
 // The SDK triggers the `onTextMessage` callback when it receives a message.
@@ -81,7 +81,7 @@ For more information about receiving a message, see [Receive Messages](./agora_c
 
 Send a thread message is similar to send a message in a chat group. The difference lies in the `isChatThread` field.
 
-Once a message is recalled in a thread, all chat group members receive the `xxx#onChatThreadChange` callback. For thread members, they can also listen for the `xxx#onRecallMessage` callback, as shown in the following code sample:
+Once a message is recalled in a thread, all chat group members receive the `onChatThreadChange` callback triggered by the `update` event. For thread members, they can also listen for the `onRecallMessage` callback, as shown in the following code sample:
 
 ```javascript
 let option = {
