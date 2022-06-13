@@ -15,7 +15,7 @@ Before enabling the cloud proxy modes in the SDK, ensure you meet the following 
 
 To enable Force UDP or Force TCP cloud proxy mode, do the following:
 
-1. Before connecting to a channel, call `agora::base::IAgoraParameters::setParameters`:
+1. Before connecting to a channel, call `io.agora.rtc.AgoraParameter.setParameters`:
 
    ```c++
    // TODO: Wait for dev to support Force UDP and Force TCP options
@@ -24,7 +24,7 @@ To enable Force UDP or Force TCP cloud proxy mode, do the following:
 
 2. Test the audio and video call functionality.
 
-To disable Force UDP or Force TCP cloud proxy mode, call `agora::base::IAgoraParameters::setParameters`:
+To disable Force UDP or Force TCP cloud proxy mode, call `io.agora.rtc.AgoraParameter.setParameters`:
 
    ```c++
    setParameters("{\"rtc.enable_proxy\":false}");

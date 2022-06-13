@@ -2,7 +2,7 @@ This page introduces how to use the Server Gateway SDK to send media streams to 
 
 ## Prerequisites
 
-You have downloaded the latest Server Gateway SDK. See [Run the Sample Project](server_gateway_run_demo).
+You have downloaded the latest Server Gateway SDK.
 
 ## Preparation
 
@@ -10,62 +10,54 @@ Complete the following preparations before sending and receiving media streams.
 
 ### Step 1: Initialize the SDK
 
-You need to call `createAgoraService` and `initialize` to create and initialize an `AgoraService` object. The `IAgoraService` object persists as long as the server app keeps running.
+You need to call `AgoraService` and `initialize` to create and initialize an `AgoraService` object. The `AgoraService` object persists as long as the server app keeps running.
 
-The SDK supports user IDs in both int format and string format. This page only shows user IDs in int format (the character set can only be digitals). To learn more about user IDs in string format, see [Using User IDs in String Format](server_gateway_stringuid).
+The SDK supports user IDs in both integer format and string format. This page only shows user IDs in int format (the character set can only be digitals). To learn more about user IDs in string format, see [Using User IDs in String Format](server_gateway_stringuid_java).
 
-```C++
-// Creates an IAgoraService object
-auto service = createAgoraService();
-// Initializes the IAgoraService object
-agora::base::AgoraServiceConfiguration scfg;
-// Sets Agora App ID
-scfg.appId = appid;
+```java
+// Import SDK, AgoraService, and AgoraServiceConfig classes for initialization
+import io.agora.rtc.SDK;
+import io.agora.rtc.AgoraService;
+import io.agora.rtc.AgoraServiceConfig;
+
+
+// Creates an AgoraService object
+SDK.load(); // ensure JNI library load
+AgoraService service = new AgoraService();
+// Initializes the AgoraServiceConfig object
+AgoraServiceConfig config = new AgoraServiceConfig();
 // Enables the audio processing module
-scfg.enableAudioProcessor = enableAudioProcessor;
+config.setEnableAudioProcessor(1);
 // Disables the audio device module (Normally we do not directly connect audio capture or playback devices to a server)
-scfg.enableAudioDevice = enableAudioDevice;
-// Whether to enable video
-scfg.enableVideo = enableVideo;
-// Disables user IDs in string format (the character can be digits, letters or special symbols) so that user ID can only contain digits
-scfg.useStringUid = enableuseStringUid;
-if (service->initialize(scfg) != agora::ERR_OK) {
-    return nullptr;
-  }
+config.setEnableAudioDevice(0);
+// Enables video
+config.setEnableVideo(1);
+// Sets Agora App ID
+config.setAppId(appid);
+// Initializes the SDK
+service.initialize(config);
 ```
 
 ### Step 2: Connect to the Agora RTC Channel
 
 After initializing the SDK, you can refer to the following steps to connect to the Agora RTC channel.
 
-1. Call `createRtcConnection` to create an `IRtcConnection` object to connect to the Agora RTC channel:
+1. Call `agoraRtcConnCreate` to create an `AgoraRtcConn` object to connect to the Agora RTC channel:
 
-    ```C++
-    // Creates an IRtcConnection object
-    agora::rtc::RtcConnectionConfiguration ccfg;
-    ccfg.autoSubscribeAudio = false;
-    ccfg.autoSubscribeVideo = false;
-    ccfg.clientRoleType = agora::rtc::CLIENT_ROLE_BROADCASTER;
-    agora::agora_refptr<agora::rtc::IRtcConnection> connection = service->createRtcConnection(ccfg);
+    ```java
+    AgoraRtcConn conn = service.agoraRtcConnCreate(null);
     ```
 
-2. Call `registerObserver` to listen to connection events. The `SampleConnectionObserver` class in the sample code inherits the `IRtcConnectionObserver` class and the `INetworkObserver` class:
+2. Call `registerObserver` to listen to connection events:
 
-    ```C++
-    // Calls registerObserver to listen to connection events
-    auto connObserver = std::make_shared<SampleConnectionObserver>();
-    connection->registerObserver(connObserver.get());
+    ```java
+    conn.registerObserver(new ConnObserver());
     ```
 
 3. Call `connect` to connect to an Agora RTC channel:
 
-    ```C++
-    // Calls connect to connect to an Agora RTC channel
-    if (connection->connect(options.appId.c_str(), options.channelId.c_str(),
-                            options.userId.c_str())) {
-        AG_LOG(ERROR, "Failed to connect to Agora channel!");
-        return -1;
-    }
+    ```java
+    conn.connect(token, "test_channel", "1");
     ```
 
 ## Send media streams to the client
@@ -76,262 +68,209 @@ Refer to the following steps to send media streams to the client:
 
 You can use the `IMediaNodeFactory` object to create various types of media stream senders:
 
-- `IAudioPcmDataSender`：Sends audio data in PCM format.
-- `IVideoFrameSender`：Sends video data in YUV format.
-- `IAudioEncodedFrameSender`：Sends encoded audio data.
-- `IVideoEncodedImageSender`：Sends encoded video data.
+- `AgoraAudioPcmDataSender`：Sends audio data in PCM format.
+- `AgoraVideoFrameSender`：Sends video data in YUV format.
+- `AgoraAudioEncodedFrameSender`：Sends encoded audio data.
+- `AgoraVideoEncodedImageSender`：Sends encoded video data.
 
 1. Create an `IMediaNodeFactory` object:
 
-    ```cpp
-    // Creates an IMediaNodeFactory object.
-    agora::agora_refptr<agora::rtc::IMediaNodeFactory> factory = service->createMediaNodeFactory();
-    if (!factory) {
-    AG_LOG(ERROR, "Failed to create media node factory!");
-    }
+    ```java
+    AgoraMediaNodeFactory factory = service.createMediaNodeFactory();
     ```
 
-2. Per your own requirements, create an `IAudioPcmDataSender` object, an `IVideoFrameSender` object, an `IAudioEncodedFrameSender` object, or an `IVideoEncodedImageSender` object for sending audio in PCM format, video in YUV format, encoded audio, and encoded video:
+2. Per your own requirements, create an `AgoraAudioPcmDataSender` object, an `AgoraVideoFrameSender` object, an `AgoraAudioEncodedFrameSender` object, or an `AgoraVideoEncodedImageSender` object for sending audio in PCM format, video in YUV format, encoded audio, and encoded video:
 
-    ```cpp
+    ```java
     // Creates a sender for PCM audio
-    agora::agora_refptr<agora::rtc::IAudioPcmDataSender> audioPcmDataSender =
-        factory->createAudioPcmDataSender();
-    if (!audioPcmDataSender) {
-    AG_LOG(ERROR, "Failed to create audio data sender!");
-    return -1;
-    }
+    AgoraAudioPcmDataSender audioFrameSender = factory.createAudioPcmDataSender();
 
     // Creates a sender for YUV video
-    agora::agora_refptr<agora::rtc::IVideoFrameSender> videoFrameSender =
-        factory->createVideoFrameSender();
-    if (!videoFrameSender) {
-    AG_LOG(ERROR, "Failed to create video frame sender!");
-    return -1;
-    }
+    AgoraVideoFrameSender videoFrameSender = factory.createVideoFrameSender();
 
     // Creates a sender for encoded audio
-    agora::agora_refptr<agora::rtc::IAudioEncodedFrameSender> audioFrameSender =
-        factory->createAudioEncodedFrameSender();
-    if (!audioFrameSender) {
-        AG_LOG(ERROR, "Failed to create audio encoded frame sender!");
-        return -1;
-    }
+    AgoraAudioEncodedFrameSender audioFrameSender = factory.createAudioEncodedFrameSender();
     
     // Creates a sender for encoded video
-    agora::agora_refptr<agora::rtc::IVideoEncodedImageSender> videoEncodedFrameSender =
-        factory->createVideoEncodedImageSender();
-    if (!videoEncodedFrameSender) {
-    AG_LOG(ERROR, "Failed to create encoded video frame sender!");
-    return -1;
-    }
+    AgoraVideoEncodedImageSender imageSender = factory.createVideoEncodedImageSender();
     ```
 
-3. Create an `ILocalAudioTrack` object and an `ILocalVideoTrack` object, which respectively correspond to the local audio track and local video track to be published to the Agora RTC channel:
+3. Create an `AgoraLocalAudioTrack` object and an `AgoraLocalVideoTrack` object, which respectively correspond to the local audio track and local video track to be published to the Agora RTC channel:
 
-    ```c++
+    ```java
     // Creates a custom audio track that uses a PCM audio stream sender
-    agora::agora_refptr<agora::rtc::ILocalAudioTrack> customAudioTrack =
-        service->createCustomAudioTrack(audioPcmDataSender);
-    if (!customAudioTrack) {
-    AG_LOG(ERROR, "Failed to create audio track!");
-    return -1;
-    }
+    customAudioTrack = service.createCustomAudioTrackPcm(audioFrameSender);
 
     // Creates a custom audio track that uses an encoded audio stream sender
-    agora::agora_refptr<agora::rtc::ILocalAudioTrack> customAudioTrack =
-        service->createCustomAudioTrack(audioFrameSender, agora::base::MIX_DISABLED);
-    if (!customAudioTrack) {
-    AG_LOG(ERROR, "Failed to create audio track!");
-    return -1;
-    }
+    customAudioTrack = service.createCustomAudioTrackEncoded(audioFrameSender,0);
 
     // Creates a custom video track that uses a YUV video stream sender
-    agora::agora_refptr<agora::rtc::ILocalVideoTrack> customVideoTrack =
-        service->createCustomVideoTrack(videoFrameSender);
-    if (!customVideoTrack) {
-    AG_LOG(ERROR, "Failed to create video track!");
-    return -1;
-    }
+    customVideoTrack = service.createCustomVideoTrackFrame(videoFrameSender);
 
     // Creates a custom video track that uses encoded video stream sender
-    agora::agora_refptr<agora::rtc::ILocalVideoTrack> customVideoTrack =
-        service->createCustomVideoTrack(videoEncodedFrameSender);
-    if (!customVideoTrack) {
-    AG_LOG(ERROR, "Failed to create video track!");
-    return -1;
-    }
+    customVideoTrack = service.createCustomVideoTrackEncoded(videoFrameSender, option);
     ```
 
 ### Step 2: Send media streams
 
-1. Use `publish` methods in the `ILocalUser` object to publish local audio and video tracks created in the previous step to Agora RTC channel:
+1. Use `publish` methods in the `AgoraLocalUser` object to publish local audio and video tracks created in the previous step to Agora RTC channel:
 
-    ```c++
-    // Enables and publishes audio track
-    customAudioTrack->setEnabled(true);
-    connection->getLocalUser()->publishAudio(customAudioTrack);
-    // Enables and publishes video track
-    customVideoTrack->setEnabled(true);
-    connection->getLocalUser()->publishVideo(customVideoTrack);
+    ```java
+    // Enables and publishes audio and video track
+    customAudioTrack.setEnabled(1);
+    customVideoTrack.setEnabled(1);
+    conn.getLocalUser().publishAudio(customAudioTrack);
+    conn.getLocalUser().publishVideo(customVideoTrack);
     ```
 
 2. Start the sending thread, which calls the `send` methods of the audio/video sender:
 
-    ```c++
-    // Audio sending thread
-    std::thread sendAudioThread(SampleSendAudioTask, options, audioFrameSender, std::ref(exitFlag));
-    // Video sending thread
-    std::thread sendVideoThread(SampleSendVideoH264Task, options, videoFrameSender,
-                                std::ref(exitFlag));
+    ```java
+    pcmSender = new PcmSender(audioFile,audioFrameSender,numOfChannels,sampleRate);
+    h264Sender = new H264Sender(videoFile,1000/fps,0,0,videoFrameSender);
 
-    sendAudioThread.join();
-    sendVideoThread.join();
+    pcmSender.start();
+    h264Sender.start();
     ```
 
-    Taking PCM data as an example, the following code shows the implementation of `SampleSendAudioTask`:
+    Taking PCM data as an example, the following code shows the implementation of `PcmSender`:
 
-    ```c++
-    static void SampleSendAudioTask(
-        const SampleOptions& options,
-        agora::agora_refptr<agora::rtc::IAudioPcmDataSender> audioFrameSender, bool& exitFlag) {
-    // Currently, the SDK only supports sending PCM data with 10 ms in length each time, so the sending interval of PCM data is 10 ms.
-    PacerInfo pacer = {0, 10, std::chrono::steady_clock::now()};
-
-    while (!exitFlag) {
-        sendOnePcmFrame(options, audioFrameSender);
-        waitBeforeNextSend(pacer);  // sleep for a while before sending next frame
-    }
-    }
-    ```
-
-    The following code shows the implementation of `sendOnePcmFrame`. You can see that `sendOnePcmFrame` calls the `sendAudioPcmData` method of `audioFrameSender` to send PCM data:
-
-    ```c++
-    static void sendOnePcmFrame(const SampleOptions& options,
-                                agora::agora_refptr<agora::rtc::IAudioPcmDataSender> audioFrameSender) {
-    static FILE* file = nullptr;
-    const char* fileName = options.audioFile.c_str();
-
-    // Calculates the sample size based on the length of the sample 
-    int sampleSize = sizeof(int16_t) * options.audio.numOfChannels;
-    int samplesPer10ms = options.audio.sampleRate / 100;
-    int sendBytes = sampleSize * samplesPer10ms;
-
-    if (!file) {
-        if (!(file = fopen(fileName, "rb"))) {
-        AG_LOG(ERROR, "Failed to open audio file %s", fileName);
-        return;
+    ```java
+    // audio thread
+    // send audio data every 10 ms;
+    class PcmSender extends FileSender {
+        private AgoraAudioPcmDataSender audioFrameSender;
+        private static final int INTERVAL = 10; //ms
+        private int channels;
+        private int samplerate;
+        private int bufferSize = 0;
+        private byte[] buffer;
+        public PcmSender(String filepath, AgoraAudioPcmDataSender sender,int channels,int samplerate){
+            super(filepath, INTERVAL);
+            audioFrameSender = sender;
+            this.channels = channels;
+            this.samplerate = samplerate;
+            this.bufferSize = channels * samplerate * 2 * INTERVAL /1000;
+            this.buffer = new byte[this.bufferSize];
         }
-        AG_LOG(INFO, "Open audio file %s successfully", fileName);
-    }
 
-    uint8_t frameBuf[sendBytes];
-
-    if (fread(frameBuf, 1, sizeof(frameBuf), file) != sizeof(frameBuf)) {
-        if (feof(file)) {
-        fclose(file);
-        file = nullptr;
-        AG_LOG(INFO, "End of audio file");
-        } else {
-        AG_LOG(ERROR, "Error reading audio data: %s", std::strerror(errno));
+        // sendOneFrame calls the send method of audioFrameSender to send PCM data
+        @Override
+        public void sendOneFrame(byte[] data) {
+            if(data == null) return;
+            audioFrameSender.send(data,(int)System.currentTimeMillis(),sampleRate/(1000/INTERVAL),2,channels,samplerate);
         }
-        return;
-    }
-    // Calls the sendAudioPcmData method of audioFrameSender to send PCM data.
-    // Configures PCM data in sendAudioPcmData
-    if (audioFrameSender->sendAudioPcmData(frameBuf, 0, samplesPer10ms,  agora::rtc::TWO_BYTES_PER_SAMPLE,
-                                            options.audio.numOfChannels,
-                                            options.audio.sampleRate) < 0) {
-        AG_LOG(ERROR, "Failed to send audio frame!");
-    }
-    }
-    ```
 
-    Taking H.264 video data as an example, the following code shows the implementation of `SampleSendVideoH264Task`:
-
-    ```c++
-    static void SampleSendVideoH264Task(
-    const SampleOptions& options,
-    agora::agora_refptr<agora::rtc::IVideoEncodedImageSender> videoH264FrameSender,
-    bool& exitFlag) {
-        std::unique_ptr<HelperH264FileParser> h264FileParser(
-            new HelperH264FileParser(options.videoFile.c_str()));
-        h264FileParser->initialize();
-
-        // Calculate send interval based on frame rate. H264 frames are sent at this interval
-        PacerInfo pacer = {0, 1000 / options.video.frameRate, 0, std::chrono::steady_clock::now()};
-
-        while (!exitFlag) {
-            if (auto h264Frame = h264FileParser->getH264Frame()) {
-            sendOneH264Frame(options.video.frameRate, std::move(h264Frame), videoH264FrameSender);
-            waitBeforeNextSend(pacer);  // sleep for a while before sending next frame
+        @Override
+        public byte[] readOneFrame(FileInputStream fos) {
+            if(fos != null ){
+                try {
+                    int size = fos.read(buffer,0,bufferSize);
+                    if( size <= 0){
+                        reset();
+                        return null;
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-        };
+            return buffer;
         }
+    }
     ```
 
-    The following code shows the implementation of `sendOneH264Frame`. You can see that `sendOneH264Frame` calls the `sendEncodedVideoImage` method of `videoH264FrameSender` to send H.264 data.
+    Taking H.264 video data as an example, the following code shows the implementation of `H264Sender`:
 
-    > You can set the format of the encoded video data by using the `videoEncodedFrameInfo` parameter of the `sendEncodedVideoImage` method.
-
-    ```c++
-    static void sendOneH264Frame(
-    int frameRate, std::unique_ptr<HelperH264Frame> h264Frame,
-    agora::agora_refptr<agora::rtc::IVideoEncodedImageSender> videoH264FrameSender) {
-        agora::rtc::EncodedVideoFrameInfo videoEncodedFrameInfo;
-        videoEncodedFrameInfo.rotation = agora::rtc::VIDEO_ORIENTATION_0;
-        videoEncodedFrameInfo.codecType = agora::rtc::VIDEO_CODEC_H264;
-        videoEncodedFrameInfo.framesPerSecond = frameRate;
-        videoEncodedFrameInfo.frameType =
-            (h264Frame.get()->isKeyFrame ? agora::rtc::VIDEO_FRAME_TYPE::VIDEO_FRAME_TYPE_KEY_FRAME
-                                        : agora::rtc::VIDEO_FRAME_TYPE::VIDEO_FRAME_TYPE_DELTA_FRAME);
-
-        videoH264FrameSender->sendEncodedVideoImage(
-            reinterpret_cast<uint8_t*>(h264Frame.get()->buffer.get()), h264Frame.get()->bufferLen,
-            videoEncodedFrameInfo);
+    ```java
+    class H264Sender extends FileSender {
+        private AgoraVideoEncodedImageSender imageSender;
+        private H264Reader h264Reader;
+        private int lastFrameType = 0;
+        private int height;
+        private int width;
+        private int fps;
+        public H264Sender(String path,int interval, int height,int width, AgoraVideoEncodedImageSender videoEncodedImageSender){
+            super(path,interval,false);
+            this.imageSender = videoEncodedImageSender;
+            this.h264Reader = new H264Reader(path);
+            this.height = height;
+            this.width = width;
+            this.fps = 1000/interval;
         }
+        // sendOneH264Frame calls the send method of imageSender to send H.264 data.
+        @Override
+        public void sendOneFrame(byte[] data) {
+            if(data == null) return;
+            EncodedVideoFrameInfo info = new EncodedVideoFrameInfo();
+            long currentTime = System.currentTimeMillis();
+            info.setFrameType(lastFrameType);
+            info.setWidth(width);
+            info.setHeight(height);
+            info.setCodecType(Constants.VIDEO_CODEC_H264);
+            info.setCaptureTimeMs(currentTime);
+            info.setRenderTimeMs(currentTime);
+            info.setFramesPerSecond(fps);
+            info.setRotation(0);
+            imageSender.send(data,data.length,info);
+        }
+
+        @Override
+        public byte[] readOneFrame(FileInputStream fos) {
+            int retry = 0;
+            H264Reader.H264Frame frame =  h264Reader.readNextFrame();
+            while ( frame == null && retry < 4){
+                h264Reader.reset();
+                frame = h264Reader.readNextFrame();
+                retry ++;
+            }
+            if( frame != null ) {
+                lastFrameType = frame.frameType;
+                return frame.data;
+            } else {
+                return null;
+            }
+        }
+
+        @Override
+        public void release() {
+            super.release();
+            h264Reader.close();
+        }
+    }  
     ```
+
+    > You can set the format of the encoded video data by using the `info` parameter of the `send` method.
+
 
 ### Step 3: Disconnect and release resources
 
 After finishing media sending tasks, you can refer to the following steps to disconnect from the channel and release resources.
 
-<div class="alert note">You must release the resources according to the sequence in the sample code.</div>
-
 1. Call `unpublish` methods to stop publishing audio and video:
 
-    ```c++
-    connection->getLocalUser()->unpublishAudio(customAudioTrack);
-    connection->getLocalUser()->unpublishVideo(customVideoTrack);
+    ```java
+    if(conn != null) {
+            conn.getLocalUser().unpublishAudio(customAudioTrack);
+            conn.getLocalUser().unpublishVideo(customVideoTrack);
+    }
     ```
 
 2. Call `unregisterObserver` to unregister the connection observer:
 
-    ```c++
-    connection->unregisterObserver(connObserver.get());
+    ```java
+    conn.unregisterObserver();
     ```
 
 3. Call `disconnect` to disconnect from Agora RTC channel:
 
-    ```c++
-    if (connection->disconnect()) {
-        AG_LOG(ERROR, "Failed to disconnect from Agora channel!");
-        return -1;
-    }
-    AG_LOG(INFO, "Disconnected from Agora channel successfully");
+    ```java
+    int ret = conn.disconnect();
     ```
 
 4. Release resources from create objects:
 
-    ```c++
-    connObserver.reset();
-    audioPcmDataSender = nullptr;
-    videoFrameSender = nullptr;
-    customAudioTrack = nullptr;
-    customVideoTrack = nullptr;
-    factory = nullptr;
-    connection = nullptr;
+    ```java
+    conn.destroy();
     ```
 
 ## Receive media stream from the client
@@ -344,38 +283,29 @@ Instantiate the video and audio frame observer object, and register the observer
 
 The `SampleLocalUserObserver` class in the sample code not only includes observer objects from the `IVideoEncodedFrameObserver` class, the `IAudioFrameObserverBase` class, and the `IVideoFrameObserver2` class, and inherits the `ILocalUserObserver` class as well. The member methods of the `ILocalUserObserver` class can be used to register video and audio frame observer objects.
 
-```c++
+```java
 // The SampleLocalUserObserver class inherits the ILocalUserObserver class
-auto localUserObserver =
-  std::make_shared<SampleLocalUserObserver>(connection->getLocalUser());
+localUserObserver = new SampleLocalUserObserver(conn.getLocalUser());
+conn.getLocalUser().registerObserver(localUserObserver);
 
 // The PcmFrameObserver class inherits the IAudioFrameObserver class
-auto pcmFrameObserver = std::make_shared<PcmFrameObserver>(options.audioFile);
-
-if (connection->getLocalUser()->setPlaybackAudioFrameBeforeMixingParameters(
-  options.audio.numOfChannels, options.audio.sampleRate)) {
-AG_LOG(ERROR, "Failed to set audio frame parameters!");
-return -1;
+int ret = conn.getLocalUser().setPlaybackAudioFrameBeforeMixingParameters(numOfChannels, sampleRate);
+if (ret > 0) {
+    System.out.printf("setPlaybackAudioFrameBeforeMixingParameters fail ret=%d\n", ret);
+    return;
 }
-// Instantiates the IAudioFrameObserver class
-localUserObserver->setAudioFrameObserver(pcmFrameObserver.get());
 
 // The H264FrameReceiver class inherits the IVideoEncodedImageReceiver class
-auto h264FrameReceiver = std::make_shared<H264FrameReceiver>(options.videoFile);
-// Instantiates the IVideoEncodedImageReceiver class
-localUserObserver->setVideoEncodedImageReceiver(h264FrameReceiver.get());
+h264FrameReceiver = new H264FrameReceiver(videoFile);
+conn.getLocalUser().registerVideoEncodedFrameObserver(new AgoraVideoEncodedFrameObserver(h264FrameReceiver));
 ```
 
-`setAudioFrameObserver` and `setVideoEncodedImageReceiver` are member methods of the `SampleLocalUserObserver` class and can be used to instantiate the `IAudioFrameObserver` class and the `IVideoEncodedImageReceiver` class.
+`setAudioFrameObserver` and `registerVideoEncodedFrameObserver` are member methods of the `SampleLocalUserObserver` class and can be used to instantiate the `IAudioFrameObserver` class and the `AgoraVideoEncodedFrameObserver` class.
 
-```c++
-void setAudioFrameObserver(agora::media::IAudioFrameObserver* observer) {
-  audio_frame_observer_ = observer;
-}
+```java
+localUserObserver.setAudioFrameObserver(pcmFrameObserver);
 
-void setVideoEncodedImageReceiver(agora::rtc::IVideoEncodedImageReceiver* receiver) {
-  video_encoded_receiver_ = receiver;
-}  
+conn.getLocalUser().registerVideoEncodedFrameObserver(new AgoraVideoEncodedFrameObserver(h264FrameReceiver));
 ```
 
 ### Step 2: Use callbacks from the `ILocalUserObserver` class to receive media streams
@@ -383,78 +313,70 @@ void setVideoEncodedImageReceiver(agora::rtc::IVideoEncodedImageReceiver* receiv
 The following code shows how to receive encoded video, video in YUV format, and audio in PCM format.
 
 ```c++
-// Receives encoded video by using the OnEncodedVideoImageReceived callback and save the video data in a file 
-class H264FrameReceiver : public agora::rtc::IVideoEncodedImageReceiver {
-public:
-H264FrameReceiver(const std::string& outputFilePath)
-  : outputFilePath_(outputFilePath),
-    h264File_(nullptr),
-    fileCount(0),
-    fileSize_(0) {}
+// Receives encoded video by using the onEncodedVideoFrame callback and save the video data in a file 
+class H264FrameReceiver extends FileWriter implements IVideoEncodedFrameObserver {
 
-bool OnEncodedVideoImageReceived(
-  const uint8_t* imageBuffer, size_t length,
-  const agora::rtc::EncodedVideoFrameInfo& videoEncodedFrameInfo) override;
+        public H264FrameReceiver(String path) {
+            super(path);
+        }
 
-private:
-std::string outputFilePath_;
-FILE* h264File_;
-int fileCount;
-int fileSize_;
-};
+        @Override
+        public int onEncodedVideoFrame(AgoraVideoEncodedFrameObserver agora_video_encoded_frame_observer, int uid, byte[] image_buffer, long length, EncodedVideoFrameInfo video_encoded_frame_info) {
+            System.out.println("onEncodedVideoFrame success  " + video_encoded_frame_info.getFrameType());
+            writeData(image_buffer, (int) length);
+            return 1;
+        }
+    }
 
 // Receives YUV video by using the onFrame callback and save the video data in a file 
-class YuvFrameObserver : public agora::rtc::IVideoFrameObserver2 {
-  public:
-  YuvFrameObserver(const std::string& outputFilePath)
-    : outputFilePath_(outputFilePath),
-      yuvFile_(nullptr),
-      fileCount(0),
-      fileSize_(0) {}
+ class YuvFrameObserver extends FileWriter implements IVideoFrameObserver2 {
 
-  void onFrame(const char* channelId, agora::user_id_t remoteUid, const agora::media::base::VideoFrame* frame) override;
+        public YuvFrameObserver(String path) {
+            super(path);
+        }
 
-  virtual ~YuvFrameObserver() = default;
-
-  private:
-  std::string outputFilePath_;
-  FILE* yuvFile_;
-  int fileCount;
-  int fileSize_;
-  };
+        @Override
+        public void onFrame(AgoraVideoFrameObserver2 agora_video_frame_observer2, String channel_id, String remote_uid, VideoFrame frame) {
+            System.out.println("onFrame success  ");
+            writeData(frame.getYBuffer(), frame.getYBuffer().remaining());
+            writeData(frame.getUBuffer(), frame.getUBuffer().remaining());
+            writeData(frame.getVBuffer(), frame.getVBuffer().remaining());
+            return ;
+        }
+}
 
 // Receives PCM audio by using the onPlaybackAudioFrameBeforeMixing callback and save the audio data in a file 
-bool PcmFrameObserver::onPlaybackAudioFrameBeforeMixing(const char* channelId, agora::media::base::user_id_t userId, AudioFrame& audioFrame) {
-// Creates files to save received audio data
-if (!pcmFile_) {
-  std::string fileName = (++fileCount > 1)
-              ? (outputFilePath_ + to_string(fileCount))
-              : outputFilePath_;
-  if (!(pcmFile_ = fopen(fileName.c_str(), "w"))) {
-  AG_LOG(ERROR, "Failed to create received audio file %s",
-      fileName.c_str());
-  return false;
-  }
-  AG_LOG(INFO, "Created file %s to save received PCM samples",
-    fileName.c_str());
-}
+public static class PcmFrameObserver extends FileWriter implements IAudioFrameObserver {
+        public PcmFrameObserver(String outputFilePath) {
+            super(outputFilePath);
+        }
 
-// Writes PCM data to file
-size_t writeBytes =
-  audioFrame.samplesPerChannel * audioFrame.channels * sizeof(int16_t);
-if (fwrite(audioFrame.buffer, 1, writeBytes, pcmFile_) != writeBytes) {
-  AG_LOG(ERROR, "Error writing decoded audio data: %s", std::strerror(errno));
-  return false;
-}
-fileSize_ += writeBytes;
+        @Override
+        public int onRecordAudioFrame(AgoraLocalUser agora_local_user, String channel_id, AudioFrame frame) {
+            System.out.println("onRecordAudioFrame success");
+            return 1;
+        }
 
-if (fileSize_ >= DEFAULT_FILE_LIMIT) {
-  fclose(pcmFile_);
-  pcmFile_ = nullptr;
-  fileSize_ = 0;
-}
-return true;
-}
+        @Override
+        public int onPlaybackAudioFrame(AgoraLocalUser agora_local_user, String channel_id, AudioFrame frame) {
+            System.out.println("onPlaybackAudioFrame success");
+            return 1;
+        }
+
+        @Override
+        public int onMixedAudioFrame(AgoraLocalUser agora_local_user, String channel_id, AudioFrame frame) {
+            System.out.println("onMixedAudioFrame success");
+            return 1;
+        }
+
+        @Override
+        public int onPlaybackAudioFrameBeforeMixing(AgoraLocalUser agora_local_user, String channel_id, String uid, AudioFrame audioFrame) {
+            // Write PCM samples
+            int writeBytes = audioFrame.getSamplesPerChannel() * audioFrame.getChannels() * 2;
+            writeData(audioFrame.getBuffer(), writeBytes);
+            return 1;
+        }
+    }
 ```
 
 ### Step 3: Disconnect and release resources
@@ -463,73 +385,42 @@ When the media receiving task is complete, refer to the following steps to disco
 
 <div class="alert note">You must follow the sequence in the sample code to release resources.</div>
 
-1. Call unregister methods to release the video and audio observer.
+1. Call unset methods to release the video and audio observer.
 
- ```c++
- // Release video and audio observer
- local_user_->unregisterAudioFrameObserver(audio_frame_observer_);
- local_user_->unregisterVideoFrameObserver(video_frame_observer_);
- ```
+    ```java
+    // Release video and audio observer
+    localUserObserver.unsetAudioFrameObserver();
+    localUserObserver.unsetVideoFrameObserver();
+    ```
 
 2. Call `disconnect` to disconnect from the Agora RTC channel.
 
- ```c++
- // Disconnect from the Agora channel
- if (connection->disconnect()) {
-  AG_LOG(ERROR, "Failed to disconnect from Agora channel!");
-  return -1;
- }
- AG_LOG(INFO, "Disconnected from Agora channel successfully");
- ```
+    ```java
+    // Disconnect from the Agora channel
+    int ret = conn.disconnect();
+    if (ret != 0) {
+    System.out.printf("conn.disconnect fail ret=%d\n", ret);
+    }
+    ```
 
 3. Release the created objects.
 
- ```c++
- // Releases the created objects.
- localUserObserver.reset();
- pcmFrameObserver.reset();
- h264FrameReceiver.reset();
- connection = nullptr;
- ```
+    ```java
+    // Releases the created objects.
+    conn.destroy();
+    ```
 
 ## Resource collection
 
-When your server app stops running, refer to the following sample code to release the `IAgoraService` object.
+When your server app stops running, refer to the following sample code to release the `AgoraService` object.
 
-```C++
-service->release();
-service = nullptr;
+```java
+// Destroy Agora Service
+service.destroy();
 ```
 
-## References
 
-Here you can find link to API reference, sequence diagrams, and developer considerations.
-
-### API reference
-
-Refer to [Server Gateway SDK C++ API Reference](https://docs-preview.agoralab.co/cn/Video/API%20Reference/linux_server_cpp/3.7.200.20/index.html?transId=a58f95e0-d004-11ec-bce5-9fadae2b55ea) to learn detailed API and parameter descriptions.
-
-### API sequence diagram
-
-You can learn the API calling sequence by referring to the API sequence diagram.
-
-**Send YUV video and PCM audio data**
-
-![](https://web-cdn.agora.io/docs-files/1652250875028)
-
-**Send encoded video and audio data**
-
-![](https://web-cdn.agora.io/docs-files/1652250885111)
-
-#### Receive YUV video and PCM audio data
-
-![](https://web-cdn.agora.io/docs-files/1652250907831)
-
-#### Receive encoded video data and PCM audio data
-
-![](https://web-cdn.agora.io/docs-files/1652250921074)
-
-### Other considerations
+## Other considerations
 
 - The previously mentioned methods are all asynchronous methods and do not block the main thread.
 - When you use the [Agora RTC SDK](https://docs.agora.io/en/Agora%20Platform/term_agora_rtc_sdk) to communicate with the Server Gateway SDK, make sure to set the channel scenario of the RTC SDK to `LIVE_BROADCASTING`.

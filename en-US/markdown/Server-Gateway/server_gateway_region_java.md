@@ -10,13 +10,13 @@ For example, if you specify North America as the region for connection, the SDK 
 
 When initializing an `IAgoraService` instance by calling `initialize`, call `AgoraServiceConfig.setAreaCode()` to specify the region for connection.
 
-- `AREA_CODE_GLOB`: (Default) Global
-- `AREA_CODE_CN`: Mainland China
-- `AREA_CODE_NA`: North America
-- `AREA_CODE_EU`: Europe
-- `AREA_CODE_AS`: Asia, excluding Mainland China
-- `AREA_CODE_JP`: Japan
-- `AREA_CODE_IN`: India
+- `0xFFFFFFFF`: (Default) Global
+- `0x00000001`: Mainland China
+- `0x00000002`: North America
+- `0x00000004`: Europe
+- `0x00000008`: Asia, excluding Mainland China
+- `0x00000010`: Japan
+- `0x00000020`: India
 
 <div class="alert note">The area codes support bitwise operation.</div>
 
