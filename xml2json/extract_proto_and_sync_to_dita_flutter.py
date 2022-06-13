@@ -219,7 +219,7 @@ def main():
         for file, code in dictionary.items():
             name = os.path.basename(file)
             print(name)
-            if name.startswith("api_"):
+            if name.startswith("api_") or name.startswith("callback_"):
                 dart_protos = extract_dart_proto(code, content)
                 print(dart_protos)
 
