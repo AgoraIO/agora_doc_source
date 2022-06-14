@@ -61,51 +61,27 @@
         public LocalVideoStats()
         {
         }
-        public LocalVideoStats(uint uid, int sentBitrate, int sentFrameRate, int encoderOutputFrameRate,
-            int rendererOutputFrameRate, int targetBitrate, int targetFrameRate, QUALITY_ADAPT_INDICATION qualityAdaptIndication,
-            int encodedBitrate, int encodedFrameWidth,int encodedFrameHeight, int encodedFrameCount,
-            VIDEO_CODEC_TYPE codecType)
-        {
-            this.uid = uid;
-            this.sentBitrate = sentBitrate;
-            this.sentFrameRate = sentFrameRate;
-            this.encoderOutputFrameRate = encoderOutputFrameRate;
-            this.rendererOutputFrameRate = rendererOutputFrameRate;
-            this.targetBitrate = targetBitrate;
-            this.targetFrameRate = targetFrameRate;
-            this.qualityAdaptIndication = qualityAdaptIndication;
-            this.encodedBitrate = encodedBitrate;
-            this.encodedFrameWidth = encodedFrameWidth;
-            this.encodedFrameHeight = encodedFrameHeight;
-            this.encodedFrameCount = encodedFrameCount;
-            this.codecType = codecType;
-        }
 
         public uint uid { set; get; }
-
         public int sentBitrate { set; get; }
-
         public int sentFrameRate { set; get; }
-
+        public int captureFrameRate { set; get; }
+        public int captureFrameWidth { set; get; }
+        public int captureFrameHeight { set; get; }
+        public int regulatedCaptureFrameRate { set; get; }
+        public int regulatedCaptureFrameWidth { set; get; }
+        public int regulatedCaptureFrameHeight { set; get; }
         public int encoderOutputFrameRate { set; get; }
-
-        public int rendererOutputFrameRate { set; get; }
-
-        public int targetBitrate { set; get; }
-
-        public int targetFrameRate { set; get; }
-
-        public QUALITY_ADAPT_INDICATION qualityAdaptIndication;
-
-        public int encodedBitrate { set; get; }
-
         public int encodedFrameWidth { set; get; }
-
         public int encodedFrameHeight { set; get; }
-
+        public int rendererOutputFrameRate { set; get; }
+        public int targetBitrate { set; get; }
+        public int targetFrameRate { set; get; }
+        public QUALITY_ADAPT_INDICATION qualityAdaptIndication { set; get; }
+        public int encodedBitrate { set; get; }
         public int encodedFrameCount { set; get; }
-
         public VIDEO_CODEC_TYPE codecType { set; get; }
+        public ushort txPacketLossRate { set; get; }
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
@@ -115,7 +91,7 @@
             conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
             /></title>
             <parml>
-            <plentry props="rtc-ng">
+            <plentry>
                 <pt>uid</pt>
                 <pd>本地用户的 ID。</pd>
             </plentry>
@@ -152,22 +128,12 @@
             <plentry>
                 <pt>qualityAdaptIndication</pt>
                 <pd>
-                    <dl outputclass="since" props="rtc">
-                    <dlentry props="native">
-                        <dt>自从</dt>
-                        <dd>v2.4.0</dd>
-                    </dlentry>
-                    </dl>
-                    <ph>统计周期内本地视频质量（基于目标帧率和目标码率）的自适应情况。</ph><ph
-                    props="cpp ios mac unity">详见 <xref
-                    keyref="QUALITY_ADAPT_INDICATION"/>。</ph>
+                    <ph>统计周期内本地视频质量（基于目标帧率和目标码率）的自适应情况。</ph><ph props="cpp ios mac unity">详见 <xref keyref="QUALITY_ADAPT_INDICATION"/>。</ph>
                     <p props="android">
                     <ul>
                     <li><ph keyref="ADAPT_NONE"/> (0): 本地视频质量不变。</li>
-                    <li><ph keyref="ADAPT_UP_BANDWIDTH"
-                        /> (1): 因网络带宽增加，本地视频质量改善。</li>
-                    <li><ph keyref="ADAPT_DOWN_BANDWIDTH"
-                        /> (2): 因网络带宽减少，本地视频质量变差。</li>
+                    <li><ph keyref="ADAPT_UP_BANDWIDTH"/> (1): 因网络带宽增加，本地视频质量改善。</li>
+                    <li><ph keyref="ADAPT_DOWN_BANDWIDTH"/> (2): 因网络带宽减少，本地视频质量变差。</li>
                     </ul> </p>
                 </pd>
             </plentry>
@@ -193,8 +159,7 @@
             </plentry>
             <plentry>
                 <pt>codecType</pt>
-                <pd><ph>视频的编码类型。</ph><ph props="ios mac cpp unity">详见 <xref
-                    keyref="VIDEO_CODEC_TYPE"/>。</ph>
+                <pd><ph>视频的编码类型。</ph><ph props="ios mac cpp unity">详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</ph>
                     <p props="android">
                     <ul>
                     <li><ph keyref="VIDEO_CODEC_VP8"/> (1): VP8。</li>
@@ -206,22 +171,9 @@
                 <pt>txPacketLossRate</pt>
                 <pd>弱网对抗前本端到 Agora 边缘服务器的视频丢包率 (%)。</pd>
             </plentry>
-            <plentry props="rtc">
+            <plentry props="unity">
                 <pt>captureFrameRate</pt>
                 <pd>本地视频采集帧率 (fps)。</pd>
-            </plentry>
-            <plentry props="rtc">
-                <pt>captureBrightnessLevel</pt>
-                <pd>
-                    <dl outputclass="since" props="rtc">
-                    <dlentry props="native">
-                        <dt>自从</dt>
-                        <dd>v3.3.0</dd>
-                    </dlentry>
-                    </dl>
-                    <p>本地采集的画质亮度级别。详见 <xref
-                    keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE"/>。</p>
-                </pd>
             </plentry>
             </parml> </section>
     </refbody>

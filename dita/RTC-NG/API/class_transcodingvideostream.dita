@@ -45,9 +45,19 @@
     {
         public TranscodingVideoStream()
         {
+            this.sourceType = MEDIA_SOURCE_TYPE.PRIMARY_CAMERA_SOURCE;
+            remoteUserUid = 0;
+            imageUrl = null;
+            x = 0;
+            y = 0;
+            width = 0;
+            height = 0;
+            zOrder = 0;
+            alpha = 1.0;
+            mirror = false;
         }
 
-        public TranscodingVideoStream(VIDEO_SOURCE_TYPE sourceType, uint remoteUserUid,
+        public TranscodingVideoStream(MEDIA_SOURCE_TYPE sourceType, uint remoteUserUid,
             string imageUrl, int x, int y, int width, int height, int zOrder, double alpha,
             bool mirror)
         {
@@ -62,7 +72,8 @@
             this.alpha = alpha;
             this.mirror = mirror;
         }
-        public VIDEO_SOURCE_TYPE sourceType { set; get; }
+
+        public MEDIA_SOURCE_TYPE sourceType { set; get; }
         public uint remoteUserUid { set; get; }
         public string imageUrl { set; get; }
         public int x { set; get; }
@@ -174,9 +185,7 @@
                     <li><codeph><ph keyref="true"/></codeph>: 镜像。</li>
                     <li><codeph><ph keyref="false"/></codeph>: （默认值）不镜像。</li>
                     </ul>
-                    <note id="note_erc_ryn_3qb" type="attention"
-                    >该参数仅对视频源类型为 <codeph props="cpp">CAMERA</codeph><codeph
-                    props="ios mac">Camera</codeph> 的视频生效。</note></pd>
+                    <note id="note_erc_ryn_3qb" type="attention">该参数仅对视频源类型为 <codeph props="cpp unity">CAMERA</codeph><codeph props="ios mac">Camera</codeph> 的视频生效。</note></pd>
             </plentry>
             </parml> </section>
     </refbody>
