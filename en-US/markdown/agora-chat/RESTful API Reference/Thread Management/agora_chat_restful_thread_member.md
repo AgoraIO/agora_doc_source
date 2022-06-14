@@ -108,7 +108,7 @@ curl -X GET http://XXXX.com/XXXX/testapp/thread/177916702949377/users -H 'Author
 
 ## Adding multiple users to a thread
 
-Adds multiple users to the specified thread.
+Adds multiple users to the specified thread. You can add a maximum of 10 users to a thread at each call.
 
 For each App Key, the call frequency limit of this method is 100 per second.
 
@@ -175,7 +175,7 @@ curl -X POST http://XXXX.com/XXXX/testapp/thread/177916702949377/users -d '{
 
 ## Removing multiple thread members
 
-Removes multiple users from the specified thread.
+Removes multiple users from the specified thread. You can remove a maximum of 10 users from a thread at each call.
 
 For each App Key, the call frequency limit of this method is 100 per second.
 
