@@ -1,8 +1,10 @@
 # Thread Management
 
-Threads enable users to create a separate conversation from a specific message within a chat group to keep the main chat uncluttered.
+Threads enable users to create a separate conversation from a specific message within a chat group to keep the main chat uncluttered, as shown in the following illustration:
 
-This page shows how to use the Agora Chat SDK to create and manage a thread in your app.
+![](https://web-cdn.agora.io/docs-files/1655176932917)
+
+This page shows how to use the Agora Chat SDK to create and manage threads in your app.
 
 
 ## Understand the tech
@@ -14,8 +16,8 @@ The Agora Chat SDK allows you to implement the following features:
 - Remove a member from a thread
 - Update the name of a thread
 - Retrieve the attributes of a thread
-- Retrieve the thread member list
-- Retrieve the thread list
+- Retrieve the member list of a thread
+- Retrieve a thread list
 - Retrieve the latest message from multiple threads
 - Listen for thread events
 
@@ -27,7 +29,7 @@ Before proceeding, ensure that you meet the following requirements:
 - You have initialized the Agora Chat SDK. For details, see [Get Started with Web](./agora_chat_get_started_web?platform=Web).
 - You understand the call frequency limit of the Agora Chat APIs supported by different pricing plans as described in [Limitations](./agora_chat_limitation?platform=Web).
 - You understand the number of threads and thread members supported by different pricing plans as described in [Pricing Plan Details](./agora_chat_plan?platform=Web).
-- Contact support@agora.io to activate the threading feature.
+- You have contacted support@agora.io to activate the threading feature.
 
 
 ## Implementation
@@ -97,7 +99,7 @@ conn.joinChatThread({chatThreadId: 'chatThreadId'});
 
 ### Leave a thread
 
-All thread members can call `leaveChatThread` to leave a thread. Once a member leaves a thread, this member can no longer receive the thread messages.
+All thread members can call `leaveChatThread` to leave a thread. Once a member leaves a thread, they can no longer receive the thread messages.
 
 In a multi-device scenario, all the other devices receive the `onMultiDeviceEvent` callback triggered by the `chatThreadLeave` event.
 
@@ -113,7 +115,7 @@ conn.leaveChatThread({chatThreadId: 'chatThreadId'});
 
 Only the chat group owner and admins can call `removeChatThreadMember` to remove the specified member from a thread.
 
-Once a member is removed from a thread, this member receives the `onChatThreadChange` callback triggered by the `userRemove` event and can no longer receive the thread messages.
+Once a member is removed from a thread, they receive the `onChatThreadChange` callback triggered by the `userRemove` event and can no longer receive the thread messages.
 
 The following code sample shows how to remove a member from a thread:
 
@@ -124,13 +126,13 @@ conn.removeChatThreadMember({chatThreadId: 'chatThreadId',username:'username'});
 ```
 
 
-### Update the thread name
+### Update the name of a thread
 
-Only the chat group owner, chat group admins, and thread creator can call `changeChatThreadName` to update the thread name.
+Only the chat group owner, chat group admins, and thread creator can call `changeChatThreadName` to update a thread name.
 
-Once the thread name is updated, all chat group members receive the `onChatThreadChange` callback triggered by the `update` event. In a multi-device scenario, all the other devices receive the `onMultiDeviceEvent` callback triggered by the `chatThreadNameUpdate` event.
+Once a thread name is updated, all chat group members receive the `onChatThreadChange` callback triggered by the `update` event. In a multi-device scenario, all the other devices receive the `onMultiDeviceEvent` callback triggered by the `chatThreadNameUpdate` event.
 
-The following code sample shows how to update the thread name:
+The following code sample shows how to update a thread name:
 
 ```javascript
 // chatThreadId: The ID of a thread.
@@ -145,7 +147,7 @@ conn.addEventHandler('THREAD',{
 ```
 
 
-### Retrieve the thread attributes
+### Retrieve the attributes of a thread
 
 All chat group members can call `getChatThreadDetail` to retrieve the thread attributes from the server.
 
@@ -159,13 +161,13 @@ conn.getChatThreadDetail({chatThreadId: 'chatThreadId'}).then((res)=>{
 ```
 
 
-### Retrieve the thread member list
+### Retrieve the member list of a thread
 
-All chat group members can call `getChatThreadMembers` to retrieve the thread member list from the server with pagination.
+All chat group members can call `getChatThreadMembers` to retrieve a paginated member list of a thread from the server.
 
 ```javascript
 // chatThreadId: The thread ID.
-// pageSize: The maximum number of members to retrieve with pagination. The range is [1, 50].
+// pageSize: The maximum number of members to retrieve per page. The range is [1, 50].
 // cursor: The position from which to start getting data. Pass in `null` or an empty string at the first call.
 conn.getChatThreadMembers({chatThreadId: 'chatThreadId ',pageSize:20,cursor:'cursor'}).then((res)=>{
   console.log(res)
@@ -173,34 +175,34 @@ conn.getChatThreadMembers({chatThreadId: 'chatThreadId ',pageSize:20,cursor:'cur
 ```
 
 
-### Retrieve the thread list
+### Retrieve a thread list
 
-Users can call `getJoinedChatThreads` to retrieve all the joined threads from the server with pagination, as shown in the following code sample:
+Users can call `getJoinedChatThreads` to retrieve a paginated list from the server of all the threads they have joined, as shown in the following code sample:
 
 ```javascript
-// pageSize: The maximum number of threads to retrieve with pagination. The range is [1, 50].
+// pageSize: The maximum number of threads to retrieve per page. The range is [1, 50].
 // cursor: The position from which to start getting data. Pass in `null` or an empty string at the first call.
 conn.getJoinedChatThreads({cursor: 'cursor',pageSize: 20}).then((res)=>{
   console.log(res)
 });
 ```
 
-Users can call `getJoinedChatThreads` to retrieve the joined threads in the specified chat group from the server, as shown in the following code sample:
+Users can call `getJoinedChatThreads` to retrieve a paginated list from the server of all the threads they have joined in a specified chat group, as shown in the following code sample:
 
 ```javascript
 // parentId: The chat group ID.
-// pageSize: The maximum number of threads to retrieve with pagination. The range is [1, 50].
+// pageSize: The maximum number of threads to retrieve per page. The range is [1, 50].
 // cursor: The position from which to start getting data. Pass in `null` or an empty string at the first call.
 conn.getJoinedChatThreads({parentId: 'parentId',cursor: 'cursor',pageSize: 20}).then((res)=>{
   console.log(res)
 });
 ```
 
-Users can also call `getChatThreads` to retrieve all threads in the specified chat group from the server with pagination, as shown in the following code sample:
+Users can also call `getChatThreads` to retrieve a paginated list from the server of all the threads in a specified chat group, as shown in the following code sample:
 
 ```javascript
 // parentId: The chat group ID.
-// pageSize: The maximum number of threads to retrieve with pagination. The range is [1, 50].
+// pageSize: The maximum number of threads to retrieve per page. The range is [1, 50].
 // cursor: The position from which to start getting data. Pass in `null` or an empty string at the first call.
 conn.getChatThreads({parentId: 'parentId', cursor:'cursor', pageSize: 20}).then((res)=>{
   console.log(res)

@@ -2,7 +2,7 @@
 
 Threads enable users to create a separate conversation from a specific message within a chat group to keep the main chat uncluttered.
 
-This page shows how to use the Agora Chat SDK to send, receive, recall, and retrieve a thread message in your app.
+This page shows how to use the Agora Chat SDK to send, receive, recall, and retrieve thread messages in your app.
 
 ## Understand the tech
 
@@ -23,7 +23,7 @@ Before proceeding, ensure that you meet the following requirements:
 - You have initialized the Agora Chat SDK. For details, see [Get Started with Web](./agora_chat_get_started_web?platform=Web).
 - You understand the call frequency limit of the Agora Chat APIs supported by different pricing plans as described in [Limitations](./agora_chat_limitation?platform=Web).
 - You understand the number of threads and thread members supported by different pricing plans as described in [Pricing Plan Details](./agora_chat_plan?platform=Web).
-- Contact support@agora.io to activate the threading feature.
+- You have contacted support@agora.io to activate the threading feature.
 
 
 ## Implementation
@@ -37,15 +37,15 @@ Send a thread message is similar to send a message in a chat group. The differen
 ```javascript
 function sendTextMessage() {
     let option = {
-        chatType: 'groupChat',     // Set `chatType` to `groupChat` as a thread belongs to a chat group.
-        type: 'txt',               // Set `type` to `txt` to create and send a text message.
-        to: chatThreadId,          // Set `to` to the ID of a thread that receives the text message.
-        msg: 'message content'     // Set `msg` to the content of the text message.
-        isChatThread:true,         // Set `isChatThread` to `true` to mark this message as a thread message.
+        chatType: 'groupChat',     // Sets `chatType` to `groupChat` as a thread belongs to a chat group.
+        type: 'txt',               // Sets `type` to `txt` to create and send a text message.
+        to: chatThreadId,          // Sets `to` to the ID of a thread that receives the text message.
+        msg: 'message content'     // Sets `msg` to the content of the text message.
+        isChatThread:true,         // Sets `isChatThread` to `true` to mark this message as a thread message.
     }
-    // Call `create` to create a text message.
+    // Calls `create` to create a text message.
     let msg = WebIM.message.create(option); 
-    // Call `send` to send the text message.
+    // Calls `send` to send the text message.
     connection.send(msg).then(() => {
         console.log('send private text Success');  
     }).catch((e) => {
@@ -59,7 +59,7 @@ For more information about sending a message, see [Send Messages](./agora_chat_m
 
 ### Receive a thread message
 
-Once a thread has a new message, all chat group members receive the `onChatThreadChange` callback triggered by the `update` event. For thread members, they can also listen for the `onTextMessage` callback to receive thread messages, as shown in the following code sample:
+Once a thread has a new message, all chat group members receive the `onChatThreadChange` callback triggered by the `update` event. Thread members can also listen for the `onTextMessage` callback to receive thread messages, as shown in the following code sample:
 
 ```javascript
 // The SDK triggers the `onTextMessage` callback when it receives a message.
@@ -81,16 +81,16 @@ For more information about receiving a message, see [Receive Messages](./agora_c
 
 Send a thread message is similar to send a message in a chat group. The difference lies in the `isChatThread` field.
 
-Once a message is recalled in a thread, all chat group members receive the `onChatThreadChange` callback triggered by the `update` event. For thread members, they can also listen for the `onRecallMessage` callback, as shown in the following code sample:
+Once a message is recalled in a thread, all chat group members receive the `onChatThreadChange` callback triggered by the `update` event. Thread members can also listen for the `onRecallMessage` callback, as shown in the following code sample:
 
 ```javascript
 let option = {
   mid: 'msgId',           // The ID of the message to be recalled.
   to: 'userID',           // The username of the message receiver.
-  chatType: 'groupChat'   // Set `chatType` to `groupChat` as a thread belongs to a chat group.
-  isChatThread: true      // Set `isChatThread` to `true` to mark this message as a thread message.
+  chatType: 'groupChat'   // Sets `chatType` to `groupChat` as a thread belongs to a chat group.
+  isChatThread: true      // Sets `isChatThread` to `true` to mark this message as a thread message.
 };
-// Call `recallMessage` to recall a message.
+// Calls `recallMessage` to recall a message.
 connection.recallMessage(option).then((res) => {
   console.log('success', res)
 }).catch((error) => {

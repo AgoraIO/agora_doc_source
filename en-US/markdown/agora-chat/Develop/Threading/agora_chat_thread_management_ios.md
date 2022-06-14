@@ -2,7 +2,11 @@
 
 Threads enable users to create a separate conversation from a specific message within a chat group to keep the main chat uncluttered.
 
-This page shows how to use the Agora Chat SDK to create and manage a thread in your app.
+The following illustration shows the implementation of creating a thread, a conversation in a thread, and the operations you can perform in a thread.
+
+![](https://web-cdn.agora.io/docs-files/1655176216910)
+
+This page shows how to use the Agora Chat SDK to create and manage threads in your app.
 
 ## Understand the tech
 
@@ -13,8 +17,8 @@ The Agora Chat SDK provides the `AgoraChatThreadManager`, `AgoraChatThread`, `Ag
 - Remove a member from a thread
 - Update the name of a thread
 - Retrieve the attributes of a thread
-- Retrieve the thread member list
-- Retrieve the thread list
+- Retrieve the member list of a thread
+- Retrieve a thread list
 - Retrieve the latest message from multiple threads
 - Listen for thread events
 
@@ -25,7 +29,7 @@ Before proceeding, ensure that you meet the following requirements:
 - You have initialized the Agora Chat SDK. For details, see [Get Started with iOS](./agora_chat_get_started_ios?platform=ios).
 - You understand the call frequency limit of the Agora Chat APIs supported by different pricing plans as described in [Limitations](./agora_chat_limitation?platform=ios).
 - You understand the number of threads and thread members supported by different pricing plans as described in [Pricing Plan Details](./agora_chat_plan?platform=ios).
-- Contact support@agora.io to activate the threading feature.
+- You have contacted support@agora.io to activate the threading feature.
 
 ## Implementation
 
@@ -96,7 +100,7 @@ The following code sample shows how to join a thread:
 
 ### Leave a thread
 
-All thread members can call `leaveChatThread` to leave a thread. Once a member leaves a thread, this member can no longer receive the thread messages.
+All thread members can call `leaveChatThread` to leave a thread. Once a member leaves a thread, they can no longer receive the thread messages.
 
 In a multi-device scenario, all the other devices receive the `multiDevicesThreadEventDidReceive` callback triggered by the `AgoraChatMultiDevicesEventThreadLeave` event. 
 
@@ -116,7 +120,7 @@ The following code sample shows how to leave a thread:
 
 Only the chat group owner and admins can call `removeMemberFromChatThread` to remove the specified member from a thread.
 
-Once a member is removed from a thread, this member receives the `AgoraChatThreadManagerDelegate#onUserKickOutOfChatThread` callback and can no longer receive the thread messages.
+Once a member is removed from a thread, they receive the `AgoraChatThreadManagerDelegate#onUserKickOutOfChatThread` callback and can no longer receive the thread messages.
 
 The following code sample shows how to remove a member from a thread:
 
@@ -132,13 +136,13 @@ The following code sample shows how to remove a member from a thread:
 }];
 ```
 
-### Update the thread name
+### Update the name of a thread
 
-Only the chat group owner, chat group admins, and thread creator can call `changeChatThreadName` to update the thread name.
+Only the chat group owner, chat group admins, and thread creator can call `changeChatThreadName` to update a thread name.
 
-Once the thread name is updated, all chat group members receive the `AgoraChatThreadManagerDelegate#onChatThreadUpdated` callback. In a multi-device scenario, all the other devices receive the `multiDevicesThreadEventDidReceive` callback triggered by the `AgoraChatMultiDevicesEventThreadUpdate` event.
+Once a thread name is updated, all chat group members receive the `AgoraChatThreadManagerDelegate#onChatThreadUpdated` callback. In a multi-device scenario, all the other devices receive the `multiDevicesThreadEventDidReceive` callback triggered by the `AgoraChatMultiDevicesEventThreadUpdate` event.
 
-The following code sample shows how to update the thread name:
+The following code sample shows how to update a thread name:
 
 ```ObjectiveC
 // threadId: The ID of a thread.
@@ -152,7 +156,7 @@ The following code sample shows how to update the thread name:
 }];
 ```
 
-### Retrieve the thread attributes
+### Retrieve the attributes of a thread
 
 All chat group members can call `getChatThreadDetail` to retrieve the thread attributes from the server.
 
@@ -169,36 +173,36 @@ The following code sample shows how to retrieve the thread attributes:
 }];
 ```
 
-### Retrieve the thread member list
+### Retrieve the member list of a thread
 
-All chat group members can call `getChatThreadMemberListFromServerWithId` to retrieve the thread member list from the server with pagination.
+All chat group members can call `getChatThreadMemberListFromServerWithId` to retrieve a paginated member list of a thread from the server.
 
 ```ObjectiveC
 // threadId: The thread ID.
-// pageSize: The maximum number of members to retrieve with pagination. The range is [1, 50].
+// pageSize: The maximum number of members to retrieve per page. The range is [1, 50].
 // cursor: The position from which to start getting data. Pass in `null` or an empty string at the first call.
 [[AgoraChatClient sharedClient].threadManager getChatThreadMemberListFromServerWithId:self.threadId cursor:aCursor pageSize:pageSize completion:^(AgoraChatCursorResult *aResult, AgoraChatError *aError) {
     if !aError { self.cursor = aResult; }
 }];
 ```
 
-### Retrieve the thread list
+### Retrieve a thread list
 
-Users can call `getJoinedChatThreadsFromServer` to retrieve all the joined threads from the server with pagination, as shown in the following code sample:
+Users can call `getJoinedChatThreadsFromServer` to retrieve a paginated list from the server of all the threads they have joined, as shown in the following code sample:
 
 ```ObjectiveC
-// limit: The maximum number of threads to retrieve with pagination. The range is [1, 50].
+// limit: The maximum number of threads to retrieve per page. The range is [1, 50].
 // cursor: The position from which to start getting data. Pass in `null` or an empty string at the first call.        
 [AgoraChatClient.sharedClient.threadManager getJoinedChatThreadsFromServerWithCursor:@"" pageSize:20 completion:^(AgoraChatCursorResult * _Nonnull result, AgoraChatError * _Nonnull aError) {
         
 }];
 ```
 
-Users can call `getJoinedChatThreadsFromServer` to retrieve the joined threads in the specified chat group from the server, as shown in the following code sample:
+Users can call `getJoinedChatThreadsFromServer` to retrieve a paginated list from the server of all the threads they have joined in a specified chat group, as shown in the following code sample:
 
 ```ObjectiveC
 // parentId: The chat group ID.
-// pageSize: The maximum number of threads to retrieve with pagination. The range is [1, 50].
+// pageSize: The maximum number of threads to retrieve per page. The range is [1, 50].
 // cursor: The position from which to start getting data. Pass in `null` or an empty string at the first call. 
 [AgoraChatClient.sharedClient.threadManager getMineChatThreadsFromServerWithParentId:self.group.groupId cursor:self.cursor ? self.cursor.cursor:@"" pageSize:20 completion:^(AgoraChatCursorResult * _Nonnull result, AgoraChatError * _Nonnull aError) {
     if (!aError) {
@@ -207,11 +211,11 @@ Users can call `getJoinedChatThreadsFromServer` to retrieve the joined threads i
 }];
 ```
 
-Users can also call `getChatThreadsFromServer` to retrieve all threads in the specified chat group from the server with pagination, as shown in the following code sample:
+Users can also call `getChatThreadsFromServer` to retrieve a paginated list from the server of all the threads in a specified chat group, as shown in the following code sample:
 
 ```ObjectiveC
 // parentId: The chat group ID.
-// pageSize: The maximum number of threads to retrieve with pagination. The range is [1, 50].
+// pageSize: The maximum number of threads to retrieve per page. The range is [1, 50].
 // cursor: The position from which to start getting data. Pass in `null` or an empty string at the first call. 
 [[AgoraChatClient sharedClient].threadManager getChatThreadsFromServerWithParentId:self.group.groupId cursor:self.cursor ? self.cursor.cursor:@"" pageSize:20 completion:^(AgoraChatCursorResult *result, AgoraChatError *aError) {
     if (!aError) {
