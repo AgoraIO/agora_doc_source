@@ -6,7 +6,7 @@ This page shows how to use the Agora Chat SDK to send, receive, recall, and retr
 
 ## Understand the tech
 
-The Agora Chat SDK provides the `AgoraChatChatManager`, `AgoraChatMessage`, and `AgoraChatChatThreadInfo` classes for thread messages, which allows you to implement the following features:
+The Agora Chat SDK provides the `AgoraChatManager`, `AgoraChatMessage`, and `AgoraChatThreadInfo` classes for thread messages, which allows you to implement the following features:
 
 - Send a thread message
 - Receive a thread message
