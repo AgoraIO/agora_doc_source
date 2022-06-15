@@ -389,7 +389,7 @@
 
 -   老师结束投票后，投票器的汇总数据会发生变化：
 
-    ```json
+    ```startRenderVideoFromCdnjson
     "action": NumberInt("1"),
     "changeProperties": {
         "widgets.poll.extra.pollId": "e556ce3df5cd4c23941b03bf54d29ba3",
