@@ -1,54 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onaudiodevicevolumechanged">
-    <title><ph keyref="onAudioDeviceVolumeChanged" /></title>
+    <title><ph keyref="onAudioDeviceVolumeChanged"/></title>
     <shortdesc id="short"><ph id="shortdesc">Occurs when the volume on the playback or audio capture device, or the volume in the application changes.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="onAudioDeviceVolumeChanged" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="onAudioDeviceVolumeChanged"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="windows" outputclass="language-cpp">virtual void onAudioDeviceVolumeChanged(MEDIA_DEVICE_TYPE deviceType,
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioDeviceVolumeChanged(MEDIA_DEVICE_TYPE deviceType,
     int volume,
     bool muted) {
     (void)deviceType;
     (void)volume;
     (void)muted;
     }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.AUDIO_DEVICE_VOLUME_CHANGED, cb: (
+            <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.AUDIO_DEVICE_VOLUME_CHANGED, cb: (
     deviceType: MEDIA_DEVICE_TYPE,
     volume: number,
     muted: boolean) =&gt; void
     ): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioDeviceVolumeChanged(MEDIA_DEVICE_TYPE deviceType, int volume, bool muted)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">AudioDeviceVolumeChanged? audioDeviceVolumeChanged;</codeblock>
-        </p>
+            <codeblock props="cs" outputclass="language-csharp">public virtual void OnAudioDeviceVolumeChanged(MEDIA_DEVICE_TYPE deviceType, int volume, bool muted)</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">AudioDeviceVolumeChanged? audioDeviceVolumeChanged;</codeblock> </p>
         </section>
-        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-   <parml>
-       <plentry>
-  <pt>deviceType</pt>
-  <pd>The device type. For details, see <xref keyref="MEDIA_DEVICE_TYPE" />.</pd>
-       </plentry>
-       <plentry>
-  <pt>volume</pt>
-  <pd>The volume value. The range is [0, 255].</pd>
-       </plentry>
-       <plentry>
-  <pt>muted</pt>
-  <pd><p>Whether the audio device is muted:<ul>
-      <li><codeph><ph keyref="true" /></codeph>: The audio device is muted.</li>
-      <li><codeph><ph keyref="false" /></codeph>: The audio device is not muted.</li>
-  </ul></p></pd>
-       </plentry>
-   </parml>
-        </section>
-</refbody>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <parml>
+            <plentry>
+                <pt>deviceType</pt>
+                <pd>The device type. For details, see <xref keyref="MEDIA_DEVICE_TYPE"/>.</pd>
+            </plentry>
+            <plentry>
+                <pt>volume</pt>
+                <pd>The volume value. The range is [0, 255].</pd>
+            </plentry>
+            <plentry>
+                <pt>muted</pt>
+                <pd>
+                    <p>Whether the audio device is muted:
+                    
+                    <ul>
+                    <li><codeph><ph keyref="true"/></codeph>: The audio device is muted.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: The audio device is not muted.</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
 </reference>

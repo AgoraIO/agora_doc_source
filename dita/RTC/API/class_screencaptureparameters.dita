@@ -6,13 +6,13 @@
     <refbody>
         <section id="prototype">
             <p props="rtc-ng" outputclass="codeblock">
-                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenCaptureParameters: NSObject
+            <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenCaptureParameters: NSObject
 @property (assign, nonatomic) CGSize dimensions;
 @property (assign, nonatomic) NSInteger frameRate;
 @property (assign, nonatomic) NSInteger bitrate;
 
 @end</codeblock>
-                <codeblock props="android" outputclass="language-java">public class ScreenCaptureParameters {
+            <codeblock props="android" outputclass="language-java">public class ScreenCaptureParameters {
   private VideoDimensions videoDimensions;
   private int frameRate;
   private int bitrate;
@@ -62,7 +62,7 @@
     return bitrate;
   }
 }</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">struct ScreenCaptureParameters {
+            <codeblock props="cpp" outputclass="language-cpp">struct ScreenCaptureParameters {
   VideoDimensions dimensions;
   int frameRate;
   int bitrate;
@@ -84,9 +84,57 @@
   ScreenCaptureParameters(int width, int height, int f, int b, bool cur, bool fcs, view_t *ex, int cnt)
     : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(cur), windowFocus(fcs), excludeWindowList(ex), excludeWindowCount(cnt) {}
 };</codeblock>
-            </p>
+            <codeblock props="cs" outputclass="language-csharp">public class ScreenCaptureParameters
+    {
+        public ScreenCaptureParameters()
+        {
+            dimensions = new VideoDimensions(1920, 1080);
+            frameRate = 5;
+            bitrate = (int) BITRATE.STANDARD_BITRATE;
+            captureMouseCursor = true;
+            windowFocus = false;
+            excludeWindowList = new view_t[0];
+            excludeWindowCount = 0;
+        }
+        public ScreenCaptureParameters(int width, int height, int frameRate, BITRATE bitrate, bool captureMouseCursor,
+            bool windowFocus, view_t[] excludeWindowList = null, int excludeWindowCount = 0)
+        {
+            dimensions = new VideoDimensions(width, height);
+            this.frameRate = frameRate;
+            this.bitrate = (int) bitrate;
+            this.captureMouseCursor = captureMouseCursor;
+            this.windowFocus = windowFocus;
+            this.excludeWindowList = excludeWindowList ?? new view_t[0];
+            this.excludeWindowCount = excludeWindowCount;
+        }
+        public ScreenCaptureParameters(VideoDimensions dimensions, int frameRate, BITRATE bitrate,
+            bool captureMouseCursor, bool windowFocus, view_t[] excludeWindowList = null, int excludeWindowCount = 0)
+        {
+            this.dimensions = dimensions;
+            this.frameRate = frameRate;
+            this.bitrate = (int) bitrate;
+            this.captureMouseCursor = captureMouseCursor;
+            this.windowFocus = windowFocus;
+            this.excludeWindowList = excludeWindowList ?? new view_t[0];
+            this.excludeWindowCount = excludeWindowCount;
+        }
+
+        public VideoDimensions dimensions { set; get; }
+
+        public int frameRate { set; get; }
+
+        public int bitrate { set; get; }
+
+        public bool captureMouseCursor { set; get; }
+
+        public bool windowFocus { set; get; }
+
+        public view_t[] excludeWindowList { set; get; }
+
+        public int excludeWindowCount { set; get; }
+    }</codeblock> </p>
             <p props="rtc" outputclass="codeblock">
-                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenCaptureParameters : NSObject
+            <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenCaptureParameters : NSObject
 @property(assign, nonatomic) CGSize dimensions;
 @property(assign, nonatomic) NSInteger frameRate;
 @property(assign, nonatomic) NSInteger bitrate;
@@ -95,8 +143,8 @@
 @property(copy, nonatomic) NSArray* _Nullable excludeWindowList;
 
 @end</codeblock>
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="windows unity" outputclass="language-cpp">struct ScreenCaptureParameters {
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="cpp" outputclass="language-cpp">struct ScreenCaptureParameters {
     VideoDimensions dimensions;
     int frameRate;
     int bitrate;
@@ -105,7 +153,52 @@
     view_t* excludeWindowList;
     int excludeWindowCount;
 };</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">export interface ScreenCaptureParameters {
+            <codeblock props="cs" outputclass="language-csharp">public class ScreenCaptureParameters
+    {
+        public ScreenCaptureParameters()
+        {
+            dimensions = new VideoDimensions(1920, 1080);
+            frameRate = 5;
+            bitrate = (int) BITRATE.STANDARD_BITRATE;
+            captureMouseCursor = true;
+            windowFocus = false;
+            excludeWindowList = new view_t[0];
+            excludeWindowCount = 0;
+        }
+
+        public ScreenCaptureParameters(int width, int height, int frameRate, BITRATE bitrate, bool captureMouseCursor,
+            bool windowFocus, view_t[] excludeWindowList = null, int excludeWindowCount = 0)
+        {
+            dimensions = new VideoDimensions(width, height);
+            this.frameRate = frameRate;
+            this.bitrate = (int) bitrate;
+            this.captureMouseCursor = captureMouseCursor;
+            this.windowFocus = windowFocus;
+            this.excludeWindowList = excludeWindowList ?? new view_t[0];
+            this.excludeWindowCount = excludeWindowCount;
+        }
+
+        public ScreenCaptureParameters(VideoDimensions dimensions, int frameRate, BITRATE bitrate,
+            bool captureMouseCursor, bool windowFocus, view_t[] excludeWindowList = null, int excludeWindowCount = 0)
+        {
+            this.dimensions = dimensions;
+            this.frameRate = frameRate;
+            this.bitrate = (int) bitrate;
+            this.captureMouseCursor = captureMouseCursor;
+            this.windowFocus = windowFocus;
+            this.excludeWindowList = excludeWindowList ?? new view_t[0];
+            this.excludeWindowCount = excludeWindowCount;
+        }
+
+        public VideoDimensions dimensions { set; get; }
+        public int frameRate { set; get; }
+        public int bitrate { set; get; }
+        public bool captureMouseCursor { set; get; }
+        public bool windowFocus { set; get; }
+        public view_t[] excludeWindowList { set; get; }
+        public int excludeWindowCount { set; get; }
+    }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export interface ScreenCaptureParameters {
     width: number;
     height: number;
     frameRate: number;
@@ -115,9 +208,9 @@
     excludeWindowList: Array&lt;number&gt;;
     excludeWindowCount: number;
     }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart">class ScreenCaptureParameters {
-  
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">class ScreenCaptureParameters {
+
   @JsonKey(includeIfNull: false)
   VideoDimensions? dimensions;
 
@@ -149,114 +242,169 @@
       _$ScreenCaptureParametersFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$ScreenCaptureParametersToJson(this);
-}</codeblock>
-            </p>
+}</codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
-                <plentry>
-                    <pt props="ios mac windows unity flutter">dimensions</pt>
-                    <pt props="android">videoDimensions</pt>
-                    <pd><p>编码共享视频的最大像素值。<ph props="android windows">详见 <xref keyref="VideoDimensions"/>。默认值为 1920 × 1080，即 2073600 像素。该像素值为计费标准。</ph></p>
-                        <p>当共享的屏幕分辨率宽高比与该值设置不一致时，SDK 按如下策略进行编码。假设 <codeph>dimensions</codeph> 设为 1920 × 1080：<ul>
-                                <li>如果屏幕分辨率小于 <codeph>dimensions</codeph>，如 1000 × 1000，SDK 直接按 1000 × 1000 进行编码。</li>
-                                <li>如果屏幕分辨率大于 <codeph>dimensions</codeph>，如 2000 × 1500，SDK 按屏幕分辨率的宽高比，即 4:3，取 dimensions 以内的最大分辨率进行编码，即 1440 × 1080。</li>
-                            </ul></p>
-                    </pd>
-                </plentry>
-                <plentry>
-                    <pt>frameRate</pt>
-                    <pd>共享视频的帧率，单位为 fps；默认值为 5，建议不要超过 15。</pd>
-                </plentry>
-                <plentry>
-                    <pt>bitrate</pt>
-                    <pd>共享视频的码率，单位为 Kbps；默认值为 0，表示 SDK 根据当前共享屏幕的分辨率计算出一个合理的值。</pd>
-                </plentry>
-                <plentry props="rtc">
-                    <pt>captureMouseCursor</pt>
-                    <pd>
-                        <dl outputclass="since">
-                            <dlentry>
-                                <dt>自从</dt>
-                                <dd>v2.4.1</dd>
-                            </dlentry>
-                        </dl>
-                        <p>是否采集鼠标用于屏幕共享：<ul>
-                                <li><codeph><ph keyref="true"/></codeph>:（默认）采集鼠标。</li>
-                                <li><codeph><ph keyref="false"/></codeph>: 不采集鼠标。</li>
-                            </ul></p>
-                    </pd>
-                </plentry>
-                <plentry props="rtc-ng">
-                    <pt props="windows">captureMouseCursor</pt>
-                    <pd props="windows">
-                        <p>是否采集鼠标用于屏幕共享：<ul>
-                            <li><codeph><ph keyref="true"/></codeph>:（默认）采集鼠标。</li>
-                            <li><codeph><ph keyref="false"/></codeph>: 不采集鼠标。</li>
-                        </ul></p>
-                    </pd>
-                </plentry>
-                <plentry props="rtc">
-                    <pt>windowFocus</pt>
-                    <pd>
-                        <dl outputclass="since">
-                            <dlentry>
-                                <dt>自从</dt>
-                                <dd>v3.1.0</dd>
-                            </dlentry>
-                        </dl>
-                        <p>调用 <xref keyref="startScreenCaptureByWindowId"/> 方法共享窗口时，是否将该窗口前置：<ul>
-                                <li><codeph><ph keyref="true"/></codeph>: 前置窗口。</li>
-                                <li><codeph><ph keyref="false"/></codeph>:（默认）不前置窗口。</li>
-                            </ul></p>
-                    </pd>
-                </plentry>
-                <plentry props="rtc-ng">
-                    <pt props="windows">windowFocus</pt>
-                    <pd props="windows">
-                        <p>调用 <xref keyref="startScreenCaptureByWindowId"/> 方法共享窗口时，是否将该窗口前置：<ul>
-                            <li><codeph><ph keyref="true"/></codeph>: 前置窗口。</li>
-                            <li><codeph><ph keyref="false"/></codeph>:（默认）不前置窗口。</li>
-                        </ul></p>
-                    </pd>
-                </plentry>
-                <plentry props="rtc">
-                    <pt>excludeWindowList</pt>
-                    <pd><dl outputclass="since">
-                        <dlentry>
-                            <dt>自从</dt>
-                            <dd>v3.1.0</dd>
-                        </dlentry>
+            <plentry>
+                <pt props="ios mac cpp cs flutter">dimensions</pt>
+                <pt props="android">videoDimensions</pt>
+                <pd>
+                    <p>编码共享视频的最大像素值。<ph props="android cpp">详见 <xref
+                    keyref="VideoDimensions"
+                    />。默认值为 1920 × 1080，即 2073600 像素。该像素值为计费标准。</ph></p>
+                    <p>当共享的屏幕分辨率宽高比与该值设置不一致时，SDK 按如下策略进行编码。假设 <codeph>dimensions</codeph> 设为 1920 × 1080：
+
+
+                    <ul>
+                    <li>如果屏幕分辨率小于 <codeph>dimensions</codeph>，如 1000 × 1000，SDK 直接按 1000 × 1000 进行编码。</li>
+                    <li>如果屏幕分辨率大于 <codeph>dimensions</codeph>，如 2000 × 1500，SDK 按屏幕分辨率的宽高比，即 4:3，取 dimensions 以内的最大分辨率进行编码，即 1440 × 1080。</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>frameRate</pt>
+                <pd>共享视频的帧率，单位为 fps；默认值为 5，建议不要超过 15。</pd>
+            </plentry>
+            <plentry>
+                <pt>bitrate</pt>
+                <pd>共享视频的码率，单位为 Kbps；默认值为 0，表示 SDK 根据当前共享屏幕的分辨率计算出一个合理的值。</pd>
+            </plentry>
+            <plentry props="rtc">
+                <pt>captureMouseCursor</pt>
+                <pd>
+                    <dl outputclass="since">
+                    <dlentry>
+                        <dt>自从</dt>
+                        <dd>v2.4.1</dd>
+                    </dlentry>
                     </dl>
-                        <p>待屏蔽窗口的 ID 列表。调用 <xref keyref="startScreenCaptureByScreenRect"/>开启屏幕共享时，你可以通过该参数屏蔽指定的窗口。你可以在调用 <xref keyref="updateScreenCaptureParameters"/> 更新屏幕共享的配置参数时，通过该参数动态屏蔽指定的窗口。</p></pd>
-                </plentry>
-                <plentry props="rtc-ng">
-                    <pt props="windows">excludeWindowList</pt>
-                    <pd props="windows">
-                        <p>待屏蔽窗口的 ID 列表。调用 <xref keyref="startScreenCaptureByScreenRect"/>开启屏幕共享时，你可以通过该参数屏蔽指定的窗口。你可以在调用 <xref keyref="updateScreenCaptureParameters"/> 更新屏幕共享的配置参数时，通过该参数动态屏蔽指定的窗口。</p></pd>
-                </plentry>
-                <plentry props="windows unity electron">
-                    <pt>excludeWindowCount</pt>
-                    <pd>
-                        <dl outputclass="since" props="rtc">
-                            <dlentry>
-                                <dt>自从</dt>
-                                <dd>v3.1.0</dd>
-                            </dlentry>
-                        </dl>
-                        <p>待屏蔽窗口的数量。</p>
-                    </pd>
-                </plentry>
-                <plentry props="electron">
-                    <pt>width</pt>
-                    <pd>屏幕共享区域的宽。</pd>
-                </plentry>
-                <plentry props="electron">
-                    <pt>height</pt>
-                    <pd>屏幕共享区域的高。</pd>
-                </plentry>
-            </parml>
-        </section>
+                    <p>是否采集鼠标用于屏幕共享：
+
+
+                    <ul>
+                    <li><codeph><ph keyref="true"/></codeph>:（默认）采集鼠标。</li>
+                    <li><codeph><ph keyref="false"/></codeph>: 不采集鼠标。</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            <plentry props="rtc-ng">
+                <pt props="cpp cs">captureMouseCursor</pt>
+                <pd props="cpp cs">
+                    <p>是否采集鼠标用于屏幕共享：
+                    <ul>
+                    <li><codeph><ph keyref="true"/></codeph>:（默认）采集鼠标。</li>
+                    <li><codeph><ph keyref="false"/></codeph>: 不采集鼠标。</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            <plentry props="rtc">
+                <pt>windowFocus</pt>
+                <pd>
+                    <dl outputclass="since">
+                    <dlentry>
+                        <dt>自从</dt>
+                        <dd>v3.1.0</dd>
+                    </dlentry>
+                    </dl>
+                    <p>调用 <xref keyref="startScreenCaptureByWindowId"/> 方法共享窗口时，是否将该窗口前置：
+
+
+                    <ul>
+                    <li><codeph><ph keyref="true"/></codeph>: 前置窗口。</li>
+                    <li><codeph><ph keyref="false"/></codeph>:（默认）不前置窗口。</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            <plentry props="rtc-ng">
+                <pt props="cpp cs">windowFocus</pt>
+                <pd props="cpp cs">
+                    <p>调用 <xref keyref="startScreenCaptureByWindowId"/> 方法共享窗口时，是否将该窗口前置：
+
+
+                    <ul>
+                    <li><codeph><ph keyref="true"/></codeph>: 前置窗口。</li>
+                    <li><codeph><ph keyref="false"/></codeph>:（默认）不前置窗口。</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            <plentry props="rtc">
+                <pt>excludeWindowList</pt>
+                <pd>
+                    <dl outputclass="since">
+                    <dlentry>
+                        <dt>自从</dt>
+                        <dd>v3.1.0</dd>
+                    </dlentry>
+                    </dl>
+                    <p>待屏蔽窗口的 ID 列表。调用 <xref
+                    keyref="startScreenCaptureByScreenRect"
+                    />开启屏幕共享时，你可以通过该参数屏蔽指定的窗口。你可以在调用 <xref
+                    keyref="updateScreenCaptureParameters"
+                    /> 更新屏幕共享的配置参数时，通过该参数动态屏蔽指定的窗口。</p>
+                    <note type="attention" props="cpp">SDK 不支持你在多显卡的 Windows 设备上屏蔽窗口。如果你在这种设备上设置 <codeph>excludeWindowList</codeph>，SDK 会报告错误码 <codeph>ERR_NOT_SUPPORTED_MUTI_GPU_EXCLUDE_WINDOW(1736)</codeph>。</note>
+                </pd>
+            </plentry>
+            <plentry props="rtc-ng">
+                <pt props="cpp cs">excludeWindowList</pt>
+                <pd props="cpp cs">
+                    <p>待屏蔽窗口的 ID 列表。调用 <xref
+                    keyref="startScreenCaptureByScreenRect"
+                    />开启屏幕共享时，你可以通过该参数屏蔽指定的窗口。你可以在调用 <xref
+                    keyref="updateScreenCaptureParameters"
+                    /> 更新屏幕共享的配置参数时，通过该参数动态屏蔽指定的窗口。</p>
+                </pd>
+            </plentry>
+            <plentry props="cpp cs electron">
+                <pt>excludeWindowCount</pt>
+                <pd>
+                    <dl outputclass="since" props="rtc">
+                    <dlentry>
+                        <dt>自从</dt>
+                        <dd>v3.1.0</dd>
+                    </dlentry>
+                    </dl>
+                    <p>待屏蔽窗口的数量。</p>
+                </pd>
+            </plentry>
+            <plentry props="electron">
+                <pt>width</pt>
+                <pd>屏幕共享区域的宽。</pd>
+            </plentry>
+            <plentry props="electron">
+                <pt>height</pt>
+                <pd>屏幕共享区域的高。</pd>
+            </plentry>
+            <plentry props="cpp">
+                <pt>enableHighLight</pt>
+                <pd><p>（仅适用于 macOS）是否对共享的窗口或屏幕进行描边：
+                <ul>
+                    <li>
+                        <codeph><ph keyref="true"/></codeph>: 描边。
+                    </li>
+                    <li>
+                        <codeph><ph keyref="false"/></codeph>:（默认）不描边。
+                    </li>
+                </ul>
+                </p>
+                <note type="attention">当你共享窗口或屏幕的部分区域时，如果设置描边，SDK 会对整个窗口或屏幕进行描边。</note>
+                </pd>
+            </plentry>
+            <plentry props="cpp">
+                <pt>highLightWidth</pt>
+                <pd>
+                    （仅适用于 macOS）描边的宽度 (px)。默认值为 0，取值范围为 [0,50]。
+                </pd>
+            </plentry>
+            <plentry props="cpp">
+                <pt>highLightColor</pt>
+                <pd>
+                    （仅适用于 macOS）描边的 RGBA 颜色。默认值为 0xFF8CBF26。
+                </pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_addvideowatermarkex">
+    <title><ph keyref="addVideoWatermarkEx" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Adds a watermark image to the local video.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="addVideoWatermarkEx" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int addVideoWatermarkEx(
+      String watermarkUrl, WatermarkOptions options, RtcConnection connection);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)addVideoWatermarkEx:(NSURL* _Nonnull)url 
+    options:(WatermarkOptions* _Nonnull)options 
+    connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int addVideoWatermarkEx(const char* watermarkUrl, 
+    const WatermarkOptions&amp; options, 
+    const RtcConnection&amp; connection) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp">public abstract int AddVideoWatermarkEx(string watermarkUrl, WatermarkOptions options, RtcConnection connection);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
+        </section>
+        <section id="detailed_desc">
+
+   <p conkeyref="addVideoWatermark2/desc1" />
+   <p>The watermark coordinates are dependent on the settings in the <xref keyref="setVideoEncoderConfigurationEx" /> method:<ul>
+  <li>If the orientation mode of the encoding video (<xref keyref="ORIENTATION_MODE" />) is FIXED_LANDSCAPE, or the landscape mode in ADAPTIVE, the watermark uses the landscape orientation.</li>
+  <li>If the orientation mode of the encoding video (<apiname keyref="ORIENTATION_MODE" />) is FIXED_PORTRAIT, or the portrait mode in ADAPTIVE, the watermark uses the portrait orientation.</li>
+  <li>When setting the watermark position, the region must be less than the dimensions set in the <apiname keyref="setVideoEncoderConfigurationEx" /> method. Otherwise, the watermark image will be cropped.</li>
+       </ul>   </p>
+   <note type="attention">
+       <ul>
+  <li>Ensure that you have called <xref keyref="enableVideo" /> before calling this method.</li>
+  <li>This method supports adding a watermark image in the PNG file format only. Supported pixel formats of the PNG image are RGBA, RGB, Palette, Gray, and Alpha_gray.</li>
+  <li>If the dimensions of the PNG image differ from your settings in this method, the image will be cropped or zoomed to conform to your settings.</li>
+  <li>If you have enabled the local video preview by calling the <xref keyref="startPreview" /> method, you can use the <codeph>visibleInPreview</codeph> member to set whether or not the watermark is visible in the preview.</li>
+  <li>If you have enabled the mirror mode for the local video, the watermark on the local video is also mirrored. To avoid mirroring the watermark, Agora recommends that you do not use the mirror and watermark functions for the local video at the same time. You can implement the watermark function in your application layer.</li>
+       </ul>
+   </note>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+   <parml>
+       <plentry conkeyref="addVideoWatermark2/url">
+  <pt />
+  <pd />
+       </plentry>
+       <plentry conkeyref="addVideoWatermark2/options">
+  <pt />
+  <pd />
+       </plentry>
+       <plentry conkeyref="joinChannelEx/connection">
+           <pt />
+           <pd />
+       </plentry>
+   </parml>
+          </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
+   </ul>
+        </section></refbody>
+</reference>

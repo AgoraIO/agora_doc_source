@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<refactoringOperationDescriptor 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.oxygenxml.com/ns/xmlRefactoring" 
+    id="convert-attribute-to-element" 
+    name="${i18n(xr_convert_attribute_to_element)}">
+    <description>${i18n(xr_convert_attribute_to_element_description)}</description>    
+    <script type="XQUERY_UPDATE" href="convert-attribute-to-element.xq"/>
+    <category>${i18n(Attributes)}</category>
+    <parameters>
+        <description>${i18n(xr_specify_attribute_to_convert_to_element)}</description>
+        <section label="${i18n(xr_parent_element)}">
+            <elementLocation name="element_xpath" 
+                useCurrentContext="true">
+                <element label="${i18n(Element)}">
+                    <description>${i18n(attribute_parent_element_param_description)}</description>
+                </element>
+            </elementLocation>
+        </section>
+        <section label="${i18n(Attribute)}">
+            <attributeParameter>
+                <localName 
+                    label="${i18n(Local_name)}" 
+                    name="attribute_localName">
+                    <description>${i18n(xr_attribute_local_name_to_modify_description)}</description>
+                </localName>
+                <namespace 
+                    label="${i18n(Namespace)}" 
+                    name="attribute_namespace" 
+                    allowsAny="true">
+                    <description>${i18n(xr_attribute_namespace_to_modify_description)}</description>
+                </namespace>        
+            </attributeParameter>
+        </section>
+        <section label="${i18n(xr_new_element)}" >
+            <elementParameter optional="true">
+                <localName 
+                    label="${i18n(Local_name)}" 
+                    name="new_element_localName">
+                    <description>${i18n(xr_insert_element_local_name_description)}</description>
+                </localName>
+                <namespace 
+                    label="${i18n(Namespace)}" 
+                    name="new_element_namespace">
+                    <description>${i18n(xr_insert_element_namespace_description)}</description>
+                </namespace>        
+            </elementParameter>
+        </section>
+    </parameters>
+</refactoringOperationDescriptor>

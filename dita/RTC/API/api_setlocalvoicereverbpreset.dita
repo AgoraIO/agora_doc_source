@@ -5,68 +5,69 @@
     <shortdesc id="short"><ph id="shortdesc">设置本地语音混响（含虚拟立体声效果）。</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="setLocalVoiceReverbPreset"/>
-   </keywords>
+            <keywords>
+                <indexterm keyref="setLocalVoiceReverbPreset"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public abstract int setLocalVoiceReverbPreset(int reverbPreset);</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (int) setLocalVoiceReverbPreset:(AgoraAudioReverbPreset)reverbPreset;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual int setLocalVoiceReverbPreset(AUDIO_REVERB_PRESET reverbPreset) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">setLocalVoiceReverbPreset(reverbPreset: AUDIO_REVERB_PRESET)</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public abstract int SetLocalVoiceReverbPreset(AUDIO_REVERB_PRESET reverbPreset);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setLocalVoiceReverbPreset(AudioReverbPreset preset);</codeblock>
-        </p>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setLocalVoiceReverbPreset(int reverbPreset);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int) setLocalVoiceReverbPreset:(AgoraAudioReverbPreset)reverbPreset;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setLocalVoiceReverbPreset(AUDIO_REVERB_PRESET reverbPreset) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">setLocalVoiceReverbPreset(reverbPreset: AUDIO_REVERB_PRESET)</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public abstract int SetLocalVoiceReverbPreset(AUDIO_REVERB_PRESET reverbPreset);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setLocalVoiceReverbPreset(AudioReverbPreset preset);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-
-   <dl outputclass="deprecated">
-       <dlentry>
-  <dt>弃用：</dt>
-  <dd>请改用 <xref keyref="setAudioEffectPreset"/> 或 <xref keyref="setVoiceBeautifierPreset"/>。</dd>
-       </dlentry>
-   </dl>
-   <p>通信场景下的用户或直播场景下的主播均可调用该方法设置本地语音混响。成功设置以后，频道内的所有用户均可听到声音效果。</p>
-   <note type="attention">
-       <ul>
-  <li>当使用以 <codeph>AUDIO_REVERB_FX</codeph> 为前缀的枚举值时，请确保在调用该方法前将 <xref keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> (4) 或 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/> (5) ，否则该方法设置无效。</li>
-  <li>当使用 <apiname keyref="AUDIO_VIRTUAL_STEREO"/> 时，Agora 推荐在调用该方法前将 <apiname keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/> (5)。</li>
-  <li>该方法对人声的处理效果最佳，Agora 不推荐调用该方法处理含人声和音乐的音频数据。</li>
-  <li>该方法不能与 <xref keyref="setLocalVoiceChanger"/> 方法一同使用，否则先调的方法会不生效。更多注意事项，详见进阶功能《变声与混响》。</li>
-  <li>该方法在加入频道前后都能调用。</li>
-       </ul>
-   </note>
-        </section>
-        <section id="parameters"><title>参数</title>
-   <parml>
-       <plentry>
-  <pt props="native electron unity">reverbPreset</pt>
-  <pt props="flutter">preset</pt>
-  <pd><p props="ios mac windows unity flutter">本地语音混响选项，默认值为 <apiname keyref="AUDIO_REVERB_OFF"/> ，即原声。详见 <xref keyref="AUDIO_REVERB_PRESET"/> 。为达到更好的混响效果，Agora 推荐使用以 <codeph>AUDIO_REVERB_FX</codeph> 为前缀的枚举值。</p></pd>
-      <pd><p props="android">本地语音混响选项。为达到更好的混响效果，Agora 推荐使用以 <codeph>AUDIO_REVERB_FX</codeph> 为前缀的枚举值。<ul>
-                                <li><ph keyref="AUDIO_REVERB_OFF"/>: （默认）原声，即关闭本地语音混响。</li>
-                                <li><ph keyref="AUDIO_REVERB_FX_KTV"/>: KTV（增强版）。</li>
-                                <li><ph keyref="AUDIO_REVERB_FX_VOCAL_CONCERT"/>: 演唱会（增强版）。</li>
-                                <li><ph keyref="AUDIO_REVERB_FX_UNCLE"/>: 大叔。</li>
-                                <li><ph keyref="AUDIO_REVERB_FX_SISTER"/>: 小姐姐。</li>
-                                <li><ph keyref="AUDIO_REVERB_FX_STUDIO"/>: 录音棚（增强版）。</li>
-                                <li><ph keyref="AUDIO_REVERB_FX_POPULAR"/>: 流行（增强版）。</li>
-                                <li><ph keyref="AUDIO_REVERB_FX_RNB"/>: R&amp;B（增强版）。</li>
-                                <li><ph keyref="AUDIO_REVERB_FX_PHONOGRAPH"/>: 留声机。</li>
-                            </ul>
-                        </p>
-  </pd>
-       </plentry>
-   </parml>
-        </section>
-        <section id="return_values" props="native electron unity">
-   <title>返回值</title>
-   <ul>
-       <li>0: 方法调用成功</li>
-       <li>&lt; 0: 方法调用失败</li>
-   </ul>
-        </section></refbody>
+            <dl outputclass="deprecated">
+            <dlentry>
+                <dt>弃用：</dt>
+                <dd>请改用 <xref keyref="setAudioEffectPreset"/> 或 <xref keyref="setVoiceBeautifierPreset"/>。</dd>
+            </dlentry>
+            </dl>
+            <p>通信场景下的用户或直播场景下的主播均可调用该方法设置本地语音混响。成功设置以后，频道内的所有用户均可听到声音效果。</p>
+            <note type="attention">
+            <ul>
+            <li>当使用以 <codeph>AUDIO_REVERB_FX</codeph> 为前缀的枚举值时，请确保在调用该方法前将 <xref keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> (4) 或 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/> (5) ，否则该方法设置无效。</li>
+            <li>当使用 <apiname keyref="AUDIO_VIRTUAL_STEREO"/> 时，Agora 推荐在调用该方法前将 <apiname keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/> (5)。</li>
+            <li>该方法对人声的处理效果最佳，Agora 不推荐调用该方法处理含人声和音乐的音频数据。</li>
+            <li>该方法不能与 <xref keyref="setLocalVoiceChanger"/> 方法一同使用，否则先调的方法会不生效。更多注意事项，详见进阶功能《变声与混响》。</li>
+            <li>该方法在加入频道前后都能调用。</li>
+            </ul> </note> </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt props="native electron cs">reverbPreset</pt>
+                <pt props="flutter">preset</pt>
+                <pd>
+                    <p props="ios mac cpp cs flutter">本地语音混响选项，默认值为 <apiname keyref="AUDIO_REVERB_OFF"/> ，即原声。详见 <xref keyref="AUDIO_REVERB_PRESET"/> 。为达到更好的混响效果，Agora 推荐使用以 <codeph>AUDIO_REVERB_FX</codeph> 为前缀的枚举值。</p>
+                </pd>
+                <pd>
+                    <p props="android">本地语音混响选项。为达到更好的混响效果，Agora 推荐使用以 <codeph>AUDIO_REVERB_FX</codeph> 为前缀的枚举值。
+                    
+                    <ul>
+                    <li><ph keyref="AUDIO_REVERB_OFF"/>: （默认）原声，即关闭本地语音混响。</li>
+                    <li><ph keyref="AUDIO_REVERB_FX_KTV"/>: KTV（增强版）。</li>
+                    <li><ph keyref="AUDIO_REVERB_FX_VOCAL_CONCERT"/>: 演唱会（增强版）。</li>
+                    <li><ph keyref="AUDIO_REVERB_FX_UNCLE"/>: 大叔。</li>
+                    <li><ph keyref="AUDIO_REVERB_FX_SISTER"/>: 小姐姐。</li>
+                    <li><ph keyref="AUDIO_REVERB_FX_STUDIO"/>: 录音棚（增强版）。</li>
+                    <li><ph keyref="AUDIO_REVERB_FX_POPULAR"/>: 流行（增强版）。</li>
+                    <li><ph keyref="AUDIO_REVERB_FX_RNB"/>: R&amp;B（增强版）。</li>
+                    <li><ph keyref="AUDIO_REVERB_FX_PHONOGRAPH"/>: 留声机。</li>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron cs">
+            <title>返回值</title>
+            <ul>
+            <li>0: 方法调用成功</li>
+            <li>&lt; 0: 方法调用失败</li>
+            </ul> </section>
+    </refbody>
 </reference>

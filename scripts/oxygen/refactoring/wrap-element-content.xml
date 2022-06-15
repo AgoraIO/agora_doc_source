@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Descriptor for the 'Wrap element content' XML Refactory operation. 
+-->
+<refactoringOperationDescriptor 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.oxygenxml.com/ns/xmlRefactoring" 
+    id="wrap-element-content" 
+    name="${i18n(xr_wrap_element_content)}">
+	<description>${i18n(xr_wrap_element_content_description)}</description>    
+	<script type="XQUERY_UPDATE" href="wrap-element-content.xq"/>
+    <!--<script type="XSLT" href="wrap-element-content.xsl"/>-->
+	<category>${i18n(Elements)}</category>
+    <parameters>    	
+    	<description>${i18n(xr_wrap_element_content_parameters_description)}</description>
+    	<elementLocation name="element_xpath" useCurrentContext="true">
+    		<element label="${i18n(xr_target_elements)}">
+    			<description>${i18n(xr_wrap_element_content_xpath_param_description)}</description>
+    		</element>
+    	</elementLocation>
+    	<section label="${i18n(xr_wrapper_element)}">
+    		<elementParameter>
+    		  <localName name="wrapper_element_local_name" label="${i18n(Local_name)}">
+    		  	<description>${i18n(xr_wrap_element_content_local_name_param_description)}</description>
+    			</localName>
+    		  <namespace name="wrapper_element_namespace_uri" label="${i18n(Namespace)}">
+    		  	<description>${i18n(xr_wrap_element_content_namespace_param_description)}</description>
+    	      </namespace>
+    		</elementParameter>
+    	</section>
+    </parameters>
+</refactoringOperationDescriptor>

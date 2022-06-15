@@ -13,49 +13,50 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public abstract int setVideoProfile(int width, int height, int frameRate, int bitrate);</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (int)setVideoResolution:(CGSize)size andFrameRate:(NSInteger)frameRate bitrate:(NSInteger)bitrate;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp" />
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp" />
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
-            </p>
+            <codeblock props="android" outputclass="language-java">public abstract int setVideoProfile(int width, int height, int frameRate, int bitrate);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setVideoResolution:(CGSize)size andFrameRate:(NSInteger)frameRate bitrate:(NSInteger)bitrate;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp" />
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated">
-                <dlentry>
-                    <dt>Deprecated:</dt>
-                    <dd>This method is deprecated as of v2.3. Please use <xref keyref="setVideoEncoderConfiguration" /> instead.</dd>
-                </dlentry>
+            <dlentry>
+                <dt>Deprecated:</dt>
+                <dd>This method is deprecated as of v2.3. Please use <xref keyref="setVideoEncoderConfiguration" /> instead.</dd>
+            </dlentry>
             </dl>
             <p>This method sets the video encoder configuration. You can call this method either before or after joining a channel. If the user does not need to reset the video encoding properties after joining the channel, Agora recommends calling this method before <xref keyref="enableVideo" /> to reduce the time to render the first video frame.</p>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters">
+            <title>Parameters</title>
             <parml>
-                <plentry>
-                    <pt>width</pt>
-                    <pd>The width of the video. The maximum value of width × height is 1280 × 720.</pd>
-                </plentry>
-                <plentry>
-                    <pt>height</pt>
-                    <pd>The height of the video. The maximum value of width × height is 1280 × 720.</pd>
-                </plentry>
-                <plentry>
-                    <pt>frameRate</pt>
-                    <pd>The frame rate of the video. The highest value is 30. You can set the parameter as 5, 10, 15, 24, and 30.</pd>
-                </plentry>
-                <plentry>
-                    <pt>bitrate</pt>
-                    <pd>The bitrate of the video. You need to manually work out the bitrate according to the width, height, and frame rate. With the same width and height, the bitrate varies with the frame rate:<ul>
-                            <li>If the frame rate is 5 fps, divide the recommended bitrate by 2.</li>
-                            <li>If the frame rate is 15 fps, use the recommended bitrate.</li>
-                            <li>If the frame rate is 30 fps, multiply the recommended bitrate by 1.5.</li>
-                            <li>Calculate the bitrate according to the ratio if you choose other frame rates.</li>
-                            <li>If you set a bitrate beyond the proper range, the SDK automatically adjusts the bitrate to a value within the proper range.</li>
-                        </ul></pd>
-                </plentry>
-            </parml>
-
-        </section></refbody>
+            <plentry>
+                <pt>width</pt>
+                <pd>The width of the video. The maximum value of width × height is 1280 × 720.</pd>
+            </plentry>
+            <plentry>
+                <pt>height</pt>
+                <pd>The height of the video. The maximum value of width × height is 1280 × 720.</pd>
+            </plentry>
+            <plentry>
+                <pt>frameRate</pt>
+                <pd>The frame rate of the video. The highest value is 30. You can set the parameter as 5, 10, 15, 24, and 30.</pd>
+            </plentry>
+            <plentry>
+                <pt>bitrate</pt>
+                <pd>The bitrate of the video. You need to manually work out the bitrate according to the width, height, and frame rate. With the same width and height, the bitrate varies with the frame rate:
+                    
+                    <ul>
+                    <li>If the frame rate is 5 fps, divide the recommended bitrate by 2.</li>
+                    <li>If the frame rate is 15 fps, use the recommended bitrate.</li>
+                    <li>If the frame rate is 30 fps, multiply the recommended bitrate by 1.5.</li>
+                    <li>Calculate the bitrate according to the ratio if you choose other frame rates.</li>
+                    <li>If you set a bitrate beyond the proper range, the SDK automatically adjusts the bitrate to a value within the proper range.</li>
+                    </ul></pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
 </reference>

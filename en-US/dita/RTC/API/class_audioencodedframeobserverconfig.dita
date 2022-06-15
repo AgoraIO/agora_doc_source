@@ -5,6 +5,25 @@
     <shortdesc id="short"><ph id="shortdesc">Observer settings for the encoded audio.</ph></shortdesc>
     <refbody>
         <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="cs" outputclass="language-csharp">public class AudioEncodedFrameObserverConfig 
+    {
+        public AudioEncodedFrameObserverConfig()
+        {
+            postionType = AUDIO_ENCODED_FRAME_OBSERVER_POSITION.AUDIO_ENCODED_FRAME_OBSERVER_POSITION_PLAYBACK;
+            encodingType = AUDIO_ENCODING_TYPE.AUDIO_ENCODING_TYPE_OPUS_48000_MEDIUM;
+        }
+
+        public AudioEncodedFrameObserverConfig(AUDIO_ENCODED_FRAME_OBSERVER_POSITION postionType, 
+                                                AUDIO_ENCODING_TYPE encodingType)
+        {
+            this.encodingType = encodingType;
+            this.postionType = postionType;
+        }
+
+        public AUDIO_ENCODED_FRAME_OBSERVER_POSITION postionType { set; get; } 
+        public AUDIO_ENCODING_TYPE encodingType { set; get; }
+    }</codeblock> </p>
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class AudioEncodedFrameObserverConfig {
   public int postionType;
@@ -19,7 +38,7 @@
 @property (assign, nonatomic) AgoraAudioEncodedFrameDelegatePosition postionType;
 @property (assign, nonatomic) AgoraAudioEncodingType encodingType;
 @end</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">struct AudioEncodedFrameObserverConfig {
+            <codeblock props="cpp" outputclass="language-cpp">struct AudioEncodedFrameObserverConfig {
     AUDIO_ENCODED_FRAME_OBSERVER_POSITION postionType;
     AUDIO_ENCODING_TYPE encodingType;
     AudioEncodedFrameObserverConfig()
@@ -27,45 +46,46 @@
       encodingType(AUDIO_ENCODING_TYPE_OPUS_48000_MEDIUM){}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
             <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" />
-            </p>
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
-                <plentry>
-                    <pt>postionType</pt>
-                    <pd><p props="ios mac windows">Audio profile. For details, see <xref keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION" />.</p>
-                        <p props="android">Audio profile:<ul>
-                            <li><ph keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_RECORD" /> 1: Only encode the audio of the local user.</li>
-                                <li><ph keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_PLAYBACK" /> 2: Only encode the audio of all remote users.</li>
-                            <li><ph keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_MIXED" /> 3: Records the mixed audio of the local and all remote users.</li>
-                        </ul>
-                    </p>
-                    </pd>
-                </plentry>
-                <plentry>
-                    <pt>encodingType</pt>
-                    <pd><p props="ios mac windows">Audio encoding type. For details, see <xref keyref="AUDIO_ENCODING_TYPE" />.</p>
-                        <p props="android">Audio encoding type.<ul>
-                            <li><ph keyref="AUDIO_ENCODING_TYPE_AAC_16000_LOW" />: AAC encoding format, 16000 Hz sampling rate, low quality. A file with an audio duration of 10 minutes is approximately 1.2 MB after encoding.</li>
-                            <li><ph keyref="AUDIO_ENCODING_TYPE_AAC_16000_MEDIUM" />: AAC encoding format, 16000 Hz sampling rate, medium quality. A file with an audio duration of 10 minutes is approximately 2 MB after encoding.</li>
-                            <li><ph keyref="AUDIO_ENCODING_TYPE_AAC_32000_LOW" />: AAC encoding format, 32000 Hz sampling rate, low quality. A file with an audio duration of 10 minutes is approximately 1.2 MB after encoding.</li>
-                            <li><ph keyref="AUDIO_ENCODING_TYPE_AAC_32000_MEDIUM" />: AAC encoding format, 32000 Hz sampling rate, medium quality. A file with an audio duration of 10 minutes is approximately 2 MB after encoding.</li>
-                            <li><ph keyref="AUDIO_ENCODING_TYPE_AAC_32000_HIGH" />: AAC encoding format, 32000 Hz sampling rate, high quality. A file with an audio duration of 10 minutes is approximately 3.5 MB after encoding.</li>
-                            <li><ph keyref="AUDIO_ENCODING_TYPE_AAC_48000_MEDIUM" />: AAC encoding format, 48000 Hz sampling rate, medium quality. A file with an audio duration of 10 minutes is approximately 2 MB after encoding.</li>
-                            <li><ph keyref="AUDIO_ENCODING_TYPE_AAC_48000_HIGH" />: AAC encoding format, 48000 Hz sampling rate, high quality. A file with an audio duration of 10 minutes is approximately 3.5 MB after encoding.</li>
-                            <li><ph keyref="AUDIO_ENCODING_TYPE_OPUS_16000_LOW" />: OPUS encoding format, 16000 Hz sampling rate, low quality. A file with an audio duration of 10 minutes is approximately 2 MB after encoding.</li>
-                            <li><ph keyref="AUDIO_ENCODING_TYPE_OPUS_16000_MEDIUM" />: OPUS encoding format, 16000 Hz sampling rate, medium quality. A file with an audio duration of 10 minutes is approximately 2 MB after encoding.</li>
-                            <li><ph keyref="AUDIO_ENCODING_TYPE_OPUS_48000_MEDIUM" />: OPUS encoding format, 48000 Hz sampling rate, medium quality. A file with an audio duration of 10 minutes is approximately 2 MB after encoding.</li>
-                            <li><ph keyref="AUDIO_ENCODING_TYPE_OPUS_48000_HIGH" />: OPUS encoding format, 48000 Hz sampling rate, high quality. A file with an audio duration of 10 minutes is approximately 3.5 MB after encoding.</li>
-                        </ul>
-                    </p>
-                    </pd>
-                </plentry>
-            </parml>
-        </section>
+            <plentry>
+                <pt>postionType</pt>
+                <pd>
+                    <p props="ios mac cpp">Audio profile. For details, see <xref keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION" />.</p>
+                    <p props="android">Audio profile:
+                    
+                    <ul>
+                    <li><ph keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_RECORD" /> 1: Only encode the audio of the local user.</li>
+                    <li><ph keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_PLAYBACK" /> 2: Only encode the audio of all remote users.</li>
+                    <li><ph keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_MIXED" /> 3: Records the mixed audio of the local and all remote users.</li>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>encodingType</pt>
+                <pd>
+                    <p props="ios mac cpp">Audio encoding type. For details, see <xref keyref="AUDIO_ENCODING_TYPE" />.</p>
+                    <p props="android">Audio encoding type.
+                    
+                    <ul>
+                    <li><ph keyref="AUDIO_ENCODING_TYPE_AAC_16000_LOW" />: AAC encoding format, 16000 Hz sampling rate, low quality. A file with an audio duration of 10 minutes is approximately 1.2 MB after encoding.</li>
+                    <li><ph keyref="AUDIO_ENCODING_TYPE_AAC_16000_MEDIUM" />: AAC encoding format, 16000 Hz sampling rate, medium quality. A file with an audio duration of 10 minutes is approximately 2 MB after encoding.</li>
+                    <li><ph keyref="AUDIO_ENCODING_TYPE_AAC_32000_LOW" />: AAC encoding format, 32000 Hz sampling rate, low quality. A file with an audio duration of 10 minutes is approximately 1.2 MB after encoding.</li>
+                    <li><ph keyref="AUDIO_ENCODING_TYPE_AAC_32000_MEDIUM" />: AAC encoding format, 32000 Hz sampling rate, medium quality. A file with an audio duration of 10 minutes is approximately 2 MB after encoding.</li>
+                    <li><ph keyref="AUDIO_ENCODING_TYPE_AAC_32000_HIGH" />: AAC encoding format, 32000 Hz sampling rate, high quality. A file with an audio duration of 10 minutes is approximately 3.5 MB after encoding.</li>
+                    <li><ph keyref="AUDIO_ENCODING_TYPE_AAC_48000_MEDIUM" />: AAC encoding format, 48000 Hz sampling rate, medium quality. A file with an audio duration of 10 minutes is approximately 2 MB after encoding.</li>
+                    <li><ph keyref="AUDIO_ENCODING_TYPE_AAC_48000_HIGH" />: AAC encoding format, 48000 Hz sampling rate, high quality. A file with an audio duration of 10 minutes is approximately 3.5 MB after encoding.</li>
+                    <li><ph keyref="AUDIO_ENCODING_TYPE_OPUS_16000_LOW" />: OPUS encoding format, 16000 Hz sampling rate, low quality. A file with an audio duration of 10 minutes is approximately 2 MB after encoding.</li>
+                    <li><ph keyref="AUDIO_ENCODING_TYPE_OPUS_16000_MEDIUM" />: OPUS encoding format, 16000 Hz sampling rate, medium quality. A file with an audio duration of 10 minutes is approximately 2 MB after encoding.</li>
+                    <li><ph keyref="AUDIO_ENCODING_TYPE_OPUS_48000_MEDIUM" />: OPUS encoding format, 48000 Hz sampling rate, medium quality. A file with an audio duration of 10 minutes is approximately 2 MB after encoding.</li>
+                    <li><ph keyref="AUDIO_ENCODING_TYPE_OPUS_48000_HIGH" />: OPUS encoding format, 48000 Hz sampling rate, high quality. A file with an audio duration of 10 minutes is approximately 3.5 MB after encoding.</li>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

@@ -5,62 +5,64 @@
     <shortdesc id="short"><ph id="shortdesc">Pulls the remote audio data.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="pullAudioFrame" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="pullAudioFrame" />
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public abstract int pullPlaybackAudioFrame(byte[] data, int lengthInByte);</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)pullPlaybackAudioFrameRawData:(void * _Nonnull)data
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int pullPlaybackAudioFrame(byte[] data, int lengthInByte);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)pullPlaybackAudioFrameRawData:(void * _Nonnull)data
                               lengthInByte:(NSUInteger)lengthInByte;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual int pullAudioFrame(IAudioFrameObserver::AudioFrame* frame) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp">public abstract int PullAudioFrame(AudioFrame frame);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
-        </p>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int pullAudioFrame(IAudioFrameObserver::AudioFrame* frame) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="cs" outputclass="language-csharp">public abstract int PullAudioFrame(AudioFrame frame);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
             <p props="rtc">Before calling this method, you need to call <xref keyref="setExternalAudioSink" /> to notify the app to enable and set the external rendering.</p>
-            <p props="rtc-ng">Before calling this method, you need to set <parmname props="android">mEnableAudioDevice</parmname><parmname props="ios mac windows">enableAudioDevice</parmname> as <codeph><ph keyref="false" /></codeph> in <xref keyref="RtcEngineConfig" />, and call <xref keyref="setExternalAudioSink" /> to notify the app to enable and set the external rendering.</p>
-   <p>After a successful method call, the app pulls the decoded and mixed audio data for playback.</p>
-   <note type="attention">
-       <ul>
-           <li>Call this method after joining a channel.</li>
-           <li>Once you enable the external audio sink, the app will not retrieve any audio data from the <xref keyref="onPlaybackAudioFrame" /> callback.</li>
-           <li>The difference between this method and the <apiname keyref="onPlaybackAudioFrame" /> callback is as follows:<ul><li>The SDK sends the audio data to the app through the <apiname keyref="onPlaybackAudioFrame" /> callback. Any delay in processing the audio frames may result in audio jitter.</li>
-                   <li>After a successful method call, the app automatically pulls the audio data from the SDK. After setting the audio data parameters, the SDK adjusts the frame buffer and avoids problems caused by jitter in the external audio playback.</li>
-               </ul></li>
-       </ul>
-   </note>
-        </section>
-        <section id="parameters"><title>Parameters</title>
-   <parml>
-       <plentry props="windows unity">
-  <pt>frame</pt>
-  <pd>Pointers to <xref keyref="AudioFrame" />.</pd>
-       </plentry>
-       <plentry props="android ios mac">
-           <pt>data</pt>
-           <pd>The remote audio data to be pulled. The data type is <codeph>byte[]</codeph>.</pd>
-       </plentry>
-       <plentry props="android ios mac" id="length">
-           <pt>lengthInByte</pt>
-           <pd>The data length (byte). The value of this parameter is related to the audio duration, and the values of the <codeph>sampleRate</codeph> and <codeph>channels</codeph> parameters that you set in <apiname keyref="setExternalAudioSink" />. <codeph>lengthInByte</codeph> = <codeph>sampleRate</codeph>/1000 × 2 × <codeph>channels</codeph> × audio duration (ms).</pd>
-       </plentry>
-   </parml>
-        </section>
+            <p props="rtc-ng">Before calling this method, you need to set <parmname props="android">mEnableAudioDevice</parmname><parmname props="ios mac cpp">enableAudioDevice</parmname> as <codeph><ph keyref="false" /></codeph> in <xref keyref="RtcEngineConfig" />, and call <xref keyref="setExternalAudioSink" /> to notify the app to enable and set the external rendering.</p>
+            <p>After a successful method call, the app pulls the decoded and mixed audio data for playback.</p>
+            <note type="attention">
+            <ul>
+            <li props="rtc-ng">This method only supports pulling data from custom audio source. If you need to pull the data captured by the SDK, do not call this method.</li>
+            <li>Call this method after joining a channel.</li>
+            <li>Once you enable the external audio sink, the app will not retrieve any audio data from the <xref keyref="onPlaybackAudioFrame" /> callback.</li>
+            <li>The difference between this method and the <apiname keyref="onPlaybackAudioFrame" /> callback is as follows:
+                
+                <ul>
+                <li>The SDK sends the audio data to the app through the <apiname keyref="onPlaybackAudioFrame" /> callback. Any delay in processing the audio frames may result in audio jitter.</li>
+                <li>After a successful method call, the app automatically pulls the audio data from the SDK. After setting the audio data parameters, the SDK adjusts the frame buffer and avoids problems caused by jitter in the external audio playback.</li>
+                </ul></li>
+            </ul> </note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry props="cpp cs">
+                <pt>frame</pt>
+                <pd>The audio frame: <xref keyref="AudioFrame" />.</pd>
+            </plentry>
+            <plentry props="android ios mac">
+                <pt>data</pt>
+                <pd>The remote audio data to be pulled. The data type is <codeph>byte[]</codeph>.</pd>
+            </plentry>
+            <plentry props="android ios mac" id="length">
+                <pt>lengthInByte</pt>
+                <pd>The data length (byte). The value of this parameter is related to the audio duration, and the values of the <codeph>sampleRate</codeph> and <codeph>channels</codeph> parameters that you set in <apiname keyref="setExternalAudioSink" />. <codeph>lengthInByte</codeph> = <codeph>sampleRate</codeph>/1000 × 2 × <codeph>channels</codeph> × audio duration (ms).</pd>
+            </plentry>
+            </parml> </section>
         <section id="return_values">
-   <title>Returns</title>
-   <ul props="android windows unity">
-       <li>0: Success.</li>
-       <li>&lt; 0: Failure.</li>
-   </ul>
+            <title>Returns</title>
+            <ul props="android cpp cs">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul>
             <ul props="ios mac">
-       <li><codeph><ph keyref="true" /></codeph>: Success.</li>
-       <li><codeph><ph keyref="false" /></codeph>: Failure.</li>
-   </ul>
-        </section></refbody>
+            <li><codeph><ph keyref="true" /></codeph>: Success.</li>
+            <li><codeph><ph keyref="false" /></codeph>: Failure.</li>
+            </ul> </section>
+    </refbody>
 </reference>

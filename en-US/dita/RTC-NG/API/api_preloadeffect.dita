@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_preloadeffect">
+    <title><ph keyref="preloadEffect"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Preloads a specified audio effect file into the memory.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="preloadEffect"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+        <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public int preloadEffect(int soundId, String filePath);
+</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)preloadEffect:(int)soundId
+            filePath:(NSString* _Nonnull)filePath;
+</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int preloadEffect(int soundId, const char* filePath) = 0;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int PreloadEffect(int soundId, string filePath, int startPos = 0);</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">preloadEffect(soundId: number, filePath: string): number</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; preloadEffect(int soundId, String filePath);</codeblock>
+        </p></section>
+        <section id="detailed_desc">
+            <p>To ensure smooth communication, limit the size of the audio effect file. We recommend using this method to preload the audio effect before calling <apiname keyref="joinChannel2"/>.</p>
+            <note type="attention">
+            <ul>
+            <li>This method does not support online audio effect files.</li>
+            <li id="audioFormats">For the audio file formats supported by this method, see <xref keyref="audio-format">What formats of audio files does the Agora RTC SDK support</xref>.</li>
+            </ul></note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>soundId</pt>
+                <pd id="soundId">The audio effect ID. The ID of each audio effect file is unique.</pd>
+            </plentry>
+            <plentry id="filePath">
+                <pt>filePath</pt>
+                <pd>File path:<ul>
+                    <li props="android flutter unity cpp">Android: The file path, which needs to be accurate to the file name and suffix. Agora supports using a URI address, an absolute path, or a path that starts with <codeph>/assets/</codeph>. You might encounter permission issues if you use an absolute path to access a local file, so Agora recommends using a URI address instead. For example: <codeph>content://com.android.providers.media.documents/document/audio%3A14441</codeph></li>
+                    <li props="cpp flutter unity">Windows: The absolute path or URL address (including the suffixes of the filename) of the audio effect file. For example: <codeph>C:\music\audio.mp4</codeph>.</li>
+                    <li props="ios mac flutter unity">iOS or macOS: The absolute path or URL address (including the suffixes of the filename) of the audio effect file. iOS/macOS: For example: <codeph>/var/mobile/Containers/Data/audio.mp4</codeph>.</li>
+                    </ul></pd>
+            </plentry>
+            <plentry props="unity">
+                <pt>startPos</pt>
+                <pd>The playback position (ms) of the audio effect file.</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron unity">
+            <title>Returns</title>
+            <ul>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
+    </refbody>
+</reference>

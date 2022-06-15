@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_audiomixingstatetype">
+    <title><ph keyref="AUDIO_MIXING_STATE_TYPE"/></title>
+    <shortdesc id="short"><ph id="shortdesc">The playback state of the music file.</ph></shortdesc>
+    <refbody>
+        <section id="parameters">
+   <title>Enumerator</title>
+   <parml>
+       <plentry>
+  <pt><ph keyref="AUDIO_MIXING_STATE_PLAYING"/></pt>
+  <pd>
+      <p>710: The music file is playing.</p>
+      <p props="rtc">The possible reasons include:<ul>
+          <li><ph keyref="AUDIO_MIXING_REASON_STARTED_BY_USER"/>(710)</li>
+          <li><ph keyref="AUDIO_MIXING_REASON_ONE_LOOP_COMPLETED"/>(720)</li>
+          <li><ph keyref="AUDIO_MIXING_REASON_START_NEW_LOOP"/>(722)</li>
+          <li><ph keyref="AUDIO_MIXING_REASON_RESUMED_BY_USER"/>(726)</li>
+      </ul>
+      </p>
+  </pd>
+       </plentry>
+       <plentry>
+  <pt><ph keyref="AUDIO_MIXING_STATE_PAUSED"/></pt>
+  <pd>
+      <p>711: The music file pauses playing.</p>
+      <p props="rtc">This state is due to<ph keyref="AUDIO_MIXING_REASON_PAUSED_BY_USER"/> (725).</p>
+  </pd>
+       </plentry>
+       <plentry>
+  <pt><ph keyref="AUDIO_MIXING_STATE_STOPPED"/></pt>
+  <pd>
+      <p>713: The music file stops playing.</p>
+      <p props="rtc">The possible reasons include:<ul>
+          <li><ph keyref="AUDIO_MIXING_REASON_ALL_LOOPS_COMPLETED"/>(723)</li>
+          <li><ph keyref="AUDIO_MIXING_REASON_STOPPED_BY_USER"/>(724)</li>
+      </ul></p>
+  </pd>
+       </plentry>
+       <plentry>
+  <pt><ph keyref="AUDIO_MIXING_STATE_FAILED"/></pt>
+  <pd>
+      <p>714: An error occurs during the playback of the audio mixing file.</p>
+      <p props="rtc">The possible reasons include:<ul>
+          <li><ph keyref="AUDIO_MIXING_REASON_CAN_NOT_OPEN"/>(701)</li>
+          <li><ph keyref="AUDIO_MIXING_REASON_TOO_FREQUENT_CALL"/>(702)</li>
+          <li><ph keyref="AUDIO_MIXING_REASON_INTERRUPTED_EOF"/>(703)</li>
+      </ul></p>
+  </pd>
+       </plentry>
+                <plentry props="android ios mac cpp">
+                    <pt><ph keyref="AUDIO_MIXING_STATE_COMPLETED"/></pt>
+                    <pd>(715): The music file is played once.</pd>
+                </plentry>
+                <plentry props="android ios mac cpp">
+                    <pt><ph keyref="AUDIO_MIXING_STATE_ALL_LOOPS_COMPLETED"/></pt>
+                    <pd>(716): The music file is all played out.</pd>
+                </plentry>
+   </parml>
+        </section></refbody>
+</reference>

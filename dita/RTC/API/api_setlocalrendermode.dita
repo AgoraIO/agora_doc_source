@@ -5,66 +5,64 @@
     <shortdesc id="short"><ph id="shortdesc">设置本地视图显示模式。</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="setLocalRenderMode1"/>
-   </keywords>
+            <keywords>
+                <indexterm keyref="setLocalRenderMode1"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock" props="rtc-ng">
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLocalRenderMode:(NSUInteger)uid
                      mode:(AgoraVideoRenderMode) mode;</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">virtual int setLocalRenderMode(media::base::RENDER_MODE_TYPE renderMode) = 0;</codeblock>
-        </p>
-        <p outputclass="codeblock" props="rtc">
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setLocalRenderMode(media::base::RENDER_MODE_TYPE renderMode) = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public abstract int SetLocalRenderMode(RENDER_MODE_TYPE renderMode);</codeblock></p>
+            <p outputclass="codeblock" props="rtc">
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLocalRenderMode:(AgoraVideoRenderMode)mode;</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">virtual int setLocalRenderMode(RENDER_MODE_TYPE renderMode) = 0;</codeblock>
-        </p>
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public abstract int setLocalRenderMode(int renderMode);</codeblock>
-                <codeblock props="electron" outputclass="language-typescript"/>
-                <codeblock props="unity" outputclass="language-csharp">public abstract int SetLocalRenderMode(RENDER_MODE_TYPE renderMode);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
-        </p>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setLocalRenderMode(RENDER_MODE_TYPE renderMode) = 0;</codeblock>
+            <codeblock props="android" outputclass="language-java">public abstract int setLocalRenderMode(int renderMode);</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="cs" outputclass="language-csharp">public abstract int SetLocalRenderMode(RENDER_MODE_TYPE renderMode);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-
             <dl outputclass="deprecated">
-                <dlentry>
-                    <dt>弃用：</dt>
-                    <dd>该方法已废弃，请使用 <xref keyref="setLocalRenderMode2"/> 作为替代。</dd>
-                </dlentry>
+            <dlentry>
+                <dt>弃用：</dt>
+                <dd>该方法已废弃，请使用 <xref keyref="setLocalRenderMode2"/> 作为替代。</dd>
+            </dlentry>
             </dl>
-
-   <p>该方法设置本地视图显示模式。 App 可以多次调用此方法更改显示模式。</p>
+            <p>该方法设置本地视图显示模式。 App 可以多次调用此方法更改显示模式。</p>
         </section>
-        <section id="parameters"><title>参数</title>
-   <parml>
-       <plentry>
-  <pt props="windows android unity">renderMode</pt>
-           <pt props="ios mac">mode</pt>
-  <pd>
-                        <p props="ios mac windows unity">本地视图显示模式。详见 <xref keyref="RENDER_MODE_TYPE"/>。</p>
-                        <p props="android">本地视图显示模式。<ul conkeyref="setLocalRenderMode2/rendermodetype">
-                                <li/>
-                            </ul>
-                        </p>
-                    </pd>
-       </plentry>
-       <plentry props="rtc-ng">
-           <pt props="ios mac">uid</pt>
-           <pd props="ios mac">
-             <p>用户 ID。</p>
-           </pd>
-       </plentry>
-   </parml>
-        </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt props="cpp android cs">renderMode</pt>
+                <pt props="ios mac">mode</pt>
+                <pd>
+                    <p props="ios mac cpp cs">本地视图显示模式。详见 <xref keyref="RENDER_MODE_TYPE"/>。</p>
+                    <p props="android">本地视图显示模式。
+                    
+                    
+                    <ul conkeyref="setLocalRenderMode2/rendermodetype">
+                    <li/>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            <plentry props="rtc-ng">
+                <pt props="ios mac">uid</pt>
+                <pd props="ios mac">
+                    <p>用户 ID。</p>
+                </pd>
+            </plentry>
+            </parml> </section>
         <section id="return_values">
-   <title>返回值</title>
-   <ul>
-       <li>0: 方法调用成功。</li>
-       <li>&lt; 0: 方法调用失败。</li>
-   </ul>
-        </section></refbody>
+            <title>返回值</title>
+            <ul>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。</li>
+            </ul> </section>
+    </refbody>
 </reference>

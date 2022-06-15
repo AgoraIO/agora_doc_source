@@ -6,7 +6,7 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public class AgoraVideoFrame {
+            <codeblock props="android" outputclass="language-java">public class AgoraVideoFrame {
                     public static final int FORMAT_NONE = -1;
                     public static final int FORMAT_TEXTURE_2D = 10;
                     public static final int FORMAT_TEXTURE_OES = 11;
@@ -34,7 +34,7 @@
                     public int cropBottom;
                     public int rotation;
                     }</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoFrame : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoFrame : NSObject
                     @property(assign, nonatomic) NSInteger format;
                     @property(assign, nonatomic) CMTime time;
                     @property(assign, nonatomic) int stride DEPRECATED_MSG_ATTRIBUTE("use strideInPixels instead");
@@ -47,7 +47,7 @@
                     @property(assign, nonatomic) int cropBottom;
                     @property(assign, nonatomic) int rotation;
                     @end</codeblock>
-                <codeblock props="windows unity" outputclass="language-cpp">struct ExternalVideoFrame {
+            <codeblock props="cpp" outputclass="language-cpp">struct ExternalVideoFrame {
                 enum VIDEO_BUFFER_TYPE
                 {
                 VIDEO_BUFFER_RAW_DATA = 1,
@@ -77,136 +77,180 @@
                 int rotation;
                 long long timestamp;
                 };</codeblock>
-                <codeblock props="electron" outputclass="language-typescript"/>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
-                </p>
+            <codeblock props="cs" outputclass="language-csharp">public class ExternalVideoFrame
+    {
+        public ExternalVideoFrame()
+        {
+        }
+
+        public ExternalVideoFrame(VIDEO_BUFFER_TYPE type, VIDEO_PIXEL_FORMAT format, byte[] buffer, int stride,
+            int height, long timestamp, int cropLeft = 0, int cropTop = 0, int cropRight = 0, int cropBottom = 0,
+            int rotation = 0)
+        {
+            this.type = type;
+            this.format = format;
+            this.buffer = buffer;
+            this.stride = stride;
+            this.height = height;
+            this.cropLeft = cropLeft;
+            this.cropTop = cropTop;
+            this.cropRight = cropRight;
+            this.cropBottom = cropBottom;
+            this.rotation = rotation;
+            this.timestamp = timestamp;
+        }
+
+        public VIDEO_BUFFER_TYPE type { set; get; }
+        public VIDEO_PIXEL_FORMAT format { set; get; }
+        public byte[] buffer { set; get; }
+        public int stride { set; get; }
+        public int height { set; get; }
+        public int cropLeft { set; get; }
+        public int cropTop { set; get; }
+        public int cropRight { set; get; }
+        public int cropBottom { set; get; }
+        public int rotation { set; get; }
+        public long timestamp { set; get; }
+    }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
-   <parml>
-       <plentry props="windows unity">
-  <pt>type</pt>
-  <pd>
-      <p>视频类型。详见 <xref keyref="VIDEO_BUFFER_TYPE"/>。</p>
-      </pd>
-       </plentry>
-       <plentry>
-  <pt>format</pt>
-           <pd props="windows unity" id="windows-format">像素格式。详见 <xref keyref="VIDEO_PIXEL_FORMAT"/>。</pd>
-           <pd props="ios mac" id="oc-format">传入的视频帧的格式，必须指定为下面的某一个值：
-               <ul>
-                   <li>1: I420。</li>
-                   <li>2: BGRA。</li>
-                   <li>3: NV21。</li>
-                   <li>4: RGBA。</li>
-                   <li>5: IMC2。</li>
-                   <li>7: ARGB。</li>
-                   <li>8: NV12。</li>
-                   <li>12: iOS 纹理 (CVPixelBufferRef)。</li>
-               </ul>
-           </pd>
-           <pd props="android">视频数据的格式：
-               <ul>
-                   <li>10：TEXTURE_2D。</li>
-                   <li>11：TEXTURE_OES，通常摄像头采集的数据为这种格式。</li>
-                   <li>1：I420。</li>
-                   <li>3：NV21。</li>
-                   <li>4：RGBA。</li>
-               </ul>
-               </pd>
-       </plentry>
-       <plentry props="android windows ios mac">
-  <pt props="windows">buffer</pt>
-  <pt props="android">buf</pt>
-  <pt props="ios mac">dataBuf</pt>
-  <pd>视频 buffer。</pd>
-  <pd props="android">该参数仅适用于非 Texture 格式的视频数据。</pd>
-       </plentry>
-       <plentry props="ios mac">
-           <pt>textureBuf</pt>
-           <pd>iOS 纹理的 Buffer。</pd>
-       </plentry>
-       <plentry>
-  <pt>stride</pt>
-  <pd>传入视频帧的行间距，单位为像素而不是字节。对于 Texture，该值指的是 Texture 的宽度。
-      <p props="ios mac">
-          <dl outputclass="deprecated">
-              <dlentry>
-                  <dt>弃用：</dt>
-                  <dd>用 <parmname>strideInPixels</parmname> 代替。</dd>
-              </dlentry>
-          </dl>
-      </p>
-       </pd>
-       </plentry>
-       <plentry props="ios mac">
-           <pt>strideInPixels</pt>
-           <pd>该帧的行跨度，即相邻两行视频帧之间的像素点数。
-           <note type="attention">
-               <ul>
-                   <li>该参数单位为像素，不是字节数。</li>
-                   <li>如果视频为 Texture 格式，则将该参数设为 Texture 的宽度。</li>
-                   <li>如果视频帧格式设为 12，则不使用该字段。</li>
-               </ul>
-           </note></pd>
-       </plentry>
-       <plentry>
-  <pt>height</pt>
-  <pd>传入视频帧的高度。</pd>
-       </plentry>
-       <plentry props="android">
-           <pt>textureID</pt>
-           <pd>该帧的 Texture ID。该参数仅适用于 Texture 格式的视频数据。</pd>
-       </plentry>
-                <plentry props="android">
-                    <pt>syncMode</pt>
-                    <pd>设置是否开启同步模式，开启后 SDK 会在 Texture 处理时进行等待。该参数仅适用于 Texture 格式的视频数据。<ul id="ul_oxx_wmy_4qb">
-                        <li><codeph><ph keyref="true"/></codeph>：开启同步模式。</li>
-                        <li><codeph><ph keyref="false"/></codeph>：不开启同步模式。</li>
-                        </ul></pd>
-                </plentry>
-       <plentry props="android">
-                    <pt>transform</pt>
-           <pd>Texture 帧额外的转换。该参数仅适用于 Texture 格式的视频数据。</pd>
-                </plentry>
-       <plentry props="android">
-                    <pt>eglContext11</pt>
-           <pd>EGLContext11。该参数仅适用于 Texture 格式的视频数据。</pd>
-                </plentry>
-       <plentry props="android">
-                    <pt>eglContext14</pt>
-           <pd>EGLContext14。该参数仅适用于 Texture 格式的视频数据。</pd>
-                </plentry>
-       <plentry>
-  <pt>cropLeft</pt>
-  <pd>原始数据相关字段。指定左边裁剪掉的像素数量。默认为 0。</pd>
-           <pd props="android">该参数仅适用于非 Texture 格式的视频数据。</pd>
-       </plentry>
-       <plentry>
-  <pt>cropTop</pt>
-  <pd>原始数据相关字段。指定顶边裁剪掉的像素数量。默认为 0。</pd>
-           <pd props="android">该参数仅适用于非 Texture 格式的视频数据。</pd>
-       </plentry>
-       <plentry>
-  <pt>cropRight</pt>
-  <pd> 原始数据相关字段。指定右边裁剪掉的像素数量。默认为 0。</pd>
-           <pd props="android">该参数仅适用于非 Texture 格式的视频数据。</pd>
-       </plentry>
-       <plentry>
-  <pt>cropBottom</pt>
-  <pd>原始数据相关字段。指定底边裁剪掉的像素数量。默认为 0。</pd>
-           <pd props="android">该参数仅适用于非 Texture 格式的视频数据。</pd>
-       </plentry>
-       <plentry>
-  <pt>rotation</pt>
-  <pd>原始数据相关字段。指定是否对传入的视频组做顺时针旋转操作，可选值为 0， 90， 180， 270。默认为 0。</pd>
-       </plentry>
-       <plentry>
-  <pt props="android windows unity">timestamp</pt>
-           <pt props="ios mac">time</pt>
-  <pd>传入的视频帧的时间戳，以毫秒为单位。不正确的时间戳会导致丢帧或者音视频不同步。</pd>
-       </plentry>
-   </parml>
-        </section></refbody>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
+            <parml>
+            <plentry props="cpp cs">
+                <pt>type</pt>
+                <pd>
+                    <p>视频类型。详见 <xref keyref="VIDEO_BUFFER_TYPE"/>。</p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>format</pt>
+                <pd props="cpp cs" id="windows-format">像素格式。详见 <xref
+                    keyref="VIDEO_PIXEL_FORMAT"/>。</pd>
+                <pd props="ios mac" id="oc-format">传入的视频帧的格式，必须指定为下面的某一个值：
+               
+                    
+                    <ul>
+                    <li>1: I420。</li>
+                    <li>2: BGRA。</li>
+                    <li>3: NV21。</li>
+                    <li>4: RGBA。</li>
+                    <li>5: IMC2。</li>
+                    <li>7: ARGB。</li>
+                    <li>8: NV12。</li>
+                    <li>12: iOS 纹理 (CVPixelBufferRef)。</li>
+                    </ul> </pd>
+                <pd props="android">视频数据的格式：
+               
+                    
+                    <ul>
+                    <li>10：TEXTURE_2D。</li>
+                    <li>11：TEXTURE_OES，通常摄像头采集的数据为这种格式。</li>
+                    <li>1：I420。</li>
+                    <li>3：NV21。</li>
+                    <li>4：RGBA。</li>
+                    </ul> </pd>
+            </plentry>
+            <plentry props="android cpp ios mac cs">
+                <pt props="cpp cs">buffer</pt>
+                <pt props="android">buf</pt>
+                <pt props="ios mac">dataBuf</pt>
+                <pd>视频 buffer。</pd>
+                <pd props="android">该参数仅适用于非 Texture 格式的视频数据。</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>textureBuf</pt>
+                <pd>iOS 纹理的 Buffer。</pd>
+            </plentry>
+            <plentry>
+                <pt>stride</pt>
+                <pd>传入视频帧的行间距，单位为像素而不是字节。对于 Texture，该值指的是 Texture 的宽度。
+      
+                    
+                    <p props="ios mac">
+                    <dl outputclass="deprecated">
+                    <dlentry>
+                        <dt>弃用：</dt>
+                        <dd>用 <parmname>strideInPixels</parmname> 代替。</dd>
+                    </dlentry>
+                    </dl>
+                    </p>
+                </pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>strideInPixels</pt>
+                <pd>该帧的行跨度，即相邻两行视频帧之间的像素点数。
+           
+                    
+                    <note type="attention">
+                    <ul>
+                    <li>该参数单位为像素，不是字节数。</li>
+                    <li>如果视频为 Texture 格式，则将该参数设为 Texture 的宽度。</li>
+                    <li>如果视频帧格式设为 12，则不使用该字段。</li>
+                    </ul> </note></pd>
+            </plentry>
+            <plentry>
+                <pt>height</pt>
+                <pd>传入视频帧的高度。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt>textureID</pt>
+                <pd>该帧的 Texture ID。该参数仅适用于 Texture 格式的视频数据。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt>syncMode</pt>
+                <pd>设置是否开启同步模式，开启后 SDK 会在 Texture 处理时进行等待。该参数仅适用于 Texture 格式的视频数据。
+                    
+                    <ul id="ul_oxx_wmy_4qb">
+                    <li><codeph><ph keyref="true"/></codeph>：开启同步模式。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：不开启同步模式。</li>
+                    </ul></pd>
+            </plentry>
+            <plentry props="android">
+                <pt>transform</pt>
+                <pd>Texture 帧额外的转换。该参数仅适用于 Texture 格式的视频数据。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt>eglContext11</pt>
+                <pd>EGLContext11。该参数仅适用于 Texture 格式的视频数据。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt>eglContext14</pt>
+                <pd>EGLContext14。该参数仅适用于 Texture 格式的视频数据。</pd>
+            </plentry>
+            <plentry>
+                <pt>cropLeft</pt>
+                <pd>原始数据相关字段。指定左边裁剪掉的像素数量。默认为 0。</pd>
+                <pd props="android">该参数仅适用于非 Texture 格式的视频数据。</pd>
+            </plentry>
+            <plentry>
+                <pt>cropTop</pt>
+                <pd>原始数据相关字段。指定顶边裁剪掉的像素数量。默认为 0。</pd>
+                <pd props="android">该参数仅适用于非 Texture 格式的视频数据。</pd>
+            </plentry>
+            <plentry>
+                <pt>cropRight</pt>
+                <pd> 原始数据相关字段。指定右边裁剪掉的像素数量。默认为 0。</pd>
+                <pd props="android">该参数仅适用于非 Texture 格式的视频数据。</pd>
+            </plentry>
+            <plentry>
+                <pt>cropBottom</pt>
+                <pd>原始数据相关字段。指定底边裁剪掉的像素数量。默认为 0。</pd>
+                <pd props="android">该参数仅适用于非 Texture 格式的视频数据。</pd>
+            </plentry>
+            <plentry>
+                <pt>rotation</pt>
+                <pd>原始数据相关字段。指定是否对传入的视频组做顺时针旋转操作，可选值为 0， 90， 180， 270。默认为 0。</pd>
+            </plentry>
+            <plentry>
+                <pt props="android cpp cs">timestamp</pt>
+                <pt props="ios mac">time</pt>
+                <pd>传入的视频帧的时间戳，以毫秒为单位。不正确的时间戳会导致丢帧或者音视频不同步。</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
 </reference>

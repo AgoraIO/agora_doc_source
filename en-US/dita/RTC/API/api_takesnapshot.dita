@@ -13,65 +13,69 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-                <codeblock props="ios mac">- (NSInteger)takeSnapshot:(NSString* _Nonnull)channel uid:(NSInteger)uid filePath:(NSString* _Nonnull)filePath;</codeblock>
-                </p>
+            <codeblock props="ios mac">- (NSInteger)takeSnapshot:(NSString* _Nonnull)channel uid:(NSInteger)uid filePath:(NSString* _Nonnull)filePath;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public abstract int TakeSnapshot(string channel, uint uid, string filePath);</codeblock></p>
             <p outputclass="codeblock" props="rtc">
-                <codeblock props="ios mac" outputclass="language-objectivec">- (NSInteger)takeSnapshot:(NSString* _Nonnull)channel uid:(NSInteger)uid filePath:(NSString* _Nonnull)filePath NS_SWIFT_NAME(takeSnapshot(_:uid:filePath:));
+            <codeblock props="ios mac" outputclass="language-objectivec">- (NSInteger)takeSnapshot:(NSString* _Nonnull)channel uid:(NSInteger)uid filePath:(NSString* _Nonnull)filePath NS_SWIFT_NAME(takeSnapshot(_:uid:filePath:));
                 </codeblock>
-            </p>
+            <codeblock props="cs" outputclass="language-csharp">public abstract int TakeSnapshot(string channel, uint uid, string filePath);</codeblock></p>
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public abstract int takeSnapshot(String channel, int uid, String filePath);
+            <codeblock props="android" outputclass="language-java">public abstract int takeSnapshot(String channel, int uid, String filePath);
 </codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual int takeSnapshot(const char* channel, uid_t uid, const char* filePath) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp" />
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; takeSnapshot(String channel, int uid, String filePath);</codeblock>
-            </p>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int takeSnapshot(const char* channel, uid_t uid, const char* filePath) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; takeSnapshot(String channel, int uid, String filePath);</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
-                <dlentry props="native">
-                    <dt>Since</dt>
-                    <dd>v3.5.2</dd>
-                </dlentry>
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v3.5.2</dd>
+            </dlentry>
             </dl>
             <p>This method takes a snapshot of a video stream from the specified user, generates a JPG image, and saves it to the specified path.</p>
-            <p>The method is asynchronous, and the SDK has not taken the snapshot when the method call returns.  After a successful method call, the SDK triggers <xref keyref="onSnapshotTaken" /> callback to report whether the snapshot is successfully taken as well as the details for the snapshot taken.<note type="attention"><ul>
-                        <li>Call this method after joining a channel.</li>
-                        <li>If the video of the specified user is pre-processed, for example, added with watermarks or image enhancement effects, the generated snapshot also includes the pre-processing effects.</li>
-                    </ul></note>
-                </p>
+            <p>The method is asynchronous, and the SDK has not taken the snapshot when the method call returns.  After a successful method call, the SDK triggers <xref keyref="onSnapshotTaken" /> callback to report whether the snapshot is successfully taken as well as the details for the snapshot taken.
+            
+            
+            <note type="attention">
+            <ul>
+            <li>Call this method after joining a channel.</li>
+            <li>If the video of the specified user is pre-processed, for example, added with watermarks or image enhancement effects, the generated snapshot also includes the pre-processing effects.</li>
+            </ul></note> </p>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters">
+            <title>Parameters</title>
             <parml>
-                <plentry>
-                    <pt>channel</pt>
-                    <pd>The channel name.</pd>
-                </plentry>
-                <plentry>
-                    <pt>uid</pt>
-                    <pd>The user ID. Set <parmname>uid</parmname> as 0 if you want to take a snapshot of the local user's video.</pd>
-                </plentry>
-                <plentry>
-                    <pt>filePath</pt>
-                    <pd><p>The local path (including the filename extensions) of the snapshot. For example,
+            <plentry>
+                <pt>channel</pt>
+                <pd>The channel name.</pd>
+            </plentry>
+            <plentry>
+                <pt>uid</pt>
+                <pd>The user ID. Set <parmname>uid</parmname> as 0 if you want to take a snapshot of the local user's video.</pd>
+            </plentry>
+            <plentry>
+                <pt>filePath</pt>
+                <pd>
+                    <p>The local path (including the filename extensions) of the snapshot. For example,
+
+                    
+                    
                     <ul>
-                        <li props="unity electron flutter windows">Windows: <ph>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\example.jpg</ph></li>
-                        <li props="unity flutter windows ios">iOS: <ph>/App Sandbox/Library/Caches/example.jpg</ph></li>
-                        <li props="unity flutter windows mac electron">macOS: <ph>～/Library/Logs/example.jpg</ph></li>
-                        <li props="unity flutter windows android">Android: <ph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.jpg</ph></li>
+                    <li props="cs electron flutter cpp">Windows: <ph>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\example.jpg</ph></li>
+                    <li props="flutter cpp ios">iOS: <ph>/App Sandbox/Library/Caches/example.jpg</ph></li>
+                    <li props="flutter cpp mac electron">macOS: <ph>～/Library/Logs/example.jpg</ph></li>
+                    <li props="flutter cpp android">Android: <ph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.jpg</ph></li>
                     </ul>Ensure that the path you specify exists and is writable.</p>
-                    </pd>
-                </plentry>
-            </parml>
-        </section>
-        <section id="return_values" props="native unity electron">
+                </pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native cs electron">
             <title>Returns</title>
             <ul>
-                <li>0: Success.</li>
-                <li>&lt; 0: Failure.</li>
-            </ul>
-        </section>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
     </refbody>
 </reference>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediaplayersourceobserver_onpositionchanged">
+    <title><ph keyref="onPositionChanged" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Reports current playback progress.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPositionChanged" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">void onPositionChanged(long position);
+</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraMediaPlayer:(AgoraMediaPlayer *_Nonnull)playerKit
+    didChangedToPosition:(NSInteger)position;
+</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onPositionChanged(int64_t position) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <p>When playing media files, the SDK triggers this callback every one second to report current playback progress.</p>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry conkeyref="onPlayerEvent/playerkit" props="ios mac">
+                    <pt />
+                    <pd />
+                </plentry>
+                <plentry>
+                    <pt>position</pt>
+                    <pd>The playback position (ms) of media files.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

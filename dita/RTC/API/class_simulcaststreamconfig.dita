@@ -29,7 +29,7 @@
  @property (assign, nonatomic) int framerate;
  @property (assign, nonatomic) CGSize dimensions;
  @end</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">struct SimulcastStreamConfig {
+            <codeblock props="cpp" outputclass="language-cpp">struct SimulcastStreamConfig {
   VideoDimensions dimensions;
   int bitrate;
   int framerate;
@@ -39,27 +39,45 @@
   }
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="cs" outputclass="language-csharp">public class SimulcastStreamConfig {
+        public SimulcastStreamConfig()
+        {
+            dimensions = new VideoDimensions(160, 120);
+            bitrate = 65;
+            framerate = 5;
+        }
+
+        public SimulcastStreamConfig(VideoDimensions dimensions, int bitrate, int framerate)
+        {
+            this.dimensions = dimensions;
+            this.bitrate = bitrate;
+            this.framerate = framerate;
+        }
+        public VideoDimensions dimensions { set; get; }
+        public int bitrate { set; get; }
+        public int framerate { set; get; }
+    }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/>
-            </p>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
-                <plentry>
-                    <pt>dimensions</pt>
-                    <pd>视频尺寸<ph props="android windows">，详见 <xref keyref="VideoDimensions"/></ph>。默认值为 160 × 120。</pd>
-                </plentry>
-                <plentry>
-                    <pt>bitrate</pt>
-                    <pd>视频码率 (Kbps)。默认值为 65。</pd>
-                </plentry>
-                <plentry>
-                    <pt>framerate</pt>
-                    <pd>视频帧率 (fps)。默认值为 5。</pd>
-                </plentry>
-            </parml>
-        </section>
+            <plentry>
+                <pt>dimensions</pt>
+                <pd>视频尺寸<ph props="android cpp cs">，详见 <xref
+                    keyref="VideoDimensions"/></ph>。默认值为 160 × 120。</pd>
+            </plentry>
+            <plentry>
+                <pt>bitrate</pt>
+                <pd>视频码率 (Kbps)。默认值为 65。</pd>
+            </plentry>
+            <plentry>
+                <pt>framerate</pt>
+                <pd>视频帧率 (fps)。默认值为 5。</pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

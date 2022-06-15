@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_degradationpreference">
+    <title><ph keyref="DEGRADATION_PREFERENCE"/></title>
+    <shortdesc id="short"><ph id="shortdesc">带宽受限时的视频编码降级偏好。</ph></shortdesc>
+    <refbody>
+        <section id="parameters">
+   <title>枚举值</title>
+   <parml>
+       <plentry>
+  <pt><ph keyref="MAINTAIN_QUALITY"/></pt>
+  <pd><p>0：（默认）带宽受限时，视频编码时优先降低视频帧率，维持视频质量不变。该降级偏好适用于画质优先的场景。</p>
+  <note type="attention">通信（COMMUNICATION）场景下，本地发送的视频分辨率可能改变，远端用户需能处理这种情况， 详见 <xref
+                                keyref="onVideoSizeChanged"/>。</note></pd>
+       </plentry>
+       <plentry>
+  <pt><ph keyref="MAINTAIN_FRAMERATE"/></pt>
+  <pd>1：带宽受限时，视频编码时优先降低视频质量，维持视频帧率不变。该降级偏好适用于流畅性优先且允许画质降低的场景。</pd>
+       </plentry>
+       <plentry>
+  <pt><ph keyref="MAINTAIN_BALANCED"/></pt>
+  <pd>
+                        <dl outputclass="since" props="rtc">
+                            <dlentry>
+                                <dt>自从</dt>
+                                <dd>v3.4.0</dd>
+                            </dlentry>
+                        </dl>
+                        <p>2：带宽受限时，视频编码时同时降低视频帧率和视频质量。<ph keyref="MAINTAIN_BALANCED"/> 的降幅比 <ph
+                                keyref="MAINTAIN_QUALITY"/> 和 <ph keyref="MAINTAIN_FRAMERATE"/>
+                            降幅更低， 适用于流畅性和画质均有限的场景。</p>
+                        <note type="attention">本地发送的视频分辨率可能改变，远端用户需能处理这种情况，详见 <xref
+                                keyref="onVideoSizeChanged"/>。</note>
+                    </pd>
+       </plentry>
+                <plentry>
+                    <pt props="rtc-ng"><ph keyref="MAINTAIN_RESOLUTION"/></pt>
+                    <pd>3: 带宽受限时，视频编码时优先降低视频帧率。</pd>
+                </plentry>
+   </parml>
+        </section></refbody>
+</reference>

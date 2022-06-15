@@ -5,42 +5,46 @@
     <shortdesc id="short"><ph id="shortdesc">Retrieves whether the audio playback device is muted.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="getPlaybackDeviceMute" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="getPlaybackDeviceMute" />
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="windows" outputclass="language-cpp">virtual int getPlaybackDeviceMute(bool *mute) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">getAudioPlaybackDeviceMute(): boolean</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public abstract bool GetPlaybackDeviceMute();</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">Future&lt;bool?&gt; getAudioPlaybackDeviceMute()</codeblock>
-        </p>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="cpp" outputclass="language-cpp">virtual int getPlaybackDeviceMute(bool *mute) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">getAudioPlaybackDeviceMute(): boolean</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public abstract bool GetPlaybackDeviceMute();</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;bool?&gt; getAudioPlaybackDeviceMute()</codeblock> </p>
         </section>
-        <section id="parameters" props="windows"><title>Parameters</title>
-   <parml>
-       <plentry>
-  <pt>mute</pt>
-  <pd><p>Whether the audio playback device is muted.<ul>
-<li><codeph><ph keyref="true" /></codeph>: The audio playback device is muted.</li>
-<li><codeph><ph keyref="false" /></codeph>: The audio playback device is unmuted.</li>
-  </ul></p></pd>
-       </plentry>
-   </parml>
-        </section>
+        <section id="parameters" props="cpp">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>mute</pt>
+                <pd>
+                    <p>Whether the audio playback device is muted.
+                    
+                    <ul>
+                    <li><codeph><ph keyref="true" /></codeph>: The audio playback device is muted.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: The audio playback device is unmuted.</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            </parml> </section>
         <section id="return_values">
-   <title>Returns</title>
-   <ul props="windows">
-       <li>0: Success.</li>
-       <li>&lt; 0: Failure.</li>
-   </ul>
-            <ul props="electron unity flutter">
-<li><codeph><ph keyref="true" /></codeph>: The audio playback device is muted.</li>
-<li><codeph><ph keyref="false" /></codeph>: The audio playback device is unmuted.</li>
-  </ul>
-        </section></refbody>
+            <title>Returns</title>
+            <ul props="cpp">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul>
+            <ul props="electron cs flutter">
+            <li><codeph><ph keyref="true" /></codeph>: The audio playback device is muted.</li>
+            <li><codeph><ph keyref="false" /></codeph>: The audio playback device is unmuted.</li>
+            </ul> </section>
+    </refbody>
 </reference>

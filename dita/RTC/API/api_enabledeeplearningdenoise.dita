@@ -1,73 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_enabledeeplearningdenoise">
-    <title><ph keyref="enableDeepLearningDenoise" /></title>
+    <title><ph keyref="enableDeepLearningDenoise"/></title>
     <shortdesc id="short"><ph id="shortdesc">开启或关闭 AI 降噪模式。</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="enableDeepLearningDenoise" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="enableDeepLearningDenoise"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="windows" outputclass="language-cpp">virtual int enableDeepLearningDenoise(bool enable) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">enableDeepLearningDenoise(enable: boolean): number</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public abstract int EnableDeepLearningDenoise(bool enable);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableDeepLearningDenoise(bool enable);</codeblock>
-        </p>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int enableDeepLearningDenoise(bool enable) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">enableDeepLearningDenoise(enable: boolean): number</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public abstract int EnableDeepLearningDenoise(bool enable);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableDeepLearningDenoise(bool enable);</codeblock> </p>
         </section>
         <section id="detailed_desc">
+            <dl outputclass="since" props="rtc">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v3.3.0</dd>
+            </dlentry>
+            </dl>
+            <p>SDK 默认开启传统降噪模式，以消除大部分平稳噪声。如果你还需要消除非平稳噪声，Agora 推荐你按如下步骤开启 AI 降噪模式：
    
-   <dl outputclass="since" props="rtc">
-       <dlentry props="native">
-  <dt>自从</dt>
-  <dd>v3.3.0</dd>
-       </dlentry>
-   </dl>
-   <p>SDK 默认开启传统降噪模式，以消除大部分平稳噪声。如果你还需要消除非平稳噪声，Agora 推荐你按如下步骤开启 AI 降噪模式：
-   <ol>
-       <li>确保已集成如下动态库：<codeph><ph keyref="lib-file" /></codeph></li>
-       <li>调用 <apiname>enableDeepLearningDenoise</apiname>(<codeph><ph keyref="true" /></codeph>)。</li>
-   </ol></p>
-   <p>AI 降噪模式对设备性能有要求。只有在设备性能良好的情况下，SDK 才会成功开启 AI 降噪模式。如下设备经测试支持开启 AI 降噪模式:<ul>
-       <li>iPhone 6S</li>
-       <li>MacBook Pro 2015</li>
-       <li>iPad Pro 第二代</li>
-       <li>iPad mini 第五代</li>
-       <li>iPad Air 第三代</li>
-   </ul></p>
-   <p>成功开启 AI 降噪模式后，如果 SDK 检测到当前设备的性能不足，SDK 会自动关闭 AI 降噪模式，并开启传统降噪模式。</p>
-   <p>在频道内，如果你调用了 <apiname>enableDeepLearningDenoise</apiname>(<codeph><ph keyref="true" /></codeph>) 或 SDK 自动关闭了 AI 降噪模式，当你需要重新开启 AI 降噪模式时， 你需要先调用
-   <xref keyref="leaveChannel" />，再调用 <apiname>enableDeepLearning</apiname>(<codeph><ph keyref="true" /></codeph>)。</p>
-   <note type="attention"><ul>
-       <li>该方法需要动态加载动态库，所以 Agora 推荐在加入频道前调用该方法。</li>
-       <li>该方法对人声的处理效果最佳。Agora 不推荐调用该方法处理含音乐的音频数据。</li>
-   </ul></note>
-        </section>
-        <section id="parameters"><title>参数</title>
-   <parml>
-       <plentry>
-  <pt>enable</pt>
-  <pd><p>是否开启 AI 降噪模式:<ul>
-      <li><codeph><ph keyref="true" /></codeph>:（默认）开启 AI 降噪模式。</li>
-      <li><codeph><ph keyref="false" /></codeph>: 关闭 AI 降噪模式。</li>
-  </ul></p></pd>
-       </plentry>
-   </parml>
-        </section>
-        <section id="return_values" props="native electron unity">
-   <title>返回值</title>
-   <ul>
-       <li>0: 方法调用成功。</li>
-       <li>&lt; 0: 方法调用失败。
-       <ul>
-  <li>-157(<codeph>ERR_MODULE_NOT_FOUND</codeph>): 未集成用于 AI 降噪的动态库。</li>
-       </ul></li>
-   </ul>
-        </section></refbody>
+            
+            <ol>
+            <li>确保已集成如下动态库：<codeph><ph keyref="lib-file"/></codeph></li>
+            <li>调用 <apiname>enableDeepLearningDenoise</apiname>(<codeph><ph keyref="true"/></codeph>)。</li>
+            </ol></p>
+            <p>AI 降噪模式对设备性能有要求。只有在设备性能良好的情况下，SDK 才会成功开启 AI 降噪模式。</p>
+            <p props="ios mac cpp unity flutter">如下设备经测试支持开启 AI 降噪模式:
+            
+            <ul>
+            <li props="ios cpp unity flutter">iPhone 6S</li>
+            <li props="mac cpp unity flutter">MacBook Pro 2015</li>
+            <li props="mac cpp unity flutter">iPad Pro 第二代</li>
+            <li props="mac cpp unity flutter">iPad mini 第五代</li>
+            <li props="mac cpp unity flutter">iPad Air 第三代</li>
+            </ul></p>
+            <p>成功开启 AI 降噪模式后，如果 SDK 检测到当前设备的性能不足，SDK 会自动关闭 AI 降噪模式，并开启传统降噪模式。</p>
+            <p>在频道内，如果你调用了 <apiname>enableDeepLearningDenoise</apiname>(<codeph><ph keyref="true"/></codeph>) 或 SDK 自动关闭了 AI 降噪模式，当你需要重新开启 AI 降噪模式时， 你需要先调用
+   <xref keyref="leaveChannel"/>，再调用 <apiname>enableDeepLearning</apiname>(<codeph><ph keyref="true"/></codeph>)。</p>
+            <note type="attention">
+            <ul>
+            <li>该方法需要动态加载动态库，所以 Agora 推荐在加入频道前调用该方法。</li>
+            <li>该方法对人声的处理效果最佳。Agora 不推荐调用该方法处理含音乐的音频数据。</li>
+            </ul></note> </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt>enable</pt>
+                <pd>
+                    <p>是否开启 AI 降噪模式:
+                    
+                    <ul>
+                    <li><codeph><ph keyref="true"/></codeph>:（默认）开启 AI 降噪模式。</li>
+                    <li><codeph><ph keyref="false"/></codeph>: 关闭 AI 降噪模式。</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron cs">
+            <title>返回值</title>
+            <ul>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。
+       
+                
+                <ul>
+                <li>-157(<codeph>ERR_MODULE_NOT_FOUND</codeph>): 未集成用于 AI 降噪的动态库。</li>
+                </ul></li>
+            </ul> </section>
+    </refbody>
 </reference>

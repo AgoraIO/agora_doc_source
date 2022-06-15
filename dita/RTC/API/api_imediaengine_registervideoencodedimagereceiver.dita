@@ -12,38 +12,36 @@
     </prolog>
     <refbody>
         <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="cs" outputclass="language-csharp">public abstract void RegisterVideoEncodedImageReceiver(IAgoraRtcVideoEncodedImageReceiver videoEncodedImageReceiver);</codeblock></p>
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"> public abstract int registerVideoEncodedImageReceiver(IVideoEncodedImageReceiver receiver);</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp">virtual int registerVideoEncodedImageReceiver(rtc::IVideoEncodedImageReceiver* receiver) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript"/>
-                <codeblock props="unity" outputclass="language-csharp"/>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
-            </p>
+            <codeblock props="android" outputclass="language-java"> public abstract int registerVideoEncodedImageReceiver(IVideoEncodedImageReceiver receiver);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int registerVideoEncodedImageReceiver(rtc::IVideoEncodedImageReceiver* receiver) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
             <note type="attention">
-                <ul>
-                    <li>请在加入频道后调用该方法。</li>
-                    <li>如果你调用该方法注册了 <xref keyref="IVideoEncodedImageReceiver"/> 对象，则不能再注册 <xref keyref="IVideoFrameObserver"/> 对象。</li>
-                </ul>
-            </note>
-        </section>
-        <section id="parameters"><title>参数</title>
+            <ul>
+            <li>请在加入频道后调用该方法。</li>
+            <li>如果你调用该方法注册了 <xref keyref="IVideoEncodedImageReceiver"/> 对象，则不能再注册 <xref keyref="IVideoFrameObserver"/> 对象。</li>
+            </ul> </note> </section>
+        <section id="parameters">
+            <title>参数</title>
             <parml>
-                <plentry>
-                    <pt>receiver</pt>
-                    <pd>视频帧接收观测器，详见 <xref keyref="IVideoEncodedImageReceiver"/>。</pd>
-                </plentry>
-            </parml>
-        </section>
+            <plentry>
+                <pt props="android cpp">receiver</pt>
+                <pt props="cs">videoEncodedImageReceiver</pt>
+                <pd>视频帧接收观测器，详见 <xref keyref="IVideoEncodedImageReceiver"/>。</pd>
+            </plentry>
+            </parml> </section>
         <section id="return_values">
             <title>返回值</title>
             <ul id="ul_z2p_4jf_3qb">
-                <li>0：方法调用成功。</li>
-                <li>&lt; 0: 方法调用失败。</li>
-            </ul>
-        </section>
+            <li>0：方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。</li>
+            </ul> </section>
     </refbody>
 </reference>

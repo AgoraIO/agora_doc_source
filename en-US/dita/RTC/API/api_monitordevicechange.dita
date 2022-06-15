@@ -5,53 +5,53 @@
     <shortdesc id="short"><ph id="shortdesc">Monitors the change of the device state.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="enableLoopbackRecording" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="enableLoopbackRecording" />
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock" props="rtc-ng">
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
             <codeblock props="android" outputclass="language-java" />
             <codeblock props="mac" outputclass="language-objectivec">- (void)monitorDeviceChange:(BOOL)enabled;</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">virtual int enableLoopbackRecording(bool enabled) = 0;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int enableLoopbackRecording(bool enabled) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">enableLoopbackRecording(
                 enabled = false,
                 deviceName: string | null = null
                 ): number</codeblock>
-            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="cs" outputclass="language-csharp" />
             <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" />
-        </p>
-        <p outputclass="codeblock" props="rtc">
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <p outputclass="codeblock" props="rtc">
             <codeblock props="android" outputclass="language-java" />
             <codeblock props="mac" outputclass="language-objectivec" />
-            <codeblock props="windows" outputclass="language-cpp">virtual int enableLoopbackRecording(bool enabled) = 0;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int enableLoopbackRecording(bool enabled) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">enableLoopbackRecording(
                 enabled = false,
                 deviceName: string | null = null
                 ): number</codeblock>
-            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="cs" outputclass="language-csharp" />
             <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" />
-        </p>
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
             <p>Use this method to monitor the plugging and swapping of external audio or video devices, for example, an external camera.</p>
-            <note id="note_v4j_tbx_jqb" type="attention" props="windows">
-                <p>This method is for macOS only.</p>
-            </note>
-        </section>
-        <section id="parameters"><title>Parameters</title>
-   <parml>
-       <plentry>
-           <pt>enabled</pt>
-  <pd>Whether to monitor the change of the device state:<ul id="ul_qjq_swq_t4b">
- <li><codeph><ph keyref="true" /></codeph>: Monitor the device state change.</li>
- <li><codeph><ph keyref="false" /></codeph>: Do not monitor the device state change.</li>
-      </ul></pd>
-       </plentry>
-   </parml>
-        </section>
+            <note id="note_v4j_tbx_jqb" type="attention" props="cpp">
+            <p>This method is for macOS only.</p>
+            </note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>enabled</pt>
+                <pd>Whether to monitor the change of the device state:
+                    
+                    <ul id="ul_qjq_swq_t4b">
+                    <li><codeph><ph keyref="true" /></codeph>: Monitor the device state change.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Do not monitor the device state change.</li>
+                    </ul></pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

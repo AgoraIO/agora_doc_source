@@ -16,7 +16,7 @@
 @property(assign, nonatomic) double alpha;
 
 @end</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">struct TranscodingVideoStream {
+            <codeblock props="cpp" outputclass="language-cpp">struct TranscodingVideoStream {
   agora::media::MEDIA_SOURCE_TYPE sourceType;
   uid_t remoteUserUid;
   const char* imageUrl;
@@ -41,92 +41,133 @@
         mirror(false) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="cs" outputclass="language-csharp">public class TranscodingVideoStream
+    {
+        public TranscodingVideoStream()
+        {
+        }
+
+        public TranscodingVideoStream(VIDEO_SOURCE_TYPE sourceType, uint remoteUserUid,
+            string imageUrl, int x, int y, int width, int height, int zOrder, double alpha,
+            bool mirror)
+        {
+            this.sourceType = sourceType;
+            this.remoteUserUid = remoteUserUid;
+            this.imageUrl = imageUrl;
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+            this.zOrder = zOrder;
+            this.alpha = alpha;
+            this.mirror = mirror;
+        }
+        public VIDEO_SOURCE_TYPE sourceType { set; get; }
+        public uint remoteUserUid { set; get; }
+        public string imageUrl { set; get; } 
+        public int x { set; get; }
+        public int y { set; get; }
+        public int width { set; get; }
+        public int height { set; get; }
+        public int zOrder { set; get; }
+        public double alpha { set; get; }
+        public bool mirror { set; get; }
+    }</codeblock>
             <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" />
-            </p>
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
-                <plentry>
-                    <pt>sourceType</pt>
-                    <pd>
-                        <p>The source type of video for the video mixing on the local client. See <xref keyref="VIDEO_SOURCE_TYPE" />.</p>
-                    </pd>
-                </plentry>
-                <plentry>
-                    <pt>remoteUserUid</pt>
-                    <pd>
-                        <p>The ID of the remote user.<note id="note_m2h_lxn_3qb" type="attention">Use this parameter only when the source type of the video for the video mixing on the local client is <apiname keyref="VIDEO_SOURCE_REMOTE" />.</note></p>
-                    </pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>connectionId</pt>
-                    <pd>
-                        <p>The connection ID of the remote user.<note id="note_m5b_qxn_3qb" type="attention">
-                            <ul id="ul_llv_qxn_3qb">
-                                <li>Use this parameter only when the source type of the video for the video mixing on the local client is <apiname keyref="VIDEO_SOURCE_REMOTE" />.</li>
-                                <li>If you join only one channel, set this parameter as the default value.</li>
-                            </ul>
-                            </note></p>
-                    </pd>
-                </plentry>
-                <plentry>
-                    <pt>imageUrl</pt>
-                    <pd>
-                        <p>The URL of the image.
-                        <note id="note_rm5_xxn_3qb" type="attention">Use this parameter only when the source type of the video for the video mixing on the local client is <codeph props="windows">RTC_IMAGE</codeph><codeph props="ios mac">Image</codeph>.</note></p>
-                    </pd>
-                </plentry>
-                <plentry props="windows">
-                    <pt>x</pt>
-                    <pd>
-                        <p>The horizontal displacement of the top-left corner of the video for the video mixing on the client relative to the top-left corner (origin) of the canvas for this video mixing.</p>
-                    </pd>
-                </plentry>
-                <plentry props="windows">
-                    <pt>y</pt>
-                    <pd>
-                        <p>The vertical displacement of the top-left corner of the video for the video mixing on the client relative to the top-left corner (origin) of the canvas for this video mixing.</p>
-                    </pd>
-                </plentry>
-                <plentry props="windows">
-                    <pt>width</pt>
-                    <pd>
-                        <p>The width (px) of the video for the video mixing on the local client.</p>
-                    </pd>
-                </plentry>
-                <plentry props="windows">
-                    <pt>heigh</pt>
-                    <pd>
-                        <p>The height (px) of the video for the video mixing on the local client.</p>
-                    </pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>rect</pt>
-                    <pd>The position and size of the top-left corner of the video for the video mixing on the client relative to the top-left corner (origin) of the canvas for this video mixing.</pd>
-                </plentry>
-                <plentry>
-                    <pt>zOrder</pt>
-                    <pd>The number of the layer to which the video for the video mixing on the local client belongs. The value range is [0,100].
-                        <ul><li>0: (Default) The layer is at the bottom.</li>
-                            <li>100: The layer is at the top.</li></ul></pd>
-                </plentry>
-                <plentry>
-                    <pt>alpha</pt>
-                    <pd>
-                        <p>The transparency of the video for the video mixing on the local client. The value range is [0.0,1.0]. 0.0 means the transparency is completely transparent. 1.0 means the transparency is opaque.</p>
-                    </pd>
-                </plentry>
-                <plentry props="windows">
-                    <pt>mirror</pt>
-                    <pd>Whether to mirror the video for the video mixing on the local client.<ul>
-                        <li><codeph><ph keyref="true" /></codeph>: Mirroring.</li>
-                        <li><codeph><ph keyref="false" /></codeph>: (Default) Do not mirror.</li>
-                    </ul><note id="note_erc_ryn_3qb" type="attention">The paramter only works for videos with the source type <codeph>CAMERA</codeph>.</note></pd>
-                </plentry>
-            </parml>
-        </section>
+            <plentry>
+                <pt>sourceType</pt>
+                <pd>
+                    <p>The source type of video for the video mixing on the local client. See <xref keyref="VIDEO_SOURCE_TYPE" />.</p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>remoteUserUid</pt>
+                <pd>
+                    <p>The ID of the remote user.
+                    
+                    <note id="note_m2h_lxn_3qb" type="attention">Use this parameter only when the source type of the video for the video mixing on the local client is <apiname keyref="VIDEO_SOURCE_REMOTE" />.</note></p>
+                </pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>connectionId</pt>
+                <pd>
+                    <p>The connection ID of the remote user.
+                    
+                    <note id="note_m5b_qxn_3qb" type="attention">
+                    <ul id="ul_llv_qxn_3qb">
+                    <li>Use this parameter only when the source type of the video for the video mixing on the local client is <apiname keyref="VIDEO_SOURCE_REMOTE" />.</li>
+                    <li>If you join only one channel, set this parameter as the default value.</li>
+                    </ul> </note></p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>imageUrl</pt>
+                <pd>
+                    <p>The URL of the image.
+                        
+                    
+                    <note id="note_rm5_xxn_3qb" type="attention">Use this parameter only when the source type of the video for the video mixing on the local client is <codeph props="cpp">RTC_IMAGE</codeph><codeph props="ios mac">Image</codeph>.</note></p>
+                </pd>
+            </plentry>
+            <plentry props="cpp">
+                <pt>x</pt>
+                <pd>
+                    <p>The horizontal displacement of the top-left corner of the video for the video mixing on the client relative to the top-left corner (origin) of the canvas for this video mixing.</p>
+                </pd>
+            </plentry>
+            <plentry props="cpp">
+                <pt>y</pt>
+                <pd>
+                    <p>The vertical displacement of the top-left corner of the video for the video mixing on the client relative to the top-left corner (origin) of the canvas for this video mixing.</p>
+                </pd>
+            </plentry>
+            <plentry props="cpp">
+                <pt>width</pt>
+                <pd>
+                    <p>The width (px) of the video for the video mixing on the local client.</p>
+                </pd>
+            </plentry>
+            <plentry props="cpp">
+                <pt>heigh</pt>
+                <pd>
+                    <p>The height (px) of the video for the video mixing on the local client.</p>
+                </pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>rect</pt>
+                <pd>The position and size of the top-left corner of the video for the video mixing on the client relative to the top-left corner (origin) of the canvas for this video mixing.</pd>
+            </plentry>
+            <plentry>
+                <pt>zOrder</pt>
+                <pd>The number of the layer to which the video for the video mixing on the local client belongs. The value range is [0,100].
+                        
+                    
+                    <ul>
+                    <li>0: (Default) The layer is at the bottom.</li>
+                    <li>100: The layer is at the top.</li>
+                    </ul></pd>
+            </plentry>
+            <plentry>
+                <pt>alpha</pt>
+                <pd>
+                    <p>The transparency of the video for the video mixing on the local client. The value range is [0.0,1.0]. 0.0 means the transparency is completely transparent. 1.0 means the transparency is opaque.</p>
+                </pd>
+            </plentry>
+            <plentry props="cpp">
+                <pt>mirror</pt>
+                <pd>Whether to mirror the video for the video mixing on the local client.
+                    
+                    <ul>
+                    <li><codeph><ph keyref="true" /></codeph>: Mirroring.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Do not mirror.</li>
+                    </ul>
+                    <note id="note_erc_ryn_3qb" type="attention">The paramter only works for videos with the source type <codeph>CAMERA</codeph>.</note></pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

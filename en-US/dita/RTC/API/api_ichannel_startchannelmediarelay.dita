@@ -2,43 +2,42 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ichannel_startchannelmediarelay">
     <title><ph keyref="IChannel_startChannelMediaRelay" /></title>
-    <shortdesc conkeyref="startChannelMediaRelay/short" /> 
+    <shortdesc conkeyref="startChannelMediaRelay/short" />
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="IChannel_startChannelMediaRelay" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="IChannel_startChannelMediaRelay" />
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="windows" outputclass="language-cpp">virtual int startChannelMediaRelay(const ChannelMediaRelayConfiguration &amp;configuration) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">startChannelMediaRelay(configuration: ChannelMediaRelayConfiguration): number</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public abstract int StartChannelMediaRelay(ChannelMediaRelayConfiguration configuration);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startChannelMediaRelay(
-      ChannelMediaRelayConfiguration channelMediaRelayConfiguration);</codeblock>
-        </p>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="cpp" outputclass="language-cpp">virtual int startChannelMediaRelay(const ChannelMediaRelayConfiguration &amp;configuration) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">startChannelMediaRelay(configuration: ChannelMediaRelayConfiguration): number</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public abstract int StartChannelMediaRelay(ChannelMediaRelayConfiguration configuration);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startChannelMediaRelay(
+      ChannelMediaRelayConfiguration channelMediaRelayConfiguration);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-   
-   <p>After a successful method call, the SDK triggers the <xref keyref="IChannel_onChannelMediaRelayStateChanged" /> and <xref keyref="IChannel_onChannelMediaRelayEvent" /> callbacks, and these callbacks return the state and events of the media stream relay.<ul>
-  <li>If the <apiname keyref="IChannel_onChannelMediaRelayStateChanged" /> callback returns <apiname keyref="RELAY_STATE_RUNNING" />(2) and <apiname keyref="RELAY_OK" />(0), and the <apiname keyref="IChannel_onChannelMediaRelayEvent" /> callback returns <apiname keyref="RELAY_EVENT_PACKET_SENT_TO_DEST_CHANNEL" />(4), it means that the SDK starts relaying media streams between the source channel and the destination channel.</li>
-  <li>If the <apiname keyref="IChannel_onChannelMediaRelayStateChanged" /> callback returns <apiname keyref="RELAY_STATE_FAILURE" />(3), an exception occurs during the media stream relay.</li>
-       </ul>
-   </p>
-   <note type="attention">
-       <ul>
-  <li>Call this method after joining the channel.</li>
-  <li>This method takes effect only when you are a host in a live streaming channel.</li>
-  <li>After a successful method call, if you want to call this method again, ensure that you call the <xref keyref="IChannel_stopChannelMediaRelay" /> method to quit the current relay.</li>
-  <li>Contact <xref href="https://agora-ticket.agora.io/" scope="external" format="html">support@agora.io</xref> before implementing this function.</li>
-  <li>We do not support string user accounts in this API.</li>
-       </ul>
-   </note>
-        </section>
+            <p>After a successful method call, the SDK triggers the <xref keyref="IChannel_onChannelMediaRelayStateChanged" /> and <xref keyref="IChannel_onChannelMediaRelayEvent" /> callbacks, and these callbacks return the state and events of the media stream relay.
+
+            <ul>
+            <li>If the <apiname keyref="IChannel_onChannelMediaRelayStateChanged" /> callback returns <apiname keyref="RELAY_STATE_RUNNING" /> (2) and <apiname keyref="RELAY_OK" /> (0), and the <apiname keyref="IChannel_onChannelMediaRelayEvent" /> callback returns <apiname keyref="RELAY_EVENT_PACKET_SENT_TO_DEST_CHANNEL" /> (4), it means that the SDK starts relaying media streams between the source channel and the destination channel.</li>
+            <li>If the <apiname keyref="IChannel_onChannelMediaRelayStateChanged" /> callback returns <apiname keyref="RELAY_STATE_FAILURE" /> (3), an exception occurs during the media stream relay.</li>
+            </ul> </p>
+            <note type="attention">
+            <ul>
+            <li>Call this method after joining the channel.</li>
+            <li>This method takes effect only when you are a host in a live streaming channel.</li>
+            <li>After a successful method call, if you want to call this method again, ensure that you call the <xref keyref="IChannel_stopChannelMediaRelay" /> method to quit the current relay.</li>
+            <li>You need to <xref keyref="mailto-link-saleus" /> before implementing this function.</li>
+            <li>We do not support string user accounts in this API.</li>
+            </ul> </note> </section>
         <section id="parameters" conkeyref="startChannelMediaRelay/parameters" />
-        <section id="return_values" conkeyref="startChannelMediaRelay/return_values" props="native electron unity" /></refbody>
+        <section id="return_values" conkeyref="startChannelMediaRelay/return_values" props="native cs electron" />
+    </refbody>
 </reference>

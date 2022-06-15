@@ -1,50 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_ichanneleventhandler_onchannelwarning">
-    <title><ph keyref="IChannel_onChannelWarning" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Reports the warning code of <xref keyref="IChannel" />.</ph></shortdesc>
+    <title><ph keyref="IChannel_onChannelWarning"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Reports the warning code of <xref keyref="IChannel"/>.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="IChannel_onChannelWarning" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="IChannel_onChannelWarning"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="windows" outputclass="language-cpp">virtual void onChannelWarning(IChannel *rtcChannel,
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onChannelWarning(IChannel *rtcChannel,
     int warn,
     const char* msg) {
     (void)rtcChannel;
     (void)warn;
     (void)msg;
     }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(
+            <codeblock props="electron" outputclass="language-typescript">on(
   evt: ChannelEvents.CHANNEL_WARNING,
   cb: (channelId: string, warn: number, msg: string) =&gt; void
 ): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnChannelWarning(string channelId, int warn, string msg)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">WarningCallback? warning;</codeblock>
-        </p>
+            <codeblock props="cs" outputclass="language-csharp">public virtual void OnChannelWarning(string channelId, int warn, string msg)</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">WarningCallback? warning;</codeblock> </p>
         </section>
-        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-   <parml>
-       <plentry conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
-  <pt />
-  <pd />
-       </plentry>
-       <plentry>
-  <pt>warn</pt>
-  <pd>Warning codes. For details, see <xref keyref="errorCode">Error Codes and Warning Codes</xref>.</pd>
-       </plentry>
-       <plentry>
-  <pt>msg</pt>
-  <pd>The warning message.</pd>
-       </plentry>
-   </parml>
-        </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <parml>
+            <plentry props="native cs" conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry>
+                <pt>warn</pt>
+                <pd>Warning codes. For details, see <xref keyref="errorCode">Error Codes and Warning Codes</xref>.</pd>
+            </plentry>
+            <plentry>
+                <pt>msg</pt>
+                <pd>The warning message.</pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

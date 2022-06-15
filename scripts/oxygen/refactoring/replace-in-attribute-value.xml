@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Descriptor for the 'Replace in Attribute Value' XML Refactoring operation. 
+-->
+<refactoringOperationDescriptor 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.oxygenxml.com/ns/xmlRefactoring" id="replace-in-attribute-value" name="${i18n(xr_replace_in_attribute_value)}">
+    <description>${i18n(xr_replace_in_attribute_value_description)}</description>    
+    <script type="XQUERY_UPDATE" href="replace-in-attribute-value.xq"/>
+    <category>${i18n(Attributes)}</category>
+    <parameters>
+        <description>${i18n(xr_replace_in_attribute_value_parameters_description)}</description>
+        <section label="${i18n(target_attribute)}">
+            <attributeLocation name="attribute_xpath" useCurrentContext="true" >
+                <element label="${i18n(Element)}">
+                    <description>${i18n(attribute_parent_element_param_description)}</description>
+                </element>
+                <attribute label="${i18n(Attribute)}">
+                    <description>${i18n(attribute_param_description)}</description>
+                </attribute>
+            </attributeLocation>
+        </section>
+        <section label="${i18n(xr_find_replace)}">
+            <parameter 
+                label="${i18n(Find)}" 
+                type="REG_EXP_FIND" 
+                name="to_find">
+                <description>${i18n(xr_replace_in_attribute_value_find_parameter_description)}</description>
+            </parameter>
+            <parameter 
+                label="${i18n(Replace_with)}" 
+                type="REG_EXP_REPLACE" 
+                name="replace_with" optional="true">
+                <description>${i18n(xr_replace_in_attribute_value_replace_with_parameter_description)}</description>
+            </parameter>
+        </section>
+    </parameters>
+</refactoringOperationDescriptor>

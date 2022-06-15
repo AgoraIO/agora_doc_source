@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_encryptionconfig">
-    <title><ph keyref="EncryptionConfig"/></title>
-    <shortdesc id="short"><ph id="shortdesc">配置内置加密模式和密钥。</ph></shortdesc>
-    <refbody>
-        <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
-                <codeblock props="windows" outputclass="language-cpp">struct EncryptionConfig {
+  <title><ph keyref="EncryptionConfig"/></title>
+  <shortdesc id="short"><ph id="shortdesc">配置内置加密模式和密钥。</ph></shortdesc>
+  <refbody>
+    <section id="prototype">
+      <p outputclass="codeblock" props="rtc-ng">
+      <codeblock props="cpp" outputclass="language-cpp">struct EncryptionConfig {
   ENCRYPTION_MODE encryptionMode;
   const char* encryptionKey;
   uint8_t encryptionKdfSalt[32];
@@ -42,9 +42,33 @@
     return "aes-128-gcm-2";
   }
 };</codeblock>
-            </p>
-            <p outputclass="codeblock" props="rtc">
-                <codeblock props="windows unity" outputclass="language-cpp">struct EncryptionConfig {
+      <codeblock props="cs" outputclass="language-csharp">public class EncryptionConfig
+    {
+        public EncryptionConfig()
+        {
+            encryptionMode = ENCRYPTION_MODE.MODE_END;
+            encryptionKey = "";
+            encryptionKdfSalt = new byte[32];
+        }
+
+        public EncryptionConfig(ENCRYPTION_MODE encryptionMode, string encryptionKey, byte[] encryptionKdfSalt)
+        {
+            this.encryptionMode = encryptionMode;
+            this.encryptionKey = encryptionKey;
+            this.encryptionKdfSalt = encryptionKdfSalt;
+        }
+
+        public ENCRYPTION_MODE encryptionMode { set; get; }
+        public string encryptionKey { set; get; }
+        public byte[] encryptionKdfSalt
+        {
+            set { Buffer.BlockCopy(encryptionKdfSalt, 0, encryptionKdfSalt32, 0, 32); }
+
+            get { return encryptionKdfSalt32; }
+        }
+    }</codeblock> </p>
+      <p outputclass="codeblock" props="rtc">
+      <codeblock props="cpp" outputclass="language-cpp">struct EncryptionConfig {
   ENCRYPTION_MODE encryptionMode;
   const char* encryptionKey;
   uint8_t encryptionKdfSalt[32];
@@ -79,9 +103,35 @@
     return "aes-128-gcm-2";
   }
 };</codeblock>
-            </p>
-            <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public class EncryptionConfig {
+      <codeblock props="cs" outputclass="language-csharp">public class EncryptionConfig
+    {
+        public EncryptionConfig()
+        {
+            encryptionMode = ENCRYPTION_MODE.AES_128_XTS;
+            encryptionKey = "";
+            encryptionKdfSalt = new byte[32];
+        }
+
+        public EncryptionConfig(ENCRYPTION_MODE encryptionMode, string encryptionKey, byte[] encryptionKdfSalt)
+        {
+            this.encryptionMode = encryptionMode;
+            this.encryptionKey = encryptionKey;
+            this.encryptionKdfSalt = encryptionKdfSalt;
+        }
+
+        public ENCRYPTION_MODE encryptionMode { set; get; }
+        public string encryptionKey { set; get; }
+        
+        private byte[] encryptionKdfSalt32 = new byte[32];
+        public byte[] encryptionKdfSalt
+        {
+            set { Buffer.BlockCopy(encryptionKdfSalt, 0, encryptionKdfSalt32, 0, 32); }
+
+            get { return encryptionKdfSalt32; }
+        }
+    }</codeblock> </p>
+      <p outputclass="codeblock">
+      <codeblock props="android" outputclass="language-java">public class EncryptionConfig {
   public enum EncryptionMode {
     AES_128_XTS(1),
     AES_128_ECB(2),
@@ -102,18 +152,18 @@
       return this.value;
     }
 }</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraEncryptionConfig: NSObject
+      <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraEncryptionConfig: NSObject
 
  @property (assign, nonatomic) AgoraEncryptionMode encryptionMode;
  @property (copy, nonatomic) NSString * _Nullable encryptionKey;
  @property (strong, nonatomic) NSData * _Nullable encryptionKdfSalt;
  @end</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">export interface EncryptionConfig {
+      <codeblock props="electron" outputclass="language-typescript">export interface EncryptionConfig {
     encryptionMode: ENCRYPTION_MODE;
     encryptionKey: string;
     }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart">class EncryptionConfig {
+      <codeblock props="rn" outputclass="language-typescript"/>
+      <codeblock props="flutter" outputclass="language-dart">class EncryptionConfig {
 
   @JsonKey(includeIfNull: false)
   EncryptionMode? encryptionMode;
@@ -134,37 +184,43 @@
       _$EncryptionConfigFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$EncryptionConfigToJson(this);
-}</codeblock>
-            </p>
-        </section>
-        <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
-   <parml>
-       <plentry>
-  <pt>encryptionMode</pt>
-           <pd><p>内置加密模式。详见 <xref keyref="ENCRYPTION_MODE" />。Agora 推荐使用 <codeph><ph keyref="AES_128_GCM2" /></codeph> 或 <codeph><ph keyref="AES_256_GCM2" /></codeph> 加密模式。这两种模式支持使用盐，安全性更高。</p>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt>encryptionKey</pt>
-  <pd>
-      <p>内置加密密钥，字符串类型。</p>
-      <note type="attention">如果未指定该参数或将该参数设置为 <codeph><ph keyref="NULL"/></codeph>，则无法启用内置加密，且 SDK 会返回错误码 <codeph>-2</codeph>。</note>
-  </pd>
-       </plentry>
-                <plentry>
-                    <pt>encryptionKdfSalt</pt>
-                    <pd>
-                        <dl outputclass="since" props="rtc">
-                            <dlentry>
-                                <dt>自从</dt>
-                                <dd>v3.4.5</dd>
-                            </dlentry>
-                        </dl>
-                        <p>盐，长度为 32 字节。Agora 推荐你在服务端使用 OpenSSL 生成盐，详见《媒体流加密》。</p>
-                        <note type="attention">只有在 <codeph><ph keyref="AES_128_GCM2" /></codeph> 或 <codeph><ph keyref="AES_256_GCM2" /></codeph> 加密模式下，该参数才生效。此时，需确保填入该参数的值不全为 <codeph>0</codeph>。</note>
-                    </pd>
-                </plentry>
-   </parml>
-        </section></refbody>
+}</codeblock> </p>
+    </section>
+    <section id="parameters">
+      <title><text
+      conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+      /></title>
+      <parml>
+      <plentry>
+        <pt>encryptionMode</pt>
+        <pd>
+          <p>内置加密模式。详见 <xref keyref="ENCRYPTION_MODE"/>。Agora 推荐使用 <codeph><ph
+          keyref="AES_128_GCM2"/></codeph> 或 <codeph><ph keyref="AES_256_GCM2"
+          /></codeph> 加密模式。这两种模式支持使用盐，安全性更高。</p>
+        </pd>
+      </plentry>
+      <plentry>
+        <pt>encryptionKey</pt>
+        <pd>
+          <p>内置加密密钥，字符串类型。</p>
+          <note type="attention">如果未指定该参数或将该参数设置为 <codeph><ph keyref="NULL"
+          /></codeph>，则无法启用内置加密，且 SDK 会返回错误码 <codeph>-2</codeph>。</note> </pd>
+      </plentry>
+      <plentry>
+        <pt>encryptionKdfSalt</pt>
+        <pd>
+          <dl outputclass="since" props="rtc">
+          <dlentry>
+            <dt>自从</dt>
+            <dd>v3.4.5</dd>
+          </dlentry>
+          </dl>
+          <p>盐，长度为 32 字节。Agora 推荐你在服务端使用 OpenSSL 生成盐，详见《媒体流加密》。</p>
+          <note type="attention">只有在 <codeph><ph keyref="AES_128_GCM2"
+          /></codeph> 或 <codeph><ph keyref="AES_256_GCM2"
+          /></codeph> 加密模式下，该参数才生效。此时，需确保填入该参数的值不全为 <codeph>0</codeph>。</note>
+        </pd>
+      </plentry>
+      </parml> </section>
+  </refbody>
 </reference>

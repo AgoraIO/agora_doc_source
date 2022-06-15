@@ -16,7 +16,7 @@
 @property(assign, nonatomic) double alpha;
 
 @end</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">struct TranscodingVideoStream {
+            <codeblock props="cpp" outputclass="language-cpp">struct TranscodingVideoStream {
   agora::media::MEDIA_SOURCE_TYPE sourceType;
   uid_t remoteUserUid;
   const char* imageUrl;
@@ -41,92 +41,148 @@
         mirror(false) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="cs" outputclass="language-csharp">public class TranscodingVideoStream
+    {
+        public TranscodingVideoStream()
+        {
+        }
+
+        public TranscodingVideoStream(VIDEO_SOURCE_TYPE sourceType, uint remoteUserUid,
+            string imageUrl, int x, int y, int width, int height, int zOrder, double alpha,
+            bool mirror)
+        {
+            this.sourceType = sourceType;
+            this.remoteUserUid = remoteUserUid;
+            this.imageUrl = imageUrl;
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+            this.zOrder = zOrder;
+            this.alpha = alpha;
+            this.mirror = mirror;
+        }
+        public VIDEO_SOURCE_TYPE sourceType { set; get; }
+        public uint remoteUserUid { set; get; }
+        public string imageUrl { set; get; } 
+        public int x { set; get; }
+        public int y { set; get; }
+        public int width { set; get; }
+        public int height { set; get; }
+        public int zOrder { set; get; }
+        public double alpha { set; get; }
+        public bool mirror { set; get; }
+    }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/>
-            </p>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
-                <plentry>
-                    <pt>sourceType</pt>
-                    <pd>
-                        <p>参与本地合图的视频源类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</p>
-                    </pd>
-                </plentry>
-                <plentry>
-                    <pt>remoteUserUid</pt>
-                    <pd>
-                        <p>远端用户 ID。<note id="note_m2h_lxn_3qb" type="attention">请仅在参与本地合图的视频源类型为 <apiname keyref="VIDEO_SOURCE_REMOTE"/> 时，使用该参数。</note></p>
-                    </pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>connectionId</pt>
-                    <pd>
-                        <p>远端用户对应的连接 ID。<note id="note_m5b_qxn_3qb" type="attention">
-                            <ul id="ul_llv_qxn_3qb">
-                                <li>请仅在参与本地合图的视频源类型为 <apiname keyref="VIDEO_SOURCE_REMOTE"/> 时，使用该参数。</li>
-                                <li>如果仅加入一个频道，请将该参数设为默认值。</li>
-                            </ul>
-                            </note></p>
-                    </pd>
-                </plentry>
-                <plentry>
-                    <pt>imageUrl</pt>
-                    <pd>
-                        <p>图像的 URL。<note id="note_rm5_xxn_3qb" type="attention">请仅在参与本地合图的视频源类型为 <codeph props="windows">RTC_IMAGE</codeph><codeph props="ios mac">Image</codeph> 时，使用该参数。</note></p>
-                    </pd>
-                </plentry>
-                <plentry props="windows">
-                    <pt>x</pt>
-                    <pd>
-                        <p>参与本地合图的视频的左上角相对于合图画布左上角（原点）的横向位移。</p>
-                    </pd>
-                </plentry>
-                <plentry props="windows">
-                    <pt>y</pt>
-                    <pd>
-                        <p>参与本地合图的视频的左上角相对于合图画布左上角（原点）的纵向位移。</p>
-                    </pd>
-                </plentry>
-                <plentry props="windows">
-                    <pt>width</pt>
-                    <pd>
-                        <p>参与本地合图的视频的宽度 (px)。</p>
-                    </pd>
-                </plentry>
-                <plentry props="windows">
-                    <pt>heigh</pt>
-                    <pd>
-                        <p>参与本地合图的视频的高度 (px)。</p>
-                    </pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>rect</pt>
-                    <pd>参与本地合图的视频的左上角相对于合图画布左上角（原点）的位置和视频大小，类型为 CGRect。</pd>
-                </plentry>
-                <plentry>
-                    <pt>zOrder</pt>
-                    <pd>参与本地合图的视频所属的图层的编号。取值范围为 [0,100]。
-                        <ul><li>
+            <plentry>
+                <pt>sourceType</pt>
+                <pd>
+                    <p>参与本地合图的视频源类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>remoteUserUid</pt>
+                <pd>
+                    <p>远端用户 ID。
+                    
+                    
+                    <note id="note_m2h_lxn_3qb" type="attention"
+                    >请仅在参与本地合图的视频源类型为 <apiname keyref="VIDEO_SOURCE_REMOTE"
+                    /> 时，使用该参数。</note></p>
+                </pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>connectionId</pt>
+                <pd>
+                    <p>远端用户对应的连接 ID。
+                    
+                    
+                    <note id="note_m5b_qxn_3qb" type="attention">
+                    <ul id="ul_llv_qxn_3qb">
+                    <li>请仅在参与本地合图的视频源类型为 <apiname keyref="VIDEO_SOURCE_REMOTE"
+                        /> 时，使用该参数。</li>
+                    <li>如果仅加入一个频道，请将该参数设为默认值。</li>
+                    </ul> </note></p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>imageUrl</pt>
+                <pd>
+                    <p>图像的 URL。
+                    
+                    
+                    <note id="note_rm5_xxn_3qb" type="attention"
+                    >请仅在参与本地合图的视频源类型为 <codeph props="cpp"
+                    >RTC_IMAGE</codeph><codeph props="ios mac"
+                    >Image</codeph> 时，使用该参数。</note></p>
+                </pd>
+            </plentry>
+            <plentry props="cpp cs">
+                <pt>x</pt>
+                <pd>
+                    <p>参与本地合图的视频的左上角相对于合图画布左上角（原点）的横向位移。</p>
+                </pd>
+            </plentry>
+            <plentry props="cpp cs">
+                <pt>y</pt>
+                <pd>
+                    <p>参与本地合图的视频的左上角相对于合图画布左上角（原点）的纵向位移。</p>
+                </pd>
+            </plentry>
+            <plentry props="cpp cs">
+                <pt>width</pt>
+                <pd>
+                    <p>参与本地合图的视频的宽度 (px)。</p>
+                </pd>
+            </plentry>
+            <plentry props="cpp cs">
+                <pt>height</pt>
+                <pd>
+                    <p>参与本地合图的视频的高度 (px)。</p>
+                </pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>rect</pt>
+                <pd>参与本地合图的视频的左上角相对于合图画布左上角（原点）的位置和视频大小，类型为 CGRect。</pd>
+            </plentry>
+            <plentry>
+                <pt>zOrder</pt>
+                <pd>参与本地合图的视频所属的图层的编号。取值范围为 [0,100]。
+                        
+                    
+                    
+                    <ul>
+                    <li>
                         0:（默认值）图层在最下层。</li>
-                        <li>100: 图层在最上层。</li></ul></pd>
-                </plentry>
-                <plentry>
-                    <pt>alpha</pt>
-                    <pd>
-                        <p>参与本地合图的视频的透明度。取值范围为 [0.0,1.0]。 0.0 表示透明度为完全透明，1.0 表示透明度为完全不透明。</p>
-                    </pd>
-                </plentry>
-                <plentry props="windows">
-                    <pt>mirror</pt>
-                    <pd>是否对参与本地合图的的视频进行镜像：<ul>
-                        <li><codeph><ph keyref="true"/></codeph>: 镜像。</li>
-                        <li><codeph><ph keyref="false"/></codeph>: （默认值）不镜像。</li>
-                        </ul><note id="note_erc_ryn_3qb" type="attention">该参数仅对视频源类型为 <codeph props="windows">CAMERA</codeph><codeph props="ios mac">Camera</codeph> 的视频生效。</note></pd>
-                </plentry>
-            </parml>
-        </section>
+                    <li>100: 图层在最上层。</li>
+                    </ul></pd>
+            </plentry>
+            <plentry>
+                <pt>alpha</pt>
+                <pd>
+                    <p>参与本地合图的视频的透明度。取值范围为 [0.0,1.0]。 0.0 表示透明度为完全透明，1.0 表示透明度为完全不透明。</p>
+                </pd>
+            </plentry>
+            <plentry props="cpp cs">
+                <pt>mirror</pt>
+                <pd>是否对参与本地合图的的视频进行镜像：
+                    
+                    
+                    <ul>
+                    <li><codeph><ph keyref="true"/></codeph>: 镜像。</li>
+                    <li><codeph><ph keyref="false"/></codeph>: （默认值）不镜像。</li>
+                    </ul>
+                    <note id="note_erc_ryn_3qb" type="attention"
+                    >该参数仅对视频源类型为 <codeph props="cpp">CAMERA</codeph><codeph
+                    props="ios mac">Camera</codeph> 的视频生效。</note></pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

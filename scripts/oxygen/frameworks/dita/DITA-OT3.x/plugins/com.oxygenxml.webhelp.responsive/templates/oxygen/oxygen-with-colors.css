@@ -1,0 +1,41 @@
+/* Use the PDF main CSS */
+@import "oxygen-print.css";
+
+@page front-page {
+    background-image: url("oxygen-cover.svg");
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
+    background-color: #386fda;
+}
+
+*[class ~= "front-page/front-page-title"] {
+    color: white;
+    padding-top: 3em;
+    line-height: 1.3em;
+    font-size: 2.5em;
+}
+
+/* 
+ * TOC
+ */
+*[class ~= "toc/title"],
+*[class ~= "map/topicref"] *[class ~= "topic/navtitle"] {
+    color: #073763;
+}
+
+/* 
+ * Content
+ */
+*[class ~= "index/groups"]:before,
+*[class ~= "topic/topic"] > *[class ~= "topic/title"],
+*[class ~= "placeholder/tablelist"] > *[class ~= "topic/title"],
+*[class ~= "placeholder/figurelist"] > *[class ~= "topic/title"] {
+    color: #073763;
+}
+
+*[class ~= "topic/li"]::marker,
+*[class ~= "topic/fig"] > *[class ~= "topic/title"],
+*[class ~= "topic/table"] > *[class ~= "topic/title"],
+*[class ~= "index/groups"] *[class ~= "index/group"] *[class ~= "index/label"] {
+    color: #386fda;
+}

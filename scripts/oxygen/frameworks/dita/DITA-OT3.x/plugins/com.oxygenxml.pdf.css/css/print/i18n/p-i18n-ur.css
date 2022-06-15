@@ -1,0 +1,99 @@
+@charset "UTF-8";
+	  			
+	  			
+	  				
+	
+/*
+
+I18N file for ur    	
+
+*/
+
+/* Title in the Index page */
+*[class ~= "index/groups"]:lang(ur):before {
+  content: "انڈکس";
+}
+*[class ~= "index/groups"]:lang(ur) {
+  bookmark-label:"انڈکس";  
+  -ah-bookmark-label:"انڈکس";  
+}
+
+	  			
+	  			
+	  				  	
+	
+
+/* Title of the TOC page */
+*[class ~= "toc/title"][empty]:lang(ur):before {
+	content: "مشمولات";
+}
+
+/* This string is used in the TOC page header. */
+*[class ~= "toc/title"]:lang(ur) {
+  string-set: toc-header "مشمولات";
+}
+  	
+/* Titles in the TOC. */
+*[class ~= "map/topicref"][is-part] > *[class ~= "map/topicmeta"] > *[class ~= "topic/navtitle"]:lang(ur):before{
+  content: "جزو " counter(toc-part, upper-roman) "" ". ";
+}
+
+*[class ~= "map/topicref"][is-chapter]:not([is-part]) > *[class ~= "map/topicmeta"] > *[class ~= "topic/navtitle"]:lang(ur):before{
+  content: "باب " counter(toc-chapter) "" ". ";
+}
+*[class ~= "bookmap/appendices"] > *[class ~= "map/topicmeta"] > *[class ~= "topic/navtitle"]:lang(ur):before,
+*[class ~= "bookmap/appendix"][is-part] > *[class ~= "map/topicmeta"] > *[class ~= "topic/navtitle"]:lang(ur):before{
+  content: none !important;
+}
+*[class ~= "bookmap/appendix"][is-chapter]:not([is-part]) > *[class ~= "map/topicmeta"] > *[class ~= "topic/navtitle"]:lang(ur):before{
+  content: "ضمیمہ " counter(toc-chapter, upper-latin) "" ". ";
+}
+
+/* Titles in the content. */
+*[class ~= "topic/topic"][is-part] > *[class ~= "topic/title"]:lang(ur):before {
+ content: "جزو " counter(part, upper-roman) "" ". ";
+}
+*[class ~= "topic/topic"][is-chapter]:not([is-part]) > *[class ~= "topic/title"]:lang(ur):before {
+  content: "باب " counter(chapter) "" ". ";
+}
+*[class ~= "topic/topic"][is-part][topicrefclass ~= "bookmap/appendices"] > *[class ~= "topic/title"]:lang(ur):before,
+*[class ~= "topic/topic"][is-chapter]:not([is-part])[topicrefclass ~= "bookmap/appendices"] > *[class ~= "topic/title"]:lang(ur):before,
+*[class ~= "topic/topic"][is-part][topicrefclass ~= "bookmap/appendix"] > *[class ~= "topic/title"]:lang(ur):before {
+  content: none;
+}
+*[class ~= "topic/topic"][is-chapter][topicrefclass ~= "bookmap/appendix"]:not([is-part]) > *[class ~= "topic/title"]:lang(ur):before {
+  content: "ضمیمہ " counter(chapter, upper-latin) "" ". ";
+}
+
+/* Figures */  
+*[class ~= "topic/fig"] > *[class ~= "topic/title"]:lang(ur):before {
+  content: "اعداد " counter(figcount) "" ": ";
+}
+
+/* Tables */
+*[class ~= "topic/table"] > *[class ~= "topic/title"]:lang(ur):before {
+  content: "جدول " counter(tablecount) "" ": ";
+}
+
+/* Links. */
+*[class ~= "map/map"] *[class ~= "topic/xref"][href]:lang(ur):after,
+*[class ~= "map/map"] *[class ~= "topic/link"][href]:lang(ur):after {
+  content: " (صفحہ پر " target-counter(attr(href), page) ")";
+}
+
+/* Links when having chapter scope numbering */
+*[class ~= "map/map"][numbering='deep-chapter-scope'] *[class ~= "topic/xref"][href]:lang(ur):after,
+*[class ~= "map/map"][numbering='deep-chapter-scope'] *[class ~= "topic/link"][href]:lang(ur):after {
+  content: " (صفحہ پر " target-counter(attr(href), chapter) "." target-counter(attr(href), page) ")";
+}
+
+	  			
+				  
+					  	
+	
+*[class~="topic/table"] > *[class~="topic/title"][data-is-repeated]:lang(ur):after(2) {
+    content: " " "";
+}
+
+			  		
+	  		

@@ -5,42 +5,40 @@
     <shortdesc id="short"><ph id="shortdesc">本地音乐文件播放已结束回调。</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="onAudioMixingFinished"/>
-   </keywords>
+            <keywords>
+                <indexterm keyref="onAudioMixingFinished"/>
+            </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public void onAudioMixingFinished() {}</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngineLocalAudioMixingDidFinish:(AgoraRtcEngineKit * _Nonnull)engine;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual void onAudioMixingFinished() {
+            <codeblock props="android" outputclass="language-java">public void onAudioMixingFinished() {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngineLocalAudioMixingDidFinish:(AgoraRtcEngineKit * _Nonnull)engine;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioMixingFinished() {
     }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.AUDIO_MIXING_FINISHED, cb: (soundId: number) =&gt; void): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioMixingFinished()</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart">EmptyCallback? audioMixingFinished;</codeblock>
-            </p>
+            <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.AUDIO_MIXING_FINISHED, cb: (soundId: number) =&gt; void): this;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public virtual void OnAudioMixingFinished()</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">EmptyCallback? audioMixingFinished;</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated">
-                <dlentry>
-                    <dt>弃用：</dt>
-                    <dd>请改用 <xref keyref="onAudioMixingStateChanged"/>。</dd>
-                </dlentry>
+            <dlentry>
+                <dt>弃用：</dt>
+                <dd>请改用 <xref keyref="onAudioMixingStateChanged"/>。</dd>
+            </dlentry>
             </dl>
-            <p id="desc">当调用 <xref keyref="startAudioMixing2"/> 播放本地音乐文件结束后，会触发该回调。如果调用 <apiname keyref="startAudioMixing2"/> 失败，会返回错误码
-                    <parmname>WARN_AUDIO_MIXING_OPEN_ERROR</parmname>。</p>
+            <p id="desc" props="native">当调用 <xref keyref="startAudioMixing2"/> 播放本地音乐文件结束后，会触发该回调。如果调用 <apiname keyref="startAudioMixing2"/> 失败，会返回错误码 <parmname>WARN_AUDIO_MIXING_OPEN_ERROR</parmname>。</p>
         </section>
         <section id="paramaters" props="ios mac">
-            <title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
-                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                    <pt/>
-                    <pd/>
-                </plentry>
-            </parml>
-        </section>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

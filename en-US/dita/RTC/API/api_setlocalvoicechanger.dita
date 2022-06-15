@@ -5,87 +5,87 @@
     <shortdesc id="short"><ph id="shortdesc">Sets the local voice changer option.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="setLocalVoiceChanger" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="setLocalVoiceChanger" />
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public abstract int setLocalVoiceChanger(int voiceChanger);</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (int) setLocalVoiceChanger:(AgoraAudioVoiceChanger)voiceChanger;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual int setLocalVoiceChanger(VOICE_CHANGER_PRESET voiceChanger) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">setLocalVoiceChanger(voiceChanger: VOICE_CHANGER_PRESET): number</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public abstract int SetLocalVoiceChanger(VOICE_CHANGER_PRESET voiceChanger);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLocalVoiceChanger(AudioVoiceChanger voiceChanger);</codeblock>
-        </p>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setLocalVoiceChanger(int voiceChanger);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int) setLocalVoiceChanger:(AgoraAudioVoiceChanger)voiceChanger;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setLocalVoiceChanger(VOICE_CHANGER_PRESET voiceChanger) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">setLocalVoiceChanger(voiceChanger: VOICE_CHANGER_PRESET): number</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public abstract int SetLocalVoiceChanger(VOICE_CHANGER_PRESET voiceChanger);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLocalVoiceChanger(AudioVoiceChanger voiceChanger);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-
-   <dl outputclass="deprecated">
-       <dlentry>
-  <dt>Deprecated:</dt>
-           <dd>Deprecated from v3.2.0. Use the following methods instead:<ul>
-                   <li><xref keyref="setAudioEffectPreset" /> : Audio effects.</li>
-                   <li><xref keyref="setVoiceBeautifierPreset" /> : Voice beautifier effects.</li>
-                   <li><xref keyref="setVoiceConversionPreset" /> : Voice conversion effects.</li>
-               </ul>
-            </dd>
-       </dlentry>
-   </dl>
-   <p>This method can be used to set the local voice effect for users in a COMMUNICATION channel or hosts in a LIVE_BROADCASTING channel. After successfully calling this method, all users in the channel can hear the voice with reverberation.<ul>
-  <li><codeph>VOICE_CHANGER_XXX</codeph>: Changes the local voice to an old man, a little boy, or the Hulk. Applies to the voice talk scenario.</li>
-  <li><codeph>VOICE_BEAUTY_XXX</codeph>: Beautifies the local voice by making it sound more vigorous, resounding, or adding spacial resonance. Applies to the voice talk and singing scenario.</li>
-  <li><codeph>GENERAL_VOICE_BEAUTY_XXX</codeph>: Adds gender-based beautification effect to the local voice. Applies to the voice talk scenario. For a male voice: Adds magnetism to the voice. For a male voice: Adds magnetism to the voice. For a female voice: Adds freshness or vitality to the voice.</li>
-       </ul>
-   </p>
-   <note type="attention">
-       <ul>
-  <li>To achieve better voice effect quality, Agora recommends setting the <xref keyref="setAudioProfile" /><parmname>profile</parmname> parameter in as<apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY" /> (4) or<apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO" /> (5).</li>
-  <li>This method works best with the human voice, and Agora does not recommend using it for audio containing music and a human voice.</li>
-  <li>Do not use this method with <xref keyref="setLocalVoiceReverbPreset" />, because the method called later overrides the one called earlier. For detailed considerations, see the advanced guide Set the Voice Effect.</li>
-  <li>You can call this method either before or after joining a channel.</li>
-       </ul>
-   </note>
-        </section>
-        <section id="parameters"><title>Parameters</title>
-   <parml>
-       <plentry>
-  <pt>voiceChanger</pt>
-  <pd>
-      <p props="ios mac windows unity flutter">The local voice changer option. The default value is <apiname keyref="VOICE_CHANGER_OFF" /> , which means the original voice. For more details, see <xref keyref="VOICE_CHANGER_PRESET" />. The gender-based beatification effect works best only when assigned a proper gender. Use <apiname keyref="GENERAL_BEAUTY_VOICE_MALE_MAGNETIC" /> for male and use <apiname keyref="GENERAL_BEAUTY_VOICE_FEMALE_FRESH" /> and <apiname keyref="GENERAL_BEAUTY_VOICE_FEMALE_VITALITY" /> for female. Failure to do so can lead to voice distortion.</p>
-      <p props="android">The local voice changer option:<ul>
-                                <li><ph keyref="VOICE_CHANGER_OFF" />: (Default) Turn off the local voice changer, that is, to use the original voice.</li>
-                                <li><ph keyref="VOICE_CHANGER_OLDMAN" />: The voice of an old man.</li>
-                                <li><ph keyref="VOICE_CHANGER_BABYBOY" />: The voice of a little boy.</li>
-                                <li><ph keyref="VOICE_CHANGER_BABYGIRL" />: The voice of a little girl.</li>
-                                <li><ph keyref="VOICE_CHANGER_ZHUBAJIE" />: The voice of Zhu Bajie, a character in Journey to the West who has a voice like that of a growling bear.</li>
-                                <li><ph keyref="VOICE_CHANGER_ETHEREAL" />: The ethereal voice.</li>
-                                <li><ph keyref="VOICE_CHANGER_HULK" />: The voice of Hulk.</li>
-                                <li><ph keyref="VOICE_BEAUTY_VIGOROUS" />: A more vigorous voice.</li>
-                                <li><ph keyref="VOICE_BEAUTY_DEEP" />: A deeper voice.</li>
-                                <li><ph keyref="VOICE_BEAUTY_MELLOW" />: A mellower voice.</li>
-                                <li><ph keyref="VOICE_BEAUTY_FALSETTO" />: Falsetto.</li>
-                                <li><ph keyref="VOICE_BEAUTY_FULL" />: A fuller voice.</li>
-                                <li><ph keyref="VOICE_BEAUTY_CLEAR" />: A clearer voice.</li>
-                                <li><ph keyref="VOICE_BEAUTY_RESOUNDING" />: A more resounding voice.</li>
-                                <li><ph keyref="VOICE_BEAUTY_RINGING" />: A more ringing voice.</li>
-                                <li><ph keyref="VOICE_BEAUTY_SPACIAL" />: A more spatially resonant voice.</li>
-                                <li><ph keyref="GENERAL_BEAUTY_VOICE_MALE_MAGNETIC" />: (For male only) A more magnetic voice. Do not use it when the speaker is a male; otherwise, voice distortion occurs. Do not use it when the speaker is a female; otherwise, voice distortion occurs.</li>
-                                <li><ph keyref="GENERAL_BEAUTY_VOICE_FEMALE_FRESH" />(For female only) A fresher voice. Do not use it when the speaker is a male; otherwise, voice distortion occurs. Do not use it when the speaker is a male; otherwise, voice distortion occurs.</li>
-                                <li><ph keyref="GENERAL_BEAUTY_VOICE_FEMALE_VITALITY" />(For female only) A more vital voice. Do not use it when the speaker is a male; otherwise, voice distortion occurs. Do not use it when the speaker is a male; otherwise, voice distortion occurs.</li>
-                            </ul>
-                        </p>
-  </pd>
-       </plentry>
-   </parml>
-        </section>
-        <section id="return_values" props="native electron unity">
-   <title>Returns</title>
-   <ul>
-       <li>0: Success.</li>
-       <li>&lt; 0: Failure.</li>
-   </ul>
-        </section></refbody>
+            <dl outputclass="deprecated">
+            <dlentry>
+                <dt>Deprecated:</dt>
+                <dd>Deprecated from v3.2.0. Use the following methods instead:
+                    
+                    <ul>
+                    <li><xref keyref="setAudioEffectPreset" /> : Audio effects.</li>
+                    <li><xref keyref="setVoiceBeautifierPreset" /> : Voice beautifier effects.</li>
+                    <li><xref keyref="setVoiceConversionPreset" /> : Voice conversion effects.</li>
+                    </ul> </dd>
+            </dlentry>
+            </dl>
+            <p>This method can be used to set the local voice effect for users in a COMMUNICATION channel or hosts in a LIVE_BROADCASTING channel. After successfully calling this method, all users in the channel can hear the voice with reverberation.
+            
+            <ul>
+            <li><codeph>VOICE_CHANGER_XXX</codeph>: Changes the local voice to an old man, a little boy, or the Hulk. Applies to the voice talk scenario.</li>
+            <li><codeph>VOICE_BEAUTY_XXX</codeph>: Beautifies the local voice by making it sound more vigorous, resounding, or adding spacial resonance. Applies to the voice talk and singing scenario.</li>
+            <li><codeph>GENERAL_VOICE_BEAUTY_XXX</codeph>: Adds gender-based beautification effect to the local voice. Applies to the voice talk scenario. For a male voice: Adds magnetism to the voice. For a male voice: Adds magnetism to the voice. For a female voice: Adds freshness or vitality to the voice.</li>
+            </ul> </p>
+            <note type="attention">
+            <ul>
+            <li>To achieve better voice effect quality, Agora recommends setting the <xref keyref="setAudioProfile" /><parmname>profile</parmname> parameter in as<apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY" /> (4) or<apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO" /> (5).</li>
+            <li>This method works best with the human voice, and Agora does not recommend using it for audio containing music and a human voice.</li>
+            <li>Do not use this method with <xref keyref="setLocalVoiceReverbPreset" />, because the method called later overrides the one called earlier. For detailed considerations, see the advanced guide Set the Voice Effect.</li>
+            <li>You can call this method either before or after joining a channel.</li>
+            </ul> </note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>voiceChanger</pt>
+                <pd>
+                    <p props="ios mac cpp cs flutter">The local voice changer option. The default value is <apiname keyref="VOICE_CHANGER_OFF" /> , which means the original voice. For more details, see <xref keyref="VOICE_CHANGER_PRESET" />. The gender-based beatification effect works best only when assigned a proper gender. Use <apiname keyref="GENERAL_BEAUTY_VOICE_MALE_MAGNETIC" /> for male and use <apiname keyref="GENERAL_BEAUTY_VOICE_FEMALE_FRESH" /> and <apiname keyref="GENERAL_BEAUTY_VOICE_FEMALE_VITALITY" /> for female. Failure to do so can lead to voice distortion.</p>
+                    <p props="android">The local voice changer option:
+                    
+                    <ul>
+                    <li><ph keyref="VOICE_CHANGER_OFF" />: (Default) Turn off the local voice changer, that is, to use the original voice.</li>
+                    <li><ph keyref="VOICE_CHANGER_OLDMAN" />: The voice of an old man.</li>
+                    <li><ph keyref="VOICE_CHANGER_BABYBOY" />: The voice of a little boy.</li>
+                    <li><ph keyref="VOICE_CHANGER_BABYGIRL" />: The voice of a little girl.</li>
+                    <li><ph keyref="VOICE_CHANGER_ZHUBAJIE" />: The voice of Zhu Bajie, a character in Journey to the West who has a voice like that of a growling bear.</li>
+                    <li><ph keyref="VOICE_CHANGER_ETHEREAL" />: The ethereal voice.</li>
+                    <li><ph keyref="VOICE_CHANGER_HULK" />: The voice of Hulk.</li>
+                    <li><ph keyref="VOICE_BEAUTY_VIGOROUS" />: A more vigorous voice.</li>
+                    <li><ph keyref="VOICE_BEAUTY_DEEP" />: A deeper voice.</li>
+                    <li><ph keyref="VOICE_BEAUTY_MELLOW" />: A mellower voice.</li>
+                    <li><ph keyref="VOICE_BEAUTY_FALSETTO" />: Falsetto.</li>
+                    <li><ph keyref="VOICE_BEAUTY_FULL" />: A fuller voice.</li>
+                    <li><ph keyref="VOICE_BEAUTY_CLEAR" />: A clearer voice.</li>
+                    <li><ph keyref="VOICE_BEAUTY_RESOUNDING" />: A more resounding voice.</li>
+                    <li><ph keyref="VOICE_BEAUTY_RINGING" />: A more ringing voice.</li>
+                    <li><ph keyref="VOICE_BEAUTY_SPACIAL" />: A more spatially resonant voice.</li>
+                    <li><ph keyref="GENERAL_BEAUTY_VOICE_MALE_MAGNETIC" />: (For male only) A more magnetic voice. Do not use it when the speaker is a male; otherwise, voice distortion occurs. Do not use it when the speaker is a female; otherwise, voice distortion occurs.</li>
+                    <li><ph keyref="GENERAL_BEAUTY_VOICE_FEMALE_FRESH" />(For female only) A fresher voice. Do not use it when the speaker is a male; otherwise, voice distortion occurs. Do not use it when the speaker is a male; otherwise, voice distortion occurs.</li>
+                    <li><ph keyref="GENERAL_BEAUTY_VOICE_FEMALE_VITALITY" />(For female only) A more vital voice. Do not use it when the speaker is a male; otherwise, voice distortion occurs. Do not use it when the speaker is a male; otherwise, voice distortion occurs.</li>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron cs">
+            <title>Returns</title>
+            <ul>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
+    </refbody>
 </reference>

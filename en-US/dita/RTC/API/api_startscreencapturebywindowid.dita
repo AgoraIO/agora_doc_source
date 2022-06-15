@@ -5,210 +5,211 @@
     <shortdesc id="short"><ph id="shortdesc">Shares the whole or part of a window by specifying the window ID.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="startScreenCaptureByWindowId" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="startScreenCaptureByWindowId" />
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock" props="rtc-ng">
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
             <codeblock props="mac" outputclass="language-objectivec">- (int)startScreenCaptureByWindowId:(UInt32)windowId
                 regionRect:(CGRect)regionRect
                 captureParams:(AgoraScreenCaptureParameters *_Nonnull)captureParams;</codeblock>
-        </p>
-        <p outputclass="codeblock">
+            <codeblock props="cs" outputclass="language-csharp">public abstract int StartScreenCaptureByWindowId(UInt64 windowId, Rectangle regionRect, ScreenCaptureParameters captureParams);</codeblock> </p>
+            <p outputclass="codeblock" props="rtc">
+            <codeblock props="mac" outputclass="language-objectivec">- (int)startScreenCaptureByWindowId:(NSUInteger)windowId rectangle:(CGRect)rectangle parameters:(AgoraScreenCaptureParameters* _Nonnull)captureParams;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public abstract int StartScreenCaptureByWindowId(view_t windowId, Rectangle regionRect,
+            ScreenCaptureParameters captureParams);</codeblock></p>
+            <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java" />
-            <codeblock props="windows" outputclass="language-cpp">virtual int startScreenCaptureByWindowId(view_t windowId,
+            <codeblock props="cpp" outputclass="language-cpp">virtual int startScreenCaptureByWindowId(view_t windowId,
                 const Rectangle&amp; regionRect,
                 const ScreenCaptureParameters&amp; captureParams) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">startScreenCaptureByWindow(windowId: number,
                 regionRect: Rectangle,
                 captureParams: ScreenCaptureParameters
                 ): number</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int StartScreenCaptureByWindowId(view_t windowId, Rectangle regionRect,
-            ScreenCaptureParameters captureParams);</codeblock>
             <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startScreenCaptureByWindowId(int windowId,
-      [Rectangle? regionRect, ScreenCaptureParameters? captureParams]);</codeblock>
-        </p>
-        <p outputclass="codeblock" props="rtc">
-            <codeblock props="mac" outputclass="language-objectivec">- (int)startScreenCaptureByWindowId:(NSUInteger)windowId rectangle:(CGRect)rectangle parameters:(AgoraScreenCaptureParameters* _Nonnull)captureParams;</codeblock>
-        </p>
+      [Rectangle? regionRect, ScreenCaptureParameters? captureParams]);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-
-   <dl outputclass="since" props="rtc">
-       <dlentry props="native">
-  <dt>Since</dt>
-  <dd>v2.4.0</dd>
-       </dlentry>
-   </dl>
-   <p id="desc">This method shares a window or part of the window. You need to specify the ID of the window to be shared.</p>
-   <note type="attention" id="note">
-       <p props="mac">Call this method after joining a channel.</p>
-       <ul props="windows flutter">
-  <li>Call this method after joining a channel.</li>
-           <li>This method applies to macOS and Windows only.</li>
-       </ul>
-   </note>
-   <p props="windows">Since v3.0.0, this method supports window sharing of UWP (Universal Windows Platform) applications. Agora tests the mainstream UWP applications by using the lastest SDK, see details as follows:</p>
-   <p props="windows">
-       <table id="table_lvk_tfs_r4b">
-  <tgroup cols="4">
-      <colspec colnum="1" colname="col1" />
-      <colspec colnum="2" colname="col2" />
-      <colspec colnum="3" colname="col3" />
-      <colspec colnum="4" colname="col4" />
-      <thead>
-          <row>
-              <entry><b>System version</b></entry>
-              <entry><b>Software</b></entry>
-              <entry><b>Compatible versions</b></entry>
-              <entry><b>Support</b></entry>
-          </row>
-      </thead>
-      <tbody>
- <row>
-     <entry morerows="7">win10</entry>
-     <entry>Chrome</entry>
-     <entry>76.0.3809.100</entry>
-     <entry>No</entry>
- </row>
- <row>
-     <entry>Office Word</entry>
-     <entry morerows="2">18.1903.1152.0</entry>
-     <entry>Yes</entry>
- </row>
- <row>
-     <entry>Office Excel</entry>
-     <entry>No</entry>
- </row>
- <row>
-     <entry>Office PPT</entry>
-     <entry>Yes</entry>
- </row>
- <row>
-     <entry>WPS Word</entry>
-     <entry morerows="2">11.1.0.9145</entry>
-     <entry morerows="2">Yes</entry>
- </row>
- <row>
-     <entry>WPS Excel</entry>
- </row>
- <row>
-     <entry>WPS PPT</entry>
- </row>
- <row>
-     <entry>Media Player (come with the system)</entry>
-     <entry>All</entry>
-     <entry>Yes</entry>
- </row>
- <row>
-     <entry morerows="7">win8</entry>
-     <entry>Chrome</entry>
-     <entry>All</entry>
-     <entry>Yes</entry>
- </row>
- <row>
-     <entry>Office Word</entry>
-     <entry morerows="2">All</entry>
-     <entry morerows="2">Yes</entry>
- </row>
- <row>
-     <entry>Office Excel</entry>
- </row>
- <row>
-     <entry>Office PPT</entry>
- </row>
- <row>
-     <entry>WPS Word</entry>
-     <entry morerows="2">11.1.0.9098</entry>
-     <entry morerows="2">Yes</entry>
- </row>
- <row>
-     <entry>WPS Excel</entry>
- </row>
- <row>
-     <entry>WPS PPT</entry>
- </row>
- <row>
-     <entry>Media Player (come with the system)</entry>
-     <entry>All</entry>
-     <entry>Yes</entry>
- </row>
- <row>
-     <entry morerows="7">win7</entry>
-     <entry>Chrome</entry>
-     <entry>73.0.3683.103</entry>
-     <entry>No</entry>
- </row>
- <row>
-     <entry>Office Word</entry>
-     <entry morerows="2">All</entry>
-     <entry morerows="2">Yes</entry>
- </row>
- <row>
-     <entry>Office Excel</entry>
- </row>
- <row>
-     <entry>Office PPT</entry>
- </row>
- <row>
-     <entry>WPS Word</entry>
-     <entry morerows="1">11.1.0.9098</entry>
-     <entry morerows="1">No</entry>
- </row>
- <row>
-     <entry>WPS Excel</entry>
- </row>
- <row>
-     <entry>WPS PPT</entry>
-     <entry>11.1.0.9098</entry>
-     <entry>Yes</entry>
- </row>
- <row>
-     <entry>Media Player (come with the system)</entry>
-     <entry>All</entry>
-     <entry>No</entry>
- </row>
-      </tbody>
-  </tgroup>
-       </table>
-   </p>
+            <dl outputclass="since" props="rtc">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v2.4.0</dd>
+            </dlentry>
+            </dl>
+            <p id="desc">This method shares a window or part of the window. You need to specify the ID of the window to be shared.</p>
+            <note type="attention" id="note">
+            <p props="mac">Call this method after joining a channel.</p>
+            <ul props="cpp flutter cs">
+            <li>Call this method after joining a channel.</li>
+            <li>This method applies to macOS and Windows only.</li>
+            </ul> </note>
+            <p props="cpp">Since v3.0.0, this method supports window sharing of UWP (Universal Windows Platform) applications. Agora tests the mainstream UWP applications by using the lastest SDK, see details as follows:</p>
+            <p props="cpp"> <table id="table_lvk_tfs_r4b">
+            <tgroup cols="4">
+                <colspec colnum="1" colname="col1" />
+                <colspec colnum="2" colname="col2" />
+                <colspec colnum="3" colname="col3" />
+                <colspec colnum="4" colname="col4" />
+                <thead>
+                    <row>
+                        <entry><b>System version</b></entry>
+                        <entry><b>Software</b></entry>
+                        <entry><b>Compatible versions</b></entry>
+                        <entry><b>Support</b></entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry morerows="7">win10</entry>
+                        <entry>Chrome</entry>
+                        <entry>76.0.3809.100</entry>
+                        <entry>No</entry>
+                    </row>
+                    <row>
+                        <entry>Office Word</entry>
+                        <entry morerows="2">18.1903.1152.0</entry>
+                        <entry>Yes</entry>
+                    </row>
+                    <row>
+                        <entry>Office Excel</entry>
+                        <entry>No</entry>
+                    </row>
+                    <row>
+                        <entry>Office PPT</entry>
+                        <entry>Yes</entry>
+                    </row>
+                    <row>
+                        <entry>WPS Word</entry>
+                        <entry morerows="2">11.1.0.9145</entry>
+                        <entry morerows="2">Yes</entry>
+                    </row>
+                    <row>
+                        <entry>WPS Excel</entry>
+                    </row>
+                    <row>
+                        <entry>WPS PPT</entry>
+                    </row>
+                    <row>
+                        <entry>Media Player (come with the system)</entry>
+                        <entry>All</entry>
+                        <entry>Yes</entry>
+                    </row>
+                    <row>
+                        <entry morerows="7">win8</entry>
+                        <entry>Chrome</entry>
+                        <entry>All</entry>
+                        <entry>Yes</entry>
+                    </row>
+                    <row>
+                        <entry>Office Word</entry>
+                        <entry morerows="2">All</entry>
+                        <entry morerows="2">Yes</entry>
+                    </row>
+                    <row>
+                        <entry>Office Excel</entry>
+                    </row>
+                    <row>
+                        <entry>Office PPT</entry>
+                    </row>
+                    <row>
+                        <entry>WPS Word</entry>
+                        <entry morerows="2">11.1.0.9098</entry>
+                        <entry morerows="2">Yes</entry>
+                    </row>
+                    <row>
+                        <entry>WPS Excel</entry>
+                    </row>
+                    <row>
+                        <entry>WPS PPT</entry>
+                    </row>
+                    <row>
+                        <entry>Media Player (come with the system)</entry>
+                        <entry>All</entry>
+                        <entry>Yes</entry>
+                    </row>
+                    <row>
+                        <entry morerows="7">win7</entry>
+                        <entry>Chrome</entry>
+                        <entry>73.0.3683.103</entry>
+                        <entry>No</entry>
+                    </row>
+                    <row>
+                        <entry>Office Word</entry>
+                        <entry morerows="2">All</entry>
+                        <entry morerows="2">Yes</entry>
+                    </row>
+                    <row>
+                        <entry>Office Excel</entry>
+                    </row>
+                    <row>
+                        <entry>Office PPT</entry>
+                    </row>
+                    <row>
+                        <entry>WPS Word</entry>
+                        <entry morerows="1">11.1.0.9098</entry>
+                        <entry morerows="1">No</entry>
+                    </row>
+                    <row>
+                        <entry>WPS Excel</entry>
+                    </row>
+                    <row>
+                        <entry>WPS PPT</entry>
+                        <entry>11.1.0.9098</entry>
+                        <entry>Yes</entry>
+                    </row>
+                    <row>
+                        <entry>Media Player (come with the system)</entry>
+                        <entry>All</entry>
+                        <entry>No</entry>
+                    </row>
+                </tbody>
+            </tgroup>
+            </table> </p>
         </section>
-        <section id="parameters"><title>Parameters</title>
-   <parml>
-       <plentry>
-  <pt>windowId</pt>
-  <pd>The ID of the window to be shared.<p props="electron">You can get the window ID by calling <xref keyref="getWindowsInfo" />.</p></pd>
-       </plentry>
-       <plentry props="windows electron unity flutter">
-  <pt>regionRect</pt>
-  <pd>(Optional) Sets the relative location of the region to the screen. If you do not set this parameter, the SDK shares the whole screen. For details, see <xref keyref="Rectangle" />. If the specified region overruns the window, the SDK shares only the region within it; if you set width or height as 0, the SDK shares the whole window.</pd>
-       </plentry>
-       <plentry props="mac">
-           <pt props="rtc">rectangle</pt>
-           <pt props="rtc-ng">regionRect</pt>
-  <pd><p>(Optional) The relative location of the region to the window. If you do not set this parameter, the SDK shares the whole window.  It consists of the following parameters:<ul>
-      <li>x: The horizontal offset from the top-left corner.</li>
-      <li>y: The vertical offset from the top-left corner.</li>
-      <li>width: The width of the region.</li>
-      <li>height: The height of the region.</li>
-  </ul></p>
-  <p>If the specified region overruns the window, the SDK shares only the region within it; if you set width or height as 0, the SDK shares the whole window.</p>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt>captureParams</pt>
-  <pd>Screen sharing configurations. The default video dimension is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges. For details, see <xref keyref="ScreenCaptureParameters" />.</pd>
-       </plentry>
-   </parml>
-        </section>
-        <section id="return_values" props="native electron unity">
-   <title>Returns</title>
-   <ul>
-       <li>0: Success.</li>
-       <li>&lt; 0: Failure.</li>
-   </ul>
-        </section></refbody>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>windowId</pt>
+                <pd>The ID of the window to be shared.
+                    
+                    <p props="electron">You can get the window ID by calling <xref keyref="getWindowsInfo" />.</p>
+                </pd>
+            </plentry>
+            <plentry props="cpp electron cs flutter">
+                <pt>regionRect</pt>
+                <pd>(Optional) Sets the relative location of the region to the screen. If you do not set this parameter, the SDK shares the whole screen. For details, see <xref keyref="Rectangle" />. If the specified region overruns the window, the SDK shares only the region within it; if you set width or height as 0, the SDK shares the whole window.</pd>
+            </plentry>
+            <plentry props="mac">
+                <pt props="rtc">rectangle</pt>
+                <pt props="rtc-ng">regionRect</pt>
+                <pd>
+                    <p>(Optional) The relative location of the region to the window. If you do not set this parameter, the SDK shares the whole window.  It consists of the following parameters:
+                    
+                    <ul>
+                    <li>x: The horizontal offset from the top-left corner.</li>
+                    <li>y: The vertical offset from the top-left corner.</li>
+                    <li>width: The width of the region.</li>
+                    <li>height: The height of the region.</li>
+                    </ul></p>
+                    <p>If the specified region overruns the window, the SDK shares only the region within it; if you set width or height as 0, the SDK shares the whole window.</p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>captureParams</pt>
+                <pd>Screen sharing configurations. The default video dimension is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges. For details, see <xref keyref="ScreenCaptureParameters" />.</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron cs">
+            <title>Returns</title>
+            <ul>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
+    </refbody>
 </reference>

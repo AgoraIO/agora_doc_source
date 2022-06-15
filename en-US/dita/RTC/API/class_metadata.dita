@@ -6,22 +6,42 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="windows unity" outputclass="language-cpp">struct Metadata {
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="cpp" outputclass="language-cpp">struct Metadata {
     unsigned int uid;
     unsigned int size;
     unsigned char *buffer;
     long long timeStampMs;
     };</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">export interface Metadata {
+            <codeblock props="cs" outputclass="language-csharp">public class Metadata
+    {
+        public Metadata()
+        {
+            buffer = new byte[0];
+        }
+
+        public Metadata(uint uid, uint size, byte[] buffer, long timeStampMs)
+        {
+            this.uid = uid;
+            this.size = size;
+            this.buffer = buffer;
+            this.timeStampMs = timeStampMs;
+        }
+
+        public uint uid { set; get; }
+        public uint size { set; get; }
+        public byte[] buffer { set; get; }
+        public long timeStampMs { set; get; }
+    };</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export interface Metadata {
     uid: number;
     size: number;
     buffer: string;
     timeStampMs: number;
     }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">class Metadata {
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">class Metadata {
   int uid;
 
   @JsonKey(ignore: true)
@@ -34,33 +54,34 @@
       _$MetadataFromJson(json);
 
   Map&lt;String, dynamic&gt; toJson() =&gt; _$MetadataToJson(this);
-}</codeblock>
-            </p>
+}</codeblock> </p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
-   <parml>
-       <plentry>
-  <pt>uid</pt>
-  <pd>
-      <p>User ID.<ul>
- <li>For the receiver: The user ID of the user who sent the <apiname keyref="Metadata" />.</li>
-     <li>For the sender: Ignore this value.</li>
- </ul></p>
-  </pd>
-       </plentry>
-       <plentry props="windows">
-  <pt>size</pt>
-  <pd>The buffer size of the sent or received <apiname keyref="Metadata" />.</pd>
-       </plentry>
-       <plentry>
-  <pt>buffer</pt>
-  <pd>The buffer address of the sent or received <apiname keyref="Metadata" />.</pd>
-       </plentry>
-       <plentry>
-  <pt>timeStampMs</pt>
-  <pd>The timestamp (ms) of the <apiname keyref="Metadata" />.</pd>
-       </plentry>
-   </parml>
-        </section></refbody>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <parml>
+            <plentry>
+                <pt>uid</pt>
+                <pd>
+                    <p>User ID.
+                    
+                    <ul>
+                    <li>For the receiver: The user ID of the user who sent the <apiname keyref="Metadata" />.</li>
+                    <li>For the sender: Ignore this value.</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            <plentry props="cpp cs">
+                <pt>size</pt>
+                <pd>The buffer size of the sent or received <apiname keyref="Metadata" />.</pd>
+            </plentry>
+            <plentry>
+                <pt>buffer</pt>
+                <pd>The buffer address of the sent or received <apiname keyref="Metadata" />.</pd>
+            </plentry>
+            <plentry>
+                <pt>timeStampMs</pt>
+                <pd>The timestamp (ms) of the <apiname keyref="Metadata" />.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
 </reference>

@@ -1,36 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_ivideoframeobserver_getmirrorapplied">
-    <title><ph keyref="getMirrorApplied" /></title>
+    <title><ph keyref="getMirrorApplied"/></title>
     <shortdesc id="short"><ph id="shortdesc">Occurs each time the SDK receives a video frame and prompts you whether or not to mirror the captured video.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="getMirrorApplied" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="getMirrorApplied"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">boolean getMirrorApplied();</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)getMirrorApplied;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual bool getMirrorApplied() { return false; }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp" />
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
-        </p>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">boolean getMirrorApplied();</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)getMirrorApplied;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual bool getMirrorApplied() { return false; }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-   
-   <p>If the video data you want to obtain is a mirror image of the original video, you need to register this callback when calling <xref keyref="registerVideoFrameObserver" />. After you successfully register the video frame observer, the SDK triggers this callback each time it receives a video frame. You need to set whether or not to mirror the video frame in the return value of this callback.</p>
-   <note type="attention">This function only supports video data in RGBA and YUV420 formats.</note>
-        </section>
+            <p>If the video data you want to obtain is a mirror image of the original video, you need to register this callback when calling <xref keyref="registerVideoFrameObserver"/>. After you successfully register the video frame observer, the SDK triggers this callback each time it receives a video frame. You need to set whether or not to mirror the video frame in the return value of this callback.</p>
+            <note type="attention">This function only supports video data in RGBA and YUV420 formats.</note> </section>
         <section id="return_values">
-   <title>Returns</title>
-   <p>Sets whether or not to mirror the captured video:<ul>
-  <li><codeph><ph keyref="true" /></codeph>: Mirror the captured video.</li>
-  <li><codeph><ph keyref="false" /></codeph>: (Default) Do not mirror the captured video.</li>
-       </ul></p>
-        </section></refbody>
+            <title>Returns</title>
+            <p>Sets whether or not to mirror the captured video:
+            
+            <ul>
+            <li><codeph><ph keyref="true"/></codeph>: Mirror the captured video.</li>
+            <li><codeph><ph keyref="false"/></codeph>: (Default) Do not mirror the captured video.</li>
+            </ul></p>
+        </section>
+    </refbody>
 </reference>

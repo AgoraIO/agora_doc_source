@@ -10,54 +10,55 @@
             </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp">virtual int setDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript"/>
-                <codeblock props="unity" outputclass="language-csharp">public abstract int SetDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setDefaultAudioRoutetoSpeakerphone(bool defaultToSpeaker);</codeblock>
-        </p>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="cs" outputclass="language-csharp">public abstract int SetDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker);</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>该方法设置接收到的音频从听筒或扬声器出声。如果用户不调用本方法，音频默认从听筒出声。</p>
-            <p>各频道场景下默认的音频路由： <ul>
-                    <li>通信场景： <ul>
-                            <li>语音通话，默认从听筒出声。</li>
-                            <li>视频通话，默认从扬声器出声。如果有用户在频道中使用 <xref keyref="disableVideo"/> 、<xref keyref="muteLocalVideoStream"/> 或 <xref keyref="muteAllRemoteVideoStreams"/> 方法关闭视频，则语音路由会自动切换回听筒。</li>
-                        </ul></li>
-                    <li>直播场景：扬声器。</li>
-                </ul>
-            </p>
-            <note type="attention">
+            <p>各频道场景下默认的音频路由： 
+            
+            <ul>
+            <li>通信场景： 
+                
                 <ul>
-                    <li props="windows flutter">该方法仅适用于 Android 和 iOS 平台。</li>
-                    <li props="ios">该方法仅适用于 iOS 平台。</li>
-                    <li props="ios windows">在 iOS 平台上，该方法只在纯音频模式下工作，在有视频的模式下不工作。</li>
-                    <li>该方法需要在加入频道前设置，否则不生效。</li>
-                </ul>
-            </note>
-        </section>
-        <section id="parameters"><title>参数</title>
+                <li>语音通话，默认从听筒出声。</li>
+                <li>视频通话，默认从扬声器出声。如果有用户在频道中使用 <xref keyref="disableVideo"/> 、<xref keyref="muteLocalVideoStream"/> 或 <xref keyref="muteAllRemoteVideoStreams"/> 方法关闭视频，则语音路由会自动切换回听筒。</li>
+                </ul></li>
+            <li>直播场景：扬声器。</li>
+            </ul> </p>
+            <note type="attention">
+            <ul>
+            <li props="cpp flutter">该方法仅适用于 Android 和 iOS 平台。</li>
+            <li props="ios">该方法仅适用于 iOS 平台。</li>
+            <li props="ios cpp">在 iOS 平台上，该方法只在纯音频模式下工作，在有视频的模式下不工作。</li>
+            <li>该方法需要在加入频道前设置，否则不生效。</li>
+            </ul> </note> </section>
+        <section id="parameters">
+            <title>参数</title>
             <parml>
-                <plentry>
-                    <pt>defaultToSpeaker</pt>
-                    <pd>设置默认的音频路由: <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: 音频路由为外放（扬声器）。如果设备连接了耳机或蓝牙，则无法切换到外放。</li>
-                            <li><codeph><ph keyref="false"/></codeph>:（默认）音频路由为听筒。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-            </parml>
-        </section>
-        <section id="return_values" props="native electron unity">
+            <plentry>
+                <pt>defaultToSpeaker</pt>
+                <pd>设置默认的音频路由: 
+                    
+                    <ul>
+                    <li><codeph><ph keyref="true"/></codeph>: 音频路由为外放（扬声器）。如果设备连接了耳机或蓝牙，则无法切换到外放。</li>
+                    <li><codeph><ph keyref="false"/></codeph>:（默认）音频路由为听筒。</li>
+                    </ul> </pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron cs">
             <title>返回值</title>
             <ul>
-                <li>0: 方法调用成功。</li>
-                <li>&lt; 0: 方法调用失败。</li>
-            </ul>
-        </section>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。</li>
+            </ul> </section>
     </refbody>
 </reference>

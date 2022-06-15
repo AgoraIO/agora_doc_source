@@ -1,5 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+// ignore_for_file: non_constant_identifier_names, deprecated_member_use_from_same_package, unused_element
+
 part of 'classes.dart';
 
 // **************************************************************************
@@ -222,13 +224,12 @@ LiveTranscoding _$LiveTranscodingFromJson(Map<String, dynamic> json) =>
           $enumDecodeNullable(_$VideoFrameRateEnumMap, json['videoFramerate']),
       lowLatency: json['lowLatency'] as bool?,
       videoGop: json['videoGop'] as int?,
-      watermark: json['watermark'] == null
-          ? null
-          : AgoraImage.fromJson(json['watermark'] as Map<String, dynamic>),
-      backgroundImage: json['backgroundImage'] == null
-          ? null
-          : AgoraImage.fromJson(
-              json['backgroundImage'] as Map<String, dynamic>),
+      watermark: (json['watermark'] as List<dynamic>?)
+          ?.map((e) => AgoraImage.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      backgroundImage: (json['backgroundImage'] as List<dynamic>?)
+          ?.map((e) => AgoraImage.fromJson(e as Map<String, dynamic>))
+          .toList(),
       audioSampleRate: $enumDecodeNullable(
           _$AudioSampleRateTypeEnumMap, json['audioSampleRate']),
       audioBitrate: json['audioBitrate'] as int?,
@@ -238,8 +239,7 @@ LiveTranscoding _$LiveTranscodingFromJson(Map<String, dynamic> json) =>
           _$AudioCodecProfileTypeEnumMap, json['audioCodecProfile']),
       videoCodecProfile: $enumDecodeNullable(
           _$VideoCodecProfileTypeEnumMap, json['videoCodecProfile']),
-      backgroundColor:
-          _$ColorFromJson(json['backgroundColor'] as Map<String, dynamic>),
+      backgroundColor: json['backgroundColor'] as int?,
       videoCodecType: $enumDecodeNullable(
           _$VideoCodecTypeForStreamEnumMap, json['videoCodecType']),
       userConfigExtraInfo: json['userConfigExtraInfo'] as String?,
@@ -261,8 +261,10 @@ Map<String, dynamic> _$LiveTranscodingToJson(LiveTranscoding instance) {
       'videoFramerate', _$VideoFrameRateEnumMap[instance.videoFramerate]);
   writeNotNull('lowLatency', instance.lowLatency);
   writeNotNull('videoGop', instance.videoGop);
-  writeNotNull('watermark', instance.watermark?.toJson());
-  writeNotNull('backgroundImage', instance.backgroundImage?.toJson());
+  writeNotNull(
+      'watermark', instance.watermark?.map((e) => e.toJson()).toList());
+  writeNotNull('backgroundImage',
+      instance.backgroundImage?.map((e) => e.toJson()).toList());
   writeNotNull('audioSampleRate',
       _$AudioSampleRateTypeEnumMap[instance.audioSampleRate]);
   writeNotNull('audioBitrate', instance.audioBitrate);
@@ -271,7 +273,7 @@ Map<String, dynamic> _$LiveTranscodingToJson(LiveTranscoding instance) {
       _$AudioCodecProfileTypeEnumMap[instance.audioCodecProfile]);
   writeNotNull('videoCodecProfile',
       _$VideoCodecProfileTypeEnumMap[instance.videoCodecProfile]);
-  writeNotNull('backgroundColor', _$ColorToJson(instance.backgroundColor));
+  writeNotNull('backgroundColor', instance.backgroundColor);
   writeNotNull('videoCodecType',
       _$VideoCodecTypeForStreamEnumMap[instance.videoCodecType]);
   writeNotNull('userConfigExtraInfo', instance.userConfigExtraInfo);
@@ -1097,7 +1099,7 @@ VirtualBackgroundSource _$VirtualBackgroundSourceFromJson(
     VirtualBackgroundSource(
       backgroundSourceType: $enumDecodeNullable(
           _$VirtualBackgroundSourceTypeEnumMap, json['backgroundSourceType']),
-      color: _$ColorFromJson(json['color'] as Map<String, dynamic>),
+      color: json['color'] as int?,
       source: json['source'] as String?,
       blurDegree: $enumDecodeNullable(
               _$VirtualBackgroundBlurDegreeEnumMap, json['blur_degree']) ??
@@ -1116,7 +1118,7 @@ Map<String, dynamic> _$VirtualBackgroundSourceToJson(
 
   writeNotNull('backgroundSourceType',
       _$VirtualBackgroundSourceTypeEnumMap[instance.backgroundSourceType]);
-  writeNotNull('color', _$ColorToJson(instance.color));
+  writeNotNull('color', instance.color);
   writeNotNull('source', instance.source);
   val['blur_degree'] =
       _$VirtualBackgroundBlurDegreeEnumMap[instance.blurDegree];
@@ -1233,12 +1235,16 @@ Map<String, dynamic> _$MetadataToJson(Metadata instance) => <String, dynamic>{
 MediaRecorderConfiguration _$MediaRecorderConfigurationFromJson(
         Map<String, dynamic> json) =>
     MediaRecorderConfiguration(
-      json['storagePath'] as String,
-      $enumDecode(
-          _$AgoraMediaRecorderContainerFormatEnumMap, json['containerFormat']),
-      $enumDecode(_$AgoraMediaRecorderStreamTypeEnumMap, json['streamType']),
-      json['maxDurationMs'] as int,
-      json['recorderInfoUpdateInterval'] as int,
+      storagePath: json['storagePath'] as String?,
+      containerFormat: $enumDecodeNullable(
+              _$MediaRecorderContainerFormatEnumMap, json['containerFormat']) ??
+          MediaRecorderContainerFormat.MP4,
+      streamType: $enumDecodeNullable(
+              _$MediaRecorderStreamTypeEnumMap, json['streamType']) ??
+          MediaRecorderStreamType.Both,
+      maxDurationMs: json['maxDurationMs'] as int? ?? 120000,
+      recorderInfoUpdateInterval:
+          json['recorderInfoUpdateInterval'] as int? ?? 0,
     );
 
 Map<String, dynamic> _$MediaRecorderConfigurationToJson(
@@ -1246,20 +1252,21 @@ Map<String, dynamic> _$MediaRecorderConfigurationToJson(
     <String, dynamic>{
       'storagePath': instance.storagePath,
       'containerFormat':
-          _$AgoraMediaRecorderContainerFormatEnumMap[instance.containerFormat],
-      'streamType': _$AgoraMediaRecorderStreamTypeEnumMap[instance.streamType],
+          _$MediaRecorderContainerFormatEnumMap[instance.containerFormat],
+      'streamType': _$MediaRecorderStreamTypeEnumMap[instance.streamType],
       'maxDurationMs': instance.maxDurationMs,
       'recorderInfoUpdateInterval': instance.recorderInfoUpdateInterval,
     };
 
-const _$AgoraMediaRecorderContainerFormatEnumMap = {
-  AgoraMediaRecorderContainerFormat.MP4: 1,
+const _$MediaRecorderContainerFormatEnumMap = {
+  MediaRecorderContainerFormat.MP4: 1,
+  MediaRecorderContainerFormat.FLV: 2,
 };
 
-const _$AgoraMediaRecorderStreamTypeEnumMap = {
-  AgoraMediaRecorderStreamType.Audio: 1,
-  AgoraMediaRecorderStreamType.Video: 2,
-  AgoraMediaRecorderStreamType.Both: 3,
+const _$MediaRecorderStreamTypeEnumMap = {
+  MediaRecorderStreamType.Audio: 1,
+  MediaRecorderStreamType.Video: 2,
+  MediaRecorderStreamType.Both: 3,
 };
 
 RecorderInfo _$RecorderInfoFromJson(Map<String, dynamic> json) => RecorderInfo(
@@ -1273,4 +1280,128 @@ Map<String, dynamic> _$RecorderInfoToJson(RecorderInfo instance) =>
       'fileName': instance.fileName,
       'durationMs': instance.durationMs,
       'fileSize': instance.fileSize,
+    };
+
+LocalAccessPointConfiguration _$LocalAccessPointConfigurationFromJson(
+        Map<String, dynamic> json) =>
+    LocalAccessPointConfiguration(
+      ipList:
+          (json['ipList'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      domainList: (json['domainList'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+      verifyDomainName: json['verifyDomainName'] as String?,
+      mode: $enumDecodeNullable(_$LocalProxyModeEnumMap, json['mode']) ??
+          LocalProxyMode.ConnectivityFirst,
+    );
+
+Map<String, dynamic> _$LocalAccessPointConfigurationToJson(
+        LocalAccessPointConfiguration instance) =>
+    <String, dynamic>{
+      'ipList': instance.ipList,
+      'domainList': instance.domainList,
+      'verifyDomainName': instance.verifyDomainName,
+      'mode': _$LocalProxyModeEnumMap[instance.mode],
+    };
+
+const _$LocalProxyModeEnumMap = {
+  LocalProxyMode.ConnectivityFirst: 0,
+  LocalProxyMode.LocalOnly: 1,
+};
+
+LowLightEnhanceOptions _$LowLightEnhanceOptionsFromJson(
+        Map<String, dynamic> json) =>
+    LowLightEnhanceOptions(
+      mode: $enumDecodeNullable(_$LowLightEnhanceModeEnumMap, json['mode']) ??
+          LowLightEnhanceMode.Auto,
+      level:
+          $enumDecodeNullable(_$LowLightEnhanceLevelEnumMap, json['level']) ??
+              LowLightEnhanceLevel.HighQuality,
+    );
+
+Map<String, dynamic> _$LowLightEnhanceOptionsToJson(
+        LowLightEnhanceOptions instance) =>
+    <String, dynamic>{
+      'mode': _$LowLightEnhanceModeEnumMap[instance.mode],
+      'level': _$LowLightEnhanceLevelEnumMap[instance.level],
+    };
+
+const _$LowLightEnhanceModeEnumMap = {
+  LowLightEnhanceMode.Auto: 0,
+  LowLightEnhanceMode.Manual: 1,
+};
+
+const _$LowLightEnhanceLevelEnumMap = {
+  LowLightEnhanceLevel.HighQuality: 0,
+  LowLightEnhanceLevel.Fast: 1,
+};
+
+VideoDenoiserOptions _$VideoDenoiserOptionsFromJson(
+        Map<String, dynamic> json) =>
+    VideoDenoiserOptions(
+      mode: $enumDecodeNullable(_$VideoDenoiserModeEnumMap, json['mode']) ??
+          VideoDenoiserMode.Auto,
+      level: $enumDecodeNullable(_$VideoDenoiserLevelEnumMap, json['level']) ??
+          VideoDenoiserLevel.HighQuality,
+    );
+
+Map<String, dynamic> _$VideoDenoiserOptionsToJson(
+        VideoDenoiserOptions instance) =>
+    <String, dynamic>{
+      'mode': _$VideoDenoiserModeEnumMap[instance.mode],
+      'level': _$VideoDenoiserLevelEnumMap[instance.level],
+    };
+
+const _$VideoDenoiserModeEnumMap = {
+  VideoDenoiserMode.Auto: 0,
+  VideoDenoiserMode.Manual: 1,
+};
+
+const _$VideoDenoiserLevelEnumMap = {
+  VideoDenoiserLevel.HighQuality: 0,
+  VideoDenoiserLevel.Fast: 1,
+  VideoDenoiserLevel.Strength: 2,
+};
+
+ColorEnhanceOptions _$ColorEnhanceOptionsFromJson(Map<String, dynamic> json) =>
+    ColorEnhanceOptions(
+      strengthLevel: (json['strengthLevel'] as num?)?.toDouble() ?? 0.0,
+      skinProtectLevel: (json['skinProtectLevel'] as num?)?.toDouble() ?? 1.0,
+    );
+
+Map<String, dynamic> _$ColorEnhanceOptionsToJson(
+        ColorEnhanceOptions instance) =>
+    <String, dynamic>{
+      'strengthLevel': instance.strengthLevel,
+      'skinProtectLevel': instance.skinProtectLevel,
+    };
+
+ScreenCaptureInfo _$ScreenCaptureInfoFromJson(Map<String, dynamic> json) =>
+    ScreenCaptureInfo(
+      json['graphicsCardType'] as String,
+      $enumDecode(_$ExcludeWindowErrorEnumMap, json['errCode']),
+    );
+
+Map<String, dynamic> _$ScreenCaptureInfoToJson(ScreenCaptureInfo instance) =>
+    <String, dynamic>{
+      'graphicsCardType': instance.graphicsCardType,
+      'errCode': _$ExcludeWindowErrorEnumMap[instance.errCode],
+    };
+
+const _$ExcludeWindowErrorEnumMap = {
+  ExcludeWindowError.Fail: -1,
+  ExcludeWindowError.None: 0,
+};
+
+WlAccStats _$WlAccStatsFromJson(Map<String, dynamic> json) => WlAccStats(
+      json['e2eDelayPercent'] as int,
+      json['frozenRatioPercent'] as int,
+      json['lossRatePercent'] as int,
+    );
+
+Map<String, dynamic> _$WlAccStatsToJson(WlAccStats instance) =>
+    <String, dynamic>{
+      'e2eDelayPercent': instance.e2eDelayPercent,
+      'frozenRatioPercent': instance.frozenRatioPercent,
+      'lossRatePercent': instance.lossRatePercent,
     };

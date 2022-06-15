@@ -1,85 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onaudiomixingstatechanged">
-    <title><ph keyref="onAudioMixingStateChanged" /></title>
+    <title><ph keyref="onAudioMixingStateChanged"/></title>
     <shortdesc id="short"><ph id="shortdesc">Occurs when the playback state of the music file changes.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onAudioMixingStateChanged" />
+                <indexterm keyref="onAudioMixingStateChanged"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public void onAudioMixingStateChanged(int state,int reason)</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine
+            <codeblock props="android" outputclass="language-java">public void onAudioMixingStateChanged(int state,int reason)</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine
                     localAudioMixingStateDidChanged:(AgoraAudioMixingStateCode)state
                     reason:(AgoraAudioMixingReasonCode)reason;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual void onAudioMixingStateChanged(AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_REASON_TYPE reason)</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioMixingStateChanged(AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_REASON_TYPE reason)</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">on(
   evt: EngineEvents.AUDIO_MIXING_STATE_CHANGED,
   cb: (
     state: AUDIO_MIXING_STATE_TYPE,
     reason: AUDIO_MIXING_REASON_TYPE
   ) =&gt; void
 ): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioMixingStateChanged(AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_REASON_TYPE reason)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">AudioMixingStateCallback? audioMixingStateChanged;</codeblock>
-            </p>
+            <codeblock props="cs" outputclass="language-csharp">public virtual void OnAudioMixingStateChanged(AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_REASON_TYPE reason)</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">AudioMixingStateCallback? audioMixingStateChanged;</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
-                <dlentry props="native">
-                    <dt>Since</dt>
-                    <dd>v3.4.0</dd>
-                </dlentry>
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v3.4.0</dd>
+            </dlentry>
             </dl>
             <p>This callback occurs when the playback state of the music file changes, and reports the current state and error code.</p>
         </section>
-        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
-                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                    <pt />
-                    <pd />
-                </plentry>
-                <plentry>
-                    <pt>state</pt>
-                    <pd>The playback state of the music file. <ph props="ios mac windows">For details, see <xref keyref="AUDIO_MIXING_STATE_TYPE" />.</ph><p props="android">
-                            <ul>
-                                <li><ph keyref="AUDIO_MIXING_STATE_PLAYING" /> (710): The music file is playing.</li>
-                                <li><ph keyref="AUDIO_MIXING_STATE_PAUSED" /> (711): The music file pauses playing.</li>
-                                <li><ph keyref="AUDIO_MIXING_STATE_STOPPED" /> (713): The music file stops playing.</li>
-                                <li><ph keyref="AUDIO_MIXING_STATE_FAILED" /> (714): An exception occurs when playing the audio mixing file. The SDK
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry>
+                <pt>state</pt>
+                <pd>The playback state of the music file. <ph props="ios mac cpp cs">For details, see <xref keyref="AUDIO_MIXING_STATE_TYPE"/>.</ph>
+                    <p props="android">
+                    <ul>
+                    <li><ph keyref="AUDIO_MIXING_STATE_PLAYING"/> (710): The music file is playing.</li>
+                    <li><ph keyref="AUDIO_MIXING_STATE_PAUSED"/> (711): The music file pauses playing.</li>
+                    <li><ph keyref="AUDIO_MIXING_STATE_STOPPED"/> (713): The music file stops playing.</li>
+                    <li><ph keyref="AUDIO_MIXING_STATE_FAILED"/> (714): An exception occurs when playing the audio mixing file. The SDK
                                         returns the reasons for the error in the <codeph>reason</codeph> parameter.</li>
-                                <li><ph keyref="AUDIO_MIXING_STATE_COMPLETED" />(715):
+                    <li><ph keyref="AUDIO_MIXING_STATE_COMPLETED"/>(715):
                                     The music file is played once.</li>
-                                <li><ph keyref="AUDIO_MIXING_STATE_ALL_LOOPS_COMPLETED" /> (716):
+                    <li><ph keyref="AUDIO_MIXING_STATE_ALL_LOOPS_COMPLETED"/> (716):
                                     The music file is all played out.</li>
-                            </ul>
-                        </p></pd>
-                </plentry>
-                <plentry>
-                    <pt>reason</pt>
-                    <pd>The reason why the playback state of the music file changes. <ph props="ios mac windows">For details, see <xref keyref="AUDIO_MIXING_REASON_TYPE" />.</ph><p props="android">
-                            <ul>
-                                <li><ph keyref="AUDIO_MIXING_REASON_CAN_NOT_OPEN" /> 701: The SDK cannot open the music file. For example, the local music file does not exist, the SDK does not support the file format, or the the SDK cannot access the music file URL.</li>
-                                <li><ph keyref="AUDIO_MIXING_REASON_TOO_FREQUENT_CALL" /> 702: The SDK opens the music file too frequently. If you need to call this method multiple times, ensure that the time interval between calling this method is more than 500 ms.</li>
-                                <li><ph keyref="AUDIO_MIXING_REASON_INTERRUPTED_EOF" /> (703): The music file playback is interrupted.</li>
-                                <li><ph keyref="AUDIO_MIXING_REASON_STARTED_BY_USER" /> (720): The music file plays by calling <apiname keyref="startAudioMixing2" />.</li>
-                                <li><ph keyref="AUDIO_MIXING_REASON_ONE_LOOP_COMPLETED" />(721): The music file completes a loop playback.</li>
-                                <li><ph keyref="AUDIO_MIXING_REASON_START_NEW_LOOP" /> (722): The music file starts a new loop playback.</li>
-                                <li><ph keyref="AUDIO_MIXING_REASON_ALL_LOOPS_COMPLETED" /> (723): The music file completes all loop playback. .</li>
-                                <li><ph keyref="AUDIO_MIXING_REASON_STOPPED_BY_USER" /> (724): The music file stops playing by calling <xref keyref="stopAudioMixing" />. .</li>
-                                <li><ph keyref="AUDIO_MIXING_REASON_PAUSED_BY_USER" /> (725): The music file pauses playing by calling <xref keyref="pauseAudioMixing" />. .</li>
-                                <li><ph keyref="AUDIO_MIXING_REASON_RESUMED_BY_USER" /> (726): The music file resumes playing by calling <xref keyref="resumeAudioMixing" />. .</li>
-                            </ul>
-                        </p>
-                    </pd>
-                </plentry>
-            </parml>
-        </section>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>reason</pt>
+                <pd>The reason why the playback state of the music file changes. <ph props="ios mac cpp cs">For details, see <xref keyref="AUDIO_MIXING_REASON_TYPE"/>.</ph>
+                    <p props="android">
+                    <ul>
+                    <li><ph keyref="AUDIO_MIXING_REASON_CAN_NOT_OPEN"/> 701: The SDK cannot open the music file. For example, the local music file does not exist, the SDK does not support the file format, or the the SDK cannot access the music file URL.</li>
+                    <li><ph keyref="AUDIO_MIXING_REASON_TOO_FREQUENT_CALL"/> 702: The SDK opens the music file too frequently. If you need to call this method multiple times, ensure that the time interval between calling this method is more than 500 ms.</li>
+                    <li><ph keyref="AUDIO_MIXING_REASON_INTERRUPTED_EOF"/> (703): The music file playback is interrupted.</li>
+                    <li><ph keyref="AUDIO_MIXING_REASON_STARTED_BY_USER"/> (720): The music file plays by calling <apiname keyref="startAudioMixing2"/>.</li>
+                    <li><ph keyref="AUDIO_MIXING_REASON_ONE_LOOP_COMPLETED"/>(721): The music file completes a loop playback.</li>
+                    <li><ph keyref="AUDIO_MIXING_REASON_START_NEW_LOOP"/> (722): The music file starts a new loop playback.</li>
+                    <li><ph keyref="AUDIO_MIXING_REASON_ALL_LOOPS_COMPLETED"/> (723): The music file completes all loop playback. .</li>
+                    <li><ph keyref="AUDIO_MIXING_REASON_STOPPED_BY_USER"/> (724): The music file stops playing by calling <xref keyref="stopAudioMixing"/>. .</li>
+                    <li><ph keyref="AUDIO_MIXING_REASON_PAUSED_BY_USER"/> (725): The music file pauses playing by calling <xref keyref="pauseAudioMixing"/>. .</li>
+                    <li><ph keyref="AUDIO_MIXING_REASON_RESUMED_BY_USER"/> (726): The music file resumes playing by calling <xref keyref="resumeAudioMixing"/>. .</li>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

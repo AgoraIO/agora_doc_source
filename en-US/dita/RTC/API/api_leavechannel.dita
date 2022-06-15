@@ -5,57 +5,56 @@
     <shortdesc id="short"><ph id="shortdesc">Leaves a channel.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="leaveChannel" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="leaveChannel" />
+            </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public abstract int leaveChannel();</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (int)leaveChannel:(void(^ _Nullable)(AgoraChannelStats * _Nonnull stat))leaveChannelBlock;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual int leaveChannel() = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">leaveChannel(): number</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public abstract int LeaveChannel();</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; leaveChannel();</codeblock>
-            </p>
+            <codeblock props="android" outputclass="language-java">public abstract int leaveChannel();</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)leaveChannel:(void(^ _Nullable)(AgoraChannelStats * _Nonnull stat))leaveChannelBlock;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int leaveChannel() = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">leaveChannel(): number</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public abstract int LeaveChannel();</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; leaveChannel();</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>This method releases all resources related to the session. This method call is asynchronous. When this method returns, it does not necessarily mean that the user has left the channel.</p>
             <p props="rtc">After joining the channel, you must call this method to end the call; otherwise, you cannot join the next call.</p>
             <p props="rtc-ng">After joining the channel, you must call this method or <apiname keyref="leaveChannel2" /> to end the call; otherwise, you cannot join the next call.</p>
-            <p>A successful call of this method triggers the following callbacks:<ul id="ul_enf_q2p_lpb">
-                    <li>The local client: <xref keyref="onLeaveChannel" />.</li>
-                <li>The remote client: <xref keyref="onUserOffline" />, if the user joining the channel is in the Communication profile, or is a host in the Live-broadcasting profile.</li>
-                </ul></p>
+            <p>A successful call of this method triggers the following callbacks:
+            
+            <ul id="ul_enf_q2p_lpb">
+            <li>The local client: <xref keyref="onLeaveChannel" />.</li>
+            <li>The remote client: <xref keyref="onUserOffline" />, if the user joining the channel is in the Communication profile, or is a host in the Live-broadcasting profile.</li>
+            </ul></p>
             <note type="attention" id="note">
-                <ul>
-                    <li>If you call <xref keyref="release" /> immediately after calling this method, the SDK does not trigger the <apiname keyref="onLeaveChannel" /> callback.</li>
-                    <li>If you call this method during a CDN live streaming, the SDK automatically calls the <xref keyref="removePublishStreamUrl" /> method.</li>
-                </ul>
-            </note>
-        </section>
+            <ul>
+            <li>If you call <xref keyref="release" /> immediately after calling this method, the SDK does not trigger the <apiname keyref="onLeaveChannel" /> callback.</li>
+            <li>If you call this method during a CDN live streaming, the SDK automatically calls the <xref keyref="removePublishStreamUrl" /> method.</li>
+            </ul> </note> </section>
         <section props="ios mac" id="parameters">
             <title>Parameters</title>
             <parml>
-                <plentry conkeyref="leaveChannel2/leavechannelblock">
-                    <pt />
-                    <pd />
-                </plentry>
-            </parml>
-        </section>
-        <section id="return_values" props="native electron unity">
+            <plentry conkeyref="leaveChannel2/leavechannelblock">
+                <pt />
+                <pd />
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron cs">
             <title>Returns</title>
             <ul>
-                <li>0(ERR_OK): Success.</li>
-                <li>&lt; 0: Failure.<ul>
-                        <li>-1(ERR_FAILED): A general error occurs (no specified reason).</li>
-                        <li>-2 (ERR_INVALID_ARGUMENT): The parameter is invalid.</li>
-                        <li>-7(ERR_NOT_INITIALIZED): The SDK is not initialized.</li>
-                    </ul></li>
-            </ul>
-        </section>
+            <li>0(ERR_OK): Success.</li>
+            <li>&lt; 0: Failure.
+                
+                <ul>
+                <li>-1(ERR_FAILED): A general error occurs (no specified reason).</li>
+                <li>-2 (ERR_INVALID_ARGUMENT): The parameter is invalid.</li>
+                <li>-7(ERR_NOT_INITIALIZED): The SDK is not initialized.</li>
+                </ul></li>
+            </ul> </section>
     </refbody>
 </reference>

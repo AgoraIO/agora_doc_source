@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<a:authorAction xmlns:a="http://www.oxygenxml.com/ns/author/external-action"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.oxygenxml.com/ns/author/external-action http://www.oxygenxml.com/ns/author/external-action/authorAction.xsd"
+  id="listitem">
+  <a:name>${i18n(listitem)}</a:name>
+  <a:description>${i18n(listitem_description)}</a:description>
+  <a:smallIconPath href="/images/ListItem16.png"/>
+  <a:largeIconPath href="/images/ListItem24.png"/>
+  <a:operations>
+    <a:operation id="InsertFragmentOperation">
+      <a:xpathCondition>self::object</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><param name="">${caret}</param></a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="InsertFragmentOperation">
+      <a:xpathCondition>parent::object</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><param name="">${caret}</param></a:argument>
+        <a:argument name="insertLocation">.</a:argument>
+        <a:argument name="insertPosition">After</a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="InsertFragmentOperation">
+      <a:xpathCondition>self::param</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><param name="">${caret}</param></a:argument>
+        <a:argument name="insertLocation">.</a:argument>
+        <a:argument name="insertPosition">After</a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="InsertFragmentOperation">
+      <a:xpathCondition>self::data</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><data>${caret}</data></a:argument>
+        <a:argument name="insertLocation">.</a:argument>
+        <a:argument name="insertPosition">After</a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="InsertFragmentOperation">
+      <a:xpathCondition>ancestor-or-self::*[contains(@class," task/substep ") or contains(@class," topic/ul ") or contains(@class," topic/ol ")][1][contains(@class," task/substep ")]</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><substep><cmd/></substep></a:argument>
+        <a:argument name="insertLocation">ancestor-or-self::*[contains(@class," task/substep ")][1]</a:argument>
+        <a:argument name="insertPosition">After</a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="InsertFragmentOperation">
+      <a:xpathCondition>self::*[contains(@class," task/substeps ")]</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><substep><cmd/></substep></a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="InsertFragmentOperation">
+      <a:xpathCondition>ancestor-or-self::*[contains(@class," task/step ") or contains(@class," topic/ul ") or contains(@class," topic/ol ")][1][contains(@class," task/step ")]</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><step><cmd/></step></a:argument>
+        <a:argument name="insertLocation">ancestor-or-self::*[contains(@class," task/step ")][1]</a:argument>
+        <a:argument name="insertPosition">After</a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="InsertFragmentOperation">
+      <a:xpathCondition>self::*[contains(@class," task/steps ") or contains(@class," task/steps-unordered ")]</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><step><cmd/></step></a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="InsertFragmentOperation">
+      <a:xpathCondition>ancestor-or-self::*[contains(@class," topic/dd pr-d/pd ")] |  ancestor-or-self::*[contains(@class," topic/dt pr-d/pt ")] | ancestor-or-self::*[contains(@class," topic/dlentry pr-d/plentry ")]</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><plentry>
+ <pt/>
+ <pd/>
+</plentry></a:argument>
+        <a:argument name="insertLocation">ancestor-or-self::*[contains(@class," topic/dlentry pr-d/plentry ")][1]
+</a:argument>
+        <a:argument name="insertPosition">After</a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="SurroundWithFragmentOperation">
+      <a:xpathCondition>self::*[contains(@class," topic/dl pr-d/parml ")]</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><plentry>
+ <pt/>
+ <pd/>
+</plentry></a:argument>
+        <a:argument name="schemaAware">true</a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="InsertFragmentOperation">
+      <a:xpathCondition>ancestor-or-self::*[contains(@class," topic/dd ")] |  ancestor-or-self::*[contains(@class," topic/dt ")] | ancestor-or-self::*[contains(@class," topic/dlentry ")]</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><dlentry>
+<dt/>
+<dd/>
+</dlentry></a:argument>
+        <a:argument name="insertLocation">ancestor-or-self::*[contains(@class," topic/dlentry ")][1]
+</a:argument>
+        <a:argument name="insertPosition">After</a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="SurroundWithFragmentOperation">
+      <a:xpathCondition>self::*[contains(@class," topic/dl ")]</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><dlentry>
+<dt/>
+<dd/>
+</dlentry></a:argument>
+        <a:argument name="schemaAware">true</a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="InsertFragmentOperation">
+      <a:xpathCondition>ancestor-or-self::*[contains(@class," task/li taskreq-d/reqcond ")]</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><reqcond/></a:argument>
+        <a:argument name="insertLocation">ancestor-or-self::*[contains(@class," task/li taskreq-d/reqcond ")][1]</a:argument>
+        <a:argument name="insertPosition">After</a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="SurroundWithFragmentOperation">
+      <a:xpathCondition>self::*[contains(@class," task/ol taskreq-d/reqconds ")]</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><reqcond/></a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="InsertFragmentOperation">
+      <a:xpathCondition>ancestor-or-self::*[contains(@class," task/li taskreq-d/supply ")]</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><supply/></a:argument>
+        <a:argument name="insertLocation">ancestor-or-self::*[contains(@class," task/li taskreq-d/supply ")][1]</a:argument>
+        <a:argument name="insertPosition">After</a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="SurroundWithFragmentOperation">
+      <a:xpathCondition>self::*[contains(@class," task/ul taskreq-d/supplyli ")]</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><supply/></a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="InsertFragmentOperation">
+      <a:xpathCondition>ancestor-or-self::*[contains(@class," task/li taskreq-d/spare ")]</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><spare/></a:argument>
+        <a:argument name="insertLocation">ancestor-or-self::*[contains(@class," task/li taskreq-d/spare ")][1]</a:argument>
+        <a:argument name="insertPosition">After</a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="SurroundWithFragmentOperation">
+      <a:xpathCondition>self::*[contains(@class," task/ul taskreq-d/sparesli ")]</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><spare/></a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="InsertFragmentOperation">
+      <a:xpathCondition>ancestor-or-self::*[contains(@class," task/li taskreq-d/safecond ")]</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><safecond/></a:argument>
+        <a:argument name="insertLocation">ancestor-or-self::*[contains(@class," task/li taskreq-d/safecond ")][1]</a:argument>
+        <a:argument name="insertPosition">After</a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="SurroundWithFragmentOperation">
+      <a:xpathCondition>self::*[contains(@class," task/ol taskreq-d/safety ")]</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><safecond/></a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="InsertFragmentOperation">
+      <a:xpathCondition>ancestor-or-self::*[contains(@class," topic/li ") or contains(@class," topic/ul ") or contains(@class," topic/sli ") or contains(@class," topic/sl ")][1][contains(@class," topic/li ")]</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><li/></a:argument>
+        <a:argument name="insertLocation">ancestor-or-self::*[contains(@class," topic/li ")][1]</a:argument>
+        <a:argument name="insertPosition">After</a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="InsertFragmentOperation">
+      <a:xpathCondition>ancestor-or-self::*[contains(@class," topic/sli ")]</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><sli/></a:argument>
+        <a:argument name="insertLocation">ancestor-or-self::*[contains(@class," topic/sli ")][1]</a:argument>
+        <a:argument name="insertPosition">After</a:argument>
+        <a:argument name="schemaAware">false</a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="SurroundWithFragmentOperation">
+      <a:xpathCondition>self::*[contains(@class," topic/sl ")]</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><sli/></a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="SurroundWithFragmentOperation">
+      <a:xpathCondition>self::*[contains(@class," topic/ul ")] | self::*[contains(@class," topic/ol ")]</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><li/></a:argument>
+      </a:arguments>
+    </a:operation>
+  </a:operations>
+  <a:accelerator>M1 M2 I</a:accelerator>
+  <a:accessKey>I</a:accessKey>
+  <a:enabledInReadOnlyContext>false</a:enabledInReadOnlyContext>
+</a:authorAction>

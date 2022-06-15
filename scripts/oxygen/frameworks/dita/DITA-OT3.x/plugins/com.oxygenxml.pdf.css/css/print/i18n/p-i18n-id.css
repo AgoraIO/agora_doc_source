@@ -1,0 +1,99 @@
+@charset "UTF-8";
+	  			
+	  			
+	  				
+	
+/*
+
+I18N file for id    	
+
+*/
+
+/* Title in the Index page */
+*[class ~= "index/groups"]:lang(id):before {
+  content: "Indeks";
+}
+*[class ~= "index/groups"]:lang(id) {
+  bookmark-label:"Indeks";  
+  -ah-bookmark-label:"Indeks";  
+}
+
+	  			
+	  			
+	  				  	
+	
+
+/* Title of the TOC page */
+*[class ~= "toc/title"][empty]:lang(id):before {
+	content: "Daftar Isi";
+}
+
+/* This string is used in the TOC page header. */
+*[class ~= "toc/title"]:lang(id) {
+  string-set: toc-header "Daftar Isi";
+}
+  	
+/* Titles in the TOC. */
+*[class ~= "map/topicref"][is-part] > *[class ~= "map/topicmeta"] > *[class ~= "topic/navtitle"]:lang(id):before{
+  content: "Bagian " counter(toc-part, upper-roman) "" ". ";
+}
+
+*[class ~= "map/topicref"][is-chapter]:not([is-part]) > *[class ~= "map/topicmeta"] > *[class ~= "topic/navtitle"]:lang(id):before{
+  content: "Bab " counter(toc-chapter) "" ". ";
+}
+*[class ~= "bookmap/appendices"] > *[class ~= "map/topicmeta"] > *[class ~= "topic/navtitle"]:lang(id):before,
+*[class ~= "bookmap/appendix"][is-part] > *[class ~= "map/topicmeta"] > *[class ~= "topic/navtitle"]:lang(id):before{
+  content: none !important;
+}
+*[class ~= "bookmap/appendix"][is-chapter]:not([is-part]) > *[class ~= "map/topicmeta"] > *[class ~= "topic/navtitle"]:lang(id):before{
+  content: "Apendiks " counter(toc-chapter, upper-latin) "" ". ";
+}
+
+/* Titles in the content. */
+*[class ~= "topic/topic"][is-part] > *[class ~= "topic/title"]:lang(id):before {
+ content: "Bagian " counter(part, upper-roman) "" ". ";
+}
+*[class ~= "topic/topic"][is-chapter]:not([is-part]) > *[class ~= "topic/title"]:lang(id):before {
+  content: "Bab " counter(chapter) "" ". ";
+}
+*[class ~= "topic/topic"][is-part][topicrefclass ~= "bookmap/appendices"] > *[class ~= "topic/title"]:lang(id):before,
+*[class ~= "topic/topic"][is-chapter]:not([is-part])[topicrefclass ~= "bookmap/appendices"] > *[class ~= "topic/title"]:lang(id):before,
+*[class ~= "topic/topic"][is-part][topicrefclass ~= "bookmap/appendix"] > *[class ~= "topic/title"]:lang(id):before {
+  content: none;
+}
+*[class ~= "topic/topic"][is-chapter][topicrefclass ~= "bookmap/appendix"]:not([is-part]) > *[class ~= "topic/title"]:lang(id):before {
+  content: "Apendiks " counter(chapter, upper-latin) "" ". ";
+}
+
+/* Figures */  
+*[class ~= "topic/fig"] > *[class ~= "topic/title"]:lang(id):before {
+  content: "Gambar " counter(figcount) "" ": ";
+}
+
+/* Tables */
+*[class ~= "topic/table"] > *[class ~= "topic/title"]:lang(id):before {
+  content: "Tabel " counter(tablecount) "" ": ";
+}
+
+/* Links. */
+*[class ~= "map/map"] *[class ~= "topic/xref"][href]:lang(id):after,
+*[class ~= "map/map"] *[class ~= "topic/link"][href]:lang(id):after {
+  content: " (pada halaman " target-counter(attr(href), page) ")";
+}
+
+/* Links when having chapter scope numbering */
+*[class ~= "map/map"][numbering='deep-chapter-scope'] *[class ~= "topic/xref"][href]:lang(id):after,
+*[class ~= "map/map"][numbering='deep-chapter-scope'] *[class ~= "topic/link"][href]:lang(id):after {
+  content: " (pada halaman " target-counter(attr(href), chapter) "." target-counter(attr(href), page) ")";
+}
+
+	  			
+				  
+					  	
+	
+*[class~="topic/table"] > *[class~="topic/title"][data-is-repeated]:lang(id):after(2) {
+    content: " " "";
+}
+
+			  		
+	  		

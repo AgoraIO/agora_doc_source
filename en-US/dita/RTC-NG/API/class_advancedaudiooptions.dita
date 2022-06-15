@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_advancedaudiooptions">
+  <title><ph keyref="AdvancedAudioOptions" /></title>
+  <shortdesc id="short"><ph id="shortdesc">The advanced options for audio.</ph></shortdesc>
+  <refbody>
+    <section id="prototype">
+      <p outputclass="codeblock">
+      <codeblock props="android" outputclass="language-java">public class AdvancedAudioOptions {
+  public enum AgoraAudioProcessChannels {
+    AGORA_AUDIO_MONO_PROCESSING(1),
+    AGORA_AUDIO_STEREO_PROCESSING(2);
+    private int value;
+    private AgoraAudioProcessChannels(int v) {
+      value = v;
+    }
+    public int getValue() {
+      return this.value;
+    }
+  }
+  public AgoraAudioProcessChannels audioProcessingChannels;
+
+  public AdvancedAudioOptions(AgoraAudioProcessChannels channels) {
+    audioProcessingChannels = channels;
+  }
+
+  public AdvancedAudioOptions() {
+    audioProcessingChannels = AgoraAudioProcessChannels.AGORA_AUDIO_MONO_PROCESSING;
+  }
+}</codeblock>
+      <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAdvancedAudioOptions: NSObject
+@property(assign, nonatomic) AgoraAudioProcessChannels audioProcessingChannels;
+@end</codeblock>
+      <codeblock props="cpp" outputclass="language-cpp">struct AdvancedAudioOptions {
+  AUDIO_PROCESSING_CHANNELS audioProcessingChannels;
+  AdvancedAudioOptions(): audioProcessingChannels(AUDIO_PROCESSING_MONO) {}
+};</codeblock>
+      <codeblock props="electron" outputclass="language-typescript" />
+      <codeblock props="unity" outputclass="language-csharp" />
+      <codeblock props="rn" outputclass="language-typescript" />
+      <codeblock props="flutter" outputclass="language-dart" /> </p>
+    </section>
+    <section id="parameters">
+      <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+      <parml>
+      <plentry>
+        <pt>audioProcessingChannels</pt>
+        <pd>The number of channels for audio preprocessing. See <xref keyref="AUDIO_PROCESSING_CHANNELS" /> for details.</pd>
+      </plentry>
+      </parml> </section>
+  </refbody>
+</reference>

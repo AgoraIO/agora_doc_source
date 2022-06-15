@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setremoteuserpriority">
+     <title>
+          <ph keyref="setRemoteUserPriority" />
+     </title>
+     <shortdesc id="short">
+          <ph id="shortdesc">设置远端用户媒体流的优先级。</ph>
+     </shortdesc>
+     <prolog>
+          <metadata>
+               <keywords>
+                    <indexterm keyref="setRemoteUserPriority" />
+               </keywords>
+          </metadata>
+     </prolog>
+     <refbody><section id="prototype">
+         <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract int setRemoteUserPriority(int uid, int userPriority);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec" />
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setRemoteUserPriority(uid_t uid, PRIORITY_TYPE userPriority) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">setRemoteUserPriority(uid: number, userPriority: PRIORITY_TYPE)</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetRemoteUserPriority(uint uid, PRIORITY_TYPE userPriority);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRemoteUserPriority(int uid, UserPriority userPriority);</codeblock>
+         </p>
+          </section>
+          <section id="detailed_desc">
+               <p>设置远端用户的优先级。如果将某个用户的优先级设为高，那么发给这个用户的音视频流的优先级就会高于其他用户。弱网下 SDK 会优先保证高优先级用户收到的流的质量。</p>
+               <note type="attention">
+                    <ul>
+                         <li>目前 Agora SDK 仅允许将一名远端用户设为高优先级。</li>
+                         <li>该方法需要在加入频道前调用。</li>
+                    </ul>
+               </note>
+          </section>
+          <section id="parameters">
+               <title>参数</title>
+               <parml>
+                    <plentry>
+                         <pt>uid</pt>
+                         <pd>远端用户的 ID。</pd>
+                    </plentry>
+                    <plentry>
+                         <pt>userPriority</pt>
+                         <pd><p>远端用户的需求优先级。<ph props="ios mac cpp unity">详见 <xref keyref="PRIORITY_TYPE"/>。</ph>
+                         <ul props="android">
+                    <li><ph keyref="PRIORITY_HIGH"/>：用户需求优先级为高。</li>
+                    <li><ph keyref="PRIORITY_NORMAL"/>：（默认）用户需求优先级为正常。</li>
+                         </ul></p>
+                         </pd>
+                    </plentry>
+               </parml>
+          </section>
+          <section id="return_values" props="native unity electron">
+               <title>返回值</title>
+               <ul>
+                    <li>0: 方法调用成功</li>
+                    <li>&lt; 0: 方法调用失败</li>
+               </ul>
+          </section>
+     </refbody>
+</reference>

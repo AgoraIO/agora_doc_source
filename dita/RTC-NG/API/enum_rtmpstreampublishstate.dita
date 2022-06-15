@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_rtmpstreampublishstate">
+    <title><ph keyref="RTMP_STREAM_PUBLISH_STATE"/></title>
+    <shortdesc id="short"><ph id="shortdesc">推流状态。</ph></shortdesc>
+    <refbody>
+        <section id="parameters">
+            <title>枚举值</title>
+            <parml>
+            <plentry>
+                <pt><ph keyref="RTMP_STREAM_PUBLISH_STATE_IDLE"/></pt>
+                <pd>0：推流未开始或已结束。成功调用 <xref keyref="removePublishStreamUrl"/> 方法删除推流地址后，也会返回该状态。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="RTMP_STREAM_PUBLISH_STATE_CONNECTING"/></pt>
+                <pd>1：正在连接 Agora 推流服务器和 CDN 服务器。调用 <xref keyref="addPublishStreamUrl"/> 方法后，会返回该状态。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="RTMP_STREAM_PUBLISH_STATE_RUNNING"/></pt>
+                <pd>2：推流正在进行。成功推流后，会返回该状态。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="RTMP_STREAM_PUBLISH_STATE_RECOVERING"/></pt>
+                <pd>
+                    <p>3：正在恢复推流。当 CDN 出现异常，或推流短暂中断时，SDK 会自动尝试恢复推流，并返回该状态。</p>
+                    <ul>
+                    <li>如成功恢复推流，则进入状态 <ph keyref="RTMP_STREAM_PUBLISH_STATE_RUNNING"/>(2)。</li>
+                    <li>如服务器出错或 60 秒内未成功恢复，则进入状态 <ph keyref="RTMP_STREAM_PUBLISH_STATE_FAILURE"/>(4)。如果觉得 60 秒太长，也可以主动调用 <xref keyref="removePublishStreamUrl"/> 和 <xref keyref="addPublishStreamUrl"/> 方法尝试重连。</li>
+                    </ul> </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="RTMP_STREAM_PUBLISH_STATE_FAILURE"/></pt>
+                <pd>4：推流失败。失败后，你可以通过返回的错误码排查错误原因，也可以再次调用 <xref keyref="addPublishStreamUrl"/> 重新尝试推流。</pd>
+            </plentry>
+            <plentry props="native">
+                <pt><ph keyref="RTMP_STREAM_PUBLISH_STATE_DISCONNECTING"/></pt>
+                <pd>5：SDK 正在与 Agora 推流服务器和 CDN 服务器断开连接。 当你调用 <xref keyref="removePublishStreamUrl"/> 或 <xref keyref="stopRtmpStream"/> 方法正常结束推流时，SDK 会依次报告推流状态为 <apiname keyref="RTMP_STREAM_PUBLISH_STATE_DISCONNECTING"/>、<apiname keyref="RTMP_STREAM_PUBLISH_STATE_IDLE"/>。</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

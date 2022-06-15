@@ -12,44 +12,47 @@
     </prolog>
     <refbody>
         <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="cs" outputclass="language-csharp">public abstract void RegisterAudioFrameObserver(IAgoraRtcMediaPlayerAudioFrameObserver observer, RAW_AUDIO_FRAME_OP_MODE_TYPE mode);</codeblock> </p>
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">int registerAudioFrameObserver(IMediaPlayerAudioFrameObserver audioFrameObserver, int mode);
+            <codeblock props="android" outputclass="language-java">int registerAudioFrameObserver(IMediaPlayerAudioFrameObserver audioFrameObserver, int mode);
 </codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp">virtual int registerAudioFrameObserver(media::base::IAudioFrameObserver observer, RAW_AUDIO_FRAME_OP_MODE_TYPE mode) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript"/>
-                <codeblock props="unity" outputclass="language-csharp"/>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int registerAudioFrameObserver(media::base::IAudioFrameObserver observer, RAW_AUDIO_FRAME_OP_MODE_TYPE mode) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters">
+            <title>参数</title>
             <parml>
-                <plentry>
-                    <pt props="android">audioFrameObserver</pt>
-                    <pt props="windows">observer</pt>
-                    <pd><p>音频帧观测器，观测每帧音频的接收，详见 <xref keyref="IMediaPlayerAudioFrameObserver" props="android"/><xref keyref="IAudioFrameObserver" props="windows"/>。</p></pd>
-                </plentry>
-                <plentry>
-                    <pt>mode</pt>
-                    <pd><p props="windows">音频帧的使用模式，详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</p>
-                        <p props="android" id="mode">音频帧的使用模式：
-                        <ul>
-                            <li><ph keyref="RAW_AUDIO_FRAME_OP_MODE_READ_ONLY"/> (0): 只读模式。例如: 若用户通过 Agora SDK 采集数据，自己进行 RTMP 推流，则可以选择该模式。</li>
-                            <li props="rtc"><ph keyref="RAW_AUDIO_FRAME_OP_MODE_WRITE_ONLY"/> (1): 只写模式，例如: 若用户自行采集数据，可选择该模式。</li>
-                            <li><ph keyref="RAW_AUDIO_FRAME_OP_MODE_READ_WRITE"/> (2): 读写模式。例如：若用户自己有音效处理模块，且想要根据实际需要对数据进行前处理 (例如变声)，则可以选择该模式。</li>
-                        </ul>
-                    </p>
-                    </pd>
-                </plentry>
-            </parml>
-        </section>
+            <plentry>
+                <pt props="android">audioFrameObserver</pt>
+                <pt props="cpp cs">observer</pt>
+                <pd>
+                    <p><ph>音频帧观测器，观测每帧音频的接收，详见 <xref keyref="IMediaPlayerAudioFrameObserver" props="android"/><xref keyref="IAudioFrameObserver" props="cpp cs"/>。</ph></p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>mode</pt>
+                <pd>
+                    <p props="cpp cs">音频帧的使用模式，详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</p>
+                    <p props="android" id="mode">音频帧的使用模式：
+                    
+                    
+                    <ul>
+                    <li><ph keyref="RAW_AUDIO_FRAME_OP_MODE_READ_ONLY"/> (0): 只读模式。例如: 若用户通过 Agora SDK 采集数据，自己进行 RTMP 推流，则可以选择该模式。</li>
+                    <li props="rtc"><ph keyref="RAW_AUDIO_FRAME_OP_MODE_WRITE_ONLY"/> (1): 只写模式，例如: 若用户自行采集数据，可选择该模式。</li>
+                    <li><ph keyref="RAW_AUDIO_FRAME_OP_MODE_READ_WRITE"/> (2): 读写模式。例如：若用户自己有音效处理模块，且想要根据实际需要对数据进行前处理 (例如变声)，则可以选择该模式。</li>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            </parml> </section>
         <section id="return_values">
             <title>返回值</title>
             <ul id="ul_uns_l2y_hqb">
-                <li>0: 方法调用成功。</li>
-                <li>&lt; 0: 方法调用失败。</li>
-            </ul>
-        </section>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。</li>
+            </ul> </section>
     </refbody>
 </reference>

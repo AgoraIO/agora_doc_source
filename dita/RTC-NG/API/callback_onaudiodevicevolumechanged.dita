@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_onaudiodevicevolumechanged">
+    <title><ph keyref="onAudioDeviceVolumeChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc">回放、音频采集设备或 App 的音量发生改变。</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="onAudioDeviceVolumeChanged"/>
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioDeviceVolumeChanged(MEDIA_DEVICE_TYPE deviceType,
+    int volume,
+    bool muted) {
+    (void)deviceType;
+    (void)volume;
+    (void)muted;
+    }</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.AUDIO_DEVICE_VOLUME_CHANGED, cb: (
+    deviceType: MEDIA_DEVICE_TYPE,
+    volume: number,
+    muted: boolean) =&gt; void
+    ): this;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioDeviceVolumeChanged(MEDIA_DEVICE_TYPE deviceType, int volume, bool muted)</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">AudioDeviceVolumeChanged? audioDeviceVolumeChanged;</codeblock>
+        </p>
+        </section>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+   <parml>
+       <plentry>
+  <pt>deviceType</pt>
+  <pd>设备类型定义。详见 <xref keyref="MEDIA_DEVICE_TYPE"/>。</pd>
+       </plentry>
+       <plentry>
+  <pt>volume</pt>
+  <pd>音量。范围为 [0,255]。</pd>
+       </plentry>
+       <plentry>
+  <pt>muted</pt>
+  <pd><p>音频设备是否为静音状态：
+  <ul>
+      <li><codeph><ph keyref="true"/></codeph>: 音频设备已静音。</li>
+      <li><codeph><ph keyref="false"/></codeph>: 音频设备未被静音。</li>
+  </ul></p></pd>
+       </plentry>
+   </parml>
+        </section>
+</refbody>
+</reference>

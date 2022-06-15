@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_rendererconfig">
+    <title><ph keyref="RendererConfig" /></title>
+    <shortdesc id="short"><ph id="shortdesc">The video renderer configuration.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java" />
+                <codeblock props="ios mac" outputclass="language-objectivec" />
+                <codeblock props="cpp" outputclass="language-cpp" />
+                <codeblock props="electron" outputclass="language-typescript">export interface RendererConfig {
+                    user: User;
+                    view: Element | undefined;
+                    rendererOptions?: RendererOptions;
+                    channelId?: Channel;
+                    fps?: number;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
+            </p>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <parml>
+                <plentry>
+                    <pt>user</pt>
+                    <pd>The user of the video. See <xref keyref="User" />.</pd>
+                </plentry>
+                <plentry>
+                    <pt>view</pt>
+                    <pd>Dom for rendering video. Leave this parameter empty to destroy the video renderer.</pd>
+                </plentry>
+                <plentry>
+                    <pt>rendererOptions</pt>
+                    <pd>Video rendering options. See <xref keyref="RendererOptions" />.</pd>
+                </plentry>
+                <plentry>
+                    <pt>channelId</pt>
+                    <pd>The ID of the channel in which the video is rendered. For details, see <xref keyref="Channel" />. You only need to set this parameter in multi-channel scenarios.</pd>
+                </plentry>
+                <plentry>
+                    <pt>fps</pt>
+                    <pd>The capture frame rate (fps) of the local video. The parameter cannot exceed 30.</pd>
+                </plentry>
+            </parml>
+        </section></refbody>
+</reference>

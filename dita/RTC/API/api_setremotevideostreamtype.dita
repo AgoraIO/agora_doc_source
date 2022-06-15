@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setremotevideostreamtype">
-     <title>
-          <ph keyref="setRemoteVideoStreamType"/>
-     </title>
-     <shortdesc id="short">
-          <ph id="shortdesc">设置订阅的视频流类型。</ph>
-     </shortdesc>
+     <title> <ph keyref="setRemoteVideoStreamType"/> </title>
+     <shortdesc id="short"> <ph id="shortdesc">设置订阅的视频流类型。</ph> </shortdesc>
      <prolog>
           <metadata>
                <keywords>
@@ -14,22 +10,21 @@
                </keywords>
           </metadata>
      </prolog>
-     <refbody><section id="prototype">
-          <p outputclass="codeblock" props="rtc-ng">
-               <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteVideoStreamType(uid_t uid, VIDEO_STREAM_TYPE streamType) = 0;</codeblock>
-          </p>
-          <p outputclass="codeblock" props="rtc">
-               <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteVideoStreamType(uid_t userId, REMOTE_VIDEO_STREAM_TYPE streamType) = 0;</codeblock>
-          </p>
-          <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public abstract int setRemoteVideoStreamType(int uid, int streamType);</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (int)setRemoteVideoStream:(NSUInteger)uid
+     <refbody>
+          <section id="prototype">
+               <p outputclass="codeblock" props="rtc-ng">
+               <codeblock props="cpp" outputclass="language-cpp">virtual int setRemoteVideoStreamType(uid_t uid, VIDEO_STREAM_TYPE streamType) = 0;</codeblock>
+               <codeblock props="cs" outputclass="language-csharp">public abstract int SetRemoteVideoStreamType(uint uid, VIDEO_STREAM_TYPE streamType);</codeblock> </p>
+               <p outputclass="codeblock" props="rtc">
+               <codeblock props="cpp" outputclass="language-cpp">virtual int setRemoteVideoStreamType(uid_t userId, REMOTE_VIDEO_STREAM_TYPE streamType) = 0;</codeblock>
+               <codeblock props="cs" outputclass="language-csharp">public abstract int SetRemoteVideoStreamType(uint userId, REMOTE_VIDEO_STREAM_TYPE streamType);</codeblock></p>
+               <p outputclass="codeblock">
+               <codeblock props="android" outputclass="language-java">public abstract int setRemoteVideoStreamType(int uid, int streamType);</codeblock>
+               <codeblock props="ios mac" outputclass="language-objectivec">- (int)setRemoteVideoStream:(NSUInteger)uid
                        type:(AgoraVideoStreamType)streamType;</codeblock>
                <codeblock props="electron" outputclass="language-typescript">setRemoteVideoStreamType(userId: number, streamType: REMOTE_VIDEO_STREAM_TYPE): number</codeblock>
-               <codeblock props="unity" outputclass="language-csharp">public abstract int SetRemoteVideoStreamType(uint userId, REMOTE_VIDEO_STREAM_TYPE streamType);</codeblock>
                <codeblock props="rn" outputclass="language-typescript"/>
-               <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRemoteVideoStreamType(int userId, VideoStreamType streamType);</codeblock>
-         </p>
+               <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRemoteVideoStreamType(int userId, VideoStreamType streamType);</codeblock> </p>
           </section>
           <section id="detailed_desc">
                <p id="desc1">
@@ -41,40 +36,41 @@
                </p>
                <note type="attention">
                     该方法在加入频道前后都能调用。如果既调用了 <apiname keyref="setRemoteVideoStreamType"/> ，也调用了 <xref keyref="setRemoteDefaultVideoStreamType"/> ，则 SDK 以 <apiname keyref="setRemoteVideoStreamType"/> 中的设置为准。
-               </note>
-          </section>
+               </note> </section>
           <section id="parameters">
                <title>参数</title>
                <parml>
-                    <plentry props="rtc-ng">
-                         <pt>uid</pt>
-                         <pd>用户 ID。</pd>
-                    </plentry>
-                    <plentry props="rtc">
-                         <pt props="android ios mac">uid</pt>
-                         <pt props="windows electron unity flutter">userId</pt>
-                         <pd>用户 ID。</pd>
-                    </plentry>
-                    <plentry>
-                         <pt>streamType</pt>
-                         <pd>
-                              <p props="ios mac windows electron unity flutter">视频流类型: <xref keyref="REMOTE_VIDEO_STREAM_TYPE"/> 。</p>
-                              <p props="android">视频流类型：
-                                   <ul>
-                                        <li>0：视频大流。</li>
-                                        <li>1：视频小流。</li>
-                                   </ul>
-                              </p>
-                         </pd>
-                    </plentry>
-               </parml>
-          </section>
-          <section id="return_values" props="native unity electron">
+               <plentry props="rtc-ng">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
+               </plentry>
+               <plentry props="rtc">
+                    <pt props="android ios mac">uid</pt>
+                    <pt props="cpp electron cs flutter">userId</pt>
+                    <pd>用户 ID。</pd>
+               </plentry>
+               <plentry>
+                    <pt>streamType</pt>
+                    <pd>
+                         <p props="ios mac cpp electron cs flutter">视频流类型: <xref keyref="REMOTE_VIDEO_STREAM_TYPE"/> 。</p>
+                         <p props="android">视频流类型：
+                                   
+                         
+                         
+                         
+                         
+                         <ul>
+                         <li>0：视频大流。</li>
+                         <li>1：视频小流。</li>
+                         </ul> </p>
+                    </pd>
+               </plentry>
+               </parml> </section>
+          <section id="return_values" props="native cs electron">
                <title>返回值</title>
                <ul>
-                    <li>0: 方法调用成功</li>
-                    <li>&lt; 0: 方法调用失败</li>
-               </ul>
-          </section>
+               <li>0: 方法调用成功</li>
+               <li>&lt; 0: 方法调用失败</li>
+               </ul> </section>
      </refbody>
 </reference>

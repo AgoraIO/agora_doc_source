@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_iaudioframeobserverbase_onplaybackaudioframe">
+    <title><ph keyref="onPlaybackAudioFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Gets the audio frame for playback.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPlaybackAudioFrame"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnPlaybackAudioFrame(AudioFrame audio_frame)
+        {
+            return true;
+        }</codeblock>
+            <codeblock props="android" outputclass="language-java">public abstract boolean onPlaybackAudioFrame(int type, int samplesPerChannel, int bytesPerSample,
+      int channels, int samplesPerSec, ByteBuffer buffer, long renderTimeMs, int avsync_type);
+</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onPlaybackAudioFrame:(AgoraAudioFrame* _Nonnull)frame;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual bool onPlaybackAudioFrame(AudioFrame&amp; audioFrame) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <note type="note">If you want to set the format of the audio frame for playback, Agora recommends that you call the <xref keyref="setPlaybackAudioFrameParameters"/> method to set the format of the audio frame after calling the <xref keyref="registerAudioFrameObserver"/> method to register an audio frame observer. </note>
+        </section>
+        <section id="parameters" conkeyref="onMixedAudioFrame/parameters"/>
+        <section id="return_values" conkeyref="onMixedAudioFrame/return_values"/>
+    </refbody>
+</reference>

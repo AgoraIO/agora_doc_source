@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_onvirtualbackgroundsourceenabled">
+    <title><ph keyref="onVirtualBackgroundSourceEnabled"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Reports whether virtual background is successfully enabled. (Beta feature)</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onVirtualBackgroundSourceEnabled" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java" />
+                <codeblock props="ios mac" outputclass="language-objectivec" />
+                <codeblock props="cpp" outputclass="language-cpp" />
+                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnVirtualBackgroundSourceEnabled(bool enabled,
+            VIRTUAL_BACKGROUND_SOURCE_STATE_REASON reason)</codeblock>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">VirtualBackgroundSourceEnabledCallback? virtualBackgroundSourceEnabled;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since" props="rtc">
+                <dlentry>
+                    <dt>Since</dt>
+                    <dd>v3.5.0</dd>
+                </dlentry>
+            </dl>
+            <p>After you call <xref keyref="enableVirtualBackground"/>, the SDK triggers this callback to report whether virtual background is successfully enabled.</p>
+            <note type="note">If the background image customized in the virtual background is in the PNG or JPG format, this callback is triggered after the image is read.</note>
+        </section>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <parml>
+                <plentry>
+                    <pt>enabled</pt>
+                    <pd>Whether virtual background is successfully enabled:<ul>
+                        <li><ph keyref="true"/>: Virtual background is successfully enabled.</li>
+                        <li><ph keyref="false"/>: Virtual background is not successfully enabled.</li>
+                    </ul></pd>
+                </plentry>
+                <plentry>
+                    <pt>reason</pt>
+                    <pd>The reason why virtual background is not successfully enabled. See <xref keyref="VIRTUAL_BACKGROUND_SOURCE_STATE_REASON" />.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

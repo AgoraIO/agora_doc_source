@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_onclientrolechangefailed">
+    <title>
+        <ph keyref="onClientRoleChangeFailed" />
+    </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">直播场景下切换用户角色失败回调。</ph>
+    </shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript" />
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <p>直播场景下，本地用户加入频道后调用 <xref keyref="setClientRole2"/> 切换用户角色失败时，SDK 会触发该回调，报告切换失败的原因和当前的用户角色。</p>
+        </section>
+        <section id="parameters">
+            <title>
+                <ph keyref="callback-section-title" />
+            </title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn" />
+            <parml>
+                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                    <pt />
+                    <pd />
+                </plentry>
+                <plentry id="reason">
+                    <pt>reason</pt>
+                    <pd>切换用户角色失败的原因。详见 <xref keyref="CLIENT_ROLE_CHANGE_FAILED_REASON"/>。</pd>
+                </plentry>
+                <plentry id="currentRole">
+                    <pt>currentRole</pt>
+                    <pd>当前的用户角色。详见 <xref keyref="CLIENT_ROLE_TYPE"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

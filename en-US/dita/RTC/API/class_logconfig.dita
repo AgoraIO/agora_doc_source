@@ -6,22 +6,21 @@
     <refbody>
         <section id="prototype">
             <p props="rtc-ng" outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public static class LogConfig {
+            <codeblock props="android" outputclass="language-java">public static class LogConfig {
     public String filePath;
     public int fileSizeInKB;
     public int level = Constants.LogLevel.getValue(Constants.LogLevel.LOG_LEVEL_INFO);
   }</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLogConfig: NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLogConfig: NSObject
 @property (copy, nonatomic) NSString * _Nullable filePath;
 @property (assign, nonatomic) NSInteger fileSizeInKB;
 @property (assign, nonatomic) AgoraLogLevel level;
 @end
-</codeblock>
-            </p>
+</codeblock> </p>
             <p props="rtc" outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="windows unity" outputclass="language-cpp">struct LogConfig {
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="cpp" outputclass="language-cpp">struct LogConfig {
     const char* filePath;
     int fileSize;
     LOG_LEVEL level;
@@ -31,13 +30,33 @@
     ,level(LOG_LEVEL::LOG_LEVEL_INFO)
     {}
     };</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">export interface LogConfig {
+            <codeblock props="cs" outputclass="language-csharp">public class LogConfig
+    {
+        public LogConfig()
+        {
+            filePath = null;
+            fileSize = -1;
+            level = LOG_LEVEL.LOG_LEVEL_INFO;
+        }
+
+        public LogConfig(string filePath, int fileSize = 1024, LOG_LEVEL level = LOG_LEVEL.LOG_LEVEL_INFO)
+        {
+            this.filePath = filePath;
+            this.fileSize = fileSize;
+            this.level = level;
+        }
+
+        public string filePath { set; get; }
+        public int fileSize { set; get; }
+        public LOG_LEVEL level { set; get; }
+    };</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export interface LogConfig {
     filePath: string,
     fileSize: number,
     level: LOG_LEVEL
     }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">class LogConfig {
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">class LogConfig {
   @JsonKey(includeIfNull: false)
   String? filePath;
 
@@ -57,67 +76,70 @@
       _$LogConfigFromJson(json);
 
   Map&lt;String, dynamic&gt; toJson() =&gt; _$LogConfigToJson(this);
-}</codeblock>
-            </p>
+}</codeblock> </p>
         </section>
         <section id="detailed_desc">
-   
-   <dl outputclass="since" props="rtc">
-       <dlentry props="native">
-  <dt>Since</dt>
-  <dd>v3.3.0</dd>
-       </dlentry>
-   </dl>
+            <dl outputclass="since" props="rtc">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v3.3.0</dd>
+            </dlentry>
+            </dl>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
-   <parml>
-       <plentry>
-  <pt>filePath</pt>
-  <pd>
-      <p>The absolute or relative path of the log file, which ends with \ or /. Ensure that the path for the log file exists and is writable. You can use this parameter to rename the log files.</p>
-                        <p props="windows electron rn">The default file path is:<ul>
-                                <li props="windows rn">Android: <filepath id="android-path">/storage/emulated/0/Android/data/&lt;package
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <parml>
+            <plentry>
+                <pt>filePath</pt>
+                <pd>
+                    <p>The absolute or relative path of the log file, which ends with \ or /. Ensure that the path for the log file exists and is writable. You can use this parameter to rename the log files.</p>
+                    <p props="cpp electron rn">The default file path is:
+                    
+                    <ul>
+                    <li props="cpp rn">Android: <filepath id="android-path">/storage/emulated/0/Android/data/&lt;package
                                         name&gt;/files/agorasdk.log/</filepath>.</li>
-                                <li props="windows rn">iOS: <filepath id="ios-path">App
+                    <li props="cpp rn">iOS: <filepath id="ios-path">App
                                         Sandbox/Library/caches/agorasdk.log</filepath>.</li>
-                                <li props="windows electron">macOS:<ul id="mac-path">
-                                        <li>If Sandbox is enabled: <filepath>App
+                    <li props="cpp electron">macOS:
+                        
+                        <ul id="mac-path">
+                        <li>If Sandbox is enabled: <filepath>App
                                                 Sandbox/Library/Logs/agorasdk.log/</filepath>. For example, 
 <filepath>                                                /Users/&lt;username&gt;/Library/Containers/&lt;App
                                                 Bundle
                                                 Identifier&gt;/Data/Library/Logs/agorasdk.log/</filepath>.</li>
-                                        <li>If Sandbox is disabled:
+                        <li>If Sandbox is disabled:
 <filepath>                                            ~/Library/Logs/agorasdk.log</filepath></li>
-                                    </ul></li>
-                                <li props="windows electron">Windows
+                        </ul></li>
+                    <li props="cpp electron">Windows
                                          <filepath>C: \Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\agorasdk.log</filepath>.</li>
-                            </ul></p>
-                        <p props="android">The default file path is:
+                    </ul></p>
+                    <p props="android">The default file path is:
 <filepath>                                /storage/emulated/0/Android/data/&lt;package
                                 name&gt;/files/agorasdk.log/</filepath>.</p>
-                        <p props="ios">The default path is <filepath>App
+                    <p props="ios">The default path is <filepath>App
                                 Sandbox/Library/caches/agorasdk.log</filepath>.</p>
-                        <p props="mac">The default file path is:<ul>
-                                        <li>If Sandbox is enabled: <filepath>App
+                    <p props="mac">The default file path is:
+                    
+                    <ul>
+                    <li>If Sandbox is enabled: <filepath>App
                                         Sandbox/Library/Logs/agorasdk.log/</filepath>. For example, 
 <filepath>                                        /Users/&lt;username&gt;/Library/Containers/&lt;App
                                         Bundle
                                         Identifier&gt;/Data/Library/Logs/agorasdk.log/</filepath>.</li>
-                                        <li>If Sandbox is disabled: <filepath>~/Library/Logs/agorasdk.log</filepath></li>
-                            </ul>
-                        </p>
-                    </pd>
-       </plentry>
-       <plentry>
-  <pt props="windows unity flutter">fileSize</pt>
-           <pt props="android ios mac">fileSizeInKB</pt>
-  <pd>The size (KB) of a log file. The default value is 2014 KB. If you set <parmname>fileSize</parmname> to 1024 KB, the maximum aggregate size of the log files output by the SDK is 5 MB. If you set <parmname>fileSize</parmname> to less than 1024 KB, the setting is invalid, and the maximum size of a log file is still 1024 KB.</pd>
-       </plentry>
-       <plentry>
-  <pt>level</pt>
-  <pd>The output level of the SDK log file. See <xref keyref="LOG_LEVEL" />.</pd>
-       </plentry>
-   </parml>
-        </section></refbody>
+                    <li>If Sandbox is disabled: <filepath>~/Library/Logs/agorasdk.log</filepath></li>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt props="cpp cs flutter">fileSize</pt>
+                <pt props="android ios mac">fileSizeInKB</pt>
+                <pd>The size (KB) of a log file. The default value is 2014 KB. If you set <parmname>fileSize</parmname> to 1024 KB, the maximum aggregate size of the log files output by the SDK is 5 MB. If you set <parmname>fileSize</parmname> to less than 1024 KB, the setting is invalid, and the maximum size of a log file is still 1024 KB.</pd>
+            </plentry>
+            <plentry>
+                <pt>level</pt>
+                <pd>The output level of the SDK log file. See <xref keyref="LOG_LEVEL" />.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
 </reference>

@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onremoteaudiostatechanged">
-     <title>
-          <ph keyref="onRemoteAudioStateChanged"/>
-     </title>
-     <shortdesc id="short">
-          <ph id="shortdesc">远端音频流状态发生改变回调。</ph>
-     </shortdesc>
+     <title> <ph keyref="onRemoteAudioStateChanged"/> </title>
+     <shortdesc id="short"> <ph id="shortdesc">远端音频流状态发生改变回调。</ph> </shortdesc>
      <prolog>
           <metadata>
                <keywords>
@@ -14,13 +10,19 @@
                </keywords>
           </metadata>
      </prolog>
-     <refbody><section id="prototype">
-         <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public void onRemoteAudioStateChanged(
+     <refbody>
+          <section id="prototype">
+               <p outputclass="codeblock" props="rtc-ng">
+               <codeblock props="cs" outputclass="language-csharp">public virtual void OnRemoteAudioStateChanged(RtcConnection connection, uint remoteUid, REMOTE_AUDIO_STATE state, REMOTE_AUDIO_STATE_REASON reason, int elapsed) {}</codeblock> </p>
+               <p outputclass="codeblock" props="rtc">
+               <codeblock props="cs" outputclass="language-csharp">public virtual void OnRemoteAudioStateChanged(uint uid, REMOTE_AUDIO_STATE state,
+            REMOTE_AUDIO_STATE_REASON reason, int elapsed)</codeblock></p>
+               <p outputclass="codeblock">
+               <codeblock props="android" outputclass="language-java">public void onRemoteAudioStateChanged(
      int uid, REMOTE_AUDIO_STATE state, REMOTE_AUDIO_STATE_REASON reason, int elapsed) {}</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+               <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
      remoteAudioStateChangedOfUid:(NSUInteger)uid state:(AgoraAudioRemoteState)state reason:(AgoraAudioRemoteReason)reason elapsed:(NSInteger)elapsed;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteAudioStateChanged(uid_t uid,
+               <codeblock props="cpp" outputclass="language-cpp">virtual void onRemoteAudioStateChanged(uid_t uid,
      REMOTE_AUDIO_STATE state,
      REMOTE_AUDIO_STATE_REASON reason,
      int elapsed) {
@@ -29,52 +31,53 @@
      (void)reason;
      (void)elapsed;
      }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.REMOTE_AUDIO_STATE_CHANGED, cb: (
+               <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.REMOTE_AUDIO_STATE_CHANGED, cb: (
      uid: number,
      state: REMOTE_AUDIO_STATE,
      reason: REMOTE_AUDIO_STATE_REASON,
      elapsed: number
      ) =&gt; void): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteAudioStateChanged(uint uid, REMOTE_AUDIO_STATE state,
-            REMOTE_AUDIO_STATE_REASON reason, int elapsed)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart">RemoteAudioStateCallback? remoteAudioStateChanged;</codeblock>
-         </p>
+               <codeblock props="rn" outputclass="language-typescript"/>
+               <codeblock props="flutter" outputclass="language-dart">RemoteAudioStateCallback? remoteAudioStateChanged;</codeblock> </p>
           </section>
           <section id="detailed_desc">
                <dl outputclass="since" props="rtc">
-                    <dlentry props="native">
-                        <dt>自从</dt>
-                        <dd>v2.9.0</dd>
-                    </dlentry>
-                </dl>
+               <dlentry props="native">
+                    <dt>自从</dt>
+                    <dd>v2.9.0</dd>
+               </dlentry>
+               </dl>
                <p id="desc">远端用户（通信场景）或主播（直播场景）的音频状态发生改变时，SDK 会触发该回调向本地用户报告当前的远端音频流状态。</p>
-               <note id="note" type="attention">频道内的用户（通信场景）或主播（直播场景）人数超过 17 人时，该回调可能不准确。</note>
-          </section>
+               <note id="note" type="attention">频道内的用户（通信场景）或主播（直播场景）人数超过 17 人时，该回调可能不准确。</note> </section>
           <section id="parameters">
-               <title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+               <title><ph keyref="callback-section-title"/></title>
+               <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
                <parml>
-                    <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                         <pt/>
-                         <pd/>
-                    </plentry>
-                    <plentry id="uid">
-                         <pt>uid</pt>
-                         <pd>发生音频状态改变的远端用户 ID。</pd>
-                    </plentry>
-                    <plentry id="state">
-                         <pt>state</pt>
-                         <pd> 远端音频流状态，详见 <xref keyref="REMOTE_AUDIO_STATE"/>。</pd>
-                    </plentry>
-                    <plentry id="reason">
-                         <pt>reason</pt>
-                         <pd> 远端音频流状态改变的具体原因，详见 <xref keyref="REMOTE_AUDIO_STATE_REASON"/>。</pd>
-                    </plentry>
-                    <plentry>
-                         <pt>elapsed</pt>
-                         <pd> 从本地用户调用 <apiname keyref="joinChannel2"/> 方法到发生本事件经历的时间，单位为毫秒。</pd>
-                    </plentry>
-               </parml>
-          </section>
+               <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                    <pt/>
+                    <pd/>
+               </plentry>
+               <plentry props="rtc-ng">
+                    <pt props="cs">connection</pt>
+                    <pd props="cs">Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+               </plentry>
+               <plentry id="uid">
+                    <pt props="native electron flutter">uid</pt>
+                    <pt props="cs"><ph props="rtc">uid</ph><ph props="rtc-ng">remoteUid</ph></pt>
+                    <pd>发生音频状态改变的远端用户 ID。</pd>
+               </plentry>
+               <plentry id="state">
+                    <pt>state</pt>
+                    <pd> 远端音频流状态，详见 <xref keyref="REMOTE_AUDIO_STATE"/>。</pd>
+               </plentry>
+               <plentry id="reason">
+                    <pt>reason</pt>
+                    <pd> 远端音频流状态改变的具体原因，详见 <xref keyref="REMOTE_AUDIO_STATE_REASON"/>。</pd>
+               </plentry>
+               <plentry>
+                    <pt>elapsed</pt>
+                    <pd> 从本地用户调用 <apiname keyref="joinChannel2"/> 方法到发生本事件经历的时间，单位为毫秒。</pd>
+               </plentry>
+               </parml> </section>
      </refbody>
 </reference>
