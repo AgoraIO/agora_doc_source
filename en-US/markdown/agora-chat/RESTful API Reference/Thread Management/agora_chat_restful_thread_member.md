@@ -9,7 +9,7 @@ This page shows how to manage thread members by calling the Agora Chat RESTful A
 | Parameter | Type | Description | Required |
 |:----------|:-----|:------------|:---------|
 | `host` | String | The domain name assigned by the Agora Chat service to access RESTful APIs. For how to get the domain name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
-| `org_name` | String | The unique identifier assigned to each company (organization) by the Agora Chat service. For how to get the org name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
+| `org_name` | String | The unique identifier assigned to each company (organization) by the Agora Chat service. For how to get the organization name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
 | `app_name` | String | The unique identifier assigned to each app by the Agora Chat service. For how to get the app name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
 
 ### Response parameters <a name="response"></a>
@@ -35,12 +35,12 @@ Agora Chat RESTful APIs require Bearer HTTP authentication. Every time an HTTP r
 Authorization: Bearer ${YourAppToken}
 ```
 
-The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. In order to improve the security of the project, Agora uses a token (dynamic key) to authenticate users before they log into the chat system. The Agora Chat RESTful API only supports authenticating users using app tokens. For details, see [Authentication using App Token](./generate_app_tokens).
+The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. In order to improve the security of the project, Agora uses a token (dynamic key) to authenticate users before they log in to the chat system. The Agora Chat RESTful API only supports authenticating users using app tokens. For details, see [Authentication using App Token](./generate_app_tokens).
 
 
 ## Retrieving thread members
 
-Retrieves the member list of the specified thread.
+Retrieves all the members in the specified thread.
 
 For each App Key, the call frequency limit of this method is 100 per second.
 
@@ -55,24 +55,24 @@ GET https://{host}/{org_name}/{app_name}/thread/{thread_id}/users?limit={N}&curs
 | Parameter | Type | Description | Required |
 |:------------|:-------|:-----|:-----------|
 | `thread_id` | String | The ID of the thread. | Yes |
-| `limit` | String | The maximum number of threads to retrieve with pagination. The range is [1, 50]. The default value is 50. | No |
-| `cursor` | String | The current pagination from which to start retrieving threads. Pass in `null` or an empty string at the first query. | No |
+| `limit` | String | The maximum number of threads to retrieve per page. The range is [1, 50]. The default value is 50. | No |
+| `cursor` | String | The page from which to start retrieving threads. Pass in `null` or an empty string at the first query. | No |
 
 For the descriptions of the other path parameters, see [Common Parameters](#request).
 
 #### Request header
 
-For the descriptions of request headers, see [Authorization](#auth).
+For the descriptions of the request headers, see [Authorization](#auth).
 
 ### HTTP response
 
 #### Response body
 
-If the returned HTTP status code is `200`, the request succeeds, and the data field in the response body contains the following parameters.
+If the returned HTTP status code is `200`, the request succeeds, and the data field in the response body contains the following parameters:
 
 | Parameter      | Type           | Description |
 | :------- |:-------------|:-------------|
-| `affiliations` | List | The usernames of thread members. | 
+| `affiliations` | List | The usernames of the members in the thread. | 
 
 For other fields and descriptions, see [Common parameters](#response).
 
@@ -128,13 +128,13 @@ For the descriptions of the other path parameters, see [Common Parameters](#requ
 
 #### Request header
 
-For the descriptions of request headers, see [Authorization](#auth).
+For the descriptions of the request headers, see [Authorization](#auth).
 
 #### Request body
 
 | Parameter | Type | Description | Required |
 |:------------|:-------|:-----|:-----------|
-| `usernames` | List | The usernames of thread members. | Yes |
+| `usernames` | List | The usernames of the members in the thread. | Yes |
 
 ### HTTP response
 
@@ -195,24 +195,24 @@ For the descriptions of the other path parameters, see [Common Parameters](#requ
 
 #### Request header
 
-For the descriptions of request headers, see [Authorization](#auth).
+For the descriptions of the request headers, see [Authorization](#auth).
 
 #### Request body
 
 | Parameter | Type | Description | Required |
 |:------------|:-------|:-----|:-----------|
-| `usernames` | List | The usernames of thread members. | Yes |
+| `usernames` | List | The usernames of the members in the thread. | Yes |
 
 ### HTTP response
 
 #### Response body
 
-If the returned HTTP status code is `200`, the request succeeds, and the data field in the response body contains the following parameters.
+If the returned HTTP status code is `200`, the request succeeds, and the data field in the response body contains the following parameters:
 
 | Parameter      | Type           | Description |
 | :------- |:-------------|:-------------|
 | `result` | Bool | Whether the specified thread member is removed from the thread:<li>`true`: Yes.<li>`false`: No.| 
-| `user` | List | The usernames of thread members. | 
+| `user` | List | The usernames of the members in the thread. | 
 
 For other fields and descriptions, see [Common parameters](#response).
 

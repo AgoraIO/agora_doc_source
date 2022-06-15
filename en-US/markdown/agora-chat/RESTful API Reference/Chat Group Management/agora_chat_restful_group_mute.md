@@ -44,7 +44,7 @@ In order to improve the security of the project, Agora uses a token (dynamic key
 
 ## Muting a chat group member
 
-Adds a chat group member to the group mute list. Once muted, members cannot send messages in the chat group and in all threads within the chat group.
+Adds a chat group member to the group mute list. Once muted, members cannot send messages in the chat group or in any threads within the chat group.
 
 ### HTTP request
 
@@ -122,7 +122,7 @@ curl -X POST -H 'Content-type: application/json' -H 'Accept: application/json' -
 
 ## Unmuting a chat group member
 
-Removes the specified user from the chat group mute list. Once removed from the mute list, users, can send messages in the chat group and in threads within the chat group.
+Removes the specified user from the chat group mute list. Once removed from the mute list, a member can once again send messages in the chat group and in the threads within the chat group.
 
 ### HTTP request
 
@@ -259,7 +259,7 @@ curl -X GET -H 'Accept: application/json' 'http://XXXX/XXXX/XXXX/chatgroups/1013
 
 ## Muting all chat group members
 
-This method mutes all the chat group members. If this method call succeeds, none of the chat group members can send messages in the chat group and in all threads within the chat group, except those in the group [allow list](./agora_chat_restful_group_allowlist?platform=RESTful).
+This method mutes all the chat group members. If this method call succeeds, none of the chat group members can send messages in the chat group or in any threads within the chat group, except those in the group [allow list](./agora_chat_restful_group_allowlist?platform=RESTful).
 
 ### HTTP request
 
@@ -331,7 +331,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 ## Unmuting all chat group members
 
-This method unmutes all the chat group members. Once unmuted, the chat group members resume the privilege to send messages in the chat group and in threads within the chat group.
+This method unmutes all the chat group members. Once unmuted, the chat group members can once again send messages in the chat group and in the threads within the chat group.
 
 ### HTTP request
 

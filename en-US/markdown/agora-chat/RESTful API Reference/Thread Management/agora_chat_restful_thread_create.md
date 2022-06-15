@@ -9,7 +9,7 @@ This page shows how to create, modify, delete, and retrieve a thread by calling 
 | Parameter | Type | Description | Required |
 |:----------|:-----|:------------|:---------|
 | `host` | String | The domain name assigned by the Agora Chat service to access RESTful APIs. For how to get the domain name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
-| `org_name` | String | The unique identifier assigned to each company (organization) by the Agora Chat service. For how to get the org name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
+| `org_name` | String | The unique identifier assigned to each company (organization) by the Agora Chat service. For how to get the organization name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
 | `app_name` | String | The unique identifier assigned to each app by the Agora Chat service. For how to get the app name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
 
 ### Response parameters <a name="response"></a>
@@ -35,7 +35,7 @@ Agora Chat RESTful APIs require Bearer HTTP authentication. Every time an HTTP r
 Authorization: Bearer ${YourAppToken}
 ```
 
-The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. In order to improve the security of the project, Agora uses a token (dynamic key) to authenticate users before they log into the chat system. The Agora Chat RESTful API only supports authenticating users using app tokens. For details, see [Authentication using App Token](./generate_app_tokens).
+The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. In order to improve the security of the project, Agora uses a token (dynamic key) to authenticate users before they log in to the chat system. The Agora Chat RESTful API only supports authenticating users using app tokens. For details, see [Authentication using App Token](./generate_app_tokens).
 
 
 ## Creating a thread
@@ -52,11 +52,11 @@ POST https://{host}/{org_name}/{app_name}/thread
 
 #### Path parameter
 
-For the descriptions of path parameters, see [Common Parameters](#request).
+For the descriptions of the path parameters, see [Common Parameters](#request).
 
 #### Request header
 
-For the descriptions of request headers, see [Authorization](#auth).
+For the descriptions of the request headers, see [Authorization](#auth).
 
 #### Request body
 
@@ -71,7 +71,7 @@ For the descriptions of request headers, see [Authorization](#auth).
 
 #### Response body
 
-If the returned HTTP status code is `200`, the request succeeds, and the data field in the response body contains the following parameters.
+If the returned HTTP status code is `200`, the request succeeds, and the data field in the response body contains the following parameters:
 
 | Parameter      | Type           | Description |
 | :------- |:-------------|:-------------|
@@ -133,7 +133,7 @@ For the descriptions of the other path parameters, see [Common Parameters](#requ
 
 #### Request header
 
-For the descriptions of request headers, see [Authorization](#auth).
+for the descriptions of the request headers, see [Authorization](#auth).
 
 #### Request body
 
@@ -145,7 +145,7 @@ For the descriptions of request headers, see [Authorization](#auth).
 
 #### Response body
 
-If the returned HTTP status code is `200`, the request succeeds, and the data field in the response body contains the following parameters.
+If the returned HTTP status code is `200`, the request succeeds, and the data field in the response body contains the following parameters:
 
 | Parameter      | Type   | Description |
 | :------- |:-------------|:-------------|
@@ -200,17 +200,17 @@ For the descriptions of the other path parameters, see [Common Parameters](#requ
 
 #### Request header
 
-For the descriptions of request headers, see [Authorization](#auth).
+for the descriptions of the request headers, see [Authorization](#auth).
 
 ### HTTP response
 
 #### Response body
 
-If the returned HTTP status code is `200`, the request succeeds, and the data field in the response body contains the following parameters.
+If the returned HTTP status code is `200`, the request succeeds, and the data field in the response body contains the following parameters:
 
 | Parameter  | Type   | Description |
 | :------- |:-------------|:-------------|
-| `name` | String | Whether the thread is deleted. `ok` indicates that the thread is deleted. | 
+| `status` | String | Whether the thread is deleted. `ok` indicates that the thread is deleted. | 
 
 For other fields and descriptions, see [Common parameters](#response).
 
@@ -257,21 +257,21 @@ GET https://{host}/{org_name}/{app_name}/thread?limit={limit}&cursor={cursor}&so
 
 | Parameter | Type | Description | Required |
 |:------------|:-------|:-----|:-----------|
-| `limit` | String | The maximum number of threads to retrieve with pagination. The range is [1, 50]. The default value is 50. | No |
-| `cursor` | String | The current pagination from which to start retrieving threads. Pass in `null` or an empty string at the first query. | No |
-| `sort` | String | The sorted order of the query results:<li>`asc`: In chronological order.<li>(Default) `desc`: In reverse chronological order. | No |
+| `limit` | String | The maximum number of threads to retrieve per page. The range is [1, 50]. The default value is 50. | No |
+| `cursor` | String | The page from which to start retrieving threads. Pass in `null` or an empty string at the first query. | No |
+| `sort` | String | The order in which to list the query results:<li>`asc`: In chronological order of thread creation.<li>(Default) `desc`: In reverse chronological order of thread creation. | No |
 
 For the descriptions of the other path parameters, see [Common Parameters](#request).
 
 #### Request header
 
-For the descriptions of request headers, see [Authorization](#auth).
+for the descriptions of the request headers, see [Authorization](#auth).
 
 ### HTTP response
 
 #### Response body
 
-If the returned HTTP status code is `200`, the request succeeds, and the entity field in the response body contains the following parameters.
+If the returned HTTP status code is `200`, the request succeeds, and the entity field in the response body contains the following parameters:
 
 | Parameter  | Type   | Description |
 | :------- |:-------------|:-------------|
@@ -328,21 +328,21 @@ GET https://{host}/{org_name}/{app_name}/threads/user/{username}?limit={limit}&c
 | Parameter | Type | Description | Required |
 |:------------|:-------|:-----|:-----------|
 | `username` | String | The unique login account of the user. | Yes |
-| `limit` | String | The maximum number of threads to retrieve with pagination. The range is [1, 50]. The default value is 50. | No |
-| `cursor` | String | The current pagination from which to start retrieving threads. Pass in `null` or an empty string at the first query. | No |
-| `sort` | String | The sorted order of the query results:<li>`asc`: In chronological order of the thread creation time.<li>(Default) `desc`: In reverse chronological order of the thread creation time. | No |
+| `limit` | String | The maximum number of threads to retrieve per page. The range is [1, 50]. The default value is 50. | No |
+| `cursor` | String | The page from which to start retrieving threads. Pass in `null` or an empty string at the first query. | No |
+| `sort` | String | The order in which to list the query results:<li>`asc`: In chronological order of thread creation.<li>(Default) `desc`: In reverse chronological order of thread creation. | No |
 
 For the descriptions of the other path parameters, see [Common Parameters](#request).
 
 #### Request header
 
-For the descriptions of request headers, see [Authorization](#auth).
+for the descriptions of the request headers, see [Authorization](#auth).
 
 ### HTTP response
 
 #### Response body
 
-If the returned HTTP status code is `200`, the request succeeds, and the entity field in the response body contains the following parameters.
+If the returned HTTP status code is `200`, the request succeeds, and the entity field in the response body contains the following parameters:
 
 | Parameter  | Type   | Description |
 | :------- |:-------------|:-------------|
@@ -409,21 +409,21 @@ GET https://{host}/{org_name}/{app_name}/threads/chatgroups/{group_id}/user/{use
 |:---------|:-------|:-----|:--------------------------|
 | `group_id`   | String | The ID of the chat group.  | Yes |
 | `username` | String | The unique login account of the user. | Yes |
-| `limit` | String | The maximum number of threads to retrieve with pagination. The range is [1, 50]. The default value is 50. | No |
-| `cursor` | String | The current pagination from which to start retrieving threads. Pass in `null` or an empty string at the first query. | No |
-| `sort` | String | The sorted order of the query results:<li>`asc`: In chronological order of the thread creation time.<li>(Default) `desc`: In reverse chronological order of the thread creation time. | No |
+| `limit` | String | The maximum number of threads to retrieve per page. The range is [1, 50]. The default value is 50. | No |
+| `cursor` | String | The page from which to start retrieving threads. Pass in `null` or an empty string at the first query. | No |
+| `sort` | String | The order in which to list the query results:<li>`asc`: In chronological order of thread creation.<li>(Default) `desc`: In reverse chronological order of thread creation. | No |
 
 For the descriptions of the other path parameters, see [Common Parameters](#request).
 
 #### Request header
 
-For the descriptions of request headers, see [Authorization](#auth).
+for the descriptions of the request headers, see [Authorization](#auth).
 
 ### HTTP response
 
 #### Response body
 
-If the returned HTTP status code is `200`, the request succeeds, and the entity field in the response body contains the following parameters.
+If the returned HTTP status code is `200`, the request succeeds, and the entity field in the response body contains the following parameters:
 
 | Parameter  | Type   | Description |
 | :------- |:-------------|:-------------|
