@@ -15,7 +15,7 @@ Before proceeding, ensure that you meet the following requirements:
 
 - You have integrated the Agora Chat SDK, initialized the SDK, and implemented the functionality of users logging in. For details, see [Get Started with Agora Chat]().
 - You understand the [API call frequency limits]().
-- Retrieving conversations from the server is not enabled by default. To implement this feature, contact sales@agora.io to enable the service. 
+- Retrieving conversations from the server is not enabled by default. To implement this feature, contact support@agora.io to enable the service. 
 
 ## Implementation
 

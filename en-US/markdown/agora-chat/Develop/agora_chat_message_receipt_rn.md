@@ -145,7 +145,7 @@ const listener = new ChatMessageEvent();
 ChatClient.getInstance().chatManager.addMessageListener(listener);
 ```
 
-<div class="alert note">In scenarios where a user is logged in multiple devices, if the user sends a conversation read receipt from one device, the server sets the count of unread messages in the conversation as 0, and all the other devices receive `OnConversationRead`.</div>
+<div class="alert note">In scenarios where a user is logged in multiple devices, if the user sends a conversation read receipt from one device, the server sets the count of unread messages in the conversation as 0, and all the other devices receive `onConversationRead`.</div>
 
 ##### Message read receipts
 
