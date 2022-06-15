@@ -11,7 +11,7 @@ The Agora Chat SDK provides the `ChatManager`, `ChatMessage`, and `ChatThread` c
 - Send a thread message
 - Receive a thread message
 - Recall a thread message
-- Retrieve a thread message
+- Retrieve thread messages
 
 ~338e0e30-e568-11ec-8e95-1b7dfd4b7cb0~
 
@@ -114,6 +114,24 @@ MessageListener msgListener = new MessageListener() {
 };
 ```
 
-### Retrieve thread messages from the server
+### Retrieve thread messages
+
+You can retrieve thread messages from the server, whereas from the memory and local database, you can retrieve the whole conversation of a thread.
+
+#### Retrieve thread messages from the server
 
 For details about how to retrieve messages from the server, see [Retrieve Historical Messages](./agora_chat_message_android?platform=Android#retrieve-historical-messages-from-the-server).
+
+#### Retrieve the conversation of a thread from the memory and local database
+
+By calling [`getAllConversations`](./agora_chat_message_android#retrieve-local-conversations), you can only retrieve the conversations of one-to-one chats or group chats. To retrieve the conversation of a thread, refer to the following code sample:
+
+```java
+// Sets the conversation type to group chat as a thread belongs to a chat group.
+// Sets `isChatThread` to `true` to mark the conversation as a thread.
+ChatConversation conversation = ChatClient.getInstance().chatManager().getConversation(chatThreadId, ChatConversationType.GroupChat, createIfNotExists, isChatThread);
+// Retrieves all messages in the specified thread from the memory.
+List<ChatMessage> messages = conversation.getAllMessages();
+// Retrieves more messages in the specified thread from the local database. The SDK automatically loads and stores the retrieved messages to the memory.
+List<ChatMessage> messages = conversation.loadMoreMsgFromDB(startMsgId, pagesize, searchDirection);
+```
