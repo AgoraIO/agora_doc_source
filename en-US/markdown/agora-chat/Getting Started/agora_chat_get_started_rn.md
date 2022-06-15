@@ -504,7 +504,7 @@ To build and run the project on an Android device, take the following steps:
 
 5. Click `Build` in Android Studio to build the project. When the build succeeds, Android Studio runs the project and installs it on the device. You see the app interface.
 
-![](../images/chat_rn.png)
+  ![](https://web-cdn.agora.io/docs-files/1655259772037)
 
 ## Test your app
 

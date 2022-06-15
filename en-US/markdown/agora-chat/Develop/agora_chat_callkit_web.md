@@ -116,7 +116,7 @@ From the caller's client, call `startCall` to send a call invitation for a one-t
 
 The following screenshot gives an example of the user interface after sending a call invitation for one-to-one video call:
 
-![image](../images/callkit_web_outgoing.png)
+![](https://web-cdn.agora.io/docs-files/1655259671848)
 
 ### Receive the invitation
 
@@ -136,7 +136,7 @@ CallKit.answerCall(result, accessToken);
 
 The following screenshot gives an example of the user interface after receiving a call invitation for one-to-one video call:
 
-![image](../images/callkit_web_incoming.png)
+![](https://web-cdn.agora.io/docs-files/1655259682186)
 
 
 ### Send a call invitation during a group call

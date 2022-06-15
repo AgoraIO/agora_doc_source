@@ -172,7 +172,7 @@ From the caller's client, call `startSingleCallWithUId` or `startInviteUsers` to
 
 The following screenshot gives an example of the user interface after sending a call invitation for one-to-one audio call:
 
-![image](../images/outgoing.png)
+<img src="https://web-cdn.agora.io/docs-files/1655259327417" style="zoom:50%;" />
 
 ### Receive the invitation
 
@@ -187,7 +187,7 @@ Once a call invitaion is sent, the callee receives the invitation in the `callDi
 
 If the callee is online and available for a call, you can pop out a user interface that allows the callee to accept or decline the invitation. If you have enabled the iOS CallKit, the system call user interface is launched. Otherwise, you can refer to the following screenshot to implement the interface:
 
-![image](../images/incoming.png)
+<img src="https://web-cdn.agora.io/docs-files/1655259340569" style="zoom:50%;" />
 
 
 ### Send a call invitation during a group call

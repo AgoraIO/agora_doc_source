@@ -158,7 +158,7 @@ From the caller's client, call `startSingleCall` or `startInviteMultipleCall` to
 
 The following screenshot gives an example of the user interface after sending a call invitation for one-to-one audio call:
 
-![](../images/callkit_android_outgoing.png)
+<img src="https://web-cdn.agora.io/docs-files/1655258438574" style="zoom:50%;" />
 
 - Group audio and video call
 
@@ -193,7 +193,7 @@ void onReceivedCall(EaseCallType callType, String fromUserId, JSONObject ext);
 
 If the callee is online and available for a call, you can pop out a user interface that allows the callee to accept or decline the invitation. Refer to the following screenshot to implement the interface:
 
-![](../images/callkit_android_incoming.png)
+<img src="https://web-cdn.agora.io/docs-files/1655258456953" style="zoom:50%;" />
 
 
 ### Send a call invitation during a group call
