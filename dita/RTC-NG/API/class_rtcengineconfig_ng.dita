@@ -126,36 +126,46 @@
         logConfig() {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public class RtcEngineContext
+            <codeblock props="unity" outputclass="language-csharp">public class RtcEngineContext : OptionalJsonParse
     {
-        public RtcEngineContext(IAgoraRtcEngineEventHandler eventHandler, string appId, byte[] context,
+        public RtcEngineContext()
+        {
+            eventHandler = null;
+            appId = "";
+            context = 0;
+            enableAudioDevice = true;
+            channelProfile = CHANNEL_PROFILE_TYPE.CHANNEL_PROFILE_LIVE_BROADCASTING;
+            audioScenario = AUDIO_SCENARIO_TYPE.AUDIO_SCENARIO_DEFAULT;
+            areaCode = AREA_CODE.AREA_CODE_GLOB;
+            logConfig = new LogConfig();
+            useExternalEglContext = false;
+        }
+
+
+        public RtcEngineContext(string appId, UInt64 context,
             bool enableAudioDevice, CHANNEL_PROFILE_TYPE channelProfile, AUDIO_SCENARIO_TYPE audioScenario,
             AREA_CODE areaCode = AREA_CODE.AREA_CODE_CN,
             LogConfig logConfig = null)
         {
-            this.eventHandler = eventHandler;
             this.appId = appId;
             this.context = context;
             this.enableAudioDevice = enableAudioDevice;
             this.channelProfile = channelProfile;
             this.audioScenario = audioScenario;
-            _areaCode = (uint) areaCode;
+            this.areaCode = areaCode;
             this.logConfig = logConfig ?? new LogConfig();
         }
 
-
-        public IAgoraRtcEngineEventHandler eventHandler { set; get; }
+        private IRtcEngineEventHandler eventHandler = null;
         public string appId { set; get; }
-        public byte[] context { set; get; }
+        public UInt64 context { set; get; }
         public bool enableAudioDevice { set; get; }
         public CHANNEL_PROFILE_TYPE channelProfile { set; get; }
         public AUDIO_SCENARIO_TYPE audioScenario { set; get; }
         public LogConfig logConfig { set; get; }
-        public AREA_CODE areaCode
-        {
-            get { return (AREA_CODE) _areaCode; }
-            set { _areaCode = (uint) areaCode; }
-        }
+        public AREA_CODE areaCode { set; get; }
+        public Optional&lt;THREAD_PRIORITY_TYPE> threadPriority = new Optional&lt;THREAD_PRIORITY_TYPE>();
+        public bool useExternalEglContext { set; get; }
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>

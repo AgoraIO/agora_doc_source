@@ -18,7 +18,10 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onLocalAudioSpectrum:(NSArray&lt;NSNumber *&gt; * _Nullable)audioSpectrumData;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual bool onLocalAudioSpectrum(const AudioSpectrumData&amp; data) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnLocalAudioSpectrum(AudioSpectrumData data)
+        {
+            return true;
+        }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
@@ -30,9 +33,9 @@
             <title>参数</title>
             <parml>
             <plentry>
-                <pt props="android cpp">data</pt>
+                <pt props="android cpp unity">data</pt>
                 <pt props="ios mac">audioSpectrumData</pt>
-                <pd props="android cpp">本地用户的音频频谱数据。详见 <xref keyref="AudioSpectrumData"/>。</pd>
+                <pd props="android cpp unity">本地用户的音频频谱数据。详见 <xref keyref="AudioSpectrumData"/>。</pd>
                 <pd props="ios mac">本地用户的音频频谱数据。Agora 将声音频率分为 160 个频域，通过该参数报告各频域的能量值， 每个能量值的取值范围为 [0,1]。</pd>
             </plentry>
             </parml> </section>

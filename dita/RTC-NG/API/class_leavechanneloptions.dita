@@ -25,7 +25,15 @@
 };
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public class LeaveChannelOptions {
+            <codeblock props="unity" outputclass="language-csharp">public class LeaveChannelOptions
+    {
+        public LeaveChannelOptions()
+        {
+            stopAudioMixing = true;
+            stopAllEffect = true;
+            stopMicrophoneRecording = true;
+        }
+
         public bool stopAudioMixing { set; get; }
         public bool stopAllEffect { set; get; }
         public bool stopMicrophoneRecording { set; get; }

@@ -26,7 +26,7 @@
     (void)message;
   }</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnExtensionErrored(string provider, string ext_name, int error, string msg) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
@@ -40,16 +40,18 @@
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry conkeyref="setExtensionProperty/extension">
-                <pt/>
-                <pd/>
+            <plentry>
+                <pt props="native">extension</pt>
+                <pt props="unity">ext_name</pt>
+                <pd>插件的名称。</pd>
             </plentry>
             <plentry>
                 <pt>error</pt>
                 <pd>错误码。详见插件服务商提供的插件文档。</pd>
             </plentry>
             <plentry>
-                <pt>message</pt>
+                <pt props="native">message</pt>
+                <pt props="unity">msg</pt>
                 <pd>错误原因。详见插件服务商提供的插件文档。</pd>
             </plentry>
             </parml> </section>

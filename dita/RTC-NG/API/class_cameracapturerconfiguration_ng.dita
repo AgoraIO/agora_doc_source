@@ -32,11 +32,13 @@
     {
         public CameraCapturerConfiguration()
         {
-            cameraDirection = null;
+            deviceId = "";
+            cameraDirection = CAMERA_DIRECTION.CAMERA_FRONT;
+            format = new VideoFormat();
         }
 
         public CameraCapturerConfiguration(string deviceId, VideoFormat format,
-            CAMERA_DIRECTION? cameraDirection = null)
+            CAMERA_DIRECTION cameraDirection)
         {
             this.deviceId = deviceId;
             this.format = format;
@@ -45,43 +47,28 @@
 
         public string deviceId { set; get; }
         public VideoFormat format { set; get; }
-        public CAMERA_DIRECTION? cameraDirection { set; get; }
+        public CAMERA_DIRECTION cameraDirection { set; get; }
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="parameters">
-            <title> <text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /> </title>
+            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/> </title>
             <parml>
             <plentry>
                 <pt>cameraDirection</pt>
                 <pd>
-                    <note type="attention" props="cpp unity"
-                    >该参数仅适用于 Android 和 iOS 平台。</note>摄像头方向设置。<ph
-                    props="ios cpp android">详见 <xref keyref="CAMERA_DIRECTION"
-                    />。</ph></pd>
+                    <note type="attention" props="cpp unity">该参数仅适用于 Android 和 iOS 平台。</note>
+                    <ph>摄像头方向设置。</ph><ph props="ios cpp unity android">详见 <xref keyref="CAMERA_DIRECTION"/>。</ph></pd>
             </plentry>
             <plentry props="cpp android unity">
                 <pt props="cpp unity">format</pt>
                 <pt props="android">captureFormat</pt>
-                <pd>
-                        详见
-                        <xref keyref="VideoFormat"/>
-                        。
-                    </pd>
+                <pd>详见 <xref keyref="VideoFormat"/>。</pd>
             </plentry>
-            <plentry props="cpp unity">
+            <plentry props="cpp">
                 <pt>deviceId</pt>
-                <pd>
-                        播放设备的设备 ID。
-                        <ph props="cpp">
-                            最大长度为
-                            <xref
-                    keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>
-                            。
-                        </ph> </pd>
+                <pd><ph>播放设备的设备 ID。</ph><ph props="cpp"> 最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/> 。</ph></pd>
             </plentry>
             </parml> </section>
     </refbody>

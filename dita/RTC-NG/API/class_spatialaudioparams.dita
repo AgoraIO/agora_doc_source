@@ -32,15 +32,15 @@
   Optional&lt;bool> enable_air_absorb;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public class SpatialAudioParams
+            <codeblock props="unity" outputclass="language-csharp">public class SpatialAudioParams : OptionalJsonParse
     {
-        public double speaker_azimuth { set; get; }
-        public double speaker_elevation { set; get; }
-        public double speaker_distance { set; get; }
-        public int speaker_orientation { set; get; }
-        public bool enable_blur { set; get; }
-        public bool enable_air_absorb { set; get; }
-    };</codeblock>
+        public Optional&lt;double> speaker_azimuth = new Optional&lt;double>();
+        public Optional&lt;double> speaker_elevation = new Optional&lt;double>();
+        public Optional&lt;double> speaker_distance = new Optional&lt;double>();
+        public Optional&lt;int> speaker_orientation = new Optional&lt;int>();
+        public Optional&lt;bool> enable_blur = new Optional&lt;bool>();
+        public Optional&lt;bool> enable_air_absorb = new Optional&lt;bool>();
+    }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>

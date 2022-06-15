@@ -20,18 +20,33 @@
   ScreenCaptureSourceInfo() : type(ScreenCaptureSourceType_Unknown), sourceId(nullptr), sourceName(nullptr), processPath(nullptr), sourceTitle(nullptr), primaryMonitor(false) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="unity" outputclass="language-csharp">public class ScreenCaptureSourceInfo
+    {
+        public ScreenCaptureSourceType type { set; get; }
+        /** in Mac: pointer to NSNumber */
+        public view_t sourceId { set; get; }
+        public string sourceName { set; get; }
+        public ThumbImageBuffer thumbImage { set; get; }
+        public ThumbImageBuffer iconImage { set; get; }
+
+        public string processPath { set; get; }
+        public string sourceTitle { set; get; }
+        public bool primaryMonitor { set; get; }
+
+        public ScreenCaptureSourceInfo()
+        {
+            type = ScreenCaptureSourceType.ScreenCaptureSourceType_Unknown;
+            sourceId = 0;
+            sourceName = "";
+            processPath = "";
+            sourceTitle = "";
+            primaryMonitor = false;
+            thumbImage = new ThumbImageBuffer();
+            iconImage = new ThumbImageBuffer();
+        }
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
-        </section>
-        <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>自从</dt>
-                <dd>v3.5.2</dd>
-            </dlentry>
-            </dl>
-            <p/>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>

@@ -17,7 +17,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine activeSpeaker:(NSUInteger)speakerUid;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void onActiveSpeaker(uid_t userId) { (void)userId; }</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnActiveSpeaker(uint userId) {}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnActiveSpeaker(RtcConnection connection, uint uid) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
@@ -38,9 +38,13 @@
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry id="uid">
-                <pt props="cpp unity">userId</pt>
-                <pt props="android electron flutter">uid</pt>
+                <plentry props="unity" conkeyref="joinChannelEx/connection">
+                    <pt></pt>
+                    <pd></pd>
+                </plentry>
+                <plentry id="uid">
+                <pt props="cpp">userId</pt>
+                <pt props="android electron flutter unity">uid</pt>
                 <pt props="ios mac">speakerUid</pt>
                 <pd>远端最活跃用户的 ID。</pd>
             </plentry>

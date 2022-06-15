@@ -87,7 +87,21 @@
   };
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public AudioFrame(AUDIO_FRAME_TYPE type, int samplesPerChannel, int bytesPerSample, int channels, int samplesPerSec,
+            <codeblock props="unity" outputclass="language-csharp">public class AudioFrame
+    {
+        public AudioFrame()
+        {
+            type = AUDIO_FRAME_TYPE.FRAME_TYPE_PCM16;
+            samplesPerChannel = 0;
+            bytesPerSample = BYTES_PER_SAMPLE.TWO_BYTES_PER_SAMPLE;
+            channels = 0;
+            samplesPerSec = 0;
+            RawBuffer = new byte[0];
+            renderTimeMs = 0;
+            avsync_type = 0;
+        }
+
+        public AudioFrame(AUDIO_FRAME_TYPE type, int samplesPerChannel, BYTES_PER_SAMPLE bytesPerSample, int channels, int samplesPerSec,
             byte[] buffer, long renderTimeMs, int avsync_type)
         {
             this.type = type;
@@ -95,16 +109,19 @@
             this.bytesPerSample = bytesPerSample;
             this.channels = channels;
             this.samplesPerSec = samplesPerSec;
-            this.buffer = buffer;
+            this.RawBuffer = buffer;
             this.renderTimeMs = renderTimeMs;
             this.avsync_type = avsync_type;
         }
+
         public AUDIO_FRAME_TYPE type { set; get; }
         public int samplesPerChannel { set; get; }
-        public int bytesPerSample { set; get; }
+        public BYTES_PER_SAMPLE bytesPerSample { set; get; }
         public int channels { set; get; }
         public int samplesPerSec { set; get; }
-        public byte[] buffer { set; get; }
+        public UInt64 buffer { set; get; }
+        public IntPtr bufferPtr { set; get; }
+        public byte[] RawBuffer { set; get; }
         public long renderTimeMs { set; get; }
         public int avsync_type { set; get; }
     }</codeblock>
@@ -119,19 +136,11 @@
             <plentry props="cpp unity">
                 <pt>type</pt>
                 <pd>
-                    <p>
-                            音频帧类型，详见
-                            <xref keyref="AUDIO_FRAME_TYPE"
-                    />
-                            。
-                        </p>
+                    <p>音频帧类型，详见 <xref keyref="AUDIO_FRAME_TYPE"/>。</p>
                 </pd>
             </plentry>
             <plentry>
-                <pt props="rtc"> <ph props="android">numOfSamples</ph> <ph
-                    props="cpp unity">samples</ph> <ph props="ios mac"
-                    >samplesPerChannel</ph> </pt>
-                <pt props="rtc-ng">samplesPerChannel</pt>
+                <pt>samplesPerChannel</pt>
                 <pd>每个声道的采样点数。</pd>
             </plentry>
             <plentry>
@@ -139,47 +148,26 @@
                 <pd>每个采样点的字节数: 对于 PCM 来说，一般使用 16 bit，即两个字节。</pd>
             </plentry>
             <plentry>
-                <pt props="rtc">channels</pt>
-                <pt props="rtc-ng"><ph props="cpp ios mac unity"
-                    >channels</ph><ph props="android">channelNums</ph></pt>
+                <pt><ph props="cpp ios mac unity">channels</ph><ph props="android">channelNums</ph></pt>
                 <pd>
-                    <p>
-                            声道数量(如果是立体声，数据是交叉的)。
-
-
-
-
-                    <ul id="ul_zxz_2wt_r4b">
+                    <p>声道数量(如果是立体声，数据是交叉的)。
+                        <ul id="ul_zxz_2wt_r4b">
                     <li>1: 单声道</li>
                     <li>2: 双声道</li>
                     </ul> </p>
                 </pd>
             </plentry>
             <plentry>
-                <pt props="rtc">samplesPerSec</pt>
-                <pt props="rtc-ng"><ph props="cpp ios mac unity"
-                    >samplesPerSec</ph><ph props="android"
-                    >sampleRataHz</ph></pt>
+                <pt props="cpp ios mac unity">samplesPerSec</pt>
+                <pt props="android">sampleRataHz</pt>
                 <pd>每声道每秒的采样点数。</pd>
             </plentry>
             <plentry>
-                <pt props="rtc-ng"> <ph props="cpp ios mac unity">buffer</ph>
-                    <ph props="android">bytes</ph> </pt>
-                <pt props="rtc"> <ph props="cpp unity">buffer</ph> <ph
-                    props="android">samples</ph> </pt>
+                <pt props="cpp ios mac unity">buffer</pt>
+                    <pt props="android">bytes</pt>
                 <pd>
                     <p>声音数据缓存区（如果是立体声，数据是交叉存储的）。</p>
-                    <p>
-                            缓存区数据大小
-                            <codeph>buffer</codeph>
-                            =
-                            <codeph>samples</codeph>
-                            ×
-                            <codeph>channels</codeph>
-                            ×
-                            <codeph>bytesPerSample</codeph>
-                            。
-                        </p>
+                    <p>缓存区数据大小 <codeph>buffer</codeph> = <codeph>samples</codeph> × <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>。</p>
                 </pd>
             </plentry>
             <plentry props="cpp unity ios mac">
@@ -190,13 +178,12 @@
                 </pd>
             </plentry>
             <plentry props="ios mac cpp unity">
-                <pt> <ph props="ios mac">avsyncType</ph> <ph props="cpp unity"
-                    >avsync_type</ph> </pt>
+                <pt> <ph props="ios mac">avsyncType</ph> <ph props="cpp unity">avsync_type</ph> </pt>
                 <pd>保留参数。</pd>
             </plentry>
-            <plentry props="rtc-ng">
-                <pt props="android">timestamp</pt>
-                <pd props="android">音频帧的时间戳</pd>
+            <plentry props="android">
+                <pt>timestamp</pt>
+                <pd>>音频帧的时间戳。</pd>
             </plentry>
             </parml> </section>
     </refbody>

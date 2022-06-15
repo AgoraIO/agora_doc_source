@@ -53,20 +53,52 @@
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public class VideoFrame
-                {
-                    public VIDEO_PIXEL_FORMAT type;
-                    public int width;
-                    public int height;
-                    public int yStride;
-                    public int uStride;
-                    public int vStride;
-                    public byte[] yBuffer;
-                    public byte[] uBuffer;
-                    public byte[] vBuffer;
-                    public int rotation;
-                    public long renderTimeMs;
-                    public int avsync_type;
-                };</codeblock>
+    {
+        public VideoFrame()
+        {
+            type = VIDEO_PIXEL_FORMAT.VIDEO_PIXEL_UNKNOWN;
+            width = 0;
+            height = 0;
+            yStride = 0;
+            uStride = 0;
+            vStride = 0;
+            yBuffer = new byte[0];
+            uBuffer = new byte[0];
+            vBuffer = new byte[0];
+            yBufferPtr = IntPtr.Zero;
+            uBufferPtr = IntPtr.Zero;
+            vBufferPtr = IntPtr.Zero;
+            rotation = 0;
+            renderTimeMs = 0;
+            avsync_type = 0;
+            metadata_buffer = IntPtr.Zero;
+            metadata_size = 0;
+            sharedContext = IntPtr.Zero;
+            textureId = 0;
+            matrix = new float[16];
+        }
+        public VIDEO_PIXEL_FORMAT type;
+        public int width;
+        public int height;
+        public int yStride;
+        public int uStride;
+        public int vStride; 
+        public byte[] yBuffer; 
+        public IntPtr yBufferPtr;
+        public byte[] uBuffer;
+        public IntPtr uBufferPtr;
+        public byte[] vBuffer;
+        public IntPtr vBufferPtr;
+        public int rotation;
+        public long renderTimeMs;
+        public int avsync_type;
+        public IntPtr metadata_buffer;
+        public int metadata_size;
+        public IntPtr sharedContext;
+        public int textureId;
+        public float[] matrix;
+
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>

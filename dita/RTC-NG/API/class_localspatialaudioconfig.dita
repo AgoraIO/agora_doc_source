@@ -21,7 +21,15 @@
   LocalSpatialAudioConfig() : rtcEngine(NULL) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="unity" outputclass="language-csharp">public class LocalSpatialAudioConfig
+              {
+                  public IRtcEngine rtcEngine { set; get; }
+
+                  public LocalSpatialAudioConfig()
+                  {
+                      rtcEngine = null;
+                  }
+              };</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
@@ -29,7 +37,7 @@
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
-                <pt props="cpp ios mac">rtcEngine</pt>
+                <pt props="cpp ios mac unity">rtcEngine</pt>
                 <pt props="android">mRtcEngine</pt>
                 <pd><xref keyref="IRtcEngine"/>。</pd>
             </plentry>

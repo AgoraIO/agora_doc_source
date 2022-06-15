@@ -44,12 +44,21 @@
   CloudSpatialAudioConfig() : rtcEngine(NULL), eventHandler(NULL), appId(NULL), deployRegion(SAE_DEPLOY_REGION_CN) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public struct CloudSpatialAudioConfig {
-      public IAgoraRtcEngine rtcEngine;
-      public IAgoraRtcCloudSpatialAudioEngineEventHandler eventHandler;
-      public string appId;
-      public uint deployRegion;
-   };</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class CloudSpatialAudioConfig
+    {
+        public CloudSpatialAudioConfig()
+        {
+            rtcEngine = null;
+            eventHandler = null;
+            appId = null;
+            deployRegion = (int)SAE_DEPLOY_REGION.SAE_DEPLOY_REGION_CN;
+        }
+
+        public IRtcEngine rtcEngine { set; get; }
+        public ICloudSpatialAudioEventHandler eventHandler { set; get; }
+        public string appId { set; get; }
+        public uint deployRegion { set; get; }
+    }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>

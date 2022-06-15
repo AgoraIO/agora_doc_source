@@ -17,7 +17,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec"/>
             <codeblock props="cpp" outputclass="language-cpp">virtual bool OnEncodedVideoImageReceived(const uint8_t* imageBuffer, size_t length, const EncodedVideoFrameInfo&amp; videoEncodedFrameInfo) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnEncodedVideoImageReceived(byte[] imageBuffer, UInt64 length, EncodedVideoFrameInfo videoEncodedFrameInfo)
+            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnEncodedVideoImageReceived(IntPtr imageBufferPtr, UInt64 length, EncodedVideoFrameInfo videoEncodedFrameInfo)
         {
             return true;
         }</codeblock>
@@ -28,7 +28,8 @@
             <title>参数</title>
             <parml>
             <plentry>
-                <pt props="cpp unity">imageBuffer</pt>
+                <pt props="cpp">imageBuffer</pt>
+                <pt props="unity">imageBufferPtr</pt>
                 <pt props="android">buffer</pt>
                 <pd>视频图像 buffer。</pd>
             </plentry>

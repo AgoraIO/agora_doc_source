@@ -67,22 +67,38 @@
     memset(codecName, 0, sizeof(codecName));
     memset(language, 0, sizeof(language));</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public struct PlayerStreamInfo {
+            <codeblock props="unity" outputclass="language-csharp">public class PlayerStreamInfo
+        public int streamIndex { set; get; }
+        public MEDIA_STREAM_TYPE streamType;
+        public string codecName { set; get; }
+        public string language { set; get; }
+        public int videoFrameRate { set; get; }
+        public int videoBitRate { set; get; }
+        public int videoWidth { set; get; }
+        public int videoHeight { set; get; }
+        public int videoRotation { set; get; }
+        public int audioSampleRate { set; get; }
+        public int audioChannels { set; get; }
+        public int audioBitsPerSample { set; get; }
+        public int64_t duration { set; get; }
 
-                public int streamIndex;
-                public MEDIA_STREAM_TYPE streamType;
-                public string codecName;
-                public string language;
-                public int videoFrameRate;
-                public int videoBitRate;
-                public int videoWidth;
-                public int videoHeight;
-                public int videoRotation;
-                public int audioSampleRate;
-                public int audioChannels;
-                public int audioBitsPerSample;
-                public Int64 duration;
-             };</codeblock>
+        public PlayerStreamInfo()
+        {
+            streamIndex = 0;
+            streamType = MEDIA_STREAM_TYPE.STREAM_TYPE_UNKNOWN;
+            videoFrameRate = 0;
+            videoBitRate = 0;
+            videoWidth = 0;
+            videoHeight = 0;
+            videoRotation = 0;
+            audioSampleRate = 0;
+            audioChannels = 0;
+            audioBitsPerSample = 0;
+            duration = 0;
+            codecName = null;
+            language = null;
+        }
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
@@ -98,8 +114,7 @@
             <plentry>
                 <pt props="ios mac cpp unity">streamType</pt>
                 <pt props="android">mediaStreamType</pt>
-                <pd><ph>此条媒体流的类型。</ph><ph props="ios mac cpp unity">详见 <xref
-                    keyref="MEDIA_STREAM_TYPE"/>。</ph>
+                <pd><ph>此条媒体流的类型。</ph><ph props="ios mac cpp unity">详见 <xref keyref="MEDIA_STREAM_TYPE"/>。</ph>
                     <ul props="android">
                     <li><ph keyref="STREAM_TYPE_UNKNOWN"/> (0): 未知类型。</li>
                     <li><ph keyref="STREAM_TYPE_VIDEO"/> (1): 视频流。</li>

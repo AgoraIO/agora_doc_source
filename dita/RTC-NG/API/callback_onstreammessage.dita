@@ -26,15 +26,13 @@
                     (void)sentTs;
                   }</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnStreamMessage(RtcConnection connection, uint remoteUid, int streamId, byte[] data, uint length, UInt64 sentTs) {}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnStreamMessage(RtcConnection connection, uint remoteUid, int streamId, IntPtr data, uint length, UInt64 sentTs) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
             <p>
-                该回调表示本地用户收到了远端用户调用
-                <xref keyref="sendStreamMessage"/>
-                方法发送的流消息。
+                该回调表示本地用户收到了远端用户调用 <xref keyref="sendStreamMessage"/> 方法发送的流消息。
             </p>
         </section>
         <section id="parameters">
@@ -45,18 +43,14 @@
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="rtc-ng">
-                <pt props="unity">connection</pt>
-                <pd props="unity">
-                        Connection 信息。详见
-                        <xref keyref="RtcConnection"/>
-                        。
-                    </pd>
+            <plentry props="unity" conkeyref="joinChannelEx/connection">
+                <pt></pt>
+                <pd></pd>
             </plentry>
             <plentry id="uid">
                 <pt props="android ios mac flutter">uid</pt>
-                <pt props="cpp"> <ph props="rtc-ng">userId</ph> <ph props="rtc">uid</ph> </pt>
-                <pt props="unity"> <ph props="rtc-ng">remoteUid</ph> <ph props="rtc">uid</ph> </pt>
+                <pt props="cpp">userId</pt>
+                <pt props="unity">remoteUid</pt>
                 <pd>发送消息的用户 ID。</pd>
             </plentry>
             <plentry id="streamId">
@@ -71,12 +65,11 @@
                 <pt>length</pt>
                 <pd>数据长度，单位为字节。</pd>
             </plentry>
-            </parml>
-            <parml props="rtc-ng">
-            <plentry props="cpp unity">
+                <plentry props="cpp unity">
                 <pt>sentTs</pt>
                 <pd>数据流发出的时间。</pd>
             </plentry>
-            </parml> </section>
+            </parml>
+            </section>
     </refbody>
 </reference>

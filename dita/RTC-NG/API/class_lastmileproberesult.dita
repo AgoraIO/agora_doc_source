@@ -38,27 +38,26 @@
 @end</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public class LastmileProbeResult
+    {
+        public LastmileProbeResult()
         {
-            public LastmileProbeResult()
-            {
-            }
-            public LastmileProbeResult(LASTMILE_PROBE_RESULT_STATE state, LastmileProbeOneWayResult uplinkReport,
-                LastmileProbeOneWayResult downlinkReport, uint rtt)
-            {
-                this.state = state;
-                this.uplinkReport = uplinkReport;
-                this.downlinkReport = downlinkReport;
-                this.rtt = rtt;
-            }
+            state = LASTMILE_PROBE_RESULT_STATE.LASTMILE_PROBE_RESULT_UNAVAILABLE;
+            rtt = 0;
+        }
 
-            public LASTMILE_PROBE_RESULT_STATE state { set; get; }
-
-            public LastmileProbeOneWayResult uplinkReport { set; get; }
-
-            public LastmileProbeOneWayResult downlinkReport { set; get; }
-
-            public uint rtt { set; get; }
-        }</codeblock>
+        public LastmileProbeResult(LASTMILE_PROBE_RESULT_STATE state, LastmileProbeOneWayResult uplinkReport,
+            LastmileProbeOneWayResult downlinkReport, uint rtt)
+        {
+            this.state = state;
+            this.uplinkReport = uplinkReport;
+            this.downlinkReport = downlinkReport;
+            this.rtt = rtt;
+        }
+        public LASTMILE_PROBE_RESULT_STATE state { set; get; }
+        public LastmileProbeOneWayResult uplinkReport { set; get; }
+        public LastmileProbeOneWayResult downlinkReport { set; get; }
+        public uint rtt { set; get; }
+    }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>

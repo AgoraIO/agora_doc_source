@@ -64,60 +64,22 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public class RemoteVideoStats
     {
-        public RemoteVideoStats()
-        {
-        }
-        public RemoteVideoStats(uint uid, int delay, int width, int height, int receivedBitrate,
-            int decoderOutputFrameRate, int rendererOutputFrameRate, int frameLossRate, int packetLossRate,
-            VIDEO_STREAM_TYPE rxStreamType, int totalFrozenTime, int frozenRate, int avSyncTimeMs, int totalActiveTime,
-            int publishDuration)
-        {
-            this.uid = uid;
-            this.delay = delay;
-            this.width = width;
-            this.height = height;
-            this.receivedBitrate = receivedBitrate;
-            this.decoderOutputFrameRate = decoderOutputFrameRate;
-            this.rendererOutputFrameRate = rendererOutputFrameRate;
-            this.frameLossRate = frameLossRate;
-            this.packetLossRate = packetLossRate;
-            this.rxStreamType = rxStreamType;
-            this.totalFrozenTime = totalFrozenTime;
-            this.frozenRate = frozenRate;
-            this.avSyncTimeMs = avSyncTimeMs;
-            this.totalActiveTime = totalActiveTime;
-            this.totalFrozenTime = totalFrozenTime;
-        }
-
         public uint uid { set; get; }
-
         public int delay { set; get; }
-
         public int width { set; get; }
-
         public int height { set; get; }
-
         public int receivedBitrate { set; get; }
-
         public int decoderOutputFrameRate { set; get; }
-
         public int rendererOutputFrameRate { set; get; }
-
         public int frameLossRate { set; get; }
-
         public int packetLossRate { set; get; }
-
         public VIDEO_STREAM_TYPE rxStreamType { set; get; }
-
         public int totalFrozenTime { set; get; }
-
         public int frozenRate { set; get; }
-
         public int avSyncTimeMs { set; get; }
-
         public int totalActiveTime { set; get; }
-
         public int publishDuration { set; get; }
+        public int superResolutionType { set; get; }
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
@@ -169,7 +131,7 @@
                 <pt>rendererOutputFrameRate</pt>
                 <pd>远端视频渲染器的输出帧率，单位为 fps。</pd>
             </plentry>
-            <plentry props="rtc-ng">
+            <plentry>
                 <pt>frameLossRate</pt>
                 <pd>远端视频丢包率(%)。</pd>
             </plentry>
@@ -179,14 +141,11 @@
             </plentry>
             <plentry>
                 <pt>rxStreamType</pt>
-                <pd><ph>视频流类型，大流或小流。</ph><ph props="ios mac cpp unity">详见 <xref
-                    keyref="REMOTE_VIDEO_STREAM_TYPE"/>。</ph>
+                <pd><ph>视频流类型，大流或小流。</ph><ph props="ios mac cpp unity">详见 <xref keyref="REMOTE_VIDEO_STREAM_TYPE"/>。</ph>
                     <p props="android">
                     <ul>
-                    <li><ph keyref="REMOTE_VIDEO_STREAM_HIGH"
-                        /> (0)：视频大流，即高分辨率高码率的视频流。</li>
-                    <li><ph keyref="REMOTE_VIDEO_STREAM_LOW"
-                        /> (1)：视频小流，即低分辨率低码率的视频流。</li>
+                    <li><ph keyref="REMOTE_VIDEO_STREAM_HIGH"/> (0)：视频大流，即高分辨率高码率的视频流。</li>
+                    <li><ph keyref="REMOTE_VIDEO_STREAM_LOW"/> (1)：视频小流，即低分辨率低码率的视频流。</li>
                     </ul> </p>
                 </pd>
             </plentry>
@@ -202,12 +161,6 @@
             <plentry>
                 <pt>totalActiveTime</pt>
                 <pd>
-                    <dl outputclass="since" props="rtc">
-                    <dlentry>
-                        <dt>自从</dt>
-                        <dd>v3.0.1</dd>
-                    </dlentry>
-                    </dl>
                     <p>视频有效时长（毫秒）。</p>
                     <p>视频总有效时长是远端用户或主播加入频道后，既没有停止发送视频流，也没有禁用视频模块的通话时长。</p>
                 </pd>
@@ -215,16 +168,10 @@
             <plentry>
                 <pt>publishDuration</pt>
                 <pd>
-                    <dl outputclass="since" props="rtc">
-                    <dlentry>
-                        <dt>自从</dt>
-                        <dd>v3.1.0</dd>
-                    </dlentry>
-                    </dl>
                     <p>远端视频流的累计发布时长（毫秒）。</p>
                 </pd>
             </plentry>
-            <plentry props="rtc-ng">
+            <plentry>
                 <pt>superResolutionType</pt>
                 <pd>超分辨率的开启状态：
 
@@ -233,7 +180,7 @@
                     <li>=0：超分辨率未开启。</li>
                     </ul> </pd>
             </plentry>
-            <plentry props="rtc-ng">
+            <plentry>
                 <pt>avSyncTimeMs</pt>
                 <pd>音频超前视频的时间 (ms)。
                     <note type="attention">如果为负值，则代表音频落后于视频。</note></pd>

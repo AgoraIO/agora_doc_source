@@ -18,13 +18,16 @@
                     sourceType:(AgoraVideoSourceType)sourceType;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual bool onReadyToSendMetadata(Metadata &amp;metadata, VIDEO_SOURCE_TYPE source_type) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnReadyToSendMetadata(ref Metadata metadata, VIDEO_SOURCE_TYPE source_type)
+        {
+            return false;
+        }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
             <p>当 SDK 准备好发送 metadata 时，会触发该回调。</p>
-            <p props="electron unity">收到该回调后，你可以调用 <xref keyref="sendMetadata"/> 发送媒体附属信息。</p>
+            <p props="unity">收到该回调后，你可以调用 <xref keyref="sendMetadata"/> 发送媒体附属信息。</p>
             <note props="android ios mac cpp" type="attention">请确保在该方法中传入的 metadata 大小不超过 <xref keyref="getMaxMetadataSize"/> 中设定的值。</note> </section>
         <section id="parameters">
             <title>参数</title>
@@ -34,8 +37,9 @@
                 <pt props="ios mac">timestamp</pt>
                 <pd>时间戳。</pd>
             </plentry>
-            <plentry props="rtc-ng">
-                <pt>sourceType</pt>
+            <plentry>
+                <pt props="android ios mac">sourceType</pt>
+                <pt props="cpp unity">source_Type</pt>
                 <pd>视频数据类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
             </plentry>
             <plentry props="cpp unity">
@@ -50,7 +54,6 @@
             <li><codeph><ph keyref="false"/></codeph>: 不发送</li>
             </ul>
             <p props="ios mac">指定想要发送的 metadata ，格式为 NSData，由如下字段组成：
-
             <ul>
             <li><codeph>uid</codeph>：发送该 metadata 的远端用户的 ID。</li>
             <li><codeph>size</codeph>：metadata 的大小。</li>
