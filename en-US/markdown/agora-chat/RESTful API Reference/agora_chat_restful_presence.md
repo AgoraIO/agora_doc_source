@@ -92,9 +92,9 @@ curl -X POST 'a1-test.agora.com:8089/5101220107132865/test/users/c1/presence/and
 ```
 
 
-## Subscribe to the presence status of multiple users
+## Subscribe to the presence statuses of multiple users
 
-Subscribes to the presence status of multiple users.
+Subscribes to the presence statuses of multiple users.
 
 For each App Key, the call frequency limit of this method is 50 per second.
 
@@ -160,9 +160,9 @@ curl -X POST 'a1-test.agora.com:8089/5101220107132865/test/users/wzy/presence/10
 ```
 
 
-## Retrieve the presence status of multiple users
+## Retrieve the presence statuses of multiple users
 
-Retrieves the presence status of multiple users.
+Retrieves the presence statuses of multiple users.
 
 For each App Key, the call frequency limit of this method is 50 per second.
 
@@ -240,9 +240,9 @@ curl -X POST 'a1-test.agora.com:8089/5101220107132865/test/users/wzy/presence' \
  }
 ```
 
-## Unsubscribe from the presence status of multiple users
+## Unsubscribe from the presence statuses of multiple users
 
-Unsubscribes from the presence status of multiple users.
+Unsubscribes from the presence statuses of multiple users.
 
 For each App Key, the call frequency limit of this method is 50 per second.
 
