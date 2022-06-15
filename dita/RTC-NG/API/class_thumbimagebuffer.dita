@@ -16,7 +16,29 @@
   ThumbImageBuffer() : buffer(nullptr), length(0), width(0), height(0) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="unity" outputclass="language-csharp">public class ThumbImageBuffer
+    {
+        public Int64 buffer { set; get; }
+        public uint length { set; get; }
+        public uint width { set; get; }
+        public uint height { set; get; }
+
+        public ThumbImageBuffer()
+        {
+            buffer = 0;
+            length = 0;
+            width = 0;
+            height = 0;
+        }
+    };
+
+    public enum ScreenCaptureSourceType
+    {
+        ScreenCaptureSourceType_Unknown = -1,
+        ScreenCaptureSourceType_Window = 0,
+        ScreenCaptureSourceType_Screen = 1,
+        ScreenCaptureSourceType_Custom = 2,
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>

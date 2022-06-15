@@ -54,9 +54,9 @@
     {
         public WatermarkOptions()
         {
-            visibleInPreview = true;
-            positionInLandscapeMode = new Rectangle();
-            positionInPortraitMode = new Rectangle();
+            visibleInPreview = false;
+            positionInLandscapeMode = new Rectangle(0, 0, 0, 0);
+            positionInPortraitMode = new Rectangle(0, 0, 0, 0);
             watermarkRatio = new WatermarkRatio();
             mode = WATERMARK_FIT_MODE.FIT_MODE_COVER_POSITION;
         }
@@ -70,7 +70,6 @@
             this.watermarkRatio = ratio ?? new WatermarkRatio();
             this.mode = mode;
         }
-
         public bool visibleInPreview { set; get; }
         public Rectangle positionInLandscapeMode { set; get; }
         public Rectangle positionInPortraitMode { set; get; }

@@ -23,7 +23,15 @@
 };
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public class LocalTranscoderConfiguration {
+            <codeblock props="unity" outputclass="language-csharp">public class LocalTranscoderConfiguration
+    {
+        public LocalTranscoderConfiguration()
+        {
+            streamCount = 0;
+            VideoInputStreams = null;
+            videoOutputConfiguration = new VideoEncoderConfiguration();
+        }
+
         public LocalTranscoderConfiguration(uint streamCount, TranscodingVideoStream[] VideoInputStreams,
                                             VideoEncoderConfiguration videoOutputConfiguration)
         {
@@ -31,6 +39,7 @@
             this.VideoInputStreams = VideoInputStreams;
             this.videoOutputConfiguration = videoOutputConfiguration;
         }
+
         public uint streamCount { set; get; }
         public TranscodingVideoStream[] VideoInputStreams { set; get; }
         public VideoEncoderConfiguration videoOutputConfiguration { set; get; }

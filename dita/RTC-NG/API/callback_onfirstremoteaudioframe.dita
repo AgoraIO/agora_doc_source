@@ -24,7 +24,7 @@
   }
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstRemoteAudioFrame(uint uid, int elapsed)</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstRemoteAudioFrame(RtcConnection connection, uint userId, int elapsed) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
@@ -44,8 +44,13 @@
                 <pt>engine</pt>
                 <pd><xref keyref="IRtcEngine"/> 对象。</pd>
             </plentry>
-            <plentry>
-                <pt>uid</pt>
+                <plentry props="unity" conkeyref="joinChannelEx/connection">
+                    <pt></pt>
+                    <pd></pd>
+                </plentry>
+                <plentry>
+                <pt props="native">uid</pt>
+                <pt props="unity">userId</pt>
                 <pd>发送音频帧的远端用户的用户 ID。</pd>
             </plentry>
             <plentry>
