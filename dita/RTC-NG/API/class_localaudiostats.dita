@@ -35,21 +35,20 @@
         public LocalAudioStats()
         {
         }
-        public LocalAudioStats(int numChannels, int sentSampleRate, int sentBitrate, int internalCodec)
+
+        public LocalAudioStats(int numChannels, int sentSampleRate, int sentBitrate, int internalCodec, ushort txPacketLossRate)
         {
             this.numChannels = numChannels;
             this.sentSampleRate = sentSampleRate;
             this.sentBitrate = sentBitrate;
             this.internalCodec = internalCodec;
+            this.txPacketLossRate = txPacketLossRate;
         }
-
         public int numChannels { set; get; }
-
         public int sentSampleRate { set; get; }
-
         public int sentBitrate { set; get; }
-
         public int internalCodec { set; get; }
+        public ushort txPacketLossRate { set; get; }
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
@@ -75,7 +74,7 @@
                 <pt>txPacketLossRate</pt>
                 <pd>弱网对抗前本端到 Agora 边缘服务器的丢包率 (%)。</pd>
             </plentry>
-            <plentry props="rtc-ng">
+            <plentry>
                 <pt>internalCodec</pt>
                 <pd>内部的 payload 类型。</pd>
             </plentry>

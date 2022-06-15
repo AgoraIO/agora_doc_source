@@ -91,47 +91,73 @@
         {
             dimensions = new VideoDimensions(1920, 1080);
             frameRate = 5;
-            bitrate = (int) BITRATE.STANDARD_BITRATE;
+            bitrate = (int)BITRATE.STANDARD_BITRATE;
             captureMouseCursor = true;
             windowFocus = false;
             excludeWindowList = new view_t[0];
             excludeWindowCount = 0;
         }
-        public ScreenCaptureParameters(int width, int height, int frameRate, BITRATE bitrate, bool captureMouseCursor,
-            bool windowFocus, view_t[] excludeWindowList = null, int excludeWindowCount = 0)
+
+        public ScreenCaptureParameters(ref VideoDimensions d, int f, int b)
+        {
+            dimensions = new VideoDimensions(d.width, d.height);
+            frameRate = f;
+            bitrate = b;
+            captureMouseCursor = true;
+            windowFocus = false;
+            excludeWindowList = new view_t[0];
+            excludeWindowCount = 0;
+        }
+
+        public ScreenCaptureParameters(int width, int height, int f, int b)
         {
             dimensions = new VideoDimensions(width, height);
-            this.frameRate = frameRate;
-            this.bitrate = (int) bitrate;
-            this.captureMouseCursor = captureMouseCursor;
-            this.windowFocus = windowFocus;
-            this.excludeWindowList = excludeWindowList ?? new view_t[0];
-            this.excludeWindowCount = excludeWindowCount;
+            frameRate = f;
+            bitrate = b;
+            captureMouseCursor = true;
+            windowFocus = false;
+            excludeWindowList = new view_t[0];
+            excludeWindowCount = 0;
         }
-        public ScreenCaptureParameters(VideoDimensions dimensions, int frameRate, BITRATE bitrate,
-            bool captureMouseCursor, bool windowFocus, view_t[] excludeWindowList = null, int excludeWindowCount = 0)
+
+        public ScreenCaptureParameters(int width, int height, int f, int b, bool cur, bool fcs)
         {
-            this.dimensions = dimensions;
-            this.frameRate = frameRate;
-            this.bitrate = (int) bitrate;
-            this.captureMouseCursor = captureMouseCursor;
-            this.windowFocus = windowFocus;
-            this.excludeWindowList = excludeWindowList ?? new view_t[0];
-            this.excludeWindowCount = excludeWindowCount;
+            dimensions = new VideoDimensions(width, height);
+            frameRate = f;
+            bitrate = b;
+            captureMouseCursor = cur;
+            windowFocus = fcs;
+            excludeWindowList = new view_t[0];
+            excludeWindowCount = 0;
         }
 
+        public ScreenCaptureParameters(int width, int height, int f, int b, view_t[] ex, int cnt)
+        {
+            dimensions = new VideoDimensions(width, height);
+            frameRate = f;
+            bitrate = b;
+            captureMouseCursor = true;
+            windowFocus = false;
+            excludeWindowList = ex;
+            excludeWindowCount = cnt;
+        }
+
+        public ScreenCaptureParameters(int width, int height, int f, int b, bool cur, bool fcs, view_t[] ex, int cnt)
+        {
+            dimensions = new VideoDimensions(width, height);
+            frameRate = f;
+            bitrate = b;
+            captureMouseCursor = cur;
+            windowFocus = fcs;
+            excludeWindowList = ex;
+            excludeWindowCount = cnt;
+        }
         public VideoDimensions dimensions { set; get; }
-
         public int frameRate { set; get; }
-
         public int bitrate { set; get; }
-
         public bool captureMouseCursor { set; get; }
-
         public bool windowFocus { set; get; }
-
         public view_t[] excludeWindowList { set; get; }
-
         public int excludeWindowCount { set; get; }
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
@@ -145,8 +171,7 @@
                 <pt props="ios mac cpp unity flutter">dimensions</pt>
                 <pt props="android">videoDimensions</pt>
                 <pd>
-                    <p>编码共享视频的最大像素值。<ph props="android cpp">详见 <xref keyref="VideoDimensions"
-                    />。默认值为 1920 × 1080，即 2073600 像素。该像素值为计费标准。</ph></p>
+                    <p>编码共享视频的最大像素值。<ph props="android cpp">详见 <xref keyref="VideoDimensions"/>。默认值为 1920 × 1080，即 2073600 像素。该像素值为计费标准。</ph></p>
                     <p>当共享的屏幕分辨率宽高比与该值设置不一致时，SDK 按如下策略进行编码。假设 <codeph>dimensions</codeph> 设为 1920 × 1080：
 
                     <ul>
@@ -163,15 +188,9 @@
                 <pt>bitrate</pt>
                 <pd>共享视频的码率，单位为 Kbps；默认值为 0，表示 SDK 根据当前共享屏幕的分辨率计算出一个合理的值。</pd>
             </plentry>
-            <plentry props="rtc">
+            <plentry props="cpp unity">
                 <pt>captureMouseCursor</pt>
                 <pd>
-                    <dl outputclass="since">
-                    <dlentry>
-                        <dt>自从</dt>
-                        <dd>v2.4.1</dd>
-                    </dlentry>
-                    </dl>
                     <p>是否采集鼠标用于屏幕共享：
 
                     <ul>
@@ -180,26 +199,9 @@
                     </ul></p>
                 </pd>
             </plentry>
-            <plentry props="rtc-ng">
-                <pt props="cpp unity">captureMouseCursor</pt>
-                <pd props="cpp unity">
-                    <p>是否采集鼠标用于屏幕共享：
-
-                    <ul>
-                    <li><codeph><ph keyref="true"/></codeph>:（默认）采集鼠标。</li>
-                    <li><codeph><ph keyref="false"/></codeph>: 不采集鼠标。</li>
-                    </ul></p>
-                </pd>
-            </plentry>
-            <plentry props="rtc">
+            <plentry props="cpp unity">
                 <pt>windowFocus</pt>
                 <pd>
-                    <dl outputclass="since">
-                    <dlentry>
-                        <dt>自从</dt>
-                        <dd>v3.1.0</dd>
-                    </dlentry>
-                    </dl>
                     <p>调用 <xref keyref="startScreenCaptureByWindowId"/> 方法共享窗口时，是否将该窗口前置：
 
                     <ul>
@@ -208,48 +210,15 @@
                     </ul></p>
                 </pd>
             </plentry>
-            <plentry props="rtc-ng">
-                <pt props="cpp unity">windowFocus</pt>
-                <pd props="cpp unity">
-                    <p>调用 <xref keyref="startScreenCaptureByWindowId"/> 方法共享窗口时，是否将该窗口前置：
-
-                    <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: 前置窗口。</li>
-                    <li><codeph><ph keyref="false"/></codeph>:（默认）不前置窗口。</li>
-                    </ul></p>
-                </pd>
-            </plentry>
-            <plentry props="rtc">
+            <plentry props="cpp unity">
                 <pt>excludeWindowList</pt>
                 <pd>
-                    <dl outputclass="since">
-                    <dlentry>
-                        <dt>自从</dt>
-                        <dd>v3.1.0</dd>
-                    </dlentry>
-                    </dl>
-                    <p>待屏蔽窗口的 ID 列表。调用 <xref keyref="startScreenCaptureByScreenRect"
-                    />开启屏幕共享时，你可以通过该参数屏蔽指定的窗口。你可以在调用 <xref keyref="updateScreenCaptureParameters"
-                    /> 更新屏幕共享的配置参数时，通过该参数动态屏蔽指定的窗口。</p>
-                </pd>
-            </plentry>
-            <plentry props="rtc-ng">
-                <pt props="cpp unity">excludeWindowList</pt>
-                <pd props="cpp unity">
-                    <p>待屏蔽窗口的 ID 列表。调用 <xref keyref="startScreenCaptureByScreenRect"
-                    />开启屏幕共享时，你可以通过该参数屏蔽指定的窗口。你可以在调用 <xref keyref="updateScreenCaptureParameters"
-                    /> 更新屏幕共享的配置参数时，通过该参数动态屏蔽指定的窗口。</p>
+                    <p>待屏蔽窗口的 ID 列表。调用 <xref keyref="startScreenCaptureByScreenRect"/>开启屏幕共享时，你可以通过该参数屏蔽指定的窗口。你可以在调用 <xref keyref="updateScreenCaptureParameters"/> 更新屏幕共享的配置参数时，通过该参数动态屏蔽指定的窗口。</p>
                 </pd>
             </plentry>
             <plentry props="cpp unity electron">
                 <pt>excludeWindowCount</pt>
                 <pd>
-                    <dl outputclass="since" props="rtc">
-                    <dlentry>
-                        <dt>自从</dt>
-                        <dd>v3.1.0</dd>
-                    </dlentry>
-                    </dl>
                     <p>待屏蔽窗口的数量。</p>
                 </pd>
             </plentry>

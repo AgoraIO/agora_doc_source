@@ -37,25 +37,21 @@
   AgoraRhythmPlayerConfig() : beatsPerMeasure(4), beatsPerMinute(60) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public class AgoraRhythmPlayerConfig {
-        public int beatsPerMeasure;
-        public int beatsPerMinute;
+            <codeblock props="unity" outputclass="language-csharp">public class AgoraRhythmPlayerConfig
+    {
+        public AgoraRhythmPlayerConfig()
+        {
+            beatsPerMeasure = 4;
+            beatsPerMinute = 60;
+        }
+        public int beatsPerMeasure { set; get; }
+        public int beatsPerMinute { set; get; }
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
-        <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>自从</dt>
-                <dd>v3.4.0</dd>
-            </dlentry>
-            </dl>
-        </section>
         <section id="parameters">
-            <title> <text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /> </title>
+            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/> </title>
             <parml>
             <plentry>
                 <pt>beatsPerMeasure</pt>
@@ -64,23 +60,6 @@
             <plentry>
                 <pt>beatsPerMinute</pt>
                 <pd>节拍速度（拍/分钟），取值范围为 [60,360]。默认值为 60，即 1 分钟有 60 拍。</pd>
-            </plentry>
-            <plentry props="rtc">
-                <pt>publish</pt>
-                <pd>
-                        是否将节拍器的声音发布至远端：
-                        
-                    
-                    
-                    
-                    <ul>
-                    <li> <codeph> <ph keyref="true"/> </codeph>
-                                : （默认）发布。本地用户和远端用户都能听到节拍器。
-                            </li>
-                    <li> <codeph> <ph keyref="false"/> </codeph>
-                                : 不发布。只有本地用户能听到节拍器。
-                            </li>
-                    </ul> </pd>
             </plentry>
             </parml> </section>
     </refbody>
