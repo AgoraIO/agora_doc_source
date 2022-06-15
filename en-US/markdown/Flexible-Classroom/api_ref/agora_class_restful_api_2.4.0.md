@@ -111,23 +111,23 @@ The fields returned in `data` vary in different situations.
    ```json
    "action": NumberInt("1"),
    "changeProperties": {
-       "widgets.popupQuiz.extra.correctItems": [
+       "extra.correctItems": [
            "A",
            "B",
            "D"
        ],
-       "widgets.popupQuiz.extra.totalCount": NumberInt("1"),
-       "widgets.popupQuiz.extra.answerState": NumberInt("1"),
-       "widgets.popupQuiz.state": NumberInt("1"),
-       "widgets.popupQuiz.extra.popupQuizId": "ab5b183238a74d5a9c955dc87c6397e0",
-       "widgets.popupQuiz.extra.averageAccuracy": 0,
-       "widgets.popupQuiz.extra.correctCount": NumberInt("0"),
-       "widgets.popupQuiz.extra.items": [
+       "extra.totalCount": NumberInt("1"),
+       "extra.answerState": NumberInt("1"),
+       "state": NumberInt("1"),
+       "extra.popupQuizId": "ab5b183238a74d5a9c955dc87c6397e0",
+       "extra.averageAccuracy": 0,
+       "extra.correctCount": NumberInt("0"),
+       "extra.items": [
            "A",
            "C",
            "B"
        ],
-       "widgets.popupQuiz.extra.receiveQuestionTime": NumberLong("1652413962895")
+       "extra.receiveQuestionTime": NumberLong("1652413962895")
    },
    "operator": {
        "userName": "server",
@@ -141,14 +141,14 @@ The fields returned in `data` vary in different situations.
    ```json
    "action": NumberInt("1"),
    "changeProperties": {
-       "widgets.popupQuiz.selectedItems": [
+       "selectedItems": [
            "A",
            "B",
            "D"
        ],
-       "widgets.popupQuiz.isCorrect": true,
-       "widgets.popupQuiz.popupQuizId": "ab5b183238a74d5a9c955dc87c6397e0",
-       "widgets.popupQuiz.lastCommitTime": NumberLong("1652413989997")
+       "isCorrect": true,
+       "popupQuizId": "ab5b183238a74d5a9c955dc87c6397e0",
+       "lastCommitTime": NumberLong("1652413989997")
    },
    "fromUser": {
        "userName": "yerongzhe2",
@@ -162,11 +162,11 @@ The fields returned in `data` vary in different situations.
    ```json
    "action": NumberInt("1"),
    "changeProperties": {
-       "widgets.popupQuiz.extra.totalCount": NumberInt("1"),
-       "widgets.popupQuiz.extra.answerState": NumberInt("0"),
-       "widgets.popupQuiz.extra.selectedCount": NumberInt("1"),
-       "widgets.popupQuiz.extra.averageAccuracy": 1,
-       "widgets.popupQuiz.extra.correctCount": NumberInt("1")
+       "extra.totalCount": NumberInt("1"),
+       "extra.answerState": NumberInt("0"),
+       "extra.selectedCount": NumberInt("1"),
+       "extra.averageAccuracy": 1,
+       "extra.correctCount": NumberInt("1")
    },
    "operator": {
        "userName": "server",
@@ -288,18 +288,18 @@ The fields returned in `data` vary in different situations.
    ```json
    "action": NumberInt("1"),
    "changeProperties": {
-       "widgets.poll.extra.pollId": "e556ce3df5cd4c23941b03bf54d29ba3",
-       "widgets.poll.extra.pollState": NumberInt("1"),
-       "widgets.poll.extra.pollItems": [
+       "extra.pollId": "e556ce3df5cd4c23941b03bf54d29ba3",
+       "extra.pollState": NumberInt("1"),
+       "extra.pollItems": [
            "aaa",
            "bbb",
            "ccc",
            "ddd",
            "eee"
        ],
-       "widgets.poll.extra.mode": NumberInt("2"),
-       "widgets.poll.state": NumberInt("1"),
-       "widgets.poll.extra.pollDetails": {
+       "extra.mode": NumberInt("2"),
+       "state": NumberInt("1"),
+       "extra.pollDetails": {
            "0": {
                "num": NumberInt("0"),
                "percentage": 0
@@ -334,8 +334,8 @@ The fields returned in `data` vary in different situations.
    ```json
    "action": NumberInt("1"),
    "changeProperties": {
-       "widgets.poll.pollId": "e556ce3df5cd4c23941b03bf54d29ba3",
-       "widgets.poll.selectIndex": [
+       "pollId": "e556ce3df5cd4c23941b03bf54d29ba3",
+       "selectIndex": [
            NumberInt("1"),
            NumberInt("2"),
            NumberInt("4")
@@ -358,8 +358,8 @@ The fields returned in `data` vary in different situations.
    ```json
    "action": NumberInt("1"),
    "changeProperties": {
-       "widgets.poll.extra.pollId": "2f38e6de32064713adf135de41c963df",
-       "widgets.poll.extra.pollDetails": {
+       "extra.pollId": "2f38e6de32064713adf135de41c963df",
+       "extra.pollDetails": {
            "0": {
                "num": NumberInt("1"),
                "percentage": 0.33333334
@@ -394,8 +394,8 @@ The fields returned in `data` vary in different situations.
    ```json
    "action": NumberInt("1"),
    "changeProperties": {
-       "widgets.poll.extra.pollId": "2f38e6de32064713adf135de41c963df",
-       "widgets.poll.extra.pollDetails": {
+       "extra.pollId": "2f38e6de32064713adf135de41c963df",
+       "extra.pollDetails": {
            "0": {
                "num": NumberInt("1"),
                "percentage": 0.33333334

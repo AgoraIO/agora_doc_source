@@ -150,10 +150,6 @@
                     <stentry><ph conkeyref="setAudioProfile/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry><xref keyref="setAudioProfile2"/></stentry>
-                    <stentry><ph conkeyref="setAudioProfile2/shortdesc"/></stentry>
-                </strow>
-                <strow>
                     <stentry><xref keyref="adjustRecordingSignalVolume"/></stentry>
                     <stentry><ph conkeyref="adjustRecordingSignalVolume/shortdesc"/></stentry>
                 </strow>
@@ -245,6 +241,14 @@
                 <strow>
                     <stentry><xref keyref="stopPreview"/></stentry>
                     <stentry><ph conkeyref="stopPreview/shortdesc"/></stentry>
+                </strow>
+                <strow props="cpp android">
+                    <stentry><xref keyref="startPreview2"/></stentry>
+                    <stentry><ph conkeyref="startPreview2/shortdesc"/></stentry>
+                </strow>
+                <strow props="cpp android">
+                    <stentry><xref keyref="stopPreview2"/></stentry>
+                    <stentry><ph conkeyref="stopPreview2/shortdesc"/></stentry>
                 </strow>
                 <strow props="cpp android ios mac">
                     <stentry><xref keyref="setupLocalVideo"/></stentry>
@@ -362,6 +366,10 @@
                 <strow>
                     <stentry><xref keyref="IMediaPlayer"/></stentry>
                     <stentry><ph conkeyref="IMediaPlayer/shortdesc"/></stentry>
+                </strow>
+                <strow props="ios android">
+                <stentry><xref keyref="IMediaPlayerCacheManager"/></stentry>
+                <stentry><ph conkeyref="IMediaPlayerCacheManager/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="IMediaPlayerSourceObserver"/></stentry>
@@ -580,8 +588,21 @@
                     <stentry><xref keyref="setInEarMonitoringVolume"/></stentry>
                     <stentry><ph conkeyref="setInEarMonitoringVolume/shortdesc"/></stentry>
                 </strow>
+                <strow>
+                <stentry><xref keyref="setEarMonitoringAudioFrameParameters"/></stentry>
+                <stentry><ph conkeyref="setEarMonitoringAudioFrameParameters/shortdesc"/></stentry>
+            </strow>
             </simpletable>
-        </section>
+           <simpletable>
+            <sthead>
+                <stentry>Event</stentry>
+                <stentry>Description</stentry>
+            </sthead>
+            <strow>
+                <stentry><xref keyref="onEarMonitoringAudioFrame"/></stentry>
+                <stentry><ph conkeyref="onEarMonitoringAudioFrame/shortdesc"/></stentry>
+            </strow>
+            </simpletable> </section>
         <section id="audio_file_playback_and_mixing">
             <title>Music file playback and mixing</title>
             <simpletable>
@@ -862,11 +883,11 @@
                     <stentry><xref keyref="startScreenCaptureByWindowId"/></stentry>
                     <stentry><ph conkeyref="startScreenCaptureByWindowId/shortdesc"/><ph props="cpp unity"> (For Windows and macOS only)</ph></stentry>
                 </strow>
-                <strow props="cpp">
+                <strow props="unity">
                     <stentry><xref keyref="startScreenCaptureByScreenRect"/></stentry>
                     <stentry><ph conkeyref="startScreenCaptureByScreenRect/shortdesc"/> (For Windows only)</stentry>
                 </strow>
-                <strow props="mac unity">
+                <strow props="cpp mac unity">
                     <stentry><xref keyref="startScreenCaptureByDisplayId"/></stentry>
                     <stentry><ph conkeyref="startScreenCaptureByDisplayId/shortdesc"/><ph props="unity"> (For macOS only)</ph></stentry>
                 </strow>
@@ -889,6 +910,18 @@
                 <strow props="android cpp mac unity">
                     <stentry><xref keyref="stopScreenCapture"/></stentry>
                     <stentry><ph conkeyref="stopScreenCapture/shortdesc"/><ph props="cpp unity"> (For Android, Windows and macOS only)</ph></stentry>
+            </strow>
+            <strow props="cpp">
+                <stentry><xref keyref="getCount_IScreenCaptureSourceList"/></stentry>
+                <stentry><ph conkeyref="getCount_IScreenCaptureSourceList/shortdesc"/>（For Windows only）</stentry>
+            </strow>
+            <strow props="cpp">
+                <stentry><xref keyref="getSourceInfo_IScreenCaptureSourceList"/></stentry>
+                <stentry><ph conkeyref="getSourceInfo_IScreenCaptureSourceList/shortdesc"/>（For Windows only）</stentry>
+            </strow>
+            <strow props="cpp">
+                <stentry><xref keyref="release_IScreenCaptureSourceList"/></stentry>
+                <stentry><ph conkeyref="release_IScreenCaptureSourceList/shortdesc"/>（For Windows only）</stentry>
                 </strow>
                 <strow props="electron">
                     <stentry><xref keyref="getWindowsInfo"/></stentry>
@@ -906,8 +939,11 @@
                     <stentry><xref keyref="updateScreenCaptureParameters"/></stentry>
                     <stentry><ph conkeyref="updateScreenCaptureParameters/shortdesc"/></stentry>
                 </strow>
-            </simpletable>
-        </section>
+            <strow props="mac cpp">
+                <stentry><xref keyref="setScreenCaptureScenario"/></stentry>
+                <stentry><ph conkeyref="setScreenCaptureScenario/shortdesc"/></stentry>
+            </strow>
+            </simpletable> </section>
         <section id="dual_video_stream_mode">
             <title>Video dual stream</title>
             <simpletable>
@@ -1037,7 +1073,7 @@
                 <stentry><xref keyref="updateSelfPosition"/></stentry>
                 <stentry><ph conkeyref="updateSelfPosition/shortdesc"/></stentry>
             </strow>
-            <strow>
+            <strow props="native">
                 <stentry><xref keyref="renewToken_ICloudSpatialAudioEngine"/></stentry>
                 <stentry><ph conkeyref="renewToken_ICloudSpatialAudioEngine/shortdesc"/></stentry>
             </strow>
@@ -1113,7 +1149,7 @@
                 <stentry><xref keyref="setSpatialAudioParams"/></stentry>
                 <stentry><ph conkeyref="setSpatialAudioParams/shortdesc"/></stentry>
             </strow>
-            </simpletable> <simpletable>
+            </simpletable> <simpletable props="hide">
             <sthead>
                 <stentry>Cloud engine calculation event</stentry>
                 <stentry>Description</stentry>
@@ -1154,6 +1190,10 @@
                     <stentry><xref keyref="removePublishStreamUrl"/></stentry>
                     <stentry><ph conkeyref="removePublishStreamUrl/shortdesc"/></stentry>
                 </strow>
+            <strow>
+                <stentry><xref keyref="stopRtmpStream"/></stentry>
+                <stentry><ph conkeyref="stopRtmpStream/shortdesc"/></stentry>
+            </strow>
             </simpletable>
             <simpletable>
                 <sthead>
@@ -1161,6 +1201,10 @@
                     <stentry>Description</stentry>
                 </sthead>
                 <strow>
+                <stentry><xref keyref="onRtmpStreamingEvent"/></stentry>
+                <stentry><ph conkeyref="onRtmpStreamingEvent/shortdesc"/></stentry>
+            </strow>
+            <strow>
                     <stentry><xref keyref="onRtmpStreamingStateChanged"/></stentry>
                     <stentry><ph conkeyref="onRtmpStreamingStateChanged/shortdesc"/></stentry>
                 </strow>
@@ -1460,10 +1504,6 @@
                     <stentry><xref keyref="registerVideoFrameObserver"/></stentry>
                     <stentry><ph conkeyref="registerVideoFrameObserver/shortdesc"/></stentry>
                 </strow>
-                <strow props="cpp android">
-                    <stentry><xref keyref="registerVideoEncodedImageReceiver"/></stentry>
-                    <stentry><ph conkeyref="registerVideoEncodedImageReceiver/shortdesc"/></stentry>
-                </strow>
             </simpletable><simpletable>
                 <sthead>
                     <stentry>Event</stentry>
@@ -1477,7 +1517,7 @@
                     <stentry><xref keyref="onPreEncodeVideoFrame"/></stentry>
                     <stentry><ph conkeyref="onPreEncodeVideoFrame/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="native">
                     <stentry><xref keyref="onPreEncodeScreenVideoFrame"/></stentry>
                     <stentry><ph conkeyref="onPreEncodeScreenVideoFrame/shortdesc"/></stentry>
                 </strow>
@@ -1497,7 +1537,7 @@
                     <stentry><xref keyref="onRenderVideoFrame"/></stentry>
                     <stentry><ph conkeyref="onRenderVideoFrame/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="native">
                     <stentry><xref keyref="onMediaPlayerVideoFrame"/></stentry>
                     <stentry><ph conkeyref="onMediaPlayerVideoFrame/shortdesc"/></stentry>
                 </strow>
@@ -1509,20 +1549,45 @@
                     <stentry><xref keyref="getVideoFrameProcessMode"/></stentry>
                     <stentry><ph conkeyref="getVideoFrameProcessMode/shortdesc"/></stentry>
                 </strow>
-                <strow props="cpp android">
-                    <stentry><xref keyref="onEncodedVideoImageReceived"/></stentry>
-                    <stentry><ph conkeyref="onEncodedVideoImageReceived/shortdesc"/></stentry>
-                </strow>
-                <strow>
+                <strow props="native">
                     <stentry><xref keyref="getMirrorApplied"/></stentry>
                     <stentry><ph conkeyref="getMirrorApplied/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="native">
                     <stentry><xref keyref="getRotationApplied"/></stentry>
                     <stentry><ph conkeyref="getRotationApplied/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="getVideoFormatPreference"/></stentry>
+                <stentry><ph conkeyref="getVideoFormatPreference/shortdesc"/></stentry>
+            </strow>
+            </simpletable> </section>
+            <section id="encode_video_data">
+                <title>Encode video data</title>
+                <simpletable>
+                <sthead>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="registerVideoEncodedImageReceiver"/></stentry>
+                    <stentry><ph conkeyref="registerVideoEncodedImageReceiver/shortdesc"/></stentry>
+                </strow>
+                <strow props="unity">
+                    <stentry><xref keyref="UnregisterVideoEncodedImageReceiver"/></stentry>
+                    <stentry><ph conkeyref="UnregisterVideoEncodedImageReceiver/shortdesc"/></stentry>
                 </strow>
             </simpletable>
-        </section>
+            <simpletable>
+                <sthead>
+                    <stentry>Event</stentry>
+                    <stentry>Description</stentry>
+                </sthead>
+                <strow props="cpp android unity">
+                    <stentry><xref keyref="onEncodedVideoImageReceived"/></stentry>
+                    <stentry><ph conkeyref="onEncodedVideoImageReceived/shortdesc"/></stentry>
+                </strow>
+            </simpletable></section>
         <section id="section_ugt_d11_jqb">
             <title>Extension</title>
             <simpletable id="simpletable_bpq_j11_jqb">
@@ -1542,8 +1607,15 @@
                     <stentry><xref keyref="setExtensionProviderProperty"/></stentry>
                     <stentry><ph conkeyref="setExtensionProviderProperty/shortdesc"/></stentry>
                 </strow>
-            </simpletable>
-            <simpletable>
+            <strow props="android ios mac">
+                <stentry><xref keyref="getExtensionProperty1"/></stentry>
+                <stentry><ph conkeyref="getExtensionProperty1/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="getExtensionProperty2"/></stentry>
+                <stentry><ph conkeyref="getExtensionProperty2/shortdesc"/></stentry>
+            </strow>
+            </simpletable> <simpletable>
                 <sthead>
                     <stentry>Event</stentry>
                     <stentry>Description</stentry>
@@ -1902,6 +1974,14 @@
                     <stentry><xref keyref="release_IVideoDeviceManager"/></stentry>
                     <stentry><ph conkeyref="release_IVideoDeviceManager/shortdesc"/></stentry>
                 </strow>
+            <strow>
+                <stentry><xref keyref="numberOfCapabilities"/></stentry>
+                <stentry><ph conkeyref="numberOfCapabilities/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="getCapability"/></stentry>
+                <stentry><ph conkeyref="getCapability/shortdesc"/></stentry>
+            </strow>
             </simpletable>
             <simpletable props="hide">
                 <sthead>

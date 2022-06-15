@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_onusermovedtosubroom">
+    <title><ph keyref="onUserMovedToSubRoom"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when a user is moved from one sub-room to another.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onUserMovedToSubRoom"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-kotlin">override fun onUserMovedToSubRoom(
+        userUuid: String,
+        fromSubRoomUuid: String,
+        toSubRoomUuid: String,
+        operator: EduBaseUserInfo?
+)</codeblock>
+                <codeblock props="ios mac" outputclass="language-swift">void onUserMovedToSubRoom(String userUuid,
+                          String fromSubRoomUuid,
+                          String toSubRoomUuid,
+                          AgoraEduContextUserInfo operator)</codeblock>
+                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="web" outputclass="language-typescript"/>
+            </p>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+            <parml>
+                <plentry>
+                    <pt>userList</pt>
+                    <pd>A list of user IDs.</pd>
+                </plentry>
+                <plentry>
+                    <pt>fromSubRoomUuid</pt>
+                    <pd>The source sub-room ID.</pd>
+                </plentry>
+                <plentry>
+                    <pt>toSubRoomUuid</pt>
+                    <pd>The target sub-room ID.</pd>
+                </plentry>
+                <plentry>
+                    <pt>operator</pt>
+                    <pd>The operator, which can be empty.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>
