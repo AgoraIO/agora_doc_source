@@ -321,7 +321,7 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 
 ## Deleting a chat group
 
-Deletes the specified chat group.
+Deletes the specified chat group. Once a chat group is deleted, all the threads in this chat group are deleted as well.
 
 ### HTTP request
 
