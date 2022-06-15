@@ -2,7 +2,7 @@ Emojis are widely used in real0time chats because they allow users to express th
 
 The following illustration shows the implementation of adding a reaction to a message, how a conversation looks with reactions, and what retrieving a list of reactions (with related information) looks like.
 
-![](https://web-cdn.agora.io/docs-files/1654763198784)
+![](https://web-cdn.agora.io/docs-files/1655257598155)
 
 This page shows how to use the Agora Chat SDK to implement reactions in your project.
 
