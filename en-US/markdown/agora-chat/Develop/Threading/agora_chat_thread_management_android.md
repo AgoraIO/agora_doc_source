@@ -154,7 +154,7 @@ ChatClient.getInstance().chatThreadManager().removeMemberFromChatThread(chatThre
 
 ### Update the name of a thread
 
-Only the chat group owner, chat group admins, and thread creator can call `changeChatThreadName` to update a thread name.
+Only the chat group owner, chat group admins, and thread creator can call `updateChatThreadName` to update a thread name.
 
 Once a thread name is updated, all chat group members receive the `ChatThreadChangeListener#onChatThreadUpdated` callback. In a multi-device scenario, all the other devices receive the `MultiDeviceListener#onThreadEvent` callback triggered by the `THREAD_UPDATE` event.
 
@@ -163,7 +163,7 @@ The following code sample shows how to update a thread name:
 ```java
 // chatThreadId: The ID of a thread.
 // newChatThreadName: The updated thread name. The maximum length of a thread name is 64 characters.
-ChatClient.getInstance().chatThreadManager().changeChatThreadName(chatThreadId, newChatThreadName, 
+ChatClient.getInstance().chatThreadManager().updateChatThreadName(chatThreadId, newChatThreadName, 
         new CallBack() {
     @Override
     public void onSuccess() {

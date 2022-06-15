@@ -32,7 +32,7 @@ This section describes how to call the APIs provided by the Agora Chat SDK to im
 
 ### Send a thread message
 
-Send a thread message is similar to send a message in a chat group. The difference lies in the `IsThread` field, as shown in the following code sample:
+Send a thread message is similar to send a message in a chat group. The difference lies in the `isChatThreadMessage` field, as shown in the following code sample:
 
 ```java
 // Calls `createTxtSendMessage` to create a text message. 
@@ -41,8 +41,8 @@ Send a thread message is similar to send a message in a chat group. The differen
 ChatMessage message = ChatMessage.createTxtSendMessage(content, chatThreadId); 
 // Sets `ChatType` to `GroupChat` as a thread belongs to a chat group.
 message.setChatType(ChatType.GroupChat); 
-// Sets `IsThread` to `true` to mark this message as a thread message.
-message.setIsThread(true);
+// Sets `isChatThreadMessage` to `true` to mark this message as a thread message.
+message.setisChatThreadMessage(true);
 // Calls `setMessageStatusCallback` to listen for the message sending status. You can implement subsequent settings in this callback, for example, displaying a pop-up if the message sending fails.
 message.setMessageStatusCallback(new CallBack() {
      @Override
@@ -76,7 +76,7 @@ MessageListener msgListener = new MessageListener() {
    @Override
    public void onMessageReceived(List<ChatMessage> messages) {
        for (ChatMessage message : messages) {
-           if(message.isThread()) {
+           if(message.isChatThreadMessage()) {
                // You can implement subsequent settings in this callback.
            }
        }
@@ -105,7 +105,7 @@ MessageListener msgListener = new MessageListener() {
    @Override
    public void onMessageRecalled(List<ChatMessage> messages) {
        for (ChatMessage message : messages) {
-           if(message.isThread()) {
+           if(message.isChatThreadMessage()) {
                // You can implement subsequent settings in this callback.
            }
        }
