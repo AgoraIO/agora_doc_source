@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_clientrolechangefailedreason">
+    <title><ph keyref="CLIENT_ROLE_CHANGE_FAILED_REASON"/></title>
+    <shortdesc id="short"><ph id="shortdesc">切换用户角色失败的原因。</ph></shortdesc>
+    <refbody>
+        <section id="parameters">
+            <title>枚举值</title>
+            <parml>
+            <plentry>
+                <pt><ph keyref="CLIENT_ROLE_CHANGE_FAILED_BY_TOO_MANY_BROADCASTERS"/></pt>
+                <pd>
+                    <p>1: 频道内主播人数达到上限。</p>
+                    <note type="attention">该枚举仅在开启 128 人功能后报告。主播人数的上限根据开启 128 人功能时实际配置的人数而定。</note>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CLIENT_ROLE_CHANGE_FAILED_BY_NOT_AUTHORIZED"/></pt>
+                <pd>2: 请求被服务端拒绝。建议提示用户重新尝试切换用户角色。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CLIENT_ROLE_CHANGE_FAILED_BY_REQUEST_TIME_OUT"/></pt>
+                <pd>3: 请求超时。建议提示用户检查网络连接状况后重新尝试切换用户角色。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CLIENT_ROLE_CHANGE_FAILED_BY_CONNECTION_FAILED"/></pt>
+                <pd>4: 网络连接断开。可根据 <apiname keyref="onConnectionStateChanged"/> 报告的 <codeph>reason</codeph>，排查网络连接失败的具体原因。</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

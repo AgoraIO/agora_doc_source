@@ -43,6 +43,7 @@
        启用该功能后，如果有用户将自己静音（调用了 <xref keyref="muteLocalAudioStream"/>），SDK 行为会受如下影响：
        
             
+            
             <ul>
             <li>本地用户静音后，SDK 立即停止报告本地用户的音量提示回调。</li>
             <li>瞬时音量最高的远端用户静音后 20 秒，远端的音量提示回调中将不再包含该用户；如果远端所有用户都将自己静音，20 秒后 SDK 停止报告远端用户的音量提示回调。</li>
@@ -69,6 +70,7 @@
                 <pd>
                     <p>用户数量。
                     
+                    
                     <ul>
                     <li>在本地用户的回调中，只要本地用户在发流，<parmname>speakerNumber</parmname> 始终为
                                     1。</li>
@@ -80,6 +82,7 @@
                 <pt>totalVolume</pt>
                 <pd>
                     <p>混音后的总音量，取值范围为 [0,255]。
+                    
                     
                     <ul>
                     <li>在本地用户的回调中，<parmname>totalVolume</parmname> 为本地发流用户的音量。</li>

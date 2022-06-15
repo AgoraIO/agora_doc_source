@@ -18,13 +18,13 @@ replaced by <xref keyref="IRtcEngine"/>, please use the
             <li> <xref keyref="IRtcEngine"/> provides the main methods that can be invoked by your application.</li>
             <li props="android ios mac cpp flutter cs"> <xref keyref="IRtcEngineEventHandler"/> reports runtime events to the application.</li>
             <li props="electron"> <xref keyref="IRtcEngineEventHandler">AgoraRtcEngine.on</xref>
-                
+
  reports runtime events to the application.</li>
             <li> <xref keyref="IChannel"/> provides methods that enable real-time communications in a specified channel. By creating multiple
 <apiname keyref="IChannel"/> objects, users can join multiple channels at the same time.</li>
             <li props="ios mac cpp android flutter cs"> <xref keyref="IChannelEventHandler"/> provides callbacks that report events and statistics of a specified channel.</li>
             <li props="electron"> <xref keyref="IChannelEventHandler">AgoraRtcChannel.on</xref>
-                
+
   provides callbacks that report events and statistics of a specified channel.</li>
             <li props="cpp"> <xref keyref="IAudioDeviceManager"/> allows for audio device interface testing.</li>
             <li props="cpp"> <xref keyref="IVideoDeviceManager"/> allows for video device interface testing.</li>
@@ -122,6 +122,10 @@ replaced by <xref keyref="IRtcEngine"/>, please use the
             <strow>
                 <stentry> <xref keyref="onClientRoleChanged"/> </stentry>
                 <stentry> <ph conkeyref="onClientRoleChanged/shortdesc"/> </stentry>
+            </strow>
+            <strow>
+                <stentry> <xref keyref="onClientRoleChangeFailed"/> </stentry>
+                <stentry> <ph conkeyref="onClientRoleChangeFailed/shortdesc"/> </stentry>
             </strow>
             <strow>
                 <stentry> <xref keyref="onUserJoined"/> </stentry>
@@ -491,16 +495,16 @@ replaced by <xref keyref="IRtcEngine"/>, please use the
                 <stentry> <ph conkeyref="startScreenCaptureByDisplayId/shortdesc"/> </stentry>
             </strow>
             <strow>
-                <stentry> <xref keyref="startScreenCaptureByScreenRect"/> </stentry>
-                <stentry> <ph conkeyref="startScreenCaptureByScreenRect/shortdesc"/> </stentry>
-            </strow>
-            <strow>
                 <stentry> <xref keyref="startScreenCaptureByWindowId"/> </stentry>
                 <stentry> <ph conkeyref="startScreenCaptureByWindowId/shortdesc"/> </stentry>
             </strow>
             <strow>
                 <stentry> <xref keyref="setScreenCaptureContentHint"/> </stentry>
                 <stentry> <ph conkeyref="setScreenCaptureContentHint/shortdesc"/> </stentry>
+            </strow>
+            <strow>
+                <stentry> <xref keyref="setScreenCaptureScenario"/> </stentry>
+                <stentry> <ph conkeyref="setScreenCaptureScenario/shortdesc"/> </stentry>
             </strow>
             <strow>
                 <stentry> <xref keyref="updateScreenCaptureParameters"/> </stentry>
@@ -759,6 +763,10 @@ replaced by <xref keyref="IRtcEngine"/>, please use the
                 <stentry> <ph conkeyref="setLocalVoicePitch/shortdesc"/> </stentry>
             </strow>
             <strow>
+                <stentry> <xref keyref="enableLocalVoicePitchCallback"/> </stentry>
+                <stentry> <ph conkeyref="enableLocalVoicePitchCallback/shortdesc"/> </stentry>
+            </strow>
+            <strow>
                 <stentry> <xref keyref="setLocalVoiceEqualization"/> </stentry>
                 <stentry> <ph conkeyref="setLocalVoiceEqualization/shortdesc"/> </stentry>
             </strow>
@@ -785,6 +793,15 @@ replaced by <xref keyref="IRtcEngine"/>, please use the
             <strow>
                 <stentry> <xref keyref="setVoiceConversionPreset"/> </stentry>
                 <stentry> <ph conkeyref="setVoiceConversionPreset/shortdesc"/> </stentry>
+            </strow>
+            </simpletable> <simpletable>
+            <sthead>
+                <stentry>Event</stentry>
+                <stentry>Description</stentry>
+            </sthead>
+            <strow>
+                <stentry> <xref keyref="onLocalVoicePitchInHz"/> </stentry>
+                <stentry> <ph conkeyref="onLocalVoicePitchInHz/shortdesc"/> </stentry>
             </strow>
             </simpletable> </section>
         <section id="sound_position_indication">
@@ -1352,27 +1369,6 @@ replaced by <xref keyref="IRtcEngine"/>, please use the
             <strow>
                 <stentry> <xref keyref="onSnapshotTaken"/> </stentry>
                 <stentry> <ph conkeyref="onSnapshotTaken/shortdesc"/> </stentry>
-            </strow>
-            </simpletable> </section>
-        <section id="content_inspect" props="native">
-            <title>Content review</title>
-            <simpletable>
-            <sthead>
-                <stentry>Method</stentry>
-                <stentry>Description</stentry>
-            </sthead>
-            <strow>
-                <stentry> <xref keyref="enableContentInspect"/> </stentry>
-                <stentry> <ph conkeyref="enableContentInspect/shortdesc"/> </stentry>
-            </strow>
-            </simpletable> <simpletable>
-            <sthead>
-                <stentry>Event</stentry>
-                <stentry>Description</stentry>
-            </sthead>
-            <strow>
-                <stentry> <xref keyref="onContentInspectResult"/> </stentry>
-                <stentry> <ph conkeyref="onContentInspectResult/shortdesc"/> </stentry>
             </strow>
             </simpletable> </section>
         <section id="encryption">

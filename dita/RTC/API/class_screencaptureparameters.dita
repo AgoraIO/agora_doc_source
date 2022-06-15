@@ -118,19 +118,19 @@
             this.excludeWindowList = excludeWindowList ?? new view_t[0];
             this.excludeWindowCount = excludeWindowCount;
         }
-        
+
         public VideoDimensions dimensions { set; get; }
-        
+
         public int frameRate { set; get; }
-        
+
         public int bitrate { set; get; }
-        
+
         public bool captureMouseCursor { set; get; }
-        
+
         public bool windowFocus { set; get; }
-        
+
         public view_t[] excludeWindowList { set; get; }
-        
+
         public int excludeWindowCount { set; get; }
     }</codeblock> </p>
             <p props="rtc" outputclass="codeblock">
@@ -210,7 +210,7 @@
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">class ScreenCaptureParameters {
-  
+
   @JsonKey(includeIfNull: false)
   VideoDimensions? dimensions;
 
@@ -257,7 +257,8 @@
                     keyref="VideoDimensions"
                     />。默认值为 1920 × 1080，即 2073600 像素。该像素值为计费标准。</ph></p>
                     <p>当共享的屏幕分辨率宽高比与该值设置不一致时，SDK 按如下策略进行编码。假设 <codeph>dimensions</codeph> 设为 1920 × 1080：
-                    
+
+
                     <ul>
                     <li>如果屏幕分辨率小于 <codeph>dimensions</codeph>，如 1000 × 1000，SDK 直接按 1000 × 1000 进行编码。</li>
                     <li>如果屏幕分辨率大于 <codeph>dimensions</codeph>，如 2000 × 1500，SDK 按屏幕分辨率的宽高比，即 4:3，取 dimensions 以内的最大分辨率进行编码，即 1440 × 1080。</li>
@@ -282,7 +283,8 @@
                     </dlentry>
                     </dl>
                     <p>是否采集鼠标用于屏幕共享：
-                    
+
+
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>:（默认）采集鼠标。</li>
                     <li><codeph><ph keyref="false"/></codeph>: 不采集鼠标。</li>
@@ -293,7 +295,6 @@
                 <pt props="cpp cs">captureMouseCursor</pt>
                 <pd props="cpp cs">
                     <p>是否采集鼠标用于屏幕共享：
-                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>:（默认）采集鼠标。</li>
                     <li><codeph><ph keyref="false"/></codeph>: 不采集鼠标。</li>
@@ -310,7 +311,8 @@
                     </dlentry>
                     </dl>
                     <p>调用 <xref keyref="startScreenCaptureByWindowId"/> 方法共享窗口时，是否将该窗口前置：
-                    
+
+
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 前置窗口。</li>
                     <li><codeph><ph keyref="false"/></codeph>:（默认）不前置窗口。</li>
@@ -321,7 +323,8 @@
                 <pt props="cpp cs">windowFocus</pt>
                 <pd props="cpp cs">
                     <p>调用 <xref keyref="startScreenCaptureByWindowId"/> 方法共享窗口时，是否将该窗口前置：
-                    
+
+
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 前置窗口。</li>
                     <li><codeph><ph keyref="false"/></codeph>:（默认）不前置窗口。</li>
@@ -342,6 +345,7 @@
                     />开启屏幕共享时，你可以通过该参数屏蔽指定的窗口。你可以在调用 <xref
                     keyref="updateScreenCaptureParameters"
                     /> 更新屏幕共享的配置参数时，通过该参数动态屏蔽指定的窗口。</p>
+                    <note type="attention" props="cpp">SDK 不支持你在多显卡的 Windows 设备上屏蔽窗口。如果你在这种设备上设置 <codeph>excludeWindowList</codeph>，SDK 会报告错误码 <codeph>ERR_NOT_SUPPORTED_MUTI_GPU_EXCLUDE_WINDOW(1736)</codeph>。</note>
                 </pd>
             </plentry>
             <plentry props="rtc-ng">
@@ -373,6 +377,33 @@
             <plentry props="electron">
                 <pt>height</pt>
                 <pd>屏幕共享区域的高。</pd>
+            </plentry>
+            <plentry props="cpp">
+                <pt>enableHighLight</pt>
+                <pd><p>（仅适用于 macOS）是否对共享的窗口或屏幕进行描边：
+                <ul>
+                    <li>
+                        <codeph><ph keyref="true"/></codeph>: 描边。
+                    </li>
+                    <li>
+                        <codeph><ph keyref="false"/></codeph>:（默认）不描边。
+                    </li>
+                </ul>
+                </p>
+                <note type="attention">当你共享窗口或屏幕的部分区域时，如果设置描边，SDK 会对整个窗口或屏幕进行描边。</note>
+                </pd>
+            </plentry>
+            <plentry props="cpp">
+                <pt>highLightWidth</pt>
+                <pd>
+                    （仅适用于 macOS）描边的宽度 (px)。默认值为 0，取值范围为 [0,50]。
+                </pd>
+            </plentry>
+            <plentry props="cpp">
+                <pt>highLightColor</pt>
+                <pd>
+                    （仅适用于 macOS）描边的 RGBA 颜色。默认值为 0xFF8CBF26。
+                </pd>
             </plentry>
             </parml> </section>
     </refbody>

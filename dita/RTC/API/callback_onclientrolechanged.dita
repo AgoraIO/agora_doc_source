@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onclientrolechanged">
     <title><ph keyref="onClientRoleChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc">直播场景下用户角色已切换回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">直播场景下用户角色切换成功回调。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
@@ -24,8 +24,7 @@
             <codeblock props="flutter" outputclass="language-dart">ClientRoleCallback? clientRoleChanged;</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p props="rtc">该回调是由本地用户在加入频道后调用 <xref keyref="setClientRole2"/> 改变用户角色触发的。</p>
-            <p props="rtc-ng">该回调是由本地用户在加入频道后调用 <xref keyref="setClientRole1"/> 改变用户角色触发的。</p>
+            <p>直播场景下，本地用户加入频道后调用 <xref keyref="setClientRole2"/> 成功改变用户角色时，例如主播切换为观众，或观众切换为主播，SDK 会触发该回调，报告切换前和切换后的角色。</p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
@@ -34,10 +33,6 @@
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt/>
                 <pd/>
-            </plentry>
-            <plentry props="rtc-ng">
-                <pt props="cs">connection</pt>
-                <pd props="cs">Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
             </plentry>
             <plentry id="oldRole">
                 <pt>oldRole</pt>
