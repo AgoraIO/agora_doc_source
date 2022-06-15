@@ -12,7 +12,7 @@ This page shows a sample code to add peer-to-peer messaging into an app by using
 ## Prerequisites
 
 If your target platform is iOS, your development environment must meet the following requirements:
-- Flutter 2.10 ro later
+- Flutter 2.10 or later
 - Dart 2.16 or later
 - macOS
 - Xcode 12.4 or later with Xcode Command Line Tools
@@ -20,7 +20,7 @@ If your target platform is iOS, your development environment must meet the follo
 - An iOS simulator or a real iOS device running iOS 10.0 or later
 
 If your target platform is Android, your development environment must meet the following requirements:
-- Flutter 2.10 ro later
+- Flutter 2.10 or later
 - Dart 2.16 or later
 - macOS or Windows
 - Android Studio 4.0 or later with JDK 1.8 or later
