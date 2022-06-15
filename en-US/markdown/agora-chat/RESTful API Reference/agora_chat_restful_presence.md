@@ -1,8 +1,8 @@
 # Presence
 
-The presence feature enables users to display their customized status to public and detect the status of others, which adds fun and diversity to real-time chatting. This page shows how to use the Agora Chat RESTful API to implement presence in your project.
+The presence feature enables users to display their online status to public and detect the online status of others. Users can also customize their presence status, which adds fun and diversity to real-time chatting.
 
-Before calling the following methods, ensure that you meet the following:
+This page shows how to use the Agora Chat RESTful API to implement presence in your project. Before calling the following methods, ensure that you meet the following:
 - You understand the call frequency limit of the Chat RESTful APIs as described in [Limitations](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side).
 - You have activated the presence feature in [Agora Console](http://console.staging.agora.io/).
 
@@ -92,9 +92,9 @@ curl -X POST 'a1-test.agora.com:8089/5101220107132865/test/users/c1/presence/and
 ```
 
 
-## Subscribe to the presence statuses of multiple users
+## Subscribe to the presence status of multiple users
 
-Subscribes to the presence statuses of multiple users.
+Subscribes to the presence status of multiple users.
 
 For each App Key, the call frequency limit of this method is 50 per second.
 
@@ -160,9 +160,9 @@ curl -X POST 'a1-test.agora.com:8089/5101220107132865/test/users/wzy/presence/10
 ```
 
 
-## Retrieve the presence statuses of multiple users
+## Retrieve the presence status of multiple users
 
-Retrieves the presence statuses of multiple users.
+Retrieves the presence status of multiple users.
 
 For each App Key, the call frequency limit of this method is 50 per second.
 
@@ -240,9 +240,9 @@ curl -X POST 'a1-test.agora.com:8089/5101220107132865/test/users/wzy/presence' \
  }
 ```
 
-## Unsubscribe from the presence statuses of multiple users
+## Unsubscribe from the presence status of multiple users
 
-Unsubscribes from the presence statuses of multiple users.
+Unsubscribes from the presence status of multiple users.
 
 For each App Key, the call frequency limit of this method is 50 per second.
 
