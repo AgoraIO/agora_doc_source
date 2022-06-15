@@ -170,7 +170,7 @@ From the caller's client, call `startSingleCallWithUId` or `startInviteUsers` to
     [viewController presentViewController:controller animated:YES completion:nil];
     ```
 
-The following screenshot gives an example of the user interface for a one-to-one audio call:
+The following screenshot gives an example of the user interface after sending a call invitation for one-to-one audio call:
 
 ![image](../images/outgoing.png)
 
@@ -353,7 +353,7 @@ The following table lists the core methods in `AgoraChatCallManager`:
 | startInviteUsers:groupId:callType:ext:completion:  | Starts a group call. |
 | getAgoraChatCallConfig | Retrieves the configurations of AgoraChatCallKit. |
 | setRTCToken:channelName:uid: | Sets the RTC Token. |
-| setUsers:channelName: | Sets the mapping dictionary for Agora Chat user ID and Agora UID. |  
+| setUsers:channelName: | Sets the mapping between Agora Chat user ID and Agora user ID (UID). |  
 
 The following table lists the callbacks in `AgoraChatCallDelegate`:
 
