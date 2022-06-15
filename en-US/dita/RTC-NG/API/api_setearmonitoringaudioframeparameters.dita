@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setearmonitoringaudioframeparameters">
+    <title><ph keyref="setEarMonitoringAudioFrameParameters"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the format of the in-ear monitoring raw audio data.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setEarMonitoringAudioFrameParameters"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setEarMonitoringAudioFrameParameters(
+    int sampleRate, int channel, int mode, int samplesPerCall);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setEarMonitoringAudioFrameParametersWithSampleRate:(NSInteger)sampleRate
+                                                  channel:(NSInteger)channel
+                                                     mode:(AgoraAudioRawFrameOperationMode)mode
+                                           samplesPerCall:(NSInteger)samplesPerCall;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setEarMonitoringAudioFrameParameters(int sampleRate, int channel,
+                                                   RAW_AUDIO_FRAME_OP_MODE_TYPE mode,
+                                                   int samplesPerCall) = 0;</codeblock></p>
+        </section>
+        <section id="detailed_desc">
+            <p>This method is used to set the in-ear monitoring audio data format reported by the <xref keyref="onEarMonitoringAudioFrame"/> callback.</p>
+            <note type="attention">
+            <ul>
+            <li props="cpp">This method is for Android and iOS only.</li>
+            <li>Before calling this method, you need to call <xref keyref="enableInEarMonitoring2"/>, and set <parmname>includeAudioFilters</parmname> to <apiname keyref="EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS"/> or <apiname keyref="EAR_MONITORING_FILTER_NOISE_SUPPRESSION"/>.</li>
+            <li>The SDK calculates the sampling interval based on the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname>, and <parmname>channel</parmname> parameters set in this method. The calculation formula is as follows:<equation-inline>Sample interval = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>. Ensure that the sample interval ≥ 0.01 (s). <ph>The SDK triggers the <apiname keyref="onEarMonitoringAudioFrame"/> callback according to the sampling interval.</ph></li>
+            </ul></note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>sampleRate</pt>
+                <pd>The sample rate of the audio data reported in the <apiname keyref="onEarMonitoringAudioFrame"/> callback, which can be set as 8,000, 16,000, 32,000, 44,100, or 48,000 Hz.</pd>
+            </plentry>
+            <plentry>
+                <pt>channel</pt>
+                <pd>
+                    <p>The number of audio channels reported in the <apiname keyref="onEarMonitoringAudioFrame"/> callback:<ul>
+                    <li>1: Mono (one channel).</li>
+                    <li>2: Stereo (two channels).</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>mode</pt>
+                <pd>
+                    <p props="cpp ios">The use mode of the audio frame. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>.</p>
+                    <p conkeyref="registerAudioFrameObserver2_IMediaPlayer/mode" props="android"/>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>samplesPerCall</pt>
+                <pd>The number of data samples reported in the <apiname keyref="onEarMonitoringAudioFrame"/> callback, such as 1,024 for the media push.</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
+    </refbody>
+</reference>

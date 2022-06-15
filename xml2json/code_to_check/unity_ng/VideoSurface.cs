@@ -1,65 +1,113 @@
-//  VideoSurface.cs
-//
-//  Created by YuGuo Chen on October 9, 2021.
-//
-//  Copyright © 2021 Agora. All rights reserved.
-//
-
 #if UNITY_EDITOR_WIN || UNITY_EDITOR_OSX || UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_IOS || UNITY_ANDROID 
 
-using System;
-using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace agora.rtc
 {
-    public enum AgoraVideoSurfaceType
+    public enum VideoSurfaceType
     {
         Renderer = 0,
         RawImage = 1,
     };
 
-    public sealed class AgoraVideoSurface : MonoBehaviour
+    public delegate void OnTextureSizeModifyHandler(int width, int height);
+
+    public sealed class VideoSurface : MonoBehaviour
     {
-        [SerializeField] private AgoraVideoSurfaceType VideoSurfaceType = AgoraVideoSurfaceType.Renderer;
-        [SerializeField] private int VideoPixelWidth = 1080;
-        [SerializeField] private int VideoPixelHeight = 720;
+        [SerializeField] private VideoSurfaceType VideoSurfaceType = VideoSurfaceType.Renderer;
+        [SerializeField] private bool Enable = true;
         [SerializeField] private bool FlipX = false;
         [SerializeField] private bool FlipY = false;
+
         [SerializeField] private uint Uid = 0;
         [SerializeField] private string ChannelId = "";
-        [SerializeField] private bool Enable = true;
-        [SerializeField] private VIDEO_SOURCE_TYPE sourceType = VIDEO_SOURCE_TYPE.VIDEO_SOURCE_CAMERA_PRIMARY;
-
+        [SerializeField] private VIDEO_SOURCE_TYPE SourceType = VIDEO_SOURCE_TYPE.VIDEO_SOURCE_CAMERA_PRIMARY;
 
         private Component _renderer;
         private bool _needUpdateInfo = true;
-        private bool _needResize = false;
-        private Texture2D _texture;
-        private IVideoStreamManager _videoStreamManager;
-        private IrisVideoFrame _cachedVideoFrame = new IrisVideoFrame();
 
-        public AgoraVideoSurface()
-        {
-            _cachedVideoFrame.y_buffer = IntPtr.Zero;
-            _cachedVideoFrame.u_buffer = IntPtr.Zero;
-            _cachedVideoFrame.v_buffer = IntPtr.Zero;
-        }
+        private GameObject _TextureManagerGameObject;
+        private TextureManager _textureManager;
+        private int _textureWidth = 0;
+        private int _textureHeight =0;
+
+        public event OnTextureSizeModifyHandler OnTextureSizeModify;
 
         void Start()
         {
-            if (VideoSurfaceType == AgoraVideoSurfaceType.Renderer)
+            CheckVideoSurfaceType();
+        }
+
+        void Update()
+        {
+            if (_renderer == null || _needUpdateInfo) return;
+
+            if (Enable)
+            {
+                if (IsBlankTexture())
+                {
+                    _TextureManagerGameObject = GameObject.Find("TextureManager" + Uid.ToString() + ChannelId + SourceType.ToString());
+
+                    if (_TextureManagerGameObject == null)
+                    {
+                        _TextureManagerGameObject = new GameObject("TextureManager" + Uid.ToString() + ChannelId + SourceType.ToString());
+                        _TextureManagerGameObject.hideFlags = HideFlags.HideInHierarchy;
+
+                        _textureManager = _TextureManagerGameObject.AddComponent<TextureManager>();
+                        _textureManager.SetVideoStreamIdentity(Uid, ChannelId, SourceType);
+                        _textureManager.EnableVideoFrameWithIdentity();
+                    }
+                    else
+                    {
+                        _textureManager = _TextureManagerGameObject.GetComponent<TextureManager>();
+                    }
+
+                    if (_textureManager.CanTextureAttach())
+                    {
+                        ApplyTexture(_textureManager.Texture);
+                    }
+                }
+
+                if (_textureManager && (this._textureWidth != _textureManager.Width || this._textureHeight != _textureManager.Height))
+                {
+                    this._textureWidth = _textureManager.Width;
+                    this._textureHeight = _textureManager.Height;
+                    if (this._textureWidth != 0 && this._textureHeight != 0 && this.OnTextureSizeModify!= null)
+                    {
+                        this.OnTextureSizeModify.Invoke(this._textureWidth, this._textureHeight);
+                    }
+                }
+            }
+            else
+            {
+                if (!IsBlankTexture())
+                {
+                    DestroyTextureManager();
+                    ApplyTexture(null);
+                }
+            }
+        }
+
+        void OnDestroy()
+        {
+            AgoraLog.Log(string.Format("VideoSurface channel: ${0}, user:{1} destroy", ChannelId, Uid));
+            DestroyTextureManager();
+        }
+
+        private void CheckVideoSurfaceType()
+        {
+            if (VideoSurfaceType == VideoSurfaceType.Renderer)
             {
                 _renderer = GetComponent<Renderer>();
             }
 
-            if (_renderer == null || VideoSurfaceType == AgoraVideoSurfaceType.RawImage)
+            if (_renderer == null || VideoSurfaceType == VideoSurfaceType.RawImage)
             {
                 _renderer = GetComponent<RawImage>();
                 if (_renderer != null)
                 {
-                    VideoSurfaceType = AgoraVideoSurfaceType.RawImage;
+                    VideoSurfaceType = VideoSurfaceType.RawImage;
                 }
             }
 
@@ -76,132 +124,25 @@ namespace agora.rtc
             }
         }
 
-        void Update()
+        private void DestroyTextureManager()
         {
-            var ret = false;
-            var isFresh = false;
-
-            var engine = GetEngine();
-
-            if (engine == null || _renderer == null || _needUpdateInfo || _videoStreamManager == null)
+            if (_textureManager == null) return;
+            _textureManager.Detach();
+            if (_textureManager.GetRefCount() == 0)
             {
-                AgoraLog.LogError("VideoSurface need to initialize engine first");
-                return;
+                Destroy(_TextureManagerGameObject);
             }
-
-            EnableFilpTextureApply(FlipX, FlipY);
-
-            if (Enable)
-            {
-                isFresh = false;
-                ret = _videoStreamManager.GetVideoFrame(ref _cachedVideoFrame, ref isFresh, sourceType, Uid, ChannelId);
-                if (!ret)
-                {
-                    AgoraLog.LogWarning(string.Format("no video frame for user channel: {0} uid: {1}", ChannelId, Uid));
-                    return;
-                }
-
-                if (IsBlankTexture())
-                {
-                    if (isFresh)
-                    {
-                        try
-                        {
-                            _texture = new Texture2D(VideoPixelWidth, VideoPixelHeight, TextureFormat.RGBA32, false);
-                            _texture.LoadRawTextureData(_cachedVideoFrame.y_buffer,
-                                (int) VideoPixelWidth * (int) VideoPixelHeight * 4);
-                            ApplyTexture(_texture);
-                            _texture.Apply();
-                        }
-                        catch (Exception e)
-                        {
-                            AgoraLog.LogError("Exception e = " + e);
-                        }
-                    }
-                }
-                else
-                {
-                    if (_texture == null)
-                    {
-                        AgoraLog.LogError(
-                            "You didn't initialize native texture, please remove native texture and initialize it by agora.");
-                        return;
-                    }
-
-                    if (isFresh)
-                    {
-                        try
-                        {
-                            if (_needResize)
-                            {
-                                _texture.Resize(VideoPixelWidth, VideoPixelHeight);
-                                _texture.LoadRawTextureData(_cachedVideoFrame.y_buffer,
-                                    (int) VideoPixelWidth * (int) VideoPixelHeight * 4);
-                                _texture.Apply();
-                                _needResize = false;
-                            }
-                            else
-                            {
-                                _texture.LoadRawTextureData(_cachedVideoFrame.y_buffer,
-                                    (int) VideoPixelWidth * (int) VideoPixelHeight * 4);
-                                _texture.Apply();
-                            }
-                        }
-                        catch (Exception e)
-                        {
-                            AgoraLog.LogError("Exception e = " + e);
-                        }
-                    }
-                }
-            }
-            else
-            {
-                if (!IsBlankTexture())
-                {
-                    ApplyTexture(null);
-                    DestroyTexture();
-                }
-            }
-        }
-
-        private IAgoraRtcEngine GetEngine()
-        {
-            var engine = AgoraRtcEngine.Get();
-            if (_needUpdateInfo && engine != null)
-            {
-                if (_videoStreamManager == null)
-                {
-                    _videoStreamManager = ((AgoraRtcEngine) engine).GetVideoStreamManager();
-                }
-
-                if (_videoStreamManager != null)
-                {
-                    _videoStreamManager.EnableVideoFrameBuffer(VideoPixelWidth, VideoPixelHeight, sourceType, Uid, ChannelId);
-                }
-            
-                _needUpdateInfo = false;
-                _needResize = true;
-                FreeMemory();
-                _cachedVideoFrame = new IrisVideoFrame
-                {
-                    type = VIDEO_FRAME_TYPE.FRAME_TYPE_RGBA,
-                    y_stride = VideoPixelWidth * 4,
-                    height = VideoPixelHeight,
-                    y_buffer = Marshal.AllocHGlobal(VideoPixelWidth * VideoPixelHeight * 4)
-                };
-            }
-
-            return engine;
+            _textureManager = null;
         }
 
         private bool IsBlankTexture()
         {
-            if (VideoSurfaceType == AgoraVideoSurfaceType.Renderer)
+            if (VideoSurfaceType == VideoSurfaceType.Renderer)
             {
                 var rd = (_renderer as Renderer);
                 return rd.material.mainTexture == null || !(rd.material.mainTexture is Texture2D);
             }
-            else if (VideoSurfaceType == AgoraVideoSurfaceType.RawImage)
+            else if (VideoSurfaceType == VideoSurfaceType.RawImage)
             {
                 var rd = (_renderer as RawImage);
                 return (rd.texture == null);
@@ -214,12 +155,12 @@ namespace agora.rtc
 
         private void ApplyTexture(Texture2D texture)
         {
-            if (VideoSurfaceType == AgoraVideoSurfaceType.Renderer)
+            if (VideoSurfaceType == VideoSurfaceType.Renderer)
             {
                 var rd = _renderer as Renderer;
                 rd.material.mainTexture = texture;
             }
-            else if (VideoSurfaceType == AgoraVideoSurfaceType.RawImage)
+            else if (VideoSurfaceType == VideoSurfaceType.RawImage)
             {
                 var rd = _renderer as RawImage;
                 rd.texture = texture;
@@ -236,46 +177,12 @@ namespace agora.rtc
         }
 
         public void SetForUser(uint uid = 0, string channelId = "",
-            VIDEO_SOURCE_TYPE source_type = VIDEO_SOURCE_TYPE.VIDEO_SOURCE_CAMERA_PRIMARY, 
-            int videoPixelWidth = 1080, int videoPixelHeight = 720)
+            VIDEO_SOURCE_TYPE source_type = VIDEO_SOURCE_TYPE.VIDEO_SOURCE_CAMERA_PRIMARY)
         {
             Uid = uid;
             ChannelId = channelId;
-            sourceType = source_type;
-            VideoPixelWidth = videoPixelWidth;
-            VideoPixelHeight = videoPixelHeight;
-            _needUpdateInfo = true;
-        }
-
-        void OnDestroy()
-        {
-            AgoraLog.Log(string.Format("VideoSurface channel: ${0}, user:{1} destroy", ChannelId, Uid));
-
-            if (GetEngine() != null && _videoStreamManager != null)
-            {
-                _videoStreamManager.DisableVideoFrameBuffer(sourceType, Uid, ChannelId);
-                _videoStreamManager = null;
-            }
-
-            FreeMemory();
-            DestroyTexture();
-        }
-
-        private void DestroyTexture()
-        {
-            if (_texture != null)
-            {
-                Destroy(_texture);
-                _texture = null;
-            }
-        }
-
-        private void FreeMemory()
-        {
-            if (_cachedVideoFrame.y_buffer != IntPtr.Zero)
-            {
-                Marshal.FreeHGlobal(_cachedVideoFrame.y_buffer);
-            }
+            SourceType = source_type;
+            _needUpdateInfo = false;
         }
 
         public void EnableFilpTextureApply(bool flipX, bool flipY)
