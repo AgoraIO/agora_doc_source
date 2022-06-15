@@ -2,7 +2,7 @@
 
 The presence feature enables users to display their online status to public and detect the online status of others. Users can also customize their presence status, which adds fun and diversity to real-time chatting.
 
-The following illustration shows the implementation of creating a custom presence status and how the presence statues look like in the contact list.
+The following illustration shows the implementation of creating a custom presence status and how the presence statues look like in the contact list:
 
 ![](https://web-cdn.agora.io/docs-files/1655302046418)
 
@@ -19,7 +19,7 @@ The Agora Chat SDK provides the `Presence`, `PresenceManager`, and `PresenceList
 - Retrieve the list of subscriptions
 - Retrieve the presence status of one or more users
 
-The following figure shows the workflow of how clients subscribe and publish presence statuses.
+The following figure shows the workflow of how clients subscribe and publish presence statuses:
 
 ![](https://web-cdn.agora.io/docs-files/1655306619037)
 
@@ -64,7 +64,7 @@ ChatClient.getInstance().presenceManager().subscribePresences(contactsFromServer
                 });             
 ```
 
-<div class="info note"><ul><ol>You can subscribe to 100 users at each call. The total subscriptions of each user cannot exceed 3,000. Once the number of subscriptions exceed the limit, the subsequent subscriptions with longer durations succeed and replace the existing subscriptions with shorter durations.</ol><ol>The subscription duration can be a maximum of 30 days. When the subscription to a user expires, you need subscribe to this user once again. If you subscribe to a user before the current subscription expires, the new duration overwrites the old one.</ol></ul></div>
+<div class="alert info"><ol><li>You can subscribe to 100 users at each call. The total subscriptions of each user cannot exceed 3,000. Once the number of subscriptions exceed the limit, the subsequent subscriptions with longer durations succeed and replace the existing subscriptions with shorter durations.<li>The subscription duration can be a maximum of 30 days. When the subscription to a user expires, you need subscribe to this user once again. If you subscribe to a user before the current subscription expires, the new duration overwrites the old one.</ol></div>
 
 
 ### Publish a custom presence status
