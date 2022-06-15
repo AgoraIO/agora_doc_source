@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_onsubroompropertiesdeleted">
+    <title><ph keyref="onSubRoomPropertiesDeleted"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the custom properties of a sub-room are deleted.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onSubRoomPropertiesDeleted"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-kotlin"/>
+                <codeblock props="ios mac" outputclass="language-swift">void onSubRoomPropertiesDeleted(Array&lt;String> keyPaths,
+                                Map&lt;String, Any> cause,
+                                AgoraEduContextUserInfo operator)</codeblock>
+                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="web" outputclass="language-typescript"/>
+            </p>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+            <parml>
+                <plentry>
+                    <pt props="ios">keyPaths</pt>
+                    <pt props="android">properties</pt>
+                    <pd>The <apiname>keyPath</apiname> array of the deleted properties.</pd>
+                </plentry>
+                <plentry>
+                    <pt>cause</pt>
+                    <pd>The reason for deletion.</pd>
+                </plentry>
+                <plentry conkeyref="onRoomPropertiesUpdated/operator">
+                    <pt/>
+                    <pd/>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>
