@@ -138,7 +138,7 @@ The following code sample shows how to remove a member from a thread:
 
 ### Update the name of a thread
 
-Only the chat group owner, chat group admins, and thread creator can call `changeChatThreadName` to update a thread name.
+Only the chat group owner, chat group admins, and thread creator can call `updateChatThreadName` to update a thread name.
 
 Once a thread name is updated, all chat group members receive the `AgoraChatThreadManagerDelegate#onChatThreadUpdated` callback. In a multi-device scenario, all the other devices receive the `multiDevicesThreadEventDidReceive` callback triggered by the `AgoraChatMultiDevicesEventThreadUpdate` event.
 
@@ -146,8 +146,8 @@ The following code sample shows how to update a thread name:
 
 ```ObjectiveC
 // threadId: The ID of a thread.
-// subject: The updated thread name. The maximum length of a thread name is 64 characters.
-[AgoraChatClient.sharedClient.threadManager updateChatThreadSubject:self.threadNameField.text threadId:self.threadId completion:^(AgoraChatError *aError) {
+// ThreadName: The updated thread name. The maximum length of a thread name is 64 characters.
+[AgoraChatClient.sharedClient.threadManager updateChatThreadThreadName:self.threadNameField.text threadId:self.threadId completion:^(AgoraChatError *aError) {
     if (!aError) {
 
     } else {
@@ -204,7 +204,7 @@ Users can call `getJoinedChatThreadsFromServer` to retrieve a paginated list fro
 // parentId: The chat group ID.
 // pageSize: The maximum number of threads to retrieve per page. The range is [1, 50].
 // cursor: The position from which to start getting data. Pass in `null` or an empty string at the first call. 
-[AgoraChatClient.sharedClient.threadManager getMineChatThreadsFromServerWithParentId:self.group.groupId cursor:self.cursor ? self.cursor.cursor:@"" pageSize:20 completion:^(AgoraChatCursorResult * _Nonnull result, AgoraChatError * _Nonnull aError) {
+[AgoraChatClient.sharedClient.threadManager getJoinedChatThreadsFromServerWithParentId:self.group.groupId cursor:self.cursor ? self.cursor.cursor:@"" pageSize:20 completion:^(AgoraChatCursorResult * _Nonnull result, AgoraChatError * _Nonnull aError) {
     if (!aError) {
 
     }

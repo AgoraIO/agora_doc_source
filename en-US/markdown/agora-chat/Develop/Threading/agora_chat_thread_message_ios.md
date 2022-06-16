@@ -6,7 +6,7 @@ This page shows how to use the Agora Chat SDK to send, receive, recall, and retr
 
 ## Understand the tech
 
-The Agora Chat SDK provides the `AgoraChatManager`, `AgoraChatMessage`, and `AgoraChatThreadInfo` classes for thread messages, which allows you to implement the following features:
+The Agora Chat SDK provides the `AgoraChatManager`, `AgoraChatMessage`, and `AgoraChatThread` classes for thread messages, which allows you to implement the following features:
 
 - Send a thread message
 - Receive a thread message
@@ -45,8 +45,8 @@ if([aExt objectForKey:MSG_EXT_READ_RECEIPT]) {
 }
 // Sets `chatType` to `AgoraChatTypeGroupChat` as a thread belongs to a chat group.
 message.chatType = (AgoraChatType)self.conversationType;
-// Sets `isChatThread` to `true` to mark this message as a thread message.
-message.isChatThread = self.isChatThread;
+// Sets `isChatThread` to `YES` to mark this message as a thread message.
+message.isChatThreadMessage = self.isChatThread;
 // Calls `sendMessage` to send the text message.
 [[AgoraChatClient sharedClient].chatManager sendMessage:message progress:nil completion:^(AgoraChatMessage *message, AgoraChatError *error) {
 
@@ -90,5 +90,7 @@ Once a message is recalled in a thread, all chat group members receive the `Agor
 ```
 
 ### Retrieve thread messages from the server
+
+When you join a thread, messages are displayed in chronological order by default.
 
 For details about how to retrieve messages from the server, see [Retrieve Historical Messages](./agora_chat_message_ios?platform=iOS#retrieve-historical-messages-from-the-server).
