@@ -12,7 +12,9 @@ The Agora Chat SDK provides the `ChatRoom`, `ChatRoomManager`, and `ChatRoomEven
 - Remove a member from a chat room
 - Retrieve the member list of a chat room
 - Manage the block list of a chat room
+- Manage the allow list of a chat room
 - Manage the mute list of a chat room
+- Mute and unmute all the chat room members
 - Manage the owner and admins of a chat room
 
 
@@ -165,6 +167,81 @@ try {
     pageNum: pageNum,
     pageSize: pageSize,
   );
+} on ChatError catch (e) {
+}
+```
+
+### Manage the chat room allow list
+
+#### Add a member to the chat room allow list
+
+Only the chat room owner and admins can call `addMembersToChatRoomWhiteList` to add the specified member to the chat room allow list. Members in the chat room allow list can send chat room messages even when the chat room owner or admin has muted all chat room members. However, if a member is already in the chat room mute list, adding this member to the allow list does not enable them to send messages. The mute list takes precedence. Once added to the allow list, this member and all the other chat room admins or owner receive the `ChatRoomEventListener#onWhiteListAddedFromChatRoom` callback.
+
+The following code sample shows how to add a member to the chat room allow list:
+
+```dart
+try {
+  await ChatClient.getInstance.chatRoomManager.addMembersToChatRoomWhiteList(
+    roomId,
+    members
+  );
+} on ChatError catch (e) {
+}
+```
+
+#### Remove a member from the chat room allow list
+
+Only the chat room owner and admins can call `removeMembersFromChatRoomWhiteList` to remove the specified member from the chat room allow list. Once removed from the chat room allow list, this member and all the other chat room admins or owner receive the `ChatRoomEventListener#onWhiteListRemovedFromChatRoom` callback.
+
+The following code sample shows how to remove a member from the chat room allow list:
+
+```dart
+try {
+  await ChatClient.getInstance.chatRoomManager.removeMembersFromChatRoomWhiteList(
+    roomId,
+    members
+  );
+} on ChatError catch (e) {
+}
+```
+
+#### Check whether a user is added to the allow list
+
+All chat room members can call `isMemberInChatRoomWhiteList` to check whether they are added to the chat room allow list.
+
+The following code sample shows how to check whether a user is on the chat room allow list:
+
+```dart
+try {
+  bool isInWhiteList = await ChatClient.getInstance.chatRoomManager.isMemberInChatRoomWhiteList(roomId);
+} on ChatError catch (e) {
+}
+```
+
+### Mute and unmute all the chat room members
+
+#### Mute all the chat room members
+
+Only the chat room owner and admins can call `muteAllChatRoomMembers` to mute all the chat room members. Once all the members are muted, the `ChatRoomEventListener#onAllChatRoomMemberMuteStateChanged` callback is triggered and only those in the chat room allow list can send messages in the chat room.
+
+The following sample code shows how to mute all the chat room members:
+
+```dart
+try {
+  await ChatClient.getInstance.chatRoomManager.muteAllChatRoomMembers();
+} on ChatError catch (e) {
+}
+```
+
+#### Unmute all the chat room members
+
+Only the chat room owner and admins can call `unMuteAllChatRoomMembers` to unmute all the chat room members. Once all the members are muted, the `ChatRoomEventListener#onAllChatRoomMemberMuteStateChanged` callback is triggered.
+
+The following sample code shows how to unmute all the chat room members:
+
+```dart
+try {
+  await ChatClient.getInstance.chatRoomManager.unMuteAllChatRoomMembers();
 } on ChatError catch (e) {
 }
 ```

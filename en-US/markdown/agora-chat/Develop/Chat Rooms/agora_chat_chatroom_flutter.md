@@ -170,6 +170,12 @@ class _ChatRoomPageState extends State<ChatRoomPage>
     String roomId,
     String admin,
   ) {}
+    @override
+  // Occurs when all chat room members are muted or unmuted.
+  void onAllChatRoomMemberMuteStateChanged(
+    String roomId,
+    bool isAllMuted,
+  ) {}
   @override
   // Occurs when the chat room announcements are updated.
   void onAnnouncementChangedFromChatRoom(
@@ -221,6 +227,18 @@ class _ChatRoomPageState extends State<ChatRoomPage>
     String roomId,
     String? roomName,
     String? participant,
+  ) {}
+    @override
+  // Occurs when a member is added to the chat room allow list.
+  void onWhiteListAddedFromChatRoom(
+    String roomId,
+    List<String> members,
+  ) {}
+  @override
+  // Occurs when a member is removed from the chat room mute list.
+  void onWhiteListRemovedFromChatRoom(
+    String roomId,
+    List<String> members,
   ) {}
 }
 ```
