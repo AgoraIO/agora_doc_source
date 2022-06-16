@@ -7,7 +7,7 @@ This page shows how to use the Agora Chat SDK for Flutter to create and manage a
 
 ## Understand the tech
 
-The Agora Chat SDK provides the `ChatGroup`, `ChatGroupManager`, and `ChatGroupEventListener` classes for chat group management, which allows you to implement the following features:
+The Agora Chat SDK provides the `ChatGroup`, `ChatGroupManager`, and `ChatGroupManagerListener` classes for chat group management, which allows you to implement the following features:
 
 - Create and destroy a chat group
 - Join and leave a chat group
@@ -44,14 +44,14 @@ Set `ChatGroupStyle` and `inviteNeedConfirm` before creating a chat group.
 2. Does a group invitation require consent from an invitee to add them to the group (`inviteNeedConfirm`):
 
 - Yes (`ChatGroupOptions#inviteNeedConfirm` is set to `true`). After creating a group and sending group invitations, the subsequent logic varies based on whether an invitee automatically consents to the group invitation (`autoAcceptGroupInvitation`):
-  - Yes (`autoAcceptGroupInvitation` is set to `true`). The invitee automatically joins the chat group and receives the `ChatGroupEventListener#onAutoAcceptInvitationFromGroup` callback, the chat group owner receives the `ChatGroupEventListener#onInvitationAcceptedFromGroup` and `ChatGroupEventListener#onMemberJoinedFromGroup` callbacks, and the other chat group members receives the `ChatGroupEventListener#onMemberJoinedFromGroup` callback.
-  - No (`autoAcceptGroupInvitation` is set to `false`). The invitee receives the `ChatGroupEventListener#onInvitationReceivedFromGroup` callback and chooses whether to join the chat group:
-    - If the invitee accepts the group invitation, the chat group owner receives the `ChatGroupEventListener#onInvitationAcceptedFromGroup` and `ChatGroupEventListener#onMemberJoinedFromGroup` callbacks, and the other chat group members receive the `ChatGroupEventListener#onMemberJoinedFromGroup` callback;
-    - If the invitee declines the group invitation, the chat group owner receives the `ChatGroupEventListener#onInvitationDeclinedFromGroup` callback.
+  - Yes (`autoAcceptGroupInvitation` is set to `true`). The invitee automatically joins the chat group and receives the `ChatGroupManagerListener#onAutoAcceptInvitationFromGroup` callback, the chat group owner receives the `ChatGroupManagerListener#onInvitationAcceptedFromGroup` and `ChatGroupManagerListener#onMemberJoinedFromGroup` callbacks, and the other chat group members receives the `ChatGroupManagerListener#onMemberJoinedFromGroup` callback.
+  - No (`autoAcceptGroupInvitation` is set to `false`). The invitee receives the `ChatGroupManagerListener#onInvitationReceivedFromGroup` callback and chooses whether to join the chat group:
+    - If the invitee accepts the group invitation, the chat group owner receives the `ChatGroupManagerListener#onInvitationAcceptedFromGroup` and `ChatGroupManagerListener#onMemberJoinedFromGroup` callbacks, and the other chat group members receive the `ChatGroupManagerListener#onMemberJoinedFromGroup` callback;
+    - If the invitee declines the group invitation, the chat group owner receives the `ChatGroupManagerListener#onInvitationDeclinedFromGroup` callback.
 
 ![](https://web-cdn.agora.io/docs-files/1653385689954)
 
-- No (`ChatGroupOptions#inviteNeedConfirm` is set to `false`). After creating a chat group and sending group invitations, an invitee is added to the chat group regardless of their `autoAcceptGroupInvitation` setting. The invitee receives the `ChatGroupEventListener#onAutoAcceptInvitationFromGroup` callback, the chat group owner receives the `ChatGroupEventListener#onInvitationAcceptedFromGroup` and `ChatGroupEventListener#onMemberJoinedFromGroup` callbacks, and the other chat group members receive the `ChatGroupEventListener#onMemberJoinedFromGroup` callback.
+- No (`ChatGroupOptions#inviteNeedConfirm` is set to `false`). After creating a chat group and sending group invitations, an invitee is added to the chat group regardless of their `autoAcceptGroupInvitation` setting. The invitee receives the `ChatGroupManagerListener#onAutoAcceptInvitationFromGroup` callback, the chat group owner receives the `ChatGroupManagerListener#onInvitationAcceptedFromGroup` and `ChatGroupManagerListener#onMemberJoinedFromGroup` callbacks, and the other chat group members receive the `ChatGroupManagerListener#onMemberJoinedFromGroup` callback.
 
 Users can call `createGroup` to create a chat group and set the chat group attributes such as the chat group name, description, maximum number of members, and reason for creating the group, by specifying `ChatGroupOptions`.
 
@@ -100,10 +100,10 @@ SDKClient.Instance.GroupManager.DestroyGroup(groupId, new CallBack(
 
 The logic of joining a chat group varies according to the `GroupStyle` setting you choose when [creating the chat group](#create-a-chat-group):
 
-- If the `GroupStyle` is set to `PublicOpenJoin`, all users can join the chat group without the consent from the chat group owner and admins. Once a user joins a chat group, all chat group members receive the `ChatGroupEventListener#onMemberJoinedFromGroup` callback;
-- If the `GroupStyle` is set to `PublicJoinNeedApproval`, users can send join requests to the chat group. The chat group owner and chat group admins receive the `ChatGroupEventListener#onRequestToJoinReceivedFromGroup` callback and choose whether to accept the join request:
-  - If the request is accepted, the user joins the chat group and receives the `ChatGroupEventListener#onRequestToJoinAcceptedFromGroup` callback, while all the other chat group members receive the `ChatGroupEventListener#onMemberJoinedFromGroup` callback.
-  - If the request is declined, the user receives the `ChatGroupEventListener#onRequestToJoinDeclinedFromGroup` callback.
+- If the `GroupStyle` is set to `PublicOpenJoin`, all users can join the chat group without the consent from the chat group owner and admins. Once a user joins a chat group, all chat group members receive the `ChatGroupManagerListener#onMemberJoinedFromGroup` callback;
+- If the `GroupStyle` is set to `PublicJoinNeedApproval`, users can send join requests to the chat group. The chat group owner and chat group admins receive the `ChatGroupManagerListener#onRequestToJoinReceivedFromGroup` callback and choose whether to accept the join request:
+  - If the request is accepted, the user joins the chat group and receives the `ChatGroupManagerListener#onRequestToJoinAcceptedFromGroup` callback, while all the other chat group members receive the `ChatGroupManagerListener#onMemberJoinedFromGroup` callback.
+  - If the request is declined, the user receives the `ChatGroupManagerListener#onRequestToJoinDeclinedFromGroup` callback.
 
 <div class="alert info">Users can only request to join public groups; private groups do not allow join requests.</div>
 
@@ -131,7 +131,7 @@ try {
 
 ### Leave a chat group
 
-Chat group members can call `LeaveGroup` to leave the specified chat group, whereas the chat group owner cannot perform this operation. Once a member leaves a chat group, all the other chat group members receive the `ChatGroupEventListener#onMemberExitedFromGroup` callback.
+Chat group members can call `LeaveGroup` to leave the specified chat group, whereas the chat group owner cannot perform this operation. Once a member leaves a chat group, all the other chat group members receive the `ChatGroupManagerListener#onMemberExitedFromGroup` callback.
 
 The following code sample shows how to leave a chat group:
 
@@ -264,23 +264,23 @@ try {
 
 ### Listen for chat group events
 
-To monitor the chat group events, users can listen for the callbacks in the `ChatGroupEventListener` class and add app logics accordingly. If a user wants to stop listening for the callbacks, make sure that the user removes the listener to prevent memory leakage.
+To monitor the chat group events, users can listen for the callbacks in the `ChatGroupManagerListener` class and add app logics accordingly. If a user wants to stop listening for the callbacks, make sure that the user removes the listener to prevent memory leakage.
 
 Refer to the following code sample to listen for chat group events:
 
 ```dart
-// Inherit and implement the `ChatGroupEventListener` class.
-class _GroupPageState extends State<GroupPage> implements ChatGroupEventListener {
+// Inherit and implement the `ChatGroupManagerListener` class.
+class _GroupPageState extends State<GroupPage> implements ChatGroupManagerListener {
   @override
   void initState() {
     // Add the chat group listener.
-    ChatClient.getInstance.groupManager.addGroupChangeListener(this);
+    ChatClient.getInstance.groupManager.addGroupManagerListener(this);
     super.initState();
   }
   @override
   void dispose() {
     // Remove the chat group listener.
-    ChatClient.getInstance.groupManager.removeGroupChangeListener(this);
+    ChatClient.getInstance.groupManager.removeGroupManagerListener(this);
     super.dispose();
   }
   @override
@@ -421,13 +421,13 @@ class _GroupPageState extends State<GroupPage> implements ChatGroupEventListener
   ) {}
   @override
   // Occurs when a member is added to the chat group allow list.
-  void onWhiteListAddedFromGroup(
+  void onAllowListAddedFromGroup(
     String groupId,
     List<String> members,
   ) {}
   @override
   // Occurs when a member is removed from the chat group allow list.
-  void onWhiteListRemovedFromGroup(
+  void onAllowListRemovedFromGroup(
     String groupId,
     List<String> members,
   ) {}

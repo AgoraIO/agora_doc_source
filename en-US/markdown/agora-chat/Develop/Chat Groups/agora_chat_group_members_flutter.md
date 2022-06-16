@@ -7,7 +7,7 @@ This page shows how to use the Agora Chat SDK to manage the members of a chat gr
 
 ## Understand the tech
 
-The Agora Chat SDK provides the `ChatGroup`, `ChatGroupManager`, and `ChatGroupEventListener` classes for chat group management, which allows you to implement the following features:
+The Agora Chat SDK provides the `ChatGroup`, `ChatGroupManager`, and `ChatGroupManagerListener` classes for chat group management, which allows you to implement the following features:
 
 - Add and remove users from a chat group
 - Manage the owner and admins of a chat group
@@ -45,7 +45,7 @@ try {
 
 ### Remove a member from a chat group
 
-Only the chat group owner and admins can call `removeMembers` to remove the specified member from a chat group. Once removed from the chat group, this member receives the `ChatGroupEventListener#onUserRemovedFromGroup` callback, while all the other members receive the `ChatGroupEventListener#onMemberExitedFromGroup` callback. Users can join the chat group again after being removed.
+Only the chat group owner and admins can call `removeMembers` to remove the specified member from a chat group. Once removed from the chat group, this member receives the `ChatGroupManagerListener#onUserRemovedFromGroup` callback, while all the other members receive the `ChatGroupManagerListener#onMemberExitedFromGroup` callback. Users can join the chat group again after being removed.
 
 The following code sample shows how to remove a member from a chat group:
 
@@ -60,7 +60,7 @@ try {
 
 #### Transfer the chat group ownership
 
-Only the chat group owner can call `changeOwner` to transfer the ownership to the specified chat group member. Once the ownership is transferred, the former chat group owner becomes a regular member, and all the other chat group members receive the `ChatGroupEventListener#onOwnerChangedFromGroup` callback.
+Only the chat group owner can call `changeOwner` to transfer the ownership to the specified chat group member. Once the ownership is transferred, the former chat group owner becomes a regular member, and all the other chat group members receive the `ChatGroupManagerListener#onOwnerChangedFromGroup` callback.
 
 The following code sample shows how to transfer the chat group ownership:
 
@@ -73,7 +73,7 @@ try {
 
 #### Add a chat group admin
 
-Only the chat group owner can call `addAdmin` to add an admin. Once promoted to an admin, the new admin and the other chat group admins receive the `ChatGroupEventListener#onAdminAddedFromGroup` callback.
+Only the chat group owner can call `addAdmin` to add an admin. Once promoted to an admin, the new admin and the other chat group admins receive the `ChatGroupManagerListener#onAdminAddedFromGroup` callback.
 
 The following code sample shows how to add a chat group admin:
 
@@ -86,7 +86,7 @@ try {
 
 #### Remove a chat group admin
 
-Only the chat group owner can call `removeAdmin` to remove an admin. Once demoted to a regular member, the former admin and the other chat group admins receive the `ChatGroupEventListener#onAdminRemovedFromGroup` callback.
+Only the chat group owner can call `removeAdmin` to remove an admin. Once demoted to a regular member, the former admin and the other chat group admins receive the `ChatGroupManagerListener#onAdminRemovedFromGroup` callback.
 
 The following code sample shows how to remove a chat group admin:
 
@@ -101,7 +101,7 @@ try {
 
 #### Add a member to the chat group block list
 
-Only the chat group owner and admins can call `blockMembers` to add the specified member to the chat group block list. Once added to the block list, this member receives the `ChatGroupEventListener#onUserRemovedFromGroup` callback, while all the other members receive the `ChatGroupEventListener#onMemberExitedFromGroup` callback. After being added to block list, this user cannot send or receive messages in the chat group. They can no longer join the chat room until they are removed from the block list.
+Only the chat group owner and admins can call `blockMembers` to add the specified member to the chat group block list. Once added to the block list, this member receives the `ChatGroupManagerListener#onUserRemovedFromGroup` callback, while all the other members receive the `ChatGroupManagerListener#onMemberExitedFromGroup` callback. After being added to block list, this user cannot send or receive messages in the chat group. They can no longer join the chat room until they are removed from the block list.
 
 The following code sample shows how to add a member to the chat group block list:
 
@@ -146,7 +146,7 @@ try {
 
 #### Add a member to the chat group mute list
 
-Only the chat group owner and admins can call `muteMembers` to add the specified member to the chat group mute list. Once added to the mute list, this member and all the other chat group admins or owner receive the `ChatGroupEventListener#onMuteListAddedFromGroup` callback. Once a chat group member is added to the chat group mute list, they can no longer send chat group messages, not even after being added to the chat group allow list.
+Only the chat group owner and admins can call `muteMembers` to add the specified member to the chat group mute list. Once added to the mute list, this member and all the other chat group admins or owner receive the `ChatGroupManagerListener#onMuteListAddedFromGroup` callback. Once a chat group member is added to the chat group mute list, they can no longer send chat group messages, not even after being added to the chat group allow list.
 
 The following code sample shows how to add a member to the chat group mute list:
 
@@ -162,7 +162,7 @@ try {
 
 #### Remove a member from the chat group mute list
 
-Only the chat group owner and admins can call `unMuteMembers` to remove the specified member from the chat group mute list. Once removed from the chat group mute list, this member and all the other chat group admins or owner receive the `ChatGroupEventListener#onMuteListRemovedFromGroup` callback.
+Only the chat group owner and admins can call `unMuteMembers` to remove the specified member from the chat group mute list. Once removed from the chat group mute list, this member and all the other chat group admins or owner receive the `ChatGroupManagerListener#onMuteListRemovedFromGroup` callback.
 
 The following code sample shows how to remove a member from the chat group mute list:
 
@@ -229,13 +229,13 @@ try {
 
 #### Add a member to the chat group allow list
 
-Only the chat group owner and admins can call `addWhiteList` to add the specified member to the chat group allow list. Members in the chat group allow list can send chat group messages even when the chat group owner or admin has muted all chat group members. However, if a member is already in the chat group mute list, adding this member to the allow list does not enable them to send messages. The mute list takes precedence.
+Only the chat group owner and admins can call `addAllowList` to add the specified member to the chat group allow list. Members in the chat group allow list can send chat group messages even when the chat group owner or admin has muted all chat group members. However, if a member is already in the chat group mute list, adding this member to the allow list does not enable them to send messages. The mute list takes precedence.
 
 The following code sample shows how to add a member to the chat group allow list:
 
 ```dart
 try {
-  await ChatClient.getInstance.groupManager.addWhiteList(
+  await ChatClient.getInstance.groupManager.addAllowList(
     groupId,
     members,
   );
@@ -245,13 +245,13 @@ try {
 
 #### Remove a member from the chat group allow list
 
-Only the chat group owner and admins can call `removeWhiteList` to remove the specified member from the chat group allow list.
+Only the chat group owner and admins can call `removeAllowList` to remove the specified member from the chat group allow list.
 
 The following code sample shows how to remove a member from the chat group allow list:
 
 ```dart
 try {
-  await ChatClient.getInstance.groupManager.removeWhiteList(
+  await ChatClient.getInstance.groupManager.removeAllowList(
     groupId,
     members,
   );
@@ -261,13 +261,13 @@ try {
 
 #### Check whether a user is added to the allow list
 
-All chat group members can call `isMemberInWhiteListFromServer` to check whether they are added to the chat group allow list.
+All chat group members can call `isMemberInAllowListFromServer` to check whether they are added to the chat group allow list.
 
 The following code sample shows how to check whether a user is on the chat group allow list:
 
 ```dart
 try {
-  bool check = await ChatClient.getInstance.groupManager.isMemberInWhiteListFromServer(
+  bool check = await ChatClient.getInstance.groupManager.isMemberInAllowListFromServer(
     groupId,
   );
 } on ChatError catch (e) {
@@ -276,14 +276,14 @@ try {
 
 #### Retrieve the chat group allow list
 
-Only the chat group owner and admins can call `fetchWhiteListFromServer` to retrieve the chat group allow list.
+Only the chat group owner and admins can call `fetchAllowListFromServer` to retrieve the chat group allow list.
 
 The following code sample shows how to retrieve the chat group allow list:
 
 ```dart
 try {
   List<String>? list =
-      await ChatClient.getInstance.groupManager.fetchWhiteListFromServer(
+      await ChatClient.getInstance.groupManager.fetchAllowListFromServer(
     groupId,
   );
 } on ChatError catch (e) {

@@ -9,7 +9,7 @@ This page shows how to use the Agora Chat SDK to create and manage a chat room i
 
 ## Understand the tech
 
-The Agora Chat SDK provides the `ChatRoom`, `ChatRoomManager`, and `ChatRoomEventListener` classes for chat room management, which allows you to implement the following features:
+The Agora Chat SDK provides the `ChatRoom`, `ChatRoomManager`, and `ChatRoomManagerListener` classes for chat room management, which allows you to implement the following features:
 
 - Create and destroy a chat room
 - Join and leave a chat room
@@ -47,7 +47,7 @@ try {
 
 ### Destroy a chat room
 
-Only the chat room owner can call `destroyChatRoom` to disband a chat room. Once a chat room is disbanded, all chat room members receive the `ChatRoomEventListener#onChatRoomDestroyed` callback and are immediately removed from the chat room.
+Only the chat room owner can call `destroyChatRoom` to disband a chat room. Once a chat room is disbanded, all chat room members receive the `ChatRoomManagerListener#onChatRoomDestroyed` callback and are immediately removed from the chat room.
 
 The following code sample shows how to destroy a chat room:
 
@@ -64,7 +64,7 @@ Refer to the following steps to join a chat room:
 
 1. Call [`fetchPublicChatRoomsFromServer`](#retrieve-the-chat-room-list-from-the-server) to retrieve the list of chat rooms from the server and locate the ID of the chat room that you want to join.
 
-2. Call `joinChatRoom` to pass in the chat room ID and join the specified chat room. Once a user joins a chat room, all the other chat room members receive the `ChatRoomEventListener#onMemberJoinedFromChatRoom` callback.
+2. Call `joinChatRoom` to pass in the chat room ID and join the specified chat room. Once a user joins a chat room, all the other chat room members receive the `ChatRoomManagerListener#onMemberJoinedFromChatRoom` callback.
 
 The following code sample shows how to join a chat room:
 
@@ -77,7 +77,7 @@ try {
 
 ### Leave a chat room
 
-All chat room members can call `leaveChatRoom` to leave the specified chat room. Once a member leaves the chat room, all the other chat room members receive the `ChatRoomEventListener#onMemberExitedFromChatRoom` callback.
+All chat room members can call `leaveChatRoom` to leave the specified chat room. Once a member leaves the chat room, all the other chat room members receive the `ChatRoomManagerListener#onMemberExitedFromChatRoom` callback.
 
 <div class=alert note> Unlike chat group owners (who cannot leave their groups), a chat room owner can leave a chat room. After re-entering the chat room, this user remains the chat room owner.</div>
 
@@ -134,14 +134,14 @@ try {
 
 ### Listen for chat room events
 
-To monitor the chat room events, you can listen for the callbacks in the `ChatRoomEventListener` class and add app logics accordingly. If you want to stop listening for the callback, make sure that you remove the listener to prevent memory leakage.
+To monitor the chat room events, you can listen for the callbacks in the `ChatRoomManagerListener` class and add app logics accordingly. If you want to stop listening for the callback, make sure that you remove the listener to prevent memory leakage.
 
 The following code sample shows how to add and remove the chat room listener:
 
 ```dart
-// Inherits and implements the `ChatRoomEventListener` class.
+// Inherits and implements the `ChatRoomManagerListener` class.
 class _ChatRoomPageState extends State<ChatRoomPage>
-    implements ChatRoomEventListener {
+    implements ChatRoomManagerListener {
   @override
   // Adds the chat room listener.
   void initState() {
@@ -230,13 +230,13 @@ class _ChatRoomPageState extends State<ChatRoomPage>
   ) {}
     @override
   // Occurs when a member is added to the chat room allow list.
-  void onWhiteListAddedFromChatRoom(
+  void onAllowListAddedFromChatRoom(
     String roomId,
     List<String> members,
   ) {}
   @override
   // Occurs when a member is removed from the chat room mute list.
-  void onWhiteListRemovedFromChatRoom(
+  void onAllowListRemovedFromChatRoom(
     String roomId,
     List<String> members,
   ) {}
