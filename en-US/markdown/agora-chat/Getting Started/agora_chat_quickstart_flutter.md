@@ -24,7 +24,7 @@ If your target platform is Android, your development environment must meet the f
 - Dart 2.16 or later
 - macOS or Windows
 - Android Studio 4.0 or later with JDK 1.8 or later
-- An Android simulator or a real Android device running Android SDK API level 19 or later
+- An Android simulator or a real Android device running Android SDK API level 21 or later
 
 <div class="alert note">You need to run <code>flutter doctor</code> to check whether the development environment and the deployment environment are correct.</div>
 
@@ -41,12 +41,12 @@ flutter create quick_start
 
 ### 2. Android setup
 
-1. In the `quick_start/android/app/build.gradle` file, add the following lines at the end to set the minimum Android SDK version to 19:
+1. In the `quick_start/android/app/build.gradle` file, add the following lines at the end to set the minimum Android SDK version to 21:
 
 ```gradle
 android {
     defaultConfig {
-        minSdkVersion 19
+        minSdkVersion 21
     }
 }
 ```
