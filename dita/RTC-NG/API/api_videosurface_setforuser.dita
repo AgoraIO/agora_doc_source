@@ -18,8 +18,13 @@
             <codeblock props="cpp" outputclass="language-cpp"/>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public void SetForUser(uint uid = 0, string channelId = "",
-            VIDEO_SOURCE_TYPE source_type = VIDEO_SOURCE_TYPE.VIDEO_SOURCE_CAMERA_PRIMARY, 
-            int videoPixelWidth = 1080, int videoPixelHeight = 720)</codeblock>
+            VIDEO_SOURCE_TYPE source_type = VIDEO_SOURCE_TYPE.VIDEO_SOURCE_CAMERA_PRIMARY)
+        {
+            Uid = uid;
+            ChannelId = channelId;
+            SourceType = source_type;
+            _needUpdateInfo = false;
+        }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
@@ -43,14 +48,6 @@
             <plentry>
                 <pt>source_type</pt>
                 <pd>视频流类型，详见<xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
-            </plentry>
-            <plentry>
-                <pt>videoPixelWidth</pt>
-                <pd>视频宽 (pixel)。</pd>
-            </plentry>
-            <plentry>
-                <pt>videoPixelHeight</pt>
-                <pd>视频高 (pixel)。</pd>
             </plentry>
             </parml> </section>
     </refbody>
