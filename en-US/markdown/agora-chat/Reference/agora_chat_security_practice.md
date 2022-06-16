@@ -1,6 +1,7 @@
 # Agora Chat Security Best Practices
 
 Security compliance is crucial for instant messaging technology. To guarantee safe and reliable cloud services, Agora follows the compliance regulations of different countries, regions, and industries, and Agora Chat has built-in security measures to prevent common attacks in instant messaging scenarios. 
+
 This page describes the security best practices recommended by Agora Chat, as summarized in the following table:
 
 | Security Measure             | Enabled by Default | Recommended Scenarios                                        |
@@ -13,6 +14,7 @@ This page describes the security best practices recommended by Agora Chat, as su
 ## Data center geofencing
 
 In order to meet the laws and regulations of different countries and regions, Agora Chat supports service area geofencing, which prevents the cross-border data transfer of user privacy data in designated service areas.
+
 Agora Chat's data center locations and corresponding service areas are listed as follows:
 
 | Data Center    | Location           | Service Area   |
