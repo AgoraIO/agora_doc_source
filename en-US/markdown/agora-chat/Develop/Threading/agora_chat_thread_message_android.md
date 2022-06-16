@@ -116,7 +116,9 @@ MessageListener msgListener = new MessageListener() {
 
 ### Retrieve thread messages
 
-You can retrieve thread messages from the server, whereas from the memory and local database, you can retrieve the whole conversation of a thread.
+Whether to retrieve thread messages from the server or local database depends on your production context.
+
+When you join a thread, messages are displayed in chronological order by default. In this case, Agora recommends that you retrieve the historical messages of the thread from the server. When you recall a thread message, Agora recommend that you insert the recall notification in the local database.
 
 #### Retrieve thread messages from the server
 
