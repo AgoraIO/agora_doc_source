@@ -10,7 +10,7 @@ This page shows how to implement sending and receiving these messages using the 
 
 ## Understand the tech
 
-The Agora Chat SDK for Unity uses the `IChatMessage` and `Message` classes to send, receive, and withdraw messages.
+The Agora Chat SDK uses the `IChatMessage` and `Message` classes to send, receive, and withdraw messages.
 
 The process of sending and receiving a message is as follows:
 

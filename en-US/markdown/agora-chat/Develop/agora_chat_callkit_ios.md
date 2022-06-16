@@ -170,9 +170,9 @@ From the caller's client, call `startSingleCallWithUId` or `startInviteUsers` to
     [viewController presentViewController:controller animated:YES completion:nil];
     ```
 
-The following screenshot gives an example of the user interface for a one-to-one audio call:
+The following screenshot gives an example of the user interface after sending a call invitation for one-to-one audio call:
 
-![image](../images/outgoing.png)
+<img src="https://web-cdn.agora.io/docs-files/1655259327417" style="zoom:50%;" />
 
 ### Receive the invitation
 
@@ -187,7 +187,7 @@ Once a call invitaion is sent, the callee receives the invitation in the `callDi
 
 If the callee is online and available for a call, you can pop out a user interface that allows the callee to accept or decline the invitation. If you have enabled the iOS CallKit, the system call user interface is launched. Otherwise, you can refer to the following screenshot to implement the interface:
 
-![image](../images/incoming.png)
+<img src="https://web-cdn.agora.io/docs-files/1655259340569" style="zoom:50%;" />
 
 
 ### Send a call invitation during a group call
@@ -353,7 +353,7 @@ The following table lists the core methods in `AgoraChatCallManager`:
 | startInviteUsers:groupId:callType:ext:completion:  | Starts a group call. |
 | getAgoraChatCallConfig | Retrieves the configurations of AgoraChatCallKit. |
 | setRTCToken:channelName:uid: | Sets the RTC Token. |
-| setUsers:channelName: | Sets the mapping dictionary for Agora Chat user ID and Agora UID. |  
+| setUsers:channelName: | Sets the mapping between Agora Chat user ID and Agora user ID (UID). |  
 
 The following table lists the callbacks in `AgoraChatCallDelegate`:
 

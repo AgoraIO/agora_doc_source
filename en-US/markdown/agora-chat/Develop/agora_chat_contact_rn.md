@@ -6,15 +6,15 @@ This page shows how to use the Agora Chat SDK to implement contact management.
 
 The Agora Chat SDK uses `ChatContactManager` to add, remove and manage contacts. Followings are the core methods:
 
-- `addContact`: Add a contact.
+- `addContact`: Adds a contact.
 - `acceptInvitation`: Accepts the contact invitation.
 - `declineInvitation`: Declines the contact invitation.
-- `deleteContact`: Delete a contact.
-- `getAllContactsFromServer`: Retrieve a list of contacts from the server.
-- `getAllContactsFromDB`: Retrieve all contacts from the local database.
-- `addUserToBlockList`: Add the specified user to the block list.
-- `removeUserFromBlockList`: Remove the specified user from the block list.
-- `getBlockListFromServer`: Retrieve a list of blocked users from the server.
+- `deleteContact`: Deletes a contact.
+- `getAllContactsFromServer`: Retrieves a list of contacts from the server.
+- `getAllContactsFromDB`: Retrieves all contacts from the local database.
+- `addUserToBlockList`: Adds the specified user to the block list.
+- `removeUserFromBlockList`: Removes the specified user from the block list.
+- `getBlockListFromServer`: Retrieves a list of blocked users from the server.
 
 ## Prerequisites
 

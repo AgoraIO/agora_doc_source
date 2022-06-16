@@ -12,7 +12,7 @@ The Agora Chat SDK uses `ChatManager` and `ChatConversation` to manage local mes
 - `ChatManager.getUnreadMessageCount`: Retrieves the count of all unread messages.
 - `ChatManager.deleteRemoteConversation`: Deletes the conversation and historial messages from the server.
 - `ChatManager.searchMsgFromDB`: Searches for messages from the local database.
-- `Conversaion.insertMessage`: Inserts messages in the specified conversation.
+- `ChatConversation.insertMessage`: Inserts messages in the specified conversation.
 
 ## Prerequisites
 
@@ -33,10 +33,10 @@ Call `loadAllConversations` to retrieve all the conversations on the local devic
 ChatClient.getInstance()
   .chatManager.loadAllConversations()
   .then(() => {
-    console.log("load conversions success");
+    console.log("Loading conversations succeeds");
   })
   .catch((reason) => {
-    console.log("load conversions fail.", reason);
+    console.log("Loading conversations fails", reason);
   });
 ```
 
@@ -55,10 +55,10 @@ const convType = ChatConversationType.PeerChat;
 ChatClient.getInstance()
   .chatManager.getConversation(convId, convType, createIfNeed)
   .then((message) => {
-    console.log("get conversions success", message);
+    console.log("Getting conversations succeeds", message);
   })
   .catch((reason) => {
-    console.log("get conversions fail.", reason);
+    console.log("Getting conversations fails.", reason);
   });
 ```
 
@@ -75,10 +75,10 @@ const convType = ChatConversationType.PeerChat;
 ChatClient.getInstance()
   .chatManager.unreadCount(convId, convType)
   .then((count) => {
-    console.log("get conversions success: ", count);
+    console.log("Getting conversations succeeds: ", count);
   })
   .catch((reason) => {
-    console.log("get conversions fail.", reason);
+    console.log("Getting conversations fails.", reason);
   });
 ```
 
@@ -91,10 +91,10 @@ Refer to the following code example to retrieve the count of all unread messages
 ChatClient.getInstance()
   .chatManager.getUnreadMessageCount()
   .then((count) => {
-    console.log("get all conversions success: ", count);
+    console.log("Getting all conversations succeeds: ", count);
   })
   .catch((reason) => {
-    console.log("get all conversions fail.", reason);
+    console.log("Getting all conversations fails.", reason);
   });
 ```
 
@@ -113,10 +113,10 @@ const convType = ChatConversationType.PeerChat;
 ChatClient.getInstance()
   .chatManager.markMessageAsRead(convId, convType, msgId)
   .then(() => {
-    console.log("make conversions message read success: ");
+    console.log("Marking message read succeeds: ");
   })
   .catch((reason) => {
-    console.log("make conversions message read fail.", reason);
+    console.log("Marking message read fails.", reason);
   });
 ```
 
@@ -127,10 +127,10 @@ You can also mark all unread messages of the specified conversation as read:
 ChatClient.getInstance()
   .chatManager.markAllMessagesAsRead("convId", ChatConversationType.PeerChat)
   .then((count) => {
-    console.log("make conversions read success: ", count);
+    console.log("Marking conversations read succeeds: ", count);
   })
   .catch((reason) => {
-    console.log("make conversions read fail.", reason);
+    console.log("Marking conversations read fails.", reason);
   });
 ```
 
@@ -149,10 +149,10 @@ const withMessage = true;
 ChatClient.getInstance()
   .chatManager.deleteConversation(convId, withMessage)
   .then(() => {
-    console.log("remove conversions success: ");
+    console.log("Removing conversations succeeds: ");
   })
   .catch((reason) => {
-    console.log("remove conversions fail.", reason);
+    console.log("Removing conversations fails.", reason);
   });
 ```
 
@@ -169,10 +169,10 @@ const convType = ChatConversationType.PeerChat;
 ChatClient.getInstance()
   .chatManager.deleteRemoteConversation(convId, convType, isDeleteMessage)
   .then(() => {
-    console.log("remove conversions success: ");
+    console.log("Removing conversations succeeds: ");
   })
   .catch((reason) => {
-    console.log("remove conversions fail.", reason);
+    console.log("Removing conversations fails.", reason);
   });
 ```
 
@@ -200,10 +200,10 @@ ChatClient.getInstance().chatManager.searchMsgFromDB(
               direction
             )
   .then((messages[]) => {
-    console.log("search conversions success: ", messages);
+    console.log("Searching conversations succeeds: ", messages);
   })
   .catch((reason) => {
-    console.log("search conversions fail.", reason);
+    console.log("Searching conversations fails.", reason);
   });
 ```
 
@@ -218,10 +218,10 @@ ChatClient.getInstance()
   // Call import Messages.
   .chatManager.importMessages(msgs)
   .then(() => {
-    console.log("import conversions success: ");
+    console.log("Importing conversations succeeds: ");
   })
   .catch((reason) => {
-    console.log("import conversions fail.", reason);
+    console.log("Importing conversations fails.", reason);
   });
 ```
 
