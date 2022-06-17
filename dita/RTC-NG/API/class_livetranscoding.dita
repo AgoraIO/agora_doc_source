@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_livetranscoding">
-  <title> <ph keyref="LiveTranscoding"/> </title>
+  <title> <ph keyref="LiveTranscoding" /> </title>
   <shortdesc id="short"> <ph id="shortdesc">旁路推流的转码属性。</ph> </shortdesc>
   <refbody>
     <section id="prototype">
@@ -63,10 +63,10 @@
   @Deprecated public boolean lowLatency;
   public int videoGop;
   public AgoraImage watermark;
-  private ArrayList&lt;AgoraImage> watermarkList;
+  private ArrayList&lt;AgoraImage&gt; watermarkList;
   public void addWatermark(AgoraImage watermark) {
     if (watermarkList == null) {
-      watermarkList = new ArrayList&lt;AgoraImage>();
+      watermarkList = new ArrayList&lt;AgoraImage&gt;();
     }
     watermarkList.add(watermark);
   }
@@ -76,14 +76,14 @@
     }
     return watermarkList.remove(watermark);
   }
-  public ArrayList&lt;AgoraImage> getWatermarkList() {
+  public ArrayList&lt;AgoraImage&gt; getWatermarkList() {
     return watermarkList;
   }
   public AgoraImage backgroundImage;
-  private ArrayList&lt;AgoraImage> backgroundImageList;
+  private ArrayList&lt;AgoraImage&gt; backgroundImageList;
   public void addBackgroundImage(AgoraImage backgroundImage) {
     if (backgroundImageList == null) {
-      backgroundImageList = new ArrayList&lt;AgoraImage>();
+      backgroundImageList = new ArrayList&lt;AgoraImage&gt;();
     }
     backgroundImageList.add(backgroundImage);
   }
@@ -93,7 +93,7 @@
     }
     return backgroundImageList.remove(backgroundImage);
   }
-  public ArrayList&lt;AgoraImage> getBackgroundImageList() {
+  public ArrayList&lt;AgoraImage&gt; getBackgroundImageList() {
     return backgroundImageList;
   }
   public AudioSampleRateType audioSampleRate;
@@ -107,12 +107,12 @@
   public String userConfigExtraInfo;
   public String metadata;
   @Deprecated public String metadata;
-  private Map&lt;Integer, TranscodingUser> transcodingUsers;
-  private Map&lt;String, Boolean> advancedFeatures;
+  private Map&lt;Integer, TranscodingUser&gt; transcodingUsers;
+  private Map&lt;String, Boolean&gt; advancedFeatures;
   public void setAdvancedFeatures(String featureName, Boolean opened) {
     advancedFeatures.put(featureName, opened);
   }
-  public Map&lt;String, Boolean> getAdvancedFeatures() {
+  public Map&lt;String, Boolean&gt; getAdvancedFeatures() {
     return advancedFeatures;
   }
   public static class TranscodingUser {
@@ -145,8 +145,8 @@
     audioBitrate = 48;
     audioChannels = 1;
     audioCodecProfile = AudioCodecProfileType.LC_AAC;
-    transcodingUsers = new HashMap&lt;>();
-    advancedFeatures = new HashMap&lt;>();
+    transcodingUsers = new HashMap&lt;&gt;();
+    advancedFeatures = new HashMap&lt;&gt;();
     backgroundColor = 0xFF000000;
     userConfigExtraInfo = null;
     metadata = null;
@@ -159,11 +159,11 @@
     userCount = transcodingUsers.size();
     return Constants.ERR_OK;
   }
-  public final ArrayList&lt;TranscodingUser> getUsers() {
-    Collection&lt;TranscodingUser> values = transcodingUsers.values();
-    return new ArrayList&lt;>(values);
+  public final ArrayList&lt;TranscodingUser&gt; getUsers() {
+    Collection&lt;TranscodingUser&gt; values = transcodingUsers.values();
+    return new ArrayList&lt;&gt;(values);
   }
-  public void setUsers(ArrayList&lt;TranscodingUser> users) {
+  public void setUsers(ArrayList&lt;TranscodingUser&gt; users) {
     transcodingUsers.clear();
     if (users != null) {
       for (TranscodingUser user : users) {
@@ -172,7 +172,7 @@
     }
     userCount = transcodingUsers.size();
   }
-  public void setUsers(Map&lt;Integer, TranscodingUser> users) {
+  public void setUsers(Map&lt;Integer, TranscodingUser&gt; users) {
     transcodingUsers.clear();
     if (users != null) {
       transcodingUsers.putAll(users);
@@ -200,11 +200,11 @@
   }
   @Deprecated
   public int getRed() {
-    return (backgroundColor >> 16) &amp; 0x0ff;
+    return (backgroundColor &gt;&gt; 16) &amp; 0x0ff;
   }
   @Deprecated
   public int getGreen() {
-    return (backgroundColor >> 8) &amp; 0x0ff;
+    return (backgroundColor &gt;&gt; 8) &amp; 0x0ff;
   }
   @Deprecated
   public int getBlue() {
@@ -253,7 +253,7 @@
 - (int)addUser:(AgoraLiveTranscodingUser *_Nonnull)user;
 - (int)removeUser:(NSUInteger)uid;
 - (void)setAdvancedFeatures:(NSString* _Nonnull)featureName opened:(BOOL)opened;
-- (NSArray&lt;AgoraLiveStreamAdvancedFeature*>* _Nullable)getAdvancedFeatures;
+- (NSArray&lt;AgoraLiveStreamAdvancedFeature*&gt;* _Nullable)getAdvancedFeatures;
 @end</codeblock>
       <codeblock props="cpp" outputclass="language-cpp">struct LiveTranscoding {
   int width;
@@ -281,7 +281,7 @@
   unsigned int advancedFeatureCount;
   LiveTranscoding() : width(360), height(640), videoBitrate(400), videoFramerate(15), lowLatency(false), videoGop(30), videoCodecProfile(VIDEO_CODEC_PROFILE_HIGH), backgroundColor(0x000000), videoCodecType(VIDEO_CODEC_H264_FOR_STREAM), userCount(0), transcodingUsers(NULL), transcodingExtraInfo(NULL), metadata(NULL), watermark(NULL), watermarkCount(0), backgroundImage(NULL), backgroundImageCount(0), audioSampleRate(AUDIO_SAMPLE_RATE_48000), audioBitrate(48), audioChannels(1), audioCodecProfile(AUDIO_CODEC_PROFILE_LC_AAC), advancedFeatures(NULL), advancedFeatureCount(0) {}
 };</codeblock>
-      <codeblock props="electron" outputclass="language-typescript"/>
+      <codeblock props="electron" outputclass="language-typescript" />
       <codeblock props="unity" outputclass="language-csharp">public class LiveTranscoding
     {
         public LiveTranscoding()
@@ -367,11 +367,11 @@
         public LiveStreamAdvancedFeature[] advancedFeatures { set; get; }
         public uint advancedFeatureCount { set; get; }
     }</codeblock>
-      <codeblock props="rn" outputclass="language-typescript"/>
-      <codeblock props="flutter" outputclass="language-dart"/> </p>
+      <codeblock props="rn" outputclass="language-typescript" />
+      <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock> </p>
     </section>
     <section id="parameters">
-      <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+      <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
       <parml>
       <plentry props="android cpp electron unity flutter">
         <pt>width</pt>
@@ -429,8 +429,8 @@
           </dl>
           <p>低延时模式</p>
           <ul>
-          <li><codeph><ph keyref="true"/></codeph>: 低延时，不保证画质。</li>
-          <li><codeph><ph keyref="false"/></codeph>:（默认值）高延时，保证画质。</li>
+          <li><codeph><ph keyref="true" /></codeph>: 低延时，不保证画质。</li>
+          <li><codeph><ph keyref="false" /></codeph>:（默认值）高延时，保证画质。</li>
           </ul></pd>
       </plentry>
       <plentry>
@@ -440,17 +440,17 @@
       <plentry>
         <pt>videoCodecProfile</pt>
         <pd>
-          <p>用于旁路直播的输出视频的编码规格。可以设置为 66、77 或 100，详见 <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/>。</p>
+          <p>用于旁路直播的输出视频的编码规格。可以设置为 66、77 或 100，详见 <xref keyref="VIDEO_CODEC_PROFILE_TYPE" />。</p>
           <note type="attention">如果你把这个参数设为其他值，Agora 服务器会将其调整为默认值。</note></pd>
       </plentry>
       <plentry>
         <pt>videoCodecType</pt>
-        <pd>用于旁路直播的输出视频的编解码类型。详见 <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/>。</pd>
+        <pd>用于旁路直播的输出视频的编解码类型。详见 <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM" />。</pd>
       </plentry>
       <plentry>
         <pt>transcodingUsers</pt>
         <pd>
-          <p>用于管理参与旁路直播的视频转码合图的用户。最多支持 17 人同时参与转码合图。详见 <xref keyref="TranscodingUser"/>。</p>
+          <p>用于管理参与旁路直播的视频转码合图的用户。最多支持 17 人同时参与转码合图。详见 <xref keyref="TranscodingUser" />。</p>
         </pd>
       </plentry>
       <plentry>
@@ -478,7 +478,7 @@
           <dl outputclass="deprecated">
           <dlentry>
             <dt>弃用</dt>
-            <dd>已废弃，Agora 不推荐使用。请改用 <xref keyref="setBackgroundColor"/> 方法。</dd>
+            <dd>已废弃，Agora 不推荐使用。请改用 <xref keyref="setBackgroundColor" /> 方法。</dd>
           </dlentry>
           </dl>
         </pd>
@@ -492,7 +492,7 @@
           <dl outputclass="deprecated" props="android">
           <dlentry>
             <dt>弃用</dt>
-            <dd>已废弃，Agora 不推荐使用。请改用 <xref keyref="getUserCount"/> 方法。</dd>
+            <dd>已废弃，Agora 不推荐使用。请改用 <xref keyref="getUserCount" /> 方法。</dd>
           </dlentry>
           </dl>
           <p>参与合图的用户数量，默认 0。取值范围为 [0,17]。</p>
@@ -516,11 +516,11 @@
           <dl outputclass="deprecated" props="android ios mac">
           <dlentry>
             <dt>弃用</dt>
-            <dd props="android">请改用 <xref keyref="addWatermark"/>。</dd>
+            <dd props="android">请改用 <xref keyref="addWatermark" />。</dd>
             <dd props="ios mac">请改用 <parmname>watermarkArray</parmname>。</dd>
           </dlentry>
           </dl>
-          <p>直播视频上的水印。图片格式需为 PNG。详见 <xref keyref="RtcImage"/>。</p>
+          <p>直播视频上的水印。图片格式需为 PNG。详见 <xref keyref="RtcImage" />。</p>
           <p props="cpp unity flutter electron">你可以添加一个水印，或使用数组的方式添加多个水印。<ph props="cpp unity">该参数与 <parmname>watermarkCount</parmname>搭配使用。</ph></p>
         </pd>
       </plentry>
@@ -533,18 +533,18 @@
             <dd><ph>请改用 <parmname props="android">addBackgroundImage</parmname><parmname props="ios mac">backgroundImageArray</parmname>。</ph></dd>
           </dlentry>
           </dl>
-          <p>直播视频上的背景图。图片格式需为 PNG。详见 <xref keyref="RtcImage"/>。</p>
+          <p>直播视频上的背景图。图片格式需为 PNG。详见 <xref keyref="RtcImage" />。</p>
           <p props="cpp unity">你可以添加一张背景图，或使用数组的方式添加多张背景图。该参数与 <parmname>backgroundImageCount</parmname> 搭配使用。</p>
         </pd>
       </plentry>
       <plentry props="ios mac">
         <pt>backgroundImageArray</pt>
-        <pd>直播视频上的背景图数组。详见 <xref keyref="RtcImage"/>。你可以使用 <parmname>backgroundImageArray</parmname> 添加一张或多张背景图。图片格式需为 PNG。直播视频上的水印和背景图的总数量需大于等于 0 且小于等于 10。</pd>
+        <pd>直播视频上的背景图数组。详见 <xref keyref="RtcImage" />。你可以使用 <parmname>backgroundImageArray</parmname> 添加一张或多张背景图。图片格式需为 PNG。直播视频上的水印和背景图的总数量需大于等于 0 且小于等于 10。</pd>
       </plentry>
       <plentry>
         <pt>audioSampleRate</pt>
         <pd>
-          <p>用于旁路推流的输出媒体流的音频采样率 (Hz)，详见 <xref keyref="AUDIO_SAMPLE_RATE_TYPE"/>。</p>
+          <p>用于旁路推流的输出媒体流的音频采样率 (Hz)，详见 <xref keyref="AUDIO_SAMPLE_RATE_TYPE" />。</p>
         </pd>
       </plentry>
       <plentry>
@@ -567,12 +567,12 @@
       </plentry>
       <plentry>
         <pt>audioCodecProfile</pt>
-        <pd>用于旁路直播输出音频的编码规格。详见 <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/>。
+        <pd>用于旁路直播输出音频的编码规格。详见 <xref keyref="AUDIO_CODEC_PROFILE_TYPE" />。
                     </pd>
       </plentry>
       <plentry props="ios mac">
         <pt>watermarkArray</pt>
-        <pd> 直播视频上的水印数组。详见 <xref keyref="RtcImage"/>。你可以使用 <parmname>watermarkArray</parmname> 添加一张或多张水印。图片格式需为 PNG。直播视频上的水印和背景图的总数量需大于等于 0 且小于等于 10。 </pd>
+        <pd> 直播视频上的水印数组。详见 <xref keyref="RtcImage" />。你可以使用 <parmname>watermarkArray</parmname> 添加一张或多张水印。图片格式需为 PNG。直播视频上的水印和背景图的总数量需大于等于 0 且小于等于 10。 </pd>
       </plentry>
       <plentry props="cpp unity">
         <pt>watermarkCount</pt>
@@ -584,7 +584,7 @@
       </plentry>
       <plentry props="cpp unity">
         <pt>advancedFeatures</pt>
-        <pd>转码推流的高级功能。详见 <xref keyref="LiveStreamAdvancedFeature"/>。</pd>
+        <pd>转码推流的高级功能。详见 <xref keyref="LiveStreamAdvancedFeature" />。</pd>
       </plentry>
       <plentry props="cpp unity">
         <pt>advancedFeatureCount</pt>

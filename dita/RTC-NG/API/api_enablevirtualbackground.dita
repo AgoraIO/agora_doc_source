@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_enablevirtualbackground">
-    <title><ph keyref="enableVirtualBackground"/></title>
+    <title><ph keyref="enableVirtualBackground" /></title>
     <shortdesc id="short"><ph id="shortdesc">开启/关闭虚拟背景（beta 功能）。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="enableVirtualBackground"/>
+                <indexterm keyref="enableVirtualBackground" />
             </keywords>
         </metadata>
     </prolog>
@@ -17,10 +17,10 @@
       boolean enabled, VirtualBackgroundSource backgroundSource);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableVirtualBackground:(BOOL)enable backData:(AgoraVirtualBackgroundSource* _Nullable)backData NS_SWIFT_NAME(enableVirtualBackground(_:backData:));</codeblock>
             <codeblock props="cpp">virtual int enableVirtualBackground(bool enabled, VirtualBackgroundSource backgroundSource) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public abstract int EnableVirtualBackground(bool enabled, VirtualBackgroundSource backgroundSource);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
@@ -30,15 +30,15 @@
             </dlentry>
             </dl>
             <p>虚拟背景功能支持你使用自定义的背景图替代本地用户原来的背景图或者将背景虚化处理。成功开启虚拟背景功能后，频道内所有用户都能看到自定义的背景。</p>
-            <p props="rtc">你可以从 <xref keyref="onVirtualBackgroundSourceEnabled"/> 回调了解虚拟背景是否成功开启和相应的出错原因。</p>
+            <p props="rtc">你可以从 <xref keyref="onVirtualBackgroundSourceEnabled" /> 回调了解虚拟背景是否成功开启和相应的出错原因。</p>
             <p props="rtc-ng">开启虚拟背景功能涉及一系列方法的调用，调用顺序如下：
             <ol>
-            <li props="android">在初始化 <xref keyref="IRtcEngine"/> 时调用 <codeph><xref keyref="addExtension"/>(<q>agora_segmentation_extension</q>)</codeph>，在项目中集成虚拟背景动态库。</li>
+            <li props="android">在初始化 <xref keyref="IRtcEngine" /> 时调用 <codeph><xref keyref="addExtension" />(<q>agora_segmentation_extension</q>)</codeph>，在项目中集成虚拟背景动态库。</li>
             <li props="ios">在项目文件中链接动态库 <codeph>AgoraVideoSegmentationExtension.xcframework</codeph></li>
             <li props="mac">在项目文件中链接动态库 <codeph>AgoraVideoSegmentationExtension.framework</codeph></li>
-            <li props="cpp">在初始化 <xref keyref="IRtcEngine"/> 时调用 <codeph><xref keyref="loadExtensionProvider"/>(<q>libagora_segmentation_extension.dll</q>)</codeph>，指定动态库的路径和名称。</li>
-            <li>调用 <codeph><xref keyref="enableExtension"/>(<q>agora_segmentation</q>, <q>PortraitSegmentation</q>, <q><ph keyref="true"/></q>)</codeph>，开启插件。</li>
-            <li>调用 <xref keyref="enableVideo"/>，启用视频模块。</li>
+            <li props="cpp">在初始化 <xref keyref="IRtcEngine" /> 时调用 <codeph><xref keyref="loadExtensionProvider" />(<q>libagora_segmentation_extension.dll</q>)</codeph>，指定动态库的路径和名称。</li>
+            <li>调用 <codeph><xref keyref="enableExtension" />(<q>agora_segmentation</q>, <q>PortraitSegmentation</q>, <q><ph keyref="true" /></q>)</codeph>，开启插件。</li>
+            <li>调用 <xref keyref="enableVideo" />，启用视频模块。</li>
             <li>调用该方法，开启虚拟背景功能。</li>
             </ol></p>
             <note type="attention">
@@ -53,7 +53,7 @@
                 <li props="mac cpp unity electron">macOS: <ph>AgoraVideoSegmentationExtension.framework</ph></li>
                 <li props="cpp">Windows: <ph>libagora_segmentation_extension.dll</ph></li>
                 </ul></li>
-            <li props="rtc">该方法需要在 <xref keyref="enableVideo"/> 后调用。</li>
+            <li props="rtc">该方法需要在 <xref keyref="enableVideo" /> 后调用。</li>
             <li>该功能对设备性能要求较高，Agora 推荐你在搭载如下芯片的设备上使用：
 
 
@@ -97,23 +97,23 @@
 
 
                     <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: 开启。</li>
-                    <li><codeph><ph keyref="false"/></codeph>: 关闭。</li>
+                    <li><codeph><ph keyref="true" /></codeph>: 开启。</li>
+                    <li><codeph><ph keyref="false" /></codeph>: 关闭。</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt props="cpp android unity flutter">backgroundSource</pt>
                 <pt props="mac ios">backData</pt>
-                <pd>自定义的背景图。详见 <xref keyref="VirtualBackgroundSource"/>。为将自定义背景图的分辨率与 SDK 的视频采集分辨率适配，SDK 会在保证自定义背景图不变形的前提下，对自定义背景图进行缩放和裁剪。</pd>
+                <pd>自定义的背景图。详见 <xref keyref="VirtualBackgroundSource" />。为将自定义背景图的分辨率与 SDK 的视频采集分辨率适配，SDK 会在保证自定义背景图不变形的前提下，对自定义背景图进行缩放和裁剪。</pd>
             </plentry>
             <plentry props="hide">
                 <pt props="android cpp unity">segproperty</pt>
                 <pt props="ios mac">segData</pt>
-                <pd>背景图像的处理属性。详见 <xref keyref="SegmentationProperty"/>。</pd>
+                <pd>背景图像的处理属性。详见 <xref keyref="SegmentationProperty" />。</pd>
             </plentry>
             <plentry props="hide">
                 <pt>type</pt>
-                <pd>视频源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。
+                <pd>视频源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE" />。
 
 
                     <note type="attention">在该方法中，该参数仅支持以下两种设置：
@@ -121,8 +121,8 @@
 
 
                     <ul>
-                    <li>默认值为 <apiname keyref="PRIMARY_CAMERA_SOURCE"/>。</li>
-                    <li>如果要使用第二个摄像头采集视频，将该参数设置为 <apiname keyref="SECONDARY_CAMERA_SOURCE"/>。</li>
+                    <li>默认值为 <apiname keyref="PRIMARY_CAMERA_SOURCE" />。</li>
+                    <li>如果要使用第二个摄像头采集视频，将该参数设置为 <apiname keyref="SECONDARY_CAMERA_SOURCE" />。</li>
                     </ul></note></pd>
             </plentry>
             </parml> </section>
@@ -135,8 +135,8 @@
 
 
                 <ul props="rtc-ng">
-                <li>-1：自定义的背景图不存在。请检查 <xref keyref="VirtualBackgroundSource"/> 中 <parmname>source</parmname> 的值。</li>
-                <li>-2：自定义的背景图颜色格式出错。请检查 <xref keyref="VirtualBackgroundSource"/> 中 <parmname>color</parmname> 的值。</li>
+                <li>-1：自定义的背景图不存在。请检查 <xref keyref="VirtualBackgroundSource" /> 中 <parmname>source</parmname> 的值。</li>
+                <li>-2：自定义的背景图颜色格式出错。请检查 <xref keyref="VirtualBackgroundSource" /> 中 <parmname>color</parmname> 的值。</li>
                 <li>-3：设备不支持使用虚拟背景。</li>
                 </ul></li>
             </ul> </section>
