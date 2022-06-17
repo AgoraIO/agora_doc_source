@@ -19,8 +19,8 @@ The Agora Chat SDK uses `IContactManager` to add, remove and manage contacts. Fo
 
 Before proceeding, ensure that you meet the following requirements:
 
-- Have a project that has implemented [the basic real-time chat functionalities]().
-- Have a thorough understanding of the API call frequency limit. For details, see [Known limitations]().
+- You have integrated the Agora Chat SDK, initialized the SDK and implemented the functionality of registering accounts and login. For details, see [Get Started with Agora Chat](./agora_chat_get_started_windows?platform=Windows).
+- You understand the API call frequency limits as described in [Limitations](./agora_chat_limitation?platform=Windows).
 
 ## Implementation
 
@@ -193,4 +193,4 @@ SDKClient.Instance.ContactManager.GetBlockListFromServer(new ValueCallBack<List<
 ## Reference
 
 For detailed information on user attributes, refer to the following API Reference:
-- [IContactManager]()
+- [IContactManager](./API%20Reference/im_csharp/class_chat_s_d_k_1_1_i_chat_manager.html?transId=86800a60-e862-11ec-ba28-998741466f1a)

@@ -1,4 +1,4 @@
-After logging in to Agora Chat, users can send the following types of meesages to a peer user, a chat group, or a chat room:
+After logging in to Agora Chat, users can send the following types of messages to a peer user, a chat group, or a chat room:
 - Text messages, including hyperlinks and emojis.
 - Attachment messages, including image, voice, video, and file messages.
 - Location messages.
@@ -21,8 +21,8 @@ The process of sending and receiving a message is as follows:
 ## Prerequistes
 
 Before proceeding, ensure that you meet the following requirements:
-- You have integrated the Agora Chat SDK, initialized the SDK and implemented the functionality of registering accounts and login. For details, see [Get Started with Agora Chat]().
-- You understand the [API call frequency limits]().
+- You have integrated the Agora Chat SDK, initialized the SDK and implemented the functionality of registering accounts and login. For details, see [Get Started with Agora Chat](./agora_chat_get_started_unity?platform=Unity).
+- You understand the API call frequency limits as described in [Limitations](./agora_chat_limitation?platform=Unity).
 
 ## Implementation
 
@@ -199,7 +199,7 @@ else {
 }
 ```
 
-<div class="alert note">If `Options.IsAutoDownload` is set as `true` on the recipient's client, the SDK automatically downloads the thumbnail after receiving the message. If not, you need to call `SDKClient.Instance.ChatManager.DownloadThumbnail` to download the thumbnail and get the path from the `ThumbnailLocalPath` member in `msg.Body`.</div>
+<div class="alert note">If <code>Options.IsAutoDownload</code> is set as <code>true</code> on the recipient's client, the SDK automatically downloads the thumbnail after receiving the message. If not, you need to call <code>SDKClient.Instance.ChatManager.DownloadThumbnail</code> to download the thumbnail and get the path from the <code>ThumbnailLocalPath</code> member in <code>msg.Body</code>.</div>
 
 #### Send and receive a video message
 
@@ -419,8 +419,8 @@ if (found) {
 
 After implementing sending and receiving messages, you can refer to the following documents to add more messaging functionalities to your app:
 
-- [Manage local messages]()
-- [Retrieve conversations and messages from the server]()
-- [Message receipts]()
+- [Manage local messages](./agora_chat_manage_message_unity?platform=Unity)
+- [Retrieve conversations and messages from the server](./agora_chat_retrieve_message_unity?platform=Unity)
+- [Message receipts](./agora_chat_message_receipt_unity?platform=Unity)
 
 

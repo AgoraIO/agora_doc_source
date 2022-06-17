@@ -12,14 +12,14 @@ The Agora Chat SDK uses `IChatManager` and `IConversationManager` to manage loca
 - `IChatManager.GetUnreadMessageCount`: Retrieves the count of all unread messages.
 - `IChatManager.DeleteConversationFromServer`: Deletes the conversation from the server.
 - `IChatManager.searchMsgFromDB`: Searches for messages from the local database.
-- `Conversaion.insertMessage`: Inserts messages in the specified conversation.
+- `Conversation.insertMessage`: Inserts messages in the specified conversation.
 
 ## Prerequisites
 
 Before proceeding, ensure that you meet the following requirements:
 
-- You have integrated the Agora Chat SDK, initialized the SDK, and implemented the functionality of users logging in. For details, see [Get Started with Agora Chat]().
-- You understand the [API call frequency limits]().
+- You have integrated the Agora Chat SDK, initialized the SDK and implemented the functionality of registering accounts and login. For details, see [Get Started with Agora Chat](./agora_chat_get_started_windows?platform=Windows).
+- You understand the API call frequency limits as described in [Limitations](./agora_chat_limitation?platform=Windows).
 
 ## Implementation
 
@@ -139,6 +139,6 @@ conv.InsertMessage(message);
 
 After implementing managing messages, you can refer to the following documents to add more messaging functionalities to your app:
 
-- [Retrieve conversations and messages from the server]()
-- [Manage message receipts]()
+- [Retrieve conversations and messages from the server](./agora_chat_retrieve_message_windows?platform=Windows)
+- [Message receipts](./agora_chat_message_receipt_windows?platform=Windows)
 

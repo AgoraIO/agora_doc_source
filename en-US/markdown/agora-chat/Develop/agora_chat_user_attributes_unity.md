@@ -2,7 +2,7 @@ After joining an Agora Chat channel, a user can update information such as the n
 
 This page shows how to use the Agora Chat SDK to implement managing user attributes.
 
-<div class="alert note"><ul><li>User attributes are stored on the Agora Chat server. If you have security concerns, Agora recommends that you manage user attributes yourself.</li><li></li>To ensure information security, app users can only modify their own user attributes. Only app admins can modify the user attributes of other users.</ul></div>
+<div class="alert note"><ul><li>User attributes are stored on the Agora Chat server. If you have security concerns, Agora recommends that you manage user attributes yourself.</li><li>To ensure information security, app users can only modify their own user attributes. Only app admins can modify the user attributes of other users.</li></ul></div>
 
 ## Understand the tech
 
@@ -14,8 +14,8 @@ The Agora Chat SDK uses `IUserInfoManager` to retrieve, set, and modify user att
 
 Before proceeding, ensure that you meet the following requirements:
 
-- Have a project that has implemented [the basic real-time chat functionalities]().
-- Have a thorough understanding of the API call frequency limit, the maximum size of all the attributes of a specified user, and the maximum size of all user attribtues in an app. For details, see [Known limitations]().
+- You have integrated the Agora Chat SDK, initialized the SDK and implemented the functionality of registering accounts and login. For details, see [Get Started with Agora Chat](./agora_chat_get_started_unity?platform=Unity).
+- Have a thorough understanding of the API call frequency limit, the maximum size of all the attributes of a specified user, and the maximum size of all user attribtues in an app. For details, see [Known limitations](./agora_chat_limitation?platform=Unity).
 
 ## Implementation
 
@@ -116,5 +116,5 @@ SDKClient.Instance.ChatManager.SendMessage(ref msg, new CallBack(
 This section includes reference information that you may need to know during the implementation.
 
 - For detailed information on user attributes, refer to the following API Reference:
-  - [UserInfo]()
-  - [IUserInfoManager]()
+  - [UserInfo](.API%20Reference/im_csharp/class_chat_s_d_k_1_1_user_info.html?transId=86800a60-e862-11ec-ba28-998741466f1a)
+  - [IUserInfoManager](./agora-chat/API%20Reference/im_csharp/class_chat_s_d_k_1_1_i_user_info_manager.html?transId=86800a60-e862-11ec-ba28-998741466f1a)

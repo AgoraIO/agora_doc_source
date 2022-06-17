@@ -24,7 +24,7 @@ Agora Chat offers four pricing plans: Free, Starter, Pro, and Enterprise. See [d
 
 | Agora Chat plan | Fee (US$)  | Included usage (MAU) | Unit price of excess usage (US$/MAU) |
 | :-------------- | :--------- | :------------------- | :----------------------------------- |
-| Free            | 0          | 100                  | Subscribe to the pricing plan        |
+| Free            | 0          | 500                  | Subscribe to the pricing plan        |
 | Starter         | 299        | 5,000                | 0.05                                 |
 | Pro             | 699        | 5,000                | 0.05                                 |
 | Enterprise      | Customized | Customized           | Customized                           |

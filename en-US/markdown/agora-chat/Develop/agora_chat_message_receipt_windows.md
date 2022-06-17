@@ -15,9 +15,9 @@ The Agora Chat SDK uses `IChatManager` to provide message receipt. Followings ar
 
 Before proceeding, ensure that you meet the following requirements:
 
-- You have integrated the Agora Chat SDK, initialized the SDK, and implemented the functionality of users logging in. For details, see [Get Started with Agora Chat]().
-- You understand the [API call frequency limits]().
-- Message read receipts for chat groups are not enabled by default. To use this feature, contact sales@agora.io.
+- You have integrated the Agora Chat SDK, initialized the SDK and implemented the functionality of registering accounts and login. For details, see [Get Started with Agora Chat](./agora_chat_get_started_windows?platform=Windows).
+- You understand the API call frequency limits as described in [Limitations](./agora_chat_limitation?platform=Windows).
+- Message read receipts for chat groups are not enabled by default. To use this feature, contact support@agora.io.
 
 ## Implementation
 

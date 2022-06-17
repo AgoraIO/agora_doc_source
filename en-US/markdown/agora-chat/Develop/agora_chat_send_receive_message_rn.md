@@ -1,4 +1,4 @@
-After logging in to Agora Chat, users can send the following types of meesages to a peer user, a chat group, or a chat room:
+After logging in to Agora Chat, users can send the following types of messages to a peer user, a chat group, or a chat room:
 - Text messages, including hyperlinks and emojis.
 - Attachment messages, including image, voice, video, and file messages.
 - Location messages.
