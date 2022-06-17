@@ -129,7 +129,7 @@ Assume that a DND time period is specified for a conversation, while the app doe
 You can call `setSilentModeForAll` to set the push notifications at the app level, and set the push notification mode and DND mode by specifying the `paramType` field, as shown in the following code sample:
 
 ```` javascript
-/**
+
   options // The push notification options.
 	options: {
     paramType: 0, // The push notification mode.
@@ -150,7 +150,7 @@ You can call `setSilentModeForAll` to set the push notifications at the app leve
     	minutes: 0 // Sets the end minute to `0`.
     }
   }
-*/
+
 const params = {
   options: {
     paramType: 0,
@@ -173,7 +173,7 @@ WebIM.conn.getSilentModeForAll()
 You can call `setSilentModeForConversation` to set the push notifications for the conversation specified by the `conversationId` and `type` fields, as shown in the following code sample:
 
 ``` javascript
-/**
+
 	const params = {
     conversationId: 'test', // The conversation ID. For one-to-one chats, sets to the ID of the peer user. For group chats, sets to the ID of the chat group or chat room.
     type: 'singleChat', // The chat type. Sets the chat type to `singleChat`, `groupChat`, or `chatRoom`.
@@ -207,7 +207,7 @@ You can call `setSilentModeForConversation` to set the push notifications for th
       }
     }
   }
-*/
+
 const params = {
   conversationId: '12345',
   type: 'groupChat',
