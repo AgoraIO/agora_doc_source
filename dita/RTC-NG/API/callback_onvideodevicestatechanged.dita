@@ -23,7 +23,9 @@
                <codeblock props="electron" outputclass="language-typescript"/>
                <codeblock props="unity" outputclass="language-csharp">public virtual void OnVideoDeviceStateChanged(string deviceId, int deviceType, int deviceState)</codeblock>
                <codeblock props="rn" outputclass="language-typescript"/>
-               <codeblock props="flutter" outputclass="language-dart"/></p>
+               <codeblock props="flutter" outputclass="language-dart">final void Function(String deviceId, int deviceType, int deviceState)?
+      onVideoDeviceStateChanged;
+</codeblock></p>
           </section>
           <section id="detailed_desc">
                <p id="desc">该回调提示系统视频设备状态发生改变，比如被拔出或移除。如果设备已使用外接摄像头采集，外接摄像头被拔开后，视频会中断。</p>
@@ -46,27 +48,15 @@
                </plentry>
                <plentry>
                     <pt>deviceState</pt>
-                    <pd>
-                              设备状态。
-                              
-                         
-                         
-                         <ul>
-                         <li>
-                                        macOS 上：
-                                        
-                              
-                              
+                    <pd> 设备状态。 
                               <ul>
-                              <li>0: 设备就绪。</li>
-                              <li>8: 设备被拔出。</li>
-                              </ul> </li>
-                         <li>
-                                        Windows 上：详见
-                                        <xref keyref="MEDIA_DEVICE_STATE_TYPE"/>
-                                        。
-                                   </li>
-                         </ul> </pd>
+                              <li> macOS 上： 
+                                   <ul>
+                                   <li>0: 设备就绪。</li>
+                                   <li>8: 设备被拔出。</li>
+                                   </ul> </li>
+                              <li> Windows 上：详见 <xref keyref="MEDIA_DEVICE_STATE_TYPE"/> 。 </li>
+                              </ul> </pd>
                </plentry>
                </parml> </section>
      </refbody>
