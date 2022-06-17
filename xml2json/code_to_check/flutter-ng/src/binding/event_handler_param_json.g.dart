@@ -10,16 +10,17 @@ RtcEngineEventHandlerOnJoinChannelSuccessJson
     _$RtcEngineEventHandlerOnJoinChannelSuccessJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnJoinChannelSuccessJson(
-          channel: json['channel'] as String?,
-          uid: json['uid'] as int?,
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
           elapsed: json['elapsed'] as int?,
         );
 
 Map<String, dynamic> _$RtcEngineEventHandlerOnJoinChannelSuccessJsonToJson(
         RtcEngineEventHandlerOnJoinChannelSuccessJson instance) =>
     <String, dynamic>{
-      'channel': instance.channel,
-      'uid': instance.uid,
+      'connection': instance.connection?.toJson(),
       'elapsed': instance.elapsed,
     };
 
@@ -27,16 +28,17 @@ RtcEngineEventHandlerOnRejoinChannelSuccessJson
     _$RtcEngineEventHandlerOnRejoinChannelSuccessJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnRejoinChannelSuccessJson(
-          channel: json['channel'] as String?,
-          uid: json['uid'] as int?,
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
           elapsed: json['elapsed'] as int?,
         );
 
 Map<String, dynamic> _$RtcEngineEventHandlerOnRejoinChannelSuccessJsonToJson(
         RtcEngineEventHandlerOnRejoinChannelSuccessJson instance) =>
     <String, dynamic>{
-      'channel': instance.channel,
-      'uid': instance.uid,
+      'connection': instance.connection?.toJson(),
       'elapsed': instance.elapsed,
     };
 
@@ -72,7 +74,11 @@ RtcEngineEventHandlerOnAudioQualityJson
     _$RtcEngineEventHandlerOnAudioQualityJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnAudioQualityJson(
-          uid: json['uid'] as int?,
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
+          remoteUid: json['remoteUid'] as int?,
           quality: json['quality'] as int?,
           delay: json['delay'] as int?,
           lost: json['lost'] as int?,
@@ -81,7 +87,8 @@ RtcEngineEventHandlerOnAudioQualityJson
 Map<String, dynamic> _$RtcEngineEventHandlerOnAudioQualityJsonToJson(
         RtcEngineEventHandlerOnAudioQualityJson instance) =>
     <String, dynamic>{
-      'uid': instance.uid,
+      'connection': instance.connection?.toJson(),
+      'remoteUid': instance.remoteUid,
       'quality': instance.quality,
       'delay': instance.delay,
       'lost': instance.lost,
@@ -107,6 +114,10 @@ RtcEngineEventHandlerOnAudioVolumeIndicationJson
     _$RtcEngineEventHandlerOnAudioVolumeIndicationJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnAudioVolumeIndicationJson(
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
           speakers: json['speakers'] == null
               ? null
               : AudioVolumeInfo.fromJson(
@@ -118,6 +129,7 @@ RtcEngineEventHandlerOnAudioVolumeIndicationJson
 Map<String, dynamic> _$RtcEngineEventHandlerOnAudioVolumeIndicationJsonToJson(
         RtcEngineEventHandlerOnAudioVolumeIndicationJson instance) =>
     <String, dynamic>{
+      'connection': instance.connection?.toJson(),
       'speakers': instance.speakers?.toJson(),
       'speakerNumber': instance.speakerNumber,
       'totalVolume': instance.totalVolume,
@@ -127,6 +139,10 @@ RtcEngineEventHandlerOnLeaveChannelJson
     _$RtcEngineEventHandlerOnLeaveChannelJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnLeaveChannelJson(
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
           stats: json['stats'] == null
               ? null
               : RtcStats.fromJson(json['stats'] as Map<String, dynamic>),
@@ -135,12 +151,17 @@ RtcEngineEventHandlerOnLeaveChannelJson
 Map<String, dynamic> _$RtcEngineEventHandlerOnLeaveChannelJsonToJson(
         RtcEngineEventHandlerOnLeaveChannelJson instance) =>
     <String, dynamic>{
+      'connection': instance.connection?.toJson(),
       'stats': instance.stats?.toJson(),
     };
 
 RtcEngineEventHandlerOnRtcStatsJson
     _$RtcEngineEventHandlerOnRtcStatsJsonFromJson(Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnRtcStatsJson(
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
           stats: json['stats'] == null
               ? null
               : RtcStats.fromJson(json['stats'] as Map<String, dynamic>),
@@ -149,6 +170,7 @@ RtcEngineEventHandlerOnRtcStatsJson
 Map<String, dynamic> _$RtcEngineEventHandlerOnRtcStatsJsonToJson(
         RtcEngineEventHandlerOnRtcStatsJson instance) =>
     <String, dynamic>{
+      'connection': instance.connection?.toJson(),
       'stats': instance.stats?.toJson(),
     };
 
@@ -225,7 +247,11 @@ RtcEngineEventHandlerOnNetworkQualityJson
     _$RtcEngineEventHandlerOnNetworkQualityJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnNetworkQualityJson(
-          uid: json['uid'] as int?,
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
+          remoteUid: json['remoteUid'] as int?,
           txQuality: json['txQuality'] as int?,
           rxQuality: json['rxQuality'] as int?,
         );
@@ -233,7 +259,8 @@ RtcEngineEventHandlerOnNetworkQualityJson
 Map<String, dynamic> _$RtcEngineEventHandlerOnNetworkQualityJsonToJson(
         RtcEngineEventHandlerOnNetworkQualityJson instance) =>
     <String, dynamic>{
-      'uid': instance.uid,
+      'connection': instance.connection?.toJson(),
+      'remoteUid': instance.remoteUid,
       'txQuality': instance.txQuality,
       'rxQuality': instance.rxQuality,
     };
@@ -241,11 +268,18 @@ Map<String, dynamic> _$RtcEngineEventHandlerOnNetworkQualityJsonToJson(
 RtcEngineEventHandlerOnIntraRequestReceivedJson
     _$RtcEngineEventHandlerOnIntraRequestReceivedJsonFromJson(
             Map<String, dynamic> json) =>
-        RtcEngineEventHandlerOnIntraRequestReceivedJson();
+        RtcEngineEventHandlerOnIntraRequestReceivedJson(
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
+        );
 
 Map<String, dynamic> _$RtcEngineEventHandlerOnIntraRequestReceivedJsonToJson(
         RtcEngineEventHandlerOnIntraRequestReceivedJson instance) =>
-    <String, dynamic>{};
+    <String, dynamic>{
+      'connection': instance.connection?.toJson(),
+    };
 
 RtcEngineEventHandlerOnUplinkNetworkInfoUpdatedJson
     _$RtcEngineEventHandlerOnUplinkNetworkInfoUpdatedJsonFromJson(
@@ -298,6 +332,10 @@ RtcEngineEventHandlerOnFirstLocalVideoFrameJson
     _$RtcEngineEventHandlerOnFirstLocalVideoFrameJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnFirstLocalVideoFrameJson(
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
           width: json['width'] as int?,
           height: json['height'] as int?,
           elapsed: json['elapsed'] as int?,
@@ -306,6 +344,7 @@ RtcEngineEventHandlerOnFirstLocalVideoFrameJson
 Map<String, dynamic> _$RtcEngineEventHandlerOnFirstLocalVideoFrameJsonToJson(
         RtcEngineEventHandlerOnFirstLocalVideoFrameJson instance) =>
     <String, dynamic>{
+      'connection': instance.connection?.toJson(),
       'width': instance.width,
       'height': instance.height,
       'elapsed': instance.elapsed,
@@ -315,6 +354,10 @@ RtcEngineEventHandlerOnFirstLocalVideoFramePublishedJson
     _$RtcEngineEventHandlerOnFirstLocalVideoFramePublishedJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnFirstLocalVideoFramePublishedJson(
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
           elapsed: json['elapsed'] as int?,
         );
 
@@ -322,6 +365,7 @@ Map<String,
     dynamic> _$RtcEngineEventHandlerOnFirstLocalVideoFramePublishedJsonToJson(
         RtcEngineEventHandlerOnFirstLocalVideoFramePublishedJson instance) =>
     <String, dynamic>{
+      'connection': instance.connection?.toJson(),
       'elapsed': instance.elapsed,
     };
 
@@ -329,6 +373,10 @@ RtcEngineEventHandlerOnVideoSourceFrameSizeChangedJson
     _$RtcEngineEventHandlerOnVideoSourceFrameSizeChangedJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnVideoSourceFrameSizeChangedJson(
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
           sourceType:
               $enumDecodeNullable(_$VideoSourceTypeEnumMap, json['sourceType']),
           width: json['width'] as int?,
@@ -339,6 +387,7 @@ Map<String, dynamic>
     _$RtcEngineEventHandlerOnVideoSourceFrameSizeChangedJsonToJson(
             RtcEngineEventHandlerOnVideoSourceFrameSizeChangedJson instance) =>
         <String, dynamic>{
+          'connection': instance.connection?.toJson(),
           'sourceType': _$VideoSourceTypeEnumMap[instance.sourceType],
           'width': instance.width,
           'height': instance.height,
@@ -365,7 +414,11 @@ RtcEngineEventHandlerOnFirstRemoteVideoDecodedJson
     _$RtcEngineEventHandlerOnFirstRemoteVideoDecodedJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnFirstRemoteVideoDecodedJson(
-          uid: json['uid'] as int?,
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
+          remoteUid: json['remoteUid'] as int?,
           width: json['width'] as int?,
           height: json['height'] as int?,
           elapsed: json['elapsed'] as int?,
@@ -374,7 +427,8 @@ RtcEngineEventHandlerOnFirstRemoteVideoDecodedJson
 Map<String, dynamic> _$RtcEngineEventHandlerOnFirstRemoteVideoDecodedJsonToJson(
         RtcEngineEventHandlerOnFirstRemoteVideoDecodedJson instance) =>
     <String, dynamic>{
-      'uid': instance.uid,
+      'connection': instance.connection?.toJson(),
+      'remoteUid': instance.remoteUid,
       'width': instance.width,
       'height': instance.height,
       'elapsed': instance.elapsed,
@@ -384,6 +438,10 @@ RtcEngineEventHandlerOnVideoSizeChangedJson
     _$RtcEngineEventHandlerOnVideoSizeChangedJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnVideoSizeChangedJson(
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
           uid: json['uid'] as int?,
           width: json['width'] as int?,
           height: json['height'] as int?,
@@ -393,6 +451,7 @@ RtcEngineEventHandlerOnVideoSizeChangedJson
 Map<String, dynamic> _$RtcEngineEventHandlerOnVideoSizeChangedJsonToJson(
         RtcEngineEventHandlerOnVideoSizeChangedJson instance) =>
     <String, dynamic>{
+      'connection': instance.connection?.toJson(),
       'uid': instance.uid,
       'width': instance.width,
       'height': instance.height,
@@ -403,17 +462,22 @@ RtcEngineEventHandlerOnLocalVideoStateChangedJson
     _$RtcEngineEventHandlerOnLocalVideoStateChangedJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnLocalVideoStateChangedJson(
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
           state: $enumDecodeNullable(
               _$LocalVideoStreamStateEnumMap, json['state']),
-          error: $enumDecodeNullable(
-              _$LocalVideoStreamErrorEnumMap, json['error']),
+          errorCode: $enumDecodeNullable(
+              _$LocalVideoStreamErrorEnumMap, json['errorCode']),
         );
 
 Map<String, dynamic> _$RtcEngineEventHandlerOnLocalVideoStateChangedJsonToJson(
         RtcEngineEventHandlerOnLocalVideoStateChangedJson instance) =>
     <String, dynamic>{
+      'connection': instance.connection?.toJson(),
       'state': _$LocalVideoStreamStateEnumMap[instance.state],
-      'error': _$LocalVideoStreamErrorEnumMap[instance.error],
+      'errorCode': _$LocalVideoStreamErrorEnumMap[instance.errorCode],
     };
 
 const _$LocalVideoStreamStateEnumMap = {
@@ -447,7 +511,11 @@ RtcEngineEventHandlerOnRemoteVideoStateChangedJson
     _$RtcEngineEventHandlerOnRemoteVideoStateChangedJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnRemoteVideoStateChangedJson(
-          uid: json['uid'] as int?,
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
+          remoteUid: json['remoteUid'] as int?,
           state: $enumDecodeNullable(_$RemoteVideoStateEnumMap, json['state']),
           reason: $enumDecodeNullable(
               _$RemoteVideoStateReasonEnumMap, json['reason']),
@@ -457,7 +525,8 @@ RtcEngineEventHandlerOnRemoteVideoStateChangedJson
 Map<String, dynamic> _$RtcEngineEventHandlerOnRemoteVideoStateChangedJsonToJson(
         RtcEngineEventHandlerOnRemoteVideoStateChangedJson instance) =>
     <String, dynamic>{
-      'uid': instance.uid,
+      'connection': instance.connection?.toJson(),
+      'remoteUid': instance.remoteUid,
       'state': _$RemoteVideoStateEnumMap[instance.state],
       'reason': _$RemoteVideoStateReasonEnumMap[instance.reason],
       'elapsed': instance.elapsed,
@@ -490,7 +559,11 @@ RtcEngineEventHandlerOnFirstRemoteVideoFrameJson
     _$RtcEngineEventHandlerOnFirstRemoteVideoFrameJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnFirstRemoteVideoFrameJson(
-          userId: json['userId'] as int?,
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
+          remoteUid: json['remoteUid'] as int?,
           width: json['width'] as int?,
           height: json['height'] as int?,
           elapsed: json['elapsed'] as int?,
@@ -499,7 +572,8 @@ RtcEngineEventHandlerOnFirstRemoteVideoFrameJson
 Map<String, dynamic> _$RtcEngineEventHandlerOnFirstRemoteVideoFrameJsonToJson(
         RtcEngineEventHandlerOnFirstRemoteVideoFrameJson instance) =>
     <String, dynamic>{
-      'userId': instance.userId,
+      'connection': instance.connection?.toJson(),
+      'remoteUid': instance.remoteUid,
       'width': instance.width,
       'height': instance.height,
       'elapsed': instance.elapsed,
@@ -509,14 +583,19 @@ RtcEngineEventHandlerOnUserJoinedJson
     _$RtcEngineEventHandlerOnUserJoinedJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnUserJoinedJson(
-          uid: json['uid'] as int?,
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
+          remoteUid: json['remoteUid'] as int?,
           elapsed: json['elapsed'] as int?,
         );
 
 Map<String, dynamic> _$RtcEngineEventHandlerOnUserJoinedJsonToJson(
         RtcEngineEventHandlerOnUserJoinedJson instance) =>
     <String, dynamic>{
-      'uid': instance.uid,
+      'connection': instance.connection?.toJson(),
+      'remoteUid': instance.remoteUid,
       'elapsed': instance.elapsed,
     };
 
@@ -524,7 +603,11 @@ RtcEngineEventHandlerOnUserOfflineJson
     _$RtcEngineEventHandlerOnUserOfflineJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnUserOfflineJson(
-          uid: json['uid'] as int?,
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
+          remoteUid: json['remoteUid'] as int?,
           reason: $enumDecodeNullable(
               _$UserOfflineReasonTypeEnumMap, json['reason']),
         );
@@ -532,7 +615,8 @@ RtcEngineEventHandlerOnUserOfflineJson
 Map<String, dynamic> _$RtcEngineEventHandlerOnUserOfflineJsonToJson(
         RtcEngineEventHandlerOnUserOfflineJson instance) =>
     <String, dynamic>{
-      'uid': instance.uid,
+      'connection': instance.connection?.toJson(),
+      'remoteUid': instance.remoteUid,
       'reason': _$UserOfflineReasonTypeEnumMap[instance.reason],
     };
 
@@ -546,14 +630,19 @@ RtcEngineEventHandlerOnUserMuteAudioJson
     _$RtcEngineEventHandlerOnUserMuteAudioJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnUserMuteAudioJson(
-          uid: json['uid'] as int?,
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
+          remoteUid: json['remoteUid'] as int?,
           muted: json['muted'] as bool?,
         );
 
 Map<String, dynamic> _$RtcEngineEventHandlerOnUserMuteAudioJsonToJson(
         RtcEngineEventHandlerOnUserMuteAudioJson instance) =>
     <String, dynamic>{
-      'uid': instance.uid,
+      'connection': instance.connection?.toJson(),
+      'remoteUid': instance.remoteUid,
       'muted': instance.muted,
     };
 
@@ -561,14 +650,19 @@ RtcEngineEventHandlerOnUserMuteVideoJson
     _$RtcEngineEventHandlerOnUserMuteVideoJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnUserMuteVideoJson(
-          userId: json['userId'] as int?,
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
+          remoteUid: json['remoteUid'] as int?,
           muted: json['muted'] as bool?,
         );
 
 Map<String, dynamic> _$RtcEngineEventHandlerOnUserMuteVideoJsonToJson(
         RtcEngineEventHandlerOnUserMuteVideoJson instance) =>
     <String, dynamic>{
-      'userId': instance.userId,
+      'connection': instance.connection?.toJson(),
+      'remoteUid': instance.remoteUid,
       'muted': instance.muted,
     };
 
@@ -576,14 +670,19 @@ RtcEngineEventHandlerOnUserEnableVideoJson
     _$RtcEngineEventHandlerOnUserEnableVideoJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnUserEnableVideoJson(
-          uid: json['uid'] as int?,
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
+          remoteUid: json['remoteUid'] as int?,
           enabled: json['enabled'] as bool?,
         );
 
 Map<String, dynamic> _$RtcEngineEventHandlerOnUserEnableVideoJsonToJson(
         RtcEngineEventHandlerOnUserEnableVideoJson instance) =>
     <String, dynamic>{
-      'uid': instance.uid,
+      'connection': instance.connection?.toJson(),
+      'remoteUid': instance.remoteUid,
       'enabled': instance.enabled,
     };
 
@@ -591,14 +690,19 @@ RtcEngineEventHandlerOnUserStateChangedJson
     _$RtcEngineEventHandlerOnUserStateChangedJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnUserStateChangedJson(
-          uid: json['uid'] as int?,
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
+          remoteUid: json['remoteUid'] as int?,
           state: json['state'] as int?,
         );
 
 Map<String, dynamic> _$RtcEngineEventHandlerOnUserStateChangedJsonToJson(
         RtcEngineEventHandlerOnUserStateChangedJson instance) =>
     <String, dynamic>{
-      'uid': instance.uid,
+      'connection': instance.connection?.toJson(),
+      'remoteUid': instance.remoteUid,
       'state': instance.state,
     };
 
@@ -606,14 +710,19 @@ RtcEngineEventHandlerOnUserEnableLocalVideoJson
     _$RtcEngineEventHandlerOnUserEnableLocalVideoJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnUserEnableLocalVideoJson(
-          uid: json['uid'] as int?,
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
+          remoteUid: json['remoteUid'] as int?,
           enabled: json['enabled'] as bool?,
         );
 
 Map<String, dynamic> _$RtcEngineEventHandlerOnUserEnableLocalVideoJsonToJson(
         RtcEngineEventHandlerOnUserEnableLocalVideoJson instance) =>
     <String, dynamic>{
-      'uid': instance.uid,
+      'connection': instance.connection?.toJson(),
+      'remoteUid': instance.remoteUid,
       'enabled': instance.enabled,
     };
 
@@ -638,6 +747,10 @@ RtcEngineEventHandlerOnLocalAudioStatsJson
     _$RtcEngineEventHandlerOnLocalAudioStatsJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnLocalAudioStatsJson(
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
           stats: json['stats'] == null
               ? null
               : LocalAudioStats.fromJson(json['stats'] as Map<String, dynamic>),
@@ -646,6 +759,7 @@ RtcEngineEventHandlerOnLocalAudioStatsJson
 Map<String, dynamic> _$RtcEngineEventHandlerOnLocalAudioStatsJsonToJson(
         RtcEngineEventHandlerOnLocalAudioStatsJson instance) =>
     <String, dynamic>{
+      'connection': instance.connection?.toJson(),
       'stats': instance.stats?.toJson(),
     };
 
@@ -653,6 +767,10 @@ RtcEngineEventHandlerOnRemoteAudioStatsJson
     _$RtcEngineEventHandlerOnRemoteAudioStatsJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnRemoteAudioStatsJson(
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
           stats: json['stats'] == null
               ? null
               : RemoteAudioStats.fromJson(
@@ -662,6 +780,7 @@ RtcEngineEventHandlerOnRemoteAudioStatsJson
 Map<String, dynamic> _$RtcEngineEventHandlerOnRemoteAudioStatsJsonToJson(
         RtcEngineEventHandlerOnRemoteAudioStatsJson instance) =>
     <String, dynamic>{
+      'connection': instance.connection?.toJson(),
       'stats': instance.stats?.toJson(),
     };
 
@@ -669,6 +788,10 @@ RtcEngineEventHandlerOnLocalVideoStatsJson
     _$RtcEngineEventHandlerOnLocalVideoStatsJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnLocalVideoStatsJson(
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
           stats: json['stats'] == null
               ? null
               : LocalVideoStats.fromJson(json['stats'] as Map<String, dynamic>),
@@ -677,6 +800,7 @@ RtcEngineEventHandlerOnLocalVideoStatsJson
 Map<String, dynamic> _$RtcEngineEventHandlerOnLocalVideoStatsJsonToJson(
         RtcEngineEventHandlerOnLocalVideoStatsJson instance) =>
     <String, dynamic>{
+      'connection': instance.connection?.toJson(),
       'stats': instance.stats?.toJson(),
     };
 
@@ -684,6 +808,10 @@ RtcEngineEventHandlerOnRemoteVideoStatsJson
     _$RtcEngineEventHandlerOnRemoteVideoStatsJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnRemoteVideoStatsJson(
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
           stats: json['stats'] == null
               ? null
               : RemoteVideoStats.fromJson(
@@ -693,6 +821,7 @@ RtcEngineEventHandlerOnRemoteVideoStatsJson
 Map<String, dynamic> _$RtcEngineEventHandlerOnRemoteVideoStatsJsonToJson(
         RtcEngineEventHandlerOnRemoteVideoStatsJson instance) =>
     <String, dynamic>{
+      'connection': instance.connection?.toJson(),
       'stats': instance.stats?.toJson(),
     };
 
@@ -847,35 +976,60 @@ const _$RhythmPlayerErrorTypeEnumMap = {
 RtcEngineEventHandlerOnConnectionLostJson
     _$RtcEngineEventHandlerOnConnectionLostJsonFromJson(
             Map<String, dynamic> json) =>
-        RtcEngineEventHandlerOnConnectionLostJson();
+        RtcEngineEventHandlerOnConnectionLostJson(
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
+        );
 
 Map<String, dynamic> _$RtcEngineEventHandlerOnConnectionLostJsonToJson(
         RtcEngineEventHandlerOnConnectionLostJson instance) =>
-    <String, dynamic>{};
+    <String, dynamic>{
+      'connection': instance.connection?.toJson(),
+    };
 
 RtcEngineEventHandlerOnConnectionInterruptedJson
     _$RtcEngineEventHandlerOnConnectionInterruptedJsonFromJson(
             Map<String, dynamic> json) =>
-        RtcEngineEventHandlerOnConnectionInterruptedJson();
+        RtcEngineEventHandlerOnConnectionInterruptedJson(
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
+        );
 
 Map<String, dynamic> _$RtcEngineEventHandlerOnConnectionInterruptedJsonToJson(
         RtcEngineEventHandlerOnConnectionInterruptedJson instance) =>
-    <String, dynamic>{};
+    <String, dynamic>{
+      'connection': instance.connection?.toJson(),
+    };
 
 RtcEngineEventHandlerOnConnectionBannedJson
     _$RtcEngineEventHandlerOnConnectionBannedJsonFromJson(
             Map<String, dynamic> json) =>
-        RtcEngineEventHandlerOnConnectionBannedJson();
+        RtcEngineEventHandlerOnConnectionBannedJson(
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
+        );
 
 Map<String, dynamic> _$RtcEngineEventHandlerOnConnectionBannedJsonToJson(
         RtcEngineEventHandlerOnConnectionBannedJson instance) =>
-    <String, dynamic>{};
+    <String, dynamic>{
+      'connection': instance.connection?.toJson(),
+    };
 
 RtcEngineEventHandlerOnStreamMessageJson
     _$RtcEngineEventHandlerOnStreamMessageJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnStreamMessageJson(
-          userId: json['userId'] as int?,
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
+          remoteUid: json['remoteUid'] as int?,
           streamId: json['streamId'] as int?,
           length: json['length'] as int?,
           sentTs: json['sentTs'] as int?,
@@ -884,7 +1038,8 @@ RtcEngineEventHandlerOnStreamMessageJson
 Map<String, dynamic> _$RtcEngineEventHandlerOnStreamMessageJsonToJson(
         RtcEngineEventHandlerOnStreamMessageJson instance) =>
     <String, dynamic>{
-      'userId': instance.userId,
+      'connection': instance.connection?.toJson(),
+      'remoteUid': instance.remoteUid,
       'streamId': instance.streamId,
       'length': instance.length,
       'sentTs': instance.sentTs,
@@ -894,7 +1049,11 @@ RtcEngineEventHandlerOnStreamMessageErrorJson
     _$RtcEngineEventHandlerOnStreamMessageErrorJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnStreamMessageErrorJson(
-          userId: json['userId'] as int?,
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
+          remoteUid: json['remoteUid'] as int?,
           streamId: json['streamId'] as int?,
           code: json['code'] as int?,
           missed: json['missed'] as int?,
@@ -904,7 +1063,8 @@ RtcEngineEventHandlerOnStreamMessageErrorJson
 Map<String, dynamic> _$RtcEngineEventHandlerOnStreamMessageErrorJsonToJson(
         RtcEngineEventHandlerOnStreamMessageErrorJson instance) =>
     <String, dynamic>{
-      'userId': instance.userId,
+      'connection': instance.connection?.toJson(),
+      'remoteUid': instance.remoteUid,
       'streamId': instance.streamId,
       'code': instance.code,
       'missed': instance.missed,
@@ -914,16 +1074,27 @@ Map<String, dynamic> _$RtcEngineEventHandlerOnStreamMessageErrorJsonToJson(
 RtcEngineEventHandlerOnRequestTokenJson
     _$RtcEngineEventHandlerOnRequestTokenJsonFromJson(
             Map<String, dynamic> json) =>
-        RtcEngineEventHandlerOnRequestTokenJson();
+        RtcEngineEventHandlerOnRequestTokenJson(
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
+        );
 
 Map<String, dynamic> _$RtcEngineEventHandlerOnRequestTokenJsonToJson(
         RtcEngineEventHandlerOnRequestTokenJson instance) =>
-    <String, dynamic>{};
+    <String, dynamic>{
+      'connection': instance.connection?.toJson(),
+    };
 
 RtcEngineEventHandlerOnTokenPrivilegeWillExpireJson
     _$RtcEngineEventHandlerOnTokenPrivilegeWillExpireJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnTokenPrivilegeWillExpireJson(
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
           token: json['token'] as String?,
         );
 
@@ -931,6 +1102,7 @@ Map<String, dynamic>
     _$RtcEngineEventHandlerOnTokenPrivilegeWillExpireJsonToJson(
             RtcEngineEventHandlerOnTokenPrivilegeWillExpireJson instance) =>
         <String, dynamic>{
+          'connection': instance.connection?.toJson(),
           'token': instance.token,
         };
 
@@ -938,6 +1110,10 @@ RtcEngineEventHandlerOnFirstLocalAudioFramePublishedJson
     _$RtcEngineEventHandlerOnFirstLocalAudioFramePublishedJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnFirstLocalAudioFramePublishedJson(
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
           elapsed: json['elapsed'] as int?,
         );
 
@@ -945,6 +1121,7 @@ Map<String,
     dynamic> _$RtcEngineEventHandlerOnFirstLocalAudioFramePublishedJsonToJson(
         RtcEngineEventHandlerOnFirstLocalAudioFramePublishedJson instance) =>
     <String, dynamic>{
+      'connection': instance.connection?.toJson(),
       'elapsed': instance.elapsed,
     };
 
@@ -952,14 +1129,19 @@ RtcEngineEventHandlerOnFirstRemoteAudioFrameJson
     _$RtcEngineEventHandlerOnFirstRemoteAudioFrameJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnFirstRemoteAudioFrameJson(
-          uid: json['uid'] as int?,
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
+          userId: json['userId'] as int?,
           elapsed: json['elapsed'] as int?,
         );
 
 Map<String, dynamic> _$RtcEngineEventHandlerOnFirstRemoteAudioFrameJsonToJson(
         RtcEngineEventHandlerOnFirstRemoteAudioFrameJson instance) =>
     <String, dynamic>{
-      'uid': instance.uid,
+      'connection': instance.connection?.toJson(),
+      'userId': instance.userId,
       'elapsed': instance.elapsed,
     };
 
@@ -967,6 +1149,10 @@ RtcEngineEventHandlerOnFirstRemoteAudioDecodedJson
     _$RtcEngineEventHandlerOnFirstRemoteAudioDecodedJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnFirstRemoteAudioDecodedJson(
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
           uid: json['uid'] as int?,
           elapsed: json['elapsed'] as int?,
         );
@@ -974,6 +1160,7 @@ RtcEngineEventHandlerOnFirstRemoteAudioDecodedJson
 Map<String, dynamic> _$RtcEngineEventHandlerOnFirstRemoteAudioDecodedJsonToJson(
         RtcEngineEventHandlerOnFirstRemoteAudioDecodedJson instance) =>
     <String, dynamic>{
+      'connection': instance.connection?.toJson(),
       'uid': instance.uid,
       'elapsed': instance.elapsed,
     };
@@ -982,6 +1169,10 @@ RtcEngineEventHandlerOnLocalAudioStateChangedJson
     _$RtcEngineEventHandlerOnLocalAudioStateChangedJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnLocalAudioStateChangedJson(
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
           state: $enumDecodeNullable(
               _$LocalAudioStreamStateEnumMap, json['state']),
           error: $enumDecodeNullable(
@@ -991,6 +1182,7 @@ RtcEngineEventHandlerOnLocalAudioStateChangedJson
 Map<String, dynamic> _$RtcEngineEventHandlerOnLocalAudioStateChangedJsonToJson(
         RtcEngineEventHandlerOnLocalAudioStateChangedJson instance) =>
     <String, dynamic>{
+      'connection': instance.connection?.toJson(),
       'state': _$LocalAudioStreamStateEnumMap[instance.state],
       'error': _$LocalAudioStreamErrorEnumMap[instance.error],
     };
@@ -1015,7 +1207,11 @@ RtcEngineEventHandlerOnRemoteAudioStateChangedJson
     _$RtcEngineEventHandlerOnRemoteAudioStateChangedJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnRemoteAudioStateChangedJson(
-          uid: json['uid'] as int?,
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
+          remoteUid: json['remoteUid'] as int?,
           state: $enumDecodeNullable(_$RemoteAudioStateEnumMap, json['state']),
           reason: $enumDecodeNullable(
               _$RemoteAudioStateReasonEnumMap, json['reason']),
@@ -1025,7 +1221,8 @@ RtcEngineEventHandlerOnRemoteAudioStateChangedJson
 Map<String, dynamic> _$RtcEngineEventHandlerOnRemoteAudioStateChangedJsonToJson(
         RtcEngineEventHandlerOnRemoteAudioStateChangedJson instance) =>
     <String, dynamic>{
-      'uid': instance.uid,
+      'connection': instance.connection?.toJson(),
+      'remoteUid': instance.remoteUid,
       'state': _$RemoteAudioStateEnumMap[instance.state],
       'reason': _$RemoteAudioStateReasonEnumMap[instance.reason],
       'elapsed': instance.elapsed,
@@ -1054,13 +1251,18 @@ RtcEngineEventHandlerOnActiveSpeakerJson
     _$RtcEngineEventHandlerOnActiveSpeakerJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnActiveSpeakerJson(
-          userId: json['userId'] as int?,
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
+          uid: json['uid'] as int?,
         );
 
 Map<String, dynamic> _$RtcEngineEventHandlerOnActiveSpeakerJsonToJson(
         RtcEngineEventHandlerOnActiveSpeakerJson instance) =>
     <String, dynamic>{
-      'userId': instance.userId,
+      'connection': instance.connection?.toJson(),
+      'uid': instance.uid,
     };
 
 RtcEngineEventHandlerOnContentInspectResultJson
@@ -1087,8 +1289,10 @@ RtcEngineEventHandlerOnSnapshotTakenJson
     _$RtcEngineEventHandlerOnSnapshotTakenJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnSnapshotTakenJson(
-          channel: json['channel'] as String?,
-          uid: json['uid'] as int?,
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
           filePath: json['filePath'] as String?,
           width: json['width'] as int?,
           height: json['height'] as int?,
@@ -1098,8 +1302,7 @@ RtcEngineEventHandlerOnSnapshotTakenJson
 Map<String, dynamic> _$RtcEngineEventHandlerOnSnapshotTakenJsonToJson(
         RtcEngineEventHandlerOnSnapshotTakenJson instance) =>
     <String, dynamic>{
-      'channel': instance.channel,
-      'uid': instance.uid,
+      'connection': instance.connection?.toJson(),
       'filePath': instance.filePath,
       'width': instance.width,
       'height': instance.height,
@@ -1110,6 +1313,10 @@ RtcEngineEventHandlerOnClientRoleChangedJson
     _$RtcEngineEventHandlerOnClientRoleChangedJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnClientRoleChangedJson(
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
           oldRole:
               $enumDecodeNullable(_$ClientRoleTypeEnumMap, json['oldRole']),
           newRole:
@@ -1119,6 +1326,7 @@ RtcEngineEventHandlerOnClientRoleChangedJson
 Map<String, dynamic> _$RtcEngineEventHandlerOnClientRoleChangedJsonToJson(
         RtcEngineEventHandlerOnClientRoleChangedJson instance) =>
     <String, dynamic>{
+      'connection': instance.connection?.toJson(),
       'oldRole': _$ClientRoleTypeEnumMap[instance.oldRole],
       'newRole': _$ClientRoleTypeEnumMap[instance.newRole],
     };
@@ -1132,6 +1340,10 @@ RtcEngineEventHandlerOnClientRoleChangeFailedJson
     _$RtcEngineEventHandlerOnClientRoleChangeFailedJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnClientRoleChangeFailedJson(
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
           reason: $enumDecodeNullable(
               _$ClientRoleChangeFailedReasonEnumMap, json['reason']),
           currentRole:
@@ -1141,6 +1353,7 @@ RtcEngineEventHandlerOnClientRoleChangeFailedJson
 Map<String, dynamic> _$RtcEngineEventHandlerOnClientRoleChangeFailedJsonToJson(
         RtcEngineEventHandlerOnClientRoleChangeFailedJson instance) =>
     <String, dynamic>{
+      'connection': instance.connection?.toJson(),
       'reason': _$ClientRoleChangeFailedReasonEnumMap[instance.reason],
       'currentRole': _$ClientRoleTypeEnumMap[instance.currentRole],
     };
@@ -1389,7 +1602,11 @@ RtcEngineEventHandlerOnRemoteAudioTransportStatsJson
     _$RtcEngineEventHandlerOnRemoteAudioTransportStatsJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnRemoteAudioTransportStatsJson(
-          uid: json['uid'] as int?,
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
+          remoteUid: json['remoteUid'] as int?,
           delay: json['delay'] as int?,
           lost: json['lost'] as int?,
           rxKBitRate: json['rxKBitRate'] as int?,
@@ -1399,7 +1616,8 @@ Map<String, dynamic>
     _$RtcEngineEventHandlerOnRemoteAudioTransportStatsJsonToJson(
             RtcEngineEventHandlerOnRemoteAudioTransportStatsJson instance) =>
         <String, dynamic>{
-          'uid': instance.uid,
+          'connection': instance.connection?.toJson(),
+          'remoteUid': instance.remoteUid,
           'delay': instance.delay,
           'lost': instance.lost,
           'rxKBitRate': instance.rxKBitRate,
@@ -1409,7 +1627,11 @@ RtcEngineEventHandlerOnRemoteVideoTransportStatsJson
     _$RtcEngineEventHandlerOnRemoteVideoTransportStatsJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnRemoteVideoTransportStatsJson(
-          uid: json['uid'] as int?,
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
+          remoteUid: json['remoteUid'] as int?,
           delay: json['delay'] as int?,
           lost: json['lost'] as int?,
           rxKBitRate: json['rxKBitRate'] as int?,
@@ -1419,7 +1641,8 @@ Map<String, dynamic>
     _$RtcEngineEventHandlerOnRemoteVideoTransportStatsJsonToJson(
             RtcEngineEventHandlerOnRemoteVideoTransportStatsJson instance) =>
         <String, dynamic>{
-          'uid': instance.uid,
+          'connection': instance.connection?.toJson(),
+          'remoteUid': instance.remoteUid,
           'delay': instance.delay,
           'lost': instance.lost,
           'rxKBitRate': instance.rxKBitRate,
@@ -1429,6 +1652,10 @@ RtcEngineEventHandlerOnConnectionStateChangedJson
     _$RtcEngineEventHandlerOnConnectionStateChangedJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnConnectionStateChangedJson(
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
           state:
               $enumDecodeNullable(_$ConnectionStateTypeEnumMap, json['state']),
           reason: $enumDecodeNullable(
@@ -1438,6 +1665,7 @@ RtcEngineEventHandlerOnConnectionStateChangedJson
 Map<String, dynamic> _$RtcEngineEventHandlerOnConnectionStateChangedJsonToJson(
         RtcEngineEventHandlerOnConnectionStateChangedJson instance) =>
     <String, dynamic>{
+      'connection': instance.connection?.toJson(),
       'state': _$ConnectionStateTypeEnumMap[instance.state],
       'reason': _$ConnectionChangedReasonTypeEnumMap[instance.reason],
     };
@@ -1478,12 +1706,17 @@ RtcEngineEventHandlerOnNetworkTypeChangedJson
     _$RtcEngineEventHandlerOnNetworkTypeChangedJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnNetworkTypeChangedJson(
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
           type: $enumDecodeNullable(_$NetworkTypeEnumMap, json['type']),
         );
 
 Map<String, dynamic> _$RtcEngineEventHandlerOnNetworkTypeChangedJsonToJson(
         RtcEngineEventHandlerOnNetworkTypeChangedJson instance) =>
     <String, dynamic>{
+      'connection': instance.connection?.toJson(),
       'type': _$NetworkTypeEnumMap[instance.type],
     };
 
@@ -1501,6 +1734,10 @@ RtcEngineEventHandlerOnEncryptionErrorJson
     _$RtcEngineEventHandlerOnEncryptionErrorJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnEncryptionErrorJson(
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
           errorType: $enumDecodeNullable(
               _$EncryptionErrorTypeEnumMap, json['errorType']),
         );
@@ -1508,6 +1745,7 @@ RtcEngineEventHandlerOnEncryptionErrorJson
 Map<String, dynamic> _$RtcEngineEventHandlerOnEncryptionErrorJsonToJson(
         RtcEngineEventHandlerOnEncryptionErrorJson instance) =>
     <String, dynamic>{
+      'connection': instance.connection?.toJson(),
       'errorType': _$EncryptionErrorTypeEnumMap[instance.errorType],
     };
 
@@ -1572,6 +1810,10 @@ RtcEngineEventHandlerOnUploadLogResultJson
     _$RtcEngineEventHandlerOnUploadLogResultJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnUploadLogResultJson(
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
           requestId: json['requestId'] as String?,
           success: json['success'] as bool?,
           reason:
@@ -1581,6 +1823,7 @@ RtcEngineEventHandlerOnUploadLogResultJson
 Map<String, dynamic> _$RtcEngineEventHandlerOnUploadLogResultJsonToJson(
         RtcEngineEventHandlerOnUploadLogResultJson instance) =>
     <String, dynamic>{
+      'connection': instance.connection?.toJson(),
       'requestId': instance.requestId,
       'success': instance.success,
       'reason': _$UploadErrorReasonEnumMap[instance.reason],
@@ -1770,14 +2013,19 @@ RtcEngineEventHandlerOnUserAccountUpdatedJson
     _$RtcEngineEventHandlerOnUserAccountUpdatedJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnUserAccountUpdatedJson(
-          uid: json['uid'] as int?,
+          connection: json['connection'] == null
+              ? null
+              : RtcConnection.fromJson(
+                  json['connection'] as Map<String, dynamic>),
+          remoteUid: json['remoteUid'] as int?,
           userAccount: json['userAccount'] as String?,
         );
 
 Map<String, dynamic> _$RtcEngineEventHandlerOnUserAccountUpdatedJsonToJson(
         RtcEngineEventHandlerOnUserAccountUpdatedJson instance) =>
     <String, dynamic>{
-      'uid': instance.uid,
+      'connection': instance.connection?.toJson(),
+      'remoteUid': instance.remoteUid,
       'userAccount': instance.userAccount,
     };
 
@@ -1912,22 +2160,22 @@ const _$MediaPlayerStateEnumMap = {
 const _$MediaPlayerErrorEnumMap = {
   MediaPlayerError.playerErrorNone: 0,
   MediaPlayerError.playerErrorInvalidArguments: -1,
-  MediaPlayerError.playerErrorInternal: '-2',
-  MediaPlayerError.playerErrorNoResource: '-3',
-  MediaPlayerError.playerErrorInvalidMediaSource: '-4',
-  MediaPlayerError.playerErrorUnknownStreamType: '-5',
-  MediaPlayerError.playerErrorObjNotInitialized: '-6',
-  MediaPlayerError.playerErrorCodecNotSupported: '-7',
-  MediaPlayerError.playerErrorVideoRenderFailed: '-8',
-  MediaPlayerError.playerErrorInvalidState: '-9',
-  MediaPlayerError.playerErrorUrlNotFound: '-10',
-  MediaPlayerError.playerErrorInvalidConnectionState: '-11',
-  MediaPlayerError.playerErrorSrcBufferUnderflow: '-12',
-  MediaPlayerError.playerErrorInterrupted: '-13',
-  MediaPlayerError.playerErrorNotSupported: '-14',
-  MediaPlayerError.playerErrorTokenExpired: '-15',
-  MediaPlayerError.playerErrorIpExpired: '-16',
-  MediaPlayerError.playerErrorUnknown: '-17',
+  MediaPlayerError.playerErrorInternal: -2,
+  MediaPlayerError.playerErrorNoResource: -3,
+  MediaPlayerError.playerErrorInvalidMediaSource: -4,
+  MediaPlayerError.playerErrorUnknownStreamType: -5,
+  MediaPlayerError.playerErrorObjNotInitialized: -6,
+  MediaPlayerError.playerErrorCodecNotSupported: -7,
+  MediaPlayerError.playerErrorVideoRenderFailed: -8,
+  MediaPlayerError.playerErrorInvalidState: -9,
+  MediaPlayerError.playerErrorUrlNotFound: -10,
+  MediaPlayerError.playerErrorInvalidConnectionState: -11,
+  MediaPlayerError.playerErrorSrcBufferUnderflow: -12,
+  MediaPlayerError.playerErrorInterrupted: -13,
+  MediaPlayerError.playerErrorNotSupported: -14,
+  MediaPlayerError.playerErrorTokenExpired: -15,
+  MediaPlayerError.playerErrorIpExpired: -16,
+  MediaPlayerError.playerErrorUnknown: -17,
 };
 
 MediaPlayerSourceObserverOnPositionChangedJson
@@ -2094,1083 +2342,3 @@ Map<String, dynamic>
         <String, dynamic>{
           'volume': instance.volume,
         };
-
-RtcEngineEventHandlerExOnJoinChannelSuccessExJson
-    _$RtcEngineEventHandlerExOnJoinChannelSuccessExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnJoinChannelSuccessExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          elapsed: json['elapsed'] as int?,
-        );
-
-Map<String, dynamic> _$RtcEngineEventHandlerExOnJoinChannelSuccessExJsonToJson(
-        RtcEngineEventHandlerExOnJoinChannelSuccessExJson instance) =>
-    <String, dynamic>{
-      'connection': instance.connection?.toJson(),
-      'elapsed': instance.elapsed,
-    };
-
-RtcEngineEventHandlerExOnRejoinChannelSuccessExJson
-    _$RtcEngineEventHandlerExOnRejoinChannelSuccessExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnRejoinChannelSuccessExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          elapsed: json['elapsed'] as int?,
-        );
-
-Map<String, dynamic>
-    _$RtcEngineEventHandlerExOnRejoinChannelSuccessExJsonToJson(
-            RtcEngineEventHandlerExOnRejoinChannelSuccessExJson instance) =>
-        <String, dynamic>{
-          'connection': instance.connection?.toJson(),
-          'elapsed': instance.elapsed,
-        };
-
-RtcEngineEventHandlerExOnAudioQualityExJson
-    _$RtcEngineEventHandlerExOnAudioQualityExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnAudioQualityExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          remoteUid: json['remoteUid'] as int?,
-          quality: json['quality'] as int?,
-          delay: json['delay'] as int?,
-          lost: json['lost'] as int?,
-        );
-
-Map<String, dynamic> _$RtcEngineEventHandlerExOnAudioQualityExJsonToJson(
-        RtcEngineEventHandlerExOnAudioQualityExJson instance) =>
-    <String, dynamic>{
-      'connection': instance.connection?.toJson(),
-      'remoteUid': instance.remoteUid,
-      'quality': instance.quality,
-      'delay': instance.delay,
-      'lost': instance.lost,
-    };
-
-RtcEngineEventHandlerExOnAudioVolumeIndicationExJson
-    _$RtcEngineEventHandlerExOnAudioVolumeIndicationExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnAudioVolumeIndicationExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          speakers: json['speakers'] == null
-              ? null
-              : AudioVolumeInfo.fromJson(
-                  json['speakers'] as Map<String, dynamic>),
-          speakerNumber: json['speakerNumber'] as int?,
-          totalVolume: json['totalVolume'] as int?,
-        );
-
-Map<String, dynamic>
-    _$RtcEngineEventHandlerExOnAudioVolumeIndicationExJsonToJson(
-            RtcEngineEventHandlerExOnAudioVolumeIndicationExJson instance) =>
-        <String, dynamic>{
-          'connection': instance.connection?.toJson(),
-          'speakers': instance.speakers?.toJson(),
-          'speakerNumber': instance.speakerNumber,
-          'totalVolume': instance.totalVolume,
-        };
-
-RtcEngineEventHandlerExOnLeaveChannelExJson
-    _$RtcEngineEventHandlerExOnLeaveChannelExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnLeaveChannelExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          stats: json['stats'] == null
-              ? null
-              : RtcStats.fromJson(json['stats'] as Map<String, dynamic>),
-        );
-
-Map<String, dynamic> _$RtcEngineEventHandlerExOnLeaveChannelExJsonToJson(
-        RtcEngineEventHandlerExOnLeaveChannelExJson instance) =>
-    <String, dynamic>{
-      'connection': instance.connection?.toJson(),
-      'stats': instance.stats?.toJson(),
-    };
-
-RtcEngineEventHandlerExOnRtcStatsExJson
-    _$RtcEngineEventHandlerExOnRtcStatsExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnRtcStatsExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          stats: json['stats'] == null
-              ? null
-              : RtcStats.fromJson(json['stats'] as Map<String, dynamic>),
-        );
-
-Map<String, dynamic> _$RtcEngineEventHandlerExOnRtcStatsExJsonToJson(
-        RtcEngineEventHandlerExOnRtcStatsExJson instance) =>
-    <String, dynamic>{
-      'connection': instance.connection?.toJson(),
-      'stats': instance.stats?.toJson(),
-    };
-
-RtcEngineEventHandlerExOnNetworkQualityExJson
-    _$RtcEngineEventHandlerExOnNetworkQualityExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnNetworkQualityExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          remoteUid: json['remoteUid'] as int?,
-          txQuality: json['txQuality'] as int?,
-          rxQuality: json['rxQuality'] as int?,
-        );
-
-Map<String, dynamic> _$RtcEngineEventHandlerExOnNetworkQualityExJsonToJson(
-        RtcEngineEventHandlerExOnNetworkQualityExJson instance) =>
-    <String, dynamic>{
-      'connection': instance.connection?.toJson(),
-      'remoteUid': instance.remoteUid,
-      'txQuality': instance.txQuality,
-      'rxQuality': instance.rxQuality,
-    };
-
-RtcEngineEventHandlerExOnIntraRequestReceivedExJson
-    _$RtcEngineEventHandlerExOnIntraRequestReceivedExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnIntraRequestReceivedExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-        );
-
-Map<String, dynamic>
-    _$RtcEngineEventHandlerExOnIntraRequestReceivedExJsonToJson(
-            RtcEngineEventHandlerExOnIntraRequestReceivedExJson instance) =>
-        <String, dynamic>{
-          'connection': instance.connection?.toJson(),
-        };
-
-RtcEngineEventHandlerExOnFirstLocalVideoFrameExJson
-    _$RtcEngineEventHandlerExOnFirstLocalVideoFrameExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnFirstLocalVideoFrameExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          width: json['width'] as int?,
-          height: json['height'] as int?,
-          elapsed: json['elapsed'] as int?,
-        );
-
-Map<String, dynamic>
-    _$RtcEngineEventHandlerExOnFirstLocalVideoFrameExJsonToJson(
-            RtcEngineEventHandlerExOnFirstLocalVideoFrameExJson instance) =>
-        <String, dynamic>{
-          'connection': instance.connection?.toJson(),
-          'width': instance.width,
-          'height': instance.height,
-          'elapsed': instance.elapsed,
-        };
-
-RtcEngineEventHandlerExOnFirstLocalVideoFramePublishedExJson
-    _$RtcEngineEventHandlerExOnFirstLocalVideoFramePublishedExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnFirstLocalVideoFramePublishedExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          elapsed: json['elapsed'] as int?,
-        );
-
-Map<String, dynamic>
-    _$RtcEngineEventHandlerExOnFirstLocalVideoFramePublishedExJsonToJson(
-            RtcEngineEventHandlerExOnFirstLocalVideoFramePublishedExJson
-                instance) =>
-        <String, dynamic>{
-          'connection': instance.connection?.toJson(),
-          'elapsed': instance.elapsed,
-        };
-
-RtcEngineEventHandlerExOnVideoSourceFrameSizeChangedExJson
-    _$RtcEngineEventHandlerExOnVideoSourceFrameSizeChangedExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnVideoSourceFrameSizeChangedExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          sourceType:
-              $enumDecodeNullable(_$VideoSourceTypeEnumMap, json['sourceType']),
-          width: json['width'] as int?,
-          height: json['height'] as int?,
-        );
-
-Map<String,
-    dynamic> _$RtcEngineEventHandlerExOnVideoSourceFrameSizeChangedExJsonToJson(
-        RtcEngineEventHandlerExOnVideoSourceFrameSizeChangedExJson instance) =>
-    <String, dynamic>{
-      'connection': instance.connection?.toJson(),
-      'sourceType': _$VideoSourceTypeEnumMap[instance.sourceType],
-      'width': instance.width,
-      'height': instance.height,
-    };
-
-RtcEngineEventHandlerExOnFirstRemoteVideoDecodedExJson
-    _$RtcEngineEventHandlerExOnFirstRemoteVideoDecodedExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnFirstRemoteVideoDecodedExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          remoteUid: json['remoteUid'] as int?,
-          width: json['width'] as int?,
-          height: json['height'] as int?,
-          elapsed: json['elapsed'] as int?,
-        );
-
-Map<String, dynamic>
-    _$RtcEngineEventHandlerExOnFirstRemoteVideoDecodedExJsonToJson(
-            RtcEngineEventHandlerExOnFirstRemoteVideoDecodedExJson instance) =>
-        <String, dynamic>{
-          'connection': instance.connection?.toJson(),
-          'remoteUid': instance.remoteUid,
-          'width': instance.width,
-          'height': instance.height,
-          'elapsed': instance.elapsed,
-        };
-
-RtcEngineEventHandlerExOnVideoSizeChangedExJson
-    _$RtcEngineEventHandlerExOnVideoSizeChangedExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnVideoSizeChangedExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          uid: json['uid'] as int?,
-          width: json['width'] as int?,
-          height: json['height'] as int?,
-          rotation: json['rotation'] as int?,
-        );
-
-Map<String, dynamic> _$RtcEngineEventHandlerExOnVideoSizeChangedExJsonToJson(
-        RtcEngineEventHandlerExOnVideoSizeChangedExJson instance) =>
-    <String, dynamic>{
-      'connection': instance.connection?.toJson(),
-      'uid': instance.uid,
-      'width': instance.width,
-      'height': instance.height,
-      'rotation': instance.rotation,
-    };
-
-RtcEngineEventHandlerExOnContentInspectResultExJson
-    _$RtcEngineEventHandlerExOnContentInspectResultExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnContentInspectResultExJson(
-          result: $enumDecodeNullable(
-              _$ContentInspectResultEnumMap, json['result']),
-        );
-
-Map<String, dynamic>
-    _$RtcEngineEventHandlerExOnContentInspectResultExJsonToJson(
-            RtcEngineEventHandlerExOnContentInspectResultExJson instance) =>
-        <String, dynamic>{
-          'result': _$ContentInspectResultEnumMap[instance.result],
-        };
-
-RtcEngineEventHandlerExOnSnapshotTakenExJson
-    _$RtcEngineEventHandlerExOnSnapshotTakenExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnSnapshotTakenExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          filePath: json['filePath'] as String?,
-          width: json['width'] as int?,
-          height: json['height'] as int?,
-          errCode: json['errCode'] as int?,
-        );
-
-Map<String, dynamic> _$RtcEngineEventHandlerExOnSnapshotTakenExJsonToJson(
-        RtcEngineEventHandlerExOnSnapshotTakenExJson instance) =>
-    <String, dynamic>{
-      'connection': instance.connection?.toJson(),
-      'filePath': instance.filePath,
-      'width': instance.width,
-      'height': instance.height,
-      'errCode': instance.errCode,
-    };
-
-RtcEngineEventHandlerExOnLocalVideoStateChangedExJson
-    _$RtcEngineEventHandlerExOnLocalVideoStateChangedExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnLocalVideoStateChangedExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          state: $enumDecodeNullable(
-              _$LocalVideoStreamStateEnumMap, json['state']),
-          errorCode: $enumDecodeNullable(
-              _$LocalVideoStreamErrorEnumMap, json['errorCode']),
-        );
-
-Map<String, dynamic>
-    _$RtcEngineEventHandlerExOnLocalVideoStateChangedExJsonToJson(
-            RtcEngineEventHandlerExOnLocalVideoStateChangedExJson instance) =>
-        <String, dynamic>{
-          'connection': instance.connection?.toJson(),
-          'state': _$LocalVideoStreamStateEnumMap[instance.state],
-          'errorCode': _$LocalVideoStreamErrorEnumMap[instance.errorCode],
-        };
-
-RtcEngineEventHandlerExOnRemoteVideoStateChangedExJson
-    _$RtcEngineEventHandlerExOnRemoteVideoStateChangedExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnRemoteVideoStateChangedExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          remoteUid: json['remoteUid'] as int?,
-          state: $enumDecodeNullable(_$RemoteVideoStateEnumMap, json['state']),
-          reason: $enumDecodeNullable(
-              _$RemoteVideoStateReasonEnumMap, json['reason']),
-          elapsed: json['elapsed'] as int?,
-        );
-
-Map<String, dynamic>
-    _$RtcEngineEventHandlerExOnRemoteVideoStateChangedExJsonToJson(
-            RtcEngineEventHandlerExOnRemoteVideoStateChangedExJson instance) =>
-        <String, dynamic>{
-          'connection': instance.connection?.toJson(),
-          'remoteUid': instance.remoteUid,
-          'state': _$RemoteVideoStateEnumMap[instance.state],
-          'reason': _$RemoteVideoStateReasonEnumMap[instance.reason],
-          'elapsed': instance.elapsed,
-        };
-
-RtcEngineEventHandlerExOnFirstRemoteVideoFrameExJson
-    _$RtcEngineEventHandlerExOnFirstRemoteVideoFrameExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnFirstRemoteVideoFrameExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          remoteUid: json['remoteUid'] as int?,
-          width: json['width'] as int?,
-          height: json['height'] as int?,
-          elapsed: json['elapsed'] as int?,
-        );
-
-Map<String, dynamic>
-    _$RtcEngineEventHandlerExOnFirstRemoteVideoFrameExJsonToJson(
-            RtcEngineEventHandlerExOnFirstRemoteVideoFrameExJson instance) =>
-        <String, dynamic>{
-          'connection': instance.connection?.toJson(),
-          'remoteUid': instance.remoteUid,
-          'width': instance.width,
-          'height': instance.height,
-          'elapsed': instance.elapsed,
-        };
-
-RtcEngineEventHandlerExOnUserJoinedExJson
-    _$RtcEngineEventHandlerExOnUserJoinedExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnUserJoinedExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          remoteUid: json['remoteUid'] as int?,
-          elapsed: json['elapsed'] as int?,
-        );
-
-Map<String, dynamic> _$RtcEngineEventHandlerExOnUserJoinedExJsonToJson(
-        RtcEngineEventHandlerExOnUserJoinedExJson instance) =>
-    <String, dynamic>{
-      'connection': instance.connection?.toJson(),
-      'remoteUid': instance.remoteUid,
-      'elapsed': instance.elapsed,
-    };
-
-RtcEngineEventHandlerExOnUserOfflineExJson
-    _$RtcEngineEventHandlerExOnUserOfflineExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnUserOfflineExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          remoteUid: json['remoteUid'] as int?,
-          reason: $enumDecodeNullable(
-              _$UserOfflineReasonTypeEnumMap, json['reason']),
-        );
-
-Map<String, dynamic> _$RtcEngineEventHandlerExOnUserOfflineExJsonToJson(
-        RtcEngineEventHandlerExOnUserOfflineExJson instance) =>
-    <String, dynamic>{
-      'connection': instance.connection?.toJson(),
-      'remoteUid': instance.remoteUid,
-      'reason': _$UserOfflineReasonTypeEnumMap[instance.reason],
-    };
-
-RtcEngineEventHandlerExOnUserMuteAudioExJson
-    _$RtcEngineEventHandlerExOnUserMuteAudioExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnUserMuteAudioExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          remoteUid: json['remoteUid'] as int?,
-          muted: json['muted'] as bool?,
-        );
-
-Map<String, dynamic> _$RtcEngineEventHandlerExOnUserMuteAudioExJsonToJson(
-        RtcEngineEventHandlerExOnUserMuteAudioExJson instance) =>
-    <String, dynamic>{
-      'connection': instance.connection?.toJson(),
-      'remoteUid': instance.remoteUid,
-      'muted': instance.muted,
-    };
-
-RtcEngineEventHandlerExOnUserMuteVideoExJson
-    _$RtcEngineEventHandlerExOnUserMuteVideoExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnUserMuteVideoExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          remoteUid: json['remoteUid'] as int?,
-          muted: json['muted'] as bool?,
-        );
-
-Map<String, dynamic> _$RtcEngineEventHandlerExOnUserMuteVideoExJsonToJson(
-        RtcEngineEventHandlerExOnUserMuteVideoExJson instance) =>
-    <String, dynamic>{
-      'connection': instance.connection?.toJson(),
-      'remoteUid': instance.remoteUid,
-      'muted': instance.muted,
-    };
-
-RtcEngineEventHandlerExOnUserEnableVideoExJson
-    _$RtcEngineEventHandlerExOnUserEnableVideoExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnUserEnableVideoExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          remoteUid: json['remoteUid'] as int?,
-          enabled: json['enabled'] as bool?,
-        );
-
-Map<String, dynamic> _$RtcEngineEventHandlerExOnUserEnableVideoExJsonToJson(
-        RtcEngineEventHandlerExOnUserEnableVideoExJson instance) =>
-    <String, dynamic>{
-      'connection': instance.connection?.toJson(),
-      'remoteUid': instance.remoteUid,
-      'enabled': instance.enabled,
-    };
-
-RtcEngineEventHandlerExOnUserEnableLocalVideoExJson
-    _$RtcEngineEventHandlerExOnUserEnableLocalVideoExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnUserEnableLocalVideoExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          remoteUid: json['remoteUid'] as int?,
-          enabled: json['enabled'] as bool?,
-        );
-
-Map<String, dynamic>
-    _$RtcEngineEventHandlerExOnUserEnableLocalVideoExJsonToJson(
-            RtcEngineEventHandlerExOnUserEnableLocalVideoExJson instance) =>
-        <String, dynamic>{
-          'connection': instance.connection?.toJson(),
-          'remoteUid': instance.remoteUid,
-          'enabled': instance.enabled,
-        };
-
-RtcEngineEventHandlerExOnUserStateChangedExJson
-    _$RtcEngineEventHandlerExOnUserStateChangedExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnUserStateChangedExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          remoteUid: json['remoteUid'] as int?,
-          state: json['state'] as int?,
-        );
-
-Map<String, dynamic> _$RtcEngineEventHandlerExOnUserStateChangedExJsonToJson(
-        RtcEngineEventHandlerExOnUserStateChangedExJson instance) =>
-    <String, dynamic>{
-      'connection': instance.connection?.toJson(),
-      'remoteUid': instance.remoteUid,
-      'state': instance.state,
-    };
-
-RtcEngineEventHandlerExOnLocalAudioStatsExJson
-    _$RtcEngineEventHandlerExOnLocalAudioStatsExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnLocalAudioStatsExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          stats: json['stats'] == null
-              ? null
-              : LocalAudioStats.fromJson(json['stats'] as Map<String, dynamic>),
-        );
-
-Map<String, dynamic> _$RtcEngineEventHandlerExOnLocalAudioStatsExJsonToJson(
-        RtcEngineEventHandlerExOnLocalAudioStatsExJson instance) =>
-    <String, dynamic>{
-      'connection': instance.connection?.toJson(),
-      'stats': instance.stats?.toJson(),
-    };
-
-RtcEngineEventHandlerExOnRemoteAudioStatsExJson
-    _$RtcEngineEventHandlerExOnRemoteAudioStatsExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnRemoteAudioStatsExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          stats: json['stats'] == null
-              ? null
-              : RemoteAudioStats.fromJson(
-                  json['stats'] as Map<String, dynamic>),
-        );
-
-Map<String, dynamic> _$RtcEngineEventHandlerExOnRemoteAudioStatsExJsonToJson(
-        RtcEngineEventHandlerExOnRemoteAudioStatsExJson instance) =>
-    <String, dynamic>{
-      'connection': instance.connection?.toJson(),
-      'stats': instance.stats?.toJson(),
-    };
-
-RtcEngineEventHandlerExOnLocalVideoStatsExJson
-    _$RtcEngineEventHandlerExOnLocalVideoStatsExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnLocalVideoStatsExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          stats: json['stats'] == null
-              ? null
-              : LocalVideoStats.fromJson(json['stats'] as Map<String, dynamic>),
-        );
-
-Map<String, dynamic> _$RtcEngineEventHandlerExOnLocalVideoStatsExJsonToJson(
-        RtcEngineEventHandlerExOnLocalVideoStatsExJson instance) =>
-    <String, dynamic>{
-      'connection': instance.connection?.toJson(),
-      'stats': instance.stats?.toJson(),
-    };
-
-RtcEngineEventHandlerExOnRemoteVideoStatsExJson
-    _$RtcEngineEventHandlerExOnRemoteVideoStatsExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnRemoteVideoStatsExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          stats: json['stats'] == null
-              ? null
-              : RemoteVideoStats.fromJson(
-                  json['stats'] as Map<String, dynamic>),
-        );
-
-Map<String, dynamic> _$RtcEngineEventHandlerExOnRemoteVideoStatsExJsonToJson(
-        RtcEngineEventHandlerExOnRemoteVideoStatsExJson instance) =>
-    <String, dynamic>{
-      'connection': instance.connection?.toJson(),
-      'stats': instance.stats?.toJson(),
-    };
-
-RtcEngineEventHandlerExOnConnectionLostExJson
-    _$RtcEngineEventHandlerExOnConnectionLostExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnConnectionLostExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-        );
-
-Map<String, dynamic> _$RtcEngineEventHandlerExOnConnectionLostExJsonToJson(
-        RtcEngineEventHandlerExOnConnectionLostExJson instance) =>
-    <String, dynamic>{
-      'connection': instance.connection?.toJson(),
-    };
-
-RtcEngineEventHandlerExOnConnectionInterruptedExJson
-    _$RtcEngineEventHandlerExOnConnectionInterruptedExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnConnectionInterruptedExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-        );
-
-Map<String, dynamic>
-    _$RtcEngineEventHandlerExOnConnectionInterruptedExJsonToJson(
-            RtcEngineEventHandlerExOnConnectionInterruptedExJson instance) =>
-        <String, dynamic>{
-          'connection': instance.connection?.toJson(),
-        };
-
-RtcEngineEventHandlerExOnConnectionBannedExJson
-    _$RtcEngineEventHandlerExOnConnectionBannedExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnConnectionBannedExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-        );
-
-Map<String, dynamic> _$RtcEngineEventHandlerExOnConnectionBannedExJsonToJson(
-        RtcEngineEventHandlerExOnConnectionBannedExJson instance) =>
-    <String, dynamic>{
-      'connection': instance.connection?.toJson(),
-    };
-
-RtcEngineEventHandlerExOnStreamMessageExJson
-    _$RtcEngineEventHandlerExOnStreamMessageExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnStreamMessageExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          remoteUid: json['remoteUid'] as int?,
-          streamId: json['streamId'] as int?,
-          length: json['length'] as int?,
-          sentTs: json['sentTs'] as int?,
-        );
-
-Map<String, dynamic> _$RtcEngineEventHandlerExOnStreamMessageExJsonToJson(
-        RtcEngineEventHandlerExOnStreamMessageExJson instance) =>
-    <String, dynamic>{
-      'connection': instance.connection?.toJson(),
-      'remoteUid': instance.remoteUid,
-      'streamId': instance.streamId,
-      'length': instance.length,
-      'sentTs': instance.sentTs,
-    };
-
-RtcEngineEventHandlerExOnStreamMessageErrorExJson
-    _$RtcEngineEventHandlerExOnStreamMessageErrorExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnStreamMessageErrorExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          remoteUid: json['remoteUid'] as int?,
-          streamId: json['streamId'] as int?,
-          code: json['code'] as int?,
-          missed: json['missed'] as int?,
-          cached: json['cached'] as int?,
-        );
-
-Map<String, dynamic> _$RtcEngineEventHandlerExOnStreamMessageErrorExJsonToJson(
-        RtcEngineEventHandlerExOnStreamMessageErrorExJson instance) =>
-    <String, dynamic>{
-      'connection': instance.connection?.toJson(),
-      'remoteUid': instance.remoteUid,
-      'streamId': instance.streamId,
-      'code': instance.code,
-      'missed': instance.missed,
-      'cached': instance.cached,
-    };
-
-RtcEngineEventHandlerExOnRequestTokenExJson
-    _$RtcEngineEventHandlerExOnRequestTokenExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnRequestTokenExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-        );
-
-Map<String, dynamic> _$RtcEngineEventHandlerExOnRequestTokenExJsonToJson(
-        RtcEngineEventHandlerExOnRequestTokenExJson instance) =>
-    <String, dynamic>{
-      'connection': instance.connection?.toJson(),
-    };
-
-RtcEngineEventHandlerExOnTokenPrivilegeWillExpireExJson
-    _$RtcEngineEventHandlerExOnTokenPrivilegeWillExpireExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnTokenPrivilegeWillExpireExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          token: json['token'] as String?,
-        );
-
-Map<String, dynamic>
-    _$RtcEngineEventHandlerExOnTokenPrivilegeWillExpireExJsonToJson(
-            RtcEngineEventHandlerExOnTokenPrivilegeWillExpireExJson instance) =>
-        <String, dynamic>{
-          'connection': instance.connection?.toJson(),
-          'token': instance.token,
-        };
-
-RtcEngineEventHandlerExOnFirstLocalAudioFramePublishedExJson
-    _$RtcEngineEventHandlerExOnFirstLocalAudioFramePublishedExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnFirstLocalAudioFramePublishedExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          elapsed: json['elapsed'] as int?,
-        );
-
-Map<String, dynamic>
-    _$RtcEngineEventHandlerExOnFirstLocalAudioFramePublishedExJsonToJson(
-            RtcEngineEventHandlerExOnFirstLocalAudioFramePublishedExJson
-                instance) =>
-        <String, dynamic>{
-          'connection': instance.connection?.toJson(),
-          'elapsed': instance.elapsed,
-        };
-
-RtcEngineEventHandlerExOnFirstRemoteAudioFrameExJson
-    _$RtcEngineEventHandlerExOnFirstRemoteAudioFrameExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnFirstRemoteAudioFrameExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          userId: json['userId'] as int?,
-          elapsed: json['elapsed'] as int?,
-        );
-
-Map<String, dynamic>
-    _$RtcEngineEventHandlerExOnFirstRemoteAudioFrameExJsonToJson(
-            RtcEngineEventHandlerExOnFirstRemoteAudioFrameExJson instance) =>
-        <String, dynamic>{
-          'connection': instance.connection?.toJson(),
-          'userId': instance.userId,
-          'elapsed': instance.elapsed,
-        };
-
-RtcEngineEventHandlerExOnFirstRemoteAudioDecodedExJson
-    _$RtcEngineEventHandlerExOnFirstRemoteAudioDecodedExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnFirstRemoteAudioDecodedExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          uid: json['uid'] as int?,
-          elapsed: json['elapsed'] as int?,
-        );
-
-Map<String, dynamic>
-    _$RtcEngineEventHandlerExOnFirstRemoteAudioDecodedExJsonToJson(
-            RtcEngineEventHandlerExOnFirstRemoteAudioDecodedExJson instance) =>
-        <String, dynamic>{
-          'connection': instance.connection?.toJson(),
-          'uid': instance.uid,
-          'elapsed': instance.elapsed,
-        };
-
-RtcEngineEventHandlerExOnLocalAudioStateChangedExJson
-    _$RtcEngineEventHandlerExOnLocalAudioStateChangedExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnLocalAudioStateChangedExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          state: $enumDecodeNullable(
-              _$LocalAudioStreamStateEnumMap, json['state']),
-          error: $enumDecodeNullable(
-              _$LocalAudioStreamErrorEnumMap, json['error']),
-        );
-
-Map<String, dynamic>
-    _$RtcEngineEventHandlerExOnLocalAudioStateChangedExJsonToJson(
-            RtcEngineEventHandlerExOnLocalAudioStateChangedExJson instance) =>
-        <String, dynamic>{
-          'connection': instance.connection?.toJson(),
-          'state': _$LocalAudioStreamStateEnumMap[instance.state],
-          'error': _$LocalAudioStreamErrorEnumMap[instance.error],
-        };
-
-RtcEngineEventHandlerExOnRemoteAudioStateChangedExJson
-    _$RtcEngineEventHandlerExOnRemoteAudioStateChangedExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnRemoteAudioStateChangedExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          remoteUid: json['remoteUid'] as int?,
-          state: $enumDecodeNullable(_$RemoteAudioStateEnumMap, json['state']),
-          reason: $enumDecodeNullable(
-              _$RemoteAudioStateReasonEnumMap, json['reason']),
-          elapsed: json['elapsed'] as int?,
-        );
-
-Map<String, dynamic>
-    _$RtcEngineEventHandlerExOnRemoteAudioStateChangedExJsonToJson(
-            RtcEngineEventHandlerExOnRemoteAudioStateChangedExJson instance) =>
-        <String, dynamic>{
-          'connection': instance.connection?.toJson(),
-          'remoteUid': instance.remoteUid,
-          'state': _$RemoteAudioStateEnumMap[instance.state],
-          'reason': _$RemoteAudioStateReasonEnumMap[instance.reason],
-          'elapsed': instance.elapsed,
-        };
-
-RtcEngineEventHandlerExOnActiveSpeakerExJson
-    _$RtcEngineEventHandlerExOnActiveSpeakerExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnActiveSpeakerExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          uid: json['uid'] as int?,
-        );
-
-Map<String, dynamic> _$RtcEngineEventHandlerExOnActiveSpeakerExJsonToJson(
-        RtcEngineEventHandlerExOnActiveSpeakerExJson instance) =>
-    <String, dynamic>{
-      'connection': instance.connection?.toJson(),
-      'uid': instance.uid,
-    };
-
-RtcEngineEventHandlerExOnClientRoleChangedExJson
-    _$RtcEngineEventHandlerExOnClientRoleChangedExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnClientRoleChangedExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          oldRole:
-              $enumDecodeNullable(_$ClientRoleTypeEnumMap, json['oldRole']),
-          newRole:
-              $enumDecodeNullable(_$ClientRoleTypeEnumMap, json['newRole']),
-        );
-
-Map<String, dynamic> _$RtcEngineEventHandlerExOnClientRoleChangedExJsonToJson(
-        RtcEngineEventHandlerExOnClientRoleChangedExJson instance) =>
-    <String, dynamic>{
-      'connection': instance.connection?.toJson(),
-      'oldRole': _$ClientRoleTypeEnumMap[instance.oldRole],
-      'newRole': _$ClientRoleTypeEnumMap[instance.newRole],
-    };
-
-RtcEngineEventHandlerExOnClientRoleChangeFailedExJson
-    _$RtcEngineEventHandlerExOnClientRoleChangeFailedExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnClientRoleChangeFailedExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          reason: $enumDecodeNullable(
-              _$ClientRoleChangeFailedReasonEnumMap, json['reason']),
-          currentRole:
-              $enumDecodeNullable(_$ClientRoleTypeEnumMap, json['currentRole']),
-        );
-
-Map<String, dynamic>
-    _$RtcEngineEventHandlerExOnClientRoleChangeFailedExJsonToJson(
-            RtcEngineEventHandlerExOnClientRoleChangeFailedExJson instance) =>
-        <String, dynamic>{
-          'connection': instance.connection?.toJson(),
-          'reason': _$ClientRoleChangeFailedReasonEnumMap[instance.reason],
-          'currentRole': _$ClientRoleTypeEnumMap[instance.currentRole],
-        };
-
-RtcEngineEventHandlerExOnRemoteAudioTransportStatsExJson
-    _$RtcEngineEventHandlerExOnRemoteAudioTransportStatsExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnRemoteAudioTransportStatsExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          remoteUid: json['remoteUid'] as int?,
-          delay: json['delay'] as int?,
-          lost: json['lost'] as int?,
-          rxKBitRate: json['rxKBitRate'] as int?,
-        );
-
-Map<String,
-    dynamic> _$RtcEngineEventHandlerExOnRemoteAudioTransportStatsExJsonToJson(
-        RtcEngineEventHandlerExOnRemoteAudioTransportStatsExJson instance) =>
-    <String, dynamic>{
-      'connection': instance.connection?.toJson(),
-      'remoteUid': instance.remoteUid,
-      'delay': instance.delay,
-      'lost': instance.lost,
-      'rxKBitRate': instance.rxKBitRate,
-    };
-
-RtcEngineEventHandlerExOnRemoteVideoTransportStatsExJson
-    _$RtcEngineEventHandlerExOnRemoteVideoTransportStatsExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnRemoteVideoTransportStatsExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          remoteUid: json['remoteUid'] as int?,
-          delay: json['delay'] as int?,
-          lost: json['lost'] as int?,
-          rxKBitRate: json['rxKBitRate'] as int?,
-        );
-
-Map<String,
-    dynamic> _$RtcEngineEventHandlerExOnRemoteVideoTransportStatsExJsonToJson(
-        RtcEngineEventHandlerExOnRemoteVideoTransportStatsExJson instance) =>
-    <String, dynamic>{
-      'connection': instance.connection?.toJson(),
-      'remoteUid': instance.remoteUid,
-      'delay': instance.delay,
-      'lost': instance.lost,
-      'rxKBitRate': instance.rxKBitRate,
-    };
-
-RtcEngineEventHandlerExOnConnectionStateChangedExJson
-    _$RtcEngineEventHandlerExOnConnectionStateChangedExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnConnectionStateChangedExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          state:
-              $enumDecodeNullable(_$ConnectionStateTypeEnumMap, json['state']),
-          reason: $enumDecodeNullable(
-              _$ConnectionChangedReasonTypeEnumMap, json['reason']),
-        );
-
-Map<String, dynamic>
-    _$RtcEngineEventHandlerExOnConnectionStateChangedExJsonToJson(
-            RtcEngineEventHandlerExOnConnectionStateChangedExJson instance) =>
-        <String, dynamic>{
-          'connection': instance.connection?.toJson(),
-          'state': _$ConnectionStateTypeEnumMap[instance.state],
-          'reason': _$ConnectionChangedReasonTypeEnumMap[instance.reason],
-        };
-
-RtcEngineEventHandlerExOnNetworkTypeChangedExJson
-    _$RtcEngineEventHandlerExOnNetworkTypeChangedExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnNetworkTypeChangedExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          type: $enumDecodeNullable(_$NetworkTypeEnumMap, json['type']),
-        );
-
-Map<String, dynamic> _$RtcEngineEventHandlerExOnNetworkTypeChangedExJsonToJson(
-        RtcEngineEventHandlerExOnNetworkTypeChangedExJson instance) =>
-    <String, dynamic>{
-      'connection': instance.connection?.toJson(),
-      'type': _$NetworkTypeEnumMap[instance.type],
-    };
-
-RtcEngineEventHandlerExOnEncryptionErrorExJson
-    _$RtcEngineEventHandlerExOnEncryptionErrorExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnEncryptionErrorExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          errorType: $enumDecodeNullable(
-              _$EncryptionErrorTypeEnumMap, json['errorType']),
-        );
-
-Map<String, dynamic> _$RtcEngineEventHandlerExOnEncryptionErrorExJsonToJson(
-        RtcEngineEventHandlerExOnEncryptionErrorExJson instance) =>
-    <String, dynamic>{
-      'connection': instance.connection?.toJson(),
-      'errorType': _$EncryptionErrorTypeEnumMap[instance.errorType],
-    };
-
-RtcEngineEventHandlerExOnUploadLogResultExJson
-    _$RtcEngineEventHandlerExOnUploadLogResultExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnUploadLogResultExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          requestId: json['requestId'] as String?,
-          success: json['success'] as bool?,
-          reason:
-              $enumDecodeNullable(_$UploadErrorReasonEnumMap, json['reason']),
-        );
-
-Map<String, dynamic> _$RtcEngineEventHandlerExOnUploadLogResultExJsonToJson(
-        RtcEngineEventHandlerExOnUploadLogResultExJson instance) =>
-    <String, dynamic>{
-      'connection': instance.connection?.toJson(),
-      'requestId': instance.requestId,
-      'success': instance.success,
-      'reason': _$UploadErrorReasonEnumMap[instance.reason],
-    };
-
-RtcEngineEventHandlerExOnUserAccountUpdatedExJson
-    _$RtcEngineEventHandlerExOnUserAccountUpdatedExJsonFromJson(
-            Map<String, dynamic> json) =>
-        RtcEngineEventHandlerExOnUserAccountUpdatedExJson(
-          connection: json['connection'] == null
-              ? null
-              : RtcConnection.fromJson(
-                  json['connection'] as Map<String, dynamic>),
-          remoteUid: json['remoteUid'] as int?,
-          userAccount: json['userAccount'] as String?,
-        );
-
-Map<String, dynamic> _$RtcEngineEventHandlerExOnUserAccountUpdatedExJsonToJson(
-        RtcEngineEventHandlerExOnUserAccountUpdatedExJson instance) =>
-    <String, dynamic>{
-      'connection': instance.connection?.toJson(),
-      'remoteUid': instance.remoteUid,
-      'userAccount': instance.userAccount,
-    };
