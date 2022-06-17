@@ -321,4 +321,4 @@ SDKClient.Instance.GroupManager.GetGroupWhiteListFromServer(currentGroupId, hand
 
 ### Listen for chat group events
 
-For details, see [Chat Group Events](https://docs-preprod.agora.io/en/null/agora_chat_group_unity?platform=Unity#listen-for-chat-group-events).
+For details, see [Chat Group Events](./agora_chat_group_unity?platform=Unity#listen-for-chat-group-events).

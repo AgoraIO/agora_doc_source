@@ -17,7 +17,7 @@ The Agora Chat SDK provides the `Group`, `IGroupManager`, and `IGroupManagerDele
 
 Before proceeding, ensure that you meet the following requirements:
 
-- You have initialized the Agora Chat SDK. For details, see [Get Started with Unity](https://docs-preprod.agora.io/en/agora-chat/agora_chat_get_started_unity).
+- You have initialized the Agora Chat SDK. For details, see [Get Started with Windows](./agora_chat_get_started_windows).
 - You understand the call frequency limit of the Agora Chat APIs supported by different pricing plans as described in [Limitations](https://docs-preprod.agora.io/en/agora-chat/agora_chat_limitation).
 - You understand the number of chat groups and chat group members supported by different pricing plans as described in [Pricing Plan Details](https://docs-preprod.agora.io/cn/agora-chat/agora_chat_plan).
 
@@ -166,4 +166,4 @@ SDKClient.Instance.GroupManager.UpdateGroupExt(currentGroupId, extension, new Ca
 
 ### Listen for chat group events
 
-For details, see [Chat Group Events](https://docs-preprod.agora.io/en/null/agora_chat_group_unity?platform=Unity#listen-for-chat-group-events).
+For details, see [Chat Group Events](./agora_chat_group_windows#listen-for-chat-group-events).
