@@ -97,6 +97,22 @@
     {
         public ExternalVideoFrame()
         {
+            this.type = VIDEO_BUFFER_TYPE.VIDEO_BUFFER_RAW_DATA;
+            this.format = VIDEO_PIXEL_FORMAT.VIDEO_PIXEL_UNKNOWN;
+            this.buffer = null;
+            this.stride = 0;
+            this.height = 0;
+            this.cropLeft = 0;
+            this.cropTop = 0;
+            this.cropRight = 0;
+            this.cropBottom = 0;
+            this.rotation = 0;
+            this.timestamp = 0;
+            this.eglContext = null;
+            this.eglType = EGL_CONTEXT_TYPE.EGL_CONTEXT10;
+            this.textureId = 0;
+            this.metadata_buffer = null;
+            this.metadata_size = 0;
         }
 
         public ExternalVideoFrame(VIDEO_BUFFER_TYPE type, VIDEO_PIXEL_FORMAT format, byte[] buffer, int stride,
@@ -121,7 +137,6 @@
             this.metadata_buffer = metadata_buffer;
             this.metadata_size = metadata_size;
         }
-
         public VIDEO_BUFFER_TYPE type { set; get; }
         public VIDEO_PIXEL_FORMAT format { set; get; }
         public byte[] buffer { set; get; }
@@ -163,8 +178,7 @@
             </plentry>
             <plentry>
                 <pt>format</pt>
-                <pd props="cpp unity" id="windows-format">像素格式。详见 <xref
-                    keyref="VIDEO_PIXEL_FORMAT"/>。</pd>
+                <pd props="cpp unity" id="windows-format">像素格式。详见 <xref keyref="VIDEO_PIXEL_FORMAT"/>。</pd>
                 <pd props="ios mac" id="oc-format">传入的视频帧的格式，必须指定为下面的某一个值：
 
                     <ul>
@@ -187,7 +201,7 @@
                     <li>4：RGBA。</li>
                     </ul> </pd>
             </plentry>
-            <plentry props="android cpp unity">
+            <plentry>
                 <pt props="cpp unity">buffer</pt>
                 <pt props="android">buf</pt>
                 <pt props="ios mac">dataBuf</pt>

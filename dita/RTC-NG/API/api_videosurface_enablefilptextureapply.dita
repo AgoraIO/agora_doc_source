@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_enablefilptextureapply">
+<reference id="api_videosurface_enablefilptextureapply">
     <title><ph keyref="enableFilpTextureApply"/></title>
-    <shortdesc id="short"><ph id="shortdesc">在渲染时，开启/关闭 Texture 的镜像。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc"
+        >在渲染时，开启/关闭 Texture 的镜像。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -17,7 +18,22 @@
             <codeblock props="ios mac" outputclass="language-objectivec"/>
             <codeblock props="cpp" outputclass="language-cpp"/>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public void EnableFilpTextureApply(bool flipX, bool flipY)</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public void EnableFilpTextureApply(bool flipX, bool flipY)
+        {
+            if (FlipX != flipX)
+            {
+                transform.localScale =
+                    new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+                FlipX = flipX;
+            }
+
+            if (FlipY != flipY)
+            {
+                transform.localScale =
+                    new Vector3(transform.localScale.x, -transform.localScale.y, transform.localScale.z);
+                FlipY = flipY;
+            }
+        }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
@@ -36,6 +52,7 @@
 
 
 
+                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：开启</li>
                     <li><codeph><ph keyref="false"/></codeph>：（默认）不开启</li>
@@ -47,6 +64,7 @@
 
 
 
+                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：开启</li>
                     <li><codeph><ph keyref="false"/></codeph>：（默认）不开启</li>

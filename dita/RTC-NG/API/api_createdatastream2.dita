@@ -18,7 +18,7 @@
                   config:(AgoraDataStreamConfig * _Nonnull)config;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int createDataStream(int* streamId, DataStreamConfig&amp; config) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int CreateDataStream(DataStreamConfig config);</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int CreateDataStream(ref int streamId, DataStreamConfig config);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
@@ -35,7 +35,7 @@
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry props="cpp ios mac" id="streamId">
+            <plentry props="cpp ios mac unity" id="streamId">
                 <pt>streamId</pt>
                 <pd>输出参数，数据流 ID。</pd>
             </plentry>
@@ -44,7 +44,7 @@
                 <pd>数据流设置。详见 <xref keyref="DataStreamConfig"/>。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values">
             <title>返回值</title>
             <ul>
             <li props="cpp ios mac">0: 创建数据流成功。</li>
