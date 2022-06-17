@@ -4,7 +4,7 @@ This page lists the details of the pricing plans for Agora Chat.
 
 | Description                      | Free |  Starter  |    Pro    | Enterprise |
 | :------------------------------- | :--: | :-------: | :-------: | :--------: |
-| Number of contacts            | 100  |    250    |   1,000   |   1,000    |
+| Number of contacts            | 100  |    250    |   1,000   |   10,000    |
 | Total number of registered users | 100  | unlimited | unlimited | unlimited  |
 
 ## Message
@@ -29,6 +29,7 @@ This page lists the details of the pricing plans for Agora Chat.
 
 | Description                                                  | Free | Starter |  Pro   |      Entreprise       |
 | :----------------------------------------------------------- | :--: | :-----: | :----: | :-------------------: |
+| Number of Chatrooms                                          | 100  | 10,000 | 50,000 | 100,000 |
 | Number of Chatroom members                                   | 100  |  2,000  | 10,000 | Custom Default:20,000 |
 | Number of Chatrooms that users can join                      | 100  |  1,000  | 2,000  |        10,000         |
 | Real-time interactive chatrooms (supports large-scale live-broadcasting scenarios) |  ✓   |    ✓    |   ✓    |           ✓           |
@@ -52,8 +53,34 @@ This page lists the details of the pricing plans for Agora Chat.
 | Server session list (WEB side pulls historical sessions)     |  ✓   |    ✓    |  ✓   |     ✓      |
 | IM UIkit (provides IM UI components)                         |  ✓   |    ✓    |  ✓   |     ✓      |
 | Full platform offline push (support Apple(MVP), Google(MVP), Huawei, Xiaomi, OPPO, VIVO, Meizu, custom ringtones and extensions) |  ✓   |    ✓    |  ✓   |     ✓      |
+| Chat group file sharing                                      |  ✓   |    ✓    |  ✓   |     ✓      |
+| Generating thumbnails for image messages                     |  ✓   |    ✓    |  ✓   |     ✓      |
+| Retrieveing offline messages                                 |  ✓   |    ✓    |  ✓   |     ✓      |
+| Chat group and chat room notifications                       |  ✓   |    ✓    |  ✓   |     ✓      |
 | Reactions                                                    |  ✓   |    ✓    |  ✓   |     ✓      |
 | Message threading                                            |  ✓   |    ✓    |  ✓   |     ✓      |
+| Presence                                                     |  ✓   |    ✓    |  ✓   |     ✓      |
+| Translation                                                  |  X   |    X    |  ✓   |     ✓      |
+
+## Content moderation
+
+| Description        | Free | Starter | Pro  | Enterprise |
+| :----------------- | :--: | :-----: | :--: | :--------: |
+| Resporting messages     |  X   |    X    |  ✓   |     ✓      |
+| Banning users          |   ✓   |    ✓    |  ✓   |     ✓      |
+| Muting users            |   ✓   |    ✓    |  ✓   |     ✓      |
+| Real-time moderation    |   X   |    X    |  ✓   |     ✓      |
+| Global mute in chat groups and chatrooms  |   ✓   |    ✓    |  ✓   |     ✓      |
+| User ID filter          |   X   |    X    |  ✓   |     ✓      |
+| Text message moderation |   X   |    X    |  ✓   |     ✓      |
+| Image message moderation |   X   |    X    |  ✓   |     ✓      |
+
+## Analytics
+
+| Description        | Free | Starter | Pro  | Enterprise |
+| :----------------- | :--: | :-----: | :--: | :--------: |
+| Usage inspection  |   ✓   |    ✓    |  ✓   |     ✓      |
+| Quality inspection (BETA) |   ✓   |    ✓    |  ✓   |     ✓      |
 
 ## Security
 
@@ -68,7 +95,6 @@ This page lists the details of the pricing plans for Agora Chat.
 
 | Description | Free | Starter | Pro  | Enterprise |
 | :---------- | :--: | :-----: | :--: | :--------: |
-| SOC2        |  ✓   |    ✓    |  ✓   |     ✓      |
 | ISO27001    |  ✓   |    ✓    |  ✓   |     ✓      |
 | GDPR        |  ✓   |    ✓    |  ✓   |     ✓      |
 
@@ -78,32 +104,22 @@ This page lists the details of the pricing plans for Agora Chat.
 | :----------------------------------------------------------- | :--- | :------ | :--- | :--------- |
 | Global Acceleration Network (SD-RTN, the world’s five largest data centers, 200+ edge acceleration nodes) | ✓    | ✓       | ✓    | ✓          |
 
-## REST operation service
+## REST APIs
 
 | Description                 |  Free  | Starter |  Pro   | Enterprise |
 | :-------------------------- | :----: | :-----: | :----: | :--------: |
-| Rest API call frequency     | 10/sec | 30/sec  | 50/sec |  200/sec   |
-| Send system message         |   ✓    |    ✓    |   ✓    |     ✓      |
-| Send a single chat message  |   ✓    |    ✓    |   ✓    |     ✓      |
-| Send group message          |   ✓    |    ✓    |   ✓    |     ✓      |
-| Send chatroom message       |   ✓    |    ✓    |   ✓    |     ✓      |
-| Send full user notification |   ✓    |    ✓    |   ✓    |     ✓      |
-| Ban user                    |   ✓    |    ✓    |   ✓    |     ✓      |
-| Add users to the blacklist  |   ✓    |    ✓    |   ✓    |     ✓      |
-| REST message withdrawn      |   ✓    |    ✓    |   ✓    |     ✓      |
-| Check user online status    |   ✓    |    ✓    |   ✓    |     ✓      |
+| Rest API call frequency     | 500/sec | 500/sec  | 500/sec |  500/sec   |
 
 ## SDK support
 
 | Description                       | Free | Starter | Pro  | Enterprise |
 | :-------------------------------- | :--- | :------ | :--- | :--------- |
-| Flutter side (hot)                | ✓    | ✓       | ✓    | ✓          |
 | Android                           | ✓    | ✓       | ✓    | ✓          |
 | iOS                               | ✓    | ✓       | ✓    | ✓          |
 | Web                               | ✓    | ✓       | ✓    | ✓          |
-| MacOS (implemented by Electron)   | ✓    | ✓       | ✓    | ✓          |
-| Windows (implemented by Electron) | ✓    | ✓       | ✓    | ✓          |
+| Windows                           | ✓    | ✓       | ✓    | ✓          |
 | Unity                             | ✓    | ✓       | ✓    | ✓          |
+| Flutter                           | ✓    | ✓       | ✓    | ✓          |
 | Reactive Native                   | ✓    | ✓       | ✓    | ✓          |
 
 

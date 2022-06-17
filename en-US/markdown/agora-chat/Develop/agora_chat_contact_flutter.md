@@ -78,11 +78,11 @@ User A uses `ChatContactManagerListener` to listen for contact events.
     @override
     void initState() {
       super.initState();
-      ChatClient.getInstance.contactManager.addContactListener(this);
+      ChatClient.getInstance.contactManager.addContactManagerListener(this);
     }
     @override
     void dispose() {
-      ChatClient.getInstance.contactManager.removeContactListener(this);
+      ChatClient.getInstance.contactManager.removeContactManagerListener(this);
       super.dispose();
     }
     @override
@@ -98,11 +98,11 @@ User A uses `ChatContactManagerListener` to listen for contact events.
     @override
     void initState() {
       super.initState();
-      ChatClient.getInstance.contactManager.addContactListener(this);
+      ChatClient.getInstance.contactManager.addContactManagerListener(this);
     }
     @override
     void dispose() {
-      ChatClient.getInstance.contactManager.removeContactListener(this);
+      ChatClient.getInstance.contactManager.removeContactManagerListener(this);
       super.dispose();
     }
     @override
@@ -168,12 +168,12 @@ try {
 }
 ```
 
-You can also retrieve the block list from the server by calling `getAllContactsFromServer`.
+You can also retrieve the block list from the server by calling `getBlockListFromServer`.
 
 ```dart
 try {
   List<String> list =
-      await ChatClient.getInstance.contactManager.getAllContactsFromServer();
+      await ChatClient.getInstance.contactManager.getBlockListFromServer();
 } on ChatError catch (e) {
 }
 ```

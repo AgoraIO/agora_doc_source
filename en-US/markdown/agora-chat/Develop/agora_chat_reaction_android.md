@@ -22,7 +22,6 @@ Before proceeding, ensure that your environment meets the following requirements
 
 - The project integrates a version of the Agora Chat SDK later than v1.0.3 and has implemented the [basic real-time chat functionalities](./agora_chat_get_started_android?platform=Android).
 - You understand the API call frequency limit as described in [Limitations](./agora_chat_limitation?platform=Android).
-- Reaction is not enabled by default. To use this feature, contact support@agora.io to enable it first.
 
 ## Implementation
 
