@@ -1,8 +1,8 @@
 # Presence
 
-The presence feature enables users to display their online status to public and detect the online status of others. Users can also customize their presence status, which adds fun and diversity to real-time chatting.
+The presence feature enables users to display their online status to publicly display their online presence status and quickly determine the status of other users. Users can also customize their presence status, which adds fun and diversity to real-time chatting.
 
-The following illustration shows the implementation of creating a custom presence status and how the presence statues look like in the app:
+The following illustration shows the implementation of creating a custom presence status and and how various presence statuses look in the app:
 
 ![](https://web-cdn.agora.io/docs-files/1655302111155)
 
@@ -20,14 +20,14 @@ The Agora Chat SDK allows you to implement the following features:
 - Retrieve the list of subscriptions
 - Retrieve the presence status of one or more users
 
-The following figure shows the workflow of how clients subscribe and publish presence statuses:
+The following figure shows the workflow of how clients subscribe to and publish presence statuses:
 
 ![](https://web-cdn.agora.io/docs-files/1655308138447)
 
 As shown in the figure, the workflow of presence subscription and publication is as follows:
 
 1. User A subscribes to the presence status of User B.
-2. User B publishes a presence status to public.
+2. User B publishes a presence status.
 3. The Agora Chat server triggers an event to notify User A about the presence update of User B.
 
 
@@ -46,7 +46,7 @@ This section introduces how to implement presence functionalities in your projec
 
 ### Subscribe to the presence status of one or more users
 
-By default, you do not subscribe to any user. To subscribe to the presence statuses of the specified users, you can call `subscribePresence`. Once the specified users update their presence statuses, the `onPresenceStatusChange` callback is triggered, notifying you about the updated statuses asynchronously.
+By default, you do not subscribe to any user. To subscribe to the presence statuses of the specified users, you can call `subscribePresence`. Whenever the specified users update their presence statuses, the `onPresenceStatusChange` callback is triggered, notifying you about the updated statuses asynchronously.
 
 The following code sample shows how to subscribe to the presence status of one or more users:
 
@@ -58,12 +58,12 @@ let option = {
 conn.subscribePresence(option).then(res => {console.log(res)})
 ```
 
-<div class="alert info"><ol><li>You can subscribe to 100 users at each call. The total subscriptions of each user cannot exceed 3,000. Once the number of subscriptions exceed the limit, the subsequent subscriptions with longer durations succeed and replace the existing subscriptions with shorter durations.<li>The subscription duration can be a maximum of 30 days. When the subscription to a user expires, you need subscribe to this user once again. If you subscribe to a user before the current subscription expires, the new duration overwrites the old one.</ol></div>
+<div class="alert info"><ol><li>You can subscribe to a maximum of 100 users at each call. The total subscriptions of each user cannot exceed 3,000. Once the number of subscriptions exceeds the limit, the subsequent subscriptions with longer durations succeed and replace the existing subscriptions with shorter durations.<li>The subscription duration can be a maximum of 30 days. When the subscription to a user expires, you need subscribe to this user once again. If you subscribe to a user again before the current subscription expires, the duration is reset.</ol></div>
 
 
 ### Publish a custom presence status
 
-You can call `publishPresence` to publish your custom statuses to public. Once your presence status updates, the users who subscribe to you receive the `onPresenceStatusChange` callback.
+You can call `publishPresence` to publish your custom statuses. Whenever your presence status updates, the users who subscribe to you receive the `onPresenceStatusChange` callback.
 
 The following code sample shows how to publish a custom status:
 
@@ -80,7 +80,7 @@ conn.publishPresence(option).then(res => {console.log(res)})
 Refer to the following code sample to listen for presence status updates:
 
 ```javascript
-// Add the presence status listener.
+// Adds the presence status listener.
 WebIM.conn.addEventHandler('MESSAGES',{
   // Occurs when the presence statuses of the subscriptions update.
    onPresenceStatusChange: => (msg) {
@@ -92,7 +92,7 @@ WebIM.conn.addEventHandler('MESSAGES',{
 
 ### Unsubscribe from the presence status of one or more users
 
-you can call `unsubscribePresence` to unsubscribe from the presence statuses of the specified users, as shown in the following code sample:
+You can call `unsubscribePresence` to unsubscribe from the presence statuses of the specified users, as shown in the following code sample:
 
 ```javascript
 let option = {
