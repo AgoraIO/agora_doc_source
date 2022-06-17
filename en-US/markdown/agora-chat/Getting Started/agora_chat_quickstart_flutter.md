@@ -26,7 +26,7 @@ If your target platform is Android, your development environment must meet the f
 - Android Studio 4.0 or later with JDK 1.8 or later
 - An Android simulator or a real Android device running Android SDK API level 21 or later
 
-<div class="alert note">You need to run <code>flutter doctor</code> to check whether the development environment and the deployment environment are correct.</div>
+<div class="alert note">You need to run <code>flutter doctor</code> to check whether both the development environment and the deployment environment are correct.</div>
 
 
 ## Project setup
@@ -39,7 +39,9 @@ Open a terminal, enter a directory in which you want to create a Flutter project
 flutter create quick_start
 ```
 
-### 2. Android setup
+### 2. Set up the project
+
+#### Android setup
 
 1. In the `quick_start/android/app/build.gradle` file, add the following lines at the end to set the minimum Android SDK version to 21:
 
@@ -66,13 +68,13 @@ android {
 -dontwarn  com.hyphenate.**
 ```
 
-### 3. iOS setup
+#### iOS setup
 
 1. Open the `quick_start/ios/Runner/info.plist` file in **Xcode**, add the **App Transport Security Settings** item, add the **Allow Arbitrary Loads** field under this item, and set to **YES**.
 
 2. Open the `quick_start/ios/Runner.xcodeproj` file in **Xcode**, and select **TARGETS** > **Runner** in the left sidebar. In the **Deployment Info** section under the **General** tab, set the minimum iOS version to **iOS 10.0**.
 
-### 4. Integrate the Agora Chat SDK
+### 3. Integrate the Agora Chat SDK
 
 Open a terminal, enter the `quick_start` directory, and run the following command to add the `agora_chat_sdk` dependency:
 
@@ -508,7 +510,7 @@ class _MyHomePageState extends State<MyHomePage>
           break;
         case MessageType.CMD:
           {
-            // Receiving command messages do not trigger the `onMessagesReceived` callback, but trigger the `onCmdMessagesReceived` callback instead.
+            // Receiving command messages does not trigger the `onMessagesReceived` callback, but triggers the `onCmdMessagesReceived` callback instead.
           }
           break;
       }
@@ -551,19 +553,19 @@ Take an iOS device as an example, if the sample project runs properly, the follo
 In the user interface, perform the following operations to test the project:
 
 1. Sign up  
-Fill in the username in the `Enter username` box and password in the `Enter password` box, and click **SIGN UP** to register an account. In this example, register two accounts `flutter01` and `flutter02` to enable sending and receiving messages.
+Fill in the username in the `Enter username` box and password in the `Enter password` box, and click **SIGN UP** to register an account. In this example, register two accounts, `flutter01` and `flutter02`, to enable sending and receiving messages.
 
 2. Log in  
 After signing up the accounts, fill in the username in the `Enter username` box and password in the `Enter password` box, and click **SIGN IN** to log in to the app. In this example, log in as `flutter01`.
 
 3. Send a message  
-Fill in the username of the receiver (`flutter02`) in the `Enter the username you want to send` box and type in the message ("hello") to send in the `Enter content` box, and click **SEND TEXT** to send the message.
+Fill in the username of the receiver (`flutter02`) in the `Enter the username you want to send` box, type in the message ("hello") to send in the `Enter content` box, and click **SEND TEXT** to send the message.
 
 4. Log out   
 Click **SIGN OUT** to log out of the app.
 
 5. Receive the message  
-After signing out as `flutter01`, log in as `flutter02` and receive the message "hello" sent in step 3.
+After signing out as `flutter01`, log in as `flutter02`, and receive the message "hello" sent in step 3.
 
 You can check the log to see all the operations from this example, as shown in the following figure:
 
