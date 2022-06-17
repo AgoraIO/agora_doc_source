@@ -12,8 +12,7 @@ import 'package:agora_rtc_ng/src/binding/agora_rtc_engine_ex_impl.dart'
 import 'package:agora_rtc_ng/src/binding/agora_rtc_engine_impl.dart'
     as rtc_engine_binding;
 import 'package:agora_rtc_ng/src/binding/event_handler_param_json.dart';
-import 'package:agora_rtc_ng/src/binding/agora_rtc_engine_ex_event_impl.dart'
-    as event_ex;
+
 import 'package:agora_rtc_ng/src/agora_media_player.dart';
 import 'package:agora_rtc_ng/src/binding/agora_media_base_event_impl.dart';
 import 'package:agora_rtc_ng/src/impl/audio_device_manager_impl.dart';
@@ -42,44 +41,44 @@ extension ThumbImageBufferExt on ThumbImageBuffer {
   }
 }
 
-extension RtcEngineEventHandlerExt on RtcEngineEventHandler {
+// extension RtcEngineEventHandlerExt on RtcEngineEventHandler {
+//   bool eventIntercept(String event, String eventData, List<Uint8List> buffers) {
+//     switch (event) {
+//       case 'onStreamMessage':
+//         if (onStreamMessage == null) break;
+//         final jsonMap = jsonDecode(eventData);
+//         RtcEngineEventHandlerOnStreamMessageJson paramJson =
+//             RtcEngineEventHandlerOnStreamMessageJson.fromJson(jsonMap);
+//         int? userId = paramJson.userId;
+//         int? streamId = paramJson.streamId;
+//         Uint8List? data = buffers[0];
+//         int? length = paramJson.length;
+//         int? sentTs = paramJson.sentTs;
+//         if (userId == null ||
+//             streamId == null ||
+//             data == null ||
+//             length == null ||
+//             sentTs == null) {
+//           break;
+//         }
+//         onStreamMessage!(userId, streamId, data, length, sentTs);
+
+//         return true;
+//       default:
+//         break;
+//     }
+//     return false;
+//   }
+// }
+
+extension RtcEngineEventHandlerExExt on RtcEngineEventHandler {
   bool eventIntercept(String event, String eventData, List<Uint8List> buffers) {
     switch (event) {
-      case 'onStreamMessage':
+      case 'onStreamMessageEx':
         if (onStreamMessage == null) break;
         final jsonMap = jsonDecode(eventData);
         RtcEngineEventHandlerOnStreamMessageJson paramJson =
             RtcEngineEventHandlerOnStreamMessageJson.fromJson(jsonMap);
-        int? userId = paramJson.userId;
-        int? streamId = paramJson.streamId;
-        Uint8List? data = buffers[0];
-        int? length = paramJson.length;
-        int? sentTs = paramJson.sentTs;
-        if (userId == null ||
-            streamId == null ||
-            data == null ||
-            length == null ||
-            sentTs == null) {
-          break;
-        }
-        onStreamMessage!(userId, streamId, data, length, sentTs);
-
-        return true;
-      default:
-        break;
-    }
-    return false;
-  }
-}
-
-extension RtcEngineEventHandlerExExt on RtcEngineEventHandlerEx {
-  bool eventIntercept(String event, String eventData, List<Uint8List> buffers) {
-    switch (event) {
-      case 'onStreamMessageEx':
-        if (onStreamMessageEx == null) break;
-        final jsonMap = jsonDecode(eventData);
-        RtcEngineEventHandlerExOnStreamMessageExJson paramJson =
-            RtcEngineEventHandlerExOnStreamMessageExJson.fromJson(jsonMap);
         RtcConnection? connection = paramJson.connection;
         int? remoteUid = paramJson.remoteUid;
         int? streamId = paramJson.streamId;
@@ -96,8 +95,7 @@ extension RtcEngineEventHandlerExExt on RtcEngineEventHandlerEx {
         }
         Uint8List? data = buffers[0];
 
-        onStreamMessageEx!(
-            connection, remoteUid, streamId, data, length, sentTs);
+        onStreamMessage!(connection, remoteUid, streamId, data, length, sentTs);
         return true;
       default:
         break;
@@ -155,8 +153,7 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
   int _mediaPlayerCount = 0;
 
   @internal
-  final MethodChannel engineMethodChannel =
-      const MethodChannel('agora_rtc_ng');
+  final MethodChannel engineMethodChannel = const MethodChannel('agora_rtc_ng');
 
   static RtcEngineEx create(RtcEngineContext context) {
     if (_instance != null) return _instance!;
@@ -199,11 +196,11 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
   void onEvent(String event, String data, List<Uint8List> buffers) {
     debugPrint('onEvent: event: $event, data: $data');
     for (final eh in _rtcEngineEventHandlers) {
-      if (eh is RtcEngineEventHandlerEx) {
-        if (!eh.eventIntercept(event, data, buffers)) {
-          event_ex.RtcEngineEventHandlerExExt(eh).process(event, data, buffers);
-        }
-      }
+      // if (eh is RtcEngineEventHandlerEx) {
+      //   if (!eh.eventIntercept(event, data, buffers)) {
+      //     event_ex.RtcEngineEventHandlerExExt(eh).process(event, data, buffers);
+      //   }
+      // }
       if (!eh.eventIntercept(event, data, buffers)) {
         eh.process(event, data, buffers);
       }
@@ -236,11 +233,19 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
     final bufferPtr = canvas.priv != null ? uint8ListToPtr(canvas.priv!) : null;
     jsonWithBuffer['priv'] = bufferPtr?.address;
     final param = createParams({'canvas': jsonWithBuffer});
-    final rm = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
     if (bufferPtr != null) {
       freePointer(bufferPtr);
     }
     final result = rm['result'];
+
+    if (result < 0) {
+      throw AgoraRtcException(code: result);
+    }
   }
 
   @override
@@ -250,11 +255,19 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
     final bufferPtr = canvas.priv != null ? uint8ListToPtr(canvas.priv!) : null;
     jsonWithBuffer['priv'] = bufferPtr?.address;
     final param = createParams({'canvas': jsonWithBuffer});
-    final rm = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
     if (bufferPtr != null) {
       freePointer(bufferPtr);
     }
     final result = rm['result'];
+
+    if (result < 0) {
+      throw AgoraRtcException(code: result);
+    }
   }
 
   @override
@@ -268,18 +281,30 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
       'canvas': jsonWithBuffer,
       'connection': connection.toJson(),
     });
-    final rm = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
     if (bufferPtr != null) {
       freePointer(bufferPtr);
     }
     final result = rm['result'];
+
+    if (result < 0) {
+      throw AgoraRtcException(code: result);
+    }
   }
 
   @override
   MediaPlayer createMediaPlayer() {
     const apiType = 'RtcEngine_createMediaPlayer';
     final param = createParams({});
-    final rm = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
     final result = rm['result'];
 
     if (_mediaPlayerCount == 0) {
@@ -294,9 +319,17 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
   @override
   void destroyMediaPlayer(covariant MediaPlayer mediaPlayer) {
     const apiType = 'RtcEngine_destroyMediaPlayer';
-    final param = createParams({'playerId': mediaPlayer.getMediaPlayerId()});
-    final rm = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final param = createParams({'media_player': mediaPlayer});
+    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
     final result = rm['result'];
+    if (result < 0) {
+      throw AgoraRtcException(code: result);
+    }
+
     (mediaPlayer as MediaPlayerImpl).destroy();
     --_mediaPlayerCount;
     if (_mediaPlayerCount == 0) {
@@ -311,9 +344,19 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
     final dataPtr = uint8ListToPtr(data);
     final param = createParams(
         {'streamId': streamId, 'data': dataPtr.address, 'length': length});
-    final rm = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult =
+        apiCaller.callIrisApi(apiType, jsonEncode(param), buffer: data);
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
+
     freePointer(dataPtr);
     final result = rm['result'];
+
+    if (result < 0) {
+      throw AgoraRtcException(code: result);
+    }
   }
 
   @override
@@ -328,8 +371,16 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
     }
 
     final param = createParams({'enabled': enabled, 'config': configJsonMap});
-    final rm = apiCaller.callIrisApi(apiType, jsonEncode(param));
+
+    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
     final result = rm['result'];
+    if (result < 0) {
+      throw AgoraRtcException(code: result);
+    }
   }
 
   @override
@@ -350,8 +401,16 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
       'enabled': enabled,
       'config': configJsonMap
     });
-    final rm = apiCaller.callIrisApi(apiType, jsonEncode(param));
+
+    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
     final result = rm['result'];
+    if (result < 0) {
+      throw AgoraRtcException(code: result);
+    }
   }
 
   @override
@@ -365,7 +424,11 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
       'iconSize': iconSize.toJson(),
       'includeScreen': includeScreen
     });
-    final rm = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
     final result = rm['result'];
     final sourcesIntPtr = rm['sources'];
     final resultList = List.from(result);
@@ -408,17 +471,17 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
     metadataMap['buffer'] = dataPtr.address;
     final param = createParams(
         {'metadata': metadataMap, 'source_type': sourceType.value()});
-    final rm = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
     freePointer(dataPtr);
     final result = rm['result'];
-  }
 
-  @override
-  void setMaxMetadataSize(int size) {
-    const apiType = 'RtcEngine_setMaxMetadataSize';
-    final param = createParams({'size': size});
-    final rm = apiCaller.callIrisApi(apiType, jsonEncode(param));
-    final result = rm['result'];
+    if (result < 0) {
+      throw AgoraRtcException(code: result);
+    }
   }
 
   @override
@@ -426,8 +489,16 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
       {required MetadataObserver observer, required MetadataType type}) {
     const apiType = 'RtcEngine_registerMediaMetadataObserver';
     final param = createParams({'type': type.value()});
-    final rm = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
+    // final rm = apiCaller.callIrisApi(apiType, jsonEncode(param));
     final result = rm['result'];
+    if (result < 0) {
+      throw AgoraRtcException(code: result);
+    }
     _metadataObservers.add(observer);
   }
 
@@ -436,8 +507,14 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
       {required MetadataObserver observer, required MetadataType type}) {
     const apiType = 'RtcEngine_unregisterMediaMetadataObserver';
     final param = createParams({'type': type.value()});
-    final rm = apiCaller.callIrisApi(apiType, jsonEncode(param));
+
+    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
     final result = rm['result'];
+
     _metadataObservers.remove(observer);
   }
 
@@ -448,8 +525,16 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
 
     const apiType = 'RtcEngine_takeSnapshot';
     final param = createParams({'config': config.toJson()});
-    final rm = apiCaller.callIrisApi(apiType, jsonEncode(param));
+
+    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
     final result = rm['result'];
+    if (result < 0) {
+      throw AgoraRtcException(code: result);
+    }
   }
 
   @override
@@ -462,8 +547,16 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
     const apiType = 'RtcEngine_startDirectCdnStreaming';
     final param =
         createParams({'publishUrl': publishUrl, 'options': options.toJson()});
-    final rm = apiCaller.callIrisApi(apiType, jsonEncode(param));
+
+    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
     final result = rm['result'];
+    if (result < 0) {
+      throw AgoraRtcException(code: result);
+    }
   }
 
   @override
@@ -525,8 +618,14 @@ class VideoDeviceManagerImpl extends rtc_engine_binding.VideoDeviceManagerImpl
   List<VideoDeviceInfo> enumerateVideoDevices() {
     const apiType = 'VideoDeviceManager_enumerateVideoDevices';
     final param = createParams({});
-    final rm = apiCaller.callIrisApi(apiType, jsonEncode(param));
+
+    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
     final result = rm['result'];
+
     // final devices = rm['devices'];
     final devicesList = List.from(result);
     final List<VideoDeviceInfo> deviceInfoList = [];
