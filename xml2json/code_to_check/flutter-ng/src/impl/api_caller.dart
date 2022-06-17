@@ -9,8 +9,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:iris_event/iris_event.dart';
 
-
 const int kBasicResultLength = 64 * 1024;
+
+class CallApiResult {
+  CallApiResult({required this.irisReturnCode, required this.data});
+
+  final int irisReturnCode;
+
+  final Map<String, dynamic> data;
+}
 
 class AgoraRtcException implements Exception {
   /// Creates a [PlatformException] with the specified error [code] and optional
@@ -104,7 +111,7 @@ class ApiCaller implements IrisEventHandler {
     _irisApiEnginePtr = null;
   }
 
-  Map<String, dynamic> callIrisApi(
+  CallApiResult callIrisApi(
     String funcName,
     String params, {
     Uint8List? buffer,
@@ -113,7 +120,7 @@ class ApiCaller implements IrisEventHandler {
 
     // debugPrint('function name: $funcName, params: $params');
 
-    return using<Map<String, dynamic>>((Arena arena) {
+    return using<CallApiResult>((Arena arena) {
       final ffi.Pointer<ffi.Int8> resultPointer =
           arena.allocate<ffi.Int8>(kBasicResultLength).cast<ffi.Int8>();
 
@@ -147,7 +154,7 @@ class ApiCaller implements IrisEventHandler {
       }
 
       try {
-        _nativeIrisApiEngineBinding.CallIrisApi(
+        final irisReturnCode = _nativeIrisApiEngineBinding.CallIrisApi(
             _irisApiEnginePtr!,
             funcNamePointer,
             paramsPointer,
@@ -161,11 +168,13 @@ class ApiCaller implements IrisEventHandler {
         debugPrint(
             'function name: $funcName, params: $params\nresultMap: ${resultMap.toString()}');
 
-        return resultMap;
+            
+
+        return CallApiResult(irisReturnCode: irisReturnCode, data: resultMap);
       } catch (e) {
         debugPrint(
             'function name: $funcName, params: $params\nerror: ${e.toString()}');
-        return {};
+        return CallApiResult(irisReturnCode: -1, data: const {});
       }
     });
   }

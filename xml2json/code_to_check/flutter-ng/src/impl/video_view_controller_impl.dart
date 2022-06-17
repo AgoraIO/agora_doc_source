@@ -53,12 +53,16 @@ abstract class VideoViewControllerBase {
 
   bool get useAndroidSurfaceView;
 
+  @internal
   void setTextureId(int textureId);
 
+  @internal
   int getTextureId();
 
+  @internal
   int getVideoSourceType();
 
+  @internal
   void setupView(int nativeViewPtr);
 
   @protected
@@ -68,6 +72,7 @@ abstract class VideoViewControllerBase {
     int videoSourceType,
   );
 
+  @internal
   Future<void> initialize();
 
   @internal
