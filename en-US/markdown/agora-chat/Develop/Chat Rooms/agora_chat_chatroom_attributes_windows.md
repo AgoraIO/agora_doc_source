@@ -17,9 +17,9 @@ The Agora Chat SDK provides the `Room`, `IRoomManager`, and `IRoomManagerDelegat
 
 Before proceeding, ensure that you meet the following requirements:
 
-- You have initialized the Agora Chat SDK. For details, see [Get Started with Unity](https://docs-preprod.agora.io/en/agora-chat/agora_chat_get_started_unity).
-- You understand the call frequency limit of the Agora Chat APIs supported by different pricing plans as described in [Limitations](https://docs-preprod.agora.io/en/agora-chat/agora_chat_limitation).
-- You understand the number of chat rooms supported by different pricing plans as described in [Pricing Plan Details](https://docs-preprod.agora.io/cn/agora-chat/agora_chat_plan).
+- You have initialized the Agora Chat SDK. For details, see [Get Started with Windows](./agora_chat_get_started_windows).
+- You understand the call frequency limit of the Agora Chat APIs supported by different pricing plans as described in [Limitations](./agora_chat_limitation).
+- You understand the number of chat rooms supported by different pricing plans as described in [Pricing Plan Details](./agora_chat_plan).
 
 ## Implementation
 
@@ -87,4 +87,4 @@ SDKClient.Instance.RoomManager.ChangeRoomDescription(currentRoomId, description,
 
 ### Listen for chat room events
 
-For details, see [Chat Room Events](https://docs-preprod.agora.io/en/null/agora_chat_chatroom_unity?platform=Unity#listen-for-chat-room-events).
+For details, see [Chat Room Events](./agora_chat_chatroom_windows#listen-for-chat-room-events).
