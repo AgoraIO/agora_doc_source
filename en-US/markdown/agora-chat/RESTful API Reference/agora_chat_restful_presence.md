@@ -1,6 +1,6 @@
 # Presence
 
-The presence feature enables users to display their online status to public and detect the online status of others. Users can also customize their presence status, which adds fun and diversity to real-time chatting.
+The presence feature enables users to publicly display their online presence status and quickly determine the status of others. Users can also customize their presence status, which adds fun and diversity to real-time chatting.
 
 This page shows how to use the Agora Chat RESTful API to implement presence in your project. Before calling the following methods, ensure that you meet the following:
 - You understand the call frequency limit of the Chat RESTful APIs as described in [Limitations](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side).
@@ -12,7 +12,7 @@ This page shows how to use the Agora Chat RESTful API to implement presence in y
 | Parameter | Type | Description | Required |
 |:----------|:-----|:------------|:---------|
 | `host` | String | The domain name assigned by the Agora Chat service to access RESTful APIs. For how to get the domain name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
-| `org_name` | String | The unique identifier assigned to each company (organization) by the Agora Chat service. For how to get the org name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
+| `org_name` | String | The unique identifier assigned to each company (organization) by the Agora Chat service. For how to get the organization name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
 | `app_name` | String | The unique identifier assigned to each app by the Agora Chat service. For how to get the app name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
 | `uid`      | String | The unique login account of the user.         |
 
@@ -25,7 +25,7 @@ Agora Chat RESTful APIs require Bearer HTTP authentication. Every time an HTTP r
 Authorization: Bearer ${YourAppToken}
 ```
 
-In order to improve the security of the project, Agora uses a token (dynamic key) to authenticate users before they log into the chat system. The Agora Chat RESTful API only supports authenticating users using app tokens. For details, see [Authentication using App Token](./generate_app_tokens).
+In order to improve the security of the project, Agora uses a token (dynamic key) to authenticate users before they log in to the chat system. The Agora Chat RESTful API only supports authenticating users using app tokens. For details, see [Authentication using App Token](./generate_app_tokens).
 
 
 ## Set the presence status of a user
@@ -45,7 +45,7 @@ POST https://{host}/{org_name}/{app_name}/users/{uid}/presence/{resource}/{statu
 | Parameter | Type | Description | Required |
 |:---------------| :------ | :------- |:------------------|
 | `resource` | String | The unique identifier assigned to each device resource in the format `{Device Type}_{Resource ID}`, where the device type can be `android`, `ios`, or `web`, followed by a resource ID assigned by the SDK.  | Yes |
-| `status` | String | The presence status:<li>`0`: Offline.<li>`1`: Online<li>Other strings: Custom status. | Yes |
+| `status` | String | The presence status defined by the user:<li>`0`: Offline.<li>`1`: Online<li>Other strings: Custom status. | Yes |
 
 For the descriptions of the other path parameters, see [Common Parameters](#param).
 
@@ -108,7 +108,7 @@ POST https://{host}/{org_name}/{app_name}/users/{uid}/presence/{expiry}
 
 | Parameter | Type | Description | Required |
 |:---------------| :------ | :------- |:------------------|
-| `expiry` | String |  The subscription duration in seconds. The maximum value is 2,592,000, which equals to 30 days.  | Yes |
+| `expiry` | String |  The subscription duration in seconds. The maximum value is 2,592,000, which equals 30 days.  | Yes |
 
 For the descriptions of the other path parameters, see [Common Parameters](#param).
 
@@ -335,7 +335,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the data fi
 | Parameter      | Type   | Description |
 | :------- |:-------------|:-------------|
 | `result` | String | Whether the retrieving operation succeeds. If successful, the subscription information returns; otherwise, you can troubleshoot according to the returned reasons.  | 
-| `totalnum` | String | The total number of the users to whom you subscribe to.                         |
+| `totalnum` | String | The total number of the users you subscribe to.                         |
 | `sublist`  | Object | The list of subscriptions. Each object in the list contains the `uid` and `expiry` fields.            |
 | `uid`      | String |  The unique login account of the user.           |
 | `expiry`   | String | The Unix timestamp when the subscription expires.       |
