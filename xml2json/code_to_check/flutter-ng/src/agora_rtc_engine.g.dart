@@ -656,7 +656,7 @@ Map<String, dynamic> _$DirectCdnStreamingMediaOptionsToJson(
     };
 
 SDKBuildInfo _$SDKBuildInfoFromJson(Map<String, dynamic> json) => SDKBuildInfo(
-      buildNumber: json['build_number'] as String?,
+      buildNumber: json['build_number'] as int?,
       version: json['version'] as String?,
     );
 
