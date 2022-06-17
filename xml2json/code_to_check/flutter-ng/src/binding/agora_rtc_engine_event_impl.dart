@@ -5,30 +5,28 @@ extension RtcEngineEventHandlerExt on RtcEngineEventHandler {
   void process(String event, String data, List<Uint8List> buffers) {
     final jsonMap = jsonDecode(data);
     switch (event) {
-      case 'onJoinChannelSuccess':
+      case 'onJoinChannelSuccessEx':
         if (onJoinChannelSuccess == null) break;
         RtcEngineEventHandlerOnJoinChannelSuccessJson paramJson =
             RtcEngineEventHandlerOnJoinChannelSuccessJson.fromJson(jsonMap);
-        String? channel = paramJson.channel;
-        int? uid = paramJson.uid;
+        RtcConnection? connection = paramJson.connection;
         int? elapsed = paramJson.elapsed;
-        if (channel == null || uid == null || elapsed == null) {
+        if (connection == null || elapsed == null) {
           break;
         }
-        onJoinChannelSuccess!(channel, uid, elapsed);
+        onJoinChannelSuccess!(connection, elapsed);
         break;
 
-      case 'onRejoinChannelSuccess':
+      case 'onRejoinChannelSuccessEx':
         if (onRejoinChannelSuccess == null) break;
         RtcEngineEventHandlerOnRejoinChannelSuccessJson paramJson =
             RtcEngineEventHandlerOnRejoinChannelSuccessJson.fromJson(jsonMap);
-        String? channel = paramJson.channel;
-        int? uid = paramJson.uid;
+        RtcConnection? connection = paramJson.connection;
         int? elapsed = paramJson.elapsed;
-        if (channel == null || uid == null || elapsed == null) {
+        if (connection == null || elapsed == null) {
           break;
         }
-        onRejoinChannelSuccess!(channel, uid, elapsed);
+        onRejoinChannelSuccess!(connection, elapsed);
         break;
 
       case 'onWarning':
@@ -55,18 +53,23 @@ extension RtcEngineEventHandlerExt on RtcEngineEventHandler {
         onError!(err, msg);
         break;
 
-      case 'onAudioQuality':
+      case 'onAudioQualityEx':
         if (onAudioQuality == null) break;
         RtcEngineEventHandlerOnAudioQualityJson paramJson =
             RtcEngineEventHandlerOnAudioQualityJson.fromJson(jsonMap);
-        int? uid = paramJson.uid;
+        RtcConnection? connection = paramJson.connection;
+        int? remoteUid = paramJson.remoteUid;
         int? quality = paramJson.quality;
         int? delay = paramJson.delay;
         int? lost = paramJson.lost;
-        if (uid == null || quality == null || delay == null || lost == null) {
+        if (connection == null ||
+            remoteUid == null ||
+            quality == null ||
+            delay == null ||
+            lost == null) {
           break;
         }
-        onAudioQuality!(uid, quality, delay, lost);
+        onAudioQuality!(connection, remoteUid, quality, delay, lost);
         break;
 
       case 'onLastmileProbeResult':
@@ -80,39 +83,46 @@ extension RtcEngineEventHandlerExt on RtcEngineEventHandler {
         onLastmileProbeResult!(result);
         break;
 
-      case 'onAudioVolumeIndication':
+      case 'onAudioVolumeIndicationEx':
         if (onAudioVolumeIndication == null) break;
         RtcEngineEventHandlerOnAudioVolumeIndicationJson paramJson =
             RtcEngineEventHandlerOnAudioVolumeIndicationJson.fromJson(jsonMap);
+        RtcConnection? connection = paramJson.connection;
         AudioVolumeInfo? speakers = paramJson.speakers;
         int? speakerNumber = paramJson.speakerNumber;
         int? totalVolume = paramJson.totalVolume;
-        if (speakers == null || speakerNumber == null || totalVolume == null) {
+        if (connection == null ||
+            speakers == null ||
+            speakerNumber == null ||
+            totalVolume == null) {
           break;
         }
-        onAudioVolumeIndication!(speakers, speakerNumber, totalVolume);
+        onAudioVolumeIndication!(
+            connection, speakers, speakerNumber, totalVolume);
         break;
 
-      case 'onLeaveChannel':
+      case 'onLeaveChannelEx':
         if (onLeaveChannel == null) break;
         RtcEngineEventHandlerOnLeaveChannelJson paramJson =
             RtcEngineEventHandlerOnLeaveChannelJson.fromJson(jsonMap);
+        RtcConnection? connection = paramJson.connection;
         RtcStats? stats = paramJson.stats;
-        if (stats == null) {
+        if (connection == null || stats == null) {
           break;
         }
-        onLeaveChannel!(stats);
+        onLeaveChannel!(connection, stats);
         break;
 
-      case 'onRtcStats':
+      case 'onRtcStatsEx':
         if (onRtcStats == null) break;
         RtcEngineEventHandlerOnRtcStatsJson paramJson =
             RtcEngineEventHandlerOnRtcStatsJson.fromJson(jsonMap);
+        RtcConnection? connection = paramJson.connection;
         RtcStats? stats = paramJson.stats;
-        if (stats == null) {
+        if (connection == null || stats == null) {
           break;
         }
-        onRtcStats!(stats);
+        onRtcStats!(connection, stats);
         break;
 
       case 'onAudioDeviceStateChanged':
@@ -172,24 +182,32 @@ extension RtcEngineEventHandlerExt on RtcEngineEventHandler {
         onMediaDeviceChanged!(deviceType);
         break;
 
-      case 'onNetworkQuality':
+      case 'onNetworkQualityEx':
         if (onNetworkQuality == null) break;
         RtcEngineEventHandlerOnNetworkQualityJson paramJson =
             RtcEngineEventHandlerOnNetworkQualityJson.fromJson(jsonMap);
-        int? uid = paramJson.uid;
+        RtcConnection? connection = paramJson.connection;
+        int? remoteUid = paramJson.remoteUid;
         int? txQuality = paramJson.txQuality;
         int? rxQuality = paramJson.rxQuality;
-        if (uid == null || txQuality == null || rxQuality == null) {
+        if (connection == null ||
+            remoteUid == null ||
+            txQuality == null ||
+            rxQuality == null) {
           break;
         }
-        onNetworkQuality!(uid, txQuality, rxQuality);
+        onNetworkQuality!(connection, remoteUid, txQuality, rxQuality);
         break;
 
-      case 'onIntraRequestReceived':
+      case 'onIntraRequestReceivedEx':
         if (onIntraRequestReceived == null) break;
         RtcEngineEventHandlerOnIntraRequestReceivedJson paramJson =
             RtcEngineEventHandlerOnIntraRequestReceivedJson.fromJson(jsonMap);
-        onIntraRequestReceived!();
+        RtcConnection? connection = paramJson.connection;
+        if (connection == null) {
+          break;
+        }
+        onIntraRequestReceived!(connection);
         break;
 
       case 'onUplinkNetworkInfoUpdated':
@@ -227,203 +245,236 @@ extension RtcEngineEventHandlerExt on RtcEngineEventHandler {
         onLastmileQuality!(quality);
         break;
 
-      case 'onFirstLocalVideoFrame':
+      case 'onFirstLocalVideoFrameEx':
         if (onFirstLocalVideoFrame == null) break;
         RtcEngineEventHandlerOnFirstLocalVideoFrameJson paramJson =
             RtcEngineEventHandlerOnFirstLocalVideoFrameJson.fromJson(jsonMap);
+        RtcConnection? connection = paramJson.connection;
         int? width = paramJson.width;
         int? height = paramJson.height;
         int? elapsed = paramJson.elapsed;
-        if (width == null || height == null || elapsed == null) {
-          break;
-        }
-        onFirstLocalVideoFrame!(width, height, elapsed);
-        break;
-
-      case 'onFirstLocalVideoFramePublished':
-        if (onFirstLocalVideoFramePublished == null) break;
-        RtcEngineEventHandlerOnFirstLocalVideoFramePublishedJson paramJson =
-            RtcEngineEventHandlerOnFirstLocalVideoFramePublishedJson.fromJson(
-                jsonMap);
-        int? elapsed = paramJson.elapsed;
-        if (elapsed == null) {
-          break;
-        }
-        onFirstLocalVideoFramePublished!(elapsed);
-        break;
-
-      case 'onVideoSourceFrameSizeChanged':
-        if (onVideoSourceFrameSizeChanged == null) break;
-        RtcEngineEventHandlerOnVideoSourceFrameSizeChangedJson paramJson =
-            RtcEngineEventHandlerOnVideoSourceFrameSizeChangedJson.fromJson(
-                jsonMap);
-        VideoSourceType? sourceType = paramJson.sourceType;
-        int? width = paramJson.width;
-        int? height = paramJson.height;
-        if (sourceType == null || width == null || height == null) {
-          break;
-        }
-        onVideoSourceFrameSizeChanged!(sourceType, width, height);
-        break;
-
-      case 'onFirstRemoteVideoDecoded':
-        if (onFirstRemoteVideoDecoded == null) break;
-        RtcEngineEventHandlerOnFirstRemoteVideoDecodedJson paramJson =
-            RtcEngineEventHandlerOnFirstRemoteVideoDecodedJson.fromJson(
-                jsonMap);
-        int? uid = paramJson.uid;
-        int? width = paramJson.width;
-        int? height = paramJson.height;
-        int? elapsed = paramJson.elapsed;
-        if (uid == null || width == null || height == null || elapsed == null) {
-          break;
-        }
-        onFirstRemoteVideoDecoded!(uid, width, height, elapsed);
-        break;
-
-      case 'onVideoSizeChanged':
-        if (onVideoSizeChanged == null) break;
-        RtcEngineEventHandlerOnVideoSizeChangedJson paramJson =
-            RtcEngineEventHandlerOnVideoSizeChangedJson.fromJson(jsonMap);
-        int? uid = paramJson.uid;
-        int? width = paramJson.width;
-        int? height = paramJson.height;
-        int? rotation = paramJson.rotation;
-        if (uid == null ||
-            width == null ||
-            height == null ||
-            rotation == null) {
-          break;
-        }
-        onVideoSizeChanged!(uid, width, height, rotation);
-        break;
-
-      case 'onLocalVideoStateChanged':
-        if (onLocalVideoStateChanged == null) break;
-        RtcEngineEventHandlerOnLocalVideoStateChangedJson paramJson =
-            RtcEngineEventHandlerOnLocalVideoStateChangedJson.fromJson(jsonMap);
-        LocalVideoStreamState? state = paramJson.state;
-        LocalVideoStreamError? error = paramJson.error;
-        if (state == null || error == null) {
-          break;
-        }
-        onLocalVideoStateChanged!(state, error);
-        break;
-
-      case 'onRemoteVideoStateChanged':
-        if (onRemoteVideoStateChanged == null) break;
-        RtcEngineEventHandlerOnRemoteVideoStateChangedJson paramJson =
-            RtcEngineEventHandlerOnRemoteVideoStateChangedJson.fromJson(
-                jsonMap);
-        int? uid = paramJson.uid;
-        RemoteVideoState? state = paramJson.state;
-        RemoteVideoStateReason? reason = paramJson.reason;
-        int? elapsed = paramJson.elapsed;
-        if (uid == null || state == null || reason == null || elapsed == null) {
-          break;
-        }
-        onRemoteVideoStateChanged!(uid, state, reason, elapsed);
-        break;
-
-      case 'onFirstRemoteVideoFrame':
-        if (onFirstRemoteVideoFrame == null) break;
-        RtcEngineEventHandlerOnFirstRemoteVideoFrameJson paramJson =
-            RtcEngineEventHandlerOnFirstRemoteVideoFrameJson.fromJson(jsonMap);
-        int? userId = paramJson.userId;
-        int? width = paramJson.width;
-        int? height = paramJson.height;
-        int? elapsed = paramJson.elapsed;
-        if (userId == null ||
+        if (connection == null ||
             width == null ||
             height == null ||
             elapsed == null) {
           break;
         }
-        onFirstRemoteVideoFrame!(userId, width, height, elapsed);
+        onFirstLocalVideoFrame!(connection, width, height, elapsed);
         break;
 
-      case 'onUserJoined':
+      case 'onFirstLocalVideoFramePublishedEx':
+        if (onFirstLocalVideoFramePublished == null) break;
+        RtcEngineEventHandlerOnFirstLocalVideoFramePublishedJson paramJson =
+            RtcEngineEventHandlerOnFirstLocalVideoFramePublishedJson.fromJson(
+                jsonMap);
+        RtcConnection? connection = paramJson.connection;
+        int? elapsed = paramJson.elapsed;
+        if (connection == null || elapsed == null) {
+          break;
+        }
+        onFirstLocalVideoFramePublished!(connection, elapsed);
+        break;
+
+      case 'onVideoSourceFrameSizeChangedEx':
+        if (onVideoSourceFrameSizeChanged == null) break;
+        RtcEngineEventHandlerOnVideoSourceFrameSizeChangedJson paramJson =
+            RtcEngineEventHandlerOnVideoSourceFrameSizeChangedJson.fromJson(
+                jsonMap);
+        RtcConnection? connection = paramJson.connection;
+        VideoSourceType? sourceType = paramJson.sourceType;
+        int? width = paramJson.width;
+        int? height = paramJson.height;
+        if (connection == null ||
+            sourceType == null ||
+            width == null ||
+            height == null) {
+          break;
+        }
+        onVideoSourceFrameSizeChanged!(connection, sourceType, width, height);
+        break;
+
+      case 'onFirstRemoteVideoDecodedEx':
+        if (onFirstRemoteVideoDecoded == null) break;
+        RtcEngineEventHandlerOnFirstRemoteVideoDecodedJson paramJson =
+            RtcEngineEventHandlerOnFirstRemoteVideoDecodedJson.fromJson(
+                jsonMap);
+        RtcConnection? connection = paramJson.connection;
+        int? remoteUid = paramJson.remoteUid;
+        int? width = paramJson.width;
+        int? height = paramJson.height;
+        int? elapsed = paramJson.elapsed;
+        if (connection == null ||
+            remoteUid == null ||
+            width == null ||
+            height == null ||
+            elapsed == null) {
+          break;
+        }
+        onFirstRemoteVideoDecoded!(
+            connection, remoteUid, width, height, elapsed);
+        break;
+
+      case 'onVideoSizeChangedEx':
+        if (onVideoSizeChanged == null) break;
+        RtcEngineEventHandlerOnVideoSizeChangedJson paramJson =
+            RtcEngineEventHandlerOnVideoSizeChangedJson.fromJson(jsonMap);
+        RtcConnection? connection = paramJson.connection;
+        int? uid = paramJson.uid;
+        int? width = paramJson.width;
+        int? height = paramJson.height;
+        int? rotation = paramJson.rotation;
+        if (connection == null ||
+            uid == null ||
+            width == null ||
+            height == null ||
+            rotation == null) {
+          break;
+        }
+        onVideoSizeChanged!(connection, uid, width, height, rotation);
+        break;
+
+      case 'onLocalVideoStateChangedEx':
+        if (onLocalVideoStateChanged == null) break;
+        RtcEngineEventHandlerOnLocalVideoStateChangedJson paramJson =
+            RtcEngineEventHandlerOnLocalVideoStateChangedJson.fromJson(jsonMap);
+        RtcConnection? connection = paramJson.connection;
+        LocalVideoStreamState? state = paramJson.state;
+        LocalVideoStreamError? errorCode = paramJson.errorCode;
+        if (connection == null || state == null || errorCode == null) {
+          break;
+        }
+        onLocalVideoStateChanged!(connection, state, errorCode);
+        break;
+
+      case 'onRemoteVideoStateChangedEx':
+        if (onRemoteVideoStateChanged == null) break;
+        RtcEngineEventHandlerOnRemoteVideoStateChangedJson paramJson =
+            RtcEngineEventHandlerOnRemoteVideoStateChangedJson.fromJson(
+                jsonMap);
+        RtcConnection? connection = paramJson.connection;
+        int? remoteUid = paramJson.remoteUid;
+        RemoteVideoState? state = paramJson.state;
+        RemoteVideoStateReason? reason = paramJson.reason;
+        int? elapsed = paramJson.elapsed;
+        if (connection == null ||
+            remoteUid == null ||
+            state == null ||
+            reason == null ||
+            elapsed == null) {
+          break;
+        }
+        onRemoteVideoStateChanged!(
+            connection, remoteUid, state, reason, elapsed);
+        break;
+
+      case 'onFirstRemoteVideoFrameEx':
+        if (onFirstRemoteVideoFrame == null) break;
+        RtcEngineEventHandlerOnFirstRemoteVideoFrameJson paramJson =
+            RtcEngineEventHandlerOnFirstRemoteVideoFrameJson.fromJson(jsonMap);
+        RtcConnection? connection = paramJson.connection;
+        int? remoteUid = paramJson.remoteUid;
+        int? width = paramJson.width;
+        int? height = paramJson.height;
+        int? elapsed = paramJson.elapsed;
+        if (connection == null ||
+            remoteUid == null ||
+            width == null ||
+            height == null ||
+            elapsed == null) {
+          break;
+        }
+        onFirstRemoteVideoFrame!(connection, remoteUid, width, height, elapsed);
+        break;
+
+      case 'onUserJoinedEx':
         if (onUserJoined == null) break;
         RtcEngineEventHandlerOnUserJoinedJson paramJson =
             RtcEngineEventHandlerOnUserJoinedJson.fromJson(jsonMap);
-        int? uid = paramJson.uid;
+        RtcConnection? connection = paramJson.connection;
+        int? remoteUid = paramJson.remoteUid;
         int? elapsed = paramJson.elapsed;
-        if (uid == null || elapsed == null) {
+        if (connection == null || remoteUid == null || elapsed == null) {
           break;
         }
-        onUserJoined!(uid, elapsed);
+        onUserJoined!(connection, remoteUid, elapsed);
         break;
 
-      case 'onUserOffline':
+      case 'onUserOfflineEx':
         if (onUserOffline == null) break;
         RtcEngineEventHandlerOnUserOfflineJson paramJson =
             RtcEngineEventHandlerOnUserOfflineJson.fromJson(jsonMap);
-        int? uid = paramJson.uid;
+        RtcConnection? connection = paramJson.connection;
+        int? remoteUid = paramJson.remoteUid;
         UserOfflineReasonType? reason = paramJson.reason;
-        if (uid == null || reason == null) {
+        if (connection == null || remoteUid == null || reason == null) {
           break;
         }
-        onUserOffline!(uid, reason);
+        onUserOffline!(connection, remoteUid, reason);
         break;
 
-      case 'onUserMuteAudio':
+      case 'onUserMuteAudioEx':
         if (onUserMuteAudio == null) break;
         RtcEngineEventHandlerOnUserMuteAudioJson paramJson =
             RtcEngineEventHandlerOnUserMuteAudioJson.fromJson(jsonMap);
-        int? uid = paramJson.uid;
+        RtcConnection? connection = paramJson.connection;
+        int? remoteUid = paramJson.remoteUid;
         bool? muted = paramJson.muted;
-        if (uid == null || muted == null) {
+        if (connection == null || remoteUid == null || muted == null) {
           break;
         }
-        onUserMuteAudio!(uid, muted);
+        onUserMuteAudio!(connection, remoteUid, muted);
         break;
 
-      case 'onUserMuteVideo':
+      case 'onUserMuteVideoEx':
         if (onUserMuteVideo == null) break;
         RtcEngineEventHandlerOnUserMuteVideoJson paramJson =
             RtcEngineEventHandlerOnUserMuteVideoJson.fromJson(jsonMap);
-        int? userId = paramJson.userId;
+        RtcConnection? connection = paramJson.connection;
+        int? remoteUid = paramJson.remoteUid;
         bool? muted = paramJson.muted;
-        if (userId == null || muted == null) {
+        if (connection == null || remoteUid == null || muted == null) {
           break;
         }
-        onUserMuteVideo!(userId, muted);
+        onUserMuteVideo!(connection, remoteUid, muted);
         break;
 
-      case 'onUserEnableVideo':
+      case 'onUserEnableVideoEx':
         if (onUserEnableVideo == null) break;
         RtcEngineEventHandlerOnUserEnableVideoJson paramJson =
             RtcEngineEventHandlerOnUserEnableVideoJson.fromJson(jsonMap);
-        int? uid = paramJson.uid;
+        RtcConnection? connection = paramJson.connection;
+        int? remoteUid = paramJson.remoteUid;
         bool? enabled = paramJson.enabled;
-        if (uid == null || enabled == null) {
+        if (connection == null || remoteUid == null || enabled == null) {
           break;
         }
-        onUserEnableVideo!(uid, enabled);
+        onUserEnableVideo!(connection, remoteUid, enabled);
         break;
 
-      case 'onUserStateChanged':
+      case 'onUserStateChangedEx':
         if (onUserStateChanged == null) break;
         RtcEngineEventHandlerOnUserStateChangedJson paramJson =
             RtcEngineEventHandlerOnUserStateChangedJson.fromJson(jsonMap);
-        int? uid = paramJson.uid;
+        RtcConnection? connection = paramJson.connection;
+        int? remoteUid = paramJson.remoteUid;
         int? state = paramJson.state;
-        if (uid == null || state == null) {
+        if (connection == null || remoteUid == null || state == null) {
           break;
         }
-        onUserStateChanged!(uid, state);
+        onUserStateChanged!(connection, remoteUid, state);
         break;
 
-      case 'onUserEnableLocalVideo':
+      case 'onUserEnableLocalVideoEx':
         if (onUserEnableLocalVideo == null) break;
         RtcEngineEventHandlerOnUserEnableLocalVideoJson paramJson =
             RtcEngineEventHandlerOnUserEnableLocalVideoJson.fromJson(jsonMap);
-        int? uid = paramJson.uid;
+        RtcConnection? connection = paramJson.connection;
+        int? remoteUid = paramJson.remoteUid;
         bool? enabled = paramJson.enabled;
-        if (uid == null || enabled == null) {
+        if (connection == null || remoteUid == null || enabled == null) {
           break;
         }
-        onUserEnableLocalVideo!(uid, enabled);
+        onUserEnableLocalVideo!(connection, remoteUid, enabled);
         break;
 
       case 'onApiCallExecuted':
@@ -439,48 +490,52 @@ extension RtcEngineEventHandlerExt on RtcEngineEventHandler {
         onApiCallExecuted!(err, api, result);
         break;
 
-      case 'onLocalAudioStats':
+      case 'onLocalAudioStatsEx':
         if (onLocalAudioStats == null) break;
         RtcEngineEventHandlerOnLocalAudioStatsJson paramJson =
             RtcEngineEventHandlerOnLocalAudioStatsJson.fromJson(jsonMap);
+        RtcConnection? connection = paramJson.connection;
         LocalAudioStats? stats = paramJson.stats;
-        if (stats == null) {
+        if (connection == null || stats == null) {
           break;
         }
-        onLocalAudioStats!(stats);
+        onLocalAudioStats!(connection, stats);
         break;
 
-      case 'onRemoteAudioStats':
+      case 'onRemoteAudioStatsEx':
         if (onRemoteAudioStats == null) break;
         RtcEngineEventHandlerOnRemoteAudioStatsJson paramJson =
             RtcEngineEventHandlerOnRemoteAudioStatsJson.fromJson(jsonMap);
+        RtcConnection? connection = paramJson.connection;
         RemoteAudioStats? stats = paramJson.stats;
-        if (stats == null) {
+        if (connection == null || stats == null) {
           break;
         }
-        onRemoteAudioStats!(stats);
+        onRemoteAudioStats!(connection, stats);
         break;
 
-      case 'onLocalVideoStats':
+      case 'onLocalVideoStatsEx':
         if (onLocalVideoStats == null) break;
         RtcEngineEventHandlerOnLocalVideoStatsJson paramJson =
             RtcEngineEventHandlerOnLocalVideoStatsJson.fromJson(jsonMap);
+        RtcConnection? connection = paramJson.connection;
         LocalVideoStats? stats = paramJson.stats;
-        if (stats == null) {
+        if (connection == null || stats == null) {
           break;
         }
-        onLocalVideoStats!(stats);
+        onLocalVideoStats!(connection, stats);
         break;
 
-      case 'onRemoteVideoStats':
+      case 'onRemoteVideoStatsEx':
         if (onRemoteVideoStats == null) break;
         RtcEngineEventHandlerOnRemoteVideoStatsJson paramJson =
             RtcEngineEventHandlerOnRemoteVideoStatsJson.fromJson(jsonMap);
+        RtcConnection? connection = paramJson.connection;
         RemoteVideoStats? stats = paramJson.stats;
-        if (stats == null) {
+        if (connection == null || stats == null) {
           break;
         }
-        onRemoteVideoStats!(stats);
+        onRemoteVideoStats!(connection, stats);
         break;
 
       case 'onCameraReady':
@@ -572,160 +627,193 @@ extension RtcEngineEventHandlerExt on RtcEngineEventHandler {
         onRhythmPlayerStateChanged!(state, errorCode);
         break;
 
-      case 'onConnectionLost':
+      case 'onConnectionLostEx':
         if (onConnectionLost == null) break;
         RtcEngineEventHandlerOnConnectionLostJson paramJson =
             RtcEngineEventHandlerOnConnectionLostJson.fromJson(jsonMap);
-        onConnectionLost!();
+        RtcConnection? connection = paramJson.connection;
+        if (connection == null) {
+          break;
+        }
+        onConnectionLost!(connection);
         break;
 
-      case 'onConnectionInterrupted':
+      case 'onConnectionInterruptedEx':
         if (onConnectionInterrupted == null) break;
         RtcEngineEventHandlerOnConnectionInterruptedJson paramJson =
             RtcEngineEventHandlerOnConnectionInterruptedJson.fromJson(jsonMap);
-        onConnectionInterrupted!();
+        RtcConnection? connection = paramJson.connection;
+        if (connection == null) {
+          break;
+        }
+        onConnectionInterrupted!(connection);
         break;
 
-      case 'onConnectionBanned':
+      case 'onConnectionBannedEx':
         if (onConnectionBanned == null) break;
         RtcEngineEventHandlerOnConnectionBannedJson paramJson =
             RtcEngineEventHandlerOnConnectionBannedJson.fromJson(jsonMap);
-        onConnectionBanned!();
+        RtcConnection? connection = paramJson.connection;
+        if (connection == null) {
+          break;
+        }
+        onConnectionBanned!(connection);
         break;
 
-      case 'onStreamMessage':
+      case 'onStreamMessageEx':
         if (onStreamMessage == null) break;
         RtcEngineEventHandlerOnStreamMessageJson paramJson =
             RtcEngineEventHandlerOnStreamMessageJson.fromJson(jsonMap);
-        int? userId = paramJson.userId;
+        RtcConnection? connection = paramJson.connection;
+        int? remoteUid = paramJson.remoteUid;
         int? streamId = paramJson.streamId;
         Uint8List? data = paramJson.data;
         int? length = paramJson.length;
         int? sentTs = paramJson.sentTs;
-        if (userId == null ||
+        if (connection == null ||
+            remoteUid == null ||
             streamId == null ||
             data == null ||
             length == null ||
             sentTs == null) {
           break;
         }
-        onStreamMessage!(userId, streamId, data, length, sentTs);
+        onStreamMessage!(connection, remoteUid, streamId, data, length, sentTs);
         break;
 
-      case 'onStreamMessageError':
+      case 'onStreamMessageErrorEx':
         if (onStreamMessageError == null) break;
         RtcEngineEventHandlerOnStreamMessageErrorJson paramJson =
             RtcEngineEventHandlerOnStreamMessageErrorJson.fromJson(jsonMap);
-        int? userId = paramJson.userId;
+        RtcConnection? connection = paramJson.connection;
+        int? remoteUid = paramJson.remoteUid;
         int? streamId = paramJson.streamId;
         int? code = paramJson.code;
         int? missed = paramJson.missed;
         int? cached = paramJson.cached;
-        if (userId == null ||
+        if (connection == null ||
+            remoteUid == null ||
             streamId == null ||
             code == null ||
             missed == null ||
             cached == null) {
           break;
         }
-        onStreamMessageError!(userId, streamId, code, missed, cached);
+        onStreamMessageError!(
+            connection, remoteUid, streamId, code, missed, cached);
         break;
 
-      case 'onRequestToken':
+      case 'onRequestTokenEx':
         if (onRequestToken == null) break;
         RtcEngineEventHandlerOnRequestTokenJson paramJson =
             RtcEngineEventHandlerOnRequestTokenJson.fromJson(jsonMap);
-        onRequestToken!();
+        RtcConnection? connection = paramJson.connection;
+        if (connection == null) {
+          break;
+        }
+        onRequestToken!(connection);
         break;
 
-      case 'onTokenPrivilegeWillExpire':
+      case 'onTokenPrivilegeWillExpireEx':
         if (onTokenPrivilegeWillExpire == null) break;
         RtcEngineEventHandlerOnTokenPrivilegeWillExpireJson paramJson =
             RtcEngineEventHandlerOnTokenPrivilegeWillExpireJson.fromJson(
                 jsonMap);
+        RtcConnection? connection = paramJson.connection;
         String? token = paramJson.token;
-        if (token == null) {
+        if (connection == null || token == null) {
           break;
         }
-        onTokenPrivilegeWillExpire!(token);
+        onTokenPrivilegeWillExpire!(connection, token);
         break;
 
-      case 'onFirstLocalAudioFramePublished':
+      case 'onFirstLocalAudioFramePublishedEx':
         if (onFirstLocalAudioFramePublished == null) break;
         RtcEngineEventHandlerOnFirstLocalAudioFramePublishedJson paramJson =
             RtcEngineEventHandlerOnFirstLocalAudioFramePublishedJson.fromJson(
                 jsonMap);
+        RtcConnection? connection = paramJson.connection;
         int? elapsed = paramJson.elapsed;
-        if (elapsed == null) {
+        if (connection == null || elapsed == null) {
           break;
         }
-        onFirstLocalAudioFramePublished!(elapsed);
+        onFirstLocalAudioFramePublished!(connection, elapsed);
         break;
 
-      case 'onFirstRemoteAudioFrame':
+      case 'onFirstRemoteAudioFrameEx':
         if (onFirstRemoteAudioFrame == null) break;
         RtcEngineEventHandlerOnFirstRemoteAudioFrameJson paramJson =
             RtcEngineEventHandlerOnFirstRemoteAudioFrameJson.fromJson(jsonMap);
-        int? uid = paramJson.uid;
+        RtcConnection? connection = paramJson.connection;
+        int? userId = paramJson.userId;
         int? elapsed = paramJson.elapsed;
-        if (uid == null || elapsed == null) {
+        if (connection == null || userId == null || elapsed == null) {
           break;
         }
-        onFirstRemoteAudioFrame!(uid, elapsed);
+        onFirstRemoteAudioFrame!(connection, userId, elapsed);
         break;
 
-      case 'onFirstRemoteAudioDecoded':
+      case 'onFirstRemoteAudioDecodedEx':
         if (onFirstRemoteAudioDecoded == null) break;
         RtcEngineEventHandlerOnFirstRemoteAudioDecodedJson paramJson =
             RtcEngineEventHandlerOnFirstRemoteAudioDecodedJson.fromJson(
                 jsonMap);
+        RtcConnection? connection = paramJson.connection;
         int? uid = paramJson.uid;
         int? elapsed = paramJson.elapsed;
-        if (uid == null || elapsed == null) {
+        if (connection == null || uid == null || elapsed == null) {
           break;
         }
-        onFirstRemoteAudioDecoded!(uid, elapsed);
+        onFirstRemoteAudioDecoded!(connection, uid, elapsed);
         break;
 
-      case 'onLocalAudioStateChanged':
+      case 'onLocalAudioStateChangedEx':
         if (onLocalAudioStateChanged == null) break;
         RtcEngineEventHandlerOnLocalAudioStateChangedJson paramJson =
             RtcEngineEventHandlerOnLocalAudioStateChangedJson.fromJson(jsonMap);
+        RtcConnection? connection = paramJson.connection;
         LocalAudioStreamState? state = paramJson.state;
         LocalAudioStreamError? error = paramJson.error;
-        if (state == null || error == null) {
+        if (connection == null || state == null || error == null) {
           break;
         }
-        onLocalAudioStateChanged!(state, error);
+        onLocalAudioStateChanged!(connection, state, error);
         break;
 
-      case 'onRemoteAudioStateChanged':
+      case 'onRemoteAudioStateChangedEx':
         if (onRemoteAudioStateChanged == null) break;
         RtcEngineEventHandlerOnRemoteAudioStateChangedJson paramJson =
             RtcEngineEventHandlerOnRemoteAudioStateChangedJson.fromJson(
                 jsonMap);
-        int? uid = paramJson.uid;
+        RtcConnection? connection = paramJson.connection;
+        int? remoteUid = paramJson.remoteUid;
         RemoteAudioState? state = paramJson.state;
         RemoteAudioStateReason? reason = paramJson.reason;
         int? elapsed = paramJson.elapsed;
-        if (uid == null || state == null || reason == null || elapsed == null) {
+        if (connection == null ||
+            remoteUid == null ||
+            state == null ||
+            reason == null ||
+            elapsed == null) {
           break;
         }
-        onRemoteAudioStateChanged!(uid, state, reason, elapsed);
+        onRemoteAudioStateChanged!(
+            connection, remoteUid, state, reason, elapsed);
         break;
 
-      case 'onActiveSpeaker':
+      case 'onActiveSpeakerEx':
         if (onActiveSpeaker == null) break;
         RtcEngineEventHandlerOnActiveSpeakerJson paramJson =
             RtcEngineEventHandlerOnActiveSpeakerJson.fromJson(jsonMap);
-        int? userId = paramJson.userId;
-        if (userId == null) {
+        RtcConnection? connection = paramJson.connection;
+        int? uid = paramJson.uid;
+        if (connection == null || uid == null) {
           break;
         }
-        onActiveSpeaker!(userId);
+        onActiveSpeaker!(connection, uid);
         break;
 
-      case 'onContentInspectResult':
+      case 'onContentInspectResultEx':
         if (onContentInspectResult == null) break;
         RtcEngineEventHandlerOnContentInspectResultJson paramJson =
             RtcEngineEventHandlerOnContentInspectResultJson.fromJson(jsonMap);
@@ -736,49 +824,49 @@ extension RtcEngineEventHandlerExt on RtcEngineEventHandler {
         onContentInspectResult!(result);
         break;
 
-      case 'onSnapshotTaken':
+      case 'onSnapshotTakenEx':
         if (onSnapshotTaken == null) break;
         RtcEngineEventHandlerOnSnapshotTakenJson paramJson =
             RtcEngineEventHandlerOnSnapshotTakenJson.fromJson(jsonMap);
-        String? channel = paramJson.channel;
-        int? uid = paramJson.uid;
+        RtcConnection? connection = paramJson.connection;
         String? filePath = paramJson.filePath;
         int? width = paramJson.width;
         int? height = paramJson.height;
         int? errCode = paramJson.errCode;
-        if (channel == null ||
-            uid == null ||
+        if (connection == null ||
             filePath == null ||
             width == null ||
             height == null ||
             errCode == null) {
           break;
         }
-        onSnapshotTaken!(channel, uid, filePath, width, height, errCode);
+        onSnapshotTaken!(connection, filePath, width, height, errCode);
         break;
 
-      case 'onClientRoleChanged':
+      case 'onClientRoleChangedEx':
         if (onClientRoleChanged == null) break;
         RtcEngineEventHandlerOnClientRoleChangedJson paramJson =
             RtcEngineEventHandlerOnClientRoleChangedJson.fromJson(jsonMap);
+        RtcConnection? connection = paramJson.connection;
         ClientRoleType? oldRole = paramJson.oldRole;
         ClientRoleType? newRole = paramJson.newRole;
-        if (oldRole == null || newRole == null) {
+        if (connection == null || oldRole == null || newRole == null) {
           break;
         }
-        onClientRoleChanged!(oldRole, newRole);
+        onClientRoleChanged!(connection, oldRole, newRole);
         break;
 
-      case 'onClientRoleChangeFailed':
+      case 'onClientRoleChangeFailedEx':
         if (onClientRoleChangeFailed == null) break;
         RtcEngineEventHandlerOnClientRoleChangeFailedJson paramJson =
             RtcEngineEventHandlerOnClientRoleChangeFailedJson.fromJson(jsonMap);
+        RtcConnection? connection = paramJson.connection;
         ClientRoleChangeFailedReason? reason = paramJson.reason;
         ClientRoleType? currentRole = paramJson.currentRole;
-        if (reason == null || currentRole == null) {
+        if (connection == null || reason == null || currentRole == null) {
           break;
         }
-        onClientRoleChangeFailed!(reason, currentRole);
+        onClientRoleChangeFailed!(connection, reason, currentRole);
         break;
 
       case 'onAudioDeviceVolumeChanged':
@@ -912,74 +1000,83 @@ extension RtcEngineEventHandlerExt on RtcEngineEventHandler {
         onRemoteSubscribeFallbackToAudioOnly!(uid, isFallbackOrRecover);
         break;
 
-      case 'onRemoteAudioTransportStats':
+      case 'onRemoteAudioTransportStatsEx':
         if (onRemoteAudioTransportStats == null) break;
         RtcEngineEventHandlerOnRemoteAudioTransportStatsJson paramJson =
             RtcEngineEventHandlerOnRemoteAudioTransportStatsJson.fromJson(
                 jsonMap);
-        int? uid = paramJson.uid;
+        RtcConnection? connection = paramJson.connection;
+        int? remoteUid = paramJson.remoteUid;
         int? delay = paramJson.delay;
         int? lost = paramJson.lost;
         int? rxKBitRate = paramJson.rxKBitRate;
-        if (uid == null ||
+        if (connection == null ||
+            remoteUid == null ||
             delay == null ||
             lost == null ||
             rxKBitRate == null) {
           break;
         }
-        onRemoteAudioTransportStats!(uid, delay, lost, rxKBitRate);
+        onRemoteAudioTransportStats!(
+            connection, remoteUid, delay, lost, rxKBitRate);
         break;
 
-      case 'onRemoteVideoTransportStats':
+      case 'onRemoteVideoTransportStatsEx':
         if (onRemoteVideoTransportStats == null) break;
         RtcEngineEventHandlerOnRemoteVideoTransportStatsJson paramJson =
             RtcEngineEventHandlerOnRemoteVideoTransportStatsJson.fromJson(
                 jsonMap);
-        int? uid = paramJson.uid;
+        RtcConnection? connection = paramJson.connection;
+        int? remoteUid = paramJson.remoteUid;
         int? delay = paramJson.delay;
         int? lost = paramJson.lost;
         int? rxKBitRate = paramJson.rxKBitRate;
-        if (uid == null ||
+        if (connection == null ||
+            remoteUid == null ||
             delay == null ||
             lost == null ||
             rxKBitRate == null) {
           break;
         }
-        onRemoteVideoTransportStats!(uid, delay, lost, rxKBitRate);
+        onRemoteVideoTransportStats!(
+            connection, remoteUid, delay, lost, rxKBitRate);
         break;
 
-      case 'onConnectionStateChanged':
+      case 'onConnectionStateChangedEx':
         if (onConnectionStateChanged == null) break;
         RtcEngineEventHandlerOnConnectionStateChangedJson paramJson =
             RtcEngineEventHandlerOnConnectionStateChangedJson.fromJson(jsonMap);
+        RtcConnection? connection = paramJson.connection;
         ConnectionStateType? state = paramJson.state;
         ConnectionChangedReasonType? reason = paramJson.reason;
-        if (state == null || reason == null) {
+        if (connection == null || state == null || reason == null) {
           break;
         }
-        onConnectionStateChanged!(state, reason);
+        onConnectionStateChanged!(connection, state, reason);
         break;
 
-      case 'onNetworkTypeChanged':
+      case 'onNetworkTypeChangedEx':
         if (onNetworkTypeChanged == null) break;
         RtcEngineEventHandlerOnNetworkTypeChangedJson paramJson =
             RtcEngineEventHandlerOnNetworkTypeChangedJson.fromJson(jsonMap);
+        RtcConnection? connection = paramJson.connection;
         NetworkType? type = paramJson.type;
-        if (type == null) {
+        if (connection == null || type == null) {
           break;
         }
-        onNetworkTypeChanged!(type);
+        onNetworkTypeChanged!(connection, type);
         break;
 
-      case 'onEncryptionError':
+      case 'onEncryptionErrorEx':
         if (onEncryptionError == null) break;
         RtcEngineEventHandlerOnEncryptionErrorJson paramJson =
             RtcEngineEventHandlerOnEncryptionErrorJson.fromJson(jsonMap);
+        RtcConnection? connection = paramJson.connection;
         EncryptionErrorType? errorType = paramJson.errorType;
-        if (errorType == null) {
+        if (connection == null || errorType == null) {
           break;
         }
-        onEncryptionError!(errorType);
+        onEncryptionError!(connection, errorType);
         break;
 
       case 'onPermissionError':
@@ -1017,17 +1114,21 @@ extension RtcEngineEventHandlerExt on RtcEngineEventHandler {
         onUserInfoUpdated!(uid, info);
         break;
 
-      case 'onUploadLogResult':
+      case 'onUploadLogResultEx':
         if (onUploadLogResult == null) break;
         RtcEngineEventHandlerOnUploadLogResultJson paramJson =
             RtcEngineEventHandlerOnUploadLogResultJson.fromJson(jsonMap);
+        RtcConnection? connection = paramJson.connection;
         String? requestId = paramJson.requestId;
         bool? success = paramJson.success;
         UploadErrorReason? reason = paramJson.reason;
-        if (requestId == null || success == null || reason == null) {
+        if (connection == null ||
+            requestId == null ||
+            success == null ||
+            reason == null) {
           break;
         }
-        onUploadLogResult!(requestId, success, reason);
+        onUploadLogResult!(connection, requestId, success, reason);
         break;
 
       case 'onAudioSubscribeStateChanged':
@@ -1168,16 +1269,17 @@ extension RtcEngineEventHandlerExt on RtcEngineEventHandler {
         onExtensionErrored!(provider, extName, error, msg);
         break;
 
-      case 'onUserAccountUpdated':
+      case 'onUserAccountUpdatedEx':
         if (onUserAccountUpdated == null) break;
         RtcEngineEventHandlerOnUserAccountUpdatedJson paramJson =
             RtcEngineEventHandlerOnUserAccountUpdatedJson.fromJson(jsonMap);
-        int? uid = paramJson.uid;
+        RtcConnection? connection = paramJson.connection;
+        int? remoteUid = paramJson.remoteUid;
         String? userAccount = paramJson.userAccount;
-        if (uid == null || userAccount == null) {
+        if (connection == null || remoteUid == null || userAccount == null) {
           break;
         }
-        onUserAccountUpdated!(uid, userAccount);
+        onUserAccountUpdated!(connection, remoteUid, userAccount);
         break;
       default:
         break;
