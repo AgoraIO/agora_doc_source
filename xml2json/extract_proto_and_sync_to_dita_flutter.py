@@ -282,7 +282,7 @@ def main():
                 #    t = ET.SubElement(p, "codeblock", {"outputclass": "codeblock", "props": "rtc-ng"})
 
 
-                if child.get("props") == "flutter" and child.tag == "codeblock":
+                if child.get("props") == "flutter" and child.tag == "codeblock" and proto != "There are no corresponding names available":
                     child.text = proto
 
                 # Add a return_values section for flutter
