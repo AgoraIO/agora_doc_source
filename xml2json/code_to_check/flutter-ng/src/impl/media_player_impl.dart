@@ -5,7 +5,8 @@ import 'package:agora_rtc_ng/src/agora_media_player.dart';
 import 'package:agora_rtc_ng/src/agora_media_player_source.dart';
 import 'package:agora_rtc_ng/src/agora_rtc_engine.dart';
 import 'package:agora_rtc_ng/src/agora_rtc_engine_ex.dart';
-import 'package:agora_rtc_ng/src/binding/agora_media_player_impl.dart' as agora_media_player_impl_binding;
+import 'package:agora_rtc_ng/src/binding/agora_media_player_impl.dart'
+    as agora_media_player_impl_binding;
 import 'package:agora_rtc_ng/src/binding/agora_media_player_source_event_impl.dart';
 import 'package:agora_rtc_ng/src/impl/agora_rtc_engine_impl.dart';
 import 'package:agora_rtc_ng/src/render/media_player_controller.dart';
@@ -82,8 +83,8 @@ class MediaPlayerImpl extends agora_media_player_impl_binding.MediaPlayerImpl
     _mediaPlayerSourceObservers.remove(observer);
   }
 
-  @override
   void destroy() {
+    stop();
     // apiCaller.disposeIrisMediaPlayerEventHandlerIfNeed();
     apiCaller.removeEventHandler(this);
 
@@ -159,8 +160,7 @@ class MediaPlayerImpl extends agora_media_player_impl_binding.MediaPlayerImpl
   }
 
   @override
-  int getVideoSourceType() =>
-      VideoSourceType.videoSourceMediaPlayer.value();
+  int getVideoSourceType() => VideoSourceType.videoSourceMediaPlayer.value();
 
   @override
   void setupView(int nativeViewPtr) {

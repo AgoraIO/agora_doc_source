@@ -277,14 +277,13 @@ def main():
 
             for child in root.iter('*'):
 
-                if child.get("id") == "prototype":
-                    p = ET.SubElement(child, tag="p", attrib={"outputclass": "codeblock", "props": "rtc-ng"})
-                    t = ET.SubElement(p, tag="codeblock", attrib={"outputclass": "codeblock", "props": "rtc-ng"})
+                #if child.get("id") == "prototype":
+                #    p = ET.SubElement(child, "p", {"outputclass": "codeblock", "props": "rtc-ng"})
+                #    t = ET.SubElement(p, "codeblock", {"outputclass": "codeblock", "props": "rtc-ng"})
 
 
                 if child.get("props") == "flutter" and child.tag == "codeblock":
-                    if proto != "There are no corresponding names available":
-                        child.text = proto
+                    child.text = proto
 
                 # Add a return_values section for flutter
                 if child.text is not None and "void" in child.text:
