@@ -283,7 +283,8 @@ def main():
 
 
                 if child.get("props") == "flutter" and child.tag == "codeblock":
-                    child.text = proto
+                    if proto != "There are no corresponding names available":
+                        child.text = proto
 
                 # Add a return_values section for flutter
                 if child.text is not None and "void" in child.text:
