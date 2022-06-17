@@ -51,37 +51,37 @@ enum MediaPlayerError {
   playerErrorNone,
   @JsonValue(-1)
   playerErrorInvalidArguments,
-  @JsonValue('-2')
+  @JsonValue(-2)
   playerErrorInternal,
-  @JsonValue('-3')
+  @JsonValue(-3)
   playerErrorNoResource,
-  @JsonValue('-4')
+  @JsonValue(-4)
   playerErrorInvalidMediaSource,
-  @JsonValue('-5')
+  @JsonValue(-5)
   playerErrorUnknownStreamType,
-  @JsonValue('-6')
+  @JsonValue(-6)
   playerErrorObjNotInitialized,
-  @JsonValue('-7')
+  @JsonValue(-7)
   playerErrorCodecNotSupported,
-  @JsonValue('-8')
+  @JsonValue(-8)
   playerErrorVideoRenderFailed,
-  @JsonValue('-9')
+  @JsonValue(-9)
   playerErrorInvalidState,
-  @JsonValue('-10')
+  @JsonValue(-10)
   playerErrorUrlNotFound,
-  @JsonValue('-11')
+  @JsonValue(-11)
   playerErrorInvalidConnectionState,
-  @JsonValue('-12')
+  @JsonValue(-12)
   playerErrorSrcBufferUnderflow,
-  @JsonValue('-13')
+  @JsonValue(-13)
   playerErrorInterrupted,
-  @JsonValue('-14')
+  @JsonValue(-14)
   playerErrorNotSupported,
-  @JsonValue('-15')
+  @JsonValue(-15)
   playerErrorTokenExpired,
-  @JsonValue('-16')
+  @JsonValue(-16)
   playerErrorIpExpired,
-  @JsonValue('-17')
+  @JsonValue(-17)
   playerErrorUnknown,
 }
 
