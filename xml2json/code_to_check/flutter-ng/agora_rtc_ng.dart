@@ -21,11 +21,11 @@ export 'src/render/media_player_controller.dart';
 export 'src/agora_rtc_engine_ext.dart';
 
 /// Create the [RtcEngine]
-RtcEngine createAgoraRtcEngine(RtcEngineContext context) {
+Future<RtcEngine> createAgoraRtcEngine(RtcEngineContext context) {
   return impl.RtcEngineImpl.create(context);
 }
 
 /// Create the [RtcEngineEx]
-RtcEngineEx createAgoraRtcEngineEx(RtcEngineContext context) {
+Future<RtcEngineEx> createAgoraRtcEngineEx(RtcEngineContext context) {
   return impl.RtcEngineImpl.create(context);
 }
