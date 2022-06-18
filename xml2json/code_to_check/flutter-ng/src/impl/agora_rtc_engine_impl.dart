@@ -155,7 +155,7 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
   @internal
   final MethodChannel engineMethodChannel = const MethodChannel('agora_rtc_ng');
 
-  static RtcEngineEx create(RtcEngineContext context) {
+  static Future<RtcEngineEx> create(RtcEngineContext context) async {
     if (_instance != null) return _instance!;
     apiCaller.initilize();
 
@@ -227,7 +227,7 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
   }
 
   @override
-  void setupRemoteVideo(VideoCanvas canvas) {
+  Future<void> setupRemoteVideo(VideoCanvas canvas) async {
     const apiType = 'RtcEngine_setupRemoteVideo';
     final jsonWithBuffer = canvas.toJson();
     final bufferPtr = canvas.priv != null ? uint8ListToPtr(canvas.priv!) : null;
@@ -249,7 +249,7 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
   }
 
   @override
-  void setupLocalVideo(VideoCanvas canvas) {
+  Future<void> setupLocalVideo(VideoCanvas canvas) async {
     const apiType = 'RtcEngine_setupLocalVideo';
     final jsonWithBuffer = canvas.toJson();
     final bufferPtr = canvas.priv != null ? uint8ListToPtr(canvas.priv!) : null;
@@ -271,8 +271,8 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
   }
 
   @override
-  void setupRemoteVideoEx(
-      {required VideoCanvas canvas, required RtcConnection connection}) {
+  Future<void> setupRemoteVideoEx(
+      {required VideoCanvas canvas, required RtcConnection connection}) async {
     const apiType = 'RtcEngineEx_setupRemoteVideoEx';
     final jsonWithBuffer = canvas.toJson();
     final bufferPtr = canvas.priv != null ? uint8ListToPtr(canvas.priv!) : null;
@@ -297,7 +297,7 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
   }
 
   @override
-  MediaPlayer createMediaPlayer() {
+  Future<MediaPlayer> createMediaPlayer() async {
     const apiType = 'RtcEngine_createMediaPlayer';
     final param = createParams({});
     final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
@@ -317,7 +317,7 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
   }
 
   @override
-  void destroyMediaPlayer(covariant MediaPlayer mediaPlayer) {
+  Future<void> destroyMediaPlayer(covariant MediaPlayer mediaPlayer) async {
     const apiType = 'RtcEngine_destroyMediaPlayer';
     final param = createParams({'media_player': mediaPlayer});
     final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
@@ -338,8 +338,10 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
   }
 
   @override
-  void sendStreamMessage(
-      {required int streamId, required Uint8List data, required int length}) {
+  Future<void> sendStreamMessage(
+      {required int streamId,
+      required Uint8List data,
+      required int length}) async {
     const apiType = 'RtcEngine_sendStreamMessage';
     final dataPtr = uint8ListToPtr(data);
     final param = createParams(
@@ -360,8 +362,8 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
   }
 
   @override
-  void enableEncryption(
-      {required bool enabled, required EncryptionConfig config}) {
+  Future<void> enableEncryption(
+      {required bool enabled, required EncryptionConfig config}) async {
     const apiType = 'RtcEngine_enableEncryption';
     final configJsonMap = config.toJson();
     if (config.encryptionKdfSalt != null) {
@@ -384,10 +386,10 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
   }
 
   @override
-  void enableEncryptionEx(
+  Future<void> enableEncryptionEx(
       {required RtcConnection connection,
       required bool enabled,
-      required EncryptionConfig config}) {
+      required EncryptionConfig config}) async {
     const apiType = 'RtcEngineEx_enableEncryptionEx';
     final configJsonMap = config.toJson();
     if (config.encryptionKdfSalt != null) {
@@ -414,10 +416,10 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
   }
 
   @override
-  List<ScreenCaptureSourceInfo> getScreenCaptureSources(
+  Future<List<ScreenCaptureSourceInfo>> getScreenCaptureSources(
       {required Size thumbSize,
       required Size iconSize,
-      required bool includeScreen}) {
+      required bool includeScreen}) async {
     const apiType = 'RtcEngine_getScreenCaptureSources';
     final param = createParams({
       'thumbSize': thumbSize.toJson(),
@@ -462,8 +464,8 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
   }
 
   @override
-  void sendMetaData(
-      {required Metadata metadata, required VideoSourceType sourceType}) {
+  Future<void> sendMetaData(
+      {required Metadata metadata, required VideoSourceType sourceType}) async {
     assert(metadata.buffer != null);
     const apiType = 'RtcEngine_sendMetaData';
     final dataPtr = uint8ListToPtr(metadata.buffer!);
@@ -519,8 +521,8 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
   }
 
   @override
-  void takeSnapshot(
-      {required SnapShotConfig config, required SnapshotCallback callback}) {
+  Future<void> takeSnapshot(
+      {required SnapShotConfig config, required SnapshotCallback callback}) async {
     _snapshotCallback = callback;
 
     const apiType = 'RtcEngine_takeSnapshot';
@@ -538,10 +540,10 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
   }
 
   @override
-  void startDirectCdnStreaming(
+  Future<void> startDirectCdnStreaming(
       {required DirectCdnStreamingEventHandler eventHandler,
       required String publishUrl,
-      required DirectCdnStreamingMediaOptions options}) {
+      required DirectCdnStreamingMediaOptions options}) async {
     _directCdnStreamingEventHandler = eventHandler;
 
     const apiType = 'RtcEngine_startDirectCdnStreaming';
@@ -560,7 +562,7 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
   }
 
   @override
-  void stopDirectCdnStreaming() {
+  Future<void> stopDirectCdnStreaming() async {
     super.stopDirectCdnStreaming();
 
     _directCdnStreamingEventHandler = null;
@@ -615,7 +617,7 @@ class VideoDeviceManagerImpl extends rtc_engine_binding.VideoDeviceManagerImpl
   }
 
   @override
-  List<VideoDeviceInfo> enumerateVideoDevices() {
+  Future<List<VideoDeviceInfo>> enumerateVideoDevices() async {
     const apiType = 'VideoDeviceManager_enumerateVideoDevices';
     final param = createParams({});
 
@@ -640,7 +642,7 @@ class VideoDeviceManagerImpl extends rtc_engine_binding.VideoDeviceManagerImpl
   }
 
   @override
-  void release() {
+  Future<void> release() async {
     _instance = null;
   }
 }

@@ -8,14 +8,15 @@ const int kMediaPlayerNotInit = -1;
 
 abstract class MediaPlayerController extends MediaPlayer
     implements VideoViewControllerBase {
-  factory MediaPlayerController.create({
+  static Future<MediaPlayerController> create({
     required RtcEngine rtcEngine,
     required VideoCanvas canvas,
     bool useFlutterTexture = false,
     bool useAndroidSurfaceView = false,
-  }) {
+  }) async {
     // this.rtcEngine = rtcEngine;
-    final mediaPlayer = rtcEngine.createMediaPlayer() as MediaPlayerImpl;
+    final mp = await rtcEngine.createMediaPlayer();
+    final mediaPlayer = mp as MediaPlayerImpl;
     mediaPlayer.rtcEngine = rtcEngine;
     mediaPlayer.canvas = canvas;
     mediaPlayer.connection = null;
