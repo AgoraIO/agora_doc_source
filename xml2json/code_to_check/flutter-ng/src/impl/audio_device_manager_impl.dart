@@ -86,7 +86,7 @@ class AudioDeviceManagerImpl extends audio_device_manager_impl_binding
   }
 
   @override
-  List<AudioDeviceInfo> enumeratePlaybackDevices() {
+  Future<List<AudioDeviceInfo>> enumeratePlaybackDevices() async {
     const apiType = 'AudioDeviceManager_enumeratePlaybackDevices';
     final param = createParams({});
     final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
@@ -113,7 +113,7 @@ class AudioDeviceManagerImpl extends audio_device_manager_impl_binding
   }
 
   @override
-  List<AudioDeviceInfo> enumerateRecordingDevices() {
+  Future<List<AudioDeviceInfo>> enumerateRecordingDevices() async {
     const apiType = 'AudioDeviceManager_enumerateRecordingDevices';
     final param = createParams({});
     final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
@@ -130,7 +130,7 @@ class AudioDeviceManagerImpl extends audio_device_manager_impl_binding
   }
 
   @override
-  AudioDeviceInfo getPlaybackDeviceInfo() {
+  Future<AudioDeviceInfo> getPlaybackDeviceInfo() async {
     const apiType = 'AudioDeviceManager_getPlaybackDeviceInfo';
     final param = createParams({});
     final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
@@ -144,7 +144,7 @@ class AudioDeviceManagerImpl extends audio_device_manager_impl_binding
   }
 
   @override
-  AudioDeviceInfo getRecordingDeviceInfo() {
+  Future<AudioDeviceInfo> getRecordingDeviceInfo() async {
     const apiType = 'AudioDeviceManager_getRecordingDeviceInfo';
     final param = createParams({});
     final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
@@ -158,7 +158,7 @@ class AudioDeviceManagerImpl extends audio_device_manager_impl_binding
   }
 
   @override
-  void release() {
+  Future<void> release() async {
     _instance = null;
   }
 }
