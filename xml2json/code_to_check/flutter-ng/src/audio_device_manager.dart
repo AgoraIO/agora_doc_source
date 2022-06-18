@@ -14,49 +14,49 @@ extension MaxDeviceIdLengthTypeExt on MaxDeviceIdLengthType {
 }
 
 abstract class AudioDeviceManager {
-  List<AudioDeviceInfo> enumeratePlaybackDevices();
+  Future<List<AudioDeviceInfo>> enumeratePlaybackDevices();
 
-  List<AudioDeviceInfo> enumerateRecordingDevices();
+  Future<List<AudioDeviceInfo>> enumerateRecordingDevices();
 
-  void setPlaybackDevice(String deviceId);
+  Future<void> setPlaybackDevice(String deviceId);
 
-  String getPlaybackDevice();
+  Future<String> getPlaybackDevice();
 
-  AudioDeviceInfo getPlaybackDeviceInfo();
+  Future<AudioDeviceInfo> getPlaybackDeviceInfo();
 
-  void setPlaybackDeviceVolume(int volume);
+  Future<void> setPlaybackDeviceVolume(int volume);
 
-  int getPlaybackDeviceVolume();
+  Future<int> getPlaybackDeviceVolume();
 
-  void setRecordingDevice(String deviceId);
+  Future<void> setRecordingDevice(String deviceId);
 
-  String getRecordingDevice();
+  Future<String> getRecordingDevice();
 
-  AudioDeviceInfo getRecordingDeviceInfo();
+  Future<AudioDeviceInfo> getRecordingDeviceInfo();
 
-  void setRecordingDeviceVolume(int volume);
+  Future<void> setRecordingDeviceVolume(int volume);
 
-  int getRecordingDeviceVolume();
+  Future<int> getRecordingDeviceVolume();
 
-  void setPlaybackDeviceMute(bool mute);
+  Future<void> setPlaybackDeviceMute(bool mute);
 
-  bool getPlaybackDeviceMute();
+  Future<bool> getPlaybackDeviceMute();
 
-  void setRecordingDeviceMute(bool mute);
+  Future<void> setRecordingDeviceMute(bool mute);
 
-  bool getRecordingDeviceMute();
+  Future<bool> getRecordingDeviceMute();
 
-  void startPlaybackDeviceTest(String testAudioFilePath);
+  Future<void> startPlaybackDeviceTest(String testAudioFilePath);
 
-  void stopPlaybackDeviceTest();
+  Future<void> stopPlaybackDeviceTest();
 
-  void startRecordingDeviceTest(int indicationInterval);
+  Future<void> startRecordingDeviceTest(int indicationInterval);
 
-  void stopRecordingDeviceTest();
+  Future<void> stopRecordingDeviceTest();
 
-  void startAudioDeviceLoopbackTest(int indicationInterval);
+  Future<void> startAudioDeviceLoopbackTest(int indicationInterval);
 
-  void stopAudioDeviceLoopbackTest();
+  Future<void> stopAudioDeviceLoopbackTest();
 
-  void release();
+  Future<void> release();
 }
