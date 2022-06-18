@@ -14,6 +14,8 @@ class RtcConnection {
   Map<String, dynamic> toJson() => _$RtcConnectionToJson(this);
 }
 
+<<<<<<< HEAD
+=======
 class RtcEngineEventHandlerEx extends RtcEngineEventHandler {
   const RtcEngineEventHandlerEx({
     void Function(String channel, int uid, int elapsed)? onJoinChannelSuccess,
@@ -461,6 +463,7 @@ class RtcEngineEventHandlerEx extends RtcEngineEventHandler {
       onUserAccountUpdatedEx;
 }
 
+>>>>>>> release/rtc-ng/3.8.200-framework
 abstract class RtcEngineEx implements RtcEngine {
   void joinChannelEx(
       {required String token,

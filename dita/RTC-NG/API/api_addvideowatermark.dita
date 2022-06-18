@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_addvideowatermark">
-    <title> <ph keyref="addVideoWatermark1"/> </title>
+    <title> <ph keyref="addVideoWatermark1" /> </title>
     <shortdesc id="short"> <ph id="shortdesc">添加本地视频水印。</ph> </shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="addVideoWatermark1"/>
+                <indexterm keyref="addVideoWatermark1" />
             </keywords>
         </metadata>
     </prolog>
@@ -16,10 +16,10 @@
             <codeblock props="android" outputclass="language-java">public abstract int addVideoWatermark(AgoraImage watermark);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)addVideoWatermark:(AgoraImage * _Nonnull)watermark</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int addVideoWatermark(const RtcImage&amp; watermark) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public abstract int AddVideoWatermark(RtcImage watermark);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">void addVideoWatermark(RtcImage watermark);</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated">
@@ -27,14 +27,14 @@
                 <dt>弃用：</dt>
                 <dd>
                         该方法已废弃，请使用
-                        <xref keyref="addVideoWatermark2"/>
+                        <xref keyref="addVideoWatermark2" />
                         作为替代。
                     </dd>
             </dlentry>
             </dl>
             <p>
                 该方法将一张 PNG 图片作为水印添加到本地发布的直播视频流上，同一直播频道中的用户，旁路推流观众，甚至采集设备都能看到或采集到该水印图片。如果你仅仅希望在旁路直播推流中添加水印，请参考
-                <xref keyref="setLiveTranscoding"/>
+                <xref keyref="setLiveTranscoding" />
                 中描述的用法。
             </p>
             <note type="attention">
@@ -50,12 +50,12 @@
                 <pt>watermark</pt>
                 <pd>
                         待添加在本地直播推流中的水印图片：
-                        <xref keyref="RtcImage"/>
+                        <xref keyref="RtcImage" />
                         。
                     </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功</li>

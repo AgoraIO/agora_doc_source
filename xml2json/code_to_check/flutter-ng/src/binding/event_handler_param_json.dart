@@ -4,12 +4,19 @@ part 'event_handler_param_json.g.dart';
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnJoinChannelSuccessJson {
   const RtcEngineEventHandlerOnJoinChannelSuccessJson(
+<<<<<<< HEAD
+      {this.connection, this.elapsed});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+=======
       {this.channel, this.uid, this.elapsed});
 
   @JsonKey(name: 'channel')
   final String? channel;
   @JsonKey(name: 'uid')
   final int? uid;
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'elapsed')
   final int? elapsed;
   factory RtcEngineEventHandlerOnJoinChannelSuccessJson.fromJson(
@@ -22,12 +29,19 @@ class RtcEngineEventHandlerOnJoinChannelSuccessJson {
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnRejoinChannelSuccessJson {
   const RtcEngineEventHandlerOnRejoinChannelSuccessJson(
+<<<<<<< HEAD
+      {this.connection, this.elapsed});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+=======
       {this.channel, this.uid, this.elapsed});
 
   @JsonKey(name: 'channel')
   final String? channel;
   @JsonKey(name: 'uid')
   final int? uid;
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'elapsed')
   final int? elapsed;
   factory RtcEngineEventHandlerOnRejoinChannelSuccessJson.fromJson(
@@ -70,10 +84,19 @@ class RtcEngineEventHandlerOnErrorJson {
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnAudioQualityJson {
   const RtcEngineEventHandlerOnAudioQualityJson(
+<<<<<<< HEAD
+      {this.connection, this.remoteUid, this.quality, this.delay, this.lost});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+  @JsonKey(name: 'remoteUid')
+  final int? remoteUid;
+=======
       {this.uid, this.quality, this.delay, this.lost});
 
   @JsonKey(name: 'uid')
   final int? uid;
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'quality')
   final int? quality;
   @JsonKey(name: 'delay')
@@ -103,8 +126,15 @@ class RtcEngineEventHandlerOnLastmileProbeResultJson {
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnAudioVolumeIndicationJson {
   const RtcEngineEventHandlerOnAudioVolumeIndicationJson(
+<<<<<<< HEAD
+      {this.connection, this.speakers, this.speakerNumber, this.totalVolume});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+=======
       {this.speakers, this.speakerNumber, this.totalVolume});
 
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'speakers')
   final AudioVolumeInfo? speakers;
   @JsonKey(name: 'speakerNumber')
@@ -120,8 +150,15 @@ class RtcEngineEventHandlerOnAudioVolumeIndicationJson {
 
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnLeaveChannelJson {
+<<<<<<< HEAD
+  const RtcEngineEventHandlerOnLeaveChannelJson({this.connection, this.stats});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+=======
   const RtcEngineEventHandlerOnLeaveChannelJson({this.stats});
 
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'stats')
   final RtcStats? stats;
   factory RtcEngineEventHandlerOnLeaveChannelJson.fromJson(
@@ -133,8 +170,15 @@ class RtcEngineEventHandlerOnLeaveChannelJson {
 
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnRtcStatsJson {
+<<<<<<< HEAD
+  const RtcEngineEventHandlerOnRtcStatsJson({this.connection, this.stats});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+=======
   const RtcEngineEventHandlerOnRtcStatsJson({this.stats});
 
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'stats')
   final RtcStats? stats;
   factory RtcEngineEventHandlerOnRtcStatsJson.fromJson(
@@ -220,10 +264,19 @@ class RtcEngineEventHandlerOnMediaDeviceChangedJson {
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnNetworkQualityJson {
   const RtcEngineEventHandlerOnNetworkQualityJson(
+<<<<<<< HEAD
+      {this.connection, this.remoteUid, this.txQuality, this.rxQuality});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+  @JsonKey(name: 'remoteUid')
+  final int? remoteUid;
+=======
       {this.uid, this.txQuality, this.rxQuality});
 
   @JsonKey(name: 'uid')
   final int? uid;
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'txQuality')
   final int? txQuality;
   @JsonKey(name: 'rxQuality')
@@ -237,8 +290,15 @@ class RtcEngineEventHandlerOnNetworkQualityJson {
 
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnIntraRequestReceivedJson {
+<<<<<<< HEAD
+  const RtcEngineEventHandlerOnIntraRequestReceivedJson({this.connection});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+=======
   const RtcEngineEventHandlerOnIntraRequestReceivedJson();
 
+>>>>>>> release/rtc-ng/3.8.200-framework
   factory RtcEngineEventHandlerOnIntraRequestReceivedJson.fromJson(
           Map<String, dynamic> json) =>
       _$RtcEngineEventHandlerOnIntraRequestReceivedJsonFromJson(json);
@@ -288,8 +348,15 @@ class RtcEngineEventHandlerOnLastmileQualityJson {
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnFirstLocalVideoFrameJson {
   const RtcEngineEventHandlerOnFirstLocalVideoFrameJson(
+<<<<<<< HEAD
+      {this.connection, this.width, this.height, this.elapsed});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+=======
       {this.width, this.height, this.elapsed});
 
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'width')
   final int? width;
   @JsonKey(name: 'height')
@@ -306,8 +373,15 @@ class RtcEngineEventHandlerOnFirstLocalVideoFrameJson {
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnFirstLocalVideoFramePublishedJson {
   const RtcEngineEventHandlerOnFirstLocalVideoFramePublishedJson(
+<<<<<<< HEAD
+      {this.connection, this.elapsed});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+=======
       {this.elapsed});
 
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'elapsed')
   final int? elapsed;
   factory RtcEngineEventHandlerOnFirstLocalVideoFramePublishedJson.fromJson(
@@ -320,8 +394,15 @@ class RtcEngineEventHandlerOnFirstLocalVideoFramePublishedJson {
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnVideoSourceFrameSizeChangedJson {
   const RtcEngineEventHandlerOnVideoSourceFrameSizeChangedJson(
+<<<<<<< HEAD
+      {this.connection, this.sourceType, this.width, this.height});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+=======
       {this.sourceType, this.width, this.height});
 
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'sourceType')
   final VideoSourceType? sourceType;
   @JsonKey(name: 'width')
@@ -338,10 +419,19 @@ class RtcEngineEventHandlerOnVideoSourceFrameSizeChangedJson {
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnFirstRemoteVideoDecodedJson {
   const RtcEngineEventHandlerOnFirstRemoteVideoDecodedJson(
+<<<<<<< HEAD
+      {this.connection, this.remoteUid, this.width, this.height, this.elapsed});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+  @JsonKey(name: 'remoteUid')
+  final int? remoteUid;
+=======
       {this.uid, this.width, this.height, this.elapsed});
 
   @JsonKey(name: 'uid')
   final int? uid;
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'width')
   final int? width;
   @JsonKey(name: 'height')
@@ -358,8 +448,15 @@ class RtcEngineEventHandlerOnFirstRemoteVideoDecodedJson {
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnVideoSizeChangedJson {
   const RtcEngineEventHandlerOnVideoSizeChangedJson(
+<<<<<<< HEAD
+      {this.connection, this.uid, this.width, this.height, this.rotation});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+=======
       {this.uid, this.width, this.height, this.rotation});
 
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'uid')
   final int? uid;
   @JsonKey(name: 'width')
@@ -378,12 +475,23 @@ class RtcEngineEventHandlerOnVideoSizeChangedJson {
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnLocalVideoStateChangedJson {
   const RtcEngineEventHandlerOnLocalVideoStateChangedJson(
+<<<<<<< HEAD
+      {this.connection, this.state, this.errorCode});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+  @JsonKey(name: 'state')
+  final LocalVideoStreamState? state;
+  @JsonKey(name: 'errorCode')
+  final LocalVideoStreamError? errorCode;
+=======
       {this.state, this.error});
 
   @JsonKey(name: 'state')
   final LocalVideoStreamState? state;
   @JsonKey(name: 'error')
   final LocalVideoStreamError? error;
+>>>>>>> release/rtc-ng/3.8.200-framework
   factory RtcEngineEventHandlerOnLocalVideoStateChangedJson.fromJson(
           Map<String, dynamic> json) =>
       _$RtcEngineEventHandlerOnLocalVideoStateChangedJsonFromJson(json);
@@ -394,10 +502,19 @@ class RtcEngineEventHandlerOnLocalVideoStateChangedJson {
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnRemoteVideoStateChangedJson {
   const RtcEngineEventHandlerOnRemoteVideoStateChangedJson(
+<<<<<<< HEAD
+      {this.connection, this.remoteUid, this.state, this.reason, this.elapsed});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+  @JsonKey(name: 'remoteUid')
+  final int? remoteUid;
+=======
       {this.uid, this.state, this.reason, this.elapsed});
 
   @JsonKey(name: 'uid')
   final int? uid;
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'state')
   final RemoteVideoState? state;
   @JsonKey(name: 'reason')
@@ -414,10 +531,19 @@ class RtcEngineEventHandlerOnRemoteVideoStateChangedJson {
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnFirstRemoteVideoFrameJson {
   const RtcEngineEventHandlerOnFirstRemoteVideoFrameJson(
+<<<<<<< HEAD
+      {this.connection, this.remoteUid, this.width, this.height, this.elapsed});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+  @JsonKey(name: 'remoteUid')
+  final int? remoteUid;
+=======
       {this.userId, this.width, this.height, this.elapsed});
 
   @JsonKey(name: 'userId')
   final int? userId;
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'width')
   final int? width;
   @JsonKey(name: 'height')
@@ -433,10 +559,20 @@ class RtcEngineEventHandlerOnFirstRemoteVideoFrameJson {
 
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnUserJoinedJson {
+<<<<<<< HEAD
+  const RtcEngineEventHandlerOnUserJoinedJson(
+      {this.connection, this.remoteUid, this.elapsed});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+  @JsonKey(name: 'remoteUid')
+  final int? remoteUid;
+=======
   const RtcEngineEventHandlerOnUserJoinedJson({this.uid, this.elapsed});
 
   @JsonKey(name: 'uid')
   final int? uid;
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'elapsed')
   final int? elapsed;
   factory RtcEngineEventHandlerOnUserJoinedJson.fromJson(
@@ -448,10 +584,20 @@ class RtcEngineEventHandlerOnUserJoinedJson {
 
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnUserOfflineJson {
+<<<<<<< HEAD
+  const RtcEngineEventHandlerOnUserOfflineJson(
+      {this.connection, this.remoteUid, this.reason});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+  @JsonKey(name: 'remoteUid')
+  final int? remoteUid;
+=======
   const RtcEngineEventHandlerOnUserOfflineJson({this.uid, this.reason});
 
   @JsonKey(name: 'uid')
   final int? uid;
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'reason')
   final UserOfflineReasonType? reason;
   factory RtcEngineEventHandlerOnUserOfflineJson.fromJson(
@@ -463,10 +609,20 @@ class RtcEngineEventHandlerOnUserOfflineJson {
 
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnUserMuteAudioJson {
+<<<<<<< HEAD
+  const RtcEngineEventHandlerOnUserMuteAudioJson(
+      {this.connection, this.remoteUid, this.muted});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+  @JsonKey(name: 'remoteUid')
+  final int? remoteUid;
+=======
   const RtcEngineEventHandlerOnUserMuteAudioJson({this.uid, this.muted});
 
   @JsonKey(name: 'uid')
   final int? uid;
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'muted')
   final bool? muted;
   factory RtcEngineEventHandlerOnUserMuteAudioJson.fromJson(
@@ -478,10 +634,20 @@ class RtcEngineEventHandlerOnUserMuteAudioJson {
 
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnUserMuteVideoJson {
+<<<<<<< HEAD
+  const RtcEngineEventHandlerOnUserMuteVideoJson(
+      {this.connection, this.remoteUid, this.muted});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+  @JsonKey(name: 'remoteUid')
+  final int? remoteUid;
+=======
   const RtcEngineEventHandlerOnUserMuteVideoJson({this.userId, this.muted});
 
   @JsonKey(name: 'userId')
   final int? userId;
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'muted')
   final bool? muted;
   factory RtcEngineEventHandlerOnUserMuteVideoJson.fromJson(
@@ -493,10 +659,20 @@ class RtcEngineEventHandlerOnUserMuteVideoJson {
 
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnUserEnableVideoJson {
+<<<<<<< HEAD
+  const RtcEngineEventHandlerOnUserEnableVideoJson(
+      {this.connection, this.remoteUid, this.enabled});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+  @JsonKey(name: 'remoteUid')
+  final int? remoteUid;
+=======
   const RtcEngineEventHandlerOnUserEnableVideoJson({this.uid, this.enabled});
 
   @JsonKey(name: 'uid')
   final int? uid;
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'enabled')
   final bool? enabled;
   factory RtcEngineEventHandlerOnUserEnableVideoJson.fromJson(
@@ -508,10 +684,20 @@ class RtcEngineEventHandlerOnUserEnableVideoJson {
 
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnUserStateChangedJson {
+<<<<<<< HEAD
+  const RtcEngineEventHandlerOnUserStateChangedJson(
+      {this.connection, this.remoteUid, this.state});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+  @JsonKey(name: 'remoteUid')
+  final int? remoteUid;
+=======
   const RtcEngineEventHandlerOnUserStateChangedJson({this.uid, this.state});
 
   @JsonKey(name: 'uid')
   final int? uid;
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'state')
   final int? state;
   factory RtcEngineEventHandlerOnUserStateChangedJson.fromJson(
@@ -524,10 +710,19 @@ class RtcEngineEventHandlerOnUserStateChangedJson {
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnUserEnableLocalVideoJson {
   const RtcEngineEventHandlerOnUserEnableLocalVideoJson(
+<<<<<<< HEAD
+      {this.connection, this.remoteUid, this.enabled});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+  @JsonKey(name: 'remoteUid')
+  final int? remoteUid;
+=======
       {this.uid, this.enabled});
 
   @JsonKey(name: 'uid')
   final int? uid;
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'enabled')
   final bool? enabled;
   factory RtcEngineEventHandlerOnUserEnableLocalVideoJson.fromJson(
@@ -557,8 +752,16 @@ class RtcEngineEventHandlerOnApiCallExecutedJson {
 
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnLocalAudioStatsJson {
+<<<<<<< HEAD
+  const RtcEngineEventHandlerOnLocalAudioStatsJson(
+      {this.connection, this.stats});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+=======
   const RtcEngineEventHandlerOnLocalAudioStatsJson({this.stats});
 
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'stats')
   final LocalAudioStats? stats;
   factory RtcEngineEventHandlerOnLocalAudioStatsJson.fromJson(
@@ -570,8 +773,16 @@ class RtcEngineEventHandlerOnLocalAudioStatsJson {
 
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnRemoteAudioStatsJson {
+<<<<<<< HEAD
+  const RtcEngineEventHandlerOnRemoteAudioStatsJson(
+      {this.connection, this.stats});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+=======
   const RtcEngineEventHandlerOnRemoteAudioStatsJson({this.stats});
 
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'stats')
   final RemoteAudioStats? stats;
   factory RtcEngineEventHandlerOnRemoteAudioStatsJson.fromJson(
@@ -583,8 +794,16 @@ class RtcEngineEventHandlerOnRemoteAudioStatsJson {
 
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnLocalVideoStatsJson {
+<<<<<<< HEAD
+  const RtcEngineEventHandlerOnLocalVideoStatsJson(
+      {this.connection, this.stats});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+=======
   const RtcEngineEventHandlerOnLocalVideoStatsJson({this.stats});
 
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'stats')
   final LocalVideoStats? stats;
   factory RtcEngineEventHandlerOnLocalVideoStatsJson.fromJson(
@@ -596,8 +815,16 @@ class RtcEngineEventHandlerOnLocalVideoStatsJson {
 
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnRemoteVideoStatsJson {
+<<<<<<< HEAD
+  const RtcEngineEventHandlerOnRemoteVideoStatsJson(
+      {this.connection, this.stats});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+=======
   const RtcEngineEventHandlerOnRemoteVideoStatsJson({this.stats});
 
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'stats')
   final RemoteVideoStats? stats;
   factory RtcEngineEventHandlerOnRemoteVideoStatsJson.fromJson(
@@ -729,8 +956,15 @@ class RtcEngineEventHandlerOnRhythmPlayerStateChangedJson {
 
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnConnectionLostJson {
+<<<<<<< HEAD
+  const RtcEngineEventHandlerOnConnectionLostJson({this.connection});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+=======
   const RtcEngineEventHandlerOnConnectionLostJson();
 
+>>>>>>> release/rtc-ng/3.8.200-framework
   factory RtcEngineEventHandlerOnConnectionLostJson.fromJson(
           Map<String, dynamic> json) =>
       _$RtcEngineEventHandlerOnConnectionLostJsonFromJson(json);
@@ -740,8 +974,15 @@ class RtcEngineEventHandlerOnConnectionLostJson {
 
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnConnectionInterruptedJson {
+<<<<<<< HEAD
+  const RtcEngineEventHandlerOnConnectionInterruptedJson({this.connection});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+=======
   const RtcEngineEventHandlerOnConnectionInterruptedJson();
 
+>>>>>>> release/rtc-ng/3.8.200-framework
   factory RtcEngineEventHandlerOnConnectionInterruptedJson.fromJson(
           Map<String, dynamic> json) =>
       _$RtcEngineEventHandlerOnConnectionInterruptedJsonFromJson(json);
@@ -751,8 +992,15 @@ class RtcEngineEventHandlerOnConnectionInterruptedJson {
 
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnConnectionBannedJson {
+<<<<<<< HEAD
+  const RtcEngineEventHandlerOnConnectionBannedJson({this.connection});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+=======
   const RtcEngineEventHandlerOnConnectionBannedJson();
 
+>>>>>>> release/rtc-ng/3.8.200-framework
   factory RtcEngineEventHandlerOnConnectionBannedJson.fromJson(
           Map<String, dynamic> json) =>
       _$RtcEngineEventHandlerOnConnectionBannedJsonFromJson(json);
@@ -763,10 +1011,24 @@ class RtcEngineEventHandlerOnConnectionBannedJson {
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnStreamMessageJson {
   const RtcEngineEventHandlerOnStreamMessageJson(
+<<<<<<< HEAD
+      {this.connection,
+      this.remoteUid,
+      this.streamId,
+      this.data,
+      this.length,
+      this.sentTs});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+  @JsonKey(name: 'remoteUid')
+  final int? remoteUid;
+=======
       {this.userId, this.streamId, this.data, this.length, this.sentTs});
 
   @JsonKey(name: 'userId')
   final int? userId;
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'streamId')
   final int? streamId;
   @JsonKey(name: 'data', ignore: true)
@@ -785,10 +1047,24 @@ class RtcEngineEventHandlerOnStreamMessageJson {
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnStreamMessageErrorJson {
   const RtcEngineEventHandlerOnStreamMessageErrorJson(
+<<<<<<< HEAD
+      {this.connection,
+      this.remoteUid,
+      this.streamId,
+      this.code,
+      this.missed,
+      this.cached});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+  @JsonKey(name: 'remoteUid')
+  final int? remoteUid;
+=======
       {this.userId, this.streamId, this.code, this.missed, this.cached});
 
   @JsonKey(name: 'userId')
   final int? userId;
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'streamId')
   final int? streamId;
   @JsonKey(name: 'code')
@@ -806,8 +1082,15 @@ class RtcEngineEventHandlerOnStreamMessageErrorJson {
 
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnRequestTokenJson {
+<<<<<<< HEAD
+  const RtcEngineEventHandlerOnRequestTokenJson({this.connection});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+=======
   const RtcEngineEventHandlerOnRequestTokenJson();
 
+>>>>>>> release/rtc-ng/3.8.200-framework
   factory RtcEngineEventHandlerOnRequestTokenJson.fromJson(
           Map<String, dynamic> json) =>
       _$RtcEngineEventHandlerOnRequestTokenJsonFromJson(json);
@@ -817,8 +1100,16 @@ class RtcEngineEventHandlerOnRequestTokenJson {
 
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnTokenPrivilegeWillExpireJson {
+<<<<<<< HEAD
+  const RtcEngineEventHandlerOnTokenPrivilegeWillExpireJson(
+      {this.connection, this.token});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+=======
   const RtcEngineEventHandlerOnTokenPrivilegeWillExpireJson({this.token});
 
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'token')
   final String? token;
   factory RtcEngineEventHandlerOnTokenPrivilegeWillExpireJson.fromJson(
@@ -831,8 +1122,15 @@ class RtcEngineEventHandlerOnTokenPrivilegeWillExpireJson {
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnFirstLocalAudioFramePublishedJson {
   const RtcEngineEventHandlerOnFirstLocalAudioFramePublishedJson(
+<<<<<<< HEAD
+      {this.connection, this.elapsed});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+=======
       {this.elapsed});
 
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'elapsed')
   final int? elapsed;
   factory RtcEngineEventHandlerOnFirstLocalAudioFramePublishedJson.fromJson(
@@ -845,10 +1143,19 @@ class RtcEngineEventHandlerOnFirstLocalAudioFramePublishedJson {
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnFirstRemoteAudioFrameJson {
   const RtcEngineEventHandlerOnFirstRemoteAudioFrameJson(
+<<<<<<< HEAD
+      {this.connection, this.userId, this.elapsed});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+  @JsonKey(name: 'userId')
+  final int? userId;
+=======
       {this.uid, this.elapsed});
 
   @JsonKey(name: 'uid')
   final int? uid;
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'elapsed')
   final int? elapsed;
   factory RtcEngineEventHandlerOnFirstRemoteAudioFrameJson.fromJson(
@@ -861,8 +1168,15 @@ class RtcEngineEventHandlerOnFirstRemoteAudioFrameJson {
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnFirstRemoteAudioDecodedJson {
   const RtcEngineEventHandlerOnFirstRemoteAudioDecodedJson(
+<<<<<<< HEAD
+      {this.connection, this.uid, this.elapsed});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+=======
       {this.uid, this.elapsed});
 
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'uid')
   final int? uid;
   @JsonKey(name: 'elapsed')
@@ -877,8 +1191,15 @@ class RtcEngineEventHandlerOnFirstRemoteAudioDecodedJson {
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnLocalAudioStateChangedJson {
   const RtcEngineEventHandlerOnLocalAudioStateChangedJson(
+<<<<<<< HEAD
+      {this.connection, this.state, this.error});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+=======
       {this.state, this.error});
 
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'state')
   final LocalAudioStreamState? state;
   @JsonKey(name: 'error')
@@ -893,10 +1214,19 @@ class RtcEngineEventHandlerOnLocalAudioStateChangedJson {
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnRemoteAudioStateChangedJson {
   const RtcEngineEventHandlerOnRemoteAudioStateChangedJson(
+<<<<<<< HEAD
+      {this.connection, this.remoteUid, this.state, this.reason, this.elapsed});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+  @JsonKey(name: 'remoteUid')
+  final int? remoteUid;
+=======
       {this.uid, this.state, this.reason, this.elapsed});
 
   @JsonKey(name: 'uid')
   final int? uid;
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'state')
   final RemoteAudioState? state;
   @JsonKey(name: 'reason')
@@ -912,10 +1242,19 @@ class RtcEngineEventHandlerOnRemoteAudioStateChangedJson {
 
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnActiveSpeakerJson {
+<<<<<<< HEAD
+  const RtcEngineEventHandlerOnActiveSpeakerJson({this.connection, this.uid});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+  @JsonKey(name: 'uid')
+  final int? uid;
+=======
   const RtcEngineEventHandlerOnActiveSpeakerJson({this.userId});
 
   @JsonKey(name: 'userId')
   final int? userId;
+>>>>>>> release/rtc-ng/3.8.200-framework
   factory RtcEngineEventHandlerOnActiveSpeakerJson.fromJson(
           Map<String, dynamic> json) =>
       _$RtcEngineEventHandlerOnActiveSpeakerJsonFromJson(json);
@@ -939,6 +1278,12 @@ class RtcEngineEventHandlerOnContentInspectResultJson {
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnSnapshotTakenJson {
   const RtcEngineEventHandlerOnSnapshotTakenJson(
+<<<<<<< HEAD
+      {this.connection, this.filePath, this.width, this.height, this.errCode});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+=======
       {this.channel,
       this.uid,
       this.filePath,
@@ -950,6 +1295,7 @@ class RtcEngineEventHandlerOnSnapshotTakenJson {
   final String? channel;
   @JsonKey(name: 'uid')
   final int? uid;
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'filePath')
   final String? filePath;
   @JsonKey(name: 'width')
@@ -968,8 +1314,15 @@ class RtcEngineEventHandlerOnSnapshotTakenJson {
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnClientRoleChangedJson {
   const RtcEngineEventHandlerOnClientRoleChangedJson(
+<<<<<<< HEAD
+      {this.connection, this.oldRole, this.newRole});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+=======
       {this.oldRole, this.newRole});
 
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'oldRole')
   final ClientRoleType? oldRole;
   @JsonKey(name: 'newRole')
@@ -984,8 +1337,15 @@ class RtcEngineEventHandlerOnClientRoleChangedJson {
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnClientRoleChangeFailedJson {
   const RtcEngineEventHandlerOnClientRoleChangeFailedJson(
+<<<<<<< HEAD
+      {this.connection, this.reason, this.currentRole});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+=======
       {this.reason, this.currentRole});
 
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'reason')
   final ClientRoleChangeFailedReason? reason;
   @JsonKey(name: 'currentRole')
@@ -1166,10 +1526,23 @@ class RtcEngineEventHandlerOnRemoteSubscribeFallbackToAudioOnlyJson {
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnRemoteAudioTransportStatsJson {
   const RtcEngineEventHandlerOnRemoteAudioTransportStatsJson(
+<<<<<<< HEAD
+      {this.connection,
+      this.remoteUid,
+      this.delay,
+      this.lost,
+      this.rxKBitRate});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+  @JsonKey(name: 'remoteUid')
+  final int? remoteUid;
+=======
       {this.uid, this.delay, this.lost, this.rxKBitRate});
 
   @JsonKey(name: 'uid')
   final int? uid;
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'delay')
   final int? delay;
   @JsonKey(name: 'lost')
@@ -1186,10 +1559,23 @@ class RtcEngineEventHandlerOnRemoteAudioTransportStatsJson {
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnRemoteVideoTransportStatsJson {
   const RtcEngineEventHandlerOnRemoteVideoTransportStatsJson(
+<<<<<<< HEAD
+      {this.connection,
+      this.remoteUid,
+      this.delay,
+      this.lost,
+      this.rxKBitRate});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+  @JsonKey(name: 'remoteUid')
+  final int? remoteUid;
+=======
       {this.uid, this.delay, this.lost, this.rxKBitRate});
 
   @JsonKey(name: 'uid')
   final int? uid;
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'delay')
   final int? delay;
   @JsonKey(name: 'lost')
@@ -1206,8 +1592,15 @@ class RtcEngineEventHandlerOnRemoteVideoTransportStatsJson {
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnConnectionStateChangedJson {
   const RtcEngineEventHandlerOnConnectionStateChangedJson(
+<<<<<<< HEAD
+      {this.connection, this.state, this.reason});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+=======
       {this.state, this.reason});
 
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'state')
   final ConnectionStateType? state;
   @JsonKey(name: 'reason')
@@ -1221,8 +1614,16 @@ class RtcEngineEventHandlerOnConnectionStateChangedJson {
 
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnNetworkTypeChangedJson {
+<<<<<<< HEAD
+  const RtcEngineEventHandlerOnNetworkTypeChangedJson(
+      {this.connection, this.type});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+=======
   const RtcEngineEventHandlerOnNetworkTypeChangedJson({this.type});
 
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'type')
   final NetworkType? type;
   factory RtcEngineEventHandlerOnNetworkTypeChangedJson.fromJson(
@@ -1234,8 +1635,16 @@ class RtcEngineEventHandlerOnNetworkTypeChangedJson {
 
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnEncryptionErrorJson {
+<<<<<<< HEAD
+  const RtcEngineEventHandlerOnEncryptionErrorJson(
+      {this.connection, this.errorType});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+=======
   const RtcEngineEventHandlerOnEncryptionErrorJson({this.errorType});
 
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'errorType')
   final EncryptionErrorType? errorType;
   factory RtcEngineEventHandlerOnEncryptionErrorJson.fromJson(
@@ -1292,8 +1701,15 @@ class RtcEngineEventHandlerOnUserInfoUpdatedJson {
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnUploadLogResultJson {
   const RtcEngineEventHandlerOnUploadLogResultJson(
+<<<<<<< HEAD
+      {this.connection, this.requestId, this.success, this.reason});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+=======
       {this.requestId, this.success, this.reason});
 
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'requestId')
   final String? requestId;
   @JsonKey(name: 'success')
@@ -1474,10 +1890,19 @@ class RtcEngineEventHandlerOnExtensionErroredJson {
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerOnUserAccountUpdatedJson {
   const RtcEngineEventHandlerOnUserAccountUpdatedJson(
+<<<<<<< HEAD
+      {this.connection, this.remoteUid, this.userAccount});
+
+  @JsonKey(name: 'connection')
+  final RtcConnection? connection;
+  @JsonKey(name: 'remoteUid')
+  final int? remoteUid;
+=======
       {this.uid, this.userAccount});
 
   @JsonKey(name: 'uid')
   final int? uid;
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'userAccount')
   final String? userAccount;
   factory RtcEngineEventHandlerOnUserAccountUpdatedJson.fromJson(
@@ -1718,6 +2143,8 @@ class MediaPlayerSourceObserverOnAudioVolumeIndicationJson {
   Map<String, dynamic> toJson() =>
       _$MediaPlayerSourceObserverOnAudioVolumeIndicationJsonToJson(this);
 }
+<<<<<<< HEAD
+=======
 
 @JsonSerializable(explicitToJson: true)
 class RtcEngineEventHandlerExOnJoinChannelSuccessExJson {
@@ -2658,3 +3085,4 @@ class RtcEngineEventHandlerExOnUserAccountUpdatedExJson {
   Map<String, dynamic> toJson() =>
       _$RtcEngineEventHandlerExOnUserAccountUpdatedExJsonToJson(this);
 }
+>>>>>>> release/rtc-ng/3.8.200-framework

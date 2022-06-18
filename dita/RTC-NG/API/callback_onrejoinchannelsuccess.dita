@@ -24,7 +24,9 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnRejoinChannelSuccess(RtcConnection connection, int elapsed) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int elapsed)?
+      onRejoinChannelSuccess;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p id="desc">有时候由于网络原因，客户端可能会和服务器失去连接，SDK 会进行自动重连，自动重连成功后触发此回调方法。</p>
@@ -37,14 +39,10 @@
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="native electron">
-                <pt>channel</pt>
-                <pd>频道名。</pd>
-            </plentry>
-            <plentry props="rtc">
-                <pt props="unity">channel</pt>
-                <pd props="unity">频道名。</pd>
-            </plentry>
+            <plentry props="native">
+                    <pt>channel</pt>
+                    <pd>频道名。</pd>
+                </plentry>
             <plentry id="uid" props="native electron">
                 <pt>uid</pt>
                 <pd>重新加入频道的用户 ID。</pd>
@@ -53,10 +51,10 @@
                 <pt props="unity">uid</pt>
                 <pd props="unity">重新加入频道的用户 ID。</pd>
             </plentry>
-            <plentry props="rtc-ng">
-                <pt props="unity">connection</pt>
-                <pd props="unity">Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
-            </plentry>
+            <plentry>
+                    <pt props="unity">connection</pt>
+                    <pd props="unity">Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
             <plentry id="elapsed">
                 <pt>elapsed</pt>
                 <pd>从本地开始重连到发生此事件过去的时间（毫秒）。</pd>

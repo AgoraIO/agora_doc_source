@@ -53,12 +53,25 @@ abstract class VideoViewControllerBase {
 
   bool get useAndroidSurfaceView;
 
+<<<<<<< HEAD
+  @internal
+  void setTextureId(int textureId);
+
+  @internal
+  int getTextureId();
+
+  @internal
+  int getVideoSourceType();
+
+  @internal
+=======
   void setTextureId(int textureId);
 
   int getTextureId();
 
   int getVideoSourceType();
 
+>>>>>>> release/rtc-ng/3.8.200-framework
   void setupView(int nativeViewPtr);
 
   @protected
@@ -68,6 +81,10 @@ abstract class VideoViewControllerBase {
     int videoSourceType,
   );
 
+<<<<<<< HEAD
+  @internal
+=======
+>>>>>>> release/rtc-ng/3.8.200-framework
   Future<void> initialize();
 
   @internal

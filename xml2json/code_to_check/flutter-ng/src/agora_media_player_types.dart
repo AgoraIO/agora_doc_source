@@ -51,6 +51,39 @@ enum MediaPlayerError {
   playerErrorNone,
   @JsonValue(-1)
   playerErrorInvalidArguments,
+<<<<<<< HEAD
+  @JsonValue(-2)
+  playerErrorInternal,
+  @JsonValue(-3)
+  playerErrorNoResource,
+  @JsonValue(-4)
+  playerErrorInvalidMediaSource,
+  @JsonValue(-5)
+  playerErrorUnknownStreamType,
+  @JsonValue(-6)
+  playerErrorObjNotInitialized,
+  @JsonValue(-7)
+  playerErrorCodecNotSupported,
+  @JsonValue(-8)
+  playerErrorVideoRenderFailed,
+  @JsonValue(-9)
+  playerErrorInvalidState,
+  @JsonValue(-10)
+  playerErrorUrlNotFound,
+  @JsonValue(-11)
+  playerErrorInvalidConnectionState,
+  @JsonValue(-12)
+  playerErrorSrcBufferUnderflow,
+  @JsonValue(-13)
+  playerErrorInterrupted,
+  @JsonValue(-14)
+  playerErrorNotSupported,
+  @JsonValue(-15)
+  playerErrorTokenExpired,
+  @JsonValue(-16)
+  playerErrorIpExpired,
+  @JsonValue(-17)
+=======
   @JsonValue('-2')
   playerErrorInternal,
   @JsonValue('-3')
@@ -82,6 +115,7 @@ enum MediaPlayerError {
   @JsonValue('-16')
   playerErrorIpExpired,
   @JsonValue('-17')
+>>>>>>> release/rtc-ng/3.8.200-framework
   playerErrorUnknown,
 }
 

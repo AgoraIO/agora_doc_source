@@ -901,16 +901,36 @@ class RtcEngineEventHandler {
     this.onUserAccountUpdated,
   });
 
+<<<<<<< HEAD
+  final void Function(RtcConnection connection, int elapsed)?
+      onJoinChannelSuccess;
+
+  final void Function(RtcConnection connection, int elapsed)?
+=======
   final void Function(String channel, int uid, int elapsed)?
       onJoinChannelSuccess;
 
   final void Function(String channel, int uid, int elapsed)?
+>>>>>>> release/rtc-ng/3.8.200-framework
       onRejoinChannelSuccess;
 
   final void Function(int warn, String msg)? onWarning;
 
   final void Function(int err, String msg)? onError;
 
+<<<<<<< HEAD
+  final void Function(RtcConnection connection, int remoteUid, int quality,
+      int delay, int lost)? onAudioQuality;
+
+  final void Function(LastmileProbeResult result)? onLastmileProbeResult;
+
+  final void Function(RtcConnection connection, AudioVolumeInfo speakers,
+      int speakerNumber, int totalVolume)? onAudioVolumeIndication;
+
+  final void Function(RtcConnection connection, RtcStats stats)? onLeaveChannel;
+
+  final void Function(RtcConnection connection, RtcStats stats)? onRtcStats;
+=======
   final void Function(int uid, int quality, int delay, int lost)?
       onAudioQuality;
 
@@ -923,6 +943,7 @@ class RtcEngineEventHandler {
   final void Function(RtcStats stats)? onLeaveChannel;
 
   final void Function(RtcStats stats)? onRtcStats;
+>>>>>>> release/rtc-ng/3.8.200-framework
 
   final void Function(String deviceId, int deviceType, int deviceState)?
       onAudioDeviceStateChanged;
@@ -936,9 +957,16 @@ class RtcEngineEventHandler {
 
   final void Function(int deviceType)? onMediaDeviceChanged;
 
+<<<<<<< HEAD
+  final void Function(RtcConnection connection, int remoteUid, int txQuality,
+      int rxQuality)? onNetworkQuality;
+
+  final void Function(RtcConnection connection)? onIntraRequestReceived;
+=======
   final void Function(int uid, int txQuality, int rxQuality)? onNetworkQuality;
 
   final void Function()? onIntraRequestReceived;
+>>>>>>> release/rtc-ng/3.8.200-framework
 
   final void Function(UplinkNetworkInfo info)? onUplinkNetworkInfoUpdated;
 
@@ -946,6 +974,71 @@ class RtcEngineEventHandler {
 
   final void Function(int quality)? onLastmileQuality;
 
+<<<<<<< HEAD
+  final void Function(
+          RtcConnection connection, int width, int height, int elapsed)?
+      onFirstLocalVideoFrame;
+
+  final void Function(RtcConnection connection, int elapsed)?
+      onFirstLocalVideoFramePublished;
+
+  final void Function(RtcConnection connection, VideoSourceType sourceType,
+      int width, int height)? onVideoSourceFrameSizeChanged;
+
+  final void Function(RtcConnection connection, int remoteUid, int width,
+      int height, int elapsed)? onFirstRemoteVideoDecoded;
+
+  final void Function(RtcConnection connection, int uid, int width, int height,
+      int rotation)? onVideoSizeChanged;
+
+  final void Function(RtcConnection connection, LocalVideoStreamState state,
+      LocalVideoStreamError errorCode)? onLocalVideoStateChanged;
+
+  final void Function(
+      RtcConnection connection,
+      int remoteUid,
+      RemoteVideoState state,
+      RemoteVideoStateReason reason,
+      int elapsed)? onRemoteVideoStateChanged;
+
+  final void Function(RtcConnection connection, int remoteUid, int width,
+      int height, int elapsed)? onFirstRemoteVideoFrame;
+
+  final void Function(RtcConnection connection, int remoteUid, int elapsed)?
+      onUserJoined;
+
+  final void Function(RtcConnection connection, int remoteUid,
+      UserOfflineReasonType reason)? onUserOffline;
+
+  final void Function(RtcConnection connection, int remoteUid, bool muted)?
+      onUserMuteAudio;
+
+  final void Function(RtcConnection connection, int remoteUid, bool muted)?
+      onUserMuteVideo;
+
+  final void Function(RtcConnection connection, int remoteUid, bool enabled)?
+      onUserEnableVideo;
+
+  final void Function(RtcConnection connection, int remoteUid, int state)?
+      onUserStateChanged;
+
+  final void Function(RtcConnection connection, int remoteUid, bool enabled)?
+      onUserEnableLocalVideo;
+
+  final void Function(int err, String api, String result)? onApiCallExecuted;
+
+  final void Function(RtcConnection connection, LocalAudioStats stats)?
+      onLocalAudioStats;
+
+  final void Function(RtcConnection connection, RemoteAudioStats stats)?
+      onRemoteAudioStats;
+
+  final void Function(RtcConnection connection, LocalVideoStats stats)?
+      onLocalVideoStats;
+
+  final void Function(RtcConnection connection, RemoteVideoStats stats)?
+      onRemoteVideoStats;
+=======
   final void Function(int width, int height, int elapsed)?
       onFirstLocalVideoFrame;
 
@@ -992,6 +1085,7 @@ class RtcEngineEventHandler {
   final void Function(LocalVideoStats stats)? onLocalVideoStats;
 
   final void Function(RemoteVideoStats stats)? onRemoteVideoStats;
+>>>>>>> release/rtc-ng/3.8.200-framework
 
   final void Function()? onCameraReady;
 
@@ -1014,6 +1108,58 @@ class RtcEngineEventHandler {
           RhythmPlayerStateType state, RhythmPlayerErrorType errorCode)?
       onRhythmPlayerStateChanged;
 
+<<<<<<< HEAD
+  final void Function(RtcConnection connection)? onConnectionLost;
+
+  final void Function(RtcConnection connection)? onConnectionInterrupted;
+
+  final void Function(RtcConnection connection)? onConnectionBanned;
+
+  final void Function(RtcConnection connection, int remoteUid, int streamId,
+      Uint8List data, int length, int sentTs)? onStreamMessage;
+
+  final void Function(RtcConnection connection, int remoteUid, int streamId,
+      int code, int missed, int cached)? onStreamMessageError;
+
+  final void Function(RtcConnection connection)? onRequestToken;
+
+  final void Function(RtcConnection connection, String token)?
+      onTokenPrivilegeWillExpire;
+
+  final void Function(RtcConnection connection, int elapsed)?
+      onFirstLocalAudioFramePublished;
+
+  final void Function(RtcConnection connection, int userId, int elapsed)?
+      onFirstRemoteAudioFrame;
+
+  final void Function(RtcConnection connection, int uid, int elapsed)?
+      onFirstRemoteAudioDecoded;
+
+  final void Function(RtcConnection connection, LocalAudioStreamState state,
+      LocalAudioStreamError error)? onLocalAudioStateChanged;
+
+  final void Function(
+      RtcConnection connection,
+      int remoteUid,
+      RemoteAudioState state,
+      RemoteAudioStateReason reason,
+      int elapsed)? onRemoteAudioStateChanged;
+
+  final void Function(RtcConnection connection, int uid)? onActiveSpeaker;
+
+  final void Function(ContentInspectResult result)? onContentInspectResult;
+
+  final void Function(RtcConnection connection, String filePath, int width,
+      int height, int errCode)? onSnapshotTaken;
+
+  final void Function(RtcConnection connection, ClientRoleType oldRole,
+      ClientRoleType newRole)? onClientRoleChanged;
+
+  final void Function(
+      RtcConnection connection,
+      ClientRoleChangeFailedReason reason,
+      ClientRoleType currentRole)? onClientRoleChangeFailed;
+=======
   final void Function()? onConnectionLost;
 
   final void Function()? onConnectionInterrupted;
@@ -1057,6 +1203,7 @@ class RtcEngineEventHandler {
   final void Function(
           ClientRoleChangeFailedReason reason, ClientRoleType currentRole)?
       onClientRoleChangeFailed;
+>>>>>>> release/rtc-ng/3.8.200-framework
 
   final void Function(MediaDeviceType deviceType, int volume, bool muted)?
       onAudioDeviceVolumeChanged;
@@ -1087,6 +1234,22 @@ class RtcEngineEventHandler {
   final void Function(int uid, bool isFallbackOrRecover)?
       onRemoteSubscribeFallbackToAudioOnly;
 
+<<<<<<< HEAD
+  final void Function(RtcConnection connection, int remoteUid, int delay,
+      int lost, int rxKBitRate)? onRemoteAudioTransportStats;
+
+  final void Function(RtcConnection connection, int remoteUid, int delay,
+      int lost, int rxKBitRate)? onRemoteVideoTransportStats;
+
+  final void Function(RtcConnection connection, ConnectionStateType state,
+      ConnectionChangedReasonType reason)? onConnectionStateChanged;
+
+  final void Function(RtcConnection connection, NetworkType type)?
+      onNetworkTypeChanged;
+
+  final void Function(RtcConnection connection, EncryptionErrorType errorType)?
+      onEncryptionError;
+=======
   final void Function(int uid, int delay, int lost, int rxKBitRate)?
       onRemoteAudioTransportStats;
 
@@ -1100,6 +1263,7 @@ class RtcEngineEventHandler {
   final void Function(NetworkType type)? onNetworkTypeChanged;
 
   final void Function(EncryptionErrorType errorType)? onEncryptionError;
+>>>>>>> release/rtc-ng/3.8.200-framework
 
   final void Function(PermissionType permissionType)? onPermissionError;
 
@@ -1107,8 +1271,13 @@ class RtcEngineEventHandler {
 
   final void Function(int uid, UserInfo info)? onUserInfoUpdated;
 
+<<<<<<< HEAD
+  final void Function(RtcConnection connection, String requestId, bool success,
+      UploadErrorReason reason)? onUploadLogResult;
+=======
   final void Function(String requestId, bool success, UploadErrorReason reason)?
       onUploadLogResult;
+>>>>>>> release/rtc-ng/3.8.200-framework
 
   final void Function(
       String channel,
@@ -1147,7 +1316,13 @@ class RtcEngineEventHandler {
   final void Function(String provider, String extName, int error, String msg)?
       onExtensionErrored;
 
+<<<<<<< HEAD
+  final void Function(
+          RtcConnection connection, int remoteUid, String userAccount)?
+      onUserAccountUpdated;
+=======
   final void Function(int uid, String userAccount)? onUserAccountUpdated;
+>>>>>>> release/rtc-ng/3.8.200-framework
 }
 
 abstract class VideoDeviceManager {
@@ -1787,10 +1962,13 @@ abstract class RtcEngine {
       required Rectangle regionRect,
       required ScreenCaptureParameters captureParams});
 
+<<<<<<< HEAD
+=======
   void startScreenCapture(
       {required int mediaProjectionPermissionResultData,
       required ScreenCaptureParameters captureParams});
 
+>>>>>>> release/rtc-ng/3.8.200-framework
   DeviceInfo getAudioDeviceInfo();
 
   void startScreenCaptureByWindowId(
@@ -2212,7 +2390,11 @@ class SDKBuildInfo {
   const SDKBuildInfo({this.buildNumber, this.version});
 
   @JsonKey(name: 'build_number')
+<<<<<<< HEAD
+  final int? buildNumber;
+=======
   final String? buildNumber;
+>>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'version')
   final String? version;
   factory SDKBuildInfo.fromJson(Map<String, dynamic> json) =>

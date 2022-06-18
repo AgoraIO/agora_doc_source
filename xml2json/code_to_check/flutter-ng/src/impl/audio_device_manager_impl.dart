@@ -89,8 +89,18 @@ class AudioDeviceManagerImpl extends audio_device_manager_impl_binding
   List<AudioDeviceInfo> enumeratePlaybackDevices() {
     const apiType = 'AudioDeviceManager_enumeratePlaybackDevices';
     final param = createParams({});
+<<<<<<< HEAD
+    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
+    final result = rm['result'];
+
+=======
     final rm = apiCaller.callIrisApi(apiType, jsonEncode(param));
     final result = rm['result'];
+>>>>>>> release/rtc-ng/3.8.200-framework
     // final devices = rm['devices'];
     // final devicesList = List.from(devices);
     final List<AudioDeviceInfo> deviceInfoList = [];
@@ -111,8 +121,18 @@ class AudioDeviceManagerImpl extends audio_device_manager_impl_binding
   List<AudioDeviceInfo> enumerateRecordingDevices() {
     const apiType = 'AudioDeviceManager_enumerateRecordingDevices';
     final param = createParams({});
+<<<<<<< HEAD
+    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
+    final result = rm['result'];
+
+=======
     final rm = apiCaller.callIrisApi(apiType, jsonEncode(param));
     final result = rm['result'];
+>>>>>>> release/rtc-ng/3.8.200-framework
     final List<AudioDeviceInfo> deviceInfoList = [];
     deviceInfoList.fill(result);
 
@@ -123,18 +143,40 @@ class AudioDeviceManagerImpl extends audio_device_manager_impl_binding
   AudioDeviceInfo getPlaybackDeviceInfo() {
     const apiType = 'AudioDeviceManager_getPlaybackDeviceInfo';
     final param = createParams({});
+<<<<<<< HEAD
+    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
+    final result = rm['result'];
+
+    return AudioDeviceInfo.fromJson(result);
+=======
     final rm = apiCaller.callIrisApi(apiType, jsonEncode(param));
     final result = rm['result'];
     return AudioDeviceInfo.fromJson(rm);
+>>>>>>> release/rtc-ng/3.8.200-framework
   }
 
   @override
   AudioDeviceInfo getRecordingDeviceInfo() {
     const apiType = 'AudioDeviceManager_getRecordingDeviceInfo';
     final param = createParams({});
+<<<<<<< HEAD
+    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
+    final result = rm['result'];
+
+    return AudioDeviceInfo.fromJson(result);
+=======
     final rm = apiCaller.callIrisApi(apiType, jsonEncode(param));
     final result = rm['result'];
     return AudioDeviceInfo.fromJson(rm);
+>>>>>>> release/rtc-ng/3.8.200-framework
   }
 
   @override

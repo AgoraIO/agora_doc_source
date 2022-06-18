@@ -9,8 +9,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:iris_event/iris_event.dart';
 
+<<<<<<< HEAD
+const int kBasicResultLength = 64 * 1024;
+
+class CallApiResult {
+  CallApiResult({required this.irisReturnCode, required this.data});
+
+  final int irisReturnCode;
+
+  final Map<String, dynamic> data;
+}
+=======
 
 const int kBasicResultLength = 64 * 1024;
+>>>>>>> release/rtc-ng/3.8.200-framework
 
 class AgoraRtcException implements Exception {
   /// Creates a [PlatformException] with the specified error [code] and optional
@@ -104,7 +116,11 @@ class ApiCaller implements IrisEventHandler {
     _irisApiEnginePtr = null;
   }
 
+<<<<<<< HEAD
+  CallApiResult callIrisApi(
+=======
   Map<String, dynamic> callIrisApi(
+>>>>>>> release/rtc-ng/3.8.200-framework
     String funcName,
     String params, {
     Uint8List? buffer,
@@ -113,7 +129,11 @@ class ApiCaller implements IrisEventHandler {
 
     // debugPrint('function name: $funcName, params: $params');
 
+<<<<<<< HEAD
+    return using<CallApiResult>((Arena arena) {
+=======
     return using<Map<String, dynamic>>((Arena arena) {
+>>>>>>> release/rtc-ng/3.8.200-framework
       final ffi.Pointer<ffi.Int8> resultPointer =
           arena.allocate<ffi.Int8>(kBasicResultLength).cast<ffi.Int8>();
 
@@ -147,7 +167,11 @@ class ApiCaller implements IrisEventHandler {
       }
 
       try {
+<<<<<<< HEAD
+        final irisReturnCode = _nativeIrisApiEngineBinding.CallIrisApi(
+=======
         _nativeIrisApiEngineBinding.CallIrisApi(
+>>>>>>> release/rtc-ng/3.8.200-framework
             _irisApiEnginePtr!,
             funcNamePointer,
             paramsPointer,
@@ -161,11 +185,21 @@ class ApiCaller implements IrisEventHandler {
         debugPrint(
             'function name: $funcName, params: $params\nresultMap: ${resultMap.toString()}');
 
+<<<<<<< HEAD
+            
+
+        return CallApiResult(irisReturnCode: irisReturnCode, data: resultMap);
+      } catch (e) {
+        debugPrint(
+            'function name: $funcName, params: $params\nerror: ${e.toString()}');
+        return CallApiResult(irisReturnCode: -1, data: const {});
+=======
         return resultMap;
       } catch (e) {
         debugPrint(
             'function name: $funcName, params: $params\nerror: ${e.toString()}');
         return {};
+>>>>>>> release/rtc-ng/3.8.200-framework
       }
     });
   }
