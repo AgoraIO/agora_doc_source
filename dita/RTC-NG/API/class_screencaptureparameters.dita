@@ -57,33 +57,43 @@
   }
 }</codeblock>
     <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenCaptureParameters: NSObject
-    @property (assign, nonatomic) CGSize dimensions;
-    @property (assign, nonatomic) NSInteger frameRate;
-    @property (assign, nonatomic) NSInteger bitrate;
-
-    @end</codeblock>
+@property (assign, nonatomic) CGSize dimensions;
+@property (assign, nonatomic) NSInteger frameRate;
+@property (assign, nonatomic) NSInteger bitrate;
+@property(assign, nonatomic) BOOL captureMouseCursor;
+@property(assign, nonatomic) BOOL windowFocus;
+@property(copy, nonatomic) NSArray* _Nullable excludeWindowList;
+@property(assign, nonatomic) BOOL highLighted;
+@property(strong, nonatomic) COLOR_CLASS* _Nullable highLightColor;
+@property(assign, nonatomic) NSUInteger highLightWidth;
+@end
+</codeblock>
     <codeblock props="cpp" outputclass="language-cpp">struct ScreenCaptureParameters {
-  VideoDimensions dimensions;
-  int frameRate;
-  int bitrate;
-  bool captureMouseCursor;
-  bool windowFocus;
-  view_t *excludeWindowList;
-  int excludeWindowCount;
+    VideoDimensions dimensions;
+    int frameRate;
+    int bitrate;
+    bool captureMouseCursor;
+    bool windowFocus;
+    view_t *excludeWindowList;
+    int excludeWindowCount;
+    int highLightWidth;
+    unsigned int highLightColor;
+    bool enableHighLight;
 
   ScreenCaptureParameters()
-    : dimensions(1920, 1080), frameRate(5), bitrate(STANDARD_BITRATE), captureMouseCursor(true), windowFocus(false), excludeWindowList(OPTIONAL_NULLPTR), excludeWindowCount(0) {}
+    : dimensions(1920, 1080), frameRate(5), bitrate(STANDARD_BITRATE), captureMouseCursor(true), windowFocus(false), excludeWindowList(OPTIONAL_NULLPTR), excludeWindowCount(0), highLightWidth(0), highLightColor(0), enableHighLight(false)  {}
   ScreenCaptureParameters(const VideoDimensions&amp; d, int f, int b)
-    : dimensions(d), frameRate(f), bitrate(b), captureMouseCursor(true), windowFocus(false), excludeWindowList(OPTIONAL_NULLPTR), excludeWindowCount(0) {}
+    : dimensions(d), frameRate(f), bitrate(b), captureMouseCursor(true), windowFocus(false), excludeWindowList(OPTIONAL_NULLPTR), excludeWindowCount(0), highLightWidth(0), highLightColor(0), enableHighLight(false) {}
   ScreenCaptureParameters(int width, int height, int f, int b)
-    : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(true), windowFocus(false), excludeWindowList(OPTIONAL_NULLPTR), excludeWindowCount(0) {}
+    : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(true), windowFocus(false), excludeWindowList(OPTIONAL_NULLPTR), excludeWindowCount(0), highLightWidth(0), highLightColor(0), enableHighLight(false){}
   ScreenCaptureParameters(int width, int height, int f, int b, bool cur, bool fcs)
-    : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(cur), windowFocus(fcs), excludeWindowList(OPTIONAL_NULLPTR), excludeWindowCount(0) {}
+    : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(cur), windowFocus(fcs), excludeWindowList(OPTIONAL_NULLPTR), excludeWindowCount(0), highLightWidth(0), highLightColor(0), enableHighLight(false) {}
   ScreenCaptureParameters(int width, int height, int f, int b, view_t *ex, int cnt)
-    : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(true), windowFocus(false), excludeWindowList(ex), excludeWindowCount(cnt) {}
+    : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(true), windowFocus(false), excludeWindowList(ex), excludeWindowCount(cnt), highLightWidth(0), highLightColor(0), enableHighLight(false) {}
   ScreenCaptureParameters(int width, int height, int f, int b, bool cur, bool fcs, view_t *ex, int cnt)
-    : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(cur), windowFocus(fcs), excludeWindowList(ex), excludeWindowCount(cnt) {}
-};</codeblock>
+    : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(cur), windowFocus(fcs), excludeWindowList(ex), excludeWindowCount(cnt), highLightWidth(0), highLightColor(0), enableHighLight(false) {}
+};
+</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class ScreenCaptureParameters
     {
         public ScreenCaptureParameters()
@@ -158,9 +168,9 @@
                 <pt>bitrate</pt>
                 <pd><ph props="android unity flutter">共享视频的码率。</ph><ph props="mac">共享的屏幕流的视频编码码率。</ph><ph props="unity cpp">在 Windows 和 macOS 平台上，表示共享的屏幕流的视频编码码率。</ph><ph>单位为 Kbps；默认值为 0，表示 SDK 根据当前共享屏幕的分辨率计算出一个合理的值。</ph></pd>
             </plentry>
-            <plentry props="rtc-ng">
-                <pt props="cpp unity">captureMouseCursor</pt>
-                <pd props="cpp unity">
+            <plentry props="mac cpp unity">
+                <pt>captureMouseCursor</pt>
+                <pd>
                     <p>是否采集鼠标用于屏幕共享：
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>:（默认）采集鼠标。</li>
@@ -168,9 +178,9 @@
                     </ul></p>
                 </pd>
             </plentry>
-            <plentry>
-                <pt props="cpp unity">windowFocus</pt>
-                <pd props="cpp unity">
+            <plentry props="mac cpp unity">
+                <pt>windowFocus</pt>
+                <pd>
                     <p>调用 <xref keyref="startScreenCaptureByWindowId"/> 方法共享窗口时，是否将该窗口前置：
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 前置窗口。</li>
@@ -178,11 +188,28 @@
                     </ul></p>
                 </pd>
             </plentry>
-            <plentry>
-                <pt props="cpp unity">excludeWindowList</pt>
-                <pd props="cpp unity">
-                    <p>待屏蔽窗口的 ID 列表。调用 <xref keyref="startScreenCaptureByDisplayId"/> 开启屏幕共享时，你可以通过该参数屏蔽指定的窗口。你可以在调用 <xref keyref="updateScreenCaptureParameters" /> 更新屏幕共享的配置参数时，通过该参数动态屏蔽指定的窗口。</p>
-                </pd>
+            <plentry props="mac cpp unity">
+                <pt>excludeWindowList</pt>
+                <pd>待屏蔽窗口的 ID 列表。调用 <xref keyref="startScreenCaptureByDisplayId"/> 开启屏幕共享时，你可以通过该参数屏蔽指定的窗口。你可以在调用 <xref keyref="updateScreenCaptureParameters" /> 更新屏幕共享的配置参数时，通过该参数动态屏蔽指定的窗口。</pd>
+            </plentry>
+            <plentry props="mac cpp">
+              <pt props="mac">highLighted</pt>
+              <pt props="cpp">enableHighLight</pt>
+              <pd><ph props="cpp">（仅适用于 macOS）</ph><ph>是否对共享的窗口或屏幕进行描边：</ph>
+                        <ul>
+                        <li><codeph><ph keyref="true"/></codeph>: 描边。</li>
+                        <li><codeph><ph keyref="false"/></codeph>: （默认）不描边。</li>
+                        </ul>
+                        <note>当你在共享窗口或屏幕的部分区域时，如果将该参数设置为 <codeph><ph keyref="true"/></codeph>，SDK 会对整个窗口或屏幕进行描边。</note></pd>
+            </plentry>
+            <plentry props="mac cpp">
+              <pt>highLightColor</pt>
+              <pd><ph props="cpp">（仅适用于 macOS）</ph><ph>描边的 RGBA 颜色。默认值为 0xFF8CBF26。</ph>
+                        <note props="mac">在 macOS 平台上，<codeph>COLOR_CLASS</codeph> 指 <codeph>NSColor</codeph>。</note></pd>
+            </plentry>
+            <plentry props="mac cpp">
+              <pt>highLightWidth</pt>
+              <pd><ph props="cpp">（仅适用于 macOS）</ph><ph>描边的宽度 (px)。默认值为 0，取值范围为 [0,50]。</ph></pd>
             </plentry>
             <plentry props="cpp unity electron">
                 <pt>excludeWindowCount</pt>

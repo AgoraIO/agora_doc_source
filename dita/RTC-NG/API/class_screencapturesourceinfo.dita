@@ -2,12 +2,24 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_screencapturesourceinfo">
     <title><ph keyref="ScreenCaptureSourceInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc">可共享窗口或屏幕的信息。在 <xref keyref="IScreenCaptureSourceList"/> 中返回。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">可共享窗口或屏幕的信息。<ph props="cpp">在 <xref
+        keyref="IScreenCaptureSourceList"/> 中返回。</ph></ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenCaptureSourceInfo : NSObject
+@property(assign, nonatomic) AgoraScreenCaptureSourceType type;
+@property(assign, nonatomic) CGWindowID sourceId;
+@property(copy, nonatomic) NSString* _Nonnull sourceName;
+@property(strong, nonatomic) NSImage* _Nonnull thumbImage;
+@property(strong, nonatomic) NSImage* _Nullable iconImage;
+@property(copy, nonatomic) NSString* _Nonnull processPath;
+@property(copy, nonatomic) NSString* _Nonnull sourceTitle;
+@property(assign, nonatomic) BOOL primaryMonitor;
+
+@end
+</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct ScreenCaptureSourceInfo {
   ScreenCaptureSourceType type;
   view_t sourceId;
@@ -25,18 +37,9 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>自从</dt>
-                <dd>v3.5.2</dd>
-            </dlentry>
-            </dl>
-            <p/>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
                 <pt>type</pt>
@@ -52,11 +55,13 @@
             </plentry>
             <plentry>
                 <pt>thumbImage</pt>
-                <pd>缩略图的图像内容。详见 <xref keyref="ThumbImageBuffer"/>。</pd>
+                <pd><ph>缩略图的图像内容。</ph><ph props="cpp">详见 <xref
+                        keyref="ThumbImageBuffer"/>。</ph></pd>
             </plentry>
             <plentry>
                 <pt>iconImage</pt>
-                <pd>图标的图像内容。详见 <xref keyref="ThumbImageBuffer"/>。</pd>
+                <pd><ph>图标的图像内容。</ph><ph props="cpp">详见 <xref
+                        keyref="ThumbImageBuffer"/>。</ph></pd>
             </plentry>
             <plentry>
                 <pt>processPath</pt>
@@ -69,6 +74,7 @@
             <plentry>
                 <pt>primaryMonitor</pt>
                 <pd>屏幕是否为主显示屏：
+
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 是。</li>
                     <li><codeph><ph keyref="false"/></codeph>: 否。</li>
