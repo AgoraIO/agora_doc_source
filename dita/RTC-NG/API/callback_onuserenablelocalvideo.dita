@@ -30,33 +30,17 @@
             <dl outputclass="deprecated" props="hide">
             <dlentry>
                 <dt>弃用：</dt>
-                <dd>
-                        请改用
-                        <xref keyref="onRemoteVideoStateChanged"/>
-                        回调的：
-                        
-                    
-                    
-                    
-                    <ul>
-                    <li> <apiname keyref="REMOTE_VIDEO_STATE_STOPPED"/>
-                                (0) 和
-                                <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED"/>
-                                (5) 。
+                <dd>请改用 <xref keyref="onRemoteVideoStateChanged"/>回调的：
+                      <ul>
+                    <li> <apiname keyref="REMOTE_VIDEO_STATE_STOPPED"/>(0) 和 <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED"/>(5)。
                             </li>
-                    <li> <apiname keyref="REMOTE_VIDEO_STATE_DECODING"/>
-                                (2) 和
-                                <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED"/>
-                                (6)。
+                    <li> <apiname keyref="REMOTE_VIDEO_STATE_DECODING"/> (2) 和 <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED"/>(6)。
                             </li>
                     </ul> </dd>
             </dlentry>
             </dl>
-            <p id="desc">
-                该回调是由远端用户调用
-                <xref keyref="enableLocalVideo"/>
-                方法开启或关闭视频采集触发的。
-            </p>
+            <note props="unity">该方法即将废弃，Agora 推荐你改用 <xref keyref="onRemoteVideoStateChanged"/>。</note>
+            <p id="desc">该回调是由远端用户调用 <xref keyref="enableLocalVideo"/> 方法开启或关闭视频采集触发的。</p>
         </section>
         <section id="parameters">
             <title> <ph keyref="callback-section-title"/> </title>
@@ -66,37 +50,22 @@
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="rtc-ng">
-                <pt props="unity">connection</pt>
-                <pd props="unity">
-                        Connection 信息。详见
-                        <xref keyref="RtcConnection"/>
-                        。
-                    </pd>
+            <plentry props="unity" conkeyref="joinChannelEx/connection">
+                <pt></pt>
+                <pd></pd>
             </plentry>
             <plentry>
                 <pt props="native electron flutter">uid</pt>
-                <pt props="unity"> <ph props="rtc">uid</ph> <ph props="rtc-ng">remoteUid</ph> </pt>
+                <pt props="unity">remoteUid</pt>
                 <pd>用户 ID，提示是哪个用户的视频流。</pd>
             </plentry>
             <plentry>
                 <pt>enabled</pt>
                 <pd>
-                    <p>
-                            远端用户是否启用视频采集：
-                            
-                    
-                    
-                    
+                    <p>远端用户是否启用视频采集：
                     <ul>
-                    <li> <codeph> <ph keyref="true"/> </codeph>
-                                    :
-                                    该用户已启用视频功能。启用后，其他用户可以接收到该用户的视频流。
-                                </li>
-                    <li> <codeph> <ph keyref="false"/> </codeph>
-                                    :
-                                    该用户已关闭视频功能。关闭后，该用户仍然可以接收其他用户的视频流，但其他用户接收不到该用户的视频流。
-                                </li>
+                    <li> <codeph><ph keyref="true"/></codeph>: 该用户已启用视频功能。启用后，其他用户可以接收到该用户的视频流。</li>
+                    <li> <codeph><ph keyref="false"/></codeph>: 该用户已关闭视频功能。关闭后，该用户仍然可以接收其他用户的视频流，但其他用户接收不到该用户的视频流。</li>
                     </ul> </p>
                 </pd>
             </plentry>

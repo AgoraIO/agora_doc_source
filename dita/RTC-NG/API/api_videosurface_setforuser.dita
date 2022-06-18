@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_setforuser">
+<reference id="api_videosurface_setforuser">
     <title><ph keyref="setForUser"/></title>
     <shortdesc id="short"><ph id="shortdesc">设置本地/远端视频显示。</ph></shortdesc>
     <prolog>
@@ -18,8 +18,13 @@
             <codeblock props="cpp" outputclass="language-cpp"/>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public void SetForUser(uint uid = 0, string channelId = "",
-            VIDEO_SOURCE_TYPE source_type = VIDEO_SOURCE_TYPE.VIDEO_SOURCE_CAMERA_PRIMARY, 
-            int videoPixelWidth = 1080, int videoPixelHeight = 720)</codeblock>
+            VIDEO_SOURCE_TYPE source_type = VIDEO_SOURCE_TYPE.VIDEO_SOURCE_CAMERA_PRIMARY)
+        {
+            Uid = uid;
+            ChannelId = channelId;
+            SourceType = source_type;
+            _needUpdateInfo = false;
+        }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
@@ -44,17 +49,6 @@
                 <pt>source_type</pt>
                 <pd>视频流类型，详见<xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
             </plentry>
-            <plentry>
-                <pt>videoPixelWidth</pt>
-                <pd>视频宽 (pixel)。</pd>
-            </plentry>
-            <plentry>
-                <pt>videoPixelHeight</pt>
-                <pd>视频高 (pixel)。</pd>
-            </plentry>
             </parml> </section>
-        <section id="return_values">
-            <title>返回值</title>
-        </section>
     </refbody>
 </reference>

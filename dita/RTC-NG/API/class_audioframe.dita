@@ -118,8 +118,6 @@
         public BYTES_PER_SAMPLE bytesPerSample { set; get; }
         public int channels { set; get; }
         public int samplesPerSec { set; get; }
-        public UInt64 buffer { set; get; }
-        public IntPtr bufferPtr { set; get; }
         public byte[] RawBuffer { set; get; }
         public long renderTimeMs { set; get; }
         public int avsync_type { set; get; }
@@ -160,8 +158,9 @@
                 <pd>每声道每秒的采样点数。</pd>
             </plentry>
             <plentry>
-                <pt props="cpp ios mac unity">buffer</pt>
+                <pt props="cpp ios mac">buffer</pt>
                     <pt props="android">bytes</pt>
+                <pt props="unity">RawBuffer</pt>
                 <pd>
                     <p>声音数据缓存区（如果是立体声，数据是交叉存储的）。</p>
                     <p>缓存区数据大小 <codeph>buffer</codeph> = <codeph>samples</codeph> × <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>。</p>

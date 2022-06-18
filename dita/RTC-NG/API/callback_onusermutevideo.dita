@@ -29,13 +29,13 @@
             <dlentry>
                 <dt>弃用：</dt>
                 <dd>你也可以使用 <xref keyref="onRemoteVideoStateChanged"/> 回调的：
-                    
                     <ul>
                     <li><apiname keyref="REMOTE_VIDEO_STATE_STOPPED"/> (0) 和 <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED"/> (5) 。</li>
                     <li><apiname keyref="REMOTE_VIDEO_STATE_DECODING"/> (2) 和 <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED"/> (6)。</li>
                     </ul> </dd>
             </dlentry>
             </dl>
+            <note props="unity">该方法即将废弃，Agora 推荐你使用 <xref keyref="onRemoteVideoStateChanged"/>。</note>
             <p>当远端用户调用 <xref keyref="muteLocalVideoStream"/> 取消或恢复发布视频流时，SDK 会触发该回调向本地用户报告远端用户的发流状况。</p>
             <note type="attention">当频道内的用户（通信场景）或主播（直播场景）的人数超过 17 时，该回调可能不准确。</note> </section>
         <section id="parameters">
@@ -58,6 +58,7 @@
             <plentry>
                 <pt>muted</pt>
                 <pd>远端用户是否取消发布视频流：
+                    
                     
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 取消发布视频流。</li>

@@ -20,7 +20,7 @@
                     const char* provider, const char* extension, bool enable=true, agora::media::MEDIA_SOURCE_TYPE type = agora::media::UNKNOWN_MEDIA_SOURCE) = 0;
                 </codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int EnableExtension(string provider, string extension, bool enable=true);</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int EnableExtension(string provider, string extension, bool enable = true, MEDIA_SOURCE_TYPE type = MEDIA_SOURCE_TYPE.UNKNOWN_MEDIA_SOURCE);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
@@ -47,42 +47,21 @@
                 <pt props="ios mac">enabled</pt>
                 <pd>
                     <p>是否启用插件：
-
-
-                    
-                    
-                    
-                    
-                    
                     <ul id="ul_c3b_d22_3qb">
                     <li><codeph><ph keyref="true"/></codeph>: 启用插件。</li>
                     <li><codeph><ph keyref="false"/></codeph>: 禁用插件。</li>
                     </ul></p>
                 </pd>
             </plentry>
-            <plentry id="source" props="cpp">
-                <pt>type</pt>
-                <pd>媒体资源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。
-
-
-                    
-                    
-                    
-                    
-                    
-                    <note type="attention">在该方法中，该参数仅支持以下两种设置：
-
-
-                    
-                    
-                    
-                    
-                    
-                    <ul>
-                    <li>默认值为 <apiname keyref="UNKNOWN_MEDIA_SOURCE"/>。</li>
-                    <li>如果要使用第二个摄像头采集视频，将该参数设置为 <apiname keyref="SECONDARY_CAMERA_SOURCE"/>。</li>
-                    </ul></note></pd>
-            </plentry>
+            <plentry id="source" props="cpp unity">
+                    <pt>type</pt>
+                    <pd>媒体资源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。 
+                        <note type="attention">在该方法中，该参数仅支持以下两种设置： 
+                        <ul>
+                        <li>默认值为 <apiname keyref="UNKNOWN_MEDIA_SOURCE"/>。</li>
+                        <li>如果要使用第二个摄像头采集视频，将该参数设置为 <apiname keyref="SECONDARY_CAMERA_SOURCE"/>。</li>
+                        </ul></note></pd>
+                </plentry>
             </parml> </section>
         <section id="return_values">
             <title>返回值</title>

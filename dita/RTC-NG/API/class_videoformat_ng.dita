@@ -21,31 +21,38 @@
             <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public class VideoFormat
     {
-        public VideoFormat()
+        public enum OPTIONAL_ENUM_SIZE_T
         {
-            width = (int) FRAME_WIDTH.FRAME_WIDTH_640;
-            height = (int) FRAME_HEIGHT.FRAME_HEIGHT_360;
-            fps = (int) FRAME_RATE.FRAME_RATE_FPS_15;
-            pixelFormat = 0;
+            /** The maximum value (px) of the width. */
+            kMaxWidthInPixels = 3840,
+            /** The maximum value (px) of the height. */
+            kMaxHeightInPixels = 2160,
+            /** The maximum value (fps) of the frame rate. */
+            kMaxFps = 60,
         }
 
-        public VideoFormat(int w, int h, int f, uint pixelFormat = 0)
+        public VideoFormat()
+        {
+            width = (int)FRAME_WIDTH.FRAME_WIDTH_640;
+            height = (int)FRAME_HEIGHT.FRAME_HEIGHT_360;
+            fps = (int)FRAME_RATE.FRAME_RATE_FPS_15;
+        }
+
+        public VideoFormat(int w, int h, int f)
         {
             this.width = w;
             this.height = h;
             this.fps = f;
-            this.pixelFormat = pixelFormat;
         }
         public int width { set; get; }
         public int height { set; get; }
         public int fps { set; get; }
-        public uint pixelFormat { set; get; }
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock></p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
                 <pt>width</pt>
@@ -58,10 +65,6 @@
             <plentry>
                 <pt>fps</pt>
                 <pd>视频帧的帧率。</pd>
-            </plentry>
-            <plentry props="rtc-ng">
-                <pt props="unity">pixelFormat</pt>
-                <pd props="unity">像素格式。</pd>
             </plentry>
             </parml> </section>
     </refbody>

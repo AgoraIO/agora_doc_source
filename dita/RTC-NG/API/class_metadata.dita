@@ -14,10 +14,27 @@
     unsigned char *buffer;
     long long timeStampMs;
     };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock> </p>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">public class Metadata
+    {
+        public uint uid;
+        public uint size;
+        public IntPtr buffer
+        {
+            set
+            {
+                _buffer = (UInt64) value;
+            }
+            get
+            {
+                return (IntPtr)_buffer;
+            }
+        }
+
+        public long timeStampMs;
+    };</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/>There are no corresponding names available</codeblock> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>

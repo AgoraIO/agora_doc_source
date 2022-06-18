@@ -9,7 +9,7 @@
             <codeblock props="android" outputclass="language-java">public class UserInfo {
                     public int uid;
                     public String userAccount;
-                    
+
                     @CalledByNative
                     public UserInfo(int uid, String userAccount) {
                     this.uid = uid;
@@ -28,23 +28,20 @@
                     userAccount[0] = '\0';
                     }
                     };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp">
-        public struct UserInfo
-{  
-    public uint uid; 
-    public string userAccount; 
-}           </codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock> </p>
-        </section>
-        <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-            <dlentry>
-                <dt>自从</dt>
-                <dd>v2.8.0</dd>
-            </dlentry>
-            </dl>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">public class UserInfo
+    {
+        public uint uid;
+        public string userAccount;
+
+        public UserInfo()
+        {
+            uid = 0;
+            userAccount = "";
+        }
+    }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/>There are no corresponding names available</codeblock> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
@@ -55,7 +52,7 @@
             </plentry>
             <plentry>
                 <pt>userAccount</pt>
-                <pd>用户 Account。<ph props="cpp unity">长度限制为<xref keyref="MAX_USER_ACCOUNT_LENGTH_TYPE" />。</ph></pd>
+                <pd>用户 Account。<ph props="cpp unity">长度限制为<xref keyref="MAX_USER_ACCOUNT_LENGTH_TYPE"/>。</ph></pd>
             </plentry>
             </parml> </section>
     </refbody>

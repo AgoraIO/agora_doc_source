@@ -35,28 +35,29 @@
         public VideoCanvas()
         {
             view = 0;
-            renderMode = (int) RENDER_MODE_TYPE.RENDER_MODE_HIDDEN;
+            renderMode = RENDER_MODE_TYPE.RENDER_MODE_HIDDEN;
             uid = 0;
             mirrorMode = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_AUTO;
-            isScreenView = false;
-            priv = null;
-            priv_size = 0;
-            sourceType = VIDEO_SOURCE_TYPE.VIDEO_SOURCE_CAMERA_PRIMARY;
-        }
+            sourceType = VIDEO_SOURCE_TYPE.VIDEO_SOURCE_CAMERA_PRIMARY;        }
 
-        public VideoCanvas(view_t? view, RENDER_MODE_TYPE renderMode,  
-             bool isScreenView, byte[] priv, uint priv_size,
-            VIDEO_SOURCE_TYPE sourceType, uint uid = 0, 
-            VIDEO_MIRROR_MODE_TYPE mirrorMode = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_AUTO)
+        public VideoCanvas(view_t v, RENDER_MODE_TYPE m, VIDEO_MIRROR_MODE_TYPE mt, uint u)
         {
-            this.view = view ?? 0;
-            this.renderMode = (int) renderMode;
-            this.uid = uid;
-            this.mirrorMode = mirrorMode;
-            this.sourceType = sourceType;
+            this.view = v;
+            this.renderMode = m;
+            this.mirrorMode = mt;
+            this.uid = u;
+            this.sourceType = VIDEO_SOURCE_TYPE.VIDEO_SOURCE_CAMERA_PRIMARY;        }
+
+        public VideoCanvas(view_t v, RENDER_MODE_TYPE m, VIDEO_MIRROR_MODE_TYPE mt, string u)
+        {
+            this.view = v;
+            this.renderMode = m;
+            this.mirrorMode = mt;
+            this.uid = 0;
+            this.sourceType = VIDEO_SOURCE_TYPE.VIDEO_SOURCE_CAMERA_PRIMARY;
         }
         public view_t view { set; get; }
-        public int renderMode { set; get; }
+        public RENDER_MODE_TYPE renderMode { set; get; }
         public VIDEO_MIRROR_MODE_TYPE mirrorMode { set; get; }
         public uint uid { set; get; }
         public VIDEO_SOURCE_TYPE sourceType { set; get; }
@@ -75,7 +76,7 @@
             <plentry>
                 <pt>renderMode</pt>
                 <pd>
-                    <p props="ios mac cpp unity">视频渲染模式，详见 <xref keyref="RENDER_MODE_TYPE" />。</p>
+                    <p props="ios mac cpp unity">视频渲染模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</p>
                     <p props="android">
                     <ul conkeyref="setLocalRenderMode2/rendermodetype">
                     <li />
@@ -85,7 +86,7 @@
             <plentry>
                 <pt>mirrorMode</pt>
                 <pd>
-                    <p props="ios mac cpp unity">视图镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE" />。</p>
+                    <p props="ios mac cpp unity">视图镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
                     <p props="android">
                     <ul conkeyref="setLocalRenderMode2/videomirrormodetype">
                     <li />

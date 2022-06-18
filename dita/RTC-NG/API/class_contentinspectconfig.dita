@@ -55,17 +55,31 @@
             <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public class ContentInspectConfig
     {
-        public bool DeviceWork;
-        public bool CloudWork;
-        public CONTENT_INSPECT_DEVICE_TYPE DeviceworkType;</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock> </p>
+        public ContentInspectConfig()
+        {
+            enable = false;
+            DeviceWork = false;
+            CloudWork = true;
+            DeviceworkType = CONTENT_INSPECT_DEVICE_TYPE.CONTENT_INSPECT_DEVICE_INVALID;
+            extraInfo = "";
+            moduleCount = 0;
+        }
+        public bool enable { set; get; }
+        public bool DeviceWork { set; get; }
+        public bool CloudWork { set; get; }
+        public CONTENT_INSPECT_DEVICE_TYPE DeviceworkType { set; get; }
+        public ContentInspectModule[] modules { set; get; }
+        public int moduleCount { set; get; }
+
+    };</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/>There are no corresponding names available</codeblock></p>
         </section>
         <section id="detailed_desc" />
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry props="cpp">
+            <plentry props="cpp unity">
                 <pt>enable</pt>
                 <pd>是否开启鉴黄功能。
                     <ul>
@@ -106,13 +120,13 @@
             <plentry>
                 <pt>modules</pt>
                 <pd>
-                    <p>内容审核模块。详见 <xref keyref="ContentInspectModule" />。</p>
-                    <p>最多支持配置 32 个 <xref keyref="ContentInspectModule" /> 实例，<parmname>MAX_CONTENT_INSPECT_MODULE_COUNT</parmname> 的取值范围为 [1,32] 中的整数。</p>
+                    <p>内容审核模块。详见 <xref keyref="ContentInspectModule"/>。</p>
+                    <p>最多支持配置 32 个 <xref keyref="ContentInspectModule"/> 实例，<parmname>MAX_CONTENT_INSPECT_MODULE_COUNT</parmname> 的取值范围为 [1,32] 中的整数。</p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>moduleCount</pt>
-                <pd>内容审核模块数，即配置的 <xref keyref="ContentInspectModule" /> 实例的数量。最大值为 32。</pd>
+                <pd>内容审核模块数，即配置的 <xref keyref="ContentInspectModule"/> 实例的数量。最大值为 32。</pd>
             </plentry>
             </parml> </section>
     </refbody>

@@ -26,38 +26,23 @@
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
-        <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>自从</dt>
-                <dd>v3.0.1</dd>
-            </dlentry>
-            </dl>
-            <p>成功注册视频数据观测器后，SDK 会在每个特定的视频帧处理节点通过该回调来判断是否触发 <xref keyref="onCaptureVideoFrame"/>、 <xref keyref="onRenderVideoFrame"/> 和 <xref keyref="onPreEncodeVideoFrame"/> 回调，供你观测本地采集视频数据、远端发送的视频数据以及编码前的视频数据。你可以根据场景需求，通过修改该方法的返回值，设置你需要观测的某个或多个位置：</p>
+        <section id="detailed_desc"><p>成功注册视频数据观测器后，SDK 会在每个特定的视频帧处理节点通过该回调来判断是否触发 <xref keyref="onCaptureVideoFrame"/>、 <xref keyref="onRenderVideoFrame"/> 和 <xref keyref="onPreEncodeVideoFrame"/> 回调，供你观测本地采集视频数据、远端发送的视频数据以及编码前的视频数据。你可以根据场景需求，通过修改该方法的返回值，设置你需要观测的某个或多个位置：</p>
             <p>
             <ul>
-            <li><apiname keyref="POSITION_POST_CAPTURER" props="hide"/>(1 &lt;&lt; 0)，本地采集视频数据后的位置，对应 <apiname keyref="onCaptureVideoFrame"/> 回调。</li>
-            <li><apiname keyref="POSITION_PRE_RENDERER" props="hide"/>(1 &lt;&lt; 1)，接收远端发送视频前的位置，对应 <apiname keyref="onRenderVideoFrame"/> 回调。</li>
-            <li><apiname keyref="POSITION_PRE_ENCODER" props="hide"/>(1 &lt;&lt; 2)，本地视频编码前的位置，对应 <apiname keyref="onPreEncodeVideoFrame"/> 回调。</li>
+            <li><apiname keyref="POSITION_POST_CAPTURER"/>(1 &lt;&lt; 0)，本地采集视频数据后的位置，对应 <apiname keyref="onCaptureVideoFrame"/> 回调。</li>
+            <li><apiname keyref="POSITION_PRE_RENDERER"/>(1 &lt;&lt; 1)，接收远端发送视频前的位置，对应 <apiname keyref="onRenderVideoFrame"/> 回调。</li>
+            <li><apiname keyref="POSITION_PRE_ENCODER"/>(1 &lt;&lt; 2)，本地视频编码前的位置，对应 <apiname keyref="onPreEncodeVideoFrame"/> 回调。</li>
             </ul></p>
             <note type="attention">
             <ul>
             <li>观测多个位置时，需要使用 '|' （或）运算符。</li>
-            <li>该回调默认观测 <apiname keyref="POSITION_POST_CAPTURER" props="hide"/>(1 &lt;&lt; 0) 和 <apiname keyref="POSITION_PRE_RENDERER" props="hide"/>(1 &lt;&lt; 1)。</li>
+            <li>该回调默认观测 <apiname keyref="POSITION_POST_CAPTURER"/>(1 &lt;&lt; 0) 和 <apiname keyref="POSITION_PRE_RENDERER"/>(1 &lt;&lt; 1)。</li>
             <li>为降低设备耗能，你可以根据实际需求适当减少观测位置。</li>
             </ul> </note> </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="cpp">设置观测位置的 bit mask。详见 <xref keyref="VIDEO_OBSERVER_POSITION"/>。</p>
-            <p props="ios mac">设置观测位置的 bit mask。<ph props="rtc">详见 <xref keyref="VIDEO_OBSERVER_POSITION"/>。</ph>
-            <ul props="rtc-ng">
-            <li>(1 &lt;&lt; 0)：（默认）本地采集视频数据后的位置，对应 <apiname keyref="onCaptureVideoFrame"/> 回调。</li>
-            <li>(1 &lt;&lt; 1)：（默认）接收远端发送视频前的位置，对应 <apiname keyref="onRenderVideoFrame"/> 回调。</li>
-            <li>(1 &lt;&lt; 2)：本地视频编码前的位置，对应 <apiname keyref="onPreEncodeVideoFrame"/> 回调。</li>
-            </ul> </p>
+            <p props="cpp ios mac unity">设置观测位置的 bit mask。详见 <xref keyref="VIDEO_OBSERVER_POSITION"/>。</p>
             <p props="android">设置观测位置的 bit mask。
-
-
             <ul>
             <li><apiname keyref="POSITION_POST_CAPTURER"/>(1 &lt;&lt; 0)，本地采集视频数据后的位置，对应 <apiname keyref="onCaptureVideoFrame"/> 回调。</li>
             <li><apiname keyref="POSITION_PRE_RENDERER"/>(1 &lt;&lt; 1)，接收远端发送视频前的位置，对应 <apiname keyref="onRenderVideoFrame"/> 回调。</li>
