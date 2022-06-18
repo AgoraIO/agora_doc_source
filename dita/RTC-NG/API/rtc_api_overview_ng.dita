@@ -251,7 +251,7 @@
                 <stentry><xref keyref="stopPreview2"/></stentry>
                 <stentry><ph conkeyref="stopPreview2/shortdesc"/></stentry>
             </strow>
-        <strow props="cpp android ios mac unity">
+            <strow props="cpp android ios mac unity">
                 <stentry><xref keyref="setupLocalVideo"/></stentry>
                 <stentry><ph conkeyref="setupLocalVideo/shortdesc"/></stentry>
             </strow>
@@ -614,8 +614,7 @@
                 <stentry><xref keyref="setEarMonitoringAudioFrameParameters"/></stentry>
                 <stentry><ph conkeyref="setEarMonitoringAudioFrameParameters/shortdesc"/></stentry>
             </strow>
-            </simpletable>
-           <simpletable>
+            </simpletable> <simpletable>
             <sthead>
                 <stentry>事件</stentry>
                 <stentry>描述</stentry>
@@ -1055,8 +1054,7 @@
             <title>空间音效</title>
             <note type="attention">
             <p>空间音效功能当前处于实验阶段，请联系 <xref keyref="mailto-link"/> 开通空间音效功能，如果需要技术支持，请<xref keyref="ticket-link"/>。</p>
-            </note>
-            <simpletable props="hide">
+            </note> <simpletable props="hide">
             <sthead>
                 <stentry>服务端计算方法</stentry>
                 <stentry>描述</stentry>
@@ -1571,33 +1569,32 @@
                 <stentry><ph conkeyref="getVideoFormatPreference/shortdesc"/></stentry>
             </strow>
             </simpletable> </section>
-            <section id="encode_video_data">
-                <title>视频编码数据</title>
-                <simpletable>
-                <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
-                </sthead>
-                <strow>
-                    <stentry><xref keyref="registerVideoEncodedImageReceiver"/></stentry>
-                    <stentry><ph conkeyref="registerVideoEncodedImageReceiver/shortdesc"/></stentry>
-                </strow>
-                <strow props="unity">
-                    <stentry><xref keyref="UnregisterVideoEncodedImageReceiver"/></stentry>
-                    <stentry><ph conkeyref="UnregisterVideoEncodedImageReceiver/shortdesc"/></stentry>
-                </strow>
-            </simpletable>
+        <section id="encode_video_data">
+            <title>视频编码数据</title>
             <simpletable>
-                <sthead>
-                    <stentry>事件</stentry>
-                    <stentry>描述</stentry>
-                </sthead>
-                <strow props="cpp android unity">
-                    <stentry><xref keyref="onEncodedVideoImageReceived"/></stentry>
-                    <stentry><ph conkeyref="onEncodedVideoImageReceived/shortdesc"/></stentry>
-                </strow>
+            <sthead>
+                <stentry>方法</stentry>
+                <stentry>描述</stentry>
+            </sthead>
+            <strow>
+                <stentry><xref keyref="registerVideoEncodedImageReceiver"/></stentry>
+                <stentry><ph conkeyref="registerVideoEncodedImageReceiver/shortdesc"/></stentry>
+            </strow>
+            <strow props="unity">
+                <stentry><xref keyref="UnregisterVideoEncodedImageReceiver"/></stentry>
+                <stentry><ph conkeyref="UnregisterVideoEncodedImageReceiver/shortdesc"/></stentry>
+            </strow>
+            </simpletable> <simpletable>
+            <sthead>
+                <stentry>事件</stentry>
+                <stentry>描述</stentry>
+            </sthead>
+            <strow props="cpp android unity">
+                <stentry><xref keyref="onEncodedVideoImageReceived"/></stentry>
+                <stentry><ph conkeyref="onEncodedVideoImageReceived/shortdesc"/></stentry>
+            </strow>
             </simpletable></section>
-            <section id="section_ugt_d11_jqb">
+        <section id="section_ugt_d11_jqb">
             <title>Extension</title>
             <simpletable id="simpletable_bpq_j11_jqb">
             <sthead>
@@ -1699,6 +1696,49 @@
                 <stentry><ph conkeyref="stopAudioRecording/shortdesc"/></stentry>
             </strow>
             </simpletable> </section>
+        <section id="media_recorder">
+            <title>音视频录制</title>
+            <simpletable>
+                <sthead>
+                    <stentry>方法</stentry>
+                    <stentry>描述</stentry>
+                </sthead>
+                <strow props="android ios mac">
+                    <stentry><xref keyref="getMediaRecorder"/></stentry>
+                    <stentry><ph conkeyref="getMediaRecorder/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="startRecording"/></stentry>
+                    <stentry><ph conkeyref="startRecording/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="stopRecording"/></stentry>
+                    <stentry><ph conkeyref="stopRecording/shortdesc"/></stentry>
+                </strow>
+                <strow props="ios mac">
+                    <stentry><xref keyref="enableMainQueueDispatch"/></stentry>
+                    <stentry><ph conkeyref="enableMainQueueDispatch/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="releaseRecorder"/></stentry>
+                    <stentry><ph conkeyref="releaseRecorder/shortdesc"/></stentry>
+                </strow>
+            </simpletable>
+            <simpletable>
+                <sthead>
+                    <stentry>事件</stentry>
+                    <stentry>描述</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="onRecorderStateChanged"/></stentry>
+                    <stentry><ph conkeyref="onRecorderStateChanged/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onRecorderInfoUpdated"/></stentry>
+                    <stentry><ph keyref="onRecorderInfoUpdated/shortdesc"/></stentry>
+                </strow>
+            </simpletable>
+        </section>
         <section id="camera_control" props="android ios cpp">
             <title>摄像头管理</title>
             <note props="cpp" type="attention">本组方法仅适用于 Android 和 iOS。</note> <simpletable>
