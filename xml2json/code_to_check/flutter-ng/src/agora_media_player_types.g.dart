@@ -92,7 +92,6 @@ const _$MediaPlayerStateEnumMap = {
 const _$MediaPlayerErrorEnumMap = {
   MediaPlayerError.playerErrorNone: 0,
   MediaPlayerError.playerErrorInvalidArguments: -1,
-<<<<<<< HEAD
   MediaPlayerError.playerErrorInternal: -2,
   MediaPlayerError.playerErrorNoResource: -3,
   MediaPlayerError.playerErrorInvalidMediaSource: -4,
@@ -109,24 +108,6 @@ const _$MediaPlayerErrorEnumMap = {
   MediaPlayerError.playerErrorTokenExpired: -15,
   MediaPlayerError.playerErrorIpExpired: -16,
   MediaPlayerError.playerErrorUnknown: -17,
-=======
-  MediaPlayerError.playerErrorInternal: '-2',
-  MediaPlayerError.playerErrorNoResource: '-3',
-  MediaPlayerError.playerErrorInvalidMediaSource: '-4',
-  MediaPlayerError.playerErrorUnknownStreamType: '-5',
-  MediaPlayerError.playerErrorObjNotInitialized: '-6',
-  MediaPlayerError.playerErrorCodecNotSupported: '-7',
-  MediaPlayerError.playerErrorVideoRenderFailed: '-8',
-  MediaPlayerError.playerErrorInvalidState: '-9',
-  MediaPlayerError.playerErrorUrlNotFound: '-10',
-  MediaPlayerError.playerErrorInvalidConnectionState: '-11',
-  MediaPlayerError.playerErrorSrcBufferUnderflow: '-12',
-  MediaPlayerError.playerErrorInterrupted: '-13',
-  MediaPlayerError.playerErrorNotSupported: '-14',
-  MediaPlayerError.playerErrorTokenExpired: '-15',
-  MediaPlayerError.playerErrorIpExpired: '-16',
-  MediaPlayerError.playerErrorUnknown: '-17',
->>>>>>> release/rtc-ng/3.8.200-framework
 };
 
 const _$MediaPlayerEventEnumMap = {
