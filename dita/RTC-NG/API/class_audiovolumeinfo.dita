@@ -1,97 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="class_audiovolumeinfo">
-    <title> <ph keyref="AudioVolumeInfo" /> </title>
-    <shortdesc id="short"> <ph id="shortdesc">用户音量信息。</ph> </shortdesc>
+<reference id="api_getaudiomixingpublishvolume">
+    <title><ph keyref="getAudioMixingPublishVolume" /></title>
+    <shortdesc id="short"><ph id="shortdesc">获取音乐文件的远端播放音量。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getAudioMixingPublishVolume" />
+            </keywords>
+        </metadata>
+    </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public static class AudioVolumeInfo {
-    public int uid;
-    public int volume;
-    public int vad;
-    public double voicePitch;
-  }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcAudioVolumeInfo : NSObject
-@property(assign, nonatomic) NSUInteger uid;
-@property(assign, nonatomic) NSUInteger volume;
-@property(assign, nonatomic) NSUInteger vad;
-@property (assign, nonatomic) double voicePitch;
-@end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct AudioVolumeInfo {
-                    uid_t uid;
-                    unsigned int volume;
-                    unsigned int vad;
-                    double voicePitch;
-                    AudioVolumeInfo() : uid(0), volume(0), vad(0), voicePitch(0.0) {}
-                    };</codeblock>
+            <codeblock props="android" outputclass="language-java">public abstract int getAudioMixingPublishVolume();</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)getAudioMixingPublishVolume;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int getAudioMixingPublishVolume() = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp">public class AudioVolumeInfo
-    {
-        public AudioVolumeInfo()
-        {
-            uid = 0;
-            volume = 0;
-            vad = 0;
-            voicePitch = 0.0;
-        }
-
-        public AudioVolumeInfo(uint uid, uint volume, uint vad, double voicePitch)
-        {
-            this.uid = uid;
-            this.volume = volume;
-            this.vad = vad;
-            this.voicePitch = voicePitch;
-        }
-        public uint uid { set; get; }
-        public uint volume { set; get; }
-        public uint vad { set; get; }
-        public double voicePitch { set; get; }
-    }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/>There are no corresponding names available</codeblock></p>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int GetAudioMixingPublishVolume();</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; getAudioMixingPublishVolume();</codeblock> </p>
         </section>
-        <section id="parameters">
-            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/> </title>
-            <parml>
-            <plentry>
-                <pt>uid</pt>
-                <pd>
-                    <p>用户 ID。
-
-                    <ul id="ul_pfj_4dt_rqb">
-                    <li>在本地用户的回调中，<parmname>uid</parmname> 为 0。</li>
-                    <li>在远端用户的回调中，<parmname>uid</parmname> 为瞬时音量最高的远端用户（最多 3 位）的 ID。</li>
-                    </ul> </p>
-                </pd>
-            </plentry>
-            <plentry>
-                <pt>volume</pt>
-                <pd>用户的音量，取值范围为 [0,255]。如果用户调用了 <xref keyref="startAudioMixing2"/>，则 <parmname>volume</parmname> 为用户混音后的音量。</pd>
-            </plentry>
-            <plentry>
-                <pt>vad</pt>
-                <pd>
-                    <p>本地用户的人声状态。
-
-                    <ul>
-                    <li>0：本地无人声。</li>
-                    <li>1：本地有人声。</li>
-                    </ul> </p>
-                    <note type="attention">
-                    <ul>
-                    <li><parmname>vad</parmname> 无法报告远端用户的人声状态。对于远端用户，<parmname>vad</parmname> 的值始终为 1。</li>
-                    <li>如需使用此参数，请在调用 <xref keyref="enableAudioVolumeIndication"/> 时设置 <parmname>reportVad</parmname> 为 <codeph><ph keyref="true"/></codeph>。</li>
-                    </ul> </note> </pd>
-            </plentry>
-            <plentry>
-                <pt>voicePitch</pt>
-                <pd>
-                    <p>本地用户的人声音调（Hz）。取值范围为 [0.0,4000.0]。
-               </p>
-                    <note type="attention"><parmname>voicePitch</parmname> 无法报告远端用户的人声音调。对于远端用户，<parmname>voicePitch</parmname> 的值始终为 0.0。</note>
-                </pd>
-            </plentry>
-            </parml> </section>
+        <section id="detailed_desc">
+            <dl outputclass="since" props="native">
+            <dlentry>
+                <dt>自从</dt>
+                <dd>v2.4.1</dd>
+            </dlentry>
+            </dl>
+            <p>该接口可以方便开发者排查音量相关问题。</p>
+            <note type="attention" props="native">你需要在调用 <apiname keyref="startAudioMixing2" /> 并收到 <codeph><apiname keyref="onAudioMixingStateChanged" />(<apiname keyref="AUDIO_MIXING_STATE_PLAYING" />)</codeph> 回调后调用该方法。</note> </section>
+        <section id="return_values" props="native electron unity">
+            <title>返回值</title>
+            <ul>
+            <li>≥ 0: 方法调用成功则返回音量值，范围为 [0,100]。</li>
+            <li>&lt; 0: 方法调用失败。</li>
+            </ul> </section>
     </refbody>
 </reference>
