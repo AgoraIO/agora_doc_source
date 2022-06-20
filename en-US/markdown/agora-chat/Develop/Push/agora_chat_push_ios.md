@@ -1,4 +1,4 @@
-# Set up Push Notifications
+# Offline Push
 
 Agora Chat supports the integration of Apple Push Notification service (APNs). This enables iOS developers to use an offline push notification service. The service features low latency, high delivery, high concurrency, and no violation of the users' personal data.
 
