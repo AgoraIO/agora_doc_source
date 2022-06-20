@@ -44,7 +44,7 @@ Follow the steps to create and send a message, and listen for the result of send
   // Creates a message. For different message types, you need to set different parameters.
   // Creates a text message.
   ChatMessage txtMsg = ChatMessage.createTxtSendMessage(
-    username: targetId,
+    targetId: targetId,
     content: "This is text message",
   );
   // Creates an image message. You need to set the local path, length, and width of the image file, and the image name displayed on the UI.
@@ -54,7 +54,7 @@ Follow the steps to create and send a message, and listen for the result of send
   String imgName = "image.jpg";
   int imgSize = 3000;
   ChatMessage imgMessage = ChatMessage.createImageSendMessage(
-    username: targetId,
+    targetId: targetId,
     filePath: imgPath,
     width: imgWidth,
     height: imgHeight,
@@ -64,7 +64,7 @@ Follow the steps to create and send a message, and listen for the result of send
   // Creates a CMD message. A CMD message contains a command for the recipient to take action. You can customize the command.
   String action = "writing";
   ChatMessage cmdMsg = ChatMessage.createCmdSendMessage(
-    username: targetId,
+    targetId: targetId,
     action: action,
   );
   // Creates a custom message. A custom message contains the message event type and the extension field.
@@ -72,7 +72,7 @@ Follow the steps to create and send a message, and listen for the result of send
   String event = "gift";
   Map<String, String> params = {"key": "value"};
   ChatMessage customMsg = ChatMessage.createCustomSendMessage(
-    username: targetId,
+    targetId: targetId,
     event: event,
     params: params,
   );
@@ -81,7 +81,7 @@ Follow the steps to create and send a message, and listen for the result of send
   String fileName = "foo.zip";
   int fileSize = 6000;
   ChatMessage fileMsg = ChatMessage.createFileSendMessage(
-    username: targetId,
+    targetId: targetId,
     filePath: filePath,
     displayName: fileName,
     fileSize: fileSize,
@@ -92,7 +92,7 @@ Follow the steps to create and send a message, and listen for the result of send
   double longitude = 39.89;
   String address = "darwin";
   ChatMessage.createLocationSendMessage(
-    username: targetId,
+    targetId: targetId,
     latitude: latitude,
     longitude: longitude,
     address: address,
@@ -105,7 +105,7 @@ Follow the steps to create and send a message, and listen for the result of send
   int videoDuration = 5;
   int videoSize = 4000;
   ChatMessage.createVideoSendMessage(
-    username: targetId,
+    targetId: targetId,
     filePath: videoPath,
     width: videoWidth,
     height: videoHeight,
@@ -119,7 +119,7 @@ Follow the steps to create and send a message, and listen for the result of send
   int voiceDuration = 5;
   int voiceSize = 1000;
   ChatMessage.createVoiceSendMessage(
-    username: targetId,
+    targetId: targetId,
     filePath: voicePath,
     duration: voiceDuration,
     fileSize: voiceSize,
@@ -287,6 +287,3 @@ After implementing sending and receiving messages, you can refer to the followin
 - [Manage local messages](./agora_chat_manage_message_flutter?platform=Flutter)
 - [Retrieve conversations and messages from the server](./agora_chat_retrieve_message_flutter?platform=Flutter)
 - [Message receipts](./agora_chat_message_receipt_flutter?platform=Flutter)
-
-
-
