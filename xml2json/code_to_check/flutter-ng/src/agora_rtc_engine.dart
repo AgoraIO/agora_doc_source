@@ -907,12 +907,12 @@ class RtcEngineEventHandler {
   final void Function(RtcConnection connection, int elapsed)?
       onRejoinChannelSuccess;
 
-  final void Function(int warn, String msg)? onWarning;
+  final void Function(WarnCodeType warn, String msg)? onWarning;
 
-  final void Function(int err, String msg)? onError;
+  final void Function(ErrorCodeType err, String msg)? onError;
 
-  final void Function(RtcConnection connection, int remoteUid, int quality,
-      int delay, int lost)? onAudioQuality;
+  final void Function(RtcConnection connection, int remoteUid,
+      QualityType quality, int delay, int lost)? onAudioQuality;
 
   final void Function(LastmileProbeResult result)? onLastmileProbeResult;
 
@@ -923,8 +923,8 @@ class RtcEngineEventHandler {
 
   final void Function(RtcConnection connection, RtcStats stats)? onRtcStats;
 
-  final void Function(String deviceId, int deviceType, int deviceState)?
-      onAudioDeviceStateChanged;
+  final void Function(String deviceId, MediaDeviceType deviceType,
+      MediaDeviceStateType deviceState)? onAudioDeviceStateChanged;
 
   final void Function()? onAudioMixingFinished;
 
@@ -933,7 +933,7 @@ class RtcEngineEventHandler {
   final void Function(String deviceId, int deviceType, int deviceState)?
       onVideoDeviceStateChanged;
 
-  final void Function(int deviceType)? onMediaDeviceChanged;
+  final void Function(MediaDeviceType deviceType)? onMediaDeviceChanged;
 
   final void Function(RtcConnection connection, int remoteUid, int txQuality,
       int rxQuality)? onNetworkQuality;
@@ -944,7 +944,7 @@ class RtcEngineEventHandler {
 
   final void Function(DownlinkNetworkInfo info)? onDownlinkNetworkInfoUpdated;
 
-  final void Function(int quality)? onLastmileQuality;
+  final void Function(QualityType quality)? onLastmileQuality;
 
   final void Function(
           RtcConnection connection, int width, int height, int elapsed)?
@@ -996,7 +996,8 @@ class RtcEngineEventHandler {
   final void Function(RtcConnection connection, int remoteUid, bool enabled)?
       onUserEnableLocalVideo;
 
-  final void Function(int err, String api, String result)? onApiCallExecuted;
+  final void Function(ErrorCodeType err, String api, String result)?
+      onApiCallExecuted;
 
   final void Function(RtcConnection connection, LocalAudioStats stats)?
       onLocalAudioStats;
@@ -1041,7 +1042,7 @@ class RtcEngineEventHandler {
       Uint8List data, int length, int sentTs)? onStreamMessage;
 
   final void Function(RtcConnection connection, int remoteUid, int streamId,
-      int code, int missed, int cached)? onStreamMessageError;
+      ErrorCodeType code, int missed, int cached)? onStreamMessageError;
 
   final void Function(RtcConnection connection)? onRequestToken;
 
@@ -1091,7 +1092,7 @@ class RtcEngineEventHandler {
   final void Function(String url, RtmpStreamingEvent eventCode)?
       onRtmpStreamingEvent;
 
-  final void Function(String url, int error)? onStreamPublished;
+  final void Function(String url, ErrorCodeType error)? onStreamPublished;
 
   final void Function(String url)? onStreamUnpublished;
 
@@ -1103,7 +1104,7 @@ class RtcEngineEventHandler {
           ChannelMediaRelayState state, ChannelMediaRelayError code)?
       onChannelMediaRelayStateChanged;
 
-  final void Function(int code)? onChannelMediaRelayEvent;
+  final void Function(ChannelMediaRelayEvent code)? onChannelMediaRelayEvent;
 
   final void Function(bool isFallbackOrRecover)?
       onLocalPublishFallbackToAudioOnly;
@@ -1638,7 +1639,7 @@ abstract class RtcEngine {
 
   Future<void> setLogFile(String filePath);
 
-  Future<void> setLogFilter(int filter);
+  Future<void> setLogFilter(LogFilterType filter);
 
   Future<void> setLogLevel(LogLevel level);
 
@@ -1732,7 +1733,7 @@ abstract class RtcEngine {
 
   Future<void> setInEarMonitoringVolume(int volume);
 
-  Future<void> loadExtensionProvider(String extensionLibPath);
+  Future<void> loadExtensionProvider(String path);
 
   Future<void> setExtensionProviderProperty(
       {required String provider, required String key, required String value});
