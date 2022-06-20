@@ -38,7 +38,7 @@ class RtcEngineEventHandlerOnWarningJson {
   const RtcEngineEventHandlerOnWarningJson({this.warn, this.msg});
 
   @JsonKey(name: 'warn')
-  final int? warn;
+  final WarnCodeType? warn;
   @JsonKey(name: 'msg')
   final String? msg;
   factory RtcEngineEventHandlerOnWarningJson.fromJson(
@@ -53,7 +53,7 @@ class RtcEngineEventHandlerOnErrorJson {
   const RtcEngineEventHandlerOnErrorJson({this.err, this.msg});
 
   @JsonKey(name: 'err')
-  final int? err;
+  final ErrorCodeType? err;
   @JsonKey(name: 'msg')
   final String? msg;
   factory RtcEngineEventHandlerOnErrorJson.fromJson(
@@ -73,7 +73,7 @@ class RtcEngineEventHandlerOnAudioQualityJson {
   @JsonKey(name: 'remoteUid')
   final int? remoteUid;
   @JsonKey(name: 'quality')
-  final int? quality;
+  final QualityType? quality;
   @JsonKey(name: 'delay')
   final int? delay;
   @JsonKey(name: 'lost')
@@ -156,9 +156,9 @@ class RtcEngineEventHandlerOnAudioDeviceStateChangedJson {
   @JsonKey(name: 'deviceId')
   final String? deviceId;
   @JsonKey(name: 'deviceType')
-  final int? deviceType;
+  final MediaDeviceType? deviceType;
   @JsonKey(name: 'deviceState')
-  final int? deviceState;
+  final MediaDeviceStateType? deviceState;
   factory RtcEngineEventHandlerOnAudioDeviceStateChangedJson.fromJson(
           Map<String, dynamic> json) =>
       _$RtcEngineEventHandlerOnAudioDeviceStateChangedJsonFromJson(json);
@@ -213,7 +213,7 @@ class RtcEngineEventHandlerOnMediaDeviceChangedJson {
   const RtcEngineEventHandlerOnMediaDeviceChangedJson({this.deviceType});
 
   @JsonKey(name: 'deviceType')
-  final int? deviceType;
+  final MediaDeviceType? deviceType;
   factory RtcEngineEventHandlerOnMediaDeviceChangedJson.fromJson(
           Map<String, dynamic> json) =>
       _$RtcEngineEventHandlerOnMediaDeviceChangedJsonFromJson(json);
@@ -285,7 +285,7 @@ class RtcEngineEventHandlerOnLastmileQualityJson {
   const RtcEngineEventHandlerOnLastmileQualityJson({this.quality});
 
   @JsonKey(name: 'quality')
-  final int? quality;
+  final QualityType? quality;
   factory RtcEngineEventHandlerOnLastmileQualityJson.fromJson(
           Map<String, dynamic> json) =>
       _$RtcEngineEventHandlerOnLastmileQualityJsonFromJson(json);
@@ -587,7 +587,7 @@ class RtcEngineEventHandlerOnApiCallExecutedJson {
       {this.err, this.api, this.result});
 
   @JsonKey(name: 'err')
-  final int? err;
+  final ErrorCodeType? err;
   @JsonKey(name: 'api')
   final String? api;
   @JsonKey(name: 'result')
@@ -868,7 +868,7 @@ class RtcEngineEventHandlerOnStreamMessageErrorJson {
   @JsonKey(name: 'streamId')
   final int? streamId;
   @JsonKey(name: 'code')
-  final int? code;
+  final ErrorCodeType? code;
   @JsonKey(name: 'missed')
   final int? missed;
   @JsonKey(name: 'cached')
@@ -1146,7 +1146,7 @@ class RtcEngineEventHandlerOnStreamPublishedJson {
   @JsonKey(name: 'url')
   final String? url;
   @JsonKey(name: 'error')
-  final int? error;
+  final ErrorCodeType? error;
   factory RtcEngineEventHandlerOnStreamPublishedJson.fromJson(
           Map<String, dynamic> json) =>
       _$RtcEngineEventHandlerOnStreamPublishedJsonFromJson(json);
@@ -1212,7 +1212,7 @@ class RtcEngineEventHandlerOnChannelMediaRelayEventJson {
   const RtcEngineEventHandlerOnChannelMediaRelayEventJson({this.code});
 
   @JsonKey(name: 'code')
-  final int? code;
+  final ChannelMediaRelayEvent? code;
   factory RtcEngineEventHandlerOnChannelMediaRelayEventJson.fromJson(
           Map<String, dynamic> json) =>
       _$RtcEngineEventHandlerOnChannelMediaRelayEventJsonFromJson(json);
