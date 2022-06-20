@@ -142,6 +142,8 @@ elif defined_path_text == "electron":
     defined_path = electron_full_path
 elif defined_path_text == "unity":
     defined_path = unity_full_path
+elif defined_path_text == "unity-ng":
+    defined_path = unity_ng_full_path
 elif defined_path_text == "rn":
     defined_path = rn_full_path
 elif defined_path_text == "cpp":
