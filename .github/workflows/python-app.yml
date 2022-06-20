@@ -31,6 +31,8 @@ jobs:
                   python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag cpp --json_file cpp_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path cpp-ng
                   echo "Running for CS CG"
                   python xml2json.py --working_dir ../en-US/dita/RTC --platform_tag cs --json_file csharp_cg.json --sdk_type rtc --remove_sdk_type rtc-ng --defined_path cs
+                  echo "Running for unity NG CN (test)"
+                  python xml2json.py --working_dir ../dita/RTC-NG --platform_tag unity --json_file unity_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path unity-ng
             - name: Upload Flutter CG JSON to release
               uses: svenstaro/upload-release-action@v2
               with:
@@ -55,6 +57,15 @@ jobs:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
                   file: xml2json/csharp_cg.json
                   asset_name: csharp_cg_doc_template.json
+                  tag: main
+                  overwrite: true
+                  body: "Template file for automatic comment population."
+            - name: Upload Unity NG JSON to release (CN, test)
+              uses: svenstaro/upload-release-action@v2
+              with:
+                  repo_token: ${{ secrets.GITHUB_TOKEN }}
+                  file: xml2json/unity_ng.json
+                  asset_name: unity_ng_doc_template.json
                   tag: main
                   overwrite: true
                   body: "Template file for automatic comment population."
