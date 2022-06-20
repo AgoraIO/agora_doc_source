@@ -33,7 +33,7 @@ extension RtcEngineEventHandlerExt on RtcEngineEventHandler {
         if (onWarning == null) break;
         RtcEngineEventHandlerOnWarningJson paramJson =
             RtcEngineEventHandlerOnWarningJson.fromJson(jsonMap);
-        int? warn = paramJson.warn;
+        WarnCodeType? warn = paramJson.warn;
         String? msg = paramJson.msg;
         if (warn == null || msg == null) {
           break;
@@ -45,7 +45,7 @@ extension RtcEngineEventHandlerExt on RtcEngineEventHandler {
         if (onError == null) break;
         RtcEngineEventHandlerOnErrorJson paramJson =
             RtcEngineEventHandlerOnErrorJson.fromJson(jsonMap);
-        int? err = paramJson.err;
+        ErrorCodeType? err = paramJson.err;
         String? msg = paramJson.msg;
         if (err == null || msg == null) {
           break;
@@ -59,7 +59,7 @@ extension RtcEngineEventHandlerExt on RtcEngineEventHandler {
             RtcEngineEventHandlerOnAudioQualityJson.fromJson(jsonMap);
         RtcConnection? connection = paramJson.connection;
         int? remoteUid = paramJson.remoteUid;
-        int? quality = paramJson.quality;
+        QualityType? quality = paramJson.quality;
         int? delay = paramJson.delay;
         int? lost = paramJson.lost;
         if (connection == null ||
@@ -131,8 +131,8 @@ extension RtcEngineEventHandlerExt on RtcEngineEventHandler {
             RtcEngineEventHandlerOnAudioDeviceStateChangedJson.fromJson(
                 jsonMap);
         String? deviceId = paramJson.deviceId;
-        int? deviceType = paramJson.deviceType;
-        int? deviceState = paramJson.deviceState;
+        MediaDeviceType? deviceType = paramJson.deviceType;
+        MediaDeviceStateType? deviceState = paramJson.deviceState;
         if (deviceId == null || deviceType == null || deviceState == null) {
           break;
         }
@@ -175,7 +175,7 @@ extension RtcEngineEventHandlerExt on RtcEngineEventHandler {
         if (onMediaDeviceChanged == null) break;
         RtcEngineEventHandlerOnMediaDeviceChangedJson paramJson =
             RtcEngineEventHandlerOnMediaDeviceChangedJson.fromJson(jsonMap);
-        int? deviceType = paramJson.deviceType;
+        MediaDeviceType? deviceType = paramJson.deviceType;
         if (deviceType == null) {
           break;
         }
@@ -238,7 +238,7 @@ extension RtcEngineEventHandlerExt on RtcEngineEventHandler {
         if (onLastmileQuality == null) break;
         RtcEngineEventHandlerOnLastmileQualityJson paramJson =
             RtcEngineEventHandlerOnLastmileQualityJson.fromJson(jsonMap);
-        int? quality = paramJson.quality;
+        QualityType? quality = paramJson.quality;
         if (quality == null) {
           break;
         }
@@ -481,7 +481,7 @@ extension RtcEngineEventHandlerExt on RtcEngineEventHandler {
         if (onApiCallExecuted == null) break;
         RtcEngineEventHandlerOnApiCallExecutedJson paramJson =
             RtcEngineEventHandlerOnApiCallExecutedJson.fromJson(jsonMap);
-        int? err = paramJson.err;
+        ErrorCodeType? err = paramJson.err;
         String? api = paramJson.api;
         String? result = paramJson.result;
         if (err == null || api == null || result == null) {
@@ -688,7 +688,7 @@ extension RtcEngineEventHandlerExt on RtcEngineEventHandler {
         RtcConnection? connection = paramJson.connection;
         int? remoteUid = paramJson.remoteUid;
         int? streamId = paramJson.streamId;
-        int? code = paramJson.code;
+        ErrorCodeType? code = paramJson.code;
         int? missed = paramJson.missed;
         int? cached = paramJson.cached;
         if (connection == null ||
@@ -914,7 +914,7 @@ extension RtcEngineEventHandlerExt on RtcEngineEventHandler {
         RtcEngineEventHandlerOnStreamPublishedJson paramJson =
             RtcEngineEventHandlerOnStreamPublishedJson.fromJson(jsonMap);
         String? url = paramJson.url;
-        int? error = paramJson.error;
+        ErrorCodeType? error = paramJson.error;
         if (url == null || error == null) {
           break;
         }
@@ -967,7 +967,7 @@ extension RtcEngineEventHandlerExt on RtcEngineEventHandler {
         if (onChannelMediaRelayEvent == null) break;
         RtcEngineEventHandlerOnChannelMediaRelayEventJson paramJson =
             RtcEngineEventHandlerOnChannelMediaRelayEventJson.fromJson(jsonMap);
-        int? code = paramJson.code;
+        ChannelMediaRelayEvent? code = paramJson.code;
         if (code == null) {
           break;
         }
