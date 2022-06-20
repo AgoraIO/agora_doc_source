@@ -176,11 +176,11 @@ class _MyHomePageState extends State<MyHomePage> {
             const SizedBox(height: 10),
             TextField(
               decoration: const InputDecoration(
-                  hintText: "Enter the username you want to send"),
+                  hintText: "Enter recipient's user name"),
               onChanged: (chatId) => _chatId = chatId,
             ),
             TextField(
-              decoration: const InputDecoration(hintText: "Enter content"),
+              decoration: const InputDecoration(hintText: "Enter message"),
               onChanged: (msg) => _messageContent = msg,
             ),
             const SizedBox(height: 10),
@@ -403,7 +403,7 @@ In the `_sendMessage` method, add the following to add the creating and sending 
       return;
     }
     var msg = ChatMessage.createTxtSendMessage(
-      username: _chatId,
+      targetId: _chatId,
       content: _messageContent,
     );
     msg.setMessageStatusCallBack(MessageStatusCallBack(
@@ -450,7 +450,7 @@ class _MyHomePageState extends State<MyHomePage>
   @override
   void onMessagesRecalled(List<ChatMessage> messages) {}
   @override
-  void messageReactionDidChange(List<ChatMessageReactionChange> list) {}
+  void OnMessageReactionDidChange(List<ChatMessageReactionChange> list) {}
   @override
   void onReadAckForGroupMessageUpdated() {}
   
@@ -548,7 +548,7 @@ flutter run
 
 Take an iOS device as an example, if the sample project runs properly, the following user interface appears:
 
-![](https://web-cdn.agora.io/docs-files/1655269147178)
+![](https://web-cdn.agora.io/docs-files/1655692733996)
 
 In the user interface, perform the following operations to test the project:
 
@@ -559,7 +559,7 @@ Fill in the username in the `Enter username` box and password in the `Enter pass
 After signing up the accounts, fill in the username in the `Enter username` box and password in the `Enter password` box, and click **SIGN IN** to log in to the app. In this example, log in as `flutter01`.
 
 3. Send a message  
-Fill in the username of the receiver (`flutter02`) in the `Enter the username you want to send` box, type in the message ("hello") to send in the `Enter content` box, and click **SEND TEXT** to send the message.
+Fill in the username of the receiver (`flutter02`) in the `Enter recipient's user name` box, type in the message ("hello") to send in the `Enter message` box, and click **SEND TEXT** to send the message.
 
 4. Log out   
 Click **SIGN OUT** to log out of the app.
