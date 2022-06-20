@@ -27,27 +27,21 @@ class AgoraVideoViewState extends State<AgoraVideoView> with RtcRenderMixin {
     if (defaultTargetPlatform == TargetPlatform.macOS ||
         defaultTargetPlatform == TargetPlatform.windows) {
       return AgoraRtcRenderTexture(
-        key: widget.key,
-        controller: widget.videoViewController,
-      );
+          key: widget.key, controller: widget.controller);
     }
 
-    if (widget.videoViewController.useFlutterTexture) {
+    if (widget.controller.useFlutterTexture) {
       if (defaultTargetPlatform == TargetPlatform.android) {
         return const Text(
             'Flutter texture render is not supported on Android.');
       }
 
       return AgoraRtcRenderTexture(
-        key: widget.key,
-        controller: widget.videoViewController,
-      );
+          key: widget.key, controller: widget.controller);
     }
 
     return AgoraRtcRenderPlatformView(
-      key: widget.key,
-      controller: widget.videoViewController,
-    );
+        key: widget.key, controller: widget.controller);
   }
 
   // Future<void> _setView() async {

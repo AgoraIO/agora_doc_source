@@ -89,7 +89,7 @@ class AudioDeviceManagerImpl extends audio_device_manager_impl_binding
   Future<List<AudioDeviceInfo>> enumeratePlaybackDevices() async {
     const apiType = 'AudioDeviceManager_enumeratePlaybackDevices';
     final param = createParams({});
-    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult = await apiCaller.callIrisApi(apiType, jsonEncode(param));
     if (callApiResult.irisReturnCode < 0) {
       throw AgoraRtcException(code: callApiResult.irisReturnCode);
     }
@@ -116,7 +116,7 @@ class AudioDeviceManagerImpl extends audio_device_manager_impl_binding
   Future<List<AudioDeviceInfo>> enumerateRecordingDevices() async {
     const apiType = 'AudioDeviceManager_enumerateRecordingDevices';
     final param = createParams({});
-    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult = await apiCaller.callIrisApi(apiType, jsonEncode(param));
     if (callApiResult.irisReturnCode < 0) {
       throw AgoraRtcException(code: callApiResult.irisReturnCode);
     }
@@ -133,7 +133,7 @@ class AudioDeviceManagerImpl extends audio_device_manager_impl_binding
   Future<AudioDeviceInfo> getPlaybackDeviceInfo() async {
     const apiType = 'AudioDeviceManager_getPlaybackDeviceInfo';
     final param = createParams({});
-    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult = await apiCaller.callIrisApi(apiType, jsonEncode(param));
     if (callApiResult.irisReturnCode < 0) {
       throw AgoraRtcException(code: callApiResult.irisReturnCode);
     }
@@ -147,7 +147,7 @@ class AudioDeviceManagerImpl extends audio_device_manager_impl_binding
   Future<AudioDeviceInfo> getRecordingDeviceInfo() async {
     const apiType = 'AudioDeviceManager_getRecordingDeviceInfo';
     final param = createParams({});
-    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult = await apiCaller.callIrisApi(apiType, jsonEncode(param));
     if (callApiResult.irisReturnCode < 0) {
       throw AgoraRtcException(code: callApiResult.irisReturnCode);
     }

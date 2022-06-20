@@ -118,9 +118,9 @@ mixin VideoViewControllerBaseMixin implements VideoViewControllerBase {
       setupMode: canvas.setupMode,
     );
     if (canvas.uid != 0) {
-      rtcEngine.setupRemoteVideo(videoCanvas);
+      await rtcEngine.setupRemoteVideo(videoCanvas);
     } else {
-      rtcEngine.setupLocalVideo(videoCanvas);
+      await rtcEngine.setupLocalVideo(videoCanvas);
     }
   }
 
@@ -147,20 +147,12 @@ mixin VideoViewControllerBaseMixin implements VideoViewControllerBase {
           connection?.channelId ?? '',
           canvas.sourceType?.value() ?? getVideoSourceType(),
         );
-        debugPrint('initialize _textureId: $_textureId');
       }
-
-      // await rtcEngine.globalVideoViewController.updateTextureRenderData(
-      //   _textureId,
-      //   canvas.uid!,
-      //   connection?.channelId ?? '',
-      //   getVideoSourceType(),
-      // );
     } else {}
   }
 
   @override
-  void setupView(int nativeViewPtr) {
+  void setupView(int nativeViewPtr) async {
     VideoCanvas videoCanvas = VideoCanvas(
       view: nativeViewPtr,
       renderMode: canvas.renderMode,
@@ -175,13 +167,13 @@ mixin VideoViewControllerBaseMixin implements VideoViewControllerBase {
     );
     if (canvas.uid != 0) {
       if (connection != null) {
-        (rtcEngine as RtcEngineEx).setupRemoteVideoEx(
-            canvas: videoCanvas, connection: connection!);
+        await (rtcEngine as RtcEngineEx)
+            .setupRemoteVideoEx(canvas: videoCanvas, connection: connection!);
       } else {
-        rtcEngine.setupRemoteVideo(videoCanvas);
+        await rtcEngine.setupRemoteVideo(videoCanvas);
       }
     } else {
-      rtcEngine.setupLocalVideo(videoCanvas);
+      await rtcEngine.setupLocalVideo(videoCanvas);
     }
   }
 }
