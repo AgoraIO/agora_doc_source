@@ -34,7 +34,7 @@ As shown in the figure, the workflow of presence subscription and publication is
 
 Before proceeding, ensure that your environment meets the following requirements:
 
-- You have initialized the Agora Chat SDK. For details, see [Get Started with React Native](./agora_chat_get_started_rn).
+- You have initialized the Agora Chat SDK. For details, see [Get Started with Flutter](./agora_chat_get_started_flutter).
 - You understand the call frequency limit of the Agora Chat APIs supported by different pricing plans as described in [Limitations](./agora_chat_limitation).
 - You have activated the presence feature in [Agora Console](http://console.staging.agora.io/).
 
@@ -48,17 +48,20 @@ By default, you do not subscribe to any user. To subscribe to the presence statu
 
 The following code sample shows how to subscribe to the presence status of one or more users:
 
-```typescript
-// memberIds: The ID list of users to whom you subscribe.
+```dart
+// members: The ID list of users to whom you subscribe.
+List<String> members = [];
 // expiry: The subscription duration in seconds.
-ChatClient.getInstance()
-  .presenceManager.subscribe(memberIds, expiry)
-  .then((result) => {
-    console.log("success: ", result);
-  })
-  .catch((error) => {
-    console.log("fail: ", error);
-  });
+int expiry = 100;
+try {
+  List<ChatPresence> list =
+      await ChatClient.getInstance.presenceManager.subscribe(
+    members: members,
+    expiry: expiry,
+  );
+} on ChatError catch (e) {
+  // If the call fails, you can troubleshoot according to the returned code and reason.
+}
 ```
 
 <div class="alert info"><ol><li>You can subscribe to a maximum of 100 users at each call. The total subscriptions of each user cannot exceed 3,000. Once the number of subscriptions exceeds the limit, the subsequent subscriptions with longer durations succeed and replace the existing subscriptions with shorter durations.<li>The subscription duration can be a maximum of 30 days. When the subscription to a user expires, you need subscribe to this user once again. If you subscribe to a user again before the current subscription expires, the duration is reset.</ol></div>
@@ -70,16 +73,12 @@ You can call `publishPresence` to publish your custom statuses. Whenever your pr
 
 The following code sample shows how to publish a custom status:
 
-```typescript
-// description: The custom presence status.
-ChatClient.getInstance()
-  .presenceManager.publishPresence(description)
-  .then((result) => {
-    console.log("success: ", result);
-  })
-  .catch((error) => {
-    console.log("fail: ", error);
-  });
+```dart
+try {
+  // description: The custom presence status.
+  await ChatClient.getInstance.presenceManager.publishPresence(description);
+} on ChatError catch (e) {
+}
 ```
 
 
@@ -87,69 +86,69 @@ ChatClient.getInstance()
 
 Refer to the following code sample to listen for presence status updates:
 
-```typescript
+```dart
 // Inherits and implements the ChatPresenceEventListener class.
-class ChatPresenceEvent implements ChatPresenceEventListener {
-  // Occurs when the presence statuses of the subscriptions update.
-  onPresenceStatusChanged(list: ChatPresence[]): void {
-    console.log(`onPresenceStatusChanged:`, list.length, list);
+class _ChatPageState extends State<ChatPage>
+    implements ChatPresenceManagerListener {
+  @override
+  void initState() {
+    super.initState();
+    // Adds the presence status listener.
+    ChatClient.getInstance.presenceManager.addPresenceManagerListener(this);
   }
+  @override
+  void dispose() {
+    // Removes the presence status listener.
+    ChatClient.getInstance.presenceManager.removePresenceManagerListener(this);
+    super.dispose();
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+  // Occurs when the presence statuses of the subscriptions update.
+  @override
+  void onPresenceStatusChanged(List<ChatPresence> list) {}
 }
-// Removes the presence status listener.
-ChatClient.getInstance().presenceManager.removeAllPresenceListener();
-// Adds the presence status listener.
-ChatClient.getInstance().presenceManager.addPresenceListener(
-  new ChatPresenceEvent()
-);
 ```
 
 ### Unsubscribe from the presence status of one or more users
 
 You can call `unSubscribe` to unsubscribe from the presence statuses of the specified users, as shown in the following code sample:
 
-```typescript
+```dart
 // memberIds: The ID list of users from whom you unsubscribe.
-ChatClient.getInstance()
-  .presenceManager.unSubscribe(memberIds)
-  .then((result) => {
-    console.log("success: ", result);
-  })
-  .catch((error) => {
-    console.log("fail: ", error);
-  });
+try {
+  await ChatClient.getInstance.presenceManager.unSubscribe(
+    members: members,
+  );
+} on ChatError catch (e) {
+}
 ```
-
 
 ### Retrieve the list of subscriptions
 
+
 You can call `fetchSubscribedMembers` to retrieve the list of your subscriptions in a paginated list, as shown in the following code sample:
 
-```typescript
-// pageNum: The page from which to start retrieving subscriptions.
-// pageSize: The maximum number of subscriptions to retrieve per page. The range is [1, 50].
-ChatClient.getInstance()
-  .presenceManager.fetchSubscribedMembers(pageNum, pageSize)
-  .then((result) => {
-    console.log("success: ", result);
-  })
-  .catch((error) => {
-    console.log("fail: ", error);
-  });
+```dart
+try {
+  List<String> subMembers =
+      await ChatClient.getInstance.presenceManager.fetchSubscribedMembers();
+} on ChatError catch (e) {
+  // If the call fails, you can troubleshoot according to the returned code and reason.
+}
 ```
-
 
 ### Retrieve the presence status of one or more users
 
 You can call `fetchPresenceStatus` to retrieve the current presence statuses of the specified users without the need to subscribe to them, as shown in the following code sample:
 
-```typescript
+```dart
 // memberIds: The ID list of users whose presence statuses you retrieve.
-ChatClient.getInstance()
-  .presenceManager.fetchPresenceStatus(memberIds)
-  .then((result) => {
-    console.log("success: ", result);
-  })
-  .catch((error) => {
-    console.log("fail: ", error);
-  });
+try {
+  List<ChatPresence> list = await ChatClient.getInstance.presenceManager
+      .fetchPresenceStatus(members: memberIds);
+} on ChatError catch (e) {
+}
 ```
