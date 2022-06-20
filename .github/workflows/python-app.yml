@@ -60,3 +60,12 @@ jobs:
                   tag: main
                   overwrite: true
                   body: "Template file for automatic comment population."
+            - name: Upload Unity NG JSON to release (CN, test)
+              uses: svenstaro/upload-release-action@v2
+              with:
+                  repo_token: ${{ secrets.GITHUB_TOKEN }}
+                  file: xml2json/unity_ng.json
+                  asset_name: unity_ng_doc_template.json
+                  tag: main
+                  overwrite: true
+                  body: "Template file for automatic comment population."
