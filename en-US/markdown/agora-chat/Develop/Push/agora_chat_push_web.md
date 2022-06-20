@@ -84,7 +84,7 @@ To optimize user experience when dealing with an influx of push notifications, A
             <nobr>Do-not-disturb mode</nobr>
         </td>
         <td>
-            <nobr><code>SILENT_MODE_DURATION</code>: Do not receive push notifications in the specified duration.</nobr>
+            <nobr><code>duration</code>: Do not receive push notifications in the specified duration.</nobr>
         </td>
         <td style="text-align:center">
             <nobr>✓</nobr>
@@ -95,7 +95,7 @@ To optimize user experience when dealing with an influx of push notifications, A
     </tr>
     <tr>
         <td>
-            <nobr><code>SILENT_MODE_INTERVAL</code>: Do not receive push notifications in the specified time frame.</nobr>
+            <nobr><code>startTime</code> & <code>endTime</code>: Do not receive push notifications in the specified time frame.</nobr>
         </td>
         <td style="text-align:center">
             <nobr>✓</nobr>

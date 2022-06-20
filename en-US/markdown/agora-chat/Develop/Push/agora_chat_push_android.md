@@ -4,7 +4,7 @@ Agora Chat supports the integration of Google Firebase Cloud Messaging (FCM). Th
 
 ## Understand the tech
 
-![Set up Push Notifications (Android)](https://web-cdn.agora.io/docs-files/1649843666791)
+![](https://web-cdn.agora.io/docs-files/1655713515869)
 
 Assume that User A sends a message to User B, but User B goes offline before receiving it. The Agora Chat server pushes a notification to the device of User B via FCM and temporarily stores this message. Once User B comes back online, the Agora Chat SDK pulls the message from the server and pushes the message to User B using persistent connections.
 
