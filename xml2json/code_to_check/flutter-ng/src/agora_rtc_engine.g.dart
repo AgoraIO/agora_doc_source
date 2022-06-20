@@ -656,11 +656,7 @@ Map<String, dynamic> _$DirectCdnStreamingMediaOptionsToJson(
     };
 
 SDKBuildInfo _$SDKBuildInfoFromJson(Map<String, dynamic> json) => SDKBuildInfo(
-<<<<<<< HEAD
       buildNumber: json['build_number'] as int?,
-=======
-      buildNumber: json['build_number'] as String?,
->>>>>>> release/rtc-ng/3.8.200-framework
       version: json['version'] as String?,
     );
 
