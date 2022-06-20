@@ -1,133 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="class_contentinspectconfig">
-    <title><ph keyref="ContentInspectConfig" /></title>
-    <shortdesc id="short"><ph id="shortdesc">内容审核配置。</ph></shortdesc>
+<reference id="api_updatescreencaptureparameters">
+    <title><ph keyref="updateScreenCaptureParameters" /></title>
+    <shortdesc id="short"><ph id="shortdesc">更新屏幕共享的参数配置。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="updateScreenCaptureParameters" />
+            </keywords>
+        </metadata>
+    </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android">public class ContentInspectConfig {
-  public final static int CONTENT_INSPECT_TYPE_INVALID = 0;
-  public final static int CONTENT_INSPECT_TYPE_MODERATION = 1;
-  public final static int CONTENT_INSPECT_TYPE_SUPERVISE = 2;
-  public final static int CONTENT_INSPECT_DEVICE_INVALID = 0;
-  public final static int CONTENT_INSPECT_DEVICE_AGORA = 1;
-  public final static int CONTENT_INSPECT_DEVICE_HIVE = 2;
-  public final static int CONTENT_INSPECT_DEVICE_TUPU = 3;
-  public static final int MAX_CONTENT_INSPECT_MODULE_COUNT = 32;
-  public String extraInfo;
-  public int DeviceWork;
-  public int CloudWork;
-  public int DeviceworkType;
-  public ContentInspectModule[] modules;
-  public int moduleCount;
-  public static class ContentInspectModule {
-    public int type;
-    public int frequency;
-    public ContentInspectModule() {
-      type = CONTENT_INSPECT_TYPE_INVALID;
-      frequency = 0;
-    }
-  }
-  public ContentInspectConfig() {
-    modules = new ContentInspectModule[MAX_CONTENT_INSPECT_MODULE_COUNT];
-    for (int i = 0; i &lt; MAX_CONTENT_INSPECT_MODULE_COUNT; i++) {
-      modules[i] = new ContentInspectModule();
-    }
-    moduleCount = 0;
-  }
-}</codeblock>
-            <codeblock props="ios mac">__attribute__((visibility("default"))) @interface AgoraContentInspectConfig: NSObject
-@property (nonatomic, copy) NSString* _Nullable extraInfo;
-@property (assign, nonatomic) NSInteger devicework;
-@property (assign, nonatomic) NSInteger cloudwork;
-@property (assign, nonatomic) AgoraContentInspectDeviceType deviceworkType;
-@property(copy, nonatomic) NSArray&lt;AgoraContentInspectModule*&gt;* _Nullable modules;
-@end
-</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct ContentInspectConfig {
-  const char* extraInfo;
-  ContentInspectModule modules[MAX_CONTENT_INSPECT_MODULE_COUNT];
-  int moduleCount;
-
-  ContentInspectConfig() : extraInfo(NULL), moduleCount(0) {}
-};</codeblock>
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="mac" outputclass="language-objectivec">- (int)updateScreenCaptureParameters:(AgoraScreenCaptureParameters * _Nonnull)captureParams;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int updateScreenCaptureParameters(const ScreenCaptureParameters&amp; captureParams) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp">public class ContentInspectConfig
-    {
-        public ContentInspectConfig()
-        {
-            enable = false;
-            DeviceWork = false;
-            CloudWork = true;
-            DeviceworkType = CONTENT_INSPECT_DEVICE_TYPE.CONTENT_INSPECT_DEVICE_INVALID;
-            extraInfo = "";
-            moduleCount = 0;
-        }
-        public bool enable { set; get; }
-        public bool DeviceWork { set; get; }
-        public bool CloudWork { set; get; }
-        public CONTENT_INSPECT_DEVICE_TYPE DeviceworkType { set; get; }
-        public ContentInspectModule[] modules { set; get; }
-        public int moduleCount { set; get; }
-
-    };</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/>There are no corresponding names available</codeblock></p>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int UpdateScreenCaptureParameters(ScreenCaptureParameters captureParams);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; updateScreenCaptureParameters(
+      ScreenCaptureParameters captureParams);</codeblock></p>
         </section>
-        <section id="detailed_desc" />
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title>参数</title>
             <parml>
-            <plentry props="cpp unity">
-                <pt>enable</pt>
-                <pd>是否开启鉴黄功能。
-                    <ul>
-                    <li><codeph><ph keyref="true" /></codeph>: 开启鉴黄功能。</li>
-                    <li><codeph><ph keyref="false" /></codeph>:（默认）不开启鉴黄功能。</li>
-                    </ul></pd>
-            </plentry>
             <plentry>
-                <pt props="android cpp unity">DeviceWork</pt>
-                <pt props="ios mac">devicework</pt>
-                <pd>是否在设备端进行鉴黄。
-                    <ul>
-                    <li><codeph><ph keyref="true" /></codeph>: 在设备端进行鉴黄。</li>
-                    <li><codeph><ph keyref="false" /></codeph>:（默认）不在设备端进行鉴黄。</li>
-                    </ul></pd>
-            </plentry>
-            <plentry>
-                <pt props="android cpp unity">CloudWork</pt>
-                <pt props="ios mac">cloudwork</pt>
-                <pd>是否在云端进行鉴黄。
-                    <ul>
-                    <li><codeph><ph keyref="true" /></codeph>: 在云端进行鉴黄。</li>
-                    <li><codeph><ph keyref="false" /></codeph>:（默认）不在云端进行鉴黄。</li>
-                    </ul></pd>
-            </plentry>
-            <plentry>
-                <pt props="android cpp unity">DeviceworkType</pt>
-                <pt props="ios mac">deviceworkType</pt>
-                <pd>在设备端进行鉴黄的具体类型。详见<xref keyref="CONTENT_INSPECT_DEVICE_TYPE" />。</pd>
-            </plentry>
-            <plentry>
-                <pt>extraInfo</pt>
-                <pd>
-                    <p>附加信息，最大长度为 1024 字节。</p>
-                    <p>SDK 会将附加信息和截图一起上传至 Agora 内容审核服务器；审核完成后，Agora 内容审核服务器会将附加信息随审核结果一起发送给你的服务器。</p>
-                </pd>
-            </plentry>
-            <plentry>
-                <pt>modules</pt>
-                <pd>
-                    <p>内容审核模块。详见 <xref keyref="ContentInspectModule"/>。</p>
-                    <p>最多支持配置 32 个 <xref keyref="ContentInspectModule"/> 实例，<parmname>MAX_CONTENT_INSPECT_MODULE_COUNT</parmname> 的取值范围为 [1,32] 中的整数。</p>
-                </pd>
-            </plentry>
-            <plentry>
-                <pt>moduleCount</pt>
-                <pd>内容审核模块数，即配置的 <xref keyref="ContentInspectModule"/> 实例的数量。最大值为 32。</pd>
+                <pt>captureParams</pt>
+                <pd>屏幕共享的编码参数配置。默认的分辨率为 1920 x 1080，即 2073600 像素。该像素值为计费标准。详见 <xref keyref="ScreenCaptureParameters" />。</pd>
             </plentry>
             </parml> </section>
+        <section id="return_values" props="native electron unity">
+            <title>返回值</title>
+            <ul>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。
+
+
+                <ul props="rtc">
+                <li>-3: 如果当前没有共享的屏幕，会返回该错误码。</li>
+                </ul></li>
+            </ul> </section>
     </refbody>
 </reference>

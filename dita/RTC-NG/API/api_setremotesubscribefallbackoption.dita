@@ -19,7 +19,7 @@
                <codeblock props="electron" outputclass="language-typescript" />
                <codeblock props="unity" outputclass="language-csharp">public abstract int SetRemoteSubscribeFallbackOption(STREAM_FALLBACK_OPTIONS option);</codeblock>
                <codeblock props="rn" outputclass="language-typescript" />
-               <codeblock props="flutter" outputclass="language-dart">void setRemoteSubscribeFallbackOption(StreamFallbackOptions option);</codeblock></p>
+               <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRemoteSubscribeFallbackOption(StreamFallbackOptions option);</codeblock></p>
           </section>
           <section id="detailed_desc">
                <p>网络不理想的环境下，直播音视频的质量都会下降。如果你使用本方法并将 <parmname>option</parmname> 设置为 <apiname keyref="STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW" />(1) 或 <apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY" />(2)，SDK 会在下行弱网且音视频质量严重受影响时，将视频流切换为小流，或关断视频流，从而保证或提高音频质量。
