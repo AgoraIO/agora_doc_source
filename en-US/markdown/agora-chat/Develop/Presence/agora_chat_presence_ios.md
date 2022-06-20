@@ -33,7 +33,7 @@ As shown in the figure, the workflow of presence subscription and publication is
 
 Before proceeding, ensure that your environment meets the following requirements:
 
-- The project has integrated a version of the Agora Chat SDK later than v1.0.3 and has implemented the basic [real-time chat functionalities](./agora_chat_get_started_ios).
+- You have initialized the Agora Chat SDK. For details, see [Get Started with iOS](./agora_chat_get_started_ios).
 - You understand the API call frequency limit as described in [Limitations](./agora_chat_limitation).
 - You have activated the presence feature in [Agora Console](http://console.staging.agora.io/).
 
