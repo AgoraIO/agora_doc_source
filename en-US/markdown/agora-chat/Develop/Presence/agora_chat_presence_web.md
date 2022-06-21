@@ -35,7 +35,7 @@ As shown in the figure, the workflow of presence subscription and publication is
 
 Before proceeding, ensure that your environment meets the following requirements:
 
-- The project has integrated a version of the Agora Chat SDK later than v1.0.3 and has implemented the basic [real-time chat functionalities](./agora_chat_get_started_web).
+- You have initialized the Agora Chat SDK. For details, see [Get Started with Web](./agora_chat_get_started_web).
 - You understand the API call frequency limit as described in [Limitations](./agora_chat_limitation).
 - You have activated the presence feature in [Agora Console](http://console.staging.agora.io/).
 
@@ -46,7 +46,7 @@ This section introduces how to implement presence functionalities in your projec
 
 ### Subscribe to the presence status of one or more users
 
-By default, you do not subscribe to any user. To subscribe to the presence statuses of the specified users, you can call `subscribePresence`. Whenever the specified users update their presence statuses, the `onPresenceStatusChange` callback is triggered, notifying you about the updated statuses asynchronously.
+By default, you do not subscribe to any users. To subscribe to the presence statuses of the specified users, you can call `subscribePresence`. Whenever the specified users update their presence statuses, the `onPresenceStatusChange` callback is triggered, notifying you about the updated statuses asynchronously.
 
 The following code sample shows how to subscribe to the presence status of one or more users:
 
@@ -63,7 +63,7 @@ conn.subscribePresence(option).then(res => {console.log(res)})
 
 ### Publish a custom presence status
 
-You can call `publishPresence` to publish your custom statuses. Whenever your presence status updates, the users who subscribe to you receive the `onPresenceStatusChange` callback.
+You can call `publishPresence` to to publish a custom status. Whenever your presence status updates, the users who subscribe to you receive the `onPresenceStatusChange` callback.
 
 The following code sample shows how to publish a custom status:
 

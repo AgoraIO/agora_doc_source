@@ -33,7 +33,7 @@ As shown in the figure, the workflow of presence subscription and publication is
 
 Before proceeding, ensure that your environment meets the following requirements:
 
-- The project has integrated a version of the Agora Chat SDK later than v1.0.3 and has implemented the basic [real-time chat functionalities](./agora_chat_get_started_ios).
+- You have initialized the Agora Chat SDK. For details, see [Get Started with iOS](./agora_chat_get_started_ios).
 - You understand the API call frequency limit as described in [Limitations](./agora_chat_limitation).
 - You have activated the presence feature in [Agora Console](http://console.staging.agora.io/).
 
@@ -43,7 +43,7 @@ This section introduces how to implement presence functionalities in your projec
 
 ### Subscribe to the presence status of one or more users
 
-By default, you do not subscribe to any user. To subscribe to the presence statuses of the specified users, you can call `subscribe`.
+By default, you do not subscribe to any users. To subscribe to the presence statuses of the specified users, you can call `subscribe`.
 
 Once the subscription succeeds, the `completion` callback is triggered, notifying you about the current statuses of the specified users synchronously. Whenever the specified users update their presence statuses, the `presenceStatusDidChanged` callback is triggered, notifying you about the updated statuses asynchronously.
 
@@ -59,7 +59,7 @@ The following code sample shows how to subscribe to the presence status of one o
 
 ### Publish a custom presence status
 
-You can call `publishPresenceWithDescription` to publish your custom statuses. Whenever your presence status updates, the users who subscribe to you receive the `presenceStatusDidChanged` callback.
+You can call `publishPresenceWithDescription` to publish a custom status. Whenever your presence status updates, the users who subscribe to you receive the `presenceStatusDidChanged` callback.
 
 The following code sample shows how to publish a custom status:
 
