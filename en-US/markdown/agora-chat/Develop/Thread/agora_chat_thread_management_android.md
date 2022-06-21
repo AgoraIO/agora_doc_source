@@ -195,7 +195,7 @@ ChatClient.getInstance().chatThreadManager().getChatThreadFromServer(chatThreadI
 
 ### Retrieve the member list of a thread
 
-All chat group members can call `getChatThreadMembers` to retrieve the paginated member list of a thread from the server.
+All chat group members can call `getChatThreadMembers` to retrieve the paginated member list of a thread from the server, as shown in the following code sample:
 
 ```java
 // chatThreadId: The thread ID.

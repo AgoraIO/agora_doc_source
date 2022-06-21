@@ -32,12 +32,12 @@ This section describes how to call the APIs provided by the Agora Chat SDK to im
 Send a thread message is similar to send a message in a chat group. The difference lies in the `isChatThread` field, as shown in the following code sample:
 
 ```typescript
-// targetId: The user ID of the receiver.
-// content: The content of the message.
-// chatType: Sets to a group chat as a thread belongs to a chat group.
-// isChatThread: Sets to `true` to mark this message as a thread message.
+// Sets `targetId` to the ID of chat group that receives the message.
+// Sets `content` to the message content.
+// Sets `chatType` to a group chat as a thread belongs to a chat group.
+// Sets `isChatThread` to `true` to mark this message as a thread message.
 ChatMessage message = ChatMessage.createTextMessage(targetId, content, chatType, {isChatThread});
-// Implements ChatMessageCallback to listen for the message sending event.
+// Implements `ChatMessageCallback` to listen for the message sending event.
 const callback = new ChatMessageCallback();
 // Sends the message.
 ChatClient.getInstance()
@@ -60,19 +60,21 @@ For more information about sending a message, see [Send Messages](./agora_chat_s
 Once a thread has a new message, all chat group members receive the `ChatMessageEventListener#onChatMessageThreadUpdated` callback. Thread members can also listen for the `ChatMessageEventListener#onMessagesReceived` callback to receive thread messages, as shown in the following code sample:
 
 ```typescript
-// Inherits and implements ChatMessageEventListener.
+// Inherits and implements `ChatMessageEventListener`.
 class ChatMessageEvent implements ChatMessageEventListener {
+  // Occurs when a message is received.
   onMessagesReceived(messages: ChatMessage[]): void {
     console.log(`onMessagesReceived: `, messages);
   }
+  // Occurs when the thread has a new message.
   onChatMessageThreadUpdated(msgThread: ChatMessageThreadEvent): void {
     console.log(`onChatMessageThreadUpdated: `, msgThread);
   }
 }
-// Adds the thread listener.
+// Adds the message listener.
 const listener = new ChatMessageEvent();
 ChatClient.getInstance().chatManager.addMessageListener(listener);
-// Removes the thread listener.
+// Removes the message listener.
 ChatClient.getInstance().chatManager.removeMessageListener(listener);
 // Removes all the message listeners.
 ChatClient.getInstance().chatManager.removeAllMessageListener();
@@ -88,11 +90,13 @@ For details about how to recall a message, refer to [Recall Messages](./agora_ch
 Once a message is recalled in a thread, all chat group members receive the `ChatMessageEventListener#onChatMessageThreadUpdated` callback. Thread members can also listen for the `ChatMessageEventListener#onMessagesRecalled` callback, as shown in the following code sample:
 
 ```typescript
-// Inherits and implements ChatMessageEventListener.
+// Inherits and implements `ChatMessageEventListener`.
 class ChatMessageEvent implements ChatMessageEventListener {
+  // Occurs when a message is recalled.
   onMessagesRecalled(messages: ChatMessage[]): void {
     console.log(`onMessagesRecalled: `, messages);
   }
+  // Occurs when a thread message is recalled.
   onChatMessageThreadUpdated(msgThread: ChatMessageThreadEvent): void {
     console.log(`onChatMessageThreadUpdated: `, msgThread);
   }

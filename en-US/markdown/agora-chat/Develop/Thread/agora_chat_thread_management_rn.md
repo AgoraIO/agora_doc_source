@@ -189,7 +189,7 @@ ChatClient.getInstance()
 
 ### Retrieve the member list of a thread
 
-All chat group members can call `fetchMembersWithChatThreadFromServer` to retrieve a paginated member list of a thread from the server.
+All chat group members can call `fetchMembersWithChatThreadFromServer` to retrieve a paginated member list of a thread from the server, as shown in the following code sample:
 
 ```typescript
 // chatThreadId: The ID of a thread.
@@ -287,6 +287,7 @@ To monitor the thread events, users can listen for the callbacks in the `ChatMan
 Refer to the following code sample to listen for thread events:
 
 ```typescript
+// Inherits and implements ChatMessageEventListener.
 class ChatMessageEvent implements ChatMessageEventListener {
   // Occurs when a thread is created.
   onChatMessageThreadCreated(msgThread: 
@@ -307,9 +308,9 @@ class ChatMessageEvent implements ChatMessageEventListener {
   }
 }
 const listener = new ChatMessageEvent();
-// Adds the thread listener.
+// Adds the message listener.
 ChatClient.getInstance().chatManager.addMessageListener(listener);
-// Removes the thread listener.
+// Removes the message listener.
 ChatClient.getInstance().chatManager.removeMessageListener(listener);
 // Removes all the message listeners.
 ChatClient.getInstance().chatManager.removeAllMessageListener();

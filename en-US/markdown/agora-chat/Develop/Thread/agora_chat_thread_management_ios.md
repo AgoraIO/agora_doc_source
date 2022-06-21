@@ -174,7 +174,7 @@ The following code sample shows how to retrieve the thread attributes:
 
 ### Retrieve the member list of a thread
 
-All chat group members can call `getChatThreadMemberListFromServerWithId` to retrieve a paginated member list of a thread from the server.
+All chat group members can call `getChatThreadMemberListFromServerWithId` to retrieve a paginated member list of a thread from the server, as shown in the following code sample:
 
 ```ObjectiveC
 // threadId: The thread ID.

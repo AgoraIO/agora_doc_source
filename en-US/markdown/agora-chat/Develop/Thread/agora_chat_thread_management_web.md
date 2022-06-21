@@ -162,7 +162,7 @@ conn.getChatThreadDetail({chatThreadId: 'chatThreadId'}).then((res)=>{
 
 ### Retrieve the member list of a thread
 
-All chat group members can call `getChatThreadMembers` to retrieve a paginated member list of a thread from the server.
+All chat group members can call `getChatThreadMembers` to retrieve a paginated member list of a thread from the server, as shown in the following code sample:
 
 ```javascript
 // chatThreadId: The thread ID.
