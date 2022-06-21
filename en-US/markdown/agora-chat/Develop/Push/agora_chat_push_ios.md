@@ -295,23 +295,11 @@ AgoraChatConversationType conversationType = AgoraChatConversationTypeGroupChat;
 
 ### Retrieve the push notification setting of a conversation
 
-You can call `getSilentModeForAllWithCompletion` to retrieve the push notification settings of the conversation specified by the `conversationId` and `AgoraChatConversationType` fields, as shown in the following code sample:
+You can call `getSilentModeForConversation` to retrieve the push notification settings of the conversation specified by the `conversationId` and `AgoraChatConversationType` fields, as shown in the following code sample:
 
 ```objective-c
-[[AgoraChatClient sharedClient].pushManager getSilentModeForAllWithCompletion:^(AgoraChatSilentModeResult *aResult, AgoraChatError *aError) {
-            if (!aError) {
-                // Retrieves the setting of the push notification mode for the specified conversation.
-                if(aResult.isConversationRemindTypeEnabled){
-                    AgoraChatPushRemindType remindType = aResult.remindType;
-                }
-                // Retrieves the Unix timestamp when the DND duration of a conversation expires.
-                NSTimeInterval ex = aResult.expireTimestamp;
-                AgoraChatSilentModeTime *startTime = aResult.silentModeStartTime;
-                AgoraChatSilentModeTime *endTime = aResult.silentModeEndTime;
-            }else{
-                NSLog(@"getSilentModeForAll error---%@",aError.errorDescription);
-            }
-        }];
+[[AgoraChatClient sharedClient].pushManager getSilentModeForConversation:@"conversationId" conversationType:AgoraChatConversationTypeChat completion:^(AgoraChatSilentModeResult * _Nullable aResult, AgoraChatError * _Nullable aError) {
+    }];
 ```
 
 
