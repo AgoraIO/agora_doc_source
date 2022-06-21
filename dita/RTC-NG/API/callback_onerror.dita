@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_onerror">
+    <title><ph keyref="onError"/></title>
+    <shortdesc id="short"><ph id="shortdesc">发生错误回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onError"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onError(int err) {}
+</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didOccurError:(AgoraErrorCode)errorCode;
+</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onError(int err, const char* msg) {
+    (void)err;
+    (void)msg;
+  }
+</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <p id="desc">该回调方法表示 SDK 运行时出现了（网络或媒体相关的）错误。通常情况下，SDK 上报的错误意味着 SDK 无法自动恢复，需要 App 干预或提示用户。
+       比如启动通话失败时，SDK 会上报 <parmname>ERR_START_CALL</parmname> 错误。App 可以提示用户启动通话失败，并调用 <xref keyref="leaveChannel"/> 退出频道。</p>
+            <note type="attention" props="electron">该回调仅报告 Native 层发生的错误。如果你想收到 Electron 层发生的错误，请改用 <xref keyref="onApiError"/>。</note> </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <parml>
+            <plentry>
+                <pt>err</pt>
+                <pd>错误代码。详见 <xref keyref="ERROR_CODE_TYPE"/>。</pd>
+            </plentry>
+            <plentry>
+                <pt>msg</pt>
+                <pd>错误描述。</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>
