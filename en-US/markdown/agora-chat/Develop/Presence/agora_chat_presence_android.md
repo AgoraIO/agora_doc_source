@@ -1,6 +1,6 @@
 # Presence
 
-The presence feature enables users to to publicly display their online presence status and quickly determine the status of other users. Users can also customize their presence status, which adds fun and diversity to real-time chatting.
+The presence feature enables users to publicly display their online presence status and quickly determine the status of other users. Users can also customize their presence status, which adds fun and diversity to real-time chatting.
 
 The following illustration shows the implementation of creating a custom presence status and how various presence statues look in a contact list:
 
@@ -45,7 +45,7 @@ This section introduces how to implement presence functionalities in your projec
 
 ### Subscribe to the presence status of one or more users
 
-By default, you do not subscribe to any user. To subscribe to the presence statuses of the specified users, you can call `subscribePresences`.
+By default, you do not subscribe to any users. To subscribe to the presence statuses of the specified users, you can call `subscribePresences`.
 
 Once the subscription succeeds, the `onSuccess` callback is triggered, notifying you about the current statuses of the specified users synchronously. Whenever the specified users update their presence statuses, the `onPresenceUpdated` callback is triggered, notifying you about the updated statuses asynchronously.
 
@@ -69,7 +69,7 @@ ChatClient.getInstance().presenceManager().subscribePresences(contactsFromServer
 
 ### Publish a custom presence status
 
-You can call `publishPresence` to publish your custom statuses. Whenever your presence status updates, the users who subscribe to you receive the `onPresenceUpdated` callback.
+You can call `publishPresence` to publish a custom status. Whenever your presence status updates, the users who subscribe to you receive the `onPresenceUpdated` callback.
 
 The following code sample shows how to publish a custom status:
 

@@ -43,7 +43,7 @@ This section introduces how to implement presence functionalities in your projec
 
 ### Subscribe to the presence status of one or more users
 
-By default, you do not subscribe to any user. To subscribe to the presence statuses of the specified users, you can call `subscribe`.
+By default, you do not subscribe to any users. To subscribe to the presence statuses of the specified users, you can call `subscribe`.
 
 Once the subscription succeeds, the `completion` callback is triggered, notifying you about the current statuses of the specified users synchronously. Whenever the specified users update their presence statuses, the `presenceStatusDidChanged` callback is triggered, notifying you about the updated statuses asynchronously.
 
@@ -59,7 +59,7 @@ The following code sample shows how to subscribe to the presence status of one o
 
 ### Publish a custom presence status
 
-You can call `publishPresenceWithDescription` to publish your custom statuses. Whenever your presence status updates, the users who subscribe to you receive the `presenceStatusDidChanged` callback.
+You can call `publishPresenceWithDescription` to publish a custom status. Whenever your presence status updates, the users who subscribe to you receive the `presenceStatusDidChanged` callback.
 
 The following code sample shows how to publish a custom status:
 
