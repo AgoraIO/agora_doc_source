@@ -90,6 +90,4 @@ Once a message is recalled in a thread, all chat group members receive the `Agor
 
 ### Retrieve thread messages from the server
 
-When you join a thread, messages are displayed in chronological order by default.
-
 For details about how to retrieve messages from the server, see [Retrieve Historical Messages](./agora_chat_message_ios?platform=iOS#retrieve-historical-messages-from-the-server).
