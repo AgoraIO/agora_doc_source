@@ -87,7 +87,7 @@ ChatClient.getInstance().chatThreadManager().destroyChatThread(chatThreadId, new
 All chat group members can refer to the following steps to join a thread:
 
 1. Use either of the following two approaches to retrieve the thread ID:
-- Retrieve the thread list in a chat group by calling `getChatThreadsFromServer`, and locate the ID of the thread that you want to join.
+- Retrieve the thread list in a chat group by calling [`getChatThreadsFromServer`](#fetch), and locate the ID of the thread that you want to join.
 - Retrieve the thread ID within the `ChatThreadChangeListener#onChatThreadCreated` and `ChatThreadChangeListener#onChatThreadUpdated` callbacks that you receive.
 
 2. Call `joinChatThread` to pass in the thread ID and join the specified thread.
@@ -250,7 +250,7 @@ ChatClient.getInstance().chatThreadManager().getJoinedChatThreadsFromServer(pare
 });
 ```
 
-Users can also call `getChatThreadsFromServer` to retrieve a paginated list of all the threads in a specified chat group from the server, as shown in the following code sample:
+Users can also call `getChatThreadsFromServer` to retrieve a paginated list of all the threads in a specified chat group from the server, as shown in the following code sample:<a name="fetch"></a>
 
 ```java
 // parentId: The chat group ID.

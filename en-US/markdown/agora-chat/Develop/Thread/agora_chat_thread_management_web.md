@@ -82,7 +82,7 @@ conn.addEventHandler('THREAD',{
 All chat group members can refer to the following steps to join a thread:
 
 1. Use either of the following two approaches to retrieve the thread ID:
-- Retrieve the thread list in a chat group by calling `getChatThreads`, and locate the ID of the thread that you want to join.
+- Retrieve the thread list in a chat group by calling [`getChatThreads`](#fetch), and locate the ID of the thread that you want to join.
 - Retrieve the thread ID within the `onChatThreadChange` callback that you receive.
 2. Call `joinChatThread` to pass in the thread ID and join the specified thread.
 
@@ -197,7 +197,7 @@ conn.getJoinedChatThreads({parentId: 'parentId',cursor: 'cursor',pageSize: 20}).
 });
 ```
 
-Users can also call `getChatThreads` to retrieve a paginated list from the server of all the threads in a specified chat group, as shown in the following code sample:
+Users can also call `getChatThreads` to retrieve a paginated list from the server of all the threads in a specified chat group, as shown in the following code sample:<a name="fetch"></a>
 
 ```javascript
 // parentId: The chat group ID.

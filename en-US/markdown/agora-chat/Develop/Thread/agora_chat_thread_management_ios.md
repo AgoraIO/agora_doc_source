@@ -80,7 +80,7 @@ The following code sample shows how to destroy a thread:
 All chat group members can refer to the following steps to join a thread:
 
 1. Use either of the following two approaches to retrieve the thread ID:
-- Retrieve the thread list in a chat group by calling [`getChatThreadsFromServer`](#retrieve-the-thread-list), and locate the ID of the thread that you want to join.
+- Retrieve the thread list in a chat group by calling [`getChatThreadsFromServer`](#fetch), and locate the ID of the thread that you want to join.
 - Retrieve the thread ID within the `AgoraChatThreadManagerDelegate#onChatThreadCreated` and `AgoraChatThreadManagerDelegate#onChatThreadUpdated` callbacks that you receive.
 
 2. Call `joinChatThread` to pass in the thread ID and join the specified thread.
@@ -210,7 +210,7 @@ Users can call `getJoinedChatThreadsFromServer` to retrieve a paginated list fro
 }];
 ```
 
-Users can also call `getChatThreadsFromServer` to retrieve a paginated list from the server of all the threads in a specified chat group, as shown in the following code sample:
+Users can also call `getChatThreadsFromServer` to retrieve a paginated list from the server of all the threads in a specified chat group, as shown in the following code sample:<a name="fetch"></a>
 
 ```ObjectiveC
 // parentId: The chat group ID.
