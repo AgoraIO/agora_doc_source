@@ -60,7 +60,6 @@ try {
     expiry: expiry,
   );
 } on ChatError catch (e) {
-  // If the call fails, you can troubleshoot according to the returned code and reason.
 }
 ```
 
@@ -136,7 +135,6 @@ try {
   List<String> subMembers =
       await ChatClient.getInstance.presenceManager.fetchSubscribedMembers();
 } on ChatError catch (e) {
-  // If the call fails, you can troubleshoot according to the returned code and reason.
 }
 ```
 
