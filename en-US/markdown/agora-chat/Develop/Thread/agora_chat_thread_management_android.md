@@ -31,7 +31,6 @@ Before proceeding, ensure that you meet the following requirements:
 - You have initialized the Agora Chat SDK. For details, see [Get Started with Android](./agora_chat_get_started_android?platform=Android).
 - You understand the call frequency limit of the Agora Chat APIs supported by different pricing plans as described in [Limitations](./agora_chat_limitation?platform=Android).
 - You understand the number of threads and thread members supported by different pricing plans as described in [Pricing Plan Details](./agora_chat_plan?platform=Android).
-- You have contacted support@agora.io to activate the threading feature.
 
 ## Implementation
 
@@ -310,8 +309,8 @@ ChatThreadChangeListener chatThreadChangeListener = new ChatThreadChangeListener
     @Override
     public void onChatThreadUserRemoved(ChatThreadEvent event) {}
 };
-// Add the thread listener.
+// Adds the thread listener.
 ChatClient.getInstance().chatThreadManager().addChatThreadChangeListener(chatThreadChangeListener);
-// Remove the thread listener.
+// Removes the thread listener.
 ChatClient.getInstance().chatThreadManager().removeChatThreadChangeListener(chatThreadChangeListener);
 ```
