@@ -13,29 +13,45 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="mac" outputclass="language-objectivec"/>
+            <codeblock props="mac" outputclass="language-objectivec">- (AgoraRtcDeviceInfo* _Nullable)getDefaultAudioDevice:(AgoraMediaDeviceType)type;
+</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int getDefaultDevice(char deviceName[MAX_DEVICE_ID_LENGTH], char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
+        <section id="detailed_desc" props="cpp">
+            <ul><li>该方法仅适用于 Windows 和 macOS。</li>
+                <li>你需要先调用 <xref keyref="enumeratePlaybackDevices" /> 或者  <xref keyref="enumerateRecordingDevices" /> 获取设备列表后，再调用该方法。</li></ul>
+        </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry>
+                <plentry props="mac">
+                    <pt>type</pt>
+                    <pd>
+                        <p>设备的类型，详见 <xref keyref="MEDIA_DEVICE_TYPE"/>。</p>
+                    </pd>
+                </plentry>
+
+            <plentry props="cpp">
                 <pt>deviceName</pt>
-                <pd>设备名称。最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</pd>
+                <pd>输出参数，系统默认的音频设备名称。最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</pd>
             </plentry>
-            <plentry>
-                <pt>deviceId</pt>
-                <pd>设备 ID。最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</pd>
-            </plentry>
+            <plentry props="cpp">
+                    <pt>deviceId</pt>
+                    <pd>输出参数，系统默认的音频设备 ID。最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</pd>
+                </plentry>
             </parml> </section>
         <section id="return_values">
             <title>返回值</title>
-            <ul>
-            <li>0: 方法调用成功。</li>
-            <li>&lt; 0: 方法调用失败。</li>
+            <ul props="cpp">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。</li>
+            </ul>
+            <ul props="mac">
+                <li>调用成功时，返回 <xref keyref="AgoraRtcDeviceInfo"/> 对象，包含默认的音频设备信息。</li>
+                <li>调用失败时，返回 <xref keyref="NULL"/>。</li>
             </ul> </section>
     </refbody>
 </reference>
