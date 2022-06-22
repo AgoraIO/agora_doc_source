@@ -1,0 +1,227 @@
+# Content Moderation
+
+It is essential for you to deliver a safe and clean chat environment to your users. Agora Chat gives you multiple options to intelligently moderate the chat content and handle inappropriate user behavior, including:
+
+- Message management:
+   - Message reporting.
+   - Message moderation includes text and image moderation, domain filter, and profanity filter.
+
+- Based on the message moderation, you can apply a global application user setting, or to certain chat groups or rooms.
+
+## Prerequisites
+
+- You have created a valid [Agora developer account](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#create-an-agora-account).
+- You have subscribed to the Pro or Enterprise pricing plan of Agora Chat.
+
+## Enable the content moderation feature
+
+Log in to Agora Console. In the left navigation menu, click **Project Management ** > **Config** for the project for which you want to enable the content moderation feature > **Config** of Chat > **Function Configuration** > **Overview**. On the **Function Overview** page, turn on the switch of a specific moderation option, as shown in the following figure:
+
+![enable_moderation_en](Moderation_Image/enable_moderation_en.png)
+
+## Message management
+
+The following table lists the message moderation and filters provided by Agora Chat:
+
+| Function | Description |
+|--------|-----|
+| Implement the Reporting Feature | The reporting API allows end-users to report objectionable messages directly from their applications. Moderators can view the report items on the Agora console, and process the messages and message senders. |
+| Text and image moderation | This feature is based on a third-party machine learning model and is used to moderate text and image messages. |
+| Profanity filter | The profanity filter can detect and filter out profanity words contained in messages according to your configurations. |
+| Domain filter | The domain filter can detect and filter out certain domains contained in messages according to your configurations. |
+
+### Implement the Reporting Feature
+
+To use the reporting feature, you need to call the reporting API when you develop your applition. For details, see the following documents:
+
+- [Implement the reporting feature (Android)]()
+- [Implement the reporting feature (iOS)]()
+- [Implement the reporting feature (Web)]()
+
+After a user reports a message from the application, the moderator can check and deal with the report in Agora Console:
+
+1. To enter the **Message Report** page, in the left navigation menu, click **Project Management** > **Config** for the project that you want > **Config** of Chat > **Message Report** > **Logs**, as shown in the following figure:
+
+   ![report_en](Moderation_Image/report_en.png)
+
+2. On the **Message Report** page, moderators can filter out the message report logs by the time period, session type, or handling method. They can also search for a specific report by the user ID, group ID, or chat room ID. For the reports, Agora Chat supports two handling methods: withdrawing the message or asking the sender to process the message.
+
+### Text and image moderation
+
+#### Introduction
+
+Powered by [Microsoft Azure Moderator](https://azure.microsoft.com/en-us/services/cognitive-services/content-moderator/), Agora Chat's text and image moderation can scan messages for illegal text and image content and mark the content for moderation. Microsoft Azure Moderator returns a confidence score between 1 and 5  for a message and uses the following three categories to moderate messages:
+
+- Adult: The content may be considered sexually explicit or adult in certain situations.
+- Racial: The content may be considered racial discrimination.
+- Offensive: The content may be considered offensive and abusive.
+
+After enabling the text and image moderation feature on Agora Console, you can set a threshold for each moderation category. When the score returned by Microsoft Azure Moderator reaches the threshold, Agora Chat blocks the message. You can impose a penalty on users who reach the violation limit within a time period. The moderation penalties include: banning the user, forcing the user to go offline, or deleting the user.
+
+To see how moderation works and determine which moderation settings suit your needs, you can test different texts and images on Agora Console.
+
+#### Create a text moderation rule
+
+Taking a one-to-one chat text as an example, follow these steps to create a text moderation rule:
+
+1. To enter the **Rule Config** page, in the left navigation menu, click **Project Management** > **Config** for the project for which you want > **Config** of Chat > **Text Moderation** or **Image Moderation** > **Rule Config**, as shown in the following figure:
+
+2. To create a text moderation rule, click **Add rule**:
+
+   ![text_rule_create_en](Moderation_Image/text_rule_create_en.png)
+
+   The following table lists the fields that a text moderation rule supports:
+
+   | Field | Description |
+   | ------------ | ------------------------------------------------------------ |
+   | Rule name | The rule name. |
+   | Scope | The moderation scope, which can be: a one-to-one chat, a chat group, a chat room, multiple chat groups, or multiple chat rooms. If you set a rule for a specific chat group or room, the global moderation rules for chat groups and rooms are overwritten. |
+   | Switch | Determines whether to turn on or off the rule. |
+   | Action on the moderated message | <ul><li>When the moderation result is **Rejected**, you can set the action on the moderated message as:<ul><li>Blocks the message. Agora recommends using this setting for online messages after you fully test this moderation rule and ensure it suits your need.</li><li>(Default) Sends the message. Agora recommends using this setting when you are testing this moderation rule and do not want this rule to affect online messages.</li><li>Replaces the message with \*\*\*.</li></ul></li><li>When the moderation action fails (for example, the timeout period of the text audit interface is 200 milliseconds, if no result is returned within 200 milliseconds, this moderation action times out), the message processing policy can be set to:<ul><li>Blocks the message.</li><li>(Default) Sends the message.</li><li> If the action on the moderated message is set as **Blocks the message**, the `508, MESSAGE_EXTERNAL_LOGIC_BLOCKED` error is returned after the message is blocked. You can set whether to indicate this error in the application. If you choose to indicate this error in the application, a red exclamation mark is displayed before the blocked message.</li></ul> |
+   | Threshold for each moderation category | Sets the threshold for each moderation category. |
+   | User handling policy | You can impose a penalty on users who reach the violation limit within a time period. The moderation penalties include: banning the user, forcing the user to go offline, or deleting the user. |
+
+3. After creating a rule, you can **edit** or **delete** the rule:
+
+   ![text_rule_edit_en](Moderation_Image/text_rule_edit_en.png)
+
+#### Conduct a text or image moderation rule test
+
+1. To enter the **Rule Test** page, in the left navigation menu, click **Project Management** > **Config** for the project that you want > **Config** of Chat > **Text Moderation** or **Image Moderation** > **Rule Test**, as shown in the following figure:
+
+2. Select a rule, fill in the content to moderate, and click **Review Now** to test the rule. The review result is displayed on the same page.
+
+### Profanity filter
+
+The profanity filter can detect and filter out profanity words contained in messages according to your configurations.
+
+Follow these steps to specify a profanity filter configuration:
+
+1. To enter the **Rule Config** page, in the left navigation menu, click **Project Management** > **Config** for the project that you want > **Config** of Chat >**Profanity Filter** > **Rule Config**, as shown in the following figure:
+
+![keyword_en](Moderation_Image/keyword_en.png)
+
+2. On the **Rule Config** page, you can add or delete words, and determine which filtering method to apply to messages that contain the specified keywords. You can replace the word with \*\*\* or simply do not display the word.
+
+### Domain filter
+
+The domain filter can detect and filter out certain domains contained in messages according to your configurations.
+
+Follow these steps to specify a domian filter configuration:
+
+1. To enter the **Rule Config** page, in the left navigation menu, click **Project Management** > **Config** for the project that you want > **Config** of Chat > **Domain Filter** > **Rule Config**, as shown in the following figure:
+
+   ![domain_en](Moderation_Image/domain_en.png)
+
+2. To create a domain filtering rule, click **Add rule**: The following table lists the fields that a text moderation rule supports:
+
+   ![domain_rule_en](Moderation_Image/domain_rule_en.png)
+
+   | Field | Description |
+   | ------------ | ------------------------------------------------------------ |
+   | Rule name | The rule name. |
+   | Scope | The moderation scope, which can be: a one-to-one chat, a chat group, a chat room, multiple chat groups, or multiple chat rooms. If you set a rule for a specific chat group or room, the global moderation rules for chat groups and rooms are overwritten. |
+   | Switch | Determines whether to turn on or off the rule. |
+   | Action on the moderated message | <li>Intercepts messages containing the domain.</li><li>Only allows messages containing the domain to pass.</li><li>Replaces the domain in the message with \*\*\*.</li><li> Takes no action on the moderated message.</li> |
+   | Add a domain | Add a domain to the rule. |
+   | User handling policy | You can impose a penalty on users who reach the violation limit within a time period. The moderation penalties include: banning the user, forcing the user to go offline, or deleting the user. |
+
+3. After creating a rule, you can **edit** or **delete** the rule:
+   ![domain_rule_edit_en](Moderation_Image/domain_rule_edit_en.png)
+
+### Check the moderation history
+
+You can check the history of the **text moderation**, **image moderation**, **profanity filter**, and **domain filter** on Agora Console. You can filter out the moderation items by the time period, session type, or moderation result. You can also search for a specific item by the sender ID or receiver ID.
+
+![history](Moderation_Image/history.png)
+
+## Take global actions on users
+
+You can impose a penalty on users for their violations. The penalties can be applied as a global application setting, or only to a specific chat group or room. The following table lists all the user moderation options that Agora Chat supports:
+
+<table>
+   <tr>
+      <td>User moderation options</td>
+      <td>Function</td>
+      <td>Description</td>
+   </tr>
+   <tr>
+      <td rowspan="3">Take global actions on users</td>
+      <td>Banning a user</td>
+      <td>A banned user immediately goes offline and is not allowed to log in again until the ban is lifted.</td>
+   <tr>
+      <td>Forcing a user to go offline</td>
+      <td>Users who are forced to go offline need to log in again to use the Chat service.</td>
+   <tr>
+      <td>Deleting a user</td>
+      <td>If the deleted user is the owner of a chat group or chat room, the group or room is also deleted.</td>
+    </tr>
+    <tr>
+      <td rowspan="4">Group management</td>
+      <td>Muting a user in a chat group</td>
+      <td>A muted user cannot send messages in this chat group until unmuted.</td>
+   <tr>
+      <td>Muting all users in a chat group</td>
+      <td>Members in a muted group cannot send messages until the muted state is lifted.</td>
+   <tr>
+      <td>Managing a group blocklist</td>
+      <td>Users who are added to the group blocklist are removed from the group immediately and cannot join the group again.</td>
+   <tr>
+      <td>Removing a user from a chat group</td>
+      <td>The removed user can no longer receive the messages in this group until rejoining the group.</td>
+    </tr>
+    <tr>
+      <td rowspan="4">Chat room management</td>
+      <td>Muting a user in a chat room</td>
+      <td>A muted user cannot send messages in this chat room until unmuted.</td>
+   <tr>
+      <td>Muting all users in a chat room</td>
+      <td>Members in a muted room cannot send messages until the muted state is lifted.</td>
+   <tr>
+      <td>Managing a room blocklist</td>
+      <td>Users who are added to the room blocklist are removed from the room immediately and cannot join the room again.</td>
+   <tr>
+      <td>Removing a user from a chat room</td>
+      <td>The removed user can no longer receive the messages in this room until rejoining the room.</td>
+   <tr>
+</table>
+
+
+### Take global actions on users
+
+1. To enter the **User Management** page, in the left navigation menu, click **Project Management** > **Config** for the project that you want > **Config** of Chat > **User Management**, as shown in the following figure:
+
+![user_manage](Moderation_Image/user_manage.png)
+
+2. To take action on a user (banning a user, deleting a user, or forcing a user to go offline), search for the user ID and click **More**:
+
+![user_manage_action](Moderation_Image/user_manage_action.png)
+
+### Take actions on chat group members
+
+1. To enter the Chat Group Management page, in the left navigation menu, click **Project Management** > **Config** for the project that you want > **Config** of Chat > **Chat Group Management**, as shown in the following figure:
+   ![group_manage](Moderation_Image/group_manage.png)
+
+2. To take action on a group member (removing a member from the group or adding a user to the group blocklist), search for the group ID and click **More**:
+
+![group_manage_action](Moderation_Image/group_manage_action.png)
+
+3. You can also click the group ID to enter the group's real-time moderation page, where you can manage the group info, group members, and messages in real-time:
+
+   > To use this feature, you need to enable it on the **Function Config** > **Overview** page.
+
+   ![group_manage_live](Moderation_Image/group_manage_live.png)
+
+### Take actions on chat room members
+
+1. To enter the Chat Room Management page, in the left navigation menu, click **Project Management** > **Config** for the project that you want > **Config** of Chat > **Chat Room Management**, as shown in the following figure:
+   ![room_manage](Moderation_Image/room_manage.png)
+
+2. To take action on a room member (removing a member from the room or adding a user to the room blocklist), search for the room ID and click **More**:
+   ![room_manage_action](Moderation_Image/room_manage_action.png)
+
+3. You can also click the room ID to enter the room's real-time moderation page, where you can manage the room info, room members, and messages in real-time:
+
+> To use this feature, you need to enable it on the **Function Config** > **Overview** page.
+
+![room_manage_live](Moderation_Image/room_manage_live.png)
