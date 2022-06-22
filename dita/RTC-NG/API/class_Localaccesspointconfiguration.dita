@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_Localaccesspointconfiguration">
+    <title>LocalAccessPointConfiguration</title>
+    <shortdesc id="short"><ph id="shortdesc">Local Access Point 配置。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp">
+struct LocalAccessPointConfiguration { const char** ipList; int ipListSize; const char** domainList; int domainListSize; const char* verifyDomainName; LOCAL_PROXY_MODE mode; LocalAccessPointConfiguration() : ipList(nullptr), ipListSize(0), domainList(nullptr), domainListSize(0), verifyDomainName(nullptr), mode(kConnectivityFirst) {} };</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry>
+                <pt>ipList</pt>
+                <pd>Local Access Point 的对内 IP 地址列表。ipList 和 domainList 必须至少填一个。</pd>
+            </plentry>
+            <plentry>
+                <pt>ipListSize</pt>
+                <pd>Local Access Point 对内 IP 地址的数量。该参数的值必须和你填入的 IP 地址的数量一致。</pd>
+            </plentry>
+            <plentry>
+                <pt>domainList</pt>
+                <pd>Local Access Point 的域名列表。SDK 会根据你填入的域名解析出 Local Access Point 的 IP 地址。域名解析的超时时间为 10 秒。ipList 和 domainList 必须至少填一个。如果你同时指定 IP 地址和域名，SDK 会将根据域名解析出来的 IP 地址和你指定的 IP 地址合并、去重，然后随机连接一个 IP 来实现负载均衡。</pd>
+            </plentry>
+            <plentry>
+                <pt>domainListSize</pt>
+                <pd>Local Access Point 域名的数量。该参数的值必须和你填入的域名的数量一致。</pd>
+            </plentry>
+            <plentry>
+                <pt>verifyDomainName</pt>
+                <pd>内网证书验证域名。如果传值为空，则用 SDK 默认的证书验证域名 <codeph>secure-edge.local</codeph>。</pd>
+            </plentry>
+            <plentry>
+                <pt>mode</pt>
+                <pd>连接模式。详见 <xref keyref="LOCAL_PROXY_MODE"/>。</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

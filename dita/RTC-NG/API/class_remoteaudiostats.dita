@@ -5,7 +5,7 @@
     <shortdesc id="short"><ph id="shortdesc">远端用户的音频统计数据。</ph></shortdesc>
     <refbody>
         <section id="prototype">
-            <p props="rtc-ng" outputclass="codeblock">
+            <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public static class RemoteAudioStats {
     public int uid;
     public int quality;
@@ -71,7 +71,7 @@
     frozenRate(0),
     mosValue(0),
     totalActiveTime(0),
-    publishDuration(0){}
+    publishDuration(0),
     qoeQuality(0) {}
     qualityChangedReason(0){}
 };</codeblock>
@@ -125,117 +125,6 @@
 
         public int publishDuration { set; get; }
     }</codeblock> </p>
-            <p props="rtc" outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public static class RemoteAudioStats {
-    public int uid;
-    public int quality;
-    public int networkTransportDelay;
-    public int jitterBufferDelay;
-    public int audioLossRate;
-    public int numChannels;
-    public int receivedSampleRate;
-    public int receivedBitrate;
-    public int totalFrozenTime;
-    public int frozenRate;
-    public int totalActiveTime;
-    public int publishDuration;
-    public int qoeQuality;
-    public int qualityChangedReason;
-    public int mosValue;
-}</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcRemoteAudioStats : NSObject
-@property(assign, nonatomic) NSUInteger uid;
-@property(assign, nonatomic) NSUInteger quality;
-@property(assign, nonatomic) NSUInteger networkTransportDelay;
-@property(assign, nonatomic) NSUInteger jitterBufferDelay;
-@property(assign, nonatomic) NSUInteger audioLossRate;
-@property(assign, nonatomic) NSUInteger numChannels;
-@property(assign, nonatomic) NSUInteger receivedSampleRate;
-@property(assign, nonatomic) NSUInteger receivedBitrate;
-@property(assign, nonatomic) NSUInteger totalFrozenTime;
-@property(assign, nonatomic) NSUInteger frozenRate;
-@property(assign, nonatomic) NSUInteger totalActiveTime;
-@property(assign, nonatomic) NSInteger publishDuration;
-@property(assign, nonatomic) AgoraExperienceQuality qoeQuality;
-@property(assign, nonatomic) NSUInteger qualityChangedReason;
-@property(assign, nonatomic) NSInteger mosValue;
-@end</codeblock>
-            <codeblock props="cpp unity" outputclass="language-cpp">struct RemoteAudioStats {
-  uid_t uid;
-  int quality;
-  int networkTransportDelay;
-  int jitterBufferDelay;
-  int audioLossRate;
-  int numChannels;
-  int receivedSampleRate;
-  int receivedBitrate;
-  int totalFrozenTime;
-  int frozenRate;
-  int totalActiveTime;
-  int publishDuration;
-  int qoeQuality;
-  int qualityChangedReason;
-  int mosValue;
-};</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">export interface RemoteAudioStats {
-    uid: number;
-    quality: number;
-    networkTransportDelay: number;
-    jitterBufferDelay: number;
-    audioLossRate: number;
-    numChannels: number;
-    receivedSampleRate: number;
-    receivedBitrate: number;
-    totalFrozenTime: number;
-    frozenRate: number;
-    totalActiveTime: number;
-    publishDuration: number;
-    qoeQuality: number;
-    qualityChangedReason: number;
-    mosValue: number;
-    }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">class RemoteAudioStats {
-
-  int uid;
-  NetworkQuality quality;
-  int networkTransportDelay;
-  int jitterBufferDelay;
-  int audioLossRate;
-  int numChannels;
-  int receivedSampleRate;
-  int receivedBitrate;
-  int totalFrozenTime;
-  int frozenRate;
-  int totalActiveTime;
-  int publishDuration;
-  ExperienceQualityType qoeQuality;
-  ExperiencePoorReason qualityChangedReason;
-  int mosValue;
-
-  RemoteAudioStats(
-    this.uid,
-    this.quality,
-    this.networkTransportDelay,
-    this.jitterBufferDelay,
-    this.audioLossRate,
-    this.numChannels,
-    this.receivedSampleRate,
-    this.receivedBitrate,
-    this.totalFrozenTime,
-    this.frozenRate,
-    this.totalActiveTime,
-    this.publishDuration,
-    this.qoeQuality,
-    this.qualityChangedReason,
-    this.mosValue,
-  );
-
-  factory RemoteAudioStats.fromJson(Map&lt;String, dynamic> json) =>
-      _$RemoteAudioStatsFromJson(json);
-
-  Map&lt;String, dynamic> toJson() => _$RemoteAudioStatsToJson(this);
-}</codeblock> </p>
         </section>
         <section id="parameters">
             <title><text
@@ -249,7 +138,8 @@
             <plentry>
                 <pt>quality</pt>
                 <pd>
-                    <p>远端用户发送的音频流质量。<ph props="ios mac cpp electron unity">详见 <xref keyref="QUALITY_TYPE"/>。</ph></p>
+                    <p>远端用户发送的音频流质量。<ph props="ios mac cpp electron unity"
+                    >详见 <xref keyref="QUALITY_TYPE"/>。</ph></p>
                     <p props="android">
                     <ul id="qualitytype">
                     <li><ph keyref="QUALITY_UNKNOWN"/> (0)：质量未知。</li>
@@ -272,7 +162,11 @@
                 <pd>
                     <p>音频接收端到网络抖动缓冲的网络延迟（毫秒）。
                     
-                    <note type="attention">当接收端为观众且 <xref keyref="ClientRoleOptions"/> 的 <parmname>audienceLatencyLevel</parmname> 为 1 时，该参数不生效。</note></p>
+                    
+                    
+                    <note type="attention">当接收端为观众且 <xref
+                    keyref="ClientRoleOptions"
+                    /> 的 <parmname>audienceLatencyLevel</parmname> 为 1 时，该参数不生效。</note></p>
                 </pd>
             </plentry>
             <plentry>
@@ -315,9 +209,11 @@
             <plentry>
                 <pt>qoeQuality</pt>
                 <pd>
-                    <p><ph>接收远端音频时，本地用户的主观体验质量。</ph><ph props="ios mac cpp">详见 <xref keyref="EXPERIENCE_QUALITY_TYPE"/>。</ph>
+                    <p><ph>接收远端音频时，本地用户的主观体验质量。</ph><ph props="ios mac cpp"
+                    >详见 <xref keyref="EXPERIENCE_QUALITY_TYPE"/>。</ph>
                     <ul props="android">
-                    <li><ph keyref="EXPERIENCE_QUALITY_GOOD"/> (0)：主观体验质量较好。</li>
+                    <li><ph keyref="EXPERIENCE_QUALITY_GOOD"
+                        /> (0)：主观体验质量较好。</li>
                     <li><ph keyref="EXPERIENCE_QUALITY_BAD"/> (1)：主观体验质量较差。</li>
                     </ul></p>
                 </pd>
@@ -325,13 +221,19 @@
             <plentry props="native">
                 <pt>qualityChangedReason</pt>
                 <pd>
-                    <p><ph>接收远端音频时，本地用户主观体验质量较差的原因。</ph><ph props="ios mac cpp">详见 <xref keyref="EXPERIENCE_POOR_REASON"/>。</ph>
+                    <p><ph>接收远端音频时，本地用户主观体验质量较差的原因。</ph><ph props="ios mac cpp"
+                    >详见 <xref keyref="EXPERIENCE_POOR_REASON"/>。</ph>
                     <ul props="android">
-                    <li><ph keyref="EXPERIENCE_REASON_NONE"/> 0: 无原因，说明主观体验质量较好。</li>
-                    <li><ph keyref="REMOTE_NETWORK_QUALITY_POOR"/> 1: 远端用户的网络较差。</li>
-                    <li><ph keyref="LOCAL_NETWORK_QUALITY_POOR"/> 2: 本地用户的网络较差。</li>
-                    <li><ph keyref="WIRELESS_SIGNAL_POOR"/> 4: 本地用户的 Wi-Fi 或者移动数据网络信号弱。</li>
-                    <li><ph keyref="WIFI_BLUETOOTH_COEXIST"/> 8: 本地用户同时开启 Wi-Fi 和蓝牙，二者信号互相干扰，导致音频传输质量下降。</li>
+                    <li><ph keyref="EXPERIENCE_REASON_NONE"
+                        /> 0: 无原因，说明主观体验质量较好。</li>
+                    <li><ph keyref="REMOTE_NETWORK_QUALITY_POOR"
+                        /> 1: 远端用户的网络较差。</li>
+                    <li><ph keyref="LOCAL_NETWORK_QUALITY_POOR"
+                        /> 2: 本地用户的网络较差。</li>
+                    <li><ph keyref="WIRELESS_SIGNAL_POOR"
+                        /> 4: 本地用户的 Wi-Fi 或者移动数据网络信号弱。</li>
+                    <li><ph keyref="WIFI_BLUETOOTH_COEXIST"
+                        /> 8: 本地用户同时开启 Wi-Fi 和蓝牙，二者信号互相干扰，导致音频传输质量下降。</li>
                     </ul> </p>
                 </pd>
             </plentry>

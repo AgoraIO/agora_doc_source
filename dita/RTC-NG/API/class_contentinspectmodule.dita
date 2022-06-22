@@ -29,16 +29,10 @@
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct ContentInspectModule {
   CONTENT_INSPECT_TYPE type;
-  CONTENT_INSPECT_VENDOR vendor;
-  const char* callbackUrl;
-  const char* token;
-  unsigned int frequency;
+  unsigned int interval;
   ContentInspectModule() {
     type = CONTENT_INSPECT_INVALID;
-    frequency = 0;
-    vendor = CONTENT_INSPECT_VENDOR_AGORA;
-    callbackUrl = NULL;
-    token = NULL;
+    interval = 0;
   }
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
@@ -56,9 +50,10 @@
             <parml>
             <plentry>
                 <pt>type</pt>
-                <pd props="native flutter">视频内容审核模块的类型。详见 <xref keyref="CONTENT_INSPECT_TYPE"/>。</pd>
+                <pd props="native">视频内容审核模块的类型。详见 <xref keyref="CONTENT_INSPECT_TYPE"/>。</pd>
                 <pd props="unity">
                     <p>视频内容审核模块的类型：                                       
+                    
                     <ul>
                     <li>0: （默认）该功能模块无实际功能。请不要设为该值。</li>
                     <li>1: 鉴黄。</li>
@@ -67,21 +62,7 @@
                 </pd>
             </plentry>
             <plentry>
-                <pt props="native">vendor</pt>
-                <pd>云端鉴黄服务供应商。详见 <xref keyref="CONTENT_INSPECT_VENDOR"/>。</pd>
-                <pd><note type="attention">该属性仅适用于鉴黄模块（<apiname keyref= "CONTENT_INSPECT_MODERATION"/>）。如果将 <parmname>type</parmname> 设置为其他模块，该属性不生效。</note></pd>
-            </plentry>
-            <plentry>
-                <pt props="native">callbackUrl</pt>
-                <pd>接收视频内容审核回调的服务器 URL 地址。</pd>
-            </plentry>
-            <plentry>
-                <pt props="native">token</pt>
-                <pd>在服务端生成的用于鉴权的动态密钥。详见<xref keyref="guide-token">使用 Token 鉴权</xref>。</pd>
-            </plentry>
-            <plentry>
-                <pt props="native">frequency</pt>
-                <pt props="unity flutter electron rn">interval</pt>
+                <pt>interval</pt>
                 <pd>视频内容审核的间隔，单位为秒，取值必须大于 0。默认值为 0，表示不进行内容审核。推荐值为 10 秒，你也可以根据业务需求自行调整。</pd>
             </plentry>
             </parml> </section>

@@ -13,17 +13,19 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="unity" outputclass="language-csharp">public abstract int EnableContentInspect(bool enabled, ContentInspectConfig config);</codeblock> </p>
             <codeblock props="android" outputclass="language-java">public abstract int enableContentInspect(boolean enabled, ContentInspectConfig config);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableContentInspect:(BOOL)enabled config:(AgoraContentInspectConfig* _Nonnull)config;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int enableContentInspect(bool enabled, const media::ContentInspectConfig &amp;config) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int EnableContentInspect(bool enabled, ContentInspectConfig config);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableContentInspect(bool enabled, ContentInspectConfig config);</codeblock> </section>
+            <codeblock props="flutter" outputclass="language-dart"/></p>
+        </section>
         <section id="detailed_desc">
-            <p>开启视频内容审核后，SDK 会根据你在 <xref keyref="ContentInspectConfig"/> 中设置的内容审核模块类型和频率，对频道内视频流进行截图、审核和上传。审核完成后，Agora 内容审核服务器会以 HTTPS 请求的形式，向你的服务器发送审核结果，并将指定类型的截图发送至你指定的第三方云存储。</p>
-            <p>如果你将 <apiname keyref="ContentInspectModule"/> 中的 <parmname>type</parmname> 设置为视频鉴黄，SDK 和 Agora 内容审核服务会根据你设置的工作模式进行端云融合鉴黄、仅客户端鉴黄或仅云端鉴黄。审核完成后，SDK 会触发 <xref keyref="onContentInspectResult"/> 回调，报告鉴黄结果。                                           
+            <p>开启视频内容审核后，SDK 会根据你在 <xref keyref="ContentInspectConfig"/> 中设置的内容审核模块类型和频率对本地用户发送的视频进行截图、审核和上传。 审核完成后，Agora 内容审核服务器会以 HTTPS 请求的形式，向你的服务器发送审核结果，并将所有截图发送至你指定的第三方云存储。</p>
+            <p>如果你将 <apiname keyref="ContentInspectModule"/> 中的 <parmname>type</parmname> 设置为视频鉴黄，审核完成后，SDK 会触发 <xref keyref="onContentInspectResult"/> 回调，报告鉴黄结果。                                           
+            
+            
             
             <note>
             <p>调用该方法前，请确保已开通 Agora 视频内容审核服务。详见<xref keyref="enable-contentinspect">开通服务</xref>。</p>

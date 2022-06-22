@@ -35,6 +35,10 @@
             <topicref keyref="createDataStream1" toc="no"/>
             <topicref keyref="createDataStream2" toc="no"/>
             <topicref keyref="createMediaPlayer" toc="no"/>
+            <topicref keyref="createCustomEncodedVideoTrack" toc="no"/>
+            <topicref keyref="createCustomVideoTrack" toc="no"/>
+            <topicref keyref="destroyCustomVideoTrack" toc="no"/>
+            <topicref keyref="destroyCustomEncodedVideoTrack" toc="no"/>
             <topicref keyref="destroyMediaPlayer" toc="no"/>
             <topicref keyref="disableAudio" toc="no"/>
             <topicref keyref="disableAudioSpectrumMonitor" toc="no"/>
@@ -42,7 +46,7 @@
             <topicref keyref="enableAudio" toc="no"/>
             <topicref keyref="enableAudioSpectrumMonitor" toc="no"/>
             <topicref keyref="enableAudioVolumeIndication" toc="no"/>
-            <topicref keyref="enableContentInspect" toc="no" props="hide"/>
+            <topicref keyref="enableContentInspect" toc="no"/>
             <topicref keyref="enableEchoCancellationExternal" toc="no" props="hide"/>
             <topicref keyref="enableDualStreamMode" toc="no"/>
             <topicref keyref="enableDualStreamMode2" toc="no"/>
@@ -128,6 +132,7 @@
             <topicref keyref="setAdvancedAudioOptions" toc="no"/>
             <topicref keyref="setAudioEffectParameters" toc="no"/>
             <topicref keyref="setAudioEffectPreset" toc="no"/>
+            <topicref keyref="setAudioMixingDualMonoMode" toc="no"/>
             <topicref keyref="setAudioMixingPitch" toc="no"/>
             <topicref keyref="setAudioMixingPosition" toc="no"/>
             <topicref keyref="setAudioProfile" toc="no"/>
@@ -162,6 +167,7 @@
             <topicref keyref="setExternalAudioSource2" toc="no"/>
             <topicref keyref="setInEarMonitoringVolume" toc="no"/>
             <topicref keyref="setLiveTranscoding" toc="no"/>
+            <topicref keyref="setLocalAccessPoint" toc="no"/>
             <topicref keyref="setLocalRenderMode1" toc="no"/>
             <topicref keyref="setLocalRenderMode2" toc="no"/>
             <topicref keyref="setLocalVideoMirrorMode" toc="no"/>
@@ -268,6 +274,7 @@
             <topicref keyref="setupRemoteVideoEx" toc="no"/>
             <topicref keyref="setVideoEncoderConfigurationEx" toc="no"/>
             <topicref keyref="sendStreamMessageEx" toc="no"/>
+            <topicref keyref="takeSnapshotEx" toc="no"/>
             <topicref keyref="updateChannelMediaOptionsEx" toc="no"/>
         </topicref>
         <topicref keyref="IRtcEngineEventHandler" chunk="to-content">
@@ -293,7 +300,7 @@
             <topicref keyref="onConnectionInterrupted" toc="no"/>
             <topicref keyref="onConnectionLost" toc="no"/>
             <topicref keyref="onConnectionStateChanged" toc="no"/>
-            <topicref keyref="onContentInspectResult" toc="no" props="hide"/>
+            <topicref keyref="onContentInspectResult" toc="no"/>
             <topicref keyref="onEncryptionError" toc="no"/>
             <topicref keyref="onExtensionError" toc="no"/>
             <topicref keyref="onExtensionEvent" toc="no"/>
@@ -412,6 +419,8 @@
         <topicref keyref="IAudioDeviceManager" chunk="to-content">
             <topicref keyref="enumeratePlaybackDevices" toc="no"/>
             <topicref keyref="enumerateRecordingDevices" toc="no"/>
+            <topicref keyref="followSystemPlaybackDevice" toc="no"/>
+            <topicref keyref="followSystemRecordingDevice" toc="no"/>
             <topicref keyref="getPlaybackDevice" toc="no"/>
             <topicref keyref="getPlaybackDeviceInfo" toc="no"/>
             <topicref keyref="getPlaybackDeviceMute" toc="no" props="hide"/>
@@ -600,7 +609,8 @@
             <topicref keyref="AUDIO_EQUALIZATION_BAND_FREQUENCY" toc="no"/>
             <topicref keyref="AUDIO_FRAME_TYPE" toc="no"/>
             <topicref keyref="AUDIO_RECORDING_POSITION" toc="no"/>
-            <topicref keyref="AUDIO_MIXING_ERROR_TYPE" toc="no"/>
+            <topicref keyref="AUDIO_MIXING_DUAL_MONO_MODE" toc="no"/>
+            <topicref keyref="AUDIO_MIXING_REASON_TYPE" toc="no"/>
             <topicref keyref="AUDIO_MIXING_STATE_TYPE" toc="no"/>
             <topicref keyref="AUDIO_PROCESSING_CHANNELS" toc="no"/>
             <topicref keyref="AUDIO_PROFILE_TYPE" toc="no"/>
@@ -612,7 +622,7 @@
             <topicref keyref="AUDIO_SCENARIO_TYPE" toc="no"/>
             <topicref keyref="AUDIO_SESSION_OPERATION_RESTRICTION" toc="no"/>
             <topicref keyref="CAMERA_DIRECTION" toc="no"/>
-            <topicref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE" toc="no" props="hide"/>
+            <topicref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE" toc="no"/>
             <topicref keyref="CAPTURER_OUTPUT_PREFERENCE" toc="no" props="hide"/>
             <topicref keyref="CHANNEL_MEDIA_RELAY_ERROR" toc="no"/>
             <topicref keyref="CHANNEL_MEDIA_RELAY_EVENT" toc="no"/>
@@ -623,9 +633,8 @@
             <topicref keyref="CONNECTION_CHANGED_REASON_TYPE" toc="no"/>
             <topicref keyref="CONNECTION_STATE_TYPE" toc="no"/>
             <topicref keyref="CONTENT_INSPECT_DEVICE_TYPE" toc="no" props="hide"/>
-            <topicref keyref="CONTENT_INSPECT_RESULT" toc="no" props="hide"/>
-            <topicref keyref="CONTENT_INSPECT_TYPE" toc="no" props="hide"/>
-            <topicref keyref="CONTENT_INSPECT_WORK_TYPE" toc="no" props="hide"/>
+            <topicref keyref="CONTENT_INSPECT_RESULT" toc="no"/>
+            <topicref keyref="CONTENT_INSPECT_TYPE" toc="no"/>
             <topicref keyref="DEGRADATION_PREFERENCE" toc="no"/>
             <topicref keyref="DIRECT_CDN_STREAMING_ERROR" toc="no" props="hide"/>
             <topicref keyref="DIRECT_CDN_STREAMING_STATE" toc="no" props="hide"/>
@@ -642,6 +651,7 @@
             <topicref keyref="LIGHTENING_CONTRAST_LEVEL" toc="no"/>
             <topicref keyref="LOCAL_AUDIO_STREAM_ERROR" toc="no"/>
             <topicref keyref="LOCAL_AUDIO_STREAM_STATE" toc="no"/>
+            <topicref keyref="LOCAL_PROXY_MODE" toc="no"/>
             <topicref keyref="LOCAL_VIDEO_STREAM_ERROR" toc="no"/>
             <topicref keyref="LOCAL_VIDEO_STREAM_STATE" toc="no"/>
             <topicref keyref="LOG_FILTER_TYPE" toc="no"/>
@@ -712,8 +722,8 @@
             <topicref keyref="ChannelMediaOptions" toc="no"/>
             <topicref keyref="ChannelMediaRelayConfiguration" toc="no"/>
             <topicref keyref="ClientRoleOptions" toc="no"/>
-            <topicref keyref="ContentInspectConfig" toc="no" props="hide"/>
-            <topicref keyref="ContentInspectModule" toc="no" props="hide"/>
+            <topicref keyref="ContentInspectConfig" toc="no"/>
+            <topicref keyref="ContentInspectModule" toc="no"/>
             <topicref keyref="DataStreamConfig" toc="no"/>
             <topicref keyref="DeviceInfo" toc="no"/>
             <topicref keyref="DirectCdnStreamingMediaOptions" toc="no" props="hide"/>
@@ -728,6 +738,7 @@
             <topicref keyref="LeaveChannelOptions" toc="no"/>
             <topicref keyref="LiveStreamAdvancedFeature" toc="no"/>
             <topicref keyref="LiveTranscoding" toc="no"/>
+            <topicref keyref="LocalAccessPointConfiguration" toc="no"/>
             <topicref keyref="LocalAudioStats" toc="no"/>
             <topicref keyref="LocalTranscoderConfiguration" toc="no"/>
             <topicref keyref="LocalVideoStats" toc="no"/>

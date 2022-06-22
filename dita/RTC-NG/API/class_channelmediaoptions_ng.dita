@@ -5,7 +5,7 @@
     <shortdesc id="short"><ph id="shortdesc">频道媒体设置选项。</ph></shortdesc>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
+            <p outputclass="codeblock">
             <codeblock props="unity" outputclass="language-csharp">public class ChannelMediaOptions {
         public bool publishCameraTrack { set; get; }
         public bool publishSecondaryCameraTrack { set; get; }
@@ -43,7 +43,7 @@
   public Boolean publishMediaPlayerAudioTrack;
   public Boolean publishMediaPlayerVideoTrack;
   public Integer publishMediaPlayerId;
-  public Boolean publishAudioTrack;
+  public Boolean publishMicrophoneTrack;
   public Integer publishCustomAudioSourceId;
   public Boolean autoSubscribeAudio;
   public Boolean autoSubscribeVideo;
@@ -65,7 +65,7 @@
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishMediaPlayerVideoTrack;
 @property(strong, nonatomic) AgoraRtcIntOptional* _Nullable publishMediaPlayerId;
 @property(strong, nonatomic) AgoraRtcIntOptional* _Nullable publishCustomAudioSourceId;
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishAudioTrack;
+@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishMicrophoneTrack;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable autoSubscribeAudio;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable autoSubscribeVideo;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable enableAudioRecordingOrPlayout;
@@ -78,36 +78,55 @@
             <codeblock props="cpp" outputclass="language-cpp">struct ChannelMediaOptions {
   Optional&lt;bool> publishCameraTrack;
   Optional&lt;bool> publishSecondaryCameraTrack;
-  Optional&lt;bool> publishAudioTrack;
+  Optional&lt;bool> publishMicrophoneTrack;
+
+  #if defined(__ANDROID__) || (defined(TARGET_OS_IPHONE) &amp;&amp; TARGET_OS_IPHONE)
+  Optional&lt;bool> publishScreenCaptureVideo;
+  Optional&lt;bool> publishScreenCaptureAudio;
+  #else
   Optional&lt;bool> publishScreenTrack;
   Optional&lt;bool> publishSecondaryScreenTrack;
+  #endif
+
   Optional&lt;bool> publishCustomAudioTrack;
+  Optional&lt;int> publishCustomAudioSourceId;
   Optional&lt;bool> publishCustomAudioTrackEnableAec;
+  Optional&lt;bool> publishDirectCustomAudioTrack;
+  Optional&lt;bool> publishCustomAudioTrackAec;
   Optional&lt;bool> publishCustomVideoTrack;
   Optional&lt;bool> publishEncodedVideoTrack;
   Optional&lt;bool> publishMediaPlayerAudioTrack;
   Optional&lt;bool> publishMediaPlayerVideoTrack;
   Optional&lt;bool> publishTrancodedVideoTrack;
-  Optional&lt;int> publishCustomAudioSourceId;
   Optional&lt;bool> autoSubscribeAudio;
   Optional&lt;bool> autoSubscribeVideo;
   Optional&lt;bool> enableAudioRecordingOrPlayout;
   Optional&lt;int> publishMediaPlayerId;
   Optional&lt;CLIENT_ROLE_TYPE> clientRoleType;
+  Optional&lt;AUDIENCE_LATENCY_LEVEL_TYPE> audienceLatencyLevel;
   Optional&lt;VIDEO_STREAM_TYPE> defaultVideoStreamType;
   Optional&lt;CHANNEL_PROFILE_TYPE> channelProfile;
   Optional&lt;int> audioDelayMs;
-  Optional&lt;char*> token;
+  Optional&lt;int> mediaPlayerAudioDelayMs;
+  Optional&lt;const char*> token;
+  Optional&lt;bool> enableBuiltInMediaEncryption;
+  Optional&lt;bool> publishRhythmPlayerTrack;
+  Optional&lt;bool> isInteractiveAudience;
+
+  Optional&lt;video_track_id_t> customVideoTrackId;
+
+  Optional&lt;bool> isAudioFilterable;
+
   ChannelMediaOptions() {}
-  ~ChannelMediaOptions() {}
-</codeblock>
+  ~ChannelMediaOptions() {}</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">Agora 支持在同一时间、同一 <xref
-            keyref="RtcConnection"
-            /> 中发布多路音频流、一路视频流。例如，<parmname>publishAudioTrack</parmname>、<parmname>publishCustomAudioTrack</parmname> 和 <parmname>publishMediaPlayerAudioTrack</parmname> 可以同时为 <codeph><ph
+            keyref="RtcConnection"/> 中发布多路音频流、一路视频流。例如，<parmname props="native"
+            >publishMicrophoneTrack</parmname><parmname props="unity"
+            >publishAudioTrack</parmname>、<parmname>publishCustomAudioTrack</parmname> 和 <parmname>publishMediaPlayerAudioTrack</parmname> 可以同时为 <codeph><ph
             keyref="true"/></codeph>；
             <parmname>publishCameraTrack</parmname>、<parmname>publishScreenTrack</parmname>、<parmname>publishCustomVideoTrack</parmname> 或 <parmname>publishEncodedVideoTrack</parmname> 之中同一时间只能有一个为 <codeph><ph
             keyref="true"/></codeph>。</section>
@@ -138,9 +157,13 @@
                     </ul></pd>
             </plentry>
             <plentry>
-                <pt>publishAudioTrack</pt>
+                <pt props="native">publishMicrophoneTrack</pt>
+                <pt props="unity">publishAudioTrack</pt>
                 <pd>设置是否发布采集到的音频：
 
+                    
+                    
+                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：（默认）发布采集到的音频。</li>
                     <li><codeph><ph keyref="false"/></codeph>：不发布采集到的音频。</li>
@@ -330,14 +353,24 @@
                         /> 方法加入频道时设置的频道名和用户名是一致的。</li>
                     </ul></note></pd>
             </plentry>
-                <plentry props="hide">
-                    <pt>startPreview</pt>
-                    <pd>设置是否在加入频道时自动开启预览。
-                        <ul>
-                        <li><codeph><ph keyref="true" /></codeph>：（默认）自动开启预览。该参数值生效的前提是已通过 <xref keyref="setupLocalVideo"/> 方法设置了本地视频属性；否则，不会开启预览。</li>
-                        <li><codeph><ph keyref="false"/></codeph>：不自动开启预览。</li>
-                        </ul></pd>
-                </plentry>
+            <plentry props="hide">
+                <pt>startPreview</pt>
+                <pd>设置是否在加入频道时自动开启预览。
+                        
+                    
+                    
+                    <ul>
+                    <li><codeph><ph keyref="true"
+                        /></codeph>：（默认）自动开启预览。该参数值生效的前提是已通过 <xref
+                        keyref="setupLocalVideo"/> 方法设置了本地视频属性；否则，不会开启预览。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：不自动开启预览。</li>
+                    </ul></pd>
+            </plentry>
+            <plentry id="customvideotrackid">
+                <pt>customVideoTrackId</pt>
+                <pd>通过 <xref keyref="createCustomVideoTrack"/> 或 <xref
+                    keyref="createCustomEncodedVideoTrack"/> 创建的视频轨道 ID。</pd>
+            </plentry>
             </parml> </section>
     </refbody>
 </reference>

@@ -55,21 +55,17 @@
 @end
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct ContentInspectConfig {
-  CONTENT_INSPECT_WORK_TYPE ContentWorkType;
-
   const char* extraInfo;
- 
   ContentInspectModule modules[MAX_CONTENT_INSPECT_MODULE_COUNT];
   int moduleCount;
    ContentInspectConfig&amp; operator=(const ContentInspectConfig&amp; rth)
-    {
-        ContentWorkType = rth.ContentWorkType;
+	{
         extraInfo = rth.extraInfo;
         moduleCount = rth.moduleCount;
-        memcpy(&amp;modules, &amp;rth.modules,  MAX_CONTENT_INSPECT_MODULE_COUNT * sizeof(ContentInspectModule));
-        return *this;
-    }
-  ContentInspectConfig() :ContentWorkType(CONTENT_INSPECT_WORK_CLOUD),extraInfo(NULL), moduleCount(0){}
+		memcpy(&amp;modules, &amp;rth.modules,  MAX_CONTENT_INSPECT_MODULE_COUNT * sizeof(ContentInspectModule));
+		return *this;
+	}
+  ContentInspectConfig() :extraInfo(NULL), moduleCount(0){}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="rn" outputclass="language-typescript"/>
@@ -96,39 +92,6 @@
             /></title>
             <parml>
             <plentry>
-                <pt props="native">ContentWorkType</pt>
-                <pd>视频鉴黄的工作模式。详见 <xref keyref="CONTENT_INSPECT_WORK_TYPE"/>。                                       
-                    
-                    <ul props="android">
-                    <li><codeph>CONTENT_INSPECT_TYPE_WORK_DEVICE(0)</codeph>：客户端鉴黄，即通过 Agora SDK 对视频内容进行截图并进行鉴黄。</li>
-                    <li><codeph>CONTENT_INSPECT_TYPE_WORK_CLOUD(1)</codeph>：云端鉴黄，即通过 Agora SDK 对视频内容进行截图并上传至云端服务器，由云端内容审核服务进行鉴黄。</li>
-                    <li><codeph>CONTENT_INSPECT_TYPE_WORK_DEVICE_CLOUD(2)</codeph>：（默认）端云融合鉴黄，即先通过 Agora SDK 对视频内容截图并进行鉴黄，如果鉴黄结果不确定，则将视频截图上传至云端服务器，由云端内容审核服务再次鉴黄。</li>
-                    </ul> </pd>
-                <pd>
-                    <note type="attention">该属性仅适用于鉴黄模块（<apiname
-                    keyref="CONTENT_INSPECT_MODERATION"
-                    />）。如果将 <parmname>modules</parmname> 设置为其他模块，该属性不生效。</note></pd>
-            </plentry>
-            <plentry props="unity">
-                <pt>DeviceWork</pt>
-                <pd>是否在设备端进行鉴黄。                  
-                   
-                    <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: 在设备端进行鉴黄。</li>
-                    <li><codeph><ph keyref="false"
-                        /></codeph>:（默认）不在设备端进行鉴黄。</li>
-                    </ul></pd>
-            </plentry>
-            <plentry props="unity">
-                <pt>CloudWork</pt>
-                <pd>是否在云端进行鉴黄。                                     
-                  
-                    <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: 在云端进行鉴黄。</li>
-                    <li><codeph><ph keyref="false"/></codeph>:（默认）不在云端进行鉴黄。</li>
-                    </ul></pd>
-            </plentry>
-            <plentry>
                 <pt>extraInfo</pt>
                 <pd>
                     <p>视频内容审核的附加信息，最大长度为 1024 字节。</p>
@@ -139,14 +102,13 @@
                 <pt>modules</pt>
                 <pd>
                     <p>视频内容审核模块。详见 <xref keyref="ContentInspectModule"/>。</p>
-                    <p>最多支持配置 32 个 <apiname keyref="ContentInspectModule"
-                    /> 实例，<parmname>MAX_CONTENT_INSPECT_MODULE_COUNT</parmname> 的取值范围为 [1,32] 中的整数。</p>
+                    <p>最多支持配置 32 个 <apiname keyref="ContentInspectModule"/> 实例，<parmname>MAX_CONTENT_INSPECT_MODULE_COUNT</parmname> 的取值范围为 [1,32] 中的整数。</p>
+                    <note type="attention">一个视频内容审核模块最多只能配置一个实例。</note>
                 </pd>
             </plentry>
             <plentry>
                 <pt>moduleCount</pt>
-                <pd>视频内容审核模块数，即配置的 <apiname keyref="ContentInspectModule"
-                    /> 实例的数量。最大值为 32。</pd>
+                <pd>视频内容审核模块数，即配置的 <apiname keyref="ContentInspectModule"/> 实例的数量，必须与 <codeph>modules</codeph> 中配置的实例个数一致。最大值为 32。</pd>
             </plentry>
             </parml> </section>
     </refbody>
