@@ -514,47 +514,23 @@ To enable your app to send and receive messages between individual users, do the
    ```java
    // Sign up with a username and password.
    public void signUp(View view) {
-       String username = et_username.getText().toString().trim();
-       String pwd = ((EditText) findViewById(R.id.et_pwd)).getText().toString().trim();
-       if(TextUtils.isEmpty(username) || TextUtils.isEmpty(pwd)) {
-           LogUtils.showErrorToast(this, tv_log, getString(R.string.username_or_pwd_miss));
-           return;
-       }
-       execute(()-> {
-           try {
-               Map<String, String> headers = new HashMap<>();
-               headers.put("Content-Type", "application/json");
-               JSONObject request = new JSONObject();
-               request.putOpt("userAccount", username);
-               request.putOpt("userPassword", pwd);
-   
-               LogUtils.showErrorLog(tv_log,"begin to signUp...");
-   
-               HttpResponse response = HttpClientManager.httpExecute(REGISTER_URL, headers, request.toString(), Method_POST);
-               int code=  response.code;
-               String responseInfo = response.content;
-               if (code == 200) {
-                   if (responseInfo != null && responseInfo.length() > 0) {
-                       JSONObject object = new JSONObject(responseInfo);
-                       String resultCode = object.getString("code");
-                       if(resultCode.equals("RES_OK")) {
-                           LogUtils.showToast(MainActivity.this, tv_log, getString(R.string.sign_up_success));
-                       }else{
-                           String errorInfo = object.getString("errorInfo");
-                           LogUtils.showErrorLog(tv_log,errorInfo);
-                       }
-                   } else {
-                       LogUtils.showErrorLog(tv_log,responseInfo);
-                   }
-               } else {
-                   LogUtils.showErrorLog(tv_log,responseInfo);
-               }
-           } catch (Exception e) {
-               e.printStackTrace();
-               LogUtils.showErrorLog(tv_log, e.getMessage());
-           }
-       });
-   }
+        String username = et_username.getText().toString().trim();
+        String pwd = ((EditText) findViewById(R.id.et_pwd)).getText().toString().trim();
+        if(TextUtils.isEmpty(username) || TextUtils.isEmpty(pwd)) {
+            LogUtils.showErrorToast(this, tv_log, getString(R.string.username_or_pwd_miss));
+            return;
+        }
+        register(REGISTER_URL, username, pwd, new CallBack() {
+            @Override
+            public void onSuccess() {
+                LogUtils.showToast(MainActivity.this, tv_log, getString(R.string.sign_up_success));
+            }
+            @Override
+            public void onError(int code, String error) {
+                LogUtils.showErrorLog(tv_log, error);
+            }
+        });
+    }
    
    // Log in with Token.
    public void signInWithToken(View view) {
@@ -582,6 +558,48 @@ To enable your app to send and receive messages between individual users, do the
            });
        }
    }
+   private void register(String url, String username, String pwd, CallBack callBack) {
+        execute(()-> {
+            try {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Content-Type", "application/json");
+                JSONObject request = new JSONObject();
+                request.putOpt("userAccount", username);
+                request.putOpt("userPassword", pwd);
+                LogUtils.showErrorLog(tv_log,"begin to signUp...");
+                HttpResponse response = HttpClientManager.httpExecute(url, headers, request.toString(), Method_POST);
+                int code=  response.code;
+                String responseInfo = response.content;
+                if (code == 200) {
+                    if (responseInfo != null && responseInfo.length() > 0) {
+                        JSONObject object = new JSONObject(responseInfo);
+                        String resultCode = object.getString("code");
+                        if(resultCode.equals("RES_OK")) {
+                            if(callBack != null) {
+                                callBack.onSuccess();
+                            }
+                        }else{
+                            if(callBack != null) {
+                                callBack.onError(Error.GENERAL_ERROR, object.getString("errorInfo"));
+                            }
+                        }
+                    } else {
+                        if(callBack != null) {
+                            callBack.onError(code, responseInfo);
+                        }
+                    }
+                } else {
+                    if(callBack != null) {
+                        callBack.onError(code, responseInfo);
+                    }
+                }
+            } catch (Exception e) {
+                if(callBack != null) {
+                    callBack.onError(Error.GENERAL_ERROR, e.getMessage());
+                }
+            }
+        });
+    }
    ```
 
 7. Start a chat. To enable the function of sending messages, add the following lines after the `signOut` function:
@@ -636,7 +654,6 @@ To enable your app to send and receive messages between individual users, do the
        public void execute(Runnable runnable) {
            new Thread(runnable).start();
        }
-   }
    ```
 
 8. To make troubleshooting less time-consuming, this quickstart also uses `LogUtils` class for logs. Navigate to `app/java/io.agora.agorachatquickstart/`, create a folder named `utils`. In this new folder, create a `.java` file, name it `LogUtils`, and copy the following codes into the file.
