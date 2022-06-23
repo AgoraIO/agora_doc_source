@@ -126,7 +126,7 @@ Follow the steps to upload the certificates to Agora Console:
 
 ## Set up push notifications
 
-To optimize user experience when dealing with an influx of push notifications, Agora Chat provides fine-grained options over the push notification and do-not-disturb (DND) modes at both the app level and the conversation level, as shown in the following table:
+To optimize user experience when dealing with an influx of push notifications, Agora Chat provides fine-grained options for the push notification and do-not-disturb (DND) modes at both the app and conversation levels, as shown in the following table:
 
 <table class="" cellspacing=0 border=1>
 <tbody>
@@ -185,7 +185,7 @@ To optimize user experience when dealing with an influx of push notifications, A
             <nobr>Do-not-disturb mode</nobr>
         </td>
         <td>
-            <nobr><code>silentModeDuration</code>: Do not receive push notifications in the specified duration.</nobr>
+            <nobr><code>silentModeDuration</code>: Do not receive push notifications for the specified duration.</nobr>
         </td>
         <td style="text-align:center">
             <nobr>✓</nobr>
@@ -213,22 +213,22 @@ To optimize user experience when dealing with an influx of push notifications, A
 
 The setting of the push notification mode at the conversation level takes precedence over that at the app level, and those conversations that do not have specific settings for the push notification mode inherit the app setting by default.
 
-Assume that the push notification mode of the app is set to `MentionOnly`, while that of the specified conversation is set to `All`. You receive all the push notifications from this conversation, while you only receive the push notifications for mentioned messages from all the other conversations.
+For example, assume that the push notification mode of the app is set to `MentionOnly`, while that of the specified conversation is set to `All`. You receive all the push notifications from this conversation, while you only receive the push notifications for mentioned messages from all the other conversations.
 
 **Do-not-disturb mode**
 
-<div class="alert note"><ol><li>You can specify both the DND duration and DND time frame at the app level. During the specified DND time periods, you do not receive any push notifications.<li>Conversations only support the DND duration setting, while the setting of the DND time frame does not take effect.</ol></div>
+<div class="alert note"><ol><li>You can specify both the DND duration and DND time frame at the app level. During the specified DND time periods, you do not receive any push notifications.<li>Conversations only support the DND duration setting; the setting of the DND time frame does not take effect.</ol></div>
 
 For both the app and all the conversations in the app, the setting of the DND mode takes precedence over the setting of the push notification mode.
 
-Assume that a DND time period is specified at the app level and the push notification mode of the specified conversation is set to `All`. The DND mode takes effect regardless of the setting of the push notification mode, that is, you do not receive any push notifications during the specified DND time period.
+For example, assume that a DND time period is specified at the app level and the push notification mode of the specified conversation is set to `All`. The DND mode takes effect regardless of the setting of the push notification mode, that is, you do not receive any push notifications during the specified DND time period.
 
-Assume that a DND time period is specified for a conversation, while the app does not have any DND settings and its push notification mode is set to `All`. You do not receive any push notifications from this conversation during the specified DND time period, while the push of all the other conversations remains the same.
+Alternatively, assume that a DND time period is specified for a conversation, while the app does not have any DND settings and its push notification mode is set to `All`. You do not receive any push notifications from this conversation during the specified DND time period, while the push of all the other conversations remains the same.
 
 
 ### Set the push notifications of an app
 
-You can call `setSilentModeForAll` to set the push notifications at the app level, and set the push notification mode and DND mode by specifying the `AgoraChatSilentModeParam` field, as shown in the following code sample:
+You can call `setSilentModeForAll` to set the push notifications at the app level and set the push notification mode and DND mode by specifying the `AgoraChatSilentModeParam` field, as shown in the following code sample:
 
 ```objective-c
 // Sets the push notification mode to `MentionOnly` for an app.
@@ -261,9 +261,9 @@ You can call `getSilentModeForAllWithCompletion` to retrieve the push notificati
                 AgoraChatPushRemindType remindType = aResult.remindType;
                 // Retrieves the Unix timestamp when the DND duration of an app expires.
                 NSTimeInterval ex = aResult.expireTimestamp;
-                // Retrieves the start time specified in DND time frame at the app level.
+                // Retrieves the start time specified in the DND time frame at the app level.
                 AgoraChatSilentModeTime *startTime = aResult.silentModeStartTime;
-                // Retrieves the end time specified in DND time frame at the app level.
+                // Retrieves the end time specified in the DND time frame at the app level.
                 AgoraChatSilentModeTime *endTime = aResult.silentModeEndTime;
             }else{
                 NSLog(@"getSilentModeForAll error---%@",aError.errorDescription);
@@ -338,7 +338,7 @@ The following code sample shows how to clear the push notification setting of a 
 
 ### Set the display attributes of push notifications
 
-You can call `updatePushDisplayName` to set your nickname displayed in push notifications, as shown in the following code sample:
+You can call `updatePushDisplayName` to set the nickname displayed in your push notifications, as shown in the following code sample:
 
 ```objective-c
 [AgoraChatClient.sharedClient.pushManager updatePushDisplayName:@"displayName" completion:^(NSString * aDisplayName, AgoraError * aError) {
@@ -352,7 +352,7 @@ You can call `updatePushDisplayName` to set your nickname displayed in push noti
 You can also call `updatePushDisplayStyle` to set the display style of push notifications, as shown in the following code sample:
 
 ```objective-c
-// `AgoraPushDisplayStyleSimpleBanner` indicates that only displays "You have a new message".
+// `AgoraPushDisplayStyleSimpleBanner` indicates that only "You have a new message" displays.
 // To display the message content, set `DisplayStyle` to `AgoraPushDisplayStyleMessageSummary`.
 [AgoraChatClient.sharedClient.pushManager updatePushDisplayStyle:AgoraPushDisplayStyleSimpleBanner completion:^(AgoraError * aError)
 {
@@ -383,18 +383,18 @@ You can call `getPushNotificationOptionsFromServerWithCompletion` to retrieve th
 
 If a user enables the [automatic translation](./agora_chat_translation_ios?platform=iOS#automatic-translation) feature and sends a message, the SDK sends both the original message and the translated message.
 
-Push notifications work in tandem with the translation feature. As a receiver, you can set the preferable target language of push notifications that you are willing to receive when you are offline. If the language of the translated message meets your setting, the translated message displays in push notifications; otherwise, the original message displays instead.
+Push notifications work in tandem with the translation feature. As a receiver, you can set the preferred language of push notifications that you are willing to receive when you are offline. If the language of the translated message meets your setting, the translated message displays in push notifications; otherwise, the original message displays instead.
 
-The following code sample shows how to set and retrieve the preferable target language of push notifications
+The following code sample shows how to set and retrieve the preferred language of push notifications
 
 ```objective-c
-// Sets the preferable target language of push notifications.
+// Sets the preferred language of push notifications.
 [[AgoraChatClient sharedClient].pushManager setPreferredNotificationLanguage:@"EU" completion:^(AgoraChatError *aError) {
     if (aError) {
         NSLog(@"setPushPerformLanguageCompletion error---%@",aError.errorDescription);
     }
 }];
-// Retrieves the preferable target language of push notifications.
+// Retrieves the preferred language of push notifications.
 [[AgoraChatClient sharedClient].pushManager getPreferredNotificationLanguageCompletion:^(NSString *aLaguangeCode, AgoraChatError *aError) {
     if (!aError) {
         NSLog(@"getPushPerformLanguage---%@",aLaguangeCode);
@@ -411,7 +411,7 @@ You can create and provide push templates for users in [Agora Console](https://c
 
 1. In the left-side panel, select **Project Management**.
 
-2. On the **Project Management** page, select the **Config** button in the **Action** column of the project that you want to set push templates.
+2. On the **Project Management** page, select the **Config** button in the **Action** column of the project for which you want to set push templates.
 
 3. On the project details page, select the **Config** button in the **Agora Chat** section.
 
@@ -421,13 +421,13 @@ You can create and provide push templates for users in [Agora Console](https://c
 
 ![](https://web-cdn.agora.io/docs-files/1655445229699)
 
-Once the template creation is complete in Agora Console, users can set to use this push template when sending a message, as shown in the following code sample:
+Once the template creation is complete in Agora Console, users can choose this push template as their default layout when sending a message, as shown in the following code sample:
 
 ```objective-c
-// Takes a TXT message as an example. You can use the same approach to set IMAGE messages and FILE messages.
+// This code sample takes a TXT message as an example. You can use the same approach to set IMAGE messages and FILE messages.
 AgoraChatTextMessageBody *body = [[AgoraChatTextMessageBody alloc]initWithText:@"test"];
 AgoraChatMessage *message = [[AgoraChatMessage alloc]initWithConversationID:@"conversationId" from:@"currentUsername" to:@"conversationId" body:body ext:nil];
-       // Sets to use the template created in Agora Console.
+       // Sets the push template created in Agora Console as their default layout.
        NSDictionary *pushObject = @{
            @"name":@"templateName",// Sets the template name.
            @"title_args":@[@"titleValue1"],// Sets the template title by specifying the variable.
@@ -445,7 +445,7 @@ AgoraChatMessage *message = [[AgoraChatMessage alloc]initWithConversationID:@"co
 
 This section includes more versatile push notification features that you can use to implement additional functions if needed.
 
-If the ready-made templates cannot meed your requirements, Agora Chat also enables you to customize your push notifications.
+If the ready-made templates do not meet your requirements, Agora Chat also enables you to customize your push notifications.
 
 ### Custom fields
 

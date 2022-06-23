@@ -11,7 +11,7 @@ Assume that User A sends a message to User B, but User B goes offline before rec
 ## Prerequisites
 
 Before proceeding, ensure that you meet the following requirements:
-- You have initialized the Agora Chat SDK. For details, see[ Get Started with Android](./agora_chat_get_started_android).
+- You have initialized the Agora Chat SDK. For details, see [Get Started with Android](./agora_chat_get_started_android).
 - You have activated the advanced features for push in [Agora Console](https://console.agora.io/). Advanced features allow you to set the push notification mode, do-not-disturb mode, and custom push template. 
 
 
@@ -24,7 +24,8 @@ This section guides you through how to integrate FCM with Agora Chat.
 1. Log in to [Firebase console](https://console.firebase.google.com/), and click **Add project**.
 
 2. In the **Create a project** page, enter a project name, and click **Create project**.
-    > **Note**: You can toggle off **Enable Google Analytics for this project** if not needed.
+
+<div class="alert note">You can toggle off **Enable Google Analytics for this project** if this option is not needed.</div>
 
 3. After the project is ready, click **Continue** to redirect to the project page, and click the **Android** icon to register an Android project.
 
@@ -63,9 +64,9 @@ This section guides you through how to integrate FCM with Agora Chat.
 ```java
 dependencies {
     // ...
-    // FCM: Import the Firebase BoM.
+    // Imports the Firebase BoM.
     implementation platform('com.google.firebase:firebase-bom:28.4.1')
-    // FCM: Declare the dependencies for the Firebase Cloud Messaging.
+    // Declares the dependencies for the Firebase Cloud Messaging.
     // When using the BoM, do not specify versions in Firebase library dependencies.
     implementation 'com.google.firebase:firebase-messaging'
 }
@@ -174,7 +175,7 @@ public void onNewToken(@NonNull String token) {
 
 ## Set up push notifications
 
-To optimize user experience when dealing with an influx of push notifications, Agora Chat provides fine-grained options over the push notification and do-not-disturb (DND) modes at both the app level and the conversation level, as shown in the following table:
+To optimize user experience when dealing with an influx of push notifications, Agora Chat provides fine-grained options for the push notification and do-not-disturb (DND) modes at both the app and conversation levels, as shown in the following table:
 
 <table class="" cellspacing=0 border=1>
 <tbody>
@@ -233,7 +234,7 @@ To optimize user experience when dealing with an influx of push notifications, A
             <nobr>Do-not-disturb mode</nobr>
         </td>
         <td>
-            <nobr><code>SILENT_MODE_DURATION</code>: Do not receive push notifications in the specified duration.</nobr>
+            <nobr><code>SILENT_MODE_DURATION</code>: Do not receive push notifications for the specified duration.</nobr>
         </td>
         <td style="text-align:center">
             <nobr>✓</nobr>
@@ -261,22 +262,22 @@ To optimize user experience when dealing with an influx of push notifications, A
 
 The setting of the push notification mode at the conversation level takes precedence over that at the app level, and those conversations that do not have specific settings for the push notification mode inherit the app setting by default.
 
-Assume that the push notification mode of the app is set to `MENTION_ONLY`, while that of the specified conversation is set to `ALL`. You receive all the push notifications from this conversation, while you only receive the push notifications for mentioned messages from all the other conversations.
+For example, assume that the push notification mode of the app is set to `MENTION_ONLY`, while that of the specified conversation is set to `ALL`. You receive all the push notifications from this conversation, while you only receive the push notifications for mentioned messages from all the other conversations.
 
 **Do-not-disturb mode**
 
-<div class="alert note"><ol><li>You can specify both the DND duration and DND time frame at the app level. During the specified DND time periods, you do not receive any push notifications.<li>Conversations only support the DND duration setting, while the setting of the DND time frame does not take effect.</ol></div>
+<div class="alert note"><ol><li>You can specify both the DND duration and DND time frame at the app level. During the specified DND time periods, you do not receive any push notifications.<li>Conversations only support the DND duration setting; the setting of the DND time frame does not take effect.</ol></div>
 
 For both the app and all the conversations in the app, the setting of the DND mode takes precedence over the setting of the push notification mode.
 
-Assume that a DND time period is specified at the app level and the push notification mode of the specified conversation is set to `ALL`. The DND mode takes effect regardless of the setting of the push notification mode, that is, you do not receive any push notifications during the specified DND time period.
+For example, assume that a DND time period is specified at the app level and the push notification mode of the specified conversation is set to `ALL`. The DND mode takes effect regardless of the setting of the push notification mode, that is, you do not receive any push notifications during the specified DND time period.
 
-Assume that a DND time period is specified for a conversation, while the app does not have any DND settings and its push notification mode is set to `ALL`. You do not receive any push notifications from this conversation during the specified DND time period, while the push of all the other conversations remains the same.
+Alternatively, assume that a DND time period is specified for a conversation, while the app does not have any DND settings and its push notification mode is set to `ALL`. You do not receive any push notifications from this conversation during the specified DND time period, while the push of all the other conversations remains the same.
 
 
 ### Set the push notifications of an app
 
-You can call `setSilentModeForAll` to set the push notifications at the app level, and set the push notification mode and DND mode by specifying the `SilentModeParam` field, as shown in the following code sample:
+You can call `setSilentModeForAll` to set the push notifications at the app level and set the push notification mode and DND mode by specifying the `SilentModeParam` field, as shown in the following code sample:
 
 ```java
 // Sets the push notification mode to `MENTION_ONLY` for an app.
@@ -305,11 +306,11 @@ ChatClient.getInstance().pushManager().getSilentModeForAll(new ValueCallBack<Sil
         PushManager.PushRemindType remindType = result.getRemindType();
         // Retrieves the Unix timestamp when the DND duration of an app expires.
         long timestamp = result.getExpireTimestamp();
-        // Retrieves the start time specified in DND time frame at the app level.
+        // Retrieves the start time specified in the DND time frame at the app level.
         SilentModeTime startTime = result.getSilentModeStartTime();
         startTime.getHour(); // The start hour of the DND time frame.
         startTime.getMinute(); // The start minute of the DND time frame.
-        // Retrieves the end time specified in DND time frame at the app level.
+        // Retrieves the end time specified in the DND time frame at the app level.
         SilentModeTime endTime = result.getSilentModeEndTime();
         endTime.getHour(); // The end hour of the DND time frame.
         endTime.getMinute(); // The end minute of the DND time frame.
@@ -387,7 +388,7 @@ ChatClient.getInstance().pushManager().clearRemindTypeForConversation(conversati
 
 ### Set the display attributes of push notifications
 
-You can call `updatePushNickname` to set your nickname displayed in push notifications, as shown in the following code sample:
+You can call `updatePushNickname` to set the nickname displayed in your push notifications, as shown in the following code sample:
 
 ```java
 ChatClient.getInstance().pushManager().updatePushNickname("pushNickname");
@@ -396,7 +397,7 @@ ChatClient.getInstance().pushManager().updatePushNickname("pushNickname");
 You can also call `updatePushDisplayStyle` to set the display style of push notifications, as shown in the following code sample:<a name="style"></a>
 
 ```java
-// `SimpleBanner` indicates that only displays "You have a new message".
+// `SimpleBanner` indicates that only "You have a new message" displays.
 // To display the message content, set `DisplayStyle` to `MessageSummary`.
 PushManager.DisplayStyle displayStyle = PushManager.DisplayStyle.SimpleBanner;
 // An asynchronous processing is required for this method.
@@ -420,15 +421,15 @@ PushManager.DisplayStyle style = pushConfigs.getDisplayStyle();
 
 If a user enables the [automatic translation](./agora_chat_translation_android#automatic-translation) feature and sends a message, the SDK sends both the original message and the translated message.
 
-Push notifications work in tandem with the translation feature. As a receiver, you can set the preferable target language of push notifications that you are willing to receive when you are offline. If the language of the translated message meets your setting, the translated message displays in push notifications; otherwise, the original message displays instead.
+Push notifications work in tandem with the translation feature. As a receiver, you can set the preferred language of push notifications that you are willing to receive when you are offline. If the language of the translated message meets your setting, the translated message displays in push notifications; otherwise, the original message displays instead.
 
-The following code sample shows how to set and retrieve the preferable target language of push notifications:
+The following code sample shows how to set and retrieve the preferred language of push notifications:
 
 ```java
-// Sets the preferable target language of push notifications.
+// Sets the preferred language of push notifications.
 ChatClient.getInstance().pushManager().setPreferredNotificationLanguage("en", new CallBack(){});
 
-// Retrieves the preferable target language of push notifications.
+// Retrieves the preferred language of push notifications.
 ChatClient.getInstance().pushManager().getPreferredNotificationLanguage(new ValueCallBack<String>(){});
 ```
 
@@ -440,7 +441,7 @@ You can create and provide push templates for users in [Agora Console](https://c
 
 1. In the left-side panel, select **Project Management**.
 
-2. On the **Project Management** page, select the **Config** button in the **Action** column of the project that you want to set push templates.
+2. On the **Project Management** page, select the **Config** button in the **Action** column of the project for which you want to set push templates.
 
 3. On the project details page, select the **Config** button in the **Agora Chat** section.
 
@@ -450,14 +451,14 @@ You can create and provide push templates for users in [Agora Console](https://c
 
 ![](https://web-cdn.agora.io/docs-files/1655445229699)
 
-Once the template creation is complete in Agora Console, users can set to use this push template when sending a message, as shown in the following code sample:
+Once the template creation is complete in Agora Console, users can choose this push template as their default layout when sending a message, as shown in the following code sample:
 
 ```java
-// Takes a TXT message as an example. You can use the same approach to set IMAGE messages and FILE messages.
+// This code sample takes a TXT message as an example. You can use the same approach to set IMAGE messages and FILE messages.
 ChatMessage message = ChatMessage.createSendMessage(ChatMessage.Type.TXT);
 TextMessageBody txtBody = new TextMessageBody("message content");
 message.setTo("6006");
-// Sets to use the template created in Agora Console.
+// Sets the push template created in Agora Console as their default layout.
                     JSONObject pushObject = new JSONObject();
                     JSONArray titleArgs = new JSONArray();
                     JSONArray contentArgs = new JSONArray();
@@ -488,14 +489,14 @@ ChatClient.getInstance().chatManager().sendMessage(message);
 
 This section includes more versatile push notification features that you can use to implement additional functions if needed.
 
-If the ready-made templates cannot meed your requirements, Agora Chat also enables you to customize your push notifications.
+If the ready-made templates do not meet your requirements, Agora Chat also enables you to customize your push notifications.
 
 ### Custom fields
 
 The following code sample shows how to add an extension field in push notifications:
 
 ```java
-// Takes a TXT message as an example. You can use the same approach to set IMAGE messages and FILE messages.
+// This code sample takes a TXT message as an example. You can use the same approach to set IMAGE messages and FILE messages.
 ChatMessage message = ChatMessage.createSendMessage(ChatMessage.Type.TXT);
 TextMessageBody txtBody = new TextMessageBody("message content");
 // Specifies the username of the receiver.
@@ -549,7 +550,7 @@ The following example shows a `RemoteMessage` object received by the remote user
 The following code sample shows how to customize the display style in push notifications:
 
 ```java
-// Takes a TXT message as an example. You can use the same approach to set IMAGE messages and FILE messages.
+// This code sample takes a TXT message as an example. You can use the same approach to set IMAGE messages and FILE messages.
 ChatMessage message = ChatMessage.createSendMessage(ChatMessage.Type.TXT);
 TextMessageBody txtBody = new TextMessageBody("message content");
 // Specifies the username of the receiver.
@@ -576,8 +577,8 @@ ChatClient.getInstance().chatManager().sendMessage(message);
 | ---------------- | ------------------------------------------------------------ |
 | `toChatUsername` | The username of the sender. |
 | `em_apns_ext`    | The custom key used to add the extension field. <br>**Note**: Do not modify the key. Modify the value of the key only. |
-| `em_push_title`   | The custom key used to specify custom titles of push notifications.<br>**Note**: Do not modify the key. Modify the value of the key only. |
-| `em_push_content`| The custom key used to specify custom displayed content of push notifications.<br>**Note**: Do not modify the key. Modify the value of the key only. |
+| `em_push_title`   | The custom key used to specify the custom titles of push notifications.<br>**Note**: Do not modify the key. Modify the value of the key only. |
+| `em_push_content`| The custom key used to specify the custom displayed content of push notifications.<br>**Note**: Do not modify the key. Modify the value of the key only. |
 
 The following example shows a `RemoteMessage` object received by the remote user:
 
@@ -609,7 +610,7 @@ Once you force a push notification to a user, the user receives the message rega
 The following code sample shows how to force a push notification:
 
 ```java
-// Takes a TXT message as an example. You can use the same approach to set IMAGE messages and FILE messages.
+// This code sample takes a TXT message as an example. You can use the same approach to set IMAGE messages and FILE messages.
 ChatMessage message = ChatMessage.createSendMessage(ChatMessage.Type.TXT);
 TextMessageBody txtBody = new TextMessageBody("test");
 // Sets the username of the receiver.
