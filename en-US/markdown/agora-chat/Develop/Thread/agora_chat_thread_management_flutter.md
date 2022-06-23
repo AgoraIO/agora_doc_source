@@ -11,7 +11,7 @@ This page shows how to use the Agora Chat SDK to create and manage threads in yo
 
 ## Understand the tech
 
-The Agora Chat SDK provides the `ChatManager`, `ChatThread`, `ChatManagerListener`, and `ChatThreadEvent` classes for thread management, which allows you to implement the following features:
+The Agora Chat SDK provides the `ChatThreadManager`, `ChatThread`, `ChatThreadManagerListener`, and `ChatThreadEvent` classes for thread management, which allows you to implement the following features:
 
 - Create and destroy a thread
 - Join and leave a thread
