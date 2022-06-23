@@ -22,12 +22,6 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setVoiceBeautifierPreset(VoiceBeautifierPreset preset);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>自从</dt>
-                <dd>v3.2.0</dd>
-            </dlentry>
-            </dl>
             <p>调用该方法可以为本地发流用户设置预设的人声美化效果。设置美声效果后，频道内所有用户都能听到该效果。根据不同的场景，你可以为用户设置不同的美声效果。<ph props="android ios">各美声效果的适用场景可参考<xref keyref="guide-voice-changer" format="html" scope="external">设置人声效果</xref>。</ph></p>
             <p>为获取更好的人声效果，Agora 推荐你在调用该方法前将 <xref keyref="setAudioProfile"/> 的 <parmname>scenario</parmname> 设为 <apiname keyref="AUDIO_SCENARIO_GAME_STREAMING"/>(3)，并将 <parmname>profile</parmname> 设为 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/>(4) 或 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>(5)。</p>
             <note type="attention">
@@ -66,14 +60,6 @@
                     <li><ph keyref="SINGING_BEAUTIFIER"/>: 歌唱美声。
                                     
                         <ul>
-                        <li>
-                            <dl outputclass="since" props="rtc">
-                            <dlentry>
-                                <dt>自从</dt>
-                                <dd>v3.3.0</dd>
-                            </dlentry>
-                            </dl>
-                        </li>
                         <li>如果调用 <xref keyref="setVoiceBeautifierPreset"/>(<ph keyref="SINGING_BEAUTIFIER"/>)，你可以美化男声并添加歌声在小房间的混响效果。请勿用于设置女声，否则音频会失真。</li>
                         <li>如果调用 <xref keyref="setVoiceBeautifierParameters"/>(<ph keyref="SINGING_BEAUTIFIER"/>, param1, param2)，你可以美化男声或女声并添加混响效果。</li>
                         </ul> </li>
@@ -85,10 +71,10 @@
                     <li><ph keyref="TIMBRE_TRANSFORMATION_CLEAR"/>: 清澈。</li>
                     <li><ph keyref="TIMBRE_TRANSFORMATION_RESOUNDING"/>: 高亢。</li>
                     <li><ph keyref="TIMBRE_TRANSFORMATION_RINGING"/>: 嘹亮。</li>
-                    <li props="rtc-ng"><ph keyref="ULTRA_HIGH_QUALITY_VOICE"/>: 超高音质，即让音频更清晰、细节更丰富。
+                    <li><ph keyref="ULTRA_HIGH_QUALITY_VOICE"/>: 超高音质，即让音频更清晰、细节更丰富。
                            
                         <ul>
-                        <li>为达到更好的效果，我们推荐在调用该方法前将 <xref keyref="setAudioProfile2"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/>(4) 或 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>(5)，且 <parmname>scenario</parmname> 参数设置为 <apiname keyref="AUDIO_SCENARIO_HIGH_DEFINITION"/>(6)。</li>
+                        <li>为达到更好的效果，我们推荐在调用该方法前将 <xref keyref="setAudioProfile2"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/>(4) 或 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>(5)，且 <parmname>scenario</parmname> 参数设置为 <apiname keyref="AUDIO_SCENARIO_GAME_STREAMING"/>(3)。</li>
                         <li>如果用户的音频采集设备可以高度还原音频细节，Agora 建议你不要开启超高音质，否则 SDK 会过度还原音频细节，达不到预期效果。</li>
                         </ul></li>
                     </ul> </p>

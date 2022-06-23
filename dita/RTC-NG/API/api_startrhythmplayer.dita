@@ -29,18 +29,13 @@
       String sound1, String sound2, RhythmPlayerConfig config);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>自从</dt>
-                <dd>v3.4.0</dd>
-            </dlentry>
-            </dl>
             <p>在音乐教学、体育教学等场景中，老师通常需要使用节拍器，让学生跟着正确的节拍练习。 节拍由强拍和弱拍组成，每小节的第一拍称为强拍，其余称为弱拍。</p>
             <p>你需要在该方法中设置强拍和弱拍的文件路径、每小节的拍数、节拍速度以及是否将节拍器的声音发送至远端。</p>
             <note type="attention" id="rhythm_play">
             <ul>
             <li props="cpp unity">该方法仅适用于 Android 和 iOS。</li>
             <li>开启虚拟节拍器后，SDK 会从头开始播放指定的音频文件，并根据你在 <xref keyref="AgoraRhythmPlayerConfig"/> 中设置的 <parmname>beatsPerMinute</parmname> 控制每个文件的播放时长。例如，将 <parmname>beatsPerMinute</parmname> 设为 <codeph>60</codeph>，则 SDK 会 1 秒播放 1 个节拍。如果文件时长超过了节拍时长，则 SDK 只播放节拍时长部分的音频。</li>
+            <li>虚拟节拍器的声音默认会发布至远端，如果你不希望远端用户听到虚拟节拍器的声音，你可以将 <xref keyref="ChannelMediaOptions"/> 中的 <parmname>publishRhythmPlayerTrack</parmname> 设为 <codeph><ph keyref="false"/></codeph>。</li>
             </ul></note> </section>
         <section id="parameters">
             <title>参数</title>
@@ -65,8 +60,6 @@
             <ul>
             <li>0: 方法调用成功</li>
             <li>&lt; 0: 方法调用失败
-                
-                
                 <ul>
                 <li>-22: 无法找到音频文件。请填写正确的 <parmname>sound1</parmname> 和 <parmname>sound2</parmname>。</li>
                 </ul></li>
