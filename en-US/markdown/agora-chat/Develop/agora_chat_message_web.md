@@ -39,8 +39,7 @@ Refer to the following code sample to create, send, and receive a text message:
 ```javascript
 // Send a text message.
 function sendPrivateText() {
-    // Create a text message.
-    let msg = new WebIM.message("txt");
+
     let option = {
         // Set the message content.
         msg: "message content",
@@ -48,26 +47,25 @@ function sendPrivateText() {
         to: "username",
         // Set the chat type
         chatType: "singleChat",
-        success: function (id, serverMsgId) {
-            console.log("send private text Success");
-        },
-        fail: function (e) {
-            console.log("Send private text error");
-        },
     };
-    msg.set(option);
+    // Create a text message.
+    let msg = WebIM.message.create(opt);
     // Call send to send the message
-    conn.send(msg.body);
+    conn.send(msg).then(()=>{
+        console.log("send private text Success");
+    }).catch((e)=>{
+        console.log("Send private text error");
+    });
 }
 ```
 
 ### Receive a message
 
-Refer to the following sample code to listen for message events using `listen`.
+Refer to the following sample code to listen for message events using `addEventHandler`.
 
 ```javascript
-// Use `listen` to listen for callback events.
-WebIM.conn.listen({
+// Use `addEventHandler` to listen for callback events.
+WebIM.conn.addEventHandler("eventName",{
     // Occurs when the app is connected.
     onOpened: function (message) {},
     // Occurs when the connection is lost.
@@ -77,7 +75,7 @@ WebIM.conn.listen({
     // Occurs when the emoji message is received.
     onEmojiMessage: function (message) {},
     // Occurs when the image message is received.
-    onPictureMessage: function (message) {},
+    onImageMessage: function (message) {},
     // Occurs when the CMD message is received.
     onCmdMessage: function (message) {},
     // Occurs when the audio message is received.
@@ -113,8 +111,6 @@ WebIM.conn.listen({
     onDeliveredMessage: function (message) {},
     // Occurs when the message read receipt is received.
     onReadMessage: function (message) {},
-    // Occurs when the chat group is created by calling createGroupNew
-    onCreateGroup: function (message) {},
     // Occurs when the local user is muted and still attempts to send a group message. This callback is triggered only on the local client, not on other clients in the group.
     onMutedMessage: function (message) {},
     // Occurs when the conversation read receipt is received.
@@ -147,6 +143,8 @@ Refer to the following sample code to send a type of attachment message:
         };
         if (file.filetype.toLowerCase() in allowType) {
             var option = {
+                // Set the message type
+                type: 'audio',
                 file: file,
                 // Set the length of the audio file in seconds.
                 length: '3',
@@ -154,7 +152,7 @@ Refer to the following sample code to send a type of attachment message:
                 to: 'username',
                 // Set the chat type.
                 chatType: 'singleChat',
-                // Occurs wheh the audio file fails to be uploaded.
+                // Occurs when the audio file fails to be uploaded.
                 onFileUploadError: function () {
                     console.log('onFileUploadError');
                 },
@@ -166,20 +164,18 @@ Refer to the following sample code to send a type of attachment message:
                 onFileUploadComplete: function () {
                     console.log('onFileUploadComplete');
                 },
-                // Occurs when the audio file is successfully sent.
-                success: function () {
-                    console.log('Success');
-                },
-                // Occurs when the audio file fails to be sent
-                fail: function(e){
-                    console.log("Fail");
-                },
-                flashUpload: WebIM.flashUpload,
                 ext: {file_length: file.data.size}
             };
-            msg.set(option);
+            // Create a voice message.
+            var msg = WebIM.message.create(option);
             // Call send to send the voice message.
-            conn.send(msg.body);
+            conn.send(msg).then((res)=>{
+                // Occurs when the audio file is successfully sent.
+                console.log('Success');
+            }).catch((e)=>{
+                // Occurs when the audio file fails to be sent 
+                console.log("Fail");
+            });
         }
     };
     ```
@@ -188,8 +184,6 @@ Refer to the following sample code to send a type of attachment message:
 
     ```javascript
     var sendPrivateImg = function () {
-        // Create an image message.
-        var msg = new WebIM.message("img");
         // Select the local image file.
         var input = document.getElementById("image");
         // Turn the image to a binary file.
@@ -202,6 +196,8 @@ Refer to the following sample code to send a type of attachment message:
         };
         if (file.filetype.toLowerCase() in allowType) {
             var option = {
+                // Set the message type.
+                type: 'img',
                 file: file,
                 ext: {
                     // Set the image file length.
@@ -223,19 +219,17 @@ Refer to the following sample code to send a type of attachment message:
                 onFileUploadComplete: function () {
                     console.log("onFileUploadComplete");
                 },
-                // Occurs when the message is successfully sent.
-                success: function () {
-                    console.log("Success");
-                },
-                fail: function (e) {
-                    // Occurs when the message fails to be sent.
-                    console.log("Fail");
-                },
-                flashUpload: WebIM.flashUpload,
             };
-            msg.set(option);
-            // Call send to send the image message.
-            conn.send(msg.body);
+            // Create a voice message.
+            var msg = WebIM.message.create(option);
+            // Call send to send the voice message.
+            conn.send(msg).then((res)=>{
+                // Occurs when the audio file is successfully sent.
+                console.log('Success');
+            }).catch((e)=>{
+                // Occurs when the audio file fails to be sent 
+                console.log("Fail");
+            });
         }
     };
     ```
@@ -246,27 +240,20 @@ Refer to the following sample code to send a type of attachment message:
 
     ```javascript
     var sendPrivateUrlImg = function () {
-        // Create an image message.
-        var msg = new WebIM.message("img");
+
         var option = {
-            body: {
-                type: "file",
-                // Set the URL address of the image file.
-                url: url,
-                size: {
-                    width: msg.width,
-                    height: msg.height,
-                },
-                length: msg.length,
-                filename: msg.file.filename,
-                filetype: msg.filetype,
-            },
+            chatType: 'singleChat',
+            // Set the message type.
+            type: "img",
+            // Set the URL address of the image file.
+            url: "img url",
             // Set the usernmae of the message receiver.
             to: "username",
         };
-        msg.set(option);
+        // Create an image message.
+        var msg = WebIM.message.create(option);
         // Call send to send to image file.
-        conn.send(msg.body);
+        conn.send(msg);
     };
     ```
 
@@ -276,8 +263,7 @@ Refer to the following sample code to send a type of attachment message:
 
     ```javascript
     var sendPrivateVideo = function () {
-        // Create a video message.
-        var msg = new WebIM.message("video");
+
         // Select the local video file.
         var input = document.getElementById("video");
         // Turn the video to a binary file.
@@ -291,6 +277,8 @@ Refer to the following sample code to send a type of attachment message:
         };
         if (file.filetype.toLowerCase() in allowType) {
             var option = {
+                // Set the message type
+                type: 'video',
                 file: file,
                 // The username of the message receiver
                 to: "username",
@@ -308,20 +296,18 @@ Refer to the following sample code to send a type of attachment message:
                     // Occurs when the file is uploaded.
                     console.log("onFileUploadComplete");
                 },
-                success: function () {
-                    // Occurs when the message is sent.
-                    console.log("Success");
-                },
-                fail: function (e) {
-                    // Occurs when the message fails to be sent, for example, because the local user is muted or blocked.
-                    console.log("Fail");
-                },
-                flashUpload: WebIM.flashUpload,
                 ext: {file_length: file.data.size},
             };
-            msg.set(option);
+            // Create a video message.
+            var msg = WebIM.message.create(option);
             // Call send to send the video message.
-            conn.send(msg.body);
+            conn.send(msg).then((res)=>{
+                // Occurs when the message is sent.
+                console.log('success')
+            }).catch((e)=>{
+                // Occurs when the message fails to be sent, for example, because the local user is muted or blocked.
+                console.log("Fail");
+            });
         }
     };
     ```
@@ -330,8 +316,6 @@ Refer to the following sample code to send a type of attachment message:
 
     ```javascript
     var sendPrivateFile = function () {
-        // Create a file message.
-        var msg = new WebIM.message("file");
         // Select the local file.
         var input = document.getElementById("file");
         // Turn the file message to a binary file.
@@ -348,6 +332,8 @@ Refer to the following sample code to send a type of attachment message:
         };
         if (file.filetype.toLowerCase() in allowType) {
             var option = {
+                // Set the message type.
+                type: 'file',
                 file: file,
                 // Set the username of the message receiver.
                 to: "username",
@@ -365,20 +351,18 @@ Refer to the following sample code to send a type of attachment message:
                 onFileUploadComplete: function () {
                     console.log("onFileUploadComplete");
                 },
-                // Occurs when the file message is sent.
-                success: function () {
-                    console.log("Success");
-                },
-                fail: function (e) {
-                    // Occurs when the file message fails to be sent.
-                    console.log("Fail");
-                },
-                flashUpload: WebIM.flashUpload,
                 ext: {file_length: file.data.size},
             };
-            msg.set(option);
+            // Create a file message.
+            var msg = WebIM.message.create(option);
             // Call send to send the file message.
-            conn.send(msg.body);
+            conn.send(msg).then((res) => {
+                // Occurs when the file message is sent.
+                console.log("Success");
+            }).catch((e)=>{
+                // Occurs when the file message fails to be sent.
+                console.log("Fail");
+            });
         }
     };
     ```
@@ -390,25 +374,29 @@ CMD messages are command messages that tell the specified user to take a certain
 The following code sample shows how to send and receive a CMD message:
 
 ```javascript
-// Create a CMD message.
-var msg = new WebIM.message('cmd');
-
-msg.set({
+var options = {
+  // Set the message type.
+  type: 'cmd',  
+  // Set the chat type.
+  chatType: 'singleChat',
   // The username of the message receiver.
   to: 'username',
   // Set the custom action.
   action : 'action',
   // Set the extended message.
-  ext :{'extmsg':'extends messages'},    ）
-  // Occurs when the message is sent.
-  success: function ( id,serverMsgId ) {},
-  fail: function(e){
-        // Occurs when the message fails to be sent.
-      console.log("Fail");
-  }
-});
+  ext :{'extmsg':'extends messages'}
+}
+// Create a CMD message.
+var msg = WebIM.message.create(options);
 // Call send to send the CMD message.
-conn.send(msg.body);
+conn.send(msg).then((res)=>{
+    // Occurs when the message is sent.
+    console.log("Success")
+}).catch((e)=>{
+    // Occurs when the message fails to be sent.
+    console.log("Fail");
+});
+
 ```
 
 ### Custom messages
@@ -419,25 +407,33 @@ The following code sample shows how to send a custom message:
 
 ```javascript
 var sendCustomMsg = function () {
-    // Create a custom message.
-    var msg = new WebIM.message("custom");
+
     // Set the custom event.
     var customEvent = "customEvent";
     // Set the custom message content with key-value pairs.
     var customExts = {};
-    msg.set({
+    var options = {
+        // Set the message type.
+        type: "custom",
         // Set the username of the message receiver.
         to: "username",
+        // Set the chat type.
+        chatType: "singleChat",
         customEvent,
         customExts,
         // The extended field. Do not set it as null.
         ext: {},
-        roomType: false,
-        success: function (id, serverMsgId) {},
-        fail: function (e) {},
-    });
+    }
+    // Create a custom message.
+    var msg = WebIM.message.create(options);
     // Call send to send the custom message.
-    conn.send(msg.body);
+    conn.send(msg).then((res)=>{
+        // Occurs when the message is sent.
+        console.log("Success")
+    }).catch((e)=>{
+        // Occurs when the message fails to be sent.
+        console.log("Fail");
+    });
 };
 ```
 
@@ -447,8 +443,8 @@ You can also custom the message content by extending the message type. The follo
 
 ```javascript
 function sendPrivateText() {
-    let msg = new WebIM.message("txt");
-    msg.set({
+    var options = {
+        type: "txt",
         msg: "message content",
         to: "username",
         chatType: "singleChat",
@@ -458,16 +454,15 @@ function sendPrivateText() {
             key2: {
                 key3: "Self-defined value3",
             },
-        },
-        success: function () {
-            console.log("send private text Success");
-        },
-        fail: function () {
-            console.log("Send private text error");
-        },
-    });
+        }
+    }
+    let msg = WebIM.message.create(options);
     // Call send to send the extended message.
-    conn.send(msg.body);
+    conn.send(msg).then((res)=>{
+        console.log("send private text Success");
+    }).catch((e)=>{
+        console.log("Send private text error");
+    });
 }
 ```
 
@@ -556,18 +551,18 @@ WebIM.conn.fetchHistoryMessages(options);
 
 The Agora Chat SDK supports message delivery and read receipt to inform the message sendser that the message is delivered or read.
 
-### Message delievery receipt
+### Message delivery receipt
 
-When creating the `connection` instance, setting `delievery` in `options` as `true` enables message delivery receipt. When the message arrives, the SDK automatically sends the message delievery receipt and triggers the `onDeliveredMessage` callback on the message sender's client.
+When creating the `connection` instance, setting `delivery` in `options` as `true` enables message delivery receipt. When the message arrives, the SDK automatically sends the message delivery receipt and triggers the `onDeliveredMessage` callback on the message sender's client.
 
 Refer to the following sample code to add a listener for message delivery.
 
 ```javascript
-WebIM.conn.listen({
+WebIM.conn.addEventHandler("message", {
     // Occurs when the message is received.
     onReceivedMessage: function (message) {},
-    // Occurs when the message is delievered.
-    onDeliveredMessage: function (message) {},
+    // Occurs when the message is delivered.
+    onDeliveredMessage: function (message) {}
 });
 ```
 
@@ -581,22 +576,23 @@ Refer to the following code to implement read receipts for all the messages in t
 
 ```javascript
 // Send a message in one-to-one chat.
-var msg = new WebIM.message('channel');
-msg.set({
-    to: 'username'
-});
-WebIM.conn.send(msg.body);
+var options = {
+     chatType: 'singleChat',
+     type: 'channel',
+     to: 'username',
+}
+var msg = WebIM.message.create(options);
+WebIM.conn.send(msg);
+var options = {
+     chatType: 'groupChat',
+     type: 'channel',
+     to: 'username',
+}
 
 // Send a message in group chat.
-var msg = new WebIM.message('channel');
-msg.set({
-    to: 'groupid'，
-    chatType: 'groupChat'
-});
-WebIM.conn.send(msg.body);
-
-// Listen for the message read delievery.
-WebIM.conn.listen({
+var msg = WebIM.message.create(options);
+WebIM.conn.send(msg);
+WebIM.conn.addEventHandler("message", {
   onChannelMessage:function(message){
     ...
   }
@@ -614,24 +610,25 @@ Refer to the following code to implement read receipts for the specified message
     ```javascript
     // The message ID that requires a read receipt
     var bodyId = message.id;
-    var msg = new WebIM.message("read");
-    msg.set({
+    var options = {
+        type: "read",
+        chatType: "singleChat",
         id: bodyId,
-        to: message.from,
-    });
-    conn.send(msg.body);
-
-    WebIM.conn.listen({
-        // Listen for the message read receipt
-        onReadMessage:function(message){
+        to: 'from',
+    }
+    var msg = WebIM.message.create(options);
+    conn.send(msg);
+    WebIM.conn.addEventHandler("message", {
+        // addEventHandler for the message read receipt
+        onReadMessage: function(message){
             ...
         }
-        })
+    })
     ```
 
 #### Group message read receipts
 
-For chat group messages, when the group owner or admin sends a messge, they can set whether to require a message read receipt.
+For chat group messages, when the group owner or admin sends a message, they can set whether to require a message read receipt.
 
 <div class="alert note">You need to contact sales@agora.io to enable the group message read receipt feature. Once enabled, this feature applies to the chat group owner and chat group admin only.</div>
 
@@ -639,39 +636,35 @@ For chat group messages, when the group owner or admin sends a messge, they can 
 
     ```javascript
     sendGroupReadMsg = () => {
-        // Create a text message.
-        let msg = new WebIM.message("txt");
-        msg.set({
+        var options = {
+            // The message ID that requires a read receipt.
+            id: "message id ",
+            // Set the message type.
+            type: "read",
             // The message content.
             msg: "message content",
             // The username of the message receiver.
             to: "username",
             // Set the chat type.
             chatType: "groupChat",
-            success: function (id, serverMsgId) {
-                console.log("send private text Success");
-            },
-            fail: function (e) {
-                console.log("Send private text error");
-            },
-        });
-        // Set allowGroupAck as true to require a group message read receipt
-        msg.body.msgConfig = {allowGroupAck: true};
-        conn.send(msg.body);
+        }
+        // Create a group read message.
+        let msg = WebIM.message.create(options);
+        conn.send(msg);
     };
     ```
 
 2. Listen for the group message read receipt
 
     ```javascript
-    // Use onReadMessage to listen for the receipt when the user is online
+    // Use onReadMessage to listen for the receipt when the user is online.
     onReadMessage: message => {
         const {mid} = message;
         const msg = {
             id: mid,
         };
         if (message.groupReadCount) {
-            // The conunt of read group messages.
+            // The count of read group messages.
             msg.groupReadCount = message.groupReadCount[message.mid];
         }
     };
@@ -688,9 +681,9 @@ For chat group messages, when the group owner or admin sends a messge, they can 
     ```javascript
     WebIM.conn
         .getGroupMsgReadUser({
-            // The message ID
+            // The message ID.
             msgId,
-            // The chat group ID
+            // The chat group ID.
             groupId,
         })
         .then(res => {

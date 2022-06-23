@@ -2,7 +2,7 @@ After joining an Agora Chat channel, a user can update information such as their
 
 This page shows how to use the Agora Chat SDK to implement managing user attributes and contacts.
 
-<div class="alert note"><ul><li>User attributes are stored on the Agora Chat server. If you have security concerns, Agora recommends that you manage user attributes yourself.</li><li></li>To ensure information security, app users can only modify their own user attributes. Only app admins can modify the user attributes of other users.</ul></div>
+<div class="alert note"><ul><li>User attributes are stored on the Agora Chat server. If you have security concerns, Agora recommends that you manage user attributes yourself.</li><li>To ensure information security, app users can only modify their own user attributes. Only app admins can modify the user attributes of other users.</li></ul></div>
 
 
 ## Understand the tech
@@ -104,16 +104,16 @@ You can also add a specified user to your block list. Once you do that, you can 
 <div class="note alert">Users can add any other chat user to their block list, regardless of whether this other user is a contact or not. A contact added to the block list remains in the contact list.</div>
 
 ```javascript
-// Call addUsersToBlacklist to add user1 and user2 to the block list.
-WebIM.conn.addUsersToBlacklist({
+// Call addUsersToBlocklist to add user1 and user2 to the block list.
+WebIM.conn.addUsersToBlocklist({
     name: ["user1", "user2"],
 });
 
-// Call getBlacklist to retrieve the block list from the server.
-WebIM.conn.getBlacklist();
+// Call getBlocklist to retrieve the block list from the server.
+WebIM.conn.getBlocklist();
 
-// Call removeUserFromBlackList to remove user1 and user2 from the block list.
-WebIM.conn.removeUserFromBlackList({
+// Call removeUserFromBlockList to remove user1 and user2 from the block list.
+WebIM.conn.removeUserFromBlockList({
     name: ["user1", "user2"],
 });
 ```
@@ -149,7 +149,7 @@ let id = conn.getUniqueId();
 let msg = new WebIM.message("custom", id);
 // Set custom event type as userCard
 let customEvent = "userCard";
-// Set these attribtues as the extension of the custom message using customExts. 
+// Set these attributes as the extension of the custom message using customExts. 
 let customExts = {
     nickname: "昵称",
     avatarurl: "http://avatarurl",
@@ -159,18 +159,24 @@ let customExts = {
     birth: "2000-01-01",
     sign: "a sign",
 };
-// set the message content.
-msg.set({
+let options = {
+    // Set the message type.
+    type: "custom",
     // Set the message recipient.
     to: "username",
+    // Set the message event.
     customEvent,
+    // Set the message content
     customExts,
-    ext: {},
-    chatType: "singleChat",
-    success: function (id, serverMsgId) {},
-    fail: function (e) {},
+    chatType: "singleChat"
+}
+// Create a custom message.
+let msg = WebIM.message.create(options);
+WebIM.conn.send(msg).then((res)=>{
+    console.log('Success')
+}).catch((e)=>{
+    console.log('error')
 });
-WebIM.conn.send(msg.body);
 ```
 
 ## Reference
