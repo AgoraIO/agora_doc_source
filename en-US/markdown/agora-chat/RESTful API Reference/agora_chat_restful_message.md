@@ -140,7 +140,7 @@ The request body is a JSON object, which contains the following fields:
 
 | Parameter | Type | Description | Required |
 | :------------ | :----------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
-| `customEvent` | String | The user-defined event type. The data length must be 32 characters or less. Supported character sets are as follows:<li>26 lowercase English letters (a-z)<li>26 uppercase English letters (A-Z)<li>10 numbers (0-9)<li>"-", "\_", "/", "." | No |
+| `customEvent` | String | The user-defined event type. The data length must be 32 characters or less. Supported character sets are as follows:<li>26 lowercase English letters (a-z)<li>26 uppercase English letters (A-Z)<li>10 numbers (0-9)<li>"-", "\_", "/", ".", "\". | No |
 | `customExts` | Map<String,String> | The custom event properties. It can contain up to 16 elements. | No |
 | `from` | String | The username of the message sender. Ensure that you set this field. <br>If this field is not passed in the request body, the default message sender username is `admin`. | Yes |
 | `ext` | JSON | The custom extension properties. Ensure that you set this field. | No |
@@ -1107,7 +1107,7 @@ This method enables app admins to recall harmful information to maintain a healt
 
 For each App Key, the call frequency limit of this method is 100 per second.
 
-The default time limit for recalling a message is two minutes, with a maximum of seven days. To modify this value, contact sales@agora.io.
+The default time limit for recalling a message is two minutes, with a maximum of seven days. To modify this value, contact support@agora.io.
 
 ### HTTP request
 
