@@ -4,17 +4,7 @@ This page shows a sample code to add peer-to-peer messaging into your app by usi
 
 ## Understand the tech
 
-The following figure shows the workflow of how clients send and receive peer-to-peer messages.
-
-![](https://web-cdn.agora.io/docs-files/1636443945728)
-
-As shown in the figure, the workflow of peer-to-peer messaging is as follows:
-
-1. The clients retrieve a token from your app server.
-2. Client A and Client B sign in to Agora Chat.
-3. Client A sends a message to Client B.
-4. The message is sent to the Agora Chat server and the server delivers the message to Client B.
-5. When Client B receives the message, the SDK triggers an event. Client B listens for the event and gets the message.
+~338e0e30-e568-11ec-8e95-1b7dfd4b7cb0~
 
 ## Prerequisites
 
@@ -57,8 +47,8 @@ Follow the steps to create the environment necessary to add video call into your
    ```java
    android {
        defaultConfig {
-               // The Android OS version should be 19 or higher.
-               minSdkVersion 19
+               // The Android OS version should be 21 or higher.
+               minSdkVersion 21
        }
        compileOptions {
            sourceCompatibility JavaVersion.VERSION_1_8
@@ -71,17 +61,17 @@ Follow the steps to create the environment necessary to add video call into your
    }
    ```
 
-   <div class="alert note"><ul><li><code>minSdkVersion</code> must be 19 or higher for the build process to succeed.</li><li>For the latest SDK version, go to <a href="https://search.maven.org/search?q=a:chat-sdk">Sonatype</a></li></ul>.</div>
+   <div class="alert note"><ul><li><code>minSdkVersion</code> must be 21 or higher for the build process to succeed.</li><li>For the latest SDK version, go to <a href="https://search.maven.org/search?q=a:chat-sdk">Sonatype</a></li></ul>.</div>
 
 3. Add permissions for network and device access.
 
    In `/app/Manifests/AndroidManifest.xml`, add the following permissions after `</application>`:
 	 
-	```xml
-	<uses-permission android:name="android.permission.INTERNET" />
-	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-	<uses-permission android:name="android.permission.WAKE_LOCK"/>
-	```
+   ```xml
+   <uses-permission android:name="android.permission.INTERNET" />
+   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+   <uses-permission android:name="android.permission.WAKE_LOCK"/>
+   ```
 	
 	These are the minimum permissions you need to add to start Agora Chat. You can also add other permissions according to your use case.
 
@@ -89,10 +79,10 @@ Follow the steps to create the environment necessary to add video call into your
 
    In `/Gradle Scripts/proguard-rules.pro`, add the following line:
 
-	```java
-	-keep class io.agora.** {*;}
-	-dontwarn  io.agora.**
-	```
+   ```java
+   -keep class io.agora.** {*;}
+   -dontwarn  io.agora.**
+   ```
 
 
 ## Implement peer-to-peer messaging
@@ -106,7 +96,7 @@ This section shows how to use the Agora Chat SDK to implement peer-to-peer messa
    ```xml
    <resources>
        <string name="app_name">AgoraChatQuickstart</string>
-   
+
        <string name="username_or_pwd_miss">Username or password is empty</string>
        <string name="sign_up_success">Sign up success!</string>
        <string name="sign_in_success">Sign in success!</string>
@@ -126,11 +116,10 @@ This section shows how to use the Agora Chat SDK to implement peer-to-peer messa
        <string name="sign_in_first">Please sign in first</string>
        <string name="not_find_send_name">Please enter the username who you want to send first!</string>
        <string name="message_is_null">Message is null!</string>
-   
+
        <string name="app_key">41117440#383391</string>
    </resources>
    ``` 
-	 <div class="alert note">The App Key provided here is for testing purposes only. In a production environment, you need to use the App Key for your Agora project.</div>
 
 2. To add the UI framework, open  `app/res/layout/activity_main.xml` and replace the content with the following codes:
 
@@ -143,16 +132,16 @@ This section shows how to use the Agora Chat SDK to implement peer-to-peer messa
        android:layout_height="match_parent"
        android:orientation="vertical"
        tools:context=".MainActivity">
-   
+
        <ScrollView
            android:layout_width="match_parent"
            android:layout_height="0dp"
            android:layout_weight="1">
-   
+
            <androidx.constraintlayout.widget.ConstraintLayout
                android:layout_width="match_parent"
                android:layout_height="wrap_content">
-   
+
                <EditText
                    android:id="@+id/et_username"
                    android:layout_width="0dp"
@@ -164,7 +153,7 @@ This section shows how to use the Agora Chat SDK to implement peer-to-peer messa
                    android:layout_marginStart="20dp"
                    android:layout_marginEnd="20dp"
                    android:layout_marginTop="20dp"/>
-   
+
                <EditText
                    android:id="@+id/et_pwd"
                    android:layout_width="0dp"
@@ -177,7 +166,7 @@ This section shows how to use the Agora Chat SDK to implement peer-to-peer messa
                    android:layout_marginStart="20dp"
                    android:layout_marginEnd="20dp"
                    android:layout_marginTop="10dp"/>
-   
+
                <Button
                    android:id="@+id/btn_sign_in"
                    android:layout_width="0dp"
@@ -190,7 +179,7 @@ This section shows how to use the Agora Chat SDK to implement peer-to-peer messa
                    android:layout_marginStart="10dp"
                    android:layout_marginEnd="5dp"
                    android:layout_marginTop="10dp"/>
-   
+
                <Button
                    android:id="@+id/btn_sign_out"
                    android:layout_width="0dp"
@@ -203,7 +192,7 @@ This section shows how to use the Agora Chat SDK to implement peer-to-peer messa
                    android:layout_marginStart="5dp"
                    android:layout_marginEnd="5dp"
                    android:layout_marginTop="10dp"/>
-   
+
                <Button
                    android:id="@+id/btn_sign_up"
                    android:layout_width="0dp"
@@ -216,7 +205,7 @@ This section shows how to use the Agora Chat SDK to implement peer-to-peer messa
                    app:layout_constraintTop_toTopOf="@id/btn_sign_in"
                    android:layout_marginStart="5dp"
                    android:layout_marginEnd="10dp"/>
-   
+
                <EditText
                    android:id="@+id/et_to_chat_name"
                    android:layout_width="0dp"
@@ -228,7 +217,7 @@ This section shows how to use the Agora Chat SDK to implement peer-to-peer messa
                    android:layout_marginStart="20dp"
                    android:layout_marginEnd="20dp"
                    android:layout_marginTop="20dp"/>
-   
+
                <EditText
                    android:id="@+id/et_msg_content"
                    android:layout_width="0dp"
@@ -240,7 +229,7 @@ This section shows how to use the Agora Chat SDK to implement peer-to-peer messa
                    android:layout_marginStart="20dp"
                    android:layout_marginEnd="20dp"
                    android:layout_marginTop="10dp"/>
-   
+
                <Button
                    android:id="@+id/btn_send_message"
                    android:layout_width="0dp"
@@ -253,11 +242,11 @@ This section shows how to use the Agora Chat SDK to implement peer-to-peer messa
                    android:layout_marginStart="10dp"
                    android:layout_marginEnd="10dp"
                    android:layout_marginTop="20dp"/>
-   
+
            </androidx.constraintlayout.widget.ConstraintLayout>
-   
+
        </ScrollView>
-   
+
        <TextView
            android:id="@+id/tv_log"
            android:layout_width="match_parent"
@@ -265,7 +254,7 @@ This section shows how to use the Agora Chat SDK to implement peer-to-peer messa
            android:hint="@string/log_hint"
            android:scrollbars="vertical"
            android:padding="10dp"/>
-   
+
    </LinearLayout>
    ```
 
@@ -366,70 +355,70 @@ To enable your app to send and receive messages between individual users, do the
 4. Retrieve a token. To get a token from the app server, add the following lines after the `initSDK` function:
 
    ```java
-   // Retrieve a token from the app server.
+   
    private void getTokenFromAppServer(String requestType) {
-       if(ChatClient.getInstance().isLoggedInBefore()) {
-           LogUtils.showErrorLog(tv_log, getString(R.string.has_login_before));
-           return;
-       }
-       String username = et_username.getText().toString().trim();
-       String pwd = ((EditText) findViewById(R.id.et_pwd)).getText().toString().trim();
-       if(TextUtils.isEmpty(username) || TextUtils.isEmpty(pwd)) {
-           LogUtils.showErrorToast(MainActivity.this, tv_log, getString(R.string.username_or_pwd_miss));
-           return;
-       }
-       execute(()-> {
-           try {
-               Map<String, String> headers = new HashMap<>();
-               headers.put("Content-Type", "application/json");
-   
-               JSONObject request = new JSONObject();
-               request.putOpt("userAccount", username);
-               request.putOpt("userPassword", pwd);
-   
-               LogUtils.showErrorLog(tv_log,"begin to getTokenFromAppServer ...");
-   
-               HttpResponse response = HttpClientManager.httpExecute(LOGIN_URL, headers, request.toString(), Method_POST);
-               int code = response.code;
-               String responseInfo = response.content;
-               if (code == 200) {
-                   if (responseInfo != null && responseInfo.length() > 0) {
-                       JSONObject object = new JSONObject(responseInfo);
-                       String token = object.getString("accessToken");
-                       if(TextUtils.equals(requestType, NEW_LOGIN)) {
-                           ChatClient.getInstance().loginWithAgoraToken(username, token, new CallBack() {
-                               @Override
-                               public void onSuccess() {
-                                   LogUtils.showToast(MainActivity.this, tv_log, getString(R.string.sign_in_success));
-                               }
-   
-                               @Override
-                               public void onError(int code, String error) {
-                                   LogUtils.showErrorToast(MainActivity.this, tv_log, "Login failed! code: " + code + " error: " + error);
-                               }
-   
-                               @Override
-                               public void onProgress(int progress, String status) {
-   
-                               }
-                           });
-                       }else if(TextUtils.equals(requestType, RENEW_TOKEN)) {
-                           ChatClient.getInstance().renewToken(token);
-                       }
-   
-                   } else {
-                       LogUtils.showErrorToast(MainActivity.this, tv_log, "getTokenFromAppServer failed! code: " + code + " error: " + responseInfo);
-                   }
-               } else {
-                   LogUtils.showErrorToast(MainActivity.this, tv_log, "getTokenFromAppServer failed! code: " + code + " error: " + responseInfo);
-               }
-           } catch (Exception e) {
-               e.printStackTrace();
-               LogUtils.showErrorToast(MainActivity.this, tv_log, "getTokenFromAppServer failed! code: " + 0 + " error: " + e.getMessage());
-   
-           }
-       });
-   }
+        if(ChatClient.getInstance().isLoggedInBefore()) {
+            LogUtils.showErrorLog(tv_log, getString(R.string.has_login_before));
+            return;
+        }
+        String username = et_username.getText().toString().trim();
+        String pwd = ((EditText) findViewById(R.id.et_pwd)).getText().toString().trim();
+        if(TextUtils.isEmpty(username) || TextUtils.isEmpty(pwd)) {
+            LogUtils.showErrorToast(MainActivity.this, tv_log, getString(R.string.username_or_pwd_miss));
+            return;
+        }
+        getAgoraTokenFromAppServer(username, pwd, new ValueCallBack<String>() {
+            @Override
+            public void onSuccess(String token) {
+                if(TextUtils.equals(requestType, NEW_LOGIN)) {
+                    login(username,token);
+                }else if(TextUtils.equals(requestType, RENEW_TOKEN)) {
+                    ChatClient.getInstance().renewToken(token);
+                }
+            }
+            @Override
+            public void onError(int error, String errorMsg) {
+                LogUtils.showErrorToast(MainActivity.this, tv_log, "getTokenFromAppServer failed! code: " + error + " error: " + errorMsg);
+            }
+        });
+    }
+    // Retrieve a token from the app server.
+    private void getAgoraTokenFromAppServer(String username, String pwd, ValueCallBack<String> callBack) {
+        execute(()-> {
+            try {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Content-Type", "application/json");
+                JSONObject request = new JSONObject();
+                request.putOpt("userAccount", username);
+                request.putOpt("userPassword", pwd);
+                LogUtils.showErrorLog(tv_log,"begin to getTokenFromAppServer ...");
+                HttpResponse response = HttpClientManager.httpExecute(LOGIN_URL, headers, request.toString(), Method_POST);
+                int code = response.code;
+                String responseInfo = response.content;
+                if (code == 200) {
+                    if (responseInfo != null && responseInfo.length() > 0) {
+                        JSONObject object = new JSONObject(responseInfo);
+                        String token = object.getString("accessToken");
+                        if(callBack != null) {
+                            callBack.onSuccess(token);
+                        }
+                    } else {
+                        if(callBack != null) {
+                            callBack.onError(Error.SERVER_UNKNOWN_ERROR, responseInfo);
+                        }
+                    }
+                } else {
+                    if(callBack != null) {
+                        callBack.onError(code, responseInfo);
+                    }
+                }
+            } catch (Exception e) {
+                if(callBack != null) {
+                    callBack.onError(Error.GENERAL_ERROR, e.getMessage());
+                }
+            }
+        });
+    }
    ```
 
 5. Add event callbacks. In `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after the `getTokenFromAppServer` function:
@@ -437,38 +426,13 @@ To enable your app to send and receive messages between individual users, do the
    ```java
    // Add message events callbacks. 
    private void addMessageListener() {
-       ChatClient.getInstance().chatManager().addMessageListener(new MessageListener() {
-           @Override
-           public void onMessageReceived(List<ChatMessage> messages) {
-               parseMessage(messages);
-           }
-   
-           @Override
-           public void onCmdMessageReceived(List<ChatMessage> messages) {
-               LogUtils.showLog(tv_log, "onCmdMessageReceived");
-           }
-   
-           @Override
-           public void onMessageRead(List<ChatMessage> messages) {
-               LogUtils.showLog(tv_log, "onMessageRead");
-           }
-   
-           @Override
-           public void onMessageDelivered(List<ChatMessage> messages) {
-               LogUtils.showLog(tv_log, "onMessageDelivered");
-           }
-   
-           @Override
-           public void onMessageRecalled(List<ChatMessage> messages) {
-               LogUtils.showLog(tv_log, "onMessageRecalled");
-           }
-   
-           @Override
-           public void onMessageChanged(ChatMessage message, Object change) {
-               LogUtils.showLog(tv_log, "onMessageChanged");
-           }
-       });
-   }
+        ChatClient.getInstance().chatManager().addMessageListener(new MessageListener() {
+            @Override
+            public void onMessageReceived(List<ChatMessage> messages) {
+                parseMessage(messages);
+            }
+        });
+    }
    // Show message logs.
    private void parseMessage(List<ChatMessage> messages) {
            if(messages != null && !messages.isEmpty()) {
@@ -490,47 +454,58 @@ To enable your app to send and receive messages between individual users, do the
        }
    // Add connection events callbacks.
    private void addConnectionListener() {
-           ChatClient.getInstance().addConnectionListener(new ConnectionListener(){
-               @Override
-               public void onConnected() {
-               }
-   
-               @Override
-               public void onDisconnected(int error) {
-                   if (error == Error.USER_REMOVED) {
-                       onUserException(ACCOUNT_REMOVED);
-                   } else if (error == Error.USER_LOGIN_ANOTHER_DEVICE) {
-                       onUserException(ACCOUNT_CONFLICT);
-                   } else if (error == Error.SERVER_SERVICE_RESTRICTED) {
-                       onUserException(ACCOUNT_FORBIDDEN);
-                   } else if (error == Error.USER_KICKED_BY_CHANGE_PASSWORD) {
-                       onUserException(ACCOUNT_KICKED_BY_CHANGE_PASSWORD);
-                   } else if (error == Error.USER_KICKED_BY_OTHER_DEVICE) {
-                       onUserException(ACCOUNT_KICKED_BY_OTHER_DEVICE);
-                   }
-               }
-             
-               protected void onUserException(String exception) {
-                   EMLog.e(TAG, "onUserException: " + exception);
-                   ChatClient.getInstance().logout(false, null);
-               }
-             
-               // This callback occurs when the token expires. When the callback is triggered, the app client must get a new token from the app server and logs in to the app again.
-               @Override
-               public void onTokenExpired() {
-                   //login again.
-                   signInWithToken(null);
-                   LogUtils.showLog(tv_log,"ConnectionListener onTokenExpired");
-               }
-               // This callback occurs when the token is to expire. 
-               @Override
-               public void onTokenWillExpire() {
-                   getTokenFromAppServer(RENEW_TOKEN);
-                   LogUtils.showLog(tv_log, "ConnectionListener onTokenWillExpire");
-               }
-             
-           });
-       }
+        ChatClient.getInstance().addConnectionListener(new ConnectionListener(){
+            @Override
+            public void onConnected() {
+            }
+            @Override
+            public void onDisconnected(int error) {
+                switch (error) {
+                    case Error.USER_REMOVED:
+                        onUserException("account_removed");
+                        break;
+                    case Error.USER_LOGIN_ANOTHER_DEVICE:
+                        onUserException("account_conflict");
+                        break;
+                    case Error.SERVER_SERVICE_RESTRICTED:
+                        onUserException("account_forbidden");
+                        break;
+                    case Error.USER_KICKED_BY_CHANGE_PASSWORD:
+                        onUserException("account_kicked_by_change_password");
+                        break;
+                    case Error.USER_KICKED_BY_OTHER_DEVICE:
+                        onUserException("account_kicked_by_other_device");
+                        break;
+                    case Error.USER_BIND_ANOTHER_DEVICE:
+                        onUserException("user_bind_another_device");
+                        break;
+                    case Error.USER_DEVICE_CHANGED:
+                        onUserException("user_device_changed");
+                        break;
+                    case Error.USER_LOGIN_TOO_MANY_DEVICES:
+                        onUserException("user_login_too_many_devices");
+                        break;
+                }
+            }
+            protected void onUserException(String exception) {
+                EMLog.e(TAG, "onUserException: " + exception);
+                ChatClient.getInstance().logout(false, null);
+            }
+            // This callback occurs when the token expires. When the callback is triggered, the app client must get a new token from the app server and logs in to the app again.
+            @Override
+            public void onTokenExpired() {
+                //login again
+                signInWithToken(null);
+                LogUtils.showLog(tv_log,"ConnectionListener onTokenExpired");
+            }
+            // This callback occurs when the token is to expire. 
+            @Override
+            public void onTokenWillExpire() {
+                getTokenFromAppServer(RENEW_TOKEN);
+                LogUtils.showLog(tv_log, "ConnectionListener onTokenWillExpire");
+            }
+        });
+    }
    
    ```
 
@@ -759,9 +734,9 @@ To validate the peer-to-peer messaging you have just integrated into your app us
 5. Send messages between the users.
    <img src="https://web-cdn.agora.io/docs-files/1637562770527" style="zoom:50%;" />
 
-## Next Step
+## Next Steps
 
-In a production context, the best practice is for your app to retrieve the token used to log in to Agora. To see how to implement a server that generates and serves tokens on request, see [Token](./agora_chat_user_token).
+For demonstration purposes, Agora Chat provides an app server that enables you to quickly retrieve a token using the App Key given in this guide. In a production context, the best practice is for you to deploy your own token server, use your own [App Key](./enable_agora_chat?platform=Android#get-the-information-of-the-agora-chat-project) to generate a token, and retrieve the token on the client side to log in to Agora. To see how to implement a server that generates and serves tokens on request, see [Generate a User Token](./generate_user_tokens?platform=All%20Platforms).
 
 ## See also
 
