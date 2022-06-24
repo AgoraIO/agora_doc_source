@@ -4,112 +4,132 @@
     <title><ph keyref="AUDIO_EFFECT_PRESET"/></title>
     <shortdesc id="short"><ph id="shortdesc">预设的音效选项。</ph></shortdesc>
     <refbody>
-        <section id="detailed_desc">
-   <note type="attention">为获取更好的人声效果，Agora 建议在使用除 <xref keyref="AUDIO_EFFECT_OFF"/> 以外的预设音效前，调用 <xref keyref="setAudioProfile"/> 并将 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> 或 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>。</note>
-        </section>
+        <section id="detailed_desc">为获取更好的音效，Agora 建议在使用预设音效前，调用 <xref keyref="setAudioProfile"/> 并按照如下推荐设置 <parmname>profile</parmname> 参数。 <table frame="all" rowsep="1" colsep="1">
+            <tgroup cols="2" align="left">
+                <colspec colname="c1" colnum="1" colwidth="1*"/>
+                <colspec colname="c2" colnum="2" colwidth="1*"/>
+                <thead>
+                    <row>
+                        <entry>预设音效</entry>
+                        <entry><parmname>profile</parmname></entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <ul>
+                                <li><ph keyref="ROOM_ACOUSTICS_VIRTUAL_STEREO"/></li>
+                                <li><ph keyref="ROOM_ACOUSTICS_3D_VOICE"/></li>
+                                <li><ph keyref="ROOM_ACOUSTICS_VIRTUAL_SURROUND_SOUND"/></li>
+                            </ul>
+                        </entry>
+                        <entry><apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/> 或 <apiname keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO"/></entry>
+                    </row>
+                    <row>
+                        <entry>其他预设音效（除 <xref keyref="AUDIO_EFFECT_OFF"/> 以外）</entry>
+                        <entry><apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> 或 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/></entry>
+                    </row>
+                </tbody>
+            </tgroup>
+            </table></section>
         <section id="parameters">
-   <title>枚举值</title>
-   <parml>
-       <plentry>
-  <pt><ph keyref="AUDIO_EFFECT_OFF"/></pt>
-  <pd>原声，即关闭人声音效。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="ROOM_ACOUSTICS_KTV"/></pt>
-  <pd>KTV。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="ROOM_ACOUSTICS_VOCAL_CONCERT"/></pt>
-  <pd>演唱会。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="ROOM_ACOUSTICS_STUDIO"/></pt>
-  <pd>录音棚。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="ROOM_ACOUSTICS_PHONOGRAPH"/></pt>
-  <pd>留声机。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="ROOM_ACOUSTICS_VIRTUAL_STEREO"/></pt>
-  <pd>虚拟立体声，即 SDK 将单声道的音频渲染出双声道的音效。
+            <title>枚举值</title>
+            <parml>
+            <plentry>
+                <pt><ph keyref="AUDIO_EFFECT_OFF"/></pt>
+                <pd>原声，即关闭人声音效。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="ROOM_ACOUSTICS_KTV"/></pt>
+                <pd>KTV。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="ROOM_ACOUSTICS_VOCAL_CONCERT"/></pt>
+                <pd>演唱会。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="ROOM_ACOUSTICS_STUDIO"/></pt>
+                <pd>录音棚。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="ROOM_ACOUSTICS_PHONOGRAPH"/></pt>
+                <pd>留声机。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="ROOM_ACOUSTICS_VIRTUAL_STEREO"/></pt>
+                <pd>虚拟立体声，即 SDK 将单声道的音频渲染出双声道的音效。
   </pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="ROOM_ACOUSTICS_SPACIAL"/></pt>
-  <pd>空旷。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="ROOM_ACOUSTICS_ETHEREAL"/></pt>
-  <pd>空灵。</pd>
-       </plentry>
-       <plentry>
-            <pt><ph keyref="ROOM_ACOUSTICS_VIRTUAL_SURROUND_SOUND"/></pt>
-            <pd>虚拟环绕声，即 SDK 在双声道的基础上产生仿真的立体声场，从而营造出具有三维立体感的音效。
-               <note type="attention">启用虚拟环绕声后，用户需要使用支持双声道的音频播放设备才能听到预期效果。</note>
-            </pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="ROOM_ACOUSTICS_3D_VOICE"/></pt>
-  <pd>
-      <p>3D 人声，即 SDK 将音频渲染出在用户周围环绕的效果。环绕周期默认为 10 秒。设置该音效后，你还可以调用 <xref keyref="setAudioEffectParameters"/> 修改环绕周期。</p>
-      <note type="attention">启用 3D 人声后，用户需要使用支持双声道的音频播放设备才能听到预期效果。</note>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="VOICE_CHANGER_EFFECT_UNCLE"/></pt>
-  <pd>
-      <p>大叔。</p>
-      <note type="attention">建议用于处理男声，否则无法达到预期效果。</note>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="VOICE_CHANGER_EFFECT_OLDMAN"/></pt>
-  <pd><p>老年男性。</p>
-      <note type="attention">建议用于处理男声，否则无法达到预期效果。</note>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="VOICE_CHANGER_EFFECT_BOY"/></pt>
-  <pd>
-      <p>男孩。</p>
-      <note type="attention">建议用于处理男声，否则无法达到预期效果。</note>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="VOICE_CHANGER_EFFECT_SISTER"/></pt>
-  <pd>
-      <p>少女。</p>
-      <note type="attention">建议用于处理女声，否则无法达到预期效果。</note>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="VOICE_CHANGER_EFFECT_GIRL"/></pt>
-  <pd>
-      <p>女孩。</p>
-      <note type="attention">建议用于处理女声，否则无法达到预期效果。</note>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="VOICE_CHANGER_EFFECT_PIGKING"/></pt>
-  <pd>猪八戒。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="VOICE_CHANGER_EFFECT_HULK"/></pt>
-  <pd>绿巨人。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="STYLE_TRANSFORMATION_RNB"/></pt>
-  <pd>R&amp;B。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="STYLE_TRANSFORMATION_POPULAR"/></pt>
-  <pd>流行。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="PITCH_CORRECTION"/></pt>
-  <pd>电音，即 SDK 以主音音高为 C 的自然大调为基础修正音频的实际音高。设置该音效后，你还可以调用 <xref keyref="setAudioEffectParameters"/> 调整修音的基础调式和主音音高。</pd>
-       </plentry>
-   </parml>
-        </section></refbody>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="ROOM_ACOUSTICS_SPACIAL"/></pt>
+                <pd>空旷。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="ROOM_ACOUSTICS_ETHEREAL"/></pt>
+                <pd>空灵。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="ROOM_ACOUSTICS_VIRTUAL_SURROUND_SOUND"/></pt>
+                <pd>虚拟环绕声，即 SDK 在双声道的基础上产生仿真的环绕声场，从而营造出具有环绕感的音效。
+               
+                    <note type="attention">启用虚拟环绕声后，用户需要使用支持双声道的音频播放设备才能听到预期效果。</note> </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="ROOM_ACOUSTICS_3D_VOICE"/></pt>
+                <pd>
+                    <p>3D 人声，即 SDK 将音频渲染出在用户周围环绕的效果。环绕周期默认为 10 秒。设置该音效后，你还可以调用 <xref keyref="setAudioEffectParameters"/> 修改环绕周期。</p>
+                    <note type="attention">启用 3D 人声后，用户需要使用支持双声道的音频播放设备才能听到预期效果。</note> </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="VOICE_CHANGER_EFFECT_UNCLE"/></pt>
+                <pd>
+                    <p>大叔。</p>
+                    <note type="attention">建议用于处理男声，否则无法达到预期效果。</note> </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="VOICE_CHANGER_EFFECT_OLDMAN"/></pt>
+                <pd>
+                    <p>老年男性。</p>
+                    <note type="attention">建议用于处理男声，否则无法达到预期效果。</note> </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="VOICE_CHANGER_EFFECT_BOY"/></pt>
+                <pd>
+                    <p>男孩。</p>
+                    <note type="attention">建议用于处理男声，否则无法达到预期效果。</note> </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="VOICE_CHANGER_EFFECT_SISTER"/></pt>
+                <pd>
+                    <p>少女。</p>
+                    <note type="attention">建议用于处理女声，否则无法达到预期效果。</note> </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="VOICE_CHANGER_EFFECT_GIRL"/></pt>
+                <pd>
+                    <p>女孩。</p>
+                    <note type="attention">建议用于处理女声，否则无法达到预期效果。</note> </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="VOICE_CHANGER_EFFECT_PIGKING"/></pt>
+                <pd>猪八戒。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="VOICE_CHANGER_EFFECT_HULK"/></pt>
+                <pd>绿巨人。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="STYLE_TRANSFORMATION_RNB"/></pt>
+                <pd>R&amp;B。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="STYLE_TRANSFORMATION_POPULAR"/></pt>
+                <pd>流行。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="PITCH_CORRECTION"/></pt>
+                <pd>电音，即 SDK 以主音音高为 C 的自然大调为基础修正音频的实际音高。设置该音效后，你还可以调用 <xref keyref="setAudioEffectParameters"/> 调整修音的基础调式和主音音高。</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
 </reference>
