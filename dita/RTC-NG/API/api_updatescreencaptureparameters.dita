@@ -13,8 +13,9 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios" outputclass="language-objectivec">- (int)updateScreenCapture:(AgoraScreenCaptureParameters2* _Nonnull)parameters NS_SWIFT_NAME(updateScreenCapture(_:));</codeblock>
+            <codeblock props="android" outputclass="language-java">public abstract int updateScreenCaptureParameters(
+      ScreenCaptureParameters screenCaptureParameters);</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec"/>
             <codeblock props="mac" outputclass="language-objectivec">- (int)updateScreenCaptureParameters:(AgoraScreenCaptureParameters * _Nonnull)captureParams;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int updateScreenCaptureParameters(const ScreenCaptureParameters&amp; captureParams) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">updateScreenCaptureParameters(captureParams: ScreenCaptureParameters): number</codeblock>
@@ -24,14 +25,19 @@
       ScreenCaptureParameters captureParams);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <note type="attention">请在开启屏幕共享或窗口共享后调用该方法。</note> </section>
+            <note type="attention">
+                <ul>
+                    <li props="cpp">该方法适用于 Android 平台。</li>
+                    <li>请在开启屏幕共享或窗口共享后调用该方法。</li>
+                </ul>
+            </note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry>
-                <pt props="ios">parameters</pt>
+                    <pt props="android">screenCaptureParameters</pt>
                 <pt props="mac cpp unity electron flutter">captureParams</pt>
-                <pd>屏幕共享的编码参数配置。默认的分辨率为 1920 x 1080，即 2073600 像素。该像素值为计费标准。详见 <xref keyref="ScreenCaptureParameters" props="mac cpp unity electron flutter"/><xref keyref="ScreenCaptureParameters2" props="ios"/>。</pd>
+                <pd>屏幕共享的编码参数配置。默认的分辨率为 1920 x 1080，即 2073600 像素。该像素值为计费标准。详见 <xref keyref="ScreenCaptureParameters" props="cpp electron flutter mac unity"/><xref props="android" keyref="ScreenCaptureParameters2"/>。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity">
@@ -39,6 +45,7 @@
             <ul>
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。
+                
                 <ul conkeyref="startScreenCaptureByDisplayId/err" props="cpp mac unity">
                 <li/>
                 </ul> </li>
