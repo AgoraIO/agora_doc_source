@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-  <reference id="api_startscreencapturemobile">
-  <title><ph keyref="startScreenCaptureMobile"/></title>
+<reference id="api_startscreencapturemobile">
+  <title><ph keyref="startScreenCaptureMobile" /></title>
   <shortdesc id="short"><ph id="shortdesc">Starts screen sharing. This method is only available on Android and iOS.</ph></shortdesc>
   <prolog>
     <metadata>
       <keywords>
-        <indexterm keyref="startScreenCaptureMobile"/>
+        <indexterm keyref="startScreenCaptureMobile" />
       </keywords>
     </metadata>
   </prolog>
   <refbody>
     <section id="prototype">
       <p outputclass="codeblock">
-      <codeblock props="android" outputclass="language-java"/>
-      <codeblock props="ios mac" outputclass="language-objectivec"/>
-      <codeblock props="cpp" outputclass="language-cpp"/>
-      <codeblock props="electron" outputclass="language-typescript"/>
-      <codeblock props="cs" outputclass="language-csharp"/>
-      <codeblock props="rn" outputclass="language-typescript"/>
+      <codeblock props="android" outputclass="language-java" />
+      <codeblock props="ios mac" outputclass="language-objectivec" />
+      <codeblock props="cpp" outputclass="language-cpp" />
+      <codeblock props="electron" outputclass="language-typescript" />
+      <codeblock props="cs" outputclass="language-csharp" />
+      <codeblock props="rn" outputclass="language-typescript" />
       <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startScreenCaptureMobile(ScreenCaptureParameters2 parameters);</codeblock> </p>
     </section>
     <section id="detailed_desc">
       <p>On Android, during screen sharing, make sure the following:    
         <ul>
-          <li>The user has granted screen capture permission to the application; otherwise, the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and reports <codeph>ScreenCapturePermissionDenied</codeph>(16).</li>
+          <li>The user has granted screen capture permission to the application; otherwise, the SDK triggers the <xref keyref="onLocalVideoStateChanged" /> callback and reports <codeph>ScreenCapturePermissionDenied</codeph>(16).</li>
           <li>The Android API level is not earlier than 21; otherwise, the method call fails and returns  <codeph>ScreenCaptureSystemNotSupported</codeph>(2).</li>
           <li>To capture system audio during screen sharing, ensure that the Android API level is not earlier than 29 as well; otherwise, the method call fails and returns <codeph>ScreenCaptureSystemAudioNotSupported</codeph>(3).</li>
         </ul> 
       </p>
-      <p>On iOS, when the screen sharing extension process starts, ends, or quits unexpectedly, the SDK triggers the <apiname keyref="onLocalVideoStateChanged"/> callback and reports <codeph>ExtensionCaptureStarted</codeph>(13), <codeph>ExtensionCaptureStoped</codeph>(14), and <codeph>ExtensionCaptureDisconnected</codeph>(15) respectively.</p>
+      <p>On iOS, when the screen sharing extension process starts, ends, or quits unexpectedly, the SDK triggers the <apiname keyref="onLocalVideoStateChanged" /> callback and reports <codeph>ExtensionCaptureStarted</codeph>(13), <codeph>ExtensionCaptureStoped</codeph>(14), and <codeph>ExtensionCaptureDisconnected</codeph>(15) respectively.</p>
         <note type="attention" id="screen_capture">
           <ul>
             <li>Call this method after joining a channel.</li>
@@ -56,7 +56,7 @@
       <parml>
       <plentry>
         <pt>parameters</pt>
-        <pd>The configuration of the screen sharing. See <xref keyref="ScreenCaptureParameters2"/>.</pd>
+        <pd>The configuration of the screen sharing. See <xref keyref="ScreenCaptureParameters2" />.</pd>
       </plentry>
       </parml> </section>
     <section id="return_values" props="native electron cs">
@@ -67,4 +67,4 @@
           </ul> 
     </section>
   </refbody>
-  </reference> 
+  </reference>
