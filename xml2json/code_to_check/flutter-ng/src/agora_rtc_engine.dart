@@ -901,26 +901,18 @@ class RtcEngineEventHandler {
     this.onUserAccountUpdated,
   });
 
-<<<<<<< HEAD
   final void Function(RtcConnection connection, int elapsed)?
       onJoinChannelSuccess;
 
   final void Function(RtcConnection connection, int elapsed)?
-=======
-  final void Function(String channel, int uid, int elapsed)?
-      onJoinChannelSuccess;
-
-  final void Function(String channel, int uid, int elapsed)?
->>>>>>> release/rtc-ng/3.8.200-framework
       onRejoinChannelSuccess;
 
-  final void Function(int warn, String msg)? onWarning;
+  final void Function(WarnCodeType warn, String msg)? onWarning;
 
-  final void Function(int err, String msg)? onError;
+  final void Function(ErrorCodeType err, String msg)? onError;
 
-<<<<<<< HEAD
-  final void Function(RtcConnection connection, int remoteUid, int quality,
-      int delay, int lost)? onAudioQuality;
+  final void Function(RtcConnection connection, int remoteUid,
+      QualityType quality, int delay, int lost)? onAudioQuality;
 
   final void Function(LastmileProbeResult result)? onLastmileProbeResult;
 
@@ -930,23 +922,9 @@ class RtcEngineEventHandler {
   final void Function(RtcConnection connection, RtcStats stats)? onLeaveChannel;
 
   final void Function(RtcConnection connection, RtcStats stats)? onRtcStats;
-=======
-  final void Function(int uid, int quality, int delay, int lost)?
-      onAudioQuality;
 
-  final void Function(LastmileProbeResult result)? onLastmileProbeResult;
-
-  final void Function(
-          AudioVolumeInfo speakers, int speakerNumber, int totalVolume)?
-      onAudioVolumeIndication;
-
-  final void Function(RtcStats stats)? onLeaveChannel;
-
-  final void Function(RtcStats stats)? onRtcStats;
->>>>>>> release/rtc-ng/3.8.200-framework
-
-  final void Function(String deviceId, int deviceType, int deviceState)?
-      onAudioDeviceStateChanged;
+  final void Function(String deviceId, MediaDeviceType deviceType,
+      MediaDeviceStateType deviceState)? onAudioDeviceStateChanged;
 
   final void Function()? onAudioMixingFinished;
 
@@ -955,26 +933,19 @@ class RtcEngineEventHandler {
   final void Function(String deviceId, int deviceType, int deviceState)?
       onVideoDeviceStateChanged;
 
-  final void Function(int deviceType)? onMediaDeviceChanged;
+  final void Function(MediaDeviceType deviceType)? onMediaDeviceChanged;
 
-<<<<<<< HEAD
   final void Function(RtcConnection connection, int remoteUid, int txQuality,
       int rxQuality)? onNetworkQuality;
 
   final void Function(RtcConnection connection)? onIntraRequestReceived;
-=======
-  final void Function(int uid, int txQuality, int rxQuality)? onNetworkQuality;
-
-  final void Function()? onIntraRequestReceived;
->>>>>>> release/rtc-ng/3.8.200-framework
 
   final void Function(UplinkNetworkInfo info)? onUplinkNetworkInfoUpdated;
 
   final void Function(DownlinkNetworkInfo info)? onDownlinkNetworkInfoUpdated;
 
-  final void Function(int quality)? onLastmileQuality;
+  final void Function(QualityType quality)? onLastmileQuality;
 
-<<<<<<< HEAD
   final void Function(
           RtcConnection connection, int width, int height, int elapsed)?
       onFirstLocalVideoFrame;
@@ -1025,7 +996,8 @@ class RtcEngineEventHandler {
   final void Function(RtcConnection connection, int remoteUid, bool enabled)?
       onUserEnableLocalVideo;
 
-  final void Function(int err, String api, String result)? onApiCallExecuted;
+  final void Function(ErrorCodeType err, String api, String result)?
+      onApiCallExecuted;
 
   final void Function(RtcConnection connection, LocalAudioStats stats)?
       onLocalAudioStats;
@@ -1038,54 +1010,6 @@ class RtcEngineEventHandler {
 
   final void Function(RtcConnection connection, RemoteVideoStats stats)?
       onRemoteVideoStats;
-=======
-  final void Function(int width, int height, int elapsed)?
-      onFirstLocalVideoFrame;
-
-  final void Function(int elapsed)? onFirstLocalVideoFramePublished;
-
-  final void Function(VideoSourceType sourceType, int width, int height)?
-      onVideoSourceFrameSizeChanged;
-
-  final void Function(int uid, int width, int height, int elapsed)?
-      onFirstRemoteVideoDecoded;
-
-  final void Function(int uid, int width, int height, int rotation)?
-      onVideoSizeChanged;
-
-  final void Function(LocalVideoStreamState state, LocalVideoStreamError error)?
-      onLocalVideoStateChanged;
-
-  final void Function(int uid, RemoteVideoState state,
-      RemoteVideoStateReason reason, int elapsed)? onRemoteVideoStateChanged;
-
-  final void Function(int userId, int width, int height, int elapsed)?
-      onFirstRemoteVideoFrame;
-
-  final void Function(int uid, int elapsed)? onUserJoined;
-
-  final void Function(int uid, UserOfflineReasonType reason)? onUserOffline;
-
-  final void Function(int uid, bool muted)? onUserMuteAudio;
-
-  final void Function(int userId, bool muted)? onUserMuteVideo;
-
-  final void Function(int uid, bool enabled)? onUserEnableVideo;
-
-  final void Function(int uid, int state)? onUserStateChanged;
-
-  final void Function(int uid, bool enabled)? onUserEnableLocalVideo;
-
-  final void Function(int err, String api, String result)? onApiCallExecuted;
-
-  final void Function(LocalAudioStats stats)? onLocalAudioStats;
-
-  final void Function(RemoteAudioStats stats)? onRemoteAudioStats;
-
-  final void Function(LocalVideoStats stats)? onLocalVideoStats;
-
-  final void Function(RemoteVideoStats stats)? onRemoteVideoStats;
->>>>>>> release/rtc-ng/3.8.200-framework
 
   final void Function()? onCameraReady;
 
@@ -1108,7 +1032,6 @@ class RtcEngineEventHandler {
           RhythmPlayerStateType state, RhythmPlayerErrorType errorCode)?
       onRhythmPlayerStateChanged;
 
-<<<<<<< HEAD
   final void Function(RtcConnection connection)? onConnectionLost;
 
   final void Function(RtcConnection connection)? onConnectionInterrupted;
@@ -1119,7 +1042,7 @@ class RtcEngineEventHandler {
       Uint8List data, int length, int sentTs)? onStreamMessage;
 
   final void Function(RtcConnection connection, int remoteUid, int streamId,
-      int code, int missed, int cached)? onStreamMessageError;
+      ErrorCodeType code, int missed, int cached)? onStreamMessageError;
 
   final void Function(RtcConnection connection)? onRequestToken;
 
@@ -1159,51 +1082,6 @@ class RtcEngineEventHandler {
       RtcConnection connection,
       ClientRoleChangeFailedReason reason,
       ClientRoleType currentRole)? onClientRoleChangeFailed;
-=======
-  final void Function()? onConnectionLost;
-
-  final void Function()? onConnectionInterrupted;
-
-  final void Function()? onConnectionBanned;
-
-  final void Function(
-          int userId, int streamId, Uint8List data, int length, int sentTs)?
-      onStreamMessage;
-
-  final void Function(
-          int userId, int streamId, int code, int missed, int cached)?
-      onStreamMessageError;
-
-  final void Function()? onRequestToken;
-
-  final void Function(String token)? onTokenPrivilegeWillExpire;
-
-  final void Function(int elapsed)? onFirstLocalAudioFramePublished;
-
-  final void Function(int uid, int elapsed)? onFirstRemoteAudioFrame;
-
-  final void Function(int uid, int elapsed)? onFirstRemoteAudioDecoded;
-
-  final void Function(LocalAudioStreamState state, LocalAudioStreamError error)?
-      onLocalAudioStateChanged;
-
-  final void Function(int uid, RemoteAudioState state,
-      RemoteAudioStateReason reason, int elapsed)? onRemoteAudioStateChanged;
-
-  final void Function(int userId)? onActiveSpeaker;
-
-  final void Function(ContentInspectResult result)? onContentInspectResult;
-
-  final void Function(String channel, int uid, String filePath, int width,
-      int height, int errCode)? onSnapshotTaken;
-
-  final void Function(ClientRoleType oldRole, ClientRoleType newRole)?
-      onClientRoleChanged;
-
-  final void Function(
-          ClientRoleChangeFailedReason reason, ClientRoleType currentRole)?
-      onClientRoleChangeFailed;
->>>>>>> release/rtc-ng/3.8.200-framework
 
   final void Function(MediaDeviceType deviceType, int volume, bool muted)?
       onAudioDeviceVolumeChanged;
@@ -1214,7 +1092,7 @@ class RtcEngineEventHandler {
   final void Function(String url, RtmpStreamingEvent eventCode)?
       onRtmpStreamingEvent;
 
-  final void Function(String url, int error)? onStreamPublished;
+  final void Function(String url, ErrorCodeType error)? onStreamPublished;
 
   final void Function(String url)? onStreamUnpublished;
 
@@ -1226,7 +1104,7 @@ class RtcEngineEventHandler {
           ChannelMediaRelayState state, ChannelMediaRelayError code)?
       onChannelMediaRelayStateChanged;
 
-  final void Function(int code)? onChannelMediaRelayEvent;
+  final void Function(ChannelMediaRelayEvent code)? onChannelMediaRelayEvent;
 
   final void Function(bool isFallbackOrRecover)?
       onLocalPublishFallbackToAudioOnly;
@@ -1234,7 +1112,6 @@ class RtcEngineEventHandler {
   final void Function(int uid, bool isFallbackOrRecover)?
       onRemoteSubscribeFallbackToAudioOnly;
 
-<<<<<<< HEAD
   final void Function(RtcConnection connection, int remoteUid, int delay,
       int lost, int rxKBitRate)? onRemoteAudioTransportStats;
 
@@ -1249,21 +1126,6 @@ class RtcEngineEventHandler {
 
   final void Function(RtcConnection connection, EncryptionErrorType errorType)?
       onEncryptionError;
-=======
-  final void Function(int uid, int delay, int lost, int rxKBitRate)?
-      onRemoteAudioTransportStats;
-
-  final void Function(int uid, int delay, int lost, int rxKBitRate)?
-      onRemoteVideoTransportStats;
-
-  final void Function(
-          ConnectionStateType state, ConnectionChangedReasonType reason)?
-      onConnectionStateChanged;
-
-  final void Function(NetworkType type)? onNetworkTypeChanged;
-
-  final void Function(EncryptionErrorType errorType)? onEncryptionError;
->>>>>>> release/rtc-ng/3.8.200-framework
 
   final void Function(PermissionType permissionType)? onPermissionError;
 
@@ -1271,13 +1133,8 @@ class RtcEngineEventHandler {
 
   final void Function(int uid, UserInfo info)? onUserInfoUpdated;
 
-<<<<<<< HEAD
   final void Function(RtcConnection connection, String requestId, bool success,
       UploadErrorReason reason)? onUploadLogResult;
-=======
-  final void Function(String requestId, bool success, UploadErrorReason reason)?
-      onUploadLogResult;
->>>>>>> release/rtc-ng/3.8.200-framework
 
   final void Function(
       String channel,
@@ -1316,27 +1173,23 @@ class RtcEngineEventHandler {
   final void Function(String provider, String extName, int error, String msg)?
       onExtensionErrored;
 
-<<<<<<< HEAD
   final void Function(
           RtcConnection connection, int remoteUid, String userAccount)?
       onUserAccountUpdated;
-=======
-  final void Function(int uid, String userAccount)? onUserAccountUpdated;
->>>>>>> release/rtc-ng/3.8.200-framework
 }
 
 abstract class VideoDeviceManager {
-  List<VideoDeviceInfo> enumerateVideoDevices();
+  Future<List<VideoDeviceInfo>> enumerateVideoDevices();
 
-  void setDevice(String deviceIdUTF8);
+  Future<void> setDevice(String deviceIdUTF8);
 
-  String getDevice();
+  Future<String> getDevice();
 
-  void startDeviceTest(int hwnd);
+  Future<void> startDeviceTest(int hwnd);
 
-  void stopDeviceTest();
+  Future<void> stopDeviceTest();
 
-  void release();
+  Future<void> release();
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -1537,176 +1390,177 @@ class DirectCdnStreamingMediaOptions {
 abstract class RtcEngine {
   Future<void> release({bool sync = false});
 
-  void initialize(RtcEngineContext context);
+  Future<void> initialize(RtcEngineContext context);
 
-  SDKBuildInfo getVersion();
+  Future<SDKBuildInfo> getVersion();
 
-  String getErrorDescription(int code);
+  Future<String> getErrorDescription(int code);
 
-  void joinChannel(
+  Future<void> joinChannel(
       {required String token,
       required String channelId,
       required String info,
       required int uid});
 
-  void joinChannel2(
+  Future<void> joinChannel2(
       {required String token,
       required String channelId,
       required int uid,
       required ChannelMediaOptions options});
 
-  void updateChannelMediaOptions(ChannelMediaOptions options);
+  Future<void> updateChannelMediaOptions(ChannelMediaOptions options);
 
-  void leaveChannel();
+  Future<void> leaveChannel();
 
-  void leaveChannel2(LeaveChannelOptions options);
+  Future<void> leaveChannel2(LeaveChannelOptions options);
 
-  void renewToken(String token);
+  Future<void> renewToken(String token);
 
-  void setChannelProfile(ChannelProfileType profile);
+  Future<void> setChannelProfile(ChannelProfileType profile);
 
-  void setClientRole(ClientRoleType role);
+  Future<void> setClientRole(ClientRoleType role);
 
-  void setClientRole2(
+  Future<void> setClientRole2(
       {required ClientRoleType role, required ClientRoleOptions options});
 
-  void startEchoTest();
+  Future<void> startEchoTest();
 
-  void startEchoTest2(int intervalInSeconds);
+  Future<void> startEchoTest2(int intervalInSeconds);
 
-  void stopEchoTest();
+  Future<void> stopEchoTest();
 
-  void enableVideo();
+  Future<void> enableVideo();
 
-  void disableVideo();
+  Future<void> disableVideo();
 
-  void startPreview();
+  Future<void> startPreview();
 
-  void startPreview2(VideoSourceType sourceType);
+  Future<void> startPreview2(VideoSourceType sourceType);
 
-  void stopPreview();
+  Future<void> stopPreview();
 
-  void stopPreview2(VideoSourceType sourceType);
+  Future<void> stopPreview2(VideoSourceType sourceType);
 
-  void startLastmileProbeTest(LastmileProbeConfig config);
+  Future<void> startLastmileProbeTest(LastmileProbeConfig config);
 
-  void stopLastmileProbeTest();
+  Future<void> stopLastmileProbeTest();
 
-  void setVideoEncoderConfiguration(VideoEncoderConfiguration config);
+  Future<void> setVideoEncoderConfiguration(VideoEncoderConfiguration config);
 
-  void setBeautyEffectOptions(
+  Future<void> setBeautyEffectOptions(
       {required bool enabled,
       required BeautyOptions options,
       MediaSourceType type = MediaSourceType.primaryCameraSource});
 
-  void enableVirtualBackground(
+  Future<void> enableVirtualBackground(
       {required bool enabled,
       required VirtualBackgroundSource backgroundSource});
 
-  void enableRemoteSuperResolution({required int userId, required bool enable});
+  Future<void> enableRemoteSuperResolution(
+      {required int userId, required bool enable});
 
-  void setupRemoteVideo(VideoCanvas canvas);
+  Future<void> setupRemoteVideo(VideoCanvas canvas);
 
-  void setupLocalVideo(VideoCanvas canvas);
+  Future<void> setupLocalVideo(VideoCanvas canvas);
 
-  void enableAudio();
+  Future<void> enableAudio();
 
-  void disableAudio();
+  Future<void> disableAudio();
 
-  void setAudioProfile(
+  Future<void> setAudioProfile(
       {required AudioProfileType profile, required AudioScenarioType scenario});
 
-  void setAudioProfile2(AudioProfileType profile);
+  Future<void> setAudioProfile2(AudioProfileType profile);
 
-  void enableLocalAudio(bool enabled);
+  Future<void> enableLocalAudio(bool enabled);
 
-  void muteLocalAudioStream(bool mute);
+  Future<void> muteLocalAudioStream(bool mute);
 
-  void muteAllRemoteAudioStreams(bool mute);
+  Future<void> muteAllRemoteAudioStreams(bool mute);
 
-  void setDefaultMuteAllRemoteAudioStreams(bool mute);
+  Future<void> setDefaultMuteAllRemoteAudioStreams(bool mute);
 
-  void muteRemoteAudioStream({required int uid, required bool mute});
+  Future<void> muteRemoteAudioStream({required int uid, required bool mute});
 
-  void muteLocalVideoStream(bool mute);
+  Future<void> muteLocalVideoStream(bool mute);
 
-  void enableLocalVideo(bool enabled);
+  Future<void> enableLocalVideo(bool enabled);
 
-  void muteAllRemoteVideoStreams(bool mute);
+  Future<void> muteAllRemoteVideoStreams(bool mute);
 
-  void setDefaultMuteAllRemoteVideoStreams(bool mute);
+  Future<void> setDefaultMuteAllRemoteVideoStreams(bool mute);
 
-  void muteRemoteVideoStream({required int uid, required bool mute});
+  Future<void> muteRemoteVideoStream({required int uid, required bool mute});
 
-  void setRemoteVideoStreamType(
+  Future<void> setRemoteVideoStreamType(
       {required int uid, required VideoStreamType streamType});
 
-  void setRemoteDefaultVideoStreamType(VideoStreamType streamType);
+  Future<void> setRemoteDefaultVideoStreamType(VideoStreamType streamType);
 
-  void enableAudioVolumeIndication(
+  Future<void> enableAudioVolumeIndication(
       {required int interval, required int smooth, required bool reportVad});
 
-  void startAudioRecording(
+  Future<void> startAudioRecording(
       {required String filePath, required AudioRecordingQualityType quality});
 
-  void startAudioRecording2(
+  Future<void> startAudioRecording2(
       {required String filePath,
       required int sampleRate,
       required AudioRecordingQualityType quality});
 
-  void startAudioRecording3(AudioRecordingConfiguration config);
+  Future<void> startAudioRecording3(AudioRecordingConfiguration config);
 
-  void stopAudioRecording();
+  Future<void> stopAudioRecording();
 
-  MediaPlayer createMediaPlayer();
+  Future<MediaPlayer> createMediaPlayer();
 
-  void destroyMediaPlayer(MediaPlayer mediaPlayer);
+  Future<void> destroyMediaPlayer(MediaPlayer mediaPlayer);
 
-  void startAudioMixing(
+  Future<void> startAudioMixing(
       {required String filePath,
       required bool loopback,
       required bool replace,
       required int cycle});
 
-  void startAudioMixing2(
+  Future<void> startAudioMixing2(
       {required String filePath,
       required bool loopback,
       required bool replace,
       required int cycle,
       required int startPos});
 
-  void stopAudioMixing();
+  Future<void> stopAudioMixing();
 
-  void pauseAudioMixing();
+  Future<void> pauseAudioMixing();
 
-  void resumeAudioMixing();
+  Future<void> resumeAudioMixing();
 
-  void adjustAudioMixingVolume(int volume);
+  Future<void> adjustAudioMixingVolume(int volume);
 
-  void adjustAudioMixingPublishVolume(int volume);
+  Future<void> adjustAudioMixingPublishVolume(int volume);
 
-  void getAudioMixingPublishVolume();
+  Future<void> getAudioMixingPublishVolume();
 
-  void adjustAudioMixingPlayoutVolume(int volume);
+  Future<void> adjustAudioMixingPlayoutVolume(int volume);
 
-  void getAudioMixingPlayoutVolume();
+  Future<void> getAudioMixingPlayoutVolume();
 
-  void getAudioMixingDuration();
+  Future<void> getAudioMixingDuration();
 
-  void getAudioMixingCurrentPosition();
+  Future<void> getAudioMixingCurrentPosition();
 
-  void setAudioMixingPosition(int pos);
+  Future<void> setAudioMixingPosition(int pos);
 
-  void setAudioMixingPitch(int pitch);
+  Future<void> setAudioMixingPitch(int pitch);
 
-  void getEffectsVolume();
+  Future<void> getEffectsVolume();
 
-  void setEffectsVolume(int volume);
+  Future<void> setEffectsVolume(int volume);
 
-  void preloadEffect(
+  Future<void> preloadEffect(
       {required int soundId, required String filePath, int startPos = 0});
 
-  void playEffect(
+  Future<void> playEffect(
       {required int soundId,
       required String filePath,
       required int loopCount,
@@ -1716,371 +1570,369 @@ abstract class RtcEngine {
       bool publish = false,
       int startPos = 0});
 
-  void playAllEffects(
+  Future<void> playAllEffects(
       {required int loopCount,
       required double pitch,
       required double pan,
       required int gain,
       bool publish = false});
 
-  void getVolumeOfEffect(int soundId);
+  Future<void> getVolumeOfEffect(int soundId);
 
-  void setVolumeOfEffect({required int soundId, required int volume});
+  Future<void> setVolumeOfEffect({required int soundId, required int volume});
 
-  void pauseEffect(int soundId);
+  Future<void> pauseEffect(int soundId);
 
-  void pauseAllEffects();
+  Future<void> pauseAllEffects();
 
-  void resumeEffect(int soundId);
+  Future<void> resumeEffect(int soundId);
 
-  void resumeAllEffects();
+  Future<void> resumeAllEffects();
 
-  void stopEffect(int soundId);
+  Future<void> stopEffect(int soundId);
 
-  void stopAllEffects();
+  Future<void> stopAllEffects();
 
-  void unloadEffect(int soundId);
+  Future<void> unloadEffect(int soundId);
 
-  void unloadAllEffects();
+  Future<void> unloadAllEffects();
 
-  void enableSoundPositionIndication(bool enabled);
+  Future<void> enableSoundPositionIndication(bool enabled);
 
-  void setRemoteVoicePosition(
+  Future<void> setRemoteVoicePosition(
       {required int uid, required double pan, required double gain});
 
-  void enableSpatialAudio(bool enabled);
+  Future<void> enableSpatialAudio(bool enabled);
 
-  void setRemoteUserSpatialAudioParams(
+  Future<void> setRemoteUserSpatialAudioParams(
       {required int uid, required SpatialAudioParams params});
 
-  void setVoiceBeautifierPreset(VoiceBeautifierPreset preset);
+  Future<void> setVoiceBeautifierPreset(VoiceBeautifierPreset preset);
 
-  void setAudioEffectPreset(AudioEffectPreset preset);
+  Future<void> setAudioEffectPreset(AudioEffectPreset preset);
 
-  void setVoiceConversionPreset(VoiceConversionPreset preset);
+  Future<void> setVoiceConversionPreset(VoiceConversionPreset preset);
 
-  void setAudioEffectParameters(
+  Future<void> setAudioEffectParameters(
       {required AudioEffectPreset preset,
       required int param1,
       required int param2});
 
-  void setVoiceBeautifierParameters(
+  Future<void> setVoiceBeautifierParameters(
       {required VoiceBeautifierPreset preset,
       required int param1,
       required int param2});
 
-  void setVoiceConversionParameters(
+  Future<void> setVoiceConversionParameters(
       {required VoiceConversionPreset preset,
       required int param1,
       required int param2});
 
-  void setLocalVoicePitch(double pitch);
+  Future<void> setLocalVoicePitch(double pitch);
 
-  void setLocalVoiceEqualization(
+  Future<void> setLocalVoiceEqualization(
       {required AudioEqualizationBandFrequency bandFrequency,
       required int bandGain});
 
-  void setLocalVoiceReverb(
+  Future<void> setLocalVoiceReverb(
       {required AudioReverbType reverbKey, required int value});
 
-  void setLogFile(String filePath);
+  Future<void> setLogFile(String filePath);
 
-  void setLogFilter(int filter);
+  Future<void> setLogFilter(LogFilterType filter);
 
-  void setLogLevel(LogLevel level);
+  Future<void> setLogLevel(LogLevel level);
 
-  void setLogFileSize(int fileSizeInKBytes);
+  Future<void> setLogFileSize(int fileSizeInKBytes);
 
-  void uploadLogFile(String requestId);
+  Future<void> uploadLogFile(String requestId);
 
-  void setLocalRenderMode(
+  Future<void> setLocalRenderMode(
       {required RenderModeType renderMode,
       required VideoMirrorModeType mirrorMode});
 
-  void setRemoteRenderMode(
+  Future<void> setRemoteRenderMode(
       {required int uid,
       required RenderModeType renderMode,
       required VideoMirrorModeType mirrorMode});
 
-  void setLocalRenderMode2(RenderModeType renderMode);
+  Future<void> setLocalRenderMode2(RenderModeType renderMode);
 
-  void setLocalVideoMirrorMode(VideoMirrorModeType mirrorMode);
+  Future<void> setLocalVideoMirrorMode(VideoMirrorModeType mirrorMode);
 
-  void enableDualStreamMode(bool enabled);
+  Future<void> enableDualStreamMode(bool enabled);
 
-  void enableDualStreamMode2(
+  Future<void> enableDualStreamMode2(
       {required VideoSourceType sourceType, required bool enabled});
 
-  void enableDualStreamMode3(
+  Future<void> enableDualStreamMode3(
       {required VideoSourceType sourceType,
       required bool enabled,
       required SimulcastStreamConfig streamConfig});
 
-  void enableEchoCancellationExternal(
+  Future<void> enableEchoCancellationExternal(
       {required bool enabled, required int audioSourceDelay});
 
-  void enableCustomAudioLocalPlayback(
+  Future<void> enableCustomAudioLocalPlayback(
       {required int sourceId, required bool enabled});
 
-  void startPrimaryCustomAudioTrack(AudioTrackConfig config);
+  Future<void> startPrimaryCustomAudioTrack(AudioTrackConfig config);
 
-  void stopPrimaryCustomAudioTrack();
+  Future<void> stopPrimaryCustomAudioTrack();
 
-  void startSecondaryCustomAudioTrack(AudioTrackConfig config);
+  Future<void> startSecondaryCustomAudioTrack(AudioTrackConfig config);
 
-  void stopSecondaryCustomAudioTrack();
+  Future<void> stopSecondaryCustomAudioTrack();
 
-  void setRecordingAudioFrameParameters(
+  Future<void> setRecordingAudioFrameParameters(
       {required int sampleRate,
       required int channel,
       required RawAudioFrameOpModeType mode,
       required int samplesPerCall});
 
-  void setPlaybackAudioFrameParameters(
+  Future<void> setPlaybackAudioFrameParameters(
       {required int sampleRate,
       required int channel,
       required RawAudioFrameOpModeType mode,
       required int samplesPerCall});
 
-  void setMixedAudioFrameParameters(
+  Future<void> setMixedAudioFrameParameters(
       {required int sampleRate,
       required int channel,
       required int samplesPerCall});
 
-  void setPlaybackAudioFrameBeforeMixingParameters(
+  Future<void> setPlaybackAudioFrameBeforeMixingParameters(
       {required int sampleRate, required int channel});
 
-  void enableAudioSpectrumMonitor({int intervalInMS = 100});
+  Future<void> enableAudioSpectrumMonitor({int intervalInMS = 100});
 
-  void disableAudioSpectrumMonitor();
+  Future<void> disableAudioSpectrumMonitor();
 
-  void adjustRecordingSignalVolume(int volume);
+  Future<void> adjustRecordingSignalVolume(int volume);
 
-  void muteRecordingSignal(bool mute);
+  Future<void> muteRecordingSignal(bool mute);
 
-  void adjustPlaybackSignalVolume(int volume);
+  Future<void> adjustPlaybackSignalVolume(int volume);
 
-  void adjustUserPlaybackSignalVolume({required int uid, required int volume});
+  Future<void> adjustUserPlaybackSignalVolume(
+      {required int uid, required int volume});
 
-  void setLocalPublishFallbackOption(StreamFallbackOptions option);
+  Future<void> setLocalPublishFallbackOption(StreamFallbackOptions option);
 
-  void setRemoteSubscribeFallbackOption(StreamFallbackOptions option);
+  Future<void> setRemoteSubscribeFallbackOption(StreamFallbackOptions option);
 
-  void enableLoopbackRecording({required bool enabled, String? deviceName});
+  Future<void> enableLoopbackRecording(
+      {required bool enabled, String? deviceName});
 
-  void adjustLoopbackRecordingVolume(int volume);
+  Future<void> adjustLoopbackRecordingVolume(int volume);
 
-  void getLoopbackRecordingVolume();
+  Future<void> getLoopbackRecordingVolume();
 
-  void enableInEarMonitoring(
+  Future<void> enableInEarMonitoring(
       {required bool enabled, required int includeAudioFilters});
 
-  void setInEarMonitoringVolume(int volume);
+  Future<void> setInEarMonitoringVolume(int volume);
 
-  void loadExtensionProvider(String extensionLibPath);
+  Future<void> loadExtensionProvider(String path);
 
-  void setExtensionProviderProperty(
+  Future<void> setExtensionProviderProperty(
       {required String provider, required String key, required String value});
 
-  void enableExtension(
+  Future<void> enableExtension(
       {required String provider,
       required String extension,
       bool enable = true,
       MediaSourceType type = MediaSourceType.unknownMediaSource});
 
-  void setExtensionProperty(
+  Future<void> setExtensionProperty(
       {required String provider,
       required String extension,
       required String key,
       required String value,
       MediaSourceType type = MediaSourceType.unknownMediaSource});
 
-  String getExtensionProperty(
+  Future<String> getExtensionProperty(
       {required String provider,
       required String extension,
       required String key,
       required int bufLen,
       MediaSourceType type = MediaSourceType.unknownMediaSource});
 
-  void setCameraCapturerConfiguration(CameraCapturerConfiguration config);
+  Future<void> setCameraCapturerConfiguration(
+      CameraCapturerConfiguration config);
 
-  void switchCamera();
+  Future<void> switchCamera();
 
-  bool isCameraZoomSupported();
+  Future<bool> isCameraZoomSupported();
 
-  bool isCameraFaceDetectSupported();
+  Future<bool> isCameraFaceDetectSupported();
 
-  bool isCameraTorchSupported();
+  Future<bool> isCameraTorchSupported();
 
-  bool isCameraFocusSupported();
+  Future<bool> isCameraFocusSupported();
 
-  bool isCameraAutoFocusFaceModeSupported();
+  Future<bool> isCameraAutoFocusFaceModeSupported();
 
-  void setCameraZoomFactor(double factor);
+  Future<void> setCameraZoomFactor(double factor);
 
-  void enableFaceDetection(bool enabled);
+  Future<void> enableFaceDetection(bool enabled);
 
-  double getCameraMaxZoomFactor();
+  Future<double> getCameraMaxZoomFactor();
 
-  void setCameraFocusPositionInPreview(
+  Future<void> setCameraFocusPositionInPreview(
       {required double positionX, required double positionY});
 
-  void setCameraTorchOn(bool isOn);
+  Future<void> setCameraTorchOn(bool isOn);
 
-  void setCameraAutoFocusFaceModeEnabled(bool enabled);
+  Future<void> setCameraAutoFocusFaceModeEnabled(bool enabled);
 
-  bool isCameraExposurePositionSupported();
+  Future<bool> isCameraExposurePositionSupported();
 
-  void setCameraExposurePosition(
+  Future<void> setCameraExposurePosition(
       {required double positionXinView, required double positionYinView});
 
-  bool isCameraAutoExposureFaceModeSupported();
+  Future<bool> isCameraAutoExposureFaceModeSupported();
 
-  void setCameraAutoExposureFaceModeEnabled(bool enabled);
+  Future<void> setCameraAutoExposureFaceModeEnabled(bool enabled);
 
-  void setDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker);
+  Future<void> setDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker);
 
-  void setEnableSpeakerphone(bool speakerOn);
+  Future<void> setEnableSpeakerphone(bool speakerOn);
 
-  bool isSpeakerphoneEnabled();
+  Future<bool> isSpeakerphoneEnabled();
 
-  List<ScreenCaptureSourceInfo> getScreenCaptureSources(
+  Future<List<ScreenCaptureSourceInfo>> getScreenCaptureSources(
       {required Size thumbSize,
       required Size iconSize,
       required bool includeScreen});
 
-  void setAudioSessionOperationRestriction(
+  Future<void> setAudioSessionOperationRestriction(
       AudioSessionOperationRestriction restriction);
 
-  void startScreenCaptureByDisplayId(
+  Future<void> startScreenCaptureByDisplayId(
       {required int displayId,
       required Rectangle regionRect,
       required ScreenCaptureParameters captureParams});
 
-  void startScreenCaptureByScreenRect(
+  Future<void> startScreenCaptureByScreenRect(
       {required Rectangle screenRect,
       required Rectangle regionRect,
       required ScreenCaptureParameters captureParams});
 
-<<<<<<< HEAD
-=======
-  void startScreenCapture(
-      {required int mediaProjectionPermissionResultData,
-      required ScreenCaptureParameters captureParams});
+  Future<DeviceInfo> getAudioDeviceInfo();
 
->>>>>>> release/rtc-ng/3.8.200-framework
-  DeviceInfo getAudioDeviceInfo();
-
-  void startScreenCaptureByWindowId(
+  Future<void> startScreenCaptureByWindowId(
       {required int windowId,
       required Rectangle regionRect,
       required ScreenCaptureParameters captureParams});
 
-  void setScreenCaptureContentHint(VideoContentHint contentHint);
+  Future<void> setScreenCaptureContentHint(VideoContentHint contentHint);
 
-  void updateScreenCaptureRegion(Rectangle regionRect);
+  Future<void> updateScreenCaptureRegion(Rectangle regionRect);
 
-  void updateScreenCaptureParameters(ScreenCaptureParameters captureParams);
+  Future<void> updateScreenCaptureParameters(
+      ScreenCaptureParameters captureParams);
 
-  void stopScreenCapture();
+  Future<void> stopScreenCapture();
 
-  String getCallId();
+  Future<String> getCallId();
 
-  void rate(
+  Future<void> rate(
       {required String callId,
       required int rating,
       required String description});
 
-  void complain({required String callId, required String description});
+  Future<void> complain({required String callId, required String description});
 
-  void addPublishStreamUrl(
+  Future<void> addPublishStreamUrl(
       {required String url, required bool transcodingEnabled});
 
-  void removePublishStreamUrl(String url);
+  Future<void> removePublishStreamUrl(String url);
 
-  void setLiveTranscoding(LiveTranscoding transcoding);
+  Future<void> setLiveTranscoding(LiveTranscoding transcoding);
 
-  void startRtmpStreamWithoutTranscoding(String url);
+  Future<void> startRtmpStreamWithoutTranscoding(String url);
 
-  void startRtmpStreamWithTranscoding(
+  Future<void> startRtmpStreamWithTranscoding(
       {required String url, required LiveTranscoding transcoding});
 
-  void updateRtmpTranscoding(LiveTranscoding transcoding);
+  Future<void> updateRtmpTranscoding(LiveTranscoding transcoding);
 
-  void stopRtmpStream(String url);
+  Future<void> stopRtmpStream(String url);
 
-  void startLocalVideoTranscoder(LocalTranscoderConfiguration config);
+  Future<void> startLocalVideoTranscoder(LocalTranscoderConfiguration config);
 
-  void updateLocalTranscoderConfiguration(LocalTranscoderConfiguration config);
+  Future<void> updateLocalTranscoderConfiguration(
+      LocalTranscoderConfiguration config);
 
-  void stopLocalVideoTranscoder();
+  Future<void> stopLocalVideoTranscoder();
 
-  void startPrimaryCameraCapture(CameraCapturerConfiguration config);
+  Future<void> startPrimaryCameraCapture(CameraCapturerConfiguration config);
 
-  void startSecondaryCameraCapture(CameraCapturerConfiguration config);
+  Future<void> startSecondaryCameraCapture(CameraCapturerConfiguration config);
 
-  void stopPrimaryCameraCapture();
+  Future<void> stopPrimaryCameraCapture();
 
-  void stopSecondaryCameraCapture();
+  Future<void> stopSecondaryCameraCapture();
 
-  void setCameraDeviceOrientation(
+  Future<void> setCameraDeviceOrientation(
       {required VideoSourceType type, required VideoOrientation orientation});
 
-  void setScreenCaptureOrientation(
+  Future<void> setScreenCaptureOrientation(
       {required VideoSourceType type, required VideoOrientation orientation});
 
-  void startPrimaryScreenCapture(ScreenCaptureConfiguration config);
+  Future<void> startPrimaryScreenCapture(ScreenCaptureConfiguration config);
 
-  void startSecondaryScreenCapture(ScreenCaptureConfiguration config);
+  Future<void> startSecondaryScreenCapture(ScreenCaptureConfiguration config);
 
-  void stopPrimaryScreenCapture();
+  Future<void> stopPrimaryScreenCapture();
 
-  void stopSecondaryScreenCapture();
+  Future<void> stopSecondaryScreenCapture();
 
-  ConnectionStateType getConnectionState();
+  Future<ConnectionStateType> getConnectionState();
 
   void registerEventHandler(RtcEngineEventHandler eventHandler);
 
   void unregisterEventHandler(RtcEngineEventHandler eventHandler);
 
-  void setRemoteUserPriority(
+  Future<void> setRemoteUserPriority(
       {required int uid, required PriorityType userPriority});
 
-  void setEncryptionMode(String encryptionMode);
+  Future<void> setEncryptionMode(String encryptionMode);
 
-  void setEncryptionSecret(String secret);
+  Future<void> setEncryptionSecret(String secret);
 
-  void enableEncryption(
+  Future<void> enableEncryption(
       {required bool enabled, required EncryptionConfig config});
 
-  int createDataStream({required bool reliable, required bool ordered});
+  Future<int> createDataStream({required bool reliable, required bool ordered});
 
-  int createDataStream2(DataStreamConfig config);
+  Future<int> createDataStream2(DataStreamConfig config);
 
-  void sendStreamMessage(
+  Future<void> sendStreamMessage(
       {required int streamId, required Uint8List data, required int length});
 
-  void addVideoWatermark(RtcImage watermark);
+  Future<void> addVideoWatermark(RtcImage watermark);
 
-  void addVideoWatermark2(
+  Future<void> addVideoWatermark2(
       {required String watermarkUrl, required WatermarkOptions options});
 
-  void clearVideoWatermark();
+  Future<void> clearVideoWatermark();
 
-  void clearVideoWatermarks();
+  Future<void> clearVideoWatermarks();
 
-  void addInjectStreamUrl(
+  Future<void> addInjectStreamUrl(
       {required String url, required InjectStreamConfig config});
 
-  void removeInjectStreamUrl(String url);
+  Future<void> removeInjectStreamUrl(String url);
 
-  void pauseAudio();
+  Future<void> pauseAudio();
 
-  void resumeAudio();
+  Future<void> resumeAudio();
 
-  void enableWebSdkInteroperability(bool enabled);
+  Future<void> enableWebSdkInteroperability(bool enabled);
 
-  void sendCustomReportMessage(
+  Future<void> sendCustomReportMessage(
       {required String id,
       required String category,
       required String event,
@@ -2093,7 +1945,7 @@ abstract class RtcEngine {
   void unregisterMediaMetadataObserver(
       {required MetadataObserver observer, required MetadataType type});
 
-  void startAudioFrameDump(
+  Future<void> startAudioFrameDump(
       {required String channelId,
       required int userId,
       required String location,
@@ -2102,101 +1954,104 @@ abstract class RtcEngine {
       required int durationMs,
       required bool autoUpload});
 
-  void stopAudioFrameDump(
+  Future<void> stopAudioFrameDump(
       {required String channelId,
       required int userId,
       required String location});
 
-  void registerLocalUserAccount(
+  Future<void> registerLocalUserAccount(
       {required String appId, required String userAccount});
 
-  void joinChannelWithUserAccount(
+  Future<void> joinChannelWithUserAccount(
       {required String token,
       required String channelId,
       required String userAccount});
 
-  void joinChannelWithUserAccount2(
+  Future<void> joinChannelWithUserAccount2(
       {required String token,
       required String channelId,
       required String userAccount,
       required ChannelMediaOptions options});
 
-  void joinChannelWithUserAccountEx(
+  Future<void> joinChannelWithUserAccountEx(
       {required String token,
       required String channelId,
       required String userAccount,
       required ChannelMediaOptions options});
 
-  UserInfo getUserInfoByUserAccount(String userAccount);
+  Future<UserInfo> getUserInfoByUserAccount(String userAccount);
 
-  UserInfo getUserInfoByUid(int uid);
+  Future<UserInfo> getUserInfoByUid(int uid);
 
-  void startChannelMediaRelay(ChannelMediaRelayConfiguration configuration);
+  Future<void> startChannelMediaRelay(
+      ChannelMediaRelayConfiguration configuration);
 
-  void updateChannelMediaRelay(ChannelMediaRelayConfiguration configuration);
+  Future<void> updateChannelMediaRelay(
+      ChannelMediaRelayConfiguration configuration);
 
-  void stopChannelMediaRelay();
+  Future<void> stopChannelMediaRelay();
 
-  void pauseAllChannelMediaRelay();
+  Future<void> pauseAllChannelMediaRelay();
 
-  void resumeAllChannelMediaRelay();
+  Future<void> resumeAllChannelMediaRelay();
 
-  void setDirectCdnStreamingAudioConfiguration(AudioProfileType profile);
+  Future<void> setDirectCdnStreamingAudioConfiguration(
+      AudioProfileType profile);
 
-  void setDirectCdnStreamingVideoConfiguration(
+  Future<void> setDirectCdnStreamingVideoConfiguration(
       VideoEncoderConfiguration config);
 
-  void startDirectCdnStreaming(
+  Future<void> startDirectCdnStreaming(
       {required DirectCdnStreamingEventHandler eventHandler,
       required String publishUrl,
       required DirectCdnStreamingMediaOptions options});
 
-  void stopDirectCdnStreaming();
+  Future<void> stopDirectCdnStreaming();
 
-  void updateDirectCdnStreamingMediaOptions(
+  Future<void> updateDirectCdnStreamingMediaOptions(
       DirectCdnStreamingMediaOptions options);
 
-  void takeSnapshot(
+  Future<void> takeSnapshot(
       {required SnapShotConfig config, required SnapshotCallback callback});
 
-  void setContentInspect(ContentInspectConfig config);
+  Future<void> setContentInspect(ContentInspectConfig config);
 
-  void switchChannel({required String token, required String channel});
+  Future<void> switchChannel({required String token, required String channel});
 
-  void startRhythmPlayer(
+  Future<void> startRhythmPlayer(
       {required String sound1,
       required String sound2,
       required AgoraRhythmPlayerConfig config});
 
-  void stopRhythmPlayer();
+  Future<void> stopRhythmPlayer();
 
-  void configRhythmPlayer(AgoraRhythmPlayerConfig config);
+  Future<void> configRhythmPlayer(AgoraRhythmPlayerConfig config);
 
-  void adjustCustomAudioPublishVolume(
+  Future<void> adjustCustomAudioPublishVolume(
       {required int sourceId, required int volume});
 
-  void adjustCustomAudioPlayoutVolume(
+  Future<void> adjustCustomAudioPlayoutVolume(
       {required int sourceId, required int volume});
 
-  void setCloudProxy(CloudProxyType proxyType);
+  Future<void> setCloudProxy(CloudProxyType proxyType);
 
-  void setLocalAccessPoint(LocalAccessPointConfiguration config);
+  Future<void> setLocalAccessPoint(LocalAccessPointConfiguration config);
 
-  void enableFishCorrection(
+  Future<void> enableFishCorrection(
       {required bool enabled, required FishCorrectionParams params});
 
-  AdvancedAudioOptions setAdvancedAudioOptions();
+  Future<AdvancedAudioOptions> setAdvancedAudioOptions();
 
-  void setAVSyncSource({required String channelId, required int uid});
+  Future<void> setAVSyncSource({required String channelId, required int uid});
 
   AudioDeviceManager getAudioDeviceManager();
 
   VideoDeviceManager getVideoDeviceManager();
 
-  void sendMetaData(
+  Future<void> sendMetaData(
       {required Metadata metadata, required VideoSourceType sourceType});
 
-  void setMaxMetadataSize(int size);
+  Future<void> setMaxMetadataSize(int size);
 }
 
 @JsonEnum(alwaysCreate: true)
@@ -2390,11 +2245,7 @@ class SDKBuildInfo {
   const SDKBuildInfo({this.buildNumber, this.version});
 
   @JsonKey(name: 'build_number')
-<<<<<<< HEAD
   final int? buildNumber;
-=======
-  final String? buildNumber;
->>>>>>> release/rtc-ng/3.8.200-framework
   @JsonKey(name: 'version')
   final String? version;
   factory SDKBuildInfo.fromJson(Map<String, dynamic> json) =>

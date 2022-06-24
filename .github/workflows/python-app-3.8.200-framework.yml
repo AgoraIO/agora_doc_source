@@ -1,0 +1,41 @@
+# GitHub CI build pipeline
+name: Awesome JSON CI build for 3.8.200-framework
+
+on:
+    push:
+        branches:
+            - release/rtc-ng/3.8.200-framework
+    pull_request:
+        branches:
+            - release/rtc-ng/3.8.200-framework
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Set up python 3.8
+              uses: actions/setup-python@v2
+              with:
+                  python-version: 3.8
+            - name: Install dependencies
+              run: |
+                  cd xml2json
+                  python -m pip install --upgrade pip
+                  if  [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+            - name: Run json creation
+              run: |
+                  cd xml2json
+         
+                  echo "Running for unity NG CN (test)"
+                  python xml2json.py --working_dir ../dita/RTC-NG --platform_tag unity --json_file unity_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path unity-ng
+
+
+            - name: Upload Unity NG JSON to release (CN, test)
+              uses: svenstaro/upload-release-action@v2
+              with:
+                  repo_token: ${{ secrets.GITHUB_TOKEN }}
+                  file: xml2json/unity_ng.json
+                  asset_name: unity_ng_doc_template.json
+                  tag: main
+                  overwrite: true
+                  body: "Template file for automatic comment population."

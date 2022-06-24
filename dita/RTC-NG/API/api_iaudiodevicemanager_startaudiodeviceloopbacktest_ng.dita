@@ -19,7 +19,7 @@
             <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public abstract int StartAudioDeviceLoopbackTest(int indicationInterval);</codeblock>
             <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">void startAudioDeviceLoopbackTest(int indicationInterval);</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startAudioDeviceLoopbackTest(int indicationInterval);</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>该方法测试音频采集和播放设备是否能正常工作。一旦测试开始，音频采集设备会采集本地音频，然后使用音频播放设备播放出来。SDK 会按设置的时间间隔触发两个 <xref keyref="onAudioVolumeIndication" /> 回调，分别报告音频采集设备（<parmname>uid</parmname> = 0）和音频播放设置（<parmname>uid</parmname> = 1）的音量信息。</p>

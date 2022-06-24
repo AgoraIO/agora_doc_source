@@ -1,7 +1,10 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:ffi' as ffi;
 import 'dart:io';
+import 'dart:isolate';
 import 'dart:typed_data';
+import 'package:async/async.dart';
 
 import 'package:agora_rtc_ng/src/impl/native_iris_api_engine_bindings.dart';
 import 'package:ffi/ffi.dart';
@@ -9,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:iris_event/iris_event.dart';
 
-<<<<<<< HEAD
 const int kBasicResultLength = 64 * 1024;
 
 class CallApiResult {
@@ -19,10 +21,6 @@ class CallApiResult {
 
   final Map<String, dynamic> data;
 }
-=======
-
-const int kBasicResultLength = 64 * 1024;
->>>>>>> release/rtc-ng/3.8.200-framework
 
 class AgoraRtcException implements Exception {
   /// Creates a [PlatformException] with the specified error [code] and optional
@@ -76,51 +74,285 @@ ffi.DynamicLibrary _loadAgoraFpaServiceLib() {
   return ffi.DynamicLibrary.process();
 }
 
-ApiCaller _defaultApiCaller =
-    ApiCaller(NativeIrisApiEngineBinding(_loadAgoraFpaServiceLib()));
+// ApiCaller _defaultApiCaller =
+//     ApiCaller(NativeIrisApiEngineBinding(_loadAgoraFpaServiceLib()));
+ApiCaller _defaultApiCaller = ApiCaller();
 ApiCaller get apiCaller => _defaultApiCaller;
 
-class ApiCaller implements IrisEventHandler {
-  ApiCaller(this._nativeIrisApiEngineBinding);
+class ApiCaller {
+  _ApiCallExecutor? _apiCallExecutor;
 
-  final NativeIrisApiEngineBinding _nativeIrisApiEngineBinding;
+  Future<void> initilize() async {
+    _apiCallExecutor = _ApiCallExecutor();
+    await _apiCallExecutor!.prepare();
+  }
+
+  Future<void> dispose() async {
+    await _apiCallExecutor!.close();
+    _apiCallExecutor = null;
+  }
+
+  int getIrisApiEngineIntPtr() {
+    return _apiCallExecutor!.getIrisApiEngineIntPtr();
+  }
+
+  Future<CallApiResult> callIrisApi(
+    String funcName,
+    String params, {
+    Uint8List? buffer,
+  }) async {
+    return _apiCallExecutor!.callIrisApi(funcName, params, buffer: buffer);
+  }
+
+  void setupIrisRtcEngineEventHandler() {
+    _apiCallExecutor!.setupIrisRtcEngineEventHandler();
+  }
+
+  void disposeIrisRtcEngineEventHandler() {
+    _apiCallExecutor!.disposeIrisRtcEngineEventHandler();
+  }
+
+  void disposeIrisMediaPlayerEventHandlerIfNeed() {
+    _apiCallExecutor!.disposeIrisMediaPlayerEventHandlerIfNeed();
+  }
+
+  void setupIrisMediaPlayerEventHandlerIfNeed() {
+    _apiCallExecutor!.setupIrisMediaPlayerEventHandlerIfNeed();
+  }
+
+  void addEventHandler(IrisEventHandler eventHandler) {
+    _apiCallExecutor!.addEventHandler(eventHandler);
+  }
+
+  void removeEventHandler(IrisEventHandler eventHandler) {
+    _apiCallExecutor!.removeEventHandler(eventHandler);
+  }
+}
+
+class _ApiCallExecutor {
+  late final StreamQueue<dynamic> responseQueue;
+  late final SendPort requestPort;
+  late final StreamSubscription evntSubscription;
+  final Set<IrisEventHandler> _irisEventHandlers = {};
+  late final int irisApiEngineIntPtr;
+
+  static Future<void> _execute(List<SendPort> mainSendPorts) async {
+    SendPort mainApiCallSendPort = mainSendPorts[0];
+    SendPort mainEventSendPort = mainSendPorts[1];
+    // Send a SendPort to the main isolate so that it can send JSON strings to
+    // this isolate.
+    // final apiCallPort = ReceivePort('IrisApiEngine_ApiCallPort');
+    final apiCallPort = ReceivePort();
+    // final eventPort = ReceivePort('IrisApiEngine_EventPort');
+
+    _ApiCallExecutorInternal executor = _ApiCallExecutorInternal();
+    executor.initilize();
+    mainApiCallSendPort.send([
+      apiCallPort.sendPort,
+      executor.getIrisApiEngineIntPtr(),
+    ]);
+
+    // Wait for messages from the main isolate.
+    await for (final request in apiCallPort) {
+      if (request == null) {
+        // Exit if the main isolate sends a null message, indicating there are no
+        // more files to read and parse.
+        break;
+      }
+
+      assert(request is _Request);
+
+      if (request is _ApiCallRequest) {
+        final result = executor.callIrisApi(
+          request.funcName,
+          request.params,
+          buffer: request.buffer,
+        );
+
+        mainApiCallSendPort.send(result);
+      } else if (request is _SetupIrisRtcEngineEventHandlerRequest) {
+        executor.setupIrisRtcEngineEventHandler(mainEventSendPort);
+      } else if (request is _DisposeIrisRtcEngineEventHandlerRequest) {
+        executor.disposeIrisRtcEngineEventHandler();
+      } else if (request is _SetupIrisMediaPlayerEventHandlerRequest) {
+        executor.setupIrisMediaPlayerEventHandlerIfNeed();
+      } else if (request is _DisposeIrisMediaPlayerEventHandlerRequest) {
+        executor.disposeIrisMediaPlayerEventHandlerIfNeed();
+      }
+    }
+
+    executor.dispose();
+    Isolate.exit();
+  }
+
+  Future<void> prepare() async {
+    final apiCallPort = ReceivePort();
+    final eventPort = ReceivePort();
+    await Isolate.spawn(_execute, [apiCallPort.sendPort, eventPort.sendPort]);
+
+    // Convert the ReceivePort into a StreamQueue to receive messages from the
+    // spawned isolate using a pull-based interface. Events are stored in this
+    // queue until they are accessed by `events.next`.
+    // final events = StreamQueue<dynamic>(p);
+    responseQueue = StreamQueue<dynamic>(apiCallPort);
+
+    // The first message from the spawned isolate is a SendPort. This port is
+    // used to communicate with the spawned isolate.
+    // SendPort sendPort = await events.next;
+    final msg = await responseQueue.next;
+    requestPort = msg[0];
+    irisApiEngineIntPtr = msg[1];
+
+    evntSubscription = eventPort.listen((message) {
+      String event = message[0];
+      String data = message[1];
+      List<Uint8List> buffers = message[2];
+
+      for (final eventHandler in _irisEventHandlers) {
+        eventHandler.onEvent(event, data, buffers);
+      }
+    });
+  }
+
+  int getIrisApiEngineIntPtr() {
+    return irisApiEngineIntPtr;
+  }
+
+  Future<CallApiResult> callIrisApi(
+    String funcName,
+    String params, {
+    Uint8List? buffer,
+  }) async {
+    requestPort.send(_ApiCallRequest(funcName, params, buffer));
+    final CallApiResult result = await responseQueue.next;
+    return result;
+  }
+
+  void setupIrisRtcEngineEventHandler() {
+    requestPort.send(const _SetupIrisRtcEngineEventHandlerRequest());
+  }
+
+  void disposeIrisRtcEngineEventHandler() {
+    requestPort.send(const _DisposeIrisRtcEngineEventHandlerRequest());
+  }
+
+  void disposeIrisMediaPlayerEventHandlerIfNeed() {
+    requestPort.send(const _DisposeIrisMediaPlayerEventHandlerRequest());
+  }
+
+  void setupIrisMediaPlayerEventHandlerIfNeed() {
+    requestPort.send(const _SetupIrisMediaPlayerEventHandlerRequest());
+  }
+
+  void addEventHandler(IrisEventHandler eventHandler) {
+    _irisEventHandlers.add(eventHandler);
+  }
+
+  void removeEventHandler(IrisEventHandler eventHandler) {
+    _irisEventHandlers.remove(eventHandler);
+  }
+
+  Future<void> close() async {
+    _irisEventHandlers.clear();
+    await evntSubscription.cancel();
+
+    requestPort.send(null);
+    await responseQueue.cancel();
+  }
+}
+
+abstract class _Request {}
+
+class _ApiCallRequest implements _Request {
+  const _ApiCallRequest(this.funcName, this.params, this.buffer);
+
+  final String funcName;
+  final String params;
+  final Uint8List? buffer;
+}
+
+class _SetupIrisRtcEngineEventHandlerRequest implements _Request {
+  const _SetupIrisRtcEngineEventHandlerRequest();
+}
+
+class _DisposeIrisRtcEngineEventHandlerRequest implements _Request {
+  const _DisposeIrisRtcEngineEventHandlerRequest();
+}
+
+class _SetupIrisMediaPlayerEventHandlerRequest implements _Request {
+  const _SetupIrisMediaPlayerEventHandlerRequest();
+}
+
+class _DisposeIrisMediaPlayerEventHandlerRequest implements _Request {
+  const _DisposeIrisMediaPlayerEventHandlerRequest();
+}
+
+class _ApiCallExecutorInternal {
+  late final NativeIrisApiEngineBinding _nativeIrisApiEngineBinding;
   IrisApiEnginePtr? _irisApiEnginePtr;
-  int get irisApiEngineIntPtr => _irisApiEnginePtr!.address;
 
-  final IrisEvent? _irisEvent = IrisEvent();
+  late final IrisEvent _irisEvent;
   ffi.Pointer<IrisCEventHandler>? _irisCEventHandler;
   ffi.Pointer<ffi.Void>? _irisEventHandlerPtr;
   ffi.Pointer<ffi.Void>? _irisMediaPlayerEventHandlerPtr;
 
-  final Set<IrisEventHandler> _irisEventHandlers = {};
-
-  T callApi<T>(int apiType, String params, {Uint8List? buffer}) {
-    return '' as T;
-  }
-
   void initilize() {
+    _nativeIrisApiEngineBinding =
+        NativeIrisApiEngineBinding(_loadAgoraFpaServiceLib());
     _irisApiEnginePtr = _nativeIrisApiEngineBinding.CreateIrisApiEngine();
+    _irisEvent = IrisEvent();
   }
 
-  void dispose() {
+  int getIrisApiEngineIntPtr() {
     assert(_irisApiEnginePtr != null);
-    _irisEventHandlers.clear();
-
-    disposeIrisMediaPlayerEventHandlerIfNeed();
-    // The IrisRtcEngineEventHandler should be dispose on last, which will free the
-    // _irisCEventHandler internally.
-    _disposeIrisRtcEngineEventHandler();
-
-    _nativeIrisApiEngineBinding.DestroyIrisApiEngine(_irisApiEnginePtr!);
-    // calloc.free(_irisApiEnginePtr!);
-    _irisApiEnginePtr = null;
+    return _irisApiEnginePtr!.address;
   }
 
-<<<<<<< HEAD
+  void setupIrisRtcEngineEventHandler(SendPort sendPort) {
+    assert(_irisApiEnginePtr != null);
+    assert(_irisCEventHandler == null);
+
+    _irisCEventHandler = calloc<IrisCEventHandler>()
+      ..ref.OnEvent = _irisEvent.onEventPtr;
+    // ..ref.OnEventWithBuffer = _irisEvent!.onEventWithBufferPtr;
+
+    _irisEventHandlerPtr =
+        _nativeIrisApiEngineBinding.SetIrisRtcEngineEventHandler(
+            _irisApiEnginePtr!, _irisCEventHandler!);
+
+    _irisEvent.setEventHandler(_SendableIrisEventHandler(sendPort));
+  }
+
+  void disposeIrisRtcEngineEventHandler() {
+    if (_irisEventHandlerPtr != null && _irisCEventHandler != null) {
+      _nativeIrisApiEngineBinding.UnsetIrisRtcEngineEventHandler(
+          _irisApiEnginePtr!, _irisEventHandlerPtr!);
+
+      calloc.free(_irisCEventHandler!);
+      _irisCEventHandler = null;
+      _irisEventHandlerPtr = null;
+    }
+  }
+
+  void disposeIrisMediaPlayerEventHandlerIfNeed() {
+    if (_irisMediaPlayerEventHandlerPtr != null && _irisCEventHandler != null) {
+      _nativeIrisApiEngineBinding.UnsetIrisMediaPlayerEventHandler(
+          _irisApiEnginePtr!, _irisMediaPlayerEventHandlerPtr!);
+
+      _irisMediaPlayerEventHandlerPtr = null;
+    }
+  }
+
+  void setupIrisMediaPlayerEventHandlerIfNeed() {
+    assert(_irisApiEnginePtr != null);
+    assert(_irisCEventHandler != null);
+    if (_irisMediaPlayerEventHandlerPtr != null) return;
+    _irisMediaPlayerEventHandlerPtr =
+        _nativeIrisApiEngineBinding.SetIrisMediaPlayerEventHandler(
+            _irisApiEnginePtr!, _irisCEventHandler!);
+  }
+
   CallApiResult callIrisApi(
-=======
-  Map<String, dynamic> callIrisApi(
->>>>>>> release/rtc-ng/3.8.200-framework
     String funcName,
     String params, {
     Uint8List? buffer,
@@ -129,11 +361,7 @@ class ApiCaller implements IrisEventHandler {
 
     // debugPrint('function name: $funcName, params: $params');
 
-<<<<<<< HEAD
     return using<CallApiResult>((Arena arena) {
-=======
-    return using<Map<String, dynamic>>((Arena arena) {
->>>>>>> release/rtc-ng/3.8.200-framework
       final ffi.Pointer<ffi.Int8> resultPointer =
           arena.allocate<ffi.Int8>(kBasicResultLength).cast<ffi.Int8>();
 
@@ -167,11 +395,7 @@ class ApiCaller implements IrisEventHandler {
       }
 
       try {
-<<<<<<< HEAD
         final irisReturnCode = _nativeIrisApiEngineBinding.CallIrisApi(
-=======
-        _nativeIrisApiEngineBinding.CallIrisApi(
->>>>>>> release/rtc-ng/3.8.200-framework
             _irisApiEnginePtr!,
             funcNamePointer,
             paramsPointer,
@@ -185,21 +409,11 @@ class ApiCaller implements IrisEventHandler {
         debugPrint(
             'function name: $funcName, params: $params\nresultMap: ${resultMap.toString()}');
 
-<<<<<<< HEAD
-            
-
         return CallApiResult(irisReturnCode: irisReturnCode, data: resultMap);
       } catch (e) {
         debugPrint(
             'function name: $funcName, params: $params\nerror: ${e.toString()}');
         return CallApiResult(irisReturnCode: -1, data: const {});
-=======
-        return resultMap;
-      } catch (e) {
-        debugPrint(
-            'function name: $funcName, params: $params\nerror: ${e.toString()}');
-        return {};
->>>>>>> release/rtc-ng/3.8.200-framework
       }
     });
   }
@@ -210,62 +424,25 @@ class ApiCaller implements IrisEventHandler {
     }
   }
 
-  void setupIrisRtcEngineEventHandler() {
+  void dispose() {
     assert(_irisApiEnginePtr != null);
-    assert(_irisCEventHandler == null);
 
-    _irisCEventHandler = calloc<IrisCEventHandler>()
-      ..ref.OnEvent = _irisEvent!.onEventPtr;
-    // ..ref.OnEventWithBuffer = _irisEvent!.onEventWithBufferPtr;
+    disposeIrisMediaPlayerEventHandlerIfNeed();
+    // The IrisRtcEngineEventHandler should be dispose on last, which will free the
+    // _irisCEventHandler internally.
+    disposeIrisRtcEngineEventHandler();
 
-    _irisEventHandlerPtr =
-        _nativeIrisApiEngineBinding.SetIrisRtcEngineEventHandler(
-            _irisApiEnginePtr!, _irisCEventHandler!);
-
-    _irisEvent?.setEventHandler(this);
+    _nativeIrisApiEngineBinding.DestroyIrisApiEngine(_irisApiEnginePtr!);
+    _irisApiEnginePtr = null;
   }
+}
 
-  void _disposeIrisRtcEngineEventHandler() {
-    if (_irisEventHandlerPtr != null && _irisCEventHandler != null) {
-      _nativeIrisApiEngineBinding.UnsetIrisRtcEngineEventHandler(
-          _irisApiEnginePtr!, _irisEventHandlerPtr!);
-
-      calloc.free(_irisCEventHandler!);
-      _irisCEventHandler = null;
-      _irisEventHandlerPtr = null;
-    }
-  }
-
-  void disposeIrisMediaPlayerEventHandlerIfNeed() {
-    if (_irisMediaPlayerEventHandlerPtr != null && _irisCEventHandler != null) {
-      _nativeIrisApiEngineBinding.UnsetIrisMediaPlayerEventHandler(
-          _irisApiEnginePtr!, _irisMediaPlayerEventHandlerPtr!);
-
-      _irisMediaPlayerEventHandlerPtr = null;
-    }
-  }
-
-  void setupIrisMediaPlayerEventHandlerIfNeed() {
-    assert(_irisApiEnginePtr != null);
-    assert(_irisCEventHandler != null);
-    if (_irisMediaPlayerEventHandlerPtr != null) return;
-    _irisMediaPlayerEventHandlerPtr =
-        _nativeIrisApiEngineBinding.SetIrisMediaPlayerEventHandler(
-            _irisApiEnginePtr!, _irisCEventHandler!);
-  }
-
-  void addEventHandler(IrisEventHandler eventHandler) {
-    _irisEventHandlers.add(eventHandler);
-  }
-
-  void removeEventHandler(IrisEventHandler eventHandler) {
-    _irisEventHandlers.remove(eventHandler);
-  }
+class _SendableIrisEventHandler implements IrisEventHandler {
+  const _SendableIrisEventHandler(this._sendPort);
+  final SendPort _sendPort;
 
   @override
   void onEvent(String event, String data, List<Uint8List> buffers) {
-    for (final eh in _irisEventHandlers) {
-      eh.onEvent(event, data, buffers);
-    }
+    _sendPort.send([event, data, buffers]);
   }
 }

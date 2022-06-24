@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_uploadlogfile">
-    <title><ph keyref="uploadLogFile"/></title>
+    <title><ph keyref="uploadLogFile" /></title>
     <shortdesc id="short"><ph id="shortdesc">上传所有本地的 SDK 日志文件。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="uploadLogFile"/>
+                <indexterm keyref="uploadLogFile" />
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
             <codeblock props="cpp" outputclass="language-cpp">virtual int uploadLogFile(agora::util::AString&amp; requestId) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public abstract string UploadLogFile();</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">void uploadLogFile(String requestId);</codeblock></p>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; uploadLogFile(String requestId);</codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>将客户端的所有日志文件上传至 Agora 服务器。成功调用该方法后，SDK 会触发 <xref keyref="onUploadLogResult"/> 回调报告日志文件是否成功上传至 Agora 服务器。</p>
+            <p>将客户端的所有日志文件上传至 Agora 服务器。成功调用该方法后，SDK 会触发 <xref keyref="onUploadLogResult" /> 回调报告日志文件是否成功上传至 Agora 服务器。</p>
             <p props="cpp">
             <note type="attention">该方法每分钟的调用次数不得超过 1 次，超出后会报错误码 <codeph>ERR_TOO_OFTEN</codeph>(12)</note>。</p>
             <p props="android ios mac">
-            <note type="attention">该方法每分钟的调用次数不得超过 1 次，超出后会返回 <ph keyref="NULL"/>。</note></p>
+            <note type="attention">该方法每分钟的调用次数不得超过 1 次，超出后会返回 <ph keyref="NULL" />。</note></p>
             <p>为了方便排查问题，Agora 推荐你将 <apiname>uploadLogFile</apiname> 方法与应用的 UI 元素绑定，在出现质量问题时提示用户上传日志。</p>
         </section>
         <section props="native flutter" id="parameters">
@@ -35,7 +35,7 @@
             <plentry>
                 <pt>requestId</pt>
                 <pd>
-                    <p>请求 ID。该请求 ID 与 <xref keyref="onUploadLogResult"/> 回调中的 <parmname>requestId</parmname> 一致。
+                    <p>请求 ID。该请求 ID 与 <xref keyref="onUploadLogResult" /> 回调中的 <parmname>requestId</parmname> 一致。
   你可以通过 <parmname>requestId</parmname> 将特定的上传和回调对应起来。</p>
                 </pd>
             </plentry>
@@ -51,9 +51,9 @@
                 </ul></li>
             </ul>
             <ul props="android ios mac flutter">
-            <li>方法调用成功: 返回请求 ID。该请求 ID 与 <xref keyref="onUploadLogResult"/> 回调中的 <parmname>requestId</parmname> 一致。你可以通过
+            <li>方法调用成功: 返回请求 ID。该请求 ID 与 <xref keyref="onUploadLogResult" /> 回调中的 <parmname>requestId</parmname> 一致。你可以通过
   <parmname>requestId</parmname> 将特定的上传和回调对应起来。</li>
-            <li>方法调用失败: 返回 <ph keyref="NULL"/>。可能是因为调用频率超出限制。</li>
+            <li>方法调用失败: 返回 <ph keyref="NULL" />。可能是因为调用频率超出限制。</li>
             </ul> </section>
     </refbody>
 </reference>

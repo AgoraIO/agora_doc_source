@@ -1,79 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_joinchannelwithuseraccount2">
-    <title><ph keyref="joinChannelWithUserAccount2" /></title>
-    <shortdesc id="short"><ph id="shortdesc">使用 User Account 加入频道，并设置是否自动订阅音频或视频流。</ph></shortdesc>
+<reference id="api_irtcengineex_setremotevoice3dpositionex">
+    <title><ph keyref="setRemoteVoice3DPositionEx" /></title>
+    <shortdesc id="short"><ph id="shortdesc">设置远端用户声音的 3D 位置。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="joinChannelWithUserAccount2" />
+                <indexterm keyref="setRemoteVoice3DPositionEx" />
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)joinChannelByToken:(NSString * _Nullable)token
-                channelId:(NSString * _Nonnull)channelId
-              userAccount:(NSString * _Nonnull)userAccount
-             mediaOptions:(AgoraRtcChannelMediaOptions * _Nonnull)mediaOptions
-              joinSuccess:(void(^ _Nullable)(NSString * _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int JoinChannelWithUserAccount(string token, string channelId, string userAccount, ChannelMediaOptions options);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/>There are no corresponding names available</codeblock></p>
+            <codeblock props="android" outputclass="language-java">public abstract int setRemoteVoice3DPositionEx(
+    int uid, double azimuth, double elevation, double distance, RtcConnection connection);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setRemoteVoice3DPositionEx:(NSUInteger)uid
+                          azimuth:(double)azimuth
+                        elevation:(double)elevation
+                         distance:(double)distance
+                       connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setRemoteVoice3DPositionEx(uid_t uid, double azimuth, double elevation, double distance, const RtcConnection&amp; connection) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p id="desc1">该方法允许本地用户使用 User Account 加入频道。成功加入频道后，会触发以下回调：
+            <p>通过设置远端用户声音的水平角、垂直角和声源距离，让远端用户的声音听起来有方位感。</p>
+            <p>在多人在线游戏场景，如吃鸡游戏中，该方法能有效增加游戏角色的方位感，模拟真实场景。</p>
+            <p>该方法和 <xref keyref="setRemoteVoicePositionEx" /> 的区别是：该方法设置声音的 3D 位置；<apiname keyref="setRemoteVoicePositionEx" /> 设置声音的 2D 位置，即水平面上的位置。</p>
+            <note type="attention">
             <ul>
-            <li>本地：<xref keyref="onLocalUserRegistered" />、<xref keyref="onJoinChannelSuccess" /> 和 <xref keyref="onConnectionStateChanged" /> 回调。</li>
-            <li>远端：通信场景下的用户和直播场景下的主播加入频道后，远端会分别触发 <xref keyref="onUserJoined" /> 和 <xref keyref="onUserInfoUpdated" /> 回调。</li>
-            </ul></p>
-            <p id="desc2">用户成功加入频道后，默认订阅频道内所有其他用户的音频流和视频流，因此产生用量并影响计费。如果想取消订阅，可以通过调用相应的 <apiname>mute</apiname> 方法实现。</p>
-            <p>相比 <xref keyref="joinChannelWithUserAccount1"/>，该方法增加了 <parmname>options</parmname> 参数，用于配置用户加入频道时是否自动订阅频道内所有远端音视频流。默认情况下，用户订阅频道内所有其他用户的音频流和视频流，因此会产生用量并影响计费。如果想取消订阅，可以通过设置 <parmname>options</parmname> 参数或相应的 <apiname>mute</apiname> 方法实现。</p>
-            <note type="attention">为保证通信质量，请确保频道内使用同一类型的数据标识用户身份。即同一频道内需要统一使用 UID 或 User Account。如果有用户通过 Agora Web SDK 加入频道，请确保 Web 加入的用户也是同样类型。</note> </section>
+            <li>使用该方法需要在加入频道前调用 <xref keyref="enableSoundPositionIndication" /> 开启远端用户声音的立体声。</li>
+            <li>为获得最佳听觉体验，我们建议使用该方法时使用有线耳机。</li>
+            <li>该方法需要在加入频道后调用。</li>
+            </ul> </note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry conkeyref="joinChannel2/token">
+            <plentry conkeyref="setRemoteVoice3DPosition/uid">
                 <pt />
                 <pd />
             </plentry>
-            <plentry>
-                <pt props="android flutter">channelName</pt>
-                <pt props="cpp ios mac unity">channelId</pt>
-                <pd>
-                    <p conkeyref="joinChannel2/channelID_desc" />
-                </pd>
-            </plentry>
-            <plentry id="userAccount">
-                <pt>userAccount</pt>
-                <pd>
-                    <p>用户 User Account。该参数用于标识实时音视频互动频道中的用户。你需要自行设置和管理用户的 User Account，并确保同一频道中每个用户的 User Account 是唯一的。 该参数为必填，最大不超过 255 字节，不可填 <ph keyref="NULL" />。以下为支持的字符集范围（共 89 个字符）：
-
-
-
-
-                    <ul>
-                    <li>26 个小写英文字母 a-z</li>
-                    <li>26 个大写英文字母 A-Z</li>
-                    <li>10 个数字 0-9</li>
-                    <li>空格</li>
-                    <li>"!"、"#"、"$"、"%"、"&amp;"、"("、")"、"+"、"-"、":"、";"、"&lt;"、"="、"."、"&gt;"、"?"、"@"、"["、"]"、"^"、"_"、"{"、"}"、"|"、"~"、","</li>
-                    </ul></p>
-                </pd>
-            </plentry>
-            <plentry conkeyref="joinChannel2/options">
+            <plentry conkeyref="setRemoteVoice3DPosition/azimuth">
                 <pt />
                 <pd />
             </plentry>
-            <plentry conkeyref="joinChannel2/joinsuccessblock" props="ios mac">
+            <plentry conkeyref="setRemoteVoice3DPosition/elevation">
+                <pt />
+                <pd />
+            </plentry>
+            <plentry conkeyref="setRemoteVoice3DPosition/distance">
+                <pt />
+                <pd />
+            </plentry>
+            <plentry conkeyref="joinChannelEx/connection">
                 <pt />
                 <pd />
             </plentry>
             </parml> </section>
-        <section conkeyref="joinChannel2/return_values"/>
+        <section id="return_values">
+            <title>返回值</title>
+            <ul>
+            <li>0: 方法调用成功</li>
+            <li>&lt; 0: 方法调用失败</li>
+            </ul> </section>
     </refbody>
 </reference>

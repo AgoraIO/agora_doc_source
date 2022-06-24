@@ -10,28 +10,26 @@ import '../impl/agora_video_view_impl.dart';
 import 'media_player_controller.dart';
 import 'package:meta/meta.dart';
 
-<<<<<<< HEAD
 /// Class for rendering local and remote video.
+///
+/// * Use [VideoViewController] to control the rendering of [RtcEngine].
+/// * Use [MediaPlayerController] to control the rendering of media player.
+///
 class AgoraVideoView extends StatefulWidget {
-=======
-class AgoraVideoView extends StatefulWidget {
-  // const AgoraVideoView({Key? key}) : super(key: key);
-
->>>>>>> release/rtc-ng/3.8.200-framework
   const AgoraVideoView({
     Key? key,
-    required VideoViewController controller,
-  })  : videoViewController = controller,
-        super(key: key);
+    required this.controller,
+  }) : super(key: key);
 
-  const AgoraVideoView.mediaPlayer({
-    Key? key,
-    required MediaPlayerController controller,
-  })  : videoViewController = controller,
-        super(key: key);
+  /// Create an [AgoraVideoView] to render media player
+  // const AgoraVideoView.mediaPlayer({
+  //   Key? key,
+  //   required MediaPlayerController controller,
+  // })  : videoViewController = controller,
+  //       super(key: key);
 
   @internal
-  final VideoViewControllerBase videoViewController;
+  final VideoViewControllerBase controller;
 
   @override
   State<AgoraVideoView> createState() => AgoraVideoViewState();
