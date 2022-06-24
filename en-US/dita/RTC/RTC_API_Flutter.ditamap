@@ -11,6 +11,7 @@
         <mapref href="config/relations-rtc-api.ditamap" format="ditamap"/>
         <mapref href="config/keys-rtc-api-flutter.ditamap" format="ditamap" processing-role="resource-only"/>
         <topicref href="config/keys-rtc-links-flutter.ditamap" format="ditamap"/>
+        <topicref href="config/keys-rtc-ng-links.ditamap" format="ditamap"/>
     </topichead>
     <topichead navtitle="Flutter API Reference">
         <topicref href="API/rtc_api_overview.dita"/>
@@ -45,7 +46,6 @@
             <topicref keyref="enableLastmileTest" toc="no"/>
             <topicref keyref="enableLocalAudio" toc="no"/>
             <topicref keyref="enableLocalVideo" toc="no"/>
-            <topicref keyref="enableLocalVoicePitchCallback" toc="no"/>
             <topicref keyref="enableLoopbackRecording" toc="no"/>
             <topicref keyref="enableRemoteSuperResolution" toc="no"/>
             <topicref keyref="enableSoundPositionIndication" toc="no"/>
@@ -138,6 +138,7 @@
             <topicref keyref="setEncryptionMode" toc="no"/>
             <topicref keyref="setEncryptionSecret" toc="no"/>
             <topicref keyref="setInEarMonitoringVolume" toc="no"/>
+            <topicref keyref="setLiveTranscoding" toc="no"/>
             <topicref keyref="setLocalPublishFallbackOption" toc="no"/>
             <topicref keyref="setLocalVoiceChanger" toc="no"/>
             <topicref keyref="setLocalVoiceEqualization" toc="no"/>
@@ -156,7 +157,6 @@
             <topicref keyref="setRemoteVideoStreamType" toc="no"/>
             <topicref keyref="setRemoteVoicePosition" toc="no"/>
             <topicref keyref="setScreenCaptureContentHint" toc="no"/>
-            <topicref keyref="setScreenCaptureScenario" toc="no"/>
             <topicref keyref="setVideoDenoiserOptions" toc="no"/>
             <topicref keyref="setVideoEncoderConfiguration" toc="no"/>
             <topicref keyref="setVoiceBeautifierParameters" toc="no"/>
@@ -170,8 +170,9 @@
             <topicref keyref="startEchoTest2" toc="no"/>
             <topicref keyref="startLastmileProbeTest" toc="no"/>
             <topicref keyref="startPreview" toc="no"/>
-            <topicref keyref="startScreenCaptureMobile" toc="no"/>
+            <topicref keyref="startScreenCapture" toc="no"/>
             <topicref keyref="startScreenCaptureByDisplayId" toc="no"/>
+            <topicref keyref="startScreenCaptureByScreenRect" toc="no"/>
             <topicref keyref="startScreenCaptureByWindowId" toc="no"/>
             <topicref keyref="startRtmpStreamWithoutTranscoding" toc="no"/>
             <topicref keyref="startRtmpStreamWithTranscoding" toc="no"/>
@@ -193,7 +194,6 @@
             <topicref keyref="updateChannelMediaRelay" toc="no"/>
             <topicref keyref="updateRtmpTranscoding" toc="no"/>
             <topicref keyref="updateScreenCaptureParameters" toc="no"/>
-            <topicref keyref="updateScreenCaptureParametersMobile" toc="no"/>
             <topicref keyref="updateScreenCaptureRegion1" toc="no"/>
             <topicref keyref="uploadLogFile" toc="no"/>
         </topicref>
@@ -242,7 +242,6 @@
             <topicref keyref="onLocalUserRegistered" toc="no"/>
             <topicref keyref="onLocalVideoStateChanged" toc="no"/>
             <topicref keyref="onLocalVideoStats" toc="no"/>
-            <topicref keyref="onLocalVoicePitchInHz" toc="no"/>
             <topicref keyref="onMetadataReceived" toc="no"/>
             <topicref keyref="onMediaEngineLoadSuccess" toc="no"/>
             <topicref keyref="onMediaEngineStartCallSuccess" toc="no"/>
@@ -332,6 +331,7 @@
             <topicref keyref="IChannel_setDefaultMuteAllRemoteVideoStreams" toc="no"/>
             <topicref keyref="IChannel_setEncryptionMode" toc="no"/>
             <topicref keyref="IChannel_setEncryptionSecret" toc="no"/>
+            <topicref keyref="IChannel_setLiveTranscoding" toc="no"/>
             <topicref keyref="IChannel_setMaxMetadataSize" toc="no"/>
             <topicref keyref="IChannel_setRemoteDefaultVideoStreamType" toc="no"/>
             <topicref keyref="IChannel_setRemoteUserPriority" toc="no"/>
@@ -358,12 +358,12 @@
             <topicref keyref="IChannel_onClientRoleChanged" toc="no"/>
             <topicref keyref="IChannel_onConnectionLost" toc="no"/>
             <topicref keyref="IChannel_onConnectionStateChanged" toc="no"/>
-            <topicref keyref="IChannel_onFirstRemoteVideoFrame" toc="no"/>
             <topicref keyref="IChannel_onJoinChannelSuccess" toc="no"/>
             <topicref keyref="IChannel_onLeaveChannel" toc="no"/>
             <topicref keyref="IChannel_onLocalPublishFallbackToAudioOnly" toc="no"/>
             <topicref keyref="IChannel_onMetadataReceived" toc="no"/>
             <topicref keyref="IChannel_onNetworkQuality" toc="no"/>
+            <topicref keyref="IChannel_onProxyConnected" toc="no"/>
             <topicref keyref="IChannel_onRejoinChannelSuccess" toc="no"/>
             <topicref keyref="IChannel_onRemoteAudioStateChanged" toc="no"/>
             <topicref keyref="IChannel_onRemoteAudioStats" toc="no"/>
@@ -385,6 +385,11 @@
             <topicref keyref="IChannel_onVideoPublishStateChanged" toc="no"/>
             <topicref keyref="IChannel_onVideoSizeChanged" toc="no"/>
             <topicref keyref="IChannel_onVideoSubscribeStateChanged" toc="no"/>
+        </topicref>
+        <topicref keyref="RtcEngineExtension" chunk="to-content">
+            <topicref keyref="getAssetAbsolutePath" toc="no"/>
+            <topicref keyref="enumerateDisplays" toc="no"/>
+            <topicref keyref="enumerateWindows" toc="no"/>
         </topicref>
         <topicref keyref="RtcSurfaceView" chunk="to-content">
             <topicref keyref="RtcSurfaceViewConstructor" toc="no"/>
@@ -571,12 +576,8 @@
             <topicref keyref="RtcEngineConfig" toc="no"/>
             <topicref keyref="RtcImage" toc="no"/>
             <topicref keyref="RtcStats" toc="no"/>
-            <topicref keyref="ScreenAudioParameters" toc="no"/>
             <topicref keyref="ScreenCaptureParameters" toc="no"/>
-            <topicref keyref="ScreenCaptureParameters2" toc="no"/>
             <topicref keyref="ScreenCaptureInfo" toc="no"/>
-            <topicref keyref="ScreenScenarioType" toc="no"/>
-            <topicref keyref="ScreenVideoParameters" toc="no"/>
             <topicref keyref="TranscodingUser" toc="no"/>
             <topicref keyref="UserInfo" toc="no"/>
             <topicref keyref="VideoDimensions" toc="no"/>
