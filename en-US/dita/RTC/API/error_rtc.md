@@ -126,6 +126,7 @@ The error and warning codes may be returned in the following ways:
 | `1358` | Audio playback fails to start. Possible solutions: Disable and re-enable the audio device. Restart the device on which your app is running. Update the sound card driver. |
 | `1359` | No recording device is available. Check whether the recording device is connected or whether it is already in use by another app. |
 | `1360` | No playback device is available. Check whether the playback device is connected or whether it is already in use by another app. |
+| `1735` | The Windows Audio service is disabled. You need to either enable the Windows Audio service or restart the device. |
 
 ## Video errors
 
@@ -139,6 +140,7 @@ The error and warning codes may be returned in the following ways:
 | `1601` | Video encoding initialization fails. Try rejoining the channel. |
 | `1602` | Video encoding fails. Try rejoining the channel. |
 | `1603` | Video encoding settings fail to be applied. |
+| `1736` | The SDK does not support you to set `excludeWindowList` to block windows on a device with multiple graphics cards. |
 
 
 ## Other errors

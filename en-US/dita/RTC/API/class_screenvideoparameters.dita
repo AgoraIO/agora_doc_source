@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_screenvideoparameters">
+    <title><ph keyref="ScreenVideoParameters"/></title>
+    <shortdesc id="short"><ph id="shortdesc">The video configuration for the shared screen stream.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+          <p props="rtc" outputclass="codeblock">
+          <codeblock props="flutter" outputclass="language-dart">class ScreenVideoParameters {
+  final VideoDimensions? dimensions;
+  final int? frameRate;
+  final int? bitrate;
+  final VideoContentHint? contentHint;
+
+  const ScreenVideoParameters(
+      {this.dimensions, this.frameRate, this.bitrate, this.contentHint});
+
+  factory ScreenVideoParameters.fromJson(Map&lt;String, dynamic> json) =>
+      _$ScreenVideoParametersFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$ScreenVideoParametersToJson(this);
+}</codeblock>
+        </p></section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <parml>
+            <plentry>
+                <pt>dimensions</pt>
+                <pd>
+                    <p>The video encoding resolution. The default value is 1280 × 720. For recommended values, see <xref keyref="rec-video-profile">Recommended video profiles</xref>.</p>
+                    <p>If the aspect ratio is different between <codeph>dimensions</codeph> and the screen, the SDK adjusts the video encoding resolution according to the following rules (using an example value for <codeph>dimensions</codeph> of 1280 × 720):
+                    <ul>
+                    <li>When the width and height of the screen are both lower than those of <codeph>dimensions</codeph>, the SDK uses the resolution of the screen for video encoding. For example, if the screen is 640 × 360, the SDK uses 640 × 360 for video encoding.</li>
+                    <li>When either the width or height of the screen is higher than that of <codeph>dimensions</codeph>, the SDK uses the maximum values that do not exceed those of dimensions while maintaining the aspect ratio of the screen for video encoding. For example, if the screen is 2000 × 1500, the SDK uses 960 × 720 for video encoding.</li>
+                    </ul></p>
+                <note type="attention">
+                  <ul>
+                    <li>The billing of the screen sharing stream is based on the value of <codeph>dimensions</codeph>. When you do not pass in a value, Agora bills you at 1280 × 720; when you pass a value in, Agora bills you at that value. For details, see <xref keyref="biling">Pricing for Real-time Communication</xref>.</li>
+                    <li>This value does not indicate the orientation mode of the output ratio. For how to set the video orientation, see <xref keyref="ORIENTATION_MODE" />.</li>
+                    <li>Whether the SDK can support a resolution at 720P depends on the performance of the device. If you set 720P but the device cannot support it, the video frame rate can be lower.</li>
+                  </ul> 
+                </note>
+                </pd>
+            </plentry>
+            <plentry>
+            <pt>frameRate</pt>
+                <pd>
+                    <p>The video encoding frame rate (fps). The default value is 15. For recommended values, see <xref keyref="rec-video-profile">Recommended video profiles</xref>.</p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>bitrate</pt>
+                <pd>
+                    <p>The video encoding bitrate (Kbps). For recommended values, see <xref keyref="rec-video-profile">Recommended video profiles</xref>.</p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>contentHint</pt>
+                <pd>
+                    <p>The content hint of the screen sharing. See <xref keyref="VIDEO_CONTENT_HINT" />.</p>
+                </pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>
