@@ -240,7 +240,7 @@ The following code sample shows how to retrieve the latest message from multiple
 
 ### Listen for thread events
 
-To monitor the thread events, users can listen for the callbacks in the `AgoraChatThreadManager` class and add app logics accordingly. If a user wants to stop listening for the callbacks, make sure that the user removes the listener to prevent memory leakage.
+To monitor thread events, users can listen for the callbacks in the `AgoraChatThreadManager` class and add app logics accordingly. If a user wants to stop listening for the callbacks, make sure that the user removes the listener to prevent memory leakage.
 
 Refer to the following code sample to listen for thread events:
 

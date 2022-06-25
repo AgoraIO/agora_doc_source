@@ -29,12 +29,12 @@ This section describes how to call the APIs provided by the Agora Chat SDK to im
 
 ### Send a thread message
 
-Send a thread message is similar to send a message in a chat group. The difference lies in the `isChatThread` field, as shown in the following code sample:
+Sending a thread message is similar to sending a message in a chat group. The difference lies in the `isChatThread` field, as shown in the following code sample:
 
 ```typescript
-// Sets `targetId` to the ID of chat group that receives the message.
+// Sets `targetId` to the ID of the chat group that receives the message.
 // Sets `content` to the message content.
-// Sets `chatType` to a group chat as a thread belongs to a chat group.
+// Sets `chatType` to a group chat as a thread that belongs to a chat group.
 // Sets `isChatThread` to `true` to mark this message as a thread message.
 ChatMessage message = ChatMessage.createTextMessage(targetId, content, chatType, {isChatThread});
 // Implements `ChatMessageCallback` to listen for the message sending event.
