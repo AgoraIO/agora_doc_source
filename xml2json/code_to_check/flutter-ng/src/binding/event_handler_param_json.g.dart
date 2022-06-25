@@ -329,10 +329,9 @@ RtcEngineEventHandlerOnAudioVolumeIndicationJson
               ? null
               : RtcConnection.fromJson(
                   json['connection'] as Map<String, dynamic>),
-          speakers: json['speakers'] == null
-              ? null
-              : AudioVolumeInfo.fromJson(
-                  json['speakers'] as Map<String, dynamic>),
+          speakers: (json['speakers'] as List<dynamic>?)
+              ?.map((e) => AudioVolumeInfo.fromJson(e as Map<String, dynamic>))
+              .toList(),
           speakerNumber: json['speakerNumber'] as int?,
           totalVolume: json['totalVolume'] as int?,
         );
@@ -341,7 +340,7 @@ Map<String, dynamic> _$RtcEngineEventHandlerOnAudioVolumeIndicationJsonToJson(
         RtcEngineEventHandlerOnAudioVolumeIndicationJson instance) =>
     <String, dynamic>{
       'connection': instance.connection?.toJson(),
-      'speakers': instance.speakers?.toJson(),
+      'speakers': instance.speakers?.map((e) => e.toJson()).toList(),
       'speakerNumber': instance.speakerNumber,
       'totalVolume': instance.totalVolume,
     };
@@ -2342,28 +2341,6 @@ Map<String, dynamic>
           'stats': instance.stats?.toJson(),
         };
 
-SnapshotCallbackOnSnapshotTakenJson
-    _$SnapshotCallbackOnSnapshotTakenJsonFromJson(Map<String, dynamic> json) =>
-        SnapshotCallbackOnSnapshotTakenJson(
-          channel: json['channel'] as String?,
-          uid: json['uid'] as int?,
-          filePath: json['filePath'] as String?,
-          width: json['width'] as int?,
-          height: json['height'] as int?,
-          errCode: json['errCode'] as int?,
-        );
-
-Map<String, dynamic> _$SnapshotCallbackOnSnapshotTakenJsonToJson(
-        SnapshotCallbackOnSnapshotTakenJson instance) =>
-    <String, dynamic>{
-      'channel': instance.channel,
-      'uid': instance.uid,
-      'filePath': instance.filePath,
-      'width': instance.width,
-      'height': instance.height,
-      'errCode': instance.errCode,
-    };
-
 MediaPlayerSourceObserverOnPlayerSourceStateChangedJson
     _$MediaPlayerSourceObserverOnPlayerSourceStateChangedJsonFromJson(
             Map<String, dynamic> json) =>
@@ -2470,14 +2447,12 @@ MediaPlayerSourceObserverOnMetaDataJson
     _$MediaPlayerSourceObserverOnMetaDataJsonFromJson(
             Map<String, dynamic> json) =>
         MediaPlayerSourceObserverOnMetaDataJson(
-          data: json['data'] as int?,
           length: json['length'] as int?,
         );
 
 Map<String, dynamic> _$MediaPlayerSourceObserverOnMetaDataJsonToJson(
         MediaPlayerSourceObserverOnMetaDataJson instance) =>
     <String, dynamic>{
-      'data': instance.data,
       'length': instance.length,
     };
 
