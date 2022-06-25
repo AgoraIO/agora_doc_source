@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_imediaplayer_getagorartcmediaplayersourceobserver">
-    <title><ph keyref="getAgoraRtcMediaPlayerSourceObserver"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获取 <xref keyref="IMediaPlayerSourceObserver"/> 对象。</ph></shortdesc>
+<reference id="callback_videosurface_ontexturesizemodify">
+    <title><ph keyref="onTextureSizeModify"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Texture 的宽高发生改变回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="getAgoraRtcMediaPlayerSourceObserver"/>
+                <indexterm keyref="onTextureSizeModify"/>
             </keywords>
         </metadata>
     </prolog>
@@ -18,16 +18,12 @@
             <codeblock props="cpp" outputclass="language-cpp"/>
             <codeblock props="cs" outputclass="language-csharp"/>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public abstract MediaPlayerSourceObserver GetMediaPlayerSourceObserver();</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public event OnTextureSizeModifyHandler OnTextureSizeModify;</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p>成功获取 <xref keyref="IMediaPlayerSourceObserver"/> 对象后，你可以通过注册 <xref keyref="IMediaPlayerSourceObserver"/> 中的回调来监听媒体播放器事件。</p>
-        </section>
-        <section id="return_values">
-            <title>返回值</title>
-            <p>一个 <xref keyref="IMediaPlayerSourceObserver"/> 对象。</p>
+            <p>该回调在 Texture 的宽高发生变化时被触发。</p>
         </section>
     </refbody>
 </reference>
