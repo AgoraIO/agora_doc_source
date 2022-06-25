@@ -32,7 +32,7 @@ During the run time of the Agora Chat SDK, the error codes and error messages mi
 | 101 | `WEBIM_UPLOADFILE_ERROR` |  The file upload fails because the message attachment or group file exceeds the file size limit. Adjust the file size, and try uploading again. |
 | 102 | `WEBIM_UPLOADFILE_NO_LOGIN` | The user is not logged in when uploading the file, causing the file upload to fail. Log in and try uploading the file again. |
 | 200 | `WEBIM_DOWNLOADFILE_ERROR` | When the message attachment cannot be downloaded, the SDK returns this error code. Try downloading the file again. |
-| 204 | `USER_NOT_FOUND` | The user to be added to a chat group during the chat group creation does not exist. |
+| 204 | `USER_NOT_FOUND` | The user to be added to a chat group during chat group creation does not exist. |
 | 206 | `WEBIM_CONNCTION_USER_LOGIN_ANOTHER_DEVICE` |  If the user does not enable multi-device login, the user is forced to log out when logging in at another device, and the SDK returns this error code. |
 | 207 | `WEBIM_CONNCTION_USER_REMOVED` |  The logged in user is removed in the app background. |
 | 216 | `WEBIM_CONNCTION_USER_KICKED_BY_CHANGE_PASSWORD` | If the logged in user changes the present password, the SDK kicks the user out and returns this error code. |
