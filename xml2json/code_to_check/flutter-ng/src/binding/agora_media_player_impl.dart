@@ -303,40 +303,6 @@ class MediaPlayerImpl implements MediaPlayer {
   }
 
   @override
-  Future<void> setPlayerOption(
-      {required String key, required int value}) async {
-    const apiType = 'MediaPlayer_setPlayerOption';
-    final param = createParams({'key': key, 'value': value});
-    final callApiResult =
-        await apiCaller.callIrisApi(apiType, jsonEncode(param));
-    if (callApiResult.irisReturnCode < 0) {
-      throw AgoraRtcException(code: callApiResult.irisReturnCode);
-    }
-    final rm = callApiResult.data;
-    final result = rm['result'];
-    if (result < 0) {
-      throw AgoraRtcException(code: result);
-    }
-  }
-
-  @override
-  Future<void> setPlayerOption2(
-      {required String key, required String value}) async {
-    const apiType = 'MediaPlayer_setPlayerOption2';
-    final param = createParams({'key': key, 'value': value});
-    final callApiResult =
-        await apiCaller.callIrisApi(apiType, jsonEncode(param));
-    if (callApiResult.irisReturnCode < 0) {
-      throw AgoraRtcException(code: callApiResult.irisReturnCode);
-    }
-    final rm = callApiResult.data;
-    final result = rm['result'];
-    if (result < 0) {
-      throw AgoraRtcException(code: result);
-    }
-  }
-
-  @override
   Future<void> takeScreenshot(String filename) async {
     const apiType = 'MediaPlayer_takeScreenshot';
     final param = createParams({'filename': filename});
@@ -784,6 +750,40 @@ class MediaPlayerImpl implements MediaPlayer {
   Future<void> setSpatialAudioParams(SpatialAudioParams params) async {
     const apiType = 'MediaPlayer_setSpatialAudioParams';
     final param = createParams({'params': params.toJson()});
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
+    final result = rm['result'];
+    if (result < 0) {
+      throw AgoraRtcException(code: result);
+    }
+  }
+
+  @override
+  Future<void> setPlayerOptionInInt(
+      {required String key, required int value}) async {
+    const apiType = 'MediaPlayer_setPlayerOptionInInt';
+    final param = createParams({'key': key, 'value': value});
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
+    final result = rm['result'];
+    if (result < 0) {
+      throw AgoraRtcException(code: result);
+    }
+  }
+
+  @override
+  Future<void> setPlayerOptionInString(
+      {required String key, required String value}) async {
+    const apiType = 'MediaPlayer_setPlayerOptionInString';
+    final param = createParams({'key': key, 'value': value});
     final callApiResult =
         await apiCaller.callIrisApi(apiType, jsonEncode(param));
     if (callApiResult.irisReturnCode < 0) {

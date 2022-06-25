@@ -24,7 +24,7 @@ class MediaPlayerSourceObserver {
           MediaPlayerEvent eventCode, int elapsedTime, String message)?
       onPlayerEvent;
 
-  final void Function(int data, int length)? onMetaData;
+  final void Function(Uint8List data, int length)? onMetaData;
 
   final void Function(int playCachedBuffer)? onPlayBufferUpdated;
 
