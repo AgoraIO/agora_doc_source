@@ -106,7 +106,7 @@ class RtcEngineEventHandlerOnAudioVolumeIndicationJson {
   @JsonKey(name: 'connection')
   final RtcConnection? connection;
   @JsonKey(name: 'speakers')
-  final AudioVolumeInfo? speakers;
+  final List<AudioVolumeInfo>? speakers;
   @JsonKey(name: 'speakerNumber')
   final int? speakerNumber;
   @JsonKey(name: 'totalVolume')
@@ -1650,35 +1650,6 @@ class DirectCdnStreamingEventHandlerOnDirectCdnStreamingStatsJson {
 }
 
 @JsonSerializable(explicitToJson: true)
-class SnapshotCallbackOnSnapshotTakenJson {
-  const SnapshotCallbackOnSnapshotTakenJson(
-      {this.channel,
-      this.uid,
-      this.filePath,
-      this.width,
-      this.height,
-      this.errCode});
-
-  @JsonKey(name: 'channel')
-  final String? channel;
-  @JsonKey(name: 'uid')
-  final int? uid;
-  @JsonKey(name: 'filePath')
-  final String? filePath;
-  @JsonKey(name: 'width')
-  final int? width;
-  @JsonKey(name: 'height')
-  final int? height;
-  @JsonKey(name: 'errCode')
-  final int? errCode;
-  factory SnapshotCallbackOnSnapshotTakenJson.fromJson(
-          Map<String, dynamic> json) =>
-      _$SnapshotCallbackOnSnapshotTakenJsonFromJson(json);
-  Map<String, dynamic> toJson() =>
-      _$SnapshotCallbackOnSnapshotTakenJsonToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
 class MediaPlayerSourceObserverOnPlayerSourceStateChangedJson {
   const MediaPlayerSourceObserverOnPlayerSourceStateChangedJson(
       {this.state, this.ec});
@@ -1729,8 +1700,8 @@ class MediaPlayerSourceObserverOnPlayerEventJson {
 class MediaPlayerSourceObserverOnMetaDataJson {
   const MediaPlayerSourceObserverOnMetaDataJson({this.data, this.length});
 
-  @JsonKey(name: 'data')
-  final int? data;
+  @JsonKey(name: 'data', ignore: true)
+  final Uint8List? data;
   @JsonKey(name: 'length')
   final int? length;
   factory MediaPlayerSourceObserverOnMetaDataJson.fromJson(

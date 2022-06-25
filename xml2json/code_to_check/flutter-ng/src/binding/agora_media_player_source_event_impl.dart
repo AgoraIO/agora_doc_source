@@ -46,7 +46,7 @@ extension MediaPlayerSourceObserverExt on MediaPlayerSourceObserver {
         if (onMetaData == null) break;
         MediaPlayerSourceObserverOnMetaDataJson paramJson =
             MediaPlayerSourceObserverOnMetaDataJson.fromJson(jsonMap);
-        int? data = paramJson.data;
+        Uint8List? data = paramJson.data;
         int? length = paramJson.length;
         if (data == null || length == null) {
           break;
