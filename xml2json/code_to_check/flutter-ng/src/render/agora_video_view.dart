@@ -21,13 +21,11 @@ class AgoraVideoView extends StatefulWidget {
     required this.controller,
   }) : super(key: key);
 
-  /// Create an [AgoraVideoView] to render media player
-  // const AgoraVideoView.mediaPlayer({
-  //   Key? key,
-  //   required MediaPlayerController controller,
-  // })  : videoViewController = controller,
-  //       super(key: key);
-
+  /// Control the rendering of [AgoraVideoView]
+  /// 
+  /// see also:
+  /// * [VideoViewController]
+  /// * [MediaPlayerController]
   @internal
   final VideoViewControllerBase controller;
 
