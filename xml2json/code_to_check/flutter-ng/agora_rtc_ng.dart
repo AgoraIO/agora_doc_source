@@ -1,7 +1,3 @@
-import 'src/agora_rtc_engine.dart';
-import 'src/agora_rtc_engine_ex.dart';
-import 'src/impl/agora_rtc_engine_impl.dart' as impl;
-
 export 'src/agora_base.dart';
 export 'src/agora_log.dart';
 export 'src/agora_media_base.dart';
@@ -19,13 +15,3 @@ export 'src/render/video_view_controller.dart';
 export 'src/render/media_player_controller.dart';
 
 export 'src/agora_rtc_engine_ext.dart';
-
-/// Create the [RtcEngine]
-Future<RtcEngine> createAgoraRtcEngine(RtcEngineContext context) {
-  return impl.RtcEngineImpl.create(context);
-}
-
-/// Create the [RtcEngineEx]
-Future<RtcEngineEx> createAgoraRtcEngineEx(RtcEngineContext context) {
-  return impl.RtcEngineImpl.create(context);
-}
