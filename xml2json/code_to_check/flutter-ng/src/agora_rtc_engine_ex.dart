@@ -77,17 +77,9 @@ abstract class RtcEngineEx implements RtcEngine {
       required bool enabled,
       required EncryptionConfig config});
 
-  Future<int> createDataStreamEx(
-      {required bool reliable,
-      required bool ordered,
-      required RtcConnection connection});
-
-  Future<int> createDataStreamEx2(
-      {required DataStreamConfig config, required RtcConnection connection});
-
   Future<void> sendStreamMessageEx(
       {required int streamId,
-      required int data,
+      required Uint8List data,
       required int length,
       required RtcConnection connection});
 
@@ -134,4 +126,7 @@ abstract class RtcEngineEx implements RtcEngine {
       {required String url,
       required bool transcodingEnabled,
       required RtcConnection connection});
+
+  Future<int> createDataStreamEx(
+      {required DataStreamConfig config, required RtcConnection connection});
 }

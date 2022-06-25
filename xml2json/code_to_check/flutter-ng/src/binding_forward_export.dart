@@ -14,3 +14,4 @@ export 'dart:convert';
 export 'dart:typed_data';
 export 'package:json_annotation/json_annotation.dart';
 export 'package:flutter/foundation.dart';
+export 'package:agora_rtc_ng/src/agora_rtc_engine_ext.dart';

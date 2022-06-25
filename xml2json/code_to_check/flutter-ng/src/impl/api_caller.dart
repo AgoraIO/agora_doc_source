@@ -4,6 +4,7 @@ import 'dart:ffi' as ffi;
 import 'dart:io';
 import 'dart:isolate';
 import 'dart:typed_data';
+import 'package:agora_rtc_ng/agora_rtc_ng.dart';
 import 'package:async/async.dart';
 
 import 'package:agora_rtc_ng/src/impl/native_iris_api_engine_bindings.dart';
@@ -20,23 +21,6 @@ class CallApiResult {
   final int irisReturnCode;
 
   final Map<String, dynamic> data;
-}
-
-class AgoraRtcException implements Exception {
-  /// Creates a [PlatformException] with the specified error [code] and optional
-  /// [message], and with the optional error [details] which must be a valid
-  /// value for the [MethodCodec] involved in the interaction.
-  AgoraRtcException({
-    required this.code,
-    this.message,
-  });
-
-  final int code;
-
-  final String? message;
-
-  @override
-  String toString() => 'AgoraRtcException($code, $message)';
 }
 
 Uint8List uint8ListFromPtr(int intPtr, int length) {
@@ -84,11 +68,15 @@ class ApiCaller {
 
   Future<void> initilize() async {
     _apiCallExecutor = _ApiCallExecutor();
+    debugPrint('presure test initilize start');
     await _apiCallExecutor!.prepare();
+    debugPrint('presure test initilize end');
   }
 
   Future<void> dispose() async {
+    debugPrint('presure test dispose start');
     await _apiCallExecutor!.close();
+    debugPrint('presure test dispose end');
     _apiCallExecutor = null;
   }
 
@@ -101,6 +89,12 @@ class ApiCaller {
     String params, {
     Uint8List? buffer,
   }) async {
+    if (_apiCallExecutor == null) {
+      throw AgoraRtcException(
+        code: ErrorCodeType.errAborted.value(),
+        message: 'Make sure you call RtcEngine.initialize first',
+      );
+    }
     return _apiCallExecutor!.callIrisApi(funcName, params, buffer: buffer);
   }
 
@@ -186,6 +180,7 @@ class _ApiCallExecutor {
   }
 
   Future<void> prepare() async {
+    debugPrint('presure test prepare start');
     final apiCallPort = ReceivePort();
     final eventPort = ReceivePort();
     await Isolate.spawn(_execute, [apiCallPort.sendPort, eventPort.sendPort]);
@@ -212,6 +207,8 @@ class _ApiCallExecutor {
         eventHandler.onEvent(event, data, buffers);
       }
     });
+
+    debugPrint('presure test prepare end');
   }
 
   int getIrisApiEngineIntPtr() {
@@ -223,24 +220,29 @@ class _ApiCallExecutor {
     String params, {
     Uint8List? buffer,
   }) async {
+    debugPrint('presure test callIrisApi $funcName, $params');
     requestPort.send(_ApiCallRequest(funcName, params, buffer));
     final CallApiResult result = await responseQueue.next;
     return result;
   }
 
   void setupIrisRtcEngineEventHandler() {
+    debugPrint('presure test setupIrisRtcEngineEventHandler');
     requestPort.send(const _SetupIrisRtcEngineEventHandlerRequest());
   }
 
   void disposeIrisRtcEngineEventHandler() {
+    debugPrint('presure test disposeIrisRtcEngineEventHandler');
     requestPort.send(const _DisposeIrisRtcEngineEventHandlerRequest());
   }
 
   void disposeIrisMediaPlayerEventHandlerIfNeed() {
+    debugPrint('presure test disposeIrisMediaPlayerEventHandlerIfNeed');
     requestPort.send(const _DisposeIrisMediaPlayerEventHandlerRequest());
   }
 
   void setupIrisMediaPlayerEventHandlerIfNeed() {
+    debugPrint('presure test setupIrisMediaPlayerEventHandlerIfNeed');
     requestPort.send(const _SetupIrisMediaPlayerEventHandlerRequest());
   }
 
@@ -416,12 +418,6 @@ class _ApiCallExecutorInternal {
         return CallApiResult(irisReturnCode: -1, data: const {});
       }
     });
-  }
-
-  void checkReturnCode(int returnCode) {
-    if (returnCode < 0) {
-      throw AgoraRtcException(code: returnCode, message: '');
-    }
   }
 
   void dispose() {
