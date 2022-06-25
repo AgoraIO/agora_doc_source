@@ -322,8 +322,8 @@ class VideoCompositingLayout {
   final List<Region>? regions;
   @JsonKey(name: 'regionCount')
   final int? regionCount;
-  @JsonKey(name: 'appData')
-  final int? appData;
+  @JsonKey(name: 'appData', ignore: true)
+  final Uint8List? appData;
   @JsonKey(name: 'appDataLength')
   final int? appDataLength;
   factory VideoCompositingLayout.fromJson(Map<String, dynamic> json) =>
@@ -916,7 +916,7 @@ class RtcEngineEventHandler {
 
   final void Function(LastmileProbeResult result)? onLastmileProbeResult;
 
-  final void Function(RtcConnection connection, AudioVolumeInfo speakers,
+  final void Function(RtcConnection connection, List<AudioVolumeInfo> speakers,
       int speakerNumber, int totalVolume)? onAudioVolumeIndication;
 
   final void Function(RtcConnection connection, RtcStats stats)? onLeaveChannel;
@@ -1396,50 +1396,17 @@ abstract class RtcEngine {
 
   Future<String> getErrorDescription(int code);
 
-  Future<void> joinChannel(
-      {required String token,
-      required String channelId,
-      required String info,
-      required int uid});
-
-  Future<void> joinChannel2(
-      {required String token,
-      required String channelId,
-      required int uid,
-      required ChannelMediaOptions options});
-
   Future<void> updateChannelMediaOptions(ChannelMediaOptions options);
-
-  Future<void> leaveChannel();
-
-  Future<void> leaveChannel2(LeaveChannelOptions options);
 
   Future<void> renewToken(String token);
 
   Future<void> setChannelProfile(ChannelProfileType profile);
-
-  Future<void> setClientRole(ClientRoleType role);
-
-  Future<void> setClientRole2(
-      {required ClientRoleType role, required ClientRoleOptions options});
-
-  Future<void> startEchoTest();
-
-  Future<void> startEchoTest2(int intervalInSeconds);
 
   Future<void> stopEchoTest();
 
   Future<void> enableVideo();
 
   Future<void> disableVideo();
-
-  Future<void> startPreview();
-
-  Future<void> startPreview2(VideoSourceType sourceType);
-
-  Future<void> stopPreview();
-
-  Future<void> stopPreview2(VideoSourceType sourceType);
 
   Future<void> startLastmileProbeTest(LastmileProbeConfig config);
 
@@ -1466,11 +1433,6 @@ abstract class RtcEngine {
   Future<void> enableAudio();
 
   Future<void> disableAudio();
-
-  Future<void> setAudioProfile(
-      {required AudioProfileType profile, required AudioScenarioType scenario});
-
-  Future<void> setAudioProfile2(AudioProfileType profile);
 
   Future<void> enableLocalAudio(bool enabled);
 
@@ -1500,34 +1462,11 @@ abstract class RtcEngine {
   Future<void> enableAudioVolumeIndication(
       {required int interval, required int smooth, required bool reportVad});
 
-  Future<void> startAudioRecording(
-      {required String filePath, required AudioRecordingQualityType quality});
-
-  Future<void> startAudioRecording2(
-      {required String filePath,
-      required int sampleRate,
-      required AudioRecordingQualityType quality});
-
-  Future<void> startAudioRecording3(AudioRecordingConfiguration config);
-
   Future<void> stopAudioRecording();
 
   Future<MediaPlayer> createMediaPlayer();
 
   Future<void> destroyMediaPlayer(MediaPlayer mediaPlayer);
-
-  Future<void> startAudioMixing(
-      {required String filePath,
-      required bool loopback,
-      required bool replace,
-      required int cycle});
-
-  Future<void> startAudioMixing2(
-      {required String filePath,
-      required bool loopback,
-      required bool replace,
-      required int cycle,
-      required int startPos});
 
   Future<void> stopAudioMixing();
 
@@ -1647,28 +1586,12 @@ abstract class RtcEngine {
 
   Future<void> uploadLogFile(String requestId);
 
-  Future<void> setLocalRenderMode(
-      {required RenderModeType renderMode,
-      required VideoMirrorModeType mirrorMode});
-
   Future<void> setRemoteRenderMode(
       {required int uid,
       required RenderModeType renderMode,
       required VideoMirrorModeType mirrorMode});
 
-  Future<void> setLocalRenderMode2(RenderModeType renderMode);
-
   Future<void> setLocalVideoMirrorMode(VideoMirrorModeType mirrorMode);
-
-  Future<void> enableDualStreamMode(bool enabled);
-
-  Future<void> enableDualStreamMode2(
-      {required VideoSourceType sourceType, required bool enabled});
-
-  Future<void> enableDualStreamMode3(
-      {required VideoSourceType sourceType,
-      required bool enabled,
-      required SimulcastStreamConfig streamConfig});
 
   Future<void> enableEchoCancellationExternal(
       {required bool enabled, required int audioSourceDelay});
@@ -1905,17 +1828,8 @@ abstract class RtcEngine {
   Future<void> enableEncryption(
       {required bool enabled, required EncryptionConfig config});
 
-  Future<int> createDataStream({required bool reliable, required bool ordered});
-
-  Future<int> createDataStream2(DataStreamConfig config);
-
   Future<void> sendStreamMessage(
       {required int streamId, required Uint8List data, required int length});
-
-  Future<void> addVideoWatermark(RtcImage watermark);
-
-  Future<void> addVideoWatermark2(
-      {required String watermarkUrl, required WatermarkOptions options});
 
   Future<void> clearVideoWatermark();
 
@@ -1962,17 +1876,6 @@ abstract class RtcEngine {
   Future<void> registerLocalUserAccount(
       {required String appId, required String userAccount});
 
-  Future<void> joinChannelWithUserAccount(
-      {required String token,
-      required String channelId,
-      required String userAccount});
-
-  Future<void> joinChannelWithUserAccount2(
-      {required String token,
-      required String channelId,
-      required String userAccount,
-      required ChannelMediaOptions options});
-
   Future<void> joinChannelWithUserAccountEx(
       {required String token,
       required String channelId,
@@ -2011,8 +1914,7 @@ abstract class RtcEngine {
   Future<void> updateDirectCdnStreamingMediaOptions(
       DirectCdnStreamingMediaOptions options);
 
-  Future<void> takeSnapshot(
-      {required SnapShotConfig config, required SnapshotCallback callback});
+  Future<void> takeSnapshot(SnapShotConfig config);
 
   Future<void> setContentInspect(ContentInspectConfig config);
 
@@ -2043,6 +1945,65 @@ abstract class RtcEngine {
   Future<AdvancedAudioOptions> setAdvancedAudioOptions();
 
   Future<void> setAVSyncSource({required String channelId, required int uid});
+
+  Future<void> joinChannel(
+      {required String token,
+      required String channelId,
+      required String info,
+      required int uid});
+
+  Future<void> joinChannelWithOptions(
+      {required String token,
+      required String channelId,
+      required int uid,
+      required ChannelMediaOptions options});
+
+  Future<void> leaveChannel({LeaveChannelOptions? options});
+
+  Future<void> setClientRole(
+      {required ClientRoleType role, ClientRoleOptions? options});
+
+  Future<void> startEchoTest({int intervalInSeconds = 10});
+
+  Future<void> startPreview(
+      {VideoSourceType sourceType = VideoSourceType.videoSourceCameraPrimary});
+
+  Future<void> stopPreview(
+      {VideoSourceType sourceType = VideoSourceType.videoSourceCameraPrimary});
+
+  Future<void> setAudioProfile(
+      {required AudioProfileType profile,
+      AudioScenarioType scenario = AudioScenarioType.audioScenarioDefault});
+
+  Future<void> startAudioRecording(AudioRecordingConfiguration config);
+
+  Future<void> startAudioMixing(
+      {required String filePath,
+      required bool loopback,
+      required bool replace,
+      required int cycle,
+      int startPos = 0});
+
+  Future<void> setLocalRenderMode(
+      {required RenderModeType renderMode,
+      VideoMirrorModeType mirrorMode =
+          VideoMirrorModeType.videoMirrorModeAuto});
+
+  Future<void> enableDualStreamMode(
+      {required bool enabled,
+      VideoSourceType sourceType = VideoSourceType.videoSourceCameraPrimary,
+      SimulcastStreamConfig? streamConfig});
+
+  Future<int> createDataStream(DataStreamConfig config);
+
+  Future<void> addVideoWatermark(
+      {required String watermarkUrl, required WatermarkOptions options});
+
+  Future<void> joinChannelWithUserAccount(
+      {required String token,
+      required String channelId,
+      required String userAccount,
+      ChannelMediaOptions? options});
 
   AudioDeviceManager getAudioDeviceManager();
 
@@ -2242,10 +2203,10 @@ extension VideoProfileTypeExt on VideoProfileType {
 
 @JsonSerializable(explicitToJson: true)
 class SDKBuildInfo {
-  const SDKBuildInfo({this.buildNumber, this.version});
+  const SDKBuildInfo({this.build, this.version});
 
-  @JsonKey(name: 'build_number')
-  final int? buildNumber;
+  @JsonKey(name: 'build')
+  final int? build;
   @JsonKey(name: 'version')
   final String? version;
   factory SDKBuildInfo.fromJson(Map<String, dynamic> json) =>
