@@ -1,35 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_agoravideoview">
-    <title><ph keyref="AgoraVideoView" /></title>
-    <shortdesc id="short"><ph id="shortdesc" /></shortdesc>
+    <title><ph keyref="AgoraVideoView"/></title>
+    <shortdesc id="short"><ph id="shortdesc"><apiname keyref="AgoraVideoView"/> 类，用于渲染本地和远端视频。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
-            <codeblock props="ios mac" outputclass="language-objectivec" />
-            <codeblock props="cpp" outputclass="language-cpp" />
-            <codeblock props="cs" outputclass="language-csharp" />
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp"/>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">class AgoraVideoView extends StatefulWidget {
+  const AgoraVideoView({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
+
+  @internal
+  final VideoViewControllerBase controller;
+
+  @override
+  State&lt;AgoraVideoView> createState() => AgoraVideoViewState();
+}
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>自从</dt>
-                <dd>v</dd>
-            </dlentry>
-            </dl>
-            <p />
+            <p/>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
-                <pt />
-                <pd />
+                <pt>controller</pt>
+                <pd>控制待渲染的视频类型：
+                        <ul>
+                        <li>如果渲染 <apiname keyref="IRtcEngine"/> 的视频，详见 <xref keyref="VideoViewController"/>。</li>
+                        <li>如果渲染媒体播放器中的视频，详见 <xref keyref="MediaPlayerController"/>。</li>
+                        </ul></pd>
             </plentry>
             </parml> </section>
     </refbody>

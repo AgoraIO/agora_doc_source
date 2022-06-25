@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videoviewcontroller">
     <title><ph keyref="VideoViewController" /></title>
-    <shortdesc id="short"><ph id="shortdesc" /></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc"><xref keyref="AgoraVideoView"/> 的控制器，用于渲染本地和远端视频。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -13,16 +13,55 @@
             <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp" />
             <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">class VideoViewController
+    with VideoViewControllerBaseMixin
+    implements VideoViewControllerBase {
+  VideoViewController({
+    required this.rtcEngine,
+    required this.canvas,
+    this.useFlutterTexture = false,
+    this.useAndroidSurfaceView = false,
+  }) : connection = const RtcConnection();
+
+  VideoViewController.remote({
+    required this.rtcEngine,
+    required this.canvas,
+    required this.connection,
+    this.useFlutterTexture = false,
+    this.useAndroidSurfaceView = false,
+  }) : assert(connection.channelId != null);
+
+  @override
+  final RtcEngine rtcEngine;
+
+  @override
+  final VideoCanvas canvas;
+
+  @override
+  final RtcConnection connection;
+
+  @override
+  final bool useFlutterTexture;
+
+  @override
+  final bool useAndroidSurfaceView;
+
+  @protected
+  @override
+  int getVideoSourceType() {
+    return canvas.uid! == 0
+        ? VideoSourceType.videoSourceCamera.value()
+        : VideoSourceType.videoSourceRemote.value();
+  }
+}
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>自从</dt>
-                <dd>v</dd>
-            </dlentry>
-            </dl>
-            <p />
+            <p>在不同平台上，该类对应的默认视图不同：<ul>
+                <li>Android: <xref keyref="TextureView-link"/>。如果你想要使用 <xref keyref="SurfaceView-link"/>，则调用 <codeph>useAndroidSurfaceView</codeph> 方法并设置为 <codeph>true</codeph>。</li>
+                <li>iOS: <xref keyref="UIView-link"/>。 如果你想要使用 Flutter Texture，则调用 <codeph>useFlutterTexture</codeph> 方法并设置为 <codeph>true</codeph>。</li>
+                <li>macOS 和 Windows：<xref keyref="FlutterTexture-link"/>。</li>
+                </ul> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
