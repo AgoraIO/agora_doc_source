@@ -31,7 +31,6 @@ Before proceeding, ensure that you meet the following requirements:
 - You have initialized the Agora Chat SDK. For details, see [Get Started with Android](./agora_chat_get_started_android?platform=Android).
 - You understand the call frequency limit of the Agora Chat APIs supported by different pricing plans as described in [Limitations](./agora_chat_limitation?platform=Android).
 - You understand the number of threads and thread members supported by different pricing plans as described in [Pricing Plan Details](./agora_chat_plan?platform=Android).
-- You have contacted support@agora.io to activate the threading feature.
 
 ## Implementation
 
@@ -88,7 +87,7 @@ ChatClient.getInstance().chatThreadManager().destroyChatThread(chatThreadId, new
 All chat group members can refer to the following steps to join a thread:
 
 1. Use either of the following two approaches to retrieve the thread ID:
-- Retrieve the thread list in a chat group by calling `getChatThreadsFromServer`, and locate the ID of the thread that you want to join.
+- Retrieve the thread list in a chat group by calling [`getChatThreadsFromServer`](#fetch), and locate the ID of the thread that you want to join.
 - Retrieve the thread ID within the `ChatThreadChangeListener#onChatThreadCreated` and `ChatThreadChangeListener#onChatThreadUpdated` callbacks that you receive.
 
 2. Call `joinChatThread` to pass in the thread ID and join the specified thread.
@@ -196,7 +195,7 @@ ChatClient.getInstance().chatThreadManager().getChatThreadFromServer(chatThreadI
 
 ### Retrieve the member list of a thread
 
-All chat group members can call `getChatThreadMembers` to retrieve the paginated member list of a thread from the server.
+All chat group members can call `getChatThreadMembers` to retrieve the paginated member list of a thread from the server, as shown in the following code sample:
 
 ```java
 // chatThreadId: The thread ID.
@@ -251,7 +250,7 @@ ChatClient.getInstance().chatThreadManager().getJoinedChatThreadsFromServer(pare
 });
 ```
 
-Users can also call `getChatThreadsFromServer` to retrieve a paginated list of all the threads in a specified chat group from the server, as shown in the following code sample:
+Users can also call `getChatThreadsFromServer` to retrieve a paginated list of all the threads in a specified chat group from the server, as shown in the following code sample:<a name="fetch"></a>
 
 ```java
 // parentId: The chat group ID.
@@ -291,7 +290,7 @@ ChatClient.getInstance().chatThreadManager().getChatThreadLatestMessage(chatThre
 
 ### Listen for thread events
 
-To monitor the thread events, users can listen for the callbacks in the `ChatThreadManager` class and add app logics accordingly. If a user wants to stop listening for the callbacks, make sure that the user removes the listener to prevent memory leakage.
+To monitor thread events, users can listen for the callbacks in the `ChatThreadManager` class and add app logics accordingly. If a user wants to stop listening for the callbacks, make sure that the user removes the listener to prevent memory leakage.
 
 Refer to the following code sample to listen for thread events:
 
@@ -310,8 +309,8 @@ ChatThreadChangeListener chatThreadChangeListener = new ChatThreadChangeListener
     @Override
     public void onChatThreadUserRemoved(ChatThreadEvent event) {}
 };
-// Add the thread listener.
+// Adds the thread listener.
 ChatClient.getInstance().chatThreadManager().addChatThreadChangeListener(chatThreadChangeListener);
-// Remove the thread listener.
+// Removes the thread listener.
 ChatClient.getInstance().chatThreadManager().removeChatThreadChangeListener(chatThreadChangeListener);
 ```

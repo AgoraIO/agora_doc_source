@@ -22,7 +22,6 @@ Before proceeding, ensure that you meet the following requirements:
 - You have initialized the Agora Chat SDK. For details, see [Get Started with iOS](./agora_chat_get_started_ios?platform=ios).
 - You understand the call frequency limit of the Agora Chat APIs supported by different pricing plans as described in [Limitations](./agora_chat_limitation?platform=ios).
 - You understand the number of threads and thread members supported by different pricing plans as described in [Pricing Plan Details](./agora_chat_plan?platform=ios).
-- You have contacted support@agora.io to activate the threading feature.
 
 ## Implementation
 
@@ -30,7 +29,7 @@ This section describes how to call the APIs provided by the Agora Chat SDK to im
 
 ### Send a thread message
 
-Send a thread message is similar to send a message in a chat group. The difference lies in the `isChatThread` field, as shown in the following code sample:
+Sending a thread message is similar to sending a message in a chat group. The difference lies in the `isChatThread` field, as shown in the following code sample:
 
 ```ObjectiveC
 // Calls `initWithConversationID` to create a text message. 
@@ -43,7 +42,7 @@ AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:to 
 if([aExt objectForKey:MSG_EXT_READ_RECEIPT]) {
     message.isNeedGroupAck = YES;
 }
-// Sets `chatType` to `AgoraChatTypeGroupChat` as a thread belongs to a chat group.
+// Sets `chatType` to `AgoraChatTypeGroupChat` as a thread that belongs to a chat group.
 message.chatType = (AgoraChatType)self.conversationType;
 // Sets `isChatThread` to `YES` to mark this message as a thread message.
 message.isChatThreadMessage = self.isChatThread;
@@ -90,7 +89,5 @@ Once a message is recalled in a thread, all chat group members receive the `Agor
 ```
 
 ### Retrieve thread messages from the server
-
-When you join a thread, messages are displayed in chronological order by default.
 
 For details about how to retrieve messages from the server, see [Retrieve Historical Messages](./agora_chat_message_ios?platform=iOS#retrieve-historical-messages-from-the-server).
