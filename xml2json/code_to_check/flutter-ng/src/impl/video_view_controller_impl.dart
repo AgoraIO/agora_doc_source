@@ -63,7 +63,7 @@ abstract class VideoViewControllerBase {
   int getVideoSourceType();
 
   @internal
-  void setupView(int nativeViewPtr);
+  Future<void> setupView(int nativeViewPtr);
 
   @protected
   Future<int> createTextureRender(
@@ -120,6 +120,8 @@ mixin VideoViewControllerBaseMixin implements VideoViewControllerBase {
     if (canvas.uid != 0) {
       await rtcEngine.setupRemoteVideo(videoCanvas);
     } else {
+      debugPrint(
+          'presure test VideoViewControllerBaseMixin disposeRender setupLocalVideo');
       await rtcEngine.setupLocalVideo(videoCanvas);
     }
   }
@@ -152,7 +154,7 @@ mixin VideoViewControllerBaseMixin implements VideoViewControllerBase {
   }
 
   @override
-  void setupView(int nativeViewPtr) async {
+  Future<void> setupView(int nativeViewPtr) async {
     VideoCanvas videoCanvas = VideoCanvas(
       view: nativeViewPtr,
       renderMode: canvas.renderMode,
@@ -173,6 +175,7 @@ mixin VideoViewControllerBaseMixin implements VideoViewControllerBase {
         await rtcEngine.setupRemoteVideo(videoCanvas);
       }
     } else {
+      debugPrint('presure test VideoViewControllerBaseMixin setupLocalVideo');
       await rtcEngine.setupLocalVideo(videoCanvas);
     }
   }
