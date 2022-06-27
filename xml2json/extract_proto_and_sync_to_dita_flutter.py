@@ -277,9 +277,9 @@ def main():
 
             for child in root.iter('*'):
 
-                if child.get("id") == "prototype":
-                    p = ET.SubElement(child, tag="p", attrib={"outputclass": "codeblock", "props": "rtc-ng"})
-                    t = ET.SubElement(p, tag="codeblock", attrib={"outputclass": "codeblock", "props": "rtc-ng"})
+                #if child.get("id") == "prototype":
+                #    p = ET.SubElement(child, "p", {"outputclass": "codeblock", "props": "rtc-ng"})
+                #    t = ET.SubElement(p, "codeblock", {"outputclass": "codeblock", "props": "rtc-ng"})
 
 
                 if child.get("props") == "flutter" and child.tag == "codeblock":
