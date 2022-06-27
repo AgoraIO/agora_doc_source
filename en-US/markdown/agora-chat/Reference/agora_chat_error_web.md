@@ -10,20 +10,29 @@ During the run time of the Agora Chat SDK, the error codes and error messages mi
 | Error code | Error message | Possible reason |
 | :----- | :--------------  | :----------------------------------------------------------- |
 | 0 | `REQUEST_SUCCESS` | None. |
-| 1 | `WEBIM_CONNCTION_OPEN_ERROR` |  The user does not exist or the password is incorrect. Please log in again with the correct user ID and password. |
+| -1     | `REQUEST_TIMEOUT`                             | The request times out.                                     |
+| -2     | `REQUEST_UNKNOWN`                                | An unidentified error occurs.                                   |
+| -3     | `REQUEST_PARAMETER_ERROR`               | The request parameters are invalid.                             |
+| -4     | `REQUEST_ABORT`               | The request is aborted.                             |
+| 1 | `WEBIM_CONNCTION_OPEN_ERROR` | The request to retrieve a token fails. |
 | 2 | `WEBIM_CONNCTION_AUTH_ERROR` |  The SDK fails to verify the App Key. Try logging in again with a valid App Key. |
 | 12 | `WEBIM_CONNCTION_GETROSTER_ERROR` | Fails to generate the token. |
 | 16 | `WEBIM_CONNCTION_DISCONNECTED` | The WebSocket is disconnected due to network reasons. Try calling the method again. |
-| 17 | `WEBIM_CONNCTION_AJAX_ERROR` | A request error occurs probably due to network problems or excessive call frequency. Please call the method less frequently. |
+| 17 | `WEBIM_CONNCTION_AJAX_ERROR` | An unidentified error occurs. |
 | 27 | `WEBIM_CONNCTION_APPKEY_NOT_ASSIGN_ERROR` |  The App Key is invalid. Log in again using a valid App Key. For how to get the App Key, see [Get the information of theAgora Chat project](./enable_agora_chat?platform=RESTful). |
 | 28 | `WEBIM_CONNCTION_TOKEN_NOT_ASSIGN_ERROR` |  The token entered to log in is empty or incorrect. Log in again using the correct token. |
 | 31 | `WEBIM_CONNCTION_CALLBACK_INNER_ERROR` | An Internal error occurs when receiving the message callback. |
 | 32 | `WEBIM_CONNCTION_CLIENT_OFFLINE` | If a user is not logged in or drops offline, when the user sends a message, the SDK returns this error. Log in and try sending the message. |
 | 39 | `WEBIM_CONNECTION_CLOSED` |  If a user is not logged in, or logged out, when the user sends a message, the SDK returns this error, Log in again and try sending the message. |
-| 40 | `WEBIM_CONNECTION_ERROR` | The user authentication fails. Check whether the token has expired. |
+| 40 | `WEBIM_CONNECTION_ERROR` | The user authentication fails. |
+| 50     | `MAX_LIMIT`                         | The number of reactions or the usage of translations has reached the limit.                 |
+| 51     | `MESSAGE_NOT_FOUND`                         |  The message to be reported does not exist.               |
+| 52     | `NO_PERMISSION`                          | The user has no permission to perform this operation.               |
+| 53     | `OPERATION_UNSUPPORTED`                         | The current operation is not supported.                |
 | 101 | `WEBIM_UPLOADFILE_ERROR` |  The file upload fails because the message attachment or group file exceeds the file size limit. Adjust the file size, and try uploading again. |
 | 102 | `WEBIM_UPLOADFILE_NO_LOGIN` | The user is not logged in when uploading the file, causing the file upload to fail. Log in and try uploading the file again. |
 | 200 | `WEBIM_DOWNLOADFILE_ERROR` | When the message attachment cannot be downloaded, the SDK returns this error code. Try downloading the file again. |
+| 204 | `USER_NOT_FOUND` | The user to be added to a chat group during chat group creation does not exist. |
 | 206 | `WEBIM_CONNCTION_USER_LOGIN_ANOTHER_DEVICE` |  If the user does not enable multi-device login, the user is forced to log out when logging in at another device, and the SDK returns this error code. |
 | 207 | `WEBIM_CONNCTION_USER_REMOVED` |  The logged in user is removed in the app background. |
 | 216 | `WEBIM_CONNCTION_USER_KICKED_BY_CHANGE_PASSWORD` | If the logged in user changes the present password, the SDK kicks the user out and returns this error code. |
@@ -34,6 +43,8 @@ During the run time of the Agora Chat SDK, the error codes and error messages mi
 | 505 | `SERVICE_NOT_ENABLED` | When you try using a service that is not enabled, the SDK returns this error code. Activate the service first and then call the method again. |
 | 506 | `SERVICE_NOT_ALLOW_MESSAGING` | If all members are banned in the group chatroom and the user ID is not included in the whitelist, when this user tries sending a message, the SDK returns this error code. |
 | 507 | `SERVICE_NOT_ALLOW_MESSAGING_MUTE`  | If the user is muted in the group or the chatroom, when the user sends a message, the SDK returns this error code. |
+| 508    | `MESSAGE_MODERATION_BLOCKED`                     | The message is blocked by the moderation service.                                 |
+| 601    | `GROUP_ALREADY_JOINED`                           | The user to be added to a chat group already exists in the chat group.                          |
 | 602 | `GROUP_NOT_JOINED`  | When you try sending messages or controlling a group that you have not joined, the SDK returns this error code. |
 | 603 | `PERMISSION_DENIED` | The user has no permission to operate. Check whether the user is banned. If the user is banned, unban the user and log in again. |
 | 604 | `WEBIM_LOAD_MSG_ERROR` | An internal error occurs when receiving the callback and in the subsequent logic handling |
@@ -41,6 +52,7 @@ During the run time of the Agora Chat SDK, the error codes and error messages mi
 | 606   | `GROUP_MEMBERS_FULL`| The number of chat group members has reached the limit. |
 | 607   | `GROUP_NOT_EXIST` |The number of maximum chat group members that you are attempting to specify when creating a chat group exceeds the limit of your current pricing plan. |
 | 700  | `REST_PARAMS_STATUS`  |  The token or app key is an empty string when calling RESTful APIs.  |
+| 702 | `CHATROOM_NOT_JOINED` | The user to whom you are requesting to perform operations does not exist in the chat room. |
 | 704   | `CHATROOM_MEMBERS_FULL`  | The number of chat room members has reached the limit. |
 | 705   | `CHATROOM_NOT_EXIST` | The chat room to which you are requesting to perform operations does not exist. |
 | 999   | `SDK_RUNTIME_ERROR`  |  A Websocket error occurs when sending a message. |
@@ -53,4 +65,3 @@ During the run time of the Agora Chat SDK, the error codes and error messages mi
 | 1204  | `TRANSLATION_FAILED`  | The request to retrieve the translation service fails. |
 | 1300   | `THREAD_NOT_EXIST` | The thread does not exist.    |
 | 1301   | `THREAD_ALREADY_EXIST` |  The thread to be created already exists.    |
-

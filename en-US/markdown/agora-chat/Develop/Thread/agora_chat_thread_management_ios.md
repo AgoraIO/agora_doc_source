@@ -29,7 +29,6 @@ Before proceeding, ensure that you meet the following requirements:
 - You have initialized the Agora Chat SDK. For details, see [Get Started with iOS](./agora_chat_get_started_ios?platform=ios).
 - You understand the call frequency limit of the Agora Chat APIs supported by different pricing plans as described in [Limitations](./agora_chat_limitation?platform=ios).
 - You understand the number of threads and thread members supported by different pricing plans as described in [Pricing Plan Details](./agora_chat_plan?platform=ios).
-- You have contacted support@agora.io to activate the threading feature.
 
 ## Implementation
 
@@ -81,7 +80,7 @@ The following code sample shows how to destroy a thread:
 All chat group members can refer to the following steps to join a thread:
 
 1. Use either of the following two approaches to retrieve the thread ID:
-- Retrieve the thread list in a chat group by calling [`getChatThreadsFromServer`](#retrieve-the-thread-list), and locate the ID of the thread that you want to join.
+- Retrieve the thread list in a chat group by calling [`getChatThreadsFromServer`](#fetch), and locate the ID of the thread that you want to join.
 - Retrieve the thread ID within the `AgoraChatThreadManagerDelegate#onChatThreadCreated` and `AgoraChatThreadManagerDelegate#onChatThreadUpdated` callbacks that you receive.
 
 2. Call `joinChatThread` to pass in the thread ID and join the specified thread.
@@ -175,7 +174,7 @@ The following code sample shows how to retrieve the thread attributes:
 
 ### Retrieve the member list of a thread
 
-All chat group members can call `getChatThreadMemberListFromServerWithId` to retrieve a paginated member list of a thread from the server.
+All chat group members can call `getChatThreadMemberListFromServerWithId` to retrieve a paginated member list of a thread from the server, as shown in the following code sample:
 
 ```ObjectiveC
 // threadId: The thread ID.
@@ -211,7 +210,7 @@ Users can call `getJoinedChatThreadsFromServer` to retrieve a paginated list fro
 }];
 ```
 
-Users can also call `getChatThreadsFromServer` to retrieve a paginated list from the server of all the threads in a specified chat group, as shown in the following code sample:
+Users can also call `getChatThreadsFromServer` to retrieve a paginated list from the server of all the threads in a specified chat group, as shown in the following code sample:<a name="fetch"></a>
 
 ```ObjectiveC
 // parentId: The chat group ID.
@@ -241,7 +240,7 @@ The following code sample shows how to retrieve the latest message from multiple
 
 ### Listen for thread events
 
-To monitor the thread events, users can listen for the callbacks in the `AgoraChatThreadManager` class and add app logics accordingly. If a user wants to stop listening for the callbacks, make sure that the user removes the listener to prevent memory leakage.
+To monitor thread events, users can listen for the callbacks in the `AgoraChatThreadManager` class and add app logics accordingly. If a user wants to stop listening for the callbacks, make sure that the user removes the listener to prevent memory leakage.
 
 Refer to the following code sample to listen for thread events:
 
@@ -259,8 +258,8 @@ AgoraChatThreadManagerDelegate
 // Occurs when a member is removed from a thread.
 - (void)onUserKickOutOfChatThread:(AgoraChatThreadEvent *)event;
 
-// Add the thread listener.
+// Adds the thread listener.
 [[AgoraChatClient sharedClient].threadManager addDelegate:self delegateQueue:nil];
-// Remove the thread listener.
+// Removes the thread listener.
 [[AgoraChatClient sharedClient].threadManager removeDelegate:self];
 ```
