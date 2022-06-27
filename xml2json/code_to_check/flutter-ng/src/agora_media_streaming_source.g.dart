@@ -10,7 +10,6 @@ InputSeiData _$InputSeiDataFromJson(Map<String, dynamic> json) => InputSeiData(
       type: json['type'] as int?,
       timestamp: json['timestamp'] as int?,
       frameIndex: json['frame_index'] as int?,
-      privateData: json['private_data'] as int?,
       dataSize: json['data_size'] as int?,
     );
 
@@ -19,7 +18,6 @@ Map<String, dynamic> _$InputSeiDataToJson(InputSeiData instance) =>
       'type': instance.type,
       'timestamp': instance.timestamp,
       'frame_index': instance.frameIndex,
-      'private_data': instance.privateData,
       'data_size': instance.dataSize,
     };
 
