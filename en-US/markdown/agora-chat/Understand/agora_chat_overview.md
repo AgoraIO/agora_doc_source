@@ -113,6 +113,6 @@ The following table compares Real-time Messaging (RTM) and Chat:
 | Latency performance | Ultra-low latency: < 100 ms. | Low latency: 200 ms - 400 ms. |
 | Applicable scenarios |<li>Online education with collaborative operations of teacher and students on slides and other elements<li>Real-time data synchronization of the statuses, positions, and attributes from players.<li>Virtual gifting for live-streamers.<li>Data report by IoT sensors.<li>Call invitations and host management in voice calls and video calls. | <li>Instant messaging for business.<li>Group chats in games.<li>Interactive chats in live-streaming channels. |
 
-In a nutshell, RTM is widely used in multiple scenarios, whereas Chat targets the instant messaging scenario by providing more mature SDK integration and more versatile user experience.
+In a nutshell, RTM is widely used in multiple scenarios, whereas Chat targets the instant messaging scenario by providing mature SDK integration and versatile user experience.
 
 In addition to the applicable scenarios stated above, RTM and Chat have overlapped applicable scenarios such as bullet screen. Whether to use RTM or Chat requires a comprehensive evaluation according to your business demands and subsequent extensions.
