@@ -1,3 +1,5 @@
+# Chat Overview
+
 Agora Chat is a highly reliable global communication platform where your users can chat one-to-one, in groups or in chat rooms. Users communicate with text messages, they can share images, audio, video, files, emojis, and locations. Agora Chat supplies typing indicators out-of-the-box. 
 
 The Agora platform supplies a low-latency, high-concurrency, and secure cloud service for your user conversations. It is asynchronous and stateless; it supports cluster service, horizontal scaling and peak traffic handling. 
@@ -99,3 +101,18 @@ Agora Chat is supported on major platforms such as Android, iOS, and Web, and it
 | iOS      | iOS 9.0 or later                                             |
 | Web      | <li>Internet Explorer 9 or later</li><li>FireFox 10 or later</li><li>Chrome 54 or later</li><li>Safari 6 or later</li><li>Edge 12 or later</li><li>Opera 58 or later</li> |
 
+
+## RTM and Chat comparison
+
+The following table compares Real-time Messaging (RTM) and Chat:
+
+|          | RTM   | Chat   |
+| :------- | :---------------- | :----------------- |
+| Technical architecture | A distributed system that data can be processed and switched on edge nodes.   | A centralized system that all the data are processed and switched on the central node.  |
+| Product positioning | A highly reliable synchronization and transportation service for signals, messages, and statuses that features low latency and high concurrency. | A highly interactive instant messaging service that provides contact management, multimedia messages, chat rooms, chat groups, data storage, and content moderation.  |
+| Latency performance | Ultra-low latency: < 100 ms. | Low latency: 200 ms - 400 ms. |
+| Applicable scenarios |<li>Online education with collaborative operations of teacher and students on slides and other elements<li>Real-time data synchronization of the statuses, positions, and attributes from players.<li>Virtual gifting for live-streamers.<li>Data report by IoT sensors.<li>Call invitations and host management in voice calls and video calls. | <li>Instant messaging for business.<li>Group chats in games.<li>Interactive chats in live-streaming channels. |
+
+In a nutshell, RTM is widely used in multiple scenarios, whereas Chat targets the instant messaging scenario by providing more mature SDK integration and more versatile user experience.
+
+In addition to the applicable scenarios stated above, RTM and Chat have overlapped applicable scenarios such as bullet screen. Whether to use RTM or Chat requires a comprehensive evaluation according to your business demands and subsequent extensions.
