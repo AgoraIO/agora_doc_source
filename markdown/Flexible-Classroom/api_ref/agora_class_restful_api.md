@@ -36,18 +36,18 @@
 
 在 URL 中传入以下参数。
 
-| 参数       | 类型   | 描述                                                                                                                                  |
-| :--------- | :----- | :------------------------------------------------------------------------------------------------------------------------------------ |
-| `appId`    | String | （必填）Agora App ID。                                                                                                                |
-| `roomUUid` | String | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~     |
+| 参数       | 类型   | 描述                                                         |
+| :--------- | :----- | :----------------------------------------------------------- |
+| `appId`    | String | （必填）Agora App ID。                                       |
+| `roomUUid` | String | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 | `userUuid` | String | （必填）用户 uuid。这是用户的唯一标识符，也是登录 RTM 系统时使用的用户 ID。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 
 **请求包体参数**
 
 在请求包体中传入以下参数。
 
-| 参数    | 类型   | 描述                                                                                                                                                                                                                                                          |
-| :------ | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 参数    | 类型   | 描述                                                         |
+| :------ | :----- | :----------------------------------------------------------- |
 | `dirty` | Object | （非必填）用户的污点设置，包含以下字段：<ul><li>`state`: Boolean 类型，污点状态：<ul><li>`1`: 有污点。有污点的用户无法进入课堂。</li><li>`0`: 无污点。</li></ul><li>`duration`: Number 类型，有污点状态持续时间，单位为秒，从被踢出的时候开始计时。</li></ul> |
 
 #### 请求示例
@@ -65,6 +65,86 @@ https://api.agora.io/edu/apps/{your_app_Id}/v2/rooms/test_class/users/123/exit
     "dirty": {
         "state": 1,
         "duration": 600
+    }
+}
+```
+
+#### 响应参数
+
+| 参数   | 类型    | 描述                                                        |
+| :----- | :------ | :---------------------------------------------------------- |
+| `code` | Integer | 业务状态码：<li>0: 请求成功。</li><li>非 0: 请求失败。</li> |
+| `msg`  | String  | 详细信息。                                                  |
+| `ts`   | Number  | 当前服务端的 Unix 时间戳（毫秒），UTC 时间。                |
+
+#### 响应示例
+
+```json
+{
+    "msg": "Success",
+    "code": 0,
+    "ts": 1610167740309
+}
+```
+
+## 创建房间
+
+#### 接口描述
+
+房间创建后，默认保留 5 天。
+
+#### 接口原型
+
+-   方法：POST
+-   接入点：/edu/apps/{appId}/v2/rooms/{roomUuid}
+
+#### 请求参数
+
+**URL 参数**
+
+在 URL 中传入以下参数。
+
+| 参数       | 类型   | 描述                                                         |
+| :--------- | :----- | :----------------------------------------------------------- |
+| `appId`    | String | （必填）Agora App ID。                                       |
+| `roomUUid` | String | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
+
+**请求包体参数**
+
+在请求包体中传入以下参数。
+
+| 参数                                         | 类型    | 描述                                                         |
+| :------------------------------------------- | :------ | :----------------------------------------------------------- |
+| `roomType`                                   | String  | （必填）房间类型，可设为：<ul><li>`0`: 一对一</li><li>`2`: 大班课</li><li>`4`: 小班课</li></ul><p>该字段不可更新。</p> |
+| `roomName`                                   | String  | （必填）房间名称。                                           |
+| `roomProperties`                             | Object  | （非必填）房间属性。                                         |
+| `roomProperties.schedule`                    | Object  | （非必填）课程计划。                                         |
+| `roomProperties.schedule.startTime`          | Integer | （非必填）课堂开始时间。该字段不可更新。                     |
+| `roomProperties.schedule.duration`           | Integer | （非必填）课堂持续时间。                                     |
+| `roomProperties.schedule.closeDelay`         | Integer | （非必填）拖堂时间。                                         |
+| `roomProperties.processes`                   | Object  | （非必填）申请邀请流程。                                     |
+| `roomProperties.processes.handsUp`           | Object  | （非必填）上台设置。                                         |
+| `roomProperties.processes.handsUp.maxAccept` | Integer | （非必填）上台人数上限。                                     |
+
+#### 请求示例
+
+**请求包体**
+
+```json
+{
+    "roomName": "jasoncai61734",
+    "roomType": 4,
+    "roomProperties": {
+        "schedule": {
+            "startTime": 1655452800000,
+            "duration": 600,
+            "closeDelay": 300
+        },
+        "processes": {
+            "handsUp": {
+                "maxAccept": 10
+            }
+        }
     }
 }
 ```
@@ -108,7 +188,7 @@ https://api.agora.io/edu/apps/{your_app_Id}/v2/rooms/test_class/users/123/exit
 | :--------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------- |
 | `appId`    | String  | （必填）Agora App ID。                                                                                                            |
 | `roomUUid` | String  | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
-| `state`    | Integer | （必填）课堂状态：<li>`0`: 未开始</li><li>`1`: 开始</li><li>`2`: 结束</li><li>`3`: 拖堂时间结束，房间关闭，用户无法再进入</li>    |
+| `state`    | Integer | （必填）课堂状态：<ul><li>`0`: 未开始</li><li>`1`: 开始</li><li>`2`: 结束</li><li>`3`: 拖堂时间结束，房间关闭，用户无法再进入</li></ul>    |
 
 #### 请求示例
 
@@ -1328,6 +1408,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
     | 字段                                       | 类型     | 说明                                                                   |
     | :----------------------------------------- | :------- | :--------------------------------------------------------------------- |
     | action                                     | Integer  | 操作类型                                                               |
+    | widgetUuid                                 | String | Widget ID                                                               |
     | changeProperties                           | Object   | 发生变更的属性                                                         |
     | changeProperties.extra                     | Object   | 属性补充信息                                                           |
     | changeProperties.extra.correctItems        | Object[] | 正确选项                                                               |
@@ -1339,7 +1420,9 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
     | changeProperties.extra.totalCount          | Integer  | 本题回答总人数                                                         |
     | changeProperties.extra.items               | Object[] | 本题的所有选项                                                         |
     | changeProperties.state                     | Integer  | 答题器状态：<ul><li>`0`: 非活跃</li><li>`1`: 活跃</li></ul>            |
-    | cause                                      | String   | 属性变更原由，答题器为 `popupQuiz`                                     |
+    | cause                                      | Object   | 属性变更原由。                                     |
+    | cause.popQuizId                                      | String   | 答题器 ID。                                     |
+    | cause.action                                      | Integer   | 操作类型：<ul><li>`1`: 老师开始答题。</li><li>`2`: 老师结束答题。</li><li>`3`: 学生提交答案。</li><li>`4`: 汇总信息同步。</li></ul>                                     |
     | operator                                   | Object   | 操作人                                                                 |
     | operator.userUuid                          | String   | 用户 ID                                                                |
     | operator.userName                          | String   | 用户名称                                                               |
@@ -1350,12 +1433,15 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
     | 字段                            | 类型     | 说明                               |
     | :------------------------------ | :------- | :--------------------------------- |
     | action                          | Integer  | 操作类型                           |
+    | widgetUuid                                 | String | Widget ID                                                               |
     | changeProperties                | Object   | 发生变更的属性                     |
     | changeProperties.lastCommitTime | Long     | 最后一次提交时间                   |
     | changeProperties.popupQuizId    | String   | 题目 ID                            |
     | changeProperties.selectedItems  | Object[] | 该学生提交的答案                   |
     | changeProperties.isCorrect      | Boolean  | 该学生提交的答案是否正确           |
-    | cause                           | String   | 属性变更原由，答题器为 `popupQuiz` |
+    | cause                                      | Object   | 属性变更原由。                                     |
+    | cause.popQuizId                                      | String   | 答题器 ID。                                     |
+    | cause.action                                      | Integer   | 操作类型：<ul><li>`1`: 老师开始答题。</li><li>`2`: 老师结束答题。</li><li>`3`: 学生提交答案。</li><li>`4`: 汇总信息同步。</li></ul>                                     |
     | operator                        | Object   | 操作人                             |
     | operator.userUuid               | String   | 用户 uuid                          |
     | operator.userName               | String   | 用户名称                           |
@@ -1370,13 +1456,16 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
     | 字段                                   | 类型    | 说明                               |
     | :------------------------------------- | :------ | :--------------------------------- |
     | action                                 | Integer | 操作类型                           |
+    | widgetUuid                                 | String | Widget ID                                                               |
     | changeProperties                       | Object  | 发生变更的属性                     |
     | changeProperties.extra                 | Object  | 属性补充信息                       |
     | changeProperties.extra.selectedCount   | Integer | 已经答题人数                       |
     | changeProperties.extra.correctCount    | Integer | 本题答对人数                       |
     | changeProperties.extra.averageAccuracy | Float   | 本题正确率                         |
     | changeProperties.extra.totalCount      | Integer | 本题回答总人数                     |
-    | cause                                  | String  | 属性变更原由，答题器为 `popupQuiz` |
+    | cause                                      | Object   | 属性变更原由。                                     |
+    | cause.popQuizId                                      | String   | 答题器 ID。                                     |
+    | cause.action                                      | Integer   | 操作类型：<ul><li>`1`: 老师开始答题。</li><li>`2`: 老师结束答题。</li><li>`3`: 学生提交答案。</li><li>`4`: 汇总信息同步。</li></ul>                                     |
     | operator                               | Object  | 操作人                             |
     | operator.userUuid                      | String  | 用户 ID                            |
     | operator.userName                      | String  | 用户名称                           |
@@ -1387,6 +1476,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
     | 字段                                   | 类型    | 说明                                                                   |
     | :------------------------------------- | :------ | :--------------------------------------------------------------------- |
     | action                                 | Integer | 操作类型                                                               |
+    | widgetUuid                                 | String | Widget ID                                                               |
     | changeProperties                       | Object  | 发生变更的属性                                                         |
     | changeProperties.extra                 | Object  | 属性补充信息                                                           |
     | changeProperties.extra.selectedCount   | Integer | 已经答题人数                                                           |
@@ -1394,7 +1484,9 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
     | changeProperties.extra.answerState     | Integer | 本次答题状态：<ul><li>`1` : 答题进行中</li><li>`0`: 答题结束</li></ul> |
     | changeProperties.extra.averageAccuracy | Float   | 本题正确率                                                             |
     | changeProperties.extra.totalCount      | Integer | 本题回答总人数                                                         |
-    | cause                                  | String  | 属性变更原由，答题器为 `popupQuiz`                                     |
+    | cause                                      | Object   | 属性变更原由。                                     |
+    | cause.popQuizId                                      | String   | 答题器 ID。                                     |
+    | cause.action                                      | Integer   | 操作类型：<ul><li>`1`: 老师开始答题。</li><li>`2`: 老师结束答题。</li><li>`3`: 学生提交答案。</li><li>`4`: 汇总信息同步。</li></ul>                                     |
     | operator                               | Object  | 操作人                                                                 |
     | operator.userUuid                      | String  | 用户 uuid                                                              |
     | operator.userName                      | String  | 用户名称                                                               |
@@ -1406,6 +1498,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 
     ```json
     "action": NumberInt("1"),
+    "widgetUuid": "xxxxxxxxx",
     "changeProperties": {
         "extra.correctItems": [
             "A",
@@ -1436,6 +1529,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 
     ```json
     "action": NumberInt("1"),
+    "widgetUuid": "xxxxxxxxx",
     "changeProperties": {
         "selectedItems": [
             "A",
@@ -1457,6 +1551,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 
     ```json
     "action": NumberInt("1"),
+    "widgetUuid": "xxxxxxxxx",
     "changeProperties": {
         "extra.totalCount": NumberInt("1"),
         "extra.answerState": NumberInt("0"),
@@ -1505,6 +1600,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
     | 字段                                          | 类型                | 说明                                                                   |
     | :-------------------------------------------- | :------------------ | :--------------------------------------------------------------------- |
     | action                                        | Integer             | 操作类型                                                               |
+    | widgetUuid                                 | String | Widget ID                                                               |
     | changeProperties                              | Object              | 发生变更的属性                                                         |
     | changeProperties.extra                        | Object              | 属性补充信息                                                           |
     | changeProperties.extra.mode                   | Integer             | 投票模式：<ul><li>`1`: 单选</li><li>`2`: 多选</li></ul>                |
@@ -1515,7 +1611,9 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
     | changeProperties.extra.pollId                 | String              | 本次投票 ID                                                            |
     | changeProperties.extra.pollItems              | Object[]            | 选项内容                                                               |
     | changeProperties.state                        | Integer             | 投票器状态：<ul><li>`0`: 非活跃</li><li>`1`: 活跃</li></ul>            |
-    | cause                                         | String              | 属性变更原由，投票器为 `poll`                                          |
+    | cause                                      | Object   | 属性变更原由。                                     |
+    | cause.pollId                                      | String   | 投票器 ID。                                     |
+    | cause.action                                      | Integer   | 操作类型：<ul><li>`1`: 老师开始投票。</li><li>`2`: 老师结束投票。</li><li>`3`: 学生提交投票。</li><li>`4`: 汇总信息同步。</li></ul>                                     |
     | operator                                      | Object              | 操作人                                                                 |
     | operator.userUuid                             | String              | 用户 ID                                                                |
     | operator.userName                             | String              | 用户名称                                                               |
@@ -1526,11 +1624,14 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
     | 字段                               | 类型     | 说明                          |
     | :--------------------------------- | :------- | :---------------------------- |
     | action                             | Integer  | 操作类型                      |
+    | widgetUuid                                 | String | Widget ID                                                               |
     | changeProperties                   | Object   | 发生变更的属性                |
     | changeProperties.extra             | Object   | 属性补充信息                  |
     | changeProperties.extra.pollId      | String   | 本次投票 ID                   |
     | changeProperties.extra.selectIndex | Object[] | 该学生选择的选项的索引        |
-    | cause                              | String   | 属性变更原由，投票器为 `poll` |
+    | cause                                      | Object   | 属性变更原由。                                     |
+    | cause.pollId                                      | String   | 投票器 ID。                                     |
+    | cause.action                                      | Integer   | 操作类型：<ul><li>`1`: 老师开始投票。</li><li>`2`: 老师结束投票。</li><li>`3`: 学生提交投票。</li><li>`4`: 汇总信息同步。</li></ul>                                     |
     | operator                           | Object   | 操作人                        |
     | operator.userUuid                  | String   | 用户 ID                       |
     | operator.userName                  | String   | 用户名称                      |
@@ -1545,13 +1646,16 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
     | 字段                                          | 类型                | 说明                                      |
     | :-------------------------------------------- | :------------------ | :---------------------------------------- |
     | action                                        | Integer             | 操作类型                                  |
+    | widgetUuid                                 | String | Widget ID                                                               |
     | changeProperties                              | Object              | 发生变更的属性                            |
     | changeProperties.extra                        | Object              | 属性补充信息                              |
     | changeProperties.extra.pollDetails            | Map<String，Object> | 投票详情，`key` 为选项索引，从 `0` 开始。 |
     | changeProperties.extra.pollDetails.num        | Integer             | 选择该选项的人数                          |
     | changeProperties.extra.pollDetails.percentage | Float               | 选择该选项的人数所占百分比                |
     | changeProperties.extra.pollId                 | String              | 本次投票 ID                               |
-    | cause                                         | String              | 属性变更原由，投票器为 `poll`             |
+    | cause                                      | Object   | 属性变更原由。                                     |
+    | cause.pollId                                      | String   | 投票器 ID。                                     |
+    | cause.action                                      | Integer   | 操作类型：<ul><li>`1`: 老师开始投票。</li><li>`2`: 老师结束投票。</li><li>`3`: 学生提交投票。</li><li>`4`: 汇总信息同步。</li></ul>                                     |
     | operator                                      | Object              | 操作人                                    |
     | operator.userUuid                             | String              | 用户 ID                                   |
     | operator.userName                             | String              | 用户名称                                  |
@@ -1562,6 +1666,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
     | 字段                                          | 类型                | 说明                                                                   |
     | :-------------------------------------------- | :------------------ | :--------------------------------------------------------------------- |
     | action                                        | Integer             | 操作类型                                                               |
+    | widgetUuid                                 | String | Widget ID                                                               |
     | changeProperties                              | Object              | 发生变更的属性                                                         |
     | changeProperties.extra                        | Object              | 属性补充信息                                                           |
     | changeProperties.extra.pollingState           | Integer             | 本次投票状态：<ul><li>`1` : 投票进行中</li><li>`0`: 投票结束</li></ul> |
@@ -1569,7 +1674,9 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
     | changeProperties.extra.pollDetails.num        | Integer             | 选择该选项的人数                                                       |
     | changeProperties.extra.pollDetails.percentage | Float               | 选择该选项的人数所占百分比                                             |
     | changeProperties.extra.pollId                 | String              | 本次投票 ID                                                            |
-    | cause                                         | String              | 属性变更原由，投票器为 `poll`                                          |
+    | cause                                      | Object   | 属性变更原由。                                     |
+    | cause.pollId                                      | String   | 投票器 ID。                                     |
+    | cause.action                                      | Integer   | 操作类型：<ul><li>`1`: 老师开始投票。</li><li>`2`: 老师结束投票。</li><li>`3`: 学生提交投票。</li><li>`4`: 汇总信息同步。</li></ul>                                     |
     | operator                                      | Object              | 操作人                                                                 |
     | operator.userUuid                             | String              | 用户 ID                                                                |
     | operator.userName                             | String              | 用户名称                                                               |
@@ -1581,6 +1688,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 
     ```json
     "action": NumberInt("1"),
+    "widgetUuid": "xxxxxxxxx",
     "changeProperties": {
         "extra.pollId": "e556ce3df5cd4c23941b03bf54d29ba3",
         "extra.pollState": NumberInt("1"),
@@ -1627,6 +1735,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 
     ```json
     "action": NumberInt("1"),
+    "widgetUuid": "xxxxxxxxx",
     "changeProperties": {
         "pollId": "e556ce3df5cd4c23941b03bf54d29ba3",
         "selectIndex": [
@@ -1651,6 +1760,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 
     ```json
     "action": NumberInt("1"),
+    "widgetUuid": "xxxxxxxxx",
     "changeProperties": {
         "extra.pollId": "e556ce3df5cd4c23941b03bf54d29ba3",
         "extra.pollDetails": {
@@ -1687,6 +1797,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 
     ```json
     "action": NumberInt("1"),
+    "widgetUuid": "xxxxxxxxx",
     "changeProperties": {
         "extra.pollId": "e556ce3df5cd4c23941b03bf54d29ba3",
         "extra.pollState": NumberInt("0"),

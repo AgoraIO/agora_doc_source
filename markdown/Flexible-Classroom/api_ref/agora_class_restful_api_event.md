@@ -166,3 +166,58 @@
     "action": 1
 }
 ```
+
+## 讲台人员变更
+
+`cmd` 为 `1501` 时，该事件提示讲台人员发生变化，`data` 中包含以下字段：
+
+| 参数                  | 类型        | 描述                                                         |
+| :-------------------- | :---------- | :----------------------------------------------------------- |
+| `acceptedUsers`       | Object 数组 | 当前台上人员列表，包含以下字段：<li>`userUuid`: String 型，用户 uuid。</li> |
+| `addAcceptedUsers`    | Object 数组 | 本次上台人员列表，包含以下字段：<li>`userUuid`: String 型，用户 uuid。</li> |
+| `removeAcceptedUsers` | Object 数组 | 本次下台人员列表，包含以下字段：<li>`userUuid`: String 型，用户 uuid。</li> |
+
+**示例**：
+
+```json
+{
+    "acceptedUsers": [{
+        "userUuid":""
+    }],
+    "addAcceptedUsers": [{
+        "userUuid":""
+    }],
+    "removeAcceptedUsers": [{
+        "userUuid":""
+    }]
+}
+```
+
+## 挥手人员变更
+
+`cmd` 为 `1502` 时，该事件提示挥手人员发生变更，`data` 中包含以下字段：
+
+| 参数                  | 类型        | 描述                                                         |
+| :-------------------- | :---------- | :----------------------------------------------------------- |
+| `progressUsers`       | Object 数组 | 当前举手人员列表，包含以下字段：<li>`userUuid`: String 型，用户 uuid。</li><li>`payload`: Object 型。</li> |
+| `addProgressUsers`    | Object 数组 | 本次新增举手人员列表，包含以下字段：<li>`userUuid`: String 型，用户 uuid。</li><li>`payload`: Object 型，扩展信息。</li> |
+| `removeProgressUsers` | Object 数组 | 本次移除举手人员列表，包含以下字段：<li>`userUuid`: String 型，用户 uuid。</li><li>`payload`: Object 型，扩展信息。</li> |
+
+**示例**：
+
+```json
+{
+    "progressUsers": [{
+        "userUuid":"",
+        "payload":{}
+    }],
+    "addProgressUsers": [{
+        "userUuid":"",
+        "payload": {}
+    }],
+    "removeProgressUsers": [{
+        "userUuid":"",
+        "payload": {}
+    }]
+}
+```
