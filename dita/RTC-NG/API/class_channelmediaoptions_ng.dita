@@ -35,45 +35,79 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class ChannelMediaOptions {
   public Boolean publishCameraTrack;
-  public Boolean publishScreenTrack;
+  public Boolean publishSecondaryCameraTrack;
+  public Boolean publishScreenCaptureVideo;
+  public Boolean publishScreenCaptureAudio;
   public Boolean publishCustomAudioTrack;
   public Boolean publishCustomAudioTrackEnableAec;
+  public Boolean publishCustomAudioTrackAec;
+  public Boolean publishDirectCustomAudioTrack;
   public Boolean publishCustomVideoTrack;
   public Boolean publishEncodedVideoTrack;
   public Boolean publishMediaPlayerAudioTrack;
   public Boolean publishMediaPlayerVideoTrack;
+  public Boolean publishRhythmPlayerTrack;
   public Integer publishMediaPlayerId;
   public Boolean publishMicrophoneTrack;
-  public Integer publishCustomAudioSourceId;
   public Boolean autoSubscribeAudio;
   public Boolean autoSubscribeVideo;
   public Boolean enableAudioRecordingOrPlayout;
   public Integer clientRoleType;
+  public Integer audienceLatencyLevel;
   public Integer defaultVideoStreamType;
   public Integer channelProfile;
   public Integer audioDelayMs;
+  public Integer mediaPlayerAudioDelayMs;
   public String token;
-}</codeblock>
+  public Boolean enableBuiltInMediaEncryption;
+  public Integer publishCustomAudioSourceId;
+
+  public Integer customVideoTrackId;
+
+  public Boolean isAudioFilterable;
+
+  public Boolean isInteractiveAudience;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcChannelMediaOptions : NSObject
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCameraTrack;
+#if TARGET_OS_IPHONE
+@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishScreenCaptureVideo;
+@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishScreenCaptureAudio;
+#elif TARGET_OS_MAC
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishScreenTrack;
+#endif
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCustomAudioTrack;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCustomAudioTrackEnableAec;
+@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCustomAudioTrackAec;
+@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishDirectCustomAudioTrack;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCustomVideoTrack;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishEncodedVideoTrack;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishMediaPlayerAudioTrack;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishMediaPlayerVideoTrack;
 @property(strong, nonatomic) AgoraRtcIntOptional* _Nullable publishMediaPlayerId;
+
 @property(strong, nonatomic) AgoraRtcIntOptional* _Nullable publishCustomAudioSourceId;
+
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishMicrophoneTrack;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable autoSubscribeAudio;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable autoSubscribeVideo;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable enableAudioRecordingOrPlayout;
 @property(strong, nonatomic) AgoraRtcIntOptional* _Nullable clientRoleType;
+@property(strong, nonatomic) AgoraRtcIntOptional* _Nullable audienceLatencyLevel;
 @property(strong, nonatomic) AgoraRtcIntOptional* _Nullable defaultVideoStreamType;
 @property(strong, nonatomic) AgoraRtcIntOptional* _Nullable channelProfile;
 @property(strong, nonatomic) AgoraRtcIntOptional* _Nullable audioDelayMs;
+@property(strong, nonatomic) AgoraRtcIntOptional* _Nullable mediaPlayerAudioDelayMs;
 @property(copy, nonatomic) NSString * _Nullable token;
+@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable enableBuiltInMediaEncryption;
+
+@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishRhythmPlayerTrack;
+
+@property(strong, nonatomic) AgoraRtcIntOptional* _Nullable customVideoTrackId;
+
+@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable isAudioFilterable;
+
+@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable isInteractiveAudience;
+
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct ChannelMediaOptions {
   Optional&lt;bool> publishCameraTrack;
@@ -128,7 +162,7 @@
             >publishMicrophoneTrack</parmname><parmname props="unity"
             >publishAudioTrack</parmname>、<parmname>publishCustomAudioTrack</parmname> 和 <parmname>publishMediaPlayerAudioTrack</parmname> 可以同时为 <codeph><ph
             keyref="true"/></codeph>；
-            <parmname>publishCameraTrack</parmname>、<parmname>publishScreenTrack</parmname>、<parmname>publishCustomVideoTrack</parmname> 或 <parmname>publishEncodedVideoTrack</parmname> 之中同一时间只能有一个为 <codeph><ph
+            <parmname>publishCameraTrack</parmname>、<parmname props="android ios">publishScreenCaptureVideo</parmname><parmname props="mac cpp">publishScreenTrack</parmname>、<parmname>publishCustomVideoTrack</parmname> 或 <parmname>publishEncodedVideoTrack</parmname> 之中同一时间只能有一个为 <codeph><ph
             keyref="true"/></codeph>。</section>
         <section id="parameters">
             <title><text
@@ -164,28 +198,50 @@
                     
                     
                     
+                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：（默认）发布采集到的音频。</li>
                     <li><codeph><ph keyref="false"/></codeph>：不发布采集到的音频。</li>
-                    </ul></pd>
+                    </ul>
+                <p><note type="note">自 v4.0.0 起，该参数名称由 <parmname>publishAudioTrack</parmname> 改为 <parmname>publishMicrophoneTrack</parmname>。</note></p></pd>
             </plentry>
             <plentry>
-                <pt>publishScreenTrack</pt>
+                <pt props="android ios">publishScreenCaptureVideo</pt>
+                <pt props="mac cpp">publishScreenTrack</pt>
                 <pd>
                     <p>设置是否发布屏幕采集的视频：
 
+                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：发布屏幕采集到的视频。</li>
-                    <li><codeph><ph keyref="false"
-                        /></codeph>：（默认）不发布屏幕采集到的视频。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：（默认）不发布屏幕采集到的视频。</li>
                     </ul></p>
                 </pd>
             </plentry>
-            <plentry props="cpp unity">
+            <plentry props="cpp">    
+                <pt>publishScreenCaptureVideo</pt>                
+                <pd><note type="attention">该参数仅适用于 Android 和 iOS 平台。</note></pd>
+            </plentry>
+            <plentry>
+                <pt props="android ios cpp">publishScreenCaptureAudio</pt>
+                <pd>
+                    <p>设置是否发布屏幕采集的音频：
+
+                    
+                    <ul>
+                    <li><codeph><ph keyref="true"/></codeph>：发布屏幕采集到的音频。</li>
+                    <li><codeph><ph keyref="false"
+                        /></codeph>：（默认）不发布屏幕采集到的音频。</li>
+                    </ul></p>
+                <p><note type="attention" props="cpp">该参数仅适用于 Android 和 iOS 平台。</note></p>
+                </pd>
+            </plentry>                
+            <plentry props="mac cpp unity">
                 <pt>publishSecondaryScreenTrack</pt>
                 <pd>
                     <p>设置是否发布第二个屏幕采集的视频：
 
+                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：发布第二个屏幕采集到的视频。</li>
                     <li><codeph><ph keyref="false"
@@ -310,17 +366,19 @@
                 <pt>clientRoleType</pt>
                 <pd conkeyref="setClientRole1/clientrole"/>
             </plentry>
+            <plentry conkeyref="ClientRoleOptions/audiencelatencylevel">
+                <pt/>
+                <pd/>
+            </plentry>               
             <plentry>
                 <pt>defaultVideoStreamType</pt>
-                <pd
-                    conkeyref="setRemoteDefaultVideoStreamType/defaultstreamtype"
-                />
+                <pd conkeyref="setRemoteDefaultVideoStreamType/defaultstreamtype"/>
             </plentry>
             <plentry>
                 <pt>channelProfile</pt>
                 <pd conkeyref="setChannelProfile/channelprofiletype"/>
             </plentry>
-            <plentry>
+            <plentry props="hide">
                 <pt>audioDelayMs</pt>
                 <pd>
                     <p>发送音频帧的时延（以毫秒为单位），用于控制 A/V 同步。</p>
@@ -366,11 +424,33 @@
                     <li><codeph><ph keyref="false"/></codeph>：不自动开启预览。</li>
                     </ul></pd>
             </plentry>
+            <plentry>
+                <pt>publishRhythmPlayerTrack</pt>
+                <pd>设置是否发布虚拟节拍器声音至远端：
+                <ul>
+                    <li><codeph><ph keyref="true"/></codeph>：（默认）发布。本地用户和远端用户都能听到节拍器。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：不发布。只有本地用户能听到节拍器。</li>
+                    </ul></pd>
+            </plentry> 
+            <plentry>
+                <pt>isInteractiveAudience</pt>
+                <pd>是否开启互动模式：
+                <ul>
+                    <li><codeph><ph keyref="true"/></codeph>：开启互动模式。成功开启后，本地用户收到低延时和流畅的远端用户视频。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：（默认）不开启互动模式。本地用户收到默认设置的远端用户视频。</li>
+                </ul>
+                <note type="attention">
+                <ul>
+                <li>该参数用于实现跨直播间连麦场景。连麦主播需要调用 <xref keyref="joinChannelEx"/> 方法，以观众身份加入对方的直播间，并将 <parmname>isInteractiveAudience</parmname> 设置为 <codeph>true</codeph>。</li>
+                <li>仅当用户角色为观众（<apiname keyref="CLIENT_ROLE_AUDIENCE"/>）时，该参数生效。</li>
+                </ul>
+                </note>
+                </pd>
+            </plentry>                
             <plentry id="customvideotrackid">
                 <pt>customVideoTrackId</pt>
-                <pd>通过 <xref keyref="createCustomVideoTrack"/> 或 <xref
-                    keyref="createCustomEncodedVideoTrack"/> 创建的视频轨道 ID。</pd>
-            </plentry>
+                <pd>通过 <xref keyref="createCustomVideoTrack"/> 创建的视频轨道 ID。</pd>
+            </plentry>                
             </parml> </section>
     </refbody>
 </reference>

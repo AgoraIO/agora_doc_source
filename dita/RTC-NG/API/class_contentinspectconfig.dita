@@ -12,50 +12,30 @@
         public bool CloudWork;
         public CONTENT_INSPECT_DEVICE_TYPE DeviceworkType;</codeblock>
             <codeblock props="android">public class ContentInspectConfig {
-  public final static int CONTENT_INSPECT_TYPE_WORK_DEVICE = 0;
-  public final static int CONTENT_INSPECT_TYPE_WORK_CLOUD = 1;
-  public final static int CONTENT_INSPECT_TYPE_WORK_DEVICE_CLOUD = 2;
   public final static int CONTENT_INSPECT_TYPE_INVALID = 0;
   public final static int CONTENT_INSPECT_TYPE_MODERATION = 1;
   public final static int CONTENT_INSPECT_TYPE_SUPERVISE = 2;
-  public final static int CONTENT_INSPECT_NEUTRAL = 1;
-  public final static int CONTENT_INSPECT_SEXY = 2;
-  public final static int CONTENT_INSPECT_PORN = 3;
-  public final static int CONTENT_INSPECT_VENDOR_AGORA = 1;
-  public static final int CONTENT_INSPECT_VENDOR_HIVE = 3;
   public static final int MAX_CONTENT_INSPECT_MODULE_COUNT = 32;
   public String extraInfo;
-  public int ContentWorkType;
   public ContentInspectModule[] modules;
   public int moduleCount;
+
   public static class ContentInspectModule {
     public int type;
-    public int vendor;
-    public String callbackUrl;
-    public String token;
-    public int frequency;
+    public int interval;
+
     public ContentInspectModule() {
       type = CONTENT_INSPECT_TYPE_INVALID;
-      vendor = CONTENT_INSPECT_VENDOR_AGORA;
-      frequency = 0;
+      interval = 0;
     }
-  }
-  public ContentInspectConfig() {
-    modules = new ContentInspectModule[MAX_CONTENT_INSPECT_MODULE_COUNT];
-    for (int i = 0; i &lt; MAX_CONTENT_INSPECT_MODULE_COUNT; i++) {
-      modules[i] = new ContentInspectModule();
-    }
-    moduleCount = 0;
-  }
-}</codeblock>
+  }</codeblock>
             <codeblock props="ios mac">__attribute__((visibility("default"))) @interface AgoraContentInspectConfig: NSObject
 @property (nonatomic, copy) NSString* _Nullable extraInfo;
-@property (assign, nonatomic) AgoraContentInspectWorkType ContentWorkType;
 @property(copy, nonatomic) NSArray&lt;AgoraContentInspectModule*>* _Nullable modules;
-@end
-</codeblock>
+@end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct ContentInspectConfig {
   const char* extraInfo;
+
   ContentInspectModule modules[MAX_CONTENT_INSPECT_MODULE_COUNT];
   int moduleCount;
    ContentInspectConfig&amp; operator=(const ContentInspectConfig&amp; rth)
@@ -69,21 +49,7 @@
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">class ContentInspectConfig {
-                  final String? extraInfo;
-
-                  final List&lt;ContentInspectModule&gt; modules;
-
-                  final int moduleCount;
-
-                  const ContentInspectConfig(
-                      {required this.modules, this.extraInfo, this.moduleCount = 0});
-
-                  factory ContentInspectConfig.fromJson(Map&lt;String, dynamic&gt; json) =>
-                      _$ContentInspectConfigFromJson(json);
-
-                  Map&lt;String, dynamic&gt; toJson() => _$ContentInspectConfigToJson(this);
-                }</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart"/></p>
         </section>
         <section id="detailed_desc"/>
         <section id="parameters">
@@ -91,6 +57,18 @@
             conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
             /></title>
             <parml>
+            <plentry>
+                <pt>CONTENT_INSPECT_TYPE_INVALID</pt>
+                <pd>（默认）该功能模块无实际功能。请不要将 type 设为该值。</pd>
+            </plentry>
+            <plentry>
+                <pt>CONTENT_INSPECT_TYPE_MODERATION</pt>
+                <pd>视频鉴黄。SDK 会对本地用户发送的视频进行截图、鉴黄，并将截图和审核结果上传。</pd>
+            </plentry>  
+            <plentry>
+                <pt>CONTENT_INSPECT_SUPERVISE</pt>
+                <pd>视频截图。SDK 会对视频流进行截图并上传。</pd>
+            </plentry>                   
             <plentry>
                 <pt>extraInfo</pt>
                 <pd>
@@ -102,13 +80,14 @@
                 <pt>modules</pt>
                 <pd>
                     <p>视频内容审核模块。详见 <xref keyref="ContentInspectModule"/>。</p>
-                    <p>最多支持配置 32 个 <apiname keyref="ContentInspectModule"/> 实例，<parmname>MAX_CONTENT_INSPECT_MODULE_COUNT</parmname> 的取值范围为 [1,32] 中的整数。</p>
-                    <note type="attention">一个视频内容审核模块最多只能配置一个实例。</note>
-                </pd>
+                    <p>最多支持配置 32 个 <apiname keyref="ContentInspectModule"
+                    /> 实例，<parmname>MAX_CONTENT_INSPECT_MODULE_COUNT</parmname> 的取值范围为 [1,32] 中的整数。</p>
+                    <note type="attention">一个视频内容审核模块最多只能配置一个实例。</note> </pd>
             </plentry>
             <plentry>
                 <pt>moduleCount</pt>
-                <pd>视频内容审核模块数，即配置的 <apiname keyref="ContentInspectModule"/> 实例的数量，必须与 <codeph>modules</codeph> 中配置的实例个数一致。最大值为 32。</pd>
+                <pd>视频内容审核模块数，即配置的 <apiname keyref="ContentInspectModule"
+                    /> 实例的数量，必须与 <codeph>modules</codeph> 中配置的实例个数一致。最大值为 32。</pd>
             </plentry>
             </parml> </section>
     </refbody>
