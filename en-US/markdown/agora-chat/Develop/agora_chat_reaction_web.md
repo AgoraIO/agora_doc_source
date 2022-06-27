@@ -1,8 +1,14 @@
-Emojis are widely used in real0time chats because they allow users to express their feelings in a direct and vivid way. In Agora Chat, "reactions" allow users to quickly react to a message using emojis in one-to-one chats and chat groups. In group chats, reactions can also be used to cast a vote, for example, by calculating the number of different emojis attached to the message. 
+Emojis are widely used in real-time chats because they allow users to express their feelings in a direct and vivid way. In Agora Chat, "reactions" allow users to quickly react to a message using emojis in one-to-one chats and chat groups. In group chats, reactions can also be used to cast a vote, for example, by calculating the number of different emojis attached to the message. 
 
-The following illustration shows the implementation of adding a reaction to a message, how a conversation looks with reactions, and what retrieving a list of reactions (with related information) looks like.
+The following illustrations show the implementation of adding a reaction to a message, and what retrieving a list of reactions (with related information) looks like.
 
-![](https://web-cdn.agora.io/docs-files/1654763198784)
+- Adding a reaction
+
+  ![](https://web-cdn.agora.io/docs-files/1655257804635)
+	
+- Retrieving a list of reactions
+
+  ![](https://web-cdn.agora.io/docs-files/1655257845986)
 
 This page shows how to use the Agora Chat SDK to implement reactions in your project.
 
