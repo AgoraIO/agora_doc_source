@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
 
@@ -5,6 +6,7 @@ import 'package:agora_rtc_ng/src/agora_base.dart';
 import 'package:agora_rtc_ng/src/agora_media_base.dart';
 import 'package:agora_rtc_ng/src/agora_rtc_engine.dart';
 import 'package:agora_rtc_ng/src/agora_rtc_engine_ex.dart';
+import 'package:agora_rtc_ng/src/agora_rtc_engine_ext.dart';
 import 'package:agora_rtc_ng/src/audio_device_manager.dart';
 import 'package:agora_rtc_ng/src/binding/agora_rtc_engine_event_impl.dart';
 import 'package:agora_rtc_ng/src/binding/agora_rtc_engine_ex_impl.dart'
@@ -14,7 +16,6 @@ import 'package:agora_rtc_ng/src/binding/agora_rtc_engine_impl.dart'
 import 'package:agora_rtc_ng/src/binding/event_handler_param_json.dart';
 
 import 'package:agora_rtc_ng/src/agora_media_player.dart';
-import 'package:agora_rtc_ng/src/binding/agora_media_base_event_impl.dart';
 import 'package:agora_rtc_ng/src/impl/audio_device_manager_impl.dart';
 import 'package:agora_rtc_ng/src/impl/media_player_impl.dart';
 import 'package:flutter/material.dart';
@@ -140,9 +141,9 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
   RtcEngineImpl._() {}
 
   static RtcEngineImpl? _instance;
+  Completer<void>? _shouldWaitForPreviousRelease;
   final Set<RtcEngineEventHandler> _rtcEngineEventHandlers = {};
   final Set<MetadataObserver> _metadataObservers = {};
-  SnapshotCallback? _snapshotCallback;
   DirectCdnStreamingEventHandler? _directCdnStreamingEventHandler;
 
   final GlobalVideoViewController _globalVideoViewController =
@@ -155,15 +156,14 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
   @internal
   final MethodChannel engineMethodChannel = const MethodChannel('agora_rtc_ng');
 
-  static Future<RtcEngineEx> create(RtcEngineContext context) async {
+  static RtcEngineEx create() {
     if (_instance != null) return _instance!;
-    await apiCaller.initilize();
-
-    _instance = RtcEngineImpl._();
-    _instance!.initialize(context);
-    _instance!._initializeInternal(context);
 
     // apiCaller.setupIrisRtcEngineEventHandler();
+
+    _instance = RtcEngineImpl._();
+
+    // _instance = newInstance;
 
     return _instance!;
   }
@@ -174,24 +174,48 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
   }
 
   @override
+  Future<void> initialize(RtcEngineContext context) async {
+    // if (_instance != null) {
+    //   if (_instance!._shouldWaitForPreviousRelease != null) {
+    //     await _instance!._shouldWaitForPreviousRelease!.future;
+    //   }
+    // }
+
+    await apiCaller.initilize();
+    await super.initialize(context);
+
+    await apiCaller.callIrisApi(
+      'RtcEngine_setAppType',
+      jsonEncode({'appType': 4}),
+    );
+
+    await _initializeInternal(context);
+  }
+
+  @override
   Future<void> release({bool sync = false}) async {
+    // _shouldWaitForPreviousRelease = Completer();
+
     if (_rtcEngineEventHandlers.isNotEmpty) {
       apiCaller.removeEventHandler(this);
       _rtcEngineEventHandlers.clear();
     }
 
     _metadataObservers.clear();
-    _snapshotCallback = null;
     _directCdnStreamingEventHandler = null;
     _mediaPlayerCount = 0;
+
+    apiCaller.disposeIrisRtcEngineEventHandler();
 
     await _globalVideoViewController
         .detachVideoFrameBufferManager(apiCaller.getIrisApiEngineIntPtr());
 
-    super.release(sync: sync);
+    await super.release(sync: sync);
 
     await apiCaller.dispose();
     _instance = null;
+    // _shouldWaitForPreviousRelease!.complete();
+    // _shouldWaitForPreviousRelease = null;
   }
 
   @override
@@ -214,7 +238,6 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
       }
     }
 
-    _snapshotCallback?.process(event, data, buffers);
     _directCdnStreamingEventHandler?.process(event, data, buffers);
   }
 
@@ -540,26 +563,23 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
     _metadataObservers.remove(observer);
   }
 
-  @override
-  Future<void> takeSnapshot(
-      {required SnapShotConfig config,
-      required SnapshotCallback callback}) async {
-    _snapshotCallback = callback;
+  // @override
+  // Future<void> takeSnapshot(SnapShotConfig config) async {
 
-    const apiType = 'RtcEngine_takeSnapshot';
-    final param = createParams({'config': config.toJson()});
+  //   const apiType = 'RtcEngine_takeSnapshot';
+  //   final param = createParams({'config': config.toJson()});
 
-    final callApiResult =
-        await apiCaller.callIrisApi(apiType, jsonEncode(param));
-    if (callApiResult.irisReturnCode < 0) {
-      throw AgoraRtcException(code: callApiResult.irisReturnCode);
-    }
-    final rm = callApiResult.data;
-    final result = rm['result'];
-    if (result < 0) {
-      throw AgoraRtcException(code: result);
-    }
-  }
+  //   final callApiResult =
+  //       await apiCaller.callIrisApi(apiType, jsonEncode(param));
+  //   if (callApiResult.irisReturnCode < 0) {
+  //     throw AgoraRtcException(code: callApiResult.irisReturnCode);
+  //   }
+  //   final rm = callApiResult.data;
+  //   final result = rm['result'];
+  //   if (result < 0) {
+  //     throw AgoraRtcException(code: result);
+  //   }
+  // }
 
   @override
   Future<void> startDirectCdnStreaming(
@@ -600,29 +620,270 @@ class RtcEngineImpl extends rtc_engine_ex_binding.RtcEngineExImpl
   AudioDeviceManager getAudioDeviceManager() {
     return AudioDeviceManagerImpl.create();
   }
+
+  @override
+  Future<SDKBuildInfo> getVersion() async {
+    const apiType = 'RtcEngine_getVersion';
+    final param = createParams({});
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
+    final result = rm['result'];
+    return SDKBuildInfo(version: result, build: rm['build']);
+  }
+
+  @override
+  Future<void> joinChannelWithOptions(
+      {required String token,
+      required String channelId,
+      required int uid,
+      required ChannelMediaOptions options}) async {
+    const apiType = 'RtcEngine_joinChannel2';
+    final param = createParams({
+      'token': token,
+      'channelId': channelId,
+      'uid': uid,
+      'options': options.toJson()
+    });
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
+    final result = rm['result'];
+    if (result < 0) {
+      throw AgoraRtcException(code: result);
+    }
+  }
+
+  @override
+  Future<void> leaveChannel({LeaveChannelOptions? options}) async {
+    final apiType =
+        options == null ? 'RtcEngine_leaveChannel' : 'RtcEngine_leaveChannel2';
+    final param = createParams({'options': options?.toJson()});
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
+    final result = rm['result'];
+    if (result < 0) {
+      throw AgoraRtcException(code: result);
+    }
+  }
+
+  @override
+  Future<void> setClientRole(
+      {required ClientRoleType role, ClientRoleOptions? options}) async {
+    final apiType = options == null
+        ? 'RtcEngine_setClientRole'
+        : 'RtcEngine_setClientRole2';
+    final param =
+        createParams({'role': role.value(), 'options': options?.toJson()});
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
+    final result = rm['result'];
+    if (result < 0) {
+      throw AgoraRtcException(code: result);
+    }
+  }
+
+  @override
+  Future<void> startEchoTest({int intervalInSeconds = 10}) async {
+    const apiType = 'RtcEngine_startEchoTest2';
+    final param = createParams({'intervalInSeconds': intervalInSeconds});
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
+    final result = rm['result'];
+    if (result < 0) {
+      throw AgoraRtcException(code: result);
+    }
+  }
+
+  @override
+  Future<void> startPreview(
+      {VideoSourceType sourceType =
+          VideoSourceType.videoSourceCameraPrimary}) async {
+    if (_instance == null) return;
+    const apiType = 'RtcEngine_startPreview2';
+    final param = createParams({'sourceType': sourceType.value()});
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
+    final result = rm['result'];
+    if (result < 0) {
+      throw AgoraRtcException(code: result);
+    }
+  }
+
+  @override
+  Future<void> enableVideo() async {
+    if (_instance == null) return;
+    super.enableVideo();
+  }
+
+  @override
+  Future<void> stopPreview(
+      {VideoSourceType sourceType =
+          VideoSourceType.videoSourceCameraPrimary}) async {
+    const apiType = 'RtcEngine_stopPreview2';
+    final param = createParams({'sourceType': sourceType.value()});
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
+    final result = rm['result'];
+    if (result < 0) {
+      throw AgoraRtcException(code: result);
+    }
+  }
+
+  @override
+  Future<void> startAudioRecording(AudioRecordingConfiguration config) async {
+    const apiType = 'RtcEngine_startAudioRecording3';
+    final param = createParams({'config': config.toJson()});
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
+    final result = rm['result'];
+    if (result < 0) {
+      throw AgoraRtcException(code: result);
+    }
+  }
+
+  @override
+  Future<void> startAudioMixing(
+      {required String filePath,
+      required bool loopback,
+      required bool replace,
+      required int cycle,
+      int startPos = 0}) async {
+    const apiType = 'RtcEngine_startAudioMixing2';
+    final param = createParams({
+      'filePath': filePath,
+      'loopback': loopback,
+      'replace': replace,
+      'cycle': cycle,
+      'startPos': startPos
+    });
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
+    final result = rm['result'];
+    if (result < 0) {
+      throw AgoraRtcException(code: result);
+    }
+  }
+
+  @override
+  Future<void> enableDualStreamMode(
+      {required bool enabled,
+      VideoSourceType sourceType = VideoSourceType.videoSourceCameraPrimary,
+      SimulcastStreamConfig? streamConfig}) async {
+    final apiType = streamConfig == null
+        ? 'RtcEngine_enableDualStreamMode2'
+        : 'RtcEngine_enableDualStreamMode3';
+    final param = createParams({
+      'enabled': enabled,
+      'sourceType': sourceType.value(),
+      'streamConfig': streamConfig?.toJson()
+    });
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
+    final result = rm['result'];
+    if (result < 0) {
+      throw AgoraRtcException(code: result);
+    }
+  }
+
+  @override
+  Future<int> createDataStream(DataStreamConfig config) async {
+    const apiType = 'RtcEngine_createDataStream2';
+    final param = createParams({'config': config.toJson()});
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
+    final result = rm['result'];
+    final streamIdResult = rm['streamId'];
+    return streamIdResult as int;
+  }
+
+  @override
+  Future<void> addVideoWatermark(
+      {required String watermarkUrl, required WatermarkOptions options}) async {
+    const apiType = 'RtcEngine_addVideoWatermark2';
+    final param = createParams(
+        {'watermarkUrl': watermarkUrl, 'options': options.toJson()});
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
+    final result = rm['result'];
+    if (result < 0) {
+      throw AgoraRtcException(code: result);
+    }
+  }
+
+  @override
+  Future<void> joinChannelWithUserAccount(
+      {required String token,
+      required String channelId,
+      required String userAccount,
+      ChannelMediaOptions? options}) async {
+    final apiType = options == null
+        ? 'RtcEngine_joinChannelWithUserAccount'
+        : 'RtcEngine_joinChannelWithUserAccount2';
+    final param = createParams({
+      'token': token,
+      'channelId': channelId,
+      'userAccount': userAccount,
+      'options': options?.toJson()
+    });
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
+    final result = rm['result'];
+    if (result < 0) {
+      throw AgoraRtcException(code: result);
+    }
+  }
 }
-
-// class IVideoDeviceCollectionInternal extends IVideoDeviceCollection {
-//   @override
-//   void getCount() {
-//     throw UnimplementedError();
-//   }
-
-//   @override
-//   String getDevice({required int index, required String deviceIdUTF8}) {
-//     throw UnimplementedError();
-//   }
-
-//   @override
-//   Future<void> release() async {
-//     throw UnimplementedError();
-//   }
-
-//   @override
-//   void setDevice(String deviceIdUTF8) {
-//     throw UnimplementedError();
-//   }
-// }
 
 class VideoDeviceManagerImpl extends rtc_engine_binding.VideoDeviceManagerImpl
     implements VideoDeviceManager {

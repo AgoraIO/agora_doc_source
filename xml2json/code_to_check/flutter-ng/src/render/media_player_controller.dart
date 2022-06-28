@@ -6,6 +6,7 @@ import 'package:agora_rtc_ng/src/impl/video_view_controller_impl.dart';
 
 const int kMediaPlayerNotInit = -1;
 
+/// A controller for an [AgoraVideoView] rendering of media player.
 abstract class MediaPlayerController extends MediaPlayer
     implements VideoViewControllerBase {
   static Future<MediaPlayerController> create({
