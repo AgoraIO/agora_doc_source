@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_cameracapturerconfiguration_ng">
-    <title> <ph keyref="CameraCapturerConfiguration" /> </title>
+    <title> <ph keyref="CameraCapturerConfiguration"/> </title>
     <shortdesc id="short"> <ph id="shortdesc">摄像头采集配置。</ph> </shortdesc>
     <refbody>
         <section id="prototype">
@@ -27,7 +27,7 @@
   char deviceId[MAX_DEVICE_ID_LENGTH];
   VideoFormat format;
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public class CameraCapturerConfiguration
     {
         public CameraCapturerConfiguration()
@@ -49,26 +49,32 @@
         public VideoFormat format { set; get; }
         public CAMERA_DIRECTION cameraDirection { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock> </p>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>
+            <title> <text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /> </title>
             <parml>
             <plentry>
                 <pt>cameraDirection</pt>
                 <pd>
-                    <note type="attention" props="cpp unity">该参数仅适用于 Android 和 iOS 平台。</note>
-                    <ph>摄像头方向设置。</ph><ph props="ios cpp unity android">详见 <xref keyref="CAMERA_DIRECTION" />。</ph></pd>
+                    <note type="attention" props="cpp unity electron rn"
+                    >该参数仅适用于 Android 和 iOS 平台。</note> <ph>摄像头方向设置。</ph><ph
+                    props="ios cpp unity android rn">详见 <xref
+                    keyref="CAMERA_DIRECTION"/>。</ph></pd>
             </plentry>
-            <plentry props="cpp android unity">
-                <pt props="cpp unity">format</pt>
+            <plentry props="cpp android unity electron rn">
+                <pt props="cpp unity electron rn">format</pt>
                 <pt props="android">captureFormat</pt>
-                <pd>详见 <xref keyref="VideoFormat" />。</pd>
+                <pd>详见 <xref keyref="VideoFormat"/>。</pd>
             </plentry>
-            <plentry props="cpp unity">
+            <plentry props="cpp unity electron rn">
                 <pt>deviceId</pt>
-                <pd><ph>播放设备的设备 ID。</ph><ph props="cpp"> 最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE" /> 。</ph></pd>
+                <pd><ph>播放设备的设备 ID。</ph><ph props="cpp electron rn"> 最大长度为 <xref
+                    keyref="MAX_DEVICE_ID_LENGTH_TYPE"/> 。</ph></pd>
             </plentry>
             </parml> </section>
     </refbody>

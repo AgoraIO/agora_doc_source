@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_lastmileproberesult">
-    <title><ph keyref="LastmileProbeResult" /></title>
-    <shortdesc id="short"><ph id="shortdesc">上下行 Last mile 网络质量探测结果。</ph></shortdesc>
+    <title><ph keyref="LastmileProbeResult"/></title>
+    <shortdesc id="short"><ph id="shortdesc"
+        >上下行 Last mile 网络质量探测结果。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -35,7 +36,7 @@
 @property (strong, nonatomic) AgoraLastmileProbeOneWayResult *_Nonnull uplinkReport;
 @property (strong, nonatomic) AgoraLastmileProbeOneWayResult *_Nonnull downlinkReport;
 @end</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public class LastmileProbeResult
     {
         public LastmileProbeResult()
@@ -57,35 +58,43 @@
         public LastmileProbeOneWayResult downlinkReport { set; get; }
         public uint rtt { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock> </p>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>state</pt>
                 <pd>
-                    <p props="ios mac cpp unity">Last mile 质量探测结果的状态。详见: <xref keyref="LASTMILE_PROBE_RESULT_STATE" /> 。</p>
+                    <p props="ios mac cpp unity electron rn">Last mile 质量探测结果的状态。详见: <xref
+                    keyref="LASTMILE_PROBE_RESULT_STATE"/> 。</p>
                     <p props="android">Last-mile 质量探测结果的状态，有如下几种：
 
+                    
                     <ul>
-                    <li><ph keyref="LASTMILE_PROBE_RESULT_COMPLETE" /> (1)：表示本次 Last-mile
+                    <li><ph keyref="LASTMILE_PROBE_RESULT_COMPLETE"
+                        /> (1)：表示本次 Last-mile
                                     质量探测是完整的。</li>
-                    <li><ph keyref="LASTMILE_PROBE_RESULT_INCOMPLETE_NO_BWE" /> (2)：表示本次
+                    <li><ph keyref="LASTMILE_PROBE_RESULT_INCOMPLETE_NO_BWE"
+                        /> (2)：表示本次
                                     Last-mile 质量探测未进行带宽预测，因此结果不完整。一个可能的原因是测试资源暂时受限。</li>
-                    <li><ph keyref="LASTMILE_PROBE_RESULT_UNAVAILABLE" /> (3)：未进行
+                    <li><ph keyref="LASTMILE_PROBE_RESULT_UNAVAILABLE"
+                        /> (3)：未进行
                                     Last-mile 质量探测。一个可能的原因是网络连接中断。</li>
                     </ul> </p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>uplinkReport</pt>
-                <pd>上行网络质量报告。详见 <xref keyref="LastmileProbeOneWayResult" />。</pd>
+                <pd>上行网络质量报告。详见 <xref keyref="LastmileProbeOneWayResult"/>。</pd>
             </plentry>
             <plentry>
                 <pt>downlinkReport</pt>
-                <pd>下行网络质量报告。详见 <xref keyref="LastmileProbeOneWayResult" />。</pd>
+                <pd>下行网络质量报告。详见 <xref keyref="LastmileProbeOneWayResult"/>。</pd>
             </plentry>
             <plentry>
                 <pt>rtt</pt>
