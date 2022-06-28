@@ -27,14 +27,6 @@
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">RtmpStreamingEventCallback? rtmpStreamingEvent;</codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>自从</dt>
-                <dd>v3.1.0</dd>
-            </dlentry>
-            </dl>
-        </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
@@ -45,7 +37,14 @@
             </plentry>
             <plentry id="eventCode">
                 <pt>eventCode</pt>
-                <pd>旁路推流事件码。详见 <xref keyref="RTMP_STREAMING_EVENT"/>。</pd>
+                <pd props="ios mac cpp unity">旁路推流事件码。详见 <xref keyref="RTMP_STREAMING_EVENT"/>。</pd>
+                <pd props="android">旁路推流事件码。
+                <ul>
+                   <li><ph keyref="RTMP_STREAMING_EVENT_FAILED_LOAD_IMAGE"/> (1): 旁路推流时，添加背景图或水印出错。</li>
+                   <li><ph keyref="RTMP_STREAMING_EVENT_URL_ALREADY_IN_USE"/> (2): 该推流 URL 已用于推流。如果你想开始新的推流，请使用新的推流 URL。</li>
+                   <li><ph keyref="RTMP_STREAMING_EVENT_ADVANCED_FEATURE_NOT_SUPPORT"/> (3): 功能不支持。</li>
+                   <li><ph keyref="RTMP_STREAMING_EVENT_REQUEST_TOO_OFTEN"/> (4): 预留参数。</li>
+                </ul></pd>
             </plentry>
             </parml> </section>
     </refbody>

@@ -29,7 +29,7 @@
             <codeblock props="flutter" outputclass="language-dart">LocalAudioStateCallback? localAudioStateChanged;</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p id="desc">本地音频的状态发生改变时（包括本地麦克风采集状态和音频编码状态）， SDK 会触发该回调报告当前的本地音频状态。在本地音频出现故障时，该回调可以帮助你了解当前音频的状态以及出现故障的原因，方便你排查问题。</p>
+            <p id="desc">本地音频的状态发生改变时（包括本地麦克风采集状态和音频编码状态），SDK 会触发该回调报告当前的本地音频状态。在本地音频出现故障时，该回调可以帮助你了解当前音频的状态以及出现故障的原因，方便你排查问题。</p>
             <note id="note" type="attention">
                 当状态为 <apiname keyref="LOCAL_AUDIO_STREAM_STATE_FAILED"/> (3) 时， 你可以在 <parmname>error</parmname> 参数中查看返回的错误信息。
             </note> </section>
@@ -47,11 +47,28 @@
             </plentry>
             <plentry>
                 <pt>state</pt>
-                <pd>当前的本地音频状态。详见 <xref keyref="LOCAL_AUDIO_STREAM_STATE"/>。</pd>
+                <pd props="ios mac cpp unity">当前的本地音频状态。详见 <xref keyref="LOCAL_AUDIO_STREAM_STATE"/>。</pd>
+                <pd props="android">当前的本地音频状态。
+                <ul>
+                    <li><ph keyref="LOCAL_AUDIO_STREAM_STATE_STOPPED"/> (0): 本地音频默认初始状态。</li>
+                    <li><ph keyref="LOCAL_AUDIO_STREAM_STATE_RECORDING"/> (1): 本地音频采集设备启动成功。</li>
+                    <li><ph keyref="LOCAL_AUDIO_STREAM_STATE_ENCODING"/> (2): 本地音频首帧编码成功。</li>
+                    <li><ph keyref="LOCAL_AUDIO_STREAM_STATE_FAILED"/> (3): 本地音频启动失败。</li>
+                </ul></pd>
             </plentry>
             <plentry>
                 <pt>error</pt>
-                <pd>本地音频出错原因。详见 <xref keyref="LOCAL_AUDIO_STREAM_ERROR"/>。</pd>
+                <pd props="ios mac cpp unity">本地音频出错原因。详见 <xref keyref="LOCAL_AUDIO_STREAM_ERROR"/>。</pd>
+                <pd props="android">本地音频出错原因。
+                <ul>
+                    <li><ph keyref="LOCAL_AUDIO_STREAM_ERROR_OK"/> 0: 本地音频状态正常。</li>
+                    <li><ph keyref="LOCAL_AUDIO_STREAM_ERROR_FAILURE"/> 1: 本地音频出错原因不明确。建议提示用户尝试重新加入频道。</li>
+                    <li><ph keyref="LOCAL_AUDIO_STREAM_ERROR_DEVICE_NO_PERMISSION"/> 2: 没有权限启动本地音频采集设备。请提示用户开启权限。</li>
+                    <li><ph keyref="LOCAL_AUDIO_STREAM_ERROR_DEVICE_BUSY"/> 3: 本地音频采集设备已经在使用中。请提示用户检查麦克风是否被其他应用占用。麦克风空闲约 5 秒后本地音频采集会自动恢复，你也可以在麦克风空闲后尝试重新加入频道。</li>
+                    <li><ph keyref="LOCAL_AUDIO_STREAM_ERROR_RECORD_FAILURE"/> 4: 本地音频采集失败。</li>
+                    <li><ph keyref="LOCAL_AUDIO_STREAM_ERROR_ENCODE_FAILURE"/> 5: 本地音频编码失败。</li>
+                    <li><ph keyref="LOCAL_AUDIO_STREAM_ERROR_INTERRUPTED"/> 8: 本地音频采集被系统来电、Siri、闹钟中断。如需恢复本地音频采集，请用户中止电话、Siri、闹钟。</li>
+                </ul></pd>
             </plentry>
             </parml> </section>
     </refbody>
