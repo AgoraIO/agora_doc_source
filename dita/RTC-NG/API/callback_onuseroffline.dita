@@ -29,6 +29,7 @@
         <section id="detailed_desc">
             <p id="desc">用户离开频道有两个原因：
             
+            
             <ul>
             <li>正常离开：远端用户/主播会发送类似“再见”的消息。接收此消息后，判断用户离开频道。</li>
             <li>超时掉线：在一定时间内（通信场景为 20
@@ -44,24 +45,25 @@
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="rtc-ng">
-                <pt props="unity">connection</pt>
-                <pd props="unity">
+            <plentry props="unity electron rn">
+                <pt>connection</pt>
+                <pd>
                         Connection 信息。详见
                         <xref keyref="RtcConnection"/>
                         。
                     </pd>
             </plentry>
             <plentry id="uid">
-                <pt props="native electron flutter">uid</pt>
-                <pt props="unity"> <ph props="rtc">uid</ph> <ph props="rtc-ng">remoteUid</ph> </pt>
+                <pt props="native flutter">uid</pt>
+                <pt props="unity electron rn"> <ph props="rtc">uid</ph> <ph props="rtc-ng">remoteUid</ph> </pt>
                 <pd>离线用户或主播的用户 ID。</pd>
             </plentry>
             <plentry id="reason">
                 <pt>reason</pt>
                 <pd>
-                    <p props="ios mac cpp unity flutter">离线原因: <xref keyref="USER_OFFLINE_REASON_TYPE"/>。</p>
+                    <p props="ios mac cpp unity flutter electron rn">离线原因: <xref keyref="USER_OFFLINE_REASON_TYPE"/>。</p>
                     <p props="android">远端用户（通信场景）或主播（直播场景）下线的原因：
+                    
                     
                     <ul>
                     <li> <ph keyref="USER_OFFLINE_QUIT"/>
