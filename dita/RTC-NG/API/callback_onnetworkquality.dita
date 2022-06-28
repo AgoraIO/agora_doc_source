@@ -33,22 +33,22 @@
         <section id="detailed_desc">
             <p id="desc1">该回调描述每个用户在通话中的 last mile 网络状态，其中 last mile 是指设备到 Agora 边缘服务器的网络状态。</p>
             <p id="desc2">该回调每 2 秒触发一次。如果远端有多个用户，该回调每 2 秒会被触发多次。</p>
-            <note type="note"><ph>用户不发流时，<parmname>txQuality</parmname> 为 <codeph props="cpp android unity">UNKNOWN</codeph><codeph props="ios mac electron rn">Unknown</codeph>；用户不收流时，<parmname>rxQuality</parmname> 为 <codeph props="cpp android unity">UNKNOWN</codeph><codeph props="ios mac electron rn">Unknown</codeph>。</ph></note> </section>
+            <note type="note"><ph>用户不发流时，<parmname>txQuality</parmname> 为 <codeph props="cpp android unity">UNKNOWN</codeph><codeph props="ios mac">Unknown</codeph>；用户不收流时，<parmname>rxQuality</parmname> 为 <codeph props="cpp android unity">UNKNOWN</codeph><codeph props="ios mac">Unknown</codeph>。</ph></note> </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="unity flutter electron rn">
-                <pt>connection</pt>
-                <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
-            </plentry>
+            <plentry props="unity flutter">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
             <plentry id="uid">
                 <pt props="native">uid</pt>
-                <pt props="unity flutter electron rn">remoteUid</pt>
+                <pt props="unity flutter">remoteUid</pt>
                 <pd>
                     <p>用户 ID。表示该回调报告的是持有该 ID 的用户的网络质量。</p>
                 </pd>
@@ -56,16 +56,16 @@
             <plentry id="txQuality">
                 <pt>txQuality</pt>
                 <pd>该用户的上行网络质量，基于发送码率、上行丢包率、平均往返时延和网络抖动计算。 该值代表当前的上行网络质量，帮助判断是否可以支持当前设置的视频编码属性。 假设上行码率是 1000 Kbps，那么支持直播场景下 640 × 480 的分辨率、15 fps 的帧率没有问题，但是支持 1280 × 720 的分辨率就会有困难。 <ph props="ios mac cpp unity electron flutter">详见 <xref keyref="QUALITY_TYPE"/>。</ph>
-                    <ul conkeyref="RemoteAudioStats/qualitytype" props="android">
-                    <li/>
-                    </ul> </pd>
+                        <ul conkeyref="RemoteAudioStats/qualitytype" props="android">
+                        <li/>
+                        </ul> </pd>
             </plentry>
             <plentry id="rxQuality">
                 <pt>rxQuality</pt>
                 <pd>该用户的下行网络质量，基于下行网络的丢包率、平均往返延时和网络抖动计算。<ph props="ios mac cpp unity electron flutter">详见 <xref keyref="QUALITY_TYPE"/>。</ph>
-                    <ul conkeyref="RemoteAudioStats/qualitytype" props="android">
-                    <li/>
-                    </ul></pd>
+                        <ul conkeyref="RemoteAudioStats/qualitytype" props="android">
+                        <li/>
+                        </ul></pd>
             </plentry>
             </parml> </section>
     </refbody>

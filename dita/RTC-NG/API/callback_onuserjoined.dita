@@ -25,7 +25,6 @@
             </ul>
             <p>该回调在如下情况下会被触发：
             
-            
             <ul>
             <li>
                         远端用户/主播调用
@@ -38,15 +37,15 @@
         </section>
         <section id="parameters">
             <title> <ph keyref="callback-section-title"/> </title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="unity electron rn">
-                <pt>connection</pt>
-                <pd>
+            <plentry props="rtc-ng">
+                <pt props="unity">connection</pt>
+                <pd props="unity">
                         Connection 信息。详见
                         <xref keyref="RtcConnection"/>
                         。
@@ -54,7 +53,7 @@
             </plentry>
             <plentry id="uid">
                 <pt props="native electron flutter">uid</pt>
-                <pt props="unity electron rn"> <ph props="rtc">uid</ph> <ph props="rtc-ng">remoteUid</ph> </pt>
+                <pt props="unity"> <ph props="rtc">uid</ph> <ph props="rtc-ng">remoteUid</ph> </pt>
                 <pd>新加入频道的远端用户/主播 ID。</pd>
             </plentry>
             <plentry>
