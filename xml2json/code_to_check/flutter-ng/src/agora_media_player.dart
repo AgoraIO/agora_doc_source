@@ -39,10 +39,6 @@ abstract class MediaPlayer {
 
   Future<void> selectAudioTrack(int index);
 
-  Future<void> setPlayerOption({required String key, required int value});
-
-  Future<void> setPlayerOption2({required String key, required String value});
-
   Future<void> takeScreenshot(String filename);
 
   Future<void> selectInternalSubtitle(int index);
@@ -101,4 +97,9 @@ abstract class MediaPlayer {
   Future<void> unloadSrc(String src);
 
   Future<void> setSpatialAudioParams(SpatialAudioParams params);
+
+  Future<void> setPlayerOptionInInt({required String key, required int value});
+
+  Future<void> setPlayerOptionInString(
+      {required String key, required String value});
 }
