@@ -38,6 +38,7 @@
 
 
 
+            
             <ul>
             <li>应用退到后台，系统回收摄像头。</li>
             <li>摄像头正常启动，但连续 4 秒都没有输出采集的视频。</li>
@@ -47,22 +48,21 @@
             <note id="note" type="attention">对某些机型而言，当本地视频采集设备正在使用中时，SDK 不会在本地视频状态发生改变时触发该回调，你需要自行做超时判断。</note> </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="rtc-ng">
-                <pt props="unity">connection</pt>
-                <pd props="unity">Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+            <plentry props="unity electron rn">
+                <pt>connection</pt>
+                <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
             </plentry>
             <plentry>
-                <pt props="ios mac">state</pt>
-                <pt props="electron flutter">localVideoState</pt>
-                <pt props="cpp android unity"><ph props="rtc">localVideoState</ph><ph props="rtc-ng">state</ph></pt>
+                <pt props="ios mac cpp android unity electron rn">state</pt>
+                <pt props="flutter">localVideoState</pt>
                 <pd>
-                    <p props="ios mac cpp unity electron flutter">本地视频状态，详见 <xref keyref="LOCAL_VIDEO_STREAM_STATE"/>。</p>
+                    <p props="ios mac cpp unity electron rn flutter">本地视频状态，详见 <xref keyref="LOCAL_VIDEO_STREAM_STATE"/>。</p>
                     <p props="android">
                     <ul>
                     <li><ph keyref="LOCAL_VIDEO_STREAM_STATE_STOPPED"/> (0): 本地视频默认初始状态。</li>
@@ -73,10 +73,10 @@
                 </pd>
             </plentry>
             <plentry>
-                <pt props="ios mac cpp android electron flutter">error</pt>
-                <pt props="unity"><ph props="rtc">error</ph><ph props="rtc-ng">errorCode</ph></pt>
+                <pt props="ios mac cpp android flutter">error</pt>
+                <pt props="unity electron rn">errorCode</pt>
                 <pd>
-                    <p props="ios mac cpp electron flutter">本地视频出错原因，详见 <xref keyref="LOCAL_VIDEO_STREAM_ERROR"/>。</p>
+                    <p props="ios mac cpp electron rn flutter">本地视频出错原因，详见 <xref keyref="LOCAL_VIDEO_STREAM_ERROR"/>。</p>
                     <p props="android">
                     <ul>
                     <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_OK"/> (0): 本地视频状态正常。</li>
@@ -85,6 +85,7 @@
                     <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY"/> (3): 本地视频采集设备正在使用中。请提示用户检查摄像头是否被其他应用占用。</li>
                     <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/> (4): 本地视频采集失败。请提示用户检查视频采集设备是否正常工作，检查摄像头是否被其他应用占用，或者尝试重新加入频道。
 
+                        
                         <ul>
                         <li>Android 9 及以上版本，app 切后台一段时间后，系统收回相机权限。</li>
                         <li>Android 6 及以上版本，如果相机被第三方应用占用，且未被及时释放。如果一段时间后，相机被释放，则 SDK会再次出发该回调，并报告 <codeph>state</codeph> 为 <codeph>CAPTURING</codeph>，<codeph>error</codeph> 为 <codeph>ERROR_OK</codeph>。</li>
