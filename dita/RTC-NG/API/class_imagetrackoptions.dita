@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_imagetrackoptions">
+    <title><ph keyref="ImageTrackOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc">垫片图片的设置选项。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class ImageTrackOptions {
+  public String getImageUrl() {
+  return imageUrl;
+  }
+  public int getFps() {
+    return fps;
+  }
+  public ImageTrackOptions(String url, int fps) {
+    this.imageUrl = url;
+    this.fps = fps;
+  }
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraImageTrackOptions : NSObject
+@property(copy, nonatomic) NSString *_Nullable imageUrl;
+@property(assign, nonatomic) int fps;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">struct ImageTrackOptions {
+  const char* imageUrl;
+  int fps;
+  ImageTrackOptions() : imageUrl(NULL), fps(1) {}
+};</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry>
+                <pt>imageUrl</pt>
+                <pd>垫片图片的 URL，目前仅支持本地 PNG 格式的图片。支持从本地绝对/相对路径添加垫片图片。</pd>
+            </plentry>
+                <plentry>
+                    <pt>fps</pt>
+                    <pd>视频帧率，取值范围为 [1,30]。</pd>
+                </plentry>
+            </parml> </section>
+    </refbody>
+</reference>
