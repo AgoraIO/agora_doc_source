@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_virtualbackgroundsource">
-    <title><ph keyref="VirtualBackgroundSource"/></title>
+    <title><ph keyref="VirtualBackgroundSource" /></title>
     <shortdesc id="short"><ph id="shortdesc">自定义的背景。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -56,7 +56,7 @@
     BACKGROUND_BLUR_DEGREE blur_degree;
     VirtualBackgroundSource() : background_source_type(BACKGROUND_COLOR), color(0xffffff), source(NULL),  blur_degree(BLUR_DEGREE_HIGH) {}
             </codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public class VirtualBackgroundSource
     {
         public VirtualBackgroundSource()
@@ -71,56 +71,42 @@
         public string source;
         public BACKGROUND_BLUR_DEGREE blur_degree;
     };</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock>
-            </p>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt props="android ios mac flutter">backgroundSourceType</pt>
-                <pt props="unity cpp electron rn">background_source_type</pt>
-                <pd><ph>自定义的背景图类型。</ph><ph props="ios mac cpp unity flutter electron rn"
-                    >详见 <xref keyref="BACKGROUND_SOURCE_TYPE"/>。</ph>
+                <pt props="unity cpp">background_source_type</pt>
+                <pd><ph>自定义的背景图类型。</ph><ph props="ios mac cpp unity flutter">详见 <xref keyref="BACKGROUND_SOURCE_TYPE" />。</ph>
                     <ul props="android">
-                    <li><ph keyref="BACKGROUND_COLOR"/>(1)：（默认）背景图为纯色。</li>
-                    <li><ph keyref="BACKGROUND_IMG"
-                        />(2)：背景图为 PNG、JPG 格式的图片。</li>
-                    <li><ph keyref="BACKGROUND_BLUR"/>(3)：将虚化处理后的背景作为背景图。</li>
+                    <li><ph keyref="BACKGROUND_COLOR" />(1)：（默认）背景图为纯色。</li>
+                    <li><ph keyref="BACKGROUND_IMG" />(2)：背景图为 PNG、JPG 格式的图片。</li>
+                    <li><ph keyref="BACKGROUND_BLUR" />(3)：将虚化处理后的背景作为背景图。</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>color</pt>
                 <pd>自定义的背景图颜色。格式为 RGB 定义下的十六进制整数，不要带 # 号，如 0xFFB6C1 表示浅粉色。 默认值为 0xFFFFFF，表示白色。 取值范围为 [0x000000，0xffffff]。如果取值非法，SDK 会用白色背景图替换原背景图。
-
-                    <note type="attention">该参数仅在自定义背景图类型为 <ph
-                    keyref="BACKGROUND_COLOR"/> 时生效。</note></pd>
+<note type="attention">该参数仅在自定义背景图类型为 <ph keyref="BACKGROUND_COLOR" /> 时生效。</note></pd>
             </plentry>
             <plentry>
                 <pt>source</pt>
                 <pd>自定义背景图的本地绝对路径。支持 PNG 和 JPG 格式。如果路径无效，SDK 会用白色背景图替换原背景图。
-
-                    <note type="attention">该参数仅在自定义背景图类型为 <ph
-                    keyref="BACKGROUND_IMG"/> 时生效。</note></pd>
+<note type="attention">该参数仅在自定义背景图类型为 <ph keyref="BACKGROUND_IMG" /> 时生效。</note></pd>
             </plentry>
             <plentry>
                 <pt props="ios mac android">blurDegree</pt>
-                <pt props="cpp unity electron rn">blur_degree</pt>
-                <pd><ph>自定义背景图的模糊程度。</ph><ph props="ios mac cpp unity">详见 <xref
-                    keyref="BACKGROUND_BLUR_DEGREE"/>。</ph>
+                <pt props="cpp unity">blur_degree</pt>
+                <pd><ph>自定义背景图的模糊程度。</ph><ph props="ios mac cpp unity">详见 <xref keyref="BACKGROUND_BLUR_DEGREE" />。</ph>
                     <ul props="android">
-                    <li><ph keyref="BLUR_DEGREE_LOW"
-                        />(1)：自定义背景图的虚化程度为低。用户差不多能看清背景。</li>
-                    <li><ph keyref="BLUR_DEGREE_MEDIUM"
-                        />(2)：自定义背景图的虚化程度为中。用户较难看清背景。</li>
-                    <li><ph keyref="BLUR_DEGREE_HIGH"
-                        />(3)：（默认）自定义背景图的虚化程度为高。用户很难看清背景。</li>
+                    <li><ph keyref="BLUR_DEGREE_LOW" />(1)：自定义背景图的虚化程度为低。用户差不多能看清背景。</li>
+                    <li><ph keyref="BLUR_DEGREE_MEDIUM" />(2)：自定义背景图的虚化程度为中。用户较难看清背景。</li>
+                    <li><ph keyref="BLUR_DEGREE_HIGH" />(3)：（默认）自定义背景图的虚化程度为高。用户很难看清背景。</li>
                     </ul>
-                    <note type="attention">该参数仅在自定义背景图类型为 <ph
-                    keyref="BACKGROUND_BLUR"/> 时生效。</note></pd>
+                    <note type="attention">该参数仅在自定义背景图类型为 <ph keyref="BACKGROUND_BLUR" /> 时生效。</note></pd>
             </plentry>
             </parml> </section>
     </refbody>

@@ -40,33 +40,33 @@
                <note id="note" type="attention">频道内的用户（通信场景）或主播（直播场景）人数超过 17 人时，该回调可能不准确。</note> </section>
           <section id="parameters">
                <title> <ph keyref="callback-section-title"/> </title>
-               <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+               <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
                <parml>
                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                     <pt/>
                     <pd/>
                </plentry>
-               <plentry props="unity electron rn">
-                    <pt>connection</pt>
-                    <pd>
+               <plentry props="rtc-ng">
+                    <pt props="unity">connection</pt>
+                    <pd props="unity">
                               Connection 信息。详见
                               <xref keyref="RtcConnection"/>
                               。
                          </pd>
                </plentry>
                <plentry id="uid">
-                    <pt props="native flutter">uid</pt>
-                    <pt props="unity electron rn"> <ph props="rtc">uid</ph> <ph props="rtc-ng">remoteUid</ph> </pt>
+                    <pt props="native electron flutter">uid</pt>
+                    <pt props="unity"> <ph props="rtc">uid</ph> <ph props="rtc-ng">remoteUid</ph> </pt>
                     <pd>发生视频状态改变的远端用户 ID。</pd>
                </plentry>
                <plentry id="state">
                     <pt>state</pt>
                     <pd>
-                         <p props="ios mac cpp unity flutter electron rn">远端视频流状态，详见 <xref keyref="REMOTE_VIDEO_STATE"/>。</p>
+                         <p props="ios mac cpp unity flutter">远端视频流状态，详见 <xref
+                         keyref="REMOTE_VIDEO_STATE"/>。</p>
                          <p props="android">远端视频流状态：
 
 
-                         
                          <ul>
                          <li> <ph keyref="REMOTE_VIDEO_STATE_STOPPED"/>
                                              (0)：远端视频默认初始状态。在
@@ -109,7 +109,7 @@
                <plentry id="reason">
                     <pt>reason</pt>
                     <pd>
-                         <p props="ios mac cpp unity flutter electron rn">
+                         <p props="ios mac cpp unity flutter">
                                    远端视频流状态改变的具体原因，详见
                                    <xref keyref="REMOTE_VIDEO_STATE_REASON"/>
                                    。
@@ -120,7 +120,6 @@
 
 
 
-                         
                          <ul>
                          <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_INTERNAL"/>
                                              (0)：内部原因。

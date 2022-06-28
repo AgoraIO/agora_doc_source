@@ -43,25 +43,21 @@
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="native">
+            <plentry>
                 <pt>channel</pt>
                 <pd>频道名。</pd>
             </plentry>
-            <plentry props="native">
+            <plentry>
                 <pt>uid</pt>
                 <pd>用户 ID。如果 <parmname>uid</parmname> 为 0，表示本地用户。</pd>
             </plentry>
-            <plentry conkeyref="joinChannelEx/connection" props="unity flutter electron rn">
-                <pt/>
-                <pd/>
-            </plentry>
-                <plentry>
+            <plentry>
                 <pt>filePath</pt>
                 <pd>截图的本地保存路径。</pd>
             </plentry>
@@ -77,12 +73,10 @@
                 <pt>errCode</pt>
                 <pd>截图成功的提示或失败的原因。
 
-                    
                     <ul>
                     <li>0：截图成功。</li>
                     <li>&lt; 0: 截图失败。
 
-                        
                         <ul>
                         <li>-1：写入文件失败或 JPEG 编码失败。</li>
                         <li>-2：<apiname keyref="takeSnapshot"/> 方法调用成功后 1 秒内没有发现指定用户的视频流。</li>

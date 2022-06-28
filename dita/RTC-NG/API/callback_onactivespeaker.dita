@@ -25,32 +25,29 @@
             <p>成功调用 <xref keyref="enableAudioVolumeIndication"/> 后，SDK 会持续监测音量最大的远端用户，并统计该用户被判断为音量最大者的次数。当前时间段内，该次数累积最多的远端用户为最活跃的用户。</p>
             <p>当频道内用户数量大于或等于 2 且有远端活跃用户时，SDK 会触发该回调并报告远端最活跃用户的 <parmname>uid</parmname>。
 
-            
             <ul>
             <li>如果远端最活跃用户一直是同一位用户，则 SDK 不会再次触发 <apiname keyref="onActiveSpeaker"/> 回调。</li>
             <li>如果远端最活跃用户有变化，则 SDK 会再次触发该回调并报告新的远端最活跃用户的 <parmname>uid</parmname>。</li>
             </ul> </p>
-            <p/>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
-                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                    <pt/>
-                    <pd/>
-                </plentry>
-                <plentry props="unity electron rn" conkeyref="joinChannelEx/connection">
-                    <pt/>
-                    <pd/>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+                <plentry props="unity" conkeyref="joinChannelEx/connection">
+                    <pt></pt>
+                    <pd></pd>
                 </plentry>
                 <plentry id="uid">
-                    <pt props="cpp">userId</pt>
-                    <pt props="android electron flutter unity">uid</pt>
-                    <pt props="ios mac">speakerUid</pt>
-                    <pd>远端最活跃用户的 ID。</pd>
-                </plentry>
-            </parml>
-        </section>
+                <pt props="cpp">userId</pt>
+                <pt props="android electron flutter unity">uid</pt>
+                <pt props="ios mac">speakerUid</pt>
+                <pd>远端最活跃用户的 ID。</pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>
