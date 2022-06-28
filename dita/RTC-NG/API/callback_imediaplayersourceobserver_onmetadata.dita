@@ -22,7 +22,8 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnMetaData(IntPtr data, int length) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(Uint8List data, int length)? onMetaData;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>解析媒体附属信息后时，SDK 会触发该回调，报告媒体附属信息的数据类型和具体数据。</p>
@@ -42,10 +43,10 @@
                 <pt>data</pt>
                 <pd>具体数据，用户自定义格式的数据。</pd>
             </plentry>
-            <plentry props="ios mac cpp unity">
-                <pt>length</pt>
-                <pd>数据长度，单位为 byte。</pd>
-            </plentry>
+            <plentry props="ios mac cpp unity flutter">
+                    <pt>length</pt>
+                    <pd>数据长度，单位为 byte。</pd>
+                </plentry>
             </parml> </section>
     </refbody>
 </reference>
