@@ -108,7 +108,7 @@ The following table compares Real-time Messaging (RTM) and Chat:
 
 |          | RTM   | Chat   |
 | :------- | :---------------- | :----------------- |
-| Technical architecture | A distributed system that data can be processed and switched on edge nodes.   | A centralized system that all the data are processed and switched on the central node.  |
+| Technical architecture | A distributed system where data can be processed and switched on edge nodes.   | A centralized system where data is processed and switched on the central node.  |
 | Product positioning | A highly reliable synchronization and transportation service for signals, messages, and statuses that features low latency and high concurrency. | A highly interactive instant messaging service that provides contact management, multimedia messages, chat rooms, chat groups, data storage, and content moderation.  |
 | Latency performance | Ultra-low latency: < 100 ms. | Low latency: 200 ms - 400 ms. |
 | Applicable scenarios |<li>Online education with collaborative operations of teacher and students on slides and other elements<li>Real-time data synchronization of the statuses, positions, and attributes from players.<li>Virtual gifting for live-streamers.<li>Data report by IoT sensors.<li>Call invitations and host management in voice calls and video calls. | <li>Instant messaging for business.<li>Group chats in games.<li>Interactive chats in live-streaming channels. |
