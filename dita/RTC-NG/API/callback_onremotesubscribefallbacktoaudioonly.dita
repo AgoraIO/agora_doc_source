@@ -5,16 +5,17 @@
     <shortdesc id="short"><ph id="shortdesc">远端订阅流已回退为音频流回调。</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="onRemoteSubscribeFallbackToAudioOnly"/>
-   </keywords>
+            <keywords>
+                <indexterm keyref="onRemoteSubscribeFallbackToAudioOnly"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="unity" outputclass="language-csharp"></codeblock>
-        </p>
-        <p outputclass="codeblock">
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+                <codeblock props="unity" outputclass="language-csharp"/>
+            </p>
+            <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public void onRemoteSubscribeFallbackToAudioOnly(int uid, boolean isFallbackOrRecover) {}</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
     didRemoteSubscribeFallbackToAudioOnly:(BOOL)isFallbackOrRecover byUid:(NSUInteger)uid;</codeblock>
@@ -29,14 +30,19 @@
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteSubscribeFallbackToAudioOnly(uint uid, bool isFallbackOrRecover)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart">FallbackWithUidCallback? remoteSubscribeFallbackToAudioOnly;</codeblock>
-        </p>
+            </p>
         </section>
         <section id="detailed_desc">
-   <p>如果你调用了 <xref keyref="setRemoteSubscribeFallbackOption"/> 并将 <parmname>option</parmname> 设置为 <apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/>，当下行网络环境不理想、仅接收远端音频流时，或当下行网络改善、恢复订阅音视频流时，会触发该回调。</p>
-   <note type="attention"> 远端订阅流因弱网环境不能同时满足音视频而回退为小流时，你可以使用 <xref keyref="onRemoteVideoStats"/> 来监控远端视频大小流的切换。</note>
+            <p>如果你调用了 <xref keyref="setRemoteSubscribeFallbackOption"/> 并将
+                    <parmname>option</parmname> 设置为 <apiname
+                    keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"
+                />，当下行网络环境不理想、仅接收远端音频流时，或当下行网络改善、恢复订阅音视频流时，会触发该回调。</p>
+            <note type="attention"> 远端订阅流因弱网环境不能同时满足音视频而回退为小流时，你可以使用 <xref
+                    keyref="onRemoteVideoStats"/> 来监控远端视频大小流的切换。</note>
         </section>
-        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-   <parml>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <parml>
                 <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                     <pt/>
                     <pd/>

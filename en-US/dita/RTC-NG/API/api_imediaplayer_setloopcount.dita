@@ -1,32 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_setloopcount">
-    <title><ph keyref="setLoopCount" /></title>
+    <title><ph keyref="setLoopCount"/></title>
     <shortdesc id="short"><ph id="shortdesc">Sets the loop playback.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setLoopCount" />
+                <indexterm keyref="setLoopCount"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="unity" outputclass="language-csharp">public abstract int SetLoopCount(int playerId, int loopCount);</codeblock> </p>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetLoopCount(int playerId, int loopCount);</codeblock>
+            </p>
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">int setLoopCount(int loopCount);
+                <codeblock props="android" outputclass="language-java">int setLoopCount(int loopCount);
 </codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)setLoopCount:(NSInteger)loopCount;
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)setLoopCount:(NSInteger)loopCount;
 </codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int setLoopCount(int loopCount) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setLoopCount(int loopCount) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
             <p>If you want to loop, call this method and set the number of the loops.</p>
-            <p>When the loop finishes, the SDK triggers <xref keyref="onPlayerSourceStateChanged" /> and reports the playback state as <ph keyref="PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED" />.</p>
+            <p>When the loop finishes, the SDK triggers <xref keyref="onPlayerSourceStateChanged"/>
+                and reports the playback state as <ph
+                    keyref="PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED"/>.</p>
         </section>
         <section id="parameters"><title>Parameters</title>
             <parml>

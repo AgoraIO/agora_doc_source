@@ -13,13 +13,14 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int updatePlayerPositionInfo(int playerId, RemoteVoicePositionInfo positionInfo);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)updatePlayerPositionInfo:(NSInteger)playerId positionInfo:(AgoraRemoteVoicePositionInfo* _Nonnull)positionInfo;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int updatePlayerPositionInfo(int playerId, const RemoteVoicePositionInfo&amp; positionInfo) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="cs" outputclass="language-csharp">public abstract int UpdatePlayerPositionInfo(int playerId, float[] position, float[] forward);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+                <codeblock props="android" outputclass="language-java">public abstract int updatePlayerPositionInfo(int playerId, RemoteVoicePositionInfo positionInfo);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)updatePlayerPositionInfo:(NSInteger)playerId positionInfo:(AgoraRemoteVoicePositionInfo* _Nonnull)positionInfo;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int updatePlayerPositionInfo(int playerId, const RemoteVoicePositionInfo&amp; positionInfo) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="cs" outputclass="language-csharp">public abstract int UpdatePlayerPositionInfo(int playerId, float[] position, float[] forward);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
             <p>成功更新后，本地用户可以听到媒体播放器空间位置的变化。</p>
@@ -27,28 +28,31 @@
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry>
-                <pt>playerId</pt>
-                <pd><ph>媒体播放器 ID。</ph><ph props="native">可通过 <xref keyref="getMediaPlayerId"/> 获取。</ph></pd>
-            </plentry>
-            <plentry props="native">
-                <pt>positionInfo</pt>
-                <pd>媒体播放器的空间位置信息。详见 <xref keyref="RemoteVoicePositionInfo"/>。</pd>
-            </plentry>
-            <plentry props="cs">
-                <pt>position</pt>
-                <pd>在世界坐标系中的坐标。该参数是长度为 3 的数组，三个值依次表示前、右、上的坐标值。</pd>
-            </plentry>
-            <plentry props="cs">
-                <pt>forward</pt>
-                <pd>在世界坐标系前轴的单位向量。该参数是长度为 3 的数组，三个值依次表示前、右、上的坐标值。</pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>playerId</pt>
+                    <pd><ph>媒体播放器 ID。</ph><ph props="native">可通过 <xref keyref="getMediaPlayerId"/>
+                            获取。</ph></pd>
+                </plentry>
+                <plentry props="native">
+                    <pt>positionInfo</pt>
+                    <pd>媒体播放器的空间位置信息。详见 <xref keyref="RemoteVoicePositionInfo"/>。</pd>
+                </plentry>
+                <plentry props="cs">
+                    <pt>position</pt>
+                    <pd>在世界坐标系中的坐标。该参数是长度为 3 的数组，三个值依次表示前、右、上的坐标值。</pd>
+                </plentry>
+                <plentry props="cs">
+                    <pt>forward</pt>
+                    <pd>在世界坐标系前轴的单位向量。该参数是长度为 3 的数组，三个值依次表示前、右、上的坐标值。</pd>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values" props="native electron cs">
             <title>返回值</title>
             <ul>
-            <li>0: 方法调用成功。</li>
-            <li>&lt; 0: 方法调用失败。</li>
-            </ul> </section>
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。</li>
+            </ul>
+        </section>
     </refbody>
 </reference>

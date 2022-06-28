@@ -13,35 +13,38 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onTokenPrivilegeWillExpire(IChannel *rtcChannel, const char* token) {
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onTokenPrivilegeWillExpire(IChannel *rtcChannel, const char* token) {
     (void)rtcChannel;
     (void)token;
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(
+                <codeblock props="electron" outputclass="language-typescript">on(
   evt: ChannelEvents.TOKEN_PRIVILEGE_WILL_EXPIRE,
   cb: (channelId: string, token: string) =&gt; void
 ): this;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public virtual void OnTokenPrivilegeWillExpire(string channelId, string token)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">TokenCallback? tokenPrivilegeWillExpire;</codeblock> </p>
+                <codeblock props="cs" outputclass="language-csharp">public virtual void OnTokenPrivilegeWillExpire(string channelId, string token)</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">TokenCallback? tokenPrivilegeWillExpire;</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p>在通话过程中如果 Token 即将失效，SDK 会提前 30 秒触发该回调，提醒 app 更新 Token。当收到该回调时，你需要重新在服务端生成新的 Token，然后调用 <ph keyref="IChannel_renewToken"/> 将新生成的 Token 传给 SDK。</p>
+            <p>在通话过程中如果 Token 即将失效，SDK 会提前 30 秒触发该回调，提醒 app 更新 Token。当收到该回调时，你需要重新在服务端生成新的
+                Token，然后调用 <ph keyref="IChannel_renewToken"/> 将新生成的 Token 传给 SDK。</p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
-            <plentry props="native cs" conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry conkeyref="onTokenPrivilegeWillExpire/token">
-                <pt/>
-                <pd/>
-            </plentry>
-            </parml> </section>
+                <plentry props="native cs" conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry conkeyref="onTokenPrivilegeWillExpire/token">
+                    <pt/>
+                    <pd/>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

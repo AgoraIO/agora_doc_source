@@ -5,34 +5,37 @@
     <shortdesc id="short"><ph id="shortdesc">音频场景。</ph></shortdesc>
     <refbody>
         <section id="parameters">
-   <title>枚举值</title>
-   <parml>
-       <plentry>
-  <pt><ph keyref="AUDIO_SCENARIO_DEFAULT"/></pt>
-           <pd>0: （默认）自动场景，根据用户角色和音频路由自动匹配合适的音质。</pd>
-       </plentry>
-       <plentry>
-           <pt><ph keyref="AUDIO_SCENARIO_GAME_STREAMING"/></pt>
-           <pd>3: 高音质场景，适用于音乐为主的场景。</pd>
-       </plentry>
-       <plentry props="android ios">
-           <pt><ph keyref="AUDIO_SCENARIO_CHATROOM"/></pt>
-           <pd>5: 聊天室场景，适用于用户需要频繁上下麦的场景。该场景下，观众会收到申请麦克风权限的弹窗提示。</pd>
-       </plentry>
-       <plentry>
-           <pt><ph keyref="AUDIO_SCENARIO_HIGH_DEFINITION"/></pt>
-           <pd>6: 高音质场景，适用于音乐为主的场景。</pd>
-       </plentry>
-       <plentry>
-           <pt><ph keyref="AUDIO_SCENARIO_CHORUS"/></pt>
-           <pd>7: 合唱场景。适用于网络条件良好，要求极低延时的实时合唱场景。
-               <note type="attention" props="android" id="chorus">使用该枚举前，你需要调用 <xref keyref="getAudioDeviceInfo"/> 获取音频设备是否支持极低延时采集和播放。只有在支持极低延时（<parmname>isLowLatencyAudioSupported</parmname> = <codeph><ph keyref="true"/></codeph>）的音频设备上，才能够体验到极低延时。</note>
-           </pd>
-       </plentry>
+            <title>枚举值</title>
+            <parml>
+                <plentry>
+                    <pt><ph keyref="AUDIO_SCENARIO_DEFAULT"/></pt>
+                    <pd>0: （默认）自动场景，根据用户角色和音频路由自动匹配合适的音质。</pd>
+                </plentry>
+                <plentry>
+                    <pt><ph keyref="AUDIO_SCENARIO_GAME_STREAMING"/></pt>
+                    <pd>3: 高音质场景，适用于音乐为主的场景。</pd>
+                </plentry>
+                <plentry props="android ios">
+                    <pt><ph keyref="AUDIO_SCENARIO_CHATROOM"/></pt>
+                    <pd>5: 聊天室场景，适用于用户需要频繁上下麦的场景。该场景下，观众会收到申请麦克风权限的弹窗提示。</pd>
+                </plentry>
+                <plentry>
+                    <pt><ph keyref="AUDIO_SCENARIO_HIGH_DEFINITION"/></pt>
+                    <pd>6: 高音质场景，适用于音乐为主的场景。</pd>
+                </plentry>
+                <plentry>
+                    <pt><ph keyref="AUDIO_SCENARIO_CHORUS"/></pt>
+                    <pd>7: 合唱场景。适用于网络条件良好，要求极低延时的实时合唱场景。 <note type="attention" props="android"
+                            id="chorus">使用该枚举前，你需要调用 <xref keyref="getAudioDeviceInfo"/>
+                                获取音频设备是否支持极低延时采集和播放。只有在支持极低延时（<parmname>isLowLatencyAudioSupported</parmname>
+                            = <codeph><ph keyref="true"/></codeph>）的音频设备上，才能够体验到极低延时。</note>
+                    </pd>
+                </plentry>
                 <plentry props="android cpp unity">
                     <pt><ph keyref="AUDIO_SCENARIO_NUM"/></pt>
                     <pd>枚举的数量。</pd>
                 </plentry>
-   </parml>
-        </section></refbody>
+            </parml>
+        </section>
+    </refbody>
 </reference>

@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videocanvas">
-    <title> <ph keyref="VideoCanvas"/> </title>
-    <shortdesc id="short"> <ph id="shortdesc">视频显示设置。</ph> </shortdesc>
+    <title>
+        <ph keyref="VideoCanvas"/>
+    </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">视频显示设置。</ph>
+    </shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">struct VideoCanvas {
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">struct VideoCanvas {
     view_t view;
     int renderMode;
     char channelId[MAX_CHANNEL_ID_LENGTH];
@@ -16,7 +20,7 @@
     void *priv;
     VIDEO_MIRROR_MODE_TYPE mirrorMode;
     }</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public class VideoCanvas
+                <codeblock props="cs" outputclass="language-csharp">public class VideoCanvas
     {
         public VideoCanvas()
         {
@@ -43,130 +47,92 @@
         public uint uid { set; get; }
         public VIDEO_MIRROR_MODE_TYPE mirrorMode { set; get; }
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc"/>
         <section id="parameters">
-            <title> <text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /> </title>
+            <title>
+                <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/>
+            </title>
             <parml>
-            <plentry>
-                <pt>view</pt>
-                <pd>
-                    <p>用于显示视频的视图。</p>
-                    <p props="android">
-                            支持传入如下视图：
-                            
-                    
-                    <ul>
-                    <li>
-                                    通过 CreateRendererView 创建的
-                                    <codeph>SurfaceView</codeph> </li>
-                    <li>
-                                    自 v3.1.0，通过 CreateTextureView 创建的
-                                    <codeph>TextureView</codeph> </li>
-                    <li>
-                                    自 v3.6.2，Android 系统原生的
-                                    <codeph>TextureView</codeph>
-                    </li>
-                    </ul> </p>
-                </pd>
-            </plentry>
-            <plentry>
-                <pt>renderMode</pt>
-                <pd>
-                        视频渲染模式，详见
-                        <xref keyref="RENDER_MODE_TYPE"/>
-                        。
+                <plentry>
+                    <pt>view</pt>
+                    <pd>
+                        <p>用于显示视频的视图。</p>
+                        <p props="android"> 支持传入如下视图： <ul>
+                                <li> 通过 CreateRendererView 创建的 <codeph>SurfaceView</codeph>
+                                </li>
+                                <li> 自 v3.1.0，通过 CreateTextureView 创建的 <codeph>TextureView</codeph>
+                                </li>
+                                <li> 自 v3.6.2，Android 系统原生的 <codeph>TextureView</codeph>
+                                </li>
+                            </ul>
+                        </p>
                     </pd>
-            </plentry>
-            <plentry>
-                <pt>channelId</pt>
-                <pd>
-                    <dl outputclass="since">
-                    <dlentry>
-                        <dt>自从</dt>
-                        <dd>v3.0.0</dd>
-                    </dlentry>
-                    </dl>
-                    <p>
-                            频道名，即能够唯一标识频道、长度在 64 字节以内的字符。以下为支持的字符集范围（共 89 个字符）：
-                            
-                    
-                    <ul conkeyref="joinChannel2/char_support">
-                    <li/>
-                    </ul>
-                    <note type="attention">
-                    <ul>
-                    <li>
-                                        该参数默认值为空字符 ""。如果用户是通过
-                                        <xref
-                        keyref="IRtcEngine"/>
-                                        类的
-                                        <xref
-                        keyref="joinChannel2"/>
-                                        方法加入频道的，则将参数设为默认值。此时
-                                        <codeph>VideoCanvas</codeph>
-                                        设置的是该用户在频道内的视图。
+                </plentry>
+                <plentry>
+                    <pt>renderMode</pt>
+                    <pd> 视频渲染模式，详见 <xref keyref="RENDER_MODE_TYPE"/> 。 </pd>
+                </plentry>
+                <plentry>
+                    <pt>channelId</pt>
+                    <pd>
+                        <dl outputclass="since">
+                            <dlentry>
+                                <dt>自从</dt>
+                                <dd>v3.0.0</dd>
+                            </dlentry>
+                        </dl>
+                        <p> 频道名，即能够唯一标识频道、长度在 64 字节以内的字符。以下为支持的字符集范围（共 89 个字符）： <ul
+                                conkeyref="joinChannel2/char_support">
+                                <li/>
+                            </ul>
+                            <note type="attention">
+                                <ul>
+                                    <li> 该参数默认值为空字符 ""。如果用户是通过 <xref keyref="IRtcEngine"/> 类的 <xref
+                                            keyref="joinChannel2"/> 方法加入频道的，则将参数设为默认值。此时
+                                            <codeph>VideoCanvas</codeph> 设置的是该用户在频道内的视图。 </li>
+                                    <li> 如果用户是通过 <xref keyref="IChannel"/> 类的 <apiname
+                                            keyref="joinChannel2"/> 方法加入频道的，则将该参数设为该 <apiname
+                                            keyref="IChannel"/> 类对应的 <codeph>channelId</codeph> 。此时
+                                            <codeph>VideoCanvas</codeph> 设置的是用户在该
+                                            <codeph>channelId</codeph> 对应频道内的视图。 </li>
+                                </ul>
+                            </note>
+                        </p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry>
+                    <pt>mirrorMode</pt>
+                    <pd>
+                        <dl outputclass="since">
+                            <dlentry>
+                                <dt>自从</dt>
+                                <dd>v3.0.0</dd>
+                            </dlentry>
+                        </dl>
+                        <p> 视图镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/> 。 <note
+                                type="attention">
+                                <ul>
+                                    <li> 对于本地用户： <ul>
+                                            <li>如果使用前置摄像头，默认启动镜像模式。</li>
+                                            <li>如果使用后置摄像头，默认关闭镜像模式。</li>
+                                        </ul>
                                     </li>
-                    <li>
-                                        如果用户是通过
-                                        <xref
-                        keyref="IChannel"/>
-                                        类的
-                                        <apiname
-                        keyref="joinChannel2"/>
-                                        方法加入频道的，则将该参数设为该
-                                        <apiname
-                        keyref="IChannel"/>
-                                        类对应的
-                                        <codeph>channelId</codeph>
-                                        。此时
-                                        <codeph>VideoCanvas</codeph>
-                                        设置的是用户在该
-                                        <codeph>channelId</codeph>
-                                        对应频道内的视图。
-                                    </li>
-                    </ul> </note> </p>
-                </pd>
-            </plentry>
-            <plentry>
-                <pt>uid</pt>
-                <pd>用户 ID。</pd>
-            </plentry>
-            <plentry>
-                <pt>mirrorMode</pt>
-                <pd>
-                    <dl outputclass="since">
-                    <dlentry>
-                        <dt>自从</dt>
-                        <dd>v3.0.0</dd>
-                    </dlentry>
-                    </dl>
-                    <p>
-                            视图镜像模式，详见
-                            <xref
-                    keyref="VIDEO_MIRROR_MODE_TYPE"/>
-                            。
-                            
-                    
-                    <note type="attention">
-                    <ul>
-                    <li>
-                                        对于本地用户：
-                                        
-                        
-                        <ul>
-                        <li>如果使用前置摄像头，默认启动镜像模式。</li>
-                        <li>如果使用后置摄像头，默认关闭镜像模式。</li>
-                        </ul> </li>
-                    <li>对于远端用户：默认关闭镜像模式。</li>
-                    </ul> </note> </p>
-                </pd>
-            </plentry>
-            </parml> </section>
+                                    <li>对于远端用户：默认关闭镜像模式。</li>
+                                </ul>
+                            </note>
+                        </p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

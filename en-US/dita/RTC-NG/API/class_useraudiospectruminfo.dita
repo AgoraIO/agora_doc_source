@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_useraudiospectruminfo">
-    <title><ph keyref="UserAudioSpectrumInfo" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Audio spectrum information of the remote user.</ph></shortdesc>
+    <title><ph keyref="UserAudioSpectrumInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Audio spectrum information of the remote
+        user.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public class UserAudioSpectrumInfo {
+                <codeblock props="android" outputclass="language-java">public class UserAudioSpectrumInfo {
   private int uid;
   private AudioSpectrumInfo audioSpectrumInfo;
 
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioSpectrumInfo : NSObject
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioSpectrumInfo : NSObject
 
 @property(nonatomic, assign) NSInteger uid;
 @property(nonatomic, strong) NSArray&lt;NSNumber *&gt; * _Nullable audioSpectrumData;
 
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct UserAudioSpectrumInfo  {
+                <codeblock props="cpp" outputclass="language-cpp">struct UserAudioSpectrumInfo  {
   agora::rtc::uid_t uid;
   struct AudioSpectrumData spectrumData;
 
@@ -25,14 +26,15 @@
   UserAudioSpectrumInfo(agora::rtc::uid_t _uid, const float *data, int length) :
     uid(_uid) { spectrumData.audioSpectrumData = data; spectrumData.dataLength = length; }
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
             </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+                /></title>
             <parml>
                 <plentry>
                     <pt>uid</pt>
@@ -43,7 +45,8 @@
                     <pt props="ios mac">audioSpectrumData</pt>
                     <pt props="cpp">spectrumData</pt>
                     <pd>
-                        <p>Audio spectrum information of the remote user.<ph props="android cpp"> For details, see <xref keyref="AudioSpectrumData" />.</ph></p>
+                        <p>Audio spectrum information of the remote user.<ph props="android cpp">
+                                For details, see <xref keyref="AudioSpectrumData"/>.</ph></p>
                     </pd>
                 </plentry>
             </parml>

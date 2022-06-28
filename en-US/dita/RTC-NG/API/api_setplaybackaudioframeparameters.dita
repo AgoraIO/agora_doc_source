@@ -1,74 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setplaybackaudioframeparameters">
-    <title><ph keyref="setPlaybackAudioFrameParameters" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the audio data format for playback.</ph></shortdesc>
+    <title><ph keyref="setPlaybackAudioFrameParameters"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the audio data format for
+        playback.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="setPlaybackAudioFrameParameters" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="setPlaybackAudioFrameParameters"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
+    <refbody>
+        <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int setPlaybackAudioFrameParameters(
+                <codeblock props="android" outputclass="language-java">public abstract int setPlaybackAudioFrameParameters(
       int sampleRate, int channel, int mode, int samplesPerCall);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setPlaybackAudioFrameParametersWithSampleRate:(NSInteger)sampleRate
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)setPlaybackAudioFrameParametersWithSampleRate:(NSInteger)sampleRate
                                              channel:(NSInteger)channel
                                                 mode:(AgoraAudioRawFrameOperationMode)mode
                                       samplesPerCall:(NSInteger)samplesPerCall;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int setPlaybackAudioFrameParameters(int sampleRate,
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setPlaybackAudioFrameParameters(int sampleRate,
     int channel,
     RAW_AUDIO_FRAME_OP_MODE_TYPE mode,
     int samplesPerCall) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp">public abstract int SetPlaybackAudioFrameParameters(int sampleRate, int channel,
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetPlaybackAudioFrameParameters(int sampleRate, int channel,
             RAW_AUDIO_FRAME_OP_MODE_TYPE mode, int samplesPerCall);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
-   <p>Sets the data format for the <xref keyref="onPlaybackAudioFrame" /> callback.</p>
-   <note type="attention">
-       <ul id="ul_t13_lnz_r4b">
-  <li>Ensure that you call this method before joining a channel.</li>
-  <li>The SDK calculates the sampling interval based on the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname> and <parmname>channel</parmname> parameters set in this method.<equation-inline>Sample interval (sec) = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>. Ensure that the sample interval ≥ 0.01 (s). The SDK triggers the <apiname keyref="onPlaybackAudioFrame" /> callback according to the sampling interval.</li>
-       </ul>
-   </note>
+            <p>Sets the data format for the <xref keyref="onPlaybackAudioFrame"/> callback.</p>
+            <note type="attention">
+                <ul id="ul_t13_lnz_r4b">
+                    <li>Ensure that you call this method before joining a channel.</li>
+                    <li>The SDK calculates the sampling interval based on the
+                            <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname> and
+                            <parmname>channel</parmname> parameters set in this
+                            method.<equation-inline>Sample interval (sec) =
+                                <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname>
+                            × <parmname>channel</parmname>)</equation-inline>. Ensure that the
+                        sample interval ≥ 0.01 (s). The SDK triggers the <apiname
+                            keyref="onPlaybackAudioFrame"/> callback according to the sampling
+                        interval.</li>
+                </ul>
+            </note>
         </section>
         <section id="parameters"><title>Parameters</title>
-   <parml>
-       <plentry>
-  <pt>sampleRate</pt>
-  <pd>The sample rate returned in the <apiname keyref="onPlaybackAudioFrame" /> callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
-       </plentry>
-       <plentry>
-  <pt>channel</pt>
-  <pd>
-      <p>The number of channels returned in the <apiname keyref="onPlaybackAudioFrame" /> callback:<ul id="ul_xg2_cnz_r4b">
-     <li>1: Mono.</li>
-     <li>2: Stereo.</li>
- </ul></p>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt>mode</pt>
-           <pd><p props="ios mac cpp unity">The use mode of the audio frame. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />.</p>
-                        <p conkeyref="registerAudioFrameObserver2_IMediaPlayer/mode" props="android" />
+            <parml>
+                <plentry>
+                    <pt>sampleRate</pt>
+                    <pd>The sample rate returned in the <apiname keyref="onPlaybackAudioFrame"/>
+                        callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
+                </plentry>
+                <plentry>
+                    <pt>channel</pt>
+                    <pd>
+                        <p>The number of channels returned in the <apiname
+                                keyref="onPlaybackAudioFrame"/> callback:<ul id="ul_xg2_cnz_r4b">
+                                <li>1: Mono.</li>
+                                <li>2: Stereo.</li>
+                            </ul></p>
                     </pd>
-       </plentry>
-       <plentry>
-  <pt>samplesPerCall</pt>
-  <pd>The number of data samples returned in the <apiname keyref="onPlaybackAudioFrame" /> callback, such as 1024 for the media push.</pd>
-       </plentry>
-   </parml>
+                </plentry>
+                <plentry>
+                    <pt>mode</pt>
+                    <pd><p props="ios mac cpp unity">The use mode of the audio frame. See <xref
+                                keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>.</p>
+                        <p conkeyref="registerAudioFrameObserver2_IMediaPlayer/mode" props="android"
+                        />
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>samplesPerCall</pt>
+                    <pd>The number of data samples returned in the <apiname
+                            keyref="onPlaybackAudioFrame"/> callback, such as 1024 for the media
+                        push.</pd>
+                </plentry>
+            </parml>
         </section>
         <section id="return_values">
-   <title>Returns</title>
-   <ul>
-       <li>0: Success.</li>
-       <li>&lt; 0: Failure.</li>
-   </ul>
-        </section></refbody>
+            <title>Returns</title>
+            <ul>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
+    </refbody>
 </reference>

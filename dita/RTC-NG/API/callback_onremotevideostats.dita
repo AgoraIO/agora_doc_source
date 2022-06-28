@@ -13,39 +13,42 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteVideoStats(RtcConnection connection, RemoteVideoStats stats) {}</codeblock></p>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteVideoStats(RtcConnection connection, RemoteVideoStats stats) {}</codeblock></p>
             <p outputclass="codeblock" props="rtc">
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteVideoStats(RemoteVideoStats stats)</codeblock></p>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteVideoStats(RemoteVideoStats stats)</codeblock></p>
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public void onRemoteVideoStats(RemoteVideoStats stats) {}</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+                <codeblock props="android" outputclass="language-java">public void onRemoteVideoStats(RemoteVideoStats stats) {}</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
     remoteVideoStats:(AgoraRtcRemoteVideoStats * _Nonnull)stats;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onRemoteVideoStats(const RemoteVideoStats&amp; stats) {
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onRemoteVideoStats(const RemoteVideoStats&amp; stats) {
     (void)stats;
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.REMOTE_VIDEO_STATS, cb: (stats: RemoteVideoStats) =&gt; void): this;</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">RemoteVideoStatsCallback? remoteVideoStats;</codeblock> </p>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.REMOTE_VIDEO_STATS, cb: (stats: RemoteVideoStats) =&gt; void): this;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">RemoteVideoStatsCallback? remoteVideoStats;</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p id="desc">该回调描述远端用户在通话中端到端的视频流统计信息， 针对每个远端用户/主播每 2 秒触发一次。如果远端同时存在多个用户/主播， 该回调每 2 秒会被触发多次。</p>
+            <p id="desc">该回调描述远端用户在通话中端到端的视频流统计信息， 针对每个远端用户/主播每 2 秒触发一次。如果远端同时存在多个用户/主播， 该回调每 2
+                秒会被触发多次。</p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry props="rtc-ng">
-                <pt props="unity">connection</pt>
-                <pd props="unity">Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
-            </plentry>
-            <plentry id="stats">
-                <pt>stats</pt>
-                <pd>远端视频统计数据。详见 <xref keyref="RemoteVideoStats"/>。</pd>
-            </plentry>
-            </parml> </section>
+                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry props="rtc-ng">
+                    <pt props="unity">connection</pt>
+                    <pd props="unity">Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry id="stats">
+                    <pt>stats</pt>
+                    <pd>远端视频统计数据。详见 <xref keyref="RemoteVideoStats"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

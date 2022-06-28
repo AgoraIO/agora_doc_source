@@ -2,7 +2,8 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onactivespeaker">
     <title><ph keyref="onActiveSpeaker"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the most active speaker is detected.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the most active speaker is
+        detected.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -13,42 +14,53 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onActiveSpeaker(uid_t userId) { (void)userId; }</codeblock> </p>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onActiveSpeaker(uid_t userId) { (void)userId; }</codeblock>
+            </p>
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public void onActiveSpeaker(int uid) {}</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine activeSpeaker:(NSUInteger)speakerUid;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.ACTIVE_SPEAKER, cb: (uid: number) =&gt; void): this;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public virtual void OnActiveSpeaker(uint uid)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">UidCallback? activeSpeaker;</codeblock> </p>
+                <codeblock props="android" outputclass="language-java">public void onActiveSpeaker(int uid) {}</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine activeSpeaker:(NSUInteger)speakerUid;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.ACTIVE_SPEAKER, cb: (uid: number) =&gt; void): this;</codeblock>
+                <codeblock props="cs" outputclass="language-csharp">public virtual void OnActiveSpeaker(uint uid)</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">UidCallback? activeSpeaker;</codeblock>
+            </p>
             <p outputclass="codeblock" props="rtc">
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onActiveSpeaker(uid_t uid) {
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onActiveSpeaker(uid_t uid) {
                 (void)uid;
-                }</codeblock> </p>
+                }</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p>After a successful call of <xref keyref="enableAudioVolumeIndication"/>, the SDK continuously detects which remote user has the loudest volume. During the current period, the remote user, who is detected as the loudest for the most times, is the most active user.</p>
-            <p>When the number of users exceeds two (included) and an active speaker is detected, the SDK triggers this callback and reports the <parmname>uid</parmname> of the most active speaker.
-            
-            <ul>
-            <li>If the most active speaker remains the same, the SDK triggers the <apiname keyref="onActiveSpeaker"/> callback only once.</li>
-            <li>If the most active speaker changes to another user, the SDK triggers this callback again and reports the <parmname>uid</parmname> of the new active speaker.</li>
-            </ul> </p>
+            <p>After a successful call of <xref keyref="enableAudioVolumeIndication"/>, the SDK
+                continuously detects which remote user has the loudest volume. During the current
+                period, the remote user, who is detected as the loudest for the most times, is the
+                most active user.</p>
+            <p>When the number of users exceeds two (included) and an active speaker is detected,
+                the SDK triggers this callback and reports the <parmname>uid</parmname> of the most
+                active speaker. <ul>
+                    <li>If the most active speaker remains the same, the SDK triggers the <apiname
+                            keyref="onActiveSpeaker"/> callback only once.</li>
+                    <li>If the most active speaker changes to another user, the SDK triggers this
+                        callback again and reports the <parmname>uid</parmname> of the new active
+                        speaker.</li>
+                </ul>
+            </p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry id="uid">
-                <pt props="cpp"><ph props="rtc">uid</ph><ph props="rtc-ng">userId</ph></pt>
-                <pt props="android cs electron flutter">uid</pt>
-                <pt props="ios mac">speakerUid</pt>
-                <pd>The user ID of the most active speaker.</pd>
-            </plentry>
-            </parml> </section>
+                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry id="uid">
+                    <pt props="cpp"><ph props="rtc">uid</ph><ph props="rtc-ng">userId</ph></pt>
+                    <pt props="android cs electron flutter">uid</pt>
+                    <pt props="ios mac">speakerUid</pt>
+                    <pd>The user ID of the most active speaker.</pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

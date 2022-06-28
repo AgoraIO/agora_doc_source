@@ -7,90 +7,99 @@
         <section id="parameters">
             <title>枚举值</title>
             <parml>
-            <plentry>
-                <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_OK"/></pt>
-                <pd>0：本地视频状态正常。</pd>
-            </plentry>
-            <plentry>
-                <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_FAILURE"/></pt>
-                <pd>1：出错原因不明确。</pd>
-            </plentry>
-            <plentry>
-                <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_NO_PERMISSION"/></pt>
-                <pd>2：没有权限启动本地视频采集设备。请提示用户开启权限再重新加入频道。</pd>
-            </plentry>
-            <plentry>
-                <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY"/></pt>
-                <pd>3：本地视频采集设备正在使用中。请提示用户检查摄像头是否被其他应用占用。</pd>
-            </plentry>
-            <plentry>
-                <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/></pt>
-                <pd>4：本地视频采集失败。请提示用户检查视频采集设备是否正常工作，检查摄像头是否被其他应用占用，或者尝试重新加入频道。</pd>
-            </plentry>
-            <plentry>
-                <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_ENCODE_FAILURE"/></pt>
-                <pd>5：本地视频编码失败。</pd>
-            </plentry>
-            <plentry props="ios cpp flutter">
-                <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_INBACKGROUND"/></pt>
-                <pd>6：<ph props="cpp flutter">（仅支持 iOS）</ph>应用处于后台。请提示用户应用处于后台时，无法正常进行视频采集。</pd>
+                <plentry>
+                    <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_OK"/></pt>
+                    <pd>0：本地视频状态正常。</pd>
                 </plentry>
-            <plentry props="ios cpp flutter">
-                <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_MULTIPLE_FOREGROUND_APPS"/></pt>
-                <pd>7：<ph props="cpp flutter">（仅支持 iOS）</ph>当前应用窗口处于侧拉、分屏、画中画模式，且其他应用正占用摄像头时，SDK 会报告该错误码。 请提示用户应用窗口处于侧拉、分屏、画中画模式，且其他应用正占用摄像头时，无法正常进行视频采集。</pd>
+                <plentry>
+                    <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_FAILURE"/></pt>
+                    <pd>1：出错原因不明确。</pd>
                 </plentry>
-            <plentry>
-                <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_NOT_FOUND"/></pt>
-                <pd>8：找不到本地视频采集设备。需检查摄像头是否与设备正常连接、摄像头是否正常工作，或者尝试重新加入频道。</pd>
-            </plentry>
-            <plentry props="cpp mac">
-                <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_DISCONNECTED"/></pt>
-                <pd>9：（仅支持 macOS）当前正在使用的视频采集设备已经断开连接（例如，被拔出）。</pd>
-            </plentry>
-            <plentry props="mac cpp flutter">
-                <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_INVALID_ID"/></pt>
-                <pd><ph>10：</ph><ph props="cpp flutter">（仅支持 macOS 和 Windows）</ph><ph>SDK 无法在视频设备列表中找到该视频设备。请检查视频设备 ID 是否有效。</ph></pd>
-            </plentry>
-            <plentry props="android cpp mac flutter">
-                <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_MINIMIZED"/></pt>
-                <pd><ph>11：</ph><ph props="cpp flutter">（仅支持 macOS）</ph><ph>调用 <xref keyref="startScreenCaptureByWindowId"/> 方法共享窗口时，共享窗口处于最小化的状态。SDK 无法共享被最小化的窗口。请在应用层对此类窗口取消最小化，例如，将窗口最大化。</ph></pd>
-            </plentry>
-            <plentry props="android cpp mac flutter">
-                <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_CLOSED"/></pt>
-                <pd>
-                    <p><ph>12：</ph><ph props="cpp flutter">（仅支持 macOS 和 Windows）</ph><ph>该错误码表示通过窗口 ID 共享的窗口已关闭，或通过窗口 ID 共享的全屏窗口已退出全屏。退出全屏模式后，远端用户将无法看到共享的窗口。为避免远端用户看到黑屏，Agora 建议你立即结束本次共享。</ph></p>
-                    <p>报告该错误码的常见场景：
-                    <ul>
-                    <li>本地用户关闭共享的窗口时，SDK 会报告该错误码。</li>
-                    <li>本地用户先放映幻灯片，然后共享放映中的幻灯片。结束放映时，SDK 会报告该错误码。</li>
-                    <li>本地用户先全屏观看网页视频或网页文档，然后共享网页视频或网页文档。结束全屏时，SDK 会报告该错误码。</li>
-                    </ul></p>
-                </pd>
-            </plentry>
-            <plentry props="hide">
-                <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_OCCLUDED"/></pt>
-                <pd>13:（仅支持 Windows）待共享的窗口被其他窗口遮挡住，被遮挡住的部分在共享时会被 SDK 涂黑。</pd>
-            </plentry>
-            <plentry props="hide">
-                <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_NOT_SUPPORTED"/></pt>
-                <pd>20：（仅支持 Windows）SDK 不支持共享该类型的窗口。</pd>
-            </plentry>
-            <plentry props="cpp">
-                <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_SYSTEM_PRESSURE"/></pt>
-                <pd>101：由于系统压力过大，导致当前视频采集设备不可用。</pd>
-            </plentry>
-            <plentry props="hide">
-                <pt><ph keyref="AgoraLocalVideoStreamErrorExtensionCaptureStarted"/></pt>
-                <pd>13：屏幕共享 Extension 进程开启。</pd>
-            </plentry>
-            <plentry props="hide">
-                <pt><ph keyref="AgoraLocalVideoStreamErrorExtensionCaptureStoped"/></pt>
-                <pd>14：屏幕共享 Extension 进程结束。</pd>
-            </plentry>
-            <plentry props="hide">
-                <pt><ph keyref="AgoraLocalVideoStreamErrorExtensionCaptureDisconnected"/></pt>
-                <pd>15：屏幕共享 Extension 进程异常退出。</pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_NO_PERMISSION"/></pt>
+                    <pd>2：没有权限启动本地视频采集设备。请提示用户开启权限再重新加入频道。</pd>
+                </plentry>
+                <plentry>
+                    <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY"/></pt>
+                    <pd>3：本地视频采集设备正在使用中。请提示用户检查摄像头是否被其他应用占用。</pd>
+                </plentry>
+                <plentry>
+                    <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/></pt>
+                    <pd>4：本地视频采集失败。请提示用户检查视频采集设备是否正常工作，检查摄像头是否被其他应用占用，或者尝试重新加入频道。</pd>
+                </plentry>
+                <plentry>
+                    <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_ENCODE_FAILURE"/></pt>
+                    <pd>5：本地视频编码失败。</pd>
+                </plentry>
+                <plentry props="ios cpp flutter">
+                    <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_INBACKGROUND"/></pt>
+                    <pd>6：<ph props="cpp flutter">（仅支持 iOS）</ph>应用处于后台。请提示用户应用处于后台时，无法正常进行视频采集。</pd>
+                </plentry>
+                <plentry props="ios cpp flutter">
+                    <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_MULTIPLE_FOREGROUND_APPS"
+                        /></pt>
+                    <pd>7：<ph props="cpp flutter">（仅支持 iOS）</ph>当前应用窗口处于侧拉、分屏、画中画模式，且其他应用正占用摄像头时，SDK
+                        会报告该错误码。 请提示用户应用窗口处于侧拉、分屏、画中画模式，且其他应用正占用摄像头时，无法正常进行视频采集。</pd>
+                </plentry>
+                <plentry>
+                    <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_NOT_FOUND"/></pt>
+                    <pd>8：找不到本地视频采集设备。需检查摄像头是否与设备正常连接、摄像头是否正常工作，或者尝试重新加入频道。</pd>
+                </plentry>
+                <plentry props="cpp mac">
+                    <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_DISCONNECTED"/></pt>
+                    <pd>9：（仅支持 macOS）当前正在使用的视频采集设备已经断开连接（例如，被拔出）。</pd>
+                </plentry>
+                <plentry props="mac cpp flutter">
+                    <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_INVALID_ID"/></pt>
+                    <pd><ph>10：</ph><ph props="cpp flutter">（仅支持 macOS 和 Windows）</ph><ph>SDK
+                            无法在视频设备列表中找到该视频设备。请检查视频设备 ID 是否有效。</ph></pd>
+                </plentry>
+                <plentry props="android cpp mac flutter">
+                    <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_MINIMIZED"/></pt>
+                    <pd><ph>11：</ph><ph props="cpp flutter">（仅支持 macOS）</ph><ph>调用 <xref
+                                keyref="startScreenCaptureByWindowId"/> 方法共享窗口时，共享窗口处于最小化的状态。SDK
+                            无法共享被最小化的窗口。请在应用层对此类窗口取消最小化，例如，将窗口最大化。</ph></pd>
+                </plentry>
+                <plentry props="android cpp mac flutter">
+                    <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_CLOSED"/></pt>
+                    <pd>
+                        <p><ph>12：</ph><ph props="cpp flutter">（仅支持 macOS 和
+                                Windows）</ph><ph>该错误码表示通过窗口 ID 共享的窗口已关闭，或通过窗口 ID
+                                共享的全屏窗口已退出全屏。退出全屏模式后，远端用户将无法看到共享的窗口。为避免远端用户看到黑屏，Agora
+                                建议你立即结束本次共享。</ph></p>
+                        <p>报告该错误码的常见场景： <ul>
+                                <li>本地用户关闭共享的窗口时，SDK 会报告该错误码。</li>
+                                <li>本地用户先放映幻灯片，然后共享放映中的幻灯片。结束放映时，SDK 会报告该错误码。</li>
+                                <li>本地用户先全屏观看网页视频或网页文档，然后共享网页视频或网页文档。结束全屏时，SDK 会报告该错误码。</li>
+                            </ul></p>
+                    </pd>
+                </plentry>
+                <plentry props="hide">
+                    <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_OCCLUDED"/></pt>
+                    <pd>13:（仅支持 Windows）待共享的窗口被其他窗口遮挡住，被遮挡住的部分在共享时会被 SDK 涂黑。</pd>
+                </plentry>
+                <plentry props="hide">
+                    <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_NOT_SUPPORTED"
+                        /></pt>
+                    <pd>20：（仅支持 Windows）SDK 不支持共享该类型的窗口。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_SYSTEM_PRESSURE"/></pt>
+                    <pd>101：由于系统压力过大，导致当前视频采集设备不可用。</pd>
+                </plentry>
+                <plentry props="hide">
+                    <pt><ph keyref="AgoraLocalVideoStreamErrorExtensionCaptureStarted"/></pt>
+                    <pd>13：屏幕共享 Extension 进程开启。</pd>
+                </plentry>
+                <plentry props="hide">
+                    <pt><ph keyref="AgoraLocalVideoStreamErrorExtensionCaptureStoped"/></pt>
+                    <pd>14：屏幕共享 Extension 进程结束。</pd>
+                </plentry>
+                <plentry props="hide">
+                    <pt><ph keyref="AgoraLocalVideoStreamErrorExtensionCaptureDisconnected"/></pt>
+                    <pd>15：屏幕共享 Extension 进程异常退出。</pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

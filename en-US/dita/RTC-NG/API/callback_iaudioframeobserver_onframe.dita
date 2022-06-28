@@ -1,50 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_iaudioframeobserver_onframe">
-    <title><ph keyref="onFrame_IAudioFrameObserver" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs each time the player receives an audio frame.</ph></shortdesc>
+    <title><ph keyref="onFrame_IAudioFrameObserver"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs each time the player receives an audio
+            frame.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="onFrame_IAudioFrameObserver" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="onFrame_IAudioFrameObserver"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">AudioFrame onFrame(AudioFrame frame);</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol> _Nonnull)playerKit
     didReceiveAudioFrame:(CMSampleBufferRef _Nonnull)audioFrame;</codeblock>
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onFrame(AudioPcmFrame* frame) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
-        </p>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p>After registering the audio frame observer, the callback occurs every time the player receives an audio frame, reporting the detailed information of the audio frame.</p>
+            <p>After registering the audio frame observer, the callback occurs every time the player
+                receives an audio frame, reporting the detailed information of the audio frame.</p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-   <parml>
-       <plentry props="ios mac">
-           <pt>audioFrame</pt>
-           <pd>Audio frame information (CMSampleBufferRef).</pd>
-       </plentry>
-       <plentry props="android cpp">
-           <pt>frame</pt>
-           <pd>Audio frame information. See <ph keyref="AudioFrame"/>.</pd>
-       </plentry>
-       <plentry props="ios mac">
-           <pt>playerKit</pt>
-           <pd>See <xref keyref="IMediaPlayer"/>.</pd>
-       </plentry>
-   </parml>
+            <parml>
+                <plentry props="ios mac">
+                    <pt>audioFrame</pt>
+                    <pd>Audio frame information (CMSampleBufferRef).</pd>
+                </plentry>
+                <plentry props="android cpp">
+                    <pt>frame</pt>
+                    <pd>Audio frame information. See <ph keyref="AudioFrame"/>.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>playerKit</pt>
+                    <pd>See <xref keyref="IMediaPlayer"/>.</pd>
+                </plentry>
+            </parml>
         </section>
         <section id="return_values" props="android">
-   <title>Returns</title>
-            <p>Passes in the audio data after setting the <parmname>mode</parmname> parameter in <xref keyref="registerAudioFrameObserver2_IMediaPlayer"/> for handling audio data.</p>
-        </section></refbody>
+            <title>Returns</title>
+            <p>Passes in the audio data after setting the <parmname>mode</parmname> parameter in
+                    <xref keyref="registerAudioFrameObserver2_IMediaPlayer"/> for handling audio
+                data.</p>
+        </section>
+    </refbody>
 </reference>

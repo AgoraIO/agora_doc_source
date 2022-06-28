@@ -6,9 +6,9 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">struct ScreenCaptureConfiguration {
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">struct ScreenCaptureConfiguration {
   bool isCaptureWindow;
   uint32_t displayId;
   Rectangle screenRect;
@@ -18,8 +18,8 @@
 
   ScreenCaptureConfiguration() : isCaptureWindow(false), displayId(0) {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public class ScreenCaptureConfiguration {
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp">public class ScreenCaptureConfiguration {
         public bool isCaptureWindow { set; get; }
         public uint displayId { set; get; }
         public Rectangle screenRect { set; get; }
@@ -27,49 +27,52 @@
         public ScreenCaptureParameters parameters { set; get; }
         public Rectangle regionRect { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+                /></title>
             <parml>
-            <plentry>
-                <pt>isCaptureWindow</pt>
-                <pd>是否采集屏幕上的窗口：
-                    <ul id="ul_ln3_hwd_mqb">
-                    <li><codeph><ph keyref="true"/></codeph>：采集窗口。</li>
-                    <li><codeph><ph keyref="false"/></codeph>：（默认）采集屏幕，不采集窗口。</li>
-                    </ul></pd>
-            </plentry>
-            <plentry>
-                <pt>displayId</pt>
-                <pd>（仅适用于 macOS 平台）屏幕的 display ID。
-                    <note id="note_w12_4wd_mqb" type="attention">请仅在 Mac
-                            设备上采集屏幕时使用该参数。</note></pd>
-            </plentry>
-            <plentry>
-                <pt>screenRect</pt>
-                <pd>（仅适用于 Windows 平台）待共享的屏幕相对于虚拟屏的位置。
-                    <note type="attention" id="note_ifh_swd_mqb">请仅在 Windows 设备上采集屏幕时使用该参数。</note></pd>
-            </plentry>
-            <plentry>
-                <pt>windowId</pt>
-                <pd>（仅适用于 Windows 和 macOS 平台）窗口 ID。
-                    <note type="attention">请仅在采集窗口时使用该参数。</note></pd>
-            </plentry>
-            <plentry>
-                <pt props="native">params</pt>
-                <pt props="unity"><ph props="rtc-ng">parameters</ph></pt>
-                <pd>（仅适用于 Windows 和 macOS 平台）屏幕共享流的编码参数配置。详见 <xref keyref="ScreenCaptureParameters"/>。</pd>
-            </plentry>
-            <plentry>
-                <pt>regionRect</pt>
-                <pd>
-                    <p>（仅适用于 Windows 和 macOS 平台）待共享区域相对于整个屏幕的位置。详见 <xref keyref="Rectangle"/>。</p>
-                    <p>如不填，则表示共享整个屏幕。如果设置的共享区域超出了屏幕的边界，则只共享屏幕内的内容。 如果将 <apiname keyref="Rectangle"/> 中的 width 或 height
-                            设为 0 ，则共享整个屏幕。</p>
-                </pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>isCaptureWindow</pt>
+                    <pd>是否采集屏幕上的窗口： <ul id="ul_ln3_hwd_mqb">
+                            <li><codeph><ph keyref="true"/></codeph>：采集窗口。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：（默认）采集屏幕，不采集窗口。</li>
+                        </ul></pd>
+                </plentry>
+                <plentry>
+                    <pt>displayId</pt>
+                    <pd>（仅适用于 macOS 平台）屏幕的 display ID。 <note id="note_w12_4wd_mqb" type="attention"
+                            >请仅在 Mac 设备上采集屏幕时使用该参数。</note></pd>
+                </plentry>
+                <plentry>
+                    <pt>screenRect</pt>
+                    <pd>（仅适用于 Windows 平台）待共享的屏幕相对于虚拟屏的位置。 <note type="attention"
+                            id="note_ifh_swd_mqb">请仅在 Windows 设备上采集屏幕时使用该参数。</note></pd>
+                </plentry>
+                <plentry>
+                    <pt>windowId</pt>
+                    <pd>（仅适用于 Windows 和 macOS 平台）窗口 ID。 <note type="attention"
+                        >请仅在采集窗口时使用该参数。</note></pd>
+                </plentry>
+                <plentry>
+                    <pt props="native">params</pt>
+                    <pt props="unity"><ph props="rtc-ng">parameters</ph></pt>
+                    <pd>（仅适用于 Windows 和 macOS 平台）屏幕共享流的编码参数配置。详见 <xref
+                            keyref="ScreenCaptureParameters"/>。</pd>
+                </plentry>
+                <plentry>
+                    <pt>regionRect</pt>
+                    <pd>
+                        <p>（仅适用于 Windows 和 macOS 平台）待共享区域相对于整个屏幕的位置。详见 <xref keyref="Rectangle"
+                            />。</p>
+                        <p>如不填，则表示共享整个屏幕。如果设置的共享区域超出了屏幕的边界，则只共享屏幕内的内容。 如果将 <apiname
+                                keyref="Rectangle"/> 中的 width 或 height 设为 0 ，则共享整个屏幕。</p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

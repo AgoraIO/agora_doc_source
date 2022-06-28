@@ -2,7 +2,8 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setremotedefaultvideostreamtype">
     <title><ph keyref="setRemoteDefaultVideoStreamType"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the default video-stream type of the remotely subscribed video stream when the remote user sends dual streams.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the default video-stream type of the remotely
+            subscribed video stream when the remote user sends dual streams.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -13,42 +14,66 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="cpp" outputclass="language-cpp">virtual int setRemoteDefaultVideoStreamType(VIDEO_STREAM_TYPE streamType) = 0;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int SetRemoteDefaultVideoStreamType(VIDEO_STREAM_TYPE streamType);</codeblock>
-            <codeblock props="android" outputclass="language-java">public abstract int setRemoteDefaultVideoStreamType(int streamType);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setRemoteDefaultVideoStreamType:(AgoraVideoStreamType)streamType;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setRemoteDefaultVideoStreamType(VIDEO_STREAM_TYPE streamType) = 0;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetRemoteDefaultVideoStreamType(VIDEO_STREAM_TYPE streamType);</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setRemoteDefaultVideoStreamType(int streamType);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)setRemoteDefaultVideoStreamType:(AgoraVideoStreamType)streamType;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p id="desc1">Under limited network conditions, if the publisher has not disabled the dual-stream mode using <codeph><xref keyref="enableDualStreamMode"/> (<ph keyref="false"/>)</codeph>, the receiver can choose to receive either the high-quality video stream or the low-quality video stream. The high-quality video stream has a higher resolution and bitrate, and the low-quality video stream has a lower resolution and bitrate.</p>
-            <p id="desc2">By default, users receive the high-quality video stream. Call this method if you want to switch to the low-quality video stream. This method allows the app to adjust the corresponding video stream type based on the size of the video window to reduce the bandwidth and resources. The aspect ratio of the low-quality video stream is the same as the high-quality video stream. Once the resolution of the high-quality video stream is set, the system automatically sets the resolution, frame rate, and bitrate of the low-quality video stream.</p>
-            <p id="desc3">The result of this method returns in the <xref keyref="onApiCallExecuted"/> callback.</p>
+            <p id="desc1">Under limited network conditions, if the publisher has not disabled the
+                dual-stream mode using <codeph><xref keyref="enableDualStreamMode"/> (<ph
+                        keyref="false"/>)</codeph>, the receiver can choose to receive either the
+                high-quality video stream or the low-quality video stream. The high-quality video
+                stream has a higher resolution and bitrate, and the low-quality video stream has a
+                lower resolution and bitrate.</p>
+            <p id="desc2">By default, users receive the high-quality video stream. Call this method
+                if you want to switch to the low-quality video stream. This method allows the app to
+                adjust the corresponding video stream type based on the size of the video window to
+                reduce the bandwidth and resources. The aspect ratio of the low-quality video stream
+                is the same as the high-quality video stream. Once the resolution of the
+                high-quality video stream is set, the system automatically sets the resolution,
+                frame rate, and bitrate of the low-quality video stream.</p>
+            <p id="desc3">The result of this method returns in the <xref keyref="onApiCallExecuted"
+                /> callback.</p>
             <note type="attention">
-            <ul>
-            <li>Call this method before joining a channel. Agora does not support you to change the default subscribed video stream type after joining a channel.</li>
-            <li>If you call both this method and <xref keyref="setRemoteVideoStreamType"/>, the SDK applies the settings in the <apiname keyref="setRemoteVideoStreamType"/> method.</li>
-            </ul></note> </section>
+                <ul>
+                    <li>Call this method before joining a channel. Agora does not support you to
+                        change the default subscribed video stream type after joining a
+                        channel.</li>
+                    <li>If you call both this method and <xref keyref="setRemoteVideoStreamType"/>,
+                        the SDK applies the settings in the <apiname
+                            keyref="setRemoteVideoStreamType"/> method.</li>
+                </ul></note>
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry>
-                <pt>streamType</pt>
-                <pd id="defaultstreamtype">
-                    <p props="ios mac cpp electron unity flutter">The default video-stream type, see <xref keyref="REMOTE_VIDEO_STREAM_TYPE"/>.</p>
-                    <p props="android">The default video-stream type:<ul>
-                    <li><ph keyref="REMOTE_VIDEO_STREAM_HIGH"/>(0): High-quality video stream.</li>
-                    <li><ph keyref="REMOTE_VIDEO_STREAM_LOW"/>(1): Low-quality video stream.</li>
-                    </ul> </p>
-                </pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>streamType</pt>
+                    <pd id="defaultstreamtype">
+                        <p props="ios mac cpp electron unity flutter">The default video-stream type,
+                            see <xref keyref="REMOTE_VIDEO_STREAM_TYPE"/>.</p>
+                        <p props="android">The default video-stream type:<ul>
+                                <li><ph keyref="REMOTE_VIDEO_STREAM_HIGH"/>(0): High-quality video
+                                    stream.</li>
+                                <li><ph keyref="REMOTE_VIDEO_STREAM_LOW"/>(1): Low-quality video
+                                    stream.</li>
+                            </ul>
+                        </p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values" props="native unity electron">
             <title>Returns</title>
             <ul>
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure.</li>
-            </ul> </section>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
     </refbody>
 </reference>

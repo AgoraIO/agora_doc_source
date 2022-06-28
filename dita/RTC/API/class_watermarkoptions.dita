@@ -6,19 +6,19 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public class WatermarkOptions {
+                <codeblock props="android" outputclass="language-java">public class WatermarkOptions {
   
   public boolean visibleInPreview = true;
   public Rectangle positionInLandscapeMode = new Rectangle();
   public Rectangle positionInPortraitMode = new Rectangle();
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface WatermarkOptions : NSObject
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface WatermarkOptions : NSObject
 
 @property(assign, nonatomic) BOOL visibleInPreview;
 @property(assign, nonatomic) CGRect positionInLandscapeMode;
 @property(assign, nonatomic) CGRect positionInPortraitMode;
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">typedef struct WatermarkOptions {
+                <codeblock props="cpp" outputclass="language-cpp">typedef struct WatermarkOptions {
     bool visibleInPreview;
     Rectangle positionInLandscapeMode;
     Rectangle positionInPortraitMode;
@@ -29,7 +29,7 @@
         , positionInPortraitMode(0, 0, 0, 0)
     {}
     } WatermarkOptions;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public class WatermarkOptions
+                <codeblock props="cs" outputclass="language-csharp">public class WatermarkOptions
     {
         public WatermarkOptions()
         {
@@ -50,13 +50,13 @@
         public Rectangle positionInLandscapeMode { set; get; }
         public Rectangle positionInPortraitMode { set; get; }
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">export interface WatermarkOptions {
+                <codeblock props="electron" outputclass="language-typescript">export interface WatermarkOptions {
     visibleInPreview: boolean,
     positionInPortraitMode: Rectangle,
     positionInLandscapeMode: Rectangle
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">class WatermarkOptions {
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">class WatermarkOptions {
 
   @JsonKey(includeIfNull: false)
   bool? visibleInPreview;
@@ -77,58 +77,53 @@
       _$WatermarkOptionsFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$WatermarkOptionsToJson(this);
-}</codeblock> </p>
+}</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+                /></title>
             <parml>
-            <plentry>
-                <pt>visibleInPreview</pt>
-                <pd>
-                    <p>水印图片在本地视频预览中是否可见：
- 
-                    
-                    
-                    <ul>
-                    <li><codeph><ph keyref="true"
-                        /></codeph>：(默认) 水印图片在本地视频预览中可见；</li>
-                    <li><codeph><ph keyref="false"
-                        /></codeph>：水印图片在本地视频预览中不可见。</li>
-                    </ul> </p>
-                </pd>
-            </plentry>
-            <plentry>
-                <pt>positionInLandscapeMode</pt>
-                <pd>
-                    <p>横屏模式下，显示水印图片的区域。<ph props="android cpp cs">详见 <xref
-                    keyref="Rectangle"/>。</ph><ph props="ios mac"
-                    >该参数包含以下成员：</ph>
-                    <ul props="ios mac">
-                    <li><codeph>x</codeph>：左上角的横向偏移。</li>
-                    <li><codeph>y</codeph>：左上角的纵向偏移。</li>
-                    <li><codeph>width</codeph>：该区域的宽 （pixel）。</li>
-                    <li><codeph>height</codeph>：该区域的高（pixel）。</li>
-                    </ul><ph props="ios android cpp">横屏模式的定义详见<xref
-                    keyref="guide-set-video-profile">设置视频编码属性</xref>。</ph></p>
-                </pd>
-            </plentry>
-            <plentry>
-                <pt>positionInPortraitMode</pt>
-                <pd>
-                    <p>竖屏模式下，显示水印图片的区域。<ph props="android cpp cs">详见 <xref
-                    keyref="Rectangle"/>。</ph> <ph props="ios mac"
-                    >该参数包含以下成员：</ph>
-                    <ul props="ios mac">
-                    <li><codeph>x</codeph>：左上角的横向偏移。</li>
-                    <li><codeph>y</codeph>：左上角的纵向偏移。</li>
-                    <li><codeph>width</codeph>：该区域的宽 （pixel）。</li>
-                    <li><codeph>height</codeph>：该区域的高（pixel）。</li>
-                    </ul><ph props="ios android cpp">竖屏模式的定义详见<xref
-                    keyref="guide-set-video-profile">设置视频编码属性</xref>。</ph></p>
-                </pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>visibleInPreview</pt>
+                    <pd>
+                        <p>水印图片在本地视频预览中是否可见： <ul>
+                                <li><codeph><ph keyref="true"/></codeph>：(默认) 水印图片在本地视频预览中可见；</li>
+                                <li><codeph><ph keyref="false"/></codeph>：水印图片在本地视频预览中不可见。</li>
+                            </ul>
+                        </p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>positionInLandscapeMode</pt>
+                    <pd>
+                        <p>横屏模式下，显示水印图片的区域。<ph props="android cpp cs">详见 <xref keyref="Rectangle"
+                                />。</ph><ph props="ios mac">该参数包含以下成员：</ph>
+                            <ul props="ios mac">
+                                <li><codeph>x</codeph>：左上角的横向偏移。</li>
+                                <li><codeph>y</codeph>：左上角的纵向偏移。</li>
+                                <li><codeph>width</codeph>：该区域的宽 （pixel）。</li>
+                                <li><codeph>height</codeph>：该区域的高（pixel）。</li>
+                            </ul><ph props="ios android cpp">横屏模式的定义详见<xref
+                                    keyref="guide-set-video-profile">设置视频编码属性</xref>。</ph></p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>positionInPortraitMode</pt>
+                    <pd>
+                        <p>竖屏模式下，显示水印图片的区域。<ph props="android cpp cs">详见 <xref keyref="Rectangle"
+                                />。</ph>
+                            <ph props="ios mac">该参数包含以下成员：</ph>
+                            <ul props="ios mac">
+                                <li><codeph>x</codeph>：左上角的横向偏移。</li>
+                                <li><codeph>y</codeph>：左上角的纵向偏移。</li>
+                                <li><codeph>width</codeph>：该区域的宽 （pixel）。</li>
+                                <li><codeph>height</codeph>：该区域的高（pixel）。</li>
+                            </ul><ph props="ios android cpp">竖屏模式的定义详见<xref
+                                    keyref="guide-set-video-profile">设置视频编码属性</xref>。</ph></p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

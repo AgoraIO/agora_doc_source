@@ -1,46 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_getaudiotrackcount">
-    <title><ph keyref="getAudioTrackCount" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Gets the audio track index of the current music file.</ph></shortdesc>
+    <title><ph keyref="getAudioTrackCount"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Gets the audio track index of the current music
+            file.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="getAudioTrackCount" />
+                <indexterm keyref="getAudioTrackCount"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
-            <codeblock props="ios mac" outputclass="language-objectivec" />
-            <codeblock props="cpp" outputclass="language-cpp" />
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="cs" outputclass="language-csharp">public abstract int GetAudioTrackCount();</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;int?&gt; getAudioTrackCount();</codeblock> </p>
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp"/>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="cs" outputclass="language-csharp">public abstract int GetAudioTrackCount();</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;int?&gt; getAudioTrackCount();</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>Since</dt>
-                <dd>v3.5.1</dd>
-            </dlentry>
+                <dlentry props="native">
+                    <dt>Since</dt>
+                    <dd>v3.5.1</dd>
+                </dlentry>
             </dl>
             <note type="note">
-            <ul>
-            <li props="cpp electron flutter">This method is for <ph props="cpp flutter">Android, iOS, and </ph>Windows only.</li>
-            <li>Call this method after calling <xref keyref="startAudioMixing2" /> and receiving the <xref keyref="onAudioMixingStateChanged" />(AUDIO_MIXING_STATE_PLAYING)
-                    callback.</li>
-            <li conkeyref="preloadEffect/audioFormats" />
-            </ul> </note> </section>
+                <ul>
+                    <li props="cpp electron flutter">This method is for <ph props="cpp flutter"
+                            >Android, iOS, and </ph>Windows only.</li>
+                    <li>Call this method after calling <xref keyref="startAudioMixing2"/> and
+                        receiving the <xref keyref="onAudioMixingStateChanged"
+                        />(AUDIO_MIXING_STATE_PLAYING) callback.</li>
+                    <li conkeyref="preloadEffect/audioFormats"/>
+                </ul>
+            </note>
+        </section>
         <section id="return_values">
             <title>Returns</title>
             <ul>
-            <li>≥ 0: The audio track index of the current music file, if this method call
+                <li>≥ 0: The audio track index of the current music file, if this method call
                     succeeds.</li>
-            <li>&lt; 0: Failure.</li>
-            </ul> </section>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
     </refbody>
 </reference>

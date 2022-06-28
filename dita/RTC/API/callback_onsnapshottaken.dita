@@ -13,12 +13,12 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public void onSnapshotTaken(
+                <codeblock props="android" outputclass="language-java">public void onSnapshotTaken(
       String channel, int uid, String filePath, int width, int height, int errCode) {}
 </codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine snapshotTaken:(NSString* _Nonnull)channel uid:(NSUInteger)uid filePath:(NSString* _Nonnull)filePath width:(NSInteger)width height:(NSInteger)height errCode:(NSInteger)errCode;
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine snapshotTaken:(NSString* _Nonnull)channel uid:(NSUInteger)uid filePath:(NSString* _Nonnull)filePath width:(NSInteger)width height:(NSInteger)height errCode:(NSInteger)errCode;
 </codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onSnapshotTaken(const char* channel, uid_t uid, const char* filePath, int width, int height, int errCode) {
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onSnapshotTaken(const char* channel, uid_t uid, const char* filePath, int width, int height, int errCode) {
     (void)channel;
     (void)uid;
     (void)filePath;
@@ -27,17 +27,18 @@
     (void)errCode;
   }
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="cs" outputclass="language-csharp">public virtual void OnSnapshotTaken(string channel, uint uid, string filePath, int width, int height, int errCode)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">SnapshotTakenCallback? snapshotTaken;</codeblock> </p>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="cs" outputclass="language-csharp">public virtual void OnSnapshotTaken(string channel, uint uid, string filePath, int width, int height, int errCode)</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">SnapshotTakenCallback? snapshotTaken;</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>自从</dt>
-                <dd>v3.5.2</dd>
-            </dlentry>
+                <dlentry props="native">
+                    <dt>自从</dt>
+                    <dd>v3.5.2</dd>
+                </dlentry>
             </dl>
             <p>成功调用 <xref keyref="takeSnapshot"/> 后，SDK 触发该回调报告截图是否成功和获取截图的详情。</p>
         </section>
@@ -45,46 +46,42 @@
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry>
-                <pt>channel</pt>
-                <pd>频道名。</pd>
-            </plentry>
-            <plentry>
-                <pt>uid</pt>
-                <pd>用户 ID。如果 <parmname>uid</parmname> 为 0，表示本地用户。</pd>
-            </plentry>
-            <plentry>
-                <pt>filePath</pt>
-                <pd>截图的本地保存路径。</pd>
-            </plentry>
-            <plentry>
-                <pt>width</pt>
-                <pd>图片宽度（px）。</pd>
-            </plentry>
-            <plentry>
-                <pt>height</pt>
-                <pd>图片高度（px）。</pd>
-            </plentry>
-            <plentry>
-                <pt>errCode</pt>
-                <pd>截图成功的提示或失败的原因。
-                    
-                    
-                    <ul>
-                    <li>0：截图成功。</li>
-                    <li>&lt; 0: 截图失败。
-                        
-                        
-                        <ul>
-                        <li>-1：写入文件失败或 JPEG 编码失败。</li>
-                        <li>-2：<apiname keyref="takeSnapshot"/> 方法调用成功后 1 秒内没有发现指定用户的视频流。</li>
-                        </ul></li>
-                    </ul></pd>
-            </plentry>
-            </parml> </section>
+                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry>
+                    <pt>channel</pt>
+                    <pd>频道名。</pd>
+                </plentry>
+                <plentry>
+                    <pt>uid</pt>
+                    <pd>用户 ID。如果 <parmname>uid</parmname> 为 0，表示本地用户。</pd>
+                </plentry>
+                <plentry>
+                    <pt>filePath</pt>
+                    <pd>截图的本地保存路径。</pd>
+                </plentry>
+                <plentry>
+                    <pt>width</pt>
+                    <pd>图片宽度（px）。</pd>
+                </plentry>
+                <plentry>
+                    <pt>height</pt>
+                    <pd>图片高度（px）。</pd>
+                </plentry>
+                <plentry>
+                    <pt>errCode</pt>
+                    <pd>截图成功的提示或失败的原因。 <ul>
+                            <li>0：截图成功。</li>
+                            <li>&lt; 0: 截图失败。 <ul>
+                                    <li>-1：写入文件失败或 JPEG 编码失败。</li>
+                                    <li>-2：<apiname keyref="takeSnapshot"/> 方法调用成功后 1
+                                        秒内没有发现指定用户的视频流。</li>
+                                </ul></li>
+                        </ul></pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

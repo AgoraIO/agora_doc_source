@@ -13,17 +13,26 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int stopChannelMediaRelay() = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">stopChannelMediaRelay(): number</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public abstract int StopChannelMediaRelay();</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; stopChannelMediaRelay();</codeblock> </p>
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int stopChannelMediaRelay() = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">stopChannelMediaRelay(): number</codeblock>
+                <codeblock props="cs" outputclass="language-csharp">public abstract int StopChannelMediaRelay();</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; stopChannelMediaRelay();</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p>成功调用该方法后，SDK 会触发 <xref keyref="IChannel_onChannelMediaRelayStateChanged"/> 回调。如果报告 <apiname keyref="RELAY_STATE_IDLE"/> (0) 和 <apiname keyref="RELAY_OK"/> (0)，则表示已停止转发媒体流。</p>
-            <note type="attention"> 如果该方法调用不成功，SDK 会触发 <apiname keyref="IChannel_onChannelMediaRelayStateChanged"/> 回调，并报告状态码 <apiname keyref="RELAY_ERROR_SERVER_NO_RESPONSE"/> (2) 或 <apiname keyref="RELAY_ERROR_SERVER_CONNECTION_LOST"/> (8)。你可以调用 <xref keyref="IChannel_leaveChannel"/> 方法离开频道，跨频道媒体流转发会自动停止。</note> </section>
-        <section id="return_values" conkeyref="stopChannelMediaRelay/return_values" props="native cs electron"/>
+            <p>成功调用该方法后，SDK 会触发 <xref keyref="IChannel_onChannelMediaRelayStateChanged"/> 回调。如果报告
+                    <apiname keyref="RELAY_STATE_IDLE"/> (0) 和 <apiname keyref="RELAY_OK"/>
+                (0)，则表示已停止转发媒体流。</p>
+            <note type="attention"> 如果该方法调用不成功，SDK 会触发 <apiname
+                    keyref="IChannel_onChannelMediaRelayStateChanged"/> 回调，并报告状态码 <apiname
+                    keyref="RELAY_ERROR_SERVER_NO_RESPONSE"/> (2) 或 <apiname
+                    keyref="RELAY_ERROR_SERVER_CONNECTION_LOST"/> (8)。你可以调用 <xref
+                    keyref="IChannel_leaveChannel"/> 方法离开频道，跨频道媒体流转发会自动停止。</note>
+        </section>
+        <section id="return_values" conkeyref="stopChannelMediaRelay/return_values"
+            props="native cs electron"/>
     </refbody>
 </reference>

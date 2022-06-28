@@ -2,7 +2,8 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_joinchannelex">
     <title><ph keyref="joinChannelEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Joins a channel with the connection ID.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Joins a channel with the connection
+        ID.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -13,55 +14,63 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int joinChannelEx(String token, RtcConnection connection,
+                <codeblock props="android" outputclass="language-java">public abstract int joinChannelEx(String token, RtcConnection connection,
       ChannelMediaOptions options, IRtcEngineEventHandler eventHandler);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)joinChannelExByToken:(NSString* _Nullable)token
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)joinChannelExByToken:(NSString* _Nullable)token
                  connection:(AgoraRtcConnection * _Nonnull)connection
                    delegate:(id&lt;AgoraRtcEngineDelegate&gt; _Nullable)delegate
                mediaOptions:(AgoraRtcChannelMediaOptions* _Nonnull)mediaOptions
                 joinSuccess:(void(^ _Nullable)(NSString* _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int joinChannelEx(const char* token, const RtcConnection&amp; connection,
+                <codeblock props="cpp" outputclass="language-cpp">virtual int joinChannelEx(const char* token, const RtcConnection&amp; connection,
                               const ChannelMediaOptions&amp; options,
                               IRtcEngineEventHandler* eventHandler) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int JoinChannelEx(string token, RtcConnection connection, ChannelMediaOptions options, IAgoraRtcEngineEventHandler eventHandler);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int JoinChannelEx(string token, RtcConnection connection, ChannelMediaOptions options, IAgoraRtcEngineEventHandler eventHandler);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
             <p>You can call this method multiple times to join more than one channels.</p>
             <note id="note_ppw_nh5_3qb" type="attention">
-            <ul id="ul_rjs_4h5_3qb">
-            <li>If you are already in a channel, you cannot rejoin it with the same user ID.</li>
-            <li>If you want to join the same channel from different devices, ensure that the user IDs in all devices are different.</li>
-            <li>Ensure that the App ID you use to generate the token is the same as the App ID used when creating the <xref keyref="IRtcEngine"/>
-instance.</li>
-            </ul> </note> </section>
+                <ul id="ul_rjs_4h5_3qb">
+                    <li>If you are already in a channel, you cannot rejoin it with the same user
+                        ID.</li>
+                    <li>If you want to join the same channel from different devices, ensure that the
+                        user IDs in all devices are different.</li>
+                    <li>Ensure that the App ID you use to generate the token is the same as the App
+                        ID used when creating the <xref keyref="IRtcEngine"/> instance.</li>
+                </ul>
+            </note>
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry conkeyref="joinChannel2/token">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry id="connection">
-                <pt>connection</pt>
-                <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
-            </plentry>
-            <plentry conkeyref="joinChannel2/options">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry id="event">
-                <pt props="android cpp unity">eventHandler</pt>
-                <pt props="ios mac">delegate</pt>
-                <pd><ph props="native">The callback class of <xref keyref="IRtcEngineEx"/>.</ph><ph> For details, see <xref keyref="IRtcEngineEventHandler"/>.</ph></pd>
-            </plentry>
-            <plentry props="ios mac" conkeyref="joinChannel2/joinsuccessblock">
-                <pt/>
-                <pd/>
-            </plentry>
-            </parml> </section>
+                <plentry conkeyref="joinChannel2/token">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry id="connection">
+                    <pt>connection</pt>
+                    <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry conkeyref="joinChannel2/options">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry id="event">
+                    <pt props="android cpp unity">eventHandler</pt>
+                    <pt props="ios mac">delegate</pt>
+                    <pd><ph props="native">The callback class of <xref keyref="IRtcEngineEx"
+                            />.</ph><ph> For details, see <xref keyref="IRtcEngineEventHandler"
+                            />.</ph></pd>
+                </plentry>
+                <plentry props="ios mac" conkeyref="joinChannel2/joinsuccessblock">
+                    <pt/>
+                    <pd/>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values" conkeyref="joinChannel2/return_values"/>
     </refbody>
 </reference>

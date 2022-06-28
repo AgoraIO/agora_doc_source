@@ -13,55 +13,59 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="mac" outputclass="language-objectivec">- (int)startPlaybackDeviceTest:(NSString * _Nonnull)audioFileName;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int startPlaybackDeviceTest(const char* testAudioFilePath) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">startAudioPlaybackDeviceTest(testAudioFilePath: string): number</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public abstract int StartPlaybackDeviceTest(string testAudioFilePath);</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startAudioPlaybackDeviceTest(String testAudioFilePath)</codeblock> </p>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)startPlaybackDeviceTest:(NSString * _Nonnull)audioFileName;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int startPlaybackDeviceTest(const char* testAudioFilePath) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">startAudioPlaybackDeviceTest(testAudioFilePath: string): number</codeblock>
+                <codeblock props="cs" outputclass="language-csharp">public abstract int StartPlaybackDeviceTest(string testAudioFilePath);</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startAudioPlaybackDeviceTest(String testAudioFilePath)</codeblock>
+            </p>
         </section>
         <section id="detailed_desc" props="mac cs electron flutter rtc-ng">
             <p>该方法测试音频播放设备是否能正常工作。启动测试后，SDK 播放指定的音频文件，测试者如果能听到声音，说明播放设备能正常工作。</p>
-            <p>调用该方法后，SDK 会每隔 100 ms 触发一次 <xref keyref="onAudioVolumeIndication"/> 回调，报告 <parmname>uid</parmname> = 1 及播放设备的音量信息。</p>
-            <note type="attention">该方法需要在加入频道前调用。</note> </section>
+            <p>调用该方法后，SDK 会每隔 100 ms 触发一次 <xref keyref="onAudioVolumeIndication"/> 回调，报告
+                    <parmname>uid</parmname> = 1 及播放设备的音量信息。</p>
+            <note type="attention">该方法需要在加入频道前调用。</note>
+        </section>
         <section props="cpp rtc" id="section_owk_j2h_5sb">
             <p>该方法测试音频播放设备是否能正常工作。启动测试后，SDK 播放指定的音频文件，测试者如果能听到声音，说明播放设备能正常工作。</p>
-            <p>自 v3.6.2 起，该方法在加入频道前后均可调用，并每隔 100 ms 触发一次如下回调，报告播放设备的音量信息： 
-                
-            
-            
-            
-            <ul id="ul_ugl_m2h_5sb">
-            <li>在加入频道前调用该方法，SDK 触发 <xref keyref="onAudioVolumeIndication"/> 和 <xref keyref="onAudioDeviceTestVolumeIndication"/> 回调，其中： 
-                    
-                
-                
-                
-                <ul id="ul_ucb_t2h_5sb">
-                <li><apiname keyref="onAudioVolumeIndication"/> 报告 <codeph>uid = 1</codeph> 和 <codeph>volume</codeph>。</li>
-                <li><apiname keyref="onAudioDeviceTestVolumeIndication"/> 报告 <codeph>volumeType = <apiname keyref="AudioTestPlaybackVolume"/>(1)</codeph> 和 <codeph>volume</codeph>。</li>
-                </ul>这两个回调报告的音量信息相同，Agora 推荐使用 <apiname keyref="onAudioDeviceTestVolumeIndication"/>。</li>
-            <li>在加入频道后调用该方法，SDK 触发 <apiname keyref="onAudioDeviceTestVolumeIndication"/> 回调，报告 <apiname keyref="AudioTestPlaybackVolume"/> 和 <codeph>volume</codeph>。</li>
-            </ul>
-            <note>
-            <ul>
-            <li>加入频道后调用该方法，测试的是 SDK 正在使用的音频播放设备。</li>
-            <li>调用该方法后，必须调 <xref keyref="stopPlaybackDeviceTest"/> 方法停止测试</li>
-            </ul> </note></p>
+            <p>自 v3.6.2 起，该方法在加入频道前后均可调用，并每隔 100 ms 触发一次如下回调，报告播放设备的音量信息： <ul id="ul_ugl_m2h_5sb">
+                    <li>在加入频道前调用该方法，SDK 触发 <xref keyref="onAudioVolumeIndication"/> 和 <xref
+                            keyref="onAudioDeviceTestVolumeIndication"/> 回调，其中： <ul
+                            id="ul_ucb_t2h_5sb">
+                            <li><apiname keyref="onAudioVolumeIndication"/> 报告 <codeph>uid =
+                                    1</codeph> 和 <codeph>volume</codeph>。</li>
+                            <li><apiname keyref="onAudioDeviceTestVolumeIndication"/> 报告
+                                    <codeph>volumeType = <apiname keyref="AudioTestPlaybackVolume"
+                                    />(1)</codeph> 和 <codeph>volume</codeph>。</li>
+                        </ul>这两个回调报告的音量信息相同，Agora 推荐使用 <apiname
+                            keyref="onAudioDeviceTestVolumeIndication"/>。</li>
+                    <li>在加入频道后调用该方法，SDK 触发 <apiname keyref="onAudioDeviceTestVolumeIndication"/>
+                        回调，报告 <apiname keyref="AudioTestPlaybackVolume"/> 和
+                        <codeph>volume</codeph>。</li>
+                </ul>
+                <note>
+                    <ul>
+                        <li>加入频道后调用该方法，测试的是 SDK 正在使用的音频播放设备。</li>
+                        <li>调用该方法后，必须调 <xref keyref="stopPlaybackDeviceTest"/> 方法停止测试</li>
+                    </ul>
+                </note></p>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry id="testAudioFilePath">
-                <pt props="cpp electron flutter cs">testAudioFilePath</pt>
-                <pt props="mac">audioFileName</pt>
-                <pd>音频文件的绝对路径，路径字符串使用 UTF-8 编码格式。 </pd>
-            </plentry>
-            </parml> </section>
+                <plentry id="testAudioFilePath">
+                    <pt props="cpp electron flutter cs">testAudioFilePath</pt>
+                    <pt props="mac">audioFileName</pt>
+                    <pd>音频文件的绝对路径，路径字符串使用 UTF-8 编码格式。 </pd>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values" props="mac cpp cs electron">
             <title>返回值</title>
             <ul>
-            <li>0: 方法调用成功。</li>
-            <li>&lt; 0: 方法调用失败。</li>
-            </ul> </section>
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。</li>
+            </ul>
+        </section>
     </refbody>
 </reference>

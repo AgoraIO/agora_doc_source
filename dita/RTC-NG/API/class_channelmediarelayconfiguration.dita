@@ -2,12 +2,11 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_channelmediarelayconfiguration">
     <title><ph keyref="ChannelMediaRelayConfiguration"/></title>
-    <shortdesc><apiname keyref="ChannelMediaRelayConfiguration"
-        /> 类定义。</shortdesc>
+    <shortdesc><apiname keyref="ChannelMediaRelayConfiguration"/> 类定义。</shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="unity" outputclass="language-csharp">public class ChannelMediaRelayConfiguration
+                <codeblock props="unity" outputclass="language-csharp">public class ChannelMediaRelayConfiguration
     {
         public ChannelMediaRelayConfiguration()
         {
@@ -28,9 +27,10 @@
         
         public int destCount { set; get; }
     }
-    }</codeblock> </p>
+    }</codeblock>
+            </p>
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public class ChannelMediaRelayConfiguration {
+                <codeblock props="android" outputclass="language-java">public class ChannelMediaRelayConfiguration {
   private ChannelMediaInfo srcInfo = null;
   private Map&lt;String, ChannelMediaInfo&gt; destInfos = null;
 
@@ -42,7 +42,7 @@
   public void setSrcChannelInfo(ChannelMediaInfo srcInfo) {
     this.srcInfo = srcInfo;
   }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraChannelMediaRelayConfiguration: NSObject
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraChannelMediaRelayConfiguration: NSObject
 
 @property (strong, nonatomic, readonly) NSDictionary&lt;NSString *, AgoraChannelMediaRelayInfo *&gt; *_Nullable destinationInfos;
 @property (strong, nonatomic) AgoraChannelMediaRelayInfo *_Nonnull sourceInfo;
@@ -50,7 +50,7 @@
 - (BOOL)setDestinationInfo:(AgoraChannelMediaRelayInfo *_Nonnull)destinationInfo forChannelName:(NSString *_Nonnull)channelName;
 - (BOOL)removeDestinationInfoForChannelName:(NSString *_Nonnull)channelName;
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct ChannelMediaRelayConfiguration {
+                <codeblock props="cpp" outputclass="language-cpp">struct ChannelMediaRelayConfiguration {
 	ChannelMediaInfo *srcInfo;
 	ChannelMediaInfo *destInfos;
 	int destCount;
@@ -61,12 +61,12 @@
 			, destCount(0)
 	{}
     };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">export interface ChannelMediaRelayConfiguration {
+                <codeblock props="electron" outputclass="language-typescript">export interface ChannelMediaRelayConfiguration {
     srcInfo: ChannelMediaInfo;
     destInfos: [ChannelMediaInfo];
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">class ChannelMediaRelayConfiguration {
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">class ChannelMediaRelayConfiguration {
   
   ChannelMediaInfo srcInfo;
   List&lt;ChannelMediaInfo&gt; destInfos;
@@ -80,72 +80,64 @@
       _$ChannelMediaRelayConfigurationFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$ChannelMediaRelayConfigurationToJson(this);
-}</codeblock> </p>
+}</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+                /></title>
             <parml>
-            <plentry>
-                <pt props="android cpp unity">srcInfo</pt>
-                <pt props="ios mac">sourceInfo</pt>
-                <pd>
-                    <p>源频道信息 <xref keyref="ChannelMediaInfo"/>，包含如下成员：
-                    
-                    <ul>
-                    <li><codeph>channelName</codeph>：源频道名。默认值为 <codeph><ph
-                        keyref="NULL"/></codeph>，表示 SDK
-                                    填充当前的频道名。</li>
-                    <li><codeph>uid</codeph>：标识源频道中的转发媒体流的 UID。默认值为 0，表示 SDK 随机分配一个
+                <plentry>
+                    <pt props="android cpp unity">srcInfo</pt>
+                    <pt props="ios mac">sourceInfo</pt>
+                    <pd>
+                        <p>源频道信息 <xref keyref="ChannelMediaInfo"/>，包含如下成员： <ul>
+                                <li><codeph>channelName</codeph>：源频道名。默认值为 <codeph><ph keyref="NULL"
+                                        /></codeph>，表示 SDK 填充当前的频道名。</li>
+                                <li><codeph>uid</codeph>：标识源频道中的转发媒体流的 UID。默认值为 0，表示 SDK 随机分配一个
                                         <codeph>uid</codeph>。请确保设为 0。</li>
-                    <li><codeph>token</codeph>：能加入源频道的 <codeph>token</codeph>。由你在
+                                <li><codeph>token</codeph>：能加入源频道的 <codeph>token</codeph>。由你在
                                         <codeph>srcInfo</codeph> 中设置的 <codeph>channelName</codeph> 和
-                                        <codeph>uid</codeph> 生成。
-                        
-                        <ul>
-                        <li>如未启用 App Certificate，可直接将该参数设为默认值
-                                            <codeph><ph
-                            keyref="NULL"/></codeph>，表示 SDK 填充 App ID。</li>
-                        <li>如已启用 App Certificate，则务必填入使用
+                                        <codeph>uid</codeph> 生成。 <ul>
+                                        <li>如未启用 App Certificate，可直接将该参数设为默认值 <codeph><ph
+                                                  keyref="NULL"/></codeph>，表示 SDK 填充 App ID。</li>
+                                        <li>如已启用 App Certificate，则务必填入使用
                                                 <codeph>channelName</codeph> 和 <codeph>uid</codeph>
                                             生成的 <codeph>token</codeph>，且其中的 <codeph>uid</codeph> 必须为
                                             0。</li>
-                        </ul></li>
-                    </ul> </p>
-                </pd>
-            </plentry>
-            <plentry>
-                <pt props="android cpp unity">destInfos</pt>
-                <pt props="ios mac">destinationInfos</pt>
-                <pd>
-                    <p>目标频道信息 <apiname keyref="ChannelMediaInfo"/>，包含如下成员： 
-                    
-                    <ul>
-                    <li><codeph>channelName</codeph>：目标频道的频道名。</li>
-                    <li><codeph>uid</codeph>：标识目标频道中的转发媒体流的 UID。取值范围为 0
+                                    </ul></li>
+                            </ul>
+                        </p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt props="android cpp unity">destInfos</pt>
+                    <pt props="ios mac">destinationInfos</pt>
+                    <pd>
+                        <p>目标频道信息 <apiname keyref="ChannelMediaInfo"/>，包含如下成员： <ul>
+                                <li><codeph>channelName</codeph>：目标频道的频道名。</li>
+                                <li><codeph>uid</codeph>：标识目标频道中的转发媒体流的 UID。取值范围为 0
                                     到（2<sup>32</sup>-1），请确保与目标频道中的所有 UID 不同。默认值为 0，表示 SDK 随机分配一个
                                     UID。请确保不要将该参数设为目标频道的主播的 UID，并与目标频道中的所有 UID 都不同。</li>
-                    <li><codeph>token</codeph>：能加入目标频道的 <codeph>token</codeph>。由你在
+                                <li><codeph>token</codeph>：能加入目标频道的 <codeph>token</codeph>。由你在
                                         <codeph>destInfos</codeph> 中设置的 <codeph>channelName</codeph>
-                                    和 <codeph>uid</codeph> 生成。
-                        
-                        <ul>
-                        <li>如未启用 App Certificate，可直接将该参数设为默认值
-                                            <codeph><ph
-                            keyref="NULL"/></codeph>，表示 SDK 填充 App ID。</li>
-                        <li>如已启用 App Certificate，则务必填入使用
+                                    和 <codeph>uid</codeph> 生成。 <ul>
+                                        <li>如未启用 App Certificate，可直接将该参数设为默认值 <codeph><ph
+                                                  keyref="NULL"/></codeph>，表示 SDK 填充 App ID。</li>
+                                        <li>如已启用 App Certificate，则务必填入使用
                                                 <codeph>channelName</codeph> 和 <codeph>uid</codeph>
                                             生成的 <codeph>token</codeph>。</li>
-                        </ul></li>
-                    </ul> </p>
-                </pd>
-            </plentry>
-            <plentry props="cpp unity">
-                <pt>destCount</pt>
-                <pd>目标频道数量，默认值为 0，取值范围为 [0,4]。该参数应与你在 <codeph>destInfo</codeph> 中定义的 <apiname
-                    keyref="ChannelMediaInfo"/> 数组的数目一致。</pd>
-            </plentry>
-            </parml> </section>
+                                    </ul></li>
+                            </ul>
+                        </p>
+                    </pd>
+                </plentry>
+                <plentry props="cpp unity">
+                    <pt>destCount</pt>
+                    <pd>目标频道数量，默认值为 0，取值范围为 [0,4]。该参数应与你在 <codeph>destInfo</codeph> 中定义的 <apiname
+                            keyref="ChannelMediaInfo"/> 数组的数目一致。</pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

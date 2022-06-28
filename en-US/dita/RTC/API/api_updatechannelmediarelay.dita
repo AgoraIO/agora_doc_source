@@ -1,47 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_updatechannelmediarelay">
-    <title><ph keyref="updateChannelMediaRelay" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Updates the channels for media stream relay.</ph></shortdesc>
+    <title><ph keyref="updateChannelMediaRelay"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Updates the channels for media stream
+        relay.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="updateChannelMediaRelay" />
+                <indexterm keyref="updateChannelMediaRelay"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int updateChannelMediaRelay(
+                <codeblock props="android" outputclass="language-java">public abstract int updateChannelMediaRelay(
       ChannelMediaRelayConfiguration channelMediaRelayConfiguration);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)updateChannelMediaRelay:(AgoraChannelMediaRelayConfiguration * _Nonnull)config;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int updateChannelMediaRelay(const ChannelMediaRelayConfiguration &amp;configuration) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">updateChannelMediaRelay(config: ChannelMediaRelayConfiguration): number</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public abstract int UpdateChannelMediaRelay(ChannelMediaRelayConfiguration configuration);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; updateChannelMediaRelay(
-      ChannelMediaRelayConfiguration channelMediaRelayConfiguration);</codeblock> </p>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)updateChannelMediaRelay:(AgoraChannelMediaRelayConfiguration * _Nonnull)config;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int updateChannelMediaRelay(const ChannelMediaRelayConfiguration &amp;configuration) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">updateChannelMediaRelay(config: ChannelMediaRelayConfiguration): number</codeblock>
+                <codeblock props="cs" outputclass="language-csharp">public abstract int UpdateChannelMediaRelay(ChannelMediaRelayConfiguration configuration);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; updateChannelMediaRelay(
+      ChannelMediaRelayConfiguration channelMediaRelayConfiguration);</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p id="desc">After the media relay starts, if you want to relay the media stream to more channels, or leave the current relay channel, you can call the updateChannelMediaRelay method.</p>
-            <p>After a successful method call, the SDK triggers the <xref keyref="onChannelMediaRelayEvent" /> callback with the <apiname keyref="RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL" /> (7) state code.</p>
-            <note type="attention">Call this method after the <xref keyref="startChannelMediaRelay" /> method to update the destination channel.</note> </section>
+            <p id="desc">After the media relay starts, if you want to relay the media stream to more
+                channels, or leave the current relay channel, you can call the
+                updateChannelMediaRelay method.</p>
+            <p>After a successful method call, the SDK triggers the <xref
+                    keyref="onChannelMediaRelayEvent"/> callback with the <apiname
+                    keyref="RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL"/> (7) state code.</p>
+            <note type="attention">Call this method after the <xref keyref="startChannelMediaRelay"
+                /> method to update the destination channel.</note>
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry>
-                <pt props="android flutter">channelMediaRelayConfiguration</pt>
-                <pt props="ios mac">config</pt>
-                <pt props="cpp cs">configuration</pt>
-                <pd>The configuration of the media stream relay. For more details, see <xref keyref="ChannelMediaRelayConfiguration" />.</pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt props="android flutter">channelMediaRelayConfiguration</pt>
+                    <pt props="ios mac">config</pt>
+                    <pt props="cpp cs">configuration</pt>
+                    <pd>The configuration of the media stream relay. For more details, see <xref
+                            keyref="ChannelMediaRelayConfiguration"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values" props="native electron cs">
             <title>Returns</title>
             <ul>
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure.</li>
-            </ul> </section>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
     </refbody>
 </reference>

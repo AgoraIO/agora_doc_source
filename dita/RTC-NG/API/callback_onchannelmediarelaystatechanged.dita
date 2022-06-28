@@ -13,18 +13,19 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnChannelMediaRelayStateChanged(int state, int code) {}</codeblock>
-            <codeblock props="android" outputclass="language-java">public void onChannelMediaRelayStateChanged(int state, int code) {}</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnChannelMediaRelayStateChanged(int state, int code) {}</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onChannelMediaRelayStateChanged(int state, int code) {}</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
 channelMediaRelayStateDidChange:(AgoraChannelMediaRelayState)state
             error:(AgoraChannelMediaRelayError)error;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onChannelMediaRelayStateChanged(CHANNEL_MEDIA_RELAY_STATE state,CHANNEL_MEDIA_RELAY_ERROR code) {
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onChannelMediaRelayStateChanged(CHANNEL_MEDIA_RELAY_STATE state,CHANNEL_MEDIA_RELAY_ERROR code) {
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.CHANNEL_MEDIA_RELAY_EVENT, cb: (
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.CHANNEL_MEDIA_RELAY_EVENT, cb: (
     event: CHANNEL_MEDIA_RELAY_EVENT
     ) =&gt; void): this;</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">MediaRelayStateCallback? channelMediaRelayStateChanged;</codeblock> </p>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">MediaRelayStateCallback? channelMediaRelayStateChanged;</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
             <p>当跨频道媒体流转发状态发生改变时，SDK 会触发该回调，并报告当前的转发状态以及相关的错误信息。</p>
@@ -33,44 +34,59 @@ channelMediaRelayStateDidChange:(AgoraChannelMediaRelayState)state
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry id="state">
-                <pt>state</pt>
-                <pd>
-                    <p props="ios mac cpp unity flutter">跨频道媒体流转发状态。详见 <xref keyref="CHANNEL_MEDIA_RELAY_STATE"/>。</p>
-                    <p props="android">跨频道媒体流转发状态：
-                    <ul>
-                    <li><ph keyref="RELAY_STATE_IDLE"/> (0)：SDK 正在初始化。</li>
-                    <li><ph keyref="RELAY_STATE_CONNECTING"/> (1)：SDK 尝试跨频道。</li>
-                    <li><ph keyref="RELAY_STATE_RUNNING"/> (2)：源频道主播成功加入目标频道。</li>
-                    <li><ph keyref="RELAY_STATE_FAILURE"/> (3)：发生异常，详见 <parmname>code</parmname> 中提示的错误信息。</li>
-                    </ul> </p>
-                </pd>
-            </plentry>
-            <plentry id="code">
-                <pt>code</pt>
-                <pd>
-                    <p props="ios mac cpp unity flutter">跨频道媒体流转发出错的错误码。详见 <xref keyref="CHANNEL_MEDIA_RELAY_ERROR"/>。</p>
-                    <p props="android">跨频道媒体流转发出错的错误码：
-                    <ul>
-                    <li><ph keyref="RELAY_OK"/> (0)：一切正常。</li>
-                    <li><ph keyref="RELAY_ERROR_SERVER_ERROR_RESPONSE"/> (1)：服务器回应出错。</li>
-                    <li><ph keyref="RELAY_ERROR_SERVER_NO_RESPONSE"/> (2)：服务器无回应。你可以调用 <xref keyref="leaveChannel"/> 方法离开频道。该错误也可能是由于当前的 App ID 未开启跨频道连麦导致的。你可以<xref keyref="ticket-link"/>申请开通跨频道连麦。</li>
-                    <li><ph keyref="RELAY_ERROR_NO_RESOURCE_AVAILABLE"/> (3)：SDK 无法获取服务，可能是因为服务器资源有限导致。</li>
-                    <li><ph keyref="RELAY_ERROR_FAILED_JOIN_SRC"/> (4)：发起跨频道转发媒体流请求失败。</li>
-                    <li><ph keyref="RELAY_ERROR_FAILED_JOIN_DEST"/> (5)：接受跨频道转发媒体流请求失败。</li>
-                    <li><ph keyref="RELAY_ERROR_FAILED_PACKET_RECEIVED_FROM_SRC"/> (6)：服务器接收跨频道转发媒体流失败。</li>
-                    <li><ph keyref="RELAY_ERROR_FAILED_PACKET_SENT_TO_DEST"/> (7)：服务器发送跨频道转发媒体流失败。</li>
-                    <li><ph keyref="RELAY_ERROR_SERVER_CONNECTION_LOST"/> (8)：SDK 因网络质量不佳与服务器断开。你可以调用 <xref keyref="leaveChannel"/> 方法离开当前频道。</li>
-                    <li><ph keyref="RELAY_ERROR_INTERNAL_ERROR"/> (9)：服务器内部出错。</li>
-                    <li><ph keyref="RELAY_ERROR_SRC_TOKEN_EXPIRED"/> (10)：源频道的 Token 已过期。</li>
-                    <li><ph keyref="RELAY_ERROR_DEST_TOKEN_EXPIRED"/> (11)：目标频道的 Token 已过期。</li>
-                    </ul> </p>
-                </pd>
-            </plentry>
-            </parml> </section>
+                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry id="state">
+                    <pt>state</pt>
+                    <pd>
+                        <p props="ios mac cpp unity flutter">跨频道媒体流转发状态。详见 <xref
+                                keyref="CHANNEL_MEDIA_RELAY_STATE"/>。</p>
+                        <p props="android">跨频道媒体流转发状态： <ul>
+                                <li><ph keyref="RELAY_STATE_IDLE"/> (0)：SDK 正在初始化。</li>
+                                <li><ph keyref="RELAY_STATE_CONNECTING"/> (1)：SDK 尝试跨频道。</li>
+                                <li><ph keyref="RELAY_STATE_RUNNING"/> (2)：源频道主播成功加入目标频道。</li>
+                                <li><ph keyref="RELAY_STATE_FAILURE"/> (3)：发生异常，详见
+                                        <parmname>code</parmname> 中提示的错误信息。</li>
+                            </ul>
+                        </p>
+                    </pd>
+                </plentry>
+                <plentry id="code">
+                    <pt>code</pt>
+                    <pd>
+                        <p props="ios mac cpp unity flutter">跨频道媒体流转发出错的错误码。详见 <xref
+                                keyref="CHANNEL_MEDIA_RELAY_ERROR"/>。</p>
+                        <p props="android">跨频道媒体流转发出错的错误码： <ul>
+                                <li><ph keyref="RELAY_OK"/> (0)：一切正常。</li>
+                                <li><ph keyref="RELAY_ERROR_SERVER_ERROR_RESPONSE"/>
+                                    (1)：服务器回应出错。</li>
+                                <li><ph keyref="RELAY_ERROR_SERVER_NO_RESPONSE"/> (2)：服务器无回应。你可以调用
+                                        <xref keyref="leaveChannel"/> 方法离开频道。该错误也可能是由于当前的 App ID
+                                        未开启跨频道连麦导致的。你可以<xref keyref="ticket-link"/>申请开通跨频道连麦。</li>
+                                <li><ph keyref="RELAY_ERROR_NO_RESOURCE_AVAILABLE"/> (3)：SDK
+                                    无法获取服务，可能是因为服务器资源有限导致。</li>
+                                <li><ph keyref="RELAY_ERROR_FAILED_JOIN_SRC"/>
+                                    (4)：发起跨频道转发媒体流请求失败。</li>
+                                <li><ph keyref="RELAY_ERROR_FAILED_JOIN_DEST"/>
+                                    (5)：接受跨频道转发媒体流请求失败。</li>
+                                <li><ph keyref="RELAY_ERROR_FAILED_PACKET_RECEIVED_FROM_SRC"/>
+                                    (6)：服务器接收跨频道转发媒体流失败。</li>
+                                <li><ph keyref="RELAY_ERROR_FAILED_PACKET_SENT_TO_DEST"/>
+                                    (7)：服务器发送跨频道转发媒体流失败。</li>
+                                <li><ph keyref="RELAY_ERROR_SERVER_CONNECTION_LOST"/> (8)：SDK
+                                    因网络质量不佳与服务器断开。你可以调用 <xref keyref="leaveChannel"/> 方法离开当前频道。</li>
+                                <li><ph keyref="RELAY_ERROR_INTERNAL_ERROR"/> (9)：服务器内部出错。</li>
+                                <li><ph keyref="RELAY_ERROR_SRC_TOKEN_EXPIRED"/> (10)：源频道的 Token
+                                    已过期。</li>
+                                <li><ph keyref="RELAY_ERROR_DEST_TOKEN_EXPIRED"/> (11)：目标频道的 Token
+                                    已过期。</li>
+                            </ul>
+                        </p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

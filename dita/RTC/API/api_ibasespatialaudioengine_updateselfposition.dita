@@ -13,59 +13,62 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int updateSelfPosition(
+                <codeblock props="android" outputclass="language-java">public abstract int updateSelfPosition(
     float[] position, float[] axisForward, float[] axisRight, float[] axisUp);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)updateSelfPosition:(NSArray&lt;NSNumber*>* _Nonnull)position axisForward:(NSArray&lt;NSNumber*>* _Nonnull)axisForward axisRight:(NSArray&lt;NSNumber*>* _Nonnull)axisRight axisUp:(NSArray&lt;NSNumber*>* _Nonnull)axisUp;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int updateSelfPosition(float position[3], float axisForward[3], float axisRight[3], float axisUp[3]) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="cs" outputclass="language-csharp">public abstract int UpdateSelfPosition(float[] position, float[] axisForward, float[] axisRight, float[] axisUp);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)updateSelfPosition:(NSArray&lt;NSNumber*>* _Nonnull)position axisForward:(NSArray&lt;NSNumber*>* _Nonnull)axisForward axisRight:(NSArray&lt;NSNumber*>* _Nonnull)axisRight axisUp:(NSArray&lt;NSNumber*>* _Nonnull)axisUp;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int updateSelfPosition(float position[3], float axisForward[3], float axisRight[3], float axisUp[3]) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="cs" outputclass="language-csharp">public abstract int UpdateSelfPosition(float[] position, float[] axisForward, float[] axisRight, float[] axisUp);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p id="effect">在不同类下调用该方法时，作用不同：
-            
-            
-            <ul>
-            <li>在 <xref keyref="ICloudSpatialAudioEngine"/> 类下调用该方法时，SDK 会向 Agora 空间音效服务器更新本地用户的空间位置。Agora 空间音效服务器会根据本地和远端用户的世界坐标和音频接收范围计算用户的空间音效参数。</li>
-            <li>在 <xref keyref="ILocalSpatialAudioEngine"/> 类下，该方法需要和 <xref keyref="updateRemotePosition"/> 搭配使用。SDK 会根据该方法和 <apiname keyref="updateRemotePosition"/> 设置的参数计算本地和远端用户之间的相对位置，从而计算用户的空间音效参数。</li>
-            </ul></p>
+            <p id="effect">在不同类下调用该方法时，作用不同： <ul>
+                    <li>在 <xref keyref="ICloudSpatialAudioEngine"/> 类下调用该方法时，SDK 会向 Agora
+                        空间音效服务器更新本地用户的空间位置。Agora 空间音效服务器会根据本地和远端用户的世界坐标和音频接收范围计算用户的空间音效参数。</li>
+                    <li>在 <xref keyref="ILocalSpatialAudioEngine"/> 类下，该方法需要和 <xref
+                            keyref="updateRemotePosition"/> 搭配使用。SDK 会根据该方法和 <apiname
+                            keyref="updateRemotePosition"/>
+                        设置的参数计算本地和远端用户之间的相对位置，从而计算用户的空间音效参数。</li>
+                </ul></p>
             <note type="note" id="note">
-            <ul>
-            <li>该方法需要在 <xref keyref="enterRoom"/> 后调用。</li>
-            <li>如果在 <apiname keyref="ICloudSpatialAudioEngine"/> 类下调用该方法，需注意：
-                
-                
                 <ul>
-                <li>多次调用该方法时，Agora 推荐调用时间间隔为 [120,7000) 毫秒，否则 SDK 和 Agora 空间音效服务器会失去同步。</li>
-                <li>如果本次更新的空间位置和上次位置间的距离小于 0.2 米或各方向旋转角度小于 15 度，则 SDK 不会更新本次空间位置。</li>
-                </ul></li>
-            </ul></note> </section>
+                    <li>该方法需要在 <xref keyref="enterRoom"/> 后调用。</li>
+                    <li>如果在 <apiname keyref="ICloudSpatialAudioEngine"/> 类下调用该方法，需注意： <ul>
+                            <li>多次调用该方法时，Agora 推荐调用时间间隔为 [120,7000) 毫秒，否则 SDK 和 Agora
+                                空间音效服务器会失去同步。</li>
+                            <li>如果本次更新的空间位置和上次位置间的距离小于 0.2 米或各方向旋转角度小于 15 度，则 SDK 不会更新本次空间位置。</li>
+                        </ul></li>
+                </ul></note>
+        </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry id="position">
-                <pt>position</pt>
-                <pd>在世界坐标系中的坐标。该参数是长度为 3 的数组，三个值依次表示前、右、上的坐标值。</pd>
-            </plentry>
-            <plentry id="axisforward">
-                <pt>axisForward</pt>
-                <pd id="axisforward_desc">在世界坐标系前轴的单位向量。该参数是长度为 3 的数组，三个值依次表示前、右、上的坐标值。</pd>
-            </plentry>
-            <plentry id="axisright">
-                <pt>axisRight</pt>
-                <pd>在世界坐标系右轴的单位向量。该参数是长度为 3 的数组，三个值依次表示前、右、上的坐标值。</pd>
-            </plentry>
-            <plentry id="axisup">
-                <pt>axisUp</pt>
-                <pd>在世界坐标系上轴的单位向量。该参数是长度为 3 的数组，三个值依次表示前、右、上的坐标值。</pd>
-            </plentry>
-            </parml> </section>
+                <plentry id="position">
+                    <pt>position</pt>
+                    <pd>在世界坐标系中的坐标。该参数是长度为 3 的数组，三个值依次表示前、右、上的坐标值。</pd>
+                </plentry>
+                <plentry id="axisforward">
+                    <pt>axisForward</pt>
+                    <pd id="axisforward_desc">在世界坐标系前轴的单位向量。该参数是长度为 3 的数组，三个值依次表示前、右、上的坐标值。</pd>
+                </plentry>
+                <plentry id="axisright">
+                    <pt>axisRight</pt>
+                    <pd>在世界坐标系右轴的单位向量。该参数是长度为 3 的数组，三个值依次表示前、右、上的坐标值。</pd>
+                </plentry>
+                <plentry id="axisup">
+                    <pt>axisUp</pt>
+                    <pd>在世界坐标系上轴的单位向量。该参数是长度为 3 的数组，三个值依次表示前、右、上的坐标值。</pd>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values" props="native electron cs">
             <title>返回值</title>
             <ul>
-            <li>0: 方法调用成功。</li>
-            <li>&lt; 0: 方法调用失败。</li>
-            </ul> </section>
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。</li>
+            </ul>
+        </section>
     </refbody>
 </reference>

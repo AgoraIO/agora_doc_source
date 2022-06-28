@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onuserenablevideo">
-    <title><ph keyref="onUserEnableVideo" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when a remote user enables/disables the video module.</ph></shortdesc>
+    <title><ph keyref="onUserEnableVideo"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when a remote user enables/disables the video
+            module.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="onUserEnableVideo" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="onUserEnableVideo"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public void onUserEnableVideo(int uid, boolean enabled) {}</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
     didVideoEnabled:(BOOL)enabled
@@ -22,30 +24,35 @@
     }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.USER_ENABLE_VIDEO, cb: (uid: number, enabled: boolean) =&gt; void): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserEnableVideo(uint uid, bool enabled)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart">UidWithEnabledCallback? userEnableVideo;</codeblock>
-        </p>
+            </p>
         </section>
         <section id="detailed_desc">
-
-   <dl outputclass="deprecated" props="hide">
-       <dlentry>
-  <dt>Deprecated:</dt>
-  <dd>Please use instead <xref keyref="onRemoteVideoStateChanged" />:<ul>
- <li><apiname keyref="REMOTE_VIDEO_STATE_STOPPED" /> (0) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED" />(5).</li>
- <li><apiname keyref="REMOTE_VIDEO_STATE_DECODING" /> (2) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED" />(6).</li>
-      </ul>
-  </dd>
-       </dlentry>
-   </dl>
-   <p id="desc1">Once the video module is disabled, the user can only use a voice call. The user cannot send or receive any video.</p>
-   <p>The SDK triggers this callback when a remote user enables or disables the video module by calling the <xref keyref="enableVideo" /> or <xref keyref="disableVideo" /> method.</p>
+            <dl outputclass="deprecated" props="hide">
+                <dlentry>
+                    <dt>Deprecated:</dt>
+                    <dd>Please use instead <xref keyref="onRemoteVideoStateChanged"/>:<ul>
+                            <li><apiname keyref="REMOTE_VIDEO_STATE_STOPPED"/> (0) and <apiname
+                                    keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED"/>(5).</li>
+                            <li><apiname keyref="REMOTE_VIDEO_STATE_DECODING"/> (2) and <apiname
+                                    keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED"/>(6).</li>
+                        </ul>
+                    </dd>
+                </dlentry>
+            </dl>
+            <p id="desc1">Once the video module is disabled, the user can only use a voice call. The
+                user cannot send or receive any video.</p>
+            <p>The SDK triggers this callback when a remote user enables or disables the video
+                module by calling the <xref keyref="enableVideo"/> or <xref keyref="disableVideo"/>
+                method.</p>
         </section>
-        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-   <parml>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <parml>
                 <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                    <pt />
-                    <pd />
+                    <pt/>
+                    <pd/>
                 </plentry>
                 <plentry>
                     <pt>uid</pt>
@@ -55,8 +62,8 @@
                     <pt>enabled</pt>
                     <pd>
                         <ul>
-                            <li><codeph><ph keyref="true" /></codeph>: Enable.</li>
-                            <li><codeph><ph keyref="false" /></codeph>: Disable.</li>
+                            <li><codeph><ph keyref="true"/></codeph>: Enable.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Disable.</li>
                         </ul>
                     </pd>
                 </plentry>
