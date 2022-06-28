@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_remotevideostats">
-    <title><ph keyref="RemoteVideoStats" /></title>
+    <title><ph keyref="RemoteVideoStats"/></title>
     <shortdesc id="short"><ph id="shortdesc">远端视频流的统计信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -61,7 +61,7 @@
   int publishDuration;
   int superResolutionType;
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public class RemoteVideoStats
     {
         public uint uid { set; get; }
@@ -81,11 +81,68 @@
         public int publishDuration { set; get; }
         public int superResolutionType { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock> </p>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">class RemoteVideoStats {
+  const RemoteVideoStats(
+      {this.uid,
+      this.delay,
+      this.width,
+      this.height,
+      this.receivedBitrate,
+      this.decoderOutputFrameRate,
+      this.rendererOutputFrameRate,
+      this.frameLossRate,
+      this.packetLossRate,
+      this.rxStreamType,
+      this.totalFrozenTime,
+      this.frozenRate,
+      this.avSyncTimeMs,
+      this.totalActiveTime,
+      this.publishDuration,
+      this.superResolutionType});
+
+  @JsonKey(name: 'uid')
+  final int? uid;
+  @JsonKey(name: 'delay')
+  final int? delay;
+  @JsonKey(name: 'width')
+  final int? width;
+  @JsonKey(name: 'height')
+  final int? height;
+  @JsonKey(name: 'receivedBitrate')
+  final int? receivedBitrate;
+  @JsonKey(name: 'decoderOutputFrameRate')
+  final int? decoderOutputFrameRate;
+  @JsonKey(name: 'rendererOutputFrameRate')
+  final int? rendererOutputFrameRate;
+  @JsonKey(name: 'frameLossRate')
+  final int? frameLossRate;
+  @JsonKey(name: 'packetLossRate')
+  final int? packetLossRate;
+  @JsonKey(name: 'rxStreamType')
+  final VideoStreamType? rxStreamType;
+  @JsonKey(name: 'totalFrozenTime')
+  final int? totalFrozenTime;
+  @JsonKey(name: 'frozenRate')
+  final int? frozenRate;
+  @JsonKey(name: 'avSyncTimeMs')
+  final int? avSyncTimeMs;
+  @JsonKey(name: 'totalActiveTime')
+  final int? totalActiveTime;
+  @JsonKey(name: 'publishDuration')
+  final int? publishDuration;
+  @JsonKey(name: 'superResolutionType')
+  final int? superResolutionType;
+  factory RemoteVideoStats.fromJson(Map&lt;String, dynamic> json) =>
+      _$RemoteVideoStatsFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$RemoteVideoStatsToJson(this);
+}</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>uid</pt>
@@ -97,7 +154,9 @@
                     <dl outputclass="deprecated">
                     <dlentry>
                         <dt>弃用：</dt>
-                        <dd>在有音画同步机制的音视频场景中，你可以参考 <xref keyref="RemoteAudioStats" /> 里的 <parmname>networkTransportDelay</parmname> 和 <parmname>jitterBufferDelay</parmname> 成员的值，了解视频的延迟数据。</dd>
+                        <dd>在有音画同步机制的音视频场景中，你可以参考 <xref
+                            keyref="RemoteAudioStats"
+                            /> 里的 <parmname>networkTransportDelay</parmname> 和 <parmname>jitterBufferDelay</parmname> 成员的值，了解视频的延迟数据。</dd>
                     </dlentry>
                     </dl>
                     <p>延时（毫秒）。</p>
@@ -137,11 +196,14 @@
             </plentry>
             <plentry>
                 <pt>rxStreamType</pt>
-                <pd><ph>视频流类型，大流或小流。</ph><ph props="ios mac cpp unity">详见 <xref keyref="REMOTE_VIDEO_STREAM_TYPE" />。</ph>
+                <pd><ph>视频流类型，大流或小流。</ph><ph props="ios mac cpp unity flutter">详见 <xref
+                    keyref="REMOTE_VIDEO_STREAM_TYPE"/>。</ph>
                     <p props="android">
                     <ul>
-                    <li><ph keyref="REMOTE_VIDEO_STREAM_HIGH" /> (0)：视频大流，即高分辨率高码率的视频流。</li>
-                    <li><ph keyref="REMOTE_VIDEO_STREAM_LOW" /> (1)：视频小流，即低分辨率低码率的视频流。</li>
+                    <li><ph keyref="REMOTE_VIDEO_STREAM_HIGH"
+                        /> (0)：视频大流，即高分辨率高码率的视频流。</li>
+                    <li><ph keyref="REMOTE_VIDEO_STREAM_LOW"
+                        /> (1)：视频小流，即低分辨率低码率的视频流。</li>
                     </ul> </p>
                 </pd>
             </plentry>
@@ -171,6 +233,7 @@
                 <pt>superResolutionType</pt>
                 <pd>超分辨率的开启状态：
 
+                    
                     <ul>
                     <li>&gt;0：超分辨率已开启。</li>
                     <li>=0：超分辨率未开启。</li>
@@ -179,6 +242,7 @@
             <plentry>
                 <pt>avSyncTimeMs</pt>
                 <pd>音频超前视频的时间 (ms)。
+                    
                     <note type="attention">如果为负值，则代表音频落后于视频。</note></pd>
             </plentry>
             </parml> </section>

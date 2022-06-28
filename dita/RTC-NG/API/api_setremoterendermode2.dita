@@ -21,7 +21,10 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetRemoteRenderMode(uint uid, RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/></p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setRemoteRenderMode(
+    {required int uid,
+    required RenderModeType renderMode,
+    required VideoMirrorModeType mirrorMode});</codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>初始化远端用户视图后，你可以调用该方法更新远端用户视图在本地显示时的渲染和镜像模式。该方法只影响本地用户看到的视频画面。</p>
@@ -34,37 +37,40 @@
             <title>参数</title>
             <parml>
             <plentry>
-                <pt props="unity">uid</pt>
-                <pd props="unity">远端用户 ID。</pd>
-            </plentry>
+                <pt props="android cpp">userId</pt>
+                <pt props="ios mac unity flutter">uid</pt>
+                <pd>远端用户 ID。</pd>
+            </plentry>                               
             <plentry>
-                <pt props="android cpp unity">renderMode</pt>
+                <pt props="android cpp unity flutter">renderMode</pt>
                 <pt props="ios mac">mode</pt>
                 <pd>
-                    <p props="ios mac cpp unity">远端用户视图的渲染模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</p>
+                    <p props="ios mac cpp unity flutter">远端用户视图的渲染模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</p>
                     <p props="android">远端用户视图的渲染模式。
 
 
+                    
                     <ul conkeyref="setLocalRenderMode2/rendermodetype">
                     <li/>
                     </ul> </p>
                 </pd>
             </plentry>
             <plentry>
-                <pt props="android cpp unity">mirrorMode</pt>
+                <pt props="android cpp unity flutter">mirrorMode</pt>
                 <pt props="ios mac">mirror</pt>
                 <pd>
-                    <p props="ios mac cpp unity">远端用户视图的镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
+                    <p props="ios mac cpp unity flutter">远端用户视图的镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
                     <p props="android">远端用户视图的镜像模式。
 
 
+                    
                     <ul conkeyref="setLocalRenderMode2/videomirrormodetype">
                     <li/>
                     </ul> </p>
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native unity">
             <title>返回值</title>
             <ul>
             <li>0：方法调用成功。</li>
