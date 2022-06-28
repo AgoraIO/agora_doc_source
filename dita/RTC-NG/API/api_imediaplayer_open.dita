@@ -24,10 +24,11 @@
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
-        <section id="detailed_desc" props="android ios">
+        <section id="detailed_desc">
             <p>如果用户需要自定义播放线路，你可以调用 <xref keyref="openWithAgoraCDNSrc"/>。Agora 会通过自研调度中心支持调度线路，提升观看用户体验。如果用户不需要自定义播放线路，你可以调用 <xref keyref="open"/>。</p>
-            <note type="attention" id="note"><p>该方法为异步调用。如需播放媒体文件，请在收到 <xref keyref="onPlayerSourceStateChanged"/> 回调报告播放状态为 <apiname keyref="PLAYER_STATE_OPEN_COMPLETED"/> 后再调用 <xref keyref="play"/> 方法播放媒体文件。</p></note>
-        </section>
+            <note type="attention" id="note">
+            <p>该方法为异步调用。如需播放媒体文件，请在收到 <xref keyref="onPlayerSourceStateChanged"/> 回调报告播放状态为 <apiname keyref="PLAYER_STATE_OPEN_COMPLETED"/> 后再调用 <xref keyref="play"/> 方法播放媒体文件。</p>
+            </note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
@@ -38,6 +39,7 @@
             <plentry>
                 <pt>url</pt>
                 <pd>设置媒体文件的路径，支持本地和在线文件。
+                    
                     <note type="attention" props="android">不支持 URI 格式。</note> </pd>
             </plentry>
             <plentry>
