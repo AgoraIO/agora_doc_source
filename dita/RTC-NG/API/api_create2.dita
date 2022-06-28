@@ -27,16 +27,16 @@
             <p><apiname keyref="IRtcEngine" /> 类的所有接口函数，如无特殊说明，都是异步调用，对接口的调用建议在同一个线程进行。</p>
             <note type="attention">
             <ul>
-            <li props="cpp flutter">请确保在调用其他 API 前先调用 <xref keyref="createAgoraRtcEngine" /> 和 <apiname keyref="create2" /> 创建并初始化 <apiname keyref="IRtcEngine" />。</li>
-            <li props="android ios mac electron">请确保在调用其他 API 前先调用该方法创建并初始化 <apiname keyref="IRtcEngine" />。</li>
-            <li props="android ios mac electron">调用该方法和 <xref keyref="create1" /> 均能创建 <apiname keyref="IRtcEngine" /> 实例。该方法与 <apiname keyref="create1" /> 的 区别在于，该方法支持在创建 <apiname keyref="IRtcEngine" /> 实例时进行更多配置，如指定访问区域、设置日志文件等。</li>
+            <li props="cpp flutter rn electron">请确保在调用其他 API 前先调用 <xref keyref="createAgoraRtcEngine" /> 和 <apiname keyref="create2" /> 创建并初始化 <apiname keyref="IRtcEngine" />。</li>
+            <li props="android ios ma">请确保在调用其他 API 前先调用该方法创建并初始化 <apiname keyref="IRtcEngine" />。</li>
+            <li props="android ios mac">调用该方法和 <xref keyref="create1" /> 均能创建 <apiname keyref="IRtcEngine" /> 实例。该方法与 <apiname keyref="create1" /> 的 区别在于，该方法支持在创建 <apiname keyref="IRtcEngine" /> 实例时进行更多配置，如指定访问区域、设置日志文件等。</li>
             <li>SDK 只支持每个 app 创建一个 <apiname keyref="IRtcEngine" /> 实例。</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry>
-                <pt props="cpp electron unity">context</pt>
+                <pt props="cpp electron unity rn electron">context</pt>
                 <pt props="android ios mac flutter">config</pt>
                 <pd>
                     <p><xref keyref="IRtcEngine" /> 实例的配置。详见 <xref keyref="RtcEngineConfig" />。</p>
@@ -47,11 +47,11 @@
                 <pd conkeyref="create1/handler" />
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul>
             <li props="apple">方法调用成功，返回一个 <apiname keyref="IRtcEngine" /> 对象。</li>
-            <li props="cpp unity">0: 方法调用成功。</li>
+            <li props="cpp unity rn electron">0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。
                 <ul>
                 <li>-1: 一般性的错误（未明确归类）。</li>
