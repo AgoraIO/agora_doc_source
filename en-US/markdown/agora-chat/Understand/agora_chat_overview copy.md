@@ -1,8 +1,8 @@
 # Chat Overview
 
-Agora Chat is a highly reliable global communication platform where your users can chat one-to-one, in groups, or in chat rooms. Users can communicate with text messages and can share images, audio clips, videos, files, emojis, and locations. Agora Chat supplies typing indicators out-of-the-box. 
+Agora Chat is a highly reliable global communication platform where your users can chat one-to-one, in groups or in chat rooms. Users communicate with text messages, they can share images, audio, video, files, emojis, and locations. Agora Chat supplies typing indicators out-of-the-box.
 
-The Agora platform supplies a low-latency, high-concurrency, and secure cloud service for your user conversations. In addition to being asynchronous and stateless, it supports cluster service, horizontal scaling, and peak traffic handling.
+The Agora platform supplies a low-latency, high-concurrency, and secure cloud service for your user conversations. It is asynchronous and stateless; it supports cluster service, horizontal scaling and peak traffic handling. 
 
 Stop reinventing the wheel and spending valuable engineering resources on building a chat infrastructure yourself, Agora Chat has your in-app chat system covered. The Web, Android, and iOS SDKs plus the REST API enable you to easily integrate Agora Chat into your client apps. This leaves you free to focus on building and optimizing your business logic for your app.
 
