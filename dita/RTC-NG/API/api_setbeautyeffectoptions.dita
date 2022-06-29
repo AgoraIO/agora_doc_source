@@ -28,7 +28,7 @@
             <li props="android">在初始化 <xref keyref="IRtcEngine"/> 时调用 <codeph><xref keyref="addExtension"/>(<q>agora_video_process</q>)</codeph>，在项目中集成视频增强动态库。</li>
             <li props="ios">在项目文件中链接动态库 <codeph>AgoraVideoProcessExtension.xcframework</codeph></li>
             <li props="mac">在项目文件中链接动态库 <codeph>AgoraVideoProcessExtension.framework</codeph></li>
-            <li props="cpp unity">在初始化 <xref keyref="IRtcEngine"/> 时调用 <codeph><xref keyref="loadExtensionProvider"/>(<q>libagora_video_process_extension.dll</q>)</codeph>，指定动态库的路径。</li>
+            <li props="cpp unity rn electron">在初始化 <xref keyref="IRtcEngine"/> 时调用 <codeph><xref keyref="loadExtensionProvider"/>(<q>libagora_video_process_extension.dll</q>)</codeph>，指定动态库的路径。</li>
             <li>调用 <codeph><xref keyref="enableExtension"/>(<q>agora</q>, <q>beauty</q>, <q><ph keyref="true"/></q>)</codeph>，开启插件。</li>
             <li>调用 <xref keyref="enableVideo"/>，启用视频模块。</li>
             <li>调用该方法，开启美颜功能。</li>
@@ -38,7 +38,7 @@
             <title>参数</title>
             <parml>
             <plentry>
-                <pt props="android cpp unity flutter">enabled</pt>
+                <pt props="android cpp unity flutter rn electron">enabled</pt>
                 <pt props="ios mac">enable</pt>
                 <pd>是否开启美颜功能：
                     <ul>
@@ -50,17 +50,17 @@
                 <pt>options</pt>
                 <pd>美颜选项，详细定义见 <xref keyref="BeautyOptions"/>。</pd>
             </plentry>
-            <plentry props="unity" conkeyref="setExtensionProperty/type">
+            <plentry props="unity rn electron" conkeyref="setExtensionProperty/type">
             <pt></pt>
             <pd></pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。
-                <ul props="android">
+                <ul props="android rn">
                 <li>ERR_NOT_SUPPORTED(4)：当前设备版本低于 Android 5.0，不支持该操作。</li>
                 </ul></li>
             </ul> </section>

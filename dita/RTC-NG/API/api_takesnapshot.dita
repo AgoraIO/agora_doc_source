@@ -24,7 +24,7 @@
         </section>
         <section id="detailed_desc">
             <p>该方法用于对指定用户的视频流进行截图，生成一张 JPG 格式的图片，并保存至指定的路径。</p>
-            <p><ph>该方法是异步操作，调用返回时 SDK 并没有真正获取截图。</ph><ph props="native">成功调用该方法后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调报告截图是否成功和获取截图的详情。</ph></p>
+            <p><ph>该方法是异步操作，调用返回时 SDK 并没有真正获取截图。</ph><ph props="native rn electron">成功调用该方法后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调报告截图是否成功和获取截图的详情。</ph></p>
             <note type="attention">
             <ul>
             <li>该方法需要在加入频道后调用。</li>
@@ -46,14 +46,14 @@
                 <pd>
                     <p>截图的本地保存路径，需精确到文件名及格式， 例如：
                     <ul>
-                    <li props="cpp electron flutter">Windows: <ph>C:\Users\&lt;user_name>\AppData\Local\Agora\&lt;process_name>\example.jpg</ph></li>
+                    <li props="cpp flutter">Windows: <ph>C:\Users\&lt;user_name>\AppData\Local\Agora\&lt;process_name>\example.jpg</ph></li>
                     <li props="cpp ios flutter">iOS: <ph>/App Sandbox/Library/Caches/example.jpg</ph></li>
-                    <li props="cpp mac flutter electron">macOS: <ph>～/Library/Logs/example.jpg</ph></li>
+                    <li props="cpp mac flutter ">macOS: <ph>～/Library/Logs/example.jpg</ph></li>
                     <li props="cpp android flutter">Android: <ph>/storage/emulated/0/Android/data/&lt;package name>/files/example.jpg</ph></li>
                     </ul>请确保目录存在且可写。</p>
                 </pd>
             </plentry>
-                <plentry props="unity">
+                <plentry props="unity rn electron">
                     <pt>config</pt>
                     <pd>截图设置，详见 <xref keyref="snapShotConfig"/>。</pd>
                 </plentry>
