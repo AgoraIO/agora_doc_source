@@ -35,7 +35,7 @@
             <note type="attention">
             <ul>
             <li>该方法在加入频道前后都能调用。</li>
-            <li props="cpp">请勿将 <apiname keyref="setAudioProfile" /> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD" />(1) 或 <apiname keyref="AUDIO_PROFILE_IOT" />(6)，否则该方法不生效。</li>
+            <li props="cpp rn electron">请勿将 <apiname keyref="setAudioProfile" /> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD" />(1) 或 <apiname keyref="AUDIO_PROFILE_IOT" />(6)，否则该方法不生效。</li>
             <li props="android ios mac unity flutter">请勿将 <apiname keyref="setAudioProfile" /> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD" />(1)，否则该方法不生效。</li>
             <li>该方法对人声的处理效果最佳，Agora 不推荐调用该方法处理含音乐的音频数据。</li>
             <li>如果调用 <apiname keyref="setAudioEffectPreset" /> 并设置除 <apiname keyref="ROOM_ACOUSTICS_3D_VOICE" /> 或 <apiname keyref="PITCH_CORRECTION" /> 外的枚举，请勿再调用 <xref keyref="setAudioEffectParameters" />，否则 <apiname keyref="setAudioEffectPreset" /> 设置的效果会被覆盖。</li>
@@ -58,7 +58,7 @@
             <parml>
             <plentry>
                 <pt>preset</pt>
-                <pd props="ios mac cpp unity flutter">预设的音效选项，详见 <xref keyref="AUDIO_EFFECT_PRESET" />。</pd>
+                <pd props="ios mac cpp unity flutter rn electron">预设的音效选项，详见 <xref keyref="AUDIO_EFFECT_PRESET" />。</pd>
                 <pd props="android">预设的音效选项。
                     <ul>
                     <li><ph keyref="AUDIO_EFFECT_OFF" />: 原声，即关闭人声音效。</li>
@@ -87,7 +87,7 @@
                     </ul> </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功</li>

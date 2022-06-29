@@ -31,7 +31,7 @@
             <li>本地触发 <xref keyref="onClientRoleChanged" /> 回调。</li>
             <li>远端触发 <xref keyref="onUserJoined" /> 或 <xref keyref="onUserOffline" /> 回调。</li>
             </ul></p>
-            <p>该方法与 <xref keyref="setClientRole1" /> 的区别在于，该方法还支持设置用户级别。
+            <p props="native unity flutter">该方法与 <xref keyref="setClientRole1" /> 的区别在于，该方法还支持设置用户级别。
             <ul id="diff">
             <li>用户角色（<parmname>role</parmname>）确定用户在 SDK 层的权限，包含是否可以发送流、是否可以接收流、是否可以旁路推流等。</li>
             <li>用户级别（<parmname>level</parmname>）需要与角色结合使用，确定用户在其权限范围内可以享受到的服务。例如对于观众，选择接收低延时还是超低延时的视频流。<b>不同的级别会影响计费。</b></li>
@@ -42,7 +42,7 @@
             <parml>
             <plentry>
                 <pt>role</pt>
-                <pd><ph>直播场景中的用户角色。</ph><ph props="ios mac cpp electron unity flutter">详见 <xref keyref="CLIENT_ROLE_TYPE" />。</ph>
+                <pd><ph>直播场景中的用户角色。</ph><ph props="ios mac cpp electron unity flutter rn">详见 <xref keyref="CLIENT_ROLE_TYPE" />。</ph>
                     <ul props="android">
                     <li><ph keyref="CLIENT_ROLE_BROADCASTER" /> (1): 主播。主播可以发流也可以收流。</li>
                     <li><ph keyref="CLIENT_ROLE_AUDIENCE" /> (2):（默认）观众。观众只能收流不能发流。</li>
@@ -53,7 +53,7 @@
                 <pd>用户具体设置，包含用户级别。详见 <xref keyref="ClientRoleOptions" />。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功。</li>
