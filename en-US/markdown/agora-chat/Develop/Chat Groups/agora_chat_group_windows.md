@@ -219,7 +219,7 @@ SDKClient.Instance.GroupManager.FetchPublicGroupsFromServer(pageSize, cursor, ha
 
 #### Block a chat group
 
-Chat group members can call `BlockGroup` to block a chat group, whereas the chat group owner and admins cannot perform this operation. Once a member blocks a chat group, this member can no longer receive messages from the chat group.
+All chat group members can call `BlockGroup` to block a chat group. Once a member blocks a chat group, this member can no longer receive messages from the chat group.
 
 The following code sample shows how to block a chat group:
 
@@ -236,7 +236,7 @@ SDKClient.Instance.GroupManager.BlockGroup(groupId, new CallBack(
 
 #### Unblock a chat group
 
-Chat group members can call `UnBlockGroup` to unblock a chat group.
+All chat group members can call `UnBlockGroup` to unblock a chat group.
 
 The following code sample shows how to unblock a chat group:
 
