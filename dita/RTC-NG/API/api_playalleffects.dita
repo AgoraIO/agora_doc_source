@@ -19,7 +19,12 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int PlayAllEffects(int loopCount, double pitch, double pan, int gain, bool publish = false);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> playAllEffects(
+    {required int loopCount,
+    required double pitch,
+    required double pan,
+    required int gain,
+    bool publish = false});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>多次调用 <xref keyref="preloadEffect"/> 预加载多个音效文件后，你可以调用本方法播放所有预加载的音效文件。</p>
@@ -32,6 +37,7 @@
                 <pd>音效文件循环播放的次数：
 
 
+                    
                     
                     
                     
@@ -64,6 +70,7 @@
                     
                     
                     
+                    
                     <ul>
                     <li>-1.0: 音效出现在左边。</li>
                     <li>0: 音效出现在正前边。</li>
@@ -87,13 +94,14 @@
                     
                     
                     
+                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 将音效发布到远端。本地和远端用户都能听到该音效。</li>
                     <li><codeph><ph keyref="false"/></codeph>: （默认）不将音效发布到远端。只能本地用户能听到该音效。</li>
                     </ul></pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native unity">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功。</li>

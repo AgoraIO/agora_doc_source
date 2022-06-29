@@ -20,7 +20,8 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetRemoteUserSpatialAudioParams(uint uid, SpatialAudioParams param);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setRemoteUserSpatialAudioParams(
+    {required int uid, required SpatialAudioParams params});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>该方法需要在 <xref keyref="enableSpatialAudio"/> 后调用。成功设置远端用户的空间音效参数后，本地用户听远端用户会有空间感。</p>
@@ -33,7 +34,7 @@
                 <pd/>
             </plentry>
             <plentry>
-                <pt props="android ios mac cpp">params</pt>
+                <pt props="android ios mac cpp flutter">params</pt>
                 <pt props="unity">param</pt>
                 <pd>空间音效参数。详见 <xref keyref="SpatialAudioParams"/>。</pd>
             </plentry>

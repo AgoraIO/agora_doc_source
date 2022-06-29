@@ -19,7 +19,10 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetVoiceBeautifierParameters(VOICE_BEAUTIFIER_PRESET preset, int param1, int param2);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/></p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setVoiceBeautifierParameters(
+  {required VoiceBeautifierPreset preset,
+  required int param1,
+  required int param2});</codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>调用该方法可以设置歌唱美声效果的性别特征和混响效果。该方法对本地发流用户进行设置。设置后，频道内所有用户都能听到该效果。</p>
@@ -32,6 +35,7 @@
             <li>调用 <apiname keyref="setVoiceBeautifierParameters"/>，Agora 不推荐调用以下方法，否则 <apiname keyref="setVoiceBeautifierParameters"/> 设置的效果会被覆盖：
 
 
+                
                 <ul>
                 <li><xref keyref="setAudioEffectPreset"/></li>
                 <li><xref keyref="setAudioEffectParameters"/></li>
@@ -52,6 +56,7 @@
                 <pd>预设的音效：
 
 
+                    
                     <ul>
                     <li><codeph>SINGING_BEAUTIFIER</codeph>: 歌唱美声。</li>
                     </ul> </pd>
@@ -61,6 +66,7 @@
                 <pd>歌声的性别特征：
 
 
+                    
                     <ul>
                     <li><codeph>1</codeph>: 男声。</li>
                     <li><codeph>2</codeph>: 女声。</li>
@@ -71,6 +77,7 @@
                 <pd>歌声的混响效果：
 
 
+                    
                     <ul>
                     <li><codeph>1</codeph>: 歌声在小房间的混响效果。</li>
                     <li><codeph>2</codeph>: 歌声在大房间的混响效果。</li>

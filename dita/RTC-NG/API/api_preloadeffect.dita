@@ -22,7 +22,8 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int PreloadEffect(int soundId, string filePath, int startPos = 0);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> preloadEffect(
+    {required int soundId, required String filePath, int startPos = 0});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>为保证通信畅通，请注意控制预加载音效文件的大小，并在 <apiname keyref="joinChannel2"/> 前就使用该方法完成音效预加载。</p>
@@ -41,6 +42,7 @@
             <plentry id="filePath">
                 <pt>filePath</pt>
                 <pd>文件路径：
+                    
                     <ul>
                     <li props="android flutter unity cpp">Android: 文件路径，需精确到文件名及后缀。支持在线文件的 URL 地址，本地文件的 URI 地址、绝对路径或以 <codeph>/assets/</codeph> 开头的路径。
                 通过绝对路径访问本地文件可能会遇到权限问题，Agora 推荐使用 URI 地址访问本地文件。例如 <codeph>content://com.android.providers.media.documents/document/audio%3A14441</codeph>。</li>
@@ -48,7 +50,7 @@
                     <li props="ios mac flutter unity">iOS 或 macOS: 音频文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如 <codeph>/var/mobile/Containers/Data/audio.mp4</codeph>。</li>
                     </ul></pd>
             </plentry>
-            <plentry props="unity">
+            <plentry props="unity flutter">
                 <pt>startPos</pt>
                 <pd>音效文件加载的起始位置，单位为毫秒。</pd>
             </plentry>
