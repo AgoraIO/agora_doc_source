@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_rtcstats">
-    <title><ph keyref="RtcStats" /></title>
+    <title><ph keyref="RtcStats"/></title>
     <shortdesc id="short"><ph id="shortdesc">通话相关的统计信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -111,7 +111,7 @@
       rxPacketLossRate(0) {}
 };
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public class RtcStats
     {
         public RtcStats()
@@ -174,14 +174,123 @@
         public int txPacketLossRate { set; get; }
         public int rxPacketLossRate { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock> </p>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">class RtcStats {
+  const RtcStats(
+      {this.duration,
+      this.txBytes,
+      this.rxBytes,
+      this.txAudioBytes,
+      this.txVideoBytes,
+      this.rxAudioBytes,
+      this.rxVideoBytes,
+      this.txKBitRate,
+      this.rxKBitRate,
+      this.rxAudioKBitRate,
+      this.txAudioKBitRate,
+      this.rxVideoKBitRate,
+      this.txVideoKBitRate,
+      this.lastmileDelay,
+      this.userCount,
+      this.cpuAppUsage,
+      this.cpuTotalUsage,
+      this.gatewayRtt,
+      this.memoryAppUsageRatio,
+      this.memoryTotalUsageRatio,
+      this.memoryAppUsageInKbytes,
+      this.connectTimeMs,
+      this.firstAudioPacketDuration,
+      this.firstVideoPacketDuration,
+      this.firstVideoKeyFramePacketDuration,
+      this.packetsBeforeFirstKeyFramePacket,
+      this.firstAudioPacketDurationAfterUnmute,
+      this.firstVideoPacketDurationAfterUnmute,
+      this.firstVideoKeyFramePacketDurationAfterUnmute,
+      this.firstVideoKeyFrameDecodedDurationAfterUnmute,
+      this.firstVideoKeyFrameRenderedDurationAfterUnmute,
+      this.txPacketLossRate,
+      this.rxPacketLossRate});
+
+  @JsonKey(name: 'duration')
+  final int? duration;
+  @JsonKey(name: 'txBytes')
+  final int? txBytes;
+  @JsonKey(name: 'rxBytes')
+  final int? rxBytes;
+  @JsonKey(name: 'txAudioBytes')
+  final int? txAudioBytes;
+  @JsonKey(name: 'txVideoBytes')
+  final int? txVideoBytes;
+  @JsonKey(name: 'rxAudioBytes')
+  final int? rxAudioBytes;
+  @JsonKey(name: 'rxVideoBytes')
+  final int? rxVideoBytes;
+  @JsonKey(name: 'txKBitRate')
+  final int? txKBitRate;
+  @JsonKey(name: 'rxKBitRate')
+  final int? rxKBitRate;
+  @JsonKey(name: 'rxAudioKBitRate')
+  final int? rxAudioKBitRate;
+  @JsonKey(name: 'txAudioKBitRate')
+  final int? txAudioKBitRate;
+  @JsonKey(name: 'rxVideoKBitRate')
+  final int? rxVideoKBitRate;
+  @JsonKey(name: 'txVideoKBitRate')
+  final int? txVideoKBitRate;
+  @JsonKey(name: 'lastmileDelay')
+  final int? lastmileDelay;
+  @JsonKey(name: 'userCount')
+  final int? userCount;
+  @JsonKey(name: 'cpuAppUsage')
+  final double? cpuAppUsage;
+  @JsonKey(name: 'cpuTotalUsage')
+  final double? cpuTotalUsage;
+  @JsonKey(name: 'gatewayRtt')
+  final int? gatewayRtt;
+  @JsonKey(name: 'memoryAppUsageRatio')
+  final double? memoryAppUsageRatio;
+  @JsonKey(name: 'memoryTotalUsageRatio')
+  final double? memoryTotalUsageRatio;
+  @JsonKey(name: 'memoryAppUsageInKbytes')
+  final int? memoryAppUsageInKbytes;
+  @JsonKey(name: 'connectTimeMs')
+  final int? connectTimeMs;
+  @JsonKey(name: 'firstAudioPacketDuration')
+  final int? firstAudioPacketDuration;
+  @JsonKey(name: 'firstVideoPacketDuration')
+  final int? firstVideoPacketDuration;
+  @JsonKey(name: 'firstVideoKeyFramePacketDuration')
+  final int? firstVideoKeyFramePacketDuration;
+  @JsonKey(name: 'packetsBeforeFirstKeyFramePacket')
+  final int? packetsBeforeFirstKeyFramePacket;
+  @JsonKey(name: 'firstAudioPacketDurationAfterUnmute')
+  final int? firstAudioPacketDurationAfterUnmute;
+  @JsonKey(name: 'firstVideoPacketDurationAfterUnmute')
+  final int? firstVideoPacketDurationAfterUnmute;
+  @JsonKey(name: 'firstVideoKeyFramePacketDurationAfterUnmute')
+  final int? firstVideoKeyFramePacketDurationAfterUnmute;
+  @JsonKey(name: 'firstVideoKeyFrameDecodedDurationAfterUnmute')
+  final int? firstVideoKeyFrameDecodedDurationAfterUnmute;
+  @JsonKey(name: 'firstVideoKeyFrameRenderedDurationAfterUnmute')
+  final int? firstVideoKeyFrameRenderedDurationAfterUnmute;
+  @JsonKey(name: 'txPacketLossRate')
+  final int? txPacketLossRate;
+  @JsonKey(name: 'rxPacketLossRate')
+  final int? rxPacketLossRate;
+  factory RtcStats.fromJson(Map&lt;String, dynamic> json) =>
+      _$RtcStatsFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$RtcStatsToJson(this);
+}
+</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
-                <pt props="ios mac cpp electron unity">duration</pt>
+                <pt props="ios mac cpp unity electron flutter">duration</pt>
                 <pt props="android">totalDuration</pt>
                 <pd>本地用户通话时长（秒），累计值。</pd>
             </plentry>
@@ -254,21 +363,27 @@
                 <pt>cpuAppUsage</pt>
                 <pd>当前 App 的 CPU 使用率 (%)。
 
+                    
                     <note type="attention">
                     <ul>
-                    <li><xref keyref="onLeaveChannel" /> 回调中报告的 <parmname>cpuAppUsage</parmname> 恒为 0。</li>
-                    <li props="cpp unity android">自 Android 8.1 起，因系统限制，你可能无法通过该属性获取 CPU 使用率。</li>
+                    <li><xref keyref="onLeaveChannel"
+                        /> 回调中报告的 <parmname>cpuAppUsage</parmname> 恒为 0。</li>
+                    <li props="android cpp unity flutter"
+                                >自 Android 8.1 起，因系统限制，你可能无法通过该属性获取 CPU 使用率。</li>
                     </ul></note></pd>
             </plentry>
             <plentry>
                 <pt>cpuTotalUsage</pt>
                 <pd>
                     <p>当前系统的 CPU 使用率 (%)。</p>
-                    <p props="cpp electron unity">对于 Windows 平台，在多核环境中，该成员指多核 CPU 的平均使用率。 计算方式为 (100 - 任务管理中显示的系统空闲进程 CPU)/100。</p>
+                    <p props="cpp unity electron flutter"
+                            >对于 Windows 平台，在多核环境中，该成员指多核 CPU 的平均使用率。 计算方式为 (100 - 任务管理中显示的系统空闲进程 CPU)/100。</p>
                     <note type="attention">
                     <ul>
-                    <li><xref keyref="onLeaveChannel" /> 回调中报告的 <parmname>cpuTotalUsage</parmname> 恒为 0。</li>
-                    <li props="cpp unity android">自 Android 8.1 起，因系统限制，你无法通过该属性获取 CPU 使用率。</li>
+                    <li><xref keyref="onLeaveChannel"
+                        /> 回调中报告的 <parmname>cpuTotalUsage</parmname> 恒为 0。</li>
+                    <li props="cpp unity android"
+                        >自 Android 8.1 起，因系统限制，你无法通过该属性获取 CPU 使用率。</li>
                     </ul></note> </pd>
             </plentry>
             <plentry>
@@ -277,14 +392,14 @@
             </plentry>
             <plentry>
                 <pt>gatewayRtt</pt>
-                <pd>客户端到本地路由器的往返时延 (ms)。
-
-                    <note props="ios">
-                    <p>该属性默认在 iOS 14 之前的设备上开启，在 iOS 14 及之后的设备上关闭。</p>
-                    <p>如需在 iOS 14 及之后的设备上启用该属性，请<xref keyref="ticket-link" />。</p>
-                    </note>
-                    <note props="android cpp unity">在 Android 平台上，如需获取 <parmname>gatewayRtt</parmname>，请确保已在项目 <codeph>AndroidManifest.xml</codeph> 文件的 <codeph>&lt;/application&gt;</codeph> 后面添加 <codeph>android.permission.ACCESS_WIFI_STATE</codeph> 权限。
-                    </note></pd>
+                <pd>客户端到本地路由器的往返时延 (ms)。 
+                        <note props="ios">
+                        <p>该属性默认在 iOS 14 之前的设备上开启，在 iOS 14 及之后的设备上关闭。</p>
+                        <p>如需在 iOS 14 及之后的设备上启用该属性，请<xref keyref="ticket-link"
+                            />。</p>
+                        </note>
+                        <note props="android cpp unity flutter"
+                        >在 Android 平台上，如需获取 <parmname>gatewayRtt</parmname>，请确保已在项目 <codeph>AndroidManifest.xml</codeph> 文件的 <codeph>&lt;/application&gt;</codeph> 后面添加 <codeph>android.permission.ACCESS_WIFI_STATE</codeph> 权限。 </note></pd>
             </plentry>
             <plentry>
                 <pt>memoryAppUsageRatio</pt>

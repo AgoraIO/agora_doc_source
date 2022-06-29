@@ -24,7 +24,9 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnCameraExposureAreaChanged(int x, int y, int width, int height)</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(int x, int y, int width, int height)?
+      onCameraExposureAreaChanged;
+</codeblock> </p>
         </section>
         <section id="detailed_desc" props="android ios cpp">
             <p>该回调是由本地用户调用 <xref keyref="setCameraExposurePosition"/> 方法改变曝光位置触发的。</p>
@@ -50,7 +52,7 @@
                 <pd>发生改变的曝光区域的高度。</pd>
             </plentry>
             </parml>
-            <parml props="android ios mac flutter">
+            <parml props="android ios mac">
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt/>
                 <pd/>

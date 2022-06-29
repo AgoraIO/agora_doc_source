@@ -11,7 +11,8 @@
         </metadata>
     </prolog>
     <refbody>
-        <section id="prototype"><p outputclass="codeblock">
+        <section id="prototype">
+            <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onFirstLocalVideoFramePublished(int elapsed) {}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
                     firstLocalVideoFramePublishedWithElapsed:(NSInteger)elapsed;</codeblock>
@@ -21,7 +22,9 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstLocalVideoFramePublished(RtcConnection connection, int elapsed) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"></codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int elapsed)?
+      onFirstLocalVideoFramePublished;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
@@ -33,6 +36,7 @@
             <p>SDK 会在以下三种时机触发该回调：
 
 
+            
             <ul>
             <li>开启本地视频的情况下，调用 <apiname keyref="joinChannel2"/> 成功加入频道后。</li>
             <li>调用 <xref keyref="muteLocalVideoStream"/>(<codeph><ph keyref="true"/></codeph>)，再调用 <apiname keyref="muteLocalVideoStream"/>(<codeph><ph keyref="false"/></codeph>) 后。</li>
@@ -48,10 +52,10 @@
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="rtc-ng">
-                <pt props="unity">connection</pt>
-                <pd props="unity">Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
-            </plentry>
+            <plentry props="unity flutter">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
             <plentry>
                 <pt>elapsed</pt>
                 <pd>从调用 <apiname keyref="joinChannel2"/> 方法到触发该回调的时间间隔（毫秒）。</pd>
