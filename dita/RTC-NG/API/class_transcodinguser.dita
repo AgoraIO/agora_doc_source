@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_transcodinguser">
-    <title><ph keyref="TranscodingUser" /></title>
+    <title><ph keyref="TranscodingUser"/></title>
     <shortdesc id="short"><ph id="shortdesc">参与转码合流的每个主播的设置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -50,7 +50,7 @@
         alpha(1.0),
         audioChannel(0) {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public class TranscodingUser
     {
         public TranscodingUser()
@@ -87,11 +87,14 @@
         public double alpha { set; get; }
         public int audioChannel { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock> </p>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>uid</pt>
@@ -99,21 +102,24 @@
                     <p>主播的用户 ID。</p>
                 </pd>
             </plentry>
-            <plentry props="android cpp unity">
+            <plentry props="android cpp unity electron rn">
                 <pt>x</pt>
                 <pd>
-                    <p>主播视频画面在输出视频画面的 x 坐标 (pixel)，以输出视频画面的左上角为原点。取值范围为[0,width]，width 为 <xref keyref="LiveTranscoding" /> 中设置的 <codeph>width</codeph>。</p>
+                    <p>主播视频画面在输出视频画面的 x 坐标 (pixel)，以输出视频画面的左上角为原点。取值范围为[0,width]，width 为 <xref
+                    keyref="LiveTranscoding"/> 中设置的 <codeph>width</codeph>。</p>
                 </pd>
             </plentry>
-            <plentry props="android cpp unity">
+            <plentry props="android cpp unity electron rn">
                 <pt>y</pt>
-                <pd>主播视频画面在输出视频画面的 y 坐标 (pixel)，以输出视频画面的左上角为原点。取值范围为[0,height]，height 为 <xref keyref="LiveTranscoding" /> 中设置的 <codeph>height</codeph>。</pd>
+                <pd>主播视频画面在输出视频画面的 y 坐标 (pixel)，以输出视频画面的左上角为原点。取值范围为[0,height]，height 为 <xref
+                    keyref="LiveTranscoding"
+                    /> 中设置的 <codeph>height</codeph>。</pd>
             </plentry>
-            <plentry props="android cpp unity">
+            <plentry props="android cpp unity electron rn">
                 <pt>width</pt>
                 <pd>主播视频画面的宽 (pixel)。</pd>
             </plentry>
-            <plentry props="android cpp unity">
+            <plentry props="android cpp unity electron rn">
                 <pt>height</pt>
                 <pd>
                     <p>主播视频画面的高 (pixel)。</p>
@@ -129,6 +135,7 @@
                     <p>主播视频画面的图层编号。取值范围为 [0,100]。
 
 
+                    
                     <ul>
                     <li>0:（默认）视频画面位于图层的最下层。</li>
                     <li>100: 视频画面位于图层的最上层。</li>
@@ -145,6 +152,7 @@
                     <p>主播视频画面的透明度。取值范围为 [0.0,1.0]。
 
 
+                    
                     <ul>
                     <li>0.0: 完全透明。</li>
                     <li>1.0:（默认）完全不透明。</li>
@@ -157,6 +165,7 @@
                     <p>主播音频在输出音频中占用的声道。默认值为 0，取值范围为 [0,5]：
 
 
+                    
                     <ul id="ul_ugm_rrh_v4b">
                     <li><codeph>0</codeph>: （推荐）默认混音设置，最多支持双声道，与主播上行音频相关。</li>
                     <li><codeph>1</codeph>: 主播音频在输出音频的 FL 声道。如果主播上行音频是多声道，Agora
@@ -172,7 +181,8 @@
                     <li><codeph>0xFF</codeph> 或取值大于 <codeph>5</codeph>: 该主播音频静音，Agora
                                     服务器移除该主播的音频。</li>
                     </ul>
-                    <note type="attention">取值不为 <codeph>0</codeph> 时，需要使用特殊的播放器。</note></p>
+                    <note type="attention"
+                    >取值不为 <codeph>0</codeph> 时，需要使用特殊的播放器。</note></p>
                 </pd>
             </plentry>
             </parml> </section>

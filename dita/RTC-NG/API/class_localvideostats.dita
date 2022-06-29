@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_localvideostats">
-    <title><ph keyref="LocalVideoStats" /></title>
+    <title><ph keyref="LocalVideoStats"/></title>
     <shortdesc id="short"><ph id="shortdesc">本地视频流统计信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -55,7 +55,7 @@
     VIDEO_CODEC_TYPE codecType;
     unsigned short txPacketLossRate;
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public class LocalVideoStats
     {
         public LocalVideoStats()
@@ -77,11 +77,14 @@
         public VIDEO_CODEC_TYPE codecType { set; get; }
         public ushort txPacketLossRate { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock> </p>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>uid</pt>
@@ -92,6 +95,7 @@
                 <pd>
                     <p>实际发送码率 (Kbps)
 
+                    
                     <note type="attention">不包含丢包后重传视频等的发送码率。</note></p>
                 </pd>
             </plentry>
@@ -99,6 +103,7 @@
                 <pt>sentFrameRate</pt>
                 <pd>实际发送帧率 (fps)。
 
+                    
                     <note type="attention">不包含丢包后重传视频等的发送帧率。</note></pd>
             </plentry>
             <plentry>
@@ -119,13 +124,16 @@
             </plentry>
             <plentry>
                 <pt>qualityAdaptIndication</pt>
-                <pd>
-                    <ph>统计周期内本地视频质量（基于目标帧率和目标码率）的自适应情况。</ph><ph props="cpp ios mac unity">详见 <xref keyref="QUALITY_ADAPT_INDICATION" />。</ph>
+                <pd> <ph>统计周期内本地视频质量（基于目标帧率和目标码率）的自适应情况。</ph><ph
+                    props="cpp ios mac unity electron rn">详见 <xref
+                    keyref="QUALITY_ADAPT_INDICATION"/>。</ph>
                     <p props="android">
                     <ul>
-                    <li><ph keyref="ADAPT_NONE" /> (0): 本地视频质量不变。</li>
-                    <li><ph keyref="ADAPT_UP_BANDWIDTH" /> (1): 因网络带宽增加，本地视频质量改善。</li>
-                    <li><ph keyref="ADAPT_DOWN_BANDWIDTH" /> (2): 因网络带宽减少，本地视频质量变差。</li>
+                    <li><ph keyref="ADAPT_NONE"/> (0): 本地视频质量不变。</li>
+                    <li><ph keyref="ADAPT_UP_BANDWIDTH"
+                        /> (1): 因网络带宽增加，本地视频质量改善。</li>
+                    <li><ph keyref="ADAPT_DOWN_BANDWIDTH"
+                        /> (2): 因网络带宽减少，本地视频质量变差。</li>
                     </ul> </p>
                 </pd>
             </plentry>
@@ -134,6 +142,7 @@
                 <pd>
                     <p>视频编码码率（Kbps）。
 
+                    
                     <note type="attention">不包含丢包后重传视频等的编码码率。</note></p>
                 </pd>
             </plentry>
@@ -151,11 +160,12 @@
             </plentry>
             <plentry>
                 <pt>codecType</pt>
-                <pd><ph>视频的编码类型。</ph><ph props="ios mac cpp unity">详见 <xref keyref="VIDEO_CODEC_TYPE" />。</ph>
+                <pd><ph>视频的编码类型。</ph><ph props="ios mac cpp unity electron rn">详见 <xref
+                    keyref="VIDEO_CODEC_TYPE"/>。</ph>
                     <p props="android">
                     <ul>
-                    <li><ph keyref="VIDEO_CODEC_VP8" /> (1): VP8。</li>
-                    <li><ph keyref="VIDEO_CODEC_H264" /> (2): （默认值） H.264。</li>
+                    <li><ph keyref="VIDEO_CODEC_VP8"/> (1): VP8。</li>
+                    <li><ph keyref="VIDEO_CODEC_H264"/> (2): （默认值） H.264。</li>
                     </ul> </p>
                 </pd>
             </plentry>
@@ -163,7 +173,7 @@
                 <pt>txPacketLossRate</pt>
                 <pd>弱网对抗前本端到 Agora 边缘服务器的视频丢包率 (%)。</pd>
             </plentry>
-            <plentry props="unity">
+            <plentry props="unity electron rn">
                 <pt>captureFrameRate</pt>
                 <pd>本地视频采集帧率 (fps)。</pd>
             </plentry>
