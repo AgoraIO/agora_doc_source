@@ -1,27 +1,28 @@
-# Implement the Chat Group Workflow
+# Manage Chat Groups
 
 Chat groups enable real-time messaging among multiple users.
 
-This page describes how to use the Agora Chat SDK to create and manage a chat group in your app.
+This page shows how to use the Agora Chat SDK to create and manage a chat group in your app.
 
 
 ## Understand the tech
 
-The Agora Chat SDK provides the `GroupManager` and `Group` classes for chat group management, which allows you to implement the following features:
+The Agora Chat SDK provides the `Group`, `GroupManager`, and `GroupChangeListener` classes for chat group management, which allows you to implement the following features:
+
 - Create and destroy a chat group
 - Join and leave a chat group
 - Retrieve the member list of a chat group
 - Block and unblock a chat group
-- Manage chat group members
-- Manage the attributes, announcements, and shared files of a chat group
+- Listen for the chat group events
 
 
 ## Prerequisites
 
 Before proceeding, ensure that you meet the following requirements:
-- You have initialized the Agora Chat SDK. For details, see [Get Started with Android](agora_chat_get_started_android).
-- You understand the call frequency limits of the Agora Chat APIs supported by different pricing plans as described in [Limitations](agora_chat_limitation).
-- You understand the number of chat groups and chat group members supported by different pricing plans as described in [Pricing Plan Details](agora_chat_plan).
+
+- You have initialized the Agora Chat SDK. For details, see [Get Started with Android](./agora_chat_get_started_android?platform=Android).
+- You understand the call frequency limits of the Agora Chat APIs supported by different pricing plans as described in [Limitations](./agora_chat_limitation?platform=Android).
+- You understand the number of chat groups and chat group members supported by different pricing plans as described in [Pricing Plan Details](./agora_chat_plan?platform=Android).
 
 
 ## Implementation
@@ -50,7 +51,6 @@ ChatClient.getInstance().groupManager().createGroup(groupName, desc, allMembers,
 // Call destroyGroup to disband a chat group.
 ChatClient.getInstance().groupManager().destroyGroup(groupId);
 ```
-
 
 ### Join and leave a chat group
 
@@ -86,7 +86,6 @@ ChatClient.getInstance().groupManager().joinGroup(groupId);
 ChatClient.getInstance().groupManager().leaveGroup(groupId);
 ```
 
-
 ### Retrieve the member list of a chat group
 
 To retrieve the member list of a chat group, choose the method based on the group size:
@@ -112,10 +111,9 @@ Group group = ChatClient.getInstance().groupManager().getGroupFromServer(groupId
 List<String> memberList = group.getMembers();
 ```
 
-
 ### Block and unblock a chat group
 
-Group members can block and unblock a chat group, whereas the chat group owner and chat group admins cannot perform such operations. Once members block a chat group, they no longer receive messages from this chat group.
+All chat group members can block and unblock a chat group. Once a member block a chat group, they no longer receive messages from this chat group.
 
 Refer to the following sample code to block and unblock a chat group:
 
@@ -126,183 +124,6 @@ ChatClient.getInstance().groupManager().blockGroupMessage(groupId);
 // Call unblockGroupMessage to unblock a chat group.
 ChatClient.getInstance().groupManager().unblockGroupMessage(groupId);
 ```
-
-
-### Manage chat group members
-
-1. Add users to a chat group.  
-Whether a chat group is public or private, the chat group owner and chat group admins can add users to the chat group. As for private groups, if the type of a chat group is set to `GroupStylePrivateMemberCanInvite`, group members can invite users to join the chat group.
-
-2. Implement chat group invitations.   
-After a user is invited to join a chat group, the implementation logic varies based on the settings of the user:
-
-    - If the user requires a group invitation confirmation, the inviter receives the `onInvitationReceived` callback. Once the user accepts the request and joins the group, the inviter receives the `onInvitationAccepted` callback and all group members receive the `onMemberJoined` callback. Otherwise, the inviter receives the `onInvitationDeclined` callback.
-
-    - If the user does not require a group invitation confirmation, the inviter receives the `onAutoAcceptInvitationFromGroup` callback. In this case, the user automatically accepts the group invitation and receives the `onInvitationAccepted` callback. All group members receive the `onMemberJoined` callback.
-
-3. Remove chat group members from a chat group.  
-The chat group owner and chat group admins can remove chat group members from a chat group, whereas chat group members do not have this privilege. Once a group member is removed, all the other group members receive the `onMemberExited` callback.
-
-Refer to the following sample code to add and remove a user:
-
-```java
-// The chat group owner and chat group admins can call addUsersToGroup to add users to a chat group.
-ChatClient.getInstance().groupManager().addUsersToGroup(groupId, newmembers);
-
-// Chat group members can call inviteUser to invite users to a chat group.
-ChatClient.getInstance().groupManager().inviteUser(groupId, newmembers, null);
-
-// The chat group owner and chat group admins can call removeUsersToGroup to remove group members from a chat group.
-ChatClient.getInstance().groupManager().removeUserFromGroup(groupId, username);
-```
-
-
-### Manage chat group ownership and admin
-
-1. Transfer the chat group ownership.  
-The chat group owner can transfer ownership to the specified chat group member. Once ownership is transferred, the original chat group owner becomes a group member. All the other chat group members receive the `onOwnerChanged` callback.
-
-2. Add chat group admins.  
-The chat group owner can add admins. Once added to the chat group admin list, the newly added admin and the other chat group admins receive the `onAdminAdded` callback.
-
-3. Remove chat group admins.  
-The chat group owner can remove admins. Once removed from the chat group admin list, the removed admin and the other chat group admins receive the `onAdminRemoved` callback.
-
-Refer to the following sample code the manage chat group ownership and admin:
-
-```java
-// The chat group owner can call changeOwner to transfer ownership to the specified chat group member.
-ChatClient.getInstance().groupManager().changeOwner(groupId, newOwner);
-
-// The chat group owner can call `addGroupAdmin` to add admins.
-ChatClient.getInstance().groupManager().addGroupAdmin(groupId, admin);
-
-// The chat group owner can call `removeGroupAdmin` to remove admins.
-ChatClient.getInstance().groupManager().removeGroupAdmin(groupId, admin);
-```
-
-
-### Manage the chat group block list
-
-The chat group owner and chat group admins can add or remove the specified member to the chat group block list. Once a chat group member is added to the block list, this member cannot send or receive chat group messages, nor can this member join the chat group again.
-
-Refer to the following sample code to manage the chat group block list:
-
-```java
-// The chat group owner and admins can call blockUser to add the specified member to the chat group block list.
-ChatClient.getInstance().groupManager().blockUser(groupId, username);
-
-// The chat group owner and admins can call unblockUser to remove the specified member from the chat group block list.
-ChatClient.getInstance().groupManager().unblockUser(groupId, username);
-
-// The chat group owner and admins can call getBlockedUsers to retrieve the chat group block list.
-ChatClient.getInstance().groupManager().getBlockedUsers(groupId);
-```
-
-
-### Manage the chat group mute list
-
-The chat group owner and chat group admins can add or remove the specified member to the chat group mute list. Once a chat group member is added to the mute list, this member can no longer send chat group messages, not even after being added to the chat group allow list.
-
-Refer to the following sample code to manage the chat group mute list:
-
-```java
-// The chat group owner and admins can call muteGroupMember to add the specified member to the chat group mute list. The muted member and all the other chat group admins or owner receive the onMuteListAdded callback. 
-ChatClient.getInstance().groupManager().muteGroupMembers(groupId, muteMembers, duration);
-
-// The chat group owner and admins can call unmuteGroupMember to remove the specified user from the chat group mute list. The unmuted member and all the other chat group admins or owner receive the onMuteListRemoved callback.
-ChatClient.getInstance().groupManager().unMuteGroupMembers(String groupId, List<String> members);
-
-// The chat group owner or admin can call fetchGroupMuteList to retrieve the chat group mute list.
-ChatClient.getInstance().groupManager().fetchGroupMuteList(String groupId, int pageNum, int pageSize);
-```
-
-
-### Mute and unmute all the chat group members
-
-The chat group owner and chat group admins can mute or unmute all the chat group members. Once all the members are muted, only those in the chat group allow list can send messages in the chat group.
-
-Refer to the following sample code to mute and unmute all the chat group members:
-
-```java
-// The chat group owner or admin can call muteAllMembers to mute all the chat group members. Once all the members are muted, these members receive the onAllMemberMuteStateChanged callback.
-public void muteAllMembers(final String groupId, final ValueCallBack<Group> callBack);
-
-// The chat group owner or admin can call unmuteAllMembers to unmute all the chat group members. Once all the members are unmuted, these members receive the onAllMemberMuteStateChanged callback.
-public void unmuteAllMembers(final String groupId, final ValueCallBack<Group> callBack);
-```
-
-
-### Manage the chat group allow list
-
-Members in the chat group allow list can send chat group messages even when the chat group owner or admin has muted all chat group members. However, if a member is already in the chat group mute list, adding this member to the allow list does not take effect.
-
-Refer to the following sample code to manage the chat group allow list:
-
-```java
-// The chat group owner or admin can call addToChatGroupWhiteList to add the specified member to the chat group allow list. Once the member is added, all the other chat group admins or owner receive the onWhiteListAdded callback.
-public void addToGroupWhiteList(final String groupId, final List<String> members, final CallBack callBack);
-
-// The chat group owner or admin can call removeFromChatGroupWhiteList to remove the specified member from the chat group list. Once the member is removed, all the other chat group admins or owner receive the onWhiteListRemoved callback.
-public void removeFromGroupWhiteList(final String groupId, final List<String> members, final CallBack callBack);
-
-// Chat group members can call checkIfInChatGroupWhiteList to check whether they are in the chat group allow list.
-public void checkIfInGroupWhiteList(final String groupId, ValueCallBack<Boolean> callBack);
-
-// The chat group owner or admin can call fetchChatGroupWhiteList to retrieve the chat group allow list.
-public void fetchGroupWhiteList(final String groupId, final ValueCallBack<List<String>> callBack);
-```
-
-
-### Modify the chat group name and description
-
-The chat group owner and chat group admins can modify the name and description of the chat group.
-
-Refer to the following sample code to modify the chat group name and description: 
-
-```java
-// The chat group owner and chat group admins can call changeGroupName to modify the name of the chat group. The name length can be up to 128 characters.
-ChatClient.getInstance().groupManager().changeGroupName(groupId,changedGroupName);
-
-// The chat group owner and chat group admins can call changeGroupDescription to modify the description of the chat group. The description length can be up to 512 characters. 
-ChatClient.getInstance().groupManager().changeGroupDescription(groupId,description);
-```
-
-
-### Manage chat group announcements
-
-The chat group owner and chat group admins can set and update chat group announcements. Once the announcements are updated, all chat group members receive the onAnnouncementChanged callback. All chat group members can retrieve chat group announcements.
-
-Refer to the following sample code to manage chat group announcements:
-
-```java
-// The chat group owner and chat group admins can call updateGroupAnnouncement to set or update the chat group announcements. The announcement length can be up to 512 characters.
-ChatClient.getInstance().groupManager().updateGroupAnnouncement(groupId, announcement);
-
-// All chat group members can call fetchGroupAnnouncement to retrieve the chat group announcements.
-ChatClient.getInstance().groupManager().fetchGroupAnnouncement(groupId);
-```
-
-
-### Manage chat group shared files
-
-All chat group members can upload or download group shared files. The chat group owner and chat group admins can delete all of the group shared files, whereas group members can only delete the shared files that they have personally uploaded.
-
-Refer to the following sample code to manage chat group shared files:
-
-```java
-// All chat group members can call uploadGroupSharedFile to upload group shared files. The file size can be up to 10 MB.
-// Once shared files are uploaded, group members receive the onSharedFileAdded callback.
-ChatClient.getInstance().groupManager().uploadGroupSharedFile(groupId, filePath, callBack);
-
-// All chat group members can call deleteGroupSharedFile to delete group shared files.
-// Once shared files are deleted, chat group members receive the onSharedFileDeleted callback.
-ChatClient.getInstance().groupManager().deleteGroupSharedFile(groupId, fileId);
-
-// All chat group members can call fetchGroupSharedFileList to retrieve the list of shared files in the chat group.
-ChatClient.getInstance().groupManager().fetchGroupSharedFileList(groupId, pageNum, pageSize);
-```
-
 
 ### Listen for chat group events
 
@@ -445,7 +266,7 @@ GroupChangeListener groupListener = new GroupChangeListener() {
     }
 };
 
-// Set the group listener.
+// Add the group listener.
 ChatClient.getInstance().groupManager().addGroupChangeListener(groupListener);
 
 // Remove the group listener if not use.
