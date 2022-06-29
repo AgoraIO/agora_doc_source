@@ -31,7 +31,9 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteAudioTransportStats(RtcConnection connection, uint remoteUid, UInt16 delay, UInt16 lost, UInt16 rxKBitRate) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, int delay,
+      int lost, int rxKBitRate)? onRemoteAudioTransportStats;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>
@@ -52,13 +54,13 @@
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="rtc-ng">
-                <pt props="unity">connection</pt>
-                <pd props="unity">Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+            <plentry props="unity flutter">
+                <pt>connection</pt>
+                <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
             </plentry>
             <plentry>
-                <pt props="native electron flutter">uid</pt>
-                <pt props="unity"><ph props="rtc">uid</ph><ph props="rtc-ng">remoteUid</ph></pt>
+                <pt props="native electron">uid</pt>
+                <pt props="unity flutter">remoteUid</pt>
                 <pd>用户 ID，指定是哪个用户/主播的音频包。</pd>
             </plentry>
             <plentry>

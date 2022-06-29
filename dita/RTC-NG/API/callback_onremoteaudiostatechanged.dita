@@ -29,7 +29,13 @@
                <codeblock props="electron" outputclass="language-typescript"/>
                <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteAudioStateChanged(RtcConnection connection, uint remoteUid, REMOTE_AUDIO_STATE state, REMOTE_AUDIO_STATE_REASON reason, int elapsed) {}</codeblock>
                <codeblock props="rn" outputclass="language-typescript"/>
-               <codeblock props="flutter" outputclass="language-dart"/> </p>
+               <codeblock props="flutter" outputclass="language-dart">final void Function(
+      RtcConnection connection,
+      int remoteUid,
+      RemoteAudioState state,
+      RemoteAudioStateReason reason,
+      int elapsed)? onRemoteAudioStateChanged;
+</codeblock> </p>
           </section>
           <section id="detailed_desc">
                <dl outputclass="since" props="rtc">
@@ -48,13 +54,13 @@
                     <pt/>
                     <pd/>
                </plentry>
-               <plentry props="rtc-ng">
-                    <pt props="unity">connection</pt>
-                    <pd props="unity">Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
-               </plentry>
+               <plentry props="unity flutter">
+                         <pt>connection</pt>
+                         <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                    </plentry>
                <plentry id="uid">
                     <pt props="native electron flutter">uid</pt>
-                    <pt props="unity"><ph props="rtc">uid</ph><ph props="rtc-ng">remoteUid</ph></pt>
+                    <pt props="unity flutter">remoteUid</pt>
                     <pd>发生音频状态改变的远端用户 ID。</pd>
                </plentry>
                <plentry id="state">
