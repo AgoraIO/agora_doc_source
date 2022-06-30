@@ -1,13 +1,13 @@
 # GitHub CI build pipeline
-name: Awesome JSON CI build for NG Unity SDK
+name: Awesome JSON CI build for NG electron SDK
 
 on:
     push:
         branches:
-            - release/rtc-ng/3.8.200-framework-suri
+            - 3.8.200-electron-yaxi
     pull_request:
         branches:
-            - release/rtc-ng/3.8.200-framework-suri
+            - 3.8.200-electron-yaxi
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -22,34 +22,32 @@ jobs:
                   cd xml2json
                   python -m pip install --upgrade pip
                   if  [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-            - name: Run json creation
+            - name: Run cn json creation
               run: |
                   cd xml2json
-         
-                  echo "Running for unity NG CN (test)"
-                  python xml2json.py --working_dir ../dita/RTC-NG --platform_tag unity --json_file unity_cn_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path unity-ng
-            - name: Run json creation
+                  echo "Running for electron NG"
+                  python xml2json.py --working_dir ../dita/RTC-NG --platform_tag electron --json_file electron_ng_cn.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path electron-ng
+            - name: Run en json creation
               run: |
                   cd xml2json
-         
-                  echo "Running for unity NG CN (test)"
-                  python xml2json.py --working_dir ../dita/RTC-NG --platform_tag unity --json_file unity_en_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path unity-ng
-
-            - name: Upload Unity NG JSON to release 
+                  echo "Running for electron NG"
+                  python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag electron --json_file electron_ng_en.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path electron-ng
+            - name: Upload electron NG JSON to release
               uses: svenstaro/upload-release-action@v2
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
-                  file: xml2json/unity_cn_ng.json
-                  asset_name: unity_ng_doc_template_cn.json
+                  file: xml2json/electron_ng_cn.json
+                  asset_name: electron_ng_json_template_cn.json
                   tag: main
                   overwrite: true
                   body: "Template file for automatic comment population."
-            - name: Upload Unity NG JSON to release 
+            - name: Upload electron NG JSON to release
               uses: svenstaro/upload-release-action@v2
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
-                  file: xml2json/unity_en_ng.json
-                  asset_name: unity_ng_doc_template_en.json
+                  file: xml2json/electron_ng_en.json
+                  asset_name: electron_ng_json_template_en.json
                   tag: main
                   overwrite: true
                   body: "Template file for automatic comment population."
+        
