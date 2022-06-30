@@ -26,13 +26,27 @@ jobs:
               run: |
                   cd xml2json
                   echo "Running for RN NG"
-                  python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag rn --json_file rn_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path rn-ng
+                  python xml2json.py --working_dir ../dita/RTC-NG --platform_tag rn --json_file rn_cn_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path rn-ng
+            - name: Run json creation
+              run: |
+                  cd xml2json
+                  echo "Running for RN NG"
+                  python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag rn --json_file rn_en_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path rn-ng
             - name: Upload RN NG JSON to release
               uses: svenstaro/upload-release-action@v2
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
-                  file: xml2json/rn_ng.json
-                  asset_name: rn_ng_json_template.json
+                  file: xml2json/rn_cn_ng.json
+                  asset_name: rn_ng_json_template_cn.json
+                  tag: main
+                  overwrite: true
+                  body: "Template file for automatic comment population."
+            - name: Upload RN NG JSON to release
+              uses: svenstaro/upload-release-action@v2
+              with:
+                  repo_token: ${{ secrets.GITHUB_TOKEN }}
+                  file: xml2json/rn_en_ng.json
+                  asset_name: rn_ng_json_template_en.json
                   tag: main
                   overwrite: true
                   body: "Template file for automatic comment population."
