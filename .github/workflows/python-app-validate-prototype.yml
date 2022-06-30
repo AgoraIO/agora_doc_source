@@ -7,7 +7,7 @@ on:
     #        - 'release/**'
     pull_request:
         branches:
-            - 'release/**'
+            - "release/**"
             - master
 jobs:
     build:
@@ -38,10 +38,17 @@ jobs:
                   echo "The prototype validation starts ..."
                   cat prototype_check_java_ng.txt
                   echo "The prototype validation ends ..."
-            - name: Run OC NG validation
+            - name: Run ios NG validation
               run: |
                   cd xml2json
-                  python check_oc_ng_prototype.py --code_location ./code_to_check/oc_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-oc.ditamap --decomment_code_location ./code_to_check/decommented
+                  python check_oc_ng_prototype.py --code_location ./code_to_check/oc_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-ios.ditamap --decomment_code_location ./code_to_check/decommented
+                  echo "The prototype validation starts ..."
+                  cat prototype_check_oc_ng.txt
+                  echo "The prototype validation ends ..."
+            - name: Run macos NG validation
+              run: |
+                  cd xml2json
+                  python check_oc_ng_prototype.py --code_location ./code_to_check/oc_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-macos.ditamap --decomment_code_location ./code_to_check/decommented
                   echo "The prototype validation starts ..."
                   cat prototype_check_oc_ng.txt
                   echo "The prototype validation ends ..."
