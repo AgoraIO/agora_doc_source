@@ -94,8 +94,8 @@ class InputSeiData {
   final int? timestamp;
   @JsonKey(name: 'frame_index')
   final int? frameIndex;
-  @JsonKey(name: 'private_data')
-  final int? privateData;
+  @JsonKey(name: 'private_data', ignore: true)
+  final Uint8List? privateData;
   @JsonKey(name: 'data_size')
   final int? dataSize;
   factory InputSeiData.fromJson(Map<String, dynamic> json) =>

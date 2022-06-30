@@ -131,7 +131,6 @@ VideoCompositingLayout _$VideoCompositingLayoutFromJson(
           ?.map((e) => Region.fromJson(e as Map<String, dynamic>))
           .toList(),
       regionCount: json['regionCount'] as int?,
-      appData: json['appData'] as int?,
       appDataLength: json['appDataLength'] as int?,
     );
 
@@ -143,7 +142,6 @@ Map<String, dynamic> _$VideoCompositingLayoutToJson(
       'backgroundColor': instance.backgroundColor,
       'regions': instance.regions?.map((e) => e.toJson()).toList(),
       'regionCount': instance.regionCount,
-      'appData': instance.appData,
       'appDataLength': instance.appDataLength,
     };
 
@@ -656,13 +654,13 @@ Map<String, dynamic> _$DirectCdnStreamingMediaOptionsToJson(
     };
 
 SDKBuildInfo _$SDKBuildInfoFromJson(Map<String, dynamic> json) => SDKBuildInfo(
-      buildNumber: json['build_number'] as int?,
+      build: json['build'] as int?,
       version: json['version'] as String?,
     );
 
 Map<String, dynamic> _$SDKBuildInfoToJson(SDKBuildInfo instance) =>
     <String, dynamic>{
-      'build_number': instance.buildNumber,
+      'build': instance.build,
       'version': instance.version,
     };
 

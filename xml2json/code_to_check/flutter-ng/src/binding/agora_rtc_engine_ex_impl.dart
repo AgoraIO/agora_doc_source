@@ -300,60 +300,19 @@ class RtcEngineExImpl extends RtcEngineImpl implements RtcEngineEx {
   }
 
   @override
-  Future<int> createDataStreamEx(
-      {required bool reliable,
-      required bool ordered,
-      required RtcConnection connection}) async {
-    const apiType = 'RtcEngineEx_createDataStreamEx';
-    final param = createParams({
-      'reliable': reliable,
-      'ordered': ordered,
-      'connection': connection.toJson()
-    });
-    final callApiResult =
-        await apiCaller.callIrisApi(apiType, jsonEncode(param));
-    if (callApiResult.irisReturnCode < 0) {
-      throw AgoraRtcException(code: callApiResult.irisReturnCode);
-    }
-    final rm = callApiResult.data;
-    final result = rm['result'];
-    final streamIdResult = rm['streamId'];
-    return streamIdResult as int;
-  }
-
-  @override
-  Future<int> createDataStreamEx2(
-      {required DataStreamConfig config,
-      required RtcConnection connection}) async {
-    const apiType = 'RtcEngineEx_createDataStreamEx2';
-    final param = createParams(
-        {'config': config.toJson(), 'connection': connection.toJson()});
-    final callApiResult =
-        await apiCaller.callIrisApi(apiType, jsonEncode(param));
-    if (callApiResult.irisReturnCode < 0) {
-      throw AgoraRtcException(code: callApiResult.irisReturnCode);
-    }
-    final rm = callApiResult.data;
-    final result = rm['result'];
-    final streamIdResult = rm['streamId'];
-    return streamIdResult as int;
-  }
-
-  @override
   Future<void> sendStreamMessageEx(
       {required int streamId,
-      required int data,
+      required Uint8List data,
       required int length,
       required RtcConnection connection}) async {
     const apiType = 'RtcEngineEx_sendStreamMessageEx';
     final param = createParams({
       'streamId': streamId,
-      'data': data,
       'length': length,
       'connection': connection.toJson()
     });
     final callApiResult =
-        await apiCaller.callIrisApi(apiType, jsonEncode(param));
+        await apiCaller.callIrisApi(apiType, jsonEncode(param), buffer: data);
     if (callApiResult.irisReturnCode < 0) {
       throw AgoraRtcException(code: callApiResult.irisReturnCode);
     }
@@ -561,5 +520,23 @@ class RtcEngineExImpl extends RtcEngineImpl implements RtcEngineEx {
     if (result < 0) {
       throw AgoraRtcException(code: result);
     }
+  }
+
+  @override
+  Future<int> createDataStreamEx(
+      {required DataStreamConfig config,
+      required RtcConnection connection}) async {
+    const apiType = 'RtcEngineEx_createDataStreamEx';
+    final param = createParams(
+        {'config': config.toJson(), 'connection': connection.toJson()});
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
+    if (callApiResult.irisReturnCode < 0) {
+      throw AgoraRtcException(code: callApiResult.irisReturnCode);
+    }
+    final rm = callApiResult.data;
+    final result = rm['result'];
+    final streamIdResult = rm['streamId'];
+    return streamIdResult as int;
   }
 }

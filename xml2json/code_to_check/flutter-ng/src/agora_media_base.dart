@@ -514,15 +514,6 @@ class SnapShotConfig {
   Map<String, dynamic> toJson() => _$SnapShotConfigToJson(this);
 }
 
-class SnapshotCallback {
-  const SnapshotCallback({
-    this.onSnapshotTaken,
-  });
-
-  final void Function(String channel, int uid, String filePath, int width,
-      int height, int errCode)? onSnapshotTaken;
-}
-
 @JsonEnum(alwaysCreate: true)
 enum ExternalVideoSourceType {
   @JsonValue(0)
