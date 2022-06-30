@@ -18,7 +18,7 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int loadExtensionProvider(const char* extension_lib_path) = 0;
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp">public abstract int LoadExtensionProvider(string extension_lib_path);</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int LoadExtensionProvider(string path);</codeblock>
             <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; loadExtensionProvider(String path);</codeblock> </p>
         </section>
@@ -26,7 +26,8 @@
             <title>参数</title>
             <parml>
             <plentry>
-                <pt>extension_lib_path</pt>
+                <pt props="cpp">extension_lib_path</pt>
+                <pt props="unity">path</pt>
                 <pd>插件的动态库路径和名称。例如：<codeph>/library/libagora_segmentation_extension.dll</codeph>。</pd>
             </plentry>
             </parml> </section>

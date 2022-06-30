@@ -11,7 +11,7 @@
                 <stentry>方法</stentry>
                 <stentry>描述</stentry>
             </sthead>
-            <strow props="cpp">
+            <strow props="cpp unity">
                 <stentry><xref keyref="createAgoraRtcEngine"/></stentry>
                 <stentry><ph conkeyref="createAgoraRtcEngine/shortdesc"/></stentry>
             </strow>
@@ -195,6 +195,10 @@
                 <stentry><xref keyref="getAudioDeviceInfo"/></stentry>
                 <stentry><ph conkeyref="getAudioDeviceInfo/shortdesc"/></stentry>
             </strow>
+                <strow props="unity">
+                    <stentry><xref keyref="getAudioDeviceManager"/></stentry>
+                    <stentry><ph conkeyref="getAudioDeviceManager/shortdesc"/></stentry>
+                </strow>
             </simpletable> </section>
         <section id="section_gxr_pjb_jqb">
             <title>视频管理</title>
@@ -283,8 +287,12 @@
                 <stentry><xref keyref="setDefaultMuteAllRemoteVideoStreams"/></stentry>
                 <stentry><ph conkeyref="setDefaultMuteAllRemoteVideoStreams/shortdesc"/></stentry>
             </strow>
+                <strow props="unity">
+                    <stentry><xref keyref="getAgoraRtcVideoDeviceManager"/></stentry>
+                    <stentry><ph conkeyref="getAgoraRtcVideoDeviceManager/shortdesc"/></stentry>
+                </strow>
             </simpletable> </section>
-        <section>
+        <section props="hide">
             <title>视频截图</title>
             <simpletable>
             <sthead>
@@ -307,6 +315,9 @@
             </simpletable> </section>
         <section props="cpp unity" id="section_hj2_ph1_jqb">
             <title>多设备采集</title>
+            <note props="unity electron flutter" type="attention">
+            <p>本组方法仅适用于 Windows。</p>
+            </note>
             <simpletable>
             <sthead>
                 <stentry>方法</stentry>
@@ -357,8 +368,8 @@
                 <stentry><ph conkeyref="createMediaPlayer/shortdesc"/></stentry>
             </strow>
             <strow props="unity">
-                <stentry><xref keyref="getAgoraRtcMediaPlayerSourceObserver"/></stentry>
-                <stentry><ph conkeyref="getAgoraRtcMediaPlayerSourceObserver/shortdesc"/></stentry>
+                <stentry><xref keyref="getMediaPlayerSourceObserver"/></stentry>
+                <stentry><ph conkeyref="getMediaPlayerSourceObserver/shortdesc"/></stentry>
             </strow>
             <strow props="unity">
                 <stentry><xref keyref="dispose_IMediaPlayer"/></stentry>
@@ -528,7 +539,7 @@
             </simpletable> </section>
         <section id="audio_preprocessing_and_postprocessing" props="android ios cpp unity">
             <title>音频前后处理</title>
-            <note props="cpp" type="attention">
+            <note props="cpp unity" type="attention">
             <p>本组方法仅适用于 Android 和 iOS。</p>
             </note> <simpletable>
             <sthead>
@@ -1082,7 +1093,7 @@
                 <stentry><xref keyref="removeEventHandler"/></stentry>
                 <stentry><ph conkeyref="removeEventHandler/shortdesc"/></stentry>
             </strow>
-            </simpletable> <simpletable>
+            </simpletable> <simpletable props="hide">
             <sthead>
                 <stentry>本地直角坐标系计算方法</stentry>
                 <stentry>描述</stentry>
@@ -1091,11 +1102,7 @@
                 <stentry><xref keyref="create_ILocalSpatialAudioEngine"/></stentry>
                 <stentry><ph conkeyref="create_ILocalSpatialAudioEngine/shortdesc"/></stentry>
             </strow>
-            <strow props="unity">
-                <stentry><xref keyref="getAgoraRtcSpatialAudioEngine"/></stentry>
-                <stentry><ph conkeyref="getAgoraRtcSpatialAudioEngine/shortdesc"/></stentry>
-            </strow>
-            <strow>
+               <strow>
                 <stentry><xref keyref="initialize_ILocalSpatialAudioEngine"/></stentry>
                 <stentry><ph conkeyref="initialize_ILocalSpatialAudioEngine/shortdesc"/></stentry>
             </strow>
@@ -1119,7 +1126,7 @@
                 <stentry><xref keyref="clearRemotePositions"/></stentry>
                 <stentry><ph conkeyref="clearRemotePositions/shortdesc"/></stentry>
             </strow>
-            </simpletable> <simpletable>
+            </simpletable> <simpletable props="hide">
             <sthead>
                 <stentry>本地球坐标系计算方法</stentry>
                 <stentry>描述</stentry>
@@ -1355,6 +1362,10 @@
                 <stentry><xref keyref="setPlaybackAudioFrameBeforeMixingParameters"/></stentry>
                 <stentry><ph conkeyref="setPlaybackAudioFrameBeforeMixingParameters/shortdesc"/></stentry>
             </strow>
+                <strow props="unity">
+                    <stentry><xref keyref="isMultipleChannelFrameWanted_IAudioFrameObserver"/></stentry>
+                    <stentry><ph keyref="isMultipleChannelFrameWanted_IAudioFrameObserver/shortdesc"/></stentry>
+                </strow>
             </simpletable><simpletable>
             <sthead>
                 <stentry>事件</stentry>
@@ -1388,6 +1399,10 @@
                 <stentry><xref keyref="registerAudioEncodedFrameObserver"/></stentry>
                 <stentry><ph conkeyref="registerAudioEncodedFrameObserver/shortdesc"/></stentry>
             </strow>
+                <strow props="unity">
+                    <stentry><xref keyref="unRegisterAudioEncodedFrameObserver"/></stentry>
+                    <stentry><ph conkeyref="unRegisterAudioEncodedFrameObserver/shortdesc"/></stentry>
+                </strow>
             </simpletable> <simpletable>
             <sthead>
                 <stentry>事件</stentry>
@@ -2141,6 +2156,10 @@
                 <stentry><xref keyref="setForUser"/></stentry>
                 <stentry><ph conkeyref="setForUser/shortdesc"/></stentry>
             </strow>
+                <strow props="unity">
+                    <stentry><xref keyref="setParameters"/></stentry>
+                    <stentry><ph conkeyref="setParameters/shortdesc"/></stentry>
+                </strow>
             <strow>
                 <stentry><xref keyref="getCallId"/></stentry>
                 <stentry><ph conkeyref="getCallId/shortdesc"/></stentry>
