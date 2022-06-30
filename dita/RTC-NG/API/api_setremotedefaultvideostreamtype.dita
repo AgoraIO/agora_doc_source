@@ -22,7 +22,7 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRemoteDefaultVideoStreamType(VideoStreamType streamType);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p id="desc1">在网络条件受限的情况下，如果发送端没有调用 <codeph><xref keyref="enableDualStreamMode" /> (<ph keyref="false" />)</codeph> 关闭双流模式，接收端可以选择接收大流还是小流。其中，大流为高分辨率高码率的视频流，小流则是低分辨率低码率的视频流。</p>
+            <p id="desc1">在网络条件受限的情况下，如果发送端没有调用 <codeph><xref keyref="enableDualStreamMode" props="native flutter unity"/> <xref keyref="enableDualStreamMode3" props="rn electron"/> (<ph keyref="false" />)</codeph> 关闭双流模式，接收端可以选择接收大流还是小流。其中，大流为高分辨率高码率的视频流，小流则是低分辨率低码率的视频流。</p>
             <p id="desc2">正常情况下，用户默认接收大流。如需默认接收所有用户的视频小流，可以调用本方法进行切换。SDK 会根据视频窗口的大小动态调整对应视频流的大小，以节约带宽和计算资源。视频小流默认的宽高比和视频大流的宽高比一致。根据当前大流的宽高比，系统会自动分配小流的分辨率、帧率及码率。</p>
             <p id="desc3">调用本方法的执行结果将在 <xref keyref="onApiCallExecuted" /> 中返回。</p>
             <note type="attention">
