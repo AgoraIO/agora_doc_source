@@ -292,6 +292,8 @@ This section shows how to create a new user in your Agora Chat using an authenti
 
 This section provides additional information about Agora Chat app tokens for your reference.
 
+For each App Key, the call frequency limit of this method is 300 per second.
+
 ### Request path
 
 The following parameters are required when you send a request for an Agora Chat app token:
