@@ -5,7 +5,7 @@
     <shortdesc id="short"><ph id="shortdesc">用户的信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
+            <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class UserInfo {
                     public int uid;
                     public String userAccount;
@@ -21,21 +21,7 @@
     {  
         public uint uid; 
         public string userAccount; 
-    }</codeblock></p>
-            <p outputclass="codeblock" props="rtc">
-            <codeblock props="android" outputclass="language-java">public class UserInfo {
-                    public int uid;
-                    public String userAccount;
-                    }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">struct UserInfo {
-                    uid_t uid;
-                    char userAccount[MAX_USER_ACCOUNT_LENGTH];
-                    UserInfo()
-                    : uid(0) {
-                    userAccount[0] = '\0';
-                    }
-                    };</codeblock></p>
-            <p outputclass="codeblock">
+    }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraUserInfo: NSObject
  @property(assign, nonatomic) NSUInteger uid;
  @property (copy, nonatomic) NSString * _Nullable userAccount;
@@ -54,20 +40,17 @@
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">class UserInfo {
+  const UserInfo({this.uid, this.userAccount});
 
-  int uid;
-  String userAccount;
-
-  UserInfo(
-    this.uid,
-    this.userAccount,
-  );
-
+  @JsonKey(name: 'uid')
+  final int? uid;
+  @JsonKey(name: 'userAccount')
+  final String? userAccount;
   factory UserInfo.fromJson(Map&lt;String, dynamic> json) =>
       _$UserInfoFromJson(json);
-
   Map&lt;String, dynamic> toJson() => _$UserInfoToJson(this);
-}</codeblock> </p>
+}
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
@@ -88,8 +71,9 @@
             </plentry>
             <plentry>
                 <pt>userAccount</pt>
-                <pd>用户 Account。<ph props="cpp unity electron rn">长度限制为<xref
-                    keyref="MAX_USER_ACCOUNT_LENGTH_TYPE"/>。</ph></pd>
+                <pd>用户 Account。<ph props="cpp rn unity electron flutter"
+                        >长度限制为<xref keyref="MAX_USER_ACCOUNT_LENGTH_TYPE"
+                        />。</ph></pd>
             </plentry>
             </parml> </section>
     </refbody>
