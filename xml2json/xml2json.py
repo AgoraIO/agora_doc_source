@@ -144,6 +144,12 @@ elif defined_path_text == "unity":
     defined_path = unity_full_path
 elif defined_path_text == "unity-ng":
     defined_path = unity_ng_full_path
+elif defined_path_text == "rn-ng":
+    defined_path = rn_ng_full_path
+elif defined_path_text == "flutter-ng":
+    defined_path = flutter_ng_full_path
+elif defined_path_text == "electron-ng":
+    defined_path = electron_ng_full_path
 elif defined_path_text == "rn":
     defined_path = rn_full_path
 elif defined_path_text == "cpp":
