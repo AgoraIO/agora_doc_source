@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onlocaluserregistered">
-    <title><ph keyref="onLocalUserRegistered" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the local user registers a user account.</ph></shortdesc>
+    <title><ph keyref="onLocalUserRegistered"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the local user registers a user
+            account.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="onLocalUserRegistered" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="onLocalUserRegistered"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didLocalUserRegisteredWithUserId:(NSUInteger)uid userAccount:(NSString * _Nonnull)userAccount;</codeblock>
-        </p>
-        <p outputclass="codeblock" props="rtc">
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine didRegisteredLocalUser:(NSString* _Nonnull)userAccount withUid:(NSUInteger)uid;</codeblock>
-        </p>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didLocalUserRegisteredWithUserId:(NSUInteger)uid userAccount:(NSString * _Nonnull)userAccount;</codeblock>
+            </p>
+            <p outputclass="codeblock" props="rtc">
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine didRegisteredLocalUser:(NSString* _Nonnull)userAccount withUid:(NSUInteger)uid;</codeblock>
+            </p>
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public void onLocalUserRegistered(int uid, String userAccount) {}</codeblock>
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onLocalUserRegistered(uid_t uid, const char* userAccount) {
@@ -28,25 +30,28 @@
      userAccount: string) => void
      ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnLocalUserRegistered(uint uid, string userAccount)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart">UserAccountCallback? localUserRegistered;</codeblock>
             </p>
         </section>
         <section id="detailed_desc">
-
-   <dl outputclass="since" props="rtc">
-       <dlentry props="native">
-  <dt>Since</dt>
-  <dd>v2.8.0</dd>
-       </dlentry>
-   </dl>
-   <p>After the local user successfully calls <xref keyref="registerLocalUserAccount" /> to register the user account or calls <apiname keyref="joinChannelWithUserAccount2" /> to join a channel, the SDK triggers the callback and informs the local user's UID and User Account.</p>
+            <dl outputclass="since" props="rtc">
+                <dlentry props="native">
+                    <dt>Since</dt>
+                    <dd>v2.8.0</dd>
+                </dlentry>
+            </dl>
+            <p>After the local user successfully calls <xref keyref="registerLocalUserAccount"/> to
+                register the user account or calls <apiname keyref="joinChannelWithUserAccount2"/>
+                to join a channel, the SDK triggers the callback and informs the local user's UID
+                and User Account.</p>
         </section>
-        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-   <parml>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <parml>
                 <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                    <pt />
-                    <pd />
+                    <pt/>
+                    <pd/>
                 </plentry>
                 <plentry>
                     <pt>uid</pt>
@@ -58,5 +63,5 @@
                 </plentry>
             </parml>
         </section>
-</refbody>
+    </refbody>
 </reference>

@@ -13,85 +13,98 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int setLocalVoiceChanger(int voiceChanger);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int) setLocalVoiceChanger:(AgoraAudioVoiceChanger)voiceChanger;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int setLocalVoiceChanger(VOICE_CHANGER_PRESET voiceChanger) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">setLocalVoiceChanger(voiceChanger: VOICE_CHANGER_PRESET): number</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int SetLocalVoiceChanger(VOICE_CHANGER_PRESET voiceChanger);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLocalVoiceChanger(AudioVoiceChanger voiceChanger);</codeblock> </p>
+                <codeblock props="android" outputclass="language-java">public abstract int setLocalVoiceChanger(int voiceChanger);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int) setLocalVoiceChanger:(AgoraAudioVoiceChanger)voiceChanger;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setLocalVoiceChanger(VOICE_CHANGER_PRESET voiceChanger) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">setLocalVoiceChanger(voiceChanger: VOICE_CHANGER_PRESET): number</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetLocalVoiceChanger(VOICE_CHANGER_PRESET voiceChanger);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLocalVoiceChanger(AudioVoiceChanger voiceChanger);</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated">
-            <dlentry>
-                <dt>弃用：</dt>
-                <dd>该方法从 v3.2.0 起废弃，请改用以下方法：
-               
-                    
-                    <ul>
-                    <li><xref keyref="setAudioEffectPreset"/> ：音效</li>
-                    <li><xref keyref="setVoiceBeautifierPreset"/> ：美声效果</li>
-                    <li><xref keyref="setVoiceConversionPreset"/> ：变声效果</li>
-                    </ul> </dd>
-            </dlentry>
+                <dlentry>
+                    <dt>弃用：</dt>
+                    <dd>该方法从 v3.2.0 起废弃，请改用以下方法： <ul>
+                            <li><xref keyref="setAudioEffectPreset"/> ：音效</li>
+                            <li><xref keyref="setVoiceBeautifierPreset"/> ：美声效果</li>
+                            <li><xref keyref="setVoiceConversionPreset"/> ：变声效果</li>
+                        </ul>
+                    </dd>
+                </dlentry>
             </dl>
-            <p>通信场景下的用户或直播场景下的主播均可调用该方法为本地语音设置以下效果。成功设置以后，频道内的所有用户均可听到声音效果。
-       
-            
-            <ul>
-            <li>变声效果：枚举值以 <codeph>VOICE_CHANGER</codeph> 为前缀。效果包括老男人、小男孩、小女孩、猪八戒、空灵和绿巨人，通常用于语聊场景。</li>
-            <li>美音效果：枚举值以 <codeph>VOICE_BEAUTY</codeph> 为前缀。效果包括浑厚、低沉、圆润、假音、饱满、清澈、高亢、嘹亮和空旷，通常用于语聊和唱歌场景。</li>
-            <li>语聊美声效果：枚举值以 <codeph>GENERAL_BEAUTY_VOICE</codeph> 为前缀。效果包括磁性（男）、清新（女）和活力（女），通常用于语聊场景。该功能主要细化了男声和女声各自的特点。</li>
-            </ul> </p>
+            <p>通信场景下的用户或直播场景下的主播均可调用该方法为本地语音设置以下效果。成功设置以后，频道内的所有用户均可听到声音效果。 <ul>
+                    <li>变声效果：枚举值以 <codeph>VOICE_CHANGER</codeph>
+                        为前缀。效果包括老男人、小男孩、小女孩、猪八戒、空灵和绿巨人，通常用于语聊场景。</li>
+                    <li>美音效果：枚举值以 <codeph>VOICE_BEAUTY</codeph>
+                        为前缀。效果包括浑厚、低沉、圆润、假音、饱满、清澈、高亢、嘹亮和空旷，通常用于语聊和唱歌场景。</li>
+                    <li>语聊美声效果：枚举值以 <codeph>GENERAL_BEAUTY_VOICE</codeph>
+                        为前缀。效果包括磁性（男）、清新（女）和活力（女），通常用于语聊场景。该功能主要细化了男声和女声各自的特点。</li>
+                </ul>
+            </p>
             <note type="attention">
-            <ul>
-            <li>为达到更好的声音效果，Agora 推荐在调用该方法前将 <xref keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> (4) 或 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/> (5)。</li>
-            <li>该方法对人声的处理效果最佳，Agora 不推荐调用该方法处理含人声和音乐的音频数据。</li>
-            <li>该方法不能与 <xref keyref="setLocalVoiceReverbPreset"/> 方法一同使用，否则先调的方法会不生效。更多注意事项，详见进阶功能《变声与混响》。</li>
-            <li>该方法在加入频道前后都能调用。</li>
-            </ul> </note> </section>
+                <ul>
+                    <li>为达到更好的声音效果，Agora 推荐在调用该方法前将 <xref keyref="setAudioProfile"/> 的
+                            <parmname>profile</parmname> 参数设置为 <apiname
+                            keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> (4) 或 <apiname
+                            keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/> (5)。</li>
+                    <li>该方法对人声的处理效果最佳，Agora 不推荐调用该方法处理含人声和音乐的音频数据。</li>
+                    <li>该方法不能与 <xref keyref="setLocalVoiceReverbPreset"/>
+                        方法一同使用，否则先调的方法会不生效。更多注意事项，详见进阶功能《变声与混响》。</li>
+                    <li>该方法在加入频道前后都能调用。</li>
+                </ul>
+            </note>
+        </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry>
-                <pt>voiceChanger</pt>
-                <pd>
-                    <p props="ios mac cpp unity flutter">预设本地语音变声、美音或语聊美声效果选项，默认值为 <apiname keyref="VOICE_CHANGER_OFF"/> ，即原声。详见 <xref keyref="VOICE_CHANGER_PRESET"/> 。设置语聊美声效果时，Agora 推荐使用 <apiname keyref="GENERAL_BEAUTY_VOICE_MALE_MAGNETIC"/> 处理男声，使用 <apiname keyref="GENERAL_BEAUTY_VOICE_FEMALE_FRESH"/> 或 <apiname keyref="GENERAL_BEAUTY_VOICE_FEMALE_VITALITY"/> 处理女声，否则音频可能会产生失真。</p>
-                    <p props="android">本地语音的变声、美音或语聊美声效果选项： 
-                    
-                    <ul>
-                    <li><ph keyref="VOICE_CHANGER_OFF"/>:
+                <plentry>
+                    <pt>voiceChanger</pt>
+                    <pd>
+                        <p props="ios mac cpp unity flutter">预设本地语音变声、美音或语聊美声效果选项，默认值为 <apiname
+                                keyref="VOICE_CHANGER_OFF"/> ，即原声。详见 <xref
+                                keyref="VOICE_CHANGER_PRESET"/> 。设置语聊美声效果时，Agora 推荐使用 <apiname
+                                keyref="GENERAL_BEAUTY_VOICE_MALE_MAGNETIC"/> 处理男声，使用 <apiname
+                                keyref="GENERAL_BEAUTY_VOICE_FEMALE_FRESH"/> 或 <apiname
+                                keyref="GENERAL_BEAUTY_VOICE_FEMALE_VITALITY"/>
+                            处理女声，否则音频可能会产生失真。</p>
+                        <p props="android">本地语音的变声、美音或语聊美声效果选项： <ul>
+                                <li><ph keyref="VOICE_CHANGER_OFF"/>:
                                     （默认）原声，即关闭本地语音的变声、美音或语聊美声效果。</li>
-                    <li><ph keyref="VOICE_CHANGER_OLDMAN"/>: 变声：老男孩。</li>
-                    <li><ph keyref="VOICE_CHANGER_BABYBOY"/>: 变声：小男孩。</li>
-                    <li><ph keyref="VOICE_CHANGER_BABYGIRL"/>: 变声：小女孩。</li>
-                    <li><ph keyref="VOICE_CHANGER_ZHUBAJIE"/>: 变声：猪八戒。</li>
-                    <li><ph keyref="VOICE_CHANGER_ETHEREAL"/>: 变声：空灵。</li>
-                    <li><ph keyref="VOICE_CHANGER_HULK"/>: 变声：绿巨人。</li>
-                    <li><ph keyref="VOICE_BEAUTY_VIGOROUS"/>: 美音：浑厚。</li>
-                    <li><ph keyref="VOICE_BEAUTY_DEEP"/>: 美音：低沉。</li>
-                    <li><ph keyref="VOICE_BEAUTY_MELLOW"/>: 美音：圆润。</li>
-                    <li><ph keyref="VOICE_BEAUTY_FALSETTO"/>: 美音：假音。</li>
-                    <li><ph keyref="VOICE_BEAUTY_FULL"/>: 美音：饱满。</li>
-                    <li><ph keyref="VOICE_BEAUTY_CLEAR"/>: 美音：清澈。</li>
-                    <li><ph keyref="VOICE_BEAUTY_RESOUNDING"/>: 美音：高亢。</li>
-                    <li><ph keyref="VOICE_BEAUTY_RINGING"/>: 美音：嘹亮。</li>
-                    <li><ph keyref="VOICE_BEAUTY_SPACIAL"/>: 美音：空旷。</li>
-                    <li><ph keyref="GENERAL_BEAUTY_VOICE_MALE_MAGNETIC"/>:
+                                <li><ph keyref="VOICE_CHANGER_OLDMAN"/>: 变声：老男孩。</li>
+                                <li><ph keyref="VOICE_CHANGER_BABYBOY"/>: 变声：小男孩。</li>
+                                <li><ph keyref="VOICE_CHANGER_BABYGIRL"/>: 变声：小女孩。</li>
+                                <li><ph keyref="VOICE_CHANGER_ZHUBAJIE"/>: 变声：猪八戒。</li>
+                                <li><ph keyref="VOICE_CHANGER_ETHEREAL"/>: 变声：空灵。</li>
+                                <li><ph keyref="VOICE_CHANGER_HULK"/>: 变声：绿巨人。</li>
+                                <li><ph keyref="VOICE_BEAUTY_VIGOROUS"/>: 美音：浑厚。</li>
+                                <li><ph keyref="VOICE_BEAUTY_DEEP"/>: 美音：低沉。</li>
+                                <li><ph keyref="VOICE_BEAUTY_MELLOW"/>: 美音：圆润。</li>
+                                <li><ph keyref="VOICE_BEAUTY_FALSETTO"/>: 美音：假音。</li>
+                                <li><ph keyref="VOICE_BEAUTY_FULL"/>: 美音：饱满。</li>
+                                <li><ph keyref="VOICE_BEAUTY_CLEAR"/>: 美音：清澈。</li>
+                                <li><ph keyref="VOICE_BEAUTY_RESOUNDING"/>: 美音：高亢。</li>
+                                <li><ph keyref="VOICE_BEAUTY_RINGING"/>: 美音：嘹亮。</li>
+                                <li><ph keyref="VOICE_BEAUTY_SPACIAL"/>: 美音：空旷。</li>
+                                <li><ph keyref="GENERAL_BEAUTY_VOICE_MALE_MAGNETIC"/>:
                                     语聊美声：磁性（男）。此枚举为男声定制化效果，不适用于女声。若女声使用此音效设置，则音频可能会产生失真。</li>
-                    <li><ph keyref="GENERAL_BEAUTY_VOICE_FEMALE_FRESH"/>:
+                                <li><ph keyref="GENERAL_BEAUTY_VOICE_FEMALE_FRESH"/>:
                                     语聊美声：清新（女）。此枚举为女声定制化效果，不适用于男声。若男声使用此音效设置，则音频可能会产生失真。</li>
-                    <li><ph keyref="GENERAL_BEAUTY_VOICE_FEMALE_VITALITY"/>:
+                                <li><ph keyref="GENERAL_BEAUTY_VOICE_FEMALE_VITALITY"/>:
                                     语聊美声：活力（女）。此枚举为女声定制化效果，不适用于男声。若男声使用此音效设置，则音频可能会产生失真。</li>
-                    </ul> </p>
-                </pd>
-            </plentry>
-            </parml> </section>
+                            </ul>
+                        </p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values" props="native electron unity">
             <title>返回值</title>
             <ul>
-            <li>0: 方法调用成功</li>
-            <li>&lt; 0: 方法调用失败</li>
-            </ul> </section>
+                <li>0: 方法调用成功</li>
+                <li>&lt; 0: 方法调用失败</li>
+            </ul>
+        </section>
     </refbody>
 </reference>

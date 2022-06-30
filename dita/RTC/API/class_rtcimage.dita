@@ -6,7 +6,7 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="android" outputclass="language-java">public class AgoraImage {
+                <codeblock props="android" outputclass="language-java">public class AgoraImage {
   public String url;
   public int x;
   public int y;
@@ -35,13 +35,13 @@
     this.alpha = 1.0;
   }
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraImage : NSObject
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraImage : NSObject
             @property(strong, nonatomic) NSURL *_Nonnull url;
             @property(assign, nonatomic) CGRect rect;
             @property (assign, nonatomic) NSInteger zOrder;
             @property(assign, nonatomic) double alpha;
             @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">typedef struct RtcImage {
+                <codeblock props="cpp" outputclass="language-cpp">typedef struct RtcImage {
             const char* url;
             int x;
             int y;
@@ -53,7 +53,7 @@
             RtcImage() : url(NULL), x(0), y(0), width(0), height(0), zOrder(0), alpha(1.0) {}</codeblock>
             </p>
             <p outputclass="codeblock" props="rtc">
-            <codeblock props="cpp" outputclass="language-cpp">typedef struct RtcImage {
+                <codeblock props="cpp" outputclass="language-cpp">typedef struct RtcImage {
   RtcImage() : url(NULL), x(0), y(0), width(0), height(0) {}
   const char* url;
   int x;
@@ -61,11 +61,11 @@
   int width;
   int height;
   } RtcImage;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraImage : NSObject
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraImage : NSObject
 @property(strong, nonatomic) NSURL* _Nonnull url;
 @property(assign, nonatomic) CGRect rect;
 @end</codeblock>
-            <codeblock props="android" outputclass="language-java">public class AgoraImage {
+                <codeblock props="android" outputclass="language-java">public class AgoraImage {
     public String url;
     public int x;
     public int y;
@@ -75,7 +75,7 @@
     public AgoraImage() {
     }
 }</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public class RtcImage
+                <codeblock props="cs" outputclass="language-csharp">public class RtcImage
     {
         public RtcImage()
         {
@@ -101,15 +101,15 @@
         public double alpha { set; get; }
     }</codeblock></p>
             <p outputclass="codeblock">
-            <codeblock props="electron" outputclass="language-typescript">export interface RtcImage {
+                <codeblock props="electron" outputclass="language-typescript">export interface RtcImage {
     x: number,
     y: number,
     width: number,
     height: number,
     url: string
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">class AgoraImage {
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">class AgoraImage {
   String url;
   @JsonKey(includeIfNull: false)
   int? x;
@@ -130,54 +130,52 @@
       _$AgoraImageFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$AgoraImageToJson(this);
-}</codeblock> </p>
+}</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
             <p>用于设置直播视频的水印和背景图片的属性。</p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+                /></title>
             <parml>
-            <plentry>
-                <pt>url</pt>
-                <pd>直播视频上图片的 HTTP/HTTPS 地址。字符长度不得超过 1024 字节。</pd>
-            </plentry>
-            <plentry props="android cpp cs electron flutter">
-                <pt>x</pt>
-                <pd>图片在视频画面上的 x 坐标 (pixel)，以输出视频画面的左上角为原点。</pd>
-            </plentry>
-            <plentry props="android cpp cs electron flutter">
-                <pt>y</pt>
-                <pd>图片在视频画面上的 y 坐标 (pixel)，以输出视频画面的左上角为原点。</pd>
-            </plentry>
-            <plentry props="android cpp cs electron flutter">
-                <pt>width</pt>
-                <pd>图片在视频画面上的宽度 (pixel)。</pd>
-            </plentry>
-            <plentry props="android cpp cs electron flutter">
-                <pt>height</pt>
-                <pd>图片在视频画面上的高度 (pixel)。</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>rect</pt>
-                <pd>图片在视频画面上的位置和大小，类型为 CGRect。</pd>
-            </plentry>
-            <plentry props="cs">
-                <pt>zOrder</pt>
-                <pd>视频帧图层编号。取值范围为 [1,100] 中的整型。1 表示该区域图像位于最下层，而 100 表示该区域图像位于最上层。</pd>
-            </plentry>
-            <plentry props="cs">
-                <pt>alpha</pt>
-                <pd>水印或背景图片的透明度。取值范围为 [0.0,1.0]：
-                    
-                    
-                    <ul>
-                    <li>0.0: 完全透明。</li>
-                    <li>1.0:（默认）完全不透明。</li>
-                    </ul></pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>url</pt>
+                    <pd>直播视频上图片的 HTTP/HTTPS 地址。字符长度不得超过 1024 字节。</pd>
+                </plentry>
+                <plentry props="android cpp cs electron flutter">
+                    <pt>x</pt>
+                    <pd>图片在视频画面上的 x 坐标 (pixel)，以输出视频画面的左上角为原点。</pd>
+                </plentry>
+                <plentry props="android cpp cs electron flutter">
+                    <pt>y</pt>
+                    <pd>图片在视频画面上的 y 坐标 (pixel)，以输出视频画面的左上角为原点。</pd>
+                </plentry>
+                <plentry props="android cpp cs electron flutter">
+                    <pt>width</pt>
+                    <pd>图片在视频画面上的宽度 (pixel)。</pd>
+                </plentry>
+                <plentry props="android cpp cs electron flutter">
+                    <pt>height</pt>
+                    <pd>图片在视频画面上的高度 (pixel)。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>rect</pt>
+                    <pd>图片在视频画面上的位置和大小，类型为 CGRect。</pd>
+                </plentry>
+                <plentry props="cs">
+                    <pt>zOrder</pt>
+                    <pd>视频帧图层编号。取值范围为 [1,100] 中的整型。1 表示该区域图像位于最下层，而 100 表示该区域图像位于最上层。</pd>
+                </plentry>
+                <plentry props="cs">
+                    <pt>alpha</pt>
+                    <pd>水印或背景图片的透明度。取值范围为 [0.0,1.0]： <ul>
+                            <li>0.0: 完全透明。</li>
+                            <li>1.0:（默认）完全不透明。</li>
+                        </ul></pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

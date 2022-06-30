@@ -5,13 +5,14 @@
     <shortdesc id="short"><ph id="shortdesc">获取各频道混音前的音频播放数据。</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="onPlaybackAudioFrameBeforeMixingEx"/>
-   </keywords>
+            <keywords>
+                <indexterm keyref="onPlaybackAudioFrameBeforeMixingEx"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java"/>
                 <codeblock props="ios mac" outputclass="language-objectivec"/>
                 <codeblock props="cpp" outputclass="language-cpp">virtual bool onPlaybackAudioFrameBeforeMixingEx(const char *channelId,
@@ -24,29 +25,31 @@
         }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
-        </p>
+            </p>
         </section>
         <section id="detailed_desc">
-   <p>成功注册音频观测器后，如果你将 <xref keyref="isMultipleChannelFrameWanted_IAudioFrameObserver"/> 的返回值设为 <ph keyref="true"/>，则 SDK 会在捕捉到各频道内混音前的音频数据时，触发该回调，将音频数据发送给你。</p>
+            <p>成功注册音频观测器后，如果你将 <xref keyref="isMultipleChannelFrameWanted_IAudioFrameObserver"/>
+                的返回值设为 <ph keyref="true"/>，则 SDK 会在捕捉到各频道内混音前的音频数据时，触发该回调，将音频数据发送给你。</p>
         </section>
         <section id="parameters"><title>参数</title>
-   <parml>
-       <plentry>
-  <pt>channelId</pt>
-  <pd>该音频帧所在的频道名。</pd>
-       </plentry>
-       <plentry>
-  <pt>uid</pt>
-  <pd>发送该音频帧的用户 ID。</pd>
-       </plentry>
-       <plentry>
-  <pt>audioFrame</pt>
-  <pd>音频原始数据。详见 <xref keyref="AudioFrame"/>。</pd>
-       </plentry>
-   </parml>
+            <parml>
+                <plentry>
+                    <pt>channelId</pt>
+                    <pd>该音频帧所在的频道名。</pd>
+                </plentry>
+                <plentry>
+                    <pt>uid</pt>
+                    <pd>发送该音频帧的用户 ID。</pd>
+                </plentry>
+                <plentry>
+                    <pt>audioFrame</pt>
+                    <pd>音频原始数据。详见 <xref keyref="AudioFrame"/>。</pd>
+                </plentry>
+            </parml>
         </section>
         <section id="return_values">
-   <title>返回值</title>
-   <p>无实际含义。</p>
-        </section></refbody>
+            <title>返回值</title>
+            <p>无实际含义。</p>
+        </section>
+    </refbody>
 </reference>

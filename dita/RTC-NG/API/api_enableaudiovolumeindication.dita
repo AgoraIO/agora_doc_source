@@ -1,58 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_enableaudiovolumeindication">
-    <title><ph keyref="enableAudioVolumeIndication" /></title>
+    <title><ph keyref="enableAudioVolumeIndication"/></title>
     <shortdesc id="short"><ph id="shortdesc">启用用户音量提示。</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="enableAudioVolumeIndication" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="enableAudioVolumeIndication"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int enableAudioVolumeIndication(int interval, int smooth, boolean reportVad);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableAudioVolumeIndication:(NSInteger)interval
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract int enableAudioVolumeIndication(int interval, int smooth, boolean reportVad);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableAudioVolumeIndication:(NSInteger)interval
                             smooth:(NSInteger)smooth
                             reportVad:(BOOL)reportVad;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int enableAudioVolumeIndication(int interval, int smooth, bool reportVad) = 0;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int EnableAudioVolumeIndication(int interval, int smooth, bool reportVad);</codeblock>
-        </p>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int enableAudioVolumeIndication(int interval, int smooth, bool reportVad) = 0;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int EnableAudioVolumeIndication(int interval, int smooth, bool reportVad);</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
-   <p>该方法允许 SDK 定期向 app 报告本地发流用户和瞬时音量最高的远端用户（最多 3 位）的音量相关信息。启用该方法后，只要频道内有发流用户， SDK 会在加入频道后按设置的时间间隔触发 <xref keyref="onAudioVolumeIndication" /> 回调。</p>
-   <note type="attention">该方法在加入频道前后都能调用。</note>
+            <p>该方法允许 SDK 定期向 app 报告本地发流用户和瞬时音量最高的远端用户（最多 3 位）的音量相关信息。启用该方法后，只要频道内有发流用户， SDK
+                会在加入频道后按设置的时间间隔触发 <xref keyref="onAudioVolumeIndication"/> 回调。</p>
+            <note type="attention">该方法在加入频道前后都能调用。</note>
         </section>
         <section id="parameters"><title>参数</title>
-   <parml>
-       <plentry>
-  <pt>interval</pt>
-  <pd>指定音量提示的时间间隔： <ul>
+            <parml>
+                <plentry>
+                    <pt>interval</pt>
+                    <pd>指定音量提示的时间间隔： <ul>
                             <li>≤ 0: 禁用音量提示功能。</li>
-                            <li>&gt; 0: 返回音量提示的间隔，单位为毫秒。该参数需要设为 200 的整数倍。如果取值低于 200，SDK 会自动调整为 200。</li>
+                            <li>&gt; 0: 返回音量提示的间隔，单位为毫秒。该参数需要设为 200 的整数倍。如果取值低于 200，SDK 会自动调整为
+                                200。</li>
                         </ul></pd>
-       </plentry>
-       <plentry>
-  <pt>smooth</pt>
-  <pd>平滑系数，指定音量提示的灵敏度。取值范围为 [0,10]，建议值为 3。数字越大，波动越灵敏；数字越小，波动越平滑。</pd>
-       </plentry>
-       <plentry>
-           <pt>reportVad</pt>
-  <pd>
-      <ul>
- <li><codeph><ph keyref="true" /></codeph>：开启本地人声检测功能。开启后，<apiname keyref="onAudioVolumeIndication" /> 回调的 <parmname>vad</parmname> 参数会报告是否在本地检测到人声。</li>
- <li><codeph><ph keyref="false" /></codeph>：（默认）关闭本地人声检测功能。除引擎自动进行本地人声检测的场景外，<apiname keyref="onAudioVolumeIndication" /> 回调的 <parmname>vad</parmname> 参数不会报告是否在本地检测到人声。</li>
-      </ul>
-  </pd>
-       </plentry>
-   </parml>
+                </plentry>
+                <plentry>
+                    <pt>smooth</pt>
+                    <pd>平滑系数，指定音量提示的灵敏度。取值范围为 [0,10]，建议值为 3。数字越大，波动越灵敏；数字越小，波动越平滑。</pd>
+                </plentry>
+                <plentry>
+                    <pt>reportVad</pt>
+                    <pd>
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>：开启本地人声检测功能。开启后，<apiname
+                                    keyref="onAudioVolumeIndication"/> 回调的 <parmname>vad</parmname>
+                                参数会报告是否在本地检测到人声。</li>
+                            <li><codeph><ph keyref="false"
+                                    /></codeph>：（默认）关闭本地人声检测功能。除引擎自动进行本地人声检测的场景外，<apiname
+                                    keyref="onAudioVolumeIndication"/> 回调的 <parmname>vad</parmname>
+                                参数不会报告是否在本地检测到人声。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
         </section>
         <section id="return_values" props="native electron unity">
-   <title>返回值</title>
-   <ul>
-       <li>0：方法调用成功。</li>
-       <li>&lt; 0：方法调用失败。</li>
-   </ul>
-        </section></refbody>
+            <title>返回值</title>
+            <ul>
+                <li>0：方法调用成功。</li>
+                <li>&lt; 0：方法调用失败。</li>
+            </ul>
+        </section>
+    </refbody>
 </reference>

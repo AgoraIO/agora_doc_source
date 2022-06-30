@@ -2,7 +2,8 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onrejoinchannelsuccess">
     <title><ph keyref="onRejoinChannelSuccess"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when a user rejoins the channel.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when a user rejoins the
+        channel.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -13,61 +14,68 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnRejoinChannelSuccess(RtcConnection connection, int elapsed) {}</codeblock></p>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnRejoinChannelSuccess(RtcConnection connection, int elapsed) {}</codeblock></p>
             <p outputclass="codeblock" props="rtc">
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnRejoinChannelSuccess(string channel, uint uid, int elapsed)</codeblock></p>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnRejoinChannelSuccess(string channel, uint uid, int elapsed)</codeblock></p>
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public void onRejoinChannelSuccess(String channel, int uid, int elapsed) {}</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+                <codeblock props="android" outputclass="language-java">public void onRejoinChannelSuccess(String channel, int uid, int elapsed) {}</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
     didRejoinChannel:(NSString * _Nonnull)channel withUid:(NSUInteger)uid elapsed:(NSInteger) elapsed;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onRejoinChannelSuccess(const char* channel, uid_t uid, int elapsed) {
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onRejoinChannelSuccess(const char* channel, uid_t uid, int elapsed) {
      (void)channel;
      (void)uid;
      (void)elapsed;
      }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.REJOIN_CHANNEL_SUCCESS, cb: (
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.REJOIN_CHANNEL_SUCCESS, cb: (
      channel: string,
      uid: number,
      elapsed: number) =&gt; void
      ): this;</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">UidWithElapsedAndChannelCallback? rejoinChannelSuccess;</codeblock> </p>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">UidWithElapsedAndChannelCallback? rejoinChannelSuccess;</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p id="desc">When a user loses connection with the server because of network problems, the SDK automatically tries to reconnect and triggers this callback upon reconnection.</p>
+            <p id="desc">When a user loses connection with the server because of network problems,
+                the SDK automatically tries to reconnect and triggers this callback upon
+                reconnection.</p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry props="native electron">
-                <pt>channel</pt>
-                <pd>The channel name.</pd>
-            </plentry>
-            <plentry props="rtc">
-                <pt props="unity">channel</pt>
-                <pd props="unity">The channel name.</pd>
-            </plentry>
-            <plentry id="uid" props="native electron">
-                <pt>uid</pt>
-                <pd>The ID of the user who rejoins the channel.</pd>
-            </plentry>
-            <plentry props="rtc">
-                <pt props="unity">uid</pt>
-                <pd props="unity">The ID of the user who rejoins the channel.</pd>
-            </plentry>
-            <plentry props="rtc-ng">
-                <pt props="unity">connection</pt>
-                <pd props="unity">The connection information. See <xref keyref="RtcConnection"/>.</pd>
-            </plentry>
-            <plentry id="elapsed">
-                <pt>elapsed</pt>
-                <pd>Time elapsed (ms) from the local user calling the <xref keyref="joinChannel1"/> or <xref keyref="joinChannel2"/> method until this callback is triggered.</pd>
-            </plentry>
-            </parml> </section>
+                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry props="native electron">
+                    <pt>channel</pt>
+                    <pd>The channel name.</pd>
+                </plentry>
+                <plentry props="rtc">
+                    <pt props="unity">channel</pt>
+                    <pd props="unity">The channel name.</pd>
+                </plentry>
+                <plentry id="uid" props="native electron">
+                    <pt>uid</pt>
+                    <pd>The ID of the user who rejoins the channel.</pd>
+                </plentry>
+                <plentry props="rtc">
+                    <pt props="unity">uid</pt>
+                    <pd props="unity">The ID of the user who rejoins the channel.</pd>
+                </plentry>
+                <plentry props="rtc-ng">
+                    <pt props="unity">connection</pt>
+                    <pd props="unity">The connection information. See <xref keyref="RtcConnection"
+                        />.</pd>
+                </plentry>
+                <plentry id="elapsed">
+                    <pt>elapsed</pt>
+                    <pd>Time elapsed (ms) from the local user calling the <xref
+                            keyref="joinChannel1"/> or <xref keyref="joinChannel2"/> method until
+                        this callback is triggered.</pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

@@ -7,41 +7,52 @@
         <section id="parameters">
             <title>枚举值</title>
             <parml>
-            <plentry>
-                <pt><ph keyref="SUB_STATE_IDLE"/></pt>
-                <pd>0: 加入频道后的初始订阅状态。</pd>
-            </plentry>
-            <plentry>
-                <pt><ph keyref="SUB_STATE_NO_SUBSCRIBED"/></pt>
-                <pd>
-                    <p>1: 订阅失败。可能是因为：
-                    
-                    <ul id="ul_xhd_lxk_p4b">
-                    <li>远端用户：
-                        
-                        <ul id="ul_dcs_mxk_p4b">
-                        <li>调用 <xref keyref="muteLocalAudioStream"/>(<codeph><ph keyref="true"/></codeph>) 或 <xref keyref="muteLocalVideoStream"/>(<codeph><ph keyref="true"/></codeph>) 停止发送本地媒体流。</li>
-                        <li>调用 <xref keyref="disableAudio"/> 或 <xref keyref="disableVideo"/> 关闭本地音频或视频模块。</li>
-                        <li>调用 <xref keyref="enableLocalAudio"/>(<ph keyref="false"/>) 或 <xref keyref="enableLocalVideo"/>(<ph keyref="false"/>) 关闭本地音频或视频采集。</li>
-                        <li>用户角色为观众。</li>
-                        </ul></li>
-                    <li>本地用户调用以下方法停止接收远端媒体流：
-                        
-                        <ul id="ul_mjk_gyk_p4b">
-                        <li>调用 <xref keyref="muteRemoteAudioStream"/>(<ph keyref="true"/>)、 <xref keyref="muteAllRemoteAudioStreams"/>(<ph keyref="true"/>) 或 <xref keyref="setDefaultMuteAllRemoteAudioStreams"/>(<ph keyref="true"/>) 停止接收远端音频流。</li>
-                        <li>调用 <xref keyref="muteRemoteVideoStream"/>(<ph keyref="true"/>)、 <xref keyref="muteAllRemoteVideoStreams"/>(<ph keyref="true"/>) 或 <xref keyref="setDefaultMuteAllRemoteVideoStreams"/>(<ph keyref="true"/>) 停止接收远端视频流。</li>
-                        </ul></li>
-                    </ul></p>
-                </pd>
-            </plentry>
-            <plentry>
-                <pt><ph keyref="SUB_STATE_SUBSCRIBING"/></pt>
-                <pd>2: 正在订阅。</pd>
-            </plentry>
-            <plentry>
-                <pt><ph keyref="SUB_STATE_SUBSCRIBED"/></pt>
-                <pd>3: 收到了远端流，订阅成功。</pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt><ph keyref="SUB_STATE_IDLE"/></pt>
+                    <pd>0: 加入频道后的初始订阅状态。</pd>
+                </plentry>
+                <plentry>
+                    <pt><ph keyref="SUB_STATE_NO_SUBSCRIBED"/></pt>
+                    <pd>
+                        <p>1: 订阅失败。可能是因为： <ul id="ul_xhd_lxk_p4b">
+                                <li>远端用户： <ul id="ul_dcs_mxk_p4b">
+                                        <li>调用 <xref keyref="muteLocalAudioStream"/>(<codeph><ph
+                                                  keyref="true"/></codeph>) 或 <xref
+                                                keyref="muteLocalVideoStream"/>(<codeph><ph
+                                                  keyref="true"/></codeph>) 停止发送本地媒体流。</li>
+                                        <li>调用 <xref keyref="disableAudio"/> 或 <xref
+                                                keyref="disableVideo"/> 关闭本地音频或视频模块。</li>
+                                        <li>调用 <xref keyref="enableLocalAudio"/>(<ph keyref="false"
+                                            />) 或 <xref keyref="enableLocalVideo"/>(<ph
+                                                keyref="false"/>) 关闭本地音频或视频采集。</li>
+                                        <li>用户角色为观众。</li>
+                                    </ul></li>
+                                <li>本地用户调用以下方法停止接收远端媒体流： <ul id="ul_mjk_gyk_p4b">
+                                        <li>调用 <xref keyref="muteRemoteAudioStream"/>(<ph
+                                                keyref="true"/>)、 <xref
+                                                keyref="muteAllRemoteAudioStreams"/>(<ph
+                                                keyref="true"/>) 或 <xref
+                                                keyref="setDefaultMuteAllRemoteAudioStreams"/>(<ph
+                                                keyref="true"/>) 停止接收远端音频流。</li>
+                                        <li>调用 <xref keyref="muteRemoteVideoStream"/>(<ph
+                                                keyref="true"/>)、 <xref
+                                                keyref="muteAllRemoteVideoStreams"/>(<ph
+                                                keyref="true"/>) 或 <xref
+                                                keyref="setDefaultMuteAllRemoteVideoStreams"/>(<ph
+                                                keyref="true"/>) 停止接收远端视频流。</li>
+                                    </ul></li>
+                            </ul></p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt><ph keyref="SUB_STATE_SUBSCRIBING"/></pt>
+                    <pd>2: 正在订阅。</pd>
+                </plentry>
+                <plentry>
+                    <pt><ph keyref="SUB_STATE_SUBSCRIBED"/></pt>
+                    <pd>3: 收到了远端流，订阅成功。</pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

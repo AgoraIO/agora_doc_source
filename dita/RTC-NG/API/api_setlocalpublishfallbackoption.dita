@@ -1,55 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setlocalpublishfallbackoption">
-    <title><ph keyref="setLocalPublishFallbackOption" /></title>
+    <title><ph keyref="setLocalPublishFallbackOption"/></title>
     <shortdesc id="short"><ph id="shortdesc">设置弱网条件下发布的音视频流回退选项。</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="setLocalPublishFallbackOption" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="setLocalPublishFallbackOption"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract int setLocalPublishFallbackOption(int option);</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLocalPublishFallbackOption:(AgoraStreamFallbackOptions)option;</codeblock>
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setLocalPublishFallbackOption(STREAM_FALLBACK_OPTIONS option) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">setLocalPublishFallbackOption(option: STREAM_FALLBACK_OPTIONS): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int SetLocalPublishFallbackOption(STREAM_FALLBACK_OPTIONS option);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLocalPublishFallbackOption(StreamFallbackOptions option);</codeblock>
-        </p>
+            </p>
         </section>
         <section id="detailed_desc">
-   
-   <p>网络不理想的环境下，实时通信音视频的质量都会下降。使用该接口并将 <parmname>option</parmname> 设置为 <apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY" /> (2) 后，SDK 会在上行弱网且音视频质量严重受影响时，自动关断视频流，从而保证或提高音频质量。同时 SDK 会持续监控网络质量，并在网络质量改善时恢复音视频流。当本地推流回退为音频流时，或由音频流恢复为音视频流时，SDK 会触发本地发布的媒体流已回退为音频流 <xref keyref="onLocalPublishFallbackToAudioOnly" /> 回调。</p>
-   <note type="attention">
-       <ul>
-  <li>旁路推流场景下，设置本地推流回退为 <apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY" />(2) 可能会导致远端的 CDN 用户听到声音的时间有所延迟。因此在有旁路推流的场景下，Agora 建议不开启该功能。</li>
-  <li>该方法需要在加入频道前调用。</li>
-       </ul>
-   </note>
+            <p>网络不理想的环境下，实时通信音视频的质量都会下降。使用该接口并将 <parmname>option</parmname> 设置为 <apiname
+                    keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/> (2) 后，SDK
+                会在上行弱网且音视频质量严重受影响时，自动关断视频流，从而保证或提高音频质量。同时 SDK
+                会持续监控网络质量，并在网络质量改善时恢复音视频流。当本地推流回退为音频流时，或由音频流恢复为音视频流时，SDK 会触发本地发布的媒体流已回退为音频流 <xref
+                    keyref="onLocalPublishFallbackToAudioOnly"/> 回调。</p>
+            <note type="attention">
+                <ul>
+                    <li>旁路推流场景下，设置本地推流回退为 <apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/>(2)
+                        可能会导致远端的 CDN 用户听到声音的时间有所延迟。因此在有旁路推流的场景下，Agora 建议不开启该功能。</li>
+                    <li>该方法需要在加入频道前调用。</li>
+                </ul>
+            </note>
         </section>
         <section id="parameters"><title>参数</title>
-   <parml>
-       <plentry>
-  <pt>option</pt>
-  <pd props="cpp unity ios mac electron flutter">本地发流回退处理选项。详见 <xref keyref="STREAM_FALLBACK_OPTIONS" />。</pd>
-  <pd props="android">本地发流回退处理选项：
-      <ul>
- <li><apiname keyref="STREAM_FALLBACK_OPTION_DISABLED" /> (0)：（默认）上行网络较弱时，不对音视频流作回退处理，但不能保证音视频流的质量</li>
- <li><apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY" /> (2)：上行网络较弱时只发布音频流</li>
-      </ul>
-  </pd>
-       </plentry>
-   </parml>
+            <parml>
+                <plentry>
+                    <pt>option</pt>
+                    <pd props="cpp unity ios mac electron flutter">本地发流回退处理选项。详见 <xref
+                            keyref="STREAM_FALLBACK_OPTIONS"/>。</pd>
+                    <pd props="android">本地发流回退处理选项： <ul>
+                            <li><apiname keyref="STREAM_FALLBACK_OPTION_DISABLED"/>
+                                (0)：（默认）上行网络较弱时，不对音视频流作回退处理，但不能保证音视频流的质量</li>
+                            <li><apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/>
+                                (2)：上行网络较弱时只发布音频流</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
         </section>
         <section id="return_values" props="native electron unity">
-   <title>返回值</title>
-   <ul>
-       <li>0: 方法调用成功</li>
-       <li>&lt; 0: 方法调用失败</li>
-   </ul>
-        </section></refbody>
+            <title>返回值</title>
+            <ul>
+                <li>0: 方法调用成功</li>
+                <li>&lt; 0: 方法调用失败</li>
+            </ul>
+        </section>
+    </refbody>
 </reference>

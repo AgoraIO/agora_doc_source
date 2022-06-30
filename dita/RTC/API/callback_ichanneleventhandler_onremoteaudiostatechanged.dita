@@ -13,9 +13,9 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onRemoteAudioStateChanged(IChannel *rtcChannel,
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onRemoteAudioStateChanged(IChannel *rtcChannel,
      uid_t uid,
      REMOTE_AUDIO_STATE state,
      REMOTE_AUDIO_STATE_REASON reason,
@@ -26,7 +26,7 @@
      (void)reason;
      (void)elapsed;
      }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(
+                <codeblock props="electron" outputclass="language-typescript">on(
   evt: ChannelEvents.REMOTE_AUDIO_STATE_CHANGED,
   cb: (
     channelId: string,
@@ -36,40 +36,38 @@
     elapsed: number
   ) =&gt; void
 ): this;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public virtual void OnRemoteAudioStateChanged(string channelId, uint uid, REMOTE_AUDIO_STATE state,
+                <codeblock props="cs" outputclass="language-csharp">public virtual void OnRemoteAudioStateChanged(string channelId, uint uid, REMOTE_AUDIO_STATE state,
             REMOTE_AUDIO_STATE_REASON reason, int elapsed)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">RemoteAudioStateCallback? remoteAudioStateChanged;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">RemoteAudioStateCallback? remoteAudioStateChanged;</codeblock>
             </p>
         </section>
         <section conkeyref="onRemoteAudioStateChanged/detailed_desc"> </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"
-            />
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
-            <plentry props="native cs"
-                conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry conkeyref="onRemoteAudioStateChanged/uid">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry conkeyref="onRemoteAudioStateChanged/state">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry conkeyref="onRemoteAudioStateChanged/reason">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry>
-                <pt>elapsed</pt>
-                <pd>从本地用户调用 <xref keyref="IChannel_joinChannel"
-                    /> 方法到发生本事件经历的时间，单位为 ms。</pd>
-            </plentry>
-            </parml> </section>
+                <plentry props="native cs" conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry conkeyref="onRemoteAudioStateChanged/uid">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry conkeyref="onRemoteAudioStateChanged/state">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry conkeyref="onRemoteAudioStateChanged/reason">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry>
+                    <pt>elapsed</pt>
+                    <pd>从本地用户调用 <xref keyref="IChannel_joinChannel"/> 方法到发生本事件经历的时间，单位为 ms。</pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

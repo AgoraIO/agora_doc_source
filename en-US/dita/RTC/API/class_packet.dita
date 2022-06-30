@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_packet">
-    <title><ph keyref="Packet" /></title>
-    <shortdesc id="short"><ph id="shortdesc"> Definition of <apiname keyref="Packet" />.</ph></shortdesc>
+    <title><ph keyref="Packet"/></title>
+    <shortdesc id="short"><ph id="shortdesc"> Definition of <apiname keyref="Packet"
+        />.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="cpp" outputclass="language-cpp">struct Packet {
+                <codeblock props="cpp" outputclass="language-cpp">struct Packet {
                     const unsigned char* buffer;
                     unsigned int size;
                     
                     Packet() : buffer(NULL), size(0) {}
                     };</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public class Packet
+                <codeblock props="cs" outputclass="language-csharp">public class Packet
     {
         public Packet()
         {
@@ -29,33 +30,38 @@
     }
     </codeblock></p>
             <p outputclass="codeblock" props="rtc">
-            <codeblock props="cpp" outputclass="language-cpp">struct Packet {
+                <codeblock props="cpp" outputclass="language-cpp">struct Packet {
 	const unsigned char* buffer;
 	unsigned int size;
 	};</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="cs" outputclass="language-csharp">public struct Packet
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="cs" outputclass="language-csharp">public struct Packet
 	{
 		public IntPtr buffer;
 		public IntPtr size;
 	};</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+                /></title>
             <parml>
-            <plentry>
-                <pt>buffer</pt>
-                <pd>
-                    <p>The buffer address of the sent or received data.</p>
-                    <note type="attention">Agora recommends setting <parmname>buffer</parmname> to a value larger than 2048 bytes. Otherwise, you may encounter undefined behaviors (such as crashes).</note>
-                </pd>
-            </plentry>
-            <plentry>
-                <pt>size</pt>
-                <pd>The buffer size of the sent or received data.</pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>buffer</pt>
+                    <pd>
+                        <p>The buffer address of the sent or received data.</p>
+                        <note type="attention">Agora recommends setting <parmname>buffer</parmname>
+                            to a value larger than 2048 bytes. Otherwise, you may encounter
+                            undefined behaviors (such as crashes).</note>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>size</pt>
+                    <pd>The buffer size of the sent or received data.</pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

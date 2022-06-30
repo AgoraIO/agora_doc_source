@@ -2,7 +2,8 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onaudiodevicestatechanged">
     <title><ph keyref="onAudioDeviceStateChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the audio device state changes.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the audio device state
+        changes.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -13,53 +14,53 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioDeviceStateChanged(const char* deviceId,
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioDeviceStateChanged(const char* deviceId,
      int deviceType,
      int deviceState) {
      (void)deviceId;
      (void)deviceType;
      (void)deviceState;
      }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.AUDIO_DEVICE_STATE_CHANGED, cb: (
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.AUDIO_DEVICE_STATE_CHANGED, cb: (
      deviceId: string,
      deviceType: number,
      deviceState: MEDIA_DEVICE_STATE_TYPE) => void
      ): this;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public virtual void OnAudioDeviceStateChanged(string deviceId, int deviceType, int deviceState)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">AudioDeviceStateChanged? audioDeviceStateChanged;</codeblock> </p>
+                <codeblock props="cs" outputclass="language-csharp">public virtual void OnAudioDeviceStateChanged(string deviceId, int deviceType, int deviceState)</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">AudioDeviceStateChanged? audioDeviceStateChanged;</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p id="desc">This callback notifies the application that the system's audio device state is changed. For example, a headset is unplugged from the device.</p>
-            <note type="attention">This method is for Windows and macOS only.</note> </section>
+            <p id="desc">This callback notifies the application that the system's audio device state
+                is changed. For example, a headset is unplugged from the device.</p>
+            <note type="attention">This method is for Windows and macOS only.</note>
+        </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
-            <plentry>
-                <pt>deviceId</pt>
-                <pd>The device ID.</pd>
-            </plentry>
-            <plentry>
-                <pt>deviceType</pt>
-                <pd>The device type. For details, see <xref keyref="MEDIA_DEVICE_TYPE"/>.</pd>
-            </plentry>
-            <plentry>
-                <pt>deviceState</pt>
-                <pd>The device state.
-                    
-                    <ul>
-                    <li props="mac cpp unity flutter">on macOS: 
-                        
-                        <ul>
-                        <li>0: The device is ready for use.</li>
-                        <li>8: The device is not connected.</li>
-                        </ul></li>
-                    <li>On Windows: <xref keyref="MEDIA_DEVICE_STATE_TYPE"/>.</li>
-                    </ul></pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>deviceId</pt>
+                    <pd>The device ID.</pd>
+                </plentry>
+                <plentry>
+                    <pt>deviceType</pt>
+                    <pd>The device type. For details, see <xref keyref="MEDIA_DEVICE_TYPE"/>.</pd>
+                </plentry>
+                <plentry>
+                    <pt>deviceState</pt>
+                    <pd>The device state. <ul>
+                            <li props="mac cpp unity flutter">on macOS: <ul>
+                                    <li>0: The device is ready for use.</li>
+                                    <li>8: The device is not connected.</li>
+                                </ul></li>
+                            <li>On Windows: <xref keyref="MEDIA_DEVICE_STATE_TYPE"/>.</li>
+                        </ul></pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

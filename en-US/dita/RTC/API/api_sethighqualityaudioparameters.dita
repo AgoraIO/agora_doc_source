@@ -1,74 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_sethighqualityaudioparameters">
-    <title><ph keyref="setHighQualityAudioParameters" /></title>
+    <title><ph keyref="setHighQualityAudioParameters"/></title>
     <shortdesc id="short"><ph id="shortdesc">Set audio high quality options.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setHighQualityAudioParameters" />
+                <indexterm keyref="setHighQualityAudioParameters"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
-            <codeblock props="ios mac" outputclass="language-objectivec" />
-            <codeblock props="cpp" outputclass="language-cpp">virtual int setHighQualityAudioParameters(bool fullband, 
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setHighQualityAudioParameters(bool fullband, 
     bool stereo, 
     bool fullBitrate) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">setHighQualityAudioParameters(fullband: boolean,
+                <codeblock props="electron" outputclass="language-typescript">setHighQualityAudioParameters(fullband: boolean,
     stereo: boolean,
     fullBitrate: boolean): number</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public abstract int SetHighQualityAudioParameters(bool fullband, bool stereo, bool fullBitrate);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+                <codeblock props="cs" outputclass="language-csharp">public abstract int SetHighQualityAudioParameters(bool fullband, bool stereo, bool fullBitrate);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated">
-            <dlentry>
-                <dt>Deprecated:</dt>
-                <dd>This method is deprecated. Agora does not recommend using this method. If you want to set the audio high-quality options, use the <xref keyref="setAudioProfile" /> method instead.</dd>
-            </dlentry>
+                <dlentry>
+                    <dt>Deprecated:</dt>
+                    <dd>This method is deprecated. Agora does not recommend using this method. If
+                        you want to set the audio high-quality options, use the <xref
+                            keyref="setAudioProfile"/> method instead.</dd>
+                </dlentry>
             </dl>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry>
-                <pt>fullband</pt>
-                <pd>
-                    <p>Whether to enable full-band codec (48-kHz sample rate). Not compatible with SDK versions before v1.7.4.</p>
-                    <ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Enable full-band codec.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Disable full-band codec.</li>
-                    </ul> </pd>
-            </plentry>
-            <plentry>
-                <pt>stereo</pt>
-                <pd>
-                    <p>Whether to enable stereo codec. Not compatible with SDK versions before v1.7.4.</p>
-                    <ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Enable stereo codec.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Disable stereo codec.</li>
-                    </ul> </pd>
-            </plentry>
-            <plentry>
-                <pt>fullBitrate</pt>
-                <pd>
-                    <p>High bitrate mode. Recommended in voice-only mode.</p>
-                    <ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Enable high-bitrate mode.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Disable high-bitrate mode.</li>
-                    </ul> </pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>fullband</pt>
+                    <pd>
+                        <p>Whether to enable full-band codec (48-kHz sample rate). Not compatible
+                            with SDK versions before v1.7.4.</p>
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>: Enable full-band codec.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Disable full-band codec.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>stereo</pt>
+                    <pd>
+                        <p>Whether to enable stereo codec. Not compatible with SDK versions before
+                            v1.7.4.</p>
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>: Enable stereo codec.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Disable stereo codec.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>fullBitrate</pt>
+                    <pd>
+                        <p>High bitrate mode. Recommended in voice-only mode.</p>
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>: Enable high-bitrate mode.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Disable high-bitrate
+                                mode.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values">
             <title>Returns</title>
             <ul>
-            <li>0: Success.</li>
-            <li> &lt; 0: Failure.</li>
-            </ul> </section>
+                <li>0: Success.</li>
+                <li> &lt; 0: Failure.</li>
+            </ul>
+        </section>
     </refbody>
 </reference>

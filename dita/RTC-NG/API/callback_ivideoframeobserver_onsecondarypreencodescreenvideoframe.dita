@@ -13,36 +13,42 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">virtual bool onSecondaryPreEncodeScreenVideoFrame(VideoFrame&amp; videoFrame) = 0;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp"/> </p>
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">virtual bool onSecondaryPreEncodeScreenVideoFrame(VideoFrame&amp; videoFrame) = 0;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+            </p>
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
             <p>成功注册视频数据观测器后，SDK 会在捕捉到每个视频帧时触发该回调。你可以在回调中获取从第二个屏幕采集后、编码前的视频数据，然后根据场景需要，对视频数据进行处理。</p>
             <p>完成处理后，你可以在该回调中，传入处理后的视频数据将其发送回 SDK。</p>
             <note type="attention">
-            <ul>
-            <li>该回调仅适用于 Windows。</li>
-            <li>你需要通过 <xref keyref="getObservedFramePosition"/> 设置观测 <apiname keyref="POSITION_PRE_ENCODER" props="hide"/>(1 &lt;&lt; 2) 后，才能使用该回调获取从第二个屏幕采集后、编码前的视频数据。</li>
-            <li>此处获取的视频数据已经过前处理，如裁剪、旋转和美颜等。</li>
-            <li>如果你获取到的视频数据类型为 RGBA，Agora 不支持将处理后的 RGBA 数据通过该回调再发送回 SDK。</li>
-            </ul></note> </section>
+                <ul>
+                    <li>该回调仅适用于 Windows。</li>
+                    <li>你需要通过 <xref keyref="getObservedFramePosition"/> 设置观测 <apiname
+                            keyref="POSITION_PRE_ENCODER" props="hide"/>(1 &lt;&lt; 2)
+                        后，才能使用该回调获取从第二个屏幕采集后、编码前的视频数据。</li>
+                    <li>此处获取的视频数据已经过前处理，如裁剪、旋转和美颜等。</li>
+                    <li>如果你获取到的视频数据类型为 RGBA，Agora 不支持将处理后的 RGBA 数据通过该回调再发送回 SDK。</li>
+                </ul></note>
+        </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry conkeyref="onCaptureVideoFrame/videoframe">
-                <pt/>
-                <pd/>
-            </plentry>
-            </parml> </section>
+                <plentry conkeyref="onCaptureVideoFrame/videoframe">
+                    <pt/>
+                    <pd/>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values">
             <title>返回值</title>
             <p conkeyref="onCaptureVideoFrame/return"/>

@@ -1,42 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_icloudspatialaudioengine_renewtoken">
-    <title><ph keyref="renewToken_ICloudSpatialAudioEngine" /></title>
+    <title><ph keyref="renewToken_ICloudSpatialAudioEngine"/></title>
     <shortdesc id="short"><ph id="shortdesc">Renews the RTM token.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="renewToken_ICloudSpatialAudioEngine" />
+                <indexterm keyref="renewToken_ICloudSpatialAudioEngine"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int renewToken(String token);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)renewToken:(NSString* _Nonnull)token;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int renewToken(const char* token) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+                <codeblock props="android" outputclass="language-java">public abstract int renewToken(String token);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)renewToken:(NSString* _Nonnull)token;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int renewToken(const char* token) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p>An RTM token is valid for 24 hours. When the SDK triggers the <xref keyref="onTokenWillExpire" /> callback, the application should get a new RTM token and then call this method to pass in the new token; otherwise, the SDK cannot connect to the Agora Spatial Audio Server.</p>
+            <p>An RTM token is valid for 24 hours. When the SDK triggers the <xref
+                    keyref="onTokenWillExpire"/> callback, the application should get a new RTM
+                token and then call this method to pass in the new token; otherwise, the SDK cannot
+                connect to the Agora Spatial Audio Server.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry conkeyref="enterRoom/token">
-                <pt />
-                <pd />
-            </plentry>
-            </parml> </section>
+                <plentry conkeyref="enterRoom/token">
+                    <pt/>
+                    <pd/>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values" props="native electron unity">
             <title>Returns</title>
             <ul>
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure.</li>
-            </ul> </section>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
     </refbody>
 </reference>

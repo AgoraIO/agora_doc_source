@@ -2,7 +2,8 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ilocalspatialaudioengine_release">
     <title><ph keyref="release_ILocalSpatialAudioEngine"/></title>
-    <shortdesc id="short"><ph id="shortdesc">销毁 <xref keyref="ILocalSpatialAudioEngine"/>。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">销毁 <xref keyref="ILocalSpatialAudioEngine"
+        />。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -13,24 +14,28 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public static synchronized void destroy() {
+                <codeblock props="android" outputclass="language-java">public static synchronized void destroy() {
   if (mInstance == null)
     return;
   mInstance.release();
   mInstance = null;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">+ (void)destroy;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public abstract void Dispose();</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+                <codeblock props="ios mac" outputclass="language-objectivec">+ (void)destroy;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp"/>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp">public abstract void Dispose();</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p>该方法释放 <apiname keyref="ILocalSpatialAudioEngine"/> 下的所有资源。当用户不需要使用空间音效时，你可以调用该方法将资源释放出来用于其他操作。</p>
-            <p>调用该方法后，你将无法再使用 <apiname keyref="ILocalSpatialAudioEngine"/> 下的任何 API。如需再次使用空间音效，你需要等 <apiname keyref="release_ILocalSpatialAudioEngine"/> 执行结束后再调用 <xref keyref="initialize_ILocalSpatialAudioEngine"/> 创建一个新的 <apiname keyref="ILocalSpatialAudioEngine"/>。
-            
-            <note>该方法需要在 <xref keyref="IRtcEngine"/> 的 <xref keyref="release"/> 方法前调用。</note></p>
+            <p>该方法释放 <apiname keyref="ILocalSpatialAudioEngine"/>
+                下的所有资源。当用户不需要使用空间音效时，你可以调用该方法将资源释放出来用于其他操作。</p>
+            <p>调用该方法后，你将无法再使用 <apiname keyref="ILocalSpatialAudioEngine"/> 下的任何 API。如需再次使用空间音效，你需要等
+                    <apiname keyref="release_ILocalSpatialAudioEngine"/> 执行结束后再调用 <xref
+                    keyref="initialize_ILocalSpatialAudioEngine"/> 创建一个新的 <apiname
+                    keyref="ILocalSpatialAudioEngine"/>。 <note>该方法需要在 <xref keyref="IRtcEngine"/> 的
+                        <xref keyref="release"/> 方法前调用。</note></p>
         </section>
     </refbody>
 </reference>

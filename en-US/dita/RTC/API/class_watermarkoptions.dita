@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_watermarkoptions">
-    <title><ph keyref="WatermarkOptions" /></title>
+    <title><ph keyref="WatermarkOptions"/></title>
     <shortdesc id="short"><ph id="shortdesc">Configurations of the watermark image.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public class WatermarkOptions {
+                <codeblock props="android" outputclass="language-java">public class WatermarkOptions {
   
   public boolean visibleInPreview = true;
   public Rectangle positionInLandscapeMode = new Rectangle();
   public Rectangle positionInPortraitMode = new Rectangle();
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface WatermarkOptions : NSObject
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface WatermarkOptions : NSObject
 
 @property(assign, nonatomic) BOOL visibleInPreview;
 @property(assign, nonatomic) CGRect positionInLandscapeMode;
 @property(assign, nonatomic) CGRect positionInPortraitMode;
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">typedef struct WatermarkOptions {
+                <codeblock props="cpp" outputclass="language-cpp">typedef struct WatermarkOptions {
     bool visibleInPreview;
     Rectangle positionInLandscapeMode;
     Rectangle positionInPortraitMode;
@@ -29,7 +29,7 @@
         , positionInPortraitMode(0, 0, 0, 0)
     {}
     } WatermarkOptions;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public class WatermarkOptions
+                <codeblock props="cs" outputclass="language-csharp">public class WatermarkOptions
     {
         public WatermarkOptions()
         {
@@ -50,13 +50,13 @@
         public Rectangle positionInLandscapeMode { set; get; }
         public Rectangle positionInPortraitMode { set; get; }
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">export interface WatermarkOptions {
+                <codeblock props="electron" outputclass="language-typescript">export interface WatermarkOptions {
     visibleInPreview: boolean,
     positionInPortraitMode: Rectangle,
     positionInLandscapeMode: Rectangle
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">class WatermarkOptions {
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">class WatermarkOptions {
 
   @JsonKey(includeIfNull: false)
   bool? visibleInPreview;
@@ -77,46 +77,64 @@
       _$WatermarkOptionsFromJson(json);
 
   Map&lt;String, dynamic&gt; toJson() =&gt; _$WatermarkOptionsToJson(this);
-}</codeblock> </p>
+}</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+                /></title>
             <parml>
-            <plentry>
-                <pt>visibleInPreview</pt>
-                <pd>
-                    <p>Whether the watermark image is visible in the local video preview:
-                    
-                    <ul>
-                    <li><codeph><ph keyref="true" /></codeph>: (Default) The watermark image is visible in the local preview.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: The watermark image is not visible in the local preview.</li>
-                    </ul> </p>
-                </pd>
-            </plentry>
-            <plentry>
-                <pt>positionInLandscapeMode</pt>
-                <pd>
-                    <p>The area to display the watermark image in landscape mode. <ph props="android cpp cs">For details, see <xref keyref="Rectangle" />.</ph><ph props="ios mac">This parameter contains the following members.</ph>
-                    <ul props="ios mac">
-                    <li><codeph>x</codeph>: The horizontal offset from the top-left corner.</li>
-                    <li><codeph>y</codeph>: The vertical offset from the top-left corner.</li>
-                    <li><codeph>width</codeph>: The width (pixels) of the area.</li>
-                    <li><codeph>height</codeph>: The height (pixels) of the area.</li>
-                    </ul><ph props="ios android cpp">For details about the landscape mode, see <xref keyref="guide-set-video-profile">Set the Video Profile</xref>.</ph></p>
-                </pd>
-            </plentry>
-            <plentry>
-                <pt>positionInPortraitMode</pt>
-                <pd>
-                    <p>The area to display the watermark image in portrait mode. <ph props="android cpp cs">For details, see <xref keyref="Rectangle" />.</ph><ph props="ios mac"> This parameter contains the following members.</ph>
-                    <ul props="ios mac">
-                    <li><codeph>x</codeph>: The horizontal offset from the top-left corner.</li>
-                    <li><codeph>y</codeph>: The vertical offset from the top-left corner.</li>
-                    <li><codeph>width</codeph>: The width (pixels) of the area.</li>
-                    <li><codeph>height</codeph>: The height (pixels) of the area.</li>
-                    </ul><ph props="ios android cpp">For details about the portrait mode, see <xref keyref="guide-set-video-profile">Set the Video Profile</xref>.</ph></p>
-                </pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>visibleInPreview</pt>
+                    <pd>
+                        <p>Whether the watermark image is visible in the local video preview: <ul>
+                                <li><codeph><ph keyref="true"/></codeph>: (Default) The watermark
+                                    image is visible in the local preview.</li>
+                                <li><codeph><ph keyref="false"/></codeph>: The watermark image is
+                                    not visible in the local preview.</li>
+                            </ul>
+                        </p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>positionInLandscapeMode</pt>
+                    <pd>
+                        <p>The area to display the watermark image in landscape mode. <ph
+                                props="android cpp cs">For details, see <xref keyref="Rectangle"
+                                />.</ph><ph props="ios mac">This parameter contains the following
+                                members.</ph>
+                            <ul props="ios mac">
+                                <li><codeph>x</codeph>: The horizontal offset from the top-left
+                                    corner.</li>
+                                <li><codeph>y</codeph>: The vertical offset from the top-left
+                                    corner.</li>
+                                <li><codeph>width</codeph>: The width (pixels) of the area.</li>
+                                <li><codeph>height</codeph>: The height (pixels) of the area.</li>
+                            </ul><ph props="ios android cpp">For details about the landscape mode,
+                                see <xref keyref="guide-set-video-profile">Set the Video
+                                    Profile</xref>.</ph></p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>positionInPortraitMode</pt>
+                    <pd>
+                        <p>The area to display the watermark image in portrait mode. <ph
+                                props="android cpp cs">For details, see <xref keyref="Rectangle"
+                                />.</ph><ph props="ios mac"> This parameter contains the following
+                                members.</ph>
+                            <ul props="ios mac">
+                                <li><codeph>x</codeph>: The horizontal offset from the top-left
+                                    corner.</li>
+                                <li><codeph>y</codeph>: The vertical offset from the top-left
+                                    corner.</li>
+                                <li><codeph>width</codeph>: The width (pixels) of the area.</li>
+                                <li><codeph>height</codeph>: The height (pixels) of the area.</li>
+                            </ul><ph props="ios android cpp">For details about the portrait mode,
+                                see <xref keyref="guide-set-video-profile">Set the Video
+                                    Profile</xref>.</ph></p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

@@ -13,74 +13,83 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="cpp" outputclass="language-cpp">virtual int getUserInfoByUid(uid_t uid, rtc::UserInfo* userInfo, const char* channelId = NULL, const char* localUserAccount = NULL) = 0;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public abstract int GetUserInfoByUid(uint uid, out UserInfo userInfo, string channelId = null, string localUserAccount = null);</codeblock> </p>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getUserInfoByUid(uid_t uid, rtc::UserInfo* userInfo, const char* channelId = NULL, const char* localUserAccount = NULL) = 0;</codeblock>
+                <codeblock props="cs" outputclass="language-csharp">public abstract int GetUserInfoByUid(uint uid, out UserInfo userInfo, string channelId = null, string localUserAccount = null);</codeblock>
+            </p>
             <p outputclass="codeblock" props="rtc">
-            <codeblock props="cpp" outputclass="language-cpp">virtual int getUserInfoByUid(uid_t uid, UserInfo* userInfo) = 0;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public abstract int GetUserInfoByUid(uint uid, out UserInfo userInfo);</codeblock> </p>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getUserInfoByUid(uid_t uid, UserInfo* userInfo) = 0;</codeblock>
+                <codeblock props="cs" outputclass="language-csharp">public abstract int GetUserInfoByUid(uint uid, out UserInfo userInfo);</codeblock>
+            </p>
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int getUserInfoByUid(int uid, UserInfo userInfo);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (AgoraUserInfo* _Nullable)getUserInfoByUid:(NSUInteger)uid withError:(AgoraErrorCode* _Nullable)error;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">getUserInfoByUid(uid: number): { errCode: number; userInfo: UserInfo }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;UserInfo&gt; getUserInfoByUid(int uid);</codeblock> </p>
+                <codeblock props="android" outputclass="language-java">public abstract int getUserInfoByUid(int uid, UserInfo userInfo);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (AgoraUserInfo* _Nullable)getUserInfoByUid:(NSUInteger)uid withError:(AgoraErrorCode* _Nullable)error;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">getUserInfoByUid(uid: number): { errCode: number; userInfo: UserInfo }</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;UserInfo&gt; getUserInfoByUid(int uid);</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>自从</dt>
-                <dd>v2.8.0</dd>
-            </dlentry>
+                <dlentry props="native">
+                    <dt>自从</dt>
+                    <dd>v2.8.0</dd>
+                </dlentry>
             </dl>
-            <p id="getUserInfo_desc">远端用户加入频道后，SDK 会获取到该远端用户的 UID 和 User Account，然后缓存一个包含了远端用户 UID 和 User Account 的 Mapping 表，并在本地触发 <xref keyref="onUserInfoUpdated"/> 回调。收到这个回调后，你可以调用该方法，通过传入 UID 获取包含了指定用户 User Account 的 <xref keyref="UserInfo"/> 对象。</p>
+            <p id="getUserInfo_desc">远端用户加入频道后，SDK 会获取到该远端用户的 UID 和 User Account，然后缓存一个包含了远端用户 UID 和
+                User Account 的 Mapping 表，并在本地触发 <xref keyref="onUserInfoUpdated"/>
+                回调。收到这个回调后，你可以调用该方法，通过传入 UID 获取包含了指定用户 User Account 的 <xref keyref="UserInfo"/>
+                对象。</p>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry>
-                <pt>uid</pt>
-                <pd>用户 ID。</pd>
-            </plentry>
-            <plentry props="cpp cs android" id="userInfo">
-                <pt>userInfo</pt>
-                <pd><ph props="cpp">输入和输出参数。</ph><ph>标识用户的 <xref keyref="UserInfo"/> 对象。</ph>
-                    <p props="cpp">
-                    <ul>
-                    <li>输入值：一个 <apiname keyref="UserInfo"/> 对象</li>
-                    <li>输出值：一个包含了用户 User Account 和 UID 的 <apiname keyref="UserInfo"/> 对象</li>
-                    </ul></p>
-                </pd>
-            </plentry>
-            <plentry props="rtc-ng" id="channelId">
-                <pt props="cpp cs">channelId</pt>
-                <pd props="cpp cs">
-                    <p conkeyref="joinChannel2/channelID_desc"/>
-                </pd>
-            </plentry>
-            <plentry props="rtc-ng" id="localUserAccount">
-                <pt props="cpp cs">localUserAccount</pt>
-                <pd props="cpp cs">本地用户的 User Account。</pd>
-            </plentry>
-            <plentry props="ios mac" id="error">
-                <pt>error</pt>
-                <pd>错误码。</pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry props="cpp cs android" id="userInfo">
+                    <pt>userInfo</pt>
+                    <pd><ph props="cpp">输入和输出参数。</ph><ph>标识用户的 <xref keyref="UserInfo"/> 对象。</ph>
+                        <p props="cpp">
+                            <ul>
+                                <li>输入值：一个 <apiname keyref="UserInfo"/> 对象</li>
+                                <li>输出值：一个包含了用户 User Account 和 UID 的 <apiname keyref="UserInfo"/>
+                                    对象</li>
+                            </ul></p>
+                    </pd>
+                </plentry>
+                <plentry props="rtc-ng" id="channelId">
+                    <pt props="cpp cs">channelId</pt>
+                    <pd props="cpp cs">
+                        <p conkeyref="joinChannel2/channelID_desc"/>
+                    </pd>
+                </plentry>
+                <plentry props="rtc-ng" id="localUserAccount">
+                    <pt props="cpp cs">localUserAccount</pt>
+                    <pd props="cpp cs">本地用户的 User Account。</pd>
+                </plentry>
+                <plentry props="ios mac" id="error">
+                    <pt>error</pt>
+                    <pd>错误码。</pd>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values">
             <title>返回值</title>
             <p props="android flutter">包含用户信息的 <apiname keyref="UserInfo"/> 对象。</p>
             <ul props="android flutter">
-            <li>非空：方法调用成功。</li>
-            <li>空：方法调用失败。</li>
+                <li>非空：方法调用成功。</li>
+                <li>空：方法调用失败。</li>
             </ul>
             <ul props="ios mac electron">
-            <li>方法调用成功，返回 <xref keyref="UserInfo"/> 对象。</li>
-            <li props="ios mac">方法调用失败，则返回 <ph keyref="NULL"/>。</li>
-            <li props="electron">方法调用失败，则返回错误码（<parmname>errCode</parmname>）。</li>
+                <li>方法调用成功，返回 <xref keyref="UserInfo"/> 对象。</li>
+                <li props="ios mac">方法调用失败，则返回 <ph keyref="NULL"/>。</li>
+                <li props="electron">方法调用失败，则返回错误码（<parmname>errCode</parmname>）。</li>
             </ul>
             <ul props="cpp cs android">
-            <li>0: 方法调用成功。</li>
-            <li>&lt; 0: 方法调用失败。</li>
-            </ul> </section>
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。</li>
+            </ul>
+        </section>
     </refbody>
 </reference>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_watermarkoptions_ng">
-    <title><ph keyref="WatermarkOptions" /></title>
+    <title><ph keyref="WatermarkOptions"/></title>
     <shortdesc id="short"><ph id="shortdesc">Configurations of the watermark image.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public class WatermarkOptions {
+                <codeblock props="android" outputclass="language-java">public class WatermarkOptions {
   public static class Rectangle {
     public int x = 0;
     public int y = 0;
@@ -30,13 +30,13 @@
   public Rectangle positionInPortraitMode = new Rectangle();
 }
 </codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface WatermarkOptions : NSObject
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface WatermarkOptions : NSObject
 @property(assign, nonatomic) BOOL visibleInPreview;
 @property(assign, nonatomic) CGRect positionInLandscapeMode;
 @property(assign, nonatomic) CGRect positionInPortraitMode;
 @end
 </codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct WatermarkOptions {
+                <codeblock props="cpp" outputclass="language-cpp">struct WatermarkOptions {
   bool visibleInPreview;
   Rectangle positionInLandscapeMode;
   Rectangle positionInPortraitMode;
@@ -49,8 +49,8 @@
       mode(FIT_MODE_COVER_POSITION) {}
 };
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp">public class WatermarkOptions
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp">public class WatermarkOptions
     {
         public WatermarkOptions()
         {
@@ -77,49 +77,71 @@
         public WatermarkRatio watermarkRatio { set; get; }
         public WATERMARK_FIT_MODE mode { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p />
+            <p/>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+                /></title>
             <parml>
-            <plentry>
-                <pt>visibleInPreview</pt>
-                <pd>Reserved for future use.</pd>
-            </plentry>
+                <plentry>
+                    <pt>visibleInPreview</pt>
+                    <pd>Reserved for future use.</pd>
+                </plentry>
                 <plentry>
                     <pt>positionInLandscapeMode</pt>
-                    <pd props="android">The area to display the watermark image in landscape mode. See <xref keyref="Rectangle" /> for details.</pd>
-                    <pd props="cpp">When the adaptation mode of the watermark is <ph keyref="FIT_MODE_COVER_POSITION" />, it is used to set the area of the watermark image in landscape mode. See <ph keyref="FIT_MODE_COVER_POSITION" /> for details.</pd>
-                    <pd props="ios mac">The area to display the watermark image in landscape mode. This parameter contains the following members.<ul>
-                        <li>x: The horizontal position of the watermark relative to the upper left corner.</li>
-                        <li>y: The vertical position of the watermark relative to the upper left corner.</li>
-                        <li>width: The width (pixels) of the watermark area.</li>
-                        <li>height: The height (pixels) of the watermark area.</li></ul>
+                    <pd props="android">The area to display the watermark image in landscape mode.
+                        See <xref keyref="Rectangle"/> for details.</pd>
+                    <pd props="cpp">When the adaptation mode of the watermark is <ph
+                            keyref="FIT_MODE_COVER_POSITION"/>, it is used to set the area of the
+                        watermark image in landscape mode. See <ph keyref="FIT_MODE_COVER_POSITION"
+                        /> for details.</pd>
+                    <pd props="ios mac">The area to display the watermark image in landscape mode.
+                        This parameter contains the following members.<ul>
+                            <li>x: The horizontal position of the watermark relative to the upper
+                                left corner.</li>
+                            <li>y: The vertical position of the watermark relative to the upper left
+                                corner.</li>
+                            <li>width: The width (pixels) of the watermark area.</li>
+                            <li>height: The height (pixels) of the watermark area.</li>
+                        </ul>
                     </pd>
                 </plentry>
                 <plentry>
                     <pt>positionInPortraitMode</pt>
-                    <pd props="android">The area to display the watermark image in portrait mode. See <xref keyref="Rectangle" /> for details.</pd>
-                    <pd props="cpp">When the adaptation mode of the watermark is <ph keyref="FIT_MODE_COVER_POSITION" />, it is used to set the area of the watermark image in portrait mode. See <ph keyref="FIT_MODE_COVER_POSITION" /> for details.</pd>
-                    <pd props="ios mac">The area to display the watermark image in portrait mode. This parameter contains the following members.<ul>
-                        <li>x: The horizontal position of the watermark relative to the upper left corner.</li>
-                        <li>y: The vertical position of the watermark relative to the upper left corner.</li>
-                        <li>width: The width (pixels) of the watermark area.</li>
-                        <li>height: The height (pixels) of the watermark area.</li></ul>
+                    <pd props="android">The area to display the watermark image in portrait mode.
+                        See <xref keyref="Rectangle"/> for details.</pd>
+                    <pd props="cpp">When the adaptation mode of the watermark is <ph
+                            keyref="FIT_MODE_COVER_POSITION"/>, it is used to set the area of the
+                        watermark image in portrait mode. See <ph keyref="FIT_MODE_COVER_POSITION"/>
+                        for details.</pd>
+                    <pd props="ios mac">The area to display the watermark image in portrait mode.
+                        This parameter contains the following members.<ul>
+                            <li>x: The horizontal position of the watermark relative to the upper
+                                left corner.</li>
+                            <li>y: The vertical position of the watermark relative to the upper left
+                                corner.</li>
+                            <li>width: The width (pixels) of the watermark area.</li>
+                            <li>height: The height (pixels) of the watermark area.</li>
+                        </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>watermarkRatio</pt>
-                    <pd>When the watermark adaptation mode is <ph keyref="FIT_MODE_USE_IMAGE_RATIO" />, this parameter is used to set the watermark coordinates. See <xref keyref="WatermarkRatio" /> for details.</pd>
+                    <pd>When the watermark adaptation mode is <ph keyref="FIT_MODE_USE_IMAGE_RATIO"
+                        />, this parameter is used to set the watermark coordinates. See <xref
+                            keyref="WatermarkRatio"/> for details.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>mode</pt>
-                    <pd>The adaptation mode of the watermark. See <xref keyref="WATERMARK_FIT_MODE" /> for details.</pd>
+                    <pd>The adaptation mode of the watermark. See <xref keyref="WATERMARK_FIT_MODE"
+                        /> for details.</pd>
                 </plentry>
-            </parml> </section>
+            </parml>
+        </section>
     </refbody>
 </reference>

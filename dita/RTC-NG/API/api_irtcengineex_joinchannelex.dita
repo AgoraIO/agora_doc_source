@@ -13,55 +13,60 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int joinChannelEx(String token, RtcConnection connection,
+                <codeblock props="android" outputclass="language-java">public abstract int joinChannelEx(String token, RtcConnection connection,
       ChannelMediaOptions options, IRtcEngineEventHandler eventHandler);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)joinChannelExByToken:(NSString* _Nullable)token
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)joinChannelExByToken:(NSString* _Nullable)token
                  connection:(AgoraRtcConnection * _Nonnull)connection
                    delegate:(id&lt;AgoraRtcEngineDelegate&gt; _Nullable)delegate
                mediaOptions:(AgoraRtcChannelMediaOptions* _Nonnull)mediaOptions
                 joinSuccess:(void(^ _Nullable)(NSString* _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int joinChannelEx(const char* token, const RtcConnection&amp; connection,
+                <codeblock props="cpp" outputclass="language-cpp">virtual int joinChannelEx(const char* token, const RtcConnection&amp; connection,
                               const ChannelMediaOptions&amp; options,
                               IRtcEngineEventHandler* eventHandler) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int JoinChannelEx(string token, RtcConnection connection, ChannelMediaOptions options, IAgoraRtcEngineEventHandler eventHandler);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int JoinChannelEx(string token, RtcConnection connection, ChannelMediaOptions options, IAgoraRtcEngineEventHandler eventHandler);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
             <p>调用该方法，你可以同时加入多个频道。</p>
             <note id="note_ppw_nh5_3qb" type="attention">
-            <ul id="ul_rjs_4h5_3qb">
-            <li>如果你已经在一个频道内，你不能用相同的用户 UID 再次加入该频道。</li>
-            <li>如果你想在不同的设备上加入相同的频道，请确保你在不同设备上使用的用户 UID 都不同。</li>
-            <li>请确保生成 Token 时传入的 app ID 和创建 <xref keyref="IRtcEngine"/> 实例时传入的 app ID
+                <ul id="ul_rjs_4h5_3qb">
+                    <li>如果你已经在一个频道内，你不能用相同的用户 UID 再次加入该频道。</li>
+                    <li>如果你想在不同的设备上加入相同的频道，请确保你在不同设备上使用的用户 UID 都不同。</li>
+                    <li>请确保生成 Token 时传入的 app ID 和创建 <xref keyref="IRtcEngine"/> 实例时传入的 app ID
                         一致。</li>
-            </ul> </note> </section>
+                </ul>
+            </note>
+        </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry conkeyref="joinChannel2/token">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry id="connection">
-                <pt>connection</pt>
-                <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
-            </plentry>
-            <plentry conkeyref="joinChannel2/options">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry id="event">
-                <pt props="android cpp unity">eventHandler</pt>
-                <pt props="ios mac">delegate</pt>
-                <pd><ph props="native"><xref keyref="IRtcEngineEx"/> 的回调类，</ph><ph>详见 <xref keyref="IRtcEngineEventHandler"/>。</ph></pd>
-            </plentry>
-            <plentry props="ios mac" conkeyref="joinChannel2/joinsuccessblock">
-                <pt/>
-                <pd/>
-            </plentry>
-            </parml> </section>
+                <plentry conkeyref="joinChannel2/token">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry id="connection">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry conkeyref="joinChannel2/options">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry id="event">
+                    <pt props="android cpp unity">eventHandler</pt>
+                    <pt props="ios mac">delegate</pt>
+                    <pd><ph props="native"><xref keyref="IRtcEngineEx"/> 的回调类，</ph><ph>详见 <xref
+                                keyref="IRtcEngineEventHandler"/>。</ph></pd>
+                </plentry>
+                <plentry props="ios mac" conkeyref="joinChannel2/joinsuccessblock">
+                    <pt/>
+                    <pd/>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values" conkeyref="joinChannel2/return_values"/>
     </refbody>
 </reference>

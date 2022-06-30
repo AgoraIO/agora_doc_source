@@ -2,7 +2,8 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_ivideoframeobserver_getvideoformatpreference">
     <title><ph keyref="getVideoFormatPreference"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs each time the SDK receives a video frame and prompts you to set the video format.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs each time the SDK receives a video frame and
+            prompts you to set the video format.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -13,28 +14,31 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">virtual VIDEO_FRAME_TYPE getVideoFormatPreference() { return FRAME_TYPE_YUV420; }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="cs" outputclass="language-csharp">public virtual VIDEO_FRAME_TYPE GetVideoFormatPreference()
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">virtual VIDEO_FRAME_TYPE getVideoFormatPreference() { return FRAME_TYPE_YUV420; }</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="cs" outputclass="language-csharp">public virtual VIDEO_FRAME_TYPE GetVideoFormatPreference()
         {
             return VIDEO_FRAME_TYPE.FRAME_TYPE_RGBA;
         }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p>If you want to receive other video formats than YUV420, register this callback when calling <xref keyref="registerVideoFrameObserver"/>. After you successfully register the video frame observer, the SDK triggers this callback each time it receives a video frame. You need to set your preferred video data in the return value of this callback.</p>
+            <p>If you want to receive other video formats than YUV420, register this callback when
+                calling <xref keyref="registerVideoFrameObserver"/>. After you successfully register
+                the video frame observer, the SDK triggers this callback each time it receives a
+                video frame. You need to set your preferred video data in the return value of this
+                callback.</p>
         </section>
         <section id="return_values">
             <title>Returns</title>
-            <p>Sets the video format <xref keyref="VIDEO_FRAME_TYPE"/>:
-            
-            <ul id="ul_chl_tpg_s4b">
-            <li><apiname keyref="FRAME_TYPE_YUV420"/> (0): (Default) YUV420.</li>
-            <li><apiname keyref="FRAME_TYPE_RGBA"/> (2): RGBA.</li>
-            </ul></p>
+            <p>Sets the video format <xref keyref="VIDEO_FRAME_TYPE"/>: <ul id="ul_chl_tpg_s4b">
+                    <li><apiname keyref="FRAME_TYPE_YUV420"/> (0): (Default) YUV420.</li>
+                    <li><apiname keyref="FRAME_TYPE_RGBA"/> (2): RGBA.</li>
+                </ul></p>
         </section>
     </refbody>
 </reference>

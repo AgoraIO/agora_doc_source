@@ -6,9 +6,9 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">struct RtcEngineContext {
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">struct RtcEngineContext {
     IRtcEngineEventHandler* eventHandler;
     const char* appId;
     void* context;
@@ -21,7 +21,7 @@
     ,areaCode(rtc::AREA_CODE_GLOB)
     {}
     };</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public class RtcEngineContext
+                <codeblock props="cs" outputclass="language-csharp">public class RtcEngineContext
     {
         public RtcEngineContext(string appId, AREA_CODE areaCode = AREA_CODE.AREA_CODE_GLOB,
             LogConfig logConfig = null)
@@ -42,13 +42,13 @@
             set { _areaCode = (uint) areaCode; }
         }
     };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">export interface RtcEngineContext {
+                <codeblock props="electron" outputclass="language-typescript">export interface RtcEngineContext {
   appId: string;
   areaCode?: AREA_CODE;
   logConfig?: LogConfig;
 }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">class RtcEngineContext {
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">class RtcEngineContext {
 
                     String appId;
                   
@@ -77,54 +77,57 @@
                       }
                       return areaCode;
                     }
-                  }</codeblock> </p>
+                  }</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+                /></title>
             <parml>
-            <plentry props="cpp">
-                <pt>eventHandler</pt>
-                <pd>Agora SDK 回调句柄。详见 <xref keyref="IRtcEngineEventHandler"
-                    />。</pd>
-            </plentry>
-            <plentry>
-                <pt props="cpp electron cs flutter">appId</pt>
-                <pt props="android">mAppId</pt>
-                <pd id="appid">
-                    <p>Agora 为 app 开发项目签发的 App ID。使用同一个 App ID 的用户才能进入同一个频道进行通话或直播。</p>
-                    <p props="cpp">一个 App ID 只能用于创建一个 <xref keyref="IRtcEngine"
-                    />。如果需要更换 App ID，必须先调用 <xref keyref="release"
-                    /> 销毁当前 IRtcEngine，
- 再调用 <xref keyref="createAgoraRtcEngine"/> 和 <xref
-                    keyref="create2"/> 重新创建 <apiname keyref="IRtcEngine"/>。</p>
-                    <p props="android ios mac electron">一个 App ID 只能用于创建一个 <xref
-                    keyref="IRtcEngine"/>。如果需要更换 App ID，必须先调用 <xref
-                    keyref="release"/> 销毁当前 IRtcEngine，再调用 <xref
-                    keyref="create2"/> 重新创建 <apiname keyref="IRtcEngine"/>。</p>
-                </pd>
-            </plentry>
-            <plentry props="cpp cs">
-                <pt>context</pt>
-                <pd>视频窗口句柄。如设值，则表示支持设备热插拔。</pd>
-            </plentry>
-            <plentry>
-                <pt>areaCode</pt>
-                <pd>
-                    <p>服务器的访问区域。该功能为高级设置，适用于有访问安全限制的场景。支持的区域详见 <xref
-                    keyref="AREA_CODE"/>。</p>
-                    <p>指定访问区域后，Agora SDK 会连接指定区域内的 Agora 服务器。</p>
-                </pd>
-            </plentry>
-            <plentry>
-                <pt>logConfig</pt>
-                <pd>
-                    <p>Agora SDK 日志文件配置，详见 <xref keyref="LogConfig"/>。</p>
-                    <p>默认情况下，SDK 会生成 <codeph>agorasdk.log</codeph>、<codeph>agorasdk_1.log</codeph>、<codeph>agorasdk_2.log</codeph>、<codeph>agorasdk_3.log</codeph>、<codeph>agorasdk_4.log</codeph> 这 5 个日志文件。</p>
-                    <p>每个日志文件的默认大小为 1024 KB，编码格式为 UTF-8。最新的日志永远写在 <codeph>agorasdk.log</codeph> 中。<codeph>agorasdk.log</codeph> 写满后，SDK 会从 1-4 中删除修改时间最早的一个文件，然后将 <codeph>agorasdk.log</codeph> 重命名为该文件，并建立新的 <parmname>agorasdk.log</parmname> 写入最新的日志。</p>
-                </pd>
-            </plentry>
-            </parml> </section>
+                <plentry props="cpp">
+                    <pt>eventHandler</pt>
+                    <pd>Agora SDK 回调句柄。详见 <xref keyref="IRtcEngineEventHandler"/>。</pd>
+                </plentry>
+                <plentry>
+                    <pt props="cpp electron cs flutter">appId</pt>
+                    <pt props="android">mAppId</pt>
+                    <pd id="appid">
+                        <p>Agora 为 app 开发项目签发的 App ID。使用同一个 App ID 的用户才能进入同一个频道进行通话或直播。</p>
+                        <p props="cpp">一个 App ID 只能用于创建一个 <xref keyref="IRtcEngine"/>。如果需要更换 App
+                            ID，必须先调用 <xref keyref="release"/> 销毁当前 IRtcEngine， 再调用 <xref
+                                keyref="createAgoraRtcEngine"/> 和 <xref keyref="create2"/> 重新创建
+                                <apiname keyref="IRtcEngine"/>。</p>
+                        <p props="android ios mac electron">一个 App ID 只能用于创建一个 <xref
+                                keyref="IRtcEngine"/>。如果需要更换 App ID，必须先调用 <xref keyref="release"/>
+                            销毁当前 IRtcEngine，再调用 <xref keyref="create2"/> 重新创建 <apiname
+                                keyref="IRtcEngine"/>。</p>
+                    </pd>
+                </plentry>
+                <plentry props="cpp cs">
+                    <pt>context</pt>
+                    <pd>视频窗口句柄。如设值，则表示支持设备热插拔。</pd>
+                </plentry>
+                <plentry>
+                    <pt>areaCode</pt>
+                    <pd>
+                        <p>服务器的访问区域。该功能为高级设置，适用于有访问安全限制的场景。支持的区域详见 <xref keyref="AREA_CODE"/>。</p>
+                        <p>指定访问区域后，Agora SDK 会连接指定区域内的 Agora 服务器。</p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>logConfig</pt>
+                    <pd>
+                        <p>Agora SDK 日志文件配置，详见 <xref keyref="LogConfig"/>。</p>
+                        <p>默认情况下，SDK 会生成
+                                <codeph>agorasdk.log</codeph>、<codeph>agorasdk_1.log</codeph>、<codeph>agorasdk_2.log</codeph>、<codeph>agorasdk_3.log</codeph>、<codeph>agorasdk_4.log</codeph>
+                            这 5 个日志文件。</p>
+                        <p>每个日志文件的默认大小为 1024 KB，编码格式为 UTF-8。最新的日志永远写在 <codeph>agorasdk.log</codeph>
+                                中。<codeph>agorasdk.log</codeph> 写满后，SDK 会从 1-4 中删除修改时间最早的一个文件，然后将
+                                <codeph>agorasdk.log</codeph> 重命名为该文件，并建立新的
+                                <parmname>agorasdk.log</parmname> 写入最新的日志。</p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

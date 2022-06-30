@@ -2,7 +2,8 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_videosourcelocalvideostatechanged">
     <title><ph keyref="videoSourceLocalVideoStateChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc" conkeyref="onLocalVideoStateChanged/shortdesc"/></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" conkeyref="onLocalVideoStateChanged/shortdesc"
+        /></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -13,30 +14,35 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp"/>
-            <codeblock props="electron" outputclass="language-typescript">on(
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp"/>
+                <codeblock props="electron" outputclass="language-typescript">on(
     evt: VideoSourceEvents.VIDEO_SOURCE_LOCAL_VIDEO_STATE_CHANGED,
     cb: (localVideoState: number, error: number) =&gt; void
   ): this;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+                <codeblock props="cs" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
             <p>双实例回调。</p>
             <p conkeyref="onLocalVideoStateChanged/desc1"/>
-            <p> SDK 会在如下情况触发 <apiname keyref="videoSourceLocalVideoStateChanged"/> 回调，状态为 <codeph><ph keyref="LOCAL_VIDEO_STREAM_STATE_FAILED"/></codeph>，错误码为 <codeph><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/></codeph>： 
-            
-            <ul>
-            <li>应用退到后台，系统回收摄像头。</li>
-            <li>摄像头正常启动，但连续 4 秒都没有输出采集的视频。</li>
-            </ul> </p>
-            <p>
-                摄像头输出采集的视频帧时，如果连续 15 帧中，所有视频帧都一样，SDK 触发 <apiname keyref="videoSourceLocalVideoStateChanged"/> 回调，状态为 <codeph><ph keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/></codeph>，错误码为 <codeph><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/></codeph>。注意，帧重复检测仅针对分辨率大于 200 × 200、帧率大于等于 10 fps、码率小于 20 Kbps 的视频帧。
+            <p> SDK 会在如下情况触发 <apiname keyref="videoSourceLocalVideoStateChanged"/> 回调，状态为
+                        <codeph><ph keyref="LOCAL_VIDEO_STREAM_STATE_FAILED"/></codeph>，错误码为
+                        <codeph><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/></codeph>： <ul>
+                    <li>应用退到后台，系统回收摄像头。</li>
+                    <li>摄像头正常启动，但连续 4 秒都没有输出采集的视频。</li>
+                </ul>
             </p>
-            <note conkeyref="onLocalVideoStateChanged/note"/> </section>
+            <p> 摄像头输出采集的视频帧时，如果连续 15 帧中，所有视频帧都一样，SDK 触发 <apiname
+                    keyref="videoSourceLocalVideoStateChanged"/> 回调，状态为 <codeph><ph
+                        keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/></codeph>，错误码为 <codeph><ph
+                        keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"
+                /></codeph>。注意，帧重复检测仅针对分辨率大于 200 × 200、帧率大于等于 10 fps、码率小于 20 Kbps 的视频帧。 </p>
+            <note conkeyref="onLocalVideoStateChanged/note"/>
+        </section>
         <section id="parameters" conkeyref="onLocalVideoStateChanged/parameters"/>
     </refbody>
 </reference>

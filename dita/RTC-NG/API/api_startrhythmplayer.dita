@@ -13,63 +13,70 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="android" outputclass="language-java">public abstract int startRhythmPlayer(
+                <codeblock props="android" outputclass="language-java">public abstract int startRhythmPlayer(
     String sound1, String sound2, AgoraRhythmPlayerConfig config);</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (int)startRhythmPlayer:(NSString * _Nonnull)sound1 sound2:(NSString * _Nonnull)sound2 config:(AgoraRhythmPlayerConfig *  _Nullable)config;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int startRhythmPlayer(const char* sound1, const char* sound2, const AgoraRhythmPlayerConfig&amp; config) = 0;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int StartRhythmPlayer(string sound1, string sound2, AgoraRhythmPlayerConfig config);</codeblock></p>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)startRhythmPlayer:(NSString * _Nonnull)sound1 sound2:(NSString * _Nonnull)sound2 config:(AgoraRhythmPlayerConfig *  _Nullable)config;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int startRhythmPlayer(const char* sound1, const char* sound2, const AgoraRhythmPlayerConfig&amp; config) = 0;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartRhythmPlayer(string sound1, string sound2, AgoraRhythmPlayerConfig config);</codeblock></p>
             <p outputclass="codeblock" props="rtc">
-            <codeblock props="android" outputclass="language-java">public int startRhythmPlayer(String sound1, String sound2, AgoraRhythmPlayerConfig config);</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (int)startRhythmPlayer:(NSString* _Nonnull)sound1 sound2:(NSString* _Nonnull)sound2 config:(AgoraRtcRhythmPlayerConfig* _Nonnull)config;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int StartRhythmPlayer(string sound1, string sound2, AgoraRhythmPlayerConfig config);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startRhythmPlayer(
-      String sound1, String sound2, RhythmPlayerConfig config);</codeblock> </p>
+                <codeblock props="android" outputclass="language-java">public int startRhythmPlayer(String sound1, String sound2, AgoraRhythmPlayerConfig config);</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)startRhythmPlayer:(NSString* _Nonnull)sound1 sound2:(NSString* _Nonnull)sound2 config:(AgoraRtcRhythmPlayerConfig* _Nonnull)config;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp"/>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartRhythmPlayer(string sound1, string sound2, AgoraRhythmPlayerConfig config);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startRhythmPlayer(
+      String sound1, String sound2, RhythmPlayerConfig config);</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>自从</dt>
-                <dd>v3.4.0</dd>
-            </dlentry>
+                <dlentry props="native">
+                    <dt>自从</dt>
+                    <dd>v3.4.0</dd>
+                </dlentry>
             </dl>
             <p>在音乐教学、体育教学等场景中，老师通常需要使用节拍器，让学生跟着正确的节拍练习。 节拍由强拍和弱拍组成，每小节的第一拍称为强拍，其余称为弱拍。</p>
             <p>你需要在该方法中设置强拍和弱拍的文件路径、每小节的拍数、节拍速度以及是否将节拍器的声音发送至远端。</p>
             <note type="attention" id="rhythm_play">
-            <ul>
-            <li props="cpp unity">该方法仅适用于 Android 和 iOS。</li>
-            <li>开启虚拟节拍器后，SDK 会从头开始播放指定的音频文件，并根据你在 <xref keyref="AgoraRhythmPlayerConfig"/> 中设置的 <parmname>beatsPerMinute</parmname> 控制每个文件的播放时长。例如，将 <parmname>beatsPerMinute</parmname> 设为 <codeph>60</codeph>，则 SDK 会 1 秒播放 1 个节拍。如果文件时长超过了节拍时长，则 SDK 只播放节拍时长部分的音频。</li>
-            </ul></note> </section>
+                <ul>
+                    <li props="cpp unity">该方法仅适用于 Android 和 iOS。</li>
+                    <li>开启虚拟节拍器后，SDK 会从头开始播放指定的音频文件，并根据你在 <xref keyref="AgoraRhythmPlayerConfig"/>
+                        中设置的 <parmname>beatsPerMinute</parmname> 控制每个文件的播放时长。例如，将
+                            <parmname>beatsPerMinute</parmname> 设为 <codeph>60</codeph>，则 SDK 会 1 秒播放
+                        1 个节拍。如果文件时长超过了节拍时长，则 SDK 只播放节拍时长部分的音频。</li>
+                </ul></note>
+        </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry>
-                <pt>sound1</pt>
-                <pd>强拍文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如 <codeph><ph keyref="filePath-example"/></codeph>。支持的音频文件格式见 <xref keyref="audio-format">Agora RTC SDK 支持播放哪些格式的音频文件</xref>。
-                    </pd>
-            </plentry>
-            <plentry>
-                <pt>sound2</pt>
-                <pd>弱拍文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如 <codeph><ph keyref="filePath-example"/></codeph>。支持的音频文件格式见 <xref keyref="audio-format">Agora RTC SDK 支持播放哪些格式的音频文件</xref>。
-                    </pd>
-            </plentry>
-            <plentry>
-                <pt>config</pt>
-                <pd>节拍器配置。详见 <xref keyref="AgoraRhythmPlayerConfig"/>。</pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>sound1</pt>
+                    <pd>强拍文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如 <codeph><ph keyref="filePath-example"
+                            /></codeph>。支持的音频文件格式见 <xref keyref="audio-format">Agora RTC SDK
+                            支持播放哪些格式的音频文件</xref>。 </pd>
+                </plentry>
+                <plentry>
+                    <pt>sound2</pt>
+                    <pd>弱拍文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如 <codeph><ph keyref="filePath-example"
+                            /></codeph>。支持的音频文件格式见 <xref keyref="audio-format">Agora RTC SDK
+                            支持播放哪些格式的音频文件</xref>。 </pd>
+                </plentry>
+                <plentry>
+                    <pt>config</pt>
+                    <pd>节拍器配置。详见 <xref keyref="AgoraRhythmPlayerConfig"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values" props="native electron unity">
             <title>返回值</title>
             <ul>
-            <li>0: 方法调用成功</li>
-            <li>&lt; 0: 方法调用失败
-                
-                
-                <ul>
-                <li>-22: 无法找到音频文件。请填写正确的 <parmname>sound1</parmname> 和 <parmname>sound2</parmname>。</li>
-                </ul></li>
-            </ul> </section>
+                <li>0: 方法调用成功</li>
+                <li>&lt; 0: 方法调用失败 <ul>
+                        <li>-22: 无法找到音频文件。请填写正确的 <parmname>sound1</parmname> 和
+                                <parmname>sound2</parmname>。</li>
+                    </ul></li>
+            </ul>
+        </section>
     </refbody>
 </reference>

@@ -13,30 +13,34 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onTranscodingUpdated(IChannel *rtcChannel) {
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onTranscodingUpdated(IChannel *rtcChannel) {
     (void)rtcChannel;
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(
+                <codeblock props="electron" outputclass="language-typescript">on(
   evt: ChannelEvents.TRANSCODING_UPDATED,
   cb: (channelId: string) =&gt; void
 ): this;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public virtual void OnTranscodingUpdated(string channelId)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">EmptyCallback? transcodingUpdated;</codeblock> </p>
+                <codeblock props="cs" outputclass="language-csharp">public virtual void OnTranscodingUpdated(string channelId)</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">EmptyCallback? transcodingUpdated;</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p><xref keyref="IChannel_setLiveTranscoding"/> 方法中的直播参数 <xref keyref="LiveTranscoding"/> 更新时，<apiname keyref="onTranscodingUpdated"/> 回调会被触发并向主播报告更新信息。</p>
-            <note type="attention" conkeyref="onTranscodingUpdated/note"/> </section>
+            <p><xref keyref="IChannel_setLiveTranscoding"/> 方法中的直播参数 <xref keyref="LiveTranscoding"
+                /> 更新时，<apiname keyref="onTranscodingUpdated"/> 回调会被触发并向主播报告更新信息。</p>
+            <note type="attention" conkeyref="onTranscodingUpdated/note"/>
+        </section>
         <section id="parameters" props="native">
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
-            <plentry props="native cs" conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
-                <pt/>
-                <pd/>
-            </plentry>
-            </parml> </section>
+                <plentry props="native cs" conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
+                    <pt/>
+                    <pd/>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>
