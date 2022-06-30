@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_lastmileprobeconfig">
-    <title><ph keyref="LastmileProbeConfig"/></title>
+    <title><ph keyref="LastmileProbeConfig" /></title>
     <shortdesc id="short"><ph id="shortdesc">Last mile 网络探测配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -32,7 +32,7 @@
     expectedUplinkBitrate: number;
     expectedDownlinkBitrate: number;
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">class LastmileProbeConfig {
   const LastmileProbeConfig(
       {this.probeUplink,
@@ -48,16 +48,14 @@
   final int? expectedUplinkBitrate;
   @JsonKey(name: 'expectedDownlinkBitrate')
   final int? expectedDownlinkBitrate;
-  factory LastmileProbeConfig.fromJson(Map&lt;String, dynamic> json) =>
+  factory LastmileProbeConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$LastmileProbeConfigFromJson(json);
-  Map&lt;String, dynamic> toJson() => _$LastmileProbeConfigToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$LastmileProbeConfigToJson(this);
 }
 </codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>probeUplink</pt>
@@ -67,8 +65,8 @@
 
                     
                     <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: 探测。</li>
-                    <li><codeph><ph keyref="false"/></codeph>: 不探测。</li>
+                    <li><codeph><ph keyref="true" /></codeph>: 探测。</li>
+                    <li><codeph><ph keyref="false" /></codeph>: 不探测。</li>
                     </ul> </p>
                 </pd>
             </plentry>
@@ -80,15 +78,14 @@
 
                     
                     <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: 探测。</li>
-                    <li><codeph><ph keyref="false"/></codeph>: 不探测。</li>
+                    <li><codeph><ph keyref="true" /></codeph>: 探测。</li>
+                    <li><codeph><ph keyref="false" /></codeph>: 不探测。</li>
                     </ul> </p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>expectedUplinkBitrate</pt>
-                <pd>用户期望的最高发送码率，单位为 bps，范围为 [100000,5000000]。Agora 推荐参考 <xref
-                    keyref="setVideoEncoderConfiguration"/> 中的码率值设置该参数的值。</pd>
+                <pd>用户期望的最高发送码率，单位为 bps，范围为 [100000,5000000]。Agora 推荐参考 <xref keyref="setVideoEncoderConfiguration" /> 中的码率值设置该参数的值。</pd>
             </plentry>
             <plentry>
                 <pt>expectedDownlinkBitrate</pt>
