@@ -88,7 +88,7 @@ extension RtcEngineEventHandlerExt on RtcEngineEventHandler {
         RtcEngineEventHandlerOnAudioVolumeIndicationJson paramJson =
             RtcEngineEventHandlerOnAudioVolumeIndicationJson.fromJson(jsonMap);
         RtcConnection? connection = paramJson.connection;
-        AudioVolumeInfo? speakers = paramJson.speakers;
+        List<AudioVolumeInfo>? speakers = paramJson.speakers;
         int? speakerNumber = paramJson.speakerNumber;
         int? totalVolume = paramJson.totalVolume;
         if (connection == null ||
