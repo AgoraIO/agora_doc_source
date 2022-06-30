@@ -26,13 +26,27 @@ jobs:
               run: |
                   cd xml2json
                   echo "Running for flutter NG"
-                  python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag flutter --json_file flutter_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path flutter-ng
+                  python xml2json.py --working_dir ../dita/RTC-NG --platform_tag flutter --json_file flutter_cn_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path flutter-ng
+            - name: Run json creation
+              run: |
+                  cd xml2json
+                  echo "Running for flutter NG"
+                  python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag flutter --json_file flutter_en_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path flutter-ng
             - name: Upload Flutter NG JSON to release
               uses: svenstaro/upload-release-action@v2
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
-                  file: xml2json/flutter_ng.json
-                  asset_name: flutter_ng_json_template.json
+                  file: xml2json/flutter_cn_ng.json
+                  asset_name: flutter_ng_json_template_cn.json
+                  tag: main
+                  overwrite: true
+                  body: "Template file for automatic comment population."
+            - name: Upload Flutter NG JSON to release
+              uses: svenstaro/upload-release-action@v2
+              with:
+                  repo_token: ${{ secrets.GITHUB_TOKEN }}
+                  file: xml2json/flutter_en_ng.json
+                  asset_name: flutter_ng_json_template_en.json
                   tag: main
                   overwrite: true
                   body: "Template file for automatic comment population."
