@@ -22,17 +22,31 @@ jobs:
                   cd xml2json
                   python -m pip install --upgrade pip
                   if  [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-            - name: Run json creation
+            - name: Run cn json creation
               run: |
                   cd xml2json
                   echo "Running for electron NG"
-                  python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag electron --json_file electron_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path electron-ng
+                  python xml2json.py --working_dir ../dita/RTC-NG --platform_tag electron --json_file electron_ng_cn.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path electron-ng
+            - name: Run en json creation
+              run: |
+                  cd xml2json
+                  echo "Running for electron NG"
+                  python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag electron --json_file electron_ng_en.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path electron-ng
             - name: Upload electron NG JSON to release
               uses: svenstaro/upload-release-action@v2
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
-                  file: xml2json/electron_ng.json
-                  asset_name: electron_ng_json_template.json
+                  file: xml2json/electron_ng_cn.json
+                  asset_name: electron_ng_json_template_cn.json
+                  tag: main
+                  overwrite: true
+                  body: "Template file for automatic comment population."
+            - name: Upload electron NG JSON to release
+              uses: svenstaro/upload-release-action@v2
+              with:
+                  repo_token: ${{ secrets.GITHUB_TOKEN }}
+                  file: xml2json/electron_ng_en.json
+                  asset_name: electron_ng_json_template_en.json
                   tag: main
                   overwrite: true
                   body: "Template file for automatic comment population."
