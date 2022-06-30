@@ -69,7 +69,37 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">class InjectStreamConfig {
+  const InjectStreamConfig(
+      {this.width,
+      this.height,
+      this.videoGop,
+      this.videoFramerate,
+      this.videoBitrate,
+      this.audioSampleRate,
+      this.audioBitrate,
+      this.audioChannels});
+
+  @JsonKey(name: 'width')
+  final int? width;
+  @JsonKey(name: 'height')
+  final int? height;
+  @JsonKey(name: 'videoGop')
+  final int? videoGop;
+  @JsonKey(name: 'videoFramerate')
+  final int? videoFramerate;
+  @JsonKey(name: 'videoBitrate')
+  final int? videoBitrate;
+  @JsonKey(name: 'audioSampleRate')
+  final AudioSampleRateType? audioSampleRate;
+  @JsonKey(name: 'audioBitrate')
+  final int? audioBitrate;
+  @JsonKey(name: 'audioChannels')
+  final int? audioChannels;
+  factory InjectStreamConfig.fromJson(Map&lt;String, dynamic> json) =>
+      _$InjectStreamConfigFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$InjectStreamConfigToJson(this);
+}</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <note conkeyref="addInjectStreamUrl/inject-sunset-note"/> </section>
@@ -78,11 +108,11 @@
             conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
             /></title>
             <parml>
-            <plentry props="android cpp">
+            <plentry props="android cpp flutter">
                 <pt>width</pt>
                 <pd>外部视频流输入后的宽度。默认值为 0，即保留视频原始宽度。</pd>
             </plentry>
-            <plentry props="android cpp">
+            <plentry props="android cpp flutter">
                 <pt>height</pt>
                 <pd>外部视频流输入后的高度。默认值为 0，即保留视频原始高度。</pd>
             </plentry>
@@ -123,6 +153,7 @@
                 <pt>audioChannels</pt>
                 <pd>
                     <p>外部音频流输入后的频道数。
+                    
                     <ul>
                     <li>1: 单声道（默认）</li>
                     <li>2: 双声道</li>
