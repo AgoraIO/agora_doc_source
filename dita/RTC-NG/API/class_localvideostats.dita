@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_localvideostats">
-    <title><ph keyref="LocalVideoStats"/></title>
+    <title><ph keyref="LocalVideoStats" /></title>
     <shortdesc id="short"><ph id="shortdesc">本地视频流统计信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -55,7 +55,7 @@
     VIDEO_CODEC_TYPE codecType;
     unsigned short txPacketLossRate;
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public class LocalVideoStats
     {
         public LocalVideoStats()
@@ -77,7 +77,7 @@
         public VIDEO_CODEC_TYPE codecType { set; get; }
         public ushort txPacketLossRate { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">class LocalVideoStats {
   const LocalVideoStats(
       {this.uid,
@@ -141,17 +141,15 @@
   final VideoCodecType? codecType;
   @JsonKey(name: 'txPacketLossRate')
   final int? txPacketLossRate;
-  factory LocalVideoStats.fromJson(Map&lt;String, dynamic> json) =>
+  factory LocalVideoStats.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$LocalVideoStatsFromJson(json);
-  Map&lt;String, dynamic> toJson() => _$LocalVideoStatsToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$LocalVideoStatsToJson(this);
 }
 </codeblock>
             </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>uid</pt>
@@ -191,16 +189,12 @@
             </plentry>
             <plentry>
                 <pt>qualityAdaptIndication</pt>
-                <pd> <ph>统计周期内本地视频质量（基于目标帧率和目标码率）的自适应情况。</ph><ph
-                        props="ios mac cpp unity flutter">详见 <xref
-                        keyref="QUALITY_ADAPT_INDICATION"/>。</ph>
+                <pd> <ph>统计周期内本地视频质量（基于目标帧率和目标码率）的自适应情况。</ph><ph props="ios mac cpp unity flutter">详见 <xref keyref="QUALITY_ADAPT_INDICATION" />。</ph>
                         <p props="android">
                         <ul>
-                            <li><ph keyref="ADAPT_NONE"/> (0): 本地视频质量不变。</li>
-                            <li><ph keyref="ADAPT_UP_BANDWIDTH"
-                                /> (1): 因网络带宽增加，本地视频质量改善。</li>
-                            <li><ph keyref="ADAPT_DOWN_BANDWIDTH"
-                                /> (2): 因网络带宽减少，本地视频质量变差。</li>
+                            <li><ph keyref="ADAPT_NONE" /> (0): 本地视频质量不变。</li>
+                            <li><ph keyref="ADAPT_UP_BANDWIDTH" /> (1): 因网络带宽增加，本地视频质量改善。</li>
+                            <li><ph keyref="ADAPT_DOWN_BANDWIDTH" /> (2): 因网络带宽减少，本地视频质量变差。</li>
                         </ul>
                         </p>
                     </pd>
@@ -228,13 +222,11 @@
             </plentry>
             <plentry>
                 <pt>codecType</pt>
-                <pd><ph>视频的编码类型。</ph><ph props="ios mac cpp unity flutter"
-                        >详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</ph>
+                <pd><ph>视频的编码类型。</ph><ph props="ios mac cpp unity flutter">详见 <xref keyref="VIDEO_CODEC_TYPE" />。</ph>
                         <p props="android">
                         <ul>
-                            <li><ph keyref="VIDEO_CODEC_VP8"/> (1): VP8。</li>
-                            <li><ph keyref="VIDEO_CODEC_H264"
-                                /> (2): （默认值） H.264。</li>
+                            <li><ph keyref="VIDEO_CODEC_VP8" /> (1): VP8。</li>
+                            <li><ph keyref="VIDEO_CODEC_H264" /> (2): （默认值） H.264。</li>
                         </ul>
                         </p>
                     </pd>
