@@ -74,7 +74,7 @@ For the descriptions of path parameters, see [Common Parameters](#request).
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | -------- |
-| `nickname` | String | The nickname displayed in push notifications. The length of the nickname cannot exceed 100 characters and the following character sets are supported:<li>26 lowercase English letters (a-z)<li>26 uppercase English letters (A-Z)<li>10 numbers (0-9)<li>Chinese characters<li>Special characters <div class="alert note">The nickname can be different from the nickname in the user profile; however, we recommend that you use the same nickname for both. Therefore, if either nickname is updated, the other should be changed at the same time.<br>To update the nickname in the user profile, see <a href="https://docs-preprod.agora.io/en/agora-chat/agora_chat_restful_user_attributes?platform=RESTful#setting-user-attributes">Setting user attributes</a>.</div>  | No  |
+| `nickname` | String | The nickname displayed in push notifications. The length of the nickname cannot exceed 100 characters and the following character sets are supported:<li>26 lowercase English letters (a-z)<li>26 uppercase English letters (A-Z)<li>10 numbers (0-9)<li>Chinese characters<li>Special characters <div class="alert note">The nickname can be different from the nickname in the user profile; however, we recommend that you use the same nickname for both. Therefore, if either nickname is updated, the other should be changed at the same time. To update the nickname in the user profile, see <a href="https://docs-preprod.agora.io/en/agora-chat/agora_chat_restful_user_attributes?platform=RESTful#setting-user-attributes">Setting user attributes</a>.</div>  | No  |
 
 ### HTTP response
 
@@ -584,8 +584,8 @@ curl -X POST '{url}/{org}/{app}/notification/template' \
 -H 'Content-Type: application/json' \
 --data-raw '{
     "name": "test7",
-    "title_pattern": "你好,{0}",
-    "content_pattern": "推送测试,{0}"
+    "title_pattern": "Hello,{0}",
+    "content_pattern": "Test,{0}"
 }'
 ```
 
@@ -602,8 +602,8 @@ curl -X POST '{url}/{org}/{app}/notification/template' \
         "name": "test7",
         "createAt": 1646989584124,
         "updateAt": 1646989584124,
-        "title_pattern": "你好,{0}",
-        "content_pattern": "推送测试,{0}"
+        "title_pattern": "Hello,{0}",
+        "content_pattern": "Test,{0}"
     },
     "duration": 26,
     "applicationName": "hxdemo"
@@ -677,8 +677,8 @@ curl -X GET '{url}/{org}/{app}/notification/template/{name}' \
         "name": "test7",
         "createAt": 1646989584124,
         "updateAt": 1646989584124,
-        "title_pattern": "你好,{0}",
-        "content_pattern": "推送测试,{0}"
+        "title_pattern": "Hello,{0}",
+        "content_pattern": "Test,{0}"
     },
     "duration": 11,
     "applicationName": "hxdemo"
@@ -750,8 +750,8 @@ curl -X DELETE '{url}/{org}/{app}/notification/template' \
         "name": "test7",
         "createAt": 1646989584124,
         "updateAt": 1646989584124,
-        "title_pattern": "你好,{0}",
-        "content_pattern": "推送测试,{0}"
+        "title_pattern": "Hello,{0}",
+        "content_pattern": "Test,{0}"
     },
     "duration": 11,
     "applicationName": "hxdemo"
