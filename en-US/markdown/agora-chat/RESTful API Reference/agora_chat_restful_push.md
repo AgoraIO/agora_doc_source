@@ -694,7 +694,9 @@ For each App Key, the call frequency limit of this method is 100 per second.
 
 ### HTTP request
 
-`DELETE https://{host}/{org}/{app}/notification/template/{name}`
+```http
+DELETE https://{host}/{org}/{app}/notification/template/{name}
+```
 
 #### Path parameter
 
