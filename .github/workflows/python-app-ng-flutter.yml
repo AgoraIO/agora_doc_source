@@ -1,0 +1,39 @@
+# GitHub CI build pipeline
+name: Awesome JSON CI build for NG Flutter SDK
+
+on:
+    push:
+        branches:
+            - 3.8.200-flutter
+    pull_request:
+        branches:
+            - 3.8.200-flutter
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Set up python 3.8
+              uses: actions/setup-python@v2
+              with:
+                  python-version: 3.8
+            - name: Install dependencies
+              run: |
+                  cd xml2json
+                  python -m pip install --upgrade pip
+                  if  [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+            - name: Run json creation
+              run: |
+                  cd xml2json
+                  echo "Running for flutter NG"
+                  python xml2json.py --working_dir ../dita/RTC-NG --platform_tag flutter --json_file flutter_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path flutter-ng
+            - name: Upload Flutter NG JSON to release
+              uses: svenstaro/upload-release-action@v2
+              with:
+                  repo_token: ${{ secrets.GITHUB_TOKEN }}
+                  file: xml2json/flutter_ng.json
+                  asset_name: flutter_ng_json_template.json
+                  tag: main
+                  overwrite: true
+                  body: "Template file for automatic comment population."
+        
