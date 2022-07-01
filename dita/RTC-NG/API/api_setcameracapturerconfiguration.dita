@@ -17,27 +17,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setCameraCapturerConfiguration:(AgoraCameraCapturerConfiguration * _Nullable)config;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setCameraCapturerConfiguration(const CameraCapturerConfiguration&amp; config) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp">public class CameraCapturerConfiguration
-    {
-        public CameraCapturerConfiguration()
-        {
-            deviceId = "";
-            cameraDirection = CAMERA_DIRECTION.CAMERA_FRONT;
-            format = new VideoFormat();
-        }
-
-        public CameraCapturerConfiguration(string deviceId, VideoFormat format,
-            CAMERA_DIRECTION cameraDirection)
-        {
-            this.deviceId = deviceId;
-            this.format = format;
-            this.cameraDirection = cameraDirection;
-        }
-
-        public string deviceId { set; get; }
-        public VideoFormat format { set; get; }
-        public CAMERA_DIRECTION cameraDirection { set; get; }
-    }</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int SetCameraCapturerConfiguration(CameraCapturerConfiguration config);</codeblock>
             <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setCameraCapturerConfiguration(
       CameraCapturerConfiguration config);</codeblock> </p>
@@ -51,23 +31,9 @@
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry props="native">
+            <plentry>
                 <pt>config</pt>
                 <pd>摄像头采集配置，详见 <xref keyref="CameraCapturerConfiguration" />。</pd>
-            </plentry>
-                <plentry props="unity">
-                <pt>cameraDirection</pt>
-                <pd>
-                    <note type="attention">该参数仅适用于 Android 和 iOS 平台。</note>
-                    <ph>摄像头方向设置，详见 <xref keyref="CAMERA_DIRECTION" />。</ph></pd>
-            </plentry>
-                <plentry props="unity">
-                <pt>format</pt>
-                <pd>详见 <xref keyref="VideoFormat" />。</pd>
-            </plentry>
-            <plentry props="unity">
-                <pt>deviceId</pt>
-                <pd>播放设备的设备 ID。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity">
