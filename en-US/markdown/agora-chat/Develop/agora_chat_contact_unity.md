@@ -82,7 +82,7 @@ SDKClient.Instance.ContactManager.RemoveContactManagerDelegate(adelegate);
 
 #### Accept or decline the contact invitation
 
-After receicing `OnContactInvited`, call `AcceptInvitation` or `DeclineInvitation` to accept or decline the invitation.
+After receiving `OnContactInvited`, call `AcceptInvitation` or `DeclineInvitation` to accept or decline the invitation.
 
 ```C#
 // Accept the contact invitation. Once you accept the invitation, the sender receives the OnFriendRequestAccepted callback.
