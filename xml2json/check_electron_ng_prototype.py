@@ -3,20 +3,16 @@
 
 # Developed by Lutkin Wang
 # Check prototype in
-# Future<void> startAudioFrameDump(
-#      String channel_id,
-#      uid_t user_id,
-#      String location,
-#      String uuid,
-#      String passwd,
-#      int duration_ms,
-#      bool auto_upload);
+# abstract release(sync?: boolean): void;
+# abstract initialize(context: RtcEngineContext): number;
+# abstract getVersion(): SDKBuildInfo;
+# abstract getErrorDescription(code: number): string;
 
 import os
 import re
 import argparse
 
-log_name = "prototype_check_flutter_ng.txt"
+log_name = "prototype_check_electron_ng.txt"
 
 
 def removeComments(string):
@@ -56,6 +52,18 @@ def main():
     dita_map_location = args['dita_map_location']
     decomment_code_location = args['decomment_code_location']
 
+    # Code location
+    # code_location = "C:\\Users\\WL\\Documents\\rte_sdk\\interface\\cpp"
+    # DITA location
+    # dita_location = "C:\\Users\\WL\\Documents\\GitHub\\doc_source\\dita\\RTC\\API"
+
+    # dita_location = "C:\\Users\\WL\\Documents\\GitHub\\doc_source\\en-US\\dita\\RTC\\API"
+
+    # DITA map location
+    # dita_map_location = "C:\\Users\\WL\\Documents\\GitHub\\doc_source\\dita\\RTC\\config\\keys-rtc-ng-api-cpp.ditamap."
+
+    # decomment_code_location = "C:\\Users\\WL\\Documents\\nocomment"
+
     # A list of DITA files
     dita_file_list = []
 
@@ -79,7 +87,7 @@ def main():
                 content = f.read()
                 # Use substring methods to get the proto from DITA
                 # Here, we assume that the DITA file contains a single codeblock for each programming language
-                after_codeblock_start_tag = re.split('<codeblock props="flutter" outputclass="language-dart">',
+                after_codeblock_start_tag = re.split('<codeblock props="electron" outputclass="language-typescript">',
                                                      content)
                 try:
                     before_codeblock_end_tag = re.split('</codeblock>', after_codeblock_start_tag[1])
@@ -101,13 +109,13 @@ def main():
     # Decomment all oc files
     for root, dirs, files in os.walk(code_location):
         for file in files:
-            if file.endswith(".dart"):
+            if file.endswith(".ts"):
                 with open(os.path.join(root, file), encoding='utf8', mode='r') as f:
                     text = removeComments(f.read())
-                    with open(decomment_code_location + "/" + "concatenated.dart", encoding='utf8', mode='a') as f1:
+                    with open(decomment_code_location + "/" + "concatenated.ts", encoding='utf8', mode='a') as f1:
                         f1.write(text)
 
-    with open(decomment_code_location + "/" + "concatenated.dart", encoding='utf8', mode='r') as f:
+    with open(decomment_code_location + "/" + "concatenated.ts", encoding='utf8', mode='r') as f:
         content = f.read()
         content1 = content.replace("&amp;", "&")
         content2 = content1.replace("&lt;", "<")
