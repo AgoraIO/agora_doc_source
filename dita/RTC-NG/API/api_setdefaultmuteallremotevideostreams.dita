@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setdefaultmuteallremotevideostreams">
-    <title><ph keyref="setDefaultMuteAllRemoteVideoStreams" /></title>
+    <title><ph keyref="setDefaultMuteAllRemoteVideoStreams"/></title>
     <shortdesc id="short"><ph id="shortdesc">默认取消或恢复订阅远端用户的视频流。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setDefaultMuteAllRemoteVideoStreams" />
+                <indexterm keyref="setDefaultMuteAllRemoteVideoStreams"/>
             </keywords>
         </metadata>
     </prolog>
@@ -16,39 +16,35 @@
             <codeblock props="android" outputclass="language-java">public abstract int setDefaultMuteAllRemoteVideoStreams(boolean muted);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setDefaultMuteAllRemoteVideoStreams:(BOOL)mute;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setDefaultMuteAllRemoteVideoStreams(bool mute) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetDefaultMuteAllRemoteVideoStreams(bool mute);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setDefaultMuteAllRemoteVideoStreams(bool mute);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="deprecated" props="rtc">
-            <dlentry props="native">
-                <dt>弃用：</dt>
-                <dd>该方法自 v3.3.0 起废弃。</dd>
-            </dlentry>
-            </dl>
             <p id="sequence">该方法需要在加入频道后调用。调用成功后，本地用户取消或恢复订阅调用时刻之后加入频道的远端用户。</p>
             <note type="attention">
             <p>取消订阅视频流后，如果需要恢复订阅频道内的远端用户，可以进行如下操作：
 
 
+            
             <ul>
-            <li>如果需要恢复订阅单个用户的视频流，调用 <xref keyref="muteRemoteVideoStream" />(<codeph><ph keyref="false" /></codeph>)，并指定你想要订阅的远端用户 ID。</li>
-            <li>如果想恢复订阅多个用户的视频流，则需要多次调用 <apiname keyref="muteRemoteVideoStream" />(<codeph><ph keyref="false" /></codeph>)。</li>
+            <li>如果需要恢复订阅单个用户的视频流，调用 <xref keyref="muteRemoteVideoStream"/>(<codeph><ph keyref="false"/></codeph>)，并指定你想要订阅的远端用户 ID。</li>
+            <li>如果想恢复订阅多个用户的视频流，则需要多次调用 <apiname keyref="muteRemoteVideoStream"/>(<codeph><ph keyref="false"/></codeph>)。</li>
             </ul> </p>
             </note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry>
-                <pt props="android flutter">muted</pt>
-                <pt props="ios mac cpp unity">mute</pt>
+                <pt props="android">muted</pt>
+                <pt props="ios mac cpp unity flutter">mute</pt>
                 <pd>
                     <p>是否默认取消订阅远端用户的视频流：
+                    
                     <ul>
-                    <li><codeph><ph keyref="true" /></codeph>: 默认取消订阅。</li>
-                    <li><codeph><ph keyref="false" /></codeph>:（默认）默认订阅。</li>
+                    <li><codeph><ph keyref="true"/></codeph>: 默认取消订阅。</li>
+                    <li><codeph><ph keyref="false"/></codeph>:（默认）默认订阅。</li>
                     </ul> </p>
                 </pd>
             </plentry>

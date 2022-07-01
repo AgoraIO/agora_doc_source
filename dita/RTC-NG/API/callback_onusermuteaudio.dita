@@ -22,7 +22,9 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserMuteAudio(RtcConnection connection, uint remoteUid, bool muted) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, bool muted)?
+      onUserMuteAudio;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated" props="hide">
@@ -38,19 +40,20 @@
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
-                <plentry props="unity" conkeyref="joinChannelEx/connection">
-                    <pt></pt>
-                    <pd></pd>
+            <plentry props="unity flutter" conkeyref="joinChannelEx/connection">
+                    <pt/>
+                    <pd/>
                 </plentry>
-                <plentry>
+            <plentry>
                 <pt props="native">uid</pt>
-                <pt props="unity">remoteUid</pt>
+                <pt props="unity flutter">remoteUid</pt>
                 <pd>用户 ID。</pd>
             </plentry>
             <plentry>
                 <pt>muted</pt>
                 <pd>该用户是否静音：
   
+                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 该用户已将音频静音。</li>
                     <li><codeph><ph keyref="false"/></codeph>: 该用户取消了音频静音。</li>

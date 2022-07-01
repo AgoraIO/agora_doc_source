@@ -28,7 +28,9 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnApiCallExecuted(int err, string api, string result)</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(ErrorCodeType err, String api, String result)?
+      onApiCallExecuted;
+</codeblock> </p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
@@ -39,7 +41,7 @@
                 <pd/>
             </plentry>
             <plentry>
-                <pt props="cpp unity">err</pt>
+                <pt props="cpp unity flutter">err</pt>
                 <pt props="android ios mac flutter">error</pt>
                 <pd>当方法调用失败时 SDK 返回的错误码。<ph props="rtc">详细的错误信息及排查方法请参考<xref keyref="errorCode">错误码和警告码</xref>。</ph>如果该方法调用成功，SDK 会返回 0。</pd>
             </plentry>

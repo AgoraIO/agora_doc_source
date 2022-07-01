@@ -53,24 +53,25 @@
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">class LastmileProbeConfig {
-  
-  bool probeUplink;
-  bool probeDownlink;
-  int expectedUplinkBitrate;
-  int expectedDownlinkBitrate;
+  const LastmileProbeConfig(
+      {this.probeUplink,
+      this.probeDownlink,
+      this.expectedUplinkBitrate,
+      this.expectedDownlinkBitrate});
 
-  LastmileProbeConfig(
-    this.probeUplink,
-    this.probeDownlink,
-    this.expectedUplinkBitrate,
-    this.expectedDownlinkBitrate,
-  );
-
+  @JsonKey(name: 'probeUplink')
+  final bool? probeUplink;
+  @JsonKey(name: 'probeDownlink')
+  final bool? probeDownlink;
+  @JsonKey(name: 'expectedUplinkBitrate')
+  final int? expectedUplinkBitrate;
+  @JsonKey(name: 'expectedDownlinkBitrate')
+  final int? expectedDownlinkBitrate;
   factory LastmileProbeConfig.fromJson(Map&lt;String, dynamic> json) =>
       _$LastmileProbeConfigFromJson(json);
-
   Map&lt;String, dynamic> toJson() => _$LastmileProbeConfigToJson(this);
-}</codeblock> </p>
+}
+</codeblock> </p>
         </section>
         <section id="parameters">
             <title><text
@@ -81,7 +82,8 @@
                 <pt>probeUplink</pt>
                 <pd>
                     <p>是否探测上行网络。有些用户，如直播频道中的普通观众，不需要进行网络探测:
-      
+
+
                     
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 探测。</li>
@@ -93,7 +95,8 @@
                 <pt>probeDownlink</pt>
                 <pd>
                     <p>是否探测下行网络。
- 
+
+
                     
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 探测。</li>

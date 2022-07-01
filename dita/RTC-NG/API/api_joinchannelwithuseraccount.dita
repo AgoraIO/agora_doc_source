@@ -25,10 +25,12 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int JoinChannelWithUserAccount(string token, string channelId, string userAccount);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart"></codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>该方法允许本地用户使用 User Account 加入频道。成功加入频道后，会触发以下回调：
+            
+            
             <ul>
             <li>本地：<xref keyref="onLocalUserRegistered"/>、<xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/> 回调。</li>
             <li>通信场景下的用户和直播场景下的主播加入频道后，远端会依次触发 <xref keyref="onUserJoined"/> 和 <xref keyref="onUserInfoUpdated"/> 回调。</li>
@@ -49,13 +51,17 @@
                     <p conkeyref="joinChannel2/channelID_desc"/>
                 </pd>
             </plentry>
-            <plentry conkeyref="joinChannelWithUserAccount2/userAccount">
-                <pt/>
-                <pd/>
+            <plentry>
+                <pt>userAccount</pt>
+                <pd>本地用户的 User Account。</pd>
             </plentry>
             <plentry conkeyref="joinChannel2/joinsuccessblock" props="ios mac">
                 <pt/>
                 <pd/>
+            </plentry>
+            <plentry>
+                <pt>options</pt>
+                <pd>频道选项。详见 <xref keyref="ChannelMediaOptions"/>。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
@@ -63,6 +69,8 @@
             <ul>
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。
+                
+                
                 <ul>
                 <li>-2(ERR_INVALID_ARGUMENT): 参数无效。</li>
                 <li>-3(ERR_NOT_READY): SDK 初始化失败，请尝试重新初始化 SDK。</li>

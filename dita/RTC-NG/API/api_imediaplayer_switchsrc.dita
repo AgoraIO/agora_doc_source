@@ -22,13 +22,10 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SwitchSrc(string src, bool syncPts = true);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> switchSrc({required String src, bool syncPts = true});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>你可以根据当前网络状态调用该方法切换播放的媒体资源的码率。例如：
-            
-            
-            
             <ul>
             <li>在网络较差时，将播放的媒体资源切换为较低码率的媒体资源地址。</li>
             <li>在网络较好时，将播放的媒体资源切换为较高码率的媒体资源地址。</li>
@@ -39,9 +36,6 @@
             <ul>
             <li>请确保在 <xref keyref="open"/> 之后调用该方法。</li>
             <li>为保证播放正常，请在调用该方法时注意如下：
-                
-                
-                
                 <ul>
                 <li>不要在播放暂停时调用该方法。</li>
                 <li>不要在切换码率过程中调用 <xref keyref="seek"/>。</li>
@@ -60,7 +54,7 @@
                 <pd/>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功。</li>

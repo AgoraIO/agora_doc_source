@@ -30,7 +30,10 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnExtensionEvent(string provider, string ext_name, string key, string value) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(
+          String provider, String extName, String key, String value)?
+      onExtensionEvent;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>为监听插件事件，你需要注册该回调。</p>
@@ -44,6 +47,7 @@
             </plentry>
             <plentry id="extension">
                 <pt props="native">extension</pt>
+                <pt props="flutter">extName</pt>
                 <pt props="unity">ext_name</pt>
                 <pd>插件名称。</pd>
             </plentry>
