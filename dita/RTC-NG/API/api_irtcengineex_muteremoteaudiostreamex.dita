@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_muteremoteaudiostreamex">
-    <title><ph keyref="muteRemoteAudioStreamEx"/></title>
+    <title><ph keyref="muteRemoteAudioStreamEx" /></title>
     <shortdesc id="short"><ph id="shortdesc">停止/恢复接收指定的音频流。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="muteRemoteAudioStreamEx"/>
+                <indexterm keyref="muteRemoteAudioStreamEx" />
             </keywords>
         </metadata>
     </prolog>
@@ -18,10 +18,14 @@
                           mute:(BOOL)mute
                     connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int muteRemoteAudioStreamEx(uid_t uid, bool mute, const RtcConnection&amp; connection) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public abstract int MuteRemoteAudioStreamEx(uint uid, bool mute, RtcConnection connection);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract muteRemoteAudioStreamEx(
+    uid: number,
+    mute: boolean,
+    connection: RtcConnection
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">该方法停止/恢复接收某一个指定远端用户的音频流。在加入频道前或后都可以调用。该方法的设置在离开频道后失效。</section>
         <section id="parameters">
@@ -37,13 +41,13 @@
                 <pd>
                     <p>是否停止接收指定音频流：</p>
                     <ul id="ul_pv3_2ft_3qb">
-                    <li><codeph><ph keyref="true"/></codeph>: 停止接收指定音频流。</li>
-                    <li><codeph><ph keyref="false"/></codeph>:（默认）继续接收指定音频流。</li>
+                    <li><codeph><ph keyref="true" /></codeph>: 停止接收指定音频流。</li>
+                    <li><codeph><ph keyref="false" /></codeph>:（默认）继续接收指定音频流。</li>
                     </ul> </pd>
             </plentry>
             <plentry conkeyref="joinChannelEx/connection">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             </parml> </section>
         <section id="return_values">

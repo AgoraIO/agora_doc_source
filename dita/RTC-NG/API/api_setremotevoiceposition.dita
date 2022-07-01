@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setremotevoiceposition">
-    <title><ph keyref="setRemoteVoicePosition"/></title>
+    <title><ph keyref="setRemoteVoicePosition" /></title>
     <shortdesc id="short"><ph id="shortdesc">设置远端用户声音的 2D 位置，即水平面位置。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setRemoteVoicePosition"/>
+                <indexterm keyref="setRemoteVoicePosition" />
             </keywords>
         </metadata>
     </prolog>
@@ -16,17 +16,21 @@
             <codeblock props="android" outputclass="language-java">public abstract int setRemoteVoicePosition(int uid, double pan, double gain);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setRemoteVoicePosition:(NSUInteger)uid pan:(double)pan gain:(double)gain;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setRemoteVoicePosition(uid_t uid, double pan, double gain) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetRemoteVoicePosition(uint uid, double pan, double gain);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/></p>
+            <codeblock props="rn" outputclass="language-typescript">abstract setRemoteVoicePosition(
+    uid: number,
+    pan: number,
+    gain: number
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart" /></p>
         </section>
         <section id="detailed_desc">
             <p>设置远端用户声音的 2D 位置和音量，方便本地用户听声辨位。</p>
             <p>通过调用该接口设置远端用户声音出现的位置，左右声道的声音差异会产生声音的方位感，从而判断出远端用户的实时位置。在多人在线游戏场景，如吃鸡游戏中，该方法能有效增加游戏角色的方位感，模拟真实场景。</p>
             <note type="attention">
             <ul>
-            <li>使用该方法需要在加入频道前调用 <xref keyref="enableSoundPositionIndication"/> 开启远端用户的语音立体声。</li>
+            <li>使用该方法需要在加入频道前调用 <xref keyref="enableSoundPositionIndication" /> 开启远端用户的语音立体声。</li>
             <li>为获得最佳听觉体验，我们建议使用该方法时使用有线耳机。</li>
             <li>该方法需要在加入频道后调用。</li>
             </ul> </note> </section>

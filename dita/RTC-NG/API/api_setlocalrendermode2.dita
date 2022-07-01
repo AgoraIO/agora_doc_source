@@ -19,7 +19,10 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int setLocalRenderMode(media::base::RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetLocalRenderMode(RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript">abstract setLocalRenderMode(
+    renderMode: RenderModeType,
+    mirrorMode?: VideoMirrorModeType
+  ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLocalRenderMode2(RenderModeType renderMode);</codeblock></p>
         </section>
         <section id="detailed_desc">
@@ -67,7 +70,7 @@
                     <note type="attention">如果你使用前置摄像头，默认启动本地用户视图镜像模式；如果你使用后置摄像头，默认关闭本地视图镜像模式。</note> </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
+        <section id="return_values" props="native electron unity">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功</li>

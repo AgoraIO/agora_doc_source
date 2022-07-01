@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ibasespatialaudioengine_updateselfposition">
-    <title><ph keyref="updateSelfPosition"/></title>
+    <title><ph keyref="updateSelfPosition" /></title>
     <shortdesc id="short"><ph id="shortdesc">更新本地用户的空间位置。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="updateSelfPosition"/>
+                <indexterm keyref="updateSelfPosition" />
             </keywords>
         </metadata>
     </prolog>
@@ -15,24 +15,29 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int updateSelfPosition(
     float[] position, float[] axisForward, float[] axisRight, float[] axisUp);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)updateSelfPosition:(NSArray&lt;NSNumber*>* _Nonnull)position axisForward:(NSArray&lt;NSNumber*>* _Nonnull)axisForward axisRight:(NSArray&lt;NSNumber*>* _Nonnull)axisRight axisUp:(NSArray&lt;NSNumber*>* _Nonnull)axisUp;</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)updateSelfPosition:(NSArray&lt;NSNumber*&gt;* _Nonnull)position axisForward:(NSArray&lt;NSNumber*&gt;* _Nonnull)axisForward axisRight:(NSArray&lt;NSNumber*&gt;* _Nonnull)axisRight axisUp:(NSArray&lt;NSNumber*&gt;* _Nonnull)axisUp;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int updateSelfPosition(float position[3], float axisForward[3], float axisRight[3], float axisUp[3]) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public abstract int UpdateSelfPosition(float[] position, float[] axisForward, float[] axisRight, float[] axisUp);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract updateSelfPosition(
+    position: number[],
+    axisForward: number[],
+    axisRight: number[],
+    axisUp: number[]
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
             <p id="effect">在不同类下调用该方法时，作用不同：
 
             <ul>
-            <li props="hide">在 <xref keyref="ICloudSpatialAudioEngine"/> 类下调用该方法时，SDK 会向 Agora 空间音效服务器更新本地用户的空间位置。Agora 空间音效服务器会根据本地和远端用户的世界坐标和音频接收范围计算用户的空间音效参数。</li>
-            <li>在 <xref keyref="ILocalSpatialAudioEngine"/> 类下，该方法需要和 <xref keyref="updateRemotePosition"/> 搭配使用。SDK 会根据该方法和 <apiname keyref="updateRemotePosition"/> 设置的参数计算本地和远端用户之间的相对位置，从而计算用户的空间音效参数。</li>
+            <li props="hide">在 <xref keyref="ICloudSpatialAudioEngine" /> 类下调用该方法时，SDK 会向 Agora 空间音效服务器更新本地用户的空间位置。Agora 空间音效服务器会根据本地和远端用户的世界坐标和音频接收范围计算用户的空间音效参数。</li>
+            <li>在 <xref keyref="ILocalSpatialAudioEngine" /> 类下，该方法需要和 <xref keyref="updateRemotePosition" /> 搭配使用。SDK 会根据该方法和 <apiname keyref="updateRemotePosition" /> 设置的参数计算本地和远端用户之间的相对位置，从而计算用户的空间音效参数。</li>
             </ul></p>
             <note type="note" id="note" props="hide">
             <ul>
-            <li>该方法需要在 <xref keyref="enterRoom"/> 后调用。</li>
-            <li>如果在 <apiname keyref="ICloudSpatialAudioEngine"/> 类下调用该方法，需注意：
+            <li>该方法需要在 <xref keyref="enterRoom" /> 后调用。</li>
+            <li>如果在 <apiname keyref="ICloudSpatialAudioEngine" /> 类下调用该方法，需注意：
 
                 <ul>
                 <li>多次调用该方法时，Agora 推荐调用时间间隔为 [120,7000) 毫秒，否则 SDK 和 Agora 空间音效服务器会失去同步。</li>

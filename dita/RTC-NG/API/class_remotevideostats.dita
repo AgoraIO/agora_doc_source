@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_remotevideostats">
-    <title><ph keyref="RemoteVideoStats"/></title>
+    <title><ph keyref="RemoteVideoStats" /></title>
     <shortdesc id="short"><ph id="shortdesc">远端视频流的统计信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -61,7 +61,7 @@
   int publishDuration;
   int superResolutionType;
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public class RemoteVideoStats
     {
         public uint uid { set; get; }
@@ -81,14 +81,29 @@
         public int publishDuration { set; get; }
         public int superResolutionType { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">export class RemoteVideoStats {
+  uid?: number;
+  delay?: number;
+  width?: number;
+  height?: number;
+  receivedBitrate?: number;
+  decoderOutputFrameRate?: number;
+  rendererOutputFrameRate?: number;
+  frameLossRate?: number;
+  packetLossRate?: number;
+  rxStreamType?: VideoStreamType;
+  totalFrozenTime?: number;
+  frozenRate?: number;
+  avSyncTimeMs?: number;
+  totalActiveTime?: number;
+  publishDuration?: number;
+  superResolutionType?: number;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock>
             </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>uid</pt>
@@ -100,9 +115,7 @@
                     <dl outputclass="deprecated">
                     <dlentry>
                         <dt>弃用：</dt>
-                        <dd>在有音画同步机制的音视频场景中，你可以参考 <xref
-                            keyref="RemoteAudioStats"
-                            /> 里的 <parmname>networkTransportDelay</parmname> 和 <parmname>jitterBufferDelay</parmname> 成员的值，了解视频的延迟数据。</dd>
+                        <dd>在有音画同步机制的音视频场景中，你可以参考 <xref keyref="RemoteAudioStats" /> 里的 <parmname>networkTransportDelay</parmname> 和 <parmname>jitterBufferDelay</parmname> 成员的值，了解视频的延迟数据。</dd>
                     </dlentry>
                     </dl>
                     <p>延时（毫秒）。</p>
@@ -142,14 +155,11 @@
             </plentry>
             <plentry>
                 <pt>rxStreamType</pt>
-                <pd><ph>视频流类型，大流或小流。</ph><ph props="ios mac cpp unity rn electron">详见 <xref
-                    keyref="REMOTE_VIDEO_STREAM_TYPE"/>。</ph>
+                <pd><ph>视频流类型，大流或小流。</ph><ph props="ios mac cpp unity rn electron">详见 <xref keyref="REMOTE_VIDEO_STREAM_TYPE" />。</ph>
                     <p props="android">
                     <ul>
-                    <li><ph keyref="REMOTE_VIDEO_STREAM_HIGH"
-                        /> (0)：视频大流，即高分辨率高码率的视频流。</li>
-                    <li><ph keyref="REMOTE_VIDEO_STREAM_LOW"
-                        /> (1)：视频小流，即低分辨率低码率的视频流。</li>
+                    <li><ph keyref="REMOTE_VIDEO_STREAM_HIGH" /> (0)：视频大流，即高分辨率高码率的视频流。</li>
+                    <li><ph keyref="REMOTE_VIDEO_STREAM_LOW" /> (1)：视频小流，即低分辨率低码率的视频流。</li>
                     </ul> </p>
                 </pd>
             </plentry>
