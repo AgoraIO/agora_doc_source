@@ -1,5 +1,5 @@
 # GitHub CI build pipeline
-name: Awesome prototype from code to DITA
+name: Awesome prototype from code to DITA (RN)
 
 on:
     workflow_dispatch:
@@ -7,10 +7,10 @@ on:
     pull_request:
         branches:
             # - 'release/rtc-ng/3.7.203-unity'
-            - '3.8.200-flutter'
-    # push:
-    #    branches:
-    #        - 'release/rtc-ng/3.7.203-unity'
+            - 'release/rtc-ng/3.8.200-kelu'
+    push:
+        branches:
+            - 'release/rtc-ng/3.8.200-kelu'
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -30,7 +30,8 @@ jobs:
               run: |
                   cd xml2json
                   # python extract_proto_and_sync_to_dita_unity.py --code_location ./code_to_check/unity_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-unity.ditamap --decomment_code_location ./code_to_check/decommented
-                  python extract_proto_and_sync_to_dita_flutter.py --code_location ./code_to_check/flutter-ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-flutter.ditamap --decomment_code_location ./code_to_check/decommented
+                  # python extract_proto_and_sync_to_dita_flutter.py --code_location ./code_to_check/flutter-ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-flutter.ditamap --decomment_code_location ./code_to_check/decommented
+                    python extract_proto_and_sync_to_dita_react_native.py --code_location ./code_to_check/rn_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-rn.ditamap --decomment_code_location ./code_to_check/decommented
             - name: Create Pull Request
               uses: peter-evans/create-pull-request@v4
               with:
