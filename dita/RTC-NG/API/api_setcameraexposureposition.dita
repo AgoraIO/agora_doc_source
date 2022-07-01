@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setcameraexposureposition">
-    <title><ph keyref="setCameraExposurePosition"/></title>
+    <title><ph keyref="setCameraExposurePosition" /></title>
     <shortdesc id="short"><ph id="shortdesc">设置手动曝光位置。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setCameraExposurePosition"/>
+                <indexterm keyref="setCameraExposurePosition" />
             </keywords>
         </metadata>
     </prolog>
@@ -17,10 +17,13 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)setCameraExposurePosition:(CGPoint)positionInView;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setCameraExposurePosition(float positionXinView, float positionYinView) = 0;
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetCameraExposurePosition(float positionXinView, float positionYinView);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract setCameraExposurePosition(
+    positionXinView: number,
+    positionYinView: number
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
@@ -29,8 +32,8 @@
                 <dd>v2.3.2</dd>
             </dlentry>
             </dl>
-            <p>该方法需要在相机启动（如通过调用 <xref keyref="startPreview" props="native flutter unity"/> <xref keyref="startPreview2" props="rn electron"/> 或 <xref keyref="joinChannel2"/> 实现）后调用。</p>
-            <p>成功调用该方法后，本地会触发 <xref keyref="onCameraExposureAreaChanged"/> 回调。</p>
+            <p>该方法需要在相机启动（如通过调用 <xref keyref="startPreview" props="native flutter unity" /> <xref keyref="startPreview2" props="rn electron" /> 或 <xref keyref="joinChannel2" /> 实现）后调用。</p>
+            <p>成功调用该方法后，本地会触发 <xref keyref="onCameraExposureAreaChanged" /> 回调。</p>
             <note type="attention" props="cpp">该方法仅适用于 Android 和 iOS。</note> </section>
         <section id="parameters">
             <title>参数</title>

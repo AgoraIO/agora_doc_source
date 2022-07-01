@@ -18,7 +18,9 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int setAudioSessionOperationRestriction(AUDIO_SESSION_OPERATION_RESTRICTION restriction) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetAudioSessionOperationRestriction(AUDIO_SESSION_OPERATION_RESTRICTION restriction);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript">abstract setAudioSessionOperationRestriction(
+    restriction: AudioSessionOperationRestriction
+  ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAudioSessionOperationRestriction(
       AudioSessionOperationRestriction restriction);</codeblock> </p>
         </section>
@@ -38,7 +40,7 @@
                 <pd>SDK 对 Audio Session 的操作权限，详见 <xref keyref="AUDIO_SESSION_OPERATION_RESTRICTION" />。该参数为 Bit Mask，每个 Bit 对应一个权限。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity rn">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功</li>

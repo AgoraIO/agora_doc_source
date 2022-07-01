@@ -22,10 +22,14 @@
                             VIDEO_SOURCE_TYPE sourceType, bool enabled, const SimulcastStreamConfig&amp; streamConfig) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public abstract int EnableDualStreamMode(VIDEO_SOURCE_TYPE sourceType, bool enabled, SimulcastStreamConfig streamConfig);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript">abstract enableDualStreamMode(
+    enabled: boolean,
+    sourceType?: VideoSourceType,
+    streamConfig?: SimulcastStreamConfig
+  ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableDualStreamMode(bool enabled);</codeblock> </p>
         </section>
-        <section id="detailed_desc" conkeyref="enableDualStreamMode2/detailed_desc" props="native flutter unity"/>
+        <section id="detailed_desc" conkeyref="enableDualStreamMode2/detailed_desc" props="native flutter unity" />
         <section props="rn electron" id="detailed_desc_1">
             <p>你可以在发流端调用该方法开启或关闭双流模式。双流指视频大流和视频小流：
             <ul>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setremotevideostreamtype">
-     <title> <ph keyref="setRemoteVideoStreamType"/> </title>
+     <title> <ph keyref="setRemoteVideoStreamType" /> </title>
      <shortdesc id="short"> <ph id="shortdesc">设置订阅的视频流类型。</ph> </shortdesc>
      <prolog>
           <metadata>
                <keywords>
-                    <indexterm keyref="setRemoteVideoStreamType"/>
+                    <indexterm keyref="setRemoteVideoStreamType" />
                </keywords>
           </metadata>
      </prolog>
@@ -17,21 +17,24 @@
                <codeblock props="ios mac" outputclass="language-objectivec">- (int)setRemoteVideoStream:(NSUInteger)uid
                        type:(AgoraVideoStreamType)streamType;</codeblock>
                <codeblock props="cpp" outputclass="language-cpp">virtual int setRemoteVideoStreamType(uid_t uid, VIDEO_STREAM_TYPE streamType) = 0;</codeblock>
-               <codeblock props="electron" outputclass="language-typescript"/>
+               <codeblock props="electron" outputclass="language-typescript" />
                <codeblock props="unity" outputclass="language-csharp">public abstract int SetRemoteVideoStreamType(uint uid, VIDEO_STREAM_TYPE streamType);</codeblock>
-               <codeblock props="rn" outputclass="language-typescript"/>
-               <codeblock props="flutter" outputclass="language-dart"/></p>
+               <codeblock props="rn" outputclass="language-typescript">abstract setRemoteVideoStreamType(
+    uid: number,
+    streamType: VideoStreamType
+  ): number;</codeblock>
+               <codeblock props="flutter" outputclass="language-dart" /></p>
           </section>
           <section id="detailed_desc">
                <p id="desc1">
-                    在网络条件受限的情况下，如果发送端没有调用 <xref keyref="enableDualStreamMode" props="native flutter unity"/> <xref keyref="enableDualStreamMode3" props="rn electron"/>(<ph keyref="false"/>) 关闭双流模式，接收端可以选择接收大流还是小流。其中，大流为高分辨率高码率的视频流，小流则是低分辨率低码率的视频流。
+                    在网络条件受限的情况下，如果发送端没有调用 <xref keyref="enableDualStreamMode" props="native flutter unity" /> <xref keyref="enableDualStreamMode3" props="rn electron" />(<ph keyref="false" />) 关闭双流模式，接收端可以选择接收大流还是小流。其中，大流为高分辨率高码率的视频流，小流则是低分辨率低码率的视频流。
                </p>
                <p id="desc2">正常情况下，用户默认接收大流。如需接收小流，可以调用本方法进行切换。SDK 会根据视频窗口的大小动态调整对应视频流的大小，以节约带宽和计算资源。视频小流默认的宽高比和视频大流的宽高比一致。根据当前大流的宽高比，系统会自动分配小流的分辨率、帧率及码率。</p>
                <p id="desc3">
-                    调用本方法的执行结果将在 <xref keyref="onApiCallExecuted"/> 中返回。
+                    调用本方法的执行结果将在 <xref keyref="onApiCallExecuted" /> 中返回。
                </p>
                <note type="attention">
-                    该方法在加入频道前后都能调用。如果既调用了 <apiname keyref="setRemoteVideoStreamType"/> ，也调用了 <xref keyref="setRemoteDefaultVideoStreamType"/> ，则 SDK 以 <apiname keyref="setRemoteVideoStreamType"/> 中的设置为准。
+                    该方法在加入频道前后都能调用。如果既调用了 <apiname keyref="setRemoteVideoStreamType" /> ，也调用了 <xref keyref="setRemoteDefaultVideoStreamType" /> ，则 SDK 以 <apiname keyref="setRemoteVideoStreamType" /> 中的设置为准。
                </note> </section>
           <section id="parameters">
                <title>参数</title>
@@ -43,7 +46,7 @@
                <plentry>
                     <pt>streamType</pt>
                     <pd>
-                         <p props="ios mac cpp electron unity flutter rn">视频流类型: <xref keyref="REMOTE_VIDEO_STREAM_TYPE"/> 。</p>
+                         <p props="ios mac cpp electron unity flutter rn">视频流类型: <xref keyref="REMOTE_VIDEO_STREAM_TYPE" /> 。</p>
                          <p props="android">视频流类型：
 
 

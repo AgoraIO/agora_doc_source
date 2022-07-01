@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_joinchannelwithuseraccountex">
-    <title><ph keyref="joinChannelWithUserAccountEx"/></title>
+    <title><ph keyref="joinChannelWithUserAccountEx" /></title>
     <shortdesc id="short"><ph id="shortdesc">使用 User Account 加入频道，并设置是否自动订阅音频或视频流。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="joinChannelWithUserAccountEx"/>
+                <indexterm keyref="joinChannelWithUserAccountEx" />
             </keywords>
         </metadata>
     </prolog>
@@ -24,51 +24,56 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int joinChannelWithUserAccountEx(const char* token, const char* channelId,
                                          const char* userAccount, const ChannelMediaOptions&amp; options,
                                          IRtcEngineEventHandler* eventHandler) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public abstract int JoinChannelWithUserAccountEx(string token, string channelId, string userAccount, ChannelMediaOptions options, IAgoraRtcEngineEventHandler eventHandler); </codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract joinChannelWithUserAccountEx(
+    token: string,
+    channelId: string,
+    userAccount: string,
+    options: ChannelMediaOptions
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
-            <p conkeyref="joinChannelWithUserAccount2/desc1"/>
-            <p conkeyref="joinChannelWithUserAccount2/desc2"/>
-            <note conkeyref="joinChannelWithUserAccount1/note" props="native flutter unity"/>
+            <p conkeyref="joinChannelWithUserAccount2/desc1" />
+            <p conkeyref="joinChannelWithUserAccount2/desc2" />
+            <note conkeyref="joinChannelWithUserAccount1/note" props="native flutter unity" />
             <note type="attention" id="note" props="rn electron">为保证通信质量，请确保频道内使用同一类型的数据标识用户身份。即同一频道内需要统一使用 UID 或 User Account。如果有用户通过 Agora Web SDK 加入频道，请确保 Web 加入的用户也是同样类型。</note>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry conkeyref="joinChannel2/token">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry>
                 <pt>channelId</pt>
                 <pd>
-                    <p conkeyref="joinChannel2/channelID_desc"/>
+                    <p conkeyref="joinChannel2/channelID_desc" />
                 </pd>
             </plentry>
             <plentry conkeyref="joinChannelWithUserAccount2/userAccount">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry>
                 <pt props="cpp android unity rn electron">options</pt>
                 <pt props="ios mac">mediaOptions</pt>
                 <pd>
-                    <p conkeyref="joinChannel2/options_desc"/>
+                    <p conkeyref="joinChannel2/options_desc" />
                 </pd>
             </plentry>
             <plentry conkeyref="joinChannelEx/event">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry conkeyref="joinChannel2/joinsuccessblock" props="ios mac">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功。</li>
