@@ -24,6 +24,34 @@ jobs:
                   python -m pip install --upgrade pip
                   pip install coverage
                   if  [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+            - name: Run Unity NG validation
+              run: |
+                  cd xml2json
+                  python check_unity_ng_prototype.py --code_location ./code_to_check/unity_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-unity.ditamap --decomment_code_location ./code_to_check/decommented
+                  echo "The prototype validation starts ..."
+                  cat prototype_check_unity_ng.txt
+                  echo "The prototype validation ends ..."
+            - name: Run Flutter NG validation
+              run: |
+                  cd xml2json
+                  python check_flutter_ng_prototype.py --code_location ./code_to_check/flutter-ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-flutter.ditamap --decomment_code_location ./code_to_check/decommented
+                  echo "The prototype validation starts ..."
+                  cat prototype_check_flutter_ng.txt
+                  echo "The prototype validation ends ..."
+            - name: Run RN NG validation
+              run: |
+                  cd xml2json
+                  python check_rn_ng_prototype.py --code_location ./code_to_check/rn_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-rn.ditamap --decomment_code_location ./code_to_check/decommented
+                  echo "The prototype validation starts ..."
+                  cat prototype_check_rn_ng.txt
+                  echo "The prototype validation ends ..."
+            - name: Run Electron NG validation
+              run: |
+                  cd xml2json
+                  python check_electron_ng_prototype.py --code_location ./code_to_check/electron_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-electron.ditamap --decomment_code_location ./code_to_check/decommented
+                  echo "The prototype validation starts ..."
+                  cat prototype_check_electron_ng.txt
+                  echo "The prototype validation ends ..."
             - name: Run CPP NG validation
               run: |
                   cd xml2json
@@ -58,11 +86,4 @@ jobs:
                   python check_dart_cg_prototype.py --code_location ./code_to_check/flutter_cg --dita_location ../dita/RTC/API --dita_map_location ../dita/RTC/config/keys-rtc-api-flutter.ditamap --decomment_code_location ./code_to_check/decommented
                   echo "The prototype validation starts ..."
                   cat prototype_check_dart_cg.txt
-                  echo "The prototype validation ends ..."
-            - name: Run Unity NG validation
-              run: |
-                  cd xml2json
-                  python check_unity_ng_prototype.py --code_location ./code_to_check/unity_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-unity.ditamap --decomment_code_location ./code_to_check/decommented
-                  echo "The prototype validation starts ..."
-                  cat prototype_check_unity_ng.txt
                   echo "The prototype validation ends ..."
