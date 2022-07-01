@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audiorecordingconfiguration_ng">
-    <title> <ph keyref="AudioRecordingConfiguration"/> </title>
+    <title> <ph keyref="AudioRecordingConfiguration" /> </title>
     <shortdesc id="short"> <ph id="shortdesc">录音配置。</ph> </shortdesc>
     <refbody>
         <section id="prototype">
@@ -62,7 +62,13 @@
       fileRecordingType(rhs.fileRecordingType),
       quality(rhs.quality) {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export class AudioRecordingConfiguration {
+  filePath?: string
+  encode?: boolean
+  sampleRate?: number
+  fileRecordingType?: AudioFileRecordingType
+  quality?: AudioRecordingQualityType
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class AudioRecordingConfiguration
     {
         public AudioRecordingConfiguration()
@@ -99,19 +105,16 @@
         public AUDIO_FILE_RECORDING_TYPE fileRecordingType { set; get; }
         public AUDIO_RECORDING_QUALITY_TYPE quality { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock>
             </p>
         </section>
         <section id="parameters">
-            <title> <text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /> </title>
+            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>
             <parml>
             <plentry id="filepath">
                 <pt>filePath</pt>
-                <pd>录音文件在本地保存的绝对路径，需精确到文件名及格式。例如：<codeph><ph
-                    keyref="filePath-example"/></codeph>。
+                <pd>录音文件在本地保存的绝对路径，需精确到文件名及格式。例如：<codeph><ph keyref="filePath-example" /></codeph>。
 
 
                     
@@ -126,10 +129,10 @@
 
                     
                     <ul id="ul_bnv_mlz_mqb">
-                    <li> <codeph> <ph keyref="true"/> </codeph>
+                    <li> <codeph> <ph keyref="true" /> </codeph>
                                 : 将音频数据用 AAC 编码。
                             </li>
-                    <li> <codeph> <ph keyref="false"/> </codeph>
+                    <li> <codeph> <ph keyref="false" /> </codeph>
                                 :（默认）不编码音频数据，直接保存录制的音频数据。
                             </li>
                     </ul> </pd>
@@ -150,11 +153,9 @@
                                 如果把该参数设为 44100 或 48000，为保证录音效果，Agora 推荐录制 WAV 文件或
                                 <parmname>quality</parmname>
                                 为
-                                <ph
-                    keyref="AUDIO_RECORDING_QUALITY_MEDIUM"/>
+                                <ph keyref="AUDIO_RECORDING_QUALITY_MEDIUM" />
                                 或
-                                <ph
-                    keyref="AUDIO_RECORDING_QUALITY_HIGH"/>
+                                <ph keyref="AUDIO_RECORDING_QUALITY_HIGH" />
                                 的 AAC 文件。
                             </p>
                     </note> </pd>
@@ -163,23 +164,19 @@
                 <pt props="cpp unity electron rn">fileRecordingType</pt>
                 <pt props="android ios mac">fileRecordOption</pt>
                 <pd>
-                    <p props="ios mac cpp unity">录音内容。详见 <xref
-                    keyref="AUDIO_RECORDING_POSITION"/>。</p>
+                    <p props="ios mac cpp unity">录音内容。详见 <xref keyref="AUDIO_RECORDING_POSITION" />。</p>
                     <p props="android">录音内容：
 
 
                     
                     <ul>
-                    <li> <ph keyref="AUDIO_RECORDING_POSITION_RECORDING"/>
+                    <li> <ph keyref="AUDIO_RECORDING_POSITION_RECORDING" />
                                     (1)：仅录制本地用户的音频。
                                 </li>
-                    <li> <ph keyref="AUDIO_RECORDING_POSITION_MIXED_PLAYBACK"
-                        />
+                    <li> <ph keyref="AUDIO_RECORDING_POSITION_MIXED_PLAYBACK" />
                                     (2)：仅录制所有远端用户的音频。
                                 </li>
-                    <li> <ph
-                        keyref="AUDIO_RECORDING_POSITION_MIXED_RECORDING_AND_PLAYBACK"
-                        />
+                    <li> <ph keyref="AUDIO_RECORDING_POSITION_MIXED_RECORDING_AND_PLAYBACK" />
                                     (3): （默认）录制本地和所有远端用户混音后的音频。
                                 </li>
                     </ul> </p>
@@ -188,20 +185,19 @@
             <plentry>
                 <pt>quality</pt>
                 <pd>
-                    <p props="ios mac cpp unity electron rn">录音音质。详见 <xref
-                    keyref="AUDIO_RECORDING_QUALITY_TYPE"/>。</p>
+                    <p props="ios mac cpp unity electron rn">录音音质。详见 <xref keyref="AUDIO_RECORDING_QUALITY_TYPE" />。</p>
                     <p props="android">录音音质：
 
 
                     
                     <ul>
-                    <li> <ph keyref="AUDIO_RECORDING_QUALITY_LOW"/>
+                    <li> <ph keyref="AUDIO_RECORDING_QUALITY_LOW" />
                                     (0)：低音质。例如，采样率为 32000 Hz，录音时长为 10 分钟的 AAC 文件大小约为 1.2 MB。
                                 </li>
-                    <li> <ph keyref="AUDIO_RECORDING_QUALITY_MEDIUM"/>
+                    <li> <ph keyref="AUDIO_RECORDING_QUALITY_MEDIUM" />
                                     (1)：（默认）中音质。例如，采样率为 32000 Hz，录音时长为 10 分钟的 AAC 文件大小约为 2 MB。
                                 </li>
-                    <li> <ph keyref="AUDIO_RECORDING_QUALITY_HIGH"/>
+                    <li> <ph keyref="AUDIO_RECORDING_QUALITY_HIGH" />
                                     (2)：高音质。例如，采样率为 32000 Hz，录音时长为 10 分钟的 AAC 文件大小约为 3.75 MB。
                                 </li>
                     </ul> </p>
