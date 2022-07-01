@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_enablelastmiletest">
     <title>
-        <ph keyref="enableLastmileTest" />
+        <ph keyref="enableLastmileTest"/>
     </title>
     <shortdesc id="short">
         <ph id="shortdesc">启用网络测试。</ph>
@@ -10,45 +10,39 @@
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="enableLastmileTest" />
+                <indexterm keyref="enableLastmileTest"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
                 <codeblock props="cpp" outputclass="language-cpp">virtual int enableLastmileTest() = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">enableLastmileTest(): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int EnableLastmileTest();</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableLastmileTest();</codeblock>
-        </p>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p>
-                该方法启用网络连接质量测试，用于检测用户目前的网络接入质量（上行网络质量）。默认该功能为关闭状态。该方法主要用于以下场景:
-                <ul>
+            <p> 该方法启用网络连接质量测试，用于检测用户目前的网络接入质量（上行网络质量）。默认该功能为关闭状态。该方法主要用于以下场景: <ul>
                     <li>用户加入频道前，可以调用该方法判断和预测目前的上行网络质量是否足够好。</li>
                     <li>直播场景下，当用户角色由观众切换为主播时，可以调用该方法判断和预测目前的上行网络质量是否足够好。</li>
                 </ul>
             </p>
-            <p>
-                无论哪种场景，启用该方法均会消耗网络流量，影响通话质量。用户必须在收到 <xref keyref="onLastmileQuality" /> 回调后须调用 <xref keyref="disableLastmileTest" /> 停止测试，再加入频道或切换为主播。
-            </p>
+            <p> 无论哪种场景，启用该方法均会消耗网络流量，影响通话质量。用户必须在收到 <xref keyref="onLastmileQuality"/> 回调后须调用 <xref
+                    keyref="disableLastmileTest"/> 停止测试，再加入频道或切换为主播。 </p>
             <note type="attention">
                 <ul>
-                    <li>
-                        该方法请勿与 <xref keyref="startLastmileProbeTest" /> 同时使用。
-                    </li>
-                    <li>
-                        调用该方法后，在收到 <xref keyref="onLastmileQuality" /> 回调前请勿调用其他方法，否则可能由于 API 操作过于频繁导致回调无法执行。
-                    </li>
+                    <li> 该方法请勿与 <xref keyref="startLastmileProbeTest"/> 同时使用。 </li>
+                    <li> 调用该方法后，在收到 <xref keyref="onLastmileQuality"/> 回调前请勿调用其他方法，否则可能由于 API
+                        操作过于频繁导致回调无法执行。 </li>
                     <li>在直播场景中，如果本地用户为主播，请勿加入频道后调用该方法。</li>
-                    <li>
-                        加入频道前调用该方法检测网络质量后，SDK 会占用一路视频的带宽，码率与 <xref keyref="setVideoEncoderConfiguration" /> 中设置的码率相同。加入频道后，无论是否调用了 <xref keyref="disableLastmileTest" />，SDK 均会自动停止带宽占用。
-                    </li>
+                    <li> 加入频道前调用该方法检测网络质量后，SDK 会占用一路视频的带宽，码率与 <xref
+                            keyref="setVideoEncoderConfiguration"/> 中设置的码率相同。加入频道后，无论是否调用了 <xref
+                            keyref="disableLastmileTest"/>，SDK 均会自动停止带宽占用。 </li>
                 </ul>
             </note>
         </section>

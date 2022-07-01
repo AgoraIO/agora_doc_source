@@ -1,36 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startaudiorecording2">
-    <title><ph keyref="startAudioRecording2" /></title>
+    <title><ph keyref="startAudioRecording2"/></title>
     <shortdesc id="short"><ph id="shortdesc">Starts audio recording on the client.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="startAudioRecording2" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="startAudioRecording2"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
+    <refbody>
+        <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
-            <codeblock props="ios mac" outputclass="language-objectivec" />
-            <codeblock props="cpp" outputclass="language-cpp">virtual int startAudioRecording(const char* filePath, 
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int startAudioRecording(const char* filePath, 
     int sampleRate, 
     AUDIO_RECORDING_QUALITY_TYPE quality) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">startAudioRecording(filePath: string,
+                <codeblock props="electron" outputclass="language-typescript">startAudioRecording(filePath: string,
     sampleRate: number,
     quality: AUDIO_RECORDING_QUALITY_TYPE
     ): number </codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int StartAudioRecording(string filePath, int sampleRate, AUDIO_RECORDING_QUALITY_TYPE quality);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startAudioRecording(String filePath,
-      AudioSampleRateType sampleRate, AudioRecordingQuality quality);</codeblock> </p>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartAudioRecording(string filePath, int sampleRate, AUDIO_RECORDING_QUALITY_TYPE quality);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startAudioRecording(String filePath,
+      AudioSampleRateType sampleRate, AudioRecordingQuality quality);</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated">
                 <dlentry>
                     <dt>Deprecated:</dt>
-                    <dd>This method is deprecated as of v3.4.0. Please use <xref keyref="startAudioRecording3" /> instead.</dd>
+                    <dd>This method is deprecated as of v3.4.0. Please use <xref
+                            keyref="startAudioRecording3"/> instead.</dd>
                 </dlentry>
             </dl>
             <dl outputclass="since" props="rtc">
@@ -39,48 +42,58 @@
                     <dd>v2.9.1</dd>
                 </dlentry>
             </dl>
-   <p>The Agora SDK allows recording during a call. After successfully calling this method, you can record the audio of all the users in the channel and get an audio recording file. Supported formats of the recording file are as follows:<ul>
-      <li>.wav: Large file size with high fidelity.</li>
-      <li>.aac: Small file size with low fidelity.</li>
-  </ul>
-       </p>
-   <note type="attention">
-       <ul>
-  <li>Ensure that the directory you use to save the recording file exists and is writable.</li>
-  <li>This method should be called after the <apiname keyref="joinChannel2" /> method. The recording automatically stops when you call the <xref keyref="leaveChannel" /> method.</li>
-  <li>For better recording effects, set <parmname>quality</parmname> to <apiname keyref="AUDIO_RECORDING_QUALITY_MEDIUM" /> or <apiname keyref="AUDIO_RECORDING_QUALITY_HIGH" /> when <parmname>sampleRate</parmname> is 44.1 kHz or 48 kHz.</li>
-       </ul>
-   </note>
+            <p>The Agora SDK allows recording during a call. After successfully calling this method,
+                you can record the audio of all the users in the channel and get an audio recording
+                file. Supported formats of the recording file are as follows:<ul>
+                    <li>.wav: Large file size with high fidelity.</li>
+                    <li>.aac: Small file size with low fidelity.</li>
+                </ul>
+            </p>
+            <note type="attention">
+                <ul>
+                    <li>Ensure that the directory you use to save the recording file exists and is
+                        writable.</li>
+                    <li>This method should be called after the <apiname keyref="joinChannel2"/>
+                        method. The recording automatically stops when you call the <xref
+                            keyref="leaveChannel"/> method.</li>
+                    <li>For better recording effects, set <parmname>quality</parmname> to <apiname
+                            keyref="AUDIO_RECORDING_QUALITY_MEDIUM"/> or <apiname
+                            keyref="AUDIO_RECORDING_QUALITY_HIGH"/> when
+                            <parmname>sampleRate</parmname> is 44.1 kHz or 48 kHz.</li>
+                </ul>
+            </note>
         </section>
         <section id="parameters"><title>Parameters</title>
-   <parml>
-       <plentry conkeyref="AudioRecordingConfiguration/filepath">
-           <pt />
-           <pd />
-       </plentry>
-       <plentry>
-  <pt>sampleRate</pt>
-  <pd>
-      <p>The sample rate (kHz) of the recording file. Supported values are as follows:<ul>
-     <li>16000</li>
-     <li>(Default) 32000</li>
-     <li>44100</li>
-     <li>48000</li>
- </ul>
-      </p>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt>quality</pt>
-  <pd>Recording quality. For more details, see <xref keyref="AUDIO_RECORDING_QUALITY_TYPE" />.</pd>
-       </plentry>
-   </parml>
+            <parml>
+                <plentry conkeyref="AudioRecordingConfiguration/filepath">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry>
+                    <pt>sampleRate</pt>
+                    <pd>
+                        <p>The sample rate (kHz) of the recording file. Supported values are as follows:<ul>
+                                <li>16000</li>
+                                <li>(Default) 32000</li>
+                                <li>44100</li>
+                                <li>48000</li>
+                            </ul>
+                        </p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>quality</pt>
+                    <pd>Recording quality. For more details, see <xref
+                            keyref="AUDIO_RECORDING_QUALITY_TYPE"/>.</pd>
+                </plentry>
+            </parml>
         </section>
         <section id="return_values" props="native electron unity">
-   <title>Returns</title>
-   <ul>
-       <li>0: Success.</li>
-       <li>&lt; 0: Failure.</li>
-   </ul>
-        </section></refbody>
+            <title>Returns</title>
+            <ul>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
+    </refbody>
 </reference>

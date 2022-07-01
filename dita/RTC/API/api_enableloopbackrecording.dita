@@ -13,48 +13,58 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="mac" outputclass="language-objectivec">- (int)enableLoopbackRecording:(BOOL)enabled;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int enableLoopbackRecording(bool enabled) = 0;</codeblock> </p>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)enableLoopbackRecording:(BOOL)enabled;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int enableLoopbackRecording(bool enabled) = 0;</codeblock>
+            </p>
             <p outputclass="codeblock" props="rtc">
-            <codeblock props="mac" outputclass="language-objectivec">- (int)enableLoopbackRecording:(BOOL)enabled deviceName:(NSString *_Nullable)deviceName;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int enableLoopbackRecording(bool enabled, const char* deviceName = NULL) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">enableLoopbackRecording(
+                <codeblock props="mac" outputclass="language-objectivec">- (int)enableLoopbackRecording:(BOOL)enabled deviceName:(NSString *_Nullable)deviceName;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int enableLoopbackRecording(bool enabled, const char* deviceName = NULL) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">enableLoopbackRecording(
     enabled = false,
     deviceName: string | null = null
     ): number</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public abstract int EnableLoopbackRecording(bool enabled, string deviceName);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableLoopbackRecording(bool enabled, {String? deviceName})</codeblock> </p>
+                <codeblock props="cs" outputclass="language-csharp">public abstract int EnableLoopbackRecording(bool enabled, string deviceName);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableLoopbackRecording(bool enabled, {String? deviceName})</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
             <p id="desc">启用声卡采集功能后，声卡播放的声音会被合到本地音频流中，从而可以发送到远端。</p>
             <note type="attention" id="note">
-            <ul>
-            <li props="cpp flutter">该方法仅适用于 macOS 和 Windows 平台。</li>
-            <li props="rtc"><ph props="cpp mac electron flutter">macOS 系统默认声卡不支持采集功能，如果你需要使用该功能，请启用一个虚拟声卡，并将该虚拟声卡的名字传入 <codeph>deviceName</codeph> 参数。Agora 推荐你启用 <xref keyref="guide-agoraald">AgoraALD (Agora Audio Loopback Device)</xref> 并向该参数传入 <codeph>"AgoraALD"</codeph>。</ph></li>
-            <li>该方法在加入频道前后都能调用。</li>
-            </ul> </note> </section>
+                <ul>
+                    <li props="cpp flutter">该方法仅适用于 macOS 和 Windows 平台。</li>
+                    <li props="rtc"><ph props="cpp mac electron flutter">macOS
+                            系统默认声卡不支持采集功能，如果你需要使用该功能，请启用一个虚拟声卡，并将该虚拟声卡的名字传入
+                                <codeph>deviceName</codeph> 参数。Agora 推荐你启用 <xref
+                                keyref="guide-agoraald">AgoraALD (Agora Audio Loopback
+                                Device)</xref> 并向该参数传入 <codeph>"AgoraALD"</codeph>。</ph></li>
+                    <li>该方法在加入频道前后都能调用。</li>
+                </ul>
+            </note>
+        </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry>
-                <pt>enabled</pt>
-                <pd>是否开启声卡采集:
-                    <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: 开启声卡采集。</li>
-                    <li><codeph><ph keyref="false"/></codeph>:（默认）关闭声卡采集。</li>
-                    </ul></pd>
-            </plentry>
-            <plentry props="android ios mac cpp electron cs flutter">
-                <pt>deviceName</pt>
-                <pd>声卡的设备名。默认为空，代表使用当前声卡采集。如果你使用虚拟声卡，如 AgoraALD（Agora Audio Loopback Device），你可以将该参数设置为声卡的名称（<codeph>"AgoraALD"</codeph>）。</pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>enabled</pt>
+                    <pd>是否开启声卡采集: <ul>
+                            <li><codeph><ph keyref="true"/></codeph>: 开启声卡采集。</li>
+                            <li><codeph><ph keyref="false"/></codeph>:（默认）关闭声卡采集。</li>
+                        </ul></pd>
+                </plentry>
+                <plentry props="android ios mac cpp electron cs flutter">
+                    <pt>deviceName</pt>
+                    <pd>声卡的设备名。默认为空，代表使用当前声卡采集。如果你使用虚拟声卡，如 AgoraALD（Agora Audio Loopback
+                            Device），你可以将该参数设置为声卡的名称（<codeph>"AgoraALD"</codeph>）。</pd>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values" props="native electron cs">
             <title>返回值</title>
             <ul>
-            <li>0: 方法调用成功。</li>
-            <li>&lt; 0: 方法调用失败。</li>
-            </ul> </section>
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。</li>
+            </ul>
+        </section>
     </refbody>
 </reference>

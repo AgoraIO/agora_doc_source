@@ -13,48 +13,61 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int joinChannel(
+                <codeblock props="android" outputclass="language-java">public abstract int joinChannel(
     String token, String channelName, String optionalInfo, int optionalUid);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)joinChannelByToken:(NSString * _Nullable)token
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)joinChannelByToken:(NSString * _Nullable)token
                 channelId:(NSString * _Nonnull)channelId
                      info:(NSString * _Nullable)info
                       uid:(NSUInteger)uid
               joinSuccess:(void(^ _Nullable)(NSString * _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int joinChannel(const char* token, const char* channelId, const char* info,
+                <codeblock props="cpp" outputclass="language-cpp">virtual int joinChannel(const char* token, const char* channelId, const char* info,
                         uid_t uid) = 0;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int JoinChannel(string token, string channelId, string info = "", uint uid = 0);</codeblock> </p>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int JoinChannel(string token, string channelId, string info = "", uint uid = 0);</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
             <p conkeyref="joinChannel2/desc1"/>
             <p conkeyref="joinChannel2/desc2"/>
             <p conkeyref="joinChannel2/desc3"/>
-            <note type="attention">Once a user joins the channel, the user subscribes to the audio and video streams of all the other users in the channel by default, giving rise to usage and billing calculation. To stop subscribing to a specified stream or all remote streams, call the corresponding <apiname>mute</apiname> methods.</note> </section>
+            <note type="attention">Once a user joins the channel, the user subscribes to the audio
+                and video streams of all the other users in the channel by default, giving rise to
+                usage and billing calculation. To stop subscribing to a specified stream or all
+                remote streams, call the corresponding <apiname>mute</apiname> methods.</note>
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry conkeyref="joinChannel2/token">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry conkeyref="joinChannel2/channelID">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry>
-                <pt props="ios mac cpp unity">info</pt>
-                <pt props="android">optionalInfo</pt>
-                <pd>(Optional) Reserved for future use.</pd>
-            </plentry>
-            <plentry id="uid">
-                <pt props="ios mac cpp electron unity">uid</pt>
-                <pt props="android">optionalUid</pt>
-                <pd>The user ID. This parameter is used to identify the user in the channel for real-time audio and video interaction. You need to set and manage user IDs yourself, and ensure that each user ID in the same channel is unique. This parameter is a 32-bit unsigned integer. The value range is 1 to 2<sup>32</sup>-1. If the user ID is not assigned (or set to 0), the SDK assigns a random user ID and returns it in the <apiname keyref="onJoinChannelSuccess"/> callback. Your application must record and maintain the returned user ID, because the SDK does not do so.</pd>
-            </plentry>
-            <plentry props="ios mac" conkeyref="joinChannel2/joinsuccessblock">
-                <pt/>
-                <pd/>
-            </plentry>
-            </parml> </section>
+                <plentry conkeyref="joinChannel2/token">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry conkeyref="joinChannel2/channelID">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry>
+                    <pt props="ios mac cpp unity">info</pt>
+                    <pt props="android">optionalInfo</pt>
+                    <pd>(Optional) Reserved for future use.</pd>
+                </plentry>
+                <plentry id="uid">
+                    <pt props="ios mac cpp electron unity">uid</pt>
+                    <pt props="android">optionalUid</pt>
+                    <pd>The user ID. This parameter is used to identify the user in the channel for
+                        real-time audio and video interaction. You need to set and manage user IDs
+                        yourself, and ensure that each user ID in the same channel is unique. This
+                        parameter is a 32-bit unsigned integer. The value range is 1 to
+                            2<sup>32</sup>-1. If the user ID is not assigned (or set to 0), the SDK
+                        assigns a random user ID and returns it in the <apiname
+                            keyref="onJoinChannelSuccess"/> callback. Your application must record
+                        and maintain the returned user ID, because the SDK does not do so.</pd>
+                </plentry>
+                <plentry props="ios mac" conkeyref="joinChannel2/joinsuccessblock">
+                    <pt/>
+                    <pd/>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values" conkeyref="joinChannel2/return_values"/>
     </refbody>
 </reference>

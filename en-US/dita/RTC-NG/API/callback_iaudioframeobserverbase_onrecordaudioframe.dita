@@ -13,22 +13,27 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnRecordAudioFrame(AudioFrame audioFrame)
+                <codeblock props="unity" outputclass="language-csharp">public virtual bool OnRecordAudioFrame(AudioFrame audioFrame)
         {
             return true;
         }</codeblock>
-            <codeblock props="android" outputclass="language-java">public abstract boolean onRecordAudioFrame(int type, int samplesPerChannel, int bytesPerSample,
+                <codeblock props="android" outputclass="language-java">public abstract boolean onRecordAudioFrame(int type, int samplesPerChannel, int bytesPerSample,
       int channels, int samplesPerSec, ByteBuffer buffer, long renderTimeMs, int avsync_type);
 </codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onRecordAudioFrame:(AgoraAudioFrame* _Nonnull)frame;
+                <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onRecordAudioFrame:(AgoraAudioFrame* _Nonnull)frame;
 </codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual bool onRecordAudioFrame(AudioFrame&amp; audioFrame) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+                <codeblock props="cpp" outputclass="language-cpp">virtual bool onRecordAudioFrame(AudioFrame&amp; audioFrame) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
-            <note type="note">If you want to set the format of the captured audio frame, Agora recommends that you call the <xref keyref="setRecordingAudioFrameParameters"/> method to set the format of the audio frame after calling the <xref keyref="registerAudioFrameObserver"/> method to register an audio frame observer. </note>
+            <note type="note">If you want to set the format of the captured audio frame, Agora
+                recommends that you call the <xref keyref="setRecordingAudioFrameParameters"/>
+                method to set the format of the audio frame after calling the <xref
+                    keyref="registerAudioFrameObserver"/> method to register an audio frame
+                observer. </note>
         </section>
         <section id="parameters" conkeyref="onMixedAudioFrame/parameters"/>
         <section id="return_values" conkeyref="onMixedAudioFrame/return_values"/>

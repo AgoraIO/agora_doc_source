@@ -1,86 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaengine_pushaudioframe2">
-    <title><ph keyref="pushAudioFrame2" /></title>
+    <title><ph keyref="pushAudioFrame2"/></title>
     <shortdesc id="short"><ph id="shortdesc">Pushes the external audio frame.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="pushAudioFrame2" />
+                <indexterm keyref="pushAudioFrame2"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int pushExternalAudioFrame(byte[] data, long timestamp,
+                <codeblock props="android" outputclass="language-java">public abstract int pushExternalAudioFrame(byte[] data, long timestamp,
                                            int sampleRate, int channels,
                                            int bytesPerSample, int sourcePos);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)pushExternalAudioFrameRawData:(AgoraAudioExternalSourcePos)sourcePos frame:(AgoraAudioFrame* _Nonnull)frame;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int pushAudioFrame(int32_t sourcePos, IAudioFrameObserver::AudioFrame* frame) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="cs" outputclass="language-csharp">public abstract int PushAudioFrame(int sourcePos, AudioFrame frame);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)pushExternalAudioFrameRawData:(AgoraAudioExternalSourcePos)sourcePos frame:(AgoraAudioFrame* _Nonnull)frame;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int pushAudioFrame(int32_t sourcePos, IAudioFrameObserver::AudioFrame* frame) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="cs" outputclass="language-csharp">public abstract int PushAudioFrame(int sourcePos, AudioFrame frame);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
-            <dlentry>
-                <dt>Since</dt>
-                <dd>v3.5.1</dd>
-            </dlentry>
+                <dlentry>
+                    <dt>Since</dt>
+                    <dd>v3.5.1</dd>
+                </dlentry>
             </dl>
-            <p>According to your needs, you can push the external audio frame to one of three positions: after audio capture, before audio encoding, or before local playback.</p>
-            <p>You can call this method multiple times to push one audio frame to multiple positions or multiple audio frames to different positions.</p>
-            <p>For example, in the KTV scenario, you can push the singing voice to after audio capture, so that the singing voice can be processed by the SDK audio module
-            and you can obtain a high-quality audio experience; you can also push the accompaniment to before audio encoding, so that the accompaniment is not affected by the audio module of the SDK.</p>
-            <note type="attention">Call this method after joining a channel.</note> </section>
+            <p>According to your needs, you can push the external audio frame to one of three
+                positions: after audio capture, before audio encoding, or before local playback.</p>
+            <p>You can call this method multiple times to push one audio frame to multiple positions
+                or multiple audio frames to different positions.</p>
+            <p>For example, in the KTV scenario, you can push the singing voice to after audio
+                capture, so that the singing voice can be processed by the SDK audio module and you
+                can obtain a high-quality audio experience; you can also push the accompaniment to
+                before audio encoding, so that the accompaniment is not affected by the audio module
+                of the SDK.</p>
+            <note type="attention">Call this method after joining a channel.</note>
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry props="cpp ios mac" conkeyref="pushAudioFrame1/frame">
-                <pt />
-                <pd />
-            </plentry>
-            <plentry props="android" conkeyref="pushAudioFrame1/data">
-                <pt />
-                <pd />
-            </plentry>
-            <plentry props="android" conkeyref="pushAudioFrame1/time">
-                <pt />
-                <pd />
-            </plentry>
-            <plentry props="android">
-                <pt>sampleRate</pt>
-                <pd>The sample rate of the external audio source, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
-            </plentry>
-            <plentry props="android">
-                <pt>channels</pt>
-                <pd>
-                    <p>The number of audio channels:
-                   
-                    
-                    
-                    <ul>
-                    <li><codeph>1</codeph>: Mono</li>
-                    <li><codeph>2</codeph>: Stereo (the data is interleaved)</li>
-                    </ul> </p>
-                </pd>
-            </plentry>
-            <plentry props="android">
-                <pt>bytesPerSample</pt>
-                <pd>The number of bytes per audio sample, which is usually 16-bit (2-byte).</pd>
-            </plentry>
-            <plentry>
-                <pt>sourcePos</pt>
-                <pd>The push position of the external audio frame. See <xref keyref="AUDIO_EXTERNAL_SOURCE_POSITION" />.</pd>
-            </plentry>
-            </parml> </section>
+                <plentry props="cpp ios mac" conkeyref="pushAudioFrame1/frame">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry props="android" conkeyref="pushAudioFrame1/data">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry props="android" conkeyref="pushAudioFrame1/time">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry props="android">
+                    <pt>sampleRate</pt>
+                    <pd>The sample rate of the external audio source, which can be set as 8000,
+                        16000, 32000, 44100, or 48000 Hz.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>channels</pt>
+                    <pd>
+                        <p>The number of audio channels: <ul>
+                                <li><codeph>1</codeph>: Mono</li>
+                                <li><codeph>2</codeph>: Stereo (the data is interleaved)</li>
+                            </ul>
+                        </p>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>bytesPerSample</pt>
+                    <pd>The number of bytes per audio sample, which is usually 16-bit (2-byte).</pd>
+                </plentry>
+                <plentry>
+                    <pt>sourcePos</pt>
+                    <pd>The push position of the external audio frame. See <xref
+                            keyref="AUDIO_EXTERNAL_SOURCE_POSITION"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values">
             <title>Returns</title>
             <ul>
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure.</li>
-            </ul> </section>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
     </refbody>
 </reference>

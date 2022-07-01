@@ -1,83 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setlocalrendermode2">
-    <title><ph keyref="setLocalRenderMode2" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Updates the display mode of the local video view.</ph></shortdesc>
+    <title><ph keyref="setLocalRenderMode2"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Updates the display mode of the local video
+        view.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setLocalRenderMode2" />
+                <indexterm keyref="setLocalRenderMode2"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="cpp" outputclass="language-cpp">virtual int setLocalRenderMode(media::base::RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLocalRenderMode:(AgoraVideoRenderMode)mode
-                   mirror:(AgoraVideoMirrorMode)mirror;</codeblock> </p>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setLocalRenderMode(media::base::RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLocalRenderMode:(AgoraVideoRenderMode)mode
+                   mirror:(AgoraVideoMirrorMode)mirror;</codeblock>
+            </p>
             <p outputclass="codeblock" props="rtc">
-            <codeblock props="cpp" outputclass="language-cpp">virtual int setLocalRenderMode(RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLocalRenderMode:(AgoraVideoRenderMode)renderMode mirrorMode:(AgoraVideoMirrorMode)mirrorMode;</codeblock> </p>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setLocalRenderMode(RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLocalRenderMode:(AgoraVideoRenderMode)renderMode mirrorMode:(AgoraVideoMirrorMode)mirrorMode;</codeblock>
+            </p>
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int setLocalRenderMode(int renderMode, int mirrorMode);</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="cs" outputclass="language-csharp">public abstract int SetLocalRenderMode(RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+                <codeblock props="android" outputclass="language-java">public abstract int setLocalRenderMode(int renderMode, int mirrorMode);</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="cs" outputclass="language-csharp">public abstract int SetLocalRenderMode(RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
-            <dlentry>
-                <dt>Since</dt>
-                <dd>v3.3.0</dd>
-            </dlentry>
+                <dlentry>
+                    <dt>Since</dt>
+                    <dd>v3.3.0</dd>
+                </dlentry>
             </dl>
-            <p>After initializing the local video view, you can call this method to update its rendering and mirror modes. It affects only the video view that the local user sees, not the published local video stream.</p>
+            <p>After initializing the local video view, you can call this method to update its
+                rendering and mirror modes. It affects only the video view that the local user sees,
+                not the published local video stream.</p>
             <note type="attention">
-            <ul>
-            <li>Ensure that you have called the <xref keyref="setupLocalVideo" /> method to initialize the local video view before calling this method.</li>
-            <li>During a call, you can call this method as many times as necessary to update the display mode of the local video view.</li>
-            </ul> </note> </section>
+                <ul>
+                    <li>Ensure that you have called the <xref keyref="setupLocalVideo"/> method to
+                        initialize the local video view before calling this method.</li>
+                    <li>During a call, you can call this method as many times as necessary to update
+                        the display mode of the local video view.</li>
+                </ul>
+            </note>
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry>
-                <pt props="android cpp cs">renderMode</pt>
-                <pt props="ios mac"><ph props="rtc-ng">mode</ph><ph props="rtc">renderMode</ph></pt>
-                <pd>
-                    <p props="ios mac cpp cs">The local video display mode. For details, see <xref keyref="RENDER_MODE_TYPE" />.</p>
-                    <p props="android">The local video display mode.
-                    
-                    <ul id="rendermodetype">
-                    <li><ph keyref="RENDER_MODE_HIDDEN" />
-                           (1): Hidden mode. Uniformly scale the video until it fills the visible boundaries (cropped). One dimension of the video may have clipped contents.</li>
-                    <li><ph keyref="RENDER_MODE_FIT" />
-                           (2): Fit mode. Uniformly scale the video until one of its dimension fits the boundary (zoomed to fit). Areas that are not filled due to the disparity in the aspect ratio are filled with black.</li>
-                    <li><ph keyref="RENDER_MODE_ADAPTIVE" /> (3): This mode is deprecated.</li>
-                    </ul> </p>
-                </pd>
-            </plentry>
-            <plentry>
-                <pt props="android cpp cs">mirrorMode</pt>
-                <pt props="ios mac"><ph props="rtc-ng">mirror</ph><ph props="rtc">mirrorMode</ph></pt>
-                <pd>
-                    <p props="ios mac cpp cs">The rendering mode of the local video view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</p>
-                    <p props="android">For the local user:
-                    
-                    <ul id="videomirrormodetype">
-                    <li><ph keyref="VIDEO_MIRROR_MODE_AUTO" /> (0): (Default) The mirror mode determined by the SDK. If you use a front camera, the SDK enables the mirror mode by default; if you use a rear camera, the SDK disables the mirror mode by default.</li>
-                    <li><ph keyref="VIDEO_MIRROR_MODE_ENABLED" /> (1): Enable the mirror mode.</li>
-                    <li><ph keyref="VIDEO_MIRROR_MODE_DISABLED" /> (2): Disable the mirror mode.</li>
-                    </ul> </p>
-                    <note type="attention">If you use a front camera, the SDK enables the mirror mode by default; if you use a rear camera, the SDK disables the mirror mode by default.</note> </pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt props="android cpp cs">renderMode</pt>
+                    <pt props="ios mac"><ph props="rtc-ng">mode</ph><ph props="rtc"
+                        >renderMode</ph></pt>
+                    <pd>
+                        <p props="ios mac cpp cs">The local video display mode. For details, see
+                                <xref keyref="RENDER_MODE_TYPE"/>.</p>
+                        <p props="android">The local video display mode. <ul id="rendermodetype">
+                                <li><ph keyref="RENDER_MODE_HIDDEN"/> (1): Hidden mode. Uniformly
+                                    scale the video until it fills the visible boundaries (cropped).
+                                    One dimension of the video may have clipped contents.</li>
+                                <li><ph keyref="RENDER_MODE_FIT"/> (2): Fit mode. Uniformly scale
+                                    the video until one of its dimension fits the boundary (zoomed
+                                    to fit). Areas that are not filled due to the disparity in the
+                                    aspect ratio are filled with black.</li>
+                                <li><ph keyref="RENDER_MODE_ADAPTIVE"/> (3): This mode is
+                                    deprecated.</li>
+                            </ul>
+                        </p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt props="android cpp cs">mirrorMode</pt>
+                    <pt props="ios mac"><ph props="rtc-ng">mirror</ph><ph props="rtc"
+                            >mirrorMode</ph></pt>
+                    <pd>
+                        <p props="ios mac cpp cs">The rendering mode of the local video view. See
+                                <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.</p>
+                        <p props="android">For the local user: <ul id="videomirrormodetype">
+                                <li><ph keyref="VIDEO_MIRROR_MODE_AUTO"/> (0): (Default) The mirror
+                                    mode determined by the SDK. If you use a front camera, the SDK
+                                    enables the mirror mode by default; if you use a rear camera,
+                                    the SDK disables the mirror mode by default.</li>
+                                <li><ph keyref="VIDEO_MIRROR_MODE_ENABLED"/> (1): Enable the mirror
+                                    mode.</li>
+                                <li><ph keyref="VIDEO_MIRROR_MODE_DISABLED"/> (2): Disable the
+                                    mirror mode.</li>
+                            </ul>
+                        </p>
+                        <note type="attention">If you use a front camera, the SDK enables the mirror
+                            mode by default; if you use a rear camera, the SDK disables the mirror
+                            mode by default.</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values">
             <title>Returns</title>
             <ul>
-            <li>0: Success.</li>
-            <li> &lt; 0: Failure.</li>
-            </ul> </section>
+                <li>0: Success.</li>
+                <li> &lt; 0: Failure.</li>
+            </ul>
+        </section>
     </refbody>
 </reference>

@@ -1,64 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startaudiorecording">
-    <title><ph keyref="startAudioRecording1" /></title>
+    <title><ph keyref="startAudioRecording1"/></title>
     <shortdesc id="short"><ph id="shortdesc">Starts audio recording on the client.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="startAudioRecording1" />
+                <indexterm keyref="startAudioRecording1"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int startAudioRecording(String filePath, int quality);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)startAudioRecording:(NSString * _Nonnull)filePath 
+                <codeblock props="android" outputclass="language-java">public abstract int startAudioRecording(String filePath, int quality);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)startAudioRecording:(NSString * _Nonnull)filePath 
                    quality:(AgoraAudioRecordingQuality)quality;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int startAudioRecording(const char* filePath, AUDIO_RECORDING_QUALITY_TYPE quality) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="cs" outputclass="language-csharp">public abstract int StartAudioRecording(string filePath, AUDIO_RECORDING_QUALITY_TYPE quality);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int startAudioRecording(const char* filePath, AUDIO_RECORDING_QUALITY_TYPE quality) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="cs" outputclass="language-csharp">public abstract int StartAudioRecording(string filePath, AUDIO_RECORDING_QUALITY_TYPE quality);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated">
-            <dlentry>
-                <dt>Deprecated:</dt>
-                <dd>This method is deprecated as of v2.9.1. It has a fixed recording sample rate of 32 kHz. Please use the <xref keyref="startAudioRecording3" /> method instead.</dd>
-            </dlentry>
+                <dlentry>
+                    <dt>Deprecated:</dt>
+                    <dd>This method is deprecated as of v2.9.1. It has a fixed recording sample rate
+                        of 32 kHz. Please use the <xref keyref="startAudioRecording3"/> method
+                        instead.</dd>
+                </dlentry>
             </dl>
-            <p>The Agora SDK allows recording during a call. This method records the audio of all the users in the channel and generates an audio recording file. Supported formats of the recording file are as follows:
-            
-            <ul>
-            <li><codeph>.wav</codeph>: Large file size with high fidelity.</li>
-            <li><codeph>.aac</codeph>: Small file size with low fidelity.</li>
-            </ul> </p>
-            <p>Ensure that the directory for the recording file exists and is writable. This method should be called after the <xref keyref="joinChannel1" /> method. The recording automatically stops when you call the <xref keyref="leaveChannel" /> method.</p>
+            <p>The Agora SDK allows recording during a call. This method records the audio of all
+                the users in the channel and generates an audio recording file. Supported formats of
+                the recording file are as follows: <ul>
+                    <li><codeph>.wav</codeph>: Large file size with high fidelity.</li>
+                    <li><codeph>.aac</codeph>: Small file size with low fidelity.</li>
+                </ul>
+            </p>
+            <p>Ensure that the directory for the recording file exists and is writable. This method
+                should be called after the <xref keyref="joinChannel1"/> method. The recording
+                automatically stops when you call the <xref keyref="leaveChannel"/> method.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry conkeyref="AudioRecordingConfiguration/filepath">
-                <pt />
-                <pd />
-            </plentry>
-            <plentry>
-                <pt>quality</pt>
-                <pd>Audio recording quality.<ph props="cpp ios mac cs"> See <xref keyref="AUDIO_RECORDING_QUALITY_TYPE" />.</ph>
-                    <ul props="android">
-                    <li>0: Low quality. For example, the size of an AAC file with a sample rate of 32,000 Hz and 10-minute recording is approximately 1.2 MB.</li>
-                    <li>1: Medium quality. For example, the size of an AAC file with a sample rate of 32,000 Hz and 10-minute recording is approximately 2 MB.</li>
-                    <li>2: High quality. For example, the size of an AAC file with a sample rate of 32,000 Hz and 10-minute recording is approximately 3.75 MB.</li>
-                    </ul> </pd>
-            </plentry>
-            </parml> </section>
+                <plentry conkeyref="AudioRecordingConfiguration/filepath">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry>
+                    <pt>quality</pt>
+                    <pd>Audio recording quality.<ph props="cpp ios mac cs"> See <xref
+                                keyref="AUDIO_RECORDING_QUALITY_TYPE"/>.</ph>
+                        <ul props="android">
+                            <li>0: Low quality. For example, the size of an AAC file with a sample
+                                rate of 32,000 Hz and 10-minute recording is approximately 1.2
+                                MB.</li>
+                            <li>1: Medium quality. For example, the size of an AAC file with a
+                                sample rate of 32,000 Hz and 10-minute recording is approximately 2
+                                MB.</li>
+                            <li>2: High quality. For example, the size of an AAC file with a sample
+                                rate of 32,000 Hz and 10-minute recording is approximately 3.75
+                                MB.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values">
             <title>Returns</title>
             <ul>
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure.</li>
-            </ul> </section>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
     </refbody>
 </reference>

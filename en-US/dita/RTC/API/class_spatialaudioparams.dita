@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_spatialaudioparams">
-    <title><ph keyref="SpatialAudioParams" /></title>
+    <title><ph keyref="SpatialAudioParams"/></title>
     <shortdesc id="short"><ph id="shortdesc">The spatial audio parameters.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public class SpatialAudioParams {
+                <codeblock props="android" outputclass="language-java">public class SpatialAudioParams {
   public Double speaker_azimuth;
   public Double speaker_elevation;
   public Double speaker_distance;
@@ -14,7 +14,7 @@
   public Boolean enable_blur;
   public Boolean enable_air_absorb;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraSpatialAudioParams : NSObject
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraSpatialAudioParams : NSObject
 @property(strong, nonatomic) AgoraRtcDoubleOptional* _Nullable speaker_azimuth;
 @property(strong, nonatomic) AgoraRtcDoubleOptional* _Nullable speaker_elevation;
 @property(strong, nonatomic) AgoraRtcDoubleOptional* _Nullable speaker_distance;
@@ -23,7 +23,7 @@
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable enable_air_absorb;
 
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct SpatialAudioParams {
+                <codeblock props="cpp" outputclass="language-cpp">struct SpatialAudioParams {
   Optional&lt;double&gt; speaker_azimuth;
   Optional&lt;double&gt; speaker_elevation;
   Optional&lt;double&gt; speaker_distance;
@@ -31,8 +31,8 @@
   Optional&lt;bool&gt; enable_blur;
   Optional&lt;bool&gt; enable_air_absorb;
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="cs" outputclass="language-csharp">public class SpatialAudioParams
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="cs" outputclass="language-csharp">public class SpatialAudioParams
     {
         public double speaker_azimuth { set; get; }
         public double speaker_elevation { set; get; }
@@ -41,65 +41,79 @@
         public bool enable_blur { set; get; }
         public bool enable_air_absorb { set; get; }
     };</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+                /></title>
             <parml>
-            <plentry>
-                <pt>speaker_azimuth</pt>
-                <pd>The azimuth angle of the remote user or media player relative to the local user. The value range is [0,360], and the unit is degrees, as defined by the following main directions:
-                    
-                    <ul>
-                    <li>0: (Default) 0 degrees, which means directly to the front on the horizontal plane.</li>
-                    <li>90: 90 degrees, which means directly to the left on the horizontal plane.</li>
-                    <li>180: 180 degrees, which means directly to the back on the horizontal plane.</li>
-                    <li>270: 270 degrees, which means directly to the right on the horizontal plane.</li>
-                    <li>360: 360 degrees, which means directly to the front on the horizontal plane.</li>
-                    </ul></pd>
-            </plentry>
-            <plentry>
-                <pt>speaker_elevation</pt>
-                <pd>The elevation angle of the remote user or media player relative to the local user. The value range is [-90,90], and the unit is degrees, as defined by the following main directions:
-                    
-                    <ul>
-                    <li>0: (Default) 0 degrees, which means that the horizontal plane is not rotated.</li>
-                    <li>-90: -90 degrees, which means that the horizontal plane is rotated 90 degrees downwards.</li>
-                    <li>90: 90 degrees, which means that the horizontal plane is rotated 90 degrees upwards.</li>
-                    </ul></pd>
-            </plentry>
-            <plentry>
-                <pt>speaker_distance</pt>
-                <pd>The distance of the remote user or media player relative to the local user. The value range is [1,50], and the unit is meters. The default value is 1 meter.</pd>
-            </plentry>
-            <plentry>
-                <pt>speaker_orientation</pt>
-                <pd>The orientation of the remote user or media player relative to the local user. The value range is [0,180], and the unit is degrees, as defined by the following main directions:
-                    
-                    <ul>
-                    <li>0: (Default) 0 degrees, which means that the sound source and listener face the same direction.</li>
-                    <li>180: 180 degrees, which means that the sound source and listener face each other.</li>
-                    </ul></pd>
-            </plentry>
-            <plentry>
-                <pt>enable_blur</pt>
-                <pd>Whether to enable audio blurring:
-                    
-                    <ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Enable blurring.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: (Default) Disable blurring.</li>
-                    </ul></pd>
-            </plentry>
-            <plentry>
-                <pt>enable_air_absorb</pt>
-                <pd>Whether to enable air absorption. This function simulates the energy attenuation of audio when the audio transmits in the air:
-                    
-                    <ul>
-                    <li><codeph><ph keyref="true" /></codeph>: (Default) Enable air absorption.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Disable air absorption.</li>
-                    </ul></pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>speaker_azimuth</pt>
+                    <pd>The azimuth angle of the remote user or media player relative to the local
+                        user. The value range is [0,360], and the unit is degrees, as defined by the
+                        following main directions: <ul>
+                            <li>0: (Default) 0 degrees, which means directly to the front on the
+                                horizontal plane.</li>
+                            <li>90: 90 degrees, which means directly to the left on the horizontal
+                                plane.</li>
+                            <li>180: 180 degrees, which means directly to the back on the horizontal
+                                plane.</li>
+                            <li>270: 270 degrees, which means directly to the right on the
+                                horizontal plane.</li>
+                            <li>360: 360 degrees, which means directly to the front on the
+                                horizontal plane.</li>
+                        </ul></pd>
+                </plentry>
+                <plentry>
+                    <pt>speaker_elevation</pt>
+                    <pd>The elevation angle of the remote user or media player relative to the local
+                        user. The value range is [-90,90], and the unit is degrees, as defined by
+                        the following main directions: <ul>
+                            <li>0: (Default) 0 degrees, which means that the horizontal plane is not
+                                rotated.</li>
+                            <li>-90: -90 degrees, which means that the horizontal plane is rotated
+                                90 degrees downwards.</li>
+                            <li>90: 90 degrees, which means that the horizontal plane is rotated 90
+                                degrees upwards.</li>
+                        </ul></pd>
+                </plentry>
+                <plentry>
+                    <pt>speaker_distance</pt>
+                    <pd>The distance of the remote user or media player relative to the local user.
+                        The value range is [1,50], and the unit is meters. The default value is 1
+                        meter.</pd>
+                </plentry>
+                <plentry>
+                    <pt>speaker_orientation</pt>
+                    <pd>The orientation of the remote user or media player relative to the local
+                        user. The value range is [0,180], and the unit is degrees, as defined by the
+                        following main directions: <ul>
+                            <li>0: (Default) 0 degrees, which means that the sound source and
+                                listener face the same direction.</li>
+                            <li>180: 180 degrees, which means that the sound source and listener
+                                face each other.</li>
+                        </ul></pd>
+                </plentry>
+                <plentry>
+                    <pt>enable_blur</pt>
+                    <pd>Whether to enable audio blurring: <ul>
+                            <li><codeph><ph keyref="true"/></codeph>: Enable blurring.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: (Default) Disable
+                                blurring.</li>
+                        </ul></pd>
+                </plentry>
+                <plentry>
+                    <pt>enable_air_absorb</pt>
+                    <pd>Whether to enable air absorption. This function simulates the energy
+                        attenuation of audio when the audio transmits in the air: <ul>
+                            <li><codeph><ph keyref="true"/></codeph>: (Default) Enable air
+                                absorption.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Disable air absorption.</li>
+                        </ul></pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

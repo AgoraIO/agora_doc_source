@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_lastmileproberesult">
-    <title><ph keyref="LastmileProbeResult" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Results of the uplink and downlink last-mile network tests.</ph></shortdesc>
+    <title><ph keyref="LastmileProbeResult"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Results of the uplink and downlink last-mile network
+            tests.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="cpp" outputclass="language-cpp">struct LastmileProbeResult {
+                <codeblock props="cpp" outputclass="language-cpp">struct LastmileProbeResult {
                     LASTMILE_PROBE_RESULT_STATE state;
                     LastmileProbeOneWayResult uplinkReport;
                     LastmileProbeOneWayResult downlinkReport;
@@ -15,7 +16,7 @@
                     LastmileProbeResult() : state(LASTMILE_PROBE_RESULT_UNAVAILABLE),
                     rtt(0) {}
                     };</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class LastmileProbeResult
+                <codeblock props="unity" outputclass="language-csharp">public class LastmileProbeResult
     {
         public LastmileProbeResult()
         {
@@ -36,9 +37,10 @@
         public LastmileProbeOneWayResult downlinkReport { set; get; }
         
         public uint rtt { set; get; }
-    }</codeblock> </p>
+    }</codeblock>
+            </p>
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public static class LastmileProbeResult {
+                <codeblock props="android" outputclass="language-java">public static class LastmileProbeResult {
 
     public static class LastmileProbeOneWayResult {
       public int packetLossRate;
@@ -51,21 +53,21 @@
     public LastmileProbeOneWayResult uplinkReport = new LastmileProbeOneWayResult();
     public LastmileProbeOneWayResult downlinkReport = new LastmileProbeOneWayResult();
   }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLastmileProbeResult : NSObject
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLastmileProbeResult : NSObject
 
 @property (assign, nonatomic) AgoraLastmileProbeResultState state;
 @property (assign, nonatomic) NSUInteger rtt;
 @property (strong, nonatomic) AgoraLastmileProbeOneWayResult *_Nonnull uplinkReport;
 @property (strong, nonatomic) AgoraLastmileProbeOneWayResult *_Nonnull downlinkReport;
 @end</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">export interface LastmileProbeResult {
+                <codeblock props="electron" outputclass="language-typescript">export interface LastmileProbeResult {
     state: LASTMILE_PROBE_RESULT_STATE;
     uplinkReport: LastmileProbeOneWayResult;
     downlinkReport: LastmileProbeOneWayResult;
     rtt: number;
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">class LastmileProbeResult {
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">class LastmileProbeResult {
 
   LastmileProbeResultState state;
   int rtt;
@@ -83,48 +85,62 @@
       _$LastmileProbeResultFromJson(json);
 
   Map&lt;String, dynamic&gt; toJson() =&gt; _$LastmileProbeResultToJson(this);
-}</codeblock> </p>
+}</codeblock>
+            </p>
             <p outputclass="codeblock" props="rtc">
-            <codeblock props="cpp" outputclass="language-cpp">struct LastmileProbeResult {
+                <codeblock props="cpp" outputclass="language-cpp">struct LastmileProbeResult {
   LASTMILE_PROBE_RESULT_STATE state;
   LastmileProbeOneWayResult uplinkReport;
   LastmileProbeOneWayResult downlinkReport;
   unsigned int rtt;
 };</codeblock>
-<codeblock props="unity" outputclass="language-csharp">struct LastmileProbeResult {
+                <codeblock props="unity" outputclass="language-csharp">struct LastmileProbeResult {
     LASTMILE_PROBE_RESULT_STATE state;
     LastmileProbeOneWayResult uplinkReport;
     LastmileProbeOneWayResult downlinkReport;
     unsigned int rtt;
-    };</codeblock> </p>
+    };</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+                /></title>
             <parml>
-            <plentry>
-                <pt>state</pt>
-                <pd>
-                    <p props="ios mac cpp unity">The status of the last-mile network tests. See <xref keyref="LASTMILE_PROBE_RESULT_STATE" />.</p>
-                    <p props="android">The status of the last-mile network tests, which includes:
-                    <ul>
-                    <li><ph keyref="LASTMILE_PROBE_RESULT_COMPLETE" /> (1): The last-mile network probe test is complete.</li>
-                    <li><ph keyref="LASTMILE_PROBE_RESULT_INCOMPLETE_NO_BWE" /> (2): The last-mile network probe test is incomplete because the bandwidth estimation is not available, probably due to limited test resources.</li>
-                    <li><ph keyref="LASTMILE_PROBE_RESULT_UNAVAILABLE" /> (3): The last-mile network probe test is not carried out, probably due to poor network conditions.</li>
-                    </ul> </p>
-                </pd>
-            </plentry>
-            <plentry>
-                <pt>uplinkReport</pt>
-                <pd>Results of the uplink last-mile network test. For details, see <xref keyref="LastmileProbeOneWayResult" />.</pd>
-            </plentry>
-            <plentry>
-                <pt>downlinkReport</pt>
-                <pd>Results of the downlink last-mile network test. For details, see <xref keyref="LastmileProbeOneWayResult" />.</pd>
-            </plentry>
-            <plentry>
-                <pt>rtt</pt>
-                <pd>The round-trip time (ms).</pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>state</pt>
+                    <pd>
+                        <p props="ios mac cpp unity">The status of the last-mile network tests. See
+                                <xref keyref="LASTMILE_PROBE_RESULT_STATE"/>.</p>
+                        <p props="android">The status of the last-mile network tests, which
+                            includes: <ul>
+                                <li><ph keyref="LASTMILE_PROBE_RESULT_COMPLETE"/> (1): The last-mile
+                                    network probe test is complete.</li>
+                                <li><ph keyref="LASTMILE_PROBE_RESULT_INCOMPLETE_NO_BWE"/> (2): The
+                                    last-mile network probe test is incomplete because the bandwidth
+                                    estimation is not available, probably due to limited test
+                                    resources.</li>
+                                <li><ph keyref="LASTMILE_PROBE_RESULT_UNAVAILABLE"/> (3): The
+                                    last-mile network probe test is not carried out, probably due to
+                                    poor network conditions.</li>
+                            </ul>
+                        </p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>uplinkReport</pt>
+                    <pd>Results of the uplink last-mile network test. For details, see <xref
+                            keyref="LastmileProbeOneWayResult"/>.</pd>
+                </plentry>
+                <plentry>
+                    <pt>downlinkReport</pt>
+                    <pd>Results of the downlink last-mile network test. For details, see <xref
+                            keyref="LastmileProbeOneWayResult"/>.</pd>
+                </plentry>
+                <plentry>
+                    <pt>rtt</pt>
+                    <pd>The round-trip time (ms).</pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

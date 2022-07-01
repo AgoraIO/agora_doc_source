@@ -13,35 +13,40 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onTokenPrivilegeWillExpire(IChannel *rtcChannel, const char* token) {
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onTokenPrivilegeWillExpire(IChannel *rtcChannel, const char* token) {
     (void)rtcChannel;
     (void)token;
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(
+                <codeblock props="electron" outputclass="language-typescript">on(
   evt: ChannelEvents.TOKEN_PRIVILEGE_WILL_EXPIRE,
   cb: (channelId: string, token: string) =&gt; void
 ): this;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public virtual void OnTokenPrivilegeWillExpire(string channelId, string token)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">TokenCallback? tokenPrivilegeWillExpire;</codeblock> </p>
+                <codeblock props="cs" outputclass="language-csharp">public virtual void OnTokenPrivilegeWillExpire(string channelId, string token)</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">TokenCallback? tokenPrivilegeWillExpire;</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p>When the token is about to expire in 30 seconds, the SDK triggers this callback to remind the app to renew the token. Upon receiving this callback, generate a new token on your server, and call <ph keyref="IChannel_renewToken"/> to pass the new token to the SDK.</p>
+            <p>When the token is about to expire in 30 seconds, the SDK triggers this callback to
+                remind the app to renew the token. Upon receiving this callback, generate a new
+                token on your server, and call <ph keyref="IChannel_renewToken"/> to pass the new
+                token to the SDK.</p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
-            <plentry props="native cs" conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry conkeyref="onTokenPrivilegeWillExpire/token">
-                <pt/>
-                <pd/>
-            </plentry>
-            </parml> </section>
+                <plentry props="native cs" conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry conkeyref="onTokenPrivilegeWillExpire/token">
+                    <pt/>
+                    <pd/>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

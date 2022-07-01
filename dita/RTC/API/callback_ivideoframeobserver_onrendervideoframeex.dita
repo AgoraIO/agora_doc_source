@@ -13,48 +13,51 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">virtual bool onRenderVideoFrameEx(const char *channelId, 
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">virtual bool onRenderVideoFrameEx(const char *channelId, 
      unsigned int uid, 
      VideoFrame&amp; videoFrame)
      { return true; }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="cs" outputclass="language-csharp">public virtual bool OnRenderVideoFrameEx(string channelId, uint uid, VideoFrame videoFrame)
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="cs" outputclass="language-csharp">public virtual bool OnRenderVideoFrameEx(string channelId, uint uid, VideoFrame videoFrame)
         {
             return true;
         }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p>成功注册视频观测器后，如果你将 <xref keyref="isMultipleChannelFrameWanted_IVideoFrameObserver"/> 的返回值设为 <ph keyref="true"/>，则 SDK 会在捕捉到各频道内的视频数据时，触发该回调，将视频数据发送给你。</p>
-            <p>获取该回调中的视频数据后，你可以根据场景需要，对视频数据进行美颜、滤镜等后处理，然后将处理后的视频数据再通过该回调的 <parmname>videoFrame</parmname> 参数发送回 SDK。</p>
-            <note type="attention">该回调不支持将处理后的 RGBA 格式的视频数据发送回 SDK。</note> </section>
+            <p>成功注册视频观测器后，如果你将 <xref keyref="isMultipleChannelFrameWanted_IVideoFrameObserver"/>
+                的返回值设为 <ph keyref="true"/>，则 SDK 会在捕捉到各频道内的视频数据时，触发该回调，将视频数据发送给你。</p>
+            <p>获取该回调中的视频数据后，你可以根据场景需要，对视频数据进行美颜、滤镜等后处理，然后将处理后的视频数据再通过该回调的
+                    <parmname>videoFrame</parmname> 参数发送回 SDK。</p>
+            <note type="attention">该回调不支持将处理后的 RGBA 格式的视频数据发送回 SDK。</note>
+        </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry>
-                <pt>channelId</pt>
-                <pd>该视频帧所在的频道名。</pd>
-            </plentry>
-            <plentry>
-                <pt>uid</pt>
-                <pd>发送该帧视频的用户 ID。</pd>
-            </plentry>
-            <plentry conkeyref="onCaptureVideoFrame/videoframe">
-                <pt/>
-                <pd/>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>channelId</pt>
+                    <pd>该视频帧所在的频道名。</pd>
+                </plentry>
+                <plentry>
+                    <pt>uid</pt>
+                    <pd>发送该帧视频的用户 ID。</pd>
+                </plentry>
+                <plentry conkeyref="onCaptureVideoFrame/videoframe">
+                    <pt/>
+                    <pd/>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values">
             <title>返回值</title>
-            <p>如果对该视频帧的后处理失败，是否将其发送回 SDK：
-            
-            <ul id="ul_mg4_vsg_s4b">
-            <li><codeph><ph keyref="true"/></codeph>: 发送</li>
-            <li><codeph><ph keyref="false"/></codeph>: 不发送</li>
-            </ul></p>
+            <p>如果对该视频帧的后处理失败，是否将其发送回 SDK： <ul id="ul_mg4_vsg_s4b">
+                    <li><codeph><ph keyref="true"/></codeph>: 发送</li>
+                    <li><codeph><ph keyref="false"/></codeph>: 不发送</li>
+                </ul></p>
         </section>
     </refbody>
 </reference>

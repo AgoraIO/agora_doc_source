@@ -13,71 +13,85 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int joinChannelWithUserAccount(const char* token,
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int joinChannelWithUserAccount(const char* token,
      const char* userAccount,
      const ChannelMediaOptions&amp; options) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">joinChannelWithUserAccount(token: string,
+                <codeblock props="electron" outputclass="language-typescript">joinChannelWithUserAccount(token: string,
      userAccount: string,
      options: ChannelMediaOptions
      ): number</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public abstract int JoinChannelWithUserAccount(string token, string userAccount, ChannelMediaOptions options);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; joinChannelWithUserAccount(
-      String? token, String userAccount, ChannelMediaOptions options);</codeblock> </p>
+                <codeblock props="cs" outputclass="language-csharp">public abstract int JoinChannelWithUserAccount(string token, string userAccount, ChannelMediaOptions options);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; joinChannelWithUserAccount(
+      String? token, String userAccount, ChannelMediaOptions options);</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p props="android ios mac cpp">该方法与 <xref keyref="IRtcEngine"/> 类下的 <apiname keyref="joinChannelWithUserAccount1"/> 方法有以下区别：
-   <table id="table_diff">
-            <tgroup cols="2">
-                <colspec colnum="1" colname="col1"/>
-                <colspec colnum="2" colname="col2"/>
-                <thead>
-                    <row>
-                        <entry><apiname keyref="IChannel_joinChannelWithUserAccount">IChannel::joinChannelWithUserAccount</apiname></entry>
-                        <entry><apiname keyref="joinChannelWithUserAccount1">IRtcEngine::joinChannelWithUserAccount</apiname></entry>
-                    </row>
-                </thead>
-                <tbody>
-                    <row>
-                        <entry>无 <parmname>channelId</parmname> 参数。因为创建 <xref keyref="IChannel"/> 对象时已指定了 <parmname>channelId</parmname>。</entry>
-                        <entry>需要填入可以标识频道的 <parmname>channelId</parmname>。</entry>
-                    </row>
-                    <row>
-                        <entry>通过创建多个 <apiname keyref="IChannel"/> 对象，并调用相应对象的 <apiname keyref="IChannel_joinChannelWithUserAccount"/> 方法，实现同时加入多个频道。</entry>
-                        <entry>只允许加入一个频道。</entry>
-                    </row>
-                    <row>
-                        <entry>通过该方法加入频道后，SDK 默认不发布本地音视频流到本频道，需要调用 <xref keyref="IChannel_publish"/> 方法进行发布。</entry>
-                        <entry>通过该方法加入频道后，SDK 默认将音视频流发布到本频道。</entry>
-                    </row>
-                </tbody>
-            </tgroup>
-            </table> </p>
-            <p>用户成功加入频道后，默认订阅频道内所有其他用户的音频流和视频流，因此产生用量并影响计费。如果想取消订阅，可以通过调用相应的 <codeph>mute</codeph> 方法实现。</p>
+            <p props="android ios mac cpp">该方法与 <xref keyref="IRtcEngine"/> 类下的 <apiname
+                    keyref="joinChannelWithUserAccount1"/> 方法有以下区别： <table id="table_diff">
+                    <tgroup cols="2">
+                        <colspec colnum="1" colname="col1"/>
+                        <colspec colnum="2" colname="col2"/>
+                        <thead>
+                            <row>
+                                <entry><apiname keyref="IChannel_joinChannelWithUserAccount"
+                                        >IChannel::joinChannelWithUserAccount</apiname></entry>
+                                <entry><apiname keyref="joinChannelWithUserAccount1"
+                                        >IRtcEngine::joinChannelWithUserAccount</apiname></entry>
+                            </row>
+                        </thead>
+                        <tbody>
+                            <row>
+                                <entry>无 <parmname>channelId</parmname> 参数。因为创建 <xref
+                                        keyref="IChannel"/> 对象时已指定了
+                                    <parmname>channelId</parmname>。</entry>
+                                <entry>需要填入可以标识频道的 <parmname>channelId</parmname>。</entry>
+                            </row>
+                            <row>
+                                <entry>通过创建多个 <apiname keyref="IChannel"/> 对象，并调用相应对象的 <apiname
+                                        keyref="IChannel_joinChannelWithUserAccount"/>
+                                    方法，实现同时加入多个频道。</entry>
+                                <entry>只允许加入一个频道。</entry>
+                            </row>
+                            <row>
+                                <entry>通过该方法加入频道后，SDK 默认不发布本地音视频流到本频道，需要调用 <xref
+                                        keyref="IChannel_publish"/> 方法进行发布。</entry>
+                                <entry>通过该方法加入频道后，SDK 默认将音视频流发布到本频道。</entry>
+                            </row>
+                        </tbody>
+                    </tgroup>
+                </table>
+            </p>
+            <p>用户成功加入频道后，默认订阅频道内所有其他用户的音频流和视频流，因此产生用量并影响计费。如果想取消订阅，可以通过调用相应的 <codeph>mute</codeph>
+                方法实现。</p>
             <note type="attention">
-            <ul>
-            <li>该方法不支持相同的用户重复加入同一个频道。</li>
-            <li>我们建议不同频道中使用不同的 user account。</li>
-            <li>如果想要从不同的设备同时接入同一个频道，请确保每个设备上使用的 user account 是不同的。</li>
-            </ul> </note> </section>
+                <ul>
+                    <li>该方法不支持相同的用户重复加入同一个频道。</li>
+                    <li>我们建议不同频道中使用不同的 user account。</li>
+                    <li>如果想要从不同的设备同时接入同一个频道，请确保每个设备上使用的 user account 是不同的。</li>
+                </ul>
+            </note>
+        </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry conkeyref="joinChannel2/token">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry conkeyref="joinChannelWithUserAccount2/userAccount">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry conkeyref="joinChannel2/options">
-                <pt/>
-                <pd/>
-            </plentry>
-            </parml> </section>
-        <section id="return_values" conkeyref="joinChannel2/return_values" props="native cpp cs electron"/>
+                <plentry conkeyref="joinChannel2/token">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry conkeyref="joinChannelWithUserAccount2/userAccount">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry conkeyref="joinChannel2/options">
+                    <pt/>
+                    <pd/>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" conkeyref="joinChannel2/return_values"
+            props="native cpp cs electron"/>
     </refbody>
 </reference>

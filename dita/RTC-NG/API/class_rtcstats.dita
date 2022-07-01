@@ -6,7 +6,7 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public static class RtcStats {
+                <codeblock props="android" outputclass="language-java">public static class RtcStats {
   public int totalDuration;
   public int txBytes;
   public int rxBytes;
@@ -32,7 +32,7 @@
   public double memoryTotalUsageRatio;
   public int memoryAppUsageInKbytes;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraChannelStats : NSObject
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraChannelStats : NSObject
 @property(assign, nonatomic) NSUInteger duration;
 @property(assign, nonatomic) NSUInteger txBytes;
 @property(assign, nonatomic) NSUInteger rxBytes;
@@ -59,7 +59,7 @@
 @property(assign, nonatomic) NSInteger rxPacketLossRate;
 @end
 </codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct RtcStats {
+                <codeblock props="cpp" outputclass="language-cpp">struct RtcStats {
   unsigned int duration;
   unsigned int txBytes;
   unsigned int rxBytes;
@@ -111,7 +111,7 @@
       rxPacketLossRate(0) {}
 };
 </codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class RtcStats
+                <codeblock props="unity" outputclass="language-csharp">public class RtcStats
     {
         public RtcStats()
         {
@@ -152,133 +152,145 @@
         public double memoryTotalUsageRatio { set; get; }
         public int memoryAppUsageInKbytes { set; get; }
         public int connectTimeMs { set; get; }
-        }</codeblock> </p>
+        }</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+                /></title>
             <parml>
-            <plentry>
-                <pt props="ios mac cpp electron unity">duration</pt>
-                <pt props="android">totalDuration</pt>
-                <pd>本地用户通话时长（秒），累计值。</pd>
-            </plentry>
-            <plentry>
-                <pt>txBytes</pt>
-                <pd>发送字节数（bytes）。</pd>
-            </plentry>
-            <plentry>
-                <pt>rxBytes</pt>
-                <pd>接收字节数（bytes）。</pd>
-            </plentry>
-            <plentry>
-                <pt>txAudioBytes</pt>
-                <pd>发送音频字节数（bytes），累计值。</pd>
-            </plentry>
-            <plentry>
-                <pt>txVideoBytes</pt>
-                <pd>发送视频字节数（bytes），累计值。</pd>
-            </plentry>
-            <plentry>
-                <pt>rxAudioBytes</pt>
-                <pd>接收音频字节数（bytes），累计值。</pd>
-            </plentry>
-            <plentry>
-                <pt>rxVideoBytes</pt>
-                <pd>接收视频字节数（bytes），累计值。</pd>
-            </plentry>
-            <plentry>
-                <pt>txKBitRate</pt>
-                <pd>发送码率（Kbps）。</pd>
-            </plentry>
-            <plentry>
-                <pt>rxKBitRate</pt>
-                <pd>接收码率（Kbps）。</pd>
-            </plentry>
-            <plentry>
-                <pt>rxAudioKBitRate</pt>
-                <pd>音频接收码率 (Kbps）。</pd>
-            </plentry>
-            <plentry>
-                <pt>txAudioKBitRate</pt>
-                <pd>音频包的发送码率 (Kbps）。</pd>
-            </plentry>
-            <plentry>
-                <pt>rxVideoKBitRate</pt>
-                <pd>视频接收码率 (Kbps）。</pd>
-            </plentry>
-            <plentry>
-                <pt>txVideoKBitRate</pt>
-                <pd>视频发送码率 (Kbps）。</pd>
-            </plentry>
-            <plentry>
-                <pt>lastmileDelay</pt>
-                <pd>客户端-接入服务器延时 (毫秒)。</pd>
-            </plentry>
-            <plentry>
-                <pt>txPacketLossRate</pt>
-                <pd>使用抗丢包技术前，客户端上行发送到服务器丢包率 (%)。</pd>
-            </plentry>
-            <plentry>
-                <pt>rxPacketLossRate</pt>
-                <pd>使用抗丢包技术前，服务器下行发送到客户端丢包率 (%)。</pd>
-            </plentry>
-            <plentry>
-                <pt props="ios mac cpp electron unity flutter">userCount</pt>
-                <pt props="android">users</pt>
-                <pd>当前频道内的用户人数。</pd>
-            </plentry>
-            <plentry>
-                <pt>cpuAppUsage</pt>
-                <pd>当前 App 的 CPU 使用率 (%)。
-                <note type="attention"><ul>
-                    <li><xref keyref="onLeaveChannel"/> 回调中报告的 <parmname>cpuAppUsage</parmname> 恒为 0。</li>
-                    <li props="cpp unity android">自 Android 8.1 起，因系统限制，你可能无法通过该属性获取 CPU 使用率。</li>
-                    </ul></note></pd>
-            </plentry>
-            <plentry>
-                <pt>cpuTotalUsage</pt>
-                <pd>
-                    <p>当前系统的 CPU 使用率 (%)。</p>
-                    <p props="cpp electron unity">对于 Windows 平台，在多核环境中，该成员指多核 CPU 的平均使用率。 计算方式为 (100 - 任务管理中显示的系统空闲进程 CPU)/100。</p>
-                    <note type="attention"><ul>
-                    <li><xref keyref="onLeaveChannel"/> 回调中报告的 <parmname>cpuTotalUsage</parmname> 恒为 0。</li>
-                    <li props="cpp unity android">自 Android 8.1 起，因系统限制，你无法通过该属性获取 CPU 使用率。</li>
-                    </ul></note> </pd>
-            </plentry>
-            <plentry>
-                <pt>connectTimeMs</pt>
-                <pd>从开始建立连接到成功连接的时间（毫秒）。如报告 0，则表示无效。</pd>
-            </plentry>
-            <plentry>
-                <pt>gatewayRtt</pt>
-                <pd>客户端到本地路由器的往返时延 (ms)。
-                    <note props="ios">
-                    <p>该属性默认在 iOS 14 之前的设备上开启，在 iOS 14 及之后的设备上关闭。</p>
-                    <p>如需在 iOS 14 及之后的设备上启用该属性，请<xref keyref="ticket-link"/>。</p>
-                    </note>
-                    <note props="android cpp unity">在 Android 平台上，如需获取 <parmname>gatewayRtt</parmname>，请确保已在项目 <codeph>AndroidManifest.xml</codeph> 文件的 <codeph>&lt;/application&gt;</codeph> 后面添加 <codeph>android.permission.ACCESS_WIFI_STATE</codeph> 权限。
-                    </note></pd>
-            </plentry>
-            <plentry>
-                <pt>memoryAppUsageRatio</pt>
-                <pd>
-                    <p>当前 App 的内存占比 (%)。</p>
-                    <note type="attention">该值仅作参考。受系统限制可能无法获取。</note> </pd>
-            </plentry>
-            <plentry>
-                <pt>memoryTotalUsageRatio</pt>
-                <pd>
-                    <p>当前系统的内存占比 (%)。</p>
-                    <note type="attention">该值仅作参考。受系统限制可能无法获取。</note> </pd>
-            </plentry>
-            <plentry>
-                <pt>memoryAppUsageInKbytes</pt>
-                <pd>
-                    <p>当前 App 的内存大小 (KB)。</p>
-                    <note type="attention">该值仅作参考。受系统限制可能无法获取。</note> </pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt props="ios mac cpp electron unity">duration</pt>
+                    <pt props="android">totalDuration</pt>
+                    <pd>本地用户通话时长（秒），累计值。</pd>
+                </plentry>
+                <plentry>
+                    <pt>txBytes</pt>
+                    <pd>发送字节数（bytes）。</pd>
+                </plentry>
+                <plentry>
+                    <pt>rxBytes</pt>
+                    <pd>接收字节数（bytes）。</pd>
+                </plentry>
+                <plentry>
+                    <pt>txAudioBytes</pt>
+                    <pd>发送音频字节数（bytes），累计值。</pd>
+                </plentry>
+                <plentry>
+                    <pt>txVideoBytes</pt>
+                    <pd>发送视频字节数（bytes），累计值。</pd>
+                </plentry>
+                <plentry>
+                    <pt>rxAudioBytes</pt>
+                    <pd>接收音频字节数（bytes），累计值。</pd>
+                </plentry>
+                <plentry>
+                    <pt>rxVideoBytes</pt>
+                    <pd>接收视频字节数（bytes），累计值。</pd>
+                </plentry>
+                <plentry>
+                    <pt>txKBitRate</pt>
+                    <pd>发送码率（Kbps）。</pd>
+                </plentry>
+                <plentry>
+                    <pt>rxKBitRate</pt>
+                    <pd>接收码率（Kbps）。</pd>
+                </plentry>
+                <plentry>
+                    <pt>rxAudioKBitRate</pt>
+                    <pd>音频接收码率 (Kbps）。</pd>
+                </plentry>
+                <plentry>
+                    <pt>txAudioKBitRate</pt>
+                    <pd>音频包的发送码率 (Kbps）。</pd>
+                </plentry>
+                <plentry>
+                    <pt>rxVideoKBitRate</pt>
+                    <pd>视频接收码率 (Kbps）。</pd>
+                </plentry>
+                <plentry>
+                    <pt>txVideoKBitRate</pt>
+                    <pd>视频发送码率 (Kbps）。</pd>
+                </plentry>
+                <plentry>
+                    <pt>lastmileDelay</pt>
+                    <pd>客户端-接入服务器延时 (毫秒)。</pd>
+                </plentry>
+                <plentry>
+                    <pt>txPacketLossRate</pt>
+                    <pd>使用抗丢包技术前，客户端上行发送到服务器丢包率 (%)。</pd>
+                </plentry>
+                <plentry>
+                    <pt>rxPacketLossRate</pt>
+                    <pd>使用抗丢包技术前，服务器下行发送到客户端丢包率 (%)。</pd>
+                </plentry>
+                <plentry>
+                    <pt props="ios mac cpp electron unity flutter">userCount</pt>
+                    <pt props="android">users</pt>
+                    <pd>当前频道内的用户人数。</pd>
+                </plentry>
+                <plentry>
+                    <pt>cpuAppUsage</pt>
+                    <pd>当前 App 的 CPU 使用率 (%)。 <note type="attention"><ul>
+                                <li><xref keyref="onLeaveChannel"/> 回调中报告的
+                                        <parmname>cpuAppUsage</parmname> 恒为 0。</li>
+                                <li props="cpp unity android">自 Android 8.1 起，因系统限制，你可能无法通过该属性获取 CPU
+                                    使用率。</li>
+                            </ul></note></pd>
+                </plentry>
+                <plentry>
+                    <pt>cpuTotalUsage</pt>
+                    <pd>
+                        <p>当前系统的 CPU 使用率 (%)。</p>
+                        <p props="cpp electron unity">对于 Windows 平台，在多核环境中，该成员指多核 CPU 的平均使用率。 计算方式为
+                            (100 - 任务管理中显示的系统空闲进程 CPU)/100。</p>
+                        <note type="attention"><ul>
+                                <li><xref keyref="onLeaveChannel"/> 回调中报告的
+                                        <parmname>cpuTotalUsage</parmname> 恒为 0。</li>
+                                <li props="cpp unity android">自 Android 8.1 起，因系统限制，你无法通过该属性获取 CPU
+                                    使用率。</li>
+                            </ul></note>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>connectTimeMs</pt>
+                    <pd>从开始建立连接到成功连接的时间（毫秒）。如报告 0，则表示无效。</pd>
+                </plentry>
+                <plentry>
+                    <pt>gatewayRtt</pt>
+                    <pd>客户端到本地路由器的往返时延 (ms)。 <note props="ios">
+                            <p>该属性默认在 iOS 14 之前的设备上开启，在 iOS 14 及之后的设备上关闭。</p>
+                            <p>如需在 iOS 14 及之后的设备上启用该属性，请<xref keyref="ticket-link"/>。</p>
+                        </note>
+                        <note props="android cpp unity">在 Android 平台上，如需获取
+                                <parmname>gatewayRtt</parmname>，请确保已在项目
+                                <codeph>AndroidManifest.xml</codeph> 文件的
+                                <codeph>&lt;/application&gt;</codeph> 后面添加
+                                <codeph>android.permission.ACCESS_WIFI_STATE</codeph> 权限。
+                        </note></pd>
+                </plentry>
+                <plentry>
+                    <pt>memoryAppUsageRatio</pt>
+                    <pd>
+                        <p>当前 App 的内存占比 (%)。</p>
+                        <note type="attention">该值仅作参考。受系统限制可能无法获取。</note>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>memoryTotalUsageRatio</pt>
+                    <pd>
+                        <p>当前系统的内存占比 (%)。</p>
+                        <note type="attention">该值仅作参考。受系统限制可能无法获取。</note>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>memoryAppUsageInKbytes</pt>
+                    <pd>
+                        <p>当前 App 的内存大小 (KB)。</p>
+                        <note type="attention">该值仅作参考。受系统限制可能无法获取。</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

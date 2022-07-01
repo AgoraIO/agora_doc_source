@@ -2,7 +2,8 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onaudiodevicetestvolumetype">
     <title><ph keyref="onAudioDeviceTestVolumeIndication"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Reports the result of an audio device test.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Reports the result of an audio device
+        test.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -13,33 +14,39 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioDeviceTestVolumeIndication(AudioDeviceTestVolumeType volumeType, int volume) {
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioDeviceTestVolumeIndication(AudioDeviceTestVolumeType volumeType, int volume) {
 (void)volumeType;
 (void)volume;
 }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioDeviceTestVolumeIndication(AudioDeviceTestVolumeType volumeType, int volume)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">OnAudioDeviceTestVolumeIndication? audioDeviceTestVolumeIndication;</codeblock> </p>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioDeviceTestVolumeIndication(AudioDeviceTestVolumeType volumeType, int volume)</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">OnAudioDeviceTestVolumeIndication? audioDeviceTestVolumeIndication;</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p>After successfully calling <xref keyref="startRecordingDeviceTest"/>, <xref keyref="startPlaybackDeviceTest"/>, or <xref keyref="startAudioDeviceLoopbackTest"/> to start an audio device test, the SDK triggers the <apiname keyref="onAudioDeviceTestVolumeIndication"></apiname> callback at the set time interval to report the volume information of the audio device tested.</p>
+            <p>After successfully calling <xref keyref="startRecordingDeviceTest"/>, <xref
+                    keyref="startPlaybackDeviceTest"/>, or <xref
+                    keyref="startAudioDeviceLoopbackTest"/> to start an audio device test, the SDK
+                triggers the <apiname keyref="onAudioDeviceTestVolumeIndication"/> callback at the
+                set time interval to report the volume information of the audio device tested.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry>
-                <pt>volumeType</pt>
-                <pd>
+                <plentry>
+                    <pt>volumeType</pt>
+                    <pd>
                         <p>The volume type. See <xref keyref="AudioDeviceTestVolumeType"/>.</p>
                     </pd>
-            </plentry>
+                </plentry>
                 <plentry>
                     <pt>volume</pt>
                     <pd>
                         <p>Volume level in the range [0,255].</p>
                     </pd>
                 </plentry>
-            </parml> </section>
+            </parml>
+        </section>
     </refbody>
 </reference>

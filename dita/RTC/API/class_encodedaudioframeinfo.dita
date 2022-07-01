@@ -6,14 +6,14 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraEncodedAudioFrameInfo: NSObject
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraEncodedAudioFrameInfo: NSObject
  @property (assign, nonatomic) NSInteger samplesPerChannel;
  @property (assign, nonatomic) NSInteger channels;
  @property (assign, nonatomic) NSInteger samplesPerSec;
  @property (assign, nonatomic) AgoraAudioCodecType codecType;
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct EncodedAudioFrameInfo {
+                <codeblock props="cpp" outputclass="language-cpp">struct EncodedAudioFrameInfo {
   EncodedAudioFrameInfo()
       : codec(AUDIO_CODEC_AACLC),
         sampleRateHz(0),
@@ -31,8 +31,8 @@
   int numberOfChannels;
   EncodedAudioFrameAdvancedSettings advancedSettings;
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="cs" outputclass="language-csharp">public class EncodedAudioFrameInfo
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="cs" outputclass="language-csharp">public class EncodedAudioFrameInfo
     {
         public EncodedAudioFrameInfo()
         {
@@ -57,37 +57,38 @@
         public int numberOfChannels { set; get; }
         public EncodedAudioFrameAdvancedSettings advancedSettings { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+                /></title>
             <parml>
-            <plentry>
-                <pt props="cpp cs">codec</pt>
-                <pt props="ios mac">codecType</pt>
-                <pd>音频编码规格: <xref keyref="AUDIO_CODEC_TYPE"/>。</pd>
-            </plentry>
-            <plentry>
-                <pt props="cpp cs">sampleRateHz</pt>
-                <pt props="ios mac">samplesPerSec</pt>
-                <pd>音频采样率 (Hz)。</pd>
-            </plentry>
-            <plentry>
-                <pt>samplesPerChannel</pt>
-                <pd>每个声道的音频采样数。</pd>
-            </plentry>
-            <plentry>
-                <pt props="cpp cs">numberOfChannels</pt>
-                <pt props="ios mac">channels</pt>
-                <pd>声道数。</pd>
-            </plentry>
-            <plentry props="cpp cs">
-                <pt>advancedSettings</pt>
-                <pd>该功能暂不支持。</pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt props="cpp cs">codec</pt>
+                    <pt props="ios mac">codecType</pt>
+                    <pd>音频编码规格: <xref keyref="AUDIO_CODEC_TYPE"/>。</pd>
+                </plentry>
+                <plentry>
+                    <pt props="cpp cs">sampleRateHz</pt>
+                    <pt props="ios mac">samplesPerSec</pt>
+                    <pd>音频采样率 (Hz)。</pd>
+                </plentry>
+                <plentry>
+                    <pt>samplesPerChannel</pt>
+                    <pd>每个声道的音频采样数。</pd>
+                </plentry>
+                <plentry>
+                    <pt props="cpp cs">numberOfChannels</pt>
+                    <pt props="ios mac">channels</pt>
+                    <pd>声道数。</pd>
+                </plentry>
+                <plentry props="cpp cs">
+                    <pt>advancedSettings</pt>
+                    <pd>该功能暂不支持。</pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

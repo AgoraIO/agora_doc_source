@@ -1,37 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_iaudiodevicemanager_enumeraterecordingdevices">
-    <title><ph keyref="enumerateRecordingDevices" /></title>
+    <title><ph keyref="enumerateRecordingDevices"/></title>
     <shortdesc id="short"><ph id="shortdesc">Enumerates the audio capture devices.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="enumerateRecordingDevices" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="enumerateRecordingDevices"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
+    <refbody>
+        <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="unity" outputclass="language-csharp">abstract DeviceInfo[] EnumerateRecordingDevices();</codeblock> </p>
+                <codeblock props="unity" outputclass="language-csharp">abstract DeviceInfo[] EnumerateRecordingDevices();</codeblock>
+            </p>
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
-            <codeblock props="ios mac" outputclass="language-objectivec" />
-            <codeblock props="cpp" outputclass="language-cpp">virtual IAudioDeviceCollection* enumerateRecordingDevices() = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">getAudioRecordingDevices(): Array&lt;{ deviceid: string, devicename: string }&gt;</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;List&lt;MediaDeviceInfo&gt;&gt; enumerateAudioRecordingDevices()</codeblock> </p>
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">virtual IAudioDeviceCollection* enumerateRecordingDevices() = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">getAudioRecordingDevices(): Array&lt;{ deviceid: string, devicename: string }&gt;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;List&lt;MediaDeviceInfo&gt;&gt; enumerateAudioRecordingDevices()</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
-   
-   <p props="cpp electron">This method returns an <xref keyref="IAudioDeviceCollection" /> object that includes all audio capture devices in the system. With the <apiname>IAudioDeviceCollection</apiname> object, the application can enumerate the audio capture devices. The application must call the <xref keyref="release_IAudioDeviceCollection" /> method to release the returned object after using it.</p>
+            <p props="cpp electron">This method returns an <xref keyref="IAudioDeviceCollection"/>
+                object that includes all audio capture devices in the system. With the
+                    <apiname>IAudioDeviceCollection</apiname> object, the application can enumerate
+                the audio capture devices. The application must call the <xref
+                    keyref="release_IAudioDeviceCollection"/> method to release the returned object
+                after using it.</p>
         </section>
         <section id="return_values">
-   <title>Returns</title>
-   <ul>
-       <li props="cpp electron">Success: An <xref keyref="IAudioDeviceCollection" /> object including all audio capture devices.</li>
-       <li props="unity">Success: Returns a DeviceInfo array that contains the device ID and device name of all the audio recording devices.</li>
-       <li props="flutter">Success: Returns a <xref keyref="MediaDeviceInfo" /> list that contains the device ID and device name of all the audio recording devices.</li>
-       <li>Failure: <ph keyref="NULL" />.</li>
-   </ul>
-        </section></refbody>
+            <title>Returns</title>
+            <ul>
+                <li props="cpp electron">Success: An <xref keyref="IAudioDeviceCollection"/> object
+                    including all audio capture devices.</li>
+                <li props="unity">Success: Returns a DeviceInfo array that contains the device ID
+                    and device name of all the audio recording devices.</li>
+                <li props="flutter">Success: Returns a <xref keyref="MediaDeviceInfo"/> list that
+                    contains the device ID and device name of all the audio recording devices.</li>
+                <li>Failure: <ph keyref="NULL"/>.</li>
+            </ul>
+        </section>
+    </refbody>
 </reference>

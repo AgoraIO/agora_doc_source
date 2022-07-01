@@ -6,7 +6,7 @@
     <refbody>
         <section id="prototype">
             <p props="rtc-ng" outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public static class LocalVideoStats {
+                <codeblock props="android" outputclass="language-java">public static class LocalVideoStats {
     public int uid;
     public int sentBitrate;
     public int sentFrameRate;
@@ -22,7 +22,7 @@
     public int codecType;
     public int txPacketLossRate;
   }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcLocalVideoStats : NSObject
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcLocalVideoStats : NSObject
 @property(assign, nonatomic) NSUInteger sentBitrate;
 @property(assign, nonatomic) NSUInteger sentFrameRate;
 @property(assign, nonatomic) NSUInteger uid;
@@ -38,7 +38,7 @@
 @property(assign, nonatomic) AgoraVideoCodecType codecType;
 @property(assign, nonatomic) NSInteger txPacketLossRate;
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct LocalVideoStats
+                <codeblock props="cpp" outputclass="language-cpp">struct LocalVideoStats
 {
     uid_t uid;
     int sentBitrate;
@@ -55,7 +55,7 @@
     VIDEO_CODEC_TYPE codecType;
     unsigned short txPacketLossRate;
 };</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public class LocalVideoStats
+                <codeblock props="cs" outputclass="language-csharp">public class LocalVideoStats
     {
         public LocalVideoStats()
         {
@@ -105,9 +105,10 @@
         public int encodedFrameCount { set; get; }
 
         public VIDEO_CODEC_TYPE codecType { set; get; }
-    }</codeblock> </p>
+    }</codeblock>
+            </p>
             <p props="rtc" outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public static class LocalVideoStats {
+                <codeblock props="android" outputclass="language-java">public static class LocalVideoStats {
     public int sentBitrate;
     public int sentFrameRate;
     public int encoderOutputFrameRate;
@@ -124,7 +125,7 @@
     public int captureFrameRate;
     public int captureBrightnessLevel;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcLocalVideoStats : NSObject
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcLocalVideoStats : NSObject
 @property(assign, nonatomic) NSUInteger sentBitrate;
 @property(assign, nonatomic) NSUInteger sentFrameRate;
 @property(assign, nonatomic) NSUInteger encoderOutputFrameRate;
@@ -141,7 +142,7 @@
 @property(assign, nonatomic) NSInteger captureFrameRate;
 @property(assign, nonatomic) AgoraCaptureBrightnessLevelType captureBrightnessLevel;
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct LocalVideoStats {
+                <codeblock props="cpp" outputclass="language-cpp">struct LocalVideoStats {
   int sentBitrate;
   int sentFrameRate;
   int encoderOutputFrameRate;
@@ -158,7 +159,7 @@
   int captureFrameRate;
   CAPTURE_BRIGHTNESS_LEVEL_TYPE captureBrightnessLevel;
 };</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public class LocalVideoStats
+                <codeblock props="cs" outputclass="language-csharp">public class LocalVideoStats
     {
         public LocalVideoStats()
         {
@@ -201,7 +202,7 @@
         public ushort txPacketLossRate { set; get; }
         public int captureFrameRate { set; get; }
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">export interface LocalVideoStats {
+                <codeblock props="electron" outputclass="language-typescript">export interface LocalVideoStats {
      sentBitrate: number;
      sentFrameRate: number;
      encoderOutputFrameRate: number;
@@ -218,8 +219,8 @@
      captureFrameRate: number;
      captureBrightnessLevel: CAPTURE_BRIGHTNESS_LEVEL_TYPE;
      }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">class LocalVideoStats {
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">class LocalVideoStats {
 
   int sentBitrate;
   int sentFrameRate;
@@ -259,124 +260,114 @@
       _$LocalVideoStatsFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$LocalVideoStatsToJson(this);
-}</codeblock> </p>
+}</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+                /></title>
             <parml>
-            <plentry props="rtc-ng">
-                <pt>uid</pt>
-                <pd>本地用户的 ID。</pd>
-            </plentry>
-            <plentry>
-                <pt>sentBitrate</pt>
-                <pd>
-                    <p>实际发送码率 (Kbps)
-                    
-                    
-                    <note type="attention">不包含丢包后重传视频等的发送码率。</note></p>
-                </pd>
-            </plentry>
-            <plentry>
-                <pt>sentFrameRate</pt>
-                <pd>实际发送帧率 (fps)。
-                    
-                    
-                    <note type="attention">不包含丢包后重传视频等的发送帧率。</note></pd>
-            </plentry>
-            <plentry>
-                <pt>encoderOutputFrameRate</pt>
-                <pd>本地视频编码器的输出帧率，单位为 fps。</pd>
-            </plentry>
-            <plentry>
-                <pt>rendererOutputFrameRate</pt>
-                <pd>本地视频渲染器的输出帧率，单位为 fps。</pd>
-            </plentry>
-            <plentry>
-                <pt>targetBitrate</pt>
-                <pd>当前编码器的目标编码码率 (Kbps)，该码率为 SDK 根据当前网络状况预估的一个值。</pd>
-            </plentry>
-            <plentry>
-                <pt>targetFrameRate</pt>
-                <pd>当前编码器的目标编码帧率 (fps)。</pd>
-            </plentry>
-            <plentry>
-                <pt>qualityAdaptIndication</pt>
-                <pd>
-                    <dl outputclass="since" props="rtc">
-                    <dlentry props="native">
-                        <dt>自从</dt>
-                        <dd>v2.4.0</dd>
-                    </dlentry>
-                    </dl>
-                    <ph>统计周期内本地视频质量（基于目标帧率和目标码率）的自适应情况。</ph><ph
-                    props="cpp ios mac cs">详见 <xref
-                    keyref="QUALITY_ADAPT_INDICATION"/>。</ph>
-                    <p props="android">
-                    <ul>
-                    <li><ph keyref="ADAPT_NONE"/> (0): 本地视频质量不变。</li>
-                    <li><ph keyref="ADAPT_UP_BANDWIDTH"
-                        /> (1): 因网络带宽增加，本地视频质量改善。</li>
-                    <li><ph keyref="ADAPT_DOWN_BANDWIDTH"
-                        /> (2): 因网络带宽减少，本地视频质量变差。</li>
-                    </ul> </p>
-                </pd>
-            </plentry>
-            <plentry>
-                <pt>encodedBitrate</pt>
-                <pd>
-                    <p>视频编码码率（Kbps）。
-                    
-                    
-                    <note type="attention">不包含丢包后重传视频等的编码码率。</note></p>
-                </pd>
-            </plentry>
-            <plentry>
-                <pt>encodedFrameWidth</pt>
-                <pd>视频编码宽度（px）。</pd>
-            </plentry>
-            <plentry>
-                <pt>encodedFrameHeight</pt>
-                <pd>视频编码高度（px）。</pd>
-            </plentry>
-            <plentry>
-                <pt>encodedFrameCount</pt>
-                <pd>视频发送的帧数，累计值。</pd>
-            </plentry>
-            <plentry>
-                <pt>codecType</pt>
-                <pd><ph>视频的编码类型。</ph><ph props="ios mac cpp cs">详见 <xref
-                    keyref="VIDEO_CODEC_TYPE"/>。</ph>
-                    <p props="android">
-                    <ul>
-                    <li><ph keyref="VIDEO_CODEC_VP8"/> (1): VP8。</li>
-                    <li><ph keyref="VIDEO_CODEC_H264"/> (2): （默认值） H.264。</li>
-                    </ul> </p>
-                </pd>
-            </plentry>
-            <plentry>
-                <pt>txPacketLossRate</pt>
-                <pd>弱网对抗前本端到 Agora 边缘服务器的视频丢包率 (%)。</pd>
-            </plentry>
-            <plentry props="rtc">
-                <pt>captureFrameRate</pt>
-                <pd>本地视频采集帧率 (fps)。</pd>
-            </plentry>
-            <plentry props="cpp">
-                <pt>captureBrightnessLevel</pt>
-                <pd>
-                    <dl outputclass="since" props="rtc">
-                    <dlentry props="native">
-                        <dt>自从</dt>
-                        <dd>v3.3.0</dd>
-                    </dlentry>
-                    </dl>
-                    <p>本地采集的画质亮度级别。详见 <xref
-                    keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE"/>。</p>
-                </pd>
-            </plentry>
-            </parml> </section>
+                <plentry props="rtc-ng">
+                    <pt>uid</pt>
+                    <pd>本地用户的 ID。</pd>
+                </plentry>
+                <plentry>
+                    <pt>sentBitrate</pt>
+                    <pd>
+                        <p>实际发送码率 (Kbps) <note type="attention">不包含丢包后重传视频等的发送码率。</note></p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>sentFrameRate</pt>
+                    <pd>实际发送帧率 (fps)。 <note type="attention">不包含丢包后重传视频等的发送帧率。</note></pd>
+                </plentry>
+                <plentry>
+                    <pt>encoderOutputFrameRate</pt>
+                    <pd>本地视频编码器的输出帧率，单位为 fps。</pd>
+                </plentry>
+                <plentry>
+                    <pt>rendererOutputFrameRate</pt>
+                    <pd>本地视频渲染器的输出帧率，单位为 fps。</pd>
+                </plentry>
+                <plentry>
+                    <pt>targetBitrate</pt>
+                    <pd>当前编码器的目标编码码率 (Kbps)，该码率为 SDK 根据当前网络状况预估的一个值。</pd>
+                </plentry>
+                <plentry>
+                    <pt>targetFrameRate</pt>
+                    <pd>当前编码器的目标编码帧率 (fps)。</pd>
+                </plentry>
+                <plentry>
+                    <pt>qualityAdaptIndication</pt>
+                    <pd>
+                        <dl outputclass="since" props="rtc">
+                            <dlentry props="native">
+                                <dt>自从</dt>
+                                <dd>v2.4.0</dd>
+                            </dlentry>
+                        </dl>
+                        <ph>统计周期内本地视频质量（基于目标帧率和目标码率）的自适应情况。</ph><ph props="cpp ios mac cs">详见 <xref
+                                keyref="QUALITY_ADAPT_INDICATION"/>。</ph>
+                        <p props="android">
+                            <ul>
+                                <li><ph keyref="ADAPT_NONE"/> (0): 本地视频质量不变。</li>
+                                <li><ph keyref="ADAPT_UP_BANDWIDTH"/> (1): 因网络带宽增加，本地视频质量改善。</li>
+                                <li><ph keyref="ADAPT_DOWN_BANDWIDTH"/> (2): 因网络带宽减少，本地视频质量变差。</li>
+                            </ul>
+                        </p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>encodedBitrate</pt>
+                    <pd>
+                        <p>视频编码码率（Kbps）。 <note type="attention">不包含丢包后重传视频等的编码码率。</note></p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>encodedFrameWidth</pt>
+                    <pd>视频编码宽度（px）。</pd>
+                </plentry>
+                <plentry>
+                    <pt>encodedFrameHeight</pt>
+                    <pd>视频编码高度（px）。</pd>
+                </plentry>
+                <plentry>
+                    <pt>encodedFrameCount</pt>
+                    <pd>视频发送的帧数，累计值。</pd>
+                </plentry>
+                <plentry>
+                    <pt>codecType</pt>
+                    <pd><ph>视频的编码类型。</ph><ph props="ios mac cpp cs">详见 <xref
+                                keyref="VIDEO_CODEC_TYPE"/>。</ph>
+                        <p props="android">
+                            <ul>
+                                <li><ph keyref="VIDEO_CODEC_VP8"/> (1): VP8。</li>
+                                <li><ph keyref="VIDEO_CODEC_H264"/> (2): （默认值） H.264。</li>
+                            </ul>
+                        </p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>txPacketLossRate</pt>
+                    <pd>弱网对抗前本端到 Agora 边缘服务器的视频丢包率 (%)。</pd>
+                </plentry>
+                <plentry props="rtc">
+                    <pt>captureFrameRate</pt>
+                    <pd>本地视频采集帧率 (fps)。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>captureBrightnessLevel</pt>
+                    <pd>
+                        <dl outputclass="since" props="rtc">
+                            <dlentry props="native">
+                                <dt>自从</dt>
+                                <dd>v3.3.0</dd>
+                            </dlentry>
+                        </dl>
+                        <p>本地采集的画质亮度级别。详见 <xref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE"/>。</p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

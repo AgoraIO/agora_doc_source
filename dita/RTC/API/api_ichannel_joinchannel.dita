@@ -13,99 +13,111 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int joinChannel(const char* token,
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int joinChannel(const char* token,
      const char* info,
      uid_t uid,
      const ChannelMediaOptions&amp; options) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">joinChannel(token: string,
+                <codeblock props="electron" outputclass="language-typescript">joinChannel(token: string,
      info: string,
      uid: number,
      options?: ChannelMediaOptions
      ): number</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public abstract int JoinChannel(string token, string info, uint uid, ChannelMediaOptions options);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; joinChannel(String? token, String? optionalInfo, int optionalUid,
-      ChannelMediaOptions options);</codeblock> </p>
+                <codeblock props="cs" outputclass="language-csharp">public abstract int JoinChannel(string token, string info, uint uid, ChannelMediaOptions options);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; joinChannel(String? token, String? optionalInfo, int optionalUid,
+      ChannelMediaOptions options);</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p props="android ios mac cpp">该方法与 <xref keyref="IRtcEngine"/> 类下的 <apiname keyref="joinChannel1"/> 方法有以下区别：</p>
+            <p props="android ios mac cpp">该方法与 <xref keyref="IRtcEngine"/> 类下的 <apiname
+                    keyref="joinChannel1"/> 方法有以下区别：</p>
             <table id="table_diff" props="android ios mac cpp">
-            <tgroup cols="2">
-                <colspec colnum="1" colname="col1"/>
-                <colspec colnum="2" colname="col2"/>
-                <thead>
-                    <row>
-                        <entry><apiname keyref="IChannel_joinChannel">IChannel::joinChannel</apiname></entry>
-                        <entry><apiname keyref="joinChannel1">IRtcEngine::joinChannel</apiname></entry>
-                    </row>
-                </thead>
-                <tbody>
-                    <row>
-                        <entry>无 <parmname>channelId</parmname> 参数。因为创建 <xref keyref="IChannel"/> 对象时已指定了 <parmname>channelId</parmname>。</entry>
-                        <entry>需要填入可以标识频道的 <parmname>channelId</parmname>。</entry>
-                    </row>
-                    <row>
-                        <entry>通过创建多个 <apiname keyref="IChannel"/> 对象，并调用相应对象的 <apiname keyref="IChannel_joinChannel"/> 方法，实现同时加入多个频道。</entry>
-                        <entry>只允许加入一个频道。</entry>
-                    </row>
-                    <row>
-                        <entry>通过该方法加入频道后，SDK 默认不发布本地音视频流到本频道，需要调用 <xref keyref="IChannel_publish"/> 方法进行发布。</entry>
-                        <entry>通过该方法加入频道后，SDK 默认将音视频流发布到本频道。</entry>
-                    </row>
-                </tbody>
-            </tgroup>
+                <tgroup cols="2">
+                    <colspec colnum="1" colname="col1"/>
+                    <colspec colnum="2" colname="col2"/>
+                    <thead>
+                        <row>
+                            <entry><apiname keyref="IChannel_joinChannel"
+                                    >IChannel::joinChannel</apiname></entry>
+                            <entry><apiname keyref="joinChannel1"
+                                >IRtcEngine::joinChannel</apiname></entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry>无 <parmname>channelId</parmname> 参数。因为创建 <xref keyref="IChannel"
+                                /> 对象时已指定了 <parmname>channelId</parmname>。</entry>
+                            <entry>需要填入可以标识频道的 <parmname>channelId</parmname>。</entry>
+                        </row>
+                        <row>
+                            <entry>通过创建多个 <apiname keyref="IChannel"/> 对象，并调用相应对象的 <apiname
+                                    keyref="IChannel_joinChannel"/> 方法，实现同时加入多个频道。</entry>
+                            <entry>只允许加入一个频道。</entry>
+                        </row>
+                        <row>
+                            <entry>通过该方法加入频道后，SDK 默认不发布本地音视频流到本频道，需要调用 <xref
+                                    keyref="IChannel_publish"/> 方法进行发布。</entry>
+                            <entry>通过该方法加入频道后，SDK 默认将音视频流发布到本频道。</entry>
+                        </row>
+                    </tbody>
+                </tgroup>
             </table>
-            <p>用户成功加入频道后，默认订阅频道内所有其他用户的音频流和视频流，因此产生用量并影响计费。如果想取消订阅，可以通过调用相应的 <codeph>mute</codeph> 方法实现。</p>
+            <p>用户成功加入频道后，默认订阅频道内所有其他用户的音频流和视频流，因此产生用量并影响计费。如果想取消订阅，可以通过调用相应的 <codeph>mute</codeph>
+                方法实现。</p>
             <note type="attention">
-            <ul>
-            <li>该方法不支持相同的用户重复加入同一个频道。</li>
-            <li>我们建议不同频道中使用不同的 UID。</li>
-            <li>如果想要从不同的设备同时接入同一个频道，请确保每个设备上使用的 UID 是不同的。</li>
-            </ul> </note> </section>
+                <ul>
+                    <li>该方法不支持相同的用户重复加入同一个频道。</li>
+                    <li>我们建议不同频道中使用不同的 UID。</li>
+                    <li>如果想要从不同的设备同时接入同一个频道，请确保每个设备上使用的 UID 是不同的。</li>
+                </ul>
+            </note>
+        </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry conkeyref="joinChannel2/token">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry conkeyref="joinChannel2/info">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry>
-                <pt>uid</pt>
-                <pd>用户 ID。该参数用于标识在实时音视频互动频道中的用户。你需要自行设置和管理用户 ID，并确保同一频道内的每个用户 ID 是唯一的。该参数为 32 位无符号整数，建议设置范围：1 到 21 到 2<sup>32</sup>-1如果不指定（即设为 0），SDK 会自动分配一个，并在 <xref keyref="IChannel_onJoinChannelSuccess"/> 回调中返回，App 层必须记住该返回值并维护，SDK 不对该返回值进行维护。</pd>
-            </plentry>
-            <plentry conkeyref="joinChannel2/options">
-                <pt/>
-                <pd/>
-            </plentry>
-            </parml> </section>
+                <plentry conkeyref="joinChannel2/token">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry conkeyref="joinChannel2/info">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry>
+                    <pt>uid</pt>
+                    <pd>用户 ID。该参数用于标识在实时音视频互动频道中的用户。你需要自行设置和管理用户 ID，并确保同一频道内的每个用户 ID 是唯一的。该参数为 32
+                        位无符号整数，建议设置范围：1 到 21 到 2<sup>32</sup>-1如果不指定（即设为 0），SDK 会自动分配一个，并在 <xref
+                            keyref="IChannel_onJoinChannelSuccess"/> 回调中返回，App 层必须记住该返回值并维护，SDK
+                        不对该返回值进行维护。</pd>
+                </plentry>
+                <plentry conkeyref="joinChannel2/options">
+                    <pt/>
+                    <pd/>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values" props="native cpp cs electron">
             <title>返回值</title>
             <ul>
-            <li>0(ERR_OK) 方法调用成功。</li>
-            <li>&lt; 0 方法调用失败。 
-                    
-                
-                
-                <ul>
-                <li>-2(ERR_INVALID_ARGUMENT): 参数无效。</li>
-                <li>-3(ERR_NOT_READY): SDK 初始化失败，请尝试重新初始化 SDK。</li>
-                <li>-5(ERR_REFUSED): 调用被拒绝。可能有如下两个原因： 
-                        
-                    
-                    
-                    <ul>
-                    <li>已经创建了一个同名的 <xref keyref="IChannel"/> 频道。</li>
-                    <li>已经通过 <apiname keyref="IChannel"/> 加入了一个频道，并在该 <apiname keyref="IChannel"/> 频道中发布了音视频流。</li>
+                <li>0(ERR_OK) 方法调用成功。</li>
+                <li>&lt; 0 方法调用失败。 <ul>
+                        <li>-2(ERR_INVALID_ARGUMENT): 参数无效。</li>
+                        <li>-3(ERR_NOT_READY): SDK 初始化失败，请尝试重新初始化 SDK。</li>
+                        <li>-5(ERR_REFUSED): 调用被拒绝。可能有如下两个原因： <ul>
+                                <li>已经创建了一个同名的 <xref keyref="IChannel"/> 频道。</li>
+                                <li>已经通过 <apiname keyref="IChannel"/> 加入了一个频道，并在该 <apiname
+                                        keyref="IChannel"/> 频道中发布了音视频流。</li>
+                            </ul></li>
+                        <li>-7(ERR_NOT_INITIALIZED): SDK 尚未初始化，就调用该方法。请确认在调用 API 之前已经创建 <xref
+                                keyref="IRtcEngine"/> 对象并完成初始化。</li>
+                        <li props="cpp rtc">ERR_JOIN_CHANNEL_REJECTED(-17): 加入频道被拒绝。由于 SDK
+                            不支持用户重复加入同一个 <xref keyref="IChannel"/> 频道，当已经加入某个 <xref
+                                keyref="IChannel"/> 频道的用户再次调用该 <xref keyref="IChannel"/>
+                            对象的加入频道方法时，会返回此错误码。</li>
                     </ul></li>
-                <li>-7(ERR_NOT_INITIALIZED): SDK 尚未初始化，就调用该方法。请确认在调用 API 之前已经创建 <xref keyref="IRtcEngine"/> 对象并完成初始化。</li>
-                <li props="cpp rtc">ERR_JOIN_CHANNEL_REJECTED(-17): 加入频道被拒绝。由于 SDK 不支持用户重复加入同一个 <xref keyref="IChannel"/> 频道，当已经加入某个 <xref keyref="IChannel"/> 频道的用户再次调用该 <xref keyref="IChannel"/> 对象的加入频道方法时，会返回此错误码。</li>
-                </ul></li>
-            </ul> </section>
+            </ul>
+        </section>
     </refbody>
 </reference>

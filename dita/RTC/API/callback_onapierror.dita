@@ -13,28 +13,32 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp"/>
-            <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.API_ERROR, cb: (apiType: ApiTypeEngine, msg: string) =&gt; void): this;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp"/>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.API_ERROR, cb: (apiType: ApiTypeEngine, msg: string) =&gt; void): this;</codeblock>
+                <codeblock props="cs" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
             <p id="desc">Agora SDK 运行过程中，当 Electron 层发生错误时，SDK 会触发该回调。</p>
-            <note id="note" type="attention" props="electron">该回调仅报告 Electron 层发生的错误。如果你想收到 Native 层发生的错误，请改用 <xref keyref="onError"/>。</note> </section>
+            <note id="note" type="attention" props="electron">该回调仅报告 Electron 层发生的错误。如果你想收到 Native
+                层发生的错误，请改用 <xref keyref="onError"/>。</note>
+        </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry>
-                <pt>apiType</pt>
-                <pd>内部引擎。可忽略。</pd>
-            </plentry>
-            <plentry>
-                <pt>msg</pt>
-                <pd>错误描述。典型出错原因为调用 API 时传入参数出错，如参数值不符合规范、参数个数不正确。</pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>apiType</pt>
+                    <pd>内部引擎。可忽略。</pd>
+                </plentry>
+                <plentry>
+                    <pt>msg</pt>
+                    <pd>错误描述。典型出错原因为调用 API 时传入参数出错，如参数值不符合规范、参数个数不正确。</pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

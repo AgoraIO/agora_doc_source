@@ -13,39 +13,41 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onChannelError(IChannel *rtcChannel,
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onChannelError(IChannel *rtcChannel,
     int err,
     const char* msg) {
     (void)rtcChannel;
     (void)err;
     (void)msg;
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(
+                <codeblock props="electron" outputclass="language-typescript">on(
   evt: ChannelEvents.CHANNEL_ERROR,
   cb: (channelId: string, err: number, msg: string) =&gt; void
 ): this;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public virtual void OnChannelError(string channelId, int err, string msg)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">ErrorCallback? error;</codeblock> </p>
+                <codeblock props="cs" outputclass="language-csharp">public virtual void OnChannelError(string channelId, int err, string msg)</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">ErrorCallback? error;</codeblock>
+            </p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
-            <plentry props="native cs" conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry>
-                <pt>err</pt>
-                <pd>错误码，详见<xref keyref="errorCode">错误码和警告码</xref>。</pd>
-            </plentry>
-            <plentry>
-                <pt>msg</pt>
-                <pd>错误信息</pd>
-            </plentry>
-            </parml> </section>
+                <plentry props="native cs" conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry>
+                    <pt>err</pt>
+                    <pd>错误码，详见<xref keyref="errorCode">错误码和警告码</xref>。</pd>
+                </plentry>
+                <plentry>
+                    <pt>msg</pt>
+                    <pd>错误信息</pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

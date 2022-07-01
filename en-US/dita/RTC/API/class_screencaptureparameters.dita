@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_screencaptureparameters">
-    <title><ph keyref="ScreenCaptureParameters" /></title>
+    <title><ph keyref="ScreenCaptureParameters"/></title>
     <shortdesc id="short"><ph id="shortdesc">Screen sharing configurations.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p props="rtc-ng" outputclass="codeblock">
-            <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenCaptureParameters: NSObject
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenCaptureParameters: NSObject
 @property (assign, nonatomic) CGSize dimensions;
 @property (assign, nonatomic) NSInteger frameRate;
 @property (assign, nonatomic) NSInteger bitrate;
 
 @end</codeblock>
-            <codeblock props="android" outputclass="language-java">public class ScreenCaptureParameters {
+                <codeblock props="android" outputclass="language-java">public class ScreenCaptureParameters {
   private VideoDimensions videoDimensions;
   private int frameRate;
   private int bitrate;
@@ -62,7 +62,7 @@
     return bitrate;
   }
 }</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct ScreenCaptureParameters {
+                <codeblock props="cpp" outputclass="language-cpp">struct ScreenCaptureParameters {
   VideoDimensions dimensions;
   int frameRate;
   int bitrate;
@@ -84,7 +84,7 @@
   ScreenCaptureParameters(int width, int height, int f, int b, bool cur, bool fcs, view_t *ex, int cnt)
     : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(cur), windowFocus(fcs), excludeWindowList(ex), excludeWindowCount(cnt) {}
 };</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public class ScreenCaptureParameters
+                <codeblock props="cs" outputclass="language-csharp">public class ScreenCaptureParameters
     {
         public ScreenCaptureParameters()
         {
@@ -132,9 +132,10 @@
         public view_t[] excludeWindowList { set; get; }
 
         public int excludeWindowCount { set; get; }
-    }</codeblock> </p>
+    }</codeblock>
+            </p>
             <p props="rtc" outputclass="codeblock">
-            <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenCaptureParameters : NSObject
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenCaptureParameters : NSObject
 @property(assign, nonatomic) CGSize dimensions;
 @property(assign, nonatomic) NSInteger frameRate;
 @property(assign, nonatomic) NSInteger bitrate;
@@ -143,8 +144,8 @@
 @property(copy, nonatomic) NSArray* _Nullable excludeWindowList;
 
 @end</codeblock>
-            <codeblock props="android" outputclass="language-java" />
-            <codeblock props="cpp" outputclass="language-cpp">struct ScreenCaptureParameters {
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="cpp" outputclass="language-cpp">struct ScreenCaptureParameters {
     VideoDimensions dimensions;
     int frameRate;
     int bitrate;
@@ -153,7 +154,7 @@
     view_t* excludeWindowList;
     int excludeWindowCount;
 };</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public class ScreenCaptureParameters
+                <codeblock props="cs" outputclass="language-csharp">public class ScreenCaptureParameters
     {
         public ScreenCaptureParameters()
         {
@@ -198,7 +199,7 @@
         public view_t[] excludeWindowList { set; get; }
         public int excludeWindowCount { set; get; }
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">export interface ScreenCaptureParameters {
+                <codeblock props="electron" outputclass="language-typescript">export interface ScreenCaptureParameters {
     width: number;
     height: number;
     frameRate: number;
@@ -208,8 +209,8 @@
     excludeWindowList: Array&lt;number&gt;;
     excludeWindowCount: number;
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">class ScreenCaptureParameters {
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">class ScreenCaptureParameters {
 
   @JsonKey(includeIfNull: false)
   VideoDimensions? dimensions;
@@ -242,152 +243,174 @@
       _$ScreenCaptureParametersFromJson(json);
 
   Map&lt;String, dynamic&gt; toJson() =&gt; _$ScreenCaptureParametersToJson(this);
-}</codeblock> </p>
+}</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+                /></title>
             <parml>
-            <plentry>
-                <pt props="ios mac cpp cs flutter">dimensions</pt>
-                <pt props="android">videoDimensions</pt>
-                <pd>
-                    <p>The maximum dimensions of encoding the shared region.<ph props="android cpp cs"> For details, see <xref keyref="VideoDimensions" />.</ph> The default value is 1,920 × 1,080, that is,
-                            2,073,600 pixels. Agora uses the value of this parameter to calculate the charges.</p>
-                    <p>If the screen dimensions are different from the value of this parameter, Agora applies the following strategies for encoding. Suppose <codeph>dimensions</codeph> are set to 1,920 x 1,080:
-
-
-                    <ul>
-                    <li>If the value of the screen dimensions is lower than that of <codeph>dimensions</codeph>, for example, 1,000 x 1,000 pixels, the SDK uses 1,000 x 1,000 pixels
-                                    for encoding.</li>
-                    <li>If the value of the screen dimensions is larger than that of <codeph>dimensions</codeph>, for example, 2,000 × 1,500, the SDK uses
-                                    the maximum value next to 1,920 × 1,080 with the aspect ratio of the screen dimension (4:3) for encoding, that is, 1,440 × 1,080.</li>
-                    </ul></p>
-                </pd>
-            </plentry>
-            <plentry>
-                <pt>frameRate</pt>
-                <pd>The frame rate (fps) of the shared region. The default value is 5. Agora does not recommend setting it to a value greater than 15.</pd>
-            </plentry>
-            <plentry>
-                <pt>bitrate</pt>
-                <pd>The bitrate (Kbps) of the shared region. The default value is 0, which represents that the SDK works out a bitrate according to the dimensions of the current screen.</pd>
-            </plentry>
-            <plentry props="rtc">
-                <pt>captureMouseCursor</pt>
-                <pd>
-                    <dl outputclass="since">
-                    <dlentry>
-                        <dt>Since</dt>
-                        <dd>v2.4.1</dd>
-                    </dlentry>
-                    </dl>
-                    <p>Whether to capture the mouse in screen sharing:</p>
-                    <ul>
-                    <li><codeph><ph keyref="true" /></codeph>: (Default) Capture the mouse.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Do not capture the mouse.</li>
-                    </ul></pd>
-            </plentry>
-            <plentry props="rtc-ng">
-                <pt props="cpp">captureMouseCursor</pt>
-                <pd props="cpp">
-                    <p>Whether to capture the mouse in screen sharing:
-
-
-                    <ul>
-                    <li><codeph><ph keyref="true" /></codeph>: (Default) Capture the mouse.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Do not capture the mouse.</li>
-                    </ul></p>
-                </pd>
-            </plentry>
-            <plentry props="rtc">
-                <pt>windowFocus</pt>
-                <pd>
-                    <dl outputclass="since">
-                    <dlentry>
-                        <dt>Since</dt>
-                        <dd>v3.1.0</dd>
-                    </dlentry>
-                    </dl>
-                    <p>Whether to bring the window to the front when calling the <xref keyref="startScreenCaptureByWindowId" /> method to share it:
-
-
-                    <ul>
-                    <li><codeph><ph keyref="true" /></codeph>:Bring the window to the front.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: (Default) Do not bring the window to the front.</li>
-                    </ul></p>
-                </pd>
-            </plentry>
-            <plentry props="rtc-ng">
-                <pt props="cpp">windowFocus</pt>
-                <pd props="cpp">
-                    <p>Whether to bring the window to the front when calling the <xref keyref="startScreenCaptureByWindowId" /> method to share it:
-
-
-                    <ul>
-                    <li><codeph><ph keyref="true" /></codeph>:Bring the window to the front.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: (Default) Do not bring the window to the front.</li>
-                    </ul></p>
-                </pd>
-            </plentry>
-            <plentry props="rtc">
-                <pt>excludeWindowList</pt>
-                <pd>
-                    <dl outputclass="since" props="rtc">
-                    <dlentry props="native">
-                        <dt>Since</dt>
-                        <dd>v3.1.0</dd>
-                    </dlentry>
-                    </dl>
-                    <p>The ID list of the cpp to be blocked. When calling <xref keyref="startScreenCaptureByScreenRect" /> to start screen sharing, you can use this parameter to block a specified window. When calling <xref keyref="updateScreenCaptureParameters" /> to update screen sharing configurations, you can use this parameter to dynamically block a specified window.</p>
-                </pd>
-            </plentry>
-            <plentry props="rtc-ng">
-                <pt props="cpp">excludeWindowList</pt>
-                <pd props="cpp">
-                    <p>The ID list of the cpp to be blocked. When calling <xref keyref="startScreenCaptureByScreenRect" /> to start screen sharing, you can use this parameter to block a specified window. When calling <xref keyref="updateScreenCaptureParameters" /> to update screen sharing configurations, you can use this parameter to dynamically block a specified window.</p>
-                </pd>
-            </plentry>
-            <plentry props="cpp cs electron">
-                <pt>excludeWindowCount</pt>
-                <pd>
-                    <p>The number of cpp to be blocked.</p>
-                </pd>
-            </plentry>
-            <plentry props="electron">
-                <pt>width</pt>
-                <pd>The width of the region.</pd>
-            </plentry>
-            <plentry props="electron">
-                <pt>height</pt>
-                <pd>The height of the region.</pd>
-            </plentry>
-            <plentry props="cpp">
-                <pt>enableHighLight</pt>
-                <pd><p>(macOS only) Determines whether to place a border around the shared window or screen:
-                <ul>
-                    <li>
-                        <codeph><ph keyref="true" /></codeph>: Place a border.
-                    </li>
-                    <li>
-                        <codeph><ph keyref="false" /></codeph>: (Default) Do not place a border.
-                    </li>
-                </ul>
-                </p>
-                <note type="attention">When you share a part of a window or screen, the SDK places a border around the entire window or screen if you set <codeph>enableHighLight</codeph> as <codeph>true</codeph>.</note>
-                </pd>
-            </plentry>
-            <plentry props="cpp">
-                <pt>highLightWidth</pt>
-                <pd>
-                    (macOS only) The width (px) of the border. Defaults to 0, and the value range is [0,50].
-                </pd>
-            </plentry>
-            <plentry props="cpp">
-                <pt>highLightColor</pt>
-                <pd>
-                    (macOS only) The color of the border in RGBA format. The default value is 0xFF8CBF26.
-                </pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt props="ios mac cpp cs flutter">dimensions</pt>
+                    <pt props="android">videoDimensions</pt>
+                    <pd>
+                        <p>The maximum dimensions of encoding the shared region.<ph
+                                props="android cpp cs"> For details, see <xref
+                                    keyref="VideoDimensions"/>.</ph> The default value is 1,920 ×
+                            1,080, that is, 2,073,600 pixels. Agora uses the value of this parameter
+                            to calculate the charges.</p>
+                        <p>If the screen dimensions are different from the value of this parameter,
+                            Agora applies the following strategies for encoding. Suppose
+                                <codeph>dimensions</codeph> are set to 1,920 x 1,080: <ul>
+                                <li>If the value of the screen dimensions is lower than that of
+                                        <codeph>dimensions</codeph>, for example, 1,000 x 1,000
+                                    pixels, the SDK uses 1,000 x 1,000 pixels for encoding.</li>
+                                <li>If the value of the screen dimensions is larger than that of
+                                        <codeph>dimensions</codeph>, for example, 2,000 × 1,500, the
+                                    SDK uses the maximum value next to 1,920 × 1,080 with the aspect
+                                    ratio of the screen dimension (4:3) for encoding, that is, 1,440
+                                    × 1,080.</li>
+                            </ul></p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>frameRate</pt>
+                    <pd>The frame rate (fps) of the shared region. The default value is 5. Agora
+                        does not recommend setting it to a value greater than 15.</pd>
+                </plentry>
+                <plentry>
+                    <pt>bitrate</pt>
+                    <pd>The bitrate (Kbps) of the shared region. The default value is 0, which
+                        represents that the SDK works out a bitrate according to the dimensions of
+                        the current screen.</pd>
+                </plentry>
+                <plentry props="rtc">
+                    <pt>captureMouseCursor</pt>
+                    <pd>
+                        <dl outputclass="since">
+                            <dlentry>
+                                <dt>Since</dt>
+                                <dd>v2.4.1</dd>
+                            </dlentry>
+                        </dl>
+                        <p>Whether to capture the mouse in screen sharing:</p>
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>: (Default) Capture the
+                                mouse.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Do not capture the
+                                mouse.</li>
+                        </ul></pd>
+                </plentry>
+                <plentry props="rtc-ng">
+                    <pt props="cpp">captureMouseCursor</pt>
+                    <pd props="cpp">
+                        <p>Whether to capture the mouse in screen sharing: <ul>
+                                <li><codeph><ph keyref="true"/></codeph>: (Default) Capture the
+                                    mouse.</li>
+                                <li><codeph><ph keyref="false"/></codeph>: Do not capture the
+                                    mouse.</li>
+                            </ul></p>
+                    </pd>
+                </plentry>
+                <plentry props="rtc">
+                    <pt>windowFocus</pt>
+                    <pd>
+                        <dl outputclass="since">
+                            <dlentry>
+                                <dt>Since</dt>
+                                <dd>v3.1.0</dd>
+                            </dlentry>
+                        </dl>
+                        <p>Whether to bring the window to the front when calling the <xref
+                                keyref="startScreenCaptureByWindowId"/> method to share it: <ul>
+                                <li><codeph><ph keyref="true"/></codeph>:Bring the window to the
+                                    front.</li>
+                                <li><codeph><ph keyref="false"/></codeph>: (Default) Do not bring
+                                    the window to the front.</li>
+                            </ul></p>
+                    </pd>
+                </plentry>
+                <plentry props="rtc-ng">
+                    <pt props="cpp">windowFocus</pt>
+                    <pd props="cpp">
+                        <p>Whether to bring the window to the front when calling the <xref
+                                keyref="startScreenCaptureByWindowId"/> method to share it: <ul>
+                                <li><codeph><ph keyref="true"/></codeph>:Bring the window to the
+                                    front.</li>
+                                <li><codeph><ph keyref="false"/></codeph>: (Default) Do not bring
+                                    the window to the front.</li>
+                            </ul></p>
+                    </pd>
+                </plentry>
+                <plentry props="rtc">
+                    <pt>excludeWindowList</pt>
+                    <pd>
+                        <dl outputclass="since" props="rtc">
+                            <dlentry props="native">
+                                <dt>Since</dt>
+                                <dd>v3.1.0</dd>
+                            </dlentry>
+                        </dl>
+                        <p>The ID list of the cpp to be blocked. When calling <xref
+                                keyref="startScreenCaptureByScreenRect"/> to start screen sharing,
+                            you can use this parameter to block a specified window. When calling
+                                <xref keyref="updateScreenCaptureParameters"/> to update screen
+                            sharing configurations, you can use this parameter to dynamically block
+                            a specified window.</p>
+                    </pd>
+                </plentry>
+                <plentry props="rtc-ng">
+                    <pt props="cpp">excludeWindowList</pt>
+                    <pd props="cpp">
+                        <p>The ID list of the cpp to be blocked. When calling <xref
+                                keyref="startScreenCaptureByScreenRect"/> to start screen sharing,
+                            you can use this parameter to block a specified window. When calling
+                                <xref keyref="updateScreenCaptureParameters"/> to update screen
+                            sharing configurations, you can use this parameter to dynamically block
+                            a specified window.</p>
+                    </pd>
+                </plentry>
+                <plentry props="cpp cs electron">
+                    <pt>excludeWindowCount</pt>
+                    <pd>
+                        <p>The number of cpp to be blocked.</p>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>width</pt>
+                    <pd>The width of the region.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>height</pt>
+                    <pd>The height of the region.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>enableHighLight</pt>
+                    <pd><p>(macOS only) Determines whether to place a border around the shared
+                            window or screen: <ul>
+                                <li>
+                                    <codeph><ph keyref="true"/></codeph>: Place a border. </li>
+                                <li>
+                                    <codeph><ph keyref="false"/></codeph>: (Default) Do not place a
+                                    border. </li>
+                            </ul>
+                        </p>
+                        <note type="attention">When you share a part of a window or screen, the SDK
+                            places a border around the entire window or screen if you set
+                                <codeph>enableHighLight</codeph> as <codeph>true</codeph>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>highLightWidth</pt>
+                    <pd> (macOS only) The width (px) of the border. Defaults to 0, and the value
+                        range is [0,50]. </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>highLightColor</pt>
+                    <pd> (macOS only) The color of the border in RGBA format. The default value is
+                        0xFF8CBF26. </pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

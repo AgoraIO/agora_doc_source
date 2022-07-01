@@ -13,75 +13,83 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="cpp" outputclass="language-cpp">virtual int setLocalRenderMode(media::base::RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLocalRenderMode:(AgoraVideoRenderMode)mode
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setLocalRenderMode(media::base::RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLocalRenderMode:(AgoraVideoRenderMode)mode
                    mirror:(AgoraVideoMirrorMode)mirror;</codeblock>
-             </p>
-            <p outputclass="codeblock" props="rtc">
-            <codeblock props="cpp" outputclass="language-cpp">virtual int setLocalRenderMode(RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLocalRenderMode:(AgoraVideoRenderMode)renderMode mirrorMode:(AgoraVideoMirrorMode)mirrorMode;</codeblock>
             </p>
-        <p outputclass="codeblock">
+            <p outputclass="codeblock" props="rtc">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setLocalRenderMode(RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLocalRenderMode:(AgoraVideoRenderMode)renderMode mirrorMode:(AgoraVideoMirrorMode)mirrorMode;</codeblock>
+            </p>
+            <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract int setLocalRenderMode(int renderMode, int mirrorMode);</codeblock>
-                <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp">public abstract int SetLocalRenderMode(RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" /> </p>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetLocalRenderMode(RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
-            <dlentry>
-                <dt>自从</dt>
-                <dd>v3.3.0</dd>
-            </dlentry>
+                <dlentry>
+                    <dt>自从</dt>
+                    <dd>v3.3.0</dd>
+                </dlentry>
             </dl>
             <p>初始化本地用户视图后，你可以调用该方法更新本地用户视图的渲染和镜像模式。该方法只影响本地用户看到的视频画面，不影响本地发布视频。</p>
             <note type="attention">
-            <ul>
-            <li>请在调用 <xref keyref="setupLocalVideo"/> 方法初始化本地视图后，调用该方法。</li>
-            <li>你可以在通话中多次调用该方法，多次更新本地用户视图的显示模式。</li>
-            </ul> </note> </section>
+                <ul>
+                    <li>请在调用 <xref keyref="setupLocalVideo"/> 方法初始化本地视图后，调用该方法。</li>
+                    <li>你可以在通话中多次调用该方法，多次更新本地用户视图的显示模式。</li>
+                </ul>
+            </note>
+        </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry>
-                <pt props="android cpp unity">renderMode</pt>
-                <pt props="ios mac"><ph props="rtc-ng">mode</ph><ph props="rtc">renderMode</ph></pt>
-                <pd>
-                    <p props="ios mac cpp unity">本地视图显示模式。详见 <xref keyref="RENDER_MODE_TYPE"/>。</p>
-                    <p props="android">本地视图显示模式。
-                   
-                    
-                    <ul id="rendermodetype">
-                    <li><ph keyref="RENDER_MODE_HIDDEN"/>
-                           (1)：优先保证视窗被填满。视频尺寸等比缩放，直至整个视窗被视频填满。如果视频长宽与显示窗口不同，多出的视频将被截掉。</li>
-                    <li><ph keyref="RENDER_MODE_FIT"/>
-                           (2)：优先保证视频内容全部显示。视频尺寸等比缩放，直至视频窗口的一边与视窗边框对齐。如果视频长宽与显示窗口不同，视窗上未被填满的区域将被涂黑。</li>
-                    <li><ph keyref="RENDER_MODE_ADAPTIVE"/> (3): 该模式已废弃，不推荐使用。</li>
-                    </ul> </p>
-                </pd>
-            </plentry>
-            <plentry>
-                <pt props="android cpp unity">mirrorMode</pt>
-                <pt props="ios mac"><ph props="rtc-ng">mirror</ph><ph props="rtc">mirrorMode</ph></pt>
-                <pd>
-                    <p props="ios mac cpp unity">本地视图的镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
-                    <p props="android">本地视图的镜像模式。
-          
-                    
-                    <ul id="videomirrormodetype">
-                    <li><ph keyref="VIDEO_MIRROR_MODE_AUTO"/> (0)：默认的镜像模式（SDK 决定镜像模式）。如果你使用前置摄像头，默认启动本地视图镜像模式；如果你启用后置摄像头，默认关闭本地视图镜像模式。</li>
-                    <li><ph keyref="VIDEO_MIRROR_MODE_ENABLED"/> (1)：开启镜像模式。</li>
-                    <li><ph keyref="VIDEO_MIRROR_MODE_DISABLED"/> (2)：关闭镜像模式。</li>
-                    </ul> </p>
-                    <note type="attention">如果你使用前置摄像头，默认启动本地用户视图镜像模式；如果你使用后置摄像头，默认关闭本地视图镜像模式。</note> </pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt props="android cpp unity">renderMode</pt>
+                    <pt props="ios mac"><ph props="rtc-ng">mode</ph><ph props="rtc"
+                        >renderMode</ph></pt>
+                    <pd>
+                        <p props="ios mac cpp unity">本地视图显示模式。详见 <xref keyref="RENDER_MODE_TYPE"
+                            />。</p>
+                        <p props="android">本地视图显示模式。 <ul id="rendermodetype">
+                                <li><ph keyref="RENDER_MODE_HIDDEN"/>
+                                    (1)：优先保证视窗被填满。视频尺寸等比缩放，直至整个视窗被视频填满。如果视频长宽与显示窗口不同，多出的视频将被截掉。</li>
+                                <li><ph keyref="RENDER_MODE_FIT"/>
+                                    (2)：优先保证视频内容全部显示。视频尺寸等比缩放，直至视频窗口的一边与视窗边框对齐。如果视频长宽与显示窗口不同，视窗上未被填满的区域将被涂黑。</li>
+                                <li><ph keyref="RENDER_MODE_ADAPTIVE"/> (3): 该模式已废弃，不推荐使用。</li>
+                            </ul>
+                        </p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt props="android cpp unity">mirrorMode</pt>
+                    <pt props="ios mac"><ph props="rtc-ng">mirror</ph><ph props="rtc"
+                            >mirrorMode</ph></pt>
+                    <pd>
+                        <p props="ios mac cpp unity">本地视图的镜像模式，详见 <xref
+                                keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
+                        <p props="android">本地视图的镜像模式。 <ul id="videomirrormodetype">
+                                <li><ph keyref="VIDEO_MIRROR_MODE_AUTO"/> (0)：默认的镜像模式（SDK
+                                    决定镜像模式）。如果你使用前置摄像头，默认启动本地视图镜像模式；如果你启用后置摄像头，默认关闭本地视图镜像模式。</li>
+                                <li><ph keyref="VIDEO_MIRROR_MODE_ENABLED"/> (1)：开启镜像模式。</li>
+                                <li><ph keyref="VIDEO_MIRROR_MODE_DISABLED"/> (2)：关闭镜像模式。</li>
+                            </ul>
+                        </p>
+                        <note type="attention"
+                            >如果你使用前置摄像头，默认启动本地用户视图镜像模式；如果你使用后置摄像头，默认关闭本地视图镜像模式。</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values">
             <title>返回值</title>
             <ul>
-            <li>0: 方法调用成功</li>
-            <li> &lt; 0: 方法调用失败</li>
-            </ul> </section>
+                <li>0: 方法调用成功</li>
+                <li> &lt; 0: 方法调用失败</li>
+            </ul>
+        </section>
     </refbody>
 </reference>

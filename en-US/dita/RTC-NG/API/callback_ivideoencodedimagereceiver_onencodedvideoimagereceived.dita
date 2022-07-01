@@ -2,7 +2,8 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_ivideoencodedimagereceiver_onencodedvideoimagereceived">
     <title><ph keyref="onEncodedVideoImageReceived"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs each time the SDK receives an encoded video frame.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs each time the SDK receives an encoded video
+            frame.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -13,39 +14,42 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnEncodedVideoImageReceived(byte[] imageBuffer, UInt64 length, EncodedVideoFrameInfo videoEncodedFrameInfo)
+                <codeblock props="unity" outputclass="language-csharp">public virtual bool OnEncodedVideoImageReceived(byte[] imageBuffer, UInt64 length, EncodedVideoFrameInfo videoEncodedFrameInfo)
         {
             return true;
         }</codeblock>
-            <codeblock props="android" outputclass="language-java">boolean OnEncodedVideoImageReceived(ByteBuffer buffer, EncodedVideoFrameInfo info);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onEncodedVideoFrame:(NSData * _Nonnull )videoData length:(size_t)length info:(AgoraEncodedVideoFrameInfo * _Nonnull)videoFrameInfo;
+                <codeblock props="android" outputclass="language-java">boolean OnEncodedVideoImageReceived(ByteBuffer buffer, EncodedVideoFrameInfo info);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onEncodedVideoFrame:(NSData * _Nonnull )videoData length:(size_t)length info:(AgoraEncodedVideoFrameInfo * _Nonnull)videoFrameInfo;
 </codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual bool OnEncodedVideoImageReceived(const uint8_t* imageBuffer, size_t length, const EncodedVideoFrameInfo&amp; videoEncodedFrameInfo) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+                <codeblock props="cpp" outputclass="language-cpp">virtual bool OnEncodedVideoImageReceived(const uint8_t* imageBuffer, size_t length, const EncodedVideoFrameInfo&amp; videoEncodedFrameInfo) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry>
-                <pt props="ios mac">videoData</pt>
-                <pt props="cpp unity">imageBuffer</pt>
-                <pt props="android">buffer</pt>
-                <pd props="cpp unity android">The encoded video image buffer.</pd>
-                <pd props="ios mac">The encoded video image data.</pd>
-            </plentry>
-            <plentry props="cpp unity ios mac">
-                <pt>length</pt>
-                <pd>The data length of the video image.</pd>
-            </plentry>
-            <plentry>
-                <pt props="android">info</pt>
-                <pt props="ios mac">videoFrameInfo</pt>
-                <pt props="cpp unity">videoEncodedFrameInfo</pt>
-                <pd>For the information of the encoded video frame, see <xref keyref="EncodedVideoFrameInfo"/>.</pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt props="ios mac">videoData</pt>
+                    <pt props="cpp unity">imageBuffer</pt>
+                    <pt props="android">buffer</pt>
+                    <pd props="cpp unity android">The encoded video image buffer.</pd>
+                    <pd props="ios mac">The encoded video image data.</pd>
+                </plentry>
+                <plentry props="cpp unity ios mac">
+                    <pt>length</pt>
+                    <pd>The data length of the video image.</pd>
+                </plentry>
+                <plentry>
+                    <pt props="android">info</pt>
+                    <pt props="ios mac">videoFrameInfo</pt>
+                    <pt props="cpp unity">videoEncodedFrameInfo</pt>
+                    <pd>For the information of the encoded video frame, see <xref
+                            keyref="EncodedVideoFrameInfo"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values">
             <title>Returns</title>
             <p id="return">Reserved for future use.</p>

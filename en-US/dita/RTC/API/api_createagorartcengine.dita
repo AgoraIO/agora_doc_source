@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_createagorartcengine">
-    <title><ph keyref="createAgoraRtcEngine" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Creates the <apiname keyref="IRtcEngine" /> object.</ph></shortdesc>
+    <title><ph keyref="createAgoraRtcEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Creates the <apiname keyref="IRtcEngine"/>
+        object.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -13,38 +14,46 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
-            <codeblock props="ios mac" outputclass="language-objectivec" />
-            <codeblock props="cpp" outputclass="language-cpp">AGORA_API agora::rtc::IRtcEngine *AGORA_CALL createAgoraRtcEngine ()</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="cs" outputclass="language-csharp">public static IAgoraRtcEngine CreateAgoraRtcEngine(AgoraEngineType engineType = AgoraEngineType.MainProcess)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">static Future&lt;RtcEngine&gt; create(String appId)</codeblock> </p>
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">AGORA_API agora::rtc::IRtcEngine *AGORA_CALL createAgoraRtcEngine ()</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="cs" outputclass="language-csharp">public static IAgoraRtcEngine CreateAgoraRtcEngine(AgoraEngineType engineType = AgoraEngineType.MainProcess)</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">static Future&lt;RtcEngine&gt; create(String appId)</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p props="flutter">This method is deprecated. Use <xref keyref="create2" /> instead.</p>
-            <p props="native">The Agora RTC Native SDK supports creating only one <apiname keyref="IRtcEngine" /> object.</p>
-            <p props="cs">By default, the SDK uses the main thread to create the <apiname keyref="IRtcEngine" /> object. In use cases with
-            both the screen-captured and camera-captured streams, call this method to create two <apiname keyref="IRtcEngine" /> objects using <ph keyref="MainProcess" />
-            and <ph keyref="SubProcess" /> respectively. The main process initializes <apiname keyref="IRtcEngine" /> and the sub process initializes <ph>AgoraRtcScreenSharing.exe</ph>.</p>
+            <p props="flutter">This method is deprecated. Use <xref keyref="create2"/> instead.</p>
+            <p props="native">The Agora RTC Native SDK supports creating only one <apiname
+                    keyref="IRtcEngine"/> object.</p>
+            <p props="cs">By default, the SDK uses the main thread to create the <apiname
+                    keyref="IRtcEngine"/> object. In use cases with both the screen-captured and
+                camera-captured streams, call this method to create two <apiname keyref="IRtcEngine"
+                /> objects using <ph keyref="MainProcess"/> and <ph keyref="SubProcess"/>
+                respectively. The main process initializes <apiname keyref="IRtcEngine"/> and the
+                sub process initializes <ph>AgoraRtcScreenSharing.exe</ph>.</p>
         </section>
         <section id="parameters" props="flutter cs">
             <title>Parameters</title>
             <parml>
-            <plentry props="flutter">
-                <pt>appId</pt>
-                <pd>The Agora App ID of your Agora project.</pd>
-            </plentry>
-            <plentry props="cs">
-                <pt>engineType</pt>
-                <pd>The process type of the engine. For details, see <xref keyref="AgoraEngineType" />.</pd>
-            </plentry>
-            </parml> </section>
+                <plentry props="flutter">
+                    <pt>appId</pt>
+                    <pd>The Agora App ID of your Agora project.</pd>
+                </plentry>
+                <plentry props="cs">
+                    <pt>engineType</pt>
+                    <pd>The process type of the engine. For details, see <xref
+                            keyref="AgoraEngineType"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values">
             <title>Returns</title>
             <ul>
-            <li>The <apiname keyref="IRtcEngine" /> instance, if the method call succeeds.</li>
-            <li>An error code, if the call fails.</li>
-            </ul> </section>
+                <li>The <apiname keyref="IRtcEngine"/> instance, if the method call succeeds.</li>
+                <li>An error code, if the call fails.</li>
+            </ul>
+        </section>
     </refbody>
 </reference>

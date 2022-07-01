@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onconnectionstatechanged">
-    <title><ph keyref="onConnectionStateChanged" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the network connection state changes.</ph></shortdesc>
+    <title><ph keyref="onConnectionStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the network connection state
+        changes.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="onConnectionStateChanged" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="onConnectionStateChanged"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public void onConnectionStateChanged(int state, int reason) {}</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
                     connectionStateChanged:(AgoraConnectionState)state
@@ -25,70 +27,107 @@
      reason: CONNECTION_CHANGED_REASON_TYPE
      ) =&gt; void): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnConnectionStateChanged(CONNECTION_STATE_TYPE state, CONNECTION_CHANGED_REASON_TYPE reason)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart">ConnectionStateCallback? connectionStateChanged;</codeblock>
-        </p>
+            </p>
         </section>
         <section id="detailed_desc">
-
-   <dl outputclass="since" props="rtc">
-       <dlentry props="native">
-  <dt>Since</dt>
-  <dd>v2.3.2</dd>
-       </dlentry>
-   </dl>
-   <p id="desc">When the network connection state changes, the SDK triggers this callback and reports the current connection state and the reason for the change.</p>
+            <dl outputclass="since" props="rtc">
+                <dlentry props="native">
+                    <dt>Since</dt>
+                    <dd>v2.3.2</dd>
+                </dlentry>
+            </dl>
+            <p id="desc">When the network connection state changes, the SDK triggers this callback
+                and reports the current connection state and the reason for the change.</p>
         </section>
-        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-   <parml>
-       <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                  <pt />
-                  <pd />
-              </plentry>
-       <plentry id="state">
-  <pt>state</pt>
-  <pd><p id="connectionstate">The current connection state.<ph props="ios mac cpp unity"> For details, see <xref keyref="CONNECTION_STATE_TYPE" />.</ph></p>
-      <ul props="android">
-                            <li><ph keyref="CONNECTION_STATE_DISCONNECTED" /> (1): The SDK is disconnected from Agora's edge server.</li>
-                            <li><ph keyref="CONNECTION_STATE_CONNECTING" /> (2): The SDK is connecting to Agora's edge server.</li>
-                            <li><ph keyref="CONNECTION_STATE_CONNECTED" /> (3): The SDK is connected to Agora's edge server and has joined a channel.</li>
-                            <li><ph keyref="CONNECTION_STATE_RECONNECTING" /> (4): The SDK keeps reconnecting to the Agora edge server.</li>
-                            <li><ph keyref="CONNECTION_STATE_FAILED" /> 5: The SDK fails to connect to Agora's edge server or join the channel.</li>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <parml>
+                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry id="state">
+                    <pt>state</pt>
+                    <pd><p id="connectionstate">The current connection state.<ph
+                                props="ios mac cpp unity"> For details, see <xref
+                                    keyref="CONNECTION_STATE_TYPE"/>.</ph></p>
+                        <ul props="android">
+                            <li><ph keyref="CONNECTION_STATE_DISCONNECTED"/> (1): The SDK is
+                                disconnected from Agora's edge server.</li>
+                            <li><ph keyref="CONNECTION_STATE_CONNECTING"/> (2): The SDK is
+                                connecting to Agora's edge server.</li>
+                            <li><ph keyref="CONNECTION_STATE_CONNECTED"/> (3): The SDK is connected
+                                to Agora's edge server and has joined a channel.</li>
+                            <li><ph keyref="CONNECTION_STATE_RECONNECTING"/> (4): The SDK keeps
+                                reconnecting to the Agora edge server.</li>
+                            <li><ph keyref="CONNECTION_STATE_FAILED"/> 5: The SDK fails to connect
+                                to Agora's edge server or join the channel.</li>
                         </ul>
-  </pd>
-       </plentry>
-       <plentry id="reason">
-  <pt>reason</pt>
-           <pd><p>The reason for a connection state change.<ph props="ios mac cpp unity"> For details, see <xref keyref="CONNECTION_CHANGED_REASON_TYPE" />.</ph></p>
-
-               <ul props="android">
-                   <li><ph keyref="CONNECTION_CHANGED_CONNECTING" /> (0): The SDK is connecting to Agora's edge server.</li>
-                   <li><ph keyref="CONNECTION_CHANGED_JOIN_SUCCESS" /> (1): The SDK has joined the channel successfully.</li>
-                   <li><ph keyref="CONNECTION_CHANGED_INTERRUPTED" /> (2): The connection between the SDK and Agora's edge server is interrupted.</li>
-                   <li><ph keyref="CONNECTION_CHANGED_BANNED_BY_SERVER" /> (3): The connection between the SDK and Agora's edge server is banned by Agora's edge server.</li>
-                   <li><ph keyref="CONNECTION_CHANGED_JOIN_FAILED" /> (4): The SDK fails to join the channel.</li>
-                   <li><ph keyref="CONNECTION_CHANGED_LEAVE_CHANNEL" /> (5): The SDK has left the channel.</li>
-                   <li><ph keyref="CONNECTION_CHANGED_INVALID_APP_ID" /> (6): The connection failed because the App ID is not valid. Please rejoin the channel with a valid App ID.</li>
-                   <li><ph keyref="CONNECTION_CHANGED_INVALID_CHANNEL_NAME" /> (7): The connection failed because the channel name is not valid. Please rejoin the channel with a valid channel name.</li>
-                   <li><ph keyref="CONNECTION_CHANGED_INVALID_TOKEN" /> (8): The connection failed because the token is not valid. Typical reasons include:<ul id="ul_pf4_kcx_qqb">
-                       <li>The App Certificate for the project is enabled in Agora Console, but you do not use a token when joining the channel. If you enable the App Certificate, you must use a token to join the channel.</li>
-                       <li>The uid specified when calling <xref keyref="joinChannel1" /> to join the channel is inconsistent with the uid passed in when generating the token.</li>
-                                    </ul>
-                                </li>
-                   <li><ph keyref="CONNECTION_CHANGED_TOKEN_EXPIRED" /> (9): The token has expired. You need to generate a new token from your server.</li>
-                   <li><ph keyref="CONNECTION_CHANGED_REJECTED_BY_SERVER" /> (10): The user is banned by the server.</li>
-                   <li><ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER" /> (11): The SDK tries to reconnect after setting a proxy server.</li>
-                   <li><ph keyref="CONNECTION_CHANGED_RENEW_TOKEN" /> (12): The connection state changed because the token is renewed.</li>
-                   <li><ph keyref="CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED" /> (13): The IP Address of the SDK client has changed, probably due to a change of the network type, IP address, or network port.</li>
-                   <li><ph keyref="CONNECTION_CHANGED_KEEP_ALIVE_TIMEOUT" /> (14): Timeout for the keep-alive of the connection between the SDK and the Agora edge server. The connection state changes to state.</li>
-                   <li><ph keyref="CONNECTION_CHANGED_REJOIN_SUCCESS" /> (15): The SDK has rejoined the channel successfully.</li>
-                   <li><ph keyref="CONNECTION_CHANGED_LOST" /> (16): The connection between the SDK and the server is lost.</li>
-                   <li><ph keyref="CONNECTION_CHANGED_ECHO_TEST" /> (17): The connection state changes due to the echo test.</li>
-               </ul>
-
-           </pd>
-       </plentry>
-   </parml>
+                    </pd>
+                </plentry>
+                <plentry id="reason">
+                    <pt>reason</pt>
+                    <pd><p>The reason for a connection state change.<ph props="ios mac cpp unity">
+                                For details, see <xref keyref="CONNECTION_CHANGED_REASON_TYPE"
+                                />.</ph></p>
+                        <ul props="android">
+                            <li><ph keyref="CONNECTION_CHANGED_CONNECTING"/> (0): The SDK is
+                                connecting to Agora's edge server.</li>
+                            <li><ph keyref="CONNECTION_CHANGED_JOIN_SUCCESS"/> (1): The SDK has
+                                joined the channel successfully.</li>
+                            <li><ph keyref="CONNECTION_CHANGED_INTERRUPTED"/> (2): The connection
+                                between the SDK and Agora's edge server is interrupted.</li>
+                            <li><ph keyref="CONNECTION_CHANGED_BANNED_BY_SERVER"/> (3): The
+                                connection between the SDK and Agora's edge server is banned by
+                                Agora's edge server.</li>
+                            <li><ph keyref="CONNECTION_CHANGED_JOIN_FAILED"/> (4): The SDK fails to
+                                join the channel.</li>
+                            <li><ph keyref="CONNECTION_CHANGED_LEAVE_CHANNEL"/> (5): The SDK has
+                                left the channel.</li>
+                            <li><ph keyref="CONNECTION_CHANGED_INVALID_APP_ID"/> (6): The connection
+                                failed because the App ID is not valid. Please rejoin the channel
+                                with a valid App ID.</li>
+                            <li><ph keyref="CONNECTION_CHANGED_INVALID_CHANNEL_NAME"/> (7): The
+                                connection failed because the channel name is not valid. Please
+                                rejoin the channel with a valid channel name.</li>
+                            <li><ph keyref="CONNECTION_CHANGED_INVALID_TOKEN"/> (8): The connection
+                                failed because the token is not valid. Typical reasons include:<ul
+                                    id="ul_pf4_kcx_qqb">
+                                    <li>The App Certificate for the project is enabled in Agora
+                                        Console, but you do not use a token when joining the
+                                        channel. If you enable the App Certificate, you must use a
+                                        token to join the channel.</li>
+                                    <li>The uid specified when calling <xref keyref="joinChannel1"/>
+                                        to join the channel is inconsistent with the uid passed in
+                                        when generating the token.</li>
+                                </ul>
+                            </li>
+                            <li><ph keyref="CONNECTION_CHANGED_TOKEN_EXPIRED"/> (9): The token has
+                                expired. You need to generate a new token from your server.</li>
+                            <li><ph keyref="CONNECTION_CHANGED_REJECTED_BY_SERVER"/> (10): The user
+                                is banned by the server.</li>
+                            <li><ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER"/> (11): The SDK
+                                tries to reconnect after setting a proxy server.</li>
+                            <li><ph keyref="CONNECTION_CHANGED_RENEW_TOKEN"/> (12): The connection
+                                state changed because the token is renewed.</li>
+                            <li><ph keyref="CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED"/> (13):
+                                The IP Address of the SDK client has changed, probably due to a
+                                change of the network type, IP address, or network port.</li>
+                            <li><ph keyref="CONNECTION_CHANGED_KEEP_ALIVE_TIMEOUT"/> (14): Timeout
+                                for the keep-alive of the connection between the SDK and the Agora
+                                edge server. The connection state changes to state.</li>
+                            <li><ph keyref="CONNECTION_CHANGED_REJOIN_SUCCESS"/> (15): The SDK has
+                                rejoined the channel successfully.</li>
+                            <li><ph keyref="CONNECTION_CHANGED_LOST"/> (16): The connection between
+                                the SDK and the server is lost.</li>
+                            <li><ph keyref="CONNECTION_CHANGED_ECHO_TEST"/> (17): The connection
+                                state changes due to the echo test.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
         </section>
-</refbody>
+    </refbody>
 </reference>
