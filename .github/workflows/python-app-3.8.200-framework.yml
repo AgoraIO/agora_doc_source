@@ -25,17 +25,17 @@ jobs:
             - name: Run json creation
               run: |
                   cd xml2json
-         
+
                   echo "Running for unity NG CN (test)"
                   python xml2json.py --working_dir ../dita/RTC-NG --platform_tag unity --json_file unity_cn_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path unity-ng
             - name: Run json creation
               run: |
                   cd xml2json
-         
+
                   echo "Running for unity NG CN (test)"
                   python xml2json.py --working_dir ../dita/RTC-NG --platform_tag unity --json_file unity_en_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path unity-ng
 
-            - name: Upload Unity NG JSON to release 
+            - name: Upload Unity NG JSON to release
               uses: svenstaro/upload-release-action@v2
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -44,7 +44,7 @@ jobs:
                   tag: main
                   overwrite: true
                   body: "Template file for automatic comment population."
-            - name: Upload Unity NG JSON to release 
+            - name: Upload Unity NG JSON to release
               uses: svenstaro/upload-release-action@v2
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
