@@ -13,7 +13,10 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-kotlin"/>
+                <codeblock props="android" outputclass="language-kotlin">abstract fun addAudioRawDataObserver(
+        observer: FcrMediaRawDataObserver,
+        config: FcrAudioRawDataConfig? = FcrAudioRawDataConfig()
+)</codeblock>
                 <codeblock props="ios mac" outputclass="language-swift">FcrError addAudioRawDataObserver(FcrAudioRawDataObserver observer,
                                  FcrAudioRawDataPosition position)</codeblock>
                 <codeblock props="windows" outputclass="language-cpp"/>
@@ -27,9 +30,13 @@
                     <pt>observer</pt>
                     <pd>观察者，详见 <xref keyref="FcrAudioRawDataObserver"/>。</pd>
                 </plentry>
-                <plentry>
+                <plentry props="ios">
                     <pt>position</pt>
                     <pd>音频管道的输出位置，详见 <xref keyref="FcrAudioRawDataPosition"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>config</pt>
+                    <pd>音频管道的输出配置，详见 <xref keyref="FcrAudioRawDataConfig"/>。</pd>
                 </plentry>
             </parml>
         </section>
