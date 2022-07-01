@@ -16,7 +16,7 @@ import os
 import re
 import argparse
 
-log_name = "prototype_check_dart_ng.txt"
+log_name = "prototype_check_flutter_ng.txt"
 
 
 def removeComments(string):
