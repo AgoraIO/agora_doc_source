@@ -12,7 +12,7 @@
     </prolog>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
+            <p outputclass="codeblock">
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)joinChannelByToken:(NSString * _Nullable)token
                 channelId:(NSString * _Nonnull)channelId
               userAccount:(NSString * _Nonnull)userAccount
@@ -27,18 +27,15 @@
     const char* channelId,
     const char* userAccount,
     const ChannelMediaOptions&amp; options) = 0; </codeblock>
-            <codeblock props="electron" outputclass="language-typescript">joinChannelWithUserAccount(
-  token: string,
-  channelId: string,
-  userAccount: string,
-  options?: ChannelMediaOptions
-): number</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int JoinChannelWithUserAccount(string token, string channelId, string userAccount,
             ChannelMediaOptions options);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; joinChannelWithUserAccount(
-      String? token, String channelName, String userAccount,
-      [ChannelMediaOptions? options]);</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> joinChannelWithUserAccount(
+    {required String token,
+    required String channelId,
+    required String userAccount,
+    ChannelMediaOptions? options});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
@@ -48,6 +45,8 @@
             </dlentry>
             </dl>
             <p id="desc1">该方法允许本地用户使用 User Account 加入频道。成功加入频道后，会触发以下回调： 
+            
+            
             
             <ul>
             <li>本地：<xref keyref="onLocalUserRegistered"/>、<xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/> 回调。</li>
@@ -64,8 +63,8 @@
                 <pd/>
             </plentry>
             <plentry>
-                <pt props="android flutter">channelName</pt>
-                <pt props="cpp ios mac unity">channelId</pt>
+                <pt props="android">channelName</pt>
+                <pt props="cpp ios mac unity flutter">channelId</pt>
                 <pd>
                     <p conkeyref="joinChannel2/channelID_desc"/>
                 </pd>
@@ -74,6 +73,8 @@
                 <pt>userAccount</pt>
                 <pd>
                     <p>用户 User Account。该参数用于标识实时音视频互动频道中的用户。你需要自行设置和管理用户的 User Account，并确保同一频道中每个用户的 User Account 是唯一的。 该参数为必填，最大不超过 255 字节，不可填 <ph keyref="NULL"/>。以下为支持的字符集范围（共 89 个字符）：
+                    
+                    
                     
                     <ul>
                     <li>26 个小写英文字母 a-z</li>
