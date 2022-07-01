@@ -28,7 +28,13 @@
             <li>该方法在加入频道前后均调用。如需多次调用 <apiname keyref="startAudioMixing2"/>，请确保调用间隔大于 500 ms。</li>
             <li>如果本地音乐文件不存在、文件格式不支持或无法访问在线音乐文件 URL，则 SDK 会报告警告码 701。</li>
             <li conkeyref="preloadEffect/audioFormats"/>
-            <li conkeyref="startAudioMixing/principle"/>
+            <li conkeyref="startAudioMixing/principle" props="android cpp unity"/>
+            <li props="rn" id="principle">在 Android 平台上调用该方法时，请注意如下事项：
+                <ul>
+                <li>请确保使用 Android 4.2 或以上设备，且 API Level 不低于 16。</li>
+                <li>如果播放的是在线音乐文件，Agora 建议不要使用重定向地址。重定向地址在某些机型上可能无法打开。</li>
+                <li>如果在模拟器上调用该方法，则请确保音乐文件在 <codeph>/sdcard/</codeph> 目录下，且格式为 MP3。</li>
+                </ul></li>
             </ul> </note> </section>
         <section id="parameters">
             <title>参数</title>
