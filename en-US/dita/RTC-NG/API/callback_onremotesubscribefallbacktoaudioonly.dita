@@ -2,16 +2,19 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onremotesubscribefallbacktoaudioonly">
     <title><ph keyref="onRemoteSubscribeFallbackToAudioOnly"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the remote media stream falls back to the audio-only stream due to poor network conditions or switches back to the video stream after the network conditions improve.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the remote media stream falls back to the
+            audio-only stream due to poor network conditions or switches back to the video stream
+            after the network conditions improve.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="onRemoteSubscribeFallbackToAudioOnly"/>
-   </keywords>
+            <keywords>
+                <indexterm keyref="onRemoteSubscribeFallbackToAudioOnly"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public void onRemoteSubscribeFallbackToAudioOnly(int uid, boolean isFallbackOrRecover) {}</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
     didRemoteSubscribeFallbackToAudioOnly:(BOOL)isFallbackOrRecover byUid:(NSUInteger)uid;</codeblock>
@@ -26,14 +29,23 @@
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteSubscribeFallbackToAudioOnly(uint uid, bool isFallbackOrRecover)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart">FallbackWithUidCallback? remoteSubscribeFallbackToAudioOnly;</codeblock>
-        </p>
+            </p>
         </section>
         <section id="detailed_desc">
-   <p>If you call <xref keyref="setRemoteSubscribeFallbackOption"/> and set <parmname>option</parmname> as <apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/>, the SDK triggers this callback when the remote media stream falls back to audio-only mode due to poor uplink conditions, or when the remote media stream switches back to the video after the downlink network condition improves.</p>
-   <note type="attention">Once the remote media stream switches to the low-quality stream due to poor network conditions, you can monitor the stream switch between a high-quality and low-quality stream in the <xref keyref="onRemoteVideoStats"/> callback.</note>
+            <p>If you call <xref keyref="setRemoteSubscribeFallbackOption"/> and set
+                    <parmname>option</parmname> as <apiname
+                    keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/>, the SDK triggers this callback
+                when the remote media stream falls back to audio-only mode due to poor uplink
+                conditions, or when the remote media stream switches back to the video after the
+                downlink network condition improves.</p>
+            <note type="attention">Once the remote media stream switches to the low-quality stream
+                due to poor network conditions, you can monitor the stream switch between a
+                high-quality and low-quality stream in the <xref keyref="onRemoteVideoStats"/>
+                callback.</note>
         </section>
-        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-   <parml>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <parml>
                 <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                     <pt/>
                     <pd/>
@@ -46,8 +58,11 @@
                     <pt>isFallbackOrRecover</pt>
                     <pd>
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: The remotely subscribed media stream falls back to audio-only due to poor network conditions.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: The remotely subscribed media stream switches back to the video stream after the network conditions improved.</li>
+                            <li><codeph><ph keyref="true"/></codeph>: The remotely subscribed media
+                                stream falls back to audio-only due to poor network conditions.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: The remotely subscribed media
+                                stream switches back to the video stream after the network
+                                conditions improved.</li>
                         </ul>
                     </pd>
                 </plentry>

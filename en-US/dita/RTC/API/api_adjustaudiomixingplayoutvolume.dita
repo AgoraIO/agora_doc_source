@@ -1,47 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_adjustaudiomixingplayoutvolume">
-    <title><ph keyref="adjustAudioMixingPlayoutVolume" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Adjusts the volume of audio mixing for local playback.</ph></shortdesc>
+    <title><ph keyref="adjustAudioMixingPlayoutVolume"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Adjusts the volume of audio mixing for local
+            playback.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="adjustAudioMixingPlayoutVolume" />
+                <indexterm keyref="adjustAudioMixingPlayoutVolume"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int adjustAudioMixingPlayoutVolume(int volume);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)adjustAudioMixingPlayoutVolume:(NSInteger)volume;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int adjustAudioMixingPlayoutVolume(int volume) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">adjustAudioMixingPlayoutVolume(volume: number): number</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public abstract int AdjustAudioMixingPlayoutVolume(int volume);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">adjustAudioMixingPlayoutVolume(volume: number): Promise&lt;void&gt;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; adjustAudioMixingPlayoutVolume(int volume);</codeblock> </p>
+                <codeblock props="android" outputclass="language-java">public abstract int adjustAudioMixingPlayoutVolume(int volume);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)adjustAudioMixingPlayoutVolume:(NSInteger)volume;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int adjustAudioMixingPlayoutVolume(int volume) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">adjustAudioMixingPlayoutVolume(volume: number): number</codeblock>
+                <codeblock props="cs" outputclass="language-csharp">public abstract int AdjustAudioMixingPlayoutVolume(int volume);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">adjustAudioMixingPlayoutVolume(volume: number): Promise&lt;void&gt;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; adjustAudioMixingPlayoutVolume(int volume);</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="native">
-            <dlentry>
-                <dt>Since</dt>
-                <dd>v2.3.2</dd>
-            </dlentry>
+                <dlentry>
+                    <dt>Since</dt>
+                    <dd>v2.3.2</dd>
+                </dlentry>
             </dl>
-            <note type="attention">You need to call this method after calling <xref keyref="startAudioMixing2" /> and receiving the <apiname keyref="onAudioMixingStateChanged" />(<codeph>PLAY</codeph>) callback.</note> </section>
+            <note type="attention">You need to call this method after calling <xref
+                    keyref="startAudioMixing2"/> and receiving the <apiname
+                    keyref="onAudioMixingStateChanged"/>(<codeph>PLAY</codeph>) callback.</note>
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry>
-                <pt>volume</pt>
-                <pd>Audio mixing volume for local playback. The value range is [0,100]. The default value is 100, the original volume.</pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>volume</pt>
+                    <pd>Audio mixing volume for local playback. The value range is [0,100]. The
+                        default value is 100, the original volume.</pd>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values" props="native electron cs">
             <title>Returns</title>
             <ul>
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure.</li>
-            </ul> </section>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
     </refbody>
 </reference>

@@ -1,54 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setexternalaudiosourcevolume">
-    <title><ph keyref="setExternalAudioSourceVolume" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the volume of the external audio frame in the specified position.</ph></shortdesc>
+    <title><ph keyref="setExternalAudioSourceVolume"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the volume of the external audio frame in the
+            specified position.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setExternalAudioSourceVolume" />
+                <indexterm keyref="setExternalAudioSourceVolume"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
-            <codeblock props="ios mac" outputclass="language-objectivec" />
-            <codeblock props="cpp" outputclass="language-cpp" />
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp">public abstract int SetExternalAudioSourceVolume(int sourcePos, int volume);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp"/>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetExternalAudioSourceVolume(int sourcePos, int volume);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p>You can call this method multiple times to set the volume of external audio frames in different positions. The volume setting takes effect for all external audio frames that are pushed to the specified position.
-                <note type="attention">Call this method after joining a channel</note></p>
+            <p>You can call this method multiple times to set the volume of external audio frames in
+                different positions. The volume setting takes effect for all external audio frames
+                that are pushed to the specified position. <note type="attention">Call this method
+                    after joining a channel</note></p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry>
-                <pt>sourcePos</pt>
-                <pd><ph>The push position of the external audio frame. </ph><ph props="android ios mac cpp">See <xref keyref="AUDIO_EXTERNAL_SOURCE_POSITION" />.</ph>
-                <ul props="unity">
-                  <li>0: The position before local playback. If you need to play the external audio frame on the local client, set this position.</li>
-                  <li>1: The position after audio capture and before audio pre-processing. If you need the audio module of the SDK to process the external audio frame, set this position.</li>
-                  <li>2: The position after audio pre-processing and before audio encoding. If you do not need the audio module of the SDK to process the external audio frame, set this position.</li>
-                </ul></pd>
-            </plentry>
+                <plentry>
+                    <pt>sourcePos</pt>
+                    <pd><ph>The push position of the external audio frame. </ph><ph
+                            props="android ios mac cpp">See <xref
+                                keyref="AUDIO_EXTERNAL_SOURCE_POSITION"/>.</ph>
+                        <ul props="unity">
+                            <li>0: The position before local playback. If you need to play the
+                                external audio frame on the local client, set this position.</li>
+                            <li>1: The position after audio capture and before audio pre-processing.
+                                If you need the audio module of the SDK to process the external
+                                audio frame, set this position.</li>
+                            <li>2: The position after audio pre-processing and before audio
+                                encoding. If you do not need the audio module of the SDK to process
+                                the external audio frame, set this position.</li>
+                        </ul></pd>
+                </plentry>
                 <plentry>
                     <pt>volume</pt>
-                    <pd>The volume of the external audio frame. The value range is [0,100]. The default value is 100, which represents the original value.</pd>
+                    <pd>The volume of the external audio frame. The value range is [0,100]. The
+                        default value is 100, which represents the original value.</pd>
                 </plentry>
-            </parml> </section>
+            </parml>
+        </section>
         <section id="return_values">
             <title>Returns</title>
             <ul>
                 <li>0: Success.</li>
-                <li>&lt; 0: Failure.
-                    <ul>
-                    <li><codeph>-2(ERR_INVALID_ARGUMENT)</codeph>: The parameter is invalid.</li>
+                <li>&lt; 0: Failure. <ul>
+                        <li><codeph>-2(ERR_INVALID_ARGUMENT)</codeph>: The parameter is
+                            invalid.</li>
                     </ul></li>
             </ul>
         </section>

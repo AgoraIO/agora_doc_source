@@ -1,40 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_addhandler">
-    <title><ph keyref="addHandler" /></title>
+    <title><ph keyref="addHandler"/></title>
     <shortdesc id="short"><ph id="shortdesc">Adds event handlers</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="addHandler" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="addHandler"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public void addHandler(IRtcEngineEventHandler handler) {
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public void addHandler(IRtcEngineEventHandler handler) {
     mInstance.addHandler(handler);
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec" />
-            <codeblock props="cpp" outputclass="language-cpp" />
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp">public abstract void InitEventHandler(IAgoraRtcEngineEventHandler engineEventHandler);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">void setEventHandler(RtcEngineEventHandler handler)</codeblock>
-        </p>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp"/>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp">public abstract void InitEventHandler(IAgoraRtcEngineEventHandler engineEventHandler);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">void setEventHandler(RtcEngineEventHandler handler)</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
-   
-   <p>The SDK uses the <xref keyref="IRtcEngineEventHandler" /> class to send callbacks to the app. The app inherits the methods of this class to receive these callbacks. All methods in this interface class have default (empty) implementations. Therefore, the application can only inherit some required events. In the callbacks, avoid time-consuming tasks or calling APIs that can block the thread, such as the <ph keyref="sendStreamMessage" /> method. Otherwise, the SDK may not work properly.</p>
+            <p>The SDK uses the <xref keyref="IRtcEngineEventHandler"/> class to send callbacks to
+                the app. The app inherits the methods of this class to receive these callbacks. All
+                methods in this interface class have default (empty) implementations. Therefore, the
+                application can only inherit some required events. In the callbacks, avoid
+                time-consuming tasks or calling APIs that can block the thread, such as the <ph
+                    keyref="sendStreamMessage"/> method. Otherwise, the SDK may not work
+                properly.</p>
         </section>
         <section id="parameters"><title>Parameters</title>
-   <parml>
-       <plentry>
-  <pt props="android flutter">handler</pt>
-  <pt props="unity">engineEventHandler</pt>
-  <pd>Callback events to be added. For details, see <xref keyref="IRtcEngineEventHandler" />.</pd>
-       </plentry>
-   </parml>
+            <parml>
+                <plentry>
+                    <pt props="android flutter">handler</pt>
+                    <pt props="unity">engineEventHandler</pt>
+                    <pd>Callback events to be added. For details, see <xref
+                            keyref="IRtcEngineEventHandler"/>.</pd>
+                </plentry>
+            </parml>
         </section>
-   </refbody>
+    </refbody>
 </reference>

@@ -13,24 +13,29 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="android" outputclass="language-java">public abstract int getMaxMetadataSize();</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int getMaxMetadataSize() { return DEFAULT_METADATA_SIZE_IN_BYTE; }</codeblock> </p>
+                <codeblock props="android" outputclass="language-java">public abstract int getMaxMetadataSize();</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getMaxMetadataSize() { return DEFAULT_METADATA_SIZE_IN_BYTE; }</codeblock>
+            </p>
             <p outputclass="codeblock">
-            <codeblock props="ios mac" outputclass="language-objectivec">- (NSInteger)metadataMaxSize;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (NSInteger)metadataMaxSize;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="cs" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
             <p outputclass="codeblock" props="rtc">
-            <codeblock props="android" outputclass="language-java">public abstract int getMaxMetadataSize();</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int getMaxMetadataSize() = 0;</codeblock> </p>
+                <codeblock props="android" outputclass="language-java">public abstract int getMaxMetadataSize();</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getMaxMetadataSize() = 0;</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p>在成功调用 <xref keyref="registerMediaMetadataObserver"/> 完成注册后，SDK 会在发送每一个视频帧时触发一次该回调；你需要在该方法的返回值中指定 metadata 的最大数据大小。</p>
+            <p>在成功调用 <xref keyref="registerMediaMetadataObserver"/> 完成注册后，SDK
+                会在发送每一个视频帧时触发一次该回调；你需要在该方法的返回值中指定 metadata 的最大数据大小。</p>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p>指定 metadata 中 <parmname>buffer</parmname> 的最大数据大小，单位为 Byte，最大值不超过 1024。请确保在该返回值中进行传参。</p>
+            <p>指定 metadata 中 <parmname>buffer</parmname> 的最大数据大小，单位为 Byte，最大值不超过
+                1024。请确保在该返回值中进行传参。</p>
         </section>
     </refbody>
 </reference>

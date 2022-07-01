@@ -5,9 +5,9 @@
     <shortdesc id="short"><ph id="shortdesc">发送端已准备好发送 metadata。</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="onReadyToSendMetadata"/>
-   </keywords>
+            <keywords>
+                <indexterm keyref="onReadyToSendMetadata"/>
+            </keywords>
         </metadata>
     </prolog>
     <refbody>
@@ -32,36 +32,35 @@
             </p>
         </section>
         <section id="detailed_desc">
-
-   <p>当 SDK 准备好发送 metadata 时，会触发该回调。</p>
-   <p props="electron unity">收到该回调后，你可以调用 <xref keyref="sendMetadata"/> 发送媒体附属信息。</p>
-   <note props="android ios mac cpp" type="attention">请确保在该方法中传入的 metadata 大小不超过 <xref keyref="getMaxMetadataSize"/> 中设定的值。</note>
+            <p>当 SDK 准备好发送 metadata 时，会触发该回调。</p>
+            <p props="electron unity">收到该回调后，你可以调用 <xref keyref="sendMetadata"/> 发送媒体附属信息。</p>
+            <note props="android ios mac cpp" type="attention">请确保在该方法中传入的 metadata 大小不超过 <xref
+                    keyref="getMaxMetadataSize"/> 中设定的值。</note>
         </section>
         <section id="parameters"><title>参数</title>
-   <parml>
-       <plentry props="android ios mac">
-           <pt props="android">timeStampMs</pt>
-           <pt props="ios mac">timestamp</pt>
-           <pd>时间戳。</pd>
-       </plentry>
-       <plentry props="rtc-ng">
-           <pt>sourceType</pt>
-           <pd>视频数据类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
-       </plentry>
-       <plentry props="cpp unity">
-  <pt>metadata</pt>
-  <pd>用户想要发送的 metadata。详见 <xref keyref="Metadata"/>。</pd>
-       </plentry>
-   </parml>
+            <parml>
+                <plentry props="android ios mac">
+                    <pt props="android">timeStampMs</pt>
+                    <pt props="ios mac">timestamp</pt>
+                    <pd>时间戳。</pd>
+                </plentry>
+                <plentry props="rtc-ng">
+                    <pt>sourceType</pt>
+                    <pd>视频数据类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="cpp unity">
+                    <pt>metadata</pt>
+                    <pd>用户想要发送的 metadata。详见 <xref keyref="Metadata"/>。</pd>
+                </plentry>
+            </parml>
         </section>
         <section id="return_values">
-   <title>返回值</title>
-   <ul props="cpp unity">
-       <li><codeph><ph keyref="true"/></codeph>: 发送</li>
-       <li><codeph><ph keyref="false"/></codeph>: 不发送</li>
-   </ul>
-            <p props="ios mac">指定想要发送的 metadata ，格式为 NSData，由如下字段组成：
-                <ul>
+            <title>返回值</title>
+            <ul props="cpp unity">
+                <li><codeph><ph keyref="true"/></codeph>: 发送</li>
+                <li><codeph><ph keyref="false"/></codeph>: 不发送</li>
+            </ul>
+            <p props="ios mac">指定想要发送的 metadata ，格式为 NSData，由如下字段组成： <ul>
                     <li><codeph>uid</codeph>：发送该 metadata 的远端用户的 ID。</li>
                     <li><codeph>size</codeph>：metadata 的大小。</li>
                     <li><codeph>buffer</codeph>：metadata 数据。</li>
@@ -69,5 +68,6 @@
                 </ul>
             </p>
             <p props="android">指定想要发送的 metadata，格式为 byte[]。请确保在该返回值中进行传参。</p>
-        </section></refbody>
+        </section>
+    </refbody>
 </reference>

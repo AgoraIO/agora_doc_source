@@ -1,50 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ichannel_setclientrole2">
-    <title><ph keyref="IChannel_setClientRole2" /></title>
-    <shortdesc conkeyref="setClientRole2/short" />
+    <title><ph keyref="IChannel_setClientRole2"/></title>
+    <shortdesc conkeyref="setClientRole2/short"/>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="IChannel_setClientRole2" />
+                <indexterm keyref="IChannel_setClientRole2"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
-            <codeblock props="ios mac" outputclass="language-objectivec" />
-            <codeblock props="cpp" outputclass="language-cpp">virtual int setClientRole(CLIENT_ROLE_TYPE role, const ClientRoleOptions&amp; options) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">setClientRoleWithOptions(role: CLIENT_ROLE_TYPE, options: ClientRoleOptions): number</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public abstract int SetClientRole(CLIENT_ROLE_TYPE role, ClientRoleOptions options);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setClientRole(ClientRole role, [ClientRoleOptions? options]);</codeblock> </p>
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setClientRole(CLIENT_ROLE_TYPE role, const ClientRoleOptions&amp; options) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">setClientRoleWithOptions(role: CLIENT_ROLE_TYPE, options: ClientRoleOptions): number</codeblock>
+                <codeblock props="cs" outputclass="language-csharp">public abstract int SetClientRole(CLIENT_ROLE_TYPE role, ClientRoleOptions options);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setClientRole(ClientRole role, [ClientRoleOptions? options]);</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>Since</dt>
-                <dd>v3.2.0</dd>
-            </dlentry>
+                <dlentry props="native">
+                    <dt>Since</dt>
+                    <dd>v3.2.0</dd>
+                </dlentry>
             </dl>
-            <p>You can call this method either before or after joining the channel to set the user role as audience or host.</p>
-            <p>If you call this method to switch the user role after joining the channel, the SDK triggers the following callbacks:
-                <ul>
-                    <li>Calls <xref keyref="IChannel_muteLocalAudioStream" /> and <xref keyref="IChannel_muteLocalVideoStream" /> to change the publishing state.</li>
-                    <li>Triggers <xref keyref="IChannel_onClientRoleChanged" /> or <xref keyref="IChannel_onClientRoleChangeFailed" /> on the local client.</li>
-                    <li>Triggers <xref keyref="IChannel_onUserJoined" /> or <xref keyref="IChannel_onUserOffline" /> (USER_OFFLINE_BECOME_AUDIENCE) on the remote client.</li>
-                    </ul></p>
+            <p>You can call this method either before or after joining the channel to set the user
+                role as audience or host.</p>
+            <p>If you call this method to switch the user role after joining the channel, the SDK
+                triggers the following callbacks: <ul>
+                    <li>Calls <xref keyref="IChannel_muteLocalAudioStream"/> and <xref
+                            keyref="IChannel_muteLocalVideoStream"/> to change the publishing
+                        state.</li>
+                    <li>Triggers <xref keyref="IChannel_onClientRoleChanged"/> or <xref
+                            keyref="IChannel_onClientRoleChangeFailed"/> on the local client.</li>
+                    <li>Triggers <xref keyref="IChannel_onUserJoined"/> or <xref
+                            keyref="IChannel_onUserOffline"/> (USER_OFFLINE_BECOME_AUDIENCE) on the
+                        remote client.</li>
+                </ul></p>
             <note type="attention">
-            <ul>
-            <li>This method only takes effect when the channel profile is live interactive streaming (when the <parmname>profile</parmname> parameter in <xref keyref="setChannelProfile" /> set as <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING" />).</li>
-            <li props="native">The difference between this method and <xref keyref="IChannel_setClientRole1" />[1/2] is that this method can set the user level in addition to the user role.
-
-                <ul conkeyref="setClientRole2/diff">
-                <li />
-                </ul> </li>
-            </ul> </note> </section>
-        <section id="parameters" conkeyref="setClientRole2/parameters" />
-        <section id="return_values" conkeyref="setClientRole2/return_values" props="native electron cs" />
+                <ul>
+                    <li>This method only takes effect when the channel profile is live interactive
+                        streaming (when the <parmname>profile</parmname> parameter in <xref
+                            keyref="setChannelProfile"/> set as <ph
+                            keyref="CHANNEL_PROFILE_LIVE_BROADCASTING"/>).</li>
+                    <li props="native">The difference between this method and <xref
+                            keyref="IChannel_setClientRole1"/>[1/2] is that this method can set the
+                        user level in addition to the user role. <ul conkeyref="setClientRole2/diff">
+                            <li/>
+                        </ul>
+                    </li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" conkeyref="setClientRole2/parameters"/>
+        <section id="return_values" conkeyref="setClientRole2/return_values"
+            props="native electron cs"/>
     </refbody>
 </reference>

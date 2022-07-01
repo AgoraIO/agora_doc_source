@@ -1,90 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ichannel_joinchannel">
-    <title><ph keyref="IChannel_joinChannel" /></title>
+    <title><ph keyref="IChannel_joinChannel"/></title>
     <shortdesc id="short"><ph id="shortdesc">Joins the channel with a user ID.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="IChannel_joinChannel" />
+                <indexterm keyref="IChannel_joinChannel"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
-            <codeblock props="ios mac" outputclass="language-objectivec" />
-            <codeblock props="cpp" outputclass="language-cpp">virtual int joinChannel(const char* token,
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int joinChannel(const char* token,
      const char* info,
      uid_t uid,
      const ChannelMediaOptions&amp; options) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">joinChannel(token: string,
+                <codeblock props="electron" outputclass="language-typescript">joinChannel(token: string,
      info: string,
      uid: number,
      options?: ChannelMediaOptions
      ): number</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public abstract int JoinChannel(string token, string info, uint uid, ChannelMediaOptions options);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; joinChannel(String? token, String? optionalInfo, int optionalUid,
-      ChannelMediaOptions options);</codeblock> </p>
+                <codeblock props="cs" outputclass="language-csharp">public abstract int JoinChannel(string token, string info, uint uid, ChannelMediaOptions options);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; joinChannel(String? token, String? optionalInfo, int optionalUid,
+      ChannelMediaOptions options);</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p props="android ios mac cpp">This method differs from the <xref keyref="IRtcEngine" /> method in the <apiname keyref="joinChannel1" /> class in the following aspects:</p>
+            <p props="android ios mac cpp">This method differs from the <xref keyref="IRtcEngine"/>
+                method in the <apiname keyref="joinChannel1"/> class in the following aspects:</p>
             <table id="table_diff" props="android ios mac cpp">
-            <tgroup cols="2">
-                <colspec colnum="1" colname="col1" />
-                <colspec colnum="2" colname="col2" />
-                <thead>
-                    <row>
-                        <entry><apiname keyref="IChannel_joinChannel">IChannel::joinChannel</apiname></entry>
-                        <entry><apiname keyref="joinChannel1">IRtcEngine::joinChannel</apiname></entry>
-                    </row>
-                </thead>
-                <tbody>
-                    <row>
-                        <entry>Does not contain the <parmname>channelId</parmname> parameter, because <parmname>channelId</parmname> is specified when creating the <xref keyref="IChannel" /> object.</entry>
-                        <entry>You need to fill in the <parmname>channelId</parmname> that can identify the channel.</entry>
-                    </row>
-                    <row>
-                        <entry>Users can join multiple channels simultaneously by creating multiple <apiname keyref="IChannel" /> objects and calling the <apiname keyref="IChannel_joinChannel" /> methods of each object.</entry>
-                        <entry>Users can join only one channel.</entry>
-                    </row>
-                    <row>
-                        <entry>By default, the SDK does not publish any stream after the user joins the channel. You need to call the <xref keyref="IChannel_publish" /> method to do that.</entry>
-                        <entry>By default, the SDK publishes streams once the user joins the channel.</entry>
-                    </row>
-                </tbody>
-            </tgroup>
+                <tgroup cols="2">
+                    <colspec colnum="1" colname="col1"/>
+                    <colspec colnum="2" colname="col2"/>
+                    <thead>
+                        <row>
+                            <entry><apiname keyref="IChannel_joinChannel"
+                                    >IChannel::joinChannel</apiname></entry>
+                            <entry><apiname keyref="joinChannel1"
+                                >IRtcEngine::joinChannel</apiname></entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry>Does not contain the <parmname>channelId</parmname> parameter,
+                                because <parmname>channelId</parmname> is specified when creating
+                                the <xref keyref="IChannel"/> object.</entry>
+                            <entry>You need to fill in the <parmname>channelId</parmname> that can
+                                identify the channel.</entry>
+                        </row>
+                        <row>
+                            <entry>Users can join multiple channels simultaneously by creating
+                                multiple <apiname keyref="IChannel"/> objects and calling the
+                                    <apiname keyref="IChannel_joinChannel"/> methods of each
+                                object.</entry>
+                            <entry>Users can join only one channel.</entry>
+                        </row>
+                        <row>
+                            <entry>By default, the SDK does not publish any stream after the user
+                                joins the channel. You need to call the <xref
+                                    keyref="IChannel_publish"/> method to do that.</entry>
+                            <entry>By default, the SDK publishes streams once the user joins the
+                                channel.</entry>
+                        </row>
+                    </tbody>
+                </tgroup>
             </table>
-            <p>Once the user joins the channel, the user subscribes to the audio and video streams of all the other users in the channel by default, giving rise to usage and billing calculation. If you do not want to subscribe to a specified stream or all remote streams, call the <codeph>mute</codeph> methods accordingly.</p>
+            <p>Once the user joins the channel, the user subscribes to the audio and video streams
+                of all the other users in the channel by default, giving rise to usage and billing
+                calculation. If you do not want to subscribe to a specified stream or all remote
+                streams, call the <codeph>mute</codeph> methods accordingly.</p>
             <note type="attention">
-            <ul>
-            <li>If you are already in a channel, you cannot rejoin it with the user ID.</li>
-            <li>We recommend using different UIDs for different channels.</li>
-            <li>If you want to join the same channel from different devices, ensure that the user IDs in all devices are different.</li>
-            </ul> </note> </section>
+                <ul>
+                    <li>If you are already in a channel, you cannot rejoin it with the user ID.</li>
+                    <li>We recommend using different UIDs for different channels.</li>
+                    <li>If you want to join the same channel from different devices, ensure that the
+                        user IDs in all devices are different.</li>
+                </ul>
+            </note>
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry conkeyref="joinChannel2/token">
-                <pt />
-                <pd />
-            </plentry>
-            <plentry conkeyref="joinChannel2/info">
-                <pt />
-                <pd />
-            </plentry>
-            <plentry>
-                <pt props="android ios mac cpp cs">uid</pt>
-                <pt props="flutter">optionalUid</pt>
-                <pd>User ID. This parameter is used to identify the user in the channel for real-time audio and video interaction. You need to set and manage user IDs yourself, and ensure that each user ID in the same channel is unique. This parameter is a 32-bit unsigned integer with a value ranging from 1 to 2<sup>32</sup> -1. If the user ID is not assigned (or set as 0), the SDK assigns a user ID and reports it in the <xref keyref="IChannel_onJoinChannelSuccess" /> callback. Your app must maintain this user ID.</pd>
-            </plentry>
-            <plentry conkeyref="joinChannel2/options">
-                <pt />
-                <pd />
-            </plentry>
-            </parml> </section>
-        <section id="return_values" conkeyref="joinChannel2/return_values" props="native electron cs" />
+                <plentry conkeyref="joinChannel2/token">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry conkeyref="joinChannel2/info">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry>
+                    <pt props="android ios mac cpp cs">uid</pt>
+                    <pt props="flutter">optionalUid</pt>
+                    <pd>User ID. This parameter is used to identify the user in the channel for
+                        real-time audio and video interaction. You need to set and manage user IDs
+                        yourself, and ensure that each user ID in the same channel is unique. This
+                        parameter is a 32-bit unsigned integer with a value ranging from 1 to
+                            2<sup>32</sup> -1. If the user ID is not assigned (or set as 0), the SDK
+                        assigns a user ID and reports it in the <xref
+                            keyref="IChannel_onJoinChannelSuccess"/> callback. Your app must
+                        maintain this user ID.</pd>
+                </plentry>
+                <plentry conkeyref="joinChannel2/options">
+                    <pt/>
+                    <pd/>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" conkeyref="joinChannel2/return_values"
+            props="native electron cs"/>
     </refbody>
 </reference>

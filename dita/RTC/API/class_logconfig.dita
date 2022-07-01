@@ -6,21 +6,22 @@
     <refbody>
         <section id="prototype">
             <p props="rtc-ng" outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public static class LogConfig {
+                <codeblock props="android" outputclass="language-java">public static class LogConfig {
     public String filePath;
     public int fileSizeInKB;
     public int level = Constants.LogLevel.getValue(Constants.LogLevel.LOG_LEVEL_INFO);
   }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLogConfig: NSObject
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLogConfig: NSObject
 @property (copy, nonatomic) NSString * _Nullable filePath;
 @property (assign, nonatomic) NSInteger fileSizeInKB;
 @property (assign, nonatomic) AgoraLogLevel level;
 @end
-</codeblock> </p>
+</codeblock>
+            </p>
             <p props="rtc" outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">struct LogConfig {
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">struct LogConfig {
     const char* filePath;
     int fileSize;
     LOG_LEVEL level;
@@ -30,7 +31,7 @@
     ,level(LOG_LEVEL::LOG_LEVEL_INFO)
     {}
     };</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public class LogConfig
+                <codeblock props="cs" outputclass="language-csharp">public class LogConfig
     {
         public LogConfig()
         {
@@ -50,13 +51,13 @@
         public int fileSize { set; get; }
         public LOG_LEVEL level { set; get; }
     };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">export interface LogConfig {
+                <codeblock props="electron" outputclass="language-typescript">export interface LogConfig {
     filePath: string,
     fileSize: number,
     level: LOG_LEVEL
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">class LogConfig {
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">class LogConfig {
   @JsonKey(includeIfNull: false)
   String? filePath;
 
@@ -76,75 +77,72 @@
       _$LogConfigFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$LogConfigToJson(this);
-}</codeblock> </p>
+}</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
-            <dlentry>
-                <dt>自从</dt>
-                <dd>v3.3.0</dd>
-            </dlentry>
+                <dlentry>
+                    <dt>自从</dt>
+                    <dd>v3.3.0</dd>
+                </dlentry>
             </dl>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+                /></title>
             <parml>
-            <plentry>
-                <pt>filePath</pt>
-                <pd>
-                    <p>日志文件的绝对路径或相对路径（以 \ 或 / 结尾）。请确保你指定的目录存在且可写。你可以通过该参数修改日志文件名。</p>
-                    <p props="cpp electron rn">默认路径为：
-                    
-                    <ul>
-                    <li props="cpp rn">Android: <filepath id="android-path"
-                        >/storage/emulated/0/Android/data/&lt;package
+                <plentry>
+                    <pt>filePath</pt>
+                    <pd>
+                        <p>日志文件的绝对路径或相对路径（以 \ 或 / 结尾）。请确保你指定的目录存在且可写。你可以通过该参数修改日志文件名。</p>
+                        <p props="cpp electron rn">默认路径为： <ul>
+                                <li props="cpp rn">Android: <filepath id="android-path"
+                                        >/storage/emulated/0/Android/data/&lt;package
                                         name&gt;/files/agorasdk.log/</filepath>。</li>
-                    <li props="cpp rn">iOS: <filepath id="ios-path"
-                        >App
+                                <li props="cpp rn">iOS: <filepath id="ios-path">App
                                         Sandbox/Library/caches/agorasdk.log/</filepath>。</li>
-                    <li props="cpp electron">macOS: 
-                        
-                        <ul id="mac-path">
-                        <li>开启沙盒: <filepath>App
+                                <li props="cpp electron">macOS: <ul id="mac-path">
+                                        <li>开启沙盒: <filepath>App
                                                 Sandbox/Library/Logs/agorasdk.log/</filepath>，例如
                                                 <filepath>/Users/&lt;username&gt;/Library/Containers/&lt;App
                                                 Bundle
                                                 Identifier&gt;/Data/Library/Logs/agorasdk.log/</filepath>。</li>
-                        <li>关闭沙盒:
+                                        <li>关闭沙盒:
                                             <filepath>～/Library/Logs/agorasdk.log/</filepath></li>
-                        </ul></li>
-                    <li props="cpp electron">Windows:
+                                    </ul></li>
+                                <li props="cpp electron">Windows:
                                         <filepath>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\agorasdk.log\</filepath>。</li>
-                    </ul></p>
-                    <p props="android">默认路径为
+                            </ul></p>
+                        <p props="android">默认路径为
                                 <filepath>/storage/emulated/0/Android/data/&lt;package
                                 name&gt;/files/agorasdk.log/</filepath>。</p>
-                    <p props="ios">默认路径为 <filepath>App
+                        <p props="ios">默认路径为 <filepath>App
                                 Sandbox/Library/caches/agorasdk.log/</filepath>。</p>
-                    <p props="mac">默认路径为：
-                    
-                    <ul>
-                    <li>开启沙盒: <filepath>App
+                        <p props="mac">默认路径为： <ul>
+                                <li>开启沙盒: <filepath>App
                                         Sandbox/Library/Logs/agorasdk.log/</filepath>，例如
                                         <filepath>/Users/&lt;username&gt;/Library/Containers/&lt;App
                                         Bundle
                                         Identifier&gt;/Data/Library/Logs/agorasdk.log/</filepath>。</li>
-                    <li>关闭沙盒: <filepath>～/Library/Logs/agorasdk.log/</filepath>
-                    </li>
-                    </ul> </p>
-                </pd>
-            </plentry>
-            <plentry>
-                <pt props="cpp cs">fileSize</pt>
-                <pt props="android ios mac">fileSizeInKB</pt>
-                <pd>单个日志文件的大小，单位为 KB。默认值为 2014 KB。如果你将 <parmname>fileSize</parmname> 设为 1024 KB，SDK 会最多输出总计 5 MB 的日志文件。如果你将 <parmname>fileSize</parmname> 设为小于 1024 KB，则设置不生效，单个日志文件最大仍为 1024 KB。</pd>
-            </plentry>
-            <plentry>
-                <pt>level</pt>
-                <pd>Agora SDK 的日志输出等级，详见 <xref keyref="LOG_LEVEL"/>。</pd>
-            </plentry>
-            </parml> </section>
+                                <li>关闭沙盒: <filepath>～/Library/Logs/agorasdk.log/</filepath>
+                                </li>
+                            </ul>
+                        </p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt props="cpp cs">fileSize</pt>
+                    <pt props="android ios mac">fileSizeInKB</pt>
+                    <pd>单个日志文件的大小，单位为 KB。默认值为 2014 KB。如果你将 <parmname>fileSize</parmname> 设为 1024
+                        KB，SDK 会最多输出总计 5 MB 的日志文件。如果你将 <parmname>fileSize</parmname> 设为小于 1024
+                        KB，则设置不生效，单个日志文件最大仍为 1024 KB。</pd>
+                </plentry>
+                <plentry>
+                    <pt>level</pt>
+                    <pd>Agora SDK 的日志输出等级，详见 <xref keyref="LOG_LEVEL"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

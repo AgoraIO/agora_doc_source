@@ -6,9 +6,9 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">struct MediaRecorderConfiguration {
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">struct MediaRecorderConfiguration {
   const char* storagePath;
   MediaRecorderContainerFormat containerFormat;
   MediaRecorderStreamType streamType;
@@ -18,16 +18,16 @@
   MediaRecorderConfiguration() : storagePath(nullptr), containerFormat(FORMAT_MP4), streamType(STREAM_TYPE_BOTH), maxDurationMs(120000), recorderInfoUpdateInterval(0) {}
   MediaRecorderConfiguration(const char* path, MediaRecorderContainerFormat format, MediaRecorderStreamType type, int duration, int interval) : storagePath(path), containerFormat(format), streamType(type), maxDurationMs(duration), recorderInfoUpdateInterval(interval) {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public struct MediaRecorderConfiguration {
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp">public struct MediaRecorderConfiguration {
         public string storagePath;
         public MediaRecorderContainerFormat containerFormat;
         public MediaRecorderStreamType streamType;
         public int maxDurationMs;
         public int recorderInfoUpdateInterval;
     };</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">class MediaRecorderConfiguration {
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">class MediaRecorderConfiguration {
 
                   final String? storagePath;
 
@@ -52,39 +52,45 @@
                       _$MediaRecorderConfigurationFromJson(json);
                 
                   Map&lt;String, dynamic&gt; toJson() => _$MediaRecorderConfigurationToJson(this);
-                }</codeblock> </p>
+                }</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
             <p/>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+                /></title>
             <parml>
-            <plentry>
-                <pt>storagePath</pt>
-                <pd>录音文件在本地保存的绝对路径，需精确到文件名及格式。例如：<ul>
-                    <li>Windows: <codeph>C:\Users\&lt;user_name>\AppData\Local\Agora\&lt;process_name>\example.mp4</codeph></li>
-                        <li>iOS: <codeph>/App Sandbox/Library/Caches/example.mp4</codeph></li>
-                        <li>macOS: <codeph>/Library/Logs/example.mp4</codeph></li>
-                        <li>Android: <codeph>/storage/emulated/0/Android/data/&lt;package name>/files/example.mp4</codeph></li>
-                </ul><note type="attention">请确保你指定的路径存在并且可写。</note></pd>
-            </plentry>
-            <plentry>
-                <pt>containerFormat</pt>
-                <pd>录制文件的格式。详见 <xref keyref="MediaRecorderContainerFormat"/>。</pd>
-            </plentry>
-            <plentry>
-                <pt>streamType</pt>
-                <pd>录制内容。详见 <xref keyref="MediaRecorderStreamType"/>。</pd>
-            </plentry>
-            <plentry>
-                <pt>maxDurationMs</pt>
-                <pd>最大录制时长，单位为毫秒，默认值为 120,000。</pd>
-            </plentry>
-            <plentry>
-                <pt>recorderInfoUpdateInterval</pt>
-                <pd>录制信息更新间隔，单位为毫秒，取值范围为 [1000,10000]。SDK 会根据该值的设置触发 <xref keyref="onRecorderInfoUpdated"/> 回调，报告更新后的录制信息。</pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>storagePath</pt>
+                    <pd>录音文件在本地保存的绝对路径，需精确到文件名及格式。例如：<ul>
+                            <li>Windows:
+                                    <codeph>C:\Users\&lt;user_name>\AppData\Local\Agora\&lt;process_name>\example.mp4</codeph></li>
+                            <li>iOS: <codeph>/App Sandbox/Library/Caches/example.mp4</codeph></li>
+                            <li>macOS: <codeph>/Library/Logs/example.mp4</codeph></li>
+                            <li>Android: <codeph>/storage/emulated/0/Android/data/&lt;package
+                                    name>/files/example.mp4</codeph></li>
+                        </ul><note type="attention">请确保你指定的路径存在并且可写。</note></pd>
+                </plentry>
+                <plentry>
+                    <pt>containerFormat</pt>
+                    <pd>录制文件的格式。详见 <xref keyref="MediaRecorderContainerFormat"/>。</pd>
+                </plentry>
+                <plentry>
+                    <pt>streamType</pt>
+                    <pd>录制内容。详见 <xref keyref="MediaRecorderStreamType"/>。</pd>
+                </plentry>
+                <plentry>
+                    <pt>maxDurationMs</pt>
+                    <pd>最大录制时长，单位为毫秒，默认值为 120,000。</pd>
+                </plentry>
+                <plentry>
+                    <pt>recorderInfoUpdateInterval</pt>
+                    <pd>录制信息更新间隔，单位为毫秒，取值范围为 [1000,10000]。SDK 会根据该值的设置触发 <xref
+                            keyref="onRecorderInfoUpdated"/> 回调，报告更新后的录制信息。</pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

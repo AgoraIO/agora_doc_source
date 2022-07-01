@@ -6,9 +6,9 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">struct CameraCapturerConfiguration {
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">struct CameraCapturerConfiguration {
      CAPTURER_OUTPUT_PREFERENCE preference;
      int captureWidth;
      int captureHeight;
@@ -28,7 +28,7 @@
         ,captureHeight(height)
         {}
     };</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public class CameraCapturerConfiguration
+                <codeblock props="cs" outputclass="language-csharp">public class CameraCapturerConfiguration
     {
         public CameraCapturerConfiguration()
         {
@@ -61,13 +61,13 @@
         public int captureHeight { set; get; }
         public CAMERA_DIRECTION? cameraDirection { set; get; }
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">export interface CameraCapturerConfiguration {
+                <codeblock props="electron" outputclass="language-typescript">export interface CameraCapturerConfiguration {
   preference?: CAPTURER_OUTPUT_PREFERENCE;
   captureWidth?: number;
   captureHeight?: number;
 }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">class CameraCapturerConfiguration {
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">class CameraCapturerConfiguration {
 
   @JsonKey(includeIfNull: false)
   CameraCaptureOutputPreference? preference;
@@ -92,70 +92,66 @@
       _$CameraCapturerConfigurationFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$CameraCapturerConfigurationToJson(this);
-}</codeblock> </p>
+}</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+                /></title>
             <parml>
-            <plentry props="cpp cs flutter">
-                <pt>preference</pt>
-                <pd>摄像头采集偏好。详见 <xref keyref="CAPTURER_OUTPUT_PREFERENCE"/>。</pd>
-            </plentry>
-            <plentry props="cpp cs flutter">
-                <pt>captureWidth</pt>
-                <pd>
-                    <dl outputclass="since">
-                    <dlentry>
-                        <dt>自从</dt>
-                        <dd><ph keyref="since-cameraconfig"/></dd>
-                    </dlentry>
-                    </dl>
-                    <p>本地采集的视频宽度 (px)。如果你需要自定义本地采集的视频宽度，请先将 <parmname>preference</parmname> 设为 <ph
-                    keyref="CAPTURER_OUTPUT_PREFERENCE_MANUAL"
-                    />(3)，再通过 <parmname>captureWidth</parmname> 设置采集的视频宽度。</p>
-                </pd>
-            </plentry>
-            <plentry props="cpp cs flutter">
-                <pt>captureHeight</pt>
-                <pd>
-                    <dl outputclass="since">
-                    <dlentry>
-                        <dt>自从</dt>
-                        <dd><ph keyref="since-cameraconfig"/></dd>
-                    </dlentry>
-                    </dl>
-                    <p>本地采集的视频高度 (px)。如果你需要自定义本地采集的视频高度，请先将 <parmname>preference</parmname> 设为 <ph
-                    keyref="CAPTURER_OUTPUT_PREFERENCE_MANUAL"
-                    />(3)，再通过 <parmname>captureHeight</parmname> 设置采集的视频高度。</p>
-                </pd>
-            </plentry>
-            <plentry props="android">
-                <pt>captureFormat</pt>
-                <pd>本地采集的视频格式：
-                    
-                    <ul id="ul_pjv_5jg_sqb">
-                    <li><codeph>width</codeph>: 本地采集的视频宽度 (px)。</li>
-                    <li><codeph>height</codeph>: 本地采集的视频高度 (px)。</li>
-                    <li><codeph>fps</codeph>: 本地采集的视频帧率 (fps)。</li>
-                    </ul></pd>
-            </plentry>
-            <plentry props="android ios cpp cs flutter">
-                <pt>cameraDirection</pt>
-                <pd>
-                    <p props="cpp cs flutter">该参数仅适用于 Android 和 iOS 平台。</p>
-                    <p props="ios cpp cs flutter">摄像头方向。详见 <xref
-                    keyref="CAMERA_DIRECTION"/>。</p>
-                    <p props="android">摄像头方向：
-      
-                    
-                    <ul>
-                    <li><ph keyref="CAMERA_REAR"/> (0)：使用后置摄像头。</li>
-                    <li><ph keyref="CAMERA_FRONT"/> (1)：使用前置摄像头。</li>
-                    </ul></p>
-                </pd>
-            </plentry>
-            </parml> </section>
+                <plentry props="cpp cs flutter">
+                    <pt>preference</pt>
+                    <pd>摄像头采集偏好。详见 <xref keyref="CAPTURER_OUTPUT_PREFERENCE"/>。</pd>
+                </plentry>
+                <plentry props="cpp cs flutter">
+                    <pt>captureWidth</pt>
+                    <pd>
+                        <dl outputclass="since">
+                            <dlentry>
+                                <dt>自从</dt>
+                                <dd><ph keyref="since-cameraconfig"/></dd>
+                            </dlentry>
+                        </dl>
+                        <p>本地采集的视频宽度 (px)。如果你需要自定义本地采集的视频宽度，请先将 <parmname>preference</parmname> 设为
+                                <ph keyref="CAPTURER_OUTPUT_PREFERENCE_MANUAL"/>(3)，再通过
+                                <parmname>captureWidth</parmname> 设置采集的视频宽度。</p>
+                    </pd>
+                </plentry>
+                <plentry props="cpp cs flutter">
+                    <pt>captureHeight</pt>
+                    <pd>
+                        <dl outputclass="since">
+                            <dlentry>
+                                <dt>自从</dt>
+                                <dd><ph keyref="since-cameraconfig"/></dd>
+                            </dlentry>
+                        </dl>
+                        <p>本地采集的视频高度 (px)。如果你需要自定义本地采集的视频高度，请先将 <parmname>preference</parmname> 设为
+                                <ph keyref="CAPTURER_OUTPUT_PREFERENCE_MANUAL"/>(3)，再通过
+                                <parmname>captureHeight</parmname> 设置采集的视频高度。</p>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>captureFormat</pt>
+                    <pd>本地采集的视频格式： <ul id="ul_pjv_5jg_sqb">
+                            <li><codeph>width</codeph>: 本地采集的视频宽度 (px)。</li>
+                            <li><codeph>height</codeph>: 本地采集的视频高度 (px)。</li>
+                            <li><codeph>fps</codeph>: 本地采集的视频帧率 (fps)。</li>
+                        </ul></pd>
+                </plentry>
+                <plentry props="android ios cpp cs flutter">
+                    <pt>cameraDirection</pt>
+                    <pd>
+                        <p props="cpp cs flutter">该参数仅适用于 Android 和 iOS 平台。</p>
+                        <p props="ios cpp cs flutter">摄像头方向。详见 <xref keyref="CAMERA_DIRECTION"
+                            />。</p>
+                        <p props="android">摄像头方向： <ul>
+                                <li><ph keyref="CAMERA_REAR"/> (0)：使用后置摄像头。</li>
+                                <li><ph keyref="CAMERA_FRONT"/> (1)：使用前置摄像头。</li>
+                            </ul></p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

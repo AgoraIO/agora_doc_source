@@ -2,7 +2,8 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_oncamerafocusareachanged">
     <title><ph keyref="onCameraFocusAreaChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the camera focus area changes.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the camera focus area
+        changes.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -13,57 +14,63 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public void onCameraFocusAreaChanged(Rect rect) {}</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine cameraFocusDidChangedToRect:(CGRect)rect;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onCameraFocusAreaChanged(int x, int y, int width, int height) {
+                <codeblock props="android" outputclass="language-java">public void onCameraFocusAreaChanged(Rect rect) {}</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine cameraFocusDidChangedToRect:(CGRect)rect;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onCameraFocusAreaChanged(int x, int y, int width, int height) {
      (void)x;
      (void)y;
      (void)width;
      (void)height;
      }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.CAMERA_FOCUS_AREA_CHANGED, cb: (
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.CAMERA_FOCUS_AREA_CHANGED, cb: (
      x: number,
      y: number,
      width: number,
      height: number) =&gt; void
      ): this;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public virtual void OnCameraFocusAreaChanged(int x, int y, int width, int height)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">RectCallback? cameraFocusAreaChanged;</codeblock> </p>
+                <codeblock props="cs" outputclass="language-csharp">public virtual void OnCameraFocusAreaChanged(int x, int y, int width, int height)</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">RectCallback? cameraFocusAreaChanged;</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p id="desc" props="android ios flutter">The SDK triggers this callback when the local user changes the camera focus position by calling <xref keyref="setCameraFocusPositionInPreview"/>.</p>
-            <note type="attention" props="cpp flutter">This method is for Android and iOS only.</note> </section>
+            <p id="desc" props="android ios flutter">The SDK triggers this callback when the local
+                user changes the camera focus position by calling <xref
+                    keyref="setCameraFocusPositionInPreview"/>.</p>
+            <note type="attention" props="cpp flutter">This method is for Android and iOS
+                only.</note>
+        </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml props="cpp cs">
-            <plentry>
-                <pt>x</pt>
-                <pd>The x coordinate of the changed camera focus area.</pd>
-            </plentry>
-            <plentry>
-                <pt>y</pt>
-                <pd>The y coordinate of the changed camera focus area.</pd>
-            </plentry>
-            <plentry>
-                <pt>width</pt>
-                <pd>The width of the changed camera focus area.</pd>
-            </plentry>
-            <plentry>
-                <pt>height</pt>
-                <pd>The height of the changed camera focus area.</pd>
-            </plentry>
+                <plentry>
+                    <pt>x</pt>
+                    <pd>The x coordinate of the changed camera focus area.</pd>
+                </plentry>
+                <plentry>
+                    <pt>y</pt>
+                    <pd>The y coordinate of the changed camera focus area.</pd>
+                </plentry>
+                <plentry>
+                    <pt>width</pt>
+                    <pd>The width of the changed camera focus area.</pd>
+                </plentry>
+                <plentry>
+                    <pt>height</pt>
+                    <pd>The height of the changed camera focus area.</pd>
+                </plentry>
             </parml>
             <parml props="android ios mac flutter">
-            <plentry>
-                <pt>rect</pt>
-                <pd>The focus rectangle in the local preview.</pd>
-            </plentry>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>rect</pt>
+                    <pd>The focus rectangle in the local preview.</pd>
+                </plentry>
+                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                    <pt/>
+                    <pd/>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

@@ -6,7 +6,7 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public class MediaStreamInfo {
+                <codeblock props="android" outputclass="language-java">public class MediaStreamInfo {
   private int streamIndex;
   private int mediaStreamType;
   private String codecName;
@@ -23,7 +23,7 @@
 
   public MediaStreamInfo() {}
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaStreamInfo : NSObject
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaStreamInfo : NSObject
 
 @property(nonatomic, assign) NSInteger streamIndex;
 @property(nonatomic, assign) AgoraMediaStreamType streamType;
@@ -39,7 +39,7 @@
 @property(nonatomic, assign) NSInteger rotation;
 
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct PlayerStreamInfo {
+                <codeblock props="cpp" outputclass="language-cpp">struct PlayerStreamInfo {
   int streamIndex;
   MEDIA_STREAM_TYPE streamType;
   char codecName[kMaxCharBufferLength];
@@ -66,7 +66,7 @@
                        duration(0) {
     memset(codecName, 0, sizeof(codecName));
     memset(language, 0, sizeof(language));</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public struct PlayerStreamInfo {
+                <codeblock props="unity" outputclass="language-csharp">public struct PlayerStreamInfo {
 
       public int streamIndex;
       public MEDIA_STREAM_TYPE streamType;
@@ -82,77 +82,79 @@
       public int audioBitsPerSample;
       public Int64 duration;
    };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+                /></title>
             <parml>
-            <plentry>
-                <pt>streamIndex</pt>
-                <pd>媒体流的索引值。</pd>
-            </plentry>
-            <plentry>
-                <pt props="ios mac cpp unity">streamType</pt>
-                <pt props="android">mediaStreamType</pt>
-                <pd><ph>此条媒体流的类型。</ph><ph props="ios mac cpp unity">详见 <xref
-                    keyref="MEDIA_STREAM_TYPE"/>。</ph>
-                    <ul props="android">
-                    <li><ph keyref="STREAM_TYPE_UNKNOWN"/> (0): 未知类型。</li>
-                    <li><ph keyref="STREAM_TYPE_VIDEO"/> (1): 视频流。</li>
-                    <li><ph keyref="STREAM_TYPE_AUDIO"/> (2): 音频流。</li>
-                    <li><ph keyref="STREAM_TYPE_SUBTITLE"/> (3): 字幕流。</li>
-                    </ul> </pd>
-            </plentry>
-            <plentry>
-                <pt>codecName</pt>
-                <pd>此条媒体流的编码规格。</pd>
-            </plentry>
-            <plentry>
-                <pt>language</pt>
-                <pd>此条媒体流的语言。</pd>
-            </plentry>
-            <plentry>
-                <pt>videoFrameRate</pt>
-                <pd>该参数仅对视频流生效，表示视频帧率 (fps)。</pd>
-            </plentry>
-            <plentry>
-                <pt>videoBitRate</pt>
-                <pd>该参数仅对视频流生效，表示视频码率 (bps)。</pd>
-            </plentry>
-            <plentry>
-                <pt>videoWidth</pt>
-                <pd>该参数仅对视频流生效，表示视频宽度 (pixel)。</pd>
-            </plentry>
-            <plentry>
-                <pt>videoHeight</pt>
-                <pd>该参数仅对视频流生效，表示视频高度 (pixel)。</pd>
-            </plentry>
-            <plentry>
-                <pt props="android unity cpp">videoRotation</pt>
-                <pt props="ios mac">rotation</pt>
-                <pd>该参数仅对视频流生效，表示旋转角度。</pd>
-            </plentry>
-            <plentry>
-                <pt>audioSampleRate</pt>
-                <pd>该参数仅对音频流生效，表示音频采样率 (Hz)。</pd>
-            </plentry>
-            <plentry>
-                <pt>audioChannels</pt>
-                <pd>该参数仅对音频流生效，表示声道数。</pd>
-            </plentry>
-            <plentry props="android cpp unity">
-                <pt props="cpp unity">audioBitsPerSample</pt>
-                <pt props="android">audioBytesPerSample</pt>
-                <pd>该参数仅对音频流生效，表示每个音频采样点的位数 (bit)。</pd>
-            </plentry>
-            <plentry>
-                <pt>duration</pt>
-                <pd>媒体流的时长（秒）。</pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>streamIndex</pt>
+                    <pd>媒体流的索引值。</pd>
+                </plentry>
+                <plentry>
+                    <pt props="ios mac cpp unity">streamType</pt>
+                    <pt props="android">mediaStreamType</pt>
+                    <pd><ph>此条媒体流的类型。</ph><ph props="ios mac cpp unity">详见 <xref
+                                keyref="MEDIA_STREAM_TYPE"/>。</ph>
+                        <ul props="android">
+                            <li><ph keyref="STREAM_TYPE_UNKNOWN"/> (0): 未知类型。</li>
+                            <li><ph keyref="STREAM_TYPE_VIDEO"/> (1): 视频流。</li>
+                            <li><ph keyref="STREAM_TYPE_AUDIO"/> (2): 音频流。</li>
+                            <li><ph keyref="STREAM_TYPE_SUBTITLE"/> (3): 字幕流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>codecName</pt>
+                    <pd>此条媒体流的编码规格。</pd>
+                </plentry>
+                <plentry>
+                    <pt>language</pt>
+                    <pd>此条媒体流的语言。</pd>
+                </plentry>
+                <plentry>
+                    <pt>videoFrameRate</pt>
+                    <pd>该参数仅对视频流生效，表示视频帧率 (fps)。</pd>
+                </plentry>
+                <plentry>
+                    <pt>videoBitRate</pt>
+                    <pd>该参数仅对视频流生效，表示视频码率 (bps)。</pd>
+                </plentry>
+                <plentry>
+                    <pt>videoWidth</pt>
+                    <pd>该参数仅对视频流生效，表示视频宽度 (pixel)。</pd>
+                </plentry>
+                <plentry>
+                    <pt>videoHeight</pt>
+                    <pd>该参数仅对视频流生效，表示视频高度 (pixel)。</pd>
+                </plentry>
+                <plentry>
+                    <pt props="android unity cpp">videoRotation</pt>
+                    <pt props="ios mac">rotation</pt>
+                    <pd>该参数仅对视频流生效，表示旋转角度。</pd>
+                </plentry>
+                <plentry>
+                    <pt>audioSampleRate</pt>
+                    <pd>该参数仅对音频流生效，表示音频采样率 (Hz)。</pd>
+                </plentry>
+                <plentry>
+                    <pt>audioChannels</pt>
+                    <pd>该参数仅对音频流生效，表示声道数。</pd>
+                </plentry>
+                <plentry props="android cpp unity">
+                    <pt props="cpp unity">audioBitsPerSample</pt>
+                    <pt props="android">audioBytesPerSample</pt>
+                    <pd>该参数仅对音频流生效，表示每个音频采样点的位数 (bit)。</pd>
+                </plentry>
+                <plentry>
+                    <pt>duration</pt>
+                    <pd>媒体流的时长（秒）。</pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

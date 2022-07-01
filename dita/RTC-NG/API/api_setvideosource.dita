@@ -1,44 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setvideosource">
-    <title><ph keyref="setVideoSource" /></title>
+    <title><ph keyref="setVideoSource"/></title>
     <shortdesc id="short"><ph id="shortdesc">设置自定义的视频源。</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="setVideoSource" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="setVideoSource"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
                 <codeblock props="cpp" outputclass="language-cpp">virtual bool setVideoSource(IVideoSource *source) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp" />
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
-        </p>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
-   
-   <p>实时通信过程中，Agora SDK 会启动默认的视频输入设备，即内置的摄像头，采集视频。但是，如果你需要自定义视频输入设备，你可以先通过 <xref keyref="IVideoSource" /> 类自定义视频源，再调用该方法将自定义的视频源加入到 SDK 中。</p>
-   <note type="attention">该方法在加入频道前后都能调用。</note>
+            <p>实时通信过程中，Agora SDK 会启动默认的视频输入设备，即内置的摄像头，采集视频。但是，如果你需要自定义视频输入设备，你可以先通过 <xref
+                    keyref="IVideoSource"/> 类自定义视频源，再调用该方法将自定义的视频源加入到 SDK 中。</p>
+            <note type="attention">该方法在加入频道前后都能调用。</note>
         </section>
         <section id="parameters"><title>参数</title>
-   <parml>
-       <plentry>
-  <pt>source</pt>
-  <pd>自定义的视频源。详细定义见 <xref keyref="IVideoSource" />。</pd>
-       </plentry>
-   </parml>
+            <parml>
+                <plentry>
+                    <pt>source</pt>
+                    <pd>自定义的视频源。详细定义见 <xref keyref="IVideoSource"/>。</pd>
+                </plentry>
+            </parml>
         </section>
         <section id="return_values">
-   <title>返回值</title>
-   <ul>
-       <li><codeph><ph keyref="true" /></codeph>: 自定义视频源添加成功。</li>
-       <li><codeph><ph keyref="false" /></codeph>: 自定义视频源添加失败。</li>
-   </ul>
-        </section></refbody>
+            <title>返回值</title>
+            <ul>
+                <li><codeph><ph keyref="true"/></codeph>: 自定义视频源添加成功。</li>
+                <li><codeph><ph keyref="false"/></codeph>: 自定义视频源添加失败。</li>
+            </ul>
+        </section>
+    </refbody>
 </reference>

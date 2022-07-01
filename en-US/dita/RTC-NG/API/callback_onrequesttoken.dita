@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onrequesttoken">
-    <title><ph keyref="onRequestToken" /></title>
+    <title><ph keyref="onRequestToken"/></title>
     <shortdesc id="short"><ph id="shortdesc">Occurs when the token expires.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="onRequestToken" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="onRequestToken"/>
+            </keywords>
         </metadata>
     </prolog>
     <refbody>
@@ -18,7 +18,7 @@
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onRequestToken()</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.REQUEST_TOKEN, cb: () =&gt; void): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnRequestToken()</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart">EmptyCallback? requestToken;</codeblock>
             </p>
         </section>
@@ -26,13 +26,17 @@
             <p id="desc1">When the token expires during a call, the SDK triggers this callback to
                 remind the app to renew the token.</p>
             <p>Once you receive this callback, generate a new token on your app server, and call
-                <xref keyref="joinChannel2" /> to rejoin the channel.</p>
+                    <xref keyref="joinChannel2"/> to rejoin the channel.</p>
         </section>
-        <section id="parameters" props="ios mac"> <title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/> <parml>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt />
-                <pd />
-            </plentry>
-            </parml> </section>
+        <section id="parameters" props="ios mac">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <parml>
+                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                    <pt/>
+                    <pd/>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

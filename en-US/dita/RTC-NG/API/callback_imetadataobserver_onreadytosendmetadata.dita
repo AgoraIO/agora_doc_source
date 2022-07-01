@@ -2,12 +2,13 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_imetadataobserver_onreadytosendmetadata">
     <title><ph keyref="onReadyToSendMetadata"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the SDK is ready to send metadata.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the SDK is ready to send
+        metadata.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="onReadyToSendMetadata" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="onReadyToSendMetadata"/>
+            </keywords>
         </metadata>
     </prolog>
     <refbody>
@@ -32,41 +33,48 @@
             </p>
         </section>
         <section id="detailed_desc">
-
-   <p>This callback is triggered when the SDK is ready to send metadata.</p>
-   <p props="electron unity">After receiving this callback, you can call <xref keyref="sendMetadata"/> to send the media metadata.</p>
-   <note props="android ios mac cpp" type="attention">Ensure that the size of the metadata does not exceed the value set in the <xref keyref="getMaxMetadataSize"/> callback.</note>
+            <p>This callback is triggered when the SDK is ready to send metadata.</p>
+            <p props="electron unity">After receiving this callback, you can call <xref
+                    keyref="sendMetadata"/> to send the media metadata.</p>
+            <note props="android ios mac cpp" type="attention">Ensure that the size of the metadata
+                does not exceed the value set in the <xref keyref="getMaxMetadataSize"/>
+                callback.</note>
         </section>
         <section id="parameters"><title>Parameters</title>
-   <parml>
-       <plentry props="android ios mac">
-           <pt props="android">timeStampMs</pt>
-           <pt props="ios mac">timestamp</pt>
-           <pd>The timestamp.</pd>
-       </plentry>
-       <plentry props="rtc-ng">
-           <pt>sourceType</pt>
-           <pd>Video data type. For details, see <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
-       </plentry>
-       <plentry props="cpp unity">
-  <pt>metadata</pt>
-  <pd>The metadata that the user wants to send. For details, see <xref keyref="Metadata"/>.</pd>
-       </plentry>
-   </parml>
+            <parml>
+                <plentry props="android ios mac">
+                    <pt props="android">timeStampMs</pt>
+                    <pt props="ios mac">timestamp</pt>
+                    <pd>The timestamp.</pd>
+                </plentry>
+                <plentry props="rtc-ng">
+                    <pt>sourceType</pt>
+                    <pd>Video data type. For details, see <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp unity">
+                    <pt>metadata</pt>
+                    <pd>The metadata that the user wants to send. For details, see <xref
+                            keyref="Metadata"/>.</pd>
+                </plentry>
+            </parml>
         </section>
         <section id="return_values">
-   <title>Returns</title>
-   <ul props="cpp unity">
-       <li><codeph><ph keyref="true"/></codeph>: Send the metadata.</li>
-       <li><codeph><ph keyref="false"/></codeph>: Do not send the metadata.</li>
-   </ul>
-            <p props="ios mac">The metadata that you want to send in the format of NSData, which includes the following parameters:<ul>
+            <title>Returns</title>
+            <ul props="cpp unity">
+                <li><codeph><ph keyref="true"/></codeph>: Send the metadata.</li>
+                <li><codeph><ph keyref="false"/></codeph>: Do not send the metadata.</li>
+            </ul>
+            <p props="ios mac">The metadata that you want to send in the format of NSData, which
+                includes the following parameters:<ul>
                     <li><codeph>uid</codeph>: The ID of the remote user who sends the metadata.</li>
                     <li><codeph>size</codeph>: The size of the metadata.</li>
                     <li><codeph>buffer</codeph>: The metadata data.</li>
-                    <li><codeph>timeStampMs</codeph>: The NTP timestamp (ms) when the metadata is sent.</li>
+                    <li><codeph>timeStampMs</codeph>: The NTP timestamp (ms) when the metadata is
+                        sent.</li>
                 </ul>
             </p>
-            <p props="android">The metadata that you want to send in the format of byte. Ensure that you set the return value.</p>
-        </section></refbody>
+            <p props="android">The metadata that you want to send in the format of byte. Ensure that
+                you set the return value.</p>
+        </section>
+    </refbody>
 </reference>

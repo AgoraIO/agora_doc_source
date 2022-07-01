@@ -13,18 +13,20 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="cs" outputclass="language-csharp">public virtual bool OnFrame(AudioPcmFrame videoFrame, int mediaPlayerId)
+                <codeblock props="cs" outputclass="language-csharp">public virtual bool OnFrame(AudioPcmFrame videoFrame, int mediaPlayerId)
         {
             return true;
-        }</codeblock> </p>
+        }</codeblock>
+            </p>
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">AudioFrame onFrame(AudioFrame frame);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol> _Nonnull)playerKit
+                <codeblock props="android" outputclass="language-java">AudioFrame onFrame(AudioFrame frame);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol> _Nonnull)playerKit
     didReceiveAudioFrame:(CMSampleBufferRef _Nonnull)audioFrame;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onFrame(AudioPcmFrame* frame) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onFrame(AudioPcmFrame* frame) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
             <p>注册音频数据观测器后，每次接收到一帧音频帧时，都会触发该回调，报告音频帧信息。</p>
@@ -33,27 +35,29 @@
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
-            <plentry props="ios mac">
-                <pt>audioFrame</pt>
-                <pd>音频帧信息（CMSampleBufferRef）。</pd>
-            </plentry>
-            <plentry props="android cpp cs">
-                <pt props="android cpp">frame</pt>
-                <pt props="cs">videoFrame</pt>
-                <pd>音频帧信息，详见 <ph keyref="AudioFrame"/>。</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>playerKit</pt>
-                <pd>详见 <xref keyref="IMediaPlayer"/>。</pd>
-            </plentry>
-            <plentry props="rtc-ng">
-                <pt props="cs">mediaPlayerId</pt>
-                <pd props="cs">播放器 ID。</pd>
-            </plentry>
-            </parml> </section>
+                <plentry props="ios mac">
+                    <pt>audioFrame</pt>
+                    <pd>音频帧信息（CMSampleBufferRef）。</pd>
+                </plentry>
+                <plentry props="android cpp cs">
+                    <pt props="android cpp">frame</pt>
+                    <pt props="cs">videoFrame</pt>
+                    <pd>音频帧信息，详见 <ph keyref="AudioFrame"/>。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>playerKit</pt>
+                    <pd>详见 <xref keyref="IMediaPlayer"/>。</pd>
+                </plentry>
+                <plentry props="rtc-ng">
+                    <pt props="cs">mediaPlayerId</pt>
+                    <pd props="cs">播放器 ID。</pd>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values" props="android">
             <title>返回值</title>
-            <p>根据你在 <xref keyref="registerAudioFrameObserver2_IMediaPlayer"/> 中设置的 <parmname>mode</parmname> 使用音频数据后，在此返回值中传入该音频数据。</p>
+            <p>根据你在 <xref keyref="registerAudioFrameObserver2_IMediaPlayer"/> 中设置的
+                    <parmname>mode</parmname> 使用音频数据后，在此返回值中传入该音频数据。</p>
         </section>
     </refbody>
 </reference>

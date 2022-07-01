@@ -13,50 +13,53 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void consumeRawVideoFrame(const unsigned char *buffer, 
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void consumeRawVideoFrame(const unsigned char *buffer, 
     agora::media::ExternalVideoFrame::VIDEO_PIXEL_FORMAT frameType, 
     int width, 
     int height, 
     int rotation, 
     long timestamp) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="cs" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
             <note type="attention">请确保在该方法中指定的视频帧类型和你在 <xref keyref="getBufferType"/>
-       回调中指定的视频帧类型一致。</note> </section>
+                回调中指定的视频帧类型一致。</note>
+        </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry>
-                <pt>buffer</pt>
-                <pd>视频 buffer。</pd>
-            </plentry>
-            <plentry>
-                <pt>frameType</pt>
-                <pd>视频帧类型。详见 <xref keyref="VIDEO_PIXEL_FORMAT"/>。</pd>
-            </plentry>
-            <plentry>
-                <pt>width</pt>
-                <pd>视频帧的宽度（px）。</pd>
-            </plentry>
-            <plentry>
-                <pt>height</pt>
-                <pd>视频帧的高度（px）。</pd>
-            </plentry>
-            <plentry>
-                <pt>rotation</pt>
-                <pd>视频帧顺时针旋转的角度。如果设置了旋转角度，视频帧发送给 SDK 后，SDK 会对视频图像进行旋转。 取值可为 0 度、90 度、180 度和 270
-      度。</pd>
-            </plentry>
-            <plentry>
-                <pt>timestamp</pt>
-                <pd>视频帧的 Unix 时间戳（毫秒）。你必须为每一帧视频帧设置一个时间戳。</pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>buffer</pt>
+                    <pd>视频 buffer。</pd>
+                </plentry>
+                <plentry>
+                    <pt>frameType</pt>
+                    <pd>视频帧类型。详见 <xref keyref="VIDEO_PIXEL_FORMAT"/>。</pd>
+                </plentry>
+                <plentry>
+                    <pt>width</pt>
+                    <pd>视频帧的宽度（px）。</pd>
+                </plentry>
+                <plentry>
+                    <pt>height</pt>
+                    <pd>视频帧的高度（px）。</pd>
+                </plentry>
+                <plentry>
+                    <pt>rotation</pt>
+                    <pd>视频帧顺时针旋转的角度。如果设置了旋转角度，视频帧发送给 SDK 后，SDK 会对视频图像进行旋转。 取值可为 0 度、90 度、180 度和 270
+                        度。</pd>
+                </plentry>
+                <plentry>
+                    <pt>timestamp</pt>
+                    <pd>视频帧的 Unix 时间戳（毫秒）。你必须为每一帧视频帧设置一个时间戳。</pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

@@ -1,40 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_iaudiodevicemanager_getplaybackdevice">
-    <title><ph keyref="getPlaybackDevice" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Retrieves the audio playback device associated with the device ID.</ph></shortdesc>
+    <title><ph keyref="getPlaybackDevice"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Retrieves the audio playback device associated with the
+            device ID.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="getPlaybackDevice" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="getPlaybackDevice"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
+    <refbody>
+        <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
-            <codeblock props="ios mac" outputclass="language-objectivec" />
-            <codeblock props="cpp" outputclass="language-cpp">virtual int getPlaybackDevice(char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">getCurrentAudioPlaybackDevice(): Device</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract string GetPlaybackDevice();</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;String?&gt; getAudioPlaybackDevice()</codeblock> </p>
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getPlaybackDevice(char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">getCurrentAudioPlaybackDevice(): Device</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract string GetPlaybackDevice();</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;String?&gt; getAudioPlaybackDevice()</codeblock>
+            </p>
         </section>
         <section id="parameters" props="cpp"><title>Parameters</title>
-   <parml>
-       <plentry>
-  <pt>deviceId</pt>
-  <pd>Output parameter. The device ID of the audio playback device. The maximum length is <xref href="enum_maxdeviceidlengthtype.dita#enum_maxdeviceidlengthtype/MAX_DEVICE_ID_LENGTH" />.</pd>
-       </plentry>
-   </parml>
+            <parml>
+                <plentry>
+                    <pt>deviceId</pt>
+                    <pd>Output parameter. The device ID of the audio playback device. The maximum
+                        length is <xref
+                            href="enum_maxdeviceidlengthtype.dita#enum_maxdeviceidlengthtype/MAX_DEVICE_ID_LENGTH"
+                        />.</pd>
+                </plentry>
+            </parml>
         </section>
         <section id="return_values">
-   <title>Returns</title>
-   <ul props="cpp electron">
-       <li>0: Success.</li>
-       <li>&lt; 0: Failure.</li>
-   </ul>
-            <p props="electron">The audio playback device. See <xref keyref="Device" />.</p>
+            <title>Returns</title>
+            <ul props="cpp electron">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+            <p props="electron">The audio playback device. See <xref keyref="Device"/>.</p>
             <p props="unity flutter">The current audio playback device.</p>
-        </section></refbody>
+        </section>
+    </refbody>
 </reference>

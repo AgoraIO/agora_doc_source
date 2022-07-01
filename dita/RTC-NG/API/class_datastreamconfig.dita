@@ -6,7 +6,7 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="unity" outputclass="language-csharp">public class DataStreamConfig
+                <codeblock props="unity" outputclass="language-csharp">public class DataStreamConfig
     {
         public DataStreamConfig()
         {
@@ -18,31 +18,32 @@
         }
         public bool syncWithAudio { set; get; }
         public bool ordered { set; get; }
-       </codeblock> </p>
+       </codeblock>
+            </p>
             <p outputclass="codeblock" props="rtc">
-            <codeblock props="unity" outputclass="language-csharp">struct DataStreamConfig {
+                <codeblock props="unity" outputclass="language-csharp">struct DataStreamConfig {
     bool syncWithAudio;
     bool ordered;
     };</codeblock></p>
-    <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public class DataStreamConfig {
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public class DataStreamConfig {
   public boolean syncWithAudio = false;
   public boolean ordered = false;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraDataStreamConfig: NSObject
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraDataStreamConfig: NSObject
 @property (assign, nonatomic) BOOL ordered;
 @property (assign, nonatomic) BOOL syncWithAudio;
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct DataStreamConfig {
+                <codeblock props="cpp" outputclass="language-cpp">struct DataStreamConfig {
     bool syncWithAudio;
     bool ordered;
     };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">export interface DataStreamConfig {
+                <codeblock props="electron" outputclass="language-typescript">export interface DataStreamConfig {
   syncWithAudio: boolean;
   ordered: boolean;
 }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">class DataStreamConfig {
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">class DataStreamConfig {
  
   bool syncWithAudio;
   bool ordered;
@@ -56,87 +57,79 @@
       _$DataStreamConfigFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$DataStreamConfigToJson(this);
-}</codeblock> </p>
+}</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
             <p>下表展示不同的参数设置下，SDK 的行为：</p>
             <table id="table_uxz_bjk_t4b">
-            <tgroup cols="3">
-                <colspec colnum="1" colname="col1"/>
-                <colspec colnum="2" colname="col2"/>
-                <colspec colnum="3" colname="col3"/>
-                <thead>
-                    <row>
-                        <entry><codeph>syncWithAudio</codeph></entry>
-                        <entry><codeph>ordered</codeph></entry>
-                        <entry>SDK 行为</entry>
-                    </row>
-                </thead>
-                <tbody>
-                    <row>
-                        <entry><codeph><ph keyref="false"/></codeph></entry>
-                        <entry><codeph><ph keyref="false"/></codeph></entry>
-                        <entry>接收端接收到数据包后，SDK 立刻触发 <xref
-                            keyref="onStreamMessage"/> 回调。</entry>
-                    </row>
-                    <row>
-                        <entry><codeph><ph keyref="true"/></codeph></entry>
-                        <entry><codeph><ph keyref="false"/></codeph></entry>
-                        <entry>如果数据包的延迟在音频延迟的范围内，SDK 会在播放音频的同时触发与该音频包同步的
-<ph keyref="onStreamMessage"/> 回调。如果数据包的延迟超出了音频延迟，SDK
-     会在接收到该数据包时立刻触发 <ph keyref="onStreamMessage"
-                            />
-     回调；此情况会造成音频包和数据包的不同步。</entry>
-                    </row>
-                    <row>
-                        <entry><codeph><ph keyref="false"/></codeph></entry>
-                        <entry><codeph><ph keyref="true"/></codeph></entry>
-                        <entry>如果数据包的延迟在 5 秒以内，SDK 会修正数据包的乱序问题。如果数据包的延迟超出 5 秒，SDK
-     会丢弃该数据包。</entry>
-                    </row>
-                    <row>
-                        <entry><codeph><ph keyref="true"/></codeph></entry>
-                        <entry><codeph><ph keyref="true"/></codeph></entry>
-                        <entry>如果数据包的延迟在音频延迟的范围内，SDK 会修正数据包的乱序问题。如果数据包的延迟超出音频延迟，SDK
-     会丢弃该数据包。</entry>
-                    </row>
-                </tbody>
-            </tgroup>
-            </table> </section>
+                <tgroup cols="3">
+                    <colspec colnum="1" colname="col1"/>
+                    <colspec colnum="2" colname="col2"/>
+                    <colspec colnum="3" colname="col3"/>
+                    <thead>
+                        <row>
+                            <entry><codeph>syncWithAudio</codeph></entry>
+                            <entry><codeph>ordered</codeph></entry>
+                            <entry>SDK 行为</entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry><codeph><ph keyref="false"/></codeph></entry>
+                            <entry><codeph><ph keyref="false"/></codeph></entry>
+                            <entry>接收端接收到数据包后，SDK 立刻触发 <xref keyref="onStreamMessage"/> 回调。</entry>
+                        </row>
+                        <row>
+                            <entry><codeph><ph keyref="true"/></codeph></entry>
+                            <entry><codeph><ph keyref="false"/></codeph></entry>
+                            <entry>如果数据包的延迟在音频延迟的范围内，SDK 会在播放音频的同时触发与该音频包同步的 <ph
+                                    keyref="onStreamMessage"/> 回调。如果数据包的延迟超出了音频延迟，SDK 会在接收到该数据包时立刻触发
+                                    <ph keyref="onStreamMessage"/> 回调；此情况会造成音频包和数据包的不同步。</entry>
+                        </row>
+                        <row>
+                            <entry><codeph><ph keyref="false"/></codeph></entry>
+                            <entry><codeph><ph keyref="true"/></codeph></entry>
+                            <entry>如果数据包的延迟在 5 秒以内，SDK 会修正数据包的乱序问题。如果数据包的延迟超出 5 秒，SDK
+                                会丢弃该数据包。</entry>
+                        </row>
+                        <row>
+                            <entry><codeph><ph keyref="true"/></codeph></entry>
+                            <entry><codeph><ph keyref="true"/></codeph></entry>
+                            <entry>如果数据包的延迟在音频延迟的范围内，SDK 会修正数据包的乱序问题。如果数据包的延迟超出音频延迟，SDK
+                                会丢弃该数据包。</entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table>
+        </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+                /></title>
             <parml>
-            <plentry>
-                <pt>syncWithAudio</pt>
-                <pd>
-                    <p>是否与本地发送的音频流同步。
-                    
-                    
-                    <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: 数据流与音频流同步。</li>
-                    <li><codeph><ph keyref="false"/></codeph>: 数据流与音频流不同步。</li>
-                    </ul> 设置为与音频同步后，如果数据包的延迟在音频延迟的范围内，SDK 会在播放音频的同时触发与该音频包同步的 <xref
-                    keyref="onStreamMessage"/> 回调。 当需要数据包立刻到达接收端时，不能将该参数设置为 <ph
-                    keyref="true"/>。Agora 建议你仅在需要实现特殊场景，例如歌词同步时，设置为与音频同步。</p>
-                </pd>
-            </plentry>
-            <plentry>
-                <pt>ordered</pt>
-                <pd>
-                    <p>是否保证接收到的数据按发送的顺序排列。
-                    
-                    
-                    <ul>
-                    <li><codeph><ph keyref="true"
-                        /></codeph>: 保证 SDK 按照发送方发送的顺序输出数据包。</li>
-                    <li><codeph><ph keyref="false"
-                        /></codeph>: 不保证 SDK 按照发送方发送的顺序输出数据包。</li>
-                    </ul> 当需要数据包立刻到达接收端时，不能将该参数设置为 <codeph><ph keyref="true"
-                    /></codeph>。</p>
-                </pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>syncWithAudio</pt>
+                    <pd>
+                        <p>是否与本地发送的音频流同步。 <ul>
+                                <li><codeph><ph keyref="true"/></codeph>: 数据流与音频流同步。</li>
+                                <li><codeph><ph keyref="false"/></codeph>: 数据流与音频流不同步。</li>
+                            </ul> 设置为与音频同步后，如果数据包的延迟在音频延迟的范围内，SDK 会在播放音频的同时触发与该音频包同步的 <xref
+                                keyref="onStreamMessage"/> 回调。 当需要数据包立刻到达接收端时，不能将该参数设置为 <ph
+                                keyref="true"/>。Agora 建议你仅在需要实现特殊场景，例如歌词同步时，设置为与音频同步。</p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>ordered</pt>
+                    <pd>
+                        <p>是否保证接收到的数据按发送的顺序排列。 <ul>
+                                <li><codeph><ph keyref="true"/></codeph>: 保证 SDK
+                                    按照发送方发送的顺序输出数据包。</li>
+                                <li><codeph><ph keyref="false"/></codeph>: 不保证 SDK
+                                    按照发送方发送的顺序输出数据包。</li>
+                            </ul> 当需要数据包立刻到达接收端时，不能将该参数设置为 <codeph><ph keyref="true"/></codeph>。</p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

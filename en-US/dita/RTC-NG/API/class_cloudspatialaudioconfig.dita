@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_cloudspatialaudioconfig">
-    <title><ph keyref="CloudSpatialAudioConfig" /></title>
-    <shortdesc id="short"><ph id="shortdesc">The configuration of <apiname keyref="ICloudSpatialAudioEngine" />.</ph></shortdesc>
+    <title><ph keyref="CloudSpatialAudioConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc">The configuration of <apiname
+                keyref="ICloudSpatialAudioEngine"/>.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public class CloudSpatialAudioConfig {
+                <codeblock props="android" outputclass="language-java">public class CloudSpatialAudioConfig {
   public static class SaeDeployRegion {
     public final static int SAE_DEPLOY_REGION_NONE = 0;
     public final static int SAE_DEPLOY_REGION_CN = 0x00000001;
@@ -28,58 +29,68 @@
     mDeployRegion = SaeDeployRegion.SAE_DEPLOY_REGION_CN;
   }
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraCloudSpatialAudioConfig : NSObject
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraCloudSpatialAudioConfig : NSObject
 @property(assign, nonatomic) AgoraRtcEngineKit* _Nullable rtcEngine;
 @property(copy, nonatomic) NSString* _Nullable appId;
 @property(assign, nonatomic) NSUInteger deployRegion;
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct CloudSpatialAudioConfig {
+                <codeblock props="cpp" outputclass="language-cpp">struct CloudSpatialAudioConfig {
   agora::rtc::IRtcEngine* rtcEngine;
   ICloudSpatialAudioEventHandler* eventHandler;
   const char* appId;
   unsigned int deployRegion;
   CloudSpatialAudioConfig() : rtcEngine(NULL), eventHandler(NULL), appId(NULL), deployRegion(SAE_DEPLOY_REGION_CN) {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp">public struct CloudSpatialAudioConfig {
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp">public struct CloudSpatialAudioConfig {
       public IAgoraRtcEngine rtcEngine;
       public IAgoraRtcCloudSpatialAudioEngineEventHandler eventHandler;
       public string appId;
       public uint deployRegion;
    };</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+                /></title>
             <parml>
-            <plentry>
-                <pt props="cpp ios mac">rtcEngine</pt>
-                <pt props="android">mRtcEngine</pt>
-                <pd><xref keyref="IRtcEngine" />.</pd>
-            </plentry>
-            <plentry props="cpp android">
-                <pt props="cpp">eventHandler</pt>
-                <pt props="android">mEventHandler</pt>
-                <pd>The event handler for the <apiname keyref="ICloudSpatialAudioEngine" /> object. See <xref keyref="ICloudSpatialAudioEventHandler" /> for details.</pd>
-            </plentry>
-            <plentry>
-                <pt props="cpp ios mac">appId</pt>
-                <pt props="android">mAppId</pt>
-                <pd>The App ID issued by Agora for your project. This parameter needs to be the same as the App ID set during the initialization of <apiname keyref="IRtcEngine" />.</pd>
-            </plentry>
-            <plentry>
-                <pt props="cpp ios mac">deployRegion</pt>
-                <pt props="android">mDeployRegion</pt>
-                <pd>The region in which the Agora Spatial Audio Server to be used is located. The following regions are supported:<ul>
-                    <li><ph keyref="SAE_DEPLOY_REGION_CN" />: (Default) Mainland China.</li>
-                    <li><ph keyref="SAE_DEPLOY_REGION_NA" />: North America.</li>
-                    <li><ph keyref="SAE_DEPLOY_REGION_EU" />: Europe.</li>
-                    <li><ph keyref="SAE_DEPLOY_REGION_AS" />Asia, excluding Mainland China.</li>
-                </ul>
-                    <p>After specifying the region, apps using the spatial audio effect connect to the Agora Spatial Audio Server within that region.</p>
-                </pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt props="cpp ios mac">rtcEngine</pt>
+                    <pt props="android">mRtcEngine</pt>
+                    <pd><xref keyref="IRtcEngine"/>.</pd>
+                </plentry>
+                <plentry props="cpp android">
+                    <pt props="cpp">eventHandler</pt>
+                    <pt props="android">mEventHandler</pt>
+                    <pd>The event handler for the <apiname keyref="ICloudSpatialAudioEngine"/>
+                        object. See <xref keyref="ICloudSpatialAudioEventHandler"/> for
+                        details.</pd>
+                </plentry>
+                <plentry>
+                    <pt props="cpp ios mac">appId</pt>
+                    <pt props="android">mAppId</pt>
+                    <pd>The App ID issued by Agora for your project. This parameter needs to be the
+                        same as the App ID set during the initialization of <apiname
+                            keyref="IRtcEngine"/>.</pd>
+                </plentry>
+                <plentry>
+                    <pt props="cpp ios mac">deployRegion</pt>
+                    <pt props="android">mDeployRegion</pt>
+                    <pd>The region in which the Agora Spatial Audio Server to be used is located.
+                        The following regions are supported:<ul>
+                            <li><ph keyref="SAE_DEPLOY_REGION_CN"/>: (Default) Mainland China.</li>
+                            <li><ph keyref="SAE_DEPLOY_REGION_NA"/>: North America.</li>
+                            <li><ph keyref="SAE_DEPLOY_REGION_EU"/>: Europe.</li>
+                            <li><ph keyref="SAE_DEPLOY_REGION_AS"/>Asia, excluding Mainland
+                                China.</li>
+                        </ul>
+                        <p>After specifying the region, apps using the spatial audio effect connect
+                            to the Agora Spatial Audio Server within that region.</p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

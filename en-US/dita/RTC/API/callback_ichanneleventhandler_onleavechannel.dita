@@ -13,35 +13,40 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onLeaveChannel(IChannel *rtcChannel, const RtcStats&amp; stats) {
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onLeaveChannel(IChannel *rtcChannel, const RtcStats&amp; stats) {
     (void)rtcChannel;
     (void)stats;
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(
+                <codeblock props="electron" outputclass="language-typescript">on(
   evt: ChannelEvents.LEAVE_CHANNEL,
   cb: (channelId: string, stats: RtcStats) =&gt; void
 ): this;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public virtual void OnLeaveChannel(string channelId, RtcStats stats)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">RtcStatsCallback? leaveChannel;</codeblock> </p>
+                <codeblock props="cs" outputclass="language-csharp">public virtual void OnLeaveChannel(string channelId, RtcStats stats)</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">RtcStatsCallback? leaveChannel;</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p>When a user leaves the channel by using the <xref keyref="IChannel_leaveChannel"/> method, the SDK uses this callback to notify the app when the user leaves the channel. With this callback, the app gets the channel information, such as the call duration and quality statistics.</p>
+            <p>When a user leaves the channel by using the <xref keyref="IChannel_leaveChannel"/>
+                method, the SDK uses this callback to notify the app when the user leaves the
+                channel. With this callback, the app gets the channel information, such as the call
+                duration and quality statistics.</p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
-            <plentry props="native cs" conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry conkeyref="onLeaveChannel/stats">
-                <pt/>
-                <pd/>
-            </plentry>
-            </parml> </section>
+                <plentry props="native cs" conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry conkeyref="onLeaveChannel/stats">
+                    <pt/>
+                    <pd/>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

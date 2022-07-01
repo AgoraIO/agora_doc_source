@@ -2,7 +2,8 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setenablespeakerphone_ng">
     <title><ph keyref="setEnableSpeakerphone"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Enables/Disables the speakerphone temporarily.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Enables/Disables the speakerphone
+        temporarily.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -18,37 +19,54 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetEnableSpeakerphone(bool speakerOn);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </section>
+            <codeblock props="flutter" outputclass="language-dart"/>
+        </section>
         <section id="detailed_desc">
             <note props="cpp unity">This method applies to Android and iOS only.</note>
-            <p>After a successful method call, the SDK triggers the <xref keyref="onAudioRouteChanged"/> callback.</p>
-            <p>You can call this method before joining a channel, when in a channel, or after leaving a channel. However, Agora recommends calling this method only when you are in a channel to change the audio route temporarily.</p>
+            <p>After a successful method call, the SDK triggers the <xref
+                    keyref="onAudioRouteChanged"/> callback.</p>
+            <p>You can call this method before joining a channel, when in a channel, or after
+                leaving a channel. However, Agora recommends calling this method only when you are
+                in a channel to change the audio route temporarily.</p>
             <note type="attention">
-            <ul>
-            <li>If you do not have a clear requirement for transient settings, Agora recommends calling the steady API <xref keyref="setDefaultAudioRouteToSpeakerphone"/> to set the audio route.</li>
-            <li>Any user behavior or audio-related API call might change the transient setting of <apiname keyref="setEnableSpeakerphone"/>. See <xref keyref="guide-audio-route">Audio Route</xref> for detailed change principles.</li>
-            <li props="ios cpp unity">Due to system limitations, if the user uses an external audio playback device such as a Bluetooth or wired headset on an iOS device, this method does not take effect.</li>
-            </ul></note> </section>
+                <ul>
+                    <li>If you do not have a clear requirement for transient settings, Agora
+                        recommends calling the steady API <xref
+                            keyref="setDefaultAudioRouteToSpeakerphone"/> to set the audio
+                        route.</li>
+                    <li>Any user behavior or audio-related API call might change the transient
+                        setting of <apiname keyref="setEnableSpeakerphone"/>. See <xref
+                            keyref="guide-audio-route">Audio Route</xref> for detailed change
+                        principles.</li>
+                    <li props="ios cpp unity">Due to system limitations, if the user uses an
+                        external audio playback device such as a Bluetooth or wired headset on an
+                        iOS device, this method does not take effect.</li>
+                </ul></note>
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry>
-                <pt props="android">enabled</pt>
-                <pt props="ios mac">enableSpeaker</pt>
-                <pt props="cpp unity">speakerOn</pt>
-                <pd>
-                    <p>Whether to set the speakerphone as the default audio route:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Set the speakerphone as the audio route temporarily.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Do not set the speakerphone as the audio route.</li>
-                    </ul></p>
-                </pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt props="android">enabled</pt>
+                    <pt props="ios mac">enableSpeaker</pt>
+                    <pt props="cpp unity">speakerOn</pt>
+                    <pd>
+                        <p>Whether to set the speakerphone as the default audio route:<ul>
+                                <li><codeph><ph keyref="true"/></codeph>: Set the speakerphone as
+                                    the audio route temporarily.</li>
+                                <li><codeph><ph keyref="false"/></codeph>: Do not set the
+                                    speakerphone as the audio route.</li>
+                            </ul></p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values">
             <title>Returns</title>
             <ul id="ul_ahk_23f_3qb">
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure.</li>
-            </ul> </section>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
     </refbody>
 </reference>

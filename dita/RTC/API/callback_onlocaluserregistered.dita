@@ -13,49 +13,53 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didLocalUserRegisteredWithUserId:(NSUInteger)uid userAccount:(NSString * _Nonnull)userAccount;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public virtual void OnLocalUserRegistered(uint uid, string userAccount) {}</codeblock></p>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didLocalUserRegisteredWithUserId:(NSUInteger)uid userAccount:(NSString * _Nonnull)userAccount;</codeblock>
+                <codeblock props="cs" outputclass="language-csharp">public virtual void OnLocalUserRegistered(uint uid, string userAccount) {}</codeblock></p>
             <p outputclass="codeblock" props="rtc">
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine didRegisteredLocalUser:(NSString* _Nonnull)userAccount withUid:(NSUInteger)uid;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public virtual void OnLocalUserRegistered(uint uid, string userAccount)</codeblock></p>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine didRegisteredLocalUser:(NSString* _Nonnull)userAccount withUid:(NSUInteger)uid;</codeblock>
+                <codeblock props="cs" outputclass="language-csharp">public virtual void OnLocalUserRegistered(uint uid, string userAccount)</codeblock></p>
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public void onLocalUserRegistered(int uid, String userAccount) {}</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onLocalUserRegistered(uid_t uid, const char* userAccount) {
+                <codeblock props="android" outputclass="language-java">public void onLocalUserRegistered(int uid, String userAccount) {}</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onLocalUserRegistered(uid_t uid, const char* userAccount) {
      (void)uid;
      (void)userAccount;
      }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.LOCAL_USER_REGISTERED, cb: (
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.LOCAL_USER_REGISTERED, cb: (
      uid: number,
      userAccount: string) =&gt; void
      ): this;</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">UserAccountCallback? localUserRegistered;</codeblock> </p>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">UserAccountCallback? localUserRegistered;</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>自从</dt>
-                <dd>v2.8.0</dd>
-            </dlentry>
+                <dlentry props="native">
+                    <dt>自从</dt>
+                    <dd>v2.8.0</dd>
+                </dlentry>
             </dl>
-            <p>本地用户成功调用 <xref keyref="registerLocalUserAccount"/> 方法注册用户 User Account，或调用 <apiname keyref="joinChannelWithUserAccount2"/> 加入频道后，SDK 会触发该回调，并告知本地用户的 UID 和 User Account。</p>
+            <p>本地用户成功调用 <xref keyref="registerLocalUserAccount"/> 方法注册用户 User Account，或调用 <apiname
+                    keyref="joinChannelWithUserAccount2"/> 加入频道后，SDK 会触发该回调，并告知本地用户的 UID 和 User
+                Account。</p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry>
-                <pt>uid</pt>
-                <pd>本地用户的 ID。</pd>
-            </plentry>
-            <plentry>
-                <pt>userAccount</pt>
-                <pd>本地用户的 User Account。</pd>
-            </plentry>
-            </parml> </section>
+                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry>
+                    <pt>uid</pt>
+                    <pd>本地用户的 ID。</pd>
+                </plentry>
+                <plentry>
+                    <pt>userAccount</pt>
+                    <pd>本地用户的 User Account。</pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

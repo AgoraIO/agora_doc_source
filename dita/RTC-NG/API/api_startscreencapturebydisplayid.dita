@@ -13,57 +13,63 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="mac" outputclass="language-objectivec">- (int)startScreenCaptureByDisplayId:(UInt32)displayId
+                <codeblock props="mac" outputclass="language-objectivec">- (int)startScreenCaptureByDisplayId:(UInt32)displayId
                 regionRect:(CGRect)regionRect
                 captureParams:(AgoraScreenCaptureParameters *_Nonnull)captureParams;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int StartScreenCaptureByDisplayId(uint displayId, Rectangle regionRect, ScreenCaptureParameters captureParams);</codeblock>
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int startScreenCaptureByDisplayId(uint32_t displayId, const Rectangle&amp; regionRect,
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartScreenCaptureByDisplayId(uint displayId, Rectangle regionRect, ScreenCaptureParameters captureParams);</codeblock>
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int startScreenCaptureByDisplayId(uint32_t displayId, const Rectangle&amp; regionRect,
                                             const ScreenCaptureParameters&amp; captureParams) = 0;
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
             <p>共享一个屏幕或该屏幕的部分区域。</p>
             <p conkeyref="startScreenCapture/apisequence"/>
-            <note type="attention" props="cpp flutter unity">该方法仅适用于 Windows 和 macOS。</note> </section>
+            <note type="attention" props="cpp flutter unity">该方法仅适用于 Windows 和 macOS。</note>
+        </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry>
-                <pt>displayId</pt>
-                <pd>指定待共享的屏幕 ID。
-                    <p props="native">关于如何获取屏幕 ID，请参考 <xref keyref="guide-screensharing">屏幕共享</xref>。</p>
-                </pd>
-            </plentry>
-            <plentry>
-                <pt>regionRect</pt>
-                <pd><ph>（可选）指定待共享区域相对于整个屏幕的位置。如不填，则表示共享整个屏幕。</ph><ph props="cpp unity flutter">详见 <xref keyref="Rectangle"/>。</ph><ph props="mac">由如下参数组成：</ph>
-                    <ul props="mac">
-                    <li>x：左上角的横向偏移。</li>
-                    <li>y：左上角的纵向偏移。</li>
-                    <li>width：待共享区域的宽。</li>
-                    <li>height：待共享区域的高。</li>
-                    </ul></pd>
-                <pd>如果设置的共享区域超出了屏幕的边界，则只共享屏幕内的内容；如果宽或高设为 0，则共享整个屏幕。</pd>
-            </plentry>
-            <plentry>
-                <pt>captureParams</pt>
-                <pd>屏幕共享的参数配置。默认的视频编码分辨率为 1920 × 1080，即 2073600 像素。该像素值为计费标准。详见 <xref keyref="ScreenCaptureParameters"/>。</pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>displayId</pt>
+                    <pd>指定待共享的屏幕 ID。 <p props="native">关于如何获取屏幕 ID，请参考 <xref
+                                keyref="guide-screensharing">屏幕共享</xref>。</p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>regionRect</pt>
+                    <pd><ph>（可选）指定待共享区域相对于整个屏幕的位置。如不填，则表示共享整个屏幕。</ph><ph props="cpp unity flutter"
+                            >详见 <xref keyref="Rectangle"/>。</ph><ph props="mac">由如下参数组成：</ph>
+                        <ul props="mac">
+                            <li>x：左上角的横向偏移。</li>
+                            <li>y：左上角的纵向偏移。</li>
+                            <li>width：待共享区域的宽。</li>
+                            <li>height：待共享区域的高。</li>
+                        </ul></pd>
+                    <pd>如果设置的共享区域超出了屏幕的边界，则只共享屏幕内的内容；如果宽或高设为 0，则共享整个屏幕。</pd>
+                </plentry>
+                <plentry>
+                    <pt>captureParams</pt>
+                    <pd>屏幕共享的参数配置。默认的视频编码分辨率为 1920 × 1080，即 2073600 像素。该像素值为计费标准。详见 <xref
+                            keyref="ScreenCaptureParameters"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values" props="native electron unity">
             <title>返回值</title>
             <ul>
-            <li>0: 方法调用成功。</li>
-            <li>&lt; 0: 方法调用失败。
-
-                <ul id="err">
-                <li><codeph>ERR_INVALID_STATE</codeph>：屏幕共享状态无效。可能因为你已经共享了其他屏幕或窗口。尝试调用 <xref keyref="stopScreenCapture"/> 停止当前共享，再重新开始共享屏幕。</li>
-                <li><codeph>ERR_INVALID_ARGUMENT</codeph>：传入的参数无效。</li>
-                </ul> </li>
-            </ul> </section>
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。 <ul id="err">
+                        <li><codeph>ERR_INVALID_STATE</codeph>：屏幕共享状态无效。可能因为你已经共享了其他屏幕或窗口。尝试调用 <xref
+                                keyref="stopScreenCapture"/> 停止当前共享，再重新开始共享屏幕。</li>
+                        <li><codeph>ERR_INVALID_ARGUMENT</codeph>：传入的参数无效。</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
     </refbody>
 </reference>

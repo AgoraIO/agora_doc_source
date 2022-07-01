@@ -1,68 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaengine_pushaudioframe0">
-    <title><ph keyref="pushAudioFrame" /></title>
+    <title><ph keyref="pushAudioFrame"/></title>
     <shortdesc id="short"><ph id="shortdesc">推送外部音频帧。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="pushAudioFrame" />
+                <indexterm keyref="pushAudioFrame"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="cpp" outputclass="language-cpp">virtual int pushAudioFrame(MEDIA_SOURCE_TYPE type, IAudioFrameObserver::AudioFrame* frame,
+                <codeblock props="cpp" outputclass="language-cpp">virtual int pushAudioFrame(MEDIA_SOURCE_TYPE type, IAudioFrameObserver::AudioFrame* frame,
                     bool wrap = false, int sourceId = 0) = 0;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int PushAudioFrame(MEDIA_SOURCE_TYPE type, AudioFrame frame, bool wrap = false, int sourceId = 0);</codeblock>
             </p>
             <p outputclass="codeblock" props="rtc">
-            <codeblock props="cpp" outputclass="language-cpp">virtual int pushAudioFrame(MEDIA_SOURCE_TYPE type, IAudioFrameObserver::AudioFrame* frame, bool wrap) = 0;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int PushAudioFrame(MEDIA_SOURCE_TYPE type, AudioFrame frame, bool wrap);</codeblock> </p>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int pushAudioFrame(MEDIA_SOURCE_TYPE type, IAudioFrameObserver::AudioFrame* frame, bool wrap) = 0;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int PushAudioFrame(MEDIA_SOURCE_TYPE type, AudioFrame frame, bool wrap);</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated" props="rtc">
-            <dlentry props="cpp android ios mac">
-                <dt>弃用：</dt>
-                <dd>该方法已废弃，请改用 <xref keyref="pushAudioFrame2" /> 方法。</dd>
-            </dlentry>
-            <dlentry props="unity">
-                <dt>弃用：</dt>
-                <dd>该方法已废弃，请改用 <xref keyref="pushAudioFrame1" /> 方法。</dd>
-            </dlentry>
+                <dlentry props="cpp android ios mac">
+                    <dt>弃用：</dt>
+                    <dd>该方法已废弃，请改用 <xref keyref="pushAudioFrame2"/> 方法。</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>弃用：</dt>
+                    <dd>该方法已废弃，请改用 <xref keyref="pushAudioFrame1"/> 方法。</dd>
+                </dlentry>
             </dl>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry>
-                <pt>type</pt>
-                <pd>音频采集设备类型。详见 <xref keyref="MEDIA_SOURCE_TYPE" />。</pd>
-            </plentry>
-            <plentry>
-                <pt>frame</pt>
-                <pd>外部音频帧。详见 <xref keyref="AudioFrame" />。</pd>
-            </plentry>
-            <plentry>
-                <pt>wrap</pt>
-                <pd>设置是否占位使用。Agora 建议用户使用默认值。
-
-                    <ul>
-                    <li><codeph><ph keyref="true" /></codeph>: 占位使用；</li>
-                    <li><codeph><ph keyref="false" /></codeph>:（默认）不占位使用。</li>
-                    </ul> </pd>
-            </plentry>
-            <plentry props="rtc-ng">
-                <pt>sourceId</pt>
-                <pd>外部音频源的 ID。如果你要发布自定义的外部音频源，则将该参数设置为你想要发布的自定义音频轨道 ID。</pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>type</pt>
+                    <pd>音频采集设备类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry>
+                    <pt>frame</pt>
+                    <pd>外部音频帧。详见 <xref keyref="AudioFrame"/>。</pd>
+                </plentry>
+                <plentry>
+                    <pt>wrap</pt>
+                    <pd>设置是否占位使用。Agora 建议用户使用默认值。 <ul>
+                            <li><codeph><ph keyref="true"/></codeph>: 占位使用；</li>
+                            <li><codeph><ph keyref="false"/></codeph>:（默认）不占位使用。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rtc-ng">
+                    <pt>sourceId</pt>
+                    <pd>外部音频源的 ID。如果你要发布自定义的外部音频源，则将该参数设置为你想要发布的自定义音频轨道 ID。</pd>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values">
             <title>返回值</title>
             <ul>
-            <li>0：方法调用成功。</li>
-            <li>&lt; 0：方法调用失败。</li>
-            </ul> </section>
+                <li>0：方法调用成功。</li>
+                <li>&lt; 0：方法调用失败。</li>
+            </ul>
+        </section>
     </refbody>
 </reference>

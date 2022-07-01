@@ -6,7 +6,7 @@
     <refbody>
         <section id="prototype">
             <p props="rtc-ng" outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public class VideoEncoderConfiguration {
+                <codeblock props="android" outputclass="language-java">public class VideoEncoderConfiguration {
 
   public VideoDimensions dimensions;
   public int frameRate;
@@ -17,7 +17,7 @@
   public DEGRADATION_PREFERENCE degradationPrefer;
   public MIRROR_MODE_TYPE mirrorMode;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoEncoderConfiguration : NSObject
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoEncoderConfiguration : NSObject
 @property(assign, nonatomic) CGSize dimensions;
 @property(assign, nonatomic) AgoraVideoCodecType codecType;
 @property(assign, nonatomic) AgoraVideoFrameRate frameRate;
@@ -40,7 +40,7 @@
                        orientationMode:(AgoraVideoOutputOrientationMode)orientationMode
                             mirrorMode:(AgoraVideoMirrorMode)mirrorMode;
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct VideoEncoderConfiguration {
+                <codeblock props="cpp" outputclass="language-cpp">struct VideoEncoderConfiguration {
   VIDEO_CODEC_TYPE codecType;
   VideoDimensions dimensions;
   int frameRate;
@@ -87,7 +87,7 @@
         degradationPreference(MAINTAIN_QUALITY),
         mirrorMode(VIDEO_MIRROR_MODE_DISABLED) {}
 };</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class VideoEncoderConfiguration
+                <codeblock props="unity" outputclass="language-csharp">public class VideoEncoderConfiguration
     {
         public VideoEncoderConfiguration()
         {
@@ -125,9 +125,10 @@
         public ORIENTATION_MODE orientationMode { set; get; }
         public DEGRADATION_PREFERENCE degradationPreference { set; get; }
         public VIDEO_MIRROR_MODE_TYPE mirrorMode { set; get; }
-        }</codeblock> </p>
+        }</codeblock>
+            </p>
             <p props="rtc" outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public class VideoEncoderConfiguration {
+                <codeblock props="android" outputclass="language-java">public class VideoEncoderConfiguration {
         public VideoDimensions dimensions;
         public int frameRate;
         public int minFrameRate;
@@ -137,7 +138,7 @@
         public DEGRADATION_PREFERENCE degradationPrefer;
         public int mirrorMode;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoEncoderConfiguration : NSObject
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoEncoderConfiguration : NSObject
 @property(assign, nonatomic) CGSize dimensions;
 @property(assign, nonatomic) NSInteger frameRate;
 @property(assign, nonatomic) NSInteger minFrameRate;
@@ -151,7 +152,7 @@
 
 - (instancetype _Nonnull)initWithWidth:(NSInteger)width height:(NSInteger)height frameRate:(AgoraVideoFrameRate)frameRate bitrate:(NSInteger)bitrate orientationMode:(AgoraVideoOutputOrientationMode)orientationMode;
 @end</codeblock>
-            <codeblock props="cpp unity" outputclass="language-cpp">struct VideoEncoderConfiguration {
+                <codeblock props="cpp unity" outputclass="language-cpp">struct VideoEncoderConfiguration {
     VideoDimensions dimensions;
     FRAME_RATE frameRate;
     int minFrameRate;
@@ -187,7 +188,7 @@
         , mirrorMode(VIDEO_MIRROR_MODE_AUTO)
     {}
     };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">export interface VideoEncoderConfiguration {
+                <codeblock props="electron" outputclass="language-typescript">export interface VideoEncoderConfiguration {
     dimensions: VideoDimensions;
     frameRate: FRAME_RATE;
     minFrameRate: number;
@@ -197,8 +198,8 @@
     degradationPreference: DEGRADATION_PREFERENCE;
     mirrorMode: VIDEO_MIRROR_MODE_TYPE;
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">class VideoEncoderConfiguration {
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">class VideoEncoderConfiguration {
 
   @JsonKey(includeIfNull: false)
   VideoDimensions? dimensions;
@@ -239,316 +240,315 @@
       _$VideoEncoderConfigurationFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$VideoEncoderConfigurationToJson(this);
-}</codeblock> </p>
+}</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+                /></title>
             <parml>
-            <plentry>
-                <pt>dimensions</pt>
-                <pd>
-                    <p props="android cpp unity">视频编码的分辨率（px），详见 <xref
-                    keyref="VideoDimensions"
-                    />。该参数用于衡量编码质量，以长 × 宽表示，默认值为 640 × 360。用户可以自行设置分辨率。</p>
-                    <p props="ios mac">视频编码的分辨率 (px)，用于衡量编码质量，以长x宽表示，默认值为 640 x 360。用户可以自行设置分辨率，也可以在如下列表中直接选择想要的分辨率：
-          
-                    
-                    <ul>
-                    <li>AgoraVideoDimension120x120：视频分辨率为 120 * 120。</li>
-                    <li>AgoraVideoDimension160x120：视频分辨率为 160 * 120。</li>
-                    <li>AgoraVideoDimension180x180：视频分辨率为 180 * 180。</li>
-                    <li>AgoraVideoDimension240x180：视频分辨率为 240 * 180。</li>
-                    <li>AgoraVideoDimension320x180：视频分辨率为 320 * 180。</li>
-                    <li>AgoraVideoDimension240x240：视频分辨率为 240 * 240。</li>
-                    <li>AgoraVideoDimension320x240：视频分辨率为 320 * 240。</li>
-                    <li>AgoraVideoDimension424x240：视频分辨率为 424 * 240。</li>
-                    <li>AgoraVideoDimension360x360：视频分辨率为 360 * 360。</li>
-                    <li>AgoraVideoDimension480x360：视频分辨率为 480 * 360。</li>
-                    <li>AgoraVideoDimension640x360：视频分辨率为 640 * 360。</li>
-                    <li>AgoraVideoDimension480x480：视频分辨率为 480 * 480。</li>
-                    <li>AgoraVideoDimension640x480：视频分辨率为 640 * 480。</li>
-                    <li>AgoraVideoDimension840x480：视频分辨率为 840 * 480</li>
-                    <li>AgoraVideoDimension960x720：视频分辨率为 960 * 720。</li>
-                    <li>AgoraVideoDimension1280x720：视频分辨率为 1280 * 720。</li>
-                    <li>AgoraVideoDimension1920x1080: 视频分辨率为 1920 * 1080（仅支持 macOS）。</li>
-                    <li props="hide"
-                        >AgoraVideoDimension2540x1440: 视频分辨率为 2540 * 1440（仅支持 macOS）。</li>
-                    <li props="hide"
-                        >AgoraVideoDimension3840x2160: 视频分辨率为 3840 * 2160（仅支持 macOS）。</li>
-                    </ul>
-                    <note type="attention">
-                    <ul>
-                    <li>视频能否达到 720P 的分辨率取决于设备的性能，在性能配备较低的设备上有可能无法实现。如果采用 720P 分辨率而设备性能跟不上，则有可能出现帧率过低的情况。</li>
-                    <li>iPhone 不支持 720P 以上的分辨率。</li>
-                    </ul> </note> </p>
-                </pd>
-            </plentry>
-            <plentry props="rtc-ng">
-                <pt props="ios mac cpp unity">codecType</pt>
-                <pd props="ios mac cpp unity">
-                    <p>视频编码类型，详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</p>
-                </pd>
-            </plentry>
-            <plentry>
-                <pt>frameRate</pt>
-                <pd>
-                    <p props="rtc-ng">视频编码的帧率(fps)，默认值为 15。详见 <xref
-                    keyref="FRAME_RATE"/>。</p>
-                    <p props="rtc">视频编码的帧率(fps)，默认值为 15。<ph
-                    props="electron flutter cpp unity">详见 <xref
-                    keyref="FRAME_RATE"/>。</ph></p>
-                </pd>
-            </plentry>
-            <plentry props="native">
-                <pt>minFramerate</pt>
-                <pd>视频的最小帧率。默认值为 -1。</pd>
-            </plentry>
-            <plentry>
-                <pt>bitrate</pt>
-                <pd>
-                    <p>视频编码码率，单位为 Kbps。</p>
-                    <p props="rtc"
-                    >你可以根据场景需要参照下表手动设置你想要的码率。若设置的视频码率超出合理范围，SDK 会自动按照合理区间处理码率。你也可以直接选择如下任意一种模式进行设置：</p>
-                    <ul props="rtc">
-                    <li><option keyref="STANDARD_BITRATE"/> : (推荐)
-     标准码率模式。该模式下，视频在直播场景下的码率是通信场景的两倍。</li>
-                    <li> <option keyref="COMPATIBLE_BITRATE"
-                        />: 适配码率模式。该模式下，视频在通信和直播场景下的码率一致。直播时如果选择该模式，视频帧率可能会低于设置的值。
- </li>
-                    </ul>
-                    <ul props="rtc-ng">
-                    <li><option keyref="STANDARD_BITRATE"/> : (推荐)
-              标准码率模式。该模式下，视频的码率是基准码率的两倍。</li>
-                    <li> <option keyref="COMPATIBLE_BITRATE"
-                        />: 适配码率模式。该模式下，视频码率与基准码率一致。直播时如果选择该模式，视频帧率可能会低于设置的值。
-          </li>
-                    </ul>
-                    <p props="rtc"
-                    >Agora 在通信和直播场景下采用不同的编码方式，以提升不同场景下的用户体验。通信场景保证流畅，而直播场景则更注重画面质量，因此直播场景对码率的需求大于通信场景。所以声网推荐将该参数设置为
- <option keyref="STANDARD_BITRATE"
-                    />。你也可以直接将直播场景的码率值设为通信场景码率值的 2 倍。</p>
-                    <table props="rtc" id="table_bitrate">
-                    <tgroup cols="4">
-                        <colspec colnum="1" colname="col1"/>
-                        <colspec colnum="2" colname="col2"/>
-                        <colspec colnum="3" colname="col3"/>
-                        <colspec colnum="4" colname="col4"/>
-                        <thead>
-                            <row>
-                                <entry>分辨率</entry>
-                                <entry>帧率（fps）</entry>
-                                <entry>通信码率（Kbps）</entry>
-                                <entry>直播码率（Kbps）</entry>
-                            </row>
-                        </thead>
-                        <tbody>
-                            <row>
-                                <entry>160 × 120</entry>
-                                <entry>15</entry>
-                                <entry>65</entry>
-                                <entry>130</entry>
-                            </row>
-                            <row>
-                                <entry>120 × 120</entry>
-                                <entry>15</entry>
-                                <entry>50</entry>
-                                <entry>100</entry>
-                            </row>
-                            <row>
-                                <entry>320 × 180</entry>
-                                <entry>15</entry>
-                                <entry>140</entry>
-                                <entry>280</entry>
-                            </row>
-                            <row>
-                                <entry>180 × 180</entry>
-                                <entry>15</entry>
-                                <entry>100</entry>
-                                <entry>200</entry>
-                            </row>
-                            <row>
-                                <entry>240 × 180</entry>
-                                <entry>15</entry>
-                                <entry>120</entry>
-                                <entry>240</entry>
-                            </row>
-                            <row>
-                                <entry>320 × 240</entry>
-                                <entry>15</entry>
-                                <entry>200</entry>
-                                <entry>400</entry>
-                            </row>
-                            <row>
-                                <entry>240 × 240</entry>
-                                <entry>15</entry>
-                                <entry>140</entry>
-                                <entry>280</entry>
-                            </row>
-                            <row>
-                                <entry>424 × 240</entry>
-                                <entry>15</entry>
-                                <entry>220</entry>
-                                <entry>440</entry>
-                            </row>
-                            <row>
-                                <entry>640 × 360</entry>
-                                <entry>15</entry>
-                                <entry>400</entry>
-                                <entry>800</entry>
-                            </row>
-                            <row>
-                                <entry>360 × 360</entry>
-                                <entry>15</entry>
-                                <entry>260</entry>
-                                <entry>520</entry>
-                            </row>
-                            <row>
-                                <entry>640 × 360</entry>
-                                <entry>30</entry>
-                                <entry>600</entry>
-                                <entry>1200</entry>
-                            </row>
-                            <row>
-                                <entry>360 × 360</entry>
-                                <entry>30</entry>
-                                <entry>400</entry>
-                                <entry>800</entry>
-                            </row>
-                            <row>
-                                <entry>480 × 360</entry>
-                                <entry>15</entry>
-                                <entry>320</entry>
-                                <entry>640</entry>
-                            </row>
-                            <row>
-                                <entry>480 × 360</entry>
-                                <entry>30</entry>
-                                <entry>490</entry>
-                                <entry>980</entry>
-                            </row>
-                            <row>
-                                <entry>640 × 480</entry>
-                                <entry>15</entry>
-                                <entry>500</entry>
-                                <entry>1000</entry>
-                            </row>
-                            <row>
-                                <entry>480 × 480</entry>
-                                <entry>15</entry>
-                                <entry>400</entry>
-                                <entry>800</entry>
-                            </row>
-                            <row>
-                                <entry>640 × 480</entry>
-                                <entry>30</entry>
-                                <entry>750</entry>
-                                <entry>1500</entry>
-                            </row>
-                            <row>
-                                <entry>480 × 480</entry>
-                                <entry>30</entry>
-                                <entry>600</entry>
-                                <entry>1200</entry>
-                            </row>
-                            <row>
-                                <entry>848 × 480</entry>
-                                <entry>15</entry>
-                                <entry>610</entry>
-                                <entry>1220</entry>
-                            </row>
-                            <row>
-                                <entry>848 × 480</entry>
-                                <entry>30</entry>
-                                <entry>930</entry>
-                                <entry>1860</entry>
-                            </row>
-                            <row>
-                                <entry>640 × 480</entry>
-                                <entry>10</entry>
-                                <entry>400</entry>
-                                <entry>800</entry>
-                            </row>
-                            <row>
-                                <entry>1280 × 720</entry>
-                                <entry>15</entry>
-                                <entry>1130</entry>
-                                <entry>2260</entry>
-                            </row>
-                            <row>
-                                <entry>1280 × 720</entry>
-                                <entry>30</entry>
-                                <entry>1710</entry>
-                                <entry>3420</entry>
-                            </row>
-                            <row>
-                                <entry>960 × 720</entry>
-                                <entry>15</entry>
-                                <entry>910</entry>
-                                <entry>1820</entry>
-                            </row>
-                            <row>
-                                <entry>960 × 720</entry>
-                                <entry>30</entry>
-                                <entry>1380</entry>
-                                <entry>2760</entry>
-                            </row>
-                            <row>
-                                <entry>1920 × 1080</entry>
-                                <entry>15</entry>
-                                <entry>2080</entry>
-                                <entry>4160</entry>
-                            </row>
-                            <row>
-                                <entry>1920 × 1080</entry>
-                                <entry>30</entry>
-                                <entry>3150</entry>
-                                <entry>6300</entry>
-                            </row>
-                            <row>
-                                <entry>1920 × 1080</entry>
-                                <entry>60</entry>
-                                <entry>4780</entry>
-                                <entry>6500</entry>
-                            </row>
-                        </tbody>
-                    </tgroup>
-                    </table> </pd>
-            </plentry>
-            <plentry>
-                <pt>minBitrate</pt>
-                <pd>
-                    <p>最低编码码率，单位为 Kbps。</p>
-                    <p>SDK 会根据网络状况自动调整视频编码码率。将参数设为高于默认值可强制视频编码器输出高质量图片，但在网络状况不佳情况下可能导致网络丢包并影响视频播放的流畅度造成卡顿。因此如非对画质有特殊需求，声网建议不要修改该参数的值。</p>
-                    <note type="attention">该参数仅适用于直播场景。</note> </pd>
-            </plentry>
-            <plentry>
-                <pt>orientationMode</pt>
-                <pd>
-      视频编码的方向模式，详见 <xref keyref="ORIENTATION_MODE"/>。
-  </pd>
-            </plentry>
-            <plentry>
-                <pt>degradationPreference</pt>
-                <pd>带宽受限时，视频编码降级偏好。详见 <xref keyref="DEGRADATION_PREFERENCE"
-                    /> 。</pd>
-            </plentry>
-            <plentry>
-                <pt>mirrorMode</pt>
-                <pd>
-                    <p props="android">发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。<ph
-                    props="rtc-ng">详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"
-                    />。</ph>
-                    <ul conkeyref="setLocalRenderMode2/videomirrormodetype"
-                    props="rtc">
-                    <li/>
-                    </ul> </p>
-                    <p props="ios mac cpp unity electron"
-                    >发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref
-                    keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
-                    <note type="attention">默认关闭镜像模式。</note> </pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>dimensions</pt>
+                    <pd>
+                        <p props="android cpp unity">视频编码的分辨率（px），详见 <xref keyref="VideoDimensions"
+                            />。该参数用于衡量编码质量，以长 × 宽表示，默认值为 640 × 360。用户可以自行设置分辨率。</p>
+                        <p props="ios mac">视频编码的分辨率 (px)，用于衡量编码质量，以长x宽表示，默认值为 640 x
+                            360。用户可以自行设置分辨率，也可以在如下列表中直接选择想要的分辨率： <ul>
+                                <li>AgoraVideoDimension120x120：视频分辨率为 120 * 120。</li>
+                                <li>AgoraVideoDimension160x120：视频分辨率为 160 * 120。</li>
+                                <li>AgoraVideoDimension180x180：视频分辨率为 180 * 180。</li>
+                                <li>AgoraVideoDimension240x180：视频分辨率为 240 * 180。</li>
+                                <li>AgoraVideoDimension320x180：视频分辨率为 320 * 180。</li>
+                                <li>AgoraVideoDimension240x240：视频分辨率为 240 * 240。</li>
+                                <li>AgoraVideoDimension320x240：视频分辨率为 320 * 240。</li>
+                                <li>AgoraVideoDimension424x240：视频分辨率为 424 * 240。</li>
+                                <li>AgoraVideoDimension360x360：视频分辨率为 360 * 360。</li>
+                                <li>AgoraVideoDimension480x360：视频分辨率为 480 * 360。</li>
+                                <li>AgoraVideoDimension640x360：视频分辨率为 640 * 360。</li>
+                                <li>AgoraVideoDimension480x480：视频分辨率为 480 * 480。</li>
+                                <li>AgoraVideoDimension640x480：视频分辨率为 640 * 480。</li>
+                                <li>AgoraVideoDimension840x480：视频分辨率为 840 * 480</li>
+                                <li>AgoraVideoDimension960x720：视频分辨率为 960 * 720。</li>
+                                <li>AgoraVideoDimension1280x720：视频分辨率为 1280 * 720。</li>
+                                <li>AgoraVideoDimension1920x1080: 视频分辨率为 1920 * 1080（仅支持
+                                    macOS）。</li>
+                                <li props="hide">AgoraVideoDimension2540x1440: 视频分辨率为 2540 *
+                                    1440（仅支持 macOS）。</li>
+                                <li props="hide">AgoraVideoDimension3840x2160: 视频分辨率为 3840 *
+                                    2160（仅支持 macOS）。</li>
+                            </ul>
+                            <note type="attention">
+                                <ul>
+                                    <li>视频能否达到 720P 的分辨率取决于设备的性能，在性能配备较低的设备上有可能无法实现。如果采用 720P
+                                        分辨率而设备性能跟不上，则有可能出现帧率过低的情况。</li>
+                                    <li>iPhone 不支持 720P 以上的分辨率。</li>
+                                </ul>
+                            </note>
+                        </p>
+                    </pd>
+                </plentry>
+                <plentry props="rtc-ng">
+                    <pt props="ios mac cpp unity">codecType</pt>
+                    <pd props="ios mac cpp unity">
+                        <p>视频编码类型，详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>frameRate</pt>
+                    <pd>
+                        <p props="rtc-ng">视频编码的帧率(fps)，默认值为 15。详见 <xref keyref="FRAME_RATE"/>。</p>
+                        <p props="rtc">视频编码的帧率(fps)，默认值为 15。<ph props="electron flutter cpp unity"
+                                >详见 <xref keyref="FRAME_RATE"/>。</ph></p>
+                    </pd>
+                </plentry>
+                <plentry props="native">
+                    <pt>minFramerate</pt>
+                    <pd>视频的最小帧率。默认值为 -1。</pd>
+                </plentry>
+                <plentry>
+                    <pt>bitrate</pt>
+                    <pd>
+                        <p>视频编码码率，单位为 Kbps。</p>
+                        <p props="rtc">你可以根据场景需要参照下表手动设置你想要的码率。若设置的视频码率超出合理范围，SDK
+                            会自动按照合理区间处理码率。你也可以直接选择如下任意一种模式进行设置：</p>
+                        <ul props="rtc">
+                            <li><option keyref="STANDARD_BITRATE"/> : (推荐)
+                                标准码率模式。该模式下，视频在直播场景下的码率是通信场景的两倍。</li>
+                            <li>
+                                <option keyref="COMPATIBLE_BITRATE"/>:
+                                适配码率模式。该模式下，视频在通信和直播场景下的码率一致。直播时如果选择该模式，视频帧率可能会低于设置的值。 </li>
+                        </ul>
+                        <ul props="rtc-ng">
+                            <li><option keyref="STANDARD_BITRATE"/> : (推荐)
+                                标准码率模式。该模式下，视频的码率是基准码率的两倍。</li>
+                            <li>
+                                <option keyref="COMPATIBLE_BITRATE"/>:
+                                适配码率模式。该模式下，视频码率与基准码率一致。直播时如果选择该模式，视频帧率可能会低于设置的值。 </li>
+                        </ul>
+                        <p props="rtc">Agora
+                            在通信和直播场景下采用不同的编码方式，以提升不同场景下的用户体验。通信场景保证流畅，而直播场景则更注重画面质量，因此直播场景对码率的需求大于通信场景。所以声网推荐将该参数设置为
+                                <option keyref="STANDARD_BITRATE"/>。你也可以直接将直播场景的码率值设为通信场景码率值的 2
+                            倍。</p>
+                        <table props="rtc" id="table_bitrate">
+                            <tgroup cols="4">
+                                <colspec colnum="1" colname="col1"/>
+                                <colspec colnum="2" colname="col2"/>
+                                <colspec colnum="3" colname="col3"/>
+                                <colspec colnum="4" colname="col4"/>
+                                <thead>
+                                    <row>
+                                        <entry>分辨率</entry>
+                                        <entry>帧率（fps）</entry>
+                                        <entry>通信码率（Kbps）</entry>
+                                        <entry>直播码率（Kbps）</entry>
+                                    </row>
+                                </thead>
+                                <tbody>
+                                    <row>
+                                        <entry>160 × 120</entry>
+                                        <entry>15</entry>
+                                        <entry>65</entry>
+                                        <entry>130</entry>
+                                    </row>
+                                    <row>
+                                        <entry>120 × 120</entry>
+                                        <entry>15</entry>
+                                        <entry>50</entry>
+                                        <entry>100</entry>
+                                    </row>
+                                    <row>
+                                        <entry>320 × 180</entry>
+                                        <entry>15</entry>
+                                        <entry>140</entry>
+                                        <entry>280</entry>
+                                    </row>
+                                    <row>
+                                        <entry>180 × 180</entry>
+                                        <entry>15</entry>
+                                        <entry>100</entry>
+                                        <entry>200</entry>
+                                    </row>
+                                    <row>
+                                        <entry>240 × 180</entry>
+                                        <entry>15</entry>
+                                        <entry>120</entry>
+                                        <entry>240</entry>
+                                    </row>
+                                    <row>
+                                        <entry>320 × 240</entry>
+                                        <entry>15</entry>
+                                        <entry>200</entry>
+                                        <entry>400</entry>
+                                    </row>
+                                    <row>
+                                        <entry>240 × 240</entry>
+                                        <entry>15</entry>
+                                        <entry>140</entry>
+                                        <entry>280</entry>
+                                    </row>
+                                    <row>
+                                        <entry>424 × 240</entry>
+                                        <entry>15</entry>
+                                        <entry>220</entry>
+                                        <entry>440</entry>
+                                    </row>
+                                    <row>
+                                        <entry>640 × 360</entry>
+                                        <entry>15</entry>
+                                        <entry>400</entry>
+                                        <entry>800</entry>
+                                    </row>
+                                    <row>
+                                        <entry>360 × 360</entry>
+                                        <entry>15</entry>
+                                        <entry>260</entry>
+                                        <entry>520</entry>
+                                    </row>
+                                    <row>
+                                        <entry>640 × 360</entry>
+                                        <entry>30</entry>
+                                        <entry>600</entry>
+                                        <entry>1200</entry>
+                                    </row>
+                                    <row>
+                                        <entry>360 × 360</entry>
+                                        <entry>30</entry>
+                                        <entry>400</entry>
+                                        <entry>800</entry>
+                                    </row>
+                                    <row>
+                                        <entry>480 × 360</entry>
+                                        <entry>15</entry>
+                                        <entry>320</entry>
+                                        <entry>640</entry>
+                                    </row>
+                                    <row>
+                                        <entry>480 × 360</entry>
+                                        <entry>30</entry>
+                                        <entry>490</entry>
+                                        <entry>980</entry>
+                                    </row>
+                                    <row>
+                                        <entry>640 × 480</entry>
+                                        <entry>15</entry>
+                                        <entry>500</entry>
+                                        <entry>1000</entry>
+                                    </row>
+                                    <row>
+                                        <entry>480 × 480</entry>
+                                        <entry>15</entry>
+                                        <entry>400</entry>
+                                        <entry>800</entry>
+                                    </row>
+                                    <row>
+                                        <entry>640 × 480</entry>
+                                        <entry>30</entry>
+                                        <entry>750</entry>
+                                        <entry>1500</entry>
+                                    </row>
+                                    <row>
+                                        <entry>480 × 480</entry>
+                                        <entry>30</entry>
+                                        <entry>600</entry>
+                                        <entry>1200</entry>
+                                    </row>
+                                    <row>
+                                        <entry>848 × 480</entry>
+                                        <entry>15</entry>
+                                        <entry>610</entry>
+                                        <entry>1220</entry>
+                                    </row>
+                                    <row>
+                                        <entry>848 × 480</entry>
+                                        <entry>30</entry>
+                                        <entry>930</entry>
+                                        <entry>1860</entry>
+                                    </row>
+                                    <row>
+                                        <entry>640 × 480</entry>
+                                        <entry>10</entry>
+                                        <entry>400</entry>
+                                        <entry>800</entry>
+                                    </row>
+                                    <row>
+                                        <entry>1280 × 720</entry>
+                                        <entry>15</entry>
+                                        <entry>1130</entry>
+                                        <entry>2260</entry>
+                                    </row>
+                                    <row>
+                                        <entry>1280 × 720</entry>
+                                        <entry>30</entry>
+                                        <entry>1710</entry>
+                                        <entry>3420</entry>
+                                    </row>
+                                    <row>
+                                        <entry>960 × 720</entry>
+                                        <entry>15</entry>
+                                        <entry>910</entry>
+                                        <entry>1820</entry>
+                                    </row>
+                                    <row>
+                                        <entry>960 × 720</entry>
+                                        <entry>30</entry>
+                                        <entry>1380</entry>
+                                        <entry>2760</entry>
+                                    </row>
+                                    <row>
+                                        <entry>1920 × 1080</entry>
+                                        <entry>15</entry>
+                                        <entry>2080</entry>
+                                        <entry>4160</entry>
+                                    </row>
+                                    <row>
+                                        <entry>1920 × 1080</entry>
+                                        <entry>30</entry>
+                                        <entry>3150</entry>
+                                        <entry>6300</entry>
+                                    </row>
+                                    <row>
+                                        <entry>1920 × 1080</entry>
+                                        <entry>60</entry>
+                                        <entry>4780</entry>
+                                        <entry>6500</entry>
+                                    </row>
+                                </tbody>
+                            </tgroup>
+                        </table>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>minBitrate</pt>
+                    <pd>
+                        <p>最低编码码率，单位为 Kbps。</p>
+                        <p>SDK
+                            会根据网络状况自动调整视频编码码率。将参数设为高于默认值可强制视频编码器输出高质量图片，但在网络状况不佳情况下可能导致网络丢包并影响视频播放的流畅度造成卡顿。因此如非对画质有特殊需求，声网建议不要修改该参数的值。</p>
+                        <note type="attention">该参数仅适用于直播场景。</note>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>orientationMode</pt>
+                    <pd> 视频编码的方向模式，详见 <xref keyref="ORIENTATION_MODE"/>。 </pd>
+                </plentry>
+                <plentry>
+                    <pt>degradationPreference</pt>
+                    <pd>带宽受限时，视频编码降级偏好。详见 <xref keyref="DEGRADATION_PREFERENCE"/> 。</pd>
+                </plentry>
+                <plentry>
+                    <pt>mirrorMode</pt>
+                    <pd>
+                        <p props="android">发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。<ph props="rtc-ng">详见
+                                    <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</ph>
+                            <ul conkeyref="setLocalRenderMode2/videomirrormodetype" props="rtc">
+                                <li/>
+                            </ul>
+                        </p>
+                        <p props="ios mac cpp unity electron">发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见
+                                <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
+                        <note type="attention">默认关闭镜像模式。</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

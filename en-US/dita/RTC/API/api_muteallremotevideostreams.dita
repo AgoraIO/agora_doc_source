@@ -1,54 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_muteallremotevideostreams">
-    <title><ph keyref="muteAllRemoteVideoStreams" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Stops or resumes subscribing to the video streams of all remote users.</ph></shortdesc>
+    <title><ph keyref="muteAllRemoteVideoStreams"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Stops or resumes subscribing to the video streams of
+            all remote users.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="muteAllRemoteVideoStreams" />
+                <indexterm keyref="muteAllRemoteVideoStreams"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int muteAllRemoteVideoStreams(boolean muted);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)muteAllRemoteVideoStreams:(BOOL)mute;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int muteAllRemoteVideoStreams(bool mute) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">muteAllRemoteVideoStreams(mute: boolean): number</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public abstract int MuteAllRemoteVideoStreams(bool mute);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; muteAllRemoteVideoStreams(bool muted);</codeblock> </p>
+                <codeblock props="android" outputclass="language-java">public abstract int muteAllRemoteVideoStreams(boolean muted);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)muteAllRemoteVideoStreams:(BOOL)mute;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int muteAllRemoteVideoStreams(bool mute) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">muteAllRemoteVideoStreams(mute: boolean): number</codeblock>
+                <codeblock props="cs" outputclass="language-csharp">public abstract int MuteAllRemoteVideoStreams(bool mute);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; muteAllRemoteVideoStreams(bool muted);</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p id="desc">As of v3.3.0, after successfully calling this method, the local user stops or resumes subscribing to the video streams of all remote users, including all subsequent users.</p>
+            <p id="desc">As of v3.3.0, after successfully calling this method, the local user stops
+                or resumes subscribing to the video streams of all remote users, including all
+                subsequent users.</p>
             <note type="attention" id="note">
-            <ul>
-            <li>Call this method after joining a channel.</li>
-            <li props="rtc">See recommended settings in <xref keyref="guide-set-subscribing-state">Set the Subscribing State</xref>.</li>
-            </ul> </note> </section>
+                <ul>
+                    <li>Call this method after joining a channel.</li>
+                    <li props="rtc">See recommended settings in <xref
+                            keyref="guide-set-subscribing-state">Set the Subscribing
+                        State</xref>.</li>
+                </ul>
+            </note>
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry>
-                <pt props="android flutter">muted</pt>
-                <pt props="ios mac cpp cs">mute</pt>
-                <pd>
-                    <p>Whether to stop subscribing to the video streams of all remote users.
-                    
-                    <ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Stop subscribing to the video streams of all remote users.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: (Default) Subscribe to the audio streams of all remote users by default.</li>
-                    </ul> </p>
-                </pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt props="android flutter">muted</pt>
+                    <pt props="ios mac cpp cs">mute</pt>
+                    <pd>
+                        <p>Whether to stop subscribing to the video streams of all remote users. <ul>
+                                <li><codeph><ph keyref="true"/></codeph>: Stop subscribing to the
+                                    video streams of all remote users.</li>
+                                <li><codeph><ph keyref="false"/></codeph>: (Default) Subscribe to
+                                    the audio streams of all remote users by default.</li>
+                            </ul>
+                        </p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values" props="native electron cs">
             <title>Returns</title>
             <ul>
-            <li>0: Success.</li>
-            <li> &lt; 0: Failure.</li>
-            </ul> </section>
+                <li>0: Success.</li>
+                <li> &lt; 0: Failure.</li>
+            </ul>
+        </section>
     </refbody>
 </reference>

@@ -6,56 +6,57 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="cs" outputclass="language-csharp">public virtual void OnUserJoined(RtcConnection connection, uint remoteUid, int elapsed) {}</codeblock></p>
+                <codeblock props="cs" outputclass="language-csharp">public virtual void OnUserJoined(RtcConnection connection, uint remoteUid, int elapsed) {}</codeblock></p>
             <p outputclass="codeblock" props="rtc">
-            <codeblock props="cs" outputclass="language-csharp">public virtual void OnUserJoined(uint uid, int elapsed)</codeblock> </p>
+                <codeblock props="cs" outputclass="language-csharp">public virtual void OnUserJoined(uint uid, int elapsed)</codeblock>
+            </p>
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public void onUserJoined(int uid, int elapsed) {}</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+                <codeblock props="android" outputclass="language-java">public void onUserJoined(int uid, int elapsed) {}</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
     didJoinedOfUid:(NSUInteger)uid elapsed:(NSInteger)elapsed;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onUserJoined(uid_t uid, int elapsed) {
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onUserJoined(uid_t uid, int elapsed) {
     (void)uid;
     (void)elapsed;
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.USER_JOINED, cb: (uid: number, elapsed: number) =&gt; void): this;</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">UidWithElapsedCallback? userJoined;</codeblock> </p>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.USER_JOINED, cb: (uid: number, elapsed: number) =&gt; void): this;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">UidWithElapsedCallback? userJoined;</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
             <ul id="detailed_desc_scene">
-            <li>通信场景下，该回调提示有远端用户加入了频道。如果加入之前，已经有其他用户在频道中了，新加入的用户也会收到这些已有用户加入频道的回调。</li>
-            <li>直播场景下，该回调提示有主播加入了频道。如果加入之前，已经有主播在频道中了，新加入的用户也会收到已有主播加入频道的回调。Agora 建议连麦主播不超过 17 人。</li>
+                <li>通信场景下，该回调提示有远端用户加入了频道。如果加入之前，已经有其他用户在频道中了，新加入的用户也会收到这些已有用户加入频道的回调。</li>
+                <li>直播场景下，该回调提示有主播加入了频道。如果加入之前，已经有主播在频道中了，新加入的用户也会收到已有主播加入频道的回调。Agora 建议连麦主播不超过 17
+                    人。</li>
             </ul>
-            <p>该回调在如下情况下会被触发：
-            
-            
-            <ul>
-            <li>远端用户/主播调用 <apiname keyref="joinChannel2"/> 方法加入频道。</li>
-            <li>远端用户加入频道后将用户角色改变为主播。</li>
-            <li>远端用户/主播网络中断后重新加入频道。</li>
-            </ul></p>
+            <p>该回调在如下情况下会被触发： <ul>
+                    <li>远端用户/主播调用 <apiname keyref="joinChannel2"/> 方法加入频道。</li>
+                    <li>远端用户加入频道后将用户角色改变为主播。</li>
+                    <li>远端用户/主播网络中断后重新加入频道。</li>
+                </ul></p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry props="rtc-ng">
-                <pt props="cs">connection</pt>
-                <pd props="cs">Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
-            </plentry>
-            <plentry id="uid">
-                <pt props="native electron flutter">uid</pt>
-                <pt props="cs"><ph props="rtc">uid</ph><ph props="rtc-ng">remoteUid</ph></pt>
-                <pd>新加入频道的远端用户/主播 ID。</pd>
-            </plentry>
-            <plentry>
-                <pt>elapsed</pt>
-                <pd>从本地用户调用 <apiname keyref="joinChannel2"/> 到该回调触发的延迟（毫秒)。</pd>
-            </plentry>
-            </parml> </section>
+                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry props="rtc-ng">
+                    <pt props="cs">connection</pt>
+                    <pd props="cs">Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry id="uid">
+                    <pt props="native electron flutter">uid</pt>
+                    <pt props="cs"><ph props="rtc">uid</ph><ph props="rtc-ng">remoteUid</ph></pt>
+                    <pd>新加入频道的远端用户/主播 ID。</pd>
+                </plentry>
+                <plentry>
+                    <pt>elapsed</pt>
+                    <pd>从本地用户调用 <apiname keyref="joinChannel2"/> 到该回调触发的延迟（毫秒)。</pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

@@ -13,18 +13,17 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="unity" outputclass="language-csharp"/>public virtual bool OnFrame(VideoFrame audioFrame, VideoFrameBufferConfig config)
-        {
-            return true;
-        }</p>
+                <codeblock props="unity" outputclass="language-csharp"/>public virtual bool
+                OnFrame(VideoFrame audioFrame, VideoFrameBufferConfig config) { return true; }</p>
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">void onFrame(VideoFrame frame);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol> _Nonnull)playerKit
+                <codeblock props="android" outputclass="language-java">void onFrame(VideoFrame frame);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol> _Nonnull)playerKit
     didReceiveVideoFrame:(CVPixelBufferRef _Nonnull)pixelBuffer;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onFrame(const VideoFrame* frame) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onFrame(const VideoFrame* frame) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
             <p>注册视频数据观测器后，每次接收到一帧视频帧时，都会触发该回调，报告视频帧信息。</p>
@@ -33,29 +32,33 @@
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
-            <plentry props="android cpp">
-                <pt props="android cpp">frame</pt>
-                <pd>
-                    <p>视频帧信息。
-               <ph props="android">详见 <xref href="https://developer.mozilla.org/en-US/docs/Web/API/VideoFrame" scope="external" format="html">WebRTC VideoFrame</xref>。</ph> <ph props="cpp">详见 <ph keyref="VideoFrame"/>。</ph> </p>
-                </pd>
-            </plentry>
-            <plentry props="unity">
-                <pt props="rtc-ng">audioFrame</pt>
-                <pd props="rtc-ng">视频帧的属性设置。详见 <xref keyref="VideoFrame"/>。</pd>
-            </plentry>
-            <plentry props="unity">
-                <pt props="rtc-ng">config</pt>
-                <pd props="rtc-ng">视频帧的类型及来源。详见 <xref keyref="VideoFrameBufferConfig"/>。</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>playerKit</pt>
-                <pd>详见 <xref keyref="IMediaPlayer"/>。</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>pixelBuffer</pt>
-                <pd>纹理的 Buffer（CVPixelBufferRef）。</pd>
-            </plentry>
-            </parml> </section>
+                <plentry props="android cpp">
+                    <pt props="android cpp">frame</pt>
+                    <pd>
+                        <p>视频帧信息。 <ph props="android">详见 <xref
+                                    href="https://developer.mozilla.org/en-US/docs/Web/API/VideoFrame"
+                                    scope="external" format="html">WebRTC VideoFrame</xref>。</ph>
+                            <ph props="cpp">详见 <ph keyref="VideoFrame"/>。</ph>
+                        </p>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt props="rtc-ng">audioFrame</pt>
+                    <pd props="rtc-ng">视频帧的属性设置。详见 <xref keyref="VideoFrame"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt props="rtc-ng">config</pt>
+                    <pd props="rtc-ng">视频帧的类型及来源。详见 <xref keyref="VideoFrameBufferConfig"/>。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>playerKit</pt>
+                    <pd>详见 <xref keyref="IMediaPlayer"/>。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>pixelBuffer</pt>
+                    <pd>纹理的 Buffer（CVPixelBufferRef）。</pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

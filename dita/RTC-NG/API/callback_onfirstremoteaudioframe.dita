@@ -5,13 +5,14 @@
     <shortdesc id="short"><ph id="shortdesc">已接收远端音频首帧回调。</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="onFirstRemoteAudioFrame"/>
-   </keywords>
+            <keywords>
+                <indexterm keyref="onFirstRemoteAudioFrame"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public void onFirstRemoteAudioFrame(int uid, int elapsed) {
     }
 </codeblock>
@@ -29,32 +30,32 @@
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstRemoteAudioFrame(uint uid, int elapsed)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart">UidWithElapsedCallback? firstRemoteAudioFrame;</codeblock>
-        </p>
+            </p>
         </section>
         <section id="detailed_desc">
-
-   <dl outputclass="deprecated">
-       <dlentry>
-  <dt>弃用：</dt>
-           <dd>请改用 <xref keyref="onRemoteAudioStateChanged"/> 。</dd>
-       </dlentry>
-   </dl>
+            <dl outputclass="deprecated">
+                <dlentry>
+                    <dt>弃用：</dt>
+                    <dd>请改用 <xref keyref="onRemoteAudioStateChanged"/> 。</dd>
+                </dlentry>
+            </dl>
         </section>
-        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-   <parml>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <parml>
                 <plentry props="ios mac">
                     <pt>engine</pt>
                     <pd><xref keyref="IRtcEngine"/> 对象。</pd>
                 </plentry>
-       <plentry>
-  <pt>uid</pt>
-  <pd>发送音频帧的远端用户的用户 ID。</pd>
-       </plentry>
-       <plentry>
-  <pt>elapsed</pt>
-  <pd conkeyref="onFirstRemoteAudioDecoded/elapsed"/>
-       </plentry>
-   </parml>
+                <plentry>
+                    <pt>uid</pt>
+                    <pd>发送音频帧的远端用户的用户 ID。</pd>
+                </plentry>
+                <plentry>
+                    <pt>elapsed</pt>
+                    <pd conkeyref="onFirstRemoteAudioDecoded/elapsed"/>
+                </plentry>
+            </parml>
         </section>
     </refbody>
 </reference>

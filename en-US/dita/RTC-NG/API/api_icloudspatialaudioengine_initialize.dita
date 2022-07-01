@@ -1,57 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_icloudspatialaudioengine_initialize">
-    <title><ph keyref="initialize_ICloudSpatialAudioEngine" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Initializes <xref keyref="ICloudSpatialAudioEngine" />.</ph></shortdesc>
+    <title><ph keyref="initialize_ICloudSpatialAudioEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Initializes <xref keyref="ICloudSpatialAudioEngine"
+            />.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="initialize_ICloudSpatialAudioEngine" />
+                <indexterm keyref="initialize_ICloudSpatialAudioEngine"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int initialize(CloudSpatialAudioConfig config);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">+ (instancetype _Nonnull)sharedCloudSpatialAudioWithConfig:(AgoraCloudSpatialAudioConfig* _Nonnull)config delegate:(id&lt;AgoraCloudSpatialAudioDelegate&gt; _Nullable)delegate;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int initialize(const CloudSpatialAudioConfig&amp; config) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp">public abstract int Initialize(CloudSpatialAudioConfig config);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+                <codeblock props="android" outputclass="language-java">public abstract int initialize(CloudSpatialAudioConfig config);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">+ (instancetype _Nonnull)sharedCloudSpatialAudioWithConfig:(AgoraCloudSpatialAudioConfig* _Nonnull)config delegate:(id&lt;AgoraCloudSpatialAudioDelegate&gt; _Nullable)delegate;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int initialize(const CloudSpatialAudioConfig&amp; config) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int Initialize(CloudSpatialAudioConfig config);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
             <note type="note">
-            <ul>
-            <li props="cpp">Call this method after calling <codeph><xref keyref="queryInterface" />(<ph keyref="AGORA_IID_CLOUD_SPATIAL_AUDIO" />)</codeph>. </li>
-            <li props="android">Call this method after calling <xref keyref="create_ICloudSpatialAudioEngine" />.</li>
-            <li>Before calling other methods of the <apiname keyref="ICloudSpatialAudioEngine" /> class, you need to call this method to initialize <apiname keyref="ICloudSpatialAudioEngine" />.</li>
-            <li>The SDK supports creating only one <apiname keyref="ICloudSpatialAudioEngine" /> instance for an app.</li>
-            </ul> </note> </section>
+                <ul>
+                    <li props="cpp">Call this method after calling <codeph><xref
+                                keyref="queryInterface"/>(<ph keyref="AGORA_IID_CLOUD_SPATIAL_AUDIO"
+                            />)</codeph>. </li>
+                    <li props="android">Call this method after calling <xref
+                            keyref="create_ICloudSpatialAudioEngine"/>.</li>
+                    <li>Before calling other methods of the <apiname
+                            keyref="ICloudSpatialAudioEngine"/> class, you need to call this method
+                        to initialize <apiname keyref="ICloudSpatialAudioEngine"/>.</li>
+                    <li>The SDK supports creating only one <apiname
+                            keyref="ICloudSpatialAudioEngine"/> instance for an app.</li>
+                </ul>
+            </note>
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry>
-                <pt>config</pt>
-                <pd>The configuration of <apiname keyref="ICloudSpatialAudioEngine" />. See <xref keyref="CloudSpatialAudioConfig" /> for details.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>delegate</pt>
-                <pd conkeyref="create1/handler" />
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>config</pt>
+                    <pd>The configuration of <apiname keyref="ICloudSpatialAudioEngine"/>. See <xref
+                            keyref="CloudSpatialAudioConfig"/> for details.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>delegate</pt>
+                    <pd conkeyref="create1/handler"/>
+                </plentry>
+            </parml>
+        </section>
         <section props="native electron unity" id="return_values">
             <title>Returns</title>
             <ul>
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure.<ul>
-                <li>-1: A general error occurs (no specified reason).</li>
-                <li>-2: The parameter is invalid.</li>
-                <li>-7: The SDK is not initialized.</li>
-                <li>-22: The resource request failed. The app uses too many system resources and fails to allocate any resources.</li>
-                <li>-101: The App ID is invalid.</li>
-                </ul></li>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.<ul>
+                        <li>-1: A general error occurs (no specified reason).</li>
+                        <li>-2: The parameter is invalid.</li>
+                        <li>-7: The SDK is not initialized.</li>
+                        <li>-22: The resource request failed. The app uses too many system resources
+                            and fails to allocate any resources.</li>
+                        <li>-101: The App ID is invalid.</li>
+                    </ul></li>
             </ul></section>
     </refbody>
 </reference>

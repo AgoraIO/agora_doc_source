@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_cameracapturerconfiguration">
-    <title><ph keyref="CameraCapturerConfiguration" /></title>
+    <title><ph keyref="CameraCapturerConfiguration"/></title>
     <shortdesc id="short"><ph id="shortdesc">The camera capturer preference.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
-            <codeblock props="ios mac" outputclass="language-objectivec" />
-            <codeblock props="cpp" outputclass="language-cpp">struct CameraCapturerConfiguration {
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">struct CameraCapturerConfiguration {
      CAPTURER_OUTPUT_PREFERENCE preference;
      int captureWidth;
      int captureHeight;
@@ -28,7 +28,7 @@
         ,captureHeight(height)
         {}
     };</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public class CameraCapturerConfiguration
+                <codeblock props="cs" outputclass="language-csharp">public class CameraCapturerConfiguration
     {
         public CameraCapturerConfiguration()
         {
@@ -61,13 +61,13 @@
         public int captureHeight { set; get; }
         public CAMERA_DIRECTION? cameraDirection { set; get; }
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">export interface CameraCapturerConfiguration {
+                <codeblock props="electron" outputclass="language-typescript">export interface CameraCapturerConfiguration {
   preference?: CAPTURER_OUTPUT_PREFERENCE;
   captureWidth?: number;
   captureHeight?: number;
 }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">class CameraCapturerConfiguration {
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">class CameraCapturerConfiguration {
 
   @JsonKey(includeIfNull: false)
   CameraCaptureOutputPreference? preference;
@@ -92,62 +92,74 @@
       _$CameraCapturerConfigurationFromJson(json);
 
   Map&lt;String, dynamic&gt; toJson() =&gt; _$CameraCapturerConfigurationToJson(this);
-}</codeblock> </p>
+}</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+                /></title>
             <parml>
-            <plentry props="cpp cs flutter">
-                <pt>preference</pt>
-                <pd>The camera capture preference. For details, see <xref keyref="CAPTURER_OUTPUT_PREFERENCE" />.</pd>
-            </plentry>
-            <plentry props="cpp cs flutter">
-                <pt>captureWidth</pt>
-                <pd>
-                    <dl outputclass="since" props="rtc">
-                    <dlentry props="native">
-                        <dt>Since</dt>
-                        <dd><ph keyref="since-cameraconfig" /></dd>
-                    </dlentry>
-                    </dl>
-                    <p>The width (px) of the video image captured by the local camera. To customize the width of the video image, set <parmname>preference</parmname> as <ph keyref="CAPTURER_OUTPUT_PREFERENCE_MANUAL" />(3) first, and then use <parmname>captureWidth</parmname> to set the video width.</p>
-                </pd>
-            </plentry>
-            <plentry props="cpp cs flutter">
-                <pt>captureHeight</pt>
-                <pd>
-                    <dl outputclass="since" props="rtc">
-                    <dlentry props="native">
-                        <dt>Since</dt>
-                        <dd><ph keyref="since-cameraconfig" /></dd>
-                    </dlentry>
-                    </dl>
-                    <p>The height (px) of the video image captured by the local camera. To customize the height of the video image, set <parmname>preference</parmname> as <ph keyref="CAPTURER_OUTPUT_PREFERENCE_MANUAL" />(3) first, and then use <parmname>captureHeight</parmname>.</p>
-                </pd>
-            </plentry>
-            <plentry props="android">
-                <pt>captureFormat</pt>
-                <pd>The format of the locally captured video.
-                    
-                    <ul id="ul_pjv_5jg_sqb">
-                    <li><codeph>width</codeph>: The width (px) of the locally captured video.</li>
-                    <li><codeph>height</codeph>: The height (px) of the locally captured video.</li>
-                    <li><codeph>fps</codeph>: The frame rate (fps) of the locally captured video.</li>
-                    </ul></pd>
-            </plentry>
-            <plentry props="android ios cpp cs flutter">
-                <pt>cameraDirection</pt>
-                <pd>
-                    <p props="cpp cs">This parameter applies to Android and iOS only.</p>
-                    <p props="ios cpp cs flutter">The camera direction. For details, see <xref keyref="CAMERA_DIRECTION" />.</p>
-                    <p props="android">The camera direction.
-                    
-                    <ul>
-                    <li><ph keyref="CAMERA_REAR" /> (0): Use the rear camera.</li>
-                    <li><ph keyref="CAMERA_FRONT" /> (1): Use the front camera.</li>
-                    </ul></p>
-                </pd>
-            </plentry>
-            </parml> </section>
+                <plentry props="cpp cs flutter">
+                    <pt>preference</pt>
+                    <pd>The camera capture preference. For details, see <xref
+                            keyref="CAPTURER_OUTPUT_PREFERENCE"/>.</pd>
+                </plentry>
+                <plentry props="cpp cs flutter">
+                    <pt>captureWidth</pt>
+                    <pd>
+                        <dl outputclass="since" props="rtc">
+                            <dlentry props="native">
+                                <dt>Since</dt>
+                                <dd><ph keyref="since-cameraconfig"/></dd>
+                            </dlentry>
+                        </dl>
+                        <p>The width (px) of the video image captured by the local camera. To
+                            customize the width of the video image, set
+                                <parmname>preference</parmname> as <ph
+                                keyref="CAPTURER_OUTPUT_PREFERENCE_MANUAL"/>(3) first, and then use
+                                <parmname>captureWidth</parmname> to set the video width.</p>
+                    </pd>
+                </plentry>
+                <plentry props="cpp cs flutter">
+                    <pt>captureHeight</pt>
+                    <pd>
+                        <dl outputclass="since" props="rtc">
+                            <dlentry props="native">
+                                <dt>Since</dt>
+                                <dd><ph keyref="since-cameraconfig"/></dd>
+                            </dlentry>
+                        </dl>
+                        <p>The height (px) of the video image captured by the local camera. To
+                            customize the height of the video image, set
+                                <parmname>preference</parmname> as <ph
+                                keyref="CAPTURER_OUTPUT_PREFERENCE_MANUAL"/>(3) first, and then use
+                                <parmname>captureHeight</parmname>.</p>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>captureFormat</pt>
+                    <pd>The format of the locally captured video. <ul id="ul_pjv_5jg_sqb">
+                            <li><codeph>width</codeph>: The width (px) of the locally captured
+                                video.</li>
+                            <li><codeph>height</codeph>: The height (px) of the locally captured
+                                video.</li>
+                            <li><codeph>fps</codeph>: The frame rate (fps) of the locally captured
+                                video.</li>
+                        </ul></pd>
+                </plentry>
+                <plentry props="android ios cpp cs flutter">
+                    <pt>cameraDirection</pt>
+                    <pd>
+                        <p props="cpp cs">This parameter applies to Android and iOS only.</p>
+                        <p props="ios cpp cs flutter">The camera direction. For details, see <xref
+                                keyref="CAMERA_DIRECTION"/>.</p>
+                        <p props="android">The camera direction. <ul>
+                                <li><ph keyref="CAMERA_REAR"/> (0): Use the rear camera.</li>
+                                <li><ph keyref="CAMERA_FRONT"/> (1): Use the front camera.</li>
+                            </ul></p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

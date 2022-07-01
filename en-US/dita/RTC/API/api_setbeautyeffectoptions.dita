@@ -1,76 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setbeautyeffectoptions">
-    <title><ph keyref="setBeautyEffectOptions" /></title>
+    <title><ph keyref="setBeautyEffectOptions"/></title>
     <shortdesc id="short"><ph id="shortdesc">Sets the image enhancement options.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setBeautyEffectOptions" />
+                <indexterm keyref="setBeautyEffectOptions"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int setBeautyEffectOptions(boolean enabled, BeautyOptions options);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setBeautyEffectOptions:(BOOL)enable options:(AgoraBeautyOptions* _Nullable)options;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int setBeautyEffectOptions(bool enabled, BeautyOptions options) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">setBeautyEffectOptions(enabled: boolean, options: BeautyOptions): number</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public abstract int SetBeautyEffectOptions(bool enabled, BeautyOptions options);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setBeautyEffectOptions(bool enabled, BeautyOptions options);</codeblock> </p>
+                <codeblock props="android" outputclass="language-java">public abstract int setBeautyEffectOptions(boolean enabled, BeautyOptions options);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)setBeautyEffectOptions:(BOOL)enable options:(AgoraBeautyOptions* _Nullable)options;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setBeautyEffectOptions(bool enabled, BeautyOptions options) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">setBeautyEffectOptions(enabled: boolean, options: BeautyOptions): number</codeblock>
+                <codeblock props="cs" outputclass="language-csharp">public abstract int SetBeautyEffectOptions(bool enabled, BeautyOptions options);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setBeautyEffectOptions(bool enabled, BeautyOptions options);</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
             <p>Enables or disables image enhancement, and sets the options.</p>
-            <p props="rtc-ng">Enabling the image enhancement function involves a series of method calls. The calling sequence is as follows:
-            
-            <ol>
-            <li props="android">Call <codeph><xref keyref="addExtension" />(<q>agora_video_process</q>)</codeph> during <xref keyref="IRtcEngine" /> initialization to integrate the video enhancement dynamic library in the project.</li>
-            <li props="ios">Link the extension library in the project file: <codeph>AgoraVideoProcessExtension.xcframework</codeph></li>
-            <li props="mac">Link the extension library in the project file: <codeph>AgoraVideoProcessExtension.framework</codeph></li>
-            <li props="cpp">Call <codeph><xref keyref="loadExtensionProvider" />(<q>libagora_video_process_extension.dll</q>)</codeph> during <xref keyref="IRtcEngine" /> initialization to specify the extension's library path.</li>
-            <li>Call <codeph><xref keyref="enableExtension" />(<q>agora</q>, <q>beauty</q>, <q><ph keyref="true" /></q>)</codeph> to enable the extension.</li>
-            <li>Call <xref keyref="enableVideo" /> to enable the video module.</li>
-            <li>Call this method to enable the image enhancement function.</li>
-            </ol></p>
+            <p props="rtc-ng">Enabling the image enhancement function involves a series of method
+                calls. The calling sequence is as follows: <ol>
+                    <li props="android">Call <codeph><xref keyref="addExtension"
+                                />(<q>agora_video_process</q>)</codeph> during <xref
+                            keyref="IRtcEngine"/> initialization to integrate the video enhancement
+                        dynamic library in the project.</li>
+                    <li props="ios">Link the extension library in the project file:
+                            <codeph>AgoraVideoProcessExtension.xcframework</codeph></li>
+                    <li props="mac">Link the extension library in the project file:
+                            <codeph>AgoraVideoProcessExtension.framework</codeph></li>
+                    <li props="cpp">Call <codeph><xref keyref="loadExtensionProvider"
+                                />(<q>libagora_video_process_extension.dll</q>)</codeph> during
+                            <xref keyref="IRtcEngine"/> initialization to specify the extension's
+                        library path.</li>
+                    <li>Call <codeph><xref keyref="enableExtension"/>(<q>agora</q>, <q>beauty</q>,
+                                    <q><ph keyref="true"/></q>)</codeph> to enable the
+                        extension.</li>
+                    <li>Call <xref keyref="enableVideo"/> to enable the video module.</li>
+                    <li>Call this method to enable the image enhancement function.</li>
+                </ol></p>
             <note type="attention" props="rtc">
-            <ul>
-            <li>Call this method after <xref keyref="enableVideo" />.</li>
-            <li props="android">Agora has updated the Agora image enhancement algorithm from v3.6.0 to enhance image enhancement effects and support sharpness adjustment. If you want to experience optimized image enhancement effects or set the sharpness, integrate the <codeph>libagora_video_process_extension.so</codeph> dynamic library into the project before calling this method.</li>
-            <li props="ios mac">Agora has updated the Agora image enhancement algorithm from v3.6.0 to enhance image enhancement effects and support sharpness adjustment. If you want to experience optimized image enhancement effects or set the sharpness, integrate the <codeph>AgoraVideoProcessExtension.xcframework</codeph> dynamic library into the project before calling this method.</li>
-            <li props="cpp">Agora has updated the Agora image enhancement algorithm from v3.6.0 to enhance image enhancement effects and support sharpness adjustment. If you want to experience optimized image enhancement effects or set the sharpness, integrate the <codeph>libagora_video_process_extension.dll</codeph> dynamic library into the project before calling this method.</li>
-            </ul> </note>
-            <note type="note" props="android">This method only applies to Android 5.0 or later.</note> </section>
+                <ul>
+                    <li>Call this method after <xref keyref="enableVideo"/>.</li>
+                    <li props="android">Agora has updated the Agora image enhancement algorithm from
+                        v3.6.0 to enhance image enhancement effects and support sharpness
+                        adjustment. If you want to experience optimized image enhancement effects or
+                        set the sharpness, integrate the
+                            <codeph>libagora_video_process_extension.so</codeph> dynamic library
+                        into the project before calling this method.</li>
+                    <li props="ios mac">Agora has updated the Agora image enhancement algorithm from
+                        v3.6.0 to enhance image enhancement effects and support sharpness
+                        adjustment. If you want to experience optimized image enhancement effects or
+                        set the sharpness, integrate the
+                            <codeph>AgoraVideoProcessExtension.xcframework</codeph> dynamic library
+                        into the project before calling this method.</li>
+                    <li props="cpp">Agora has updated the Agora image enhancement algorithm from
+                        v3.6.0 to enhance image enhancement effects and support sharpness
+                        adjustment. If you want to experience optimized image enhancement effects or
+                        set the sharpness, integrate the
+                            <codeph>libagora_video_process_extension.dll</codeph> dynamic library
+                        into the project before calling this method.</li>
+                </ul>
+            </note>
+            <note type="note" props="android">This method only applies to Android 5.0 or
+                later.</note>
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry>
-                <pt props="android cpp cs flutter">enabled</pt>
-                <pt props="ios mac">enable</pt>
-                <pd>Whether to enable the image enhancement function:
-                    
-                    <ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Enable the image enhancement function.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: (Default) Disable the image enhancement function.</li>
-                    </ul></pd>
-            </plentry>
-            <plentry>
-                <pt>options</pt>
-                <pd>
-                    <p>The image enhancement options. See <xref keyref="BeautyOptions" />.</p>
-                </pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt props="android cpp cs flutter">enabled</pt>
+                    <pt props="ios mac">enable</pt>
+                    <pd>Whether to enable the image enhancement function: <ul>
+                            <li><codeph><ph keyref="true"/></codeph>: Enable the image enhancement
+                                function.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: (Default) Disable the image
+                                enhancement function.</li>
+                        </ul></pd>
+                </plentry>
+                <plentry>
+                    <pt>options</pt>
+                    <pd>
+                        <p>The image enhancement options. See <xref keyref="BeautyOptions"/>.</p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values" props="native electron cs">
             <title>Returns</title>
             <ul>
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure.
-                
-                <ul props="android">
-                <li>ERR_NOT_SUPPORTED(4): The system version is earlier than Android 5.0, which does not support this function.</li>
-                </ul></li>
-            </ul> </section>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure. <ul props="android">
+                        <li>ERR_NOT_SUPPORTED(4): The system version is earlier than Android 5.0,
+                            which does not support this function.</li>
+                    </ul></li>
+            </ul>
+        </section>
     </refbody>
 </reference>

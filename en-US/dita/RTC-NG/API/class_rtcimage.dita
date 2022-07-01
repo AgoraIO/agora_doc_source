@@ -35,13 +35,13 @@
     this.alpha = 1.0;
   }
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraImage : NSObject
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraImage : NSObject
             @property(strong, nonatomic) NSURL *_Nonnull url;
             @property(assign, nonatomic) CGRect rect;
             @property (assign, nonatomic) NSInteger zOrder;
             @property(assign, nonatomic) double alpha;
             @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">typedef struct RtcImage {
+                <codeblock props="cpp" outputclass="language-cpp">typedef struct RtcImage {
             const char* url;
             int x;
             int y;
@@ -51,52 +51,66 @@
             double alpha;
 
             RtcImage() : url(NULL), x(0), y(0), width(0), height(0), zOrder(0), alpha(1.0) {}</codeblock>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p>This class sets the properties of the watermark and background images in the live video.</p>
+            <p>This class sets the properties of the watermark and background images in the live
+                video.</p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+                /></title>
             <parml>
-            <plentry>
-                <pt>url</pt>
-                <pd>The HTTP/HTTPS URL address of the image in the live video. The maximum length of this parameter is 1024 bytes.</pd>
-            </plentry>
-            <plentry props="android cpp unity electron flutter">
-                <pt>x</pt>
-                <pd>The x coordinate (pixel) of the image on the video frame (taking the upper left corner of the video frame as the origin).</pd>
-            </plentry>
-            <plentry props="android cpp unity electron flutter">
-                <pt>y</pt>
-                <pd>The y coordinate (pixel) of the image on the video frame (taking the upper left corner of the video frame as the origin).</pd>
-            </plentry>
-            <plentry props="android cpp unity electron flutter">
-                <pt>width</pt>
-                <pd>The width (pixel) of the image on the video frame.</pd>
-            </plentry>
-            <plentry props="android cpp unity electron flutter">
-                <pt>height</pt>
-                <pd>The height (pixel) of the image on the video frame.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>rect</pt>
-                <pd>The position and size of the image on the video frame. The data type is CGRect.</pd>
-            </plentry>
-            <plentry>
-                <pt>zOrder</pt>
-                <pd>The layer index of the watermark or background image. When you use the watermark array to add a watermark or multiple watermarks, you must pass a value to <parmname>zOrder</parmname> in the range [1,255]; otherwise, the SDK reports an error. In other cases, <parmname>zOrder</parmname> can optionally be passed in the range [0,255], with 0 being the default value. 0 means the bottom layer and 255 means the top layer.</pd>
-            </plentry>
-            <plentry>
-                <pt>alpha</pt>
-                <pd>The transparency of the watermark or background image. The value ranges between 0.0 and 1.0:<ul>
-                    <li>0.0: Completely transparent.</li>
-                    <li>1.0: (Default) Opaque.</li>
-                    </ul></pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>url</pt>
+                    <pd>The HTTP/HTTPS URL address of the image in the live video. The maximum
+                        length of this parameter is 1024 bytes.</pd>
+                </plentry>
+                <plentry props="android cpp unity electron flutter">
+                    <pt>x</pt>
+                    <pd>The x coordinate (pixel) of the image on the video frame (taking the upper
+                        left corner of the video frame as the origin).</pd>
+                </plentry>
+                <plentry props="android cpp unity electron flutter">
+                    <pt>y</pt>
+                    <pd>The y coordinate (pixel) of the image on the video frame (taking the upper
+                        left corner of the video frame as the origin).</pd>
+                </plentry>
+                <plentry props="android cpp unity electron flutter">
+                    <pt>width</pt>
+                    <pd>The width (pixel) of the image on the video frame.</pd>
+                </plentry>
+                <plentry props="android cpp unity electron flutter">
+                    <pt>height</pt>
+                    <pd>The height (pixel) of the image on the video frame.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>rect</pt>
+                    <pd>The position and size of the image on the video frame. The data type is
+                        CGRect.</pd>
+                </plentry>
+                <plentry>
+                    <pt>zOrder</pt>
+                    <pd>The layer index of the watermark or background image. When you use the
+                        watermark array to add a watermark or multiple watermarks, you must pass a
+                        value to <parmname>zOrder</parmname> in the range [1,255]; otherwise, the
+                        SDK reports an error. In other cases, <parmname>zOrder</parmname> can
+                        optionally be passed in the range [0,255], with 0 being the default value. 0
+                        means the bottom layer and 255 means the top layer.</pd>
+                </plentry>
+                <plentry>
+                    <pt>alpha</pt>
+                    <pd>The transparency of the watermark or background image. The value ranges
+                        between 0.0 and 1.0:<ul>
+                            <li>0.0: Completely transparent.</li>
+                            <li>1.0: (Default) Opaque.</li>
+                        </ul></pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onaudiodevicestatechanged">
     <title>
-        <ph keyref="onAudioDeviceStateChanged" />
+        <ph keyref="onAudioDeviceStateChanged"/>
     </title>
     <shortdesc id="short">
         <ph id="shortdesc">音频设备变化回调。</ph>
@@ -10,15 +10,15 @@
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onAudioDeviceStateChanged" />
+                <indexterm keyref="onAudioDeviceStateChanged"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioDeviceStateChanged(const char* deviceId,
      int deviceType,
      int deviceState) {
@@ -26,13 +26,13 @@
      (void)deviceType;
      (void)deviceState;
      }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.AUDIO_DEVICE_STATE_CHANGED, cb: (
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.AUDIO_DEVICE_STATE_CHANGED, cb: (
      deviceId: string,
      deviceType: number,
      deviceState: MEDIA_DEVICE_STATE_TYPE) => void
      ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioDeviceStateChanged(string deviceId, int deviceType, int deviceState)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart">AudioDeviceStateChanged? audioDeviceStateChanged;</codeblock>
             </p>
         </section>
@@ -42,9 +42,9 @@
         </section>
         <section id="parameters">
             <title>
-                <ph keyref="callback-section-title" />
+                <ph keyref="callback-section-title"/>
             </title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn" />
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
                 <plentry>
                     <pt>deviceId</pt>
@@ -52,29 +52,17 @@
                 </plentry>
                 <plentry>
                     <pt>deviceType</pt>
-                    <pd>
-                        设备类型定义。详见
-                        <xref keyref="MEDIA_DEVICE_TYPE" />
-                        。
-                    </pd>
+                    <pd> 设备类型定义。详见 <xref keyref="MEDIA_DEVICE_TYPE"/> 。 </pd>
                 </plentry>
                 <plentry>
                     <pt>deviceState</pt>
-                    <pd>
-                        设备状态定义。
-                        <ul>
-                            <li>
-                                macOS 平台：
-                                <ul>
+                    <pd> 设备状态定义。 <ul>
+                            <li> macOS 平台： <ul>
                                     <li>0: 设备就绪。</li>
                                     <li>8: 设备被拔出。</li>
                                 </ul>
                             </li>
-                            <li>
-                                Windows 平台：详见
-                                <xref keyref="MEDIA_DEVICE_STATE_TYPE" />
-                                。
-                            </li>
+                            <li> Windows 平台：详见 <xref keyref="MEDIA_DEVICE_STATE_TYPE"/> 。 </li>
                         </ul>
                     </pd>
                 </plentry>

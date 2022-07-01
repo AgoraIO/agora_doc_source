@@ -13,22 +13,23 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onJoinChannelSuccess(IChannel *rtcChannel,
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onJoinChannelSuccess(IChannel *rtcChannel,
      uid_t uid,
      int elapsed) {
      (void)rtcChannel;
      (void)uid;
      (void)elapsed;
      }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(
+                <codeblock props="electron" outputclass="language-typescript">on(
   evt: ChannelEvents.JOIN_CHANNEL_SUCCESS,
   cb: (channelId: string, uid: number, elapsed: number) =&gt; void
 ): this;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public virtual void OnJoinChannelSuccess(string channelId, uint uid, int elapsed)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">UidWithElapsedAndChannelCallback? joinChannelSuccess;</codeblock> </p>
+                <codeblock props="cs" outputclass="language-csharp">public virtual void OnJoinChannelSuccess(string channelId, uint uid, int elapsed)</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">UidWithElapsedAndChannelCallback? joinChannelSuccess;</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
             <p conkeyref="onJoinChannelSuccess/desc"/>
@@ -37,20 +38,25 @@
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
-            <plentry id="rtcChannel" props="native electron cs">
-                <pt props="android ios mac cpp">rtcChannel</pt>
-                <pt props="electron cs">channelId</pt>
-                <pd props="android ios mac cpp"><xref keyref="IChannel"/>.</pd>
-                <pd props="electron cs">The channel ID.</pd>
-            </plentry>
-            <plentry>
-                <pt>uid</pt>
-                <pd>User ID. If you have specified a user ID in <xref keyref="IChannel_joinChannel"/>, the ID will be returned here; otherwise, the SDK returns an ID automatically assigned by the Agora server.</pd>
-            </plentry>
-            <plentry>
-                <pt>elapsed</pt>
-                <pd>The time elapsed (in milliseconds) from the local user calling <apiname keyref="IChannel_joinChannel"/> till this event.</pd>
-            </plentry>
-            </parml> </section>
+                <plentry id="rtcChannel" props="native electron cs">
+                    <pt props="android ios mac cpp">rtcChannel</pt>
+                    <pt props="electron cs">channelId</pt>
+                    <pd props="android ios mac cpp"><xref keyref="IChannel"/>.</pd>
+                    <pd props="electron cs">The channel ID.</pd>
+                </plentry>
+                <plentry>
+                    <pt>uid</pt>
+                    <pd>User ID. If you have specified a user ID in <xref
+                            keyref="IChannel_joinChannel"/>, the ID will be returned here;
+                        otherwise, the SDK returns an ID automatically assigned by the Agora
+                        server.</pd>
+                </plentry>
+                <plentry>
+                    <pt>elapsed</pt>
+                    <pd>The time elapsed (in milliseconds) from the local user calling <apiname
+                            keyref="IChannel_joinChannel"/> till this event.</pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

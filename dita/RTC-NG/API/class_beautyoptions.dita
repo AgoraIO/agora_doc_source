@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_beautyoptions">
-    <title> <ph keyref="BeautyOptions"/> </title>
-    <shortdesc id="short"> <ph id="shortdesc">美颜选项。</ph> </shortdesc>
+    <title>
+        <ph keyref="BeautyOptions"/>
+    </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">美颜选项。</ph>
+    </shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public class BeautyOptions {
+                <codeblock props="android" outputclass="language-java">public class BeautyOptions {
   public static final int LIGHTENING_CONTRAST_LOW = 0;
   public static final int LIGHTENING_CONTRAST_NORMAL = 1;
   public static final int LIGHTENING_CONTRAST_HIGH = 2;
@@ -17,7 +21,7 @@
   public float rednessLevel;
   public float sharpnessLevel;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraBeautyOptions : NSObject
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraBeautyOptions : NSObject
 
 @property(nonatomic, assign) AgoraLighteningContrastLevel lighteningContrastLevel;
 @property(nonatomic, assign) float lighteningLevel;
@@ -25,7 +29,7 @@
 @property(nonatomic, assign) float rednessLevel;
 @property(nonatomic, assign) float sharpnessLevel;
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct BeautyOptions {
+                <codeblock props="cpp" outputclass="language-cpp">struct BeautyOptions {
     enum LIGHTENING_CONTRAST_LEVEL {
         LIGHTENING_CONTRAST_LOW = 0,
         LIGHTENING_CONTRAST_NORMAL,
@@ -40,7 +44,7 @@
     BeautyOptions() : lighteningContrastLevel(LIGHTENING_CONTRAST_NORMAL), lighteningLevel(0), smoothnessLevel(0), rednessLevel(0), sharpnessLevel(0) {}
 };
 </codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class BeautyOptions
+                <codeblock props="unity" outputclass="language-csharp">public class BeautyOptions
     {
         public BeautyOptions()
         {
@@ -68,38 +72,50 @@
         public float sharpnessLevel { set; get; }
     }
 
-    }</codeblock> </p>
+    }</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title> <text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /> </title>
+            <title>
+                <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/>
+            </title>
             <parml>
-            <plentry>
-                <pt>lighteningContrastLevel</pt>
-                <pd><p>对比度，常与 <codeph>lighteningLevel</codeph> 搭配使用。取值越大，明暗对比程度越大。<ph props="ios mac cpp unity">详见 <xref keyref="LIGHTENING_CONTRAST_LEVEL"/>。</ph>
-                <ul props="android">
-                    <li><ph keyref="LIGHTENING_CONTRAST_LOW"/> (0)：低对比度。</li>
-                    <li><ph keyref="LIGHTENING_CONTRAST_NORMAL"/> (1)：正常对比度。</li>
-                    <li><ph keyref="LIGHTENING_CONTRAST_HIGH"/> (2)：高对比度。</li>
-                </ul></p></pd>
-            </plentry>
-            <plentry>
-                <pt>lighteningLevel</pt>
-                <pd><p>美白程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始亮度，默认值为 <ph props="ios">0.7</ph><ph props="android">0.6</ph><ph props="cpp unity">0.0</ph>。取值越大，美白程度越大。</p></pd>
-            </plentry>
-            <plentry>
-                <pt>smoothnessLevel</pt>
-                <pd><p>磨皮程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始磨皮程度，默认值为 <ph props="ios">0.5</ph><ph props="android">0.5</ph><ph props="cpp unity">0.0</ph>。取值越大，磨皮程度越大。</p></pd>
-            </plentry>
-            <plentry>
-                <pt>rednessLevel</pt>
-                <pd><p>红润度，取值范围为 [0.0,1.0]，其中 0.0 表示原始红润度，默认值为 <ph props="ios">0.1</ph><ph props="android">0.1</ph><ph props="cpp unity">0.0</ph>。取值越大，红润程度越大。</p></pd>
-            </plentry>
-            <plentry props="native unity">
-                <pt>sharpnessLevel</pt>
-                <pd><p>锐化程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始锐度，默认值为 <ph props="ios">0.1</ph><ph props="android">0.3</ph><ph props="cpp unity">0.0</ph>。取值越大，锐化程度越大。</p></pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>lighteningContrastLevel</pt>
+                    <pd><p>对比度，常与 <codeph>lighteningLevel</codeph> 搭配使用。取值越大，明暗对比程度越大。<ph
+                                props="ios mac cpp unity">详见 <xref
+                                    keyref="LIGHTENING_CONTRAST_LEVEL"/>。</ph>
+                            <ul props="android">
+                                <li><ph keyref="LIGHTENING_CONTRAST_LOW"/> (0)：低对比度。</li>
+                                <li><ph keyref="LIGHTENING_CONTRAST_NORMAL"/> (1)：正常对比度。</li>
+                                <li><ph keyref="LIGHTENING_CONTRAST_HIGH"/> (2)：高对比度。</li>
+                            </ul></p></pd>
+                </plentry>
+                <plentry>
+                    <pt>lighteningLevel</pt>
+                    <pd><p>美白程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始亮度，默认值为 <ph props="ios">0.7</ph><ph
+                                props="android">0.6</ph><ph props="cpp unity"
+                            >0.0</ph>。取值越大，美白程度越大。</p></pd>
+                </plentry>
+                <plentry>
+                    <pt>smoothnessLevel</pt>
+                    <pd><p>磨皮程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始磨皮程度，默认值为 <ph props="ios">0.5</ph><ph
+                                props="android">0.5</ph><ph props="cpp unity"
+                            >0.0</ph>。取值越大，磨皮程度越大。</p></pd>
+                </plentry>
+                <plentry>
+                    <pt>rednessLevel</pt>
+                    <pd><p>红润度，取值范围为 [0.0,1.0]，其中 0.0 表示原始红润度，默认值为 <ph props="ios">0.1</ph><ph
+                                props="android">0.1</ph><ph props="cpp unity"
+                            >0.0</ph>。取值越大，红润程度越大。</p></pd>
+                </plentry>
+                <plentry props="native unity">
+                    <pt>sharpnessLevel</pt>
+                    <pd><p>锐化程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始锐度，默认值为 <ph props="ios">0.1</ph><ph
+                                props="android">0.3</ph><ph props="cpp unity"
+                            >0.0</ph>。取值越大，锐化程度越大。</p></pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

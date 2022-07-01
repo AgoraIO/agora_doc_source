@@ -2,7 +2,8 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onfirstremoteaudiodecoded">
     <title><ph keyref="onFirstRemoteAudioDecoded"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the SDK decodes the first remote audio frame for playback.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the SDK decodes the first remote audio
+            frame for playback.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -13,67 +14,75 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onFirstRemoteAudioDecoded(uid_t uid, int elapsed) {
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onFirstRemoteAudioDecoded(uid_t uid, int elapsed) {
                 (void)uid;
                 (void)elapsed;
                 }
-            </codeblock> </p>
+            </codeblock>
+            </p>
             <p outputclass="codeblock" props="rtc">
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onFirstRemoteAudioDecoded(uid_t uid, int elapsed) AGORA_DEPRECATED_ATTRIBUTE {
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onFirstRemoteAudioDecoded(uid_t uid, int elapsed) AGORA_DEPRECATED_ATTRIBUTE {
     (void)uid;
     (void)elapsed;
-  }</codeblock> </p>
+  }</codeblock>
+            </p>
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public void onFirstRemoteAudioDecoded(int uid, int elapsed) {
+                <codeblock props="android" outputclass="language-java">public void onFirstRemoteAudioDecoded(int uid, int elapsed) {
     }
 </codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine firstRemoteAudioFrameDecodedOfUid:(NSUInteger)uid elapsed:(NSInteger)elapsed;
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine firstRemoteAudioFrameDecodedOfUid:(NSUInteger)uid elapsed:(NSInteger)elapsed;
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.FIRST_REMOTE_AUDIO_DECODED, cb: (
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.FIRST_REMOTE_AUDIO_DECODED, cb: (
     uid: number,
     elapsed: number) => void
     ): this;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public virtual void OnFirstRemoteAudioDecoded(uint uid, int elapsed)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">UidWithElapsedCallback? firstRemoteAudioDecoded;</codeblock> </p>
+                <codeblock props="cs" outputclass="language-csharp">public virtual void OnFirstRemoteAudioDecoded(uint uid, int elapsed)</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">UidWithElapsedCallback? firstRemoteAudioDecoded;</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated">
-            <dlentry>
-                <dt>Deprecated:</dt>
-                <dd>Please use <xref keyref="onRemoteAudioStateChanged"/> instead.</dd>
-            </dlentry>
+                <dlentry>
+                    <dt>Deprecated:</dt>
+                    <dd>Please use <xref keyref="onRemoteAudioStateChanged"/> instead.</dd>
+                </dlentry>
             </dl>
-            <p>The SDK triggers this callback under one of the following circumstances: 
-            
-            <ul>
-            <li>The remote user joins the channel and sends the audio stream for the first time.</li>
-            <li>The remote user's audio is offline and then goes online to re-send audio. It means the local user cannot receive audio in 15 seconds. Reasons for such an interruption include:
-                
-                <ul>
-                <li>The remote user leaves channel.</li>
-                <li>The remote user drops offline.</li>
-                <li>The remote user calls <xref keyref="muteLocalAudioStream"/> to stop sending the audio stream.</li>
-                <li>The remote user calls <xref keyref="disableAudio"/> to disable audio.</li>
-                </ul> </li>
-            </ul> </p>
+            <p>The SDK triggers this callback under one of the following circumstances: <ul>
+                    <li>The remote user joins the channel and sends the audio stream for the first
+                        time.</li>
+                    <li>The remote user's audio is offline and then goes online to re-send audio. It
+                        means the local user cannot receive audio in 15 seconds. Reasons for such an
+                        interruption include: <ul>
+                            <li>The remote user leaves channel.</li>
+                            <li>The remote user drops offline.</li>
+                            <li>The remote user calls <xref keyref="muteLocalAudioStream"/> to stop
+                                sending the audio stream.</li>
+                            <li>The remote user calls <xref keyref="disableAudio"/> to disable
+                                audio.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
-            <plentry props="ios mac">
-                <pt>engine</pt>
-                <pd><xref keyref="IRtcEngine"/> object.</pd>
-            </plentry>
-            <plentry>
-                <pt>uid</pt>
-                <pd>The ID of the remote user.</pd>
-            </plentry>
-            <plentry>
-                <pt>elapsed</pt>
-                <pd id="elapsed">The time elapsed (ms) from the local user calling <apiname keyref="joinChannel2"/> until the SDK triggers this callback.</pd>
-            </plentry>
-            </parml> </section>
+                <plentry props="ios mac">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> object.</pd>
+                </plentry>
+                <plentry>
+                    <pt>uid</pt>
+                    <pd>The ID of the remote user.</pd>
+                </plentry>
+                <plentry>
+                    <pt>elapsed</pt>
+                    <pd id="elapsed">The time elapsed (ms) from the local user calling <apiname
+                            keyref="joinChannel2"/> until the SDK triggers this callback.</pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

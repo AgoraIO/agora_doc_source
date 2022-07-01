@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onlocalvideostats">
-    <title><ph keyref="onLocalVideoStats" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Reports the statistics of the local video stream.</ph></shortdesc>
+    <title><ph keyref="onLocalVideoStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Reports the statistics of the local video
+        stream.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="onLocalVideoStats" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="onLocalVideoStats"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public void onLocalVideoStats(LocalVideoStats stats) {}</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
     localVideoStats:(AgoraRtcLocalVideoStats * _Nonnull)stats;</codeblock>
@@ -20,21 +22,25 @@
     }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.LOCAL_VIDEO_STATS, cb: (stats: LocalVideoStats) =&gt; void): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnLocalVideoStats(LocalVideoStats stats)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart">LocalVideoStatsCallback? localVideoStats;</codeblock>
-        </p>
+            </p>
         </section>
-        <section id="detailed_desc"><p id="desc">The SDK triggers this callback once every two seconds to report the statistics of the local video stream.</p></section>
-        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-   <parml>
-       <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                  <pt />
-                  <pd />
-              </plentry>
-       <plentry>
-  <pt>stats</pt>
-  <pd>The statistics of the local video stream. For details, see <xref keyref="LocalVideoStats" />.</pd>
-       </plentry>
-   </parml>
-        </section></refbody>
+        <section id="detailed_desc"><p id="desc">The SDK triggers this callback once every two
+                seconds to report the statistics of the local video stream.</p></section>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <parml>
+                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry>
+                    <pt>stats</pt>
+                    <pd>The statistics of the local video stream. For details, see <xref
+                            keyref="LocalVideoStats"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
 </reference>

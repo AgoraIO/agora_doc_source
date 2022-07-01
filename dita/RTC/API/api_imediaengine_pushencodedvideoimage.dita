@@ -13,43 +13,49 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int pushExternalEncodedVideoFrame(
+                <codeblock props="android" outputclass="language-java">public abstract int pushExternalEncodedVideoFrame(
       ByteBuffer data, EncodedVideoFrameInfo frameInfo);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int pushEncodedVideoImage(const uint8_t* imageBuffer, size_t length,
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int pushEncodedVideoImage(const uint8_t* imageBuffer, size_t length,
                                     const agora::rtc::EncodedVideoFrameInfo&amp; videoEncodedFrameInfo) = 0;
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="cs" outputclass="language-csharp">public abstract int PushEncodedVideoImage(byte[] imageBuffer, uint length, EncodedVideoFrameInfo videoEncodedFrameInfo);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="cs" outputclass="language-csharp">public abstract int PushEncodedVideoImage(byte[] imageBuffer, uint length, EncodedVideoFrameInfo videoEncodedFrameInfo);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p id="desc1">调用 <codeph>setExternalVideoSource</codeph> 方法，且设置 <parmname>enable</parmname> 参数为 <codeph><ph keyref="true"/></codeph>，<parmname>encodedFrame</parmname> 参数为 <codeph><ph keyref="true"/></codeph> 后，你可以调用本方法将已编码的外部视频帧推送到 SDK。</p>
+            <p id="desc1">调用 <codeph>setExternalVideoSource</codeph> 方法，且设置
+                    <parmname>enable</parmname> 参数为 <codeph><ph keyref="true"
+                    /></codeph>，<parmname>encodedFrame</parmname> 参数为 <codeph><ph keyref="true"
+                    /></codeph> 后，你可以调用本方法将已编码的外部视频帧推送到 SDK。</p>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry id="data">
-                <pt props="android">data</pt>
-                <pt props="cpp cs">imageBuffer</pt>
-                <pd>外部编码视频帧的 buffer。</pd>
-            </plentry>
-            <plentry props="cpp cs" id="length">
-                <pt>length</pt>
-                <pd>外部编码视频帧的长度。</pd>
-            </plentry>
-            <plentry id="frameinfo">
-                <pt props="android">frameInfo</pt>
-                <pt props="cpp cs">videoEncodedFrameInfo</pt>
-                <pd>外部编码视频帧的信息。详见 <xref keyref="EncodedVideoFrameInfo"/>。</pd>
-            </plentry>
-            </parml> </section>
+                <plentry id="data">
+                    <pt props="android">data</pt>
+                    <pt props="cpp cs">imageBuffer</pt>
+                    <pd>外部编码视频帧的 buffer。</pd>
+                </plentry>
+                <plentry props="cpp cs" id="length">
+                    <pt>length</pt>
+                    <pd>外部编码视频帧的长度。</pd>
+                </plentry>
+                <plentry id="frameinfo">
+                    <pt props="android">frameInfo</pt>
+                    <pt props="cpp cs">videoEncodedFrameInfo</pt>
+                    <pd>外部编码视频帧的信息。详见 <xref keyref="EncodedVideoFrameInfo"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values">
             <title>返回值</title>
             <ul id="ul_uns_l2y_hqb">
-            <li>0: 推送成功。</li>
-            <li>&lt; 0: 推送失败。</li>
-            </ul> </section>
+                <li>0: 推送成功。</li>
+                <li>&lt; 0: 推送失败。</li>
+            </ul>
+        </section>
     </refbody>
 </reference>

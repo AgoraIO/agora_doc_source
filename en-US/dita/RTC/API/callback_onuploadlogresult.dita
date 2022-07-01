@@ -2,7 +2,8 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onuploadlogresult">
     <title><ph keyref="onUploadLogResult"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Reports the result of uploading the SDK log files.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Reports the result of uploading the SDK log
+        files.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -13,56 +14,65 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onUploadLogResult(const char* requestId,
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onUploadLogResult(const char* requestId,
      bool success,
      UPLOAD_ERROR_REASON reason) {
      (void)requestId;
      (void)success;
      (void)reason;
      }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.UPLOAD_LOG_RESULT, cb: (
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.UPLOAD_LOG_RESULT, cb: (
      requestId: string,
      success: boolean,
      reason: number
      ) =&gt; void): this;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public virtual void OnUploadLogResult(string requestId, bool success, UPLOAD_ERROR_REASON reason)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">UploadLogResultCallback? uploadLogResult;</codeblock> </p>
+                <codeblock props="cs" outputclass="language-csharp">public virtual void OnUploadLogResult(string requestId, bool success, UPLOAD_ERROR_REASON reason)</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">UploadLogResultCallback? uploadLogResult;</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
-            <dlentry>
-                <dt>Since</dt>
-                <dd>v3.3.0</dd>
-            </dlentry>
+                <dlentry>
+                    <dt>Since</dt>
+                    <dd>v3.3.0</dd>
+                </dlentry>
             </dl>
-            <p>After <xref keyref="uploadLogFile"/> is called, the SDK triggers the callback to report the result of uploading the SDK log files. If the upload fails, refer to the <parmname>reason</parmname> parameter to troubleshoot.</p>
+            <p>After <xref keyref="uploadLogFile"/> is called, the SDK triggers the callback to
+                report the result of uploading the SDK log files. If the upload fails, refer to the
+                    <parmname>reason</parmname> parameter to troubleshoot.</p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
-            <plentry>
-                <pt>requestId</pt>
-                <pd>The request ID. The request ID is the same as the <parmname>requestId</parmname> returned in <ph keyref="uploadLogFile"/>. You can use the <parmname>requestId</parmname> to match a specific upload with a callback.</pd>
-            </plentry>
-            <plentry>
-                <pt>success</pt>
-                <pd>
-                    <p>Whether the log file is uploaded successfully:
-                    
-                    <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Successfully upload the log files.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Fails to upload the log files. For details, see the <parmname>reason</parmname> parameter.</li>
-                    </ul></p>
-                </pd>
-            </plentry>
-            <plentry>
-                <pt>reason</pt>
-                <pd>The reason for the upload failure. For details, see <xref keyref="UPLOAD_ERROR_REASON"/>.</pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>requestId</pt>
+                    <pd>The request ID. The request ID is the same as the
+                            <parmname>requestId</parmname> returned in <ph keyref="uploadLogFile"/>.
+                        You can use the <parmname>requestId</parmname> to match a specific upload
+                        with a callback.</pd>
+                </plentry>
+                <plentry>
+                    <pt>success</pt>
+                    <pd>
+                        <p>Whether the log file is uploaded successfully: <ul>
+                                <li><codeph><ph keyref="true"/></codeph>: Successfully upload the
+                                    log files.</li>
+                                <li><codeph><ph keyref="false"/></codeph>: Fails to upload the log
+                                    files. For details, see the <parmname>reason</parmname>
+                                    parameter.</li>
+                            </ul></p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>reason</pt>
+                    <pd>The reason for the upload failure. For details, see <xref
+                            keyref="UPLOAD_ERROR_REASON"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

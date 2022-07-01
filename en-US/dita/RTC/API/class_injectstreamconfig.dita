@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_injectstreamconfig">
-    <title><ph keyref="InjectStreamConfig" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Configurations of injecting an external audio or video stream.</ph></shortdesc>
+    <title><ph keyref="InjectStreamConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Configurations of injecting an external audio or video
+            stream.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public class LiveInjectStreamConfig {
+                <codeblock props="android" outputclass="language-java">public class LiveInjectStreamConfig {
 
     public enum AudioSampleRateType {
         TYPE_32000(32000),
@@ -33,7 +34,7 @@
         audioChannels = 1;
     }
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLiveInjectStreamConfig : NSObject
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLiveInjectStreamConfig : NSObject
 
 @property(assign, nonatomic) CGSize size;
 @property(assign, nonatomic) NSInteger videoGop;
@@ -44,7 +45,7 @@
 @property(assign, nonatomic) NSInteger audioChannels;
 + (AgoraLiveInjectStreamConfig *_Nonnull)defaultConfig;
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct InjectStreamConfig {
+                <codeblock props="cpp" outputclass="language-cpp">struct InjectStreamConfig {
     int width;
     int height;
     int videoGop;
@@ -65,7 +66,7 @@
         , audioChannels(1)
     {}
     };</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public class InjectStreamConfig
+                <codeblock props="cs" outputclass="language-csharp">public class InjectStreamConfig
     {
         public InjectStreamConfig()
         {
@@ -101,7 +102,7 @@
         public int audioBitrate { set; get; }
         public int audioChannels { set; get; }
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">export interface InjectStreamConfig {
+                <codeblock props="electron" outputclass="language-typescript">export interface InjectStreamConfig {
     width: number;
     height: number;
     videoBitrate: number;
@@ -111,8 +112,8 @@
     audioBitrate: number;
     audioChannels: number;
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">class LiveInjectStreamConfig {
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">class LiveInjectStreamConfig {
 
   @JsonKey(includeIfNull: false)
   int? width;
@@ -153,59 +154,75 @@
       _$LiveInjectStreamConfigFromJson(json);
 
   Map&lt;String, dynamic&gt; toJson() =&gt; _$LiveInjectStreamConfigToJson(this);
-}</codeblock> </p>
+}</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
-            <note conkeyref="addInjectStreamUrl/inject-sunset-note" /> </section>
+            <note conkeyref="addInjectStreamUrl/inject-sunset-note"/>
+        </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+                /></title>
             <parml>
-            <plentry>
-                <pt>width</pt>
-                <pd>The width of the external video stream after injecting. The default value is 0, which represents the same width as the original.</pd>
-            </plentry>
-            <plentry>
-                <pt>height</pt>
-                <pd>The height of the external video stream after injecting. The default value is 0, which represents the same height as the original.</pd>
-            </plentry>
-            <plentry>
-                <pt>videoGop</pt>
-                <pd>The GOP (in frames) of injecting the external video stream. The default value is 30 frames.</pd>
-            </plentry>
-            <plentry>
-                <pt>videoFramerate</pt>
-                <pd>The frame rate (fps) of injecting the external video stream. The default rate is 15 fps.</pd>
-            </plentry>
-            <plentry>
-                <pt>videoBitrate</pt>
-                <pd>
-                    <p>The bitrate (Kbps) of injecting the external video stream. The default value is 400 Kbps.</p>
-                    <note type="attention">The bitrate setting is closely linked to the video resolution. If the bitrate you set is beyond a reasonable range, the SDK sets it within a reasonable range.</note>
-                </pd>
-            </plentry>
-            <plentry>
-                <pt>audioSampleRate</pt>
-                <pd>
-                    <p>The sampling rate (Hz) of injecting the external audio stream. The default value is 48000 Hz. See <xref keyref="AUDIO_SAMPLE_RATE_TYPE" />.</p>
-                    <note type="attention">Agora recommends using the default value.</note> </pd>
-            </plentry>
-            <plentry>
-                <pt>audioBitrate</pt>
-                <pd>
-                    <p>The bitrate (Kbps) of injecting the external audio stream. The default value is 48 Kbps.</p>
-                    <note type="attention">Agora recommends using the default value.</note> </pd>
-            </plentry>
-            <plentry>
-                <pt>audioChannels</pt>
-                <pd>
-                    <p>The number of channels of the external audio stream after injecting.
-                    
-                    <ul>
-                    <li>1:  (Default) Mono.</li>
-                    <li>2: Stereo.</li>
-                    </ul> </p>
-                    <note type="attention">Agora recommends using the default value.</note> </pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>width</pt>
+                    <pd>The width of the external video stream after injecting. The default value is
+                        0, which represents the same width as the original.</pd>
+                </plentry>
+                <plentry>
+                    <pt>height</pt>
+                    <pd>The height of the external video stream after injecting. The default value
+                        is 0, which represents the same height as the original.</pd>
+                </plentry>
+                <plentry>
+                    <pt>videoGop</pt>
+                    <pd>The GOP (in frames) of injecting the external video stream. The default
+                        value is 30 frames.</pd>
+                </plentry>
+                <plentry>
+                    <pt>videoFramerate</pt>
+                    <pd>The frame rate (fps) of injecting the external video stream. The default
+                        rate is 15 fps.</pd>
+                </plentry>
+                <plentry>
+                    <pt>videoBitrate</pt>
+                    <pd>
+                        <p>The bitrate (Kbps) of injecting the external video stream. The default
+                            value is 400 Kbps.</p>
+                        <note type="attention">The bitrate setting is closely linked to the video
+                            resolution. If the bitrate you set is beyond a reasonable range, the SDK
+                            sets it within a reasonable range.</note>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>audioSampleRate</pt>
+                    <pd>
+                        <p>The sampling rate (Hz) of injecting the external audio stream. The
+                            default value is 48000 Hz. See <xref keyref="AUDIO_SAMPLE_RATE_TYPE"
+                            />.</p>
+                        <note type="attention">Agora recommends using the default value.</note>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>audioBitrate</pt>
+                    <pd>
+                        <p>The bitrate (Kbps) of injecting the external audio stream. The default
+                            value is 48 Kbps.</p>
+                        <note type="attention">Agora recommends using the default value.</note>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>audioChannels</pt>
+                    <pd>
+                        <p>The number of channels of the external audio stream after injecting. <ul>
+                                <li>1: (Default) Mono.</li>
+                                <li>2: Stereo.</li>
+                            </ul>
+                        </p>
+                        <note type="attention">Agora recommends using the default value.</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

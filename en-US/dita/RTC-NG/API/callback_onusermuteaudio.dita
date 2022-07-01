@@ -2,16 +2,18 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onusermuteaudio">
     <title><ph keyref="onUserMuteAudio"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when a remote user (in the communication profile)/ host (in the live streaming profile) joins the channel.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when a remote user (in the communication
+            profile)/ host (in the live streaming profile) joins the channel.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="onUserMuteAudio"/>
-   </keywords>
+            <keywords>
+                <indexterm keyref="onUserMuteAudio"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public void onUserMuteAudio(int uid, boolean muted) {}</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didAudioMuted:(BOOL)muted byUid:(NSUInteger)uid;</codeblock>
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onUserMuteAudio(uid_t uid, bool muted) {
@@ -22,33 +24,37 @@
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserMuteAudio(uint uid, bool muted)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart">UidWithMutedCallback? userMuteAudio;</codeblock>
-        </p>
+            </p>
         </section>
         <section id="detailed_desc">
-   <dl outputclass="deprecated" props="hide">
-       <dlentry>
-  <dt>Deprecated:</dt>
-  <dd>Use <xref keyref="onRemoteAudioStateChanged"/> instead.</dd>
-       </dlentry>
-   </dl>
-   <p>The SDK triggers this callback when the remote user stops or resumes sending the audio stream by calling the <xref keyref="muteLocalAudioStream"/> method.</p>
-   <note type="attention">This callback can be inaccurate when the number of users (in the communication profile) or hosts (in the live broadcasting profile) in a channel exceeds 17.</note>
+            <dl outputclass="deprecated" props="hide">
+                <dlentry>
+                    <dt>Deprecated:</dt>
+                    <dd>Use <xref keyref="onRemoteAudioStateChanged"/> instead.</dd>
+                </dlentry>
+            </dl>
+            <p>The SDK triggers this callback when the remote user stops or resumes sending the
+                audio stream by calling the <xref keyref="muteLocalAudioStream"/> method.</p>
+            <note type="attention">This callback can be inaccurate when the number of users (in the
+                communication profile) or hosts (in the live broadcasting profile) in a channel
+                exceeds 17.</note>
         </section>
-        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-   <parml>
-       <plentry>
-  <pt>uid</pt>
-  <pd>The user ID.</pd>
-       </plentry>
-       <plentry>
-  <pt>muted</pt>
-  <pd>Whether the remote user's audio stream is muted/unmuted:<ul>
-      <li><codeph><ph keyref="true"/></codeph>: Muted.</li>
-      <li><codeph><ph keyref="false"/></codeph>: Unmuted.</li>
-  </ul>
-  </pd>
-       </plentry>
-   </parml>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <parml>
+                <plentry>
+                    <pt>uid</pt>
+                    <pd>The user ID.</pd>
+                </plentry>
+                <plentry>
+                    <pt>muted</pt>
+                    <pd>Whether the remote user's audio stream is muted/unmuted:<ul>
+                            <li><codeph><ph keyref="true"/></codeph>: Muted.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Unmuted.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
         </section>
     </refbody>
 </reference>

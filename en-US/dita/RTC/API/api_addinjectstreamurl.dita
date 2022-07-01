@@ -1,72 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_addinjectstreamurl">
-    <title><ph keyref="addInjectStreamUrl" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Injects an online media stream to a live streaming channel.</ph></shortdesc>
+    <title><ph keyref="addInjectStreamUrl"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Injects an online media stream to a live streaming
+            channel.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="addInjectStreamUrl" />
+                <indexterm keyref="addInjectStreamUrl"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int addInjectStreamUrl(String url, LiveInjectStreamConfig config);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)addInjectStreamUrl:(NSString* _Nonnull)url config:(AgoraLiveInjectStreamConfig* _Nonnull)config;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int addInjectStreamUrl(const char* url, const InjectStreamConfig&amp; config) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">addInjectStreamUrl(url: string, config: InjectStreamConfig): number</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public abstract int AddInjectStreamUrl(string url, InjectStreamConfig config);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">addInjectStreamUrl(
+                <codeblock props="android" outputclass="language-java">public abstract int addInjectStreamUrl(String url, LiveInjectStreamConfig config);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)addInjectStreamUrl:(NSString* _Nonnull)url config:(AgoraLiveInjectStreamConfig* _Nonnull)config;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int addInjectStreamUrl(const char* url, const InjectStreamConfig&amp; config) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">addInjectStreamUrl(url: string, config: InjectStreamConfig): number</codeblock>
+                <codeblock props="cs" outputclass="language-csharp">public abstract int AddInjectStreamUrl(string url, InjectStreamConfig config);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">addInjectStreamUrl(
     url: string,
     config: LiveInjectStreamConfig
   ): Promise&lt;void&gt;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; addInjectStreamUrl(String url, LiveInjectStreamConfig config);</codeblock> </p>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; addInjectStreamUrl(String url, LiveInjectStreamConfig config);</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
-            <note id="inject-sunset-note" type="caution">Agora will soon stop the service for injecting online media streams on the client. If you have not implemented this service, Agora recommends that you do not use it. For details, see <xref keyref="rtc-sunset">Service Sunset Plans</xref>.</note>
+            <note id="inject-sunset-note" type="caution">Agora will soon stop the service for
+                injecting online media streams on the client. If you have not implemented this
+                service, Agora recommends that you do not use it. For details, see <xref
+                    keyref="rtc-sunset">Service Sunset Plans</xref>.</note>
             <note type="attention">
-            <ul>
-            <li>Ensure that you enable the Media Push service before using this function. See Prerequisites in <xref keyref="guide-cdn-streaming">Media Push</xref>.</li>
-            <li props="android ios mac cpp">This method applies to the Native SDK v2.4.1 and later.</li>
-            <li>This method takes effect only when you are a host in a live streaming channel.</li>
-            <li>Only one online media stream can be injected into the same channel at the same time.</li>
-            <li>Call this method after joining a channel.</li>
-            </ul> </note>
-            <p>This method injects the currently playing audio and video as audio and video sources into the ongoing live broadcast. This applies to scenarios where all users in the channel can watch a live show and interact with each other. After calling this method, the SDK triggers the <xref keyref="onStreamInjectedStatus" /> callback on the local client to report the state of injecting the online media stream; after successfully injecting the media stream, the stream joins the channel, and all users in the channel receive the <xref keyref="onUserJoined" /> callback, where <parmname>uid</parmname> is 666.</p>
+                <ul>
+                    <li>Ensure that you enable the Media Push service before using this function.
+                        See Prerequisites in <xref keyref="guide-cdn-streaming">Media
+                        Push</xref>.</li>
+                    <li props="android ios mac cpp">This method applies to the Native SDK v2.4.1 and
+                        later.</li>
+                    <li>This method takes effect only when you are a host in a live streaming
+                        channel.</li>
+                    <li>Only one online media stream can be injected into the same channel at the
+                        same time.</li>
+                    <li>Call this method after joining a channel.</li>
+                </ul>
+            </note>
+            <p>This method injects the currently playing audio and video as audio and video sources
+                into the ongoing live broadcast. This applies to scenarios where all users in the
+                channel can watch a live show and interact with each other. After calling this
+                method, the SDK triggers the <xref keyref="onStreamInjectedStatus"/> callback on the
+                local client to report the state of injecting the online media stream; after
+                successfully injecting the media stream, the stream joins the channel, and all users
+                in the channel receive the <xref keyref="onUserJoined"/> callback, where
+                    <parmname>uid</parmname> is 666.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry>
-                <pt>url</pt>
-                <pd>
-                    <p>The URL address to be added to the ongoing streaming. Valid protocols are RTMP, HLS, and HTTP-FLV.
-                    
-                    <ul>
-                    <li>Supported audio codec type: AAC.</li>
-                    <li>Supported video codec type: H264 (AVC).</li>
-                    </ul> </p>
-                </pd>
-            </plentry>
-            <plentry>
-                <pt>config</pt>
-                <pd>The configuration information for the added video stream: <xref keyref="InjectStreamConfig" />.</pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>url</pt>
+                    <pd>
+                        <p>The URL address to be added to the ongoing streaming. Valid protocols are
+                            RTMP, HLS, and HTTP-FLV. <ul>
+                                <li>Supported audio codec type: AAC.</li>
+                                <li>Supported video codec type: H264 (AVC).</li>
+                            </ul>
+                        </p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>config</pt>
+                    <pd>The configuration information for the added video stream: <xref
+                            keyref="InjectStreamConfig"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values" props="native electron cs">
             <title>Returns</title>
             <ul>
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure.
-                
-                <ul>
-                <li><codeph>ERR_INVALID_ARGUMENT</codeph> (-2): The injected URL does not exist. Call this method again to inject the stream and ensure that the URL is valid.</li>
-                <li><codeph>ERR_NOT_READY</codeph> (-3): The user is not in the channel.</li>
-                <li><codeph>ERR_NOT_SUPPORTED</codeph> (-4): The channel profile is not live broadcasting. Call <xref keyref="setChannelProfile" /> and set the channel profile live broadcasting before calling this method.</li>
-                <li><codeph>ERR_NOT_INITIALIZED</codeph> (-7): The SDK is not initialized. Ensure that the <xref keyref="IRtcEngine" /> object is initialized before using this method.</li>
-                </ul> </li>
-            </ul> </section>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure. <ul>
+                        <li><codeph>ERR_INVALID_ARGUMENT</codeph> (-2): The injected URL does not
+                            exist. Call this method again to inject the stream and ensure that the
+                            URL is valid.</li>
+                        <li><codeph>ERR_NOT_READY</codeph> (-3): The user is not in the
+                            channel.</li>
+                        <li><codeph>ERR_NOT_SUPPORTED</codeph> (-4): The channel profile is not live
+                            broadcasting. Call <xref keyref="setChannelProfile"/> and set the
+                            channel profile live broadcasting before calling this method.</li>
+                        <li><codeph>ERR_NOT_INITIALIZED</codeph> (-7): The SDK is not initialized.
+                            Ensure that the <xref keyref="IRtcEngine"/> object is initialized before
+                            using this method.</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
     </refbody>
 </reference>

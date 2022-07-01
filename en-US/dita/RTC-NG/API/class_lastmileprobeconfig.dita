@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_lastmileprobeconfig">
-    <title><ph keyref="LastmileProbeConfig" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Configurations of the last-mile network test.</ph></shortdesc>
+    <title><ph keyref="LastmileProbeConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Configurations of the last-mile network
+        test.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public class LastmileProbeConfig {
+                <codeblock props="android" outputclass="language-java">public class LastmileProbeConfig {
   public boolean probeUplink;
   public boolean probeDownlink;
   public int expectedUplinkBitrate;
@@ -14,26 +15,26 @@
 
   public LastmileProbeConfig() {}
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLastmileProbeConfig : NSObject
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLastmileProbeConfig : NSObject
 @property (assign, nonatomic) BOOL probeUplink;
 @property (assign, nonatomic) BOOL probeDownlink;
 @property (assign, nonatomic) NSUInteger expectedUplinkBitrate;
 @property (assign, nonatomic) NSUInteger expectedDownlinkBitrate;
 @end</codeblock>
-            <codeblock props="cpp unity" outputclass="language-cpp">struct LastmileProbeConfig {
+                <codeblock props="cpp unity" outputclass="language-cpp">struct LastmileProbeConfig {
     bool probeUplink;
     bool probeDownlink;
     unsigned int expectedUplinkBitrate;
     unsigned int expectedDownlinkBitrate;
     };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">export interface LastmileProbeConfig {
+                <codeblock props="electron" outputclass="language-typescript">export interface LastmileProbeConfig {
     probeUplink: boolean;
     probeDownlink: boolean;
     expectedUplinkBitrate: number;
     expectedDownlinkBitrate: number;
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">class LastmileProbeConfig {
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">class LastmileProbeConfig {
   
   bool probeUplink;
   bool probeDownlink;
@@ -51,38 +52,45 @@
       _$LastmileProbeConfigFromJson(json);
 
   Map&lt;String, dynamic&gt; toJson() =&gt; _$LastmileProbeConfigToJson(this);
-}</codeblock> </p>
+}</codeblock>
+            </p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
-   <parml>
-       <plentry>
-  <pt>probeUplink</pt>
-  <pd><p>Sets whether to test the uplink network. Some users, for example, the audience members in a LIVE_BROADCASTING channel, do not need such a test.<ul>
- <li><codeph><ph keyref="true" /></codeph>: Test.</li>
- <li><codeph><ph keyref="false" /></codeph>: Not test.</li>
-      </ul>
-      </p>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt>probeDownlink</pt>
-  <pd>
-      <p>Sets whether to test the downlink network:<ul>
-     <li><codeph><ph keyref="true" /></codeph>: Test.</li>
-     <li><codeph><ph keyref="false" /></codeph>: Not test.</li>
- </ul>
-      </p>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt>expectedUplinkBitrate</pt>
-  <pd>The expected maximum uplink bitrate (bps) of the local user. The value range is [100000, 5000000]. Agora recommends referring to <xref keyref="setVideoEncoderConfiguration" /> to set the value.</pd>
-       </plentry>
-       <plentry>
-  <pt>expectedDownlinkBitrate</pt>
-  <pd>The expected maximum downlink bitrate (bps) of the local user. The value range is [100000,5000000].</pd>
-       </plentry>
-   </parml>
-        </section></refbody>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+                /></title>
+            <parml>
+                <plentry>
+                    <pt>probeUplink</pt>
+                    <pd><p>Sets whether to test the uplink network. Some users, for example, the
+                            audience members in a LIVE_BROADCASTING channel, do not need such a test.<ul>
+                                <li><codeph><ph keyref="true"/></codeph>: Test.</li>
+                                <li><codeph><ph keyref="false"/></codeph>: Not test.</li>
+                            </ul>
+                        </p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>probeDownlink</pt>
+                    <pd>
+                        <p>Sets whether to test the downlink network:<ul>
+                                <li><codeph><ph keyref="true"/></codeph>: Test.</li>
+                                <li><codeph><ph keyref="false"/></codeph>: Not test.</li>
+                            </ul>
+                        </p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>expectedUplinkBitrate</pt>
+                    <pd>The expected maximum uplink bitrate (bps) of the local user. The value range
+                        is [100000, 5000000]. Agora recommends referring to <xref
+                            keyref="setVideoEncoderConfiguration"/> to set the value.</pd>
+                </plentry>
+                <plentry>
+                    <pt>expectedDownlinkBitrate</pt>
+                    <pd>The expected maximum downlink bitrate (bps) of the local user. The value
+                        range is [100000,5000000].</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
 </reference>

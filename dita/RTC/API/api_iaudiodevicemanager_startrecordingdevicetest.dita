@@ -13,66 +13,74 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="cpp" outputclass="language-cpp">virtual int startRecordingDeviceTest(int indication_Interval) = 0;</codeblock> </p>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int startRecordingDeviceTest(int indication_Interval) = 0;</codeblock>
+            </p>
             <p outputclass="codeblock" props="cpp rtc">
-            <codeblock props="native cpp" outputclass="language-cpp">virtual int startRecordingDeviceTest(int indicationInterval) = 0;</codeblock> </p>
+                <codeblock props="native cpp" outputclass="language-cpp">virtual int startRecordingDeviceTest(int indicationInterval) = 0;</codeblock>
+            </p>
             <p outputclass="codeblock">
-            <codeblock props="mac" outputclass="language-objectivec">- (int)startRecordingDeviceTest:(int)indicationInterval;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">startAudioRecordingDeviceTest(indicationInterval: number): number</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public abstract int StartRecordingDeviceTest(int indicationInterval);</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startAudioRecordingDeviceTest(int indicationInterval)</codeblock> </p>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)startRecordingDeviceTest:(int)indicationInterval;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">startAudioRecordingDeviceTest(indicationInterval: number): number</codeblock>
+                <codeblock props="cs" outputclass="language-csharp">public abstract int StartRecordingDeviceTest(int indicationInterval);</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startAudioRecordingDeviceTest(int indicationInterval)</codeblock>
+            </p>
         </section>
         <section id="detailed_desc" props="cs electron flutter rtc-ng">
-            <p>该方法测试音频采集设备是否能正常工作。调用该方法后，SDK 会按设置的时间间隔触发 <xref keyref="onAudioVolumeIndication"/> 回调，报告 <parmname>uid</parmname> = 0 及采集设备的音量信息。</p>
-            <note type="attention">该方法需要在加入频道前调用。</note> </section>
+            <p>该方法测试音频采集设备是否能正常工作。调用该方法后，SDK 会按设置的时间间隔触发 <xref keyref="onAudioVolumeIndication"/>
+                回调，报告 <parmname>uid</parmname> = 0 及采集设备的音量信息。</p>
+            <note type="attention">该方法需要在加入频道前调用。</note>
+        </section>
         <section props="cpp rtc" id="section_gcm_jys_tsb">
             <p>该方法测试音频采集设备是否能正常工作。</p>
-            <p>自 v3.6.2 起，该方法在加入频道前后均可调用，并按设置的时间间隔触发如下回调，报告采集设备的音量信息： 
-                
-            
-            
-            
-            
-            
-            <ul id="ul_p2s_qys_tsb">
-            <li>在加入频道前调用该方法，SDK 触发 <xref keyref="onAudioVolumeIndication"/> 和 <xref keyref="onAudioDeviceTestVolumeIndication"/> 回调，其中： 
-                    
-                
-                
-                
-                
-                
-                <ul id="ul_qwn_vys_tsb">
-                <li><apiname keyref="onAudioVolumeIndication"/> 报告 <codeph>uid = 0</codeph> 和 <codeph>volume</codeph>。</li>
-                <li><apiname keyref="onAudioDeviceTestVolumeIndication"/> 报告 <codeph>volumeType = <apiname keyref="AudioTestRecordingVolume"/>(0)</codeph> 和 <codeph>volume</codeph>。</li>
-                </ul>这两个回调报告的音量信息相同，Agora 推荐使用 <apiname keyref="onAudioDeviceTestVolumeIndication"/>。</li>
-            <li>在加入频道后调用该方法，SDK 触发 <apiname keyref="onAudioDeviceTestVolumeIndication"/> 回调，报告 <codeph>volumeType = <apiname keyref="AudioTestRecordingVolume"/>(0)</codeph> 和 <codeph>volume</codeph>。</li>
-            </ul></p>
+            <p>自 v3.6.2 起，该方法在加入频道前后均可调用，并按设置的时间间隔触发如下回调，报告采集设备的音量信息： <ul id="ul_p2s_qys_tsb">
+                    <li>在加入频道前调用该方法，SDK 触发 <xref keyref="onAudioVolumeIndication"/> 和 <xref
+                            keyref="onAudioDeviceTestVolumeIndication"/> 回调，其中： <ul
+                            id="ul_qwn_vys_tsb">
+                            <li><apiname keyref="onAudioVolumeIndication"/> 报告 <codeph>uid =
+                                    0</codeph> 和 <codeph>volume</codeph>。</li>
+                            <li><apiname keyref="onAudioDeviceTestVolumeIndication"/> 报告
+                                    <codeph>volumeType = <apiname keyref="AudioTestRecordingVolume"
+                                    />(0)</codeph> 和 <codeph>volume</codeph>。</li>
+                        </ul>这两个回调报告的音量信息相同，Agora 推荐使用 <apiname
+                            keyref="onAudioDeviceTestVolumeIndication"/>。</li>
+                    <li>在加入频道后调用该方法，SDK 触发 <apiname keyref="onAudioDeviceTestVolumeIndication"/>
+                        回调，报告 <codeph>volumeType = <apiname keyref="AudioTestRecordingVolume"
+                            />(0)</codeph> 和 <codeph>volume</codeph>。</li>
+                </ul></p>
             <note id="note_sgn_h1t_tsb">
-            <ul id="ul_pzw_31t_tsb">
-            <li>加入频道后调用该方法前，请确保音频采集设备处于开启状态，即 <xref keyref="enableLocalAudio"/>(true)。否则，方法调用会失败，SDK 触发 <xref keyref="onError"/> 回调，报告 <codeph>ERR_ADM_START_RECORDING(1012)</codeph> 错误码。</li>
-            <li>加入频道后调用该方法，测试的是 SDK 正在使用的音频采集设备。</li>
-            <li>调用该方法后，必须调 <xref keyref="stopRecordingDeviceTest"/> 方法停止测试。</li>
-            </ul> </note> </section>
+                <ul id="ul_pzw_31t_tsb">
+                    <li>加入频道后调用该方法前，请确保音频采集设备处于开启状态，即 <xref keyref="enableLocalAudio"
+                        />(true)。否则，方法调用会失败，SDK 触发 <xref keyref="onError"/> 回调，报告
+                            <codeph>ERR_ADM_START_RECORDING(1012)</codeph> 错误码。</li>
+                    <li>加入频道后调用该方法，测试的是 SDK 正在使用的音频采集设备。</li>
+                    <li>调用该方法后，必须调 <xref keyref="stopRecordingDeviceTest"/> 方法停止测试。</li>
+                </ul>
+            </note>
+        </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry props="rtc">
-                <pt>indicationInterval</pt>
-                <pd>
-                    <p>SDK 返回 <xref keyref="onAudioVolumeIndication"/> 或 <xref keyref="onAudioDeviceTestVolumeIndication"/> 回调的时间间隔，单位为毫秒。建议设置到大于 200 毫秒。不得少于 10 毫秒，否则会收不到音量回调。</p>
-                </pd>
-            </plentry>
-            <plentry props="rtc-ng">
-                <pt>indication_Interval</pt>
-                <pd>SDK 触发 <xref keyref="onAudioVolumeIndication"/> 回调的时间间隔，单位为毫秒。建议设置到大于 200 毫秒。不得小于 10 毫秒，否则会收不到 <apiname keyref="onAudioVolumeIndication"/> 回调。</pd>
-            </plentry>
-            </parml> </section>
+                <plentry props="rtc">
+                    <pt>indicationInterval</pt>
+                    <pd>
+                        <p>SDK 返回 <xref keyref="onAudioVolumeIndication"/> 或 <xref
+                                keyref="onAudioDeviceTestVolumeIndication"/> 回调的时间间隔，单位为毫秒。建议设置到大于
+                            200 毫秒。不得少于 10 毫秒，否则会收不到音量回调。</p>
+                    </pd>
+                </plentry>
+                <plentry props="rtc-ng">
+                    <pt>indication_Interval</pt>
+                    <pd>SDK 触发 <xref keyref="onAudioVolumeIndication"/> 回调的时间间隔，单位为毫秒。建议设置到大于 200
+                        毫秒。不得小于 10 毫秒，否则会收不到 <apiname keyref="onAudioVolumeIndication"/> 回调。</pd>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values" props="native cpp cs electron">
             <title>返回值</title>
             <ul>
-            <li>0: 方法调用成功。</li>
-            <li>&lt; 0: 方法调用失败。</li>
-            </ul> </section>
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。</li>
+            </ul>
+        </section>
     </refbody>
 </reference>

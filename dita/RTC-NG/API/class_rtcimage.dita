@@ -35,13 +35,13 @@
     this.alpha = 1.0;
   }
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraImage : NSObject
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraImage : NSObject
             @property(strong, nonatomic) NSURL *_Nonnull url;
             @property(assign, nonatomic) CGRect rect;
             @property (assign, nonatomic) NSInteger zOrder;
             @property(assign, nonatomic) double alpha;
             @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">typedef struct RtcImage {
+                <codeblock props="cpp" outputclass="language-cpp">typedef struct RtcImage {
             const char* url;
             int x;
             int y;
@@ -51,53 +51,57 @@
             double alpha;
 
             RtcImage() : url(NULL), x(0), y(0), width(0), height(0), zOrder(0), alpha(1.0) {}</codeblock>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
             <p>用于设置直播视频的水印和背景图片的属性。</p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+                /></title>
             <parml>
-            <plentry>
-                <pt>url</pt>
-                <pd>直播视频上图片的 HTTP/HTTPS 地址。字符长度不得超过 1024 字节。</pd>
-            </plentry>
-            <plentry props="android cpp unity electron flutter">
-                <pt>x</pt>
-                <pd>图片在视频画面上的 x 坐标 (pixel)，以输出视频画面的左上角为原点。</pd>
-            </plentry>
-            <plentry props="android cpp unity electron flutter">
-                <pt>y</pt>
-                <pd>图片在视频画面上的 y 坐标 (pixel)，以输出视频画面的左上角为原点。</pd>
-            </plentry>
-            <plentry props="android cpp unity electron flutter">
-                <pt>width</pt>
-                <pd>图片在视频画面上的宽度 (pixel)。</pd>
-            </plentry>
-            <plentry props="android cpp unity electron flutter">
-                <pt>height</pt>
-                <pd>图片在视频画面上的高度 (pixel)。</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>rect</pt>
-                <pd>图片在视频画面上的位置和大小，类型为 CGRect。</pd>
-            </plentry>
-            <plentry>
-                <pt>zOrder</pt>
-                <pd>水印或背景图的图层编号。使用水印数组添加单张或多张水印时，必须向 <parmname>zOrder</parmname> 传值，取值范围为 [1,255]，否则 SDK 会报错。其余情况，<parmname>zOrder</parmname> 可选传值，取值范围为 [0,255]，0 为默认值。0 代表图层的最下层，255 代表图层的最上层。</pd>
-            </plentry>
-            <plentry>
-                <pt>alpha</pt>
-                <pd>水印或背景图片的透明度。取值范围为 [0.0,1.0]：
-                    <ul>
-                    <li>0.0: 完全透明。</li>
-                    <li>1.0:（默认）完全不透明。</li>
-                    </ul></pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>url</pt>
+                    <pd>直播视频上图片的 HTTP/HTTPS 地址。字符长度不得超过 1024 字节。</pd>
+                </plentry>
+                <plentry props="android cpp unity electron flutter">
+                    <pt>x</pt>
+                    <pd>图片在视频画面上的 x 坐标 (pixel)，以输出视频画面的左上角为原点。</pd>
+                </plentry>
+                <plentry props="android cpp unity electron flutter">
+                    <pt>y</pt>
+                    <pd>图片在视频画面上的 y 坐标 (pixel)，以输出视频画面的左上角为原点。</pd>
+                </plentry>
+                <plentry props="android cpp unity electron flutter">
+                    <pt>width</pt>
+                    <pd>图片在视频画面上的宽度 (pixel)。</pd>
+                </plentry>
+                <plentry props="android cpp unity electron flutter">
+                    <pt>height</pt>
+                    <pd>图片在视频画面上的高度 (pixel)。</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>rect</pt>
+                    <pd>图片在视频画面上的位置和大小，类型为 CGRect。</pd>
+                </plentry>
+                <plentry>
+                    <pt>zOrder</pt>
+                    <pd>水印或背景图的图层编号。使用水印数组添加单张或多张水印时，必须向 <parmname>zOrder</parmname> 传值，取值范围为
+                        [1,255]，否则 SDK 会报错。其余情况，<parmname>zOrder</parmname> 可选传值，取值范围为 [0,255]，0
+                        为默认值。0 代表图层的最下层，255 代表图层的最上层。</pd>
+                </plentry>
+                <plentry>
+                    <pt>alpha</pt>
+                    <pd>水印或背景图片的透明度。取值范围为 [0.0,1.0]： <ul>
+                            <li>0.0: 完全透明。</li>
+                            <li>1.0:（默认）完全不透明。</li>
+                        </ul></pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

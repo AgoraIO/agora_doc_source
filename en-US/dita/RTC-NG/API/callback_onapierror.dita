@@ -1,29 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onapierror">
-    <title><ph keyref="onApiError" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when an error occurs in Electron.</ph></shortdesc>
+    <title><ph keyref="onApiError"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when an error occurs in
+        Electron.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onApiError" />
+                <indexterm keyref="onApiError"/>
             </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="cpp" outputclass="language-cpp" />
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp"/>
                 <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.API_ERROR, cb: (apiType: ApiTypeEngine, msg: string) =&gt; void): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp" />
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
-        </p>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p id="desc">During the SDK runtime, the SDK triggers this callback when an error occurs in Electron.</p>
-            <note id="note" type="attention" props="electron">This callback repots only errors in Electron. If you want to receive errors on the native layer, use <xref keyref="onError" />.</note>
+            <p id="desc">During the SDK runtime, the SDK triggers this callback when an error occurs
+                in Electron.</p>
+            <note id="note" type="attention" props="electron">This callback repots only errors in
+                Electron. If you want to receive errors on the native layer, use <xref
+                    keyref="onError"/>.</note>
         </section>
         <section id="parameters"><title>Parameters</title>
             <parml>
@@ -33,9 +38,10 @@
                 </plentry>
                 <plentry>
                     <pt>msg</pt>
-                    <pd>The error message. A typical reason is incorrect parameter setting in the API call, for example invalid value or incorrect number of parameters.</pd>
+                    <pd>The error message. A typical reason is incorrect parameter setting in the
+                        API call, for example invalid value or incorrect number of parameters.</pd>
                 </plentry>
             </parml>
         </section>
-</refbody>
+    </refbody>
 </reference>

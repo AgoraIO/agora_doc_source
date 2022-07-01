@@ -13,31 +13,36 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="rn" outputclass="language-typescript"/>Future&lt;void> enableLocalVoicePitchCallback(int interval);</p>
+                <codeblock props="rn" outputclass="language-typescript"/>Future&lt;void>
+                enableLocalVoicePitchCallback(int interval);</p>
         </section>
         <section id="detailed_desc">
-            <p id="desc">该方法允许 SDK 定期向 app 报告本地用户的语音音调。开启本地音频采集并调用该方法后，SDK 会按设置的时间间隔触发 <xref keyref="onLocalVoicePitchInHz"/> 回调。</p>
-            <note type="attention">该方法在加入频道前后都能调用。</note> </section>
+            <p id="desc">该方法允许 SDK 定期向 app 报告本地用户的语音音调。开启本地音频采集并调用该方法后，SDK 会按设置的时间间隔触发 <xref
+                    keyref="onLocalVoicePitchInHz"/> 回调。</p>
+            <note type="attention">该方法在加入频道前后都能调用。</note>
+        </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry>
-                <pt>interval</pt>
-                <pd>
-                    <p>设置 SDK 触发 <apiname keyref="onLocalVoicePitchInHz"/> 回调的时间间隔：
-                        <ul>
-                            <li>≤ 0: 关闭 <apiname keyref="onLocalVoicePitchInHz"/> 回调。</li>
-                            <li>&gt; 0: SDK 触发 <apiname keyref="onLocalVoicePitchInHz"/> 回调的时间间隔，单位为毫秒。取值需大于等于 10 毫秒，如果小于 10 毫秒，SDK 会自动调整为 10 毫秒。</li>
-                        </ul>
-                    </p>
-                </pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>interval</pt>
+                    <pd>
+                        <p>设置 SDK 触发 <apiname keyref="onLocalVoicePitchInHz"/> 回调的时间间隔： <ul>
+                                <li>≤ 0: 关闭 <apiname keyref="onLocalVoicePitchInHz"/> 回调。</li>
+                                <li>&gt; 0: SDK 触发 <apiname keyref="onLocalVoicePitchInHz"/>
+                                    回调的时间间隔，单位为毫秒。取值需大于等于 10 毫秒，如果小于 10 毫秒，SDK 会自动调整为 10 毫秒。</li>
+                            </ul>
+                        </p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values" props="native electron cs">
             <title>返回值</title>
             <ul>
-            <li>0: 方法调用成功</li>
-            <li>&lt; 0: 方法调用失败</li>
-            </ul> </section>
+                <li>0: 方法调用成功</li>
+                <li>&lt; 0: 方法调用失败</li>
+            </ul>
+        </section>
     </refbody>
 </reference>

@@ -13,8 +13,8 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine facePositionDidChangeWidth:(int)width previewHeight:(int)height faces:(NSArray&lt;AgoraFacePositionInfo*>* _Nullable)faces NS_SWIFT_NAME(rtcEngine(_:facePositionDidChangeWidth:previewHeight:faces:));</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onFacePositionChanged(int imageWidth, int imageHeight,
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine facePositionDidChangeWidth:(int)width previewHeight:(int)height faces:(NSArray&lt;AgoraFacePositionInfo*>* _Nullable)faces NS_SWIFT_NAME(rtcEngine(_:facePositionDidChangeWidth:previewHeight:faces:));</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onFacePositionChanged(int imageWidth, int imageHeight,
                 const Rectangle* vecRectangle, const int* vecDistance,
                 int numFaces) {
                 (void) imageWidth;
@@ -23,10 +23,10 @@
                 (void) vecDistance;
                 (void) numFaces;
                 }</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public virtual void OnFacePositionChanged(int imageWidth, int imageHeight, Rectangle vecRectangle, int[] vecDistance, int numFaces) {}</codeblock></p>
+                <codeblock props="cs" outputclass="language-csharp">public virtual void OnFacePositionChanged(int imageWidth, int imageHeight, Rectangle vecRectangle, int[] vecDistance, int numFaces) {}</codeblock></p>
             <p outputclass="codeblock" props="rtc">
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine facePositionDidChangeWidth:(int)width previewHeight:(int)height faces:(NSArray&lt;AgoraFacePositionInfo*&gt;* _Nullable)faces;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onFacePositionChanged(int imageWidth,
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine facePositionDidChangeWidth:(int)width previewHeight:(int)height faces:(NSArray&lt;AgoraFacePositionInfo*&gt;* _Nullable)faces;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onFacePositionChanged(int imageWidth,
                 int imageHeight,
                 Rectangle* vecRectangle,
                 int* vecDistance,
@@ -37,89 +37,89 @@
                 (void)vecDistance;
                 (void)numFaces;
                 }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="cs" outputclass="language-csharp">public virtual void OnFacePositionChanged(int imageWidth, int imageHeight, Rectangle vecRectangle,
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="cs" outputclass="language-csharp">public virtual void OnFacePositionChanged(int imageWidth, int imageHeight, Rectangle vecRectangle,
             int[] vecDistance, int numFaces)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">FacePositionCallback? facePositionChanged;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">FacePositionCallback? facePositionChanged;</codeblock>
             </p>
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public void onFacePositionChanged(
+                <codeblock props="android" outputclass="language-java">public void onFacePositionChanged(
                 int imageWidth, int imageHeight, AgoraFacePositionInfo[] faceRectArr) {}</codeblock>
             </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>自从</dt>
-                <dd>v3.0.1</dd>
-            </dlentry>
+                <dlentry props="native">
+                    <dt>自从</dt>
+                    <dd>v3.0.1</dd>
+                </dlentry>
             </dl>
-            <p>调用 <xref keyref="enableFaceDetection"/>(<ph keyref="true"/>) 开启本地人脸检测后，你可以通过该回调实时获取以下人脸检测的信息：
-            
-            
-            <ul>
-            <li>摄像头采集的画面大小</li>
-            <li>人脸在画面中的位置</li>
-            <li>人脸距设备屏幕的距离</li>
-            </ul> </p>
+            <p>调用 <xref keyref="enableFaceDetection"/>(<ph keyref="true"/>)
+                开启本地人脸检测后，你可以通过该回调实时获取以下人脸检测的信息： <ul>
+                    <li>摄像头采集的画面大小</li>
+                    <li>人脸在画面中的位置</li>
+                    <li>人脸距设备屏幕的距离</li>
+                </ul>
+            </p>
             <p>其中，人脸距设备屏幕的距离由 SDK 通过摄像头采集的画面大小和人脸在画面中的位置拟合计算得出。</p>
             <note type="attention">
-            <ul>
-            <li props="cpp cs flutter">该回调仅适用于 Android 和 iOS 平台。</li>
-            <li>当检测到摄像头前的人脸消失时，该回调会立刻触发；在无人脸的状态下，该回调触发频率会降低，以节省设备耗能。</li>
-            <li>当人脸距离设备屏幕过近时，SDK 不会触发该回调。</li>
-            <li props="cpp android flutter"
-                >Android 平台上，人脸距设备屏幕的距离（<parmname>distance</parmname>）值有一定误差，请不要用它进行精确计算。</li>
-            </ul> </note> </section>
+                <ul>
+                    <li props="cpp cs flutter">该回调仅适用于 Android 和 iOS 平台。</li>
+                    <li>当检测到摄像头前的人脸消失时，该回调会立刻触发；在无人脸的状态下，该回调触发频率会降低，以节省设备耗能。</li>
+                    <li>当人脸距离设备屏幕过近时，SDK 不会触发该回调。</li>
+                    <li props="cpp android flutter">Android
+                            平台上，人脸距设备屏幕的距离（<parmname>distance</parmname>）值有一定误差，请不要用它进行精确计算。</li>
+                </ul>
+            </note>
+        </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"
-            />
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry>
-                <pt props="android cpp">imageWidth</pt>
-                <pt props="ios mac">width</pt>
-                <pd>摄像头采集画面的宽度 (px)。</pd>
-            </plentry>
-            <plentry>
-                <pt props="android cpp">imageHeight</pt>
-                <pt props="ios mac">hight</pt>
-                <pd>摄像头采集画面的高度 (px)。</pd>
-            </plentry>
-            <plentry props="android flutter ios mac">
-                <pt props="android">faceRectArr</pt>
-                <pt props="flutter ios mac">faces</pt>
-                <pd>检测到的人脸信息，详见 <xref keyref="AgoraFacePositionInfo"
-                    />。检测到几张人脸，就会报告几个 <apiname keyref="AgoraFacePositionInfo"
-                    /> 数组。数组长度可以为 0，表示没有检测到摄像头前出现人脸。</pd>
-            </plentry>
-            <plentry props="cpp cs">
-                <pt>vecRectangle</pt>
-                <pd>
-                    <p>检测到的人脸信息：
-                    
-                    
-                    <ul>
-                    <li><codeph>x</codeph>：人脸在画面中的 x 坐标 (px)。以摄像头采集画面的左上角为原点，x 坐标为人脸左上角相对于原点的横向位移。</li>
-                    <li><codeph>y</codeph>：人脸在画面中的 y 坐标 (px)。以摄像头采集画面的左上角为原点，y 坐标为人脸左上角相对原点的纵向位移。</li>
-                    <li><codeph>width</codeph>：人脸在画面中的宽度 (px)。</li>
-                    <li><codeph>height</codeph>：人脸在画面中的高度 (px)。</li>
-                    </ul> </p>
-                </pd>
-            </plentry>
-            <plentry props="cpp cs">
-                <pt>vecDistance</pt>
-                <pd>人脸距设备屏幕的距离 (cm)。</pd>
-            </plentry>
-            <plentry props="cpp cs">
-                <pt>numFaces</pt>
-                <pd>检测的人脸数量。如果为 0，则表示没有检测到人脸。</pd>
-            </plentry>
-            </parml> </section>
+                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry>
+                    <pt props="android cpp">imageWidth</pt>
+                    <pt props="ios mac">width</pt>
+                    <pd>摄像头采集画面的宽度 (px)。</pd>
+                </plentry>
+                <plentry>
+                    <pt props="android cpp">imageHeight</pt>
+                    <pt props="ios mac">hight</pt>
+                    <pd>摄像头采集画面的高度 (px)。</pd>
+                </plentry>
+                <plentry props="android flutter ios mac">
+                    <pt props="android">faceRectArr</pt>
+                    <pt props="flutter ios mac">faces</pt>
+                    <pd>检测到的人脸信息，详见 <xref keyref="AgoraFacePositionInfo"/>。检测到几张人脸，就会报告几个 <apiname
+                            keyref="AgoraFacePositionInfo"/> 数组。数组长度可以为 0，表示没有检测到摄像头前出现人脸。</pd>
+                </plentry>
+                <plentry props="cpp cs">
+                    <pt>vecRectangle</pt>
+                    <pd>
+                        <p>检测到的人脸信息： <ul>
+                                <li><codeph>x</codeph>：人脸在画面中的 x 坐标 (px)。以摄像头采集画面的左上角为原点，x
+                                    坐标为人脸左上角相对于原点的横向位移。</li>
+                                <li><codeph>y</codeph>：人脸在画面中的 y 坐标 (px)。以摄像头采集画面的左上角为原点，y
+                                    坐标为人脸左上角相对原点的纵向位移。</li>
+                                <li><codeph>width</codeph>：人脸在画面中的宽度 (px)。</li>
+                                <li><codeph>height</codeph>：人脸在画面中的高度 (px)。</li>
+                            </ul>
+                        </p>
+                    </pd>
+                </plentry>
+                <plentry props="cpp cs">
+                    <pt>vecDistance</pt>
+                    <pd>人脸距设备屏幕的距离 (cm)。</pd>
+                </plentry>
+                <plentry props="cpp cs">
+                    <pt>numFaces</pt>
+                    <pd>检测的人脸数量。如果为 0，则表示没有检测到人脸。</pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>

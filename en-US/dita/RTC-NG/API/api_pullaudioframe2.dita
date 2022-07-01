@@ -22,17 +22,29 @@
             </p>
         </section>
         <section id="detailed_desc">
-            <p>Before calling this method, you need to set <codeph>mEnableAudioDevice</codeph> in <xref keyref="create2"/> as <codeph><ph keyref="false"/></codeph>, and call <xref keyref="setExternalAudioSink"/> to notify the app to enable and set the external rendering.</p>
-            <p>After a successful method call, the app pulls the decoded and mixed audio data for playback.</p>
+            <p>Before calling this method, you need to set <codeph>mEnableAudioDevice</codeph> in
+                    <xref keyref="create2"/> as <codeph><ph keyref="false"/></codeph>, and call
+                    <xref keyref="setExternalAudioSink"/> to notify the app to enable and set the
+                external rendering.</p>
+            <p>After a successful method call, the app pulls the decoded and mixed audio data for
+                playback.</p>
             <note type="attention">
                 <ul>
-           <li>This method only supports pulling data from custom audio source. If you need to pull the data captured by the SDK, do not call this method.</li>
-           <li>Call this method after joining a channel.</li>
-                    <li>Once you enable the external audio sink, the app will not retrieve any audio data from the <xref keyref="onPlaybackAudioFrame"/> callback.</li>
-                    <li>The difference between this method and the <apiname keyref="onPlaybackAudioFrame"/> callback is as follows:<ul>
-                        <li><apiname keyref="onPlaybackAudioFrame"/>: The SDK sends the audio data to the app through this callback. Any delay in processing the audio frames may result in audio jitter.</li>
-                        <li><apiname keyref="pullAudioFrame"/>: The app pulls the remote audio data. After setting the audio data parameters, the SDK adjusts the frame buffer and avoids problems caused by jitter in the external audio playback.</li>
-                    </ul></li>
+                    <li>This method only supports pulling data from custom audio source. If you need
+                        to pull the data captured by the SDK, do not call this method.</li>
+                    <li>Call this method after joining a channel.</li>
+                    <li>Once you enable the external audio sink, the app will not retrieve any audio
+                        data from the <xref keyref="onPlaybackAudioFrame"/> callback.</li>
+                    <li>The difference between this method and the <apiname
+                            keyref="onPlaybackAudioFrame"/> callback is as follows:<ul>
+                            <li><apiname keyref="onPlaybackAudioFrame"/>: The SDK sends the audio
+                                data to the app through this callback. Any delay in processing the
+                                audio frames may result in audio jitter.</li>
+                            <li><apiname keyref="pullAudioFrame"/>: The app pulls the remote audio
+                                data. After setting the audio data parameters, the SDK adjusts the
+                                frame buffer and avoids problems caused by jitter in the external
+                                audio playback.</li>
+                        </ul></li>
                 </ul>
             </note>
         </section>
@@ -40,11 +52,17 @@
             <parml>
                 <plentry>
                     <pt>data</pt>
-                    <pd>The remote audio data to be pulled. The data type is <codeph>ByteBuffer</codeph>.</pd>
+                    <pd>The remote audio data to be pulled. The data type is
+                            <codeph>ByteBuffer</codeph>.</pd>
                 </plentry>
                 <plentry>
                     <pt>lengthInByte</pt>
-                    <pd>The length (in bytes) of the remote audio data. The value of this parameter is related to the audio duration, and the values of the <codeph>sampleRate</codeph> and <codeph>channels</codeph> parameters that you set in <apiname keyref="setExternalAudioSink"/>. <codeph>lengthInByte</codeph> = <codeph>sampleRate</codeph>/1000 × 2 × <codeph>channels</codeph> × audio duration (ms).</pd>
+                    <pd>The length (in bytes) of the remote audio data. The value of this parameter
+                        is related to the audio duration, and the values of the
+                            <codeph>sampleRate</codeph> and <codeph>channels</codeph> parameters
+                        that you set in <apiname keyref="setExternalAudioSink"/>.
+                            <codeph>lengthInByte</codeph> = <codeph>sampleRate</codeph>/1000 × 2 ×
+                            <codeph>channels</codeph> × audio duration (ms).</pd>
                 </plentry>
             </parml>
         </section>
@@ -54,5 +72,6 @@
                 <li>0: Success.</li>
                 <li>&lt; 0: Failure.</li>
             </ul>
-        </section></refbody>
+        </section>
+    </refbody>
 </reference>

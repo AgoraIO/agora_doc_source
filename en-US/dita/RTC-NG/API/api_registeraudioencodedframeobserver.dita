@@ -1,35 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_registeraudioencodedframeobserver">
-    <title><ph keyref="registerAudioEncodedFrameObserver" /></title>
+    <title><ph keyref="registerAudioEncodedFrameObserver"/></title>
     <shortdesc id="short"><ph id="shortdesc">Registers an encoded audio observer.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="registerAudioEncodedFrameObserver" />
+                <indexterm keyref="registerAudioEncodedFrameObserver"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="unity" outputclass="language-csharp">public abstract int RegisterAudioEncodedFrameObserver(AudioEncodedFrameObserverConfig config,  IAgoraRtcAudioEncodedFrameObserver observer);</codeblock></p>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int RegisterAudioEncodedFrameObserver(AudioEncodedFrameObserverConfig config,  IAgoraRtcAudioEncodedFrameObserver observer);</codeblock></p>
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int registerAudioEncodedFrameObserver(
+                <codeblock props="android" outputclass="language-java">public abstract int registerAudioEncodedFrameObserver(
       AudioEncodedFrameObserverConfig config, IAudioEncodedFrameObserver observer);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setAudioEncodedFrameDelegate:(id&lt;AgoraAudioEncodedFrameDelegate&gt; _Nonnull)delegate 
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)setAudioEncodedFrameDelegate:(id&lt;AgoraAudioEncodedFrameDelegate&gt; _Nonnull)delegate 
                     config:(AgoraAudioEncodedFrameDelegateConfig * _Nonnull) config;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int registerAudioEncodedFrameObserver(const AudioEncodedFrameObserverConfig&amp; config,  IAudioEncodedFrameObserver *observer) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int registerAudioEncodedFrameObserver(const AudioEncodedFrameObserverConfig&amp; config,  IAudioEncodedFrameObserver *observer) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
             <p>
                 <note id="note_igp_ygf_3qb" type="attention">
                     <ul id="ul_mvp_zgf_3qb">
                         <li>Call this method after joining a channel.</li>
-                        <li>This method and <xref keyref="startAudioRecording3" /> both set the audio content and audio quality. Agora recommends not using this method and <apiname keyref="startAudioRecording3" /> together; otherwise, only the method called later will take effect.</li>
+                        <li>This method and <xref keyref="startAudioRecording3"/> both set the audio
+                            content and audio quality. Agora recommends not using this method and
+                                <apiname keyref="startAudioRecording3"/> together; otherwise, only
+                            the method called later will take effect.</li>
                     </ul>
                 </note>
             </p>
@@ -39,7 +43,8 @@
                 <plentry>
                     <pt>config</pt>
                     <pd>
-                        <p>Observer settings for the encoded audio. For details, see <xref keyref="AudioEncodedFrameObserverConfig" />.</p>
+                        <p>Observer settings for the encoded audio. For details, see <xref
+                                keyref="AudioEncodedFrameObserverConfig"/>.</p>
                     </pd>
                 </plentry>
             </parml>
@@ -48,7 +53,8 @@
                     <pt props="android cpp">observer</pt>
                     <pt props="ios mac">delegate</pt>
                     <pd>
-                        <p>The encoded audio observer. For details, see <xref keyref="IAudioEncodedFrameObserver" />.</p>
+                        <p>The encoded audio observer. For details, see <xref
+                                keyref="IAudioEncodedFrameObserver"/>.</p>
                     </pd>
                 </plentry>
             </parml>

@@ -2,7 +2,8 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_videosourceconnectioninterrupted">
     <title><ph keyref="videoSourceConnectionInterrupted"/></title>
-    <shortdesc id="short"><ph id="shortdesc" conkeyref="onConnectionInterrupted/shortdesc"/></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" conkeyref="onConnectionInterrupted/shortdesc"
+        /></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -13,30 +14,30 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp"/>
-            <codeblock props="electron" outputclass="language-typescript">on(evt: VideoSourceEvents.VIDEO_SOURCE_CONNECTION_INTERRUPTED, cb: () =&gt; void): this;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp"/>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: VideoSourceEvents.VIDEO_SOURCE_CONNECTION_INTERRUPTED, cb: () =&gt; void): this;</codeblock>
+                <codeblock props="cs" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
             <p>双实例回调。</p>
             <dl outputclass="deprecated">
-            <dlentry>
-                <dt>弃用:</dt>
-                <dd>请改用 <xref keyref="videoSourceConnectionStateChanged"/> 回调。</dd>
-            </dlentry>
+                <dlentry>
+                    <dt>弃用:</dt>
+                    <dd>请改用 <xref keyref="videoSourceConnectionStateChanged"/> 回调。</dd>
+                </dlentry>
             </dl>
-            <p>SDK 在和服务器建立连接后，失去了网络连接超过 4 秒，会触发该回调。在触发事件后，SDK 会主动重连服务器，所以该事件可以用于 UI 提示。该回调与 <xref keyref="videoSourceConnectionLost"/> 的区别是：
-                
-            
-            <ul>
-            <li><apiname keyref="videoSourceConnectionInterrupted"/> 回调一定是发生在成功加入频道后，且 SDK 刚失去和服务器连接超过 4 秒时触发。</li>
-            <li><apiname keyref="videoSourceConnectionLost"/> 回调是无论是否成功加入频道，只要 10 秒内和服务器无法建立连接都会触发。</li>
-            </ul>
-                如果 SDK 在断开连接后，20 分钟内还是没能重新加入频道，SDK 会停止尝试重连。</p>
+            <p>SDK 在和服务器建立连接后，失去了网络连接超过 4 秒，会触发该回调。在触发事件后，SDK 会主动重连服务器，所以该事件可以用于 UI 提示。该回调与 <xref
+                    keyref="videoSourceConnectionLost"/> 的区别是： <ul>
+                    <li><apiname keyref="videoSourceConnectionInterrupted"/> 回调一定是发生在成功加入频道后，且 SDK
+                        刚失去和服务器连接超过 4 秒时触发。</li>
+                    <li><apiname keyref="videoSourceConnectionLost"/> 回调是无论是否成功加入频道，只要 10
+                        秒内和服务器无法建立连接都会触发。</li>
+                </ul> 如果 SDK 在断开连接后，20 分钟内还是没能重新加入频道，SDK 会停止尝试重连。</p>
         </section>
     </refbody>
 </reference>

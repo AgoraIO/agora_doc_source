@@ -13,25 +13,30 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">virtual IVideoDeviceCollection* enumerateVideoDevices() = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">getVideoDevices(): Array&lt;{ deviceid: string, devicename: string }&gt;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public abstract DeviceInfo[] EnumerateVideoDevices();</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;List&lt;MediaDeviceInfo&gt;&gt; enumerateVideoDevices()</codeblock> </p>
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">virtual IVideoDeviceCollection* enumerateVideoDevices() = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">getVideoDevices(): Array&lt;{ deviceid: string, devicename: string }&gt;</codeblock>
+                <codeblock props="cs" outputclass="language-csharp">public abstract DeviceInfo[] EnumerateVideoDevices();</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;List&lt;MediaDeviceInfo&gt;&gt; enumerateVideoDevices()</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p props="cpp electron">该方法返回一个 <xref keyref="IVideoDeviceCollection"/> 对象，包含系统中所有的视频设备。通过 <apiname keyref="IVideoDeviceCollection"/> 对象，App 可以枚举视频设备。 
-       App 必须调用 <xref keyref="release_IVideoDeviceCollection"/> 方法在使用过后释放返回的对象。</p>
+            <p props="cpp electron">该方法返回一个 <xref keyref="IVideoDeviceCollection"/>
+                对象，包含系统中所有的视频设备。通过 <apiname keyref="IVideoDeviceCollection"/> 对象，App 可以枚举视频设备。 App
+                必须调用 <xref keyref="release_IVideoDeviceCollection"/> 方法在使用过后释放返回的对象。</p>
         </section>
         <section id="return_values">
             <title>返回值</title>
             <ul>
-            <li props="cpp electron">方法调用成功: 返回一个 <apiname keyref="IVideoDeviceCollection"/> 对象，其中包含系统中所有视频设备。</li>
-            <li props="cs">方法调用成功：返回一个 DeviceInfo 数组，其中包含系统中所有视频设备。</li>
-            <li props="flutter">方法调用成功：返回一个 <xref keyref="MediaDeviceInfo"/> 对象，其中包含系统中所有视频设备。</li>
-            <li>方法调用失败: <ph keyref="NULL"/>。</li>
-            </ul> </section>
+                <li props="cpp electron">方法调用成功: 返回一个 <apiname keyref="IVideoDeviceCollection"/>
+                    对象，其中包含系统中所有视频设备。</li>
+                <li props="cs">方法调用成功：返回一个 DeviceInfo 数组，其中包含系统中所有视频设备。</li>
+                <li props="flutter">方法调用成功：返回一个 <xref keyref="MediaDeviceInfo"/>
+                    对象，其中包含系统中所有视频设备。</li>
+                <li>方法调用失败: <ph keyref="NULL"/>。</li>
+            </ul>
+        </section>
     </refbody>
 </reference>

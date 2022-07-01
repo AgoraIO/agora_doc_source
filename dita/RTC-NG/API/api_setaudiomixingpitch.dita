@@ -13,36 +13,43 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int setAudioMixingPitch(int pitch);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setAudioMixingPitch:(NSInteger)pitch;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int setAudioMixingPitch(int pitch) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">setAudioMixingPitch(pitch: number): number</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int SetAudioMixingPitch(int pitch);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAudioMixingPitch(int pitch);</codeblock> </p>
+                <codeblock props="android" outputclass="language-java">public abstract int setAudioMixingPitch(int pitch);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)setAudioMixingPitch:(NSInteger)pitch;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setAudioMixingPitch(int pitch) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">setAudioMixingPitch(pitch: number): number</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetAudioMixingPitch(int pitch);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAudioMixingPitch(int pitch);</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>自从</dt>
-                <dd>v3.0.1</dd>
-            </dlentry>
+                <dlentry props="native">
+                    <dt>自从</dt>
+                    <dd>v3.0.1</dd>
+                </dlentry>
             </dl>
             <p>本地人声和播放的音乐文件混音时，调用该方法可以仅调节音乐文件的音调。</p>
-            <note type="attention">你需要在调用 <apiname keyref="startAudioMixing2"/> 并收到 <codeph><apiname keyref="onAudioMixingStateChanged"/>(<apiname keyref="AUDIO_MIXING_STATE_PLAYING"/>)</codeph> 回调后调用该方法。</note> </section>
+            <note type="attention">你需要在调用 <apiname keyref="startAudioMixing2"/> 并收到 <codeph><apiname
+                        keyref="onAudioMixingStateChanged"/>(<apiname
+                        keyref="AUDIO_MIXING_STATE_PLAYING"/>)</codeph> 回调后调用该方法。</note>
+        </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry id="pitch">
-                <pt>pitch</pt>
-                <pd>按半音音阶调整本地播放的音乐文件的音调，默认值为 0，即不调整音调。取值范围为 [-12,12]，每相邻两个值的音高距离相差半音。取值的绝对值越大，音调升高或降低得越多。</pd>
-            </plentry>
-            </parml> </section>
+                <plentry id="pitch">
+                    <pt>pitch</pt>
+                    <pd>按半音音阶调整本地播放的音乐文件的音调，默认值为 0，即不调整音调。取值范围为
+                        [-12,12]，每相邻两个值的音高距离相差半音。取值的绝对值越大，音调升高或降低得越多。</pd>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values" props="native electron unity">
             <title>返回值</title>
             <ul>
-            <li>0: 方法调用成功</li>
-            <li>&lt; 0: 方法调用失败</li>
-            </ul> </section>
+                <li>0: 方法调用成功</li>
+                <li>&lt; 0: 方法调用失败</li>
+            </ul>
+        </section>
     </refbody>
 </reference>

@@ -1,142 +1,180 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_joinchannel2">
-    <title><ph keyref="joinChannel2" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Joins a channel with the user ID, and configures whether to automatically subscribe to the audio or video streams.</ph></shortdesc>
+    <title><ph keyref="joinChannel2"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Joins a channel with the user ID, and configures
+            whether to automatically subscribe to the audio or video streams.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="joinChannel2" />
+                <indexterm keyref="joinChannel2"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="android" outputclass="language-java">public abstract int joinChannel(
+                <codeblock props="android" outputclass="language-java">public abstract int joinChannel(
                 String token, String channelId, int uid, ChannelMediaOptions options);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)joinChannelByToken:(NSString * _Nullable)token
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)joinChannelByToken:(NSString * _Nullable)token
                 channelId:(NSString * _Nonnull)channelId
                 uid:(NSUInteger)uid
                 mediaOptions:(AgoraRtcChannelMediaOptions * _Nonnull)mediaOptions
                 joinSuccess:(void(^ _Nullable)(NSString * _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int joinChannel(const char* token, const char* channelId, uid_t uid,
-                const ChannelMediaOptions&amp; options) = 0;</codeblock> </p>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int joinChannel(const char* token, const char* channelId, uid_t uid,
+                const ChannelMediaOptions&amp; options) = 0;</codeblock>
+            </p>
             <p outputclass="codeblock" props="rtc">
-            <codeblock props="android" outputclass="language-java">public abstract int joinChannel(String token, String channelName, String optionalInfo, int optionalUid, ChannelMediaOptions options);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)joinChannelByToken:(NSString* _Nullable)token channelId:(NSString* _Nonnull)channelId info:(NSString* _Nullable)info uid:(NSUInteger)uid options:(AgoraRtcChannelMediaOptions* _Nonnull)options;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int joinChannel(const char* token, const char* channelId, const char* info, uid_t uid, const ChannelMediaOptions&amp; options) = 0;</codeblock> </p>
+                <codeblock props="android" outputclass="language-java">public abstract int joinChannel(String token, String channelName, String optionalInfo, int optionalUid, ChannelMediaOptions options);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)joinChannelByToken:(NSString* _Nullable)token channelId:(NSString* _Nonnull)channelId info:(NSString* _Nullable)info uid:(NSUInteger)uid options:(AgoraRtcChannelMediaOptions* _Nonnull)options;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int joinChannel(const char* token, const char* channelId, const char* info, uid_t uid, const ChannelMediaOptions&amp; options) = 0;</codeblock>
+            </p>
             <p outputclass="codeblock">
-            <codeblock props="electron" outputclass="language-typescript">joinChannel(
+                <codeblock props="electron" outputclass="language-typescript">joinChannel(
     token: string,
     info: string,
     uid: number,
     options?: ChannelMediaOptions
     ): number</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public abstract int JoinChannel(string token, string channelId, string info, uint uid,
+                <codeblock props="cs" outputclass="language-csharp">public abstract int JoinChannel(string token, string channelId, string info, uint uid,
             ChannelMediaOptions options);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; joinChannel(
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; joinChannel(
       String? token, String channelName, String? optionalInfo, int optionalUid,
-      [ChannelMediaOptions? options]);</codeblock> </p>
+      [ChannelMediaOptions? options]);</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>Since</dt>
-                <dd>v3.3.0</dd>
-            </dlentry>
+                <dlentry props="native">
+                    <dt>Since</dt>
+                    <dd>v3.3.0</dd>
+                </dlentry>
             </dl>
-            <p id="desc1">This method enables the local user to join a real-time audio and video interaction channel. With the same App ID, users in the same channel can talk to each other, and multiple users in the same channel can start a group chat.</p>
-            <p id="desc2">A successful call of this method triggers the following callbacks: 
-            
-            
-            
-            
-            <ul>
-            <li>The local client: The <xref keyref="onJoinChannelSuccess" /> and <xref keyref="onConnectionStateChanged" /> callbacks.</li>
-            <li>The remote client: <xref keyref="onUserJoined" />, if the user joining the channel is in the Communication profile or is a host in the Live-broadcasting profile.</li>
-            </ul></p>
-            <p id="desc3">When the connection between the client and Agora's server is interrupted due to poor network conditions, the SDK tries reconnecting to the server. When the local client successfully rejoins the channel, the SDK triggers the <xref keyref="onRejoinChannelSuccess" /> callback on the local client.</p>
-            <note type="attention" props="android ios mac cpp">Compared to <xref keyref="joinChannel1" />, this method adds the <parmname>options</parmname> parameter to configure whether to automatically subscribe to all remote audio and video streams in the channel when the user joins the channel. By default, the user subscribes to the audio and video streams of all the other users in the channel, giving rise to usage and billings.
-      To stop subscribing to other streams, set the <parmname>options</parmname> parameter or call the corresponding <apiname>mute</apiname> methods.</note> </section>
+            <p id="desc1">This method enables the local user to join a real-time audio and video
+                interaction channel. With the same App ID, users in the same channel can talk to
+                each other, and multiple users in the same channel can start a group chat.</p>
+            <p id="desc2">A successful call of this method triggers the following callbacks: <ul>
+                    <li>The local client: The <xref keyref="onJoinChannelSuccess"/> and <xref
+                            keyref="onConnectionStateChanged"/> callbacks.</li>
+                    <li>The remote client: <xref keyref="onUserJoined"/>, if the user joining the
+                        channel is in the Communication profile or is a host in the
+                        Live-broadcasting profile.</li>
+                </ul></p>
+            <p id="desc3">When the connection between the client and Agora's server is interrupted
+                due to poor network conditions, the SDK tries reconnecting to the server. When the
+                local client successfully rejoins the channel, the SDK triggers the <xref
+                    keyref="onRejoinChannelSuccess"/> callback on the local client.</p>
+            <note type="attention" props="android ios mac cpp">Compared to <xref
+                    keyref="joinChannel1"/>, this method adds the <parmname>options</parmname>
+                parameter to configure whether to automatically subscribe to all remote audio and
+                video streams in the channel when the user joins the channel. By default, the user
+                subscribes to the audio and video streams of all the other users in the channel,
+                giving rise to usage and billings. To stop subscribing to other streams, set the
+                    <parmname>options</parmname> parameter or call the corresponding
+                    <apiname>mute</apiname> methods.</note>
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry id="token">
-                <pt>token</pt>
-                <pd>
-                    <p>The token generated on your server for authentication. See <xref keyref="guide-token">Authenticate Your Users with Token</xref>.</p>
-                    <note type="caution">Ensure that the App ID used for creating the token is the same App ID used by the <xref keyref="create2" /> method for initializing the RTC engine.</note> </pd>
-            </plentry>
-            <plentry id="channelID">
-                <pt props="ios mac cpp cs">channelId</pt>
-                <pt props="android flutter"><ph props="rtc">channelName</ph><ph props="rtc-ng">channelId</ph></pt>
-                <pd>
-                    <p id="channelID_desc">The channel name. This parameter signifies the channel in which users engage in real-time audio and video interaction. Under the premise of the same App ID, users who fill in the same channel ID enter the same channel for audio and video interaction. The string length must be less than 64 bytes. Supported characters:
-                    
-                    
-                    
-                    
-                    <ul id="char_support">
-                    <li>The 26 lowercase English letters: a to z.</li>
-                    <li>The 26 uppercase English letters: A to Z.</li>
-                    <li>The 10 numeric characters: 0 to 9.</li>
-                    <li>Space</li>
-                    <li>"!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", "&gt;", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","</li>
-                    </ul></p>
-                </pd>
-            </plentry>
-            <plentry id="info" props="rtc">
-                <pt props="ios mac electron cs cpp">info</pt>
-                <pt props="android flutter">optionalInfo</pt>
-                <pd>
-                    <p>Reserved for future use.</p>
-                </pd>
-            </plentry>
-            <plentry id="uid">
-                <pt props="ios mac cpp electron cs">uid</pt>
-                <pt props="android flutter"><ph props="rtc">optionalUid</ph><ph props="rtc-ng">uid</ph></pt>
-                <pd>User ID This parameter is used to identify the user in the channel for real-time audio and video interaction. You need to set and manage user IDs yourself, and ensure that each user ID in the same channel is unique.  This parameter is a 32-bit unsigned integer.  The value range is 1 to
-                            2<sup>32</sup>-1. If the user ID is not assigned (or set to 0), the SDK assigns a random user ID and returns it in the <apiname keyref="onJoinChannelSuccess" /> callback. Your app must maintain the returned user ID, because the SDK
-                        does not do so.</pd>
-            </plentry>
-            <plentry id="options">
-                <pt props="cpp android electron cs flutter">options</pt>
-                <pt props="ios mac"><ph props="rtc">options</ph><ph props="rtc-ng">mediaOptions</ph></pt>
-                <pd>
-                    <p id="options_desc">The channel media options. For details, see <xref keyref="ChannelMediaOptions" />.</p>
-                </pd>
-            </plentry>
-            <plentry props="ios mac" id="joinsuccessblock">
-                <pt props="rtc-ng">joinSuccessBlock</pt>
-                <pd props="rtc-ng">The block of a user joining the specified channel. <codeph>joinSuccessBlock</codeph> takes higher priority than <xref keyref="onJoinChannelSuccess" />. If you implement both callbacks, only <codeph>block</codeph> is triggered. Agora recommends setting <codeph>joinSuccessBlock</codeph> as <codeph>nil</codeph> to use the <xref keyref="IRtcEngineEventHandler" /> callback.</pd>
-            </plentry>
-            </parml> </section>
+                <plentry id="token">
+                    <pt>token</pt>
+                    <pd>
+                        <p>The token generated on your server for authentication. See <xref
+                                keyref="guide-token">Authenticate Your Users with Token</xref>.</p>
+                        <note type="caution">Ensure that the App ID used for creating the token is
+                            the same App ID used by the <xref keyref="create2"/> method for
+                            initializing the RTC engine.</note>
+                    </pd>
+                </plentry>
+                <plentry id="channelID">
+                    <pt props="ios mac cpp cs">channelId</pt>
+                    <pt props="android flutter"><ph props="rtc">channelName</ph><ph props="rtc-ng"
+                            >channelId</ph></pt>
+                    <pd>
+                        <p id="channelID_desc">The channel name. This parameter signifies the
+                            channel in which users engage in real-time audio and video interaction.
+                            Under the premise of the same App ID, users who fill in the same channel
+                            ID enter the same channel for audio and video interaction. The string
+                            length must be less than 64 bytes. Supported characters: <ul
+                                id="char_support">
+                                <li>The 26 lowercase English letters: a to z.</li>
+                                <li>The 26 uppercase English letters: A to Z.</li>
+                                <li>The 10 numeric characters: 0 to 9.</li>
+                                <li>Space</li>
+                                <li>"!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";",
+                                    "&lt;", "=", ".", "&gt;", "?", "@", "[", "]", "^", "_", "{",
+                                    "}", "|", "~", ","</li>
+                            </ul></p>
+                    </pd>
+                </plentry>
+                <plentry id="info" props="rtc">
+                    <pt props="ios mac electron cs cpp">info</pt>
+                    <pt props="android flutter">optionalInfo</pt>
+                    <pd>
+                        <p>Reserved for future use.</p>
+                    </pd>
+                </plentry>
+                <plentry id="uid">
+                    <pt props="ios mac cpp electron cs">uid</pt>
+                    <pt props="android flutter"><ph props="rtc">optionalUid</ph><ph props="rtc-ng"
+                            >uid</ph></pt>
+                    <pd>User ID This parameter is used to identify the user in the channel for
+                        real-time audio and video interaction. You need to set and manage user IDs
+                        yourself, and ensure that each user ID in the same channel is unique. This
+                        parameter is a 32-bit unsigned integer. The value range is 1 to
+                            2<sup>32</sup>-1. If the user ID is not assigned (or set to 0), the SDK
+                        assigns a random user ID and returns it in the <apiname
+                            keyref="onJoinChannelSuccess"/> callback. Your app must maintain the
+                        returned user ID, because the SDK does not do so.</pd>
+                </plentry>
+                <plentry id="options">
+                    <pt props="cpp android electron cs flutter">options</pt>
+                    <pt props="ios mac"><ph props="rtc">options</ph><ph props="rtc-ng"
+                            >mediaOptions</ph></pt>
+                    <pd>
+                        <p id="options_desc">The channel media options. For details, see <xref
+                                keyref="ChannelMediaOptions"/>.</p>
+                    </pd>
+                </plentry>
+                <plentry props="ios mac" id="joinsuccessblock">
+                    <pt props="rtc-ng">joinSuccessBlock</pt>
+                    <pd props="rtc-ng">The block of a user joining the specified channel.
+                            <codeph>joinSuccessBlock</codeph> takes higher priority than <xref
+                            keyref="onJoinChannelSuccess"/>. If you implement both callbacks, only
+                            <codeph>block</codeph> is triggered. Agora recommends setting
+                            <codeph>joinSuccessBlock</codeph> as <codeph>nil</codeph> to use the
+                            <xref keyref="IRtcEngineEventHandler"/> callback.</pd>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values" props="android apple cpp electron cs">
             <title>Returns</title>
             <ul>
-            <li>0(ERR_OK): Success.</li>
-            <li>&lt; 0: Failure.
-                
-                
-                
-                
-                <ul>
-                <li>-2 (ERR_INVALID_ARGUMENT): The parameter is invalid.</li>
-                <li>-3(ERR_NOT_READY): The SDK fails to be initialized. You can try re-initializing the SDK.</li>
-                <li>-5(ERR_REFUSED): The request is rejected. This may be caused by the following:
-                    
-                    
-                    
-                    
-                    <ul>
-                    <li>You have created an <xref keyref="IChannel" /> object with the same channel name.</li>
-                    <li>You have joined a channel by using <apiname keyref="IChannel" /> and published a stream in the <apiname keyref="IChannel" /> channel.</li>
+                <li>0(ERR_OK): Success.</li>
+                <li>&lt; 0: Failure. <ul>
+                        <li>-2 (ERR_INVALID_ARGUMENT): The parameter is invalid.</li>
+                        <li>-3(ERR_NOT_READY): The SDK fails to be initialized. You can try
+                            re-initializing the SDK.</li>
+                        <li>-5(ERR_REFUSED): The request is rejected. This may be caused by the
+                            following: <ul>
+                                <li>You have created an <xref keyref="IChannel"/> object with the
+                                    same channel name.</li>
+                                <li>You have joined a channel by using <apiname keyref="IChannel"/>
+                                    and published a stream in the <apiname keyref="IChannel"/>
+                                    channel.</li>
+                            </ul></li>
+                        <li>-7(ERR_NOT_INITIALIZED): The SDK is not initialized before calling this
+                            method. Initialize the <xref keyref="IRtcEngine"/> instance before
+                            calling this method.</li>
+                        <li>-17(ERR_JOIN_CHANNEL_REJECTED): The request to join the channel is
+                            rejected. The SDK supports joining only one <xref keyref="IRtcEngine"/>
+                            channel at a time. Therefore, the SDK returns this error code when a
+                            user who has already joined an <xref keyref="IRtcEngine"/> channel calls
+                            the joining channel method of the <xref keyref="IRtcEngine"/> class with
+                            a valid channel name.</li>
                     </ul></li>
-                <li>-7(ERR_NOT_INITIALIZED): The SDK is not initialized before calling this method. Initialize the <xref keyref="IRtcEngine" /> instance before calling this method.</li>
-                <li>-17(ERR_JOIN_CHANNEL_REJECTED): The request to join the channel is rejected. The SDK supports joining only one <xref keyref="IRtcEngine" /> channel at a time. Therefore, the SDK returns this error code when a user who has already joined an <xref keyref="IRtcEngine" /> channel calls the joining channel method of the <xref keyref="IRtcEngine" /> class with a valid channel name.</li>
-                </ul></li>
-            </ul> </section>
+            </ul>
+        </section>
     </refbody>
 </reference>

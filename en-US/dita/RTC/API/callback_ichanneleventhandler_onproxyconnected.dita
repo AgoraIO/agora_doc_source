@@ -13,44 +13,50 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onProxyConnected(IChannel* rtcChannel, uid_t uid, PROXY_TYPE proxyType, const char* localProxyIp, int elapsed) {
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onProxyConnected(IChannel* rtcChannel, uid_t uid, PROXY_TYPE proxyType, const char* localProxyIp, int elapsed) {
     (void)rtcChannel;
     (void)uid;
     (void)proxyType;
     (void)localProxyIp;
     (void)elapsed;
   }</codeblock>
-            <codeblock props="cs" outputclass="language-csharp">public virtual void OnProxyConnected(string channelId, uint uid, PROXY_TYPE proxyType, string localProxyIp, int elapsed)</codeblock> </p>
+                <codeblock props="cs" outputclass="language-csharp">public virtual void OnProxyConnected(string channelId, uint uid, PROXY_TYPE proxyType, string localProxyIp, int elapsed)</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p>You can use this callback to listen for the state of the SDK connecting to a proxy. For example, when a user calls <xref keyref="setCloudProxy"/> and joins a channel successfully, the SDK triggers this callback to report the user ID, the proxy type connected, and the time elapsed from the user calling <xref keyref="IChannel_joinChannel"/> until this callback is triggered.</p>
+            <p>You can use this callback to listen for the state of the SDK connecting to a proxy.
+                For example, when a user calls <xref keyref="setCloudProxy"/> and joins a channel
+                successfully, the SDK triggers this callback to report the user ID, the proxy type
+                connected, and the time elapsed from the user calling <xref
+                    keyref="IChannel_joinChannel"/> until this callback is triggered.</p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
-            <plentry props="native cs" conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry conkeyref="onProxyConnected/uid">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry conkeyref="onProxyConnected/proxyType">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry conkeyref="onProxyConnected/localProxyIp">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry conkeyref="onProxyConnected/elapsed">
-                <pt/>
-                <pd/>
-            </plentry>
-            </parml> </section>
+                <plentry props="native cs" conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry conkeyref="onProxyConnected/uid">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry conkeyref="onProxyConnected/proxyType">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry conkeyref="onProxyConnected/localProxyIp">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry conkeyref="onProxyConnected/elapsed">
+                    <pt/>
+                    <pd/>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>
