@@ -25,8 +25,8 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioDeviceStateChanged(string deviceId, MEDIA_DEVICE_TYPE deviceType, MEDIA_DEVICE_STATE_TYPE deviceState) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">final void Function(String deviceId, int deviceType, int deviceState)?
-      onAudioDeviceStateChanged;
+            <codeblock props="flutter" outputclass="language-dart">final void Function(String deviceId, MediaDeviceType deviceType,
+      MediaDeviceStateType deviceState)? onAudioDeviceStateChanged;
 </codeblock> </p>
         </section>
         <section id="detailed_desc">
@@ -47,14 +47,16 @@
             <plentry>
                 <pt>deviceState</pt>
                 <pd>设备状态定义。 
+                        
+                    <ul>
+                    <li>macOS 平台： 
+                            
                         <ul>
-                        <li>macOS 平台： 
-                            <ul>
-                            <li>0: 设备就绪。</li>
-                            <li>8: 设备被拔出。</li>
-                            </ul> </li>
-                        <li>Windows 平台：详见 <xref keyref="MEDIA_DEVICE_STATE_TYPE"/>。</li>
-                        </ul> </pd>
+                        <li>0: 设备就绪。</li>
+                        <li>8: 设备被拔出。</li>
+                        </ul> </li>
+                    <li>Windows 平台：详见 <xref keyref="MEDIA_DEVICE_STATE_TYPE"/>。</li>
+                    </ul> </pd>
             </plentry>
             </parml> </section>
     </refbody>

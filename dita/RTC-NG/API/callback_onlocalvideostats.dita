@@ -22,7 +22,9 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnLocalVideoStats(RtcConnection connection, LocalVideoStats stats) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, LocalVideoStats stats)?
+      onLocalVideoStats;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p id="desc">该回调描述本地设备发送视频流的统计信息，每 2 秒触发一次。</p>
@@ -35,10 +37,10 @@
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="rtc-ng">
-                <pt props="unity">connection</pt>
-                <pd props="unity">Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
-            </plentry>
+            <plentry props="unity flutter">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
             <plentry>
                 <pt>stats</pt>
                 <pd>本地视频流统计信息。详见 <xref keyref="LocalVideoStats"/>。</pd>

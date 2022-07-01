@@ -33,7 +33,12 @@ elapseSinceLastState:(int)elapseSinceLastState;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioPublishStateChanged(string channel, STREAM_PUBLISH_STATE oldState,
             STREAM_PUBLISH_STATE newState, int elapseSinceLastState)</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(
+      String channel,
+      StreamPublishState oldState,
+      StreamPublishState newState,
+      int elapseSinceLastState)? onAudioPublishStateChanged;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
@@ -47,27 +52,27 @@ elapseSinceLastState:(int)elapseSinceLastState;</codeblock>
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry>
-                <pt props="android cpp unity flutter">channel</pt>
-                <pt props="ios mac">channelId</pt>
-                <pd>频道名。</pd>
-            </plentry>
-            <plentry id="oldState">
-                <pt>oldState</pt>
-                <pd>之前的发布状态，详见 <xref keyref="STREAM_PUBLISH_STATE"/>。</pd>
-            </plentry>
-            <plentry id="newState">
-                <pt>newState</pt>
-                <pd>当前的发布状态，详见 <apiname keyref="STREAM_PUBLISH_STATE"/>。</pd>
-            </plentry>
-            <plentry id="elapseSinceLastState">
-                <pt>elapseSinceLastState</pt>
-                <pd>两次状态变化时间间隔（毫秒）。</pd>
-            </plentry>
+                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry>
+                    <pt props="android cpp unity flutter">channel</pt>
+                    <pt props="ios mac">channelId</pt>
+                    <pd>频道名。</pd>
+                </plentry>
+                <plentry id="oldState">
+                    <pt>oldState</pt>
+                    <pd>之前的发布状态，详见 <xref keyref="STREAM_PUBLISH_STATE"/>。</pd>
+                </plentry>
+                <plentry id="newState">
+                    <pt>newState</pt>
+                    <pd>当前的发布状态，详见 <apiname keyref="STREAM_PUBLISH_STATE"/>。</pd>
+                </plentry>
+                <plentry id="elapseSinceLastState">
+                    <pt>elapseSinceLastState</pt>
+                    <pd>两次状态变化时间间隔（毫秒）。</pd>
+                </plentry>
             </parml> </section>
     </refbody>
 </reference>

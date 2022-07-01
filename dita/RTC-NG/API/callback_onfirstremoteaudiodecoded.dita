@@ -26,7 +26,9 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstRemoteAudioDecoded(RtcConnection connection, uint uid, int elapsed) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">coded;</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int uid, int elapsed)?
+      onFirstRemoteAudioDecoded;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated">
@@ -36,9 +38,11 @@
             </dlentry>
             </dl>
             <p>SDK 会在以下时机触发该回调：
+            
             <ul>
             <li>远端用户首次上线后发送音频。</li>
             <li>远端用户音频离线再上线发送音频。音频离线指本地在 15 秒内没有收到音频包，可能有如下原因：
+                
                 <ul>
                 <li>远端用户离开频道</li>
                 <li>远端用户掉线</li>
@@ -55,11 +59,11 @@
                 <pt>engine</pt>
                 <pd><xref keyref="IRtcEngine"/> 对象。</pd>
             </plentry>
-                <plentry props="unity" conkeyref="joinChannelEx/connection">
-                    <pt></pt>
-                    <pd></pd>
+            <plentry props="unity flutter" conkeyref="joinChannelEx/connection">
+                    <pt/>
+                    <pd/>
                 </plentry>
-                <plentry>
+            <plentry>
                 <pt>uid</pt>
                 <pd>远端用户 ID。</pd>
             </plentry>

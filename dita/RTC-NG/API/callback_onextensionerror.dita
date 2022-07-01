@@ -28,7 +28,9 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnExtensionErrored(string provider, string ext_name, int error, string msg) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(String provider, String extName, int error, String msg)?
+      onExtensionErrored;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>当调用 <codeph><xref keyref="enableExtension"/>(<q><ph keyref="true"/></q>)</codeph> 启用插件失败或者插件运行出错时， 插件会触发该回调并上报错误码和错误原因。</p>
@@ -42,6 +44,7 @@
             </plentry>
             <plentry>
                 <pt props="native">extension</pt>
+                    <pt props="flutter">extName</pt>
                 <pt props="unity">ext_name</pt>
                 <pd>插件的名称。</pd>
             </plentry>
@@ -51,7 +54,7 @@
             </plentry>
             <plentry>
                 <pt props="native">message</pt>
-                <pt props="unity">msg</pt>
+                <pt props="unity flutter">msg</pt>
                 <pd>错误原因。详见插件服务商提供的插件文档。</pd>
             </plentry>
             </parml> </section>

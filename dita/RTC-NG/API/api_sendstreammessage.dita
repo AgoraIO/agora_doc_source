@@ -22,10 +22,13 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SendStreamMessage(int streamId, byte[] data, uint length);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> sendStreamMessage(
+    {required int streamId, required Uint8List data, required int length});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p id="desc">该方法发送数据流消息到频道内所有用户。SDK 对该方法的实现进行了如下限制：
+            
+            
             <ul>
             <li>频道内每秒最多能发送 30 个包，且每个包最大为 1 KB。</li>
             <li>每个客户端每秒最多能发送 6 KB 数据。</li>
@@ -46,11 +49,11 @@
                 <pd>数据流 ID。可以通过 <apiname keyref="createDataStream2"/> 获取。</pd>
             </plentry>
             <plentry>
-                <pt props="android flutter">message</pt>
-                <pt props="electron cpp ios mac unity">data</pt>
+                <pt props="android">message</pt>
+                <pt props="electron cpp ios mac unity flutter">data</pt>
                 <pd>待发送的数据。</pd>
             </plentry>
-            <plentry props="cpp unity">
+            <plentry props="cpp unity flutter">
                 <pt>length</pt>
                 <pd>数据长度。</pd>
             </plentry>

@@ -27,7 +27,8 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioVolumeIndication(RtcConnection connection, AudioVolumeInfo[] speakers, uint speakerNumber, int totalVolume) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">final void Function(int volume)? onAudioVolumeIndication;
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, List&lt;AudioVolumeInfo> speakers,
+      int speakerNumber, int totalVolume)? onAudioVolumeIndication;
 </codeblock> </p>
         </section>
         <section id="detailed_desc">
@@ -36,6 +37,7 @@
        启用该功能后，如果有用户将自己静音（调用了 <xref keyref="muteLocalAudioStream"/>），SDK 行为会受如下影响：
 
 
+            
             
             <ul>
             <li>本地用户静音后，SDK 立即停止报告本地用户的音量提示回调。</li>
@@ -49,28 +51,25 @@
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="unity">
+            <plentry props="unity flutter">
                     <pt>connection</pt>
                     <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
-            <plentry props="native unity">
+            <plentry props="native unity flutter">
                     <pt>speakers</pt>
                     <pd>用户音量信息，详见 <xref keyref="AudioVolumeInfo"/> 数组。如果 <parmname>speakers</parmname> 为空，则表示远端用户不发流或没有远端用户。</pd>
                 </plentry>
-            <plentry props="cpp unity">
-                <pt>speakerNumber</pt>
-                <pd>
-                    <p>用户数量。
-
-                    
-                    <ul>
-                    <li>在本地用户的回调中，只要本地用户在发流，<parmname>speakerNumber</parmname> 始终为
-                                    1。</li>
-                    <li>在远端用户的回调中，<parmname>speakerNumber</parmname> 取值范围为 [0,3]。如果远端发流用户数量大于 3，则此回调中 <parmname>speakerNumber</parmname> 值为 3。</li>
-                    </ul> </p>
-                </pd>
-            </plentry>
-            <plentry props="native unity">
+            <plentry props="cpp unity flutter">
+                    <pt>speakerNumber</pt>
+                    <pd>
+                        <p>用户数量。 
+                            <ul>
+                            <li>在本地用户的回调中，只要本地用户在发流，<parmname>speakerNumber</parmname> 始终为 1。</li>
+                            <li>在远端用户的回调中，<parmname>speakerNumber</parmname> 取值范围为 [0,3]。如果远端发流用户数量大于 3，则此回调中 <parmname>speakerNumber</parmname> 值为 3。</li>
+                            </ul> </p>
+                    </pd>
+                </plentry>
+            <plentry props="native unity flutter">
                     <pt>totalVolume</pt>
                     <pd>
                         <p>混音后的总音量，取值范围为 [0,255]。 

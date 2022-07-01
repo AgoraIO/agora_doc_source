@@ -22,7 +22,7 @@
       <codeblock props="electron" outputclass="language-typescript"/>
       <codeblock props="unity" outputclass="language-csharp">public abstract int SwitchAgoraCDNSrc(string src, bool syncPts = false);</codeblock>
       <codeblock props="rn" outputclass="language-typescript"/>
-      <codeblock props="flutter" outputclass="language-dart"/> </p>
+      <codeblock props="flutter" outputclass="language-dart">Future&lt;void> switchAgoraCDNSrc({required String src, bool syncPts = false});</codeblock> </p>
     </section>
     <section id="detailed_desc">
       <p>如果用户需要自定义播放线路，你可以调用该方法实现媒体资源切换。Agora 会通过自研调度中心支持调度线路，提升观看用户体验。如果用户不需要自定义播放线路，你可以调用 <xref keyref="switchSrc"/> 实现媒体资源切换。
@@ -46,6 +46,7 @@
         <pt>syncPts</pt>
         <pd>是否同步切换前后的起始播放位置:
 
+
           <ul>
           <li><codeph><ph keyref="true"/></codeph>：同步。</li>
           <li><codeph><ph keyref="false"/></codeph>：(默认) 不同步。</li>
@@ -54,7 +55,7 @@
         </pd>
       </plentry>
       </parml> </section>
-    <section id="return_values">
+    <section id="return_values" props="native electron unity">
       <title>返回值</title>
       <ul>
       <li>0: 方法调用成功。</li>

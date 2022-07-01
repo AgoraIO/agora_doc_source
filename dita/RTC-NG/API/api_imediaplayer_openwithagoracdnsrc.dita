@@ -22,7 +22,9 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int OpenWithAgoraCDNSrc(string src, Int64 startPos);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> openWithAgoraCDNSrc(
+      {required String src, required int startPos});
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>调用该方法后，Agora 会打开媒体资源并通过自研调度中心请求媒体资源的所有 CDN 线路。Agora 默认使用第一个线路，你也可以通过 <xref keyref="switchAgoraCDNLineByIndex"/> 自行切换线路。</p>
@@ -51,7 +53,7 @@
                 <pd>设置起始播放位置 (毫秒)，默认值为 0。如果媒体资源为直播流，则无需赋值。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功。</li>

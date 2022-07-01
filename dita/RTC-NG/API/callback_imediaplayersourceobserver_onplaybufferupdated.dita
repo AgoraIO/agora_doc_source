@@ -23,12 +23,14 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnPlayBufferUpdated(Int64 playCachedBuffer) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(int playCachedBuffer)? onPlayBufferUpdated;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>
                 播放在线媒体资源的过程中，SDK 会每隔 1 秒触发一次该回调，报告当前缓冲的数据能支持的播放时间。
 
+            
             <ul>
             <li>当缓冲数据支持的播放时间小于阈值（默认为 0）时，返回 <apiname keyref="PLAYER_EVENT_BUFFER_LOW"/>。</li>
             <li>当缓冲数据支持的播放时间大于阈值（默认为 0）时，返回 <apiname keyref="PLAYER_EVENT_BUFFER_RECOVER"/>。</li>

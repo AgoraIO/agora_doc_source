@@ -19,7 +19,8 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int RegisterLocalUserAccount(string appId, string userAccount);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> registerLocalUserAccount(
+    {required String appId, required String userAccount});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
@@ -32,6 +33,7 @@
             <p>成功注册 User Account 后，本地会触发 <xref keyref="onLocalUserRegistered"/> 回调，告知本地用户的 UID 和 User Account。</p>
             <p>该方法为可选。如果你希望用户使用 User Account 加入频道，可以选用以下两种方式：
 
+            
             <ul>
             <li>先调用 <apiname keyref="registerLocalUserAccount"/> 方法注册 Account，再调用 <xref keyref="joinChannelWithUserAccount2"/> 方法加入频道。</li>
             <li>直接调用 <apiname keyref="joinChannelWithUserAccount2"/> 方法加入频道。</li>
@@ -56,6 +58,7 @@
                 <pd>
                     <p>用户 User Account。该参数用于标识实时音视频互动频道中的用户。你需要自行设置和管理用户的 User Account，并确保同一频道中每个用户的 User Account 是唯一的。该参数为必填，最大不超过 255 字节，不可填 <ph keyref="NULL"/>。以下为支持的字符集范围（共 89 个字符）：
 
+                    
                     <ul>
                     <li>26 个小写英文字母 a-z</li>
                     <li>26 个大写英文字母 A-Z</li>
