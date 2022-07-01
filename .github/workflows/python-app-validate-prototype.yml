@@ -36,6 +36,7 @@ jobs:
                   pip install coverage
                   if  [ -f requirements.txt ]; then pip install -r requirements.txt; fi
             - name: Run Unity NG validation
+              if: always()
               run: |
                   cd xml2json
                   python check_unity_ng_prototype.py --code_location ./code_to_check/unity_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-unity.ditamap --decomment_code_location ./code_to_check/decommented
@@ -43,6 +44,7 @@ jobs:
                   cat prototype_check_unity_ng.txt
                   echo "The prototype validation ends ..."
             - name: Run Flutter NG validation
+              if: always()
               run: |
                   cd xml2json
                   python check_dart_ng_prototype.py --code_location ./code_to_check/flutter-ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-flutter.ditamap --decomment_code_location ./code_to_check/decommented
@@ -50,6 +52,7 @@ jobs:
                   cat prototype_check_flutter_ng.txt
                   echo "The prototype validation ends ..."
             - name: Run RN NG validation
+              if: always()
               run: |
                   cd xml2json
                   python check_rn_ng_prototype.py --code_location ./code_to_check/rn_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-rn.ditamap --decomment_code_location ./code_to_check/decommented
@@ -57,6 +60,7 @@ jobs:
                   cat prototype_check_rn_ng.txt
                   echo "The prototype validation ends ..."
             - name: Run Electron NG validation
+              if: always()
               run: |
                   cd xml2json
                   python check_electron_ng_prototype.py --code_location ./code_to_check/electron_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-electron.ditamap --decomment_code_location ./code_to_check/decommented
@@ -64,6 +68,7 @@ jobs:
                   cat prototype_check_electron_ng.txt
                   echo "The prototype validation ends ..."
             - name: Run CPP NG validation
+              if: always()
               run: |
                   cd xml2json
                   python check_cpp_ng_prototype.py --code_location ./code_to_check/cpp_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-cpp.ditamap --decomment_code_location ./code_to_check/decommented
@@ -71,6 +76,7 @@ jobs:
                   cat prototype_check_cpp_ng.txt
                   echo "The prototype validation ends ..."
             - name: Run Java NG validation
+              if: always()
               run: |
                   cd xml2json
                   python check_java_ng_prototype.py --code_location ./code_to_check/java_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-java.ditamap --decomment_code_location ./code_to_check/decommented
@@ -78,6 +84,7 @@ jobs:
                   cat prototype_check_java_ng.txt
                   echo "The prototype validation ends ..."
             - name: Run ios NG validation
+              if: always()
               run: |
                   cd xml2json
                   python check_oc_ng_prototype.py --code_location ./code_to_check/oc_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-ios.ditamap --decomment_code_location ./code_to_check/decommented
@@ -85,6 +92,7 @@ jobs:
                   cat prototype_check_oc_ng.txt
                   echo "The prototype validation ends ..."
             - name: Run macos NG validation
+              if: always()
               run: |
                   cd xml2json
                   python check_oc_ng_prototype.py --code_location ./code_to_check/oc_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-macos.ditamap --decomment_code_location ./code_to_check/decommented
@@ -92,6 +100,7 @@ jobs:
                   cat prototype_check_oc_ng.txt
                   echo "The prototype validation ends ..."
             - name: Run Flutter CG validation
+              if: always()
               run: |
                   cd xml2json
                   python check_dart_cg_prototype.py --code_location ./code_to_check/flutter_cg --dita_location ../dita/RTC/API --dita_map_location ../dita/RTC/config/keys-rtc-api-flutter.ditamap --decomment_code_location ./code_to_check/decommented
