@@ -36,9 +36,11 @@
             </dlentry>
             </dl>
             <p>SDK 会在以下时机触发该回调：
+            
             <ul>
             <li>远端用户首次上线后发送音频。</li>
             <li>远端用户音频离线再上线发送音频。音频离线指本地在 15 秒内没有收到音频包，可能有如下原因：
+                
                 <ul>
                 <li>远端用户离开频道</li>
                 <li>远端用户掉线</li>
@@ -49,17 +51,17 @@
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
             <plentry props="ios mac">
                 <pt>engine</pt>
                 <pd><xref keyref="IRtcEngine"/> 对象。</pd>
             </plentry>
-                <plentry props="unity" conkeyref="joinChannelEx/connection">
-                    <pt></pt>
-                    <pd></pd>
-                </plentry>
-                <plentry>
+            <plentry props="unity electron rn" conkeyref="joinChannelEx/connection">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry>
                 <pt>uid</pt>
                 <pd>远端用户 ID。</pd>
             </plentry>
