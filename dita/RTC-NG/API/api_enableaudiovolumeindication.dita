@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_enableaudiovolumeindication">
-    <title><ph keyref="enableAudioVolumeIndication"/></title>
+    <title><ph keyref="enableAudioVolumeIndication" /></title>
     <shortdesc id="short"><ph id="shortdesc">启用用户音量提示。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="enableAudioVolumeIndication"/>
+                <indexterm keyref="enableAudioVolumeIndication" />
             </keywords>
         </metadata>
     </prolog>
@@ -18,13 +18,13 @@
                             smooth:(NSInteger)smooth
                             reportVad:(BOOL)reportVad;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int enableAudioVolumeIndication(int interval, int smooth, bool reportVad) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract enableAudioVolumeIndication(interval: number, smooth: number, reportVad: boolean): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int EnableAudioVolumeIndication(int interval, int smooth, bool reportVad);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
-            <p>该方法允许 SDK 定期向 app 报告本地发流用户和瞬时音量最高的远端用户（最多 3 位）的音量相关信息。启用该方法后，只要频道内有发流用户， SDK 会在加入频道后按设置的时间间隔触发 <xref keyref="onAudioVolumeIndication"/> 回调。</p>
+            <p>该方法允许 SDK 定期向 app 报告本地发流用户和瞬时音量最高的远端用户（最多 3 位）的音量相关信息。启用该方法后，只要频道内有发流用户， SDK 会在加入频道后按设置的时间间隔触发 <xref keyref="onAudioVolumeIndication" /> 回调。</p>
             <note type="attention">该方法在加入频道前后都能调用。</note> </section>
         <section id="parameters">
             <title>参数</title>
@@ -45,8 +45,8 @@
                 <pt>reportVad</pt>
                 <pd>
                     <ul>
-                    <li><codeph><ph keyref="true"/></codeph>：开启本地人声检测功能。开启后，<apiname keyref="onAudioVolumeIndication"/> 回调的 <parmname>vad</parmname> 参数会报告是否在本地检测到人声。</li>
-                    <li><codeph><ph keyref="false"/></codeph>：（默认）关闭本地人声检测功能。除引擎自动进行本地人声检测的场景外，<apiname keyref="onAudioVolumeIndication"/> 回调的 <parmname>vad</parmname> 参数不会报告是否在本地检测到人声。</li>
+                    <li><codeph><ph keyref="true" /></codeph>：开启本地人声检测功能。开启后，<apiname keyref="onAudioVolumeIndication" /> 回调的 <parmname>vad</parmname> 参数会报告是否在本地检测到人声。</li>
+                    <li><codeph><ph keyref="false" /></codeph>：（默认）关闭本地人声检测功能。除引擎自动进行本地人声检测的场景外，<apiname keyref="onAudioVolumeIndication" /> 回调的 <parmname>vad</parmname> 参数不会报告是否在本地检测到人声。</li>
                     </ul> </pd>
             </plentry>
             </parml> </section>

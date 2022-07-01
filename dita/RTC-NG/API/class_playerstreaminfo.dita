@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_playerstreaminfo">
-    <title><ph keyref="PlayerStreamInfo"/></title>
+    <title><ph keyref="PlayerStreamInfo" /></title>
     <shortdesc id="short"><ph id="shortdesc">播放器媒体流的所有信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -66,7 +66,21 @@
                        duration(0) {
     memset(codecName, 0, sizeof(codecName));
     memset(language, 0, sizeof(language));</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export class PlayerStreamInfo {
+  streamIndex?: number
+  streamType?: MediaStreamType
+  codecName?: string
+  language?: string
+  videoFrameRate?: number
+  videoBitRate?: number
+  videoWidth?: number
+  videoHeight?: number
+  videoRotation?: number
+  audioSampleRate?: number
+  audioChannels?: number
+  audioBitsPerSample?: number
+  duration?: number
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class PlayerStreamInfo
         public int streamIndex { set; get; }
         public MEDIA_STREAM_TYPE streamType;
@@ -99,14 +113,12 @@
             language = null;
         }
     };</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock>
             </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>streamIndex</pt>
@@ -115,13 +127,12 @@
             <plentry>
                 <pt props="ios mac cpp unity electron rn">streamType</pt>
                 <pt props="android">mediaStreamType</pt>
-                <pd><ph>此条媒体流的类型。</ph><ph props="ios mac cpp unity electron rn">详见 <xref
-                    keyref="MEDIA_STREAM_TYPE"/>。</ph>
+                <pd><ph>此条媒体流的类型。</ph><ph props="ios mac cpp unity electron rn">详见 <xref keyref="MEDIA_STREAM_TYPE" />。</ph>
                     <ul props="android">
-                    <li><ph keyref="STREAM_TYPE_UNKNOWN"/> (0): 未知类型。</li>
-                    <li><ph keyref="STREAM_TYPE_VIDEO"/> (1): 视频流。</li>
-                    <li><ph keyref="STREAM_TYPE_AUDIO"/> (2): 音频流。</li>
-                    <li><ph keyref="STREAM_TYPE_SUBTITLE"/> (3): 字幕流。</li>
+                    <li><ph keyref="STREAM_TYPE_UNKNOWN" /> (0): 未知类型。</li>
+                    <li><ph keyref="STREAM_TYPE_VIDEO" /> (1): 视频流。</li>
+                    <li><ph keyref="STREAM_TYPE_AUDIO" /> (2): 音频流。</li>
+                    <li><ph keyref="STREAM_TYPE_SUBTITLE" /> (3): 字幕流。</li>
                     </ul> </pd>
             </plentry>
             <plentry>
