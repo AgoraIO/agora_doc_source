@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startrtmpstreamwithtranscoding">
-    <title> <ph keyref="startRtmpStreamWithTranscoding"/> </title>
+    <title> <ph keyref="startRtmpStreamWithTranscoding" /> </title>
     <shortdesc id="short"> <ph id="shortdesc">开始旁路推流并设置转码属性。</ph> </shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="startRtmpStreamWithTranscoding"/>
+                <indexterm keyref="startRtmpStreamWithTranscoding" />
             </keywords>
         </metadata>
     </prolog>
@@ -16,21 +16,21 @@
             <codeblock props="android" outputclass="language-java">public abstract int startRtmpStreamWithTranscoding(String url, LiveTranscoding transcoding);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)startRtmpStreamWithTranscoding:(NSString* _Nonnull)url transcoding:(AgoraLiveTranscoding* _Nullable)transcoding;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int startRtmpStreamWithTranscoding(const char* url, const LiveTranscoding&amp; transcoding) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract startRtmpStreamWithTranscoding(url: string, transcoding: LiveTranscoding): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int StartRtmpStreamWithTranscoding(string url, LiveTranscoding transcoding);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/></p>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /></p>
         </section>
         <section id="detailed_desc">
             <p>调用该方法，你可以向指定的旁路推流地址推送直播音视频流并设置转码属性。该方法每次只能向一个地址推送媒体流，如果你需要向多个地址转码推流，则需多次调用该方法。</p>
-            <p>调用该方法后，SDK 会在本地触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调，报告推流的状态。</p>
+            <p>调用该方法后，SDK 会在本地触发 <xref keyref="onRtmpStreamingStateChanged" /> 回调，报告推流的状态。</p>
             <note type="attention" id="note">
             <ul>
             <li props="rtc-ng">请确保已开通旁路推流服务。</li>
             <li props="rtc">请确保已开通旁路推流服务，详见进阶功能<xref keyref="guide-cdn-streaming">旁路推流</xref>中的前提条件。</li>
             <li>请在加入频道后调用该方法。</li>
             <li>只有直播场景下的主播才能调用该方法。</li>
-            <li>调用该方法推流失败后，如果你想要重新推流，那么请你务必先调用 <xref keyref="stopRtmpStream"/>，再调用该方法重推，否则 SDK 会返回与上次推流失败时一样的错误码。</li>
+            <li>调用该方法推流失败后，如果你想要重新推流，那么请你务必先调用 <xref keyref="stopRtmpStream" />，再调用该方法重推，否则 SDK 会返回与上次推流失败时一样的错误码。</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>参数</title>
@@ -42,7 +42,7 @@
             <plentry id="transcoding">
                 <pt>transcoding</pt>
                 <pd>
-                    <p>旁路推流的转码属性，详见 <xref keyref="LiveTranscoding"/> 类。</p>
+                    <p>旁路推流的转码属性，详见 <xref keyref="LiveTranscoding" /> 类。</p>
                 </pd>
             </plentry>
             </parml> </section>

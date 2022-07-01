@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setremotevoicepositionex">
-    <title><ph keyref="setRemoteVoicePositionEx"/></title>
+    <title><ph keyref="setRemoteVoicePositionEx" /></title>
     <shortdesc id="short"><ph id="shortdesc">设置远端用户声音的 2D 位置，即水平面位置。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setRemoteVoicePositionEx"/>
+                <indexterm keyref="setRemoteVoicePositionEx" />
             </keywords>
         </metadata>
     </prolog>
@@ -20,10 +20,10 @@
                          gain:(double)gain
                    connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setRemoteVoicePositionEx(uid_t uid, double pan, double gain, const RtcConnection&amp; connection) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract setRemoteVoicePositionEx(uid: number, pan: number, gain: number, connection: RtcConnection): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetRemoteVoicePositionEx(uint uid, double pan, double gain, RtcConnection connection);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
             <p>设置远端用户声音的空间位置和音量，方便本地用户听声辨位。</p>
@@ -56,8 +56,8 @@
                 <pd>设置远端用户声音的音量，取值范围为 [0.0,100.0]，默认值为 100.0，表示该用户的原始音量。取值越小，则音量越低。</pd>
             </plentry>
             <plentry conkeyref="joinChannelEx/connection">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             </parml> </section>
         <section id="return_values">
