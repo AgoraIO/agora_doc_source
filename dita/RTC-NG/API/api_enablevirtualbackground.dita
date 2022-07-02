@@ -19,7 +19,10 @@
             <codeblock props="cpp">virtual int enableVirtualBackground(bool enabled, VirtualBackgroundSource backgroundSource) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int EnableVirtualBackground(bool enabled, VirtualBackgroundSource backgroundSource);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">abstract enableVirtualBackground(
+  enabled: boolean,
+  backgroundSource: VirtualBackgroundSource
+): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableVirtualBackground(
     {required bool enabled,
     required VirtualBackgroundSource backgroundSource});</codeblock> </p>
@@ -28,13 +31,14 @@
             <p>虚拟背景功能支持你使用自定义的背景图替代本地用户原来的背景图或者将背景虚化处理。成功开启虚拟背景功能后，频道内所有用户都能看到自定义的背景。</p>
             <p>开启虚拟背景功能涉及一系列方法的调用，调用顺序如下：
 
+            
             <ol>
             <li props="android">在初始化 <xref keyref="IRtcEngine"/> 时调用 <codeph><xref keyref="addExtension"/>(<q>agora_segmentation_extension</q>)</codeph>，在项目中集成虚拟背景动态库。</li>
             <li props="ios">在项目文件中链接动态库 <codeph>AgoraVideoSegmentationExtension.xcframework</codeph></li>
             <li props="mac">在项目文件中链接动态库 <codeph>AgoraVideoSegmentationExtension.framework</codeph></li>
-            <li props="cpp rn electron flutter">在初始化 <xref keyref="IRtcEngine" /> 时调用 <codeph><xref keyref="loadExtensionProvider" />(<q>libagora_segmentation_extension.dll</q>)</codeph>，指定动态库的路径和名称。</li>
-            <li>调用 <codeph><xref keyref="enableExtension" />(<q>agora_segmentation</q>, <q>PortraitSegmentation</q>, <q><ph keyref="true" /></q>)</codeph>，开启插件。</li>
-            <li>调用 <xref keyref="enableVideo" />，启用视频模块。</li>
+            <li props="cpp rn electron flutter">在初始化 <xref keyref="IRtcEngine"/> 时调用 <codeph><xref keyref="loadExtensionProvider"/>(<q>libagora_segmentation_extension.dll</q>)</codeph>，指定动态库的路径和名称。</li>
+            <li>调用 <codeph><xref keyref="enableExtension"/>(<q>agora_segmentation</q>, <q>PortraitSegmentation</q>, <q><ph keyref="true"/></q>)</codeph>，开启插件。</li>
+            <li>调用 <xref keyref="enableVideo"/>，启用视频模块。</li>
             <li>调用该方法，开启虚拟背景功能。</li>
             </ol></p>
             <note type="attention">
@@ -43,17 +47,19 @@
 
 
 
+                
                 <ul>
                 <li props="android cpp unity rn flutter">Android: <ph>libagora_segmentation_extension.so</ph></li>
                 <li props="ios cpp unity rn flutter">iOS: <ph>AgoraVideoSegmentationExtension.xcframework</ph></li>
                 <li props="mac cpp unity electron">macOS: <ph>AgoraVideoSegmentationExtension.framework</ph></li>
                 <li props="cpp electron">Windows: <ph>libagora_segmentation_extension.dll</ph></li>
                 </ul></li>
-            <li props="rtc">该方法需要在 <xref keyref="enableVideo" /> 后调用。</li>
+            <li props="rtc">该方法需要在 <xref keyref="enableVideo"/> 后调用。</li>
             <li>该功能对设备性能要求较高，Agora 推荐你在搭载如下芯片的设备上使用：
 
 
 
+                
                 <ul>
                 <li props="android unity cpp rn flutter">骁龙 700 系列 750G 及以上</li>
                 <li props="android unity cpp rn flutter">骁龙 800 系列 835 及以上</li>
@@ -65,6 +71,7 @@
 
 
 
+                    
                     <ul>
                     <li>iPhone 6S 及以上</li>
                     <li>iPad Air 第三代及以上</li>
@@ -77,6 +84,7 @@
 
 
 
+                
                 <ul>
                 <li>使用高清摄像设备、摄像环境光照均匀。</li>
                 <li>摄像画面中，物件较少，用户的人像为半身人像且基本无遮挡，背景色较单一且与用户着装颜色不同。</li>
@@ -93,6 +101,7 @@
 
 
 
+                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 开启。</li>
                     <li><codeph><ph keyref="false"/></codeph>: 关闭。</li>
@@ -114,11 +123,13 @@
 
 
 
+                    
                     <note type="attention">在该方法中，该参数仅支持以下两种设置：
 
 
 
 
+                    
                     <ul>
                     <li>默认值为 <apiname keyref="PRIMARY_CAMERA_SOURCE"/>。</li>
                     <li>如果要使用第二个摄像头采集视频，将该参数设置为 <apiname keyref="SECONDARY_CAMERA_SOURCE"/>。</li>
@@ -134,6 +145,7 @@
 
 
 
+                
                 <ul props="rtc-ng">
                 <li>-1：自定义的背景图不存在。请检查 <xref keyref="VirtualBackgroundSource"/> 中 <parmname>source</parmname> 的值。</li>
                 <li>-2：自定义的背景图颜色格式出错。请检查 <xref keyref="VirtualBackgroundSource"/> 中 <parmname>color</parmname> 的值。</li>

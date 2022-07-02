@@ -27,7 +27,12 @@
   }</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnExtensionErrored(string provider, string ext_name, int error, string msg) { }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">onExtensionErrored?(
+  provider: string,
+  extName: string,
+  error: number,
+  msg: string
+): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(String provider, String extName, int error, String msg)?
       onExtensionErrored;
 </codeblock> </p>
@@ -44,7 +49,7 @@
             </plentry>
             <plentry>
                 <pt props="native">extension</pt>
-                    <pt props="flutter">extName</pt>
+                <pt props="flutter">extName</pt>
                 <pt props="unity">ext_name</pt>
                 <pt props="electron rn">extName</pt>
                 <pd>插件的名称。</pd>

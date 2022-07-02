@@ -14,7 +14,11 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual void onClientRoleChanged(CLIENT_ROLE_TYPE oldRole, CLIENT_ROLE_TYPE newRole)</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnClientRoleChanged(RtcConnection connection, CLIENT_ROLE_TYPE oldRole, CLIENT_ROLE_TYPE newRole) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">onClientRoleChanged?(
+  connection: RtcConnection,
+  oldRole: ClientRoleType,
+  newRole: ClientRoleType
+): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, ClientRoleType oldRole,
       ClientRoleType newRole)? onClientRoleChanged;
 </codeblock> </p>
@@ -32,9 +36,9 @@
                 <pd/>
             </plentry>
             <plentry props="unity flutter rn electron">
-                    <pt>connection</pt>
-                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
-                </plentry>
+                <pt>connection</pt>
+                <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+            </plentry>
             <plentry id="oldRole">
                 <pt>oldRole</pt>
                 <pd>切换前的角色：<ph props="cpp ios mac electron unity flutter rn"><xref keyref="CLIENT_ROLE_TYPE"/>。</ph>

@@ -18,7 +18,7 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual void onConnectionInterrupted() {}</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnConnectionInterrupted(RtcConnection connection) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">onConnectionInterrupted?(connection: RtcConnection): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection)? onConnectionInterrupted;
 </codeblock> </p>
         </section>
@@ -32,6 +32,7 @@
             <p>SDK 在和服务器建立连接后，失去了网络连接超过 4 秒，会触发该回调。在触发事件后，SDK 会主动重连服务器，所以该事件可以用于 UI 提示。该回调与 <xref keyref="onConnectionLost"/> 的区别是：
 
 
+            
             <ul>
             <li><apiname keyref="onConnectionInterrupted"/> 回调一定是发生在成功加入频道后，且 SDK
                         刚失去和服务器连接超过 4 秒时触发。</li>

@@ -26,7 +26,12 @@
     }</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioVolumeIndication(RtcConnection connection, AudioVolumeInfo[] speakers, uint speakerNumber, int totalVolume) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">onAudioVolumeIndication?(
+  connection: RtcConnection,
+  speakers: AudioVolumeInfo[],
+  speakerNumber: number,
+  totalVolume: number
+): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, List&lt;AudioVolumeInfo> speakers,
       int speakerNumber, int totalVolume)? onAudioVolumeIndication;
 </codeblock> </p>
@@ -40,6 +45,7 @@
 
 
 
+            
             <ul>
             <li>本地用户静音后，SDK 立即停止报告本地用户的音量提示回调。</li>
             <li>瞬时音量最高的远端用户静音后 20 秒，远端的音量提示回调中将不再包含该用户；如果远端所有用户都将自己静音，20 秒后 SDK 停止报告远端用户的音量提示回调。</li>
@@ -68,6 +74,7 @@
 
 
 
+                    
                     <ul>
                     <li>在本地用户的回调中，只要本地用户在发流，<parmname>speakerNumber</parmname> 始终为
                                     1。</li>
@@ -81,6 +88,7 @@
                     <p>混音后的总音量，取值范围为 [0,255]。
 
 
+                    
                     <ul>
                     <li>在本地用户的回调中，<parmname>totalVolume</parmname> 为本地发流用户的音量。</li>
                     <li><ph>在远端用户的回调中，<parmname>totalVolume</parmname> 为瞬时音量最高的远端用户（最多 3 位）混音后的总音量。 </ph><ph props="native">如果用户调用了 <xref keyref="startAudioMixing2"/>，则 <parmname>totalVolume</parmname> 为音乐文件和用户声音的总音量。</ph></li>

@@ -22,7 +22,10 @@
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnEncryptionError(RtcConnection connection, ENCRYPTION_ERROR_TYPE errorType) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">onEncryptionError?(
+  connection: RtcConnection,
+  errorType: EncryptionErrorType
+): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, EncryptionErrorType errorType)?
       onEncryptionError;
 </codeblock> </p>
@@ -39,7 +42,7 @@
             </plentry>
             <plentry props="unity electron rn flutter">
                 <pt>connection</pt>
-                <pd >Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
             </plentry>
             <plentry>
                 <pt>errorType</pt>

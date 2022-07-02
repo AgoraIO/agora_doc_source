@@ -25,7 +25,7 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual void release(bool sync = false) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract void Dispose(bool sync = false);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">abstract release(sync?: boolean): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> release({bool sync = false});</codeblock></p>
         </section>
         <section id="detailed_desc">
@@ -33,7 +33,7 @@
             <p props="cpp unity flutter rn electron">调用该方法后，你将无法再使用 SDK 的其它方法和回调。如需再次使用实时音视频通信功能， 你必须依次重新调用 <xref keyref="createAgoraRtcEngine"/> 和 <xref keyref="create2"/> 方法创建一个新的 <apiname keyref="IRtcEngine"/> 对象。</p>
             <p props="android ios mac">调用该方法后，你将无法再使用 SDK 的其它方法和回调。如需再次使用实时音视频通信功能，你必须依次重新调用 <xref keyref="create2"/> 方法创建一个新的 <apiname keyref="IRtcEngine"/> 对象。</p>
             <note type="attention">如需在销毁后再次创建 <apiname keyref="IRtcEngine"/> 对象，需要等待 <apiname keyref="release"/> 方法执行结束后再创建实例。</note> </section>
-        <section id="parameters" props="cpp unity electron flutter">
+        <section id="parameters" props="cpp unity electron flutter rn">
             <title>参数</title>
             <parml>
             <plentry>
