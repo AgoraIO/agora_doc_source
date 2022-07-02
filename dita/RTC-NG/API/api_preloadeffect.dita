@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_preloadeffect">
-    <title><ph keyref="preloadEffect"/></title>
+    <title><ph keyref="preloadEffect" /></title>
     <shortdesc id="short"><ph id="shortdesc">将音效文件加载至内存。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="preloadEffect"/>
+                <indexterm keyref="preloadEffect" />
             </keywords>
         </metadata>
     </prolog>
@@ -19,13 +19,13 @@
             filePath:(NSString* _Nonnull)filePath;
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int preloadEffect(int soundId, const char* filePath) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract preloadEffect(soundId: number, filePath: string, startPos?: number): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int PreloadEffect(int soundId, string filePath, int startPos = 0);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
-            <p>为保证通信畅通，请注意控制预加载音效文件的大小，并在 <apiname keyref="joinChannel2"/> 前就使用该方法完成音效预加载。</p>
+            <p>为保证通信畅通，请注意控制预加载音效文件的大小，并在 <apiname keyref="joinChannel2" /> 前就使用该方法完成音效预加载。</p>
             <note type="attention">
             <ul>
             <li>该方法不支持在线音频文件。</li>
