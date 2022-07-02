@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_useraudiospectruminfo">
-    <title><ph keyref="UserAudioSpectrumInfo"/></title>
+    <title><ph keyref="UserAudioSpectrumInfo" /></title>
     <shortdesc id="short"><ph id="shortdesc">远端用户的音频频谱信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -25,14 +25,17 @@
   UserAudioSpectrumInfo(agora::rtc::uid_t _uid, const float *data, int length) :
     uid(_uid) { spectrumData.audioSpectrumData = data; spectrumData.dataLength = length; }
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/>
+            <codeblock props="electron" outputclass="language-typescript">export class UserAudioSpectrumInfo {
+  uid?: number
+  spectrumData?: AudioSpectrumData
+}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" />
             </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
                 <plentry>
                     <pt>uid</pt>
@@ -43,7 +46,7 @@
                     <pt props="ios mac">audioSpectrumData</pt>
                     <pt props="cpp electron rn">spectrumData</pt>
                     <pd>
-                        <p>远端用户的音频频谱数据。<ph props="android cpp electron rn">详见 <xref keyref="AudioSpectrumData"/>。</ph></p>
+                        <p>远端用户的音频频谱数据。<ph props="android cpp electron rn">详见 <xref keyref="AudioSpectrumData" />。</ph></p>
                     </pd>
                 </plentry>
             </parml>

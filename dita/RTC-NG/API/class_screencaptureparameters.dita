@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_screencaptureparameters">
-    <title><ph keyref="ScreenCaptureParameters"/></title>
+    <title><ph keyref="ScreenCaptureParameters" /></title>
     <shortdesc id="short"><ph id="shortdesc">屏幕共享的参数配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -84,7 +84,15 @@
   ScreenCaptureParameters(int width, int height, int f, int b, bool cur, bool fcs, view_t *ex, int cnt)
     : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(cur), windowFocus(fcs), excludeWindowList(ex), excludeWindowCount(cnt) {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export class ScreenCaptureParameters {
+  dimensions?: VideoDimensions
+  frameRate?: number
+  bitrate?: number
+  captureMouseCursor?: boolean
+  windowFocus?: boolean
+  excludeWindowList?: any[]
+  excludeWindowCount?: number
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class ScreenCaptureParameters
     {
         public ScreenCaptureParameters()
@@ -160,23 +168,18 @@
         public view_t[] excludeWindowList { set; get; }
         public int excludeWindowCount { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock>
             </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
-                <pt props="ios mac cpp unity flutter electron rn"
-                    >dimensions</pt>
+                <pt props="ios mac cpp unity flutter electron rn">dimensions</pt>
                 <pt props="android">videoDimensions</pt>
                 <pd>
-                    <p>编码共享视频的最大像素值。<ph props="android cpp">详见 <xref
-                    keyref="VideoDimensions"
-                    />。默认值为 1920 × 1080，即 2073600 像素。该像素值为计费标准。</ph></p>
+                    <p>编码共享视频的最大像素值。<ph props="android cpp">详见 <xref keyref="VideoDimensions" />。默认值为 1920 × 1080，即 2073600 像素。该像素值为计费标准。</ph></p>
                     <p>当共享的屏幕分辨率宽高比与该值设置不一致时，SDK 按如下策略进行编码。假设 <codeph>dimensions</codeph> 设为 1920 × 1080：
 
                     
@@ -203,32 +206,28 @@
                     
                     
                     <ul>
-                    <li><codeph><ph keyref="true"/></codeph>:（默认）采集鼠标。</li>
-                    <li><codeph><ph keyref="false"/></codeph>: 不采集鼠标。</li>
+                    <li><codeph><ph keyref="true" /></codeph>:（默认）采集鼠标。</li>
+                    <li><codeph><ph keyref="false" /></codeph>: 不采集鼠标。</li>
                     </ul></p>
                 </pd>
             </plentry>
             <plentry props="cpp unity electron rn">
                 <pt>windowFocus</pt>
                 <pd>
-                    <p>调用 <xref keyref="startScreenCaptureByWindowId"/> 方法共享窗口时，是否将该窗口前置：
+                    <p>调用 <xref keyref="startScreenCaptureByWindowId" /> 方法共享窗口时，是否将该窗口前置：
 
                     
                     
                     <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: 前置窗口。</li>
-                    <li><codeph><ph keyref="false"/></codeph>:（默认）不前置窗口。</li>
+                    <li><codeph><ph keyref="true" /></codeph>: 前置窗口。</li>
+                    <li><codeph><ph keyref="false" /></codeph>:（默认）不前置窗口。</li>
                     </ul></p>
                 </pd>
             </plentry>
             <plentry props="cpp unity electron rn">
                 <pt>excludeWindowList</pt>
                 <pd>
-                    <p>待屏蔽窗口的 ID 列表。调用 <xref
-                    keyref="startScreenCaptureByScreenRect"
-                    />开启屏幕共享时，你可以通过该参数屏蔽指定的窗口。你可以在调用 <xref
-                    keyref="updateScreenCaptureParameters"
-                    /> 更新屏幕共享的配置参数时，通过该参数动态屏蔽指定的窗口。</p>
+                    <p>待屏蔽窗口的 ID 列表。调用 <xref keyref="startScreenCaptureByScreenRect" />开启屏幕共享时，你可以通过该参数屏蔽指定的窗口。你可以在调用 <xref keyref="updateScreenCaptureParameters" /> 更新屏幕共享的配置参数时，通过该参数动态屏蔽指定的窗口。</p>
                 </pd>
             </plentry>
             <plentry props="cpp unity electron rn">
