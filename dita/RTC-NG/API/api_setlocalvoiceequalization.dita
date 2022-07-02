@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setlocalvoiceequalization">
-    <title><ph keyref="setLocalVoiceEqualization"/></title>
+    <title><ph keyref="setLocalVoiceEqualization" /></title>
     <shortdesc id="short"><ph id="shortdesc">设置本地语音音效均衡。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setLocalVoiceEqualization"/>
+                <indexterm keyref="setLocalVoiceEqualization" />
             </keywords>
         </metadata>
     </prolog>
@@ -18,10 +18,10 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLocalVoiceEqualizationOfBandFrequency:(AgoraAudioEqualizationBandFrequency)bandFrequency
                     withGain:(NSInteger)gain;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setLocalVoiceEqualization(AUDIO_EQUALIZATION_BAND_FREQUENCY bandFrequency, int bandGain) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract setLocalVoiceEqualization(bandFrequency: AudioEqualizationBandFrequency, bandGain: number): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetLocalVoiceEqualization(AUDIO_EQUALIZATION_BAND_FREQUENCY bandFrequency, int bandGain);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/></p>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /></p>
         </section>
         <section id="detailed_desc">
             <note type="attention">该方法在加入频道前后都能调用。</note> </section>
@@ -30,7 +30,7 @@
             <parml>
             <plentry>
                 <pt>bandFrequency</pt>
-                <pd>频谱子带索引。取值范围是 [0,9]，分别代表音效的 10 个频带。对应的中心频率为 [31，62，125，250，500，1k，2k，4k，8k，16k] Hz。详见 <xref keyref="AUDIO_EQUALIZATION_BAND_FREQUENCY"/> 。</pd>
+                <pd>频谱子带索引。取值范围是 [0,9]，分别代表音效的 10 个频带。对应的中心频率为 [31，62，125，250，500，1k，2k，4k，8k，16k] Hz。详见 <xref keyref="AUDIO_EQUALIZATION_BAND_FREQUENCY" /> 。</pd>
             </plentry>
             <plentry>
                 <pt props="android cpp unity flutter rn electron">bandGain</pt>
