@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_rectangle">
-    <title><ph keyref="Rectangle" /></title>
-    <shortdesc id="short"><ph id="shortdesc">目标区域相对于整个屏幕或窗口的位置，如不填，则表示整个屏幕或窗口。</ph></shortdesc>
+    <title><ph keyref="Rectangle"/></title>
+    <shortdesc id="short"><ph id="shortdesc"
+        >目标区域相对于整个屏幕或窗口的位置，如不填，则表示整个屏幕或窗口。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -25,7 +26,7 @@
     height = height_;
   }
 };</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
             <codeblock props="cpp" outputclass="language-cpp">struct Rectangle {
     int x;
     int y;
@@ -35,7 +36,7 @@
     Rectangle(): x(0), y(0), width(0), height(0) {}
     Rectangle(int xx, int yy, int ww, int hh): x(xx), y(yy), width(ww), height(hh) {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public class Rectangle
     {
         public Rectangle()
@@ -60,10 +61,27 @@
   width?: number;
   height?: number;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">class Rectangle {
+  const Rectangle({this.x, this.y, this.width, this.height});
+
+  @JsonKey(name: 'x')
+  final int? x;
+  @JsonKey(name: 'y')
+  final int? y;
+  @JsonKey(name: 'width')
+  final int? width;
+  @JsonKey(name: 'height')
+  final int? height;
+  factory Rectangle.fromJson(Map&lt;String, dynamic> json) =>
+      _$RectangleFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$RectangleToJson(this);
+}</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>x</pt>

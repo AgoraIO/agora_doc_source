@@ -20,10 +20,11 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioRoutingChanged(int routing) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(int routing)? onAudioRoutingChanged;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <note props="cpp unity">
+            <note props="cpp unity flutter">
             <p>该回调仅适用于 Android、iOS 和 macOS 平台。</p>
             </note> </section>
         <section id="parameters">
@@ -39,8 +40,6 @@
                 <pd>
                     <p props="ios mac unity flutter cpp">当前的音频路由。详见 <xref keyref="AUDIO_ROUTE_TYPE"/>。</p>
                     <p props="android">当前的音频路由：
-
-
                     <ul>
                     <li><ph keyref="AUDIO_ROUTE_DEFAULT"/> (-1)：使用默认的音频路由。</li>
                     <li><ph keyref="AUDIO_ROUTE_HEADSET"/> (0)：音频路由为带麦克风的耳机。</li>

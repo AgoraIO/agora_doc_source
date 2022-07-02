@@ -28,7 +28,9 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstRemoteVideoDecoded(RtcConnection connection, uint remoteUid, int width, int height, int elapsed) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, int width,
+      int height, int elapsed)? onFirstRemoteVideoDecoded;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>SDK 会在以下时机触发该回调：
@@ -63,19 +65,19 @@
                 <pt>size</pt>
                 <pd>视频流尺寸。</pd>
             </plentry>
-            <plentry props="unity electron rn">
+            <plentry props="unity electron rn flutter">
                 <pt>connection</pt>
                 <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
             </plentry>
-            <plentry props="unity electron rn">
+            <plentry props="unity electron rn flutter">
                 <pt>remoteUid</pt>
                 <pd>用户 ID，指定是哪个用户的视频流。</pd>
             </plentry>
-            <plentry props="android cpp unity electron rn">
+            <plentry props="android cpp unity electron rn flutter">
                 <pt>width</pt>
                 <pd>视频流宽（px）。</pd>
             </plentry>
-            <plentry props="android cpp unity electron rn">
+            <plentry props="android cpp unity electron rn flutter">
                 <pt>height</pt>
                 <pd>视频流高（px）。</pd>
             </plentry>

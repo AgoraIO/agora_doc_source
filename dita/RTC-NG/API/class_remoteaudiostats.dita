@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_remoteaudiostats">
-    <title><ph keyref="RemoteAudioStats" /></title>
+    <title><ph keyref="RemoteAudioStats"/></title>
     <shortdesc id="short"><ph id="shortdesc">远端用户的音频统计数据。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -71,7 +71,7 @@
     publishDuration(0){}
     qoeQuality(0) {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public class RemoteAudioStats
     {
         public RemoteAudioStats()
@@ -129,11 +129,62 @@
   publishDuration?: number;
   qoeQuality?: number;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class RemoteAudioStats {
+  const RemoteAudioStats(
+      {this.uid,
+      this.quality,
+      this.networkTransportDelay,
+      this.jitterBufferDelay,
+      this.audioLossRate,
+      this.numChannels,
+      this.receivedSampleRate,
+      this.receivedBitrate,
+      this.totalFrozenTime,
+      this.frozenRate,
+      this.mosValue,
+      this.totalActiveTime,
+      this.publishDuration,
+      this.qoeQuality});
+
+  @JsonKey(name: 'uid')
+  final int? uid;
+  @JsonKey(name: 'quality')
+  final int? quality;
+  @JsonKey(name: 'networkTransportDelay')
+  final int? networkTransportDelay;
+  @JsonKey(name: 'jitterBufferDelay')
+  final int? jitterBufferDelay;
+  @JsonKey(name: 'audioLossRate')
+  final int? audioLossRate;
+  @JsonKey(name: 'numChannels')
+  final int? numChannels;
+  @JsonKey(name: 'receivedSampleRate')
+  final int? receivedSampleRate;
+  @JsonKey(name: 'receivedBitrate')
+  final int? receivedBitrate;
+  @JsonKey(name: 'totalFrozenTime')
+  final int? totalFrozenTime;
+  @JsonKey(name: 'frozenRate')
+  final int? frozenRate;
+  @JsonKey(name: 'mosValue')
+  final int? mosValue;
+  @JsonKey(name: 'totalActiveTime')
+  final int? totalActiveTime;
+  @JsonKey(name: 'publishDuration')
+  final int? publishDuration;
+  @JsonKey(name: 'qoeQuality')
+  final int? qoeQuality;
+  factory RemoteAudioStats.fromJson(Map&lt;String, dynamic> json) =>
+      _$RemoteAudioStatsFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$RemoteAudioStatsToJson(this);
+}
+</codeblock>
             </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>uid</pt>
@@ -142,16 +193,17 @@
             <plentry>
                 <pt>quality</pt>
                 <pd>
-                    <p>远端用户发送的音频流质量。<ph props="ios mac cpp electron rn unity">详见 <xref keyref="QUALITY_TYPE" />。</ph></p>
+                    <p>远端用户发送的音频流质量。<ph props="ios mac cpp electron rn unity flutter">详见 <xref keyref="QUALITY_TYPE" />。</ph></p>
                     <p props="android">
                     <ul id="qualitytype">
-                    <li><ph keyref="QUALITY_UNKNOWN" /> (0)：质量未知。</li>
-                    <li><ph keyref="QUALITY_EXCELLENT" /> (1)：质量极好。</li>
-                    <li><ph keyref="QUALITY_GOOD" /> (2)：用户主观感觉和极好差不多，但码率可能略低于极好。</li>
-                    <li><ph keyref="QUALITY_POOR" /> (3)：用户主观感受有瑕疵但不影响沟通。</li>
-                    <li><ph keyref="QUALITY_BAD" /> (4)：勉强能沟通但不顺畅。</li>
-                    <li><ph keyref="QUALITY_VBAD" /> (5)：网络质量非常差，基本不能沟通。</li>
-                    <li><ph keyref="QUALITY_DOWN" /> (6)：网络连接断开，完全无法沟通。</li>
+                    <li><ph keyref="QUALITY_UNKNOWN"/> (0)：质量未知。</li>
+                    <li><ph keyref="QUALITY_EXCELLENT"/> (1)：质量极好。</li>
+                    <li><ph keyref="QUALITY_GOOD"
+                        /> (2)：用户主观感觉和极好差不多，但码率可能略低于极好。</li>
+                    <li><ph keyref="QUALITY_POOR"/> (3)：用户主观感受有瑕疵但不影响沟通。</li>
+                    <li><ph keyref="QUALITY_BAD"/> (4)：勉强能沟通但不顺畅。</li>
+                    <li><ph keyref="QUALITY_VBAD"/> (5)：网络质量非常差，基本不能沟通。</li>
+                    <li><ph keyref="QUALITY_DOWN"/> (6)：网络连接断开，完全无法沟通。</li>
                     </ul> </p>
                 </pd>
             </plentry>
@@ -209,8 +261,9 @@
                 <pd>
                     <p>接收远端音频时，本地用户的主观体验质量。<ph props="ios mac cpp electron rn">详见 <xref keyref="EXPERIENCE_QUALITY_TYPE" />。</ph>
                     <ul props="android">
-                    <li><ph keyref="EXPERIENCE_QUALITY_GOOD" /> (0)：主观体验质量较好。</li>
-                    <li><ph keyref="EXPERIENCE_QUALITY_BAD" /> (1)：主观体验质量较差。</li>
+                    <li><ph keyref="EXPERIENCE_QUALITY_GOOD"
+                        /> (0)：主观体验质量较好。</li>
+                    <li><ph keyref="EXPERIENCE_QUALITY_BAD"/> (1)：主观体验质量较差。</li>
                     </ul></p>
                 </pd>
             </plentry>

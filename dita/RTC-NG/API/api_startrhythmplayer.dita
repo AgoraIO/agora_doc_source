@@ -20,14 +20,17 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int StartRhythmPlayer(string sound1, string sound2, AgoraRhythmPlayerConfig config);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/></p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> startRhythmPlayer(
+    {required String sound1,
+    required String sound2,
+    required AgoraRhythmPlayerConfig config});</codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>在音乐教学、体育教学等场景中，老师通常需要使用节拍器，让学生跟着正确的节拍练习。 节拍由强拍和弱拍组成，每小节的第一拍称为强拍，其余称为弱拍。</p>
             <p>你需要在该方法中设置强拍和弱拍的文件路径、每小节的拍数、节拍速度以及是否将节拍器的声音发送至远端。</p>
             <note type="attention" id="rhythm_play">
             <ul>
-            <li props="cpp unity">该方法仅适用于 Android 和 iOS。</li>
+            <li props="cpp unity flutter">该方法仅适用于 Android 和 iOS。</li>
             <li>开启虚拟节拍器后，SDK 会从头开始播放指定的音频文件，并根据你在 <xref keyref="AgoraRhythmPlayerConfig"/> 中设置的 <parmname>beatsPerMinute</parmname> 控制每个文件的播放时长。例如，将 <parmname>beatsPerMinute</parmname> 设为 <codeph>60</codeph>，则 SDK 会 1 秒播放 1 个节拍。如果文件时长超过了节拍时长，则 SDK 只播放节拍时长部分的音频。</li>
             </ul></note> </section>
         <section id="parameters">
@@ -56,6 +59,7 @@
 
 
 
+                
                 <ul>
                 <li>-22: 无法找到音频文件。请填写正确的 <parmname>sound1</parmname> 和 <parmname>sound2</parmname>。</li>
                 </ul></li>

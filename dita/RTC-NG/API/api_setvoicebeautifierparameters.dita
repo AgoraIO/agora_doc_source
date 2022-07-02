@@ -19,7 +19,10 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetVoiceBeautifierParameters(VOICE_BEAUTIFIER_PRESET preset, int param1, int param2);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/></p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setVoiceBeautifierParameters(
+  {required VoiceBeautifierPreset preset,
+  required int param1,
+  required int param2});</codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>调用该方法可以设置歌唱美声效果的性别特征和混响效果。该方法对本地发流用户进行设置。设置后，频道内所有用户都能听到该效果。</p>
@@ -27,17 +30,16 @@
             <note type="attention">
             <ul>
             <li>该方法在加入频道前后都能调用。</li>
-            <li>请勿将 <apiname keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1)<ph props="cpp rn electron"> 或 <apiname keyref="AUDIO_PROFILE_IOT"/>(6)</ph>，否则该方法不生效。</li>
+            <li>请勿将 <apiname keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1)<ph props="cpp rn electron unity"> 或 <apiname keyref="AUDIO_PROFILE_IOT"/>(6)</ph>，否则该方法不生效。</li>
             <li>该方法对人声的处理效果最佳，Agora 不推荐调用该方法处理含音乐的音频数据。</li>
             <li>调用 <apiname keyref="setVoiceBeautifierParameters"/>，Agora 不推荐调用以下方法，否则 <apiname keyref="setVoiceBeautifierParameters"/> 设置的效果会被覆盖：
+
 
 
                 <ul>
                 <li><xref keyref="setAudioEffectPreset"/></li>
                 <li><xref keyref="setAudioEffectParameters"/></li>
                 <li><xref keyref="setVoiceBeautifierPreset"/></li>
-                <li><xref keyref="setLocalVoiceReverbPreset" props="native flutter unity"/></li>
-                <li><xref keyref="setLocalVoiceChanger"/></li>
                 <li><xref keyref="setLocalVoicePitch"/></li>
                 <li><xref keyref="setLocalVoiceEqualization"/></li>
                 <li><xref keyref="setLocalVoiceReverb"/></li>
@@ -52,6 +54,7 @@
                 <pd>预设的音效：
 
 
+
                     <ul>
                     <li><codeph>SINGING_BEAUTIFIER</codeph>: 歌唱美声。</li>
                     </ul> </pd>
@@ -59,6 +62,7 @@
             <plentry>
                 <pt>param1</pt>
                 <pd>歌声的性别特征：
+
 
 
                     <ul>
@@ -69,6 +73,7 @@
             <plentry>
                 <pt>param2</pt>
                 <pd>歌声的混响效果：
+
 
 
                     <ul>

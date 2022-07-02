@@ -24,7 +24,10 @@
     publishUrl: string,
     options: DirectCdnStreamingMediaOptions
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </section>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> startDirectCdnStreaming(
+    {required DirectCdnStreamingEventHandler eventHandler,
+    required String publishUrl,
+    required DirectCdnStreamingMediaOptions options});</codeblock> </section>
         <section id="detailed_desc">
             <p>Agora 不支持同一时间向同一个 URL 重复推流。</p>
             <p><b>媒体选项说明</b></p>
@@ -48,7 +51,7 @@
             <title>参数</title>
             <parml>
             <plentry>
-                <pt props="android cpp rn">eventHandler</pt>
+                <pt props="android cpp flutter rn">eventHandler</pt>
                 <pt props="ios mac">delegate</pt>
                 <pd>详见 <xref keyref="onDirectCdnStreamingStateChanged" /> 及 <xref keyref="onDirectCdnStreamingStats" />。</pd>
             </plentry>
@@ -61,7 +64,7 @@
                 <pd>主播端的媒体选项。详见 <xref keyref="DirectCdnStreamingMediaOptions" />。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native unity">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功</li>

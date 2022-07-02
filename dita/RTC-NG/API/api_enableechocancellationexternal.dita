@@ -23,7 +23,8 @@
     enabled: boolean,
     audioSourceDelay: number
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+  <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableEchoCancellationExternal(
+    {required bool enabled, required int audioSourceDelay});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>调用该方法后，你可以将外部音频帧推送到自定义音频模块进行回声消除。</p>
@@ -34,6 +35,7 @@
             <plentry>
                 <pt>enabled</pt>
                 <pd>设置是否开启自定义回声消除：
+
                     <ul>
                     <li><codeph><ph keyref="true" /></codeph>：开启。</li>
                     <li><codeph><ph keyref="false" /></codeph>：关闭。</li>
@@ -42,13 +44,14 @@
             <plentry>
                 <pt>audioSourceDelay</pt>
                 <pd>设置推送音频帧到发布音频帧中间的时间（毫秒）。取值范围为 [0,30]。
+
                     <ul>
                     <li>如需调用 <xref keyref="pushCaptureAudioFrame1" />，请确保该参数设为 0。</li>
                     <li>如需调用 <xref keyref="pushReverseAudioFrame1" /> 或处理声卡采集的音频帧，请确保该参数为 10 的整数倍。</li>
                     </ul></pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native unity">
             <title>返回值</title>
             <ul>
             <li>0：方法调用成功。</li>

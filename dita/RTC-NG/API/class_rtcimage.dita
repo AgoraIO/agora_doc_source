@@ -51,18 +51,48 @@
             double alpha;
 
             RtcImage() : url(NULL), x(0), y(0), width(0), height(0), zOrder(0), alpha(1.0) {}</codeblock>
-            <codeblock props="unity" outputclass="language-csharp" />
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp">public class RtcImage
+    {
+        public RtcImage()
+        {
+            url = null;
+            x = 0;
+            y = 0;
+            width = 0;
+            height = 0;
+            zOrder = 0;
+            alpha = 1.0;
+        }
+
+        public RtcImage(string url, int x, int y, int width, int height, int zOrder, double alpha)
+        {
+            this.url = url;
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+            this.zOrder = zOrder;
+            this.alpha = alpha;
+        }
+        public string url { set; get; }
+        public int x { set; get; }
+        public int y { set; get; }
+        public int width { set; get; }
+        public int height { set; get; }
+        public int zOrder { set; get; }
+        public double alpha { set; get; }
+    }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="rn" outputclass="language-typescript">export class RtcImage {
-  url?: string;
-  x?: number;
-  y?: number;
-  width?: number;
-  height?: number;
-  zOrder?: number;
-  alpha?: number;
-}</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+                url?: string;
+                x?: number;
+                y?: number;
+                width?: number;
+                height?: number;
+                zOrder?: number;
+                alpha?: number;
+              }</codeblock>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
             <p>用于设置直播视频的水印和背景图片的属性。</p>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_mutelocalvideostream">
-    <title><ph keyref="muteLocalVideoStream" /> </title>
+    <title><ph keyref="muteLocalVideoStream"/> </title>
     <shortdesc id="short"><ph id="shortdesc">取消或恢复发布本地视频流。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="muteLocalVideoStream" />
+                <indexterm keyref="muteLocalVideoStream"/>
             </keywords>
         </metadata>
     </prolog>
@@ -16,32 +16,33 @@
             <codeblock props="android" outputclass="language-java">public abstract int muteLocalVideoStream(boolean muted);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)muteLocalVideoStream:(BOOL)mute;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int muteLocalVideoStream(bool mute) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int MuteLocalVideoStream(bool mute);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract muteLocalVideoStream(mute: boolean): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; muteLocalVideoStream(bool mute);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>成功调用该方法后，远端会触发 <xref keyref="onUserMuteVideo" /> 回调。</p>
+            <p>成功调用该方法后，远端会触发 <xref keyref="onUserMuteVideo"/> 回调。</p>
             <note type="attention">
             <ul id="ul_ogk_hwc_f4b">
-            <li>相比于 <xref keyref="enableLocalVideo" />(<codeph><ph keyref="false" /></codeph>) 用于控制本地视频流发送的方法，该方法响应速度更快。</li>
+            <li>相比于 <xref keyref="enableLocalVideo"/>(<codeph><ph keyref="false"/></codeph>) 用于控制本地视频流发送的方法，该方法响应速度更快。</li>
             <li>该方法不影响视频采集状态，没有禁用摄像头。</li>
-            <li props="rtc">该方法在加入频道前后都能调用。如果你在该方法后调用 <xref keyref="setChannelProfile" /> 方法，SDK 会根据你设置的频道场景以及用户角色，重新设置是否停止发送本地视频。因此我们建议在 <apiname keyref="setChannelProfile" /> 后调用该方法。</li>
+            <li props="rtc">该方法在加入频道前后都能调用。如果你在该方法后调用 <xref keyref="setChannelProfile"/> 方法，SDK 会根据你设置的频道场景以及用户角色，重新设置是否停止发送本地视频。因此我们建议在 <apiname keyref="setChannelProfile"/> 后调用该方法。</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry>
-                <pt props="android flutter">muted</pt>
-                <pt props="ios mac cpp unity rn electron">mute</pt>
+                <pt props="android">muted</pt>
+                <pt props="ios mac cpp unity flutter rn electron">mute</pt>
                 <pd id="mute">
                     <p>是否取消发送本地视频流。
 
 
+
                     <ul>
-                    <li><codeph><ph keyref="true" /></codeph>: 取消发送本地视频流。</li>
-                    <li><codeph><ph keyref="false" /></codeph>: （默认）发送本地视频流。</li>
+                    <li><codeph><ph keyref="true"/></codeph>: 取消发送本地视频流。</li>
+                    <li><codeph><ph keyref="false"/></codeph>: （默认）发送本地视频流。</li>
                     </ul> </p>
                 </pd>
             </plentry>

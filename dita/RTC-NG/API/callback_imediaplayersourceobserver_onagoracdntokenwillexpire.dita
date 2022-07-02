@@ -20,9 +20,10 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual void onAgoraCDNTokenWillExpire() = 0;
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnAgoraCDNTokenWillExpire() {}</codeblock>    
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnAgoraCDNTokenWillExpire() {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function()? onAgoraCDNTokenWillExpire;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>当你调用 <xref keyref="switchAgoraCDNLineByIndex"/> 切换媒体资源的时候，如果 <parmname>ts</parmname> 过期，该回调会被触发，提示你更新鉴权信息。你需要调用 <xref keyref="renewAgoraCDNSrcToken"/> 传入新的鉴权信息，以更新该媒体资源网络路径的鉴权信息。更新鉴权信息后，你还需要调用 <xref keyref="switchAgoraCDNLineByIndex"/> 才能完成线路切换。</p>

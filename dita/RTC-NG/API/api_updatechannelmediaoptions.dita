@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_updatechannelmediaoptions">
-    <title><ph keyref="updateChannelMediaOptions" /></title>
+    <title><ph keyref="updateChannelMediaOptions"/></title>
     <shortdesc id="short"><ph id="shortdesc">加入频道后更新频道媒体选项。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="updateChannelMediaOptions" />
+                <indexterm keyref="updateChannelMediaOptions"/>
             </keywords>
         </metadata>
     </prolog>
@@ -16,7 +16,7 @@
             <codeblock props="android" outputclass="language-java">public abstract int updateChannelMediaOptions(ChannelMediaOptions options);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)updateChannelWithMediaOptions:(AgoraRtcChannelMediaOptions* _Nonnull)mediaOptions;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int updateChannelMediaOptions(const ChannelMediaOptions&amp; options) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int UpdateChannelMediaOptions(ChannelMediaOptions options);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract updateChannelMediaOptions(options: ChannelMediaOptions): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; updateChannelMediaOptions(ChannelMediaOptions options);</codeblock> </p>
@@ -25,9 +25,9 @@
             <title>参数</title>
             <parml>
             <plentry>
-                <pt props="android cpp unity rn electron">options </pt>
+                <pt props="android cpp unity rn electron flutter">options </pt>
                 <pt props="ios mac">mediaOptions</pt>
-                <pd>频道媒体选项，详见 <xref keyref="ChannelMediaOptions" />。</pd>
+                <pd>频道媒体选项，详见 <xref keyref="ChannelMediaOptions"/>。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity rn">
@@ -35,10 +35,13 @@
             <ul id="ul_uns_l2y_hqb">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。
+
+
+
                 <ul>
-                <li>-2：<xref keyref="ChannelMediaOptions" /> 结构体成员值设置无效。例如，使用了不合法的 Token，设置了无效的用户角色。你需要填入有效的参数。</li>
-                <li>-7：<apiname keyref="IRtcEngine" /> 对象尚未初始化。你需要在调用该方法前成功初始化 <apiname keyref="IRtcEngine" /> 对象。</li>
-                <li>-8：<apiname keyref="IRtcEngine" /> 对象内部状态错误。可能的原因是用户不在频道中。Agora 推荐通过 <xref keyref="onConnectionStateChanged" /> 回调判断用户是否在频道中。如果收到 <apiname keyref="CONNECTION_STATE_DISCONNECTED" />(1) 或 <apiname keyref="CONNECTION_STATE_FAILED" />(5)，则表示用户不在频道中。你需要在调用该方法前调用 <xref keyref="joinChannel2" /> 加入频道。</li>
+                <li>-2：<xref keyref="ChannelMediaOptions"/> 结构体成员值设置无效。例如，使用了不合法的 Token，设置了无效的用户角色。你需要填入有效的参数。</li>
+                <li>-7：<apiname keyref="IRtcEngine"/> 对象尚未初始化。你需要在调用该方法前成功初始化 <apiname keyref="IRtcEngine"/> 对象。</li>
+                <li>-8：<apiname keyref="IRtcEngine"/> 对象内部状态错误。可能的原因是用户不在频道中。Agora 推荐通过 <xref keyref="onConnectionStateChanged"/> 回调判断用户是否在频道中。如果收到 <apiname keyref="CONNECTION_STATE_DISCONNECTED"/>(1) 或 <apiname keyref="CONNECTION_STATE_FAILED"/>(5)，则表示用户不在频道中。你需要在调用该方法前调用 <xref keyref="joinChannel2"/> 加入频道。</li>
                 </ul></li>
             </ul> </section>
     </refbody>

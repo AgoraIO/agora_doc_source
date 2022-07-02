@@ -27,7 +27,11 @@
     enable?: boolean,
     type?: MediaSourceType
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableExtension(
+    {required String provider,
+    required String extension,
+    bool enable = true,
+    MediaSourceType type = MediaSourceType.unknownMediaSource});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>该方法需要在加入频道前调用。</p>
@@ -48,17 +52,18 @@
                 <pd />
             </plentry>
             <plentry id="enable">
-                <pt props="android cpp unity rn electron">enable</pt>
+                <pt props="android cpp unity rn electron flutter">enable</pt>
                 <pt props="ios mac">enabled</pt>
                 <pd>
                     <p>是否启用插件：
+
                     <ul id="ul_c3b_d22_3qb">
                     <li><codeph><ph keyref="true" /></codeph>: 启用插件。</li>
                     <li><codeph><ph keyref="false" /></codeph>: 禁用插件。</li>
                     </ul></p>
                 </pd>
             </plentry>
-            <plentry id="source" props="cpp unity rn electron">
+            <plentry id="source" props="cpp unity rn electron flutter">
                     <pt>type</pt>
                     <pd>媒体资源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE" />。
                         <note type="attention">在该方法中，该参数仅支持以下两种设置：

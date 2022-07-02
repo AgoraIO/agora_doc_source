@@ -23,14 +23,17 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int StartScreenCaptureByWindowId(UInt64 windowId, Rectangle regionRect, ScreenCaptureParameters captureParams);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> startScreenCaptureByWindowId(
+    {required int windowId,
+    required Rectangle regionRect,
+    required ScreenCaptureParameters captureParams});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p id="desc">共享一个窗口或该窗口的部分区域。用户需要在该方法中指定想要共享的窗口 ID。</p>
             <p conkeyref="startScreenCapture/apisequence"/>
-            <note type="attention" id="note" props="cpp unity">该方法仅适用于 macOS 和 Windows 平台。</note>
-            <p props="cpp">该方法支持共享通用 Windows 平台（UWP）应用窗口。声网使用最新版 SDK 对主流的 UWP 应用进行了测试，结果如下：</p>
-            <p props="cpp"> <table id="table_lvk_tfs_r4b">
+            <note type="attention" id="note" props="cpp unity flutter">该方法仅适用于 macOS 和 Windows 平台。</note>
+            <p props="cpp flutter">该方法支持共享通用 Windows 平台（UWP）应用窗口。声网使用最新版 SDK 对主流的 UWP 应用进行了测试，结果如下：</p>
+            <p props="cpp flutter"> <table id="table_lvk_tfs_r4b">
             <tgroup cols="4">
                 <colspec colnum="1" colname="col1"/>
                 <colspec colnum="2" colname="col2"/>
@@ -159,6 +162,7 @@
                 <pt>windowId</pt>
                 <pd>指定待共享的窗口 ID。
 
+                    
                     <p props="electron">你可以通过 <xref keyref="getWindowsInfo"/> 方法获取。</p>
                 </pd>
             </plentry>
@@ -172,6 +176,7 @@
                     <p>（可选）待共享区域相对于整个窗口的位置。如不填，则表示共享整个窗口。由如下参数组成：
 
 
+                    
                     <ul>
                     <li>x：左上角的横向偏移。</li>
                     <li>y：左上角的纵向偏移。</li>

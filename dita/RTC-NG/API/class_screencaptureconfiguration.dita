@@ -35,8 +35,31 @@
         public Rectangle regionRect { set; get; }
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock>
-            </p>
+            <codeblock props="flutter" outputclass="language-dart">class ScreenCaptureConfiguration {
+  const ScreenCaptureConfiguration(
+      {this.isCaptureWindow,
+      this.displayId,
+      this.screenRect,
+      this.windowId,
+      this.params,
+      this.regionRect});
+
+  @JsonKey(name: 'isCaptureWindow')
+  final bool? isCaptureWindow;
+  @JsonKey(name: 'displayId')
+  final int? displayId;
+  @JsonKey(name: 'screenRect')
+  final Rectangle? screenRect;
+  @JsonKey(name: 'windowId')
+  final int? windowId;
+  @JsonKey(name: 'params')
+  final ScreenCaptureParameters? params;
+  @JsonKey(name: 'regionRect')
+  final Rectangle? regionRect;
+  factory ScreenCaptureConfiguration.fromJson(Map&lt;String, dynamic> json) =>
+      _$ScreenCaptureConfigurationFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$ScreenCaptureConfigurationToJson(this);
+}</codeblock> </p>
         </section>
         <section id="parameters">
             <title><text
@@ -47,7 +70,7 @@
                 <pt>isCaptureWindow</pt>
                 <pd>是否采集屏幕上的窗口：
 
-                    
+
                     <ul id="ul_ln3_hwd_mqb">
                     <li><codeph><ph keyref="true"/></codeph>：采集窗口。</li>
                     <li><codeph><ph keyref="false"
@@ -58,7 +81,7 @@
                 <pt>displayId</pt>
                 <pd>（仅适用于 macOS 平台）屏幕的 display ID。
 
-                    
+
                     <note id="note_w12_4wd_mqb" type="attention"
                     >请仅在 Mac 设备上采集屏幕时使用该参数。</note></pd>
             </plentry>
@@ -66,7 +89,7 @@
                 <pt>screenRect</pt>
                 <pd>（仅适用于 Windows 平台）待共享的屏幕相对于虚拟屏的位置。
 
-                    
+
                     <note type="attention" id="note_ifh_swd_mqb"
                     >请仅在 Windows 设备上采集屏幕时使用该参数。</note></pd>
             </plentry>
@@ -74,7 +97,7 @@
                 <pt>windowId</pt>
                 <pd>（仅适用于 Windows 和 macOS 平台）窗口 ID。
 
-                    
+
                     <note type="attention">请仅在采集窗口时使用该参数。</note></pd>
             </plentry>
             <plentry>

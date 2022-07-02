@@ -27,7 +27,10 @@
                <codeblock props="electron" outputclass="language-typescript"/>
                <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstLocalVideoFrame(RtcConnection connection, int width, int height, int elapsed) {}</codeblock>
                <codeblock props="rn" outputclass="language-typescript"/>
-               <codeblock props="flutter" outputclass="language-dart"/> </p>
+               <codeblock props="flutter" outputclass="language-dart">final void Function(
+          RtcConnection connection, int width, int height, int elapsed)?
+      onFirstLocalVideoFrame;
+</codeblock> </p>
           </section>
           <section id="detailed_desc">
                <p id="desc">本地视频首帧显示在本地视图上时，SDK 会触发此回调。</p>
@@ -44,21 +47,21 @@
                     <pt>size</pt>
                     <pd>本地渲染视频的尺寸。</pd>
                </plentry>
-               <plentry props="unity electron rn">
+               <plentry props="unity electron rn flutter">
                     <pt>connection</pt>
                     <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
                </plentry>
-               <plentry props="android cpp unity electron rn">
+               <plentry props="android cpp unity electron rn flutter">
                     <pt>width</pt>
                     <pd>本地渲染视频的宽 (px) 。</pd>
                </plentry>
-               <plentry props="android cpp unity electron rn">
+               <plentry props="android cpp unity electron rn flutter">
                     <pt>height</pt>
                     <pd>本地渲染视频的高 (px)。</pd>
                </plentry>
                <plentry>
                     <pt>elapsed</pt>
-                    <pd> 从调用 <apiname keyref="joinChannel2"/> 到发生此事件过去的时间（毫秒）。如果在 <apiname keyref="joinChannel2"/> 前调用了 <xref keyref="startPreview" props="native flutter unity"/> <xref keyref="startPreview2" props="rn electron"/>，则是从 <apiname keyref="startPreview" props="native flutter unity"/> <apiname keyref="startPreview2" props="rn electron"/>到发生此事件过去的时间。</pd>
+                    <pd> 从调用 <apiname keyref="joinChannel2"/> 到发生此事件过去的时间（毫秒）。如果在 <apiname keyref="joinChannel2"/> 前调用了 <xref keyref="startPreview" props="native unity"/> <xref keyref="startPreview2" props="rn electron flutter"/>，则是从 <apiname keyref="startPreview" props="native unity"/> <apiname keyref="startPreview2" props="rn electron flutter"/>到发生此事件过去的时间。</pd>
                </plentry>
                </parml> </section>
      </refbody>

@@ -30,7 +30,9 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnSnapshotTaken(string channel, uint uid, string filePath, int width, int height, int errCode)</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, String filePath, int width,
+      int height, int errCode)? onSnapshotTaken;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
@@ -57,11 +59,11 @@
                 <pt>uid</pt>
                 <pd>用户 ID。如果 <parmname>uid</parmname> 为 0，表示本地用户。</pd>
             </plentry>
-            <plentry conkeyref="joinChannelEx/connection" props="unity flutter electron rn">
-                <pt/>
-                <pd/>
-            </plentry>
-                <plentry>
+                <plentry id="connection" props="flutter electron rn">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+            <plentry>
                 <pt>filePath</pt>
                 <pd>截图的本地保存路径。</pd>
             </plentry>
@@ -77,12 +79,12 @@
                 <pt>errCode</pt>
                 <pd>截图成功的提示或失败的原因。
 
-                    
+
                     <ul>
                     <li>0：截图成功。</li>
                     <li>&lt; 0: 截图失败。
 
-                        
+
                         <ul>
                         <li>-1：写入文件失败或 JPEG 编码失败。</li>
                         <li>-2：<apiname keyref="takeSnapshot"/> 方法调用成功后 1 秒内没有发现指定用户的视频流。</li>

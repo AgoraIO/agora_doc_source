@@ -24,7 +24,9 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnLocalAudioStateChanged(RtcConnection connection, LOCAL_AUDIO_STREAM_STATE state, LOCAL_AUDIO_STREAM_ERROR error) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, LocalAudioStreamState state,
+      LocalAudioStreamError error)? onLocalAudioStateChanged;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p id="desc">本地音频的状态发生改变时（包括本地麦克风采集状态和音频编码状态）， SDK 会触发该回调报告当前的本地音频状态。在本地音频出现故障时，该回调可以帮助你了解当前音频的状态以及出现故障的原因，方便你排查问题。</p>
@@ -39,7 +41,7 @@
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="unity electron rn">
+            <plentry props="unity electron rn flutter">
                 <pt>connection</pt>
                 <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
             </plentry>

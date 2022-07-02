@@ -11,7 +11,7 @@
                 <stentry>方法</stentry>
                 <stentry>描述</stentry>
             </sthead>
-            <strow props="cpp rn electron">
+            <strow props="cpp rn electron unity">
                 <stentry><xref keyref="createAgoraRtcEngine"/></stentry>
                 <stentry><ph conkeyref="createAgoraRtcEngine/shortdesc"/></stentry>
             </strow>
@@ -195,6 +195,10 @@
                 <stentry><xref keyref="getAudioDeviceInfo"/></stentry>
                 <stentry><ph conkeyref="getAudioDeviceInfo/shortdesc"/></stentry>
             </strow>
+            <strow props="unity">
+                <stentry><xref keyref="getAudioDeviceManager"/></stentry>
+                <stentry><ph conkeyref="getAudioDeviceManager/shortdesc"/></stentry>
+            </strow>
             </simpletable> </section>
         <section id="section_gxr_pjb_jqb">
             <title>视频管理</title>
@@ -291,8 +295,12 @@
                 <stentry><xref keyref="setDefaultMuteAllRemoteVideoStreams"/></stentry>
                 <stentry><ph conkeyref="setDefaultMuteAllRemoteVideoStreams/shortdesc"/></stentry>
             </strow>
+            <strow props="unity">
+                <stentry><xref keyref="getAgoraRtcVideoDeviceManager"/></stentry>
+                <stentry><ph conkeyref="getAgoraRtcVideoDeviceManager/shortdesc"/></stentry>
+            </strow>
             </simpletable> </section>
-        <section>
+        <section props="hide">
             <title>视频截图</title>
             <simpletable>
             <sthead>
@@ -315,7 +323,9 @@
             </simpletable> </section>
         <section props="cpp unity electron" id="section_hj2_ph1_jqb">
             <title>多设备采集</title>
-            <simpletable>
+            <note props="unity electron flutter" type="attention">
+            <p>本组方法仅适用于 Windows。</p>
+            </note> <simpletable>
             <sthead>
                 <stentry>方法</stentry>
                 <stentry>描述</stentry>
@@ -363,10 +373,6 @@
             <strow>
                 <stentry><xref keyref="createMediaPlayer"/></stentry>
                 <stentry><ph conkeyref="createMediaPlayer/shortdesc"/></stentry>
-            </strow>
-            <strow props="unity">
-                <stentry><xref keyref="getAgoraRtcMediaPlayerSourceObserver"/></stentry>
-                <stentry><ph conkeyref="getAgoraRtcMediaPlayerSourceObserver/shortdesc"/></stentry>
             </strow>
             <strow props="unity">
                 <stentry><xref keyref="dispose_IMediaPlayer"/></stentry>
@@ -536,7 +542,7 @@
             </simpletable> </section>
         <section id="audio_preprocessing_and_postprocessing" props="android ios cpp unity rn">
             <title>音频前后处理</title>
-            <note props="cpp" type="attention">
+            <note props="cpp unity" type="attention">
             <p>本组方法仅适用于 Android 和 iOS。</p>
             </note> <simpletable>
             <sthead>
@@ -1099,10 +1105,6 @@
                 <stentry><xref keyref="create_ILocalSpatialAudioEngine"/></stentry>
                 <stentry><ph conkeyref="create_ILocalSpatialAudioEngine/shortdesc"/></stentry>
             </strow>
-            <strow props="unity">
-                <stentry><xref keyref="getAgoraRtcSpatialAudioEngine"/></stentry>
-                <stentry><ph conkeyref="getAgoraRtcSpatialAudioEngine/shortdesc"/></stentry>
-            </strow>
             <strow>
                 <stentry><xref keyref="initialize_ILocalSpatialAudioEngine"/></stentry>
                 <stentry><ph conkeyref="initialize_ILocalSpatialAudioEngine/shortdesc"/></stentry>
@@ -1363,6 +1365,10 @@
                 <stentry><xref keyref="setPlaybackAudioFrameBeforeMixingParameters"/></stentry>
                 <stentry><ph conkeyref="setPlaybackAudioFrameBeforeMixingParameters/shortdesc"/></stentry>
             </strow>
+            <strow props="unity">
+                <stentry><xref keyref="isMultipleChannelFrameWanted_IAudioFrameObserver"/></stentry>
+                <stentry><ph keyref="isMultipleChannelFrameWanted_IAudioFrameObserver/shortdesc"/></stentry>
+            </strow>
             </simpletable><simpletable>
             <sthead>
                 <stentry>事件</stentry>
@@ -1395,6 +1401,10 @@
             <strow>
                 <stentry><xref keyref="registerAudioEncodedFrameObserver"/></stentry>
                 <stentry><ph conkeyref="registerAudioEncodedFrameObserver/shortdesc"/></stentry>
+            </strow>
+            <strow props="unity">
+                <stentry><xref keyref="unRegisterAudioEncodedFrameObserver"/></stentry>
+                <stentry><ph conkeyref="unRegisterAudioEncodedFrameObserver/shortdesc"/></stentry>
             </strow>
             </simpletable> <simpletable>
             <sthead>
@@ -1716,6 +1726,10 @@
             <strow props="ios cpp unity rn">
                 <stentry><xref keyref="isCameraAutoExposureFaceModeSupported"/></stentry>
                 <stentry><ph conkeyref="isCameraAutoExposureFaceModeSupported/shortdesc"/><ph props="cpp unity rn">(仅适用于 iOS)</ph></stentry>
+            </strow>
+            <strow props="ios cpp unity">
+                <stentry><xref keyref="setCameraAutoExposureFaceModeEnabled"/></stentry>
+                <stentry><ph conkeyref="setCameraAutoExposureFaceModeEnabled/shortdesc"/><ph props="cpp unity">(仅适用于 iOS)</ph></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="setCameraExposurePosition"/></stentry>
@@ -2168,6 +2182,10 @@
             <strow props="unity">
                 <stentry><xref keyref="setForUser"/></stentry>
                 <stentry><ph conkeyref="setForUser/shortdesc"/></stentry>
+            </strow>
+            <strow props="unity">
+                <stentry><xref keyref="setParameters"/></stentry>
+                <stentry><ph conkeyref="setParameters/shortdesc"/></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="getCallId"/></stentry>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_encryptionconfig">
-  <title><ph keyref="EncryptionConfig" /></title>
+  <title><ph keyref="EncryptionConfig"/></title>
   <shortdesc id="short"><ph id="shortdesc">配置内置加密模式和密钥。</ph></shortdesc>
   <refbody>
     <section id="prototype">
@@ -69,7 +69,7 @@
     return "aes-128-gcm-2";
   }
 };    </codeblock>
-      <codeblock props="electron" outputclass="language-typescript" />
+      <codeblock props="electron" outputclass="language-typescript"/>
       <codeblock props="unity" outputclass="language-csharp">public class EncryptionConfig
     {
         public EncryptionConfig()
@@ -101,28 +101,50 @@
   encryptionKey?: string;
   encryptionKdfSalt?: number[];
 }</codeblock>
-      <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock> </p>
+      <codeblock props="flutter" outputclass="language-dart">class EncryptionConfig {
+  const EncryptionConfig(
+      {this.encryptionMode, this.encryptionKey, this.encryptionKdfSalt});
+
+  @JsonKey(name: 'encryptionMode')
+  final EncryptionMode? encryptionMode;
+  @JsonKey(name: 'encryptionKey')
+  final String? encryptionKey;
+  @JsonKey(name: 'encryptionKdfSalt', ignore: true)
+  final Uint8List? encryptionKdfSalt;
+  factory EncryptionConfig.fromJson(Map&lt;String, dynamic> json) =>
+      _$EncryptionConfigFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$EncryptionConfigToJson(this);
+}</codeblock>
+      </p>
     </section>
     <section id="parameters">
-      <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+      <title><text
+      conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+      /></title>
       <parml>
       <plentry>
         <pt>encryptionMode</pt>
         <pd>
-          <p>内置加密模式。详见 <xref keyref="ENCRYPTION_MODE" />。Agora 推荐使用 <codeph><ph keyref="AES_128_GCM2" /></codeph> 或 <codeph><ph keyref="AES_256_GCM2" /></codeph> 加密模式。这两种模式支持使用盐，安全性更高。</p>
+          <p>内置加密模式。详见 <xref keyref="ENCRYPTION_MODE"/>。Agora 推荐使用 <codeph><ph
+          keyref="AES_128_GCM2"/></codeph> 或 <codeph><ph keyref="AES_256_GCM2"
+          /></codeph> 加密模式。这两种模式支持使用盐，安全性更高。</p>
         </pd>
       </plentry>
       <plentry>
         <pt>encryptionKey</pt>
         <pd>
           <p>内置加密密钥，字符串类型，长度无限制。Agora 推荐使用 32 字节的密钥。</p>
-          <note type="attention">如果未指定该参数或将该参数设置为 <codeph><ph keyref="NULL" /></codeph>，则无法启用内置加密，且 SDK 会返回错误码 <codeph>-2</codeph>。</note> </pd>
+          <note type="attention">如果未指定该参数或将该参数设置为 <codeph><ph keyref="NULL"
+          /></codeph>，则无法启用内置加密，且 SDK 会返回错误码 <codeph>-2</codeph>。</note> </pd>
       </plentry>
       <plentry>
         <pt>encryptionKdfSalt</pt>
         <pd>
-          <p><ph>盐，长度为 32 字节。Agora 推荐你在服务端使用 OpenSSL 生成盐。</ph><ph props="native">详见《媒体流加密》。</ph></p>
-          <note type="attention">只有在 <codeph><ph keyref="AES_128_GCM2" /></codeph> 或 <codeph><ph keyref="AES_256_GCM2" /></codeph> 加密模式下，该参数才生效。此时，需确保填入该参数的值不全为 <codeph>0</codeph>。</note>
+          <p><ph>盐，长度为 32 字节。Agora 推荐你在服务端使用 OpenSSL 生成盐。</ph><ph props="native"
+          >详见《媒体流加密》。</ph></p>
+          <note type="attention">只有在 <codeph><ph keyref="AES_128_GCM2"
+          /></codeph> 或 <codeph><ph keyref="AES_256_GCM2"
+          /></codeph> 加密模式下，该参数才生效。此时，需确保填入该参数的值不全为 <codeph>0</codeph>。</note>
         </pd>
       </plentry>
       </parml> </section>

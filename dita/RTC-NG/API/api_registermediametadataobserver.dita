@@ -23,7 +23,8 @@
     observer: IMetadataObserver,
     type: MetadataType
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">void unregisterMediaMetadataObserver(
+    {required MetadataObserver observer, required MetadataType type});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>你需要自行实现 <xref keyref="IMetadataObserver" /> 类并在本方法中指定 metadata 类型。本方法允许你为视频流添加同步的 metadata，用于多样化的直播互动，如发送购物链接、电子优惠券和在线测试。</p>
@@ -43,7 +44,7 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native unity">
             <title>返回值</title>
             <ul>
             <li>0：方法调用成功。</li>

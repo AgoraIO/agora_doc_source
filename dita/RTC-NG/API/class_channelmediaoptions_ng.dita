@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_channelmediaoptions_ng">
-    <title> <ph keyref="ChannelMediaOptions" /> </title>
+    <title> <ph keyref="ChannelMediaOptions"/> </title>
     <shortdesc id="short"> <ph id="shortdesc">频道媒体设置选项。</ph> </shortdesc>
     <refbody>
         <section id="prototype">
@@ -74,7 +74,7 @@
   ChannelMediaOptions() {}
   ~ChannelMediaOptions() {}
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public class ChannelMediaOptions : OptionalJsonParse
     {
         public Optional&lt;bool&gt; publishCameraTrack = new Optional&lt;bool&gt;();
@@ -167,7 +167,38 @@
   publishRhythmPlayerTrack?: boolean;
   audioOptionsExternal?: AudioOptionsExternal;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class ChannelMediaOptions {
+    const ChannelMediaOptions(
+        {this.publishCameraTrack,
+        this.publishSecondaryCameraTrack,
+        this.publishAudioTrack,
+        this.publishScreenTrack,
+        this.publishSecondaryScreenTrack,
+        this.publishCustomAudioTrack,
+        this.publishCustomAudioSourceId,
+        this.publishCustomAudioTrackEnableAec,
+        this.publishDirectCustomAudioTrack,
+        this.publishCustomAudioTrackAec,
+        this.publishCustomVideoTrack,
+        this.publishEncodedVideoTrack,
+        this.publishMediaPlayerAudioTrack,
+        this.publishMediaPlayerVideoTrack,
+        this.publishTrancodedVideoTrack,
+        this.autoSubscribeAudio,
+        this.autoSubscribeVideo,
+        this.startPreview,
+        this.enableAudioRecordingOrPlayout,
+        this.publishMediaPlayerId,
+        this.clientRoleType,
+        this.audienceLatencyLevel,
+        this.defaultVideoStreamType,
+        this.channelProfile,
+        this.audioDelayMs,
+        this.mediaPlayerAudioDelayMs,
+        this.token,
+        this.enableBuiltInMediaEncryption,
+        this.publishRhythmPlayerTrack,
+        this.audioOptionsExternal});</codeblock>
             </p>
         </section>
         <section id="detailed_desc">
@@ -185,19 +216,19 @@
 
 
                     <ul id="ul_vx5_np5_3qb">
-                    <li> <codeph><ph keyref="true" /></codeph>：（默认）发布摄像头采集的视频。</li>
-                    <li> <codeph><ph keyref="false" /></codeph>：不发布摄像头采集的视频。</li>
+                    <li> <codeph><ph keyref="true"/></codeph>：（默认）发布摄像头采集的视频。</li>
+                    <li> <codeph><ph keyref="false"/></codeph>：不发布摄像头采集的视频。</li>
                     </ul> </pd>
             </plentry>
-            <plentry props="cpp unity electron rn">
+            <plentry props="cpp unity electron rn flutter">
                 <pt>publishSecondaryCameraTrack</pt>
                 <pd>设置是否发布第二个摄像头采集的视频：
 
 
 
                     <ul>
-                    <li> <codeph><ph keyref="true" /></codeph>：（默认）发布第二个摄像头采集的视频。</li>
-                    <li> <codeph><ph keyref="false" /></codeph>：不发布第二个摄像头采集的视频。</li>
+                    <li> <codeph><ph keyref="true"/></codeph>：（默认）发布第二个摄像头采集的视频。</li>
+                    <li> <codeph><ph keyref="false"/></codeph>：不发布第二个摄像头采集的视频。</li>
                     </ul> </pd>
             </plentry>
             <plentry>
@@ -207,8 +238,8 @@
 
 
                     <ul>
-                    <li> <codeph><ph keyref="true" /></codeph>：（默认）发布采集到的音频。</li>
-                    <li> <codeph><ph keyref="false" /></codeph>：不发布采集到的音频。</li>
+                    <li> <codeph><ph keyref="true"/></codeph>：（默认）发布采集到的音频。</li>
+                    <li> <codeph><ph keyref="false"/></codeph>：不发布采集到的音频。</li>
                     </ul> </pd>
             </plentry>
             <plentry>
@@ -219,23 +250,23 @@
 
 
                     <ul>
-                    <li> <codeph><ph keyref="true" /></codeph>：发布屏幕采集到的视频。</li>
-                    <li> <codeph><ph keyref="false" /></codeph>：（默认）不发布屏幕采集到的视频。</li>
+                    <li> <codeph><ph keyref="true"/></codeph>：发布屏幕采集到的视频。</li>
+                    <li> <codeph><ph keyref="false"/></codeph>：（默认）不发布屏幕采集到的视频。</li>
                     </ul> </p>
                 </pd>
             </plentry>
-            <plentry props="cpp unity electron rn">
+            <plentry props="cpp unity electron rn flutter">
                 <pt>publishSecondaryScreenTrack</pt>
                 <pd>
                     <p>设置是否发布第二个屏幕采集的视频：
 
                     <ul>
-                    <li> <codeph><ph keyref="true" /></codeph>：发布第二个屏幕采集到的视频。</li>
-                    <li> <codeph><ph keyref="false" /></codeph>：（默认）不发布第二个屏幕采集到的视频。</li>
+                    <li> <codeph><ph keyref="true"/></codeph>：发布第二个屏幕采集到的视频。</li>
+                    <li> <codeph><ph keyref="false"/></codeph>：（默认）不发布第二个屏幕采集到的视频。</li>
                     </ul> </p>
                 </pd>
             </plentry>
-            <plentry props="cpp unity electron rn">
+            <plentry props="cpp unity electron rn flutter">
                 <pt>publishTrancodedVideoTrack</pt>
                 <pd>
                     <p>设置是否发布本地的转码视频：
@@ -243,8 +274,8 @@
 
 
                     <ul>
-                    <li> <codeph><ph keyref="true" /></codeph>：发布本地的转码视频。</li>
-                    <li> <codeph><ph keyref="false" /></codeph>：（默认）不发布本地的转码视频。</li>
+                    <li> <codeph><ph keyref="true"/></codeph>：发布本地的转码视频。</li>
+                    <li> <codeph><ph keyref="false"/></codeph>：（默认）不发布本地的转码视频。</li>
                     </ul> </p>
                 </pd>
             </plentry>
@@ -255,8 +286,8 @@
 
 
                     <ul>
-                    <li> <codeph><ph keyref="true" /></codeph>：发布自定义采集到的音频。</li>
-                    <li> <codeph><ph keyref="false" /></codeph>：（默认）不发布自定义采集到的音频。
+                    <li> <codeph><ph keyref="true"/></codeph>：发布自定义采集到的音频。</li>
+                    <li> <codeph><ph keyref="false"/></codeph>：（默认）不发布自定义采集到的音频。
                             </li>
                     </ul> </pd>
             </plentry>
@@ -264,19 +295,19 @@
                 <pt>publishCustomAudioSourceId</pt>
                 <pd>待发布的自定义音频源的 ID。默认值为 0。
 
-                    <p props="native">如果你已在 <xref keyref="setExternalAudioSource2" /> 中设置了 <parmname>sourceNumber</parmname> 大于 1，SDK 会创建对应数量的自采集音频轨道，并从 0 开始为每一个音频轨道分配一个 ID。</p>
+                    <p props="native unity flutter">如果你已在 <xref keyref="setExternalAudioSource2" /> 中设置了 <parmname>sourceNumber</parmname> 大于 1，SDK 会创建对应数量的自采集音频轨道，并从 0 开始为每一个音频轨道分配一个 ID。</p>
                 </pd>
             </plentry>
-            <plentry props="cpp unity electron rn">
+            <plentry props="cpp unity electron rn flutter">
                 <pt>publishCustomAudioTrackEnableAec</pt>
                 <pd>设置发布自定义采集的音频时是否启用 AEC：
 
 
 
                     <ul>
-                    <li> <codeph> <ph keyref="true" /> </codeph>：发布自定义采集的音频时启用 AEC。
+                    <li> <codeph> <ph keyref="true"/> </codeph>：发布自定义采集的音频时启用 AEC。
                             </li>
-                    <li> <codeph> <ph keyref="false" /> </codeph>
+                    <li> <codeph> <ph keyref="false"/> </codeph>
                                 ：（默认）发布自定义采集的音频时不启用 AEC。
                             </li>
                     </ul> </pd>
@@ -288,8 +319,8 @@
 
 
                     <ul>
-                    <li> <codeph><ph keyref="true" /></codeph>：发布自定义采集的视频。</li>
-                    <li> <codeph><ph keyref="false" /></codeph>：（默认）不发布自定义采集到的视频。</li>
+                    <li> <codeph><ph keyref="true"/></codeph>：发布自定义采集的视频。</li>
+                    <li> <codeph><ph keyref="false"/></codeph>：（默认）不发布自定义采集到的视频。</li>
                     </ul> </pd>
             </plentry>
             <plentry>
@@ -299,8 +330,8 @@
 
 
                     <ul id="ul_ljg_4q5_3qb">
-                    <li> <codeph><ph keyref="true" /></codeph>：发布编码后的视频。</li>
-                    <li> <codeph><ph keyref="false" /></codeph>：（默认）不发布编码后的视频。</li>
+                    <li> <codeph><ph keyref="true"/></codeph>：发布编码后的视频。</li>
+                    <li> <codeph><ph keyref="false"/></codeph>：（默认）不发布编码后的视频。</li>
                     </ul> </pd>
             </plentry>
             <plentry>
@@ -310,8 +341,8 @@
 
 
                     <ul id="ul_gr3_rq5_3qb">
-                    <li> <codeph><ph keyref="true" /></codeph>：发布媒体播放器的音频。</li>
-                    <li> <codeph><ph keyref="false" /></codeph>：（默认）不发布媒体播放器的音频。</li>
+                    <li> <codeph><ph keyref="true"/></codeph>：发布媒体播放器的音频。</li>
+                    <li> <codeph><ph keyref="false"/></codeph>：（默认）不发布媒体播放器的音频。</li>
                     </ul> </pd>
             </plentry>
             <plentry>
@@ -321,8 +352,8 @@
 
 
                     <ul id="ul_gtd_tq5_3qb">
-                    <li> <codeph><ph keyref="true" /></codeph>：发布媒体播放器的视频。</li>
-                    <li> <codeph><ph keyref="false" /></codeph>：（默认）不发布媒体播放器的视频。</li>
+                    <li> <codeph><ph keyref="true"/></codeph>：发布媒体播放器的视频。</li>
+                    <li> <codeph><ph keyref="false"/></codeph>：（默认）不发布媒体播放器的视频。</li>
                     </ul> </pd>
             </plentry>
             <plentry>
@@ -332,8 +363,8 @@
 
 
                     <ul id="ul_gxf_vq5_3qb">
-                    <li> <codeph><ph keyref="true" /></codeph>：（默认）自动订阅所有音频流。</li>
-                    <li> <codeph><ph keyref="false" /></codeph>：不自动订阅任何音频流。
+                    <li> <codeph><ph keyref="true"/></codeph>：（默认）自动订阅所有音频流。</li>
+                    <li> <codeph><ph keyref="false"/></codeph>：不自动订阅任何音频流。
                             </li>
                     </ul> </pd>
             </plentry>
@@ -344,8 +375,8 @@
 
 
                     <ul id="ul_gfh_xq5_3qb">
-                    <li> <codeph><ph keyref="true" /></codeph>：（默认）自动订阅所有视频流。</li>
-                    <li> <codeph><ph keyref="false" /></codeph>：不自动订阅任何视频流。</li>
+                    <li> <codeph><ph keyref="true"/></codeph>：（默认）自动订阅所有视频流。</li>
+                    <li> <codeph><ph keyref="false"/></codeph>：不自动订阅任何视频流。</li>
                     </ul> </pd>
             </plentry>
             <plentry>
@@ -355,8 +386,8 @@
 
 
                     <ul>
-                    <li> <codeph><ph keyref="true" /></codeph>：（默认）开启音频录制和播放。</li>
-                    <li> <codeph> <ph keyref="false" /> </codeph>：不开启音频录制或播放。</li>
+                    <li> <codeph><ph keyref="true"/></codeph>：（默认）开启音频录制和播放。</li>
+                    <li> <codeph> <ph keyref="false"/> </codeph>：不开启音频录制或播放。</li>
                     </ul> </pd>
             </plentry>
             <plentry>
@@ -371,11 +402,11 @@
             </plentry>
             <plentry>
                 <pt>defaultVideoStreamType</pt>
-                <pd conkeyref="setRemoteDefaultVideoStreamType/defaultstreamtype" />
+                <pd conkeyref="setRemoteDefaultVideoStreamType/defaultstreamtype"/>
             </plentry>
             <plentry>
                 <pt>channelProfile</pt>
-                <pd conkeyref="setChannelProfile/channelprofiletype" />
+                <pd conkeyref="setChannelProfile/channelprofiletype"/>
             </plentry>
             <plentry>
                 <pt>audioDelayMs</pt>
@@ -392,9 +423,9 @@
 
 
                     <ul>
-                    <li> <codeph><ph keyref="true" /></codeph>：发布。
+                    <li> <codeph><ph keyref="true"/></codeph>：发布。
                             </li>
-                    <li> <codeph><ph keyref="false" /></codeph>：不发布。
+                    <li> <codeph><ph keyref="false"/></codeph>：不发布。
                             </li>
                     </ul> </pd>
             </plentry>
@@ -404,23 +435,42 @@
                     <p><ph>（可选）在服务端生成的用于鉴权的动态密钥。</ph> <ph props="native">详见 <xref keyref="guide-token">使用 Token 鉴权</xref>。</ph> </p>
                     <note type="caution">
                     <ul>
-                    <li>该参数仅在调用 <xref keyref="updateChannelMediaOptions" /> 或 <xref keyref="updateChannelMediaOptionsEx" /> 时生效。
+                    <li>该参数仅在调用 <xref keyref="updateChannelMediaOptions"/> 或 <xref
+                        keyref="updateChannelMediaOptionsEx"/> 时生效。
                                 </li>
-                    <li>请确保用于生成 token 的 App ID、频道名和用户名和 <xref keyref="create2" /> 方法初始化引擎时用的 App ID，以及 <xref keyref="joinChannel2" /> 或 <xref keyref="joinChannelEx" /> 方法加入频道时设置的频道名和用户名是一致的。
+                    <li>请确保用于生成 token 的 App ID、频道名和用户名和 <xref keyref="create2"
+                        /> 方法初始化引擎时用的 App ID，以及 <xref keyref="joinChannel2"/> 或 <xref
+                        keyref="joinChannelEx"/> 方法加入频道时设置的频道名和用户名是一致的。
                                 </li>
                     </ul> </note> </pd>
             </plentry>
             <plentry props="hide">
                 <pt>startPreview</pt>
-                <pd>
-                        设置是否在加入频道时自动开启预览。
-
+                <pd>设置是否在加入频道时自动开启预览。
+                    
                     <ul>
-                    <li> <codeph><ph keyref="true" /></codeph>：（默认）自动开启预览。该参数值生效的前提是已通过 <xref keyref="setupLocalVideo" /> 方法设置了本地视频属性；否则，不会开启预览。
+                    <li> <codeph><ph keyref="true"/></codeph>：（默认）自动开启预览。该参数值生效的前提是已通过 <xref
+                        keyref="setupLocalVideo"/> 方法设置了本地视频属性；否则，不会开启预览。
                             </li>
-                    <li> <codeph><ph keyref="false" /></codeph>：不自动开启预览。</li>
+                    <li> <codeph><ph keyref="false"/></codeph>：不自动开启预览。</li>
                     </ul> </pd>
             </plentry>
+            <plentry props="hide">
+                <pt>audienceLatencyLevel</pt>
+                <pd></pd>
+            </plentry>
+            <plentry props="hide">
+                <pt>mediaPlayerAudioDelayMs</pt>
+                <pd></pd>
+            </plentry>   
+            <plentry props="hide">
+                <pt>enableBuiltInMediaEncryption</pt>
+                <pd></pd>
+            </plentry>   
+            <plentry props="hide">
+                <pt>publishRhythmPlayerTrack</pt>
+                <pd></pd>
+            </plentry>                 
             </parml> </section>
     </refbody>
 </reference>

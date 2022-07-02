@@ -26,7 +26,11 @@
     uid(_uid) { spectrumData.audioSpectrumData = data; spectrumData.dataLength = length; }
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="unity" outputclass="language-csharp">public struct UserAudioSpectrumInfo
+                {
+                    public uint uid;
+                    public AudioSpectrumData spectrumData;
+                };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class UserAudioSpectrumInfo {
   uid?: number;
   spectrumData?: AudioSpectrumData;
@@ -44,9 +48,9 @@
                 <plentry>
                     <pt props="android">audioSpectrumInfo</pt>
                     <pt props="ios mac">audioSpectrumData</pt>
-                    <pt props="cpp electron rn">spectrumData</pt>
+                    <pt props="cpp electron rn unity">spectrumData</pt>
                     <pd>
-                        <p>远端用户的音频频谱数据。<ph props="android cpp electron rn">详见 <xref keyref="AudioSpectrumData" />。</ph></p>
+                        <p>远端用户的音频频谱数据。<ph props="android cpp electron rn unity">详见 <xref keyref="AudioSpectrumData"/>。</ph></p>
                     </pd>
                 </plentry>
             </parml>

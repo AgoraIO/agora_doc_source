@@ -25,15 +25,11 @@
                <codeblock props="electron" outputclass="language-typescript"/>
                <codeblock props="unity" outputclass="language-csharp">public virtual void OnUploadLogResult(string requestId, bool success, UPLOAD_ERROR_REASON reason)</codeblock>
                <codeblock props="rn" outputclass="language-typescript"/>
-               <codeblock props="flutter" outputclass="language-dart"/> </p>
+               <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, String requestId, bool success,
+      UploadErrorReason reason)? onUploadLogResult;
+</codeblock> </p>
           </section>
           <section id="detailed_desc">
-               <dl outputclass="since">
-               <dlentry>
-                    <dt>自从</dt>
-                    <dd>v3.3.0</dd>
-               </dlentry>
-               </dl>
                <p>
                     调用
                     <xref keyref="uploadLogFile"/>
@@ -46,6 +42,10 @@
                <title> <ph keyref="callback-section-title"/> </title>
                <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
                <parml>
+                    <plentry props="flutter">
+                         <pt>connection</pt>
+                         <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                    </plentry>
                <plentry>
                     <pt>requestId</pt>
                     <pd>
@@ -64,6 +64,7 @@
                          <p>
                                    是否成功上传日志文件:
                                    
+                         
                          
                          
                          <ul>

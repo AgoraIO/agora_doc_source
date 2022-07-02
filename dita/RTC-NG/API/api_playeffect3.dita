@@ -45,7 +45,15 @@
     publish?: boolean,
     startPos?: number
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> playEffect(
+    {required int soundId,
+    required String filePath,
+    required int loopCount,
+    required double pitch,
+    required double pan,
+    required int gain,
+    bool publish = false,
+    int startPos = 0});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p id="playEffect-desc"> 你可以多次调用该方法，传入不同的 <parmname>soundID</parmname> 和 <parmname>filePath</parmname>，同时播放多个音效文件。为获得最佳用户体验，Agora 推荐同时播放的音效文件不超过 3 个。 音效文件播放结束后，SDK 会触发 <apiname keyref="onAudioEffectFinished" /> 回调。
@@ -58,18 +66,27 @@
                 <pt>soundId</pt>
                 <pd>音效的 ID。每个音效的 ID 具有唯一性。
 
-                    <note type="attention">如果你已通过 <xref keyref="preloadEffect" /> 将音效加载至内存，请确保该参数与 <apiname keyref="preloadEffect" /> 中设置的 <parmname>soundId</parmname> 相同。</note> </pd>
+
+                    <note type="attention">如果你已通过 <xref keyref="preloadEffect"
+                    /> 将音效加载至内存，请确保该参数与 <apiname keyref="preloadEffect"
+                    /> 中设置的 <parmname>soundId</parmname> 相同。</note> </pd>
             </plentry>
             <plentry>
                 <pt>filePath</pt>
                 <pd>
-                    <p id="filepath">播放文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如 <codeph><ph keyref="filePath-example" /></codeph>。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV、3GP。详见<xref keyref="filePath-link">支持的媒体格式</xref>。</p>
-                    <note type="attention">如果你已通过 <xref keyref="preloadEffect" /> 将音效加载至内存，请确保该参数与 <apiname keyref="preloadEffect" /> 中设置的 <parmname>filePath</parmname> 相同。</note> </pd>
+                    <p id="filepath">播放文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如 <codeph><ph
+                    keyref="filePath-example"
+                    /></codeph>。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV、3GP。<ph props="native unity">详见<xref
+                    keyref="filePath-link">支持的媒体格式</xref>。</ph></p>
+                    <note type="attention">如果你已通过 <xref keyref="preloadEffect"
+                    /> 将音效加载至内存，请确保该参数与 <apiname keyref="preloadEffect"
+                    /> 中设置的 <parmname>filePath</parmname> 相同。</note> </pd>
             </plentry>
             <plentry id="loopcount">
                 <pt>loopCount</pt>
                 <pd>
                     <p>音效循环播放的次数。
+
 
                     <ul>
                     <li>≥ 0: 循环播放次数。例如，1 表示循环播放 1 次，即总计播放 2 次。</li>
@@ -86,6 +103,7 @@
                 <pd>
                     <p>音效的空间位置。取值范围为 [-1.0,1.0]，例如：
 
+
                     <ul>
                     <li>-1.0：音效出现在左边</li>
                     <li>0.0：音效出现在正前方 </li>
@@ -101,6 +119,7 @@
                 <pt>publish</pt>
                 <pd>
                     <p>是否将音效发布至远端：
+
 
                     <ul>
                     <li><codeph><ph keyref="true" /></codeph>: 将音效发布至远端。本地用户和远端用户都能听到音效。</li>

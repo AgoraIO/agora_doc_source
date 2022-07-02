@@ -24,7 +24,9 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnLocalVideoStateChanged(RtcConnection connection, LOCAL_VIDEO_STREAM_STATE state, LOCAL_VIDEO_STREAM_ERROR errorCode) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, LocalVideoStreamState state,
+      LocalVideoStreamError errorCode)? onLocalVideoStateChanged;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
@@ -54,13 +56,12 @@
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="unity electron rn">
+            <plentry props="unity electron rn flutter">
                 <pt>connection</pt>
                 <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
             </plentry>
             <plentry>
-                <pt props="ios mac cpp android unity electron rn">state</pt>
-                <pt props="flutter">localVideoState</pt>
+                <pt props="native unity flutter electron rn">state</pt>
                 <pd>
                     <p props="ios mac cpp unity electron rn flutter">本地视频状态，详见 <xref keyref="LOCAL_VIDEO_STREAM_STATE"/>。</p>
                     <p props="android">
@@ -73,8 +74,8 @@
                 </pd>
             </plentry>
             <plentry>
-                <pt props="ios mac cpp android flutter">error</pt>
-                <pt props="unity electron rn">errorCode</pt>
+                <pt props="native">error</pt>
+                <pt props="unity electron rn flutter">errorCode</pt>
                 <pd>
                     <p props="ios mac cpp electron rn flutter">本地视频出错原因，详见 <xref keyref="LOCAL_VIDEO_STREAM_ERROR"/>。</p>
                     <p props="android">

@@ -24,7 +24,8 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnExtensionStarted(string provider, string ext_name) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(String provider, String extName)? onExtensionStarted;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>当调用 <codeph><xref keyref="enableExtension"/>(<q><ph keyref="true"/></q>)</codeph> 启用插件成功时，插件会触发该回调。</p>
@@ -38,6 +39,7 @@
             </plentry>
             <plentry>
                 <pt props="native">extension</pt>
+                <pt props="flutter">extName</pt>
                 <pt props="unity">ext_name</pt>
                 <pt props="electron rn">extName</pt>
                 <pd>插件名称。</pd>

@@ -23,16 +23,20 @@
     options: BeautyOptions,
     type?: MediaSourceType
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setBeautyEffectOptions(
+    {required bool enabled,
+    required BeautyOptions options,
+    MediaSourceType type = MediaSourceType.primaryCameraSource});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>开启本地美颜功能，并设置美颜效果选项。</p>
             <p>开启美颜功能涉及一系列方法的调用，调用顺序如下：
+
             <ol>
             <li props="android">在初始化 <xref keyref="IRtcEngine" /> 时调用 <codeph><xref keyref="addExtension" />(<q>agora_video_process</q>)</codeph>，在项目中集成视频增强动态库。</li>
             <li props="ios">在项目文件中链接动态库 <codeph>AgoraVideoProcessExtension.xcframework</codeph></li>
             <li props="mac">在项目文件中链接动态库 <codeph>AgoraVideoProcessExtension.framework</codeph></li>
-            <li props="cpp unity rn electron">在初始化 <xref keyref="IRtcEngine" /> 时调用 <codeph><xref keyref="loadExtensionProvider" />(<q>libagora_video_process_extension.dll</q>)</codeph>，指定动态库的路径。</li>
+            <li props="cpp unity rn electron flutter">在初始化 <xref keyref="IRtcEngine" /> 时调用 <codeph><xref keyref="loadExtensionProvider" />(<q>libagora_video_process_extension.dll</q>)</codeph>，指定动态库的路径。</li>
             <li>调用 <codeph><xref keyref="enableExtension" />(<q>agora</q>, <q>beauty</q>, <q><ph keyref="true" /></q>)</codeph>，开启插件。</li>
             <li>调用 <xref keyref="enableVideo" />，启用视频模块。</li>
             <li>调用该方法，开启美颜功能。</li>
@@ -45,6 +49,7 @@
                 <pt props="android cpp unity flutter rn electron">enabled</pt>
                 <pt props="ios mac">enable</pt>
                 <pd>是否开启美颜功能：
+
                     <ul>
                     <li><codeph><ph keyref="true" /></codeph>: 开启。</li>
                     <li><codeph><ph keyref="false" /></codeph>:（默认）关闭。</li>
@@ -54,7 +59,7 @@
                 <pt>options</pt>
                 <pd>美颜选项，详细定义见 <xref keyref="BeautyOptions" />。</pd>
             </plentry>
-            <plentry props="unity rn electron" conkeyref="setExtensionProperty/type">
+            <plentry props="unity rn electron flutter" conkeyref="setExtensionProperty/type">
             <pt />
             <pd />
             </plentry>

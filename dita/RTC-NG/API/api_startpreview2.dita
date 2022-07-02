@@ -22,7 +22,8 @@
             <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public abstract int StartPreview(VIDEO_SOURCE_TYPE sourceType);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract startPreview(sourceType?: VideoSourceType): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> startPreview(
+    {VideoSourceType sourceType = VideoSourceType.videoSourceCameraPrimary});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p conkeyref="startPreview/seq" props="android ios mac cpp" />
@@ -36,7 +37,7 @@
             <ul>
             <li>本地预览默认开启镜像功能。</li>
             <li>如果调用 <xref keyref="leaveChannel" props="native flutter unity" /> <xref keyref="leaveChannel2" props="rn electron" />退出频道，本地预览依然处于开启状态，如需要关闭本地预览，需要调用 <xref keyref="stopPreview2" />。</li>
-            <li props="native rn electron">该方法中设置的视频源类型需要跟 <xref keyref="setupLocalVideo" /> 中 <xref keyref="VideoCanvas" /> 的视频源类型一致。</li>
+            <li props="native rn electron flutter">该方法中设置的视频源类型需要跟 <xref keyref="setupLocalVideo" /> 中 <xref keyref="VideoCanvas" /> 的视频源类型一致。</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>参数</title>
@@ -46,7 +47,7 @@
                 <pd />
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native unity">
             <title>返回值</title>
             <ul>
             <li>0：方法调用成功。</li>

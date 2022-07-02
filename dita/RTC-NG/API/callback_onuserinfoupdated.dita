@@ -22,7 +22,8 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserInfoUpdated(uint uid, UserInfo info)</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(int uid, UserInfo info)? onUserInfoUpdated;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
@@ -46,8 +47,8 @@
                 <pd>远端用户 ID。</pd>
             </plentry>
             <plentry>
-                <pt props="android ios mac flutter">userInfo</pt>
-                <pt props="cpp unity electron rn">info</pt>
+                <pt props="android ios mac">userInfo</pt>
+                <pt props="cpp unity flutter electron rn">info</pt>
                 <pd>
                         标识用户信息的 UserInfo 对象，包含用户 UID 和 User Account。详见
                         <xref keyref="UserInfo"/>

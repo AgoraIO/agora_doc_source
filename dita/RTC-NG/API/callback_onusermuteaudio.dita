@@ -22,7 +22,9 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserMuteAudio(RtcConnection connection, uint remoteUid, bool muted) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, bool muted)?
+      onUserMuteAudio;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated" props="hide">
@@ -38,13 +40,13 @@
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
-            <plentry props="unity electron rn" conkeyref="joinChannelEx/connection">
+            <plentry props="unity electron rn flutter" conkeyref="joinChannelEx/connection">
                 <pt/>
                 <pd/>
             </plentry>
             <plentry>
                 <pt props="native">uid</pt>
-                <pt props="unity electron rn">remoteUid</pt>
+                <pt props="unity electron rn flutter">remoteUid</pt>
                 <pd>用户 ID。</pd>
             </plentry>
             <plentry>

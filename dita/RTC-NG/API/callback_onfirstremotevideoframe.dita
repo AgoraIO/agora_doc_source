@@ -25,7 +25,9 @@
                <codeblock props="electron" outputclass="language-typescript"/>
                <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstRemoteVideoFrame(RtcConnection connection, uint remoteUid, int width, int height, int elapsed) {}</codeblock>
                <codeblock props="rn" outputclass="language-typescript"/>
-               <codeblock props="flutter" outputclass="language-dart"/> </p>
+               <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, int width,
+      int height, int elapsed)? onFirstRemoteVideoFrame;
+</codeblock> </p>
           </section>
           <section id="parameters">
                <title><ph keyref="callback-section-title"/></title>
@@ -36,7 +38,8 @@
                     <pd/>
                </plentry>
                <plentry>
-                    <pt props="ios mac android flutter">uid</pt>
+                    <pt props="flutter">remoteUid</pt>
+                    <pt props="android ios mac electron rn">uid</pt>
                     <pt props="cpp unity">userId</pt>
                     <pd>用户 ID，指定是哪个用户的视频流。</pd>
                </plentry>
@@ -44,15 +47,15 @@
                     <pt>size</pt>
                     <pd>视频流尺寸。</pd>
                </plentry>
-               <plentry props="unity electron rn">
+               <plentry props="unity electron rn flutter">
                     <pt>connection</pt>
                     <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
                </plentry>
-               <plentry props="android cpp unity electron rn">
+               <plentry props="android cpp unity electron rn flutter">
                     <pt>width</pt>
                     <pd>视频流宽（px）。</pd>
                </plentry>
-               <plentry props="android cpp unity electron rn">
+               <plentry props="android cpp unity electron rn flutter">
                     <pt>height</pt>
                     <pd>视频流高（px）。</pd>
                </plentry>

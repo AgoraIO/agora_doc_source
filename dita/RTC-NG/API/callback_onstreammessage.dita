@@ -26,9 +26,11 @@
                     (void)sentTs;
                   }</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnStreamMessage(RtcConnection connection, uint remoteUid, int streamId, IntPtr data, uint length, UInt64 sentTs) { }</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnStreamMessage(RtcConnection connection, uint remoteUid, int streamId, byte[] data, uint length, UInt64 sentTs) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, int streamId,
+      Uint8List data, int length, int sentTs)? onStreamMessage;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>
@@ -43,14 +45,14 @@
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="unity electron rn" conkeyref="joinChannelEx/connection">
+            <plentry props="unity electron rn flutter" conkeyref="joinChannelEx/connection">
                 <pt/>
                 <pd/>
             </plentry>
             <plentry id="uid">
                 <pt props="android ios mac flutter">uid</pt>
                 <pt props="cpp">userId</pt>
-                <pt props="unity electron rn">remoteUid</pt>
+                <pt props="unity electron rn flutter">remoteUid</pt>
                 <pd>发送消息的用户 ID。</pd>
             </plentry>
             <plentry id="streamId">
@@ -61,11 +63,11 @@
                 <pt>data</pt>
                 <pd>接收到的数据。</pd>
             </plentry>
-            <plentry id="length" props="cpp unity electron rn">
+            <plentry id="length" props="cpp unity electron rn flutter">
                 <pt>length</pt>
                 <pd>数据长度，单位为字节。</pd>
             </plentry>
-            <plentry props="cpp unity electron rn">
+            <plentry props="cpp unity electron rn flutter">
                 <pt>sentTs</pt>
                 <pd>数据流发出的时间。</pd>
             </plentry>
