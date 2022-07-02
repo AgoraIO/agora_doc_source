@@ -21,7 +21,7 @@
                 (void)state;
                 (void)error;
                 }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">onLocalVideoStateChanged?(connection: RtcConnection, state: LocalVideoStreamState, errorCode: LocalVideoStreamError): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnLocalVideoStateChanged(RtcConnection connection, LOCAL_VIDEO_STREAM_STATE state, LOCAL_VIDEO_STREAM_ERROR errorCode) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
@@ -38,6 +38,7 @@
 
 
 
+            
             
             <ul>
             <li>应用退到后台，系统回收摄像头。</li>
@@ -85,6 +86,7 @@
                     <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY"/> (3): 本地视频采集设备正在使用中。请提示用户检查摄像头是否被其他应用占用。</li>
                     <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/> (4): 本地视频采集失败。请提示用户检查视频采集设备是否正常工作，检查摄像头是否被其他应用占用，或者尝试重新加入频道。
 
+                        
                         
                         <ul>
                         <li>Android 9 及以上版本，app 切后台一段时间后，系统收回相机权限。</li>

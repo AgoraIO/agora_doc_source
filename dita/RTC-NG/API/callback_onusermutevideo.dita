@@ -19,7 +19,7 @@
     (void)uid;
     (void)muted;
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">onUserMuteVideo?(connection: RtcConnection, remoteUid: number, muted: boolean): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserMuteVideo(RtcConnection connection, uint remoteUid, bool muted) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
@@ -29,6 +29,7 @@
             <dlentry>
                 <dt>弃用：</dt>
                 <dd>你也可以使用 <xref keyref="onRemoteVideoStateChanged"/> 回调的：
+                    
                     
                     <ul>
                     <li><apiname keyref="REMOTE_VIDEO_STATE_STOPPED"/> (0) 和 <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED"/> (5) 。</li>
@@ -59,6 +60,7 @@
             <plentry>
                 <pt>muted</pt>
                 <pd>远端用户是否取消发布视频流：
+                    
                     
                     
                     
