@@ -41,7 +41,7 @@
                 <pd>
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 该方法为同步调用。需要等待 <apiname keyref="IRtcEngine"/> 资源释放后才能执行其他操作，所以我们建议在子线程中调用该方法，避免主线程阻塞。此外，我们不建议在 SDK 的回调中调用 <apiname keyref="release"/>，否则由于 SDK 要等待回调返回才能回收相关的对象资源，会造成死锁。SDK 会自动检测这种死锁并转为异步调用，但是检测本身会消耗额外的时间。</li>
-                    <li><codeph><ph keyref="false"/></codeph>: 该方法为异步调用。不需要等待 <apiname keyref="IRtcEngine"/> 资源释放后就能执行其他操作。使用异步调用时要注意，不要在该调用后立即卸载 SDK 动态库，否则可能会因为 SDK 的清理线程还没有退出而崩溃。</li>
+                    <li><codeph><ph keyref="false"/></codeph>: 该方法为异步调用。不需要等待 <apiname keyref="IRtcEngine"/> 资源释放后就能执行其他操作。使用异步调用时要注意，不要在该方法调用后立即卸载 SDK 动态库，否则可能会因为 SDK 的清理线程还没有退出而崩溃。</li>
                     </ul> </pd>
             </plentry>
             </parml> </section>
