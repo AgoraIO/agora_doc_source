@@ -24,7 +24,7 @@
     (void)speakerNumber;
     (void)totalVolume;
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">onAudioVolumeIndication?(connection: RtcConnection, speakers: AudioVolumeInfo[], speakerNumber: number, totalVolume: number): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioVolumeIndication(RtcConnection connection, AudioVolumeInfo[] speakers, uint speakerNumber, int totalVolume) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">final void Function(int volume)? onAudioVolumeIndication;
@@ -36,6 +36,7 @@
        启用该功能后，如果有用户将自己静音（调用了 <xref keyref="muteLocalAudioStream"/>），SDK 行为会受如下影响：
 
 
+            
             
             
             
@@ -67,6 +68,7 @@
                     
                     
                     
+                    
                     <ul>
                     <li>在本地用户的回调中，只要本地用户在发流，<parmname>speakerNumber</parmname> 始终为
                                     1。</li>
@@ -79,6 +81,7 @@
                 <pd>
                     <p>混音后的总音量，取值范围为 [0,255]。 
                             
+                    
                     
                     <ul>
                     <li>在本地用户的回调中，<parmname>totalVolume</parmname> 为本地发流用户的音量。</li>

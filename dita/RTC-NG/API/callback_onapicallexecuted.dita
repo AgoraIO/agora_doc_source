@@ -25,7 +25,7 @@
      (void)api;
      (void)result;
      }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">onApiCallExecuted?(err: ErrorCodeType, api: string, result: string): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnApiCallExecuted(int err, string api, string result)</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
@@ -34,24 +34,23 @@
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
-                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                    <pt/>
-                    <pd/>
-                </plentry>
-                <plentry>
-                    <pt props="cpp unity electron rn">err</pt>
-                    <pt props="android ios mac flutter">error</pt>
-                    <pd>当方法调用失败时 SDK 返回的错误码。如果该方法调用成功，SDK 会返回 0。</pd>
-                </plentry>
-                <plentry>
-                    <pt>api</pt>
-                    <pd>SDK 执行的 API 方法。</pd>
-                </plentry>
-                <plentry>
-                    <pt>result</pt>
-                    <pd>SDK 调用 API 的结果。</pd>
-                </plentry>
-            </parml>
-        </section>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry>
+                <pt props="cpp unity electron rn">err</pt>
+                <pt props="android ios mac flutter">error</pt>
+                <pd>当方法调用失败时 SDK 返回的错误码。如果该方法调用成功，SDK 会返回 0。</pd>
+            </plentry>
+            <plentry>
+                <pt>api</pt>
+                <pd>SDK 执行的 API 方法。</pd>
+            </plentry>
+            <plentry>
+                <pt>result</pt>
+                <pd>SDK 调用 API 的结果。</pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

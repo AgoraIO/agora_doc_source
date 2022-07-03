@@ -23,7 +23,7 @@
                 (void)elapsed;
                 }
             </codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">onFirstRemoteAudioDecoded?(connection: RtcConnection, uid: number, elapsed: number): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstRemoteAudioDecoded(RtcConnection connection, uint uid, int elapsed) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">coded;</codeblock> </p>
@@ -37,9 +37,11 @@
             </dl>
             <p>SDK 会在以下时机触发该回调：
             
+            
             <ul>
             <li>远端用户首次上线后发送音频。</li>
             <li>远端用户音频离线再上线发送音频。音频离线指本地在 15 秒内没有收到音频包，可能有如下原因：
+                
                 
                 <ul>
                 <li>远端用户离开频道</li>

@@ -19,13 +19,14 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int sendStreamMessage(int streamId,
      const char* data,
      size_t length) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract sendStreamMessage(streamId: number, data: Uint8Array, length: number): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SendStreamMessage(int streamId, byte[] data, uint length);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
             <p id="desc">该方法发送数据流消息到频道内所有用户。SDK 对该方法的实现进行了如下限制：
+            
             <ul>
             <li>频道内每秒最多能发送 30 个包，且每个包最大为 1 KB。</li>
             <li>每个客户端每秒最多能发送 6 KB 数据。</li>
