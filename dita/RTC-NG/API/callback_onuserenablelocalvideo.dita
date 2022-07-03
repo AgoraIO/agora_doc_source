@@ -23,7 +23,11 @@
     }</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserEnableLocalVideo(RtcConnection connection, uint remoteUid, bool enabled) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">onUserEnableLocalVideo?(
+  connection: RtcConnection,
+  remoteUid: number,
+  enabled: boolean
+): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, bool enabled)?
       onUserEnableLocalVideo;
 </codeblock> </p>
@@ -34,6 +38,7 @@
                 <dt>弃用：</dt>
                 <dd>请改用 <xref keyref="onRemoteVideoStateChanged"/>回调的：
                       
+                    
                     
                     <ul>
                     <li> <apiname keyref="REMOTE_VIDEO_STATE_STOPPED"/>(0) 和 <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED"/>(5)。
@@ -67,6 +72,7 @@
                 <pt>enabled</pt>
                 <pd>
                     <p>远端用户是否启用视频采集：
+                    
                     
                     
                     <ul>

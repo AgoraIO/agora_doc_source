@@ -21,7 +21,10 @@
     }</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstLocalVideoFramePublished(RtcConnection connection, int elapsed) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">onFirstLocalVideoFramePublished?(
+  connection: RtcConnection,
+  elapsed: number
+): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int elapsed)?
       onFirstLocalVideoFramePublished;
 </codeblock> </p>
@@ -36,6 +39,7 @@
             <p>SDK 会在以下三种时机触发该回调：
 
 
+            
             
             <ul>
             <li>开启本地视频的情况下，调用 <apiname keyref="joinChannel2"/> 成功加入频道后。</li>

@@ -18,7 +18,11 @@
             <codeblock props="cpp" outputclass="language-cpp"/>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnRtmpStreamingStateChanged(string url, RTMP_STREAM_PUBLISH_STATE state, RTMP_STREAM_PUBLISH_ERROR_TYPE errCode) { }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">onRtmpStreamingStateChanged?(
+  url: string,
+  state: RtmpStreamPublishState,
+  errCode: RtmpStreamPublishErrorType
+): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(String url, RtmpStreamPublishState state,
       RtmpStreamPublishErrorType errCode)? onRtmpStreamingStateChanged;
 </codeblock> </p>
@@ -28,8 +32,8 @@
    该回调方便推流用户了解当前的推流状态；推流出错时，你可以通过返回的错误码了解出错的原因，方便排查问题。</p>
         </section>
         <section id="parameters">
-            <title> <ph keyref="callback-section-title" /> </title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter" />
+            <title> <ph keyref="callback-section-title"/> </title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt/>

@@ -27,7 +27,13 @@
      }</codeblock>
                <codeblock props="electron" outputclass="language-typescript"/>
                <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteVideoStateChanged(RtcConnection connection, uint remoteUid, REMOTE_VIDEO_STATE state, REMOTE_VIDEO_STATE_REASON reason, int elapsed) {}</codeblock>
-               <codeblock props="rn" outputclass="language-typescript"/>
+               <codeblock props="rn" outputclass="language-typescript">onRemoteVideoStateChanged?(
+  connection: RtcConnection,
+  remoteUid: number,
+  state: RemoteVideoState,
+  reason: RemoteVideoStateReason,
+  elapsed: number
+): void;</codeblock>
                <codeblock props="flutter" outputclass="language-dart"/> </p>
           </section>
           <section id="detailed_desc">
@@ -66,6 +72,7 @@
                          <p props="android">远端视频流状态：
 
 
+                         
                          
                          <ul>
                          <li> <ph keyref="REMOTE_VIDEO_STATE_STOPPED"/>
@@ -120,6 +127,7 @@
 
 
 
+                         
                          
                          <ul>
                          <li> <ph keyref="REMOTE_VIDEO_STATE_REASON_INTERNAL"/>

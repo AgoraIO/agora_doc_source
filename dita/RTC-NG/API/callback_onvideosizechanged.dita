@@ -29,7 +29,13 @@
      }</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnVideoSizeChanged(RtcConnection connection, uint uid, int width, int height, int rotation) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">onVideoSizeChanged?(
+  connection: RtcConnection,
+  uid: number,
+  width: number,
+  height: number,
+  rotation: number
+): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int uid, int width, int height,
       int rotation)? onVideoSizeChanged;
 </codeblock></p>
@@ -43,9 +49,9 @@
                 <pd/>
             </plentry>
             <plentry props="unity flutter rn electron">
-                    <pt>connection</pt>
-                    <pd> Connection 信息。详见 <xref keyref="RtcConnection"/> 。 </pd>
-                </plentry>
+                <pt>connection</pt>
+                <pd> Connection 信息。详见 <xref keyref="RtcConnection"/> 。 </pd>
+            </plentry>
             <plentry id="uid">
                 <pt>uid</pt>
                 <pd>
