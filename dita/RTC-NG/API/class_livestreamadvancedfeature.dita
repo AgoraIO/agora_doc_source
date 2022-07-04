@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_livestreamadvancedfeature">
-    <title><ph keyref="LiveStreamAdvancedFeature" /></title>
+    <title><ph keyref="LiveStreamAdvancedFeature"/></title>
     <shortdesc id="short"><ph id="shortdesc">转码推流的高级功能配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="android" outputclass="language-java"/>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLiveStreamAdvancedFeature : NSObject
 
 @property(copy, nonatomic) NSString* _Nullable featureName;
@@ -19,7 +19,7 @@
   const char* featureName;
   bool opened;
 } ;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public class LiveStreamAdvancedFeature
     {
         public LiveStreamAdvancedFeature()
@@ -36,14 +36,27 @@
         public string featureName { set; get; }
         public bool opened { set; get; }
     };</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock> </p>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">class LiveStreamAdvancedFeature {
+  const LiveStreamAdvancedFeature({this.featureName, this.opened});
+
+  @JsonKey(name: 'featureName')
+  final String? featureName;
+  @JsonKey(name: 'opened')
+  final bool? opened;
+  factory LiveStreamAdvancedFeature.fromJson(Map&lt;String, dynamic> json) =>
+      _$LiveStreamAdvancedFeatureFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$LiveStreamAdvancedFeatureToJson(this);
+}</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p>如需使用转码推流高级功能，请联系 <xref keyref="mailto-link" />。</p>
+            <p>如需使用转码推流高级功能，请联系 <xref keyref="mailto-link"/>。</p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>featureName</pt>
@@ -53,9 +66,11 @@
                 <pt>opened</pt>
                 <pd>是否启用转码推流的高级功能：
 
+                    
                     <ul>
-                    <li><codeph><ph keyref="true" /></codeph>：开启转码推流的高级功能。</li>
-                    <li><codeph><ph keyref="false" /></codeph>：（默认）关闭转码推流的高级功能。</li>
+                    <li><codeph><ph keyref="true"/></codeph>：开启转码推流的高级功能。</li>
+                    <li><codeph><ph keyref="false"
+                        /></codeph>：（默认）关闭转码推流的高级功能。</li>
                     </ul></pd>
             </plentry>
             </parml></section>
