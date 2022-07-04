@@ -19,13 +19,13 @@
             <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public abstract int EnableRemoteSuperResolution(uint userId, bool enable);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract enableRemoteSuperResolution(userId: number, enable: boolean): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableRemoteSuperResolution(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableRemoteSuperResolution(
     {required int userId, required bool enable});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>该功能可以有效提升本地用户看到的远端视频画面的分辨率。例如远端用户视频的原始分辨率为 a &lt; b，开启该功能后，本地设备会以 2a &lt; 2b 的分辨率
             显示该远端视频。</p>
-            <p>调用该方法后，通过 <xref keyref="onRemoteVideoStats"/> 回调中的远端视频统计数据（<xref keyref="RemoteVideoStats"/>），确认超分辨率是否成功开启：
+            <p>调用该方法后，通过 <xref keyref="onRemoteVideoStats" /> 回调中的远端视频统计数据（<xref keyref="RemoteVideoStats" />），确认超分辨率是否成功开启：
 
             <ul>
             <li>如果参数 <parmname>superResolutionType</parmname> &gt;0：超分辨率已开启。</li>
@@ -102,7 +102,7 @@
                     </ul></pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="unity native rn">
+        <section id="return_values" props="native electron unity">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功</li>
