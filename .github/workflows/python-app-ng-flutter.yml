@@ -1,13 +1,13 @@
 # GitHub CI build pipeline
-name: Awesome JSON CI build for NG Unity SDK
+name: Awesome JSON CI build for NG Flutter SDK
 
 on:
     push:
         branches:
-            - '3.8.200-framework-suri'
+            - '3.8.200-flutter'
     pull_request:
         branches:
-            - '3.8.200-framework-suri'
+            - '3.8.200-flutter'
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -25,31 +25,29 @@ jobs:
             - name: Run json creation
               run: |
                   cd xml2json
-         
-                  echo "Running for unity NG CN (test)"
-                  python xml2json.py --working_dir ../dita/RTC-NG --platform_tag unity --json_file unity_cn_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path unity-ng
+                  echo "Running for flutter NG"
+                  python xml2json.py --working_dir ../dita/RTC-NG --platform_tag flutter --json_file flutter_cn_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path flutter-ng
             - name: Run json creation
               run: |
                   cd xml2json
-         
-                  echo "Running for unity NG CN (test)"
-                  python xml2json.py --working_dir ../dita/RTC-NG --platform_tag unity --json_file unity_en_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path unity-ng
-
-            - name: Upload Unity NG JSON to release 
+                  echo "Running for flutter NG"
+                  python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag flutter --json_file flutter_en_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path flutter-ng
+            - name: Upload Flutter NG JSON to release
               uses: svenstaro/upload-release-action@v2
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
-                  file: xml2json/unity_cn_ng.json
-                  asset_name: unity_ng_doc_template_cn.json
+                  file: xml2json/flutter_cn_ng.json
+                  asset_name: flutter_ng_json_template_cn.json
                   tag: main
                   overwrite: true
                   body: "Template file for automatic comment population."
-            - name: Upload Unity NG JSON to release 
+            - name: Upload Flutter NG JSON to release
               uses: svenstaro/upload-release-action@v2
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
-                  file: xml2json/unity_en_ng.json
-                  asset_name: unity_ng_doc_template_en.json
+                  file: xml2json/flutter_en_ng.json
+                  asset_name: flutter_ng_json_template_en.json
                   tag: main
                   overwrite: true
                   body: "Template file for automatic comment population."
+        
