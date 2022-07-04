@@ -58,7 +58,12 @@
         public LastmileProbeOneWayResult downlinkReport { set; get; }
         public uint rtt { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">export class LastmileProbeResult {
+  state?: LastmileProbeResultState;
+  uplinkReport?: LastmileProbeOneWayResult;
+  downlinkReport?: LastmileProbeOneWayResult;
+  rtt?: number;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class LastmileProbeResult {
   const LastmileProbeResult(
       {this.state, this.uplinkReport, this.downlinkReport, this.rtt});
@@ -86,9 +91,7 @@
             <plentry>
                 <pt>state</pt>
                 <pd>
-                    <p props="ios mac cpp unity flutter"
-                            >Last mile 质量探测结果的状态。详见: <xref
-                            keyref="LASTMILE_PROBE_RESULT_STATE"/> 。</p>
+                    <p props="ios mac cpp unity electron rn flutter">Last mile 质量探测结果的状态。详见: <xref keyref="LASTMILE_PROBE_RESULT_STATE" /> 。</p>
                     <p props="android">Last-mile 质量探测结果的状态，有如下几种：
 
                     

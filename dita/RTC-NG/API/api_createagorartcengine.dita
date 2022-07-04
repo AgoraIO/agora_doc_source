@@ -3,7 +3,7 @@
 <reference id="api_createagorartcengine">
     <title><ph keyref="createAgoraRtcEngine"/></title>
     <shortdesc id="short"><ph id="shortdesc">创建 <apiname keyref="IRtcEngine"/>
-        对象并返回指针。</ph></shortdesc>
+        对象。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -22,7 +22,9 @@
         {
             return instance ?? (instance = new RtcEngine());
         }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">export function createAgoraRtcEngine(): IRtcEngine {
+  return instance;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">RtcEngine createAgoraRtcEngine() {
   return impl.RtcEngineImpl.create();
 }</codeblock> </p>
@@ -33,7 +35,7 @@
         <section id="return_values">
             <title>返回值</title>           
             <p props="cpp">指向 <apiname keyref="IRtcEngine"/> 对象的指针。</p>
-            <p props="flutter"><apiname keyref="IRtcEngine"/> 对象。</p>
+            <p props="electron unity rn flutter"><apiname keyref="IRtcEngine"/> 对象。</p>
         </section>
     </refbody>
 </reference>

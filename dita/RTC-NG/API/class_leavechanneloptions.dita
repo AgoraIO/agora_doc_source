@@ -38,7 +38,11 @@
         public bool stopAllEffect { set; get; }
         public bool stopMicrophoneRecording { set; get; }
     };</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">export class LeaveChannelOptions {
+  stopAudioMixing?: boolean;
+  stopAllEffect?: boolean;
+  stopMicrophoneRecording?: boolean;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class LeaveChannelOptions {
   const LeaveChannelOptions(
       {this.stopAudioMixing, this.stopAllEffect, this.stopMicrophoneRecording});
@@ -52,8 +56,7 @@
   factory LeaveChannelOptions.fromJson(Map&lt;String, dynamic> json) =>
       _$LeaveChannelOptionsFromJson(json);
   Map&lt;String, dynamic> toJson() => _$LeaveChannelOptionsToJson(this);
-}</codeblock>
-            </p>
+}</codeblock> </p>
         </section>
         <section id="parameters">
             <title><text

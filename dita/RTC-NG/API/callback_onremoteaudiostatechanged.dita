@@ -28,7 +28,13 @@
      }</codeblock>
                <codeblock props="electron" outputclass="language-typescript"/>
                <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteAudioStateChanged(RtcConnection connection, uint remoteUid, REMOTE_AUDIO_STATE state, REMOTE_AUDIO_STATE_REASON reason, int elapsed) {}</codeblock>
-               <codeblock props="rn" outputclass="language-typescript"/>
+               <codeblock props="rn" outputclass="language-typescript">onRemoteAudioStateChanged?(
+  connection: RtcConnection,
+  remoteUid: number,
+  state: RemoteAudioState,
+  reason: RemoteAudioStateReason,
+  elapsed: number
+): void;</codeblock>
                <codeblock props="flutter" outputclass="language-dart">final void Function(
       RtcConnection connection,
       int remoteUid,
@@ -44,23 +50,26 @@
                     <dd>v2.9.0</dd>
                </dlentry>
                </dl>
-               <p id="desc">远端用户（通信场景）或主播（直播场景）的音频状态发生改变时，SDK 会触发该回调向本地用户报告当前的远端音频流状态。</p>
-               <note id="note" type="attention">频道内的用户（通信场景）或主播（直播场景）人数超过 17 人时，该回调可能不准确。</note> </section>
+               <p id="desc"
+               >远端用户（通信场景）或主播（直播场景）的音频状态发生改变时，SDK 会触发该回调向本地用户报告当前的远端音频流状态。</p>
+               <note id="note" type="attention"
+               >频道内的用户（通信场景）或主播（直播场景）人数超过 17 人时，该回调可能不准确。</note> </section>
           <section id="parameters">
                <title><ph keyref="callback-section-title"/></title>
-               <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+               <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"
+               />
                <parml>
                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                     <pt/>
                     <pd/>
                </plentry>
-               <plentry props="unity flutter">
-                         <pt>connection</pt>
-                         <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
-                    </plentry>
+               <plentry props="unity flutter rn electron">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+               </plentry>
                <plentry id="uid">
-                    <pt props="native electron flutter">uid</pt>
-                    <pt props="unity flutter">remoteUid</pt>
+                    <pt props="native flutter">uid</pt>
+                    <pt props="unity flutter rn electron">remoteUid</pt>
                     <pd>发生音频状态改变的远端用户 ID。</pd>
                </plentry>
                <plentry id="state">
@@ -69,11 +78,13 @@
                </plentry>
                <plentry id="reason">
                     <pt>reason</pt>
-                    <pd> 远端音频流状态改变的具体原因，详见 <xref keyref="REMOTE_AUDIO_STATE_REASON"/>。</pd>
+                    <pd> 远端音频流状态改变的具体原因，详见 <xref
+                         keyref="REMOTE_AUDIO_STATE_REASON"/>。</pd>
                </plentry>
                <plentry>
                     <pt>elapsed</pt>
-                    <pd> 从本地用户调用 <apiname keyref="joinChannel2"/> 方法到发生本事件经历的时间，单位为毫秒。</pd>
+                    <pd> 从本地用户调用 <apiname keyref="joinChannel2"
+                         /> 方法到发生本事件经历的时间，单位为毫秒。</pd>
                </plentry>
                </parml> </section>
      </refbody>

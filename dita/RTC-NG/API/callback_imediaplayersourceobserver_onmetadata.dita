@@ -20,8 +20,8 @@
                      length:(NSInteger)length;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void onMetaData(const void* data, int length) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnMetaData(IntPtr data, int length) { }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnMetaData(byte[] data, int length) { }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onMetaData?(data: Uint8Array, length: number): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(Uint8List data, int length)? onMetaData;
 </codeblock> </p>
         </section>
@@ -44,9 +44,9 @@
                 <pd>具体数据，用户自定义格式的数据。</pd>
             </plentry>
             <plentry props="ios mac cpp unity flutter">
-                    <pt>length</pt>
-                    <pd>数据长度，单位为 byte。</pd>
-                </plentry>
+                <pt>length</pt>
+                <pd>数据长度，单位为 byte。</pd>
+            </plentry>
             </parml> </section>
     </refbody>
 </reference>

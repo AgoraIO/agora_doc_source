@@ -29,7 +29,13 @@
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnSnapshotTaken(string channel, uint uid, string filePath, int width, int height, int errCode)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">onSnapshotTaken?(
+  connection: RtcConnection,
+  filePath: string,
+  width: number,
+  height: number,
+  errCode: number
+): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, String filePath, int width,
       int height, int errCode)? onSnapshotTaken;
 </codeblock> </p>
@@ -45,24 +51,24 @@
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry>
+            <plentry props="native">
                 <pt>channel</pt>
                 <pd>频道名。</pd>
             </plentry>
-            <plentry>
+            <plentry props="native">
                 <pt>uid</pt>
                 <pd>用户 ID。如果 <parmname>uid</parmname> 为 0，表示本地用户。</pd>
             </plentry>
-                <plentry id="connection" props="flutter">
-                    <pt>connection</pt>
-                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
-                </plentry>
+            <plentry id="connection" props="flutter electron rn">
+                <pt>connection</pt>
+                <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+            </plentry>
             <plentry>
                 <pt>filePath</pt>
                 <pd>截图的本地保存路径。</pd>
@@ -79,10 +85,12 @@
                 <pt>errCode</pt>
                 <pd>截图成功的提示或失败的原因。
 
+
                     
                     <ul>
                     <li>0：截图成功。</li>
                     <li>&lt; 0: 截图失败。
+
 
                         
                         <ul>

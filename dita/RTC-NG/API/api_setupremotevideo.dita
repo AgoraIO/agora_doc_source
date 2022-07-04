@@ -18,7 +18,7 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int setupRemoteVideo(const VideoCanvas&amp; canvas) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetupRemoteVideo(VideoCanvas canvas);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">abstract setupRemoteVideo(canvas: VideoCanvas): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setupRemoteVideo(VideoCanvas canvas);</codeblock> </p>
         </section>
         <section id="detailed_desc">
@@ -35,14 +35,14 @@
             <title>参数</title>
             <parml>
             <plentry>
-                <pt props="cpp unity flutter">canvas</pt>
+                <pt props="cpp unity rn electron flutter">canvas</pt>
                 <pt props="android ios mac">remote</pt>
                 <pd>
                     <p>远端视频显示属性。详见 <xref keyref="VideoCanvas"/>。</p>
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul>
             <li>0：方法调用成功。</li>

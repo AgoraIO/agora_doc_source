@@ -23,44 +23,49 @@
      }</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnCameraFocusAreaChanged(int x, int y, int width, int height)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">onCameraFocusAreaChanged?(
+  x: number,
+  y: number,
+  width: number,
+  height: number
+): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(int x, int y, int width, int height)?
       onCameraFocusAreaChanged;
 </codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p id="desc" props="android ios">该回调是由本地用户调用 <xref keyref="setCameraFocusPositionInPreview"/> 方法改变对焦位置触发的。</p>
-            <note type="attention" props="cpp">该回调仅适用于 Android 和 iOS。</note> </section>
+            <p id="desc" props="android ios rn">该回调是由本地用户调用 <xref keyref="setCameraFocusPositionInPreview"/> 方法改变对焦位置触发的。</p>
+            <note type="attention" props="cpp unity">该回调仅适用于 Android 和 iOS。</note> </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-            <parml props="cpp flutter unity">
-                <plentry>
-                    <pt>x</pt>
-                    <pd>发生改变的对焦区域的 x 坐标。</pd>
-                </plentry>
-                <plentry>
-                    <pt>y</pt>
-                    <pd>发生改变的对焦区域的 y 坐标。</pd>
-                </plentry>
-                <plentry>
-                    <pt>width</pt>
-                    <pd>发生改变的对焦区域的宽度。</pd>
-                </plentry>
-                <plentry>
-                    <pt>height</pt>
-                    <pd>发生改变的对焦区域的高度。</pd>
-                </plentry>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <parml props="cpp flutter unity electron rn">
+            <plentry>
+                <pt>x</pt>
+                <pd>发生改变的对焦区域的 x 坐标。</pd>
+            </plentry>
+            <plentry>
+                <pt>y</pt>
+                <pd>发生改变的对焦区域的 y 坐标。</pd>
+            </plentry>
+            <plentry>
+                <pt>width</pt>
+                <pd>发生改变的对焦区域的宽度。</pd>
+            </plentry>
+            <plentry>
+                <pt>height</pt>
+                <pd>发生改变的对焦区域的高度。</pd>
+            </plentry>
             </parml>
             <parml props="android ios mac">
-                <plentry>
-                    <pt>rect</pt>
-                    <pd>镜头内表示对焦的区域。</pd>
-                </plentry>
-                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                    <pt/>
-                    <pd/>
-                </plentry>
+            <plentry>
+                <pt>rect</pt>
+                <pd>镜头内表示对焦的区域。</pd>
+            </plentry>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
             </parml> </section>
     </refbody>
 </reference>

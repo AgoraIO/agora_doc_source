@@ -87,7 +87,16 @@
         public double alpha { set; get; }
         public int audioChannel { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">export class TranscodingUser {
+  uid?: number;
+  x?: number;
+  y?: number;
+  width?: number;
+  height?: number;
+  zOrder?: number;
+  alpha?: number;
+  audioChannel?: number;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class TranscodingUser {
   const TranscodingUser(
       {this.uid,
@@ -132,24 +141,24 @@
                     <p>主播的用户 ID。</p>
                 </pd>
             </plentry>
-            <plentry props="android cpp unity flutter">
+            <plentry props="android cpp unity electron rn flutter">
                 <pt>x</pt>
                 <pd>
                     <p>主播视频画面在输出视频画面的 x 坐标 (pixel)，以输出视频画面的左上角为原点。取值范围为[0,width]，width 为 <xref
                     keyref="LiveTranscoding"/> 中设置的 <codeph>width</codeph>。</p>
                 </pd>
             </plentry>
-            <plentry props="android cpp unity flutter">
+            <plentry props="android cpp unity electron rn flutter">
                 <pt>y</pt>
                 <pd>主播视频画面在输出视频画面的 y 坐标 (pixel)，以输出视频画面的左上角为原点。取值范围为[0,height]，height 为 <xref
                     keyref="LiveTranscoding"
                     /> 中设置的 <codeph>height</codeph>。</pd>
             </plentry>
-            <plentry props="android cpp unity flutter">
+            <plentry props="android cpp unity electron rn flutter">
                 <pt>width</pt>
                 <pd>主播视频画面的宽 (pixel)。</pd>
             </plentry>
-            <plentry props="android cpp unity flutter">
+            <plentry props="android cpp unity electron rn flutter">
                 <pt>height</pt>
                 <pd>
                     <p>主播视频画面的高 (pixel)。</p>
@@ -165,6 +174,7 @@
                     <p>主播视频画面的图层编号。取值范围为 [0,100]。
 
 
+                    
                     
                     <ul>
                     <li>0:（默认）视频画面位于图层的最下层。</li>
@@ -183,6 +193,7 @@
 
 
                     
+                    
                     <ul>
                     <li>0.0: 完全透明。</li>
                     <li>1.0:（默认）完全不透明。</li>
@@ -195,6 +206,7 @@
                     <p>主播音频在输出音频中占用的声道。默认值为 0，取值范围为 [0,5]：
 
 
+                    
                     
                     <ul id="ul_ugm_rrh_v4b">
                     <li><codeph>0</codeph>: （推荐）默认混音设置，最多支持双声道，与主播上行音频相关。</li>

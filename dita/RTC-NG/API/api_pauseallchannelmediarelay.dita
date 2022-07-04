@@ -18,7 +18,7 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int pauseAllChannelMediaRelay() = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public abstract int PauseAllChannelMediaRelay();</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript">abstract pauseAllChannelMediaRelay(): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; pauseAllChannelMediaRelay();</codeblock> </p>
         </section>
         <section id="detailed_desc">
@@ -31,7 +31,7 @@
             <p>开始跨频道转发媒体流后，如果你需要暂停向所有频道转发媒体流，可以调用该方法；暂停后，如果要恢复跨频道媒体流转发，可以调用 <xref keyref="resumeAllChannelMediaRelay" /> 方法。</p>
             <p>成功调用该方法后，SDK 会触发 <xref keyref="onChannelMediaRelayEvent" /> 回调，并在回调中报告是否成功暂停媒体流转发。</p>
             <note type="attention">该方法需要在 <xref keyref="startChannelMediaRelay" /> 后调用。</note> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功。</li>

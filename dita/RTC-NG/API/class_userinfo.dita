@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_userinfo">
-    <title><ph keyref="UserInfo"/></title>
+    <title><ph keyref="UserInfo" /></title>
     <shortdesc id="short"><ph id="shortdesc">用户的信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -9,7 +9,7 @@
             <codeblock props="android" outputclass="language-java">public class UserInfo {
                     public int uid;
                     public String userAccount;
-                    
+
                     @CalledByNative
                     public UserInfo(int uid, String userAccount) {
                     this.uid = uid;
@@ -18,9 +18,9 @@
                     }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">
             public struct UserInfo
-    {  
-        public uint uid; 
-        public string userAccount; 
+    {
+        public uint uid;
+        public string userAccount;
     }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraUserInfo: NSObject
  @property(assign, nonatomic) NSUInteger uid;
@@ -38,7 +38,10 @@
     uid: number;
     userAccount: string;
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">export class UserInfo {
+  uid?: number;
+  userAccount?: string;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class UserInfo {
   const UserInfo({this.uid, this.userAccount});
 
@@ -61,9 +64,7 @@
             </dl>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>uid</pt>

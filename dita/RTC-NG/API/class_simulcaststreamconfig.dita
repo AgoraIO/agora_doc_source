@@ -58,7 +58,11 @@
         public int bitrate { set; get; }
         public int framerate { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">export class SimulcastStreamConfig {
+  dimensions?: VideoDimensions;
+  bitrate?: number;
+  framerate?: number;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class SimulcastStreamConfig {
   const SimulcastStreamConfig({this.dimensions, this.bitrate, this.framerate});
 
@@ -81,9 +85,7 @@
             <parml>
             <plentry>
                 <pt>dimensions</pt>
-                <pd><ph>视频尺寸。</ph><ph props="android cpp unity">详见 <xref
-                    keyref="VideoDimensions"
-                    />。</ph><ph>默认值为 160 × 120。</ph></pd>
+                <pd><ph>视频尺寸。</ph><ph props="android cpp unity electron rn">详见 <xref keyref="VideoDimensions" />。</ph><ph>默认值为 160 × 120。</ph></pd>
             </plentry>
             <plentry>
                 <pt>bitrate</pt>

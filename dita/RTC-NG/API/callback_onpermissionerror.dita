@@ -20,13 +20,13 @@
 }</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnPermissionError(PERMISSION_TYPE permissionType) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">onPermissionError?(permissionType: PermissionType): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(PermissionType permissionType)? onPermissionError;
 </codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>无法获取设备权限时，SDK 会触发该回调，报告哪个设备的权限无法获取。</p>
-            <note type="attention" props="cpp flutter">该回调仅适用于 Android 和 iOS。</note> </section>
+            <note type="attention" props="cpp unity flutter">该回调仅适用于 Android 和 iOS。</note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
@@ -37,7 +37,7 @@
             <plentry>
                 <pt props="android">permission</pt>
                 <pt props="ios mac">type</pt>
-                <pt props="cpp unity flutter">permissionType</pt>
+                <pt props="cpp unity electron rn flutter">permissionType</pt>
                 <pd>设备权限类型。详见 <xref keyref="PERMISSION_TYPE"/>。</pd>
             </plentry>
             </parml> </section>

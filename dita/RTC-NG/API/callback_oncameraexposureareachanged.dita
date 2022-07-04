@@ -23,18 +23,23 @@
      }</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnCameraExposureAreaChanged(int x, int y, int width, int height)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">onCameraExposureAreaChanged?(
+  x: number,
+  y: number,
+  width: number,
+  height: number
+): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(int x, int y, int width, int height)?
       onCameraExposureAreaChanged;
 </codeblock> </p>
         </section>
-        <section id="detailed_desc" props="android ios cpp">
+        <section id="detailed_desc" props="android ios cpp electron rn">
             <p>该回调是由本地用户调用 <xref keyref="setCameraExposurePosition"/> 方法改变曝光位置触发的。</p>
-            <note type="attention" props="cpp">该回调仅适用于 Android 和 iOS。</note> </section>
+            <note type="attention" props="cpp unity">该回调仅适用于 Android 和 iOS。</note> </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-            <parml props="cpp unity flutter">
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <parml props="cpp unity electron rn">
             <plentry>
                 <pt>x</pt>
                 <pd>发生改变的曝光区域的 x 坐标。</pd>

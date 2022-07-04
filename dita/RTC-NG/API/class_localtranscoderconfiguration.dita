@@ -44,7 +44,11 @@
         public TranscodingVideoStream[] VideoInputStreams { set; get; }
         public VideoEncoderConfiguration videoOutputConfiguration { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">export class LocalTranscoderConfiguration {
+  streamCount?: number;
+  VideoInputStreams?: TranscodingVideoStream[];
+  videoOutputConfiguration?: VideoEncoderConfiguration;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class LocalTranscoderConfiguration {
   const LocalTranscoderConfiguration(
       {this.streamCount,
@@ -68,7 +72,7 @@
             conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
             /></title>
             <parml>
-            <plentry props="cpp unity flutter">
+            <plentry props="cpp unity electron rn flutter">
                 <pt>streamCount</pt>
                 <pd>
                     <p>参与本地合图的视频流的数量。</p>

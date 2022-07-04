@@ -57,7 +57,13 @@
         public int numberOfChannels { set; get; }
         public EncodedAudioFrameAdvancedSettings advancedSettings { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">export class EncodedAudioFrameInfo {
+  codec?: AudioCodecType;
+  sampleRateHz?: number;
+  samplesPerChannel?: number;
+  numberOfChannels?: number;
+  advancedSettings?: EncodedAudioFrameAdvancedSettings;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class EncodedAudioFrameInfo {
   const EncodedAudioFrameInfo(
       {this.codec,
@@ -88,12 +94,12 @@
             /></title>
             <parml>
             <plentry>
-                <pt props="cpp unity flutter">codec</pt>
+                <pt props="cpp unity electron rn flutter">codec</pt>
                 <pt props="ios mac">codecType</pt>
                 <pd>音频编码规格: <xref keyref="AUDIO_CODEC_TYPE"/>。</pd>
             </plentry>
             <plentry>
-                <pt props="cpp unity flutter">sampleRateHz</pt>
+                <pt props="cpp unity electron rn flutter">sampleRateHz</pt>
                 <pt props="ios mac">samplesPerSec</pt>
                 <pd>音频采样率 (Hz)。</pd>
             </plentry>
@@ -102,11 +108,11 @@
                 <pd>每个声道的音频采样数。</pd>
             </plentry>
             <plentry>
-                <pt props="cpp unity flutter">numberOfChannels</pt>
+                <pt props="cpp unity electron rn flutter">numberOfChannels</pt>
                 <pt props="ios mac">channels</pt>
                 <pd>声道数。</pd>
             </plentry>
-            <plentry props="cpp unity flutter">
+            <plentry props="cpp unity electron rn flutter">
                 <pt>advancedSettings</pt>
                 <pd>该功能暂不支持。</pd>
             </plentry>

@@ -99,7 +99,21 @@
             language = null;
         }
     };</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">export class PlayerStreamInfo {
+  streamIndex?: number;
+  streamType?: MediaStreamType;
+  codecName?: string;
+  language?: string;
+  videoFrameRate?: number;
+  videoBitRate?: number;
+  videoWidth?: number;
+  videoHeight?: number;
+  videoRotation?: number;
+  audioSampleRate?: number;
+  audioChannels?: number;
+  audioBitsPerSample?: number;
+  duration?: number;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class PlayerStreamInfo {
   const PlayerStreamInfo(
       {this.streamIndex,
@@ -158,10 +172,9 @@
                 <pd>媒体流的索引值。</pd>
             </plentry>
             <plentry>
-                <pt props="ios mac cpp unity flutter">streamType</pt>
+                <pt props="ios mac cpp unity electron rn flutter">streamType</pt>
                 <pt props="android">mediaStreamType</pt>
-                <pd><ph>此条媒体流的类型。</ph><ph props="ios mac cpp unity flutter">详见 <xref
-                    keyref="MEDIA_STREAM_TYPE"/>。</ph>
+                <pd><ph>此条媒体流的类型。</ph><ph props="ios mac cpp unity electron rn flutter">详见 <xref keyref="MEDIA_STREAM_TYPE" />。</ph>
                     <ul props="android">
                     <li><ph keyref="STREAM_TYPE_UNKNOWN"/> (0): 未知类型。</li>
                     <li><ph keyref="STREAM_TYPE_VIDEO"/> (1): 视频流。</li>
@@ -194,7 +207,7 @@
                 <pd>该参数仅对视频流生效，表示视频高度 (pixel)。</pd>
             </plentry>
             <plentry>
-                <pt props="android unity cpp flutter">videoRotation</pt>
+                <pt props="android unity cpp electron rn flutter">videoRotation</pt>
                 <pt props="ios mac">rotation</pt>
                 <pd>该参数仅对视频流生效，表示旋转角度。</pd>
             </plentry>
@@ -206,8 +219,8 @@
                 <pt>audioChannels</pt>
                 <pd>该参数仅对音频流生效，表示声道数。</pd>
             </plentry>
-            <plentry props="android cpp unity flutter">
-                <pt props="cpp unity flutter">audioBitsPerSample</pt>
+            <plentry props="android cpp unity electron rn flutter">
+                <pt props="cpp unity electron rn flutter">audioBitsPerSample</pt>
                 <pt props="android">audioBytesPerSample</pt>
                 <pd>该参数仅对音频流生效，表示每个音频采样点的位数 (bit)。</pd>
             </plentry>

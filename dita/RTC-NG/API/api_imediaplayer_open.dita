@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_open">
-    <title><ph keyref="open"/></title>
+    <title><ph keyref="open" /></title>
     <shortdesc id="short"><ph id="shortdesc">打开媒体资源。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="open"/>
+                <indexterm keyref="open" />
             </keywords>
         </metadata>
     </prolog>
@@ -18,13 +18,13 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)open:(NSString *)url startPos:(NSInteger)startPos;
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int open(const char* url, int64_t startPos) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public abstract int Open(string url, Int64 startPos);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">abstract open(url: string, startPos: number): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> open({required String url, required int startPos});</codeblock></p>
         </section>
         <section id="detailed_desc" props="android ios">
-            <p>如果用户需要自定义播放线路，你可以调用 <xref keyref="openWithAgoraCDNSrc"/>。Agora 会通过自研调度中心支持调度线路，提升观看用户体验。如果用户不需要自定义播放线路，你可以调用 <apiname>open</apiname>。</p>
+            <p>如果用户需要自定义播放线路，你可以调用 <xref keyref="openWithAgoraCDNSrc" />。Agora 会通过自研调度中心支持调度线路，提升观看用户体验。如果用户不需要自定义播放线路，你可以调用 <apiname>open</apiname>。</p>
         </section>
         <section id="parameters">
             <title>参数</title>
@@ -32,7 +32,10 @@
             <plentry>
                 <pt>url</pt>
                 <pd>设置媒体文件的路径，支持本地和在线文件。
-                    <note type="attention" props="android">不支持 URI 格式。</note> </pd>
+
+                    <note type="attention" props="android">不支持 URI 格式。</note>
+                    <note type="attention" props="rn flutter">Android 平台上，不支持 URI 格式。</note>
+                </pd>
             </plentry>
             <plentry>
                 <pt>startPos</pt>

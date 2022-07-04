@@ -18,7 +18,11 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int setAudioEffectParameters(AUDIO_EFFECT_PRESET preset, int param1, int param2) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetAudioEffectParameters(AUDIO_EFFECT_PRESET preset, int param1, int param2);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">abstract setAudioEffectParameters(
+  preset: AudioEffectPreset,
+  param1: number,
+  param2: number
+): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setAudioEffectParameters(
   {required AudioEffectPreset preset,
   required int param1,
@@ -35,6 +39,7 @@
             <p>调用该方法可以对本地发流用户进行如下设置：
 
 
+
             
             <ul>
             <li>3D 人声音效：设置 3D 人声音效的环绕周期。</li>
@@ -45,10 +50,11 @@
             <ul>
             <li>该方法在加入频道前后都能调用。</li>
             <li>为获取更好的人声效果，Agora 推荐你在调用该方法前将 <xref keyref="setAudioProfile"/> 的 <parmname>scenario</parmname> 设为 <apiname keyref="AUDIO_SCENARIO_GAME_STREAMING"/>(3)。</li>
-            <li props="cpp flutter">请勿将 <apiname keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1) 或 <apiname keyref="AUDIO_PROFILE_IOT"/>(6)，否则该方法不生效。</li>
+            <li props="cpp flutter rn electron">请勿将 <apiname keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1) 或 <apiname keyref="AUDIO_PROFILE_IOT"/>(6)，否则该方法不生效。</li>
             <li props="android ios mac unity">请勿将 <apiname keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1)，否则该方法不生效。</li>
             <li>该方法对人声的处理效果最佳，Agora 不推荐调用该方法处理含音乐的音频数据。</li>
             <li>调用 <apiname keyref="setAudioEffectParameters"/> 后，Agora 不推荐调用以下方法，否则 <apiname keyref="setAudioEffectParameters"/> 设置的效果会被覆盖：
+
                 
                 <ul>
                 <li><xref keyref="setAudioEffectPreset"/></li>
@@ -67,9 +73,11 @@
                 <pt>preset</pt>
                 <pd>SDK 预设的音效，支持以下设置：
 
+
                     
                     <ul>
                     <li><apiname keyref="ROOM_ACOUSTICS_3D_VOICE"/>，3D 人声音效。
+
 
                         
                         <ul>
@@ -89,6 +97,7 @@
                     <ul>
                     <li>如果 <parmname>preset</parmname> 设为 <apiname keyref="ROOM_ACOUSTICS_3D_VOICE"/> ，则 <parmname>param1</parmname> 表示 3D 人声音效的环绕周期。取值范围为 [1,60]，单位为秒。默认值为 10，表示人声会 10 秒环绕 360 度。</li>
                     <li>如果 <parmname>preset</parmname> 设为 <apiname keyref="PITCH_CORRECTION"/>，则 <parmname>param1</parmname> 表示电音音效的基础调式：
+
                         
                         <ul>
                         <li><codeph>1</codeph>: （默认）自然大调。</li>
@@ -103,6 +112,7 @@
                     <ul>
                     <li>如果 <parmname>preset</parmname> 设为 <apiname keyref="ROOM_ACOUSTICS_3D_VOICE"/>，你需要将 <parmname>param2</parmname> 设置为 <codeph>0</codeph>。</li>
                     <li>如果 <parmname>preset</parmname> 设为 <apiname keyref="PITCH_CORRECTION"/>，则 <parmname>param2</parmname> 表示电音音效的主音音高：
+
                         
                         <ul>
                         <li><codeph>1</codeph>: A</li>
@@ -121,7 +131,7 @@
                     </ul> </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功</li>

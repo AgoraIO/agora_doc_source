@@ -69,29 +69,35 @@
         public float rednessLevel { set; get; }
         public float sharpnessLevel { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">class BeautyOptions {
-  const BeautyOptions(
-      {this.lighteningContrastLevel,
-      this.lighteningLevel,
-      this.smoothnessLevel,
-      this.rednessLevel,
-      this.sharpnessLevel});
-
-  @JsonKey(name: 'lighteningContrastLevel')
-  final LighteningContrastLevel? lighteningContrastLevel;
-  @JsonKey(name: 'lighteningLevel')
-  final double? lighteningLevel;
-  @JsonKey(name: 'smoothnessLevel')
-  final double? smoothnessLevel;
-  @JsonKey(name: 'rednessLevel')
-  final double? rednessLevel;
-  @JsonKey(name: 'sharpnessLevel')
-  final double? sharpnessLevel;
-  factory BeautyOptions.fromJson(Map&lt;String, dynamic> json) =>
-      _$BeautyOptionsFromJson(json);
-  Map&lt;String, dynamic> toJson() => _$BeautyOptionsToJson(this);
+            <codeblock props="rn" outputclass="language-typescript">export class BeautyOptions {
+  lighteningContrastLevel?: LighteningContrastLevel;
+  lighteningLevel?: number;
+  smoothnessLevel?: number;
+  rednessLevel?: number;
+  sharpnessLevel?: number;
 }</codeblock>
+<codeblock props="flutter" outputclass="language-dart">class BeautyOptions {
+    const BeautyOptions(
+        {this.lighteningContrastLevel,
+        this.lighteningLevel,
+        this.smoothnessLevel,
+        this.rednessLevel,
+        this.sharpnessLevel});
+  
+    @JsonKey(name: 'lighteningContrastLevel')
+    final LighteningContrastLevel? lighteningContrastLevel;
+    @JsonKey(name: 'lighteningLevel')
+    final double? lighteningLevel;
+    @JsonKey(name: 'smoothnessLevel')
+    final double? smoothnessLevel;
+    @JsonKey(name: 'rednessLevel')
+    final double? rednessLevel;
+    @JsonKey(name: 'sharpnessLevel')
+    final double? sharpnessLevel;
+    factory BeautyOptions.fromJson(Map&lt;String, dynamic> json) =>
+        _$BeautyOptionsFromJson(json);
+    Map&lt;String, dynamic> toJson() => _$BeautyOptionsToJson(this);
+  }</codeblock>
             </p>
         </section>
         <section id="parameters">
@@ -101,8 +107,7 @@
             <plentry>
                 <pt>lighteningContrastLevel</pt>
                 <pd>
-                    <p>对比度，常与 <codeph>lighteningLevel</codeph> 搭配使用。取值越大，明暗对比程度越大。<ph
-                    props="ios mac cpp unity flutter">详见 <xref keyref="LIGHTENING_CONTRAST_LEVEL"/>。</ph>
+                    <p>对比度，常与 <codeph>lighteningLevel</codeph> 搭配使用。取值越大，明暗对比程度越大。<ph props="ios mac cpp unity electron rn flutter">详见 <xref keyref="LIGHTENING_CONTRAST_LEVEL" />。</ph>
                     <ul props="android">
                     <li><ph keyref="LIGHTENING_CONTRAST_LOW"/> (0)：低对比度。</li>
                     <li><ph keyref="LIGHTENING_CONTRAST_NORMAL"/> (1)：正常对比度。</li>
@@ -113,29 +118,25 @@
             <plentry>
                 <pt>lighteningLevel</pt>
                 <pd>
-                    <p>美白程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始亮度，默认值为 <ph props="ios">0.7</ph><ph
-                    props="android">0.6</ph><ph props="cpp unity flutter">0.0</ph>。取值越大，美白程度越大。</p>
+                    <p>美白程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始亮度，默认值为 <ph props="ios">0.7</ph><ph props="android">0.6</ph><ph props="cpp unity electron rn flutter">0.0</ph>。取值越大，美白程度越大。</p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>smoothnessLevel</pt>
                 <pd>
-                    <p>磨皮程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始磨皮程度，默认值为 <ph props="ios">0.5</ph><ph
-                    props="android">0.5</ph><ph props="cpp unity flutter">0.0</ph>。取值越大，磨皮程度越大。</p>
+                    <p>磨皮程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始磨皮程度，默认值为 <ph props="ios">0.5</ph><ph props="android">0.5</ph><ph props="cpp unity electron rn flutter">0.0</ph>。取值越大，磨皮程度越大。</p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>rednessLevel</pt>
                 <pd>
-                    <p>红润度，取值范围为 [0.0,1.0]，其中 0.0 表示原始红润度，默认值为 <ph props="ios">0.1</ph><ph
-                    props="android">0.1</ph><ph props="cpp unity flutter">0.0</ph>。取值越大，红润程度越大。</p>
+                    <p>红润度，取值范围为 [0.0,1.0]，其中 0.0 表示原始红润度，默认值为 <ph props="ios">0.1</ph><ph props="android">0.1</ph><ph props="cpp unity electron rn flutter">0.0</ph>。取值越大，红润程度越大。</p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>sharpnessLevel</pt>
                 <pd>
-                    <p>锐化程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始锐度，默认值为 <ph props="ios">0.1</ph><ph
-                    props="android">0.3</ph><ph props="cpp unity flutter">0.0</ph>。取值越大，锐化程度越大。</p>
+                    <p>锐化程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始锐度，默认值为 <ph props="ios">0.1</ph><ph props="android">0.3</ph><ph props="cpp unity electron rn flutter">0.0</ph>。取值越大，锐化程度越大。</p>
                 </pd>
             </plentry>
             </parml> </section>

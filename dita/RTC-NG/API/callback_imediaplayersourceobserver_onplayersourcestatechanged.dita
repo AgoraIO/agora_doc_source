@@ -23,7 +23,10 @@
                                         media::base::MEDIA_PLAYER_ERROR ec) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnPlayerSourceStateChanged(MEDIA_PLAYER_STATE state, MEDIA_PLAYER_ERROR ec) { }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">onPlayerSourceStateChanged?(
+  state: MediaPlayerState,
+  ec: MediaPlayerError
+): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(MediaPlayerState state, MediaPlayerError ec)?
       onPlayerSourceStateChanged;
 </codeblock> </p>
@@ -44,7 +47,7 @@
             </plentry>
             <plentry>
                 <pt props="android ios mac">error</pt>
-                <pt props="cpp unity flutter">ec</pt>
+                <pt props="cpp unity flutter rn electron">ec</pt>
                 <pd>播放器错误码，详见 <xref keyref="MEDIA_PLAYER_ERROR"/>。</pd>
             </plentry>
             </parml> </section>

@@ -19,7 +19,7 @@
             </codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioRoutingChanged(int routing) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">onAudioRoutingChanged?(routing: number): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(int routing)? onAudioRoutingChanged;
 </codeblock> </p>
         </section>
@@ -29,7 +29,7 @@
             </note> </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt/>
@@ -40,6 +40,7 @@
                 <pd>
                     <p props="ios mac unity flutter cpp">当前的音频路由。详见 <xref keyref="AUDIO_ROUTE_TYPE"/>。</p>
                     <p props="android">当前的音频路由：
+                    
                     <ul>
                     <li><ph keyref="AUDIO_ROUTE_DEFAULT"/> (-1)：使用默认的音频路由。</li>
                     <li><ph keyref="AUDIO_ROUTE_HEADSET"/> (0)：音频路由为带麦克风的耳机。</li>
@@ -48,6 +49,19 @@
                     <li><ph keyref="AUDIO_ROUTE_SPEAKERPHONE"/> (3)：音频路由为设备自带的扬声器。</li>
                     <li><ph keyref="AUDIO_ROUTE_LOUDSPEAKER"/> (4)：（暂不支持）音频路由为外接的扬声器。</li>
                     <li><ph keyref="AUDIO_ROUTE_BLUETOOTH"/> (5)：音频路由为蓝牙耳机。</li>
+                    </ul> </p>
+                    <p props="electron rn">当前的音频路由：
+
+
+                    
+                    <ul>
+                    <li>-1：使用默认的音频路由。</li>
+                    <li>0：音频路由为带麦克风的耳机。</li>
+                    <li>1：音频路由为听筒。</li>
+                    <li>2：音频路由为不带麦克风的耳机。</li>
+                    <li>3：音频路由为设备自带的扬声器。</li>
+                    <li>4：音频路由为外接的扬声器。（仅适用于 iOS 和 macOS）</li>
+                    <li>5：音频路由为蓝牙耳机。</li>
                     </ul> </p>
                 </pd>
             </plentry>

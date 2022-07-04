@@ -36,7 +36,11 @@
         public float yRatio { set; get; }
         public float widthRatio { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">export class WatermarkRatio {
+  xRatio?: number;
+  yRatio?: number;
+  widthRatio?: number;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class WatermarkRatio {
   const WatermarkRatio({this.xRatio, this.yRatio, this.widthRatio});
 
@@ -49,8 +53,7 @@
   factory WatermarkRatio.fromJson(Map&lt;String, dynamic> json) =>
       _$WatermarkRatioFromJson(json);
   Map&lt;String, dynamic> toJson() => _$WatermarkRatioToJson(this);
-}</codeblock>
-            </p>
+}</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>水印在屏幕中的位置和大小由 <parmname>xRatio</parmname>、<parmname>yRatio</parmname> 和 <parmname>widthRatio</parmname> 共同决定：

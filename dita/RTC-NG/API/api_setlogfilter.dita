@@ -18,7 +18,7 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int setLogFilter(unsigned int filter) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetLogFilter(uint filter);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">abstract setLogFilter(filter: LogFilterType): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLogFilter(LogFilterType filter);</codeblock></p>
         </section>
         <section id="detailed_desc">
@@ -28,9 +28,9 @@
                 <dd>请改用 <xref keyref="create2"/> 中的 <parmname>logConfig</parmname>。</dd>
             </dlentry>
             </dl>
-            <p props="native flutter">该方法设置 Agora SDK 的输出日志输出等级。不同的输出等级可以单独或组合使用。日志级别顺序依次为 <apiname keyref="LOG_FILTER_OFF"/>、<apiname keyref="LOG_FILTER_CRITICAL"/>、<apiname keyref="LOG_FILTER_ERROR"/>、<apiname keyref="LOG_FILTER_WARN"/>、<apiname keyref="LOG_FILTER_INFO"/> 和 <apiname keyref="LOG_FILTER_DEBUG"/>。
+            <p props="native rn electron flutter">该方法设置 Agora SDK 的输出日志输出等级。不同的输出等级可以单独或组合使用。日志级别顺序依次为 <apiname keyref="LOG_FILTER_OFF" />、<apiname keyref="LOG_FILTER_CRITICAL" />、<apiname keyref="LOG_FILTER_ERROR" />、<apiname keyref="LOG_FILTER_WARN" />、<apiname keyref="LOG_FILTER_INFO" /> 和 <apiname keyref="LOG_FILTER_DEBUG" />。
        选择一个级别，你就可以看到在该级别之前所有级别的日志信息。</p>
-            <p props="native flutter">例如，你选择 <apiname keyref="LOG_FILTER_WARN"/> 级别，就可以看到在 <apiname keyref="LOG_FILTER_CRITICAL"/>、<apiname keyref="LOG_FILTER_ERROR"/> 和 <apiname keyref="LOG_FILTER_WARN"/> 级别的日志信息。</p>
+            <p props="native rn electron flutter">例如，你选择 <apiname keyref="LOG_FILTER_WARN" /> 级别，就可以看到在 <apiname keyref="LOG_FILTER_CRITICAL" />、<apiname keyref="LOG_FILTER_ERROR" /> 和 <apiname keyref="LOG_FILTER_WARN" /> 级别的日志信息。</p>
         </section>
         <section id="parameters">
             <title>参数</title>
@@ -38,7 +38,7 @@
             <plentry>
                 <pt>filter</pt>
                 <pd>
-                    <p><ph>日志过滤等级。</ph><ph props="ios mac cpp flutter">详见 <xref keyref="LOG_FILTER_TYPE"/>。</ph>
+                    <p><ph>日志过滤等级。</ph><ph props="ios mac cpp rn electron flutter">详见 <xref keyref="LOG_FILTER_TYPE" />。</ph>
                     <ul props="android">
                     <li><ph keyref="LOG_FILTER_OFF"/> (0)：不输出日志信息。</li>
                     <li><ph keyref="LOG_FILTER_DEBUG"/> (0x80f)：输出所有 API 日志信息。如果你想获取最完整的日志，可以将日志级别设为该等级。</li>
@@ -50,7 +50,7 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功。</li>

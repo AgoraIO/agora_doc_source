@@ -19,7 +19,7 @@
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetCameraAutoFocusFaceModeEnabled(bool enabled);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">abstract setCameraAutoFocusFaceModeEnabled(enabled: boolean): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setCameraAutoFocusFaceModeEnabled(bool enabled);</codeblock> </p>
         </section>
         <section id="detailed_desc">
@@ -35,11 +35,11 @@
             <title>参数</title>
             <parml>
             <plentry>
-                <pt props="android cpp unity flutter">enabled</pt>
+                <pt props="android cpp unity rn flutter">enabled</pt>
                 <pt props="ios">enable</pt>
                 <pd>
                     <p>是否开启人脸对焦：
-                    
+
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 开启人脸对焦功能。</li>
                     <li><codeph><ph keyref="false"/></codeph>: 关闭人脸对焦功能。</li>
@@ -47,9 +47,9 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native unity rn">
             <title>返回值</title>
-            <ul props="android cpp unity">
+            <ul props="android cpp unity rn">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。</li>
             </ul>

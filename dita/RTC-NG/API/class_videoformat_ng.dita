@@ -18,20 +18,8 @@
                 int height;
                 int fps;
               }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public class VideoFormat
-    {
-        public enum OPTIONAL_ENUM_SIZE_T
-        {
-            /** The maximum value (px) of the width. */
-            kMaxWidthInPixels = 3840,
-            /** The maximum value (px) of the height. */
-            kMaxHeightInPixels = 2160,
-            /** The maximum value (fps) of the frame rate. */
-            kMaxFps = 60,
-        }
-
-        public VideoFormat()
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp">public VideoFormat()
         {
             width = (int)FRAME_WIDTH.FRAME_WIDTH_640;
             height = (int)FRAME_HEIGHT.FRAME_HEIGHT_360;
@@ -48,7 +36,11 @@
         public int height { set; get; }
         public int fps { set; get; }
     };</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">export class VideoFormat {
+  width?: number;
+  height?: number;
+  fps?: number;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class VideoFormat {
   const VideoFormat({this.width, this.height, this.fps});
 
