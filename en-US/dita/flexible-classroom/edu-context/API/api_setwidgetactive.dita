@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setwidgetactive">
+    <title><ph keyref="setWidgetActive"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Set the widget state to active.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setWidgetActive"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-kotlin"/>
+                <codeblock props="ios mac" outputclass="language-swift">void setWidgetActive(String widgetId,
+                    String ownerUuid,
+                    Map&lt;String: Any> roomProperties,
+                    AgoraWidgetFrame syncFrame,
+                    Callback&lt;Void> success,
+                    Callback&lt;Error> failure)</codeblock>
+                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="web" outputclass="language-typescript"/>
+            </p>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+            <parml>
+                <plentry>
+                    <pt>widgetId</pt>
+                    <pd>The ID of the widget.</pd>
+                </plentry>
+                <plentry>
+                    <pt>ownerUuid</pt>
+                    <pd>User ID of the widget's owner. This parameter can be null. When the user is offline, the Widget it owns will trigger the <apiname>onWidgetInactive</apiname> callback.</pd>
+                </plentry>
+                <plentry>
+                    <pt>roomProperties</pt>
+                    <pd>renew</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>
