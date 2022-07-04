@@ -32,8 +32,18 @@ elapseSinceLastState:(int)elapseSinceLastState;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onAudioPublishStateChanged?(channel: string, oldState: StreamPublishState, newState: StreamPublishState, elapseSinceLastState: number): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioPublishStateChanged(string channel, STREAM_PUBLISH_STATE oldState,
             STREAM_PUBLISH_STATE newState, int elapseSinceLastState)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">onAudioPublishStateChanged?(
+  channel: string,
+  oldState: StreamPublishState,
+  newState: StreamPublishState,
+  elapseSinceLastState: number
+): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(
+      String channel,
+      StreamPublishState oldState,
+      StreamPublishState newState,
+      int elapseSinceLastState)? onAudioPublishStateChanged;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
@@ -52,7 +62,8 @@ elapseSinceLastState:(int)elapseSinceLastState;</codeblock>
                 <pd/>
             </plentry>
             <plentry>
-                <pt props="android cpp unity flutter electron rn">channel</pt>
+                <pt props="android cpp unity flutter electron rn flutter"
+                    >channel</pt>
                 <pt props="ios mac">channelId</pt>
                 <pd>频道名。</pd>
             </plentry>

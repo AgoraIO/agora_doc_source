@@ -18,13 +18,14 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual void onConnectionLost()</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onConnectionLost?(connection: RtcConnection): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnConnectionLost(RtcConnection connection) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">onConnectionLost?(connection: RtcConnection): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection)? onConnectionLost;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>SDK 在调用 <apiname keyref="joinChannel2"/> 后，无论是否加入成功，只要 10 秒和服务器无法连接就会触发该回调。如果 SDK 在断开连接后，20 分钟内还是没能重新加入频道，SDK 会停止尝试重连。</p>
         </section>
-        <section id="parameters" props="ios mac unity electron rn">
+        <section id="parameters" props="ios mac unity electron rn flutter">
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
@@ -32,7 +33,7 @@
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="unity electron rn">
+            <plentry props="unity electron rn flutter">
                 <pt>connection</pt>
                 <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
             </plentry>

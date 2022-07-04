@@ -21,8 +21,10 @@
     }</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onRemoteAudioStats?(connection: RtcConnection, stats: RemoteAudioStats): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteAudioStats(RtcConnection connection, RemoteAudioStats stats) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">onRemoteAudioStats?(connection: RtcConnection, stats: RemoteAudioStats): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, RemoteAudioStats stats)?
+      onRemoteAudioStats;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p id="desc">该回调针对每个发送音频流的远端用户/主播每 2 秒触发一次。如果远端有多个用户/主播发送音频流，该回调每 2 秒会被触发多次。</p>
@@ -35,7 +37,7 @@
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="unity electron rn">
+            <plentry props="unity electron rn flutter">
                 <pt>connection</pt>
                 <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
             </plentry>

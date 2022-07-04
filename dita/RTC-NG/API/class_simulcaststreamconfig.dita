@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_simulcaststreamconfig">
-    <title><ph keyref="SimulcastStreamConfig" /></title>
+    <title><ph keyref="SimulcastStreamConfig"/></title>
     <shortdesc id="short"><ph id="shortdesc">视频小流的配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -62,12 +62,30 @@
         public int bitrate { set; get; }
         public int framerate { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class SimulcastStreamConfig {
+  dimensions?: VideoDimensions;
+  bitrate?: number;
+  framerate?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class SimulcastStreamConfig {
+  const SimulcastStreamConfig({this.dimensions, this.bitrate, this.framerate});
+
+  @JsonKey(name: 'dimensions')
+  final VideoDimensions? dimensions;
+  @JsonKey(name: 'bitrate')
+  final int? bitrate;
+  @JsonKey(name: 'framerate')
+  final int? framerate;
+  factory SimulcastStreamConfig.fromJson(Map&lt;String, dynamic> json) =>
+      _$SimulcastStreamConfigFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$SimulcastStreamConfigToJson(this);
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>dimensions</pt>

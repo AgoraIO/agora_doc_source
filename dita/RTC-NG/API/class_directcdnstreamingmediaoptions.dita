@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_directcdnstreamingmediaoptions">
-    <title><ph keyref="DirectCdnStreamingMediaOptions" /></title>
+    <title><ph keyref="DirectCdnStreamingMediaOptions"/></title>
     <shortdesc id="short"><ph id="shortdesc">主播端的媒体选项。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -46,59 +46,97 @@
         public Optional&lt;bool&gt; publishCustomAudioTrack = new Optional&lt;bool&gt;();
         public Optional&lt;bool&gt; publishCustomVideoTrack = new Optional&lt;bool&gt;();
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class DirectCdnStreamingMediaOptions {
+  publishCameraTrack?: boolean;
+  publishMicrophoneTrack?: boolean;
+  publishCustomAudioTrack?: boolean;
+  publishCustomVideoTrack?: boolean;
+  publishMediaPlayerAudioTrack?: boolean;
+  publishMediaPlayerId?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class DirectCdnStreamingMediaOptions {
+  const DirectCdnStreamingMediaOptions(
+      {this.publishCameraTrack,
+      this.publishMicrophoneTrack,
+      this.publishCustomAudioTrack,
+      this.publishCustomVideoTrack,
+      this.publishMediaPlayerAudioTrack,
+      this.publishMediaPlayerId});
+
+  @JsonKey(name: 'publishCameraTrack')
+  final bool? publishCameraTrack;
+  @JsonKey(name: 'publishMicrophoneTrack')
+  final bool? publishMicrophoneTrack;
+  @JsonKey(name: 'publishCustomAudioTrack')
+  final bool? publishCustomAudioTrack;
+  @JsonKey(name: 'publishCustomVideoTrack')
+  final bool? publishCustomVideoTrack;
+  @JsonKey(name: 'publishMediaPlayerAudioTrack')
+  final bool? publishMediaPlayerAudioTrack;
+  @JsonKey(name: 'publishMediaPlayerId')
+  final int? publishMediaPlayerId;
+  factory DirectCdnStreamingMediaOptions.fromJson(Map&lt;String, dynamic> json) =>
+      _$DirectCdnStreamingMediaOptionsFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$DirectCdnStreamingMediaOptionsToJson(this);
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>publishCameraTrack</pt>
                 <pd>设置是否发布摄像头采集的视频。
 
-                    
+
                     <ul>
-                    <li><codeph><ph keyref="true" /></codeph>: 发布摄像头采集的视频。</li>
-                    <li><codeph><ph keyref="false" /></codeph>:（默认）不发布摄像头采集的视频。</li>
+                    <li><codeph><ph keyref="true"/></codeph>: 发布摄像头采集的视频。</li>
+                    <li><codeph><ph keyref="false"
+                        /></codeph>:（默认）不发布摄像头采集的视频。</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>publishMicrophoneTrack</pt>
                 <pd>设置是否发布麦克风采集的音频。
 
-                    
+
                     <ul>
-                    <li><codeph><ph keyref="true" /></codeph>: 发布麦克风采集的音频。</li>
-                    <li><codeph><ph keyref="false" /></codeph>:（默认）不发布麦克风采集的音频。</li>
+                    <li><codeph><ph keyref="true"/></codeph>: 发布麦克风采集的音频。</li>
+                    <li><codeph><ph keyref="false"
+                        /></codeph>:（默认）不发布麦克风采集的音频。</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>publishCustomAudioTrack</pt>
                 <pd>设置是否发布自定义采集的音频。
 
-                    
+
                     <ul>
-                    <li><codeph><ph keyref="true" /></codeph>: 发布自定义采集的音频。</li>
-                    <li><codeph><ph keyref="false" /></codeph>:（默认）不发布自定义采集的音频。</li>
+                    <li><codeph><ph keyref="true"/></codeph>: 发布自定义采集的音频。</li>
+                    <li><codeph><ph keyref="false"
+                        /></codeph>:（默认）不发布自定义采集的音频。</li>
                     </ul></pd>
             </plentry>
             <plentry props="hide">
                 <pt>publishMediaPlayerAudioTrack</pt>
                 <pd>设置是否发布媒体播放器的音频。
-                    
+
                     <ul>
-                    <li><codeph><ph keyref="true" /></codeph>: 发布媒体播放器的音频。</li>
-                    <li><codeph><ph keyref="false" /></codeph>:（默认）不发布媒体播放器的音频。</li>
+                    <li><codeph><ph keyref="true"/></codeph>: 发布媒体播放器的音频。</li>
+                    <li><codeph><ph keyref="false"
+                        /></codeph>:（默认）不发布媒体播放器的音频。</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>publishCustomVideoTrack</pt>
                 <pd>设置是否发布自定义采集的视频。
-                    
+
                     <ul>
-                    <li><codeph><ph keyref="true" /></codeph>: 发布自定义采集的视频。</li>
-                    <li><codeph><ph keyref="false" /></codeph>:（默认）不发布自定义采集的视频。</li>
+                    <li><codeph><ph keyref="true"/></codeph>: 发布自定义采集的视频。</li>
+                    <li><codeph><ph keyref="false"
+                        /></codeph>:（默认）不发布自定义采集的视频。</li>
                     </ul></pd>
             </plentry>
             <plentry props="hide">

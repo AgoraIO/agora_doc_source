@@ -20,8 +20,11 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int setMixedAudioFrameParameters(int sampleRate, int channel, int samplesPerCall) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setMixedAudioFrameParameters(sampleRate: number, channel: number, samplesPerCall: number): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetMixedAudioFrameParameters(int sampleRate, int channel, int samplesPerCall);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setMixedAudioFrameParameters(
+    {required int sampleRate,
+    required int channel,
+    required int samplesPerCall});</codeblock> </p>
         </section>
         <section id="parameters">
             <title>参数</title>
@@ -52,7 +55,7 @@
             <note id="note_n1y_cgg_3qb">
             <p>SDK 会根据该方法设置的采样间隔（秒）定期触发 <apiname keyref="onMixedAudioFrame" /> 回调。 采样间隔 = <codeph>samplesPerCall</codeph>/(<codeph>sampleRate</codeph> x <codeph>channel</codeph>)。请确保你的取值能满足采样间隔大于或等于 0.01 秒。</p>
             </note> </section>
-        <section id="return_values">
+        <section id="return_values" props="native unity">
             <title>返回值</title>
             <ul id="ul_ahk_23f_3qb">
             <li>0: 方法调用成功</li>

@@ -21,8 +21,9 @@
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract renewAgoraCDNSrcToken(token: string, ts: number): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int RenewAgoraCDNSrcToken(string token, Int64 ts);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract renewAgoraCDNSrcToken(token: string, ts: number): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> renewAgoraCDNSrcToken({required String token, required int ts});
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>当鉴权信息过期（超出 <parmname>ts</parmname> 时间）时，你可以调用 <xref keyref="openWithAgoraCDNSrc" /> 或 <xref keyref="switchAgoraCDNSrc" /> 重新打开或切换媒体资源，并传入带新鉴权信息（如更新 <parmname>ts</parmname> 字段内容）的媒体资源网络路径。</p>
@@ -42,7 +43,7 @@
                 <pd>鉴权过期时间。即鉴权信息中的 <parmname>ts</parmname> 字段。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功。</li>

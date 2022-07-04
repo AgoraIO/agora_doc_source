@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setclientrole2">
-    <title><ph keyref="setClientRole2" /></title>
+    <title><ph keyref="setClientRole2"/></title>
     <shortdesc id="short"><ph id="shortdesc">设置直播场景下的用户角色和级别。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setClientRole2" />
+                <indexterm keyref="setClientRole2"/>
             </keywords>
         </metadata>
     </prolog>
@@ -18,25 +18,33 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int setClientRole(CLIENT_ROLE_TYPE role, const ClientRoleOptions&amp; options) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setClientRole(role: ClientRoleType, options?: ClientRoleOptions): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetClientRole(CLIENT_ROLE_TYPE role, ref ClientRoleOptions options);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setClientRole(ClientRoleType role);</codeblock> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract setClientRole(
+    role: ClientRoleType,
+    options?: ClientRoleOptions
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setClientRole(
+    {required ClientRoleType role, ClientRoleOptions? options});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>直播场景下，SDK 会默认设置用户角色为观众，你可以调用该方法设置用户角色为主播。</p>
             <p>该方法在加入频道前后均可调用。</p>
-            <p id="preview">如果你在加入频道前调用该方法设置用户角色为主播、并且通过 <xref keyref="setupLocalVideo" /> 方法设置了本地视频属性，则用户加入频道时会自动开启本地视频预览。</p>
+            <p id="preview">如果你在加入频道前调用该方法设置用户角色为主播、并且通过 <xref keyref="setupLocalVideo"/> 方法设置了本地视频属性，则用户加入频道时会自动开启本地视频预览。</p>
             <p>如果你在加入频道后调用该方法切换用户角色，调用成功后，SDK 会自动进行如下操作：
+
+
             <ul>
-            <li>调用 <xref keyref="muteLocalAudioStream" /> 和 <xref keyref="muteLocalVideoStream" /> 修改发布状态。</li>
-            <li>本地触发 <xref keyref="onClientRoleChanged" /> 回调。</li>
-            <li>远端触发 <xref keyref="onUserJoined" /> 或 <xref keyref="onUserOffline" /> 回调。</li>
+            <li>调用 <xref keyref="muteLocalAudioStream"/> 和 <xref keyref="muteLocalVideoStream"/> 修改发布状态。</li>
+            <li>本地触发 <xref keyref="onClientRoleChanged"/> 回调。</li>
+            <li>远端触发 <xref keyref="onUserJoined"/> 或 <xref keyref="onUserOffline"/> 回调。</li>
             </ul></p>
-            <p props="native unity flutter">该方法与 <xref keyref="setClientRole1" /> 的区别在于，该方法还支持设置用户级别。
-            <ul id="diff">
+            <p props="native unity">该方法与 <xref keyref="setClientRole1"/> 的区别在于，该方法还支持设置用户级别。
+
+
+            <ul id="diff" props="native unity flutter electron rn">
             <li>用户角色（<parmname>role</parmname>）确定用户在 SDK 层的权限，包含是否可以发送流、是否可以接收流、是否可以旁路推流等。</li>
             <li>用户级别（<parmname>level</parmname>）需要与角色结合使用，确定用户在其权限范围内可以享受到的服务。例如对于观众，选择接收低延时还是超低延时的视频流。<b>不同的级别会影响计费。</b></li>
             </ul></p>
-            <note type="attention">该方法仅适用于直播场景（<xref keyref="setChannelProfile" /> 中 <parmname>profile</parmname> 设为 <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING" />）。</note> </section>
+            <note type="attention">该方法仅适用于直播场景（<xref keyref="setChannelProfile"/> 中 <parmname>profile</parmname> 设为 <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING"/>）。</note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
@@ -44,13 +52,13 @@
                 <pt>role</pt>
                 <pd><ph>直播场景中的用户角色。</ph><ph props="ios mac cpp electron unity flutter rn">详见 <xref keyref="CLIENT_ROLE_TYPE" />。</ph>
                     <ul props="android">
-                    <li><ph keyref="CLIENT_ROLE_BROADCASTER" /> (1): 主播。主播可以发流也可以收流。</li>
-                    <li><ph keyref="CLIENT_ROLE_AUDIENCE" /> (2):（默认）观众。观众只能收流不能发流。</li>
+                    <li><ph keyref="CLIENT_ROLE_BROADCASTER"/> (1): 主播。主播可以发流也可以收流。</li>
+                    <li><ph keyref="CLIENT_ROLE_AUDIENCE"/> (2):（默认）观众。观众只能收流不能发流。</li>
                     </ul> </pd>
             </plentry>
             <plentry>
                 <pt>options</pt>
-                <pd>用户具体设置，包含用户级别。详见 <xref keyref="ClientRoleOptions" />。</pd>
+                <pd>用户具体设置，包含用户级别。详见 <xref keyref="ClientRoleOptions"/>。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity rn">
@@ -58,6 +66,8 @@
             <ul>
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。
+
+
                 <ul>
                 <li>-1: 一般性的错误（未明确归类）。</li>
                 <li>-2: 参数无效。</li>

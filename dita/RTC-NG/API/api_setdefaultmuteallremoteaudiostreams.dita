@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setdefaultmuteallremoteaudiostreams">
-    <title><ph keyref="setDefaultMuteAllRemoteAudioStreams" /></title>
+    <title><ph keyref="setDefaultMuteAllRemoteAudioStreams"/></title>
     <shortdesc id="short"><ph id="shortdesc">默认取消或恢复订阅远端用户的音频流。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setDefaultMuteAllRemoteAudioStreams" />
+                <indexterm keyref="setDefaultMuteAllRemoteAudioStreams"/>
             </keywords>
         </metadata>
     </prolog>
@@ -18,37 +18,33 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int setDefaultMuteAllRemoteAudioStreams(bool mute) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setDefaultMuteAllRemoteAudioStreams(mute: boolean): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetDefaultMuteAllRemoteAudioStreams(bool mute);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript">abstract setDefaultMuteAllRemoteAudioStreams(mute: boolean): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setDefaultMuteAllRemoteAudioStreams(bool mute);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="deprecated" props="rtc">
-            <dlentry props="native">
-                <dt>弃用：</dt>
-                <dd>该方法自 v3.3.0 起废弃。</dd>
-            </dlentry>
-            </dl>
             <p id="sequence">该方法需要在加入频道后调用。调用成功后，本地用户取消或恢复订阅调用时刻之后加入频道的远端用户。</p>
             <note type="attention">
             <p>取消订阅音频流后，如果需要恢复订阅频道内的远端，可以进行如下操作：
 
 
+
             <ul>
-            <li>如果需要恢复订阅单个用户的音频流，调用 <xref keyref="muteRemoteAudioStream" /> (<codeph><ph keyref="false" /></codeph>)，并指定你想要订阅的远端用户 ID。</li>
-            <li>如果想恢复订阅多个用户的音频流，则需要多次调用 <apiname keyref="muteRemoteAudioStream" /> (<codeph><ph keyref="false" /></codeph>)。</li>
+            <li>如果需要恢复订阅单个用户的音频流，调用 <xref keyref="muteRemoteAudioStream"/> (<codeph><ph keyref="false"/></codeph>)，并指定你想要订阅的远端用户 ID。</li>
+            <li>如果想恢复订阅多个用户的音频流，则需要多次调用 <apiname keyref="muteRemoteAudioStream"/> (<codeph><ph keyref="false"/></codeph>)。</li>
             </ul> </p>
             </note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry>
-                <pt props="android flutter">muted</pt>
-                <pt props="ios mac cpp unity rn electron">mute</pt>
+                <pt props="android">muted</pt>
+                <pt props="ios mac cpp unity rn electron flutter">mute</pt>
                 <pd>
                     <p>是否默认取消订阅远端用户的音频流：
+
                     <ul>
-                    <li><codeph><ph keyref="true" /></codeph>：默认取消订阅远端用户的音频流。</li>
-                    <li><codeph><ph keyref="false" /></codeph>：（默认）默认订阅远端用户的音频流。</li>
+                    <li><codeph><ph keyref="true"/></codeph>：默认取消订阅远端用户的音频流。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：（默认）默认订阅远端用户的音频流。</li>
                     </ul> </p>
                 </pd>
             </plentry>

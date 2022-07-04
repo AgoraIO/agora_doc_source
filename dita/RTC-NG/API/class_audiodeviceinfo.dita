@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audiodeviceinfo">
     <title><ph keyref="AudioDeviceInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc">音频设备信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc"><apiname keyref="AudioDeviceInfo"/> 类，包含音频设备的 ID 和设备名称。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -16,27 +16,29 @@
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
-        </section>
-        <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>自从</dt>
-                <dd>v</dd>
-            </dlentry>
-            </dl>
-            <p/>
+            <codeblock props="flutter" outputclass="language-dart">class AudioDeviceInfo {
+  const AudioDeviceInfo({this.deviceId, this.deviceName});
+
+  @JsonKey(name: 'deviceId')
+  final String? deviceId;
+  @JsonKey(name: 'deviceName')
+  final String? deviceName;
+  factory AudioDeviceInfo.fromJson(Map&lt;String, dynamic> json) =>
+      _$AudioDeviceInfoFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$AudioDeviceInfoToJson(this);
+}
+</codeblock> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry props="electron">
-                <pt>deviceId</pt>
-                <pd>音频设备 ID。</pd>
+            <plentry conkeyref="VideoDeviceInfo/id">
+                <pt/>
+                <pd/>
             </plentry>
-            <plentry props="electron">
-                <pt>deviceName</pt>
-                <pd>音频设备名称。</pd>
+            <plentry conkeyref="VideoDeviceInfo/name">
+                <pt/>
+                <pd/>
             </plentry>
             </parml> </section>
     </refbody>

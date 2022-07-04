@@ -29,19 +29,24 @@
     {
         public AudioVolumeInfo()
         {
+            uid = 0;
+            volume = 0;
+            vad = 0;
+            voicePitch = 0.0;
         }
-        public AudioVolumeInfo(uint uid, uint volume, uint vad)
+
+        public AudioVolumeInfo(uint uid, uint volume, uint vad, double voicePitch)
         {
             this.uid = uid;
             this.volume = volume;
             this.vad = vad;
+            this.voicePitch = voicePitch;
         }
 
         public uint uid { set; get; }
-
         public uint volume { set; get; }
-
         public uint vad { set; get; }
+        public double voicePitch { set; get; }
     }
     </codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class AudioVolumeInfo {
@@ -50,7 +55,12 @@
   vad?: number
   voicePitch?: number
 }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript">export class AudioVolumeInfo {
+  uid?: number;
+  volume?: number;
+  vad?: number;
+  voicePitch?: number;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="parameters">
@@ -60,6 +70,7 @@
                 <pt>uid</pt>
                 <pd>
                     <p>用户 ID。
+
                     <ul id="ul_pfj_4dt_rqb">
                     <li>在本地用户的回调中，<parmname>uid</parmname> 为 0。</li>
                     <li>在远端用户的回调中，<parmname>uid</parmname> 为瞬时音量最高的远端用户（最多 3 位）的 ID。</li>
@@ -74,6 +85,7 @@
                 <pt>vad</pt>
                 <pd>
                     <p>本地用户的人声状态。
+
                     <ul>
                     <li>0：本地无人声。</li>
                     <li>1：本地有人声。</li>
@@ -84,7 +96,7 @@
                     <li>如需使用此参数，请在调用 <xref keyref="enableAudioVolumeIndication" /> 时设置 <parmname>reportVad</parmname> 为 <codeph><ph keyref="true" /></codeph>。</li>
                     </ul> </note> </pd>
             </plentry>
-            <plentry props="native electron rn">
+            <plentry props="native electron rn unity">
                 <pt>voicePitch</pt>
                 <pd>
                     <p>本地用户的人声音调（Hz）。取值范围为 [0.0,4000.0]。

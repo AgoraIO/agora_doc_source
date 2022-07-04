@@ -24,8 +24,19 @@
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setExtensionProperty(provider: string, extension: string, key: string, value: string, type?: MediaSourceType): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetExtensionProperty(string provider, string extension, string key, string value, MEDIA_SOURCE_TYPE type = MEDIA_SOURCE_TYPE.UNKNOWN_MEDIA_SOURCE);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract setExtensionProperty(
+    provider: string,
+    extension: string,
+    key: string,
+    value: string,
+    type?: MediaSourceType
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setExtensionProperty(
+    {required String provider,
+    required String extension,
+    required String key,
+    required String value,
+    MediaSourceType type = MediaSourceType.unknownMediaSource});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>开启插件后，你可以调用该方法设置插件的属性。</p>
@@ -53,12 +64,12 @@
                 <pt />
                 <pd />
             </plentry>
-                <plentry props="unity rn electron" id="type">
-                    <pt>type</pt>
-                    <pd>媒体源类型，详见 <xref keyref="MEDIA_SOURCE_TYPE" />。</pd>
-                </plentry>
+            <plentry props="unity flutter rn electron" id="type">
+                <pt>type</pt>
+                <pd>媒体源类型，详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
+            </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native unity">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功</li>

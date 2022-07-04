@@ -28,18 +28,27 @@
         public string deviceName { set; get; }
         public string deviceId { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">class DeviceInfo {
+  const DeviceInfo({this.isLowLatencyAudioSupported});
+
+  @JsonKey(name: 'isLowLatencyAudioSupported')
+  final bool? isLowLatencyAudioSupported;
+  factory DeviceInfo.fromJson(Map&lt;String, dynamic> json) =>
+      _$DeviceInfoFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$DeviceInfoToJson(this);
+}</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <note type="attention" props="cpp rn">该类仅适用于 Android 平台。</note> </section>
+            <note type="attention" props="cpp rn flutter">该类仅适用于 Android 平台。</note> </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
-            <plentry props="native rn">
+            <plentry props="native rn flutter">
                 <pt>isLowLatencyAudioSupported</pt>
                 <pd>是否支持极低延时音频采集和播放：
-                    
+
+
                     <ul>
                     <li><codeph><ph keyref="true" /></codeph>: 支持</li>
                     <li><codeph><ph keyref="false" /></codeph>: 不支持</li>

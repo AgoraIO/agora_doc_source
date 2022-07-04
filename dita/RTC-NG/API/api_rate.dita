@@ -22,8 +22,11 @@ description:(NSString * _Nullable)description;</codeblock>
      const char* description) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract rate(callId: string, rating: number, description: string): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int Rate(string callId, int rating, string description);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract rate(callId: string, rating: number, description: string): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> rate(
+    {required String callId,
+    required int rating,
+    required String description});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <note type="attention">该方法需要在用户离开频道后调用。</note> </section>
@@ -40,7 +43,7 @@ description:(NSString * _Nullable)description;</codeblock>
             </plentry>
             <plentry>
                 <pt>description</pt>
-                <pd>（非必选项）给通话的描述。长度应小于 800 字节。</pd>
+                <pd><ph props="native unity">（非必选项）</ph>给通话的描述。长度应小于 800 字节。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity rn">

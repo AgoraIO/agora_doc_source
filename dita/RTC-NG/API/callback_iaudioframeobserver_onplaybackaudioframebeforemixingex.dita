@@ -19,9 +19,9 @@
     unsigned int uid,
     AudioFrame&amp; audioFrame) { return true; }</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"> public virtual bool OnPlaybackAudioFrameBeforeMixingEx(string channel_id,
+            <codeblock props="unity" outputclass="language-csharp"> public virtual bool OnPlaybackAudioFrameBeforeMixingEx(string channelId,
                                                         uint uid,
-                                                        AudioFrame audio_frame)
+                                                        AudioFrame audioFrame)
         {
             return false;
         }</codeblock>
@@ -35,8 +35,7 @@
             <title>参数</title>
             <parml>
             <plentry>
-                <pt props="native">channelId</pt>
-                <pt props="unity">channel_id</pt>
+                <pt>channelId</pt>
                 <pd>该音频帧所在的频道名。</pd>
             </plentry>
             <plentry>
@@ -44,8 +43,7 @@
                 <pd>发送该音频帧的用户 ID。</pd>
             </plentry>
             <plentry>
-                <pt props="native">audioFrame</pt>
-                <pt props="unity">audio_frame</pt>
+                <pt>audioFrame</pt>
                 <pd>音频原始数据。详见 <xref keyref="AudioFrame"/>。</pd>
             </plentry>
             </parml> </section>

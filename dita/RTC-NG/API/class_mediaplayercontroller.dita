@@ -1,36 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_mediaplayercontroller">
-    <title><ph keyref="MediaPlayerController" /></title>
-    <shortdesc id="short"><ph id="shortdesc" /></shortdesc>
+    <title><ph keyref="MediaPlayerController"/></title>
+    <shortdesc id="short"><ph><xref keyref="AgoraVideoView"
+        /> 的控制器，用于渲染媒体播放器的视频。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
-            <codeblock props="ios mac" outputclass="language-objectivec" />
-            <codeblock props="cpp" outputclass="language-cpp" />
-            <codeblock props="cs" outputclass="language-csharp" />
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp"/>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">abstract class MediaPlayerController extends MediaPlayer
+    implements VideoViewControllerBase {
+  static Future&lt;MediaPlayerController> create({
+    required RtcEngine rtcEngine,
+    required VideoCanvas canvas,
+    bool useFlutterTexture = false,
+    bool useAndroidSurfaceView = false,
+  }) async {
+    final mp = await rtcEngine.createMediaPlayer();
+    final mediaPlayer = mp as MediaPlayerImpl;
+    mediaPlayer.rtcEngine = rtcEngine;
+    mediaPlayer.canvas = canvas;
+    mediaPlayer.connection = null;
+    mediaPlayer.useFlutterTexture = useFlutterTexture;
+    mediaPlayer.useAndroidSurfaceView = useAndroidSurfaceView;
+
+    return mediaPlayer;
+  }
+}
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>自从</dt>
-                <dd>v</dd>
-            </dlentry>
-            </dl>
-            <p />
+            <p/>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry>
-                <pt />
-                <pd />
-            </plentry>
+                <plentry conkeyref="VideoViewController/rtcengine">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry conkeyref="VideoViewController/canvas">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry conkeyref="VideoViewController/fluttertexture">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry conkeyref="VideoViewController/androidsurfaceview">
+                    <pt/>
+                    <pd/>
+                </plentry>
             </parml> </section>
     </refbody>
 </reference>

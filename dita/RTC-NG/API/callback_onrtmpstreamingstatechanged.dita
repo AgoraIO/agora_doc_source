@@ -18,8 +18,14 @@
             <codeblock props="cpp" outputclass="language-cpp"/>
             <codeblock props="electron" outputclass="language-typescript">onRtmpStreamingStateChanged?(url: string, state: RtmpStreamPublishState, errCode: RtmpStreamPublishErrorType): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnRtmpStreamingStateChanged(string url, RTMP_STREAM_PUBLISH_STATE state, RTMP_STREAM_PUBLISH_ERROR_TYPE errCode) { }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock> </p>
+            <codeblock props="rn" outputclass="language-typescript">onRtmpStreamingStateChanged?(
+  url: string,
+  state: RtmpStreamPublishState,
+  errCode: RtmpStreamPublishErrorType
+): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(String url, RtmpStreamPublishState state,
+      RtmpStreamPublishErrorType errCode)? onRtmpStreamingStateChanged;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>旁路推流状态发生改变时，SDK会触发该回调，并在回调中明确状态发生改变的 URL 地址及当前推流状态。

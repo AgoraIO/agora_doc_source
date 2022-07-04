@@ -18,7 +18,7 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int setAudioEffectPreset(AUDIO_EFFECT_PRESET preset) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setAudioEffectPreset(preset: AudioEffectPreset): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetAudioEffectPreset(AUDIO_EFFECT_PRESET preset);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">abstract setAudioEffectPreset(preset: AudioEffectPreset): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAudioEffectPreset(AudioEffectPreset preset);</codeblock> </p>
         </section>
         <section id="detailed_desc">
@@ -43,11 +43,9 @@
 
 
 
-                
+
                 <ul>
                 <li><xref keyref="setVoiceBeautifierPreset"/></li>
-                <li props="native flutter unity"><xref keyref="setLocalVoiceReverbPreset"/></li>
-                <li props="native flutter unity"><xref keyref="setLocalVoiceChanger"/></li>
                 <li><xref keyref="setLocalVoicePitch"/></li>
                 <li><xref keyref="setLocalVoiceEqualization"/></li>
                 <li><xref keyref="setLocalVoiceReverb"/></li>
@@ -63,7 +61,7 @@
                 <pd props="ios mac cpp unity flutter rn electron">预设的音效选项，详见 <xref keyref="AUDIO_EFFECT_PRESET"/>。</pd>
                 <pd props="android">预设的音效选项。
 
-                    
+
                     <ul>
                     <li><ph keyref="AUDIO_EFFECT_OFF"/>: 原声，即关闭人声音效。</li>
                     <li><ph keyref="ROOM_ACOUSTICS_KTV"/>: KTV。</li>
@@ -75,7 +73,6 @@
                     <li><ph keyref="ROOM_ACOUSTICS_ETHEREAL"/>: 空灵。</li>
                     <li><ph keyref="ROOM_ACOUSTICS_3D_VOICE"/>: 3D 人声，即 SDK 将音频渲染出在用户周围环绕的效果。环绕周期默认为 10 秒。设置该音效后，你还可以调用 <xref keyref="setAudioEffectParameters"/> 修改环绕周期。
 
-                        
                         <ul>
                         <li>使用该预设音效前，你需要将 <xref keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <ph keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO"/> 或 <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>，否则该预设音效的设置无效。</li>
                         <li>启用 3D 人声后，用户需要使用支持双声道的音频播放设备才能听到预期效果。</li>

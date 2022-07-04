@@ -19,8 +19,8 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int createDataStream(int* streamId, DataStreamConfig&amp; config) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract createDataStream(config: DataStreamConfig): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int CreateDataStream(ref int streamId, DataStreamConfig config);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; createDataStream2(DataStreamConfig config);</codeblock></p>
+            <codeblock props="rn" outputclass="language-typescript">abstract createDataStream(config: DataStreamConfig): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; createDataStream(DataStreamConfig config);</codeblock></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
@@ -30,12 +30,12 @@
             </dlentry>
             </dl>
             <p id="desc">该方法用于创建数据流。每个用户在每个频道中最多只能创建 5 个数据流。</p>
-            <p id="diff" props="native flutter unity">相比 <xref keyref="createDataStream1"/>，该方法不支持数据可靠。接收方会丢弃超出发送时间 5 秒后的数据包。</p>
+            <p id="diff" props="native unity">相比 <xref keyref="createDataStream1"/>，该方法不支持数据可靠。接收方会丢弃超出发送时间 5 秒后的数据包。</p>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry props="cpp ios mac unity" id="streamId">
+            <plentry props="cpp ios mac unity flutter" id="streamId">
                 <pt>streamId</pt>
                 <pd>输出参数，数据流 ID。</pd>
             </plentry>
@@ -48,7 +48,7 @@
             <title>返回值</title>
             <ul>
             <li props="cpp ios mac">0: 创建数据流成功。</li>
-            <li props="android electron unity rn">创建的数据流的 ID：方法调用成功。</li>
+            <li props="android electron unity flutter rn">创建的数据流的 ID：方法调用成功。</li>
             <li>&lt; 0：方法调用失败。</li>
             </ul> </section>
     </refbody>

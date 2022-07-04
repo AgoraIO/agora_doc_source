@@ -22,8 +22,12 @@
         {
             return instance ?? (instance = new RtcEngine());
         }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">export function createAgoraRtcEngine(): IRtcEngine {
+  return instance;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">RtcEngine createAgoraRtcEngine() {
+  return impl.RtcEngineImpl.create();
+}</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>目前 Agora RTC SDK 只支持每个 app 创建一个 <apiname keyref="IRtcEngine"/> 对象。</p>

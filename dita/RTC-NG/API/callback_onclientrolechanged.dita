@@ -14,8 +14,14 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual void onClientRoleChanged(CLIENT_ROLE_TYPE oldRole, CLIENT_ROLE_TYPE newRole)</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onClientRoleChanged?(connection: RtcConnection, oldRole: ClientRoleType, newRole: ClientRoleType): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnClientRoleChanged(RtcConnection connection, CLIENT_ROLE_TYPE oldRole, CLIENT_ROLE_TYPE newRole) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">onClientRoleChanged?(
+  connection: RtcConnection,
+  oldRole: ClientRoleType,
+  newRole: ClientRoleType
+): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, ClientRoleType oldRole,
+      ClientRoleType newRole)? onClientRoleChanged;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p props="rtc">该回调是由本地用户在加入频道后调用 <xref keyref="setClientRole2"/> 改变用户角色触发的。</p>
@@ -29,20 +35,20 @@
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry>
-                <pt props="unity electron rn">connection</pt>
-                <pd props="unity electron rn">Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+            <plentry props="unity flutter rn electron">
+                <pt>connection</pt>
+                <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
             </plentry>
             <plentry id="oldRole">
                 <pt>oldRole</pt>
-                <pd>切换前的角色：<ph props="cpp ios mac electron rn unity flutter"><xref keyref="CLIENT_ROLE_TYPE"/>。</ph>
+                <pd>切换前的角色：<ph props="cpp ios mac electron unity flutter rn"><xref keyref="CLIENT_ROLE_TYPE"/>。</ph>
                     <ul conkeyref="setClientRole1/clientroletype" props="android">
                     <li/>
                     </ul> </pd>
             </plentry>
             <plentry id="newRole">
                 <pt>newRole</pt>
-                <pd>切换后的角色：<ph props="cpp ios mac electron rn unity flutter"><xref keyref="CLIENT_ROLE_TYPE"/>。</ph>
+                <pd>切换后的角色：<ph props="cpp ios mac electron unity flutter rn"><xref keyref="CLIENT_ROLE_TYPE"/>。</ph>
                     <ul conkeyref="setClientRole1/clientroletype" props="android">
                     <li/>
                     </ul> </pd>

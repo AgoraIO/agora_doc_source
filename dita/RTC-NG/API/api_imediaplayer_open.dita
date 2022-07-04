@@ -20,8 +20,8 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int open(const char* url, int64_t startPos) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract open(url: string, startPos: number): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int Open(string url, Int64 startPos);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract open(url: string, startPos: number): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> open({required String url, required int startPos});</codeblock></p>
         </section>
         <section id="detailed_desc" props="android ios">
             <p>如果用户需要自定义播放线路，你可以调用 <xref keyref="openWithAgoraCDNSrc" />。Agora 会通过自研调度中心支持调度线路，提升观看用户体验。如果用户不需要自定义播放线路，你可以调用 <apiname>open</apiname>。</p>
@@ -42,7 +42,7 @@
                 <pd>设置起始播放位置（毫秒），默认值为 0。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
             <title>返回值</title>
             <ul id="ul_uns_l2y_hqb">
             <li>0: 方法调用成功。</li>

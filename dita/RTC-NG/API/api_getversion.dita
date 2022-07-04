@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_getversion">
-    <title><ph keyref="getVersion" /></title>
+    <title><ph keyref="getVersion"/></title>
     <shortdesc id="short"><ph id="shortdesc">获取 SDK 版本。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="getVersion" />
+                <indexterm keyref="getVersion"/>
             </keywords>
         </metadata>
     </prolog>
@@ -18,12 +18,13 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual const char* getVersion(int* build) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract getVersion(): SDKBuildInfo;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract string GetVersion();</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript">abstract getVersion(): SDKBuildInfo;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;SDKBuildInfo&gt; getVersion();</codeblock> </p>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p>当前的 SDK 版本号。格式为字符串。</p>
+            <p props="native unity">当前的 SDK 版本号。格式为字符串。</p>
+            <p props="flutter">当前的 SDK 版本号。格式为字符串。详见 <xref keyref="SDKBuildInfo"/>。</p>
         </section>
     </refbody>
 </reference>

@@ -18,7 +18,7 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int setChannelProfile(CHANNEL_PROFILE_TYPE profile) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setChannelProfile(profile: ChannelProfileType): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetChannelProfile(CHANNEL_PROFILE_TYPE profile);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">abstract setChannelProfile(profile: ChannelProfileType): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setChannelProfile(ChannelProfileType profile);</codeblock> </p>
         </section>
         <section id="detailed_desc">
@@ -40,7 +40,7 @@
                 <pd id="channelprofiletype">
                     <p props="ios mac cpp electron unity flutter rn">频道使用场景。详见 <xref keyref="CHANNEL_PROFILE_TYPE"/>。</p>
                     <p props="android">频道使用场景。
-                    
+
                     <ul>
                     <li><ph keyref="CHANNEL_PROFILE_COMMUNICATION"/> (0)：通信。当频道中只有两个用户时，建议使用该场景。</li>
                     <li><ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING"/> (1)：直播。当频道中超过两个用户时，建议使用该场景。</li>
@@ -50,12 +50,11 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity rn electron">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul>
             <li>0(ERR_OK) 方法调用成功。</li>
             <li>&lt; 0 方法调用失败。
-                
                 <ul>
                 <li>-2 (ERR_INVALID_ARGUMENT): 参数无效。</li>
                 <li>-7(ERR_NOT_INITIALIZED): SDK 尚未初始化。</li>

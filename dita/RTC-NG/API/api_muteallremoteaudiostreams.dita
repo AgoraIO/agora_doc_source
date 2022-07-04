@@ -18,7 +18,7 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int muteAllRemoteAudioStreams(bool mute) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract muteAllRemoteAudioStreams(mute: boolean): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int MuteAllRemoteAudioStreams(bool mute);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">abstract muteAllRemoteAudioStreams(mute: boolean): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; muteAllRemoteAudioStreams(bool mute);</codeblock> </p>
         </section>
         <section id="detailed_desc">
@@ -32,11 +32,12 @@
             <title>参数</title>
             <parml>
             <plentry>
-                <pt props="android flutter">muted</pt>
-                <pt props="ios mac cpp unity rn electron">mute</pt>
+                <pt props="android">muted</pt>
+                <pt props="ios mac cpp unity flutter rn electron">mute</pt>
                 <pd>
                     <p>是否取消订阅所有远端用户的音频流：
-                    
+
+
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 取消订阅所有远端用户的音频流。</li>
                     <li><codeph><ph keyref="false"/></codeph>:（默认）订阅所有远端用户的音频流。</li>

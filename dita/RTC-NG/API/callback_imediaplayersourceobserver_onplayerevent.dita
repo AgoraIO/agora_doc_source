@@ -23,9 +23,16 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual void onPlayerEvent(media::base::MEDIA_PLAYER_EVENT eventCode, int64_t elapsedTime, const char* message) = 0;
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript">onPlayerEvent?(eventCode: MediaPlayerEvent, elapsedTime: number, message: string): void;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnPlayerEvent(MEDIA_PLAYER_EVENT @event, Int64 elapsedTime, string message) { }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnPlayerEvent(MEDIA_PLAYER_EVENT eventCode, Int64 elapsedTime, string message) { }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onPlayerEvent?(
+  eventCode: MediaPlayerEvent,
+  elapsedTime: number,
+  message: string
+): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(
+          MediaPlayerEvent eventCode, int elapsedTime, String message)?
+      onPlayerEvent;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <ul>
@@ -39,9 +46,8 @@
                 <pt>playerKit</pt>
                 <pd>详见 <xref keyref="IMediaPlayer"/>。</pd>
             </plentry>
-            <plentry props="native unity electron rn">
-                <pt props="native electron rn">eventCode</pt>
-                <pt props="unity">@event</pt>
+            <plentry props="native unity flutter electron">
+                <pt>eventCode</pt>
                 <pd>播放器事件，详见 <xref keyref="MEDIA_PLAYER_EVENT"/>。</pd>
             </plentry>
             <plentry>

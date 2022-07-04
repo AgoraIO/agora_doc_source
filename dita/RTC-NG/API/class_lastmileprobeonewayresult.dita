@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_lastmileprobeonewayresult">
-    <title><ph keyref="LastmileProbeOneWayResult" /></title>
-    <shortdesc id="short"><ph id="shortdesc">上行或下行 Last mile 网络质量探测结果。</ph></shortdesc>
+    <title><ph keyref="LastmileProbeOneWayResult"/></title>
+    <shortdesc id="short"><ph id="shortdesc"
+        >上行或下行 Last mile 网络质量探测结果。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -47,11 +48,32 @@
         public uint jitter { set; get; }
         public uint availableBandwidth { set; get; }
     }        </codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock> </p>
+            <codeblock props="rn" outputclass="language-typescript">export class LastmileProbeOneWayResult {
+  packetLossRate?: number;
+  jitter?: number;
+  availableBandwidth?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class LastmileProbeOneWayResult {
+  const LastmileProbeOneWayResult(
+      {this.packetLossRate, this.jitter, this.availableBandwidth});
+
+  @JsonKey(name: 'packetLossRate')
+  final int? packetLossRate;
+  @JsonKey(name: 'jitter')
+  final int? jitter;
+  @JsonKey(name: 'availableBandwidth')
+  final int? availableBandwidth;
+  factory LastmileProbeOneWayResult.fromJson(Map&lt;String, dynamic> json) =>
+      _$LastmileProbeOneWayResultFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$LastmileProbeOneWayResultToJson(this);
+}
+</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>packetLossRate</pt>

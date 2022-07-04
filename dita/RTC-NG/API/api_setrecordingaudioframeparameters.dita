@@ -25,8 +25,12 @@
     int samplesPerCall) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setRecordingAudioFrameParameters(sampleRate: number, channel: number, mode: RawAudioFrameOpModeType, samplesPerCall: number): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetRecordingAudioFrameParameters(int sampleRate, int channel, RAW_AUDIO_FRAME_OP_MODE_TYPE mode, int samplesPerCall);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setRecordingAudioFrameParameters(
+    {required int sampleRate,
+    required int channel,
+    required RawAudioFrameOpModeType mode,
+    required int samplesPerCall});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>该方法设置 <xref keyref="onRecordAudioFrame" /> 回调的采集音频格式。</p>
@@ -46,8 +50,10 @@
             </plentry>
             <plentry>
                 <pt>channel</pt>
-                <pd props="native unity">
-                    <p><apiname keyref="onRecordAudioFrame" /> 中返回数据的通道数，可设置为 1 或 2:
+                <pd props="native unity flutter">
+                    <p><apiname keyref="onRecordAudioFrame"/> 中返回数据的通道数，可设置为 1 或 2:
+
+
 
                     <ul>
                     <li>1: 单声道。</li>
@@ -57,6 +63,8 @@
                 <pd props="electron">
                     <p>SDK 返回数据的通道数。取值可为 1 或 2：
 
+
+
                     <ul>
                     <li>1: 单声道。</li>
                     <li>2: 双声道。</li>
@@ -65,19 +73,19 @@
             </plentry>
             <plentry>
                 <pt>mode</pt>
-                <pd props="native unity">
-                    <p props="ios mac cpp unity">音频帧的使用模式，详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />。</p>
-                    <p conkeyref="registerAudioFrameObserver2_IMediaPlayer/mode" props="android" />
+                <pd props="native unity flutter">
+                    <p props="ios mac cpp unity flutter">音频帧的使用模式，详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</p>
+                    <p conkeyref="registerAudioFrameObserver2_IMediaPlayer/mode" props="android"/>
                 </pd>
                 <pd props="electron">SDK 返回数据的使用模式，详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />。</pd>
             </plentry>
             <plentry>
                 <pt>samplesPerCall</pt>
-                <pd props="native unity"><apiname keyref="onRecordAudioFrame" /> 中返回数据的采样点数，如旁路推流应用中通常为 1024。</pd>
+                <pd props="native unity flutter"><apiname keyref="onRecordAudioFrame"/> 中返回数据的采样点数，如旁路推流应用中通常为 1024。</pd>
                 <pd props="electron">SDK 返回数据的采样点数，如旁路推流应用中通常为 1024。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native unity">
             <title>返回值</title>
             <ul>
             <li>0：方法调用成功。</li>

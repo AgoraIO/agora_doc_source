@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startlastmileprobetest">
-    <title> <ph keyref="startLastmileProbeTest" /> </title>
+    <title> <ph keyref="startLastmileProbeTest"/> </title>
     <shortdesc id="short"> <ph id="shortdesc">开始通话前网络质量探测。</ph> </shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="startLastmileProbeTest" />
+                <indexterm keyref="startLastmileProbeTest"/>
             </keywords>
         </metadata>
     </prolog>
@@ -18,7 +18,7 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int startLastmileProbeTest(const LastmileProbeConfig&amp; config) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract startLastmileProbeTest(config: LastmileProbeConfig): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int StartLastmileProbeTest(LastmileProbeConfig config);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript">abstract startLastmileProbeTest(config: LastmileProbeConfig): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startLastmileProbeTest(LastmileProbeConfig config);</codeblock></p>
         </section>
         <section id="detailed_desc">
@@ -27,14 +27,16 @@
                 启用该方法后，SDK 会依次返回如下 2 个回调：
 
 
+
             <ul>
-            <li> <xref keyref="onLastmileQuality" />，视网络情况约 2 秒内返回。该回调通过打分反馈上下行网络质量，更贴近用户的主观感受。
+            <li> <xref keyref="onLastmileQuality"/>，视网络情况约 2 秒内返回。该回调通过打分反馈上下行网络质量，更贴近用户的主观感受。
                     </li>
-            <li> <xref keyref="onLastmileProbeResult" />，视网络情况约 30 秒内返回。该回调通过具体数据反馈上下行网络质量，更加客观。
+            <li> <xref keyref="onLastmileProbeResult"/>，视网络情况约 30 秒内返回。该回调通过具体数据反馈上下行网络质量，更加客观。
                     </li>
             </ul> </p>
             <p>
                 该方法主要用于以下两种场景：
+
 
 
             <ul>
@@ -43,11 +45,8 @@
             </ul> </p>
             <note type="attention">
             <ul>
-            <li props="rtc">
-                        该方法会消耗一定的网络流量，影响通话质量，因此我们建议不要和 <xref keyref="enableLastmileTest" /> 同时使用。
-                    </li>
             <li>
-                        调用该方法后，在收到 <apiname keyref="onLastmileQuality" /> 和 <apiname keyref="onLastmileProbeResult" /> 回调之前请不要调用其他方法，否则可能会由于 API 操作过于频繁导致此方法无法执行。
+                        调用该方法后，在收到 <apiname keyref="onLastmileQuality"/> 和 <apiname keyref="onLastmileProbeResult"/> 回调之前请不要调用其他方法，否则可能会由于 API 操作过于频繁导致此方法无法执行。
                     </li>
             <li>在直播场景中，如果本地用户为主播，请勿加入频道后调用该方法。</li>
             </ul> </note> </section>
@@ -57,7 +56,7 @@
             <plentry>
                 <pt>config</pt>
                 <pd>
-                        Last mile 网络探测配置，详见 <xref keyref="LastmileProbeConfig" />。
+                        Last mile 网络探测配置，详见 <xref keyref="LastmileProbeConfig"/>。
                     </pd>
             </plentry>
             </parml> </section>

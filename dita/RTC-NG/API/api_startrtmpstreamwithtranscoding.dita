@@ -18,8 +18,12 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int startRtmpStreamWithTranscoding(const char* url, const LiveTranscoding&amp; transcoding) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract startRtmpStreamWithTranscoding(url: string, transcoding: LiveTranscoding): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int StartRtmpStreamWithTranscoding(string url, LiveTranscoding transcoding);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /></p>
+            <codeblock props="rn" outputclass="language-typescript">abstract startRtmpStreamWithTranscoding(
+    url: string,
+    transcoding: LiveTranscoding
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> startRtmpStreamWithTranscoding(
+    {required String url, required LiveTranscoding transcoding});</codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>调用该方法，你可以向指定的旁路推流地址推送直播音视频流并设置转码属性。该方法每次只能向一个地址推送媒体流，如果你需要向多个地址转码推流，则需多次调用该方法。</p>

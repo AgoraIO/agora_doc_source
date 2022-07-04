@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_rtcconnection">
-  <title><ph keyref="RtcConnection" /></title>
+  <title><ph keyref="RtcConnection"/></title>
   <shortdesc id="short"><ph id="shortdesc">包含连接信息的类。</ph></shortdesc>
   <refbody>
     <section id="prototype">
@@ -81,11 +81,28 @@
         public string channelId { set; get; }
         public uint localUid { set; get; }
     };</codeblock>
-      <codeblock props="rn" outputclass="language-typescript" />
-      <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock> </p>
+      <codeblock props="rn" outputclass="language-typescript">export class RtcConnection {
+  channelId?: string;
+  localUid?: number;
+}</codeblock>
+      <codeblock props="flutter" outputclass="language-dart">class RtcConnection {
+  const RtcConnection({this.channelId, this.localUid});
+
+  @JsonKey(name: 'channelId')
+  final String? channelId;
+  @JsonKey(name: 'localUid')
+  final int? localUid;
+  factory RtcConnection.fromJson(Map&lt;String, dynamic> json) =>
+      _$RtcConnectionFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$RtcConnectionToJson(this);
+}
+</codeblock>
+      </p>
     </section>
     <section id="parameters">
-      <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+      <title><text
+      conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+      /></title>
       <parml>
       <plentry>
         <pt>channelId</pt>

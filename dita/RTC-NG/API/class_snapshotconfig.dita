@@ -24,11 +24,29 @@
         public uint uid;
         public string filePath;
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="rn" outputclass="language-typescript">export class SnapShotConfig {
+  channel?: string;
+  uid?: number;
+  filePath?: string;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class SnapShotConfig {
+  const SnapShotConfig({this.channel, this.uid, this.filePath});
+
+  @JsonKey(name: 'channel')
+  final String? channel;
+  @JsonKey(name: 'uid')
+  final int? uid;
+  @JsonKey(name: 'filePath')
+  final String? filePath;
+  factory SnapShotConfig.fromJson(Map&lt;String, dynamic> json) =>
+      _$SnapShotConfigFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$SnapShotConfigToJson(this);
+}</codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>channel</pt>
@@ -42,6 +60,8 @@
                 <pt>filePath</pt>
                 <pd>
                     <p>截图的本地保存路径，需精确到文件名及格式， 例如：
+
+
                     <ul>
                     <li>Windows: <ph>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\example.jpg</ph></li>
                     <li>iOS: <ph>/App Sandbox/Library/Caches/example.jpg</ph></li>

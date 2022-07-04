@@ -18,8 +18,9 @@
                <codeblock props="cpp" outputclass="language-cpp">virtual int enableEncryption(bool enabled, const EncryptionConfig&amp; config) = 0;</codeblock>
                <codeblock props="electron" outputclass="language-typescript">abstract enableEncryption(enabled: boolean, config: EncryptionConfig): number;</codeblock>
                <codeblock props="unity" outputclass="language-csharp">public abstract int EnableEncryption(bool enabled, EncryptionConfig config);</codeblock>
-               <codeblock props="rn" outputclass="language-typescript" />
-               <codeblock props="flutter" outputclass="language-dart" /> </p>
+               <codeblock props="rn" outputclass="language-typescript">abstract enableEncryption(enabled: boolean, config: EncryptionConfig): number;</codeblock>
+               <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableEncryption(
+    {required bool enabled, required EncryptionConfig config});</codeblock> </p>
           </section>
           <section id="detailed_desc">
                <dl outputclass="since" props="rtc">
@@ -38,6 +39,7 @@
                     <pt>enabled</pt>
                     <pd>
                          <p>是否开启内置加密：
+
                          <ul>
                          <li><ph keyref="true" />: 开启内置加密。</li>
                          <li><ph keyref="false" />: 关闭内置加密。</li>
@@ -54,6 +56,7 @@
                <ul>
                <li>0: 方法调用成功</li>
                <li>&lt; 0: 方法调用失败
+
                     <ul>
                     <li>-2: 调用了无效的参数。需重新指定参数。</li>
                     <li>-4: 设置的加密模式不正确或加载外部加密库失败。需检查枚举值是否正确或重新加载外部加密库。</li>

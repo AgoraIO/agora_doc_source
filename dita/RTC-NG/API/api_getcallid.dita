@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_getcallid">
-    <title><ph keyref="getCallId" /></title>
+    <title><ph keyref="getCallId"/></title>
     <shortdesc id="short"><ph id="shortdesc">获取通话 ID。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="getCallId" />
+                <indexterm keyref="getCallId"/>
             </keywords>
         </metadata>
     </prolog>
@@ -17,15 +17,15 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (NSString * _Nullable)getCallId;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int getCallId(agora::util::AString&amp; callId) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract getCallId(): string;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract string GetCallId();</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp">public abstract int GetCallId(ref string callId);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract getCallId(): string;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;String&gt; getCallId();</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>客户端在每次加入频道后会生成一个对应的 <parmname>callId</parmname>，标识该客户端的此次通话。有些方法，如 <xref keyref="rate" />、<xref keyref="complain" /> 等，
+            <p>客户端在每次加入频道后会生成一个对应的 <parmname>callId</parmname>，标识该客户端的此次通话。有些方法，如 <xref keyref="rate"/>、<xref keyref="complain"/> 等，
    需要在通话结束后调用，向 SDK 提交反馈。这些方法中需要填入指定的 <parmname>callId</parmname> 参数。</p>
             <note type="attention">该方法需要在加入频道后调用。</note> </section>
-        <section id="parameters" props="cpp">
+        <section id="parameters" props="cpp unity">
             <title>参数</title>
             <parml>
             <plentry>

@@ -12,12 +12,13 @@
                 <pd>
                     <p>0: 默认值。
 
+
                     <ul id="default-profile">
                     <li>直播场景下：48 kHz 采样率，音乐编码，单声道，编码码率最大值为 64 Kbps。</li>
                     <li>通信场景下：<ph props="android ios mac rn">32 kHz 采样率，语音编码，单声道，编码码率最大值为 18 Kbps。</ph>
-                        <ul props="cpp unity electron">
+                        <ul props="cpp unity electron flutter">
                         <li>Windows 平台：16 kHz 采样率，语音编码，单声道，编码码率最大值为 16 Kbps。</li>
-                        <li><ph props="cpp unity">Android、macOS、iOS 平台：</ph><ph props="electron">macOS 平台：</ph>32 kHz 采样率，语音编码，单声道，编码码率最大值为 18 Kbps。</li>
+                        <li><ph props="cpp unity flutter">Android、macOS、iOS 平台：</ph><ph props="electron">macOS 平台：</ph>32 kHz 采样率，语音编码，单声道，编码码率最大值为 18 Kbps。</li>
                         </ul> </li>
                     </ul> </p>
                 </pd>
@@ -34,7 +35,7 @@
             </plentry>
             <plentry id="3">
                 <pt><ph keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO"/></pt>
-                <pd props="cpp android ios unity rn electron"><ph>3: 指定 48 kHz 采样率，音乐编码，双声道，编码码率最大值为 80 Kbps。</ph>
+                <pd props="cpp android ios unity rn electron flutter"><ph>3: 指定 48 kHz 采样率，音乐编码，双声道，编码码率最大值为 80 Kbps。</ph>
                     <p>如需实现立体声，你还需要调用 <xref keyref="setAdvancedAudioOptions"/> 并在 <apiname keyref="AdvancedAudioOptions"/> 中设置 <parmname>audioProcessingChannels</parmname> 为 <apiname keyref="AUDIO_PROCESSING_STEREO"/>。</p>
                 </pd>
             </plentry>
@@ -44,19 +45,18 @@
             </plentry>
             <plentry id="5">
                 <pt><ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/></pt>
-                <pd props="cpp android ios rn"><ph>5: 指定 48 kHz 采样率，音乐编码，双声道，编码码率最大值为 128 Kbps。</ph>
+                <pd props="cpp android ios unity flutter rn electron"><ph>5: 指定 48 kHz 采样率，音乐编码，双声道，编码码率最大值为 128 Kbps。</ph>
                     <p>如需实现立体声，你还需要调用 <xref keyref="setAdvancedAudioOptions"/> 并在 <apiname keyref="AdvancedAudioOptions"/> 中设置 <parmname>audioProcessingChannels</parmname> 为 <apiname keyref="AUDIO_PROCESSING_STEREO"/>。</p>
                 </pd>
-                <pd props="rtc">5: 指定 48 kHz 采样率，音乐编码，双声道，编码码率最大值为 128 Kbps。</pd>
             </plentry>
-            <plentry id="6" props="cpp unity ios mac rn electron">
+            <plentry id="6" props="cpp unity ios mac rn electron flutter">
                 <pt><ph keyref="AUDIO_PROFILE_IOT"/></pt>
                 <pd>
                     <p>6: 指定 16 kHz 采样率，语音编码，单声道，应用回声消除算法 AES。</p>
                 </pd>
             </plentry>
-            <plentry props="rtc">
-                <pt props="cpp unity"><ph keyref="AUDIO_PROFILE_NUM"/></pt>
+            <plentry>
+                <pt props="unity"><ph keyref="AUDIO_PROFILE_NUM"/></pt>
                 <pd>枚举值边界。</pd>
             </plentry>
             </parml> </section>
