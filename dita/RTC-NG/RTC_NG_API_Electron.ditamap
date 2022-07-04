@@ -76,7 +76,9 @@
             <topicref keyref="isCameraFaceDetectSupported" toc="no" props="hide"/>
             <topicref keyref="joinChannel1" toc="no"/>
             <topicref keyref="joinChannel2" toc="no"/>
+            <topicref keyref="joinChannelWithUserAccount1" toc="no" processing-role="resource-only"/>
             <topicref keyref="joinChannelWithUserAccount2" toc="no"/>
+            <topicref keyref="leaveChannel" toc="no" processing-role="resource-only"/>
             <topicref keyref="leaveChannel2" toc="no"/>
             <topicref keyref="loadExtensionProvider" toc="no"/>
             <topicref keyref="muteAllRemoteAudioStreams" toc="no"/>
@@ -178,6 +180,7 @@
             <topicref keyref="startEchoTest2" toc="no"/>
             <topicref keyref="startLastmileProbeTest" toc="no"/>
             <topicref keyref="startLocalVideoTranscoder" toc="no" props="hide"/>
+            <topicref keyref="startPreview" toc="no" processing-role="resource-only"/>
             <topicref keyref="startPreview2" toc="no"/>
             <topicref keyref="startPrimaryCameraCapture" toc="no"/>
             <topicref keyref="startPrimaryScreenCapture" toc="no"/>
@@ -198,6 +201,7 @@
             <topicref keyref="stopEffect" toc="no"/>
             <topicref keyref="stopLastmileProbeTest" toc="no"/>
             <topicref keyref="stopLocalVideoTranscoder" toc="no" props="hide"/>
+            <topicref keyref="stopPreview1" toc="no" processing-role="resource-only"/>
             <topicref keyref="stopPreview2" toc="no"/>
             <topicref keyref="stopPrimaryCameraCapture" toc="no"/>
             <topicref keyref="stopPrimaryScreenCapture" toc="no"/>
@@ -384,12 +388,12 @@
             <topicref keyref="stopPlaybackDeviceTest" toc="no"/>
             <topicref keyref="stopRecordingDeviceTest" toc="no"/>
         </topicref>
-        <topicref keyref="IAudioDeviceCollection" chunk="to-content" processing-role="resource-only">
+        <topicref keyref="IAudioDeviceCollection" chunk="to-content" props="hide">
             <topicref keyref="getApplicationVolume" toc="no" props="hide"/>
             <topicref keyref="getCount_IAudioDeviceCollection" toc="no" props="hide"/>
             <topicref keyref="getDevice_IAudioDeviceCollection" toc="no" props="hide"/>
             <topicref keyref="isApplicationMute" toc="no" props="hide"/>
-            <topicref keyref="release_IAudioDeviceCollection" toc="no" processing-role="resource-only"/>
+            <topicref keyref="release_IAudioDeviceCollection" toc="no" props="hide"/>
             <topicref keyref="setApplicationMute" toc="no" props="hide"/>
             <topicref keyref="setApplicationVolume" toc="no" props="hide"/>
             <topicref keyref="setDevice_IAudioDeviceCollection" toc="no" props="hide"/>
@@ -402,16 +406,16 @@
             <topicref keyref="startDeviceTest" toc="no" props="hide"/>
             <topicref keyref="stopDeviceTest" toc="no" props="hide"/>
         </topicref>
-        <topicref keyref="IVideoDeviceCollection" chunk="to-content" processing-role="resource-only">
+        <topicref keyref="IVideoDeviceCollection" chunk="to-content" props="hide">
             <topicref keyref="getCount_IVideoDeviceCollection" toc="no" props="hide"/>
             <topicref keyref="getDevice_IVideoDeviceCollection" toc="no" props="hide"/>
-            <topicref keyref="release_IVideoDeviceCollection" toc="no" processing-role="resource-only"/>
+            <topicref keyref="release_IVideoDeviceCollection" toc="no" props="hide"/>
             <topicref keyref="setDevice_IVideoDeviceCollection" toc="no" props="hide"/>
         </topicref>
         <topicref keyref="IMediaEngine" chunk="to-content" props="hide">
             <topicref keyref="pushEncodedVideoImageEx" toc="no" props="hide"/>
-            <topicref keyref="pushVideoFrame" toc="no" processing-role="resource-only"/>
-            <topicref keyref="pushVideoFrameEx" toc="no" processing-role="resource-only"/>
+            <topicref keyref="pushVideoFrame" toc="no" props="hide"/>
+            <topicref keyref="pushVideoFrameEx" toc="no" props="hide"/>
         </topicref>
         <topicref keyref="IMediaPlayerSourceObserver" chunk="to-content">
             <topicref keyref="onAudioVolumeIndication_IMediaPlayerSourceObserver" toc="no" props="hide"/>
@@ -429,9 +433,9 @@
             <topicref keyref="onDirectCdnStreamingStateChanged" toc="no" props="hide"/>
             <topicref keyref="onDirectCdnStreamingStats" toc="no" props="hide"/>
         </topicref>
-        <topicref keyref="IAudioSpectrumObserver" chunk="to-content" processing-role="resource-only">
-            <topicref keyref="onLocalAudioSpectrum" toc="no" processing-role="resource-only"/>
-            <topicref keyref="onRemoteAudioSpectrum" toc="no" processing-role="resource-only"/>
+        <topicref keyref="IAudioSpectrumObserver" chunk="to-content" props="hide">
+            <topicref keyref="onLocalAudioSpectrum" toc="no" props="hide"/>
+            <topicref keyref="onRemoteAudioSpectrum" toc="no" props="hide"/>
         </topicref>
         <topicref keyref="IPacketObserver" chunk="to-content" props="hide">
             <topicref keyref="onReceiveAudioPacket" toc="no" props="hide"/>
@@ -452,9 +456,9 @@
             <topicref keyref="setDistanceUnit" toc="no" props="hide"/>
             <topicref keyref="setMaxAudioRecvCount" toc="no" props="hide"/>
             <topicref keyref="updatePlayerPositionInfo" toc="no" props="hide"/>
-            <topicref keyref="updateSelfPosition" toc="no" processing-role="resource-only"/>
+            <topicref keyref="updateSelfPosition" toc="no" props="hide"/>
         </topicref>
-        <topicref keyref="ICloudSpatialAudioEngine" chunk="to-content" processing-role="resource-only">
+        <topicref keyref="ICloudSpatialAudioEngine" chunk="to-content" props="hide">
             <topicref keyref="addEventHandler" toc="no" props="hide"/>
             <topicref keyref="enableSpatializer" toc="no" props="hide"/>
             <topicref keyref="enterRoom" toc="no" props="hide"/>
@@ -473,7 +477,7 @@
             <topicref keyref="onTeammateLeft" toc="no" props="hide"/>
             <topicref keyref="onTokenWillExpire" toc="no" props="hide"/>
         </topicref>
-        <topicref keyref="ILocalSpatialAudioEngine" chunk="to-content" processing-role="resource-only">
+        <topicref keyref="ILocalSpatialAudioEngine" chunk="to-content" props="hide">
             <topicref keyref="clearRemotePositions" toc="no" props="hide"/>
             <topicref keyref="initialize_ILocalSpatialAudioEngine" toc="no" props="hide"/>
             <topicref keyref="removeRemotePosition" toc="no" props="hide"/>
@@ -527,7 +531,7 @@
             <topicref keyref="EXTERNAL_VIDEO_SOURCE_TYPE" toc="no"/>
             <topicref keyref="FRAME_RATE" toc="no"/>
             <topicref keyref="INJECT_STREAM_STATUS" toc="no" props="en"/>
-            <topicref keyref="INTERFACE_ID_TYPE" toc="no"/>
+            <topicref keyref="INTERFACE_ID_TYPE" toc="no" props="hide"/>
             <topicref keyref="LASTMILE_PROBE_RESULT_STATE" toc="no"/>
             <topicref keyref="LIGHTENING_CONTRAST_LEVEL" toc="no"/>
             <topicref keyref="LOCAL_AUDIO_STREAM_ERROR" toc="no"/>
@@ -570,7 +574,7 @@
             <topicref keyref="AUDIO_RANGE_MODE_TYPE" toc="no"/>
             <topicref keyref="RemoteVoicePositionInfo" toc="no" props="hide"/>
             <topicref keyref="SAE_CONNECTION_CHANGED_REASON_TYPE" toc="no"/>
-            <topicref keyref="SAE_CONNECTION_STATE_TYPE" toc="no"/>
+            <topicref keyref="SAE_CONNECTION_STATE_TYPE" toc="no" props="hide"/>
             <topicref keyref="ScreenCaptureSourceType" toc="no"/>
             <topicref keyref="STREAM_FALLBACK_OPTIONS" toc="no" props="hide"/>
             <topicref keyref="STREAM_PUBLISH_STATE" toc="no"/>
@@ -635,6 +639,7 @@
             <topicref keyref="RtcConnection" toc="no"/>
             <topicref keyref="RtcImage" toc="no"/>
             <topicref keyref="RtcStats" toc="no"/>
+            <topicref keyref="SAE_CONNECTION_STATE_TYPE" toc="no" props="hide"/>
             <topicref keyref="ScreenCaptureConfiguration" toc="no"/>
             <topicref keyref="ScreenCaptureParameters" toc="no"/>
             <topicref keyref="ScreenCaptureSourceInfo" toc="no"/>

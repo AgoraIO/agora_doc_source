@@ -29,14 +29,7 @@
             <p>该方法是异步操作，调用返回时并没有真正退出频道。在真正退出频道后，SDK 会触发 <xref keyref="onLeaveChannel" /> 回调。
                     成功调用该方法离开频道后，本地会触发<apiname keyref="onLeaveChannel" /> 回调；
                 通信场景下的用户和直播场景下的主播离开频道后，远端会触发 <xref keyref="onUserOffline" /> 回调。</p>
-            <note conkeyref="leaveChannel/note" props="native flutter unity" />
-            <note type="attention" id="note" props="rn electron">
-                <ul>
-                <li>如果你调用了本方法后立即调用 <xref keyref="release" /> 方法，SDK 将无法触发 <apiname keyref="onLeaveChannel" /> 回调。</li>
-                <li>如果你在旁路推流过程中调用了本方法离开频道，SDK 将自动调用 <xref keyref="removePublishStreamUrl" />
-                            方法。</li>
-                </ul>
-            </note>
+            <note conkeyref="leaveChannel/note" props="native flutter unity electron rn" />
         </section>
         <section id="parameters">
             <title>参数</title>
