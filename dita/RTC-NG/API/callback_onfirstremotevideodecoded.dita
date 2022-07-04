@@ -27,7 +27,13 @@
     }</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstRemoteVideoDecoded(RtcConnection connection, uint remoteUid, int width, int height, int elapsed) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">onFirstRemoteVideoDecoded?(
+  connection: RtcConnection,
+  remoteUid: number,
+  width: number,
+  height: number,
+  elapsed: number
+): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, int width,
       int height, int elapsed)? onFirstRemoteVideoDecoded;
 </codeblock> </p>
@@ -36,10 +42,12 @@
             <p>SDK 会在以下时机触发该回调：
 
             
+            
             <ul id="ul_xcz_f34_npb">
             <li>远端用户首次上线后发送视频。</li>
             <li>远端用户视频离线再上线后发送视频。出现这种中断的可能原因包括：
 
+                
                 
                 <ul id="ul_ycz_f34_npb">
                 <li>远端用户离开频道。</li>
@@ -51,9 +59,9 @@
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
-            <plentry props="native electron">
+            <plentry props="native">
                 <pt>uid</pt>
                 <pd>用户 ID，指定是哪个用户的视频流。</pd>
             </plentry>
@@ -65,22 +73,22 @@
                 <pt>size</pt>
                 <pd>视频流尺寸。</pd>
             </plentry>
-            <plentry props="unity flutter">
-                    <pt>connection</pt>
-                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
-                </plentry>
-            <plentry props="unity flutter">
-                    <pt>remoteUid</pt>
-                    <pd>用户 ID，指定是哪个用户的视频流。</pd>
-                </plentry>
-            <plentry props="android cpp unity flutter">
-                    <pt>width</pt>
-                    <pd>视频流宽（px）。</pd>
-                </plentry>
-            <plentry props="android cpp unity flutter">
-                    <pt>height</pt>
-                    <pd>视频流高（px）。</pd>
-                </plentry>
+            <plentry props="unity electron rn flutter">
+                <pt>connection</pt>
+                <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+            </plentry>
+            <plentry props="unity electron rn flutter">
+                <pt>remoteUid</pt>
+                <pd>用户 ID，指定是哪个用户的视频流。</pd>
+            </plentry>
+            <plentry props="android cpp unity electron rn flutter">
+                <pt>width</pt>
+                <pd>视频流宽（px）。</pd>
+            </plentry>
+            <plentry props="android cpp unity electron rn flutter">
+                <pt>height</pt>
+                <pd>视频流高（px）。</pd>
+            </plentry>
             <plentry>
                 <pt>elapsed</pt>
                 <pd>从本地调用 <apiname keyref="joinChannel2"/> 开始到该回调触发的延迟（毫秒)。</pd>

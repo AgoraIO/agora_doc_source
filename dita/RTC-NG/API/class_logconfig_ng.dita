@@ -43,8 +43,13 @@
         public uint fileSizeInKB { set; get; }
         public LOG_LEVEL level { set; get; }
     };</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock> </p>
+            <codeblock props="rn" outputclass="language-typescript">export class LogConfig {
+  filePath?: string;
+  fileSizeInKB?: number;
+  level?: LogLevel;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock>
+            </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
@@ -56,10 +61,12 @@
                     <p props="cpp unity electron rn">默认路径为：
 
 
+                    
                     <ul>
                     <li props="cpp unity rn">Android：<filepath id="android-path">/storage/emulated/0/Android/data/&lt;packagename&gt;/files/agorasdk.log</filepath>。</li>
                     <li props="cpp unity rn">iOS：<filepath id="ios-path">App Sandbox/Library/caches/agorasdk.log</filepath>。</li>
-                    <li props="cpp unity electron">macOS：<ul id="mac-path">
+                    <li props="cpp unity electron">macOS：
+                        <ul id="mac-path">
                         <li>开启沙盒: <filepath>App Sandbox/Library/Logs/agorasdk.log</filepath>，例如 <filepath>/Users/&lt;username&gt;/Library/Containers/&lt;AppBundleIdentifier&gt;/Data/Library/Logs/agorasdk.log</filepath>。</li>
                         <li>关闭沙盒: <filepath>～/Library/Logs/agorasdk.log</filepath></li>
                         </ul></li>
@@ -68,6 +75,7 @@
                     <p props="android">默认路径为 <filepath>/storage/emulated/0/Android/data/&lt;packagename&gt;/files/agorasdk.log</filepath>。</p>
                     <p props="ios">默认路径为 <filepath>AppSandbox/Library/caches/agorasdk.log</filepath>。</p>
                     <p props="mac">默认路径为：
+                    
                     <ul>
                     <li>开启沙盒: <filepath>AppSandbox/Library/Logs/agorasdk.log</filepath>，例如 <filepath>/Users/&lt;username&gt;/Library/Containers/&lt;AppBundleIdentifier&gt;/Data/Library/Logs/agorasdk.log</filepath>。</li>
                     <li>关闭沙盒: <filepath>～/Library/Logs/agorasdk.log</filepath>

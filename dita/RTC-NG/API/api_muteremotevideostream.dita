@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_muteremotevideostream">
-    <title><ph keyref="muteRemoteVideoStream"/></title>
+    <title><ph keyref="muteRemoteVideoStream" /></title>
     <shortdesc id="short"><ph id="shortdesc">取消或恢复订阅指定远端用户的视频流。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="muteRemoteVideoStream"/>
+                <indexterm keyref="muteRemoteVideoStream" />
             </keywords>
         </metadata>
     </prolog>
@@ -17,9 +17,9 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)muteRemoteVideoStream:(NSUInteger)uid
                         mute:(BOOL)mute;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int muteRemoteVideoStream(uid_t userId, bool mute) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public abstract int MuteRemoteVideoStream(uint uid, bool mute);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">abstract muteRemoteVideoStream(uid: number, mute: boolean): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> muteRemoteVideoStream({required int uid, required bool mute});</codeblock> </p>
         </section>
         <section id="detailed_desc">
@@ -33,23 +33,23 @@
             <parml>
             <plentry>
                 <pt props="android cpp">userId</pt>
-                <pt props="ios mac unity flutter">uid</pt>
+                <pt props="ios mac unity flutter rn electron">uid</pt>
                 <pd id="userId">指定用户的用户 ID。</pd>
             </plentry>
             <plentry>
                 <pt props="android">muted</pt>
-                <pt props="ios mac cpp unity flutter">mute</pt>
+                <pt props="ios mac cpp unity flutter rn electron">mute</pt>
                 <pd id="mute">
                     <p>是否取消订阅指定远端用户的视频流。
-                    
+
                     <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: 取消订阅指定用户的视频流。</li>
-                    <li><codeph><ph keyref="false"/></codeph>: （默认）订阅指定用户的视频流。</li>
+                    <li><codeph><ph keyref="true" /></codeph>: 取消订阅指定用户的视频流。</li>
+                    <li><codeph><ph keyref="false" /></codeph>: （默认）订阅指定用户的视频流。</li>
                     </ul></p>
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul>
             <li>0：方法调用成功。</li>

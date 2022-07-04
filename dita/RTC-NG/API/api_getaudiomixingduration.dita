@@ -18,15 +18,15 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int getAudioMixingDuration() = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int GetAudioMixingDuration();</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">abstract getAudioMixingDuration(): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; getAudioMixingDuration();</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>该方法获取音乐文件总时长，单位为毫秒。</p>
             <note type="attention">
-            <p>你需要在调用 <xref keyref="startAudioMixing2" props="native flutter unity"/> 并收到 <xref keyref="onAudioMixingStateChanged"/>(<apiname keyref="AUDIO_MIXING_STATE_PLAYING"/>) 回调后调用该方法。</p>
+            <p>你需要在调用 <xref keyref="startAudioMixing2"/> 并收到 <xref keyref="onAudioMixingStateChanged"/>(<apiname keyref="AUDIO_MIXING_STATE_PLAYING"/>) 回调后调用该方法。</p>
             </note> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul>
             <li>≥ 0: 方法调用成功返回音乐文件时长。</li>

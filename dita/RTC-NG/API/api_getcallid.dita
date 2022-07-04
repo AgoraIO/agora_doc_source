@@ -18,7 +18,7 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int getCallId(agora::util::AString&amp; callId) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public abstract int GetCallId(ref string callId);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript">abstract getCallId(): string;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;String&gt; getCallId();</codeblock> </p>
         </section>
         <section id="detailed_desc">
@@ -35,12 +35,12 @@
             </parml> </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="android ios mac electron flutter">通话 ID。</p>
+            <p props="android ios mac flutter">通话 ID。</p>
             <ul props="cpp">
             <li>0: 方法调用成功</li>
             <li>&lt; 0: 方法调用失败</li>
             </ul>
-            <ul props="unity">
+            <ul props="unity rn electron">
             <li>方法调用成功则返回当前的通话 ID。</li>
             <li>方法调用失败则返回空字符串。</li>
             </ul> </section>

@@ -197,7 +197,7 @@
             /></title>
             <parml>
             <plentry>
-                <pt props="ios mac cpp unity flutter">dimensions</pt>
+                <pt props="ios mac cpp unity flutter electron rn">dimensions</pt>
                 <pt props="android">videoDimensions</pt>
                 <pd>
                     <p>编码共享视频的最大像素值。<ph props="android cpp">详见 <xref
@@ -205,7 +205,7 @@
                     />。默认值为 1920 × 1080，即 2073600 像素。该像素值为计费标准。</ph></p>
                     <p>当共享的屏幕分辨率宽高比与该值设置不一致时，SDK 按如下策略进行编码。假设 <codeph>dimensions</codeph> 设为 1920 × 1080：
 
-                    
+
                     <ul>
                     <li>如果屏幕分辨率小于 <codeph>dimensions</codeph>，如 1000 × 1000，SDK 直接按 1000 × 1000 进行编码。</li>
                     <li>如果屏幕分辨率大于 <codeph>dimensions</codeph>，如 2000 × 1500，SDK 按屏幕分辨率的宽高比，即 4:3，取 dimensions 以内的最大分辨率进行编码，即 1440 × 1080。</li>
@@ -220,31 +220,31 @@
                 <pt>bitrate</pt>
                 <pd>共享视频的码率，单位为 Kbps；默认值为 0，表示 SDK 根据当前共享屏幕的分辨率计算出一个合理的值。</pd>
             </plentry>
-            <plentry props="cpp unity flutter">
+            <plentry props="cpp unity electron rn flutter">
                 <pt>captureMouseCursor</pt>
                 <pd>
                     <p>是否采集鼠标用于屏幕共享：
 
-                    
+
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>:（默认）采集鼠标。</li>
                     <li><codeph><ph keyref="false"/></codeph>: 不采集鼠标。</li>
                     </ul></p>
                 </pd>
             </plentry>
-            <plentry props="cpp unity flutter">
+            <plentry props="cpp unity electron rn flutter">
                 <pt>windowFocus</pt>
                 <pd>
                     <p>调用 <xref keyref="startScreenCaptureByWindowId"/> 方法共享窗口时，是否将该窗口前置：
 
-                    
+
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 前置窗口。</li>
                     <li><codeph><ph keyref="false"/></codeph>:（默认）不前置窗口。</li>
                     </ul></p>
                 </pd>
             </plentry>
-            <plentry props="cpp unity flutter">
+            <plentry props="cpp unity electron rn flutter">
                 <pt>excludeWindowList</pt>
                 <pd>
                     <p>待屏蔽窗口的 ID 列表。调用 <xref
@@ -254,19 +254,11 @@
                     /> 更新屏幕共享的配置参数时，通过该参数动态屏蔽指定的窗口。</p>
                 </pd>
             </plentry>
-            <plentry props="cpp unity electron flutter">
+            <plentry props="cpp unity electron rn flutter">
                 <pt>excludeWindowCount</pt>
                 <pd>
                     <p>待屏蔽窗口的数量。</p>
                 </pd>
-            </plentry>
-            <plentry props="electron">
-                <pt>width</pt>
-                <pd>屏幕共享区域的宽。</pd>
-            </plentry>
-            <plentry props="electron">
-                <pt>height</pt>
-                <pd>屏幕共享区域的高。</pd>
             </plentry>
             </parml> </section>
     </refbody>

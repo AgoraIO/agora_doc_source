@@ -170,7 +170,19 @@
         public uint uid { set; get; }
         public VIDEO_STREAM_TYPE streamType { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript">export class EncodedVideoFrameInfo {
+  codecType?: VideoCodecType;
+  width?: number;
+  height?: number;
+  framesPerSecond?: number;
+  frameType?: VideoFrameType;
+  rotation?: VideoOrientation;
+  trackId?: number;
+  renderTimeMs?: number;
+  internalSendTs?: number;
+  uid?: number;
+  streamType?: VideoStreamType;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock></p>
         </section>
         <section id="parameters">
@@ -178,9 +190,10 @@
             <parml>
             <plentry>
                 <pt>codecType</pt>
-                <pd props="cpp unity">视频编码类型，详见 <xref keyref="VIDEO_CODEC_TYPE" />。默认值为 <codeph><ph keyref="VIDEO_CODEC_H264" />(2)</codeph>。</pd>
+                <pd props="cpp unity electron rn">视频编码类型，详见 <xref keyref="VIDEO_CODEC_TYPE" />。默认值为 <codeph><ph keyref="VIDEO_CODEC_H264" />(2)</codeph>。</pd>
                 <pd props="android">视频编解码类型：
 
+                    
                     <ul id="ul_hkm_4qy_4qb">
                     <li>1：VP8。</li>
                     <li>2：（默认）H264。</li>
@@ -204,9 +217,10 @@
             </plentry>
             <plentry>
                 <pt>frameType</pt>
-                <pd props="cpp unity">视频帧的类型，详见 <xref keyref="VIDEO_FRAME_TYPE" />。</pd>
+                <pd props="cpp unity electron rn">视频帧的类型，详见 <xref keyref="VIDEO_FRAME_TYPE" />。</pd>
                 <pd props="android">视频帧的类型：
 
+                    
                     <ul id="ul_djl_sqy_4qb">
                     <li>0：（默认）<ph keyref="VIDEO_FRAME_TYPE_BLANK_FRAME" />，空白帧。</li>
                     <li>3：<ph keyref="VIDEO_FRAME_TYPE_KEY_FRAME" />，关键帧。</li>
@@ -217,9 +231,10 @@
             </plentry>
             <plentry>
                 <pt>rotation</pt>
-                <pd props="cpp unity">视频帧的旋转信息，详见 <xref keyref="VIDEO_ORIENTATION" />。</pd>
+                <pd props="cpp unity electron rn">视频帧的旋转信息，详见 <xref keyref="VIDEO_ORIENTATION" />。</pd>
                 <pd props="android">视频帧的旋转信息，取值如下：
 
+                    
                     <ul>
                     <li>0：（默认）不旋转。</li>
                     <li>90：顺时针旋转 90 度。</li>
@@ -240,7 +255,7 @@
                 <pt>uid</pt>
                 <pd>推送外部编码视频帧的用户 ID。</pd>
             </plentry>
-            <plentry props="cpp unity">
+            <plentry props="cpp unity electron rn">
                 <pt>streamType</pt>
                 <pd>视频流类型。</pd>
             </plentry>

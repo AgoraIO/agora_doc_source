@@ -29,23 +29,29 @@
      }</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnVideoSizeChanged(RtcConnection connection, uint uid, int width, int height, int rotation) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">onVideoSizeChanged?(
+  connection: RtcConnection,
+  uid: number,
+  width: number,
+  height: number,
+  rotation: number
+): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int uid, int width, int height,
       int rotation)? onVideoSizeChanged;
 </codeblock></p>
         </section>
         <section id="parameters">
             <title> <ph keyref="callback-section-title"/> </title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="unity flutter">
-                    <pt>connection</pt>
-                    <pd> Connection 信息。详见 <xref keyref="RtcConnection"/> 。 </pd>
-                </plentry>
+            <plentry props="unity flutter rn electron">
+                <pt>connection</pt>
+                <pd> Connection 信息。详见 <xref keyref="RtcConnection"/> 。 </pd>
+            </plentry>
             <plentry id="uid">
                 <pt>uid</pt>
                 <pd>
@@ -58,11 +64,11 @@
                 <pt>size</pt>
                 <pd>视频流的尺寸。</pd>
             </plentry>
-            <plentry id="width" props="android cpp unity flutter">
+            <plentry id="width" props="android cpp unity flutter electron rn">
                 <pt>width</pt>
                 <pd>视频流的宽度（像素）。</pd>
             </plentry>
-            <plentry id="height" props="android cpp unity flutter">
+            <plentry id="height" props="android cpp unity flutter electron rn">
                 <pt>height</pt>
                 <pd>视频流的高度（像素）。</pd>
             </plentry>

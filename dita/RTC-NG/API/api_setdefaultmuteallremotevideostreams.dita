@@ -18,7 +18,7 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int setDefaultMuteAllRemoteVideoStreams(bool mute) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetDefaultMuteAllRemoteVideoStreams(bool mute);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">abstract setDefaultMuteAllRemoteVideoStreams(mute: boolean): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setDefaultMuteAllRemoteVideoStreams(bool mute);</codeblock> </p>
         </section>
         <section id="detailed_desc">
@@ -27,7 +27,7 @@
             <p>取消订阅视频流后，如果需要恢复订阅频道内的远端用户，可以进行如下操作：
 
 
-            
+
             <ul>
             <li>如果需要恢复订阅单个用户的视频流，调用 <xref keyref="muteRemoteVideoStream"/>(<codeph><ph keyref="false"/></codeph>)，并指定你想要订阅的远端用户 ID。</li>
             <li>如果想恢复订阅多个用户的视频流，则需要多次调用 <apiname keyref="muteRemoteVideoStream"/>(<codeph><ph keyref="false"/></codeph>)。</li>
@@ -38,10 +38,10 @@
             <parml>
             <plentry>
                 <pt props="android">muted</pt>
-                <pt props="ios mac cpp unity flutter">mute</pt>
+                <pt props="ios mac cpp unity rn electron flutter">mute</pt>
                 <pd>
                     <p>是否默认取消订阅远端用户的视频流：
-                    
+
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 默认取消订阅。</li>
                     <li><codeph><ph keyref="false"/></codeph>:（默认）默认订阅。</li>
@@ -49,7 +49,7 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功</li>

@@ -18,7 +18,7 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int setVoiceConversionPreset(VOICE_CONVERSION_PRESET preset) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetVoiceConversionPreset(VOICE_CONVERSION_PRESET preset);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">abstract setVoiceConversionPreset(preset: VoiceConversionPreset): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setVoiceConversionPreset(VoiceConversionPreset preset);</codeblock></p>
         </section>
         <section id="detailed_desc">
@@ -27,7 +27,7 @@
             <note type="attention">
             <ul>
             <li>该方法在加入频道前后都能调用。</li>
-            <li>请勿将 <apiname keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1)<ph props="cpp"> 或 <apiname keyref="AUDIO_PROFILE_IOT"/>(6)</ph>，否则该方法不生效。</li>
+            <li>请勿将 <apiname keyref="setAudioProfile" /> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD" />(1)<ph props="cpp rn electron"> 或 <apiname keyref="AUDIO_PROFILE_IOT" />(6)</ph>，否则该方法不生效。</li>
             <li>该方法对人声的处理效果最佳，Agora 不推荐调用该方法处理含音乐的音频数据。</li>
             <li>调用 <apiname keyref="setVoiceConversionPreset"/> 后，Agora 不推荐调用以下方法，否则 <apiname keyref="setVoiceConversionPreset"/> 设置的效果会被覆盖：
 
@@ -48,7 +48,7 @@
             <plentry>
                 <pt>preset</pt>
                 <pd>
-                    <p props="ios mac cpp unity flutter">预设的变声效果选项: <xref keyref="VOICE_CONVERSION_PRESET"/>。</p>
+                    <p props="ios mac cpp unity flutter rn electron">预设的变声效果选项: <xref keyref="VOICE_CONVERSION_PRESET" />。</p>
                     <p props="android">预设的变声效果选项：
 
 
@@ -66,7 +66,7 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul>
             <li>0：方法调用成功。</li>

@@ -99,7 +99,13 @@
         public AUDIO_FILE_RECORDING_TYPE fileRecordingType { set; get; }
         public AUDIO_RECORDING_QUALITY_TYPE quality { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">export class AudioRecordingConfiguration {
+  filePath?: string;
+  encode?: boolean;
+  sampleRate?: number;
+  fileRecordingType?: AudioFileRecordingType;
+  quality?: AudioRecordingQualityType;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class AudioRecordingConfiguration {
   const AudioRecordingConfiguration(
       {this.filePath,
@@ -141,7 +147,7 @@
                     </note> </pd>
             </plentry>
             <plentry>
-                <pt props="cpp unity flutter">encode</pt>
+                <pt props="cpp unity electron rn flutter">encode</pt>
                 <pt props="android ios mac">codec</pt>
                 <pd>设置是否编码音频数据：
 
@@ -181,7 +187,7 @@
                     </note> </pd>
             </plentry>
             <plentry>
-                <pt props="cpp unity flutter">fileRecordingType</pt>
+                <pt props="cpp unity electron rn flutter">fileRecordingType</pt>
                 <pt props="android ios mac">fileRecordOption</pt>
                 <pd>
                     <p props="ios mac cpp unity flutter">录音内容。详见 <xref
@@ -209,8 +215,7 @@
             <plentry>
                 <pt>quality</pt>
                 <pd>
-                    <p props="ios mac cpp unity flutter">录音音质。详见 <xref
-                    keyref="AUDIO_RECORDING_QUALITY_TYPE"/>。</p>
+                    <p props="ios mac cpp unity electron rn flutter">录音音质。详见 <xref keyref="AUDIO_RECORDING_QUALITY_TYPE" />。</p>
                     <p props="android">录音音质：
 
 

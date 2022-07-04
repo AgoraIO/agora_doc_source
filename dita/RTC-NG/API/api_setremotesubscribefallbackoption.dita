@@ -18,7 +18,9 @@
                <codeblock props="cpp" outputclass="language-cpp">virtual int setRemoteSubscribeFallbackOption(STREAM_FALLBACK_OPTIONS option) = 0;</codeblock>
                <codeblock props="electron" outputclass="language-typescript"/>
                <codeblock props="unity" outputclass="language-csharp">public abstract int SetRemoteSubscribeFallbackOption(STREAM_FALLBACK_OPTIONS option);</codeblock>
-               <codeblock props="rn" outputclass="language-typescript"/>
+               <codeblock props="rn" outputclass="language-typescript">abstract setRemoteSubscribeFallbackOption(
+    option: StreamFallbackOptions
+  ): number;</codeblock>
                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRemoteSubscribeFallbackOption(StreamFallbackOptions option);</codeblock></p>
           </section>
           <section id="detailed_desc">
@@ -31,7 +33,7 @@
                <parml>
                <plentry>
                     <pt>option</pt>
-                    <pd><ph>订阅音视频流的回退选项。默认值为 <apiname keyref="STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW"/>(1)。</ph><ph props="ios mac cpp electron unity flutter">详见 <xref keyref="STREAM_FALLBACK_OPTIONS"/>。</ph>
+                    <pd><ph>订阅音视频流的回退选项。默认值为 <apiname keyref="STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW" />(1)。</ph><ph props="ios mac cpp electron unity flutter rn">详见 <xref keyref="STREAM_FALLBACK_OPTIONS" />。</ph>
                          <ul props="android">
                          <li><ph keyref="STREAM_FALLBACK_OPTION_DISABLED"/> (0): 上行/下行网络较弱时，不对音视频流作回退处理，但不能保证音视频流的质量。</li>
                          <li><ph keyref="STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW"/><ph> (1): 在下行网络条件较差时只接收视频小流（低分辨率、低码率视频流）。该选项只对 <xref keyref="setRemoteSubscribeFallbackOption"/> 有效。</ph></li>
@@ -39,7 +41,7 @@
                          </ul></pd>
                </plentry>
                </parml> </section>
-          <section id="return_values" props="native electron unity">
+          <section id="return_values" props="native electron unity rn">
                <title>返回值</title>
                <ul>
                <li>0: 方法调用成功</li>

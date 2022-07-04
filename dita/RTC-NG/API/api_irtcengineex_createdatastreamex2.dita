@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_createdatastreamex2">
-    <title><ph keyref="createDataStreamEx2"/></title>
+    <title><ph keyref="createDataStreamEx2" /></title>
     <shortdesc id="short"><ph id="shortdesc">创建数据流。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="createDataStreamEx2"/>
+                <indexterm keyref="createDataStreamEx2" />
             </keywords>
         </metadata>
     </prolog>
@@ -15,16 +15,19 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int createDataStreamEx(DataStreamConfig config, RtcConnection connection);
 </codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="ios mac" outputclass="language-objectivec" />
             <codeblock props="cpp" outputclass="language-cpp">virtual int createDataStreamEx(int* streamId, DataStreamConfig&amp; config, const RtcConnection&amp; connection) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public abstract int CreateDataStreamEx(ref int streamId, DataStreamConfig config, RtcConnection connection);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">abstract createDataStreamEx(
+    config: DataStreamConfig,
+    connection: RtcConnection
+  ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
             <p id="desc">创建数据流。每个用户在每个频道中最多只能创建 5 个数据流。</p>
-            <p id="diff">相比 <xref keyref="createDataStreamEx1"/>，本方法不支持数据可靠。接收方会丢弃超出发送时间 5 秒后的数据包。</p>
+            <p id="diff">相比 <xref keyref="createDataStreamEx1" props="native flutter unity" /> <xref keyref="createDataStreamEx2" props="rn electron" />，本方法不支持数据可靠。接收方会丢弃超出发送时间 5 秒后的数据包。</p>
         </section>
         <section id="parameters">
             <title>参数</title>
@@ -35,18 +38,18 @@
             </plentry>
             <plentry id="config">
                 <pt>config</pt>
-                <pd>数据流设置。详见 <xref keyref="DataStreamConfig"/>。</pd>
+                <pd>数据流设置。详见 <xref keyref="DataStreamConfig" />。</pd>
             </plentry>
             <plentry conkeyref="joinChannelEx/connection">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title>返回值</title>
             <ul>
             <li props="cpp unity">0: 创建数据流成功。</li>
-            <li props="android ios mac electron">创建的数据流的 ID：方法调用成功。</li>
+            <li props="android ios mac electron rn">创建的数据流的 ID：方法调用成功。</li>
             <li>&lt; 0：方法调用失败。</li>
             </ul> </section>
     </refbody>

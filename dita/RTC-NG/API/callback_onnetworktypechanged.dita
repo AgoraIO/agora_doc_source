@@ -20,7 +20,7 @@
     }</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnNetworkTypeChanged(RtcConnection connection, NETWORK_TYPE type) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">onNetworkTypeChanged?(connection: RtcConnection, type: NetworkType): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, NetworkType type)?
       onNetworkTypeChanged;
 </codeblock> </p>
@@ -36,24 +36,25 @@
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="unity flutter">
-                    <pt>connection</pt>
-                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
-                </plentry>
+            <plentry props="unity electron rn flutter">
+                <pt>connection</pt>
+                <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+            </plentry>
             <plentry>
                 <pt>type</pt>
                 <pd>
-                    <p props="ios mac cpp unity flutter">本地网络连接类型。详见 <xref keyref="NETWORK_TYPE"/>。</p>
+                    <p props="ios mac cpp unity flutter electron rn">本地网络连接类型。详见 <xref keyref="NETWORK_TYPE"/>。</p>
                     <p props="android">网络连接类型：
 
 
 
+                    
                     
                     <ul>
                     <li><ph keyref="NETWORK_TYPE_UNKNOWN"/> (-1)：网络连接类型未知。</li>

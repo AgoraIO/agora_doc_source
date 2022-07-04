@@ -18,7 +18,7 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int getAudioMixingPlayoutVolume() = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int GetAudioMixingPlayoutVolume();</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">abstract getAudioMixingPlayoutVolume(): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; getAudioMixingPlayoutVolume();</codeblock> </p>
         </section>
         <section id="detailed_desc">
@@ -27,7 +27,7 @@
             <p>你需要在调用 <apiname keyref="startAudioMixing2"/> 并收到 <codeph><apiname keyref="onAudioMixingStateChanged"/>(<apiname keyref="AUDIO_MIXING_STATE_PLAYING"/>)</codeph> 回调后调用该方法。</p>
             <p props="unity">请在频道内调用该方法。</p>
             </note> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul>
             <li>≥ 0: 方法调用成功则返回音量值，范围为 [0,100]。</li>

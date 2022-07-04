@@ -18,7 +18,11 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int setVoiceBeautifierParameters(VOICE_BEAUTIFIER_PRESET preset, int param1, int param2) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetVoiceBeautifierParameters(VOICE_BEAUTIFIER_PRESET preset, int param1, int param2);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">abstract setVoiceBeautifierParameters(
+  preset: VoiceBeautifierPreset,
+  param1: number,
+  param2: number
+): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setVoiceBeautifierParameters(
   {required VoiceBeautifierPreset preset,
   required int param1,
@@ -30,12 +34,13 @@
             <note type="attention">
             <ul>
             <li>该方法在加入频道前后都能调用。</li>
-            <li>请勿将 <apiname keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1)<ph props="cpp unity"> 或 <apiname keyref="AUDIO_PROFILE_IOT"/>(6)</ph>，否则该方法不生效。</li>
+            <li>请勿将 <apiname keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1)<ph props="cpp rn electron unity"> 或 <apiname keyref="AUDIO_PROFILE_IOT"/>(6)</ph>，否则该方法不生效。</li>
             <li>该方法对人声的处理效果最佳，Agora 不推荐调用该方法处理含音乐的音频数据。</li>
             <li>调用 <apiname keyref="setVoiceBeautifierParameters"/>，Agora 不推荐调用以下方法，否则 <apiname keyref="setVoiceBeautifierParameters"/> 设置的效果会被覆盖：
 
 
 
+                
                 <ul>
                 <li><xref keyref="setAudioEffectPreset"/></li>
                 <li><xref keyref="setAudioEffectParameters"/></li>
@@ -55,6 +60,7 @@
 
 
 
+                    
                     <ul>
                     <li><codeph>SINGING_BEAUTIFIER</codeph>: 歌唱美声。</li>
                     </ul> </pd>
@@ -65,6 +71,7 @@
 
 
 
+                    
                     <ul>
                     <li><codeph>1</codeph>: 男声。</li>
                     <li><codeph>2</codeph>: 女声。</li>
@@ -76,6 +83,7 @@
 
 
 
+                    
                     <ul>
                     <li><codeph>1</codeph>: 歌声在小房间的混响效果。</li>
                     <li><codeph>2</codeph>: 歌声在大房间的混响效果。</li>
@@ -83,7 +91,7 @@
                     </ul> </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功</li>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_switchsrc">
-    <title><ph keyref="switchSrc"/></title>
+    <title><ph keyref="switchSrc" /></title>
     <shortdesc id="short"><ph id="shortdesc">切换媒体资源。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="switchSrc"/>
+                <indexterm keyref="switchSrc" />
             </keywords>
         </metadata>
     </prolog>
@@ -19,9 +19,9 @@
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int switchSrc(const char* src, bool syncPts) = 0;
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public abstract int SwitchSrc(string src, bool syncPts = true);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">abstract switchSrc(src: string, syncPts?: boolean): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> switchSrc({required String src, bool syncPts = true});</codeblock> </p>
         </section>
         <section id="detailed_desc">
@@ -30,15 +30,15 @@
             <li>在网络较差时，将播放的媒体资源切换为较低码率的媒体资源地址。</li>
             <li>在网络较好时，将播放的媒体资源切换为较高码率的媒体资源地址。</li>
             </ul></p>
-            <p>调用该方法后，如果你收到 <xref keyref="onPlayerEvent"/> 回调报告事件 <apiname keyref="PLAYER_EVENT_SWITCH_COMPLETE"/>，则媒体资源切换成功；如果你收到 <xref keyref="onPlayerEvent"/> 回调报告事件 <apiname keyref="PLAYER_EVENT_SWITCH_ERROR"/>，则媒体资源切换失败。</p>
-            <p>如果用户需要自定义播放线路，你可以调用 <xref keyref="switchAgoraCDNSrc"/> 实现媒体资源切换。Agora 会通过自研调度中心支持调度线路，提升观看用户体验。如果用户不需要自定义播放线路，你可以调用 <xref keyref="switchSrc"/> 实现媒体资源切换。</p>
+            <p>调用该方法后，如果你收到 <xref keyref="onPlayerEvent" /> 回调报告事件 <apiname keyref="PLAYER_EVENT_SWITCH_COMPLETE" />，则媒体资源切换成功；如果你收到 <xref keyref="onPlayerEvent" /> 回调报告事件 <apiname keyref="PLAYER_EVENT_SWITCH_ERROR" />，则媒体资源切换失败。</p>
+            <p>如果用户需要自定义播放线路，你可以调用 <xref keyref="switchAgoraCDNSrc" /> 实现媒体资源切换。Agora 会通过自研调度中心支持调度线路，提升观看用户体验。如果用户不需要自定义播放线路，你可以调用 <xref keyref="switchSrc" /> 实现媒体资源切换。</p>
             <note type="attention">
             <ul>
-            <li>请确保在 <xref keyref="open"/> 之后调用该方法。</li>
+            <li>请确保在 <xref keyref="open" /> 之后调用该方法。</li>
             <li>为保证播放正常，请在调用该方法时注意如下：
                 <ul>
                 <li>不要在播放暂停时调用该方法。</li>
-                <li>不要在切换码率过程中调用 <xref keyref="seek"/>。</li>
+                <li>不要在切换码率过程中调用 <xref keyref="seek" />。</li>
                 <li>确保切换码率前的播放位置不大于待切换的媒体资源总时长。</li>
                 </ul></li>
             </ul> </note> </section>
@@ -46,12 +46,12 @@
             <title>参数</title>
             <parml>
             <plentry conkeyref="switchAgoraCDNSrc/src">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry conkeyref="switchAgoraCDNSrc/syncPts">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity">

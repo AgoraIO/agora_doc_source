@@ -21,7 +21,11 @@
     }</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserMuteAudio(RtcConnection connection, uint remoteUid, bool muted) { }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">onUserMuteAudio?(
+  connection: RtcConnection,
+  remoteUid: number,
+  muted: boolean
+): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, bool muted)?
       onUserMuteAudio;
 </codeblock> </p>
@@ -38,27 +42,26 @@
             <note type="attention">频道内的用户（通信场景）或主播（直播场景）人数超过 17 人时，该回调可能不准确。</note> </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
-            <plentry props="unity flutter" conkeyref="joinChannelEx/connection">
+                <plentry props="unity electron rn flutter" conkeyref="joinChannelEx/connection">
                     <pt/>
                     <pd/>
                 </plentry>
-            <plentry>
-                <pt props="native">uid</pt>
-                <pt props="unity flutter">remoteUid</pt>
-                <pd>用户 ID。</pd>
-            </plentry>
-            <plentry>
-                <pt>muted</pt>
-                <pd>该用户是否静音：
-  
-                    
-                    <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: 该用户已将音频静音。</li>
-                    <li><codeph><ph keyref="false"/></codeph>: 该用户取消了音频静音。</li>
-                    </ul> </pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt props="native">uid</pt>
+                    <pt props="unity electron rn flutter">remoteUid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry>
+                    <pt>muted</pt>
+                    <pd>该用户是否静音： 
+                        <ul>
+                        <li><codeph><ph keyref="true"/></codeph>: 该用户已将音频静音。</li>
+                        <li><codeph><ph keyref="false"/></codeph>: 该用户取消了音频静音。</li>
+                        </ul> </pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>
