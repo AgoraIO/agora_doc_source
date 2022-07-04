@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_addaudiorawdataobserver">
+    <title><ph keyref="addAudioRawDataObserver"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Registers a raw data observer for a position in the audio pipeline.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="addAudioRawDataObserver"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-kotlin">abstract fun addAudioRawDataObserver(
+        observer: FcrMediaRawDataObserver,
+        config: FcrAudioRawDataConfig? = FcrAudioRawDataConfig()
+)</codeblock>
+                <codeblock props="ios mac" outputclass="language-swift">FcrError addAudioRawDataObserver(FcrAudioRawDataObserver observer,
+                                 FcrAudioRawDataPosition position)</codeblock>
+                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="web" outputclass="language-typescript"/>
+            </p>
+        </section>
+        <section id="detailed_desc">You can call this method only before joining a channel. You can call this method multiple times to register multiple observers.</section>
+        <section id="parameters"><title>Parameter</title>
+            <parml>
+                <plentry>
+                    <pt>observer</pt>
+                    <pd>The observer. See <xref keyref="FcrAudioRawDataObserver"/>.</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>position</pt>
+                    <pd>The position in the audio pipeline. See <xref keyref="FcrAudioRawDataPosition"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>config</pt>
+                    <pd>The position in the audio pipeline. See <xref keyref="FcrAudioRawDataConfig"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>
