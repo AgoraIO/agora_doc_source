@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_startrendervideo2">
+    <title><ph keyref="startRenderVideo2"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Starts rendering the video stream.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startRenderVideo2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-kotlin"/>
+                <codeblock props="ios mac" outputclass="language-swift">AgoraEduContextError startRenderVideo(String roomUuid,
+                                      View view,
+                                      AgoraEduContextRenderConfig config,
+                                      String streamUuid)</codeblock>
+                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="web" outputclass="language-typescript"/>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <p>You can call this method only after joining a channel.</p>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+            <parml>
+                <plentry>
+                    <pt>roomUuid</pt>
+                    <pd>The room ID.</pd>
+                </plentry>
+                <plentry>
+                    <pt>config</pt>
+                    <pd>Video rendering configurations. See <xref keyref="AgoraEduContextRenderConfig"/>.</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>view</pt>
+                    <pd>The view for rendering.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>container</pt>
+                    <pd>The view for rendering.</pd>
+                </plentry>
+                <plentry>
+                    <pt>streamUuid</pt>
+                    <pd>The ID of the stream to be rendered.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="ios">
+            <title>Returns</title>
+            <p><ph conkeyref="getLocalDeviceState/fail-desc"/></p>
+        </section>
+    </refbody>
+</reference>
