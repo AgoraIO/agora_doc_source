@@ -21,7 +21,7 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">void registerEventHandler(RtcEngineEventHandler eventHandler);</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>该方法删除指定的回调句柄。对于某些注册的回调句柄，如果你在收到相应回调事件后无需再次接收回调消息，可以调用该方法移除回调句柄。</p>
@@ -30,7 +30,8 @@
             <title>参数</title>
             <parml>
             <plentry>
-                <pt>handler</pt>
+                <pt props="android">handler</pt>
+                <pt props="rn electron flutter">eventHandler</pt>
                 <pd>待删除的回调句柄。详见 <xref keyref="IRtcEngineEventHandler"/>。</pd>
             </plentry>
             </parml> </section>
