@@ -1,0 +1,696 @@
+@namespace oxy url('http://www.oxygenxml.com/extensions/author');
+@namespace dp url('https://www.dita-ot.org/project');
+/* Inline Hints */
+/*#FFFAD5*/
+/*#FFD34E*/
+/* placeholders */
+/* editors */
+* {
+  display: block;
+}
+/*  ----------------------------  */
+dp|project {
+  font-family: arial, helvetica, sans-serif;
+  display: block;
+  margin: 0.5em;
+}
+dp|project:before {
+  display: block;
+  text-align: left;
+  content: "DITA Project file";
+  color: #0000ff;
+  font-weight: bold;
+  font-size: larger;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|project:before {
+    color: #ffff00;
+  }
+}
+dp|*:not(dp|include) + dp|include,
+dp|include:first-of-type {
+  color: #800000;
+  padding-top: 1em;
+  padding-left: 1em;
+  position: relative;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|*:not(dp|include) + dp|include,
+  dp|include:first-of-type {
+    color: #7fffff;
+  }
+}
+dp|*:not(dp|include) + dp|include:before(100),
+dp|include:first-of-type:before(100) {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: oxy_label(text, oxy_concat("includes"), color, inherit) ": ";
+}
+dp|*:not(dp|include) + dp|include:before(90),
+dp|include:first-of-type:before(90) {
+  display: block;
+  position: absolute;
+  top: 1em;
+  left: 0;
+  content: oxy_label(text, " - ", color, inherit);
+}
+dp|*:not(dp|include) + dp|include[href]:before(5),
+dp|include:first-of-type[href]:before(5) {
+  content: '"' oxy_concat("", attr(href)) '"';
+  link: oxy_concat("", attr(href));
+  color: #000080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|*:not(dp|include) + dp|include[href]:before(5),
+  dp|include:first-of-type[href]:before(5) {
+    color: #ffff7f;
+  }
+}
+dp|*:not(dp|include) + dp|include[href]:before(5):hover,
+dp|include:first-of-type[href]:before(5):hover,
+dp|*:not(dp|include) + dp|include[href]:before(5):focus,
+dp|include:first-of-type[href]:before(5):focus {
+  text-decoration: underline;
+  link: oxy_concat("", attr(href));
+}
+dp|*:not(dp|include) + dp|include[href]:before(5),
+dp|include:first-of-type[href]:before(5) {
+  display: block;
+}
+dp|include + dp|include {
+  padding-left: 1em;
+  position: relative;
+  color: #800000;
+  display: block;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|include + dp|include {
+    color: #7fffff;
+  }
+}
+dp|include + dp|include:before(90) {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: oxy_label(text, " - ", color, inherit);
+}
+dp|include + dp|include[href]:before(5) {
+  content: '"' oxy_concat("", attr(href)) '"';
+  link: oxy_concat("", attr(href));
+  color: #000080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|include + dp|include[href]:before(5) {
+    color: #ffff7f;
+  }
+}
+dp|include + dp|include[href]:before(5):hover,
+dp|include + dp|include[href]:before(5):focus {
+  text-decoration: underline;
+  link: oxy_concat("", attr(href));
+}
+dp|include + dp|include[href]:before(5) {
+  display: block;
+}
+dp|project > dp|*:not(dp|context) + dp|context,
+dp|project > dp|context:first-of-type {
+  color: #008000;
+  padding-top: 1em;
+  padding-left: 1em;
+  position: relative;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|project > dp|*:not(dp|context) + dp|context,
+  dp|project > dp|context:first-of-type {
+    color: #ff7fff;
+  }
+}
+dp|project > dp|*:not(dp|context) + dp|context:before(100),
+dp|project > dp|context:first-of-type:before(100) {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: oxy_label(text, oxy_concat("contexts"), color, inherit) ": ";
+}
+dp|project > dp|*:not(dp|context) + dp|context:before(90),
+dp|project > dp|context:first-of-type:before(90) {
+  display: block;
+  position: absolute;
+  top: 1em;
+  left: 0;
+  content: oxy_label(text, " - ", color, inherit);
+}
+dp|project > dp|*:not(dp|context) + dp|context[name]:before(10),
+dp|project > dp|context:first-of-type[name]:before(10) {
+  display: block;
+  color: #000000;
+  content: "name: " '"' attr(name) '"';
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|project > dp|*:not(dp|context) + dp|context[name]:before(10),
+  dp|project > dp|context:first-of-type[name]:before(10) {
+    color: #ffffff;
+  }
+}
+dp|project > dp|*:not(dp|context) + dp|context[id]:before(5),
+dp|project > dp|context:first-of-type[id]:before(5) {
+  display: block;
+  content: "" "id: " '"' attr(id) '"';
+  color: #808080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|project > dp|*:not(dp|context) + dp|context[id]:before(5),
+  dp|project > dp|context:first-of-type[id]:before(5) {
+    color: #7f7f7f;
+  }
+}
+dp|project > dp|context + dp|context {
+  padding-left: 1em;
+  position: relative;
+  color: #008000;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|project > dp|context + dp|context {
+    color: #ff7fff;
+  }
+}
+dp|project > dp|context + dp|context:before(90) {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: oxy_label(text, " - ", color, inherit);
+}
+dp|project > dp|context + dp|context[name]:before(10) {
+  display: block;
+  color: #000000;
+  content: "name: " '"' attr(name) '"';
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|project > dp|context + dp|context[name]:before(10) {
+    color: #ffffff;
+  }
+}
+dp|project > dp|context + dp|context[id]:before(5) {
+  display: block;
+  content: "" "id: " '"' attr(id) '"';
+  color: #808080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|project > dp|context + dp|context[id]:before(5) {
+    color: #7f7f7f;
+  }
+}
+dp|context[idref] {
+  color: #008000;
+  padding-left: 0;
+  position: relative;
+  -oxy-display-tags: none;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|context[idref] {
+    color: #ff7fff;
+  }
+}
+dp|context[idref]:before(100) {
+  content: oxy_label(text, oxy_concat(oxy_local-name()), color, inherit) ": ";
+}
+dp|context[idref][idref][idref]:before(5) {
+  content: '"' oxy_concat("#", attr(idref)) '"';
+  link: oxy_concat("#", attr(idref));
+  color: #000080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|context[idref][idref][idref]:before(5) {
+    color: #ffff7f;
+  }
+}
+dp|context[idref][idref][idref]:before(5):hover,
+dp|context[idref][idref][idref]:before(5):focus {
+  text-decoration: underline;
+  link: oxy_concat("#", attr(idref));
+}
+dp|project > dp|*:not(dp|deliverable) + dp|deliverable,
+dp|project > dp|deliverable:first-of-type {
+  color: #0000ff;
+  padding-top: 1em;
+  padding-left: 1em;
+  position: relative;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|project > dp|*:not(dp|deliverable) + dp|deliverable,
+  dp|project > dp|deliverable:first-of-type {
+    color: #ffff00;
+  }
+}
+dp|project > dp|*:not(dp|deliverable) + dp|deliverable:before(100),
+dp|project > dp|deliverable:first-of-type:before(100) {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: oxy_label(text, oxy_concat("deliverables"), color, inherit) ": ";
+}
+dp|project > dp|*:not(dp|deliverable) + dp|deliverable:before(90),
+dp|project > dp|deliverable:first-of-type:before(90) {
+  display: block;
+  position: absolute;
+  top: 1em;
+  left: 0;
+  content: oxy_label(text, " - ", color, inherit);
+}
+dp|project > dp|*:not(dp|deliverable) + dp|deliverable[name]:before(10),
+dp|project > dp|deliverable:first-of-type[name]:before(10) {
+  display: block;
+  color: #000000;
+  content: "name: " '"' attr(name) '"';
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|project > dp|*:not(dp|deliverable) + dp|deliverable[name]:before(10),
+  dp|project > dp|deliverable:first-of-type[name]:before(10) {
+    color: #ffffff;
+  }
+}
+dp|project > dp|*:not(dp|deliverable) + dp|deliverable[id]:before(5),
+dp|project > dp|deliverable:first-of-type[id]:before(5) {
+  display: block;
+  content: "" "id: " '"' attr(id) '"';
+  color: #808080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|project > dp|*:not(dp|deliverable) + dp|deliverable[id]:before(5),
+  dp|project > dp|deliverable:first-of-type[id]:before(5) {
+    color: #7f7f7f;
+  }
+}
+dp|project > dp|deliverable + dp|deliverable {
+  color: #0000ff;
+  padding-left: 1em;
+  position: relative;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|project > dp|deliverable + dp|deliverable {
+    color: #ffff00;
+  }
+}
+dp|project > dp|deliverable + dp|deliverable:before(90) {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: oxy_label(text, " - ", color, inherit);
+}
+dp|project > dp|deliverable + dp|deliverable[name]:before(10) {
+  display: block;
+  color: #000000;
+  content: "name: " '"' attr(name) '"';
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|project > dp|deliverable + dp|deliverable[name]:before(10) {
+    color: #ffffff;
+  }
+}
+dp|project > dp|deliverable + dp|deliverable[id]:before(5) {
+  display: block;
+  content: "" "id: " '"' attr(id) '"';
+  color: #808080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|project > dp|deliverable + dp|deliverable[id]:before(5) {
+    color: #7f7f7f;
+  }
+}
+dp|project > dp|*:not(dp|publication) + dp|publication,
+dp|project > dp|publication:first-of-type {
+  color: #800080;
+  display: block;
+  padding-top: 1em;
+  padding-left: 1em;
+  position: relative;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|project > dp|*:not(dp|publication) + dp|publication,
+  dp|project > dp|publication:first-of-type {
+    color: #7fff7f;
+  }
+}
+dp|project > dp|*:not(dp|publication) + dp|publication:before(100),
+dp|project > dp|publication:first-of-type:before(100) {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: oxy_label(text, oxy_concat("publications"), color, inherit) ": ";
+}
+dp|project > dp|*:not(dp|publication) + dp|publication:before(90),
+dp|project > dp|publication:first-of-type:before(90) {
+  display: block;
+  position: absolute;
+  top: 1em;
+  left: 0;
+  content: oxy_label(text, " - ", color, inherit);
+}
+dp|project > dp|*:not(dp|publication) + dp|publication[name]:before(10),
+dp|project > dp|publication:first-of-type[name]:before(10) {
+  display: block;
+  color: #000000;
+  content: "name: " '"' attr(name) '"';
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|project > dp|*:not(dp|publication) + dp|publication[name]:before(10),
+  dp|project > dp|publication:first-of-type[name]:before(10) {
+    color: #ffffff;
+  }
+}
+dp|project > dp|*:not(dp|publication) + dp|publication[id]:before(5),
+dp|project > dp|publication:first-of-type[id]:before(5) {
+  display: block;
+  content: "" "id: " '"' attr(id) '"';
+  color: #808080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|project > dp|*:not(dp|publication) + dp|publication[id]:before(5),
+  dp|project > dp|publication:first-of-type[id]:before(5) {
+    color: #7f7f7f;
+  }
+}
+dp|project > dp|*:not(dp|publication) + dp|publication[transtype]:before(2),
+dp|project > dp|publication:first-of-type[transtype]:before(2) {
+  display: block;
+  content: "transtype: " '"' attr(transtype) '"';
+}
+dp|project > dp|publication + dp|publication {
+  color: #800080;
+  display: block;
+  padding-left: 1em;
+  position: relative;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|project > dp|publication + dp|publication {
+    color: #7fff7f;
+  }
+}
+dp|project > dp|publication + dp|publication:before(90) {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: oxy_label(text, " - ", color, inherit);
+}
+dp|project > dp|publication + dp|publication[name]:before(10) {
+  display: block;
+  color: #000000;
+  content: "name: " '"' attr(name) '"';
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|project > dp|publication + dp|publication[name]:before(10) {
+    color: #ffffff;
+  }
+}
+dp|project > dp|publication + dp|publication[id]:before(5) {
+  display: block;
+  content: "" "id: " '"' attr(id) '"';
+  color: #808080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|project > dp|publication + dp|publication[id]:before(5) {
+    color: #7f7f7f;
+  }
+}
+dp|project > dp|publication + dp|publication[transtype]:before(2) {
+  display: block;
+  content: "transtype: " '"' attr(transtype) '"';
+}
+dp|deliverable > dp|publication:not([idref]) {
+  color: #800080;
+  display: block;
+  padding-top: 1em;
+  padding-left: 1em;
+  position: relative;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|deliverable > dp|publication:not([idref]) {
+    color: #7fff7f;
+  }
+}
+dp|deliverable > dp|publication:not([idref]):before(100) {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: oxy_label(text, oxy_concat("publication"), color, inherit) ": ";
+}
+dp|deliverable > dp|publication:not([idref])[name]:before(10) {
+  display: block;
+  color: #000000;
+  content: "name: " '"' attr(name) '"';
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|deliverable > dp|publication:not([idref])[name]:before(10) {
+    color: #ffffff;
+  }
+}
+dp|deliverable > dp|publication:not([idref])[id]:before(5) {
+  display: block;
+  content: "" "id: " '"' attr(id) '"';
+  color: #808080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|deliverable > dp|publication:not([idref])[id]:before(5) {
+    color: #7f7f7f;
+  }
+}
+dp|deliverable > dp|publication:not([idref])[transtype]:before(2) {
+  display: block;
+  content: "transtype: " '"' attr(transtype) '"';
+}
+dp|publication[idref] {
+  color: #800080;
+  padding-left: 0;
+  position: relative;
+  -oxy-display-tags: none;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|publication[idref] {
+    color: #7fff7f;
+  }
+}
+dp|publication[idref]:before(100) {
+  content: oxy_label(text, oxy_concat(oxy_local-name()), color, inherit) ": ";
+}
+dp|publication[idref][idref][idref]:before(5) {
+  content: '"' oxy_concat("#", attr(idref)) '"';
+  link: oxy_concat("#", attr(idref));
+  color: #000080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|publication[idref][idref][idref]:before(5) {
+    color: #ffff7f;
+  }
+}
+dp|publication[idref][idref][idref]:before(5):hover,
+dp|publication[idref][idref][idref]:before(5):focus {
+  text-decoration: underline;
+  link: oxy_concat("#", attr(idref));
+}
+dp|input {
+  padding-left: 0;
+  position: relative;
+  -oxy-display-tags: none;
+}
+dp|input:before(100) {
+  content: oxy_label(text, oxy_concat(oxy_local-name()), color, inherit) ": ";
+}
+dp|input[href]:before(5) {
+  content: '"' oxy_concat("", attr(href)) '"';
+  link: oxy_concat("", attr(href));
+  color: #000080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|input[href]:before(5) {
+    color: #ffff7f;
+  }
+}
+dp|input[href]:before(5):hover,
+dp|input[href]:before(5):focus {
+  text-decoration: underline;
+  link: oxy_concat("", attr(href));
+}
+dp|profile {
+  padding-top: 1em;
+  padding-left: 1em;
+  position: relative;
+}
+dp|profile:before(100) {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: oxy_label(text, oxy_concat("profiles"), color, inherit) ": ";
+}
+dp|ditaval:first-of-type {
+  padding-top: 1em;
+  padding-left: 1em;
+  position: relative;
+}
+dp|ditaval:first-of-type:before(100) {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: oxy_label(text, oxy_concat("ditavals"), color, inherit) ": ";
+}
+dp|ditaval:first-of-type:before(90) {
+  display: block;
+  position: absolute;
+  top: 1em;
+  left: 0;
+  content: oxy_label(text, " - ", color, inherit);
+}
+dp|ditaval:first-of-type[href]:before(5) {
+  content: '"' oxy_concat("", attr(href)) '"';
+  link: oxy_concat("", attr(href));
+  color: #000080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|ditaval:first-of-type[href]:before(5) {
+    color: #ffff7f;
+  }
+}
+dp|ditaval:first-of-type[href]:before(5):hover,
+dp|ditaval:first-of-type[href]:before(5):focus {
+  text-decoration: underline;
+  link: oxy_concat("", attr(href));
+}
+dp|ditaval:first-of-type[href]:before(5) {
+  display: block;
+}
+dp|ditaval + dp|ditaval {
+  padding-left: 1em;
+  position: relative;
+}
+dp|ditaval + dp|ditaval:before(90) {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: oxy_label(text, " - ", color, inherit);
+}
+dp|ditaval + dp|ditaval[href]:before(5) {
+  content: '"' oxy_concat("", attr(href)) '"';
+  link: oxy_concat("", attr(href));
+  color: #000080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|ditaval + dp|ditaval[href]:before(5) {
+    color: #ffff7f;
+  }
+}
+dp|ditaval + dp|ditaval[href]:before(5):hover,
+dp|ditaval + dp|ditaval[href]:before(5):focus {
+  text-decoration: underline;
+  link: oxy_concat("", attr(href));
+}
+dp|ditaval + dp|ditaval[href]:before(5) {
+  display: block;
+}
+dp|output {
+  display: block;
+  padding-left: 0;
+  position: relative;
+  -oxy-display-tags: none;
+}
+dp|output:before(100) {
+  content: oxy_label(text, oxy_concat(oxy_local-name()), color, inherit) ": ";
+}
+dp|output[href]:before(5) {
+  content: '"' oxy_concat("", attr(href)) '"';
+  link: oxy_concat("", attr(href));
+  color: #000080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|output[href]:before(5) {
+    color: #ffff7f;
+  }
+}
+dp|output[href]:before(5):hover,
+dp|output[href]:before(5):focus {
+  text-decoration: underline;
+  link: oxy_concat("", attr(href));
+}
+dp|param:first-of-type {
+  display: block;
+  padding-top: 1em;
+  padding-left: 1em;
+  position: relative;
+}
+dp|param:first-of-type:before(100) {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: oxy_label(text, oxy_concat("params"), color, inherit) ": ";
+}
+dp|param:first-of-type:before(90) {
+  display: block;
+  position: absolute;
+  top: 1em;
+  left: 0;
+  content: oxy_label(text, " - ", color, inherit);
+}
+dp|param:first-of-type[name]:before(10) {
+  display: block;
+  color: #000000;
+  content: "name: " '"' attr(name) '"';
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|param:first-of-type[name]:before(10) {
+    color: #ffffff;
+  }
+}
+dp|param:first-of-type[href]:before(5) {
+  display: block;
+  content: "href: " '"' attr(href) '"';
+}
+dp|param:first-of-type[path]:before(4) {
+  content: "path: " '"' attr(path) '"';
+}
+dp|param:first-of-type[value]:before(3) {
+  content: "value: " '"' attr(value) '"';
+}
+dp|param + dp|param {
+  display: block;
+  padding-left: 1em;
+  position: relative;
+}
+dp|param + dp|param:before(90) {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: oxy_label(text, " - ", color, inherit);
+}
+dp|param + dp|param[name]:before(10) {
+  display: block;
+  color: #000000;
+  content: "name: " '"' attr(name) '"';
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|param + dp|param[name]:before(10) {
+    color: #ffffff;
+  }
+}
+dp|param + dp|param[href]:before(5) {
+  display: block;
+  content: "href: " '"' attr(href) '"';
+}
+dp|param + dp|param[path]:before(4) {
+  content: "path: " '"' attr(path) '"';
+}
+dp|param + dp|param[value]:before(3) {
+  content: "value: " '"' attr(value) '"';
+}

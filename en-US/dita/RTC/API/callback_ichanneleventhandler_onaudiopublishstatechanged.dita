@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_ichanneleventhandler_onaudiopublishstatechanged">
-    <title><ph keyref="IChannel_onAudioPublishStateChanged" /></title>
-    <shortdesc conkeyref="onAudioPublishStateChanged/short" />
+    <title><ph keyref="IChannel_onAudioPublishStateChanged"/></title>
+    <shortdesc conkeyref="onAudioPublishStateChanged/short"/>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="IChannel_onAudioPublishStateChanged" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="IChannel_onAudioPublishStateChanged"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="windows" outputclass="language-cpp">virtual void onAudioPublishStateChanged(IChannel *rtcChannel,
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioPublishStateChanged(IChannel *rtcChannel,
      STREAM_PUBLISH_STATE oldState,
      STREAM_PUBLISH_STATE newState,
      int elapseSinceLastState) {
@@ -23,7 +24,7 @@
      (void)newState;
      (void)elapseSinceLastState;
      }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(
+            <codeblock props="electron" outputclass="language-typescript">on(
   evt: ChannelEvents.AUDIO_PUBLISH_STATE_CHANGED,
   cb: (
     channelId: string,
@@ -32,36 +33,39 @@
     elapseSinceLastState: number
   ) =&gt; void
 ): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioPublishStateChanged(string channelId, STREAM_PUBLISH_STATE oldState,
+            <codeblock props="cs" outputclass="language-csharp">public virtual void OnAudioPublishStateChanged(string channelId, STREAM_PUBLISH_STATE oldState,
             STREAM_PUBLISH_STATE newState, int elapseSinceLastState)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">StreamPublishStateCallback? audioPublishStateChanged;</codeblock>
-        </p>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">StreamPublishStateCallback? audioPublishStateChanged;</codeblock>
+            </p>
         </section>
         <section conkeyref="onAudioPublishStateChanged/detailed_desc"> </section>
-        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-   <parml>
-       <plentry conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
-  <pt />
-  <pd />
-       </plentry>
-       <plentry props="flutter">
-           <pt>channel</pt>
-           <pd>The channel name.</pd>
-       </plentry>
-       <plentry conkeyref="onAudioPublishStateChanged/oldState">
-  <pt />
-  <pd />
-       </plentry>
-       <plentry conkeyref="onAudioPublishStateChanged/newState">
-  <pt />
-  <pd />
-       </plentry>
-       <plentry conkeyref="onAudioPublishStateChanged/elapseSinceLastState">
-  <pt />
-  <pd />
-       </plentry>
-   </parml>
-        </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"
+            />
+            <parml>
+            <plentry props="native cs"
+                conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry props="flutter">
+                <pt>channel</pt>
+                <pd>The channel name.</pd>
+            </plentry>
+            <plentry conkeyref="onAudioPublishStateChanged/oldState">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="onAudioPublishStateChanged/newState">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="onAudioPublishStateChanged/elapseSinceLastState">
+                <pt/>
+                <pd/>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

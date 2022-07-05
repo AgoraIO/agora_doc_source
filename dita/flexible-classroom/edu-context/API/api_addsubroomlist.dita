@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_addsubroomlist">
+    <title><ph keyref="addSubRoomList"/></title>
+    <shortdesc id="short"><ph id="shortdesc">创建子房间，</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="addSubRoomList"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-kotlin">abstract fun addSubRoomList(
+        appId: String,
+        roomUuid: String,
+        groupWithInProgress: GroupWithInProgress,
+        callback: HttpCallback&lt;HttpBaseRes&lt;String>>?
+)</codeblock>
+                <codeblock props="ios mac" outputclass="language-swift">void addSubRoomList(Array&lt;AgoraEduContextSubRoomCreateConfig> configList,
+                    Callback&lt;Void> success,
+                    Callback&lt;AgoraEduContextError> failure)</codeblock>
+                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="web" outputclass="language-typescript"/>
+            </p>
+        </section>
+        <section id="parameters"><title>参数</title>
+            <parml>
+                <plentry props="ios">
+                    <pt>configs</pt>
+                    <pd>创建子房间配置数组，详见 <xref keyref="AgoraEduContextSubRoomCreateConfig"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>success</pt>
+                    <pd>调用成功。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>fail</pt>
+                    <pd><ph conkeyref="getLocalDeviceState/fail-desc"/></pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

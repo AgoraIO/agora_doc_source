@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refactoringOperationDescriptor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.oxygenxml.com/ns/xmlRefactoring" id="change-profiling-attribute-value"
+  name="${i18n(xr_change_profiling_attribute_value_operation_name)}">
+  <description>${i18n(xr_change_profiling_attribute_value_operation_description)}</description>
+  <script type="XSLT" href="changeProfilingAttributeValue.xsl"/>
+  <category>DITA Map</category>
+  <parameters>
+    <description>${i18n(xr_change_profiling_attribute_value_operation_params_description)}</description>
+    <parameter label="${i18n(xr_profiling_attribute_name)}" name="attribute_name" type="TEXT" optional="false">
+      <description>${i18n(xr_profiling_attribute_description)}</description>
+      <possibleValues>
+        <value name="audience">audience</value>
+        <value name="platform">platform</value>
+        <value name="product">product</value>
+        <value name="props">props</value>
+        <value name="otherprops">otherprops</value>
+        <value name="rev">rev</value>
+      </possibleValues>
+    </parameter>
+    <parameter label="${i18n(xr_current_value)}" name="current_value" type="TEXT" optional="false">
+      <description>${i18n(xr_current_value_description)}</description>
+    </parameter>
+    <parameter label="${i18n(xr_new_value)}" name="new_value" type="TEXT" optional="true">
+      <description>${i18n(xr_new_value_description)}</description>
+    </parameter>
+  </parameters>
+</refactoringOperationDescriptor>

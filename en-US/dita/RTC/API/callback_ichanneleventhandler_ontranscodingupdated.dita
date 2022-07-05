@@ -1,43 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_ichanneleventhandler_ontranscodingupdated">
-    <title><ph keyref="IChannel_onTranscodingUpdated" /></title>
-    <shortdesc conkeyref="onTranscodingUpdated/short" />
+    <title><ph keyref="IChannel_onTranscodingUpdated"/></title>
+    <shortdesc conkeyref="onTranscodingUpdated/short"/>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="IChannel_onTranscodingUpdated" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="IChannel_onTranscodingUpdated"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="windows" outputclass="language-cpp">virtual void onTranscodingUpdated(IChannel *rtcChannel) {
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onTranscodingUpdated(IChannel *rtcChannel) {
     (void)rtcChannel;
     }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(
+            <codeblock props="electron" outputclass="language-typescript">on(
   evt: ChannelEvents.TRANSCODING_UPDATED,
   cb: (channelId: string) =&gt; void
 ): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnTranscodingUpdated(string channelId)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">EmptyCallback? transcodingUpdated;</codeblock>
-        </p>
+            <codeblock props="cs" outputclass="language-csharp">public virtual void OnTranscodingUpdated(string channelId)</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">EmptyCallback? transcodingUpdated;</codeblock> </p>
         </section>
         <section id="detailed_desc">
-
-   <p>When the <xref keyref="LiveTranscoding" /> class in the <xref keyref="IChannel_setLiveTranscoding" /> method updates, the SDK triggers the <apiname keyref="onTranscodingUpdated" /> callback to report the update information.</p>
-   <note type="attention" conkeyref="onTranscodingUpdated/note" />
-        </section>
-        <section props="android ios mac windows electron unity" id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-   <parml>
-       <plentry conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
-  <pt />
-  <pd />
-       </plentry>
-   </parml>
-        </section>
+            <p>When the <xref keyref="LiveTranscoding"/> class in the <xref keyref="IChannel_setLiveTranscoding"/> method updates, the SDK triggers the <apiname keyref="onTranscodingUpdated"/> callback to report the update information.</p>
+            <note type="attention" conkeyref="onTranscodingUpdated/note"/> </section>
+        <section props="android ios mac cpp electron cs" id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <parml>
+            <plentry props="native cs" conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
+                <pt/>
+                <pd/>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

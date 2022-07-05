@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_rtcsurfaceview">
+    <title><ph keyref="RtcSurfaceView" /></title>
+    <shortdesc id="short"><ph id="shortdesc">The RtcSurfaceView class, which is used for rendering the local and remote video.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="cpp" outputclass="language-cpp" />
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">class RtcSurfaceView extends StatefulWidget {
+
+  final int uid;
+  final String? channelId;
+  final VideoRenderMode renderMode;
+  final VideoMirrorMode mirrorMode;
+  final bool zOrderOnTop;
+  final bool zOrderMediaOverlay;
+
+  final PlatformViewCreatedCallback? onPlatformViewCreated;
+  final Set&lt;Factory&lt;OneSequenceGestureRecognizer&gt;&gt;? gestureRecognizers;
+
+  final bool subProcess;
+
+  RtcSurfaceView({
+    Key? key,
+    required this.uid,
+    this.channelId,
+    this.renderMode = VideoRenderMode.Hidden,
+    this.mirrorMode = VideoMirrorMode.Auto,
+    this.zOrderOnTop = false,
+    this.zOrderMediaOverlay = false,
+    this.onPlatformViewCreated,
+    this.gestureRecognizers,
+    this.subProcess = false,
+  }) : super(key: key);
+
+  @override
+  State&lt;StatefulWidget&gt; createState() {
+    return _RtcSurfaceViewState();
+  }
+}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <p>This class corresponds to different classes on different platforms:
+                <ul>
+                    <li>Android: <xref href="https://developer.android.com/reference/android/view/SurfaceView" format="html" scope="external">SurfaceView</xref>.</li>
+                    <li>iOS: <xref href="https://developer.apple.com/documentation/uikit/uiview" format="html" scope="external">UIView</xref>.</li>
+                    <li>Web: <xref href="https://api.dart.dev/stable/2.15.0/dart-html/DivElement-class.html" format="html" scope="external">DivElement</xref>.</li>
+                    <li>Does not apply to macOS or Windows.</li>
+                </ul></p>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <parml>
+                <plentry id="uid">
+                    <pt>uid</pt>
+                    <pd>The user ID.</pd>
+                </plentry>
+                <plentry id="channelId">
+                    <pt>channelId</pt>
+                    <pd><p conkeyref="joinChannel2/channelID_desc" /></pd>
+                </plentry>
+                <plentry id="renderMode">
+                    <pt>renderMode</pt>
+                    <pd>The video render mode. For details, see <xref keyref="RENDER_MODE_TYPE" />.</pd>
+                </plentry>
+                <plentry id="mirrorMode">
+                    <pt>mirrorMode</pt>
+                    <pd>The video mirror mode. For details, see <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</pd>
+                </plentry>
+                <plentry>
+                    <pt>zOrderOnTop</pt>
+                    <pd>Whether to place the surface on top of another surface view in the window, but still behind the window itsellf.
+                        <note type="note">This parameter is for Android only.</note></pd>
+                </plentry>
+                <plentry id="onPlatformViewCreated">
+                    <pt>onPlatformViewCreated</pt>
+                    <pd>Occurs when a platform view is created.</pd>
+                </plentry>
+                <plentry id="gestureRecognizers">
+                    <pt>gestureRecognizers</pt>
+                    <pd><p>The gesture object that should be consumed by the Web view. It is possible for other gesture recognizers to be competing
+                        with the web view on pointer events, e.g if the web view is inside a [ListView] the [ListView] will want to handle vertical
+                        drags. The web view will claim gestures that are recognized by any of the recognizers on this list.</p>
+                        <p>When this set is empty or null, the web view will only handle pointer events for gestures that were not claimed by any 
+                            other gesture recognizer.</p></pd>
+                </plentry>
+                <plentry id="subProcess">
+                    <pt>subProcess</pt>
+                    <pd>Whether to create a sub process.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

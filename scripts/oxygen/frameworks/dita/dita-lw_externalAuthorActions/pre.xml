@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<a:authorAction xmlns:a="http://www.oxygenxml.com/ns/author/external-action"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.oxygenxml.com/ns/author/external-action http://www.oxygenxml.com/ns/author/external-action/authorAction.xsd"
+  id="pre">
+  <a:name>${i18n(pre)}</a:name>
+  <a:description>${i18n(pre_description)}</a:description>
+  <a:operations>
+    <a:operation id="InsertFragmentOperation">
+      <a:xpathCondition>ancestor-or-self::pre</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><pre/></a:argument>
+        <a:argument name="insertLocation">ancestor-or-self::pre[1]</a:argument>
+        <a:argument name="insertPosition">After</a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="InsertFragmentOperation">
+      <a:xpathCondition>parent::body</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><pre/></a:argument>
+        <a:argument name="insertLocation">.</a:argument>
+        <a:argument name="insertPosition">After</a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="SurroundWithFragmentOperation">
+      <a:arguments>
+        <a:argument name="fragment"><pre/></a:argument>
+      </a:arguments>
+    </a:operation>
+  </a:operations>
+  <a:accessKey>P</a:accessKey>
+  <a:enabledInReadOnlyContext>false</a:enabledInReadOnlyContext>
+</a:authorAction>

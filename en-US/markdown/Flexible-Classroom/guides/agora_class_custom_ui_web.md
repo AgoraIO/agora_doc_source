@@ -1,541 +1,862 @@
-## Overview
+## Introduction to UI components
 
-Agora provides the complete Agora Classroom SDK on [npm](https://www.npmjs.com/package/agora-classroom-sdk). However, if you want to customize the user interfaces of classrooms, Agora provides the source code of the Agora Classroom SDK for you to further develop, debug, and compile. The source code of the Agora Classroom SDK for Desktop is in the [CloudClass-Desktop](https://github.com/AgoraIO-Community/CloudClass-Desktop/tree/master) repository on GitHub (branch release/apaas/1.1.0). The Agora Classroom SDK separates the code of the user interfaces from the code of core business logic and provides two libraries, UIKit and EduCore. These two libraries connect with each other through [Agora Edu Context](https://docs.agora.io/cn/agora-class/edu_context_api_ref_web_overview?platform=Web). For example, for the chat module in the  Flexible Classroom, a user needs to click on a button to send a message, and they also receive messages sent by other users. In this case, in UIKit, we can call a method in the Chat Context to send a message and listen for the events in the Chat Context to receive messages.
+The UI components in Flexible Classroom can be divided into three types: function components, business components, and scenario components.
 
-![](https://web-cdn.agora.io/docs-files/1619696813295)
+### Function components
 
-UIKit provides all the code for the user interfaces in Flexible Classroom and uses the open-source tool [Storybook](https://storybook.js.org/docs/react/get-started/introduction) to develop and manage all UI components. You can find the source code of the UIKit in the `packages/agora-classroom-sdk/src/ui-kit` folder in the CloudClass-Desktop repository on GitHub (Branch release/apaas/1.1.0). The project structure of UIKit is as follows:
+Function components are the most basic UI components in Flexible Classroom and are not bound to any business logic. A function component maintains the internal state and logic of a function, such as `Button`, `Modal`, `Select`, or `Tree`.
 
-| Folder | Description |
-| :------------- | :----------------------------------------------------------- |
-| `components` | The source code of the basic UI components used by Flexible Classroom. A UI component generally contains the following files:<li>`.css`: Define the style of the component.</li><li>`.stories.tsx`: Define the display of components in Storybook.</li><li>`.tsx`: Define the detailed design of the component.</li> |
-| `capabilities` | <li>`containers`: The source code of function-level UI components used by Flexible Classroom.</li><li>`scenarios`: The source code of the classroom-level UI components used by Flexible Classroom.</li> |
-| `scaffold` | Scaffolds and show how the basic UI components are combined in a classroom. |
-| `styles` | Define the global style. |
-| `utilities` | For functions such as internationalization, and custom hooks. |
+You can find all the function components in the `agora-scenario-ui-kit` folder, and the technology used is `react`, `ts`, and `storybook`. A folder for a function component usually contains the following files:
 
-## Implementation
+- `.tsx`: Implements the functionality of the component.
+- `.css`: Implements the style of the component.
+- `.stories.tsx`: Enables previewing and debugging the component in Storybook. Developers can run the project through the `yarn dev:ui-kit` or `npm run dev:ui-kit` command and preview the function components in Storybook.
 
-### Set up development environment
+The following table lists the function components used in Flexible Classroom:
 
-- Install [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+| Folder          | Function components                                          |
+| :-------------- | :----------------------------------------------------------- |
+| `/affix`        | The affix component is commonly used for pinning page elements to the visible range. |
+| `/biz-header`   | The component for the navigation bar at the top of the classroom. |
+| `/button`       | The button component.                                        |
+| `/calendar`     | The calendar component.                                      |
+| `/card`         | The card component.                                          |
+| `/chat-new`     | The chat component.                                          |
+| `/checkbox`     | The checkbox component.                                      |
+| `/countdown`    | The countdown component.                                     |
+| `/date-picker`  | The date picker component.                                   |
+| `/home-about`   | The component for the about page.                            |
+| `/icon`         | The `iconfont` component.                                    |
+| `/input`        | The input box.                                               |
+| `/layout`       | The layout component helps with the overall layout of a web page. |
+| `/loading`      | The loading component provides the state of joining a classroom or uploading a file. |
+| `/modal`        | The modal dialog box is used for user interaction that does not interrupt the current operation. |
+| `/pagination`   | The pagination component is used for displaying long lists. It loads only one page of the data. |
+| `/placeholder`  | The placeholder for videos or files.                         |
+| `/popover`      | The pop-up box is used to display more content when the mouse clicks or moves in. |
+| `/progress`     | The progress bar displays the current progress of an operation flow. |
+| `/radio`        | The radio buttons allow users to select one option from a set. |
+| `/root-box`     | The root container wraps page elements.                      |
+| `/roster`       | The roster is used to display the student list and allows teachers to invite students to address the class, send rewards to students, or kick students out of the classroom. |
+| `/select`       | The drop-down menu.                                          |
+| `/slider`       | The slider component displays the current value and value range. |
+| `/sound-player` | The component for playing audio files.                       |
+| `/svg-img`      | SVG images.                                                  |
+| `/table`        | The table displays rows of data.                             |
+| `/tabs`         | The component for switching tabs.                            |
+| `/toast`        | The component for global prompts.                            |
+| `/toolbar`      | The toolbar displays the teaching tools of teachers and students. |
+| `/tooltip`      | The pop-up box for simple text tips.                         |
+| `/tree`         | The tree component is used to show tree-structured data.     |
+| `/video-player` | The component for playing video files.                       |
+| `/volume`       | The component for displaying the volume.                     |
 
-   ```shell
-   # Install Node.js and npm globally
-   npm install -g npm
-   ```
-# Check Node.js version
-node -v
-# Check npm version
-npm -v
-   ```
+### Business components
 
-- Install yarn
+Business components are the UI components bound to business logic in Flexible Classroom. Most of the business components are composed of multiple function components. Depending on the observable objects and functions from the UI Store, the UI of business components can be automatically changed as the data updates. Taking the hand-raising feature as an example, this business component provides a button for users to raise their hands and ask for permission to speak, and then displays the list of users who have raised their hands.
 
-   ```shell
-   # Install yarn
-npm install yarn -g
-# Check yarn version
-yarn -v
-   ```
+![](https://web-cdn.agora.io/docs-files/1652870415192)
 
-### Procedure
+You can find the business components in `packages/agora-classroom-sdk/src/ui-kit/capabilities/containers`.
 
-Modify the UI of Flexible Classroom, as follows:
+The following table lists the business components used in Flexible Classroom:
 
-1. Navigate to the root directory of the CloudClass-Desktop project, check out the release/apaas/1.1.0 branch, and then run the following command to install the dependencies.
+| Folder                     | Business components                                          |
+| :------------------------- | :----------------------------------------------------------- |
+| `/award`                   | The reward component implements the business of teachers issuing rewards to students. |
+| `/big-widget-window`       | The component for the big window of widgets.                 |
+| `/board`                   | The whiteboard component implements whiteboard-related businesses, including setting the height and ratio of the whiteboard. |
+| `/cloud-driver`            | The cloud drive component implements businesses such as uploading or deletig files. |
+| `/device-setting`          | The component for device settings, such as displaying the list of cameras, microphones, and speakers. |
+| `/dialog`                  | Pop-up windows during the class.                             |
+| `/extension-app-container` | The extApp container for plug-ins.                           |
+| `/hand-up`                 | The component for the hand-raising feature.                  |
+| `/loading`                 | The loading component.                                       |
+| `/nav`                     | The navigation component for businesses such as displaying the network status and class status. |
+| `/pretest`                 | The component for the device test before joining the classroom. |
+| `/root-box`                | The root container.                                          |
+| `/roster`                  | The roster component implements businesses such as checking the student information, processing requests for going onto the stage, and issuing rewards. |
+| `/scene-switch`            | The component for switching between scenes.                  |
+| `/scenes-controller`       | The component for controlling whiteboard scenes, such as adding or deleting whiteboard pages. |
+| `/screen-share`            | The component for the screen sharing feature.                |
+| `/stream`                  | The component for rendering audio and video streams.         |
+| `/toast`                   | The toast component.                                         |
+| `/toolbar`                 | The toolbar for the teaching tools of the teachers and students. |
+| `/widget`                  | The widget component.                                        |
 
-   ```shell
-   # Install global dev dependencies
-   yarn
-   ```
-# Install all dependencies via lerna and yarn
-yarn bootstrap
-   ```
+### Scenario components
 
-2. Run the following command to open Storybook to quickly adjust the UI.
+A scenario component arranges the layout of business components in a specific scenario. Flexible Classroom provides three preset scenarios: One-to-one Classroom, Small Classroom, and Lecture Hall. You can find the scenario components in `packages/agora-classroom-sdk/src/ui-kit/capabilities/scenarios`. If you want to change the layout of one of the above scenarios, just edit the corresponding scenario code.
 
-   ```shell
-   # Open storybook
-yarn dev:ui-kit
-   ```
+| Folder          | Scenario components                           |
+| :-------------- | :-------------------------------------------- |
+| `/1v1`          | The component for One-to-one Online Classroom |
+| `/big-class`    | The component for Lecture Hall                |
+| `/big-class-h5` | The component for Lecture Hall in H5          |
+| `/mid-class`    | The component for Small Classroom             |
 
-   You can see all the basic UI components used by Flexible Classroom in Storybook.
+### Relationship between the three types of UI components
 
-   ![storybook-example](https://web-cdn.agora.io/docs-files/1617714921810)
+![](https://web-cdn.agora.io/docs-files/1652870469390)
 
-   You can directly edit the source code of a component in the `packages/agora-classroom-sdk/src/ui-kit/components` folder and see the changed UI in Storybook. If the existing basic UI components of Flexible Classroom cannot meet your needs, you can add a new UI component in the `packages/agora-classroom-sdk/src/ui-kit/components` directory, and then edit the code of classroom-level UI components in the `packages/agora-classroom-sdk/src/ui-kit/capabilities` to apply the UI component that you add to Flexible Classroom. For details, see the [UI customization examples](#example).
+## Customize function components
 
-3. The user interfaces in Storybook are all based on Mock data, which can help you quickly view the UI display based on component properties. If you need to adjust the UI for the real scene, it is recommended to adjust the UI through the Agora Classroom SDK development mode by referring to the following steps.
+### Add a function component
 
-   1. Rename the env.example file in the home directory of the project and `in the `packages/Agora-classroom-sdk` folder` to `.env`, then` pass in your Agora App ID in `the .env` file, and set REACT_APP_AGORA_APP_SDK_DOMAIN` as `https://api-test. Agora/preview`.
+To add a new function component and use it in Flexible Classroom, follow these steps:
 
-   2. Run the following command in the root directory to launch a flexible classroom.
+1. Create a folder in the `packages/agora-scenario-ui-kit/src/components` directory for the new function component that you want to add. This folder should contain the following three files:
+   - `index.tsx`: Implements the functionality of the UI component.
+   - `index.css`: Implements the style of the UI component.
+   - `index.stories.tsx`: Enables previewing and debugging the UI component in Storybook.
+2. After adding the function component, export this component in `packages/agora-scenario-ui-kit/src/components/index.ts`. Then you can import this component in your project.
 
-      ```shell
-      yarn -v
-      ```
+The following example shows how to add a function component `agora-demo`:
 
-
-<a name="example"></a>
-
-## UI customization example
-
-This section provides examples of customizing the user interfaces of Flexible Classroom.
-
-### Change the color of the navigation bar
-
-The following example shows how to change the background color `of the navigation bar component BizHeader` from white to red by editing the agora-scenario-ui-kit/src/components/biz-header/index.css file.
-
-#### Before
-
-```css
-.biz-header {
-  @apply bg-white;
-  padding: 0 15px 0 8px;
-}
-```
-
-![biz-header-before](https://web-cdn.agora.io/docs-files/1617714984066)
-
-#### After
-
-```css
-.biz-header {
-  padding: 0 15px 0 8px;
-  background: red;
-}
-```
-
-![biz-header-after](https://web-cdn.agora.io/docs-files/1617715004882)
-
-After the change, the background color of all the BizHeader components used in the Flexible Classroom becomes red.
-
-![biz-header-after-fx](https://web-cdn.agora.io/docs-files/1617715029659)
-
-### Change the classroom layout
-
-The following example demonstrates how to switch the video and chat area in the Flexible Classroom. This adjustment involves multiple components. Therefore, you need to modify the parent container of these two components, which is the `packages/agora-classroom-sdk/src/ui-kit/capabilities/scenarios/1v1/index.tsx` file.
-
-#### Before
+![](https://web-cdn.agora.io/docs-files/1649913888493)
 
 ```tsx
-export const OneToOneScenario = observer(() => {
-  ...
-  return (
-    <Layout
-      className={cls}
-      direction="col"
-      style={{
-        height: '100vh'
-      }}
-    >
-      <NavigationBar />
-      <Layout className="bg-white" style={{ height: '100%' }}>
-        <Content>
-          <ScreenSharePlayerContainer />
-          <WhiteboardContainer />
-        </Content>
-        <Aside className={fullscreenCls}>
-          <VideoList />
-          <RoomChat />
-        </Aside>
-      </Layout>
-      <DialogContainer />
-      <LoadingContainer />
-    </Layout>
-  )
-})
-```
-
-![](https://web-cdn.agora.io/docs-files/1620289086480)
-
-#### After
-
-```tsx
-export const OneToOneScenario = observer(() => {
-  ...
-  return (
-    <Layout
-      className={cls}
-      direction="col"
-      style={{
-        height: '100vh'
-      }}
-    >
-      <NavigationBar />
-      <Layout className="bg-white" style={{ height: '100%' }}>
-        /** Change the order of Content and Aside in Layout. */
-        <Aside className={fullscreenCls}>
-          <VideoList />
-          <RoomChat />
-        </Aside>
-        <Content>
-          <ScreenSharePlayerContainer />
-          <WhiteboardContainer />
-        </Content>
-      </Layout>
-      <DialogContainer />
-      <LoadingContainer />
-    </Layout>
-  )
-})
-```
-
-![](https://web-cdn.agora.io/docs-files/1620289100529)
-
-### Add a basic UI component
-
-The following example shows how to add a custom basic UI component and use it in the Flexible Classroom:
-
-1. Create a `custom` folder under the `packages/agora-classroom-sdk/src/ui-kit/components` directory and create the following files:
-
-   `index.css`
-
-   ```css
-   .custom {
-     display: inline-block;
-     padding: 10px;
-     background: #efebe9;
-     border: 5px solid #B4A078;
-     outline: #B4A078 dashed 1px;
-     outline-offset: -10px;
-   }
-   ```
-
-   `index.tsx`
-
-   ```tsx
-   import React, { FC } from 'react';
-   import classnames from 'classnames';
-   import { BaseProps } from '~components/interface/base-props';
-   import './index.css';
-   ```
-
-export interface CustomProps extends BaseProps {
-    width?: number;
-    height?: number;
-    children?: React.ReactNode;
+// index.css
+.agora-demo {
+    color: red
 }
 
-export const Custom: FC<CustomProps> = ({
-    width = 90,
-    height = 90,
-    children,
-    className,
-    ...restProps
-}) => {
-    const cls = classnames({
-        [`custom`]: 1,
-        [`${className}`]: !!className,
-    });
-    return (
-        <div
-            className={cls}
-            style={{
-                width,
-                height,
-            }}
-            {...restProps}
-        >
-            {children}
-        </div>
-    )
+// index.tsx
+import React from 'react'
+import './index.css'
+
+export const AgoraDemo = () => {
+  return (
+    <div className="agora-demo">AgoraDemo</div>
+ )
 }
-   ```
 
-   `index.stories.tsx`
-
-   ```tsx
-   import React from 'react'
+// index.stories.tsx
+import React from 'react';
 import { Meta } from '@storybook/react';
-import { Custom } from '~components/custom'
+import { AgoraDemo } from './index';
 
 const meta: Meta = {
-    title: 'Components/Custom',
-    component: Custom,
-}
-
-type DocsProps = {
-    width: number;
-    height: number;
-}
-
-export const Docs = ({width, height}: DocsProps) => (
-    <>
-        <div className="mt-4">
-            <Custom
-                width={width}
-                height={height}
-            >
-                <h3>我是自定义组件</h3>
-            </Custom>
-        </div>
-    </>
-)
-
-Docs.args = {
-    width: 250,
-    height: 200,
-}
+    title: 'Components/AgoraDemo',
+    component: AgoraDemo,
+};
 
 export default meta;
-   ```
 
-   The Custom component is a div element with a two-layer border and renders a Children element. You can see the custom component in Storybook.
+export const Docs = () => (
+    <AgoraDemo />
+)
+You can see this function component in Storybook, as follows:
+```
 
-   ![](https://web-cdn.agora.io/docs-files/1617715392109)
+You can see this function component in Storybook, as follows:
 
-2. Add the following code to `packages/agora-scenario-ui-kit/src/components/index.ts` to export the Custom component.
+![](https://web-cdn.agora.io/docs-files/1649914019254)
 
-   ```ts
-   export * from './custom'
-   ```
+### Edit an existing function component
 
-3. Apply the custom component on the whiteboard of a one-to-one classroom, as follows:
+If you want to change the function and style of an existing function component, just find the folder of this component and edit the code to suit your needs. Below are several examples for your reference.
 
-   1. Import the custom component in `packages/agora-classroom-sdk/src/ui-kit/capabilities/containers/board/index.tsx`:
+#### Change the color of the navigation bar
 
-      ```ts
-      import { Custom } from '~ui-kit'
-      ```
+The following example shows how to change the background color of the navigation bar component (BizHeader) from white to red by editing the `/packages/agora-scenario-ui-kit/src/components/biz-header/index.css` file.
 
-   2. Use the custom component in `WhiteboardContainer`:
+**Before**
 
-      ```tsx
-      export const WhiteboardContainer = observer(() => {
-      return (
-     ```
-    <div className="whiteboard">
-      ...... 
-      {showZoomControl ? <ZoomController
-      className='zoom-position'
-      zoomValue={zoomValue}
-      currentPage={currentPage}
-      totalPage={totalPage}
-      maximum={!isFullScreen}
-      clickHandler={handleZoomControllerChange}
-      /> : null}
-      <Custom className='custom-position' width={200} height={200}>
-        <div>Use the custom component</div>
-      </Custom>
-     </div>
-  )
-   })
-   ```
-   
-3. Define the `custom-position` style in `packages/agora-classroom-sdk/src/ui-kit/capabilities/scenarios/1v1/style.css`:
-   
-      ```ts
-     .custom-position{
-    position: absolute;
-    left: 100px;
-  bottom: 200px;
-   }
-   ```
-   
-4. Check the custom component in the flexible classroom.
-   
-      ![custom-ui-compnent-fx](https://web-cdn.agora.io/docs-files/1617715517511)
+```css
+.biz-header {
+    @apply bg-white;
+    padding: 0 15px 0 8px;
+    border-top: 0px;
+    border: 1px solid #ececf1;
+}
+```
 
-### Connect UI components with the business logic
+![](https://web-cdn.agora.io/docs-files/1652870564352)
 
-Sometimes you need to modify the UI components related to the business state, or you may want to customize a UI component for a specific function.
+**After**
 
-The following example shows how to display class time in the custom component we added in the previous section.
+```css
+.biz-header {
+    background: red !important;
+    padding: 0 15px 0 8px;
+    border-top: 0px;
+    border: 1px solid #ececf1;
+}
+```
 
-1. Modify the `index.tsx` file of the custom component to ensure the custom component supports displaying time.
+![](https://web-cdn.agora.io/docs-files/1652870586621)
 
-   ```tsx
-   import React, { FC } from 'react';
-   import classnames from 'classnames';
-   import { BaseProps } from '~components/interface/base-props';
-   import './index.css';
-   /** Add an attribute named time. */
-   export interface CustomProps extends BaseProps {
-       width?: number;
-       height?: number;
-       children?: React.ReactNode;
-       time: number;
-   }
-   
-   /** Render time. */
-   export const Custom: FC<CustomProps> = ({
-       width = 90,
-       height = 90,
-       children,
-       className,
-       time,
-       ...restProps
-   }) => {
-       const cls = classnames({
-           [`custom`]: 1,
-           [`${className}`]: !!className,
-       })
-       return (
-           <div
-               className={cls}
-               style={{
-                   width,
-                   height,
-               }}
-               {...restProps}
-           >
-               {time}
-               {children}
-           </div>
-       )
-   }
-   ```
+#### Change the placeholder color of the input component
 
+To change the color of the placeholder in the input component, edit the `packages/agora-scenario-ui-kit/src/components/input/index.css` file.
 
-   ```
+**Before**
 
-2. In `packages/agora-classroom-sdk/src/ui-kit/capabilities/containers/board/index.tsx`
+```css
+.input-wrapper input::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: #7b88a0;
+    font-size: 14px;
+}
+```
 
-   ```tsx
-   ...
-  return (
-    <div className="whiteboard">
-      {
-        ready ?
-        <div id="netless" style={{position: 'absolute', top: 0, left: 0, height: '100%', width: '100%'}} ref={mountToDOM} ></div> : null
-      }
-      {showTab ?
-      <TabsContainer /> : null}
-      {showToolBar ?
-        <Toolbar active={currentSelector} activeMap={activeMap} tools={tools} onClick={handleToolClick} className="toolbar-biz" />
-      : null}
-      {showZoomControl ? <ZoomController
-        className='zoom-position'
-        zoomValue={zoomValue}
-        currentPage={currentPage}
-        totalPage={totalPage}
-        maximum={!isFullScreen}
-        clickHandler={handleZoomControllerChange}
-      /> : null}
-      /** Add an attribute named time. */
-      <Custom time={5000} className='custom-position' width={200} height={200}>
-        <div>Use the custom component</div>
-      </Custom>
-    </div>
-  )
-})
-   ```
+![](https://web-cdn.agora.io/docs-files/1652870616522)
 
-   After the modification, run the project, and you can see that the time attribute is displayed on the custom component.
+**After**
 
-   ![](https://web-cdn.agora.io/docs-files/1620289134349)
+```css
+.input-wrapper input::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: skyblue;
+    font-size: 14px;
+}
+```
 
-3. Next, we have to import real class time data. Get the Context you need through Agora Edu Context in the function-level UI component through hooks. In this example, we use the [liveClassStatus](https://docs.agora.io/cn/agora-class/edu_context_api_ref_wev_room?platform=Web#liveclassstatus) property of the RoomContext in the Agora Edu Context to get the class time. Edit `packages/agora-classroom-sdk/src/ui-kit/capabilities/containers/board/index.tsx` to get the class time and set it as a property in the custom component .
+![](https://web-cdn.agora.io/docs-files/1652870637702)
 
-   <div class="alter note">Agora does not recommend directly referencing Context in basic UI components, because basic UI components may be reused in different scenarios.</div>
+## Customize business components
 
-   ```tsx
-   ...
-export const WhiteboardContainer = observer(() => {
-    ...
-    const {
-    liveClassStatus
-    } = useRoomContext()
+### Add a business component
 
+To add a new function component and use it in Flexible Classroom, create a folder in `packages/agora-classroom-sdk/src/ui-kit/capabilities/containers`. The folder should contain the following files:
+
+- `index.tsx`: Combines function components and implements the business logic.
+- `index.css`: Implements the style of the business component.
+
+After adding the business component, you can directly import this business component and run the project to see how it looks like in Flexible Classroom.
+
+The following example shows how to add a business component that displays the class and network status:
+
+```tsx
+// index.css
+.agora-demo {
+    width: 50%;
+    height: 50%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999999;
+}
+.agora-demo-title {
+    color: red;
+}
+
+// index.tsx
+import { useStore } from '@/infra/hooks/use-edu-stores';
+import React from 'react'
+import './index.css'
+
+export default function AgoraDemo() {
+    const { navigationBarUIStore } = useStore();
+    const { classStatusText, networkQualityLabel, delay, packetLoss } = navigationBarUIStore;
     return (
-    <div className="whiteboard">
-      {
-        ready ?
-        <div id="netless" style={{position: 'absolute', top: 0, left: 0, height: '100%', width: '100%'}} ref={mountToDOM} ></div> : null
-      }
-      {showTab ?
-      <TabsContainer /> : null}
-      {showToolBar ?
-        <Toolbar active={currentSelector} activeMap={activeMap} tools={tools} onClick={handleToolClick} className="toolbar-biz" />
-      : null}
-      {showZoomControl ? <ZoomController
-        className='zoom-position'
-        zoomValue={zoomValue}
-        currentPage={currentPage}
-        totalPage={totalPage}
-        maximum={!isFullScreen}
-        clickHandler={handleZoomControllerChange}
-      /> : null}
-      <Custom time={liveClassStatus.duration} className='custom-position' width={200} height={200}>
-        <div>Use the custom component</div>
-      </Custom>
-    </div>
-    )
-})
-   ```
-
-   Run the project after the modification, and you can see that the class time is automatically updated on the user interface in milliseconds. We can then modify the `index.tsx` file of the custom component, fine-tune the style of the custom component, and then format the time.
-
-   ```tsx
-   ...
-export const Custom: FC<CustomProps> = ({
-    width = 90,
-    height = 90,
-    children,
-    className,
-    time,
-    ...restProps
-}) => {
-    const cls = classnames({
-        [`custom`]: 1,
-        [`${className}`]: !!className,
-    })
-    return (
-        <div
-            className={cls}
-            style={{
-                width,
-                height,
-            }}
-            {...restProps}
-        >
-            The class has lasted for {Math.floor(time/1000)} seconds
-            {children}
+        <div className="agora-demo">
+            <h1 className="agora-demo-title">This is our new business component.</h1>
+            <h2>This component is used to display the network status and class status.</h2>
+            <div>Network Status: {networkQualityLabel} Network Delay: {delay} Packet Loss Rate: {packetLoss}</div>
+            <div>Class Status: {classStatusText}</div>
         </div>
-    )
+   )
 }
-   ```
 
-   The final user interface is as follows:
+// packages/agora-classroom-sdk/src/ui-kit/capabilities/scenarios/mid-class/index.tsx
+// Import this component in the Small Classroom scenario
+import { Aside, Layout } from '~components/layout';
+import { observer } from 'mobx-react';
+import classnames from 'classnames';
+import { NavigationBarContainer } from '~containers/nav';
+import { DialogContainer } from '~containers/dialog';
+import { LoadingContainer } from '~containers/loading';
+import Room from '../room';
+import { RoomMidStreamsContainer } from '~containers/stream/room-mid-player';
+import { CollectorContainer } from '~containers/board';
+import { WhiteboardContainer } from '~containers/board';
+import { FixedAspectRatioRootBox } from '~containers/root-box';
+import { ChatWidgetPC } from '~containers/widget/chat-widget';
+import { ExtensionAppContainer } from '~containers/extension-app-container';
+import { ToastContainer } from '~containers/toast';
+import { HandsUpContainer } from '~containers/hand-up';
+import { SceneSwitch } from '~containers/scene-switch';
+import { Award } from '../../containers/award';
+import { BigWidgetWindowContainer } from '../../containers/big-widget-window';
+import AgoraDemo from '../../containers/agora-demo';
 
-   ![](https://web-cdn.agora.io/docs-files/1620289155801)
 
-### Change the global style of basic UI components
 
-The following example shows how to modify the global style of basic UI components.
+export const MidClassScenario = observer(() => {
+  // The scenario layout
+  const layoutCls = classnames('edu-room', 'mid-class-room');
 
-1. Define global styles in `packages/agora-classroom-sdk/src/ui-kit/styles/global.css`:
-
-   ```css
-   .fixed-container {
- display: flex;
- justify-content: center;
- align-items: center;
- flex: 1;
- "height": 360
- position: fixed;
- width: 480,
- z-index: 99;
-}
-   ```
-
-2. Add the following code to the `.stories.tsx` and `.tsx` files of the basic UI components to apply this global style:
-
-   ```ts
-   export const DialogContainer: React.FC<any> = observer(() => {
-    const { dialogQueue } = useDialogContext()
     return (
-    <div>
-     {
-        dialogQueue.map(({ id, component: Component, props }: DialogType) => (
-          <div key={id} className="fixed-container">
-            <Component {...props} id={id} />
-          </div>
-       ))
-     }
+    <Room>
+     {/* Here is the new business component */}
+      <AgoraDemo/>
+      <FixedAspectRatioRootBox trackMargin={{ top: 27 }}>
+        <SceneSwitch>
+          <Layout className={layoutCls} direction="col">
+            <NavigationBarContainer />
+            <RoomMidStreamsContainer />
+            <BigWidgetWindowContainer>
+              <WhiteboardContainer></WhiteboardContainer>
+            </BigWidgetWindowContainer>
+            <Aside className="aisde-fixed">
+              <CollectorContainer />
+              <HandsUpContainer />
+              <ChatWidgetPC />
+            </Aside>
+            <DialogContainer />
+            <LoadingContainer />
+          </Layout>
+          <ExtensionAppContainer />
+          <ToastContainer />
+          <Award />
+        </SceneSwitch>
+      </FixedAspectRatioRootBox>
+    </Room>
+ );
+});
+```
+
+The effect of this business component in Flexible Classroom is as follows:
+
+![](https://web-cdn.agora.io/docs-files/1652870671265)
+
+### Edit an existing business component
+
+If you want to change the function and style of an existing business component, just find the folder of this component and edit the code to suit your needs. Below are several examples for your reference.
+
+#### Display the number of cameras that are available in the device settings pop-up window
+
+```tsx
+const Setting: React.FC<SettingProps> = observer(({className, ...restProps}) => {
+    const cls = classnames({
+        [`setting`]: 1,
+        [`${className}`]: !!className,
+    });
+
+        const {
+        deviceSettingUIStore: {cameraDevicesList},
+    } = useStore();
+
+        return (
+        <div className={cls} {...restProps} style={{width: 318}}>
+            <div className="device-choose">
+                <div
+                    className="device-title"
+                    style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                    }}>
+                    {/* Display the number of devices. The actual device number is the length of the camera list minus the default disable option. */}
+                    <div>
+                        {transI18n("device.camera")} The number of devices: {cameraDevicesList.length - 1}
+                    </div>
+                    <div style={{display: "flex"}}>
+                        <div
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                            }}>
+                            <CameraMirrorCheckBox />
+                            <span className="beauty-desc" style={{marginLeft: 5}}>
+                                {transI18n("media.mirror")}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <CameraSelect />
+            </div>
+            <div className="device-choose">
+                <div className="device-title">{transI18n("device.microphone")}</div>
+                <MicrophoneSelect />
+            </div>
+            <div className="device-choose">
+                <div className="device-title">{transI18n("device.speaker")}</div>
+                <PlaybackSelect />
+            </div>
+        </div>
+    );
+});
+```
+
+**Before**
+
+<img src="https://web-cdn.agora.io/docs-files/1652870698533" style="zoom:50%;" />
+
+**After**
+
+<img src="https://web-cdn.agora.io/docs-files/1652870718469" style="zoom:50%;" />
+
+## Change the scenario layout
+
+To change the layout of a scenario, just edit the code of the scenario component.
+
+#### Move the position of the video and chat windows 
+
+The following example demonstrates how to move the position of the video and chat windows from the right side of the screen to the left. This is a cross-component adjustment. Therefore, you need to edit the parent container of these two components, which is the `packages/agora-classroom-sdk/src/ui-kit/capabilities/scenarios/1v1/index.tsx` file.
+
+**Before**
+
+```tsx
+import classnames from "classnames";
+import {observer} from "mobx-react";
+import {FC} from "react";
+import {WhiteboardContainer} from "~containers/board";
+import {DialogContainer} from "~containers/dialog";
+import {LoadingContainer} from "~containers/loading";
+import {NavigationBarContainer} from "~containers/nav";
+import {Aside, Layout} from "~components/layout";
+import {ScreenShareContainer} from "~containers/screen-share";
+import {Room1v1StreamsContainer} from "~containers/stream/room-1v1-player";
+import {ChatWidgetPC} from "~containers/widget/chat-widget";
+import Room from "../room";
+import {FixedAspectRatioRootBox} from "~containers/root-box/fixed-aspect-ratio";
+import {ExtensionAppContainer} from "~containers/extension-app-container";
+
+import {ToastContainer} from "~containers/toast";
+import {CollectorContainer} from "~containers/board";
+import {BigWidgetWindowContainer} from "../../containers/big-widget-window";
+
+const Content: FC = ({children}) => {
+    return <div className="flex-grow">{children}</div>;
+};
+
+export const OneToOneScenario = observer(() => {
+    const layoutCls = classnames("edu-room");
+
+        return (
+        <Room>
+            <FixedAspectRatioRootBox trackMargin={{top: 27}}>
+                <Layout className={layoutCls} direction="col">
+                    <NavigationBarContainer />
+                    <Layout className="horizontal">
+                        <Content>
+                            <BigWidgetWindowContainer>
+                                <WhiteboardContainer></WhiteboardContainer>
+                            </BigWidgetWindowContainer>
+
+                                                        <Aside className="aisde-fixed">
+                                <CollectorContainer />
+                            </Aside>
+                        </Content>
+                        <Aside>
+                            <Room1v1StreamsContainer />
+                            <ChatWidgetPC />
+                        </Aside>
+                    </Layout>
+                    <DialogContainer />
+                    <LoadingContainer />
+                </Layout>
+                {/* <ExtAppContainer /> */}
+                <ExtensionAppContainer />
+                <ToastContainer />
+            </FixedAspectRatioRootBox>
+        </Room>
+    );
+});
+```
+
+![](https://web-cdn.agora.io/docs-files/1652870751521)
+
+**After**
+
+```tsx
+import classnames from "classnames";
+import {observer} from "mobx-react";
+import {FC} from "react";
+import {WhiteboardContainer} from "~containers/board";
+import {DialogContainer} from "~containers/dialog";
+import {LoadingContainer} from "~containers/loading";
+import {NavigationBarContainer} from "~containers/nav";
+import {Aside, Layout} from "~components/layout";
+import {ScreenShareContainer} from "~containers/screen-share";
+import {Room1v1StreamsContainer} from "~containers/stream/room-1v1-player";
+import {ChatWidgetPC} from "~containers/widget/chat-widget";
+import Room from "../room";
+import {FixedAspectRatioRootBox} from "~containers/root-box/fixed-aspect-ratio";
+import {ExtensionAppContainer} from "~containers/extension-app-container";
+
+import {ToastContainer} from "~containers/toast";
+import {CollectorContainer} from "~containers/board";
+import {BigWidgetWindowContainer} from "../../containers/big-widget-window";
+
+const Content: FC = ({children}) => {
+    return <div className="flex-grow">{children}</div>;
+};
+
+export const OneToOneScenario = observer(() => {
+    const layoutCls = classnames("edu-room");
+
+        return (
+        <Room>
+            <FixedAspectRatioRootBox trackMargin={{top: 27}}>
+                <Layout className={layoutCls} direction="col">
+                    <NavigationBarContainer />
+                    <Layout className="horizontal">
+                        /** Reorder Content and Aside. */
+                        <Aside>
+                            <Room1v1StreamsContainer />
+                            <ChatWidgetPC />
+                        </Aside>
+                        <Content>
+                            <BigWidgetWindowContainer>
+                                <WhiteboardContainer></WhiteboardContainer>
+                            </BigWidgetWindowContainer>
+                            <Aside className="aisde-fixed">
+                                <CollectorContainer />
+                            </Aside>
+                        </Content>
+                    </Layout>
+                    <DialogContainer />
+                    <LoadingContainer />
+                </Layout>
+                {/* <ExtAppContainer /> */}
+                <ExtensionAppContainer />
+                <ToastContainer />
+            </FixedAspectRatioRootBox>
+        </Room>
+    );
+});
+```
+
+![](https://web-cdn.agora.io/docs-files/1652870760213)
+
+#### Add a logo
+
+To add a logo to the right `<Aside>`, implement a `logo` component, and use the logo component as follows:
+
+```tsx
+...
+<Aside>
+    <Logo/> {/* The logo to be added */}
+    <Room1v1StreamsContainer />
+    <ChatWidgetPC />
+</Aside>
+...
+```
+
+## Change the UI stores
+
+A business component is composed of multiple function components and depends on UI stores. This section introduces how to edit the UI stores.
+
+UI stores are located in `packages/agora-classroom-sdk/src/infra/stores`:
+
+| Folder         | Description                                        |
+| :------------- | :------------------------------------------------- |
+| `/common`      | The common UI store for all scenarios              |
+| `/interactive` | The UI store for the Small Classroom scenario      |
+| `/lecture`     | The UI store for the Lecture Hall scenario         |
+| `/lecture-h5`  | The UI store for the Lecture Hall scenario in H5   |
+| `/one-on-one`  | The UI store for the One-to-one Classroom scenario |
+
+`EduClassroomUIStore` in `/common` is the base class. You can extend this class and rewrite the UI stores for a specific scenario.
+
+The following example shows how to customize the UI store for the Lecture Hall scenario:
+
+```typescript
+import {EduClassroomStore} from "agora-edu-core";
+import {EduClassroomUIStore} from "../common";
+import {LectureBoardUIStore} from "./board-ui";
+import {LectureRosterUIStore} from "./roster";
+import {LectureRoomStreamUIStore} from "./stream-ui";
+import {LectrueToolbarUIStore} from "./toolbar-ui";
+import {LectureWidgetUIStore} from "./widget-ui";
+
+export class EduLectureUIStore extends EduClassroomUIStore {
+    constructor(store: EduClassroomStore) {
+        super(store);
+        this._streamUIStore = new LectureRoomStreamUIStore(store, this.shareUIStore); // Rewrite the stream UI store
+        this._rosterUIStore = new LectureRosterUIStore(store, this.shareUIStore); // Rewrite the roaster UI store
+        this._boardUIStore = new LectureBoardUIStore(store, this.shareUIStore); // Rewrite the whiteboard UI store
+        this._toolbarUIStore = new LectrueToolbarUIStore(store, this.shareUIStore); // Rewrite the toolbar UI store
+        this._widgetUIStore = new LectureWidgetUIStore(store, this.shareUIStore); // Rewrite the widget UI store
+    }
+
+        get streamUIStore() {
+        return this._streamUIStore as LectureRoomStreamUIStore;
+    }
+
+        get rosterUIStore() {
+        return this._rosterUIStore as LectureRosterUIStore;
+    }
+    get widgetUIStore() {
+        return this._widgetUIStore as LectureWidgetUIStore;
+    }
+}
+```
+
+### Change the teaching tools of the student after the teacher gives permission
+
+If you want to change the teaching tools of the student after the teacher gives the student permission in all scenarios, edit `toolbar-ui.ts` in `/common`. If you want to apply the above change to only one scenario, create a `toolbar-ui.ts` file in the folder of this scenario and rewrite the relevant methods.
+
+Taking One-to-one Classroom as an example, edit `packages/agora-classroom-sdk/src/infra/stores/one-on-one/toolbar-ui.ts`, as follows:
+
+```typescript
+// packages/agora-classroom-sdk/src/infra/stores/one-on-one/toolbar-ui.ts
+...
+// Extend the base class ToolbarUIStore
+export class OneToOneToolbarUIStore extends ToolbarUIStore {
+  ...
+  get teacherTools(): ToolbarItem[] {
+    // Get the teaching tools for the teacher
+    return [
+      ToolbarItem.fromData({
+        value: 'clicker',
+        label: 'scaffold.clicker',
+        icon: 'select',
+      }),
+      ToolbarItem.fromData({
+        value: 'selection',
+        label: 'scaffold.selector',
+        icon: 'clicker',
+      }),
+      ToolbarItem.fromData({
+        value: 'pen',
+        label: 'scaffold.pencil',
+        icon: 'pen',
+        category: ToolbarItemCategory.PenPicker,
+      }),
+      ToolbarItem.fromData({
+        value: 'text',
+        label: 'scaffold.text',
+        icon: 'text',
+      }),
+      ToolbarItem.fromData({
+        value: 'eraser',
+        label: 'scaffold.eraser',
+        icon: 'eraser',
+      }),
+      ToolbarItem.fromData({
+        value: 'hand',
+        label: 'scaffold.move',
+        icon: 'hand',
+      }),
+      {
+        value: 'cloud',
+        label: 'scaffold.cloud_storage',
+        icon: 'cloud',
+      },
+      {
+        value: 'tools',
+        label: 'scaffold.tools',
+        icon: 'tools',
+        category: ToolbarItemCategory.Cabinet,
+      },
+    ];
+  }
+
+
+
+  @computed
+  get studentTools(): ToolbarItem[] {
+    // Get the teaching tools for the student
+    const { sessionInfo } = EduClassroomConfig.shared;
+    const whiteboardAuthorized = this.classroomStore.boardStore.grantUsers.has(
+      sessionInfo.userUuid,
+    );
+
+        if (!whiteboardAuthorized) {
+      return [];
+    }
+
+        return [
+      ToolbarItem.fromData({
+        value: 'clicker',
+        label: 'scaffold.clicker',
+        icon: 'select',
+      }),
+      ToolbarItem.fromData({
+        value: 'selection',
+        label: 'scaffold.selector',
+        icon: 'clicker',
+      }),
+      ToolbarItem.fromData({
+        value: 'pen',
+        label: 'scaffold.pencil',
+        icon: 'pen',
+        category: ToolbarItemCategory.PenPicker,
+      }),
+      ToolbarItem.fromData({
+        value: 'text',
+        label: 'scaffold.text',
+        icon: 'text',
+      }),
+      ToolbarItem.fromData({
+        value: 'eraser',
+        label: 'scaffold.eraser',
+        icon: 'eraser',
+      }),
+    ];
+  }
+}
+```
+
+The above settings can override the teaching tools in `/common`. The final effect is as follows:
+
+![](https://web-cdn.agora.io/docs-files/1652870806492)
+
+![](https://web-cdn.agora.io/docs-files/1652870824396)
+
+### Change the position of the video toolbar
+
+By default, the toolbar of the video window appears floating below the video window. If you want to move the position of the toolbar to the left of the video window in the One-to-one Classroom scenario, you need to create a `stream-ui.ts` in `/one-on-one` and rewrite the `toolbarPlacement` method.
+
+```typescript
+// packages/agora-classroom-sdk/src/infra/stores/one-on-one/stream-ui.ts
+import { computed } from 'mobx';
+import { StreamUIStore } from '../common/stream';
+
+
+
+export class OneToOneStreamUIStore extends StreamUIStore {
+  ...
+  // override
+  @computed get toolbarPlacement(): 'bottom' | 'left' {
+    return 'left';
+  }
+
+    ...
+}
+
+
+
+// The business component
+const LocalStreamPlayerTools = observer(({ isFullScreen = true }: { isFullScreen?: boolean }) => {
+  const { streamUIStore } = useStore();
+  const { localStreamTools, toolbarPlacement, fullScreenToolTipPlacement } = streamUIStore;
+
+
+
+  return localStreamTools.length > 0 ? (
+    <div className={`video-player-tools`}>
+      {localStreamTools.map((tool, key) => (
+        <Tooltip
+          key={key}
+          title={tool.toolTip}
+          // The tooltip component. The placement property sets the position of the toolbar.
+          placement={isFullScreen ? fullScreenToolTipPlacement : toolbarPlacement}>
+          <span>
+            <SvgIcon
+              canHover={tool.interactable}
+              style={tool.style}
+              // hoverType={tool.hoverIconType}
+              type={tool.iconType}
+              size={22}
+              onClick={tool.interactable ? tool.onClick : () => {}}
+            />
+          </span>
+        </Tooltip>
+      ))}
     </div>
- )
-})
-   ```
+  ) : (
+    <></>
+  );
+});
+```
+
+The changed user interface is as follows:
+
+![](https://web-cdn.agora.io/docs-files/1652870907965)
+
+![](https://web-cdn.agora.io/docs-files/1652870915646)
+
+## Additional examples
+
+### Change the background color of the classroom
+
+To change the background color of the classroom, edit `packages/agora-classroom-sdk/src/ui-kit/capabilities/containers/root-box/fixed-aspect-ratio.tsx`.
+
+```tsx
+const FixedAspectRatioContainer: React.FC<FixedAspectRatioProps> = observer(
+    ({children, minimumWidth = 0, minimumHeight = 0}) => {
+        const style = useClassroomStyle({minimumHeight, minimumWidth});
+
+                const {shareUIStore} = useStore();
+
+                return (
+            <div
+                // You can use the tailwind class name
+                className="flex bg-black justify-center items-center h-screen w-screen"
+                // You can also set CSS properties
+                style={{backgroundColor: "red"}}>
+                <div style={style} className={`w-full h-full relative ${shareUIStore.classroomViewportClassName}`}>
+                    {children}
+                </div>
+            </div>
+        );
+    },
+);
+```
+
+### Change the background color of the whiteboard
+
+To change the background color of the whiteboard, edit `packages/agora-classroom-sdk/src/ui-kit/capabilities/containers/board/index.tsx`.
+
+```css
+.whiteboard {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    border: 1px solid #ececf1;
+    border-radius: 4px;
+    background: #000; /* Here we set the background color as black. */
+}
+```
+
+### Adjust the whiteboard size
+
+To adjust the whiteboard layout, edit `packages/agora-classroom-sdk/src/infra/stores/common/board-ui.ts`. The height of the whiteboard is calculated based on `heightRatio` and `viewportHeight`. Then the width of whiteboard is set according to the aspect ratio of the whiteboard.
+
+```typescript
+// packages/agora-classroom-sdk/src/infra/stores/common/board-ui.ts
+...
+  protected get uiOverrides() {
+    return {
+      ...super.uiOverrides,
+      heightRatio: 1,
+      aspectRatio: 9 / 16,
+    };
+  }
+
+    /**
+   * Get the whiteboard height
+   * @returns
+   */
+  get boardHeight() {
+    const { roomType } = EduClassroomConfig.shared.sessionInfo;
+    const viewportHeight = this.shareUIStore.classroomViewportSize.height;
+    const height = this.uiOverrides.heightRatio * viewportHeight; // Calculate the height of the whiteboard
+    if (roomType === EduRoomTypeEnum.Room1v1Class) {
+      return height - this.shareUIStore.navBarHeight;
+    }
+    return height;
+  }
+...
+```
+
+The above changes are applied to all scenarios. If you only want to change the height of the whiteboard in a the One-to-one Classroom scenario, create a `board-ui.ts` file in `packages/agora-classroom-sdk/src/infra/stores/one-on-one` with the following code:
+
+```typescript
+// packages/agora-classroom-sdk/src/infra/stores/one-on-one/board-ui.ts
+import {BoardUIStore} from "../common/board-ui";
+
+export class OneToOneBoardUIStore extends BoardUIStore {
+    protected get uiOverrides() {
+        return {
+            ...super.uiOverrides,
+            heightRatio: 1,
+            aspectRatio: 0.706,
+        };
+    }
+}
+```

@@ -16,13 +16,27 @@
         <topicref keyref="AgoraEduMediaContext" chunk="to-content">
             <topicref keyref="getLocalDevices" toc="no"/>
             <topicref keyref="openLocalDevice" toc="no"/>
+            <topicref keyref="openLocalDevice2" toc="no"/>
             <topicref keyref="closeLocalDevice" toc="no"/>
+            <topicref keyref="closeLocalDevice2" toc="no"/>
             <topicref keyref="getLocalDeviceState" toc="no"/>
             <topicref keyref="startRenderVideo" toc="no"/>
+            <topicref keyref="startRenderVideo2" toc="no"/>
+            <topicref keyref="startRenderVideoFromCdn" toc="no"/>
             <topicref keyref="stopRenderVideo" toc="no"/>
+            <topicref keyref="stopRenderVideo2" toc="no"/>
+            <topicref keyref="stopRenderVideoFromCdn" toc="no"/>
             <topicref keyref="startAudioMixing" toc="no"/>
             <topicref keyref="stopAudioMixing" toc="no"/>
+            <topicref keyref="startPlayAudio" toc="no"/>
+            <topicref keyref="startPlayAudioFromCdn" toc="no"/>
+            <topicref keyref="stopPlayAudio" toc="no"/>
+            <topicref keyref="stopPlayAudioFromCdn" toc="no"/>
             <topicref keyref="setAudioMixingPosition" toc="no"/>
+            <topicref keyref="getSnapshot" toc="no"/>
+            <topicref keyref="setAudioRawDataConfig" toc="no"/>
+            <topicref keyref="addAudioRawDataObserver" toc="no"/>
+            <topicref keyref="removeAudioRawDataObserver" toc="no"/>
         </topicref>
         <topicref keyref="AgoraEduMediaHandler" chunk="to-content">
             <topicref keyref="onVolumeUpdated" toc="no"/>
@@ -31,8 +45,12 @@
             <topicref keyref="onLocalDeviceDisconnected" toc="no"/>
             <topicref keyref="onAudioMixingStateChanged" toc="no"/>
         </topicref>
+        <topicref keyref="FcrAudioRawDataObserver" chunk="to-content">
+            <topicref keyref="onAudioRawDataRecorded" toc="no"/>
+        </topicref>
         <topicref keyref="AgoraEduMonitorContext" chunk="to-content">
             <topicref keyref="uploadLog" toc="no"/>
+            <topicref keyref="getSyncTimestamp" toc="no"/>
         </topicref>
         <topicref keyref="AgoraEduMonitorHandler" chunk="to-content">
             <topicref keyref="onLocalNetworkQualityUpdated" toc="no"/>
@@ -46,6 +64,7 @@
             <topicref keyref="updateRoomProperties" toc="no"/>
             <topicref keyref="deleteRoomProperties" toc="no"/>
             <topicref keyref="getClassInfo" toc="no"/>
+            <topicref keyref="getRecordingState" toc="no"/>
         </topicref>
         <topicref keyref="AgoraEduRoomHandler" chunk="to-content">
             <topicref keyref="onJoinRoomSuccess" toc="no"/>
@@ -54,6 +73,7 @@
             <topicref keyref="onRoomPropertiesDeleted" toc="no"/>
             <topicref keyref="onRoomClosed" toc="no"/>
             <topicref keyref="onClassStateUpdated" toc="no"/>
+            <topicref keyref="onRecordingStateUpdated" toc="no"/>
         </topicref>
         <topicref keyref="AgoraEduStreamContext" chunk="to-content">
             <topicref keyref="getStreamList" toc="no"/>
@@ -86,13 +106,54 @@
             <topicref keyref="onUserUpdated" toc="no"/>
             <topicref keyref="onCoHostUserListAdded" toc="no"/>
             <topicref keyref="onCoHostUserListRemoved" toc="no"/>
-            <topicref toc="no" keyref="onUserPropertiesUpdated"/>
-            <topicref toc="no" keyref="onUserPropertiesDeleted"/>
-            <topicref toc="no" keyref="onUserRewarded"/>
-            <topicref toc="no" keyref="onLocalUserKickedOut"/>
-            <topicref toc="no" keyref="onHandsWaveEnabled"/>
-            <topicref toc="no" keyref="onUserHandsWave"/>
-            <topicref toc="no" keyref="onUserHandsDown"/>
+            <topicref keyref="onUserPropertiesUpdated" toc="no"/>
+            <topicref keyref="onUserPropertiesDeleted" toc="no"/>
+            <topicref keyref="onUserRewarded" toc="no"/>
+            <topicref keyref="onLocalUserKickedOut" toc="no"/>
+            <topicref keyref="onHandsWaveEnabled" toc="no"/>
+            <topicref keyref="onUserHandsWave" toc="no"/>
+            <topicref keyref="onUserHandsDown" toc="no"/>
+        </topicref>
+        <topicref keyref="AgoraEduGroupContext" chunk="to-content">
+            <topicref keyref="getGroupInfo" toc="no"/>
+            <topicref keyref="addSubRoomList" toc="no"/>
+            <topicref keyref="removeSubRoomList" toc="no"/>
+            <topicref keyref="removeAllSubRoomList" toc="no"/>
+            <topicref keyref="getSubRoomList" toc="no"/>
+            <topicref keyref="createSubRoomObject" toc="no"/>
+            <topicref keyref="getUserListFromSubRoom" toc="no"/>
+            <topicref keyref="inviteUserListToSubRoom" toc="no"/>
+            <topicref keyref="userListAcceptInvitationToSubRoom" toc="no"/>
+            <topicref keyref="userListRejectInvitationToSubRoom" toc="no"/>
+            <topicref keyref="addUserListToSubRoom" toc="no"/>
+            <topicref keyref="removeUserListFromSubRoom" toc="no"/>
+            <topicref keyref="moveUserListToSubRoom" toc="no"/>
+        </topicref>
+        <topicref keyref="AgoraEduGroupHandler" chunk="to-content">
+            <topicref keyref="onGroupInfoUpdated" toc="no"/>
+            <topicref keyref="onSubRoomListAdded" toc="no"/>
+            <topicref keyref="onSubRoomListRemoved" toc="no"/>
+            <topicref keyref="onSubRoomListUpdated" toc="no"/>
+            <topicref keyref="onUserListInvitedToSubRoom" toc="no"/>
+            <topicref keyref="onUserListRejectedToSubRoom" toc="no"/>
+            <topicref keyref="onUserListAddedToSubRoom" toc="no"/>
+            <topicref keyref="onUserMovedToSubRoom" toc="no"/>
+            <topicref keyref="onUserListRemovedFromSubRoom" toc="no"/>
+        </topicref>
+        <topicref keyref="AgoraEduSubRoomContext" chunk="to-content">
+            <topicref keyref="joinSubRoom" toc="no"/>
+            <topicref keyref="leaveSubRoom" toc="no"/>
+            <topicref keyref="getSubRoomInfo" toc="no"/>
+            <topicref keyref="getSubRoomProperties" toc="no"/>
+            <topicref keyref="updateSubRoomProperties" toc="no"/>
+            <topicref keyref="deleteSubRoomProperties" toc="no"/>
+        </topicref>
+        <topicref keyref="AgoraEduSubRoomHandler" chunk="to-content">
+            <topicref keyref="onJoinSubRoomSuccess" toc="no"/>
+            <topicref keyref="onJoinSubRoomFailure" toc="no"/>
+            <topicref keyref="onSubRoomPropertiesUpdated" toc="no"/>
+            <topicref keyref="onSubRoomPropertiesDeleted" toc="no"/>
+            <topicref keyref="onSubRoomClosed" toc="no"/>
         </topicref>
         <topicref href="API/api_data_type.dita" chunk="to-content">
             <topicref keyref="AgoraEduContextRoomType" toc="no"/>
@@ -108,6 +169,10 @@
             <topicref keyref="AgoraEduContextClassState" toc="no"/>
             <topicref keyref="AgoraEduContextUserRole" toc="no"/>
             <topicref keyref="AgoraEduContextNetworkQuality" toc="no"/>
+            <topicref keyref="AgoraEduContextSystemDevice" toc="no"/>
+            <topicref keyref="FcrMediaRawDataOperationMode" toc="no"/>
+            <topicref keyref="FcrAudioRawDataPosition" toc="no"/>
+            <topicref keyref="FcrRecordingState" toc="no"/>
             <topicref keyref="AgoraEduContextRenderConfig" toc="no"/>
             <topicref keyref="AgoraEduContextStreamInfo" toc="no"/>
             <topicref keyref="AgoraEduContextUserInfo" toc="no"/>
@@ -116,6 +181,12 @@
             <topicref keyref="AgoraEduContextClassInfo" toc="no"/>
             <topicref keyref="AgoraEduContextVideoStreamConfig" toc="no"/>
             <topicref keyref="AgoraEduContextError" toc="no"/>
+            <topicref keyref="AgoraEduContextGroupInfo" toc="no"/>
+            <topicref keyref="AgoraEduContextSubRoomInfo" toc="no"/>
+            <topicref keyref="AgoraEduContextSubRoomCreateConfig" toc="no"/>
+            <topicref keyref="FcrAudioRawDataConfig" toc="no"/>
+            <topicref keyref="FcrAudioRawData" toc="no"/>
+            <topicref keyref="FcrSnapshotInfo" toc="no"/>
         </topicref>
     </topichead>
 </map>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Script file that generates "dita-lw.framework"
+-->
+<script xmlns="http://www.oxygenxml.com/ns/framework/extend"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.oxygenxml.com/ns/framework/extend http://www.oxygenxml.com/ns/framework/extend/frameworkExtensionScript.xsd"
+  base="DITA">
+  <name>Lightweight DITA - Topic</name>
+  <description>Darwin Information Typing Architecture</description>
+  <priority>Normal</priority>
+  
+  <associationRules inherit="none">
+    <addRule publicID="-//OASIS//DTD LIGHTWEIGHT DITA Topic//EN"/>
+    <addRule rootElementLocalName="topic" publicID="*-//OASIS//DTD XDITA Topic//EN*"/>
+    <addRule rootElementLocalName="topic" publicID="*-//OASIS//DTD LW DITA Topic//EN*"/>
+  </associationRules>
+  
+  <classpath inherit="all">
+    <addEntry path="${framework}/lw/resources/" position="before"/>
+    <removeEntry path="${framework}/refactoring/"/>
+  </classpath>
+  
+  <documentTemplates inherit="none">
+    <addEntry path="${frameworkDir}/templates/LW (Lightweight) DITA/topic-lw"/>
+    <addEntry path="${frameworkDir}/templates/sample-project"/>
+  </documentTemplates>
+  
+  <validationScenarios>
+    <addScenarios href="lw/resources/dita-lw-validation.scenarios"/>
+    <removeScenario name="DITA"/>
+    <defaultScenarios>
+      <name>LW-DITA</name>
+    </defaultScenarios>
+  </validationScenarios>
+  
+  <author>
+	<authorActions>
+	  <removeAction id="paragraph"/> 
+	  <removeAction id="listitem"/>
+	  <removeAction id="orderedList"/>
+	  <removeAction id="section"/>
+	  <removeAction id="insert.table.column.after"/>
+	  
+	  <removeAction id="insert.code.block"/>
+	  <removeAction id="insert.code.phrase"/>
+	  <removeAction id="surround.uicontrol"/>
+	  <removeAction id="surround.filepath"/>
+	  <removeAction id="insert.menucascade"/>
+	  <removeAction id="insert.equation"/>
+	  
+	  <removeAction id="insert.table"/>
+	  <removeAction id="insert.simpletable"/>
+	  <removeAction id="insert.table.wizard"/>
+	  <removeAction id="table.join"/>
+	  <removeAction id="table.split"/>
+	  <removeAction id="convert.cals.table.to.simple.table"/>
+	  <removeAction id="convert.simple.table.to.cals.table"/>
+	  <removeAction id="show.table.properties"/>
+	  
+	  <removeAction id="insert.related.link.2.topic"/>
+	  <removeAction id="insert.related.link.2.file"/>
+	  <removeAction id="insert.related.link.2.web.page"/>
+	  <removeAction id="insert.concept"/>
+	  <removeAction id="insert.task"/>
+	  <removeAction id="insert.topic"/>
+	  <removeAction id="insert.reference"/>
+	</authorActions>
+  
+    <css>
+      <removeCss path="${framework}/css/edit/alternate-syntax-highlight.css"/>
+      <removeCss path="${framework}/css/edit/alternate-table-show-colspec.css"/>
+      <removeCss path="${framework}/css/edit/alternate-hide-draft-comments.css"/>
+      <removeCss path="${framework}/css/hints/hints.css"/>
+      <removeCss path="${framework}/css/actions/actions.css"/>
+      
+      <addCss path="${framework}/lw/css/lw.css" position="after"/>
+      
+      <addCss path="${framework}/lw/css/labels.css" title="+ Labels" alternate="true"/>
+      <addCss path="${framework}/lw/css/print.css" title="+ Print ready" alternate="true"/>
+    </css>
+
+    <toolbars>
+      <toolbar>
+        <addAction id="subscript" anchor="underline" position="after"/>
+        <addAction id="superscript" anchor="underline" position="after"/>
+        <addAction id="section" anchor="insert.media" position="after"/>
+        
+        <addAction id="insert.table2" anchor="insert.table.row.below" position="before"/>
+        
+        <removeGroup name="${i18n(section)}"/>
+      </toolbar>
+    </toolbars>
+    
+    <contextualMenu>
+      <addAction id="insert.table" anchor="insert.table.row.below" position="before"/>
+      <submenu name="${i18n(paste.special)}">
+        <removeAction id="paste.content.key.reference"/>
+      </submenu>
+      
+      <submenu name="${i18n(table)}">
+        <addAction id="insert.table" anchor="insert.table.rows.custom" position="before"/>
+      </submenu>
+      
+      <submenu name="${i18n(reuse)}">
+        <removeAction id="push.element"/>
+        <removeAction id="create_reusable_component"/>
+        <removeAction id="insert_reusable_component"/>
+      </submenu>
+  
+      <submenu name="${i18n(table)}">
+        <addAction id="insert.table2" anchor="insert.table.rows.custom" position="before"/>
+      </submenu>
+      
+      <submenu name="${i18n(insert)}">
+        <addAction id="insert.table2" anchor="insert.image" position="before"/>
+      </submenu>
+    </contextualMenu>
+    
+    <menu name="Lightweight DITA">
+      <removeAction id="push.element"/>
+      <removeAction id="create_reusable_component"/>
+      <removeAction id="insert_reusable_component"/>
+      
+      <submenu name="${i18n(paste.special)}">
+        <removeAction id="paste.content.key.reference"/>
+      </submenu>
+      
+      <submenu name="${i18n(table)}">
+        <addAction id="insert.table2" anchor="insert.table.row.above" position="before"/>
+        <separator anchor="insert.table.row.above" position="before"/>
+      </submenu>
+    </menu>
+    
+    <contentCompletion>
+      <authorActions>
+        <addAction id="insert.table2" inCCWindow="true" alias="${i18n(table.wizard)}"/>
+      </authorActions>
+    </contentCompletion>
+  </author>
+</script>

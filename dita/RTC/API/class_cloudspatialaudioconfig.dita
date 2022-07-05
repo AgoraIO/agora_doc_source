@@ -2,7 +2,8 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_cloudspatialaudioconfig">
     <title><ph keyref="CloudSpatialAudioConfig"/></title>
-    <shortdesc id="short"><ph id="shortdesc"><apiname keyref="ICloudSpatialAudioEngine"/> 的配置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc"><apiname
+        keyref="ICloudSpatialAudioEngine"/> 的配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -33,7 +34,7 @@
 @property(copy, nonatomic) NSString* _Nullable appId;
 @property(assign, nonatomic) NSUInteger deployRegion;
 @end</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">struct CloudSpatialAudioConfig {
+            <codeblock props="cpp" outputclass="language-cpp">struct CloudSpatialAudioConfig {
   agora::rtc::IRtcEngine* rtcEngine;
   ICloudSpatialAudioEventHandler* eventHandler;
   const char* appId;
@@ -41,7 +42,12 @@
   CloudSpatialAudioConfig() : rtcEngine(NULL), eventHandler(NULL), appId(NULL), deployRegion(SAE_DEPLOY_REGION_CN) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="cs" outputclass="language-csharp">public struct CloudSpatialAudioConfig {
+      public IAgoraRtcEngine rtcEngine;
+      public IAgoraRtcCloudSpatialAudioEngineEventHandler eventHandler;
+      public string appId;
+      public uint deployRegion;
+   };</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
@@ -51,29 +57,34 @@
             /></title>
             <parml>
             <plentry>
-                <pt props="windows ios mac">rtcEngine</pt>
+                <pt props="cpp ios mac cs">rtcEngine</pt>
                 <pt props="android">mRtcEngine</pt>
                 <pd><xref keyref="IRtcEngine"/>。</pd>
             </plentry>
-            <plentry props="windows android">
-                <pt props="windows">eventHandler</pt>
+            <plentry props="cpp android cs">
+                <pt props="cpp cs">eventHandler</pt>
                 <pt props="android">mEventHandler</pt>
-                <pd><apiname keyref="ICloudSpatialAudioEngine"/> 的事件句柄。详见 <xref keyref="ICloudSpatialAudioEventHandler"/>。</pd>
+                <pd><apiname keyref="ICloudSpatialAudioEngine"/> 的事件句柄。详见 <xref
+                    keyref="ICloudSpatialAudioEventHandler"/>。</pd>
             </plentry>
             <plentry>
-                <pt props="windows ios mac">appId</pt>
+                <pt props="cpp ios mac cs">appId</pt>
                 <pt props="android">mAppId</pt>
-                <pd>Agora 为 app 开发者签发的 App ID。该参数需要与初始化 <apiname keyref="IRtcEngine"/> 时设置的 App ID 一致。</pd>
+                <pd>Agora 为 app 开发者签发的 App ID。该参数需要与初始化 <apiname
+                    keyref="IRtcEngine"/> 时设置的 App ID 一致。</pd>
             </plentry>
             <plentry>
-                <pt props="windows ios mac">deployRegion</pt>
+                <pt props="cpp ios mac cs">deployRegion</pt>
                 <pt props="android">mDeployRegion</pt>
-                <pd>Agora 空间音效服务器的访问区域。支持如下区域：<ul>
+                <pd>Agora 空间音效服务器的访问区域。支持如下区域：
+                    
+                    
+                    <ul>
                     <li><ph keyref="SAE_DEPLOY_REGION_CN"/>: （默认）中国大陆。</li>
                     <li><ph keyref="SAE_DEPLOY_REGION_NA"/>: 北美区域。</li>
                     <li><ph keyref="SAE_DEPLOY_REGION_EU"/>: 欧洲区域。</li>
                     <li><ph keyref="SAE_DEPLOY_REGION_AS"/>: 除中国以外的亚洲区域。</li>
-                </ul>
+                    </ul>
                     <p>指定访问区域后，使用空间音效的 app 会连接指定区域内的 Agora 空间音效服务器。</p>
                 </pd>
             </plentry>

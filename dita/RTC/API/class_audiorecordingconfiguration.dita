@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audiorecordingconfiguration">
-    <title>
-        <ph keyref="AudioRecordingConfiguration" />
-    </title>
-    <shortdesc id="short">
-        <ph id="shortdesc">客户端录音配置。</ph>
-    </shortdesc>
+    <title> <ph keyref="AudioRecordingConfiguration"/> </title>
+    <shortdesc id="short"> <ph id="shortdesc">客户端录音配置。</ph> </shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public class AudioRecordingConfiguration
+            <codeblock props="android" outputclass="language-java">public class AudioRecordingConfiguration
     {
     public String filePath;
     public int recordingQuality;
@@ -32,14 +28,14 @@
     this.recordingSampleRate = sampleRate;
     }
     }</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioRecordingConfiguration : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioRecordingConfiguration : NSObject
 
     @property(copy, nonatomic) NSString* _Nullable filePath;
     @property(assign, nonatomic) AgoraAudioRecordingQuality recordingQuality;
     @property(assign, nonatomic) AgoraAudioRecordingPosition recordingPosition;
     @property(assign, nonatomic) NSInteger recordingSampleRate;
     @end</codeblock>
-                <codeblock props="windows unity" outputclass="language-cpp">struct AudioRecordingConfiguration {
+            <codeblock props="cpp" outputclass="language-cpp">struct AudioRecordingConfiguration {
 
     const char* filePath;
     AUDIO_RECORDING_QUALITY_TYPE recordingQuality;
@@ -64,14 +60,41 @@
                         recordingSampleRate(sampleRate)
                       {}
                     };</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">export interface AudioRecordingConfiguration {
+            <codeblock props="cs" outputclass="language-csharp">public class AudioRecordingConfiguration
+    {
+        public AudioRecordingConfiguration()
+        {
+            filePath = null;
+            recordingQuality = AUDIO_RECORDING_QUALITY_TYPE.AUDIO_RECORDING_QUALITY_MEDIUM;
+            recordingPosition = AUDIO_RECORDING_POSITION.AUDIO_RECORDING_POSITION_MIXED_RECORDING_AND_PLAYBACK;
+            recordingSampleRate = 32000;
+            recordingChannel = 1;
+        }
+
+        public AudioRecordingConfiguration(string filePath, AUDIO_RECORDING_QUALITY_TYPE recordingQuality,
+            AUDIO_RECORDING_POSITION recordingPosition, int recordingSampleRate, int recordingChannel )
+        {
+            this.filePath = filePath;
+            this.recordingQuality = recordingQuality;
+            this.recordingPosition = recordingPosition;
+            this.recordingSampleRate = recordingSampleRate;
+            this.recordingChannel = recordingChannel;
+        }
+
+        public string filePath { set; get; }
+        public AUDIO_RECORDING_QUALITY_TYPE recordingQuality { set; get; }
+        public AUDIO_RECORDING_POSITION recordingPosition { set; get; }
+        public int recordingSampleRate { set; get; }
+        public int recordingChannel  { set; get; }
+    }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export interface AudioRecordingConfiguration {
   filePath: string;
   recordingQuality: AUDIO_RECORDING_QUALITY_TYPE;
   recordingPosition: AUDIO_RECORDING_POSITION;
   recordingSampleRate: number;
 }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">class AudioRecordingConfiguration {
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">class AudioRecordingConfiguration {
 
   String filePath;
 
@@ -95,93 +118,74 @@
       _$AudioRecordingConfigurationFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$AudioRecordingConfigurationToJson(this);
-}</codeblock>
-            </p>
+}</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since" props="android ios mac windows">
-                <dlentry>
-                    <dt>自从</dt>
-                    <dd>v3.4.0</dd>
-                </dlentry>
+            <dl outputclass="since" props="android ios mac cpp">
+            <dlentry>
+                <dt>自从</dt>
+                <dd>v3.4.0</dd>
+            </dlentry>
             </dl>
         </section>
         <section id="parameters">
-            <title>
-                <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" />
-            </title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
-                <plentry id="filepath">
-                    <pt>filePath</pt>
-                    <pd>
-                        <p>
-                            录音文件在本地保存的绝对路径，需精确到文件名及格式。例如：
-                            <codeph>
-                                <ph keyref="recordingPath-example" />
-                            </codeph>
-                            。
-                        </p>
-                        <note type="attention">请确保你指定的路径存在并且可写。</note>
-                    </pd>
-                </plentry>
-                <plentry>
-                    <pt>recordingChannel</pt>
-                    <pd>
+            <plentry id="filepath">
+                <pt>filePath</pt>
+                <pd>
+                    <p>录音文件在本地保存的绝对路径，需精确到文件名及格式。例如：<codeph><ph
+                    keyref="recordingPath-example"/></codeph>。</p>
+                    <note type="attention">请确保你指定的路径存在并且可写。</note> </pd>
+            </plentry>
+            <plentry>
+                <pt>recordingChannel</pt>
+                <pd>
                         录制的音频声道。支持如下取值：
-                        <ul>
-                            <li>1: （默认）单声道。</li>
-                            <li>2: 双声道。</li>
-                        </ul>
-                        <note type="attention">
+                        
+                    
+                    <ul>
+                    <li>1: （默认）单声道。</li>
+                    <li>2: 双声道。</li>
+                    </ul>
+                    <note type="attention">
                             实际录制的音频声道与你采集的音频声道有关：如果采集的音频为单声道，
                             <parmname>recordingChannel</parmname>
                             为 2，则录制的音频为经过单声道数据拷贝后的双声道数据，而不是立体声。如果采集的音频为双声道，
                             <parmname>recordingChannel</parmname>
                             为 1，则录制的音频为经过双声道数据混合后的单声道数据。此外，集成方案也会影响最终录制的音频声道。因此，如果你希望录制立体声，请联系技术支持协助。
-                        </note>
-                    </pd>
-                </plentry>
-                <plentry>
-                    <pt>recordingQuality</pt>
-                    <pd>
-                        <p>
-                            录音音质。详见
-                            <xref keyref="AUDIO_RECORDING_QUALITY_TYPE" />
-                            。
-                        </p>
-                        <note type="attention">该参数仅适用于 AAC 文件。</note>
-                    </pd>
-                </plentry>
-                <plentry>
-                    <pt>recordingPosition</pt>
-                    <pd>
-                        录音内容。详见
-                        <xref keyref="AUDIO_RECORDING_POSITION" />
-                        。
-                    </pd>
-                </plentry>
-                <plentry>
-                    <pt>recordingSampleRate</pt>
-                    <pd>
-                        录音采样率 (Hz)。
-                        <ul>
-                            <li>16000</li>
-                            <li>（默认）32000</li>
-                            <li>44100</li>
-                            <li>48000</li>
-                        </ul>
-                        <note type="attention">
-                            如果把该参数设为 44100 或 48000，为保证录音效果，Agora 推荐录制 WAV 文件 或
-                            <parmname>recordingQuality</parmname>
-                            为
-                            <ph keyref="AUDIO_RECORDING_QUALITY_MEDIUM" />
-                            或
-                            <ph keyref="AUDIO_RECORDING_QUALITY_HIGH" />
-                            的 AAV 文件。
-                        </note>
-                    </pd>
-                </plentry>
-            </parml>
-        </section>
+                        </note> </pd>
+            </plentry>
+            <plentry>
+                <pt>recordingQuality</pt>
+                <pd>
+                    <p>录音音质。详见 <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"
+                    />。</p>
+                    <note type="attention">该参数仅适用于 AAC 文件。</note></pd>
+            </plentry>
+            <plentry>
+                <pt>recordingPosition</pt>
+                <pd>录音内容。详见 <xref keyref="AUDIO_RECORDING_POSITION"/>。</pd>
+            </plentry>
+            <plentry>
+                <pt>recordingSampleRate</pt>
+                <pd>录音采样率 (Hz)。
+                    
+                    <ul>
+                    <li>16000</li>
+                    <li>（默认）32000</li>
+                    <li>44100</li>
+                    <li>48000</li>
+                    </ul>
+                    <note type="attention"
+                    >如果把该参数设为 44100 或 48000，为保证录音效果，Agora 推荐录制 WAV 文件 或 <parmname>recordingQuality</parmname> 为
+                        <ph
+                    keyref="AUDIO_RECORDING_QUALITY_MEDIUM"/> 或 <ph
+                    keyref="AUDIO_RECORDING_QUALITY_HIGH"
+                    /> 的 AAV 文件。</note></pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

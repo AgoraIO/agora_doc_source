@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_create">
+    <title><ph keyref="create1" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Creates and initializes <xref keyref="IRtcEngine" />.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="create1" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public static synchronized RtcEngine create(
+      Context context, String appId, IRtcEngineEventHandler handler) throws Exception {}
+</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">+ (instancetype _Nonnull)sharedEngineWithAppId:(NSString * _Nonnull)appId
+                                      delegate:(id&lt;AgoraRtcEngineDelegate&gt; _Nullable)delegate;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp" />
+                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <p>All called methods provided by the <apiname keyref="IRtcEngine" /> class are executed asynchronously. We recommend calling these methods in the same thread.</p>
+            <note type="attention">
+                <ul id="ul_uy4_mtq_4qb">
+                    <li>Before calling other APIs, you must call this method to create an <apiname keyref="IRtcEngine" /> object.</li>
+                    <li>You can create an <apiname keyref="IRtcEngine" /> instance either by calling this method or by calling <xref keyref="create2" />. The difference between <apiname keyref="create2" /> and this method is that <apiname keyref="create2" /> supports more configurations when creating the <apiname keyref="IRtcEngine" /> instance, for example, specifying the region for connection and setting the log files.</li>
+                    <li>The SDK supports creating only one <apiname keyref="IRtcEngine" /> instance for an app.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry props="android cpp">
+                    <pt>context</pt>
+                    <pd conkeyref="RtcEngineConfig/context" />
+                </plentry>
+                <plentry>
+                    <pt>appId</pt>
+                    <pd conkeyref="RtcEngineConfig/appid" />
+                </plentry>
+                <plentry>
+                    <pt props="android">handler</pt>
+                    <pt props="ios mac">delegate</pt>
+                    <pd id="handler">The event handler for <xref keyref="IRtcEngine" />. See <xref keyref="IRtcEngineEventHandler" />.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul>
+                <li>The <apiname keyref="IRtcEngine" /> instance, if the method call succeeds.</li>
+                <li>An error code, if the call fails.</li>
+            </ul>
+        </section>
+        <section id="section_yqx_kwq_4qb" props="android">
+            <title>Exception</title>
+            <parml>
+                <plentry>
+                    <pt>Exception</pt>
+                    <pd>Fails to create the instance.</pd>
+                </plentry>
+            </parml>
+        </section>
+
+    </refbody>
+</reference>

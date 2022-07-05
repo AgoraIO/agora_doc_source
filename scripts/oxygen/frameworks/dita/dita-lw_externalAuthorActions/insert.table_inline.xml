@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<a:authorAction xmlns:a="http://www.oxygenxml.com/ns/author/external-action"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.oxygenxml.com/ns/author/external-action http://www.oxygenxml.com/ns/author/external-action/authorAction.xsd"
+  id="insert.table-inline">
+  <a:name>${i18n(insert.table)}</a:name>
+  <a:description>${i18n(insert.table_description)}</a:description>
+  <a:smallIconPath href="/images/Table16.png"/>
+  <a:largeIconPath href="/images/Table24.png"/>
+  <a:operations>
+    <a:operation id="InsertFragmentOperation">
+      <a:xpathCondition>self::*[not(section)] and parent::body</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><simpletable>
+        <sthead>
+          <stentry>${caret}</stentry>
+          <stentry/>
+          <stentry/>
+        </sthead>
+        <strow>
+          <stentry/>
+          <stentry/>
+          <stentry/>
+        </strow>
+        <strow>
+          <stentry/>
+          <stentry/>
+          <stentry/>
+        </strow>
+      </simpletable></a:argument>
+        <a:argument name="insertLocation">.</a:argument>
+        <a:argument name="insertPosition">After</a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="InsertFragmentOperation">
+      <a:xpathCondition>self::body</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><simpletable>
+        <sthead>
+          <stentry>${caret}</stentry>
+          <stentry/>
+          <stentry/>
+        </sthead>
+        <strow>
+          <stentry/>
+          <stentry/>
+          <stentry/>
+        </strow>
+        <strow>
+          <stentry/>
+          <stentry/>
+          <stentry/>
+        </strow>
+      </simpletable></a:argument>
+        <a:argument name="insertLocation"/>
+        <a:argument name="insertPosition">Inside as last child</a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="InsertFragmentOperation">
+      <a:xpathCondition>oxy:allows-child-element("simpletable")</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><simpletable>
+        <sthead>
+          <stentry>${caret}</stentry>
+          <stentry/>
+          <stentry/>
+        </sthead>
+        <strow>
+          <stentry/>
+          <stentry/>
+          <stentry/>
+        </strow>
+        <strow>
+          <stentry/>
+          <stentry/>
+          <stentry/>
+        </strow>
+      </simpletable></a:argument>
+      </a:arguments>
+    </a:operation>
+  </a:operations>
+  <a:accelerator>M1 T</a:accelerator>
+  <a:accessKey>T</a:accessKey>
+  <a:enabledInReadOnlyContext>false</a:enabledInReadOnlyContext>
+</a:authorAction>

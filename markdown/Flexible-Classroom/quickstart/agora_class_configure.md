@@ -1,6 +1,6 @@
 本文介绍如何在 Agora 控制台配置灵动课堂中的互动白板、实时录制和实时消息功能。
 
-<div class="alert info">阅读本文前，请确保你已在 Agora 控制台<a href="/cn/agora-class/agora_class_enable?platform=Web" target="_blank">开启灵动课堂服务</a>。</div>
+<div class="alert info">阅读本文前，请确保你已在 Agora 控制台<a href="/cn/agora-class/agora_class_enable?platform=Web" target="_blank">开通灵动课堂服务</a>。</div>
 
 ## 配置白板功能
 
@@ -25,11 +25,9 @@
         - `endpoint`: 阿里云 OSS 的访问域名，例如 `oss-cn-shanghai.aliyuncs.com`。
         - `bucket`: 阿里云 OSS 中的 Bucket 名称，例如 `agora-whiteboard`。
         - `folder`: 阿里云 OSS 中的资源存放路径，例如 `whiteboard`。
-        - `ramAccessKey`: 阿里云临时访问密钥 STS AK 的 AccessKey ID。仅适用于灵动课堂 1.1.0 及之后版本。
-        - `ramAccessSecret`: 阿里云临时访问密钥 STS AK 的 AccessKey Secret。仅适用于灵动课堂 1.1.0 及之后版本。
-        - `roleArn`: 阿里云 OSS 临时授权访问的角色的 ARN。仅适用于灵动课堂 1.1.0 及之后版本。
-        - `roleSessionName`: 阿里云 OSS 标识临时访问凭证的名称。仅适用于灵动课堂 1.1.0 及之后版本。
-          <div class="alert info">如需了解如何获取 <code>ramAccessKey</code>、<code>ramAccessSecret</code>、<code>roleArn</code> 和 <code>roleSessionName</code> 字段，请查看阿里云官方文档<a href="https://www.alibabacloud.com/help/zh/doc-detail/100624.htm" target="_blank">使用 STS 临时访问凭证访问 OSS</a>。</div>
+        - `accessKey`: 阿里云 OSS 提供的访问密钥中的 Access Key，用于识别访问者的身份。
+        - `secretKey`: 阿里云 OSS 提供的访问密钥中的 Secret Key，用于验证签名的密钥。
+          <div class="alert info">对于如何获取上述信息，请查看<a href="https://www.alibabacloud.com/help/zh/object-storage-service" target="_blank">阿里云官方文档</a>。</div>
     - 如果你使用 Amazon S3，填写以下信息：
         - `region`: Amazon S3 中创建 Bucket 时指定的数据中心所在区域。
         - `endpoint`: Amazon S3 的访问域名。

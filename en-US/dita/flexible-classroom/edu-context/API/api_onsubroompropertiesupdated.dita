@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_onsubroompropertiesupdated">
+    <title><ph keyref="onSubRoomPropertiesUpdated"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the custom properties of a sub-room are updated.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onSubRoomPropertiesUpdated"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-kotlin"/>
+                <codeblock props="ios mac" outputclass="language-swift">void onSubRoomPropertiesUpdated(Map&lt;String, Any> changedProperties,
+                                Map&lt;String, Any> cause,
+                                AgoraEduContextUserInfo operator)</codeblock>
+                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="web" outputclass="language-typescript"/>
+            </p>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+            <parml>
+                <plentry>
+                    <pt props="ios">changedProperties</pt>
+                    <pt props="android">properties</pt>
+                    <pd>The updated room properties.</pd>
+                </plentry>
+                <plentry>
+                    <pt>cause</pt>
+                    <pd>The update reason.</pd>
+                </plentry>
+                <plentry id="operator">
+                    <pt>operator</pt>
+                    <pd>The operator <xref keyref="AgoraEduContextUserInfo"/>, which can be empty.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

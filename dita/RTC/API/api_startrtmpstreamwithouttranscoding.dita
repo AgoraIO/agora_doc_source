@@ -13,40 +13,23 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="windows" outputclass="language-cpp"/>
+            <codeblock props="android" outputclass="language-java">public abstract int startRtmpStreamWithoutTranscoding(String url);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)startRtmpStreamWithoutTranscoding:(NSString* _Nonnull)url;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int startRtmpStreamWithoutTranscoding(const char* url) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="cs" outputclass="language-csharp">public abstract int StartRtmpStreamWithoutTranscoding(string url);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startRtmpStreamWithoutTranscoding(String url);</codeblock></p>
         </section>
-        <section id="detailed_desc">
-            <p>调用该方法，你可以向指定的 CDN 推流地址推送直播音视频流。该方法每次只能向一个地址推送媒体流，如果你需要向多个地址推流，则需多次调用该方法。</p>
-            <p>调用该方法后，SDK 会在本地触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调，报告推流的状态。</p>
-            <note type="attention" id="note">
-            <ul>
-            <li>请确保已开通 CDN 推流服务，详见进阶功能<xref keyref="guide-cdn-streaming">旁路推流</xref>中的前提条件。</li>
-            <li>请在加入频道后调用该方法。</li>
-            <li>只有直播场景下的主播才能调用该方法。</li>
-            <li>调用该方法推流失败后，如果你想要重新推流，那么请你务必先调用 <apiname>stopRtmpStream</apiname> ，再调用该方法重推，否则 SDK 会返回与上次推流失败时一样的错误码。</li>
-            </ul> </note>
-        </section>
+        <section conkeyref="startRtmpStreamWithTranscoding/detailed_desc"/>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry id="url">
-                <pt>url</pt>
-                <pd>CDN 推流地址，格式为 RTMP 或 RTMPS。字符长度不能超过 1024 字节。不支持中文字符等特殊字符。</pd>
+            <plentry conkeyref="startRtmpStreamWithTranscoding/url">
+                <pt/>
+                <pd/>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="windows">
-            <title>返回值</title>
-            <ul>
-            <li>0: 方法调用成功。</li>
-            <li>
-                    &lt; 0: 方法调用失败。
-                </li>
-            </ul> </section>
+        <section props="native cs" conkeyref="startRtmpStreamWithTranscoding/return_values"/>
     </refbody>
 </reference>

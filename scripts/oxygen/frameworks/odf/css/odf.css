@@ -1,0 +1,64 @@
+@namespace txt "urn:oasis:names:tc:opendocument:xmlns:text:1.0";
+@namespace xlink "http://www.w3.org/1999/xlink";
+
+:root {
+    display:block;
+}
+
+scripts, font-face-decls, automatic-styles, s, sequence-decls, annotation, annotation-end, bookmark-start, bookmark-end, bookmark-ref {
+    display:none;
+}
+
+body, text, p, list {
+    display:block;
+}
+
+p:empty, span:empty, s:empty {
+    content: "";
+}
+
+span {
+    display:inline;
+}
+
+table {
+    display:table;
+}
+
+table-row {
+    display:table-row;
+}
+
+table-columns {
+    display:none;
+}
+
+table-column {
+    display:table-column;
+}
+
+table-cell {
+    display:table-cell;
+    border:1px solid gray;
+}
+
+list-item {
+    display:list-item;
+    list-style-type:circle;
+    padding-left:2em;
+}
+
+image {
+    content: attr(xlink|href, url);
+}
+
+h {
+    display:block;
+    font-size:large;
+    font-weight:bold;
+}
+
+*[xlink|href]:before{
+    -oxy-link:attr(xlink|href);
+    content: url(../../opf/img/link.png);
+}

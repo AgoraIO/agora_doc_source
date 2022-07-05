@@ -23,69 +23,88 @@
 -   `hyphenate` 依赖 `AgoraEduCore`。
 -   `app` 依赖其它所有模块。
 
-## 集成方式
+## 通过 Maven 集成灵动课堂
 
-根据你的实际需求选择以下任意一种集成方式。
+如果你使用灵动课堂的默认 UI，无需修改灵动课堂的代码，则可参考以下步骤通过 Maven 添加远程依赖集成完整的灵动课堂：
 
-<a name="default_ui"></a>
-
-### 使用灵动课堂的默认 UI
-
-如果你使用灵动课堂的默认 UI，无需修改灵动课堂的代码，则可参考以下步骤添加远程依赖集成灵动课堂：
-
-1. 在项目的 `build.gradle` 文件中添加以下库：
+1. 在项目根目录的 `build.gradle` 文件中添加以下库：
 
     ```
-    buildscript {
-        repositories {
-            maven { url 'https://jitpack.io' }
-            google()
-            mavenCentral()
-            }
-       }
-
-    allprojects {
-        repositories {
-            maven { url 'https://jitpack.io' }
-            google()
-            mavenCentral()
-            }
-        }
+    repositories {
+        maven { url 'https://jitpack.io' }
+        google()
+        mavenCentral()
+        maven { url 'https://s01.oss.sonatype.org/content/repositories/snapshots/' }
+    }
     ```
 
-2. 在项目的 `build.gradle` 文件中添加以下依赖，引入 `AgoraEduUIKit`、`AgoraClassSDK`、`AgoraEduCore` 和 `hyphenate` 四个模块：
+2. 在项目根目录的 `build.gradle` 文件中添加以下依赖，引入 `AgoraEduUIKit`、`AgoraClassSDK`、`AgoraEduCore` 和 `hyphenate` 四个模块：
 
     ```
     dependencies {
           ...
-          implementation "io.github.agoraio-community:hyphenate:2.1.0"
-          implementation "io.github.agoraio-community:AgoraEduCore:2.1.0"
-          implementation "io.github.agoraio-community:AgoraEduUIKit:2.1.0"
-          implementation "io.github.agoraio-community:AgoraClassSDK:2.1.0"
+        implementation "io.github.agoraio-community:hyphenate:版本号"
+        implementation "io.github.agoraio-community:AgoraEduCore:版本号"
+        implementation "io.github.agoraio-community:AgoraEduUIKit:版本号"
+        implementation "io.github.agoraio-community:AgoraClassSDK:版本号"
     }
     ```
 
-<a name="change_default_ui"></a>
-
-### 修改灵动课堂的默认 UI
-
-如果你想要基于灵动课堂的默认 UI 进行修改，则参考以下步骤集成灵动课堂：
-
-1. 运行以下命令将 [CloudClass-Android](https://github.com/AgoraIO-Community/CloudClass-Android) 项目克隆至本地，并切换至最新发版分支。
+    假设你想获取 2.2.0 的版本，可以这样写：
 
     ```
-    git clone https://github.com/AgoraIO-Community/CloudClass-Android.git
+    dependencies {
+     implementation "io.github.agoraio-community:hyphenate:2.2.0"
+     implementation "io.github.agoraio-community:AgoraEduCore:2.2.0"
+     implementation "io.github.agoraio-community:AgoraEduUIKit:2.2.0"
+     implementation "io.github.agoraio-community:AgoraClassSDK:2.2.0"
+    }
     ```
 
+    <div class="alert info">点击<a href="https://search.maven.org/search?q=io.github.agoraio-community" target="_blank">此处</a>查看灵动课堂最新版本。</div>
+
+3. 调用 [AgoraClassroomSDK.setConfig](/cn/agora-class/agora_class_api_ref_android?platform=Android#setconfig) 和 [AgoraClassroomSDK.launch](/cn/agora-class/agora_class_api_ref_android?platform=Android#launch) 方法启动课堂。示例代码如下：
+
+    ```kotlin
+    fun startClassRoom() {
+        val appId = "" // 填入你的 App ID。
+        val rtmToken = "" // 填入你的 RTM Token。
+        val streamState = AgoraEduStreamState(videoState = 1, audioState = 1)
+
+        val config = AgoraEduLaunchConfig(
+            "xiaoming", // 用户名。
+            "xiaoming2", // 用户 ID。
+            "agoraclass", // 房间名。
+            "agoraclass4", // 房间 ID。
+            2,  // 用户角色：1 为老师，2 为学生。
+            4,  // 房间类型：0 为一对一，2 为大班课，4 为小班课。
+            rtmToken,
+            System.currentTimeMillis(), // 默认上课开始时间。
+            1800L, // 上课持续时长。
+            AgoraEduRegion.cn, // 默认区域。
+            null,
+            null,
+            streamState, // 用户上台默认是否发流： 1 为是，0 为 否
+            AgoraEduLatencyLevel.AgoraEduLatencyLevelUltraLow, // 默认延时等级
+            null,
+            null
+        )
+
+        config.appId = appId
+        AgoraClassroomSDK.setConfig(AgoraClassSdkConfig(appId))
+        AgoraClassroomSDK.launch(this, config, AgoraEduLaunchCallback { event ->
+            Log.e(TAG, ":launch-课堂状态:" + event.name)
+        }
+    }
     ```
-    git checkout release/apaas/x.y.z
+
+4. 为防止代码混淆，在 `/Gradle Scripts/proguard-rules.pro` 文件中添加以下代码：
+
     ```
-
-    <div class="alert info">x.y.z 请替换为版本号。你可在<a href="/cn/agora-class/release_agora_class_android?platform=Android">发版说明</a>中获取最新版本号。</div>
-
-2. 成功拉取代码后，各模块之间的依赖关系已默认配置好。如果你的应用不需要引入全部的模块，则根据需求删除对应的模块，并保持以上的依赖关系。默认情况下, `app` 模块通过 `implementation` 将所有的模块导入编译，其它模块之间的依赖关系均由 `compileOnly` 引入。如果你删除 `app` 模块，则需要自行改写引入方式。
-
-3. 如需自定义课堂 UI，你只需修改 `AgoraEduUIKit` 模块中的代码。
+    -keep class io.agora.**{*;}
+    -keep class com.agora.**{*;}
+    -keep class com.hyphenate.**{*;}
+    ```
 
 ## 更多信息
 

@@ -1,40 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_stoprtmpstream">
-    <title> <ph keyref="stopRtmpStream"/> </title>
-    <shortdesc id="short"> <ph id="shortdesc">Stops pushing media streams to a CDN.</ph> </shortdesc>
+    <title> <ph keyref="stopRtmpStream" /> </title>
+    <shortdesc id="short"><ph id="shortdesc">Stops pushing media streams to a CDN.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="stopRtmpStream"/>
+                <indexterm keyref="stopRtmpStream" />
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="windows" outputclass="language-cpp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="android" outputclass="language-java">public abstract int stopRtmpStream(String url);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)stopRtmpStream:(NSString* _Nonnull)url;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int stopRtmpStream(const char* url) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="cs" outputclass="language-csharp">public abstract int StopRtmpStream(string url);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; stopRtmpStream(String url);</codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>You can call this method to stop the live stream on the specified CDN address. This method can stop pushing media streams to only one CDN address at a time, so if you need to stop pushing streams to multiple addresses, call this method multiple times.</p>
-            <p>After you call this method, the SDK triggers the <xref keyref="onRtmpStreamingStateChanged"/> callback on the local client to report the state of the streaming.
-            </p>
+            <p>After you call this method, the SDK triggers the <xref keyref="onRtmpStreamingStateChanged" /> callback on the local client to report the state of the streaming.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry id="url">
-                <pt>url</pt>
-                <pd>The address of the CDN live streaming. The format is RTMP or RTMPS. The character length cannot exceed 1024 bytes. Special characters such as Chinese characters are not supported.</pd>
+            <plentry conkeyref="startRtmpStreamWithTranscoding/url">
+                <pt />
+                <pd />
             </plentry>
             </parml> </section>
-        <section id="return_values" props="windows">
+        <section id="return_values" props="cpp android ios mac cs">
             <title>Returns</title>
             <ul>
             <li>0: Success.</li>

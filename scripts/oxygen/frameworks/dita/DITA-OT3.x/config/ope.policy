@@ -1,0 +1,172 @@
+/*
+
+ OPE Security Policy Sample File
+
+ This file is an example that can be used as a starting point to
+ create a policy security file. It can be used to impose security 
+ limits to the chemistry process.
+
+
+ To use it, add to the ANT_OPTS environment variables the following parameters, 
+ separated through spaces and surrounded with quotes:
+  
+ 
+ // Points to this policy file to be used by the OPE. URL syntax.  
+ -Djava.security.policy=file:/C:/OPE_Install_Dir/plugins/com.oxygenxml.common/security.policy
+
+ // Activates the security manager and the policy file.
+ -Djava.security.manager
+
+ // To debug the security manager, use:
+ -Djava.security.debug=policy,access,failure,domain,codebase 
+
+ // The OPE installation dir, the same as the dita.dir. File path syntax.   
+ -Dope.install.dir=C:\OPE_Install_Dir
+
+ // Input directory, with maps and topics. File syntax.
+ -Dope.input.dir=C:\Map_and_Topics_Dir
+
+ // Output directory. It must match the parent of --output parameter (this is the common dir plus a transtype subfolder). File syntax.
+ -Dope.output.dir=C:\Map_and_Topics_Dir\out
+
+ // Temp directory. It must match the parent of --temp parameter (this is the common dir plus a transtype subfolder). File syntax.
+ -Dope.temp.dir=C:\Map_and_Topics_Dir\temp 
+ 
+ // The publishing template direcory. File syntax.
+ -Dope.publishing.template.dir=C:\Map_and_Topics_Dir\templates
+
+ // Map the temporary folder to one we control. For example the same folder as set above. File syntax. 
+ -Djava.io.tmpdir=C:\Map_and_Topics_Dir\temp
+
+ // The system properties that are needed in the XSLT extension points. Limited to maximum.
+ -Dope.allowed.sys.props.for.saxon=file.separator;path.separator;line.separator;OT_VERSION;webhelp.*;user.dir
+
+ // Path to the Chemistry processor. File syntax. 
+ -Dcss.processor.path.chemistry=C:\OPE_Install_Dir\plugins\com.oxygenxml.pdf.css\lib\oxygen-pdf-chemistry\chemistry.bat 
+
+
+ When using the pdf-css transtype, in addition to the ANT_OPTS above, you should set
+ the chemistry.workspace and chemistry.security.policy transformation parameters in order
+ to also secure the Chemistry process.
+ 
+ https://docs.oracle.com/javase/7/docs/technotes/guides/security/PolicyFiles.html
+ */
+grant {
+	  
+	/////////////////////////////////////////////////////////////////
+	// Permissions for the Publishing Engine input and output.
+	
+	// The installation directory of the OPE
+	permission java.io.FilePermission "${ope.install.dir}", "read";
+	permission java.io.FilePermission "${ope.install.dir}/-", "read";
+	
+	// The output directory where the files will be stored.
+	// This property should be set to the main "out" folder, 
+	// not the transtype subfolder like: "out/pdf-css-html5".
+	permission java.io.FilePermission "${ope.output.dir}", "read, write";
+	permission java.io.FilePermission "${ope.output.dir}/-", "read, write, delete";
+	
+	// The temporary directory.
+	// This property should be set to the main "temp" folder, 
+	// not the transtype subfolder like: "temp/pdf-css-html5".
+	permission java.io.FilePermission "${ope.temp.dir}", "read, write";
+	permission java.io.FilePermission "${ope.temp.dir}/-", "read, write,delete";
+	
+	// The input DITA Map and topics folder.
+	// Add more permissions if the topics and map are structured in sibling folders.
+	permission java.io.FilePermission "${ope.input.dir}", "read";    
+	permission java.io.FilePermission "${ope.input.dir}/-", "read";
+	
+	
+	/////////////////////////////////////////////////////////////////
+	// Permissions for the publishing template
+	permission java.io.FilePermission "${ope.publishing.template.dir}", "read";
+	permission java.io.FilePermission "${ope.publishing.template.dir}/-", "read";
+
+
+	/////////////////////////////////////////////////////////////////
+	// Permission for additional ant jars (on Linux the ant process fails without it)
+	permission java.io.FilePermission "${user.home}/.ant/lib", "read";    
+	permission java.io.FilePermission "${user.home}/.ant/lib/-", "read";    
+
+	
+	/////////////////////////////////////////////////////////////////
+	// Permissions for the Chemistry processor invocation
+	//
+	// This property must be set as a transformation parameter,
+	// otherwise the DITA PDF plugin will try to search for chemistry in the
+	// PATH environment variable and requiring a permissions for reading system folders.
+	//
+	permission java.io.FilePermission "${css.processor.path.chemistry}", "read,execute";
+	
+	
+	// Needed from build files.
+	permission java.lang.RuntimePermission "setIO";
+	permission java.lang.RuntimePermission "setERR";
+	
+	permission java.lang.RuntimePermission "accessClassInPackage.*";
+	permission java.lang.RuntimePermission "getClassLoader";
+	permission java.lang.RuntimePermission "createClassLoader";
+	permission java.lang.RuntimePermission "setContextClassLoader";
+
+	permission java.lang.RuntimePermission "getProtectionDomain";
+	permission java.lang.RuntimePermission "accessDeclaredMembers";
+	permission java.lang.RuntimePermission "shutdownHooks";
+	
+	permission java.lang.RuntimePermission "exitVM.2";
+	permission java.lang.RuntimePermission "exitVM.1";
+	permission java.lang.RuntimePermission "exitVM.0";
+
+	  
+	permission java.lang.RuntimePermission "getStackWalkerWithClassReference";
+	  
+	permission javax.management.MBeanServerPermission "*";
+	permission javax.management.MBeanPermission "*", "*";
+	permission javax.management.MBeanTrustPermission "*";
+
+};
+
+/////////////////////////////////////////////////////////////
+// Limit XSLT access to properties and environment variables.
+// Saxon-HE does not allow access to reflexive functions, so it is safe otherwise.
+grant codeBase "file:${ope.install.dir}/lib/*" {
+	permission java.lang.reflect.ReflectPermission "*";
+
+	permission java.lang.RuntimePermission "getenv.*";
+	permission java.util.PropertyPermission "*", "read,write";
+	
+	permission java.io.FilePermission "${user.home}/.ant", "read";
+	permission java.io.FilePermission "${user.home}/.ant/-", "read";
+	permission java.lang.RuntimePermission "setSecurityManager";
+	permission java.util.logging.LoggingPermission "control";
+};
+
+grant codeBase "file:${ope.install.dir}/lib/saxon/-" {
+	// Do not allow Saxon to access the environment variables.
+	//permission java.lang.RuntimePermission "getenv.*";
+
+	// We grant Saxon read and write permission on all properties (from the generic grant block), because
+	// the catalog resolver needs to use System.getProperties()
+	// but we patch the XsltModule so the propeties it receives are filtered. 
+	permission java.util.PropertyPermission "*", "read,write";
+	permission java.util.logging.LoggingPermission "control";
+};
+
+
+grant codeBase "file:${ope.install.dir}/plugins/-" {
+	permission java.lang.reflect.ReflectPermission "*";
+	permission java.lang.RuntimePermission "getenv.*";
+	permission java.lang.RuntimePermission "setSecurityManager";
+	permission java.util.PropertyPermission "*", "read,write";
+	permission java.util.logging.LoggingPermission "control";	
+};
+
+grant codeBase "file:${ope.install.dir}/target/-" {
+	permission java.lang.reflect.ReflectPermission "*";
+	permission java.lang.RuntimePermission "getenv.*";
+	permission java.lang.RuntimePermission "setSecurityManager";
+	permission java.util.PropertyPermission "*", "read,write";
+	permission java.util.logging.LoggingPermission "control";
+};
+
+

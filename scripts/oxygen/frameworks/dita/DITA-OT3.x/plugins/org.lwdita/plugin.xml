@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="org.lwdita">
+  <!-- DITA to Markdown -->
+  <transtype name="markdown" desc="Markdown"/>
+  <transtype name="markdown_github" desc="GitHub-flavored Markdown"/>
+  <transtype name="markdown_gitbook" desc="GitBook"/>
+  <feature extension="dita.conductor.target.relative" file="conductor.xml"/>
+  <!-- All libraries -->
+  <feature extension="dita.conductor.lib.import" file="lib/*"/>
+  <!-- Markdown to DITA -->
+  <template file="build-markdown_template.xml"/>
+  <template file="xsl/dita2markdown_template.xsl"/>
+  <!--template file="xsl/map2markdown-toc_template.xsl"/-->
+  <template file="xsl/map2markdown-cover_template.xsl"/>
+  <feature extension="dita.parser">
+    <parser format="markdown" class="com.elovirta.dita.markdown.MarkdownReader"/>
+    <parser format="md" class="com.elovirta.dita.markdown.MarkdownReader"/>
+    <parser format="mdita" class="com.elovirta.dita.markdown.MDitaReader"/>
+  </feature>
+  <!-- HTML to DITA -->
+  <template file="build-html_template.xml"/>
+  <feature extension="dita.parser">
+    <parser format="hdita" class="com.elovirta.dita.html.HDitaReader"/>
+  </feature>
+</plugin>

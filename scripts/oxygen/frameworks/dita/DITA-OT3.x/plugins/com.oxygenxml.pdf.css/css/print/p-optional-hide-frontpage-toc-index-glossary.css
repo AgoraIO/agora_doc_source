@@ -1,0 +1,16 @@
+/* 
+ * Make the chapters continue one after the other - this avoids extra page breaks before the first chapter.
+ */ 
+:root[hide-frontpage-toc-index-glossary='yes'] 
+		*[class~='topic/topic'][is-chapter] {
+  -oxy-page-group: auto;
+}
+
+/*
+ * Make the front page invisible. This is not removed from XSLT because here migrates the metadata.
+ */ 
+:root[hide-frontpage-toc-index-glossary='yes']
+		*[class ~= "front-page/front-page"] {
+    page: chapter; /* Merge it into the chapter page sequence */
+    display: none;
+} 

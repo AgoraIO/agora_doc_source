@@ -1,49 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setaudiosessionoperationrestriction">
-    <title><ph keyref="setAudioSessionOperationRestriction" /></title>
+    <title><ph keyref="setAudioSessionOperationRestriction"/></title>
     <shortdesc id="short"><ph id="shortdesc">设置 SDK 对 Audio Session 的操作权限。</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="setAudioSessionOperationRestriction" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="setAudioSessionOperationRestriction"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="windows" outputclass="language-cpp">virtual int setAudioSessionOperationRestriction(AUDIO_SESSION_OPERATION_RESTRICTION restriction) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp">public abstract int SetAudioSessionOperationRestriction(AUDIO_SESSION_OPERATION_RESTRICTION restriction);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAudioSessionOperationRestriction(
-      AudioSessionOperationRestriction restriction);</codeblock>
-        </p>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setAudioSessionOperationRestriction(AUDIO_SESSION_OPERATION_RESTRICTION restriction) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="cs" outputclass="language-csharp">public abstract int SetAudioSessionOperationRestriction(AUDIO_SESSION_OPERATION_RESTRICTION restriction);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAudioSessionOperationRestriction(
+      AudioSessionOperationRestriction restriction);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-   
-   <p>默认情况下，SDK 和 app 对 Audio Session 都有操作权限。如果你只需使用 app 对 Audio Session 进行操作，你可以调用该方法限制 SDK 对 Audio Session 的操作权限。</p>
-   <p>该方法在加入频道前后都能调用。一旦调用该方法限制了 SDK 对 Audio Session 的操作权限，该限制会在 SDK 需要更改 Audio Session 时生效。</p>
-   <note type="attention"><ul>
-       <li props="windows unity flutter">该方法仅适用于 iOS 平台。</li>
-       <li>该方法不会限制 app 对 Audio Session 的操作权限。</li>
-   </ul></note>
-        </section>
-        <section id="parameters"><title>参数</title>
-   <parml>
-       <plentry>
-  <pt>restriction</pt>
-  <pd>SDK 对 Audio Session 的操作权限，详见 <xref keyref="AUDIO_SESSION_OPERATION_RESTRICTION" />。该参数为 Bit Mask，每个 Bit 对应一个权限。</pd>
-       </plentry>
-   </parml>
-        </section>
-        <section id="return_values" props="native electron unity">
-   <title>返回值</title>
-   <ul>
-       <li>0: 方法调用成功</li>
-       <li>&lt; 0: 方法调用失败。</li>
-   </ul>
-        </section></refbody>
+            <p>默认情况下，SDK 和 app 对 Audio Session 都有操作权限。如果你只需使用 app 对 Audio Session 进行操作，你可以调用该方法限制 SDK 对 Audio Session 的操作权限。</p>
+            <p>该方法在加入频道前后都能调用。一旦调用该方法限制了 SDK 对 Audio Session 的操作权限，该限制会在 SDK 需要更改 Audio Session 时生效。</p>
+            <note type="attention">
+            <ul>
+            <li props="cpp cs flutter">该方法仅适用于 iOS 平台。</li>
+            <li>该方法不会限制 app 对 Audio Session 的操作权限。</li>
+            </ul></note> </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt>restriction</pt>
+                <pd>SDK 对 Audio Session 的操作权限，详见 <xref keyref="AUDIO_SESSION_OPERATION_RESTRICTION"/>。该参数为 Bit Mask，每个 Bit 对应一个权限。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron cs">
+            <title>返回值</title>
+            <ul>
+            <li>0: 方法调用成功</li>
+            <li>&lt; 0: 方法调用失败。</li>
+            </ul> </section>
+    </refbody>
 </reference>

@@ -1,0 +1,85 @@
+---
+$schema: http://json-schema.org/draft-07/schema#
+title: Personal schema.
+type: object
+properties:
+  personnel:
+    title: The 'personnel' property
+    description: Defines the personnel as a collection of person entries.
+    type: object
+    properties:
+      person:
+        $ref: '#/definitions/personType'
+    additionalProperties: false
+definitions:
+  personType:
+    title: The 'person' property
+    description: Specifies information about a person.
+    type: array
+    items:
+      description: Rules for properties defining the items that constitute a 'person'
+      type: object
+      properties:
+        id:
+          $ref: '#/definitions/idType'
+        name:
+          $ref: '#/definitions/nameType'
+        email:
+          title: The 'email' schema.
+          description: Email address for this person.
+          type: string
+          format: email
+        link:
+          $ref: '#/definitions/linkType'
+      required:
+       - id
+       - name
+       - email
+       - link
+      additionalProperties: false
+    uniqueItems: true
+  idType:
+    title: The 'id' property
+    description: 'Specifies a required ID for this person. '
+    type: string
+    maxLength: 20
+    examples:
+     - Big.Boss
+  nameType:
+    title: The 'name' property
+    description: Specifies the family and given name for the person.
+    type: object
+    properties:
+      family:
+        $ref: '#/definitions/nameValueType'
+      given:
+        $ref: '#/definitions/nameValueType'
+    required:
+     - family
+     - given
+    additionalProperties: false
+  nameValueType:
+    title: The 'family' or 'given' property
+    description: The first name or last name of the person.
+    type: string
+    minLength: 1
+    maxLength: 20
+    pattern: "^[a-zA-Z ]*$"
+    examples:
+     - John
+  linkType:
+    title: The 'link' property
+    description: Specifies who is the manager and who are the subordinates for this
+      person.
+    type: object
+    properties:
+      subordinates:
+        title: The 'subordinates' propety
+        description: Specifies the ids of the subordinates.
+        type: array
+        items:
+          $ref: '#/definitions/idType'
+      manager:
+        $ref: '#/definitions/idType'
+    additionalProperties: false
+

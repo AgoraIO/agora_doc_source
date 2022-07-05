@@ -1,0 +1,25 @@
+<!ELEMENT engine (runtime)>
+<!ATTLIST engine name CDATA #REQUIRED>
+<!ATTLIST engine class CDATA #REQUIRED>
+<!ATTLIST engine description CDATA #REQUIRED>
+<!ATTLIST engine version CDATA #REQUIRED>
+<!ATTLIST engine engineVersion CDATA #REQUIRED>
+<!ATTLIST engine licensor CDATA #REQUIRED>
+<!ATTLIST engine licenseFile CDATA #IMPLIED>
+<!ATTLIST engine supportsValidation (true | false) #REQUIRED>
+
+<!ELEMENT runtime (library|system-property)*>
+
+<!-- doc: Set a library to be used with the transformer -->
+<!ELEMENT library EMPTY>
+<!-- doc: The library path -->
+<!ATTLIST library name CDATA #REQUIRED>
+
+<!-- doc: Set a system property before executing the transformer -->
+<!ELEMENT system-property EMPTY>
+<!-- doc: The system property name -->
+<!ATTLIST system-property name CDATA #REQUIRED>
+<!-- doc: The system property value -->
+<!ATTLIST system-property value CDATA #IMPLIED>
+<!-- doc: The file path which will be made absolute to the engine.xml before being set -->
+<!ATTLIST system-property file CDATA #IMPLIED>

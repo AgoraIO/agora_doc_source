@@ -1,4 +1,4 @@
-This page introduces how to quickly launch a flexible classroom.
+This document introduces how to get the source code of Agora Flexible Classroom (Android) from GitHub and run the project, so as to quickly launch a flexible classroom and experience the features.
 
 ## Understand the tech
 
@@ -8,51 +8,65 @@ This page introduces how to quickly launch a flexible classroom.
 
 ## Prerequisites
 
-- An Agora project with an<a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id" target="_blank">Agora App ID</a>, <a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6" target="_blank">App Certificate</a>, and <a href="/cn/agora-class/agora_class_enable?platform=Android" target="_blank">enable the Flexible Classroom service</a>.
-- [Java Development Kit ](https://www.oracle.com/java/technologies/javase-downloads.html).
-- Android Studio 4.0 or later.
-- Android 5.0 or later.
-- An Android device. You may encounter unexpected issues on simulators, so Agora recommends using a physical device.
+- Enable the [Flexible Classroom service](/en/agora-class/agora_class_enable?platform=Android) in Agora console.
+- Get the [Agora App ID](/en/Agora%20Platform/get_appid_token#Get-app-id) and [App Certificate](/en/Agora%20Platform/get_appid_token#Get-app-certificate) in Agora console.
+- An Android device. You may encounter unexpected issues on simulators, so Agora recommends using a physical device. In addition, the Android client of Flexible Classroom must be run on Android 5.0 or later.
+
+## Set up the development environment
+
+Running the web client of Flexible Classroom depends on Git, Android Studio, and Java Development Kit.
+
+To prepare your development environment, refer to the following steps:
+
+1. To download Git, click this [link](https://git-scm.com/downloads).
+2. To download Android Studio, click the [link](https://developer.android.com/studio). Use Android Studio 4.1 or later. Agora recommends using the latest version.
+3. To download the Java Development Kit, click the [link](https://www.oracle.com/java/technologies/javase-downloads.html).
+
+## Get the source code
+
+The source code of Flexible Classroom (Android) is in the [CloudClass-Android ](https://github.com/AgoraIO-Community/CloudClass-Android) repository. To download the source code to your local device, refer to the following steps:
+
+1. To clone the repository, run the following command:
+
+   ```bash
+   git clone https://github.com/AgoraIO-Community/CloudClass-Android.git
+   ```
+
+2. To switch the branch, run the following command. Remember to replace {VERSION} with a specified version number:
+
+   ```bash
+   git checkout release/apaas/{VERSION}
+   ```
+
+   For example, if you want to switch to the branch of v2.1.0, just run the following command:
+
+   ```bash
+   git checkout release/apaas/2.1.0
+   ```
+
+   Agora recommends switching the branch of the latest release. The following image shows how to see the latest release branch in the GitHub repository:
+
+   ![](https://web-cdn.agora.io/docs-files/1648636502733)
 
 ## Launch a flexible classroom
 
 Follow these steps to launch a flexible classroom:
 
-1. Run the following command to clone the [CloudClass-Android](https://github.com/AgoraIO-Community/CloudClass-Android) project and check out the latest release branch.
+1. Import the CloudClass-Android project in Android Studio.
 
-   ```
-   git clone https://github.com/AgoraIO-Community/CloudClass-Android.git
-   ```
+   ![](https://web-cdn.agora.io/docs-files/1648635239823)
 
-   ```
-   git checkout release/apaas/x.y.z
-   ```
+2. (Optional) Configure the `appId`, `apiHost`, and `reportHost` parameters values in `app/res/values/string_config.xml`. If you do not configure these parameters, this project is run with a test App ID embedded by Agora. Before your project goes online, ensure that you replace the test App ID with your own valid App ID.
 
-<div class="alert info">Replace x.y.z with the version number. To get the latest version number, see the <a href="/cn/agora-class/release_agora_class_android?platform=Android">release notes</a>.</div>
+   ![](https://web-cdn.agora.io/docs-files/1648635527460)
 
-2. Open the CloudClass-Android project in Android Studio.
-
-3. Replace the `Agora App ID` and `Agora App Certificate` in the `app/src/normal/res/values/string_config.xml` file with [your App ID and App Certificate](#prerequisites). Leave `Agora API Host` and `Report API Host` as is.
-
-   ```xml
-   <?xml version="1.0" encoding="utf-8"?>
-   <resources>
-           <string name="agora_app_id" translatable="false">Agora App ID</string>
-           <string name="agora_app_cert" translatable="false">Agora App Certificate</string>
-           <string name="agora_api_host" translatable="false">Agora API Host</string>
-           <string name="agora_report_host" translatable="false">Report API Host</string>
-   </resources>
-   ```
-
-<div class="alert info">To facilitate your testing, the CloudClass-Android project contains an RTM Token generator, which can generate a temporary RTM Token with the App ID and App Certificate you pass in. When your project goes live, to ensure security, you must deploy the RTM Token generator on your server.</div>
-
-4. Open the CloudClass-Android project in Android Studio, and run it on a physical mobile device. You can see the following page:
+3. Open the CloudClass-Android project in Android Studio, and run it on a physical mobile device. You can see the following page:
 
    ![](https://web-cdn.agora.io/docs-files/1623315354864)
 
-5. To join a classroom, pass in a room name and user name, select a room type, and click **Enter**. You can see the following page:
+4. To join a classroom, pass in a room name and user name, select a room type, and click **Enter**. You can see the following page:
 
-   ![](https://web-cdn.agora.io/docs-files/1622431132516)
+   ![](https://web-cdn.agora.io/docs-files/1648635720196)
 
 ## Next steps
 

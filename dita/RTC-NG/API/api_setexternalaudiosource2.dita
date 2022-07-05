@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setexternalaudiosource2">
+    <title><ph keyref="setExternalAudioSource2"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置外部音频采集参数。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setExternalAudioSource2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetExternalAudioSource(bool enabled, int sampleRate, int channels, int sourceNumber, bool localPlayback = false, bool publish = true);</codeblock></p>
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setExternalAudioSource(boolean enabled, int sampleRate, int channels,
+      int sourceNumber, boolean localPlayback, boolean publish);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setExternalAudioSource:(BOOL)enabled
+                   sampleRate:(NSInteger)sampleRate
+                     channels:(NSInteger)channels
+                 sourceNumber:(NSInteger)sourceNumber
+                localPlayback:(BOOL)localPlayback
+                      publish:(BOOL)publish;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setExternalAudioSource(bool enabled,
+                                   int sampleRate, 
+                                   int channels, 
+                                   int sourceNumber, 
+                                   bool localPlayback = false, 
+                                   bool publish = true) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <note type="attention">请在加入频道前调用该方法。</note> </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt>enabled</pt>
+                <pd>
+                    <p>是否开启使用外部音频源的功能：
+                    <ul>
+                    <li><codeph><ph keyref="true"/></codeph>：开启外部音频源。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：（默认）关闭外部音频源。</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>sampleRate</pt>
+                <pd>外部音频源的采样率 (Hz)，可设置为 <codeph>8000</codeph>，<codeph>16000</codeph>，<codeph>32000</codeph>，<codeph>44100</codeph> 或 <codeph>48000</codeph>。</pd>
+            </plentry>
+            <plentry>
+                <pt>channels</pt>
+                <pd>外部音频源的声道数，可设置为 <codeph>1</codeph>（单声道）或 <codeph>2</codeph>（双声道）。</pd>
+            </plentry>
+            <plentry>
+                <pt>sourceNumber</pt>
+                <pd><ph>外部音频源的数量，取值为正整数。</ph><ph props="hide">多个音频源会被混音。</ph><ph>SDK 会根据该参数值创建对应数量的自采集音频轨道，并从 0 开始为音频轨道命名。你可以在 <xref keyref="ChannelMediaOptions"/> 中，设置 <parmname>publishCustomAudioSourceId</parmname> 为你想要发布的音频轨道 ID。</ph></pd>
+            </plentry>
+            <plentry>
+                <pt>localPlayback</pt>
+                <pd>
+                    <p>是否在本地播放外部音频源：
+                    <ul>
+                    <li><codeph><ph keyref="true"/></codeph>：在本地播放。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：（默认）不在本地播放。</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>publish</pt>
+                <pd>
+                    <p>是否将音频发布到远端： 
+                    <ul id="ul_agk_dnf_3qb">
+                    <li><codeph><ph keyref="true"/></codeph>：（默认）发布到远端。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：不发布到远端。</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <ul id="ul_cff_fnf_3qb">
+            <li>0：方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。</li>
+            </ul> </section>
+    </refbody>
+</reference>

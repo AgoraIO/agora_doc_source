@@ -5,35 +5,35 @@
     <shortdesc conkeyref="onConnectionLost/short"/>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="IChannel_onConnectionLost"/>
-   </keywords>
+            <keywords>
+                <indexterm keyref="IChannel_onConnectionLost"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp">virtual void onConnectionLost(IChannel *rtcChannel) {
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onConnectionLost(IChannel *rtcChannel) {
     (void)rtcChannel;
     }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(evt: ChannelEvents.CONNECTION_LOST, cb: (channelId: string) =&gt; void): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnConnectionLost(string channelId)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart">EmptyCallback? connectionLost;</codeblock>
-        </p>
+            <codeblock props="electron" outputclass="language-typescript">on(evt: ChannelEvents.CONNECTION_LOST, cb: (channelId: string) =&gt; void): this;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public virtual void OnConnectionLost(string channelId)</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">EmptyCallback? connectionLost;</codeblock> </p>
         </section>
         <section id="detailed_desc">
-
-   <p>SDK 在调用 <xref keyref="IChannel_joinChannel"/> 后无论是否加入成功，只要 10 秒和服务器无法连接就会触发该回调。</p>
+            <p>SDK 在调用 <xref keyref="IChannel_joinChannel"/> 后无论是否加入成功，只要 10 秒和服务器无法连接就会触发该回调。</p>
         </section>
-        <section id="parameters" props="native"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-   <parml>
-       <plentry conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
-  <pt/>
-  <pd/>
-       </plentry>
-   </parml>
-        </section>
+        <section id="parameters" props="native cs">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <parml>
+            <plentry props="native cs" conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
+                <pt/>
+                <pd/>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

@@ -6,9 +6,9 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows unity" outputclass="language-cpp">struct VideoFrame {
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp">struct VideoFrame {
    VIDEO_FRAME_TYPE type;
    int width;
    int height;
@@ -22,66 +22,84 @@
    int64_t renderTimeMs;
    int avsync_type;
    };</codeblock>
-                <codeblock props="electron" outputclass="language-typescript"/>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
-            </p>
+            <codeblock props="cs" outputclass="language-csharp">public class VideoFrame
+    {
+        public VIDEO_FRAME_TYPE type;
+        public int width;
+        public int height;
+        public int yStride;
+        public int uStride;
+        public int vStride;
+        public byte[] yBuffer;
+        public IntPtr yBufferPtr;
+        public byte[] uBuffer;
+        public IntPtr uBufferPtr;
+        public byte[] vBuffer;
+        public IntPtr vBufferPtr;
+        public int rotation;
+        public long renderTimeMs;
+        public int avsync_type;
+    };</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-   
-   <p>视频数据的格式为 YUV420。缓冲区给出的是指向指针的指针，该接口不能修改缓冲区的指针，只能修改缓冲区的内容。</p>
+            <p>视频数据的格式为 YUV420。缓冲区给出的是指向指针的指针，该接口不能修改缓冲区的指针，只能修改缓冲区的内容。</p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
-   <parml>
-       <plentry>
-  <pt>type</pt>
-  <pd>视频帧类型，详见 <xref keyref="VIDEO_FRAME_TYPE"/>。</pd>
-       </plentry>
-       <plentry>
-  <pt>width</pt>
-  <pd>视频像素宽度。</pd>
-       </plentry>
-       <plentry>
-  <pt>height</pt>
-  <pd>视频像素高度。</pd>
-       </plentry>
-       <plentry>
-  <pt>yStride</pt>
-  <pd>YUV 数据中的 Y 缓冲区的行跨度。</pd>
-       </plentry>
-       <plentry>
-  <pt>uStride</pt>
-  <pd>YUV 数据中的 U 缓冲区的行跨度。</pd>
-       </plentry>
-       <plentry>
-  <pt>vStride</pt>
-  <pd>YUV 数据中的 V 缓冲区的行跨度。</pd>
-       </plentry>
-       <plentry>
-  <pt>yBuffer</pt>
-  <pd>指向 YUV 数据中的 Y 缓冲区指针的指针。</pd>
-       </plentry>
-       <plentry>
-  <pt>uBuffer</pt>
-  <pd>指向 YUV 数据中的 U 缓冲区指针的指针。</pd>
-       </plentry>
-       <plentry>
-  <pt>vBuffer</pt>
-  <pd>指向 YUV 数据中的 V 缓冲区指针的指针。</pd>
-       </plentry>
-       <plentry>
-  <pt>rotation</pt>
-  <pd>在渲染视频前设置该帧的顺时针旋转角度，目前支持 0 度、90 度、180 度，和 270 度。</pd>
-       </plentry>
-       <plentry>
-  <pt>renderTimeMs</pt>
-  <pd>外部音频帧的时间戳。该参数为必填。你可以使用该时间戳还原音频帧顺序；在有视频的场景中（包含使用外部视频源的场景），该参数可以帮助实现音视频同步。</pd>
-       </plentry>
-       <plentry>
-  <pt>avsync_type</pt>
-  <pd>保留参数。</pd>
-       </plentry>
-   </parml>
-        </section></refbody>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
+            <parml>
+            <plentry>
+                <pt>type</pt>
+                <pd>视频帧类型，详见 <xref keyref="VIDEO_FRAME_TYPE"/>。</pd>
+            </plentry>
+            <plentry>
+                <pt>width</pt>
+                <pd>视频像素宽度。</pd>
+            </plentry>
+            <plentry>
+                <pt>height</pt>
+                <pd>视频像素高度。</pd>
+            </plentry>
+            <plentry>
+                <pt>yStride</pt>
+                <pd>YUV 数据中的 Y 缓冲区的行跨度。</pd>
+            </plentry>
+            <plentry>
+                <pt>uStride</pt>
+                <pd>YUV 数据中的 U 缓冲区的行跨度。</pd>
+            </plentry>
+            <plentry>
+                <pt>vStride</pt>
+                <pd>YUV 数据中的 V 缓冲区的行跨度。</pd>
+            </plentry>
+            <plentry>
+                <pt>yBuffer</pt>
+                <pd>指向 YUV 数据中的 Y 缓冲区指针的指针。</pd>
+            </plentry>
+            <plentry>
+                <pt>uBuffer</pt>
+                <pd>指向 YUV 数据中的 U 缓冲区指针的指针。</pd>
+            </plentry>
+            <plentry>
+                <pt>vBuffer</pt>
+                <pd>指向 YUV 数据中的 V 缓冲区指针的指针。</pd>
+            </plentry>
+            <plentry>
+                <pt>rotation</pt>
+                <pd>在渲染视频前设置该帧的顺时针旋转角度，目前支持 0 度、90 度、180 度，和 270 度。</pd>
+            </plentry>
+            <plentry>
+                <pt>renderTimeMs</pt>
+                <pd>外部音频帧的时间戳。该参数为必填。你可以使用该时间戳还原音频帧顺序；在有视频的场景中（包含使用外部视频源的场景），该参数可以帮助实现音视频同步。</pd>
+            </plentry>
+            <plentry>
+                <pt>avsync_type</pt>
+                <pd>保留参数。</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
 </reference>

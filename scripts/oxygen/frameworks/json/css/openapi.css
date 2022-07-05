@@ -1,0 +1,174 @@
+@namespace oxy "http://www.oxygenxml.com/extensions/author";
+
+JSON:before,
+JSON:after {
+    display: none;
+}
+JSON > * {
+    font-size: 1.5em;
+    margin: 1em;
+    font-weight: bold;
+    -oxy-foldable: false;
+}
+JSON > *:before {
+    padding: 1em 0 0 0;
+    content: oxy_uppercase(oxy_name());
+}
+JSON > *:not(info) > *,
+paths > * > *,
+components > * > *,
+responses > *,
+parameters {
+    border: 1px solid #c5c5c5;
+    border-radius: 0.5em;
+    padding: 0.5em;
+    margin: 1em 0.25em 1em 0;
+    background-color: #fff8ef;
+}
+
+/* openapi */
+JSON > openapi:before {
+    content: 
+    oxy_label(text, "OpenAPI version: ")
+ oxy_combobox(
+edit, "#text", 
+fontInherit, true,
+values, "2.0.0, 3.0.0, 3.1.0");
+}
+JSON > openapi,
+info > termsOfService,
+info > license,
+info > contact {
+    visibility: -oxy-collapse-text;
+}
+
+/* info, servers, tags */
+info > *:before,
+servers ~ servers:before,
+tags ~ tags:before,
+info:before,
+info > version,
+info > license > *,
+info > contact > *,
+info > _X24_comment {
+    display: none;
+}
+info > termsOfService {
+    content: "Terms of service";
+    link: oxy_xpath("text()");
+    color: rgb(0, 50, 250);
+}
+info > * {
+    padding: 0.25em 0;
+}
+info > title {
+    font-size: 25px;
+}
+info > title:after {
+    margin: 0.5em;
+    content: oxy_xpath("../version/text()");
+}
+info > description {
+    font-style: italic;
+    font-weight: normal;
+    padding-bottom: 1em;
+}
+info > license,
+info > contact {
+    content: oxy_xpath("name/text()");
+    link: oxy_xpath("url/text()");
+    color: rgb(0, 50, 250);
+    -oxy-foldable: false;
+}
+/*  array:before, array:after{
+    content: "";
+     -oxy-foldable:false; 
+}*/
+
+/* paths, components */
+paths > * > *,
+components > * > * {
+    -oxy-folded: true;
+}
+description{
+    font-style:italic;
+}
+description:before{
+    font-style: normal;
+}
+responses:before {
+    padding: 1em 0 0 0;
+    content: oxy_uppercase(oxy_name());
+}
+
+paths > * > post {
+    background-color: #c2f2cb;
+}
+paths > * > get {
+    background-color: #ccebff;
+}
+paths > * > delete {
+    background-color: #ffceca;
+}
+paths > * > put {
+    background-color: #ffe7c7;
+}
+paths > * > *:after {
+    content: oxy_xpath("description/text()");
+    font-weight: normal;
+}
+responses > *, parameters {
+    background: transparent;
+}
+components > * > * {
+    background-color: #e6e6e6;
+}
+
+_X24_ref {
+    link: oxy_xpath("text()");
+    display: inline-block;
+    color: rgb(0, 50, 250);
+}
+*:has(*) {
+    -oxy-foldable:true;
+}
+
+@media oxygen-dark-theme, oxygen-high-contrast-black {
+    _X24_ref {
+        color: #2f5179 !important;
+    }
+    info > termsOfService,
+    info > license,
+    info > contact {
+        color: rgb(0, 120, 250) !important;
+    }
+
+    paths > * > post {
+        background-color: #66806b !important;
+    }
+    paths > * > put {
+        background-color: #998d77 !important;
+    }
+    paths > * > get {
+        background-color: #70818c !important;
+    }
+    paths > * > delete {
+        background-color: #997c79 !important;
+    }
+    JSON > *:not(info) > * {
+        background-color: #635f5a !important;
+    }
+    components > * > * {
+        background-color: #949494 !important;
+    }
+    JSON > *:not(info) > *,
+    paths > * > *,
+    components > * > *,
+    responses > *,
+    parameters {
+        border-color: #b8b8b8 !important
+    }
+    * {
+        color: #b1d3dc !important;
+    }
+}

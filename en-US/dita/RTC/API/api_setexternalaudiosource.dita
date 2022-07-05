@@ -5,59 +5,59 @@
     <shortdesc id="short"><ph id="shortdesc">Sets the external audio source.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="setExternalAudioSource" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="setExternalAudioSource" />
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public abstract int setExternalAudioSource(boolean enabled, int sampleRate, int channels);</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (int)setExternalAudioSource:(BOOL)enabled
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setExternalAudioSource(boolean enabled, int sampleRate, int channels);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setExternalAudioSource:(BOOL)enabled
                    sampleRate:(NSInteger)sampleRate
                      channels:(NSInteger)channels;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual int setExternalAudioSource(bool enabled, int sampleRate, int channels) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp">public abstract int SetExternalAudioSource(bool enabled, int sampleRate, int channels);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
-        </p>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setExternalAudioSource(bool enabled, int sampleRate, int channels) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="cs" outputclass="language-csharp">public abstract int SetExternalAudioSource(bool enabled, int sampleRate, int channels);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
-
-   <p>Call this method before calling <apiname keyref="joinChannel1" /> and <xref keyref="startPreview" />.</p>
+            <p>Call this method before calling <apiname keyref="joinChannel1" /> and <xref keyref="startPreview" />.</p>
         </section>
-        <section id="parameters"><title>Parameters</title>
-   <parml>
-       <plentry>
-  <pt>enabled</pt>
-  <pd>
-      <ul id="ul_uq4_mgz_r4b">
- <li><codeph><ph keyref="true" /></codeph>: Enable the external audio source.</li>
- <li><codeph><ph keyref="false" /></codeph>: (Default) Disable the external audio source.</li>
-      </ul>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt>sampleRate</pt>
-  <pd>The sample rate (Hz) of the external audio source, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
-       </plentry>
-       <plentry>
-  <pt>channels</pt>
-  <pd>
-      <p>The number of audio channels of the external audio source:<ul id="ul_cpd_khz_r4b">
-     <li>1: Mono.</li>
-     <li>2: Stereo.</li>
- </ul></p>
-  </pd>
-       </plentry>
-   </parml>
-        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>enabled</pt>
+                <pd>
+                    <ul id="ul_uq4_mgz_r4b">
+                    <li><codeph><ph keyref="true" /></codeph>: Enable the external audio source.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Disable the external audio source.</li>
+                    </ul> </pd>
+            </plentry>
+            <plentry>
+                <pt>sampleRate</pt>
+                <pd>The sample rate (Hz) of the external audio source, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
+            </plentry>
+            <plentry>
+                <pt>channels</pt>
+                <pd>
+                    <p>The number of audio channels of the external audio source:
+                    
+                    <ul id="ul_cpd_khz_r4b">
+                    <li>1: Mono.</li>
+                    <li>2: Stereo.</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            </parml> </section>
         <section id="return_values">
-   <title>Returns</title>
-   <ul>
-       <li>0: Success.</li>
-       <li>&lt; 0: Failure.</li>
-   </ul>
-        </section></refbody>
+            <title>Returns</title>
+            <ul>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
+    </refbody>
 </reference>

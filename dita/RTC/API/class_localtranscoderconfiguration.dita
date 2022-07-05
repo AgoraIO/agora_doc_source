@@ -12,7 +12,7 @@
 @property (strong, nonatomic) AgoraVideoEncoderConfiguration *_Nonnull videoOutputConfiguration;
 
 @end</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">struct LocalTranscoderConfiguration {
+            <codeblock props="cpp" outputclass="language-cpp">struct LocalTranscoderConfiguration {
   unsigned int streamCount;
   TranscodingVideoStream* VideoInputStreams;
   VideoEncoderConfiguration videoOutputConfiguration;
@@ -23,33 +23,46 @@
 };
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="cs" outputclass="language-csharp">public class LocalTranscoderConfiguration {
+        public LocalTranscoderConfiguration(uint streamCount, TranscodingVideoStream[] VideoInputStreams,
+                                            VideoEncoderConfiguration videoOutputConfiguration)
+        {
+            this.streamCount = streamCount;
+            this.VideoInputStreams = VideoInputStreams;
+            this.videoOutputConfiguration = videoOutputConfiguration;
+        }
+        public uint streamCount { set; get; }
+        public TranscodingVideoStream[] VideoInputStreams { set; get; }
+        public VideoEncoderConfiguration videoOutputConfiguration { set; get; }
+    }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/>
-            </p>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
-                <plentry props="windows">
-                    <pt>streamCount</pt>
-                    <pd>
-                        <p>参与本地合图的视频流的数量。</p>
-                    </pd>
-                </plentry>
-                <plentry>
-                    <pt>VideoInputStreams</pt>
-                    <pd>
-                        <p>参与本地合图的视频流。详见 <xref keyref="TranscodingVideoStream"/>。</p>
-                    </pd>
-                </plentry>
-                <plentry>
-                    <pt>videoOutputConfiguration</pt>
-                    <pd>
-                        <p>本地合图后，合图视频的编码配置。详见 <xref keyref="VideoEncoderConfiguration"/>。</p>
-                    </pd>
-                </plentry>
-            </parml>
-        </section>
+            <plentry props="cpp cs">
+                <pt>streamCount</pt>
+                <pd>
+                    <p>参与本地合图的视频流的数量。</p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>VideoInputStreams</pt>
+                <pd>
+                    <p>参与本地合图的视频流。详见 <xref keyref="TranscodingVideoStream"
+                    />。</p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>videoOutputConfiguration</pt>
+                <pd>
+                    <p>本地合图后，合图视频的编码配置。详见 <xref
+                    keyref="VideoEncoderConfiguration"/>。</p>
+                </pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

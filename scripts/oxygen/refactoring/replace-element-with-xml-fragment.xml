@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Descriptor for the 'Replace element with XML fragment' operation. 
+-->
+<refactoringOperationDescriptor 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.oxygenxml.com/ns/xmlRefactoring" 
+    id="replace-element-with-xml-fragment" 
+    name="${i18n(xr_replace_element)}">
+  <description>${i18n(xr_replace_element_description)}</description>    
+  <script type="XQUERY_UPDATE" href="replace-element-with-xml-fragment.xq"/>
+  <category>${i18n(xr_fragments)}</category>
+    <parameters>
+      <description>${i18n(xr_replace_element_parameters_description)}</description>
+      <elementLocation name="element_xpath" useCurrentContext="true">
+        <element label="${i18n(xr_target_elements)}">
+          <description>${i18n(xr_replace_element_xpath_param_description)}</description>
+        </element>
+      </elementLocation>
+      <parameter name="xml_fragment" label="${i18n(xr_xml_fragment)}" type="XML_FRAGMENT">
+        <description>${i18n(xr_replace_element_xml_fragment_param_description)}</description>
+      </parameter>    	    
+    </parameters>
+</refactoringOperationDescriptor>

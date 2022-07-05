@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_onlocalpublishfallbacktoaudioonly">
+    <title><ph keyref="onLocalPublishFallbackToAudioOnly"/></title>
+    <shortdesc id="short"><ph id="shortdesc">本地发布流已回退为音频流回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="onLocalPublishFallbackToAudioOnly"/>
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public void onLocalPublishFallbackToAudioOnly(boolean isFallbackOrRecover) {}</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+    didLocalPublishFallbackToAudioOnly:(BOOL)isFallbackOrRecover;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onLocalPublishFallbackToAudioOnly(bool isFallbackOrRecover) {
+    (void)isFallbackOrRecover;
+    }</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.LOCAL_PUBLISH_FALLBACK_TO_AUDIO_ONLY, cb: (isFallbackOrRecover: boolean) =&gt; void): this;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnLocalPublishFallbackToAudioOnly(bool isFallbackOrRecover)</codeblock>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">FallbackCallback? localPublishFallbackToAudioOnly;</codeblock>
+        </p>
+        </section>
+        <section id="detailed_desc">
+
+   <p>如果你调用了 <xref keyref="setLocalPublishFallbackOption"/> 接口并将 <parmname>option</parmname> 设置为 <apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/> ，当上行网络环境不理想、本地发布的媒体流回退为音频流时，或当上行网络改善、媒体流恢复为音视频流时，会触发该回调。</p>
+   <note type="attention"> 如果本地发流已回退为音频流，远端的 App 上会收到 <xref keyref="onUserMuteVideo"/>
+       的回调事件。</note>
+        </section>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+   <parml>
+                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry id="isFallbackOrRecover">
+                    <pt>isFallbackOrRecover</pt>
+                    <pd>
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>:
+                                由于网络环境不理想，本地发布的媒体流已回退为音频流。</li>
+                            <li><codeph><ph keyref="false"/></codeph>: 由于网络环境改善，发布的音频流已恢复为音视频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

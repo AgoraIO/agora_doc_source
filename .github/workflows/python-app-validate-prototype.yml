@@ -4,12 +4,22 @@ name: Awesome DITA API doc prototype validation
 on:
     push:
         branches:
-            - master
-            - main
+             # - 'release/**'
+             - '3.8.200-framework-suri'
+             - 'release/rtc-ng/3.8.200-kelu'
+             - '3.8.200-flutter'
+             - '3.8.200-electron-yaxi'
+    
     pull_request:
         branches:
-            - master
-            - main
+            # - "release/**"
+            # - master
+            - '3.8.200-framework-suri'
+            - 'release/rtc-ng/3.8.200-kelu'
+            - '3.8.200-flutter'
+            - '3.8.200-electron-yaxi'
+
+            
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -25,55 +35,75 @@ jobs:
                   python -m pip install --upgrade pip
                   pip install coverage
                   if  [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-            - name: Run CPP validation
+            - name: Run Unity NG validation
+              if: always()
               run: |
                   cd xml2json
-                  python check_cpp_ng_prototype.py --code_location ./code_to_check/cpp_ng --dita_location ../dita/RTC/API --dita_map_location ../dita/RTC/config/keys-rtc-ng-api-cpp.ditamap --decomment_code_location ./code_to_check/decommented
-            - name: Run Java validation
+                  python check_unity_ng_prototype.py --code_location ./code_to_check/unity_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-unity.ditamap --decomment_code_location ./code_to_check/decommented
+                  echo "The prototype validation starts ..."
+                  cat prototype_check_unity_ng.txt
+                  echo "The prototype validation ends ..."
+            - name: Run Flutter NG validation
+              if: always()
               run: |
                   cd xml2json
-                  python check_java_ng_prototype.py --code_location ./code_to_check/java_ng --dita_location ../dita/RTC/API --dita_map_location ../dita/RTC/config/keys-rtc-ng-api-java.ditamap --decomment_code_location ./code_to_check/decommented
-            - name: Run OC validation
+                  python check_dart_ng_prototype.py --code_location ./code_to_check/flutter-ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-flutter.ditamap --decomment_code_location ./code_to_check/decommented
+                  echo "The prototype validation starts ..."
+                  cat prototype_check_flutter_ng.txt
+                  echo "The prototype validation ends ..."
+            - name: Run RN NG validation
+              if: always()
               run: |
                   cd xml2json
-                  python check_oc_ng_prototype.py --code_location ./code_to_check/oc_ng --dita_location ../dita/RTC/API --dita_map_location ../dita/RTC/config/keys-rtc-ng-api-oc.ditamap --decomment_code_location ./code_to_check/decommented
+                  python check_rn_ng_prototype.py --code_location ./code_to_check/rn_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-rn.ditamap --decomment_code_location ./code_to_check/decommented
+                  echo "The prototype validation starts ..."
+                  cat prototype_check_rn_ng.txt
+                  echo "The prototype validation ends ..."
+            - name: Run Electron NG validation
+              if: always()
+              run: |
+                  cd xml2json
+                  python check_electron_ng_prototype.py --code_location ./code_to_check/electron_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-electron.ditamap --decomment_code_location ./code_to_check/decommented
+                  echo "The prototype validation starts ..."
+                  cat prototype_check_electron_ng.txt
+                  echo "The prototype validation ends ..."
+            - name: Run CPP NG validation
+              if: always()
+              run: |
+                  cd xml2json
+                  python check_cpp_ng_prototype.py --code_location ./code_to_check/cpp_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-cpp.ditamap --decomment_code_location ./code_to_check/decommented
+                  echo "The prototype validation starts ..."
+                  cat prototype_check_cpp_ng.txt
+                  echo "The prototype validation ends ..."
+            - name: Run Java NG validation
+              if: always()
+              run: |
+                  cd xml2json
+                  python check_java_ng_prototype.py --code_location ./code_to_check/java_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-java.ditamap --decomment_code_location ./code_to_check/decommented
+                  echo "The prototype validation starts ..."
+                  cat prototype_check_java_ng.txt
+                  echo "The prototype validation ends ..."
+            - name: Run ios NG validation
+              if: always()
+              run: |
+                  cd xml2json
+                  python check_oc_ng_prototype.py --code_location ./code_to_check/oc_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-ios.ditamap --decomment_code_location ./code_to_check/decommented
+                  echo "The prototype validation starts ..."
+                  cat prototype_check_oc_ng.txt
+                  echo "The prototype validation ends ..."
+            - name: Run macos NG validation
+              if: always()
+              run: |
+                  cd xml2json
+                  python check_oc_ng_prototype.py --code_location ./code_to_check/oc_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-macos.ditamap --decomment_code_location ./code_to_check/decommented
+                  echo "The prototype validation starts ..."
+                  cat prototype_check_oc_ng.txt
+                  echo "The prototype validation ends ..."
             - name: Run Flutter CG validation
+              if: always()
               run: |
                   cd xml2json
                   python check_dart_cg_prototype.py --code_location ./code_to_check/flutter_cg --dita_location ../dita/RTC/API --dita_map_location ../dita/RTC/config/keys-rtc-api-flutter.ditamap --decomment_code_location ./code_to_check/decommented
-            - name: Upload CPP NG log TXT to release
-              uses: svenstaro/upload-release-action@v2
-              with:
-                  repo_token: ${{ secrets.GITHUB_TOKEN }}
-                  file: xml2json/prototype_check_cpp_ng.txt
-                  asset_name: prototype_check_cpp_ng.txt
-                  tag: main
-                  overwrite: true
-                  body: "Comment release"
-            - name: Upload Java NG log TXT to release
-              uses: svenstaro/upload-release-action@v2
-              with:
-                  repo_token: ${{ secrets.GITHUB_TOKEN }}
-                  file: xml2json/prototype_check_java_ng.txt
-                  asset_name: prototype_check_java_ng.txt
-                  tag: main
-                  overwrite: true
-                  body: "Comment release"
-            - name: Upload OC NG log TXT to release
-              uses: svenstaro/upload-release-action@v2
-              with:
-                  repo_token: ${{ secrets.GITHUB_TOKEN }}
-                  file: xml2json/prototype_check_oc_ng.txt
-                  asset_name: prototype_check_oc_ng.txt
-                  tag: main
-                  overwrite: true
-                  body: "Comment release"
-            - name: Upload Flutter CG log TXT to release
-              uses: svenstaro/upload-release-action@v2
-              with:
-                  repo_token: ${{ secrets.GITHUB_TOKEN }}
-                  file: xml2json/prototype_check_dart_cg.txt
-                  asset_name: prototype_check_dart_cg.txt
-                  tag: main
-                  overwrite: true
-                  body: "Comment release"
+                  echo "The prototype validation starts ..."
+                  cat prototype_check_dart_cg.txt
+                  echo "The prototype validation ends ..."

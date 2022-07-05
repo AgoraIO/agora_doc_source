@@ -5,38 +5,42 @@
     <shortdesc id="short"><ph id="shortdesc">设置当前音频采集设备静音。</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="setRecordingDeviceMute"/>
-   </keywords>
+            <keywords>
+                <indexterm keyref="setRecordingDeviceMute"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp">virtual int setRecordingDeviceMute(bool mute) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">setAudioRecordingDeviceMute(mute: boolean): number</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public abstract int SetRecordingDeviceMute(bool mute);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAudioRecordingDeviceMute(bool mute)</codeblock>
-        </p>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setRecordingDeviceMute(bool mute) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">setAudioRecordingDeviceMute(mute: boolean): number</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public abstract int SetRecordingDeviceMute(bool mute);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAudioRecordingDeviceMute(bool mute)</codeblock> </p>
         </section>
-        <section id="parameters"><title>参数</title>
-   <parml>
-       <plentry>
-  <pt>mute</pt>
-  <pd><p>是否设置音频采集设备静音：<ul>
-      <li><codeph><ph keyref="true"/></codeph>: 采集设备静音。</li>
-      <li><codeph><ph keyref="false"/></codeph>: 采集设备为非静音。</li>
-  </ul></p></pd>
-       </plentry>
-   </parml>
-        </section>
-        <section id="return_values" props="native electron unity">
-   <title>返回值</title>
-   <ul>
-       <li>0: 方法调用成功。</li>
-       <li>&lt; 0: 方法调用失败。</li>
-   </ul>
-        </section></refbody>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt>mute</pt>
+                <pd>
+                    <p>是否设置音频采集设备静音：
+                    
+                    <ul>
+                    <li><codeph><ph keyref="true"/></codeph>: 采集设备静音。</li>
+                    <li><codeph><ph keyref="false"/></codeph>: 采集设备为非静音。</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron cs">
+            <title>返回值</title>
+            <ul>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。</li>
+            </ul> </section>
+    </refbody>
 </reference>

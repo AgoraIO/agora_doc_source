@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_getaudiodeviceinfo">
+    <title><ph keyref="getAudioDeviceInfo" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Gets the audio device information.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getAudioDeviceInfo" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract DeviceInfo getAudioDeviceInfo();</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec" />
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getAudioDeviceInfo(DeviceInfo&amp; deviceInfo) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <p>After calling this method, you can get whether the audio device supports ultra-low-latency capture and playback.</p>
+            <note type="attention"><ul>
+            <li props="cpp">This method is for Android only.</li>
+            <li>You can call this method either before or after joining a channel.</li>
+            </ul></note>
+        </section>
+        <section id="parameters" props="cpp"><title>Parameters</title>
+            <parml>
+                <plentry>
+                    <pt>deviceInfo</pt>
+                    <pd>Input and output parameter. A <xref keyref="DeviceInfo" /> object that identifies the audio device information.<ul>
+                            <li>Input value: A <apiname keyref="DeviceInfo" /> object.</li>
+                            <li>Output value: A <apiname keyref="DeviceInfo" /> object containing audio device information.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul props="cpp">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+            <p props="android">The <xref keyref="DeviceInfo" /> object that identifies the audio device information.<ul>
+                <li>Not null: Success.</li>
+                <li>Null: Failure.</li>
+            </ul></p>
+        </section>
+    </refbody>
+</reference>

@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_channelmediaoptions">
-    <title><ph keyref="ChannelMediaOptions"/></title>
-    <shortdesc id="short"><ph id="shortdesc"
-        >The channel media options.</ph></shortdesc>
+    <title><ph keyref="ChannelMediaOptions" /></title>
+    <shortdesc id="short"><ph id="shortdesc">The channel media options.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="windows unity" outputclass="language-cpp">struct ChannelMediaOptions {
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="cpp" outputclass="language-cpp">struct ChannelMediaOptions {
     bool autoSubscribeAudio;
     bool autoSubscribeVideo;
     ChannelMediaOptions()
@@ -17,11 +16,35 @@
     , autoSubscribeVideo(true)
     {}
     };</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public class ChannelMediaOptions
+    {
+        public ChannelMediaOptions()
+        {
+            autoSubscribeAudio = true;
+            autoSubscribeVideo = true;
+            publishLocalAudio = true;
+            publishLocalVideo = true;
+        }
+
+        public ChannelMediaOptions(bool autoSubscribeAudio, bool autoSubscribeVideo, bool publishLocalAudio,
+            bool publishLocalVideo)
+        {
+            this.autoSubscribeAudio = autoSubscribeAudio;
+            this.autoSubscribeVideo = autoSubscribeVideo;
+            this.publishLocalAudio = publishLocalAudio;
+            this.publishLocalVideo = publishLocalVideo;
+        }
+
+        public bool autoSubscribeAudio { set; get; }
+        public bool autoSubscribeVideo { set; get; }
+        public bool publishLocalAudio { set; get; }
+        public bool publishLocalVideo { set; get; }
+    }</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export interface ChannelMediaOptions {
     autoSubscribeAudio: boolean;
     autoSubscribeVideo: boolean;
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">class ChannelMediaOptions {
 
   @JsonKey(includeIfNull: false)
@@ -58,33 +81,27 @@
             </dl>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>autoSubscribeAudio</pt>
                 <pd>Whether to automatically subscribe to all remote audio streams when the user joins a channel:
+                    
+                    
                     <ul>
-                    <li><codeph><ph keyref="true"
-                        /></codeph>: (Default) Subscribe.</li>
-                    <li><codeph><ph keyref="false"
-                        /></codeph>: Do not subscribe.</li>
-                    </ul>This member serves a similar function to the <xref
-                    keyref="muteAllRemoteAudioStreams"
-                    /> method. After joining the channel, you can call the <apiname>muteAllRemoteAudioStreams</apiname> method to set whether to subscribe to audio streams in the channel.</pd>
+                    <li><codeph><ph keyref="true" /></codeph>: (Default) Subscribe.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Do not subscribe.</li>
+                    </ul>This member serves a similar function to the <xref keyref="muteAllRemoteAudioStreams" /> method. After joining the channel, you can call the <apiname>muteAllRemoteAudioStreams</apiname> method to set whether to subscribe to audio streams in the channel.</pd>
             </plentry>
             <plentry>
                 <pt>autoSubscribeVideo</pt>
                 <pd>Whether to subscribe to video streams when the user joins the channel:
+                    
+                    
                     <ul>
-                    <li><codeph><ph keyref="true"
-                        /></codeph>: (Default) Subscribe.</li>
-                    <li><codeph><ph keyref="false"
-                        /></codeph>: Do not subscribe.</li>
-                    </ul>This member serves a similar function to the <xref
-                    keyref="muteAllRemoteVideoStreams"
-                    /> method. After joining the channel, you can call the <apiname>muteAllRemoteVideoStreams</apiname> method to set whether to subscribe to video streams in the channel.</pd>
+                    <li><codeph><ph keyref="true" /></codeph>: (Default) Subscribe.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Do not subscribe.</li>
+                    </ul>This member serves a similar function to the <xref keyref="muteAllRemoteVideoStreams" /> method. After joining the channel, you can call the <apiname>muteAllRemoteVideoStreams</apiname> method to set whether to subscribe to video streams in the channel.</pd>
             </plentry>
             <plentry>
                 <pt>publishLocalAudio</pt>
@@ -95,12 +112,14 @@
                         <dd>v3.4.5</dd>
                     </dlentry>
                     </dl>
+                    
+                    
                     whether to publish the local audio stream when the user joins a channel.
+                    
+                    
                     <ul>
-                    <li><ph keyref="true"
-                        />: (Default) Publish the local audio.</li>
-                    <li><ph keyref="false"
-                        />: Do not publish the local audio.</li>
+                    <li><ph keyref="true" />: (Default) Publish the local audio.</li>
+                    <li><ph keyref="false" />: Do not publish the local audio.</li>
                     </ul>
                     <p>This member serves a similar function to the <apiname>muteLocalAudioStream</apiname> method. After the user joins the channel, you can call the <apiname>muteLocalAudioStream</apiname> method to set whether to publish the local audio stream in the channel.</p>
                 </pd>
@@ -114,12 +133,14 @@
                         <dd>v3.4.5</dd>
                     </dlentry>
                     </dl>
+                    
+                    
                     whether to publish the local video stream when the user joins a channel.
+                    
+                    
                     <ul>
-                    <li><ph keyref="true"
-                        />: (Default) Publish the local video.</li>
-                    <li><ph keyref="false"
-                        />: Do not publish the local video.</li>
+                    <li><ph keyref="true" />: (Default) Publish the local video.</li>
+                    <li><ph keyref="false" />: Do not publish the local video.</li>
                     </ul>
                     <p>This member serves a similar function to the <apiname>muteLocalVideoStream</apiname> method. After the user joins the channel, you can call the <apiname>muteLocalVideoStream</apiname> method to set whether to publish the local audio stream in the channel.</p>
                 </pd>

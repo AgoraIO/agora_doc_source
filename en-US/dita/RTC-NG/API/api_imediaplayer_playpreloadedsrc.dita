@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_playpreloadedsrc">
+    <title><ph keyref="playPreloadedSrc" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Plays preloaded media resources.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="playPreloadedSrc" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="unity" outputclass="language-csharp">public abstract int PlayPreloadedSrc(string src);</codeblock> </p>
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">int playPreloadedSrc(String src);
+</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)playPreloadedSrc:(NSString *)src;
+</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int playPreloadedSrc(const char* src) = 0;
+</codeblock>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>After calling the <xref keyref="preloadSrc" /> method to preload the media resource into the playlist, you can call this method to play the preloaded media resource. After calling this method, if you receive the <xref keyref="onPlayerSourceStateChanged" /> callback which reports the <apiname keyref="PLAYER_STATE_PLAYING" /> state, the playback is successful.</p>
+            <p>If you want to change the preloaded media resource to be played, you can call this method again and specify the URL of the new media resource that you want to preload. If you want to replay the media resource, you need to call <xref keyref="preloadSrc" /> to preload the media resource to the playlist again before playing. If you want to clear the playlist, call the <xref keyref="stop" /> method.</p>
+            <note type="note">
+                <p>If you call this method when playback is paused, this method does not take effect until playback is resumed.</p>
+            </note>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry>
+                    <pt>src</pt>
+                    <pd>The URL of the media resource in the playlist must be consistent with the <parmname>src</parmname> set by the <apiname keyref="preloadSrc" /> method; otherwise, the media resource cannot be played.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>

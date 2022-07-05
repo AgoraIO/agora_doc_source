@@ -18,7 +18,7 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine snapshotTaken:(NSString* _Nonnull)channel uid:(NSUInteger)uid filePath:(NSString* _Nonnull)filePath width:(NSInteger)width height:(NSInteger)height errCode:(NSInteger)errCode;
 </codeblock>
-            <codeblock props="windows" outputclass="language-cpp">virtual void onSnapshotTaken(const char* channel, uid_t uid, const char* filePath, int width, int height, int errCode) {
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onSnapshotTaken(const char* channel, uid_t uid, const char* filePath, int width, int height, int errCode) {
     (void)channel;
     (void)uid;
     (void)filePath;
@@ -28,7 +28,7 @@
   }
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="cs" outputclass="language-csharp">public virtual void OnSnapshotTaken(string channel, uint uid, string filePath, int width, int height, int errCode)</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">SnapshotTakenCallback? snapshotTaken;</codeblock> </p>
         </section>
@@ -72,9 +72,13 @@
             <plentry>
                 <pt>errCode</pt>
                 <pd>截图成功的提示或失败的原因。
+                    
+                    
                     <ul>
                     <li>0：截图成功。</li>
                     <li>&lt; 0: 截图失败。
+                        
+                        
                         <ul>
                         <li>-1：写入文件失败或 JPEG 编码失败。</li>
                         <li>-2：<apiname keyref="takeSnapshot"/> 方法调用成功后 1 秒内没有发现指定用户的视频流。</li>

@@ -1,0 +1,352 @@
+@namespace oxy url('http://www.oxygenxml.com/extensions/author');
+@namespace dp url('https://www.dita-ot.org/project');
+/* Inline Hints */
+/*#FFFAD5*/
+/*#FFD34E*/
+/* placeholders */
+/* editors */
+/*  ----------------------------  */
+dp|project {
+  color: #000000;
+  font-family: arial, helvetica, sans-serif;
+  display: block;
+  margin: 0.5em;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|project {
+    color: #ffffff;
+  }
+}
+dp|project > * {
+  margin-bottom: 0.5em;
+  padding-left: 0.2em;
+  border-left: 3px solid #EEEEEE;
+  padding-bottom: 0.2em;
+  border-bottom: 1px solid #EEEEEE;
+}
+dp|project:before {
+  display: block;
+  text-align: left;
+  content: "DITA Project file";
+  color: #0000ff;
+  font-weight: bold;
+  font-size: larger;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|project:before {
+    color: #ffff00;
+  }
+}
+dp|include {
+  color: #800000;
+  display: block;
+  margin-left: 1em;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|include {
+    color: #7fffff;
+  }
+}
+dp|include:before(100) {
+  content: oxy_label(text, oxy_concat(oxy_local-name(), " "), width, 5.5em, color, inherit) oxy_label(text, ":   ", color, #808080);
+}
+dp|include[href]:before(5) {
+  content: url("../../img/link.png") oxy_concat("", attr(href));
+  link: oxy_concat("", attr(href));
+  color: #000080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|include[href]:before(5) {
+    color: #ffff7f;
+  }
+}
+dp|include[href]:before(5):hover,
+dp|include[href]:before(5):focus {
+  text-decoration: underline;
+  link: oxy_concat("", attr(href));
+}
+dp|deliverable {
+  color: #0000ff;
+  display: block;
+  margin-left: 1em;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|deliverable {
+    color: #ffff00;
+  }
+}
+dp|deliverable:before(100) {
+  content: oxy_label(text, oxy_concat(oxy_local-name(), " "), width, 5.5em, color, inherit) oxy_label(text, ":   ", color, #808080);
+}
+dp|deliverable[name]:before(10) {
+  font-weight: bold;
+  color: #000000;
+  content: attr(name) " ";
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|deliverable[name]:before(10) {
+    color: #ffffff;
+  }
+}
+dp|deliverable[id]:before(5) {
+  content: "[" attr(id) "]";
+  color: #808080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|deliverable[id]:before(5) {
+    color: #7f7f7f;
+  }
+}
+dp|publication:not([idref]) {
+  color: #800080;
+  display: block;
+  margin-left: 1em;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|publication:not([idref]) {
+    color: #7fff7f;
+  }
+}
+dp|publication:not([idref]):before(100) {
+  content: oxy_label(text, oxy_concat(oxy_local-name(), " "), width, 5.5em, color, inherit) oxy_label(text, ":   ", color, #808080);
+}
+dp|publication:not([idref])[name]:before(10) {
+  font-weight: bold;
+  color: #000000;
+  content: attr(name) " ";
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|publication:not([idref])[name]:before(10) {
+    color: #ffffff;
+  }
+}
+dp|publication:not([idref])[id]:before(5) {
+  content: "[" attr(id) "]";
+  color: #808080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|publication:not([idref])[id]:before(5) {
+    color: #7f7f7f;
+  }
+}
+dp|publication:not([idref])[transtype]:before(3) {
+  content: " transform to ";
+}
+dp|publication:not([idref])[transtype]:before(2) {
+  color: #0000ff;
+  content: oxy_label(text, attr(transtype)) " ";
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|publication:not([idref])[transtype]:before(2) {
+    color: #ffff00;
+  }
+}
+dp|publication[idref] {
+  color: #800080;
+  display: block;
+  margin-left: 1em;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|publication[idref] {
+    color: #7fff7f;
+  }
+}
+dp|publication[idref]:before(100) {
+  content: oxy_label(text, oxy_concat(oxy_local-name(), " "), width, 5.5em, color, inherit) oxy_label(text, ":   ", color, #808080);
+}
+dp|publication[idref][idref][idref]:before(5) {
+  content: url("../../img/link.png") oxy_concat("#", attr(idref));
+  link: oxy_concat("#", attr(idref));
+  color: #000080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|publication[idref][idref][idref]:before(5) {
+    color: #ffff7f;
+  }
+}
+dp|publication[idref][idref][idref]:before(5):hover,
+dp|publication[idref][idref][idref]:before(5):focus {
+  text-decoration: underline;
+  link: oxy_concat("#", attr(idref));
+}
+dp|context:not([idref]) {
+  color: #008000;
+  display: block;
+  margin-left: 1em;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|context:not([idref]) {
+    color: #ff7fff;
+  }
+}
+dp|context:not([idref]):before(100) {
+  content: oxy_label(text, oxy_concat(oxy_local-name(), " "), width, 5.5em, color, inherit) oxy_label(text, ":   ", color, #808080);
+}
+dp|context:not([idref])[name]:before(10) {
+  font-weight: bold;
+  color: #000000;
+  content: attr(name) " ";
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|context:not([idref])[name]:before(10) {
+    color: #ffffff;
+  }
+}
+dp|context:not([idref])[id]:before(5) {
+  content: "[" attr(id) "]";
+  color: #808080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|context:not([idref])[id]:before(5) {
+    color: #7f7f7f;
+  }
+}
+dp|context[idref] {
+  color: #008000;
+  display: block;
+  margin-left: 1em;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|context[idref] {
+    color: #ff7fff;
+  }
+}
+dp|context[idref]:before(100) {
+  content: oxy_label(text, oxy_concat(oxy_local-name(), " "), width, 5.5em, color, inherit) oxy_label(text, ":   ", color, #808080);
+}
+dp|context[idref][idref][idref]:before(5) {
+  content: url("../../img/link.png") oxy_concat("#", attr(idref));
+  link: oxy_concat("#", attr(idref));
+  color: #000080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|context[idref][idref][idref]:before(5) {
+    color: #ffff7f;
+  }
+}
+dp|context[idref][idref][idref]:before(5):hover,
+dp|context[idref][idref][idref]:before(5):focus {
+  text-decoration: underline;
+  link: oxy_concat("#", attr(idref));
+}
+dp|input {
+  display: block;
+  margin-left: 1em;
+}
+dp|input:before(100) {
+  content: oxy_label(text, oxy_concat(oxy_local-name(), " "), width, 5.5em, color, inherit) oxy_label(text, ":   ", color, #808080);
+}
+dp|input[href]:before(5) {
+  content: url("../../img/link.png") oxy_concat("", attr(href));
+  link: oxy_concat("", attr(href));
+  color: #000080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|input[href]:before(5) {
+    color: #ffff7f;
+  }
+}
+dp|input[href]:before(5):hover,
+dp|input[href]:before(5):focus {
+  text-decoration: underline;
+  link: oxy_concat("", attr(href));
+}
+dp|profile {
+  display: block;
+  margin-left: 1em;
+}
+dp|profile:before(100) {
+  content: oxy_label(text, oxy_concat(oxy_local-name(), " "), width, 5.5em, color, inherit) oxy_label(text, ":   ", color, #808080);
+}
+dp|ditaval[href]:before(5) {
+  content: url("../../img/link.png") oxy_concat("", attr(href));
+  link: oxy_concat("", attr(href));
+  color: #000080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|ditaval[href]:before(5) {
+    color: #ffff7f;
+  }
+}
+dp|ditaval[href]:before(5):hover,
+dp|ditaval[href]:before(5):focus {
+  text-decoration: underline;
+  link: oxy_concat("", attr(href));
+}
+dp|output {
+  display: block;
+  margin-left: 1em;
+}
+dp|output:before(100) {
+  content: oxy_label(text, oxy_concat(oxy_local-name(), " "), width, 5.5em, color, inherit) oxy_label(text, ":   ", color, #808080);
+}
+dp|output[href]:before(5) {
+  content: url("../../img/link.png") oxy_concat("", attr(href));
+  link: oxy_concat("", attr(href));
+  color: #000080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|output[href]:before(5) {
+    color: #ffff7f;
+  }
+}
+dp|output[href]:before(5):hover,
+dp|output[href]:before(5):focus {
+  text-decoration: underline;
+  link: oxy_concat("", attr(href));
+}
+dp|param {
+  display: block;
+  margin-left: 1em;
+  color: #a52a2a;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|param {
+    color: #5ad5d5;
+  }
+}
+dp|param[name]:before(10) {
+  color: #000000;
+  content: oxy_label(text, oxy_concat(attr(name), " "), width, 4em, color, inherit);
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|param[name]:before(10) {
+    color: #ffffff;
+  }
+}
+dp|param:before(9) {
+  color: #808080;
+  content: " =    ";
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|param:before(9) {
+    color: #7f7f7f;
+  }
+}
+dp|param[href]:before(5) {
+  content: url("../../img/link.png") oxy_concat("", attr(href));
+  link: oxy_concat("", attr(href));
+  color: #000080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|param[href]:before(5) {
+    color: #ffff7f;
+  }
+}
+dp|param[href]:before(5):hover,
+dp|param[href]:before(5):focus {
+  text-decoration: underline;
+  link: oxy_concat("", attr(href));
+}
+dp|param[path]:before(4) {
+  background-color: #eeeeee;
+  content: " " attr(path) " ";
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|param[path]:before(4) {
+    background-color: #111111;
+  }
+}
+dp|param[value]:before(3) {
+  content: attr(value) " ";
+}

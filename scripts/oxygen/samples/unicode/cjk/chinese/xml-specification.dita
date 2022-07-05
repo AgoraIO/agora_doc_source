@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_ivp_ylt_tdb" xml:lang="zh-CN">
+    <title>可扩展标记语言</title>
+    <abstract>
+        <p><b>可扩展标记语言</b>（英语：E<b>x</b>tensible <b>M</b>arkup <b>L</b>anguage，简称：<b>XML</b>），是一种<xref
+                href="https://zh.wikipedia.org/wiki/%E6%A0%87%E8%AE%B0%E8%AF%AD%E8%A8%80"
+                format="html" scope="external">标记语言</xref>。标记指<xref
+                href="https://zh.wikipedia.org/wiki/%E8%AE%A1%E7%AE%97%E6%9C%BA" format="html"
+                scope="external"
+                >计算机</xref>所能理解的信息符号，通过此种标记，计算机之间可以处理包含各种信息的文章等。如何定义这些标记，既可以选择国际通用的标记语言，比如<xref
+                href="https://zh.wikipedia.org/wiki/HTML" format="html" scope="external"
+                >HTML</xref>，也可以使用像XML这样由相关人士自由决定的标记语言，这就是语言的可扩展性。XML是从<xref
+                href="https://zh.wikipedia.org/wiki/%E6%A0%87%E5%87%86%E9%80%9A%E7%94%A8%E6%A0%87%E8%AE%B0%E8%AF%AD%E8%A8%80"
+                format="html" scope="external">标准通用标记语言</xref>（SGML）中简化修改出来的。它主要用到的有可扩展标记语言、<xref
+                href="https://zh.wikipedia.org/wiki/%E5%8F%AF%E6%89%A9%E5%B1%95%E6%A0%B7%E5%BC%8F%E8%AF%AD%E8%A8%80"
+                format="html" scope="external">可扩展样式语言</xref>（XSL）、<xref
+                href="https://zh.wikipedia.org/wiki/XBRL" format="html" scope="external"
+                >XBRL</xref>和<xref href="https://zh.wikipedia.org/wiki/XPath" format="html"
+                scope="external">XPath</xref>等。</p>
+    </abstract>
+    <body>
+        <section id="section_lpf_cmt_tdb">
+            <title>歷史</title>
+            <p>XML是從1995年開始有其雛形，並向<xref href="https://zh.wikipedia.org/wiki/W3C" format="html"
+                    scope="external">W3C</xref>（<xref
+                    href="https://zh.wikipedia.org/wiki/%E4%B8%87%E7%BB%B4%E7%BD%91%E8%81%94%E7%9B%9F"
+                    format="html" scope="external"
+                    >全球資訊網聯盟</xref>）提案，而在1998年二月發佈為W3C的標準（XML1.0）。XML的前身是<b>SGML</b>（The
+                <b>S</b>tandard <b>G</b>eneralized <b>M</b>arkup
+                    <b>L</b>anguage），是自IBM從1960年代就開始發展的<b>GML</b>（<b>G</b>eneralized <b>M</b>arkup
+                    <b>L</b>anguage）標準化後的名稱。</p>
+            <p>GML的重要概念：</p>
+            <ul id="ul_opf_cmt_tdb">
+                <li>文件中能夠明確的將標示與內容分開</li>
+                <li>所有文件的標示使用方法均一致</li>
+            </ul>
+            <p>1978年，<xref href="https://zh.wikipedia.org/wiki/ANSI" format="html" scope="external"
+                    >ANSI</xref>將GML加以整理規範，發佈成為SGML，1986年起為<xref
+                    href="https://zh.wikipedia.org/wiki/ISO" format="html" scope="external"
+                    >ISO</xref>所採用（ISO
+                8879），並且被廣泛地運用在各種大型的文件計劃中，但是SGML是一種非常嚴謹的文件描述法，導致過於龐大複雜（標準手冊就有500多頁），難以理解和學習，進而影響其推廣與應用。</p>
+            <p>同時W3C也發現到HTML的問題：</p>
+            <ul id="ul_ppf_cmt_tdb">
+                <li>不能解決所有解釋資料的問題 - 像是影音檔或化學公式、音樂符號等其他形態的內容。</li>
+                <li>效能問題 - 需要下載整份文件，才能開始對文件做搜尋。</li>
+                <li>擴充性、彈性、易讀性均不佳。</li>
+            </ul>
+            <p>為了解決以上問題，專家們使用SGML精簡製作，並依照HTML的發展經驗，產生出一套使用上規則嚴謹，但是簡單的描述資料語言：XML。</p>
+            <p>XML是在一個這樣的背景下誕生的——为了有一個更中立的方式，讓消費端自行決定要如何消化、呈現從服務端所提供的資訊。</p>
+            <p>XML被廣泛用來作為跨平台之間交互數據的形式，主要針對數據的內容，通過不同的格式化描述手段（XSLT，CSS等）可以完成最終的形式表達（生成對應的HTML，PDF或者其他的文件格式）。</p>
+        </section>
+        <section id="section_yjc_2mt_tdb">
+            <title>用途</title>
+            <p>XML设计用来传送及携带数据信息，不用来表现或展示数据，<xref href="https://zh.wikipedia.org/wiki/HTML"
+                    format="html" scope="external"
+                >HTML</xref>則用来表现数据，所以XML用途的焦点是它说明数据是什么，以及携带数据信息。</p>
+            <ul id="ul_akc_2mt_tdb">
+                <li>丰富文件（Rich Documents）- 自定文件描述并使其更丰富<ul id="ul_bkc_2mt_tdb">
+                        <li>属于文件为主的XML技术应用</li>
+                        <li>标记是用来定义一份资料应该如何呈现</li>
+                    </ul></li>
+                <li>元数据（Metadata）- 描述其它文件或网络资讯<ul id="ul_ckc_2mt_tdb">
+                        <li>属于资料为主的XML技术应用</li>
+                        <li>标记是用来说明一份资料的意义</li>
+                    </ul></li>
+                <li>配置文档（Configuration Files）- 描述软件設定的参数</li>
+            </ul>
+        </section>
+    </body>
+    <topic id="topic_wlw_zpt_tdb">
+        <title>重要术语</title>
+        <body>
+            <section id="section_vh1_gmt_tdb">
+                <title>字符（characters）</title>
+                <p>XML 1.0规范允许的（转义后的最终解码值）合法字符：
+                    #x9（水平制表符）、#xA（回车符）、#xD（换行符）、#x20-#xD7FF、#xE000-#xFFFD、#x10000-#x10FFFF。即任何Unicode字符，不包含surrogate
+                    blocks, FFFE, FFFF。</p>
+                <p>XML规范定义了5个"预定义实体"来表示特殊字符. XML也允许在每个文档定义任意数量的其它命名实体.</p>
+                <p>下表列出了5个XML预定义实体. 通过名字引用这些实体的格式为<codeph>&amp;name;</codeph>，例如,
+                        <codeph>&amp;amp;</codeph> 将绘制为&amp;.</p>
+                <table id="table_wh1_gmt_tdb" rowsep="1" colsep="1">
+                    <tgroup cols="5">
+                        <colspec colnum="1" colname="col1"/>
+                        <colspec colnum="2" colname="col2"/>
+                        <colspec colnum="3" colname="col3"/>
+                        <colspec colnum="4" colname="col4"/>
+                        <colspec colnum="5" colname="col5"/>
+                        <thead>
+                            <row>
+                                <entry>名字</entry>
+                                <entry>字符</entry>
+                                <entry>Unicode<xref
+                                        href="https://zh.wikipedia.org/wiki/%E7%A0%81%E4%BD%8D"
+                                        format="html" scope="external">码位</xref>(十进制)</entry>
+                                <entry>标准</entry>
+                                <entry>描述</entry>
+                            </row>
+                        </thead>
+                        <tbody>
+                            <row>
+                                <entry>quot</entry>
+                                <entry>"</entry>
+                                <entry>U+0022 (34)</entry>
+                                <entry>XML 1.0</entry>
+                                <entry><xref
+                                        href="https://zh.wikipedia.org/wiki/%E5%8F%8C%E5%BC%95%E5%8F%B7"
+                                        format="html" scope="external">双引号</xref></entry>
+                            </row>
+                            <row>
+                                <entry>amp</entry>
+                                <entry>&amp;</entry>
+                                <entry>U+0026 (38)</entry>
+                                <entry>XML 1.0</entry>
+                                <entry><xref href="https://zh.wikipedia.org/wiki/%26" format="html"
+                                        scope="external">&amp;</xref></entry>
+                            </row>
+                            <row>
+                                <entry>apos</entry>
+                                <entry>'</entry>
+                                <entry>U+0027 (39)</entry>
+                                <entry>XML 1.0</entry>
+                                <entry><xref href="https://zh.wikipedia.org/wiki/%E6%92%87%E5%8F%B7"
+                                        format="html" scope="external">撇号</xref></entry>
+                            </row>
+                            <row>
+                                <entry>lt</entry>
+                                <entry>&lt;</entry>
+                                <entry>U+003C (60)</entry>
+                                <entry>XML 1.0</entry>
+                                <entry><xref
+                                        href="https://zh.wikipedia.org/wiki/%E5%B0%8F%E6%96%BC%E8%99%9F"
+                                        format="html" scope="external">小于号</xref></entry>
+                            </row>
+                            <row>
+                                <entry>gt</entry>
+                                <entry>&gt;</entry>
+                                <entry>U+003E (62)</entry>
+                                <entry>XML 1.0</entry>
+                                <entry><xref
+                                        href="https://zh.wikipedia.org/wiki/%E5%A4%A7%E6%96%BC%E8%99%9F"
+                                        format="html" scope="external">大于号</xref></entry>
+                            </row>
+                        </tbody>
+                    </tgroup>
+                </table>
+            </section>
+            <section id="section_c31_gmt_tdb">
+                <title>与应用（application）</title>
+                <p>XML处理器（Processor，也称作XML parser）分析标记语言并传递结构化信息给应用（application）。</p>
+            </section>
+            <section id="section_d31_gmt_tdb">
+                <title>标记（Markup）与内容（content）</title>
+                <p>XML文档的字符分为标记（Markup）与内容（content）两类。标记通常以<codeph>&lt;</codeph>开头，以<codeph>&gt;</codeph>结尾；或者以字符<codeph>&amp;</codeph>
+                        开头，以<codeph>;</codeph>结尾。不是标记的字符就是内容。但是CDATA部分，分解符号<codeph>&lt;![CDATA[</codeph>与<codeph>]]&gt;</codeph>是标记，二者之间的文本为内容。
+                    最外界的空白符是标记。</p>
+            </section>
+            <section id="section_f31_gmt_tdb">
+                <title>Tag</title>
+                <p>一个<i>tag</i>属于标记结构，以<codeph>&lt;</codeph>开头，以<codeph>&gt;</codeph>结尾。Tag名字是大小写敏感，不能保护任何字符
+                    !"#$%&amp;'()*+,/;&lt;=&gt;?@[\]^`{|}~， 也不能有空格符， 不能以"-"或"."或数字开始。可分为三类：</p>
+                <ul id="ul_g31_gmt_tdb">
+                    <li><i>start-tag</i>，如<codeph>&lt;section&gt;</codeph>;</li>
+                    <li><i>end-tag</i>，如<codeph>&lt;/section&gt;</codeph>;</li>
+                    <li><i>empty-element tag</i>，如<codeph>&lt;line-break /&gt;</codeph>.</li>
+                </ul>
+            </section>
+            <section id="section_i31_gmt_tdb">
+                <title>元素（Element）</title>
+                <p>元素是文档逻辑组成，或者在start-tag与匹配的end-tag之间，或者仅作为一个empty-element
+                        tag。例如：<codeph>&lt;greeting&gt;Hello, world!&lt;/greeting&gt;</codeph>.
+                    另一个例子是： <codeph>&lt;line-break /&gt;</codeph>.</p>
+                <p>单个根（root）元素包含所有的其他元素。</p>
+            </section>
+            <section id="section_j31_gmt_tdb">
+                <title>属性（Attribute）</title>
+                <p>属性是一种标记结构，在start-tag或empty-element tag内部的“名字-值对”。例如：<codeph>&lt;img
+                        src="madonna.jpg" alt="Madonna"
+                    /&gt;</codeph>。每个元素中，一个属性最多出现一次，一个属性只能有一个值。</p>
+                <p>如果属性有多个值，这需要采取XML协议以外的方式来表示，如采用逗号或分号间隔，对于<xref
+                        href="https://zh.wikipedia.org/wiki/CSS" format="html" scope="external"
+                        >CSS</xref>类或标识符的名字可用空格来分隔。</p>
+            </section>
+            <section id="section_k31_gmt_tdb">
+                <title>XML declaration</title>
+                <p>XML文档如果以<i>XML declaration</i>开始，则表述了文档的一些信息。如<codeph>&lt;?xml version="1.0"
+                        encoding="UTF-8"?&gt;</codeph>.</p>
+            </section>
+            <section id="section_l31_gmt_tdb">
+                <title>例</title>
+                <p>XML定义结构、存储信息、传送信息。下例為<u>小张</u>发送给<u>大元</u>的便条，存储为XML。</p>
+                <pre>&lt;?xml version="1.0"?>
+&lt;小纸条>
+  &lt;收件人>大元
+  &lt;發件人>小張
+  &lt;主題>問候
+  &lt;具體內容>早啊，飯吃了沒？&lt;/具體內容>
+&lt;/小纸条></pre>
+                <p>这XML文档仅是纯粹的信息标签，这些标签意义的展开依赖于应用它的程序。</p>
+            </section>
+            <section id="section_o31_gmt_tdb">
+                <title>结构</title>
+                <p>每个XML文档都由XML序言开始，在前面的代码中的第一行就是XML序言，&lt;?xml
+                    version="1.0"?&gt;。这一行代码会告诉解析器或浏览器这个文件应该按照XML规则进行解析。</p>
+                <p>但是，根元素到底叫&lt;小纸条&gt;还是&lt;小便条&gt;，则是由<xref
+                        href="https://zh.wikipedia.org/wiki/%E6%96%87%E6%A1%A3%E7%B1%BB%E5%9E%8B%E5%AE%9A%E4%B9%89"
+                        format="html" scope="external">文档类型定义</xref>（DTD）或<xref
+                        href="https://zh.wikipedia.org/wiki/XML_Schema" format="html"
+                        scope="external"
+                        >XML纲要</xref>定义的。如果DTD规定根元素必须叫&lt;小便条&gt;，那么若写作&lt;小纸条&gt;就不符合要求。这种不符合DTD或XML纲要的要求的XML文档，被称作<b>不合法的XML</b>，反之则是<b>合法的XML</b>。</p>
+                <p>XML文件的第二行并不一定要包含文档元素；如果有注释或者其他内容，文档元素可以迟些出现。</p>
+                <p>这个PI一般会直接放在XML序言之后，通常由Web浏览器使用，来将XML数据以特殊的样式显示出来。</p>
+                <p>XML的结构有一个缺陷，那就是不支持分帧（framing）。当多条XML消息在TCP上传输的时候，无法基于XML协议来确定一条XML消息是否已经结束。</p>
+            </section>
+         <note dir="ltr"> This article uses material from the Wikipedia article <xref
+                    href="https://zh.wikipedia.org/wiki/XML" format="html" scope="external"
+                    >XML</xref>, which is released under the <xref
+                    href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License"
+                    format="html" scope="external">Creative Commons Attribution-ShareAlike 3.0
+                    Unported License</xref>, <xref
+                    href="https://zh.wikipedia.org/wiki/XML?action=history&amp;year=2018&amp;month=6"
+                    format="html" scope="external">view authors</xref>.</note>
+        </body>
+      </topic>
+</topic>

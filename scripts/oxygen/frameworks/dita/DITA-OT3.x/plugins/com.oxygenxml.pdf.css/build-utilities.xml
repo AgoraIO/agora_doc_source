@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." name="build-utils"
+    xmlns:if="ant:if"
+    xmlns:unless="ant:unless">
+    <condition property="storeTypeMemory">
+        <equals arg1="${store-type}" arg2="memory"/>
+    </condition>
+    <!-- Move an XML document
+    If Store type memory is set we move using the pipeline task.-->
+    <target name="moveXML">
+        <pipeline message="Copy temporary file" taskname="copyTempFile" if:set="storeTypeMemory">
+            <xslt in="${src}" out="${dest}" style="${dita.plugin.com.oxygenxml.pdf.css.dir}/xsl/identity.xsl"/>
+        </pipeline>
+        <delete file="${src}" if:set="storeTypeMemory"/>
+        <move file="${src}" tofile="${dest}" force="true" unless:set="storeTypeMemory"/>
+    </target>
+    <!-- Copy an XML document
+    If Store type memory is set we move using the pipeline task.-->
+    <target name="copyXML">
+        <pipeline message="Copy temporary file" taskname="copyTempFile" if:set="storeTypeMemory">
+            <xslt in="${src}" out="${dest}" style="${dita.plugin.com.oxygenxml.pdf.css.dir}/xsl/identity.xsl"/>
+        </pipeline>
+        <copy file="${src}" tofile="${dest}" force="true" unless:set="storeTypeMemory"/>
+    </target>
+    <!-- Copu an XHTML document
+    If Store type memory is set we move using the pipeline task.-->
+    <target name="copyXHTML">
+        <pipeline message="Copy temporary file" taskname="copyTempFile" if:set="storeTypeMemory">
+            <xslt in="${src}" out="${dest}" style="${dita.plugin.com.oxygenxml.pdf.css.dir}/xsl/identityXhtml.xsl"/>
+        </pipeline>
+        <copy file="${src}" tofile="${dest}" force="true" unless:set="storeTypeMemory"/>
+    </target>
+</project>

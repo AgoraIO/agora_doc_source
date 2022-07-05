@@ -1,0 +1,883 @@
+@namespace oxy url('http://www.oxygenxml.com/extensions/author');
+@namespace dp url('https://www.dita-ot.org/project');
+/* Inline Hints */
+/*#FFFAD5*/
+/*#FFD34E*/
+/* placeholders */
+/* editors */
+/*  ----------------------------  */
+dp|project {
+  display: block;
+  margin: 1em;
+}
+dp|project > * {
+  margin-bottom: 3em;
+}
+dp|project:before {
+  display: block;
+  text-align: left;
+  content: "DITA Project file";
+  color: #0000ff;
+  font-weight: bold;
+  font-size: larger;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|project:before {
+    color: #ffff00;
+  }
+}
+dp|include {
+  display: block;
+  margin-left: 0.5em;
+  margin-top: 2em;
+  padding: 0.2em;
+  border: 1px solid lightgray;
+  position: relative;
+}
+dp|include:before {
+  display: block;
+  color: #000000;
+  content: " " oxy_local-name();
+  position: absolute;
+  top: -1.2em;
+  left: -1px;
+  border: 1px solid lightgray;
+  background-color: #add8e6;
+  width: 20%;
+  min-width: 10em;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|include:before {
+    color: #ffffff;
+  }
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|include:before {
+    background-color: #522719;
+  }
+}
+dp|include:not(:-oxy-edit)[href]:before(5) {
+  content: url("../../img/link.png") oxy_concat("", attr(href));
+  link: oxy_concat("", attr(href));
+  color: #000080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|include:not(:-oxy-edit)[href]:before(5) {
+    color: #ffff7f;
+  }
+}
+dp|include:not(:-oxy-edit)[href]:before(5):hover,
+dp|include:not(:-oxy-edit)[href]:before(5):focus {
+  text-decoration: underline;
+  link: oxy_concat("", attr(href));
+}
+dp|deliverable {
+  display: block;
+  margin-left: 0.5em;
+  margin-top: 2em;
+  padding: 0.2em;
+  border: 1px solid lightgray;
+  position: relative;
+}
+dp|deliverable:before {
+  display: block;
+  color: #000000;
+  content: " " oxy_local-name();
+  position: absolute;
+  top: -1.2em;
+  left: -1px;
+  border: 1px solid lightgray;
+  background-color: #add8e6;
+  width: 20%;
+  min-width: 10em;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|deliverable:before {
+    color: #ffffff;
+  }
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|deliverable:before {
+    background-color: #522719;
+  }
+}
+dp|deliverable:not(:-oxy-edit)[name]:before(10) {
+  font-weight: bold;
+  content: attr(name) " ";
+}
+dp|deliverable:not(:-oxy-edit)[id]:before(5) {
+  content: "[" attr(id) "]";
+  color: #808080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|deliverable:not(:-oxy-edit)[id]:before(5) {
+    color: #7f7f7f;
+  }
+}
+dp|publication {
+  display: block;
+  margin-left: 0.5em;
+  margin-top: 2em;
+  padding: 0.2em;
+  border: 1px solid lightgray;
+  position: relative;
+}
+dp|publication:before {
+  display: block;
+  color: #000000;
+  content: " " oxy_local-name();
+  position: absolute;
+  top: -1.2em;
+  left: -1px;
+  border: 1px solid lightgray;
+  background-color: #add8e6;
+  width: 20%;
+  min-width: 10em;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|publication:before {
+    color: #ffffff;
+  }
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|publication:before {
+    background-color: #522719;
+  }
+}
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|publication[name]:before(10),
+dp|project > dp|publication:not(:-oxy-edit)[name]:before(10) {
+  font-weight: bold;
+  content: attr(name) " ";
+}
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|publication[id]:before(5),
+dp|project > dp|publication:not(:-oxy-edit)[id]:before(5) {
+  content: "[" attr(id) "]";
+  color: #808080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|project > dp|deliverable:not(:-oxy-edit) > dp|publication[id]:before(5),
+  dp|project > dp|publication:not(:-oxy-edit)[id]:before(5) {
+    color: #7f7f7f;
+  }
+}
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|publication[transtype]:before(3),
+dp|project > dp|publication:not(:-oxy-edit)[transtype]:before(3) {
+  content: " transform to ";
+}
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|publication[transtype]:before(2),
+dp|project > dp|publication:not(:-oxy-edit)[transtype]:before(2) {
+  color: #0000ff;
+  content: oxy_label(text, attr(transtype)) " ";
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|project > dp|deliverable:not(:-oxy-edit) > dp|publication[transtype]:before(2),
+  dp|project > dp|publication:not(:-oxy-edit)[transtype]:before(2) {
+    color: #ffff00;
+  }
+}
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|publication[idref][idref]:before(5),
+dp|project > dp|publication:not(:-oxy-edit)[idref][idref]:before(5) {
+  content: url("../../img/link.png") oxy_concat("#", attr(idref));
+  link: oxy_concat("#", attr(idref));
+  color: #000080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|project > dp|deliverable:not(:-oxy-edit) > dp|publication[idref][idref]:before(5),
+  dp|project > dp|publication:not(:-oxy-edit)[idref][idref]:before(5) {
+    color: #ffff7f;
+  }
+}
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|publication[idref][idref]:before(5):hover,
+dp|project > dp|publication:not(:-oxy-edit)[idref][idref]:before(5):hover,
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|publication[idref][idref]:before(5):focus,
+dp|project > dp|publication:not(:-oxy-edit)[idref][idref]:before(5):focus {
+  text-decoration: underline;
+  link: oxy_concat("#", attr(idref));
+}
+dp|context {
+  display: block;
+  margin-left: 0.5em;
+  margin-top: 2em;
+  padding: 0.2em;
+  border: 1px solid lightgray;
+  position: relative;
+}
+dp|context:before {
+  display: block;
+  color: #000000;
+  content: " " oxy_local-name();
+  position: absolute;
+  top: -1.2em;
+  left: -1px;
+  border: 1px solid lightgray;
+  background-color: #add8e6;
+  width: 20%;
+  min-width: 10em;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|context:before {
+    color: #ffffff;
+  }
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|context:before {
+    background-color: #522719;
+  }
+}
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|context[name]:before(10),
+dp|project > dp|context:not(:-oxy-edit)[name]:before(10) {
+  font-weight: bold;
+  content: attr(name) " ";
+}
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|context[id]:before(5),
+dp|project > dp|context:not(:-oxy-edit)[id]:before(5) {
+  content: "[" attr(id) "]";
+  color: #808080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|project > dp|deliverable:not(:-oxy-edit) > dp|context[id]:before(5),
+  dp|project > dp|context:not(:-oxy-edit)[id]:before(5) {
+    color: #7f7f7f;
+  }
+}
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|context[idref][idref]:before(5),
+dp|project > dp|context:not(:-oxy-edit)[idref][idref]:before(5) {
+  content: url("../../img/link.png") oxy_concat("#", attr(idref));
+  link: oxy_concat("#", attr(idref));
+  color: #000080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|project > dp|deliverable:not(:-oxy-edit) > dp|context[idref][idref]:before(5),
+  dp|project > dp|context:not(:-oxy-edit)[idref][idref]:before(5) {
+    color: #ffff7f;
+  }
+}
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|context[idref][idref]:before(5):hover,
+dp|project > dp|context:not(:-oxy-edit)[idref][idref]:before(5):hover,
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|context[idref][idref]:before(5):focus,
+dp|project > dp|context:not(:-oxy-edit)[idref][idref]:before(5):focus {
+  text-decoration: underline;
+  link: oxy_concat("#", attr(idref));
+}
+dp|input {
+  display: block;
+  margin-left: 0.5em;
+  padding: 0.2em;
+}
+dp|input:before(10) {
+  content: oxy_local-name() " ";
+  font-weight: bold;
+}
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|context > dp|input[href]:before(5),
+dp|project > dp|context:not(:-oxy-edit) > dp|input[href]:before(5) {
+  content: url("../../img/link.png") oxy_concat("", attr(href));
+  link: oxy_concat("", attr(href));
+  color: #000080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|project > dp|deliverable:not(:-oxy-edit) > dp|context > dp|input[href]:before(5),
+  dp|project > dp|context:not(:-oxy-edit) > dp|input[href]:before(5) {
+    color: #ffff7f;
+  }
+}
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|context > dp|input[href]:before(5):hover,
+dp|project > dp|context:not(:-oxy-edit) > dp|input[href]:before(5):hover,
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|context > dp|input[href]:before(5):focus,
+dp|project > dp|context:not(:-oxy-edit) > dp|input[href]:before(5):focus {
+  text-decoration: underline;
+  link: oxy_concat("", attr(href));
+}
+dp|profile {
+  display: block;
+  margin-left: 0.5em;
+  margin-top: 2em;
+  padding: 0.2em;
+  border: 1px solid lightgray;
+  position: relative;
+  margin-top: 1em;
+}
+dp|profile:before {
+  display: block;
+  color: #000000;
+  content: " " oxy_local-name();
+  position: absolute;
+  top: -1.2em;
+  left: -1px;
+  border: 1px solid lightgray;
+  background-color: #add8e6;
+  width: 20%;
+  min-width: 10em;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|profile:before {
+    color: #ffffff;
+  }
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|profile:before {
+    background-color: #522719;
+  }
+}
+dp|ditaval {
+  display: block;
+  margin-left: 0.5em;
+  padding: 0.2em;
+}
+dp|ditaval:before(10) {
+  content: oxy_local-name() " ";
+  font-weight: bold;
+}
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|context > dp|profile > dp|ditaval[href]:before(5),
+dp|project > dp|context:not(:-oxy-edit) > dp|profile > dp|ditaval[href]:before(5) {
+  content: url("../../img/link.png") oxy_concat("", attr(href));
+  link: oxy_concat("", attr(href));
+  color: #000080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|project > dp|deliverable:not(:-oxy-edit) > dp|context > dp|profile > dp|ditaval[href]:before(5),
+  dp|project > dp|context:not(:-oxy-edit) > dp|profile > dp|ditaval[href]:before(5) {
+    color: #ffff7f;
+  }
+}
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|context > dp|profile > dp|ditaval[href]:before(5):hover,
+dp|project > dp|context:not(:-oxy-edit) > dp|profile > dp|ditaval[href]:before(5):hover,
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|context > dp|profile > dp|ditaval[href]:before(5):focus,
+dp|project > dp|context:not(:-oxy-edit) > dp|profile > dp|ditaval[href]:before(5):focus {
+  text-decoration: underline;
+  link: oxy_concat("", attr(href));
+}
+dp|output {
+  display: block;
+  margin-left: 0.5em;
+  padding: 0.2em;
+}
+dp|output:before(10) {
+  content: oxy_local-name() " ";
+  font-weight: bold;
+}
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|output[href]:before(5) {
+  content: url("../../img/link.png") oxy_concat("", attr(href));
+  link: oxy_concat("", attr(href));
+  color: #000080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|project > dp|deliverable:not(:-oxy-edit) > dp|output[href]:before(5) {
+    color: #ffff7f;
+  }
+}
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|output[href]:before(5):hover,
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|output[href]:before(5):focus {
+  text-decoration: underline;
+  link: oxy_concat("", attr(href));
+}
+dp|param {
+  display: block;
+  margin-left: 1em;
+}
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|publication > dp|param[name]:before(10),
+dp|project > dp|publication:not(:-oxy-edit) > dp|param[name]:before(10) {
+  font-weight: bold;
+  content: attr(name) " ";
+}
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|publication > dp|param:before(9),
+dp|project > dp|publication:not(:-oxy-edit) > dp|param:before(9) {
+  content: " = ";
+}
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|publication > dp|param[href]:before(5),
+dp|project > dp|publication:not(:-oxy-edit) > dp|param[href]:before(5) {
+  content: url("../../img/link.png") oxy_concat("", attr(href));
+  link: oxy_concat("", attr(href));
+  color: #000080;
+}
+@media oxygen-high-contrast-black, oxygen-dark-theme {
+  dp|project > dp|deliverable:not(:-oxy-edit) > dp|publication > dp|param[href]:before(5),
+  dp|project > dp|publication:not(:-oxy-edit) > dp|param[href]:before(5) {
+    color: #ffff7f;
+  }
+}
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|publication > dp|param[href]:before(5):hover,
+dp|project > dp|publication:not(:-oxy-edit) > dp|param[href]:before(5):hover,
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|publication > dp|param[href]:before(5):focus,
+dp|project > dp|publication:not(:-oxy-edit) > dp|param[href]:before(5):focus {
+  text-decoration: underline;
+  link: oxy_concat("", attr(href));
+}
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|publication > dp|param[path]:before(4),
+dp|project > dp|publication:not(:-oxy-edit) > dp|param[path]:before(4) {
+  content: attr(path) " ";
+}
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|publication > dp|param[value]:before(3),
+dp|project > dp|publication:not(:-oxy-edit) > dp|param[value]:before(3) {
+  content: attr(value) " ";
+}
+dp|project:empty,
+dp|project > * {
+  position: relative;
+}
+dp|project:empty:after(1109),
+dp|project > *:after(1109) {
+  display: block;
+  font-size: 1px;
+  content: " ";
+}
+dp|project:empty:after(1110),
+dp|project > *:after(1110) {
+  visibility: hidden;
+  display: block;
+  position: absolute;
+  bottom: -1.5em;
+  content: oxy_button(action, oxy_action(name, '[+]', description, 'See actions', operation, 'ro.sync.ecss.extensions.commons.operations.TogglePseudoClassOperation', arg-elementLocation, '.', icon, url('../../lw/css/img/add16.png'), arg-name, '-oxy-add'), transparent, true, showIcon, true);
+}
+dp|project:empty:focus-within:after(1110),
+dp|project > *:focus-within:after(1110),
+dp|project:empty:hover:after(1110),
+dp|project > *:hover:after(1110) {
+  visibility: visible;
+}
+dp|project:empty:-oxy-add:after(1110),
+dp|project > *:-oxy-add:after(1110) {
+  visibility: hidden;
+  content: oxy_button(action, oxy_action(name, '[-]', description, 'Hide actions', operation, 'ro.sync.ecss.extensions.commons.operations.TogglePseudoClassOperation', arg-elementLocation, '.', icon, url('../../lw/css/img/close16.png'), arg-name, '-oxy-add'), transparent, true, showIcon, true);
+}
+dp|project:empty:hover:-oxy-add:after(1110),
+dp|project > *:hover:-oxy-add:after(1110),
+dp|project:empty:focus-within:-oxy-add:after(1110),
+dp|project > *:focus-within:-oxy-add:after(1110) {
+  visibility: visible;
+}
+dp|project:empty:-oxy-add:after(1111),
+dp|project > *:-oxy-add:after(1111) {
+  font-size: 13px;
+  display: block;
+  position: absolute;
+  bottom: -1.7em;
+  left: 2em;
+  visibility: hidden;
+  content: oxy_button(transparent, true, color, inherit, actions, oxy_compound_action(name, oxy_getActionName('edit-include'), icon, oxy_getActionIcon('edit-include'), description, oxy_getActionDescription('edit-include'), oxy_action(name, 'done', description, 'done', operation, 'ro.sync.ecss.extensions.commons.operations.RemovePseudoClassOperation', arg-name, '-oxy-add' arg-elementLocation, '.'), oxy_action(id, 'edit-include')), showIcon, true) " " oxy_button(transparent, true, color, inherit, actions, oxy_compound_action(name, oxy_getActionName('edit-context'), icon, oxy_getActionIcon('edit-context'), description, oxy_getActionDescription('edit-context'), oxy_action(name, 'done', description, 'done', operation, 'ro.sync.ecss.extensions.commons.operations.RemovePseudoClassOperation', arg-name, '-oxy-add' arg-elementLocation, '.'), oxy_action(id, 'edit-context')), showIcon, true) " " oxy_button(transparent, true, color, inherit, actions, oxy_compound_action(name, oxy_getActionName('edit-publication'), icon, oxy_getActionIcon('edit-publication'), description, oxy_getActionDescription('edit-publication'), oxy_action(name, 'done', description, 'done', operation, 'ro.sync.ecss.extensions.commons.operations.RemovePseudoClassOperation', arg-name, '-oxy-add' arg-elementLocation, '.'), oxy_action(id, 'edit-publication')), showIcon, true) " " oxy_button(transparent, true, color, inherit, actions, oxy_compound_action(name, oxy_getActionName('edit-deliverable'), icon, oxy_getActionIcon('edit-deliverable'), description, oxy_getActionDescription('edit-deliverable'), oxy_action(name, 'done', description, 'done', operation, 'ro.sync.ecss.extensions.commons.operations.RemovePseudoClassOperation', arg-name, '-oxy-add' arg-elementLocation, '.'), oxy_action(id, 'edit-deliverable')), showIcon, true);
+}
+dp|project:empty:hover:-oxy-add:after(1111),
+dp|project > *:hover:-oxy-add:after(1111),
+dp|project:empty:focus-within:-oxy-add:after(1111),
+dp|project > *:focus-within:-oxy-add:after(1111) {
+  visibility: visible;
+}
+:root > *:after(10) {
+  visibility: hidden;
+  content: oxy_button(transparent, true, action, oxy_action(name, 'Edit', description, 'Edit', icon, url('../../lw/css/img/edit16.png'), operation, 'ro.sync.ecss.extensions.commons.operations.ChangePseudoClassesOperation', arg-setPseudoClassNames, '-oxy-edit'), showIcon, true);
+}
+:root > *:-oxy-edit:after(10) {
+  visibility: hidden;
+  content: oxy_button(transparent, true, action, oxy_action(name, 'Done', description, 'Done', icon, url('../../lw/css/img/done16.png'), operation, 'ro.sync.ecss.extensions.commons.operations.ChangePseudoClassesOperation', arg-removePseudoClassNames, '-oxy-edit'), showIcon, true);
+}
+:root > *:focus-within:after(10),
+:root > *:hover:after(10) {
+  visibility: visible;
+}
+:root > *:-oxy-edit:-oxy-delete {
+  background-color: rgba(210, 200, 200, 0.2);
+}
+:root > *:-oxy-edit:after(80) {
+  visibility: hidden;
+  content: " " oxy_button(color, #cc5400, action, oxy_action(name, '[X]', icon, '/images/Remove16.png', description, oxy_concat('Delete the current "', oxy_local-name(), '" element'), operation, 'ro.sync.ecss.extensions.commons.operations.DeleteElementOperation'), transparent, true, hoverPseudoclassName, '-oxy-delete', showIcon, true);
+}
+:root > *:-oxy-edit:focus-within:after(80),
+:root > *:-oxy-edit:hover:after(80) {
+  visibility: visible;
+}
+:root > *:-oxy-edit {
+  outline: 1px solid green;
+}
+:root > *:-oxy-edit input:after(5) {
+  text-decoration: none;
+  content: "\A" oxy_label(text, "  URL:", width, 20%, color, inherit) oxy_textfield(edit, '@href', width, 70%);
+}
+:root > *:-oxy-edit ditaval:-oxy-delete {
+  background-color: rgba(210, 200, 200, 0.2);
+}
+:root > *:-oxy-edit ditaval:after(80) {
+  visibility: hidden;
+  content: " " oxy_button(color, #cc5400, action, oxy_action(name, '[X]', icon, '/images/Remove16.png', description, oxy_concat('Delete the current "', oxy_local-name(), '" element'), operation, 'ro.sync.ecss.extensions.commons.operations.DeleteElementOperation'), transparent, true, hoverPseudoclassName, '-oxy-delete', showIcon, true);
+}
+:root > *:-oxy-edit ditaval:focus-within:after(80),
+:root > *:-oxy-edit ditaval:hover:after(80) {
+  visibility: visible;
+}
+:root > *:-oxy-edit ditaval:after(5),
+:root > *:-oxy-edit output:after(5) {
+  text-decoration: none;
+  content: "\A" oxy_label(text, "  URL:", width, 20%, color, inherit) oxy_textfield(edit, '@href', width, 70%);
+}
+:root > dp|include:-oxy-edit:after(5) {
+  text-decoration: none;
+  content: "\A" oxy_label(text, "  URL:", width, 20%, color, inherit) oxy_textfield(edit, '@href', width, 70%);
+}
+:root > dp|context:-oxy-edit:before(2),
+:root > *:-oxy-edit dp|context:not([idref]):before(2) {
+  text-decoration: none;
+  content: "\A" oxy_label(text, "  Name:", width, 20%, color, inherit) oxy_textfield(edit, '@name', width, 70%) "\A" oxy_label(text, "  ID:", width, 20%, color, inherit) oxy_textfield(edit, '@id', width, 70%);
+}
+:root > dp|deliverable:-oxy-edit:before(2) {
+  text-decoration: none;
+  content: "\A" oxy_label(text, "  Name:", width, 20%, color, inherit) oxy_textfield(edit, '@name', width, 70%) "\A" oxy_label(text, "  ID:", width, 20%, color, inherit) oxy_textfield(edit, '@id', width, 70%);
+}
+:root > dp|publication:-oxy-edit:before(2),
+:root > *:-oxy-edit dp|publication:not([idref]):before(2) {
+  text-decoration: none;
+  content: "\A" oxy_label(text, "  Name:", width, 20%, color, inherit) oxy_textfield(edit, '@name', width, 70%) "\A" oxy_label(text, "  ID:", width, 20%, color, inherit) oxy_textfield(edit, '@id', width, 70%) "\A" oxy_label(text, "  Transtype:", width, 20%, color, inherit) oxy_combobox(edit, '@transtype', width, 70%, editable, true);
+}
+:root > *:-oxy-edit profile:empty {
+  -oxy-show-placeholder: always;
+}
+:root > *:-oxy-edit profile:after(1090) {
+  visibility: hidden;
+  display: block;
+  content: oxy_button(color, #b08a5d, action, oxy_action(name, '[+ filter]', description, 'Insert filter', operation, 'ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation', arg-fragment, '<ditaval xmlns="https://www.dita-ot.org/project" href=""/>', arg-insertLocation, '.', arg-insertPosition, 'Inside as last child', arg-schemaAware, false), transparent, true, actionContext, element, showIcon, true);
+}
+:root > *:-oxy-edit profile:focus-within:after(1090),
+:root > *:-oxy-edit profile:hover:after(1090) {
+  visibility: visible;
+}
+:root > *:-oxy-edit param {
+  display: block;
+  margin-left: 0.5em;
+  padding: 0.2em;
+}
+:root > *:-oxy-edit param:before(10) {
+  content: 'parameter' " ";
+  font-weight: bold;
+}
+:root > *:-oxy-edit param:after(5) {
+  text-decoration: none;
+  content: "\A" oxy_label(text, "  Name:", width, 20%, color, inherit) oxy_combobox(edit, '@name', width, 70%, editable, true);
+}
+:root > *:-oxy-edit param[href]:after(6) {
+  text-decoration: none;
+  content: "\A" oxy_label(text, "  URL:", width, 20%, color, inherit) oxy_combobox(edit, '@href', width, 70%, editable, true);
+}
+:root > *:-oxy-edit param[value]:after(6) {
+  text-decoration: none;
+  content: "\A" oxy_label(text, "  Value:", width, 20%, color, inherit) oxy_combobox(edit, '@value', width, 70%, editable, true);
+}
+:root > *:-oxy-edit param[path]:after(6) {
+  text-decoration: none;
+  content: "\A" oxy_label(text, "  Path:", width, 20%, color, inherit) oxy_combobox(edit, '@path', width, 70%, editable, true);
+}
+:root > *:-oxy-edit param[href] {
+  -oxy-show-placeholder: no!important;
+}
+:root > *:-oxy-edit param[href]:empty {
+  -oxy-show-placeholder: always;
+}
+:root > *:-oxy-edit param[href]:after(1090) {
+  visibility: hidden;
+  display: block;
+  content: oxy_button(color, #b08a5d, action, oxy_action(name, '[Change to Value]', description, 'Change the parameter type to value', operation, 'ro.sync.ecss.extensions.commons.operations.ChangeAttributesOperation', arg-attributeNames, 'value \Ahref', arg-values, oxy_xpath('@href'), arg-removeIfEmpty, 'true'), transparent, true, actionContext, element, showIcon, true) oxy_button(color, #b08a5d, action, oxy_action(name, '[Change to Path]', description, 'Change the parameter type to path', operation, 'ro.sync.ecss.extensions.commons.operations.ChangeAttributesOperation', arg-attributeNames, 'path \Ahref', arg-values, oxy_xpath('@href'), arg-removeIfEmpty, 'true'), transparent, true, actionContext, element, showIcon, true);
+}
+:root > *:-oxy-edit param[href]:focus-within:after(1090),
+:root > *:-oxy-edit param[href]:hover:after(1090) {
+  visibility: visible;
+}
+:root > *:-oxy-edit param[value] {
+  -oxy-show-placeholder: no!important;
+}
+:root > *:-oxy-edit param[value]:empty {
+  -oxy-show-placeholder: always;
+}
+:root > *:-oxy-edit param[value]:after(1090) {
+  visibility: hidden;
+  display: block;
+  content: oxy_button(color, #b08a5d, action, oxy_action(name, '[Change to Path]', description, 'Change the parameter type to path', operation, 'ro.sync.ecss.extensions.commons.operations.ChangeAttributesOperation', arg-attributeNames, 'path \Avalue', arg-values, oxy_xpath('@value'), arg-removeIfEmpty, 'true'), transparent, true, actionContext, element, showIcon, true) oxy_button(color, #b08a5d, action, oxy_action(name, '[Change to URL]', description, 'Change the parameter type to URL', operation, 'ro.sync.ecss.extensions.commons.operations.ChangeAttributesOperation', arg-attributeNames, 'href \Avalue', arg-values, oxy_xpath('@value'), arg-removeIfEmpty, 'true'), transparent, true, actionContext, element, showIcon, true);
+}
+:root > *:-oxy-edit param[value]:focus-within:after(1090),
+:root > *:-oxy-edit param[value]:hover:after(1090) {
+  visibility: visible;
+}
+:root > *:-oxy-edit param[path] {
+  -oxy-show-placeholder: no!important;
+}
+:root > *:-oxy-edit param[path]:empty {
+  -oxy-show-placeholder: always;
+}
+:root > *:-oxy-edit param[path]:after(1090) {
+  visibility: hidden;
+  display: block;
+  content: oxy_button(color, #b08a5d, action, oxy_action(name, '[Change to URL]', description, 'Change the parameter type to URL', operation, 'ro.sync.ecss.extensions.commons.operations.ChangeAttributesOperation', arg-attributeNames, 'href \Apath', arg-values, oxy_xpath('@path'), arg-removeIfEmpty, 'true'), transparent, true, actionContext, element, showIcon, true) oxy_button(color, #b08a5d, action, oxy_action(name, '[Change to Value]', description, 'Change the parameter type to value', operation, 'ro.sync.ecss.extensions.commons.operations.ChangeAttributesOperation', arg-attributeNames, 'value \Apath', arg-values, oxy_xpath('@path'), arg-removeIfEmpty, 'true'), transparent, true, actionContext, element, showIcon, true);
+}
+:root > *:-oxy-edit param[path]:focus-within:after(1090),
+:root > *:-oxy-edit param[path]:hover:after(1090) {
+  visibility: visible;
+}
+:root > *:-oxy-edit param:-oxy-delete {
+  background-color: rgba(210, 200, 200, 0.2);
+}
+:root > *:-oxy-edit param:after(80) {
+  visibility: hidden;
+  content: " " oxy_button(color, #cc5400, action, oxy_action(name, '[X]', icon, '/images/Remove16.png', description, oxy_concat('Delete the current "', oxy_local-name(), '" element'), operation, 'ro.sync.ecss.extensions.commons.operations.DeleteElementOperation'), transparent, true, hoverPseudoclassName, '-oxy-delete', showIcon, true);
+}
+:root > *:-oxy-edit param:focus-within:after(80),
+:root > *:-oxy-edit param:hover:after(80) {
+  visibility: visible;
+}
+:root > *:-oxy-edit dp|publication:not([idref]),
+:root > dp|publication:-oxy-edit {
+  -oxy-show-placeholder: no!important;
+}
+:root > *:-oxy-edit dp|publication:not([idref]):empty,
+:root > dp|publication:-oxy-edit:empty {
+  -oxy-show-placeholder: always;
+}
+:root > *:-oxy-edit dp|publication:not([idref]):after(8),
+:root > dp|publication:-oxy-edit:after(8) {
+  visibility: hidden;
+  display: block;
+  content: oxy_button(color, #b08a5d, action, oxy_action(name, '[+ parameter]', description, 'Insert filter', operation, 'ro.sync.ecss.extensions.commons.operations.InsertFragmentOperation', arg-fragment, '<param xmlns="https://www.dita-ot.org/project" name="param" value="value"/>', arg-insertLocation, '.', arg-insertPosition, 'Inside as last child', arg-schemaAware, false), transparent, true, actionContext, element, showIcon, true);
+}
+:root > *:-oxy-edit dp|publication:not([idref]):focus-within:after(8),
+:root > dp|publication:-oxy-edit:focus-within:after(8),
+:root > *:-oxy-edit dp|publication:not([idref]):hover:after(8),
+:root > dp|publication:-oxy-edit:hover:after(8) {
+  visibility: visible;
+}
+:root > *:-oxy-edit dp|publication:not([idref]):empty {
+  -oxy-show-placeholder: always;
+}
+:root > *:-oxy-edit dp|publication:not([idref]):after(9) {
+  visibility: hidden;
+  display: block;
+  content: oxy_button(color, #b08a5d, action, oxy_action(name, '[Refer an exiting publication]', description, 'Insert publication reference', operation, 'ro.sync.ecss.extensions.commons.operations.InsertOrReplaceFragmentOperation', arg-fragment, '<publication xmlns="https://www.dita-ot.org/project" idref=""/>', arg-insertLocation, '.', arg-insertPosition, 'Replace', arg-schemaAware, false), transparent, true, actionContext, element, showIcon, true);
+}
+:root > *:-oxy-edit dp|publication:not([idref]):focus-within:after(9),
+:root > *:-oxy-edit dp|publication:not([idref]):hover:after(9) {
+  visibility: visible;
+}
+:root > *:-oxy-edit dp|publication[idref] {
+  text-decoration: none;
+  -oxy-show-placeholder: no!important;
+  content: "\A" oxy_label(text, "Publication reference:", width, 20%, color, inherit) oxy_combobox(edit, '@idref', values, oxy_xpath("string-join(//*:publication/@id, ',')"), width, 70%, editable, true);
+}
+:root > *:-oxy-edit dp|publication[idref]:empty {
+  -oxy-show-placeholder: always;
+}
+:root > *:-oxy-edit dp|publication[idref]:after(9) {
+  visibility: hidden;
+  display: block;
+  content: oxy_button(color, #b08a5d, action, oxy_action(name, '[Define publication inline]', description, 'Insert publication', operation, 'ro.sync.ecss.extensions.commons.operations.InsertOrReplaceFragmentOperation', arg-fragment, '<publication xmlns="https://www.dita-ot.org/project" name="myPublication" id="myPublicationID" transtype="HTML"><param name="param" value="value"/></publication>', arg-insertLocation, '.', arg-insertPosition, 'Replace', arg-schemaAware, false), transparent, true, actionContext, element, showIcon, true);
+}
+:root > *:-oxy-edit dp|publication[idref]:focus-within:after(9),
+:root > *:-oxy-edit dp|publication[idref]:hover:after(9) {
+  visibility: visible;
+}
+:root > *:-oxy-edit dp|context:not([idref]):empty {
+  -oxy-show-placeholder: always;
+}
+:root > *:-oxy-edit dp|context:not([idref]):after(9) {
+  visibility: hidden;
+  display: block;
+  content: oxy_button(color, #b08a5d, action, oxy_action(name, '[Refer an exiting context]', description, 'Insert context reference', operation, 'ro.sync.ecss.extensions.commons.operations.InsertOrReplaceFragmentOperation', arg-fragment, '<context xmlns="https://www.dita-ot.org/project" idref=""/>', arg-insertLocation, '.', arg-insertPosition, 'Replace', arg-schemaAware, false), transparent, true, actionContext, element, showIcon, true);
+}
+:root > *:-oxy-edit dp|context:not([idref]):focus-within:after(9),
+:root > *:-oxy-edit dp|context:not([idref]):hover:after(9) {
+  visibility: visible;
+}
+:root > *:-oxy-edit dp|context[idref] {
+  text-decoration: none;
+  -oxy-show-placeholder: no!important;
+  content: "\A" oxy_label(text, "Context reference:", width, 20%, color, inherit) oxy_combobox(edit, '@idref', values, oxy_xpath("string-join(//*:context/@id, ',')"), width, 70%, editable, true);
+}
+:root > *:-oxy-edit dp|context[idref]:empty {
+  -oxy-show-placeholder: always;
+}
+:root > *:-oxy-edit dp|context[idref]:after(9) {
+  visibility: hidden;
+  display: block;
+  content: oxy_button(color, #b08a5d, action, oxy_action(name, '[Define context inline]', description, 'Insert publication', operation, 'ro.sync.ecss.extensions.commons.operations.InsertOrReplaceFragmentOperation', arg-fragment, '<context xmlns="https://www.dita-ot.org/project" name="myContext" id="myContextID"><input href="sample.ditamap"/><profile><ditaval href="filter.ditaval"/></profile></context>', arg-insertLocation, '.', arg-insertPosition, 'Replace', arg-schemaAware, false), transparent, true, actionContext, element, showIcon, true);
+}
+:root > *:-oxy-edit dp|context[idref]:focus-within:after(9),
+:root > *:-oxy-edit dp|context[idref]:hover:after(9) {
+  visibility: visible;
+}
+dp|project {
+  position: relative;
+}
+dp|project:before(5000) {
+  line-height: 1px;
+  width: 1em;
+  display: block;
+  position: absolute;
+  top: 2px;
+  text-align: right;
+  right: 2px;
+  visibility: hidden;
+  content: oxy_button(action, oxy_action(name, '[+]', description, oxy_concat('See description for ', oxy_local-name()), operation, 'ro.sync.ecss.extensions.commons.operations.TogglePseudoClassOperation', arg-elementLocation, '.', icon, url('../../lw/css/img/info16.png'), arg-name, '-oxy-hints'), transparent, true, showIcon, true);
+}
+dp|project:-oxy-hints:before(5000) {
+  visibility: hidden;
+  content: oxy_button(action, oxy_action(name, '[-]', description, oxy_concat('See description for ', oxy_local-name()), operation, 'ro.sync.ecss.extensions.commons.operations.TogglePseudoClassOperation', arg-elementLocation, '.', icon, url('../../lw/css/img/info16.png'), arg-name, '-oxy-hints'), transparent, true, hoverPseudoclassName, '-oxy-delete-hints', showIcon, true);
+}
+dp|project:hover:before(5000) {
+  visibility: visible;
+}
+dp|project:-oxy-hints:-oxy-hints:-oxy-delete-hints:before(201) {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+dp|project:-oxy-hints:before(201) {
+  display: block;
+  border: 1px solid #d89e36;
+  background-color: rgba(255, 250, 213, 0.6);
+  border-radius: 8px;
+  font-family: arial, helvetica, sans-serif;
+  font-size: 1rem;
+  line-height: 1.2rem;
+  margin-bottom: 0.6rem;
+  padding: 0.2rem;
+  padding-right: 1.2rem;
+  content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('hints', '-', oxy_local-name()), width, 100%);
+}
+dp|project > dp|include {
+  position: relative;
+}
+dp|project > dp|include:before(5000) {
+  line-height: 1px;
+  width: 1em;
+  display: block;
+  position: absolute;
+  top: 2px;
+  text-align: right;
+  right: 2px;
+  visibility: hidden;
+  content: oxy_button(action, oxy_action(name, '[+]', description, oxy_concat('See description for ', oxy_local-name()), operation, 'ro.sync.ecss.extensions.commons.operations.TogglePseudoClassOperation', arg-elementLocation, '.', icon, url('../../lw/css/img/info16.png'), arg-name, '-oxy-hints'), transparent, true, showIcon, true);
+}
+dp|project > dp|include:-oxy-hints:before(5000) {
+  visibility: hidden;
+  content: oxy_button(action, oxy_action(name, '[-]', description, oxy_concat('See description for ', oxy_local-name()), operation, 'ro.sync.ecss.extensions.commons.operations.TogglePseudoClassOperation', arg-elementLocation, '.', icon, url('../../lw/css/img/info16.png'), arg-name, '-oxy-hints'), transparent, true, hoverPseudoclassName, '-oxy-delete-hints', showIcon, true);
+}
+dp|project > dp|include:hover:before(5000) {
+  visibility: visible;
+}
+dp|project > dp|include:-oxy-hints:-oxy-hints:-oxy-delete-hints:before(201) {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+dp|project > dp|include:-oxy-hints:before(201) {
+  display: block;
+  border: 1px solid #d89e36;
+  background-color: rgba(255, 250, 213, 0.6);
+  border-radius: 8px;
+  font-family: arial, helvetica, sans-serif;
+  font-size: 1rem;
+  line-height: 1.2rem;
+  margin-bottom: 0.6rem;
+  padding: 0.2rem;
+  padding-right: 1.2rem;
+  content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('hints', '-', oxy_local-name()), width, 100%);
+}
+dp|project > dp|context {
+  position: relative;
+}
+dp|project > dp|context:before(5000) {
+  line-height: 1px;
+  width: 1em;
+  display: block;
+  position: absolute;
+  top: 2px;
+  text-align: right;
+  right: 2px;
+  visibility: hidden;
+  content: oxy_button(action, oxy_action(name, '[+]', description, oxy_concat('See description for ', oxy_local-name()), operation, 'ro.sync.ecss.extensions.commons.operations.TogglePseudoClassOperation', arg-elementLocation, '.', icon, url('../../lw/css/img/info16.png'), arg-name, '-oxy-hints'), transparent, true, showIcon, true);
+}
+dp|project > dp|context:-oxy-hints:before(5000) {
+  visibility: hidden;
+  content: oxy_button(action, oxy_action(name, '[-]', description, oxy_concat('See description for ', oxy_local-name()), operation, 'ro.sync.ecss.extensions.commons.operations.TogglePseudoClassOperation', arg-elementLocation, '.', icon, url('../../lw/css/img/info16.png'), arg-name, '-oxy-hints'), transparent, true, hoverPseudoclassName, '-oxy-delete-hints', showIcon, true);
+}
+dp|project > dp|context:hover:before(5000) {
+  visibility: visible;
+}
+dp|project > dp|context:-oxy-hints:-oxy-hints:-oxy-delete-hints:before(201) {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+dp|project > dp|context:-oxy-hints:before(201) {
+  display: block;
+  border: 1px solid #d89e36;
+  background-color: rgba(255, 250, 213, 0.6);
+  border-radius: 8px;
+  font-family: arial, helvetica, sans-serif;
+  font-size: 1rem;
+  line-height: 1.2rem;
+  margin-bottom: 0.6rem;
+  padding: 0.2rem;
+  padding-right: 1.2rem;
+  content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('hints', '-', oxy_local-name()), width, 100%);
+}
+dp|project > dp|publication {
+  position: relative;
+}
+dp|project > dp|publication:before(5000) {
+  line-height: 1px;
+  width: 1em;
+  display: block;
+  position: absolute;
+  top: 2px;
+  text-align: right;
+  right: 2px;
+  visibility: hidden;
+  content: oxy_button(action, oxy_action(name, '[+]', description, oxy_concat('See description for ', oxy_local-name()), operation, 'ro.sync.ecss.extensions.commons.operations.TogglePseudoClassOperation', arg-elementLocation, '.', icon, url('../../lw/css/img/info16.png'), arg-name, '-oxy-hints'), transparent, true, showIcon, true);
+}
+dp|project > dp|publication:-oxy-hints:before(5000) {
+  visibility: hidden;
+  content: oxy_button(action, oxy_action(name, '[-]', description, oxy_concat('See description for ', oxy_local-name()), operation, 'ro.sync.ecss.extensions.commons.operations.TogglePseudoClassOperation', arg-elementLocation, '.', icon, url('../../lw/css/img/info16.png'), arg-name, '-oxy-hints'), transparent, true, hoverPseudoclassName, '-oxy-delete-hints', showIcon, true);
+}
+dp|project > dp|publication:hover:before(5000) {
+  visibility: visible;
+}
+dp|project > dp|publication:-oxy-hints:-oxy-hints:-oxy-delete-hints:before(201) {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+dp|project > dp|publication:-oxy-hints:before(201) {
+  display: block;
+  border: 1px solid #d89e36;
+  background-color: rgba(255, 250, 213, 0.6);
+  border-radius: 8px;
+  font-family: arial, helvetica, sans-serif;
+  font-size: 1rem;
+  line-height: 1.2rem;
+  margin-bottom: 0.6rem;
+  padding: 0.2rem;
+  padding-right: 1.2rem;
+  content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('hints', '-', oxy_local-name()), width, 100%);
+}
+dp|project > dp|deliverable {
+  position: relative;
+}
+dp|project > dp|deliverable:before(5000) {
+  line-height: 1px;
+  width: 1em;
+  display: block;
+  position: absolute;
+  top: 2px;
+  text-align: right;
+  right: 2px;
+  visibility: hidden;
+  content: oxy_button(action, oxy_action(name, '[+]', description, oxy_concat('See description for ', oxy_local-name()), operation, 'ro.sync.ecss.extensions.commons.operations.TogglePseudoClassOperation', arg-elementLocation, '.', icon, url('../../lw/css/img/info16.png'), arg-name, '-oxy-hints'), transparent, true, showIcon, true);
+}
+dp|project > dp|deliverable:-oxy-hints:before(5000) {
+  visibility: hidden;
+  content: oxy_button(action, oxy_action(name, '[-]', description, oxy_concat('See description for ', oxy_local-name()), operation, 'ro.sync.ecss.extensions.commons.operations.TogglePseudoClassOperation', arg-elementLocation, '.', icon, url('../../lw/css/img/info16.png'), arg-name, '-oxy-hints'), transparent, true, hoverPseudoclassName, '-oxy-delete-hints', showIcon, true);
+}
+dp|project > dp|deliverable:hover:before(5000) {
+  visibility: visible;
+}
+dp|project > dp|deliverable:-oxy-hints:-oxy-hints:-oxy-delete-hints:before(201) {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+dp|project > dp|deliverable:-oxy-hints:before(201) {
+  display: block;
+  border: 1px solid #d89e36;
+  background-color: rgba(255, 250, 213, 0.6);
+  border-radius: 8px;
+  font-family: arial, helvetica, sans-serif;
+  font-size: 1rem;
+  line-height: 1.2rem;
+  margin-bottom: 0.6rem;
+  padding: 0.2rem;
+  padding-right: 1.2rem;
+  content: oxy_htmlContent(href, 'hints.html', id, oxy_concat('hints', '-', oxy_local-name()), width, 100%);
+}

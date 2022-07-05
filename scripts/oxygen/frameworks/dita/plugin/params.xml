@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="dita-ot/plugin.rnc" type="application/relax-ng-compact-syntax"?>
+<plugin id="newPluginID">
+  <transtype name="base-oxygen" abstract="true">
+    <!-- Oxygen specific params, automatically contributed to the base transtype. -->
+    <param name="fix.external.refs.com.oxygenxml" type="enum"
+      desc="The DITA Open Toolkit usually has problems processing references that point to locations outside of the processed DITA Map directory.
+      This parameter is used to specify whether or not the application should try to fix such references in a temporary files folder before the DITA Open Toolkit is invoked on the fixed references.
+      The fix has no impact on your edited DITA content.">
+      <val>true</val>
+      <val default="true">false</val>
+    </param>
+    <param name="clean.output"
+      desc="The parameter to specify whether or not to clean the output directory before each build."
+      type="enum">
+      <val>yes</val>
+      <val default="true">no</val>
+    </param>
+  </transtype>
+</plugin>

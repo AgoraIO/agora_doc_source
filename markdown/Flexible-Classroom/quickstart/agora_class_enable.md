@@ -1,36 +1,38 @@
-本文介绍如何在 Agora 控制台开启灵动课堂服务。
-
-## 前提条件
-
-开启灵动课堂前，请确保已经具备以下条件：
-
--   有效的 Agora 开发者账号。如果你还没有创建过 Agora 开发者账号，参考<a href="/cn/AgoraPlatform/sign_in_and_sign_up?platform=AllPlatforms" target="_blank">注册与登录</a>。
--   启用中的 Agora 项目。如果你还没有创建过项目，参考<a href="/cn/Agora%20Platform/get_appid_token#创建-agora-项目" target="_blank">在 Agora 控制台创建一个项目</a>。
+本文介绍如何在 Agora 控制台开通灵动课堂服务。
 
 ## 操作步骤
 
-按照以下步骤，在 Agora 控制台开启灵动课堂服务：
+### 1. 创建 Agora 开发者账号
 
-1. 登录 Agora 控制台，进入[项目管理](https://console.agora.io/projects)页面。
-2. 在**项目管理**页面，选择需要开通灵动课堂服务的项目，点击**编辑**按钮。
+前往 <a href="https://sso.agora.io/cn/signup/" target="_blank">Agora 注册页面</a>，按照屏幕提示完成注册。
+
+### 2. 创建一个 Agora 项目
+
+~4c028930-19e2-11eb-b0e2-eb6c69fefbc6~
+
+### 3. 开通灵动课堂服务
+
+按照以下步骤，在 Agora 控制台开通灵动课堂服务：
+
+1. 进入 Agora 控制台的<a href="https://console.agora.io/projects" target="_blank">项目管理</a>页面，选择需要开通灵动课堂服务的项目，点击**编辑**按钮。
 
     ![](https://web-cdn.agora.io/docs-files/1641282981459)
 
-3. 在**拓展能力**下，找到**灵动课堂**，点击**启用**。
+2. 在**拓展能力**下，找到**灵动课堂**，点击**启用**。
 
     ![](https://web-cdn.agora.io/docs-files/1641283154171)
 
-4. 仔细阅读弹窗提示，点击**启用**。
+3. 仔细阅读弹窗提示，点击**启用**。
 
     ![](https://web-cdn.agora.io/docs-files/1641283263841)
 
-5. 成功开启灵动课堂服务后，状态会变为"已启用"，开启按钮会切换为配置按钮，如下图所示。
+4. 成功开通灵动课堂服务后，状态会变为"已启用"，开启按钮会切换为配置按钮，如下图所示。
 
     ![](https://web-cdn.agora.io/docs-files/1641283823693)
 
 ## 后续步骤
 
-成功开启灵动课堂服务后，接下来你可根据目标平台、参考以下文档快速启动并体验灵动课堂：
+成功开通灵动课堂服务后，接下来你可根据目标平台、参考以下文档快速跑通灵动课堂 GitHub 项目并体验灵动课堂：
 
 -   [快速启动灵动课堂 (Web)](/cn/agora-class/agora_class_quickstart_web?platform=Web)
 -   [快速启动灵动课堂 (Android)](/cn/agora-class/agora_class_quickstart_android?platform=Android)

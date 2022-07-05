@@ -19,19 +19,31 @@
 @property(strong, nonatomic) NSArray&lt;NSNumber*> * _Nonnull position;
 @property(strong, nonatomic) NSArray&lt;NSNumber*> * _Nullable forward;
 @end</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">struct RemoteVoicePositionInfo {
+            <codeblock props="cpp" outputclass="language-cpp">struct RemoteVoicePositionInfo {
   float position[3];
   float forward[3];
 
   RemoteVoicePositionInfo() = default;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="cs" outputclass="language-csharp">public class RemoteVoicePositionInfo
+    {
+        public RemoteVoicePositionInfo(float[] position, float[] forward)
+        {
+            this.position= position;
+            this.forward = forward;
+        }
+      
+        public float[] position { set; get; }
+        public float[] forward { set; get; }
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry conkeyref="updateSelfPosition/position">
                 <pt/>

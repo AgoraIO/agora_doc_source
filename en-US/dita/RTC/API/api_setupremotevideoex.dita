@@ -10,17 +10,17 @@
             </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public abstract int setupRemoteVideoEx(VideoCanvas remote, RtcConnection connection);</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (int)setupRemoteVideoEx:(AgoraRtcVideoCanvas* _Nonnull)remote
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setupRemoteVideoEx(VideoCanvas remote, RtcConnection connection);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setupRemoteVideoEx:(AgoraRtcVideoCanvas* _Nonnull)remote
                connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual int setupRemoteVideoEx(const VideoCanvas&amp; canvas, const RtcConnection&amp; connection) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp" />
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
-        </p>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setupRemoteVideoEx(const VideoCanvas&amp; canvas, const RtcConnection&amp; connection) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="cs" outputclass="language-csharp">public abstract int SetupRemoteVideoEx(VideoCanvas canvas, RtcConnection connection);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
             <p>This method initializes the video view of a remote stream on the local device. It affects only the video view that the local user sees. Call this method to bind the remote video stream to a video view and to set the rendering and mirror modes of the video view.</p>
@@ -29,30 +29,28 @@
             <p>To unbind the remote user from the view, set the <parmname>view</parmname> parameter to NULL.</p>
             <p>Once the remote user leaves the channel, the SDK unbinds the remote user.</p>
             <note type="attention" props="android ios mac">
-                <p>To update the rendering or mirror mode of the remote video view during a call, use the <xref keyref="setRemoteRenderModeEx2" /> method.</p>
-            </note>
-        </section>
-        <section id="parameters"><title>Parameters</title>
+            <p>To update the rendering or mirror mode of the remote video view during a call, use the <xref keyref="setRemoteRenderModeEx2" /> method.</p>
+            </note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
             <parml>
-                <plentry>
-                    <pt props="android ios mac">remote</pt>
-                    <pt props="windows">canvas</pt>
-                    <pd>
-                        <p>The remote video view settings. For details, see <xref keyref="VideoCanvas" />.</p>
-                    </pd>
-                </plentry>
-                <plentry conkeyref="joinChannelEx/connection">
-                    <pt />
-                    <pd />
-                </plentry>
-            </parml>
-        </section>
+            <plentry>
+                <pt props="android ios mac">remote</pt>
+                <pt props="cpp">canvas</pt>
+                <pd>
+                    <p>The remote video view settings. For details, see <xref keyref="VideoCanvas" />.</p>
+                </pd>
+            </plentry>
+            <plentry conkeyref="joinChannelEx/connection">
+                <pt />
+                <pd />
+            </plentry>
+            </parml> </section>
         <section id="return_values">
             <title>Returns</title>
             <ul>
-                <li>0: Success.</li>
-                <li>&lt; 0: Failure.</li>
-            </ul>
-        </section>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
     </refbody>
 </reference>

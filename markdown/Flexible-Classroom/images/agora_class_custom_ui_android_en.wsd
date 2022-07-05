@@ -1,0 +1,14 @@
+@startuml
+autonumber
+skinparam monochrome true
+participant "AgoraEduUI" as ui
+participant "AgoraEduContext" as context
+participant "AgoraEduHandler" as handler
+participant "AgoraEduCore" as core
+ui -> context: Call Context API
+context -> core: Call Core API
+core -> core: Internal processing
+core -> handler: Call handler and trigger callbacks
+handler -> ui: Throw the event to the UI level
+@enduml
+

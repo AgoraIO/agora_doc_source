@@ -1,0 +1,66 @@
+/* 
+ * =====================================================
+ * 
+ * You can control here the aspect of the links.
+ * 
+ * =====================================================
+ */
+ 
+ 
+/* ==================================================
+ * 
+ * <desc>
+ * 
+ * Hides the description <desc> elements from the printed links.
+ * This is similar to the default DITA-OT transformation.
+ */
+*[class ~= "topic/xref"] > *[class ~= "topic/desc"] {
+    display:none;
+}
+
+/*
+ * There might be cases when there are links to sections 
+ * marked as resource-only. For these links impose a normal formatting
+ *  
+ */
+*[class~="topic/xref"][broken-link],
+*[class~="topic/link"][broken-link]{
+    link: none;
+    font-style:inherit;
+    font-weight:inherit;
+    text-decoration:none;
+    color:inherit;
+}
+*[class~="topic/xref"][broken-link]:after,
+*[class~="topic/link"][broken-link]:after{
+    content:none;
+}   
+
+
+ *[class ~= "topic/xref"][href]:after,
+ *[class ~= "topic/link"][href]:after {
+     font-style:italic;
+     link: attr(href);
+     -ah-link: attr(href);
+
+ }
+ 
+ /* 
+  * For external links and when show.onpage.lbl parameter
+  * is set at 'no', do not show the page annotation 
+  */
+ *[class ~= "topic/xref"][href][scope='external']:after,
+ *[class ~= "topic/link"][href][scope='external']:after,
+ *[class ~= "topic/xref"][href][format]:not([format='dita']):after,
+ *[class ~= "topic/link"][href][format]:not([format='dita']):after,
+ *[class ~= "topic/xref"][href^='http://' ]:after,
+ *[class ~= "topic/link"][href^='http://' ]:after,
+ *[class ~= "topic/xref"][href^='https://' ]:after,
+ *[class ~= "topic/link"][href^='https://' ]:after,
+ *[class ~= "topic/xref"][href^='ftp://' ]:after,
+ *[class ~= "topic/link"][href^='ftp://' ]:after,
+ *[show-onpage-lbl="no"] *[class ~= "topic/xref"][href]:after,
+ *[show-onpage-lbl="no"] *[class ~= "topic/link"][href]:after {
+     content:none !important;        
+ }    
+

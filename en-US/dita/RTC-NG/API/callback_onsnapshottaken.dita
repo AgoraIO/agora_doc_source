@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_onsnapshottaken">
+    <title><ph keyref="onSnapshotTaken"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Reports the result of taking a video snapshot.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onSnapshotTaken"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onSnapshotTaken(
+      int uid, String filePath, int width, int height, int errCode);
+</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine snapshotTaken:(NSUInteger)uid filePath:(NSString* _Nonnull)filePath width:(NSInteger)width height:(NSInteger)height errCode:(NSInteger)errCode;
+</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onSnapshotTaken(uid_t uid, const char* filePath, int width, int height, int errCode) {
+  (void)uid;
+  (void)filePath;
+  (void)width;
+  (void)height;
+  (void)errCode;
+}
+</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnSnapshotTaken(string channel, uint uid, string filePath, int width, int height, int errCode)</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/></p>
+        </section>
+        <section id="detailed_desc">
+            <p>After a successful <xref keyref="takeSnapshot"/> method call, the SDK triggers this callback to report whether the snapshot is successfully taken, as well as the details for that snapshot.</p>
+        </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <parml>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry props="unity">
+                <pt>channel</pt>
+                <pd>The channel name.</pd>
+            </plentry>
+            <plentry>
+                <pt>uid</pt>
+                <pd>The user ID. A <parmname>uid</parmname> of 0 indicates the local user.</pd>
+            </plentry>
+            <plentry>
+                <pt>filePath</pt>
+                <pd>The local path of the snapshot.</pd>
+            </plentry>
+            <plentry>
+                <pt>width</pt>
+                <pd>The width (px) of the snapshot.</pd>
+            </plentry>
+            <plentry>
+                <pt>height</pt>
+                <pd>The height (px) of the snapshot.</pd>
+            </plentry>
+            <plentry>
+                <pt>errCode</pt>
+                <pd>The message that confirms success or gives the reason why the snapshot is not successfully taken:<ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure:<ul>
+                        <li>-1: The SDK fails to write data to a file or encode a JPEG image.</li>
+                        <li>-2: The SDK does not find the video stream of the specified user within one second after the <apiname keyref="takeSnapshot"/> method call succeeds.</li>
+                        <li>-3: Calling the <apiname keyref="takeSnapshot"/> method too frequently. Call the <apiname keyref="takeSnapshot"/> method after receiving the <apiname keyref="onSnapshotTaken"/> callback from the previous call.</li>
+                        </ul></li>
+                    </ul></pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

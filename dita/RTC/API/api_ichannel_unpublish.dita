@@ -1,30 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ichannel_unpublish">
-    <title><ph keyref="IChannel_unpublish" /></title>
+    <title><ph keyref="IChannel_unpublish"/></title>
     <shortdesc id="short"><ph id="shortdesc">停止将本地音视频流发布到本频道。</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="IChannel_unpublish" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="IChannel_unpublish"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="windows" outputclass="language-cpp">virtual int unpublish() = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">unpublish(): number</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public abstract int Unpublish();</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; unpublish();</codeblock>
-        </p>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int unpublish() = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">unpublish(): number</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public abstract int Unpublish();</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; unpublish();</codeblock> </p>
         </section>
         <section id="detailed_desc">
-   
-   <p>如果当前 IChannel 频道没有发布音视频流，调用该方法后 SDK 会返回 -5(ERR_REFUSED)。</p>
+            <p>如果当前 IChannel 频道没有发布音视频流，调用该方法后 SDK 会返回 -5(ERR_REFUSED)。</p>
         </section>
-        <section conkeyref="IChannel_publish/return_values" props="native unity electron"/>
+        <section conkeyref="IChannel_publish/return_values" props="native cs electron"/>
     </refbody>
 </reference>

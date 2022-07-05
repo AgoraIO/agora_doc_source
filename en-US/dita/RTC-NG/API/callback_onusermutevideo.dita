@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_onusermutevideo">
+    <title><ph keyref="onUserMuteVideo"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when a remote user stops or resumes publishing the video stream.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onUserMuteVideo"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserMuteVideo(RtcConnection connection, uint remoteUid, bool muted) {}</codeblock>
+            <codeblock props="android" outputclass="language-java">public void onUserMuteVideo(int uid, boolean muted) {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didVideoMuted:(BOOL)muted byUid:(NSUInteger)uid</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onUserMuteVideo(uid_t uid, bool muted) {
+    (void)uid;
+    (void)muted;
+    }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.USER_MUTE_VIDEO, cb: (uid: number, muted: boolean) =&gt; void): this;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">UidWithMutedCallback? userMuteVideo;</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="deprecated" props="hide">
+            <dlentry>
+                <dt>Deprecated:</dt>
+                <dd>You can also use the <xref keyref="onRemoteVideoStateChanged"/> callback with the following parameters:<ul>
+                    <li><apiname keyref="REMOTE_VIDEO_STATE_STOPPED"/>(0) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED"/> (5).</li>
+                    <li><apiname keyref="REMOTE_VIDEO_STATE_DECODING"/>(2) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED"/> (6).</li>
+                    </ul> </dd>
+            </dlentry>
+            </dl>
+            <p>When a remote user calls <xref keyref="muteLocalVideoStream"/> to stop or resume publishing the video stream, the SDK triggers this callback to report the state of the remote user's publishing stream to the local user.</p>
+            <note type="attention">This callback can be inaccurate when the number of users (in the communication profile) or hosts (in the live broadcasting profile) in a channel exceeds 17.</note> </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <parml>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry props="unity">
+                <pt>connection</pt>
+                <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
+            </plentry>
+            <plentry>
+                <pt props="native electron flutter">uid</pt>
+                <pt props="unity">remoteUid</pt>
+                <pd>The user ID of the remote user.</pd>
+            </plentry>
+            <plentry>
+                <pt>muted</pt>
+                <pd>Whether the remote user stops publishing the video stream:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Stop publishing the local video stream.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Publish the video stream.</li>
+                    </ul> </pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

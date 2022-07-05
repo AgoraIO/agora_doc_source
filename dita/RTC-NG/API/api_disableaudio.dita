@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_disableaudio">
+    <title><ph keyref="disableAudio"/></title>
+    <shortdesc id="short"><ph id="shortdesc">关闭音频模块。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="disableAudio"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int disableAudio();</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)disableAudio;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int disableAudio() = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">disableAudio(): number</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int DisableAudio();</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; disableAudio();</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <note type="attention" id="note">
+            <ul>
+            <li>该方法设置内部引擎为禁用状态，在频道内和频道外均可调用。离开频道后仍然有效。</li>
+            <li>该方法重置整个引擎，响应时间较慢，因此声网建议使用如下方法来控制音频模块：
+                <ul>
+                <li><xref keyref="enableLocalAudio"/>: 是否启动麦克风采集并创建本地音频流。</li>
+                <li><xref keyref="muteLocalAudioStream"/>: 是否发布本地音频流。</li>
+                <li><xref keyref="muteRemoteAudioStream"/>: 是否接收并播放远端音频流。</li>
+                <li><xref keyref="muteAllRemoteAudioStreams"/>: 是否接收并播放所有远端音频流。</li>
+                </ul></li>
+            </ul></note> </section>
+        <section id="return_values" props="native electron unity">
+            <title>返回值</title>
+            <ul>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。</li>
+            </ul> </section>
+    </refbody>
+</reference>

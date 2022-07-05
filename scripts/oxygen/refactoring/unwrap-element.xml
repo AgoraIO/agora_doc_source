@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Descriptor for the 'Unwrap element' XML Refactory operation. 
+-->
+<refactoringOperationDescriptor 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.oxygenxml.com/ns/xmlRefactoring" 
+    id="unwrap-element" 
+    name="${i18n(xr_unwrap_element)}">
+    <description>${i18n(xr_unwrap_element_description)}</description>
+    <script type="XQUERY_UPDATE" href="unwrap-element.xq"/>
+    <!--<script type="XSLT" href="unwrap-element.xsl"/>-->
+    <category>${i18n(Elements)}</category>
+    <parameters>
+        <description>${i18n(xr_unwrap_element_parameters_description)}</description>
+        <elementLocation name="element_xpath" useCurrentContext="true">
+            <element label="${i18n(xr_target_elements)}">
+                <description>${i18n(xr_unwrap_element_xpath_param_description)}</description>
+            </element>
+        </elementLocation>
+    </parameters>
+</refactoringOperationDescriptor>

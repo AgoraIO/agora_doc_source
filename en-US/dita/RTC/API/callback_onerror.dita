@@ -1,44 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onerror">
-    <title><ph keyref="onError" /></title>
+    <title><ph keyref="onError"/></title>
     <shortdesc id="short"><ph id="shortdesc">Reports an error during SDK runtime.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="onError" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="onError"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="windows" outputclass="language-cpp">virtual void onError(int err, const char* msg) {
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onError(int err, const char* msg) {
     (void)err;
     (void)msg;
     }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.ERROR, cb: (err: number, msg: string) =&gt; void): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnError(int err, string msg)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">ErrorCallback? error;</codeblock>
-        </p>
+            <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.ERROR, cb: (err: number, msg: string) =&gt; void): this;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public virtual void OnError(int err, string msg)</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">ErrorCallback? error;</codeblock> </p>
         </section>
         <section id="detailed_desc">
-
-   <p id="desc">This callback indicates that an error (concerning network or media) occurs during SDK runtime. In most cases, the SDK cannot fix the issue and resume running. The SDK requires the application to take action or informs the user about the issue. For example, the SDK reports an <parmname>ERR_START_CALL </parmname>error when failing to initialize a call. The app informs the user that the call initialization failed and calls <xref keyref="leaveChannel" /> to leave the channel.</p>
-    <note type="attention" props="electron">The callback only reports errors in the C++ layer. If you want to receive errors from the Electron layer, use <xref keyref="onApiError" />.</note>
-        </section>
-        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-   <parml>
-       <plentry>
-  <pt>err</pt>
-           <pd>The error code.<ph props="rtc"> For details, see <xref keyref="errorCode">Error Codes and Warning Codes</xref>.</ph></pd>
-       </plentry>
-       <plentry props="android ios mac electron unity">
-  <pt>msg</pt>
-  <pd>The error message.</pd>
-       </plentry>
-   </parml>
-        </section></refbody>
+            <p id="desc">This callback indicates that an error (concerning network or media) occurs during SDK runtime. In most cases, the SDK cannot fix the issue and resume running. The SDK requires the application to take action or informs the user about the issue. For example, the SDK reports an <parmname>ERR_START_CALL </parmname>error when failing to initialize a call. The app informs the user that the call initialization failed and calls <xref keyref="leaveChannel"/> to leave the channel.</p>
+            <note type="attention" props="electron">The callback only reports errors in the C++ layer. If you want to receive errors from the Electron layer, use <xref keyref="onApiError"/>.</note> </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <parml>
+            <plentry>
+                <pt>err</pt>
+                <pd>The error code.<ph props="rtc"> For details, see <xref keyref="errorCode">Error Codes and Warning Codes</xref>.</ph></pd>
+            </plentry>
+            <plentry props="android ios mac electron cs">
+                <pt>msg</pt>
+                <pd>The error message.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
 </reference>

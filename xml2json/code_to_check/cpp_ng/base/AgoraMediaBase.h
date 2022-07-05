@@ -19,6 +19,10 @@
 #endif
 #endif
 
+#if !defined(__APPLE__)
+#define __deprecated
+#endif
+
 namespace agora {
 namespace rtc {
 
@@ -35,8 +39,7 @@ struct EncodedVideoFrameInfo;
 /**
  * Audio routes.
  */
-enum AudioRoute
-{
+enum AudioRoute {
   /**
    * -1: The default audio route.
    */
@@ -73,6 +76,15 @@ enum AudioRoute
    * The USB
    */
   ROUTE_USB
+};
+
+enum NLP_AGGRESSIVENESS {
+  NLP_NOT_SPECIFIED = 0,
+  NLP_MILD = 1,
+  NLP_NORMAL = 2,
+  NLP_AGGRESSIVE = 3,
+  NLP_SUPER_AGGRESSIVE = 4,
+  NLP_EXTREME = 5,
 };
 
 /**
@@ -174,6 +186,97 @@ enum MEDIA_SOURCE_TYPE {
    */
   UNKNOWN_MEDIA_SOURCE = 100
 };
+/** Definition of contentinspect
+ */
+#define MAX_CONTENT_INSPECT_MODULE_COUNT 32
+enum CONTENT_INSPECT_RESULT {
+  CONTENT_INSPECT_NEUTRAL = 1,
+  CONTENT_INSPECT_SEXY = 2,
+  CONTENT_INSPECT_PORN = 3,
+};
+enum CONTENT_INSPECT_VENDOR { CONTENT_INSPECT_VENDOR_AGORA = 1, CONTENT_INSPECT_VENDOR_TUPU = 2, CONTENT_INSPECT_VENDOR_HIVE = 3 };
+enum CONTENT_INSPECT_DEVICE_TYPE{
+    CONTENT_INSPECT_DEVICE_INVALID = 0,
+    CONTENT_INSPECT_DEVICE_AGORA = 1
+};
+enum CONTENT_INSPECT_TYPE {
+/**
+ * (Default) content inspect type invalid
+ */
+CONTENT_INSPECT_INVALID = 0,
+/**
+ * Content inspect type moderation
+ */
+CONTENT_INSPECT_MODERATION = 1,
+/**
+ * Content inspect type supervise
+ */
+CONTENT_INSPECT_SUPERVISION = 2
+};
+
+enum CONTENT_INSPECT_WORK_TYPE {
+/**
+ * video moderation on device
+ */
+CONTENT_INSPECT_WORK_DEVICE = 0,
+/**
+ * video moderation on cloud
+ */
+CONTENT_INSPECT_WORK_CLOUD = 1,
+/**
+ * video moderation on cloud and device
+ */
+CONTENT_INSPECT_WORK_DEVICE_CLOUD = 2
+};
+struct ContentInspectModule {
+  /**
+   * The content inspect module type.
+   */
+  CONTENT_INSPECT_TYPE type;
+  CONTENT_INSPECT_VENDOR vendor;
+  const char* callbackUrl;
+  const char* token;
+  /**The content inspect frequency, default is 0 second.
+   * the frequency <= 0 is invalid.
+   */
+  unsigned int frequency;
+  ContentInspectModule() {
+    type = CONTENT_INSPECT_INVALID;
+    frequency = 0;
+    vendor = CONTENT_INSPECT_VENDOR_AGORA;
+    callbackUrl = NULL;
+    token = NULL;
+  }
+};
+/** Definition of ContentInspectConfig.
+ */
+struct ContentInspectConfig {
+  /** video moderation work type.*/
+  CONTENT_INSPECT_WORK_TYPE ContentWorkType;
+
+  /**the type of video moderation on device.*/
+  CONTENT_INSPECT_DEVICE_TYPE DeviceworkType;
+  const char* extraInfo;
+
+  /**The content inspect modules, max length of modules is 32.
+   * the content(snapshot of send video stream, image) can be used to max of 32 types functions.
+   */
+  ContentInspectModule modules[MAX_CONTENT_INSPECT_MODULE_COUNT];
+  /**The content inspect module count.
+   */
+  int moduleCount;
+   ContentInspectConfig& operator=(const ContentInspectConfig& rth)
+	{
+        ContentWorkType = rth.ContentWorkType;
+        DeviceworkType = rth.DeviceworkType;
+        extraInfo = rth.extraInfo;
+        moduleCount = rth.moduleCount;
+		memcpy(&modules, &rth.modules,  MAX_CONTENT_INSPECT_MODULE_COUNT * sizeof(ContentInspectModule));
+		return *this;
+	}
+  ContentInspectConfig() :ContentWorkType(CONTENT_INSPECT_WORK_CLOUD),DeviceworkType(CONTENT_INSPECT_DEVICE_INVALID),extraInfo(NULL), moduleCount(0){}
+};
+
 namespace base {
 
 typedef void* view_t;
@@ -203,6 +306,34 @@ struct PacketOptions {
   PacketOptions()
       : timestamp(0),
         audioLevelIndication(127) {}
+};
+
+enum AUDIO_PROCESSING_CHANNELS {
+  AUDIO_PROCESSING_MONO = 1,
+  AUDIO_PROCESSING_STEREO = 2,
+};
+
+struct AdvancedAudioOptions {
+  AUDIO_PROCESSING_CHANNELS audioProcessingChannels;
+  AdvancedAudioOptions(): audioProcessingChannels(AUDIO_PROCESSING_MONO) {}
+};
+
+/**
+ * The detailed information of the incoming audio encoded frame.
+ */
+
+struct AudioEncodedFrameInfo {
+  /**
+   * The send time of the packet.
+   */
+  uint64_t sendTs;
+  /**
+   * The codec of the packet.
+   */
+  uint8_t codec;
+  AudioEncodedFrameInfo()
+      : sendTs(0),
+        codec(0) {}
 };
 
 /**
@@ -320,9 +451,9 @@ class IAudioFrameObserver {
  */
 enum VIDEO_PIXEL_FORMAT {
   /**
-   * 0: Unknown format.
+   * 0: Default format.
    */
-  VIDEO_PIXEL_UNKNOWN = 0,
+  VIDEO_PIXEL_DEFAULT = 0,
   /**
    * 1: I420.
    */
@@ -376,16 +507,15 @@ enum RENDER_MODE_TYPE {
    * @deprecated
    * 3: This mode is deprecated.
    */
-  RENDER_MODE_ADAPTIVE = 3,
+  RENDER_MODE_ADAPTIVE __deprecated = 3,
 };
-
 /**
  * The definition of the ExternalVideoFrame struct.
  */
 struct ExternalVideoFrame {
   ExternalVideoFrame()
       : type(VIDEO_BUFFER_RAW_DATA),
-        format(VIDEO_PIXEL_UNKNOWN),
+        format(VIDEO_PIXEL_DEFAULT),
         buffer(NULL),
         stride(0),
         height(0),
@@ -482,6 +612,9 @@ struct ExternalVideoFrame {
   /**
    * The timestamp (ms) of the incoming video frame. An incorrect timestamp results in a frame loss or
    * unsynchronized audio and video.
+   * 
+   * Please refer to getAgoraCurrentMonotonicTimeInMs or getCurrentMonotonicTimeInMs
+   * to determine how to fill this filed.
    */
   long long timestamp;
   /**
@@ -499,6 +632,10 @@ struct ExternalVideoFrame {
    */
   int textureId;
   /**
+   * [Texture related parameter] Incoming 4 &times; 4 transformational matrix. The typical value is a unit matrix.
+   */
+  float matrix[16];
+  /**
    * [Texture related parameter] The MetaData buffer.
    *  The default value is NULL
    */
@@ -515,7 +652,7 @@ struct ExternalVideoFrame {
  */
 struct VideoFrame {
   VideoFrame():
-  type(VIDEO_PIXEL_UNKNOWN),
+  type(VIDEO_PIXEL_DEFAULT),
   width(0),
   height(0),
   yStride(0),
@@ -619,6 +756,7 @@ class IVideoFrameObserver {
   virtual void onFrame(const VideoFrame* frame) = 0;
   virtual ~IVideoFrameObserver() {}
   virtual bool isExternal() { return true; }
+  virtual VIDEO_PIXEL_FORMAT getVideoFormatPreference() { return VIDEO_PIXEL_DEFAULT; }
 };
 
 enum MEDIA_PLAYER_SOURCE_TYPE {
@@ -700,6 +838,12 @@ class IAudioFrameObserverBase {
      * This parameter is the timestamp for audio rendering. Set it as 0.
      */
     int64_t renderTimeMs;
+
+    /**
+     * The custom-destined capture time for av sync.
+     */
+    int64_t captureTimeMs;
+
     int avsync_type;
 
     AudioFrame() : type(FRAME_TYPE_PCM16),
@@ -709,6 +853,7 @@ class IAudioFrameObserverBase {
                    samplesPerSec(0),
                    buffer(NULL),
                    renderTimeMs(0),
+                   captureTimeMs(0),
                    avsync_type(0) {}
   };
 
@@ -742,6 +887,14 @@ class IAudioFrameObserverBase {
    * - false: The mixed audio data is invalid and is not encoded or sent.
    */
   virtual bool onMixedAudioFrame(const char* channelId, AudioFrame& audioFrame) = 0;
+  /**
+   * Occurs when the ear monitoring audio frame is received.
+   * @param audioFrame The reference to the audio frame: AudioFrame.
+   * @return
+   * - true: The ear monitoring audio data is valid and is encoded and sent.
+   * - false: The ear monitoring audio data is invalid and is not encoded or sent.
+   */
+  virtual bool onEarMonitoringAudioFrame(AudioFrame& audioFrame) = 0;
   /**
    * Occurs when the before-mixing playback audio frame is received.
    * @param channelId The channel name
@@ -894,6 +1047,9 @@ class IVideoFrameObserver {
    * After pre-processing, you can send the processed video data back to the SDK by setting the
    * `videoFrame` parameter in this callback.
    *
+   * The video data that this callback gets has not been pre-processed, without the watermark,
+   * the cropped content, the rotation, and the image enhancement.
+   *
    * @param videoFrame A pointer to the video frame: VideoFrame
    * @return Determines whether to ignore the current video frame if the pre-processing fails:
    * - true: Do not ignore.
@@ -901,7 +1057,45 @@ class IVideoFrameObserver {
   */
   virtual bool onCaptureVideoFrame(VideoFrame& videoFrame) = 0;
 
+  /**
+   * Occurs each time the SDK receives a video frame before encoding.
+   *
+   * After you successfully register the video frame observer, the SDK triggers this callback each time
+   * when it receives a video frame. In this callback, you can get the video data before encoding. You can then
+   * process the data according to your particular scenarios.
+   *
+   * After processing, you can send the processed video data back to the SDK by setting the
+   * `videoFrame` parameter in this callback.
+   *
+   * The video data that this callback gets has been pre-processed, with its content cropped, rotated, and the image enhanced.
+   *
+   * @param videoFrame A pointer to the video frame: VideoFrame
+   * @return Determines whether to ignore the current video frame if the pre-processing fails:
+   * - true: Do not ignore.
+   * - false: Ignore, in which case this method does not sent the current video frame to the SDK.
+   */
+  virtual bool onPreEncodeVideoFrame(VideoFrame& videoFrame) = 0;
+
   virtual bool onSecondaryCameraCaptureVideoFrame(VideoFrame& videoFrame) = 0;
+
+  /**
+   * Occurs each time the SDK receives a video frame frome secondary camera before encoding.
+   *
+   * After you successfully register the video frame observer, the SDK triggers this callback each time
+   * when it receives a video frame. In this callback, you can get the video data before encoding. You can then
+   * process the data according to your particular scenarios.
+   *
+   * After processing, you can send the processed video data back to the SDK by setting the
+   * `videoFrame` parameter in this callback.
+   *
+   * The video data that this callback gets has been pre-processed, with its content cropped, rotated, and the image enhanced.
+   *
+   * @param videoFrame A pointer to the video frame: VideoFrame
+   * @return Determines whether to ignore the current video frame if the pre-processing fails:
+   * - true: Do not ignore.
+   * - false: Ignore, in which case this method does not sent the current video frame to the SDK.
+   */
+  virtual bool onSecondaryPreEncodeCameraVideoFrame(VideoFrame& videoFrame) = 0;
 
   /**
    * Occurs each time the SDK receives a video frame captured by the screen.
@@ -919,6 +1113,8 @@ class IVideoFrameObserver {
    * - false: Ignore, in which case this method does not sent the current video frame to the SDK.
    */
   virtual bool onScreenCaptureVideoFrame(VideoFrame& videoFrame) = 0;
+
+  virtual bool onPreEncodeScreenVideoFrame(VideoFrame& videoFrame) = 0;
   /**
    * Occurs each time the SDK receives a video frame decoded by the MediaPlayer.
    *
@@ -938,6 +1134,8 @@ class IVideoFrameObserver {
   virtual bool onMediaPlayerVideoFrame(VideoFrame& videoFrame, int mediaPlayerId) = 0;
 
   virtual bool onSecondaryScreenCaptureVideoFrame(VideoFrame& videoFrame) = 0;
+
+  virtual bool onSecondaryPreEncodeScreenVideoFrame(VideoFrame& videoFrame) = 0;
 
   /**
    * Occurs each time the SDK receives a video frame sent by the remote user.
@@ -973,7 +1171,7 @@ class IVideoFrameObserver {
    *
    * @return preference video pixel format.
    */
-  virtual base::VIDEO_PIXEL_FORMAT getVideoPixelFormatPreference() { return base::VIDEO_PIXEL_I420; }
+  virtual base::VIDEO_PIXEL_FORMAT getVideoFormatPreference() { return base::VIDEO_PIXEL_DEFAULT; }
 
   /**
    * Occurs each time needs to get rotation angle.
@@ -994,6 +1192,27 @@ class IVideoFrameObserver {
   virtual bool getMirrorApplied() { return false; }
 
   /**
+   * Sets the frame position for the video observer.
+   *
+   * After you successfully register the video observer, the SDK triggers this callback each time it receives
+   * a video frame. You can determine which position to observe by setting the return value. The SDK provides
+   * 3 positions for observer. Each position corresponds to a callback function:
+   *
+   * POSITION_POST_CAPTURER(1 << 0): The position after capturing the video data, which corresponds to the onCaptureVideoFrame callback.
+   * POSITION_PRE_RENDERER(1 << 1): The position before receiving the remote video data, which corresponds to the onRenderVideoFrame callback.
+   * POSITION_PRE_ENCODER(1 << 2): The position before encoding the video data, which corresponds to the onPreEncodeVideoFrame callback.
+   *
+   * To observe multiple frame positions, use '|' (the OR operator).
+   * This callback observes POSITION_POST_CAPTURER(1 << 0) and POSITION_PRE_RENDERER(1 << 1) by default.
+   * To conserve the system consumption, you can reduce the number of frame positions that you want to observe.
+   *
+   * @return A bit mask that controls the frame position of the video observer: VIDEO_OBSERVER_POSITION.
+   */
+  virtual uint32_t getObservedFramePosition() {
+    return base::POSITION_POST_CAPTURER | base::POSITION_PRE_RENDERER;
+  }
+
+  /**
    * Indicate if the observer is for internal use.
    * Note: Never override this function
    * @return
@@ -1001,76 +1220,6 @@ class IVideoFrameObserver {
    * - false: the observer is for internal use
    */
   virtual bool isExternal() { return true; }
-};
-/** Definition of contentinspect
- */
-#define MAX_CONTENT_INSPECT_MODULE_COUNT 32
-enum CONTENT_INSPECT_RESULT {
-  CONTENT_INSPECT_NEUTRAL = 1,
-  CONTENT_INSPECT_SEXY = 2,
-  CONTENT_INSPECT_PORN = 3,
-};
-enum CONTENT_INSPECT_DEVICE_TYPE{
-    CONTENT_INSPECT_DEVICE_INVALID = 0,
-    CONTENT_INSPECT_DEVICE_AGORA = 1,
-    CONTENT_INSPECT_DEVICE_HIVE = 2,
-    CONTENT_INSPECT_DEVICE_TUPU = 3
-};
-enum CONTENT_INSPECT_TYPE {
-/**
- * (Default) content inspect type invalid
- */
-CONTENT_INSPECT_INVALIDE = 0,
-/**
- * Content inspect type moderation
- */
-CONTENT_INSPECT_MODERATION = 1,
-/**
- * Content inspect type supervise
- */
-CONTENT_INSPECT_SUPERVISE = 2
-};
-struct ContentInspectModule {
-  /**
-   * The content inspect module type.
-   */
-  CONTENT_INSPECT_TYPE type;
-  /**The content inspect frequency, default is 0 second.
-   * the frequency <= 0 is invalid.
-   */
-  unsigned int frequency;
-};
-/** Definition of ContentInspectConfig.
- */
-struct ContentInspectConfig {
-  /** jh on device.*/
-  bool DeviceWork;
-
-/** jh on cloud.*/
-  bool CloudWork;
-
-  /**the type of jh on device.*/
-  CONTENT_INSPECT_DEVICE_TYPE DeviceworkType;
-  const char* extraInfo;
-
-  /**The content inspect modules, max length of modules is 32.
-   * the content(snapshot of send video stream, image) can be used to max of 32 types functions.
-   */
-  ContentInspectModule modules[MAX_CONTENT_INSPECT_MODULE_COUNT];
-  /**The content inspect module count.
-   */
-  int moduleCount;
-  ContentInspectConfig& operator=(ContentInspectConfig& rth)
-  {
-    DeviceWork = rth.DeviceWork;
-    CloudWork = rth.CloudWork;
-    DeviceworkType = rth.DeviceworkType;
-    extraInfo = rth.extraInfo;
-    moduleCount = rth.moduleCount;
-    memcpy(&modules, &rth.modules,  MAX_CONTENT_INSPECT_MODULE_COUNT * sizeof(ContentInspectModule));
-    return *this;
-  }
-  ContentInspectConfig() :DeviceWork(false),CloudWork(true),DeviceworkType(CONTENT_INSPECT_DEVICE_INVALID),extraInfo(NULL), moduleCount(0){}
 };
 
 /**

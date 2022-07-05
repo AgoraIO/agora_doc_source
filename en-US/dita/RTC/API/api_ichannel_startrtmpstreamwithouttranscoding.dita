@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ichannel_startrtmpstreamwithouttranscoding">
-    <title>
-        <ph keyref="IChannel_startRtmpStreamWithoutTranscoding" />
-    </title>
+    <title> <ph keyref="IChannel_startRtmpStreamWithoutTranscoding" /> </title>
     <shortdesc conkeyref="startRtmpStreamWithoutTranscoding/short" />
     <prolog>
         <metadata>
@@ -15,33 +13,26 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="windows" outputclass="language-cpp" />
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp" />
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
-            </p>
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="cpp" outputclass="language-cpp" />
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="cs" outputclass="language-csharp">public abstract int StartRtmpStreamWithoutTranscoding(string url);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startRtmpStreamWithoutTranscoding(String url);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>You can call this method to push a live audio-and-video stream to the specified CDN address. This method can push media streams to only one CDN address at a time, so if you need to push streams to multiple addresses, call this method multiple times.</p>
-            <p>
-                After you call this method, the SDK triggers the
-                <xref keyref="IChannel_onRtmpStreamingStateChanged" />
-                callback on the local client to report the state of the streaming.
-            </p>
-            <note conkeyref="startRtmpStreamWithoutTranscoding/note" />
-        </section>
+            <p>You can call this method to push a live audio-and-video stream to the specified CDN address and set the transcoding configuration.  This method can push media streams to only one CDN address at a time, so if you need to push streams to multiple addresses, call this method multiple times.</p>
+            <p>After you call this method, the SDK triggers the <xref keyref="IChannel_onRtmpStreamingStateChanged" /> callback on the local client to report the state of the streaming.</p>
+            <note conkeyref="startRtmpStreamWithTranscoding/note" /> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-                <plentry conkeyref="startRtmpStreamWithoutTranscoding/url">
-                    <pt />
-                    <pd />
-                </plentry>
-            </parml>
-        </section>
-        <section id="return_values" conkeyref="startRtmpStreamWithoutTranscoding/return_values" props="windows" />
+            <plentry conkeyref="startRtmpStreamWithTranscoding/url">
+                <pt />
+                <pd />
+            </plentry>
+            </parml> </section>
+           <section props="native cs" conkeyref="startRtmpStreamWithTranscoding/return_values" />
     </refbody>
 </reference>

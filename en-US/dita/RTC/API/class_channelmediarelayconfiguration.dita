@@ -5,8 +5,31 @@
     <shortdesc>The definition of <apiname keyref="ChannelMediaRelayConfiguration" />.</shortdesc>
     <refbody>
         <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="cs" outputclass="language-csharp">public class ChannelMediaRelayConfiguration
+    {
+        public ChannelMediaRelayConfiguration()
+        {
+            srcInfo = null;
+            destInfos = new ChannelMediaInfo[0];
+            destCount = 0;
+        }
+        public ChannelMediaRelayConfiguration(ChannelMediaInfo srcInfo, ChannelMediaInfo[] destInfos, int destCount)
+        {
+            this.srcInfo = srcInfo;
+            this.destInfos = destInfos ?? new ChannelMediaInfo[0];
+            this.destCount = destCount;
+        }
+        
+        public ChannelMediaInfo srcInfo { set; get; }
+        
+        public ChannelMediaInfo[] destInfos { set; get; }
+        
+        public int destCount { set; get; }
+    }
+    }</codeblock> </p>
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public class ChannelMediaRelayConfiguration {
+            <codeblock props="android" outputclass="language-java">public class ChannelMediaRelayConfiguration {
   private ChannelMediaInfo srcInfo = null;
   private Map&lt;String, ChannelMediaInfo&gt; destInfos = null;
 
@@ -18,7 +41,7 @@
   public void setSrcChannelInfo(ChannelMediaInfo srcInfo) {
     this.srcInfo = srcInfo;
   }</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraChannelMediaRelayConfiguration: NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraChannelMediaRelayConfiguration: NSObject
 
 @property (strong, nonatomic, readonly) NSDictionary&lt;NSString *, AgoraChannelMediaRelayInfo *&gt; *_Nullable destinationInfos;
 @property (strong, nonatomic) AgoraChannelMediaRelayInfo *_Nonnull sourceInfo;
@@ -26,7 +49,7 @@
 - (BOOL)setDestinationInfo:(AgoraChannelMediaRelayInfo *_Nonnull)destinationInfo forChannelName:(NSString *_Nonnull)channelName;
 - (BOOL)removeDestinationInfoForChannelName:(NSString *_Nonnull)channelName;
 @end</codeblock>
-                <codeblock props="windows unity" outputclass="language-cpp">struct ChannelMediaRelayConfiguration {
+            <codeblock props="cpp" outputclass="language-cpp">struct ChannelMediaRelayConfiguration {
 	ChannelMediaInfo *srcInfo;
 	ChannelMediaInfo *destInfos;
 	int destCount;
@@ -37,12 +60,32 @@
 			, destCount(0)
 	{}
     };</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">export interface ChannelMediaRelayConfiguration {
+            <codeblock props="cs" outputclass="language-csharp">public class ChannelMediaRelayConfiguration
+    {
+        public ChannelMediaRelayConfiguration()
+        {
+            srcInfo = null;
+            destInfos = new ChannelMediaInfo[0];
+            destCount = 0;
+        }
+
+        public ChannelMediaRelayConfiguration(ChannelMediaInfo srcInfo, ChannelMediaInfo[] destInfos, int destCount)
+        {
+            this.srcInfo = srcInfo;
+            this.destInfos = destInfos ?? new ChannelMediaInfo[0];
+            this.destCount = destCount;
+        }
+        
+        public ChannelMediaInfo srcInfo { set; get; }
+        public ChannelMediaInfo[] destInfos { set; get; }
+        public int destCount { set; get; }
+    }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export interface ChannelMediaRelayConfiguration {
     srcInfo: ChannelMediaInfo;
     destInfos: [ChannelMediaInfo];
     }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">class ChannelMediaRelayConfiguration {
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">class ChannelMediaRelayConfiguration {
   
   ChannelMediaInfo srcInfo;
   List&lt;ChannelMediaInfo&gt; destInfos;
@@ -56,46 +99,51 @@
       _$ChannelMediaRelayConfigurationFromJson(json);
 
   Map&lt;String, dynamic&gt; toJson() =&gt; _$ChannelMediaRelayConfigurationToJson(this);
-}</codeblock>
-            </p>
+}</codeblock> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
-                <plentry>
-                    <pt props="android windows unity flutter">srcInfo</pt>
-                    <pt props="ios mac">sourceInfo</pt>
-                    <pd>
-                        <p>The information of the source channel <xref keyref="ChannelMediaInfo" />. It contains the following members:<ul>
-                                <li>channelName: The name of the source channel. The default value is , which means the SDK applies the name of the current channel.<codeph /><codeph><ph keyref="NULL" /></codeph></li>
-                                <li><codeph>uid</codeph>: The unique ID to identify the relay stream in the source channel. The default value is 0, which means the SDK generates a random <codeph>UID</codeph>. You must set it as 0.</li>
-                                <li><codeph>token</codeph>: The token for joining the source channel<codeph />. It is generated with the <codeph>channelName</codeph> and <codeph>uid</codeph> you set in <codeph>srcInfo</codeph>.<ul>
-                                        <li>If you have not enabled the App Certificate, set this parameter as the default value <codeph><ph keyref="NULL" /></codeph> , which means the SDK applies the App ID.</li>
-                                        <li>If you have enabled the App Certificate, you must use the <codeph>token</codeph> generated with the <codeph>channelName</codeph> and <codeph>uid</codeph>, and the <codeph>uid</codeph> must be set as 0.</li>
-                                    </ul></li>
-                            </ul>
-                        </p>
-                    </pd>
-                </plentry>
-                <plentry>
-                    <pt props="android windows unity flutter">destInfos</pt>
-                    <pt props="ios mac">destinationInfos</pt>
-                    <pd>
-                        <p>The information of the destination channel <apiname keyref="ChannelMediaInfo" />. It contains the following members:<ul>
-                                <li><codeph>channelName</codeph>: The name of the destination channel.</li>
-                                <li><codeph>uid</codeph>: The unique ID to identify the relay stream in the destination channel. The value ranges from 0 to (2<sup>32</sup>-1). To avoid UID conflicts, this `UID` must be different from any other `UID` in the destination channel. The default value is 0, which means the SDK generates a random `UID`. Do not set this parameter as the `UID` of the host in the destination channel, and ensure that this `UID` is different from any other `UID` in the channel.</li>
-                                <li><codeph>token</codeph>: The <codeph>token</codeph> for joining the destination channel. It is generated with the <codeph>channelName</codeph> and <codeph>uid</codeph> you set in <codeph>destInfos</codeph>.<ul>
-                                        <li>If you have not enabled the App Certificate, set this parameter as the default value <codeph><ph keyref="NULL" /></codeph> , which means the SDK applies the App ID.</li>
-                                        <li>If you have enabled the App Certificate, you must use the <codeph>token</codeph> generated with the <codeph>channelName</codeph> and <codeph>uid</codeph>.</li>
-                                    </ul></li>
-                            </ul>
-                        </p>
-                    </pd>
-                </plentry>
-                <plentry props="windows unity">
-                    <pt>destCount</pt>
-                    <pd>The number of destination channels. The default value is 0, and the value range is from 0 to 4. Ensure that the value of this parameter corresponds to the number of <apiname keyref="ChannelMediaInfo" /> structs you define in <codeph>destInfo</codeph>.</pd>
-                </plentry>
-            </parml>
-        </section></refbody>
+            <plentry>
+                <pt props="android cpp cs flutter">srcInfo</pt>
+                <pt props="ios mac">sourceInfo</pt>
+                <pd>
+                    <p>The information of the source channel <xref keyref="ChannelMediaInfo" />. It contains the following members:
+                    
+                    <ul>
+                    <li>channelName: The name of the source channel. The default value is , which means the SDK applies the name of the current channel.<codeph /><codeph><ph keyref="NULL" /></codeph></li>
+                    <li><codeph>uid</codeph>: The unique ID to identify the relay stream in the source channel. The default value is 0, which means the SDK generates a random <codeph>UID</codeph>. You must set it as 0.</li>
+                    <li><codeph>token</codeph>: The token for joining the source channel<codeph />. It is generated with the <codeph>channelName</codeph> and <codeph>uid</codeph> you set in <codeph>srcInfo</codeph>.
+                        
+                        <ul>
+                        <li>If you have not enabled the App Certificate, set this parameter as the default value <codeph><ph keyref="NULL" /></codeph> , which means the SDK applies the App ID.</li>
+                        <li>If you have enabled the App Certificate, you must use the <codeph>token</codeph> generated with the <codeph>channelName</codeph> and <codeph>uid</codeph>, and the <codeph>uid</codeph> must be set as 0.</li>
+                        </ul></li>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt props="android cpp cs flutter">destInfos</pt>
+                <pt props="ios mac">destinationInfos</pt>
+                <pd>
+                    <p>The information of the destination channel <apiname keyref="ChannelMediaInfo" />. It contains the following members:
+                    
+                    <ul>
+                    <li><codeph>channelName</codeph>: The name of the destination channel.</li>
+                    <li><codeph>uid</codeph>: The unique ID to identify the relay stream in the destination channel. The value ranges from 0 to (2<sup>32</sup>-1). To avoid UID conflicts, this `UID` must be different from any other `UID` in the destination channel. The default value is 0, which means the SDK generates a random `UID`. Do not set this parameter as the `UID` of the host in the destination channel, and ensure that this `UID` is different from any other `UID` in the channel.</li>
+                    <li><codeph>token</codeph>: The <codeph>token</codeph> for joining the destination channel. It is generated with the <codeph>channelName</codeph> and <codeph>uid</codeph> you set in <codeph>destInfos</codeph>.
+                        
+                        <ul>
+                        <li>If you have not enabled the App Certificate, set this parameter as the default value <codeph><ph keyref="NULL" /></codeph> , which means the SDK applies the App ID.</li>
+                        <li>If you have enabled the App Certificate, you must use the <codeph>token</codeph> generated with the <codeph>channelName</codeph> and <codeph>uid</codeph>.</li>
+                        </ul></li>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            <plentry props="cpp cs">
+                <pt>destCount</pt>
+                <pd>The number of destination channels. The default value is 0, and the value range is from 0 to 4. Ensure that the value of this parameter corresponds to the number of <apiname keyref="ChannelMediaInfo" /> structs you define in <codeph>destInfo</codeph>.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
 </reference>

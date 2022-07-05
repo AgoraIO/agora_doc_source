@@ -6,15 +6,29 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="windows" outputclass="language-cpp">struct WlAccStats {
+            <codeblock props="cpp" outputclass="language-cpp">struct WlAccStats {
   unsigned short e2eDelayPercent;
   unsigned short frozenRatioPercent;
   unsigned short lossRatePercent;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="cs" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">class WlAccStats {
+                  final int e2eDelayPercent;
+                
+                  final int frozenRatioPercent;
+                
+                  final int lossRatePercent;
+                
+                  const WlAccStats(
+                      this.e2eDelayPercent, this.frozenRatioPercent, this.lossRatePercent);
+                
+                  factory WlAccStats.fromJson(Map&lt;String, dynamic&gt; json) =>
+                      _$WlAccStatsFromJson(json);
+                
+                  Map&lt;String, dynamic&gt; toJson() => _$WlAccStatsToJson(this);
+                }</codeblock> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>

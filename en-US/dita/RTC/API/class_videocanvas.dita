@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videocanvas">
-    <title>
-        <ph keyref="VideoCanvas" />
-    </title>
-    <shortdesc id="short">
-        <ph id="shortdesc">Video display configurations.</ph>
-    </shortdesc>
+    <title> <ph keyref="VideoCanvas" /> </title>
+    <shortdesc id="short"> <ph id="shortdesc">Video display configurations.</ph> </shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="windows unity" outputclass="language-cpp">struct VideoCanvas {
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="cpp" outputclass="language-cpp">struct VideoCanvas {
     view_t view;
     int renderMode;
     char channelId[MAX_CHANNEL_ID_LENGTH];
@@ -20,59 +16,86 @@
     void *priv;
     VIDEO_MIRROR_MODE_TYPE mirrorMode;
     }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
-            </p>
+            <codeblock props="cs" outputclass="language-csharp">public class VideoCanvas
+    {
+        public VideoCanvas()
+        {
+            view = 0;
+            renderMode = (int) RENDER_MODE_TYPE.RENDER_MODE_HIDDEN;
+            channelId = "";
+            uid = 0;
+            mirrorMode = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_AUTO;
+        }
+
+        public VideoCanvas(view_t? view, RENDER_MODE_TYPE renderMode, string channelId = "", uint uid = 0,
+            VIDEO_MIRROR_MODE_TYPE mirrorMode = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_AUTO)
+        {
+            this.view = view ?? 0;
+            this.renderMode = (int) renderMode;
+            this.channelId = channelId;
+            this.uid = uid;
+            this.mirrorMode = mirrorMode;
+        }
+
+        public view_t view { set; get; }
+        public int renderMode { set; get; }
+        public string channelId { set; get; }
+        public uint uid { set; get; }
+        public VIDEO_MIRROR_MODE_TYPE mirrorMode { set; get; }
+    }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
-        <section id="detailed_desc"></section>
+        <section id="detailed_desc" />
         <section id="parameters">
-            <title>
-                <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" />
-            </title>
+            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>
             <parml>
-                <plentry>
-                    <pt>view</pt>
-                    <pd>
-                        <p>The view used to display the video. </p>
-                        <p props="android">
+            <plentry>
+                <pt>view</pt>
+                <pd>
+                    <p>The view used to display the video. </p>
+                    <p props="android">
                             The following objects are supported:
-                            <ul>
-                                <li><codeph>SurfaceView</codeph> created by the CreateRendererView method.
+                            
+                    
+                    <ul>
+                    <li><codeph>SurfaceView</codeph> created by the CreateRendererView method.
                                 </li>
-                                <li>(As of v3.1.0) <codeph>TextureView</codeph> created by the CreateTextureView method.
+                    <li>(As of v3.1.0) <codeph>TextureView</codeph> created by the CreateTextureView method.
                                 </li>
-                                <li>(As of v3.6.2) The Android native <codeph>TextureView</codeph>.
+                    <li>(As of v3.6.2) The Android native <codeph>TextureView</codeph>.
                                 </li>
-                            </ul>
-                        </p>
-                    </pd>
-                </plentry>
-                <plentry>
-                    <pt>renderMode</pt>
-                    <pd>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>renderMode</pt>
+                <pd>
                         The rendering mode of the video. See
                         <xref keyref="RENDER_MODE_TYPE" />
                         .
                     </pd>
-                </plentry>
-                <plentry>
-                    <pt>channelId</pt>
-                    <pd>
-                        <dl outputclass="since">
-                            <dlentry>
-                                <dt>Since</dt>
-                                <dd>v3.0.0</dd>
-                            </dlentry>
-                        </dl>
-                        <p>
+            </plentry>
+            <plentry>
+                <pt>channelId</pt>
+                <pd>
+                    <dl outputclass="since">
+                    <dlentry>
+                        <dt>Since</dt>
+                        <dd>v3.0.0</dd>
+                    </dlentry>
+                    </dl>
+                    <p>
                             The unique channel name in the string format. Supported characters are (89 in total):
-                            <ul conkeyref="joinChannel2/char_support">
-                                <li />
-                            </ul>
-                            <note type="attention">
-                                <ul>
-                                    <li>
+                            
+                    
+                    <ul conkeyref="joinChannel2/char_support">
+                    <li />
+                    </ul>
+                    <note type="attention">
+                    <ul>
+                    <li>
                                         The default value is the empty string "". If the user joins the channel through the
                                         <xref keyref="joinChannel2" />
                                         method of the
@@ -81,7 +104,7 @@
                                         <codeph>VideoCanvas</codeph>
                                         sets the user's view in the channel.
                                     </li>
-                                    <li>
+                    <li>
                                         If the user joins the channel using the
                                         <apiname keyref="joinChannel2" />
                                         method of the
@@ -96,44 +119,42 @@
                                         <codeph>channelId</codeph>
                                         .
                                     </li>
-                                </ul>
-                            </note>
-                        </p>
-                    </pd>
-                </plentry>
-                <plentry>
-                    <pt>uid</pt>
-                    <pd>User ID.</pd>
-                </plentry>
-                <plentry>
-                    <pt>mirrorMode</pt>
-                    <pd>
-                        <dl outputclass="since">
-                            <dlentry>
-                                <dt>Since</dt>
-                                <dd>v3.0.0</dd>
-                            </dlentry>
-                        </dl>
-                        <p>
+                    </ul> </note> </p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>uid</pt>
+                <pd>User ID.</pd>
+            </plentry>
+            <plentry>
+                <pt>mirrorMode</pt>
+                <pd>
+                    <dl outputclass="since">
+                    <dlentry>
+                        <dt>Since</dt>
+                        <dd>v3.0.0</dd>
+                    </dlentry>
+                    </dl>
+                    <p>
                             The mirror mode of the view. See
                             <xref keyref="VIDEO_MIRROR_MODE_TYPE" />
                             .
-                            <note type="attention">
-                                <ul>
-                                    <li>
+                            
+                    
+                    <note type="attention">
+                    <ul>
+                    <li>
                                         For the local user:
-                                        <ul>
-                                            <li>If the user uses the front camera, the mirror mode is enabled by default.</li>
-                                            <li>If the user uses the rear camera, the mirror mode is disabled by default.</li>
-                                        </ul>
-                                    </li>
-                                    <li>For the remote user: The SDK disables the mirror mode by default.</li>
-                                </ul>
-                            </note>
-                        </p>
-                    </pd>
-                </plentry>
-            </parml>
-        </section>
+                                        
+                        
+                        <ul>
+                        <li>If the user uses the front camera, the mirror mode is enabled by default.</li>
+                        <li>If the user uses the rear camera, the mirror mode is disabled by default.</li>
+                        </ul> </li>
+                    <li>For the remote user: The SDK disables the mirror mode by default.</li>
+                    </ul> </note> </p>
+                </pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

@@ -1,0 +1,117 @@
+/*
+ * ================================================
+ * 
+ * PDF metadata
+ * 
+ * ================================================
+ */    
+@media oxygen-chemistry {
+  /* 
+   * Titles (maps).
+   */
+  *[class ~= "front-page/front-page-title"] *[class ~= "topic/title"]:not([class ~= 'bookmap/booktitle']) {
+      -oxy-pdf-meta-title: content();
+  }
+  
+  /* 
+   * Titles (bookmaps).
+   */
+  *[class ~= "front-page/front-page"] *[class ~= "bookmap/booktitle"] > *[class ~= "bookmap/mainbooktitle"] {
+      -oxy-pdf-meta-title: content();
+  }
+  
+  /* 
+   * Description subject (maps and bookmaps), using the shortdesc.
+   * Description subject (bookmaps), using the alternate title.
+   */
+  *[class ~= "front-page/front-page"] *[class ~= "map/topicmeta"] > *[class ~= "map/shortdesc"],
+  *[class ~= "front-page/front-page"] *[class ~= "bookmap/booktitle"] > *[class ~= "bookmap/booktitlealt"] {
+      -oxy-pdf-meta-description: content();
+  }
+  
+  
+  /* 
+   * Author (maps and bookmaps)
+   *  
+   * Bookmeta is a specialization of topicmeta.
+   */
+  *[class ~= "front-page/front-page"] *[class ~= "map/topicmeta"] > *[class ~= "topic/author"] {
+      -oxy-pdf-meta-author: content();
+  }
+  
+  /* 
+   * Created (maps and bookmaps)
+   */
+  *[class ~= "front-page/front-page"]  *[class ~= "map/topicmeta"] > *[class ~= "topic/critdates"] > *[class ~= "topic/created"] {
+      -oxy-pdf-meta-custom: "Created" attr(date);
+  }
+  
+  /* 
+   * Revised (maps and bookmaps) - can have multiple occurences, so we aggregate them.
+   */
+  *[class ~= "front-page/front-page"] *[class ~= "map/topicmeta"] > *[class ~= "topic/critdates"]:has(*[class ~= "topic/revised"]) {
+      -oxy-pdf-meta-custom: "Revised" oxy_xpath('string-join(*[contains(@class, " topic/revised ")]/@modified, ", " )');
+  }
+  
+  /* 
+   * Keywords (maps and bookmaps).
+   */
+  *[class ~= "front-page/front-page"] *[class ~= "map/topicmeta"] > *[class ~= "topic/keywords"] > *[class ~= "topic/keyword"] {
+      -oxy-pdf-meta-keyword: content(); 
+  }
+  
+  /* 
+   * Organizaton holding the  book rights. (bookmaps)
+   */
+  *[class ~= "front-page/front-page"] *[class ~= "bookmap/bookmeta"] > *[class ~= "bookmap/bookrights"] > *[class ~= "bookmap/bookowner"] {
+      -oxy-pdf-meta-custom: "Book rights owner" content();
+  }
+  
+  /* 
+   * ISBN (bookmaps)
+   */
+  *[class ~= "front-page/front-page"] *[class ~= "bookmap/bookmeta"] > *[class ~= "bookmap/bookid"] > *[class ~= "bookmap/isbn"] {
+      -oxy-pdf-meta-custom: "ISBN" content();
+  }
+  
+  /* 
+   * Maintainer (bookmaps)
+   */
+  *[class ~= "front-page/front-page"] *[class ~= "bookmap/bookmeta"] > *[class ~= "bookmap/bookid"] > *[class ~= "bookmap/maintainer"] {
+      -oxy-pdf-meta-custom: "Maintainer" content();
+  }
+}
+
+*[class~="topic/data"]{
+	display: none;
+}
+
+/*
+ * For the HTML based transformation we need to ignore the property
+ * set on the HTML title element in order to let the CSS selectors matching the class
+ * front-page/title set its value. Please note that the PDF title is collected only 
+ * from the first occurence of the property on an element, in document order.
+ */
+html > head > title {
+	-oxy-pdf-meta-title: unset;
+}
+
+/* 
+ * Copyright (bookmaps)
+ */
+*[class ~= "bookmap/bookrights"] {
+  -oxy-pdf-meta-copyright: oxy_xpath("normalize-space(concat('Copyright ', \
+if (*[contains(@class, 'bookmap/copyrfirst')]) then *[contains(@class, 'bookmap/copyrfirst')] else '', \
+if (*[contains(@class, 'bookmap/copyrfirst')] and *[contains(@class, 'bookmap/copyrlast')]) then '-' else '', \
+if (*[contains(@class, 'bookmap/copyrlast')]) then *[contains(@class, 'bookmap/copyrlast')] else '', \
+*[contains(@class, 'bookmap/bookowner')]))");
+}
+
+/* 
+ * Copyright (maps)
+ */
+*[class ~= "front-page/front-page"] *[class ~= "map/topicmeta"] > *[class ~= "topic/copyright"] {
+  -oxy-pdf-meta-copyright: oxy_xpath("normalize-space(concat('Copyright ', \
+string-join(*[contains(@class, 'topic/copyryear')]/@year, ' - '), ' ', \
+*[contains(@class, 'topic/copyrholder')]))");
+}

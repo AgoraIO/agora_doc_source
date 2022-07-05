@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="com.oxygenxml.pdf.review">
+  <require plugin="org.dita.pdf2"/>
+  <feature extension="package.support.name" value="Oxygen XML Editor Support"/>
+  <feature extension="package.support.email" value="support@oxygenxml.com"/>
+  <feature extension="package.version" value="24.1"/>
+  <feature extension="dita.xsl.xslfo" value="review/review-pis-to-elements-pdf-classic.xsl" type="file"/>
+  
+  <feature extension="dita.conductor.pdf2.param" value="params.xml" type="file"/>  
+  <feature extension="depend.org.dita.pdf2.format.pre" value="process-reviews"/>
+  <feature extension="dita.conductor.target.relative" value="integrator.xml" type="file"/>  
+  
+  <transtype name="pdf" desc="PDF">
+    <param name="show.changes.and.comments" desc="Show Oxygen track changes and comments" type="enum">
+      <val desc="No" default="true">no</val>
+      <val desc="Yes">yes</val>
+    </param>
+    <param name="show.changebars" desc="Show change bars based on Oxygen tracked changes.  Requires show.changes.and.comments to be set." type="enum">
+      <val desc="No" default="true">no</val>
+      <val desc="Yes">yes</val>
+    </param>
+    <param name="show.changes.and.comments.as.changebars.only" desc="Show only change bars for Oxygen tracked changes, the inserts are styled normally, the deletion are hidden. Requires show.changes.and.comments to be set." type="enum">
+      <val desc="No" default="true">no</val>
+      <val desc="Yes">yes</val>
+    </param>
+    <param name="ct.insert.color" desc="Insertion color for Oxygen tracked changes, specified as a plain color (i.e. red, yellow, blue), or with a hexadecimal equivalent (i.e. #FFFFFF).
+      The default value is 'blue'." type="string"/>
+    <param name="ct.delete.color" desc="Deletion color for Oxygen tracked changes, specified as a plain color (i.e. red, yellow, blue), or with a hexadecimal equivalent (i.e. #FFFFFF).
+      The default value is 'red'." type="string"/>
+    <param name="ct.comment.bg.color" desc="Comment background color for Oxygen tracked changes, specified as a plain color (i.e. red, yellow, blue), or with a hexadecimal equivalent (i.e. #FFFFFF).
+      The default value is 'yellow'." type="string"/>
+  </transtype>
+</plugin>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_getdeviceinfo">
+    <title><ph keyref="getDeviceInfo" /></title>
+    <shortdesc id="short"><ph id="shortdesc">获取当前设备名称。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getDeviceInfo" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java" />
+                <codeblock props="mac" outputclass="language-objectivec">- (AgoraRtcDeviceInfo * _Nullable)getDeviceInfo:(AgoraMediaDeviceType)type;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp" />
+                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
+            </p>
+        </section>
+        <section id="detailed_desc"><p>该方法通过 <parmname>type</parmname> 参数获取当前音、视频采集或播放设备。</p> </section>
+        <section id="parameters"><title>参数</title>
+            <parml>
+                <plentry>
+                    <pt>type</pt>
+                    <pd><p id="type">设备的类型，包括音、视频采集或播放设备，详见 <xref keyref="MEDIA_DEVICE_TYPE" />。</p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <ul>
+                <li>调用成功时，返回 <xref keyref="AgoraRtcDeviceInfo" /></li>
+                <li>调用失败时，返回 <codeph>nil</codeph></li>
+            </ul>
+        </section>
+    </refbody>
+</reference>

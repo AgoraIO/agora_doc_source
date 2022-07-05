@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+     XLIFF Version 2.1
+     Committee Specification Draft 01 / Public Review Draft 01
+     14 October 2016
+     Copyright (c) OASIS Open 2016. All Rights Reserved.
+     Source: http://docs.oasis-open.org/xliff/xliff-core/v2.1/csprd01/schemas/
+     Latest version of narrative specification: http://docs.oasis-open.org/xliff/xliff-core/v2.1/xliff-core-v2.1.html
+     TC IPR Statement: https://www.oasis-open.org/committees/xliff/ipr.php
+     
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns:ctr="urn:oasis:names:tc:xliff:changetracking:2.1" xmlns:xlf="urn:oasis:names:tc:xliff:document:2.0" targetNamespace="urn:oasis:names:tc:xliff:changetracking:2.1">
+
+  <!-- Import -->
+
+  <xs:import namespace="urn:oasis:names:tc:xliff:document:2.0" schemaLocation="xliff_core_2.0.xsd"/>
+
+  <!-- Attribute Types -->
+  <xs:simpleType name="appliesTo">
+    <xs:restriction base="xs:NMTOKEN">
+
+      <xs:enumeration value="note"/>
+      <xs:enumeration value="unit"/>
+      <xs:enumeration value="segment"/>
+      <xs:enumeration value="ignorable"/>
+      <xs:enumeration value="source"/>
+      <xs:enumeration value="target"/>
+
+
+    </xs:restriction>
+  </xs:simpleType>
+
+
+  <!-- Elements for change tracking -->
+
+  <xs:element name="changeTrack">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="unbounded" ref="ctr:revisions"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="revisions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="unbounded" ref="ctr:revision"/>
+      </xs:sequence>
+      <xs:attribute name="appliesTo" use="required" type="ctr:appliesTo"/>
+      <xs:attribute name="ref" use="optional" type="xs:NMTOKEN"/>
+
+      <xs:attribute name="id" use="optional" type="xs:NMTOKEN"/>
+      <xs:anyAttribute namespace="##other" processContents="lax"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="revision">
+    <xs:complexType>
+
+      <xs:sequence>
+        <xs:element ref="xlf:originalData" minOccurs="0" maxOccurs="1"/>
+        <xs:choice minOccurs="1" maxOccurs="unbounded">
+          <xs:element ref="ctr:item"/>
+          <xs:element ref="ctr:simpleItem"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="author" use="optional"/>
+      <xs:attribute name="datetime" use="required"/>
+      <xs:attribute name="version" use="optional" type="xs:NMTOKEN"/>
+      <xs:attribute name="id" use="optional" type="xs:NMTOKEN"/>
+      <xs:anyAttribute namespace="##other" processContents="lax"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="item">
+    <xs:complexType mixed="true">
+
+      <!-- adding choice of subunit elements and mixed data -->
+      <xs:choice minOccurs="1" maxOccurs="1">
+        <xs:sequence minOccurs="1" maxOccurs="unbounded">
+          <xs:element ref="xlf:segment"/>
+          <xs:element ref="xlf:ignorable"/>
+        </xs:sequence>
+        <xs:sequence>
+          <xs:element ref="xlf:source" minOccurs="1" maxOccurs="1"/>
+          <xs:element ref="xlf:target" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:element ref="xlf:target" minOccurs="1" maxOccurs="1"/>
+        <xs:group ref="xlf:inline" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:choice>
+      <xs:attribute name="property" use="required"/>
+      <xs:attribute name="id" use="optional" type="xs:NMTOKEN"/>
+      <xs:anyAttribute namespace="##other" processContents="lax"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="simpleItem">
+    <xs:complexType mixed="true">
+
+      <xs:group ref="xlf:inline" minOccurs="1" maxOccurs="unbounded"/>
+
+
+      <xs:attribute name="property" use="required"/>
+      <xs:attribute name="id" use="optional" type="xs:NMTOKEN"/>
+      <xs:anyAttribute namespace="##other" processContents="lax"/>
+    </xs:complexType>
+  </xs:element>
+
+
+</xs:schema>

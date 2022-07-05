@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediaplayersourceobserver_onpositionchanged">
+    <title><ph keyref="onPositionChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc">报告当前播放进度。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPositionChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnPositionChanged(int playerId, Int64 position) {}</codeblock>
+            </p>
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">void onPositionChanged(long position);
+</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraMediaPlayer:(AgoraMediaPlayer *_Nonnull)playerKit
+    didChangedToPosition:(NSInteger)position;
+</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onPositionChanged(int64_t position) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>播放媒体文件时，SDK 每隔 1 秒会自动触发该回调，报告当前播放进度。</p>
+        </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry conkeyref="onPlayerEvent/playerkit" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry props="rtc-ng">
+                <pt props="unity">playerId</pt>
+                <pd props="unity">播放器 ID。</pd>
+            </plentry>
+            <plentry>
+                <pt>position</pt>
+                <pd>当前播放进度，单位为 ms。</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

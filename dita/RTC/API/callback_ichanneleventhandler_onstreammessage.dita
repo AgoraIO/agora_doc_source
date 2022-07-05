@@ -5,16 +5,17 @@
     <shortdesc conkeyref="onStreamMessage/short"/>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="IChannel_onStreamMessage"/>
-   </keywords>
+            <keywords>
+                <indexterm keyref="IChannel_onStreamMessage"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp">virtual void onStreamMessage(IChannel *rtcChannel,
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onStreamMessage(IChannel *rtcChannel,
      uid_t uid,
      int streamId,
      const char* data,
@@ -25,42 +26,41 @@
      (void)data;
      (void)length;
      }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(
+            <codeblock props="electron" outputclass="language-typescript">on(
   evt: ChannelEvents.STREAM_MESSAGE,
   cb: (channelId: string, uid: number, streamId: number, data: string) =&gt; void
 ): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnStreamMessage(string channelId, uint uid, int streamId, byte[] data, uint length)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart">StreamMessageCallback? streamMessage;</codeblock>
-        </p>
+            <codeblock props="cs" outputclass="language-csharp">public virtual void OnStreamMessage(string channelId, uint uid, int streamId, byte[] data, uint length)</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">StreamMessageCallback? streamMessage;</codeblock> </p>
         </section>
         <section id="detailed_desc">
-
-   <p>该回调表示本地用户收到了远端用户调用 <xref keyref="IChannel_sendStreamMessage"/> 方法发送的流消息。</p>
+            <p>该回调表示本地用户收到了远端用户调用 <xref keyref="IChannel_sendStreamMessage"/> 方法发送的流消息。</p>
         </section>
-        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-   <parml>
-                <plentry conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
-                    <pt/>
-                    <pd/>
-                </plentry>
-                <plentry conkeyref="onStreamMessage/uid">
-                    <pt/>
-                    <pd/>
-                </plentry>
-                <plentry conkeyref="onStreamMessage/streamId">
-                    <pt/>
-                    <pd/>
-                </plentry>
-                <plentry conkeyref="onStreamMessage/data">
-                    <pt/>
-                    <pd/>
-                </plentry>
-                <plentry conkeyref="onStreamMessage/length" props="windows unity">
-                    <pt/>
-                    <pd/>
-                </plentry>
-            </parml>
-        </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <parml>
+            <plentry props="native cs" conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="onStreamMessage/uid">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="onStreamMessage/streamId">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="onStreamMessage/data">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="onStreamMessage/length" props="cpp cs">
+                <pt/>
+                <pd/>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

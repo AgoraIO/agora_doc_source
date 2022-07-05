@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://www.oxygenxml.com/ns/framework/extend"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.oxygenxml.com/ns/framework/extend http://www.oxygenxml.com/ns/framework/extend/frameworkExtensionScript.xsd"
+  base="DITA Map">
+  <name>Lightweight DITA - Map</name>
+  <description>Darwin Information Typing Architecture</description>
+  <priority>Normal</priority>
+  
+  <associationRules inherit="none">
+    <addRule publicID="-//OASIS//DTD LIGHTWEIGHT DITA Map//EN"/>
+    <addRule publicID="*-//OASIS//DTD XDITA Map//EN*"/>
+    <addRule rootElementLocalName="map" publicID="*-//OASIS//DTD LW DITA Map//EN*"/>
+  </associationRules>
+  
+  <documentTemplates inherit="none">
+  	<addEntry path="${frameworkDir}/templates/LW (Lightweight) DITA/map-lw"/>
+  </documentTemplates>
+
+  <author>
+    <css>
+      <removeCss path="${framework}/css/actions/actionsMap.css"/>
+      <addCss path="${framework}/lw/css/actions/actionsMap.css" title="+ Inline actions" alternate="true"/>
+    </css>
+    
+    <toolbars>
+      <toolbar>
+        <removeAction id="insert.table"/>
+        <removeAction id="insert.table.row"/>
+        <removeAction id="insert.table.column"/>
+        <removeAction id="delete.table.column"/>
+        <removeAction id="delete.table.row"/>
+        <removeAction id="show.table.properties"/>
+      </toolbar>
+    </toolbars>
+  </author>
+  
+</script>

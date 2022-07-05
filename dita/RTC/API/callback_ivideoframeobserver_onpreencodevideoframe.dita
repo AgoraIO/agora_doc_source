@@ -15,14 +15,17 @@
             <p outputclass="codeblock" props="rtc-ng">
             <codeblock props="android" outputclass="language-java">boolean onPreEncodeVideoFrame(VideoFrame videoFrame);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onPreEncodeVideoFrame:(AgoraOutputVideoFrame * _Nonnull)srcFrame dstFrame:(AgoraOutputVideoFrame *_Nullable* _Nullable)dstFrame;</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">virtual bool onPreEncodeVideoFrame(VideoFrame&amp; videoFrame) = 0;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp"/> </p>
+            <codeblock props="cpp" outputclass="language-cpp">virtual bool onPreEncodeVideoFrame(VideoFrame&amp; videoFrame) = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public virtual bool OnPreEncodeVideoFrame(VideoFrame videoFrame)
+        {
+            return true;
+        }</codeblock></p>
             <p outputclass="codeblock" props="rtc">
             <codeblock props="android" outputclass="language-java"/>
             <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="windows" outputclass="language-cpp">virtual bool onPreEncodeVideoFrame(VideoFrame&amp; videoFrame) { return true; }</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual bool onPreEncodeVideoFrame(VideoFrame&amp; videoFrame) { return true; }</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnPreEncodeVideoFrame(VideoFrame videoFrame)
+            <codeblock props="cs" outputclass="language-csharp">public virtual bool OnPreEncodeVideoFrame(VideoFrame videoFrame)
         {
             return true;
         }</codeblock>
@@ -30,12 +33,12 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-             <dl outputclass="since" props="rtc">
-                 <dlentry props="native">
-                     <dt>自从</dt>
-                     <dd>v3.0.0</dd>
-                 </dlentry>
-             </dl>
+            <dl outputclass="since" props="rtc">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v3.0.0</dd>
+            </dlentry>
+            </dl>
             <p>成功注册视频数据观测器后，SDK 会在捕捉到每个视频帧时触发该回调。你可以在回调中获取编码前的视频数据，然后根据场景需要，对视频数据进行处理。</p>
             <p>完成处理后，你可以在该回调中，传入处理后的视频数据将其发送回 SDK。</p>
             <note type="attention">

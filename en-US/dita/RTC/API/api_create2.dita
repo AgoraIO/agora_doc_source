@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_create2">
-    <title><ph keyref="create2"/></title>
-    <shortdesc id="short"><ph props="ios mac android electron">Creates and initializes <xref keyref="IRtcEngine"/>. </ph><ph props="windows flutter" id="shortdesc">Initializes <apiname keyref="IRtcEngine"/>.</ph></shortdesc>
+    <title><ph keyref="create2" /></title>
+    <shortdesc id="short"><ph id="shortdesc" props="ios mac android electron">Creates and initializes <xref keyref="IRtcEngine" />. </ph><ph props="cpp flutter cs">Initializes <apiname keyref="IRtcEngine" />.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="create2"/>
+                <indexterm keyref="create2" />
             </keywords>
         </metadata>
     </prolog>
@@ -17,46 +17,46 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">+ (instancetype _Nonnull)sharedEngineWithConfig:(AgoraRtcEngineConfig * _Nonnull)config
                                        delegate:(id&lt;AgoraRtcEngineDelegate&gt; _Nullable)delegate;</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">virtual int initialize(const RtcEngineContext&amp; context) = 0;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int initialize(const RtcEngineContext&amp; context) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">initializeWithContext(context: RtcEngineContext): number</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int Initialize(RtcEngineContext context);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="cs" outputclass="language-csharp">public abstract int Initialize(RtcEngineContext context);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">static Future&lt;RtcEngine&gt; createWithContext(RtcEngineContext config) async {
-    if (_instance != null) return _instance!;
-    _instance = RtcEngine._(false);
-    await _instance!.initialize(config);
-    return _instance!;
-  }</codeblock> </p>
+                return RtcEngineImpl.createWithContext(config);
+              }</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>All called methods provided by the <apiname keyref="IRtcEngine"/> class are executed asynchronously. Agora recommends calling these methods in the same thread.</p>
+            <p>All called methods provided by the <apiname keyref="IRtcEngine" /> class are executed asynchronously. Agora recommends calling these methods in the same thread.</p>
             <note type="attention">
             <ul>
-            <li props="windows flutter">Before calling other APIs, you must call <xref keyref="createAgoraRtcEngine"/> and <apiname keyref="create2"/> to create and initialize the <apiname keyref="IRtcEngine"/> object.</li>
-            <li props="android ios mac electron">Before calling other APIs, you must call this method to create the <apiname keyref="IRtcEngine"/> object.</li>
-            <li props="android ios mac electron">You can create the <apiname keyref="IRtcEngine"/> instance either by calling this method or by calling <xref keyref="create1"/>. The difference between <apiname keyref="create1"/> and this method is that this method supports more configurations when creating the <apiname keyref="IRtcEngine"/> instance, for example, specifying the region for connection and setting the log files.</li>
-            <li>The SDK supports creating only one <apiname keyref="IRtcEngine"/> instance for an app.</li>
+            <li props="cpp flutter cs">Before calling other APIs, you must call <xref keyref="createAgoraRtcEngine" /> and <apiname keyref="create2" /> to create and initialize the <apiname keyref="IRtcEngine" /> object.</li>
+            <li props="android ios mac electron">Before calling other APIs, you must call this method to create the <apiname keyref="IRtcEngine" /> object.</li>
+            <li props="android ios mac electron">You can create the <apiname keyref="IRtcEngine" /> instance either by calling this method or by calling <xref keyref="create1" />. The difference between <apiname keyref="create1" /> and this method is that this method supports more configurations when creating the <apiname keyref="IRtcEngine" /> instance, for example, specifying the region for connection and setting the log files.</li>
+            <li>The SDK supports creating only one <apiname keyref="IRtcEngine" /> instance for an app.</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
-                <pt props="windows electron unity">context</pt>
+                <pt props="cpp electron cs">context</pt>
                 <pt props="android ios mac flutter">config</pt>
                 <pd>
-                    <p>Configurations for the <xref keyref="IRtcEngine"/> instance. See <xref keyref="RtcEngineConfig"/> for details.</p>
+                    <p>Configurations for the <xref keyref="IRtcEngine" /> instance. See <xref keyref="RtcEngineConfig" />.</p>
                 </pd>
             </plentry>
             <plentry props="ios mac">
                 <pt>delegate</pt>
-                <pd conkeyref="create1/handler"/>
+                <pd conkeyref="create1/handler" />
             </plentry>
             </parml> </section>
-        <section props="windows unity" id="return_values">
+        <section props="cpp cs" id="return_values">
             <title>Returns</title>
             <ul>
             <li>0(ERR_OK): Success.</li>
-            <li>&lt; 0: Failure.<ul>
+            <li>&lt; 0: Failure.
+                
+                
+                <ul>
                 <li>-1(ERR_FAILED): A general error occurs (no specified reason).</li>
                 <li>-2(ERR_INVALID_ARGUMENT): An invalid parameter is used.</li>
                 <li> -7(ERR_NOT_INITIALIZED): The SDK is not initialized.</li>
@@ -64,6 +64,7 @@
                 <li>-101(ERR_INVALID_APP_ID): The App ID is invalid.</li>
                 </ul></li>
             </ul></section>
-        <section props="android" conkeyref="create1/return_values"/><section props="android" conkeyref="create1/section_yqx_kwq_4qb"/>
+        <section props="android" conkeyref="create1/return_values" />
+        <section props="android" conkeyref="create1/section_yqx_kwq_4qb" />
     </refbody>
 </reference>

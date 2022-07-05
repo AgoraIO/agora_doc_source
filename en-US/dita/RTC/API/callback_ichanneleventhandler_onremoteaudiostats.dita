@@ -1,44 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_ichanneleventhandler_onremoteaudiostats">
-    <title><ph keyref="IChannel_onRemoteAudioStats" /></title>
-    <shortdesc conkeyref="onRemoteAudioStats/short" />
+    <title><ph keyref="IChannel_onRemoteAudioStats"/></title>
+    <shortdesc conkeyref="onRemoteAudioStats/short"/>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="IChannel_onRemoteAudioStats" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="IChannel_onRemoteAudioStats"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteAudioStats(IChannel *rtcChannel, const RemoteAudioStats&amp; stats) {
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onRemoteAudioStats(IChannel *rtcChannel, const RemoteAudioStats&amp; stats) {
     (void)rtcChannel;
     (void)stats;
     }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(
+            <codeblock props="electron" outputclass="language-typescript">on(
   evt: ChannelEvents.REMOTE_AUDIO_STATS,
   cb: (channelId: string, stats: RemoteAudioStats) =&gt; void
 ): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteAudioStats(string channelId, RemoteAudioStats stats)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">RemoteAudioStatsCallback? remoteAudioStats;</codeblock>
-        </p>
+            <codeblock props="cs" outputclass="language-csharp">public virtual void OnRemoteAudioStats(string channelId, RemoteAudioStats stats)</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">RemoteAudioStatsCallback? remoteAudioStats;</codeblock> </p>
         </section>
         <section conkeyref="onRemoteAudioStats/detailed_desc"> </section>
-        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-   <parml>
-       <plentry conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
-  <pt />
-  <pd />
-       </plentry>
-       <plentry conkeyref="onRemoteAudioStats/stats">
-  <pt />
-  <pd />
-       </plentry>
-   </parml>
-        </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <parml>
+            <plentry props="native cs" conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="onRemoteAudioStats/stats">
+                <pt/>
+                <pd/>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

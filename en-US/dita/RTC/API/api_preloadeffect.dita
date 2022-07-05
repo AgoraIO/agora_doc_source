@@ -5,54 +5,59 @@
     <shortdesc id="short"><ph id="shortdesc">Preloads a specified audio effect file into the memory.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="preloadEffect" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="preloadEffect" />
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public int preloadEffect(int soundId, String filePath);
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="cs" outputclass="language-csharp">public abstract int PreloadEffect(int soundId, string filePath, int startPos = 0);</codeblock> </p>
+            <p outputclass="codeblock" props="rtc">
+            <codeblock props="cs" outputclass="language-csharp">public abstract int PreloadEffect(int soundId, string filePath);</codeblock></p>
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public int preloadEffect(int soundId, String filePath);
 </codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (int)preloadEffect:(int)soundId
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)preloadEffect:(int)soundId
             filePath:(NSString* _Nonnull)filePath;
 </codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual int preloadEffect(int soundId, const char* filePath) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">preloadEffect(soundId: number, filePath: string): number</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public abstract int PreloadEffect(int soundId, string filePath);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; preloadEffect(int soundId, String filePath);</codeblock>
-        </p>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int preloadEffect(int soundId, const char* filePath) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">preloadEffect(soundId: number, filePath: string): number</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; preloadEffect(int soundId, String filePath);</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>To ensure smooth communication, limit the size of the audio effect file. We recommend using this method to preload the audio effect before calling <apiname keyref="joinChannel2" />.</p>
-            <note type="attention"><ul>
-                <li>This method does not support online audio effect files.</li>
-                <li id="audioFormats">For the audio file formats supported by this method, see <xref keyref="audio-format">What formats of audio files does the Agora RTC SDK support</xref>.</li>
-            </ul></note>
-        </section>
-        <section id="parameters"><title>Parameters</title>
-   <parml>
-       <plentry>
-  <pt>soundId</pt>
-  <pd id="soundId">The audio effect ID. The ID of each audio effect file is unique.</pd>
-       </plentry>
-       <plentry id="filePath">
-        <pt>filePath</pt>
-        <pd>File path:<ul>
-            <li props="android flutter unity windows">Android: The file path, which needs to be accurate to the file name and suffix. Agora supports using a URI address, an absolute path, or a path that starts with <ph>/assets/</ph>. 
+            <note type="attention">
+            <ul>
+            <li>This method does not support online audio effect files.</li>
+            <li id="audioFormats">For the audio file formats supported by this method, see <xref keyref="audio-format">What formats of audio files does the Agora RTC SDK support</xref>.</li>
+            </ul></note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>soundId</pt>
+                <pd id="soundId">The audio effect ID. The ID of each audio effect file is unique.</pd>
+            </plentry>
+            <plentry id="filePath">
+                <pt>filePath</pt>
+                <pd>File path:
+                    
+                    <ul>
+                    <li props="android flutter cpp">Android: The file path, which needs to be accurate to the file name and suffix. Agora supports using a URI address, an absolute path, or a path that starts with <ph>/assets/</ph>. 
                 You might encounter permission issues if you use an absolute path to access a local file, so Agora recommends using a URI address instead. For example: <ph>                    content://com.android.providers.media.documents/document/audio%203A14441</ph></li>
-            <li props="windows flutter unity">Windows: The absolute path or URL address (including the suffixes of the filename) of the audio effect file. For example: <ph>C:\music\audio.mp4</ph>.</li>
-            <li props="ios mac flutter unity">iOS or macOS: The absolute path or URL address (including the suffixes of the filename) of the audio effect file. For example: <ph>/var/mobile/Containers/Data/audio.mp4</ph>.</li>
-        </ul></pd>
-       </plentry>
-   </parml>
-        </section>
-        <section id="return_values" props="native electron unity">
-   <title>Returns</title>
-       <ul>
-  <li>0: Success.</li>
-  <li>&lt; 0: Failure.</li>
-       </ul>
-        </section></refbody>
+                    <li props="cpp flutter cs">Windows: The absolute path or URL address (including the suffixes of the filename) of the audio effect file. For example: <ph>C:\music\audio.mp4</ph>.</li>
+                    <li props="ios mac flutter">iOS or macOS: The absolute path or URL address (including the suffixes of the filename) of the audio effect file. For example: <ph>/var/mobile/Containers/Data/audio.mp4</ph>.</li>
+                    </ul></pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron cs">
+            <title>Returns</title>
+            <ul>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
+    </refbody>
 </reference>

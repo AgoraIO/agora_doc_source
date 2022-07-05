@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setchannelprofile">
+    <title><ph keyref="setChannelProfile" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the channel profile.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="setChannelProfile" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setChannelProfile(int profile);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setChannelProfile:(AgoraChannelProfile)profile;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setChannelProfile(CHANNEL_PROFILE_TYPE profile) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">setChannelProfile(profile: CHANNEL_PROFILE_TYPE): number</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int SetChannelProfile(CHANNEL_PROFILE_TYPE profile);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setChannelProfile(ChannelProfile profile);</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+
+   <p><ph props="rtc">After initializing the SDK, the default channel profile is the communication profile. </ph><ph props="rtc-ng">After initializing the SDK, the default channel profile is the live streaming profile. </ph>You can call this method to set the usage scenario of Agora channel. The Agora SDK differentiates channel profiles and applies optimization algorithms accordingly. For example, it prioritizes smoothness and low latency for a video call and prioritizes video quality for interactive live video streaming.</p>
+   <note type="attention">
+       <ul id="ul_mgd_h2l_b4b">
+  <li>To ensure the quality of real-time communication, Agora recommends that all users in a channel use the same channel profile.</li>
+  <li>This method must be called and set before <apiname keyref="joinChannel2" />, and cannot be set again after joining the channel.</li>
+  <li props="android ios cpp">The default audio route and video encoding bitrate are different in different channel profiles. For details, see <xref keyref="setDefaultAudioRouteToSpeakerphone" /> and <xref keyref="setVideoEncoderConfiguration" />.</li>
+       </ul>
+   </note>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+   <parml>
+       <plentry>
+  <pt>profile</pt>
+  <pd id="channelprofiletype">
+      <p props="ios mac cpp electron unity flutter">The channel profile. See <xref keyref="CHANNEL_PROFILE_TYPE" /> for details.</p>
+      <p props="android">The channel profile.<ul>
+                                <li><ph keyref="CHANNEL_PROFILE_COMMUNICATION" />(0): Communication. Use this profile when there are only two users in the channel.</li>
+                                <li><ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING" />(1): Live streaming. Use this profile when there are more than two users in the channel.</li>
+                                <li><ph keyref="CHANNEL_PROFILE_GAME" />(2): This profile is deprecated.</li>
+                                <li><ph keyref="CHANNEL_PROFILE_CLOUD_GAMING" />(3): Interaction. The scenario is optimized for latency. Use this profile if the use case requires frequent interactions between users.</li>
+                            </ul>
+                        </p>
+  </pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values" props="native electron unity">
+   <title>Returns</title>
+   <ul>
+       <li>0(ERR_OK): Success.</li>
+       <li>&lt; 0: Failure.<ul>
+      <li>-2(ERR_INVALID_ARGUMENT): The parameter is invalid.</li>
+      <li>-7(ERR_NOT_INITIALIZED): The SDK is not initialized.</li>
+  </ul></li>
+   </ul>
+        </section></refbody>
+</reference>

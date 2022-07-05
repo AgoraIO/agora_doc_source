@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<a:authorAction xmlns:a="http://www.oxygenxml.com/ns/author/external-action"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.oxygenxml.com/ns/author/external-action http://www.oxygenxml.com/ns/author/external-action/authorAction.xsd"
+  id="title">
+  <a:name>T</a:name>
+  <a:description>${i18n(title_description)}</a:description>
+  <a:smallIconPath href="/images/TextsVerboseOff16.png"/>
+  <a:operations>
+    <a:operation id="InsertOrReplaceFragmentOperation">
+      <a:xpathCondition>child::title</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment">${caret}</a:argument>
+        <a:argument name="insertLocation">child::title</a:argument>
+        <a:argument name="insertPosition">Inside as last child</a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="InsertFragmentOperation">
+      <a:xpathCondition>self::fig or self::section or self::topic</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><title>${caret}</title></a:argument>
+        <a:argument name="insertLocation">.</a:argument>
+        <a:argument name="insertPosition">Inside as first child</a:argument>
+      </a:arguments>
+    </a:operation>
+  </a:operations>
+  <a:accelerator>M1 M2 T</a:accelerator>
+  <a:accessKey>T</a:accessKey>
+  <a:enabledInReadOnlyContext>false</a:enabledInReadOnlyContext>
+</a:authorAction>

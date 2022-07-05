@@ -5,70 +5,72 @@
     <shortdesc id="short"><ph id="shortdesc">Starts screen sharing.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="startScreenCapture" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="startScreenCapture" />
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="windows" outputclass="language-cpp">virtual int startScreenCapture(WindowIDType windowId, 
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="cpp" outputclass="language-cpp">virtual int startScreenCapture(WindowIDType windowId, 
      int captureFreq, 
      const Rect* rect, 
      int bitrate) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp" />
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startScreenCapture(int windowId,
-      [int captureFreq, Rect? rect, int bitrate]);</codeblock>
-        </p>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startScreenCapture(int windowId,
+      [int captureFreq = 0, Rect? rect, int bitrate = 0]);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-   
-   <dl outputclass="deprecated">
-       <dlentry>
-  <dt>Deprecated:</dt>
-  <dd>This method is deprecated as of v2.4.0. See the following methods instead:<ul>
-      <li><xref keyref="startScreenCaptureByDisplayId" /></li>
-      <li props="windows"><xref keyref="startScreenCaptureByScreenRect" /></li>
-      <li><xref keyref="startScreenCaptureByWindowId" /></li>
-  </ul></dd>
-       </dlentry>
-   </dl>
-   <p>This method shares the whole screen, a specified window, or the specified region:<ul>
-       <li>Whole screen: Set <parmname>windowId</parmname> as 0 and <parmname>rect</parmname> as <ph keyref="NULL" />.</li>
-       <li>A specified window: Set <parmname>windowId</parmname> as a value other than 0. Each window has a <parmname>windowId</parmname> that is not 0.</li>
-       <li>The specified region: Set <parmname>windowId</parmname> as 0 and <parmname>rect</parmname> as a value other than <ph keyref="NULL" />. In this case, you can share the specified region, for example by dragging the mouse or implementing your own logic. The specified region is a region on the whole screen. Currently, sharing a specified region in a specific window is not supported.</li>
-   </ul></p>
-   <note type="attention"><parmname>captureFreq</parmname> is the captured frame rate once the screen-sharing function is enabled. The mandatory value ranges between 1 fps and 15 fps. No matter which of the above functions you enable, the SDK returns 0 when the execution succeeds, and an error code when the execution fails.</note>
-        </section>
-        <section id="parameters"><title>Parameters</title>
-   <parml>
-       <plentry>
-  <pt>windowId</pt>
-  <pd>The screen sharing area.</pd>
-       </plentry>
-       <plentry>
-  <pt>captureFreq</pt>
-  <pd>(Mandatory) The captured frame rate. The value ranges between 1 fps and 15 fps.</pd>
-       </plentry>
-       <plentry>
-  <pt>rect</pt>
-  <pd>Specifies the screen-sharing region: <xref keyref="Rect" />. This parameter is valid when <parmname>windowsId</parmname> is set as 0. When <parmname>rect</parmname> is set as <ph keyref="NULL" />, the whole screen is shared.</pd>
-       </plentry>
-       <plentry>
-  <pt>bitrate</pt>
-  <pd>The bitrate of the screen share.</pd>
-       </plentry>
-   </parml>
-        </section>
-        <section id="return_values" props="native electron unity">
-   <title>Returns</title>
-   <ul>
-       <li>0: Success.</li>
-       <li>&lt; 0: Failure.</li>
-   </ul>
-        </section></refbody>
+            <dl outputclass="deprecated">
+            <dlentry>
+                <dt>Deprecated:</dt>
+                <dd>This method is deprecated as of v2.4.0. See the following methods instead:
+                    
+                    <ul>
+                    <li><xref keyref="startScreenCaptureByDisplayId" /></li>
+                    <li props="cpp"><xref keyref="startScreenCaptureByScreenRect" /></li>
+                    <li><xref keyref="startScreenCaptureByWindowId" /></li>
+                    </ul></dd>
+            </dlentry>
+            </dl>
+            <p>This method shares the whole screen, a specified window, or the specified region:
+            
+            <ul>
+            <li>Whole screen: Set <parmname>windowId</parmname> as 0 and <parmname>rect</parmname> as <ph keyref="NULL" />.</li>
+            <li>A specified window: Set <parmname>windowId</parmname> as a value other than 0. Each window has a <parmname>windowId</parmname> that is not 0.</li>
+            <li>The specified region: Set <parmname>windowId</parmname> as 0 and <parmname>rect</parmname> as a value other than <ph keyref="NULL" />. In this case, you can share the specified region, for example by dragging the mouse or implementing your own logic. The specified region is a region on the whole screen. Currently, sharing a specified region in a specific window is not supported.</li>
+            </ul></p>
+            <note type="attention"><parmname>captureFreq</parmname> is the captured frame rate once the screen-sharing function is enabled. The mandatory value ranges between 1 fps and 15 fps. No matter which of the above functions you enable, the SDK returns 0 when the execution succeeds, and an error code when the execution fails.</note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>windowId</pt>
+                <pd>The screen sharing area.</pd>
+            </plentry>
+            <plentry>
+                <pt>captureFreq</pt>
+                <pd>(Mandatory) The captured frame rate. The value ranges between 1 fps and 15 fps.</pd>
+            </plentry>
+            <plentry>
+                <pt>rect</pt>
+                <pd>Specifies the screen-sharing region: <xref keyref="Rect" />. This parameter is valid when <parmname>windowsId</parmname> is set as 0. When <parmname>rect</parmname> is set as <ph keyref="NULL" />, the whole screen is shared.</pd>
+            </plentry>
+            <plentry>
+                <pt>bitrate</pt>
+                <pd>The bitrate of the screen share.</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron cs">
+            <title>Returns</title>
+            <ul>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
+    </refbody>
 </reference>

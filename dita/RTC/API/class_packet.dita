@@ -2,42 +2,64 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_packet">
     <title><ph keyref="Packet"/></title>
-    <shortdesc id="short"><ph id="shortdesc"><apiname keyref="Packet"/> 定义。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc"><apiname keyref="Packet"
+        /> 定义。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-                <codeblock props="windows" outputclass="language-cpp">struct Packet {
+            <codeblock props="cpp" outputclass="language-cpp">struct Packet {
                     const unsigned char* buffer;
                     unsigned int size;
                     
                     Packet() : buffer(NULL), size(0) {}
                     };</codeblock>
-            </p>
+            <codeblock props="cs" outputclass="language-csharp">public class Packet
+    {
+        public Packet()
+        {
+            buffer = new byte[0];
+        }
+        public Packet(byte[] buffer, uint size)
+        {
+            this.buffer = buffer;
+            this.size = size;
+        }
+        
+        public byte[] buffer { set; get; }
+        public uint size { set; get; }
+    }
+    </codeblock></p>
             <p outputclass="codeblock" props="rtc">
-                <codeblock props="windows unity" outputclass="language-cpp">struct Packet {
+            <codeblock props="cpp" outputclass="language-cpp">struct Packet {
 	const unsigned char* buffer;
 	unsigned int size;
 	};</codeblock>
-                <codeblock props="electron" outputclass="language-typescript"/>
-                <codeblock props="unity" outputclass="language-csharp"/>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
-            </p>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="cs" outputclass="language-csharp">public struct Packet
+	{
+		public IntPtr buffer;
+		public IntPtr size;
+	};</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
-   <parml>
-       <plentry>
-  <pt>buffer</pt>
-  <pd>
-      <p>需要发送或接收的数据的缓存地址。</p>
-      <note type="attention">Agora 建议 <parmname>buffer</parmname> 值不要小于 2048 字节，否则有可能会出现未定义行为（例如崩溃）。</note>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt>size</pt>
-  <pd>将要发送或接收的数据的缓存大小。</pd>
-       </plentry>
-   </parml>
-        </section></refbody>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
+            <parml>
+            <plentry>
+                <pt>buffer</pt>
+                <pd>
+                    <p>需要发送或接收的数据的缓存地址。</p>
+                    <note type="attention"
+                    >Agora 建议 <parmname>buffer</parmname> 值不要小于 2048 字节，否则有可能会出现未定义行为（例如崩溃）。</note>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>size</pt>
+                <pd>将要发送或接收的数据的缓存大小。</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
 </reference>

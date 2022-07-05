@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE engine SYSTEM "../engine.dtd">
+<engine 
+  name="Add-on for Calabash XProc Engine"
+  description="Calabash XProc 1.3.2-100"
+  licensor="Syncro Soft SRL" version="1.0"
+  engineVersion="1.3.2-100" supportsValidation="true"
+  class="ro.sync.xml.transformer.xproc.calabash.XProcTransformerImpl">
+  <runtime>
+    <library name="lib/oxygen-xproc-calabash.jar"/>
+    <library name="lib/xmlcalabash-1.3.2-100.jar"/>
+    <library name="lib/xmlcalabash1-print-1.3.0.jar"/>
+    <library name="lib/classindex-3.3.jar"/>
+    <library name="lib/xml-apis-1.4.01.jar"/> 
+    <library name="lib/xmlresolver-2.1.1.jar"/>
+    <library name="lib/nwalsh-annotations-1.0.0.jar"/>
+    <library name="lib/tagsoup-1.2.1.jar"/>
+    <!-- Do not phone home... -->
+    <system-property name="com.xmlcalabash.phonehome" value="false"/>
+    <system-property name="com.xmlcalabash.html-parser" value="tagsoup"/>
+    <!-- Builtin XEP system property, libraries and configuration. 
+        Point the libraries to the XEP libraries of your custom XEP installation.-->
+    <!--
+        <system-property name="com.xmlcalabash.fo-processor" value="com.xmlcalabash.util.FoXEP"/>
+        <library name="../../../tools/xep/lib/xep.jar"/>
+        <library name="../../../tools/xep/lib/xt.jar"/>
+        <system-property name="com.renderx.xep.CONFIG" file="../../../tools/xep/xep.xml"/>
+    -->
+  </runtime>
+</engine>

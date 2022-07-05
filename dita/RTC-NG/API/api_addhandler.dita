@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_addhandler">
+    <title><ph keyref="addHandler" /></title>
+    <shortdesc id="short"><ph id="shortdesc">添加主回调事件。</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="addHandler" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void addHandler(IRtcEngineEventHandler handler) {
+    mInstance.addHandler(handler);
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="cpp" outputclass="language-cpp" />
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp">public abstract void InitEventHandler(IAgoraRtcEngineEventHandler engineEventHandler);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">void setEventHandler(RtcEngineEventHandler handler)</codeblock>
+        </p>
+        </section>
+        <section id="detailed_desc">
+   
+   <p><xref keyref="IRtcEngineEventHandler" /> 接口类用于 SDK 向 app 发送回调事件通知，app 通过继承该接口类的方法获取 SDK 的事件通知。
+       接口类的所有方法都有缺省（空）实现，app 可以根据需要只继承关心的事件。在回调方法中，app 不应该做耗时或者调用可能会引起阻塞的 API（如 <ph keyref="sendStreamMessage" />），
+       否则可能影响 SDK 的运行。</p>
+        </section>
+        <section id="parameters"><title>参数</title>
+   <parml>
+       <plentry>
+  <pt props="android flutter">handler</pt>
+           <pt props="unity">engineEventHandler</pt>
+  <pd>待添加的回调事件，详见 <xref keyref="IRtcEngineEventHandler" />。</pd>
+       </plentry>
+   </parml>
+        </section>
+   </refbody>
+</reference>

@@ -5,36 +5,35 @@
     <shortdesc id="short"><ph id="shortdesc">Checks whether the device supports camera flash.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="isCameraTorchSupported" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="isCameraTorchSupported" />
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract boolean isCameraTorchSupported();</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)isCameraTorchSupported;</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">virtual bool isCameraTorchSupported() = 0;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual bool isCameraTorchSupported() = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="cs" outputclass="language-csharp">public abstract int IsCameraTorchSupported();</codeblock>
             <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;bool?&gt; isCameraTorchSupported();</codeblock>
-        </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;bool?&gt; isCameraTorchSupported();</codeblock> </p>
         </section>
         <section id="detailed_desc">
-   <p>This method needs to be called after the camera is started (for example, by calling <xref keyref="startPreview" /> or <xref keyref="joinChannel2" />).</p>
+            <p>This method needs to be called after the camera is started (for example, by calling <xref keyref="startPreview" /> or <xref keyref="joinChannel2" />).</p>
             <note type="attention">
-                <ul>
-                <li props="windows">This method is for Android and iOS only.</li>
-                <li>The app enables the front camera by default. If your front camera does not support flash, this method returns <ph keyref="false" />. 
+            <ul>
+            <li props="cpp">This method is for Android and iOS only.</li>
+            <li>The app enables the front camera by default. If your front camera does not support flash, this method returns <ph keyref="false" />.
                     If you want to check whether the rear camera supports flash, call <xref keyref="switchCamera" /> before this method.</li>
-                </ul></note>
-        </section>
+            </ul></note> </section>
         <section id="return_values">
-   <title>Returns</title>
-   <ul>
-       <li><codeph><ph keyref="true" /></codeph>: The device supports camera flash.</li>
-       <li><codeph><ph keyref="false" /></codeph>: The device does not support camera flash.</li>
-   </ul>
-        </section></refbody>
+            <title>Returns</title>
+            <ul>
+            <li><codeph><ph keyref="true" /></codeph>: The device supports camera flash.</li>
+            <li><codeph><ph keyref="false" /></codeph>: The device does not support camera flash.</li>
+            </ul> </section>
+    </refbody>
 </reference>

@@ -5,60 +5,56 @@
     <shortdesc id="short"><ph id="shortdesc">Receives the raw video frame.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="consumeRawVideoFrame" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="consumeRawVideoFrame" />
+            </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="windows" outputclass="language-cpp">virtual void consumeRawVideoFrame(const unsigned char *buffer, 
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="cpp" outputclass="language-cpp">virtual void consumeRawVideoFrame(const unsigned char *buffer, 
     agora::media::ExternalVideoFrame::VIDEO_PIXEL_FORMAT frameType, 
     int width, 
     int height, 
     int rotation, 
     long timestamp) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp" />
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
-            </p>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
-   
-   <note type="attention">Ensure that the video frame type specified in this method is the same as that in the <xref keyref="getBufferType" /> callback.</note>
-        </section>
+            <note type="attention">Ensure that the video frame type specified in this method is the same as that in the <xref keyref="getBufferType" /> callback.</note> </section>
         <section id="parameters">
-   <title>Parameters</title>
-   <parml>
-       <plentry>
-  <pt>buffer</pt>
-  <pd>The video buffer.</pd>
-       </plentry>
-       <plentry>
-  <pt>frameType</pt>
-  <pd>The video frame type. See <xref keyref="VIDEO_PIXEL_FORMAT" />.</pd>
-       </plentry>
-       <plentry>
-  <pt>width</pt>
-  <pd>The width (px) of the video frame.</pd>
-       </plentry>
-       <plentry>
-  <pt>height</pt>
-  <pd>The height (px) of the video frame.</pd>
-       </plentry>
-       <plentry>
-  <pt>rotation</pt>
-  <pd>The angle at which the video frame is rotated clockwise. If you set the rotation angle, the SDK rotates the video frame after receiving it. You can set the rotation angle as 0, 90, 180, and 270.</pd>
-       </plentry>
-       <plentry>
-  <pt>timestamp</pt>
-  <pd>The Unix timestamp (ms) of the video frame. You must set a timestamp for each video frame.</pd>
-       </plentry>
-   </parml>
-        </section>
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>buffer</pt>
+                <pd>The video buffer.</pd>
+            </plentry>
+            <plentry>
+                <pt>frameType</pt>
+                <pd>The video frame type. See <xref keyref="VIDEO_PIXEL_FORMAT" />.</pd>
+            </plentry>
+            <plentry>
+                <pt>width</pt>
+                <pd>The width (px) of the video frame.</pd>
+            </plentry>
+            <plentry>
+                <pt>height</pt>
+                <pd>The height (px) of the video frame.</pd>
+            </plentry>
+            <plentry>
+                <pt>rotation</pt>
+                <pd>The angle at which the video frame is rotated clockwise. If you set the rotation angle, the SDK rotates the video frame after receiving it. You can set the rotation angle as 0, 90, 180, and 270.</pd>
+            </plentry>
+            <plentry>
+                <pt>timestamp</pt>
+                <pd>The Unix timestamp (ms) of the video frame. You must set a timestamp for each video frame.</pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

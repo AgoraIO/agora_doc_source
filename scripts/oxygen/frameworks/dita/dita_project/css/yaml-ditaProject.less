@@ -1,0 +1,329 @@
+// Styling for DITA Project files, view as YAML
+@namespace oxy url('http://www.oxygenxml.com/extensions/author');
+@namespace dp url('https://www.dita-ot.org/project');
+
+@import "../../lw/css/library.less";
+
+.DITAProject() {
+  & {
+    font-family:arial, helvetica, sans-serif;
+    display:block;
+    margin: 0.5em;
+  }
+  
+  &:before{
+    display:block;
+    text-align:left;
+    content:"DITA Project file";
+    .color(blue);
+    font-weight:bold;
+    font-size:larger;    
+  }
+}
+
+* {
+  display:block;
+}
+
+.categoryIndent() {
+  padding-top:1em;
+  padding-left:1em;
+  position:relative;
+}
+.indent() {
+  padding-left:1em;
+  position:relative;
+}
+.noindent() {
+  padding-left:0;
+  position:relative;
+}
+
+.displayCategory(@label:oxy_local-name()) {
+  
+  &:before(100) {
+    display:block;
+    position:absolute;
+    top:0;
+    left:0;
+    content: oxy_label(text, oxy_concat(@label), color, inherit) ": " ;
+  }
+}
+
+.displayProperty(@label:oxy_local-name()) {
+  & {
+    -oxy-display-tags:none;
+  }
+  &:before(100) {
+    content: oxy_label(text, oxy_concat(@label), color, inherit) ": " ;
+  }
+}
+
+
+.startCategoryList() {
+  &:before(90) {
+  display:block;
+    position:absolute;
+    top:1em;
+    left:0;
+    content: oxy_label(text, " - ", color, inherit) ;
+  }
+}
+.startList() {
+  &:before(90) {
+  display:block;
+    position:absolute;
+    top:0;
+    left:0;
+    content: oxy_label(text, " - ", color, inherit) ;
+  }
+}
+
+
+
+.link(@ref:href, @prefix:"") {
+  .linkProperty(@ref, @prefix);
+  &[@{ref}]:before(5) {
+    display:block;
+  }  
+}
+
+.linkProperty(@ref:href, @prefix:"") {
+  &[@{ref}]:before(5) {
+    content: '"' oxy_concat(@prefix, attr(@ref)) '"';
+    link: oxy_concat(@prefix, attr(@ref));
+    .color(navy);
+  }
+  &[@{ref}]:before(5):hover,
+  &[@{ref}]:before(5):focus{
+    text-decoration:underline;
+    link: oxy_concat(@prefix, attr(@ref));
+  }
+}
+
+
+
+.name() {
+  &[name]:before(10) {
+    display:block;
+    .color(black);
+    content: "name: " '"' attr(name) '"';
+  }
+}
+
+.href() {
+  &[href]:before(5) {
+    display:block;
+    content: "href: " '"' attr(href) '"';
+  }
+}
+
+.id(@prefix:"") {
+  &[id]:before(5) {
+    display:block;
+    content: @prefix "id: " '"' attr(id) '"';
+    .color(gray);
+    
+  }
+}
+.path() {
+  &[path]:before(4) {
+    content: "path: " '"' attr(path) '"';
+  }
+}
+.value() {
+  &[value]:before(3) {
+    content: "value: " '"' attr(value) '"';
+  }
+}
+
+.idref() {
+  &[idref]{
+    .linkProperty(idref, "#");
+  }
+}
+
+.transtype() {
+  &[transtype]:before(2) {
+    display:block;
+    content: "transtype: " '"' attr(transtype) '"';
+  }
+}
+
+/*  ----------------------------  */
+
+dp|project {
+  .DITAProject();
+}
+
+dp|*:not(dp|include) + dp|include,
+dp|include:first-of-type {
+  .color(maroon);
+  .categoryIndent();
+  .displayCategory("includes");
+  .startCategoryList();
+  .link(href);
+}
+
+dp|include + dp|include {
+  .indent();
+  .color(maroon);
+  display:block;
+  .startList();
+  .link(href);
+}
+
+dp|project > dp|*:not(dp|context) + dp|context,
+dp|project > dp|context:first-of-type {
+  .color(green);
+  .categoryIndent();
+  .displayCategory("contexts");
+  .startCategoryList();
+  .name();
+  .id();
+}
+
+dp|project > dp|context + dp|context {
+  .indent();
+  .color(green);
+  .startList();
+  .name();
+  .id();
+  
+}
+
+
+
+dp|context[idref] {
+  .color(green);
+  .noindent();
+  .displayProperty();
+  .idref();
+}
+
+
+dp|project > dp|*:not(dp|deliverable) + dp|deliverable,
+dp|project > dp|deliverable:first-of-type {
+  .color(blue);
+  .categoryIndent();
+  .displayCategory("deliverables");
+  .startCategoryList();
+  .name();
+  .id();
+}
+
+dp|project > dp|deliverable + dp|deliverable {
+  .color(blue);
+  .indent();
+  .startList();
+  .name();
+  .id();
+  
+}
+
+dp|project > dp|*:not(dp|publication) + dp|publication,
+dp|project > dp|publication:first-of-type {
+    .color(purple);
+    display:block;
+  .categoryIndent();
+  .displayCategory("publications");
+  .startCategoryList();
+    .name();
+    .id();
+    .transtype();
+}
+
+dp|project > dp|publication + dp|publication {
+    .color(purple);
+    display:block;
+  .indent();
+  .startList();
+    .name();
+    .id();
+    .transtype();  
+}
+
+dp|deliverable > dp|publication:not([idref]){
+    .color(purple);
+    display:block;
+  .categoryIndent();
+  .displayCategory("publication");
+    .name();
+    .id();
+    .transtype();
+}
+
+dp|publication[idref] {
+    .color(purple);
+    .noindent();
+    .displayProperty();
+    .idref();
+}
+
+
+
+
+
+
+
+dp|input {
+  .noindent();
+  .displayProperty();
+  .linkProperty(href);
+}
+
+
+
+dp|profile {
+  .categoryIndent();
+  .displayCategory("profiles");
+  //content:" ";
+}
+
+dp|ditaval:first-of-type {
+  .categoryIndent();
+  .displayCategory("ditavals");
+  .startCategoryList();
+  .link(href);  
+}
+dp|ditaval + dp|ditaval {
+  .indent();
+  .startList();
+  .link(href);  
+}
+
+dp|output {
+  display:block;
+  .noindent();
+  .displayProperty();
+  .linkProperty(href);
+}
+
+
+dp|param:first-of-type {
+  display:block;
+  .categoryIndent();
+  .displayCategory("params");
+  .startCategoryList();
+  .name();
+  .href();
+  .path();
+  .value();  
+}
+dp|param + dp|param {
+  display:block;
+  .indent();
+  .startList();
+  .name();
+  .href();
+  .path();
+  .value();  
+}
+
+
+
+
+
+
+
+

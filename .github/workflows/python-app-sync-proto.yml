@@ -2,14 +2,14 @@
 name: Awesome prototype syncs
 
 on:
-    pull_request:
-        branches:
-            - master
-            - main
+    # pull_request:
+    #    branches:
+    #        - master
+    #        - 'release/**'
     push:
         branches:
             - master
-            - main
+            - 'release/**'
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -30,14 +30,22 @@ jobs:
                   cd xml2json
                   python sync_prototype.py --src_dir ../dita/RTC/API  --dest_dir ../en-US/dita/RTC/API
             - name: Create Pull Request
-              uses: peter-evans/create-pull-request@v3
+              uses: peter-evans/create-pull-request@v4
               with:
-                  token: ${{ secrets.GITHUB_TOKEN }}
+                  token: ${{ secrets.GH_PAT }}
                   commit-message: Sync cn prototype to en prototype
-                  title: "[AUTO: MERGE AT YOUR EARLIEST CONVENIENCE] Sync cn prototype to en prototype"
-                  branch: sync-patch
-                  base: master
-                  reviewers: lemon-chen
+                  title: "[AUTO: DELETE THIS BRANCH ONCE YOU MERGE！！！] Sync cn prototype to en prototype in a flash"
+                  branch: auto/sync-cn-proto-to-en-patch
+                  branch-suffix: timestamp
+                  delete-branch: true
+                  # reviewers: lemon-chen
                   body: >
-                      This PR is auto-generated to sync prototypes from cn DITA files to en DITA files. @HeatherWYL  @Cilla-luodan
-                  labels: report, automated pr
+                      DELETE THIS BRANCH ONCE YOU MERGE！！！！This PR is auto-generated to sync prototypes from cn DITA files to en DITA files.  @HeatherWYL  @Cilla-luodan
+                  labels: automerge
+            - name: Enable Pull Request Automerge
+              if: steps.cpr.outputs.pull-request-operation == 'created'
+              uses: peter-evans/enable-pull-request-automerge@v2
+              with:
+                   token: ${{ secrets.GH_PAT }}
+                   pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
+                   merge-method: squash

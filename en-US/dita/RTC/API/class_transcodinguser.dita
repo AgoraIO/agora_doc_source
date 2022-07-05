@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_transcodinguser">
-    <title><ph keyref="TranscodingUser"/></title>
-    <shortdesc id="short"><ph id="shortdesc"
-        >Transcoding configurations of each host.</ph></shortdesc>
+    <title><ph keyref="TranscodingUser" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Transcoding configurations of each host.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -32,7 +31,7 @@
 @property(assign, nonatomic) double alpha;
 @property(assign, nonatomic) NSInteger audioChannel;
 @end</codeblock>
-            <codeblock props="windows unity" outputclass="language-cpp">truct TranscodingUser {
+            <codeblock props="cpp" outputclass="language-cpp">truct TranscodingUser {
   uid_t uid;
   int x;
   int y;
@@ -51,6 +50,35 @@
         alpha(1.0),
         audioChannel(0) {}
 };</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public class TranscodingUser
+    {
+        public TranscodingUser()
+        {
+            alpha = 1.0;
+        }
+
+        public TranscodingUser(uint uid, int x, int y, int width, int height, int zOrder, double alpha,
+            int audioChannel)
+        {
+            this.uid = uid;
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+            this.zOrder = zOrder;
+            this.alpha = alpha;
+            this.audioChannel = audioChannel;
+        }
+
+        public uint uid { set; get; }
+        public int x { set; get; }
+        public int y { set; get; }
+        public int width { set; get; }
+        public int height { set; get; }
+        public int zOrder { set; get; }
+        public double alpha { set; get; }
+        public int audioChannel { set; get; }
+    }</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export interface TranscodingUser {
     uid: number;
     x: number;
@@ -61,7 +89,7 @@
     alpha: number;
     audioChannel: number;
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">class TranscodingUser {
   
   int uid;
@@ -105,9 +133,7 @@
 }</codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>uid</pt>
@@ -115,25 +141,21 @@
                     <p>The user ID of the host.</p>
                 </pd>
             </plentry>
-            <plentry props="android windows unity flutter">
+            <plentry props="android cpp cs flutter">
                 <pt>x</pt>
                 <pd>
-                    <p>The x coordinate (pixel) of the host's video on the output video frame (taking the upper left corner of the video frame as the origin). The value range is [0, width], where width is the <xref
-                    keyref="LiveTranscoding"
-                    /><codeph>width</codeph> set in .</p>
+                    <p>The x coordinate (pixel) of the host's video on the output video frame (taking the upper left corner of the video frame as the origin). The value range is [0, width], where width is the <xref keyref="LiveTranscoding" /><codeph>width</codeph> set in .</p>
                 </pd>
             </plentry>
-            <plentry props="android windows unity flutter">
+            <plentry props="android cpp cs flutter">
                 <pt>y</pt>
-                <pd>The y coordinate (pixel) of the host's video on the output video frame (taking the upper left corner of the video frame as the origin). The value range is [0, height], where height is the <xref
-                    keyref="LiveTranscoding"
-                    /><codeph>height</codeph> set in .</pd>
+                <pd>The y coordinate (pixel) of the host's video on the output video frame (taking the upper left corner of the video frame as the origin). The value range is [0, height], where height is the <xref keyref="LiveTranscoding" /><codeph>height</codeph> set in .</pd>
             </plentry>
-            <plentry props="android windows unity flutter">
+            <plentry props="android cpp cs flutter">
                 <pt>width</pt>
                 <pd>The width (pixel) of the host's video.</pd>
             </plentry>
-            <plentry props="android windows unity flutter">
+            <plentry props="android cpp cs flutter">
                 <pt>height</pt>
                 <pd>
                     <p>The height (pixel) of the host's video.</p>
@@ -147,6 +169,8 @@
                 <pt>zOrder</pt>
                 <pd>
                     <p>The layer index number of the host's video. The value range is [0, 100].
+                    
+                    
                     <ul>
                     <li>0: (Default) The host's video is the bottom layer.</li>
                     <li>100: The host's video is the top layer.</li>
@@ -161,6 +185,8 @@
                 <pt>alpha</pt>
                 <pd>
                     <p>The transparency of the host's video. The value range is [0.0, 1.0].
+                    
+                    
                     <ul>
                     <li>0.0: Completely transparent.</li>
                     <li>1.0: (Default) Opaque.</li>
@@ -171,6 +197,8 @@
                 <pt>audioChannel</pt>
                 <pd>
                     <p>The audio channel used by the host's audio in the output audio. The default value is 0, and the value range is [0, 5].
+                    
+                    
                     <ul id="ul_ugm_rrh_v4b">
                     <li><codeph>0</codeph>: (Recommended) The defaut setting, which supports dual channels at most and depends on the upstream of the host.</li>
                     <li><codeph>1</codeph>: The host's audio uses the FL audio channel. If the host's upstream uses multiple audio channels, the Agora
@@ -186,8 +214,7 @@
                     <li><codeph>0xFF</codeph> or a value greater than <codeph>5</codeph>: The host's audio is muted, and the Agora
                                     server removes the host's audio.</li>
                     </ul>
-                    <note type="attention"
-                    >If the value is not <codeph>0</codeph>, a special player is required.</note></p>
+                    <note type="attention">If the value is not <codeph>0</codeph>, a special player is required.</note></p>
                 </pd>
             </plentry>
             </parml> </section>
