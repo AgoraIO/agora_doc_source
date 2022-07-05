@@ -20,8 +20,8 @@
     this.height = 0;
   }
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec" />
-            <codeblock props="cpp unity" outputclass="language-cpp">struct VideoDimensions {
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp">struct VideoDimensions {
   int width;
   int height;
   VideoDimensions() : width(640), height(480) {}
@@ -34,10 +34,26 @@
     width: number,
     height: number
     }</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class VideoDimensions
+    {
+        public VideoDimensions()
+        {
+            width = 640;
+            height = 480;
+        }
+
+        public VideoDimensions(int width, int height)
+        {
+            this.width = width;
+            this.height = height;
+        }
+        public int width { set; get; }
+        public int height { set; get; }
+    }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class VideoDimensions {
-  width?: number;
-  height?: number;
-}</codeblock>
+              width?: number;
+              height?: number;
+            }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class VideoDimensions {
   const VideoDimensions({this.width, this.height});
 

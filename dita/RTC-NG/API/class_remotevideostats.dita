@@ -61,7 +61,24 @@
   int publishDuration;
   int superResolutionType;
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export class RemoteVideoStats {
+  uid?: number
+  delay?: number
+  width?: number
+  height?: number
+  receivedBitrate?: number
+  decoderOutputFrameRate?: number
+  rendererOutputFrameRate?: number
+  frameLossRate?: number
+  packetLossRate?: number
+  rxStreamType?: VideoStreamType
+  totalFrozenTime?: number
+  frozenRate?: number
+  avSyncTimeMs?: number
+  totalActiveTime?: number
+  publishDuration?: number
+  superResolutionType?: number
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class RemoteVideoStats
     {
         public uint uid { set; get; }
@@ -249,7 +266,6 @@
                 <pt>superResolutionType</pt>
                 <pd>超分辨率的开启状态：
 
-
                     <ul>
                     <li>&gt;0：超分辨率已开启。</li>
                     <li>=0：超分辨率未开启。</li>
@@ -258,7 +274,6 @@
             <plentry>
                 <pt>avSyncTimeMs</pt>
                 <pd>音频超前视频的时间 (ms)。
-
                     <note type="attention">如果为负值，则代表音频落后于视频。</note></pd>
             </plentry>
             </parml> </section>

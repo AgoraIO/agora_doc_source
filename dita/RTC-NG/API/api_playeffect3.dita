@@ -33,7 +33,7 @@
     int gain,
     bool publish,
     int startPos) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript">abstract playEffect(soundId: number, filePath: string, loopCount: number, pitch: number, pan: number, gain: number, publish?: boolean, startPos?: number): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int PlayEffect(int soundId, string filePath, int loopCount, double pitch, double pan, int gain, bool publish = false, int startPos = 0);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract playEffect(
     soundId: number,
@@ -66,21 +66,13 @@
                 <pt>soundId</pt>
                 <pd>音效的 ID。每个音效的 ID 具有唯一性。
 
-
-                    <note type="attention">如果你已通过 <xref keyref="preloadEffect"
-                    /> 将音效加载至内存，请确保该参数与 <apiname keyref="preloadEffect"
-                    /> 中设置的 <parmname>soundId</parmname> 相同。</note> </pd>
+                    <note type="attention">如果你已通过 <xref keyref="preloadEffect" /> 将音效加载至内存，请确保该参数与 <apiname keyref="preloadEffect" /> 中设置的 <parmname>soundId</parmname> 相同。</note> </pd>
             </plentry>
             <plentry>
                 <pt>filePath</pt>
                 <pd>
-                    <p id="filepath">播放文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如 <codeph><ph
-                    keyref="filePath-example"
-                    /></codeph>。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV、3GP。<ph props="native unity">详见<xref
-                    keyref="filePath-link">支持的媒体格式</xref>。</ph></p>
-                    <note type="attention">如果你已通过 <xref keyref="preloadEffect"
-                    /> 将音效加载至内存，请确保该参数与 <apiname keyref="preloadEffect"
-                    /> 中设置的 <parmname>filePath</parmname> 相同。</note> </pd>
+                    <p id="filepath">播放文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如 <codeph><ph keyref="filePath-example" /></codeph>。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV、3GP。详见<xref keyref="filePath-link">支持的媒体格式</xref>。</p>
+                    <note type="attention">如果你已通过 <xref keyref="preloadEffect" /> 将音效加载至内存，请确保该参数与 <apiname keyref="preloadEffect" /> 中设置的 <parmname>filePath</parmname> 相同。</note> </pd>
             </plentry>
             <plentry id="loopcount">
                 <pt>loopCount</pt>
