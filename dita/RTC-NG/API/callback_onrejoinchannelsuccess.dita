@@ -21,9 +21,9 @@
      (void)uid;
      (void)elapsed;
      }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">onRejoinChannelSuccess?(connection: RtcConnection, elapsed: number): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnRejoinChannelSuccess(RtcConnection connection, int elapsed) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">onRejoinChannelSuccess?(connection: RtcConnection, elapsed: number): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int elapsed)?
       onRejoinChannelSuccess;
 </codeblock> </p>
@@ -33,7 +33,7 @@
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt/>
@@ -43,18 +43,14 @@
                 <pt>channel</pt>
                 <pd>频道名。</pd>
             </plentry>
-            <plentry id="uid" props="native electron">
+            <plentry id="uid" props="native">
                 <pt>uid</pt>
                 <pd>重新加入频道的用户 ID。</pd>
             </plentry>
-            <plentry props="rtc">
-                <pt props="unity">uid</pt>
-                <pd props="unity">重新加入频道的用户 ID。</pd>
+            <plentry props="unity electron rn">
+                <pt>connection</pt>
+                <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
             </plentry>
-            <plentry props="unity flutter">
-                    <pt>connection</pt>
-                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
-                </plentry>
             <plentry id="elapsed">
                 <pt>elapsed</pt>
                 <pd>从本地开始重连到发生此事件过去的时间（毫秒）。</pd>

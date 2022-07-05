@@ -31,7 +31,14 @@
   Optional&lt;bool&gt; publishCustomAudioTrack;
   Optional&lt;bool&gt; publishCustomVideoTrack;
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export class DirectCdnStreamingMediaOptions {
+  publishCameraTrack?: boolean
+  publishMicrophoneTrack?: boolean
+  publishCustomAudioTrack?: boolean
+  publishCustomVideoTrack?: boolean
+  publishMediaPlayerAudioTrack?: boolean
+  publishMediaPlayerId?: number
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class DirectCdnStreamingMediaOptions : OptionalJsonParse
     {
         public Optional&lt;bool&gt; publishCameraTrack = new Optional&lt;bool&gt;();
@@ -39,7 +46,14 @@
         public Optional&lt;bool&gt; publishCustomAudioTrack = new Optional&lt;bool&gt;();
         public Optional&lt;bool&gt; publishCustomVideoTrack = new Optional&lt;bool&gt;();
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">export class DirectCdnStreamingMediaOptions {
+  publishCameraTrack?: boolean;
+  publishMicrophoneTrack?: boolean;
+  publishCustomAudioTrack?: boolean;
+  publishCustomVideoTrack?: boolean;
+  publishMediaPlayerAudioTrack?: boolean;
+  publishMediaPlayerId?: number;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class DirectCdnStreamingMediaOptions {
   const DirectCdnStreamingMediaOptions(
       {this.publishCameraTrack,
@@ -76,7 +90,7 @@
                 <pt>publishCameraTrack</pt>
                 <pd>设置是否发布摄像头采集的视频。
 
-                    
+
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 发布摄像头采集的视频。</li>
                     <li><codeph><ph keyref="false"
@@ -87,7 +101,7 @@
                 <pt>publishMicrophoneTrack</pt>
                 <pd>设置是否发布麦克风采集的音频。
 
-                    
+
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 发布麦克风采集的音频。</li>
                     <li><codeph><ph keyref="false"
@@ -98,7 +112,7 @@
                 <pt>publishCustomAudioTrack</pt>
                 <pd>设置是否发布自定义采集的音频。
 
-                    
+
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 发布自定义采集的音频。</li>
                     <li><codeph><ph keyref="false"
@@ -108,7 +122,7 @@
             <plentry props="hide">
                 <pt>publishMediaPlayerAudioTrack</pt>
                 <pd>设置是否发布媒体播放器的音频。
-                    
+
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 发布媒体播放器的音频。</li>
                     <li><codeph><ph keyref="false"
@@ -118,7 +132,7 @@
             <plentry>
                 <pt>publishCustomVideoTrack</pt>
                 <pd>设置是否发布自定义采集的视频。
-                    
+
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 发布自定义采集的视频。</li>
                     <li><codeph><ph keyref="false"

@@ -17,9 +17,12 @@
       boolean enabled, VirtualBackgroundSource backgroundSource);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableVirtualBackground:(BOOL)enable backData:(AgoraVirtualBackgroundSource* _Nullable)backData NS_SWIFT_NAME(enableVirtualBackground(_:backData:));</codeblock>
             <codeblock props="cpp">virtual int enableVirtualBackground(bool enabled, VirtualBackgroundSource backgroundSource) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract enableVirtualBackground(enabled: boolean, backgroundSource: VirtualBackgroundSource): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int EnableVirtualBackground(bool enabled, VirtualBackgroundSource backgroundSource);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">abstract enableVirtualBackground(
+  enabled: boolean,
+  backgroundSource: VirtualBackgroundSource
+): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableVirtualBackground(
     {required bool enabled,
     required VirtualBackgroundSource backgroundSource});</codeblock> </p>
@@ -28,11 +31,12 @@
             <p>虚拟背景功能支持你使用自定义的背景图替代本地用户原来的背景图或者将背景虚化处理。成功开启虚拟背景功能后，频道内所有用户都能看到自定义的背景。</p>
             <p>开启虚拟背景功能涉及一系列方法的调用，调用顺序如下：
 
+
             <ol>
             <li props="android">在初始化 <xref keyref="IRtcEngine"/> 时调用 <codeph><xref keyref="addExtension"/>(<q>agora_segmentation_extension</q>)</codeph>，在项目中集成虚拟背景动态库。</li>
             <li props="ios">在项目文件中链接动态库 <codeph>AgoraVideoSegmentationExtension.xcframework</codeph></li>
             <li props="mac">在项目文件中链接动态库 <codeph>AgoraVideoSegmentationExtension.framework</codeph></li>
-            <li props="cpp flutter unity">在初始化 <xref keyref="IRtcEngine"/> 时调用 <codeph><xref keyref="loadExtensionProvider"/>(<q>libagora_segmentation_extension.dll</q>)</codeph>，指定动态库的路径和名称。</li>
+            <li props="cpp rn electron flutter">在初始化 <xref keyref="IRtcEngine"/> 时调用 <codeph><xref keyref="loadExtensionProvider"/>(<q>libagora_segmentation_extension.dll</q>)</codeph>，指定动态库的路径和名称。</li>
             <li>调用 <codeph><xref keyref="enableExtension"/>(<q>agora_segmentation</q>, <q>PortraitSegmentation</q>, <q><ph keyref="true"/></q>)</codeph>，开启插件。</li>
             <li>调用 <xref keyref="enableVideo"/>，启用视频模块。</li>
             <li>调用该方法，开启虚拟背景功能。</li>
@@ -43,14 +47,16 @@
 
 
 
+
                 <ul>
                 <li props="android cpp unity rn flutter">Android: <ph>libagora_segmentation_extension.so</ph></li>
                 <li props="ios cpp unity rn flutter">iOS: <ph>AgoraVideoSegmentationExtension.xcframework</ph></li>
                 <li props="mac cpp unity electron">macOS: <ph>AgoraVideoSegmentationExtension.framework</ph></li>
-                <li props="cpp">Windows: <ph>libagora_segmentation_extension.dll</ph></li>
+                <li props="cpp electron">Windows: <ph>libagora_segmentation_extension.dll</ph></li>
                 </ul></li>
-            <li props="rtc">该方法需要在 <xref keyref="enableVideo" /> 后调用。</li>
+            <li props="rtc">该方法需要在 <xref keyref="enableVideo"/> 后调用。</li>
             <li>该功能对设备性能要求较高，Agora 推荐你在搭载如下芯片的设备上使用：
+
 
 
 
@@ -62,6 +68,7 @@
                 <li props="android unity cpp rn flutter">麒麟 900 系列 980 及以上</li>
                 <li props="mac cpp unity electron">CPU 为 i5 及更好的设备</li>
                 <li props="ios cpp unity rn flutter">搭载 A9 及以上芯片的如下设备：
+
 
 
 
@@ -77,6 +84,7 @@
 
 
 
+
                 <ul>
                 <li>使用高清摄像设备、摄像环境光照均匀。</li>
                 <li>摄像画面中，物件较少，用户的人像为半身人像且基本无遮挡，背景色较单一且与用户着装颜色不同。</li>
@@ -86,7 +94,7 @@
             <title>参数</title>
             <parml>
             <plentry>
-                <pt props="cpp android unity flutter">enabled</pt>
+                <pt props="cpp android unity flutter rn electron">enabled</pt>
                 <pt props="ios mac">enable</pt>
                 <pd>是否开启虚拟背景：
 
@@ -99,7 +107,7 @@
                     </ul></pd>
             </plentry>
             <plentry>
-                <pt props="cpp android unity flutter">backgroundSource</pt>
+                <pt props="cpp android unity flutter rn electron">backgroundSource</pt>
                 <pt props="mac ios">backData</pt>
                 <pd>自定义的背景图。详见 <xref keyref="VirtualBackgroundSource"/>。为将自定义背景图的分辨率与 SDK 的视频采集分辨率适配，SDK 会在保证自定义背景图不变形的前提下，对自定义背景图进行缩放和裁剪。</pd>
             </plentry>
@@ -125,7 +133,7 @@
                     </ul></note></pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功。</li>

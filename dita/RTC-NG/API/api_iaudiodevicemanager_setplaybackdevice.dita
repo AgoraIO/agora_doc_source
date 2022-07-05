@@ -16,7 +16,7 @@
             <codeblock props="android" outputclass="language-java" />
             <codeblock props="ios mac" outputclass="language-objectivec" />
             <codeblock props="cpp" outputclass="language-cpp">virtual int setPlaybackDevice(const char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript">abstract setPlaybackDevice(deviceId: string): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetPlaybackDevice(string deviceId);</codeblock>
             <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setPlaybackDevice(String deviceId);</codeblock> </p>
@@ -28,11 +28,11 @@
                 <pt>deviceId</pt>
                 <pd>
                     <p>通过 deviceID 指定播放设备。由 <xref keyref="enumeratePlaybackDevices" /> 获取。插拔设备不会影响 <parmname>deviceId</parmname>。</p>
-                    <p props="cpp">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE" />。</p>
+                    <p props="cpp electron">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE" />。</p>
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功。</li>

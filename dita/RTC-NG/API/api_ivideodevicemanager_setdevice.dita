@@ -16,7 +16,7 @@
             <codeblock props="android" outputclass="language-java"/>
             <codeblock props="ios mac" outputclass="language-objectivec"/>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setDevice(const char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract setDevice(deviceIdUTF8: string): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetDevice(string deviceIdUTF8);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setDevice(String deviceIdUTF8);</codeblock> </p>
@@ -28,14 +28,14 @@
             <parml>
             <plentry>
                 <pt props="native electron">deviceId</pt>
-                <pt props="unity flutter"><ph>deviceIdUTF8</ph></pt>
+                <pt props="unity electron flutter"><ph>deviceIdUTF8</ph></pt>
                 <pd>
                     <p>设备 ID。可通过调用 <xref keyref="enumerateVideoDevices"/> 方法获取。</p>
-                    <p props="cpp flutter">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</p>
+                    <p props="cpp electron flutter">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</p>
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功。</li>

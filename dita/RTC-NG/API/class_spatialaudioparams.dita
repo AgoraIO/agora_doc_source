@@ -31,7 +31,14 @@
   Optional&lt;bool&gt; enable_blur;
   Optional&lt;bool&gt; enable_air_absorb;
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export class SpatialAudioParams {
+  speaker_azimuth?: number
+  speaker_elevation?: number
+  speaker_distance?: number
+  speaker_orientation?: number
+  enable_blur?: boolean
+  enable_air_absorb?: boolean
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class SpatialAudioParams : OptionalJsonParse
     {
         public Optional&lt;double&gt; speaker_azimuth = new Optional&lt;double&gt;();
@@ -41,7 +48,14 @@
         public Optional&lt;bool&gt; enable_blur = new Optional&lt;bool&gt;();
         public Optional&lt;bool&gt; enable_air_absorb = new Optional&lt;bool&gt;();
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">export class SpatialAudioParams {
+  speaker_azimuth?: number;
+  speaker_elevation?: number;
+  speaker_distance?: number;
+  speaker_orientation?: number;
+  enable_blur?: boolean;
+  enable_air_absorb?: boolean;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class SpatialAudioParams {
   const SpatialAudioParams(
       {this.speakerAzimuth,
@@ -79,7 +93,7 @@
                 <pd>远端用户或媒体播放器相对于本地用户的水平角。取值范围为 [0,360]，单位为度。其中：
 
 
-                    
+
                     <ul>
                     <li>0:（默认）0 度，表示水平面的正前方。</li>
                     <li>90: 90 度，表示水平面的正左方。</li>
@@ -94,7 +108,7 @@
                 <pd>远端用户或媒体播放器相对于本地用户的俯仰角。取值范围为 [-90,90]，单位为度。其中：
 
 
-                    
+
                     <ul>
                     <li>0:（默认）0 度，表示水平面无旋转。</li>
                     <li>-90: -90 度，表示水平面向下旋转 90 度。</li>
@@ -112,7 +126,7 @@
                 <pd>远端用户或媒体播放器相对于本地用户的朝向。取值范围为 [0,180]，单位为度。其中：
 
 
-                    
+
                     <ul>
                     <li>0:（默认）0 度，表示声源和听者朝向同一方向。</li>
                     <li>180: 180 度，表示声源和听者面对面。</li>
@@ -124,7 +138,7 @@
                 <pd>是否开启声音模糊处理：
 
 
-                    
+
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 开启模糊处理。</li>
                     <li><codeph><ph keyref="false"/></codeph>: （默认）关闭模糊处理。</li>
@@ -136,7 +150,7 @@
                 <pd>是否开启空气衰减，即模拟声音在空气中传播时的能量衰减效果：
 
 
-                    
+
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: （默认）开启空气衰减。</li>
                     <li><codeph><ph keyref="false"/></codeph>: 关闭空气衰减。</li>

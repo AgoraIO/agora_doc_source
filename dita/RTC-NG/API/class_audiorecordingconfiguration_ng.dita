@@ -62,7 +62,13 @@
       fileRecordingType(rhs.fileRecordingType),
       quality(rhs.quality) {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export class AudioRecordingConfiguration {
+  filePath?: string
+  encode?: boolean
+  sampleRate?: number
+  fileRecordingType?: AudioFileRecordingType
+  quality?: AudioRecordingQualityType
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class AudioRecordingConfiguration
     {
         public AudioRecordingConfiguration()
@@ -99,7 +105,13 @@
         public AUDIO_FILE_RECORDING_TYPE fileRecordingType { set; get; }
         public AUDIO_RECORDING_QUALITY_TYPE quality { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">export class AudioRecordingConfiguration {
+  filePath?: string;
+  encode?: boolean;
+  sampleRate?: number;
+  fileRecordingType?: AudioFileRecordingType;
+  quality?: AudioRecordingQualityType;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class AudioRecordingConfiguration {
   const AudioRecordingConfiguration(
       {this.filePath,
@@ -135,17 +147,17 @@
                     keyref="filePath-example"/></codeph>。
 
 
-                    
+
                     <note id="note_scm_klz_mqb" type="attention">
                     <p>请确保你指定的路径存在并且可写。</p>
                     </note> </pd>
             </plentry>
             <plentry>
-                <pt props="cpp unity flutter">encode</pt>
+                <pt props="cpp unity electron rn flutter">encode</pt>
                 <pt props="android ios mac">codec</pt>
                 <pd>设置是否编码音频数据：
 
-                    
+
                     <ul id="ul_bnv_mlz_mqb">
                     <li> <codeph> <ph keyref="true"/> </codeph>
                                 : 将音频数据用 AAC 编码。
@@ -159,7 +171,7 @@
                 <pt>sampleRate</pt>
                 <pd>录音采样率（Hz）。
 
-                    
+
                     <ul id="ul_pqs_slz_mqb">
                     <li>16000</li>
                     <li>32000 （默认）</li>
@@ -181,7 +193,7 @@
                     </note> </pd>
             </plentry>
             <plentry>
-                <pt props="cpp unity flutter">fileRecordingType</pt>
+                <pt props="cpp unity electron rn flutter">fileRecordingType</pt>
                 <pt props="android ios mac">fileRecordOption</pt>
                 <pd>
                     <p props="ios mac cpp unity flutter">录音内容。详见 <xref
@@ -189,7 +201,7 @@
                     <p props="android">录音内容：
 
 
-                    
+
                     <ul>
                     <li> <ph keyref="AUDIO_RECORDING_POSITION_RECORDING"/>
                                     (1)：仅录制本地用户的音频。
@@ -209,12 +221,11 @@
             <plentry>
                 <pt>quality</pt>
                 <pd>
-                    <p props="ios mac cpp unity flutter">录音音质。详见 <xref
-                    keyref="AUDIO_RECORDING_QUALITY_TYPE"/>。</p>
+                    <p props="ios mac cpp unity electron rn flutter">录音音质。详见 <xref keyref="AUDIO_RECORDING_QUALITY_TYPE" />。</p>
                     <p props="android">录音音质：
 
 
-                    
+
                     <ul>
                     <li> <ph keyref="AUDIO_RECORDING_QUALITY_LOW"/>
                                     (0)：低音质。例如，采样率为 32000 Hz，录音时长为 10 分钟的 AAC 文件大小约为 1.2 MB。

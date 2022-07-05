@@ -1,37 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_iaudiodevicemanager_enumeraterecordingdevices">
-    <title><ph keyref="enumerateRecordingDevices" /></title>
+    <title><ph keyref="enumerateRecordingDevices"/></title>
     <shortdesc id="short"><ph id="shortdesc">获取系统中所有的音频采集设备列表。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="enumerateRecordingDevices" />
+                <indexterm keyref="enumerateRecordingDevices"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
-            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
             <codeblock props="cpp" outputclass="language-cpp">virtual IAudioDeviceCollection* enumerateRecordingDevices() = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript">abstract enumerateRecordingDevices(): AudioDeviceInfo[];</codeblock>
             <codeblock props="unity" outputclass="language-csharp">abstract DeviceInfo[] EnumerateRecordingDevices();</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">List&lt;AudioDeviceInfo&gt; enumerateRecordingDevices();</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p props="cpp electron">该方法返回一个 <xref keyref="IAudioDeviceCollection" /> 对象，包含系统中所有的音频采集设备。通过 <apiname keyref="IAudioDeviceCollection" /> 对象，
-       App 可以枚举音频采集设备。在使用结束后，App 需调用 <xref keyref="release_IAudioDeviceCollection" /> 方法销毁返回的对象。</p>
+            <p props="cpp">该方法返回一个 <xref keyref="IAudioDeviceCollection"/> 对象，包含系统中所有的音频采集设备。通过 <apiname keyref="IAudioDeviceCollection"></apiname> 对象，
+       App 可以枚举音频采集设备。在使用结束后，App 需调用 <xref keyref="release_IAudioDeviceCollection"/> 方法销毁返回的对象。</p>
         </section>
         <section id="return_values">
             <title>返回值</title>
             <ul>
-            <li props="cpp electron">方法调用成功：返回一个 <xref keyref="IAudioDeviceCollection" /> 对象，包含所有的音频采集设备。</li>
+            <li props="cpp">方法调用成功：返回一个 <xref keyref="IAudioDeviceCollection"/> 对象，包含所有的音频采集设备。</li>
             <li props="unity">方法调用成功，返回一个 DeviceInfo 数组，包含所有音频采集设备的设备 ID 和设备名称。</li>
-            <li props="flutter">方法调用成功，返回一个 <xref keyref="AudioDeviceInfo" /> 对象，包含所有音频采集设备的设备 ID 和设备名称。</li>
-            <li>方法调用失败：<ph keyref="NULL" />。</li>
+            <li props="electron flutter">方法调用成功，返回一个 <xref keyref="AudioDeviceInfo"/> 数组，包含所有音频采集设备的设备 ID 和设备名称。</li>
             </ul> </section>
     </refbody>
 </reference>

@@ -19,9 +19,9 @@
      (void)uid;
      (void)info;
      }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">onUserInfoUpdated?(uid: number, info: UserInfo): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserInfoUpdated(uint uid, UserInfo info)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">onUserInfoUpdated?(uid: number, info: UserInfo): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(int uid, UserInfo info)? onUserInfoUpdated;
 </codeblock> </p>
         </section>
@@ -36,7 +36,7 @@
         </section>
         <section id="parameters">
             <title> <ph keyref="callback-section-title"/> </title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt/>
@@ -47,8 +47,8 @@
                 <pd>远端用户 ID。</pd>
             </plentry>
             <plentry>
-                <pt props="android ios mac electron">userInfo</pt>
-                <pt props="cpp unity flutter">info</pt>
+                <pt props="android ios mac">userInfo</pt>
+                <pt props="cpp unity flutter electron rn">info</pt>
                 <pd>
                         标识用户信息的 UserInfo 对象，包含用户 UID 和 User Account。详见
                         <xref keyref="UserInfo"/>

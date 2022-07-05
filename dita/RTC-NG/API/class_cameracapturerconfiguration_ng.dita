@@ -27,7 +27,11 @@
   char deviceId[MAX_DEVICE_ID_LENGTH];
   VideoFormat format;
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export class CameraCapturerConfiguration {
+  cameraDirection?: CameraDirection
+  deviceId?: string
+  format?: VideoFormat
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class CameraCapturerConfiguration
     {
         public CameraCapturerConfiguration()
@@ -49,7 +53,11 @@
         public VideoFormat format { set; get; }
         public CAMERA_DIRECTION cameraDirection { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">export class CameraCapturerConfiguration {
+  cameraDirection?: CameraDirection;
+  deviceId?: string;
+  format?: VideoFormat;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class CameraCapturerConfiguration {
   const CameraCapturerConfiguration(
       {this.cameraDirection, this.deviceId, this.format});
@@ -74,20 +82,16 @@
             <plentry>
                 <pt>cameraDirection</pt>
                 <pd>
-                    <note type="attention" props="cpp unity flutter"
-                    >该参数仅适用于 Android 和 iOS 平台。</note> <ph>摄像头方向设置。</ph><ph
-                    props="ios cpp unity android flutter">详见 <xref
-                    keyref="CAMERA_DIRECTION"/>。</ph></pd>
+                    <note type="attention" props="cpp unity electron rn flutter">该参数仅适用于 Android 和 iOS 平台。</note> <ph>摄像头方向设置。</ph><ph props="ios cpp unity android rn flutter">详见 <xref keyref="CAMERA_DIRECTION" />。</ph></pd>
             </plentry>
-            <plentry props="cpp android unity flutter">
-                <pt props="cpp unity flutter">format</pt>
+            <plentry props="cpp android unity electron rn flutter">
+                <pt props="cpp unity electron rn flutter">format</pt>
                 <pt props="android">captureFormat</pt>
                 <pd>详见 <xref keyref="VideoFormat"/>。</pd>
             </plentry>
-            <plentry props="cpp unity flutter">
+            <plentry props="cpp unity electron rn flutter">
                 <pt>deviceId</pt>
-                <pd><ph>播放设备的设备 ID。</ph><ph props="cpp flutter"> 最大长度为 <xref
-                    keyref="MAX_DEVICE_ID_LENGTH_TYPE"/> 。</ph></pd>
+                <pd><ph>播放设备的设备 ID。</ph><ph props="cpp electron rn flutter"> 最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE" /> 。</ph></pd>
             </plentry>
             </parml> </section>
     </refbody>

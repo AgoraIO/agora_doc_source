@@ -26,10 +26,15 @@
      (void)newState;
      (void)elapseSinceLastState;
      }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">onVideoPublishStateChanged?(channel: string, oldState: StreamPublishState, newState: StreamPublishState, elapseSinceLastState: number): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnVideoPublishStateChanged(string channel, STREAM_PUBLISH_STATE oldState,
             STREAM_PUBLISH_STATE newState, int elapseSinceLastState)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">onVideoPublishStateChanged?(
+  channel: string,
+  oldState: StreamPublishState,
+  newState: StreamPublishState,
+  elapseSinceLastState: number
+): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(
       String channel,
       StreamPublishState oldState,
@@ -47,14 +52,14 @@
         </section>
         <section id="parameters">
             <title> <ph keyref="callback-section-title"/> </title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt/>
                 <pd/>
             </plentry>
             <plentry>
-                <pt props="android cpp unity flutter">channel</pt>
+                <pt props="android cpp unity flutter electron rn">channel</pt>
                 <pt props="ios mac">channelId</pt>
                 <pd>频道名。</pd>
             </plentry>

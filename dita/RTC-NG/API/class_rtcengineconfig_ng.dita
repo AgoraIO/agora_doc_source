@@ -125,7 +125,16 @@
         areaCode(AREA_CODE_GLOB),
         logConfig() {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export class RtcEngineContext {
+  appId?: string
+  enableAudioDevice?: boolean
+  channelProfile?: ChannelProfileType
+  audioScenario?: AudioScenarioType
+  areaCode?: number
+  logConfig?: LogConfig
+  threadPriority?: ThreadPriorityType
+  useExternalEglContext?: boolean
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class RtcEngineContext : OptionalJsonParse
     {
         public RtcEngineContext()
@@ -167,7 +176,16 @@
         public Optional&lt;THREAD_PRIORITY_TYPE&gt; threadPriority = new Optional&lt;THREAD_PRIORITY_TYPE&gt;();
         public bool useExternalEglContext { set; get; }
     };</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">export class RtcEngineContext {
+  appId?: string;
+  enableAudioDevice?: boolean;
+  channelProfile?: ChannelProfileType;
+  audioScenario?: AudioScenarioType;
+  areaCode?: number;
+  logConfig?: LogConfig;
+  threadPriority?: ThreadPriorityType;
+  useExternalEglContext?: boolean;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class RtcEngineContext {
   const RtcEngineContext(
       {this.appId,
@@ -213,7 +231,7 @@
                     keyref="IRtcEngineEventHandler"/>。</pd>
             </plentry>
             <plentry>
-                <pt props="cpp ios mac unity flutter">appId</pt>
+                <pt props="cpp ios mac unity electron rn flutter">appId</pt>
                 <pt props="android">mAppId</pt>
                 <pd id="appid"
                     >Agora 为 app 开发者签发的 App ID。 使用同一个 App ID 的 app 才能进入同一个频道进行通话或直播。一个 App ID 只能用于创建一个 <apiname
@@ -247,45 +265,43 @@
                         /> 创建失败。</li>
                     </ul></note> </pd>
             </plentry>
-            <plentry props="android cpp unity">
-                <pt props="cpp unity flutter">enableAudioDevice</pt>
+            <plentry props="android cpp unity electron rn">
+                <pt props="cpp unity electron rn flutter">enableAudioDevice</pt>
                 <pt props="android">mEnableAudioDevice</pt>
                 <pd>设置是否允许 SDK 使用音频设备：
 
-                    
+
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>:（默认）允许。</li>
                     <li><codeph><ph keyref="false"/></codeph>: 禁止。</li>
                     </ul></pd>
                 <pd>
                     <note type="attention">
-                    <p>如需通过 <xref keyref="pullAudioFrame"
-                    /> 获取混音后的远端音频数据，请确保将该参数设为 <codeph><ph keyref="false"
-                    /></codeph>。</p>
+                    <p>如需通过 <xref keyref="pullAudioFrame" props="native" /> 获取混音后的远端音频数据，请确保将该参数设为 <codeph><ph keyref="false" /></codeph>。</p>
                     </note> </pd>
             </plentry>
             <plentry>
-                <pt props="cpp ios mac unity flutter">channelProfile</pt>
+                <pt props="cpp ios mac unity electron rn flutter">channelProfile</pt>
                 <pt props="android">mChannelProfile</pt>
                 <pd conkeyref="setChannelProfile/channelprofiletype"/>
             </plentry>
             <plentry>
-                <pt props="cpp ios mac unity flutter">audioScenario</pt>
+                <pt props="cpp ios mac unity electron rn flutter">audioScenario</pt>
                 <pt props="android">mAudioScenario</pt>
                 <pd conkeyref="setAudioProfile/scenario-ng"/>
             </plentry>
             <plentry>
-                <pt props="cpp ios mac unity flutter">areaCode</pt>
+                <pt props="cpp ios mac unity electron rn flutter">areaCode</pt>
                 <pt props="android">mAreaCode</pt>
                 <pd>服务器的访问区域。该功能为高级设置，适用于有访问安全限制的场景。支持的区域详见 <xref
                     keyref="AREA_CODE"/>。区域码支持位操作。
 
-                    
+
                     <p>指定访问区域后，集成了 Agora SDK 的 app 会连接指定区域内的 Agora 服务器。</p>
                 </pd>
             </plentry>
             <plentry>
-                <pt props="cpp ios mac unity flutter">logConfig</pt>
+                <pt props="cpp ios mac unity electron rn flutter">logConfig</pt>
                 <pt props="android">mLogConfig</pt>
                 <pd>
                     <p>设置 Agora SDK 输出的日志文件。详见 <xref keyref="LogConfig"/>。</p>

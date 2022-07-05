@@ -19,25 +19,25 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual void onLeaveChannel(const RtcStats&amp; stats) {
     (void)stats;
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">onLeaveChannel?(connection: RtcConnection, stats: RtcStats): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnLeaveChannel(RtcConnection connection, RtcStats stats) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">onLeaveChannel?(connection: RtcConnection, stats: RtcStats): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, RtcStats stats)? onLeaveChannel;
 </codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>App 调用 <xref keyref="leaveChannel" props="native unity"/><xref keyref="leaveChannel2" props="flutter"/> 方法时，SDK 提示 app 离开频道成功。在该回调方法中，app 可以得到此次通话的总通话时长、SDK
+            <p>App 调用 <xref keyref="leaveChannel" props="native unity"/> <xref keyref="leaveChannel2" props="rn electron flutter"/> 方法时，SDK 提示 app 离开频道成功。在该回调方法中，app 可以得到此次通话的总通话时长、SDK
                 收发数据的流量等信息。</p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="unity flutter">
+            <plentry props="unity flutter electron rn">
                 <pt>connection</pt>
                 <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
             </plentry>

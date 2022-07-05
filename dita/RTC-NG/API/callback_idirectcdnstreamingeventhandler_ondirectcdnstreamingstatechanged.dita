@@ -23,9 +23,14 @@
   (void)error;
   (void)message;
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">onDirectCdnStreamingStateChanged?(state: DirectCdnStreamingState, error: DirectCdnStreamingError, message: string): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp"> public virtual void OnDirectCdnStreamingStateChanged(DIRECT_CDN_STREAMING_STATE state, DIRECT_CDN_STREAMING_ERROR error, string message) { }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">export abstract class IDirectCdnStreamingEventHandler {
+  onDirectCdnStreamingStateChanged?(
+    state: DirectCdnStreamingState,
+    error: DirectCdnStreamingError,
+    message: string
+  ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
@@ -33,7 +38,7 @@
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
             <plentry>
                 <pt>state</pt>

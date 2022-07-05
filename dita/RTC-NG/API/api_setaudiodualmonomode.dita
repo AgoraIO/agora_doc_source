@@ -16,9 +16,9 @@
             <codeblock props="android" outputclass="language-java">int setAudioDualMonoMode(int mode);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setAudioDualMonoMode:(AgoraAudioDualMonoMode)mode;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setAudioDualMonoMode(agora::media::base::AUDIO_DUAL_MONO_MODE mode) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript">abstract setAudioDualMonoMode(mode: AudioDualMonoMode): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetAudioDualMonoMode(AUDIO_DUAL_MONO_MODE mode);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript">abstract setAudioDualMonoMode(mode: AudioDualMonoMode): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAudioDualMonoMode(AudioDualMonoMode mode);</codeblock></p>
         </section>
         <section id="detailed_desc">
@@ -33,7 +33,7 @@
             <parml>
             <plentry>
                 <pt>mode</pt>
-                <pd><ph>声道模式。</ph><ph props="cpp mac ios unity flutter">详见 <xref keyref="AUDIO_DUAL_MONO_MODE" />。</ph>
+                <pd><ph>声道模式。</ph><ph props="cpp mac ios unity flutter rn electron">详见 <xref keyref="AUDIO_DUAL_MONO_MODE" />。</ph>
                     <ul props="android">
                     <li><ph keyref="AUDIO_DUAL_MONO_STEREO" /> (0): 原始模式。</li>
                     <li><ph keyref="AUDIO_DUAL_MONO_L" /> (1): 左声道模式。该模式用左声道的音频替换右声道的音频，即用户只能听到左声道的音频。</li>
@@ -42,7 +42,7 @@
                     </ul> </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功</li>

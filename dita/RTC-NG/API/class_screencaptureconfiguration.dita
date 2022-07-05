@@ -18,7 +18,14 @@
 
   ScreenCaptureConfiguration() : isCaptureWindow(false), displayId(0) {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export class ScreenCaptureConfiguration {
+  isCaptureWindow?: boolean
+  displayId?: number
+  screenRect?: Rectangle
+  windowId?: any
+  params?: ScreenCaptureParameters
+  regionRect?: Rectangle
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class ScreenCaptureConfiguration
     {
         public ScreenCaptureConfiguration()
@@ -70,8 +77,7 @@
                 <pt>isCaptureWindow</pt>
                 <pd>是否采集屏幕上的窗口：
 
-                    
-                    
+
                     <ul id="ul_ln3_hwd_mqb">
                     <li><codeph><ph keyref="true"/></codeph>：采集窗口。</li>
                     <li><codeph><ph keyref="false"
@@ -82,30 +88,25 @@
                 <pt>displayId</pt>
                 <pd>（仅适用于 macOS 平台）屏幕的 display ID。
 
-                    
-                    
-                    <note id="note_w12_4wd_mqb" type="attention"
-                    >请仅在 Mac 设备上采集屏幕时使用该参数。</note></pd>
+
+                    <note id="note_w12_4wd_mqb" type="attention">请仅在 Mac 设备上采集屏幕时使用该参数。</note></pd>
             </plentry>
             <plentry>
                 <pt>screenRect</pt>
                 <pd>（仅适用于 Windows 平台）待共享的屏幕相对于虚拟屏的位置。
 
-                    
-                    
-                    <note type="attention" id="note_ifh_swd_mqb"
-                    >请仅在 Windows 设备上采集屏幕时使用该参数。</note></pd>
+
+                    <note type="attention" id="note_ifh_swd_mqb">请仅在 Windows 设备上采集屏幕时使用该参数。</note></pd>
             </plentry>
             <plentry>
                 <pt>windowId</pt>
                 <pd>（仅适用于 Windows 和 macOS 平台）窗口 ID。
 
-                    
-                    
+
                     <note type="attention">请仅在采集窗口时使用该参数。</note></pd>
             </plentry>
             <plentry>
-                <pt props="cpp flutter">params</pt>
+                <pt props="cpp electron rn flutter">params</pt>
                 <pt props="unity">parameters</pt>
                 <pd>（仅适用于 Windows 和 macOS 平台）屏幕共享流的编码参数配置。详见 <xref
                     keyref="ScreenCaptureParameters"/>。</pd>

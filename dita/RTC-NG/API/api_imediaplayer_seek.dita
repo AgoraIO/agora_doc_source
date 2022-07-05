@@ -18,9 +18,9 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)seekToPosition:(NSInteger)position;
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int seek(int64_t newPos) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript">abstract seek(newPos: number): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int Seek(Int64 newPos);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript">abstract seek(newPos: number): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; seek(int newPos);</codeblock> </p>
         </section>
         <section id="detailed_desc">
@@ -35,12 +35,12 @@
             <title>参数</title>
             <parml>
             <plentry>
-                <pt props="android cpp unity flutter">newPos</pt>
+                <pt props="android cpp unity rn electron flutter">newPos</pt>
                 <pt props="ios mac">position</pt>
                 <pd>指定的位置（毫秒）。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul id="ul_uns_l2y_hqb">
             <li>0: 方法调用成功。</li>
