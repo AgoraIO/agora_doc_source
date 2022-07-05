@@ -106,7 +106,37 @@
   alpha?: number;
   audioChannel?: number;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class TranscodingUser {
+  const TranscodingUser(
+      {this.uid,
+      this.x,
+      this.y,
+      this.width,
+      this.height,
+      this.zOrder,
+      this.alpha,
+      this.audioChannel});
+
+  @JsonKey(name: 'uid')
+  final int? uid;
+  @JsonKey(name: 'x')
+  final int? x;
+  @JsonKey(name: 'y')
+  final int? y;
+  @JsonKey(name: 'width')
+  final int? width;
+  @JsonKey(name: 'height')
+  final int? height;
+  @JsonKey(name: 'zOrder')
+  final int? zOrder;
+  @JsonKey(name: 'alpha')
+  final double? alpha;
+  @JsonKey(name: 'audioChannel')
+  final int? audioChannel;
+  factory TranscodingUser.fromJson(Map&lt;String, dynamic> json) =>
+      _$TranscodingUserFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$TranscodingUserToJson(this);
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
@@ -120,24 +150,24 @@
                     <p>主播的用户 ID。</p>
                 </pd>
             </plentry>
-            <plentry props="android cpp unity electron rn">
+            <plentry props="android cpp unity electron rn flutter">
                 <pt>x</pt>
                 <pd>
                     <p>主播视频画面在输出视频画面的 x 坐标 (pixel)，以输出视频画面的左上角为原点。取值范围为[0,width]，width 为 <xref
                     keyref="LiveTranscoding"/> 中设置的 <codeph>width</codeph>。</p>
                 </pd>
             </plentry>
-            <plentry props="android cpp unity electron rn">
+            <plentry props="android cpp unity electron rn flutter">
                 <pt>y</pt>
                 <pd>主播视频画面在输出视频画面的 y 坐标 (pixel)，以输出视频画面的左上角为原点。取值范围为[0,height]，height 为 <xref
                     keyref="LiveTranscoding"
                     /> 中设置的 <codeph>height</codeph>。</pd>
             </plentry>
-            <plentry props="android cpp unity electron rn">
+            <plentry props="android cpp unity electron rn flutter">
                 <pt>width</pt>
                 <pd>主播视频画面的宽 (pixel)。</pd>
             </plentry>
-            <plentry props="android cpp unity electron rn">
+            <plentry props="android cpp unity electron rn flutter">
                 <pt>height</pt>
                 <pd>
                     <p>主播视频画面的高 (pixel)。</p>
