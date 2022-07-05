@@ -61,7 +61,22 @@
   vad?: number;
   voicePitch?: number;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+<codeblock props="flutter" outputclass="language-dart">class AudioVolumeInfo {
+    const AudioVolumeInfo({this.uid, this.volume, this.vad, this.voicePitch});
+  
+    @JsonKey(name: 'uid')
+    final int? uid;
+    @JsonKey(name: 'volume')
+    final int? volume;
+    @JsonKey(name: 'vad')
+    final int? vad;
+    @JsonKey(name: 'voicePitch')
+    final double? voicePitch;
+    factory AudioVolumeInfo.fromJson(Map&lt;String, dynamic> json) =>
+        _$AudioVolumeInfoFromJson(json);
+    Map&lt;String, dynamic> toJson() => _$AudioVolumeInfoToJson(this);
+  }
+  </codeblock> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
@@ -101,7 +116,8 @@
                 <pd>
                     <p>本地用户的人声音调（Hz）。取值范围为 [0.0,4000.0]。
                </p>
-                    <note type="attention"><parmname>voicePitch</parmname> 无法报告远端用户的人声音调。对于远端用户，<parmname>voicePitch</parmname> 的值始终为 0.0。</note>
+                    <note type="attention"
+                    ><parmname>voicePitch</parmname> 无法报告远端用户的人声音调。对于远端用户，<parmname>voicePitch</parmname> 的值始终为 0.0。</note>
                 </pd>
             </plentry>
             </parml> </section>
