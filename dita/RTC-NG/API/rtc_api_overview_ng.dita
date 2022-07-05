@@ -191,11 +191,11 @@
                 <stentry><xref keyref="setDefaultMuteAllRemoteAudioStreams"/></stentry>
                 <stentry><ph conkeyref="setDefaultMuteAllRemoteAudioStreams/shortdesc"/></stentry>
             </strow>
-            <strow props="cpp android unity electron flutter">
+            <strow props="cpp android unity flutter">
                 <stentry><xref keyref="getAudioDeviceInfo"/></stentry>
                 <stentry><ph conkeyref="getAudioDeviceInfo/shortdesc"/></stentry>
             </strow>
-            <strow props="unity flutter">
+            <strow props="unity flutter electron">
                 <stentry><xref keyref="getAudioDeviceManager"/></stentry>
                 <stentry><ph conkeyref="getAudioDeviceManager/shortdesc"/></stentry>
             </strow>
@@ -224,16 +224,12 @@
                 <stentry><ph conkeyref="setView/shortdesc"/></stentry>
             </strow>
             <strow props="electron">
-                <stentry><xref keyref="destroyRenderer"/></stentry>
-                <stentry><ph conkeyref="destroyRenderer/shortdesc"/></stentry>
+                <stentry><xref keyref="destroyRendererByConfig"/></stentry>
+                <stentry><ph conkeyref="destroyRendererByConfig/shortdesc"/></stentry>
             </strow>
             <strow props="electron">
-                <stentry><xref keyref="setVideoRenderDimension"/></stentry>
-                <stentry><ph conkeyref="setVideoRenderDimension/shortdesc"/></stentry>
-            </strow>
-            <strow props="electron">
-                <stentry><xref keyref="setVideoRenderFPS"/></stentry>
-                <stentry><ph conkeyref="setVideoRenderFPS/shortdesc"/></stentry>
+                <stentry><xref keyref="destroyRendererByView"/></stentry>
+                <stentry><ph conkeyref="destroyRendererByView/shortdesc"/></stentry>
             </strow>
             <strow props="unity">
                 <stentry><xref keyref="setForUser"/></stentry>
@@ -577,7 +573,7 @@
                 <stentry><xref keyref="enableVirtualBackground"/></stentry>
                 <stentry><ph conkeyref="enableVirtualBackground/shortdesc"/></stentry>
             </strow>
-            <strow props="android ios cpp unity rn electron">
+            <strow props="android ios cpp unity rn">
                 <stentry><xref keyref="enableRemoteSuperResolution"/></stentry>
                 <stentry><ph conkeyref="enableRemoteSuperResolution/shortdesc"/></stentry>
             </strow>
@@ -905,7 +901,7 @@
                 <stentry><xref keyref="setScreenCaptureContentHint"/></stentry>
                 <stentry><ph conkeyref="setScreenCaptureContentHint/shortdesc"/><ph props="cpp unity">（仅适用于 Windows 和 macOS）</ph></stentry>
             </strow>
-            <strow props="cpp unity flutter">
+            <strow props="cpp unity electron flutter">
                 <stentry><xref keyref="updateScreenCaptureRegion1"/></stentry>
                 <stentry><ph conkeyref="updateScreenCaptureRegion1/shortdesc"/><ph props="cpp unity">（仅适用于 Windows 和 macOS）</ph></stentry>
             </strow>
@@ -917,7 +913,7 @@
                 <stentry><xref keyref="startScreenCapture"/></stentry>
                 <stentry><ph conkeyref="startScreenCapture/shortdesc"/><ph props="cpp unity">（仅适用于 Windows 和 Android）</ph></stentry>
             </strow>
-            <strow props="android cpp mac unity flutter">
+            <strow props="android cpp mac unity electron flutter">
                 <stentry><xref keyref="stopScreenCapture"/></stentry>
                 <stentry><ph conkeyref="stopScreenCapture/shortdesc"/><ph props="cpp unity flutter">（仅适用于 Android、Windows 和 macOS）</ph></stentry>
             </strow>
@@ -933,21 +929,13 @@
                 <stentry><xref keyref="release_IScreenCaptureSourceList"/></stentry>
                 <stentry><ph conkeyref="release_IScreenCaptureSourceList/shortdesc"/>（仅适用于 Windows）</stentry>
             </strow>
-            <strow props="electron">
-                <stentry><xref keyref="getWindowsInfo"/></stentry>
-                <stentry><ph conkeyref="getWindowsInfo/shortdesc"/></stentry>
-            </strow>
-            <strow props="electron">
-                <stentry><xref keyref="getScreensInfo"/></stentry>
-                <stentry><ph conkeyref="getScreensInfo/shortdesc"/></stentry>
-            </strow>
             <strow props="mac">
                 <stentry><xref keyref="updateScreenCaptureRegion2"/></stentry>
                 <stentry><ph conkeyref="updateScreenCaptureRegion2/shortdesc"/></stentry>
             </strow>
             <strow props="mac electron flutter">
                 <stentry><xref keyref="updateScreenCaptureParameters"/></stentry>
-                <stentry><ph conkeyref="updateScreenCaptureParameters/shortdesc"/><ph props="electron">（仅适用于 macOS）</ph></stentry>
+                <stentry><ph conkeyref="updateScreenCaptureParameters/shortdesc"/><ph props="electron flutter">（仅适用于 macOS）</ph></stentry>
             </strow>
             </simpletable> </section>
         <section id="dual_video_stream_mode">
@@ -1278,7 +1266,7 @@
                 <stentry><ph conkeyref="onChannelMediaRelayEvent/shortdesc"/></stentry>
             </strow>
             </simpletable> </section>
-        <section id="custom_audio_source">
+        <section id="custom_audio_source" props="native unity">
             <title>自定义音频采集</title>
             <simpletable>
             <sthead>
@@ -1606,7 +1594,7 @@
                 <stentry><xref keyref="onExtensionStopped"/></stentry>
                 <stentry><ph conkeyref="onExtensionStopped/shortdesc"/></stentry>
             </strow>
-            <strow props="native rn electron">
+            <strow props="native rn electron flutter">
                 <stentry><xref keyref="onExtensionError"/></stentry>
                 <stentry><ph conkeyref="onExtensionError/shortdesc"/></stentry>
             </strow>
@@ -1922,9 +1910,9 @@
                 <stentry><ph conkeyref="stateChanged/shortdesc"/></stentry>
             </strow>
             </simpletable> </section>
-        <section props="cpp unity flutter" id="section_ts1_shw_jqb">
+        <section props="cpp unity flutter electron" id="section_ts1_shw_jqb">
             <title>视频设备管理</title>
-            <note type="attention" props="cpp unity flutter">
+            <note type="attention" props="cpp unity flutter electron">
             <p>该组方法仅适用于 Windows。</p>
             </note> <simpletable id="simpletable_us1_shw_jqb">
             <sthead>
@@ -1943,7 +1931,7 @@
                 <stentry><xref keyref="getDevice_IVideoDeviceManager"/></stentry>
                 <stentry><ph conkeyref="getDevice_IVideoDeviceManager/shortdesc"/></stentry>
             </strow>
-            <strow props="cpp">
+            <strow props="cpp electron">
                 <stentry><xref keyref="release_IVideoDeviceManager"/></stentry>
                 <stentry><ph conkeyref="release_IVideoDeviceManager/shortdesc"/></stentry>
             </strow>
@@ -1983,7 +1971,7 @@
                 <stentry><ph conkeyref="release_IVideoDeviceCollection/shortdesc"/></stentry>
             </strow>
             </simpletable> </section>
-        <section props="cpp unity flutter" id="section_ys1_shw_jqb">
+        <section props="cpp unity flutter electron" id="section_ys1_shw_jqb">
             <title>音频设备管理器</title>
             <simpletable>
             <sthead>
@@ -2215,7 +2203,7 @@
                 <stentry><xref keyref="getErrorDescription"/></stentry>
                 <stentry><ph conkeyref="getErrorDescription/shortdesc"/></stentry>
             </strow>
-            <strow props="cpp electron">
+            <strow props="cpp">
                 <stentry><xref keyref="queryInterface"/></stentry>
                 <stentry><ph conkeyref="queryInterface/shortdesc"/></stentry>
             </strow>

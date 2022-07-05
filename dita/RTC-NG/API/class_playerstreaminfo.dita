@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_playerstreaminfo">
-    <title><ph keyref="PlayerStreamInfo" /></title>
+    <title><ph keyref="PlayerStreamInfo"/></title>
     <shortdesc id="short"><ph id="shortdesc">播放器媒体流的所有信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -128,25 +128,72 @@
   audioBitsPerSample?: number;
   duration?: number;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class PlayerStreamInfo {
+  const PlayerStreamInfo(
+      {this.streamIndex,
+      this.streamType,
+      this.codecName,
+      this.language,
+      this.videoFrameRate,
+      this.videoBitRate,
+      this.videoWidth,
+      this.videoHeight,
+      this.videoRotation,
+      this.audioSampleRate,
+      this.audioChannels,
+      this.audioBitsPerSample,
+      this.duration});
+
+  @JsonKey(name: 'streamIndex')
+  final int? streamIndex;
+  @JsonKey(name: 'streamType')
+  final MediaStreamType? streamType;
+  @JsonKey(name: 'codecName')
+  final String? codecName;
+  @JsonKey(name: 'language')
+  final String? language;
+  @JsonKey(name: 'videoFrameRate')
+  final int? videoFrameRate;
+  @JsonKey(name: 'videoBitRate')
+  final int? videoBitRate;
+  @JsonKey(name: 'videoWidth')
+  final int? videoWidth;
+  @JsonKey(name: 'videoHeight')
+  final int? videoHeight;
+  @JsonKey(name: 'videoRotation')
+  final int? videoRotation;
+  @JsonKey(name: 'audioSampleRate')
+  final int? audioSampleRate;
+  @JsonKey(name: 'audioChannels')
+  final int? audioChannels;
+  @JsonKey(name: 'audioBitsPerSample')
+  final int? audioBitsPerSample;
+  @JsonKey(name: 'duration')
+  final int? duration;
+  factory PlayerStreamInfo.fromJson(Map&lt;String, dynamic> json) =>
+      _$PlayerStreamInfoFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$PlayerStreamInfoToJson(this);
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>streamIndex</pt>
                 <pd>媒体流的索引值。</pd>
             </plentry>
             <plentry>
-                <pt props="ios mac cpp unity electron rn">streamType</pt>
+                <pt props="ios mac cpp unity electron rn flutter">streamType</pt>
                 <pt props="android">mediaStreamType</pt>
-                <pd><ph>此条媒体流的类型。</ph><ph props="ios mac cpp unity electron rn">详见 <xref keyref="MEDIA_STREAM_TYPE" />。</ph>
+                <pd><ph>此条媒体流的类型。</ph><ph props="ios mac cpp unity electron rn flutter">详见 <xref keyref="MEDIA_STREAM_TYPE" />。</ph>
                     <ul props="android">
-                    <li><ph keyref="STREAM_TYPE_UNKNOWN" /> (0): 未知类型。</li>
-                    <li><ph keyref="STREAM_TYPE_VIDEO" /> (1): 视频流。</li>
-                    <li><ph keyref="STREAM_TYPE_AUDIO" /> (2): 音频流。</li>
-                    <li><ph keyref="STREAM_TYPE_SUBTITLE" /> (3): 字幕流。</li>
+                    <li><ph keyref="STREAM_TYPE_UNKNOWN"/> (0): 未知类型。</li>
+                    <li><ph keyref="STREAM_TYPE_VIDEO"/> (1): 视频流。</li>
+                    <li><ph keyref="STREAM_TYPE_AUDIO"/> (2): 音频流。</li>
+                    <li><ph keyref="STREAM_TYPE_SUBTITLE"/> (3): 字幕流。</li>
                     </ul> </pd>
             </plentry>
             <plentry>
@@ -174,7 +221,7 @@
                 <pd>该参数仅对视频流生效，表示视频高度 (pixel)。</pd>
             </plentry>
             <plentry>
-                <pt props="android unity cpp electron rn">videoRotation</pt>
+                <pt props="android unity cpp electron rn flutter">videoRotation</pt>
                 <pt props="ios mac">rotation</pt>
                 <pd>该参数仅对视频流生效，表示旋转角度。</pd>
             </plentry>
@@ -186,8 +233,8 @@
                 <pt>audioChannels</pt>
                 <pd>该参数仅对音频流生效，表示声道数。</pd>
             </plentry>
-            <plentry props="android cpp unity electron rn">
-                <pt props="cpp unity electron rn">audioBitsPerSample</pt>
+            <plentry props="android cpp unity electron rn flutter">
+                <pt props="cpp unity electron rn flutter">audioBitsPerSample</pt>
                 <pt props="android">audioBytesPerSample</pt>
                 <pd>该参数仅对音频流生效，表示每个音频采样点的位数 (bit)。</pd>
             </plentry>

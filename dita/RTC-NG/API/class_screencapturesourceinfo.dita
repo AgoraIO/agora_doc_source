@@ -55,7 +55,40 @@
         }
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class ScreenCaptureSourceInfo {
+  const ScreenCaptureSourceInfo(
+      {this.type,
+      this.sourceId,
+      this.sourceName,
+      this.thumbImage,
+      this.iconImage,
+      this.processPath,
+      this.sourceTitle,
+      this.primaryMonitor,
+      this.isOccluded});
+
+  @JsonKey(name: 'type')
+  final ScreenCaptureSourceType? type;
+  @JsonKey(name: 'sourceId')
+  final int? sourceId;
+  @JsonKey(name: 'sourceName')
+  final String? sourceName;
+  @JsonKey(name: 'thumbImage')
+  final ThumbImageBuffer? thumbImage;
+  @JsonKey(name: 'iconImage')
+  final ThumbImageBuffer? iconImage;
+  @JsonKey(name: 'processPath')
+  final String? processPath;
+  @JsonKey(name: 'sourceTitle')
+  final String? sourceTitle;
+  @JsonKey(name: 'primaryMonitor')
+  final bool? primaryMonitor;
+  @JsonKey(name: 'isOccluded')
+  final bool? isOccluded;
+  factory ScreenCaptureSourceInfo.fromJson(Map&lt;String, dynamic> json) =>
+      _$ScreenCaptureSourceInfoFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$ScreenCaptureSourceInfoToJson(this);
+}</codeblock>
             </p>
         </section>
         <section id="parameters">

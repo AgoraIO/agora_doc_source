@@ -33,7 +33,17 @@
   audioSpectrumData?: number[];
   dataLength?: number;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+<codeblock props="flutter" outputclass="language-dart">class AudioSpectrumData {
+    const AudioSpectrumData({this.audioSpectrumData, this.dataLength});
+  
+    @JsonKey(name: 'audioSpectrumData')
+    final List&lt;double>? audioSpectrumData;
+    @JsonKey(name: 'dataLength')
+    final int? dataLength;
+    factory AudioSpectrumData.fromJson(Map&lt;String, dynamic> json) =>
+        _$AudioSpectrumDataFromJson(json);
+    Map&lt;String, dynamic> toJson() => _$AudioSpectrumDataToJson(this);
+  }</codeblock> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
