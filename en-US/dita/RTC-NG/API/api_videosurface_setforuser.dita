@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_videosurface_setforuser">
+    <title><ph keyref="setForUser"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the local or remote video display.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setForUser"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">public void SetForUser(uint uid = 0, string channelId = "",
+VIDEO_SOURCE_TYPE source_type = VIDEO_SOURCE_TYPE.VIDEO_SOURCE_CAMERA_PRIMARY)
+{
+Uid = uid;
+ChannelId = channelId;
+SourceType = source_type;
+}</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <note type="attention">
+            <ul>
+            <li>Ensure that you call this method in the main thread.</li>
+            <li>Ensure that you call this method before binding VideoSurface.cs.</li>
+            </ul></note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>uid</pt>
+                <pd>远端用户的 ID，通过 <xref keyref="onUserJoined"/> 获得。 The default value is 0, which means you can see the local video.</pd>
+            </plentry>
+            <plentry>
+                <pt>channelId</pt>
+                <pd>The ID of the channel.</pd>
+            </plentry>
+            <plentry>
+                <pt>source_type</pt>
+                <pd>The type of the video source, see <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>
