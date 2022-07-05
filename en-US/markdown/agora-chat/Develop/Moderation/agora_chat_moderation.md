@@ -1,5 +1,3 @@
-# Content Moderation
-
 Delivering a safe and appropriate chat environment to your users is essential. Agora Chat gives you multiple options to intelligently moderate the chat content and handle inappropriate user behavior.
 
 - The following message management tools are available:
@@ -9,7 +7,7 @@ Delivering a safe and appropriate chat environment to your users is essential. A
 
 ## Prerequisites
 
-- You have created a valid [Agora developer account](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#create-an-agora-account).
+- You have created a valid [Agora developer account](/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#create-an-agora-account).
 - You have subscribed to the Pro or Enterprise pricing plan of Agora Chat.
 
 ## Enable the moderation feature
@@ -17,7 +15,7 @@ Delivering a safe and appropriate chat environment to your users is essential. A
 1. Log in to Agora Console.
 2. In the left navigation menu, click **Project Management** > **Config** for the project for which you want to enable the moderation feature > **Config** of Chat > **Features** > **Overview**.
 3. On the **Chat Overview** page, turn on the switch of a specific moderation option, as shown in the following figure:
-   ![enable_moderation_en](../../images/moderation/enable_moderation_en.png)
+	 ![enable_moderation_en](https://web-cdn.agora.io/docs-files/1656312916879)
 
 ## Message management
 
@@ -41,8 +39,8 @@ To use the reporting feature, you need to call the reporting API when you develo
 After a user reports a message from the application, moderators can check and deal with the report on Agora Console:
 
 1. To enter the **Message Report** page, in the left navigation menu, click **Project Management** > **Config** for the project that you want > **Config** of Chat > **Message Report** > **History**, as shown in the following figure:
-
-   ![report_en](../../images/moderation/report_en.png)
+	 
+	 ![report_en](https://web-cdn.agora.io/docs-files/1656312948783)
 
 2. On the **Message Report** page, moderators can filter the message report items by time period, session type, or handling method. They can also search for a specific report item by user ID, group ID, or chat room ID. For the reports, Agora Chat supports two handling methods: withdrawing the message or asking the sender to process the message.
 
@@ -65,12 +63,12 @@ To see how moderation works and determine which moderation settings suit your ne
 Taking a one-to-one chat text as an example, follow these steps to create a text moderation rule:
 
 1. To enter the **Rule Config** page, in the left navigation menu, click **Project Management** > **Config** for the project for which you want > **Config** of Chat > **Text Moderation** or **Image Moderation** > **Rule Config**, as shown in the following figure:
-
-   ![text_rule_en](../../images/moderation/text_rule_en.png)
+	 
+	 ![text_rule_en](https://web-cdn.agora.io/docs-files/1656312971641)
 
 2. To create a text moderation rule, click **Add**:
-
-   ![text_rule_create_en](../../images/moderation/text_rule_create_en.png)
+	 
+	 ![text_rule_create_en](https://web-cdn.agora.io/docs-files/1656312986832)
 
    The following table lists the fields that a text moderation rule supports:
 
@@ -79,19 +77,19 @@ Taking a one-to-one chat text as an example, follow these steps to create a text
    | Rule name | The rule name. |
    | Conversation type | The moderation scope, which can be one of the following: a one-to-one chat, chat group or chat room, chat groups or chat rooms. If you set a rule for a specific chat group or room, the global moderation rules for chat groups and rooms are overwritten. |
    | Enable | Determines whether to turn a rule on or off. |
-   | Message handling | <ul><li>When the moderation result is **Rejected**, you can set the action on the moderated message to one of the following options:<ul><li>Blocks the message. Agora recommends using this setting for online messages after you fully test this moderation rule and ensure it suits your needs.</li><li>(Default) Sends the message. Agora recommends using this setting when you are testing this moderation rule and do not want this rule to affect online messages.</li><li>Replaces the message with \*\*\*.</li></ul></li><li>When the moderation action fails (for example, the timeout period of the text audit interface is 200 milliseconds; if no result  is returned within 200 milliseconds, this moderation action times out), the message processing policy can be set to one of the following options:<ul><li>Blocks the message.</li><li>(Default) Sends the message.</li><li> If the action on the moderated message is set as **Blocks the message**, the `508, MESSAGE_EXTERNAL_LOGIC_BLOCKED` error is returned after the message is blocked. You can set whether to indicate this error in the application. If you choose to indicate this error in the application, a red exclamation mark is displayed before the blocked message.</li></ul> |
+   | Message handling | <ul><li>When the moderation result is **Rejected**, you can set the action on the moderated message to one of the following options:<ul><li>Blocks the message. Agora recommends using this setting for online messages after you fully test this moderation rule and ensure it suits your needs.</li><li>(Default) Sends the message. Agora recommends using this setting when you are testing this moderation rule and do not want this rule to affect online messages.</li><li>Replaces the message with \*\*\*.</li></ul></li><li>When the moderation action fails (for example, the timeout period of the text audit interface is 200 milliseconds; if no result  is returned within 200 milliseconds, this moderation action times out), the message processing policy can be set to one of the following options:<ul><li>Blocks the message.</li><li>(Default) Sends the message.</li><li>If the action on the moderated message is set as **Blocks the message**, the `508, MESSAGE_EXTERNAL_LOGIC_BLOCKED` error is returned after the message is blocked. You can set whether to indicate this error in the application. If you choose to indicate this error in the application, a red exclamation mark is displayed before the blocked message.</li></ul></li></ul> |
    | Rule | Sets the threshold for each moderation category. |
    | User management | Imposes a penalty on users who reach the violation limit within a time period. The moderation penalties include the following: banning the user, forcing the user to go offline, or deleting the user. |
 
 3. After creating a rule, you can **edit** or **delete** the rule:
 
-   ![text_rule_edit_en](../../images/moderation/text_rule_edit_en.png)
+	 ![text_rule_edit_en](https://web-cdn.agora.io/docs-files/1656313385253)
 
 #### Conduct a text or image moderation rule test
 
 1. To enter the **Rule Test** page, in the left navigation menu, click **Project Management** > **Config** for the project that you want > **Config** of Chat > **Text Moderation** or **Image Moderation** > **Rule Test**, as shown in the following figure:
 
-   ![text_rule_test_en](../../images/moderation/text_rule_test_en.png)
+	 ![text_rule_test_en](https://web-cdn.agora.io/docs-files/1656313401953)
 
 2. Select a rule, fill in the text to moderate, and click **Check** to test the rule. The moderation result is displayed on the same page.
 
@@ -103,7 +101,7 @@ Follow these steps to specify a profanity filter configuration:
 
 1. To enter the **Rule Config** page, in the left navigation menu, click **Project Management** > **Config** for the project that you want > **Config** of Chat > **Word List** > **Rule Config**, as shown in the following figure:
 
-   ![keyword_en](../../images/moderation/keyword_en.png)
+	 ![keyword_en](https://web-cdn.agora.io/docs-files/1656313419195)
 
 2. On the **Rule Config** page, you can add or delete words and determine which filtering method to apply to messages that contain the specified keywords. You can replace the word with \*\*\* or simply not send the word.
 
@@ -114,12 +112,12 @@ The domain filter can detect and filter out certain domains contained in message
 Follow these steps to specify a domain filter configuration:
 
 1. To enter the **Rule Config** page, in the left navigation menu, click **Project Management** > **Config** for the project that you want > **Config** of Chat > **Domain Filter** > **Rule Config**, as shown in the following figure:
-
-   ![domain_en](../../images/moderation/domain_en.png)
+	 
+	 ![domain_en](https://web-cdn.agora.io/docs-files/1656313436703)
 
 2. To create a domain filtering rule, click **Add**:
 
-   ![domain_rule_en](../../images/moderation/domain_rule_en.png)
+	 ![domain_rule_en](https://web-cdn.agora.io/docs-files/1656313449970)
 
    The following table lists the fields that a domain filtering rule supports:
 
@@ -134,13 +132,13 @@ Follow these steps to specify a domain filter configuration:
 
 3. After creating a rule, you can **edit** or **delete** the rule:
    
-   ![domain_rule_edit_en](../../images/moderation/domain_rule_edit_en.png)
+	 ![domain_rule_edit_en](https://web-cdn.agora.io/docs-files/1656313466023)
 
 ### Check the moderation history
 
 You can check the history of the **text moderation**, **image moderation**, **profanity filter**, and **domain filter** on Agora Console. You can filter the moderation items by the time period, session type, or moderation result. You can also search for a specific item by the sender ID or receiver ID.
 
-![history](Moderation_Image/history.png)
+![history](https://web-cdn.agora.io/docs-files/1657017751717)
 
 ## User management
 
@@ -193,43 +191,44 @@ You can impose a penalty on users for repeated violations. The penalties can be 
    <tr>
 </table>
 
-
-
 ### Take global actions on users
 
 1. To enter the **User Management** page, in the left navigation menu, click **Project Management** > **Config** for the project that you want > **Config** of Chat > **Operation Management** > **User**, as shown in the following figure:
 
-​      ![user_manage](Moderation_Image/user_manage.png)
+    ![user_manage](https://web-cdn.agora.io/docs-files/1657017861309)
 
 2. To take action on a user (banning a user, deleting a user, or forcing a user to go offline), search for the user ID, and click **More**:
 
-​      ![user_manage_action](Moderation_Image/user_manage_action.png)
+   ![user_manage_action](https://web-cdn.agora.io/docs-files/1657017977179)
 
 ### Take actions on chat group members
 
 1. To enter the Chat Group Management page, in the left navigation menu, click **Project Management** > **Config** for the project that you want > **Config** of Chat > **Operation Management** > **Group**, as shown in the following figure:
-   ![group_manage](Moderation_Image/group_manage.png)
+
+   ![group_manage](https://web-cdn.agora.io/docs-files/1657018187786)
 
 2. To take action on a group member (removing a member from the group or adding a user to the group blocklist), search for the group ID, and click **More**:
 
-​      ![group_manage_action](Moderation_Image/group_manage_action.png)
+   ![group_manage_action](https://web-cdn.agora.io/docs-files/1657018261864)
 
 3. You can also click the group ID to enter the group's moderation dashboard, where you can manage the group info, group members, and messages in real-time:
 
    > To use this feature, you need to enable it on the **Features** > **Overview** page.
 
-   ![group_manage_live](Moderation_Image/group_manage_live.png)
+   ![group_manage_live](https://web-cdn.agora.io/docs-files/1657018366024)
 
 ### Take actions on chat room members
 
 1. To enter the Chat Room Management page, in the left navigation menu, click **Project Management** > **Config** for the project that you want > **Config** of Chat > **Chat Room Management**, as shown in the following figure:
-   ![room_manage](Moderation_Image/room_manage.png)
+   
+	 ![room_manage](https://web-cdn.agora.io/docs-files/1657018521135)
 
 2. To take action on a room member (removing a member from the room or adding a user to the room blocklist), search for the room ID, and click **More**:
-   ![room_manage_action](Moderation_Image/room_manage_action.png)
+   
+	 ![room_manage_action](https://web-cdn.agora.io/docs-files/1657018546001)
 
 3. You can also click the room ID to enter the room's moderation dashboard, where you can manage the room info, room members, and messages in real-time:
 
    > To use this feature, you need to enable it on the **Features** > **Overview** page.
 
-​      ![room_manage_live](Moderation_Image/room_manage_live.png)
+   ![room_manage_live](https://web-cdn.agora.io/docs-files/1657018564652)
