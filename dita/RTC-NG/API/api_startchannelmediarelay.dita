@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startchannelmediarelay">
-    <title><ph keyref="startChannelMediaRelay"/></title>
+    <title><ph keyref="startChannelMediaRelay" /></title>
     <shortdesc id="short"><ph id="shortdesc">开始跨频道媒体流转发。该方法可用于实现跨频道连麦等场景。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="startChannelMediaRelay"/>
+                <indexterm keyref="startChannelMediaRelay" />
             </keywords>
         </metadata>
     </prolog>
@@ -26,21 +26,21 @@
       ChannelMediaRelayConfiguration configuration);</codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>成功调用该方法后，SDK 会触发 <xref keyref="onChannelMediaRelayStateChanged"/> 和 <xref keyref="onChannelMediaRelayEvent"/> 回调，并在回调中报告当前的跨频道媒体流转发状态和事件。
+            <p>成功调用该方法后，SDK 会触发 <xref keyref="onChannelMediaRelayStateChanged" /> 和 <xref keyref="onChannelMediaRelayEvent" /> 回调，并在回调中报告当前的跨频道媒体流转发状态和事件。
 
 
 
 
             <ul>
-            <li>如果 <apiname keyref="onChannelMediaRelayStateChanged"/> 回调报告 <apiname keyref="RELAY_STATE_RUNNING"/> (2) 和 <apiname keyref="RELAY_OK"/> (0)，且 <apiname keyref="onChannelMediaRelayEvent"/> 回调报告 <apiname keyref="RELAY_EVENT_PACKET_SENT_TO_DEST_CHANNEL"/> (4)， 则表示 SDK 开始在源频道和目标频道之间转发媒体流。</li>
-            <li>如果 <apiname keyref="onChannelMediaRelayStateChanged"/> 回调报告 <apiname keyref="RELAY_STATE_FAILURE"/> (3)， 则表示跨频道媒体流转发出现异常。</li>
+            <li>如果 <apiname keyref="onChannelMediaRelayStateChanged" /> 回调报告 <apiname keyref="RELAY_STATE_RUNNING" /> (2) 和 <apiname keyref="RELAY_OK" /> (0)，且 <apiname keyref="onChannelMediaRelayEvent" /> 回调报告 <apiname keyref="RELAY_EVENT_PACKET_SENT_TO_DEST_CHANNEL" /> (4)， 则表示 SDK 开始在源频道和目标频道之间转发媒体流。</li>
+            <li>如果 <apiname keyref="onChannelMediaRelayStateChanged" /> 回调报告 <apiname keyref="RELAY_STATE_FAILURE" /> (3)， 则表示跨频道媒体流转发出现异常。</li>
             </ul> </p>
             <note type="attention">
             <ul>
             <li>请在成功加入频道后调用该方法。</li>
             <li>在直播场景中，只有角色为主播的用户才能调用该方法。</li>
-            <li>成功调用该方法后，若你想再次调用该方法，必须先调用 <xref keyref="stopChannelMediaRelay"/> 方法退出当前的转发状态。</li>
-            <li>跨频道媒体流转发功能需要<xref keyref="ticket-link"/>联系技术支持开通。</li>
+            <li>成功调用该方法后，若你想再次调用该方法，必须先调用 <xref keyref="stopChannelMediaRelay" /> 方法退出当前的转发状态。</li>
+            <li>跨频道媒体流转发功能需要<xref keyref="ticket-link" />联系技术支持开通。</li>
             <li>该功能不支持 String 型 UID。</li>
             </ul> </note> </section>
         <section id="parameters">
@@ -50,10 +50,10 @@
                 <pt props="android">channelMediaRelayConfiguration</pt>
                 <pt props="ios mac">config</pt>
                 <pt props="cpp unity flutter">configuration</pt>
-                <pd>跨频道媒体流转发参数配置。详见 <xref keyref="ChannelMediaRelayConfiguration"/>。</pd>
+                <pd>跨频道媒体流转发参数配置。详见 <xref keyref="ChannelMediaRelayConfiguration" />。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
+        <section id="return_values" props="native electron unity">
             <title>返回值</title>
             <ul>
             <li>0：方法调用成功</li>

@@ -20,11 +20,11 @@
             <codeblock props="electron" outputclass="language-typescript">abstract takeSnapshot(config: SnapShotConfig): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int TakeSnapshot(SnapShotConfig config);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract takeSnapshot(config: SnapShotConfig): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> takeSnapshot(SnapShotConfig config);</codeblock></p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; takeSnapshot(SnapShotConfig config);</codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>该方法用于对指定用户的视频流进行截图，生成一张 JPG 格式的图片，并保存至指定的路径。</p>
-            <p><ph>该方法是异步操作，调用返回时 SDK 并没有真正获取截图。</ph><ph props="native rn electron flutter">成功调用该方法后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调报告截图是否成功和获取截图的详情。</ph></p>
+            <p><ph>该方法是异步操作，调用返回时 SDK 并没有真正获取截图。</ph><ph props="native rn electron flutter">成功调用该方法后，SDK 会触发 <xref keyref="onSnapshotTaken" /> 回调报告截图是否成功和获取截图的详情。</ph></p>
             <note type="attention">
             <ul>
             <li>该方法需要在加入频道后调用。</li>
@@ -59,7 +59,7 @@
                     <pd>截图设置，详见 <xref keyref="snapShotConfig" />。</pd>
                 </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity rn electron">
+        <section id="return_values" props="native electron unity">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功。</li>
