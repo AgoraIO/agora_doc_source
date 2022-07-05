@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_joinchannelwithuseraccount">
-    <title><ph keyref="joinChannelWithUserAccount1" /></title>
+    <title><ph keyref="joinChannelWithUserAccount1"/></title>
     <shortdesc id="short"><ph id="shortdesc">使用 User Account 加入频道。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="joinChannelWithUserAccount1" />
+                <indexterm keyref="joinChannelWithUserAccount1"/>
             </keywords>
         </metadata>
     </prolog>
@@ -22,18 +22,19 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int joinChannelWithUserAccount(const char* token,
     const char* channelId,
     const char* userAccount) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">abstract joinChannelWithUserAccount(token: string, channelId: string, userAccount: string, options?: ChannelMediaOptions): number;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int JoinChannelWithUserAccount(string token, string channelId, string userAccount);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"></codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
             <p>该方法允许本地用户使用 User Account 加入频道。成功加入频道后，会触发以下回调：
 
 
+            
             <ul>
-            <li>本地：<xref keyref="onLocalUserRegistered" />、<xref keyref="onJoinChannelSuccess" /> 和 <xref keyref="onConnectionStateChanged" /> 回调。</li>
-            <li>通信场景下的用户和直播场景下的主播加入频道后，远端会依次触发 <xref keyref="onUserJoined" /> 和 <xref keyref="onUserInfoUpdated" /> 回调。</li>
+            <li>本地：<xref keyref="onLocalUserRegistered"/>、<xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/> 回调。</li>
+            <li>通信场景下的用户和直播场景下的主播加入频道后，远端会依次触发 <xref keyref="onUserJoined"/> 和 <xref keyref="onUserInfoUpdated"/> 回调。</li>
             </ul></p>
             <p>用户成功加入频道后，默认订阅频道内所有其他用户的音频流和视频流，因此产生用量并影响计费。如果想取消订阅，可以通过调用相应的 <apiname>mute</apiname> 方法实现。</p>
             <note type="attention" id="note">为保证通信质量，请确保频道内使用同一类型的数据标识用户身份。即同一频道内需要统一使用 UID 或 User Account。如果有用户通过 Agora Web SDK 加入频道，请确保 Web 加入的用户也是同样类型。</note> </section>
@@ -41,27 +42,23 @@
             <title>参数</title>
             <parml>
             <plentry conkeyref="joinChannel2/token">
-                <pt />
-                <pd />
+                <pt/>
+                <pd/>
             </plentry>
             <plentry>
                 <pt props="android">channelName</pt>
                 <pt props="cpp ios mac unity">channelId</pt>
                 <pd>
-                    <p conkeyref="joinChannel2/channelID_desc" />
+                    <p conkeyref="joinChannel2/channelID_desc"/>
                 </pd>
             </plentry>
             <plentry conkeyref="joinChannelWithUserAccount2/userAccount">
-                <pt />
-                <pd />
+                <pt/>
+                <pd/>
             </plentry>
             <plentry conkeyref="joinChannel2/joinsuccessblock" props="ios mac">
-                <pt />
-                <pd />
-            </plentry>
-            <plentry>
-                <pt>options</pt>
-                <pd>频道选项。详见 <xref keyref="ChannelMediaOptions"/>。</pd>
+                <pt/>
+                <pd/>
             </plentry>
             </parml> </section>
         <section id="return_values">
@@ -69,13 +66,11 @@
             <ul>
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。
-
-
                 <ul>
                 <li>-2(ERR_INVALID_ARGUMENT): 参数无效。</li>
                 <li>-3(ERR_NOT_READY): SDK 初始化失败，请尝试重新初始化 SDK。</li>
                 <li>-5(ERR_REFUSED): 调用被拒绝。</li>
-                <li>-17(ERR_JOIN_CHANNEL_REJECTED): 加入频道被拒绝。由于 SDK 仅支持用户同一时间加入一个 <xref keyref="IRtcEngine" /> 频道， 当已经加入 <xref keyref="IRtcEngine" /> 频道的用户使用有效的频道名再次调用 <xref keyref="IRtcEngine" /> 类中的加入频道方法时，会返回此错误码。</li>
+                <li>-17(ERR_JOIN_CHANNEL_REJECTED): 加入频道被拒绝。由于 SDK 仅支持用户同一时间加入一个 <xref keyref="IRtcEngine"/> 频道， 当已经加入 <xref keyref="IRtcEngine"/> 频道的用户使用有效的频道名再次调用 <xref keyref="IRtcEngine"/> 类中的加入频道方法时，会返回此错误码。</li>
                 </ul></li>
             </ul> </section>
     </refbody>
