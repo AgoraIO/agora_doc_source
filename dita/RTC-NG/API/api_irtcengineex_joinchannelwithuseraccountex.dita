@@ -24,7 +24,7 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int joinChannelWithUserAccountEx(const char* token, const char* channelId,
                                          const char* userAccount, const ChannelMediaOptions&amp; options,
                                          IRtcEngineEventHandler* eventHandler) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public int JoinChannelWithUserAccountEx(string token, string channelId,
                                                 string userAccount, ChannelMediaOptions options)</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract joinChannelWithUserAccountEx(
@@ -33,7 +33,7 @@
     userAccount: string,
     options: ChannelMediaOptions
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> joinChannelWithUserAccountEx(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; joinChannelWithUserAccountEx(
     {required String token,
     required String channelId,
     required String userAccount,
@@ -44,8 +44,8 @@
             <p props="rn electron" id="desc1">该方法允许本地用户使用 User Account 加入频道。成功加入频道后，会触发以下回调：
 
                 <ul>
-                <li>本地：<xref keyref="onLocalUserRegistered"/>、<xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/> 回调。</li>
-                <li>远端：通信场景下的用户和直播场景下的主播加入频道后，远端会分别触发 <xref keyref="onUserJoined"/> 和 <xref keyref="onUserInfoUpdated"/> 回调。</li>
+                <li>本地：<xref keyref="onLocalUserRegistered" />、<xref keyref="onJoinChannelSuccess" /> 和 <xref keyref="onConnectionStateChanged" /> 回调。</li>
+                <li>远端：通信场景下的用户和直播场景下的主播加入频道后，远端会分别触发 <xref keyref="onUserJoined" /> 和 <xref keyref="onUserInfoUpdated" /> 回调。</li>
                 </ul></p>
             <p props="native flutter unity" conkeyref="joinChannelWithUserAccount2/desc2" />
             <p props="rn electron" id="desc2">用户成功加入频道后，默认订阅频道内所有其他用户的音频流和视频流，因此产生用量并影响计费。如果想取消订阅，可以通过调用相应的 <apiname>mute</apiname> 方法实现。</p>
@@ -72,7 +72,7 @@
             <plentry props="rn electron" id="userAccount">
                 <pt>userAccount</pt>
                 <pd>
-                    <p>用户 User Account。该参数用于标识实时音视频互动频道中的用户。你需要自行设置和管理用户的 User Account，并确保同一频道中每个用户的 User Account 是唯一的。 该参数为必填，最大不超过 255 字节，不可填 <ph keyref="NULL"/>。以下为支持的字符集范围（共 89 个字符）：
+                    <p>用户 User Account。该参数用于标识实时音视频互动频道中的用户。你需要自行设置和管理用户的 User Account，并确保同一频道中每个用户的 User Account 是唯一的。 该参数为必填，最大不超过 255 字节，不可填 <ph keyref="NULL" />。以下为支持的字符集范围（共 89 个字符）：
 
                     <ul>
                     <li>26 个小写英文字母 a-z</li>
@@ -99,7 +99,7 @@
                 <pd />
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity">
+        <section id="return_values" props="native electron unity">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功。</li>
