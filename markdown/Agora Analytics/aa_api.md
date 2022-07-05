@@ -4,6 +4,7 @@ platform: All Platforms
 updatedAt: 2021-03-11 08:31:23
 ---
 水晶球现在提供 RESTful API，可以让你直接通过网络请求获取水晶球里的数据，在自己的网页或应用中灵活使用。
+THis is a random test
 
 在阅读本文之前，我们推荐你先在 [Dashboard](https://dashboard.agora.io) 中试用水晶球的界面，以便对各项参数和数据指标有更直观的了解，详情可参考[水晶球](./aa_guide)。
 
