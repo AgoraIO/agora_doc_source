@@ -26,7 +26,7 @@
      (void)reason;
      (void)elapsed;
      }</codeblock>
-               <codeblock props="electron" outputclass="language-typescript"/>
+               <codeblock props="electron" outputclass="language-typescript">onRemoteAudioStateChanged?(connection: RtcConnection, remoteUid: number, state: RemoteAudioState, reason: RemoteAudioStateReason, elapsed: number): void;</codeblock>
                <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteAudioStateChanged(RtcConnection connection, uint remoteUid, REMOTE_AUDIO_STATE state, REMOTE_AUDIO_STATE_REASON reason, int elapsed) {}</codeblock>
                <codeblock props="rn" outputclass="language-typescript">onRemoteAudioStateChanged?(
   connection: RtcConnection,
@@ -56,8 +56,7 @@
                >频道内的用户（通信场景）或主播（直播场景）人数超过 17 人时，该回调可能不准确。</note> </section>
           <section id="parameters">
                <title><ph keyref="callback-section-title"/></title>
-               <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"
-               />
+               <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
                <parml>
                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                     <pt/>
@@ -68,7 +67,7 @@
                     <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
                </plentry>
                <plentry id="uid">
-                    <pt props="native flutter">uid</pt>
+                    <pt props="native">uid</pt>
                     <pt props="unity flutter rn electron">remoteUid</pt>
                     <pd>发生音频状态改变的远端用户 ID。</pd>
                </plentry>

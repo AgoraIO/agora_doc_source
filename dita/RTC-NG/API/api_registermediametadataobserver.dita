@@ -17,7 +17,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)setMediaMetadataDelegate:(id&lt;AgoraMediaMetadataDelegate&gt; _Nullable)metadataDelegate withType:(AgoraMetadataType)type;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int registerMediaMetadataObserver(IMetadataObserver *observer, IMetadataObserver::METADATA_TYPE type) = 0;
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript">abstract registerMediaMetadataObserver(observer: IMetadataObserver, type: MetadataType): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract void RegisterMediaMetadataObserver(IMetadataObserver observer, METADATA_TYPE type);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract registerMediaMetadataObserver(
     observer: IMetadataObserver,
@@ -44,7 +44,7 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity">
+        <section id="return_values" props="native unity electron rn">
             <title>返回值</title>
             <ul>
             <li>0：方法调用成功。</li>

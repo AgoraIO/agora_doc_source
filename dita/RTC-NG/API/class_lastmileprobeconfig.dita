@@ -26,12 +26,12 @@
     unsigned int expectedUplinkBitrate;
     unsigned int expectedDownlinkBitrate;
     };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">export interface LastmileProbeConfig {
-    probeUplink: boolean;
-    probeDownlink: boolean;
-    expectedUplinkBitrate: number;
-    expectedDownlinkBitrate: number;
-    }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export class LastmileProbeConfig {
+  probeUplink?: boolean
+  probeDownlink?: boolean
+  expectedUplinkBitrate?: number
+  expectedDownlinkBitrate?: number
+}</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public class LastmileProbeConfig
     {
         public LastmileProbeConfig()
@@ -87,7 +87,7 @@
                     <p>是否探测上行网络。有些用户，如直播频道中的普通观众，不需要进行网络探测:
 
 
-                    
+
                     <ul>
                     <li><codeph><ph keyref="true" /></codeph>: 探测。</li>
                     <li><codeph><ph keyref="false" /></codeph>: 不探测。</li>
@@ -100,7 +100,7 @@
                     <p>是否探测下行网络。
 
 
-                    
+
                     <ul>
                     <li><codeph><ph keyref="true" /></codeph>: 探测。</li>
                     <li><codeph><ph keyref="false" /></codeph>: 不探测。</li>

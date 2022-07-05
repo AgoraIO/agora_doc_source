@@ -16,7 +16,7 @@
             <codeblock props="android" outputclass="language-java">public abstract int setAudioEffectPreset(int preset);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setAudioEffectPreset:(AgoraAudioEffectPreset)preset;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setAudioEffectPreset(AUDIO_EFFECT_PRESET preset) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract setAudioEffectPreset(preset: AudioEffectPreset): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetAudioEffectPreset(AUDIO_EFFECT_PRESET preset);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setAudioEffectPreset(preset: AudioEffectPreset): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAudioEffectPreset(AudioEffectPreset preset);</codeblock> </p>
@@ -43,6 +43,7 @@
 
 
 
+
                 <ul>
                 <li><xref keyref="setVoiceBeautifierPreset"/></li>
                 <li><xref keyref="setLocalVoicePitch"/></li>
@@ -57,8 +58,9 @@
             <parml>
             <plentry>
                 <pt>preset</pt>
-                <pd props="ios mac cpp unity flutter rn electron">预设的音效选项，详见 <xref keyref="AUDIO_EFFECT_PRESET" />。</pd>
+                <pd props="ios mac cpp unity flutter rn electron">预设的音效选项，详见 <xref keyref="AUDIO_EFFECT_PRESET"/>。</pd>
                 <pd props="android">预设的音效选项。
+
 
                     <ul>
                     <li><ph keyref="AUDIO_EFFECT_OFF"/>: 原声，即关闭人声音效。</li>

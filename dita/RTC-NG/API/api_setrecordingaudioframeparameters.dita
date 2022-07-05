@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setrecordingaudioframeparameters">
-    <title><ph keyref="setRecordingAudioFrameParameters"/></title>
+    <title><ph keyref="setRecordingAudioFrameParameters" /></title>
     <shortdesc id="short"><ph id="shortdesc">设置采集的原始音频数据格式。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setRecordingAudioFrameParameters"/>
+                <indexterm keyref="setRecordingAudioFrameParameters" />
             </keywords>
         </metadata>
     </prolog>
@@ -23,7 +23,7 @@
     int channel,
     RAW_AUDIO_FRAME_OP_MODE_TYPE mode,
     int samplesPerCall) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract setRecordingAudioFrameParameters(sampleRate: number, channel: number, mode: RawAudioFrameOpModeType, samplesPerCall: number): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetRecordingAudioFrameParameters(int sampleRate, int channel, RAW_AUDIO_FRAME_OP_MODE_TYPE mode, int samplesPerCall);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setRecordingAudioFrameParameters(
@@ -33,19 +33,19 @@
     required int samplesPerCall});</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>该方法设置 <xref keyref="onRecordAudioFrame"/> 回调的采集音频格式。</p>
-            <p props="electron">调用 <xref keyref="registerPlugin"/> 注册插件并获取采集的原始音频数据后，你可以调用本方法设置 SDK 返回的该原始数据的采样率、声道数等参数。</p>
+            <p>该方法设置 <xref keyref="onRecordAudioFrame" /> 回调的采集音频格式。</p>
+            <p props="electron">调用 <xref keyref="registerPlugin" /> 注册插件并获取采集的原始音频数据后，你可以调用本方法设置 SDK 返回的该原始数据的采样率、声道数等参数。</p>
             <note type="attention">
             <ul>
             <li>该方法需要在加入频道前调用。</li>
-            <li>SDK 会通过该方法中的 <parmname>samplesPerCall</parmname>、<parmname>sampleRate</parmname> 和 <parmname>channel</parmname> 参数计算出采样间隔，计算公式为<equation-inline>采样间隔 = <parmname>samplesPerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>。请确保采样间隔不小于 0.01 秒。<ph props="android ios mac cpp unity">SDK 会根据该采样间隔触发 <apiname keyref="onRecordAudioFrame"/> 回调。</ph></li>
+            <li>SDK 会通过该方法中的 <parmname>samplesPerCall</parmname>、<parmname>sampleRate</parmname> 和 <parmname>channel</parmname> 参数计算出采样间隔，计算公式为<equation-inline>采样间隔 = <parmname>samplesPerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>。请确保采样间隔不小于 0.01 秒。<ph props="android ios mac cpp unity">SDK 会根据该采样间隔触发 <apiname keyref="onRecordAudioFrame" /> 回调。</ph></li>
             </ul> </note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry>
                 <pt>sampleRate</pt>
-                <pd props="native unity"><apiname keyref="onRecordAudioFrame"/> 中返回数据的采样率，可设置为 8000、 16000、 32000、44100 或 48000。</pd>
+                <pd props="native unity"><apiname keyref="onRecordAudioFrame" /> 中返回数据的采样率，可设置为 8000、 16000、 32000、44100 或 48000。</pd>
                 <pd props="electron">SDK 返回数据的采样率 (Hz)，可设置为 8000、 16000、 32000、 44100 或 48000。</pd>
             </plentry>
             <plentry>
@@ -53,8 +53,8 @@
                 <pd props="native unity flutter">
                     <p><apiname keyref="onRecordAudioFrame"/> 中返回数据的通道数，可设置为 1 或 2:
 
-                    
-                    
+
+
                     <ul>
                     <li>1: 单声道。</li>
                     <li>2: 双声道。</li>
@@ -63,8 +63,8 @@
                 <pd props="electron">
                     <p>SDK 返回数据的通道数。取值可为 1 或 2：
 
-                    
-                    
+
+
                     <ul>
                     <li>1: 单声道。</li>
                     <li>2: 双声道。</li>
@@ -77,7 +77,7 @@
                     <p props="ios mac cpp unity flutter">音频帧的使用模式，详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</p>
                     <p conkeyref="registerAudioFrameObserver2_IMediaPlayer/mode" props="android"/>
                 </pd>
-                <pd props="electron">SDK 返回数据的使用模式，详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</pd>
+                <pd props="electron">SDK 返回数据的使用模式，详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />。</pd>
             </plentry>
             <plentry>
                 <pt>samplesPerCall</pt>

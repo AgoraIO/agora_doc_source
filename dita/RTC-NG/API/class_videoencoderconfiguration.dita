@@ -87,7 +87,16 @@
         degradationPreference(MAINTAIN_QUALITY),
         mirrorMode(VIDEO_MIRROR_MODE_DISABLED) {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export class VideoEncoderConfiguration {
+  codecType?: VideoCodecType
+  dimensions?: VideoDimensions
+  frameRate?: number
+  bitrate?: number
+  minBitrate?: number
+  orientationMode?: OrientationMode
+  degradationPreference?: DegradationPreference
+  mirrorMode?: VideoMirrorModeType
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class VideoEncoderConfiguration
     {
         public VIDEO_CODEC_TYPE codecType { set; get; }
@@ -283,8 +292,7 @@
             <plentry>
                 <pt>mirrorMode</pt>
                 <pd>
-                    <p props="android ios mac cpp unity electron flutter rn"
-                    >发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref
+                    <p>发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref
                     keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
                     <note type="attention">默认关闭镜像模式。</note> </pd>
             </plentry>
