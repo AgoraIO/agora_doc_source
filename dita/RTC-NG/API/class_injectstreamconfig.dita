@@ -66,7 +66,16 @@
         , audioChannels(1)
     {}
     };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export class InjectStreamConfig {
+  width?: number
+  height?: number
+  videoGop?: number
+  videoFramerate?: number
+  videoBitrate?: number
+  audioSampleRate?: AudioSampleRateType
+  audioBitrate?: number
+  audioChannels?: number
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class InjectStreamConfig
     {
         public InjectStreamConfig()
@@ -143,11 +152,11 @@
             conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
             /></title>
             <parml>
-            <plentry props="android cpp unity flutter">
+            <plentry props="android cpp unity flutter electron rn">
                 <pt>width</pt>
                 <pd>外部视频流输入后的宽度。默认值为 0，即保留视频原始宽度。</pd>
             </plentry>
-            <plentry props="android cpp unity flutter">
+            <plentry props="android cpp unity flutter electron rn">
                 <pt>height</pt>
                 <pd>外部视频流输入后的高度。默认值为 0，即保留视频原始高度。</pd>
             </plentry>
@@ -167,12 +176,15 @@
                 <pt>videoBitrate</pt>
                 <pd>
                     <p>外部视频流输入的码率（Kbps）。默认设置为 400 Kbps。</p>
-                    <note type="attention">视频码率的设置与分辨率相关。如果设置的视频码率超出合理范围，SDK 会按照合理区间自动设置码率。</note> </pd>
+                    <note type="attention"
+                    >视频码率的设置与分辨率相关。如果设置的视频码率超出合理范围，SDK 会按照合理区间自动设置码率。</note>
+                </pd>
             </plentry>
             <plentry>
                 <pt>audioSampleRate</pt>
                 <pd>
-                    <p>外部音频流输入的采样率。默认值为 48000 Hz。详见 <xref keyref="AUDIO_SAMPLE_RATE_TYPE"/>。</p>
+                    <p>外部音频流输入的采样率。默认值为 48000 Hz。详见 <xref
+                    keyref="AUDIO_SAMPLE_RATE_TYPE"/>。</p>
                     <note type="attention"> 声网建议目前采用默认值，不要自行设置。</note> </pd>
             </plentry>
             <plentry>
@@ -186,6 +198,7 @@
                 <pd>
                     <p>外部音频流输入后的频道数。
 
+                    
                     <ul>
                     <li>1: 单声道（默认）</li>
                     <li>2: 双声道</li>

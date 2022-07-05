@@ -36,7 +36,12 @@
 @property (strong, nonatomic) AgoraLastmileProbeOneWayResult *_Nonnull uplinkReport;
 @property (strong, nonatomic) AgoraLastmileProbeOneWayResult *_Nonnull downlinkReport;
 @end</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export class LastmileProbeResult {
+  state?: LastmileProbeResultState
+  uplinkReport?: LastmileProbeOneWayResult
+  downlinkReport?: LastmileProbeOneWayResult
+  rtt?: number
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class LastmileProbeResult
     {
         public LastmileProbeResult()
@@ -94,7 +99,7 @@
                     <p props="ios mac cpp unity electron rn flutter">Last mile 质量探测结果的状态。详见: <xref keyref="LASTMILE_PROBE_RESULT_STATE" /> 。</p>
                     <p props="android">Last-mile 质量探测结果的状态，有如下几种：
 
-                    
+
                     <ul>
                     <li><ph keyref="LASTMILE_PROBE_RESULT_COMPLETE"
                         /> (1)：表示本次 Last-mile

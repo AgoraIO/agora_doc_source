@@ -28,7 +28,7 @@
      (void)lost;
      (void)rxKBitRate;
      }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">onRemoteVideoTransportStats?(connection: RtcConnection, remoteUid: number, delay: number, lost: number, rxKBitRate: number): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteVideoTransportStats(RtcConnection connection, uint remoteUid, UInt16 delay, UInt16 lost, UInt16 rxKBitRate) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onRemoteVideoTransportStats?(
   connection: RtcConnection,
@@ -68,8 +68,8 @@
                 <pd>Connection 信息。详见 <xref keyref="RtcConnection"/> 。 </pd>
             </plentry>
             <plentry>
-                <pt props="native electron">uid</pt>
-                <pt props="unity flutter rn">remoteUid</pt>
+                <pt props="native">uid</pt>
+                <pt props="unity flutter rn electron">remoteUid</pt>
                 <pd>用户 ID，指定是哪个用户/主播的视频包。</pd>
             </plentry>
             <plentry>

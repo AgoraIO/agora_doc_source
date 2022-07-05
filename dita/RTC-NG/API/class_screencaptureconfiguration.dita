@@ -18,7 +18,14 @@
 
   ScreenCaptureConfiguration() : isCaptureWindow(false), displayId(0) {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export class ScreenCaptureConfiguration {
+  isCaptureWindow?: boolean
+  displayId?: number
+  screenRect?: Rectangle
+  windowId?: any
+  params?: ScreenCaptureParameters
+  regionRect?: Rectangle
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class ScreenCaptureConfiguration
     {
         public ScreenCaptureConfiguration()
@@ -82,16 +89,14 @@
                 <pd>（仅适用于 macOS 平台）屏幕的 display ID。
 
 
-                    <note id="note_w12_4wd_mqb" type="attention"
-                    >请仅在 Mac 设备上采集屏幕时使用该参数。</note></pd>
+                    <note id="note_w12_4wd_mqb" type="attention">请仅在 Mac 设备上采集屏幕时使用该参数。</note></pd>
             </plentry>
             <plentry>
                 <pt>screenRect</pt>
                 <pd>（仅适用于 Windows 平台）待共享的屏幕相对于虚拟屏的位置。
 
 
-                    <note type="attention" id="note_ifh_swd_mqb"
-                    >请仅在 Windows 设备上采集屏幕时使用该参数。</note></pd>
+                    <note type="attention" id="note_ifh_swd_mqb">请仅在 Windows 设备上采集屏幕时使用该参数。</note></pd>
             </plentry>
             <plentry>
                 <pt>windowId</pt>

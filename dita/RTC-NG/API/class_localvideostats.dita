@@ -55,7 +55,28 @@
     VIDEO_CODEC_TYPE codecType;
     unsigned short txPacketLossRate;
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export class LocalVideoStats {
+  uid?: number
+  sentBitrate?: number
+  sentFrameRate?: number
+  captureFrameRate?: number
+  captureFrameWidth?: number
+  captureFrameHeight?: number
+  regulatedCaptureFrameRate?: number
+  regulatedCaptureFrameWidth?: number
+  regulatedCaptureFrameHeight?: number
+  encoderOutputFrameRate?: number
+  encodedFrameWidth?: number
+  encodedFrameHeight?: number
+  rendererOutputFrameRate?: number
+  targetBitrate?: number
+  targetFrameRate?: number
+  qualityAdaptIndication?: QualityAdaptIndication
+  encodedBitrate?: number
+  encodedFrameCount?: number
+  codecType?: VideoCodecType
+  txPacketLossRate?: number
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class LocalVideoStats
     {
         public LocalVideoStats()
@@ -183,7 +204,7 @@
                 <pd>
                     <p>实际发送码率 (Kbps)
 
-                    
+
                     <note type="attention">不包含丢包后重传视频等的发送码率。</note></p>
                 </pd>
             </plentry>
@@ -191,7 +212,7 @@
                 <pt>sentFrameRate</pt>
                 <pd>实际发送帧率 (fps)。
 
-                    
+
                     <note type="attention">不包含丢包后重传视频等的发送帧率。</note></pd>
             </plentry>
             <plentry>
@@ -226,7 +247,7 @@
                 <pd>
                     <p>视频编码码率（Kbps）。
 
-                    
+
                     <note type="attention">不包含丢包后重传视频等的编码码率。</note></p>
                 </pd>
             </plentry>

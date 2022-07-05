@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_screencapturesourceinfo">
-    <title><ph keyref="ScreenCaptureSourceInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc">可共享窗口或屏幕的信息。在 <xref
-        keyref="IScreenCaptureSourceList"/> 中返回。</ph></shortdesc>
+    <title><ph keyref="ScreenCaptureSourceInfo" /></title>
+    <shortdesc id="short"><ph id="shortdesc">可共享窗口或屏幕的信息。</ph><ph props="native unity">在 <xref keyref="IScreenCaptureSourceList" /> 中返回。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -20,7 +19,17 @@
   bool primaryMonitor;
   ScreenCaptureSourceInfo() : type(ScreenCaptureSourceType_Unknown), sourceId(nullptr), sourceName(nullptr), processPath(nullptr), sourceTitle(nullptr), primaryMonitor(false) {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export class ScreenCaptureSourceInfo {
+  type?: ScreenCaptureSourceType
+  sourceId?: any
+  sourceName?: string
+  thumbImage?: ThumbImageBuffer
+  iconImage?: ThumbImageBuffer
+  processPath?: string
+  sourceTitle?: string
+  primaryMonitor?: boolean
+  isOccluded?: boolean
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class ScreenCaptureSourceInfo
     {
         public ScreenCaptureSourceType type { set; get; }
@@ -119,7 +128,7 @@
                 <pt>primaryMonitor</pt>
                 <pd>屏幕是否为主显示屏：
 
-                    
+
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 是。</li>
                     <li><codeph><ph keyref="false"/></codeph>: 否。</li>

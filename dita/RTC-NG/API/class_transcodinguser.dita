@@ -50,7 +50,16 @@
         alpha(1.0),
         audioChannel(0) {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export class TranscodingUser {
+  uid?: number
+  x?: number
+  y?: number
+  width?: number
+  height?: number
+  zOrder?: number
+  alpha?: number
+  audioChannel?: number
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class TranscodingUser
     {
         public TranscodingUser()
@@ -174,8 +183,8 @@
                     <p>主播视频画面的图层编号。取值范围为 [0,100]。
 
 
-                    
-                    
+
+
                     <ul>
                     <li>0:（默认）视频画面位于图层的最下层。</li>
                     <li>100: 视频画面位于图层的最上层。</li>
@@ -192,8 +201,8 @@
                     <p>主播视频画面的透明度。取值范围为 [0.0,1.0]。
 
 
-                    
-                    
+
+
                     <ul>
                     <li>0.0: 完全透明。</li>
                     <li>1.0:（默认）完全不透明。</li>
@@ -206,8 +215,8 @@
                     <p>主播音频在输出音频中占用的声道。默认值为 0，取值范围为 [0,5]：
 
 
-                    
-                    
+
+
                     <ul id="ul_ugm_rrh_v4b">
                     <li><codeph>0</codeph>: （推荐）默认混音设置，最多支持双声道，与主播上行音频相关。</li>
                     <li><codeph>1</codeph>: 主播音频在输出音频的 FL 声道。如果主播上行音频是多声道，Agora
