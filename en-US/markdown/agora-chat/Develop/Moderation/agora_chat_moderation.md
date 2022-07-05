@@ -126,7 +126,7 @@ Follow these steps to specify a domain filter configuration:
    | Rule name | The rule name. |
    | Conversation type | The moderation scope, which can be one of the following: a one-to-one chat, chat group or chat room, chat groups or chat rooms. If you set a rule for a specific chat group or room, the global moderation rules for chat groups and rooms are overwritten. |
    | Enable | Determines whether to turn a rule on or off. |
-   | Message handling | <li>Blocks messages containing the domain.</li><li>Only allows messages containing the domain to pass.</li><li>Replaces the domain in the message with \*\*\*.</li><li> Takes no action on the moderated message.</li> |
+   | Message handling | <ul><li>Blocks messages containing the domain.</li><li>Only allows messages containing the domain to pass.</li><li>Replaces the domain in the message with \*\*\*.</li><li> Takes no action on the moderated message.</li></ul> |
    | Domain name | Adds a domain to the rule. |
    | User management | Imposes a penalty on users who reach the violation limit within a time period. The moderation penalties include the following: banning the user, forcing the user to go offline, or deleting the user. |
 
@@ -220,11 +220,11 @@ You can impose a penalty on users for repeated violations. The penalties can be 
 ### Take actions on chat room members
 
 1. To enter the Chat Room Management page, in the left navigation menu, click **Project Management** > **Config** for the project that you want > **Config** of Chat > **Chat Room Management**, as shown in the following figure:
-   
+
 	 ![room_manage](https://web-cdn.agora.io/docs-files/1657018521135)
 
 2. To take action on a room member (removing a member from the room or adding a user to the room blocklist), search for the room ID, and click **More**:
-   
+
 	 ![room_manage_action](https://web-cdn.agora.io/docs-files/1657018546001)
 
 3. You can also click the room ID to enter the room's moderation dashboard, where you can manage the room info, room members, and messages in real-time:
