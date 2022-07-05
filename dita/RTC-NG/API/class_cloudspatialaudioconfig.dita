@@ -42,7 +42,12 @@
   unsigned int deployRegion;
   CloudSpatialAudioConfig() : rtcEngine(NULL), eventHandler(NULL), appId(NULL), deployRegion(SAE_DEPLOY_REGION_CN) {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript">export class CloudSpatialAudioConfig {
+  rtcEngine?: IRtcEngine
+  eventHandler?: ICloudSpatialAudioEventHandler
+  appId?: string
+  deployRegion?: number
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class CloudSpatialAudioConfig
     {
         public CloudSpatialAudioConfig()

@@ -21,7 +21,7 @@
                 (void)state;
                 (void)error;
                 }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">onLocalVideoStateChanged?(connection: RtcConnection, state: LocalVideoStreamState, errorCode: LocalVideoStreamError): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnLocalVideoStateChanged(RtcConnection connection, LOCAL_VIDEO_STREAM_STATE state, LOCAL_VIDEO_STREAM_ERROR errorCode) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onLocalVideoStateChanged?(
   connection: RtcConnection,
@@ -44,8 +44,8 @@
 
 
 
-            
-            
+
+
             <ul>
             <li>应用退到后台，系统回收摄像头。</li>
             <li>摄像头正常启动，但连续 4 秒都没有输出采集的视频。</li>
@@ -91,8 +91,8 @@
                     <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY"/> (3): 本地视频采集设备正在使用中。请提示用户检查摄像头是否被其他应用占用。</li>
                     <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/> (4): 本地视频采集失败。请提示用户检查视频采集设备是否正常工作，检查摄像头是否被其他应用占用，或者尝试重新加入频道。
 
-                        
-                        
+
+
                         <ul>
                         <li>Android 9 及以上版本，app 切后台一段时间后，系统收回相机权限。</li>
                         <li>Android 6 及以上版本，如果相机被第三方应用占用，且未被及时释放。如果一段时间后，相机被释放，则 SDK会再次出发该回调，并报告 <codeph>state</codeph> 为 <codeph>CAPTURING</codeph>，<codeph>error</codeph> 为 <codeph>ERROR_OK</codeph>。</li>

@@ -21,7 +21,7 @@
     (void)uid;
     (void)enabled;
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">onUserEnableVideo?(connection: RtcConnection, remoteUid: number, enabled: boolean): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserEnableVideo(RtcConnection connection, uint remoteUid, bool enabled) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onUserEnableVideo?(
   connection: RtcConnection,
@@ -37,7 +37,6 @@
             <dlentry>
                 <dt>弃用：</dt>
                 <dd>请改用 <xref keyref="onRemoteVideoStateChanged"/> 回调的：
-
 
 
                     <ul>
@@ -67,13 +66,13 @@
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="unity flutter">
+            <plentry props="unity flutter electron rn">
                 <pt>connection</pt>
                 <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
             </plentry>
             <plentry>
-                <pt props="native electron">uid</pt>
-                <pt props="unity flutter rn">remoteUid</pt>
+                <pt props="native">uid</pt>
+                <pt props="unity flutter rn electron">remoteUid</pt>
                 <pd>用户 ID，提示是哪个用户的视频流。</pd>
             </plentry>
             <plentry>

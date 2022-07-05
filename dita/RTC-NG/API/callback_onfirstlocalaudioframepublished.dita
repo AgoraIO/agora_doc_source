@@ -18,7 +18,7 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual void onFirstLocalAudioFramePublished(int elapsed) {
     (void)elapsed;
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">onFirstLocalAudioFramePublished?(connection: RtcConnection, elapsed: number): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstLocalAudioFramePublished(RtcConnection connection, int elapsed) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onFirstLocalAudioFramePublished?(
   connection: RtcConnection,
@@ -37,8 +37,8 @@
             </dl>
             <p> SDK 会在以下时机触发该回调：
 
-            
-            
+
+
             <ul>
             <li>开启本地音频的情况下，调用 <apiname keyref="joinChannel2"/> 成功加入频道后。</li>
             <li>调用 <xref keyref="muteLocalAudioStream"/>(<codeph><ph keyref="true"/></codeph>)，再调用 <apiname keyref="muteLocalAudioStream"/>(<codeph><ph keyref="false"/></codeph>) 后。</li>

@@ -17,7 +17,7 @@
       boolean enabled, VirtualBackgroundSource backgroundSource);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableVirtualBackground:(BOOL)enable backData:(AgoraVirtualBackgroundSource* _Nullable)backData NS_SWIFT_NAME(enableVirtualBackground(_:backData:));</codeblock>
             <codeblock props="cpp">virtual int enableVirtualBackground(bool enabled, VirtualBackgroundSource backgroundSource) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract enableVirtualBackground(enabled: boolean, backgroundSource: VirtualBackgroundSource): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int EnableVirtualBackground(bool enabled, VirtualBackgroundSource backgroundSource);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract enableVirtualBackground(
   enabled: boolean,
@@ -31,7 +31,7 @@
             <p>虚拟背景功能支持你使用自定义的背景图替代本地用户原来的背景图或者将背景虚化处理。成功开启虚拟背景功能后，频道内所有用户都能看到自定义的背景。</p>
             <p>开启虚拟背景功能涉及一系列方法的调用，调用顺序如下：
 
-            
+
             <ol>
             <li props="android">在初始化 <xref keyref="IRtcEngine"/> 时调用 <codeph><xref keyref="addExtension"/>(<q>agora_segmentation_extension</q>)</codeph>，在项目中集成虚拟背景动态库。</li>
             <li props="ios">在项目文件中链接动态库 <codeph>AgoraVideoSegmentationExtension.xcframework</codeph></li>
@@ -47,7 +47,7 @@
 
 
 
-                
+
                 <ul>
                 <li props="android cpp unity rn flutter">Android: <ph>libagora_segmentation_extension.so</ph></li>
                 <li props="ios cpp unity rn flutter">iOS: <ph>AgoraVideoSegmentationExtension.xcframework</ph></li>
@@ -59,7 +59,7 @@
 
 
 
-                
+
                 <ul>
                 <li props="android unity cpp rn flutter">骁龙 700 系列 750G 及以上</li>
                 <li props="android unity cpp rn flutter">骁龙 800 系列 835 及以上</li>
@@ -71,7 +71,7 @@
 
 
 
-                    
+
                     <ul>
                     <li>iPhone 6S 及以上</li>
                     <li>iPad Air 第三代及以上</li>
@@ -84,7 +84,7 @@
 
 
 
-                
+
                 <ul>
                 <li>使用高清摄像设备、摄像环境光照均匀。</li>
                 <li>摄像画面中，物件较少，用户的人像为半身人像且基本无遮挡，背景色较单一且与用户着装颜色不同。</li>
@@ -101,7 +101,6 @@
 
 
 
-                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 开启。</li>
                     <li><codeph><ph keyref="false"/></codeph>: 关闭。</li>
@@ -123,13 +122,11 @@
 
 
 
-                    
                     <note type="attention">在该方法中，该参数仅支持以下两种设置：
 
 
 
 
-                    
                     <ul>
                     <li>默认值为 <apiname keyref="PRIMARY_CAMERA_SOURCE"/>。</li>
                     <li>如果要使用第二个摄像头采集视频，将该参数设置为 <apiname keyref="SECONDARY_CAMERA_SOURCE"/>。</li>
@@ -145,7 +142,6 @@
 
 
 
-                
                 <ul props="rtc-ng">
                 <li>-1：自定义的背景图不存在。请检查 <xref keyref="VirtualBackgroundSource"/> 中 <parmname>source</parmname> 的值。</li>
                 <li>-2：自定义的背景图颜色格式出错。请检查 <xref keyref="VirtualBackgroundSource"/> 中 <parmname>color</parmname> 的值。</li>
