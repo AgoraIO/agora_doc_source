@@ -25,12 +25,7 @@
             <codeblock props="electron" outputclass="language-typescript">abstract joinChannelWithOptions(token: string, channelId: string, uid: number, options: ChannelMediaOptions): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int JoinChannel(string token, string channelId, uint uid,
                                 ChannelMediaOptions options);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">abstract joinChannel(
-    token: string,
-    channelId: string,
-    info: string,
-    uid: number
-  ): number;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract joinChannelWithOptions(token: string, channelId: string, uid: number, options: ChannelMediaOptions): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> joinChannelWithOptions(
     {required String token,
     required String channelId,
@@ -44,12 +39,13 @@
 
 
 
+
             <ul>
             <li>本地会触发 <xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/> 回调。</li>
             <li>通信场景下的用户和直播场景下的主播加入频道后，远端会触发 <xref keyref="onUserJoined"/> 回调。</li>
             </ul></p>
             <p id="desc3">在网络状况不理想的情况下，客户端可能会与 Agora 服务器失去连接；SDK 会自动尝试重连，重连成功后，本地会触发 <xref keyref="onRejoinChannelSuccess"/> 回调。</p>
-            <p props="android ios mac cpp">相比 <xref keyref="joinChannel1"/>，该方法增加了 <parmname>options</parmname> 参数，用于配置用户加入频道时是否自动订阅频道内所有远端音视频流。默认情况下，用户订阅频道内所有其他用户的音频流和视频流，因此会产生用量并影响计费。如果想取消订阅，可以通过设置 <parmname>options</parmname> 参数或相应的 <apiname>mute</apiname> 方法实现。</p>
+            <p>相比 <xref keyref="joinChannel1"/>，该方法增加了 <parmname>options</parmname> 参数，用于配置用户加入频道时是否自动订阅频道内所有远端音视频流。默认情况下，用户订阅频道内所有其他用户的音频流和视频流，因此会产生用量并影响计费。如果想取消订阅，可以通过设置 <parmname>options</parmname> 参数或相应的 <apiname>mute</apiname> 方法实现。</p>
             <note id="note_cyz_w1l_mqb" type="attention">
             <ul id="ul_sz1_y1l_mqb">
             <li>该方法允许用户一次加入仅一个频道。</li>
@@ -68,6 +64,7 @@
                 <pt>channelId</pt>
                 <pd>
                     <p id="channelID_desc">频道名。该参数标识用户进行实时音视频互动的频道。App ID 一致的前提下，填入相同频道名的用户会进入同一个频道进行音视频互动。该参数为长度在 64 字节以内的字符串。以下为支持的字符集范围（共 89 个字符）:
+
 
 
                     <ul id="char_support">
@@ -100,6 +97,7 @@
             <ul>
             <li>0：方法调用成功。</li>
             <li>&lt; 0：方法调用失败。
+
 
 
                 <ul>
