@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ivideoframeobserver_ismultiplechannelframewanted">
+    <title><ph keyref="isMultipleChannelFrameWanted_IVideoFrameObserver" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets whether to get video data from multiple channels in the multi-channel scenario.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="isMultipleChannelFrameWanted_IVideoFrameObserver" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java" />
+                <codeblock props="ios mac" outputclass="language-objectivec" />
+                <codeblock props="windows" outputclass="language-cpp">virtual bool isMultipleChannelFrameWanted() { return false; }</codeblock>
+                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="unity" outputclass="language-csharp">public virtual bool IsMultipleChannelFrameWanted()
+        {
+            return true;
+        }</codeblock>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
+        </p>
+        </section>
+        <section id="detailed_desc">
+   
+       <dl outputclass="since">
+  <dlentry>
+      <dt>Since</dt>
+      <dd>v3.0.1</dd>
+  </dlentry>
+       </dl>
+   <p>After you register the video frame observer, the SDK triggers this callback every time it captures a video frame.</p>
+   <p>In the multi-channel scenario, if you want to get video data from multiple channels, you need to set the return value of this callback as <ph keyref="true" />. After that, the SDK triggers the <xref keyref="onRenderVideoFrameEx" /> callback to send you the received remote video frame and report which channel the video frame comes from.</p>
+   <note type="attention">
+       <ul id="ul_a3x_jjg_s4b">
+  <li>If you set the return value of this callback as <ph keyref="true" />, the SDK triggers <apiname keyref="onRenderVideoFrameEx" /> to send the before-mixing video data. <xref keyref="onRenderVideoFrame" /> will not be triggered. In the multi-channel scenario, Agora recommends setting the return value as <ph keyref="true" />.</li>
+  <li>If you set the return value of this callback as <ph keyref="false" />, the SDK triggers <apiname keyref="onRenderVideoFrame" /> to send you the received video data.</li>
+       </ul>
+   </note>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul id="ul_vcm_qjg_s4b">
+       <li><codeph><ph keyref="true" /></codeph>: Receive video data from multiple channels.</li>
+       <li><codeph><ph keyref="false" /></codeph>: Do not receive video data from multiple channels.</li>
+   </ul>
+        </section></refbody>
+</reference>

@@ -198,14 +198,13 @@ class RtcChannelEventHandler {
   FallbackCallback? localPublishFallbackToAudioOnly;
 
   ///
-  /// Occurs when the remote media stream falls back to the audio-only stream due to poor network conditions or switches back to the video stream after the network conditions improve.
-  /// If you call
-  /// and set option as AudioOnly, the SDK triggers this callback when the remote media stream falls back to audio-only mode due to poor uplink conditions, or when the remote media stream switches back to the video after the downlink network condition improves.
-  /// Once the remote media stream switches to the low-quality stream due to poor network conditions, you can monitor the stream switch between a high-quality and low-quality stream in the remoteVideoStats callback.
+  /// Occurs when the remote media stream falls back to audio-only stream due to poor network conditions or switches back to the video stream after the network conditions improve.
+  /// If you call setRemoteSubscribeFallbackOption and set option as AudioOnly, the SDK triggers this callback when the remote media stream falls back to audio-only mode due to poor downlink conditions, or when the remote media stream switches back to the video after the downlink network condition improves.
+  /// Once the remote media stream switches to the low stream due to poor network conditions, you can monitor the stream switch between a high and low stream in the RemoteVideoStats callback.
   ///
   /// Param [isFallbackOrRecover]
-  /// true: The remotely subscribed media stream falls back to audio-only due to poor network conditions.
-  /// false: The remotely subscribed media stream switches back to the video stream after the network conditions improved.
+  ///  true: The remotely subscribed media stream falls back to audio-only due to poor network conditions.
+  ///  false: The remotely subscribed media stream switches back to the video stream after the network conditions improved.
   ///
   ///
   ///
@@ -260,13 +259,11 @@ class RtcChannelEventHandler {
 
   ///
   /// Occurs when the state of the RTMP or RTMPS streaming changes.
-  /// When the CDN live streaming state changes, the SDK triggers this callback to report the current state and the reason why the state has changed. When exceptions occur, you can troubleshoot issues by referring to the detailed error descriptions in the error code parameter.
+  /// The SDK triggers this callback to report the result of the local user calling the addPublishStreamUrl or removePublishStreamUrl method. When the RTMP/RTMPS streaming status changes, the SDK triggers this callback and report the URL address and the current status of the streaming. This callback indicates the state of the RTMP or RTMPS streaming. When exceptions occur, you can troubleshoot issues by referring to the detailed error descriptions in the error code parameter.
   ///
-  /// Param [errCode] The detailed error information for streaming, see
-  /// .
+  /// Param [errCode] The detailed error information for streaming, see RtmpStreamingErrorCode.
   ///
-  /// Param [state] The RTMP or RTMPS streaming state, see
-  /// . When the streaming status is Failure(4), you can view the error information in the errorCode parameter.
+  /// Param [state] The RTMP or RTMPS streaming state, see RtmpStreamingState. When the streaming status is Failure(4), you can view the error information in the errorCode parameter.
   ///
   /// Param [url]
   ///
@@ -277,8 +274,7 @@ class RtcChannelEventHandler {
   /// If you call the setLiveTranscoding
   /// method to set the LiveTranscoding class for the first time, the
   /// SDK does not trigger this callback.
-  /// When the LiveTranscoding class in the
-  /// method updates, the SDK triggers the transcodingUpdated callback to report the update information.
+  /// When the LiveTranscoding class in the setLiveTranscoding method updates, the SDK triggers the transcodingUpdated callback to report the update information.
   ///
   EmptyCallback? transcodingUpdated;
 
@@ -405,8 +401,7 @@ class RtcChannelEventHandler {
   /// Reports events during the RTMP or RTMPS streaming.
   ///
   ///
-  /// Param [eventCode] The event code of the streaming. For details, see
-  /// .
+  /// Param [eventCode] The event code of the streaming. For details, see RtmpStreamingEvent.
   ///
   /// Param [url]
   ///
@@ -427,10 +422,9 @@ class RtcChannelEventHandler {
   ///
   UserSuperResolutionEnabledCallback? userSuperResolutionEnabled;
 
-/* TODO(doc): callback-channel-clientRoleChangeFailed */
   OnClientRoleChangeFailed? clientRoleChangeFailed;
 
-  /// Constructs the [RtcChannelEventHandler].
+  /// Constructs a [RtcChannelEventHandler]
   RtcChannelEventHandler({
     this.warning,
     this.error,
@@ -470,4 +464,7 @@ class RtcChannelEventHandler {
     this.userSuperResolutionEnabled,
     this.clientRoleChangeFailed,
   });
+
+  // ignore: public_member_api_docs
+
 }

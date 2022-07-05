@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_directcdnstreamingstate">
+    <title><ph keyref="DIRECT_CDN_STREAMING_STATE"></ph></title>
+    <shortdesc id="short"><ph id="shortdesc">当前 CDN 推流状态。</ph></shortdesc>
+    <refbody>
+        <section id="parameters">
+            <title>枚举值</title>
+            <parml>
+                <plentry>
+                    <pt><ph keyref="DIRECT_CDN_STREAMING_STATE_IDLE"/></pt>
+                    <pd>0：初始状态，即推流尚未开始。</pd>
+                </plentry>
+                <plentry>
+                    <pt><ph keyref="DIRECT_CDN_STREAMING_STATE_RUNNING"/></pt>
+                    <pd>1：正在推流中。当你调用 <xref keyref="startDirectCdnStreaming"/> 成功推流时，SDK 会返回该值。</pd>
+                </plentry>
+                <plentry>
+                    <pt><ph keyref="DIRECT_CDN_STREAMING_STATE_STOPPED"/></pt>
+                    <pd>2：推流已正常结束。当你调用 <xref keyref="stopDirectCdnStreaming"/> 主动停止推流时，SDK 会返回该值。</pd>
+                </plentry>
+                <plentry>
+                    <pt><ph keyref="DIRECT_CDN_STREAMING_STATE_FAILED"/></pt>
+                    <pd>3：推流失败。你可以通过 <xref keyref="onDirectCdnStreamingStateChanged"/> 回调报告的信息排查问题，然后重新推流。</pd>
+                </plentry>
+                <plentry>
+                    <pt><ph keyref="DIRECT_CDN_STREAMING_STATE_RECOVERING"/></pt>
+                    <pd>4：尝试重新连接 Agora 服务器和 CDN。最多尝试重连 10 次，如仍未成功恢复连接，则推流状态变为 <ph keyref="DIRECT_CDN_STREAMING_STATE_FAILED"/>。</pd>
+                </plentry>
+            </parml>
+        </section></refbody>
+</reference>

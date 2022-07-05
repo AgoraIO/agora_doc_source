@@ -14,6 +14,38 @@ namespace agora {
 namespace rtc {
 
 class IMediaPlayerSourceObserver;
+class IPreRenderFrameObserver;
+
+/**
+ * The custom data source provides a data stream input callback, and the player will continue to call back this interface, requesting the user to fill in the data that needs to be played.
+ */
+class IMediaPlayerCustomDataProvider {
+public:
+    
+    /**
+     * @brief The player requests to read the data callback, you need to fill the specified length of data into the buffer
+     * @param buffer the buffer pointer that you need to fill data.
+     * @param bufferSize the bufferSize need to fill of the buffer pointer.
+     * @return you need return offset value if succeed. return 0 if failed.
+     */
+    virtual int onReadData(unsigned char *buffer, int bufferSize) = 0;
+    
+    /**
+     * @brief The Player seek event callback, you need to operate the corresponding stream seek operation, You can refer to the definition of lseek() at https://man7.org/linux/man-pages/man2/lseek.2.html
+     * @param offset the value of seek offset.
+     * @param whence the postion of start seeking, the directive whence as follows:
+     * 0 - SEEK_SET : The file offset is set to offset bytes.
+     * 1 - SEEK_CUR : The file offset is set to its current location plus offset bytes.
+     * 2 - SEEK_END : The file offset is set to the size of the file plus offset bytes.
+     * 65536 - AVSEEK_SIZE : Optional. Passing this as the "whence" parameter to a seek function causes it to return the filesize without seeking anywhere.
+     * @return
+     * whence == 65536, return filesize if you need.
+     * whence >= 0 && whence < 3 , return offset value if succeed. return -1 if failed.
+     */
+    virtual int64_t onSeek(int64_t offset, int whence) = 0;
+    
+    virtual ~IMediaPlayerCustomDataProvider() {}
+};
 
 /**
  * The IMediaPlayerSource class provides access to a media player source. To playout multiple media sources simultaneously,
@@ -44,25 +76,15 @@ public:
   virtual int open(const char* url, int64_t startPos) = 0;
     
   /**
-   * @deprecated
    * @brief Open media file or stream with custom soucrce.
-   * @param startPos Set the starting position for playback, in seconds
+   * @param startPos The starting position (ms) for playback. Default value is 0.
    * @param observer dataProvider object
    * @return
    * - 0: Success.
    * - < 0: Failure.
    */
-  virtual int openWithCustomSource(int64_t startPos, media::base::IMediaPlayerCustomDataProvider* provider) = 0;
+  virtual int openWithCustomSource(int64_t startPos, IMediaPlayerCustomDataProvider* provider) = 0;
 
-  /**
-   * Opens a media file with a media file source.
-   * @param source Media file source that you want to play, see `MediaSource`
-   * @return
-   * - 0: Success.
-   * - < 0: Failure.
-   */
-  virtual int openWithMediaSource(const media::base::MediaSource &source) = 0;
-    
   /**
    * Plays the media file.
    * @return
@@ -388,7 +410,7 @@ public:
    * - < 0: Failure.
    */
   virtual int unloadSrc(const char* src) = 0;
-
+  
   /**
    * Play a pre-loaded media source
    * @param src Specific src.
@@ -431,11 +453,11 @@ class IMediaPlayerSourceObserver {
    * - After calling the `seek` method, the SDK triggers the callback to report the results of the seek operation.
    * - After calling the `selectAudioTrack` method, the SDK triggers the callback to report that the audio track changes.
    *
-   * @param eventCode The playback event. See {@link media::base::MEDIA_PLAYER_EVENT MEDIA_PLAYER_EVENT}.
+   * @param event The playback event. See {@link media::base::MEDIA_PLAYER_EVENT MEDIA_PLAYER_EVENT}.
    * @param elapsedTime The playback elapsed time.
    * @param message The playback message.
    */
-  virtual void onPlayerEvent(media::base::MEDIA_PLAYER_EVENT eventCode, int64_t elapsedTime, const char* message) = 0;
+  virtual void onPlayerEvent(media::base::MEDIA_PLAYER_EVENT event, int64_t elapsedTime, const char* message) = 0;
 
   /**
    * @brief Occurs when the metadata is received.
@@ -482,7 +504,7 @@ class IMediaPlayerSourceObserver {
   virtual void onPlayerSrcInfoChanged(const media::base::SrcInfo& from, const media::base::SrcInfo& to) = 0;
 
    /**
-   * @brief Triggered when media player information updated.
+   * @brief Triggered when  media player information updated.
    *
    * @param info Include information of media player.
    */

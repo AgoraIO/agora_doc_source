@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_audiospectrumdata">
+    <title><ph keyref="AudioSpectrumData"/></title>
+    <shortdesc id="short"><ph id="shortdesc">音频频谱数据。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class AudioSpectrumInfo {
+  private float[] audioSpectrumData;
+  private int dataLength;
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="windows" outputclass="language-cpp">struct AudioSpectrumData {
+  const float *audioSpectrumData;
+  int dataLength;
+
+  AudioSpectrumData() : audioSpectrumData(NULL), dataLength(0) {}
+  AudioSpectrumData(const float *data, int length) :
+    audioSpectrumData(data), dataLength(length) {}
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+                <plentry>
+                    <pt>audioSpectrumData</pt>
+                    <pd>
+                        <p>音频频谱数据。Agora 将声音频率分为 160 个频域，通过该参数报告各频域的能量值，每个能量值的取值范围为 [0,1]。</p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>dataLength</pt>
+                    <pd>
+                        <p>音频频谱数据长度，单位为 byte。</p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

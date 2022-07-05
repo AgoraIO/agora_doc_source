@@ -6,6 +6,7 @@
 #pragma once
 
 #include <stdint.h>
+#include "IAgoraRtcEngine.h"
 #include "IAgoraRtcEngineEx.h"
 
 namespace agora {
@@ -74,6 +75,26 @@ class IMediaEngine {
   virtual int pushAudioFrame(MEDIA_SOURCE_TYPE type, IAudioFrameObserver::AudioFrame* frame,
                              bool wrap = false, int sourceId = 0) = 0;
 
+//  /**
+//   * Push the external audio data to the primary audio source.
+//   *
+//   * @param frame The audio buffer data.
+//   * @return
+//   * - 0: Success.
+//   * - < 0: Failure.
+//   */
+//  virtual int pushPrimaryAudioFrame(IAudioFrameObserver::AudioFrame* frame) = 0;
+//
+//  /**
+//   * Push the external audio data to the secondary audio source.
+//   *
+//   * @param frame The audio buffer data.
+//   * @return
+//   * - 0: Success.
+//   * - < 0: Failure.
+//   */
+//  virtual int pushSecondaryAudioFrame(IAudioFrameObserver::AudioFrame* frame) = 0;
+
   virtual int pushCaptureAudioFrame(IAudioFrameObserver::AudioFrame* frame) = 0;
 
   virtual int pushReverseAudioFrame(IAudioFrameObserver::AudioFrame* frame) = 0;
@@ -127,7 +148,7 @@ class IMediaEngine {
    */
   virtual int setExternalVideoSource(
       bool enabled, bool useTexture, EXTERNAL_VIDEO_SOURCE_TYPE sourceType = VIDEO_FRAME,
-      rtc::SenderOptions encodedVideoOption = rtc::SenderOptions()) = 0;
+      rtc::EncodedVideoTrackOptions encodedVideoOption = rtc::EncodedVideoTrackOptions()) = 0;
 
   /** 
    * Sets the external audio source.
@@ -148,33 +169,7 @@ class IMediaEngine {
    * - 0: Success.
    * - < 0: Failure.
    */
-  virtual int setExternalAudioSource(bool enabled, int sampleRate, int channels, int sourceNumber = 1, bool localPlayback = false, bool publish = true) = 0;
-
-  /**
-   * Sets the external audio sink.
-   *
-   * This method applies to scenarios where you want to use external audio
-   * data for playback. After calling the \ref IRtcEngine::initialize "initialize"
-   * method and pass value of false in the `enableAudioDevice` member in the RtcEngineContext struct, you can call
-   * the \ref agora::media::IMediaEngine::pullAudioFrame "pullAudioFrame" method to pull the remote audio data, process
-   * it, and play it with the audio effects that you want.
-   *
-   * @note
-   * Once you call the \ref IRtcEngine::initialize "initialize" method and pass value of false in the `enableAudioDevice`
-   * member in the RtcEngineContext struct, the app will not retrieve any audio data from the
-   * \ref agora::media::IAudioFrameObserver::onPlaybackAudioFrame "onPlaybackAudioFrame" callback.
-   *
-   * @param sampleRate Sets the sample rate (Hz) of the external audio sink, which can be set as 16000, 32000, 44100 or 48000.
-   * @param channels Sets the number of audio channels of the external
-   * audio sink:
-   * - 1: Mono.
-   * - 2: Stereo.
-   *
-   * @return
-   * - 0: Success.
-   * - < 0: Failure.
-   */
-  virtual int setExternalAudioSink(int sampleRate, int channels) = 0;
+  virtual int setExternalAudioSource(bool enabled, int sampleRate, int channels, int sourceNumber, bool localPlayback = false, bool publish = true) = 0;
 
   /**
    * Sets the external audio source.
@@ -194,7 +189,7 @@ class IMediaEngine {
 
   /**
    * @brief Enable/Disable the direct external audio source
-   * 
+   *
    * @param enable Determines whether to enable the direct external audio source
    * @param localPlayback Determines whether to enable the local playback of the direct external audio source
    * @return int
@@ -207,7 +202,9 @@ class IMediaEngine {
    * Pushes the external video frame to the app.
    *
    * @param frame The external video frame: ExternalVideoFrame.
-   * @return int
+   * @param channelId The channel name.
+   * @param localUid ID of the local user.
+   * @return
    * - 0: Success.
    * - < 0: Failure.
    */
@@ -220,7 +217,9 @@ class IMediaEngine {
    * @param length The data length.
    * @param videoEncodedFrameInfo The reference to the information of the encoded video frame: 
    * \ref agora::rtc::EncodedVideoFrameInfo "EncodedVideoFrameInfo".
-   * @return int
+   * @param channelId The channel name.
+   * @param localUid ID of the local user.
+   * @return
    * - 0: Success.
    * - < 0: Failure.
    */

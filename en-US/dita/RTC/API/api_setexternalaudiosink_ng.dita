@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setexternalaudiosink_ng">
+    <title><ph keyref="setExternalAudioSink" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the external audio sink.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setExternalAudioSink" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract int setExternalAudioSink(int sampleRate, int channels);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)enableExternalAudioSink:(NSUInteger)sampleRate
+                               channels:(NSUInteger)channels;</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual int setExternalAudioSink(int sampleRate, int channels) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <p>This method applies to scenarios where you want to use external audio data for playback. After setting <codeph props="windows ios mac">enableAudioDevice</codeph><codeph props="android">mEnableAudioDevice</codeph> to <codeph><ph keyref="false" /></codeph> in <xref keyref="create2" />, you can call <xref keyref="setExternalAudioSink" /> to set the external audio sink. After the setting is successful, you can call <xref keyref="pullAudioFrame" /> to pull the remote audio data. The app can process the remote audio and play it with the audio effects that you want.</p>
+            <note>
+                <ul>
+                    <li>Ensure that you call this method before joining a channel.</li>
+                    <li>Once you enable the external audio sink, the app does not retrieve any audio data from the <xref keyref="onPlaybackAudioFrame" /> callback.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry>
+                    <pt>sampleRate</pt>
+                    <pd>
+                        <p>The sample rate (Hz) of the external audio sink, which can be set as 16000, 32000, 44100, or 48000.</p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>channels</pt>
+                    <pd>The number of audio channels of the external audio sink:<ul><li>1: Mono.</li>
+                        <li>2: Stereo.</li></ul></pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul id="ul_ahk_23f_3qb">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>

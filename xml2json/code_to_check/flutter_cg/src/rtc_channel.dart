@@ -11,17 +11,35 @@ import 'rtc_channel_event_handler.dart';
 /// Provides methods that enable real-time communications in an RtcChannel channel.
 /// Call create to create an RtcChannel object.
 ///
-///
-/// Gets the current channel ID.
-///
-///
-/// **return** The current channel ID, if the method call succeeds.
-/// The empty string "", if the method call fails.
-///
 abstract class RtcChannel {
+  /// The ID of RtcChannel
   String get channelId;
 
-  /* TODO(doc): api-channel-create */
+  ///
+  /// Creates and gets an RtcChannel object.
+  /// You can call this method multiple times to create multiple RtcChannel objects,
+  /// and then call the joinChannel methods of each RtcChannel to join multiple channels at the same time.
+  /// After joining multiple channels, you can simultaneously subscribe to the the audio and video streams of all the channels, but publish a stream in only one channel at one time.
+  ///
+  /// Param [channelId]
+  /// The channel name. This parameter signifies the channel in which users engage in real-time audio and video interaction. Under the premise of the same App ID, users who fill in the same channel ID enter the same channel for audio and video interaction. The string length must be less than 64 bytes. Supported characters:
+  /// The 26 lowercase English letters: a to z.
+  /// The 26 uppercase English letters: A to Z.
+  /// The 10 numeric characters: 0 to 9.
+  /// Space
+  /// "!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","
+  ///
+  ///
+  ///
+  /// The parameter does not have a default value. You must set it.
+  /// Do not set this parameter as the empty string "". Otherwise, the SDK returns ERR_REFUSED(5).
+  ///
+  ///
+  ///
+  ///
+  /// **return** A pointer to the RtcChannel instance, if the method call succeeds.
+  /// If the call fails, returns NULL.
+  ///
   static Future<RtcChannel> create(String channelId) {
     return RtcChannelImpl.create(channelId);
   }
@@ -74,15 +92,15 @@ abstract class RtcChannel {
   /// Once the user joins the channel, the user subscribes to the audio and video streams of all the other users in the channel by default, giving rise to usage and billing calculation. If you do not want to subscribe to a specified stream or all remote streams, call the mute methods accordingly.
   ///
   ///
-  /// If you are already in a channel, you cannot rejoin it with the user ID.
-  /// We recommend using different UIDs for different channels.
-  /// If you want to join the same channel from different devices, ensure that the user IDs in all devices are different.
+  ///   If you are already in a channel, you cannot rejoin it with the user ID.
+  ///   We recommend using different UIDs for different channels.
+  ///   If you want to join the same channel from different devices, ensure that the user IDs in all devices are different.
   ///
   /// Param [options] The channel media options. For details, see ChannelMediaOptions.
   ///
-  ///
   /// Param [token] The token generated on your server for authentication. See Authenticate Your Users with Token.
   /// Ensure that the App ID used for creating the token is the same App ID used by the createWithContext method for initializing the RTC engine.
+  ///
   ///
   /// Param [optionalUid] User ID. This parameter is used to identify the user in the channel for real-time audio and video interaction. You need to set and manage user IDs yourself, and ensure that each user ID in the same channel is unique. This parameter is a 32-bit unsigned integer with a value ranging from 1 to 232 -1. If the user ID is not assigned (or set as 0), the SDK assigns a user ID and reports it in the joinChannelSuccess callback. Your app must maintain this user ID.
   ///
@@ -94,15 +112,13 @@ abstract class RtcChannel {
   /// Once the user joins the channel, the user subscribes to the audio and video streams of all the other users in the channel by default, giving rise to usage and billing calculation. If you do not want to subscribe to a specified stream or all remote streams, call the mute methods accordingly.
   ///
   ///
-  /// If you are already in a channel, you cannot rejoin it with the user ID.
-  /// We recommend using different user accounts for different channels.
-  /// If you want to join the same channel from different devices, ensure that the user accounts in all devices are different.
+  ///   If you are already in a channel, you cannot rejoin it with the user ID.
+  ///   We recommend using different user accounts for different channels.
+  ///   If you want to join the same channel from different devices, ensure that the user accounts in all devices are different.
   ///
   /// Param [options] The channel media options. For details, see ChannelMediaOptions.
   ///
-  ///
   /// Param [userAccount] The user account. This parameter is used to identify the user in the channel for real-time audio and video engagement. You need to set and manage user accounts yourself and ensure that each user account in the same channel is unique.The maximum length of this parameter is 255 bytes. Ensure that you set this parameter and do not set it as null. Supported characters are (89 in total):
-  ///
   /// The 26 lowercase English letters: a to z.
   /// The 26 uppercase English letters: A to Z.
   /// All numeric characters: 0 to 9.
@@ -113,6 +129,7 @@ abstract class RtcChannel {
   ///
   /// Param [token] The token generated on your server for authentication. See Authenticate Your Users with Token.
   /// Ensure that the App ID used for creating the token is the same App ID used by the createWithContext method for initializing the RTC engine.
+  ///
   ///
   Future<void> joinChannelWithUserAccount(
       String? token, String userAccount, ChannelMediaOptions options);
@@ -131,8 +148,7 @@ abstract class RtcChannel {
   ///
   ///
   ///   If you call the leaveChannel method immediately after calling destroy, the SDK will not be able to trigger the leaveChannel callback.
-  ///   If you call the leaveChannel method during a CDN live streaming, the SDK automatically calls the
-  /// method.
+  ///   If you call the leaveChannel method during a CDN live streaming, the SDK automatically calls the removePublishStreamUrl method.
   ///
   Future<void> leaveChannel();
 
@@ -159,7 +175,7 @@ abstract class RtcChannel {
   ///   In the interactive live streaming channel, only a host can call this method. To switch the client role, call setClientRole of the current RtcChannel object.
   ///   You can publish a stream to only one channel at a time. For details on joining multiple channels, see the advanced guide Join Multiple Channels.
   ///
-  @Deprecated('')
+  @deprecated
   Future<void> publish();
 
   ///
@@ -167,7 +183,7 @@ abstract class RtcChannel {
   /// If you call this method in a channel where you are not publishing streams, the SDK returns
   /// -5 (ERR_REFUSED).
   ///
-  @Deprecated('')
+  @deprecated
   Future<void> unpublish();
 
   ///
@@ -260,14 +276,14 @@ abstract class RtcChannel {
   ///
   ///
   ///
-  @Deprecated('')
+  @deprecated
   Future<void> setDefaultMuteAllRemoteAudioStreams(bool muted);
 
   ///
   /// Stops or resumes publishing the local video stream.
   ///
   ///
-  /// Param [muted] Whether to stop publishing the local video stream.
+  /// Param [mute] Whether to stop publishing the local video stream.
   /// true: Stop publishing the local video stream.
   /// false: (Default) Publish the local video stream.
   ///
@@ -329,7 +345,7 @@ abstract class RtcChannel {
   ///
   ///
   ///
-  @Deprecated('')
+  @deprecated
   Future<void> setDefaultMuteAllRemoteVideoStreams(bool muted);
 
   ///
@@ -412,93 +428,36 @@ abstract class RtcChannel {
   ///
   /// Sets the transcoding configurations for CDN live streaming.
   /// This method takes effect only when you are a host in live interactive streaming.
-  /// Ensure that you enable the RTMP Converter service before using this function. See Prerequisites in the advanced guide Push Streams to CDN.
-  ///
-  /// If you call this method to set the transcoding configuration for the first time, the SDK does not trigger the
-  /// transcodingUpdated
-  /// callback.
-  ///
-  /// Call this method after joining a channel.
-  /// Agora supports pushing media streams in RTMPS protocol to the CDN only when you enable transcoding.
+  ///   Ensure that you enable the RTMP Converter service before using this function. See Prerequisites in the advanced guide Push Streams to CDN.
+  ///   If you call this method to set the transcoding configuration for the first time, the SDK does not trigger the transcodingUpdated callback.
+  ///   Call this method after joining a channel.
+  ///   Agora supports pushing media streams in RTMPS protocol to the CDN only when you enable transcoding.
   ///
   ///
+  /// This method sets the video layout and audio settings for CDN live streaming. The SDK triggers the transcodingUpdated callback when you call this method to update the transcoding setting.
   ///
-  ///
-  /// Deprecated:
-  ///
-  /// This method is deprecated. See Release Notes for an alternative solution.
-  ///
-  ///
-  ///
-  ///
-  /// This method sets the video layout and audio settings for CDN live streaming. The SDK triggers the
-  /// transcodingUpdated
-  /// callback when you call this method to update the transcoding setting.
-  ///
-  /// Param [transcoding]
-  /// The transcoding configurations for CDN live streaming. For details, see
-  /// LiveTranscoding
-  /// .
-  ///
-  ///
+  /// Param [transcoding] The transcoding configurations for CDN live streaming. For details, see LiveTranscoding.
   ///
   Future<void> setLiveTranscoding(LiveTranscoding transcoding);
 
   ///
   /// Publishes the local stream to a specified CDN live streaming URL.
   /// Call this method after joining a channel.
-  ///
   /// Ensure that you enable the RTMP Converter service before using this function.
-  ///
-  /// This method takes effect only when you are a host in live interactive streaming.
-  /// This method adds only one stream CDN streaming URL each time it is called. To push multiple URLs, call this method multiple times.
-  /// Agora supports pushing media streams in RTMPS protocol to the CDN only when you enable transcoding.
-  ///
+  ///   This method takes effect only when you are a host in live interactive streaming.
+  ///   This method adds only one stream CDN streaming URL each time it is called. To push multiple URLs, call this method multiple times.
+  ///   Agora supports pushing media streams in RTMPS protocol to the CDN only when you enable transcoding.
   ///
   ///
-  ///
-  /// Deprecated:
-  ///
-  /// This method is deprecated. See Release Notes for an alternative solution.
-  ///
-  ///
-  ///
-  ///
-  /// After calling this method, you can push media streams in RTMP or RTMPS protocol to the CDN. The SDK triggers the
-  /// rtmpStreamingStateChanged
-  /// callback on the local client to report the state of adding a local stream to the CDN.
+  /// After calling this method, you can push media streams in RTMP or RTMPS protocol to the CDN. The SDK triggers the rtmpStreamingStateChanged callback on the local client to report the state of adding a local stream to the CDN.
   ///
   /// Param [url] The CDN streaming URL in the RTMP or RTMPS format. The maximum length of this parameter is 1024 bytes. The URL address must not contain special characters, such as Chinese language characters.
   ///
-  /// Param [transcodingEnabled]
-  /// Whether to enable transcoding.
-  /// Transcoding
-  /// in a CDN live streaming converts the audio and video streams before pushing them to the CDN server. It applies to scenarios where a channel has multiple broadcasters and composite layout is needed
+  /// Param [transcodingEnabled] Whether to enable transcoding. Transcoding in a CDN live streaming converts the audio and video streams before pushing them to the CDN server. It applies to scenarios where a channel has multiple broadcasters and composite layout is needed
+  /// true: Enable transcoding.
+  /// false: Disable transcoding.
   ///
-  ///
-  ///
-  /// true
-  ///
-  /// : Enable transcoding.
-  ///
-  ///
-  ///
-  /// false
-  ///
-  /// : Disable transcoding.
-  ///
-  ///
-  ///
-  ///
-  /// If you set this parameter as
-  ///
-  /// true
-  ///
-  /// , ensure that you call the
-  ///
-  ///
-  /// method before this method.
-  ///
+  /// If you set this parameter as true , ensure that you call the setLiveTranscoding method before this method.
   ///
   ///
   Future<void> addPublishStreamUrl(String url, bool transcodingEnabled);
@@ -506,24 +465,12 @@ abstract class RtcChannel {
   ///
   /// Removes an RTMP or RTMPS stream from the CDN.
   /// Ensure that you enable the RTMP Converter service before using this function.
-  ///
   /// This method takes effect only when you are a host in live interactive streaming.
   /// Call this method after joining a channel.
   /// This method removes only one CDN streaming URL each time it is called. To remove multiple URLs, call this method multiple times.
   ///
   ///
-  ///
-  ///
-  /// Deprecated:
-  ///
-  /// This method is deprecated. See Release Notes for an alternative solution.
-  ///
-  ///
-  ///
-  ///
-  /// After a successful method call, the SDK triggers
-  /// rtmpStreamingStateChanged
-  /// on the local client to report the result of deleting the address.
+  /// After a successful method call, the SDK triggers rtmpStreamingStateChanged on the local client to report the result of deleting the address.
   ///
   /// Param [url] The CDN streaming URL to be removed. The maximum length of this parameter is 1024 bytes. The CDN streaming URL must not contain special characters, such as Chinese characters.
   ///
@@ -665,12 +612,12 @@ abstract class RtcChannel {
   ///
   /// Param [secret] The encryption password.
   ///
-  @Deprecated('Please use the enableEncryption method instead.')
+  @deprecated
   Future<void> setEncryptionSecret(String secret);
 
   ///
   /// Sets the built-in encryption mode.
-  /// secret. Refer to the information related to the AES encryption algorithm on the differences between the encryption modes.
+  /// The Agora SDK supports built-in encryption. The default encryption is AES-128-XTS. Call this method to use other encryption modes. All users in the same channel must use the same encryption mode and secret. Refer to the information related to the AES encryption algorithm on the differences between the encryption modes.
   ///
   ///
   ///   Deprecated:
@@ -680,17 +627,15 @@ abstract class RtcChannel {
   /// Before calling this method, please call setEncryptionSecret to enable the built-in encryption function.
   ///
   /// Param [encryptionMode] Encryption mode.
-  /// "aes-128-xts": 128-bit AES encryption, XTS mode.
+  /// "aes-128-xts": (Default) 128-bit AES encryption, XTS mode.
   /// "aes-128-ecb": 128-bit AES encryption, ECB mode.
   /// "aes-256-xts": 256-bit AES encryption, XTS mode.
-  /// "sm4-128-ecb": 128-bit SM4 encryption, ECB mode.
-  /// "aes-128-gcm": 128-bit AES encryption, GCM mode.
-  /// "aes-256-gcm": 256-bit AES encryption, GCM mode.
+  /// "": When setting as NULL, the encryption mode is set as "aes-128-xts" by default.
   ///
   ///
   ///
   ///
-  @Deprecated('Please use the enableEncryption method instead.')
+  @deprecated
   Future<void> setEncryptionMode(EncryptionMode encryptionMode);
 
   ///
@@ -778,7 +723,7 @@ abstract class RtcChannel {
   ///
   ///
   ///
-  @Deprecated('Please use createDataStreamWithConfig instead.')
+  @deprecated
   Future<int?> createDataStream(bool reliable, bool ordered);
 
   ///
@@ -807,18 +752,13 @@ abstract class RtcChannel {
   ///
   Future<void> sendStreamMessage(int streamId, Uint8List message);
 
-  /* TODO(doc): api-channel-setAVSyncSource */
   Future<void> setAVSyncSource(String channelId, int uid);
 
-  /* TODO(doc): api-channel-startRtmpStreamWithoutTranscoding */
   Future<void> startRtmpStreamWithoutTranscoding(String url);
 
-  /* TODO(doc): api-channel-startRtmpStreamWithTranscoding */
   Future<void> startRtmpStreamWithTranscoding(LiveTranscoding transcoding);
 
-  /* TODO(doc): api-channel-updateRtmpTranscoding */
   Future<void> updateRtmpTranscoding(LiveTranscoding transcoding);
 
-  /* TODO(doc): api-channel-stopRtmpStream */
   Future<void> stopRtmpStream(String url);
 }

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setextensionproperty">
+    <title><ph keyref="setExtensionProperty" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the properties of the extension.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setExtensionProperty" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract int setExtensionProperty(
+      String provider, String extension, String key, String value);
+</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)setExtensionPropertyWithVendor:(NSString * __nonnull)provider extension:(NSString * __nonnull)extension key:(NSString * __nonnull)key value:(NSString * __nonnull)value;
+</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual int setExtensionProperty(
+      const char* provider, const char* extension,
+      const char* key, const char* value, agora::media::MEDIA_SOURCE_TYPE type = agora::media::UNKNOWN_MEDIA_SOURCE) = 0;
+</codeblock>
+                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <p>After enabling the extension, you can call this method to set the properties of the extension.</p>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry id="vendor">
+                    <pt>provider</pt>
+                    <pd>The name of the extension provider.</pd>
+                </plentry>
+                <plentry id="extension">
+                    <pt>extension</pt>
+                    <pd>The name of the extension.</pd>
+                </plentry>
+                <plentry id="key">
+                    <pt>key</pt>
+                    <pd>The key of the extension.</pd>
+                </plentry>
+                <plentry id="value">
+                    <pt>value</pt>
+                    <pd>The value of the extension key.</pd>
+                </plentry>
+                <plentry conkeyref="enableExtension/source" props="windows">
+                    <pt />
+                    <pd />
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>

@@ -1,7 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: non_constant_identifier_names, deprecated_member_use_from_same_package, unused_element
-
 part of 'classes.dart';
 
 // **************************************************************************
@@ -1099,7 +1097,7 @@ VirtualBackgroundSource _$VirtualBackgroundSourceFromJson(
     VirtualBackgroundSource(
       backgroundSourceType: $enumDecodeNullable(
           _$VirtualBackgroundSourceTypeEnumMap, json['backgroundSourceType']),
-      color: json['color'] as int?,
+      color: _$ColorFromJson(json['color'] as Map<String, dynamic>),
       source: json['source'] as String?,
       blurDegree: $enumDecodeNullable(
               _$VirtualBackgroundBlurDegreeEnumMap, json['blur_degree']) ??
@@ -1118,7 +1116,7 @@ Map<String, dynamic> _$VirtualBackgroundSourceToJson(
 
   writeNotNull('backgroundSourceType',
       _$VirtualBackgroundSourceTypeEnumMap[instance.backgroundSourceType]);
-  writeNotNull('color', instance.color);
+  writeNotNull('color', _$ColorToJson(instance.color));
   writeNotNull('source', instance.source);
   val['blur_degree'] =
       _$VirtualBackgroundBlurDegreeEnumMap[instance.blurDegree];
@@ -1235,16 +1233,12 @@ Map<String, dynamic> _$MetadataToJson(Metadata instance) => <String, dynamic>{
 MediaRecorderConfiguration _$MediaRecorderConfigurationFromJson(
         Map<String, dynamic> json) =>
     MediaRecorderConfiguration(
-      storagePath: json['storagePath'] as String?,
-      containerFormat: $enumDecodeNullable(
-              _$MediaRecorderContainerFormatEnumMap, json['containerFormat']) ??
-          MediaRecorderContainerFormat.MP4,
-      streamType: $enumDecodeNullable(
-              _$MediaRecorderStreamTypeEnumMap, json['streamType']) ??
-          MediaRecorderStreamType.Both,
-      maxDurationMs: json['maxDurationMs'] as int? ?? 120000,
-      recorderInfoUpdateInterval:
-          json['recorderInfoUpdateInterval'] as int? ?? 0,
+      json['storagePath'] as String,
+      $enumDecode(
+          _$AgoraMediaRecorderContainerFormatEnumMap, json['containerFormat']),
+      $enumDecode(_$AgoraMediaRecorderStreamTypeEnumMap, json['streamType']),
+      json['maxDurationMs'] as int,
+      json['recorderInfoUpdateInterval'] as int,
     );
 
 Map<String, dynamic> _$MediaRecorderConfigurationToJson(
@@ -1252,21 +1246,20 @@ Map<String, dynamic> _$MediaRecorderConfigurationToJson(
     <String, dynamic>{
       'storagePath': instance.storagePath,
       'containerFormat':
-          _$MediaRecorderContainerFormatEnumMap[instance.containerFormat],
-      'streamType': _$MediaRecorderStreamTypeEnumMap[instance.streamType],
+          _$AgoraMediaRecorderContainerFormatEnumMap[instance.containerFormat],
+      'streamType': _$AgoraMediaRecorderStreamTypeEnumMap[instance.streamType],
       'maxDurationMs': instance.maxDurationMs,
       'recorderInfoUpdateInterval': instance.recorderInfoUpdateInterval,
     };
 
-const _$MediaRecorderContainerFormatEnumMap = {
-  MediaRecorderContainerFormat.MP4: 1,
-  MediaRecorderContainerFormat.FLV: 2,
+const _$AgoraMediaRecorderContainerFormatEnumMap = {
+  AgoraMediaRecorderContainerFormat.MP4: 1,
 };
 
-const _$MediaRecorderStreamTypeEnumMap = {
-  MediaRecorderStreamType.Audio: 1,
-  MediaRecorderStreamType.Video: 2,
-  MediaRecorderStreamType.Both: 3,
+const _$AgoraMediaRecorderStreamTypeEnumMap = {
+  AgoraMediaRecorderStreamType.Audio: 1,
+  AgoraMediaRecorderStreamType.Video: 2,
+  AgoraMediaRecorderStreamType.Both: 3,
 };
 
 RecorderInfo _$RecorderInfoFromJson(Map<String, dynamic> json) => RecorderInfo(

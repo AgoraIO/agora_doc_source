@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_iaudioencodedframeobserver_onrecordaudioencodedframe">
+    <title><ph keyref="onRecordAudioEncodedFrame" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Gets the encoded audio data of the local user.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRecordAudioEncodedFrame" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract void onRecordAudioEncodedFrame(
+      ByteBuffer buffer, int samplesPerChannel, int channels, int samplesPerSec, int codecType);
+</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)onRecordEncodedAudioFrame:(NSData* _Nonnull)frameData info:(AgoraEncodedAudioFrameInfo* _Nonnull) info;
+</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual void OnRecordAudioEncodedFrame(const uint8_t* frameBuffer,  int length, const EncodedAudioFrameInfo&amp; audioEncodedFrameInfo) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <p>After calling <xref keyref="registerAudioEncodedFrameObserver" /> and setting the encoded audio as <ph keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_RECORD" />, you can get the encoded audio data of the local user from this callback.</p>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry>
+                    <pt props="android">buffer</pt>
+                    <pt props="ios mac">frameData</pt>
+                    <pt props="windows">frameBuffer</pt>
+                    <pd>The audio buffer.</pd>
+                </plentry>
+                <plentry props="windows">
+                    <pt>length</pt>
+                    <pd>The data length (byte).</pd>
+                </plentry>
+                <plentry props="ios mac windows">
+                    <pt props="windows">audioEncodedFrameInfo</pt>
+                    <pt props="ios mac">info</pt>
+                    <pd>Audio information after encoding. For details, see <xref keyref="EncodedAudioFrameInfo" />.</pd>
+                </plentry>
+                <plentry conkeyref="onMixedAudioFrame/samplesPerChannel" props="android">
+                    <pt />
+                    <pd />
+                </plentry>
+                <plentry conkeyref="onMixedAudioFrame/channels" props="android">
+                    <pt />
+                    <pd />
+                </plentry>
+                <plentry conkeyref="onMixedAudioFrame/samplesPerSec" props="android">
+                    <pt />
+                    <pd />
+                </plentry>
+                <plentry props="android" id="codecType">
+                    <pt>codecType</pt>
+                    <pd>Audio encoding type.<ul>
+                            <li><ph keyref="AUDIO_CODEC_OPUS" />1: OPUS.</li>
+                            <li><ph keyref="AUDIO_CODEC_AACLC" />8: LC-AAC.</li>
+                            <li><ph keyref="AUDIO_CODEC_HEAAC" />9: HE-AAC.</li>
+                            <li><ph keyref="AUDIO_CODEC_HEAAC2" />11: HE-AAC v2.</li>
+                        </ul></pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

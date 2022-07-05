@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_enableloopbackrecordingex">
+    <title><ph keyref="enableLoopbackRecordingEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc">开启声卡采集。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableLoopbackRecordingEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)enableLoopbackRecordingEx:(BOOL)enabled
+                    connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual int enableLoopbackRecordingEx(bool enabled, const RtcConnection&amp; connection) = 0;</codeblock>
+
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <p>启用声卡采集功能后，声卡播放的声音会被合到本地音频流中，从而可以发送到远端。</p><note id="note_v4j_tbx_jqb" type="attention" props="windows">
+                <p>该方法仅适用于 macOS 和 Windows 平台。</p>
+            </note>
+        </section>
+        <section id="parameters"><title>参数</title>
+            <parml>
+                <plentry conkeyref="joinChannelEx/connection">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry>
+                    <pt>enabled</pt>
+                    <pd>是否开启声卡采集：  <ul id="ul_kgm_wbx_jqb">
+                        <li><codeph><ph keyref="true"/></codeph>: 开启声卡采集。</li>
+                        <li><codeph><ph keyref="false"/></codeph>:（默认）不开启声卡采集。</li>
+                        </ul></pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <ul id="ul_uvd_2cx_jqb">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>

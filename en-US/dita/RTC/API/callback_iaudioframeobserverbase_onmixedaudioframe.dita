@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_iaudioframeobserverbase_onmixedaudioframe">
+    <title><ph keyref="onMixedAudioFrame" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Retrieves the mixed captured and playback audio frame.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="onMixedAudioFrame" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract boolean onMixedAudioFrame(int type, int samplesPerChannel, int bytesPerSample,
+      int channels, int samplesPerSec, ByteBuffer buffer, long renderTimeMs, int avsync_type);
+</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onMixedAudioFrame:(AgoraAudioFrame* _Nonnull)frame;</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual bool onMixedAudioFrame(AudioFrame&amp; audioFrame) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="unity" outputclass="language-csharp">public virtual bool OnMixedAudioFrame(AudioFrame audioFrame)
+        {
+            return true;
+        }</codeblock>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
+        </p>
+        </section>
+        <section id="detailed_desc">
+
+   <p>
+       <note type="attention">This callback only returns the single-channel data.</note>
+   </p>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+   <parml props="ios mac windows unity">
+       <plentry>
+  <pt props="windows unity">audioFrame</pt>
+                    <pt props="ios mac">frame</pt>
+  <pd>The playback audio frame. For details, see <xref keyref="AudioFrame" />.</pd>
+       </plentry>
+   </parml>
+            <parml props="android">
+                <plentry id="type">
+                    <pt>type</pt>
+                    <pd>The audio frame type.</pd>
+                </plentry>
+                <plentry id="samplesPerChannel">
+                    <pt>samplesPerChannel</pt>
+                    <pd>The number of samples per channel in the audio frame.</pd>
+                </plentry>
+                <plentry id="bytesPerSample">
+                    <pt>bytesPerSample</pt>
+                    <pd>The number of bytes per audio sample. For example, each PCM audio sample usually takes up 16 bits (2 bytes).</pd>
+                </plentry>
+                <plentry id="channels">
+                    <pt>channels</pt>
+                    <pd><p>The number of channels.<ul>
+                            <li>1: Mono.</li>
+                            <li>2: Stereo. If the channel uses stereo, the data is interleaved.</li>
+                        </ul></p>
+                    </pd>
+                </plentry>
+                <plentry id="samplesPerSec">
+                    <pt>samplesPerSec</pt>
+                    <pd>Recording sample rate (Hz).</pd>
+                </plentry>
+                <plentry id="buffer">
+                    <pt>buffer</pt>
+                    <pd>The audio buffer. The buffer size = samplesPerChannel x channels x bytesPerSample.</pd>
+                </plentry>
+                <plentry id="renderTimeMs">
+                    <pt>renderTimeMs</pt>
+                    <pd>The timestamp (ms) of the external audio frame. You can use this parameter for the following purpose: Synchronize audio and video frames in video or audio related scenarios, including where external video sources are used.</pd>
+                </plentry>
+                <plentry id="avsync">
+                    <pt>avsync_type</pt>
+                    <pd>Reserved for future use.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li><codeph><ph keyref="true" /></codeph>: The mixed audio data is valid and is encoded and sent.</li>
+       <li><codeph><ph keyref="false" /></codeph>: The mixed audio data is invalid and is not encoded or sent.</li>
+   </ul>
+        </section></refbody>
+</reference>

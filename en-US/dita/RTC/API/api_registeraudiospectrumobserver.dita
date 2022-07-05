@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_registeraudiospectrumobserver">
+    <title><ph keyref="registerAudioSpectrumObserver" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Register an audio spectrum observer.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="registerAudioSpectrumObserver" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract int registerAudioSpectrumObserver(IAudioSpectrumObserver observer);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)registerAudioSpectrumDelegate:(id&lt;AgoraAudioSpectrumDelegate&gt; _Nullable )delegate;</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual int registerAudioSpectrumObserver(agora::media::IAudioSpectrumObserver * observer) = 0;
+</codeblock>
+                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <p>After successfully registering the audio spectrum observer and calling <xref keyref="enableAudioSpectrumMonitor" /> to enable the audio spectrum monitoring, the SDK reports the callback that you implement in the <xref keyref="IAudioSpectrumObserver" /> class at the time interval you set.</p>
+            <note type="attention" id="note_qwk_mjf_3qb">You can call this method either before or after joining a channel.</note>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry>
+                    <pt props="android windows">observer</pt>
+                    <pt props="ios mac">delegate</pt>
+                    <pd>
+                        <p>The Audio spectrum observer. For details, see <xref keyref="IAudioSpectrumObserver" />.</p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul id="ul_jzc_zjf_3qb">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
+
+    </refbody>
+</reference>

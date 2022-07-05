@@ -17,7 +17,6 @@
 #include "IAgoraParameter.h"
 #include "AgoraMediaBase.h"
 #include "AgoraRefPtr.h"
-#include "AgoraOptional.h"
 
 #define MAX_PATH_260 (260)
 
@@ -39,8 +38,6 @@
 
 #define AGORA_CALL __cdecl
 
-#define __deprecated
-
 #elif defined(__APPLE__)
 
 #include <TargetConditionals.h>
@@ -53,14 +50,10 @@
 #define AGORA_API extern "C" __attribute__((visibility("default")))
 #define AGORA_CALL
 
-#define __deprecated
-
 #else  // !_WIN32 && !__APPLE__ && !(__ANDROID__ || __linux__)
 
 #define AGORA_API extern "C"
 #define AGORA_CALL
-
-#define __deprecated
 
 #endif  // _WIN32
 
@@ -287,7 +280,7 @@ enum CHANNEL_PROFILE_TYPE {
    * 2: Gaming.
    * @deprecated This profile is deprecated.
    */
-  CHANNEL_PROFILE_GAME __deprecated = 2,
+  CHANNEL_PROFILE_GAME = 2,
   /**
    * 3: Cloud Gaming.
    *
@@ -298,7 +291,8 @@ enum CHANNEL_PROFILE_TYPE {
 
   /**
    * 4: Communication 1v1.
-   * @deprecated This profile is deprecated.
+   *
+   * This profile uses a special network transport strategy for communication 1v1.
    */
   CHANNEL_PROFILE_COMMUNICATION_1v1 = 4,
 
@@ -721,11 +715,6 @@ enum ERROR_CODE_TYPE {
    */
   ERR_LICENSE_CREDENTIAL_INVALID = 131,
 
-  /**
-   * 134: The user account is invalid, usually because the data format of the user account is incorrect.
-   */
-  ERR_INVALID_USER_ACCOUNT = 134,
-
   // Licensing, keep the license error code same as the main version
   ERR_CERT_RAW = 157,
   ERR_CERT_JSON_PART = 158,
@@ -909,15 +898,15 @@ enum ERROR_CODE_TYPE {
    */
   ERR_ADM_ANDROID_JNI_JAVA_RECORD_ERROR = 1115,
   /** @deprecated */
-  ERR_ADM_ANDROID_OPENSL_CREATE_ENGINE __deprecated = 1151,
+  ERR_ADM_ANDROID_OPENSL_CREATE_ENGINE = 1151,
   /** @deprecated */
-  ERR_ADM_ANDROID_OPENSL_CREATE_AUDIO_RECORDER __deprecated = 1153,
+  ERR_ADM_ANDROID_OPENSL_CREATE_AUDIO_RECORDER = 1153,
   /** @deprecated */
-  ERR_ADM_ANDROID_OPENSL_START_RECORDER_THREAD __deprecated = 1156,
+  ERR_ADM_ANDROID_OPENSL_START_RECORDER_THREAD = 1156,
   /** @deprecated */
-  ERR_ADM_ANDROID_OPENSL_CREATE_AUDIO_PLAYER __deprecated = 1157,
+  ERR_ADM_ANDROID_OPENSL_CREATE_AUDIO_PLAYER = 1157,
   /** @deprecated */
-  ERR_ADM_ANDROID_OPENSL_START_PLAYER_THREAD __deprecated = 1160,
+  ERR_ADM_ANDROID_OPENSL_START_PLAYER_THREAD = 1160,
   /**
    * 1201: Audio device module: The current device does not support audio
    * input, possibly because you have mistakenly configured the audio session
@@ -946,7 +935,7 @@ enum ERROR_CODE_TYPE {
   ERR_ADM_IOS_VPIO_RESTART_FAIL = 1214,
   ERR_ADM_IOS_SET_RENDER_CALLBACK_FAIL = 1219,
   /** @deprecated */
-  ERR_ADM_IOS_SESSION_SAMPLERATR_ZERO __deprecated = 1221,
+  ERR_ADM_IOS_SESSION_SAMPLERATR_ZERO = 1221,
   /**
    * 1301: Audio device module: An exception with the audio driver or a
    * compatibility issue occurs.
@@ -1221,8 +1210,6 @@ enum INTERFACE_ID_TYPE {
   AGORA_IID_RTC_CONNECTION = 7,
   AGORA_IID_SIGNALING_ENGINE = 8,
   AGORA_IID_MEDIA_ENGINE_REGULATOR = 9,
-  AGORA_IID_CLOUD_SPATIAL_AUDIO = 10,
-  AGORA_IID_LOCAL_SPATIAL_AUDIO = 11,
 };
 
 /**
@@ -1233,7 +1220,7 @@ enum QUALITY_TYPE {
    * 0: The network quality is unknown.
    * @deprecated This member is deprecated.
    */
-  QUALITY_UNKNOWN __deprecated = 0,
+  QUALITY_UNKNOWN = 0,
   /**
    * 1: The quality is excellent.
    */
@@ -1515,97 +1502,6 @@ enum VIDEO_CODEC_TYPE {
 };
 
 /**
- * The CC (Congestion Control) mode options.
- */
-enum TCcMode {
-  /**
-   * Enable CC mode.
-   */
-  CC_ENABLED,
-  /**
-   * Disable CC mode.
-   */
-  CC_DISABLED,
-};
-
-/**
- * The configuration for creating a local video track with an encoded image sender.
- */
-struct SenderOptions {
-  /**
-   * Whether to enable CC mode. See #TCcMode.
-   */
-  TCcMode ccMode;
-  /**
-   * The codec type used for the encoded images: \ref agora::rtc::VIDEO_CODEC_TYPE "VIDEO_CODEC_TYPE".
-   */
-  VIDEO_CODEC_TYPE codecType;
-
-  /**
-   * Target bitrate (Kbps) for video encoding.
-   *
-   * Choose one of the following options:
-   *
-   * - \ref agora::rtc::STANDARD_BITRATE "STANDARD_BITRATE": (Recommended) Standard bitrate.
-   *   - Communication profile: The encoding bitrate equals the base bitrate.
-   *   - Live-broadcast profile: The encoding bitrate is twice the base bitrate.
-   * - \ref agora::rtc::COMPATIBLE_BITRATE "COMPATIBLE_BITRATE": Compatible bitrate. The bitrate stays the same
-   * regardless of the profile.
-   *
-   * The Communication profile prioritizes smoothness, while the Live Broadcast
-   * profile prioritizes video quality (requiring a higher bitrate). Agora
-   * recommends setting the bitrate mode as \ref agora::rtc::STANDARD_BITRATE "STANDARD_BITRATE" or simply to
-   * address this difference.
-   *
-   * The following table lists the recommended video encoder configurations,
-   * where the base bitrate applies to the communication profile. Set your
-   * bitrate based on this table. If the bitrate you set is beyond the proper
-   * range, the SDK automatically sets it to within the range.
-
-   | Resolution             | Frame Rate (fps) | Base Bitrate (Kbps, for Communication) | Live Bitrate (Kbps, for Live Broadcast)|
-   |------------------------|------------------|----------------------------------------|----------------------------------------|
-   | 160 &times; 120        | 15               | 65                                     | 130 |
-   | 120 &times; 120        | 15               | 50                                     | 100 |
-   | 320 &times; 180        | 15               | 140                                    | 280 |
-   | 180 &times; 180        | 15               | 100                                    | 200 |
-   | 240 &times; 180        | 15               | 120                                    | 240 |
-   | 320 &times; 240        | 15               | 200                                    | 400 |
-   | 240 &times; 240        | 15               | 140                                    | 280 |
-   | 424 &times; 240        | 15               | 220                                    | 440 |
-   | 640 &times; 360        | 15               | 400                                    | 800 |
-   | 360 &times; 360        | 15               | 260                                    | 520 |
-   | 640 &times; 360        | 30               | 600                                    | 1200 |
-   | 360 &times; 360        | 30               | 400                                    | 800 |
-   | 480 &times; 360        | 15               | 320                                    | 640 |
-   | 480 &times; 360        | 30               | 490                                    | 980 |
-   | 640 &times; 480        | 15               | 500                                    | 1000 |
-   | 480 &times; 480        | 15               | 400                                    | 800 |
-   | 640 &times; 480        | 30               | 750                                    | 1500 |
-   | 480 &times; 480        | 30               | 600                                    | 1200 |
-   | 848 &times; 480        | 15               | 610                                    | 1220 |
-   | 848 &times; 480        | 30               | 930                                    | 1860 |
-   | 640 &times; 480        | 10               | 400                                    | 800 |
-   | 1280 &times; 720       | 15               | 1130                                   | 2260 |
-   | 1280 &times; 720       | 30               | 1710                                   | 3420 |
-   | 960 &times; 720        | 15               | 910                                    | 1820 |
-   | 960 &times; 720        | 30               | 1380                                   | 2760 |
-   | 1920 &times; 1080      | 15               | 2080                                   | 4160 |
-   | 1920 &times; 1080      | 30               | 3150                                   | 6300 |
-   | 1920 &times; 1080      | 60               | 4780                                   | 6500 |
-   | 2560 &times; 1440      | 30               | 4850                                   | 6500 |
-   | 2560 &times; 1440      | 60               | 6500                                   | 6500 |
-   | 3840 &times; 2160      | 30               | 6500                                   | 6500 |
-   | 3840 &times; 2160      | 60               | 6500                                   | 6500 |
-   */
-  int targetBitrate;
-
-  SenderOptions()
-  : ccMode(CC_ENABLED),
-    codecType(VIDEO_CODEC_H264),
-    targetBitrate(6500) {}
-};
-
-/**
  * Audio codec types.
  */
 enum AUDIO_CODEC_TYPE {
@@ -1746,16 +1642,14 @@ struct EncodedAudioFrameInfo {
     : codec(AUDIO_CODEC_AACLC),
       sampleRateHz(0),
       samplesPerChannel(0),
-      numberOfChannels(0),
-      captureTimeMs(0) {}
+      numberOfChannels(0) {}
 
   EncodedAudioFrameInfo(const EncodedAudioFrameInfo& rhs)
     : codec(rhs.codec),
       sampleRateHz(rhs.sampleRateHz),
       samplesPerChannel(rhs.samplesPerChannel),
       numberOfChannels(rhs.numberOfChannels),
-      advancedSettings(rhs.advancedSettings),
-      captureTimeMs(rhs.captureTimeMs) {}
+      advancedSettings(rhs.advancedSettings) {}
   /**
    * The audio codec: #AUDIO_CODEC_TYPE.
    */
@@ -1778,11 +1672,6 @@ struct EncodedAudioFrameInfo {
    * The advanced settings of the audio frame.
    */
   EncodedAudioFrameAdvancedSettings advancedSettings;
-
-  /**
-   * This is a input parameter which means the timestamp for capturing the audio frame.
-   */
-  int64_t captureTimeMs;
 };
 /**
  * The definition of the AudioPcmDataInfo struct.
@@ -1846,24 +1735,6 @@ enum VIDEO_STREAM_TYPE {
   VIDEO_STREAM_LOW = 1,
 };
 
-struct VideoSubscriptionOptions {
-    /**
-     * The type of the video stream to subscribe to.
-     *
-     * The default value is `VIDEO_STREAM_HIGH`, which means the high-quality
-     * video stream.
-     */
-    Optional<VIDEO_STREAM_TYPE> type;
-    /**
-     * Whether to subscribe to encoded video data only:
-     * - `true`: Subscribe to encoded video data only.
-     * - `false`: (Default) Subscribe to decoded video data.
-     */
-    Optional<bool> encodedFrameOnly;
-
-    VideoSubscriptionOptions() {}
-};
-
 /**
  * The definition of the EncodedVideoFrameInfo struct.
  */
@@ -1876,8 +1747,8 @@ struct EncodedVideoFrameInfo {
       frameType(VIDEO_FRAME_TYPE_BLANK_FRAME),
       rotation(VIDEO_ORIENTATION_0),
       trackId(0),
-      decodeTimeMs(0),
-      captureTimeMs(0),
+      renderTimeMs(0),
+      internalSendTs(0),
       uid(0),
       streamType(VIDEO_STREAM_HIGH) {}
 
@@ -1889,8 +1760,8 @@ struct EncodedVideoFrameInfo {
       frameType(rhs.frameType),
       rotation(rhs.rotation),
       trackId(rhs.trackId),
-      decodeTimeMs(rhs.decodeTimeMs),
-      captureTimeMs(rhs.captureTimeMs),
+      renderTimeMs(rhs.renderTimeMs),
+      internalSendTs(rhs.internalSendTs),
       uid(rhs.uid),
       streamType(rhs.streamType) {}
 
@@ -1903,8 +1774,8 @@ struct EncodedVideoFrameInfo {
     frameType = rhs.frameType;
     rotation = rhs.rotation;
     trackId = rhs.trackId;
-    decodeTimeMs = rhs.decodeTimeMs;
-    captureTimeMs = rhs.captureTimeMs;
+    renderTimeMs = rhs.renderTimeMs;
+    internalSendTs = rhs.internalSendTs;
     uid = rhs.uid;
     streamType = rhs.streamType;
     return *this;
@@ -1943,15 +1814,22 @@ struct EncodedVideoFrameInfo {
                 // and additional payload for later implementation.
 
   /**
-   * The timestamp for decoding the video.
+   * The timestamp for rendering the video.
+   * 
+   * Attention that this parameter is just used in receiver side not sender side,
+   * thus it belongs to output.
+   * 
    */
-  int64_t decodeTimeMs;
-
+  int64_t renderTimeMs;
   /**
-   * This is a input parameter which means the timestamp for capturing the video.
+   * Use this timestamp for audio and video sync. You can get this timestamp from
+   * the `OnEncodedVideoImageReceived` callback when `encodedFrameOnly` is `true`.
+   * 
+   * Attention that this parameter is just used in receiver side not sender side,
+   * thus it belongs to output.
+   * 
    */
-  int64_t captureTimeMs;
-
+  uint64_t internalSendTs;
   /**
    * ID of the user.
    */
@@ -2497,10 +2375,14 @@ enum QUALITY_ADAPT_INDICATION {
 /** Client role levels in a live broadcast. */
 enum AUDIENCE_LATENCY_LEVEL_TYPE
 {
-  /** 1: Low latency. */
+  /** 1: Low latency. A low latency audience's jitter buffer is 1.2 second. */
   AUDIENCE_LATENCY_LEVEL_LOW_LATENCY = 1,
-  /** 2: Ultra low latency. */
+  /** 2: Ultra low latency. A default ultra low latency audience's jitter buffer is 0.5 second. */
   AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY = 2,
+  /**
+    * 3: High latency. For RTLS2.0
+    */
+  AUDIENCE_LATENCY_LEVEL_HIGH_LATENCY = 3,
 };
 
 /** Client role options, contains audience latency level.
@@ -2508,44 +2390,11 @@ enum AUDIENCE_LATENCY_LEVEL_TYPE
 struct ClientRoleOptions
 {
   /**
-  Audience latency level.
+  Audience latency level, support 0.5s and 1.2s.
   */
   AUDIENCE_LATENCY_LEVEL_TYPE audienceLatencyLevel;
   ClientRoleOptions()
     : audienceLatencyLevel(AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY) {}
-};
-
-/**
- * Quality of experience (QoE) of the local user when receiving a remote audio stream.
- */
-enum EXPERIENCE_QUALITY_TYPE {
-  /** 0: QoE of the local user is good.  */
-  EXPERIENCE_QUALITY_GOOD = 0,
-  /** 1: QoE of the local user is poor.  */
-  EXPERIENCE_QUALITY_BAD = 1,
-};
-
-/**
- * The reason for poor QoE of the local user when receiving a remote audio stream.
- *
- */
-enum EXPERIENCE_POOR_REASON {
-  /** 0: No reason, indicating good QoE of the local user.
-   */
-  EXPERIENCE_REASON_NONE = 0,
-  /** 1: The remote user's network quality is poor.
-   */
-  REMOTE_NETWORK_QUALITY_POOR = 1,
-  /** 2: The local user's network quality is poor.
-   */
-  LOCAL_NETWORK_QUALITY_POOR = 2,
-  /** 4: The local user's Wi-Fi or mobile network signal is weak.
-   */
-  WIRELESS_SIGNAL_POOR = 4,
-  /** 8: The local user enables both Wi-Fi and bluetooth, and their signals interfere with each other.
-   * As a result, audio transmission quality is undermined.
-   */
-  WIFI_BLUETOOTH_COEXIST = 8,
 };
 
 /**
@@ -2625,14 +2474,6 @@ struct RemoteAudioStats
    * The total publish duration (ms) of the remote audio stream.
    */
   int publishDuration;
-  /**
-   * Quality of experience (QoE) of the local user when receiving a remote audio stream. See #EXPERIENCE_QUALITY_TYPE.
-   */
-  int qoeQuality;
-  /**
-   * The reason for poor QoE of the local user when receiving a remote audio stream. See #EXPERIENCE_POOR_REASON.
-   */
-  int qualityChangedReason;
 
   RemoteAudioStats() :
     uid(0),
@@ -2647,9 +2488,7 @@ struct RemoteAudioStats
     frozenRate(0),
     mosValue(0),
     totalActiveTime(0),
-    publishDuration(0),
-    qoeQuality(0),
-    qualityChangedReason(0){}
+    publishDuration(0){}
 };
 
 /**
@@ -2751,18 +2590,12 @@ struct VideoFormat {
    * The video frame rate (fps).
    */
   int fps;
-  VideoFormat() : width(FRAME_WIDTH_640), height(FRAME_HEIGHT_360), fps(FRAME_RATE_FPS_15) {}
-  VideoFormat(int w, int h, int f) : width(w), height(h), fps(f) {}
-
-  bool operator <(const VideoFormat& fmt) const {
-    if (height != fmt.height) {
-      return height < fmt.height;
-    } else if (width != fmt.width) {
-      return width < fmt.width;
-    } else {
-      return fps < fmt.fps;
-    }
-  }
+  
+  /** Pixel format (for iOS only). */
+  uint32_t pixelFormat;
+  
+  VideoFormat() : width(FRAME_WIDTH_640), height(FRAME_HEIGHT_360), fps(FRAME_RATE_FPS_15), pixelFormat(0) {}
+  VideoFormat(int w, int h, int f, uint32_t fmt = 0) : width(w), height(h), fps(f), pixelFormat(fmt) {}
 };
 
 /**
@@ -2786,13 +2619,6 @@ enum VIDEO_CONTENT_HINT {
    *
    */
   CONTENT_HINT_DETAILS
-};
-
-enum SCREEN_SCENARIO_TYPE {
-  SCREEN_SCENARIO_DOCUMENT = 1,
-  SCREEN_SCENARIO_GAMING = 2,
-  SCREEN_SCENARIO_VIDEO = 3,
-  SCREEN_SCENARIO_RDC = 4,
 };
 
 /**
@@ -2886,25 +2712,15 @@ enum LOCAL_VIDEO_STREAM_ERROR {
   /** 5: The local video encoding fails. */
   LOCAL_VIDEO_STREAM_ERROR_ENCODE_FAILURE = 5,
   /** 6: The local video capturing device not avalible due to app did enter background.*/
-  LOCAL_VIDEO_STREAM_ERROR_CAPTURE_INBACKGROUND = 6,
+  LOCAL_VIDEO_STREAM_ERROR_BACKGROUD = 6,
   /** 7: The local video capturing device not avalible because the app is running in a multi-app layout (generally on the pad) */
-  LOCAL_VIDEO_STREAM_ERROR_CAPTURE_MULTIPLE_FOREGROUND_APPS = 7,
-  /** 8: The local capture device cannot be found */
-  LOCAL_VIDEO_STREAM_ERROR_DEVICE_NOT_FOUND = 8,
-  /** 9: The local capture device is disconnected */
-  LOCAL_VIDEO_STREAM_ERROR_DEVICE_DISCONNECTED = 9,
-  /** 10:The local captue device id is invalid, for Windows and Mac only */
-  LOCAL_VIDEO_STREAM_ERROR_DEVICE_INVALID_ID = 10,
-  /** 101: The local video capturing device temporarily being made unavailable due to system pressure. */
-  LOCAL_VIDEO_STREAM_ERROR_DEVICE_SYSTEM_PRESSURE = 101,
+  LOCAL_VIDEO_STREAM_ERROR_MULTIPLE_FOREGROUND_APPS = 7,
+  /** 8: The local video capturing device  temporarily being made unavailable due to system pressure. */
+  LOCAL_VIDEO_STREAM_ERROR_SYSTEM_PRESSURE = 8,
   /** 11: The local screen capture window is minimized. */
   LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_MINIMIZED = 11,
   /** 12: The local screen capture window is closed. */
-  LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_CLOSED = 12,
-  /** 13: The local screen capture window is occluded. */
-  LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_OCCLUDED = 13,
-  /** 20: The local screen capture window is not supported. */
-  LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_NOT_SUPPORTED = 20,
+  LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_CLOSED = 12
 };
 
 /**
@@ -3077,29 +2893,6 @@ enum REMOTE_VIDEO_STATE_REASON {
 };
 
 /**
- * The remote user state information.
- */
-enum REMOTE_USER_STATE {
-  /**
-   * The remote user has muted the audio.
-   */
-  USER_STATE_MUTE_AUDIO = (1 << 0),
-  /**
-   * The remote user has muted the video.
-   */
-  USER_STATE_MUTE_VIDEO = (1 << 1),
-  /**
-   * The remote user has enabled the video, which includes video capturing and encoding.
-   */
-  USER_STATE_ENABLE_VIDEO = (1 << 4),
-  /**
-   * The remote user has enabled the local video capturing.
-   */
-  USER_STATE_ENABLE_LOCAL_VIDEO = (1 << 8),
-
-};
-
-/**
  * The definition of the VideoTrackInfo struct, which contains information of
  * the video track.
  */
@@ -3107,8 +2900,7 @@ struct VideoTrackInfo {
   VideoTrackInfo()
   : isLocal(false), ownerUid(0), trackId(0), channelId(OPTIONAL_NULLPTR)
   , streamType(VIDEO_STREAM_HIGH), codecType(VIDEO_CODEC_H264)
-  , encodedFrameOnly(false), sourceType(VIDEO_SOURCE_CAMERA_PRIMARY)
-  , observationPosition(agora::media::base::POSITION_POST_CAPTURER) {}
+  , encodedFrameOnly(false), sourceType(VIDEO_SOURCE_CAMERA_PRIMARY) {}
   /**
    * Whether the video track is local or remote.
    * - true: The video track is local.
@@ -3146,10 +2938,6 @@ struct VideoTrackInfo {
    * The video source type: #VIDEO_SOURCE_TYPE
    */
   VIDEO_SOURCE_TYPE sourceType;
-  /**
-   * the frame position for the video observer: #VIDEO_MODULE_POSITION
-   */
-  uint32_t observationPosition;
 };
 
 /**
@@ -3308,17 +3096,6 @@ enum AUDIO_SAMPLE_RATE_TYPE {
    */
   AUDIO_SAMPLE_RATE_48000 = 48000,
 };
-enum VIDEO_CODEC_TYPE_FOR_STREAM {
-  /**
-   * 1: (Default) H.264
-   */
-  VIDEO_CODEC_H264_FOR_STREAM = 1,
-  /**
-   * 2: H.265
-   */
-  VIDEO_CODEC_H265_FOR_STREAM = 2,
-};
-
 /**
  * Video codec profile types.
  */
@@ -3337,7 +3114,6 @@ enum VIDEO_CODEC_PROFILE_TYPE {
   VIDEO_CODEC_PROFILE_HIGH = 100,
 };
 
-
 /**
  * Audio codec profile types.
  */
@@ -3350,10 +3126,6 @@ enum AUDIO_CODEC_PROFILE_TYPE {
    * 1: HE-AAC, which is the high-efficiency audio codec type.
    */
   AUDIO_CODEC_PROFILE_HE_AAC = 1,
-  /**
-   *  2: HE-AACv2, which is the high-efficiency audio codec type.
-   */
-  AUDIO_CODEC_PROFILE_HE_AAC_V2 = 2,
 };
 
 /**
@@ -3378,104 +3150,119 @@ struct LocalAudioStats
    * The internal payload type
    */
   int internalCodec;
-  /**
-   * The audio packet loss rate (%) from the local client to the Agora edge server before applying the anti-packet loss strategies.
-   */
-  unsigned short txPacketLossRate;
-  /**
-   * The audio delay of the device, contains record and playout delay
-   */
-  int audioDeviceDelay;
 };
 
 
 /**
- States of the RTMP or RTMPS streaming.
+ * States of the RTMP streaming.
  */
 enum RTMP_STREAM_PUBLISH_STATE {
-  /** The RTMP or RTMPS streaming has not started or has ended. This state is also triggered after you remove an RTMP or RTMPS stream from the CDN by calling `removePublishStreamUrl`.
+  /**
+   * 0: The RTMP streaming has not started or has ended.
+   *
+   * This state is also reported after you remove
+   * an RTMP address from the CDN by calling `removePublishStreamUrl`.
    */
   RTMP_STREAM_PUBLISH_STATE_IDLE = 0,
-  /** The SDK is connecting to Agora's streaming server and the CDN server. This state is triggered after you call the \ref IRtcEngine::addPublishStreamUrl "addPublishStreamUrl" method.
+  /**
+   * 1: The SDK is connecting to the streaming server and the RTMP server.
+   *
+   * This state is reported after you call `addPublishStreamUrl`.
    */
   RTMP_STREAM_PUBLISH_STATE_CONNECTING = 1,
-  /** The RTMP or RTMPS streaming publishes. The SDK successfully publishes the RTMP or RTMPS streaming and returns this state.
+  /**
+   * 2: The RTMP streaming publishes. The SDK successfully publishes the RTMP streaming and returns
+   * this state.
    */
   RTMP_STREAM_PUBLISH_STATE_RUNNING = 2,
-  /** The RTMP or RTMPS streaming is recovering. When exceptions occur to the CDN, or the streaming is interrupted, the SDK tries to resume RTMP or RTMPS streaming and returns this state.
-
-   - If the SDK successfully resumes the streaming, #RTMP_STREAM_PUBLISH_STATE_RUNNING (2) returns.
-   - If the streaming does not resume within 60 seconds or server errors occur, #RTMP_STREAM_PUBLISH_STATE_FAILURE (4) returns. You can also reconnect to the server by calling the \ref IRtcEngine::removePublishStreamUrl "removePublishStreamUrl" and \ref IRtcEngine::addPublishStreamUrl "addPublishStreamUrl" methods.
+  /**
+   * 3: The RTMP streaming is recovering. When exceptions occur to the CDN, or the streaming is
+   * interrupted, the SDK tries to resume RTMP streaming and reports this state.
+   *
+   * - If the SDK successfully resumes the streaming, `RTMP_STREAM_PUBLISH_STATE_RUNNING(2)` is reported.
+   * - If the streaming does not resume within 60 seconds or server errors occur,
+   * `RTMP_STREAM_PUBLISH_STATE_FAILURE(4)` is reported. You can also reconnect to the server by calling
+   * `removePublishStreamUrl` and `addPublishStreamUrl`.
    */
   RTMP_STREAM_PUBLISH_STATE_RECOVERING = 3,
-  /** The RTMP or RTMPS streaming fails. See the errCode parameter for the detailed error information. You can also call the \ref IRtcEngine::addPublishStreamUrl "addPublishStreamUrl" method to publish the RTMP or RTMPS streaming again.
+  /**
+   * 4: The RTMP streaming fails. See the `errCode` parameter for the detailed error information. You
+   * can also call `addPublishStreamUrl` to publish the RTMP streaming again.
    */
   RTMP_STREAM_PUBLISH_STATE_FAILURE = 4,
-  /** The SDK is disconnecting to Agora's streaming server and the CDN server. This state is triggered after you call the \ref IRtcEngine::removePublishStreamUrl "removePublishStreamUrl" method.
-   */
-  RTMP_STREAM_PUBLISH_STATE_DISCONNECTING = 5,
 };
 
 /**
- Error codes of the RTMP or RTMPS streaming.
+ * Error codes of the RTMP streaming.
  */
-enum RTMP_STREAM_PUBLISH_ERROR_TYPE {
-  /** The RTMP or RTMPS streaming publishes successfully. */
+enum RTMP_STREAM_PUBLISH_ERROR {
+  /**
+   * -1: The RTMP streaming fails.
+   */
+  RTMP_STREAM_PUBLISH_ERROR_FAILED = -1,
+  /**
+   * 0: The RTMP streaming publishes successfully.
+   */
   RTMP_STREAM_PUBLISH_ERROR_OK = 0,
-  /** Invalid argument used. If, for example, you do not call the \ref IRtcEngine::setLiveTranscoding "setLiveTranscoding" method to configure the LiveTranscoding parameters before calling the addPublishStreamUrl method, the SDK returns this error. Check whether you set the parameters in the *setLiveTranscoding* method properly. */
+  /**
+   * 1: Invalid argument. If, for example, you did not call `setLiveTranscoding` to configure the
+   * LiveTranscoding parameters before calling `addPublishStreamUrl`, the SDK reports this error.
+   * Check whether you set the parameters in `LiveTranscoding` properly.
+   */
   RTMP_STREAM_PUBLISH_ERROR_INVALID_ARGUMENT = 1,
-  /** The RTMP or RTMPS streaming is encrypted and cannot be published. */
+  /**
+   * 2: The RTMP streaming is encrypted and cannot be published.
+   */
   RTMP_STREAM_PUBLISH_ERROR_ENCRYPTED_STREAM_NOT_ALLOWED = 2,
-  /** Timeout for the RTMP or RTMPS streaming. Call the \ref IRtcEngine::addPublishStreamUrl "addPublishStreamUrl" method to publish the streaming again. */
+  /**
+   * 3: A timeout occurs with the RTMP streaming. Call `addPublishStreamUrl`
+   * to publish the streaming again.
+   */
   RTMP_STREAM_PUBLISH_ERROR_CONNECTION_TIMEOUT = 3,
-  /** An error occurs in Agora's streaming server. Call the `addPublishStreamUrl` method to publish the streaming again. */
+  /**
+   * 4: An error occurs in the streaming server. Call `addPublishStreamUrl` to publish
+   * the stream again.
+   */
   RTMP_STREAM_PUBLISH_ERROR_INTERNAL_SERVER_ERROR = 4,
-  /** An error occurs in the CDN server. */
+  /**
+   * 5: An error occurs in the RTMP server.
+   */
   RTMP_STREAM_PUBLISH_ERROR_RTMP_SERVER_ERROR = 5,
-  /** The RTMP or RTMPS streaming publishes too frequently. */
+  /**
+   * 6: The RTMP streaming publishes too frequently.
+   */
   RTMP_STREAM_PUBLISH_ERROR_TOO_OFTEN = 6,
-  /** The host publishes more than 10 URLs. Delete the unnecessary URLs before adding new ones. */
+  /**
+   * 7: The host publishes more than 10 URLs. Delete the unnecessary URLs before adding new ones.
+   */
   RTMP_STREAM_PUBLISH_ERROR_REACH_LIMIT = 7,
-  /** The host manipulates other hosts' URLs. Check your app logic. */
+  /**
+   * 8: The host manipulates other hosts' URLs. Check your app logic.
+   */
   RTMP_STREAM_PUBLISH_ERROR_NOT_AUTHORIZED = 8,
-  /** Agora's server fails to find the RTMP or RTMPS streaming. */
+  /**
+   * 9: The Agora server fails to find the RTMP streaming.
+   */
   RTMP_STREAM_PUBLISH_ERROR_STREAM_NOT_FOUND = 9,
-  /** The format of the RTMP or RTMPS streaming URL is not supported. Check whether the URL format is correct. */
+  /**
+   * 10: The format of the RTMP streaming URL is not supported. Check whether the URL format is correct.
+   */
   RTMP_STREAM_PUBLISH_ERROR_FORMAT_NOT_SUPPORTED = 10,
-  /** Current role is not broadcaster. Check whether the role of the current channel. */
-  RTMP_STREAM_PUBLISH_ERROR_NOT_BROADCASTER = 11,  // Note: match to ERR_PUBLISH_STREAM_NOT_BROADCASTER in AgoraBase.h
-  /** Call updateTranscoding, but no mix stream. */
-  RTMP_STREAM_PUBLISH_ERROR_TRANSCODING_NO_MIX_STREAM = 13,  // Note: match to ERR_PUBLISH_STREAM_TRANSCODING_NO_MIX_STREAM in AgoraBase.h
-  /** Network error. */
-  RTMP_STREAM_PUBLISH_ERROR_NET_DOWN = 14,  // Note: match to ERR_NET_DOWN in AgoraBase.h
-  /** User AppId have not authorized to push stream. */
-  RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID = 15,  // Note: match to ERR_PUBLISH_STREAM_APPID_INVALID in AgoraBase.h
+  /**
+   * 11: CDN related errors. Remove the original URL address and add a new one by calling
+   * `removePublishStreamUrl` and `addPublishStreamUrl`.
+   */
+  RTMP_STREAM_PUBLISH_ERROR_CDN_ERROR = 11,
+  /**
+   * 12: Resources are occupied and cannot be reused.
+   */
+  RTMP_STREAM_PUBLISH_ERROR_ALREADY_IN_USE = 12,
   /**
    * 100: The streaming has been stopped normally. After you call
    * \ref IRtcEngine::removePublishStreamUrl "removePublishStreamUrl"
    * to stop streaming, the SDK returns this value.
-   *
-   * @since v3.4.5
    */
   RTMP_STREAM_UNPUBLISH_ERROR_OK = 100,
-};
-
-/** Events during the RTMP or RTMPS streaming. */
-enum RTMP_STREAMING_EVENT {
-  /** An error occurs when you add a background image or a watermark image to the RTMP or RTMPS stream.
-   */
-  RTMP_STREAMING_EVENT_FAILED_LOAD_IMAGE = 1,
-  /** 2: The streaming URL is already being used for CDN live streaming. If you want to start new streaming, use a new streaming URL.
-   *
-   * @since v3.4.5
-   */
-  RTMP_STREAMING_EVENT_URL_ALREADY_IN_USE = 2,
-  /** advanced feature not support
-   */
-  RTMP_STREAMING_EVENT_ADVANCED_FEATURE_NOT_SUPPORT = 3,
-  /** Client request too frequently.
-   */
-  RTMP_STREAMING_EVENT_REQUEST_TOO_OFTEN = 4,
 };
 
 /** The definition of the RtcImage struct.
@@ -3507,36 +3294,9 @@ typedef struct RtcImage {
    * Order attribute for an ordering of overlapping two-dimensional objects.
    */
   int zOrder;
-  /** The transparency level of the image. The value ranges between 0 and 1.0:
 
-   * - 0: Completely transparent
-   * - 1.0: (Default) Opaque
-   */
-  double alpha;
-
-  RtcImage() : url(NULL), x(0), y(0), width(0), height(0), zOrder(0), alpha(1.0) {}
+  RtcImage() : url(NULL), x(0), y(0), width(0), height(0), zOrder(0) {}
 } RtcImage;
-
-struct LiveStreamAdvancedFeature {
-  LiveStreamAdvancedFeature() : featureName(NULL), opened(false) {}
-  LiveStreamAdvancedFeature(const char* feat_name, bool open) : featureName(feat_name), opened(open) {}
-  /** The advanced feature for high-quality video with a lower bitrate. */
-  // static const char* LBHQ = "lbhq";
-  /** The advanced feature for the optimized video encoder. */
-  // static const char* VEO = "veo";
-
-  /** The name of the advanced feature. It contains LBHQ and VEO.
-   * "lbhq"
-   * "veo"
-   */
-  const char* featureName;
-
-  /** Whether to enable the advanced feature:
-   * - true: Enable the advanced feature.
-   * - false: (Default) Disable the advanced feature.
-   */
-  bool opened;
-} ;
 
 /**
  * Connection state types.
@@ -3632,128 +3392,137 @@ struct TranscodingUser {
  * The definition of the LiveTranscoding struct.
  */
 struct LiveTranscoding {
-  /** The width of the video in pixels. The default value is 360.
-   * - When pushing video streams to the CDN, the value range of `width` is [64,1920].
-   * If the value is less than 64, Agora server automatically adjusts it to 64; if the
-   * value is greater than 1920, Agora server automatically adjusts it to 1920.
-   * - When pushing audio streams to the CDN, set `width` and `height` as 0.
+  /**
+   * The width of the video in pixels. The default value is 360.
+   *
+   * - When pushing video streams to the CDN, ensure that width is at least 64; otherwise, the Agora server adjusts the value to 64.
+   * - When pushing audio streams to the CDN, set width and height as 0..
    */
   int width;
-  /** The height of the video in pixels. The default value is 640.
-   * - When pushing video streams to the CDN, the value range of `height` is [64,1080].
-   * If the value is less than 64, Agora server automatically adjusts it to 64; if the
-   * value is greater than 1080, Agora server automatically adjusts it to 1080.
-   * - When pushing audio streams to the CDN, set `width` and `height` as 0.
+  /**
+   * The height of the video in pixels. The default value is 640.
+   *
+   * - When pushing video streams to the CDN, ensure that height is at least 64; otherwise, the Agora server adjusts the value to 64.
+   * - When pushing audio streams to the CDN, set width and height as 0.
    */
   int height;
-  /** Bitrate of the CDN live output video stream. The default value is 400 Kbps.
-
-  Set this parameter according to the Video Bitrate Table. If you set a bitrate beyond the proper range, the SDK automatically adapts it to a value within the range.
-  */
+  /**
+   * The bitrate (Kbps) of the video. The default value is 400. Set this parameter according to the bitrate
+   * you set in VideoEncoderConfiguration. If you set a bitrate beyond the proper range, the SDK automatically
+   * adapts it to a value within the range.
+   */
   int videoBitrate;
-  /** Frame rate of the output video stream set for the CDN live streaming. The default value is 15 fps, and the value range is (0,30].
-
-  @note The Agora server adjusts any value over 30 to 30.
-  */
+  /**
+   * The frame rate (fps) of the video that ranges from 0 to 30. The default value is 15. The server
+   * adjusts any value over 30 to 30.
+   */
   int videoFramerate;
-
-  /** **DEPRECATED** Latency mode:
-
-   - true: Low latency with unassured quality.
-   - false: (Default) High latency with assured quality.
+  /**
+   * Determines whether to enable low latency.
+   * - true: Low latency with unassured quality.
+   * - false: (Default) High latency with assured quality.
    */
   bool lowLatency;
-
-  /** Video GOP in frames. The default value is 30 fps.
+  /**
+   * Gop (Group of video) of the video frames in the CDN live stream. The default value is 30 fps.
    */
   int videoGop;
-  /** Self-defined video codec profile: #VIDEO_CODEC_PROFILE_TYPE.
-
-  @note If you set this parameter to other values, Agora adjusts it to the default value of 100.
-  */
+  /**
+   * The video codec profile: #VIDEO_CODEC_PROFILE_TYPE.
+   */
   VIDEO_CODEC_PROFILE_TYPE videoCodecProfile;
-  /** The background color in RGB hex value. Value only. Do not include a preceeding #. For example, 0xFFB6C1 (light pink). The default value is 0x000000 (black).
+  /**
+   * The background color in RGB hex. Value only, do not include a preceeding #.
+   * For example, 0xFFB6C1 (light pink). The default value is 0x000000 (black).
    */
   unsigned int backgroundColor;
-
-  /** video codec type */
-  VIDEO_CODEC_TYPE_FOR_STREAM videoCodecType;
-
-  /** The number of users in the live interactive streaming.
-   *  The value range is [0, 17].
+  /**
+   * The number of users in the live broadcast.
    */
   unsigned int userCount;
-  /** TranscodingUser
+  /**
+   * The user layout configuration in the CDN live streaming.: TranscodingUser.
    */
   TranscodingUser* transcodingUsers;
-  /** Reserved property. Extra user-defined information to send SEI for the H.264/H.265 video stream to the CDN live client. Maximum length: 4096 Bytes.
-
-   For more information on SEI frame, see [SEI-related questions](https://docs.agora.io/en/faq/sei).
+  /**
+   * Extra user-defined information sent to the CDN client. The extra
+   * infomation will be transmitted by SEI packets.
    */
   const char* transcodingExtraInfo;
-
-  /** **DEPRECATED** The metadata sent to the CDN live client defined by the RTMP or HTTP-FLV metadata.
+  /**
+   * The pointer to the metadata sent to the CDN client.
    */
   const char* metadata;
-  /** The watermark image added to the CDN live publishing stream.
-
-  Ensure that the format of the image is PNG. Once a watermark image is added, the audience of the CDN live publishing stream can see the watermark image. See RtcImage.
+  /**
+   * The watermark image added to the CDN live publishing stream. Ensure that the format of the image is
+   * PNG. Once a watermark image is added, the audience of the CDN live publishing stream can see it.
+   * See #RtcImage.
   */
   RtcImage* watermark;
-
   /**
-   * The variables means the count of watermark.
-   * if watermark is array, watermarkCount is count of watermark.
-   * if watermark is just a pointer, watermarkCount pointer to object address. At the same time, watermarkCount must be 0 or 1.
-   * default value: 0, compatible with old user-api
-   * The value range is [0, 100].
-   */
+    * The variables means the count of watermark.
+    * if watermark is array, watermarkCount is count of watermark.
+    * if watermark is just a pointer, watermarkCount pointer to object address. At the same time, watermarkCount must be 0 or 1.
+    * default value: 0, compatible with old user-api
+  */
   unsigned int watermarkCount;
-
-  /** The background image added to the CDN live publishing stream.
-
-   Once a background image is added, the audience of the CDN live publishing stream can see the background image. See RtcImage.
+  /**
+   * The background image added to the CDN live publishing stream. Once a background image is added,
+   * the audience of the CDN live publishing stream can see it. See #RtcImage.
   */
   RtcImage* backgroundImage;
   /**
-   * The variables means the count of backgroundImage.
-   * if backgroundImage is array, backgroundImageCount is count of backgroundImage.
-   * if backgroundImage is just a pointer, backgroundImageCount pointer to object address. At the same time, backgroundImageCount must be 0 or 1.
-   * default value: 0, compatible with old user-api
-   * The value range is [0, 100].
-   */
+    * The variables means the count of backgroundImage.
+    * if backgroundImage is array, backgroundImageCount is count of backgroundImage.
+    * if backgroundImage is just a pointer, backgroundImageCount pointer to object address. At the same time, backgroundImageCount must be 0 or 1.
+    * default value: 0, compatible with old user-api
+  */
   unsigned int backgroundImageCount;
-
-  /** Self-defined audio-sample rate: #AUDIO_SAMPLE_RATE_TYPE.
+  /**
+   * The audio sample rates: #AUDIO_SAMPLE_RATE_TYPE.
    */
   AUDIO_SAMPLE_RATE_TYPE audioSampleRate;
-  /** Bitrate of the CDN live audio output stream. The default value is 48 Kbps, and the highest value is 128.
-   */
+  /**
+   * The bitrate (Kbps) of the audio output stream set for CDN live. The default value is 48 and the
+   * highest value is 128.
+  */
   int audioBitrate;
-  /** The numbder of audio channels for the CDN live stream. Agora recommends choosing 1 (mono), or 2 (stereo) audio channels. Special players are required if you choose option 3, 4, or 5:
-
-   - 1: (Default) Mono.
-   - 2: Stereo.
-   - 3: Three audio channels.
-   - 4: Four audio channels.
-   - 5: Five audio channels.
-   */
+  /**
+   * The number of audio channels for the CDN live stream. Agora recommends choosing 1 (mono), or
+   * 2 (stereo) audio channels. Special players are required if you choose 3, 4, or 5.
+   * - 1: (Default) Mono.
+   * - 2: Stereo.
+   * - 3: Three audio channels.
+   * - 4: Four audio channels.
+   * - 5: Five audio channels.
+  */
   int audioChannels;
-  /** Self-defined audio codec profile: #AUDIO_CODEC_PROFILE_TYPE.
+  /**
+   * The audio codec profile type: #AUDIO_CODEC_PROFILE_TYPE.
    */
-
   AUDIO_CODEC_PROFILE_TYPE audioCodecProfile;
-  /// @cond
-  /** Advanced features of the RTMP or RTMPS streaming with transcoding. See LiveStreamAdvancedFeature.
-   *
-   * @since v3.1.0
-   */
-  LiveStreamAdvancedFeature* advancedFeatures;
 
-  /** The number of enabled advanced features. The default value is 0. */
-  unsigned int advancedFeatureCount;
-  /// @endcond
-  LiveTranscoding() : width(360), height(640), videoBitrate(400), videoFramerate(15), lowLatency(false), videoGop(30), videoCodecProfile(VIDEO_CODEC_PROFILE_HIGH), backgroundColor(0x000000), videoCodecType(VIDEO_CODEC_H264_FOR_STREAM), userCount(0), transcodingUsers(NULL), transcodingExtraInfo(NULL), metadata(NULL), watermark(NULL), watermarkCount(0), backgroundImage(NULL), backgroundImageCount(0), audioSampleRate(AUDIO_SAMPLE_RATE_48000), audioBitrate(48), audioChannels(1), audioCodecProfile(AUDIO_CODEC_PROFILE_LC_AAC), advancedFeatures(NULL), advancedFeatureCount(0) {}
+  LiveTranscoding()
+    : width(360),
+      height(640),
+      videoBitrate(400),
+      videoFramerate(15),
+      lowLatency(false),
+      videoGop(30),
+      videoCodecProfile(VIDEO_CODEC_PROFILE_HIGH),
+      backgroundColor(0x000000),
+      userCount(0),
+      transcodingUsers(NULL),
+      transcodingExtraInfo(NULL),
+      metadata(NULL),
+      watermark(NULL),
+      watermarkCount(0),
+      backgroundImage(NULL),
+      backgroundImageCount(0),
+      audioSampleRate(AUDIO_SAMPLE_RATE_48000),
+      audioBitrate(48),
+      audioChannels(1),
+      audioCodecProfile(AUDIO_CODEC_PROFILE_LC_AAC) {}
 };
 
 /**
@@ -4022,36 +3791,6 @@ enum CONNECTION_CHANGED_REASON_TYPE
    * 18: The local IP Address is changed by user.
    */
   CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED_BY_USER = 18,
-  /**
-   * 19: The connection is failed due to join the same channel on another device with the same uid.
-   */
-  CONNECTION_CHANGED_SAME_UID_LOGIN = 19,
-  /**
-   * 20: The connection is failed due to too many broadcasters in the channel.
-   */
-  CONNECTION_CHANGED_TOO_MANY_BROADCASTERS = 20,
-};
-
-/**
- * The reason of changing role's failure.
- */
-enum CLIENT_ROLE_CHANGE_FAILED_REASON {
-  /**
-   * 1: Too many broadcasters in the channel.
-   */
-  CLIENT_ROLE_CHANGE_FAILED_TOO_MANY_BROADCASTERS = 1,
-  /**
-   * 2: The operation of changing role is not authorized.
-   */
-  CLIENT_ROLE_CHANGE_FAILED_NOT_AUTHORIZED = 2,
-  /**
-   * 3: The operation of changing role is timeout.
-   */
-  CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT = 3,
-  /** 
-   * 4: The operation of changing role is interrupted since we lost connection with agora service.
-   */
-  CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED = 4,
 };
 
 /**
@@ -4089,24 +3828,6 @@ enum NETWORK_TYPE {
 };
 
 /**
- * The mode of setting up video views.
- */
-enum VIDEO_VIEW_SETUP_MODE {
-  /**
-   * 0: replace one view
-   */
-  VIDEO_VIEW_SETUP_REPLACE = 0,
-  /**
-   * 1: add one view
-   */
-  VIDEO_VIEW_SETUP_ADD = 1,
-  /**
-   * 2: remove one view
-   */
-  VIDEO_VIEW_SETUP_REMOVE = 2,
-};
-
-/**
  * The definition of the VideoCanvas struct, which contains the information of the video display window.
  */
 struct VideoCanvas {
@@ -4134,25 +3855,22 @@ struct VideoCanvas {
 
   VIDEO_SOURCE_TYPE sourceType;
 
-  Rectangle cropArea;
-
-  VIDEO_VIEW_SETUP_MODE setupMode;
-
   VideoCanvas() : view(NULL), renderMode(media::base::RENDER_MODE_HIDDEN), mirrorMode(VIDEO_MIRROR_MODE_AUTO),
-    uid(0), isScreenView(false), priv(NULL), priv_size(0), sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), setupMode(VIDEO_VIEW_SETUP_REPLACE) {}
+    uid(0), isScreenView(false), priv(NULL), priv_size(0), sourceType(VIDEO_SOURCE_CAMERA_PRIMARY) {}
   VideoCanvas(view_t v, media::base::RENDER_MODE_TYPE m, VIDEO_MIRROR_MODE_TYPE mt, uid_t u)
     : view(v), renderMode(m), mirrorMode(mt), uid(u), isScreenView(false), priv(NULL), priv_size(0),
-      sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), setupMode(VIDEO_VIEW_SETUP_REPLACE) {}
+      sourceType(VIDEO_SOURCE_CAMERA_PRIMARY) {}
   VideoCanvas(view_t v, media::base::RENDER_MODE_TYPE m, VIDEO_MIRROR_MODE_TYPE mt, user_id_t)
     : view(v), renderMode(m), mirrorMode(mt), uid(0), isScreenView(false), priv(NULL), priv_size(0),
-      sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), setupMode(VIDEO_VIEW_SETUP_REPLACE) {}
+      sourceType(VIDEO_SOURCE_CAMERA_PRIMARY) {}
 };
+
 
 /** Beauty options.
  */
 struct BeautyOptions {
   /** The contrast level, used with the @p lightening parameter.
-    */
+   */
   enum LIGHTENING_CONTRAST_LEVEL {
       /** Low contrast level. */
       LIGHTENING_CONTRAST_LOW = 0,
@@ -4163,22 +3881,23 @@ struct BeautyOptions {
   };
 
   /** The contrast level, used with the @p lightening parameter.
-    */
+   */
   LIGHTENING_CONTRAST_LEVEL lighteningContrastLevel;
 
-  /** The brightness level. The value ranges from 0.0 (original) to 1.0. */
+  /** The brightness level. The value ranges from 0.0 (original) to 1.0.
+   */
   float lighteningLevel;
 
   /** The smoothness level. The value ranges between 0 (original) and 1. This parameter is usually used to remove blemishes.
-    */
+   */
   float smoothnessLevel;
 
   /** The redness level. The value ranges between 0 (original) and 1. This parameter adjusts the red saturation level.
-    */
+   */
   float rednessLevel;
 
   /** The sharpness level. The value ranges between 0 (original) and 1.
-  */
+   */
   float sharpnessLevel;
 
   BeautyOptions(LIGHTENING_CONTRAST_LEVEL contrastLevel, float lightening, float smoothness, float redness, float sharpness) : lighteningContrastLevel(contrastLevel), lighteningLevel(lightening), smoothnessLevel(smoothness), rednessLevel(redness), sharpnessLevel(sharpness) {}
@@ -4242,40 +3961,6 @@ struct VirtualBackgroundSource {
   VirtualBackgroundSource() : background_source_type(BACKGROUND_COLOR), color(0xffffff), source(NULL),  blur_degree(BLUR_DEGREE_HIGH) {}
 };
 
-struct FishCorrectionParams {
-  float _x_center;
-  float _y_center;
-  float _scale_factor;
-  float _focal_length;
-  float _pol_focal_length;
-  float _split_height;
-  float _ss[5];
-  FishCorrectionParams():_x_center(0.49),
-                         _y_center(0.48),
-                         _scale_factor(4.5),
-                         _focal_length(31),
-                         _pol_focal_length(31),
-                         _split_height(1.0) {
-    _ss[0] = 0.9375;
-    _ss[1] = 0.0;
-    _ss[2] = -2.9440;
-    _ss[3] = 5.7344;
-    _ss[4] = -4.4564;
-  }
-  FishCorrectionParams(float x_center, float y_center, float scale_factor, float focal_length, float pol_focal_length, float split_height, float ss[])
-  : _x_center(x_center),
-    _y_center(y_center),
-    _scale_factor(scale_factor),
-    _focal_length(focal_length),
-    _pol_focal_length(pol_focal_length),
-    _split_height(split_height) {
-    if (ss != OPTIONAL_NULLPTR) {
-      for (int i = 0; i < 5; i++) {
-        _ss[i] = ss[i];
-      }
-    }
-  }
-};
 
 /**
  * Preset local voice reverberation options.
@@ -4558,6 +4243,46 @@ enum VOICE_CONVERSION_PRESET {
   VOICE_CHANGER_BASS = 0x03010400
 };
 
+// TODO(ZYH), it will be deleted after the new interfaces have been implemented to replace it.
+enum AUDIO_REVERB_PRESET {
+  /**
+   * 0: The original voice (no local voice reverberation).
+   */
+  AUDIO_REVERB_OFF = 0, // Turn off audio reverb
+  /**
+   * 0x02010100: KTV venue (enhanced).
+   */
+  AUDIO_REVERB_FX_KTV = 0x02010100,
+  /**
+   * 0x02010200: Concert hall (enhanced).
+   */
+  AUDIO_REVERB_FX_VOCAL_CONCERT = 0x02010200,
+  /**
+   * 0x02020100: Uncle's voice.
+   */
+  AUDIO_REVERB_FX_UNCLE = 0x02020100,
+  /**
+   * 0x02020400: Little sister's voice.
+   */
+  AUDIO_REVERB_FX_SISTER = 0x02020400,
+  /**
+   * 0x02010300: Recording studio (enhanced).
+   */
+  AUDIO_REVERB_FX_STUDIO = 0x02010300,
+  /**
+   * 0x02030200: Pop music (enhanced).
+   */
+  AUDIO_REVERB_FX_POPULAR = 0x02030200,
+  /**
+   * 0x02030100: R&B music (enhanced).
+   */
+  AUDIO_REVERB_FX_RNB = 0x02030100,
+  /**
+   * 0x02010400: Vintage phonograph.
+   */
+  AUDIO_REVERB_FX_PHONOGRAPH = 0x02010400
+};
+
 /**
  * The screen sharing encoding parameters.
  */
@@ -4747,27 +4472,27 @@ class IAudioEncodedFrameObserver {
 public:
 /**
 * Occurs each time the SDK receives an encoded recorded audio frame.
-* @param frameBuffer The pointer to the audio frame buffer.
+* @param frameBufferThe pointer to the audio frame buffer.
 * @param length The data length of the audio frame.
-* @param audioEncodedFrameInfo The information of the encoded audio frame: EncodedAudioFrameInfo.
+* @param audioEncodedFrameInfoThe information of the encoded audio frame: EncodedAudioFrameInfo.
 
 */
 virtual void OnRecordAudioEncodedFrame(const uint8_t* frameBuffer,  int length, const EncodedAudioFrameInfo& audioEncodedFrameInfo) = 0;
 
 /**
 * Occurs each time the SDK receives an encoded playback audio frame.
-* @param frameBuffer The pointer to the audio frame buffer.
+* @param frameBufferThe pointer to the audio frame buffer.
 * @param length The data length of the audio frame.
-* @param audioEncodedFrameInfo The information of the encoded audio frame: EncodedAudioFrameInfo.
+* @param audioEncodedFrameInfoThe information of the encoded audio frame: EncodedAudioFrameInfo.
 
 */
 virtual void OnPlaybackAudioEncodedFrame(const uint8_t* frameBuffer,  int length, const EncodedAudioFrameInfo& audioEncodedFrameInfo) = 0;
 
 /**
 * Occurs each time the SDK receives an encoded mixed audio frame.
-* @param frameBuffer The pointer to the audio frame buffer.
+* @param frameBufferThe pointer to the audio frame buffer.
 * @param length The data length of the audio frame.
-* @param audioEncodedFrameInfo The information of the encoded audio frame: EncodedAudioFrameInfo.
+* @param audioEncodedFrameInfoThe information of the encoded audio frame: EncodedAudioFrameInfo.
 
 */
 virtual void OnMixedAudioEncodedFrame(const uint8_t* frameBuffer,  int length, const EncodedAudioFrameInfo& audioEncodedFrameInfo) = 0;
@@ -4775,6 +4500,91 @@ virtual void OnMixedAudioEncodedFrame(const uint8_t* frameBuffer,  int length, c
 virtual ~IAudioEncodedFrameObserver () {}
 };
 
+/**
+ * Preset local voice changer options.
+ */
+enum VOICE_CHANGER_PRESET {
+  /**
+   * 0: Turn off the local voice changer, that is, to use the original voice.
+   */
+  VOICE_CHANGER_OFF = 0, //Turn off the voice changer
+  /**
+   * 0x02020200: The voice of an old man.
+   */
+  VOICE_CHANGER_OLDMAN = 0x02020200,
+  /**
+   * 0x02020300: The voice of a little boy.
+   */
+  VOICE_CHANGER_BABYBOY = 0x02020300,
+  /**
+   * 0x02020500: The voice of a little girl.
+   */
+  VOICE_CHANGER_BABYGIRL = 0x02020500,
+  /**
+   * 0x02020600: The voice of Zhu Bajie, a character in *Journey to the West*
+   * who has a voice like that of a growling bear.
+   */
+  VOICE_CHANGER_ZHUBAJIE = 0x02020600,
+  /**
+   * 0x02010700: The ethereal voice.
+   */
+  VOICE_CHANGER_ETHEREAL = 0x02010700,
+  /**
+   * 0x02020700: The voice of Hulk.
+   */
+  VOICE_CHANGER_HULK = 0x02020700,
+  /**
+   * 0x01030100: A more vigorous voice.
+   */
+  VOICE_BEAUTY_VIGOROUS = 0x01030100,
+  /**
+   * 0x01030200: A deeper voice.
+   */
+  VOICE_BEAUTY_DEEP = 0x01030200,
+  /**
+   * 0x01030300: A mellower voice.
+   */
+  VOICE_BEAUTY_MELLOW = 0x01030300,
+  /**
+   * 0x01030400: Falsetto.
+   */
+  VOICE_BEAUTY_FALSETTO = 0x01030400,
+  /**
+   * 0x01030500: A fuller voice.
+   */
+  VOICE_BEAUTY_FULL = 0x01030500,
+  /**
+   * 0x01030600: A clearer voice.
+   */
+  VOICE_BEAUTY_CLEAR = 0x01030600,
+  /**
+   * 0x01030700: A more resounding voice.
+   */
+  VOICE_BEAUTY_RESOUNDING = 0x01030700,
+  /**
+   * 0x01030800: A more ringing voice.
+   */
+  VOICE_BEAUTY_RINGING = 0x01030800,
+  /**
+   * 0x02010600: A more spatially resonant voice.
+   */
+  VOICE_BEAUTY_SPACIAL = 0x02010600,
+  /**
+   * 0x01010100: (For male only) A more magnetic voice. Do not use it when
+   * the speaker is a female; otherwise, voice distortion occurs.
+   */
+  GENERAL_BEAUTY_VOICE_MALE = 0x01010100,
+  /**
+   * 0x01010200: (For female only) A fresher voice. Do not use it when
+   * the speaker is a male; otherwise, voice distortion occurs.
+   */
+  GENERAL_BEAUTY_VOICE_FEMALE_FRESH = 0x01010200,
+  /**
+   * 0x01010300: (For female only) A more vital voice. Do not use it when the
+   * speaker is a male; otherwise, voice distortion occurs.
+   */
+  GENERAL_BEAUTY_VOICE_FEMALE_VITALITY = 0x01010300
+};
 /** IP areas.
  */
 enum AREA_CODE {
@@ -5317,6 +5127,19 @@ enum THREAD_PRIORITY_TYPE {
   CRITICAL = 5,
 };
 
+/**
+ * The CC (Congestion Control) mode options.
+ */
+enum TCcMode {
+  /**
+   * Enable CC mode.
+   */
+  CC_ENABLED,
+  /**
+   * Disable CC mode.
+   */
+  CC_DISABLED,
+};
 }  // namespace rtc
 
 namespace base {
@@ -5352,36 +5175,6 @@ class LicenseCallback {
 
 }  // namespace base
 
-/** 
- * Spatial audio parameters
- */
-struct SpatialAudioParams {
-  /**
-   * optional azimuth: speaker azimuth in a spherical coordinate system centered on the listener
-   */
-  Optional<double> speaker_azimuth;
-  /**
-   * optional azimuth: speaker elevation in a spherical coordinate system centered on the listener
-   */
-  Optional<double> speaker_elevation;
-  /**
-   * distance between speaker and listener
-   */
-  Optional<double> speaker_distance;
-  /**
-   * speaker orientation [0-180]: 0 degree is the same with listener orientation
-   */
-  Optional<int> speaker_orientation;
-  /**
-   * enable blur or not for the speaker
-   */
-  Optional<bool> enable_blur;
-  /**
-   * enable air absorb or not for the speaker
-   */
-  Optional<bool> enable_air_absorb;
-};
-
 }  // namespace agora
 
 /**
@@ -5402,7 +5195,7 @@ AGORA_API int AGORA_CALL setAgoraSdkExternalSymbolLoader(void* (*func)(const cha
 
 /**
  * Generate credential
- * @param [in, out] credential The content of the credential.
+ * @param [in, out] credential_buf The content of the credential.
  * @return The description of the error code.
  * @note For license only, everytime will generate a different credential.
  * So, just need to call once for a device, and then save the credential
@@ -5431,6 +5224,7 @@ AGORA_API int AGORA_CALL getAgoraCertificateVerifyResult(const char *credential_
  *
  * @param [in] callback The object of agora::LiceseCallback,
  *                      set the callback to null before delete it.
+ * @return none
  */
 AGORA_API void setAgoraLicenseCallback(agora::base::LicenseCallback *callback);
 
@@ -5438,32 +5232,8 @@ AGORA_API void setAgoraLicenseCallback(agora::base::LicenseCallback *callback);
  * @brief Get the LicenseCallback pointer if already setup,
  *  otherwise, return null.
  *
+ * @param none
  * @return a pointer of agora::base::LicenseCallback
  */
 
 AGORA_API agora::base::LicenseCallback* getAgoraLicenseCallback();
-
-/*
- * Get monotonic time in ms which can be used by capture time,
- * typical scenario is as follows:
- * 
- *  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- *  |  // custom audio/video base capture time, e.g. the first audio/video capture time.             |
- *  |  int64_t custom_capture_time_base;                                                             |
- *  |                                                                                                |
- *  |  int64_t agora_monotonic_time = getAgoraCurrentMonotonicTimeInMs();                            |
- *  |                                                                                                |
- *  |  // offset is fixed once calculated in the begining.                                           |
- *  |  const int64_t offset = agora_monotonic_time - custom_capture_time_base;                       |
- *  |                                                                                                |
- *  |  // realtime_custom_audio/video_capture_time is the origin capture time that customer provided.|
- *  |  // actual_audio/video_capture_time is the actual capture time transfered to sdk.              |
- *  |  int64_t actual_audio_capture_time = realtime_custom_audio_capture_time + offset;              |
- *  |  int64_t actual_video_capture_time = realtime_custom_video_capture_time + offset;              |
- *  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- * 
- * @return
- * - >= 0: Success.
- * - < 0: Failure.
- */
-AGORA_API int64_t AGORA_CALL getAgoraCurrentMonotonicTimeInMs();

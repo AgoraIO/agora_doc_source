@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_destroymediaplayer">
+    <title><ph keyref="destroyMediaPlayer" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Destroys the media player instance.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="destroyMediaPlayer" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">int destroy();
+</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)destroyMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol&gt;_Nullable)mediaPlayer;
+</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual int destroyMediaPlayer(agora_refptr&lt;IMediaPlayer&gt; media_player) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
+            </p>
+        </section>
+        <section id="parameters" props="ios mac windows"><title>Parameters</title>
+            <parml>
+                <plentry>
+                    <pt props="ios mac">mediaPlayer</pt>
+                    <pt props="windows">media_player</pt>
+                    <pd>
+                        <p><xref keyref="IMediaPlayer" /> object.</p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul id="ul_iyv_sty_hqb">
+                <li>≥ 0: Success. Returns the ID of media player source instance.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul></section>
+    </refbody>
+</reference>

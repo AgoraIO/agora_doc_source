@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_onextensionevent">
+    <title><ph keyref="onExtensionEvent"/></title>
+    <shortdesc id="short"><ph id="shortdesc">The event callback of the extension.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onExtensionEvent"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">void onEvent(String provider, String extension, String key, String value);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)onEvent:(NSString * __nullable)provider
+      extension:(NSString * __nullable)extension
+            key:(NSString * __nullable)key
+          value:(NSString * __nullable)value;
+@end
+</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual void onExtensionEvent(const char* provider, const char* extension, const char* key, const char* value) {
+ (void)provider;
+  (void)extension;
+  (void)key;
+  (void)value;
+  }</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <p>To listen for events while the extension is running, you need to register this callback.</p>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry conkeyref="setExtensionProperty/vendor">
+                    <pt></pt>
+                    <pd></pd>
+                </plentry>
+                <plentry conkeyref="setExtensionProperty/extension">
+                    <pt></pt>
+                    <pd></pd>
+                </plentry>
+                    <plentry conkeyref="setExtensionProperty/key">
+                    <pt></pt>
+                    <pd></pd>
+                </plentry>
+                <plentry conkeyref="setExtensionProperty/value">
+                    <pt></pt>
+                    <pd></pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

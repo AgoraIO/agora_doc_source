@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_seek">
+    <title><ph keyref="seek" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Seeks to a new playback position.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="seek" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">int seek(long newPos);
+</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)seekToPosition:(NSInteger)position;
+</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual int seek(int64_t newPos) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <p>After successfully calling this method, you will receive the <xref keyref="onPlayerEvent" /> callback, reporting the result of the seek operation to the new playback position.</p>
+            <p>To play the media file from a specific position, do the following:<ul>
+                <li>Call this method to seek to the position you want to begin playback.</li>
+                <li>Call the <xref keyref="play" /> method to play the media file.</li>
+                </ul></p>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry>
+                    <pt props="android windows">newPos</pt>
+                    <pt props="ios mac">position</pt>
+                    <pd>The new playback position (ms).</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul id="ul_uns_l2y_hqb">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>

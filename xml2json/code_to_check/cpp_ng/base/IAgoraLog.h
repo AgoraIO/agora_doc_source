@@ -50,9 +50,9 @@ Application can use setLogFile() to change file location, see description of set
 class ILogWriter {
  public:
   /** user defined log Write function
-  @param level log level
-  @param message log message content
-  @param length log message length
+  @param log level
+  @param log message content
+  @param log message length
   @return
    - 0: success
    - <0: failure

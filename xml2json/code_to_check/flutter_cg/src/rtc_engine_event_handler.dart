@@ -213,7 +213,7 @@ class RtcEngineEventHandler {
   ///
   /// Param [elapsed] The time elapsed (ms) from the local user calling joinChannel until the SDK triggers this callback.
   ///
-  @Deprecated('')
+  @deprecated
   ElapsedCallback? firstLocalAudioFrame;
 
   ///
@@ -243,7 +243,7 @@ class RtcEngineEventHandler {
   /// false: Resumed.
   ///
   ///
-  @Deprecated('')
+  @deprecated
   UidWithMutedCallback? userMuteVideo;
 
   ///
@@ -318,8 +318,7 @@ class RtcEngineEventHandler {
   ///
   /// Param [state] The state of the local audio. For details, see AudioLocalState.
   ///
-  /// Param [error] Local audio state error codes. For details, see
-  /// .
+  /// Param [error] Local audio state error codes. For details, see AudioLocalError.
   ///
   LocalAudioStateCallback? localAudioStateChanged;
 
@@ -330,11 +329,16 @@ class RtcEngineEventHandler {
   /// Param [info] The information of an audio file. See AudioFileInfo.
   ///
   /// Param [error] The information acquisition state. See AudioFileInfoError.
-  ///
   @Deprecated('Use requestAudioFileInfo instead')
   RequestAudioFileInfoCallback? requestAudioFileInfoCallback;
 
-/* TODO(doc): callback-engine-requestAudioFileInfo */
+  ///
+  /// Reports the information of an audio file.
+  /// After successfully calling getAudioFileInfo, the SDK triggers this callback to report the information of the audio file, such as the file path and duration.
+  ///
+  /// Param [info] The information of an audio file. See AudioFileInfo.
+  ///
+  /// Param [error] The information acquisition state. See AudioFileInfoError.
   RequestAudioFileInfoCallback? requestAudioFileInfo;
 
   ///
@@ -353,16 +357,15 @@ class RtcEngineEventHandler {
   FallbackCallback? localPublishFallbackToAudioOnly;
 
   ///
-  /// Occurs when the remote media stream falls back to the audio-only stream due to poor network conditions or switches back to the video stream after the network conditions improve.
-  /// If you call
-  /// and set option as AudioOnly, the SDK triggers this callback when the remote media stream falls back to audio-only mode due to poor uplink conditions, or when the remote media stream switches back to the video after the downlink network condition improves.
-  /// Once the remote media stream switches to the low-quality stream due to poor network conditions, you can monitor the stream switch between a high-quality and low-quality stream in the remoteVideoStats callback.
+  /// Occurs when the remote media stream falls back to audio-only stream due to poor network conditions or switches back to the video stream after the network conditions improve.
+  /// If you call setRemoteSubscribeFallbackOption and set option as AudioOnly, the SDK triggers this callback when the remote media stream falls back to audio-only mode due to poor downlink conditions, or when the remote media stream switches back to the video after the downlink network condition improves.
+  /// Once the remote media stream switches to the low stream due to poor network conditions, you can monitor the stream switch between a high and low stream in the RemoteVideoStats callback.
   ///
-  /// Param [uid] The user ID of the remote user.
+  /// Param [uid] The ID of the remote user.
   ///
   /// Param [isFallbackOrRecover]
-  /// true: The remotely subscribed media stream falls back to audio-only due to poor network conditions.
-  /// false: The remotely subscribed media stream switches back to the video stream after the network conditions improved.
+  ///  true: The remotely subscribed media stream falls back to audio-only due to poor network conditions.
+  ///  false: The remotely subscribed media stream switches back to the video stream after the network conditions improved.
   ///
   ///
   ///
@@ -443,6 +446,7 @@ class RtcEngineEventHandler {
   /// Bad (4): Users cannot communicate smoothly.
   /// VBad (5): The quality is so bad that users can barely communicate.
   /// Down (6): The network is down, and users cannot communicate at all.
+  ///
   /// See
   /// NetworkQuality.
   ///
@@ -474,6 +478,7 @@ class RtcEngineEventHandler {
   /// Down (6): The network is down, and users cannot communicate at all.
   ///
   ///
+  ///
   /// Param [rxQuality] Downlink network quality rating of the user in terms of packet loss rate,
   /// average RTT, and jitter of the downlink network.
   /// Unknown (0): The quality is unknown.
@@ -483,6 +488,7 @@ class RtcEngineEventHandler {
   /// Bad (4): Users cannot communicate smoothly.
   /// VBad (5): The quality is so bad that users can barely communicate.
   /// Down (6): The network is down, and users cannot communicate at all.
+  ///
   ///
   ///
   NetworkQualityWithUidCallback? networkQuality;
@@ -538,8 +544,7 @@ class RtcEngineEventHandler {
   /// file, this callback occurs when the playback finishes. If the call of startAudioMixing fails, the callback returns the error code
   /// WARN_AUDIO_MIXING_OPEN_ERROR.
   ///
-  @Deprecated(
-      'This method is deprecated as of v2.4.0. Use audioMixingStateChanged instead.')
+  @deprecated
   EmptyCallback? audioMixingFinished;
 
   ///
@@ -556,28 +561,25 @@ class RtcEngineEventHandler {
   /// Occurs when the playback of the local audio effect file finishes.
   /// This callback occurs when the local audio effect file finishes playing.
   ///
-  /// Param [soundId] The audio effect ID. The ID of each audio effect file is unique.
+  /// Param [soundId] The ID of the audio effect. Each audio effect has a unique ID.
   ///
   SoundIdCallback? audioEffectFinished;
 
   ///
   /// Occurs when the state of the RTMP or RTMPS streaming changes.
-  /// When the CDN live streaming state changes, the SDK triggers this callback to report the current state and the reason why the state has changed. When exceptions occur, you can troubleshoot issues by referring to the detailed error descriptions in the error code parameter.
+  /// The SDK triggers this callback to report the result of the local user calling the addPublishStreamUrl or removePublishStreamUrl method. When the RTMP/RTMPS streaming status changes, the SDK triggers this callback and report the URL address and the current status of the streaming. This callback indicates the state of the RTMP or RTMPS streaming. When exceptions occur, you can troubleshoot issues by referring to the detailed error descriptions in the error code parameter.
   ///
   /// Param [url] The CDN streaming URL.
   ///
-  /// Param [state] The RTMP or RTMPS streaming state, see
-  /// . When the streaming status is Failure(4), you can view the error information in the errorCode parameter.
+  /// Param [state] The RTMP or RTMPS streaming state, see RtmpStreamingState. When the streaming status is Failure(4), you can view the error information in the errorCode parameter.
   ///
-  /// Param [errCode] The detailed error information for streaming, see
-  /// .
+  /// Param [errCode] The detailed error information for streaming, see RtmpStreamingErrorCode.
   ///
   RtmpStreamingStateCallback? rtmpStreamingStateChanged;
 
   ///
   /// Occurs when the publisher's transcoding is updated.
-  /// When the LiveTranscoding class in the
-  /// method updates, the SDK triggers the transcodingUpdated callback to report the update information.
+  /// When the LiveTranscoding class in the setLiveTranscoding method updates, the SDK triggers the transcodingUpdated callback to report the update information.
   /// If you call the setLiveTranscoding
   /// method to set the LiveTranscoding class for the first time, the
   /// SDK does not trigger this callback.
@@ -686,7 +688,7 @@ class RtcEngineEventHandler {
   ///
   /// Param [elapsed] Time elapsed (ms) from the local user calling joinChannel until the SDK triggers this callback.
   ///
-  @Deprecated('')
+  @deprecated
   VideoFrameWithUidCallback? firstRemoteVideoFrame;
 
   ///
@@ -698,7 +700,7 @@ class RtcEngineEventHandler {
   ///
   /// Param [elapsed] The time elapsed (ms) from the local user calling joinChannel until the SDK triggers this callback.
   ///
-  @Deprecated('Please use remoteAudioStateChanged instead.')
+  @deprecated
   UidWithElapsedCallback? firstRemoteAudioFrame;
 
   ///
@@ -719,7 +721,7 @@ class RtcEngineEventHandler {
   ///
   /// Param [elapsed] The time elapsed (ms) from the local user calling joinChannel until the SDK triggers this callback.
   ///
-  @Deprecated('Please use remoteAudioStateChanged instead.')
+  @deprecated
   UidWithElapsedCallback? firstRemoteAudioDecoded;
 
   ///
@@ -735,7 +737,7 @@ class RtcEngineEventHandler {
   ///
   ///
   ///
-  @Deprecated('')
+  @deprecated
   UidWithMutedCallback? userMuteAudio;
 
   ///
@@ -748,7 +750,7 @@ class RtcEngineEventHandler {
   ///
   /// Param [url]
   ///
-  @Deprecated('Please use rtmpStreamingStateChanged instead.')
+  @deprecated
   UrlWithErrorCallback? streamPublished;
 
   ///
@@ -758,7 +760,7 @@ class RtcEngineEventHandler {
   ///
   /// Param [url] The URL of the removed RTMP or RTMPS stream.
   ///
-  @Deprecated('Please use rtmpStreamingStateChanged instead.')
+  @deprecated
   UrlCallback? streamUnpublished;
 
   ///
@@ -779,7 +781,7 @@ class RtcEngineEventHandler {
   ///
   /// Param [rxKBitrate] Bitrate of the received audio (Kbps).
   ///
-  @Deprecated('Please use remoteAudioStats instead.')
+  @deprecated
   TransportStatsCallback? remoteAudioTransportStats;
 
   ///
@@ -799,7 +801,7 @@ class RtcEngineEventHandler {
   ///
   /// Param [rxKBitRate] The bitrate of the received video (Kbps).
   ///
-  @Deprecated('Please use remoteVideoStats instead.')
+  @deprecated
   TransportStatsCallback? remoteVideoTransportStats;
 
   ///
@@ -815,7 +817,7 @@ class RtcEngineEventHandler {
   ///
   ///
   ///
-  @Deprecated('')
+  @deprecated
   UidWithEnabledCallback? userEnableVideo;
 
   ///
@@ -835,7 +837,7 @@ class RtcEngineEventHandler {
   ///
   ///
   ///
-  @Deprecated('')
+  @deprecated
   UidWithEnabledCallback? userEnableLocalVideo;
 
   ///
@@ -864,7 +866,7 @@ class RtcEngineEventHandler {
   ///
   /// Param [elapsed] The time elapsed (ms) from the local user calling joinChannel until the SDK triggers this callback.
   ///
-  @Deprecated('')
+  @deprecated
   VideoFrameWithUidCallback? firstRemoteVideoDecoded;
 
   ///
@@ -886,7 +888,7 @@ class RtcEngineEventHandler {
   ///
   ///
   ///
-  @Deprecated('')
+  @deprecated
   EnabledCallback? microphoneEnabled;
 
   ///
@@ -900,7 +902,7 @@ class RtcEngineEventHandler {
   /// The SDK triggers the connectionLost callback when it loses connection with the server for more than 10 seconds, whether or not it joins the channel.
   /// If the SDK fails to rejoin the channel 20 minutes after being disconnected from Agora's edge server, the SDK stops rejoining the channel.
   ///
-  @Deprecated('Please use connectionStateChanged instead.')
+  @deprecated
   EmptyCallback? connectionInterrupted;
 
   ///
@@ -908,7 +910,7 @@ class RtcEngineEventHandler {
   /// Deprecated:
   /// Please use connectionStateChanged instead.
   ///
-  @Deprecated('Please use connectionStateChanged instead.')
+  @deprecated
   EmptyCallback? connectionBanned;
 
   ///
@@ -932,6 +934,7 @@ class RtcEngineEventHandler {
   /// Down (6): The network is down, and users cannot communicate at all.
   ///
   ///
+  ///
   /// Param [delay] The network delay (ms) from the sender to the receiver, including the delay
   /// caused by audio sampling pre-processing, network transmission, and network
   /// jitter buffering.
@@ -939,7 +942,7 @@ class RtcEngineEventHandler {
   /// Param [lost] Packet loss rate (%) of the audio packet sent from the sender to the
   /// receiver.
   ///
-  @Deprecated('')
+  @deprecated
   AudioQualityCallback? audioQuality;
 
   ///
@@ -954,7 +957,7 @@ class RtcEngineEventHandler {
   /// This callback indicates that the camera has been successfully turned on and
   /// you can start to capture video.
   ///
-  @Deprecated('')
+  @deprecated
   EmptyCallback? cameraReady;
 
   ///
@@ -968,7 +971,7 @@ class RtcEngineEventHandler {
   /// view (for example, displaying other pictures in the view) after
   /// the video stops playing.
   ///
-  @Deprecated('')
+  @deprecated
   EmptyCallback? videoStopped;
 
   ///
@@ -1067,8 +1070,7 @@ class RtcEngineEventHandler {
   ///
   /// Param [url] The RTMP or RTMPS streaming URL.
   ///
-  /// Param [eventCode] The event code of the streaming. For details, see
-  /// .
+  /// Param [eventCode] The event code of the streaming. For details, see RtmpStreamingEvent.
   ///
   RtmpStreamingEventCallback? rtmpStreamingEvent;
 
@@ -1106,11 +1108,10 @@ class RtcEngineEventHandler {
   ///
   UploadLogResultCallback? uploadLogResult;
 
-/* TODO(doc): callback-engine-airPlayIsConnected */
+  /* callback-engine-airPlayIsConnected */
   @Deprecated('Use airPlayConnected instead')
   EmptyCallback? airPlayIsConnected;
 
-/* TODO(doc): callback-engine-airPlayConnected */
   EmptyCallback? airPlayConnected;
 
   ///
@@ -1209,22 +1210,16 @@ class RtcEngineEventHandler {
   ///
   SnapshotTakenCallback? snapshotTaken;
 
-/* TODO(doc): callback-engine-screenCaptureInfoUpdated */
   OnScreenCaptureInfoUpdated? screenCaptureInfoUpdated;
 
-/* TODO(doc): callback-engine-clientRoleChangeFailed */
   OnClientRoleChangeFailed? clientRoleChangeFailed;
 
-/* TODO(doc): callback-engine-wlAccMessage */
   OnWlAccMessage? wlAccMessage;
 
-/* TODO(doc): callback-engine-wlAccStats */
   OnWlAccStats? wlAccStats;
 
-/* TODO(doc): callback-engine-proxyConnected */
   OnProxyConnected? proxyConnected;
 
-/* TODO(doc): callback-engine-audioDeviceTestVolumeIndication */
   OnAudioDeviceTestVolumeIndication? audioDeviceTestVolumeIndication;
 
   /// @nodoc

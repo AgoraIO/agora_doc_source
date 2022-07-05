@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediaplayersourceobserver_onmetadata">
+    <title><ph keyref="onMetaData" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the media metadata is received.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onMetaData" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">void onMetaData(Constants.MediaPlayerMetadataType type, byte[] data);
+</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol&gt; _Nonnull)playerKit
+             didReceiveData:(NSString *_Nullable)data
+                     length:(NSInteger)length;</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual void onMetaData(const void* data, int length) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <p>The callback occurs when the player receives the media metadata and reports the detailed information of the media metadata.</p>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry conkeyref="onPlayerEvent/playerkit" props="ios mac">
+                    <pt />
+                    <pd />
+                </plentry>
+                <plentry props="android">
+                    <pt>type</pt>
+                    <pd>The type of media metadata. See <xref keyref="MEDIA_PLAYER_METADATA_TYPE" />.</pd>
+                </plentry>
+                <plentry>
+                    <pt>data</pt>
+                    <pd>The detailed data of the media metadata.</pd>
+                </plentry>
+                <plentry props="ios mac windows">
+                    <pt>length</pt>
+                    <pd>The data length (bytes).</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

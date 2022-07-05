@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediaplayersourceobserver_onplayersourcestatechanged">
+    <title><ph keyref="onPlayerSourceStateChanged" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Reports the playback state change.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPlayerSourceStateChanged" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">void onPlayerStateChanged(Constants.MediaPlayerState state, Constants.MediaPlayerError error);
+</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraMediaPlayer:(AgoraMediaPlayer *_Nonnull)playerKit
+       didChangedToState:(AgoraMediaPlayerState)state
+                   error:(AgoraMediaPlayerError)error;
+</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual void onPlayerSourceStateChanged(media::base::MEDIA_PLAYER_STATE state,
+                                        media::base::MEDIA_PLAYER_ERROR ec) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <p>When the state of the media player changes, the SDK triggers this callback to report the current playback state.</p>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry conkeyref="onPlayerEvent/playerkit" props="ios mac">
+                    <pt />
+                    <pd />
+                </plentry>
+                <plentry>
+                    <pt>state</pt>
+                    <pd>For details about the playback state, see <xref keyref="MEDIA_PLAYER_STATE" />.</pd>
+                </plentry>
+                <plentry>
+                    <pt props="android ios mac">error</pt>
+                    <pt props="windows">ec</pt>
+                    <pd>The error code. See <xref keyref="MEDIA_PLAYER_ERROR" />.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

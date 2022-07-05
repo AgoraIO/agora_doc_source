@@ -87,6 +87,9 @@ enum MEDIA_PLAYER_STATE {
   /** Player seeking state (internal)
    */
   PLAYER_STATE_SEEKING_INTERNAL,
+  /** Player set track state (internal)
+   */
+  PLAYER_STATE_SET_TRACK_INTERNAL,
   /** Player getting state (internal)
    */
   PLAYER_STATE_GETTING_INTERNAL,
@@ -96,9 +99,6 @@ enum MEDIA_PLAYER_STATE {
   /** Do nothing state for state machine (internal)
    */
   PLAYER_STATE_DO_NOTHING_INTERNAL,
-  /** Player set track state (internal)
-   */
-  PLAYER_STATE_SET_TRACK_INTERNAL,
   /** The playback fails.
    */
   PLAYER_STATE_FAILED = 100,
@@ -150,18 +150,6 @@ enum MEDIA_PLAYER_ERROR {
   /** The audio mixing file playback is interrupted.
    */
   PLAYER_ERROR_INTERRUPTED = -13,
-  /** The SDK does not support this function.
-   */
-  PLAYER_ERROR_NOT_SUPPORTED = -14,
-  /** The token has expired.
-   */
-  PLAYER_ERROR_TOKEN_EXPIRED = -15,
-  /** The ip has expired.
-   */
-  PLAYER_ERROR_IP_EXPIRED = -16,
-  /** An unknown error occurs.
-   */
-  PLAYER_ERROR_UNKNOWN = -17,
 };
 
 /**
@@ -197,6 +185,12 @@ enum MEDIA_PLAYER_EVENT {
   /** An error occurs during the seek operation.
    */
   PLAYER_EVENT_SEEK_ERROR = 2,
+  /** The player publishes a video track.
+   */
+  PLAYER_EVENT_VIDEO_PUBLISHED = 3,
+  /** The player publishes an audio track.
+   */
+  PLAYER_EVENT_AUDIO_PUBLISHED = 4,
   /** The player changes the audio track for playback.
    */
   PLAYER_EVENT_AUDIO_TRACK_CHANGED = 5,
@@ -224,21 +218,9 @@ enum MEDIA_PLAYER_EVENT {
   /** An application can render the video to less than a second
    */
   PLAYER_EVENT_FIRST_DISPLAYED = 13,
-  /** cache resources exceed the maximum file count
+   /** device id or player id updated
    */
-  PLAYER_EVENT_REACH_CACHE_FILE_MAX_COUNT = 14,
-  /** cache resources exceed the maximum file size
-   */
-  PLAYER_EVENT_REACH_CACHE_FILE_MAX_SIZE = 15,
-  /** Triggered when a retry is required to open the media
-   */
-  PLAYER_EVENT_TRY_OPEN_START = 16,
-  /** Triggered when the retry to open the media is successful
-   */
-  PLAYER_EVENT_TRY_OPEN_SUCCEED = 17,
-  /** Triggered when retrying to open media fails
-   */
-  PLAYER_EVENT_TRY_OPEN_FAILED = 18,
+  PLAYER_EVENT_IDS_UPDATE = 14
 };
 
 /**
@@ -347,106 +329,16 @@ enum MEDIA_PLAYER_METADATA_TYPE {
   PLAYER_METADATA_TYPE_SEI = 1,
 };
 
-struct CacheStatistics {
-  /**  total data size of uri
+/** Values when user trigger interface of opening
    */
-  int64_t fileSize;
-  /**  data of uri has cached
-   */
-  int64_t cacheSize;
-  /**  data of uri has downloaded
-   */
-  int64_t downloadSize;
-};
-
 struct PlayerUpdatedInfo {
-  /** playerId has value when user trigger interface of opening
+  /** player_id has value when user trigger interface of opening
    */
-  Optional<const char*> playerId;
+  Optional<const char*> player_id;
 
-  /** deviceId has value when user trigger interface of opening
+  /** device_id has value when user trigger interface of opening
    */
-  Optional<const char*> deviceId;
-
-  /** cacheStatistics exist if you enable cache, triggered 1s at a time after openning url
-   */
-  Optional<CacheStatistics> cacheStatistics;
-};
-
-/**
- * The custom data source provides a data stream input callback, and the player will continue to call back this interface, requesting the user to fill in the data that needs to be played.
- */
-class IMediaPlayerCustomDataProvider {
-public:
-    
-    /**
-     * @brief The player requests to read the data callback, you need to fill the specified length of data into the buffer
-     * @param buffer the buffer pointer that you need to fill data.
-     * @param bufferSize the bufferSize need to fill of the buffer pointer.
-     * @return you need return offset value if succeed. return 0 if failed.
-     */
-    virtual int onReadData(unsigned char *buffer, int bufferSize) = 0;
-    
-    /**
-     * @brief The Player seek event callback, you need to operate the corresponding stream seek operation, You can refer to the definition of lseek() at https://man7.org/linux/man-pages/man2/lseek.2.html
-     * @param offset the value of seek offset.
-     * @param whence the postion of start seeking, the directive whence as follows:
-     * 0 - SEEK_SET : The file offset is set to offset bytes.
-     * 1 - SEEK_CUR : The file offset is set to its current location plus offset bytes.
-     * 2 - SEEK_END : The file offset is set to the size of the file plus offset bytes.
-     * 65536 - AVSEEK_SIZE : Optional. Passing this as the "whence" parameter to a seek function causes it to return the filesize without seeking anywhere.
-     * @return
-     * whence == 65536, return filesize if you need.
-     * whence >= 0 && whence < 3 , return offset value if succeed. return -1 if failed.
-     */
-    virtual int64_t onSeek(int64_t offset, int whence) = 0;
-    
-    virtual ~IMediaPlayerCustomDataProvider() {}
-};
-
-struct MediaSource {
-  /**
-   * The URL of the media file that you want to play.
-   */
-  const char* url;
-  /**
-   * The URI of the media file
-   *
-   * When caching is enabled, if the url cannot distinguish the cache file name,
-   * the uri must be able to ensure that the cache file name corresponding to the url is unique.
-   */
-  const char* uri;
-  /**
-   * Set the starting position for playback, in ms.
-   */
-  int64_t startPos;
-  /**
-  * Autoplay when media source is opened
-  *
-  */
-  bool autoPlay;
-  /**
-   * Enable caching.
-   */
-  bool enableCache;
-  /**
-   * if the value is true, it means playing agora URL. 
-   * The default value is false
-   */
-  Optional<bool> isAgoraSource;
-  /**
-   * If it is set to true, it means that the live stream will be optimized for quick start. 
-   * The default value is false
-   */
-  Optional<bool> isLiveSource;
-  /**
-   * External custom data source object
-   */
-  IMediaPlayerCustomDataProvider* provider;
-
-  MediaSource() : url(NULL), uri(NULL), startPos(0), autoPlay(true), enableCache(false),
-                  provider(NULL){
-  }
+  Optional<const char*> device_id;
 };
 
 }  // namespace base

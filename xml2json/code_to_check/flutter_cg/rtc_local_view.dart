@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 
 import 'src/enums.dart';
 import 'src/rtc_render_view.dart';
@@ -8,7 +9,7 @@ import 'src/rtc_render_view.dart';
 /// SurfaceView.
 class SurfaceView extends RtcSurfaceView {
   /// Constructs a [SurfaceView]
-  const SurfaceView({
+  SurfaceView({
     Key? key,
     String? channelId,
     renderMode = VideoRenderMode.Hidden,
@@ -30,7 +31,7 @@ class SurfaceView extends RtcSurfaceView {
         );
 
   /// TODO(doc)
-  const SurfaceView.screenShare({
+  SurfaceView.screenShare({
     Key? key,
     renderMode = VideoRenderMode.Hidden,
     mirrorMode = VideoMirrorMode.Disabled,
@@ -50,7 +51,7 @@ class SurfaceView extends RtcSurfaceView {
 /// TextureView.
 class TextureView extends RtcTextureView {
   /// Constructs a [TextureView]
-  const TextureView({
+  TextureView({
     Key? key,
     String? channelId,
     renderMode = VideoRenderMode.Hidden,
@@ -70,7 +71,7 @@ class TextureView extends RtcTextureView {
         );
 
   /// TODO(doc)
-  const TextureView.screenShare({
+  TextureView.screenShare({
     Key? key,
     renderMode = VideoRenderMode.Hidden,
     mirrorMode = VideoMirrorMode.Disabled,
