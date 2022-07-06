@@ -168,6 +168,7 @@ elif defined_path_text == "cs":
 # cpp_full_path
 # Other types of full path
 rust_topicref_list = []
+json_hide_id_list = []
 dita_file_tree = ET.parse(defined_path)
 dita_file_root = dita_file_tree.getroot()
 for topicref in dita_file_root.iter("keydef"):
@@ -177,9 +178,18 @@ for topicref in dita_file_root.iter("keydef"):
         print(path_new)
         rust_topicref_list.append(path_new)
 
+        if topicref.get("props") is not None and topicref.get("props") == "hide":
+            json_hide_id_list.append(path_new.replace(".dita", ""))
+
+
+
 print("--------------- Topic ref list ------------------------")
 print(rust_topicref_list)
 print("--------------- Topic ref list ------------------------")
+
+print("--------------- Hide id list ------------------------")
+print(json_hide_id_list)
+print("--------------- Hide id list ------------------------")
 
 # Target platform
 
@@ -1063,6 +1073,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
     data['description'] = api_desc
     data['parameters'] = json_array
     data['returns'] = return_values.strip("\n ")
+    data['is_hide'] = True if api_id in json_hide_id_list else False
 
     print(data)
 
