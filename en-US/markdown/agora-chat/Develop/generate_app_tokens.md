@@ -317,6 +317,31 @@ To convert an Agora app token to an Agora Chat app token, you need to pass in th
 | :----------- | :-------- | :---------------- | :---- |
 | `grant_type` | String    | Required          | agora |
 
+### Response body
+
+| Parameter    | Data type | Value |
+| :----------- | :-------- | :---- |
+| `access_token` | String    | The Agora Chat app token.|
+| `expires_in` | Number   | The valid duration (in seconds) of the token.|
+
+### Example
+
+#### Request Example
+
+```json
+curl -X POST -H 'Content-Type: application/json' http://<domain>/<org_name>/<app_name>/token -H 'Authorization: Bearer <agora_app_token>' -d '{"grant_type" : "agora"}'
+```
+
+#### Response Example
+
+```json
+{
+    "access_token": "YWMte2XXXXAAAAAAAAAAAAAAFcaJRiIRZNB6tqNQUcXXXXXXLAAAARmt4MVNn5VYK7z7hP9SbgdqhlVNBPGnYAeGjlt3n80Y_A==",
+    "expires_in": 281,
+    "expire_timestamp": 1657015153000
+}
+```
+
 ### Status codes
 
 The possible response status codes are listed below:
