@@ -188,7 +188,20 @@ props_platform_list = ["windows", "rust", "java", "python", "csharp", "objective
 
 
 def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_path, platform="rust"):
-    tree = ET.parse(file_dir)
+    try:
+        tree = ET.parse(file_dir)
+    except Exception as ex:
+        print("\n")
+        print("Woops!\n")
+        print("It most likely an error occur when parsing the xml file: {}\n".format(file_dir))
+        print("You can try to find out which line parse error, such like error below:\n")
+        print("xml.etree.ElementTree.ParseError: not well-formed (invalid token): line 19, column 73")
+        print("\nIt means that the the error occur on line 19 of {} file, so you can check if there any unexpected format in that line.\n".format(file_dir))
+        print("The exception detail show below:\n")
+        print(ex)
+
+        raise ex
+        
     root = tree.getroot()
 
     # Iterate over all dita files
