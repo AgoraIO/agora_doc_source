@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setremotevoicepositionex">
-    <title><ph keyref="setRemoteVoicePositionEx" /></title>
+    <title><ph keyref="setRemoteVoicePositionEx"/></title>
     <shortdesc id="short"><ph id="shortdesc">设置远端用户声音的 2D 位置，即水平面位置。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setRemoteVoicePositionEx" />
+                <indexterm keyref="setRemoteVoicePositionEx"/>
             </keywords>
         </metadata>
     </prolog>
@@ -28,7 +28,12 @@
     gain: number,
     connection: RtcConnection
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setRemoteVoicePositionEx(
+      {required int uid,
+      required double pan,
+      required double gain,
+      required RtcConnection connection});
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>设置远端用户声音的空间位置和音量，方便本地用户听声辨位。</p>
@@ -50,6 +55,7 @@
                 <pd>设置远端用户声音的空间位置，取值范围为 [-1.0,1.0]:
 
 
+                    
                     <ul>
                     <li>-1.0: 声音出现在左边。</li>
                     <li>(默认）0.0: 声音出现在正前方。</li>
@@ -61,8 +67,8 @@
                 <pd>设置远端用户声音的音量，取值范围为 [0.0,100.0]，默认值为 100.0，表示该用户的原始音量。取值越小，则音量越低。</pd>
             </plentry>
             <plentry conkeyref="joinChannelEx/connection">
-                <pt />
-                <pd />
+                <pt/>
+                <pd/>
             </plentry>
             </parml> </section>
         <section id="return_values">
