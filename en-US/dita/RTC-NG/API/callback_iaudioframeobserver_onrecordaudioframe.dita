@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="callback_iaudioframeobserverbase_onrecordaudioframe">
+<reference id="callback_iaudioframeobserver_onrecordaudioframe">
     <title><ph keyref="onRecordAudioFrame"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获得采集的音频。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Gets the captured audio frame.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -23,12 +23,12 @@
             <codeblock props="unity" outputclass="language-csharp">public virtual bool OnRecordAudioFrame(string channelId, AudioFrame audioFrame)
         {
             return true;
-        }</codeblock>                
+        }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <note type="note">为保证采集到的音频数据格式符合预期，Agora 推荐你在调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器后，调用 <xref keyref="setRecordingAudioFrameParameters"/> 方法设置采集的音频数据格式。</note> </section>
+            <note type="note">If you want to set the format of the captured audio frame, Agora recommends that you call the <xref keyref="setRecordingAudioFrameParameters"/> method to set the format of the audio frame after calling <xref keyref="registerAudioFrameObserver"/> method to register an audio frame observer.</note> </section>
         <section id="parameters" conkeyref="onMixedAudioFrame/parameters"/>
         <section id="return_values" conkeyref="onMixedAudioFrame/return_values"/>
     </refbody>
