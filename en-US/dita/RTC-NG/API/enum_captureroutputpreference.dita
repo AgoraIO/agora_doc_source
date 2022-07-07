@@ -2,35 +2,36 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_captureroutputpreference">
     <title><ph keyref="CAPTURER_OUTPUT_PREFERENCE"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Camera capture preference.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">The camera capture preference.</ph></shortdesc>
     <refbody>
         <section id="parameters">
-   <title>Enumerator</title>
-   <parml>
-       <plentry>
-  <pt><ph keyref="CAPTURER_OUTPUT_PREFERENCE_AUTO"/></pt>
-  <pd>0: (Default) Automatically adjust the camera capture preference. The SDK adjusts the camera output parameters according to the system performance and network conditions to balance CPU consumption and video preview quality.</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CAPTURER_OUTPUT_PREFERENCE_PERFORMANCE"/></pt>
-  <pd>1: Prioritizes the system performance. The SDK chooses the dimension and frame rate of the local camera capture closest to those set by <xref keyref="setVideoEncoderConfiguration"/>. In this case, the local preview quality depends on the encoder.</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CAPTURER_OUTPUT_PREFERENCE_PREVIEW"/></pt>
-  <pd>2: Prioritizes the local preview quality. The SDK chooses higher camera output parameters to improve the local video preview quality. This option requires extra CPU and RAM usage for video pre-processing.</pd>
-       </plentry>
-       <plentry>
-                    <pt><ph keyref="CAPTURER_OUTPUT_PREFERENCE_MANUAL"/></pt>
-                    <pd>
-                        <dl outputclass="since" props="rtc">
-                            <dlentry props="native">
-                                <dt>Since</dt>
-                                <dd>v3.3.0</dd>
-                            </dlentry>
-                        </dl>
-                        <p>3: Allows you to customize the width and height of the video image captured by the local camera.</p>
-                    </pd>
-                </plentry>
-   </parml>
-        </section></refbody>
+            <title>Enumerator</title>
+            <parml>
+            <plentry>
+                <pt><ph keyref="CAPTURER_OUTPUT_PREFERENCE_AUTO"/></pt>
+                <pd>0: (Default) Automatically adjust the camera capture preference. The SDK adjusts the camera output parameters according to the system performance and network conditions to balance CPU consumption and video preview quality.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CAPTURER_OUTPUT_PREFERENCE_PERFORMANCE"/></pt>
+                <pd>1: Prioritizes the system performance. SDK according to the user <xref keyref="setVideoEncoderConfiguration"/>
+The SDK chooses the dimension and frame rate of the local camera capture closest to those set by . In this case, the local preview quality depends on the encoder.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CAPTURER_OUTPUT_PREFERENCE_PREVIEW"/></pt>
+                <pd>2: Prioritizes the local preview quality. The SDK chooses higher camera output parameters to improve the local video preview quality. This option requires extra CPU and RAM usage for video pre-processing.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CAPTURER_OUTPUT_PREFERENCE_MANUAL"/></pt>
+                <pd>
+                    <dl outputclass="since" props="rtc">
+                    <dlentry>
+                        <dt>Since</dt>
+                        <dd>v3.3.0</dd>
+                    </dlentry>
+                    </dl>
+                    <p>3: Allows you to customize the width and height of the video image captured by the local camera.</p>
+                </pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
 </reference>
