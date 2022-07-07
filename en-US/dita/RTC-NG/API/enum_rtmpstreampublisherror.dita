@@ -9,11 +9,11 @@
                <parml>
                <plentry>
                     <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_OK"/></pt>
-                    <pd>0: The RTMP or RTMPS streaming has not started or has ended.</pd>
+                    <pd>0: The RTMP or RTMPS streaming publishes successfully.</pd>
                </plentry>
                <plentry>
                     <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_INVALID_ARGUMENT"/></pt>
-                    <pd>1: Invalid argument used. Check the parameter setting. For example, if you do not call <xref keyref="addPublishStreamUrl"/> to set the transcoding parameters before <xref keyref="setLiveTranscoding"/> calling , the SDK returns this error.</pd>
+                    <pd>1: Invalid argument used. Check the parameter setting. For example, if you do not call <xref keyref="setLiveTranscoding"/> to set the transcoding parameters before calling <xref keyref="addPublishStreamUrl"/>, the SDK returns this error.</pd>
                </plentry>
                <plentry>
                     <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_ENCRYPTED_STREAM_NOT_ALLOWED"/></pt>
@@ -21,7 +21,7 @@
                </plentry>
                <plentry>
                     <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_CONNECTION_TIMEOUT"/></pt>
-                    <pd>3: Timeout for the RTMP or RTMPS streaming. Call the <xref keyref="addPublishStreamUrl"/> method topublish the streaming again.</pd>
+                    <pd>3: Timeout for the RTMP or RTMPS streaming. Call the <xref keyref="addPublishStreamUrl"/> method to publish the streaming again.</pd>
                </plentry>
                <plentry>
                     <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_INTERNAL_SERVER_ERROR"/></pt>
@@ -33,7 +33,7 @@
                </plentry>
                <plentry>
                     <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_TOO_OFTEN"/></pt>
-                    <pd>2: Reserved parameter.</pd>
+                    <pd>6: Reserved parameter</pd>
                </plentry>
                <plentry>
                     <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_REACH_LIMIT"/></pt>
@@ -49,25 +49,25 @@
                </plentry>
                <plentry>
                     <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_FORMAT_NOT_SUPPORTED"/></pt>
-                    <pd>10: The format of the RTMP or RTMPS streaming URL is not supported.  Check whether the URL format is correct.</pd>
+                    <pd>10: The format of the RTMP or RTMPS streaming URL is not supported. Check whether the URL format is correct.</pd>
                </plentry>
-               <plentry props="native">
+               <plentry>
                     <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_NOT_BROADCASTER"/> </pt>
-                    <pd>11: The user role is not host, so the user cannot use the CDN live streaming function. Check your application code logic.</pd>
+                    <pd>11: The user role is not host, so the user cannot use the CDN live streaming function. Check your app code logic.</pd>
                </plentry>
-               <plentry props="native">
+               <plentry>
                     <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_TRANSCODING_NO_MIX_STREAM"/> </pt>
-                    <pd>The <xref keyref="updateRtmpTranscoding"/> or <xref keyref="setLiveTranscoding"/> method is called to update the transcoding configuration in a scenario where there is streaming without transcoding. Check your application code logic.</pd>
+                    <pd>13: The <xref keyref="updateRtmpTranscoding"/> or <xref keyref="setLiveTranscoding"/> method is called to update the transcoding configuration in a scenario where there is streaming without transcoding. Check your app code logic.</pd>
                </plentry>
-               <plentry props="native">
+               <plentry>
                     <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_NET_DOWN"/> </pt>
                     <pd>14: Errors occurred in the host's network.</pd>
                </plentry>
-               <plentry props="native">
+               <plentry>
                     <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID"/> </pt>
                     <pd><ph>15: Your App ID does not have permission to use the CDN live streaming function. </ph><ph props="rtc">Refer to <xref keyref="guide-cdn-streaming">Prerequisites</xref> to enable the CDN live streaming permission.</ph></pd>
                </plentry>
-               <plentry props="native">
+               <plentry>
                     <pt><ph keyref="RTMP_STREAM_UNPUBLISH_ERROR_OK"/> </pt>
                     <pd>100: The streaming has been stopped normally. After you call <xref keyref="removePublishStreamUrl"/> to stop streaming, the SDK returns this value.</pd>
                </plentry>
