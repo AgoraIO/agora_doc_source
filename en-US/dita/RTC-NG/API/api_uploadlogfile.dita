@@ -2,57 +2,55 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_uploadlogfile">
     <title><ph keyref="uploadLogFile" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Uploads all SDK log files.</ph></shortdesc>
+    <shortdesc id="short">Uploads all SDK log files.</shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="uploadLogFile" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="uploadLogFile" />
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="cpp" outputclass="language-cpp">virtual int uploadLogFile(agora::util::AString&amp; requestId) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">uploadLogFile(): string</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public abstract string UploadLogFile();</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">Future&lt;String?&gt; uploadLogFile();</codeblock>
-        </p>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="cpp" outputclass="language-cpp">virtual int uploadLogFile(agora::util::AString&amp; requestId) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp">public abstract string UploadLogFile();</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; uploadLogFile(String requestId);</codeblock></p>
         </section>
         <section id="detailed_desc">
-   
-   <dl outputclass="since">
-       <dlentry>
-  <dt>Since</dt>
-  <dd>v3.3.0</dd>
-       </dlentry>
-   </dl>
-   <p>Uploads all SDK log files from the client to the Agora server. After calling this method successfully, the SDK triggers the <xref keyref="onUploadLogResult" /> callback to report whether the log file is successfully uploaded to the Agora server.</p>
-   <p props="cpp"><note type="attention">Do not call this method more than once per minute; otherwise, the SDK reports <codeph>ERR_TOO_OFTEN</codeph>(12).</note>.</p>
-   <p props="android ios mac"><note type="attention">This method cannot be called more than once per minute; otherwise, the SDK returns <ph keyref="NULL" />.</note></p>
-   <p>For easier debugging, Agora recommends that you bind the <apiname>uploadLogFile</apiname> method to the UI element of your app, to instruct the user to upload a log file when a quality issue occurs.</p>
+            <p>Uploads all SDK log files from the client to the Agora server. After calling this method successfully, the SDK triggers the  callback to report whether the log file is successfully uploaded to the Agora server.</p>
+            <p props="cpp unity">
+            <note type="attention">Do not call this method more than once per minute; otherwise, the SDK reports ERR_TOO_OFTEN(12).</note>.</p>
+            <p props="android ios mac">
+            <note type="attention">This method cannot be called more than once per minute; otherwise, the SDK returns .</note></p>
+            <p>For easier debugging, Agora recommends that you bind the uploadLogFile method to the UI element of your app, to instruct the user to upload a log file when a quality issue occurs.</p>
         </section>
-        <section id="parameters"><title>Parameters</title>
-   <parml props="cpp">
-       <plentry>
-  <pt>requestId</pt>
-  <pd><p>The request ID. The request ID is the same as the <parmname>requestId</parmname> in the <xref keyref="onUploadLogResult" /> callback. You can use the <parmname>requestId</parmname> to match a specific upload with a callback.</p></pd>
-       </plentry>
-   </parml>
-        </section>
-        <section id="return_values">
-   <title>Returns</title>
-   <ul props="cpp">
-       <li>0: Success.</li>
-       <li>&lt; 0: Failure.<ul>
-  <li>-12(<codeph>ERR_TOO_OFTEN</codeph>): The call frequency exceeds the limit.</li>
-       </ul></li>
-   </ul>
-   <ul props="android ios mac flutter">
-       <li>The method call succeeds: Return the request ID. The request ID is the same as the <parmname>requestId</parmname> in the <xref keyref="onUploadLogResult" /> callback. You can use the <parmname>requestId</parmname> to match a specific upload with a callback.</li>
-       <li>The method callI fails: Returns <ph keyref="NULL" />. Probably because the method call frequency exceeds the limit.</li>
-   </ul>
-        </section></refbody>
+        <section props="native flutter" id="parameters">
+            <title>Parameters</title>
+            <parml props="cpp">
+            <plentry>
+                <pt>requestId</pt>
+                <pd>
+                    <p>The request ID. The request ID is the same as the requestId in the  callback. You can use the requestId to match a specific upload with a callback.</p>
+                </pd>
+            </plentry>
+            </parml> </section>
+        <section props="native electron unity" id="return_values">
+            <title>Returns</title>
+            <ul props="cpp unity">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.<ul>
+                <li>-12(ERR_TOO_OFTEN): The call frequency exceeds the limit.</li>
+                </ul></li>
+            </ul>
+            <ul props="android ios mac flutter">
+            <li>The method call succeeds: Return the request ID. The request ID is the same as the requestId in the  callback. You can use
+requestId to match a specific upload with a callback.</li>
+            <li>The method callI fails: Returns . Probably because the method call frequency exceeds the limit.</li>
+            </ul> </section>
+    </refbody>
 </reference>
