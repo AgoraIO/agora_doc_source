@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_rtmpstreampublisherrortype">
+     <title><ph keyref="RTMP_STREAM_PUBLISH_ERROR_TYPE"/></title>
+     <shortdesc id="short"><ph id="shortdesc">推流错误信息。</ph></shortdesc>
+     <refbody>
+          <section id="parameters">
+               <title>枚举值</title>
+               <parml>
+               <plentry>
+                    <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_OK"/></pt>
+                    <pd>0：推流成功。</pd>
+               </plentry>
+               <plentry>
+                    <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_INVALID_ARGUMENT"/></pt>
+                    <pd>1：参数无效。请检查输入参数是否正确。如果你在调用 <xref keyref="addPublishStreamUrl"/> 前没有调用 <xref keyref="setLiveTranscoding"/> 设置转码参数，SDK 会返回该错误。</pd>
+               </plentry>
+               <plentry>
+                    <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_ENCRYPTED_STREAM_NOT_ALLOWED"/></pt>
+                    <pd>2：推流已加密，不能推流。</pd>
+               </plentry>
+               <plentry>
+                    <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_CONNECTION_TIMEOUT"/></pt>
+                    <pd>3：推流超时未成功。可调用 <xref keyref="addPublishStreamUrl"/> 重新推流。</pd>
+               </plentry>
+               <plentry>
+                    <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_INTERNAL_SERVER_ERROR"/></pt>
+                    <pd>4：推流服务器出现错误。请调用 <xref keyref="addPublishStreamUrl"/> 重新推流。</pd>
+               </plentry>
+               <plentry>
+                    <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_RTMP_SERVER_ERROR"/></pt>
+                    <pd>5：CDN 服务器出现错误。</pd>
+               </plentry>
+               <plentry>
+                    <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_TOO_OFTEN"/></pt>
+                    <pd>6：推流请求过于频繁。</pd>
+               </plentry>
+               <plentry>
+                    <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_REACH_LIMIT"/></pt>
+                    <pd>7：单个主播的推流地址数目达到上限 10。请删掉一些不用的推流地址再增加推流地址。</pd>
+               </plentry>
+               <plentry>
+                    <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_NOT_AUTHORIZED"/></pt>
+                    <pd>8：主播操作不属于自己的流。例如更新其他主播的流参数、停止其他主播的流。请检查 App 逻辑。</pd>
+               </plentry>
+               <plentry>
+                    <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_STREAM_NOT_FOUND"/></pt>
+                    <pd>9：服务器未找到这个流。</pd>
+               </plentry>
+               <plentry>
+                    <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_FORMAT_NOT_SUPPORTED"/></pt>
+                    <pd>10：推流地址格式有错误。请检查推流地址格式是否正确。</pd>
+               </plentry>
+               <plentry>
+                    <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_NOT_BROADCASTER"/> </pt>
+                    <pd>11：用户角色不是主播，该用户无法使用推流功能。请检查你的应用代码逻辑。</pd>
+               </plentry>
+               <plentry>
+                    <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_TRANSCODING_NO_MIX_STREAM"/> </pt>
+                    <pd>13：非转码推流情况下，调用了 <xref keyref="updateRtmpTranscoding"/> 或 <xref keyref="setLiveTranscoding"/> 方法更新转码属性。请检查你的应用代码逻辑。</pd>
+               </plentry>
+               <plentry>
+                    <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_NET_DOWN"/> </pt>
+                    <pd>14：主播的网络出错。</pd>
+               </plentry>
+               <plentry>
+                    <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID"/> </pt>
+                    <pd><ph>15：你的 App ID 没有使用 Agora 推流服务的权限。</ph><ph props="rtc">请参考<xref keyref="guide-cdn-streaming">旁路推流</xref>中的前提条件开启推流服务。</ph></pd>
+               </plentry>
+               <plentry>
+                    <pt><ph keyref="RTMP_STREAM_UNPUBLISH_ERROR_OK"/> </pt>
+                    <pd>100：推流已正常结束。当你调用 <xref keyref="removePublishStreamUrl"/> 结束推流后，SDK 会返回该值。</pd>
+               </plentry>
+               </parml></section>
+     </refbody>
+</reference>
