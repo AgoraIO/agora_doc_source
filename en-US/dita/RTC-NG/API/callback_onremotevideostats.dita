@@ -1,43 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onremotevideostats">
-    <title><ph keyref="onRemoteVideoStats" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Reports the transport-layer statistics of each remote video stream.</ph></shortdesc>
+    <title> <ph keyref="onRemoteVideoStats"/> </title>
+    <shortdesc id="short"><ph id="shortdesc">Reports the statistics of the video stream sent by each remote users.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="onRemoteVideoStats" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="onRemoteVideoStats"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public void onRemoteVideoStats(RemoteVideoStats stats) {}</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onRemoteVideoStats(RemoteVideoStats stats) {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
     remoteVideoStats:(AgoraRtcRemoteVideoStats * _Nonnull)stats;</codeblock>
-                <codeblock props="cpp" outputclass="language-cpp">virtual void onRemoteVideoStats(const RemoteVideoStats&amp; stats) {
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onRemoteVideoStats(const RemoteVideoStats&amp; stats) {
     (void)stats;
     }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.REMOTE_VIDEO_STATS, cb: (stats: RemoteVideoStats) =&gt; void): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteVideoStats(RemoteVideoStats stats)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">RemoteVideoStatsCallback? remoteVideoStats;</codeblock>
-        </p>
+            <codeblock props="electron" outputclass="language-typescript">onRemoteVideoStats?(connection: RtcConnection, stats: RemoteVideoStats): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteVideoStats(RtcConnection connection, RemoteVideoStats stats) {}</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onRemoteVideoStats?(connection: RtcConnection, stats: RemoteVideoStats): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-
-   <p id="desc">Reports the statistics of the video stream from the remote users. The SDK triggers this callback once every two seconds for each remote user. If a channel has multiple users/hosts sending video streams, the SDK triggers this callback as many times.</p>
+            <p id="desc">该回调描述远端用户在通话中端到端的视频流统计信息， 针对每个远端用户/主播每 2 秒触发一次。 如果远端同时存在多个用户/主播， 该回调每 2 秒会被触发多次。</p>
         </section>
-        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-   <parml>
-                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                    <pt />
-                    <pd />
-                </plentry>
-                <plentry id="stats">
-                    <pt>stats</pt>
-                    <pd>Statistics of the remote video stream. For details, see <xref keyref="RemoteVideoStats" />.</pd>
-                </plentry>
-            </parml>
-        </section></refbody>
+        <section id="parameters">
+            <title> <ph keyref="callback-section-title"/> </title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <parml>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry props="unity electron rn">
+                <pt>connection</pt>
+                <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
+            </plentry>
+            <plentry id="stats">
+                <pt>stats</pt>
+                <pd>远端视频统计数据。 See <xref keyref="RemoteVideoStats"/>.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
 </reference>

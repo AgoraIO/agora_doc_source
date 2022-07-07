@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_livestreamadvancedfeature">
-    <title><ph keyref="LiveStreamAdvancedFeature" /></title>
+    <title><ph keyref="LiveStreamAdvancedFeature"/></title>
     <shortdesc id="short"><ph id="shortdesc">The configuration for advanced features of the RTMP or RTMPS streaming with transcoding.</ph></shortdesc>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="android" outputclass="language-java" />
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLiveStreamAdvancedFeature : NSObject
 
 @property(copy, nonatomic) NSString* _Nullable featureName;
@@ -18,13 +18,50 @@
   LiveStreamAdvancedFeature(const char* feat_name, bool open) : featureName(feat_name), opened(open) {}
   const char* featureName;
   bool opened;
-} ;</codeblock> </p>
+} ;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export class LiveStreamAdvancedFeature {
+  featureName?: string
+  opened?: boolean
+}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class LiveStreamAdvancedFeature
+    {
+        public LiveStreamAdvancedFeature()
+        {
+            featureName = null;
+            opened = false;
+        }
+
+        public LiveStreamAdvancedFeature(string feat_name, bool open)
+        {
+            featureName = feat_name;
+            opened = open;
+        }
+        public string featureName { set; get; }
+        public bool opened { set; get; }
+    };</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class LiveStreamAdvancedFeature {
+  featureName?: string;
+  opened?: boolean;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class LiveStreamAdvancedFeature {
+  const LiveStreamAdvancedFeature({this.featureName, this.opened});
+
+  @JsonKey(name: 'featureName')
+  final String? featureName;
+  @JsonKey(name: 'opened')
+  final bool? opened;
+  factory LiveStreamAdvancedFeature.fromJson(Map&lt;String, dynamic> json) =>
+      _$LiveStreamAdvancedFeatureFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$LiveStreamAdvancedFeatureToJson(this);
+}</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>If you want to enable the advanced features of streaming with transcoding, contact <xref keyref="mailto-link" />.</p>
+            <p>If you want to enable the advanced features of streaming with transcoding, contact <xref keyref="mailto-link"/>.</p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>featureName</pt>
@@ -33,8 +70,9 @@
             <plentry>
                 <pt>opened</pt>
                 <pd>Whether to enable the advanced features of streaming with transcoding:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Enable the advanced features.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: (Default) Do not enable the advanced features.</li>
+                    <li><codeph><ph keyref="true"/></codeph>: Enable the advanced features.</li>
+                    <li><codeph><ph keyref="false"
+                        /></codeph>: (Default) Do not enable the advanced features.</li>
                     </ul></pd>
             </plentry>
             </parml></section>

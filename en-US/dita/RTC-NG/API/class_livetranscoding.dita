@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_livetranscoding">
-    <title> <ph keyref="LiveTranscoding"/> </title>
-    <shortdesc id="short"><ph id="shortdesc">Transcoding configurations for Media Push.</ph></shortdesc>
-    <refbody>
-        <section id="prototype">
-            <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public class LiveTranscoding {
+  <title> <ph keyref="LiveTranscoding"/> </title>
+  <shortdesc id="short"><ph id="shortdesc">Transcoding configurations for Media Push.</ph></shortdesc>
+  <refbody>
+    <section id="prototype">
+      <p outputclass="codeblock">
+      <codeblock props="android" outputclass="language-java">public class LiveTranscoding {
   public enum AudioSampleRateType {
     TYPE_32000(32000),
     TYPE_44100(44100),
@@ -63,10 +63,10 @@
   @Deprecated public boolean lowLatency;
   public int videoGop;
   public AgoraImage watermark;
-  private ArrayList&lt;AgoraImage> watermarkList;
+  private ArrayList&lt;AgoraImage&gt; watermarkList;
   public void addWatermark(AgoraImage watermark) {
     if (watermarkList == null) {
-      watermarkList = new ArrayList&lt;AgoraImage>();
+      watermarkList = new ArrayList&lt;AgoraImage&gt;();
     }
     watermarkList.add(watermark);
   }
@@ -76,14 +76,14 @@
     }
     return watermarkList.remove(watermark);
   }
-  public ArrayList&lt;AgoraImage> getWatermarkList() {
+  public ArrayList&lt;AgoraImage&gt; getWatermarkList() {
     return watermarkList;
   }
   public AgoraImage backgroundImage;
-  private ArrayList&lt;AgoraImage> backgroundImageList;
+  private ArrayList&lt;AgoraImage&gt; backgroundImageList;
   public void addBackgroundImage(AgoraImage backgroundImage) {
     if (backgroundImageList == null) {
-      backgroundImageList = new ArrayList&lt;AgoraImage>();
+      backgroundImageList = new ArrayList&lt;AgoraImage&gt;();
     }
     backgroundImageList.add(backgroundImage);
   }
@@ -93,7 +93,7 @@
     }
     return backgroundImageList.remove(backgroundImage);
   }
-  public ArrayList&lt;AgoraImage> getBackgroundImageList() {
+  public ArrayList&lt;AgoraImage&gt; getBackgroundImageList() {
     return backgroundImageList;
   }
   public AudioSampleRateType audioSampleRate;
@@ -107,12 +107,12 @@
   public String userConfigExtraInfo;
   public String metadata;
   @Deprecated public String metadata;
-  private Map&lt;Integer, TranscodingUser> transcodingUsers;
-  private Map&lt;String, Boolean> advancedFeatures;
+  private Map&lt;Integer, TranscodingUser&gt; transcodingUsers;
+  private Map&lt;String, Boolean&gt; advancedFeatures;
   public void setAdvancedFeatures(String featureName, Boolean opened) {
     advancedFeatures.put(featureName, opened);
   }
-  public Map&lt;String, Boolean> getAdvancedFeatures() {
+  public Map&lt;String, Boolean&gt; getAdvancedFeatures() {
     return advancedFeatures;
   }
   public static class TranscodingUser {
@@ -145,8 +145,8 @@
     audioBitrate = 48;
     audioChannels = 1;
     audioCodecProfile = AudioCodecProfileType.LC_AAC;
-    transcodingUsers = new HashMap&lt;>();
-    advancedFeatures = new HashMap&lt;>();
+    transcodingUsers = new HashMap&lt;&gt;();
+    advancedFeatures = new HashMap&lt;&gt;();
     backgroundColor = 0xFF000000;
     userConfigExtraInfo = null;
     metadata = null;
@@ -159,11 +159,11 @@
     userCount = transcodingUsers.size();
     return Constants.ERR_OK;
   }
-  public final ArrayList&lt;TranscodingUser> getUsers() {
-    Collection&lt;TranscodingUser> values = transcodingUsers.values();
-    return new ArrayList&lt;>(values);
+  public final ArrayList&lt;TranscodingUser&gt; getUsers() {
+    Collection&lt;TranscodingUser&gt; values = transcodingUsers.values();
+    return new ArrayList&lt;&gt;(values);
   }
-  public void setUsers(ArrayList&lt;TranscodingUser> users) {
+  public void setUsers(ArrayList&lt;TranscodingUser&gt; users) {
     transcodingUsers.clear();
     if (users != null) {
       for (TranscodingUser user : users) {
@@ -172,7 +172,7 @@
     }
     userCount = transcodingUsers.size();
   }
-  public void setUsers(Map&lt;Integer, TranscodingUser> users) {
+  public void setUsers(Map&lt;Integer, TranscodingUser&gt; users) {
     transcodingUsers.clear();
     if (users != null) {
       transcodingUsers.putAll(users);
@@ -200,11 +200,11 @@
   }
   @Deprecated
   public int getRed() {
-    return (backgroundColor >> 16) &amp; 0x0ff;
+    return (backgroundColor &gt;&gt; 16) &amp; 0x0ff;
   }
   @Deprecated
   public int getGreen() {
-    return (backgroundColor >> 8) &amp; 0x0ff;
+    return (backgroundColor &gt;&gt; 8) &amp; 0x0ff;
   }
   @Deprecated
   public int getBlue() {
@@ -229,7 +229,7 @@
     this.backgroundColor = (red &lt;&lt; 16) | (green &lt;&lt; 8) | (blue &lt;&lt; 0);
   }
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLiveTranscoding : NSObject
+      <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLiveTranscoding : NSObject
 
 @property(assign, nonatomic) CGSize size;
 @property(assign, nonatomic) NSInteger videoBitrate;
@@ -253,9 +253,9 @@
 - (int)addUser:(AgoraLiveTranscodingUser *_Nonnull)user;
 - (int)removeUser:(NSUInteger)uid;
 - (void)setAdvancedFeatures:(NSString* _Nonnull)featureName opened:(BOOL)opened;
-- (NSArray&lt;AgoraLiveStreamAdvancedFeature*>* _Nullable)getAdvancedFeatures;
+- (NSArray&lt;AgoraLiveStreamAdvancedFeature*&gt;* _Nullable)getAdvancedFeatures;
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct LiveTranscoding {
+      <codeblock props="cpp" outputclass="language-cpp">struct LiveTranscoding {
   int width;
   int height;
   int videoBitrate;
@@ -281,7 +281,32 @@
   unsigned int advancedFeatureCount;
   LiveTranscoding() : width(360), height(640), videoBitrate(400), videoFramerate(15), lowLatency(false), videoGop(30), videoCodecProfile(VIDEO_CODEC_PROFILE_HIGH), backgroundColor(0x000000), videoCodecType(VIDEO_CODEC_H264_FOR_STREAM), userCount(0), transcodingUsers(NULL), transcodingExtraInfo(NULL), metadata(NULL), watermark(NULL), watermarkCount(0), backgroundImage(NULL), backgroundImageCount(0), audioSampleRate(AUDIO_SAMPLE_RATE_48000), audioBitrate(48), audioChannels(1), audioCodecProfile(AUDIO_CODEC_PROFILE_LC_AAC), advancedFeatures(NULL), advancedFeatureCount(0) {}
 };</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class LiveTranscoding
+      <codeblock props="electron" outputclass="language-typescript">export class LiveTranscoding {
+  width?: number
+  height?: number
+  videoBitrate?: number
+  videoFramerate?: number
+  lowLatency?: boolean
+  videoGop?: number
+  videoCodecProfile?: VideoCodecProfileType
+  backgroundColor?: number
+  videoCodecType?: VideoCodecTypeForStream
+  userCount?: number
+  transcodingUsers?: TranscodingUser[]
+  transcodingExtraInfo?: string
+  metadata?: string
+  watermark?: RtcImage[]
+  watermarkCount?: number
+  backgroundImage?: RtcImage[]
+  backgroundImageCount?: number
+  audioSampleRate?: AudioSampleRateType
+  audioBitrate?: number
+  audioChannels?: number
+  audioCodecProfile?: AudioCodecProfileType
+  advancedFeatures?: LiveStreamAdvancedFeature[]
+  advancedFeatureCount?: number
+}</codeblock>
+      <codeblock props="unity" outputclass="language-csharp">public class LiveTranscoding
     {
         public LiveTranscoding()
         {
@@ -293,235 +318,411 @@
             videoGop = 30;
             videoCodecProfile = VIDEO_CODEC_PROFILE_TYPE.VIDEO_CODEC_PROFILE_HIGH;
             backgroundColor = 0x000000;
+            videoCodecType = VIDEO_CODEC_TYPE_FOR_STREAM.VIDEO_CODEC_H264_FOR_STREAM;
             userCount = 0;
             transcodingUsers = new TranscodingUser[0];
             transcodingExtraInfo = null;
             metadata = null;
-            watermark = null;
+            watermark = new RtcImage[0];
             watermarkCount = 0;
-            backgroundImage = null;
+            backgroundImage = new RtcImage[0];
             backgroundImageCount = 0;
             audioSampleRate = AUDIO_SAMPLE_RATE_TYPE.AUDIO_SAMPLE_RATE_48000;
             audioBitrate = 48;
             audioChannels = 1;
             audioCodecProfile = AUDIO_CODEC_PROFILE_TYPE.AUDIO_CODEC_PROFILE_LC_AAC;
-        }</codeblock> </p>
-        </section>
-        <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
-            <parml>
-            <plentry props="android cpp electron unity flutter">
-                <pt>width</pt>
-                <pd>
-                    <p>The width of the video in pixels. The default value is 360.</p>
-                    <ul>
-                    <li>When pushing video streams to the CDN, the value range of <codeph>width</codeph> is [64,1920]. If the value is less than 64, Agora server automatically adjusts it to 64; if the value is greater than 1920, Agora server automatically adjusts it to 1920.</li>
-                    <li>When pushing audio streams to the CDN, set <codeph>width</codeph> and <codeph>height</codeph> as 0.</li>
-                    </ul> </pd>
-            </plentry>
-            <plentry props="android cpp electron unity flutter">
-                <pt>height</pt>
-                <pd>
-                    <p>The height of the video in pixels. The default value is 640.</p>
-                    <ul>
-                    <li>When pushing video streams to the CDN, the value range of <codeph>height</codeph> is [64,1080]. If the value is less than 64, Agora server automatically adjusts it to 64; if the value is greater than 1080, Agora server automatically adjusts it to 1080.</li>
-                    <li>When pushing audio streams to the CDN, set <codeph>width</codeph> and <codeph>height</codeph> as 0.</li>
-                    </ul> </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>size</pt>
-                <pd>
-                    <p>The size of the video (width and height in pixels).</p>
-                    <ul>
-                    <li>When pushing video streams to the CDN, note the following:<ul>
-                        <li>The value range of the width is [64,1920]. If the value is less than 64, Agora server automatically adjusts it to 64; if the value is greater than 1920, Agora server automatically adjusts it to 1920.</li>
-                        <li>The value range of the height is [64,1080]. If the value is less than 64, Agora server automatically adjusts it to 64; if the value is greater than 1080, Agora server automatically adjusts it to 1080.</li>
-                        </ul></li>
-                    <li>When pushing audio streams to the CDN, set the width and height as 0.</li>
-                    </ul> </pd>
-            </plentry>
-            <plentry>
-                <pt>videoBitrate</pt>
-                <pd>
-                    <p>Bitrate of the output video stream for Media Push in Kbps. The default value is 400 Kbps.</p>
-                    <p props="native">Set this parameter according to the <xref keyref="video-profile-table">Video profile</xref> table. If you set a bitrate beyond the proper range, the SDK automatically adapts it to a value within the range.</p>
-                </pd>
-            </plentry>
-            <plentry>
-              <pt>videoFrameRate</pt>
-                <pd>
-                    <p>Frame rate (in fps) of the output video stream set for Media Push. The default value is 15 , and the value range is (0,30].</p>
-                    <note type="attention">The Agora server adjusts any value over 30 to 30.</note></pd>
-            </plentry>
-            <plentry>
-                <pt>lowLatency</pt>
-                <pd>
-                    <dl outputclass="deprecated">
-                    <dlentry>
-                        <dt>Deprecated</dt>
-                        <dd>This parameter is deprecated.</dd>
-                    </dlentry>
-                    </dl>
-                    <p>Latency mode:</p>
-                    <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Low latency with unassured quality.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: (Default) High latency with assured quality.</li>
-                    </ul></pd>
-            </plentry>
-            <plentry>
-                <pt>videoGop</pt>
-                <pd>GOP (Group of Pictures) in fps of the video frames  for Media Push. The default value is 30.</pd>
-            </plentry>
-            <plentry>
-                <pt>videoCodecProfile</pt>
-                <pd>
-                    <p>Video codec profile type for Media Push. Set it as 66, 77, or 100 (default). See <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/> for details.</p>
-                    <note type="attention">If you set this parameter to any other value, Agora adjusts it to the default value.</note></pd>
-            </plentry>
-            <plentry props="native">
-                <pt>videoCodecType</pt>
-                <pd>Video codec profile types for Media Push. See <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/>.</pd>
-            </plentry>
-            <plentry>
-                <pt>transcodingUsers</pt>
-                <pd>
-                    <p>Manages the user layout configuration in the Media Push. Agora supports a maximum of 17 transcoding users in a Media Push channel. See <xref keyref="TranscodingUser"/>.</p>
-                </pd>
-            </plentry>
-            <plentry>
-                <pt props="ios mac cpp unity">transcodingExtraInfo</pt>
-                <pt props="android">userConfigExtraInfo</pt>
-                <pd>
-                    <p>Reserved property. Extra user-defined information to send SEI for the H.264/H.265 video stream to the CDN client. Maximum length: 4096 bytes. For more information on SEI, see <xref keyref="faq-sei">SEI-related questions</xref>.</p>
-                </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>backgroundColor</pt>
-                <pd>
-                    <p>The background color in RGB hex.</p>
-                    <p>The color of the custom background image. The format is a hexadecimal integer defined by RGB, without the # sign, such as 0xFFB6C1 for light pink. The default value is 0x000000 (black).</p>
-                    <p>COLOR_CLASS is a general name for the type:<ul>
-                    <li>iOS: UIColor</li>
-                    <li>macOS: NSColor</li>
-                    </ul></p>
-                </pd>
-            </plentry>
-            <plentry props="android cpp unity electron flutter">
-                <pt>backgroundColor</pt>
-                <pd props="android">
-                    <dl outputclass="deprecated">
-                    <dlentry>
-                        <dt>Deprecated</dt>
-                        <dd>This parameter is deprecated. Use <xref keyref="setBackgroundColor"/> instead.</dd>
-                    </dlentry>
-                    </dl>
-                </pd>
-                <pd props="cpp unity electron flutter">
-                    <p>The background color in RGB hex value. Value only. Do not include a preceeding #. For example, 0xFFB6C1 (light pink). The default value is 0x000000 (black).</p>
-                </pd>
-            </plentry>
-            <plentry props="android cpp electron unity">
-                <pt>userCount</pt>
-                <pd>
-                    <dl outputclass="deprecated" props="android">
-                    <dlentry>
-                        <dt>Deprecated</dt>
-                        <dd>This parameter is deprecated. Use <xref keyref="getUserCount"/> instead.</dd>
-                    </dlentry>
-                    </dl>
-                    <p>The number of users in the video mixing. The value range is [0,17].</p>
-                </pd>
-            </plentry>
-            <plentry props="android cpp unity">
-                <pt>metadata</pt>
-                <pd>
-                    <dl outputclass="deprecated">
-                    <dlentry>
-                        <dt>Deprecated</dt>
-                        <dd>This parameter is deprecated.</dd>
-                    </dlentry>
-                    </dl>
-                    <p>The metadata sent to the CDN client.</p></pd>
-            </plentry>
-            <plentry>
-                <pt>watermark</pt>
-                <pd>
-                    <dl outputclass="deprecated" props="android ios mac">
-                    <dlentry>
-                        <dt>Deprecated</dt>
-                        <dd props="android">Use <xref keyref="addWatermark"/> instead.</dd>
-                        <dd props="ios mac">Use <parmname>watermarkArray</parmname>.</dd>
-                    </dlentry>
-                    </dl>
-                    <p>The watermark on the live video. The image format needs to be PNG. See <xref keyref="RtcImage"/>.</p>
-                    <p props="cpp unity flutter electron">You can add one watermark, or add multiple watermarks using an array. <ph props="cpp unity">This parameter is used with <parmname>watermarkCount</parmname>.</ph></p>
-                </pd>
-            </plentry>
-            <plentry>
-                <pt>backgroundImage</pt>
-                <pd>
-                    <dl props="android ios mac" outputclass="deprecated">
-                    <dlentry>
-                        <dt>Deprecated</dt>
-                        <dd><ph>Use <parmname props="android">addBackgroundImagebackgroundImageArray</parmname><parmname props="ios mac">backgroundImageArray</parmname> instead.</ph></dd>
-                    </dlentry>
-                    </dl>
-                    <p>The number of background images on the live video. The image format needs to be PNG. See <xref keyref="RtcImage"/>.</p>
-                    <p props="cpp unity">You can add a background image or use an array to add multiple background images. This parameter is used with <parmname>backgroundImageCount</parmname>.</p>
-                </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>backgroundImageArray</pt>
-                <pd>An array of background images on the live video. See <xref keyref="RtcImage"/>. You can use <parmname>backgroundImageArray</parmname> to add one or more <parmname>background</parmname> images. The image format needs to be PNG. The total number of watermarks and background images on a live video must be greater than or equal to 0 and less than or equal to 10.</pd>
-            </plentry>
-            <plentry>
-                <pt>audioSampleRate</pt>
-                <pd>
-                    <p>The audio sampling rate (Hz) of the output media stream. See <xref keyref="AUDIO_SAMPLE_RATE_TYPE"/>.</p>
-                    </pd>
-            </plentry>
-            <plentry>
-                <pt>audioBitrate</pt>
-                <pd>
-                    <p>Bitrate (Kbps) of the audio output stream for Media Push.  The default value is 48, and the highest value is 128.</p>
-                </pd>
-            </plentry>
-            <plentry>
-                <pt>audioChannels</pt>
-                <pd>
-                    <p>The number of audio channels for Media Push. Agora recommends choosing 1 (mono), or 2 (stereo) audio channels. Special players are required if you choose 3, 4, or 5.</p>
-                    <ul>
-                    <li>1: (Default) Mono.</li>
-                    <li>2: Stereo.</li>
-                    <li>3: Three audio channels.</li>
-                    <li>4: Four audio channels.</li>
-                    <li>5: Five audio channels.</li>
-                    </ul> </pd>
-            </plentry>
-            <plentry>
-                <pt>audioCodecProfile</pt>
-                <pd>Audio codec profile type for Media Push. See <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/>.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>watermarkArray</pt>
-                <pd>The array of watermarks on the live video. See <xref keyref="RtcImage"/>. You can add one or more <parmname>watermarks</parmname> using <parmname>watermarkArray</parmname>. The image format needs to be PNG. The total number of watermarks and background images on a live video must be greater than or equal to 0 and less than or equal to 10.</pd>
-            </plentry>
-            <plentry props="cpp unity">
-                <pt>watermarkCount</pt>
-                <pd>The number of watermarks on the live video. The total number of watermarks and background images can range from 0 to 10. This parameter is used with <parmname>watermark</parmname>.</pd>
-            </plentry>
-            <plentry props="cpp unity">
-                <pt>backgroundImageCount</pt>
-                <pd>The number of background images on the live video. The total number of watermarks and background images can range from 0 to 10. This parameter is used with <parmname>backgroundImage</parmname>.</pd>
-            </plentry>
-            <plentry props="cpp">
-                <pt>advancedFeatures</pt>
-                <pd>Advanced features of the Media Push with transcoding. See <xref keyref="LiveStreamAdvancedFeature"/>.</pd>
-            </plentry>
-            <plentry props="cpp">
-                <pt>advancedFeatureCount</pt>
-                <pd>The number of enabled advanced features. The default value is 0.</pd>
-            </plentry>
-            </parml> </section>
-    </refbody>
+            advancedFeatures = new LiveStreamAdvancedFeature[0];
+            advancedFeatureCount = 0;
+        }
+
+        public LiveTranscoding(int width, int height, int videoBitrate, int videoFramerate, bool lowLatency,
+            int videoGop, VIDEO_CODEC_PROFILE_TYPE videoCodecProfile, uint backgroundColor,
+            VIDEO_CODEC_TYPE_FOR_STREAM videoCodecType, uint userCount, TranscodingUser[] transcodingUsers,
+            string transcodingExtraInfo, string metadata, RtcImage[] watermark, uint watermarkCount,
+            RtcImage[] backgroundImage, uint backgroundImageCount,
+            AUDIO_SAMPLE_RATE_TYPE audioSampleRate, int audioBitrate, int audioChannels,
+            AUDIO_CODEC_PROFILE_TYPE audioCodecProfile, LiveStreamAdvancedFeature[] advancedFeatures, uint advancedFeatureCount)
+        {
+            this.width = width;
+            this.height = height;
+            this.videoBitrate = videoBitrate;
+            this.videoFramerate = videoFramerate;
+            this.lowLatency = lowLatency;
+            this.videoGop = videoGop;
+            this.videoCodecProfile = videoCodecProfile;
+            this.backgroundColor = backgroundColor;
+            this.videoCodecType = videoCodecType;
+            this.userCount = userCount;
+            this.transcodingUsers = transcodingUsers;
+            this.transcodingExtraInfo = transcodingExtraInfo;
+            this.metadata = metadata;
+            this.watermark = watermark;
+            this.watermarkCount = watermarkCount;
+            this.backgroundImage = backgroundImage;
+            this.backgroundImageCount = backgroundImageCount;
+            this.audioSampleRate = audioSampleRate;
+            this.audioBitrate = audioBitrate;
+            this.audioChannels = audioChannels;
+            this.audioCodecProfile = audioCodecProfile;
+            this.advancedFeatures = advancedFeatures;
+            this.advancedFeatureCount = advancedFeatureCount;
+        }
+        public int width { set; get; }
+        public int height { set; get; }
+        public int videoBitrate { set; get; }
+        public int videoFramerate { set; get; }
+        public bool lowLatency { set; get; }
+        public int videoGop { set; get; }
+        public VIDEO_CODEC_PROFILE_TYPE videoCodecProfile { set; get; }
+        public uint backgroundColor { set; get; }
+        public VIDEO_CODEC_TYPE_FOR_STREAM videoCodecType { set; get; }
+        public uint userCount { set; get; }
+        public TranscodingUser[] transcodingUsers { set; get; }
+        public string transcodingExtraInfo { set; get; }
+        public string metadata { set; get; }
+        public RtcImage[] watermark { set; get; }
+        public uint watermarkCount { set; get; }
+        public RtcImage[] backgroundImage { set; get; }
+        public uint backgroundImageCount { set; get; }
+        public AUDIO_SAMPLE_RATE_TYPE audioSampleRate { set; get; }
+        public int audioBitrate { set; get; }
+        public int audioChannels { set; get; }
+        public AUDIO_CODEC_PROFILE_TYPE audioCodecProfile { set; get; }
+        public LiveStreamAdvancedFeature[] advancedFeatures { set; get; }
+        public uint advancedFeatureCount { set; get; }
+    }</codeblock>
+      <codeblock props="rn" outputclass="language-typescript">export class LiveTranscoding {
+  width?: number;
+  height?: number;
+  videoBitrate?: number;
+  videoFramerate?: number;
+  lowLatency?: boolean;
+  videoGop?: number;
+  videoCodecProfile?: VideoCodecProfileType;
+  backgroundColor?: number;
+  videoCodecType?: VideoCodecTypeForStream;
+  userCount?: number;
+  transcodingUsers?: TranscodingUser[];
+  transcodingExtraInfo?: string;
+  metadata?: string;
+  watermark?: RtcImage[];
+  watermarkCount?: number;
+  backgroundImage?: RtcImage[];
+  backgroundImageCount?: number;
+  audioSampleRate?: AudioSampleRateType;
+  audioBitrate?: number;
+  audioChannels?: number;
+  audioCodecProfile?: AudioCodecProfileType;
+  advancedFeatures?: LiveStreamAdvancedFeature[];
+  advancedFeatureCount?: number;
+}</codeblock>
+      <codeblock props="flutter" outputclass="language-dart">class LiveTranscoding {
+  const LiveTranscoding(
+      {this.width,
+      this.height,
+      this.videoBitrate,
+      this.videoFramerate,
+      this.lowLatency,
+      this.videoGop,
+      this.videoCodecProfile,
+      this.backgroundColor,
+      this.videoCodecType,
+      this.userCount,
+      this.transcodingUsers,
+      this.transcodingExtraInfo,
+      this.metadata,
+      this.watermark,
+      this.watermarkCount,
+      this.backgroundImage,
+      this.backgroundImageCount,
+      this.audioSampleRate,
+      this.audioBitrate,
+      this.audioChannels,
+      this.audioCodecProfile,
+      this.advancedFeatures,
+      this.advancedFeatureCount});
+
+  @JsonKey(name: 'width')
+  final int? width;
+  @JsonKey(name: 'height')
+  final int? height;
+  @JsonKey(name: 'videoBitrate')
+  final int? videoBitrate;
+  @JsonKey(name: 'videoFramerate')
+  final int? videoFramerate;
+  @JsonKey(name: 'lowLatency')
+  final bool? lowLatency;
+  @JsonKey(name: 'videoGop')
+  final int? videoGop;
+  @JsonKey(name: 'videoCodecProfile')
+  final VideoCodecProfileType? videoCodecProfile;
+  @JsonKey(name: 'backgroundColor')
+  final int? backgroundColor;
+  @JsonKey(name: 'videoCodecType')
+  final VideoCodecTypeForStream? videoCodecType;
+  @JsonKey(name: 'userCount')
+  final int? userCount;
+  @JsonKey(name: 'transcodingUsers')
+  final List&lt;TranscodingUser>? transcodingUsers;
+  @JsonKey(name: 'transcodingExtraInfo')
+  final String? transcodingExtraInfo;
+  @JsonKey(name: 'metadata')
+  final String? metadata;
+  @JsonKey(name: 'watermark')
+  final List&lt;RtcImage>? watermark;
+  @JsonKey(name: 'watermarkCount')
+  final int? watermarkCount;
+  @JsonKey(name: 'backgroundImage')
+  final List&lt;RtcImage>? backgroundImage;
+  @JsonKey(name: 'backgroundImageCount')
+  final int? backgroundImageCount;
+  @JsonKey(name: 'audioSampleRate')
+  final AudioSampleRateType? audioSampleRate;
+  @JsonKey(name: 'audioBitrate')
+  final int? audioBitrate;
+  @JsonKey(name: 'audioChannels')
+  final int? audioChannels;
+  @JsonKey(name: 'audioCodecProfile')
+  final AudioCodecProfileType? audioCodecProfile;
+  @JsonKey(name: 'advancedFeatures')
+  final List&lt;LiveStreamAdvancedFeature>? advancedFeatures;
+  @JsonKey(name: 'advancedFeatureCount')
+  final int? advancedFeatureCount;
+  factory LiveTranscoding.fromJson(Map&lt;String, dynamic> json) =>
+      _$LiveTranscodingFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$LiveTranscodingToJson(this);
+}</codeblock>
+      </p>
+    </section>
+    <section id="parameters">
+      <title><text
+      conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+      /></title>
+      <parml>
+      <plentry props="android cpp electron rn unity flutter">
+        <pt>width</pt>
+        <pd>
+          <p>The width of the video in pixels. The default value is 360.</p>
+          <ul>
+          <li>When pushing video streams to the CDN, the value range of <codeph>width</codeph> is [64,1920]. If the value is less than 64, Agora server automatically adjusts it to 64; if the value is greater than 1920, Agora server automatically adjusts it to 1920.</li>
+          <li>When pushing audio streams to the CDN, set <codeph>width</codeph> and <codeph>height</codeph> as 0.</li>
+          </ul> </pd>
+      </plentry>
+      <plentry props="android cpp electron rn unity flutter">
+        <pt>height</pt>
+        <pd>
+          <p>The height of the video in pixels. The default value is 640.</p>
+          <ul>
+          <li>When pushing video streams to the CDN, the value range of <codeph>height</codeph> is [64,1080]. If the value is less than 64, Agora server automatically adjusts it to 64; if the value is greater than 1080, Agora server automatically adjusts it to 1080.</li>
+          <li>When pushing audio streams to the CDN, set <codeph>width</codeph> and <codeph>height</codeph> as 0.</li>
+          </ul> </pd>
+      </plentry>
+      <plentry props="ios mac">
+        <pt>size</pt>
+        <pd>
+          <p>The size of the video (width and height in pixels).</p>
+          <ul>
+          <li>When pushing video streams to the CDN, note the following:<ul>
+            <li>The value range of the width is [64,1920]. If the value is less than 64, Agora server automatically adjusts it to 64; if the value is greater than 1920, Agora server automatically adjusts it to 1920.</li>
+            <li>The value range of the height is [64,1080]. If the value is less than 64, Agora server automatically adjusts it to 64; if the value is greater than 1080, Agora server automatically adjusts it to 1080.</li>
+            </ul></li>
+          <li>When pushing audio streams to the CDN, set the width and height as 0.</li>
+          </ul> </pd>
+      </plentry>
+      <plentry>
+        <pt>videoBitrate</pt>
+        <pd>
+          <p>Bitrate of the output video stream for Media Push in Kbps. The default value is 400 Kbps.</p>
+          <p props="native">Set this parameter according to the <xref keyref="video-profile-table"
+          >Video profile</xref> table. If you set a bitrate beyond the proper range, the SDK automatically adapts it to a value within the range.</p>
+        </pd>
+      </plentry>
+      <plentry>
+        <pt>videoFrameRate</pt>
+        <pd>
+          <p>Frame rate (in fps) of the output video stream set for Media Push. The default value is 15 , and the value range is (0,30].</p>
+          <note type="attention"
+          >The Agora server adjusts any value over 30 to 30.</note></pd>
+      </plentry>
+      <plentry>
+        <pt>lowLatency</pt>
+        <pd>
+          <dl outputclass="deprecated">
+          <dlentry>
+            <dt>Deprecated</dt>
+            <dd>This parameter is deprecated.</dd>
+          </dlentry>
+          </dl>
+          <p>Latency mode:</p>
+          <ul>
+          <li><codeph><ph keyref="true"/></codeph>: Low latency with unassured quality.</li>
+          <li><codeph><ph keyref="false"/></codeph>: (Default) High latency with assured quality.</li>
+          </ul></pd>
+      </plentry>
+      <plentry>
+        <pt>videoGop</pt>
+        <pd>GOP (Group of Pictures) in fps of the video frames  for Media Push. The default value is 30.</pd>
+      </plentry>
+      <plentry>
+        <pt>videoCodecProfile</pt>
+        <pd>
+          <p>Video codec profile type for Media Push. Set it as 66, 77, or 100 (default). See <xref
+          keyref="VIDEO_CODEC_PROFILE_TYPE"/> for details.</p>
+          <note type="attention">If you set this parameter to any other value, Agora adjusts it to the default value.</note></pd>
+      </plentry>
+      <plentry>
+        <pt>videoCodecType</pt>
+        <pd>Video codec profile types for Media Push. See <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"
+          />.</pd>
+      </plentry>
+      <plentry>
+        <pt>transcodingUsers</pt>
+        <pd>
+          <p>Manages the user layout configuration in the Media Push. Agora supports a maximum of 17 transcoding users in a Media Push channel. See <xref
+          keyref="TranscodingUser"/>.</p>
+        </pd>
+      </plentry>
+      <plentry>
+        <pt props="ios mac cpp unity electron rn flutter">transcodingExtraInfo</pt>
+        <pt props="android">userConfigExtraInfo</pt>
+        <pd>
+          <p>Reserved property. Extra user-defined information to send SEI for the H.264/H.265 video stream to the CDN client. Maximum length: 4096 bytes. For more information on SEI, see <xref
+          keyref="faq-sei">SEI-related questions</xref>.</p>
+        </pd>
+      </plentry>
+      <plentry props="ios mac">
+        <pt>backgroundColor</pt>
+        <pd>
+          <p>The background color in RGB hex.</p>
+          <p>The format is a hexadecimal integer defined by RGB, without the # sign, such as 0xFFB6C1 for light pink. The default value is 0x000000 (black).</p>
+          <p>COLOR_CLASS is a general name for the type:<ul>
+          <li>iOS: UIColor</li>
+          <li>macOS: NSColor</li>
+          </ul></p>
+        </pd>
+      </plentry>
+      <plentry props="android cpp unity electron rn flutter">
+        <pt>backgroundColor</pt>
+        <pd props="android">
+          <dl outputclass="deprecated">
+          <dlentry>
+            <dt>Deprecated</dt>
+            <dd>This parameter is deprecated. Use <xref keyref="setBackgroundColor"/> instead.</dd>
+          </dlentry>
+          </dl>
+        </pd>
+        <pd props="cpp unity electron rn flutter">
+          <p>The background color in RGB hex value. Value only. Do not include a preceeding #. For example, 0xFFB6C1 (light pink). The default value is 0x000000 (black).</p>
+        </pd>
+      </plentry>
+      <plentry props="android cpp electron rn unity flutter">
+        <pt>userCount</pt>
+        <pd>
+          <dl outputclass="deprecated" props="android">
+          <dlentry>
+            <dt>Deprecated</dt>
+            <dd>This parameter is deprecated. Use <xref keyref="getUserCount"/> instead.</dd>
+          </dlentry>
+          </dl>
+          <p>The number of users in the video mixing. The value range is [0,17].</p>
+        </pd>
+      </plentry>
+      <plentry props="android cpp unity electron rn flutter">
+        <pt>metadata</pt>
+        <pd>
+          <dl outputclass="deprecated">
+          <dlentry>
+            <dt>Deprecated</dt>
+            <dd>This parameter is deprecated.</dd>
+          </dlentry>
+          </dl>
+          <p>The metadata sent to the CDN client.</p>
+        </pd>
+      </plentry>
+      <plentry>
+        <pt>watermark</pt>
+        <pd>
+          <dl outputclass="deprecated" props="android ios mac">
+          <dlentry>
+            <dt>Deprecated</dt>
+            <dd props="android">Please use <xref keyref="addWatermark"/> instead.</dd>
+            <dd props="ios mac">Use <parmname>watermarkArray</parmname>.</dd>
+          </dlentry>
+          </dl>
+          <p>The watermark on the live video. The image format needs to be PNG. See <xref keyref="RtcImage" />.</p>
+          <p props="cpp unity flutter electron rn">You can add one watermark, or add multiple watermarks using an array. <ph props="cpp unity electron rn">This parameter is used with <parmname>watermarkCount</parmname>.</ph></p>
+        </pd>
+      </plentry>
+      <plentry>
+        <pt>backgroundImage</pt>
+        <pd>
+          <dl props="android ios mac" outputclass="deprecated">
+          <dlentry>
+            <dt>Deprecated</dt>
+            <dd><ph>Use <parmname props="android"
+              >addBackgroundImage</parmname><parmname props="ios mac"
+              >backgroundImageArraybackgroundImageArray</parmname> instead.</ph></dd>
+          </dlentry>
+          </dl>
+          <p>The number of background images on the live video. The image format needs to be PNG. See <xref keyref="RtcImage" />.</p>
+          <p props="cpp unity electron rn flutter">You can add a background image or use an array to add multiple background images. This parameter is used with <parmname>backgroundImageCount</parmname>.</p>
+        </pd>
+      </plentry>
+      <plentry props="ios mac">
+        <pt>backgroundImageArray</pt>
+        <pd>An array of background images on the live video. See <xref keyref="RtcImage"
+          />. You can use <parmname>backgroundImageArray</parmname> to add one or more <parmname>background</parmname> images. The image format needs to be PNG. The total number of watermarks and background images on a live video must be greater than or equal to 0 and less than or equal to 10.</pd>
+      </plentry>
+      <plentry>
+        <pt>audioSampleRate</pt>
+        <pd>
+          <p>The audio sampling rate (Hz) of the output media stream. See <xref keyref="AUDIO_SAMPLE_RATE_TYPE"
+          />.</p>
+        </pd>
+      </plentry>
+      <plentry>
+        <pt>audioBitrate</pt>
+        <pd>
+          <p>Bitrate (Kbps) of the audio output stream for Media Push.  The default value is 48, and the highest value is 128.</p>
+        </pd>
+      </plentry>
+      <plentry>
+        <pt>audioChannels</pt>
+        <pd>
+          <p>The number of audio channels for Media Push. Agora recommends choosing 1 (mono), or 2 (stereo) audio channels. Special players are required if you choose 3, 4, or 5.</p>
+          <ul>
+          <li>1: (Default) Mono.</li>
+          <li>2: Stereo.</li>
+          <li>3: Three audio channels.</li>
+          <li>4: Four audio channels.</li>
+          <li>5: Five audio channels.</li>
+          </ul> </pd>
+      </plentry>
+      <plentry>
+        <pt>audioCodecProfile</pt>
+        <pd>Audio codec profile type for Media Push. See <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/>.</pd>
+      </plentry>
+      <plentry props="ios mac">
+        <pt>watermarkArray</pt>
+        <pd>The array of watermarks on the live video. See <xref keyref="RtcImage"
+          />. You can add one or more <parmname>watermarks </parmname>using <parmname>watermarkArray</parmname>. The image format needs to be PNG. The total number of watermarks and background images on a live video must be greater than or equal to 0 and less than or equal to 10.</pd>
+      </plentry>
+      <plentry props="cpp unity electron rn flutter">
+        <pt>watermarkCount</pt>
+        <pd>The number of watermarks on the live video. The total number of watermarks and background images can range from 0 to 10. This parameter is used with <parmname>watermark</parmname>.</pd>
+      </plentry>
+      <plentry props="cpp unity electron rn flutter">
+        <pt>backgroundImageCount</pt>
+        <pd>The number of background images on the live video. The total number of watermarks and background images can range from 0 to 10. This parameter is used with <parmname>backgroundImage</parmname>.</pd>
+      </plentry>
+      <plentry props="cpp unity electron rn flutter">
+        <pt>advancedFeatures</pt>
+        <pd>Advanced features of the Media Push with transcoding. See <xref keyref="LiveStreamAdvancedFeature"/>.</pd>
+      </plentry>
+      <plentry props="cpp unity electron rn flutter">
+        <pt>advancedFeatureCount</pt>
+        <pd>The number of enabled advanced features. The default value is 0.</pd>
+      </plentry>
+      </parml> </section>
+  </refbody>
 </reference>

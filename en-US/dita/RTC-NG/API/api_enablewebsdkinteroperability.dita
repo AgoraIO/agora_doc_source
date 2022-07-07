@@ -5,49 +5,48 @@
     <shortdesc id="short"><ph id="shortdesc">Enables interoperability with the Agora Web SDK (applicable only in the live streaming scenarios).</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="enableWebSdkInteroperability" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="enableWebSdkInteroperability" />
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-            
+    <refbody>
+        <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int enableWebSdkInteroperability(boolean enabled);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableWebSdkInteroperability:(BOOL)enabled;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int enableWebSdkInteroperability(bool enabled) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">enableWebSdkInteroperability(enabled: boolean): number</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract enableWebSdkInteroperability(enabled: boolean): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int EnableWebSdkInteroperability(bool enabled);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript">abstract enableWebSdkInteroperability(enabled: boolean): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableWebSdkInteroperability(bool enabled);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-
-   <dl outputclass="deprecated">
-       <dlentry>
-  <dt>Deprecated:</dt>
-  <dd>The SDK automatically enables interoperability with the Web SDK, so you no longer need to call this method.</dd>
-       </dlentry>
-   </dl>
-   <p>This method enables or disables interoperability with the Agora Web SDK. If the channel has Web SDK users, ensure that you call this method, or the video of the Native user will be a black screen for the Web user.</p>
-   <p>This method is only applicable in live streaming scenarios, and interoperability is enabled by default in communication scenarios.</p>
+            <dl outputclass="deprecated">
+            <dlentry>
+                <dt>Deprecated:</dt>
+                <dd>The SDK automatically enables interoperability with the Web SDK, so you no longer need to call this method.</dd>
+            </dlentry>
+            </dl>
+            <p>This method enables or disables interoperability with the Agora Web SDK. If the channel has Web SDK users, ensure that you call this method, or the video of the Native user will be a black screen for the Web user.</p>
+            <p>This method is only applicable in live streaming scenarios, and interoperability is enabled by default in communication scenarios.</p>
         </section>
-        <section id="parameters"><title>Parameters</title>
-   <parml>
-       <plentry>
-  <pt>enabled</pt>
-  <pd>Whether to enable interoperability with the Agora Web SDK.<ul>
-      <li><codeph><ph keyref="true" /></codeph>: Enable interoperability.</li>
-      <li><codeph><ph keyref="false" /></codeph>: (Default) Disable interoperability.</li>
-  </ul></pd>
-       </plentry>
-   </parml>
-        </section>
-        <section id="return_values" props="native electron unity">
-   <title>Returns</title>
-   <ul>
-       <li>0: Success.</li>
-       <li>&lt; 0: Failure.</li>
-   </ul>
-        </section></refbody>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>enabled</pt>
+                <pd>Whether to enable interoperability with the Agora Web SDK.<ul>
+                    <li><codeph><ph keyref="true" /></codeph>: Enable interoperability.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Disable interoperability.</li>
+                    </ul></pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron unity rn">
+            <title>Returns</title>
+            <ul>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
+    </refbody>
 </reference>

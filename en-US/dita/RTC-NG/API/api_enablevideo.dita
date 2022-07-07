@@ -5,40 +5,40 @@
     <shortdesc id="short"><ph id="shortdesc">Enables the video module.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="enableVideo" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="enableVideo" />
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-           
+    <refbody>
+        <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int enableVideo();</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableVideo;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int enableVideo() = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">enableVideo(): number</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract enableVideo(): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int EnableVideo();</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript">abstract enableVideo(): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableVideo();</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>Call this method either before joining a channel or during a call. If this method is called before joining a channel, the call starts in the video mode. Call <xref keyref="disableVideo" /> to disable the video mode.</p><p>A successful call of this method triggers the <xref keyref="onRemoteVideoStateChanged" /> callback on the remote client.</p><note type="attention">
-                <ul>
-                    <li>This method enables the internal engine and is valid after leaving the channel.</li>
-                    <li>This method resets the internal engine and takes some time to take effect. Agora recommends using the following API methods to control the video engine modules separately:<ul>
-                            <li><xref keyref="enableLocalVideo" />: Whether to enable the camera to create the local video stream.</li>
-                            <li><xref keyref="muteLocalVideoStream" />: Whether to publish the local video stream.</li>
-                            <li><xref keyref="muteRemoteVideoStream" />: Whether to subscribe to and play the remote video stream.</li>
-                            <li><xref keyref="muteAllRemoteVideoStreams" />: Whether to subscribe to and play all remote video streams.</li>
-                        </ul></li>
-                </ul>
-            </note>
-        </section>
-        <section id="return_values" props="native electron unity">
-   <title>Returns</title>
-   <ul>
-       <li>0: Success.</li>
-       <li>&lt; 0: Failure.</li>
-   </ul>
-        </section></refbody>
+            <p>Call this method either before joining a channel or during a call. If this method is called before joining a channel, the call starts in the video mode. Call <xref keyref="disableVideo" /> to disable the video mode.</p>
+            <p>A successful call of this method triggers the <xref keyref="onRemoteVideoStateChanged" /> callback on the remote client.</p>
+            <note type="attention">
+            <ul>
+            <li>This method enables the internal engine and is valid after leaving the channel.</li>
+            <li>This method resets the internal engine and takes some time to take effect. Agora recommends using the following API methods to control the video engine modules separately:<ul>
+                <li><xref keyref="enableLocalVideo" />: Whether to enable the camera to create the local video stream.</li>
+                <li><xref keyref="muteLocalVideoStream" />: Whether to publish the local video stream.</li>
+                <li><xref keyref="muteRemoteVideoStream" />: Whether to subscribe to and play the remote video stream.</li>
+                <li><xref keyref="muteAllRemoteVideoStreams" />: Whether to subscribe to and play all remote video streams.</li>
+                </ul></li>
+            </ul> </note> </section>
+        <section id="return_values" props="native electron unity rn">
+            <title>Returns</title>
+            <ul>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
+    </refbody>
 </reference>

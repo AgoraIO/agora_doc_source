@@ -1,65 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_getuserinfobyuidex">
-    <title><ph keyref="getUserInfoByUidEx" /></title>
+    <title><ph keyref="getUserInfoByUidEx"/></title>
     <shortdesc id="short"><ph id="shortdesc">Gets the user information by passing in the user ID.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="getUserInfoByUidEx" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="getUserInfoByUidEx"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public abstract UserInfo getUserInfoByUid(int uid, String channelId, String localUserAccount);
-</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (int)getUserInfoWithUserId:(NSUInteger)uid
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract UserInfo getUserInfoByUid(int uid, String channelId, String localUserAccount);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)getUserInfoWithUserId:(NSUInteger)uid
                     userInfo:(AgoraUserInfo *_Nullable* _Nullable)userInfo
                    channelId:(NSString* _Nonnull)channelId
             localUserAccount:(NSString* _Nonnull)localUserAccount;</codeblock>
-                <codeblock props="cpp" outputclass="language-cpp" />
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp" />
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
-       </p>
+            <codeblock props="cpp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p conkeyref="getUserInfoByUid/getUserInfo_desc" />
+            <p conkeyref="getUserInfoByUid/getUserInfo_desc"/>
         </section>
-        <section id="parameters"><title>Parameters</title>
-   <parml>
-       <plentry>
-  <pt>uid</pt>
-  <pd>User ID.</pd>
-       </plentry>
-       <plentry props="ios mac" id="userInfo">
-                    <pt>userInfo</pt>
-                    <pd>The <xref keyref="UserInfo" /> object that identifies the user information.<ul id="ul_sty_x5s_3qb">
-                        <li>Input value: A <apiname keyref="UserInfo" /> object.</li>
-                        <li>Output: A <apiname keyref="UserInfo" /> object that contains the user account and user ID of the user.</li>
-                        </ul></pd>
-                </plentry>
-       <plentry id="channelId">
-                    <pt>channelId</pt>
-                    <pd><p conkeyref="joinChannel2/channelID_desc" /></pd>
-                </plentry>
-       <plentry id="localUserAccount">
-                    <pt>localUserAccount</pt>
-                    <pd>The user account of the local user.</pd>
-                </plentry>
-   </parml>
-        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>uid</pt>
+                <pd>The user ID.</pd>
+            </plentry>
+            <plentry props="ios mac" id="userInfo">
+                <pt>userInfo</pt>
+                <pd>The <xref keyref="UserInfo"/> object that identifies the user information.<ul id="ul_sty_x5s_3qb">
+                    <li>Input value: A <apiname keyref="UserInfo"/> object.</li>
+                    <li>Output: A <apiname keyref="UserInfo"/> object that contains the user account and user ID of the user.</li>
+                    </ul></pd>
+            </plentry>
+            <plentry id="channelId">
+                <pt>channelId</pt>
+                <pd>
+                    <p conkeyref="joinChannel2/channelID_desc"/>
+                </pd>
+            </plentry>
+            <plentry id="localUserAccount">
+                <pt>localUserAccount</pt>
+                <pd>The user account of the local user.</pd>
+            </plentry>
+            </parml> </section>
         <section id="return_values">
-   <title>Returns</title>
-   <ul props="ios mac">
-       <li>0: Success.</li>
-       <li>&lt; 0: Failure.</li>
-   </ul>
-   <ul props="android">
-       <li>A pointer to the <xref keyref="UserInfo" /> instance, if the method call succeeds.</li>
-       <li>If the call fails, returns <ph keyref="NULL" />.</li>
-   </ul>
-        </section></refbody>
+            <title>Returns</title>
+            <ul props="ios mac">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul>
+            <ul props="android">
+            <li>A <xref keyref="UserInfo"/> object, if the method call succeeds.</li>
+            <li><ph keyref="NULL"/>, if the method call fails.</li>
+            </ul> </section>
+    </refbody>
 </reference>

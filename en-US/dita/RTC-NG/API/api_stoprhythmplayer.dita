@@ -1,45 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_stoprhythmplayer">
-    <title><ph keyref="stopRhythmPlayer" /></title>
+    <title><ph keyref="stopRhythmPlayer"/></title>
     <shortdesc id="short"><ph id="shortdesc">Disables the virtual metronome.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="stopRhythmPlayer" />
+                <indexterm keyref="stopRhythmPlayer"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="android" outputclass="language-java">public abstract int stopRhythmPlayer();</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int StopRhythmPlayer();</codeblock></p>
-            <p outputclass="codeblock" props="rtc">
-            <codeblock props="android" outputclass="language-java">public int stopRhythmPlayer();</codeblock></p>
             <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int stopRhythmPlayer();</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)stopRhythmPlayer;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int stopRhythmPlayer() = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; stopRhythmPlayer();</codeblock> </p>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int StopRhythmPlayer();</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract stopRhythmPlayer(): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; stopRhythmPlayer();</codeblock></p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-                <dlentry props="native">
-                    <dt>Since</dt>
-                    <dd>v3.4.0</dd>
-                </dlentry>
-            </dl>
             <p>After calling <xref keyref="startRhythmPlayer" />, you can call this method to disable the virtual metronome.</p>
-            <note type="attention" props="cpp">This method is for Android and iOS only.</note>
-        </section>
-        <section id="return_values" props="native electron unity">
+            <note type="attention" props="cpp unity flutter">This method is for Android and iOS only.</note> </section>
+        <section id="return_values" props="native unity rn">
             <title>Returns</title>
             <ul>
-                <li>0: Success.</li>
-                <li>&lt; 0: Failure.</li>
-            </ul>
-        </section>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
     </refbody>
 </reference>

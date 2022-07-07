@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audiovolumeinfo">
-    <title><ph keyref="AudioVolumeInfo" /></title>
+    <title><ph keyref="AudioVolumeInfo"/></title>
     <shortdesc id="short"><ph id="shortdesc">用户音量信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -61,7 +61,7 @@
   vad?: number;
   voicePitch?: number;
 }</codeblock>
-<codeblock props="flutter" outputclass="language-dart">class AudioVolumeInfo {
+            <codeblock props="flutter" outputclass="language-dart">class AudioVolumeInfo {
     const AudioVolumeInfo({this.uid, this.volume, this.vad, this.voicePitch});
   
     @JsonKey(name: 'uid')
@@ -79,13 +79,16 @@
   </codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>uid</pt>
                 <pd>
                     <p>用户 ID。
 
+                    
                     <ul id="ul_pfj_4dt_rqb">
                     <li>在本地用户的回调中，<parmname>uid</parmname> 为 0。</li>
                     <li>在远端用户的回调中，<parmname>uid</parmname> 为瞬时音量最高的远端用户（最多 3 位）的 ID。</li>
@@ -94,13 +97,14 @@
             </plentry>
             <plentry>
                 <pt>volume</pt>
-                <pd><ph>用户的音量，取值范围为 [0,255]。</ph><ph props="native">如果用户调用了 <xref keyref="startAudioMixing2" />，则 <parmname>volume</parmname> 为用户混音后的音量。</ph></pd>
+                <pd><ph>用户的音量，取值范围为 [0,255]。</ph><ph props="native">如果用户调用了 <xref keyref="startAudioMixing2"/>，则 <parmname>volume</parmname> 为用户混音后的音量。</ph></pd>
             </plentry>
             <plentry>
                 <pt>vad</pt>
                 <pd>
                     <p>本地用户的人声状态。
 
+                    
                     <ul>
                     <li>0：本地无人声。</li>
                     <li>1：本地有人声。</li>
@@ -108,7 +112,7 @@
                     <note type="attention">
                     <ul>
                     <li><parmname>vad</parmname> 无法报告远端用户的人声状态。对于远端用户，<parmname>vad</parmname> 的值始终为 1。</li>
-                    <li>如需使用此参数，请在调用 <xref keyref="enableAudioVolumeIndication" /> 时设置 <parmname>reportVad</parmname> 为 <codeph><ph keyref="true" /></codeph>。</li>
+                    <li>如需使用此参数，请在调用 <xref keyref="enableAudioVolumeIndication"/> 时设置 <parmname>reportVad</parmname> 为 <codeph><ph keyref="true"/></codeph>。</li>
                     </ul> </note> </pd>
             </plentry>
             <plentry props="native electron rn unity">
@@ -116,8 +120,7 @@
                 <pd>
                     <p>本地用户的人声音调（Hz）。取值范围为 [0.0,4000.0]。
                </p>
-                    <note type="attention"
-                    ><parmname>voicePitch</parmname> 无法报告远端用户的人声音调。对于远端用户，<parmname>voicePitch</parmname> 的值始终为 0.0。</note>
+                    <note type="attention"><parmname>voicePitch</parmname> 无法报告远端用户的人声音调。对于远端用户，<parmname>voicePitch</parmname> 的值始终为 0.0。</note>
                 </pd>
             </plentry>
             </parml> </section>

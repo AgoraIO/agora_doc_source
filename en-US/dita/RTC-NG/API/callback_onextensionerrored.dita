@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_onextensionerrored">
+    <title><ph keyref="onExtensionError"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the extension runs incorrectly.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onExtensionError"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">void onError(String provider, String extension, int error, String message);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onExtensionError:(NSString * __nullable)provider
+                 extension:(NSString * __nullable)extension
+                     error:(int)error
+                   message:(NSString * __nullable)message;
+</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onExtensionError(const char* provider, const char* extension, int error, const char* message) {
+    (void)provider;
+    (void)extension;
+    (void)error;
+    (void)message;
+  }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">onExtensionErrored?(provider: string, extName: string, error: number, msg: string): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnExtensionErrored(string provider, string ext_name, int error, string msg) { }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onExtensionErrored?(
+  provider: string,
+  extName: string,
+  error: number,
+  msg: string
+): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(String provider, String extName, int error, String msg)?
+      onExtensionErrored;
+</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>When calling <codeph><xref keyref="enableExtension"/>(<q><ph keyref="true"/></q>)</codeph> fails or the extension runs in error, the extension triggers this callback and reports the error code and reason.</p>
+        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry conkeyref="setExtensionProperty/vendor">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry>
+                <pt props="native">extension</pt>
+                <pt props="unity">ext_name</pt>
+                <pt props="electron rn flutter">extName</pt>
+                <pd>The name of the extension.</pd>
+            </plentry>
+            <plentry>
+                <pt>error</pt>
+                <pd>The error code. For details, see the extension documentation provided by the extension provider.</pd>
+            </plentry>
+            <plentry>
+                <pt props="native">message</pt>
+                <pt props="unity electron rn flutter">msg</pt>
+                <pd>Reason. For details, see the extension documentation provided by the extension provider.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>
