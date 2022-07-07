@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audiovolumeinfo">
-    <title><ph keyref="AudioVolumeInfo" /></title>
-    <shortdesc id="short"><ph id="shortdesc">The volume information of users.</ph></shortdesc>
+    <title><ph keyref="AudioVolumeInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc"
+        >The volume information of users.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -61,7 +62,7 @@
   vad?: number;
   voicePitch?: number;
 }</codeblock>
-<codeblock props="flutter" outputclass="language-dart">class AudioVolumeInfo {
+            <codeblock props="flutter" outputclass="language-dart">class AudioVolumeInfo {
     const AudioVolumeInfo({this.uid, this.volume, this.vad, this.voicePitch});
   
     @JsonKey(name: 'uid')
@@ -79,12 +80,15 @@
   </codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>uid</pt>
                 <pd>
-                    <p>The user ID.<ul id="ul_pfj_4dt_rqb">
+                    <p>The user ID.
+                    <ul id="ul_pfj_4dt_rqb">
                     <li>In the local user's callback, <parmname>uid</parmname> = 0.</li>
                     <li>In the remote users' callback, <parmname>uid</parmname> is the user ID of a remote user whose instantaneous volume is one of the three highest.</li>
                     </ul></p>
@@ -92,19 +96,23 @@
             </plentry>
             <plentry>
                 <pt>volume</pt>
-                <pd><ph>The volume of the user. The value ranges between 0 (the lowest volume) and 255 (the highest volume). </ph><ph props="native">If the user calls <xref keyref="startAudioMixing2" /> , the value of <parmname>volume</parmname> is the <parmname>volume</parmname> after audio mixing.</ph></pd>
+                <pd><ph>The volume of the user. The value ranges between 0 (the lowest volume) and 255 (the highest volume). </ph><ph
+                    props="native">If the user calls <xref keyref="startAudioMixing2"/> , the value of <parmname>volume</parmname> is the <parmname>volume</parmname> after audio mixing.</ph></pd>
             </plentry>
             <plentry>
                 <pt>vad</pt>
                 <pd>
-                    <p>Voice activity status of the local user.<ul>
+                    <p>Voice activity status of the local user.
+                    <ul>
                     <li>0: The local user is not speaking.</li>
                     <li>1: The local user is speaking.</li>
                     </ul> </p>
                     <note type="attention">
                     <ul>
                     <li>The <parmname>vad</parmname> parameter does not report the voice activity status of remote users. In a remote user's callback, the value of <parmname>vad</parmname> is always 1.</li>
-                    <li>To use this parameter, you must set <parmname>reportVad</parmname> to <codeph><ph keyref="true" /></codeph> when calling <xref keyref="enableAudioVolumeIndication" />.</li>
+                    <li>To use this parameter, you must set <parmname>reportVad</parmname> to <codeph><ph
+                        keyref="true"/></codeph> when calling <xref
+                        keyref="enableAudioVolumeIndication"/>.</li>
                     </ul> </note> </pd>
             </plentry>
             <plentry props="native electron rn unity">

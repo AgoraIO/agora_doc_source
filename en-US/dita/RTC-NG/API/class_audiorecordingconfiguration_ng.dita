@@ -2,7 +2,8 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audiorecordingconfiguration_ng">
     <title> <ph keyref="AudioRecordingConfiguration"/> </title>
-    <shortdesc id="short"><ph id="shortdesc">Recording configuration.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc"
+        >Recording configuration.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -133,8 +134,7 @@
   factory AudioRecordingConfiguration.fromJson(Map&lt;String, dynamic> json) =>
       _$AudioRecordingConfigurationFromJson(json);
   Map&lt;String, dynamic> toJson() => _$AudioRecordingConfigurationToJson(this);
-}</codeblock>
-            </p>
+}</codeblock> </p>
         </section>
         <section id="parameters">
             <title> <text
@@ -144,29 +144,33 @@
             <plentry id="filepath">
                 <pt>filePath</pt>
                 <pd>The absolute path (including the filename extensions) of the recording file. For example: <codeph><ph
-                    keyref="filePath-example"/></codeph>.<note id="note_scm_klz_mqb" type="attention">
+                    keyref="filePath-example"/></codeph>.
+                    <note id="note_scm_klz_mqb" type="attention">
                     <p>Ensure that the path for the recording file exists and is writable.</p>
                     </note> </pd>
             </plentry>
             <plentry>
                 <pt props="cpp unity electron rn flutter">encode</pt>
                 <pt props="android ios mac">codec</pt>
-                <pd>Whether to encode the audio data:<ul id="ul_bnv_mlz_mqb">
-                    <li><codeph><ph keyref="true"/>  </codeph>: Encode audio data in AAC.</li>
-                    <li><codeph><ph keyref="false"/>  </codeph>: (Default) Do not encode audio data, but save the recorded audio data directly.</li>
+                <pd>Whether to encode the audio data:
+                    <ul id="ul_bnv_mlz_mqb">
+                    <li><codeph><ph keyref="true"/>
+                        </codeph>: Encode audio data in AAC.</li>
+                    <li><codeph><ph keyref="false"/>
+                        </codeph>: (Default) Do not encode audio data, but save the recorded audio data directly.</li>
                     </ul> </pd>
             </plentry>
             <plentry>
                 <pt>sampleRate</pt>
-                <pd>Recording sample rate (Hz).<ul id="ul_pqs_slz_mqb">
+                <pd>Recording sample rate (Hz).
+                    <ul id="ul_pqs_slz_mqb">
                     <li>16000</li>
                     <li>(Default) 32000</li>
                     <li>44100</li>
                     <li>48000</li>
                     </ul>
                     <note type="attention" id="note_gdq_zlz_mqb">
-                    <p>如果把该参数设为 44100 或 48000，为保证录音效果，Agora 推荐录制 WAV 文件或 <parmname>quality</parmname> 为
-<ph keyref="AUDIO_RECORDING_QUALITY_MEDIUM"/> 或 <ph keyref="AUDIO_RECORDING_QUALITY_HIGH"/> 的 AAC 文件。
+                    <p>If you set this parameter to 44100 or 48000, Agora recommends recording WAV files, or AAC files with <parmname>quality</parmname> to be AgoraAudioRecordingQualityMedium or AgoraAudioRecordingQualityHigh for better recording quality.
                     </p>
                     </note> </pd>
             </plentry>
@@ -174,23 +178,35 @@
                 <pt props="cpp unity electron rn flutter">fileRecordingType</pt>
                 <pt props="android ios mac">fileRecordOption</pt>
                 <pd>
-                    <p props="ios mac cpp unity flutter">Recording content. See <xref
+                    <p props="ios mac cpp unity flutter"
+                    >Recording content. See <xref
                     keyref="AUDIO_RECORDING_POSITION"/>.</p>
-                    <p props="android">Recording content:<ul>
-                    <li><ph keyref="AUDIO_RECORDING_POSITION_RECORDING"/> (1)：仅录制本地用户的音频。</li>
-                    <li><ph keyref="AUDIO_RECORDING_POSITION_MIXED_PLAYBACK"/> (2)：仅录制所有远端用户的音频。</li>
-                    <li><ph keyref="AUDIO_RECORDING_POSITION_MIXED_RECORDING_AND_PLAYBACK"/> (3): （默认）录制本地和所有远端用户混音后的音频。</li>
+                    <p props="android">Recording content:
+                    <ul>
+                    <li><ph keyref="AUDIO_RECORDING_POSITION_RECORDING"
+                        /> (1): Records the audio of the local user only.</li>
+                    <li><ph keyref="AUDIO_RECORDING_POSITION_MIXED_PLAYBACK"
+                        /> (2): Records the audio of all remote users only.</li>
+                    <li><ph
+                        keyref="AUDIO_RECORDING_POSITION_MIXED_RECORDING_AND_PLAYBACK"
+                        /> (3): (Default) Records the mixed audio of the local user and all remote users.</li>
                     </ul> </p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>quality</pt>
                 <pd>
-                    <p props="ios mac cpp unity electron rn flutter">Recording quality. See <xref keyref="AUDIO_RECORDING_QUALITY_TYPE" />.</p>
-                    <p props="android">Recording quality:<ul>
-                    <li><ph keyref="AUDIO_RECORDING_QUALITY_LOW"/>(0): Low quality. For example, the size of an AAC file with a sample rate of 32,000 Hz and a recording duration of 10 minutes is around 1.2 MB.</li>
-                    <li><ph keyref="AUDIO_RECORDING_QUALITY_MEDIUM"/>(1): (Default) Medium quality. For example, the size of an AAC file with a sample rate of 32,000 Hz and a recording duration of 10 minutes is around 2 MB.</li>
-                    <li><ph keyref="AUDIO_RECORDING_QUALITY_HIGH"/>(2): High quality. For example, the size of an AAC file with a sample rate of 32,000 Hz and a recording duration of 10 minutes is around 3.5 MB.</li>
+                    <p props="ios mac cpp unity electron rn flutter"
+                    >Recording quality. See <xref
+                    keyref="AUDIO_RECORDING_QUALITY_TYPE"/>.</p>
+                    <p props="android">Recording quality:
+                    <ul>
+                    <li><ph keyref="AUDIO_RECORDING_QUALITY_LOW"
+                        />(0): Low quality. For example, the size of an AAC file with a sample rate of 32,000 Hz and a recording duration of 10 minutes is around 1.2 MB.</li>
+                    <li><ph keyref="AUDIO_RECORDING_QUALITY_MEDIUM"
+                        />(1): (Default) Medium quality. For example, the size of an AAC file with a sample rate of 32,000 Hz and a recording duration of 10 minutes is around 2 MB.</li>
+                    <li><ph keyref="AUDIO_RECORDING_QUALITY_HIGH"
+                        />(2): High quality. For example, the size of an AAC file with a sample rate of 32,000 Hz and a recording duration of 10 minutes is around 3.5 MB.</li>
                     </ul> </p>
                     <note id="note_hrx_mmz_mqb" type="attention">
                     <p>This parameter applies to AAC files only.</p>
