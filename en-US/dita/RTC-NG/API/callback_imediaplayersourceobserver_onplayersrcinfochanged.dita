@@ -13,33 +13,33 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">void onPlayerSrcInfoChanged(SrcInfo from, SrcInfo to);
+            <codeblock props="android" outputclass="language-java">void onPlayerSrcInfoChanged(SrcInfo from, SrcInfo to);
 </codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol> _Nonnull)playerKit playerSrcInfoDidChange:(AgoraMediaPlayerSrcInfo *_Nonnull)to from:(AgoraMediaPlayerSrcInfo *_Nonnull)from;
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol> _Nonnull)playerKit playerSrcInfoDidChange:(AgoraMediaPlayerSrcInfo *_Nonnull)to from:(AgoraMediaPlayerSrcInfo *_Nonnull)from;
 </codeblock>
-                <codeblock props="cpp" outputclass="language-cpp">virtual void onPlayerSrcInfoChanged(const media::base::SrcInfo&amp; from, const media::base::SrcInfo&amp; to) = 0;
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onPlayerSrcInfoChanged(const media::base::SrcInfo&amp; from, const media::base::SrcInfo&amp; to) = 0;
 </codeblock>
-                <codeblock props="electron" outputclass="language-typescript"/>
-                <codeblock props="unity" outputclass="language-csharp"/>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
-            </p>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnPlayerSrcInfoChanged(SrcInfo from, SrcInfo to) {}</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onPlayerSrcInfoChanged?(from: SrcInfo, to: SrcInfo): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(SrcInfo from, SrcInfo to)? onPlayerSrcInfoChanged;
+</codeblock> </p>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters">
+            <title>Parameters</title>
             <parml>
-                <plentry conkeyref="onPlayerEvent/playerkit" props="ios mac">
-                    <pt/>
-                    <pd/>
-                </plentry>
-                <plentry>
-                    <pt>from</pt>
-                    <pd>Information about the video bitrate of the media resource being played. See <xref keyref="SrcInfo"/>.</pd>
-                </plentry>
-                <plentry>
-                    <pt>to</pt>
-                    <pd>Information about the changed video bitrate of media resource being played See <xref keyref="SrcInfo"/>.</pd>
-                </plentry>
-            </parml>
-        </section>
+            <plentry conkeyref="onPlayerEvent/playerkit" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry>
+                <pt>from</pt>
+                <pd>Information about the video bitrate of the media resource being played. See <xref keyref="SrcInfo"/>.</pd>
+            </plentry>
+            <plentry>
+                <pt>to</pt>
+                <pd>Information about the changed video bitrate of media resource being played. See <xref keyref="SrcInfo"/>.</pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>
