@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_thumbimagebuffer">
-    <title><ph keyref="ThumbImageBuffer" /></title>
-    <shortdesc id="short"><ph id="shortdesc">The image content of the thumbnail or icon.</ph></shortdesc>
+    <title><ph keyref="ThumbImageBuffer"/></title>
+    <shortdesc id="short"><ph id="shortdesc">The image content of the thumbnail or icon. Set in <xref
+        keyref="ScreenCaptureSourceInfo"/>.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
-            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
             <codeblock props="cpp" outputclass="language-cpp">struct ThumbImageBuffer {
   const char* buffer;
   unsigned int length;
@@ -15,33 +16,69 @@
   unsigned int height;
   ThumbImageBuffer() : buffer(nullptr), length(0), width(0), height(0) {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="electron" outputclass="language-typescript">export class ThumbImageBuffer {
+  buffer?: Uint8Array
+  length?: number
+  width?: number
+  height?: number
+}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class ThumbImageBuffer
+    {
+        public Int64 buffer { set; get; }
+        public uint length { set; get; }
+        public uint width { set; get; }
+        public uint height { set; get; }
+
+        public ThumbImageBuffer()
+        {
+            buffer = 0;
+            length = 0;
+            width = 0;
+            height = 0;
+        }
+    };</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">class ThumbImageBuffer {
+  const ThumbImageBuffer({this.buffer, this.length, this.width, this.height});
+
+  @JsonKey(name: 'buffer', ignore: true)
+  final Uint8List? buffer;
+  @JsonKey(name: 'length')
+  final int? length;
+  @JsonKey(name: 'width')
+  final int? width;
+  @JsonKey(name: 'height')
+  final int? height;
+  factory ThumbImageBuffer.fromJson(Map&lt;String, dynamic> json) =>
+      _$ThumbImageBufferFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$ThumbImageBufferToJson(this);
+}
+</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
-            <note type="attention">The default image is in the RGBA format. If you need to use another format, you need to convert the image on your own.</note>
-        </section>
+            <note type="note">The default image is in the RGBA format. If you need to use another format, you need to convert the image on your own.</note> </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>buffer</pt>
                 <pd>The buffer of the thumbnail ot icon.</pd>
             </plentry>
-                <plentry>
-                    <pt>length</pt>
-                    <pd>The buffer length of the thumbnail or icon, in bytes.</pd>
-                </plentry>
-                <plentry>
-                    <pt>width</pt>
-                    <pd>The actual width (px) of the thumbnail or icon.</pd>
-                </plentry>
-                <plentry>
-                    <pt>height</pt>
-                    <pd>The actual height (px) of the thumbnail or icon.</pd>
-                </plentry>
+            <plentry>
+                <pt>length</pt>
+                <pd>The buffer length of the thumbnail or icon, in bytes.</pd>
+            </plentry>
+            <plentry>
+                <pt>width</pt>
+                <pd>The actual width (px) of the thumbnail or icon.</pd>
+            </plentry>
+            <plentry>
+                <pt>height</pt>
+                <pd>The actual height (px) of the thumbnail or icon.</pd>
+            </plentry>
             </parml> </section>
     </refbody>
 </reference>
