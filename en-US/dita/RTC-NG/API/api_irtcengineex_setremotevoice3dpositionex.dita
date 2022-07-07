@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_setremotevoice3dpositionex">
     <title><ph keyref="setRemoteVoice3DPositionEx" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the 3D position of the remote user's voice.</ph></shortdesc>
+    <shortdesc id="short">Sets the 3D position of the remote user's voice.<ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -13,62 +13,58 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public abstract int setRemoteVoice3DPositionEx(
+            <codeblock props="android" outputclass="language-java">public abstract int setRemoteVoice3DPositionEx(
     int uid, double azimuth, double elevation, double distance, RtcConnection connection);</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (int)setRemoteVoice3DPositionEx:(NSUInteger)uid
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setRemoteVoice3DPositionEx:(NSUInteger)uid
                           azimuth:(double)azimuth
                         elevation:(double)elevation
                          distance:(double)distance
                        connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
-                <codeblock props="cpp" outputclass="language-cpp">virtual int setRemoteVoice3DPositionEx(uid_t uid, double azimuth, double elevation, double distance, const RtcConnection&amp; connection) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp" />
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
-            </p>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setRemoteVoice3DPositionEx(uid_t uid, double azimuth, double elevation, double distance, const RtcConnection&amp; connection) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>By setting the horizontal angle, vertical angle, and distance of the remote user's voice, the voice of the remote user can sound directional.</p>
+            <p>通过设置远端用户声音的水平角、垂直角和声源距离，让远端用户的声音听起来有方位感。</p>
             <p>This method applies to massive multiplayer online games, such as Battle Royale games.</p>
-            <p>The difference between this method and <xref keyref="setRemoteVoicePositionEx" /> is that this method sets a 3D position for the voice, whereas <apiname keyref="setRemoteVoicePositionEx" /> sets a 2D position that is the position on restricted to the horizontal plane for the voice.</p>
+            <p>该方法和 <xref keyref="setRemoteVoicePositionEx" /> 的区别是：该方法设置声音的 3D 位置；<apiname keyref="setRemoteVoicePositionEx" /> 设置声音的 2D 位置，即水平面上的位置。</p>
             <note type="attention">
-                <ul>
-                    <li>For this method to work, enable stereo panning for remote users by calling the <xref keyref="enableSoundPositionIndication" /> method before joining a channel.</li>
-                    <li>For the best voice positioning, Agora recommends using a wired headset.</li>
-                    <li>Call this method after joining a channel.</li>
-                </ul>
-            </note>
-        </section>
-        <section id="parameters"><title>Parameters</title>
+            <ul>
+            <li>使用该方法需要在加入频道前调用 <xref keyref="enableSoundPositionIndication" /> 开启远端用户声音的立体声。</li>
+            <li>For the best voice positioning, Agora recommends using a wired headset.</li>
+            <li>Call this method after joining a channel.</li>
+            </ul> </note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
             <parml>
-                <plentry conkeyref="setRemoteVoice3DPosition/uid">
-                    <pt />
-                    <pd />
-                </plentry>
-                <plentry conkeyref="setRemoteVoice3DPosition/azimuth">
-                    <pt />
-                    <pd />
-                </plentry>
-                <plentry conkeyref="setRemoteVoice3DPosition/elevation">
-                    <pt />
-                    <pd />
-                </plentry>
-                <plentry conkeyref="setRemoteVoice3DPosition/distance">
-                    <pt />
-                    <pd />
-                </plentry>
-                <plentry conkeyref="joinChannelEx/connection">
-                    <pt />
-                    <pd />
-                </plentry>
-            </parml>
-        </section>
+            <plentry conkeyref="setRemoteVoice3DPosition/uid">
+                <pt />
+                <pd />
+            </plentry>
+            <plentry conkeyref="setRemoteVoice3DPosition/azimuth">
+                <pt />
+                <pd />
+            </plentry>
+            <plentry conkeyref="setRemoteVoice3DPosition/elevation">
+                <pt />
+                <pd />
+            </plentry>
+            <plentry conkeyref="setRemoteVoice3DPosition/distance">
+                <pt />
+                <pd />
+            </plentry>
+            <plentry conkeyref="joinChannelEx/connection">
+                <pt />
+                <pd />
+            </plentry>
+            </parml> </section>
         <section id="return_values">
             <title>Returns</title>
             <ul>
-                <li>0: Success.</li>
-                <li>&lt; 0: Failure.</li>
-            </ul>
-        </section>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
     </refbody>
 </reference>

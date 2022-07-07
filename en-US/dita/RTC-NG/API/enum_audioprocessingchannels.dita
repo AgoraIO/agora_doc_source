@@ -4,29 +4,27 @@
     <title><ph keyref="AUDIO_PROCESSING_CHANNELS"/></title>
     <shortdesc id="short"><ph id="shortdesc">The number of channels for audio preprocessing.</ph></shortdesc>
     <refbody>
-    <section id="detailed_desc">
-      <p>In scenarios that require enhanced realism, such as concerts, local users might need to capture stereo audio and send stereo signals to remote users. For example, the singer, guitarist, and drummer are standing in different positions on the stage. The audio capture device captures their stereo audio and sends stereo signals to remote users. Remote users can hear the song, guitar, and drum from different directions as if they were at the auditorium.</p>
-        <p>You can set the dual-channel processing to implement stereo audio in this class. Agora recommends the following settings:<ol>
-            <li>Preprocessing: call <xref keyref="setAdvancedAudioOptions"/> and set <parmname>audioProcessingChannels</parmname> to <apiname keyref="AUDIO_PROCESSING_STEREO"/> (2) in <xref keyref="AdvancedAudioOptions"/>.</li>
-            <li>Post-processing: call <xref keyref="setAudioProfile2"/> and set <parmname>profile</parmname> to <apiname keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO"/> (3) or <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/> (5).</li>
+        <section id="detailed_desc">
+            <p>In scenarios that require enhanced realism, such as concerts, local users might need to capture stereo audio and send stereo signals to remote users. For example, the singer, guitarist, and drummer are standing in different positions on the stage. The audio capture device captures their stereo audio and sends stereo signals to remote users. Remote users can hear the song, guitar, and drum from different directions as if they were at the auditorium.</p>
+            <p>You can set the dual-channel processing to implement stereo audio in this class. Agora recommends the following settings:<ol>
+            <li>Preprocessing: call <xref keyref="setAdvancedAudioOptions"/> and set <parmname>audioProcessingChannels</parmname> to <xref keyref="AdvancedAudioOptions"/> (2) in <apiname keyref="AUDIO_PROCESSING_STEREO"/>.</li>
+            <li>Post-processing: call <xref keyref="setAudioProfile2" props="native flutter unity"/> <xref keyref="setAudioProfile" props="rn electron"/> and set <parmname>profile</parmname> to <apiname keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO"/> (3) or <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/> (5).</li>
             </ol></p>
             <note type="attention">
-                <ul>
-                    <li>The stereo setting only takes effect when the SDK uses the media volume. <ph props="android ios">See <xref keyref="volume-type"/>. </ph><ph props="cpp">See <xref keyref="volume-type-android"/> and <xref keyref="volume-type-ios"/>.</ph></li>
-                    <li props="cpp ios">On iOS, stereo audio requires high device performance. Stereo audio is only supported on the following devices using iOS 14.0 and later:<ul>
-            <li>iPhone XS</li>
-            <li>iPhone XS Max</li>
-            <li>iPhone XR</li>
-            <li>iPhone 11</li>
-            <li>iPhone 11 Pro</li>
-            <li>iPhone 11 Pro Max</li>
-            <li>iPhone SE (2020)</li>
-            <li>iPad Pro 11" and 12.9" (3rd generation)</li>
-            <li>iPad Pro 11" and 12.9" (4th generation)</li>
-            </ul></li>
-                </ul>
-            </note>
-    </section>
+            <ul>
+            <li>The stereo setting only takes effect when the SDK uses the media volume. <ph props="android ios">See <xref keyref="volume-type"/>. </ph><ph props="cpp unity">See <xref keyref="volume-type-android"/> and <xref keyref="volume-type-ios"/>.</ph></li>
+            <li props="cpp ios rn unity">On iOS, stereo audio requires high device performance. Stereo audio is only supported on the following devices using iOS 14.0 and later:<ul>
+                <li>iPhone XS</li>
+                <li>iPhone XS Max</li>
+                <li>iPhone XR</li>
+                <li>iPhone 11</li>
+                <li>iPhone 11 Pro</li>
+                <li>iPhone 11 Pro Max</li>
+                <li>iPhone SE (2020)</li>
+                <li>iPad Pro 11" and 12.9" (3rd generation)</li>
+                <li>iPad Pro 11" and 12.9" (4th generation)</li>
+                </ul></li>
+            </ul> </note> </section>
         <section id="parameters">
             <title>Enumerator</title>
             <parml>
@@ -36,7 +34,7 @@
             </plentry>
             <plentry>
                 <pt><ph keyref="AUDIO_PROCESSING_STEREO"/></pt>
-                <pd>2: Stereo.</pd>
+                <pd>2: Stereo (two channels).</pd>
             </plentry>
             </parml> </section>
     </refbody>

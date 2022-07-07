@@ -1,37 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_geterrordescription">
-    <title><ph keyref="getErrorDescription" /></title>
+    <title><ph keyref="getErrorDescription"/></title>
     <shortdesc id="short"><ph id="shortdesc">Gets the warning or error description.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="getErrorDescription" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="getErrorDescription"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-            
+    <refbody>
+        <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public static String getErrorDescription(int error)</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">+ (NSString* _Nonnull)getErrorDescription: (NSInteger)error;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual const char* getErrorDescription(int code) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">getErrorDescription(errorCode: number): string</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract getErrorDescription(code: number): string;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract string GetErrorDescription(int code);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;String?&gt; getErrorDescription(int error)</codeblock> </p>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;String&gt; getErrorDescription(int code);</codeblock> </p>
         </section>
-        <section id="parameters"><title>Parameters</title>
-   <parml>
-       <plentry>
-  <pt props="cpp unity">code</pt>
-  <pt props="android ios mac flutter">error</pt>
-  <pd>The error code or warning code reported by the SDK.</pd>
-       </plentry>
-   </parml>
-        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt props="cpp unity flutter electron rn">code</pt>
+                <pt props="android ios mac">error</pt>
+                <pd>The error code or warning code reported by the SDK.</pd>
+            </plentry>
+            </parml> </section>
         <section id="return_values">
-   <title>Returns</title>
-   <p>The specific error or warning description.</p>
-        </section></refbody>
+            <title>Returns</title>
+            <p>The specific error or warning description.</p>
+        </section>
+    </refbody>
 </reference>

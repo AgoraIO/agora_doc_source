@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_uplinknetworkinfo">
-    <title><ph keyref="UplinkNetworkInfo" /></title>
+    <title><ph keyref="UplinkNetworkInfo"/></title>
     <shortdesc id="short"><ph id="shortdesc">The uplink network information.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -21,11 +21,14 @@
     return (video_encoder_target_bitrate_bps == rhs.video_encoder_target_bitrate_bps);
   }
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript">export class UplinkNetworkInfo {
+  video_encoder_target_bitrate_bps?: number
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class UplinkNetworkInfo
     {
         public UplinkNetworkInfo()
         {
+            video_encoder_target_bitrate_bps = 0;
         }
 
         public UplinkNetworkInfo(int video_encoder_target_bitrate_bps)
@@ -34,18 +37,30 @@
         }
         public int video_encoder_target_bitrate_bps;
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="rn" outputclass="language-typescript">export class UplinkNetworkInfo {
+  video_encoder_target_bitrate_bps?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class UplinkNetworkInfo {
+  const UplinkNetworkInfo({this.videoEncoderTargetBitrateBps});
+
+  @JsonKey(name: 'video_encoder_target_bitrate_bps')
+  final int? videoEncoderTargetBitrateBps;
+  factory UplinkNetworkInfo.fromJson(Map&lt;String, dynamic> json) =>
+      _$UplinkNetworkInfoFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$UplinkNetworkInfoToJson(this);
+}
+</codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
-                <plentry>
-                    <pt props="android cpp">video_encoder_target_bitrate_bps</pt>
-                    <pt props="ios mac">videoEncoderTargetBitrateBps</pt>
-                    <pd>The target video encoder bitrate (bps).</pd>
-                </plentry>
-            </parml>
-        </section>
+            <plentry>
+                <pt props="android cpp unity flutter electron rn">video_encoder_target_bitrate_bps</pt>
+                <pt props="ios mac">videoEncoderTargetBitrateBps</pt>
+                <pd>The target video encoder bitrate (bps).</pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

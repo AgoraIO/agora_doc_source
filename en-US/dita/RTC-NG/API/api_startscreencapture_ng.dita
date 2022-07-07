@@ -27,16 +27,15 @@
         <section id="detailed_desc">
             <p>After successfully calling this method, you can share the entire screen through <xref keyref="MediaProjection-link">MediaProjection</xref>, an Android native class.</p>
             <p id="apisequence">There are two ways to start screen sharing, you can choose one according to the actual needs:<ul>
-            <li><ph>Call this method before joining a channel, and then call <xref keyref="joinChannel2"/> to join a channel and set <parmname>publishScreenTrack</parmname> <ph props="cpp unity">or <parmname>publishSecondaryScreenTrack</parmname> </ph>to <codeph><ph keyref="true"/></codeph> to start screen sharing.</ph></li>
-            <li><ph>Call this method after joining a channel, and then call <xref keyref="updateChannelMediaOptions"/> and set <parmname>publishScreenTrack</parmname> <ph props="cpp unity">or <parmname>publishSecondaryScreenTrack</parmname> </ph>to <codeph><ph keyref="true"/></codeph> to start screen sharing.</ph></li>
+            <li><ph>Call this method before joining a channel, and then call <xref keyref="joinChannel2"/> to join a channel and set <parmname>publishScreenTrack</parmname> <ph props="cpp unity">or <parmname>publishSecondaryScreenTrack</parmname></ph> to <codeph><ph keyref="true"/></codeph> to start screen sharing.</ph></li>
+            <li><ph>Call this method after joining a channel, and then call <xref keyref="updateChannelMediaOptions"/> and set <parmname>publishScreenTrack</parmname> <ph props="cpp unity">or <parmname>publishSecondaryScreenTrack</parmname></ph> to <codeph><ph keyref="true"/></codeph> to start screen sharing.</ph></li>
             </ul></p>
             <note type="attention">
             <ul>
             <li props="cpp unity">This method is for Android only.</li>
             <li>Before calling this method, you need to implement <xref keyref="onActivityResult-link">onActivityResult</xref>, an Android native callback, and obtain the value of the <parmname>data</parmname> parameter in this callback.</li>
             <li>When sharing the screen on Android 10 or later, to avoid the Android system from triggering <xref keyref="SecurityException-link">SecurityException</xref>, you need to call <xref keyref="startForeground-link">startForeground</xref> (the Android native method) before calling <xref keyref="MediaProjection-link">MediaProjection</xref> to notify the user that the current device starts screen sharing.</li>
-            </ul> </note>
-        </section>
+            </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>

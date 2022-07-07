@@ -5,65 +5,59 @@
     <shortdesc id="short"><ph id="shortdesc">Reports events during the media stream relay.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="onChannelMediaRelayEvent" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="onChannelMediaRelayEvent"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock" props="rtc-ng">
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onChannelMediaRelayEvent(int code) {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+didReceiveChannelMediaRelayEvent:(AgoraChannelMediaRelayEvent)event;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void onChannelMediaRelayEvent(int code) {
   (void)code;
 }</codeblock>
-        </p>
-        <p outputclass="codeblock" props="rtc">
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onChannelMediaRelayEvent(CHANNEL_MEDIA_RELAY_EVENT code) {}</codeblock>
-        </p>
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public void onChannelMediaRelayEvent(int code) {}</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
-didReceiveChannelMediaRelayEvent:(AgoraChannelMediaRelayEvent)event;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(
-  evt: EngineEvents.CHANNEL_MEDIA_RELAY_EVENT,
-  cb: (code: CHANNEL_MEDIA_RELAY_EVENT) => void
-): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnChannelMediaRelayEvent(CHANNEL_MEDIA_RELAY_EVENT code)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart">MediaRelayEventCallback? channelMediaRelayEvent;</codeblock>
-        </p>
+            <codeblock props="electron" outputclass="language-typescript">onChannelMediaRelayEvent?(code: ChannelMediaRelayEvent): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp"> public virtual void OnChannelMediaRelayEvent(int code) { }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onChannelMediaRelayEvent?(code: ChannelMediaRelayEvent): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(ChannelMediaRelayEvent code)? onChannelMediaRelayEvent;
+</codeblock> </p>
         </section>
-        <section id="parameters"><title>Parameters</title>
-   <parml>
-                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                    <pt/>
-                    <pd/>
-                </plentry>
-                <plentry id="code">
-                    <pt props="android cpp unity flutter">code</pt>
-                    <pt props="ios mac">event</pt>
-                    <pd><p props="ios mac cpp unity flutter">The event code of channel media relay. See <xref keyref="CHANNEL_MEDIA_RELAY_EVENT"/>.</p>
-                        <p props="android">The event code of channel media relay:<ul>
-                                <li><ph keyref="RELAY_EVENT_NETWORK_DISCONNECTED"/>(0): The user disconnects from the server due to a poor network connection.</li>
-                                <li><ph keyref="RELAY_EVENT_NETWORK_CONNECTED"/>(1): The user is connected to the server.</li>
-                                <li><ph keyref="RELAY_EVENT_PACKET_JOINED_SRC_CHANNEL"/>(2): The user joins the source channel.</li>
-                                <li><ph keyref="RELAY_EVENT_PACKET_JOINED_DEST_CHANNEL"/>(3): The user joins the destination channel.</li>
-                                <li><ph keyref="RELAY_EVENT_PACKET_SENT_TO_DEST_CHANNEL"/>(4): The SDK starts relaying the media stream to the destination channel.</li>
-                                <li><ph keyref="RELAY_EVENT_PACKET_RECEIVED_VIDEO_FROM_SRC"/>(5): The server receives the video stream from the source channel.</li>
-                                <li><ph keyref="RELAY_EVENT_PACKET_RECEIVED_AUDIO_FROM_SRC"/>(6): The server receives the audio stream from the source channel.</li>
-                                <li><ph keyref="RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL"/>(7): The destination channel is updated.</li>
-                                <li><ph keyref="RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL_REFUSED"/>(8): The destination channel update fails due to internal reasons.</li>
-                                <li><ph keyref="RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL_NOT_CHANGE"/>(9): The destination channel does not change, which means that the destination channel fails to be updated.</li>
-                                <li><ph keyref="RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL_IS_NULL"/>(10): The destination channel name is <codeph><ph keyref="NULL"/></codeph>.</li>
-                                <li><ph keyref="RELAY_EVENT_VIDEO_PROFILE_UPDATE"/>(11): The video profile is sent to the server.</li>
-                            <li><ph keyref="RELAY_EVENT_PAUSE_SEND_PACKET_TO_DEST_CHANNEL_SUCCESS"/>(12): The SDK successfully pauses relaying the media stream to destination channels.</li>
-                            <li><ph keyref="RELAY_EVENT_PAUSE_SEND_PACKET_TO_DEST_CHANNEL_FAILED"/>(13): The SDK fails to pause relaying the media stream to destination channels.</li>
-                            <li><ph keyref="RELAY_EVENT_RESUME_SEND_PACKET_TO_DEST_CHANNEL_SUCCESS"/>(14): The SDK successfully resumes relaying the media stream to destination channels.</li>
-                            <li><ph keyref="RELAY_EVENT_RESUME_SEND_PACKET_TO_DEST_CHANNEL_FAILED"/>(15): The SDK fails to resume relaying the media stream to destination channels.</li>
-                            </ul>
-                        </p>
-                    </pd>
-                </plentry>
-            </parml>
-        </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <parml>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry id="code">
+                <pt props="android cpp unity flutter electron rn">code</pt>
+                <pt props="ios mac">event</pt>
+                <pd>
+                    <p props="ios mac cpp unity flutter electron rn">The event code of channel media relay. See <xref keyref="CHANNEL_MEDIA_RELAY_EVENT"/>.</p>
+                    <p props="android">The event code of channel media relay:<ul>
+                    <li><ph keyref="RELAY_EVENT_NETWORK_DISCONNECTED"/>(0): The user disconnects from the server due to a poor network connection.</li>
+                    <li><ph keyref="RELAY_EVENT_NETWORK_CONNECTED"/>(1): The user is connected to the server.</li>
+                    <li><ph keyref="RELAY_EVENT_PACKET_JOINED_SRC_CHANNEL"/>(2): The user joins the source channel.</li>
+                    <li><ph keyref="RELAY_EVENT_PACKET_JOINED_DEST_CHANNEL"/>(3): The user joins the destination channel.</li>
+                    <li><ph keyref="RELAY_EVENT_PACKET_SENT_TO_DEST_CHANNEL"/>(4): The SDK starts relaying the media stream to the destination channel.</li>
+                    <li><ph keyref="RELAY_EVENT_PACKET_RECEIVED_VIDEO_FROM_SRC"/>(5): The server receives the video stream from the source channel.</li>
+                    <li><ph keyref="RELAY_EVENT_PACKET_RECEIVED_AUDIO_FROM_SRC"/>(6): The server receives the audio stream from the source channel.</li>
+                    <li><ph keyref="RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL"/>(7): The destination channel is updated.</li>
+                    <li><ph keyref="RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL_REFUSED"/>(8): The destination channel update fails due to internal reasons.</li>
+                    <li><ph keyref="RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL_NOT_CHANGE"/>(9): The destination channel does not change, which means that the destination channel fails to be updated.</li>
+                    <li><ph keyref="RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL_IS_NULL"/>(10): The destination channel name is <codeph><ph keyref="NULL"/></codeph>.</li>
+                    <li><ph keyref="RELAY_EVENT_VIDEO_PROFILE_UPDATE"/>(11): The video profile is sent to the server.</li>
+                    <li><ph keyref="RELAY_EVENT_PAUSE_SEND_PACKET_TO_DEST_CHANNEL_SUCCESS"/>(12): The SDK successfully pauses relaying the media stream to destination channels.</li>
+                    <li><ph keyref="RELAY_EVENT_PAUSE_SEND_PACKET_TO_DEST_CHANNEL_FAILED"/>(13): The SDK fails to pause relaying the media stream to destination channels.</li>
+                    <li><ph keyref="RELAY_EVENT_RESUME_SEND_PACKET_TO_DEST_CHANNEL_SUCCESS"/>(14): The SDK successfully resumes relaying the media stream to destination channels.</li>
+                    <li><ph keyref="RELAY_EVENT_RESUME_SEND_PACKET_TO_DEST_CHANNEL_FAILED"/>(15): The SDK fails to resume relaying the media stream to destination channels.</li>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

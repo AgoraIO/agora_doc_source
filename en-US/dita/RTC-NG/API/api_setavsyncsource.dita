@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setavsyncsource">
+    <title> <ph keyref="setAVSyncSource" /> </title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the pitch of the local music file.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setAVSyncSource" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setAVSyncSource(String channelId, int uid);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int) setAVSyncSource:(NSString* _Nonnull)channelId uid:(NSUInteger)uid;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setAVSyncSource(const char* channelId, uid_t uid) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract setAVSyncSource(channelId: string, uid: number): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int SetAVSyncSource(string channelId, uint uid);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract setAVSyncSource(channelId: string, uid: number): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setAVSyncSource({required String channelId, required int uid});</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>The same user may use two devices to send audio streams and video streams respectively. To ensure the time synchronization of the audio and video heard and seen by the receiver, you can call this method on the video sender and pass in the channel of the audio sender. name, user ID. The SDK will automatically adjust the sent video stream based on the timestamp of the sent audio stream to ensure that even when the upstream network conditions of the two senders are inconsistent (such as using Wi-Fi and 4G networks respectively), the The received audio and video have time synchronization.</p>
+            <note type="attention">Agora recommends calling this method before .</note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>channelId</pt>
+                <pd>Identifies the channel name of the channel where the audio sender is located.</pd>
+            </plentry>
+            <plentry>
+                <pt>uid</pt>
+                <pd>User ID of the audio sender.</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native unity rn electron">
+            <title>Returns</title>
+            <ul>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
+    </refbody>
+</reference>

@@ -1,41 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_videosourcestartpreview">
-    <title><ph keyref="videoSourceStartPreview" /></title>
-    <shortdesc id="short"><ph id="shortdesc" conkeyref="startPreview/shortdesc" /></shortdesc>
+    <title><ph keyref="videoSourceStartPreview"/></title>
+    <shortdesc id="short"><ph id="shortdesc" conkeyref="startPreview/shortdesc"/></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="videoSourceStartPreview" />
+                <indexterm keyref="videoSourceStartPreview"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="cpp" outputclass="language-cpp" />
-                <codeblock props="electron" outputclass="language-typescript">videoSourceStartPreview(): number</codeblock>
-                <codeblock props="unity" outputclass="language-csharp" />
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
-            </p>
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p>A method for the second instance.</p>
-            <p>This method starts the local video preview before joining the channel. Before calling this method, ensure that you do the following:</p>
+            <p>The method for the second instance.</p>
+            <p>This method starts the local video preview before joining the channel. 调用该 API 前，必须：</p>
             <ul>
-                <li>Call <xref keyref="setView" /> to set the local preview window.</li>
-                <li>Call <xref keyref="videoSourceEnableVideo" /> to enable the video.</li>
+            <li>Call <xref keyref="setView"/> to set the local preview window.</li>
+            <li>Call <xref keyref="videoSourceEnableVideo"/> to enable the video.</li>
             </ul>
             <note type="attention">
-                <ul>
-                    <li>The local preview enables the mirror mode by default.</li>
-                    <li>After the local video preview is enabled, if you call <xref keyref="videoSourceLeaveChannel" /> to exit the channel, the local preview remains until you call <xref keyref="videoSourceStopPreview" /> to disable it.</li>
-                </ul>
-            </note>
-        </section>
-        <section id="return_values" conkeyref="startPreview/return_values" />
+            <ul>
+            <li>The local preview enables the mirror mode by default.</li>
+            <li>启用了本地视频预览后，如果调用 <xref keyref="videoSourceLeaveChannel"/>退出频道，本地预览依然处于启动状态，如需要关闭本地预览，需要调用 <xref keyref="videoSourceStopPreview"/>。</li>
+            </ul> </note> </section>
+        <section id="return_values" conkeyref="startPreview/return_values"/>
     </refbody>
 </reference>
