@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setplayeroption">
-    <title><ph keyref="setPlayerOption"/></title>
+    <title><ph keyref="setPlayerOption" /></title>
     <shortdesc id="short"><ph id="shortdesc">设置媒体播放器的私有选项。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setPlayerOption"/>
+                <indexterm keyref="setPlayerOption" />
             </keywords>
         </metadata>
     </prolog>
@@ -19,15 +19,15 @@
             <codeblock props="cpp" outputclass="language-cpp"/>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">abstract setPlayerOptionInInt(key: string, value: number): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
             <p>媒体播放器支持通过 key 和 value 来设置私有选项。 一般情况下，你无需知晓私有选项设置，使用媒体播放器默认的选项设置即可。</p>
             <note type="attention">
             <ul>
-            <li>请确保在 <xref keyref="open"/> 之前调用该方法。</li>
-            <li>如果你使用客户端旁路推流功能，且在推流过程中发送 SEI 信息，你需要调用 <apiname keyref="setPlayerOption"/><codeph>("sei_data_with_uuid", 1)</codeph> 方法，否则会导致 SEI 信息的丢失。</li>
+            <li>请确保在 <xref keyref="open" /> 之前调用该方法。</li>
+            <li>如果你使用客户端旁路推流功能，且在推流过程中发送 SEI 信息，你需要调用 <apiname keyref="setPlayerOption" /><codeph>("sei_data_with_uuid", 1)</codeph> 方法，否则会导致 SEI 信息的丢失。</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>参数</title>

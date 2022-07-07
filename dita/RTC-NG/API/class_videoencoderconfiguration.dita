@@ -87,7 +87,16 @@
         degradationPreference(MAINTAIN_QUALITY),
         mirrorMode(VIDEO_MIRROR_MODE_DISABLED) {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export class VideoEncoderConfiguration {
+  codecType?: VideoCodecType
+  dimensions?: VideoDimensions
+  frameRate?: number
+  bitrate?: number
+  minBitrate?: number
+  orientationMode?: OrientationMode
+  degradationPreference?: DegradationPreference
+  mirrorMode?: VideoMirrorModeType
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class VideoEncoderConfiguration
     {
         public VIDEO_CODEC_TYPE codecType { set; get; }
@@ -150,7 +159,16 @@
         }
     }
         </codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">export class VideoEncoderConfiguration {
+  codecType?: VideoCodecType;
+  dimensions?: VideoDimensions;
+  frameRate?: number;
+  bitrate?: number;
+  minBitrate?: number;
+  orientationMode?: OrientationMode;
+  degradationPreference?: DegradationPreference;
+  mirrorMode?: VideoMirrorModeType;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class VideoEncoderConfiguration {
   const VideoEncoderConfiguration(
       {this.codecType,
@@ -191,13 +209,10 @@
             <plentry>
                 <pt>dimensions</pt>
                 <pd>
-                    <p props="android cpp unity flutter">视频编码的分辨率（px），详见 <xref
-                    keyref="VideoDimensions"
-                    />。该参数用于衡量编码质量，以长 × 宽表示，默认值为 640 × 360。用户可以自行设置分辨率。</p>
+                    <p props="android cpp unity electron rn flutter">视频编码的分辨率（px），详见 <xref keyref="VideoDimensions" />。该参数用于衡量编码质量，以长 × 宽表示，默认值为 640 × 360。用户可以自行设置分辨率。</p>
                     <p props="ios mac">视频编码的分辨率 (px)，用于衡量编码质量，以长x宽表示，默认值为 640 x 360。用户可以自行设置分辨率，也可以在如下列表中直接选择想要的分辨率：
-                    
-                    
-                    
+
+
                     <ul>
                     <li>AgoraVideoDimension120x120：视频分辨率为 120 * 120。</li>
                     <li>AgoraVideoDimension160x120：视频分辨率为 160 * 120。</li>
@@ -229,9 +244,9 @@
                 </pd>
             </plentry>
             <plentry>
-                <pt props="ios mac cpp unity flutter">codecType</pt>
-                <pd props="ios mac cpp unity flutter">
-                    <p>视频编码类型，详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</p>
+                <pt props="ios mac cpp unity electron rn flutter">codecType</pt>
+                <pd props="ios mac cpp unity electron rn flutter">
+                    <p>视频编码类型，详见 <xref keyref="VIDEO_CODEC_TYPE" />。</p>
                 </pd>
             </plentry>
             <plentry>
@@ -277,8 +292,7 @@
             <plentry>
                 <pt>mirrorMode</pt>
                 <pd>
-                    <p props="android ios mac cpp unity electron flutter"
-                    >发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref
+                    <p>发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref
                     keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
                     <note type="attention">默认关闭镜像模式。</note> </pd>
             </plentry>

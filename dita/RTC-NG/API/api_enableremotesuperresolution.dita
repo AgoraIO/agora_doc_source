@@ -18,27 +18,29 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int enableRemoteSuperResolution(uid_t userId, bool enable) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int EnableRemoteSuperResolution(uint userId, bool enable);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">abstract enableRemoteSuperResolution(userId: number, enable: boolean): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableRemoteSuperResolution(
     {required int userId, required bool enable});</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>该功能可以有效提升本地用户看到的远端视频画面的分辨率。例如远端用户视频的原始分辨率为 a &lt; b，开启该功能后，本地设备会以 2a &lt; 2b 的分辨率
-            显示该远端视频。</p>
+            <p>该功能可以有效提升本地用户看到的远端视频画面的分辨率。例如远端用户视频的原始分辨率为 a &lt; b，开启该功能后，本地设备会以 2a &lt; 2b 的分辨率显示该远端视频。</p>
             <p>调用该方法后，通过 <xref keyref="onRemoteVideoStats"/> 回调中的远端视频统计数据（<xref keyref="RemoteVideoStats"/>），确认超分辨率是否成功开启：
+
             
             <ul>
-            <li>如果参数 <parmname>superResolutionType</parmname> >0：超分辨率已开启。</li>
+            <li>如果参数 <parmname>superResolutionType</parmname> &gt;0：超分辨率已开启。</li>
             <li>如果参数 <parmname>superResolutionType</parmname> =0：超分辨率未开启。</li>
             </ul> </p>
             <note type="caution">
             <p props="cpp unity flutter">超分辨率功能会额外耗费系统资源。为平衡视觉体验和系统消耗，只可以对一个远端用户开启超分辨率，并且远端用户视频的原始分辨率在 Android 设备上不能超过 640 × 360，在 iOS 设备上不能超过 640 × 480。</p>
             <p props="android ios">超分辨率功能会额外耗费系统资源。为平衡视觉体验和系统消耗，只可以对一个远端用户开启超分辨率，并且远端用户视频的原始分辨率在设备上不能超过 <ph props="android">640 × 360</ph><ph props="ios">640 × 480</ph>。</p>
+            <p props="rn">超分辨率功能会额外耗费系统资源。为平衡视觉体验和系统消耗，只可以对一个远端用户开启超分辨率，并且远端用户视频的原始分辨率在设备上不能超过 640 × 360（Android）或 640 × 480（iOS）。</p>
             </note>
             <note type="attention">
             <ul>
-            <li props="cpp unity flutter rn">该方法仅适用于 Android 和 iOS 平台。</li>
+            <li props="cpp unity flutter">该方法仅适用于 Android 和 iOS 平台。</li>
             <li>调用该方法前，请确保你已经集成相应的动态库：
+
 
                 
                 <ul>
@@ -47,9 +49,11 @@
                 </ul> </li>
             <li>该方法对用户设备具有一定要求，Agora 推荐你使用如下或更好的设备：
 
+
                 
                 <ul>
                 <li props="android cpp unity flutter rn">Android:
+
 
                     
                     <ul>
@@ -61,6 +65,7 @@
                     <li>HUAWEI：SEA-AL00，ELE-AL00，VOG-AL00，YAL-AL10，HMA-AL00，EVR-AN00，nova 4，nova 5 Pro，nova 6 5G，nova 7 5G，Mate 30，Mate 30 Pro，Mate 40，Mate 40 Pro，P40，P40 Pro，华为平板 M6，MatePad 10.8</li>
                     </ul></li>
                 <li props="ios cpp unity flutter rn">iOS:
+
 
                     
                     <ul>
@@ -86,13 +91,14 @@
             <title>参数</title>
             <parml>
             <plentry>
-                <pt props="cpp unity flutter">userId</pt>
+                <pt props="cpp unity flutter rn">userId</pt>
                 <pt props="android ios">uid</pt>
                 <pd>远端用户 ID。</pd>
             </plentry>
             <plentry>
                 <pt>enable</pt>
                 <pd>是否对远端视频开启超分辨率：
+
 
                     
                     <ul>
@@ -101,7 +107,7 @@
                     </ul></pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="electron unity native">
+        <section id="return_values" props="unity native rn">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功</li>

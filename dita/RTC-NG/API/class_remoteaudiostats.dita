@@ -71,7 +71,22 @@
     publishDuration(0){}
     qoeQuality(0) {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export class RemoteAudioStats {
+  uid?: number
+  quality?: number
+  networkTransportDelay?: number
+  jitterBufferDelay?: number
+  audioLossRate?: number
+  numChannels?: number
+  receivedSampleRate?: number
+  receivedBitrate?: number
+  totalFrozenTime?: number
+  frozenRate?: number
+  mosValue?: number
+  totalActiveTime?: number
+  publishDuration?: number
+  qoeQuality?: number
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class RemoteAudioStats
     {
         public RemoteAudioStats()
@@ -113,7 +128,22 @@
         public int publishDuration { set; get; }
         public int qoeQuality { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">export class RemoteAudioStats {
+  uid?: number;
+  quality?: number;
+  networkTransportDelay?: number;
+  jitterBufferDelay?: number;
+  audioLossRate?: number;
+  numChannels?: number;
+  receivedSampleRate?: number;
+  receivedBitrate?: number;
+  totalFrozenTime?: number;
+  frozenRate?: number;
+  mosValue?: number;
+  totalActiveTime?: number;
+  publishDuration?: number;
+  qoeQuality?: number;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class RemoteAudioStats {
   const RemoteAudioStats(
       {this.uid,
@@ -178,9 +208,7 @@
             <plentry>
                 <pt>quality</pt>
                 <pd>
-                    <p>远端用户发送的音频流质量。<ph
-                            props="ios mac cpp unity electron flutter">详见 <xref
-                            keyref="QUALITY_TYPE"/>。</ph></p>
+                    <p>远端用户发送的音频流质量。<ph props="ios mac cpp electron rn unity flutter">详见 <xref keyref="QUALITY_TYPE" />。</ph></p>
                     <p props="android">
                     <ul id="qualitytype">
                     <li><ph keyref="QUALITY_UNKNOWN"/> (0)：质量未知。</li>
@@ -203,8 +231,7 @@
                 <pd>
                     <p>音频接收端到网络抖动缓冲的网络延迟（毫秒）。</p>
                     <note type="attention">
-                    <p>当接收端为观众且 <xref keyref="ClientRoleOptions"
-                    /> 的 <parmname>audienceLatencyLevel</parmname> 为 1 时，该参数不生效。</p>
+                    <p>当接收端为观众且 <xref keyref="ClientRoleOptions" /> 的 <parmname>audienceLatencyLevel</parmname> 为 1 时，该参数不生效。</p>
                     </note> </pd>
             </plentry>
             <plentry>
@@ -247,8 +274,7 @@
             <plentry>
                 <pt>qoeQuality</pt>
                 <pd>
-                    <p>接收远端音频时，本地用户的主观体验质量。<ph props="ios mac cpp">详见 <xref
-                    keyref="EXPERIENCE_QUALITY_TYPE"/>。</ph>
+                    <p>接收远端音频时，本地用户的主观体验质量。<ph props="ios mac cpp electron rn">详见 <xref keyref="EXPERIENCE_QUALITY_TYPE" />。</ph>
                     <ul props="android">
                     <li><ph keyref="EXPERIENCE_QUALITY_GOOD"
                         /> (0)：主观体验质量较好。</li>

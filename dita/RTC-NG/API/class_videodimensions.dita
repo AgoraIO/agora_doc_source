@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videodimensions">
-    <title><ph keyref="VideoDimensions"/></title>
+    <title><ph keyref="VideoDimensions" /></title>
     <shortdesc id="short"><ph id="shortdesc">视频尺寸。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -9,7 +9,7 @@
             <codeblock props="android" outputclass="language-java">static public class VideoDimensions {
   public int width;
   public int height;
-  
+
   public VideoDimensions(int width, int height) {
     this.width = width;
     this.height = height;
@@ -21,7 +21,7 @@
   }
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp unity" outputclass="language-cpp">struct VideoDimensions {
+            <codeblock props="cpp" outputclass="language-cpp">struct VideoDimensions {
   int width;
   int height;
   VideoDimensions() : width(640), height(480) {}
@@ -34,7 +34,26 @@
     width: number,
     height: number
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp">public class VideoDimensions
+    {
+        public VideoDimensions()
+        {
+            width = 640;
+            height = 480;
+        }
+
+        public VideoDimensions(int width, int height)
+        {
+            this.width = width;
+            this.height = height;
+        }
+        public int width { set; get; }
+        public int height { set; get; }
+    }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class VideoDimensions {
+              width?: number;
+              height?: number;
+            }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class VideoDimensions {
   const VideoDimensions({this.width, this.height});
 
@@ -48,9 +67,7 @@
 }</codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>width</pt>

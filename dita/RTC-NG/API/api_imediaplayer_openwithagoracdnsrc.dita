@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_openwithagoracdnsrc">
-    <title> <ph keyref="openWithAgoraCDNSrc"/> </title>
+    <title> <ph keyref="openWithAgoraCDNSrc" /> </title>
     <shortdesc id="short"><ph id="shortdesc">打开媒体资源，并通过自研调度中心请求媒体资源的所有 CDN 线路。</ph> </shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="openWithAgoraCDNSrc"/>
+                <indexterm keyref="openWithAgoraCDNSrc" />
             </keywords>
         </metadata>
     </prolog>
@@ -19,16 +19,16 @@
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int openWithAgoraCDNSrc(const char* src, int64_t startPos) = 0;
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract openWithAgoraCDNSrc(src: string, startPos: number): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int OpenWithAgoraCDNSrc(string src, Int64 startPos);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">abstract openWithAgoraCDNSrc(src: string, startPos: number): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> openWithAgoraCDNSrc(
       {required String src, required int startPos});
 </codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>调用该方法后，Agora 会打开媒体资源并通过自研调度中心请求媒体资源的所有 CDN 线路。Agora 默认使用第一个线路，你也可以通过 <xref keyref="switchAgoraCDNLineByIndex"/> 自行切换线路。</p>
-            <p id="auth">如果你希望保障连接和播放媒体资源的安全性，你可以<xref keyref="ticket-link"/>协商鉴权字段 (<parmname>sign</parmname>) 和鉴权过期时间 (<parmname>ts</parmname>)。确定字段后，请将其作为 URL 的 <codeph>query parameter</codeph> 以更新媒体资源的网路路径。例如：
+            <p>调用该方法后，Agora 会打开媒体资源并通过自研调度中心请求媒体资源的所有 CDN 线路。Agora 默认使用第一个线路，你也可以通过 <xref keyref="switchAgoraCDNLineByIndex" /> 自行切换线路。</p>
+            <p id="auth">如果你希望保障连接和播放媒体资源的安全性，你可以<xref keyref="ticket-link" />协商鉴权字段 (<parmname>sign</parmname>) 和鉴权过期时间 (<parmname>ts</parmname>)。确定字段后，请将其作为 URL 的 <codeph>query parameter</codeph> 以更新媒体资源的网路路径。例如：
             <ul>
             <li>媒体资源网络路径为 <codeph>rtmp://$domain/$appName/$streamName</codeph></li>
             <li>通过鉴权信息更新过的媒体资源网络路径为 <codeph>rtmp://$domain/$appName/$streamName?ts=$ts&amp;sign=$sign</codeph></li>
@@ -36,7 +36,7 @@
             <note>
             <p>鉴权信息说明：
             <ul>
-            <li><parmname>sign</parmname> : 通过 <codeph>authKey</codeph> + <codeph>appName</codeph> + <codeph>streamName</codeph> + <codeph>ts</codeph> 进行 md5 算法加密得出的鉴权字段。你需要<xref keyref="ticket-link"/>咨询你的 <codeph>authKey</codeph> 字段内容。</li>
+            <li><parmname>sign</parmname> : 通过 <codeph>authKey</codeph> + <codeph>appName</codeph> + <codeph>streamName</codeph> + <codeph>ts</codeph> 进行 md5 算法加密得出的鉴权字段。你需要<xref keyref="ticket-link" />咨询你的 <codeph>authKey</codeph> 字段内容。</li>
             <li><parmname>ts</parmname> : 鉴权过期时间。你可以指定再过多久鉴权过期。例如， <codeph>24h</codeph> 或 <codeph>1h30m20s</codeph>。</li>
             </ul></p>
             </note></p>

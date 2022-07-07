@@ -18,7 +18,9 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int setCameraCapturerConfiguration(const CameraCapturerConfiguration&amp; config) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetCameraCapturerConfiguration(CameraCapturerConfiguration config);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript">abstract setCameraCapturerConfiguration(
+    config: CameraCapturerConfiguration
+  ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setCameraCapturerConfiguration(
       CameraCapturerConfiguration config);</codeblock> </p>
         </section>
@@ -33,12 +35,12 @@
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry props="native flutter unity">
+            <plentry props="native flutter unity rn">
                 <pt>config</pt>
                 <pd>摄像头采集配置，详见 <xref keyref="CameraCapturerConfiguration"/>。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native unity rn">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功。</li>

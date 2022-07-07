@@ -20,10 +20,20 @@
                          gain:(double)gain
                    connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setRemoteVoicePositionEx(uid_t uid, double pan, double gain, const RtcConnection&amp; connection) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract setRemoteVoicePositionEx(uid: number, pan: number, gain: number, connection: RtcConnection): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetRemoteVoicePositionEx(uint uid, double pan, double gain, RtcConnection connection);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract setRemoteVoicePositionEx(
+    uid: number,
+    pan: number,
+    gain: number,
+    connection: RtcConnection
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setRemoteVoicePositionEx(
+      {required int uid,
+      required double pan,
+      required double gain,
+      required RtcConnection connection});
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>设置远端用户声音的空间位置和音量，方便本地用户听声辨位。</p>
@@ -45,6 +55,7 @@
                 <pd>设置远端用户声音的空间位置，取值范围为 [-1.0,1.0]:
 
 
+                    
                     <ul>
                     <li>-1.0: 声音出现在左边。</li>
                     <li>(默认）0.0: 声音出现在正前方。</li>

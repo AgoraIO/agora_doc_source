@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_enableechocancellationexternal">
-    <title><ph keyref="enableEchoCancellationExternal"/></title>
+    <title><ph keyref="enableEchoCancellationExternal" /></title>
     <shortdesc id="short"><ph id="shortdesc">开启/关闭自定义回声消除。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="enableEchoCancellationExternal"/>
+                <indexterm keyref="enableEchoCancellationExternal" />
             </keywords>
         </metadata>
     </prolog>
@@ -17,34 +17,37 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableEchoCancellationExternal:(BOOL)enabled
                     audioSourceDelay:(NSInteger)audioSourceDelay;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int enableEchoCancellationExternal(bool enabled, int audioSourceDelay) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract enableEchoCancellationExternal(enabled: boolean, audioSourceDelay: number): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp"> public abstract int EnableEchoCancellationExternal(bool enabled, int audioSourceDelay);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableEchoCancellationExternal(
+            <codeblock props="rn" outputclass="language-typescript">abstract enableEchoCancellationExternal(
+    enabled: boolean,
+    audioSourceDelay: number
+  ): number;</codeblock>
+  <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableEchoCancellationExternal(
     {required bool enabled, required int audioSourceDelay});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>调用该方法后，你可以将外部音频帧推送到自定义音频模块进行回声消除。</p>
-            <note type="attention">你需要在调用 <xref keyref="setExternalAudioSink"/> 之后、加入频道之前调用该方法。</note> </section>
+            <note type="attention">你需要在调用 <xref keyref="setExternalAudioSink" /> 之后、加入频道之前调用该方法。</note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry>
                 <pt>enabled</pt>
                 <pd>设置是否开启自定义回声消除：
-                    
+
                     <ul>
-                    <li><codeph><ph keyref="true"/></codeph>：开启。</li>
-                    <li><codeph><ph keyref="false"/></codeph>：关闭。</li>
+                    <li><codeph><ph keyref="true" /></codeph>：开启。</li>
+                    <li><codeph><ph keyref="false" /></codeph>：关闭。</li>
                     </ul> </pd>
             </plentry>
             <plentry>
                 <pt>audioSourceDelay</pt>
                 <pd>设置推送音频帧到发布音频帧中间的时间（毫秒）。取值范围为 [0,30]。
-                    
+
                     <ul>
-                    <li>如需调用 <xref keyref="pushCaptureAudioFrame1"/>，请确保该参数设为 0。</li>
-                    <li>如需调用 <xref keyref="pushReverseAudioFrame1"/> 或处理声卡采集的音频帧，请确保该参数为 10 的整数倍。</li>
+                    <li>如需调用 <xref keyref="pushCaptureAudioFrame1" />，请确保该参数设为 0。</li>
+                    <li>如需调用 <xref keyref="pushReverseAudioFrame1" /> 或处理声卡采集的音频帧，请确保该参数为 10 的整数倍。</li>
                     </ul></pd>
             </plentry>
             </parml> </section>

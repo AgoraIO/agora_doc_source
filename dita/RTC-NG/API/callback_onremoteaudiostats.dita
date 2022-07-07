@@ -19,9 +19,9 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual void onRemoteAudioStats(const RemoteAudioStats&amp; stats) {
     (void)stats;
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">onRemoteAudioStats?(connection: RtcConnection, stats: RemoteAudioStats): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteAudioStats(RtcConnection connection, RemoteAudioStats stats) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">onRemoteAudioStats?(connection: RtcConnection, stats: RemoteAudioStats): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, RemoteAudioStats stats)?
       onRemoteAudioStats;
 </codeblock> </p>
@@ -31,16 +31,16 @@
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="unity flutter">
-                    <pt>connection</pt>
-                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
-                </plentry>
+            <plentry props="unity electron rn flutter">
+                <pt>connection</pt>
+                <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+            </plentry>
             <plentry id="stats">
                 <pt>stats</pt>
                 <pd>接收到的远端音频统计数据，详见 <xref keyref="RemoteAudioStats"/>。</pd>

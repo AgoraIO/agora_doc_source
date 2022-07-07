@@ -16,14 +16,26 @@
             <codeblock props="android" outputclass="language-java">public abstract int sendStreamMessageEx(int streamId, byte[] message, RtcConnection connection);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec"/>
             <codeblock props="cpp" outputclass="language-cpp">virtual int sendStreamMessageEx(int streamId, const char* data, size_t length, const RtcConnection&amp; connection) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract sendStreamMessageEx(streamId: number, data: Uint8Array, length: number, connection: RtcConnection): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SendStreamMessageEx(int streamId, byte[] data, uint length, RtcConnection connection);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract sendStreamMessageEx(
+  streamId: number,
+  data: Uint8Array,
+  length: number,
+  connection: RtcConnection
+): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> sendStreamMessageEx(
+      {required int streamId,
+      required Uint8List data,
+      required int length,
+      required RtcConnection connection});
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>调用 <xref keyref="createDataStreamEx2"/> 后，你可以调用本方法向频道内所有用户发送数据流消息。</p>
             <p id="desc">SDK 对该方法有如下限制：
+            
+            
             <ul>
             <li>频道内每秒最多能发送 60 个包，且每个包最大为 1 KB。</li>
             <li>每个客户端每秒最多能发送 30 KB 数据。</li>
@@ -45,13 +57,13 @@
             </plentry>
             <plentry>
                 <pt props="android">message</pt>
-                <pt props="cpp unity">data</pt>
+                <pt props="cpp rn unity electron flutter">data</pt>
                 <pd>待发送的数据。</pd>
             </plentry>
-            <plentry props="cpp unity">
-                <pt>length</pt>
-                <pd>数据长度。</pd>
-            </plentry>
+            <plentry props="cpp rn unity electron flutter">
+                    <pt>length</pt>
+                    <pd>数据长度。</pd>
+                </plentry>
             <plentry conkeyref="joinChannelEx/connection">
                 <pt/>
                 <pd/>

@@ -20,9 +20,17 @@
                   connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int addPublishStreamUrlEx(const char* url, bool transcodingEnabled, const RtcConnection&amp; connection) = 0;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int AddPublishStreamUrlEx(string url, bool transcodingEnabled, RtcConnection connection);</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/></p>
+            <codeblock props="electron" outputclass="language-typescript">abstract addPublishStreamUrlEx(url: string, transcodingEnabled: boolean, connection: RtcConnection): number;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract addPublishStreamUrlEx(
+    url: string,
+    transcodingEnabled: boolean,
+    connection: RtcConnection
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">  Future&lt;void> addPublishStreamUrlEx(
+      {required String url,
+      required bool transcodingEnabled,
+      required RtcConnection connection});
+</codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>调用该方法后，你可以根据 <xref keyref="RtcConnection"/> 选择向 CDN 推送任意一路 RTMP 或 RTMPS 协议的媒体流。SDK 会在本地触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调，报告增加旁路推流地址的状态。</p>
@@ -56,6 +64,7 @@
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。
 
+                
                 <ul>
                 <li>-2: 参数无效，一般是 URL 为空或是长度为 0 的字符串。</li>
                 <li>-7: 推流时未初始化引擎。</li>

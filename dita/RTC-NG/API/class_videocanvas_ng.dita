@@ -29,7 +29,18 @@
 @property(nonatomic, assign) int sourceId;
 
 @end</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export class VideoCanvas {
+  view?: any
+  renderMode?: RenderModeType
+  mirrorMode?: VideoMirrorModeType
+  uid?: number
+  isScreenView?: boolean
+  priv?: number[]
+  priv_size?: number
+  sourceType?: VideoSourceType
+  cropArea?: Rectangle
+  setupMode?: VideoViewSetupMode
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class VideoCanvas
     {
         public VideoCanvas()
@@ -62,7 +73,18 @@
         public uint uid { set; get; }
         public VIDEO_SOURCE_TYPE sourceType { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">export class VideoCanvas {
+  view?: any;
+  renderMode?: RenderModeType;
+  mirrorMode?: VideoMirrorModeType;
+  uid?: number;
+  isScreenView?: boolean;
+  priv?: number[];
+  priv_size?: number;
+  sourceType?: VideoSourceType;
+  cropArea?: Rectangle;
+  setupMode?: VideoViewSetupMode;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class VideoCanvas {
   const VideoCanvas(
       {this.view,
@@ -99,8 +121,7 @@
   factory VideoCanvas.fromJson(Map&lt;String, dynamic> json) =>
       _$VideoCanvasFromJson(json);
   Map&lt;String, dynamic> toJson() => _$VideoCanvasToJson(this);
-}</codeblock>
-            </p>
+}</codeblock> </p>
         </section>
         <section id="detailed_desc"> </section>
         <section id="parameters">
@@ -115,8 +136,8 @@
             <plentry>
                 <pt>renderMode</pt>
                 <pd>
-                    <p props="ios mac cpp unity flutter">视频渲染模式，详见 <xref
-                    keyref="RENDER_MODE_TYPE"/>。</p>
+                    <p props="ios mac cpp unity electron rn flutter"
+                    >视频渲染模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</p>
                     <p props="android">
                     <ul conkeyref="setLocalRenderMode2/rendermodetype">
                     <li/>
@@ -126,8 +147,8 @@
             <plentry>
                 <pt>mirrorMode</pt>
                 <pd>
-                    <p props="ios mac cpp unity flutter">视图镜像模式，详见 <xref
-                    keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
+                    <p props="ios mac cpp unity electron rn flutter"
+                    >视图镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
                     <p props="android">
                     <ul conkeyref="setLocalRenderMode2/videomirrormodetype">
                     <li/>

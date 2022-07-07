@@ -61,7 +61,24 @@
   int publishDuration;
   int superResolutionType;
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export class RemoteVideoStats {
+  uid?: number
+  delay?: number
+  width?: number
+  height?: number
+  receivedBitrate?: number
+  decoderOutputFrameRate?: number
+  rendererOutputFrameRate?: number
+  frameLossRate?: number
+  packetLossRate?: number
+  rxStreamType?: VideoStreamType
+  totalFrozenTime?: number
+  frozenRate?: number
+  avSyncTimeMs?: number
+  totalActiveTime?: number
+  publishDuration?: number
+  superResolutionType?: number
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class RemoteVideoStats
     {
         public uint uid { set; get; }
@@ -81,7 +98,24 @@
         public int publishDuration { set; get; }
         public int superResolutionType { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">export class RemoteVideoStats {
+  uid?: number;
+  delay?: number;
+  width?: number;
+  height?: number;
+  receivedBitrate?: number;
+  decoderOutputFrameRate?: number;
+  rendererOutputFrameRate?: number;
+  frameLossRate?: number;
+  packetLossRate?: number;
+  rxStreamType?: VideoStreamType;
+  totalFrozenTime?: number;
+  frozenRate?: number;
+  avSyncTimeMs?: number;
+  totalActiveTime?: number;
+  publishDuration?: number;
+  superResolutionType?: number;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class RemoteVideoStats {
   const RemoteVideoStats(
       {this.uid,
@@ -136,8 +170,7 @@
   factory RemoteVideoStats.fromJson(Map&lt;String, dynamic> json) =>
       _$RemoteVideoStatsFromJson(json);
   Map&lt;String, dynamic> toJson() => _$RemoteVideoStatsToJson(this);
-}</codeblock>
-            </p>
+}</codeblock> </p>
         </section>
         <section id="parameters">
             <title><text
@@ -196,7 +229,8 @@
             </plentry>
             <plentry>
                 <pt>rxStreamType</pt>
-                <pd><ph>视频流类型，大流或小流。</ph><ph props="ios mac cpp unity flutter">详见 <xref
+                <pd><ph>视频流类型，大流或小流。</ph><ph
+                    props="ios mac cpp unity rn electron flutter">详见 <xref
                     keyref="REMOTE_VIDEO_STREAM_TYPE"/>。</ph>
                     <p props="android">
                     <ul>
@@ -209,8 +243,7 @@
             </plentry>
             <plentry>
                 <pt>totalFrozenTime</pt>
-                <pd>远端用户在加入频道后发生视频卡顿的累计时长（ms）。通话过程中，视频帧率设置不低于 5 fps 时，连续渲染的两帧视频之间间隔超过 500
-      ms，则记为一次视频卡顿。</pd>
+                <pd>远端用户在加入频道后发生视频卡顿的累计时长（ms）。通话过程中，视频帧率设置不低于 5 fps 时，连续渲染的两帧视频之间间隔超过 500 ms，则记为一次视频卡顿。</pd>
             </plentry>
             <plentry>
                 <pt>frozenRate</pt>

@@ -111,7 +111,41 @@
       rxPacketLossRate(0) {}
 };
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export class RtcStats {
+  duration?: number
+  txBytes?: number
+  rxBytes?: number
+  txAudioBytes?: number
+  txVideoBytes?: number
+  rxAudioBytes?: number
+  rxVideoBytes?: number
+  txKBitRate?: number
+  rxKBitRate?: number
+  rxAudioKBitRate?: number
+  txAudioKBitRate?: number
+  rxVideoKBitRate?: number
+  txVideoKBitRate?: number
+  lastmileDelay?: number
+  userCount?: number
+  cpuAppUsage?: number
+  cpuTotalUsage?: number
+  gatewayRtt?: number
+  memoryAppUsageRatio?: number
+  memoryTotalUsageRatio?: number
+  memoryAppUsageInKbytes?: number
+  connectTimeMs?: number
+  firstAudioPacketDuration?: number
+  firstVideoPacketDuration?: number
+  firstVideoKeyFramePacketDuration?: number
+  packetsBeforeFirstKeyFramePacket?: number
+  firstAudioPacketDurationAfterUnmute?: number
+  firstVideoPacketDurationAfterUnmute?: number
+  firstVideoKeyFramePacketDurationAfterUnmute?: number
+  firstVideoKeyFrameDecodedDurationAfterUnmute?: number
+  firstVideoKeyFrameRenderedDurationAfterUnmute?: number
+  txPacketLossRate?: number
+  rxPacketLossRate?: number
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class RtcStats
     {
         public RtcStats()
@@ -174,7 +208,41 @@
         public int txPacketLossRate { set; get; }
         public int rxPacketLossRate { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">export class RtcStats {
+  duration?: number;
+  txBytes?: number;
+  rxBytes?: number;
+  txAudioBytes?: number;
+  txVideoBytes?: number;
+  rxAudioBytes?: number;
+  rxVideoBytes?: number;
+  txKBitRate?: number;
+  rxKBitRate?: number;
+  rxAudioKBitRate?: number;
+  txAudioKBitRate?: number;
+  rxVideoKBitRate?: number;
+  txVideoKBitRate?: number;
+  lastmileDelay?: number;
+  userCount?: number;
+  cpuAppUsage?: number;
+  cpuTotalUsage?: number;
+  gatewayRtt?: number;
+  memoryAppUsageRatio?: number;
+  memoryTotalUsageRatio?: number;
+  memoryAppUsageInKbytes?: number;
+  connectTimeMs?: number;
+  firstAudioPacketDuration?: number;
+  firstVideoPacketDuration?: number;
+  firstVideoKeyFramePacketDuration?: number;
+  packetsBeforeFirstKeyFramePacket?: number;
+  firstAudioPacketDurationAfterUnmute?: number;
+  firstVideoPacketDurationAfterUnmute?: number;
+  firstVideoKeyFramePacketDurationAfterUnmute?: number;
+  firstVideoKeyFrameDecodedDurationAfterUnmute?: number;
+  firstVideoKeyFrameRenderedDurationAfterUnmute?: number;
+  txPacketLossRate?: number;
+  rxPacketLossRate?: number;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class RtcStats {
   const RtcStats(
       {this.duration,
@@ -290,7 +358,7 @@
             /></title>
             <parml>
             <plentry>
-                <pt props="ios mac cpp unity electron flutter">duration</pt>
+                <pt props="ios mac cpp unity electron flutter rn">duration</pt>
                 <pt props="android">totalDuration</pt>
                 <pd>本地用户通话时长（秒），累计值。</pd>
             </plentry>
@@ -355,7 +423,7 @@
                 <pd>使用抗丢包技术前，服务器下行发送到客户端丢包率 (%)。</pd>
             </plentry>
             <plentry>
-                <pt props="ios mac cpp electron unity flutter">userCount</pt>
+                <pt props="ios mac cpp electron rn unity flutter">userCount</pt>
                 <pt props="android">users</pt>
                 <pd>当前频道内的用户人数。</pd>
             </plentry>
@@ -363,7 +431,6 @@
                 <pt>cpuAppUsage</pt>
                 <pd>当前 App 的 CPU 使用率 (%)。
 
-                    
                     <note type="attention">
                     <ul>
                     <li><xref keyref="onLeaveChannel"
@@ -382,7 +449,7 @@
                     <ul>
                     <li><xref keyref="onLeaveChannel"
                         /> 回调中报告的 <parmname>cpuTotalUsage</parmname> 恒为 0。</li>
-                    <li props="cpp unity android"
+                    <li props="cpp unity android rn"
                         >自 Android 8.1 起，因系统限制，你无法通过该属性获取 CPU 使用率。</li>
                     </ul></note> </pd>
             </plentry>
@@ -392,13 +459,13 @@
             </plentry>
             <plentry>
                 <pt>gatewayRtt</pt>
-                <pd>客户端到本地路由器的往返时延 (ms)。 
-                        <note props="ios">
+                <pd>客户端到本地路由器的往返时延 (ms)。
+                        <note props="ios rn">
                         <p>该属性默认在 iOS 14 之前的设备上开启，在 iOS 14 及之后的设备上关闭。</p>
                         <p>如需在 iOS 14 及之后的设备上启用该属性，请<xref keyref="ticket-link"
                             />。</p>
                         </note>
-                        <note props="android cpp unity flutter"
+                        <note props="android cpp unity flutter rn"
                         >在 Android 平台上，如需获取 <parmname>gatewayRtt</parmname>，请确保已在项目 <codeph>AndroidManifest.xml</codeph> 文件的 <codeph>&lt;/application&gt;</codeph> 后面添加 <codeph>android.permission.ACCESS_WIFI_STATE</codeph> 权限。 </note></pd>
             </plentry>
             <plentry>

@@ -21,9 +21,15 @@
   (void)delay;
   (void)lost;
 }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">onAudioQuality?(connection: RtcConnection, remoteUid: number, quality: QualityType, delay: number, lost: number): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioQuality(RtcConnection connection, uint remoteUid, int quality, UInt16 delay, UInt16 lost) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">onAudioQuality?(
+  connection: RtcConnection,
+  remoteUid: number,
+  quality: QualityType,
+  delay: number,
+  lost: number
+): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid,
       QualityType quality, int delay, int lost)? onAudioQuality;
 </codeblock> </p>
@@ -41,24 +47,24 @@
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="unity flutter">
+            <plentry props="unity flutter electron rn">
                 <pt>connection</pt>
                 <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
             </plentry>
             <plentry>
                 <pt props="native">uid</pt>
-                <pt props="unity flutter"><ph>remoteUid</ph></pt>
+                <pt props="unity flutter electron rn"><ph>remoteUid</ph></pt>
                 <pd>用户 ID，指定是谁发的音频流。</pd>
             </plentry>
             <plentry>
                 <pt>quality</pt>
-                <pd>语音质量。<ph props="ios mac cpp unity flutter">详见 <xref keyref="QUALITY_TYPE"/>。</ph>
+                <pd>语音质量。<ph props="ios mac cpp unity flutter electron rn">详见 <xref keyref="QUALITY_TYPE"/>。</ph>
                     <ul conkeyref="RemoteAudioStats/qualitytype" props="android">
                     <li/>
                     </ul> </pd>

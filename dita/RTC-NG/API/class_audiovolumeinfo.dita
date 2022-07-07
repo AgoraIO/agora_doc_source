@@ -49,9 +49,34 @@
         public double voicePitch { set; get; }
     }
     </codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="electron" outputclass="language-typescript">export class AudioVolumeInfo {
+  uid?: number
+  volume?: number
+  vad?: number
+  voicePitch?: number
+}</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class AudioVolumeInfo {
+  uid?: number;
+  volume?: number;
+  vad?: number;
+  voicePitch?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class AudioVolumeInfo {
+    const AudioVolumeInfo({this.uid, this.volume, this.vad, this.voicePitch});
+  
+    @JsonKey(name: 'uid')
+    final int? uid;
+    @JsonKey(name: 'volume')
+    final int? volume;
+    @JsonKey(name: 'vad')
+    final int? vad;
+    @JsonKey(name: 'voicePitch')
+    final double? voicePitch;
+    factory AudioVolumeInfo.fromJson(Map&lt;String, dynamic> json) =>
+        _$AudioVolumeInfoFromJson(json);
+    Map&lt;String, dynamic> toJson() => _$AudioVolumeInfoToJson(this);
+  }
+  </codeblock> </p>
         </section>
         <section id="parameters">
             <title><text
@@ -62,6 +87,7 @@
                 <pt>uid</pt>
                 <pd>
                     <p>用户 ID。
+
                     
                     <ul id="ul_pfj_4dt_rqb">
                     <li>在本地用户的回调中，<parmname>uid</parmname> 为 0。</li>
@@ -71,14 +97,13 @@
             </plentry>
             <plentry>
                 <pt>volume</pt>
-                <pd><ph>用户的音量，取值范围为 [0,255]。</ph><ph props="native"
-                    >如果用户调用了 <xref keyref="startAudioMixing2"
-                    />，则 <parmname>volume</parmname> 为用户混音后的音量。</ph></pd>
+                <pd><ph>用户的音量，取值范围为 [0,255]。</ph><ph props="native">如果用户调用了 <xref keyref="startAudioMixing2"/>，则 <parmname>volume</parmname> 为用户混音后的音量。</ph></pd>
             </plentry>
             <plentry>
                 <pt>vad</pt>
                 <pd>
                     <p>本地用户的人声状态。
+
                     
                     <ul>
                     <li>0：本地无人声。</li>

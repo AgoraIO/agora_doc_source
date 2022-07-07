@@ -69,7 +69,11 @@
     return "aes-128-gcm-2";
   }
 };    </codeblock>
-      <codeblock props="electron" outputclass="language-typescript"/>
+      <codeblock props="electron" outputclass="language-typescript">export class EncryptionConfig {
+  encryptionMode?: EncryptionMode
+  encryptionKey?: string
+  encryptionKdfSalt?: number[]
+}</codeblock>
       <codeblock props="unity" outputclass="language-csharp">public class EncryptionConfig
     {
         public EncryptionConfig()
@@ -96,7 +100,11 @@
             get { return encryptionKdfSalt32; }
         }
     }</codeblock>
-      <codeblock props="rn" outputclass="language-typescript"/>
+      <codeblock props="rn" outputclass="language-typescript">export class EncryptionConfig {
+  encryptionMode?: EncryptionMode;
+  encryptionKey?: string;
+  encryptionKdfSalt?: number[];
+}</codeblock>
       <codeblock props="flutter" outputclass="language-dart">class EncryptionConfig {
   const EncryptionConfig(
       {this.encryptionMode, this.encryptionKey, this.encryptionKdfSalt});

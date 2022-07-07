@@ -17,7 +17,7 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int setEnableSpeakerphone(bool speakerOn) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetEnableSpeakerphone(bool speakerOn);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">abstract setEnableSpeakerphone(speakerOn: boolean): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setEnableSpeakerphone(bool speakerOn);</codeblock> </section>
         <section id="detailed_desc">
             <note props="cpp unity flutter">该方法仅适用于 Android 和 iOS 平台。</note>
@@ -27,7 +27,7 @@
             <ul>
             <li>如无明确的暂态设置需求，Agora 推荐调用稳态 API <xref keyref="setDefaultAudioRouteToSpeakerphone"/> 设置音频路由。</li>
             <li>任何用户行为或者音频相关 API 的调用都有可能改变 <apiname keyref="setEnableSpeakerphone"/> 的暂态设置。<ph props="native">详细的路由更改原则请参考<xref keyref="guide-audio-route">音频路由</xref>。</ph></li>
-            <li props="ios cpp unity">由于系统限制，在 iOS 设备上，如果用户使用了蓝牙耳机、有线耳机等外接音频播放设备，则该方法无法将音频路由设置为扬声器。</li>
+            <li props="ios cpp unity rn">由于系统限制，在 iOS 设备上，如果用户使用了蓝牙耳机、有线耳机等外接音频播放设备，则该方法无法将音频路由设置为扬声器。</li>
             </ul></note> </section>
         <section id="parameters">
             <title>参数</title>
@@ -35,12 +35,12 @@
             <plentry>
                 <pt props="android">enabled</pt>
                 <pt props="ios mac">enableSpeaker</pt>
-                <pt props="cpp unity flutter">speakerOn</pt>
+                <pt props="cpp unity flutter rn">speakerOn</pt>
                 <pd>
                     <p>是否使用扬声器作为当前音频路由：
 
 
-                    
+
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 暂时设置扬声器为音频路由。</li>
                     <li><codeph><ph keyref="false"/></codeph>: 不将当前音频路由设为扬声器。</li>
@@ -48,7 +48,7 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native unity rn">
             <title>返回值</title>
             <ul id="ul_ahk_23f_3qb">
             <li>0: 方法调用成功。</li>

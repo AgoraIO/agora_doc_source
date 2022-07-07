@@ -17,9 +17,9 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)createDataStream:(NSInteger * _Nonnull)streamId
                   config:(AgoraDataStreamConfig * _Nonnull)config;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int createDataStream(int* streamId, DataStreamConfig&amp; config) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract createDataStream(config: DataStreamConfig): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int CreateDataStream(ref int streamId, DataStreamConfig config);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">abstract createDataStream(config: DataStreamConfig): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; createDataStream(DataStreamConfig config);</codeblock></p>
         </section>
         <section id="detailed_desc">
@@ -35,7 +35,7 @@
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry props="cpp ios mac unity flutter" id="streamId">
+            <plentry props="cpp ios mac unity" id="streamId">
                 <pt>streamId</pt>
                 <pd>输出参数，数据流 ID。</pd>
             </plentry>
@@ -48,7 +48,7 @@
             <title>返回值</title>
             <ul>
             <li props="cpp ios mac">0: 创建数据流成功。</li>
-            <li props="android electron unity flutter">创建的数据流的 ID：方法调用成功。</li>
+            <li props="android electron unity flutter rn">创建的数据流的 ID：方法调用成功。</li>
             <li>&lt; 0：方法调用失败。</li>
             </ul> </section>
     </refbody>

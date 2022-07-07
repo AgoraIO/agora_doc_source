@@ -18,10 +18,11 @@
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec"/>
             <codeblock props="cpp" outputclass="language-cpp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract registerEventHandler(eventHandler: IRtcEngineEventHandler): boolean;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract void InitEventHandler(IRtcEngineEventHandler engineEventHandler);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract registerEventHandler(eventHandler: IRtcEngineEventHandler): boolean;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">void registerEventHandler(RtcEngineEventHandler eventHandler);</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p><xref keyref="IRtcEngineEventHandler"/> 接口类用于 SDK 向 app 发送回调事件通知，app 通过继承该接口类的方法获取 SDK 的事件通知。
@@ -34,6 +35,7 @@
             <plentry>
                 <pt props="android">handler</pt>
                 <pt props="unity">engineEventHandler</pt>
+                <pt props="rn electron flutter">eventHandler</pt>
                 <pd>待添加的回调事件，详见 <xref keyref="IRtcEngineEventHandler"/>。</pd>
             </plentry>
             </parml> </section>

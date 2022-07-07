@@ -17,10 +17,14 @@
             <codeblock props="mac" outputclass="language-objectivec">- (int)enableLoopbackRecordingEx:(BOOL)enabled
                     connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int enableLoopbackRecordingEx(bool enabled, const RtcConnection&amp; connection) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract enableLoopbackRecordingEx(connection: RtcConnection, enabled: boolean, deviceName?: string): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int EnableLoopbackRecordingEx(bool enabled, RtcConnection connection);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableLoopbackRecordingEx(
+      {required RtcConnection connection,
+      required bool enabled,
+      String? deviceName});
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>启用声卡采集功能后，声卡播放的声音会被合到本地音频流中，从而可以发送到远端。</p>
@@ -37,11 +41,16 @@
             <plentry>
                 <pt>enabled</pt>
                 <pd>是否开启声卡采集：
+                    
                     <ul id="ul_kgm_wbx_jqb">
                     <li><codeph><ph keyref="true"/></codeph>: 开启声卡采集。</li>
                     <li><codeph><ph keyref="false"/></codeph>:（默认）不开启声卡采集。</li>
                     </ul></pd>
             </plentry>
+                <plentry props="electron flutter">
+                    <pt>deviceName</pt>
+                    <pd>设备名称。</pd>
+                </plentry>
             </parml> </section>
         <section id="return_values">
             <title>返回值</title>

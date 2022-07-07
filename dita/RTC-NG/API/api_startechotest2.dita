@@ -18,9 +18,9 @@
                   successBlock:(void(^ _Nullable)
                   (NSString * _Nonnull channel, NSUInteger uid, NSInteger elapsed))successBlock;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int startEchoTest(int intervalInSeconds) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract startEchoTest(intervalInSeconds?: number): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int StartEchoTest(int intervalInSeconds);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">abstract startEchoTest(intervalInSeconds?: number): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> startEchoTest({int intervalInSeconds = 10});</codeblock></p>
         </section>
         <section id="detailed_desc">
@@ -37,7 +37,7 @@
             <title>参数</title>
             <parml>
             <plentry>
-                <pt props="android cpp unity flutter">intervalInSeconds</pt>
+                <pt props="android cpp unity flutter rn electron">intervalInSeconds</pt>
                 <pt props="ios mac">interval</pt>
                 <pd>设置返回语音通话回路测试结果的时间间隔，取值范围为 [2,10]，单位为秒，默认为 10 秒。</pd>
             </plentry>
@@ -46,7 +46,7 @@
                 <pd>成功开始语音通话测试回调。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功</li>
