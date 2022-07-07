@@ -1,68 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onfirstlocalvideoframe">
-     <title><ph keyref="onFirstLocalVideoFrame" /></title>
-     <shortdesc id="short"><ph id="shortdesc">Occurs when the first local video frame is rendered.</ph></shortdesc>
+     <title> <ph keyref="onFirstLocalVideoFrame"/> </title>
+     <shortdesc id="short"><ph id="shortdesc">Occurs when the first local video frame is displayed on the local video view.</ph></shortdesc>
      <prolog>
           <metadata>
                <keywords>
-                    <indexterm keyref="onFirstLocalVideoFrame" />
+                    <indexterm keyref="onFirstLocalVideoFrame"/>
                </keywords>
           </metadata>
      </prolog>
-     <refbody><section id="prototype">
-         <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public void onFirstLocalVideoFrame(int width, int height, int elapsed) {}</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+     <refbody>
+          <section id="prototype">
+               <p outputclass="codeblock">
+               <codeblock props="android" outputclass="language-java">public void onFirstLocalVideoFrame(int width, int height, int elapsed) {}</codeblock>
+               <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
                      firstLocalVideoFrameWithSize:(CGSize)size
                      elapsed:(NSInteger)elapsed;</codeblock>
-                <codeblock props="cpp" outputclass="language-cpp">virtual void onFirstLocalVideoFrame(int width,
+               <codeblock props="cpp" outputclass="language-cpp">virtual void onFirstLocalVideoFrame(int width,
      int height,
      int elapsed) {
      (void)width;
      (void)height;
      (void)elapsed;
      }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.FIRST_LOCAL_VIDEO_FRAME, cb: (
-     width: number,
-     height: number,
-     elapsed: number) =&gt; void
-     ): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstLocalVideoFrame(int width, int height, int elapsed)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">VideoFrameCallback? firstLocalVideoFrame;</codeblock>
-        </p>
+               <codeblock props="electron" outputclass="language-typescript">onFirstLocalVideoFrame?(connection: RtcConnection, width: number, height: number, elapsed: number): void;</codeblock>
+               <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstLocalVideoFrame(RtcConnection connection, int width, int height, int elapsed) {}</codeblock>
+               <codeblock props="rn" outputclass="language-typescript">onFirstLocalVideoFrame?(
+  connection: RtcConnection,
+  width: number,
+  height: number,
+  elapsed: number
+): void;</codeblock>
+               <codeblock props="flutter" outputclass="language-dart">final void Function(
+          RtcConnection connection, int width, int height, int elapsed)?
+      onFirstLocalVideoFrame;
+</codeblock> </p>
           </section>
           <section id="detailed_desc">
-               <p id="desc">The SDK triggers this callback when the first local video frame is displayed/rendered on the local video view.</p>
+               <p id="desc">This callback is triggered when the first local video frame is displayed on the local view.</p>
           </section>
           <section id="parameters">
-               <title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+               <title><ph keyref="callback-section-title"/></title>
+               <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
                <parml>
-                    <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                         <pt />
-                         <pd />
-                    </plentry>
-                    <plentry props="ios mac">
-                         <pt>size</pt>
-                         <pd>The size of the first local video frame.</pd>
-                    </plentry>
-                    <plentry props="android cpp unity flutter">
-                         <pt>width</pt>
-                         <pd>The width (px) of the first local video frame.</pd>
-                    </plentry>
-                    <plentry props="android cpp unity flutter">
-                         <pt>height</pt>
-                         <pd>The height (px) of the first local video frame.</pd>
-                    </plentry>
-                    <plentry>
-                         <pt>elapsed</pt>
-                         <pd>The time elapsed (ms) from the local user calling <apiname keyref="joinChannel2" />until the SDK triggers this callback. If you
-                              call <xref keyref="startPreview" /> before calling <apiname keyref="joinChannel2" />, then this parameter is the time elapsed from
-                              calling the <apiname keyref="startPreview" /> method until the SDK
-                              triggers this callback.</pd>
-                    </plentry>
-               </parml>
-          </section>
+               <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                    <pt/>
+                    <pd/>
+               </plentry>
+               <plentry props="ios mac">
+                    <pt>size</pt>
+                    <pd>The size of the rendered local view.</pd>
+               </plentry>
+               <plentry props="unity electron rn flutter">
+                    <pt>connection</pt>
+                    <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
+               </plentry>
+               <plentry props="android cpp unity electron rn flutter">
+                    <pt>width</pt>
+                    <pd>The width (px) of the first local video frame.</pd>
+               </plentry>
+               <plentry props="android cpp unity electron rn flutter">
+                    <pt>height</pt>
+                    <pd>The height (px) of the first local video frame.</pd>
+               </plentry>
+               <plentry>
+                    <pt>elapsed</pt>
+                    <pd>The time elapsed (ms) from the local user calling <apiname keyref="joinChannel2"/> until the SDK triggers this callback. If you call <xref keyref="startPreview" props="native unity"/> <xref keyref="startPreview2" props="rn electron flutter"/> before calling <apiname keyref="joinChannel2"/>, then this parameter is the time elapsed from calling the <apiname keyref="startPreview" props="native unity"/> <apiname keyref="startPreview2" props="rn electron flutter"/> method until the SDK triggers this callback.</pd>
+               </plentry>
+               </parml> </section>
      </refbody>
 </reference>
