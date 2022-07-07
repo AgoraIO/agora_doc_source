@@ -105,8 +105,8 @@
 @property (assign, nonatomic) AgoraAudioScenario audioScenario;
 @property (assign, nonatomic) AgoraAreaCodeType areaCode;
 @property (strong, nonatomic) AgoraLogConfig * _Nullable logConfig;
-@property (copy, nonatomic) NSArray&lt;id&lt;AgoraMediaFilterExtensionDelegate>>* _Nullable mediaFilterExtensions;
-@property (weak, nonatomic) id&lt;AgoraMediaFilterEventDelegate> _Nullable eventDelegate;
+@property (copy, nonatomic) NSArray&lt;id&lt;AgoraMediaFilterExtensionDelegate&gt;&gt;* _Nullable mediaFilterExtensions;
+@property (weak, nonatomic) id&lt;AgoraMediaFilterEventDelegate&gt; _Nullable eventDelegate;
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct RtcEngineContext {
   IRtcEngineEventHandler* eventHandler;
@@ -125,40 +125,99 @@
         areaCode(AREA_CODE_GLOB),
         logConfig() {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public class RtcEngineContext
+            <codeblock props="electron" outputclass="language-typescript">export class RtcEngineContext {
+  appId?: string
+  enableAudioDevice?: boolean
+  channelProfile?: ChannelProfileType
+  audioScenario?: AudioScenarioType
+  areaCode?: number
+  logConfig?: LogConfig
+  threadPriority?: ThreadPriorityType
+  useExternalEglContext?: boolean
+}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class RtcEngineContext : OptionalJsonParse
     {
-        public RtcEngineContext(IAgoraRtcEngineEventHandler eventHandler, string appId, byte[] context,
+        public RtcEngineContext()
+        {
+            eventHandler = null;
+            appId = "";
+            context = 0;
+            enableAudioDevice = true;
+            channelProfile = CHANNEL_PROFILE_TYPE.CHANNEL_PROFILE_LIVE_BROADCASTING;
+            audioScenario = AUDIO_SCENARIO_TYPE.AUDIO_SCENARIO_DEFAULT;
+            areaCode = AREA_CODE.AREA_CODE_GLOB;
+            logConfig = new LogConfig();
+            useExternalEglContext = false;
+        }
+
+
+        public RtcEngineContext(string appId, UInt64 context,
             bool enableAudioDevice, CHANNEL_PROFILE_TYPE channelProfile, AUDIO_SCENARIO_TYPE audioScenario,
             AREA_CODE areaCode = AREA_CODE.AREA_CODE_CN,
             LogConfig logConfig = null)
         {
-            this.eventHandler = eventHandler;
             this.appId = appId;
             this.context = context;
             this.enableAudioDevice = enableAudioDevice;
             this.channelProfile = channelProfile;
             this.audioScenario = audioScenario;
-            _areaCode = (uint) areaCode;
+            this.areaCode = areaCode;
             this.logConfig = logConfig ?? new LogConfig();
         }
 
-
-        public IAgoraRtcEngineEventHandler eventHandler { set; get; }
+        private IRtcEngineEventHandler eventHandler = null;
         public string appId { set; get; }
-        public byte[] context { set; get; }
+        public UInt64 context { set; get; }
         public bool enableAudioDevice { set; get; }
         public CHANNEL_PROFILE_TYPE channelProfile { set; get; }
         public AUDIO_SCENARIO_TYPE audioScenario { set; get; }
         public LogConfig logConfig { set; get; }
-        public AREA_CODE areaCode
-        {
-            get { return (AREA_CODE) _areaCode; }
-            set { _areaCode = (uint) areaCode; }
-        }
+        public AREA_CODE areaCode { set; get; }
+        public Optional&lt;THREAD_PRIORITY_TYPE&gt; threadPriority = new Optional&lt;THREAD_PRIORITY_TYPE&gt;();
+        public bool useExternalEglContext { set; get; }
     };</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">export class RtcEngineContext {
+  appId?: string;
+  enableAudioDevice?: boolean;
+  channelProfile?: ChannelProfileType;
+  audioScenario?: AudioScenarioType;
+  areaCode?: number;
+  logConfig?: LogConfig;
+  threadPriority?: ThreadPriorityType;
+  useExternalEglContext?: boolean;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class RtcEngineContext {
+  const RtcEngineContext(
+      {this.appId,
+      this.enableAudioDevice,
+      this.channelProfile,
+      this.audioScenario,
+      this.areaCode,
+      this.logConfig,
+      this.threadPriority,
+      this.useExternalEglContext});
+
+  @JsonKey(name: 'appId')
+  final String? appId;
+  @JsonKey(name: 'enableAudioDevice')
+  final bool? enableAudioDevice;
+  @JsonKey(name: 'channelProfile')
+  final ChannelProfileType? channelProfile;
+  @JsonKey(name: 'audioScenario')
+  final AudioScenarioType? audioScenario;
+  @JsonKey(name: 'areaCode')
+  final int? areaCode;
+  @JsonKey(name: 'logConfig')
+  final LogConfig? logConfig;
+  @JsonKey(name: 'threadPriority')
+  final ThreadPriorityType? threadPriority;
+  @JsonKey(name: 'useExternalEglContext')
+  final bool? useExternalEglContext;
+  factory RtcEngineContext.fromJson(Map&lt;String, dynamic> json) =>
+      _$RtcEngineContextFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$RtcEngineContextToJson(this);
+}</codeblock>
+            </p>
         </section>
         <section id="parameters">
             <title><text
@@ -168,12 +227,17 @@
             <plentry props="cpp android unity">
                 <pt props="cpp unity">eventHandler</pt>
                 <pt props="android">mEventHandler</pt>
-                <pd id="eventhandler">The event handler for <xref keyref="IRtcEngine"/>. See <xref keyref="IRtcEngineEventHandler"/>.</pd>
+                <pd id="eventhandler">The event handler for <xref keyref="IRtcEngine"/>. See <xref
+                    keyref="IRtcEngineEventHandler"/>.</pd>
             </plentry>
             <plentry>
-                <pt props="cpp ios mac unity">appId</pt>
+                <pt props="cpp ios mac unity electron rn flutter">appId</pt>
                 <pt props="android">mAppId</pt>
-                <pd id="appid">The App ID issued by Agora for your project. Only users in apps with the same App ID can join the same channel and communicate with each other. An App ID can only be used to create one <apiname keyref="IRtcEngine"/> instance. To change your App ID, call <xref keyref="release"/> to destroy the current <apiname keyref="IRtcEngine"/> instance, and then create a new one.</pd>
+                <pd id="appid"
+                    >The App ID issued by Agora for your project. Only users in apps with the same App ID can join the same channel and communicate with each other. An App ID can only be used to create one <apiname
+                    keyref="IRtcEngine"/> instance. To change your App ID, call <xref
+                    keyref="release"/> to destroy the current <apiname keyref="IRtcEngine"
+                    /> instance, and then create a new one.</pd>
             </plentry>
             <plentry props="android cpp unity">
                 <pt props="cpp unity">context</pt>
@@ -187,18 +251,22 @@
                 </pd>
             </plentry>
             <plentry props="android">
-                  <pt>mNativeLibPath</pt>
-                  <pd><p>Specifies the storage directory for the <codeph>.so</codeph> files. The storage directory must be a valid and private directory of the app, which can be obtained using <codeph>Context.getDir()</codeph>.</p>
+                <pt>mNativeLibPath</pt>
+                <pd>
+                    <p>Specifies the storage directory for the <codeph>.so</codeph> files. The storage directory must be a valid and private directory of the app, which can be obtained using <codeph>Context.getDir()</codeph>.</p>
                     <ul>
-                      <li>If you set this parameter, the SDK automatically loads the <codeph>.so</codeph> files in the directory you specify, so that the app dynamically loads the required <codeph>.so</codeph> files when it runs, thereby reducing the package size.</li>
-                      <li>If you do not set this parameter or set it to null, the SDK loads the <codeph>.so</codeph>files from the default app's <codeph>nativeLibraryPath</codeph> when compiling the app, which increases the package size compared to the previous method.</li></ul>
-                    <note type="attention"><ul>
-                      <li>This method is applicable when you integrate the SDK manually but not when you integrate the SDK with Maven Central or JitPack.</li>
-                      <li>Ensure the specified directory exists; otherwise, the <xref keyref="IRtcEngine"/> initialization fails.</li></ul></note>
-                  </pd>
-                </plentry>
-            <plentry props="android cpp unity">
-                <pt props="cpp unity">enableAudioDevice</pt>
+                    <li>If you set this parameter, the SDK automatically loads the <codeph>.so</codeph> files in the directory you specify, so that the app dynamically loads the required <codeph>.so </codeph> files when it runs, thereby reducing the package size.</li>
+                    <li>If you do not set this parameter or set it to null, the SDK loads the <codeph>.sofiles</codeph> from the default app's <codeph>nativeLibraryPath</codeph> when compiling the app, which increases the package size compared to the previous method.</li>
+                    </ul>
+                    <note type="attention">
+                    <ul>
+                    <li>This method is applicable when you integrate the SDK manually but not when you integrate the SDK with Maven Central or JitPack.</li>
+                    <li>Ensure the specified directory exists; otherwise, the <xref keyref="IRtcEngine"
+                        /> initialization fails.</li>
+                    </ul></note> </pd>
+            </plentry>
+            <plentry props="android cpp unity electron rn">
+                <pt props="cpp unity electron rn flutter">enableAudioDevice</pt>
                 <pt props="android">mEnableAudioDevice</pt>
                 <pd>Whether to allow the SDK to use audio devices:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: (Default) Allow the SDK to use audio devices.</li>
@@ -206,32 +274,35 @@
                     </ul></pd>
                 <pd>
                     <note type="attention">
-                    <p>If you need to get the mixed remote audio data through <xref keyref="pullAudioFrame"/>, ensure that you set this parameter as <codeph><ph keyref="false"/></codeph>.</p>
+                    <p>If you need toget the mixed remote audio data through <xref keyref="pullAudioFrame" props="native" />, ensure that you set this parameter as <codeph><ph keyref="false" /></codeph>.</p>
                     </note> </pd>
             </plentry>
             <plentry>
-                <pt props="cpp ios mac unity">channelProfile</pt>
+                <pt props="cpp ios mac unity electron rn flutter">channelProfile</pt>
                 <pt props="android">mChannelProfile</pt>
                 <pd conkeyref="setChannelProfile/channelprofiletype"/>
             </plentry>
             <plentry>
-                <pt props="cpp ios mac unity">audioScenario</pt>
+                <pt props="cpp ios mac unity electron rn flutter">audioScenario</pt>
                 <pt props="android">mAudioScenario</pt>
                 <pd conkeyref="setAudioProfile/scenario-ng"/>
             </plentry>
             <plentry>
-                <pt props="cpp ios mac unity">areaCode</pt>
+                <pt props="cpp ios mac unity electron rn flutter">areaCode</pt>
                 <pt props="android">mAreaCode</pt>
-                <pd>The region for connection. This is an advanced feature and applies to scenarios that have regional restrictions. For the regions that Agora supports, see <xref keyref="AREA_CODE"/>. The area codes support bitwise operation.<p>After specifying the region, the app integrated with the Agora SDK connects to the Agora servers within that region.</p>
+                <pd>The region for connection. This is an advanced feature and applies to scenarios that have regional restrictions. For the regions that Agora supports, see <xref
+                    keyref="AREA_CODE"/>. The area codes support bitwise operation.<p>After specifying the region, the app integrated with the Agora SDK connects to the Agora servers within that region.</p>
                 </pd>
             </plentry>
             <plentry>
-                <pt props="cpp ios mac unity">logConfig</pt>
+                <pt props="cpp ios mac unity electron rn flutter">logConfig</pt>
                 <pt props="android">mLogConfig</pt>
-                <pd><p>The log files that the SDK outputs. See <xref keyref="LogConfig"/>.</p>
-                        <p>By default, the SDK generates five SDK log files and five API call log files with the following rules:</p>
-                        <ul conkeyref="setLogFileSize/logprinciple"><li></li></ul>
-                      </pd>
+                <pd>
+                    <p>The log files that the SDK outputs. See <xref keyref="LogConfig"/>.</p>
+                    <p>By default, the SDK generates five SDK log files and five API call log files with the following rules:</p>
+                    <ul conkeyref="setLogFileSize/logprinciple">
+                    <li/>
+                    </ul> </pd>
             </plentry>
             <plentry props="android">
                 <pt>mExtensionList</pt>
