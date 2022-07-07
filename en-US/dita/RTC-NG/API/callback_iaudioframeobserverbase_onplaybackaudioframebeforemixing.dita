@@ -17,13 +17,13 @@
                 public abstract boolean onPlaybackAudioFrameBeforeMixing(int userId, int type,
                 int samplesPerChannel, int bytesPerSample, int channels, int samplesPerSec, ByteBuffer buffer,
                 long renderTimeMs, int avsync_type);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onPlaybackAudioFrameBeforeMixing:(AgoraAudioFrame* _Nonnull)frame uid:(NSUInteger)uid;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual bool onPlaybackAudioFrameBeforeMixing(rtc::uid_t uid, AudioFrame&amp; audioFrame) = 0;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnPlaybackAudioFrameBeforeMixing(uint uid, AudioFrame audio_frame)
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnPlaybackAudioFrameBeforeMixing(string channelId, uint uid, AudioFrame audioFrame)
         {
             return true;
         }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onPlaybackAudioFrameBeforeMixing:(AgoraAudioFrame* _Nonnull)frame uid:(NSUInteger)uid;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
@@ -36,11 +36,14 @@
                 <pd>The user ID of the specified user.</pd>
             </plentry>
             <plentry props="cpp unity ios mac">
-                <pt props="cpp">audioFrame</pt>
-                <pt props="unity">audio_frame</pt>
+                <pt props="cpp unity">audioFrame</pt>
                 <pt props="ios mac">frame</pt>
-                <pd>The audio frame. See <xref keyref="AudioFrame"/>.</pd>
+                <pd>The raw audio data. See <xref keyref="AudioFrame"/>.</pd>
             </plentry>
+                <plentry props="unity" conkeyref="onMixedAudioFrame/id">
+                    <pt></pt>
+                    <pd></pd>
+                </plentry>
             </parml>
             <parml props="android">
             <plentry conkeyref="onMixedAudioFrame/type">
