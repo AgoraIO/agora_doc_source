@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_enableechocancellationexternal">
+    <title><ph keyref="enableEchoCancellationExternal" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Turns custom echo cancellation on/off.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableEchoCancellationExternal" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int enableEchoCancellationExternal(boolean enabled, int audioSourceDelay);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableEchoCancellationExternal:(BOOL)enabled
+                    audioSourceDelay:(NSInteger)audioSourceDelay;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int enableEchoCancellationExternal(bool enabled, int audioSourceDelay) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract enableEchoCancellationExternal(enabled: boolean, audioSourceDelay: number): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp"> public abstract int EnableEchoCancellationExternal(bool enabled, int audioSourceDelay);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract enableEchoCancellationExternal(
+    enabled: boolean,
+    audioSourceDelay: number
+  ): number;</codeblock>
+  <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableEchoCancellationExternal(
+    {required bool enabled, required int audioSourceDelay});</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>After calling this method, you can push external audio frames to the custom audio module for echo cancellation.</p>
+            <note type="attention">You need to call this method<xref keyref="setExternalAudioSink" /> after calling , but before joining the channel.</note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>enabled</pt>
+                <pd>Set whether to enable custom echo cancellation:<ul>
+                    <li><codeph><ph keyref="true" /></codeph>: Turn on.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Off.</li>
+                    </ul> </pd>
+            </plentry>
+            <plentry>
+                <pt>audioSourceDelay</pt>
+                <pd>Sets the time (in milliseconds) between pushing audio frames and publishing audio frames. The value range is [0, 100].<ul>
+                    <li>To call<xref keyref="pushCaptureAudioFrame1" /> , make sure this parameter is set to 0.</li>
+                    <li>To call<xref keyref="pushReverseAudioFrame1" /> or process the audio frame captured by the sound card, please make sure that this parameter is an integer multiple of 10.</li>
+                    </ul></pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native unity">
+            <title>Returns</title>
+            <ul>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
+    </refbody>
+</reference>
