@@ -28,22 +28,22 @@
         </section>
         <section id="detailed_desc">
             <p>After calling this method, you can push external audio frames to the custom audio module for echo cancellation.</p>
-            <note type="attention">You need to call this method<xref keyref="setExternalAudioSink" /> after calling , but before joining the channel.</note> </section>
+            <note type="attention">You need to call this method after calling <xref keyref="setExternalAudioSink" />, but before joining the channel.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>enabled</pt>
                 <pd>Set whether to enable custom echo cancellation:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Turn on.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Off.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: Enable custom echo cancellation.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Disable custom echo cancellation.</li>
                     </ul> </pd>
             </plentry>
             <plentry>
                 <pt>audioSourceDelay</pt>
                 <pd>Sets the time (in milliseconds) between pushing audio frames and publishing audio frames. The value range is [0, 100].<ul>
-                    <li>To call<xref keyref="pushCaptureAudioFrame1" /> , make sure this parameter is set to 0.</li>
-                    <li>To call<xref keyref="pushReverseAudioFrame1" /> or process the audio frame captured by the sound card, please make sure that this parameter is an integer multiple of 10.</li>
+                    <li>To call <xref keyref="pushCaptureAudioFrame1" />, make sure this parameter is set to 0.</li>
+                    <li>To call <xref keyref="pushReverseAudioFrame1" /> or process the audio frame captured by the sound card, please make sure that this parameter is an integer multiple of 10.</li>
                     </ul></pd>
             </plentry>
             </parml> </section>
