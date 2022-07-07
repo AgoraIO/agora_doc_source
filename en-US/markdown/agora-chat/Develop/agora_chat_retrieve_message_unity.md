@@ -39,7 +39,7 @@ SDKClient.Instance.ChatManager.GetConversationsFromServer(new ValueCallBack<List
 ));
 ```
 
-By default, the SDK retrieves the last ten conversations in the past seven days, and each conversation contains one last historical message. To adjust the time limit or the number of conversations retrieved, contact sales@agora.io.
+By default, the SDK retrieves the last ten conversations in the past seven days, and each conversation contains one last historical message. To adjust the time limit or the number of conversations retrieved, contact support@agora.io.
 
 ### Retrieve historial messages of the specified conversation
 

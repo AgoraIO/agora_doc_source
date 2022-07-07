@@ -7,7 +7,7 @@ This page shows how to use the Agora Chat SDK to implement managing user attribu
 ## Understand the tech
 
 The Agora Chat SDK uses `UserInfoManager` to retrieve, set, and modify user attributes. Followings are the core methods:
-- `updateOwnUserInfo`: Set or update user attributes.
+- `updateUserInfo`: Set or update user attributes.
 - `fetchUserInfoById`: Retrieve the user attributes of the specified user.
 
 ## Prerequisites
@@ -40,7 +40,7 @@ let options = {
           merit: 'Hello, world！'
         })
 }
-WebIM.conn.updateOwnUserInfo(options).then((res) => {
+WebIM.conn.updateUserInfo(options).then((res) => {
     console.log(res)
 })      
 ```
@@ -48,7 +48,7 @@ WebIM.conn.updateOwnUserInfo(options).then((res) => {
 The following sample code uses nickname as an example to show how to set the specified user attribute:
 
 ```javascript
-WebIM.conn.updateOwnUserInfo('nickname', 'Your nickname').then((res) => {
+WebIM.conn.updateUserInfo('nickname', 'Your nickname').then((res) => {
     console.log(res)
 })
 ```

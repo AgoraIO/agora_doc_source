@@ -10,19 +10,19 @@ This page shows how to implement sending and receiving these messages using the 
 
 ## Understand the tech
 
-The Agora Chat SDK uses the `IChatMessage` and `Message` classes to send, receive, and withdraw messages.
+The Agora Chat SDK uses the `ChatManager` class to send, receive, and withdraw messages.
 
 The process of sending and receiving a message is as follows:
 
-1. The message sender creates a text, file, or attachment message using the corresponding `Create` method.
-2. The message sender calls `SendMessage` to send the message.
-3. The message recipient calls `AddChatManagerDelegate` to listens for message events and receives the message in the `OnMessageReceived` callback.
+1. The message sender creates a text, file, or attachment message using the corresponding `create` method.
+2. The message sender calls `sendMessage` to send the message.
+3. The message recipient calls `addMessageListener` to listens for message events and receives the message in the `OnMessageReceived` callback.
 
 ## Prerequistes
 
 Before proceeding, ensure that you meet the following requirements:
-- You have integrated the Agora Chat SDK, initialized the SDK and implemented the functionality of registering accounts and login. For details, see [Get Started with Agora Chat](./agora_chat_get_started_unity?platform=Unity).
-- You understand the API call frequency limits as described in [Limitations](./agora_chat_limitation?platform=Unity).
+- You have integrated the Agora Chat SDK, initialized the SDK and implemented the functionality of registering accounts and login. For details, see [Get Started with Agora Chat](./agora_chat_get_started_android?platform=Android).
+- You understand the API call frequency limits as described in [Limitations](./agora_chat_limitation?platform=Android).
 
 ## Implementation
 
@@ -30,77 +30,79 @@ This section shows how to implement sending and receiving the various types of m
 
 ### Send a text message
 
-Use the `Message` class to create a text message, and `IChannelManager` to send the message. 
+Use the `ChaMessage` class to create a text message, and send the message. 
 
-```C#
-// Call CreateTextSendMessage to create a text message. Set `content` as the content of the text message, and `toChatUsernames` the user ID of the message recipient.
-Message msg = Message.CreateTextSendMessage(toChatUsername, content);
-// Set the message type using the `MessageType` attribute in `Message`.
+```java
+// Call createTextSendMessage to create a text message. Set content as the content of the text message, and toChatUsernames the user ID of the message recipient.
+ChatMessage message = ChatMessage.createTxtSendMessage(content, toChatUsername); 
+// Set the message type using the MessageType attribute in Message.
 // You can set `MessageType` as `Chat`, `Group`, or `Room`, which indicates whether to send the message to a peer user, a chat group, or a chat room.  
-msg.MessageType = MessageType.Group;
-// Call SendMessage to send the message.
-// When sending the message, you can instantiate a `Callback` object to listen for the result of the message sending. You can also update the message state in this callback, for example, by adding a pop-up box that reminds the message sending fails.
-SDKClient.Instance.ChatManager.SendMessage(ref msg, new CallBack(
-  onSuccess: () => {
-    Debug.Log($"{msg.MsgId} Message sending succeeds.");
-  },
-  onError:(code, desc) => {
-    Debug.Log($"{msg.MsgId} Message sending fails, errCode={code}, errDesc={desc}");
-  }            
-));
+message.setChatType(ChatType.GroupChat); 
+ // Send the message 
+ ChatClient.getInstance().chatManager().sendMessage(message);
+```
+
+```java
+// Calls setMessageStatusCallback to set the callback instance to get the status of messaging sending. You can update the status of messages in this callback, for example, adding a tip when the message sending fails.
+ message.setMessageStatusCallback(new CallBack() {
+     @Override
+     public void onSuccess() {
+         showToast("Message sending succeeds");
+          dialog.dismiss();
+     }
+     @Override
+     public void onError(int code, String error) {
+         showToast("Message sending fails");
+     }
+ });
+ ChatClient.getInstance().chatManager().sendMessage(message);
 ```
 
 ### Receive a message
 
-You can use `IChatManagerDelegate` to listen for message events. You can add multiple `IChatManagerDelegates` to listen for multiple events. When you no longer listen for an event, ensure that you remove the delegate.
+You can use `MessageListener` to listen for message events. You can add multiple `MessageListener`s to listen for multiple events. When you no longer listen for an event, ensure that you remove the listener.
 
-When a message arrives, the recipient recieves an `OnMessgesReceived` callback. Each callback contains one or more messages. You can traverse the message list, and parse and render these messages in this callback and render these messages.
+When a message arrives, the recipient recieves an `onMessgesReceived` callback. Each callback contains one or more messages. You can traverse the message list, and parse and render these messages in this callback and render these messages.
 
-```C#
-// Inherit and instantiate IChatManagerDelegate.
-public class ChatManagerDelegate : IChatManagerDelegate {
-    // Listen for OnMessagesReceived.
-    public void OnMessagesReceived(List<Message> messages)
-    {
-      // Traverse the message list, and parse and render the messages.
-    }
+```java
+ChatClient.getInstance().chatManager().addMessageListener(msgListener);
+MessageListener msgListener = new MessageListener() {
+
+// Traverse the message list, and parse and render the messages.
+@Override
+public void onMessageReceived(List<ChatMessage> messages) {
+
 }
-// Add the delegate to listen for message callback.
-ChatManagerDelegate adelegate = new ChatManagerDelegate();
-SDKClient.Instance.ChatManager.AddChatManagerDelegate(adelegate);
-// Remove the delegate.
-SDKClient.Instance.ChatManager.RemoveChatManagerDelegate(adelegate);
+};
+ChatClient.getInstance().chatManager().removeMessageListener(msgListener);
 ```
 
 ### Recall a message
 
-Two minutes after a user sends a message, this user can withdraw it. Contact sales@agora.io if you want to adjust the time limit.
+Two minutes after a user sends a message, this user can withdraw it. Contact support@agora.io if you want to adjust the time limit.
 
-```C#
-// Call `RecallMessage` to recall the message.
-SDKClient.Instance.ChatManager.RecallMessage("Message ID", new CallBack(
-  onSuccess: () => {
-    Debug.Log("Message recall succeeds.");
-  },
-  onProgress: (progress) => {
-    Debug.Log($"Message recall progress {progress}");
-  },
-  onError: (code, desc) => {
-    Debug.Log($"Message recall fails, errCode={code}, errDesc={desc}");
-  }
- ));
+```java
+try {
+    ChatClient.getInstance().chatManager().recallMessage(message);
+    EMLog.d("TAG", "Recalling message succeeds");
+} catch (ChatException e) {
+    e.printStackTrace();
+    EMLog.e("TAG", "Recalling message fails: "+e.getDescription());
+}
 ```
 
-You can also use `IChatManagerDelegate` to listen for the message withdraw state:
+You can also use `onMessageRecalled` to listen for the message recall state:
 
-```C#
-// The SDK triggers OnMessageRecalled when the message is withdrawn.
-void OnMessagesRecalled(List<Message> messages);
+```java
+/**
+ * Occurs when a received message is recalled.
+ */
+void onMessageRecalled(List<ChatMessage> messages);
 ```
 
 ### Send and receive an attachment message
 
-Voice, image, video, and file messages are issentially attachment messages. This section introduces how to send these types of messages.
+Voice, image, video, and file messages are essentially attachment messages. This section introduces how to send these types of messages.
 
 #### Send and receive a voice message
 
@@ -108,45 +110,25 @@ Before sending a voice message, you should implement audio recording on the app 
 
 Refer to the following code example to create and send a voice message:
 
-```C#
-// Call CreateVoiceSendMessage to create a voice message.
-// Set `localPath` as the path of the audio file on the local device, `displayName` as the display name of the message, `fileSize` as the size of the audio file, and `duration` as the duration (in seconds) of the audio file. For audio files, you can set `displayName` as "".
-Message msg = Message.CreateVoiceSendMessage(toChatUsername, localPath, displayName, fileSize, duration);
-// Set the message type using the `MessageType` attribute in `Message`.
-// You can set `MessageType` as `Chat`, `Group`, or `Room`, which indicates whether to send the message to a peer user, a chat group, or a chat room. 
-msg.MessageType = MessageType.Group;
-// Call SendMessage to send the message.
-// When sending the message, you can instantiate a `Callback` object to listen for the result of the message sending. You can also update the message state in this callback, for example, by adding a pop-up box that reminds the message sending fails.
-SDKClient.Instance.ChatManager.SendMessage(ref msg, new CallBack(
-  onSuccess: () => {
-    Debug.Log($"{msg.MsgId} Message sending succeeds.");
-  },
-  onProgress: (progress) => {
-    Debug.Log($"Message sending progress {progress}");
-  },
-  onError:(code, desc) => {
-    Debug.Log($"{msg.MsgId}Message sending fails, errCode={code}, errDesc={desc}");
-  }            
-));
+```java
+// Set voiceUri as the local URI of the audio file, and duration as the length of the file in seconds.
+ChatMessage message = ChatMessage.createVoiceSendMessage(voiceUri, duration, toChatUsername); 
+// Sets the chat type as one-to-one chat, group chat, or chatroom.
+if (chatType == CHATTYPE_GROUP) 
+    message.setChatType(ChatType.GroupChat); 
+ChatClient.getInstance().chatManager().sendMessage(message);
 ```
 
 When the recipient receives the message, refer to the following code example to get the audio file:
 
-```C#
-// "Message ID" is the ID of the message returned in the onSuccess callback after the SDK successfully sends the message.
-Message msg = SDKClient.Instance.ChatManager.LoadMessage("Message ID");
-if (msg != null)
-{
-  ChatSDK.MessageBody.VoiceBody vb = (ChatSDK.MessageBody.VoiceBody)msg.Body;
-  // RemotePath indicates the path of the audio file on the server.
-  string voiceRemoteUrl = vb.RemotePath;
-  // LocalPath indicates the path of the audio file on the local device.
-  string voiceLocalUri = vb.LocalPath;
-}
-else {
-  Debug.Log($"Fails to find the message");
-}
+```java
+VoiceMessageBody voiceBody = (VoiceMessageBody) msg.getBody();
+// Retrieves the URL of the audio file on the server.
+String voiceRemoteUrl = voiceBody.getRemoteUrl();
+// Retrieves the URI if the audio file on the local device.
+Uri voiceLocalUri = voiceBody.getLocalUri();
 ```
+
 
 #### Send and receive an image message
 
@@ -154,52 +136,31 @@ By default, the SDK compresses the image file before sending it. To send the ori
 
 Refer to the following code example to create and send an image message:
 
-```C#
-// Create SendMessage to send the image message.
-// Set `localPath` as the path of the image file on the local device, `displayName` as the display name of the message, `fileSize` as the size of the image file, `width` as the width (in pixels) of the thumbnail, and `height` as the height (in pixels) of the thumbnail. 
-// `orignial` indicates whether to send the original image file. The default value is `false`. By default, the SDK compresses image files the exceeds 100 KB and sends the thumbnail. To send the originial image, set this parameter as `true`.
-Message msg = Message.CreateImageSendMessage(toChatUsername,localPath, displayName, fileSize, original, width , height);
-// Set the message type using the `MessageType` attribute in `Message`.
-// You can set `MessageType` as `Chat`, `Group`, or `Room`, which indicates whether to send the message to a peer user, a chat group, or a chat room. 
-msg.MessageType = MessageType.Group;
-// Call SendMessage to send the message.
-// When sending the message, you can instantiate a `Callback` object to listen for the result of the message sending. You can also update the message state in this callback, for example, by adding a pop-up box that reminds the message sending fails.
-SDKClient.Instance.ChatManager.SendMessage(ref msg, new CallBack(
-  onSuccess: () => {
-    Debug.Log($"{msg.MsgId} Message sends succeeds.");
-  },
-  onProgress: (progress) => {
-    Debug.Log($"Message sending progress {progress}");
-  },
-  onError:(code, desc) => {
-    Debug.Log($"{msg.MsgId} Message sending fails, errCode={code}, errDesc={desc}");
-  }            
-));
+```java
+// Set imageUri as the URI of the image file on the local device. false means not to send the originial image. The SDK compresses image files that exceeds 100K before sending them. 
+ChatMessage.createImageSendMessage(imageUri, false, toChatUsername); 
+// Sets the chat type as one-to-one chat, group chat, or chatroom.
+if (chatType == CHATTYPE_GROUP) 
+    message.setChatType(ChatType.GroupChat); 
+ChatClient.getInstance().chatManager().sendMessage(message);
 ```
 
 When the recipient receives the message, refer to the following code example to get the thumbnail and attachment file of the image message:
 
-```C#
-// "Message ID" is the ID of the message returned in the onSuccess callback after the SDK successfully sends the message.
-Message msg = SDKClient.Instance.ChatManager.LoadMessage("Message ID");
-if (msg != null)
-{
-  ChatSDK.MessageBody.ImageBody ib = (ChatSDK.MessageBody.ImageBody)msg.Body;
-  // RemotePath indicates the path of the image file on the server.
-  string imgRemoteUrl = ib.RemotePath;
-  // ThumbnaiRemotePath indicates the path of the thumbnail on the server.
-  string thumbnailUrl = ib.ThumbnaiRemotePath;
-  // LocalPath indicates the path of the image file on the local device.
-  string imgLocalUri = ib.LocalPath;
-  // ThumbnailLocalPath indicates the path of the thumbnail on the local device.
-  Uri thumbnailLocalUri = ib.ThumbnailLocalPath;
-}
-else {
-  Debug.Log($"Fails to find the message.");
-}
+```java
+// Retrieves the thumbnail and attachment of the image file.
+ImageMessageBody imgBody = (ImageMessageBody) message.getBody();
+// Retrieves the image file the server.
+String imgRemoteUrl = imgBody.getRemoteUrl();
+// Retrieves the image thumbnail from the server.
+String thumbnailUrl = imgBody.getThumbnailUrl();
+// Retrives the URI of the image file on the local device.
+Uri imgLocalUri = imgBody.getLocalUri();
+// Retrieves the URI of the image thumbnail on the local device.
+Uri thumbnailLocalUri = imgBody.thumbnailLocalUri();
 ```
 
-<div class="alert note">If <code>Options.IsAutoDownload</code> is set as <code>true</code> on the recipient's client, the SDK automatically downloads the thumbnail after receiving the message. If not, you need to call <code>SDKClient.Instance.ChatManager.DownloadThumbnail</code> to download the thumbnail and get the path from the <code>ThumbnailLocalPath</code> member in <code>msg.Body</code>.</div>
+<div class="alert note">If <code>ChatClient.getInstance().getOptions().getAutodownloadThumbnail()</code> is set as <code>true</code> on the recipient's client, the SDK automatically downloads the thumbnail after receiving the message. If not, you need to call <code>ChatClient.getInstance().chatManager().downloadThumbnail(message)</code> to download the thumbnail and get the path from the <code>thumbnailLocalUri</code> member in <code>messageBody</code>.</div>
 
 #### Send and receive a video message
 
@@ -207,114 +168,123 @@ Before sending a video message, you should implement video capturing on the app 
 
 Refer to the following code example to create and send a video message:
 
-```C#
-Message msg = Message.CreateVideoSendMessage(toChatUsername, localPath, displayName, thumbnailLocalPath, fileSize, duration, width, height);
-// Call SendMessage to send the message.
-// When sending the message, you can instantiate a `Callback` object to listen for the result of the message sending. You can also update the message state in this callback, for example, by adding a pop-up box that reminds the message sending fails.
-SDKClient.Instance.ChatManager.SendMessage(ref msg, new CallBack(
-  onSuccess: () => {
-    Debug.Log($"{msg.MsgId} Messag sending succeeds");
-  },
-  onProgress: (progress) => {
-    Debug.Log($"Message sending progress {progress}");
-  },
-  onError:(code, desc) => {
-    Debug.Log($"{msg.MsgId} Message sending fails, errCode={code}, errDesc={desc}");
-  }            
-));
+```java
+String thumbPath = getThumbPath(videoUri);
+ChatMessage message = ChatMessage.createVideoSendMessage(videoUri, thumbPath, videoLength, toChatUsername);
+sendMessage(message);
 ```
 
 By default, when the recipient receives the message, the SDK downloads the thumbnail of the video message. 
 
-If you do not want the SDK to automatically download the video thumbnail, set `Options.IsAutoDownload` as `false`, and to download the thumbnail, you need to call `SDKClient.Instance.ChatManager.DownloadThumbnail`, and get the path of the thumbnail from the `ThumbnailLocalPath` member in `msg.Body`.
+If you do not want the SDK to automatically download the video thumbnail, set `ChatClient.getInstance().getOptions().setAutodownloadThumbnail` as `false`, and to download the thumbnail, you need to call `ChatClient.getInstance().chatManager().downloadThumbnail(message)`, and get the path of the thumbnail from the `thumbnailLocalUri` member in `messageBody`.
 
-To download the actual video file, call `SDKClient.Instance.ChatManager.DownloadAttachment`, and get the path of the video file from the `LocalPath` member in `msg.Body`.
+To download the actual video file, call `SChatClient.getInstance().chatManager().downloadAttachment(message)`, and get the path of the video file from the `getLocalUri` member in `messageBody`.
 
-```C#
-// When the recipent receives a video message, the SDK downloads and then open the video file.
-SDKClient.Instance.ChatManager.DownloadAttachment("Message ID", new CallBack(
-  onSuccess: () => {
-    Debug.Log($"Attachment download succeeds.");
-    Message msg = SDKClient.Instance.ChatManager.LoadMessage("Message ID");
-    if (msg != null)
-    {
-      if (msg.Body.Type == ChatSDK.MessageBodyType.VIDEO) {
-        ChatSDK.MessageBody.VideoBody vb = (ChatSDK.MessageBody.VideoBody)msg.Body;
-        // LocalPath indicates the path of the video file on the local device.
-        string videoLocalUri = vb.LocalPath;
-        // You add open the video file after getting the path.
-      }
-    }
-    else {
-      Debug.Log($"Fails to find the message.");
-    }
-  },
-  onProgress: (progress) => {
-    Debug.Log($"Attachment download progress {progress}");
-  },
-  onError: (code, desc) => {
-    Debug.Log($"Attachment download fails, errCode={code}, errDesc={desc}");
-  }
-));
+```java
+// If you received a message with video attachment, you need download the attachment before you open it.
+if (message.getType() == ChatMessage.Type.VIDEO) {
+  VideoMessageBody messageBody = (VideoMessageBody)message.getBody();
+  // Get the URL of the video on the server.
+  String videoRemoteUrl = messageBody.getRemoteUrl();
+  // Download the video.
+  ChatClient.getInstance().chatManager().downloadAttachment(message);
+      // Set Callback to know whether the download is finished.
+  		public void onError(final int error, String message) {
+			EMLog.e(TAG, "offline file transfer error:" + message);
+			runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					if (EaseShowBigImageActivity.this.isFinishing() || EaseShowBigImageActivity.this.isDestroyed()) {
+					    return;
+					}
+                    image.setImageResource(default_res);
+                    pd.dismiss();
+                    if (error == Error.FILE_NOT_FOUND) {
+						Toast.makeText(getApplicationContext(), R.string.Image_expired, Toast.LENGTH_SHORT).show();
+					}
+				}
+			});
+		}
+
+		public void onProgress(final int progress, String status) {
+			EMLog.d(TAG, "Progress: " + progress);
+			final String str2 = getResources().getString(R.string.Download_the_pictures_new);
+			runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+                    if (EaseShowBigImageActivity.this.isFinishing() || EaseShowBigImageActivity.this.isDestroyed()) {
+                        return;
+                    }
+					pd.setMessage(str2 + progress + "%");
+				}
+			});
+		}
+	};
+	
+
+	msg.setMessageStatusCallback(callback);
+
+	ChatClient.getInstance().chatManager().downloadAttachment(msg);
+
+  // After the download finishes, get the URI of the local file.
+  Uri videoLocalUri = messageBody.getLocalUri();
+}
 ```
 
 #### Send and receive a file message
 
 Refer to the following code example to create, send, and receive a file message:
 
-```C#
-// Call CreateFileSendMessage to create a file message.
-// Set `localPath` as the path of the file on the local device, `displayName` as the display name of the file message, and `fileSize` as the size of the file.
-Message msg = Message.CreateFileSendMessage(toChatUsername,localPath, displayName, fileSize);
-// Set the message type using the `MessageType` attribute in `Message`.
-// You can set `MessageType` as `Chat`, `Group`, or `Room`, which indicates whether to send the message to a peer user, a chat group, or a chat room. 
-msg.MessageType = MessageType.Group;
-// Call SendMessage to send the message.
-// When sending the message, you can instantiate a `Callback` object to listen for the result of the message sending. You can also update the message state in this callback, for example, by adding a pop-up box that reminds the message sending fails.
-SDKClient.Instance.ChatManager.SendMessage(ref msg, new CallBack(
-  onSuccess: () => {
-    Debug.Log($"{msg.MsgId} Message sending succeeds.");
-  },
-  onProgress: (progress) => {
-    Debug.Log($"Message sending progress {progress}");
-  },
-  onError:(code, desc) => {
-    Debug.Log($"{msg.MsgId} Message sending fails, errCode={code}, errDesc={desc}");
-  }            
-));
+```java
+// Set fileLocalUri as the URI of the file message on the local device.
+ChatMessage message = ChatMessage.createFileSendMessage(fileLocalUri, toChatUsername);
+// Sets the chat type as one-to-one chat, group chat, or chatroom.
+if (chatType == CHATTYPE_GROUP)    message.setChatType(ChatType.GroupChat);ChatClient.getInstance().chatManager().sendMessage(message);
+```
 
-// When the recipient receives the message, call `LoadMessage` to get the attachment file.
-// "Message ID" is the ID of the message returned in the onSuccess callback after the SDK successfully sends the message.
-Message msg = SDKClient.Instance.ChatManager.LoadMessage("Message ID");
-if (msg != null)
-{
-  ChatSDK.MessageBody.FileBody fb = (ChatSDK.MessageBody.FileBody)msg.Body;
-  // RemotePath indicates the path of the file on the server.
-  string fileRemoteUrl = fb.RemotePath;
-  // LocalPath indicates the path of the file on the local device.
-  string fileLocalUri = fb.LocalPath;
-}
-else {
-  Debug.Log($"Fails to find the message.");
-}
+While sending a file message, refer to the following sample code to get the progress for uploading the attachment file:
+
+```java
+// Calls setMessageStatusCallback to set the callback instance to listen for the state of messaging sending. You can update the message states in this callback.
+message.setMessageStatusCallback(new CallBack() {
+    @Override
+    public void onSuccess() {
+        showToast("Message sending succeeds");
+        dialog.dismiss();
+    }
+    @Override
+    public void onError(int code, String error) {
+        showToast("Message sending fails");
+    }
+     
+    // The status of sending the message. This only applies to sending attachment files.
+    @Override
+    public void onProgress(int progress, String status) {
+        
+    }
+});
+ChatClient.getInstance().chatManager().sendMessage(message);
+```
+
+When the recipient receives the message, refer to the following code example to get the attachment file:
+
+```java
+NormalFileMessageBody fileMessageBody = (NormalFileMessageBody) message.getBody();
+// Retrieves the file from the server.
+String fileRemoteUrl = fileMessageBody.getRemoteUrl();
+// Retrieves the file from the local device.
+Uri fileLocalUri = fileMessageBody.getLocalUri();
 ```
 
 ### Send a location message
 
 To send and receive a location message, you need to integrate a third-party map service provider. When sending a location message, you get the longitude and latitude information of the location from the map service provider; when receiving a location message, you extract the received longitude and latitude information and displays the location on the third-party map.
 
-```C#
-// Call CreateLocationSendMessage to create a location message.
-// Set `locationAddress` as the address of the location and `buildingName` as the the name of the building.
-Message msg = Message.CreateLocationSendMessage(toChatUsername, latitude, longitude, locationAddress, buildingName);
-SDKClient.Instance.ChatManager.SendMessage(ref msg, new CallBack(
-  onSuccess: () => {
-    Debug.Log($"{msg.MsgId} Message sending succeeds.");
-  },
-  onError:(code, desc) => {
-    Debug.Log($"{msg.MsgId} Message sending fails, errCode={code}, errDesc={desc}");
-  }   
-));
+```java
+// Sets the latitude and longitude information of the address. 
+ChatMessage message = ChatMessage.createLocationSendMessage(latitude, longitude, locationAddress, toChatUsername);
+// Sets the chat type as one-to-one chat, group chat, or chatroom.
+if (chatType == CHATTYPE_GROUP)    message.setChatType(ChatType.GroupChat);ChatClient.getInstance().chatManager().sendMessage(message);
 ```
 
 ### Send and receive a CMD message
@@ -323,39 +293,30 @@ CMD messages are command messages that instruct a specified user to take a certa
 
 <div class="alert note"><ul><li>CMD messages are not stored in the local database.</li><li>Actions beginning with `em_` and `easemob::` are internal fields. Do not use them.</li></ul></div>
 
-```C#
-// Use `action` to customize the message
-string action = "actionXXX";
-Message msg = Message.CreateCmdSendMessage(toChatUsername, action);
-SDKClient.Instance.ChatManager.SendMessage(ref msg, new CallBack(
-   onSuccess: () => {
-      Debug.Log($"{msg.MsgId} Message sending succeeds.");
-   },
-   onError: (code, desc) => {
-      Debug.Log($"{msg.MsgId} Message sending fails, errCode={code}, errDesc={desc}");
-   }
-));
+```java
+ChatMessage cmdMsg = ChatMessage.createSendMessage(ChatMessage.Type.CMD);
+// Sets the chat type as one-to-one chat, group chat, or chat room
+cmdMsg.setChatType(ChatType.GroupChat)String action="action1";
+// You can customize the action
+CmdMessageBody cmdBody = new CmdMessageBody(action);String toUsername = "test1";
+// Specify a username to send the cmd message.
+cmdMsg.setTo(toUsername);cmdMsg.addBody(cmdBody); ChatClient.getInstance().chatManager().sendMessage(cmdMsg);
 ```
 
 To notify the recipient that a CMD message is received, use a seperate delegate so that users can deal with the message differently.
 
-```C#
-// Inherit and instantiate `IChatManagerDelegate`.
-public class ChatManagerDelegate : IChatManagerDelegate {
-    // Occurs when the message is received.
-    public void OnMessagesReceived(List<Message> messages)
-    {
-      // Traverse, parse, and display the message.
-    }
-    // Occurs when a CMD message is received.
-    void OnCmdMessagesReceived(List<Message> messages)
-    {
-      // Traverse, parse, and display the message.
-    }
+```java
+MessageListener msgListener = new MessageListener() 
+{       
+  // Occurs when the message is received 
+  @Override    
+  public void onMessageReceived(List<ChatMessage> messages) { 
+  }        
+  // Occues when a CMD message is received 
+  @Override    
+  public void onCmdMessageReceived(List<ChatMessage> messages) { 
+  }
 }
-// Call AddChatManagerDelegate to add a message delegate.
-ChatManagerDelegate adelegate = new ChatManagerDelegate()
-SDKClient.Instance.ChatManager.AddChatManagerDelegate(adelegate);
 ```
 
 ### Send a customized message
@@ -364,63 +325,40 @@ Custom messages are self-defined key-value pairs that include the message type a
 
 The following code example shows how to create and send a customized message:
 
-```C#
-// Set `event` as the customized message type, for example, gift.
-string event = "gift";
-Dictionary<string, string> adict = new Dictionary<string, string>();
-adict.Add("key", "value");
-// Call CreateCustomSendMessage to create a customized message.
-Message msg = Message.CreateCustomSendMessage(toChatUsername, event, adict);
-SDKClient.Instance.ChatManager.SendMessage(ref msg, new CallBack(
-   onSuccess: () => {
-      Debug.Log($"{msg.MsgId} Message sending succeeds.");
-   },
-   onError: (code, desc) => {
-      Debug.Log($"{msg.MsgId} Message sending fails, errCode={code}, errDesc={desc}");
-   }
-));
+```java
+ChatMessage customMessage = ChatMessage.createSendMessage(ChatMessage.Type.CUSTOM);
+// Set event as the customized message type, for example, gift.
+event = "gift"CustomMessageBody customBody = new CustomMessageBody(event);
+// The data type of params is Map<String, String>.
+customBody.setParams(params);customMessage.addBody(customBody);
+// Specifies the user ID to receive the message, as Chat ID, chat group ID, or chat room ID.
+customMessage.setTo(to);
+// Sets the chat type as one-to-one chat, group chat, or chat room
+customMessage.setChatType(chatType);ChatClient.getInstance().chatManager().sendMessage(customMessage);        
 ```
+
 
 ### Use message extensions
 
 If the message types listed above do not meet your requirements, you can use message extensions to add attributes to the message. This can be applied in more complicated messaging scenarios.
 
-```C#
-Message msg = Message.CreateTextSendMessage(toChatUsername, content);
-// Add message attributes.
-AttributeValue attr1 = AttributeValue.Of("value", AttributeValueType.STRING);
-AttributeValue attr2 = AttributeValue.Of(true, AttributeValueType.BOOL);
-msg.Attributes.Add("attribute1", attr1);
-msg.Attributes.Add("attribute2", attr2);
-// Send the message.
-SDKClient.Instance.ChatManager.SendMessage(ref msg, new CallBack(
-  onSuccess: () => {
-    Debug.Log($"{msg.MsgId}发送成功");
-  },
-  onError:(code, desc) => {
-    Debug.Log($"{msg.MsgId}发送失败，errCode={code}, errDesc={desc}");
-  }            
-));
+```java
+ChatMessage message = ChatMessage.createTxtSendMessage(content, toChatUsername); 
+// Adds message attributes.
+message.setAttribute("attribute1", "value");message.setAttribute("attribute2", true);
+// Sends the message
+ChatClient.getInstance().chatManager().sendMessage(message);
 
-// When the recipient receives the message, get the extension attributes.
-bool found = false;
-string str = msg.GetAttributeValue<string>(msg.Attributes, "attribute1", found);
-if (found) {
-  // Use variable str.
-}
-found = false；
-bool b = msg.GetAttributeValue<bool>(msg.Attributes, "attribute2", found);
-if (found) {
-  // Use variable b.
-}
+// Retrieves the message attributes when receiving the message.
+message.getStringAttribute("attribute1",null);message.getBooleanAttribute("attribute2", false)
 ```
 
 ## Next steps
 
 After implementing sending and receiving messages, you can refer to the following documents to add more messaging functionalities to your app:
 
-- [Manage local messages](./agora_chat_manage_message_unity?platform=Unity)
-- [Retrieve conversations and messages from the server](./agora_chat_retrieve_message_unity?platform=Unity)
-- [Message receipts](./agora_chat_message_receipt_unity?platform=Unity)
+- [Manage local messages](./agora_chat_manage_message_android?platform=Android)
+- [Retrieve conversations and messages from the server](./agora_chat_retrieve_message_android?platform=Android)
+- [Message receipts](./agora_chat_message_receipt_android?platform=Android)
 
 
