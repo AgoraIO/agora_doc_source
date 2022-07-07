@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_startlocalvideotranscoder">
+    <title><ph keyref="startLocalVideoTranscoder"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Starts the local video mixing.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startLocalVideoTranscoder"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int startLocalVideoTranscoder(const LocalTranscoderConfiguration&amp; config) = 0;
+</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract startLocalVideoTranscoder(config: LocalTranscoderConfiguration): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript">abstract startLocalVideoTranscoder(
+    config: LocalTranscoderConfiguration
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startLocalVideoTranscoder(LocalTranscoderConfiguration config);</codeblock> </p>
+        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>config</pt>
+                <pd>
+                    <p>Configuration of the local video mixing, see <xref keyref="LocalTranscoderConfiguration"/>.</p>
+                </pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron unity rn">
+            <title>Returns</title>
+            <ul id="ul_ahk_23f_3qb">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
+    </refbody>
+</reference>
