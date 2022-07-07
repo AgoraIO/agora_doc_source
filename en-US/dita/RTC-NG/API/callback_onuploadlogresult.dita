@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onuploadlogresult">
      <title> <ph keyref="onUploadLogResult"/> </title>
-     <shortdesc id="short"><ph id="shortdesc">报告日志文件上传结果。</ph> </shortdesc>
+     <shortdesc id="short"><ph id="shortdesc">Reports the result of uploading the SDK log files.</ph></shortdesc>
      <prolog>
           <metadata>
                <keywords>
@@ -32,7 +32,7 @@
           <section id="detailed_desc">
                <p>                    调用
 <xref keyref="uploadLogFile"/>
-                    后，SDK 会触发该回调报告日志文件上传的结果。 如果上传失败，请参考
+After  is called, the SDK triggers the callback to report the result of uploading the SDK log files. 如果上传失败，请参考
 <parmname>reason</parmname>
 排查问题。
                </p>
@@ -41,13 +41,13 @@
                <title> <ph keyref="callback-section-title"/> </title>
                <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
                <parml>
-                    <plentry props="flutter">
-                         <pt>connection</pt>
-                         <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
-                    </plentry>
+               <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
+               </plentry>
                <plentry>
                     <pt>requestId</pt>
-                    <pd>                              请求 ID。 该请求 ID 与
+                    <pd>The request ID. 该请求 ID 与
 <ph keyref="uploadLogFile"/>
                               中返回的
 <parmname>requestId</parmname>
@@ -59,17 +59,9 @@ the object file name. You can use
                <plentry>
                     <pt>success</pt>
                     <pd>
-                         <p>                                   是否成功上传日志文件:
-                                   
-                         
-                         
-                         
-                         <ul>
-                         <li><codeph> <ph keyref="true"/> </codeph>
-                                             : 日志文件上传成功。
-                                        </li>
-                         <li><codeph> <ph keyref="false"/> </codeph>
-                                             : 日志文件上传失败。 失败的原因详见
+                         <p>Whether the log file is uploaded successfully:<ul>
+                         <li><codeph><ph keyref="true"/>  </codeph>: Successfully upload the log files.</li>
+                         <li><codeph><ph keyref="false"/>  </codeph>: Fails to upload the log files. 失败的原因详见
 <parmname>reason</parmname>
 参数。
                                         </li>
@@ -78,7 +70,7 @@ the object file name. You can use
                </plentry>
                <plentry>
                     <pt>reason</pt>
-                    <pd>                              日志文件上传失败的原因。 See
+                    <pd>The reason for the upload failure. See
 <xref keyref="UPLOAD_ERROR_REASON"/>
                               。
                          </pd>
