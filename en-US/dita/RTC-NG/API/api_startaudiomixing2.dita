@@ -1,48 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startaudiomixing2">
-    <title><ph keyref="startAudioMixing2" /></title>
+    <title><ph keyref="startAudioMixing2"/></title>
     <shortdesc id="short"><ph id="shortdesc">Starts playing the music file.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="startAudioMixing2" />
+                <indexterm keyref="startAudioMixing2"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int startAudioMixing(String filePath, boolean loopback, boolean replace, int cycle, int startPos);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)startAudioMixing:(NSString* _Nonnull)filePath loopback:(BOOL)loopback replace:(BOOL)replace cycle:(NSInteger)cycle startPos:(NSInteger)startPos;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int startAudioMixing(const char* filePath, bool loopback, bool replace, int cycle, int startPos) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">abstract startAudioMixing(filePath: string, loopback: boolean, replace: boolean, cycle: number, startPos?: number): number;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int StartAudioMixing(string filePath, bool loopback, bool replace, int cycle, int startPos);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">abstract startAudioMixing(
+                <codeblock props="android" outputclass="language-java">public abstract int startAudioMixing(String filePath, boolean loopback, boolean replace, int cycle, int startPos);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)startAudioMixing:(NSString* _Nonnull)filePath loopback:(BOOL)loopback replace:(BOOL)replace cycle:(NSInteger)cycle startPos:(NSInteger)startPos;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int startAudioMixing(const char* filePath, bool loopback, bool replace, int cycle, int startPos) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">abstract startAudioMixing(filePath: string, loopback: boolean, replace: boolean, cycle: number, startPos?: number): number;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartAudioMixing(string filePath, bool loopback, bool replace, int cycle, int startPos);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract startAudioMixing(
     filePath: string,
     loopback: boolean,
     replace: boolean,
     cycle: number,
     startPos?: number
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart"/>Future&lt;void> startAudioMixing(
-{required String filePath,
-required bool loopback,
-required bool replace,
-required int uid,
-
-int startPos = 500; 
-</p>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void> startAudioMixing(
+      {required String filePath,
+      required bool loopback,
+      required bool replace,
+      required int cycle,
+      int startPos = 0});
+</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
-            <p id="audiomixing_detailed">This method mixes the specified local or online audio file with the audio from the microphone, or replaces the microphone's audio with the specified local or remote audio file. A successful method call triggers the <codeph><xref keyref="onAudioMixingStateChanged" />(<apiname keyref="AUDIO_MIXING_STATE_PLAYING" />)</codeph> callback. When the audio mixing file playback finishes, the SDK triggers the <codeph><apiname keyref="onAudioMixingStateChanged" />(<apiname keyref="AUDIO_MIXING_STATE_STOPPED" />)</codeph> callback on the local client.</p>
+            <p id="audiomixing_detailed">This method mixes the specified local or online audio file with the audio from the microphone, or replaces the microphone's audio with the specified local or remote audio file. A successful method call triggers the <codeph><xref keyref="onAudioMixingStateChanged"/>(<apiname keyref="AUDIO_MIXING_STATE_PLAYING"/>)</codeph> callback. When the audio mixing file playback finishes, the SDK triggers the <codeph><apiname keyref="onAudioMixingStateChanged"/>(<apiname keyref="AUDIO_MIXING_STATE_STOPPED"/>)</codeph> callback on the local client.</p>
             <note type="attention" id="audiomixing_note">
             <ul>
-            <li>You can call this method either before or after joining a channel. If you need to call <apiname keyref="startAudioMixing2" /> multiple times, ensure that the call interval is longer than 500 ms.</li>
+            <li>You can call this method either before or after joining a channel. If you need to call <apiname keyref="startAudioMixing2"/> multiple times, ensure that the call interval is longer than 500 ms.</li>
             <li>If the local music file does not exist, the SDK does not support the file format, or the the SDK cannot access the music file URL, the SDK reports (701).</li>
-            <li conkeyref="preloadEffect/audioFormats" />
-            <li conkeyref="startAudioMixing/principle" props="android cpp unity" />
-            <li props="rn" id="principle">On Android, there are following considerations:<ul>
+            <li conkeyref="preloadEffect/audioFormats"/>
+            <li conkeyref="startAudioMixing/principle" props="android cpp unity"/>
+            <li props="rn" id="principle">在 Android 平台上调用该方法时，请注意如下事项：
+
+                <ul>
                 <li>To use this method, ensure that the Android device is v4.2 or later, and the API version is v16 or later.</li>
                 <li>If you need to play an online music file, Agora does not recommend using the redirected URL address. Some Android devices may fail to open a redirected URL address.</li>
                 <li>If you call this method on an emulator, ensure that the music file is in the <codeph>/sdcard/</codeph> directory and the format is MP3.</li>
@@ -52,31 +54,43 @@ int startPos = 500;
             <title>Parameters</title>
             <parml>
             <plentry conkeyref="preloadEffect/filePath">
-                <pt />
-                <pd />
+                <pt/>
+                <pd/>
             </plentry>
             <plentry>
                 <pt>loopback</pt>
                 <pd>
-                    <p>Whether to play music files only on the local client:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Only play music files on the local client so that only the local user can hear the music.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Publish music files to remote clients so that both the local user and remote users can hear the music.</li>
+                    <p>是否只在本地播放音乐文件：
+
+
+
+                    <ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Only play music files on the local client so that only the local user can hear the music.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Publish music files to remote clients so that both the local user and remote users can hear the music.</li>
                     </ul></p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>replace</pt>
                 <pd>
-                    <p>Whether to replace the audio captured by the microphone with a music file:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Replace the audio captured by the microphone with a music file. Users can only hear the music.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Do not replace the audio captured by the microphone with a music file. Users can hear both music and audio captured by the microphone.</li>
+                    <p>是否用音乐文件替换麦克风采集的音频：
+
+
+
+                    <ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Replace the audio captured by the microphone with a music file. Users can only hear the music.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Do not replace the audio captured by the microphone with a music file. Users can hear both music and audio captured by the microphone.</li>
                     </ul></p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>cycle</pt>
                 <pd>
-                    <p>The number of times the music file plays.<ul>
+                    <p>音乐文件的播放次数。
+
+
+
+                    <ul>
                     <li>≥ 0: The number of playback times. For example, 0 means that the SDK does not play the music file while 1 means that the SDK plays once.</li>
                     <li>-1: Play the music file in an infinite loop.</li>
                     </ul></p>
