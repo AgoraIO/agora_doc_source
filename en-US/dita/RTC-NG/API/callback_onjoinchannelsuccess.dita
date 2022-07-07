@@ -13,7 +13,6 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnJoinChannelSuccess(RtcConnection connection, int elapsed) {}</codeblock>
             <codeblock props="android" outputclass="language-java">public void onJoinChannelSuccess(String channel, int uid, int elapsed) {}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
         didJoinChannel:(NSString * _Nonnull)channel withUid:(NSUInteger)uid elapsed:(NSInteger) elapsed;</codeblock>
@@ -24,19 +23,19 @@
      (void)uid;
      (void)elapsed;
      }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(
-  evt: EngineEvents.JOINED_CHANNEL,
-  cb: (channel: string, uid: number, elapsed: number) =&gt; void
-): this;</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">UidWithElapsedAndChannelCallback? joinChannelSuccess;</codeblock> </p>
+            <codeblock props="electron" outputclass="language-typescript">onJoinChannelSuccess?(connection: RtcConnection, elapsed: number): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnJoinChannelSuccess(RtcConnection connection, int elapsed) {}</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onJoinChannelSuccess?(connection: RtcConnection, elapsed: number): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int elapsed)?
+      onJoinChannelSuccess;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p id="desc">This callback notifies the application that a user joins a specified channel.</p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p props="flutter rn" id="callback-desc">A Callback object with the following parameters:</p>
+            <p props="flutter rn" id="callback-desc">A callback object, which contains the following parameters:</p>
             <parml>
             <plentry props="ios mac" id="engine">
                 <pt>engine</pt>
@@ -50,7 +49,7 @@
                 <pt>uid</pt>
                 <pd>The ID of the user who joins the channel.</pd>
             </plentry>
-            <plentry props="unity">
+            <plentry props="unity flutter electron rn">
                 <pt>connection</pt>
                 <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
             </plentry>
