@@ -29,10 +29,9 @@
                 <dd>Use <xref keyref="onConnectionStateChanged"/> instead.</dd>
             </dlentry>
             </dl>
-            <p>The SDK triggers this callback when it loses connection with the server for more than four seconds after the connection is established. After triggering this callback, the SDK tries to reconnect to the server. You can use this callback to implement pop-up reminders. 该回调与 <xref keyref="onConnectionLost"/> 的区别是：
-            <ul>
-            <li><apiname keyref="onConnectionInterrupted"/>回调一定是发生在成功加入频道后，且 SDK 刚失去和服务器连接超过 4 秒时触发。</li>
-            <li><apiname keyref="onConnectionLost"/>回调是无论是否成功加入频道，只要 10 秒内和服务器无法建立连接都会触发。</li>
+            <p>The SDK triggers this callback when it loses connection with the server for more than four seconds after the connection is established. After triggering this callback, the SDK tries to reconnect to the server. You can use this callback to implement pop-up reminders. The difference between this callback and <xref keyref="onConnectionLost"/> is:<ul>
+            <li>The SDK triggers the <apiname keyref="onConnectionInterrupted"/> callback when it loses connection with the server for more than four seconds after it successfully joins the channel.</li>
+            <li>The SDK triggers the <apiname keyref="onConnectionLost"/> callback when it loses connection with the server for more than 10 seconds, whether or not it joins the channel.</li>
             </ul>If the SDK fails to rejoin the channel 20 minutes after being disconnected from Agora's edge server, the SDK stops rejoining the channel.</p>
         </section>
         <section id="parameters" props="ios mac unity flutter rn electron">
