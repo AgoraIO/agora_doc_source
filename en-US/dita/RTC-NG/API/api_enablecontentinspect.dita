@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_enablecontentinspect">
+    <title><ph keyref="enableContentInspect"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Enable/disable the review of video streams both at the client side and the Agora cloud content review server.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableContentInspect"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int enableContentInspect(boolean enabled, ContentInspectConfig config);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableContentInspect:(BOOL)enabled config:(AgoraContentInspectConfig* _Nonnull)config;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int enableContentInspect(bool enabled, const ContentInspectConfig&amp; config) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int EnableContentInspect(bool enabled, ContentInspectConfig config);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since" props="rtc">
+            <dlentry>
+                <dt>Since</dt>
+                <dd>v3.5.2</dd>
+            </dlentry>
+            </dl>
+            <p>When video content inspection is enabled, the SDK takes<xref keyref="ContentInspectConfig"/> screenshots, reviews, and uploads videos sent by local users based on the type and frequency of the content inspection module you set in . After content inspection, the Agora content inspection server sends the results to your app server in HTTPS requests and sends all screenshots to the third-party cloud storage service.</p>
+            <p>If you set<apiname keyref="ContentInspectModule"/> the type in the to<parmname></parmname> identify yellow, after the review is completed, the SDK will trigger a callback to<xref keyref="onContentInspectResult"/> report the result of the yellow verification.<note props="native">
+            <p>Before calling this method, ensure that the following requirements are met:<ul>
+            <li><xref keyref="ticket-link"/>Submit a ticket to activate Agora Cloud Converged Video Content Review Service.</li>
+            <li props="rtc-ng">Integrate the <codeph props="cpp">libagora_ci_extension.dlllibagora_ci_extension.soAgoraCIExtension.xcframeworkAgoraCIExtension.framework</codeph><codeph props="android"></codeph><codeph props="ios"></codeph><codeph props="mac"></codeph> dynamic library into the project.</li>
+            <li props="rtc">The following dynamic libraries have been integrated into the project:<ul>
+                <li props="android cpp unity flutter">Android: <codeph>libagora_ci_extension.so</codeph></li>
+                <li props="ios cpp unity flutter"><codeph>AgoraCIExtension.xcframework</codeph></li>
+                <li props="mac cpp unity flutter"><codeph>iOS/</codeph>macOS: AgoraCIExtension.xcframework</li>
+                <li props="cpp unity flutter">Windows: <codeph>libagora_ci_extension.dll</codeph></li>
+                </ul></li>
+            </ul></p>
+            </note></p>
+        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>enabled</pt>
+                <pd>Whether to enable content inspection.<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Turn on.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Off.</li>
+                    </ul></pd>
+            </plentry>
+            <plentry>
+                <pt>config</pt>
+                <pd>Configuration of content review. See <xref keyref="ContentInspectConfig"/>.</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
+    </refbody>
+</reference>
