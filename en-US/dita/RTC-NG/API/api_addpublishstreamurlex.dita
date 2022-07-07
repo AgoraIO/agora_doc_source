@@ -19,40 +19,43 @@
           transcodingEnabled:(BOOL)transcodingEnabled
                   connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int addPublishStreamUrlEx(const char* url, bool transcodingEnabled, const RtcConnection&amp; connection) = 0;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp"/> </p>
-            <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int AddPublishStreamUrlEx(string url, bool transcodingEnabled, RtcConnection connection);</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract addPublishStreamUrlEx(url: string, transcodingEnabled: boolean, connection: RtcConnection): number;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract addPublishStreamUrlEx(
+    url: string,
+    transcodingEnabled: boolean,
+    connection: RtcConnection
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">  Future&lt;void> addPublishStreamUrlEx(
+      {required String url,
+      required bool transcodingEnabled,
+      required RtcConnection connection});
+</codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>After calling this method, you can push media streams in RTMP or RTMPS protocol to the CDN according to <xref keyref="RtcConnection"/>. The SDK triggers the<xref keyref="onRtmpStreamingStateChanged"/>  callback on the local client to report the state of adding a local stream to the CDN.</p>
+            <p>After calling this method, you canpush media streams in RTMP or RTMPS protocol to the CDN according to <xref keyref="RtcConnection"/>. The SDK triggers the <xref keyref="onRtmpStreamingStateChanged"/> callback on the local client to report the state of adding a local stream to the CDN.</p>
             <note type="attention" id="note">
             <ul>
             <li>Call this method after joining a channel.</li>
-            <li>Ensure that the Media Push function is enabled. <ph props="rtc">For details, see the prerequisites in <xref keyref="guide-cdn-streaming">Media Push</xref>.</ph></li>
-            <li>This method takes effect only when you are a host in live interactive streaming.</li>
+            <li>Ensure that the Media Push function is enabled.</li>
+            <li>This method takes effect only when you are a host in live streaming scenarios.</li>
             <li>This method adds only one streaming URL to the CDN each time it is called. To push multiple URLs, call this method multiple times.</li>
-            <li props="rtc-ng">In one <xref keyref="IRtcEngineEx"/> instance, you can only push one upstream media stream to the CDN (such as the video stream captured by the camera or the video stream for screen sharing selected by the <apiname keyref="RtcConnection"/>).</li>
+            <li props="rtc-ng">In one <xref keyref="IRtcEngineEx"/> instance, you can only push one upstream media stream to the CDN (such asthe video stream captured by the camera or the video stream for screen sharing selected by the <apiname keyref="RtcConnection"/>).</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry conkeyref="addPublishStreamUrl/url">
-                <pt></pt>
-                <pd></pd>
+                <pt/>
+                <pd/>
             </plentry>
             <plentry conkeyref="addPublishStreamUrl/transcoding">
-                <pt></pt>
-                <pd></pd>
+                <pt/>
+                <pd/>
             </plentry>
             <plentry conkeyref="joinChannelEx/connection">
-                <pt></pt>
-                <pd></pd>
+                <pt/>
+                <pd/>
             </plentry>
             </parml> </section>
         <section id="return_values">
