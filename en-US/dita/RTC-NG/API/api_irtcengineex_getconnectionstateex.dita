@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_getconnectionstateex">
-    <title><ph keyref="getConnectionStateEx" /></title>
+    <title> <ph keyref="getConnectionStateEx"/> </title>
     <shortdesc id="short"><ph id="shortdesc">Gets the current connection state of the SDK.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="getConnectionStateEx" />
+                <indexterm keyref="getConnectionStateEx"/>
             </keywords>
         </metadata>
     </prolog>
@@ -18,25 +18,25 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (AgoraConnectionState)getConnectionStateEx:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual CONNECTION_STATE_TYPE getConnectionStateEx(const RtcConnection&amp; connection) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript">abstract getConnectionStateEx(connection: RtcConnection): ConnectionStateType;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract CONNECTION_STATE_TYPE GetConnectionStateEx(RtcConnection connection);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract getConnectionStateEx(connection: RtcConnection): ConnectionStateType;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;ConnectionStateType&gt; getConnectionStateEx(RtcConnection connection);</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>You can call this method either before or after joining a channel.</p>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters">
+            <title>Parameters</title>
             <parml>
-       <plentry conkeyref="joinChannelEx/connection">
-           <pt />
-           <pd />
-       </plentry>
-            </parml>
-        </section>
+            <plentry conkeyref="joinChannelEx/connection">
+                <pt/>
+                <pd/>
+            </plentry>
+            </parml> </section>
         <section id="return_values">
             <title>Returns</title>
-            <p conkeyref="onConnectionStateChanged/connectionstate" />
+            <p conkeyref="onConnectionStateChanged/connectionstate"/>
         </section>
     </refbody>
 </reference>

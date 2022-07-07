@@ -12,47 +12,55 @@
     </prolog>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="unity" outputclass="language-csharp">public abstract int EnableInEarMonitoring(bool enabled, int includeAudioFilters);</codeblock></p>
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int enableInEarMonitoring(boolean enabled, int includeAudioFilters);</codeblock>
             <codeblock props="ios" outputclass="language-objectivec">- (int)enableInEarMonitoring:(BOOL)enabled includeAudioFilters:(AgoraEarMonitoringFilterType)includeAudioFilters;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int enableInEarMonitoring(bool enabled, int includeAudioFilters) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int EnableInEarMonitoring(bool enabled, int includeAudioFilters);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract enableInEarMonitoring(
+    enabled: boolean,
+    includeAudioFilters: number
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableInEarMonitoring(
+    {required bool enabled,
+    required EarMonitoringFilterType includeAudioFilters});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>This method enables or disables in-ear monitoring.</p>
-        </section>
-        <section id="parameters"><title>Parameters</title>
+            <note type="attention" props="unity">
+            <ul>
+            <li>This method is for Android and iOS only.</li>
+            <li>Users must use wired earphones to hear their own voices.</li>
+            <li>You can call this method either before or after joining a channel.</li>
+            </ul></note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
             <parml>
-                <plentry>
-                    <pt>enabled</pt>
-                    <pd>Enables in-ear monitoring.<ul>
-                            <li><codeph><ph keyref="true" /></codeph>: Enables in-ear monitoring.</li>
-                            <li><codeph><ph keyref="false" /></codeph>: (Default) Disables in-ear monitoring.</li>
-                        </ul></pd>
-                </plentry>
-                <plentry>
-                    <pt>includeAudioFilters</pt>
-                    <pd props="ios cpp">The audio filter of in-ear monitoring: For details, see <xref keyref="EAR_MONITORING_FILTER_TYPE" />.</pd>
-                    <pd props="android">The audio filter of in-ear monitoring:<ul id="ul_nwv_hcy_4qb">
-                        <li><ph keyref="EAR_MONITORING_FILTER_NONE" /> (1 &lt;&lt; 0): Do not add an audio filter to the in-ear monitor.</li>
-                        <li><ph keyref="EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS" /> (1 &lt;&lt; 1): Add an audio filter to the in-ear monitor.
-                                The audio filter of in-ear monitoring: If you implement functions such as voice beautifier and audio effect, users can hear the voice after adding these effects.</li>
-                        <li><ph keyref="EAR_MONITORING_FILTER_NOISE_SUPPRESSION" /> (1 &lt;&lt;
-                                2): Enable the noise-cancellation audio filter to the in-ear monitor.<p>You can use the bitwise OR operator (|) to specify multiple audio filters.<note type="attention"> If you set the <codeph>enabled</codeph> parameter as <codeph><ph keyref="false" /></codeph>, you do not need to set <codeph>includeAudioFilters</codeph>.</note></p></li>
-                        </ul></pd>
-                </plentry>
-            </parml>
-        </section>
+            <plentry>
+                <pt>enabled</pt>
+                <pd>Enables in-ear monitoring.<ul>
+                    <li><codeph><ph keyref="true" /></codeph>: Enables in-ear monitoring.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Disables in-ear monitoring.</li>
+                    </ul></pd>
+            </plentry>
+            <plentry>
+                <pt>includeAudioFilters</pt>
+                <pd props="ios cpp unity rn">The audio filter of in-ear monitoring: See <xref keyref="EAR_MONITORING_FILTER_TYPE" />.</pd>
+                <pd props="android">The audio filter of in-ear monitoring:<ul id="ul_nwv_hcy_4qb">
+                    <li><ph keyref="EAR_MONITORING_FILTER_NONE" />(1 &lt;&lt; 0): Do not add an audio filter to the in-ear monitor.</li>
+                    <li><ph keyref="EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS" />(1 &lt;&lt; 1): Add an audio filter to the in-ear monitor.
+The audio filter of in-ear monitoring: If you implement functions such as voice beautifier and audio effect, users can hear the voice after adding these effects.</li>
+                    <li><ph keyref="EAR_MONITORING_FILTER_NOISE_SUPPRESSION" />(1 &lt;&lt; 2): Enable noise suppression to the in-ear monitor.<p>You can use the bitwise OR operator (|) to specify multiple audio filters.<note type="attention">If you set the <codeph>enabled</codeph> parameter to <codeph><ph keyref="false"/></codeph>, you do not need to set the <codeph>includeAudioFilters</codeph> parameter.</note></p>
+                    </li>
+                    </ul></pd>
+            </plentry>
+            </parml> </section>
         <section id="return_values">
             <title>Returns</title>
             <ul id="ul_uns_l2y_hqb">
-                <li>0: Success.</li>
-                <li>&lt; 0: Failure.</li>
-            </ul>
-        </section>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
     </refbody>
 </reference>

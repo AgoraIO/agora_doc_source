@@ -1,56 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaengine_pushvideoframe">
-    <title><ph keyref="pushVideoFrame" /></title>
+    <title><ph keyref="pushVideoFrame"/></title>
     <shortdesc id="short"><ph id="shortdesc">Pushes the external raw video frame to the SDK.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="pushVideoFrame" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="pushVideoFrame"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-            
+    <refbody>
+        <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract boolean pushExternalVideoFrame(AgoraVideoFrame frame);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)pushExternalVideoFrame:(AgoraVideoFrame * _Nonnull)frame;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int pushVideoFrame(ExternalVideoFrame *frame) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int PushVideoFrame(ExternalVideoFrame frame);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated" props="rtc-ng">
-       <dlentry props="android">
-  <dt>Deprecated:</dt>
-  <dd>This method is deprecated, please use <xref keyref="pushVideoFrame2" /> instead.</dd>
-       </dlentry>
-   </dl>
-                <p id="desc1">If you call <xref keyref="setExternalVideoSource" /> and set the <parmname>enabled</parmname> parameter as <codeph><ph keyref="true" /></codeph> and the <parmname>encodedFrame</parmname> parameter as <codeph><ph keyref="false" /></codeph>, you can call this method to push the external raw video frame to the SDK.</p>
-                <p props="android">You can push the video frame either by calling this method or by calling <xref keyref="pushVideoFrame2" />. The difference is that the <apiname keyref="pushVideoFrame" /> method does not support video data in texture format.</p>
-   <note type="attention" props="rtc">Video data in Texture format is not supported in the communication scenario.</note>
-        </section>
-        <section id="parameters"><title>Parameters</title>
-   <parml>
-       <plentry id="frame">
-  <pt>frame</pt>
-  <pd>
-      <p>The external raw video frame to be pushed. See <xref keyref="ExternalVideoFrame" /> for details.</p>
-  </pd>
-       </plentry>
-   </parml>
-        </section>
+            <dlentry props="android">
+                <dt>Deprecated:</dt>
+                <dd>This method is deprecated, please use <xref keyref="pushVideoFrame2"/> instead.</dd>
+            </dlentry>
+            </dl>
+            <p id="desc1">If you call <xref keyref="setExternalVideoSource"/> and set the <parmname>enabled</parmname> parameter as <codeph><ph keyref="true"/></codeph> and the <parmname>encodedFrame</parmname> parameter as <codeph><ph keyref="false"/></codeph>, you can call this method to push the external raw video frame to the SDK.</p>
+            <p props="android">You can push the video frame either by calling this method or by calling <xref keyref="pushVideoFrame2"/>. The difference is that the <apiname keyref="pushVideoFrame"/> method does not support video data in texture format.</p>
+            <note type="attention" props="rtc">Video data in Texture format is not supported in the Communication channel profile.</note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry id="frame">
+                <pt>frame</pt>
+                <pd>
+                    <p>The external raw video frame to be pushed. See <xref keyref="ExternalVideoFrame"/>.</p>
+                </pd>
+            </plentry>
+            </parml> </section>
         <section id="return_values">
-   <title>Returns</title>
-   <ul props="cpp">
-       <li>0: Success.</li>
-       <li>&lt; 0: Failure.</li>
-   </ul>
-            <ul props="android ios mac">
-                <li><codeph><ph keyref="true" /></codeph>: Pushes the external raw video frame to the SDK successfully.</li>
-                <li><codeph><ph keyref="false" /></codeph>: Fails to push external raw video frame to the SDK.</li>
+            <title>Returns</title>
+            <ul props="cpp unity">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
             </ul>
-        </section></refbody>
+            <ul props="android ios mac">
+            <li><codeph><ph keyref="true"/></codeph>: Success.</li>
+            <li><codeph><ph keyref="false"/></codeph>: Failure.</li>
+            </ul> </section>
+    </refbody>
 </reference>

@@ -1,120 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setaudioeffectparameters">
-    <title><ph keyref="setAudioEffectParameters" /></title>
+    <title><ph keyref="setAudioEffectParameters"/></title>
     <shortdesc id="short"><ph id="shortdesc">Sets parameters for SDK preset audio effects.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="setAudioEffectParameters" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="setAudioEffectParameters"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
+    <refbody>
+        <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setAudioEffectParameters(int preset, int param1, int param2);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setAudioEffectParameters:(AgoraAudioEffectPreset)preset param1:(int)param1 param2:(int)param2;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setAudioEffectParameters(AUDIO_EFFECT_PRESET preset, int param1, int param2) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">setAudioEffectParameters(preset: AUDIO_EFFECT_PRESET, param1: number, param2: number): number</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract setAudioEffectParameters(preset: AudioEffectPreset, param1: number, param2: number): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetAudioEffectParameters(AUDIO_EFFECT_PRESET preset, int param1, int param2);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAudioEffectParameters(
-      AudioEffectPreset preset, int param1, int param2);</codeblock> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract setAudioEffectParameters(
+  preset: AudioEffectPreset,
+  param1: number,
+  param2: number
+): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setAudioEffectParameters(
+  {required AudioEffectPreset preset,
+  required int param1,
+  required int param2});</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <title>Detailed Description</title>
-   <dl outputclass="since" props="rtc">
-       <dlentry>
-  <dt>Since</dt>
-  <dd>v3.2.0</dd>
-       </dlentry>
-   </dl>
-   <p>Call this method to set the following parameters for the local user who sends an audio stream:<ul>
-  <li>3D voice effect: Sets the cycle period of the 3D voice effect.</li>
-  <li>Pitch correction effect: Sets the basic mode and tonic pitch of the pitch correction effect. Different songs have different modes and tonic pitches. Agora recommends bounding this method with interface elements to enable users to adjust the pitch correction interactively.</li>
-       </ul>
-   </p>
-   <p>After setting the audio parameters, all users in the channel can hear the effect.</p>
-   <note type="attention">
-       <ul>
-  <li>You can call this method either before or after joining a channel.</li>
-  <li>To get better audio effect quality, Agora recommends calling and setting <parmname>scenario</parmname> in <xref keyref="setAudioProfile" /> as <apiname keyref="AUDIO_SCENARIO_GAME_STREAMING" />(3) before calling this method.</li>
-  <li props="cpp">Do not set the <parmname>profile</parmname> parameter in <apiname keyref="setAudioProfile" /> to <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD" /> (1) or <apiname keyref="AUDIO_PROFILE_IOT" />(6), or the method does not take effect.</li>
-  <li props="android ios mac unity flutter">Do not set the <parmname>profile</parmname> parameter in <apiname keyref="setAudioProfile" /> to <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD" /> (1), or the method does not take effect.</li>
-  <li>This method works best with the human voice. Agora does not recommend using this method for audio containing music.</li>
-  <li>After calling <apiname keyref="setAudioEffectParameters" />, Agora recommends not calling the following methods, or the settings in <apiname keyref="setAudioEffectParameters" /> are overridden :<ul>
- <li><xref keyref="setAudioEffectPreset" /></li>
- <li><xref keyref="setVoiceBeautifierPreset" /></li>
- <li><xref keyref="setLocalVoiceReverbPreset" /></li>
- <li><xref keyref="setLocalVoiceChanger" /></li>
- <li><xref keyref="setLocalVoicePitch" /></li>
- <li><xref keyref="setLocalVoiceEqualization" /></li>
- <li><xref keyref="setLocalVoiceReverb" /></li>
- <li><xref keyref="setVoiceBeautifierParameters" /></li>
-          <li><xref keyref="setVoiceConversionPreset" /></li>
-      </ul>
-  </li>
-       </ul>
-   </note>
-        </section>
-        <section id="parameters"><title>Parameters</title>
-   <parml>
-       <plentry>
-  <pt>preset</pt>
-  <pd>The options for SDK preset audio effects:<ul>
-                            <li><apiname keyref="ROOM_ACOUSTICS_3D_VOICE" />, 3D voice effect:<ul>
-                                    <li>Call and set the <parmname>profile</parmname> parameter in <apiname keyref="setAudioProfile" /> to <apiname keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO" /> (3) or <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO" />(5) before setting this enumerator; otherwise, the enumerator setting does not take effect.</li>
-                                    <li>If the 3D voice effect is enabled, users need to use stereo audio playback devices to hear the anticipated voice effect.</li>
-                                </ul>
-                            </li>
-                            <li><apiname keyref="PITCH_CORRECTION" />, Pitch correction effect: To achieve better audio effect quality, Agora recommends calling <apiname keyref="setAudioProfile" /> and setting the <parmname>profile</parmname> parameter to <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY" /> (4) or <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO" />(5) before setting this enumerator.</li>
-                        </ul>
-                    </pd>
-       </plentry>
-       <plentry>
-  <pt>param1</pt>
-  <pd>
-      <ul>
- <li>If you set <parmname>preset</parmname> to <apiname keyref="ROOM_ACOUSTICS_3D_VOICE" /> , <parmname>param1</parmname> sets the cycle period of the 3D voice effect. The value range is [1,60] and the unit is seconds. The default value is 10, indicating that the voice moves around you every 10 seconds.</li>
- <li>If you set <parmname>preset</parmname> to <apiname keyref="PITCH_CORRECTION" /> , <parmname>param1</parmname> sets the basic mode of the pitch correction effect:<ul>
-<li><codeph>1</codeph>: (Default) Natural major scale.</li>
-<li><codeph>2</codeph>: Natural minor scale.</li>
-<li><codeph>3</codeph>: Japanese pentatonic scale.</li>
-     </ul>
- </li>
-      </ul>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt>param2</pt>
-  <pd>
-      <ul>
- <li>If you set <parmname>preset</parmname> to <apiname keyref="ROOM_ACOUSTICS_3D_VOICE" />, you need to set <parmname>param2</parmname> to <codeph>0</codeph>.</li>
- <li>If you set <parmname>preset</parmname> to <apiname keyref="PITCH_CORRECTION" />, <parmname>param2</parmname> sets the tonic pitch of the pitch correction effect:<ul>
-<li><codeph>1</codeph>: A</li>
-<li><codeph>2</codeph>: A#</li>
-<li><codeph>3</codeph>: B</li>
-<li><codeph>4</codeph>: (Default) C</li>
-<li><codeph>5</codeph>: C#</li>
-<li><codeph>6</codeph>: D</li>
-<li><codeph>7</codeph>: D#</li>
-<li><codeph>8</codeph>: E</li>
-<li><codeph>9</codeph>: F</li>
-<li><codeph>10</codeph>: F#</li>
-<li><codeph>11</codeph>: G</li>
-<li><codeph>12</codeph>: G#</li>
-     </ul>
- </li>
-      </ul>
-  </pd>
-       </plentry>
-   </parml>
-        </section>
-        <section id="return_values" props="native electron unity">
-   <title>Returns</title>
-   <ul>
-       <li>0: Success.</li>
-       <li>&lt; 0: Failure.</li>
-   </ul>
-        </section></refbody>
+            <p>Call this method to set the following parameters for the local user who sends an audio stream:<ul>
+            <li>3D voice effect: Sets the cycle period of the 3D voice effect.</li>
+            <li>Pitch correction effect: Sets the basic mode and tonic pitch of the pitch correction effect. Different songs have different modes and tonic pitches. Agora recommends bounding this method with interface elements to enable users to adjust the pitch correction interactively.</li>
+            </ul> </p>
+            <p>After setting the audio parameters, all users in the channel can hear the effect.</p>
+            <note type="attention">
+            <ul>
+            <li>You can call this method either before or after joining a channel.</li>
+            <li>To get better audio effect quality, Agora recommends calling and setting <parmname>scenario</parmname> in <xref keyref="setAudioProfile"/> as <apiname keyref="AUDIO_SCENARIO_GAME_STREAMING"/>(3) before calling this method.</li>
+            <li props="cpp flutter rn electron">Do not set the <parmname>profile</parmname> parameter in <apiname keyref="setAudioProfile"/> to <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1)<apiname keyref="AUDIO_PROFILE_IOT"/> or (6), or the method does not take effect.</li>
+            <li props="android ios mac unity">Do not set the <parmname>profile</parmname> parameter in <apiname keyref="setAudioProfile"/> to <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1), or the method does not take effect.</li>
+            <li>This method works best with the human voice. Agora does not recommend using this method for audio containing music.</li>
+            <li>After calling <apiname keyref="setAudioEffectParameters"/>, Agora recommends not calling the following methods, or the settings in <apiname keyref="setAudioEffectParameters"/> are overridden:<ul>
+                <li><xref keyref="setAudioEffectPreset"/></li>
+                <li><xref keyref="setVoiceBeautifierPreset"/></li>
+                <li><xref keyref="setLocalVoicePitch"/></li>
+                <li><xref keyref="setLocalVoiceEqualization"/></li>
+                <li><xref keyref="setLocalVoiceReverb"/></li>
+                <li><xref keyref="setVoiceBeautifierParameters"/></li>
+                <li><xref keyref="setVoiceConversionPreset"/></li>
+                </ul> </li>
+            </ul> </note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>preset</pt>
+                <pd>The options for SDK preset audio effects:<ul>
+                    <li><apiname keyref="ROOM_ACOUSTICS_3D_VOICE"/>, 3D voice effect:<ul>
+                        <li>You need to set the <parmname>profile</parmname> parameter in <apiname keyref="setAudioProfile"/> to <apiname keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO"/>(3) or <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>(5) before setting this enumerator; otherwise, the enumerator setting does not take effect.</li>
+                        <li>If the 3D voice effect is enabled, users need to use stereo audio playback devices to hear the anticipated voice effect.</li>
+                        </ul> </li>
+                    <li><apiname keyref="PITCH_CORRECTION"/>, Pitch correction effect: To achieve better audio effect quality, Agora recommends setting the <parmname>profile</parmname> parameter in <apiname keyref="setAudioProfile"/> to <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/>(4) or <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>(5) before setting this enumerator.</li>
+                    </ul> </pd>
+            </plentry>
+            <plentry>
+                <pt>param1</pt>
+                <pd>
+                    <ul>
+                    <li>If you set <parmname>preset</parmname> to <apiname keyref="ROOM_ACOUSTICS_3D_VOICE"/> , <parmname>param1</parmname> indicates the cycle period of the 3D voice effect. The value range is [1,60], in seconds. The default value is 10, indicating that the voice moves around you every 10 seconds.</li>
+                    <li> If you set <parmname>preset</parmname> to <apiname keyref="PITCH_CORRECTION"/> , <parmname>param1</parmname> indicates the basic mode of the pitch correction effect:<ul>
+                        <li><codeph>1</codeph>: (Default) Natural major scale.</li>
+                        <li><codeph>2</codeph>: Natural minor scale.</li>
+                        <li><codeph>3</codeph>: Japanese pentatonic scale.</li>
+                        </ul> </li>
+                    </ul> </pd>
+            </plentry>
+            <plentry>
+                <pt>param2</pt>
+                <pd>
+                    <ul>
+                    <li>If you set <parmname>preset</parmname> to <apiname keyref="ROOM_ACOUSTICS_3D_VOICE"/>, you need to set <parmname>param2</parmname> to <codeph>0</codeph>.</li>
+                    <li> If you set <parmname>preset</parmname> to <apiname keyref="PITCH_CORRECTION"/>, <parmname>param2</parmname> indicates the tonic pitch of the pitch correction effect:<ul>
+                        <li><codeph>1</codeph>: A</li>
+                        <li><codeph>2</codeph>: A#</li>
+                        <li><codeph>3</codeph>: B</li>
+                        <li><codeph>4</codeph>: (Default) C</li>
+                        <li><codeph>5</codeph>: C#</li>
+                        <li><codeph>6</codeph>: D</li>
+                        <li><codeph>7</codeph>: D#</li>
+                        <li><codeph>8</codeph>: E</li>
+                        <li><codeph>9</codeph>: F</li>
+                        <li><codeph>10</codeph>: F#</li>
+                        <li><codeph>11</codeph>: G</li>
+                        <li><codeph>12</codeph>: G#</li>
+                        </ul> </li>
+                    </ul> </pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron unity rn">
+            <title>Returns</title>
+            <ul>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
+    </refbody>
 </reference>

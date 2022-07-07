@@ -12,26 +12,25 @@
     </prolog>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="unity" outputclass="language-csharp">public abstract int DisableAudioSpectrumMonitor();</codeblock> </p>
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int disableAudioSpectrumMonitor();</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)disableAudioSpectrumMonitor;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int disableAudioSpectrumMonitor() = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript">abstract disableAudioSpectrumMonitor(): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int DisableAudioSpectrumMonitor();</codeblock>
             <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; disableAudioSpectrumMonitor();</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>After calling <xref keyref="enableAudioSpectrumMonitor" />, if you want to disable audio spectrum monitoring, you can call this method.</p>
             <note id="note_url_s5y_hqb" type="attention">
-                <p>You can call this method either before or after joining a channel.</p>
+            <p>You can call this method either before or after joining a channel.</p>
             </note></section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity rn">
             <title>Returns</title>
             <ul>
-                <li>0: Success.</li>
-                <li>&lt; 0: Failure.</li>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
             </ul></section>
     </refbody>
 </reference>

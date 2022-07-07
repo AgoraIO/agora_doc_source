@@ -21,13 +21,14 @@
   (void)provider;
   (void)extension;
 }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="electron" outputclass="language-typescript">onExtensionStarted?(provider: string, extName: string): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnExtensionStarted(string provider, string ext_name) { }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onExtensionStarted?(provider: string, extName: string): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(String provider, String extName)? onExtensionStarted;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>After a successful call of <codeph><xref keyref="enableExtension"/>(<q><ph keyref="true"/></q>)</codeph>, the extension triggers this callback.</p>
+            <p>After a successful call of <codeph><xref keyref="enableExtension"/>(<q><ph keyref="true"/></q>)</codeph>, this callback is triggered.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -36,9 +37,11 @@
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry conkeyref="setExtensionProperty/extension">
-                <pt/>
-                <pd/>
+            <plentry>
+                <pt props="native">extension</pt>
+                <pt props="unity">ext_name</pt>
+                <pt props="electron rn flutter">extName</pt>
+                <pd>The name of the extension.</pd>
             </plentry>
             </parml> </section>
     </refbody>

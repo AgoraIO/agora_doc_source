@@ -23,68 +23,65 @@
     int channel,
     RAW_AUDIO_FRAME_OP_MODE_TYPE mode,
     int samplesPerCall) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">setRecordingAudioFrameParameters(
-    sampleRate: number,
-    channel: 1 | 2,
-    mode: RAW_AUDIO_FRAME_OP_MODE_TYPE,
-    samplesPerCall: number
-    ): number</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int SetRecordingAudioFrameParameters(int sampleRate, int channel,
-            RAW_AUDIO_FRAME_OP_MODE_TYPE mode, int samplesPerCall);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="electron" outputclass="language-typescript">abstract setRecordingAudioFrameParameters(sampleRate: number, channel: number, mode: RawAudioFrameOpModeType, samplesPerCall: number): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int SetRecordingAudioFrameParameters(int sampleRate, int channel, RAW_AUDIO_FRAME_OP_MODE_TYPE mode, int samplesPerCall);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setRecordingAudioFrameParameters(
+    {required int sampleRate,
+    required int channel,
+    required RawAudioFrameOpModeType mode,
+    required int samplesPerCall});</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p props="android ios mac cpp">Sets the audio format for the <xref keyref="onRecordAudioFrame" /> callback.</p>
+            <p>Sets the audio format for the <xref keyref="onRecordAudioFrame" /> callback.</p>
             <p props="electron">After calling <xref keyref="registerPlugin" /> to register an extension and get the captured raw audio data, you can call this method to set the sample rate and number of audio channels of the raw data returned by the SDK.</p>
             <note type="attention">
-                <ul>
-                    <li>Ensure that you call this method before joining a channel.</li>
-                    <li>The SDK calculates the sampling interval based on the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname> and <parmname>channel</parmname> parameters set in this method.<equation-inline>Sample interval (sec) = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>. Ensure that the sample interval ≥ 0.01 (s). <ph props="android ios mac cpp">The SDK triggers the  callback according to the sampling interval<apiname keyref="onRecordAudioFrame" />.</ph></li>
-                </ul>
-            </note>
-        </section>
-        <section id="parameters"><title>Parameters</title>
+            <ul>
+            <li>Ensure that you call this method before joining a channel.</li>
+            <li>The SDK calculates the sampling interval based on the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname>, and <parmname>channel</parmname> parameters set in this method. The calculation formula is as follows:<equation-inline>Sample interval = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>. Ensure that the sample interval ≥ 0.01 (s). <ph props="android ios mac cpp unity">The SDK triggers the <apiname keyref="onRecordAudioFrame" /> callback according to the sampling interval.</ph></li>
+            </ul> </note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
             <parml>
-                <plentry>
-                    <pt>sampleRate</pt>
-                    <pd props="android ios mac cpp unity">The sample rate returned in the <apiname keyref="onRecordAudioFrame" /> callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
-                    <pd props="electron">The sample rate returned in the SDK, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
-                </plentry>
-                <plentry>
-                    <pt>channel</pt>
-                    <pd props="android ios mac cpp unity">
-                        <p>The number of channels returned in the <apiname keyref="onRecordAudioFrame" /> callback:<ul>
-                                <li>1: Mono.</li>
-                                <li>2: Stereo.</li>
-                            </ul></p>
-                    </pd>
-                    <pd props="electron"><p>The number of channels returned by the SDK. You can set the value as 1 or 2:<ul>
-                                <li>1: Mono.</li>
-                                <li>2: Stereo.</li>
-                            </ul></p></pd>
-                </plentry>
-                <plentry>
-                    <pt>mode</pt>
-                    <pd props="android ios mac cpp unity">
-                        <p props="ios mac cpp unity">The use mode of the audio frame. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />.</p>
-                        <p conkeyref="registerAudioFrameObserver2_IMediaPlayer/mode" props="android" />
-                    </pd>
-                    <pd props="electron">The use mode of the returned data from the SDK. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />.</pd>
-                </plentry>
-                <plentry>
-                    <pt>samplesPerCall</pt>
-                    <pd props="android ios mac cpp unity">The number of data samples returned in the <apiname keyref="onRecordAudioFrame" /> callback, such as 1024 for the media push.</pd>
-                    <pd props="electron">The number of data samples returned in the SDK, such as 1024 for the media push.</pd>
-                </plentry>
-            </parml>
-        </section>
-        <section id="return_values">
+            <plentry>
+                <pt>sampleRate</pt>
+                <pd props="native unity">The sample rate returned in the <apiname keyref="onRecordAudioFrame" /> callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
+                <pd props="electron">The sample rate returned in the SDK, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
+            </plentry>
+            <plentry>
+                <pt>channel</pt>
+                <pd props="native unity flutter">
+                    <p>The number of channels returned in the <apiname keyref="onRecordAudioFrame"/> callback:<ul>
+                    <li>1: Mono (one channel).</li>
+                    <li>2: Stereo (two channels).</li>
+                    </ul></p>
+                </pd>
+                <pd props="electron">
+                    <p>The number of channels returned by the SDK. You can set the value as 1 or 2:<ul>
+                    <li>1: Mono (one channel).</li>
+                    <li>2: Stereo (two channels).</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>mode</pt>
+                <pd props="native unity flutter">
+                    <p props="ios mac cpp unity flutter">The use mode of the audio frame. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>.</p>
+                    <p conkeyref="registerAudioFrameObserver2_IMediaPlayer/mode" props="android"/>
+                </pd>
+                <pd props="electron">The use mode of the returned data from the SDK. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />.</pd>
+            </plentry>
+            <plentry>
+                <pt>samplesPerCall</pt>
+                <pd props="native unity flutter">The number of data samples returned in the <apiname keyref="onRecordAudioFrame"/> callback, such as 1024 for the media push.</pd>
+                <pd props="electron">The number of data samples returned in the SDK, such as 1024 for the media push.</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native unity">
             <title>Returns</title>
             <ul>
-                <li>0: Success.</li>
-                <li>&lt; 0: Failure.</li>
-            </ul>
-        </section>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
     </refbody>
 </reference>

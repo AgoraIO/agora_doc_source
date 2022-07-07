@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onrecorderstatechanged">
     <title><ph keyref="onRecorderStateChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the local audio and video recording state changes.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">录制状态发生改变回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,14 +15,14 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java"/>
             <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp"/>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onRecorderStateChanged(RecorderState state, RecorderErrorCode error) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">OnRecorderStateChanged? onRecorderStateChanged;</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p>When the local audio and video recording state changes, the SDK triggers this callback to report the current recording state and the reason for the change.</p>
+            <p>本地音视频流录制状态发生改变时，SDK 会触发该回调，报告当前的录制状态和引起录制状态改变的原因。</p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
@@ -32,10 +32,10 @@
                 <pt>state</pt>
                 <pd>The current recording state. See <xref keyref="RecorderState"/>.</pd>
             </plentry>
-                <plentry>
-                    <pt>error</pt>
-                    <pd>The reason for the state change. See <xref keyref="RecorderErrorCode"/>.</pd>
-                </plentry>
+            <plentry>
+                <pt>error</pt>
+                <pd>The reason for the state change. See <xref keyref="RecorderErrorCode"/>.</pd>
+            </plentry>
             </parml> </section>
     </refbody>
 </reference>

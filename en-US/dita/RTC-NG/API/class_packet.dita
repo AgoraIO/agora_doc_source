@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_packet">
-    <title><ph keyref="Packet" /></title>
-    <shortdesc id="short"><ph id="shortdesc"> Definition of <apiname keyref="Packet" />.</ph></shortdesc>
+    <title><ph keyref="Packet"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Definition of <apiname keyref="Packet"
+        />.</ph></shortdesc>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
+            <p outputclass="codeblock">
             <codeblock props="cpp" outputclass="language-cpp">struct Packet {
                     const unsigned char* buffer;
                     unsigned int size;
-                    
+
                     Packet() : buffer(NULL), size(0) {}
                     };</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export class Packet {
+  buffer?: Uint8Array
+  size?: number
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class Packet
     {
         public Packet()
@@ -23,39 +28,42 @@
             this.buffer = buffer;
             this.size = size;
         }
-        
+
         public byte[] buffer { set; get; }
-        
+
         public uint size { set; get; }
     }
-    </codeblock></p>
-            <p outputclass="codeblock" props="rtc">
-            <codeblock props="cpp" outputclass="language-cpp">struct Packet {
-	const unsigned char* buffer;
-	unsigned int size;
-	};</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-             <codeblock props="unity" outputclass="language-csharp">public struct Packet
-	{
-		public IntPtr buffer;
-		public IntPtr size;
-	};</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+    </codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">class Packet {
+  const Packet({this.buffer, this.size});
+
+  @JsonKey(name: 'buffer', ignore: true)
+  final Uint8List? buffer;
+  @JsonKey(name: 'size')
+  final int? size;
+  factory Packet.fromJson(Map&lt;String, dynamic> json) => _$PacketFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$PacketToJson(this);
+}
+</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>buffer</pt>
                 <pd>
                     <p>The buffer address of the sent or received data.</p>
-                    <note type="attention">Agora recommends setting <parmname>buffer</parmname> to a value larger than 2048 bytes. Otherwise, you may encounter undefined behaviors (such as crashes).</note>
+                    <note type="attention"
+                    >Agora 建议 <parmname>buffer</parmname> 值不要小于 2048 字节，否则有可能会出现未定义行为（例如崩溃）。</note>
                 </pd>
             </plentry>
             <plentry>
                 <pt>size</pt>
-                <pd>The buffer size of the sent or received data.</pd>
+                <pd>将要发送或接收的数据的缓存大小。</pd>
             </plentry>
             </parml> </section>
     </refbody>
