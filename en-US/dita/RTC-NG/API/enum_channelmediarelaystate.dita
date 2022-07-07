@@ -9,8 +9,7 @@
             <parml>
             <plentry>
                 <pt><ph keyref="RELAY_STATE_IDLE"/></pt>
-                <pd>0: The initial state. After a successful call <xref keyref="stopChannelMediaRelay"/> to stop cross-channel media streaming,
-<xref keyref="onChannelMediaRelayStateChanged"/> will be called back.</pd>
+                <pd>0: The initial state. After you successfullystop the channel media relay by calling <xref keyref="stopChannelMediaRelay"/>, the <xref keyref="onChannelMediaRelayStateChanged"/> callback returns this state.</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="RELAY_STATE_CONNECTING"/></pt>
@@ -22,8 +21,7 @@
             </plentry>
             <plentry>
                 <pt><ph keyref="RELAY_STATE_FAILURE"/></pt>
-                <pd>3: An exception occurred, see <xref keyref="onChannelMediaRelayStateChanged"/> for details.
-The error message prompted by the <parmname>code</parmname> parameter.</pd>
+                <pd>3: An error occurs. See <parmname>code</parmname> in <xref keyref="onChannelMediaRelayStateChanged"/> for the error code.</pd>
             </plentry>
             </parml> </section>
     </refbody>
