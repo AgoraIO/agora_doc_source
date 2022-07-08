@@ -168,6 +168,7 @@ elif defined_path_text == "cs":
 # cpp_full_path
 # Other types of full path
 rust_topicref_list = []
+json_hide_id_list = []
 dita_file_tree = ET.parse(defined_path)
 dita_file_root = dita_file_tree.getroot()
 for topicref in dita_file_root.iter("keydef"):
@@ -181,6 +182,24 @@ print("--------------- Topic ref list ------------------------")
 print(rust_topicref_list)
 print("--------------- Topic ref list ------------------------")
 
+# Collect the hide API which mark props="hide" in <topichead> or <keydef>
+for topichead in dita_file_root.iter("topichead"):
+    is_hide_topichead: bool = True if topichead.get("props") is not None and topichead.get("props") == "hide" else False
+
+    for keydef in topichead.iter("keydef"):
+        if keydef.get("href") is not None:
+            dita_id = path.basename(keydef.get("href")).replace(".dita", "")
+            if is_hide_topichead:
+                json_hide_id_list.append(dita_id)
+            elif keydef.get("props") is not None and keydef.get("props") == "hide":
+                json_hide_id_list.append(dita_id)
+        
+
+
+print("--------------- Hide id list ------------------------")
+print(json_hide_id_list)
+print("--------------- Hide id list ------------------------")
+
 # Target platform
 
 # List of platforms
@@ -188,7 +207,20 @@ props_platform_list = ["windows", "rust", "java", "python", "csharp", "objective
 
 
 def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_path, platform="rust"):
-    tree = ET.parse(file_dir)
+    try:
+        tree = ET.parse(file_dir)
+    except Exception as ex:
+        print("\n")
+        print("Woops!\n")
+        print("It most likely an error occur when parsing the xml file: {}\n".format(file_dir))
+        print("You can try to find out which line parse error, such like error below:\n")
+        print("xml.etree.ElementTree.ParseError: not well-formed (invalid token): line 19, column 73")
+        print("\nIt means that the the error occur on line 19 of {} file, so you can check if there any unexpected format in that line.\n".format(file_dir))
+        print("The exception detail show below:\n")
+        print(ex)
+
+        raise ex
+        
     root = tree.getroot()
 
     # Iterate over all dita files
@@ -1063,6 +1095,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
     data['description'] = api_desc
     data['parameters'] = json_array
     data['returns'] = return_values.strip("\n ")
+    data['is_hide'] = True if api_id in json_hide_id_list else False
 
     print(data)
 
