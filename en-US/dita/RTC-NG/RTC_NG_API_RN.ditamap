@@ -14,7 +14,7 @@
         <topicref href="config/keys-rtc-ng-links-rn.ditamap" format="ditamap"/>
         <topicref href="config/relations-rtc-ng-api.ditamap" format="ditamap"/>
     </topichead>
-    <topichead navtitle="C++ API Reference for All Platforms">
+    <topichead navtitle="React Native API Reference">
         <topicref href="API/rtc_api_overview_ng.dita"/>
         <topicref keyref="IRtcEngine" chunk="to-content">
             <topicref keyref="addPublishStreamUrl" toc="no"/>
@@ -38,6 +38,7 @@
             <topicref keyref="enableAudio" toc="no"/>
             <topicref keyref="enableAudioVolumeIndication" toc="no"/>
             <topicref keyref="enableEchoCancellationExternal" toc="no" props="hide"/>
+            <topicref keyref="enableDualStreamMode2" toc="no" processing-role="resource-only"/>
             <topicref keyref="enableDualStreamMode3" toc="no"/>
             <topicref keyref="enableEncryption" toc="no"/>
             <topicref keyref="enableExtension" toc="no"/>
@@ -76,6 +77,7 @@
             <topicref keyref="joinChannel1" toc="no"/>
             <topicref keyref="joinChannel2" toc="no"/>
             <topicref keyref="joinChannelWithUserAccount2" toc="no"/>
+            <topicref keyref="leaveChannel" toc="no" processing-role="resource-only"/>
             <topicref keyref="leaveChannel2" toc="no"/>
             <topicref keyref="loadExtensionProvider" toc="no"/>
             <topicref keyref="muteAllRemoteAudioStreams" toc="no"/>
@@ -91,7 +93,6 @@
             <topicref keyref="playAllEffects" toc="no"/>
             <topicref keyref="playEffect3" toc="no"/>
             <topicref keyref="preloadEffect" toc="no"/>
-            <topicref keyref="pushDirectCdnStreamingCustomVideoFrame" toc="no" props="cn"/>
             <topicref keyref="rate" toc="no"/>
             <topicref keyref="addHandler" toc="no"/>
             <topicref keyref="removeHandler" toc="no"/>
@@ -105,7 +106,7 @@
             <topicref keyref="resumeAudioMixing" toc="no"/>
             <topicref keyref="resumeEffect" toc="no"/>
             <topicref keyref="sendCustomReportMessage" toc="no"/>
-            <topicref keyref="sendMetadata" toc="no"/>
+            <topicref keyref="sendMetaData" toc="no"/>
             <topicref keyref="sendStreamMessage" toc="no"/>
             <topicref keyref="setAdvancedAudioOptions" toc="no"/>
             <topicref keyref="setAudioEffectParameters" toc="no"/>
@@ -114,7 +115,7 @@
             <topicref keyref="setAudioMixingPosition" toc="no"/>
             <topicref keyref="setAudioProfile" toc="no"/>
             <topicref keyref="setAudioSessionOperationRestriction" toc="no"/>
-            <topicref keyref="setAVSyncSource" toc="no"/>
+            <topicref keyref="setAVSyncSource" toc="no" props="cn"/>
             <topicref keyref="setBeautyEffectOptions" toc="no"/>
             <topicref keyref="setCameraAutoFocusFaceModeEnabled" toc="no"/>
             <topicref keyref="setCameraAutoExposureFaceModeEnabled" toc="no"/>
@@ -172,6 +173,7 @@
             <topicref keyref="startEchoTest2" toc="no"/>
             <topicref keyref="startLastmileProbeTest" toc="no"/>
             <topicref keyref="startLocalVideoTranscoder" toc="no" props="hide"/>
+            <topicref keyref="startPreview" toc="no" processing-role="resource-only"/>
             <topicref keyref="startPreview2" toc="no"/>
             <topicref keyref="startRhythmPlayer" toc="no"/>
             <topicref keyref="startRtmpStreamWithoutTranscoding" toc="no"/>
@@ -185,11 +187,12 @@
             <topicref keyref="stopEffect" toc="no"/>
             <topicref keyref="stopLastmileProbeTest" toc="no"/>
             <topicref keyref="stopLocalVideoTranscoder" toc="no" props="hide"/>
+            <topicref keyref="stopPreview" toc="no" processing-role="resource-only"/>
             <topicref keyref="stopPreview2" toc="no"/>
             <topicref keyref="stopRhythmPlayer" toc="no"/>
             <topicref keyref="stopRtmpStream" toc="no"/>
             <topicref keyref="switchCamera" toc="no"/>
-            <topicref keyref="takeSnapshot" toc="no"/>
+            <topicref keyref="takeSnapshot" toc="no" props="hide"/>
             <topicref keyref="unloadAllEffects" toc="no"/>
             <topicref keyref="unloadEffect" toc="no"/>
             <topicref keyref="unregisterMediaMetadataObserver" toc="no"/>
@@ -276,7 +279,7 @@
             <topicref keyref="onRtcStats" toc="no"/>
             <topicref keyref="onRtmpStreamingEvent" toc="no"/>
             <topicref keyref="onRtmpStreamingStateChanged" toc="no"/>
-            <topicref keyref="onSnapshotTaken" toc="no"/>
+            <topicref keyref="onSnapshotTaken" toc="no" props="hide"/>
             <topicref keyref="onStreamMessage" toc="no"/>
             <topicref keyref="onStreamMessageError" toc="no"/>
             <topicref keyref="onStreamPublished" toc="no"/>
@@ -393,6 +396,9 @@
             <topicref keyref="updateRemotePosition" toc="no" props="hide"/>
         </topicref>
         <topicref href="API/rtc_api_data_type.dita" chunk="to-content">
+            <topicref keyref="RtcSurfaceViewProps" toc="no"/>
+            <topicref keyref="RtcSurfaceView" toc="no"/>
+            <topicref keyref="RtcTextureView" toc="no"/>
             <topicref keyref="AREA_CODE" toc="no"/>
             <topicref keyref="AUDIENCE_LATENCY_LEVEL_TYPE" toc="no"/>
             <topicref keyref="AUDIO_CODEC_PROFILE_TYPE" toc="no"/>
@@ -409,7 +415,7 @@
             <topicref keyref="AUDIO_PROFILE_TYPE" toc="no"/>
             <topicref keyref="AUDIO_RECORDING_QUALITY_TYPE" toc="no"/>
             <topicref keyref="AUDIO_REVERB_TYPE" toc="no"/>
-            <topicref keyref="AUDIO_ROUTE_TYPE" toc="no"/>
+            <topicref keyref="AUDIO_ROUTE" toc="no"/>
             <topicref keyref="AUDIO_SAMPLE_RATE_TYPE" toc="no"/>
             <topicref keyref="AUDIO_SCENARIO_TYPE" toc="no"/>
             <topicref keyref="AUDIO_SESSION_OPERATION_RESTRICTION" toc="no"/>
@@ -471,7 +477,7 @@
             <topicref keyref="REMOTE_VIDEO_STREAM_TYPE" toc="no"/>
             <topicref keyref="RENDER_MODE_TYPE" toc="no"/>
             <topicref keyref="RTMP_STREAM_LIFE_CYCLE_TYPE" toc="no"/>
-            <topicref keyref="RTMP_STREAM_PUBLISH_ERROR" toc="no"/>
+            <topicref keyref="RTMP_STREAM_PUBLISH_ERROR_TYPE" toc="no"/>
             <topicref keyref="RTMP_STREAM_PUBLISH_STATE" toc="no"/>
             <topicref keyref="RTMP_STREAMING_EVENT" toc="no"/>
             <topicref keyref="SAE_DEPLOY_REGION" toc="no" props="hide"/>
@@ -501,7 +507,6 @@
             <topicref keyref="AdvancedAudioOptions" toc="no"/>
             <topicref keyref="AgoraRhythmPlayerConfig" toc="no"/>
             <topicref keyref="AudioRecordingConfiguration" toc="no"/>
-            <topicref keyref="AudioSpectrumData" toc="no"/>
             <topicref keyref="AudioVolumeInfo" toc="no"/>
             <topicref keyref="BeautyOptions" toc="no"/>
             <topicref keyref="CameraCapturerConfiguration" toc="no"/>
@@ -541,7 +546,7 @@
             <topicref keyref="RtcStats" toc="no"/>
             <topicref keyref="SegmentationProperty" toc="no" props="hide"/>
             <topicref keyref="SimulcastStreamConfig" toc="no"/>
-            <topicref keyref="SnapShotConfig" toc="no"/>
+            <topicref keyref="SnapShotConfig" toc="no" props="hide"/>
             <topicref keyref="SIZE" toc="no" props="hide"/>
             <topicref keyref="SpatialAudioParams" toc="no" props="hide"/>
             <topicref keyref="SrcInfo" toc="no"/>
@@ -560,9 +565,6 @@
             </topicref>
             <topicref keyref="WatermarkOptions" toc="no"/>
             <topicref keyref="WatermarkRatio" toc="no"/>
-            <topicref keyref="RtcSurfaceViewProps" toc="no"/>
-            <topicref keyref="RtcSurfaceView" toc="no"/>
-            <topicref keyref="RtcTextureView" toc="no"/>
         </topicref>
     </topichead>
 </map>

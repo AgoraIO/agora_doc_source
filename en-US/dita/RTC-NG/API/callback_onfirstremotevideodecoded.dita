@@ -13,7 +13,6 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstRemoteVideoDecoded(RtcConnection connection, uint remoteUid, int width, int height, int elapsed) {}</codeblock>
             <codeblock props="android" outputclass="language-java">public void onFirstRemoteVideoDecoded(int uid, int width, int height, int elapsed) {}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
         firstRemoteVideoDecodedOfUid:(NSUInteger)uid size:(CGSize)size elapsed:(NSInteger)elapsed;</codeblock>
@@ -26,19 +25,23 @@
     (void)height;
     (void)elapsed;
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.FIRST_REMOTE_VIDEO_DECODED, cb: (
-    uid: number,
-    width: number,
-    height: number,
-    elapsed: number) =&gt; void
-    ): this;</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">VideoFrameWithUidCallback? firstRemoteVideoDecoded;</codeblock> </p>
+            <codeblock props="electron" outputclass="language-typescript">onFirstRemoteVideoDecoded?(connection: RtcConnection, remoteUid: number, width: number, height: number, elapsed: number): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstRemoteVideoDecoded(RtcConnection connection, uint remoteUid, int width, int height, int elapsed) {}</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onFirstRemoteVideoDecoded?(
+  connection: RtcConnection,
+  remoteUid: number,
+  width: number,
+  height: number,
+  elapsed: number
+): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, int width,
+      int height, int elapsed)? onFirstRemoteVideoDecoded;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>The SDK triggers this callback under one of the following circumstances:<ul id="ul_xcz_f34_npb">
             <li>The remote user joins the channel and sends the video stream.</li>
-            <li>The remote user stops sending the video stream and re-sends it after 15 seconds. Reasons for such an interruption include:<ul id="ul_ycz_f34_npb">
+            <li>The remote user stops sending the video stream and re-sends it after 15 seconds.  Reasons for such an interruption include:<ul id="ul_ycz_f34_npb">
                 <li>The remote user leaves the channel.</li>
                 <li>The remote user drops offline.</li>
                 <li>The remote user calls <xref keyref="muteLocalVideoStream"/> to stop sending the video stream.</li>
@@ -48,11 +51,11 @@
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
-            <plentry props="native electron">
+            <plentry props="native">
                 <pt>uid</pt>
-                <pd>The user ID of the remote user sending the video stream.</pd>
+                <pd>The ID of the remote user sending the video stream.</pd>
             </plentry>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt/>
@@ -62,19 +65,19 @@
                 <pt>size</pt>
                 <pd>The video dimension.</pd>
             </plentry>
-            <plentry props="unity">
+            <plentry props="unity electron rn flutter">
                 <pt>connection</pt>
                 <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
             </plentry>
-            <plentry props="unity">
+            <plentry props="unity electron rn flutter">
                 <pt>remoteUid</pt>
-                <pd>The user ID of the remote user sending the video stream.</pd>
+                <pd>The ID of the remote user sending the video stream.</pd>
             </plentry>
-            <plentry props="android cpp unity">
+            <plentry props="android cpp unity electron rn flutter">
                 <pt>width</pt>
                 <pd>The width (px) of the video stream.</pd>
             </plentry>
-            <plentry props="android cpp unity">
+            <plentry props="android cpp unity electron rn flutter">
                 <pt>height</pt>
                 <pd>The height (px) of the video stream.</pd>
             </plentry>

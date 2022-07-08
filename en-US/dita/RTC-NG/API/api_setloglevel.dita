@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setloglevel">
-    <title><ph keyref="setLogLevel" /></title>
+    <title><ph keyref="setLogLevel"/></title>
     <shortdesc id="short"><ph id="shortdesc">Sets the output log level of the SDK.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setLogLevel" />
+                <indexterm keyref="setLogLevel"/>
             </keywords>
         </metadata>
     </prolog>
@@ -17,34 +17,33 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLogLevel:(AgoraLogLevel)level;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setLogLevel(commons::LOG_LEVEL level) = 0;
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript">abstract setLogLevel(level: LogLevel): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetLogLevel(LOG_LEVEL level);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract setLogLevel(level: LogLevel): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLogLevel(LogLevel level);</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated">
-                <dlentry>
-                    <dt>Deprecated:</dt>
-                    <dd>This method is deprecated. Use <xref keyref="RtcEngineConfig" /> instead to set the log output level.</dd>
-                </dlentry>
+            <dlentry>
+                <dt>Deprecated:</dt>
+                <dd>This method is deprecated. Use <xref keyref="RtcEngineConfig"/> instead to set the log output level.</dd>
+            </dlentry>
             </dl>
             <p>Choose a level to see the logs preceding that level.</p>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters">
+            <title>Parameters</title>
             <parml>
-                <plentry>
-                    <pt>level</pt>
-                    <pd>The log level: <xref keyref="LOG_LEVEL" />.</pd>
-                </plentry>
-            </parml>
-        </section>
-        <section id="return_values">
+            <plentry>
+                <pt>level</pt>
+                <pd>The log level: <xref keyref="LOG_LEVEL"/>.</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron unity rn">
             <title>Returns</title>
             <ul id="ul_uns_l2y_hqb">
-                <li>0: Success.</li>
-                <li>&lt; 0: Failure.</li>
-            </ul>
-        </section>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
     </refbody>
 </reference>

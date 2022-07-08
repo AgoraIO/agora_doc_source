@@ -1,58 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_imediaplayersourceobserver_onplayerevent">
-    <title><ph keyref="onPlayerEvent" /></title>
+    <title><ph keyref="onPlayerEvent"/></title>
     <shortdesc id="short"><ph id="shortdesc">Reports the playback event.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onPlayerEvent" />
+                <indexterm keyref="onPlayerEvent"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">void onPlayerEvent(Constants.MediaPlayerEvent eventCode, long elapsedTime, String message);
+            <codeblock props="android" outputclass="language-java">void onPlayerEvent(Constants.MediaPlayerEvent eventCode, long elapsedTime, String message);
 </codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">(void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol> _Nonnull)playerKit
+            <codeblock props="ios mac" outputclass="language-objectivec">(void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol> _Nonnull)playerKit
               didOccurEvent:(AgoraMediaPlayerEvent)eventCode
                 elapsedTime:(NSInteger)elapsedTime
                     message:(NSString *_Nullable)message;
 </codeblock>
-                <codeblock props="cpp" outputclass="language-cpp">virtual void onPlayerEvent(media::base::MEDIA_PLAYER_EVENT eventCode, int64_t elapsedTime, const char* message) = 0;
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onPlayerEvent(media::base::MEDIA_PLAYER_EVENT eventCode, int64_t elapsedTime, const char* message) = 0;
 </codeblock>
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp" />
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
-            </p>
+            <codeblock props="electron" outputclass="language-typescript">onPlayerEvent?(eventCode: MediaPlayerEvent, elapsedTime: number, message: string): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnPlayerEvent(MEDIA_PLAYER_EVENT eventCode, Int64 elapsedTime, string message) { }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onPlayerEvent?(
+  eventCode: MediaPlayerEvent,
+  elapsedTime: number,
+  message: string
+): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(
+          MediaPlayerEvent eventCode, int elapsedTime, String message)?
+      onPlayerEvent;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <ul>
-                <li>After calling the <xref keyref="seek" /> method, the SDK triggers the callback to report the results of the seek operation.</li>
-                <li props="hide">After calling the <xref keyref="selectAudioTrack" /> method, the SDK triggers the callback to report that the audio track changes.</li>
-            </ul>
-        </section>
-        <section id="parameters"><title>Parameters</title>
+            <li>After calling the <xref keyref="seek"/> method, the SDK triggers the callback to report the results of the seek operation.</li>
+            <li props="hide">After calling the <xref keyref="selectAudioTrack"/> method, the SDK triggers the callback to report that the audio track changes.</li>
+            </ul> </section>
+        <section id="parameters">
+            <title>Parameters</title>
             <parml>
-                <plentry props="ios mac" id="playerkit">
-                    <pt>playerKit</pt>
-                    <pd>See <xref keyref="IMediaPlayer" />.</pd>
-                </plentry>
-                <plentry>
-                    <pt>eventCode</pt>
-                    <pd>The playback event. See <xref keyref="MEDIA_PLAYER_EVENT" /> for details.</pd>
-                </plentry>
-                <plentry>
-                    <pt>elapsedTime</pt>
-                    <pd>The time (ms) when the event occurs.</pd>
-                </plentry>
-                <plentry>
-                    <pt>message</pt>
-                    <pd>Information about the event.</pd>
-                </plentry>
-            </parml>
-        </section>
+            <plentry props="ios mac" id="playerkit">
+                <pt>playerKit</pt>
+                <pd>See <xref keyref="IMediaPlayer"/>.</pd>
+            </plentry>
+            <plentry props="native unity flutter electron rn">
+                <pt>eventCode</pt>
+                <pd>The playback event. See <xref keyref="MEDIA_PLAYER_EVENT"/>.</pd>
+            </plentry>
+            <plentry>
+                <pt>elapsedTime</pt>
+                <pd>The time (ms) when the event occurs.</pd>
+            </plentry>
+            <plentry>
+                <pt>message</pt>
+                <pd>Information about the event.</pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

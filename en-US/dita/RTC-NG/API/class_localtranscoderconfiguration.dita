@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_localtranscoderconfiguration">
-    <title><ph keyref="LocalTranscoderConfiguration" /></title>
+    <title><ph keyref="LocalTranscoderConfiguration"/></title>
     <shortdesc id="short"><ph id="shortdesc">The configuration of the video mixing on the local client.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="android" outputclass="language-java"/>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLocalTranscoderConfiguration: NSObject
 @property(copy, nonatomic) NSArray&lt;AgoraTranscodingVideoStream *&gt; *_Nullable videoInputStreams;
 @property (strong, nonatomic) AgoraVideoEncoderConfiguration *_Nonnull videoOutputConfiguration;
@@ -22,8 +22,20 @@
         videoOutputConfiguration() {}
 };
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp">public class LocalTranscoderConfiguration {
+            <codeblock props="electron" outputclass="language-typescript">export class LocalTranscoderConfiguration {
+  streamCount?: number
+  VideoInputStreams?: TranscodingVideoStream[]
+  videoOutputConfiguration?: VideoEncoderConfiguration
+}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class LocalTranscoderConfiguration
+    {
+        public LocalTranscoderConfiguration()
+        {
+            streamCount = 0;
+            VideoInputStreams = null;
+            videoOutputConfiguration = new VideoEncoderConfiguration();
+        }
+
         public LocalTranscoderConfiguration(uint streamCount, TranscodingVideoStream[] VideoInputStreams,
                                             VideoEncoderConfiguration videoOutputConfiguration)
         {
@@ -31,35 +43,59 @@
             this.VideoInputStreams = VideoInputStreams;
             this.videoOutputConfiguration = videoOutputConfiguration;
         }
+
         public uint streamCount { set; get; }
         public TranscodingVideoStream[] VideoInputStreams { set; get; }
         public VideoEncoderConfiguration videoOutputConfiguration { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="rn" outputclass="language-typescript">export class LocalTranscoderConfiguration {
+  streamCount?: number;
+  VideoInputStreams?: TranscodingVideoStream[];
+  videoOutputConfiguration?: VideoEncoderConfiguration;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class LocalTranscoderConfiguration {
+  const LocalTranscoderConfiguration(
+      {this.streamCount,
+      this.videoInputStreams,
+      this.videoOutputConfiguration});
+
+  @JsonKey(name: 'streamCount')
+  final int? streamCount;
+  @JsonKey(name: 'VideoInputStreams')
+  final List&lt;TranscodingVideoStream>? videoInputStreams;
+  @JsonKey(name: 'videoOutputConfiguration')
+  final VideoEncoderConfiguration? videoOutputConfiguration;
+  factory LocalTranscoderConfiguration.fromJson(Map&lt;String, dynamic> json) =>
+      _$LocalTranscoderConfigurationFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$LocalTranscoderConfigurationToJson(this);
+}</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
-                <plentry props="cpp">
-                    <pt>streamCount</pt>
-                    <pd>
-                        <p>The number of the video streams for the video mixing on the local client.</p>
-                    </pd>
-                </plentry>
-                <plentry>
-                    <pt>VideoInputStreams</pt>
-                    <pd>
-                        <p>The video streams for the video mixing on the local client. See <xref keyref="TranscodingVideoStream" />.</p>
-                    </pd>
-                </plentry>
-                <plentry>
-                    <pt>videoOutputConfiguration</pt>
-                    <pd>
-                        <p>The encoding configuration of the mixed video stream after the video mixing on the local client. See <xref keyref="VideoEncoderConfiguration" />.</p>
-                    </pd>
-                </plentry>
-            </parml>
-        </section>
+            <plentry props="cpp unity electron rn flutter">
+                <pt>streamCount</pt>
+                <pd>
+                    <p>The number of the video streams for the video mixing on the local client.</p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>VideoInputStreams</pt>
+                <pd>
+                    <p>The video streams for the video mixing on the local client. See <xref keyref="TranscodingVideoStream"
+                    />.</p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>videoOutputConfiguration</pt>
+                <pd>
+                    <p>The encoding configuration of the mixed video stream after the video mixing on the local client. See <xref
+                    keyref="VideoEncoderConfiguration"/>.</p>
+                </pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

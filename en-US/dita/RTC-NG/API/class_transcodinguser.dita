@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_transcodinguser">
-    <title><ph keyref="TranscodingUser" /></title>
+    <title><ph keyref="TranscodingUser"/></title>
     <shortdesc id="short"><ph id="shortdesc">Transcoding configurations of each host.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -31,7 +31,7 @@
 @property(assign, nonatomic) double alpha;
 @property(assign, nonatomic) NSInteger audioChannel;
 @end</codeblock>
-            <codeblock props="cpp unity" outputclass="language-cpp">truct TranscodingUser {
+            <codeblock props="cpp" outputclass="language-cpp">truct TranscodingUser {
   uid_t uid;
   int x;
   int y;
@@ -50,61 +50,98 @@
         alpha(1.0),
         audioChannel(0) {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">export interface TranscodingUser {
-    uid: number;
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-    zOrder: number;
-    alpha: number;
-    audioChannel: number;
+            <codeblock props="electron" outputclass="language-typescript">export class TranscodingUser {
+  uid?: number
+  x?: number
+  y?: number
+  width?: number
+  height?: number
+  zOrder?: number
+  alpha?: number
+  audioChannel?: number
+}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class TranscodingUser
+    {
+        public TranscodingUser()
+        {
+            uid = 0;
+            x = 0;
+            y = 0;
+            width = 0;
+            height = 0;
+            zOrder = 0;
+            alpha = 1.0;
+            audioChannel = 0;
+        }
+
+        public TranscodingUser(uint uid, int x, int y, int width, int height, int zOrder, double alpha,
+            int audioChannel)
+        {
+            this.uid = uid;
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+            this.zOrder = zOrder;
+            this.alpha = alpha;
+            this.audioChannel = audioChannel;
+        }
+
+        public uint uid { set; get; }
+        public int x { set; get; }
+        public int y { set; get; }
+        public int width { set; get; }
+        public int height { set; get; }
+        public int zOrder { set; get; }
+        public double alpha { set; get; }
+        public int audioChannel { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript">export class TranscodingUser {
+  uid?: number;
+  x?: number;
+  y?: number;
+  width?: number;
+  height?: number;
+  zOrder?: number;
+  alpha?: number;
+  audioChannel?: number;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class TranscodingUser {
-  
-  int uid;
+  const TranscodingUser(
+      {this.uid,
+      this.x,
+      this.y,
+      this.width,
+      this.height,
+      this.zOrder,
+      this.alpha,
+      this.audioChannel});
 
-  @JsonKey(includeIfNull: false)
-  int? x;
-
-  @JsonKey(includeIfNull: false)
-  int? y;
-
-  @JsonKey(includeIfNull: false)
-  int? width;
-
-  @JsonKey(includeIfNull: false)
-  int? height;
-
-  @JsonKey(includeIfNull: false)
-  int? zOrder;
-
-  @JsonKey(includeIfNull: false)
-  double? alpha;
-
-  @JsonKey(includeIfNull: false)
-  AudioChannel? audioChannel;
-
-  TranscodingUser(
-    this.uid, {
-    this.x,
-    this.y,
-    this.width,
-    this.height,
-    this.zOrder,
-    this.alpha,
-    this.audioChannel,
-  });
-
-  factory TranscodingUser.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  @JsonKey(name: 'uid')
+  final int? uid;
+  @JsonKey(name: 'x')
+  final int? x;
+  @JsonKey(name: 'y')
+  final int? y;
+  @JsonKey(name: 'width')
+  final int? width;
+  @JsonKey(name: 'height')
+  final int? height;
+  @JsonKey(name: 'zOrder')
+  final int? zOrder;
+  @JsonKey(name: 'alpha')
+  final double? alpha;
+  @JsonKey(name: 'audioChannel')
+  final int? audioChannel;
+  factory TranscodingUser.fromJson(Map&lt;String, dynamic> json) =>
       _$TranscodingUserFromJson(json);
-
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$TranscodingUserToJson(this);
+  Map&lt;String, dynamic> toJson() => _$TranscodingUserToJson(this);
 }</codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>uid</pt>
@@ -112,21 +149,21 @@
                     <p>The user ID of the host.</p>
                 </pd>
             </plentry>
-            <plentry props="android cpp unity flutter">
+            <plentry props="android cpp unity electron rn flutter">
                 <pt>x</pt>
                 <pd>
-                    <p>The x coordinate (pixel) of the host's video on the output video frame (taking the upper left corner of the video frame as the origin). The value range is [0, width], where width is the <xref keyref="LiveTranscoding" /><codeph>width</codeph> set in .</p>
+                    <p>The x coordinate (pixel) of the host's video on the output video frame (taking the upper left corner of the video frame as the origin). The value range is [0, width], where width is the<codeph>width</codeph> set in <xref keyref="LiveTranscoding"/>.</p>
                 </pd>
             </plentry>
-            <plentry props="android cpp unity flutter">
+            <plentry props="android cpp unity electron rn flutter">
                 <pt>y</pt>
-                <pd>The y coordinate (pixel) of the host's video on the output video frame (taking the upper left corner of the video frame as the origin). The value range is [0, height], where height is the <xref keyref="LiveTranscoding" /><codeph>height</codeph> set in .</pd>
+                <pd>The y coordinate (pixel) of the host's video on the output video frame (taking the upper left corner of the video frame as the origin). The value range is [0, height], where height is the <codeph>height</codeph> set in<xref keyref="LiveTranscoding"/>.</pd>
             </plentry>
-            <plentry props="android cpp unity flutter">
+            <plentry props="android cpp unity electron rn flutter">
                 <pt>width</pt>
                 <pd>The width (pixel) of the host's video.</pd>
             </plentry>
-            <plentry props="android cpp unity flutter">
+            <plentry props="android cpp unity electron rn flutter">
                 <pt>height</pt>
                 <pd>
                     <p>The height (pixel) of the host's video.</p>
@@ -134,27 +171,25 @@
             </plentry>
             <plentry props="ios mac">
                 <pt>rect</pt>
-                <pd>The position and size of the host's video in the output image. The data size is CGRect.</pd>
+                <pd>The position and size of the host's video in the output video frame, the type is CGRect.</pd>
             </plentry>
             <plentry>
                 <pt>zOrder</pt>
                 <pd>
-                    <p>The layer index number of the host's video. The value range is [0, 100].
-                    <ul>
-                    <li>0: (Default) The host's video is the bottom layer.</li>
-                    <li>100: The host's video is the top layer.</li>
+                    <p>The number of the layer to which the video for the video mixing on the local client belongs. The value range is [0,100].<ul>
+                    <li>0: (Default) The layer is at the bottom.</li>
+                    <li>100: The layer is at the top.</li>
                     </ul> </p>
                     <note type="attention">
                     <ul>
-                    <li>If the value is beyond this range, the SDK reports the error code <codeph>ERR_INVALID_ARGUMENT</codeph>.</li>
-                    <li>As of v2.3, the SDK supports setting zOrder to 0.</li>
+                    <li>If the value is less than 0 or greater than 100, the error <codeph>ERR_INVALID_ARGUMENT</codeph> is returned.</li>
+                    <li>Starting from v2.3, setting zOrder to 0 is supported.</li>
                     </ul> </note> </pd>
             </plentry>
             <plentry>
                 <pt>alpha</pt>
                 <pd>
-                    <p>The transparency of the host's video. The value range is [0.0, 1.0].
-                    <ul>
+                    <p>The transparency of the video for the video mixing on the local client. The value range is [0.0,1.0].<ul>
                     <li>0.0: Completely transparent.</li>
                     <li>1.0: (Default) Opaque.</li>
                     </ul> </p>
@@ -163,21 +198,14 @@
             <plentry>
                 <pt>audioChannel</pt>
                 <pd>
-                    <p>The audio channel used by the host's audio in the output audio. The default value is 0, and the value range is [0, 5].
-                    <ul id="ul_ugm_rrh_v4b">
+                    <p>The audio channel used by the host's audio in the output audio. The default value is 0, and the value range is [0, 5].<ul id="ul_ugm_rrh_v4b">
                     <li><codeph>0</codeph>: (Recommended) The defaut setting, which supports dual channels at most and depends on the upstream of the host.</li>
-                    <li><codeph>1</codeph>: The host's audio uses the FL audio channel. If the host's upstream uses multiple audio channels, the Agora
-                                    server mixes them into mono first.</li>
-                    <li><codeph>2</codeph>: The host's audio uses the FC audio channel. If the host's upstream uses multiple audio channels, the Agora
-                                    server mixes them into mono first.</li>
-                    <li><codeph>3</codeph>: The host's audio uses the FR audio channel. If the host's upstream uses multiple audio channels, the Agora
-                                    server mixes them into mono first.</li>
-                    <li><codeph>4</codeph>: The host's audio uses the BL audio channel. If the host's upstream uses multiple audio channels, the Agora
-                                    server mixes them into mono first.</li>
-                    <li><codeph>5</codeph>: The host's audio uses the BR audio channel. If the host's upstream uses multiple audio channels, the Agora
-                                    server mixes them into mono first.</li>
-                    <li><codeph>0xFF</codeph> or a value greater than <codeph>5</codeph>: The host's audio is muted, and the Agora
-                                    server removes the host's audio.</li>
+                    <li><codeph>1</codeph>: The host's audio uses the FL audio channel. If the host's upstream uses multiple audio channels, the Agora server mixes them into mono first.</li>
+                    <li><codeph>2</codeph>: The host's audio uses the FC audio channel. If the host's upstream uses multiple audio channels, the Agora server mixes them into mono first.</li>
+                    <li><codeph>3</codeph>: The host's audio uses the FR audio channel. If the host's upstream uses multiple audio channels, the Agora server mixes them into mono first.</li>
+                    <li><codeph>4</codeph>: The host's audio uses the BL audio channel. If the host's upstream uses multiple audio channels, the Agora server mixes them into mono first.</li>
+                    <li><codeph>5</codeph>: The host's audio uses the BR audio channel. If the host's upstream uses multiple audio channels, the Agora server mixes them into mono first.</li>
+                    <li><codeph>0xFF</codeph> or a value greater than <codeph>5</codeph>: The host's audio is muted, and the Agora server removes the host's audio.</li>
                     </ul>
                     <note type="attention">If the value is not <codeph>0</codeph>, a special player is required.</note></p>
                 </pd>

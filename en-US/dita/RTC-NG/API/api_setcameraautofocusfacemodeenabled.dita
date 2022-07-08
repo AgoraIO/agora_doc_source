@@ -19,22 +19,23 @@
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetCameraAutoFocusFaceModeEnabled(bool enabled);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract setCameraAutoFocusFaceModeEnabled(enabled: boolean): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setCameraAutoFocusFaceModeEnabled(bool enabled);</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p props="android">The SDK disables face autofocus by default. To set face autofocus, call this method.</p>
             <p props="ios">The SDK enables face autofocus by default. To set face autofocus, call this method.</p>
+            <p props="rn flutter">By default, the SDK disables face autofocus on Android and enables face autofocus on iOS. To set face autofocus, call this method.</p>
             <note type="attention">
             <ul>
-            <li props="cpp unity">This method is for Android and iOS only.</li>
+            <li props="cpp unity flutter">This method is for Android and iOS only.</li>
             <li>Call this method after the camera is started, such as after <xref keyref="joinChannel2"/>, <xref keyref="enableVideo"/>, or <xref keyref="enableLocalVideo"/>.</li>
             </ul></note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
-                <pt props="android cpp unity">enabled</pt>
+                <pt props="android cpp unity rn flutter">enabled</pt>
                 <pt props="ios">enable</pt>
                 <pd>
                     <p>Whether to enable face autofocus:<ul>
@@ -44,9 +45,9 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native unity rn">
             <title>Returns</title>
-            <ul props="android cpp unity">
+            <ul props="android cpp unity rn">
             <li>0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul>

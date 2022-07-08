@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_virtualbackgroundsource">
-    <title><ph keyref="VirtualBackgroundSource" /></title>
+    <title><ph keyref="VirtualBackgroundSource"/></title>
     <shortdesc id="short"><ph id="shortdesc">The custom background image.</ph></shortdesc>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
+            <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class VirtualBackgroundSource {
   public static final int BACKGROUND_COLOR = 1;
   public static final int BACKGROUND_IMG = 2;
@@ -39,133 +39,108 @@
 @property(nonatomic, assign) AgoraBlurDegree blurDegree;
 @end
 </codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">struct VirtualBackgroundSource {
+    enum BACKGROUND_SOURCE_TYPE {
+    BACKGROUND_COLOR = 1,
+    BACKGROUND_IMG,
+    BACKGROUND_BLUR,
+    };
+    enum BACKGROUND_BLUR_DEGREE {
+    BLUR_DEGREE_LOW = 1,
+    BLUR_DEGREE_MEDIUM,
+    BLUR_DEGREE_HIGH,
+    };
+    BACKGROUND_SOURCE_TYPE background_source_type;
+    unsigned int color;
+    const char* source;
+    BACKGROUND_BLUR_DEGREE blur_degree;
+    VirtualBackgroundSource() : background_source_type(BACKGROUND_COLOR), color(0xffffff), source(NULL),  blur_degree(BLUR_DEGREE_HIGH) {}
+            </codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export class VirtualBackgroundSource {
+  background_source_type?: BackgroundSourceType
+  color?: number
+  source?: string
+  blur_degree?: BackgroundBlurDegree
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class VirtualBackgroundSource
     {
-        public BACKGROUND_SOURCE_TYPE background_source_type
+        public VirtualBackgroundSource()
+        {
+            background_source_type = BACKGROUND_SOURCE_TYPE.BACKGROUND_COLOR;
+            color = 0xffffff;
+            source = "";
+            blur_degree = BACKGROUND_BLUR_DEGREE.BLUR_DEGREE_HIGH;
+        }
+        public BACKGROUND_SOURCE_TYPE background_source_type;
         public uint color;
         public string source;
         public BACKGROUND_BLUR_DEGREE blur_degree;
-    };</codeblock> </p>
-            <p outputclass="codeblock" props="rtc">
-            <codeblock props="android" outputclass="language-java">public class VirtualBackgroundSource {
-    public static final int BACKGROUND_COLOR = 1;
-    public static final int BACKGROUND_IMG = 2;
-    public static final int BACKGROUND_BLUR = 3;
-    public static final int BLUR_DEGREE_LOW = 1;
-    public static final int BLUR_DEGREE_MEDIUM = 2;
-    public static final int BLUR_DEGREE_HIGH = 3;
-    public int backgroundSourceType;
-    public int color;
-    public String source = null;
-    public int blur_degree;
-    public VirtualBackgroundSource(
-      int backgroundSourceType, int color, String source, int blur_degree) {
-        this.backgroundSourceType = backgroundSourceType;
-        this.color = color;
-        this.source = source;
-        this.blur_degree = blur_degree;
-    }
-    public VirtualBackgroundSource() {
-        this.backgroundSourceType = BACKGROUND_COLOR;
-        this.color = 0xffffff;
-        this.source = "";
-        this.blur_degree = BLUR_DEGREE_HIGH;
-    }
-}
-</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraVirtualBackgroundSource) __attribute__((visibility("default"))) @interface AgoraVirtualBackgroundSource : NSObject
-@property(nonatomic, assign) AgoraVirtualBackgroundSourceType backgroundSourceType NS_SWIFT_NAME(backgroundSourceType);
-@property(nonatomic, assign) NSUInteger color NS_SWIFT_NAME(color);
-@property(nonatomic, copy) NSString* _Nullable source NS_SWIFT_NAME(source);
-@property(nonatomic, assign) AgoraBlurDegree blur_degree;
-@end
-</codeblock></p>
-            <p outputclass="codeblock">
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" />
-            <codeblock props="cpp" outputclass="language-cpp">struct VirtualBackgroundSource {
-                    enum BACKGROUND_SOURCE_TYPE {
-                    BACKGROUND_COLOR = 1,
-                    BACKGROUND_IMG,
-                    BACKGROUND_BLUR,
-                    };
-                    enum BACKGROUND_BLUR_DEGREE {
-                    BLUR_DEGREE_LOW = 1,
-                    BLUR_DEGREE_MEDIUM,
-                    BLUR_DEGREE_HIGH,
-                    };
-                    BACKGROUND_SOURCE_TYPE background_source_type;
-                    unsigned int color;
-                    const char* source;
-                    BACKGROUND_BLUR_DEGREE blur_degree;
-                    VirtualBackgroundSource() : background_source_type(BACKGROUND_COLOR), color(0xffffff), source(NULL),  blur_degree(BLUR_DEGREE_HIGH) {}
-                </codeblock>
+    };</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class VirtualBackgroundSource {
+  background_source_type?: BackgroundSourceType;
+  color?: number;
+  source?: string;
+  blur_degree?: BackgroundBlurDegree;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class VirtualBackgroundSource {
+  const VirtualBackgroundSource(
+      {this.backgroundSourceType, this.color, this.source, this.blurDegree});
 
-                    @JsonKey(includeIfNull: false)
-                    VirtualBackgroundSourceType? backgroundSourceType;
-                  
-                    @JsonKey(includeIfNull: false)
-                    int? color;
-                  
-                    @JsonKey(includeIfNull: false)
-                    String? source;
-                  
-                    @JsonKey(name: 'blur_degree')
-                    VirtualBackgroundBlurDegree blurDegree;
-                  
-                    VirtualBackgroundSource({
-                      this.backgroundSourceType,
-                      this.color,
-                      this.source,
-                      this.blurDegree = VirtualBackgroundBlurDegree.High,
-                    });
-                  
-                    factory VirtualBackgroundSource.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
-                        _$VirtualBackgroundSourceFromJson(json);
-                  
-                    Map&lt;String, dynamic&gt; toJson() =&gt; _$VirtualBackgroundSourceToJson(this);
-                  }</codeblock> </p>
-        </section>
-        <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-                <dlentry props="native">
-                    <dt>Since</dt>
-                    <dd>v3.5.0</dd>
-                </dlentry>
-            </dl>
+  @JsonKey(name: 'background_source_type')
+  final BackgroundSourceType? backgroundSourceType;
+  @JsonKey(name: 'color')
+  final int? color;
+  @JsonKey(name: 'source')
+  final String? source;
+  @JsonKey(name: 'blur_degree')
+  final BackgroundBlurDegree? blurDegree;
+  factory VirtualBackgroundSource.fromJson(Map&lt;String, dynamic> json) =>
+      _$VirtualBackgroundSourceFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$VirtualBackgroundSourceToJson(this);
+}</codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
-                <plentry>
-                    <pt props="android ios mac flutter">backgroundSourceType</pt>
-                    <pt props="unity cpp">background_source_type</pt>
-                    <pd><ph>The type of the custom background image. </ph><ph props="ios mac cpp unity flutter">See <xref keyref="BACKGROUND_SOURCE_TYPE" />.</ph><ul props="android">
-                        <li><ph keyref="BACKGROUND_COLOR" />(1): (Default) The background image is a solid color.</li>
-                        <li><ph keyref="BACKGROUND_IMG" />(2): The background image is a file in PNG or JPG format.</li>
-                        <li><ph keyref="BACKGROUND_BLUR" />(3): The background image is the blurred background.</li>
-                        </ul></pd>
-                </plentry>
-                <plentry>
-                    <pt>color</pt>
-                    <pd> The type of the custom background image. The color of the custom background image. The format is a hexadecimal integer defined by RGB, without the # sign, such as 0xFFB6C1 for light pink.  The default value is 0xFFFFFF, which signifies white. The value range is [0x000000, 0xffffff]. If the value is invalid, the SDK replaces the original background image with a white background image.<note type="attention">This parameter takes effect only when the type of the custom background image is <ph keyref="BACKGROUND_COLOR" />.</note></pd>
-                </plentry>
-                <plentry>
-                    <pt>source</pt>
-                    <pd>The local absolute path of the custom background image. PNG and JPG formats are supported. If the path is invalid, the SDK replaces the original background image with a white background image.<note type="attention">This parameter takes effect only when the type of the custom background image is <ph keyref="BACKGROUND_IMG" />.</note></pd>
-                </plentry>
-                <plentry>
-                    <pt props="rtc-ng"><ph props="ios mac android">blurDegree</ph><ph props="cpp">blur_degree</ph></pt>
-                    <pt props="rtc"><ph props="native electron unity">blur_degree</ph><ph props="flutter">blurDegree</ph></pt>
-                    <pd><ph>The degree of blurring applied to the custom background image. </ph><ph props="ios mac cpp unity flutter">See <xref keyref="BACKGROUND_BLUR_DEGREE" />.</ph><ul props="android">
-                        <li><ph keyref="BLUR_DEGREE_LOW" />(1): The degree of blurring applied to the custom background image is low. The user can almost see the background clearly.</li>
-                        <li><ph keyref="BLUR_DEGREE_MEDIUM" />(2): The degree of blurring applied to the custom background image is medium. It is difficult for the user to recognize details in the background.</li>
-                        <li><ph keyref="BLUR_DEGREE_HIGH" />(3): The degree of blurring applied to the custom background image is high. The user can barely see any distinguishing features in the background.</li>
-                        </ul><note type="attention">This parameter takes effect only when the type of the custom background image is <ph keyref="BACKGROUND_BLUR" />.</note></pd>
-                </plentry>
-            </parml>
-        </section>
+            <plentry>
+                <pt props="android ios mac flutter electron rn">backgroundSourceType</pt>
+                <pt props="unity cpp">background_source_type</pt>
+                <pd><ph>The type of the custom background image. </ph><ph
+                    props="ios mac cpp unity flutter electron rn">See <xref
+                    keyref="BACKGROUND_SOURCE_TYPE"/>.</ph><ul props="android">
+                    <li><ph keyref="BACKGROUND_COLOR"/>(1): (default) the background image is a solid color.</li>
+                    <li><ph keyref="BACKGROUND_IMG"
+                        />(2): The background image is in PNG or JPG format.</li>
+                    <li><ph keyref="BACKGROUND_BLUR"/>(3): The background after the blurring process is used as the background image.</li>
+                    </ul></pd>
+            </plentry>
+            <plentry>
+                <pt>color</pt>
+                <pd>The color of the custom background image. The format is a hexadecimal integer defined by RGB, without the # sign, such as 0xFFB6C1 for light pink. The default value is 0xFFFFFF, which signifies white. The value range is [0x000000, 0xffffff]. If the value is invalid, the SDK replaces the original background image with a white background image.<note type="attention">This parameter takes effect only when the type of the custom background image is <ph
+                    keyref="BACKGROUND_COLOR"/>.</note></pd>
+            </plentry>
+            <plentry>
+                <pt>source</pt>
+                <pd>The local absolute path of the custom background image. PNG and JPG formats are supported. If the path is invalid, the SDK replaces the original background image with a white background image.<note type="attention">This parameter takes effect only when the type of the custom background image is <ph
+                    keyref="BACKGROUND_IMG"/>.</note></pd>
+            </plentry>
+            <plentry>
+                <pt props="ios mac android">blurDegree</pt>
+                <pt props="cpp unity electron rn">blur_degree</pt>
+                <pd><ph>The degree of blurring applied to the custom background image. </ph><ph props="ios mac cpp unity">See <xref
+                    keyref="BACKGROUND_BLUR_DEGREE"/>.</ph><ul props="android">
+                    <li><ph keyref="BLUR_DEGREE_LOW"
+                        />(1): The degree of blurring applied to the custom background image is low. The user can almost see the background clearly.</li>
+                    <li><ph keyref="BLUR_DEGREE_MEDIUM"
+                        />(2): The degree of blurring applied to the custom background image is medium. It is difficult for the user to recognize details in the background.</li>
+                    <li><ph keyref="BLUR_DEGREE_HIGH"
+                        />(3): (Default) The degree of blurring applied to the custom background image is high. The user can barely see any distinguishing features in the background.</li>
+                    </ul>
+                    <note type="attention">This parameter takes effect only when the type of the custom background image is <ph
+                    keyref="BACKGROUND_BLUR"/>.</note></pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

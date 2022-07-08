@@ -2,6 +2,11 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_irtcengineeventhandler">
     <title><ph keyref="IRtcEngineEventHandler" /></title>
-    <shortdesc id="short"><ph id="shortdesc"> The SDK uses the <apiname keyref="IRtcEngineEventHandler" /> interface to send event notifications to your app. Your app can get those notifications through methods that inherit this interface.</ph></shortdesc>
-    <refbody><section><p>All methods in this interface have default (empty) implementation. You can choose to inherit events related to your app scenario. In the callbacks, avoid implementing time-consuming tasks or calling APIs that may cause thread blocking (such as sendMessage). Otherwise, the SDK may not work properly.</p></section></refbody>
+    <shortdesc id="short"><ph id="shortdesc">The SDK uses the <apiname keyref="IRtcEngineEventHandler" /> interface to send event notifications to your app. Your app can get those notifications through methods that inherit this interface.</ph></shortdesc>
+    <refbody>
+        <section>
+            <p>All methods in this interface have default (empty) implementation. You can choose to inherit events related to your app scenario. In the callback method, the app should not do time-consuming or call potentially blocking APIs (such as
+sendMessage), otherwise it may affect the operation of the SDK.</p>
+        </section>
+    </refbody>
 </reference>

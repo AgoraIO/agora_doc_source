@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onvideosizechanged">
-    <title><ph keyref="onVideoSizeChanged" /></title>
+    <title> <ph keyref="onVideoSizeChanged"/> </title>
     <shortdesc id="short"><ph id="shortdesc">Occurs when the video size or rotation of a specified user changes.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="onVideoSizeChanged" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="onVideoSizeChanged"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public void onVideoSizeChanged(int uid, int width, int height, int rotation) {}</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onVideoSizeChanged(int uid, int width, int height, int rotation) {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
     videoSizeChangedOfUid:(NSUInteger)uid
     size:(CGSize)size
     rotation:(NSInteger)rotation;</codeblock>
-                <codeblock props="cpp" outputclass="language-cpp">virtual void onVideoSizeChanged(uid_t uid,
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onVideoSizeChanged(uid_t uid,
      int width,
      int height,
      int rotation) {
@@ -26,43 +27,51 @@
      (void)height;
      (void)rotation;
      }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(
-  evt: EngineEvents.VIDEO_SIZE_CHANGED,
-  cb: (uid: number, width: number, height: number, rotation: number) =&gt; void
-): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnVideoSizeChanged(uint uid, int width, int height, int rotation)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">VideoSizeCallback? videoSizeChanged;</codeblock>
-        </p>
+            <codeblock props="electron" outputclass="language-typescript">onVideoSizeChanged?(connection: RtcConnection, uid: number, width: number, height: number, rotation: number): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnVideoSizeChanged(RtcConnection connection, uint uid, int width, int height, int rotation) {}</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onVideoSizeChanged?(
+  connection: RtcConnection,
+  uid: number,
+  width: number,
+  height: number,
+  rotation: number
+): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int uid, int width, int height,
+      int rotation)? onVideoSizeChanged;
+</codeblock></p>
         </section>
-        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-   <parml>
-                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                    <pt />
-                    <pd />
-                </plentry>
-                <plentry id="uid">
-                    <pt>uid</pt>
-                    <pd>The ID of the user whose video size or rotation changes.
-                        <parmname>uid</parmname> is 0 for the local user.</pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>size</pt>
-                    <pd>Video dimensions.</pd>
-                </plentry>
-                <plentry id="width" props="android cpp unity flutter">
-                    <pt>width</pt>
-                    <pd>The width (pixels) of the video stream.</pd>
-                </plentry>
-                <plentry id="height" props="android cpp unity flutter">
-                    <pt>height</pt>
-                    <pd>The height (pixels) of the video stream.</pd>
-                </plentry>
-                <plentry id="rotation">
-                    <pt>rotation</pt>
-                    <pd>The rotation information. The value range is [0,360).</pd>
-                </plentry>
-            </parml>
-        </section>
+        <section id="parameters">
+            <title> <ph keyref="callback-section-title"/> </title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <parml>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry props="unity flutter rn electron">
+                <pt>connection</pt>
+                <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
+            </plentry>
+            <plentry id="uid">
+                <pt>uid</pt>
+                <pd>The ID of the user whose video size or rotation changes. (The <parmname>uid</parmname> for the local user is 0. The video is the local user's video preview).</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>size</pt>
+                <pd>Dimension of the video.</pd>
+            </plentry>
+            <plentry id="width" props="android cpp unity flutter electron rn">
+                <pt>width</pt>
+                <pd>New width (pixels) of the video.</pd>
+            </plentry>
+            <plentry id="height" props="android cpp unity flutter electron rn">
+                <pt>height</pt>
+                <pd>New height (pixels) of the video.</pd>
+            </plentry>
+            <plentry id="rotation">
+                <pt>rotation</pt>
+                <pd>New rotation of the video [0 to 360).</pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

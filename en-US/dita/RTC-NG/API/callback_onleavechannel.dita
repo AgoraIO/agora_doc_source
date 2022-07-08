@@ -1,44 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onleavechannel">
-    <title><ph keyref="onLeaveChannel" /></title>
+    <title><ph keyref="onLeaveChannel"/></title>
     <shortdesc id="short"><ph id="shortdesc">Occurs when a user leaves a channel.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="onLeaveChannel" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="onLeaveChannel"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public void onLeaveChannel(RtcStats stats) {}</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onLeaveChannel(RtcStats stats) {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
     didLeaveChannelWithStats:(AgoraChannelStats * _Nonnull)stats;</codeblock>
-                <codeblock props="cpp" outputclass="language-cpp">virtual void onLeaveChannel(const RtcStats&amp; stats) {
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onLeaveChannel(const RtcStats&amp; stats) {
     (void)stats;
     }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.LEAVE_CHANNEL, cb: (stats: RtcStats) =&gt; void): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnLeaveChannel(RtcStats stats)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">RtcStatsCallback? leaveChannel;</codeblock>
-        </p>
+            <codeblock props="electron" outputclass="language-typescript">onLeaveChannel?(connection: RtcConnection, stats: RtcStats): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnLeaveChannel(RtcConnection connection, RtcStats stats) {}</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onLeaveChannel?(connection: RtcConnection, stats: RtcStats): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, RtcStats stats)? onLeaveChannel;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
-
-   <p>This callback notifies the app that the user leaves the channel by calling <xref keyref="leaveChannel" />. From this callback, the app can get information such as the call duration and quality statistics.</p>
+            <p>This callback notifies the app that the user leaves the channel by calling <xref keyref="leaveChannel" props="native unity"/> <xref keyref="leaveChannel2" props="rn electron flutter"/>. From this callback, the app can get information such as the call duration and quality statistics.</p>
         </section>
-        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-   <parml>
-                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                    <pt />
-                    <pd />
-                </plentry>
-                <plentry id="stats">
-                    <pt>stats</pt>
-                    <pd>The statistics of the call, see <xref keyref="RtcStats" /> .</pd>
-                </plentry>
-            </parml>
-        </section>
-</refbody>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <parml>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry props="unity flutter electron rn">
+                <pt>connection</pt>
+                <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
+            </plentry>
+            <plentry id="stats">
+                <pt>stats</pt>
+                <pd>The statistics of the call. See <xref keyref="RtcStats"/>.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
 </reference>
