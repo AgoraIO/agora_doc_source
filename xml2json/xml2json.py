@@ -178,14 +178,23 @@ for topicref in dita_file_root.iter("keydef"):
         print(path_new)
         rust_topicref_list.append(path_new)
 
-        if topicref.get("props") is not None and topicref.get("props") == "hide":
-            json_hide_id_list.append(path_new.replace(".dita", ""))
-
-
-
 print("--------------- Topic ref list ------------------------")
 print(rust_topicref_list)
 print("--------------- Topic ref list ------------------------")
+
+# Collect the hide API which mark props="hide" in <topichead> or <keydef>
+for topichead in dita_file_root.iter("topichead"):
+    is_hide_topichead: bool = True if topichead.get("props") is not None and topichead.get("props") == "hide" else False
+
+    for keydef in topichead.iter("keydef"):
+        if keydef.get("href") is not None:
+            dita_id = path.basename(keydef.get("href")).replace(".dita", "")
+            if is_hide_topichead:
+                json_hide_id_list.append(dita_id)
+            elif keydef.get("props") is not None and keydef.get("props") == "hide":
+                json_hide_id_list.append(dita_id)
+        
+
 
 print("--------------- Hide id list ------------------------")
 print(json_hide_id_list)
