@@ -27,20 +27,24 @@
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry props="rtc-ng">
-                <pt props="unity">playerId</pt>
-                <pd props="unity">播放器 ID。</pd>
+            <plentry props="unity">
+                <pt>playerId</pt>
+                <pd>播放器 ID。</pd>
             </plentry>
-            <plentry>
+            <plentry props="cpp unity">
                 <pt>duration</pt>
                 <pd>输出参数。媒体文件总时长（毫秒）。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title>返回值</title>
-            <ul id="ul_uns_l2y_hqb">
+            <ul id="ul_uns_l2y_hqb" props="android ios">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。</li>
-            </ul> </section>
+            </ul> 
+        <ul>
+            <li>> 0：媒体资源的总时长，单位毫秒。</li>
+            <li>≤ 0：方法调用失败。</li>
+        </ul></section>
     </refbody>
 </reference>
