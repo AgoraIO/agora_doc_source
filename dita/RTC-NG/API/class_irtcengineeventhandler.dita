@@ -10,7 +10,7 @@
             <note type="attention">
             <ul>
             <li>在回调方法中，app 不应该做耗时或者调用可能会引起阻塞的 API（如 <codeph>sendMessage</codeph>），否则可能影响 SDK 的运行。</li>
-            <li>SDK 触发 <apiname keyref="IRtcEngineEventHandler"/> 类中的回调时，不会捕获应用层抛出的异常（<codeph>Throwable</codeph>）。你需要自行捕获并处理。</li>
+            <li>SDK 不再捕获开发者在 <apiname keyref="IRtcEngineEventHandler"/> 类回调中自行实现的代码逻辑中的异常。你需要自行处理该异常，否则异常出现时可能引起 app 崩溃。</li>
             </ul></note> </section>
     </refbody>
 </reference>
