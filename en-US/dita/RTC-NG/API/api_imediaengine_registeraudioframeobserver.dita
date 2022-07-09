@@ -17,7 +17,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)setAudioFrameDelegate:(id&lt;AgoraAudioFrameDelegate&gt; _Nullable)delegate;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int registerAudioFrameObserver(IAudioFrameObserver* observer) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public abstract void RegisterAudioFrameObserver(IMediaPlayerAudioFrameObserver observer);</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract void RegisterAudioFrameObserver(IAudioFrameObserver audioFrameObserver, OBSERVER_MODE mode = OBSERVER_MODE.INTPTR);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
@@ -28,12 +28,17 @@
             <title>Parameters</title>
             <parml>
             <plentry>
-                <pt props="android cpp unity">observer</pt>
+                <pt props="android cpp">observer</pt>
                 <pt props="ios mac">delegate</pt>
+                <pt props="unity">audioFrameObserver</pt>
                 <pd>
                     <p>The observer object instance. See <xref keyref="IAudioFrameObserver"/>. Set the value as <ph keyref="NULL"/> to release the observer object. Agora recommends releasing the observer object after receiving the <xref keyref="onLeaveChannel"/> callback.</p>
                 </pd>
             </plentry>
+                <plentry props="unity">
+                    <pt>mode</pt>
+                    <pd>See <xref keyref="OBSERVER_MODE"/> for details.</pd>
+                </plentry>
             </parml> </section>
         <section props="native">
             <title>Returns</title>
