@@ -1,21 +1,21 @@
 # Offline Push
 
-This page shows how to call Agora Chat RESTful APIs to set the display name, display style, push notification mode, and do-not-disturb (DND) mode.
+This page shows how to call Chat RESTful APIs to set the display name, display style, push notification mode, and do-not-disturb (DND) mode.
 
-Before calling the following methods, make sure you understand the call frequency limit of the Agora Chat RESTful APIs as described in [Limitations](./agora_chat_limitation#call-limit-of-server-side).
+Before calling the following methods, make sure you understand the call frequency limit of the Chat RESTful APIs as described in [Limitations](./agora_chat_limitation#call-limit-of-server-side).
 
 ## Common parameters
 
-The following table lists common request and response parameters of the Agora Chat RESTful APIs:
+The following table lists common request and response parameters of the Chat RESTful APIs:
 
 ### Request parameters
 <a name="request"></a>
 
 | Parameter | Type | Description | Required |
 | :--------- | :----- | :----- | :----- |
-| `host` | String | The domain name assigned by the Agora Chat service to access RESTful APIs. For how to get the domain name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
-| `org_name` | String | The unique identifier assigned to each company (organization) by the Agora Chat service. For how to get the organization name, see [Get the information of the Agora Chat project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
-| `app_name` | String | The unique identifier assigned to each app by the Agora Chat service. For how to get the app name, see [Get the information of the Agora Chat project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
+| `host` | String | The domain name assigned by the Chat service to access RESTful APIs. For how to get the domain name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
+| `org_name` | String | The unique identifier assigned to each company (organization) by the Chat service. For how to get the organization name, see [Get the information of the Chat project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
+| `app_name` | String | The unique identifier assigned to each app by the Chat service. For how to get the app name, see [Get the information of the Chat project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
 | `username` | String | The unique login account of the user.  | Yes |
 
 ### Response parameters
@@ -24,9 +24,9 @@ The following table lists common request and response parameters of the Agora Ch
 |  Parameter  |  Type  |  Description  |
 | :-------- | :--------- | :--------- |
 | `action` | String | The request method.   |
-| `organization` | String | The unique identifier assigned to each company (organization) by the Agora Chat service. This is the same as `org_name`.    |
-| `application` | String | A unique internal ID assigned to each app by the Agora Chat service. You can safely ignore this parameter.     |
-| `applicationName`  | String | The unique identifier assigned to each app by the Agora Chat service. This is the same as `app_name`.       |
+| `organization` | String | The unique identifier assigned to each company (organization) by the Chat service. This is the same as `org_name`.    |
+| `application` | String | A unique internal ID assigned to each app by the Chat service. You can safely ignore this parameter.     |
+| `applicationName`  | String | The unique identifier assigned to each app by the Chat service. This is the same as `app_name`.       |
 | `timestamp`  | Number |  The Unix timestamp (ms) of the HTTP response.    |
 | `duration`  | Number | The duration (ms) from when the HTTP request is sent to the time the response is received.    |
 | `path`  | String | The request path, which is part of the request URL. You can safely ignore this parameter.    |
@@ -37,13 +37,13 @@ The following table lists common request and response parameters of the Agora Ch
 
 ## Authentication
 
-Agora Chat RESTful APIs require Bearer HTTP authentication. Every time an HTTP request is sent, the following `Authorization` field must be filled in the request header:
+Chat RESTful APIs require Bearer HTTP authentication. Every time an HTTP request is sent, the following `Authorization` field must be filled in the request header:
 
 ```
 Authorization: Bearer ${YourAppToken}
 ```
 
-In order to improve the security of the project, Agora uses a token (dynamic key) to authenticate users before they log into the chat system. The Agora Chat RESTful API only supports authenticating users using app tokens. For details, see [Authentication using App Token](./generate_app_tokens).
+In order to improve the security of the project, Agora uses a token (dynamic key) to authenticate users before they log in to the chat system. The Chat RESTful API only supports authenticating users using app tokens. For details, see [Authentication using App Token](./generate_app_tokens).
 
 
 ## Set the display name in push notifications
@@ -74,7 +74,7 @@ For the descriptions of path parameters, see [Common Parameters](#request).
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | -------- |
-| `nickname` | String | The nickname displayed in push notifications. The length of the nickname cannot exceed 100 characters and the following character sets are supported:<li>26 lowercase English letters (a-z)<li>26 uppercase English letters (A-Z)<li>10 numbers (0-9)<li>Chinese characters<li>Special characters <div class="alert note">The nickname can be different from the nickname in the user profile; however, we recommend that you use the same nickname for both. Therefore, if either nickname is updated, the other should be changed at the same time. To update the nickname in the user profile, see <a href="https://docs-preprod.agora.io/en/agora-chat/agora_chat_restful_user_attributes?platform=RESTful#setting-user-attributes">Setting user attributes</a>.</div>  | No  |
+| `nickname` | String | The nickname displayed in push notifications. The length of the nickname cannot exceed 100 characters, and the following character sets are supported:<li>26 lowercase English letters (a-z)<li>26 uppercase English letters (A-Z)<li>10 numbers (0-9)<li>Chinese characters<li>Special characters <div class="alert note">The nickname can be different from the nickname in the user profile; however, Agora recommend that you use the same nickname for both. Therefore, if either nickname is updated, the other should be changed at the same time. To update the nickname in the user profile, see <a href="https://docs-preprod.agora.io/en/agora-chat/agora_chat_restful_user_attributes?platform=RESTful#setting-user-attributes">Setting user attributes</a>.</div>  | No  |
 
 ### HTTP response
 
@@ -86,8 +86,8 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 | :-------- | :------- | :------- |
 |  `uuid` | String | A unique internal identifier generated by the Chat service for the user in this request. |
 | `type`  |  String  | The type of the chat. "user" indicates a one-to-one chat. |
-| `created`  | Number | The Unix timestamp when the user account is registered.  |
-| `modified`  | Number | The Unix timestamp when the user information is last modified.  |
+| `created`  | Number | The Unix timestamp (ms) when the user account is registered.  |
+| `modified`  | Number | The Unix timestamp (ms) when the user information is last modified.  |
 | `username`  | String | The ID of the user. |
 | `activated`  | Bool | Whether the user account is active:<li>`true`: The user account is active.<li>`false`: The user account is deactivated. To unban a deactivated user account, refer to [Unbanning a user](./agora_chat_restful_registration#unbanning-a-user). |
 |  `nickname`  | String | The nickname displayed in push notifications.  |
@@ -156,7 +156,7 @@ For the descriptions of path parameters, see [Common Parameters](#request).
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | -------- |
-| `notification_display_style` | String | The display style of push notifications:<li>(Default) `0`: The push title is "You have a new message" and the push content is "Click to check".<li>`1`: The push title is "You have a new message" and the push content contains the nickname of the sender and the content of the offline message.  | Yes  |
+| `notification_display_style` | Int | The display style of push notifications:<li>(Default) `0`: The push title is "You have a new message", and the push content is "Click to check".<li>`1`: The push title is "You have a new message", and the push content contains the nickname of the sender and the content of the offline message.  | Yes  |
 
 ### HTTP response
 
@@ -168,13 +168,10 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 | :-------- | :------- | :------- |
 |  `uuid` | String | A unique internal identifier generated by the Chat service for the user in this request. |
 | `type`  | String | The type of the chat. "user" indicates a one-to-one chat. |
-| `created`  | Number | The Unix timestamp when the user account is registered.  |
-| `modified`  | Number | The Unix timestamp when the user information is last modified.  |
+| `created`  | Number | The Unix timestamp (ms) when the user account is registered.  |
+| `modified`  | Number | The Unix timestamp (ms) when the user information is last modified.  |
 | `username`  | String | The ID of the user. |
 | `activated`  | Bool | Whether the user account is active:<li>`true`: The user account is active.<li>`false`: The user account is deactivated. To unban a deactivated user account, refer to [Unbanning a user](./agora_chat_restful_registration#unbanning-a-user). |
-| `notification_no_disturbing`  | Bool | Whether to enable the DND mode:<li>`true`: Yes.<li>(Default) `false`: No. |
-| `notification_no_disturbing_start`  | String | The time when the DND mode starts.         |
-| `notification_no_disturbing_end`   |  String | The time when the DND mode ends.            |
 | `notification_display_style`  |  String  | The display style of push notifications. |
 | `nickname`  | String | The nickname displayed in push notifications. |
 | `notifier_name` | String  | The name of the push certificate. |
@@ -206,10 +203,7 @@ curl -X PUT -H "Authorization: Bearer YWMtSozP9jHNEeSQegV9EKeAQAAAUlmBR2bTGr-GP2
       "created" : 1530276298905,    
       "modified" : 1534407146060,   
       "username" : "user1",    
-      "activated" : true,    
-      "notification_no_disturbing" : false,    
-      "notification_no_disturbing_start" : 1,    
-      "notification_no_disturbing_end" : 3,    
+      "activated" : true,      
       "notification_display_style" : 1,    
       "nickname" : "testuser",    
       "notifier_name" : "2882303761517426801"  
@@ -257,7 +251,7 @@ For the descriptions of other path parameters, see [Common Parameters](#request)
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | -------- |
 | `type` | String | The push notification mode:<li>`DEFAULT`: Inherits the setting at the app level.<li>`ALL`: Receives push notifications for all offline messages.<li>`AT`: Only receives push notifications for mentioned messages.<li>`NONE`: Do not receive push notifications for offline messages.  | No |
-| `ignoreInterval` | String | The DND time frame in the format of {HH:MM-HH:MM}, for example, 08:30-10:00. The range of HH is [00,23] in hours, while the range of MM is [00,59].<div class="alert info">This parameter is valid only when `type` is set to `user` and `key` is set to the user ID of the current user in the request header, meaning the DND time frame only takes effect to an app rather than a specific conversation.</div>  | No |
+| `ignoreInterval` | String | The DND time frame in the format of {HH:MM-HH:MM}, for example, 08:30-10:00. The range of HH is [00,23] in hours, while the range of MM is [00,59].<div class="alert info">This parameter is valid only when `type` is set to `user` and `key` is set to the user ID of the current user in the request header, meaning the DND time frame only takes effect on an app rather than a specific conversation.</div>  | No |
 | `ignoreDuration` | Long   | The DND duration in milliseconds. The range is [0,604800000], where `0` indicates that this parameter is invalid and `604800000` indicates that the DND mode lasts for 7 days.  | No  |
 
 ### HTTP response
@@ -412,7 +406,7 @@ For the descriptions of path parameters, see [Common Parameters](#request).
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | -------- |
-| `translationLanguage` | String | The code of the preferred language displayed in push notifications. If set to an empty string, the server pushes the notifications of the original language directly.  | Yes |
+| `translationLanguage` | String | The code for the language that the user prefers to see push notifications in. If set to an empty string, the server pushes the notifications of the original language directly.  | Yes |
 
 ### HTTP response
 
@@ -422,7 +416,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 
 |  Parameter  |  Type  |  Description  |
 | :-------- | :------- | :------- |
-| `language`  | String | The code of the preferred language displayed in push notifications. |
+| `language`  | String | The code for the language that the user prefers to see push notifications in. |
 
 For other fields and detailed descriptions, see [Common parameters](#response).
 
@@ -491,7 +485,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 
 |  Parameter  |  Type  |  Description  |
 | :-------- | :------- | :------- |
-| `language`  | String | The code of the preferred language displayed in push notifications. |
+| `language`  | String | The code for the language that the user prefers to see push notifications in. |
 
 For other fields and detailed descriptions, see [Common parameters](#response).
 
@@ -565,8 +559,8 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 |  Parameter  |  Type  |  Description  |
 | :-------- | :------- | :------- |
 | `name`  | String | The name of the push template. |
-| `createAt`  | Number | The Unix timestamp when the template is created. |
-| `updateAt`  | Number | The Unix timestamp when the template is last modified. |
+| `createAt`  | Number | The Unix timestamp (ms) when the template is created. |
+| `updateAt`  | Number | The Unix timestamp (ms) when the template is last modified. |
 | `title_pattern`  | String | The custom title of the push template. |
 | `content_pattern`  | String | The custom content of the push template. |
 
@@ -613,7 +607,7 @@ curl -X POST '{url}/{org}/{app}/notification/template' \
 
 ## Retrieve a push template
 
-Retrieves the template for push notifications.
+Retrieves the specified template for push notifications.
 
 For each App Key, the call frequency limit of this method is 100 per second.
 
@@ -646,8 +640,8 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 |  Parameter  |  Type  |  Description  |
 | :-------- | :------- | :------- |
 | `name`  | String | The name of the push template. |
-| `createAt`  | Number | The Unix timestamp when the template is created. |
-| `updateAt`  | Number | The Unix timestamp when the template is last modified. |
+| `createAt`  | Number | The Unix timestamp (ms) when the template is created. |
+| `updateAt`  | Number | The Unix timestamp (ms) when the template is last modified. |
 | `title_pattern`  | String | The custom title of the push template. |
 | `content_pattern`  | String | The custom content of the push template. |
 
@@ -688,7 +682,7 @@ curl -X GET '{url}/{org}/{app}/notification/template/{name}' \
 
 ## Delete a push template
 
-Deletes the template for push notifications.
+Deletes the specified template for push notifications.
 
 For each App Key, the call frequency limit of this method is 100 per second.
 
@@ -721,8 +715,8 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 |  Parameter  |  Type  |  Description  |
 | :-------- | :------- | :------- |
 | `name`  | String | The name of the push template. |
-| `createAt`  | Number | The Unix timestamp when the template is created. |
-| `updateAt`  | Number | The Unix timestamp when the template is last modified. |
+| `createAt`  | Number | The Unix timestamp (ms) when the template is created. |
+| `updateAt`  | Number | The Unix timestamp (ms) when the template is last modified. |
 | `title_pattern`  | String | The custom title of the push template. |
 | `content_pattern`  | String | The custom content of the push template. |
 
