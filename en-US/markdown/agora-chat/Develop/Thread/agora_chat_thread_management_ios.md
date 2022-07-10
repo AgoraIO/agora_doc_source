@@ -38,7 +38,7 @@ This section describes how to call the APIs provided by the Agora Chat SDK to im
 
 All chat group members can call `createChatThread` to create a thread from a specific message in a chat group.
 
-Once a thread is created in a chat group, all chat group members receive the `AgoraChatThreadManagerDelegate#onChatThreadCreated` callback. In a multi-device scenario, all the other devices receive the `multiDevicesThreadEventDidReceive` callback triggered by the `AgoraChatMultiDevicesEventThreadCreate` event. 
+Once a thread is created in a chat group, all chat group members receive the `AgoraChatThreadManagerDelegate#onChatThreadCreated` callback. In a multi-device scenario, all the other devices receive the `AgoraChatMultiDevicesDelegate#multiDevicesThreadEventDidReceive` callback triggered by the `AgoraChatMultiDevicesEventThreadCreate` event. 
 
 The following code sample shows how to create a thread in a chat group:
 
@@ -59,7 +59,7 @@ The following code sample shows how to create a thread in a chat group:
 
 Only the chat group owner and admins can call `destroyChatThread` to disband a thread in a chat group.
 
-Once a thread is disbanded, all chat group members receive the `AgoraChatThreadManagerDelegate#onChatThreadDestroyed` callback. In a multi-device scenario, all the other devices receive the `multiDevicesThreadEventDidReceive` callback triggered by the `AgoraChatMultiDevicesEventThreadDestroy` event. 
+Once a thread is disbanded, all chat group members receive the `AgoraChatThreadManagerDelegate#onChatThreadDestroyed` callback. In a multi-device scenario, all the other devices receive the `AgoraChatMultiDevicesDelegate#multiDevicesThreadEventDidReceive` callback triggered by the `AgoraChatMultiDevicesEventThreadDestroy` event. 
 
 <div class="alert note">Once a thread is destroyed or the chat group where a thread resides is destroyed, all data of the thread is deleted from the local database and memory.</div>
 
@@ -85,7 +85,7 @@ All chat group members can refer to the following steps to join a thread:
 
 2. Call `joinChatThread` to pass in the thread ID and join the specified thread.
 
-In a multi-device scenario, all the other devices receive the `multiDevicesThreadEventDidReceive` callback triggered by the `AgoraChatMultiDevicesEventThreadJoin` event. 
+In a multi-device scenario, all the other devices receive the `AgoraChatMultiDevicesDelegate#multiDevicesThreadEventDidReceive` callback triggered by the `AgoraChatMultiDevicesEventThreadJoin` event. 
 
 The following code sample shows how to join a thread:
 
@@ -101,7 +101,7 @@ The following code sample shows how to join a thread:
 
 All thread members can call `leaveChatThread` to leave a thread. Once a member leaves a thread, they can no longer receive the thread messages.
 
-In a multi-device scenario, all the other devices receive the `multiDevicesThreadEventDidReceive` callback triggered by the `AgoraChatMultiDevicesEventThreadLeave` event. 
+In a multi-device scenario, all the other devices receive the `AgoraChatMultiDevicesDelegate#multiDevicesThreadEventDidReceive` callback triggered by the `AgoraChatMultiDevicesEventThreadLeave` event. 
 
 The following code sample shows how to leave a thread:
 
@@ -119,7 +119,7 @@ The following code sample shows how to leave a thread:
 
 Only the chat group owner and admins can call `removeMemberFromChatThread` to remove the specified member from a thread.
 
-Once a member is removed from a thread, they receive the `AgoraChatThreadManagerDelegate#onUserKickOutOfChatThread` callback and can no longer receive the thread messages.
+Once a member is removed from a thread, they receive the `AgoraChatThreadManagerDelegate#onUserKickOutOfChatThread` callback and can no longer receive the thread messages. In a multi-device scenario, all the other devices receive the `AgoraChatMultiDevicesDelegate#multiDevicesThreadEventDidReceive` callback triggered by the `AgoraChatMultiDevicesEventChatThreadKick` event.
 
 The following code sample shows how to remove a member from a thread:
 
@@ -139,7 +139,7 @@ The following code sample shows how to remove a member from a thread:
 
 Only the chat group owner, chat group admins, and thread creator can call `updateChatThreadName` to update a thread name.
 
-Once a thread name is updated, all chat group members receive the `AgoraChatThreadManagerDelegate#onChatThreadUpdated` callback. In a multi-device scenario, all the other devices receive the `multiDevicesThreadEventDidReceive` callback triggered by the `AgoraChatMultiDevicesEventThreadUpdate` event.
+Once a thread name is updated, all chat group members receive the `AgoraChatThreadManagerDelegate#onChatThreadUpdated` callback. In a multi-device scenario, all the other devices receive the `AgoraChatMultiDevicesDelegate#multiDevicesThreadEventDidReceive` callback triggered by the `AgoraChatMultiDevicesEventThreadUpdate` event.
 
 The following code sample shows how to update a thread name:
 

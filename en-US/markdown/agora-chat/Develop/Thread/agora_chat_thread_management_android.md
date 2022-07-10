@@ -132,7 +132,7 @@ ChatClient.getInstance().chatThreadManager().leaveChatThread(chatThreadId, new C
 
 Only the chat group owner and admins can call `removeMemberFromChatThread` to remove the specified member from a thread.
 
-Once a member is removed from a thread, they receive the `ChatThreadChangeListener#onChatThreadUserRemoved` callback and can no longer receive the thread messages.
+Once a member is removed from a thread, they receive the `ChatThreadChangeListener#onChatThreadUserRemoved` callback and can no longer receive the thread messages. In a multi-device scenario, all the other devices receive the `MultiDeviceListener#onChatThreadEvent` callback triggered by the `THREAD_KICK` event.
 
 The following code sample shows how to remove a member from a thread:
 
