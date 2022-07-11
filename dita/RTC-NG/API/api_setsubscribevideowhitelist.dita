@@ -25,26 +25,26 @@
         <section id="detailed_desc">
             <p>你可以调用该方法指定想要订阅的视频流。</p>
             <note>
-                <ul>
-                    <li conkeyref="setSubscribeAudioBlacklist/order"/>
-                    <li>视频订阅白名单不受 <xref keyref="muteRemoteVideoStream"/>、<xref keyref="muteAllRemoteVideoStreams"/> 以及 <xref keyref="ChannelMediaOptions"/> 中的 <parmname>autoSubscribeVideo</parmname> 的影响。</li>
-                    <li conkeyref="setSubscribeAudioWhitelist/effect"/>
-                    <li conkeyref="setSubscribeAudioBlacklist/priority"/>
-                </ul>
-            </note>
-        </section>
+            <ul>
+            <li conkeyref="setSubscribeAudioBlacklist/order"/>
+            <li>视频订阅白名单不受 <xref keyref="muteRemoteVideoStream"/>、<xref keyref="muteAllRemoteVideoStreams"/> 以及 <xref keyref="ChannelMediaOptions"/> 中的 <parmname>autoSubscribeVideo</parmname> 的影响。</li>
+            <li conkeyref="setSubscribeAudioWhitelist/effect"/>
+            <li conkeyref="setSubscribeAudioBlacklist/priority"/>
+            </ul> </note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry id="list">
                 <pt props="android cpp">uidList</pt>
-                <pd><p>视频订阅白名单的用户 ID 列表。</p>
-                <p>如果你想指定仅订阅某一发流用户的视频流，将该用户的用户 ID 加入此列表中。如果你想要删除订阅白名单中的用户，需要调用 <xref keyref="setSubscribeVideoWhitelist"/> 方法重新设置订阅白名单的用户 ID 列表。</p></pd>
+                <pd>
+                    <p>视频订阅白名单的用户 ID 列表。</p>
+                    <p>如果你想指定仅订阅某一发流用户的视频流，将该用户的用户 ID 加入此列表中。如果你想要将某一用户从订阅白名单中移除，需要重新调用 <xref keyref="setSubscribeVideoWhitelist"/> 方法更新音频订阅白名单的用户 ID 列表，使其不包含你想移除的用户的 <codeph>uid</codeph>。</p>
+                </pd>
             </plentry>
-                <plentry props="cpp" conkeyref="setSubscribeAudioWhitelist/uidnumber">
-                    <pt></pt>
-                    <pd></pd>
-                </plentry>
+            <plentry props="cpp" conkeyref="setSubscribeAudioWhitelist/uidnumber">
+                <pt/>
+                <pd/>
+            </plentry>
             </parml> </section>
         <section id="return_values" conkeyref="setSubscribeAudioWhitelist/return_values"> </section>
     </refbody>

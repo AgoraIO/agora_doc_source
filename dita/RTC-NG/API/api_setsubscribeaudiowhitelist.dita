@@ -28,7 +28,7 @@
             <ul>
             <li conkeyref="setSubscribeAudioBlacklist/order"/>
             <li>音频订阅白名单不受 <xref keyref="muteRemoteAudioStream"/>、<xref keyref="muteAllRemoteAudioStreams"/> 以及 <xref keyref="ChannelMediaOptions"/> 中的 <parmname>autoSubscribeAudio</parmname> 的影响。</li>
-            <li id="effect">设置订阅白明单后，如果离开当前频道后再重新加入频道，白名单依然生效。</li>
+            <li id="effect">设置订阅白名单后，如果离开当前频道后再重新加入频道，白名单依然生效。</li>
             <li conkeyref="setSubscribeAudioBlacklist/priority"/>
             </ul> </note> </section>
         <section id="parameters">
@@ -39,8 +39,7 @@
                 <pt props="apple">whitelist</pt>
                 <pd>
                     <p>音频订阅白名单的用户 ID 列表。</p>
-                    <p>如果你想指定订阅某一发流用户的音频流，将该用户的用户 ID 加入此列表中。如果你想要删除订阅白名单中的用户，需要调用 <xref keyref="setSubscribeAudioWhitelist"/> 方法重新设置订阅白名单的用户 ID 列表。</p>
-                </pd>
+                    <p>如果你想指定订阅某一发流用户的音频流，将该用户的用户 ID 加入此列表中。如果你想要将某一用户从订阅白名单中移除，需要重新调用 <xref keyref="setSubscribeAudioWhitelist"/> 方法更新音频订阅白名单的用户 ID 列表，使其不包含你想移除的用户的 <codeph>uid</codeph>。</p></pd>
             </plentry>
             <plentry props="cpp" id="uidnumber">
                 <pt>uidNumber</pt>
