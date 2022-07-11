@@ -13,9 +13,9 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int setAudioMixingDualMonoMode(int mode);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setAudioMixingDualMonoMode:(NSInteger)mode;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int setAudioMixingDualMonoMode(int mode) = 0;</codeblock>
+            <codeblock props="android" outputclass="language-java">public abstract int setAudioMixingDualMonoMode(Constants.AudioMixingDualMonoMode mode);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setAudioMixingDualMonoMode:(AgoraAudioMixingDualMonoMode)mode;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setAudioMixingDualMonoMode(media::AUDIO_MIXING_DUAL_MONO_MODE mode) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
@@ -33,13 +33,7 @@
             <parml>
             <plentry>
                 <pt>mode</pt>
-                <pd><ph>声道模式。</ph><ph props="cpp mac ios">详见 <xref keyref="AUDIO_MIXING_DUAL_MONO_MODE"/>。</ph>
-                    <ul props="android">
-                    <li><ph keyref="AUDIO_MIXING_DUAL_MONO_AUTO"/> (0): 原始模式。</li>
-                    <li><ph keyref="AUDIO_MIXING_DUAL_MONO_L"/> (1): 左声道模式。该模式用左声道的音频替换右声道的音频，即用户只能听到左声道的音频。</li>
-                    <li><ph keyref="AUDIO_MIXING_DUAL_MONO_R"/> (2): 右声道模式。该模式用右声道的音频替换左声道的音频，即用户只能听到右声道的音频。</li>
-                    <li><ph keyref="AUDIO_MIXING_DUAL_MONO_MIX"/> (3): 混合模式。该模式将左右声道的数据叠加，即用户能同时听到左声道和右声道的音频。</li>
-                    </ul> </pd>
+                <pd><ph>声道模式。</ph><ph props="native">详见 <xref keyref="AUDIO_MIXING_DUAL_MONO_MODE"/>。</ph> </pd>
             </plentry>
             </parml> </section>
         <section id="return_values">

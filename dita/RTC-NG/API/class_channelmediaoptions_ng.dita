@@ -162,7 +162,10 @@
             >publishMicrophoneTrack</parmname><parmname props="unity"
             >publishAudioTrack</parmname>、<parmname>publishCustomAudioTrack</parmname> 和 <parmname>publishMediaPlayerAudioTrack</parmname> 可以同时为 <codeph><ph
             keyref="true"/></codeph>；
-            <parmname>publishCameraTrack</parmname>、<parmname props="android ios">publishScreenCaptureVideo</parmname><parmname props="mac cpp">publishScreenTrack</parmname>、<parmname>publishCustomVideoTrack</parmname> 或 <parmname>publishEncodedVideoTrack</parmname> 之中同一时间只能有一个为 <codeph><ph
+            <parmname>publishCameraTrack</parmname>、<parmname
+            props="android ios">publishScreenCaptureVideo</parmname><parmname
+            props="mac cpp"
+            >publishScreenTrack</parmname>、<parmname>publishCustomVideoTrack</parmname> 或 <parmname>publishEncodedVideoTrack</parmname> 之中同一时间只能有一个为 <codeph><ph
             keyref="true"/></codeph>。</section>
         <section id="parameters">
             <title><text
@@ -199,28 +202,30 @@
                     
                     
                     
+                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：（默认）发布采集到的音频。</li>
                     <li><codeph><ph keyref="false"/></codeph>：不发布采集到的音频。</li>
                     </ul>
-                <p><note type="note">自 v4.0.0 起，该参数名称由 <parmname>publishAudioTrack</parmname> 改为 <parmname>publishMicrophoneTrack</parmname>。</note></p></pd>
+                    <note type="note"
+                    >自 v4.0.0 起，该参数名称由 <parmname>publishAudioTrack</parmname> 改为 <parmname>publishMicrophoneTrack</parmname>。</note>
+                </pd>
             </plentry>
             <plentry>
-                <pt props="android ios">publishScreenCaptureVideo</pt>
+                <pt props="android ios cpp">publishScreenCaptureVideo</pt>
                 <pt props="mac cpp">publishScreenTrack</pt>
                 <pd>
                     <p>设置是否发布屏幕采集的视频：
 
                     
+                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：发布屏幕采集到的视频。</li>
-                    <li><codeph><ph keyref="false"/></codeph>：（默认）不发布屏幕采集到的视频。</li>
+                    <li><codeph><ph keyref="false"
+                        /></codeph>：（默认）不发布屏幕采集到的视频。</li>
                     </ul></p>
+                    <note type="attention" props="cpp">该参数仅适用于 Android 和 iOS 平台。</note>
                 </pd>
-            </plentry>
-            <plentry props="cpp">    
-                <pt>publishScreenCaptureVideo</pt>                
-                <pd><note type="attention">该参数仅适用于 Android 和 iOS 平台。</note></pd>
             </plentry>
             <plentry>
                 <pt props="android ios cpp">publishScreenCaptureAudio</pt>
@@ -228,19 +233,23 @@
                     <p>设置是否发布屏幕采集的音频：
 
                     
+                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：发布屏幕采集到的音频。</li>
                     <li><codeph><ph keyref="false"
                         /></codeph>：（默认）不发布屏幕采集到的音频。</li>
                     </ul></p>
-                <p><note type="attention" props="cpp">该参数仅适用于 Android 和 iOS 平台。</note></p>
+                    <p>
+                    <note type="attention" props="cpp"
+                    >该参数仅适用于 Android 和 iOS 平台。</note></p>
                 </pd>
-            </plentry>                
-            <plentry props="mac cpp unity">
+            </plentry>
+            <plentry props="cpp unity">
                 <pt>publishSecondaryScreenTrack</pt>
                 <pd>
                     <p>设置是否发布第二个屏幕采集的视频：
 
+                    
                     
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：发布第二个屏幕采集到的视频。</li>
@@ -369,10 +378,12 @@
             <plentry conkeyref="ClientRoleOptions/audiencelatencylevel">
                 <pt/>
                 <pd/>
-            </plentry>               
+            </plentry>
             <plentry>
                 <pt>defaultVideoStreamType</pt>
-                <pd conkeyref="setRemoteDefaultVideoStreamType/defaultstreamtype"/>
+                <pd
+                    conkeyref="setRemoteDefaultVideoStreamType/defaultstreamtype"
+                />
             </plentry>
             <plentry>
                 <pt>channelProfile</pt>
@@ -427,30 +438,36 @@
             <plentry>
                 <pt>publishRhythmPlayerTrack</pt>
                 <pd>设置是否发布虚拟节拍器声音至远端：
-                <ul>
-                    <li><codeph><ph keyref="true"/></codeph>：（默认）发布。本地用户和远端用户都能听到节拍器。</li>
-                    <li><codeph><ph keyref="false"/></codeph>：不发布。只有本地用户能听到节拍器。</li>
+                
+                    <ul>
+                    <li><codeph><ph keyref="true"
+                        /></codeph>：（默认）发布。本地用户和远端用户都能听到节拍器。</li>
+                    <li><codeph><ph keyref="false"
+                        /></codeph>：不发布。只有本地用户能听到节拍器。</li>
                     </ul></pd>
-            </plentry> 
+            </plentry>
             <plentry>
                 <pt>isInteractiveAudience</pt>
                 <pd>是否开启互动模式：
-                <ul>
-                    <li><codeph><ph keyref="true"/></codeph>：开启互动模式。成功开启后，本地用户收到低延时和流畅的远端用户视频。</li>
-                    <li><codeph><ph keyref="false"/></codeph>：（默认）不开启互动模式。本地用户收到默认设置的远端用户视频。</li>
-                </ul>
-                <note type="attention">
-                <ul>
-                <li>该参数用于实现跨直播间连麦场景。连麦主播需要调用 <xref keyref="joinChannelEx"/> 方法，以观众身份加入对方的直播间，并将 <parmname>isInteractiveAudience</parmname> 设置为 <codeph>true</codeph>。</li>
-                <li>仅当用户角色为观众（<apiname keyref="CLIENT_ROLE_AUDIENCE"/>）时，该参数生效。</li>
-                </ul>
-                </note>
-                </pd>
-            </plentry>                
+                
+                    <ul>
+                    <li><codeph><ph keyref="true"
+                        /></codeph>：开启互动模式。成功开启后，本地用户收到低延时和流畅的远端用户视频。</li>
+                    <li><codeph><ph keyref="false"
+                        /></codeph>：（默认）不开启互动模式。本地用户收到默认设置的远端用户视频。</li>
+                    </ul>
+                    <note type="attention">
+                    <ul>
+                    <li>该参数用于实现跨直播间连麦场景。连麦主播需要调用 <xref keyref="joinChannelEx"
+                        /> 方法，以观众身份加入对方的直播间，并将 <parmname>isInteractiveAudience</parmname> 设置为 <codeph>true</codeph>。</li>
+                    <li>仅当用户角色为观众（<apiname keyref="CLIENT_ROLE_AUDIENCE"
+                        />）时，该参数生效。</li>
+                    </ul> </note> </pd>
+            </plentry>
             <plentry id="customvideotrackid">
                 <pt>customVideoTrackId</pt>
                 <pd>通过 <xref keyref="createCustomVideoTrack"/> 创建的视频轨道 ID。</pd>
-            </plentry>                
+            </plentry>
             </parml> </section>
     </refbody>
 </reference>
