@@ -28,17 +28,22 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p id="desc">该回调方法表示 SDK 运行时出现了（网络或媒体相关的）错误。通常情况下，SDK 上报的错误意味着 SDK 无法自动恢复，需要 App 干预或提示用户。</p>
+            <p id="desc">该回调方法表示 SDK 运行时出现了网络或媒体相关的错误。通常情况下，SDK 上报的错误意味着 SDK 无法自动恢复，需要 app 干预或提示用户。</p>
             <note type="attention" props="electron">该回调仅报告 Native 层发生的错误。如果你想收到 Electron 层发生的错误，请改用 <xref keyref="onApiError"/>。</note> </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
-            <plentry>
-                <pt>err</pt>
-                <pd>错误代码。详见 <xref keyref="ERROR_CODE_TYPE"/>。</pd>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
             </plentry>
             <plentry>
+                <pt props="apple">errorCode</pt>
+                <pt props="android cpp">err</pt>
+                <pd>错误码。详见 <xref keyref="ERROR_CODE_TYPE"/>。</pd>
+            </plentry>
+            <plentry props="cpp">
                 <pt>msg</pt>
                 <pd>错误描述。</pd>
             </plentry>

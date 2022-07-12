@@ -81,8 +81,8 @@
             <plentry props="ios cpp">
                 <pt>dimensions</pt>
                 <pd>视频编码的分辨率。默认值为 1280 × 720。</pd>
-                <pd>如果 <parmname>dimensions</parmname> 宽高比与屏幕像素值的宽高比不一致，SDK 会按照如下规则调节视频编码分辨率，以 <parmname>dimensions</parmname> 是 1280 × 720 为例： 
-                        
+                <pd>如果 <parmname>dimensions</parmname> 宽高比与屏幕像素值的宽高比不一致，SDK 会按照如下规则调节视频编码分辨率，以 <parmname>dimensions</parmname> 是 1280 × 720 为例：
+
                     <ul>
                     <li>当屏幕宽和高的像素值均小于 <parmname>dimensions</parmname> 时，例如屏幕像素值为 640 × 360，SDK 以 640 × 360 编码。</li>
                     <li>当屏幕宽或高的像素值大于 <parmname>dimensions</parmname> 时，例如屏幕像素值为 2000 × 1500，SDK 以屏幕像素值的宽高比，即 4:3，取 <parmname>dimensions</parmname> 内最大分辨率进行编码，即 960 × 720。</li>
@@ -99,7 +99,7 @@
             <plentry props="android">
                 <pt>width</pt>
                 <pd>视频编码分辨率中的宽 (px)。默认值为 1280。 如果 width 和 height 的宽高比与屏幕像素值的宽高比不一致，SDK 会按照如下规则调节视频编码分辨率， 以 width × height 是 1280 × 720 为例：
-                        
+
                     <ul>
                     <li>当屏幕宽和高的像素值均小于 width 和 height 时，例如屏幕像素值为 640 × 360，SDK 以 640 × 360 编码。 </li>
                     <li>当屏幕宽或高的像素值大于 width 或 height 时，例如屏幕像素值为 2000 × 1500，SDK 以屏幕像素值的宽高比，即 4:3，取 width × height 内最大分辨率进行编码，即 960 × 720。</li>
@@ -114,7 +114,7 @@
             </plentry>
             <plentry props="android">
                 <pt>height</pt>
-                <pd>视频编码分辨率中的高 (px)。默认值为 720。如果 width 和 height 的宽高比与屏幕像素值 的宽高比不一致，SDK 会按照如下规则调节视频编码分辨率，以 width × height 是 1280 × 720 为例： 
+                <pd>视频编码分辨率中的高 (px)。默认值为 720。如果 width 和 height 的宽高比与屏幕像素值 的宽高比不一致，SDK 会按照如下规则调节视频编码分辨率，以 width × height 是 1280 × 720 为例：
                         <ul>
                         <li>当屏幕宽和高的像素值均小于 width 和 height 时，例如屏幕像素值为 640 × 360，SDK 以 640 × 360 编码。</li>
                         <li>当屏幕宽或高的像素值大于 width 或 height 时，例如屏幕像素值为 2000 × 1500，SDK 以屏幕像素值的宽高比，即 4:3，取 width × height 内最大分辨率进行编码，即 960 × 720。</li>
@@ -127,7 +127,8 @@
                     </ul> </note> </pd>
             </plentry>
             <plentry>
-                <pt>frameRate</pt>
+              <pt props="android">framerate</pt>
+              <pt props="ios cpp">frameRate</pt>
                 <pd>视频编码帧率 (fps)。默认值为 15。</pd>
             </plentry>
             <plentry>
@@ -139,12 +140,9 @@
                 <pd><ph>屏幕共享视频的内容类型。</ph><ph props="cpp ios">详见 <xref
                         keyref="VIDEO_CONTENT_HINT"/>。</ph>
                         <ul props="android">
-                        <li><ph keyref="CONTENT_HINT_NONE"
-                            />(0)：（默认）无指定的内容类型。</li>
-                            <li><ph keyref="CONTENT_HINT_MOTION"
-                            />(1)：内容类型为动画。当共享的内容是视频、电影或视频游戏时，推荐选择该内容类型。</li>
-                            <li><ph keyref="CONTENT_HINT_DETAILS"
-                            />(2)：内容类型为细节。当共享的内容是图片或文字时，推荐选择该内容类型。</li>
+                        <li><ph keyref="CONTENT_HINT_NONE" />(0)：（默认）无指定的内容类型。</li>
+                            <li><ph keyref="CONTENT_HINT_MOTION" />(1)：内容类型为动画。当共享的内容是视频、电影或视频游戏时，推荐选择该内容类型。</li>
+                            <li><ph keyref="CONTENT_HINT_DETAILS" />(2)：内容类型为细节。当共享的内容是图片或文字时，推荐选择该内容类型。</li>
                         </ul></pd>
             </plentry>
             </parml> </section>

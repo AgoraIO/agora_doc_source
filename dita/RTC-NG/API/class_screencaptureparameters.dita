@@ -6,108 +6,7 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public class ScreenCaptureParameters {
-    public static class VideoCaptureParameters {
-        public int bitrate = 0;
-        public int framerate = 15;
-        public int width = 1280;
-        public int height = 720;
-        public int contentHint = Constants.SCREEN_CAPTURE_CONTENT_HINT_MOTION;
-
-    @CalledByNative("VideoCaptureParameters")
-    public int getBitrate() {
-      return bitrate;
-    }
-
-    @CalledByNative("VideoCaptureParameters")
-    public int getFramerate() {
-      return framerate;
-    }
-
-    @CalledByNative("VideoCaptureParameters")
-    public int getWidth() {
-      return width;
-    }
-
-    @CalledByNative("VideoCaptureParameters")
-    public int getHeight() {
-      return height;
-    }
-
-    @CalledByNative("VideoCaptureParameters")
-    public int getContentHint() {
-      return contentHint;
-    }
-
-    @Override
-    public String toString() {
-      return "VideoCaptureParameters{"
-          + "bitrate=" + bitrate + ", framerate=" + framerate + ", width=" + width
-          + ", height=" + height + ", contentHint=" + contentHint + '}';
-    }
-  }
-
-    public static class AudioCaptureParameters {
-        public int sampleRate = 16000;
-        public int channels = 2;
-        public int captureSignalVolume = 100;
-
-    @CalledByNative("AudioCaptureParameters")
-    public int getSampleRate() {
-      return sampleRate;
-    }
-
-    @CalledByNative("AudioCaptureParameters")
-    public int getChannels() {
-      return channels;
-    }
-
-    @CalledByNative("AudioCaptureParameters")
-    public int getCaptureSignalVolume() {
-      return captureSignalVolume;
-    }
-
-    @Override
-    public String toString() {
-      return "AudioCaptureParameters{"
-          + "sampleRate=" + sampleRate + ", channels=" + channels
-          + ", captureSignalVolume=" + captureSignalVolume + '}';
-    }
-  }
-    public boolean captureAudio = false;
-    public VideoCaptureParameters videoCaptureParameters = new VideoCaptureParameters();
-    public boolean captureVideo = true;
-    public AudioCaptureParameters audioCaptureParameters = new AudioCaptureParameters();
-
-  @CalledByNative
-  public boolean isCaptureAudio() {
-    return captureAudio;
-  }
-
-  @CalledByNative
-  public VideoCaptureParameters getVideoCaptureParameters() {
-    return videoCaptureParameters;
-  }
-
-  @CalledByNative
-  public boolean isCaptureVideo() {
-    return captureVideo;
-  }
-
-  @CalledByNative
-  public AudioCaptureParameters getAudioCaptureParameters() {
-    return audioCaptureParameters;
-  }
-
-  @Override
-  public String toString() {
-    return "ScreenCaptureParameters{"
-        + "captureAudio=" + captureAudio + ", videoCaptureParameters=" + videoCaptureParameters
-        + ", captureVideo=" + captureVideo + ", audioCaptureParameters=" + audioCaptureParameters
-        + '}';
-  }
-}
-</codeblock>
+            <codeblock props="android" outputclass="language-java"/>
             <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenCaptureParameters: NSObject
 @property (assign, nonatomic) CGSize dimensions;
 @property (assign, nonatomic) NSInteger frameRate;
@@ -197,15 +96,15 @@
     }</codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"            /></title>
-            <note type="note" props="mac cpp unity">共享的屏幕流的视频属性只需通过 <xref            keyref="ScreenCaptureParameters"/> 设置，与 <xref keyref="setVideoEncoderConfiguration"            /> 无关。</note>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <note type="note" props="mac cpp unity">共享的屏幕流的视频属性只需通过 <xref keyref="ScreenCaptureParameters"/> 设置，与 <xref keyref="setVideoEncoderConfiguration"/> 无关。</note>
             <parml>
             <plentry>
                 <pt props="mac cpp unity flutter">dimensions</pt>
                 <pd>
-                    <p><ph props="flutter">编码共享视频的最大像素值。</ph><ph props="mac">共享的屏幕流的视频编码分辨率。</ph><ph                            props="unity cpp">在 Windows 和 macOS 平台上，表示共享的屏幕流的视频编码分辨率。</ph><ph
+                    <p><ph props="flutter">编码共享视频的最大像素值。</ph><ph props="mac">共享的屏幕流的视频编码分辨率。</ph><ph props="unity cpp">在 Windows 和 macOS 平台上，表示共享的屏幕流的视频编码分辨率。</ph><ph
                             props="cpp">详见 <xref keyref="VideoDimensions"        />。默认值为 1920 × 1080，即 2073600 像素。该像素值为计费标准。</ph></p>
-                    <p>当共享的屏幕分辨率宽高比与该值设置不一致时，SDK 按如下策略进行编码。假设 <parmname                            props="mac cpp unity flutter">dimensions</parmname> 设为 1920 × 1080：
+                    <p>当共享的屏幕分辨率宽高比与该值设置不一致时，SDK 按如下策略进行编码。假设 <parmname props="mac cpp unity flutter">dimensions</parmname> 设为 1920 × 1080：
                             <ul>
                             <li>如果屏幕分辨率小于 <parmname props="mac cpp unity flutter">dimensions</parmname>，如 1000 × 1000，SDK 直接按 1000 × 1000 进行编码。</li>
                             <li>如果屏幕分辨率大于 <parmname props="mac cpp unity flutter">dimensions</parmname>，如 2000 × 1500，SDK 按屏幕分辨率的宽高比，即 4:3，取 <parmname props="mac cpp unity flutter">dimensions</parmname> 以内的最大分辨率进行编码，即 1440 × 1080。</li>
