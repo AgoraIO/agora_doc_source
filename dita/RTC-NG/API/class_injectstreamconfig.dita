@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_injectstreamconfig">
-    <title><ph keyref="InjectStreamConfig"/></title>
+    <title><ph keyref="InjectStreamConfig" /></title>
     <shortdesc id="short"><ph id="shortdesc">输入外部音视频流的配置。
         </ph></shortdesc>
     <refbody>
@@ -112,7 +112,7 @@
         public int audioBitrate { set; get; }
         public int audioChannels { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">class InjectStreamConfig {
   const InjectStreamConfig(
       {this.width,
@@ -140,17 +140,15 @@
   final int? audioBitrate;
   @JsonKey(name: 'audioChannels')
   final int? audioChannels;
-  factory InjectStreamConfig.fromJson(Map&lt;String, dynamic> json) =>
+  factory InjectStreamConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$InjectStreamConfigFromJson(json);
-  Map&lt;String, dynamic> toJson() => _$InjectStreamConfigToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$InjectStreamConfigToJson(this);
 }</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <note conkeyref="addInjectStreamUrl/inject-sunset-note" props="en"/> </section>
+            <note conkeyref="addInjectStreamUrl/inject-sunset-note" props="en" /> </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry props="android cpp unity flutter electron rn">
                 <pt>width</pt>
@@ -176,15 +174,13 @@
                 <pt>videoBitrate</pt>
                 <pd>
                     <p>外部视频流输入的码率（Kbps）。默认设置为 400 Kbps。</p>
-                    <note type="attention"
-                    >视频码率的设置与分辨率相关。如果设置的视频码率超出合理范围，SDK 会按照合理区间自动设置码率。</note>
+                    <note type="attention">视频码率的设置与分辨率相关。如果设置的视频码率超出合理范围，SDK 会按照合理区间自动设置码率。</note>
                 </pd>
             </plentry>
             <plentry>
                 <pt>audioSampleRate</pt>
                 <pd>
-                    <p>外部音频流输入的采样率。默认值为 48000 Hz。详见 <xref
-                    keyref="AUDIO_SAMPLE_RATE_TYPE"/>。</p>
+                    <p>外部音频流输入的采样率。默认值为 48000 Hz。详见 <xref keyref="AUDIO_SAMPLE_RATE_TYPE" />。</p>
                     <note type="attention"> 声网建议目前采用默认值，不要自行设置。</note> </pd>
             </plentry>
             <plentry>
