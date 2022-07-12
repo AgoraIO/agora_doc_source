@@ -299,10 +299,10 @@ def main():
                         child.text = proto
 
                 # Add a return_values section for flutter
-                if child.text is not None and "void" in child.text:
-                    for new_child in root.iter('*'):
-                        if new_child.get("id") == "return_values":
-                            new_child.set("props", "native electron unity")
+                #if child.text is not None and "void" in child.text:
+                #    for new_child in root.iter('*'):
+                #        if new_child.get("id") == "return_values":
+                #            new_child.set("props", "native electron unity")
 
 
             # Must be Python 3.8 or higher. Otherwise the attribute order cannot be preserved!!!!
