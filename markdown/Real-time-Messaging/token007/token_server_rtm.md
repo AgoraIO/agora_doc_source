@@ -8,10 +8,9 @@
 
 ![RTM Token 鉴权流程](https://web-cdn.agora.io/docs-files/1624437370778)
 
-RTM Token 在 app 服务器上生成，其有效期为 24 小时。当用户从你的 app 客户端登录到 RTM 系统时，Agora 平台会读取该 Token 中包含的信息，并进行校验。Token 包含以下信息：
+RTM Token 在 app 服务器上生成，其最长有效期为 24 小时。当用户从你的 app 客户端登录到 RTM 系统时，Agora 平台会读取该 Token 中包含的信息，并进行校验。Token 包含以下信息：
 
 - 你在 Agora 控制台创建项目时生成的 App ID
-- 你的项目的 App 证书
 - RTM 用户 ID
 - RTM Token 过期的 Unix 时间戳
 
@@ -55,7 +54,7 @@ Token 需要在你的服务端部署生成。当客户端发送请求时，服�
 package main
 
 import (
-    rtmtokenbuilder "github.com/AgoraIO/Tools/DynamicKey/AgoraDynamicKey/go/src/RtmTokenBuilder"
+    rtmtokenbuilder "github.com/AgoraIO/Tools/DynamicKey/AgoraDynamicKey/go/src/rtmtokenbuilder2"
     "fmt"
     "log"
     "net/http"
@@ -80,7 +79,7 @@ func generateRtmToken(rtm_uid string){
     currentTimestamp := uint32(time.Now().UTC().Unix())
     expireTimestamp := currentTimestamp + expireTimeInSeconds
 
-    result, err := rtmtokenbuilder.BuildToken(appID, appCertificate, rtm_uid, rtmtokenbuilder.RoleRtmUser, expireTimestamp)
+    result, err := rtmtokenbuilder.BuildToken(appID, appCertificate, rtm_uid, expireTimestamp)
     if err != nil {
         fmt.Println(err)
     } else {
@@ -316,23 +315,26 @@ Agora 在 GitHub 上提供一个开源的 [AgoraDynamicKey](https://github.com/A
 
 ### API 参考
 
-本节介绍生成 Token 的 API 参数和描述。以 C++ 为例：
+本节介绍生成 Token 的 API 参数和描述。以 Golang 为例：
 
-```c++
-static std::string buildToken(const std::string& appId,
-								const std::string& appCertificate,
-								const std::string& userAccount,
-								RtmUserRole userRole,
-								uint32_t privilegeExpiredTs = 0);
+```golang
+func BuildToken(appId string, appCertificate string, userId string, expire uint32) (string, error) {
+    token := accesstoken.NewAccessToken(appId, appCertificate, expire)
+
+    serviceRtm := accesstoken.NewServiceRtm(userId)
+    serviceRtm.AddPrivilege(accesstoken.PrivilegeLogin, expire)
+    token.AddService(serviceRtm)
+
+    return token.Build()
+}
 ```
 
 | 参数               | 描述                                                         |
 | :----------------- | :----------------------------------------------------------- |
 | appId              | 你在 Agora 控制台创建项目时生成的 App ID。                   |
 | appCertificate     | 你的 App 证书。                                              |
-| userAccount        | 用于登录 RTM 系统的用户 ID。你需要自行设定。支持的字符参考 [login 方法中的 userId 参数](/cn/Real-time-Messaging/API%20Reference/RTM_cpp/classagora_1_1rtm_1_1_i_rtm_service.html#a2433a0babbed76ab87084d131227346b)。                                            |
-| userRole           | 用户角色。暂时只支持一种角色，请使用默认值 `Rtm_User`。      |
-| privilegeExpiredTs | 此参数暂不生效。你无需设置此参数。每个 RTM Token 的有效期都是 24 小时。 |
+| userId        | 用于登录 RTM 系统的用户 ID。你需要自行设定。支持的字符参考 [login 方法中的 userId 参数](/cn/Real-time-Messaging/API%20Reference/RTM_cpp/classagora_1_1rtm_1_1_i_rtm_service.html#a2433a0babbed76ab87084d131227346b)。                                            |
+| expire | RTM Token 过期的 Unix 时间戳，单位为秒。该值为当前时间戳和 Token 有效期的总和。 例如，如果你将 `expire` 设为当前时间戳再加 600 秒，则 RTM Token 会在 10 分钟内过期。 RTM Token 的最大有效期为 24 小时。 如果你将此参数设为 0，或时间长度超过 24 小时，Token 有效期依然为 24 小时。 |
 
 
 ## 开发注意事项
@@ -347,12 +349,12 @@ static std::string buildToken(const std::string& appId,
 
 ### RTM Token 过期
 
-RTM Token 的有效期为 24 小时。
+当 RTM Token 临 30 秒过期时，会触发 `onTokenPrivilegeWillExpire` 回调，提醒用户 Token 即将过期。收到该回调时，你可以在服务端重新生成 RTM Token，然后调用 `renewToken` 方法，将新生成的 RTM Token 传给 SDK。
 
-SDK 处于 `CONNECTION_STATE_CONNECTED` 状态时，即使 RTM Token 过期，用户也不会被踢出。用户登录时使用已过期的 RTM Token 则会返回 `LOGIN_ERR_TOKEN_EXPIRED` 错误。
+如 Token 过期时，仍没有调用 `renewToken` 方法进行更新，会触发因 Token 过期 (`CONNECTION_CHANGE_REASON_TOKEN_EXPIRED = 9`) 导致的 `onConnectionStateChanged` 回调，提醒用户 SDK 的连接状态发生改变，由已连接状态 (`CONNECTION_STATE_CONNECTED`) 切换到断线重连状态 (`CONNECTION_STATE_RECONNECTING`)。
 
-RTM 系统只会在 RTM Token 过期且 SDK 处于 `CONNECTION_STATE_RECONNECTING` 状态时才会触发 `onTokenExpired` 回调，表示 RTM Token 已失效且重连需要新的 RTM Token。回调仅触发一次。收到这个回调时，你可以在服务端重新生成 RTM Token，然后调用 `renewToken` 方法，将新生成的 RTM Token 传给 SDK。
+此时，SDK 断线重连会触发 `onTokenExpired` 回调，提醒用户当前使用的 RTM Token 已超过指定的签发有效期。收到该回调时，请尽快在你的业务服务端生成新的 Token 并调用 `renewToken` 方法把新的 Token 传给 Token 验证服务器。
 
-<div class="alert note">你虽然可以通过 <code>onTokenExpired</code> 回调进行 Token 过期处理，但 Agora 推荐你通过定时（例如每小时）更新 Token 来解决 Token 过期问题。</div>
+<div class="alert note">Agora 建议你通过 <code>onTokenPrivilegeWillExpire</code> 回调进行 Token 过期处理。</div>
 
-<div class="alert info">上文的方法、回调、枚举名仅适用于 C++ SDK，其他平台的方法、回调、枚举名可参考各平台的 API 文档。</div>
+<div class="alert info">该小节的方法、回调、枚举名仅适用于 C++ SDK，其他平台的方法、回调、枚举名可参考各平台的 API 文档。</div>
