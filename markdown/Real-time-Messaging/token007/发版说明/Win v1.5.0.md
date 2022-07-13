@@ -6,7 +6,7 @@
 
 **AccessToken2**
 
-自该版本起，RTM 升级 Token 鉴权机制，用户可以根据业务需求指定 Token 有效期 (最长为 24 小时)。此外，新增 `onTokenPrivilegeWillExpire` 回调，在 Token 临 30 秒过期时触发，提醒用户当前 Token 即将超出签发有效期，需尽快更新；否则，SDK 将因 Token 过期 (`CONNECTION_CHANGE_REASON_TOKEN_EXPIRED = 9`) 断线重连。 
+自该版本起，RTM 升级 Token 鉴权机制，用户可以根据业务需求指定 Token 有效期 (最长为 24 小时)。此外，新增 `onTokenPrivilegeWillExpire` 回调，在 Token 临 30 秒过期时触发，提醒用户当前 Token 即将超出签发有效期，需尽快更新；否则，SDK 将因 Token 过期 (`CONNECTION_CHANGE_REASON_TOKEN_EXPIRED (9)`) 断线重连。 
 
 - 如果你首次接触该产品，Agora 建议你使用最新版的 RTM SDK 并参照 [Token 鉴权](./token_server_rtm) 为 AccessToken2 部署服务器和客户端；
 - 如果你已在先前版本中部署过 AccessToken 鉴权，可以参照 [升级至 AccessToken2](./token_server_rtm#upgrade) 快速完成升级。
