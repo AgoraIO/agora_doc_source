@@ -1,6 +1,6 @@
 # 使用 RTM Token 鉴权
 
-<div class="alert note">自 RTM 全平台 1.5.0 版和 Web 1.4.6 版开始，Agora 升级了 Token 鉴权逻辑。<li>如你首次接触该产品，Agora 建议你使用最新版的 RTM SDK 并参照本文档为 AccessToken2 部署服务器和客户端；<li>如你已在先前版本中部署过 AccessToken 鉴权，可以参照 <a href="https://docs.agora.io/cn/Real-time-Messaging/token_server_rtm#将-AccessToken-服务器升级至-AccessToken2">升级至 AccessToken2</a> 中的步骤快速完成升级。</div>
+<div class="alert note">自 RTM 全平台 1.5.0 版和 Web 1.4.6 版开始，Agora 升级了 Token 鉴权逻辑。<li>如你首次接触该产品，Agora 建议你使用最新版的 RTM SDK 并参照本文档为 AccessToken2 部署服务器和客户端；<li>如你已在先前版本中部署过 AccessToken 鉴权，可以参照 <a href="https://docs.agora.io/cn/Real-time-Messaging/token_server_rtm#upgrade">升级至 AccessToken2</a> 中的步骤快速完成升级。</div>
 
 <div class="alert info">使用 AccessToken2 的 SDK 版本可以和使用 AccessToken 的 SDK 版本互通。同时，支持 AccessToken2 的版本也支持 AccessToken。</div>
 
@@ -351,7 +351,7 @@ func BuildToken(appId string, appCertificate string, userId string, expire uint3
 | `expire` | RTM Token 过期的 Unix 时间戳，单位为秒。该值为当前时间戳和 Token 有效期的总和。 例如，如果你将 `expire` 设为当前时间戳再加 600 秒，则 RTM Token 会在 10 分钟内过期。 RTM Token 的最大有效期为 24 小时。 如果你将此参数设为 0，或时间长度超过 24 小时，Token 有效期依然为 24 小时。 |
 
 
-### 将 AccessToken 服务器升级至 AccessToken2
+### 将 AccessToken 服务器升级至 AccessToken2<a name="upgrade"></a>
 
 该小节引导你将 AccessToken 服务端鉴权机制升级到 AccessToken2。
 
