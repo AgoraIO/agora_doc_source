@@ -2,7 +2,7 @@
 
 <div class="alert note">自 RTM 全平台 1.5.0 版和 Web 1.4.6 版开始，Agora 升级了 Token 鉴权逻辑。<li>如你首次接触该产品，Agora 建议你使用最新版的 RTM SDK 并参照本文档为 AccessToken2 部署服务器和客户端；<li>如你已在先前版本中部署过 AccessToken 鉴权，可以参照 <a href="https://docs.agora.io/cn/Real-time-Messaging/token_server_rtm#将-AccessToken-服务器升级至-AccessToken2">升级至 AccessToken2</a> 中的步骤快速完成升级。</div>
 
-<div class="alert info">支持 AccessToken2 的 SDK 版本可以和使用 AccessToken 的 SDK 版本互通。同时，支持 AccessToken2 的版本也支持 AccessToken。</div>
+<div class="alert info">使用 AccessToken2 的 SDK 版本可以和使用 AccessToken 的 SDK 版本互通。同时，支持 AccessToken2 的版本也支持 AccessToken。</div>
 
 鉴权是指在用户访问你的系统前，对其进行身份校验。用户在使用 Agora 服务，如加入音视频通话或登录信令系统时，Agora 使用 Token 对其鉴权。
 
