@@ -15,9 +15,15 @@
                     <pt> <ph keyref="LOCAL_AUDIO_STREAM_ERROR_FAILURE"/> </pt>
                     <pd>1：本地音频出错原因不明确。建议提示用户尝试重新加入频道。</pd>
                </plentry>
-               <plentry props="hide">
+               <plentry>
                     <pt> <ph keyref="LOCAL_AUDIO_STREAM_ERROR_DEVICE_NO_PERMISSION"/> </pt>
-                    <pd>2：没有权限启动本地音频采集设备。请提示用户开启权限。</pd>
+                    <pd>2：没有权限启动本地音频采集设备。请提示用户开启权限。
+                         <dl outputclass="deprecated">
+                              <dlentry>
+                                  <dt>弃用：</dt>
+                                  <dd>该枚举已废弃。请改用 <xref keyref="onPermissionError"/> 回调中的 <xref keyref="RECORD_AUDIO"/>。</dd>
+                              </dlentry>
+                              </dl></pd>
                </plentry>
                <plentry props="android ios cpp unity">
                     <pt> <ph keyref="LOCAL_AUDIO_STREAM_ERROR_DEVICE_BUSY"/> </pt>
