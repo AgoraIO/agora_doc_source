@@ -1,4 +1,40 @@
-~17b84520-e4fa-11e9-ace3-6300933cff54~
+## 1.4.6 版
+
+该版本于 2022 年 7 月 14 日发布。
+
+#### 升级必看
+
+**AccessToken2**
+
+自该版本起，RTM 升级 Token 鉴权机制，用户可以根据业务需求指定 Token 有效期 (最长为 24 小时)。此外，新增 `TokenPrivilegeWillExpire` 回调，在 Token 临 30 秒过期时触发，提醒用户当前 Token 即将超出签发有效期，需尽快更新；否则，SDK 将因 Token 过期 (`TOKEN_EXPIRED`) 断线重连。 
+
+- 如果你首次接触该产品，Agora 建议你使用最新版的 RTM SDK 并参照 [Token 鉴权](./token_server_rtm) 为 AccessToken2 部署服务器和客户端；
+- 如果你已在先前版本中部署过 AccessToken 鉴权，可以参照 [升级至 AccessToken2](./token_server_rtm#upgrade) 快速完成升级。
+
+#### 功能下架
+
+[富媒体传输](./upload_download_media_cpp)、[历史消息](./rtm_get_event) 和 [离线消息](./messaging_restful#history) 功能于该版本正式下线。旧版本 SDK 会继续支持，已集成这些功能的用户不受影响。
+
+#### 问题修复
+
+修复了请求超时输出日志的单位，先前为毫秒 (ms)，现修复为秒 (s)。
+
+#### API 变更
+
+**新增**  
+- `TokenPrivilegeWillExpire`
+- `ConnectionChangeReason` 中新增 `TOKEN_EXPIRED`
+
+**废弃**  
+- `createMediaMessageByUploading`
+- `downloadMedia`
+- `enableHistoricalMessaging`
+- `enableOfflineMessaging`
+- `RtmImageMessage`
+- `RtmFileMessage`
+- `MediaTransferHandler`
+- `MediaOperationProgress`
+
 
 ## 1.4.5 版
 
