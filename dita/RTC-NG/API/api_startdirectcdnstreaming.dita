@@ -11,6 +11,7 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
+<p outputclass="codeblock">
         <codeblock props="android" outputclass="language-java">public abstract int startDirectCdnStreaming(IDirectCdnStreamingEventHandler eventHandler,
             String publishUrl, DirectCdnStreamingMediaOptions options);</codeblock>
         <codeblock props="ios mac" outputclass="language-objectivec">- (int)startDirectCdnStreaming:(id&lt;AgoraDirectCdnStreamingEventDelegate> _Nonnull)delegate publishUrl:(NSString * _Nonnull)publishUrl mediaOptions:(AgoraDirectCdnStreamingMediaOptions * _Nonnull)options;</codeblock>
@@ -20,7 +21,7 @@
         <codeblock props="unity" outputclass="language-csharp"></codeblock>
         <codeblock props="rn" outputclass="language-typescript"></codeblock>
         <codeblock props="flutter" outputclass="language-dart"></codeblock>
-        </section>
+        </p></section>
         <section id="detailed_desc">
             <p>Agora 不支持同一时间向同一个 URL 重复推流。</p>
             <p><b>媒体选项说明</b></p>
@@ -35,7 +36,7 @@
             <ul>
                 <li props="android cpp"><parmname>publishCustomAudioTrack</parmname> 设为 <codeph><ph keyref="true"/></codeph> 并调用 <xref props="android" keyref="pushAudioFrame2"/><xref props="cpp" keyref="pushAudioFrame"/></li>
                 <li props="ios mac"><parmname>publishCustomAudioTrack</parmname> 设为 <codeph><ph keyref="true"/></codeph> 并调用 <xref keyref="pushExternalAudioFrameSampleBuffer1"/> 或 <xref keyref="pushAudioFrame2"/></li>
-                <li><parmname>publishCustomVideoTrack</parmname> 设为 <codeph><ph keyref="true"/></codeph> 并调用 <xref keyref="pushDirectCdnStreamingCustomVideoFrame"/></li>
+                <li><parmname>publishCustomVideoTrack</parmname> 设为 <codeph><ph keyref="true"/></codeph> 并调用 <xref keyref="pushVideoFrame"/></li>
                 <li>确保 <parmname>publishCameraTrack</parmname> 为 <codeph><ph keyref="false"/></codeph>(默认值)</li>
                 <li>确保 <parmname>publishMicrophoneTrack</parmname> 为 <codeph><ph keyref="false"/></codeph>(默认值)</li>
             </ul>       
