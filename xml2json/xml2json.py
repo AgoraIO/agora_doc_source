@@ -188,7 +188,16 @@ props_platform_list = ["windows", "rust", "java", "python", "csharp", "objective
 
 
 def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_path, platform="rust"):
-    remove_spaces(file_dir)
+    
+    text = ""
+    
+    with open(file_dir, "r", encoding='utf-8') as f:
+        text = header + f.read()
+        text = re.sub('\s+(?=<)', '', text)
+            
+    with open(file_dir, "w", encoding='utf-8') as f:
+        f.write(text)
+        
     tree = ET.parse(file_dir)
     root = tree.getroot()
 
@@ -1120,16 +1129,6 @@ def merge_JsonFiles(files):
         json.dump(result, output_file, ensure_ascii=False, indent=4)
 
 
-def remove_spaces(xml_file_path):
-    
-    text = ""
-    
-    with open(xml_file_path, "r", encoding='utf-8') as f:
-        text = header + f.read()
-        text = re.sub('\s+(?=<)', '', text)
-            
-    with open(xml_file_path, "w", encoding='utf-8') as f:
-        f.write(text)
     
 
 def replace_newline():
