@@ -404,7 +404,7 @@ result, err := rtmtokenbuilder.BuildToken(appID, appCertificate, rtm_uid, expire
 
 ### RTM Token 过期<a name="expiration"></a>
 
-你可以根据业务需求自行指定 RTM Token 的过期时长 (最长为 24 小时)。当 RTM Token 临 30 秒过期时，会触发 `onTokenPrivilegeWillExpire` 回调，提醒用户 Token 即将过期。收到该回调时，你可以在服务端重新生成 RTM Token，然后调用 `renewToken` 方法，将新生成的 RTM Token 传给 SDK。
+你可以根据业务需求指定 RTM Token 的有效期 (最长为 24 小时)。当 RTM Token 临 30 秒过期时，会触发 `onTokenPrivilegeWillExpire` 回调，提醒用户 Token 即将过期。收到该回调时，你可以在服务端重新生成 RTM Token，然后调用 `renewToken` 方法，将新生成的 RTM Token 传给 SDK。
 
 如 Token 过期时，仍没有调用 `renewToken` 方法进行更新，会触发因 Token 过期 (`CONNECTION_CHANGE_REASON_TOKEN_EXPIRED = 9`) 导致的 `onConnectionStateChanged` 回调，提醒用户 SDK 的连接状态发生改变，由已连接状态 (`CONNECTION_STATE_CONNECTED`) 切换到断线重连状态 (`CONNECTION_STATE_RECONNECTING`)。
 
