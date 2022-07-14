@@ -33,34 +33,29 @@
             <title>返回值</title>
             <p><ph>设置 SDK 输出的原始数据格式。</ph><ph props="cpp ios mac">详见 <xref keyref="VIDEO_PIXEL_FORMAT"/>。</ph></p>
             <p props="android">
-            <note id="default">
-            <p>在不同观测位置和采集场景下，该枚举值对应的实际视频像素格式都不同，Agora 建议你不要使用该值。以下列出了一些常见的情况。</p>
-            <ul>
-            <li>观测位置为 <apiname keyref="POSITION_POST_CAPTURER"/> 时：
-                            
-                
-                <ul>
-                <li props="ios">仅支持像素格式为 CVPixelBufferRef 的视频。</li>
-                <li props="android">在用户采集 YUV 格式的视频数据、或采集的视频分辨率小于 256 × 256 时，支持的视频像素格式为  I420；其他情况下，支持 Texture 格式。</li>
-                <li props="mac cpp">仅支持像素格式为 I420 的视频。</li>
-                </ul></li>
-            <li>观测位置为 <apiname keyref="POSITION_PRE_ENCODER"/> 时：
-                            
-                
-                <ul>
-                <li props="ios">仅支持像素格式为 CVPixelBufferRef 的视频。</li>
-                <li props="android">在用户采集 YUV 格式的视频数据、或采集的视频分辨率小于 256 × 256 时，支持的视频像素格式为 I420；其他情况下，支持 Texture 格式。</li>
-                <li props="mac cpp">仅支持像素格式为 I420 的视频。</li>
-                </ul></li>
-            <li>观测位置为  <apiname keyref="POSITION_PRE_RENDERER"/> 时：
-                            
-                
-                <ul>
-                <li props="ios mac">默认支持像素格式为 CVPixelBufferRef 的视频。</li>
-                <li props="android">默认支持像素格式为 Texture 的视频。</li>
-                <li props="cpp">支持像素格式为 I420 的视频。</li>
-                </ul></li>
-            </ul> </note>
+            <note id="default" props="hide">
+                    <p>在不同观测位置和采集场景下，该枚举值对应的实际视频像素格式都不同，Agora 建议你不要使用该值。以下列出了一些常见的情况。</p>
+                    <ul>
+                        <li>观测位置为 <apiname keyref="POSITION_POST_CAPTURER"/> 时： 
+                            <ul>
+                            <li props="ios">仅支持像素格式为 CVPixelBufferRef 的视频。</li>
+                            <li props="android">在用户采集 YUV 格式的视频数据、或采集的视频分辨率小于 256 × 256 时，支持的视频像素格式为 I420；其他情况下，支持 Texture 格式。</li>
+                            <li props="mac cpp">仅支持像素格式为 I420 的视频。</li>
+                            </ul></li>
+                        <li>观测位置为 <apiname keyref="POSITION_PRE_ENCODER"/> 时： 
+                            <ul>
+                            <li props="ios">仅支持像素格式为 CVPixelBufferRef 的视频。</li>
+                            <li props="android">在用户采集 YUV 格式的视频数据、或采集的视频分辨率小于 256 × 256 时，支持的视频像素格式为 I420；其他情况下，支持 Texture 格式。</li>
+                            <li props="mac cpp">仅支持像素格式为 I420 的视频。</li>
+                            </ul></li>
+                        <li>观测位置为 <apiname keyref="POSITION_PRE_RENDERER"/> 时： 
+                            <ul>
+                            <li props="ios mac">默认支持像素格式为 CVPixelBufferRef 的视频。</li>
+                            <li props="android">默认支持像素格式为 Texture 的视频。</li>
+                            <li props="cpp">支持像素格式为 I420 的视频。</li>
+                            </ul></li>
+                    </ul>
+                </note>
             <ul>
             <li><ph keyref="VIDEO_PIXEL_DEFAULT"/>(0): 原始视频像素格式。</li>
             <li><ph keyref="VIDEO_PIXEL_I420"/>(1): I420 格式。</li>
