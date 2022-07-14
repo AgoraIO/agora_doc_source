@@ -181,6 +181,25 @@ print("--------------- Topic ref list ------------------------")
 print(rust_topicref_list)
 print("--------------- Topic ref list ------------------------")
 
+# Collect the hide API which mark props="hide" or "cn" in <topichead> or <keydef>
+for topichead in dita_file_root.iter("topichead"):
+    is_hide_topichead: bool = True if topichead.get("props") is not None and topichead.get("props") == "hide" or topichead.get("props") is not None and topichead.get("props") == "cn" else False
+
+    for keydef in topichead.iter("keydef"):
+        if keydef.get("href") is not None:
+            dita_id = path.basename(keydef.get("href")).replace(".dita", "")
+            if is_hide_topichead:
+                json_hide_id_list.append(dita_id)
+            elif keydef.get("props") is not None and keydef.get("props") == "hide":
+                json_hide_id_list.append(dita_id)
+        
+
+
+print("--------------- Hide id list ------------------------")
+print(json_hide_id_list)
+print("--------------- Hide id list ------------------------")
+
+
 # Target platform
 
 # List of platforms
@@ -1077,6 +1096,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
     data['description'] = api_desc
     data['parameters'] = json_array
     data['returns'] = return_values.strip("\n ")
+    data['is_hide'] = True if api_id in json_hide_id_list else False
 
     print(data)
 
