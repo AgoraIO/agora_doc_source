@@ -188,6 +188,7 @@ props_platform_list = ["windows", "rust", "java", "python", "csharp", "objective
 
 
 def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_path, platform="rust"):
+    remove_spaces(file_dir)
     tree = ET.parse(file_dir)
     root = tree.getroot()
 
@@ -223,7 +224,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             if platform_tag not in child.get("props") and "native" not in child.get(
                     "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
                      "props") and "native" in child.get(
-                 "props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
+                 "props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or child.get("props") == "hide" or child.get("props") == "cn":
                  print("------------------- Tag to remove ---------------------------")
                  print(child)
                  print(child.text)
@@ -1119,8 +1120,17 @@ def merge_JsonFiles(files):
         json.dump(result, output_file, ensure_ascii=False, indent=4)
 
 
+def remove_spaces(xml_file_path):
     
-
+    text = ""
+    
+    with open(xml_file_path, "r", encoding='utf-8') as f:
+        text = header + f.read()
+        text = re.sub('\s+(?=<)', '', text)
+            
+    with open(xml_file_path, "w", encoding='utf-8') as f:
+        f.write(text)
+    
 
 def replace_newline():
 
