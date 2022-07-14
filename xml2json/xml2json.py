@@ -168,6 +168,7 @@ elif defined_path_text == "cs":
 # cpp_full_path
 # Other types of full path
 rust_topicref_list = []
+json_hide_id_list = []
 dita_file_tree = ET.parse(defined_path)
 dita_file_root = dita_file_tree.getroot()
 for topicref in dita_file_root.iter("keydef"):
