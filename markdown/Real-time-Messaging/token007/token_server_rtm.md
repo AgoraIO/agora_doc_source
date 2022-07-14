@@ -406,9 +406,9 @@ result, err := rtmtokenbuilder.BuildToken(appID, appCertificate, rtm_uid, expire
 
 你可以根据业务需求指定 RTM Token 的有效期 (最长为 24 小时)。当 RTM Token 临 30 秒过期时，会触发 `onTokenPrivilegeWillExpire` 回调，提醒用户 Token 即将过期。收到该回调时，你可以在服务端重新生成 RTM Token，然后调用 `renewToken` 方法，将新生成的 RTM Token 传给 SDK。
 
-如 Token 过期时，仍没有调用 `renewToken` 方法进行更新，会触发因 Token 过期 (`CONNECTION_CHANGE_REASON_TOKEN_EXPIRED = 9`) 导致的 `onConnectionStateChanged` 回调，提醒用户 SDK 的连接状态发生改变，由已连接状态 (`CONNECTION_STATE_CONNECTED`) 切换到断线重连状态 (`CONNECTION_STATE_RECONNECTING`)。
-
-此时，SDK 的断线重连会触发 `onTokenExpired` 回调，提醒用户当前使用的 RTM Token 已超过指定的签发有效期。收到该回调时，请尽快在你的业务服务端生成新的 Token 并调用 `renewToken` 方法把新的 Token 传给 Token 验证服务器。
+Token 过期时，
+- 如果用户处于已连接状态 (`CONNECTION_STATE_CONNECTED`)，会收到 `onTokenExpired` 回调和因 Token 过期 (`CONNECTION_CHANGE_REASON_TOKEN_EXPIRED (9)`) 触发的 `onConnectionStateChanged` 回调，提醒用户连接状态切换至停止登录 (`CONNECTION_STATE_ABORTED`)。此时，用户需要调用 `login` 方法重新登录。
+- 如果用户由于网络问题处于断线重连状态 (`CONNECTION_STATE_RECONNECTING`)，会在网络恢复时收到 `onTokenExpired` 回调。此时，用户需要调用 `renewToken` 方法恢复连接。
 
 <div class="alert note">你可以通过 <code>onTokenPrivilegeWillExpire</code> 回调和 <code>onTokenExpired</code> 回调进行 Token 过期处理，但 Agora 推荐你通过定时（例如每小时）更新 Token 来解决 Token 过期问题。</div>
 
