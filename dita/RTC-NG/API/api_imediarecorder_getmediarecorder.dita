@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_getmediarecorder">
+<reference id="api_imediarecorder_getmediarecorder">
     <title><ph keyref="getMediaRecorder"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获取 <xref keyref="IMediaRecorder"/> 对象。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc"><ph props="android">获取 <xref keyref="IMediaRecorder"/> 对象。</ph><ph props="ios mac">创建 <xref keyref="IMediaRecorder"/> 实例。</ph></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -13,14 +13,21 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">AGORA_CPP_API static IMediaRecorder* getMediaRecorder(IRtcEngine* engine, IMediaRecorderObserver* callback);</codeblock>
+            <codeblock props="android" outputclass="language-java">public static synchronized AgoraMediaRecorder getMediaRecorder(RtcEngine engine) {
+    RtcEngineImpl engineImpl = (RtcEngineImpl) engine;
+    if (mRecorder == null) {
+      mRecorder = new AgoraMediaRecorder(engineImpl);
+    } else {
+      mRecorder.setEngine(engineImpl);
+    }
+    return mRecorder;
+  }</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">+ (instancetype _Nonnull)sharedMediaRecorderWithRtcEngine:(AgoraRtcEngineKit* _Nonnull)engine;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp"/>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">static MediaRecorder getMediaRecorder(RtcEngine engine,
-                {MediaRecorderObserver? callback})</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
             <note type="note">该方法需要在初始化 <xref keyref="IRtcEngine"/> 对象后调用。</note> </section>
@@ -31,14 +38,10 @@
                 <pt>engine</pt>
                 <pd><xref keyref="IRtcEngine"/> 对象。</pd>
             </plentry>
-            <plentry>
-                <pt>callback</pt>
-                <pd>音视频录制事件。详见 <xref keyref="IMediaRecorderObserver"/>。</pd>
-            </plentry>
             </parml> </section>
         <section id="return_values">
             <title>返回值</title>
-            <p><xref keyref="IMediaRecorderObserver"/> 对象。</p>
+            <p><xref keyref="IMediaRecorder"/> 对象。</p>
         </section>
     </refbody>
 </reference>

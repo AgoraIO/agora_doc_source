@@ -21,6 +21,7 @@
     public int encodedFrameCount;
     public int codecType;
     public int txPacketLossRate;
+    public int captureBrightnessLevel;
   }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcLocalVideoStats : NSObject
 @property(assign, nonatomic) NSUInteger sentBitrate;
@@ -37,6 +38,7 @@
 @property(assign, nonatomic) NSInteger encodedFrameCount;
 @property(assign, nonatomic) AgoraVideoCodecType codecType;
 @property(assign, nonatomic) NSInteger txPacketLossRate;
+@property(assign, nonatomic) AgoraCaptureBrightnessLevelType captureBrightnessLevel NS_SWIFT_NAME(captureBrightnessLevel);
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct LocalVideoStats
 {
@@ -54,6 +56,7 @@
     int encodedFrameCount;
     VIDEO_CODEC_TYPE codecType;
     unsigned short txPacketLossRate;
+    CAPTURE_BRIGHTNESS_LEVEL_TYPE captureBrightnessLevel;
 };</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class LocalVideoStats
     {
@@ -194,20 +197,18 @@
                     <pt>txPacketLossRate</pt>
                     <pd>弱网对抗前本端到 Agora 边缘服务器的视频丢包率 (%)。</pd>
                 </plentry>
-            <plentry props="rtc">
-                <pt>captureFrameRate</pt>
-                <pd>本地视频采集帧率 (fps)。</pd>
-            </plentry>
-            <plentry props="rtc">
+            <plentry props="native">
                 <pt>captureBrightnessLevel</pt>
                 <pd>
-                    <dl outputclass="since" props="rtc">
-                    <dlentry props="native">
-                        <dt>自从</dt>
-                        <dd>v3.3.0</dd>
-                    </dlentry>
-                    </dl>
-                    <p>本地采集的画质亮度级别。详见 <xref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE"/>。</p>
+                    <p props="apple cpp">本地采集的画质亮度级别。详见 <xref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE"/>。</p>
+                    <p props="android">本地采集的画质亮度级别：
+                        <ul>
+                            <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_INVALID"/>：-1: SDK 未检测出本地采集的画质亮度级别。请等待几秒，通过下一次回调的 <parmname>captureBrightnessLevel</parmname> 获取亮度级别。</li>
+                            <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_NORMAL"/>：0: 本地采集的画质亮度正常。</li>
+                            <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_BRIGHT"/>：1: 本地采集的画质亮度偏亮。</li>
+                            <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_DARK"/>：2: 本地采集的画质亮度偏暗。</li>
+                        </ul>
+                    </p>
                 </pd>
             </plentry>
             </parml> </section>
