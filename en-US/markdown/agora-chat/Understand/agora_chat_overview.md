@@ -99,7 +99,7 @@ Agora Chat is supported on major platforms such as Android, iOS, and Web, and it
 | :------- | :----------------------------------------------------------- |
 | Android  | Android 4.4 or later (API Level 19 or later)                 |
 | iOS      | iOS 9.0 or later                                             |
-| Web      | <li>Internet Explorer 9 or later</li><li>FireFox 10 or later</li><li>Chrome 54 or later</li><li>Safari 6 or later</li><li>Edge 12 or later</li><li>Opera 58 or later</li> |
+| Web      | <li>Internet Explorer 9 or later</li><li>FireFox 10 or later</li><li>Chrome 54 or later</li><li>Safari 6 or later</li><li>Edge 12 or later</li><li>Opera 58 or later</li>iOS Safari 7 or later</li><li>Android Browser 4.4 (KitKat) or later</li> |
 | Unity    | Unity 2017 or later  |
 | Windows  |  Windows 10 or later |
 | React Native | React Native 0.63.4 or later  |
