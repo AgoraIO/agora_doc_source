@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_setexternalaudiosink_ng">
+<reference id="api_imediaengine_setexternalaudiosink_ng">
     <title><ph keyref="setExternalAudioSink"/></title>
     <shortdesc id="short"><ph id="shortdesc">设置外部音频渲染。</ph></shortdesc>
     <prolog>
@@ -13,25 +13,39 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int setExternalAudioSink(int sampleRate, int channels);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)enableExternalAudioSink:(NSUInteger)sampleRate
-                               channels:(NSUInteger)channels;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int setExternalAudioSink(int sampleRate, int channels) = 0;</codeblock>
+            <codeblock props="android" outputclass="language-java">public abstract int setExternalAudioSink(boolean enabled, int sampleRate, int channels);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)enableExternalAudioSink:(BOOL)enabled
+                     sampleRate:(NSUInteger)sampleRate
+                       channels:(NSUInteger)channels;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setExternalAudioSink(bool enabled, int sampleRate, int channels) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetExternalAudioSink(int sampleRate, int channels);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p>该方法适用于需要自行渲染音频的场景。在 <xref keyref="create2"/> 中设置 <codeph props="cpp ios mac">enableAudioDevice</codeph><codeph props="android">mEnableAudioDevice</codeph> 为 <codeph><ph keyref="false"/></codeph> 后，你可以调用 <xref keyref="setExternalAudioSink"/> 设置外部音频渲染。成功设置后，你可以调用 <xref keyref="pullAudioFrame"/> 拉取远端音频数据。app 可以对拉取到的原始音频数据进行处理后再渲染，获取想要的音频效果。</p>
-            <note>
+            <p>该方法适用于需要自行渲染音频的场景。开启外部音频渲染后，你可以调用 <xref keyref="pullAudioFrame"/> 拉取远端音频数据。App 可以对拉取到的原始音频数据进行处理后再渲染，获取想要的音频效果。</p>
+            <note props="unity">
             <ul>
+            <li>使用该方法前，你需要在 <xref keyref="RtcEngineConfig"/> 中设置 <parmname>enableAudioDevice</parmname> 为 <codeph><ph keyref="false"/></codeph>。</li>
             <li>该方法需要在加入频道前调用。</li>
             <li>开启外部音频渲染后，app 会无法从 <xref keyref="onPlaybackAudioFrame"/> 回调中获得数据。</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
+            <plentry props="native">
+                <pt>enabled</pt>
+                <pd>
+                    <p>设置是否开启外部音频渲染：
+                    
+                    
+                    <ul>
+                    <li><codeph><ph keyref="true"/></codeph>：开启外部音频渲染。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：（默认）关闭外部音频渲染。</li>
+                    </ul></p>
+                </pd>
+            </plentry>
             <plentry>
                 <pt>sampleRate</pt>
                 <pd>
@@ -41,6 +55,9 @@
             <plentry>
                 <pt>channels</pt>
                 <pd>外部音频渲染的声道数，可设置为 1 或 2:
+                    
+                    
+                    
                     <ul>
                     <li>1: 单声道</li>
                     <li>2: 双声道</li>
