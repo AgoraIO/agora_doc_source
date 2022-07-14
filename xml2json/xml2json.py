@@ -192,7 +192,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
     text = ""
     
     with open(file_dir, "r", encoding='utf-8') as f:
-        text = header + f.read()
+        text= f.read()
         text = re.sub('\s+(?=<)', '', text)
             
     with open(file_dir, "w", encoding='utf-8') as f:
