@@ -1,4 +1,4 @@
-<div class="alert note">As of RTM v1.4.6 for Web and v1.5.0 for other platforms, Agora upgrades the authentication mechanism from AccessToken to AccessToken2.<li>If you are new to RTM, Agora recommends that you use the latest version of SDKs and deploy the App server and client for AccessToken2 step by step according to this page.<li>If you've already deployed AccessToken in previous versions, you can have a quick upgrade referring to <a href="https://docs.agora.io/en/Real-time-Messaging/token_server_rtm#upgrade">Upgrade to AccessToken2</a>.</div>
+<div class="alert note">As of RTM v1.4.6 for Web and v1.5.0 for other platforms, Agora upgrades the authentication mechanism from AccessToken to AccessToken2.<li>If you are new to RTM, Agora recommends that you use the latest version of SDKs and deploy the App server and client for AccessToken2 step by step according to this page.<li>If you have already deployed AccessToken in previous versions, you can have a quick upgrade referring to <a href="https://docs.agora.io/en/Real-time-Messaging/token_server_rtm#upgrade">Upgrade to AccessToken2</a>.</div>
 
 <div class="alert info">The latest version of SDKs support both AccessToken2 and AccessToken at the same time, and can be used in tandem with previous versions.</div>
 
@@ -12,7 +12,7 @@ The following figure shows the steps in the authentication flow:
 
 ![RTM token authentication flow](https://web-cdn.agora.io/docs-files/1624939517653)
 
-An RTM token is a dynamic key generated on your app server. You can specify the validity period of a token in seconds with the maximum value of 24 days. When your users log in to the RTM system from your app client, the RTM system validates the token and reads the user and project information stored in the token. An RTM token contains the following information:
+An RTM token is a dynamic key generated on your app server. You can specify the validity period of a token based on your business requirements. The validity period can be a maximum of 24 hours. When your users log in to the RTM system from your app client, the RTM system validates the token and reads the user and project information stored in the token. An RTM token contains the following information:
 
 - The App ID of your Agora project
 - The App Certificate of your Agora project
@@ -28,6 +28,16 @@ In order to follow this procedure you must have the following:
 - [Golang](https://golang.org/) 1.14+ with GO111MODULE set to on.
     <div class="alert note"> If you are using Go 1.16+, GO111MODULE is on by default. See <a href="https://blog.golang.org/go116-module-changes">this blog</a> for details.</div>
 - [npm](https://www.npmjs.com/get-npm) and a [supported browser](https://docs.agora.io/en/All/faq/browser_support).
+- Use the Agora RTM SDK that supports AccessToken2:
+
+| SDK | First SDK version to support AccessToken2 |
+|:---|:---|
+| RTM Android SDK | 1.5.0 |
+| RTM iOS SDK | 1.5.0 |
+| RTM macOS SDK | 1.5.0 |
+| RTM Web SDK | 1.4.6 |
+| RTM Windows SDK | 1.5.0 |
+| RTM Linux SDK | 1.5.0 |
 
 ## Implement the authentication flow
 
@@ -59,7 +69,7 @@ In order to show the authentication workflow, this section shows how to build an
 package main
 
 import (
-    rtmtokenbuilder "github.com/AgoraIO/Tools/DynamicKey/AgoraDynamicKey/go/src/RtmTokenBuilder"
+    rtmtokenbuilder "github.com/AgoraIO/Tools/DynamicKey/AgoraDynamicKey/go/src/rtmtokenbuilder2"
     "fmt"
     "log"
     "net/http"
@@ -84,7 +94,7 @@ func generateRtmToken(rtm_uid string){
     currentTimestamp := uint32(time.Now().UTC().Unix())
     expireTimestamp := currentTimestamp + expireTimeInSeconds
 
-    result, err := rtmtokenbuilder.BuildToken(appID, appCertificate, rtm_uid, rtmtokenbuilder.RoleRtmUser, expireTimestamp)
+    result, err := rtmtokenbuilder.BuildToken(appID, appCertificate, rtm_uid, expireTimestamp)
     if err != nil {
         fmt.Println(err)
     } else {
@@ -323,24 +333,66 @@ Agora provides an open-source [AgoraDynamicKey](https://github.com/AgoraIO/Tools
 
 ### API Reference
 
-This section introduces the method to generate an RTM token. Take C++ as an example:
+This section introduces the method to generate an RTM token. Take Golang as an example:
 
-```C++
-static std::string buildToken(const std::string& appId,
-                                const std::string& appCertificate,
-                                const std::string& userAccount,
-                                RtmUserRole userRole,
-                                uint32_t privilegeExpiredTs = 0);
+```golang
+func BuildToken(appId string, appCertificate string, userId string, expire uint32) (string, error) {
+    token := accesstoken.NewAccessToken(appId, appCertificate, expire)
+    serviceRtm := accesstoken.NewServiceRtm(userId)
+    serviceRtm.AddPrivilege(accesstoken.PrivilegeLogin, expire)
+    token.AddService(serviceRtm)
+    return token.Build()
+}
 ```
-
 
 | Parameter          | Description                                                  |
 | :----------------- | :----------------------------------------------------------- |
-| appId              | The App ID of your Agora project.                            |
-| appCertificate     | The App Certificate of your Agora project.                   |
-| userAccount        | The user ID of the RTM system. You need specify the user ID yourself. See the [userId parameter of the login method](/en/Real-time-Messaging/API%20Reference/RTM_cpp/classagora_1_1rtm_1_1_i_rtm_service.html#a2433a0babbed76ab87084d131227346b) for supported character sets.                               |
-| role               | The user role. Agora supports only one user role. Set the value as the default value `Rtm_User`. |
-| privilegeExpiredTs | The Unix timestamp (s) when the token expires, represented by the sum of the current timestamp and the valid time of the token. This parameter is currently invalid. You can ignore this parameter. An RTM token is valid for 24 hours. |
+| `appId`              | The App ID of your Agora project.                            |
+| `appCertificate`     | The App Certificate of your Agora project.                   |
+| `userId`        | The user ID of the RTM system. You need specify the user ID yourself. See the [userId parameter of the login method](/en/Real-time-Messaging/API%20Reference/RTM_cpp/classagora_1_1rtm_1_1_i_rtm_service.html#a2433a0babbed76ab87084d131227346b) for supported character sets.                               |
+| `expire` | Number of seconds passed from the generation of AccessToken2 to the expiration of AccessToken2. For example, if you set it as 600, the AccessToken2 expires in 10 minutes after generation. An AccessToken2 is valid for 24 hours at most. If you set it to a period longer than 24 hours, the AccessToken2 is still valid for 24 hours. If you set it to 0, the AccessToken2 expires immediately. |
+
+
+### Upgrade from AccessToken to AccessToken2<a name="upgrade"></a>
+
+This section introduces how to upgrade from AccessToken to AccessToken2 by example.
+
+#### Prerequisites
+
+- You have deployed a token server and a web client for AccessToken in previous versions.
+- You have integrated an [SDK version](#sdk-version) that supports AccessToken2.
+
+#### Update the token server
+
+1. Replace the `rtmtokenbuilder` import statement:
+
+```golang
+// Replace "github.com/AgoraIO/Tools/DynamicKey/AgoraDynamicKey/go/src/RtmTokenBuilder"
+// with "github.com/AgoraIO/Tools/DynamicKey/AgoraDynamicKey/go/src/rtmtokenbuilder2".
+import (
+    rtmtokenbuilder "github.com/AgoraIO/Tools/DynamicKey/AgoraDynamicKey/go/src/rtmtokenbuilder2"
+    "fmt"
+    "log"
+    "net/http"
+    "time"
+    "encoding/json"
+    "errors"
+    "strconv"
+)
+```
+
+2. Update the `BuildToken` function:
+
+```golang
+// Previously, it is `result, err := rtmtokenbuilder.BuildToken(appID, appCertificate, rtm_uid, rtmtokenbuilder.RoleRtmUser, expireTimestamp)`.
+// Now, remove `rtmtokenbuilder.RoleRtmUser`.
+result, err := rtmtokenbuilder.BuildToken(appID, appCertificate, rtm_uid, expireTimestamp)
+```
+
+#### Test the AccessToken2 server
+
+The client does not need any updates; however, the [expiration logic](#expiration) changes accordingly.
+
 
 ## Considerations
 
@@ -354,12 +406,15 @@ To use the RTM token for authentication, you need to enable the App Certificate 
 
 ### RTM Token expiration
 
-An RTM token is valid for 24 hours.
+AccessToken2 allows you to specify the validity period of an RTM token in seconds based on your business requirements. The validity period can be a maximum of 24 hours.
 
-When the RTM SDK is in the `CONNECTION_STATE_CONNECTED` state, the user remains online even if the RTM token expires. If a user logs in with an expired RTM token, the RTM SDK returns the `LOGIN_ERR_TOKEN_EXPIRED` error.
+When a token is about to expire in 30 seconds, the RTM SDK triggers the `onTokenPrivilegeWillExpire` callback. Upon receiving this callback, you can generate a new RTM token on your app server, and call `renewToken` to pass the new RTM token to the SDK.
 
-The RTM SDK triggers the `onTokenExpired` callback only when an RTM token expires and the RTM SDK is in the `CONNECTION_STATE_RECONNECTING` state. The callback is triggered only once. Upon receiving this callback, you can generate a new RTM token on your app server, and call `renewToken` to pass the new RTM token to the SDK.
+When an RTM token expires, the subsequent logic varies depending on the connection state of the SDK:
 
-<div class="alert note">Although you can use the <code>onTokenExpired</code> callback to handle token expiration conditions, Agora recommends that you regularly renew the Token (such as every hour) to keep the token valid.</div>
+- If the RTM SDK is in the `CONNECTION_STATE_CONNECTED` state, users receive the `onTokenExpired` callback and the `onConnectionStateChanged` callback caused by `CONNECTION_CHANGE_REASON_TOKEN_EXPIRED (9)`, notifying that the connection state of the SDK switches to `CONNECTION_STATE_ABORTED`. In this case, users need to log in again via the `login` method.
+- If the RTM SDK is in the `CONNECTION_STATE_RECONNECTING` state, users will receive the `onTokenExpired` callback when the network reconnects. In this case, users need to renew the token via the `renewToken` method.
 
-<div class="alert info">The names of methods, callbacks, and enums mentioned above only applies to C++. Refer to the API documentation for names in other platforms.</div>
+<div class="alert note">Although you can use the <code>onTokenPrivilegeWillExpire</code> and <code>onTokenExpired</code> callbacks to handle token expiration conditions, Agora recommends that you regularly renew the Token (such as every hour) to keep the token valid.</div>
+
+<div class="alert info">The names of methods, callbacks, and enums mentioned in the above section only applies to C++. Refer to the API documentation for names in other platforms.</div>
