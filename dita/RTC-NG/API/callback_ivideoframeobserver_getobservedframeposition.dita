@@ -32,8 +32,8 @@
             return VIDEO_OBSERVER_POSITION.POSITION_POST_CAPTURER | VIDEO_OBSERVER_POSITION.POSITION_PRE_RENDERER;
         }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> 
-        </p></section>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
             <dlentry props="native">
@@ -53,11 +53,13 @@
             <li>观测多个位置时，需要使用 '|' （或）运算符。</li>
             <li>该回调默认观测 <apiname keyref="POSITION_POST_CAPTURER"/>(1 &lt;&lt; 0) 和 <apiname keyref="POSITION_PRE_RENDERER"/>(1 &lt;&lt; 1)。</li>
             <li>为降低设备耗能，你可以根据实际需求适当减少观测位置。</li>
+            <li>当视频处理模式为 <apiname keyref="PROCESS_MODE_READ_WRITE"/>、并且设置观测点为 <apiname keyref="POSITION_PRE_ENCODER"/> | <apiname keyref="POSITION_POST_CAPTURER"/> 时，会造成 <xref keyref="getMirrorApplied"/> 不生效，需要修改视频处理模式或观测点的位置。</li>
             </ul> </note> </section>
         <section id="return_values">
             <title>返回值</title>
             <p props="cpp ios mac">设置观测位置的 bit mask。详见 <xref keyref="VIDEO_OBSERVER_POSITION"/>。</p>
             <p props="android">设置观测位置的 bit mask。
+
             <ul>
             <li><apiname keyref="POSITION_POST_CAPTURER"/>(1 &lt;&lt; 0)，本地采集视频数据后的位置，对应 <apiname keyref="onCaptureVideoFrame"/> 回调。</li>
             <li><apiname keyref="POSITION_PRE_RENDERER"/>(1 &lt;&lt; 1)，接收远端发送视频前的位置，对应 <apiname keyref="onRenderVideoFrame"/> 回调。</li>

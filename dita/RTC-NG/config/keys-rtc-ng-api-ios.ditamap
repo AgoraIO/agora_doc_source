@@ -136,10 +136,10 @@
                 </keywords>
             </topicmeta>
         </keydef>
-        <keydef keys="IVideoEncodedImageReceiver" href="../API/class_ivideoencodedimagereceiver.dita">
+        <keydef keys="IVideoEncodedFrameObserver" href="../API/class_ivideoencodedframeobserver.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>AgoraEncodedVideoFrameDelegate</keyword>
+                    <keyword>IVideoEncodedFrameObserver</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -900,7 +900,7 @@
                         <keyword>setupRemoteVideo</keyword>
                     </keywords>
                 </topicmeta>
-            </keydef>         
+            </keydef>
             <keydef keys="setLocalRenderMode1" href="../API/api_setlocalrendermode.dita">
                 <topicmeta>
                     <keywords>
@@ -985,13 +985,6 @@
                     </keywords>
                 </topicmeta>
             </keydef>
-            <keydef keys="setDefaultMuteAllRemoteVideoStreams" href="../API/api_setdefaultmuteallremotevideostreams.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>setDefaultMuteAllRemoteVideoStreams</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
             <keydef keys="setVideoProfile" href="../API/api_setvideoprofile.dita">
                 <topicmeta>
                     <keywords>
@@ -1025,6 +1018,27 @@
                 </topicmeta>
             </keydef>
         </topichead>
+        <keydef keys="setLowlightEnhanceOptions" href="../API/api_setlowlightenhanceoptions.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>setLowlightEnhanceOptions</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="setVideoDenoiserOptions" href="../API/api_setvideodenoiseroptions.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>setVideoDenoiserOptions</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="setColorEnhanceOptions" href="../API/api_setcolorenhanceoptions.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>setColorEnhanceOptions</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
         <topichead navtitle="多频道">
             <keydef keys="addPublishStreamUrlEx" href="../API/api_addpublishstreamurlex.dita">
                 <topicmeta>
@@ -1186,7 +1200,7 @@
                         <keyword>takeSnapshotEx</keyword>
                     </keywords>
                 </topicmeta>
-            </keydef>            
+            </keydef>
             <keydef keys="updateChannelMediaOptionsEx" href="../API/api_irtcengineex_updatechannelmediaoptionsex.dita">
                 <topicmeta>
                     <keywords>
@@ -1202,7 +1216,7 @@
                         <keyword>setAudioMixingDualMonoMode</keyword>
                     </keywords>
                 </topicmeta>
-            </keydef>            
+            </keydef>
             <keydef keys="startAudioMixing" href="../API/api_startaudiomixing.dita">
                 <topicmeta>
                     <keywords>
@@ -1428,14 +1442,14 @@
                         <keyword>getEffectDuration</keyword>
                     </keywords>
                 </topicmeta>
-            </keydef>                          
+            </keydef>
             <keydef keys="getEffectCurrentPosition" href="../API/api_geteffectcurrentposition.dita">
                 <topicmeta>
                     <keywords>
                         <keyword>getEffectCurrentPosition</keyword>
                     </keywords>
                 </topicmeta>
-            </keydef>             
+            </keydef>
         </topichead>
         <topichead navtitle="虚拟节拍器">
             <keydef keys="startRhythmPlayer" href="../API/api_startrhythmplayer.dita">
@@ -2134,7 +2148,7 @@
                         <keyword>pullPlaybackAudioFrameSampleBufferByLengthInByte</keyword>
                     </keywords>
                 </topicmeta>
-            </keydef>        
+            </keydef>
         </topichead>
         <topichead navtitle="音频编码数据">
             <keydef keys="registerAudioEncodedFrameObserver" href="../API/api_registeraudioencodedframeobserver.dita">
@@ -2211,10 +2225,10 @@
             </keydef>
         </topichead>
         <topichead navtitle="原始视频数据">
-            <keydef keys="registerVideoEncodedImageReceiver" href="../API/api_imediaengine_registervideoencodedimagereceiver.dita">
+            <keydef keys="registerVideoEncodedFrameObserver" href="../API/api_imediaengine_registervideoencodedframeobserver.dita">
                 <topicmeta>
                     <keywords>
-                        <keyword>setEncodedVideoFrameDelegate</keyword>
+                        <keyword>registerVideoEncodedFrameObserver</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
@@ -2477,6 +2491,13 @@
                     </keywords>
                 </topicmeta>
             </keydef>
+            <keydef keys="isCameraAutoExposureFaceModeSupported" href="../API/api_iscameraautoexposurefacemodesupported.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>isCameraAutoExposureFaceModeSupported</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
             <keydef keys="setCameraZoomFactor" href="../API/api_setcamerazoomfactor.dita">
                 <topicmeta>
                     <keywords>
@@ -2707,7 +2728,7 @@
                         <keyword>setLocalAccessPoint</keyword>
                     </keywords>
                 </topicmeta>
-            </keydef>            
+            </keydef>
             <keydef keys="setCloudProxy" href="../API/api_setcloudproxy.dita">
                 <topicmeta>
                     <keywords>
@@ -2768,6 +2789,13 @@
                     </keywords>
                 </topicmeta>
             </keydef>
+            <keydef keys="onError" href="../API/callback_onerror.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>didOccurError</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
             <keydef keys="onFirstRemoteAudioDecoded" href="../API/callback_onfirstremoteaudiodecoded.dita">
                 <topicmeta>
                     <keywords>
@@ -2816,7 +2844,7 @@
                         <keyword>didClientRoleChangeFailed</keyword>
                     </keywords>
                 </topicmeta>
-            </keydef>                 
+            </keydef>
             <keydef keys="onUserJoined" href="../API/callback_onuserjoined.dita">
                 <topicmeta>
                     <keywords>
@@ -3397,10 +3425,10 @@
                     </keywords>
                 </topicmeta>
             </keydef>
-            <keydef keys="onEncodedVideoImageReceived" href="../API/callback_ivideoencodedimagereceiver_onencodedvideoimagereceived.dita">
+            <keydef keys="OnEncodedVideoFrameReceived" href="../API/callback_ivideoencodedframeobserver_onencodedvideoframereceived.dita">
                 <topicmeta>
                     <keywords>
-                        <keyword>onEncodedVideoFrame</keyword>
+                        <keyword>OnEncodedVideoFrameReceived</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
@@ -3644,11 +3672,25 @@
             </keydef>
         </topichead>
     </topichead>
-    <topichead navtitle="Resource only">
+    <topichead navtitle="屏幕共享">
         <keydef keys="startScreenCapture" href="../API/api_startscreencapture_ng.dita">
             <topicmeta>
                 <keywords>
                     <keyword>startScreenCapture</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="stopScreenCapture" href="../API/api_stopscreencapture.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>stopScreenCapture</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="updateScreenCapture" href="../API/api_updatescreencapture.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>updateScreenCapture</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -3735,6 +3777,13 @@
             <topicmeta>
                 <keywords>
                     <keyword>AgoraCloudSpatialAudioConfig</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ColorEnhanceOptions" href="../API/class_colorenhanceoptions.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraColorEnhanceOptions</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -3870,7 +3919,7 @@
                     <keyword>AgoraLocalAccessPointConfiguration</keyword>
                 </keywords>
             </topicmeta>
-        </keydef>        
+        </keydef>
         <keydef keys="LocalAudioStats" href="../API/class_localaudiostats.dita">
             <topicmeta>
                 <keywords>
@@ -3896,6 +3945,13 @@
             <topicmeta>
                 <keywords>
                     <keyword>AgoraLogConfig</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="LowlightEnhanceOptions" href="../API/class_lowlightenhanceoptions.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraLowlightEnhanceOptions</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -3983,7 +4039,28 @@
                 </keywords>
             </topicmeta>
         </keydef>
-        <keydef keys="SegmentationProperty" href="../API/class_segmentationproperty.dita" props="hide">
+        <keydef keys="ScreenCaptureParameters2" href="../API/class_screencaptureparameters2.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraScreenCaptureParameters2</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ScreenAudioParameters" href="../API/class_screenaudioparameters.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraScreenAudioParameters</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ScreenVideoParameters" href="../API/class_screenvideoparameters.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraScreenVideoParameters</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="SegmentationProperty" href="../API/class_segmentationproperty.dita">
             <topicmeta>
                 <keywords>
                     <keyword>AgoraSegmentationProperty</keyword>
@@ -4050,6 +4127,146 @@
             <topicmeta>
                 <keywords>
                     <keyword>AgoraRtcVideoCanvas</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VideoDenoiserOptions" href="../API/class_videodenoiseroptions.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoDenoiserOptions</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VD_120x120">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoDimension120x120</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VD_160x120">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoDimension160x120</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VD_180x180">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoDimension180x180</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VD_240x180">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoDimension240x180</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VD_320x180">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoDimension320x180</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VD_240x240">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoDimension240x240</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VD_320x240">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoDimension320x240</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VD_424x240">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoDimension424x240</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VD_360x360">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoDimension360x360</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VD_480x360">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoDimension480x360</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VD_640x360">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoDimension640x360</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VD_480x480">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoDimension480x480</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VD_640x480">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoDimension640x480</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VD_840x480">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoDimension840x480</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VD_960x720">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoDimension960x720</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VD_1280x720">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoDimension1280x720</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VD_1920x1080">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoDimension1920x1080</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VD_2540x1440">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoDimension2540x1440</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VD_3840x2160">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoDimension3840x2160</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -4643,6 +4860,13 @@
                 </keywords>
             </topicmeta>
         </keydef>
+        <keydef keys="ROOM_ACOUSTICS_VIRTUAL_SURROUND_SOUND">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraAudioEffectPresetRoomAcousVirtualSurroundSound</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
         <keydef keys="VOICE_CHANGER_EFFECT_UNCLE">
             <topicmeta>
                 <keywords>
@@ -4838,14 +5062,14 @@
                     <keyword>AgoraAudioMixingDualMonoAuto</keyword>
                 </keywords>
             </topicmeta>
-        </keydef>       
+        </keydef>
         <keydef keys="AUDIO_MIXING_DUAL_MONO_L">
             <topicmeta>
                 <keywords>
                     <keyword>AgoraAudioMixingDualMonoL</keyword>
                 </keywords>
             </topicmeta>
-        </keydef>   
+        </keydef>
         <keydef keys="AUDIO_MIXING_DUAL_MONO_R">
             <topicmeta>
                 <keywords>
@@ -4859,7 +5083,7 @@
                     <keyword>AgoraAudioMixingDualMonoMix</keyword>
                 </keywords>
             </topicmeta>
-        </keydef>           
+        </keydef>
         <keydef keys="AUDIO_MIXING_REASON_TYPE" href="../API/enum_audiomixingreasontype.dita">
             <topicmeta>
                 <keywords>
@@ -4901,21 +5125,21 @@
                     <keyword>AgoraAudioMixingReasonOneLoopCompleted</keyword>
                 </keywords>
             </topicmeta>
-        </keydef>       
+        </keydef>
         <keydef keys="AUDIO_MIXING_REASON_ALL_LOOPS_COMPLETED">
             <topicmeta>
                 <keywords>
                     <keyword>AgoraAudioMixingReasonAllLoopsCompleted</keyword>
                 </keywords>
             </topicmeta>
-        </keydef>  
+        </keydef>
         <keydef keys="AUDIO_MIXING_REASON_STOPPED_BY_USER">
             <topicmeta>
                 <keywords>
                     <keyword>AgoraAudioMixingReasonStoppedByUser</keyword>
                 </keywords>
             </topicmeta>
-        </keydef>        
+        </keydef>
         <keydef keys="AUDIO_MIXING_STATE_TYPE" href="../API/enum_audiomixingstatetype.dita">
             <topicmeta>
                 <keywords>
@@ -5545,7 +5769,7 @@
                     <keyword>AgoraCaptureBrightnessLevelDark</keyword>
                 </keywords>
             </topicmeta>
-        </keydef>        
+        </keydef>
         <keydef keys="CONNECTION_STATE_TYPE" href="../API/enum_connectionstatetype.dita">
             <topicmeta>
                 <keywords>
@@ -6098,28 +6322,28 @@
                     <keyword>AgoraClientRoleChangeFailedTooManyBroadcasters</keyword>
                 </keywords>
             </topicmeta>
-        </keydef> 
+        </keydef>
         <keydef keys="CLIENT_ROLE_CHANGE_FAILED_NOT_AUTHORIZED">
             <topicmeta>
                 <keywords>
                     <keyword>AgoraClientRoleChangeFailedNotAuthorized</keyword>
                 </keywords>
             </topicmeta>
-        </keydef> 
+        </keydef>
         <keydef keys="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT">
             <topicmeta>
                 <keywords>
                     <keyword>AgoraClientRoleChangeFailedRequestTimeout</keyword>
                 </keywords>
             </topicmeta>
-        </keydef>    
+        </keydef>
         <keydef keys="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED">
             <topicmeta>
                 <keywords>
                     <keyword>AgoraClientRoleChangeFailedConnectionFailed</keyword>
                 </keywords>
             </topicmeta>
-        </keydef>          
+        </keydef>
         <keydef keys="DEGRADATION_PREFERENCE" href="../API/enum_degradationpreference.dita">
             <topicmeta>
                 <keywords>
@@ -6299,6 +6523,328 @@
             <topicmeta>
                 <keywords>
                     <keyword>ENCRYPTION_ERROR_ENCRYPTION_FAILURE</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERROR_CODE_TYPE" href="../API/enum_errorcodetype.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCode</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_OK">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeNoError</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_FAILED">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeFailed</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_INVALID_ARGUMENT">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeInvalidArgument</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_NOT_READY">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeNotReady</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_NOT_SUPPORTED">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeNotSupported</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_REFUSED">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeRefused</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_BUFFER_TOO_SMALL">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeBufferTooSmall</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_NOT_INITIALIZED">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeNotInitialized</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_NO_PERMISSION">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeNoPermission</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_TIMEDOUT">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeTimedOut</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_JOIN_CHANNEL_REJECTED">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeJoinChannelRejected</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_LEAVE_CHANNEL_REJECTED">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeLeaveChannelRejected</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_ALREADY_IN_USE">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeAlreadyInUse</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_ABORTED">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeAbort</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_INIT_NET_ENGINE">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeInitNetEngine</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_RESOURCE_LIMITED">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeResourceLimited</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_INVALID_APP_ID">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeInvalidAppId</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_INVALID_CHANNEL_NAME">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeInvalidChannelId</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_NO_SERVER_RESOURCES">
+            <topicmeta>
+                <keywords>
+                    <keyword>ERR_NO_SERVER_RESOURCES</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_TOKEN_EXPIRED">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeTokenExpired</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_INVALID_TOKEN">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeInvalidToken</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_CONNECTION_INTERRUPTED">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeConnectionInterrupted</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_CONNECTION_LOST">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeConnectionLost</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_NOT_IN_CHANNEL">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeNotInChannel</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_SIZE_TOO_LARGE">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeSizeTooLarge</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_BITRATE_LIMIT">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeBitrateLimit</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_TOO_MANY_DATA_STREAMS">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeTooManyDataStreams</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_STREAM_MESSAGE_TIMEOUT">
+            <topicmeta>
+                <keywords>
+                    <keyword>ERR_STREAM_MESSAGE_TIMEOUT</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_SET_CLIENT_ROLE_NOT_AUTHORIZED">
+            <topicmeta>
+                <keywords>
+                    <keyword>ERR_SET_CLIENT_ROLE_NOT_AUTHORIZED</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_DECRYPTION_FAILED">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeDecryptionFailed</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_INVALID_USER_ID">
+            <topicmeta>
+                <keywords>
+                    <keyword>ERR_INVALID_USER_ID</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_CLIENT_IS_BANNED_BY_SERVER">
+            <topicmeta>
+                <keywords>
+                    <keyword>ERR_CLIENT_IS_BANNED_BY_SERVER</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_ENCRYPTED_STREAM_NOT_ALLOWED_PUBLISH">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeEncryptedStreamNotAllowedPublish</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_LICENSE_CREDENTIAL_INVALID">
+            <topicmeta>
+                <keywords>
+                    <keyword>ERR_LICENSE_CREDENTIAL_INVALID</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_INVALID_USER_ACCOUNT">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeInvalidUserAccount</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_MODULE_NOT_FOUND">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeModuleNotFound</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_LOAD_MEDIA_ENGINE">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeLoadMediaEngine</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_ADM_GENERAL_ERROR">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeAdmGeneralError</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_ADM_INIT_PLAYOUT">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeAdmInitPlayout</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_ADM_START_PLAYOUT">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeAdmStartPlayout</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_ADM_STOP_PLAYOUT">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeAdmStopPlayout</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_ADM_INIT_RECORDING">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeAdmInitRecording</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_ADM_START_RECORDING">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeAdmStartRecording</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_ADM_STOP_RECORDING">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeAdmStopRecording</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ERR_VDM_CAMERA_NOT_AUTHORIZED">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraErrorCodeVdmCameraNotAuthorized</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -6686,7 +7232,7 @@
                     <keyword>AgoraAudioLocalErrorInterrupted</keyword>
                 </keywords>
             </topicmeta>
-        </keydef>        
+        </keydef>
         <keydef keys="LOCAL_AUDIO_STREAM_STATE" href="../API/enum_localaudiostreamstate.dita">
             <topicmeta>
                 <keywords>
@@ -6742,7 +7288,7 @@
                     <keyword>AgoraLocalOnly</keyword>
                 </keywords>
             </topicmeta>
-        </keydef>        
+        </keydef>
         <keydef keys="LOCAL_VIDEO_STREAM_ERROR" href="../API/enum_localvideostreamerror.dita">
             <topicmeta>
                 <keywords>
@@ -6992,6 +7538,48 @@
             <topicmeta>
                 <keywords>
                     <keyword>AgoraLogLevelFatal</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="LOW_LIGHT_ENHANCE_MODE" href="../API/enum_lowlightenhancemode.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraLowlightEnhanceMode</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="LOW_LIGHT_ENHANCE_AUTO">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraLowlightEnhanceModeAuto</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="LOW_LIGHT_ENHANCE_MANUAL">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraLowlightEnhanceModeManual</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="LOW_LIGHT_ENHANCE_LEVEL" href="../API/enum_lowlightenhancelevel.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraLowlightEnhanceLevel</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraLowlightEnhanceLevelQuality</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="LOW_LIGHT_ENHANCE_LEVEL_FAST">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraLowlightEnhanceLevelFast</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -8437,7 +9025,7 @@
                 </keywords>
             </topicmeta>
         </keydef>
-        <keydef keys="SEG_MODEL_TYPE" href="../API/enum_segmodeltype.dita" props="hide">
+        <keydef keys="SEG_MODEL_TYPE" href="../API/enum_segmodeltype.dita">
             <topicmeta>
                 <keywords>
                     <keyword>SegModelType</keyword>
@@ -8567,6 +9155,55 @@
             <topicmeta>
                 <keywords>
                     <keyword>AgoraVideoBufferTypeRawData</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VIDEO_DENOISER_MODE" href="../API/enum_videodenoisermode.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoDenoiserMode</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VIDEO_DENOISER_AUTO">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoDenoiserModeAuto</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VIDEO_DENOISER_MANUAL">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoDenoiserModeManual</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VIDEO_DENOISER_LEVEL" href="../API/enum_videodenoiserlevel.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoDenoiserLevel</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VIDEO_DENOISER_LEVEL_HIGH_QUALITY">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoDenoiserLevelHighQuality</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VIDEO_DENOISER_LEVEL_FAST">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoDenoiserLevelFast</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VIDEO_DENOISER_LEVEL_STRENGTH">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoDenoiserLevelStrength</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -8735,6 +9372,34 @@
             <topicmeta>
                 <keywords>
                     <keyword>AgoraVideoCodecTypeH265ForStream</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VIDEO_CONTENT_HINT" href="../API/enum_videocontenthint.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoContentHint</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="CONTENT_HINT_NONE">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoContentHintNone</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="CONTENT_HINT_MOTION">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoContentHintMotion</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="CONTENT_HINT_DETAILS">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoContentHintDetails</keyword>
                 </keywords>
             </topicmeta>
         </keydef>

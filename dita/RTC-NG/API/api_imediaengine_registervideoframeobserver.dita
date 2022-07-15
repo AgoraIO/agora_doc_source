@@ -5,55 +5,52 @@
     <shortdesc id="short"><ph id="shortdesc">注册视频观测器对象。</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="registerVideoFrameObserver"/>
-   </keywords>
+            <keywords>
+                <indexterm keyref="registerVideoFrameObserver"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public abstract int registerVideoFrameObserver(IVideoFrameObserver observer);</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)setVideoFrameDelegate:(id&lt;AgoraVideoFrameDelegate&gt; _Nullable)delegate;</codeblock>
-                <codeblock props="cpp" outputclass="language-cpp">virtual int registerVideoFrameObserver(IVideoFrameObserver* observer) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript"/>
-                <codeblock props="unity" outputclass="language-csharp">public abstract void RegisterVideoFrameObserver(IAgoraRtcVideoFrameObserver videoFrameObserver);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
-        </p>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int registerVideoFrameObserver(IVideoFrameObserver observer);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)setVideoFrameDelegate:(id&lt;AgoraVideoFrameDelegate&gt; _Nullable)delegate;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int registerVideoFrameObserver(IVideoFrameObserver* observer) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">public abstract void RegisterVideoFrameObserver(IAgoraRtcVideoFrameObserver videoFrameObserver);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-   
-   <p>你需要在该方法中实现一个 <xref keyref="IVideoFrameObserver"/> 类，并根据场景需要，注册该类的回调。 成功注册视频观测器后，SDK
+            <p>你需要在该方法中实现一个 <xref keyref="IVideoFrameObserver"/> 类，并根据场景需要，注册该类的回调。 成功注册视频观测器后，SDK
        会在捕捉到每个视频帧时，触发你所注册的上述回调。</p>
-   <note type="attention">
-       <ul>
-  <li>在处理回调时，你需要考虑视频帧中 <parmname>width</parmname> 和 <parmname>height</parmname>
-      参数的变化，因为观测得到的视频帧可能会随以下情况变化： <ul id="ul_qms_zys_r4b">
- <li>当网络状况差时，分辨率会阶梯式下降。</li>
- <li>当用户自行调整分辨率时，回调中报告的分辨率也会变化。</li>
-      </ul></li>
-  <li>该方法需要在加入频道前调用。</li>
-       </ul>
-   </note>
-        </section>
-        <section id="parameters"><title>参数</title>
-   <parml>
-       <plentry>
-           <pt props="android cpp">observer</pt>
-           <pt props="ios mac">delegate</pt>
-           <pt props="unity">videoFrameObserver</pt>
-  <pd>
-      <p>接口对象实例。如果传入 <ph keyref="NULL"/>，则取消注册。详见 <xref keyref="IVideoFrameObserver"/>。</p>
-  </pd>
-       </plentry>
-   </parml>
-        </section>
+            <note type="attention">
+            <ul>
+            <li>在处理回调时，你需要考虑视频帧中 <parmname>width</parmname> 和 <parmname>height</parmname>
+      参数的变化，因为观测得到的视频帧可能会随以下情况变化： 
+                <ul id="ul_qms_zys_r4b">
+                <li>当网络状况差时，分辨率会阶梯式下降。</li>
+                <li>当用户自行调整分辨率时，回调中报告的分辨率也会变化。</li>
+                </ul></li>
+            <li>该方法需要在加入频道前调用。</li>
+            </ul> </note> </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt props="android cpp">observer</pt>
+                <pt props="ios mac">delegate</pt>
+                <pt props="unity">videoFrameObserver</pt>
+                <pd>
+                    <p>接口对象实例。如果传入 <ph keyref="NULL"/>，则取消注册。详见 <xref keyref="IVideoFrameObserver"/>。</p>
+                </pd>
+            </plentry>
+            </parml> </section>
         <section>
-   <title>返回值</title>
-   <ul id="ul_r1t_n1t_r4b">
-       <li>0：方法调用成功。</li>
-       <li>&lt; 0：方法调用失败。</li>
-   </ul>
-        </section>
+            <title>返回值</title>
+            <ul id="ul_r1t_n1t_r4b">
+            <li>0：方法调用成功。</li>
+            <li>&lt; 0：方法调用失败。</li>
+            </ul> </section>
     </refbody>
 </reference>
