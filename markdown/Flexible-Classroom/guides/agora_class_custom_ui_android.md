@@ -1,192 +1,195 @@
-## 概述
+## 教室和 UI 组件介绍
 
-Agora 在 JitPack 上提供完整的 [Agora Classroom SDK](https://jitpack.io/#AgoraIO-Community/CloudClass-Android) 供你集成。但是，如果 Agora Classroom SDK 中默认的 UI 无法满足你的需求，你也可以获取 Agora Classroom SDK 的源码，自行开发、调试和编译。Agora Classroom SDK for Android 的源码位于 GitHub 上 [CloudClass-Android](https://github.com/AgoraIO-Community/CloudClass-Android) 仓库（release/apaas/1.1.0 分支）。在 Agora Classroom SDK 中，灵动课堂的 UI 代码和核心业务逻辑相隔离，独立成 UIKit 和 EduCore 两个库，两者通过 [Agora Edu Context](https://docs.agora.io/cn/agora-class/edu_context_api_ref_android_overview?platform=Android) 产生关联。举例来说，对于灵动课堂中的文字聊天功能，需要通过一个按钮发送消息，同时需要接收其他用户发送的消息。这种情况下，我们在 UIKit 中可以调用 Chat Context 中的发送消息方法，并监听 Chat Context 中消息接收相关事件。
+### 数据交互流程
 
-![](https://web-cdn.agora.io/docs-files/1619696813295)
+在 Agora Classroom SDK 中，灵动课堂的 UI 层代码和核心业务逻辑相隔离，独立成 **AgoraEduUI** 和 **AgoraEduCore** 两个库，两者通过 [Agora Edu Context](/cn/agora-class/API%20Reference/edu_context_kotlin/API/edu_context_api_overview.html) 产生关联。举例来说，对于灵动课堂中的设备开关功能，需要通过一个按钮改变设备状态。为实现该功能，我们在 `AgoraEduUI` 中调用 `MediaContext` 的 `openLocalDevice` 方法，并监听 `IMediaHandler` 抛出的设备状态改变相关事件。数据流转示意图如下：
 
-UIKit 中提供灵动课堂的 UI 组件代码。UIKit 的源码位于 GitHub 上 CloudClass-Android 仓库（release/apaas/1.1.0 分支）中  `agoraui` 目录下，核心项目结构介绍如下：
+![](https://web-cdn.agora.io/docs-files/1650273644082)
 
-| 文件夹       | 描述                                                         |
-| :----------- | :----------------------------------------------------------- |
-| `interfaces` | 定义灵动课堂业务逻辑的 Protocol 和 Listener。自定义 UI 无需修改该目录下的内容。 |
-| `impl`       | 灵动课堂对每个 Protocol 的默认实现，即灵动课堂使用的默认 UI 组件，包含：<ul><li>`chat`: 聊天区域。</li><li>`handsup`: 学生“举手”申请发言相关 UI。</li><li>`room`: 课堂状态、导航栏相关 UI。</li><li>`screnshare`: 屏幕共享相关 UI。</li><li>`tool`: 包含各种教具的工具栏。</li><li>`users`: 用户状态相关 UI。</li><li>`video`: 视频区域。</li><li>`whiterboard`: 白板区域。</li><li>`container`: 在灵动课堂的各种教学场景中组装默认 UI 组件形成 contentView 的管理类。</ul> |
-| `component`  | 灵动课堂使用的公共组件。                                     |
+### 教室和 UI 组件结构说明
 
-## UI 修改示例
+教室的类结构示意图如下：
 
-以下提供几个修改灵动课堂 UI 的示例。
+![](https://web-cdn.agora.io/docs-files/1650362684444)
 
-### 修改导航栏颜色
+每种班型的 UI 在对应的 `.xml` 文件中定义，包含多个独立的 UI 组件 (Component)。UI 组件的结构示意图如下：
 
-以下示例演示了如何通过修改 `agoraui/src/main/res/layout/agora_status_bar_layout.xml` 文件将导航栏组件的背景颜色从白色修改为灰色。
+![](https://web-cdn.agora.io/docs-files/1650362871036)
 
-<div class="alert info">导航栏组件在 <code>agoraui/src/main/kotlin/io/agora/uikit/impl/room/AgoraUIRoomStatus.kt</code> 文件中实现。</div>
+开发者可自由组合 UI 组件搭建自定义版型，也可以自定义 UI 组件或修改灵动课堂的 UI 组件。
 
-#### 修改前
+## 自定义课堂 UI
 
-```xml
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
- android:layout_width="match_parent"
- android:layout_height="match_parent"
- android:background="@drawable/agora_class_room_rect_bg">
-...
-</RelativeLayout>
+本节介绍自定义课堂 UI 的具体步骤。
+
+### 1. 获取灵动课堂源码
+
+如需修改灵动课堂的默认 UI，你需要通过下载 [GitHub 源码](https://github.com/AgoraIO-Community/CloudClass-Android)的方式集成灵动课堂，步骤如下：
+
+1. 运行以下命令克隆仓库到本地：
+
+    ```bash
+    git clone https://github.com/AgoraIO-Community/CloudClass-Android.git
+    ```
+
+2. 运行以下命令切换分支至指定版本，将 {VERSION} 替换为要切换的版本号：
+
+    ```bash
+    git checkout release/apaas/{VERSION}
+    ```
+
+    例如要切换到 2.1.0 版本分支，执行以下命令：
+
+    ```bash
+    git checkout release/apaas/2.1.0
+    ```
+
+    Agora 建议你切换到最新发版分支。参考下图在 GitHub 仓库中查看最新发版分支：
+
+    ![](https://web-cdn.agora.io/docs-files/1648636502733)
+
+后续 UI 相关的改动主要在以下两个目录中进行：
+
+-   `/AgoraClassSDK`：实现教室页面。
+-   `/AgoraEduUIKit`：教室使用到的所有 UI 组件。
+
+### 2. 引入 UI 组件库
+
+参考以下步骤引入 UI 组件库：
+
+1. 参考[集成灵动课堂文档](/cn/agora-class/agora_class_integrate_android)将灵动课堂以 maven 的方式引入到你自己的项目中。
+
+2. 修改 `AgoraEduUIKit` 和 `AgoraClassSDK` 模块的引用方式。你需要在 `build.gradle` 文件中进行如下修改：
+
+    ```kotlin
+    dependencies {
+     // ...
+     implementation "io.github.agoraio-community:hyphenate:版本号"
+     implementation "io.github.agoraio-community:AgoraEduCore:版本号"
+     // implementation "io.github.agoraio-community:AgoraEduUIKit:版本号"
+     // implementation "io.github.agoraio-community:AgoraClassSDK:版本号"
+     implementation project(path: ':AgoraClassSDK')
+    }
+    ```
+
+<div class="alert info"><code>AgoraClassSDK</code> 里引用了 <code>AgoraEduUIKit</code> 模块。</div>
+
+<div class="alert note">GitHub 源码的版本号要和 maven 引用的版本号保持一致。</div>
+
+### 3. 修改现有的 UI 组件
+
+所有 UI 组件都位于 `com.agora.edu.component` 目录下，找到对应的组件就可以修改 UI。
+
+<img src="https://web-cdn.agora.io/docs-files/1650365793677" style="zoom:30%;" />
+
+#### 修改示例
+
+下文以小班课为例，介绍如何修改顶部导航栏的高度、标题以及背景色：
+
+1. 在 `AgoraClassSDK` 模块的 `io.agora.classroom.ui` 下面找到小班课的 `AgoraClassSmallActivity`。
+
+2. 在 `AgoraClassSmallActivity` 对应的 `activity_agora_class_small.xml` 中找到 `AgoraEduHeadComponent` 组件。`Activity` 与 `.xml` 是通过 `viewbinding` 绑定的。
+
+    ![](https://web-cdn.agora.io/docs-files/1650438722532)
+
+3. 打开 `AgoraEduHeadComponent` 对应的 `agora_edu_head_component.xml`。在这个文件中，你可以直接修改导航栏的高度、标题以及背景色。
+
+    ![](https://web-cdn.agora.io/docs-files/1650438755866)
+
+    ![](https://web-cdn.agora.io/docs-files/1650438826125)
+
+### 4. 新增 UI 组件
+
+所有 UI 组件都必须继承 `AbsAgoraEduComponent`，且调用 `initView(agoraUIProvider: IAgoraUIProvider)` 方法初始化 UI 组件。
+
+UI 组件可通过 `IAgoraUIProvider` 接口获取 EduCore 层的数据。
+
+```kotlin
+interface IAgoraUIProvider {
+    /**
+     * 获取 EduCore 数据
+     */
+    fun getAgoraEduCore(): AgoraEduCore?
+
+    /**
+     * UI 可以自定义数据
+     */
+    fun getUIDataProvider(): UIDataProvider?
+}
 ```
 
-![](https://web-cdn.agora.io/docs-files/1619168631686)
+#### 修改示例
 
-#### 修改后
+下文介绍如何为 1 对 1 班型新增一个 `AgoraEduMyComponent` 组件。具体步骤如下：
 
-```xml
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
- android:layout_width="match_parent"
- android:layout_height="match_parent"
- android:background="#BFBFBF">
-...
-</RelativeLayout>
-```
+1. 定义 `AgoraEduMyComponent`：
 
-![](https://web-cdn.agora.io/docs-files/1619168642141)
+    ```kotlin
+    class AgoraEduMyComponent : AbsAgoraEduComponent {
+        constructor(context: Context) : super(context)
+        constructor(context: Context, attr: AttributeSet) : super(context, attr)
+        constructor(context: Context, attr: AttributeSet, defStyleAttr: Int) : super(context, attr, defStyleAttr)
 
-### 调整布局
+        // TODO: 替换成你自己定义的 xml
+        private var binding: xxxxBinding = xxxBinding.inflate(LayoutInflater.from(context), this, true)
 
-以下示例演示了如何通过修改 `agoraui/src/main/res/layout/agora_status_bar_layout.xml` 文件将离开房间按钮与网络状态图标的位置对调。
+        override fun initView(agoraUIProvider: IAgoraUIProvider) {
+           super.initView(agoraUIProvider)
+           // TODO: 在这里处理 View
+           // TODO: agoraUIProvider 提供教室数据能力和 View 需要的数据，你可自行定义
+        }
 
-<div class="alert info">导航栏组件在 <code>agoraui/src/main/kotlin/io/agora/uikit/impl/room/AgoraUIRoomStatus.kt</code> 文件中实现。</div>
+    }
+    ```
 
-#### 修改前
+2. 在 `.xml` 中使用定义好的 `AgoraEduMyComponent`：
 
-```xml
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:background="@drawable/agora_class_room_rect_bg">
-  <androidx.appcompat.widget.AppCompatImageView
-      android:id="@+id/agora_status_bar_network_state_icon"
-      android:layout_width="@dimen/agora_status_bar_icon_size"
-      android:layout_height="@dimen/agora_status_bar_icon_size"
-      android:layout_centerVertical="true"
-      android:layout_alignParentStart="true"
-      android:layout_alignParentLeft="true"
-      android:layout_marginStart="@dimen/margin_large"
-      android:layout_marginLeft="@dimen/margin_large"/>
-  <androidx.appcompat.widget.AppCompatImageView
-      android:id="@+id/agora_status_bar_exit_icon"
-      android:layout_width="@dimen/agora_status_bar_icon_size"
-      android:layout_height="@dimen/agora_status_bar_icon_size"
-      android:layout_centerVertical="true"
-      android:layout_alignParentEnd="true"
-      android:layout_alignParentRight="true"
-      android:layout_marginEnd="@dimen/margin_large"
-      android:layout_marginRight="@dimen/margin_large"
-      android:src="@drawable/agora_room_icon_exit"/>
-...
-</RelativeLayout>
-```
+    ```xml
+    <xxxx.xxx.xxxx.AgoraEduMyComponent
+        android:id="@+id/agora_class_head"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/agora_head_h_small"
+        android:gravity="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    ```
 
-![](https://web-cdn.agora.io/docs-files/1619168654208)
+3. 在 `AgoraClass1V1Activity` 中初始化组件：
 
-#### 修改后
+    ```kotlin
+    class AgoraClass1V1Activity : AgoraEduClassActivity() {
+        private val TAG = "AgoraClass1V1Activity"
+        lateinit var binding: ActivityAgoraClass1v1Binding
 
-```xml
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:background="@drawable/agora_class_room_rect_bg">
-  <androidx.appcompat.widget.AppCompatImageView
-    android:id="@+id/agora_status_bar_network_state_icon"
-    android:layout_width="@dimen/agora_status_bar_icon_size"
-    android:layout_height="@dimen/agora_status_bar_icon_size"
-    android:layout_centerVertical="true"
-    android:layout_alignParentEnd="true"
-    android:layout_alignParentRight="true"
-    android:layout_marginEnd="@dimen/margin_large"
-    android:layout_marginRight="@dimen/margin_large"/>
- <androidx.appcompat.widget.AppCompatImageView
-    android:id="@+id/agora_status_bar_exit_icon"
-    android:layout_width="@dimen/agora_status_bar_icon_size"
-    android:layout_height="@dimen/agora_status_bar_icon_size"
-    android:layout_centerVertical="true"
-    android:layout_alignParentStart="true"
-    android:layout_alignParentLeft="true"
-    android:layout_marginStart="@dimen/margin_large"
-    android:layout_marginLeft="@dimen/margin_large"
-    android:src="@drawable/agora_room_icon_exit"/>
-...
-</RelativeLayout>
-```
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+            binding = ActivityAgoraClass1v1Binding.inflate(layoutInflater)
+            setContentView(binding.root)
 
-![](https://web-cdn.agora.io/docs-files/1619168663484)
+            // 创建教室对象
+            createEduCore(object : EduContextCallback<Unit> {
+                override fun onSuccess(target: Unit?) {
+                    // 教室资源加载完成后
+                    joinClassRoom()
+                }
 
-### 自定义 UI 组件
+                override fun onFailure(error: EduContextError?) {
+                    error?.let {
+                        ToastManager.showShort(it.msg)
+                    }
+                    finish()
+                }
+            })
+        }
 
-以下示例演示了如何自定义一个 UI 组件并在灵动课堂中的 1 对 1 互动教学场景中使用。
-
- 假设该 UI 组件的属性如下：
-
-- 大小：100*100
-- 位置：居中
-- 背景色：#BFBFBF
-- 文字：`“离开”`/`“Leave”`
-- 文字颜色：UIColor.white
-- 点击按钮实现功能：离开房间
-
-实现步骤如下：
-
-1. 在 以下文件中分别添加中文和英文文案。
-   `agoraui/src/main/res/values-zh/strings.xml`
-   
-   ```
-   <!-- Customer -->
-   <string name="custom_widget_text">离开</string>
-   ```
-   `agoraui/src/main/res/values/strings.xml`
-   
-   ```
-   <!-- Customer -->
-   <string name="custom_widget_text">Leave</string>
-   ```
-
-2. 在 `agoraui/src/main/res/layout` 目录下新增 `custom_widget_layout.xml` 文件，用于定义自定义组件的样式。
-   ```
-   <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
- xmlns:android="http://schemas.android.com/apk/res/android"
- android:layout_width="match_parent"
- android:layout_height="match_parent">
- <TextView
- android:id="@+id/tv_custom_leave"
- android:layout_width="100dp"
- android:layout_height="100dp"
- android:background="#BFBFBF"
- android:textColor="@android:color/white"
- android:gravity="center"
- android:layout_gravity="center"
- android:text="@string/custom_widget_text"/>
-</FrameLayout>
-   ```
-
-3. 修改 `agoraui/src/main/kotlin/io/agora/uikit/impl/container/AgoraUI1v1Container.kt` 文件，将自定义组件添加到 1 对 1 互动教学场景中。
-
-   ```
-   class AgoraUI1v1Container : AbsUIContainer() {
-     override fun init(layout: ViewGroup, left: Int, top: Int, width: Int, height: Int) {
-     ...
-       addCustomWidget(layout)
-     }
-     private fun addCustomWidget(layout: ViewGroup){
-       val customLayout = LayoutInflater.from(layout.context).inflate(R.layout.custom_widget_layout, layout)
-       customLayout.findViewById<TextView>    (R.id.tv_custom_leave).setOnClickListener {
- roomStatus?.showLeaveDialog()
-       }
-     }
-   }
-   ```
-
-   修改后，灵动课堂的 1 对 1 互动教学场景中，会出现如下图标。
-
-   ![](https://web-cdn.agora.io/docs-files/1619168684154)
-   
-   ```
-   
-   ```
+        private fun joinClassRoom() {
+            runOnUiThread {
+                eduCore()?.eduContextPool()?.let { context ->
+                    // 初始化 view
+                    binding.agoraEduMyComponent.initView(this)
+                }
+                join()
+            }
+        }
+    }
+    ```

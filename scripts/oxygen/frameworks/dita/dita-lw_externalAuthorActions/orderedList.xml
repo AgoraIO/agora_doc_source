@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<a:authorAction xmlns:a="http://www.oxygenxml.com/ns/author/external-action"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.oxygenxml.com/ns/author/external-action http://www.oxygenxml.com/ns/author/external-action/authorAction.xsd"
+  id="orderedList">
+  <a:name>${i18n(orderedList)}</a:name>
+  <a:description>${i18n(orderedList_description)}</a:description>
+  <a:smallIconPath href="/images/OrderedList16.png"/>
+  <a:largeIconPath href="/images/OrderedList24.png"/>
+  <a:operations>
+    <a:operation id="ro.sync.ecss.extensions.dita.DITAInsertListOperation">
+      <a:xpathCondition>oxy:allows-child-element("*", "class", " topic/ol ")</a:xpathCondition>
+      <a:arguments/>
+    </a:operation>
+    <a:operation id="ro.sync.ecss.extensions.dita.DITAInsertListOperation">
+      <a:xpathCondition>oxy:allows-child-element("*", "class", " topic/sl ")</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="listType">simplelist</a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="InsertFragmentOperation">
+      <a:xpathCondition>parent::body</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><ol><li/></ol></a:argument>
+        <a:argument name="insertLocation">.</a:argument>
+        <a:argument name="insertPosition">After</a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="InsertFragmentOperation">
+      <a:xpathCondition>self::ol | self::ul | self::simpletable</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><ol><li/></ol></a:argument>
+        <a:argument name="insertLocation">.</a:argument>
+        <a:argument name="insertPosition">After</a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="InsertFragmentOperation">
+      <a:xpathCondition>self::li</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="fragment"><ol><li/></ol></a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation id="ro.sync.ecss.extensions.dita.DITAInsertListOperation">
+      <a:arguments/>
+    </a:operation>
+  </a:operations>
+  <a:accelerator>M1 M2 7</a:accelerator>
+  <a:accessKey>O</a:accessKey>
+  <a:enabledInReadOnlyContext>false</a:enabledInReadOnlyContext>
+</a:authorAction>

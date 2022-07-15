@@ -15,9 +15,9 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onConnectionStateChange(int state, int reason);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)csaEngine:(AgoraCloudSpatialAudioKit* _Nonnull)engine connectionDidChangedToState:(AgoraSaeConnectionState)state withReason:(AgoraSaeConnectionChangedReason)reason;</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">virtual void onConnectionStateChange(SAE_CONNECTION_STATE_TYPE state, SAE_CONNECTION_CHANGED_REASON_TYPE reason) {}</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onConnectionStateChange(SAE_CONNECTION_STATE_TYPE state, SAE_CONNECTION_CHANGED_REASON_TYPE reason) {}</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="cs" outputclass="language-csharp">public virtual void OnConnectionStateChange(SAE_CONNECTION_STATE_TYPE state, SAE_CONNECTION_CHANGED_REASON_TYPE reason) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
@@ -31,7 +31,7 @@
             </plentry>
             <plentry>
                 <pt>state</pt>
-                <pd><ph>SDK 与 Agora 空间音效服务器的连接状态。</ph><ph props="ios mac windows">详见 <xref keyref="SAE_CONNECTION_STATE_TYPE"/>。</ph>
+                <pd><ph>SDK 与 Agora 空间音效服务器的连接状态。</ph><ph props="ios mac cpp cs">详见 <xref keyref="SAE_CONNECTION_STATE_TYPE"/>。</ph>
                     <ul props="android">
                     <li><ph keyref="SAE_CONNECTION_STATE_CONNECTING"/> (0): 建立连接中。</li>
                     <li><ph keyref="SAE_CONNECTION_STATE_CONNECTED"/> (1): 已连接。该状态下，<xref keyref="updateSelfPosition"/> 等空间音效设置才会生效。</li>
@@ -42,7 +42,7 @@
             </plentry>
             <plentry>
                 <pt>reason</pt>
-                <pd><ph>SDK 与 Agora 空间音效服务器连接状态发生改变的原因。</ph><ph props="ios mac windows">详见 <xref keyref="SAE_CONNECTION_CHANGED_REASON_TYPE"/>。</ph>
+                <pd><ph>SDK 与 Agora 空间音效服务器连接状态发生改变的原因。</ph><ph props="ios mac cpp cs">详见 <xref keyref="SAE_CONNECTION_CHANGED_REASON_TYPE"/>。</ph>
                     <ul props="android">
                     <li><ph keyref="SAE_CONNECTION_CHANGED_DEFAULT"/> (0): 正常。</li>
                     <li><ph keyref="SAE_CONNECTION_CHANGED_CONNECTING"/> (1): SDK 建立连接中。</li>

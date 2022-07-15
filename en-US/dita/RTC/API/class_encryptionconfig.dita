@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_encryptionconfig">
-  <title><ph keyref="EncryptionConfig"/></title>
-  <shortdesc id="short"><ph id="shortdesc"
-    >Built-in encryption configurations.</ph></shortdesc>
+  <title><ph keyref="EncryptionConfig" /></title>
+  <shortdesc id="short"><ph id="shortdesc">Built-in encryption configurations.</ph></shortdesc>
   <refbody>
     <section id="prototype">
       <p outputclass="codeblock" props="rtc-ng">
-      <codeblock props="windows" outputclass="language-cpp">struct EncryptionConfig {
+      <codeblock props="cpp" outputclass="language-cpp">struct EncryptionConfig {
   ENCRYPTION_MODE encryptionMode;
   const char* encryptionKey;
   uint8_t encryptionKdfSalt[32];
@@ -42,9 +41,34 @@
     }
     return "aes-128-gcm-2";
   }
-};</codeblock> </p>
+};</codeblock>
+      <codeblock props="cs" outputclass="language-csharp">public class EncryptionConfig
+    {
+        public EncryptionConfig()
+        {
+            encryptionMode = ENCRYPTION_MODE.MODE_END;
+            encryptionKey = "";
+            encryptionKdfSalt = new byte[32];
+        }
+
+        public EncryptionConfig(ENCRYPTION_MODE encryptionMode, string encryptionKey, byte[] encryptionKdfSalt)
+        {
+            this.encryptionMode = encryptionMode;
+            this.encryptionKey = encryptionKey;
+            this.encryptionKdfSalt = encryptionKdfSalt;
+        }
+
+        public ENCRYPTION_MODE encryptionMode { set; get; }
+        public string encryptionKey { set; get; }
+        public byte[] encryptionKdfSalt
+        {
+            set { Buffer.BlockCopy(encryptionKdfSalt, 0, encryptionKdfSalt32, 0, 32); }
+
+            get { return encryptionKdfSalt32; }
+        }
+    }</codeblock> </p>
       <p outputclass="codeblock" props="rtc">
-      <codeblock props="windows unity" outputclass="language-cpp">struct EncryptionConfig {
+      <codeblock props="cpp" outputclass="language-cpp">struct EncryptionConfig {
   ENCRYPTION_MODE encryptionMode;
   const char* encryptionKey;
   uint8_t encryptionKdfSalt[32];
@@ -78,7 +102,34 @@
     }
     return "aes-128-gcm-2";
   }
-};</codeblock> </p>
+};</codeblock>
+      <codeblock props="cs" outputclass="language-csharp">public class EncryptionConfig
+    {
+        public EncryptionConfig()
+        {
+            encryptionMode = ENCRYPTION_MODE.AES_128_XTS;
+            encryptionKey = "";
+            encryptionKdfSalt = new byte[32];
+        }
+
+        public EncryptionConfig(ENCRYPTION_MODE encryptionMode, string encryptionKey, byte[] encryptionKdfSalt)
+        {
+            this.encryptionMode = encryptionMode;
+            this.encryptionKey = encryptionKey;
+            this.encryptionKdfSalt = encryptionKdfSalt;
+        }
+
+        public ENCRYPTION_MODE encryptionMode { set; get; }
+        public string encryptionKey { set; get; }
+        
+        private byte[] encryptionKdfSalt32 = new byte[32];
+        public byte[] encryptionKdfSalt
+        {
+            set { Buffer.BlockCopy(encryptionKdfSalt, 0, encryptionKdfSalt32, 0, 32); }
+
+            get { return encryptionKdfSalt32; }
+        }
+    }</codeblock> </p>
       <p outputclass="codeblock">
       <codeblock props="android" outputclass="language-java">public class EncryptionConfig {
   public enum EncryptionMode {
@@ -111,7 +162,7 @@
     encryptionMode: ENCRYPTION_MODE;
     encryptionKey: string;
     }</codeblock>
-      <codeblock props="rn" outputclass="language-typescript"/>
+      <codeblock props="rn" outputclass="language-typescript" />
       <codeblock props="flutter" outputclass="language-dart">class EncryptionConfig {
 
   @JsonKey(includeIfNull: false)
@@ -136,27 +187,19 @@
 }</codeblock> </p>
     </section>
     <section id="parameters">
-      <title><text
-      conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-      /></title>
+      <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
       <parml>
       <plentry>
         <pt>encryptionMode</pt>
         <pd>
-          <p>The built-in encryption mode. See <xref keyref="ENCRYPTION_MODE"
-          />. Agora recommends using <codeph><ph keyref="AES_128_GCM2"
-          /></codeph> or <codeph><ph keyref="AES_256_GCM2"
-          /></codeph> encrypted mode. These two modes support the use of salt for higher security.</p>
+          <p>The built-in encryption mode. See <xref keyref="ENCRYPTION_MODE" />. Agora recommends using <codeph><ph keyref="AES_128_GCM2" /></codeph> or <codeph><ph keyref="AES_256_GCM2" /></codeph> encrypted mode. These two modes support the use of salt for higher security.</p>
         </pd>
       </plentry>
       <plentry>
         <pt>encryptionKey</pt>
         <pd>
           <p>Encryption key in string type.</p>
-          <note type="attention"
-          > If you do not set an encryption key or set it as <codeph><ph
-          keyref="NULL"
-          /></codeph>, you cannot use the built-in encryption, and the SDK returns <codeph>-2</codeph>.</note>
+          <note type="attention"> If you do not set an encryption key or set it as <codeph><ph keyref="NULL" /></codeph>, you cannot use the built-in encryption, and the SDK returns <codeph>-2</codeph>.</note>
         </pd>
       </plentry>
       <plentry>
@@ -169,9 +212,7 @@
           </dlentry>
           </dl>
           <p>Salt, 32 bytes in length. Agora recommends that you use OpenSSL to generate salt on the server side. See Media Stream Encryption for details.</p>
-          <note type="attention">This parameter takes effect only in <codeph><ph
-          keyref="AES_128_GCM2"/></codeph> or <codeph><ph keyref="AES_256_GCM2"
-          /></codeph> encrypted mode. In this case, ensure that this parameter is not <codeph>0</codeph>.</note>
+          <note type="attention">This parameter takes effect only in <codeph><ph keyref="AES_128_GCM2" /></codeph> or <codeph><ph keyref="AES_256_GCM2" /></codeph> encrypted mode. In this case, ensure that this parameter is not <codeph>0</codeph>.</note>
         </pd>
       </plentry>
       </parml> </section>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_rtc_render_view_rtcsurfaceview">
+    <title><ph keyref="RtcSurfaceViewConstructor" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Constructor of the RtcSurfaceView class.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="RtcSurfaceViewConstructor" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="cpp" outputclass="language-cpp" />
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">const RtcSurfaceView({
+                      Key? key,
+                      required this.uid,
+                      this.channelId,
+                      this.renderMode = VideoRenderMode.Hidden,
+                      this.mirrorMode = VideoMirrorMode.Auto,
+                      this.zOrderOnTop = false,
+                      this.zOrderMediaOverlay = false,
+                      this.onPlatformViewCreated,
+                      this.gestureRecognizers,
+                      this.subProcess = false,
+                    }) : super(key: key);</codeblock> </p>
+        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry id="key">
+                <pt>key</pt>
+                <pd>Specifiers of <apiname>Widget</apiname>, <apiname>Element</apiname>, and <apiname>SemanticsNode</apiname>. For details, see Flutter's official documentation for a description of the <apiname>key</apiname> object.</pd>
+            </plentry>
+            <plentry id="uid">
+                <pt>uid</pt>
+                <pd>The user ID.</pd>
+            </plentry>
+            <plentry id="channelId">
+                <pt>channelId</pt>
+                <pd>
+                    <p conkeyref="joinChannel2/channelID_desc" />
+                </pd>
+            </plentry>
+            <plentry id="renderMode">
+                <pt>renderMode</pt>
+                <pd>The rendering mode of the video. See <xref keyref="RENDER_MODE_TYPE" />.</pd>
+            </plentry>
+            <plentry id="mirrorMode">
+                <pt>mirrorMode</pt>
+                <pd>The mirror mode of the view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</pd>
+            </plentry>
+            <plentry id="zOrderOnTop">
+                <pt>zOrderOnTop</pt>
+                <pd>Whether to place the current screen on another layer of the current window.<note type="note">This method is for Android only.</note></pd>
+            </plentry>
+            <plentry id="zOrderMediaOverlay">
+                <pt>zOrderMediaOverlay</pt>
+                <pd>Whether to place the surface layer of the SurfaceView view on top of another SurfaceView in the window (but still below the window).<note type="note">This method is for Android only.</note></pd>
+            </plentry>
+            <plentry id="onPlatformViewCreated">
+                <pt>onPlatformViewCreated</pt>
+                <pd>This event is triggered when a platform view is created.</pd>
+            </plentry>
+            <plentry id="gestureRecognizers">
+                <pt>gestureRecognizers</pt>
+                <pd>The Gesture object.</pd>
+            </plentry>
+            <plentry id="subProcess">
+                <pt>subProcess</pt>
+                <pd>Whether to create a subprocess.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

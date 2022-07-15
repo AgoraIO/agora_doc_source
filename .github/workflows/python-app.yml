@@ -5,11 +5,9 @@ on:
     push:
         branches:
             - master
-            - main
     pull_request:
         branches:
             - master
-            - main
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -27,8 +25,14 @@ jobs:
             - name: Run json creation
               run: |
                   cd xml2json
+                  echo "Running for Flutter CG"
                   python xml2json.py --working_dir ../en-US/dita/RTC --platform_tag flutter --json_file flutter_newer.json --sdk_type sdk --remove_sdk_type sdk-ng --defined_path flutter
-                  python xml2json.py --working_dir ../en-US/dita/RTC --platform_tag cpp --json_file cpp_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path cpp-ng
+                  # echo "Running for CPP NG"
+                  # python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag cpp --json_file cpp_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path cpp-ng
+                  echo "Running for CS CG"
+                  python xml2json.py --working_dir ../en-US/dita/RTC --platform_tag cs --json_file csharp_cg.json --sdk_type rtc --remove_sdk_type rtc-ng --defined_path cs
+                  # echo "Running for unity NG CN (test)"
+                  # python xml2json.py --working_dir ../dita/RTC-NG --platform_tag unity --json_file unity_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path unity-ng
             - name: Upload Flutter CG JSON to release
               uses: svenstaro/upload-release-action@v2
               with:
@@ -37,13 +41,13 @@ jobs:
                   asset_name: flutter_doc_template.json
                   tag: main
                   overwrite: true
-                  body: "Template file for auto comment population."
-            - name: Upload C++ NG JSON to release
+                  body: "Template file for automatic comment population."
+            - name: Upload CS CG JSON to release
               uses: svenstaro/upload-release-action@v2
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
-                  file: xml2json/cpp_ng.json
-                  asset_name: cpp_ng_doc_template.json
+                  file: xml2json/csharp_cg.json
+                  asset_name: csharp_cg_doc_template.json
                   tag: main
                   overwrite: true
-                  body: "Template file for auto comment population."
+                  body: "Template file for automatic comment population."

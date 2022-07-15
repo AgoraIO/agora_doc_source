@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_oncontentinspectresult">
+    <title><ph keyref="onContentInspectResult"/></title>
+    <shortdesc id="short"><ph id="shortdesc">视频鉴黄结果回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onContentInspectResult"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onContentInspectResult(int result) {}
+</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine contentInspectResult:(AgoraContentInspectResult)result;
+</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onContentInspectResult(media::CONTENT_INSPECT_RESULT result) { (void)result; }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnContentInspectResult(CONTENT_INSPECT_RESULT result)</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">OnContentInspectResult? contentInspectResult;</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>调用 <xref keyref="enableContentInspect"/> 启用视频内容审核服务，并设置 <xref keyref="ContentInspectConfig"/> 中的 <codeph>type</codeph> 为 <ph keyref="CONTENT_INSPECT_MODERATION"/>后，SDK 会触发 <xref keyref="onContentInspectResult"/> 回调，报告鉴黄结果。</p>
+        </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <parml>
+            <plentry>
+                <pt>result</pt>
+                <pd props="cpp ios mac electron unity rn flutter">鉴黄结果。详见 <xref keyref="CONTENT_INSPECT_RESULT"/>。</pd>
+                <pd props="android">
+                    <p>鉴黄结果：                   
+                    
+                    <ul>
+                    <li><ph keyref="CONTENT_INSPECT_NEUTRAL"/> (1)：正常图片。</li>
+                    <li><ph keyref="CONTENT_INSPECT_SEXY"/> (2)：性感图片。</li>
+                    <li><ph keyref="CONTENT_INSPECT_PORN"/> (3)：色情图片。</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

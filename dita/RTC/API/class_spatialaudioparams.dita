@@ -23,7 +23,7 @@
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable enable_air_absorb;
 
 @end</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">struct SpatialAudioParams {
+            <codeblock props="cpp" outputclass="language-cpp">struct SpatialAudioParams {
   Optional&lt;double> speaker_azimuth;
   Optional&lt;double> speaker_elevation;
   Optional&lt;double> speaker_distance;
@@ -32,16 +32,29 @@
   Optional&lt;bool> enable_air_absorb;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="cs" outputclass="language-csharp">public class SpatialAudioParams
+    {
+        public double speaker_azimuth { set; get; }
+        public double speaker_elevation { set; get; }
+        public double speaker_distance { set; get; }
+        public int speaker_orientation { set; get; }
+        public bool enable_blur { set; get; }
+        public bool enable_air_absorb { set; get; }
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>speaker_azimuth</pt>
                 <pd>远端用户或媒体播放器相对于本地用户的水平角。取值范围为 [0,360]，单位为度。其中：
+                    
+                    
+                    
                     <ul>
                     <li>0:（默认）0 度，表示水平面的正前方。</li>
                     <li>90: 90 度，表示水平面的正左方。</li>
@@ -53,6 +66,9 @@
             <plentry>
                 <pt>speaker_elevation</pt>
                 <pd>远端用户或媒体播放器相对于本地用户的俯仰角。取值范围为 [-90,90]，单位为度。其中：
+                    
+                    
+                    
                     <ul>
                     <li>0:（默认）0 度，表示水平面无旋转。</li>
                     <li>-90: -90 度，表示水平面向下旋转 90 度。</li>
@@ -66,6 +82,9 @@
             <plentry>
                 <pt>speaker_orientation</pt>
                 <pd>远端用户或媒体播放器相对于本地用户的朝向。取值范围为 [0,180]，单位为度。其中：
+                    
+                    
+                    
                     <ul>
                     <li>0:（默认）0 度，表示声源和听者朝向同一方向。</li>
                     <li>180: 180 度，表示声源和听者面对面。</li>
@@ -74,6 +93,9 @@
             <plentry>
                 <pt>enable_blur</pt>
                 <pd>是否开启声音模糊处理：
+                    
+                    
+                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 开启模糊处理。</li>
                     <li><codeph><ph keyref="false"/></codeph>: （默认）关闭模糊处理。</li>
@@ -82,6 +104,9 @@
             <plentry>
                 <pt>enable_air_absorb</pt>
                 <pd>是否开启空气衰减，即模拟声音在空气中传播时的能量衰减效果：
+                    
+                    
+                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: （默认）开启空气衰减。</li>
                     <li><codeph><ph keyref="false"/></codeph>: 关闭空气衰减。</li>

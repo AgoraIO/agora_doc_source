@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Descriptor for the 'Delete comments' operation. This operation allows you to delete comments from an XML element. 
+-->
+<refactoringOperationDescriptor 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.oxygenxml.com/ns/xmlRefactoring" id="delete-comments" name="${i18n(xr_delete_comments)}">
+    <description>${i18n(xr_delete_comments_description)}</description>    
+    <script type="XQUERY_UPDATE" href="delete-comments.xq"/>
+    <category>${i18n(Comments)}</category>
+    <parameters>
+        <description>${i18n(xr_delete_comments_parameters_description)}</description>
+        <elementLocation name="element_xpath" useCurrentContext="true">
+            <element label="${i18n(Element)}">
+                <description>${i18n(comment_ancestor_param_description)}</description>
+            </element>
+        </elementLocation>
+    </parameters>
+</refactoringOperationDescriptor>

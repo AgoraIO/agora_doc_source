@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_ivideoframeobserver_getvideoformatpreference">
+    <title><ph keyref="getVideoFormatPreference"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置 SDK 输出的原始视频数据格式。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getVideoFormatPreference"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">int getVideoFormatPreference();
+</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (AgoraVideoFormat)getVideoPixelFormatPreference;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual VIDEO_PIXEL_FORMAT getVideoFormatPreference() { return VIDEO_PIXEL_DEFAULT; }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">public virtual VIDEO_FRAME_TYPE GetVideoFormatPreference()
+        {
+            return VIDEO_FRAME_TYPE.FRAME_TYPE_RGBA;
+        }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>如果你想获取 YUV 420 格式以外的原始视频数据，需要在调用 <xref keyref="registerVideoFrameObserver"/> 方法时注册该回调。 成功注册视频数据观测器后，SDK 会在捕捉到每个视频帧时触发该回调，你需要在该回调返回值中设置期望的视频数据格式。</p>
+            <note type="note">如果你想获取发送端采集的原始视频格式，则在返回值中设置原始视频数据格式为 <apiname keyref="VIDEO_PIXEL_DEFAULT"/>。在不同的平台上，原始视频像素格式也不同，实际的视频像素格式以 <xref keyref="VideoFrame"/> 为准。</note> </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p>设置 SDK 输出的原始数据格式。<ph props="cpp ios mac">详见 <xref keyref="VIDEO_PIXEL_FORMAT"/>。</ph> </p>
+        </section>
+    </refbody>
+</reference>

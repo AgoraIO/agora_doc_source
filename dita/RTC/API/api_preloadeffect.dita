@@ -12,15 +12,18 @@
     </prolog>
     <refbody>
         <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="cs" outputclass="language-csharp">public abstract int PreloadEffect(int soundId, string filePath, int startPos = 0);</codeblock> </p>
+            <p outputclass="codeblock" props="rtc">
+            <codeblock props="cs" outputclass="language-csharp">public abstract int PreloadEffect(int soundId, string filePath);</codeblock></p>
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public int preloadEffect(int soundId, String filePath);
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)preloadEffect:(int)soundId
             filePath:(NSString* _Nonnull)filePath;
 </codeblock>
-            <codeblock props="windows" outputclass="language-cpp">virtual int preloadEffect(int soundId, const char* filePath) = 0;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int preloadEffect(int soundId, const char* filePath) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">preloadEffect(soundId: number, filePath: string): number</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int PreloadEffect(int soundId, string filePath);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; preloadEffect(int soundId, String filePath);</codeblock> </p>
         </section>
@@ -40,17 +43,22 @@
             </plentry>
             <plentry id="filePath">
                 <pt>filePath</pt>
-                <pd>文件路径：
-        
+                <pd>文件路径： 
+                    
+                    
                     <ul>
-                    <li props="android flutter unity windows">Android: 文件路径，需精确到文件名及后缀。支持在线文件的 URL 地址，本地文件的 URI 地址、绝对路径或以 <ph>/assets/</ph> 开头的路径。
+                    <li props="android flutter cpp">Android: 文件路径，需精确到文件名及后缀。支持在线文件的 URL 地址，本地文件的 URI 地址、绝对路径或以 <ph>/assets/</ph> 开头的路径。
                 通过绝对路径访问本地文件可能会遇到权限问题，Agora 推荐使用 URI 地址访问本地文件。例如：<ph>content://com.android.providers.media.documents/document/audio%3A14441</ph>。</li>
-                    <li props="windows flutter unity">Windows: 音频文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如： <ph>C:\music\audio.mp4</ph>.</li>
-                    <li props="ios mac flutter unity">iOS 或 macOS: 音频文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如：<ph>/var/mobile/Containers/Data/audio.mp4</ph>.</li>
+                    <li props="cpp flutter cs">Windows: 音频文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如： <ph>C:\music\audio.mp4</ph>.</li>
+                    <li props="ios mac flutter">iOS 或 macOS: 音频文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如：<ph>/var/mobile/Containers/Data/audio.mp4</ph>.</li>
                     </ul></pd>
             </plentry>
+            <plentry props="rtc-ng">
+                <pt props="cs">startPos</pt>
+                <pd props="cs">音效文件加载的起始位置，单位为毫秒。</pd>
+            </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native electron cs">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功</li>

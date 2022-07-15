@@ -5,39 +5,39 @@
     <shortdesc id="short"><ph id="shortdesc">Leaves a channel.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="IChannel_leaveChannel" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="IChannel_leaveChannel" />
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="windows" outputclass="language-cpp">virtual int leaveChannel() = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">leaveChannel(): number</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public abstract int LeaveChannel();</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; leaveChannel();</codeblock>
-        </p>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="cpp" outputclass="language-cpp">virtual int leaveChannel() = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">leaveChannel(): number</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public abstract int LeaveChannel();</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; leaveChannel();</codeblock> </p>
         </section>
         <section id="detailed_desc">
-   
-   <p>This method lets the user leave the channel, for example, by hanging up or exiting the call. This method releases all resources related to the session. This method call is asynchronous, and the user has not left the channel when the method call returns.</p>
-   <p>After calling <xref keyref="IChannel_joinChannel" />, you must call <apiname keyref="IChannel_leaveChannel" /> to end the call, otherwise the next call cannot be started.</p>
-   <p>No matter whether you are currently in a call or not, you can call <apiname keyref="IChannel_leaveChannel" /> without side effects.</p>
-   <p>A successful call of this method triggers the following callbacks: <ul>
-                    <li>The local client: <xref keyref="IChannel_onLeaveChannel" />.</li>
-                    <li>The remote client: <xref keyref="IChannel_onUserOffline" />, if the user
+            <p>This method lets the user leave the channel, for example, by hanging up or exiting the call. This method releases all resources related to the session. This method call is asynchronous, and the user has not left the channel when the method call returns.</p>
+            <p>After calling <xref keyref="IChannel_joinChannel" />, you must call <apiname keyref="IChannel_leaveChannel" /> to end the call, otherwise the next call cannot be started.</p>
+            <p>No matter whether you are currently in a call or not, you can call <apiname keyref="IChannel_leaveChannel" /> without side effects.</p>
+            <p>A successful call of this method triggers the following callbacks: 
+            
+            <ul>
+            <li>The local client: <xref keyref="IChannel_onLeaveChannel" />.</li>
+            <li>The remote client: <xref keyref="IChannel_onUserOffline" />, if the user
                         joining the channel is in the COMMUNICATION profile, or is a host in the
                         LIVE_BROADCASTING profile.</li>
-                </ul></p>
-   <note type="attention">
-       <ul>
-  <li>If you call the <apiname keyref="IChannel_leaveChannel" /> method immediately after calling <xref keyref="IChannel_release" />, the SDK will not be able to trigger the <apiname keyref="IChannel_onLeaveChannel" /> callback.</li>
-  <li>If you call the <apiname keyref="IChannel_leaveChannel" /> method during a CDN live streaming, the SDK automatically calls the <xref keyref="IChannel_removePublishStreamUrl" /> method.</li>
-       </ul>
-   </note>
-        </section>
-        <section props="native electron unity" conkeyref="leaveChannel/return_values"> </section></refbody>
+            </ul></p>
+            <note type="attention">
+            <ul>
+            <li>If you call the <apiname keyref="IChannel_leaveChannel" /> method immediately after calling <xref keyref="IChannel_release" />, the SDK will not be able to trigger the <apiname keyref="IChannel_onLeaveChannel" /> callback.</li>
+            <li>If you call the <apiname keyref="IChannel_leaveChannel" /> method during a CDN live streaming, the SDK automatically calls the <xref keyref="IChannel_removePublishStreamUrl" /> method.</li>
+            </ul> </note> </section>
+        <section props="native electron cs" conkeyref="leaveChannel/return_values"> </section>
+    </refbody>
 </reference>

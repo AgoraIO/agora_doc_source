@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediaplayersourceobserver_onplayerevent">
+    <title><ph keyref="onPlayerEvent"/></title>
+    <shortdesc id="short"><ph id="shortdesc">报告播放器的事件。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPlayerEvent"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnPlayerEvent(int playerId, MEDIA_PLAYER_EVENT @event, Int64 elapsedTime, string message) {}</codeblock> </p>
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">void onPlayerEvent(Constants.MediaPlayerEvent eventCode, long elapsedTime, String message);
+</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">(void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol> _Nonnull)playerKit
+              didOccurEvent:(AgoraMediaPlayerEvent)eventCode
+                elapsedTime:(NSInteger)elapsedTime
+                    message:(NSString *_Nullable)message;
+</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onPlayerEvent(media::base::MEDIA_PLAYER_EVENT eventCode, int64_t elapsedTime, const char* message) = 0;
+</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <ul>
+            <li>调用 <xref keyref="seek"/> 定位播放后，SDK 会触发该回调，报告定位播放的结果。</li>
+            <li props="hide">调用 <xref keyref="selectAudioTrack"/> 设置使用的音轨后，SDK 会触发该回调，报告音轨已改变。</li>
+            </ul> </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry props="ios mac" id="playerkit">
+                <pt>playerKit</pt>
+                <pd>详见 <xref keyref="IMediaPlayer"/>。</pd>
+            </plentry>
+            <plentry props="unity">
+                <pt>playerId</pt>
+                <pd>播放器 ID。</pd>
+            </plentry>
+            <plentry props="native unity">
+                <pt props="native">eventCode</pt>
+                <pt props="unity">@event</pt>
+                <pd>播放器事件，详见 <xref keyref="MEDIA_PLAYER_EVENT"/>。</pd>
+            </plentry>
+            <plentry>
+                <pt>elapsedTime</pt>
+                <pd>发生事件的时间 (毫秒)。</pd>
+            </plentry>
+            <plentry>
+                <pt>message</pt>
+                <pd>事件的信息。</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

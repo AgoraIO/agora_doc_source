@@ -15,7 +15,7 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onCameraExposureAreaChanged(Rect rect) {}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine cameraExposureDidChangedToRect:(CGRect)rect;</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">virtual void onCameraExposureAreaChanged(int x, int y, int width, int height) {
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onCameraExposureAreaChanged(int x, int y, int width, int height) {
      (void)x;
      (void)y;
      (void)width;
@@ -27,17 +27,17 @@
      width: number,
      height: number) =&gt; void
      ): this;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnCameraExposureAreaChanged(int x, int y, int width, int height)</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public virtual void OnCameraExposureAreaChanged(int x, int y, int width, int height)</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">RectCallback? cameraExposureAreaChanged;</codeblock> </p>
         </section>
-        <section id="detailed_desc" props="android ios windows">
-            <p>该回调是由本地用户调用 <apiname>setCameraExposurePosition</apiname> 方法改变曝光位置触发的。</p>
-            <note type="attention" props="windows">该回调仅适用于 Android 和 iOS。</note> </section>
+        <section id="detailed_desc" props="android ios cpp">
+            <p>该回调是由本地用户调用 <xref keyref="setCameraExposurePosition"/> 方法改变曝光位置触发的。</p>
+            <note type="attention" props="cpp">该回调仅适用于 Android 和 iOS。</note> </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-            <parml props="windows unity">
+            <parml props="cpp cs">
             <plentry>
                 <pt>x</pt>
                 <pd>发生改变的曝光区域的 x 坐标。</pd>

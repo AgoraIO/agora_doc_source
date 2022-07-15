@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_ichanneleventhandler_onaudiosubscribestatechanged">
-    <title><ph keyref="IChannel_onAudioSubscribeStateChanged" /></title>
-    <shortdesc conkeyref="onAudioSubscribeStateChanged/short" />
+    <title><ph keyref="IChannel_onAudioSubscribeStateChanged"/></title>
+    <shortdesc conkeyref="onAudioSubscribeStateChanged/short"/>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="IChannel_onAudioSubscribeStateChanged" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="IChannel_onAudioSubscribeStateChanged"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="windows" outputclass="language-cpp">virtual void onAudioSubscribeStateChanged(IChannel *rtcChannel,
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioSubscribeStateChanged(IChannel *rtcChannel,
      uid_t uid,
      STREAM_SUBSCRIBE_STATE oldState,
      TREAM_SUBSCRIBE_STATE newState,
@@ -25,7 +26,7 @@
      (void)newState;
      (void)elapseSinceLastState;
      }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(
+            <codeblock props="electron" outputclass="language-typescript">on(
   evt: ChannelEvents.AUDIO_SUBSCRIBE_STATE_CHANGED,
   cb: (
     channelId: string,
@@ -35,41 +36,45 @@
     elapseSinceLastState: number
   ) =&gt; void
 ): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioSubscribeStateChanged(string channelId, uint uid, STREAM_SUBSCRIBE_STATE oldState,
+            <codeblock props="cs" outputclass="language-csharp">public virtual void OnAudioSubscribeStateChanged(string channelId, uint uid, STREAM_SUBSCRIBE_STATE oldState,
             STREAM_SUBSCRIBE_STATE newState, int elapseSinceLastState)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">StreamSubscribeStateCallback? audioSubscribeStateChanged;</codeblock>
-        </p>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">StreamSubscribeStateCallback? audioSubscribeStateChanged;</codeblock>
+            </p>
         </section>
-        <section conkeyref="onAudioSubscribeStateChanged/detailed_desc">
-        </section>
-        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-   <parml>
-       <plentry conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
-  <pt />
-  <pd />
-       </plentry>
-       <plentry props="flutter">
-           <pt>channel</pt>
-           <pd>The channel name.</pd>
-       </plentry>
-       <plentry props="android ios mac windows electron unity" conkeyref="onAudioSubscribeStateChanged/uid">
-  <pt />
-  <pd />
-       </plentry>
-       <plentry conkeyref="onAudioSubscribeStateChanged/oldState">
-  <pt />
-  <pd />
-       </plentry>
-       <plentry conkeyref="onAudioSubscribeStateChanged/newState">
-  <pt />
-  <pd />
-       </plentry>
-       <plentry conkeyref="onAudioSubscribeStateChanged/elapseSinceLastState">
-  <pt />
-  <pd />
-       </plentry>
-   </parml>
-        </section>
+        <section conkeyref="onAudioSubscribeStateChanged/detailed_desc"> </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"
+            />
+            <parml>
+            <plentry props="native cs"
+                conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry props="flutter">
+                <pt>channel</pt>
+                <pd>The channel name.</pd>
+            </plentry>
+            <plentry props="android ios mac cpp electron cs"
+                conkeyref="onAudioSubscribeStateChanged/uid">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="onAudioSubscribeStateChanged/oldState">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="onAudioSubscribeStateChanged/newState">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry
+                conkeyref="onAudioSubscribeStateChanged/elapseSinceLastState">
+                <pt/>
+                <pd/>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

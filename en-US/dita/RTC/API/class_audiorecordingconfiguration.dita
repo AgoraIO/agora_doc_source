@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audiorecordingconfiguration">
-    <title>
-        <ph keyref="AudioRecordingConfiguration" />
-    </title>
-    <shortdesc id="short">
-        <ph id="shortdesc">The configuration of audio recording on the app client.</ph>
-    </shortdesc>
+    <title> <ph keyref="AudioRecordingConfiguration" /> </title>
+    <shortdesc id="short"> <ph id="shortdesc">The configuration of audio recording on the app client.</ph> </shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public class AudioRecordingConfiguration
+            <codeblock props="android" outputclass="language-java">public class AudioRecordingConfiguration
     {
     public String filePath;
     public int recordingQuality;
@@ -32,14 +28,14 @@
     this.recordingSampleRate = sampleRate;
     }
     }</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioRecordingConfiguration : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioRecordingConfiguration : NSObject
 
     @property(copy, nonatomic) NSString* _Nullable filePath;
     @property(assign, nonatomic) AgoraAudioRecordingQuality recordingQuality;
     @property(assign, nonatomic) AgoraAudioRecordingPosition recordingPosition;
     @property(assign, nonatomic) NSInteger recordingSampleRate;
     @end</codeblock>
-                <codeblock props="windows unity" outputclass="language-cpp">struct AudioRecordingConfiguration {
+            <codeblock props="cpp" outputclass="language-cpp">struct AudioRecordingConfiguration {
 
     const char* filePath;
     AUDIO_RECORDING_QUALITY_TYPE recordingQuality;
@@ -64,14 +60,41 @@
                         recordingSampleRate(sampleRate)
                       {}
                     };</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">export interface AudioRecordingConfiguration {
+            <codeblock props="cs" outputclass="language-csharp">public class AudioRecordingConfiguration
+    {
+        public AudioRecordingConfiguration()
+        {
+            filePath = null;
+            recordingQuality = AUDIO_RECORDING_QUALITY_TYPE.AUDIO_RECORDING_QUALITY_MEDIUM;
+            recordingPosition = AUDIO_RECORDING_POSITION.AUDIO_RECORDING_POSITION_MIXED_RECORDING_AND_PLAYBACK;
+            recordingSampleRate = 32000;
+            recordingChannel = 1;
+        }
+
+        public AudioRecordingConfiguration(string filePath, AUDIO_RECORDING_QUALITY_TYPE recordingQuality,
+            AUDIO_RECORDING_POSITION recordingPosition, int recordingSampleRate, int recordingChannel )
+        {
+            this.filePath = filePath;
+            this.recordingQuality = recordingQuality;
+            this.recordingPosition = recordingPosition;
+            this.recordingSampleRate = recordingSampleRate;
+            this.recordingChannel = recordingChannel;
+        }
+
+        public string filePath { set; get; }
+        public AUDIO_RECORDING_QUALITY_TYPE recordingQuality { set; get; }
+        public AUDIO_RECORDING_POSITION recordingPosition { set; get; }
+        public int recordingSampleRate { set; get; }
+        public int recordingChannel  { set; get; }
+    }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export interface AudioRecordingConfiguration {
   filePath: string;
   recordingQuality: AUDIO_RECORDING_QUALITY_TYPE;
   recordingPosition: AUDIO_RECORDING_POSITION;
   recordingSampleRate: number;
 }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">class AudioRecordingConfiguration {
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">class AudioRecordingConfiguration {
 
   String filePath;
 
@@ -95,78 +118,75 @@
       _$AudioRecordingConfigurationFromJson(json);
 
   Map&lt;String, dynamic&gt; toJson() =&gt; _$AudioRecordingConfigurationToJson(this);
-}</codeblock>
-            </p>
+}</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since" props="android ios mac windows">
-                <dlentry>
-                    <dt>Since</dt>
-                    <dd>v3.4.0</dd>
-                </dlentry>
+            <dl outputclass="since" props="android ios mac cpp">
+            <dlentry>
+                <dt>Since</dt>
+                <dd>v3.4.0</dd>
+            </dlentry>
             </dl>
         </section>
         <section id="parameters">
-            <title>
-                <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" />
-            </title>
+            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>
             <parml>
-                <plentry id="filepath">
-                    <pt>filePath</pt>
-                    <pd>
-                        <p>
+            <plentry id="filepath">
+                <pt>filePath</pt>
+                <pd>
+                    <p>
                             The absolute path (including the filename extensions) of the recording file. For example:
-                            <codeph>
-                                <ph keyref="recordingPath-example" />
-                            </codeph>
+                            <codeph> <ph keyref="recordingPath-example" /> </codeph>
                             .
                         </p>
-                        <note type="attention">Ensure that the directory for the log files exists and is writable.</note>
-                    </pd>
-                </plentry>
-                <plentry>
-                    <pt>recordingChannel</pt>
-                    <pd>
+                    <note type="attention">Ensure that the directory for the log files exists and is writable.</note>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>recordingChannel</pt>
+                <pd>
                         The recorded audio channel. The following values are supported:
-                        <ul>
-                            <li>1: (Default) Mono channel.</li>
-                            <li>Dual channel.</li>
-                        </ul>
-                        <note type="attention"> The actual recorded audio channel is related to the audio channel that you capture. If the captured audio is mono and  <parmname>recordingChannel</parmname> is 2, the recorded audio is the dual-channel data that is copied from mono data, not stereo. If the captured audio is dual channel and  <parmname>recordingChannel</parmname> is 1, the recorded audio is the mono data that is mixed by dual-channel data. The integration scheme also affects the final recorded audio channel. Therefore, to record in stereo, contact technical support for assistance.
-                        </note>
-                    </pd>
-                </plentry>
-                <plentry>
-                    <pt>recordingQuality</pt>
-                    <pd>
-                        <p>
+                        
+                    
+                    <ul>
+                    <li>1: (Default) Mono channel.</li>
+                    <li>Dual channel.</li>
+                    </ul>
+                    <note type="attention"> The actual recorded audio channel is related to the audio channel that you capture. If the captured audio is mono and  <parmname>recordingChannel</parmname> is 2, the recorded audio is the dual-channel data that is copied from mono data, not stereo. If the captured audio is dual channel and  <parmname>recordingChannel</parmname> is 1, the recorded audio is the mono data that is mixed by dual-channel data. The integration scheme also affects the final recorded audio channel. Therefore, to record in stereo, contact technical support for assistance.
+                        </note> </pd>
+            </plentry>
+            <plentry>
+                <pt>recordingQuality</pt>
+                <pd>
+                    <p>
                             Recording quality. For details, see
                             <xref keyref="AUDIO_RECORDING_QUALITY_TYPE" />
                             .
                         </p>
-                        <note type="attention">Note: This parameter applies to AAC files only.</note>
-                    </pd>
-        
-                </plentry>
-                <plentry>
-                    <pt>recordingPosition</pt>
-                    <pd>
+                    <note type="attention">Note: This parameter applies to AAC files only.</note>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>recordingPosition</pt>
+                <pd>
                         The recording content. For details, see
                         <xref keyref="AUDIO_RECORDING_POSITION" />
                         .
                     </pd>
-                </plentry>
-                <plentry>
-                    <pt>recordingSampleRate</pt>
-                    <pd>
+            </plentry>
+            <plentry>
+                <pt>recordingSampleRate</pt>
+                <pd>
                         Recording sample rate (Hz).
-                        <ul>
-                            <li>16000</li>
-                            <li>(Default) 32000</li>
-                            <li>44100</li>
-                            <li>48000</li>
-                        </ul>
-                        <note type="attention">
+                        
+                    
+                    <ul>
+                    <li>16000</li>
+                    <li>(Default) 32000</li>
+                    <li>44100</li>
+                    <li>48000</li>
+                    </ul>
+                    <note type="attention">
                             If you set this parameter as 44100 or 48000, Agora recommends recording WAV files or AAV files whose
                             <parmname>recordingQuality</parmname>
                             is
@@ -174,10 +194,8 @@
                             or
                             <ph keyref="AUDIO_RECORDING_QUALITY_HIGH" />
                             for better recording quality.
-                        </note>
-                    </pd>
-                </plentry>
-            </parml>
-        </section>
+                        </note> </pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

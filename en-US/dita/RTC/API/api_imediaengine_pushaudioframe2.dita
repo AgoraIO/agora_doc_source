@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaengine_pushaudioframe2">
-    <title><ph keyref="pushAudioFrame2"/></title>
+    <title><ph keyref="pushAudioFrame2" /></title>
     <shortdesc id="short"><ph id="shortdesc">Pushes the external audio frame.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="pushAudioFrame2"/>
+                <indexterm keyref="pushAudioFrame2" />
             </keywords>
         </metadata>
     </prolog>
@@ -17,11 +17,11 @@
                                            int sampleRate, int channels,
                                            int bytesPerSample, int sourcePos);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)pushExternalAudioFrameRawData:(AgoraAudioExternalSourcePos)sourcePos frame:(AgoraAudioFrame* _Nonnull)frame;</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">virtual int pushAudioFrame(int32_t sourcePos, IAudioFrameObserver::AudioFrame* frame) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int pushAudioFrame(int32_t sourcePos, IAudioFrameObserver::AudioFrame* frame) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="cs" outputclass="language-csharp">public abstract int PushAudioFrame(int sourcePos, AudioFrame frame);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
@@ -34,20 +34,21 @@
             <p>You can call this method multiple times to push one audio frame to multiple positions or multiple audio frames to different positions.</p>
             <p>For example, in the KTV scenario, you can push the singing voice to after audio capture, so that the singing voice can be processed by the SDK audio module
             and you can obtain a high-quality audio experience; you can also push the accompaniment to before audio encoding, so that the accompaniment is not affected by the audio module of the SDK.</p>
-            <note type="attention">Call this method after joining a channel.</note> </section><section id="parameters">
+            <note type="attention">Call this method after joining a channel.</note> </section>
+        <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry props="windows ios mac" conkeyref="pushAudioFrame1/frame">
-                <pt/>
-                <pd/>
+            <plentry props="cpp ios mac" conkeyref="pushAudioFrame1/frame">
+                <pt />
+                <pd />
             </plentry>
             <plentry props="android" conkeyref="pushAudioFrame1/data">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry props="android" conkeyref="pushAudioFrame1/time">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry props="android">
                 <pt>sampleRate</pt>
@@ -58,6 +59,8 @@
                 <pd>
                     <p>The number of audio channels:
                    
+                    
+                    
                     <ul>
                     <li><codeph>1</codeph>: Mono</li>
                     <li><codeph>2</codeph>: Stereo (the data is interleaved)</li>
@@ -70,7 +73,7 @@
             </plentry>
             <plentry>
                 <pt>sourcePos</pt>
-                <pd>The push position of the external audio frame. See <xref keyref="AUDIO_EXTERNAL_SOURCE_POSITION"/>.</pd>
+                <pd>The push position of the external audio frame. See <xref keyref="AUDIO_EXTERNAL_SOURCE_POSITION" />.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">

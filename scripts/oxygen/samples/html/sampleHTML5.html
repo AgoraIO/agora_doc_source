@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sample styled page</title>
+        <style>
+            body {
+                background: none;
+                color: black;
+            }</style>
+    </head>
+    <body>
+        <h1 onmouseover="bgChange(this.style.backgroundColor)">Sample styled page</h1>
+        <p>This page is just a demo. `
+        <table>
+            <caption>Specification values: <b>Steel</b>, <b>Castings</b>, Ann. A.S.T.M. A27-16,
+                Class B;* P max. 0.06; S max. 0.05.</caption>
+            <tr>
+                <th rowspan=2>Grade. 
+                <th rowspan=2>Yield Point. 
+                <th colspan=2>Ultimate tensile strength 
+                <th rowspan=2>Per cent elong. 50.8mm or 2 in. 
+                <th rowspan=2>Per cent reduct. area. 
+            <tr>
+                <th>kg/mm<sup>2</sup>
+                <th>lb/in<sup>2</sup>
+            <tr>
+                <td>Hard 
+                <td>0.45 ultimate
+                <td>56.2
+                <td>80,000 
+                <td>15
+                <td>20 
+            <tr>
+                <td>Medium 
+                <td>0.45 ultimate 
+                <td>49.2 
+                <td>70,000 
+                <td>18
+                <td>25 
+            <tr>
+                <td>Soft
+                <td>0.45 ultimate
+                <td>42.2
+                <td>60,000
+                <td>22
+                <td>30 
+        </table>
+        <script>
+            function bgChange(bg) {
+                document.body.style.background = bg;
+            }
+            let node = document.getElementsByTagName("td");
+            var i;
+            for (i = 0; i < node.length; i++) {
+                node[i].addEventListener("mouseover", function (event) {
+                    event.target.style.color = "orange";
+                });
+            }</script>
+    </body>
+</html>

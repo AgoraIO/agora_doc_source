@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="dita-ot/plugin.rnc" type="application/relax-ng-compact-syntax"?>
+<plugin id="com.oxygenxml.zendesk">
+    <transtype name="zendesk-xhtml" extends="xhtml" desc="Zendesk Help Center">
+        <param name="zendesk.host" type="string" desc="Zendesk host where to upload the aticles." required="true"/>
+        <param name="zendesk.username" type="string" desc="Authentication user name" required="true"/>
+        <param name="zendesk.token" type="string" desc="Zendesk API Token used for authentication." required="true"/>
+        <param name="zendesk.category.name" type="string" desc="The category in which to upload the articles. Categories are the top-level organizing containers of the help center. Categories contain sections." required="true"/>
+        <param name="zendesk.section.name" type="string" desc="The section in which to upload the articles. Sections contain related articles." required="true"/>
+        <param name="zendesk.create.drafts" type="string" desc="When you create a draft article, it is saved but not published, so that you can continue working on it until it's ready to publish.">
+            <val default="true">false</val>
+            <val>true</val>
+        </param>
+        <param name="zendesk.permission.group.name" type="string" desc="Zendesk permission group that controls who edits and publishes articles."/>
+        
+    </transtype>
+    
+    <require plugin="org.dita.xhtml"/>
+    
+    <feature extension="ant.import" file="build_zendesk.xml"/>
+    
+</plugin>

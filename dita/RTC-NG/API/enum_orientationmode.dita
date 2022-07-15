@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_orientationmode">
+    <title><ph keyref="ORIENTATION_MODE"/></title>
+    <shortdesc id="short"><ph id="shortdesc">视频编码的方向模式。</ph></shortdesc>
+    <refbody>
+        <section id="parameters">
+   <title>枚举值</title>
+   <parml>
+       <plentry>
+  <pt><ph keyref="ORIENTATION_MODE_ADAPTIVE"/></pt>
+  <pd>
+      <p>0: （默认）该模式下 SDK 输出的视频方向与采集到的视频方向一致。接收端会根据收到的视频旋转信息对视频进行旋转。该模式适用于接收端可以调整视频方向的场景。</p>
+      <ul>
+ <li>如果采集的视频是横屏模式，则输出的视频也是横屏模式。</li>
+ <li>如果采集的视频是竖屏模式，则输出的视频也是竖屏模式。</li>
+      </ul>
+  </pd>
+       </plentry>
+       <plentry>
+  <pt><ph keyref="ORIENTATION_MODE_FIXED_LANDSCAPE"/></pt>
+  <pd>1: 该模式下 SDK 固定输出风景（横屏）模式的视频。如果采集到的视频是竖屏模式，则视频编码器会对其进行裁剪。该模式适用于当接收端无法调整视频方向时，如使用旁路推流场景下。</pd>
+       </plentry>
+       <plentry>
+  <pt><ph keyref="ORIENTATION_MODE_FIXED_PORTRAIT"/></pt>
+  <pd>2: 该模式下 SDK 固定输出人像（竖屏）模式的视频，如果采集到的视频是横屏模式，则视频编码器会对其进行裁剪。该模式适用于当接收端无法调整视频方向时，如使用旁路推流场景下。</pd>
+       </plentry>
+   </parml>
+        </section></refbody>
+</reference>

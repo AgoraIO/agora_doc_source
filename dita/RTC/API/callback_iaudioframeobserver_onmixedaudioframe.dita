@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_iaudioframeobserver_onmixedaudioframe">
+    <title><ph keyref="onMixedAudioFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc">获取采集和播放语音混音后的数据。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onMixedAudioFrame"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="cs" outputclass="language-csharp">public virtual bool OnMixedAudioFrame(AudioFrame audio_frame)
+        {
+            return true;
+        }</codeblock></p>
+            <p outputclass="codeblock" props="rtc">
+            <codeblock props="cs" outputclass="language-csharp">public virtual bool OnMixedAudioFrame(AudioFrame audioFrame)
+        {
+            return true;
+        }</codeblock></p>
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract boolean onMixedAudioFrame(int type, int samplesPerChannel, int bytesPerSample,
+      int channels, int samplesPerSec, ByteBuffer buffer, long renderTimeMs, int avsync_type);
+</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onMixedAudioFrame:(AgoraAudioFrame* _Nonnull)frame;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual bool onMixedAudioFrame(AudioFrame&amp; audioFrame) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>
+            <note type="attention">该方法仅返回单通道数据。</note> </p>
+        </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml props="ios mac cpp cs">
+            <plentry>
+                <pt props="cpp">audioFrame</pt>
+                <pt props="cs"><ph props="rtc">audioFrame</ph><ph props="rtc-ng">audio_frame</ph></pt>
+                <pt props="ios mac">frame</pt>
+                <pd>音频原始数据。详见 <xref keyref="AudioFrame"/>。</pd>
+            </plentry>
+            </parml>
+            <parml props="android">
+            <plentry id="type">
+                <pt>type</pt>
+                <pd>音频数据的类型。</pd>
+            </plentry>
+            <plentry id="samplesPerChannel">
+                <pt>samplesPerChannel</pt>
+                <pd>每声道的采样点数。</pd>
+            </plentry>
+            <plentry id="bytesPerSample">
+                <pt>bytesPerSample</pt>
+                <pd>每个采样点的字节数（byte）。对于 PCM 音频数据，一般是两个字节。</pd>
+            </plentry>
+            <plentry id="channels">
+                <pt>channels</pt>
+                <pd>
+                    <p>声道数：
+                        
+                    
+                    
+                    <ul>
+                    <li>1：单声道。</li>
+                    <li>2：双声道。双声道的音频数据是交叉存储的。</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            <plentry id="samplesPerSec">
+                <pt>samplesPerSec</pt>
+                <pd>音频采样率（Hz）。</pd>
+            </plentry>
+            <plentry id="buffer">
+                <pt>buffer</pt>
+                <pd>音频 buffer。buffer 大小为 samplesPerChannel x channels x bytesPerSample。
+                    </pd>
+            </plentry>
+            <plentry id="renderTimeMs">
+                <pt>renderTimeMs</pt>
+                <pd>外部音频帧的渲染时间戳（毫秒）。你可以使用该时间戳还原音频帧的顺序。在音视频场景下（包含使用外部视频源的场景），该时间戳可以用于实现音频和视频的同步。
+                    </pd>
+            </plentry>
+            <plentry id="avsync">
+                <pt>avsync_type</pt>
+                <pd>预留参数。
+                    </pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <ul>
+            <li><codeph><ph keyref="true"/></codeph>: 音频帧数据有效，数据会被发送。</li>
+            <li><codeph><ph keyref="false"/></codeph>: 音频帧数据无效，数据会被舍弃。</li>
+            </ul> </section>
+    </refbody>
+</reference>

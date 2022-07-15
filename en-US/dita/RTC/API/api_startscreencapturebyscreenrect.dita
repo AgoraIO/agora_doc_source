@@ -5,65 +5,67 @@
     <shortdesc id="short"><ph id="shortdesc">Shares the whole or part of a screen by specifying the screen rect.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="startScreenCaptureByScreenRect" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="startScreenCaptureByScreenRect" />
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="windows" outputclass="language-cpp">virtual int startScreenCaptureByScreenRect(const Rectangle&amp; screenRect, 
-     const Rectangle&amp; regionRect, 
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="cpp" outputclass="language-cpp">virtual int startScreenCaptureByScreenRect(const Rectangle&amp; screenRect,
+     const Rectangle&amp; regionRect,
      const ScreenCaptureParameters&amp; captureParams) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">startScreenCaptureByScreen(screenSymbol: ScreenSymbol,
+            <codeblock props="electron" outputclass="language-typescript">startScreenCaptureByScreen(screenSymbol: ScreenSymbol,
      regionRect: Rectangle,
      captureParams: ScreenCaptureParameters
      ): number</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public abstract int StartScreenCaptureByScreenRect(Rectangle screenRect, Rectangle regionRect,
+            <codeblock props="cs" outputclass="language-csharp">public abstract int StartScreenCaptureByScreenRect(Rectangle screenRect, Rectangle regionRect,
             ScreenCaptureParameters captureParams);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startScreenCaptureByScreenRect(Rectangle screenRect,
-      [Rectangle? regionRect, ScreenCaptureParameters? captureParams]);</codeblock>
-        </p>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startScreenCaptureByScreenRect(Rectangle screenRect,
+      [Rectangle? regionRect, ScreenCaptureParameters? captureParams]);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-   
-   <dl outputclass="since" props="rtc">
-       <dlentry props="native">
-  <dt>Since</dt>
-  <dd>v2.4.0</dd>
-       </dlentry>
-   </dl>
-   <p id="desc">This method shares a screen or part of the screen. You need to specify the area of the screen to be shared.</p>
-   <note type="attention" id="note">Call this method after joining a channel.</note>
-        </section>
-        <section id="parameters"><title>Parameters</title>
-   <parml>
-       <plentry props="windows unity flutter">
-  <pt>screenRect</pt>
-  <pd>Sets the relative location of the screen to the virtual screen.</pd>
-       </plentry>
-       <plentry props="electron">
-  <pt>screenSymbol</pt>
-  <pd>The display ID (macOS) or ScreenRect that identifies the screen. See <xref keyref="ScreenSymbol" />. You can get the data stream ID by calling <xref keyref="getScreensInfo" />.</pd>
-       </plentry>
-       <plentry>
-  <pt>regionRect</pt>
-  <pd>(Optional) Sets the relative location of the region to the screen. If you do not set this parameter, the SDK shares the whole screen. See <xref keyref="Rectangle" />. If the specified region overruns the screen, the SDK shares only the region within it; if you set width or height as 0, the SDK shares the whole screen.</pd>
-       </plentry>
-       <plentry>
-  <pt>captureParams</pt>
-  <pd>The screen sharing encoding parameters. The default video dimension is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges. See <xref keyref="ScreenCaptureParameters" />.</pd>
-       </plentry>
-   </parml>
-        </section>
-        <section id="return_values" props="native electron unity">
-   <title>Returns</title>
-   <ul>
-       <li>0: Success.</li>
-       <li>&lt; 0: Failure.</li>
-   </ul>
-        </section></refbody>
+            <dl outputclass="deprecated">
+                <dlentry>
+                    <dt>Deprecated:</dt>
+                    <dd><ph>This method is deprecated as of v3.7.0.</ph><ph props="cpp flutter">Agora strongly recommends using <xref keyref="startScreenCaptureByDisplayId" /> if you need to start screen sharing on a device connected to another display.</ph> </dd>
+                </dlentry>
+                </dl>
+            <p id="desc">This method shares a screen or part of the screen. You need to specify the area of the screen to be shared.</p>
+            <note type="attention" id="note">
+            <ul>
+            <li>This method applies to the Windows platform only.</li>
+            <li>Call this method after joining a channel.</li>
+            </ul></note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry props="cpp cs flutter">
+                <pt>screenRect</pt>
+                <pd>Sets the relative location of the screen to the virtual screen.</pd>
+            </plentry>
+            <plentry props="electron">
+                <pt>screenSymbol</pt>
+                <pd>The display ID (macOS) or ScreenRect that identifies the screen. See <xref keyref="ScreenSymbol" />. You can get the data stream ID by calling <xref keyref="getScreensInfo" />.</pd>
+            </plentry>
+            <plentry>
+                <pt>regionRect</pt>
+                <pd>(Optional) Sets the relative location of the region to the screen. If you do not set this parameter, the SDK shares the whole screen. See <xref keyref="Rectangle" />. If the specified region overruns the screen, the SDK shares only the region within it; if you set width or height as 0, the SDK shares the whole screen.</pd>
+            </plentry>
+            <plentry>
+                <pt>captureParams</pt>
+                <pd>The screen sharing encoding parameters. The default video dimension is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges. See <xref keyref="ScreenCaptureParameters" />.</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron cs">
+            <title>Returns</title>
+            <ul>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
+    </refbody>
 </reference>

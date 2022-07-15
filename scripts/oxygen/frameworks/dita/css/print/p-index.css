@@ -1,0 +1,169 @@
+/*
+ * =====================================================
+ * 
+ * Defines the layout of the intexterms 
+ * 
+ * =====================================================
+ */
+
+/* 
+  Make invisible the metadata prolog from the topics.
+  Cannot hide it directly (display:none) because Prince XML
+  would ignore the indexterms from it.
+  So we are making it transparent, and of 0 size. 
+*/
+*[class ~= "topic/prolog"] {
+  border: none;
+  display: block;
+  background-color: transparent;
+  color: transparent;
+  margin: 0;
+  padding: 0;
+  width: 0;
+  height: 0;
+  font-size: 0;
+}
+*[class ~= "topic/prolog"] *:before,
+*[class ~= "topic/prolog"] *:before(300) {
+  /* 300 - labels from i18-n */
+  content: none !important;
+}
+
+@media oxygen-chemistry {
+/* In Chemistry we can hide it entirely. */
+  *[class ~= "topic/prolog"] {
+    display: none;
+    page-break-after: avoid;
+  }
+}
+
+/* Make invisible the indexterms in the content and the anchor 
+   targets moved from prolog to the topic title. */
+*[class ~= "topic/topic"] *[class ~= "index/entry"],
+*[class ~= "topic/topic"] *[class ~= "index/refid"] {
+  display: inline;
+  background-color: transparent;
+  color: transparent;
+  max-width: 2px;
+  font-size: 0px;
+  vertical-align: super;
+}
+
+/*
+ *
+ * Bind the index group to the index page.
+ *
+ */
+*[class ~= "index/groups"] {
+  display: block;
+  page: index;
+  counter-reset: page 1;
+
+  /* for Prince XML */
+  columns: 2;
+  column-fill: auto;
+}
+
+/**
+* Static label before the index section.
+*/
+*[class ~= "index/groups"]:before {
+  /*p-i18n.css*/
+  display: block;
+  margin-bottom: 0.5em;
+  font-size: 3em;
+  column-span: all;
+}
+
+/* A section (group) in the index, under a letter  */
+*[class ~= "index/groups"] *[class ~= "index/group"] {
+  display: block;
+}
+*[class ~= "index/groups"] *[class ~= "index/group"] *[class ~= "index/label"] {
+  display: block;
+  font-size: larger;
+  font-weight: bold;
+}
+
+/* The index entry and its label */
+*[class ~= "index/groups"] *[class ~= "index/entry"] {
+  display: block;
+  margin-left: 1em;
+}
+
+/* The index entry link */
+*[class ~= "index/groups"] *[class ~= "index/link"]:first-child:before {
+  content: "\A0";
+}
+*[class ~= "index/groups"] *[class ~= "index/link"] {
+  display: inline;
+  content: target-counter(attr(href), page) ", \200B";
+  link: attr(href);
+  -ah-link: attr(href);
+  -oxy-link: attr(href);
+}
+*[class ~= "index/groups"] *[class ~= "index/link"]:last-child {
+  content: target-counter(attr(href), page);
+}
+
+/* The index see link */
+*[class ~= "index/groups"] *[class ~= "index/see-link"] {
+  display: inline;
+  content: content();
+  link: attr(href);
+  -ah-link: attr(href);
+  -oxy-link: attr(href);
+}
+
+/* 
+    Deal with <index-see> and <index-see-also>. 
+    
+    The <index-see> should list the labels of the index terms the user needs to see. 
+    No page number should be shown, since this is a pure redirection. 
+
+    The <index-see-also> should list the labels of the index terms the user needs to see. 
+    The page numbers must be shown. 
+*/
+*[class ~= "index/groups"] *[class ~= "index/see-childs"] {
+  display: block;
+  padding-left: 1em;
+}
+*[class ~= "index/groups"] *[class ~= "index/see-childs"]:before {
+  content: " see ";
+  font-style: italic;
+}
+
+*[class ~= "index/groups"] *[class ~= "index/see-also-childs"] {
+  display: block;
+  padding-left: 1em;
+}
+*[class ~= "index/groups"] *[class ~= "index/see-also-childs"]:before {
+  content: " see also ";
+  font-style: italic;
+}
+
+/* All "see" terms are on a line. */
+*[class ~= "index/groups"] *[class ~= "index/see-childs"] *,
+*[class ~= "index/groups"] *[class ~= "index/see-also-childs"] * {
+  display: inline;
+}
+*[class ~= "index/groups"] *[class ~= "index/see-childs"] *[class ~= "index/entry"],
+*[class ~= "index/groups"] *[class ~= "index/see-also-childs"] *[class ~= "index/entry"] {
+  margin: 0;
+}
+
+/* There may be multiple formatted value under the same indexterm. We need to separated them. */
+*[class ~= "index/groups"] *[class ~= "index/see-childs"] *[class ~= "index/formatted-value"]:after,
+*[class ~= "index/groups"] *[class ~= "index/see-also-childs"] *[class ~= "index/formatted-value"]:after {
+  content: " ";
+}
+
+/* Separator in the list of terms*/
+*[class ~= "index/groups"] *[class ~= "index/see-childs"] > *[class ~= "index/entry"]:before,
+*[class ~= "index/groups"] *[class ~= "index/see-also-childs"] > *[class ~= "index/entry"]:before {
+  content: ", ";
+}
+*[class ~= "index/groups"] *[class ~= "index/see-childs"] > *[class ~= "index/entry"]:first-child:before,
+*[class ~= "index/groups"] *[class ~= "index/see-also-childs"] > *[class ~= "index/entry"]:first-child:before {
+  content: none;
+}

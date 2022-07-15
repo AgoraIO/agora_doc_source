@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<a:authorAction xmlns:a="http://www.oxygenxml.com/ns/author/external-action"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.oxygenxml.com/ns/author/external-action http://www.oxygenxml.com/ns/author/external-action/authorAction.xsd"
+  id="insert.table.column.after">
+  <a:name>${i18n(insert.table.column.after)}</a:name>
+  <a:description>${i18n(insert.table.column.after_description)}</a:description>
+  <a:smallIconPath href="/images/TableColumn16.png"/>
+  <a:largeIconPath href="/images/TableColumn24.png"/>
+  <a:operations>
+    <a:operation id="ro.sync.ecss.extensions.dita.topic.table.cals.InsertSingleColumnOperation">
+      <a:xpathCondition>ancestor-or-self::node()[self::*[contains(@class," topic/row ") or contains(@class," topic/strow ") or contains(@class," topic/sthead ")]][1][self::*[contains(@class," topic/row ")]]</a:xpathCondition>
+      <a:arguments>
+        <a:argument name="defaultNamespace"/>
+        <a:argument name="insertLocation">After</a:argument>
+      </a:arguments>
+    </a:operation>
+    <a:operation
+      id="ro.sync.ecss.extensions.dita.topic.table.simpletable.InsertSingleColumnOperation">
+      <a:xpathCondition>ancestor-or-self::simpletable</a:xpathCondition>
+      <a:arguments/>
+    </a:operation>
+  </a:operations>
+  <a:enabledInReadOnlyContext>false</a:enabledInReadOnlyContext>
+</a:authorAction>

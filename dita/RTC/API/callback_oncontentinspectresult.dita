@@ -17,16 +17,17 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine contentInspectResult:(AgoraContentInspectResult)result;
 </codeblock>
-            <codeblock props="windows" outputclass="language-cpp">virtual void onContentInspectResult(CONTENT_INSPECT_RESULT result) { (void)result; }</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onContentInspectResult(CONTENT_INSPECT_RESULT result) { (void)result; }</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="cs" outputclass="language-csharp">public virtual void OnContentInspectResult(CONTENT_INSPECT_RESULT result)</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">OnContentInspectResult? contentInspectResult;</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>设置 <xref keyref="ContentInspectConfig"/> 中的 <codeph>type</codeph> 为 <codeph>kContentInspectModeration</codeph> 并调用 <xref keyref="enableContentInspect"/> 开启鉴黄后，SDK 会触发 <codeph>onContentInspectResult</codeph> 回调，报告鉴黄结果。</p>
+            <p>设置 <xref keyref="ContentInspectConfig"/> 中的 <codeph>type</codeph> 设为 <ph keyref="ContentInspectModule"/> 并调用 <xref keyref="enableContentInspect"/> 开启鉴黄后，SDK 会触发 <xref keyref="onContentInspectResult"/> 回调，报告鉴黄结果。</p>
         </section>
         <section id="parameters">
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <title>参数</title>
             <parml>
             <plentry>

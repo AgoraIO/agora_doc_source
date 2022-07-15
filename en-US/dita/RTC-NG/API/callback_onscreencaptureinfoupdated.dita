@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_onscreencaptureinfoupdated">
+    <title> <ph keyref="onScreenCaptureInfoUpdated"/> </title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the screen sharing information is updated.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onScreenCaptureInfoUpdated"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnScreenCaptureInfoUpdated(ScreenCaptureInfo info)</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">OnScreenCaptureInfoUpdated? screenCaptureInfoUpdated;</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>When you call <xref keyref="startScreenCaptureByDisplayId"/> or <xref keyref="startScreenCaptureByScreenRect"/> to start screen sharing and use the <parmname>excludeWindowList</parmname> attribute to block the specified window, the SDK triggers this callback if the window blocking fails.</p>
+            <note type="attention" props="cpp flutter">This callback is for Windows only.</note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>info</pt>
+                <pd><p>Screen sharing information. See <xref keyref="ScreenCaptureInfo"/>.</p></pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

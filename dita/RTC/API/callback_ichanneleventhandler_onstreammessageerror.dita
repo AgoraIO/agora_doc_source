@@ -5,16 +5,17 @@
     <shortdesc conkeyref="onStreamMessageError/short"/>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="IChannel_onStreamMessageError"/>
-   </keywords>
+            <keywords>
+                <indexterm keyref="IChannel_onStreamMessageError"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp">virtual void onStreamMessageError(IChannel *rtcChannel,
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onStreamMessageError(IChannel *rtcChannel,
      uid_t uid,
      int streamId,
      int code,
@@ -27,7 +28,7 @@
      (void)missed;
      (void)cached;
      }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(
+            <codeblock props="electron" outputclass="language-typescript">on(
   evt: ChannelEvents.STREAM_MESSAGE_ERROR,
   cb: (
     channelId: string,
@@ -38,43 +39,46 @@
     cached: number
   ) =&gt; void
 ): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnStreamMessageError(string channelId, uint uid, int streamId, int code, int missed,
+            <codeblock props="cs" outputclass="language-csharp">public virtual void OnStreamMessageError(string channelId, uint uid, int streamId, int code, int missed,
             int cached)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart">StreamMessageErrorCallback? streamMessageError;</codeblock>
-        </p>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">StreamMessageErrorCallback? streamMessageError;</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
-
-   <p>该回调表示本地用户未收到远端用户调用 <xref keyref="IChannel_sendStreamMessage"/> 方法发送的流消息。</p>
+            <p>该回调表示本地用户未收到远端用户调用 <xref keyref="IChannel_sendStreamMessage"
+            /> 方法发送的流消息。</p>
         </section>
-        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-   <parml>
-       <plentry conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
-  <pt/>
-  <pd/>
-       </plentry>
-       <plentry conkeyref="onStreamMessageError/uid">
-  <pt/>
-  <pd/>
-       </plentry>
-       <plentry conkeyref="onStreamMessageError/streamId">
-  <pt/>
-  <pd/>
-       </plentry>
-       <plentry conkeyref="onStreamMessageError/code">
-  <pt/>
-  <pd/>
-       </plentry>
-       <plentry conkeyref="onStreamMessageError/missed">
-  <pt/>
-  <pd/>
-       </plentry>
-       <plentry conkeyref="onStreamMessageError/cached">
-  <pt/>
-  <pd/>
-       </plentry>
-   </parml>
-        </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"
+            />
+            <parml>
+            <plentry props="native cs"
+                conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="onStreamMessageError/uid">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="onStreamMessageError/streamId">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="onStreamMessageError/code">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="onStreamMessageError/missed">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="onStreamMessageError/cached">
+                <pt/>
+                <pd/>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

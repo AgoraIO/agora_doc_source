@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="" name="Buid DITA Project" default="dist">
+  <condition property="isWindows">
+    <os family="windows"/>
+  </condition>
+  <condition property="isEmptyDeliverable">
+    <equals arg1="${deliverable.id}" arg2=""/>
+  </condition>
+  
+  <target name="dist" xmlns:if="ant:if" xmlns:unless="ant:unless">
+    <!-- Determine the path to executable script according to OS -->
+    <property name="script.location" value="${dita-ot.dir}/bin/dita.bat" if:set="isWindows"/>
+    <property name="script.location" value="${dita-ot.dir}/bin/dita" unless:set="isWindows"/>
+
+  	<property name="executable" value="cmd" if:set="isWindows"/>
+  	<property name="executable" value="sh" unless:set="isWindows"/>
+
+    <exec executable="${executable}" dir="${user.dir}" failonerror="yes">
+      <arg value="/c" if:set="isWindows"/>
+	  <arg value="&quot;" if:set="isWindows"/>
+      <arg value="${script.location}"/>	
+      		
+      <!-- Set the project xml file -->
+      <arg value="--project"/>
+      <arg value="${project.file}"/>
+      
+      <!-- Set the deliverable -->
+      <arg value="--deliverable" if:set="deliverable.id" unless:set="isEmptyDeliverable"/>
+      <arg value="${deliverable.id}" if:set="deliverable.id" unless:set="isEmptyDeliverable"/>
+
+      <!-- Set the additional arguments -->
+      <arg line="${additional.args}" if:set="additional.args"/>
+	  
+	  <arg value="&quot;" if:set="isWindows"/>
+    </exec>
+  </target>
+</project>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayercachemanager_getcachedir">
+    <title><ph keyref="getCacheDir"/></title>
+    <shortdesc id="short"><ph id="shortdesc">获取缓存文件的储存路径。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getCacheDir"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">String getCacheDir();</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (NSString *)cacheDir;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int getCacheDir(char* path, int length) = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>如果你在调用该方法前未曾调用 <xref keyref="setCacheDir"/> 方法自定义缓存文件的储存路径，该方法返回的为 SDK 默认的缓存文件储存路径。</p>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <ul>
+            <li>0：方法调用成功，返回缓存文件的储存路径。</li>
+            <li>&lt; 0：方法调用失败，详见 <xref keyref="MEDIA_PLAYER_ERROR"/>。</li>
+            </ul> </section>
+    </refbody>
+</reference>

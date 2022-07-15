@@ -17,7 +17,7 @@
 @property(nonatomic, strong) NSArray&lt;NSNumber *&gt; * _Nullable audioSpectrumData;
 
 @end</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">struct UserAudioSpectrumInfo  {
+            <codeblock props="cpp" outputclass="language-cpp">struct UserAudioSpectrumInfo  {
   agora::rtc::uid_t uid;
   struct AudioSpectrumData spectrumData;
 
@@ -26,27 +26,25 @@
     uid(_uid) { spectrumData.audioSpectrumData = data; spectrumData.dataLength = length; }
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="cs" outputclass="language-csharp" />
             <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" />
-            </p>
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
-                <plentry>
-                    <pt>uid</pt>
-                    <pd>The ID of the remote user.</pd>
-                </plentry>
-                <plentry>
-                    <pt props="android">audioSpectrumInfo</pt>
-                    <pt props="ios mac">audioSpectrumData</pt>
-                    <pt props="windows">spectrumData</pt>
-                    <pd>
-                        <p>Audio spectrum information of the remote user.<ph props="android windows"> For details, see <xref keyref="AudioSpectrumData" />.</ph></p>
-                    </pd>
-                </plentry>
-            </parml>
-        </section>
+            <plentry>
+                <pt>uid</pt>
+                <pd>The ID of the remote user.</pd>
+            </plentry>
+            <plentry>
+                <pt props="android">audioSpectrumInfo</pt>
+                <pt props="ios mac">audioSpectrumData</pt>
+                <pt props="cpp">spectrumData</pt>
+                <pd>
+                    <p>Audio spectrum information of the remote user.<ph props="android cpp"> For details, see <xref keyref="AudioSpectrumData" />.</ph></p>
+                </pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

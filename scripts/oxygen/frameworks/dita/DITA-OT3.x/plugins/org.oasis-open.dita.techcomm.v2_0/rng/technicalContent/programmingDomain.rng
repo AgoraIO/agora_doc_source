@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="urn:oasis:names:tc:dita:rng:vocabularyModuleDesc.rng"
+                         schematypens="http://relaxng.org/ns/structure/1.0"?>
+<grammar xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:dita="http://dita.oasis-open.org/architecture/2005/" xmlns="http://relaxng.org/ns/structure/1.0">
+  <moduleDesc xmlns="http://dita.oasis-open.org/architecture/2005/">
+    <moduleTitle>DITA Programming Domain</moduleTitle>
+    <headerComment xml:space="preserve">
+=============================================================
+                   HEADER                                    
+=============================================================
+ MODULE:    DITA Programming Domain                     
+ VERSION:   2.0                                              
+ DATE:      [[[Release date]]]                                    
+ PURPOSE:   Declaring the elements and specialization        
+            attributes for the Programming Domain            
+                                                             
+=============================================================
+
+=============================================================
+                   PUBLIC DOCUMENT TYPE DEFINITION           
+                   TYPICAL INVOCATION                        
+                                                             
+ Refer to this file by the following public identifier or an 
+      appropriate system identifier 
+PUBLIC "-//OASIS//ELEMENTS DITA 2.0 Programming Domain//EN"
+      Delivered as file "programmingDomain.mod"                   
+
+=============================================================
+            (C) Copyright OASIS Open 2005, 2009.             
+            (C) Copyright IBM Corporation 2001, 2004.        
+            All Rights Reserved.                             
+                                                             
+ UPDATES:                                                    
+=============================================================
+</headerComment>
+    <moduleMetadata>
+      <moduleType>elementdomain</moduleType>
+      <moduleShortName>pr-d</moduleShortName>
+      <modulePublicIds>
+        <dtdMod>-//OASIS//ELEMENTS DITA<var presep=" " name="ditaver"/> Programming Domain//EN</dtdMod>
+        <dtdEnt>-//OASIS//ENTITIES DITA<var presep=" " name="ditaver"/> Programming Domain//EN</dtdEnt>
+        <rngMod>urn:oasis:names:tc:dita:rng:programmingDomain.rng<var presep=":" name="ditaver"/></rngMod>
+      </modulePublicIds>
+    </moduleMetadata>
+  </moduleDesc>
+  <div>
+    <a:documentation>DOMAIN EXTENSION PATTERNS</a:documentation>
+    <define name="pr-d-ph">
+      <choice>
+        <ref name="codeph.element"/>
+      </choice>
+    </define>
+    <define name="pr-d-pre">
+      <ref name="codeblock.element"/>
+    </define>
+    <define name="pr-d-keyword">
+      <choice>
+        <ref name="apiname.element"/>
+        <ref name="option.element"/>
+        <ref name="parmname.element"/>
+      </choice>
+    </define>
+    <define name="pr-d-dl">
+      <ref name="parml.element"/>
+    </define>
+
+    <define name="ph" combine="choice">
+      <ref name="pr-d-ph"/>
+    </define>
+    <define name="pre" combine="choice">
+      <ref name="pr-d-pre"/>
+    </define>
+    <define name="keyword" combine="choice">
+      <ref name="pr-d-keyword"/>
+    </define>
+    <define name="dl" combine="choice">
+      <ref name="pr-d-dl"/>
+    </define>
+  </div>
+  <div>
+    <a:documentation>ELEMENT TYPE NAME PATTERNS</a:documentation>
+
+    <define name="codeph">
+      <ref name="codeph.element"/>
+    </define>
+    <define name="coderef">
+      <ref name="coderef.element"/>
+    </define>
+    <define name="option">
+      <ref name="option.element"/>
+    </define>
+    <define name="parmname">
+      <ref name="parmname.element"/>
+    </define>
+    <define name="pd">
+      <ref name="pd.element"/>
+    </define>
+    <define name="plentry">
+      <ref name="plentry.element"/>
+    </define>
+    <define name="pt">
+      <ref name="pt.element"/>
+    </define>
+
+  </div>
+  <div>
+    <a:documentation>ELEMENT TYPE DECLARATIONS</a:documentation>
+    <div>
+      <a:documentation> LONG NAME: Code Phrase </a:documentation>
+      <define name="codeph.content">
+        <zeroOrMore>
+          <choice>
+            <text/>
+            <ref name="basic.ph.notm"/>
+            <ref name="data.elements.incl"/>
+            <ref name="draft-comment" dita:since="1.3"/>
+            <ref name="foreign.unknown.incl"/>
+            <ref name="required-cleanup" dita:since="1.3"/>
+          </choice>
+        </zeroOrMore>
+      </define>
+      <define name="codeph.attributes">
+        <ref name="univ-atts"/>
+      </define>
+      <define name="codeph.element">
+        <element name="codeph" dita:longName="Code Phrase">
+          <a:documentation>
+            <![CDATA[The code phrase (<codeph>) element represents a snippet of code within the main flow of text. The code phrase is displayed in a monospaced font for emphasis. This element is part of the DITA programming domain, a special set of DITA elements designed to document programming tasks, concepts and reference information.
+    Category: Programming elements
+  ]]></a:documentation>
+          <ref name="codeph.attlist"/>
+          <ref name="codeph.content"/>
+        </element>
+      </define>
+      <define name="codeph.attlist" combine="interleave">
+        <ref name="codeph.attributes"/>
+      </define>
+    </div>
+    <div>
+      <a:documentation> LONG NAME: Code Block </a:documentation>
+      <define name="codeblock.content">
+        <zeroOrMore>
+          <choice>
+            <text/>
+            <ref name="basic.ph.notm"/>
+            <ref name="coderef"/>
+            <ref name="data.elements.incl"/>
+            <ref name="foreign.unknown.incl"/>
+            <ref name="txt.incl"/>
+          </choice>
+        </zeroOrMore>
+      </define>
+      <define name="codeblock.attributes">
+        <ref name="display-atts"/>
+        <optional>
+          <attribute name="spectitle"/>
+        </optional>
+        <optional>
+          <attribute name="xml:space" a:defaultValue="preserve">
+            <value>preserve</value>
+          </attribute>
+        </optional>
+        <ref name="univ-atts"/>
+      </define>
+      <define name="codeblock.element">
+        <element name="codeblock" dita:longName="Code Block">
+          <a:documentation>
+            <![CDATA[The <codeblock> element represents lines of program code. Like the <pre> element, content of this element has preserved line endings and is output in a monospaced font. This element is part of the DITA programming domain, a special set of DITA elements designed to document programming tasks, concepts and reference information.
+    Category: Programming elements
+  ]]></a:documentation>
+          <ref name="codeblock.attlist"/>
+          <ref name="codeblock.content"/>
+        </element>
+      </define>
+      <define name="codeblock.attlist" combine="interleave">
+        <ref name="codeblock.attributes"/>
+      </define>
+    </div>
+    <div>
+      <a:documentation> LONG NAME: Literal code reference </a:documentation>
+      <define name="coderef.content">
+        <optional>
+          <ref name="fallback"/>
+        </optional>
+      </define>
+      <define name="coderef.attributes">
+        <optional>
+          <attribute name="href"/>
+        </optional>
+        <optional>
+          <attribute name="keyref"/>
+        </optional>
+        <optional>
+          <attribute name="type"/>
+        </optional>
+        <optional>
+          <attribute name="format"/>
+        </optional>
+        <optional>
+          <attribute name="parse" a:defaultValue="text"/>
+        </optional>
+        <optional>
+          <attribute name="encoding"/>
+        </optional>
+        <optional>
+          <attribute name="scope">
+            <choice>
+              <value>external</value>
+              <value>local</value>
+              <value>peer</value>
+              <value>-dita-use-conref-target</value>
+            </choice>
+          </attribute>
+        </optional>
+        <ref name="univ-atts"/>
+      </define>
+      <define name="coderef.element">
+        <element name="coderef" dita:longName="Literal code reference">
+          <a:documentation>
+            <![CDATA[The codref element allows a reference to an external file that contains literal code. When evaluated the coderef element should cause the target code to be displayed inline. If the target contains non-XML characters such as < and &amp;, those will need to be handled in a way that they may be displayed correctly by the final rendering engine.]]>
+          </a:documentation>
+          <ref name="coderef.attlist"/>
+          <ref name="coderef.content"/>
+        </element>
+      </define>
+      <define name="coderef.attlist" combine="interleave">
+        <ref name="coderef.attributes"/>
+      </define>
+    </div>
+    <div>
+      <a:documentation> LONG NAME: Option </a:documentation>
+      <define name="option.content">
+        <zeroOrMore>
+          <choice>
+            <text/>
+            <ref name="text"/>
+          </choice>
+        </zeroOrMore>
+      </define>
+      <define name="option.attributes">
+        <optional>
+          <attribute name="keyref"/>
+        </optional>
+        <ref name="univ-atts"/>
+      </define>
+      <define name="option.element">
+        <element name="option" dita:longName="Option">
+          <a:documentation>
+            <![CDATA[The <option> element describes an option that can be used to modify a command (or something else, like a configuration). This element is part of the DITA programming domain, a special set of DITA elements designed to document programming tasks, concepts and reference information.
+    Category: Programming elements
+  ]]></a:documentation>
+          <ref name="option.attlist"/>
+          <ref name="option.content"/>
+        </element>
+      </define>
+      <define name="option.attlist" combine="interleave">
+        <ref name="option.attributes"/>
+      </define>
+    </div>
+    <div>
+      <a:documentation> LONG NAME: Parameter Name </a:documentation>
+      <define name="parmname.content">
+        <zeroOrMore>
+          <choice>
+            <text/>
+            <ref name="text"/>
+          </choice>
+        </zeroOrMore>
+      </define>
+      <define name="parmname.attributes">
+        <optional>
+          <attribute name="keyref"/>
+        </optional>
+        <ref name="univ-atts"/>
+      </define>
+      <define name="parmname.element">
+        <element name="parmname" dita:longName="Parameter Name">
+          <a:documentation>
+            <![CDATA[When referencing the name of an application programming interface parameter within the text flow of your topic, use the parameter name (<parmname>) element to markup the parameter. This element is part of the DITA programming domain, a special set of DITA elements designed to document programming tasks, concepts and reference information.
+    Category: Programming elements
+  ]]></a:documentation>
+          <ref name="parmname.attlist"/>
+          <ref name="parmname.content"/>
+        </element>
+      </define>
+      <define name="parmname.attlist" combine="interleave">
+        <ref name="parmname.attributes"/>
+      </define>
+    </div>
+    <div>
+      <a:documentation> LONG NAME: API Name </a:documentation>
+      <define name="apiname.content">
+        <zeroOrMore>
+          <choice>
+            <text/>
+            <ref name="text"/>
+          </choice>
+        </zeroOrMore>
+      </define>
+      <define name="apiname.attributes">
+        <optional>
+          <attribute name="keyref"/>
+        </optional>
+        <ref name="univ-atts"/>
+      </define>
+      <define name="apiname.element">
+        <element name="apiname" dita:longName="API Name">
+          <a:documentation>
+            <![CDATA[The <apiname> element provides the name of an application programming interface (API) such as a Java class name or method name. This element is part of the DITA programming domain, a special set of DITA elements designed to document programming tasks, concepts and reference information.
+    Category: Programming elements
+  ]]></a:documentation>
+          <ref name="apiname.attlist"/>
+          <ref name="apiname.content"/>
+        </element>
+      </define>
+      <define name="apiname.attlist" combine="interleave">
+        <ref name="apiname.attributes"/>
+      </define>
+    </div>
+    <div>
+      <a:documentation> LONG NAME: Parameter List </a:documentation>
+      <define name="parml.content">
+        <zeroOrMore>
+          <ref name="data"/>
+        </zeroOrMore>
+        <oneOrMore>
+          <ref name="plentry"/>
+        </oneOrMore>
+      </define>
+      <define name="parml.attributes">
+        <optional>
+          <attribute name="compact">
+            <choice>
+              <value>yes</value>
+              <value>no</value>
+              <value>-dita-use-conref-target</value>
+            </choice>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="spectitle"/>
+        </optional>
+        <ref name="univ-atts"/>
+      </define>
+      <define name="parml.element">
+        <element name="parml" dita:longName="Parameter List">
+          <a:documentation>
+            <![CDATA[The parameter list (<parml>) element contains a list of terms and definitions that describes the parameters in an application programming interface. This is a special kind of definition list that is designed for documenting programming parameters. This element is part of the DITA programming domain, a special set of DITA elements designed to document programming tasks, concepts and reference information.
+    Category: Programming elements
+  ]]></a:documentation>
+          <ref name="parml.attlist"/>
+          <ref name="parml.content"/>
+        </element>
+      </define>
+      <define name="parml.attlist" combine="interleave">
+        <ref name="parml.attributes"/>
+      </define>
+    </div>
+    <div>
+      <a:documentation> LONG NAME: Parameter List Entry </a:documentation>
+      <define name="plentry.content">
+        <oneOrMore>
+          <ref name="pt"/>
+        </oneOrMore>
+        <oneOrMore>
+          <ref name="pd"/>
+        </oneOrMore>
+      </define>
+      <define name="plentry.attributes">
+        <ref name="univ-atts"/>
+      </define>
+      <define name="plentry.element">
+        <element name="plentry" dita:longName="Parameter List Entry">
+          <a:documentation>
+            <![CDATA[The parameter list entry element (<plentry>) contains one or more parameter terms and definitions (pd and pt). This element is part of the DITA programming domain, a special set of DITA elements designed to document programming tasks, concepts and reference information.
+    Category: Programming elements
+  ]]></a:documentation>
+          <ref name="plentry.attlist"/>
+          <ref name="plentry.content"/>
+        </element>
+      </define>
+      <define name="plentry.attlist" combine="interleave">
+        <ref name="plentry.attributes"/>
+      </define>
+    </div>
+    <div>
+      <a:documentation> LONG NAME: Parameter Term </a:documentation>
+      <define name="pt.content">
+        <zeroOrMore>
+          <ref name="term.cnt"/>
+        </zeroOrMore>
+      </define>
+      <define name="pt.attributes">
+        <optional>
+          <attribute name="keyref"/>
+        </optional>
+        <ref name="univ-atts"/>
+      </define>
+      <define name="pt.element">
+        <element name="pt" dita:longName="Parameter Term">
+          <a:documentation>
+            <![CDATA[A parameter term, within a parameter list entry, is enclosed by the <pt> element. This element is part of the DITA programming domain, a special set of DITA elements designed to document programming tasks, concepts and reference information.
+    Category: Programming elements
+  ]]></a:documentation>
+          <ref name="pt.attlist"/>
+          <ref name="pt.content"/>
+        </element>
+      </define>
+      <define name="pt.attlist" combine="interleave">
+        <ref name="pt.attributes"/>
+      </define>
+    </div>
+    <div>
+      <a:documentation> LONG NAME: Parameter Description </a:documentation>
+      <define name="pd.content">
+        <zeroOrMore>
+          <ref name="defn.cnt"/>
+        </zeroOrMore>
+      </define>
+      <define name="pd.attributes">
+        <ref name="univ-atts"/>
+      </define>
+      <define name="pd.element">
+        <element name="pd" dita:longName="Parameter Description">
+          <a:documentation>
+            <![CDATA[A parameter definition, within a parameter list entry, is enclosed by the <pd> element. This element is part of the DITA programming domain, a special set of DITA elements designed to document programming tasks, concepts and reference information.
+    Category: Programming elements
+  ]]></a:documentation>
+          <ref name="pd.attlist"/>
+          <ref name="pd.content"/>
+        </element>
+      </define>
+      <define name="pd.attlist" combine="interleave">
+        <ref name="pd.attributes"/>
+      </define>
+    </div>
+  </div>
+  <div>
+    <a:documentation>SPECIALIZATION ATTRIBUTE DECLARATIONS</a:documentation>
+
+    <define name="apiname.attlist" combine="interleave">
+      <optional>
+        <attribute name="class" a:defaultValue="+ topic/keyword pr-d/apiname "/>
+      </optional>
+    </define>
+    <define name="codeblock.attlist" combine="interleave">
+      <optional>
+        <attribute name="class" a:defaultValue="+ topic/pre pr-d/codeblock "/>
+      </optional>
+    </define>
+    <define name="codeph.attlist" combine="interleave">
+      <optional>
+        <attribute name="class" a:defaultValue="+ topic/ph pr-d/codeph "/>
+      </optional>
+    </define>
+    <define name="coderef.attlist" combine="interleave">
+      <optional>
+        <attribute name="class" a:defaultValue="+ topic/include pr-d/coderef "/>
+      </optional>
+    </define>
+    <define name="option.attlist" combine="interleave">
+      <optional>
+        <attribute name="class" a:defaultValue="+ topic/keyword pr-d/option "/>
+      </optional>
+    </define>
+    <define name="parml.attlist" combine="interleave">
+      <optional>
+        <attribute name="class" a:defaultValue="+ topic/dl pr-d/parml "/>
+      </optional>
+    </define>
+    <define name="parmname.attlist" combine="interleave">
+      <optional>
+        <attribute name="class" a:defaultValue="+ topic/keyword pr-d/parmname "/>
+      </optional>
+    </define>
+    <define name="pd.attlist" combine="interleave">
+      <optional>
+        <attribute name="class" a:defaultValue="+ topic/dd pr-d/pd "/>
+      </optional>
+    </define>
+    <define name="plentry.attlist" combine="interleave">
+      <optional>
+        <attribute name="class" a:defaultValue="+ topic/dlentry pr-d/plentry "/>
+      </optional>
+    </define>
+    <define name="pt.attlist" combine="interleave">
+      <optional>
+        <attribute name="class" a:defaultValue="+ topic/dt pr-d/pt "/>
+      </optional>
+    </define>
+  </div>
+</grammar>

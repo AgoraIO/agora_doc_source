@@ -15,23 +15,24 @@
             <p outputclass="codeblock" props="rtc-ng">
             <codeblock props="mac" outputclass="language-objectivec">- (int)startScreenCaptureByWindowId:(UInt32)windowId
                 regionRect:(CGRect)regionRect
-                captureParams:(AgoraScreenCaptureParameters *_Nonnull)captureParams;</codeblock> </p>
+                captureParams:(AgoraScreenCaptureParameters *_Nonnull)captureParams;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public abstract int StartScreenCaptureByWindowId(UInt64 windowId, Rectangle regionRect, ScreenCaptureParameters captureParams);</codeblock> </p>
+            <p outputclass="codeblock" props="rtc">
+            <codeblock props="mac" outputclass="language-objectivec">- (int)startScreenCaptureByWindowId:(NSUInteger)windowId rectangle:(CGRect)rectangle parameters:(AgoraScreenCaptureParameters* _Nonnull)captureParams;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public abstract int StartScreenCaptureByWindowId(view_t windowId, Rectangle regionRect,
+            ScreenCaptureParameters captureParams);</codeblock></p>
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="windows" outputclass="language-cpp">virtual int startScreenCaptureByWindowId(view_t windowId,
+            <codeblock props="cpp" outputclass="language-cpp">virtual int startScreenCaptureByWindowId(view_t windowId,
                 const Rectangle&amp; regionRect,
                 const ScreenCaptureParameters&amp; captureParams) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">startScreenCaptureByWindow(windowId: number,
                 regionRect: Rectangle,
                 captureParams: ScreenCaptureParameters
                 ): number</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int StartScreenCaptureByWindowId(view_t windowId, Rectangle regionRect,
-            ScreenCaptureParameters captureParams);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startScreenCaptureByWindowId(int windowId,
       [Rectangle? regionRect, ScreenCaptureParameters? captureParams]);</codeblock> </p>
-            <p outputclass="codeblock" props="rtc">
-            <codeblock props="mac" outputclass="language-objectivec">- (int)startScreenCaptureByWindowId:(NSUInteger)windowId rectangle:(CGRect)rectangle parameters:(AgoraScreenCaptureParameters* _Nonnull)captureParams;</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
@@ -43,12 +44,12 @@
             <p id="desc">共享一个窗口或该窗口的部分区域。用户需要在该方法中指定想要共享的窗口 ID。</p>
             <note type="attention" id="note">
             <p props="mac">该方法需要在加入频道后调用。</p>
-            <ul props="windows">
+            <ul props="cpp">
             <li>该方法需要在加入频道后调用。</li>
             <li>该方法仅适用于 macOS 和 Windows 平台。</li>
             </ul> </note>
-            <p props="windows">自 v3.0.0 起，该方法支持共享通用 Windows 平台（UWP）应用窗口。声网使用最新版 SDK 对主流的 UWP 应用进行了测试，结果如下：</p>
-            <p props="windows"> <table id="table_lvk_tfs_r4b">
+            <p props="cpp">自 v3.0.0 起，该方法支持共享通用 Windows 平台（UWP）应用窗口。声网使用最新版 SDK 对主流的 UWP 应用进行了测试，结果如下：</p>
+            <p props="cpp"> <table id="table_lvk_tfs_r4b">
             <tgroup cols="4">
                 <colspec colnum="1" colname="col1"/>
                 <colspec colnum="2" colname="col2"/>
@@ -177,10 +178,13 @@
                 <pt>windowId</pt>
                 <pd>指定待共享的窗口 ID。
       
+                    
+                    
+                    
                     <p props="electron">你可以通过 <xref keyref="getWindowsInfo"/> 方法获取。</p>
                 </pd>
             </plentry>
-            <plentry props="windows electron unity flutter">
+            <plentry props="cpp electron cs flutter">
                 <pt>regionRect</pt>
                 <pd>（可选）指定待共享区域相对于整个屏幕的位置。如不填，则表示共享整个屏幕。详见 <xref keyref="Rectangle"/>。如果设置的共享区域超出了窗口的边界，则只共享窗口内的内容；如果宽或高为 0，则共享整个窗口。</pd>
             </plentry>
@@ -189,6 +193,9 @@
                 <pt props="rtc-ng">regionRect</pt>
                 <pd>
                     <p>（可选）待共享区域相对于整个窗口的位置。如不填，则表示共享整个窗口。由如下参数组成：
+                    
+                    
+                    
                     <ul>
                     <li>x：左上角的横向偏移。</li>
                     <li>y：左上角的纵向偏移。</li>
@@ -203,7 +210,7 @@
                 <pd>屏幕共享的参数配置。默认的分辨率为 1920 x 1080，即 2073600 像素。该像素值为计费标准。详见 <xref keyref="ScreenCaptureParameters"/>。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native electron cs">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功。</li>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_audioprocessingchannels">
+    <title><ph keyref="AUDIO_PROCESSING_CHANNELS"/></title>
+    <shortdesc id="short"><ph id="shortdesc">音频前处理的声道数。</ph></shortdesc>
+    <refbody>
+        <section id="detailed_desc">
+            <p>在演唱会等需要增强真实感的场景中，本地用户可能需要采集立体声并发送立体声信号给远端用户。
+          例如，在演唱会的舞台上，主唱、吉他手、鼓手分别站在不同的位置，现场设备采集到了三者的立体声，并把立体声信号发送给远端用户，远端用户可以像亲临舞台一样听到来自不同方向的歌声、吉他声和鼓声。</p>
+            <p>通过该类，你可以设置双声道处理，实现立体声。Agora 推荐按如下步骤设置：
+            
+            
+            <ol>
+            <li>前处理：调用 <xref keyref="setAdvancedAudioOptions"/> 并在 <xref keyref="AdvancedAudioOptions"/> 中设置 <parmname>audioProcessingChannels</parmname> 为 <apiname keyref="AUDIO_PROCESSING_STEREO"/> (2)。</li>
+            <li>后处理：调用 <xref keyref="setAudioProfile2"/> 并将 <parmname>profile</parmname> 设为 <apiname keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO"/> (3) 或 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/> (5)。</li>
+            </ol></p>
+            <note type="attention">
+            <ul>
+            <li>立体声设置仅在媒体音量下生效。<ph props="android ios">详见<xref keyref="volume-type"/>。</ph><ph props="cpp">详见<xref keyref="volume-type-android"/>和<xref keyref="volume-type-ios"/>。</ph></li>
+            <li props="cpp ios">在 iOS 上，立体声对设备性能要求较高。仅支持在 iOS 14.0 及以上版本的如下设备中实现立体声：
+            
+                
+                <ul>
+                <li>iPhone XS</li>
+                <li>iPhone XS Max</li>
+                <li>iPhone XR</li>
+                <li>iPhone 11</li>
+                <li>iPhone 11 Pro</li>
+                <li>iPhone 11 Pro Max</li>
+                <li>iPhone SE (2020)</li>
+                <li>11 英寸 或 12.9 英寸 iPad Pro（第三代）</li>
+                <li>11 英寸 或 12.9 英寸 iPad Pro（第四代）</li>
+                </ul></li>
+            </ul> </note> </section>
+        <section id="parameters">
+            <title>枚举值</title>
+            <parml>
+            <plentry>
+                <pt><ph keyref="AUDIO_PROCESSING_MONO"/></pt>
+                <pd>1: （默认）单声道。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="AUDIO_PROCESSING_STEREO"/></pt>
+                <pd>2: 双声道。</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

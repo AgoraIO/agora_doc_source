@@ -1,0 +1,74 @@
+@startuml
+autonumber
+skinparam Monochrome true
+participant "Engine App"
+== Initialization ==
+create IAgoraService
+"Engine App"->IAgoraService: createAgoraService
+"Engine App"->IAgoraService: initialize
+
+"Engine App"->IAgoraService: createMediaNodeFactory
+activate IAgoraService
+create IMediaNodeFactory
+IAgoraService-->>IMediaNodeFactory: Create an IMediaNodeFactory object
+deactivate IAgoraService
+
+"Engine App"->IAgoraService: createRtcConnection
+activate IAgoraService
+create IRtcConnection
+IAgoraService-->>IRtcConnection: Create an IRtcConnection object
+deactivate IAgoraService
+
+"Engine App"->IRtcConnection: connect
+
+"Engine App"->IRtcConnection: getLocalUser
+activate IRtcConnection
+create ILocalUser
+IRtcConnection-->>ILocalUser: Create an ILocalUser object
+deactivate IRtcConnection
+
+== Create local video and audio tracks and senders  ==
+
+"Engine App"->IMediaNodeFactory: createAudioPcmDataSender
+activate IMediaNodeFactory
+create IAudioPcmDataSender
+IMediaNodeFactory-->>IAudioPcmDataSender: Create an IAudioPcmDataSender object
+deactivate IMediaNodeFactory
+
+
+"Engine App"->IAgoraService: createCustomAudioTrack
+activate IAgoraService
+create ILocalAudioTrack
+IAgoraService-->>ILocalAudioTrack: Create an ILocalAudioTrack object
+deactivate IAgoraService
+
+
+"Engine App"->IMediaNodeFactory: createVideoFrameSender
+activate IMediaNodeFactory
+create IVideoFrameSender
+IMediaNodeFactory-->>IVideoFrameSender: Create an IVideoFrameSender object
+deactivate IMediaNodeFactory
+
+"Engine App"->IAgoraService: createCustomVideoTrack
+activate IAgoraService
+create ILocalVideoTrack
+IAgoraService-->>ILocalVideoTrack: Create an ILocalVideoTrack object
+deactivate IAgoraService
+
+== Publish local video and audio ==
+"Engine App"->ILocalUser: publishAudio
+note right: Publish local audio track
+"Engine App"->ILocalUser: publishVideo
+note right: Publish local video track
+
+group Send video and audio
+"Engine App"->IAudioPcmDataSender: sendAudioPcmData
+"Engine App"->IVideoFrameSender: sendVideoFrame
+end
+
+
+== Unpublish local video and audio ==
+"Engine App"->ILocalUser: unpublishAudio
+"Engine App"->ILocalUser: unpublishVideo
+"Engine App"->IRtcConnection: disconnect
+@enduml

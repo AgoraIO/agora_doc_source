@@ -5,60 +5,60 @@
     <shortdesc conkeyref="onUserJoined/short"/>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="IChannel_onUserJoined"/>
-   </keywords>
+            <keywords>
+                <indexterm keyref="IChannel_onUserJoined"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp">virtual void onUserJoined(IChannel *rtcChannel,
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onUserJoined(IChannel *rtcChannel,
     uid_t uid,
     int elapsed) {
     (void)rtcChannel;
     (void)uid;
     (void)elapsed;
     }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(
+            <codeblock props="electron" outputclass="language-typescript">on(
   evt: ChannelEvents.USER_JOINED,
   cb: (channelId: string, uid: number, elapsed: number) =&gt; void
 ): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserJoined(string channelId, uint uid, int elapsed)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart">UidWithElapsedCallback? userJoined;</codeblock>
-        </p>
+            <codeblock props="cs" outputclass="language-csharp">public virtual void OnUserJoined(string channelId, uint uid, int elapsed)</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">UidWithElapsedCallback? userJoined;</codeblock> </p>
         </section>
         <section id="detailed_desc">
-
-   <ul conkeyref="onUserJoined/detailed_desc_scene">
-       <li/>
-   </ul>
-   <p>该回调在如下情况下会被触发：
-       <ul>
-  <li>远端用户/主播调用 <xref keyref="IChannel_joinChannel"/> 方法加入频道</li>
-  <li>远端用户加入频道后将用户角色改变为主播</li>
-  <li>远端用户/主播网络中断后重新加入频道</li>
-  <li>主播通过调用 <xref keyref="IChannel_addInjectStreamUrl"/> 方法成功输入在线媒体流</li>
-       </ul>
-   </p>
+            <ul conkeyref="onUserJoined/detailed_desc_scene">
+            <li/>
+            </ul>
+            <p>该回调在如下情况下会被触发：
+       
+            
+            <ul>
+            <li>远端用户/主播调用 <xref keyref="IChannel_joinChannel"/> 方法加入频道</li>
+            <li>远端用户加入频道后将用户角色改变为主播</li>
+            <li>远端用户/主播网络中断后重新加入频道</li>
+            </ul> </p>
         </section>
-        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-   <parml>
-       <plentry conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
-  <pt/>
-  <pd/>
-       </plentry>
-       <plentry conkeyref="onUserJoined/uid">
-  <pt/>
-  <pd/>
-       </plentry>
-       <plentry>
-  <pt>elapsed</pt>
-  <pd>从本地用户调用 <xref keyref="IChannel_joinChannel"/> 到该回调触发的延迟（毫秒)。</pd>
-       </plentry>
-   </parml>
-        </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <parml>
+            <plentry props="native cs" conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="onUserJoined/uid">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry>
+                <pt>elapsed</pt>
+                <pd>从本地用户调用 <xref keyref="IChannel_joinChannel"/> 到该回调触发的延迟（毫秒)。</pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

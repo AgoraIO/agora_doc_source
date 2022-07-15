@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_onfirstremoteaudioframe">
+    <title><ph keyref="onFirstRemoteAudioFrame" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the SDK receives the first audio frame from a specific remote user.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="onFirstRemoteAudioFrame" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public void onFirstRemoteAudioFrame(int uid, int elapsed) {
+    }
+</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine firstRemoteAudioFrameOfUid:(NSUInteger)uid elapsed:(NSInteger)elapsed NS_SWIFT_NAME(rtcEngine(_:firstRemoteAudioFrameOfUid:elapsed:));
+</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onFirstRemoteAudioFrame(uid_t uid, int elapsed) AGORA_DEPRECATED_ATTRIBUTE {
+    (void)uid;
+    (void)elapsed;
+  }
+</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.FIRST_REMOTE_AUDIO_FRAME, cb: (
+    uid: number,
+    elapsed: number) => void
+    ): this;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstRemoteAudioFrame(uint uid, int elapsed)</codeblock>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">UidWithElapsedCallback? firstRemoteAudioFrame;</codeblock>
+        </p>
+        </section>
+        <section id="detailed_desc">
+
+   <dl outputclass="deprecated">
+       <dlentry>
+  <dt>Deprecated:</dt>
+  <dd>Please use <xref keyref="onRemoteAudioStateChanged" /> instead.</dd>
+       </dlentry>
+   </dl>
+        </section>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+   <parml>
+                <plentry props="ios mac">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine" /> object.</pd>
+                </plentry>
+       <plentry>
+  <pt>uid</pt>
+  <pd>The user ID of the remote user.</pd>
+       </plentry>
+       <plentry>
+  <pt>elapsed</pt>
+  <pd conkeyref="onFirstRemoteAudioDecoded/elapsed" />
+       </plentry>
+   </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="urn:oasis:names:tc:dita:rng:checkShell.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="urn:oasis:names:tc:dita:rng:vocabularyModuleDesc.rng"
+                         schematypens="http://relaxng.org/ns/structure/1.0"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         xmlns:dita="http://dita.oasis-open.org/architecture/2005/"
+         xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">
+  <moduleDesc xmlns="http://dita.oasis-open.org/architecture/2005/">
+      <moduleTitle>DITA Classification Map Shell</moduleTitle>
+      <headerComment xml:space="preserve">
+=============================================================
+                   HEADER                                    
+=============================================================
+Darwin Information Typing Architecture (DITA) Version 2.0
+[[[Draft level]]]
+[[[Release date]]] 
+Copyright (c) OASIS Open 2018. All rights reserved. 
+Source: [[[Source link]]]
+
+============================================================
+ MODULE:    DITA Classification Map
+ VERSION:   2.0
+ DATE:      [[[Release date]]]
+ PURPOSE:   DTD to describe DITA Classification maps         
+                                                             
+=============================================================
+
+=============================================================
+                   PUBLIC DOCUMENT TYPE DEFINITION           
+                       TYPICAL INVOCATION                    
+                                                             
+Refer to this file by the following public identifier or an
+     appropriate system identifier:
+PUBLIC "-//OASIS//DTD DITA 2.0 Classification Map//EN"
+     Delivered as file "classifyMap.dtd"                          
+
+=============================================================
+            (C) Copyright OASIS Open 2005, 2014.             
+            (C) Copyright IBM Corporation 2001, 2004.        
+            All Rights Reserved.                             
+                                                             
+ UPDATES:                                                    
+=============================================================
+    
+  </headerComment>
+      <moduleMetadata>
+         <moduleType>mapshell</moduleType>
+         <moduleShortName>classifyMap</moduleShortName>
+         <shellPublicIds>
+            <dtdShell>-//OASIS//DTD DITA<var presep=" " name="ditaver"/> Classification Map//EN</dtdShell>
+            <rngShell>urn:oasis:tc:tc:dita:spec:classification:rng:classifyMap.rng<var presep=":" name="ditaver"/></rngShell>
+         </shellPublicIds>
+      </moduleMetadata>
+  </moduleDesc>
+  <div>
+      <a:documentation>ROOT ELEMENT DECLARATION</a:documentation>
+      <start>
+         <ref name="map.element"/>
+      </start>
+
+  </div>
+  <div>
+      <a:documentation>DOMAINS ATTRIBUTE</a:documentation>
+      <define name="specializations-att" combine="interleave">
+         <optional>
+            <attribute name="specializations"
+               a:defaultValue="@props/audience
+               @props/deliveryTarget
+               @props/platform
+               @props/product
+               @props/otherprops"/>
+         </optional>
+      </define>
+
+  </div>
+  <div>
+      <a:documentation>MODULE INCLUSIONS</a:documentation>
+      <include href="urn:oasis:names:tc:dita:rng:mapMod.rng:2.0"/>
+      <include href="urn:oasis:names:tc:dita:rng:mapGroupMod.rng:2.0"/>
+  
+      <include href="urn:oasis:names:tc:dita:spec:classification:rng:classifyDomain.rng:2.0"/>
+      <include href="../technicalContent/abbreviateDomain.rng"/>
+      <include href="urn:oasis:names:tc:dita:rng:alternativeTitlesDomain.rng:2.0" dita:since="2.0"/>
+      <include href="urn:oasis:names:tc:dita:rng:audienceAttDomain.rng:2.0"/>
+      <include href="urn:oasis:names:tc:dita:rng:deliveryTargetAttDomain.rng:2.0" dita:since="1.3"/>
+      <include href="urn:oasis:names:tc:dita:rng:platformAttDomain.rng:2.0"/>
+      <include href="urn:oasis:names:tc:dita:rng:productAttDomain.rng:2.0"/>
+      <include href="urn:oasis:names:tc:dita:rng:otherpropsAttDomain.rng:2.0"/>
+      <include href="urn:oasis:names:tc:dita:rng:ditavalrefDomain.rng:2.0" dita:since="1.3"/>
+      <include href="urn:oasis:names:tc:dita:rng:emphasisDomain.rng:2.0"/>
+      <include href="../technicalContent/glossrefDomain.rng"/>
+      <include href="urn:oasis:names:tc:dita:rng:hazardDomain.rng:2.0"/>
+      <include href="urn:oasis:names:tc:dita:rng:highlightDomain.rng:2.0"/>
+      <include href="../technicalContent/markupDomain.rng" dita:since="1.3"/>
+      <include href="../technicalContent/programmingDomain.rng"/>
+      <include href="../technicalContent/releaseManagementDomain.rng"
+               dita:since="1.3"/>
+      <include href="../technicalContent/softwareDomain.rng"/>
+      <include href="../technicalContent/syntaxdiagramDomain.rng" dita:since="2.0"/>
+      <include href="../technicalContent/uiDomain.rng"/>
+      <include href="urn:oasis:names:tc:dita:rng:utilitiesDomain.rng:2.0"/>
+      <include href="../technicalContent/xmlDomain.rng" dita:since="1.3"/>    </div>
+  <div>
+      <a:documentation>ID-DEFINING-ELEMENT OVERRIDES</a:documentation>
+      <define name="any">
+         <zeroOrMore>
+            <choice>
+               <ref name="idElements"/>
+               <element>
+                  <anyName>
+                     <except>
+                        <name>map</name>
+                        <name>anchor</name>
+                     </except>
+                  </anyName>
+                  <zeroOrMore>
+                     <attribute>
+                        <anyName/>
+                     </attribute>
+                  </zeroOrMore>
+                  <ref name="any"/>
+               </element>
+               <text/>
+            </choice>
+         </zeroOrMore>
+      </define>
+  </div>
+</grammar>

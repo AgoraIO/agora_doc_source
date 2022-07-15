@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Descriptor for 'Insert XML fragment ' operation. 
+-->
+<refactoringOperationDescriptor 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.oxygenxml.com/ns/xmlRefactoring" 
+    id="insert-xml-fragment" 
+    name="${i18n(xr_insert_xml_fragment)}">
+	<description>${i18n(xr_insert_xml_fragment_description)}</description>    
+	<script type="XQUERY_UPDATE" href="insert-xml-fragment.xq"/>
+	<category>${i18n(xr_fragments)}</category>
+    <parameters>
+    	<description>${i18n(xr_insert_xml_fragment_parameters_description)}</description>
+    
+    	<parameter name="xml_fragment" label="${i18n(xr_xml_fragment)}" type="XML_FRAGMENT">
+    		<description>${i18n(xr_insert_xml_fragment_param_description)}</description>
+    	</parameter>    	    
+    	<section label="${i18n(Location)}">    		
+    		<elementLocation name="element_anchor_xpath" useCurrentContext="true">
+    			<element label="${i18n(XPath)}">
+    				<description>${i18n(xr_insert_xml_fragment_xpath_param_description)}</description>
+    			</element>
+    		</elementLocation>    		
+    		<parameter label="${i18n(xr_position_param)}" type="TEXT" name="insert_position">    			
+    			<description>${i18n(xr_position_param_description)}</description>
+    			<possibleValues onlyPossibleValuesAllowed="true">
+    				<value name="before">${i18n(Before)}</value>
+    				<value name="after" default="true">${i18n(After)}</value>
+    				<value name="firstChild">${i18n(xr_first_child)}</value>
+    				<value name="lastChild">${i18n(xr_last_child)}</value>
+    			</possibleValues>
+    		</parameter> 
+    	</section>
+    </parameters>
+</refactoringOperationDescriptor>

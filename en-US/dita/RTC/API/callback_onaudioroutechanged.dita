@@ -1,68 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onaudioroutechanged">
-    <title><ph keyref="onAudioRouteChanged" /></title>
+    <title><ph keyref="onAudioRouteChanged"/></title>
     <shortdesc id="short"><ph id="shortdesc">Occurs when the local audio route changes.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="onAudioRouteChanged" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="onAudioRouteChanged"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="windows" outputclass="language-cpp">virtual void onAudioRoutingChanged(int routing) { (void)routing; }
-            </codeblock>
-        </p>
-        <p outputclass="codeblock" props="rtc">
-                <codeblock props="android" outputclass="language-java">public void onAudioRouteChanged(int routing) {}</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didAudioRouteChanged:(AgoraAudioOutputRouting)routing;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual void onAudioRouteChanged(AUDIO_ROUTE_TYPE routing) {
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioRoutingChanged(int routing) { (void)routing; }
+            </codeblock> </p>
+            <p outputclass="codeblock" props="rtc">
+            <codeblock props="android" outputclass="language-java">public void onAudioRouteChanged(int routing) {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didAudioRouteChanged:(AgoraAudioOutputRouting)routing;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioRouteChanged(AUDIO_ROUTE_TYPE routing) {
     (void)routing;
     }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioRouteChanged(AUDIO_ROUTE_TYPE routing)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">AudioRouteCallback? audioRouteChanged;</codeblock>
-        </p>
-    </section>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="cs" outputclass="language-csharp">public virtual void OnAudioRouteChanged(AUDIO_ROUTE_TYPE routing)</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">AudioRouteCallback? audioRouteChanged;</codeblock> </p>
+        </section>
         <section id="detailed_desc">
-            <note props="windows">
-                <p>This method applies to Android and iOS only.</p>
-            </note>
-        </section>
-        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-   <parml>
-       <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                  <pt />
-                  <pd />
-              </plentry>
-       <plentry>
-  <pt>routing</pt>
-           <pd><p props="ios mac unity flutter">The current audio routing. For details, see <xref keyref="AUDIO_ROUTE_TYPE" />.</p>
-               <p props="windows">The current audio routing.<ph props="rtc"> For details, see <xref keyref="AUDIO_ROUTE_TYPE" />.</ph><ul props="rtc-ng">
-                   <li>-1: Default audio route.</li>
-                   <li>0: The audio route is a headset with a microphone.</li>
-                   <li>1: The audio route is an earpiece.</li>
-                   <li>2: The audio route is a headset without a microphone.</li>
-                   <li>3: The audio route is the speaker that comes with the device.</li>
-                   <li>4: The audio route is an external speaker.</li>
-                   <li>5：The audio route is a Bluetooth headset.</li>
-               </ul></p>
-               <p props="android">The current audio routing.<ul>
-                   <li><ph keyref="AUDIO_ROUTE_DEFAULT" /> (-1): The default audio route.</li>
-                                <li><ph keyref="AUDIO_ROUTE_HEADSET" /> (0): The headset.</li>
-                                <li><ph keyref="AUDIO_ROUTE_EARPIECE" /> (1): The earpiece.</li>
-                                <li><ph keyref="AUDIO_ROUTE_HEADSET_NO_MIC" /> (2):The headset with no microphone.</li>
-                                <li><ph keyref="AUDIO_ROUTE_SPEAKERPHONE" /> (3): The built-in speaker on a mobile device.</li>
-                                <li><ph keyref="AUDIO_ROUTE_LOUDSPEAKER" /> (4): The external speaker.</li>
-                   <li><ph keyref="AUDIO_ROUTE_BLUETOOTH" /> (5): The bluetooth headset.</li>
-               </ul>
-           </p>
-           </pd>
-       </plentry>
-   </parml>
-        </section>
+            <note props="cpp">
+            <p>This method applies to Android and iOS only.</p>
+            </note> </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <parml>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry>
+                <pt>routing</pt>
+                <pd>
+                    <p props="ios mac cs flutter">The current audio routing. For details, see <xref keyref="AUDIO_ROUTE_TYPE"/>.</p>
+                    <p props="cpp">The current audio routing.<ph props="rtc"> For details, see <xref keyref="AUDIO_ROUTE_TYPE"/>.</ph>
+                    <ul props="rtc-ng">
+                    <li>-1: Default audio route.</li>
+                    <li>0: The audio route is a headset with a microphone.</li>
+                    <li>1: The audio route is an earpiece.</li>
+                    <li>2: The audio route is a headset without a microphone.</li>
+                    <li>3: The audio route is the speaker that comes with the device.</li>
+                    <li>4: The audio route is an external speaker.</li>
+                    <li>5：The audio route is a Bluetooth headset.</li>
+                    </ul></p>
+                    <p props="android">The current audio routing.
+                    
+                    <ul>
+                    <li><ph keyref="AUDIO_ROUTE_DEFAULT"/> (-1): The default audio route.</li>
+                    <li><ph keyref="AUDIO_ROUTE_HEADSET"/> (0): The headset.</li>
+                    <li><ph keyref="AUDIO_ROUTE_EARPIECE"/> (1): The earpiece.</li>
+                    <li><ph keyref="AUDIO_ROUTE_HEADSET_NO_MIC"/> (2):The headset with no microphone.</li>
+                    <li><ph keyref="AUDIO_ROUTE_SPEAKERPHONE"/> (3): The built-in speaker on a mobile device.</li>
+                    <li><ph keyref="AUDIO_ROUTE_LOUDSPEAKER"/> (4): The external speaker.</li>
+                    <li><ph keyref="AUDIO_ROUTE_BLUETOOTH"/> (5): The bluetooth headset.</li>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

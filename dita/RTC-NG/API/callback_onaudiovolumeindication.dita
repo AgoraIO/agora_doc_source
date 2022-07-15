@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_onaudiovolumeindication">
+    <title><ph keyref="onAudioVolumeIndication"/></title>
+    <shortdesc id="short"><ph id="shortdesc">用户音量提示回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onAudioVolumeIndication"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioVolumeIndication(RtcConnection connection, AudioVolumeInfo[] speakers, uint speakerNumber, int totalVolume) {}</codeblock></p>
+            <p outputclass="codeblock" props="rtc">
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioVolumeIndication(AudioVolumeInfo[] speakers, uint speakerNumber, int totalVolume)</codeblock></p>
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onAudioVolumeIndication(AudioVolumeInfo[] speakers, int totalVolume) {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+        reportAudioVolumeIndicationOfSpeakers:(NSArray&lt;AgoraRtcAudioVolumeInfo *&gt; * _Nonnull)speakers
+        totalVolume:(NSInteger)totalVolume;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioVolumeIndication(const AudioVolumeInfo* speakers,
+    unsigned int speakerNumber,
+    int totalVolume) {
+    (void)speakers;
+    (void)speakerNumber;
+    (void)totalVolume;
+    }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.AUDIO_VOLUME_INDICATION, cb: (
+    speakers: AudioVolumeInfo[],
+    speakerNumber: number,
+    totalVolume: number
+    ) =&gt; void
+    ): this;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">AudioVolumeCallback? audioVolumeIndication;</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>该回调默认禁用，你可以通过 <xref keyref="enableAudioVolumeIndication"/> 开启。 开启后，只要频道内有发流用户，SDK 会在加入频道后按 <apiname keyref="enableAudioVolumeIndication"/> 中设置的时间间隔触发 <apiname keyref="onAudioVolumeIndication"/> 回调。每次会触发两个 <apiname keyref="onAudioVolumeIndication"/> 回调，一个报告本地发流用户的音量相关信息，另一个报告瞬时音量最高的远端用户（最多 3 位）的音量相关信息。</p>
+            <note type="attention">
+       启用该功能后，如果有用户将自己静音（调用了 <xref keyref="muteLocalAudioStream"/>），SDK 行为会受如下影响：
+       
+            <ul>
+            <li>本地用户静音后，SDK 立即停止报告本地用户的音量提示回调。</li>
+            <li>瞬时音量最高的远端用户静音后 20 秒，远端的音量提示回调中将不再包含该用户；如果远端所有用户都将自己静音，20 秒后 SDK 停止报告远端用户的音量提示回调。</li>
+            </ul> </note> </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <parml>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry props="rtc-ng">
+                <pt props="unity">connection</pt>
+                <pd props="unity">Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+            </plentry>
+            <plentry>
+                <pt>speakers</pt>
+                <pd>用户音量信息，详见 <xref keyref="AudioVolumeInfo"/> 数组。如果
+                            <parmname>speakers</parmname> 为空，则表示远端用户不发流或没有远端用户。</pd>
+            </plentry>
+            <plentry props="cpp unity">
+                <pt>speakerNumber</pt>
+                <pd>
+                    <p>用户数量。
+                    <ul>
+                    <li>在本地用户的回调中，只要本地用户在发流，<parmname>speakerNumber</parmname> 始终为
+                                    1。</li>
+                    <li>在远端用户的回调中，<parmname>speakerNumber</parmname> 取值范围为 [0,3]。如果远端发流用户数量大于 3，则此回调中 <parmname>speakerNumber</parmname> 值为 3。</li>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>totalVolume</pt>
+                <pd>
+                    <p>混音后的总音量，取值范围为 [0,255]。
+                    <ul>
+                    <li>在本地用户的回调中，<parmname>totalVolume</parmname> 为本地发流用户的音量。</li>
+                    <li><ph>在远端用户的回调中，<parmname>totalVolume</parmname> 为瞬时音量最高的远端用户（最多 3 位）混音后的总音量。 </ph><ph props="native">如果用户调用了 <xref keyref="startAudioMixing2"/>，则 <parmname>totalVolume</parmname> 为音乐文件和用户声音的总音量。</ph></li>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

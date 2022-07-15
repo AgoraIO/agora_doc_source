@@ -1,0 +1,488 @@
+// Styling for DITA Project files
+@namespace oxy url('http://www.oxygenxml.com/extensions/author');
+@namespace dp url('https://www.dita-ot.org/project');
+
+@import "../../lw/css/library.less";
+
+.DITAProject() {
+  & {
+    display:block;
+    margin: 1em;
+  }
+  & > * {
+    margin-bottom:3em;
+  }
+  &:before{
+    display:block;
+    text-align:left;
+    content:"DITA Project file";
+    .color(blue);
+    
+    
+    font-weight:bold;
+    font-size:larger;    
+  }
+}
+
+.displayElement(@label:oxy_local-name()) {
+  &{
+    display:block;
+    margin-left:0.5em;
+    padding:0.2em;
+  }
+  &:before(10) {
+    content:@label " ";
+    font-weight:bold;
+  }
+}
+
+
+.link(@ref:href, @prefix:"") {
+  &[@{ref}]:before(5) {
+    content: url("../../img/link.png") oxy_concat(@prefix, attr(@ref));
+    link: oxy_concat(@prefix, attr(@ref));
+    .color(navy);
+  }
+  &[@{ref}]:before(5):hover,
+  &[@{ref}]:before(5):focus{
+    text-decoration:underline;
+    link: oxy_concat(@prefix, attr(@ref));
+  }
+}
+
+.container() {
+  & {
+    display:block;
+    margin-left:0.5em;
+    margin-top:2em;
+    padding:0.2em;
+    border:1px solid lightgray;
+    position:relative;
+  }
+  
+  &:before {
+    display:block;
+    .color(black);
+    content:" " oxy_local-name();
+    position:absolute;
+    top:-1.2em;
+    left:-1px;;
+    border:1px solid lightgray;
+    .background-color(lightblue);
+    width:20%;
+    min-width:10em;
+  }
+  
+}
+
+.name() {
+  &[name]:before(10) {
+    font-weight:bold;
+    content:attr(name) " ";
+  }
+}
+
+.path() {
+  &[path]:before(4) {
+    content:attr(path) " ";
+  }
+}
+
+.value() {
+  &[value]:before(3) {
+    content:attr(value) " ";
+  }
+}
+
+.id() {
+  &[id]:before(5) {
+    content:"[" attr(id) "]";
+    .color(gray);
+  }
+}
+
+.idref() {
+  &[idref]{
+    .link(idref, "#");
+  }
+}
+
+
+.transtype() {
+  &[transtype]:before(3) {
+    content:" transform to " ;
+  }
+  &[transtype]:before(2) {
+    .color(blue);
+    content: oxy_label(text, attr(transtype)) " ";
+  }
+}
+
+/*  ----------------------------  */
+
+dp|project {
+  .DITAProject();
+}
+
+dp|include {
+  .container();
+}
+dp|include:not(:-oxy-edit) {
+  .link(href);
+}
+
+
+dp|deliverable {
+    .container();
+}
+dp|deliverable:not(:-oxy-edit) {
+  .name();
+  .id();
+}
+
+
+dp|publication {
+    .container();
+}
+
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|publication,
+dp|project > dp|publication:not(:-oxy-edit) {
+    .name();
+    .id();
+    .transtype();
+    .idref();
+}
+
+
+
+
+dp|context {
+  .container();
+}
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|context,
+dp|project > dp|context:not(:-oxy-edit) {
+  .name();
+  .id();
+  .idref();
+}
+
+
+dp|input {
+  .displayElement();
+}
+
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|context > dp|input,
+dp|project > dp|context:not(:-oxy-edit) > dp|input {
+  .link(href);
+}
+
+
+
+dp|profile {
+  .container();
+  margin-top:1em;
+}
+
+dp|ditaval {
+  .displayElement();  
+}
+
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|context > dp|profile > dp|ditaval,
+dp|project > dp|context:not(:-oxy-edit) > dp|profile > dp|ditaval {
+  .link(href);  
+}
+
+dp|output {
+  .displayElement();
+}
+
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|output {
+  .link(href);
+}
+
+dp|param {
+  display:block;
+  margin-left:1em;
+}
+
+
+dp|project > dp|deliverable:not(:-oxy-edit) > dp|publication > dp|param,
+dp|project > dp|publication:not(:-oxy-edit) > dp|param {
+  .name();
+  &:before(9) {
+    content:" = ";
+  }
+  .link(href);
+  .path();
+  .value();
+}
+
+dp|project:empty,
+dp|project > *
+{
+    .actions-after2({
+        .closeableAction('edit-include');
+        .actionSeparator(" ");
+        .closeableAction('edit-context');
+        .actionSeparator(" ");
+        .closeableAction('edit-publication');
+        .actionSeparator(" ");
+        .closeableAction('edit-deliverable');
+    });
+}
+
+
+
+
+.actions-after2(@actions, @separator:1109, @actionsTriggerLayer:1110, @actionsLayer:1111) {
+    & {
+      position:relative;
+    }
+    
+    
+    
+    &:after(@{separator}) {
+        display:block;
+        font-size:1px;
+        content:" ";
+    }
+    &:after(@{actionsTriggerLayer}) {
+        visibility:hidden;
+        display:block;
+        position:absolute;
+        bottom:-1.5em;
+        .plusAction();
+    }
+
+    &:focus-within:after(@{actionsTriggerLayer}),
+    &:hover:after(@{actionsTriggerLayer}) {
+        visibility:visible;
+    }
+    
+    &:-oxy-add:after(@{actionsTriggerLayer}) {
+        visibility:hidden;
+        .minusAction();
+    }
+    &:hover:-oxy-add:after(@{actionsTriggerLayer}),
+    &:focus-within:-oxy-add:after(@{actionsTriggerLayer}){
+        visibility:visible;
+    }
+    
+    &:-oxy-add:after(@{actionsLayer}){
+        font-size: 13px;
+        display:block;
+        position:absolute;
+        bottom:-1.7em;
+        left:2em;
+        visibility:hidden;
+        @actions();
+    }
+    
+    &:hover:-oxy-add:after(@{actionsLayer}),
+    &:focus-within:-oxy-add:after(@{actionsLayer}){
+        visibility:visible;
+    }
+}
+
+:root > * {
+  .editable();
+}
+
+:root > *:-oxy-edit {
+  .deleteAction();
+}
+
+
+:root > *:-oxy-edit {
+  outline:1px solid green;  
+}
+
+
+:root > *:-oxy-edit input:after(5) {
+    text-decoration : none;
+    .textfield("  URL:", "href");
+}
+
+:root > *:-oxy-edit ditaval {
+  .deleteAction();
+}
+
+:root > *:-oxy-edit ditaval:after(5),
+:root > *:-oxy-edit output:after(5){
+    text-decoration : none;
+    .textfield("  URL:", "href");
+}
+
+
+:root > dp|include:-oxy-edit:after(5) {
+    text-decoration : none;
+    .textfield("  URL:", "href");
+}
+
+:root > dp|context:-oxy-edit:before(2),
+:root > *:-oxy-edit dp|context:not([idref]):before(2){
+    text-decoration : none;
+    .textfield("  Name:", "name");
+    .textfield("  ID:", "id");
+}
+
+:root > dp|deliverable:-oxy-edit:before(2) {
+    text-decoration : none;
+    .textfield("  Name:", "name");
+    .textfield("  ID:", "id");
+}
+
+:root > dp|publication:-oxy-edit:before(2),
+:root > *:-oxy-edit dp|publication:not([idref]):before(2){
+    text-decoration : none;
+    .textfield("  Name:", "name");
+    .textfield("  ID:", "id");
+    .combobox("  Transtype:", "transtype");
+}
+
+
+
+:root > *:-oxy-edit profile {
+   .addActions({
+       .inlineActionInsertAfter('<ditaval xmlns="https://www.dita-ot.org/project" href=""/>', '+ filter', 'Insert filter');
+   });   
+}
+
+:root > *:-oxy-edit param {
+  .displayElement('parameter');
+}
+
+:root > *:-oxy-edit param:after(5) {
+  text-decoration : none;
+    .combobox("  Name:", "name");
+}
+
+:root > *:-oxy-edit param[href]:after(6) {
+  text-decoration : none;
+    .combobox("  URL:", "href");
+}
+:root > *:-oxy-edit param[value]:after(6) {
+  text-decoration : none;
+    .combobox("  Value:", "value");
+}
+:root > *:-oxy-edit param[path]:after(6) {
+  text-decoration : none;
+    .combobox("  Path:", "path");
+}
+
+:root > *:-oxy-edit param[href] {
+  -oxy-show-placeholder:no!important;
+  .addActions({
+       .inlineActionChangeAttribute('href', 'value', 'Change to Value', 'Change the parameter type to value');
+       .inlineActionChangeAttribute('href', 'path', 'Change to Path', 'Change the parameter type to path');
+   });  
+}
+
+:root > *:-oxy-edit param[value] {
+  -oxy-show-placeholder:no!important;
+  .addActions({
+       .inlineActionChangeAttribute('value', 'path', 'Change to Path', 'Change the parameter type to path');
+       .inlineActionChangeAttribute('value', 'href', 'Change to URL', 'Change the parameter type to URL');
+   });  
+}
+
+:root > *:-oxy-edit param[path] {
+  -oxy-show-placeholder:no!important;
+  .addActions({
+       .inlineActionChangeAttribute('path', 'href', 'Change to URL', 'Change the parameter type to URL');
+       .inlineActionChangeAttribute('path', 'value', 'Change to Value', 'Change the parameter type to value');
+   });  
+}
+
+:root > *:-oxy-edit param {
+  .deleteAction();
+}
+
+
+:root > *:-oxy-edit dp|publication:not([idref]),
+:root > dp|publication:-oxy-edit {
+  -oxy-show-placeholder:no!important;
+   .addActions({
+       .inlineActionInsertAfter('<param xmlns="https://www.dita-ot.org/project" name="param" value="value"/>', '+ parameter', 'Insert filter');
+   }, 8);   
+}
+
+:root > *:-oxy-edit dp|publication:not([idref]) {
+  .addActions({
+       .inlineActionReplaceElement('<publication xmlns="https://www.dita-ot.org/project" idref=""/>', 'Refer an exiting publication', 'Insert publication reference');
+   }, 9);
+}
+
+:root > *:-oxy-edit dp|publication[idref] {
+  text-decoration : none;
+  -oxy-show-placeholder:no!important;
+  .publication-combobox("Publication reference:", "idref");
+  .addActions({
+       .inlineActionReplaceElement('<publication xmlns="https://www.dita-ot.org/project" name="myPublication" id="myPublicationID" transtype="HTML"><param name="param" value="value"/></publication>', 'Define publication inline', 'Insert publication');
+   }, 9);
+
+}
+
+
+
+:root > *:-oxy-edit dp|context:not([idref]) {
+  .addActions({
+       .inlineActionReplaceElement('<context xmlns="https://www.dita-ot.org/project" idref=""/>', 'Refer an exiting context', 'Insert context reference');
+   }, 9);
+}
+
+:root > *:-oxy-edit dp|context[idref] {
+  text-decoration : none;
+  -oxy-show-placeholder:no!important;
+  .context-combobox("Context reference:", "idref");
+  .addActions({
+       .inlineActionReplaceElement('<context xmlns="https://www.dita-ot.org/project" name="myContext" id="myContextID"><input href="sample.ditamap"/><profile><ditaval href="filter.ditaval"/></profile></context>', 'Define context inline', 'Insert publication');
+   }, 9);
+
+}
+
+.context-combobox(@label, @attribute) {
+    & {
+     content+_:"\A"
+        oxy_label(text, "@{label}", width, 20%, color, inherit)
+        oxy_combobox( 
+          edit, '@@{attribute}',
+          values, oxy_xpath("string-join(//*:context/@id, ',')"),
+          width, 70%,
+          editable, true
+        );
+    }
+}
+
+.publication-combobox(@label, @attribute) {
+    & {
+     content+_:"\A"
+        oxy_label(text, "@{label}", width, 20%, color, inherit)
+        oxy_combobox( 
+          edit, '@@{attribute}',
+          values, oxy_xpath("string-join(//*:publication/@id, ',')"),
+          width, 70%,
+          editable, true
+        );
+    }
+}
+
+dp|project                  {.hint();}
+dp|project > dp|include     {.hint();}
+dp|project > dp|context     {.hint();}
+dp|project > dp|publication {.hint();}
+dp|project > dp|deliverable {.hint();}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

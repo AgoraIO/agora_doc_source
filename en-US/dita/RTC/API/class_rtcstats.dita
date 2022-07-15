@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_rtcstats">
-    <title><ph keyref="RtcStats"/></title>
-    <shortdesc id="short"><ph id="shortdesc"
-        >Statistics of a call session.</ph></shortdesc>
+    <title><ph keyref="RtcStats" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Statistics of a call session.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p props="rtc-ng" outputclass="codeblock">
@@ -60,7 +59,7 @@
 @property(assign, nonatomic) NSInteger rxPacketLossRate;
 @end
 </codeblock>
-            <codeblock props="windows" outputclass="language-cpp">struct RtcStats {
+            <codeblock props="cpp" outputclass="language-cpp">struct RtcStats {
   unsigned int duration;
   unsigned int txBytes;
   unsigned int rxBytes;
@@ -111,11 +110,53 @@
       txPacketLossRate(0),
       rxPacketLossRate(0) {}
 };
-</codeblock> </p>
+</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public class RtcStats
+    {
+        public RtcStats()
+        {
+        }
+
+        public RtcStats(uint duration, uint txBytes, uint rxBytes, uint txAudioBytes, uint txVideoBytes,
+            uint rxAudioBytes, uint rxVideoBytes, UInt16 txKBitRate, UInt16 rxKBitRate, UInt16 rxAudioKBitRate,
+            UInt16 txAudioKBitRate, UInt16 rxVideoKBitRate, UInt16 txVideoKBitRate, UInt16 lastmileDelay,
+            int txPacketLossRate, int rxPacketLossRate, uint userCount, double cpuAppUsage, double cpuTotalUsage, int gatewayRtt,
+            double memoryAppUsageRatio, double memoryTotalUsageRatio, int memoryAppUsageInKbytes,int connectTimeMs,
+            int firstAudioPacketDuration, int firstVideoPacketDuration, int firstVideoKeyFramePacketDuration,
+            int packetsBeforeFirstKeyFramePacket, int firstAudioPacketDurationAfterUnmute, int firstVideoPacketDurationAfterUnmute,
+            int firstVideoKeyFramePacketDurationAfterUnmute, int firstVideoKeyFrameDecodedDurationAfterUnmute,
+            int firstVideoKeyFrameRenderedDurationAfterUnmute)
+        {
+        
+        public uint duration { set; get; }
+        public uint txBytes { set; get; }
+        public uint rxBytes { set; get; }
+        public uint txAudioBytes { set; get; }
+        public uint txVideoBytes { set; get; }
+        public uint rxAudioBytes { set; get; }
+        public uint rxVideoBytes { set; get; }
+        public UInt16 txKBitRate { set; get; }
+        public UInt16 rxKBitRate { set; get; }
+        public UInt16 rxAudioKBitRate { set; get; }
+        public UInt16 txAudioKBitRate { set; get; }
+        public UInt16 rxVideoKBitRate { set; get; }
+        public UInt16 txVideoKBitRate { set; get; }
+        public UInt16 lastmileDelay { set; get; }
+        public int txPacketLossRate { set; get; }
+        public int rxPacketLossRate { set; get; }
+        public uint userCount { set; get; }
+        public double cpuAppUsage { set; get; }
+        public double cpuTotalUsage { set; get; }
+        public int gatewayRtt { set; get; }
+        public double memoryAppUsageRatio { set; get; }
+        public double memoryTotalUsageRatio { set; get; }
+        public int memoryAppUsageInKbytes { set; get; }
+        public int connectTimeMs { set; get; }
+        }</codeblock> </p>
             <p outputclass="codeblock" props="rtc">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="windows unity" outputclass="language-cpp">struct RtcStats {
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="cpp" outputclass="language-cpp">struct RtcStats {
     unsigned int duration;
     unsigned int txBytes;
     unsigned int rxBytes;
@@ -165,6 +206,67 @@
     , memoryTotalUsageRatio(0)
     , memoryAppUsageInKbytes(0) {}
     };</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public class RtcStats
+    {
+        public RtcStats()
+        {
+        }
+
+        public RtcStats(uint duration, uint txBytes, uint rxBytes, uint txAudioBytes, uint txVideoBytes,
+            uint rxAudioBytes, uint rxVideoBytes, ushort txKBitRate, ushort rxKBitRate, ushort rxAudioKBitRate,
+            ushort txAudioKBitRate, ushort rxVideoKBitRate, ushort txVideoKBitRate, ushort lastmileDelay,
+            ushort txPacketLossRate, ushort rxPacketLossRate, uint userCount, double cpuAppUsage, double cpuTotalUsage,
+            int gatewayRtt, double memoryAppUsageRatio, double memoryTotalUsageRatio, int memoryAppUsageInKbytes)
+        {
+            this.duration = duration;
+            this.txBytes = txBytes;
+            this.rxBytes = rxBytes;
+            this.txAudioBytes = txAudioBytes;
+            this.txVideoBytes = txVideoBytes;
+            this.rxAudioBytes = rxAudioBytes;
+            this.rxVideoBytes = rxVideoBytes;
+            this.txKBitRate = txKBitRate;
+            this.rxKBitRate = rxKBitRate;
+            this.rxAudioKBitRate = rxAudioKBitRate;
+            this.txAudioKBitRate = txAudioKBitRate;
+            this.rxVideoKBitRate = rxVideoKBitRate;
+            this.txVideoKBitRate = txVideoKBitRate;
+            this.lastmileDelay = lastmileDelay;
+            this.txPacketLossRate = txPacketLossRate;
+            this.rxPacketLossRate = rxPacketLossRate;
+            this.userCount = userCount;
+            this.cpuAppUsage = cpuAppUsage;
+            this.cpuTotalUsage = cpuTotalUsage;
+            this.gatewayRtt = gatewayRtt;
+            this.memoryAppUsageRatio = memoryAppUsageRatio;
+            this.memoryTotalUsageRatio = memoryTotalUsageRatio;
+            this.memoryAppUsageInKbytes = memoryAppUsageInKbytes;
+        }
+        
+        public uint duration { set; get; }
+        public uint txBytes { set; get; }
+        public uint rxBytes { set; get; }
+        public uint txAudioBytes { set; get; }
+        public uint txVideoBytes { set; get; }
+        public uint rxAudioBytes { set; get; }
+        public uint rxVideoBytes { set; get; }
+        public ushort txKBitRate { set; get; }
+        public ushort rxKBitRate { set; get; }
+        public ushort rxAudioKBitRate { set; get; }
+        public ushort txAudioKBitRate { set; get; }
+        public ushort rxVideoKBitRate { set; get; }
+        public ushort txVideoKBitRate { set; get; }
+        public ushort lastmileDelay { set; get; }
+        public ushort txPacketLossRate { set; get; }
+        public ushort rxPacketLossRate { set; get; }
+        public uint userCount { set; get; }
+        public double cpuAppUsage { set; get; }
+        public double cpuTotalUsage { set; get; }
+        public int gatewayRtt { set; get; }
+        public double memoryAppUsageRatio { set; get; }
+        public double memoryTotalUsageRatio { set; get; }
+        public int memoryAppUsageInKbytes { set; get; }
+    }</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export interface RtcStats {
   duration: number;
   txBytes: number;
@@ -275,12 +377,10 @@
 }</codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
-                <pt props="ios mac windows electron unity flutter">duration</pt>
+                <pt props="ios mac cpp electron cs flutter">duration</pt>
                 <pt props="android">totalDuration</pt>
                 <pd>Call duration of the local user in seconds, represented by an aggregate value.</pd>
             </plentry>
@@ -345,7 +445,7 @@
                 <pd>The packet loss rate (%) from the Agora server to the client before using the anti-packet-loss method.</pd>
             </plentry>
             <plentry>
-                <pt props="ios mac windows electron unity">userCount</pt>
+                <pt props="ios mac cpp electron cs flutter">userCount</pt>
                 <pt props="android">users</pt>
                 <pd>The number of users in the channel.</pd>
             </plentry>
@@ -357,12 +457,8 @@
                 <pt>cpuTotalUsage</pt>
                 <pd>
                     <p>The system CPU usage (%).</p>
-                    <p props="windows electron unity"
-                    >For Windows, in the multi-kernel environment, this member represents the average CPU usage.  The value =
-                            100 - System Idle Progress in Task Manager.</p>
-                    <note type="attention"
-                    > The value of cpuTotalUsage is always reported as 0 in the <xref
-                    keyref="onLeaveChannel"/> callback.</note> </pd>
+                    <p props="cpp electron cs">For Windows, in the multi-kernel environment, this member represents the average CPU usage. The value = 100 - System Idle Progress in Task Manager.</p>
+                    <note type="attention">The value of cpuTotalUsage is always reported as 0 in the <xref keyref="onLeaveChannel" /> callback.</note></pd>
             </plentry>
             <plentry props="rtc-ng">
                 <pt>connectTimeMs</pt>
@@ -371,14 +467,11 @@
             <plentry>
                 <pt>gatewayRtt</pt>
                 <pd>The round-trip time delay (ms) from the client to the local router.
+
+
                     <note props="ios">
-                    <p props="rtc"
-                    >As of v3.3.0, this property is disabled on devices running iOS 14 or later, and enabled on devices running versions earlier than iOS 14 by default.</p>
-                    <p props="rtc-ng"
-                    >This property is disabled on devices running iOS 14 or later, and enabled on devices running versions earlier than iOS 14 by default.</p>
-                    <p>To enable this property on devices running iOS 14 or later, contact <xref
-                    href="https://agora-ticket.agora.io/" scope="external"
-                    format="html">support@agora.io</xref>.</p>
+                    <p props="rtc">As of v3.3.0, this property is disabled on devices running iOS 14 or later, and enabled on devices running versions earlier than iOS 14 by default.</p>
+                    <p>To enable this property on devices running iOS 14 or later, <xref keyref="mailto-link" />.</p>
                     </note>
                     <note props="android">
                     <p>To get gatewayRtt, ensure that you add the <codeph>android.permission.ACCESS_WIFI_STATE</codeph> permission after <codeph>&lt;/application&gt;</codeph> in the project <codeph>AndroidManifest.xml</codeph> file.</p>
@@ -388,24 +481,21 @@
                 <pt>memoryAppUsageRatio</pt>
                 <pd>
                     <p>The memory ratio occupied by the app (%).</p>
-                    <note type="attention"
-                    >This value is for reference only. Due to system limitations, you may not get this value.</note>
+                    <note type="attention">This value is for reference only. Due to system limitations, you may not get this value.</note>
                 </pd>
             </plentry>
             <plentry>
                 <pt>memoryTotalUsageRatio</pt>
                 <pd>
                     <p>The memory occupied by the system (%).</p>
-                    <note type="attention"
-                    >This value is for reference only. Due to system limitations, you may not get this value.</note>
+                    <note type="attention">This value is for reference only. Due to system limitations, you may not get this value.</note>
                 </pd>
             </plentry>
             <plentry>
                 <pt>memoryAppUsageInKbytes</pt>
                 <pd>
                     <p>The memory size occupied by the app (KB).</p>
-                    <note type="attention"
-                    >This value is for reference only. Due to system limitations, you may not get this value.</note>
+                    <note type="attention">This value is for reference only. Due to system limitations, you may not get this value.</note>
                 </pd>
             </plentry>
             </parml> </section>

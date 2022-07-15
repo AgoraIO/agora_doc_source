@@ -1,192 +1,195 @@
-## Overview
+## Introduction to classrooms and UI components
 
-Agora provides the complete [Agora Classroom SDK](https://jitpack.io/#AgoraIO-Community/CloudClass-Android) on JitPack. However, if you want to customize the user interfaces of classrooms, Agora provides the source code of the Agora Classroom SDK for you to further develop, debug, and compile. The source code of the Agora Classroom SDK for Android is in the [CloudClass-Android](https://github.com/AgoraIO-Community/CloudClass-Android) repository on GitHub (branch release/apaas/1.1.0). The Agora Classroom SDK separates the code of the user interfaces from the code of core business logic and provides two libraries, UIKit and EduCore. These two libraries connect with each other through [Agora Edu Context](https://docs.agora.io/cn/agora-class/edu_context_api_ref_android_overview?platform=Android). For example, for the chat module in the  Flexible Classroom, a user needs to click on a button to send a message, and they also receive messages sent by other users. In this case, in UIKit, we can call a method in the Chat Context to send a message and listen for the events in the Chat Context to receive messages.
+### Data exchange process
 
-![](https://web-cdn.agora.io/docs-files/1619696813295)
+In the Agora Classroom SDK, the code of the user interfaces is separated from the code of core business logic. The Classroom SDK contains two libraries, **AgoraEduUI** and **AgoraEduCore**. These two libraries connect with each other through [Agora Edu Context](/en/agora-class/API%20Reference/edu_context_kotlin/API/edu_context_api_overview.html). Supposing that we want to implement a button for turning on or off the camera, you can call the `openLocalDevice` method of `MediaContext` in `AgoraEduUI`, and listen to the event which indicates the device state change thrown by `IMediaHandler`. The data flow is as follows:
 
-UIKit provides all the code for the user interfaces in Flexible Classroom. You can find the source code of the UIKit in the `agoraui` folder in the CloudClass-Android repository on GitHub (Branch release/apaas/1.1.0). The project structure of UIKit is as follows:
+![](https://web-cdn.agora.io/docs-files/1651746402754)
 
-| Folder | Description |
-| :----------- | :----------------------------------------------------------- |
-| `interfaces` | Defines the protocols and listeners of the  Flexible Classroom business logic. Do not need to edit the code under this directory. |
-| `impl` | The default implementations of each protocol in Flexible Classroom, that is, the default UI components used by Flexible Classroom, including:<ul><li>`chat`: The UI code of the chat area.</li><li>`handsup`: The UI code related to students "raising their hands" to apply for speaking up.</li><li>`room`: The UI code related to the classroom states and navigation bar.</li><li>`screnshare`: The UI code related to screen sharing.</li><li>`tool`: The UI code related to the toolbar containing various teaching tools.</li><li>`users`: The UI code related to user states.</li><li>`video`: The UI code of the video area.</li><li>`whiterboard`: The UI code of the whiteboard area.</li><li>`container`: Show how the basic UI components are combined in a classroom.</ul> |
-| `component` | The other public components used by Flexible Classroom. |
+### The structure of classrooms and UI components
 
-## UI customization example
+The structure of classrooms is as follows:
 
-This section provides examples of customizing the user interfaces of Flexible Classroom.
+![](https://web-cdn.agora.io/docs-files/1651746955542)
 
-### Change the color of the navigation bar
+The UI of each classroom type is defined in the corresponding `.xml` file and contains multiple independent UI components. The structure of UI components is as follows:
 
-The following example demonstrates how to modify the background color of the navigation bar component from white to gray by editing `agoraui/src/main/res/layout/agora_status_bar_layout.xml`.
+![](https://web-cdn.agora.io/docs-files/1651749419432)
 
-<div class="alert info">The navigation bar component is implemented in <code>Agora/src/main/kotlin/io/Agora/uikit/impl/room/Agora</code>.</div>
+Developers can combine UI components as they wish to implement a custom classroom type, and can also customize UI components or modify the existing UI components of Flexible Classroom.
 
-#### Before
+## Customize the classroom UI
 
-```xml
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
- android:layout_width="match_parent"
- android:layout_height="match_parent"
- android:background="@drawable/agora_class_room_rect_bg">
-...
-</RelativeLayout>
+To customize the classroom UI, follow these steps:
+
+### 1. Get the source code of Flexible Classroom
+
+If you want to customize the classroom UI based on the default UI of Flexible Classroom, you need to integrate Flexible Classroom by downloading the [source code](https://github.com/AgoraIO-Community/CloudClass-Android) on GitHub. Refer to the following steps:
+
+1. To clone the repository, run the following command:
+
+   ```bash
+   git clone https://github.com/AgoraIO-Community/CloudClass-Android.git
+   ```
+
+2. To switch the branch, run the following command. Remember to replace {VERSION} with a specified version number:
+
+   ```bash
+   git checkout release/apaas/{VERSION}
+   ```
+
+   For example, if you want to switch to the branch of v2.1.0, just run the following command:
+
+   ```bash
+   git checkout release/apaas/2.1.0
+   ```
+
+   Agora recommends switching the branch of the latest release. The following image shows how to see the latest release branch in the GitHub repository:
+
+   ![](https://web-cdn.agora.io/docs-files/1648636502733)
+
+In later steps, you edit the code in the following two folders:
+
+- `/AgoraClassSDK`: Implements classroom pages.
+- `/AgoraEduUIKit`: All UI components used in Flexible Classroom.
+
+### 2. Import the library of UI components
+
+To import the library of UI components, refer to the following steps:
+
+1. [Integrate Flexible Classroom into your own project](/en/agora-class/agora_class_integrate_android) through Maven.
+
+2. Pay special attention to the references of the `AgoraEduUIKit` and `AgoraClassSDK` modules. You need to make the following changes in the `build.gradle` file:
+
+   ```kotlin
+   dependencies {
+    // ...
+    implementation "io.github.agoraio-community:hyphenate:{Version}"
+    implementation "io.github.agoraio-community:AgoraEduCore:{Version}"
+    // implementation "io.github.agoraio-community:AgoraEduUIKit:{Version}"
+    // implementation "io.github.agoraio-community:AgoraClassSDK:{Version}"
+    implementation project(path: ':AgoraClassSDK')
+   }
+   ```
+
+<div class="alert info">In <code>AgoraClassSDK</code>, we have already made reference to <code>AgoraEduUIKit</code>.</div>
+
+<div class="alert note">Note that the version in the build.gradle file must be the same with the version of the GitHub source code.</div>
+
+### 3. Edit the existing UI components
+
+All UI components are in the `com.agora.edu.component` directory, you are free to edit the code and change the UI.
+
+<img src="https://web-cdn.agora.io/docs-files/1650365793677" style="zoom:30%;" />
+
+#### Example
+
+The following example shows how to change the height, title, and background color of the top navigation bar in Small Classroom:
+
+1. Find `AgoraClassSmallActivity` under the `io.agora.classroom.ui` directory in the `AgoraClassSDK` module.
+
+2. Find `AgoraEduHeadComponent` in `activity_agora_class_small.xml` corresponding to `AgoraClassSmallActivity`. `Activity` and `.xml` are bound through `viewbinding`.
+
+   ![](https://web-cdn.agora.io/docs-files/1651749152493)
+
+3. Open `agora_edu_head_component.xml` corresponding to `AgoraEduHeadComponent`. In this file, you can directly change the height, title, and background color of the navigation bar.
+
+   ![](https://web-cdn.agora.io/docs-files/1650438755866)
+
+   ![](https://web-cdn.agora.io/docs-files/1651749267518)
+
+### 4. Add a UI component
+
+To add a UI component, you must extend `AbsAgoraEduComponent` and call ` initView(agoraUIProvider: IAgoraUIProvider)`.
+
+UI components can obtain the data of the EduCore layer through the ` IAgoraUIProvider` interface.
+
+```kotlin
+interface IAgoraUIProvider {
+    /**
+     * Get data from EduCore
+     */
+    fun getAgoraEduCore(): AgoraEduCore?
+
+    /**
+     * Customized data of the UI component
+     */
+    fun getUIDataProvider(): UIDataProvider?
+}
 ```
 
-![](https://web-cdn.agora.io/docs-files/1619168631686)
+#### Example
 
-#### After
+The following example shows how to add a component named as `AgoraEduMyComponent` in One-to-one Classroom:
 
-```xml
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
- android:layout_width="match_parent"
- android:layout_height="match_parent"
- android:background="#BFBFBF">
-...
-</RelativeLayout>
-```
+1. Define `AgoraEduMyComponent`:
 
-![](https://web-cdn.agora.io/docs-files/1619168642141)
+   ```kotlin
+   class AgoraEduMyComponent : AbsAgoraEduComponent {
+       constructor(context: Context) : super(context)
+       constructor(context: Context, attr: AttributeSet) : super(context, attr)
+       constructor(context: Context, attr: AttributeSet, defStyleAttr: Int) : super(context, attr, defStyleAttr)
 
-### Adjust the layout
+       // TODO: Add your xml
+       private var binding: xxxxBinding = xxxBinding.inflate(LayoutInflater.from(context), this, true)
 
-The following example demonstrates how to switch the position of the leave room button and the network condition icon by editing `agoraui/src/main/res/layout/agora_status_bar_layout.xml`.
+       override fun initView(agoraUIProvider: IAgoraUIProvider) {
+       super.initView(agoraUIProvider)
+       // TODO: Handle the view here
+       // TODO: agoraUIProvider provides classroom capabilities and data required by View. You can define it on your own
+       }
 
-<div class="alert info">The navigation bar component is implemented in <code>Agora/src/main/kotlin/io/Agora/uikit/impl/room/Agora</code>.</div>
-
-#### Before
-
-```xml
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:background="@drawable/agora_class_room_rect_bg">
-  <androidx.appcompat.widget.AppCompatImageView
-      android:id="@+id/agora_status_bar_network_state_icon"
-      android:layout_width="@dimen/agora_status_bar_icon_size"
-      android:layout_height="@dimen/agora_status_bar_icon_size"
-      android:layout_centerVertical="true"
-      android:layout_alignParentStart="true"
-      android:layout_alignParentLeft="true"
-      android:layout_marginStart="@dimen/margin_large"
-      android:layout_marginLeft="@dimen/margin_large"/>
-  <androidx.appcompat.widget.AppCompatImageView
-      android:id="@+id/agora_status_bar_exit_icon"
-      android:layout_width="@dimen/agora_status_bar_icon_size"
-      android:layout_height="@dimen/agora_status_bar_icon_size"
-      android:layout_centerVertical="true"
-      android:layout_alignParentEnd="true"
-      android:layout_alignParentRight="true"
-      android:layout_marginEnd="@dimen/margin_large"
-      android:layout_marginRight="@dimen/margin_large"
-      android:src="@drawable/agora_room_icon_exit"/>
-...
-</RelativeLayout>
-```
-
-![](https://web-cdn.agora.io/docs-files/1619168654208)
-
-#### After
-
-```xml
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:background="@drawable/agora_class_room_rect_bg">
-  <androidx.appcompat.widget.AppCompatImageView
-    android:id="@+id/agora_status_bar_network_state_icon"
-    android:layout_width="@dimen/agora_status_bar_icon_size"
-    android:layout_height="@dimen/agora_status_bar_icon_size"
-    android:layout_centerVertical="true"
-    android:layout_alignParentEnd="true"
-    android:layout_alignParentRight="true"
-    android:layout_marginEnd="@dimen/margin_large"
-    android:layout_marginRight="@dimen/margin_large"/>
- <androidx.appcompat.widget.AppCompatImageView
-    android:id="@+id/agora_status_bar_exit_icon"
-    android:layout_width="@dimen/agora_status_bar_icon_size"
-    android:layout_height="@dimen/agora_status_bar_icon_size"
-    android:layout_centerVertical="true"
-    android:layout_alignParentStart="true"
-    android:layout_alignParentLeft="true"
-    android:layout_marginStart="@dimen/margin_large"
-    android:layout_marginLeft="@dimen/margin_large"
-    android:src="@drawable/agora_room_icon_exit"/>
-...
-</RelativeLayout>
-```
-
-![](https://web-cdn.agora.io/docs-files/1619168663484)
-
-### Add a basic UI component
-
-The following example shows how to add a custom basic UI component and use it in Flexible Classroom:
-
-Suppose the properties of the UI component are defined as follows:
-
-- Size: 100*100
-- Position: Centered
-- Background color: #BFBFBF
-- Text: `“离开”`/`“Leave”`
-- Text color: UIColor.white
-- What happens when clicking the button: Leave the room
-
-Add a basic UI component, as follows:
-
-1. Add Chinese and English texts in the following files respectively. `
-agoraui/src/main/res/values-zh/strings.xml`
-
-   ```
-   <!-- Customer -->
-<string name="custom_widget_text">离开</string>
-   ```
-   `agoraui/src/main/res/values/strings.xml`
-
-   ```
-   <!-- Customer -->
-<string name="custom_widget_text">Leave</string>
+   }
    ```
 
-2. Add a `custom_widget_layout.xml` file under the `agoraui/src/main/res/` directory to define the style of custom components.
+2. Use the `AgoraEduMyComponent` that you defined in `.xml`:
+
+   ```xml
+   <xxxx.xxx.xxxx.AgoraEduMyComponent
+       android:id="@+id/agora_class_head"
+       android:layout_width="match_parent"
+       android:layout_height="@dimen/agora_head_h_small"
+       android:gravity="center"
+       app:layout_constraintLeft_toLeftOf="parent"
+       app:layout_constraintTop_toTopOf="parent" />
    ```
-   <?xml version="1.0" encoding="utf-8"?>
+
+3. Initialize the UI component in `AgoraClass1V1Activity`:
+
+   ```kotlin
+   class AgoraClass1V1Activity : AgoraEduClassActivity() {
+       private val TAG = "AgoraClass1V1Activity"
+       lateinit var binding: ActivityAgoraClass1v1Binding
    
-<FrameLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent"
-android:layout_height="match_parent">
-<TextView
-android:id="@+id/tv_custom_leave"
-android:layout_width="100dp"
-android:layout_height="100dp"
-android:background="#BFBFBF"
-android:textColor="@android:color/white"
-android:gravity="center"
-android:layout_gravity="center"
-android:text="@string/custom_widget_text"/>
-</FrameLayout>
-```
-3. Edit the `Agora/src/main/kotlin/io/Agora/uikit/impl/container/Agora` file to add the custom component to the one-to-one classroom.
-```
-class AgoraUI1v1Container : AbsUIContainer() {
-override fun init(layout: ViewGroup, left: Int, top: Int, width: Int, height: Int) {
-...
-addCustomWidget(layout)
-}
-private fun addCustomWidget(layout: ViewGroup){
-val customLayout = LayoutInflater.from(layout.context).inflate(R.layout.custom_widget_layout, layout)
-customLayout.findViewById<TextView>    (R.id.tv_custom_leave).setOnClickListener {
-roomStatus?.showLeaveDialog()
-}
-}
-}
-```
-After modification, the following icon appears in the one-to-one classroom. 
-
-
-![](https://web-cdn.agora.io/docs-files/1619168684154)
-```
-
-```
-
-
+       override fun onCreate(savedInstanceState: Bundle?) {
+           super.onCreate(savedInstanceState)
+           binding = ActivityAgoraClass1v1Binding.inflate(layoutInflater)
+           setContentView(binding.root)
+   
+           // Create the classroom object
+           createEduCore(object : EduContextCallback<Unit> {
+               override fun onSuccess(target: Unit?) {
+                   // After the classroom resources are loaded
+                   joinClassRoom()
+               }
+   
+               override fun onFailure(error: EduContextError?) {
+                   error?.let {
+                       ToastManager.showShort(it.msg)
+                   }
+                   finish()
+               }
+           })
+       }
+   
+       private fun joinClassRoom() {
+           runOnUiThread {
+               eduCore()?.eduContextPool()?.let { context ->
+                   // Initialize the view
+                   binding.agoraEduMyComponent.initView(this)
+               }
+               join()
+           }
+       }
+   }
+   ```

@@ -5,134 +5,124 @@
     <shortdesc id="short"><ph id="shortdesc">预设的音效选项。</ph></shortdesc>
     <refbody>
         <section id="detailed_desc">
-   <p>为获取更好的人声效果，Agora 建议在使用以下预设音效前将 <xref keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> 或 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>：</p>
-   <ul id="ul_hpp_hsd_p4b">
-       <li><ph keyref="ROOM_ACOUSTICS_KTV"/></li>
-       <li><ph keyref="ROOM_ACOUSTICS_VOCAL_CONCERT"/></li>
-       <li><ph keyref="ROOM_ACOUSTICS_STUDIO"/></li>
-       <li><ph keyref="ROOM_ACOUSTICS_PHONOGRAPH"/></li>
-       <li><ph keyref="ROOM_ACOUSTICS_SPACIAL"/></li>
-       <li><ph keyref="ROOM_ACOUSTICS_ETHEREAL"/></li>
-       <li><ph keyref="VOICE_CHANGER_EFFECT_UNCLE"/></li>
-       <li><ph keyref="VOICE_CHANGER_EFFECT_OLDMAN"/></li>
-       <li><ph keyref="VOICE_CHANGER_EFFECT_BOY"/></li>
-       <li><ph keyref="VOICE_CHANGER_EFFECT_SISTER"/></li>
-       <li><ph keyref="VOICE_CHANGER_EFFECT_GIRL"/></li>
-       <li><ph keyref="VOICE_CHANGER_EFFECT_PIGKING"/></li>
-       <li><ph keyref="VOICE_CHANGER_EFFECT_HULK"/></li>
-       <li><ph keyref="PITCH_CORRECTION"/></li>
-   </ul>
-        </section>
+            <p>为获取更好的人声效果，Agora 建议在使用以下预设音效前将 <xref keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> 或 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>：</p>
+            <ul id="ul_hpp_hsd_p4b">
+            <li><ph keyref="ROOM_ACOUSTICS_KTV"/></li>
+            <li><ph keyref="ROOM_ACOUSTICS_VOCAL_CONCERT"/></li>
+            <li><ph keyref="ROOM_ACOUSTICS_STUDIO"/></li>
+            <li><ph keyref="ROOM_ACOUSTICS_PHONOGRAPH"/></li>
+            <li><ph keyref="ROOM_ACOUSTICS_SPACIAL"/></li>
+            <li><ph keyref="ROOM_ACOUSTICS_ETHEREAL"/></li>
+            <li><ph keyref="VOICE_CHANGER_EFFECT_UNCLE"/></li>
+            <li><ph keyref="VOICE_CHANGER_EFFECT_OLDMAN"/></li>
+            <li><ph keyref="VOICE_CHANGER_EFFECT_BOY"/></li>
+            <li><ph keyref="VOICE_CHANGER_EFFECT_SISTER"/></li>
+            <li><ph keyref="VOICE_CHANGER_EFFECT_GIRL"/></li>
+            <li><ph keyref="VOICE_CHANGER_EFFECT_PIGKING"/></li>
+            <li><ph keyref="VOICE_CHANGER_EFFECT_HULK"/></li>
+            <li><ph keyref="PITCH_CORRECTION"/></li>
+            </ul> </section>
         <section id="parameters">
-   <title>枚举值</title>
-   <parml>
-       <plentry>
-  <pt><ph keyref="AUDIO_EFFECT_OFF"/></pt>
-  <pd>原声，即关闭人声音效。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="ROOM_ACOUSTICS_KTV"/></pt>
-  <pd>KTV。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="ROOM_ACOUSTICS_VOCAL_CONCERT"/></pt>
-  <pd>演唱会。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="ROOM_ACOUSTICS_STUDIO"/></pt>
-  <pd>录音棚。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="ROOM_ACOUSTICS_PHONOGRAPH"/></pt>
-  <pd>留声机。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="ROOM_ACOUSTICS_VIRTUAL_STEREO"/></pt>
-  <pd>
-      <p>虚拟立体声，即 SDK 将单声道的音频渲染出双声道的音效。</p>
-      <note type="attention">使用该预设音效前，你需要将 <xref keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> 或 <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>，否则该预设音效的设置无效。</note>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="ROOM_ACOUSTICS_SPACIAL"/></pt>
-  <pd>空旷。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="ROOM_ACOUSTICS_ETHEREAL"/></pt>
-  <pd>空灵。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="ROOM_ACOUSTICS_3D_VOICE"/></pt>
-  <pd>
-      <p>3D 人声，即 SDK 将音频渲染出在用户周围环绕的效果。环绕周期默认为 10 秒。设置该音效后，你还可以调用 <xref keyref="setAudioEffectParameters"/> 修改环绕周期。</p>
-      <note type="attention">
-      <ul id="ul_gnm_3sd_p4b">
- <li>使用该预设音效前，你需要将 <xref keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <ph keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO"/> 或 <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>，否则该预设音效的设置无效。</li>
- <li>启用 3D 人声后，用户需要使用支持双声道的音频播放设备才能听到预期效果。</li>
-      </ul>
-      </note>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="VOICE_CHANGER_EFFECT_UNCLE"/></pt>
-  <pd>
-      <p>大叔。</p>
-      <note type="attention">建议用于处理男声，否则无法达到预期效果。</note>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="VOICE_CHANGER_EFFECT_OLDMAN"/></pt>
-  <pd><p>老年男性。</p>
-      <note type="attention">建议用于处理男声，否则无法达到预期效果。</note>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="VOICE_CHANGER_EFFECT_BOY"/></pt>
-  <pd>
-      <p>男孩。</p>
-      <note type="attention">建议用于处理男声，否则无法达到预期效果。</note>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="VOICE_CHANGER_EFFECT_SISTER"/></pt>
-  <pd>
-      <p>少女。</p>
-      <note type="attention">建议用于处理女声，否则无法达到预期效果。</note>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="VOICE_CHANGER_EFFECT_GIRL"/></pt>
-  <pd>
-      <p>女孩。</p>
-      <note type="attention">建议用于处理女声，否则无法达到预期效果。</note>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="VOICE_CHANGER_EFFECT_PIGKING"/></pt>
-  <pd>猪八戒。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="VOICE_CHANGER_EFFECT_HULK"/></pt>
-  <pd>绿巨人。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="STYLE_TRANSFORMATION_RNB"/></pt>
-  <pd>
-      <p>R&amp;B。</p>
-      <note type="attention">使用该预设音效前，你需要将 <xref keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> 或 <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>，否则该预设音效的设置无效。</note>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="STYLE_TRANSFORMATION_POPULAR"/></pt>
-  <pd>
-      <p>流行。</p>
-      <note type="attention">使用该预设音效前，你需要将 <xref keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> 或 <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>，否则该预设音效的设置无效。</note>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="PITCH_CORRECTION"/></pt>
-  <pd>电音，即 SDK 以主音音高为 C 的自然大调为基础修正音频的实际音高。设置该音效后，你还可以调用 <xref keyref="setAudioEffectParameters"/> 调整修音的基础调式和主音音高。</pd>
-       </plentry>
-   </parml>
-        </section></refbody>
+            <title>枚举值</title>
+            <parml>
+            <plentry>
+                <pt><ph keyref="AUDIO_EFFECT_OFF"/></pt>
+                <pd>原声，即关闭人声音效。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="ROOM_ACOUSTICS_KTV"/></pt>
+                <pd>KTV。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="ROOM_ACOUSTICS_VOCAL_CONCERT"/></pt>
+                <pd>演唱会。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="ROOM_ACOUSTICS_STUDIO"/></pt>
+                <pd>录音棚。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="ROOM_ACOUSTICS_PHONOGRAPH"/></pt>
+                <pd>留声机。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="ROOM_ACOUSTICS_VIRTUAL_STEREO"/></pt>
+                <pd>
+                    <p>虚拟立体声，即 SDK 将单声道的音频渲染出双声道的音效。</p>
+                    <note type="attention">使用该预设音效前，你需要将 <xref keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> 或 <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>，否则该预设音效的设置无效。</note> </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="ROOM_ACOUSTICS_SPACIAL"/></pt>
+                <pd>空旷。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="ROOM_ACOUSTICS_ETHEREAL"/></pt>
+                <pd>空灵。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="ROOM_ACOUSTICS_3D_VOICE"/></pt>
+                <pd>
+                    <p>3D 人声，即 SDK 将音频渲染出在用户周围环绕的效果。环绕周期默认为 10 秒。设置该音效后，你还可以调用 <xref keyref="setAudioEffectParameters"/> 修改环绕周期。</p>
+                    <note type="attention">
+                    <ul id="ul_gnm_3sd_p4b">
+                    <li>使用该预设音效前，你需要将 <xref keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <ph keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO"/> 或 <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>，否则该预设音效的设置无效。</li>
+                    <li>启用 3D 人声后，用户需要使用支持双声道的音频播放设备才能听到预期效果。</li>
+                    </ul> </note> </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="VOICE_CHANGER_EFFECT_UNCLE"/></pt>
+                <pd>
+                    <p>大叔。</p>
+                    <note type="attention">建议用于处理男声，否则无法达到预期效果。</note> </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="VOICE_CHANGER_EFFECT_OLDMAN"/></pt>
+                <pd>
+                    <p>老年男性。</p>
+                    <note type="attention">建议用于处理男声，否则无法达到预期效果。</note> </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="VOICE_CHANGER_EFFECT_BOY"/></pt>
+                <pd>
+                    <p>男孩。</p>
+                    <note type="attention">建议用于处理男声，否则无法达到预期效果。</note> </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="VOICE_CHANGER_EFFECT_SISTER"/></pt>
+                <pd>
+                    <p>少女。</p>
+                    <note type="attention">建议用于处理女声，否则无法达到预期效果。</note> </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="VOICE_CHANGER_EFFECT_GIRL"/></pt>
+                <pd>
+                    <p>女孩。</p>
+                    <note type="attention">建议用于处理女声，否则无法达到预期效果。</note> </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="VOICE_CHANGER_EFFECT_PIGKING"/></pt>
+                <pd>猪八戒。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="VOICE_CHANGER_EFFECT_HULK"/></pt>
+                <pd>绿巨人。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="STYLE_TRANSFORMATION_RNB"/></pt>
+                <pd>
+                    <p>R&amp;B。</p>
+                    <note type="attention">使用该预设音效前，你需要将 <xref keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> 或 <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>，否则该预设音效的设置无效。</note> </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="STYLE_TRANSFORMATION_POPULAR"/></pt>
+                <pd>
+                    <p>流行。</p>
+                    <note type="attention">使用该预设音效前，你需要将 <xref keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> 或 <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>，否则该预设音效的设置无效。</note> </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="PITCH_CORRECTION"/></pt>
+                <pd>电音，即 SDK 以主音音高为 C 的自然大调为基础修正音频的实际音高。设置该音效后，你还可以调用 <xref keyref="setAudioEffectParameters"/> 调整修音的基础调式和主音音高。</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
 </reference>

@@ -5,82 +5,80 @@
     <shortdesc id="short"><ph id="shortdesc">Pushes the external audio frame.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="pushAudioFrame1" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="pushAudioFrame1" />
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock" props="rtc-ng">
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
             <codeblock props="android" outputclass="language-java">public abstract int pushExternalAudioFrame(byte[] data, long timestamp);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)pushExternalAudioFrameRawData:(void * _Nonnull)data
                              samples:(NSInteger)samples
                             sourceId:(NSInteger)sourceId
-                           timestamp:(NSTimeInterval)timestamp;</codeblock>
-        </p>
-        <p outputclass="codeblock" props="rtc">
+                           timestamp:(NSTimeInterval)timestamp;</codeblock> </p>
+            <p outputclass="codeblock" props="rtc">
             <codeblock props="android" outputclass="language-java">public abstract int pushExternalAudioFrame(byte[] data, long timestamp);</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">virtual int pushAudioFrame(IAudioFrameObserver::AudioFrame* frame) = 0;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int pushAudioFrame(IAudioFrameObserver::AudioFrame* frame) = 0;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)pushExternalAudioFrameRawData:(void* _Nonnull)data samples:(NSUInteger)samples timestamp:(NSTimeInterval)timestamp;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int PushAudioFrame(AudioFrame frame);</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public abstract int PushAudioFrame(AudioFrame frame);</codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" />
-        </p>
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
-
             <dl outputclass="deprecated" props="rtc">
-       <dlentry props="windows android ios mac">
-  <dt>Deprecated:</dt>
-           <dd>Please use <xref keyref="pushAudioFrame2" /> instead.</dd>
-       </dlentry>
-   </dl>
+            <dlentry props="cpp android ios mac">
+                <dt>Deprecated:</dt>
+                <dd>Please use <xref keyref="pushAudioFrame2" /> instead.</dd>
+            </dlentry>
+            </dl>
         </section>
-        <section id="parameters"><title>Parameters</title>
-   <parml props="windows unity">
-       <plentry id="frame">
-  <pt>frame</pt>
-  <pd>The audio frame. For details, see <xref keyref="AudioFrame" />.</pd>
-       </plentry>
-   </parml>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml props="cpp cs">
+            <plentry id="frame">
+                <pt>frame</pt>
+                <pd>The audio frame. For details, see <xref keyref="AudioFrame" />.</pd>
+            </plentry>
+            </parml>
             <parml props="android ios mac">
             <plentry id="data">
-           <pt>data</pt>
-           <pd>External audio data.</pd>
-       </plentry>
-       <plentry props="ios mac">
-           <pt>samples</pt>
-           <pd>Number of samples for the push.</pd>
-       </plentry>
-       <plentry id="time">
-           <pt>timestamp</pt>
-           <pd>The timestamp (ms) of the external audio frame. It is mandatory. You can use this parameter for the following purposes: restore the order of the captured audio frame; and synchronize audio and video frames in video-related scenarios, including scenarios where external video sources are used.</pd>
-       </plentry>
-     </parml>
-            <parml props="rtc-ng">
-                <plentry conkeyref="pushAudioFrame2/sourceid" props="ios mac">
-                    <pt />
-                    <pd />
-                </plentry>
+                <pt>data</pt>
+                <pd>External audio data.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>samples</pt>
+                <pd>Number of samples for the push.</pd>
+            </plentry>
+            <plentry id="time">
+                <pt>timestamp</pt>
+                <pd>The timestamp (ms) of the external audio frame. It is mandatory. You can use this parameter for the following purposes: restore the order of the captured audio frame; and synchronize audio and video frames in video-related scenarios, including scenarios where external video sources are used.</pd>
+            </plentry>
             </parml>
-        </section>
+            <parml props="rtc-ng">
+            <plentry conkeyref="pushAudioFrame2/sourceid" props="ios mac">
+                <pt />
+                <pd />
+            </plentry>
+            </parml> </section>
         <section id="return_values">
-   <title>Returns</title>
+            <title>Returns</title>
             <p props="rtc-ng">
-                <ul>
-                    <li>0: Success.</li>
-                    <li>&lt; 0: Failure.</li>
-                </ul>
-            </p>
+            <ul>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </p>
             <p props="rtc">
-                <ul props="windows android electron unity rn flutter">
-                    <li>0: Success.</li>
-                    <li>&lt; 0: Failure.</li>
-                </ul>
-                <ul props="ios mac">
-                    <li><codeph><ph keyref="true" /></codeph>: Success.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Failure.</li>
-                </ul></p>
-        </section></refbody>
+            <ul props="cpp android electron cs rn flutter">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul>
+            <ul props="ios mac">
+            <li><codeph><ph keyref="true" /></codeph>: Success.</li>
+            <li><codeph><ph keyref="false" /></codeph>: Failure.</li>
+            </ul></p>
+        </section>
+    </refbody>
 </reference>

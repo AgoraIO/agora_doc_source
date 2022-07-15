@@ -1,4 +1,4 @@
-根据本文指导快速启动并体验灵动课堂。
+本文介绍如何获取灵动课堂 Android 端 GitHub 源码并运行项目，快速启动并体验灵动课堂。
 
 ## 技术原理
 
@@ -8,47 +8,65 @@
 
 ## 前提条件
 
--   已在 Agora 控制台创建 Agora 项目，获取 <a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id" target="_blank">Agora App ID</a>、<a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6" target="_blank">App 证书</a>并<a href="/cn/agora-class/agora_class_enable?platform=Android" target="_blank">开通灵动课堂服务</a>。
--   [Java Development Kit](https://www.oracle.com/java/technologies/javase-downloads.html)。
--   Android Studio 4.0 及以上。
--   Android 5.0 或以上版本。
--   一台 Android 设备。模拟机可能出现功能缺失或者性能问题，所以 Agora 推荐使用真机。
+-   在 Agora 控制台[开通灵动课堂服务](/cn/agora-class/agora_class_enable?platform=Web)。
+-   在 Agora 控制台获取 [Agora App ID](/cn/Agora%20Platform/get_appid_token#获取-app-id) 和 [App 证书](/cn/Agora%20Platform/get_appid_token#获取-app-证书)。
+-   一台 Android 设备。模拟机可能出现功能缺失或者性能问题，所以 Agora 推荐使用真机。此外，灵动课堂 Android 端要求运行在 Android 5.0 或以上版本。
+
+## 准备开发环境
+
+在你的设备上运行灵动课堂依赖于 Git（用于下载源码）、Android Studio、Java Development Kit。
+
+你可参考以下步骤准备开发环境：
+
+1. 点击[链接](https://git-scm.com/downloads)前往下载 Git。
+2. 点击[链接](https://developer.android.com/studio)前往下载 Android Studio。要求 Android Studio 4.1 以上版本，建议使用最新版本。
+3. 点击[链接](https://www.oracle.com/java/technologies/javase-downloads.html)前往下载 Java Development Kit。
+
+## 获取源码
+
+灵动课堂 Android 端的源码位于 GitHub [CloudClass-Android](https://github.com/AgoraIO-Community/CloudClass-Android) 仓库，你可参考以下步骤获取源码：
+
+1. 运行以下命令克隆仓库到本地：
+
+    ```bash
+    git clone https://github.com/AgoraIO-Community/CloudClass-Android.git
+    ```
+
+2. 运行以下命令切换分支至指定版本，将 {VERSION} 替换为要切换的版本号：
+
+    ```bash
+    git checkout release/apaas/{VERSION}
+    ```
+
+    例如要切换到 2.1.0 版本分支，执行以下命令：
+
+    ```bash
+    git checkout release/apaas/2.1.0
+    ```
+
+    Agora 建议你切换到最新发版分支。参考下图在 GitHub 仓库中查看最新发版分支：
+
+    ![](https://web-cdn.agora.io/docs-files/1648636502733)
 
 ## 启动灵动课堂
 
 参照以下步骤启动灵动课堂：
 
-1. 运行以下命令将 [CloudClass-Android](https://github.com/AgoraIO-Community/CloudClass-Android) 项目克隆至本地，并切换至最新发版分支 release/apaas/x.y.z。
+1. 在 Android Studio 中导入 CloudClass-Android 项目。
 
-    ```
-    git clone https://github.com/AgoraIO-Community/CloudClass-Android.git
-    ```
+    ![](https://web-cdn.agora.io/docs-files/1648635239823)
 
-    <div class="alert info">x.y.z 请替换为版本号。你可在<a href="/cn/agora-class/release_agora_class_android?platform=Android">发版说明</a>中获取最新版本号。</div>
+2. （可选）修改 `app/res/values/string_config.xml` 文件中的 `appId`、 `apiHost`、`reportHost` 参数值。如果没有配置，则使用灵动课堂的测试 App ID 运行项目。如果是正式的项目，一定要替换成你自己的 App ID。
 
-2. 在 Android Studio 中打开 CloudClass-Android 项目。
+    ![](https://web-cdn.agora.io/docs-files/1648635527460)
 
-3. 将 `app/src/normal/res/values/string_config.xml` 文件中的 `Agora App ID` 和 `Agora App Certificate` 替换成[你的 App ID 和 App 证书](#prerequisites)。`Agora API Host` 和 `Report API Host` 无需替换，使用默认配置即可。
+3. 在 Android Studio 中编译并运行 CloudClass-Android 项目。运行成功后，你可以在 Android 设备上看到以下画面：
 
-    ```xml
-    <?xml version="1.0" encoding="utf-8"?>
-    <resources>
-        <string name="agora_app_id" translatable="false">Agora App ID</string>
-        <string name="agora_app_cert" translatable="false">Agora App Certificate</string>
-        <string name="agora_api_host" translatable="false">Agora API Host</string>
-        <string name="agora_report_host" translatable="false">Report API Host</string>
-    </resources>
-    ```
+    ![](https://web-cdn.agora.io/docs-files/1648635613438)
 
-    <div class="alert info">为方便你快速测试，CloudClass-Android 项目中已包含一个临时 RTM Token 生成器，会用你传入的 App ID 和 App 证书生成一个临时 RTM Token。在正式环境中，为确保安全，RTM Token 必须在服务端生成。</div>
+4. 输入房间名、用户名，选择一种班型，然后点击**加入**，即可进入灵动课堂，看到以下画面：
 
-4. 在 Android Studio 中编译并运行 CloudClass-Android 项目。运行成功后，你可以在 Android 设备上看到以下画面：
-
-    ![](https://web-cdn.agora.io/docs-files/1640783000891)
-
-5. 输入房间名、用户名，选择一种班型，然后点击**加入**，即可进入灵动课堂，看到以下画面：
-
-    ![](https://web-cdn.agora.io/docs-files/1640783012588)
+    ![](https://web-cdn.agora.io/docs-files/1648635720196)
 
 ## 后续步骤
 

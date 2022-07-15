@@ -1,33 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaengine_pushaudioframe0">
-    <title><ph keyref="pushAudioFrame"/></title>
+    <title><ph keyref="pushAudioFrame" /></title>
     <shortdesc id="short"><ph id="shortdesc">Pushes the external audio frame.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="pushAudioFrame"/>
+                <indexterm keyref="pushAudioFrame" />
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="windows" outputclass="language-cpp">virtual int pushAudioFrame(MEDIA_SOURCE_TYPE type, IAudioFrameObserver::AudioFrame* frame,
-                    bool wrap = false, int sourceId = 0) = 0;</codeblock> </p>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int pushAudioFrame(MEDIA_SOURCE_TYPE type, IAudioFrameObserver::AudioFrame* frame,
+                    bool wrap = false, int sourceId = 0) = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public abstract int PushAudioFrame(MEDIA_SOURCE_TYPE type, AudioFrame frame, bool wrap = false, int sourceId = 0);</codeblock> </p>
             <p outputclass="codeblock" props="rtc">
-            <codeblock props="windows" outputclass="language-cpp">virtual int pushAudioFrame(MEDIA_SOURCE_TYPE type, IAudioFrameObserver::AudioFrame* frame, bool wrap) = 0;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int PushAudioFrame(MEDIA_SOURCE_TYPE type, AudioFrame frame, bool wrap);</codeblock> </p>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int pushAudioFrame(MEDIA_SOURCE_TYPE type, IAudioFrameObserver::AudioFrame* frame, bool wrap) = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public abstract int PushAudioFrame(MEDIA_SOURCE_TYPE type, AudioFrame frame, bool wrap);</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated" props="rtc">
-            <dlentry props="windows android ios mac">
+            <dlentry props="cpp android ios mac">
                 <dt>Deprecated:</dt>
-                <dd>This method is deprecated, please use <xref keyref="pushAudioFrame2"/> instead.</dd>
-            </dlentry>
-            <dlentry props="unity">
-                <dt>Deprecated:</dt>
-                <dd>This method is deprecated, please use <xref keyref="pushAudioFrame1"/> instead.</dd>
+                <dd>This method is deprecated, please use <xref keyref="pushAudioFrame2" /> instead.</dd>
             </dlentry>
             </dl>
         </section>
@@ -36,17 +33,19 @@
             <parml>
             <plentry>
                 <pt>type</pt>
-                <pd>The type of the audio recording device. See <xref keyref="MEDIA_SOURCE_TYPE"/> for details.</pd>
+                <pd>The type of the audio recording device. See <xref keyref="MEDIA_SOURCE_TYPE" /> for details.</pd>
             </plentry>
             <plentry>
                 <pt>frame</pt>
-                <pd>The external audio frame. See <xref keyref="AudioFrame"/> for details.</pd>
+                <pd>The external audio frame. See <xref keyref="AudioFrame" /> for details.</pd>
             </plentry>
             <plentry>
                 <pt>wrap</pt>
-                <pd>Whether to use the placeholder. Agora recommends using the default value.<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Use the placeholder.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not use the placeholder.</li>
+                <pd>Whether to use the placeholder. Agora recommends using the default value.
+                    
+                    <ul>
+                    <li><codeph><ph keyref="true" /></codeph>: Use the placeholder.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Do not use the placeholder.</li>
                     </ul> </pd>
             </plentry>
             <plentry props="rtc-ng">

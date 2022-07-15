@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onrtmpstreamingstatechanged">
-    <title><ph keyref="onRtmpStreamingStateChanged" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the state of the RTMP or RTMPS streaming changes.</ph></shortdesc>
+    <title><ph keyref="onRtmpStreamingStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc"
+        >Occurs when the media push state changes.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="onRtmpStreamingStateChanged" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="onRtmpStreamingStateChanged"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public void onRtmpStreamingStateChanged(
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onRtmpStreamingStateChanged(
       String url, RTMP_STREAM_PUBLISH_STATE state, RTMP_STREAM_PUBLISH_ERROR errCode) {}</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
     rtmpStreamingChangedToState:(NSString * _Nonnull)url
     state:(AgoraRtmpStreamPublishState)state
     errCode:(AgoraRtmpStreamPublishError)errCode;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual void onRtmpStreamingStateChanged(const char *url,
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onRtmpStreamingStateChanged(const char *url,
      RTMP_STREAM_PUBLISH_STATE state,
      RTMP_STREAM_PUBLISH_ERROR errCode) {
      (void) url;
      (void) state;
      (void) errCode;
      }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(
+            <codeblock props="electron" outputclass="language-typescript">on(
   evt: EngineEvents.RTMP_STREAMING_STATE_CHANGED,
   cb: (
     url: string,
@@ -33,35 +35,43 @@
     errCode: RTMP_STREAM_PUBLISH_ERROR
   ) =&gt; void
 ): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnRtmpStreamingStateChanged(string url, RTMP_STREAM_PUBLISH_STATE state,
+            <codeblock props="cs" outputclass="language-csharp">public virtual void OnRtmpStreamingStateChanged(string url, RTMP_STREAM_PUBLISH_STATE state,
             RTMP_STREAM_PUBLISH_ERROR errCode)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">RtmpStreamingStateCallback? rtmpStreamingStateChanged;</codeblock>
-        </p>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">RtmpStreamingStateCallback? rtmpStreamingStateChanged;</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
-
-   <p>When the CDN live streaming state changes, the SDK triggers this callback to report the current state and the reason why the state has changed. When exceptions occur, you can troubleshoot issues by referring to the detailed error descriptions in the error code parameter.</p>
+            <p>When the media push state changes, the SDK triggers this callback to report the current state and the reason why the state has changed. When exceptions occur, you can troubleshoot issues by referring to the detailed error descriptions in the error code parameter.</p>
         </section>
-        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-   <parml>
-       <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                  <pt />
-                  <pd />
-              </plentry>
-       <plentry id="url">
-  <pt>url</pt>
-  <pd>The CDN streaming URL.</pd>
-       </plentry>
-       <plentry id="state">
-  <pt>state</pt>
-  <pd>The RTMP or RTMPS streaming state, see <xref keyref="RTMP_STREAM_PUBLISH_STATE" />. When the streaming status is <apiname keyref="RTMP_STREAM_PUBLISH_STATE_FAILURE" />(4), you can view the error information in the<parmname> errorCode</parmname> parameter.</pd>
-       </plentry>
-       <plentry id="errCode">
-  <pt>errCode</pt>
-  <pd>The detailed error information for streaming, see <xref keyref="RTMP_STREAM_PUBLISH_ERROR" />.</pd>
-       </plentry>
-   </parml>
-        </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"
+            />
+            <parml>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry id="url">
+                <pt>url</pt>
+                <pd>
+                    <p>The URL address where the state of the media push changes.</p>
+                </pd>
+            </plentry>
+            <plentry id="state">
+                <pt>state</pt>
+                <pd>The current state of the media push. See <xref
+                    keyref="RTMP_STREAM_PUBLISH_STATE"
+                    />. When the streaming state is <apiname
+                    keyref="RTMP_STREAM_PUBLISH_STATE_FAILURE"
+                    /> (4), you can view the error information in the <parmname>errorCode</parmname> parameter.</pd>
+            </plentry>
+            <plentry id="errCode">
+                <pt>errCode</pt>
+                <pd>The detailed error information for the media push. See <xref
+                    keyref="RTMP_STREAM_PUBLISH_ERROR"/>.</pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

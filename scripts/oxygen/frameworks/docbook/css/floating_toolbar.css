@@ -1,0 +1,165 @@
+@namespace xlink url(http://www.w3.org/1999/xlink);
+@namespace xi url(http://www.w3.org/2001/XInclude);
+
+/* 
+ * Bold, italic, underline, subscript, superscript
+ */
+para:-oxy-selection-inside, listitem:-oxy-selection-inside,
+entry:-oxy-selection-inside, td:-oxy-selection-inside{
+    -oxy-floating-toolbar: 
+        oxy_button(actionID, 'bold') oxy_button(actionID, 'italic') oxy_button(actionID, 'underline')
+        '|'
+         oxy_button(actionID, 'subscript') oxy_button(actionID, 'superscript')
+}
+
+
+/* 
+ * Images
+ */
+imagedata:-oxy-selected{
+    -oxy-floating-toolbar: 
+        oxy_urlChooser(
+          edit, '@fileref',
+          columns, 25,
+          fileFilter, "gif, jpg, jpeg, bmp, png, svg, svgz, wmf, mathml, mml, cgm, tif, tiff, eps, ai, pdf, psd"
+        )
+}
+
+
+/* 
+ * Video
+ */
+videodata:-oxy-selected{
+    -oxy-floating-toolbar: 
+        oxy_urlChooser(
+          edit, '@fileref',
+          columns, 25
+        )
+}
+
+
+/* 
+ * Links
+ */
+olink:-oxy-selected {
+    -oxy-floating-toolbar: 
+        oxy_button(actionID, 'edit.olink')
+}
+ 
+link:not([linkend]):-oxy-selected {
+    -oxy-floating-toolbar: 
+        oxy_urlChooser(
+          edit, '@xlink:href',
+          columns, 25
+        )
+}
+link[linkend]:-oxy-selected{
+    /* Don't inherit from parent */
+    -oxy-floating-toolbar: "";
+}
+
+ulink:-oxy-selected {
+    -oxy-floating-toolbar: 
+        oxy_urlChooser(
+          edit, '@url',
+          columns, 25
+        )
+}
+
+xref:-oxy-selected{
+    /* Don't inherit from parent */
+    -oxy-floating-toolbar: "";
+}
+
+ 
+/* 
+ * Programlisting
+ */
+programlisting:-oxy-selected {
+    -oxy-floating-toolbar: 
+        oxy_label(text, " language: ")
+        oxy_combobox( 
+            edit, '@language',
+            editable, true,
+            values, 'xml, java, css, javascript, sql, c, cpp, csharp, ini, python, ruby, perl, bourne, php'
+        )
+}
+
+/* 
+ * Lists
+ */
+itemizedlist:-oxy-selected {
+    -oxy-floating-toolbar: 
+        oxy_button(actionID, 'orderedlist')
+		oxy_button(actionID, 'variablelist')
+		oxy_button(actionID, 'procedure') 
+        '|'
+        oxy_button(actionID, 'sort')     
+}
+
+orderedlist:-oxy-selected {
+    -oxy-floating-toolbar:
+		oxy_button(actionID, 'itemizedlist') 
+		oxy_button(actionID, 'variablelist')
+		oxy_button(actionID, 'procedure') 
+        '|'
+        oxy_button(actionID, 'sort')     
+}
+
+variablelist:-oxy-selected {
+    -oxy-floating-toolbar:
+		oxy_button(actionID, 'orderedlist')
+		oxy_button(actionID, 'itemizedlist')
+		oxy_button(actionID, 'procedure') 
+        '|'
+        oxy_button(actionID, 'sort')     
+}
+
+procedure:-oxy-selected {
+    -oxy-floating-toolbar:
+		oxy_button(actionID, 'orderedlist')
+		oxy_button(actionID, 'itemizedlist')
+		oxy_button(actionID, 'variablelist')  
+}
+
+itemizedlist > listitem:-oxy-selected,
+orderedlist > listitem:-oxy-selected,
+varlistentry:-oxy-selected,
+procedure > step:-oxy-selected {
+    -oxy-floating-toolbar: 
+        oxy_button(actionID, 'up') 
+        oxy_button(actionID, 'down') 
+}
+
+
+/* 
+ * Tables
+ */
+table:-oxy-selected, tgroup:-oxy-selected {
+    -oxy-floating-toolbar: oxy_button(actionID, 'show.table.properties') oxy_button(actionID, 'sort_table')
+ } 
+ 
+row:-oxy-selected, tr:-oxy-selected{
+    -oxy-floating-toolbar: oxy_button(actionID, 'insert.table.row.above') oxy_button(actionID, 'insert.table.row.below') oxy_button(actionID, 'delete.table.row') '|' oxy_button(actionID, 'show.table.properties') 
+}
+
+entry:-oxy-selected, td:-oxy-selected{
+    -oxy-floating-toolbar: 
+        oxy_button(actionID, 'insert.table.row.above') oxy_button(actionID, 'insert.table.row.below') oxy_button(actionID, 'delete.table.row') 
+        "|"
+        oxy_button(actionID, 'insert.table.column.before') oxy_button(actionID, 'insert.table.column.after') oxy_button(actionID, 'delete.table.column')
+        '|' 
+        oxy_button(actionID, 'show.table.properties')
+}
+
+
+/*
+* XInclude
+*/
+include:-oxy-selected {
+    -oxy-floating-toolbar: 
+        oxy_urlChooser(
+          edit, '@href',
+          columns, 25
+        )	
+}

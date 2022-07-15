@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script 
+  base="DITA" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.oxygenxml.com/ns/framework/extend"
+  xsi:schemaLocation="http://www.oxygenxml.com/ns/framework/extend http://www.oxygenxml.com/ns/framework/extend/frameworkExtensionScript.xsd">
+  
+  <name>DITA 2.x</name>
+  <description>Experimental support for the Darwin Information Typing Architecture standard version 2.x</description>
+  <priority>Normal</priority>
+  
+  <associationRules inherit="none">
+    <addRule 
+      namespace="*" 
+      rootElementLocalName="*" 
+      fileName="*" 
+      publicID="*" 
+      javaRuleClass="ro.sync.ecss.extensions.dita.topic.DITATopic2_xCustomRuleMatcher" 
+      attributeLocalName="*" 
+      attributeNamespace="*" 
+      attributeValue="*"/>
+  </associationRules>
+  
+  <documentTemplates>
+    <addEntry path="${frameworkDir}/templates/DITA 2.x/topic" position="before"/>
+    <addEntry path="${frameworkDir}/templates/DITA 2.x/topic-rng" position="before"/>
+  </documentTemplates>
+  
+</script>

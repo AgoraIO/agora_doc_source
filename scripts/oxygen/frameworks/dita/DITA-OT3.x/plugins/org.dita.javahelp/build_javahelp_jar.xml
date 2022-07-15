@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." name="buidJar" default="buildJar">
+    <target name="buildJar">
+    	<delete dir="target"/>
+    	<mkdir dir="target"/>
+		<javac srcdir="src/main/java" destdir="target" source="1.8" target="1.8" includeantruntime="no">
+			<classpath>
+				<fileset dir="../../lib">
+					<include name="*.jar"/>
+				</fileset>
+			</classpath>
+    	</javac>
+    	<jar destfile="lib/javahelp.jar" basedir="target"/>
+    	<delete dir="target"/>
+	</target>
+</project>

@@ -1,0 +1,147 @@
+/*
+ * =================================================
+ * 
+ * CSS rules applying to tables.
+ * 
+ * =================================================
+ */
+@namespace oxy "http://www.oxygenxml.com/extensions/author";
+
+/*
+ * The table counter.
+ */
+*[class~="topic/table"]{
+    counter-increment: tablecount;
+}
+
+/* 
+ * Add additional padding 
+ */
+*[class~="topic/entry"],
+*[class~="topic/stentry"] {
+    padding:0.3em;
+}
+
+/*
+ * 
+ * Implementing rowspan and colspan.
+ * 
+ */
+*[class~="topic/entry"][colspan] {
+      table-column-span:attr(colspan);
+}
+*[class~="topic/entry"][rowspan] {
+      table-row-span:attr(rowspan);
+}
+   
+   
+/*
+*
+* In order for the headers of a simpletable or properties table 
+* to be repeated on the next page, the "header" is 
+* wrapped into an artificial element in the post processing phase.
+*
+* This element must have display "table-header-group".
+*
+* The rest of the rows are wrapped in an element with "table-row-group".
+*  
+*/
+*[class~="simpletable/table-header-group"]{
+    display:table-header-group;
+}
+*[class~="simpletable/table-row-group"]{
+    display:table-row-group;
+}
+
+/* Since we are using the same class names in the HTML based transformation, make sure the HTML tables captions have the display:table-caption */
+*[class~="topic/table"] > *[class~="topic/title"] {
+     display: table-caption;
+     text-align: left;
+}
+
+/* The @data-is-repeated attribute is set by the 'table.title.repeat' transformation parameter */
+*[class~="topic/table"] > *[class~="topic/title"][data-is-repeated] {
+    -oxy-caption-repeat-on-next-pages: yes;
+}
+/* This is the -continued label */
+*[class~="topic/table"] > *[class~="topic/title"][data-is-repeated]:after(2) {
+    -oxy-show-only-when-caption-repeated-on-next-pages: yes;
+}
+
+/* 
+ * Avoid repeating the titles when the table is inside a list item, or inside another table, 
+ * it may trigger some issues in Chemistry (are fixed now, but is better on the safe side) 
+ */
+*[class~="topic/table"] *[class~="topic/table"] > *[class~="topic/title"][data-is-repeated],
+*[class~="topic/ul"]    *[class~="topic/table"] > *[class~="topic/title"][data-is-repeated],
+*[class~="topic/ol"]    *[class~="topic/table"] > *[class~="topic/title"][data-is-repeated] {
+	-oxy-caption-repeat-on-next-pages: no;
+}
+
+ 
+/*
+ * Prince uses the width set on the colspec "style" attribute, added by a post processing step in the DITA-CSS plugin.
+ * Chemistry uses the width property.
+ * In any case we have to mark the  topic/colspec as table-column.
+ */
+*[class~="topic/colspec"] {
+    display:table-column;
+    width:attr(colwidth) !important;
+}
+
+/*
+ * Deal with @rowsep and @colsep. 
+ * 
+ * These attributes can be set on "table", "tgroup", "row", and 
+ * "entry" elements. The "tbody"/"thead" do not have such attributes.
+ * 
+ * The values are inherited from the parents. The last row does 
+ * not have a row separator, and the cells from the last column do 
+ * not have column separators.
+ */          
+*[class~="topic/table"][rowsep = '1']> *[class~="topic/tgroup"]:not([rowsep]) > * > *[class~="topic/row"]:not([rowsep]):not(:last-child) > *[class~="topic/entry"]:not([rowsep]),
+*[class~="topic/tgroup"][rowsep = '1'] > * > *[class~="topic/row"]:not([rowsep]):not(:last-child) > *[class~="topic/entry"]:not([rowsep]),     
+*[class~="topic/row"][rowsep = '1']:not(:last-child) > *[class~="topic/entry"]:not([rowsep]),
+*[class~="topic/row"]:not(:last-child) > *[class~="topic/entry"][rowsep = '1']{     
+   border-bottom:1px solid;
+} 
+
+/* Add a line between the header and the table body, if there is a rowsep on the table or tgroup */ 
+*[class~="topic/table" ][rowsep = '1'] > *[class~="topic/tgroup"] > *[class~="topic/thead"] > *[class~="topic/row"]:last-child > *[class~="topic/entry"],
+*[class~="topic/tgroup"][rowsep = '1'] > *[class~="topic/thead"] > *[class~="topic/row"]:last-child > *[class~="topic/entry"] {
+   border-bottom:1px solid;
+} 
+
+*[class~="topic/table"][colsep = '1']  > *[class~="topic/tgroup"]:not([colsep]) > * > *[class~="topic/row"]:not([colsep]) > *[class~="topic/entry"]:not([colsep]):not(:last-child),
+*[class~="topic/tgroup"][colsep = '1'] > * > *[class~="topic/row"]:not([colsep]) > *[class~="topic/entry"]:not([colsep]):not(:last-child),
+*[class~="topic/row"][colsep = '1'] > *[class~="topic/entry"]:not([colsep]):not(:last-child),
+*[class~="topic/entry"][colsep = '1']:not(:last-child){     
+   border-right:1px solid;
+}
+
+@page portrait-page {
+  size:portrait;
+}
+
+*[class~="topic/table"][orient='land'] {
+  page: landscape-page;
+}
+*[class~="topic/table"][orient='port'] {
+  page: portrait-page;
+}
+
+*[class~="topic/entry"][rotate='1'] {
+  transform: rotate(270deg);
+
+  /* Avoid wrapping, including hyphenation */
+  white-space: pre;
+  hyphens: manual;
+
+  /* The rotated content will start from the lower side of the cell */
+  vertical-align: bottom;
+}
+
+*[class~="topic/table"] > *[class~="topic/tbody"]:not([class*="valign"]) > *[class~="topic/row"]:not([class*="valign"]) > *[class~="topic/entry"][class~="rotate"]:not([class*="valign"]) {
+  /* The rotated content will start from the lower side of the cell */
+  vertical-align: bottom;
+}

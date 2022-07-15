@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_encodedaudioframeinfo">
+    <title><ph keyref="EncodedAudioFrameInfo" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Audio information after encoding.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraEncodedAudioFrameInfo: NSObject
+ @property (assign, nonatomic) NSInteger samplesPerChannel;
+ @property (assign, nonatomic) NSInteger channels;
+ @property (assign, nonatomic) NSInteger samplesPerSec;
+ @property (assign, nonatomic) AgoraAudioCodecType codecType;
+@end</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">struct EncodedAudioFrameInfo {
+  EncodedAudioFrameInfo()
+      : codec(AUDIO_CODEC_AACLC),
+        sampleRateHz(0),
+        samplesPerChannel(0),
+        numberOfChannels(0) {}
+  EncodedAudioFrameInfo(const EncodedAudioFrameInfo&amp; rhs)
+      : codec(rhs.codec),
+        sampleRateHz(rhs.sampleRateHz),
+        samplesPerChannel(rhs.samplesPerChannel),
+        numberOfChannels(rhs.numberOfChannels),
+        advancedSettings(rhs.advancedSettings) {}
+  AUDIO_CODEC_TYPE codec;
+  int sampleRateHz;
+  int samplesPerChannel;
+  int numberOfChannels;
+  EncodedAudioFrameAdvancedSettings advancedSettings;
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp">public class EncodedAudioFrameInfo
+    {
+        public EncodedAudioFrameInfo()
+        {
+            codec = AUDIO_CODEC_TYPE.AUDIO_CODEC_AACLC;
+            sampleRateHz = 0;
+            samplesPerChannel = 0;
+            numberOfChannels = 0;
+        }
+
+        public EncodedAudioFrameInfo(ref EncodedAudioFrameInfo rhs)
+        {
+            codec = rhs.codec;
+            sampleRateHz = rhs.sampleRateHz;
+            samplesPerChannel = rhs.samplesPerChannel;
+            numberOfChannels = rhs.numberOfChannels;
+            advancedSettings = rhs.advancedSettings;
+        }
+
+        public AUDIO_CODEC_TYPE codec { set; get; }
+        public int sampleRateHz { set; get; }
+        public int samplesPerChannel { set; get; }
+        public int numberOfChannels { set; get; }
+        public EncodedAudioFrameAdvancedSettings advancedSettings { set; get; }
+    }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <parml>
+                <plentry>
+                    <pt props="cpp">codec</pt>
+                    <pt props="ios mac">codecType</pt>
+                    <pd>Audio Codec type:<xref keyref="AUDIO_CODEC_TYPE" /></pd>
+                </plentry>
+                <plentry>
+                    <pt props="cpp">sampleRateHz</pt>
+                    <pt props="ios mac">samplesPerSec</pt>
+                    <pd>Audio sample rate (Hz).</pd>
+                </plentry>
+                <plentry>
+                    <pt>samplesPerChannel</pt>
+                    <pd>The number of audio samples per channel.</pd>
+                </plentry>
+                <plentry>
+                    <pt props="cpp">numberOfChannels:</pt>
+                    <pt props="ios mac">channels</pt>
+                    <pd>The number of audio channels.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>advancedSettings</pt>
+                    <pd>This function is currently not supported.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

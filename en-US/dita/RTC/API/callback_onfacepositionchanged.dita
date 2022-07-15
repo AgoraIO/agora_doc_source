@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onfacepositionchanged">
-    <title><ph keyref="onFacePositionChanged" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Reports the face detection result of the local user.</ph></shortdesc>
+    <title><ph keyref="onFacePositionChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc"
+        >Reports the face detection result of the local user.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="onFacePositionChanged" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="onFacePositionChanged"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="windows" outputclass="language-cpp">virtual void onFacePositionChanged(int imageWidth, int imageHeight,
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine facePositionDidChangeWidth:(int)width previewHeight:(int)height faces:(NSArray&lt;AgoraFacePositionInfo*>* _Nullable)faces NS_SWIFT_NAME(rtcEngine(_:facePositionDidChangeWidth:previewHeight:faces:));</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onFacePositionChanged(int imageWidth, int imageHeight,
                 const Rectangle* vecRectangle, const int* vecDistance,
                 int numFaces) {
                 (void) imageWidth;
@@ -20,20 +23,10 @@
                 (void) vecRectangle;
                 (void) vecDistance;
                 (void) numFaces;
-                }</codeblock>
-        </p>
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public void onFacePositionChanged(
-      int imageWidth, int imageHeight, AgoraFacePositionInfo[] faceRectArr) {}</codeblock>
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnFacePositionChanged(int imageWidth, int imageHeight, Rectangle vecRectangle,
-            int[] vecDistance, int numFaces)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">FacePositionCallback? facePositionChanged;</codeblock>
-        </p>
-        <p outputclass="codeblock" props="rtc">
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine facePositionDidChangeWidth:(int)width previewHeight:(int)height faces:(NSArray&lt;AgoraFacePositionInfo*>* _Nullable)faces;</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">virtual void onFacePositionChanged(int imageWidth,
+                }</codeblock> </p>
+            <p outputclass="codeblock" props="rtc">
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine facePositionDidChangeWidth:(int)width previewHeight:(int)height faces:(NSArray&lt;AgoraFacePositionInfo*&gt;* _Nullable)faces;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onFacePositionChanged(int imageWidth,
                 int imageHeight,
                 Rectangle* vecRectangle,
                 int* vecDistance,
@@ -44,81 +37,91 @@
                 (void)vecDistance;
                 (void)numFaces;
                 }</codeblock>
-        </p>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="cs" outputclass="language-csharp">public virtual void OnFacePositionChanged(int imageWidth, int imageHeight, Rectangle vecRectangle,
+            int[] vecDistance, int numFaces)</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">FacePositionCallback? facePositionChanged;</codeblock>
+            </p>
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onFacePositionChanged(
+                int imageWidth, int imageHeight, AgoraFacePositionInfo[] faceRectArr) {}</codeblock>
+            </p>
         </section>
         <section id="detailed_desc">
-
-   <dl outputclass="since" props="rtc">
-       <dlentry props="native">
-  <dt>Since</dt>
-  <dd>v3.0.1</dd>
-       </dlentry>
-   </dl>
-   <p>Once you enable face detection by calling <xref keyref="enableFaceDetection" />(<ph keyref="true" />), you can get the following information on the local user in real-time:<ul>
-  <li>The width and height of the local video.</li>
-  <li>The position of the human face in the local video.</li>
-  <li>The distance between the human face and the screen.</li>
-       </ul>
-   </p>
-   <p>The distance between the human face and the screen is based on the fitting calculation of the local video size and the position of the human face captured by the camera.</p>
-   <note type="attention">
-       <ul>
-           <li props="windows unity">This callback is for Android and iOS only.</li>
-  <li>If the SDK does not detect a face, it reduces the frequency of this callback to reduce power consumption on the local device.</li>
-  <li>The SDK stops triggering this callback when a human face is in close proximity to the screen.</li>
-  <li props="windows android">On Android, the value of <parmname>distance</parmname> reported in this callback may be slightly different from the actual distance. Therefore, Agora does not recommend using it for accurate calculation.</li>
-       </ul>
-   </note>
-        </section>
-        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-   <parml>
-                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                    <pt />
-                    <pd />
-                </plentry>
-                <plentry>
-                    <pt>imageWidth</pt>
-                    <pd>The width (px) of the video image captured by the local camera.</pd>
-                </plentry>
-                <plentry>
-                    <pt>imageHeight</pt>
-                    <pd>The height (px) of the video image captured by the local camera.</pd>
-                </plentry>
-                <plentry props="android flutter">
-                    <pt props="android">faceRectArr</pt>
-                    <pt props="flutter">faces</pt>
-                    <pd>For the information of the detected face, see <xref keyref="AgoraFacePositionInfo" /> for details. If several faces are detected,
-                        this callback reports several <apiname keyref="AgoraFacePositionInfo" />
-                        arrays. The length of the array can be 0, which means that no human face is
-                        detected in front of the camera.</pd>
-                </plentry>
-                <plentry props="windows unity">
-                    <pt>vecRectangle</pt>
-                    <pd> <p>The information of the detected human face.<ul>
-                        <li><codeph>x</codeph>: The x coordinate (px) of the human face in the local
-                            video. Taking the top left corner of the captured video as the origin,
-                            the x coordinate represents the relative lateral displacement of the top
-                            left corner of the human face to the origin.</li>
-                        <li><codeph>y</codeph>: The y coordinate (px) of the human face in the local
-                            video. Taking the top left corner of the captured video as the origin,
-                            the y coordinate represents the relative longitudinal displacement of
-                            the top left corner of the human face to the origin.</li>
-                        <li><codeph>width</codeph>: The <codeph>width</codeph> (px) of the human
-                            face in the captured video.</li>
-                        <li><codeph>height</codeph>: The <codeph>height</codeph> (px) of the human
-                            face in the captured video.</li>
-                        </ul> </p> </pd>
-                </plentry>
-                <plentry props="windows unity">
-                    <pt>vecDistance</pt>
-                    <pd>The distance between the human face and the device screen (cm).</pd>
-                </plentry>
-                <plentry props="windows unity">
-                    <pt>numFaces</pt>
-                    <pd>The number of faces detected. If the value is 0, it means that no human face
-                        is detected.</pd>
-                </plentry>
-            </parml>
-        </section>
+            <dl outputclass="since" props="rtc">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v3.0.1</dd>
+            </dlentry>
+            </dl>
+            <p>Once you enable face detection by calling <xref
+            keyref="enableFaceDetection"/>(<ph keyref="true"/>), you can get the following information on the local user in real-time:
+            
+            <ul>
+            <li>The width and height of the local video.</li>
+            <li>The position of the human face in the local video.</li>
+            <li>The distance between the human face and the screen.</li>
+            </ul> </p>
+            <p>The distance between the human face and the screen is based on the fitting calculation of the local video size and the position of the human face captured by the camera.</p>
+            <note type="attention">
+            <ul>
+            <li props="cpp cs flutter"
+                >This callback is for Android and iOS only.</li>
+            <li>When it is detected that the face in front of the camera disappears, the callback will be triggered immediately. In the state of no face, the trigger frequency of the callback will be reduced to save power consumption on the local device.</li>
+            <li>The SDK stops triggering this callback when a human face is in close proximity to the screen.</li>
+            <li props="cpp android flutter"
+                >On Android, the value of distance reported in this callback may be slightly different from the actual <parmname>distance</parmname>. Therefore, Agora does not recommend using it for accurate calculation.</li>
+            </ul> </note> </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"
+            />
+            <parml>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry>
+                <pt props="android cpp">imageWidth</pt>
+                <pt props="ios mac">width</pt>
+                <pd>The width (px) of the video image captured by the local camera.</pd>
+            </plentry>
+            <plentry>
+                <pt props="android cpp">imageHeight</pt>
+                <pt props="ios mac">hight</pt>
+                <pd>The height (px) of the video image captured by the local camera.</pd>
+            </plentry>
+            <plentry props="android flutter ios mac">
+                <pt props="android">faceRectArr</pt>
+                <pt props="flutter ios mac">faces</pt>
+                <pd>For the information of the detected face, see <xref
+                    keyref="AgoraFacePositionInfo"
+                    /> for details. If several faces are detected, this callback reports several <apiname
+                    keyref="AgoraFacePositionInfo"
+                    /> arrays. The length of the array can be 0, which means that no human face is detected in front of the camera.</pd>
+            </plentry>
+            <plentry props="cpp cs">
+                <pt>vecRectangle</pt>
+                <pd>
+                    <p>The information of the detected human face:
+                    
+                    <ul>
+                    <li><codeph>x</codeph>: The x-coordinate (px) of the human face in the local video. The horizontal position relative to the origin, where the upper left corner of the captured video is the origin, and the x-coordinate is the upper left corner of the watermark.</li>
+                    <li><codeph>y</codeph>: The y-coordinate (px) of the human face in the local video. Taking the top left corner of the captured video as the origin, the y coordinate represents the relative longitudinal displacement of the top left corner of the human face to the origin.</li>
+                    <li><codeph>width</codeph>: The width (px) of the human face in the local view.</li>
+                    <li><codeph>height</codeph>: The height (px) of the human face in the local view.</li>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            <plentry props="cpp cs">
+                <pt>vecDistance</pt>
+                <pd>The distance between the human face and the device screen (cm).</pd>
+            </plentry>
+            <plentry props="cpp cs">
+                <pt>numFaces</pt>
+                <pd>The number of faces detected. If the value is 0, it means that no human face is detected.</pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

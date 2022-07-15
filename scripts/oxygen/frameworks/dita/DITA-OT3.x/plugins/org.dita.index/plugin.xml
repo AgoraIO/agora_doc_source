@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="org.dita.index" version="1.0.0">
+  <feature extension="dita.conductor.lib.import" file="lib/index.jar"/>
+  <feature extension="dita.xsl.messages" file="messages.xml"/>
+  <feature extension="ant.import" file="build.xml"/>
+  <feature extension="depend.org.dita.pdf2.index" value="org.dita.index"/>
+  <transtype abstract="true" extends="pdf">
+    <param name="org.dita.index.skip" desc="Disable index processing." type="enum">
+      <val>yes</val>
+      <val default="true">no</val>
+    </param>
+  </transtype>
+</plugin>

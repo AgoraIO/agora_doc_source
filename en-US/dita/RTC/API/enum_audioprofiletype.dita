@@ -5,52 +5,59 @@
     <shortdesc id="short"><ph id="shortdesc">The audio profile.</ph></shortdesc>
     <refbody>
         <section id="parameters">
-   <title>Enumerator</title>
-   <parml>
-       <plentry id="0">
-  <pt><ph keyref="AUDIO_PROFILE_DEFAULT"/></pt>
-  <pd>
-      <p>0: The default audio profile.<ul id="default-profile">
-                                <li>For the interactive streaming profile: A sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 64 Kbps.</li>
-                                <li>For the communication profile: <ph props="android ios mac">A sample rate of 32 kHz, audio encoding, mono, and a bitrate of up to 18 Kbps.</ph><ul props="windows electron">
-                                        <li>Windows: A sample rate of 16 kHz, audio encoding, mono, and a bitrate of up to 16 Kbps.</li>
-                                        <li><ph props="windows">Android/macOS/iOS:</ph><ph props="electron">macOS:</ph> A sample rate of 32 kHz, audio encoding, mono, and a bitrate of up to 18 Kbps.</li>
-                                    </ul>
-                                </li>
-      </ul>
-      </p>
-  </pd>
-       </plentry>
-       <plentry id="1">
-  <pt><ph keyref="AUDIO_PROFILE_SPEECH_STANDARD"/></pt>
-  <pd>1: A sample rate of 32 kHz, audio encoding, mono, and a bitrate of up to 18 Kbps.</pd>
-       </plentry>
-       <plentry id="2">
-  <pt><ph keyref="AUDIO_PROFILE_MUSIC_STANDARD"/></pt>
-  <pd>2: A sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 64 Kbps.</pd>
-       </plentry>
-       <plentry id="3">
-  <pt><ph keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO"/></pt>
-  <pd>3: A sample rate of 48 kHz, music encoding, stereo, and a bitrate of up to 80 Kbps.</pd>
-       </plentry>
-       <plentry id="4">
-  <pt><ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/></pt>
-  <pd>4: A sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 96 Kbps.</pd>
-       </plentry>
-       <plentry id="5">
-  <pt><ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/></pt>
-  <pd>5: A sample rate of 48 kHz, music encoding, stereo, and a bitrate of up to 128 Kbps.</pd>
-       </plentry>
-       <plentry id="6" props="windows ios mac">
-  <pt><ph keyref="AUDIO_PROFILE_IOT"/></pt>
-  <pd>
-      <p>6: A sample rate of 16 kHz, audio encoding, mono, and Acoustic Echo Cancellation (AES) enabled.</p>
-  </pd>
-       </plentry>
-       <plentry props="rtc">
-  <pt props="windows"><ph keyref="AUDIO_PROFILE_NUM"/></pt>
-  <pd>Enumerator boundary.</pd>
-       </plentry>
-   </parml>
-        </section></refbody>
+            <title>Enumerator</title>
+            <parml>
+            <plentry id="0">
+                <pt><ph keyref="AUDIO_PROFILE_DEFAULT"/></pt>
+                <pd>
+                    <p>0: The default audio profile.
+                    
+                    <ul id="default-profile">
+                    <li>For the interactive streaming profile: A sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 64 Kbps.</li>
+                    <li>For the communication profile: <ph props="android ios mac">A sample rate of 32 kHz, audio encoding, mono, and a bitrate of up to 18 Kbps.</ph>
+                        <ul props="cpp electron">
+                        <li>Windows: A sample rate of 16 kHz, audio encoding, mono, and a bitrate of up to 16 Kbps.</li>
+                        <li><ph props="cpp">Android/macOS/iOS:</ph><ph props="electron">macOS:</ph> A sample rate of 32 kHz, audio encoding, mono, and a bitrate of up to 18 Kbps.</li>
+                        </ul> </li>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            <plentry id="1">
+                <pt><ph keyref="AUDIO_PROFILE_SPEECH_STANDARD"/></pt>
+                <pd>1: A sample rate of 32 kHz, audio encoding, mono, and a bitrate of up to 18 Kbps.</pd>
+            </plentry>
+            <plentry id="2">
+                <pt><ph keyref="AUDIO_PROFILE_MUSIC_STANDARD"/></pt>
+                <pd>2: A sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 64 Kbps.</pd>
+            </plentry>
+            <plentry id="3">
+                <pt><ph keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO"/></pt>
+                <pd props="rtc-ng"><ph>3: A sample rate of 48 kHz, music encoding, stereo, and a bitrate of up to 80 Kbps.</ph>
+                    <p props="cpp android ios">To implement stereo audio, you also need to call <xref keyref="setAdvancedAudioOptions"/> and set <parmname>audioProcessingChannels</parmname> to <apiname keyref="AUDIO_PROCESSING_STEREO"/> in <apiname keyref="AdvancedAudioOptions"/>.</p>
+                </pd>
+                <pd props="rtc">3: A sample rate of 48 kHz, music encoding, stereo, and a bitrate of up to 80 Kbps.</pd>
+            </plentry>
+            <plentry id="4">
+                <pt><ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/></pt>
+                <pd>4: A sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 96 Kbps.</pd>
+            </plentry>
+            <plentry id="5">
+                <pt><ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/></pt>
+                <pd props="rtc-ng"><ph>5: A sample rate of 48 kHz, music encoding, stereo, and a bitrate of up to 128 Kbps.</ph>
+                    <p props="cpp android ios">To implement stereo audio, you also need to call <xref keyref="setAdvancedAudioOptions"/> and set <parmname>audioProcessingChannels</parmname> to <apiname keyref="AUDIO_PROCESSING_STEREO"/> in <apiname keyref="AdvancedAudioOptions"/>.</p>
+                </pd>
+                <pd props="rtc">5: A sample rate of 48 kHz, music encoding, stereo, and a bitrate of up to 128 Kbps.</pd>
+            </plentry>
+            <plentry id="6" props="cpp ios mac cs">
+                <pt><ph keyref="AUDIO_PROFILE_IOT"/></pt>
+                <pd>
+                    <p>6: A sample rate of 16 kHz, audio encoding, mono, and Acoustic Echo Cancellation (AES) enabled.</p>
+                </pd>
+            </plentry>
+            <plentry props="rtc">
+                <pt props="cpp cs"><ph keyref="AUDIO_PROFILE_NUM"/></pt>
+                <pd>Enumerator boundary.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
 </reference>

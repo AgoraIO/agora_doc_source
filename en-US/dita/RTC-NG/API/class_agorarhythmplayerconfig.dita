@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_agorarhythmplayerconfig">
+    <title><ph keyref="AgoraRhythmPlayerConfig" /></title>
+    <shortdesc id="short"><ph id="shortdesc">The metronome configuration.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="android" outputclass="language-java">public class AgoraRhythmPlayerConfig {
+  public int beatsPerMeasure;
+  public int beatsPerMinute;
+
+  public AgoraRhythmPlayerConfig() {
+    this.beatsPerMeasure = 4;
+    this.beatsPerMinute = 60;
+  }
+
+  @CalledByNative
+  public int getBeatsPerMeasure() {
+    return beatsPerMeasure;
+  }
+
+  @CalledByNative
+  public int getBeatsPerMinute() {
+    return beatsPerMinute;
+  }
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRhythmPlayerConfig: NSObject
+@property (assign, nonatomic) int beatsPerMeasure;
+@property (assign, nonatomic) int beatsPerMinute;
+
+@end</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">struct AgoraRhythmPlayerConfig {
+  int beatsPerMeasure;
+  int beatsPerMinute;
+
+  AgoraRhythmPlayerConfig() : beatsPerMeasure(4), beatsPerMinute(60) {}
+};</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class AgoraRhythmPlayerConfig {
+        public int beatsPerMeasure;
+        public int beatsPerMinute;
+    };</codeblock></p>
+            <p outputclass="codeblock" props="rtc">
+            <codeblock props="android" outputclass="language-java">public class AgoraRhythmPlayerConfig  {
+
+    public AgoraRhythmPlayerConfig() {
+    beatsPerMeasure = 4;
+    beatsPerMinute = 60;
+    publish = true;
+    }
+    public int beatsPerMeasure;
+    public int beatsPerMinute;
+    public boolean publish;
+    }</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcRhythmPlayerConfig : NSObject
+    @property(assign, nonatomic) NSUInteger beatsPerMeasure;
+    @property(assign, nonatomic) NSUInteger beatsPerMinute;
+    @property(assign, nonatomic) BOOL publish;
+    @end</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp" />
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">class RhythmPlayerConfig {
+
+  @JsonKey(includeIfNull: false)
+  int? beatsPerMeasure;
+
+  @JsonKey(includeIfNull: false)
+  int? beatsPerMinute;
+
+  @JsonKey(includeIfNull: false)
+  bool? publish;
+
+  RhythmPlayerConfig({
+    this.beatsPerMeasure,
+    this.beatsPerMinute,
+    this.publish,
+  });
+
+  factory RhythmPlayerConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$RhythmPlayerConfigFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$RhythmPlayerConfigToJson(this);
+}</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since" props="rtc">
+                <dlentry props="native">
+                    <dt>Since</dt>
+                    <dd>v3.4.0</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <parml>
+                <plentry>
+                    <pt>beatsPerMeasure</pt>
+                    <pd>The number of beats per measure, which ranges from 1 to 9. The default value is 4, which means that each measure contains one downbeat and three upbeats.</pd>
+                </plentry>
+                <plentry>
+                    <pt>beatsPerMinute</pt>
+                    <pd>The beat speed (beats/minute), which ranges from 60 to 360. The default value is 60, which means that the metronome plays 60 beats in one minute.</pd>
+                </plentry>
+                <plentry props="rtc">
+                    <pt>publish</pt>
+                    <pd>Whether to publish the sound of the metronome to remote users:<ul>
+                        <li><codeph><ph keyref="true" /></codeph>: (Default) Publish the sound of the metronome. Both the local user and remote users can hear the metronome.</li>
+                        <li><codeph><ph keyref="false" /></codeph>: Do not publish the sound of the metronome. Only the local user can hear the metronome.</li>
+                    </ul></pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

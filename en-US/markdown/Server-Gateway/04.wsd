@@ -1,0 +1,80 @@
+@startuml
+autonumber
+skinparam monochrome true
+participant IVideoEncodedImageReceiver
+participant IAudioFrameObserver
+participant "Engine App"
+
+== Initialization ==
+create IAgoraService
+"Engine App"->IAgoraService: createAgoraService
+"Engine App"->IAgoraService: initialize
+"Engine App"->IAgoraService: createRtcConnection
+activate IAgoraService
+create IRtcConnection
+IAgoraService-->>IRtcConnection: Create an IRtcConnection object
+deactivate IAgoraService
+
+"Engine App"->IRtcConnection: connect
+
+"Engine App"->IRtcConnection: getLocalUser
+activate IRtcConnection
+create ILocalUser
+IRtcConnection-->>ILocalUser: Get ILocalUser object
+deactivate IRtcConnection
+
+== Register audio frame observer ==
+
+"Engine App"->ILocalUser: subscribeAudio
+ILocalUser-->>"Engine App": onUserAudioTrackSubscribed
+note left: This callback is triggered after getting remote audio frames
+activate ILocalUser
+create IRemoteAudioTrack
+ILocalUser-->>IRemoteAudioTrack: Get the IRemoteAudioTrack object
+deactivate ILocalUser
+create IAudioFrameObserver
+IAudioFrameObserver<-"Engine App": Get the IAudioFrameObserver object
+"Engine App"->ILocalUser: setPlaybackAudioFrameBeforeMixingParameters
+note right: Set audio parameters
+"Engine App"->ILocalUser: registerAudioFrameObserver
+activate ILocalUser
+ILocalUser-->>IAudioFrameObserver:  Register the IAudioFrameObserver object
+deactivate ILocalUser
+
+
+== Register encoded video frame observer ==
+
+"Engine App"->ILocalUser: subscribeVideo
+ILocalUser-->>"Engine App": onUserVideoTrackSubscribed
+note left: This callback is triggered after remote video frames are available
+activate ILocalUser
+create IRemoteVideoTrack
+ILocalUser-->>IRemoteVideoTrack: Get the IRemoteVideoTrack object
+deactivate ILocalUser
+note left: Get IRemoteVideoTrack and corresponding RemoteVideoTrackInfo
+
+
+"Engine App"->IRemoteVideoTrack: registerVideoEncodedImageReceiver
+activate IRemoteVideoTrack
+create IVideoEncodedImageReceiver
+IRemoteVideoTrack-->>IVideoEncodedImageReceiver: Register the IVideoEncodedImageReceiver object
+deactivate IRemoteVideoTrack
+
+== Receive remote video and audio ==
+group Receive video and audio frames
+IAudioFrameObserver-->>"Engine App": onPlaybackAudioFrameBeforeMixing
+
+IVideoEncodedImageReceiver-->>"Engine App":OnEncodedVideoImageReceived
+end
+
+== Stop receiving remote video and audio streams ==
+"Engine App"->ILocalUser: unregisterAudioFrameObserver
+activate ILocalUser
+ILocalUser-->>IAudioFrameObserver: Unregisters the IAudioFrameObserver object
+deactivate ILocalUser
+"Engine App"->ILocalUser: unregisterVideoEncodedImageReceiver
+activate ILocalUser
+ILocalUser -->> IVideoEncodedImageReceiver: Unregisters the IVideoEncodedImageReceiver object
+deactivate ILocalUser
+"Engine App"->IRtcConnection: disconnect
+@enduml

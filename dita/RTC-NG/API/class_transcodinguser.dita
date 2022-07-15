@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_transcodinguser">
+    <title><ph keyref="TranscodingUser"/></title>
+    <shortdesc id="short"><ph id="shortdesc">参与转码合流的每个主播的设置。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">  public static class TranscodingUser {
+    public int uid;
+    public String userId;
+
+    public int x;
+    public int y;
+    public int width;
+    public int height;
+
+    public int zOrder;
+    public float alpha;
+    public int audioChannel;
+
+    public TranscodingUser() {
+      alpha = 1;
+    }
+  }</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLiveTranscodingUser : NSObject
+
+@property(assign, nonatomic) NSUInteger uid;
+@property(assign, nonatomic) CGRect rect;
+@property(assign, nonatomic) NSInteger zOrder;
+@property(assign, nonatomic) double alpha;
+@property(assign, nonatomic) NSInteger audioChannel;
+@end</codeblock>
+            <codeblock props="cpp unity" outputclass="language-cpp">truct TranscodingUser {
+  uid_t uid;
+  int x;
+  int y;
+  int width;
+  int height;
+  int zOrder;
+  double alpha;
+  int audioChannel;
+  TranscodingUser()
+      : uid(0),
+        x(0),
+        y(0),
+        width(0),
+        height(0),
+        zOrder(0),
+        alpha(1.0),
+        audioChannel(0) {}
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export interface TranscodingUser {
+    uid: number;
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+    zOrder: number;
+    alpha: number;
+    audioChannel: number;
+    }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">class TranscodingUser {
+  
+  int uid;
+
+  @JsonKey(includeIfNull: false)
+  int? x;
+
+  @JsonKey(includeIfNull: false)
+  int? y;
+
+  @JsonKey(includeIfNull: false)
+  int? width;
+
+  @JsonKey(includeIfNull: false)
+  int? height;
+
+  @JsonKey(includeIfNull: false)
+  int? zOrder;
+
+  @JsonKey(includeIfNull: false)
+  double? alpha;
+
+  @JsonKey(includeIfNull: false)
+  AudioChannel? audioChannel;
+
+  TranscodingUser(
+    this.uid, {
+    this.x,
+    this.y,
+    this.width,
+    this.height,
+    this.zOrder,
+    this.alpha,
+    this.audioChannel,
+  });
+
+  factory TranscodingUser.fromJson(Map&lt;String, dynamic> json) =>
+      _$TranscodingUserFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$TranscodingUserToJson(this);
+}</codeblock> </p>
+        </section>
+        <section id="parameters">
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
+            <parml>
+            <plentry>
+                <pt>uid</pt>
+                <pd>
+                    <p>主播的用户 ID。</p>
+                </pd>
+            </plentry>
+            <plentry props="android cpp unity">
+                <pt>x</pt>
+                <pd>
+                    <p>主播视频画面在输出视频画面的 x 坐标 (pixel)，以输出视频画面的左上角为原点。取值范围为[0,width]，width 为 <xref
+                    keyref="LiveTranscoding"/> 中设置的 <codeph>width</codeph>。</p>
+                </pd>
+            </plentry>
+            <plentry props="android cpp unity">
+                <pt>y</pt>
+                <pd>主播视频画面在输出视频画面的 y 坐标 (pixel)，以输出视频画面的左上角为原点。取值范围为[0,height]，height 为 <xref
+                    keyref="LiveTranscoding"
+                    /> 中设置的 <codeph>height</codeph>。</pd>
+            </plentry>
+            <plentry props="android cpp unity">
+                <pt>width</pt>
+                <pd>主播视频画面的宽 (pixel)。</pd>
+            </plentry>
+            <plentry props="android cpp unity">
+                <pt>height</pt>
+                <pd>
+                    <p>主播视频画面的高 (pixel)。</p>
+                </pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>rect</pt>
+                <pd>主播视频画面在输出视频画面的位置和大小，类型为 CGRect。</pd>
+            </plentry>
+            <plentry>
+                <pt>zOrder</pt>
+                <pd>
+                    <p>主播视频画面的图层编号。取值范围为 [0,100]。
+                    
+                    <ul>
+                    <li>0:（默认）视频画面位于图层的最下层。</li>
+                    <li>100: 视频画面位于图层的最上层。</li>
+                    </ul> </p>
+                    <note type="attention">
+                    <ul>
+                    <li>如果取值小于 0 或大于 100，会返回错误 <codeph>ERR_INVALID_ARGUMENT</codeph>。</li>
+                    <li>从 v2.3 开始，支持将 zOrder 设置为 0。</li>
+                    </ul> </note> </pd>
+            </plentry>
+            <plentry>
+                <pt>alpha</pt>
+                <pd>
+                    <p>主播视频画面的透明度。取值范围为 [0.0,1.0]。
+                    
+                    <ul>
+                    <li>0.0: 完全透明。</li>
+                    <li>1.0:（默认）完全不透明。</li>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>audioChannel</pt>
+                <pd>
+                    <p>主播音频在输出音频中占用的声道。默认值为 0，取值范围为 [0,5]：
+                    
+                    <ul id="ul_ugm_rrh_v4b">
+                    <li><codeph>0</codeph>: （推荐）默认混音设置，最多支持双声道，与主播上行音频相关。</li>
+                    <li><codeph>1</codeph>: 主播音频在输出音频的 FL 声道。如果主播上行音频是多声道，Agora
+                                    服务器会先把多声道混音成单声道。</li>
+                    <li><codeph>2</codeph>: 主播音频在输出音频的 FC 声道。如果主播上行音频是多声道，Agora
+                                    服务器会先把多声道混音成单声道。</li>
+                    <li><codeph>3</codeph>: 主播音频在输出音频的 FR 声道。如果主播上行音频是多声道，Agora
+                                    服务器会先把多声道混音成单声道。</li>
+                    <li><codeph>4</codeph>: 主播音频在输出音频的 BL 声道。如果主播上行音频是多声道，Agora
+                                    服务器会先把多声道混音成单声道。</li>
+                    <li><codeph>5</codeph>: 主播音频在输出音频的 BR 声道。如果主播上行音频是多声道，Agora
+                                    服务器会先把多声道混音成单声道。</li>
+                    <li><codeph>0xFF</codeph> 或取值大于 <codeph>5</codeph>: 该主播音频静音，Agora
+                                    服务器移除该主播的音频。</li>
+                    </ul>
+                    <note type="attention"
+                    >取值不为 <codeph>0</codeph> 时，需要使用特殊的播放器。</note></p>
+                </pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

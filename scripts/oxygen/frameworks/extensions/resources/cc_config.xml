@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Allows contributing to the values presented on content completion for element and attribute values.
+    You can append to the values obtained from the schema or replace them all together.
+    These values can be given as literal values or they can be obtained by executing an XSLT script.
+    
+    IMPORTANT: This file must be saved as cc_config.xml in a folder that is present in the Classpath
+    of the Document Type (or framework).
+-->
+<?xml-model href="http://www.oxygenxml.com/ns/ccfilter/config/ccConfigSchemaFilter.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.oxygenxml.com/ns/ccfilter/config http://www.oxygenxml.com/ns/ccfilter/config/ccConfigSchemaFilter.xsd"
+    xmlns="http://www.oxygenxml.com/ns/ccfilter/config">
+
+    <!-- The contributed values are obtained by executing the given XSLT -->
+    <match elementName="operation" elementNS="http://www.oxygenxml.com/ns/author/external-action" attributeName="id">
+        <xslt href="operation.xsl" useCache="true" action="replace"/>
+        
+    </match>
+    
+    <match elementName="argument" elementNS="http://www.oxygenxml.com/ns/author/external-action" attributeName="name">
+        <xslt href="argumentName.xsl" useCache="false" action="replace"/>
+        
+    </match>
+    
+    <match elementName="argument" elementNS="http://www.oxygenxml.com/ns/author/external-action">
+        <xslt href="argumentValue.xsl" useCache="false" action="replace"/>
+        
+    </match>
+    
+</config>

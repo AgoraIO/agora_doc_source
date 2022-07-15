@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audiovolumeinfo">
-    <title><ph keyref="AudioVolumeInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc"
-        >The volume information of users.</ph></shortdesc>
+    <title><ph keyref="AudioVolumeInfo" /></title>
+    <shortdesc id="short"><ph id="shortdesc">The volume information of users.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p props="rtc-ng" outputclass="codeblock">
@@ -19,13 +18,32 @@
 @property(assign, nonatomic) NSUInteger vad;
 @property (assign, nonatomic) double voicePitch;
 @end</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">struct AudioVolumeInfo {
+            <codeblock props="cpp" outputclass="language-cpp">struct AudioVolumeInfo {
                     uid_t uid;
                     unsigned int volume;
                     unsigned int vad;
                     double voicePitch;
                     AudioVolumeInfo() : uid(0), volume(0), vad(0), voicePitch(0.0) {}
-                    };</codeblock> </p>
+                    };</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public class AudioVolumeInfo
+    {
+        public AudioVolumeInfo()
+        {
+        }
+        public AudioVolumeInfo(uint uid, uint volume, uint vad)
+        {
+            this.uid = uid;
+            this.volume = volume;
+            this.vad = vad;
+        }
+        
+        public uint uid { set; get; }
+        
+        public uint volume { set; get; }
+        
+        public uint vad { set; get; }
+    }
+    </codeblock> </p>
             <p props="rtc" outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public static class AudioVolumeInfo {
         public int uid;
@@ -40,12 +58,31 @@
 @property(assign, nonatomic) NSUInteger vad;
 @property(copy, nonatomic) NSString* channelId;
 </codeblock>
-            <codeblock props="windows unity" outputclass="language-cpp">struct AudioVolumeInfo {
+            <codeblock props="cpp" outputclass="language-cpp">struct AudioVolumeInfo {
     uid_t uid;
     unsigned int volume;
     unsigned int vad;
     const char * channelId;
     };  </codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public class AudioVolumeInfo
+    {
+        public AudioVolumeInfo()
+        {
+        }
+
+        public AudioVolumeInfo(uint uid, uint volume, uint vad, string channelId)
+        {
+            this.uid = uid;
+            this.volume = volume;
+            this.vad = vad;
+            this.channelId = channelId;
+        }
+
+        public uint uid { set; get; }
+        public uint volume { set; get; }
+        public uint vad { set; get; }
+        public string channelId { set; get; }
+    }</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export interface AudioVolumeInfo
     {
     uid: number,
@@ -53,7 +90,7 @@
     vad: number
     channelId: string
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">class AudioVolumeInfo {
   int uid;
   int volume;
@@ -74,14 +111,14 @@
 }</codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>uid</pt>
                 <pd>
                     <p>The user ID.
+                    
+                    
                     <ul id="ul_pfj_4dt_rqb">
                     <li>In the local user's callback, <parmname>uid</parmname> = 0.</li>
                     <li>In the remote users' callback, <parmname>uid</parmname> is the user ID of a remote user whose instantaneous volume is one of the three highest.</li>
@@ -90,14 +127,14 @@
             </plentry>
             <plentry>
                 <pt>volume</pt>
-                <pd>The volume of the user. The value ranges between 0 (lowest volume) and 255 (highest volume). If the user calls <xref
-                    keyref="startAudioMixing2"
-                    />, the value of <parmname>volume</parmname> is the volume after audio mixing.</pd>
+                <pd>The volume of the user. The value ranges between 0 (lowest volume) and 255 (highest volume). If the user calls <xref keyref="startAudioMixing2" />, the value of <parmname>volume</parmname> is the volume after audio mixing.</pd>
             </plentry>
             <plentry>
                 <pt>vad</pt>
                 <pd>
                     <p>The voice activity status of the local user.
+                    
+                    
                     <ul>
                     <li>0: The local user is not speaking.</li>
                     <li>1: The local user is speaking.</li>
@@ -105,17 +142,8 @@
                     <note type="attention">
                     <ul>
                     <li>The <parmname>vad</parmname> parameter does not report the voice activity status of remote users. In the remote users' callback, the value of <parmname>vad</parmname> is always 0.</li>
-                    <li props="rtc"
-                        >To use this parameter, you must set <parmname
-                        props="ios mac windows android electron"
-                        >report_vad</parmname><parmname props="unity"
-                        >reportVad</parmname> to <codeph><ph keyref="true"
-                        /></codeph> when calling <xref
-                        keyref="enableAudioVolumeIndication"/>.</li>
-                    <li props="rtc-ng"
-                        >To use this parameter, you must set <parmname>reportVad</parmname> to <codeph><ph
-                        keyref="true"/></codeph> when calling <xref
-                        keyref="enableAudioVolumeIndication"/>.</li>
+                    <li props="rtc">To use this parameter, you must set <parmname props="ios mac cpp android electron">report_vad</parmname><parmname props="cs">reportVad</parmname> to <codeph><ph keyref="true" /></codeph> when calling <xref keyref="enableAudioVolumeIndication" />.</li>
+                    <li props="rtc-ng">To use this parameter, you must set <parmname>reportVad</parmname> to <codeph><ph keyref="true" /></codeph> when calling <xref keyref="enableAudioVolumeIndication" />.</li>
                     </ul> </note> </pd>
             </plentry>
             <plentry props="rtc">
@@ -126,8 +154,7 @@
                 <pt>voicePitch</pt>
                 <pd>
                     <p>The voice pitch of the local user. The value ranges between 0.0 and 4000.0.</p>
-                    <note type="attention"
-                    >The <parmname>voicePitch</parmname> parameter does not report the voice pitch of remote users. In the remote users' callback, the value of <parmname>voicePitch</parmname> is always 0.</note>
+                    <note type="attention">The <parmname>voicePitch</parmname> parameter does not report the voice pitch of remote users. In the remote users' callback, the value of <parmname>voicePitch</parmname> is always 0.</note>
                 </pd>
             </plentry>
             </parml> </section>

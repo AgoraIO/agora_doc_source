@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_sendstreammessageex">
+    <title><ph keyref="sendStreamMessageEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc">发送数据流。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="sendStreamMessageEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int sendStreamMessageEx(int streamId, byte[] message, RtcConnection connection);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int sendStreamMessageEx(int streamId, const char* data, size_t length, const RtcConnection&amp; connection) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+             <codeblock props="unity" outputclass="language-csharp">public abstract int SendStreamMessageEx(int streamId, byte[] data, uint length, RtcConnection connection);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>调用 <xref keyref="createDataStreamEx2"/> 后，你可以调用本方法向频道内所有用户发送数据流消息。</p>
+            <p id="desc">SDK 对该方法有如下限制：
+            
+            
+            <ul>
+            <li>频道内每秒最多能发送 60 个包，且每个包最大为 1 KB。</li>
+            <li>每个客户端每秒最多能发送 30 KB 数据。</li>
+            <li>频道内每人最多能同时有 5 个数据通道。</li>
+            </ul></p>
+            <p>成功调用该方法后，远端会触发 <xref keyref="onStreamMessage"/> 回调，远端用户可以在该回调中获取接收到的流消息；
+       若调用失败，远端会触发 <xref keyref="onStreamMessageError"/> 回调。</p>
+            <note type="attention">
+            <ul>
+            <li>请确保在调用该方法前，已调用 <apiname keyref="createDataStreamEx2"/> 创建了数据通道。</li>
+            <li>该方法仅适用于通信场景以及直播场景下的主播用户，如果直播场景下的观众调用此方法可能会造成观众变主播。</li>
+            </ul></note> </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt>streamId</pt>
+                <pd>数据流 ID。可以通过 <apiname keyref="createDataStreamEx2"/> 获取。</pd>
+            </plentry>
+            <plentry>
+                <pt props="android">message</pt>
+                <pt props="cpp unity">data</pt>
+                <pd>待发送的数据。</pd>
+            </plentry>
+            <plentry props="cpp unity">
+                <pt>length</pt>
+                <pd>数据长度。</pd>
+            </plentry>
+            <plentry conkeyref="joinChannelEx/connection">
+                <pt/>
+                <pd/>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <ul>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。</li>
+            </ul> </section>
+    </refbody>
+</reference>

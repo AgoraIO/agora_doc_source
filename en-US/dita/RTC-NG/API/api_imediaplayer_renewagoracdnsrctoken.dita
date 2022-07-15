@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_renewagoracdnsrctoken">
+    <title><ph keyref="renewAgoraCDNSrcToken" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Renew the authentication information for the URL of the media resource to be played.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="renewAgoraCDNSrcToken" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="unity" outputclass="language-csharp">public abstract int RenewAgoraCDNSrcToken(string token, Int64 ts);</codeblock> </p>
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">int renewAgoraCDNSrcToken(String token, long ts);
+</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)renewAgoraCDNSrcToken:(NSString *)token ts:(NSInteger)ts;
+</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int renewAgoraCDNSrcToken(const char* token, int64_t ts) = 0;
+</codeblock>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>When the authentication information expires (exceeds the <parmname>ts</parmname> field), you can call the <xref keyref="openWithAgoraCDNSrc" /> method to reopen the media resource or the <xref keyref="switchAgoraCDNSrc" /> method to switch the media resource, and then pass in the authenticated URL (with the <parmname>ts</parmname> field updated) of the media resource.</p>
+            <p>If your authentication information expires when you call the <xref keyref="switchAgoraCDNLineByIndex" /> to switch the CDN route for playing the media resource, you need to call this method to pass in the updated authentication information to update the authentication information of the media resource URL. After updating the authentication information, you need to call <xref keyref="switchAgoraCDNLineByIndex" /> to complete the route switching.</p>
+            <note type="attention">
+                <p>To avoid frequent expiration of authentication information, ensure that you set the <parmname>ts</parmname> field appropriately or <xref keyref="ticket-link" /> according to the scenario requirements.</p>
+            </note>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry>
+                    <pt>token</pt>
+                    <pd>The authentication field. See the <parmname>sign</parmname> field of the authentication information.</pd>
+                </plentry>
+                <plentry>
+                    <pt>ts</pt>
+                    <pd>The timestamp when the authentication information expires.  See the <parmname>ts</parmname> field of the authentication information.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>

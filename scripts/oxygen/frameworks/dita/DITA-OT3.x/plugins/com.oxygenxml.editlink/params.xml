@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension>
+    <!-- pass the edit link as both an XSLT param and a system property. -->
+    <param name="editlink.remote.ditamap.url" expression="${editlink.remote.ditamap.url}" if:set="editlink.remote.ditamap.url" xmlns:if="ant:if"/>
+    <!--<sysproperty key="editlink.remote.ditamap.url" value="${editlink.remote.ditamap.url}"/>-->
+
+    <param name="editlink.web.author.url" expression="${editlink.web.author.url}" if:set="editlink.web.author.url" xmlns:if="ant:if"/>
+    <param name="editlink.present.only.path.to.topic" expression="${editlink.present.only.path.to.topic}" if:set="editlink.present.only.path.to.topic" xmlns:if="ant:if"/>
+
+    <param name="editlink.local.ditamap.path" expression="${args.input}"/>
+    <param name="editlink.local.ditaval.path" expression="${args.filter}" if:set="args.filter" xmlns:if="ant:if"/>
+
+    <param name="editlink.ditamap.edit.url" expression="${editlink.ditamap.edit.url}"  if:set="editlink.ditamap.edit.url" xmlns:if="ant:if"/>
+    <param name="editlink.additional.query.parameters" expression="${editlink.additional.query.parameters}"  if:set="editlink.additional.query.parameters" xmlns:if="ant:if"/>
+</extension>
+

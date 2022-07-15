@@ -10,52 +10,51 @@
             </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="windows" outputclass="language-cpp">virtual int setEnableSpeakerphone(bool speakerOn) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp">public abstract int SetEnableSpeakerphone(bool speakerOn);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setEnableSpeakerphone(bool speakerOn);</codeblock>
-        </p>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setEnableSpeakerphone(bool speakerOn) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="cs" outputclass="language-csharp">public abstract int SetEnableSpeakerphone(bool speakerOn);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setEnableSpeakerphone(bool speakerOn);</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>This method sets whether the audio is routed to the speakerphone or earpiece. After a successful method call, the SDK triggers the <xref keyref="onAudioRouteChanged" /> callback.</p>
-            <p props="android windows"><ph props="windows">On Android,</ph> the settings of <parmname>scenario</parmname>in <xref keyref="setAudioProfile" /> and <xref keyref="setChannelProfile" /> affect the behavior of <apiname keyref="setEnableSpeakerphone" />. The following are scenarios where <apiname keyref="setEnableSpeakerphone" /> does not take effect:<ul>
-                    <li>If you set <parmname>scenario</parmname> as <apiname keyref="AUDIO_SCENARIO_GAME_STREAMING" />, no user can change the audio playback route.</li>
-                    <li>If you set <parmname>scenario</parmname> as <apiname keyref="AUDIO_SCENARIO_DEFAULT" /> or <apiname keyref="AUDIO_SCENARIO_SHOWROOM" />, the audience cannot change the audio playback route. If there is only one broadcaster is in the channel, the broadcaster cannot change the audio playback route either.</li>
-                    <li>If you set <parmname>scenario</parmname> as <apiname keyref="AUDIO_SCENARIO_EDUCATION" />, the audience cannot change the audio playback route.</li>
-                </ul>
-            </p>
+            <p props="android cpp"><ph props="cpp">On Android,</ph> the settings of <parmname>scenario</parmname>in <xref keyref="setAudioProfile" /> and <xref keyref="setChannelProfile" /> affect the behavior of <apiname keyref="setEnableSpeakerphone" />. The following are scenarios where <apiname keyref="setEnableSpeakerphone" /> does not take effect:
+            
+            <ul>
+            <li>If you set <parmname>scenario</parmname> as <apiname keyref="AUDIO_SCENARIO_GAME_STREAMING" />, no user can change the audio playback route.</li>
+            <li>If you set <parmname>scenario</parmname> as <apiname keyref="AUDIO_SCENARIO_DEFAULT" /> or <apiname keyref="AUDIO_SCENARIO_SHOWROOM" />, the audience cannot change the audio playback route. If there is only one broadcaster is in the channel, the broadcaster cannot change the audio playback route either.</li>
+            <li>If you set <parmname>scenario</parmname> as <apiname keyref="AUDIO_SCENARIO_EDUCATION" />, the audience cannot change the audio playback route.</li>
+            </ul> </p>
             <note type="attention">
-                <ul>
-                    <li props="windows">This method is for Android and iOS only.</li>
-                    <li>Ensure that you have joined a channel before calling this method.</li>
-                </ul>
-            </note>
-        </section>
-        <section id="parameters"><title>Parameters</title>
+            <ul>
+            <li props="cpp">This method is for Android and iOS only.</li>
+            <li>Ensure that you have joined a channel before calling this method.</li>
+            </ul> </note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
             <parml>
-                <plentry>
-                    <pt props="windows unity flutter">speakerOn</pt>
-                    <pt props="android">enabled</pt>
-                    <pt props="ios mac">enableSpeaker</pt>
-                    <pd>Whether the audio is routed to the speakerphone or earpiece.<ul>
-                            <li><codeph><ph keyref="true" /></codeph>: Route the audio to the speakerphone. If the device connects to the earpiece or Bluetooth, the audio cannot be routed to the speakerphone.</li>
-                            <li><codeph><ph keyref="false" /></codeph>: Route the audio to the earpiece. If a headset is plugged in, the audio is routed to the headset.</li>
-                        </ul>
-                    </pd>
-                </plentry>
-            </parml>
-        </section>
-        <section id="return_values" props="native electron unity">
+            <plentry>
+                <pt props="cpp cs flutter">speakerOn</pt>
+                <pt props="android">enabled</pt>
+                <pt props="ios mac">enableSpeaker</pt>
+                <pd>Whether the audio is routed to the speakerphone or earpiece.
+                    
+                    <ul>
+                    <li><codeph><ph keyref="true" /></codeph>: Route the audio to the speakerphone. If the device connects to the earpiece or Bluetooth, the audio cannot be routed to the speakerphone.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Route the audio to the earpiece. If a headset is plugged in, the audio is routed to the headset.</li>
+                    </ul> </pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron cs">
             <title>Returns</title>
             <ul>
-                <li>0: Success.</li>
-                <li>&lt; 0: Failure.</li>
-            </ul>
-        </section>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
     </refbody>
 </reference>

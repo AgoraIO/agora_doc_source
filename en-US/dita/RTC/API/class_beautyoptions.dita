@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_beautyoptions">
-    <title>
-        <ph keyref="BeautyOptions" />
-    </title>
-    <shortdesc id="short">
-        <ph id="shortdesc">Image enhancement options.</ph>
-    </shortdesc>
+    <title> <ph keyref="BeautyOptions" /> </title>
+    <shortdesc id="short"><ph id="shortdesc">Image enhancement options.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p props="rtc-ng" outputclass="codeblock">
@@ -29,7 +25,7 @@
 @property(nonatomic, assign) float rednessLevel;
 @property(nonatomic, assign) float sharpnessLevel;
 @end</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">struct BeautyOptions {
+            <codeblock props="cpp" outputclass="language-cpp">struct BeautyOptions {
     enum LIGHTENING_CONTRAST_LEVEL {
         LIGHTENING_CONTRAST_LOW = 0,
         LIGHTENING_CONTRAST_NORMAL,
@@ -43,11 +39,40 @@
     BeautyOptions(LIGHTENING_CONTRAST_LEVEL contrastLevel, float lightening, float smoothness, float redness, float sharpness) : lighteningContrastLevel(contrastLevel), lighteningLevel(lightening), smoothnessLevel(smoothness), rednessLevel(redness), sharpnessLevel(sharpness) {}
     BeautyOptions() : lighteningContrastLevel(LIGHTENING_CONTRAST_NORMAL), lighteningLevel(0), smoothnessLevel(0), rednessLevel(0), sharpnessLevel(0) {}
 };
-</codeblock> </p>
+</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public class BeautyOptions
+    {
+        public BeautyOptions()
+        {
+            lighteningContrastLevel = LIGHTENING_CONTRAST_LEVEL.LIGHTENING_CONTRAST_NORMAL;
+        }
+        public BeautyOptions(
+            LIGHTENING_CONTRAST_LEVEL lighteningContrastLevel, float lighteningLevel, float smoothnessLevel,
+            float rednessLevel, float sharpnessLevel)
+        {
+            this.lighteningContrastLevel = lighteningContrastLevel;
+            this.lighteningLevel = lighteningLevel;
+            this.smoothnessLevel = smoothnessLevel;
+            this.rednessLevel = rednessLevel;
+            this.sharpnessLevel = sharpnessLevel;
+        }
+        
+        public LIGHTENING_CONTRAST_LEVEL lighteningContrastLevel { set; get; }
+        
+        public float lighteningLevel { set; get; }
+        
+        public float smoothnessLevel { set; get; }
+        
+        public float rednessLevel { set; get; }
+        
+        public float sharpnessLevel { set; get; }
+    }
+
+    }</codeblock> </p>
             <p props="rtc" outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="windows unity" outputclass="language-cpp">struct BeautyOptions {
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="cpp" outputclass="language-cpp">struct BeautyOptions {
     enum LIGHTENING_CONTRAST_LEVEL
     {
         LIGHTENING_CONTRAST_LOW = 0,
@@ -72,13 +97,37 @@
         rednessLevel(0),
         lighteningContrastLevel(LIGHTENING_CONTRAST_NORMAL) {}
     };</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public class BeautyOptions
+    {
+        public BeautyOptions()
+        {
+            lighteningContrastLevel = LIGHTENING_CONTRAST_LEVEL.LIGHTENING_CONTRAST_NORMAL;
+        }
+
+        public BeautyOptions(
+            LIGHTENING_CONTRAST_LEVEL lighteningContrastLevel, float lighteningLevel, float smoothnessLevel,
+            float rednessLevel, float sharpnessLevel)
+        {
+            this.lighteningContrastLevel = lighteningContrastLevel;
+            this.lighteningLevel = lighteningLevel;
+            this.smoothnessLevel = smoothnessLevel;
+            this.rednessLevel = rednessLevel;
+            this.sharpnessLevel = sharpnessLevel;
+        }
+
+        public LIGHTENING_CONTRAST_LEVEL lighteningContrastLevel { set; get; }
+        public float lighteningLevel { set; get; }
+        public float smoothnessLevel { set; get; }
+        public float rednessLevel { set; get; }
+        public float sharpnessLevel { set; get; }
+    }</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export interface BeautyOptions {
     lighteningContrastLevel: LIGHTENING_CONTRAST_LEVEL;
     lighteningLevel: number;
     smoothnessLevel: number;
     rednessLevel: number;
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">class BeautyOptions {
 
   @JsonKey(includeIfNull: false)
@@ -107,77 +156,44 @@
 }</codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>
             <parml>
             <plentry>
                 <pt>lighteningContrastLevel</pt>
-                <pd>The contrast level. For details, see <xref
-                    keyref="LIGHTENING_CONTRAST_LEVEL"/>.</pd>
+                <pd>contrast, often with
+<codeph>lighteningLevel</codeph>
+. The larger the value, the greater the contrast between light and dark. For more details, see
+<xref keyref="LIGHTENING_CONTRAST_LEVEL" />.</pd>
             </plentry>
-            <plentry props="rtc">
+            <plentry>
                 <pt>lighteningLevel</pt>
-                <pd props="android ios windows">The brightness level. The value ranges from 0.0 (original) to 1.0. The default value is <ph
-                    props="ios">0.7</ph><ph props="android">0.6</ph><ph
-                    props="windows"
-                    >0.0</ph>. This parameter makes video whitening.</pd>
-                <pd props="flutter unity">The brightness level. This parameter makes video whitening. The value ranges from 0.0 (original) to 1.0.
-                   The default value varies according to the development platform: 0.6 on Android, 0.7 on iOS, and 0.0 on Windows.</pd>
+                <pd props="rtc"><ph>The brightness level. The value ranges from 0.0 (original) to 1.0. The default is
+</ph>&gt;<ph props="ios mac">0.6</ph> <ph props="android">0.6</ph> <ph props="cpp">0.6</ph>
+. The greater the value, the greater the degree of whitening.</pd>
+                <pd props="rtc-ng">The brightness level. The value ranges from 0.0 (original) to 1.0. The default is
+<ph props="ios">0.7</ph> <ph props="android">0.6</ph> <ph props="cpp">0.0</ph>
+. The greater the value, the greater the degree of whitening.</pd>
             </plentry>
-            <plentry props="rtc-ng">
-                <pt>lighteningLevel</pt>
-                <pd>
-                    The brightness level. The value ranges from 0.0 (original) to 1.0. The default value is
-                    <ph props="ios">0.7</ph>
-                    <ph props="android">0.6</ph>
-                    <ph props="windows">0.0</ph>
-                    . This parameter makes video whitening.
-                </pd>
-            </plentry>
-            <plentry props="rtc">
+            <plentry>
                 <pt>smoothnessLevel</pt>
-                <pd props="android ios windows">The smoothness level. The value ranges from 0.0 (original) to 1.0. The default value is <ph
-                    props="ios">0.5</ph><ph props="android">0.5</ph><ph
-                    props="windows"
-                    >0.0</ph>. This parameter is usually used to remove blemishes.</pd>
-                <pd props="flutter unity">The smoothness level. This parameter is usually used to remove blemishes.The value ranges from 0.0 (original) to 1.0.
-                    The default value varies according to the development platform: 0.5 on Android, 0.5 on iOS, and 0.0 on Windows.</pd>
+                <pd props="rtc">The value ranges from 0.0 (original) to 1.0. The default value is 0.5. The greater the value, the greater the degree of skin grinding.</pd>
+                <pd props="rtc-ng">The value ranges from 0.0 to 1.0, where 0.0 indicates the original peeling degree. The default value is
+<ph props="ios">0.5</ph> <ph props="android">0.5</ph> <ph props="cpp">0.0</ph>
+. The greater the value, the greater the degree of skin grinding.</pd>
             </plentry>
-            <plentry props="rtc-ng">
-                <pt>smoothnessLevel</pt>
-                <pd>
-                    The smoothness level. The value ranges from 0.0 (original) to 1.0. The default value is
-                    <ph props="ios">0.5</ph>
-                    <ph props="android">0.5</ph>
-                    <ph props="windows">0.0</ph>
-                    . This parameter is usually used to remove blemishes.
-                </pd>
-            </plentry>
-            <plentry props="rtc">
+            <plentry>
                 <pt>rednessLevel</pt>
-                <pd props="android ios windows">The redness level. The value ranges from 0.0 (original) to 1.0. The default value is <ph
-                    props="ios">0.1</ph><ph props="android">0.1</ph><ph
-                    props="windows"
-                    >0.0</ph>. This parameter adjusts the red saturation level.</pd>
-                <pd props="flutter unity">The redness level. This parameter adjusts the red saturation level. The value ranges from 0.0 (original) to 1.0.
-                The default value varies according to the development platforms: 0.1 on Android, 0.1 on Android, and 0.0 on Windows.</pd>
+                <pd props="rtc">The value ranges from 0.0 (original) to 1.0. The default value is 0.1. The larger the value, the greater the rosy degree.</pd>
+                <pd props="rtc-ng">The sharpness level. The value ranges between 0 (original) and 1.
+<ph props="ios">0.1</ph> <ph props="android">0.1</ph> <ph props="cpp">0.0</ph>
+. The larger the value, the greater the rosy degree.</pd>
             </plentry>
-            <plentry props="rtc-ng">
-                <pt>rednessLevel</pt>
-                <pd>
-                    The redness level. The value ranges from 0.0 (original) to 1.0. The default value is
-                    <ph props="ios">0.1</ph>
-                    <ph props="android">0.1</ph>
-                    <ph props="windows">0.0</ph>
-                    . This parameter adjusts the red saturation level.
-                </pd>
-            </plentry>
-            <plentry props="rtc-ng">
+            <plentry props="native cs">
                 <pt>sharpnessLevel</pt>
-                <pd>The sharpness level. The value ranges from 0.0 (original) to 1.0. The default value is <ph
-                    props="ios">0.1</ph><ph props="android">0.3</ph><ph
-                    props="windows">0.0</ph>.</pd>
+                <pd props="rtc">The sharpness level. The value ranges from 0.0 (original) to 1.0. The default value is 0.10.30.0. The larger the value, the greater the sharpening degree.</pd>
+                <pd props="rtc-ng">The sharpness level. The value ranges between 0 (original) and 1.
+<ph props="ios">0.1</ph> <ph props="android">0.3</ph> <ph props="cpp">0.0</ph>
+. The larger the value, the greater the sharpening degree.</pd>
             </plentry>
             </parml> </section>
     </refbody>

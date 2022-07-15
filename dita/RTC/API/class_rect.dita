@@ -6,9 +6,9 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows unity" outputclass="language-cpp">typedef struct Rect {
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp">typedef struct Rect {
     int top;
     int left;
     int bottom;
@@ -17,14 +17,33 @@
     Rect(): top(0), left(0), bottom(0), right(0) {}
     Rect(int t, int l, int b, int r): top(t), left(l), bottom(b), right(r) {}
     } Rect;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">export interface Rect {
+            <codeblock props="cs" outputclass="language-csharp">public class Rect
+    {
+        public Rect()
+        {
+        }
+
+        public Rect(int top, int left, int bottom, int right)
+        {
+            this.top = top;
+            this.left = left;
+            this.bottom = bottom;
+            this.right = right;
+        }
+
+        public int top { set; get; }
+        public int left { set; get; }
+        public int bottom { set; get; }
+        public int right { set; get; }
+    }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export interface Rect {
     top: number;
     left: number;
     bottom: number;
     right: number;
     }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart">class Rect {
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">class Rect {
   
   @JsonKey(includeIfNull: false)
   @Deprecated('This property is deprecated, pls use x instead.')
@@ -65,53 +84,54 @@
 
   Map&lt;String, dynamic> toJson() => _$RectToJson(this);
 }
-</codeblock>
-            </p>
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
-   
-   <dl outputclass="deprecated">
-       <dlentry>
-  <dt>弃用：</dt>
-  <dd>该类已废弃，请使用 <xref keyref="updateScreenCaptureRegion1"/> 方法更新屏幕共享区域。</dd>
-       </dlentry>
-   </dl>
+            <dl outputclass="deprecated">
+            <dlentry>
+                <dt>弃用：</dt>
+                <dd>该类已废弃，请使用 <xref keyref="updateScreenCaptureRegion1"
+                    /> 方法更新屏幕共享区域。</dd>
+            </dlentry>
+            </dl>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
-   <parml>
-       <plentry>
-  <pt>top</pt>
-  <pd>已废弃。共享区域顶部在纵轴上的坐标。</pd>
-       </plentry>
-       <plentry>
-  <pt>left</pt>
-  <pd>已废弃。共享区域左侧在横轴上的坐标。</pd>
-       </plentry>
-       <plentry>
-  <pt>bottom</pt>
-  <pd>已废弃。共享区域底部在纵轴上的坐标。</pd>
-       </plentry>
-       <plentry>
-  <pt>right</pt>
-  <pd>已废弃。共享区域右侧在横轴上的坐标。</pd>
-       </plentry>
-              <plentry>
-  <pt>x</pt>
-  <pd>左上角的横向偏移。</pd>
-       </plentry>
-       <plentry>
-  <pt>y</pt>
-  <pd>左上角的纵向偏移。</pd>
-       </plentry>
-       <plentry>
-  <pt>width</pt>
-  <pd>目标区域的宽度。</pd>
-       </plentry>
-       <plentry>
-  <pt>height</pt>
-  <pd>目标区域的高度。</pd>
-       </plentry>
-   </parml>
-        </section></refbody>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
+            <parml>
+            <plentry>
+                <pt>top</pt>
+                <pd>已废弃。共享区域顶部在纵轴上的坐标。</pd>
+            </plentry>
+            <plentry>
+                <pt>left</pt>
+                <pd>已废弃。共享区域左侧在横轴上的坐标。</pd>
+            </plentry>
+            <plentry>
+                <pt>bottom</pt>
+                <pd>已废弃。共享区域底部在纵轴上的坐标。</pd>
+            </plentry>
+            <plentry>
+                <pt>right</pt>
+                <pd>已废弃。共享区域右侧在横轴上的坐标。</pd>
+            </plentry>
+            <plentry props="flutter">
+                <pt>x</pt>
+                <pd>左上角的横向偏移。</pd>
+            </plentry>
+            <plentry props="flutter">
+                <pt>y</pt>
+                <pd>左上角的纵向偏移。</pd>
+            </plentry>
+            <plentry props="flutter">
+                <pt>width</pt>
+                <pd>目标区域的宽度。</pd>
+            </plentry>
+            <plentry props="flutter">
+                <pt>height</pt>
+                <pd>目标区域的高度。</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
 </reference>

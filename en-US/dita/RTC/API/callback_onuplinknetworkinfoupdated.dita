@@ -1,46 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onuplinknetworkinfoupdated">
-    <title><ph keyref="onUplinkNetworkInfoUpdated" /></title>
+    <title><ph keyref="onUplinkNetworkInfoUpdated"/></title>
     <shortdesc id="short"><ph id="shortdesc">Occurs when the uplink network information changes.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onUplinkNetworkInfoUpdated" />
+                <indexterm keyref="onUplinkNetworkInfoUpdated"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public void onUplinkNetworkInfoUpdated(UplinkNetworkInfo info) {}</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit *_Nonnull)engine
+            <codeblock props="android" outputclass="language-java">public void onUplinkNetworkInfoUpdated(UplinkNetworkInfo info) {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit *_Nonnull)engine
     uplinkNetworkInfoUpdate:(AgoraUplinkNetworkInfo *_Nonnull)networkInfo;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual void onUplinkNetworkInfoUpdated(const UplinkNetworkInfo&amp; info) {
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onUplinkNetworkInfoUpdated(const UplinkNetworkInfo&amp; info) {
   (void)info;
 }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp" />
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
-            </p>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
             <p>The SDK triggers this callback when the uplink network information changes.</p>
-            <note type="attention">This callback only applies to scenarios where you push externally encoded video data in H.264 format to the SDK.</note>
-        </section>
-        <section id="parameters"><title>Parameters</title>
+            <note type="attention">This callback only applies to scenarios where you push externally encoded video data in H.264 format to the SDK.</note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
             <parml>
-                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                  <pt />
-                  <pd />
-              </plentry>
-                <plentry>
-                    <pt props="android windows">info</pt>
-                    <pt props="ios mac">networkInfo</pt>
-                    <pd>The uplink network information. See <xref keyref="UplinkNetworkInfo" />.</pd>
-                </plentry>
-            </parml>
-        </section>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry>
+                <pt props="android cpp">info</pt>
+                <pt props="ios mac">networkInfo</pt>
+                <pd>The uplink network information. See <xref keyref="UplinkNetworkInfo"/>.</pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

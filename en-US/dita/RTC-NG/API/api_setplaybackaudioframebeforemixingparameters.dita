@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setplaybackaudioframebeforemixingparameters">
+    <title><ph keyref="setPlaybackAudioFrameBeforeMixingParameters" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the audio data format reported by <xref keyref="onPlaybackAudioFrameBeforeMixing" />.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setPlaybackAudioFrameBeforeMixingParameters" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setPlaybackAudioFrameBeforeMixingParameters(int sampleRate, int channel);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setPlaybackAudioFrameBeforeMixingParametersWithSampleRate:(NSInteger)sampleRate
+                                                         channel:(NSInteger)channel;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setPlaybackAudioFrameBeforeMixingParameters(int sampleRate, int channel) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp">public abstract int SetPlaybackAudioFrameBeforeMixingParameters(int sampleRate, int channel);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>Sets the audio data format reported by <xref keyref="onPlaybackAudioFrameBeforeMixing" />.</p>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry>
+                    <pt><b>sampleRate</b></pt>
+                    <pd>
+                        <p>The sample rate returned in the callback, which can be set as <codeph>8000</codeph>, <codeph>16000</codeph>, <codeph>32000</codeph>, <codeph>44100</codeph>, or <codeph>48000</codeph> Hz.</p>
+                    </pd>
+                </plentry>
+            </parml>
+            <parml id="parml_imv_m3g_3qb">
+                <plentry>
+                    <pt><b>channel</b></pt>
+                    <pd>
+                        <p>The number of channels of the external audio source, which can be set as <codeph>1</codeph>(Mono) or <codeph>2</codeph>(Stereo).</p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul id="ul_ahk_23f_3qb">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>

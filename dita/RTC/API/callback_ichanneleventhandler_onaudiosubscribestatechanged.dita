@@ -5,16 +5,17 @@
     <shortdesc conkeyref="onAudioSubscribeStateChanged/short"/>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="IChannel_onAudioSubscribeStateChanged"/>
-   </keywords>
+            <keywords>
+                <indexterm keyref="IChannel_onAudioSubscribeStateChanged"/>
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp">virtual void onAudioSubscribeStateChanged(IChannel *rtcChannel,
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioSubscribeStateChanged(IChannel *rtcChannel,
      uid_t uid,
      STREAM_SUBSCRIBE_STATE oldState,
      TREAM_SUBSCRIBE_STATE newState,
@@ -25,7 +26,7 @@
      (void)newState;
      (void)elapseSinceLastState;
      }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(
+            <codeblock props="electron" outputclass="language-typescript">on(
   evt: ChannelEvents.AUDIO_SUBSCRIBE_STATE_CHANGED,
   cb: (
     channelId: string,
@@ -35,36 +36,40 @@
     elapseSinceLastState: number
   ) =&gt; void
 ): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioSubscribeStateChanged(string channelId, uint uid, STREAM_SUBSCRIBE_STATE oldState,
+            <codeblock props="cs" outputclass="language-csharp">public virtual void OnAudioSubscribeStateChanged(string channelId, uint uid, STREAM_SUBSCRIBE_STATE oldState,
             STREAM_SUBSCRIBE_STATE newState, int elapseSinceLastState)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart">StreamSubscribeStateCallback? audioSubscribeStateChanged;</codeblock>
-        </p>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">StreamSubscribeStateCallback? audioSubscribeStateChanged;</codeblock>
+            </p>
         </section>
         <section conkeyref="onAudioSubscribeStateChanged/detailed_desc"> </section>
-        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-   <parml>
-       <plentry conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
-  <pt/>
-  <pd/>
-       </plentry>
-       <plentry conkeyref="onAudioSubscribeStateChanged/uid">
-  <pt/>
-  <pd/>
-       </plentry>
-       <plentry conkeyref="onAudioSubscribeStateChanged/oldState">
-  <pt/>
-  <pd/>
-       </plentry>
-       <plentry conkeyref="onAudioSubscribeStateChanged/newState">
-  <pt/>
-  <pd/>
-       </plentry>
-       <plentry conkeyref="onAudioSubscribeStateChanged/elapseSinceLastState">
-  <pt/>
-  <pd/>
-       </plentry>
-   </parml>
-        </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"
+            />
+            <parml>
+            <plentry props="native cs"
+                conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="onAudioSubscribeStateChanged/uid">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="onAudioSubscribeStateChanged/oldState">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="onAudioSubscribeStateChanged/newState">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry
+                conkeyref="onAudioSubscribeStateChanged/elapseSinceLastState">
+                <pt/>
+                <pd/>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

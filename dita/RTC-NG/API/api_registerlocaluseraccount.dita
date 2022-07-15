@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_registerlocaluseraccount">
+    <title><ph keyref="registerLocalUserAccount"/></title>
+    <shortdesc id="short"><ph id="shortdesc">注册本地用户 User Account。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="registerLocalUserAccount"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)registerLocalUserAccountWithAppID:(NSString * _Nonnull)appID userAccount:(NSString * _Nonnull)userAccount;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int RegisterLocalUserAccount(string appId, string userAccount);</codeblock></p>
+            <p outputclass="codeblock" props="rtc">
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)registerLocalUserAccount:(NSString* _Nonnull)userAccount appId:(NSString* _Nonnull)appId;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int RegisterLocalUserAccount(string appId, string userAccount);</codeblock></p>
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int registerLocalUserAccount(String appId, String userAccount);</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int registerLocalUserAccount(const char* appId, const char* userAccount) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">registerLocalUserAccount(appId: string, userAccount: string): number</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; registerLocalUserAccount(String appId, String userAccount);</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since" props="rtc">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v2.8.0</dd>
+            </dlentry>
+            </dl>
+            <p>该方法为本地用户注册一个 User Account。注册成功后，该 User Account 即可标识该本地用户的身份，用户可以使用它加入频道。</p>
+            <p>成功注册 User Account 后，本地会触发 <xref keyref="onLocalUserRegistered"/> 回调，告知本地用户的 UID 和 User Account。</p>
+            <p>该方法为可选。如果你希望用户使用 User Account 加入频道，可以选用以下两种方式：
+
+            <ul>
+            <li>先调用 <apiname keyref="registerLocalUserAccount"/> 方法注册 Account，再调用 <xref keyref="joinChannelWithUserAccount2"/> 方法加入频道。</li>
+            <li>直接调用 <apiname keyref="joinChannelWithUserAccount2"/> 方法加入频道。</li>
+            </ul></p>
+            <p>两种方式的区别在于，提前调用 <apiname keyref="registerLocalUserAccount"/>，可以缩短使用 <apiname keyref="joinChannelWithUserAccount2"/> 进入频道的时间。</p>
+            <note type="attention">
+            <ul>
+            <li><parmname>userAccount</parmname> 不能为空，否则该方法不生效。</li>
+            <li>请确保在该方法中设置的 <parmname>userAccount</parmname> 在频道中的唯一性。</li>
+            <li>为保证通信质量，请确保频道内使用同一类型的数据标识用户身份。即同一频道内需要统一使用 UID 或 User Account。 如果有用户通过 Agora Web SDK 加入频道，请确保 Web 加入的用户也是同样类型。</li>
+            </ul> </note> </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt props="android cpp unity flutter electron">appId</pt>
+                <pt props="ios mac"><ph props="rtc-ng">appID</ph><ph props="rtc">appId</ph></pt>
+                <pd>你的项目在 Agora 控制台注册的 App ID。</pd>
+            </plentry>
+            <plentry>
+                <pt>userAccount</pt>
+                <pd>
+                    <p>用户 User Account。该参数用于标识实时音视频互动频道中的用户。你需要自行设置和管理用户的 User Account，并确保同一频道中每个用户的 User Account 是唯一的。该参数为必填，最大不超过 255 字节，不可填 <ph keyref="NULL"/>。以下为支持的字符集范围（共 89 个字符）：
+
+                    <ul>
+                    <li>26 个小写英文字母 a-z</li>
+                    <li>26 个大写英文字母 A-Z</li>
+                    <li>10 个数字 0-9</li>
+                    <li>空格</li>
+                    <li>"!"、"#"、"$"、"%"、"&amp;"、"("、")"、"+"、"-"、":"、";"、"&lt;"、"="、"."、"&gt;"、"?"、"@"、"["、"]"、"^"、"_"、"{"、"}"、"|"、"~"、","</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron unity">
+            <title>返回值</title>
+            <ul>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。</li>
+            </ul> </section>
+    </refbody>
+</reference>

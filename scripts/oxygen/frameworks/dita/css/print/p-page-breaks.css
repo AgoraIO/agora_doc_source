@@ -1,0 +1,40 @@
+
+/*
+ * =====================================================
+ * 
+ * Rules for avoiding breaking the pages in unexpected 
+ * places (between titles and content for instance )
+ * 
+ * =====================================================
+ */
+*[class ~= "topic/title"] {
+    page-break-after:avoid;
+}
+
+/* Avoid breaking between a link list title and its content */
+*[class ~= "topic/linklist"] > strong,
+*[class ~= "topic/linklist"] > *[class ~= "topic/title"]{
+	page-break-after: avoid;
+	display:block;	
+}
+
+/*
+ * Forced page breaks.
+ *
+ * The page-brek values can be set either on an element from the content: topic, section, etc, or
+ * on a topicref.
+ *
+ * The outputclass from the topicrefs is copied to 
+ * the topics, it would be meaningless to apply the page 
+ * break in the toc.
+ */
+*:not([class ~= "map/topicref"])[outputclass ~= "page-break-before"] {
+    page-break-before:always;    
+}
+*:not([class ~= "map/topicref"])[outputclass ~= "page-break-after"] {
+    page-break-after:always;
+}
+*:not([class ~= "map/topicref"])[outputclass ~= "page-break-avoid"] {
+    page-break-inside:avoid;
+}
+

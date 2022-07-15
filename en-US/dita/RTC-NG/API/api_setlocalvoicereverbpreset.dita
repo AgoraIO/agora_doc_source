@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setlocalvoicereverbpreset">
+    <title><ph keyref="setLocalVoiceReverbPreset" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the local voice reverberation option, including the virtual stereo.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="setLocalVoiceReverbPreset" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract int setLocalVoiceReverbPreset(int reverbPreset);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int) setLocalVoiceReverbPreset:(AgoraAudioReverbPreset)reverbPreset;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setLocalVoiceReverbPreset(AUDIO_REVERB_PRESET reverbPreset) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">setLocalVoiceReverbPreset(reverbPreset: AUDIO_REVERB_PRESET)</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetLocalVoiceReverbPreset(AUDIO_REVERB_PRESET reverbPreset);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLocalVoiceReverbPreset(AudioReverbPreset preset);</codeblock>
+        </p>
+        </section>
+        <section id="detailed_desc">
+
+   <dl outputclass="deprecated" props="rtc">
+       <dlentry props="native">
+  <dt>Deprecated:</dt>
+  <dd>This method is deprecated as of v2.4.0. Agora recommends using <xref keyref="setAudioEffectPreset" /> and <xref keyref="setVoiceBeautifierPreset" /> instead.</dd>
+       </dlentry>
+   </dl>
+   <p>This method sets the local voice reverberation for users in a COMMUNICATION channel or hosts in a LIVE_BROADCASTING channel. After successfully calling this method, all users in the channel can hear the voice with reverberation.</p>
+   <note type="attention">
+       <ul>
+  <li>When using the enumeration value prefixed with <codeph>AUDIO_REVERB_FX</codeph>, ensure that you set the <parmname>profile</parmname> parameter in <xref keyref="setAudioProfile" /> to<apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY" />(4) or <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO" />(5) before calling this method. Otherwise, the method setting is invalid.</li>
+  <li props="native">When calling the <apiname keyref="AUDIO_VIRTUAL_STEREO" /> method, Agora recommends setting the <parmname>profile</parmname> parameter in <apiname keyref="setAudioProfile" /> as <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO" />(5).</li>
+  <li>This method works best with the human voice, and Agora does not recommend using it for audio containing music and a human voice.</li>
+  <li>Do not use this method with <xref keyref="setLocalVoiceChanger" />, because the method called later overrides the one called earlier. For detailed considerations, see the advanced guide Set the Voice Effect.</li>
+  <li>You can call this method either before or after joining a channel.</li>
+       </ul>
+   </note>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+   <parml>
+       <plentry>
+  <pt props="android apple cpp unity">reverbPreset</pt>
+  <pt props="flutter">preset</pt>
+  <pd><p props="ios mac cpp unity flutter">The local voice reverberation option. The default value is <apiname keyref="AUDIO_REVERB_OFF" />, which means the original voice. For more details, see <xref keyref="AUDIO_REVERB_PRESET" />. To achieve better voice effects, Agora recommends the enumeration whose name begins with <codeph>AUDIO_REVERB_FX</codeph>.</p></pd>
+      <pd><p props="android">The local voice reverberation option. To achieve better voice effects, Agora recommends the enumeration whose name begins with <codeph>AUDIO_REVERB_FX</codeph>.<ul>
+                                <li><ph keyref="AUDIO_REVERB_OFF" />: (Default) Turn off local voice reverberation, that is, to use the original voice.</li>
+                                <li><ph keyref="AUDIO_REVERB_FX_KTV" />: The reverberation style typical of a KTV venue (enhanced).</li>
+                                <li><ph keyref="AUDIO_REVERB_FX_VOCAL_CONCERT" />: The reverberation style typical of a concert hall (enhanced).</li>
+                                <li><ph keyref="AUDIO_REVERB_FX_UNCLE" />: The reverberation style typical of an uncle's voice.</li>
+                                <li><ph keyref="AUDIO_REVERB_FX_SISTER" />: The reverberation style typical of a little sister's voice.</li>
+                                <li><ph keyref="AUDIO_REVERB_FX_STUDIO" />: The reverberation style typical of a recording studio (enhanced).</li>
+                                <li><ph keyref="AUDIO_REVERB_FX_POPULAR" />: The reverberation style typical of popular music (enhanced).</li>
+                                <li><ph keyref="AUDIO_REVERB_FX_RNB" />: The reverberation style typical of R&amp;B music (enhanced).</li>
+                                <li><ph keyref="AUDIO_REVERB_FX_PHONOGRAPH" />: The reverberation style typical of the vintage phonograph.</li>
+                            </ul>
+                        </p>
+  </pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values" props="native electron unity">
+   <title>Returns</title>
+   <ul>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
+   </ul>
+        </section></refbody>
+</reference>

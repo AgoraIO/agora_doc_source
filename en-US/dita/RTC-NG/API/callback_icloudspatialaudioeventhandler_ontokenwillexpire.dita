@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_icloudspatialaudioeventhandler_ontokenwillexpire">
+    <title><ph keyref="onTokenWillExpire"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the RTM token expires.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onTokenWillExpire"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onTokenWillExpire();</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)csaEngineTokenWillExpire:(AgoraCloudSpatialAudioKit* _Nonnull)engine;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onTokenWillExpire() {}</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>Once the RTM token expires, the SDK triggers this callback to notify the app to renew the RTM token.</p>
+            <p>When you receive this callback, you need to generate a new token on your server and call <xref keyref="renewToken_ICloudSpatialAudioEngine"/> to pass the new token to the SDK.</p>
+        </section>
+        <section id="parameters" props="ios mac">
+            <title>Parameters</title>
+            <parml>
+            <plentry conkeyref="onConnectionStateChange/cloudengine">
+                <pt/>
+                <pd/>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

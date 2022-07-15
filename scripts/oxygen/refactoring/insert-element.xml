@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Descriptor for the 'Insert element' operation.     
+-->
+<refactoringOperationDescriptor 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.oxygenxml.com/ns/xmlRefactoring" 
+    id="insert-element" 
+    name="${i18n(xr_insert_element)}">
+	<description>${i18n(xr_insert_element_description)}</description>    
+	<script type="XQUERY_UPDATE" href="insert-element.xq"/>
+	<category>${i18n(Elements)}</category>
+    <parameters>
+    	<description>${i18n(xr_insert_element_parameters_description)}</description>
+    	
+    	<section label="${i18n(Element)}">
+    		<elementParameter>
+    			<localName name="new_element_localname" label="${i18n(Local_name)}">
+    				<description>${i18n(xr_insert_element_local_name_description)}</description>
+    			</localName>
+    			<namespace name="new_element_namespace" label="${i18n(Namespace)}">
+    				<description>${i18n(xr_insert_element_namespace_description)}</description>
+    			</namespace>
+    		</elementParameter>
+    	</section>
+    	
+    	<section label="${i18n(Location)}">    		
+    		<elementLocation name="element_anchor_xpath" useCurrentContext="true">
+    			<element label="${i18n(XPath)}">
+    				<description>${i18n(xr_insert_xpath_description)}</description>
+    			</element>
+    		</elementLocation>
+    		
+    		<parameter label="${i18n(xr_position_param)}" type="TEXT" name="insert_position">    			
+    			<description>${i18n(xr_position_param_description)}</description>
+    			<possibleValues onlyPossibleValuesAllowed="true">
+    				<value name="before">${i18n(Before)}</value>
+    				<value name="after" default="true">${i18n(After)}</value>
+    				<value name="firstChild">${i18n(xr_first_child)}</value>
+    				<value name="lastChild">${i18n(xr_last_child)}</value>
+    			</possibleValues>
+    		</parameter>    		
+    	</section>
+    	
+    </parameters>
+</refactoringOperationDescriptor>

@@ -1,0 +1,122 @@
+<!--doc: A plugin extension.-->
+<!ELEMENT extension (#PCDATA|folder)*>
+<!ATTLIST extension type (selectionProcessor
+|WebappServletFilter
+|WebappServlet
+|documentProcessor
+|generalExtension
+|URLStreamHandler
+|URLHandler
+|TargetedURLHandler
+|URLChooser
+|URLChooserToolbar
+|componentsValidator
+|OpenRedirect
+|WorkspaceAccess
+|WorkspaceAccessJS
+|WorkspaceAccessJSModule
+|LockHandlerFactory
+|StylesFilter
+|OptionPage
+|RefactoringOperationsProvider
+|AuthorStylesheet
+|AdditionalFrameworks
+|Transformer
+|XQueryTransformer
+|WebappStaticResourcesFolder
+|WebappCSSResource
+|AdditionalDITAOT
+|AdditionalXProcEngine
+|AdditionalUITranslation
+|TrustedHosts
+|RoomFactory
+|DocumentValidator) #REQUIRED>
+<!ATTLIST extension role (config) #IMPLIED>
+<!ATTLIST extension class CDATA #IMPLIED>
+<!ATTLIST extension description CDATA #IMPLIED>
+<!--doc: The keyboard shortcut and action name are available for the following extension types:
+    selectionProcessor
+    documentProcessor
+    generalExtension
+Example: ctrl shift E
+    -->
+<!ATTLIST extension keyboardShortcut CDATA #IMPLIED>
+<!ATTLIST extension actionName CDATA #IMPLIED>
+<!ATTLIST extension path CDATA #IMPLIED>
+<!-- doc: The location of the CSS (or LESS) file that will be used for all XML documents in Author mode. 
+  The location is relative to the plugin folder. -->
+<!ATTLIST extension href CDATA #IMPLIED>
+<!--doc: A folder specifying a place where additional refactoring operation descriptors and associated scripts are located.
+       Can only be used for the RefactoringOperationsProvider extension type.
+    -->
+<!ELEMENT folder (#PCDATA)>
+<!ATTLIST folder path CDATA #IMPLIED>
+
+<!ELEMENT context (#PCDATA)>
+<!ATTLIST context class CDATA #REQUIRED>
+
+<!ELEMENT runtime (#PCDATA | library | librariesFolder)*>
+<!ELEMENT library (#PCDATA)>
+<!ATTLIST library name CDATA #IMPLIED>
+<!-- doc: The default value is "local"
+When choosing "local" the library is loaded in the plugin's own class loader.
+When choosing "global" the library is loaded in the main Oxygen class loader as the last library in the list (as if it would be present in the Oxygen "lib" directory).
+When choosing "globalHighPriority" the library is loaded in the main Oxygen class loader as the first library in the list (useful in border cases to patch certain behaviors in the Oxygen JARs).-->
+<!ATTLIST library scope (local|global|globalHighPriority) "local">
+<!-- This elements specified a folder from which all the jar files should be loaded. -->
+<!ELEMENT librariesFolder (#PCDATA)>
+<!-- This should be a path to a local file -->
+<!ATTLIST librariesFolder name CDATA #IMPLIED>
+<!-- doc: The default value is "local".
+The values are the same as for the "library" element.-->
+<!ATTLIST librariesFolder scope (local|global) "local">
+<!ELEMENT plugin (#PCDATA | runtime | extension | view | toolbar | property | license | context)*>
+<!-- An ID to identify the plugin. -->
+<!ATTLIST plugin id CDATA #REQUIRED>
+<!ATTLIST plugin name CDATA #IMPLIED>
+<!ATTLIST plugin description CDATA #IMPLIED>
+<!ATTLIST plugin version CDATA #IMPLIED>
+<!ATTLIST plugin vendor CDATA #IMPLIED>
+<!ATTLIST plugin class CDATA #IMPLIED>
+
+<!-- Element containing the path relative to the plugin license the plugin directory -->
+<!ELEMENT license (#PCDATA)>
+
+<!-- doc: The default value is "preferOxygenResources"
+When choosing "preferReferencedResources" the libraries which are referenced in the "plugin.xml"
+will have precedence over the ones in the Oxygen "lib" directory if they have conflicting package names.
+When choosing "preferOxygenResources" the libraries which are referenced in the Oxygen "lib"
+directory will have precedence over the ones in the "plugin.xml" if they have conflicting package names.-->
+<!ATTLIST plugin classLoaderType (preferReferencedResources|preferOxygenResources) "preferOxygenResources">
+<!--doc: This element defines an unique ID for a view which will be customized in the WorkspaceAccess plugin extension-->
+<!ELEMENT view (perspective)*>
+<!--doc: This element defines the initial state of a view for a given perspective -->
+<!ELEMENT perspective EMPTY>
+<!--doc:  The ID of the perspective to customize-->
+<!ATTLIST perspective id (editor|dita|xslt_debugger|xquery_debugger|database) #REQUIRED>
+<!--doc: The initial state of the parent view for a certain perspective. -->
+<!ATTLIST perspective initialState (hidden|docked|autohide|floating) "docked">
+<!--doc:  The ID of the view-->
+<!ATTLIST view id ID #REQUIRED>
+<!--doc: The initial side on the Oxygen main frame where the view will be placed. -->
+<!ATTLIST view initialSide (NORTH|SOUTH|EAST|WEST) "WEST">
+<!--doc: The initial row on the specified side where the view will be placed. 
+For example the Oxygen "Project" view has an initial row of "0" and the Outline view has an initial row of "1". -->
+<!ATTLIST view initialRow CDATA #IMPLIED>
+<!--doc: The initial state of the view, hidden or visible. -->
+<!ATTLIST view initialState (hidden|docked|autohide|floating) "docked">
+
+<!--doc: This element defines an unique ID for a toolbar which will be customized in the WorkspaceAccess plugin extension-->
+<!ELEMENT toolbar EMPTY>
+<!--doc:  The ID of the toolbar-->
+<!ATTLIST toolbar id ID #REQUIRED>
+<!--doc: The initial side on the Oxygen main frame where the toolbar will be placed. -->
+<!ATTLIST toolbar initialSide (NORTH|SOUTH) "NORTH">
+<!--doc: The initial row on the specified side where the toolbar will be placed. 
+For example the Oxygen main menu has an initial row of "0" and the "Edit" toolbar has an initial row of "1". -->
+<!ATTLIST toolbar initialRow CDATA #IMPLIED>
+
+<!-- Property element -->
+<!ELEMENT property EMPTY>
+<!ATTLIST property name CDATA #REQUIRED>
+<!ATTLIST property value CDATA #REQUIRED>

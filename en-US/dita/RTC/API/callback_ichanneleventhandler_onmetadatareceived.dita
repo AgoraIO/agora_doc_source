@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_ichanneleventhandler_onmetadatareceived">
-    <title><ph keyref="IChannel_onMetadataReceived" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the local user receives <xref keyref="Metadata" />.</ph></shortdesc>
+    <title><ph keyref="IChannel_onMetadataReceived"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the local user receives <xref keyref="Metadata"/>.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="IChannel_onMetadataReceived" />
+                <indexterm keyref="IChannel_onMetadataReceived"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="windows" outputclass="language-cpp" />
-                <codeblock props="electron" outputclass="language-typescript">on(
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript">on(
   evt: ChannelEvents.METADATA_RECEIVED,
   cb: (metadata: Metadata) =&gt; void
 ): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnMetadataReceived(Metadata metadata)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">MetadataCallback? metadataReceived;</codeblock>
-            </p>
+            <codeblock props="cs" outputclass="language-csharp">public virtual void OnMetadataReceived(Metadata metadata)</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">MetadataCallback? metadataReceived;</codeblock> </p>
         </section>
-        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
-                <plentry props="unity">
-                    <pt>metadata</pt>
-                    <pd>The received metadata. See <xref keyref="Metadata" />.</pd>
-                </plentry>
-                <plentry props="flutter">
-                    <pt>buffer</pt>
-                    <pd>The recevied metadata.</pd>
-                </plentry>
-                <plentry props="flutter">
-                    <pt>uid</pt>
-                    <pd>The ID of the user who sent the metadata.</pd>
-                </plentry>
-                <plentry props="flutter">
-                    <pt>timeStampMs</pt>
-                    <pd>The timestamp (ms) of the received metadata.</pd>
-                </plentry>
-            </parml>
-        </section>
+            <plentry props="cs">
+                <pt>metadata</pt>
+                <pd>The received metadata. See <xref keyref="Metadata"/>.</pd>
+            </plentry>
+            <plentry props="flutter">
+                <pt>buffer</pt>
+                <pd>The recevied metadata.</pd>
+            </plentry>
+            <plentry props="flutter">
+                <pt>uid</pt>
+                <pd>The ID of the user who sent the metadata.</pd>
+            </plentry>
+            <plentry props="flutter">
+                <pt>timeStampMs</pt>
+                <pd>The timestamp (ms) of the received metadata.</pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>
