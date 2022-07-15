@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediarecorder_startrecording">
+    <title><ph keyref="startRecording"/></title>
+    <shortdesc id="short"><ph id="shortdesc">开启本地音视频流录制。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startRecording"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public int startRecording(RtcConnection connection, MediaRecorderConfiguration config) {
+    RtcEngineImpl engine = null;
+    if (mEngineReference == null || (engine = mEngineReference.get()) == null) {
+      mEngineReference = null;
+      return -7;
+    }
+    return engine.startRecording(config.storagePath, config.containerFormat, config.streamType,
+        config.maxDurationMs, config.recorderInfoUpdateInterval, connection);
+  }</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)startRecording:(AgoraRtcConnection * _Nonnull)connection
+               config:(AgoraMediaRecorderConfiguration* _Nonnull)config;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int startRecording(const RtcConnection&amp; connection, const media::MediaRecorderConfiguration&amp; config) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/></p>
+        </section>
+        <section id="detailed_desc">
+            <p><ph props="android apple">成功获取 <xref keyref="IMediaRecorder"/> 对象后</ph><ph props="cpp">调用 <xref keyref="queryInterface"/> 方法获取 <xref keyref="IMediaRecorder"/> 对象后</ph><ph>，你可以调用该方法开启本地音视频流录制。</ph></p>
+            <p>该方法录制的是本地麦克风采集的、编码为 AAC 格式的音频或本地摄像头采集的、编码为 H.264 格式的视频。只有当检测到可录制的音视频流时，才能成功生成录制文件；当没有可录制的音视频或录制中的音视频流中断超过 5 秒后，SDK 会停止录制，并触发 <codeph><apiname keyref="onRecorderStateChanged"/>(<apiname keyref="RECORDER_STATE_ERROR"/>, <apiname keyref="RECORDER_ERROR_NO_STREAM"/>)</codeph> 回调。</p>
+            <p>开启本地音视频流录制后，当视频分辨率在录制过程中发生变化时，SDK 会停止录制；当音频采样率和声道数发生变化时，SDK 会持续录制并生成单个 MP4 录制文件。</p>
+            <note type="attention">该方法需要在加入频道后调用。</note> </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry conkeyref="joinChannelEx/connection">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry>
+                <pt>config</pt>
+                <pd>音视频流录制配置。详见 <xref keyref="MediaRecorderConfiguration"/>。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <ul>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。
+                <ul>
+                <li>-2: 参数无效。请确保：
+                    <ul>
+                    <li>指定的录制文件保存路径正确且可写。</li>
+                    <li>指定的录制文件格式正确。</li>
+                    <li>设置的最大录制时长正确。</li>
+                    </ul></li>
+                <li>-4: <xref keyref="IRtcEngine"/> 当前状态不支持该操作。可能因为录制正在进行中或录制出错停止。</li>
+                <li>-7: <xref keyref="IRtcEngine"/> 尚未初始化就调用方法。<ph props="android apple">请确认在调用该方法前以调用 <xref keyref="getMediaRecorder"/></ph>。</li>
+                </ul></li>
+            </ul> </section>
+    </refbody>
+</reference>

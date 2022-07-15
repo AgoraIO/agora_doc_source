@@ -194,7 +194,7 @@ def main():
                 # Here, we assume that the DITA file contains a single codeblock for each programming language
                 # The ng-sdk prop is at the beginning (if exists)
                 # The current sdk is default. No plan to migrate the current sdk to DITA yet
-                after_codeblock_start_tag = re.split(r'<codeblock props="[a-zA-Z\s]{0,10}windows[a-zA-Z\s]{0,10}" outputclass="language-cpp">',
+                after_codeblock_start_tag = re.split(r'<codeblock props="[a-zA-Z\s]{0,10}cpp[a-zA-Z\s]{0,10}" outputclass="language-cpp">',
                                                      content)
                 try:
                     before_codeblock_end_tag = re.split('</codeblock>', after_codeblock_start_tag[1])
@@ -237,7 +237,7 @@ def main():
         for file, code in dictionary.items():
             name = os.path.basename(file)
             print(name)
-            if name.startswith("api_"):
+            if name.startswith("api_") or name.startswith("callback_"):
                 dart_protos = extract_rn_proto(code, content)
                 print(dart_protos)
 
@@ -299,10 +299,10 @@ def main():
                         child.text = proto
 
                 # Add a return_values section for flutter
-                if child.text is not None and "void" in child.text:
-                    for new_child in root.iter('*'):
-                        if new_child.get("id") == "return_values":
-                            new_child.set("props", "native electron unity")
+                #if child.text is not None and "void" in child.text:
+                #    for new_child in root.iter('*'):
+                #        if new_child.get("id") == "return_values":
+                #            new_child.set("props", "native electron unity")
 
 
             # Must be Python 3.8 or higher. Otherwise the attribute order cannot be preserved!!!!

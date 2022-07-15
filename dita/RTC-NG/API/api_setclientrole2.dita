@@ -32,6 +32,8 @@
             <p>该方法在加入频道前后均可调用。</p>
             <p id="preview">如果你在加入频道前调用该方法设置用户角色为主播、并且通过 <xref keyref="setupLocalVideo"/> 方法设置了本地视频属性，则用户加入频道时会自动开启本地视频预览。</p>
             <p>如果你在加入频道后调用该方法切换用户角色，调用成功后，SDK 会自动进行如下操作：
+            
+            
             <ul>
             <li>调用 <xref keyref="muteLocalAudioStream"/> 和 <xref keyref="muteLocalVideoStream"/> 修改发布状态。</li>
             <li>本地触发 <xref keyref="onClientRoleChanged"/> 回调。</li>
@@ -39,6 +41,9 @@
             </ul></p>
             <p props="ios" id="screenshare">在屏幕共享场景下，如果主播下麦后再上麦，则需要在调用该方法将用户角色设置为主播后，再调用 <xref keyref="updateScreenCapture"/> 并将 <parmname>captureAudio</parmname> 设置为 <codeph><ph keyref="true"/></codeph>，否则观众端无法接收主播端发出的音频流。</p>
             <p props="native">该方法与 <xref keyref="setClientRole1"/> 的区别在于，该方法还支持设置用户级别。
+            
+            
+            
             <ul id="diff">
             <li>用户角色（<parmname>role</parmname>）确定用户在 SDK 层的权限，包含是否可以发送流、是否可以接收流、是否可以旁路推流等。</li>
             <li>用户级别（<parmname>level</parmname>）需要与角色结合使用，确定用户在其权限范围内可以享受到的服务。例如对于观众，选择接收低延时还是超低延时的视频流。<b>不同的级别会影响计费。</b></li>
@@ -65,6 +70,7 @@
             <ul>
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。
+                
                 <ul>
                 <li>-1: 一般性的错误（未明确归类）。</li>
                 <li>-2: 参数无效。</li>
