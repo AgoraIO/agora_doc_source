@@ -31,7 +31,7 @@
                     <li><xref keyref="IRtcEngine"/> 初始化失败。请重新初始化 <apiname keyref="IRtcEngine"/>。 </li>
                     <li>调用方法时用户尚未加入频道。请检查方法的调用逻辑。 </li>
                     <li>调用 <xref keyref="rate"/> 或 <xref keyref="complain"/> 方法时用户尚未离开频道。请检查方法的调用逻辑。 </li>
-                    <li>请检查是否已开启音频模块。 请检查程序集完整性。</li>
+                    <li>请检查是否已开启音频模块。请检查程序集完整性。</li>
                     </ul></pd>
             </plentry>
             <plentry>
@@ -81,8 +81,8 @@
 
 
                     <ul>
-                    <li>用户已经在频道中。 Agora 推荐通过 <xref keyref="onConnectionStateChanged"/> 回调判断用户是否在频道中。除收到 <apiname keyref="CONNECTION_STATE_DISCONNECTED"/>(1) 状态外，不要再次调用该方法加入频道。</li>
-                    <li>用户在调用 <xref keyref="startEchoTest2"/> 进行通话测试时，未调用 <xref keyref="stopEchoTest"/> 结束当前测试，就尝试加入频道。开始通话测试后，需要先调用 <apiname keyref="stopEchoTest"/> 结束当前测试，再加入频道。</li>
+                    <li>用户已经在频道中。Agora 推荐通过 <xref keyref="onConnectionStateChanged"/> 回调判断用户是否在频道中。除收到 <apiname keyref="CONNECTION_STATE_DISCONNECTED"/>(1) 状态外，不要再次调用该方法加入频道。</li>
+                    <li>用户在调用 <xref keyref="startEchoTest2"/> 进行通话测试后，未调用 <xref keyref="stopEchoTest"/> 结束当前测试就尝试加入频道。开始通话测试后，需要先调用 <apiname keyref="stopEchoTest"/> 结束当前测试，再加入频道。</li>
                     </ul></pd>
             </plentry>
             <plentry>
@@ -91,7 +91,7 @@
 
 
                     <ul>
-                    <li>用户已离开频道，然后调用 <xref keyref="leaveChannel"/> 退出频道。停止调用该方法即可。 </li>
+                    <调用 <xref keyref="leaveChannel"/> 前，用户已离开频道。停止调用该方法即可。 </li>
                     <li>用户尚未加入频道，就调用 <apiname keyref="leaveChannel"/> 退出频道。这种情况下无需额外操作。</li>
                     </ul></pd>
             </plentry>
@@ -109,7 +109,7 @@
             </plentry>
             <plentry>
                 <pt><ph keyref="ERR_RESOURCE_LIMITED"/></pt>
-                <pd>22：当 app 占用资源过多或系统资源耗尽时，SDK 分配资源失败。</pd>
+                <pd>22：SDK 分配资源失败，可能由于 app 占用资源过多或系统资源耗尽。</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="ERR_INVALID_APP_ID"/></pt>
@@ -125,11 +125,11 @@
             </plentry>
             <plentry>
                 <pt><ph keyref="ERR_TOKEN_EXPIRED"/></pt>
-                <pd>109： 当前使用的 Token 过期，不再有效。请在服务端申请生成新的 Token，并调用 <xref keyref="renewToken"/> 更新 Token。
+                <pd>109：当前使用的 Token 过期，不再有效。请在服务端申请生成新的 Token，并调用 <xref keyref="renewToken"/> 更新 Token。
                     <dl outputclass="deprecated">
                     <dlentry>
                         <dt>弃用：</dt>
-                        <dd>该方法已废弃。请改用 <xref keyref="onConnectionStateChanged"/> 回调中的 <apiname keyref="CONNECTION_CHANGED_TOKEN_EXPIRED"/>(9)。 </dd>
+                        <dd>该枚举已废弃。请改用 <xref keyref="onConnectionStateChanged"/> 回调中的 <apiname keyref="CONNECTION_CHANGED_TOKEN_EXPIRED"/>(9)。 </dd>
                     </dlentry>
                     </dl>
                 </pd>
@@ -138,13 +138,13 @@
                 <pt><ph keyref="ERR_INVALID_TOKEN"/></pt>
                 <pd>110：Token 无效。一般有以下原因：
                     <ul>
-                    <li>在 Agora 控制台中启用了 App 证书，但仍旧在代码里使用了 App ID。当项目启用了 App 证书，就必须使用 Token 鉴权。</li>
+                    <li>在 Agora 控制台中启用了 App 证书，但未使用 App ID + Token 鉴权。当项目启用了 App 证书，就必须使用 Token 鉴权。</li>
                     <li>生成 Token 时填入的 <codeph>uid</codeph> 字段，和用户加入频道时填入的 <parmname>uid</parmname> 不匹配。</li>
                     </ul>
                     <dl>
                     <dlentry>
                         <dt>弃用：</dt>
-                        <dd>该方法已废弃。请改用 <xref keyref="onConnectionStateChanged"/> 回调中的 <apiname keyref="CONNECTION_CHANGED_INVALID_TOKEN"/>(8)。 </dd>
+                        <dd>该枚举已废弃。请改用 <xref keyref="onConnectionStateChanged"/> 回调中的 <apiname keyref="CONNECTION_CHANGED_INVALID_TOKEN"/>(8)。 </dd>
                     </dlentry>
                     </dl>
                 </pd>
@@ -155,7 +155,7 @@
             </plentry>
             <plentry>
                 <pt><ph keyref="ERR_CONNECTION_LOST"/></pt>
-                <pd>112：网络连接丢失。 网络连接中断，且 SDK 无法在 10 秒内连接服务器。</pd>
+                <pd>112：网络连接丢失。网络连接中断，且 SDK 无法在 10 秒内连接服务器。</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="ERR_NOT_IN_CHANNEL"/></pt>
@@ -195,7 +195,7 @@
             </plentry>
             <plentry>
                 <pt><ph keyref="ERR_ENCRYPTED_STREAM_NOT_ALLOWED_PUBLISH"/></pt>
-                <pd>130：如果开启了媒体流加密，则在调用 <xref keyref="addPublishStreamUrl"/> 时，会返回该错误。SDK 不支持将加密过的流推到 CDN 上。</pd>
+                <pd>130：SDK 不支持将加密过的流推到 CDN 上。如果开启了媒体流加密，则在调用 <xref keyref="addPublishStreamUrl"/> 时，会返回该错误。</pd>
             </plentry>
             <plentry props="hide">
                 <pt><ph keyref="ERR_LICENSE_CREDENTIAL_INVALID"/></pt>
@@ -203,7 +203,7 @@
             </plentry>
             <plentry>
                 <pt><ph keyref="ERR_INVALID_USER_ACCOUNT"/></pt>
-                <pd>134：无效的用户 user account，可能是因为设置了无效的参数。</pd>
+                <pd>134：无效的 user account，可能是因为设置了无效的参数。</pd>
             </plentry>
             <plentry props="hide">
                 <pt><ph keyref="ERR_MODULE_NOT_FOUND"/></pt>
