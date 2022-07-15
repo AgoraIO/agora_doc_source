@@ -23,7 +23,6 @@ Before proceeding, ensure that you meet the following requirements:
 - You have initialized the Agora Chat SDK. For details, see [Get Started with Android](./agora_chat_get_started_android?platform=Android).
 - You understand the call frequency limit of the Agora Chat APIs supported by different pricing plans as described in [Limitations](./agora_chat_limitation?platform=Android).
 - You understand the number of threads and thread members supported by different pricing plans as described in [Pricing Plan Details](./agora_chat_plan?platform=Android).
-- You have contacted support@agora.io to activate the threading feature.
 
 
 ## Implementation
@@ -32,14 +31,14 @@ This section describes how to call the APIs provided by the Agora Chat SDK to im
 
 ### Send a thread message
 
-Send a thread message is similar to send a message in a chat group. The difference lies in the `isChatThreadMessage` field, as shown in the following code sample:
+Sending a thread message is similar to sending a message in a chat group. The difference lies in the `isChatThreadMessage` field, as shown in the following code sample:
 
 ```java
 // Calls `createTxtSendMessage` to create a text message. 
 // Sets `content` to the content of the text message.
 // Sets `chatThreadId` to the ID of a thread that receives the text message.
 ChatMessage message = ChatMessage.createTxtSendMessage(content, chatThreadId); 
-// Sets `ChatType` to `GroupChat` as a thread belongs to a chat group.
+// Sets `ChatType` to `GroupChat` as a thread that belongs to a chat group.
 message.setChatType(ChatType.GroupChat); 
 // Sets `isChatThreadMessage` to `true` to mark this message as a thread message.
 message.setisChatThreadMessage(true);

@@ -29,7 +29,6 @@ Before proceeding, ensure that you meet the following requirements:
 - You have initialized the Agora Chat SDK. For details, see [Get Started with Web](./agora_chat_get_started_web?platform=Web).
 - You understand the call frequency limit of the Agora Chat APIs supported by different pricing plans as described in [Limitations](./agora_chat_limitation?platform=Web).
 - You understand the number of threads and thread members supported by different pricing plans as described in [Pricing Plan Details](./agora_chat_plan?platform=Web).
-- You have contacted support@agora.io to activate the threading feature.
 
 
 ## Implementation
@@ -83,7 +82,7 @@ conn.addEventHandler('THREAD',{
 All chat group members can refer to the following steps to join a thread:
 
 1. Use either of the following two approaches to retrieve the thread ID:
-- Retrieve the thread list in a chat group by calling `getChatThreads`, and locate the ID of the thread that you want to join.
+- Retrieve the thread list in a chat group by calling [`getChatThreads`](#fetch), and locate the ID of the thread that you want to join.
 - Retrieve the thread ID within the `onChatThreadChange` callback that you receive.
 2. Call `joinChatThread` to pass in the thread ID and join the specified thread.
 
@@ -163,7 +162,7 @@ conn.getChatThreadDetail({chatThreadId: 'chatThreadId'}).then((res)=>{
 
 ### Retrieve the member list of a thread
 
-All chat group members can call `getChatThreadMembers` to retrieve a paginated member list of a thread from the server.
+All chat group members can call `getChatThreadMembers` to retrieve a paginated member list of a thread from the server, as shown in the following code sample:
 
 ```javascript
 // chatThreadId: The thread ID.
@@ -198,7 +197,7 @@ conn.getJoinedChatThreads({parentId: 'parentId',cursor: 'cursor',pageSize: 20}).
 });
 ```
 
-Users can also call `getChatThreads` to retrieve a paginated list from the server of all the threads in a specified chat group, as shown in the following code sample:
+Users can also call `getChatThreads` to retrieve a paginated list from the server of all the threads in a specified chat group, as shown in the following code sample:<a name="fetch"></a>
 
 ```javascript
 // parentId: The chat group ID.
