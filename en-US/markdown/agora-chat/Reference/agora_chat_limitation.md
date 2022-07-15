@@ -92,13 +92,6 @@ When a chatroom ([createChatRoom](https://hyphenateinc.github.io/android_referen
 
 ## Call limit of server-side
 
-The call limit of all Agora Chat RESTful APIs is for each IP address, except the API for getting message records. The call limit of the RESTful API for getting message records is once every minute for each app.
+For each App Key, the call frequency limit of all methods is 500 per second. This total limit applies to all pricing plans; however, the call frequency limit of each method varies. For details about each method, see [Chat RESTful API Reference](./agora_chat_restful_overview).
 
-The calling limits for each plan are as follows:
-
-| Agora Chat plan | Calling frequency (calls/second) |
-| :-------------- | :------------------------------- |
-| Free            | 10                               |
-| Starter         | 30                               |
-| Pro             | 50                               |
-| Enterprise      | 200                              |
+<div class="alert info">If the provided call frequency limit cannot meet your business requirements, contact <a href="mailto:sales@agora.io">sales@agora.io</a>.</div>

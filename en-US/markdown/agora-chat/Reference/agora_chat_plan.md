@@ -6,12 +6,13 @@ This page lists the details of the pricing plans for Agora Chat.
 | :------------------------------- | :--: | :-------: | :-------: | :--------: |
 | Number of contacts            | 100  |    250    |   1,000   |   10,000    |
 | Total number of registered users | 100  | unlimited | unlimited | unlimited  |
+| Peak concurrent connection      |  10 | 10% of MAU  | 10% of MAU | Millions |
 
 ## Message
 
 | Description                                                  |  Free  | Starter |   Pro   | Enterprise |
 | :----------------------------------------------------------- | :----: | :-----: | :-----: | :--------: |
-| Message cloud storage (provides message storage services, supports historical messages, roaming messages, and offline messages) | 3 days | 7 days  | 90 days |  180 days  |
+| Message cloud storage (provides message storage services, supports historical messages, roaming messages, and offline messages) | 3 days | 7 days  | 90 days |  Custom (180 days by default)  |
 | All message types (including: text, emoticons, voice, video, pictures, location, transparent transmission, customized messages, etc.) |   ✓    |    ✓    |    ✓    |     ✓      |
 | Custom message (flexibly customize message content and functions according to business needs) |   ✓    |    ✓    |    ✓    |     ✓      |
 | Command message (as a control command)                       |   ✓    |    ✓    |    ✓    |     ✓      |
@@ -32,7 +33,6 @@ This page lists the details of the pricing plans for Agora Chat.
 | Number of Chatrooms                                          | 100  | 10,000 | 50,000 | 100,000 |
 | Number of Chatroom members                                   | 100  |  2,000  | 10,000 | Custom Default:20,000 |
 | Number of Chatrooms that users can join                      | 100  |  1,000  | 2,000  |        10,000         |
-| Real-time interactive chatrooms (supports large-scale live-broadcasting scenarios) |  ✓   |    ✓    |   ✓    |           ✓           |
 | Real-time interactive chatroom broadcast messages            |  ✓   |    ✓    |   ✓    |           ✓           |
 | Global muting in real-time interactive chatrooms             |  ✓   |    ✓    |   ✓    |           ✓           |
 | Real-time interactive chatroom message priority              |  ✓   |    ✓    |   ✓    |           ✓           |
@@ -66,7 +66,7 @@ This page lists the details of the pricing plans for Agora Chat.
 
 | Description        | Free | Starter | Pro  | Enterprise |
 | :----------------- | :--: | :-----: | :--: | :--------: |
-| Resporting messages     |  X   |    X    |  ✓   |     ✓      |
+| Reporting messages     |  X   |    X    |  ✓   |     ✓      |
 | Banning users          |   ✓   |    ✓    |  ✓   |     ✓      |
 | Muting users            |   ✓   |    ✓    |  ✓   |     ✓      |
 | Real-time moderation    |   X   |    X    |  ✓   |     ✓      |
@@ -88,7 +88,7 @@ This page lists the details of the pricing plans for Agora Chat.
 | :----------------- | :--: | :-----: | :--: | :--------: |
 | TLS/SSL encryption |  ✓   |    ✓    |  ✓   |     ✓      |
 | File encryption    |  ✓   |    ✓    |  ✓   |     ✓      |
-| GDPR API           |  ✓   |    ✓    |  ✓   |     ✓      |
+| Personal data deletion API           |  ✓   |    ✓    |  ✓   |     ✓      |
 | IP whitelisting    |  ✓   |    ✓    |  ✓   |     ✓      |
 
 ## Compliance
@@ -97,6 +97,8 @@ This page lists the details of the pricing plans for Agora Chat.
 | :---------- | :--: | :-----: | :--: | :--------: |
 | ISO27001    |  ✓   |    ✓    |  ✓   |     ✓      |
 | GDPR        |  ✓   |    ✓    |  ✓   |     ✓      |
+| SOC 2       |  ✓   |    ✓    |  ✓   |     ✓      |
+| HIPPA       |  ✓   |    ✓    |  ✓   |     ✓      |
 
 ## Network
 
