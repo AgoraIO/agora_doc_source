@@ -1,3 +1,7 @@
+<div class="alert note">As of RTM v1.4.6 for Web and v1.5.0 for other platforms, Agora upgrades the authentication mechanism from AccessToken to AccessToken2.<li>If you are new to RTM, Agora recommends that you use the latest version of SDKs and deploy the App server and client for AccessToken2 step by step according to this page.<li>If you've already deployed AccessToken in previous versions, you can have a quick upgrade referring to <a href="https://docs.agora.io/en/Real-time-Messaging/token_server_rtm#upgrade">Upgrade to AccessToken2</a>.</div>
+
+<div class="alert info">The latest version of SDKs support both AccessToken2 and AccessToken at the same time, and can be used in tandem with previous versions.</div>
+
 Authentication is the act of validating the identity of each user before they access your system. Agora uses digital tokens to authenticate users and their privileges before they access an Agora service, such as joining an Agora call, or logging into the real-time messaging system.
 
 This document shows you how to create an RTM token server and an RTM client app. The RTM client app retrieves an RTM token from the RTM token server. This token authenticates the current user when the user accesses the Agora RTM service.
@@ -8,7 +12,7 @@ The following figure shows the steps in the authentication flow:
 
 ![RTM token authentication flow](https://web-cdn.agora.io/docs-files/1624939517653)
 
-An RTM token is a dynamic key generated on your app server that is valid for 24 hours. When your users log in to the RTM system from your app client, the RTM system validates the token and reads the user and project information stored in the token. An RTM token contains the following information:
+An RTM token is a dynamic key generated on your app server. You can specify the validity period of a token in seconds with the maximum value of 24 days. When your users log in to the RTM system from your app client, the RTM system validates the token and reads the user and project information stored in the token. An RTM token contains the following information:
 
 - The App ID of your Agora project
 - The App Certificate of your Agora project
