@@ -9,47 +9,52 @@
                <parml>
                <plentry>
                     <pt> <ph keyref="LOCAL_AUDIO_STREAM_ERROR_OK"/> </pt>
-                    <pd>0: 本地音频状态正常。</pd>
+                    <pd>0：本地音频状态正常。</pd>
                </plentry>
                <plentry>
                     <pt> <ph keyref="LOCAL_AUDIO_STREAM_ERROR_FAILURE"/> </pt>
-                    <pd>1: 本地音频出错原因不明确。建议提示用户尝试重新加入频道。</pd>
+                    <pd>1：本地音频出错原因不明确。建议提示用户尝试重新加入频道。</pd>
                </plentry>
                <plentry>
                     <pt> <ph keyref="LOCAL_AUDIO_STREAM_ERROR_DEVICE_NO_PERMISSION"/> </pt>
-                    <pd>2: 没有权限启动本地音频采集设备。请提示用户开启权限。</pd>
+                    <pd>2：没有权限启动本地音频采集设备。请提示用户开启权限。
+                         <dl outputclass="deprecated">
+                              <dlentry>
+                                  <dt>弃用：</dt>
+                                  <dd>该枚举已废弃。请改用 <xref keyref="onPermissionError"/> 回调中的 <xref keyref="RECORD_AUDIO"/>。</dd>
+                              </dlentry>
+                              </dl></pd>
                </plentry>
                <plentry props="android ios cpp unity">
                     <pt> <ph keyref="LOCAL_AUDIO_STREAM_ERROR_DEVICE_BUSY"/> </pt>
-                    <pd><ph>3: <ph props="cpp unity">（仅适用于 Android 和 iOS）</ph>本地音频采集设备已经在使用中。请提示用户检查麦克风是否被其他应用占用。麦克风空闲约 5 秒后本地音频采集会自动恢复，你也可以在麦克风空闲后尝试重新加入频道。</ph></pd>
+                    <pd><ph>3：<ph props="cpp unity">（仅适用于 Android 和 iOS）</ph>本地音频采集设备已经在使用中。请提示用户检查麦克风是否被其他应用占用。麦克风空闲约 5 秒后本地音频采集会自动恢复，你也可以在麦克风空闲后尝试重新加入频道。</ph></pd>
                </plentry>
                <plentry>
                     <pt> <ph keyref="LOCAL_AUDIO_STREAM_ERROR_RECORD_FAILURE"/> </pt>
-                    <pd>4: 本地音频采集失败。</pd>
+                    <pd>4：本地音频采集失败。</pd>
                </plentry>
                <plentry>
                     <pt> <ph keyref="LOCAL_AUDIO_STREAM_ERROR_ENCODE_FAILURE"/> </pt>
-                    <pd>5: 本地音频编码失败。</pd>
+                    <pd>5：本地音频编码失败。</pd>
                </plentry>
                <plentry props="cpp">
                     <pt><ph keyref="LOCAL_AUDIO_STREAM_ERROR_NO_RECORDING_DEVICE"/></pt>
-                    <pd>6: （仅 Windows）无本地音频采集设备。请提示用户在设备的控制面板中检查麦克风是否与设备连接正常，检查麦克风是否正常工作。</pd>
+                    <pd>6:（仅适用于 Windows）无本地音频采集设备。请提示用户在设备的控制面板中检查麦克风是否与设备连接正常，检查麦克风是否正常工作。</pd>
                </plentry>
                <plentry props="cpp">
                     <pt><ph keyref="LOCAL_AUDIO_STREAM_ERROR_NO_PLAYOUT_DEVICE"/></pt>
-                    <pd>7: （仅 Windows）无本地音频播放设备。请提示用户在设备的控制面板中检查扬声器是否与设备连接正常，检查扬声器是否正常工作。</pd>
+                    <pd>7:（仅适用于 Windows）无本地音频播放设备。请提示用户在设备的控制面板中检查扬声器是否与设备连接正常，检查扬声器是否正常工作。</pd>
                </plentry>
-               <plentry props="cpp">
-                    <pt> <ph keyref="LOCAL_AUDIO_STREAM_ERROR_INTERRUPTED"/> </pt>
-                    <pd>8: （仅 Android，iOS）本地音频采集被系统来电、Siri、闹钟中断。如需恢复本地音频采集，请用户中止电话、Siri、闹钟。</pd>
-               </plentry>
+                    <plentry props="cpp">
+                    <pt><ph keyref="LOCAL_AUDIO_STREAM_ERROR_INTERRUPTED"/> </pt>
+                    <pd>8:（仅适用于 Android 和 iOS）本地音频采集被系统来电、Siri、闹钟中断。如需恢复本地音频采集，请用户中止电话、Siri、闹钟。</pd>
                <plentry props="cpp">
                     <pt><ph keyref="LOCAL_AUDIO_STREAM_ERROR_RECORD_INVALID_ID"/></pt>
-                    <pd>9: （仅 Windows）本地音频采集设备的 ID 无效。请检查音频采集设备 ID。</pd>
+                    <pd>9：（仅适用于 Windows）本地音频采集设备的 ID 无效。请检查音频采集设备 ID。</pd>
                </plentry>
                <plentry props="cpp">
                     <pt><ph keyref="LOCAL_AUDIO_STREAM_ERROR_PLAYOUT_INVALID_ID"/></pt>
-                    <pd>10: （仅 Windows）本地音频播放设备的 ID 无效。请检查音频播放设备 ID。</pd>
+                    <pd>10：（仅适用于 Windows）本地音频播放设备的 ID 无效。请检查音频播放设备 ID。</pd>
                </plentry>
                </parml> </section>
      </refbody>
