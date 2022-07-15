@@ -168,6 +168,7 @@ elif defined_path_text == "cs":
 # cpp_full_path
 # Other types of full path
 rust_topicref_list = []
+json_hide_id_list = []
 dita_file_tree = ET.parse(defined_path)
 dita_file_root = dita_file_tree.getroot()
 for topicref in dita_file_root.iter("keydef"):
@@ -181,6 +182,25 @@ print("--------------- Topic ref list ------------------------")
 print(rust_topicref_list)
 print("--------------- Topic ref list ------------------------")
 
+# Collect the hide API which mark props="hide" or "cn" in <topichead> or <keydef>
+for topichead in dita_file_root.iter("topichead"):
+    is_hide_topichead: bool = True if topichead.get("props") is not None and topichead.get("props") == "hide" or topichead.get("props") is not None and topichead.get("props") == "cn" else False
+
+    for keydef in topichead.iter("keydef"):
+        if keydef.get("href") is not None:
+            dita_id = path.basename(keydef.get("href")).replace(".dita", "")
+            if is_hide_topichead:
+                json_hide_id_list.append(dita_id)
+            elif keydef.get("props") is not None and keydef.get("props") == "hide":
+                json_hide_id_list.append(dita_id)
+        
+
+
+print("--------------- Hide id list ------------------------")
+print(json_hide_id_list)
+print("--------------- Hide id list ------------------------")
+
+
 # Target platform
 
 # List of platforms
@@ -188,6 +208,16 @@ props_platform_list = ["windows", "rust", "java", "python", "csharp", "objective
 
 
 def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_path, platform="rust"):
+    
+    text = ""
+    
+    with open(file_dir, "r", encoding='utf-8') as f:
+        text= f.read()
+        text = re.sub('\s+(?=<)', '', text)
+            
+    with open(file_dir, "w", encoding='utf-8') as f:
+        f.write(text)
+        
     tree = ET.parse(file_dir)
     root = tree.getroot()
 
@@ -223,7 +253,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             if platform_tag not in child.get("props") and "native" not in child.get(
                     "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
                      "props") and "native" in child.get(
-                 "props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
+                 "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or child.get("props") == "hide" or child.get("props") == "cn":
                  print("------------------- Tag to remove ---------------------------")
                  print(child)
                  print(child.text)
@@ -848,7 +878,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             if platform_tag not in child.get("props") and "native" not in child.get(
                     "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
                      "props") and "native" in child.get(
-                 "props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
+                 "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
                  print("------------------- Tag to remove ---------------------------")
                  print(child)
                  print(child.text)
@@ -870,7 +900,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             if platform_tag not in child.get("props") and "native" not in child.get(
                     "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
                      "props") and "native" in child.get(
-                 "props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
+                 "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
                  print("------------------- Tag to remove ---------------------------")
                  print(child)
                  print(child.text)
@@ -893,7 +923,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             if platform_tag not in child.get("props") and "native" not in child.get(
                     "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
                      "props") and "native" in child.get(
-                 "props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
+                 "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
                  print("------------------- Tag to remove ---------------------------")
                  print(child)
                  print(child.text)
@@ -996,8 +1026,12 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                 if param_name is None and child.find("./pt/ph") is not None:
                     param_name = child.find("./pt/ph").text
                     
-                else:
+                elif child.text is not None:
                     print("Something unexpected happened for " + child.text)
+                
+                elif child.text is None:
+                    print("No text for this node")
+                    print(child)
                   
                 if child.find("./pd") is not None:
                 
@@ -1063,6 +1097,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
     data['description'] = api_desc
     data['parameters'] = json_array
     data['returns'] = return_values.strip("\n ")
+    data['is_hide'] = True if api_id in json_hide_id_list else False
 
     print(data)
 
@@ -1120,7 +1155,6 @@ def merge_JsonFiles(files):
 
 
     
-
 
 def replace_newline():
 
