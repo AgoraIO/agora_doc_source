@@ -253,7 +253,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             if platform_tag not in child.get("props") and "native" not in child.get(
                     "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
                      "props") and "native" in child.get(
-                 "props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or child.get("props") == "hide" or child.get("props") == "cn":
+                 "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or child.get("props") == "hide" or child.get("props") == "cn":
                  print("------------------- Tag to remove ---------------------------")
                  print(child)
                  print(child.text)
@@ -878,7 +878,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             if platform_tag not in child.get("props") and "native" not in child.get(
                     "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
                      "props") and "native" in child.get(
-                 "props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
+                 "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
                  print("------------------- Tag to remove ---------------------------")
                  print(child)
                  print(child.text)
@@ -900,7 +900,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             if platform_tag not in child.get("props") and "native" not in child.get(
                     "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
                      "props") and "native" in child.get(
-                 "props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
+                 "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
                  print("------------------- Tag to remove ---------------------------")
                  print(child)
                  print(child.text)
@@ -923,7 +923,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             if platform_tag not in child.get("props") and "native" not in child.get(
                     "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
                      "props") and "native" in child.get(
-                 "props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
+                 "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
                  print("------------------- Tag to remove ---------------------------")
                  print(child)
                  print(child.text)
