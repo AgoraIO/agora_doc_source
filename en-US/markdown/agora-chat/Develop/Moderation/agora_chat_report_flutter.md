@@ -10,7 +10,7 @@ Call `reportMessage` provided by the Agora Chat Flutter SDK to implement the rep
 
 Before proceeding, ensure that you meet the following requirements:
 
-- You have initialized the Agora Chat SDK. For details, see [Get Started with Android](/en/agora-chat/agora_chat_get_started_flutter).
+- You have initialized the Agora Chat SDK. For details, see [Get Started with Agora Chat](/en/agora-chat/agora_chat_get_started_flutter).
 - You understand the call frequency limits of the Agora Chat APIs supported by different pricing plans as described in [Limitations](/en/agora-chat/agora_chat_limitation_flutter).
 - You have enabled the message reporting feature on Agora Console. For details, see [Content Moderation Overview](/en/agora-chat/agora_chat_moderation_overview).
 
