@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audioparams">
     <title><ph keyref="AudioParams"/></title>
-    <shortdesc id="short"><ph id="shortdesc"><apiname keyref="AudioParams"/> 定义。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">音频数据格式。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -52,13 +52,19 @@
                 <li><xref keyref="getPlaybackAudioParams"/>：设置 <xref keyref="onPlaybackAudioFrame"/> 回调的数据格式。</li>
                 <li><xref keyref="getMixedAudioParams"/>：设置 <xref keyref="onMixedAudioFrame"/> 回调的数据格式。</li>
             </ul></p>
-            <note type="attention">SDK 会通过 <apiname keyref="AudioParams"/> 中的 <parmname>samplesPerCall</parmname>、<parmname>sampleRate</parmname> 和 <parmname>channel</parmname> 参数计算采样间隔，并根据该采样间隔触发 <apiname keyref="onRecordAudioFrame"/>、<apiname keyref="onPlaybackAudioFrame"/> 和 <xref keyref="onMixedAudioFrame"/> 回调。<equation-inline>采样间隔 = <parmname>samplesPerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>。请确保采样间隔不得小于 0.01 (s)。</note>
+            <note type="attention">
+                <ul>
+                    <li>SDK 会通过 <apiname keyref="AudioParams"/> 中的 <parmname>samplesPerCall</parmname>、<parmname>sampleRate</parmname> 和 <parmname>channel</parmname> 参数计算采样间隔，并根据该采样间隔触发 <apiname keyref="onRecordAudioFrame"/>、<apiname keyref="onPlaybackAudioFrame"/> 和 <apiname keyref="onMixedAudioFrame"/> 回调。</li>
+                    <li><equation-inline>采样间隔 = <parmname>samplesPerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>。</li>
+                    <li>请确保采样间隔不得小于 0.01 (s)。</li>
+                </ul></note>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
-                <pt>sampleRate</pt>
+                <pt props="android ios mac">sampleRate</pt>
+                <pt props="cpp">sample_rate</pt>
                 <pd>数据的采样率，单位为 Hz，取值如下：
                     <ul>
                         <li>8000</li>
@@ -69,7 +75,8 @@
                     </ul></pd>
             </plentry>
             <plentry>
-                <pt>channel</pt>
+                <pt props="android ios mac">channel</pt>
+                <pt props="cpp">channels</pt>
                 <pd>数据的声道数，取值如下：
                 <ul>
                     <li>1：单声道（默认值）</li>
@@ -87,8 +94,9 @@
                 </pd>       
             </plentry>
             <plentry>
-                <pt>samplesPerCall</pt>
-                <pd>数据的采样点数，如 RTMP/RTMPS 推流应用中通常为 1024。</pd>
+                <pt props="android ios mac">samplesPerCall</pt>
+                <pt props="cpp">samples_per_call</pt>
+                <pd>数据的采样点数，如旁路推流应用中通常为 1024。</pd>
             </plentry>
             </parml> </section>
     </refbody>
