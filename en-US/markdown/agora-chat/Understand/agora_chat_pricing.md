@@ -42,7 +42,7 @@ A user buys the Starter Agora Chat plan, which includes 5,000 MAU, and uses the 
 Before using Agora Chat, refer to the following steps to subscribe to a plan:
 
 1. Log in to [Agora Console](https://console.agora.io/), on the left navigation bar, click **Pricing Plan** > **Agora Chat IM** > **Subscribe** on the left navigation bar.
-2. Check [pricing plan details](https://docs-preprod.agora.io/en/agora-chat/agora_chat_plan?platform=All%20Platforms), choose the plan you want to use, click **Subscribe**, and make the payment.
+2. Check [pricing plan details](./agora_chat_plan?platform=All%20Platforms), choose the plan you want to use, click **Subscribe**, and make the payment.
 
 Subscription takes effect immediately. After subscribing to a plan, you can click **Pricing Plan** > **Agora Chat IM** > **Management**, and on this page you can click **Details** to view your subscription details.
 

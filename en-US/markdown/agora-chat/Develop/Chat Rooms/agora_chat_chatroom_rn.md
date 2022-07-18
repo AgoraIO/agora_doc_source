@@ -20,10 +20,10 @@ The Agora Chat SDK provides the `ChatRoom`, `ChatRoomManager`, and `ChatRoomEven
 
 Before proceeding, ensure that you meet the following requirements:
 
-- You have initialized the Agora Chat SDK. For details, see [Get Started with RN](https://docs-preprod.agora.io/en/agora-chat/agora_chat_get_started_rn).
-- You understand the call frequency limit of the Agora Chat APIs supported by different pricing plans as described in [Limitations](https://docs-preprod.agora.io/en/agora-chat/agora_chat_limitation).
-- You understand the number of chat rooms supported by different pricing plans as described in [Pricing Plan Details](https://docs-preprod.agora.io/cn/agora-chat/agora_chat_plan).
-- Only the app super admin has the privilege of creating a chat room. Ensure that you have added an app super admin by [calling the super-admin RESTful API](https://docs-preprod.agora.io/en/agora-chat/agora_chat_restful_chatroom_superadmin#adding-a-chat-room-super-admin).
+- You have initialized the Agora Chat SDK. For details, see [Get Started with RN](./agora_chat_get_started_rn).
+- You understand the call frequency limit of the Agora Chat APIs supported by different pricing plans as described in [Limitations](./agora_chat_limitation).
+- You understand the number of chat rooms supported by different pricing plans as described in [Pricing Plan Details](./agora_chat_plan).
+- Only the app super admin has the privilege of creating a chat room. Ensure that you have added an app super admin by [calling the super-admin RESTful API](./agora_chat_restful_chatroom_superadmin#adding-a-chat-room-super-admin).
 
 ## Implementation
 
@@ -31,7 +31,7 @@ This section describes how to call the APIs provided by the Agora Chat SDK to im
 
 ### Create a chat room
 
-Only the [app super admin](https://docs-preprod.agora.io/en/agora-chat/agora_chat_restful_chatroom_superadmin) can call `createChatRoom` to create a chat room and set the chat room attributes such as the chat room name, description, and maximum number of members. Once a chat room is created, the super admin automatically becomes the chat room owner.
+Only the [app super admin](./agora_chat_restful_chatroom_superadmin) can call `createChatRoom` to create a chat room and set the chat room attributes such as the chat room name, description, and maximum number of members. Once a chat room is created, the super admin automatically becomes the chat room owner.
 
 The following code sample shows how to create a chat room:
 
