@@ -45,9 +45,9 @@ This section shows how to prepare the development environment necessary to integ
 
 ### 1. Download the Unity sample project
 
-1. Clone the [Unity demo repository](https://github.com/easemob/chat_unity_demo) to your local device.
+1. Clone the [Unity demo repository](https://github.com/AgoraIO/Agora-Chat-API-Examples) to your local device.
 
-2. In Unity Hub, select the **Projects** tab, click the down arrow next to the **Open** button, and select **Add project from disk** from the drop-down list. In the pop-up window, select the path to the downloaded `chat_unity_quickstart` folder to add the sample project into Unity Hub.
+2. In Unity Hub, select the **Projects** tab, click the down arrow next to the **Open** button, and select **Add project from disk** from the drop-down list. In the pop-up window, select the path to the downloaded `chat_unity_quickstart` folder under `Agora-Chat-API-Examples/Chat-Unity` to add the sample project into Unity Hub.
 
 3. In the **Projects** list, select **chat_unity_quickstart** to open the project.
 
@@ -84,8 +84,9 @@ using ChatSDK.MessageBody;
 In the `InitSDK` method, add the following to initialize the SDK:
 
 ```c#
-// In this sample project, replace `APPKEY` with `easemob-demo#easeim`.
-var options = new Options(appKey: "APPKEY");
+// In this sample project, initiate the SDK using the App Key of 41117440#383391.
+Options options = new Options(APPKEY);
+options.UsingHttpsOnly = true;
 SDKClient.Instance.InitWithOptions(options);
 ```
 
@@ -94,14 +95,15 @@ SDKClient.Instance.InitWithOptions(options);
 At the end of the `SignUpAction` method, add the following to add the sign-up logic:
 
 ```c#
-SDKClient.Instance.CreateAccount(username: Username.text, Password.text, handle: new CallBack(
-  onSuccess: () => {
-    AddLogToLogText("sign up sdk succeed");
-  },
-  onError: (code, desc) => {
-    AddLogToLogText($"sign up sdk failed, code: {code}, desc: {desc}");
-  }
-));
+StartCoroutine(RegisterAgoraAccount(Username.text, Password.text, (error) =>
+{
+    if (error != null) {
+        AddLogToLogText(error);
+    }
+    else {
+        AddLogToLogText("register succeed");
+    }
+}));
 ```
 
 ### 4. Log in to an account
@@ -109,13 +111,20 @@ SDKClient.Instance.CreateAccount(username: Username.text, Password.text, handle:
 At the end of the `SignInAction` method, add the following to add the login logic:
 
 ```c#
-SDKClient.Instance.Login(username: Username.text, pwdOrToken: Password.text, handle: new CallBack(
-  onSuccess: () => {
-    AddLogToLogText("sign in sdk succeed");
-  },
-  onError:(code, desc) => {
-    AddLogToLogText($"sign in sdk failed, code: {code}, desc: {desc}");
-  }
+StartCoroutine(FetchAgoraToken(Username.text, Password.text, 
+    (agornToken) => {
+        SDKClient.Instance.LoginWithAgoraToken(username: Username.text, agornToken, handle: new CallBack(
+            onSuccess: () => {
+                AddLogToLogText("sign in sdk succeed");
+            },
+            onError: (code, desc) => {
+                AddLogToLogText($"sign in sdk failed, code: {code}, desc: {desc}");
+            }
+        ));
+    }, 
+    (error) => {
+        AddLogToLogText(error);
+    }
 ));
 ```
 
@@ -220,6 +229,21 @@ SDKClient.Instance.ChatManager.AddChatManagerDelegate(this);
 ```c#
 // Remove the listener when the object is released
 SDKClient.Instance.ChatManager.RemoveChatManagerDelegate(this);
+```
+
+### 7. Log out of the account
+
+In the `SignOutAction` method, add the following:
+
+```c#
+SDKClient.Instance.Logout(true, handle: new CallBack(
+  onSuccess: () => {
+      AddLogToLogText("sign out sdk succeed");
+  },
+  onError: (code, desc) => {
+      AddLogToLogText($"sign out sdk failed, code: {code}, desc: {desc}");
+  }
+));
 ```
 
 ## Run and test the project
