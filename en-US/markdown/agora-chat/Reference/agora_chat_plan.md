@@ -4,7 +4,7 @@ This page lists the details of the pricing plans for Agora Chat.
 
 | Description                      | Free |  Starter  |    Pro    | Enterprise |
 | :------------------------------- | :--: | :-------: | :-------: | :--------: |
-| Number of contacts            | 100  |    250    |   1,000   |   10,000    |
+| Number of contacts            | 100  |    250    |   1,000   |   Custom (10,000 by default)    |
 | Total number of registered users | 100  | unlimited | unlimited | unlimited  |
 | Peak concurrent connection      |  10 | 10% of MAU  | 10% of MAU | Millions |
 
@@ -22,17 +22,17 @@ This page lists the details of the pricing plans for Agora Chat.
 
 | Description                          | Free | Starter |  Pro   | Entreprise |
 | :----------------------------------- | :--: | :-----: | :----: | :--------: |
-| Total number of groups               | 100  | 10,000  | 50,000 |  100,000   |
-| Number of group members              | 100  |   250   | 1,000  |   5,000    |
-| Number of groups that users can join | 100  |  1,000  | 2,000  |   10,000   |
+| Total number of groups               | 100  | 10,000  | 50,000 |  Custom (100,000 by default)   |
+| Number of group members              | 100  |   250   | 1,000  |   Custom (5,000 by default)    |
+| Number of groups that users can join | 100  |  1,000  | 2,000  |   Custome (10,000 by default)   |
 
 ## Chatroom
 
 | Description                                                  | Free | Starter |  Pro   |      Entreprise       |
 | :----------------------------------------------------------- | :--: | :-----: | :----: | :-------------------: |
-| Number of Chatrooms                                          | 100  | 10,000 | 50,000 | 100,000 |
-| Number of Chatroom members                                   | 100  |  2,000  | 10,000 | Custom Default:20,000 |
-| Number of Chatrooms that users can join                      | 100  |  1,000  | 2,000  |        10,000         |
+| Number of Chatrooms                                          | 100  | 10,000 | 50,000 | Custom (100,000 by default) |
+| Number of Chatroom members                                   | 100  |  2,000  | 10,000 | Custom (20,000 by default) |
+| Number of Chatrooms that users can join                      | 100  |  1,000  | 2,000  |        Custom (10,000 by default)         |
 | Real-time interactive chatroom broadcast messages            |  ✓   |    ✓    |   ✓    |           ✓           |
 | Global muting in real-time interactive chatrooms             |  ✓   |    ✓    |   ✓    |           ✓           |
 | Real-time interactive chatroom message priority              |  ✓   |    ✓    |   ✓    |           ✓           |
