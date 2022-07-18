@@ -3,7 +3,7 @@ Authentication is the process of validating identities. Agora uses digital token
 To securely connect to Agora Chat, you use the following token types:
 
 - User token: User level access to Agora Chat from your app using Agora Chat SDK. User tokens are used to authenticate users when they log in to your Agora Chat application.
-- App token: Admin level access to Agora Chat using the REST API. App tokens grant admin privileges for the app developer to manage the Agora Chat applications, for example, creating and deleting users. For details, see [Implement an Agora app token server for Agora Chat](https://docs-preprod.agora.io/en/null/generate_app_tokens?platform=All%20Platforms).
+- App token: Admin level access to Agora Chat using the REST API. App tokens grant admin privileges for the app developer to manage the Agora Chat applications, for example, creating and deleting users. For details, see [Implement an Agora app token server for Agora Chat](./generate_app_tokens).
 
 This page shows you how to create an Agora Chat user token server and an Agora Chat client app. The client app retrieves a user token from the token server. This token enables the current user to access Agora Chat.
 
@@ -16,7 +16,7 @@ A user token is a dynamic key generated on your app server that is valid for a m
 
 - The App ID of your Agora project.
 - The App Certificate of your Agora project.
-- The UUID of the user to be authenticated. The user UUID is a unique internal identification that Agora Chat generates for a user through [User Registration REST APIs](https://docs-preprod.agora.io/en/test/agora_chat_restful_reg?platform=RESTful). 
+- The UUID of the user to be authenticated. The user UUID is a unique internal identification that Agora Chat generates for a user through [User Registration REST APIs](./agora_chat_restful_registration). 
 - The valid duration of the token.
 
 ## Prerequisites
@@ -132,7 +132,7 @@ This sample server is for demonstration purposes only. Do not use it in a produc
    expire.second=60
    ```
 
-   For details on how to get the app key and REST API domain, see [Enable and Configure Agora Chat](https://docs-preprod.agora.io/en/test/enable_chat?platform=Android).
+   For details on how to get the app key and REST API domain, see [Enable and Configure Agora Chat](./enable_agora_chat).
 
 1. In the `com.agora.chat.token` package, create a Java class named `AgoraChatTokenController`, with the following content:
 

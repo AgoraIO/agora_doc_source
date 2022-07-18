@@ -17,9 +17,9 @@ The Agora Chat SDK provides the `ChatGroup`, `ChatGroupManager`, and `ChatGroupE
 
 Before proceeding, ensure that you meet the following requirements:
 
-- You have initialized the Agora Chat SDK. For details, see [Get Started with RN](https://docs-preprod.agora.io/en/agora-chat/agora_chat_get_started_rn).
-- You understand the call frequency limit of the Agora Chat APIs supported by different pricing plans as described in [Limitations](https://docs-preprod.agora.io/en/agora-chat/agora_chat_limitation).
-- You understand the number of chat groups supported by different pricing plans as described in [Pricing Plan Details](https://docs-preprod.agora.io/cn/agora-chat/agora_chat_plan).
+- You have initialized the Agora Chat SDK. For details, see [Get Started with RN](./agora_chat_get_started_rn).
+- You understand the call frequency limit of the Agora Chat APIs supported by different pricing plans as described in [Limitations](./agora_chat_limitation).
+- You understand the number of chat groups supported by different pricing plans as described in [Pricing Plan Details](./agora_chat_plan).
 
 ## Implementation
 

@@ -74,7 +74,7 @@ For the descriptions of path parameters, see [Common Parameters](#request).
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | -------- |
-| `nickname` | String | The nickname displayed in push notifications. The length of the nickname cannot exceed 100 characters, and the following character sets are supported:<li>26 lowercase English letters (a-z)<li>26 uppercase English letters (A-Z)<li>10 numbers (0-9)<li>Chinese characters<li>Special characters <div class="alert note">The nickname can be different from the nickname in the user profile; however, Agora recommend that you use the same nickname for both. Therefore, if either nickname is updated, the other should be changed at the same time. To update the nickname in the user profile, see <a href="https://docs-preprod.agora.io/en/agora-chat/agora_chat_restful_user_attributes?platform=RESTful#setting-user-attributes">Setting user attributes</a>.</div>  | No  |
+| `nickname` | String | The nickname displayed in push notifications. The length of the nickname cannot exceed 100 characters, and the following character sets are supported:<li>26 lowercase English letters (a-z)<li>26 uppercase English letters (A-Z)<li>10 numbers (0-9)<li>Chinese characters<li>Special characters <div class="alert note">The nickname can be different from the nickname in the user profile; however, Agora recommend that you use the same nickname for both. Therefore, if either nickname is updated, the other should be changed at the same time. To update the nickname in the user profile, see <a href="https://docs.agora.io/en/agora-chat/agora_chat_restful_user_attributes?platform=RESTful#setting-user-attributes">Setting user attributes</a>.</div>  | No  |
 
 ### HTTP response
 
