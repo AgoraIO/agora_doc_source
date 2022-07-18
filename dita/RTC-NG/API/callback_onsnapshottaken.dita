@@ -13,11 +13,8 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public void onSnapshotTaken(
-      int uid, String filePath, int width, int height, int errCode);
-</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine snapshotTaken:(NSUInteger)uid filePath:(NSString* _Nonnull)filePath width:(NSInteger)width height:(NSInteger)height errCode:(NSInteger)errCode;
-</codeblock>
+            <codeblock props="android" outputclass="language-java">public void onSnapshotTaken(int uid, String filePath, int width, int height, int errCode) {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine snapshotTaken:(NSUInteger)uid filePath:(NSString* _Nonnull)filePath width:(NSInteger)width height:(NSInteger)height errCode:(NSInteger)errCode;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void onSnapshotTaken(uid_t uid, const char* filePath, int width, int height, int errCode) {
   (void)uid;
   (void)filePath;
@@ -65,14 +62,16 @@
                 <pt>errCode</pt>
                 <pd>截图成功的提示或失败的原因。                   
                     
+                    
                     <ul>
                     <li>0：截图成功。</li>
                     <li>&lt; 0: 截图失败。                        
                         
+                        
                         <ul>
                         <li>-1：写入文件失败或 JPEG 编码失败。</li>
                         <li>-2：<apiname keyref="takeSnapshot"/> 方法调用成功后 1 秒内没有发现指定用户的视频流。</li>
-                        <li>-3：<apiname keyref="takeSnapshot"/> 方法调用过于频繁。请在前一次调用收到 <apiname keyref="onSnapshotTaken"/> 回调后再调用 <apiname keyref="takeSnapshot"/> 方法。</li>
+                        <li>-3：<apiname keyref="takeSnapshot"/> 方法调用过于频繁。</li>
                         </ul></li>
                     </ul></pd>
             </plentry>

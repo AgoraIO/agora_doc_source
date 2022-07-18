@@ -142,6 +142,14 @@ elif defined_path_text == "electron":
     defined_path = electron_full_path
 elif defined_path_text == "unity":
     defined_path = unity_full_path
+elif defined_path_text == "unity-ng":
+    defined_path = unity_ng_full_path
+elif defined_path_text == "rn-ng":
+    defined_path = rn_ng_full_path
+elif defined_path_text == "flutter-ng":
+    defined_path = flutter_ng_full_path
+elif defined_path_text == "electron-ng":
+    defined_path = electron_ng_full_path
 elif defined_path_text == "rn":
     defined_path = rn_full_path
 elif defined_path_text == "cpp":
@@ -180,6 +188,16 @@ props_platform_list = ["windows", "rust", "java", "python", "csharp", "objective
 
 
 def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_path, platform="rust"):
+    
+    text = ""
+    
+    with open(file_dir, "r", encoding='utf-8') as f:
+        text= f.read()
+        text = re.sub('\s+(?=<)', '', text)
+            
+    with open(file_dir, "w", encoding='utf-8') as f:
+        f.write(text)
+        
     tree = ET.parse(file_dir)
     root = tree.getroot()
 
@@ -215,7 +233,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             if platform_tag not in child.get("props") and "native" not in child.get(
                     "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
                      "props") and "native" in child.get(
-                 "props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
+                 "props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or child.get("props") == "hide" or child.get("props") == "cn":
                  print("------------------- Tag to remove ---------------------------")
                  print(child)
                  print(child.text)
@@ -988,8 +1006,12 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                 if param_name is None and child.find("./pt/ph") is not None:
                     param_name = child.find("./pt/ph").text
                     
-                else:
+                elif child.text is not None:
                     print("Something unexpected happened for " + child.text)
+                
+                elif child.text is None:
+                    print("No text for this node")
+                    print(child)
                   
                 if child.find("./pd") is not None:
                 
@@ -1112,7 +1134,6 @@ def merge_JsonFiles(files):
 
 
     
-
 
 def replace_newline():
 

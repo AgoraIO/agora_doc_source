@@ -25,29 +25,35 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-   <p>成功注册视频数据观测器后，SDK 会在捕捉到每个视频帧时触发该回调。你可以在回调中获取本地摄像头采集到的视频数据，然后根据场景需要，对视频数据进行前处理。</p>
-   <p>完成前处理后，你可以在该回调中，传入处理后的视频数据将其发送回 SDK。</p>
-   <note type="attention" id="note">
-       <ul>
-  <li>如果你获取到的视频数据类型为 RGBA，Agora 不支持将处理后的 RGBA 数据通过该回调再发送回 SDK。</li>
-  <li>此处获取的视频数据未经过前处理，如水印、裁剪、旋转和美颜等。</li>
-       </ul>
-   </note>
-        </section>
-        <section id="parameters"><title>参数</title>
-   <parml>
-       <plentry id="videoframe">
-           <pt>videoFrame</pt>
-  <pd><ph>视频帧数据。</ph><ph props="cpp ios mac unity">详见 <xref keyref="VideoFrame"/>。</ph></pd>
-       </plentry>
-   </parml>
-        </section>
+            <p>成功注册视频数据观测器后，SDK 会在捕捉到每个视频帧时触发该回调。你可以在回调中获取本地摄像头采集到的视频数据，然后根据场景需要，对视频数据进行前处理。</p>
+            <p>完成前处理后，你可以在该回调中，传入处理后的视频数据将其发送回 SDK。</p>
+            <note type="attention" id="note">此处获取的视频数据未经过前处理，如水印、裁剪、旋转和美颜等。</note> </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry id="videoframe">
+                <pt>videoFrame</pt>
+                <pd><ph>视频帧数据。</ph><ph props="cpp ios mac unity">详见 <xref keyref="VideoFrame"/>。</ph></pd>
+            </plentry>
+            </parml> </section>
         <section id="return_values">
             <title>返回值</title>
             <p id="return">
             <ul>
-            <li><codeph><ph keyref="true"/></codeph>：设置 SDK 接收视频帧。</li>
-            <li><codeph><ph keyref="false"/></codeph>：设置 SDK 丢弃视频帧。</li>
+            <li>当视频处理模式为 <apiname keyref="PROCESS_MODE_READ_ONLY"/> 时：
+
+                
+                <ul>
+                <li><codeph><ph keyref="true"/></codeph>：SDK 忽略该返回值。</li>
+                <li><codeph><ph keyref="false"/></codeph>：SDK 忽略该返回值。</li>
+                </ul></li>
+            <li>当视频处理模式为 <apiname keyref="PROCESS_MODE_READ_WRITE"/> 时：
+
+                
+                <ul>
+                <li><codeph><ph keyref="true"/></codeph>：设置 SDK 接收视频帧。</li>
+                <li><codeph><ph keyref="false"/></codeph>：设置 SDK 丢弃视频帧。</li>
+                </ul></li>
             </ul></p>
         </section>
     </refbody>
