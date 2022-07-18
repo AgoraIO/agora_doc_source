@@ -1,4 +1,4 @@
-The Agora Chat SDK stores historical messages on the chat server. When a chat user logs in from a different device, you can retrieve the historial messages from the server, so that the user can also browse these messages on the new device.
+The Agora Chat SDK stores historical messages on the chat server. When a chat user logs in from a different device, you can retrieve the historical messages from the server, so that the user can also browse these messages on the new device.
 
 This page introduces how to use the Agora Chat SDK to retrieve messages from the server.
 
@@ -6,10 +6,10 @@ This page introduces how to use the Agora Chat SDK to retrieve messages from the
 
 The Agora Chat SDK uses `ChatManager` to retrieve historical messages from the server. Followings are the core methods:
 
-- `asyncFetchConversationsFromServer`: Retrieve a list of conversations stored on the server.
-- `fetchHistoryMessages`: Retrieve the historical messages in the specified conversation from the server.
+- `asyncFetchConversationsFromServer`: Retrieves a list of conversations stored on the server.
+- `asyncFetchHistoryMessage`: Retrieves the historical messages in the specified conversation from the server.
 
-## Prerequsites
+## Prerequisites
 
 Before proceeding, ensure that you meet the following requirements:
 
@@ -40,29 +40,26 @@ ChatClient.getInstance().chatManager().asyncFetchConversationsFromServer(new Val
 
 By default, the SDK retrieves the last ten conversations in the past seven days, and each conversation contains one last historical message. To adjust the time limit or the number of conversations retrieved, contact support@agora.io.
 
-### Retrieve historial messages of the specified conversation
+### Retrieve historical messages of the specified conversation
 
-After retrieving conversations, you can retrieve historial messages by pagination from the server. 
+After retrieving conversations, you can retrieve historical messages by pagination from the server. 
 
-To ensure data reliablity, we recommend retrieving less than 50 historical messages for each method call. To retrieve more than 50 historial messages, call this method multiple times. Once the messages are retrieved, the SDK automatically updates these messages in the local database.
+You can set the search direction to retrieve messages in the chronological or reverse chronological order of when the server receives them. 
+
+To ensure data reliability, we recommend retrieving less than 50 historical messages for each method call. To retrieve more than 50 historical messages, call this method multiple times. Once the messages are retrieved, the SDK automatically updates these messages in the local database.
 
 ```java
-try {
-    ChatClient.getInstance().chatManager().fetchHistoryMessages(
-            toChatUsername, EaseCommonUtils.getConversationType(chatType), pagesize, "");
-    final List<ChatMessage> msgs = conversation.getAllMessages();
-    int msgCount = msgs != null ? msgs.size() : 0;
-    if (msgCount < conversation.getAllMsgCount() && msgCount < pagesize) {
-        String msgId = null;
-        if (msgs != null && msgs.size() > 0) {
-            msgId = msgs.get(0).getMsgId();
-        }
-        conversation.loadMoreMsgFromDB(msgId, pagesize - msgCount);
-    }
-    messageList.refreshSelectLast();
-} catch (ChatException e) {
-    e.printStackTrace();
-}
+ChatClient.getInstance().chatManager().asyncFetchHistoryMessage(conversationId, conversationType, pageSize, startMsgId, new ValueCallBack<CursorResult<ChatMessage>>() {
+            @Override
+            public void onSuccess(CursorResult<ChatMessage> value) {
+                
+            }
+
+            @Override
+            public void onError(int error, String errorMsg) {
+
+            }
+        });
 ```
 
 ## Next steps
