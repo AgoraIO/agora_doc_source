@@ -30,7 +30,7 @@
             <li>频道内同一时间只允许输入一个在线媒体流。</li>
             <li>该方法需要在加入频道后调用。</li>
             </ul> </note>
-            <p>该方法将正在播放的音视频作为音视频源导入到正在进行的直播中。可主要应用于赛事直播、多人看视频互动等直播场景。调用该方法后，SDK 会在本地触发 <xref keyref="onStreamInjectedStatus"/> 回调，报告输入在线媒体流的状态；成功输入媒体流后，该音视频流会出现在频道中，频道内所有用户都会收到 <xref keyref="onUserJoined"/> 回调，其中 <parmname>uid</parmname> 为 666。</p>
+            <p>该方法将正在播放的音视频作为音视频源导入到正在进行的直播中。可主要应用于赛事直播、多人看视频互动等直播场景。成功输入媒体流后，该音视频流会出现在频道中，频道内所有用户都会收到 <xref keyref="onUserJoined"/> 回调，其中 <parmname>uid</parmname> 为 666。</p>
         </section>
         <section id="parameters">
             <title>参数</title>
@@ -54,7 +54,7 @@
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功</li>
-            <li>&lt; 0: 方法调用失败 
+            <li>&lt; 0: 方法调用失败
                 <ul>
                 <li><codeph>ERR_INVALID_ARGUMENT</codeph> (2): 输入的 URL 为空。请重新调用该方法，并确认输入的媒体流的 URL 有效。</li>
                 <li><codeph>ERR_NOT_READY</codeph> (3): 用户没有加入频道。</li>

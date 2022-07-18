@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_screencaptureparameters2">
+  <title><ph keyref="ScreenCaptureParameters2"/></title>
+  <shortdesc id="short"><ph id="shortdesc">屏幕共享的参数配置。</ph></shortdesc>
+  <refbody>
+    <section id="prototype">
+      <p outputclass="codeblock">
+      <codeblock props="android" outputclass="language-java">public class ScreenCaptureParameters {
+    public static class VideoCaptureParameters {
+        public int bitrate = 0;
+        public int framerate = 15;
+        public int width = 1280;
+        public int height = 720;
+        public int contentHint = Constants.SCREEN_CAPTURE_CONTENT_HINT_MOTION;
+
+    @CalledByNative("VideoCaptureParameters")
+    public int getBitrate() {
+      return bitrate;
+    }
+
+    @CalledByNative("VideoCaptureParameters")
+    public int getFramerate() {
+      return framerate;
+    }
+
+    @CalledByNative("VideoCaptureParameters")
+    public int getWidth() {
+      return width;
+    }
+
+    @CalledByNative("VideoCaptureParameters")
+    public int getHeight() {
+      return height;
+    }
+
+    @CalledByNative("VideoCaptureParameters")
+    public int getContentHint() {
+      return contentHint;
+    }
+
+    @Override
+    public String toString() {
+      return "VideoCaptureParameters{"
+          + "bitrate=" + bitrate + ", framerate=" + framerate + ", width=" + width
+          + ", height=" + height + ", contentHint=" + contentHint + '}';
+    }
+  }
+
+    public static class AudioCaptureParameters {
+        public int sampleRate = 16000;
+        public int channels = 2;
+        public int captureSignalVolume = 100;
+
+    @CalledByNative("AudioCaptureParameters")
+    public int getSampleRate() {
+      return sampleRate;
+    }
+
+    @CalledByNative("AudioCaptureParameters")
+    public int getChannels() {
+      return channels;
+    }
+
+    @CalledByNative("AudioCaptureParameters")
+    public int getCaptureSignalVolume() {
+      return captureSignalVolume;
+    }
+
+    @Override
+    public String toString() {
+      return "AudioCaptureParameters{"
+          + "sampleRate=" + sampleRate + ", channels=" + channels
+          + ", captureSignalVolume=" + captureSignalVolume + '}';
+    }
+  }
+    public boolean captureAudio = false;
+    public VideoCaptureParameters videoCaptureParameters = new VideoCaptureParameters();
+    public boolean captureVideo = true;
+    public AudioCaptureParameters audioCaptureParameters = new AudioCaptureParameters();
+
+  @CalledByNative
+  public boolean isCaptureAudio() {
+    return captureAudio;
+  }
+
+  @CalledByNative
+  public VideoCaptureParameters getVideoCaptureParameters() {
+    return videoCaptureParameters;
+  }
+
+  @CalledByNative
+  public boolean isCaptureVideo() {
+    return captureVideo;
+  }
+
+  @CalledByNative
+  public AudioCaptureParameters getAudioCaptureParameters() {
+    return audioCaptureParameters;
+  }
+
+  @Override
+  public String toString() {
+    return "ScreenCaptureParameters{"
+        + "captureAudio=" + captureAudio + ", videoCaptureParameters=" + videoCaptureParameters
+        + ", captureVideo=" + captureVideo + ", audioCaptureParameters=" + audioCaptureParameters
+        + '}';
+  }
+}</codeblock>
+      <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenCaptureParameters2 : NSObject
+@property(assign, nonatomic) BOOL captureAudio;
+@property(strong, nonatomic) AgoraScreenAudioParameters* _Nonnull audioParams;
+@property(assign, nonatomic) BOOL captureVideo;
+@property(strong, nonatomic) AgoraScreenVideoParameters* _Nonnull videoParams;
+@end
+</codeblock>
+      <codeblock props="cpp" outputclass="language-cpp">struct ScreenCaptureParameters2 {
+    bool captureAudio = false;
+    ScreenAudioParameters audioParams;
+    bool captureVideo = true;
+    ScreenVideoParameters videoParams;
+};
+</codeblock>
+      <codeblock props="cs" outputclass="language-csharp"/>
+      <codeblock props="electron" outputclass="language-typescript"/>
+      <codeblock props="unity" outputclass="language-csharp"/>
+      <codeblock props="rn" outputclass="language-typescript"/>
+      <codeblock props="flutter" outputclass="language-dart"/> </p>
+    </section>
+    <section id="detailed_desc">
+      <p/>
+    </section>
+    <section id="parameters">
+      <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+      <parml>
+      <plentry>
+        <pt>captureAudio</pt>
+        <pd>屏幕共享时是否采集系统音频：
+          <ul>
+          <li><codeph><ph keyref="true"/></codeph>: 采集系统音频。</li>
+          <li><codeph><ph keyref="false"/></codeph>: （默认）不采集系统音频。</li>
+          </ul>
+          <note props="android" >受系统限制，采集系统音频仅适用于 Android API 级别为 29 及以上，即 Android 10 及以上。</note></pd>
+      </plentry>
+      <plentry props="cpp ios">
+        <pt>audioParams</pt>
+        <pd>共享屏幕流的音频配置。详见 <xref keyref="ScreenAudioParameters"/>。
+          <note type="attention">该参数仅在 <parmname>captureAudio</parmname> 为 <codeph><ph keyref="true"/></codeph> 时生效。</note></pd>
+      </plentry>
+      <plentry>
+        <pt>captureVideo</pt>
+        <pd>屏幕共享时是否采集屏幕：
+          <ul>
+          <li><codeph><ph keyref="true"/></codeph>:（默认）采集屏幕。</li>
+          <li><codeph><ph keyref="false"/></codeph>: 不采集屏幕。</li>
+          </ul>
+          <note props="android"
+          >受系统限制，采集屏幕仅适用于 Android API 级别为 21 及以上，即 Android 5 及以上。</note></pd>
+      </plentry>
+      <plentry props="cpp ios">
+        <pt>videoParams</pt>
+        <pd>共享屏幕流的视频编码配置。详见 <xref keyref="ScreenVideoParameters"/>。
+          <note type="attention">该参数仅在 <parmname>captureVideo</parmname> 为 <codeph><ph keyref="true"/></codeph> 时生效。</note></pd>
+      </plentry>
+      </parml> </section>
+  </refbody>
+</reference>

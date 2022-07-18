@@ -13,12 +13,12 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="mac" outputclass="language-objectivec"/>
+            <codeblock props="mac" outputclass="language-objectivec">(int) followSystemRecordingDevice:(BOOL)enable;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int followSystemRecordingDevice(bool enable) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">setAudioRecordingDevice(deviceId: string): number</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int FollowSystemRecordingDevice(bool enable);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; followSystemRecordingDevice(bool enable);</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart"/></p>
         </section>
         <section><ph keyref="callback-section-title"/>
             <parml id="parml_ywj_tf3_5sb">
@@ -26,13 +26,15 @@
                 <pt>enable</pt>
                 <pd>是否跟随系统默认的音频播放设备：
                     
+                    
+                    
                     <ul id="ul_zwj_tf3_5sb">
                     <li><ph keyref="true"/>：跟随。当系统默认音频播放设备发生改变时，SDK 立即切换音频播放设备。</li>
                     <li><ph keyref="false"/>：不跟随。只有当 SDK 使用的音频播放设备被移除后，SDK 才切换至系统默认的音频播放设备。</li>
                     </ul></pd>
             </plentry>
             </parml></section>
-        <section id="return_values" props="native unity electron">
+        <section id="return_values" props="mac cpp unity electron">
             <title>返回</title>
             <ul>
             <li>0：方法调用成功</li>

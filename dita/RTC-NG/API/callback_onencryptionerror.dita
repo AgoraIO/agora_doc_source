@@ -13,7 +13,7 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public void onEncryptionError(ENCRYPTION_ERROR_TYPE errorType) {}</codeblock>
+            <codeblock props="android" outputclass="language-java">public void onEncryptionError(int errorType) {}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine 
                     didOccurEncryptionError:(AgoraEncryptionErrorType)errorType;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void onEncryptionError(ENCRYPTION_ERROR_TYPE errorType) {
@@ -41,7 +41,13 @@
             </plentry>
             <plentry>
                 <pt>errorType</pt>
-                <pd>错误类型，详见 <xref keyref="ENCRYPTION_ERROR_TYPE"/>。</pd>
+                <pd props="ios mac cpp unity">错误类型，详见 <xref keyref="ENCRYPTION_ERROR_TYPE"/>。</pd>
+                <pd props="android">错误类型。
+                <ul>
+                    <li><ph keyref="ENCRYPTION_ERROR_INTERNAL_FAILURE"/> (0): 内部原因。</li>
+                    <li><ph keyref="ENCRYPTION_ERROR_DECRYPTION_FAILURE"/> (1): 解密错误。请确保接收端和发送端使用的加密模式或密钥一致。</li>
+                    <li><ph keyref="ENCRYPTION_ERROR_ENCRYPTION_FAILURE"/> (2): 加密错误。</li>
+                </ul></pd>
             </plentry>
             </parml> </section>
     </refbody>

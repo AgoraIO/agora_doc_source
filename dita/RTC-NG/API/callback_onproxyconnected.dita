@@ -13,13 +13,15 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onProxyConnected(IChannel* rtcChannel, uid_t uid, PROXY_TYPE proxyType, const char* localProxyIp, int elapsed) {
-    (void)rtcChannel;
-    (void)uid;
-    (void)proxyType;
-    (void)localProxyIp;
-    (void)elapsed;
-  }</codeblock>
+            <codeblock props="android" outputclass="language-java">public void onProxyConnected(
+    String channel, int uid, int proxyType, String localProxyIp, int elapsed) {}</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onProxyConnected(const char* channel, uid_t uid, PROXY_TYPE proxyType, const char* localProxyIp, int elapsed) {
+  (void)channel;
+  (void)uid;
+  (void)proxyType;
+  (void)localProxyIp;
+  (void)elapsed;
+}</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnProxyConnected(string channel, uint uid, PROXY_TYPE proxyType, string localProxyIp, int elapsed)</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
@@ -29,8 +31,7 @@
             <p>通过该回调你可以监听 SDK 连接代理的状态。例如，当用户调用 <xref keyref="setCloudProxy"/> 设置代理并成功加入频道后， SDK 会触发该回调报告用户 ID、连接的代理类型和从调用 <xref keyref="joinChannel1"/> 到触发该回调经过的时间等。</p>
         </section>
         <section id="parameters">
-            <title>参数</title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <title><ph keyref="callback-section-title"/></title>
             <parml>
             <plentry>
                 <pt>channel</pt>

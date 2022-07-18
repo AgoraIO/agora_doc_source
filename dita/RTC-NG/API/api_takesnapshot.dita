@@ -22,8 +22,8 @@
             <codeblock props="flutter" outputclass="language-dart"/></p>
         </section>
         <section id="detailed_desc">
-            <p>该方法用于对指定用户的视频流进行截图，生成一张 JPG 格式的图片，并保存至指定的路径。</p>
-            <p><ph>该方法是异步操作，调用返回时 SDK 并没有真正获取截图。</ph><ph props="native">成功调用该方法后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调报告截图是否成功和获取截图的详情。</ph></p>
+            <p id="desc1">该方法用于对指定用户的视频流进行截图，生成一张 JPG 格式的图片，并保存至指定的路径。</p>
+            <p id="desc2"><ph>该方法是异步操作，调用返回时 SDK 并没有真正获取截图。</ph><ph props="native">成功调用该方法后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调报告截图是否成功和获取截图的详情。</ph></p>
             <note type="attention">
             <ul>
             <li>该方法需要在加入频道后调用。</li>
@@ -37,14 +37,15 @@
                 <pt>channel</pt>
                 <pd>频道名。</pd>
             </plentry>
-            <plentry>
+            <plentry id="uid">
                 <pt>uid</pt>
                 <pd>用户 ID。如果要对本地用户的视频截图，则设为 0。</pd>
             </plentry>
-            <plentry>
+            <plentry id="filepath">
                 <pt>filePath</pt>
                 <pd>
                     <p>截图的本地保存路径，需精确到文件名及格式， 例如：                                                                                            
+                    
                     <ul>
                     <li props="cpp unity">Windows: <codeph>C:\Users\&lt;user_name>\AppData\Local\Agora\&lt;process_name>\example.jpg</codeph></li>
                     <li props="cpp ios unity">iOS: <codeph>/App Sandbox/Library/Caches/example.jpg</codeph></li>
@@ -54,7 +55,7 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity">
+        <section id="return_values">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功。</li>
