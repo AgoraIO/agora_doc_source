@@ -1,6 +1,6 @@
-<div class="alert note">As of RTM v1.4.6 for Web and v1.5.0 for other platforms, Agora upgrades the authentication mechanism from AccessToken to AccessToken2.<li>If you are new to RTM, Agora recommends that you use the latest version of SDKs and deploy the App server and client for AccessToken2 step by step according to this page.<li>If you have already deployed AccessToken in previous versions, you can have a quick upgrade referring to <a href="https://docs.agora.io/en/Real-time-Messaging/token_server_rtm#upgrade">Upgrade to AccessToken2</a>.</div>
+<div class="alert note">As of RTM v1.4.6 for Web and v1.5.0 for other platforms, Agora upgrades the authentication mechanism from AccessToken to AccessToken2.<li>If you are new to RTM, Agora recommends that you use the latest versions of SDKs and deploy the App server and client for AccessToken2 step by step according to this page.<li>If you have already deployed AccessToken in a previous release, you can quickly upgrade to AccessToken2 by referring to <a href="https://docs.agora.io/en/Real-time-Messaging/token_server_rtm#upgrade">Upgrade to AccessToken2</a>.</div>
 
-<div class="alert info">The latest version of SDKs support both AccessToken2 and AccessToken at the same time, and can be used in tandem with previous versions.</div>
+<div class="alert info">The latest versions of SDKs support both AccessToken2 and AccessToken at the same time and can be used in tandem with previous versions.</div>
 
 Authentication is the act of validating the identity of each user before they access your system. Agora uses digital tokens to authenticate users and their privileges before they access an Agora service, such as joining an Agora call, or logging into the real-time messaging system.
 
@@ -28,16 +28,16 @@ In order to follow this procedure you must have the following:
 - [Golang](https://golang.org/) 1.14+ with GO111MODULE set to on.
     <div class="alert note"> If you are using Go 1.16+, GO111MODULE is on by default. See <a href="https://blog.golang.org/go116-module-changes">this blog</a> for details.</div>
 - [npm](https://www.npmjs.com/get-npm) and a [supported browser](https://docs.agora.io/en/All/faq/browser_support).
-- Use the Agora RTM SDK that supports AccessToken2:
+- Use a version of the Agora RTM SDK that supports AccessToken2:
 
 | SDK | First SDK version to support AccessToken2 |
 |:---|:---|
-| RTM Android SDK | 1.5.0 |
-| RTM iOS SDK | 1.5.0 |
-| RTM macOS SDK | 1.5.0 |
-| RTM Web SDK | 1.4.6 |
-| RTM Windows SDK | 1.5.0 |
-| RTM Linux SDK | 1.5.0 |
+| RTM Android SDK | v1.5.0 |
+| RTM iOS SDK | v1.5.0 |
+| RTM macOS SDK | v1.5.0 |
+| RTM Web SDK | v1.4.6 |
+| RTM Windows SDK | v1.5.0 |
+| RTM Linux SDK | v1.5.0 |
 
 ## Implement the authentication flow
 
@@ -350,7 +350,7 @@ func BuildToken(appId string, appCertificate string, userId string, expire uint3
 | `appId`              | The App ID of your Agora project.                            |
 | `appCertificate`     | The App Certificate of your Agora project.                   |
 | `userId`        | The user ID of the RTM system. You need specify the user ID yourself. See the [userId parameter of the login method](/en/Real-time-Messaging/API%20Reference/RTM_cpp/classagora_1_1rtm_1_1_i_rtm_service.html#a2433a0babbed76ab87084d131227346b) for supported character sets.                               |
-| `expire` | Number of seconds passed from the generation of AccessToken2 to the expiration of AccessToken2. For example, if you set it as 600, the AccessToken2 expires in 10 minutes after generation. An AccessToken2 is valid for 24 hours at most. If you set it to a period longer than 24 hours, the AccessToken2 is still valid for 24 hours. If you set it to 0, the AccessToken2 expires immediately. |
+| `expire` | The duration (in seconds) from the generation of AccessToken2 to the expiration of AccessToken2. For example, if you set it as 600, the AccessToken2 expires 10 minutes after generation. An AccessToken2 is valid for a maximum of 24 hours. If you set it to a duration longer than 24 hours, the AccessToken2 still expires after 24 hours. If you set it to 0, the AccessToken2 expires immediately. |
 
 
 ### Upgrade from AccessToken to AccessToken2<a name="upgrade"></a>
@@ -359,7 +359,7 @@ This section introduces how to upgrade from AccessToken to AccessToken2 by examp
 
 #### Prerequisites
 
-- You have deployed a token server and a web client for AccessToken in previous versions.
+- You have deployed a token server and a web client for AccessToken in a previous version.
 - You have integrated an [SDK version](#sdk-version) that supports AccessToken2.
 
 #### Update the token server
@@ -391,7 +391,7 @@ result, err := rtmtokenbuilder.BuildToken(appID, appCertificate, rtm_uid, expire
 
 #### Test the AccessToken2 server
 
-The client does not need any updates; however, the [expiration logic](#expiration) changes accordingly.
+The client does not require any updates; however, the [expiration logic](#expiration) changes accordingly.
 
 
 ## Considerations
@@ -408,13 +408,13 @@ To use the RTM token for authentication, you need to enable the App Certificate 
 
 AccessToken2 allows you to specify the validity period of an RTM token in seconds based on your business requirements. The validity period can be a maximum of 24 hours.
 
-When a token is about to expire in 30 seconds, the RTM SDK triggers the `onTokenPrivilegeWillExpire` callback. Upon receiving this callback, you can generate a new RTM token on your app server, and call `renewToken` to pass the new RTM token to the SDK.
+When a token is due to expire in 30 seconds, the RTM SDK triggers the `onTokenPrivilegeWillExpire` callback. Upon receiving this callback, you can generate a new RTM token on your app server and call `renewToken` to pass the new RTM token to the SDK.
 
 When an RTM token expires, the subsequent logic varies depending on the connection state of the SDK:
 
-- If the RTM SDK is in the `CONNECTION_STATE_CONNECTED` state, users receive the `onTokenExpired` callback and the `onConnectionStateChanged` callback caused by `CONNECTION_CHANGE_REASON_TOKEN_EXPIRED (9)`, notifying that the connection state of the SDK switches to `CONNECTION_STATE_ABORTED`. In this case, users need to log in again via the `login` method.
-- If the RTM SDK is in the `CONNECTION_STATE_RECONNECTING` state, users will receive the `onTokenExpired` callback when the network reconnects. In this case, users need to renew the token via the `renewToken` method.
+- If the RTM SDK is in the `CONNECTION_STATE_CONNECTED` state, users receive the `onTokenExpired` callback and the `onConnectionStateChanged` callback caused by `CONNECTION_CHANGE_REASON_TOKEN_EXPIRED (9)`, notifying them that the connection state of the SDK switches to `CONNECTION_STATE_ABORTED`. In this case, users need to log in again via the `login` method.
+- If the RTM SDK is in the `CONNECTION_STATE_RECONNECTING` state, users receive the `onTokenExpired` callback when the network reconnects. In this case, users need to renew the token via the `renewToken` method.
 
-<div class="alert note">Although you can use the <code>onTokenPrivilegeWillExpire</code> and <code>onTokenExpired</code> callbacks to handle token expiration conditions, Agora recommends that you regularly renew the Token (such as every hour) to keep the token valid.</div>
+<div class="alert note">Although you can use the <code>onTokenPrivilegeWillExpire</code> and <code>onTokenExpired</code> callbacks to handle token expiration conditions, Agora recommends that you regularly renew the token (such as every hour) to keep the token valid.</div>
 
-<div class="alert info">The names of methods, callbacks, and enums mentioned in the above section only applies to C++. Refer to the API documentation for names in other platforms.</div>
+<div class="alert info">The names of methods, callbacks, and enums mentioned in the above section only apply to C++. Refer to the API documentation for names in other platforms.</div>
