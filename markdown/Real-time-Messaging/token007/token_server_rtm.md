@@ -1,3 +1,9 @@
+# 使用 RTM Token 鉴权
+
+<div class="alert note">自 RTM 全平台 1.5.0 版和 Web 1.4.6 版开始，Agora 升级了 Token 鉴权逻辑。<li>如你首次接触该产品，Agora 建议你使用最新版的 RTM SDK 并参照本文档为 AccessToken2 部署服务器和客户端；<li>如你已在先前版本中部署过 AccessToken 鉴权，可以参照 <a href="https://docs.agora.io/cn/Real-time-Messaging/token_server_rtm#upgrade">升级至 AccessToken2</a> 中的步骤快速完成升级。</div>
+
+<div class="alert info">使用 AccessToken2 的 SDK 版本可以和使用 AccessToken 的 SDK 版本互通。同时，支持 AccessToken2 的版本也支持 AccessToken。</div>
+
 鉴权是指在用户访问你的系统前，对其进行身份校验。用户在使用 Agora 服务，如加入音视频通话或登录信令系统时，Agora 使用 Token 对其鉴权。
 
 本文展示如何在服务端部署一个 RTM Token 生成器，以及如何搭建一个使用 RTM Token 鉴权的客户端。
@@ -8,10 +14,9 @@
 
 ![RTM Token 鉴权流程](https://web-cdn.agora.io/docs-files/1624437370778)
 
-RTM Token 在 app 服务器上生成，其有效期为 24 小时。当用户从你的 app 客户端登录到 RTM 系统时，Agora 平台会读取该 Token 中包含的信息，并进行校验。Token 包含以下信息：
+RTM Token 在 app 服务器上生成，其最长有效期为 24 小时。当用户从你的 app 客户端登录到 RTM 系统时，Agora 平台会读取该 Token 中包含的信息，并进行校验。Token 包含以下信息：
 
 - 你在 Agora 控制台创建项目时生成的 App ID
-- 你的项目的 App 证书
 - RTM 用户 ID
 - RTM Token 过期的 Unix 时间戳
 
@@ -24,6 +29,16 @@ RTM Token 在 app 服务器上生成，其有效期为 24 小时。当用户从�
 - [Golang](https://golang.org/) 1.14 以上版本，GO111MODULE 设置为开启。
    <div class="alert note">如果你使用的是 Go 1.16 及以上版本，GO111MODULE 已默认开启。详情请参考 <a href="https://blog.golang.org/go116-module-changes">New module changes in Go 1.16</a>。</div>
 - [npm](https://www.npmjs.com/get-npm) 以及[支持的浏览器](https://docs.agora.io/cn/All/faq/browser_support)。
+- 使用支持 AccessToken2 的 Agora RTM SDK 版本，详情如下：<a name="sdk-version"></a>
+
+| SDK 类型 | 支持 AccessToken2 鉴权的首个版本 |
+|:---|:---|
+| RTM Android SDK | 1.5.0 |
+| RTM iOS SDK | 1.5.0 |
+| RTM macOS SDK | 1.5.0 |
+| RTM Web SDK | 1.4.6 |
+| RTM Windows SDK | 1.5.0 |
+| RTM Linux SDK | 1.5.0 |
 
 ## 实现鉴权流程
 
@@ -37,7 +52,7 @@ RTM Token 在 app 服务器上生成，其有效期为 24 小时。当用户从�
 
 ~bbd6ec60-19e2-11eb-b0e2-eb6c69fefbc6~
 
-#### 2.  获取 App 证书
+#### 2. 获取 App 证书
 
 ~7fa0dcd0-4c0c-11ec-8689-2164ade84c59~
 
@@ -55,7 +70,7 @@ Token 需要在你的服务端部署生成。当客户端发送请求时，服�
 package main
 
 import (
-    rtmtokenbuilder "github.com/AgoraIO/Tools/DynamicKey/AgoraDynamicKey/go/src/RtmTokenBuilder"
+    rtmtokenbuilder "github.com/AgoraIO/Tools/DynamicKey/AgoraDynamicKey/go/src/rtmtokenbuilder2"
     "fmt"
     "log"
     "net/http"
@@ -80,7 +95,7 @@ func generateRtmToken(rtm_uid string){
     currentTimestamp := uint32(time.Now().UTC().Unix())
     expireTimestamp := currentTimestamp + expireTimeInSeconds
 
-    result, err := rtmtokenbuilder.BuildToken(appID, appCertificate, rtm_uid, rtmtokenbuilder.RoleRtmUser, expireTimestamp)
+    result, err := rtmtokenbuilder.BuildToken(appID, appCertificate, rtm_uid, expireTimestamp)
     if err != nil {
         fmt.Println(err)
     } else {
@@ -298,14 +313,12 @@ func main(){
 
 ## 参考
 
-本节介绍 Token 生成器代码库、开发者注意事项等相关文档。
-
 ### Token 生成器代码
 
 Agora 在 GitHub 上提供一个开源的 [AgoraDynamicKey](https://github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey) 仓库，支持使用 C++、Java、Go 等语言在你自己的服务器上生成 Token。
 
 | 语言 | 算法 | 核心方法 | 示例代码 |
-| -------- | ----------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| -------- | ----------- | ---------- | ---------------- |
 | C++ | HMAC-SHA256 | [buildToken](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/cpp/src/RtmTokenBuilder.h) | [RtmTokenBuilderSample.cpp](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/cpp/sample/RtmTokenBuilderSample.cpp) |
 | Go | HMAC-SHA256 | [buildToken](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/go/src/RtmTokenBuilder/RtmTokenBuilder.go) | [sample.go](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/go/sample/RtmTokenBuilder/sample.go) |
 | Java | HMAC-SHA256 | [buildToken](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/rtm/RtmTokenBuilder.java) | [RtmTokenBuilderSample.java](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/sample/RtmTokenBuilderSample.java) |
@@ -316,23 +329,67 @@ Agora 在 GitHub 上提供一个开源的 [AgoraDynamicKey](https://github.com/A
 
 ### API 参考
 
-本节介绍生成 Token 的 API 参数和描述。以 C++ 为例：
+本节介绍生成 Token 的 API 参数和描述。以 Golang 为例：
 
-```c++
-static std::string buildToken(const std::string& appId,
-								const std::string& appCertificate,
-								const std::string& userAccount,
-								RtmUserRole userRole,
-								uint32_t privilegeExpiredTs = 0);
+```golang
+func BuildToken(appId string, appCertificate string, userId string, expire uint32) (string, error) {
+    token := accesstoken.NewAccessToken(appId, appCertificate, expire)
+
+    serviceRtm := accesstoken.NewServiceRtm(userId)
+    serviceRtm.AddPrivilege(accesstoken.PrivilegeLogin, expire)
+    token.AddService(serviceRtm)
+
+    return token.Build()
+}
 ```
 
 | 参数               | 描述                                                         |
 | :----------------- | :----------------------------------------------------------- |
-| appId              | 你在 Agora 控制台创建项目时生成的 App ID。                   |
-| appCertificate     | 你的 App 证书。                                              |
-| userAccount        | 用于登录 RTM 系统的用户 ID。你需要自行设定。支持的字符参考 [login 方法中的 userId 参数](/cn/Real-time-Messaging/API%20Reference/RTM_cpp/classagora_1_1rtm_1_1_i_rtm_service.html#a2433a0babbed76ab87084d131227346b)。                                            |
-| userRole           | 用户角色。暂时只支持一种角色，请使用默认值 `Rtm_User`。      |
-| privilegeExpiredTs | 此参数暂不生效。你无需设置此参数。每个 RTM Token 的有效期都是 24 小时。 |
+| `appId`              | 你在 Agora 控制台创建项目时生成的 App ID。                   |
+| `appCertificate`     | 你的 App 证书。                                              |
+| `userId`        | 用于登录 RTM 系统的用户 ID。你需要自行设定。支持的字符参考 [login 方法中的 userId 参数](/cn/Real-time-Messaging/API%20Reference/RTM_cpp/classagora_1_1rtm_1_1_i_rtm_service.html#a2433a0babbed76ab87084d131227346b)。                                            |
+| `expire` | RTM Token 过期的 Unix 时间戳，单位为秒。该值为当前时间戳和 Token 有效期的总和。 例如，如果你将 `expire` 设为当前时间戳再加 600 秒，则 RTM Token 会在 10 分钟内过期。 RTM Token 的最大有效期为 24 小时。 如果你将此参数设为 0，或时间长度超过 24 小时，Token 有效期依然为 24 小时。 |
+
+
+### 将 AccessToken 服务器升级至 AccessToken2<a name="upgrade"></a>
+
+该小节引导你将 AccessToken 服务端鉴权机制升级到 AccessToken2。
+
+#### 前提条件
+
+- 你已为 AccessToken 部署了服务器及客户端；
+- 你已集成支持 AccessToken2 的 [SDK 版本](#sdk-version)；
+
+#### 更新 Token 服务器部署
+
+1. 替换 `rtmtokenbuilder` 导入声明：
+
+```golang
+// 将原先的 "github.com/AgoraIO/Tools/DynamicKey/AgoraDynamicKey/go/src/RtmTokenBuilder"
+// 替换为 "github.com/AgoraIO/Tools/DynamicKey/AgoraDynamicKey/go/src/rtmtokenbuilder2"
+import (
+    rtmtokenbuilder "github.com/AgoraIO/Tools/DynamicKey/AgoraDynamicKey/go/src/rtmtokenbuilder2"
+    "fmt"
+    "log"
+    "net/http"
+    "time"
+    "encoding/json"
+    "errors"
+    "strconv"
+)
+```
+
+2. 更新 `BuildToken` 函数：
+
+```golang
+// 原先为 result, err := rtmtokenbuilder.BuildToken(appID, appCertificate, rtm_uid, rtmtokenbuilder.RoleRtmUser, expireTimestamp)
+// 现移除 rtmtokenbuilder.RoleRtmUser
+result, err := rtmtokenbuilder.BuildToken(appID, appCertificate, rtm_uid, expireTimestamp)
+```
+
+#### 测试服务器和客户端的连接
+
+客户端无需更新，仅需关注升级至 AccessToken2 后 [客户端鉴权逻辑的改变](#expiration)。
 
 
 ## 开发注意事项
@@ -345,14 +402,14 @@ static std::string buildToken(const std::string& appId,
 
 生成 RTM Token 需要先在控制台启用对应项目的 App 证书。项目一旦开启了 App 证书，就必须使用 RTM Token 鉴权。
 
-### RTM Token 过期
+### RTM Token 过期<a name="expiration"></a>
 
-RTM Token 的有效期为 24 小时。
+你可以根据业务需求指定 RTM Token 的有效期 (最长为 24 小时)。当 RTM Token 临 30 秒过期时，会触发 `onTokenPrivilegeWillExpire` 回调，提醒用户 Token 即将过期。收到该回调时，你可以在服务端重新生成 RTM Token，然后调用 `renewToken` 方法，将新生成的 RTM Token 传给 SDK。
 
-SDK 处于 `CONNECTION_STATE_CONNECTED` 状态时，即使 RTM Token 过期，用户也不会被踢出。用户登录时使用已过期的 RTM Token 则会返回 `LOGIN_ERR_TOKEN_EXPIRED` 错误。
+Token 过期时，分为以下两种情况：
+- 如果用户处于已连接状态 (`CONNECTION_STATE_CONNECTED`)，会收到 `onTokenExpired` 回调和因 Token 过期 (`CONNECTION_CHANGE_REASON_TOKEN_EXPIRED (9)`) 触发的 `onConnectionStateChanged` 回调，提醒用户连接状态切换至停止登录 (`CONNECTION_STATE_ABORTED`)。此时，用户需要调用 `login` 方法重新登录。
+- 如果用户由于网络问题处于断线重连状态 (`CONNECTION_STATE_RECONNECTING`)，会在网络恢复时收到 `onTokenExpired` 回调。此时，用户需要调用 `renewToken` 方法恢复连接。
 
-RTM 系统只会在 RTM Token 过期且 SDK 处于 `CONNECTION_STATE_RECONNECTING` 状态时才会触发 `onTokenExpired` 回调，表示 RTM Token 已失效且重连需要新的 RTM Token。回调仅触发一次。收到这个回调时，你可以在服务端重新生成 RTM Token，然后调用 `renewToken` 方法，将新生成的 RTM Token 传给 SDK。
+<div class="alert note">你可以通过 <code>onTokenPrivilegeWillExpire</code> 回调和 <code>onTokenExpired</code> 回调进行 Token 过期处理，但 Agora 推荐你通过定时（例如每小时）更新 Token 来解决 Token 过期问题。</div>
 
-<div class="alert note">你虽然可以通过 <code>onTokenExpired</code> 回调进行 Token 过期处理，但 Agora 推荐你通过定时（例如每小时）更新 Token 来解决 Token 过期问题。</div>
-
-<div class="alert info">上文的方法、回调、枚举名仅适用于 C++ SDK，其他平台的方法、回调、枚举名可参考各平台的 API 文档。</div>
+<div class="alert info">该小节的方法、回调、枚举名仅适用于 C++ SDK，其他平台的方法、回调、枚举名可参考各平台的 API 文档。</div>
