@@ -60,6 +60,7 @@ export type LaunchOption = {
     roomUuid: string;
     roleType: EduRoleTypeEnum;
     roomType: EduRoomTypeEnum;
+    roomSubtype?: EduRoomSubtypeEnum;
     roomName: string;
     listener: ListenerCallback;
     pretest: boolean;
@@ -89,6 +90,7 @@ export type LaunchOption = {
 | `roomName`               | （必填）课堂名，用于课堂内显示，长度在 64 字节以内。                                                                                                                                                |
 | `roleType`               | （必填）用户在课堂中的角色，详见 [EduRoleTypeEnum](#eduroletypeenum)。                                                                                                                              |
 | `roomType`               | （必填）课堂类型，详见 [EduRoomTypeEnum](#eduroomtypeenum)。                                                                                                                                        |
+| `roomSubtype`               | （选填）课堂子类型，详见 [EduRoomSubtypeEnum](#eduroomsubtypeenum)。默认值为 `EduRoomSubtypeEnum.Standard`。                                                                                                                                        |
 | `listener`               | （必填）课堂启动状态：<li>`ready`: 课堂准备完毕。</li><li>`destroyed`: 课堂已销毁。</li>                                                                                                            |
 | `pretest`                | （必填）是否开启课前设备检测：<li>`true`: 开启课前设备检测。开启后，在加入课堂前会弹出设备检测页面，测试终端用户的摄像头、麦克风和扬声器是否能正常工作。</li><li>`false`: 不开启课前设备检测。</li> |
 | `language`               | （必填）课堂界面的语言，详见 [LanguageEnum](#languageenum)。                                                                                                                                        |
@@ -110,6 +112,7 @@ export type MediaOptions = {
     cameraEncoderConfiguration?: EduVideoEncoderConfiguration;
     screenShareEncoderConfiguration?: EduVideoEncoderConfiguration;
     encryptionConfig?: MediaEncryptionConfig;
+    channelProfile?: ChannelProfile;
 };
 ```
 
@@ -120,6 +123,7 @@ export type MediaOptions = {
 | `cameraEncoderConfiguration`      | 摄像头采集视频流编码参数配置，详见 [EduVideoEncoderConfiguration](#eduvideoencoderconfiguration)。 |
 | `screenShareEncoderConfiguration` | 屏幕共享视频流编码参数配置，详见 [EduVideoEncoderConfiguration](#eduvideoencoderconfiguration)。   |
 | `encryptionConfig`                | 媒体流加密配置，详见 [MediaEncryptionConfig](#mediaencryptionconfig)。                             |
+| `channelProfile`                | 频道配置，详见 [ChannelProfile](#channelprofile)。                             |
 
 ### EduVideoEncoderConfiguration
 
@@ -159,6 +163,26 @@ export declare interface MediaEncryptionConfig {
 | :----- | :----------------------------------------------------------------------------------------------------------------------- |
 | `mode` | 媒体流加密模式，详见 [MediaEncryptionMode](#mediaencryptionmode)。同一教室内所有老师和学生必须使用相同的加密模式和密钥。 |
 | `key`  | 加密密钥。                                                                                                               |
+
+### ChannelProfile
+
+```typescript
+export enum ChannelProfile {
+  Communication = 0,
+  LiveBroadcasting = 1,
+  BlendCDN = 2,
+  MixRTCCDN = 3,
+}
+```
+
+频道配置，用于 [MediaOptions](#mediaoptions)。
+
+| 参数   | 描述                                                                                                                     |
+| :----- | :----------------------------------------------------------------------------------------------------------------------- |
+| `Communication` | 通信模式，一般用于一对多或一对一的小班课。 |
+| `LiveBroadcasting`  | 直播模式，相较于通信模式，更低费用，同时延迟相较于通信模式较大。 |
+| `BlendCDN` | 融合 CDN 模式，一般用于直播课，无法进行音视频互动。|
+| `MixRTCCDN` | 融合 CDN 和 RTC 的混合模式。|
 
 ### MediaEncryptionMode
 
@@ -332,6 +356,22 @@ export enum EduRoomTypeEnum {
 | `Room1v1Class`   | `0`: 1 对 1 互动教学。1 位老师对 1 名学生进行专属在线辅导教学。                                  |
 | `RoomBigClass`   | `2`: 互动直播大班课。1 位老师进行在线教学，多名学生实时观看和收听。大班课中课堂人数上限为 5000。 |
 | `RoomSmallClass` | `4`: 在线互动小班课。1 位老师进行在线教学，多名学生实时观看和收听。小班课中课堂人数上限为 200    |
+
+### EduRoomSubtypeEnum
+
+```typescript
+export enum EduRoomSubtypeEnum {
+    Standard = 0,
+    Vocational = 1,
+}
+```
+
+课堂子类型。在 [LaunchOption](#launchoption) 中设置。
+
+| 参数             | 描述                                                                                             |
+| :--------------- | :----------------------------------------------------------------------------------------------- |
+| `Standard`   | `0`: 标准的灵动课堂。                                |
+| `Vocational`   | `1`: 当 `roomType` 设为 `EduRoomTypeEnum.RoomBigClass` 时，再将 `roomSubtype` 设为 `EduRoomSubtypeEnum.Vocational`，则为职业教育大班课。 |
 
 ### LanguageEnum
 

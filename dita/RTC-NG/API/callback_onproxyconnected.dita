@@ -43,7 +43,15 @@
             </plentry>
             <plentry id="proxyType">
                 <pt>proxyType</pt>
-                <pd>连接上的代理类型。详见 <xref keyref="CLOUD_PROXY_TYPE"/></pd>
+                <pd props="ios mac cpp unity">连接上的代理类型。详见 <xref keyref="CLOUD_PROXY_TYPE"/>。</pd>
+                <pd props="android">连接上的代理类型。
+                <ul>
+                    <li><ph keyref="NONE_PROXY_TYPE"/> (0): 预留参数，暂不支持。</li>
+                    <li><ph keyref="UDP_PROXY_TYPE"/> (1): UDP 协议的云代理，即 Force UDP 云代理模式。在该模式下，SDK 始终通过 UDP 协议传输数据。</li>
+                    <li><ph keyref="TCP_PROXY_TYPE"/> (2): TCP（加密）协议的云代理，即 Force TCP 云代理模式。在该模式下，SDK 始终通过 TLS 443 传输数据。</li>
+                    <li><ph keyref="LOCAL_PROXY_TYPE"/> (3): 预留参数，暂不支持。</li>
+                    <li><ph keyref="TCP_PROXY_AUTO_FALLBACK_TYPE"/> (4): 自动模式。在该模式下，SDK 优先连接 SD-RTN™，如果连接失败，自动切换为 TLS 443。</li>
+                </ul></pd>
             </plentry>
             <plentry id="localProxyIp">
                 <pt>localProxyIp</pt>
