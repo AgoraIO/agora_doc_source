@@ -8,13 +8,13 @@ v1.4.6 was released on July 20, 2022.
 
 As of this release, the authentication mechanism of RTM is upgraded from AccessToken to AccessToken2. Both types of tokens are supported at the same time and can work in tandem with each other.
 
-<div class="alert note"><li>If you are new to RTM, Agora recommends that you use the latest release and deploy the App server and client for AccessToken2 step by step according to <a href="https://docs.agora.io/en/Real-time-Messaging/token_server_rtm">RTM Token</a>.<li>If you have already deployed AccessToken in previous release, you can have a quick upgrade referring to <a href="https://docs.agora.io/en/Real-time-Messaging/token_server_rtm#upgrade">Upgrade to AccessToken2</a>.</div>
+<div class="alert note"><li>If you are new to RTM, Agora recommends that you use the latest release and deploy the App server and client for AccessToken2 step by step according to <a href="https://docs.agora.io/en/Real-time-Messaging/token_server_rtm">RTM Token</a>.<li>If you have already deployed AccessToken in a previous release, you can quickly upgrade to AccessToken2 by referring <a href="https://docs.agora.io/en/Real-time-Messaging/token_server_rtm#upgrade">Upgrade to AccessToken2</a>.</div>
 
-AccessToken2 allows users to specify the validity period of an RTM token. The validity period can be a maximum of 24 hours. Besides, this release adds the `TokenPrivilegeWillExpire` callback triggered when a token is about to expire in 30 seconds. Upon receiving this callback, you can generate a new RTM token on your app server, and pass the new RTM token to the SDK; otherwise, the connection state of the SDK switches from connected to aborted due to `TOKEN_EXPIRED (9)`. For details, see [RTM Token expiration](./token_server_rtm#rtm-token-expiration).
+AccessToken2 allows users to specify the validity period of an RTM token. The validity period can be a maximum of 24 hours. This release also adds the `TokenPrivilegeWillExpire` callback, which is triggered when a token is due to expire in 30 seconds. Upon receiving this callback, you can generate a new RTM token on your server and pass the new RTM token to the SDK; otherwise, the connection state of the SDK switches from connected to aborted due to `TOKEN_EXPIRED (9)`. For details, see [RTM Token expiration](./token_server_rtm#rtm-token-expiration).
 
-#### 问题修复
+#### Bug fixes
 
-修复了请求超时输出日志的单位，先前为毫秒 (ms)，现修复为秒 (s)。
+This release fixed the unit of timeout in output logs from milliseconds (ms) to seconds (s).
 
 #### API changes
 
@@ -288,7 +288,7 @@ The SDK is occasionally kicked by the server: When the issue occurs, the Client 
 v1.1.0 was released on September 18, 2019. It adds the following features: 
 
 - [Gets the member count of specified channel(s).](#getcount)
-- [Automatically returns the latest numer of members in the current channel](#oncount)
+- [Automatically returns the latest number of members in the current channel](#oncount)
 - [Channel attribute operations](#channelattributes)
 
 
@@ -306,7 +306,7 @@ v1.1.0 was released on September 18, 2019. It adds the following features:
 You can now get the member count of specified channel(s) without the need to join, by calling the `getChannelMemberCount` method. You can get the member counts of a maximum of 32 channels in one method call. 
 
 <a name="oncount"></a>
-#### 2. Automatically returns the latest numer of members in the current channel 
+#### 2. Automatically returns the latest number of members in the current channel 
 
 If you are already in a channel, you do not have to call the `getChannelMemberCount` method to get the member count of the current channel. We also do not recommend using `onMemberJoined` and `onMemberLeft` to keep track of the member counts. As of this release, the SDK returns to the channel members `MemberCountUpdated` the latest channel member count when the number of channel members changes. Note that:
 

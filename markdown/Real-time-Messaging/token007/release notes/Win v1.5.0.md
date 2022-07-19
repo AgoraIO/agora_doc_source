@@ -8,19 +8,19 @@ v1.5.0 was released on July 20, 2022.
 
 As of this release, the authentication mechanism of RTM is upgraded from AccessToken to AccessToken2. Both types of tokens are supported at the same time and can work in tandem with each other.
 
-<div class="alert note"><li>If you are new to RTM, Agora recommends that you use the latest release and deploy the App server and client for AccessToken2 step by step according to <a href="https://docs.agora.io/en/Real-time-Messaging/token_server_rtm">RTM Token</a>.<li>If you have already deployed AccessToken in previous release, you can have a quick upgrade referring to <a href="https://docs.agora.io/en/Real-time-Messaging/token_server_rtm#upgrade">Upgrade to AccessToken2</a>.</div>
+<div class="alert note"><li>If you are new to RTM, Agora recommends that you use the latest release and deploy the App server and client for AccessToken2 step by step according to <a href="https://docs.agora.io/en/Real-time-Messaging/token_server_rtm">RTM Token</a>.<li>If you have already deployed AccessToken in a previous release, you can quickly upgrade to AccessToken2 by referring <a href="https://docs.agora.io/en/Real-time-Messaging/token_server_rtm#upgrade">Upgrade to AccessToken2</a>.</div>
 
-AccessToken2 allows users to specify the validity period of an RTM token. The validity period can be a maximum of 24 hours. Besides, this release adds the `onTokenPrivilegeWillExpire` callback triggered when a token is about to expire in 30 seconds. Upon receiving this callback, you can generate a new RTM token on your app server, and pass the new RTM token to the SDK; otherwise, the connection state of the SDK switches from connected to aborted due to `CONNECTION_CHANGE_REASON_TOKEN_EXPIRED (9)`. For details, see [RTM Token expiration](./token_server_rtm#rtm-token-expiration).
+AccessToken2 allows users to specify the validity period of an RTM token. The validity period can be a maximum of 24 hours. This release also adds the `onTokenPrivilegeWillExpire` callback, which is triggered when a token is due to expire in 30 seconds. Upon receiving this callback, you can generate a new RTM token on your server and pass the new RTM token to the SDK; otherwise, the connection state of the SDK switches from connected to aborted due to `CONNECTION_CHANGE_REASON_TOKEN_EXPIRED (9)`. For details, see [RTM Token expiration](./token_server_rtm#rtm-token-expiration).
 
 #### Sunset features
 
-[Image or file messages](./upload_download_media_cpp), [historical messages](./rtm_get_event), and [offline messages](./messaging_restful#history) are deprecated as of this release. In previous versions, users who integrate these features can still use them.
+[Image or file messages](./upload_download_media_cpp), [historical messages](./rtm_get_event), and [offline messages](./messaging_restful#history) are deprecated as of this release. If you have integrated these features in a previous release, you can continue to use them.
 
 #### API changes
 
 **Added**  
 - `onTokenPrivilegeWillExpire`
-- `CONNECTION_CHANGE_REASON_TOKEN_EXPIRED (9)` in the `CONNECTION_CHANGE_REASON` enumerator
+- `CONNECTION_CHANGE_REASON_TOKEN_EXPIRED (9)` in the `CONNECTION_CHANGE_REASON` enumberator
 
 **Deprecated**  
 - `createFileMessageByMediaId`
@@ -349,7 +349,7 @@ Once you are in a channel, you no longer must call the `getChannelMemberCount` m
 
 > Please treat this callback and the [onGetMembers](/en/Real-time-Messaging/API%20Reference/RTM_cpp/classagora_1_1rtm_1_1_i_channel_event_handler.html#a5e3f5a5ae0b3861de2f0310841ad0b37) callback separately: 
 >
-> - The former is an automatic callback. It returns the current numer of channel members;
+> - The former is an automatic callback. It returns the current number of channel members;
 > - The latter is triggered by the [getMembers](/en/Real-time-Messaging/API%20Reference/RTM_cpp/classagora_1_1rtm_1_1_i_channel.html#a3f9c943059ac48a568c81798da38c3cb) method. It returns a member list of the current channel. If the number of channel members exceeds 512, the SDK only returns a list of 512 randomly selected channel members. 
 
 **Renew the Token**
