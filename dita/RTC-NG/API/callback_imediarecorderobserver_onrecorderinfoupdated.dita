@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="callback_onrecorderinfoupdated">
+<reference id="callback_imediarecorderobserver_onrecorderinfoupdated">
     <title><ph keyref="onRecorderInfoUpdated"/></title>
     <shortdesc id="short"><ph id="shortdesc">录制信息更新回调。</ph></shortdesc>
     <prolog>
@@ -13,8 +13,8 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="android" outputclass="language-java">@CalledByNative void onRecorderInfoUpdated(RecorderInfo info);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)mediaRecorder:(AgoraMediaRecorder* _Nonnull)recorder informationDidUpdated:(AgoraMediaRecorderInfo* _Nonnull)info;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void onRecorderInfoUpdated(const RecorderInfo&amp; info){};</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp"/>
@@ -32,6 +32,10 @@
                 <pt>info</pt>
                 <pd>录制文件信息。详见 <xref keyref="RecorderInfo"/>。</pd>
             </plentry>
+                <plentry props="apple">
+                    <pt>recorder</pt>
+                    <pd><xref keyref="IMediaRecorder"/> 对象。</pd>
+                </plentry>
             </parml> </section>
     </refbody>
 </reference>

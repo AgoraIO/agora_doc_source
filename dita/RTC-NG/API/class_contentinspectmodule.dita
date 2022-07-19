@@ -9,36 +9,22 @@
             <p outputclass="codeblock" props="rtc-ng">
             <codeblock props="android" outputclass="language-java">public static class ContentInspectModule {
   public int type;
-  public int vendor;
-  public String callbackUrl;
-  public String token;
-  public int frequency;
-
+  public int interval;
   public ContentInspectModule() {
     type = CONTENT_INSPECT_TYPE_INVALID;
-    vendor = CONTENT_INSPECT_VENDOR_AGORA;
-    frequency = 0;
-  }
-}</codeblock>
+    interval = 0;
+  }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraContentInspectModule: NSObject
 @property (assign, nonatomic) AgoraContentInspectType type;
-@property(assign, nonatomic) AgoraContentInspectVendor vendor;
-@property (assign, nonatomic) NSInteger frequency;
-@property(nonatomic, copy) NSString* _Nullable callbackUrl;
-@property(nonatomic, copy) NSString* _Nullable token;
+
+@property (assign, nonatomic) NSInteger interval;
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct ContentInspectModule {
   CONTENT_INSPECT_TYPE type;
-  CONTENT_INSPECT_VENDOR vendor;
-  const char* callbackUrl;
-  const char* token;
-  unsigned int frequency;
+  unsigned int interval;
   ContentInspectModule() {
     type = CONTENT_INSPECT_INVALID;
-    frequency = 0;
-    vendor = CONTENT_INSPECT_VENDOR_AGORA;
-    callbackUrl = NULL;
-    token = NULL;
+    interval = 0;
   }
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
@@ -56,32 +42,22 @@
             <parml>
             <plentry>
                 <pt>type</pt>
-                <pd props="native flutter">视频内容审核模块的类型。详见 <xref keyref="CONTENT_INSPECT_TYPE"/>。</pd>
-                <pd props="unity">
+                <pd props="ios mac cpp">视频内容审核模块的类型。详见 <xref
+                    keyref="CONTENT_INSPECT_TYPE"/>。</pd>
+                <pd props="android unity">
                     <p>视频内容审核模块的类型：                                       
+                    
+                    
+                    
                     <ul>
-                    <li>0: （默认）该功能模块无实际功能。请不要设为该值。</li>
-                    <li>1: 鉴黄。</li>
-                    <li>2: 截图。</li>
+                    <li><ph keyref="CONTENT_INSPECT_INVALID"/>(0)：（默认）该功能模块无实际功能。请不要设为该值。</li>
+                    <li><ph keyref="CONTENT_INSPECT_MODERATION"/>(1)：视频鉴黄。SDK 会对视频流进行截图、鉴黄，并将截图和审核结果上传。</li>
+                    <li><ph keyref="CONTENT_INSPECT_SUPERVISE"/>(2)：视频截图。SDK 会对视频流进行截图并上传。</li>
                     </ul></p>
                 </pd>
             </plentry>
             <plentry>
-                <pt props="native">vendor</pt>
-                <pd>云端鉴黄服务供应商。详见 <xref keyref="CONTENT_INSPECT_VENDOR"/>。</pd>
-                <pd><note type="attention">该属性仅适用于鉴黄模块（<apiname keyref= "CONTENT_INSPECT_MODERATION"/>）。如果将 <parmname>type</parmname> 设置为其他模块，该属性不生效。</note></pd>
-            </plentry>
-            <plentry>
-                <pt props="native">callbackUrl</pt>
-                <pd>接收视频内容审核回调的服务器 URL 地址。</pd>
-            </plentry>
-            <plentry>
-                <pt props="native">token</pt>
-                <pd>在服务端生成的用于鉴权的动态密钥。详见<xref keyref="guide-token">使用 Token 鉴权</xref>。</pd>
-            </plentry>
-            <plentry>
-                <pt props="native">frequency</pt>
-                <pt props="unity flutter electron rn">interval</pt>
+                <pt>interval</pt>
                 <pd>视频内容审核的间隔，单位为秒，取值必须大于 0。默认值为 0，表示不进行内容审核。推荐值为 10 秒，你也可以根据业务需求自行调整。</pd>
             </plentry>
             </parml> </section>

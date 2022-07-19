@@ -13,7 +13,7 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public void onPermissionError(PERMISSION permission) {}</codeblock>
+            <codeblock props="android" outputclass="language-java">public void onPermissionError(int permission) {}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine permissionError:(AgoraPermissionType)type;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void onPermissionError(PERMISSION_TYPE permissionType) {
   (void)permissionType;
@@ -37,7 +37,12 @@
                 <pt props="android">permission</pt>
                 <pt props="ios mac">type</pt>
                 <pt props="cpp unity">permissionType</pt>
-                <pd>设备权限类型。详见 <xref keyref="PERMISSION_TYPE"/>。</pd>
+                <pd props="ios mac cpp unity">设备权限类型。详见 <xref keyref="PERMISSION_TYPE"/>。</pd>
+                <pd props="android">设备权限类型。
+                <ul>
+                   <li><ph keyref="RECORD_AUDIO"/> (0): 音频采集设备的权限。</li>
+                   <li><ph keyref="CAMERA"/> (1): 摄像头权限。</li>
+                </ul></pd>
             </plentry>
             </parml> </section>
     </refbody>

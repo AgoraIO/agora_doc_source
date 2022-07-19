@@ -13,8 +13,8 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public void onVideoSubscribeStateChanged(String channel, int uid, STREAM_SUBSCRIBE_STATE oldState,
-      STREAM_SUBSCRIBE_STATE newState, int elapseSinceLastState) {}</codeblock>
+            <codeblock props="android" outputclass="language-java">public void onVideoSubscribeStateChanged(
+    String channel, int uid, int oldState, int newState, int elapseSinceLastState) {}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit *_Nonnull)engine
     didVideoSubscribeStateChange:(NSString * _Nonnull)channelId
     uid:(unsigned int)uid
@@ -55,8 +55,7 @@
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"
-            />
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt/>
@@ -72,11 +71,57 @@
             </plentry>
             <plentry>
                 <pt>oldState</pt>
-                <pd>之前的订阅状态，详见 <xref keyref="STREAM_SUBSCRIBE_STATE"/>。</pd>
+                <pd props="ios mac cpp unity">之前的订阅状态，详见 <xref keyref="STREAM_SUBSCRIBE_STATE"/>。</pd>
+                <pd props="android">之前的订阅状态。
+                  <ul>
+                    <li><ph keyref="SUB_STATE_IDLE"/> (0): 加入频道后的初始订阅状态。</li>
+                    <li><ph keyref="SUB_STATE_NO_SUBSCRIBED"/> (1): 订阅失败。可能是因为：
+                        <ul>
+                        <li>远端用户：
+                            <ul>
+                            <li>调用 <xref keyref="muteLocalAudioStream"/>(<codeph><ph keyref="true"/></codeph>) 或 <xref keyref="muteLocalVideoStream"/>(<codeph><ph keyref="true"/></codeph>) 停止发送本地媒体流。</li>
+                            <li>调用 <xref keyref="disableAudio"/> 或 <xref keyref="disableVideo"/> 关闭本地音频或视频模块。</li>
+                            <li>调用 <xref keyref="enableLocalAudio"/>(<ph keyref="false"/>) 或 <xref keyref="enableLocalVideo"/>(<ph keyref="false"/>) 关闭本地音频或视频采集。</li>
+                            <li>用户角色为观众。</li>
+                            </ul></li>
+                        <li>本地用户调用以下方法停止接收远端媒体流：
+                            <ul>
+                            <li>调用 <xref keyref="muteRemoteAudioStream"/>(<ph keyref="true"/>)、 <xref keyref="muteAllRemoteAudioStreams"/>(<ph keyref="true"/>) 或 <xref keyref="setDefaultMuteAllRemoteAudioStreams"/>(<ph keyref="true"/>) 停止接收远端音频流。</li>
+                            <li>调用 <xref keyref="muteRemoteVideoStream"/>(<ph keyref="true"/>)、 <xref keyref="muteAllRemoteVideoStreams"/>(<ph keyref="true"/>) 或 <xref keyref="setDefaultMuteAllRemoteVideoStreams"/>(<ph keyref="true"/>) 停止接收远端视频流。</li>
+                            </ul></li>
+                        </ul></li>
+                    <li><ph keyref="SUB_STATE_SUBSCRIBING"/> (2): 正在订阅。</li>
+                    <li><ph keyref="SUB_STATE_SUBSCRIBED"
+                        /> (3): 收到了远端流，订阅成功。</li>
+                    </ul></pd>
             </plentry>
             <plentry>
                 <pt>newState</pt>
-                <pd>当前的订阅状态，详见 <apiname keyref="STREAM_SUBSCRIBE_STATE"/>。</pd>
+                <pd props="ios mac cpp unity">当前的订阅状态，详见 <apiname keyref="STREAM_SUBSCRIBE_STATE"/>。</pd>
+                <pd props="android">当前的订阅状态。
+                  <ul>
+                    <li><ph keyref="SUB_STATE_IDLE"/> (0): 加入频道后的初始订阅状态。</li>
+                    <li><ph keyref="SUB_STATE_NO_SUBSCRIBED"/> (1): 订阅失败。可能是因为：
+                    
+                        <ul>
+                        <li>远端用户：
+                        
+                            <ul>
+                            <li>调用 <xref keyref="muteLocalAudioStream"/>(<codeph><ph keyref="true"/></codeph>) 或 <xref keyref="muteLocalVideoStream"/>(<codeph><ph keyref="true"/></codeph>) 停止发送本地媒体流。</li>
+                            <li>调用 <xref keyref="disableAudio"/> 或 <xref keyref="disableVideo"/> 关闭本地音频或视频模块。</li>
+                            <li>调用 <xref keyref="enableLocalAudio"/>(<ph keyref="false"/>) 或 <xref keyref="enableLocalVideo"/>(<ph keyref="false"/>) 关闭本地音频或视频采集。</li>
+                            <li>用户角色为观众。</li>
+                            </ul></li>
+                        <li>本地用户调用以下方法停止接收远端媒体流：
+                        
+                            <ul>
+                            <li>调用 <xref keyref="muteRemoteAudioStream"/>(<ph keyref="true"/>)、 <xref keyref="muteAllRemoteAudioStreams"/>(<ph keyref="true"/>) 或 <xref keyref="setDefaultMuteAllRemoteAudioStreams"/>(<ph keyref="true"/>) 停止接收远端音频流。</li>
+                            <li>调用 <xref keyref="muteRemoteVideoStream"/>(<ph keyref="true"/>)、 <xref keyref="muteAllRemoteVideoStreams"/>(<ph keyref="true"/>) 或 <xref keyref="setDefaultMuteAllRemoteVideoStreams"/>(<ph keyref="true"/>) 停止接收远端视频流。</li>
+                            </ul></li>
+                        </ul></li>
+                    <li><ph keyref="SUB_STATE_SUBSCRIBING"/> (2): 正在订阅。</li>
+                    <li><ph keyref="SUB_STATE_SUBSCRIBED"/> (3): 收到了远端流，订阅成功。</li>
+                    </ul></pd>
             </plentry>
             <plentry>
                 <pt>elapseSinceLastState</pt>
