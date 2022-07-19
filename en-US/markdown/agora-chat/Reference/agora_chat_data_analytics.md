@@ -1,8 +1,8 @@
-# Data Insights
+# View Chat Data
 
 ## Introduction
 
-[Agora Analytics](https://docs.agora.io/en/Agora20%Analytics/aa_guide?platform=All%20Platforms) provides periodic analysis of usage and quality data for [Chat](https://docs.agora.io/en/agora-chat/agora_chat_overview?platform=All%20Platforms), helping you keep track of the usage trends and quality details.
+[Agora Analytics](https://docs.agora.io/en/Agora_Analytics/aa_guide) provides periodic analysis of usage and quality data for [Chat](./agora_chat_overview), helping you keep track of the usage trends and quality details.
 
 ### Feature overview
 
@@ -14,7 +14,7 @@ Agora Analytics offers the following features for Chat:
 
 ### Enable Chat-related features
 
-After [enabling and configuring Chat Service](https://docs.agora.io/en/agora-chat/enable_agora_chat?platform=All%20Platforms), the Chat-related features in Agora Analytics are enabled by default. No additional operations are required.
+After [enabling and configuring Chat Service](./enable_agora_chat), the Chat-related features in Agora Analytics are enabled by default. No additional operations are required.
 
 ## Usage Insights
 
@@ -28,9 +28,9 @@ Follow these steps to view the Chat Usage Insights page:
 
 The Scale Statistics page shows the scale of users, chat groups, and chat rooms on the current day and within a past period. This page includes the following sections:
 
-|| Description | Notes |
-| :----------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| Today's Overview | Values of key usage metrics as of today. For a detailed description of each metric, see [Scale Metrics](https://docs.agora.io/en/Agora20%Analytics/analytics_agora_chat_glossary). | N/A |
+|   | Description | Notes |
+| :----------- | :--------- | :------------ |
+| Today's Overview | Values of key usage metrics as of today. For a detailed description of each metric, see [Scale Metrics](#scale-metrics). | N/A |
 | Historical Data | Line charts and bar charts showing how the metric values change in a certain time range. | <li>The maximum time range to query is the past 30 days.</li><li>Each metric in this section is calculated at an interval of a day, and the data has a one-minute delay (except for Daily chat room PCU, which has a delay of 10 minutes).</li> |
 
 ![](https://web-cdn.agora.io/docs-files/1656493263570)
@@ -46,15 +46,14 @@ Taking the historical data for chat rooms as an example, the bar chart contains 
 To hide the bar chart or line chart for a metric, click the corresponding legend.
 
 
-
 ### Message Statistics
 
 The Message Statistics page shows the historical numbers of messages and distribution of message types. This page includes the following sections:
 
-|| Description | Notes |
-| :----------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| Message Count Trends | Line charts showing how the total numbers of messages change within a certain time range. For a detailed description of each metric, see [Message metrics](https://docs.agora.io/en/Agora20%Analytics/analytics_agora_chat_glossary). | <li>The maximum time range to query is the past 6 months.</li><li>Each metric in this section is calculated at an interval of a day, and the data has a one minute delay.</li> |
-| Message Type Trends | Line charts showing the number of messages by type in a certain time range, and pie charts showing the message type breakdown (the percentage of each type of messages). For a detailed description of each metric, see [Message metrics](https://docs.agora.io/en/Agora20%Analytics/analytics_agora_chat_glossary). | See Message Count Trends |
+|   | Description | Notes |
+| :----------- | :----------- | :--------------- |
+| Message Count Trends | Line charts showing how the total numbers of messages change within a certain time range. For a detailed description of each metric, see [Message metrics](#message-count-metrics). | <li>The maximum time range to query is the past 6 months.</li><li>Each metric in this section is calculated at an interval of a day, and the data has a one minute delay.</li> |
+| Message Type Trends | Line charts showing the number of messages by type in a certain time range, and pie charts showing the message type breakdown (the percentage of each type of messages). For a detailed description of each metric, see [Message metrics](#message-count-metrics). | See Message Count Trends |
 
 ![](https://web-cdn.agora.io/docs-files/1656491965158)
 
@@ -83,24 +82,24 @@ Follow these steps to view the Chat quality insights page:
 
 ### End-user Data
 
-The End-user Data section shows the number of request attempts, request success rate, and average request delay of client-side APIs. For details on the metric types and definitions, see [End-user API metrics](https://docs.agora.io/en/Agora20%Analytics/analytics_agora_chat_glossary).
+The End-user Data section shows the number of request attempts, request success rate, and average request delay of client-side APIs. For details on the metric types and definitions, see [End-user API metrics](#end-user-api-metrics).
 
 To present the data more intuitively, different metrics use different charts:
 
-| Metric                        | Map (on the left)                                            | Chart (on the right)                                         |
-| :---------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| Metric   | Map (on the left)   | Chart (on the right)       |
+| :------------ | :------- | :--------- |
 | Request attempts              | The higher the number of request attempts, the darker the color of the area. | Line chart.                                                  |
 | 1s/3s/5s request success rate | The higher the number of request attempts, the darker the color of the area. The larger the bubble, the lower the request success rate in that area. | Line chart.                                                  |
 | Request delay                 | The higher the number of request attempts, the darker the color of the area. The larger the bubble, the higher the average request delay in that region. | Heat map chart, where the horizontal axis is time and the vertical axis is the predefined value buckets of average request delay. The darker the color of the cell, the higher the number of request attempts in the corresponding time range. |
 
 <div class="alert info">When entering the page for the first time, the chart shows the aggregated metric value of all areas on the map. After clicking an area on the map, the chart is updated to show the metric value of that area alone.</div>
 
-
 ![](https://web-cdn.agora.io/docs-files/1656492270872)
+
 
 ### Server API Data
 
-The Server API Data section shows the number of request attempts, request success rate, and average request delay of server-side RESTful APIs. For details on the metric types and definitions, see[ Server API metrics](https://docs.agora.io/en/Agora20%Analytics/analytics_agora_chat_glossary).
+The Server API Data section shows the number of request attempts, request success rate, and average request delay of server-side RESTful APIs. For details on the metric types and definitions, see[ Server API metrics](#server-api-metrics).
 
 <div class="alert note">Server API data includes the RESTful API calls made by client SDKs. For example, chat group operations on the client SDK is implemented by calling the RESTful API, so it is counted in the Server API data.</div>
 
@@ -116,83 +115,85 @@ To present the data more intuitively, different metrics use different charts:
 
 This page explains Chat-related metrics.
 
-## Scale metrics
+## Glossary
 
-### Total registered users
+### Scale metrics
+
+#### Total registered users
 
 The number of registered users under this project as of the current time.
 
-### Daily new users
+#### Daily new users
 
 The number of newly registered users under this project today (00:00 – current time).
 
-### Daily active users (DAU)
+#### Daily active users (DAU)
 
 The number of users who log in or send or receive messages today (00:00 – current time).  A user connected through multiple devices is regarded as one active user.
 
-### Monthly Max. DAU
+#### Monthly Max. DAU
 
 The highest number of DAU from 00:00 on the first day of this month to the current time.
 
-### Total chat groups
+#### Total chat groups
 
 The number of created chat groups under this project as of the current time (disbanded chat groups are excluded).
 
-### Daily new chat groups
+#### Daily new chat groups
 
 The number of newly created chat groups under this project today (00:00 – current time).
 
-### Daily disbanded chat groups
+#### Daily disbanded chat groups
 
 The number of disbanded chat groups under this project today (00:00 – current time).
 
-### Daily active chat groups
+#### Daily active chat groups
 
 The number of chat groups that send uplink messages or receive downlink messages today (00:00 – current time).
 
-### Total chat rooms
+#### Total chat rooms
 
 The number of created chat rooms under this project as of the current time (disbanded chat rooms are excluded).
 
-### Daily new chat rooms
+#### Daily new chat rooms
 
 The number of newly created chat rooms under this project today (00:00 – current time).
 
-### Daily disbanded chat rooms
+#### Daily disbanded chat rooms
 
 The number of disbanded chat rooms under this project today (00:00 – current time).
 
-### Daily active chat rooms
+#### Daily active chat rooms
 
 The number of chat rooms that send uplink messages or receive downlink messages today (00:00 – current time).
 
-### Daily chat room PCU
+#### Daily chat room PCU
 
 The highest number of users connected to servers at the same time in chat rooms under this project today (00:00 - current time). Note that the displayed data has a 10-minute delay.
 
-## Message count metrics
+### Message count metrics
 
 The following metrics apply to 1-to-1 chats, chat groups, and chat rooms, as well as all message types.
 
-### Total dispatched messages
+#### Total dispatched messages
 
 The number of messages dispatched by the Chat server as of yesterday.
 
-### Total uplink messages
+#### Total uplink messages
 
 The number of messages sent from clients to the Chat server as of yesterday.
 
-### Total downlink messages
+#### Total downlink messages
 
 The number of messages sent from the Chat server to online users as of yesterday.
 
-### Total offline messages
+#### Total offline messages
 
 The number of messages sent from the Chat server to offline users as of yesterday.
 
-## End-user API metrics
+### End-user API metrics
 
-### Metric type
+#### Metric type
 
 | Metric type | Description |
 | :--------- | :----------------------------------------------- |
@@ -205,7 +206,7 @@ The number of messages sent from the Chat server to offline users as of yesterda
 | Chat room management | User operations such as creating and deleting chat rooms. |
 
 
-### Metric
+#### Metric
 
 | Metric | Description |
 | :------------------ | :----------------------------------------------------------- |
@@ -222,9 +223,9 @@ The number of messages sent from the Chat server to offline users as of yesterda
 - The chat group does not exist.
 - The user is not found in the chat group.
 
-## Server API metrics
+### Server API metrics
 
-### Metric type
+#### Metric type
 
 | Metric type | Description |
 | :----------- | :----------------------------------------------------------- |
@@ -236,7 +237,7 @@ The number of messages sent from the Chat server to offline users as of yesterda
 | Chat room management | Functions such as creating and deleting chat rooms through the RESTful API. |
 | User attributes | Functions such as setting and deleting user attributes through the RESTful API. |
 
-### Metric
+#### Metric
 
 | Metric | Description |
 | :------------------ | :----------------------------------------------------------- |
