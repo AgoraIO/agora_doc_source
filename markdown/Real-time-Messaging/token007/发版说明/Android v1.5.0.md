@@ -1,4 +1,45 @@
-~17b84520-e4fa-11e9-ace3-6300933cff54~
+## 1.5.0 版
+
+该版本于 2022 年 7 月 20 日发布。
+
+#### 升级必看
+
+**AccessToken2**
+
+自该版本起，RTM 升级 Token 鉴权机制。
+
+<div class="alert note"><li>如果你首次接触该产品，Agora 建议你使用最新版的 RTM SDK 并参照  <a href="https://docs.agora.io/cn/Real-time-Messaging/token_server_rtm">Token 鉴权</a> 为 AccessToken2 部署服务器和客户端；<li>如果你已在先前版本中部署过 AccessToken 鉴权，可以参照  <a href="https://docs.agora.io/cn/Real-time-Messaging/token_server_rtm#upgrade">升级至 AccessToken2</a> 快速完成升级。</div>
+
+升级后的 AccessToken2 支持用户根据业务需求指定 Token 有效期 (最长为 24 小时)。此外，新增 `onTokenPrivilegeWillExpire` 回调，在 Token 临 30 秒过期时触发，提醒用户当前 Token 即将超出签发有效期，需尽快更新；否则，处于登录连接状态的用户会因为 Token 过期 (`CONNECTION_CHANGE_REASON_TOKEN_EXPIRED (9)`) 而终止登录。详情参见 [RTM Token 过期](./token_server_rtm#rtm-token-过期)。
+
+#### 功能下架
+
+[富媒体传输](./upload_download_media_cpp)、[历史消息](./rtm_get_event) 和 [离线消息](./messaging_restful#history) 功能于该版本正式下线。旧版本 SDK 会继续支持，已集成这些功能的用户不受影响。
+
+#### API 变更
+
+**新增**  
+- `onTokenPrivilegeWillExpire`
+- `ConnectionChangeReason` 中新增 `CONNECTION_CHANGE_REASON_TOKEN_EXPIRED (9)`
+
+**废弃**  
+- `createFileMessageByMediaId`
+- `createFileMessageByUploading`
+- `createImageMessageByMediaId`
+- `createImageMessageByUploading`
+- `cancelMediaUpload`
+- `cancelMediaDownload`
+- `downloadMediaToFile`
+- `downloadMediaToMemory`
+- `onFileMessageReceived`
+- `onFileMessageReceivedFromPeer`
+- `onImageMessageReceived`
+- `onImageMessageReceivedFromPeer`
+- `onMediaUploadingProgress`
+- `onMediaDownloadingProgress`
+- `enableOfflineMessaging`
+- `enableHistoricalMessaging`
+
 
 ## 1.4.10 版
 该版本于  2022 年 03 月 01 日发布。
