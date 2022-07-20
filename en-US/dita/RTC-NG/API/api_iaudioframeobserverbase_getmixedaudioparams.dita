@@ -24,7 +24,10 @@
         </section>
         <section id="detailed_desc">
             <p>Register the callback when calling the <xref keyref="registerAudioFrameObserver"/> method. After you successfully register the audio observer, the SDK triggers this callback, and you can set the audio mixing format in the return value of this callback.</p>
-            <note type="attention">The SDK calculates the sample interval according to the <xref keyref="AudioParams"/> you set in the return value of this callback.<equation-inline><parmname>Sample</parmname> interval (<parmname>sec</parmname>) = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>. Ensure that the sample interval ≥ 0.01 (s). The SDK triggers the <apiname keyref="onMixedAudioFrame"/> callback according to the sampling interval.</note> </section>
+            <note type="attention">
+                <p>The SDK calculates the sample interval according to the <xref keyref="AudioParams"/> you set in the return value of this callback.<equation-inline><parmname>Sample</parmname> interval (<parmname>sec</parmname>) = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>.</p>
+                <p>Ensure that the sample interval ≥ 0.01 (s).</p>
+                <p>The SDK triggers the <apiname keyref="onMixedAudioFrame"/> callback according to the sampling interval.</p></note> </section>
         <section id="return_values">
             <title>Returns</title>
             <p>Sets the audio format. See <xref keyref="AudioParams"/>.</p>
