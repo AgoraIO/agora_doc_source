@@ -22,23 +22,13 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setBeautyEffectOptions(bool enabled, BeautyOptions options);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>Since</dt>
-                <dd><ph keyref="since-setbeautyeffect"/></dd>
-            </dlentry>
-            </dl>
             <p>Enables or disables image enhancement, and sets the options.</p>
-            <p props="rtc-ng">Enabling the image enhancement function involves a series of method calls. The calling sequence is as follows:<ol>
-            <li props="android">Call <codeph><xref keyref="addExtension"/>(<q>agora_video_process_extension</q>)</codeph> during <xref keyref="IRtcEngine"/> initialization to integrate the video enhancement dynamic library in the project.</li>
-            <li props="ios">Link the extension library in the project file: <codeph>AgoraVideoProcessExtension.xcframework</codeph>.</li>
-            <li props="mac">Link the extension library in the project file: <codeph>AgoraVideoProcessExtension.framework</codeph>.</li>
-            <li props="cpp">Call <codeph><xref keyref="loadExtensionProvider"/>(<q>libagora_video_process_extension.dll</q>)</codeph> during <xref keyref="IRtcEngine"/> initialization to specify the extension library path.</li>
-            <li>Call <codeph><xref keyref="enableExtension"/>(<q>agora</q>, <q>beauty</q>, <q><ph keyref="true"/></q>)</codeph> to enable the extension.</li>
-            <li>Call <xref keyref="enableVideo"/> to enable the video module.</li>
-            <li>Call this method to enable the image enhancement function.</li>
-            </ol></p>
-            <note type="note" props="android">This method only applies to Android 5.0 or later.</note> </section>
+            <note type="note">
+                <ul>
+                    <li>Call this method before calling <xref keyref="enableVideo"/> or <xref keyref="startPreview"/>.</li>
+                    <li props="android">This method only applies to Android 5.0 or later.</li>
+                </ul>
+            </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
