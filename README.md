@@ -313,10 +313,10 @@ YiCAT 的翻译会使英文文档中的代码原型出现格式问题。你必�
 
 https://github.com/AgoraIO/agora_doc_source/blob/master/.github/sync.yml
 
-RTC Electron 4.x SDK: https://github.com/AgoraIO/agora_doc_source/blob/master/.github/workflows/python-app-3.8.200-electron-yaxi.yml
-RTC Unity 4.x SDK: https://github.com/AgoraIO/agora_doc_source/blob/master/.github/workflows/python-app-3.8.200-framework.yml
-RTC RN 4.x SDK: https://github.com/AgoraIO/agora_doc_source/blob/master/.github/workflows/python-app-3.8.200-kelu.yml
-RTC Flutter 4.x SDK: https://github.com/AgoraIO/agora_doc_source/blob/master/.github/workflows/python-app-ng-flutter.yml
+- RTC Electron 4.x SDK: https://github.com/AgoraIO/agora_doc_source/blob/master/.github/workflows/python-app-3.8.200-electron-yaxi.yml
+- RTC Unity 4.x SDK: https://github.com/AgoraIO/agora_doc_source/blob/master/.github/workflows/python-app-3.8.200-framework.yml
+- RTC RN 4.x SDK: https://github.com/AgoraIO/agora_doc_source/blob/master/.github/workflows/python-app-3.8.200-kelu.yml
+- RTC Flutter 4.x SDK: https://github.com/AgoraIO/agora_doc_source/blob/master/.github/workflows/python-app-ng-flutter.yml
 
 ##  6. <a name='BetaAPI'></a>（Beta）API 原型自动填充
 
