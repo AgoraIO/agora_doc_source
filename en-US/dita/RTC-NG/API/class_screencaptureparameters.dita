@@ -6,84 +6,45 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public class ScreenCaptureParameters {
-  private VideoDimensions videoDimensions;
-  private int frameRate;
-  private int bitrate;
-
-  public ScreenCaptureParameters() {
-    videoDimensions = new VideoDimensions(1080, 1920);
-    frameRate = 5;
-    bitrate = 4098;
-  }
-
-  public ScreenCaptureParameters setVideoDimensions(VideoDimensions videoDimensions) {
-    this.videoDimensions = videoDimensions;
-    return this;
-  }
-
-  public ScreenCaptureParameters setFrameRate(int frameRate) {
-    this.frameRate = frameRate;
-    return this;
-  }
-
-  public ScreenCaptureParameters setBitrate(int bitrate) {
-    this.bitrate = bitrate;
-    return this;
-  }
-
-  public VideoDimensions getVideoDimensions() {
-    return videoDimensions;
-  }
-
-  @CalledByNative
-  int getWidth() {
-    return videoDimensions != null ? videoDimensions.width : 0;
-  }
-
-  @CalledByNative
-  int getHeight() {
-    return videoDimensions != null ? videoDimensions.height : 0;
-  }
-
-  @CalledByNative
-  public int getFrameRate() {
-    return frameRate;
-  }
-
-  @CalledByNative
-  public int getBitrate() {
-    return bitrate;
-  }
-}</codeblock>
-    <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenCaptureParameters: NSObject
-    @property (assign, nonatomic) CGSize dimensions;
-    @property (assign, nonatomic) NSInteger frameRate;
-    @property (assign, nonatomic) NSInteger bitrate;
-
-    @end</codeblock>
-    <codeblock props="cpp" outputclass="language-cpp">struct ScreenCaptureParameters {
-  VideoDimensions dimensions;
-  int frameRate;
-  int bitrate;
-  bool captureMouseCursor;
-  bool windowFocus;
-  view_t *excludeWindowList;
-  int excludeWindowCount;
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenCaptureParameters: NSObject
+@property (assign, nonatomic) CGSize dimensions;
+@property (assign, nonatomic) NSInteger frameRate;
+@property (assign, nonatomic) NSInteger bitrate;
+@property(assign, nonatomic) BOOL captureMouseCursor;
+@property(assign, nonatomic) BOOL windowFocus;
+@property(copy, nonatomic) NSArray* _Nullable excludeWindowList;
+@property(assign, nonatomic) BOOL highLighted;
+@property(strong, nonatomic) COLOR_CLASS* _Nullable highLightColor;
+@property(assign, nonatomic) NSUInteger highLightWidth;
+@end
+</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">struct ScreenCaptureParameters {
+    VideoDimensions dimensions;
+    int frameRate;
+    int bitrate;
+    bool captureMouseCursor;
+    bool windowFocus;
+    view_t *excludeWindowList;
+    int excludeWindowCount;
+    int highLightWidth;
+    unsigned int highLightColor;
+    bool enableHighLight;
 
   ScreenCaptureParameters()
-    : dimensions(1920, 1080), frameRate(5), bitrate(STANDARD_BITRATE), captureMouseCursor(true), windowFocus(false), excludeWindowList(OPTIONAL_NULLPTR), excludeWindowCount(0) {}
+    : dimensions(1920, 1080), frameRate(5), bitrate(STANDARD_BITRATE), captureMouseCursor(true), windowFocus(false), excludeWindowList(OPTIONAL_NULLPTR), excludeWindowCount(0), highLightWidth(0), highLightColor(0), enableHighLight(false)  {}
   ScreenCaptureParameters(const VideoDimensions&amp; d, int f, int b)
-    : dimensions(d), frameRate(f), bitrate(b), captureMouseCursor(true), windowFocus(false), excludeWindowList(OPTIONAL_NULLPTR), excludeWindowCount(0) {}
+    : dimensions(d), frameRate(f), bitrate(b), captureMouseCursor(true), windowFocus(false), excludeWindowList(OPTIONAL_NULLPTR), excludeWindowCount(0), highLightWidth(0), highLightColor(0), enableHighLight(false) {}
   ScreenCaptureParameters(int width, int height, int f, int b)
-    : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(true), windowFocus(false), excludeWindowList(OPTIONAL_NULLPTR), excludeWindowCount(0) {}
+    : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(true), windowFocus(false), excludeWindowList(OPTIONAL_NULLPTR), excludeWindowCount(0), highLightWidth(0), highLightColor(0), enableHighLight(false){}
   ScreenCaptureParameters(int width, int height, int f, int b, bool cur, bool fcs)
-    : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(cur), windowFocus(fcs), excludeWindowList(OPTIONAL_NULLPTR), excludeWindowCount(0) {}
+    : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(cur), windowFocus(fcs), excludeWindowList(OPTIONAL_NULLPTR), excludeWindowCount(0), highLightWidth(0), highLightColor(0), enableHighLight(false) {}
   ScreenCaptureParameters(int width, int height, int f, int b, view_t *ex, int cnt)
-    : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(true), windowFocus(false), excludeWindowList(ex), excludeWindowCount(cnt) {}
+    : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(true), windowFocus(false), excludeWindowList(ex), excludeWindowCount(cnt), highLightWidth(0), highLightColor(0), enableHighLight(false) {}
   ScreenCaptureParameters(int width, int height, int f, int b, bool cur, bool fcs, view_t *ex, int cnt)
-    : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(cur), windowFocus(fcs), excludeWindowList(ex), excludeWindowCount(cnt) {}
-};</codeblock>
+    : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(cur), windowFocus(fcs), excludeWindowList(ex), excludeWindowCount(cnt), highLightWidth(0), highLightColor(0), enableHighLight(false) {}
+};
+</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class ScreenCaptureParameters
     {
         public ScreenCaptureParameters()
@@ -136,50 +97,65 @@
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
-            <note type="note" props="mac cpp unity">The video profiles of the shared screen stream are only set by <xref keyref="ScreenCaptureParameters"/>, independent of <xref keyref="setVideoEncoderConfiguration"/>.</note>
+            <note type="note" props="mac cpp unity">The video profiles of the shared screen stream are only set by <xref keyref="ScreenCaptureParameters"/>, independent of <xref keyref="setVideoEncoderConfiguration"/> .</note>
             <parml>
             <plentry>
                 <pt props="mac cpp unity flutter">dimensions</pt>
-                <pt props="android">videoDimensions</pt>
                 <pd>
-                    <p><ph props="android flutter">The maximum dimensions of encoding the shared region. </ph><ph props="mac">The video encoding resolution of the shared screen stream. </ph><ph props="unity cpp">On Windows and macOS, it represents the video encoding resolution of the shared screen stream. </ph><ph props="android cpp">See <xref keyref="VideoDimensions" />. The default value is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges.</ph></p>
-                    <p>If the aspect ratio is different between the encoding dimensions and screen dimensions, Agora applies the following algorithms for encoding. Suppose <parmname props="mac cpp unity flutter">dimensions</parmname><parmname props="android">videoDimensions</parmname> are 1920 x 1080:<ul>
-                    <li>If the value of the screen dimensions is lower than that of <parmname props="mac cpp unity flutter">dimensions</parmname><parmname props="android">videoDimensions</parmname>, for example, 1000 x 1000 pixels, the SDK uses 1000 x 1000 pixels for encoding.</li>
-                    <li>If the value of the screen dimensions is higher than that of <parmname props="mac cpp unity flutter">dimensions</parmname><parmname props="android">videoDimensions</parmname>, for example, 2000 x 1500, the SDK uses the maximum value under <parmname props="mac cpp unity flutter">dimensions</parmname><parmname props="android">videoDimensions</parmname> with the aspect ratio of the screen dimension (4:3) for encoding, that is, 1440 x 1080.</li>
-                    </ul></p>
+                    <p><ph props="flutter">The maximum dimensions of encoding the shared region. </ph><ph props="mac">The video encoding resolution of the shared screen stream. </ph><ph props="unity cpp">On Windows and macOS, it represents the video encoding resolution of the shared screen stream. </ph><ph
+                            props="cpp">See <xref keyref="VideoDimensions"        />. The default value is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges.</ph></p>
+                    <p>If the screen dimensions are different from the value of this parameter, Agora applies the following strategies for encoding. Suppose <parmname props="mac cpp unity flutter">dimensions</parmname> is set to 1920 x 1080:<ul>
+                            <li>If the value of the screen dimensions is lower than that of <parmname props="mac cpp unity flutter">dimensions</parmname>, for example, 1000 x 1000 pixels, the SDK uses 1000 x 1000 pixels for encoding.</li>
+                            <li>If the value of the screen dimensions is higher than that of <parmname props="mac cpp unity flutter">dimensions</parmname>, for example, 2000 x 1500, the SDK uses the maximum value under <parmname props="mac cpp unity flutter">dimensions</parmname> with the aspect ratio of the screen dimension (4:3) for encoding, that is, 1440 x 1080.</li>
+                            </ul></p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>frameRate</pt>
-                <pd><ph props="android flutter">The frame rate of the shared region. </ph><ph props="mac">The video encoding resolution of the shared screen stream. </ph><ph props="unity cpp">On Windows and macOS, it represents the video encoding frame rate (fps) of the shared screen stream. </ph><ph>The frame rate (fps) of the shared region. The default value is 5. We do not recommend setting this to a value greater than 15.</ph></pd>
+                <pd><ph props="flutter">The frame rate of the shared region. </ph><ph props="mac">The video encoding resolution of the shared screen stream. </ph><ph props="unity cpp" >On Windows and macOS, it represents the video encoding frame rate (fps) of the shared screen stream. </ph><ph>The frame rate (fps) of the shared region. The default value is 5. We do not recommend setting this to a value greater than 15.</ph></pd>
             </plentry>
             <plentry>
                 <pt>bitrate</pt>
-                <pd><ph props="android unity flutter">The bitrate of the shared region. </ph><ph props="mac">The video encoding bitrate of the shared screen stream. </ph><ph props="unity cpp">On Windows and macOS, it represents the video encoding bitrate of the shared screen stream. </ph><ph>The bitrate (Kbps) of the shared region. The default value is 0 (the SDK works out a bitrate according to the dimensions of the current screen).</ph></pd>
+                <pd><ph props="unity flutter">The bitrate of the shared region. </ph><ph props="mac">The video encoding bitrate of the shared screen stream. </ph><ph props="unity cpp" >On Windows and macOS, it represents the video encoding bitrate of the shared screen stream. </ph><ph>The bitrate (Kbps) of the shared region. The default value is 0 (the SDK works out a bitrate according to the dimensions of the current screen).</ph></pd>
             </plentry>
-            <plentry props="rtc-ng">
-                <pt props="cpp unity">captureMouseCursor</pt>
-                <pd props="cpp unity">
+            <plentry props="mac cpp unity">
+                <pt>captureMouseCursor</pt>
+                <pd>
                     <p>Whether to capture the mouse in screen sharing:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: (Default) Capture the mouse.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Do not capture the mouse.</li>
                     </ul></p>
                 </pd>
             </plentry>
-            <plentry>
-                <pt props="cpp unity">windowFocus</pt>
-                <pd props="cpp unity">
+            <plentry props="mac cpp unity">
+                <pt>windowFocus</pt>
+                <pd>
                     <p>Whether to bring the window to the front when calling the <xref keyref="startScreenCaptureByWindowId"/> method to share it:<ul>
                     <li><codeph><ph keyref="true"/></codeph>:Bring the window to the front.</li>
                     <li><codeph><ph keyref="false"/></codeph>: (Default) Do not bring the window to the front.</li>
                     </ul></p>
                 </pd>
             </plentry>
-            <plentry>
-                <pt props="cpp unity">excludeWindowList</pt>
-                <pd props="cpp unity">
-                    <p>A list of IDs of windows to be blocked. When calling <xref keyref="startScreenCaptureByDisplayId"/> to start screen sharing, you can use this parameter to block a specified window. When calling <xref keyref="updateScreenCaptureParameters" /> to update screen sharing configurations, you can use this parameter to dynamically block the specified windows during screen sharing.</p>
-                </pd>
+            <plentry props="mac cpp unity">
+                <pt>excludeWindowList</pt>
+                <pd>The ID list of the windows to be blocked. When calling <xref keyref="startScreenCaptureByDisplayId"/> to start screen sharing, you can use this parameter to block a specified window. When calling <xref keyref="updateScreenCaptureParameters"/> to update screen sharing configurations, you can use this parameter to dynamically block a specified window.</pd>
+            </plentry>
+            <plentry props="mac cpp">
+                <pt props="mac">highLighted</pt>
+                <pt props="cpp">enableHighLight</pt>
+                <pd><ph props="cpp">(For macOS only) </ph><ph>Whether to place a border around the shared window or screen:</ph><ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Place a border.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not place a border.</li>
+                    </ul>
+                    <note>When you share a part of a window or screen, the SDK places a border around the entire window or screen if you set this parameter to <codeph><ph keyref="true"/></codeph>.</note></pd>
+            </plentry>
+            <plentry props="mac cpp">
+                <pt>highLightColor</pt>
+                <pd><ph props="cpp">(For macOS only) </ph><ph>The color of the border in RGBA format. The default value is 0xFF8CBF26.</ph><note>On macOS, <codeph>COLOR_CLASS</codeph> refers to <codeph>NSColor</codeph>.</note></pd>
+            </plentry>
+            <plentry props="mac cpp">
+                <pt>highLightWidth</pt>
+                <pd><ph props="cpp">(For macOS only) </ph><ph>The width (px) of the border. The default value is 5, and the value range is (0, 50].</ph><note>This parameter only takes effect when <parmname>highLighted</parmname> is set to <codeph><ph keyref="true"/></codeph>.</note></pd>
             </plentry>
             <plentry props="cpp unity electron">
                 <pt>excludeWindowCount</pt>
