@@ -1,3 +1,84 @@
+This page provides release notes for the Agora Chat iOS SDK.
+
+## v1.0.6
+
+v1.0.6 was released on Jul 22, 2022.
+
+#### New features
+
+- Supports marking whether a message is an online message by using the `onlineState` member in `ChatMessage`.
+- Adds an error code 509 `MESSAGECURRENTLIMITING` in `ChatError`, which means that the chat group message has exceeded the concurrent limit.
+- Adds an `groupSpecificationDidUpdate` callback in `ChatEMGroupManagerDelegate`, which occurs when the state specification updates.
+- Adds a `bindDeviceToken` method in `ChatPushManager`, which binds the device token.
+
+#### Improvements
+
+- Improved thread-related methods and classes. Compared with earlier releases, this release used `ChatThread` to replace `ChatThreadInfo`.
+- Assigned a value to `aGroupName` in the `groupInvitationDidReceive` callback.
+- Upgraded the network link library.
+- Supported sending messages with a remote address as the attachment.
+
+#### Issues fixed
+
+- The retrieved reaction object was empty.
+
+## v1.0.4
+
+v1.0.4 was released on May 15, 2022.
+
+#### New features
+
+- Supports reaction, which enables users to add reaction emojis to the specified message.
+- Supports content moderation with the reportMessage method.
+- Supports message push configuration, which enables users to configure various push settings.
+
+#### Improvements
+
+- Enhanced DNS configuration for retrieving the server access point.
+- Improved data reports.
+- Changed openssl to boringssl.
+
+## v1.0.3.1
+
+v1.0.3.1 was released on April 27, 2022. This release fixed the occasional issue of not being to display the retrieved historical messages.
+
+## v1.0.3
+
+v1.0.3 was released on April 19th, 2022.
+
+#### New features
+
+- Supports the presence feature, which indicates the online status of the user.
+- Supports translation. You can implement translation on the recipient's client, or auto-translation on the sender's client.
+
+#### Improvements
+
+- Shortened the time out for sending messages.
+- Enhanced the request success rate.
+
+## v1.0.2
+
+v1.0.2 was released on Feb 23, 2022.
+
+#### New features
+
+- Supports deleting conversations on the server.
+- Supports synchronization of do-not-disturb events when the user ID is logged in to multiple devices.
+- Supports customizing messages using extension fields, badges, CMD messages for message push.
+- Supports sending and receiving image files in PNG.
+- Adds an error code 221 `EMErrorUserNotOnRoster` which is reported when the user sends a message to another user that is not a contact.
+
+#### Improvements
+
+- Reduced the time for preparing to send messages under poor network conditions.
+- Supports calling Objective-C methods in Swift projects.
+
+#### Issues fixed
+
+- The message re-sending was interrupted by the connection success event.
+- Memory leak.
+- Crashes caused by incorrect time calculation.
+
 ## v1.0.1.1
 
 v1.0.1.1 was released on December 30, 2021.

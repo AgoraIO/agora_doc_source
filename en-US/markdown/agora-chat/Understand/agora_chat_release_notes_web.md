@@ -1,3 +1,54 @@
+This page provides release notes for the Agora Chat Web SDK.
+
+## v1.0.5
+
+v1.0.5 was released on Jul 22, 2022.
+
+#### New features
+
+- Adds the `onGroupEvent` and `onChatroomEvent` callback events.
+- Adds the error code `MESSAGE_CURRENT_LIMITING`, which means that the chat group message has exceeded the concurrent limit.
+
+#### Improvements
+
+- Supported retrieving the information of multiple chat groups using `getGroupInfo`.
+
+## v1.0.3
+
+v1.0.3 was released on May 16, 2022.
+
+#### New Features
+
+- Supports reaction, which enables users to add reaction emojis to the specified message.
+- Supports content moderation with the reportMessage method.
+- Supports message push configuration, which enables users to configure various push settings.
+- Supports data report.
+
+#### Improvements
+
+- Supports retrieving chat groups by pagination.
+- Supports setting the number of chat group members when creating a chat group.
+- Adds thumbnail URL to the received image messages.
+
+#### Issues fixed
+
+When the user switched the user ID, cache remains in the group message.
+
+## v1.0.2
+
+v1.0.2 was released on April 19, 2022.
+
+#### New features
+
+- Supports the presence feature, which indicates the online status of the user.
+- Supports translation. You can implement translation on the recipient's client, or auto-translation on the sender's client.
+
+#### Improvements
+
+- The Uni_SDK cannot run on the browser.
+- The user cannot modify the group description when creating a chat group.
+- The compatibility of SSR.
+
 ## v1.0.1.1
 
 v1.0.1.1 was released on January 19, 2022.
