@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_adjustcustomaudiopublishvolume">
+    <title><ph keyref="adjustCustomAudioPublishVolume"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Adjusts the volume of the custom external audio source when it is published in the channel.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="adjustCustomAudioPublishVolume"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int adjustCustomAudioPublishVolume(int sourceId, int volume);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)adjustCustomAudioPublishVolume:(NSInteger)sourceId volume:(NSInteger)volume;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int adjustCustomAudioPublishVolume(int32_t sourceId, int volume) = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc"> 
+            <note type="attention">Ensure you have called the <xref keyref="setExternalAudioSource2"/> method to create a external audio track.</note>
+            <p>If you want to change the volume of the audio to be published, you need to call this method again.</p>
+        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>sourceId</pt>
+                <pd>The ID of the custom external audio source. If you want to publish a custom external audio source, set this parameter to the ID of the corresponding custom audio track you want to publish.</pd>
+            </plentry>
+                <plentry>
+                    <pt>volume</pt>
+                    <pd>The volume of the audio source. The value can range from 0 to 100. 0 means mute; 100 means the original volume.</pd>
+                </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>
