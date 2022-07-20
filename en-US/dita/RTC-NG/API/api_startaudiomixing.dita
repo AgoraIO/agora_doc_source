@@ -36,14 +36,14 @@
             <dl outputclass="deprecated" props="native">
             <dlentry>
                 <dt>Deprecated:</dt>
-                <dd>Use <xref keyref="startAudioMixing2"/> instead.</dd>
+                <dd>Please use <xref keyref="startAudioMixing2"/> instead.</dd>
             </dlentry>
             </dl>
             <p id="audiomixing_detailed">This method mixes the specified local or online audio file with the audio from the microphone, or replaces the microphone's audio with the specified local or remote audio file. A successful method call triggers the <xref keyref="onAudioMixingStateChanged"/> (<apiname keyref="AUDIO_MIXING_STATE_PLAYING"/>) callback. When the audio mixing file playback finishes, the SDK triggers the <apiname keyref="onAudioMixingStateChanged"/> (<apiname keyref="AUDIO_MIXING_STATE_STOPPED"/>) callback on the local client.</p>
             <note type="attention" id="audiomixing_note">
             <ul>
             <li>You can call this method either before or after joining a channel. If you need to call <apiname keyref="startAudioMixing"/> multiple times, ensure that the call interval is longer than 500 ms.</li>
-            <li>If the local music file does not exist, the SDK does not support the file format, or the the SDK cannot access the music file URL, the SDK reports (701).</li>
+            <li>If the local music file does not exist, the SDK does not support the file format, or the the SDK cannot access the music file URL, the SDK reports the warn code 701.</li>
             <li props="android cpp unity" id="principle">On Android, there are following considerations:<ul>
             <li>To use this method, ensure that the Android device is v4.2 or later, and the API version is v16 or later.</li>
             <li>If you need to play an online music file, Agora does not recommend using the redirected URL address. Some Android devices may fail to open a redirected URL address.</li>
@@ -84,7 +84,7 @@
                 <pt>cycle</pt>
                 <pd>
                     <p>The number of times the music file plays.<ul>
-                    <li>≥ 0: The number of playback times. For example, 0 means that the SDK does not play the music file while 1 means that the SDK plays once.</li>
+                    <li>≥ 0: The number of playback times.  For example, 0 means that the SDK does not play the music file while 1 means that the SDK plays once.</li>
                     <li>-1: Play the music file in an infinite loop.</li>
                     </ul></p>
                 </pd>
