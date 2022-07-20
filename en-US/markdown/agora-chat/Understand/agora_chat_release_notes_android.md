@@ -15,7 +15,7 @@ v1.0.6 was released on Jul 22, 2022.
 
 - Improved thread-related methods and classes. Compared with 1.0.4, this release used `ChatThread` to replace `ChatThreadInfo`.
 - Assigned a value to `groupName` in the `onInvitationReceived` callback.
-- Removed the CBC and EBC encryption algorithm in the Linux layer.
+- Removed the CBC and EBC encryption algorithm in the Android layer.
 - Upgraded the network link library.
 - Supported sending messages with a remote address as the attachment.
 
