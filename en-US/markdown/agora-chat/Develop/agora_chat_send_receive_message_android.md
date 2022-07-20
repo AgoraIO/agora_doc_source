@@ -18,7 +18,7 @@ The process of sending and receiving a message is as follows:
 2. The message sender calls `sendMessage` to send the message.
 3. The message recipient calls `addMessageListener` to listens for message events and receives the message in the `OnMessageReceived` callback.
 
-## Prerequistes
+## Prerequisites
 
 Before proceeding, ensure that you meet the following requirements:
 - You have integrated the Agora Chat SDK, initialized the SDK and implemented the functionality of registering accounts and login. For details, see [Get Started with Agora Chat](./agora_chat_get_started_android?platform=Android).
@@ -30,7 +30,7 @@ This section shows how to implement sending and receiving the various types of m
 
 ### Send a text message
 
-Use the `ChaMessage` class to create a text message, and send the message. 
+Use the `ChatMessage` class to create a text message, and send the message. 
 
 ```java
 // Call createTextSendMessage to create a text message. Set content as the content of the text message, and toChatUsernames the user ID of the message recipient.
@@ -62,7 +62,7 @@ message.setChatType(ChatType.GroupChat);
 
 You can use `MessageListener` to listen for message events. You can add multiple `MessageListener`s to listen for multiple events. When you no longer listen for an event, ensure that you remove the listener.
 
-When a message arrives, the recipient recieves an `onMessgesReceived` callback. Each callback contains one or more messages. You can traverse the message list, and parse and render these messages in this callback and render these messages.
+When a message arrives, the recipient receives an `onMessgesReceived` callback. Each callback contains one or more messages. You can traverse the message list, and parse and render these messages in this callback.
 
 ```java
 ChatClient.getInstance().chatManager().addMessageListener(msgListener);
@@ -291,7 +291,7 @@ if (chatType == CHATTYPE_GROUP)    message.setChatType(ChatType.GroupChat);ChatC
 
 CMD messages are command messages that instruct a specified user to take a certain action. The recipient deals with the command messages themselves.
 
-<div class="alert note"><ul><li>CMD messages are not stored in the local database.</li><li>Actions beginning with `em_` and `easemob::` are internal fields. Do not use them.</li></ul></div>
+<div class="alert note"><ul><li>CMD messages are not stored in the local database.</li><li>Actions beginning with <code>em_</code> and <code>easemob::</code> are internal fields. Do not use them.</li></ul></div>
 
 ```java
 ChatMessage cmdMsg = ChatMessage.createSendMessage(ChatMessage.Type.CMD);
