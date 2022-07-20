@@ -12,10 +12,15 @@
     </prolog>
     <refbody>
         <section id="prototype">
-        <p outputclass="codeblock">
-        <codeblock props="android" outputclass="language-java"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec"></codeblock>
-            <codeblock props="cpp" outputclass="language-cpp"></codeblock>
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onRtmpStreamingStateChanged(String url, int state, int errCode) {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine rtmpStreamingChangedToState:(NSString* _Nonnull)url state:(AgoraRtmpStreamingState)state errCode:(AgoraRtmpStreamingErrorCode)errCode;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onRtmpStreamingStateChanged(const char* url, RTMP_STREAM_PUBLISH_STATE state,
+                                         RTMP_STREAM_PUBLISH_ERROR_TYPE errCode) {
+  (void)url;
+  (void)state;
+  (void)errCode;
+}</codeblock>
             <codeblock props="electron" outputclass="language-typescript">on(
   evt: EngineEvents.RTMP_STREAMING_STATE_CHANGED,
   cb: (
@@ -27,8 +32,7 @@
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnRtmpStreamingStateChanged(string url, RTMP_STREAM_PUBLISH_STATE state,
             RTMP_STREAM_PUBLISH_ERROR errCode)</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">RtmpStreamingStateCallback? rtmpStreamingStateChanged;</codeblock>
-            </p>
+            <codeblock props="flutter" outputclass="language-dart">RtmpStreamingStateCallback? rtmpStreamingStateChanged;</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>When the media push state changes, the SDK triggers this callback and reports the URL address and the current state of the media push. This callback indicates the state of the media push. When exceptions occur, you can troubleshoot issues by referring to the detailed error descriptions in the error code.</p>
@@ -43,16 +47,47 @@
             </plentry>
             <plentry id="url">
                 <pt>url</pt>
-                <pd><p>The URL address where the state of the media push changes.</p></pd>
+                <pd>
+                    <p>The URL address where the state of the media push changes.</p>
+                </pd>
             </plentry>
             <plentry id="state">
-                    <pt>state</pt>
-                    <pd>The current state of the media push. See <xref keyref="RTMP_STREAM_PUBLISH_STATE"/>.</pd>
-                </plentry>
-                <plentry id="errCode">
-                    <pt>errCode</pt>
-                    <pd>The detailed error information for the media push. See <xref keyref="RTMP_STREAM_PUBLISH_ERROR"/>.</pd>
-                </plentry>
+                <pt>state</pt>
+                <pd props="ios mac cpp">The current state of the media push. See <xref keyref="RTMP_STREAM_PUBLISH_STATE"/>.</pd>
+                <pd props="android">The current state of the media push.<ul>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_STATE_IDLE"/>0: The media push has not started or has ended. This state is also triggered after you remove a media push URL from the CDN by calling <xref keyref="removePublishStreamUrl"/>.</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_STATE_CONNECTING"/>(1): The SDK is connecting to Agora media push server and the CDN server. This state is triggered after you call the <xref keyref="addPublishStreamUrl"/> method.</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_STATE_RUNNING"/>(2): The media push publishes. The media push publishes successfully and returns this state.</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_STATE_RECOVERING"/>(3): The media push is recovering. When exceptions occur to the CDN, or the media push is interrupted, the SDK tries to resume media push and returns this state.<ul>
+                        <li>If the SDK successfully resumes the media push, <ph keyref="RTMP_STREAM_PUBLISH_STATE_RUNNING"/>(2) returns.</li>
+                        <li>If the media push does not resume within 60 seconds or server errors occur, <ph keyref="RTMP_STREAM_PUBLISH_STATE_FAILURE"/>(4) returns. You can also reconnect to the server by calling the <xref keyref="removePublishStreamUrl"/> and <xref keyref="addPublishStreamUrl"/> methods.</li>
+                        </ul> </li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_STATE_FAILURE"/>(4): Media push fails. See error codes for the detailed error information. You can also call the <xref keyref="addPublishStreamUrl"/> method to start media push again.</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_STATE_DISCONNECTING"/>(5): The SDK is disconnecting from the Agora media push server and CDN server. When you call <xref keyref="removePublishStreamUrl"/> or <xref keyref="stopRtmpStream"/> to stop the media push normally, the SDK reports the media push state as <apiname keyref="RTMP_STREAM_PUBLISH_STATE_DISCONNECTING"/>, <apiname keyref="RTMP_STREAM_PUBLISH_STATE_IDLE"/> in sequence.</li>
+                    </ul></pd>
+            </plentry>
+            <plentry id="errCode">
+                <pt>errCode</pt>
+                <pd props="ios mac cpp">The detailed error information for the media push. See <xref keyref="RTMP_STREAM_PUBLISH_ERROR"/>.</pd>
+                <pd props="android">Error codes of the media push.<ul>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_OK"/>(0): The media push publishes successfully.</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_INVALID_ARGUMENT"/>(1): Invalid argument used. Check the parameter setting. For example, if you do not call <xref keyref="addPublishStreamUrl"/> to set the transcoding parameters before calling <xref keyref="setLiveTranscoding"/>, the SDK returns this error.</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_ENCRYPTED_STREAM_NOT_ALLOWED"/>(2): The media push is encrypted and cannot be published.</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_CONNECTION_TIMEOUT"/>(3): Timeout for the media push. Call the <xref keyref="addPublishStreamUrl"/> method to start media push again.</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_INTERNAL_SERVER_ERROR"/>(4): An error occurs in Agora media push server. Call the <xref keyref="addPublishStreamUrl"/> method to start media push again.</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_RTMP_SERVER_ERROR"/>(5): An error occurs in the CDN server.</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_TOO_OFTEN"/>(6): Reserved parameter.</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_REACH_LIMIT"/>(7): The host publishes more than 10 URLs. Delete the unnecessary URLs before adding new ones.</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_NOT_AUTHORIZED"/>(8): The host manipulates other hosts' URLs. For example, the host updates or stops other hosts' streams. Check your app logic.</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_STREAM_NOT_FOUND"/>(9): Agora's server fails to find the media stream of media push.</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_FORMAT_NOT_SUPPORTED"/>(10): The format of the media push URL is not supported. Check whether the URL format is correct.</li>
+                    <li props="native"><ph keyref="RTMP_STREAM_PUBLISH_ERROR_NOT_BROADCASTER"/>(11): The user role is not host, so the user cannot use the media push function. Check your application code logic.</li>
+                    <li props="native"><ph keyref="RTMP_STREAM_PUBLISH_ERROR_TRANSCODING_NO_MIX_STREAM"/>(13): The <xref keyref="updateRtmpTranscoding"/> or <xref keyref="setLiveTranscoding"/> method is called to update the transcoding configuration in a scenario where there is media push without transcoding. Check your application code logic.</li>
+                    <li props="native"><ph keyref="RTMP_STREAM_PUBLISH_ERROR_NET_DOWN"/>(14): Errors occurred in the host's network.</li>
+                    <li props="native"><ph keyref="RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID"/>(15): Your App ID does not have permission to use the media push function. <ph props="rtc">Refer to <xref keyref="guide-cdn-streaming">Prerequisites</xref> to enable the media push service.</ph></li>
+                    <li props="native"><ph keyref="RTMP_STREAM_UNPUBLISH_ERROR_OK"/>(100): The media push has been stopped normally. After you call <xref keyref="removePublishStreamUrl"/> to stop the media push, the SDK returns this value.</li>
+                    </ul> </pd>
+            </plentry>
             </parml> </section>
     </refbody>
 </reference>
