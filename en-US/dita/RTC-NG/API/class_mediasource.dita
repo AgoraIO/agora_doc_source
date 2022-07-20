@@ -2,8 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_mediasource">
     <title><ph keyref="MediaSource"/></title>
-    <shortdesc id="short"><ph id="shortdesc"
-        >Information related to the media file to be played and the playback scenario configurations.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Information related to the media file to be played and the playback scenario configurations.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -36,22 +35,33 @@
 @property(copy, nonatomic) AgoraRtcMediaPlayerCustomSourceOnReadCallback _Nonnull playerOnReadCallback;
 @property(copy, nonatomic) AgoraRtcMediaPlayerCustomSourceOnSeekCallback _Nonnull playerOnSeekCallback;
 @end
-</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp"/>
+@end</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">struct MediaSource {
+  const char* url;
+  const char* uri;
+  int64_t startPos;
+  bool autoPlay;
+  bool enableCache;
+  Optional&lt;bool> isAgoraSource;
+  Optional&lt;bool> isLiveSource;
+  IMediaPlayerCustomDataProvider* provider;
+
+  MediaSource() : url(NULL), uri(NULL), startPos(0), autoPlay(true), enableCache(false),
+                  provider(NULL){
+  }
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/></p></section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
                 <pt>url</pt>
                 <pd>
                     <p>The URL of the media file to be played.</p>
-                    <note><ph>If you need to open a custom media resource, you do not have to pass in a value to the <parmname>url</parmname>.</ph></note></pd>
+                    <note><ph>If you need to open a custom media resource, you do not have to pass in a value to the<parmname>url</parmname>.</ph></note></pd>
             </plentry>
             <plentry conkeyref="open2/uri">
                 <pt/>
@@ -90,7 +100,7 @@
                     <li><codeph><ph keyref="false"/></codeph>: The media resource is not a live stream or on-demand video distributed through Media Broadcast service.</li>
                     </ul>
                     <note>
-                    <p>If you need to open a live stream or on-demand video distributed through Media Broadcast service, pass in the URL of the media resource to <parmname>url</parmname>, and set <parmname>isAgoraSource</parmname> as <codeph><ph keyref="true"/></codeph>; otherwise, you don't need to set the <parmname>isAgoraSource</parmname> parameter.</p>
+                    <p>If you need to open a live stream or on-demand video distributed through Broadcast Streaming service, pass in the URL of the media resource to <parmname>url</parmname>, and set <parmname>isAgoraSource</parmname> as <codeph><ph keyref="true"/></codeph>; otherwise, you don't need to set the <parmname>isAgoraSource</parmname> parameter.</p>
                     </note></pd>
             </plentry>
             <plentry>
@@ -104,7 +114,7 @@
                     <p>If the media resource you open is not a live stream, but you set <parmname>isLiveSource</parmname> as <codeph><ph keyref="true"/></codeph>, the media resource is not to be loaded more quickly.</p>
                     </note> </pd>
             </plentry>
-            <plentry props="android">
+            <plentry props="android cpp">
                 <pt>provider</pt>
                 <pd>
                     <p>The callback for custom media resource files. See <xref keyref="IMediaPlayerCustomDataProvider"/>.</p>
@@ -112,7 +122,7 @@
                     <p>If you need to open a custom media resource, such as an encrypted media file, pass in a value to <parmname>provider</parmname> rather than to <parmname>url</parmname>.</p>
                     </note></pd>
             </plentry>
-            <plentry props="ios">
+            <plentry props="apple">
                 <pt>playerOnReadCallback</pt>
                 <pd>
                     <p>Occurs when the SDK reads the media resource data. See <xref keyref="onReadData"/>.</p>
@@ -120,13 +130,13 @@
                     <p>If you need to open a custom media resource, such as an encrypted media file, pass in values to <parmname>playerOnReadCallback</parmname> and <parmname>playerOnSeekCallback</parmname> instead of to <parmname>url</parmname>.</p>
                     </note></pd>
             </plentry>
-            <plentry props="ios">
+            <plentry props="apple">
                 <pt>playerOnSeekCallback</pt>
                 <pd>
                     <p>Occurs when the SDK seeks the media resource data. See <xref keyref="onSeek"/>.</p>
                     <note conkeyref="MediaSource/note">
-                            <p/>
-                        </note></pd>
+                    <p/>
+                    </note></pd>
             </plentry>
             </parml> </section>
     </refbody>
