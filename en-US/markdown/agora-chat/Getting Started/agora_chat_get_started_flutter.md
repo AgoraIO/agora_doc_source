@@ -450,7 +450,7 @@ class _MyHomePageState extends State<MyHomePage>
   @override
   void onMessagesRecalled(List<ChatMessage> messages) {}
   @override
-  void OnMessageReactionDidChange(List<ChatMessageReactionChange> list) {}
+  void onMessageReactionDidChange(List<ChatMessageReactionChange> list) {}
   @override
   void onReadAckForGroupMessageUpdated() {}
   
