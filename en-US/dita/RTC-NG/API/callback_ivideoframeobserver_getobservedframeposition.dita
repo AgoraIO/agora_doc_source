@@ -32,8 +32,8 @@
             return VIDEO_OBSERVER_POSITION.POSITION_POST_CAPTURER | VIDEO_OBSERVER_POSITION.POSITION_PRE_RENDERER;
         }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> 
-        </p></section>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
             <dlentry props="native">
@@ -51,8 +51,9 @@
             <note type="attention">
             <ul>
             <li>Use '|' (the OR operator) to observe multiple frame positions.</li>
-            <li>This callback observes <apiname keyref="POSITION_POST_CAPTURER"/>(1 &lt;&lt; 0) and <apiname keyref="POSITION_PRE_RENDERER"/>(1 &lt;&lt; 1) by default.</li>
+            <li>This callback observes <apiname keyref="POSITION_POST_CAPTURER"/> (1 &lt;&lt; 0) and <apiname keyref="POSITION_PRE_RENDERER"/> (1 &lt;&lt; 1) by default.</li>
             <li>To conserve the system consumption, you can reduce the number of frame positions that you want to observe.</li>
+            <li>When the video processing mode is <apiname keyref="PROCESS_MODE_READ_WRITE"/> and the observation position is set to <apiname keyref="POSITION_PRE_ENCODER"/> | <apiname keyref="POSITION_POST_CAPTURER"/>, the <xref keyref="getMirrorApplied"/> will not take effect, you need to modify the video processing mode or the position of the observer.</li>
             </ul> </note> </section>
         <section id="return_values">
             <title>Returns</title>
