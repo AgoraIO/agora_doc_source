@@ -23,12 +23,25 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p>If you haved not called the <xref keyref="setCacheDir"/> method to set the storage path for the media files to be cached before calling this method, you get the default storage path used by the SDK.</p>
+            <p>If you have not called the <xref keyref="setCacheDir"/> method to set the storage path for the media files to be cached before calling this method, you get the default storage path used by the SDK.</p>
         </section>
+        <section props="cpp">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>path</pt>
+                <pd>An output parameter; the storage path for the media file to be cached.</pd>
+            </plentry>
+            <plentry>
+                <pt>length</pt>
+                <pd>An input parameter; the maximum length of the string for cached file path. You need to fill this parameter according to the <parmname>path</parmname> parameter.</pd>
+            </plentry>
+            </parml> </section>
         <section id="return_values">
             <title>Returns</title>
             <ul>
-            <li>0: The call succeeds and returns the storage path of the cached media files.</li>
+            <li props="cpp">0: Success.</li>
+            <li props="apple android">The call succeeds and the SDK returns the storage path of the cached media files.</li>
             <li>&lt; 0: Failure. See <xref keyref="MEDIA_PLAYER_ERROR"/>.</li>
             </ul> </section>
     </refbody>
