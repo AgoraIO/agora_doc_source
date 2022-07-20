@@ -13,12 +13,14 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onProxyConnected(IChannel* rtcChannel, uid_t uid, PROXY_TYPE proxyType, const char* localProxyIp, int elapsed) {
-(void)rtcChannel;
-(void)uid;
-(void)proxyType;
-(void)localProxyIp;
-(void)elapsed;
+            <codeblock props="android" outputclass="language-java">public void onProxyConnected(
+    String channel, int uid, int proxyType, String localProxyIp, int elapsed) {}</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onProxyConnected(const char* channel, uid_t uid, PROXY_TYPE proxyType, const char* localProxyIp, int elapsed) {
+  (void)channel;
+  (void)uid;
+  (void)proxyType;
+  (void)localProxyIp;
+  (void)elapsed;
 }</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnProxyConnected(string channel, uint uid, PROXY_TYPE proxyType, string localProxyIp, int elapsed)</codeblock>
@@ -26,32 +28,38 @@
             <codeblock props="flutter" outputclass="language-dart">OnProxyConnected? proxyConnected;</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>You can use this callback to listen for the state of the SDK connecting to a proxy. For example, when a user calls <xref keyref="setCloudProxy"/> and joins a channel successfully, the SDK triggers this callback to report the user ID, the proxy type connected, and the time elapsed from the user calling <xref keyref="joinChannel1"/> until this callback is triggered.</p>
+            <p>You can use this callback to listen for the state of the SDK connecting to a proxy. For example, when a user calls <xref keyref="setCloudProxy"/> and joins a channel successfully, the SDK triggers this callback to report the user ID, the proxy type connected, and the time elapsed fromthe user calling <xref keyref="joinChannel1"/> until this callback is triggered.</p>
         </section>
         <section id="parameters">
-            <title>Parameters</title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <title><ph keyref="callback-section-title"/></title>
             <parml>
             <plentry>
                 <pt>channel</pt>
                 <pd>The channel name.</pd>
             </plentry>
-                <plentry id="uid">
-                    <pt>uid</pt>
-                    <pd>The user ID.</pd>
-                </plentry>
-                <plentry id="proxyType">
-                    <pt>proxyType</pt>
-                    <pd>The proxy type connected.  See <xref keyref="CLOUD_PROXY_TYPE"/> .</pd>
-                </plentry>
-                <plentry id="localProxyIp">
-                    <pt>localProxyIp</pt>
-                    <pd>Reserved for future use.</pd>
-                </plentry>
-                <plentry id="elapsed">
-                    <pt>elapsed</pt>
-                    <pd>The time elapsed (ms) from the user calling <apiname keyref="joinChannel1"/> until this callback is triggered.</pd>
-                </plentry>
+            <plentry id="uid">
+                <pt>uid</pt>
+                <pd>The user ID.</pd>
+            </plentry>
+            <plentry id="proxyType">
+                <pt>proxyType</pt>
+                <pd props="ios mac cpp unity">The proxy type connected.  See <xref keyref="CLOUD_PROXY_TYPE"/>.</pd>
+                <pd props="android">The proxy type connected. <ul>
+                    <li><ph keyref="NONE_PROXY_TYPE"/>0: Reserved for future use.</li>
+                    <li><ph keyref="UDP_PROXY_TYPE"/>1: The cloud proxy for the UDP protocol, that is, the Force UDP cloud proxy mode. In this mode, the SDK always transmits data over UDP.</li>
+                    <li><ph keyref="TCP_PROXY_TYPE"/>2: The cloud proxy for the TCP (encryption) protocol, that is, the Force TCP cloud proxy mode. In this mode, the SDK always transmits data over TCP/TLS 443.</li>
+                    <li><ph keyref="LOCAL_PROXY_TYPE"/>3: Reserved for future use.</li>
+                    <li><ph keyref="TCP_PROXY_AUTO_FALLBACK_TYPE"/>4: Automatic mode. In this mode, the SDK attempts a direct connection to SD-RTN™ and automatically switches to TCP/TLS 443 if the attempt fails.</li>
+                </ul></pd>
+            </plentry>
+            <plentry id="localProxyIp">
+                <pt>localProxyIp</pt>
+                <pd>Reserved for future use.</pd>
+            </plentry>
+            <plentry id="elapsed">
+                <pt>elapsed</pt>
+                <pd>The time elapsed (ms) from the user calling <apiname keyref="joinChannel1"/> until this callback is triggered.</pd>
+            </plentry>
             </parml> </section>
     </refbody>
 </reference>
