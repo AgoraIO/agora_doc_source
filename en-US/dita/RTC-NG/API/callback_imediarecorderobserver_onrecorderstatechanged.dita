@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediarecorderobserver_onrecorderstatechanged">
+    <title><ph keyref="onRecorderStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the recording state changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRecorderStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">void onRecorderStateChanged(int state, int error);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)mediaRecorder:(AgoraMediaRecorder* _Nonnull)recorder stateDidChanged:(AgoraMediaRecorderState)state error:(AgoraMediaRecorderErrorCode)error;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onRecorderStateChanged(RecorderState state, RecorderErrorCode error) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>When the local audio and video recording state changes, the SDK triggers this callback to report the current recording state and the reason for the change.</p>
+        </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <parml>
+                <plentry props="apple">
+                    <pt>recorder</pt>
+                    <pd><xref keyref="IMediaRecorder"/> object.</pd>
+                </plentry>
+                <plentry>
+                <pt>state</pt>
+                <pd props="apple cpp">The current recording state. See <xref keyref="RecorderState"/>.</pd>
+                <pd props="android">The current recording state.<ul>
+                        <li><ph keyref="RECORDER_STATE_ERROR"/>-1: An error occurs during the recording.</li>
+                        <li><ph keyref="RECORDER_STATE_START"/>2: The audio and video recording starts.</li>
+                        <li><ph keyref="RECORDER_STATE_STOP"/>3: The audio and video recording stops.</li>
+                    </ul>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>error</pt>
+                <pd props="apple cpp">The reason for the state change. See <xref keyref="RecorderErrorCode"/>.</pd>
+                <pd props="android">The reason for the state change.<ul>
+                <li><ph keyref="RECORDER_ERROR_NONE"/>0: No error.</li>
+                <li><ph keyref="RECORDER_ERROR_WRITE_FAILED"/>1: The SDK fails to write the recorded data to a file.</li>
+                <li><ph keyref="RECORDER_ERROR_NO_STREAM"/>2: The SDK does not detect any audio and video streams, or audio and video streams are interrupted for more than five seconds during recording.</li>
+                <li><ph keyref="RECORDER_ERROR_OVER_MAX_DURATION"/>3: The recording duration exceeds the upper limit.</li>
+                <li><ph keyref="RECORDER_ERROR_CONFIG_CHANGED"/>4: The recording configuration changes.</li>
+                    </ul>
+                </pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>
