@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_getstreaminfo">
-    <title><ph keyref="getStreamInfo" /></title>
+    <title><ph keyref="getStreamInfo"/></title>
     <shortdesc id="short"><ph id="shortdesc">Gets the detailed information of the media stream.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="getStreamInfo" />
+                <indexterm keyref="getStreamInfo"/>
             </keywords>
         </metadata>
     </prolog>
@@ -20,32 +20,40 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (AgoraMediaStreamInfo *_Nullable)getStreamByIndex:(int)index;
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int getStreamInfo(int64_t index, media::base::PlayerStreamInfo* info) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="detailed_desc">
+            <note type="attention" id="note">Call this method after calling <xref keyref="getStreamCount"/>.</note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
             <parml>
-                <plentry>
-                    <pt>index</pt>
-                    <pd>The index of the media stream.</pd>
-                </plentry>
-                <plentry props="cpp">
-                    <pt>info</pt>
-                    <pd>Output parameter. The detailed information of the media stream. See <xref keyref="PlayerStreamInfo" />.</pd>
-                </plentry>
-            </parml>
-        </section>
+            <plentry props="rtc-ng">
+                <pt props="unity">playerId</pt>
+                <pd props="unity">The ID of the media player.</pd>
+            </plentry>
+            <plentry>
+                <pt>index
+</pt>
+                <pd>The index of the media stream.</pd>
+                <pd props="cpp unity">This parameter needs to be less than the <parmname>count</parmname> parameter of <xref keyref="getStreamCount"/>.</pd>
+                <pd props="android ios mac">This parameter must be less than the return value of <xref keyref="getStreamCount"/>.</pd>
+            </plentry>
+            <plentry props="cpp unity">
+                <pt>info</pt>
+                <pd>An output parameter. The detailed information of the media stream. See <xref keyref="PlayerStreamInfo"/>.</pd>
+            </plentry>
+            </parml> </section>
         <section id="return_values">
             <title>Returns</title>
             <ul props="android ios mac">
-                <li>If the call succeeds, returns the detailed information of the media stream. See <xref keyref="PlayerStreamInfo" />.</li>
-                <li>If the call fails, returns <codeph><ph keyref="NULL" /></codeph>.</li>
+            <li>If the call succeeds, the SDK returns the detailed information of the media stream. See <xref keyref="PlayerStreamInfo"/>.</li>
+            <li>If the call fails, the SDK returns <codeph><ph keyref="NULL"/></codeph>.</li>
             </ul>
-            <ul props="cpp" id="ul_uns_l2y_hqb">
-                <li>0: Success.</li>
-                <li>&lt; 0: Failure.</li>
-            </ul>
-        </section>
+            <ul props="cpp unity" id="ul_uns_l2y_hqb">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
     </refbody>
 </reference>
