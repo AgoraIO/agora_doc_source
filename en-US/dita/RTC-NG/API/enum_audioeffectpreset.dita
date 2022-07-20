@@ -2,137 +2,131 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_audioeffectpreset">
     <title><ph keyref="AUDIO_EFFECT_PRESET"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Preset voice effects.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Preset audio effects.</ph></shortdesc>
     <refbody>
-        <section id="detailed_desc">
-   <p>For better voice effects, Agora recommends setting the <parmname>profile</parmname> parameter of <xref keyref="setAudioProfile"/> to <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> or <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/> before using the following presets:</p>
-   <ul id="ul_hpp_hsd_p4b">
-       <li><ph keyref="ROOM_ACOUSTICS_KTV"/></li>
-       <li><ph keyref="ROOM_ACOUSTICS_VOCAL_CONCERT"/></li>
-       <li><ph keyref="ROOM_ACOUSTICS_STUDIO"/></li>
-       <li><ph keyref="ROOM_ACOUSTICS_PHONOGRAPH"/></li>
-       <li><ph keyref="ROOM_ACOUSTICS_SPACIAL"/></li>
-       <li><ph keyref="ROOM_ACOUSTICS_ETHEREAL"/></li>
-       <li><ph keyref="VOICE_CHANGER_EFFECT_UNCLE"/></li>
-       <li><ph keyref="VOICE_CHANGER_EFFECT_OLDMAN"/></li>
-       <li><ph keyref="VOICE_CHANGER_EFFECT_BOY"/></li>
-       <li><ph keyref="VOICE_CHANGER_EFFECT_SISTER"/></li>
-       <li><ph keyref="VOICE_CHANGER_EFFECT_GIRL"/></li>
-       <li><ph keyref="VOICE_CHANGER_EFFECT_PIGKING"/></li>
-       <li><ph keyref="VOICE_CHANGER_EFFECT_HULK"/></li>
-       <li><ph keyref="PITCH_CORRECTION"/></li>
-   </ul>
-        </section>
+        <section id="detailed_desc">To get better audio effects, Agora recommends calling <xref keyref="setAudioProfile"/> and setting <parmname>profile</parmname> parameter as recommended below before using the preset audio effects.<table frame="all" rowsep="1" colsep="1">
+            <tgroup cols="2" align="left">
+                <colspec colname="c1" colnum="1" colwidth="1*"/>
+                <colspec colname="c2" colnum="2" colwidth="1*"/>
+                <thead>
+                    <row>
+                        <entry>Preset audio effects</entry>
+                        <entry><parmname>profile</parmname></entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <ul>
+                                <li><ph keyref="ROOM_ACOUSTICS_VIRTUAL_STEREO"/></li>
+                                <li><ph keyref="ROOM_ACOUSTICS_3D_VOICE"/></li>
+                                <li><ph keyref="ROOM_ACOUSTICS_VIRTUAL_SURROUND_SOUND"/></li>
+                            </ul>
+                        </entry>
+                        <entry><apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/> or <apiname keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO"/></entry>
+                    </row>
+                    <row>
+                        <entry>Other preset audio effects (except for <xref keyref="AUDIO_EFFECT_OFF"/>)</entry>
+                        <entry><apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> or <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/></entry>
+                    </row>
+                </tbody>
+            </tgroup>
+            </table></section>
         <section id="parameters">
-   <title>Enumerator</title>
-   <parml>
-       <plentry>
-  <pt><ph keyref="AUDIO_EFFECT_OFF"/></pt>
-  <pd>Turn off voice effects, that is, use the original voice.</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="ROOM_ACOUSTICS_KTV"/></pt>
-  <pd>The voice effect typical of a KTV venue.</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="ROOM_ACOUSTICS_VOCAL_CONCERT"/></pt>
-  <pd>The voice effect typical of a concert hall.</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="ROOM_ACOUSTICS_STUDIO"/></pt>
-  <pd>The voice effect typical of a recording studio.</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="ROOM_ACOUSTICS_PHONOGRAPH"/></pt>
-  <pd>The voice effect typical of a vintage phonograph.</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="ROOM_ACOUSTICS_VIRTUAL_STEREO"/></pt>
-  <pd>
-      <p>The virtual stereo effect, which renders monophonic audio as stereo audio.</p>
-      <note type="attention">Before using this preset, set the <parmname>profile</parmname> parameter of <xref keyref="setAudioProfile"/> to <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> or <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>; otherwise, the preset setting is invalid.</note>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="ROOM_ACOUSTICS_SPACIAL"/></pt>
-  <pd>A more spatial voice effect.</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="ROOM_ACOUSTICS_ETHEREAL"/></pt>
-  <pd>A more ethereal voice effect.</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="ROOM_ACOUSTICS_3D_VOICE"/></pt>
-  <pd>
-      <p>A 3D voice effect that makes the voice appear to be moving around the user. The default movement cycle is 10 seconds. After setting this effect, you can call <xref keyref="setAudioEffectParameters"/> to modify the movement period.</p>
-      <note type="attention">
-      <ul id="ul_gnm_3sd_p4b">
- <li>Before using this preset, set the <parmname>profile</parmname> parameter of <xref keyref="setAudioProfile"/> to <ph keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO"/> or <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>; otherwise, the preset setting is invalid.</li>
- <li>If the 3D voice effect is enabled, users need to use stereo audio playback devices to hear the anticipated voice effect.</li>
-      </ul>
-      </note>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="VOICE_CHANGER_EFFECT_UNCLE"/></pt>
-  <pd>
-      <p>A middle-aged man's voice.</p>
-      <note type="attention">Agora recommends using this preset to process a male-sounding voice; otherwise, you may not hear the anticipated voice effect.</note>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="VOICE_CHANGER_EFFECT_OLDMAN"/></pt>
-  <pd><p>A senior man's voice.</p>
-      <note type="attention">Agora recommends using this preset to process a male-sounding voice; otherwise, you may not hear the anticipated voice effect.</note>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="VOICE_CHANGER_EFFECT_BOY"/></pt>
-  <pd>
-      <p>A boy's voice.</p>
-      <note type="attention">Agora recommends using this preset to process a male-sounding voice; otherwise, you may not hear the anticipated voice effect.</note>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="VOICE_CHANGER_EFFECT_SISTER"/></pt>
-  <pd>
-      <p>A young woman's voice.</p>
-      <note type="attention">Agora recommends using this preset to process a female-sounding voice; otherwise, you may not hear the anticipated voice effect.</note>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="VOICE_CHANGER_EFFECT_GIRL"/></pt>
-  <pd>
-      <p>A girl's voice.</p>
-      <note type="attention">Agora recommends using this preset to process a female-sounding voice; otherwise, you may not hear the anticipated voice effect.</note>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="VOICE_CHANGER_EFFECT_PIGKING"/></pt>
-  <pd>The voice of Pig King, a character in Journey to the West who has a voice like a growling bear.</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="VOICE_CHANGER_EFFECT_HULK"/></pt>
-  <pd>The Hulk's voice.</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="STYLE_TRANSFORMATION_RNB"/></pt>
-  <pd>
-      <p>The voice effect typical of R&amp;B music.</p>
-      <note type="attention">Before using this preset, set the <parmname>profile</parmname> parameter of <xref keyref="setAudioProfile"/> to <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> or <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>; otherwise, the preset setting is invalid.</note>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="STYLE_TRANSFORMATION_POPULAR"/></pt>
-  <pd>
-      <p>The voice effect typical of popular music.</p>
-      <note type="attention">Before using this preset, set the <parmname>profile</parmname> parameter of <xref keyref="setAudioProfile"/> to <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> or <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>; otherwise, the preset setting is invalid.</note>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="PITCH_CORRECTION"/></pt>
-  <pd>A pitch correction effect that corrects the user's pitch based on the pitch of the natural C major scale. After setting this voice effect, you can call <xref keyref="setAudioEffectParameters"/> to adjust the basic mode of tuning and the pitch of the main tone.</pd>
-       </plentry>
-   </parml>
-        </section></refbody>
+            <title>Enumerator</title>
+            <parml>
+            <plentry>
+                <pt><ph keyref="AUDIO_EFFECT_OFF"/></pt>
+                <pd>Turn off voice effects, that is, use the original voice.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="ROOM_ACOUSTICS_KTV"/></pt>
+                <pd>The voice effect typical of a KTV venue.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="ROOM_ACOUSTICS_VOCAL_CONCERT"/></pt>
+                <pd>The voice effect typical of a concert hall.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="ROOM_ACOUSTICS_STUDIO"/></pt>
+                <pd>The voice effect typical of a recording studio.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="ROOM_ACOUSTICS_PHONOGRAPH"/></pt>
+                <pd>The voice effect typical of a vintage phonograph.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="ROOM_ACOUSTICS_VIRTUAL_STEREO"/></pt>
+                <pd>The virtual stereo effect, which renders monophonic audio as stereo audio.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="ROOM_ACOUSTICS_SPACIAL"/></pt>
+                <pd>A more spatial voice effect.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="ROOM_ACOUSTICS_ETHEREAL"/></pt>
+                <pd>A more ethereal voice effect.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="ROOM_ACOUSTICS_VIRTUAL_SURROUND_SOUND"/></pt>
+                <pd>Virtual surround sound, that is, the SDK generates a simulated surround sound field on the basis of stereo channels, thereby creating a surround sound effect.<note type="attention">If the virtual surround sound is enabled, users need to use stereo audio playback devices to hear the anticipated voice effect.</note> </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="ROOM_ACOUSTICS_3D_VOICE"/></pt>
+                <pd>
+                    <p>A 3D voice effect that makes the voice appear to be moving around the user. The default movement cycle is 10 seconds. After setting this effect, you can call <xref keyref="setAudioEffectParameters"/> to modify the movement period.</p>
+                    <note type="attention">If the 3D voice effect is enabled, users need to use stereo audio playback devices to hear the anticipated voice effect.</note> </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="VOICE_CHANGER_EFFECT_UNCLE"/></pt>
+                <pd>
+                    <p>A middle-aged man's voice.</p>
+                    <note type="attention">Agora recommends using this preset to process a male-sounding voice; otherwise, you may not hear the anticipated voice effect.</note> </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="VOICE_CHANGER_EFFECT_OLDMAN"/></pt>
+                <pd>
+                    <p>A senior man's voice.</p>
+                    <note type="attention">Agora recommends using this preset to process a male-sounding voice; otherwise, you may not hear the anticipated voice effect.</note> </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="VOICE_CHANGER_EFFECT_BOY"/></pt>
+                <pd>
+                    <p>A boy's voice.</p>
+                    <note type="attention">Agora recommends using this preset to process a male-sounding voice; otherwise, you may not hear the anticipated voice effect.</note> </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="VOICE_CHANGER_EFFECT_SISTER"/></pt>
+                <pd>
+                    <p>A young woman's voice.</p>
+                    <note type="attention">Agora recommends using this preset to process a female-sounding voice; otherwise, you may not hear the anticipated voice effect.</note> </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="VOICE_CHANGER_EFFECT_GIRL"/></pt>
+                <pd>
+                    <p>A girl's voice.</p>
+                    <note type="attention">Agora recommends using this preset to process a female-sounding voice; otherwise, you may not hear the anticipated voice effect.</note> </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="VOICE_CHANGER_EFFECT_PIGKING"/></pt>
+                <pd>The voice of Pig King, a character in Journey to the West who has a voice like a growling bear.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="VOICE_CHANGER_EFFECT_HULK"/></pt>
+                <pd>The Hulk's voice.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="STYLE_TRANSFORMATION_RNB"/></pt>
+                <pd>The voice effect typical of R&amp;B music.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="STYLE_TRANSFORMATION_POPULAR"/></pt>
+                <pd>The voice effect typical of popular music.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="PITCH_CORRECTION"/></pt>
+                <pd>A pitch correction effect that corrects the user's pitch based on the pitch of the natural C major scale. After setting this voice effect, you can call  to adjust the<xref keyref="setAudioEffectParameters"/> basic mode of tuning and the pitch of the main tone.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
 </reference>
