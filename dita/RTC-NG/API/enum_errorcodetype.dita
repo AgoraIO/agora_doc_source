@@ -28,19 +28,20 @@
 
 
                     <ul>
-                    <li><xref keyref="IRtcEngine"/> 初始化失败。请重新初始化 <apiname keyref="IRtcEngine"/>。 </li>
-                    <li>调用方法时用户尚未加入频道。请检查方法的调用逻辑。 </li>
-                    <li>调用 <xref keyref="rate"/> 或 <xref keyref="complain"/> 方法时用户尚未离开频道。请检查方法的调用逻辑。 </li>
-                    <li>请检查是否已开启音频模块。请检查程序集完整性。</li>
+                    <li><xref keyref="IRtcEngine"/> 初始化失败。请重新初始化 <apiname keyref="IRtcEngine"/>。</li>
+                    <li>调用方法时用户尚未加入频道。请检查方法的调用逻辑。</li>
+                    <li>调用 <xref keyref="rate"/> 或 <xref keyref="complain"/> 方法时用户尚未离开频道。请检查方法的调用逻辑。</li>
+                    <li>音频模块未开启。</li>
+                    <li>程序集不完整。</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="ERR_NOT_SUPPORTED"/></pt>
-                <pd>4：RtcEngine 当前状态不支持该操作。可能的原因有：
+                <pd>4：<apiname keyref="IRtcEngine"/> 当前状态不支持该操作。可能的原因有：
 
 
                     <ul>
-                    <li props="android">Android 平台调用 <xref keyref="setBeautyEffectOptions"/> 方法时，如果设备版本低于 Android 5.0，会上报该错误码。请确认 Android 设备版本。 </li>
+                    <li props="android">Android 平台调用 <xref keyref="setBeautyEffectOptions"/> 方法时，如果设备版本低于 Android 5.0，会上报该错误码。请确认 Android 设备版本。</li>
                     <li>使用内置加密时，设置的加密模式不正确，或加载外部加密库失败。请检查加密的枚举值是否正确，或重新加载外部加密库。</li>
                     </ul></pd>
             </plentry>
@@ -50,9 +51,9 @@
 
 
                     <ul>
-                    <li> <xref keyref="IRtcEngine"/> 初始化失败。请重新初始化 <apiname keyref="IRtcEngine"/>。 </li>
-                    <li>在加入频道时，将频道名设为空字符 <codeph>""</codeph>。请重新设置频道名。 </li>
-                    <li>多频道场景下，在调用 <xref keyref="joinChannelEx"/> 方法加入频道时，设置的频道名已存在。请重新设置频道名。 </li>
+                    <li> <xref keyref="IRtcEngine"/> 初始化失败。请重新初始化 <apiname keyref="IRtcEngine"/>。</li>
+                    <li>在加入频道时，将频道名设为空字符 <codeph>""</codeph>。请重新设置频道名。</li>
+                    <li>多频道场景下，在调用 <xref keyref="joinChannelEx"/> 方法加入频道时，设置的频道名已存在。请重新设置频道名。</li>
                     </ul></pd>
             </plentry>
             <plentry>
@@ -91,7 +92,7 @@
 
 
                     <ul>
-                    <li>调用 <xref keyref="leaveChannel"/> 前，用户已离开频道。停止调用该方法即可。 </li>
+                    <li>调用 <xref keyref="leaveChannel"/> 前，用户已离开频道。停止调用该方法即可。</li>
                     <li>用户尚未加入频道，就调用 <apiname keyref="leaveChannel"/> 退出频道。这种情况下无需额外操作。</li>
                     </ul></pd>
             </plentry>
@@ -129,7 +130,7 @@
                     <dl outputclass="deprecated">
                     <dlentry>
                         <dt>弃用：</dt>
-                        <dd>该枚举已废弃。请改用 <xref keyref="onConnectionStateChanged"/> 回调中的 <apiname keyref="CONNECTION_CHANGED_TOKEN_EXPIRED"/>(9)。 </dd>
+                        <dd>该枚举已废弃。请改用 <xref keyref="onConnectionStateChanged"/> 回调中的 <apiname keyref="CONNECTION_CHANGED_TOKEN_EXPIRED"/>(9)。</dd>
                     </dlentry>
                     </dl>
                 </pd>
@@ -144,7 +145,7 @@
                     <dl>
                     <dlentry>
                         <dt>弃用：</dt>
-                        <dd>该枚举已废弃。请改用 <xref keyref="onConnectionStateChanged"/> 回调中的 <apiname keyref="CONNECTION_CHANGED_INVALID_TOKEN"/>(8)。 </dd>
+                        <dd>该枚举已废弃。请改用 <xref keyref="onConnectionStateChanged"/> 回调中的 <apiname keyref="CONNECTION_CHANGED_INVALID_TOKEN"/>(8)。</dd>
                     </dlentry>
                     </dl>
                 </pd>

@@ -32,7 +32,7 @@
             显示该远端视频。</p>
             <p props="rtc">调用该方法后，SDK 会触发 <xref keyref="onUserSuperResolutionEnabled"/> 回调报告超分辨率是否成功开启。</p>
             <p props="rtc-ng">调用该方法后，通过 <xref keyref="onRemoteVideoStats"/> 回调中的远端视频统计数据（<xref keyref="RemoteVideoStats"/>），确认超分辨率是否成功开启：
-            
+
             <ul>
             <li>如果参数 <parmname>superResolutionType</parmname> >0：超分辨率已开启。</li>
             <li>如果参数 <parmname>superResolutionType</parmname> =0：超分辨率未开启。</li>
@@ -41,8 +41,8 @@
             <p props="cpp cs flutter">超分辨率功能会额外耗费系统资源。为平衡视觉体验和系统消耗，只可以对一个远端用户开启超分辨率，并且远端用户视频的原始分辨率在 Android 设备上不能超过 640 × 360，在 iOS 设备上不能超过 640 × 480。</p>
             <p props="android ios">超分辨率功能会额外耗费系统资源。为平衡视觉体验和系统消耗，只可以对一个远端用户开启超分辨率，并且远端用户视频的原始分辨率在设备上不能超过 <ph props="android">640 × 360</ph><ph props="ios">640 × 480</ph>。</p>
             <p props="rtc">当超出限制时，SDK 会触发 <xref keyref="onWarning"/> 回调，并返回相应的警告码：
-            
-            
+
+
             <ul>
             <li><ph keyref="WARN_SUPER_RESOLUTION_STREAM_OVER_LIMITATION"/>: 1610，远端用户的原始视频分辨率超出了可以应用超分辨率的范围。</li>
             <li><ph keyref="WARN_SUPER_RESOLUTION_USER_COUNT_OVER_LIMITATION"/>: 1611，已对一个远端用户的视频使用超分辨率。</li>
@@ -53,19 +53,19 @@
             <ul>
             <li props="cpp cs flutter rn">该方法仅适用于 Android 和 iOS 平台。</li>
             <li>调用该方法前，请确保你已经集成相应的动态库：
-                
-                
+
+
                 <ul>
                 <li props="android cpp cs flutter rn">Android: <ph>libagora_super_resolution_extension.so</ph></li>
                 <li props="ios cpp cs flutter rn">iOS: <ph>AgoraSuperResolutionExtension.xcframework</ph></li>
                 </ul> </li>
             <li>该方法对用户设备具有一定要求，Agora 推荐你使用如下或更好的设备：
-                
-                
+
+
                 <ul>
                 <li props="android cpp cs flutter rn">Android:
-                    
-                    
+
+
                     <ul>
                     <li>VIVO：V1821A，NEX S，1914A，1916A，1962A，1824BA，X60，X60 Pro</li>
                     <li>OPPO：PCCM00，Find X3</li>
@@ -75,8 +75,8 @@
                     <li>HUAWEI：SEA-AL00，ELE-AL00，VOG-AL00，YAL-AL10，HMA-AL00，EVR-AN00，nova 4，nova 5 Pro，nova 6 5G，nova 7 5G，Mate 30，Mate 30 Pro，Mate 40，Mate 40 Pro，P40，P40 Pro，华为平板 M6，MatePad 10.8</li>
                     </ul></li>
                 <li props="ios cpp cs flutter rn">iOS:
-                    
-                    
+
+
                     <ul>
                     <li>iPhone XR</li>
                     <li>iPhone XS</li>
@@ -107,11 +107,11 @@
             <plentry>
                 <pt>enable</pt>
                 <pd>是否对远端视频开启超分辨率：
-                    
-                    
+
+
                     <ul>
-                    <li><ph keyref="true"/>: 开启。</li>
-                    <li><ph keyref="false"/>: 关闭。</li>
+                    <li><ph keyref="true"/>: 开启超分辨率。</li>
+                    <li><ph keyref="false"/>: 关闭超分辨率。</li>
                     </ul></pd>
             </plentry>
             </parml> </section>
@@ -120,8 +120,8 @@
             <ul>
             <li>0: 方法调用成功</li>
             <li>&lt; 0: 方法调用失败
-                
-                
+
+
                 <ul props="rtc">
                 <li>-157: 未集成超分辨率动态库。</li>
                 </ul></li>
