@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setcolorenhanceoptions">
+    <title> <ph keyref="setColorEnhanceOptions"/> </title>
+    <shortdesc id="short"><ph id="shortdesc">Sets color enhancement.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setColorEnhanceOptions"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setColorEnhanceOptions(boolean enabled, ColorEnhanceOptions options);
+</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setColorEnhanceOptions:(BOOL)enable options:(AgoraColorEnhanceOptions* _Nullable)options NS_SWIFT_NAME(setColorEnhanceOptions(_:options:));
+</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setColorEnhanceOptions(bool enabled, const ColorEnhanceOptions&amp; options) = 0;
+</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>The video images captured by the camera can have color distortion. The color enhancement feature intelligently adjusts video characteristics such as saturation and contrast to enhance the video color richness and color reproduction, making the video more vivid.</p>
+            <p>You can call this method to enable the color enhancement feature and set the options of the color enhancement effect.</p>
+            <note type="attention">
+            <ul>
+            <li>Call this method after calling <xref keyref="enableVideo"/>.</li>
+            <li>The color enhancement feature has certain performance requirements on devices. With Color Enhancement turned on, Agora recommends that you change the Color Enhancement Level to one that consumes less performance or turn off Color Enhancement if your device is experiencing severe heat problems.</li>
+            <li>Both this method and <xref keyref="setExtensionProperty"/> can turn on color enhancement:<ul>
+                    <li>When you use the SDK to capture video, Agora recommends this method (this method only works for the video captured by the SDK).</li>
+                    <li>When you use an external video source to implement custom video capture, or send an external video source to the SDK, Agora recommends using <apiname keyref="setExtensionProperty"/>.</li>
+                </ul></li>
+            </ul> </note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt props="android cpp">enabled</pt>
+                <pt props="ios mac">enable</pt>
+                <pd>Whether to enable color enhancement:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Enable video content moderation.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) Disable color enhancement.</li>
+                    </ul></pd>
+            </plentry>
+            <plentry>
+                <pt>options</pt>
+                <pd>The color enhancement options. See <xref keyref="ColorEnhanceOptions"/>.</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
+    </refbody>
+</reference>
