@@ -2,8 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onaudiosubscribestatechanged">
     <title><ph keyref="onAudioSubscribeStateChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc"
-        >Occurs when the audio subscribing state changes.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the audio subscribing state changes.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +13,8 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public void onAudioSubscribeStateChanged(String channel, int uid, STREAM_SUBSCRIBE_STATE oldState,
-      STREAM_SUBSCRIBE_STATE newState, int elapseSinceLastState) {}</codeblock>
+            <codeblock props="android" outputclass="language-java">public void onAudioSubscribeStateChanged(
+    String channel, int uid, int oldState, int newState, int elapseSinceLastState) {}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit *_Nonnull)engine
                 didAudioSubscribeStateChange:(NSString * _Nonnull)channelId
                 uid:(unsigned int)uid
@@ -66,23 +65,83 @@ elapseSinceLastState:(int)elapseSinceLastState;</codeblock>
             <plentry>
                 <pt props="android cpp unity flutter">channel</pt>
                 <pt props="ios mac">channelId</pt>
-                <pd>The name of the channel.</pd>
+                <pd>The channel name.</pd>
             </plentry>
-            <plentry props="android cpp unity electron ios mac flutter" id="uid">
+            <plentry id="uid">
                 <pt>uid</pt>
-                <pd>The ID of the remote user.</pd>
+                <pd>The user ID of the remote user.</pd>
             </plentry>
             <plentry id="oldState">
                 <pt>oldState</pt>
-                <pd>The previous subscribing status, see <xref
-                    keyref="STREAM_SUBSCRIBE_STATE"
-                    />
-                        for details.</pd>
+                <pd props="ios mac cpp unity flutter">The previous subscribing status, see <xref
+                    keyref="STREAM_SUBSCRIBE_STATE"/> for details.</pd>
+                <pd props="android">The previous subscription status.<ul>
+                    <li><ph keyref="SUB_STATE_IDLE"/>(0): The initial publishing state after joining the channel.</li>
+                    <li><ph keyref="SUB_STATE_NO_SUBSCRIBED"/>(1): Fails to subscribe to the remote stream. Possible reasons:<ul>
+                        <li>Remote users:<ul>
+                            <li>Calls <xref keyref="muteLocalAudioStream"
+                                />(<codeph><ph keyref="true"/></codeph>) or <xref
+                                keyref="muteLocalVideoStream"/>(<codeph><ph
+                                keyref="true"/></codeph>) to stop sending local media stream.</li>
+                            <li>Calls <xref keyref="disableAudio"/>or <xref
+                                keyref="disableVideo"/> to disable the local audio or video module.</li>
+                            <li>Calls <xref keyref="enableLocalAudio"/>(<ph
+                                keyref="false"/>) or <xref
+                                keyref="enableLocalVideo"/>(<ph keyref="false"
+                                />) to disable local audio or video capture.</li>
+                            <li>The role of the remote user is audience.</li>
+                            </ul></li>
+                        <li>The local user calls the following method to stop receiving the remote media stream:<ul id="ul_mjk_gyk_p4b">
+                            <li>Call <xref keyref="muteRemoteAudioStream"/>(<ph
+                                keyref="true"/>) or <xref
+                                keyref="muteAllRemoteAudioStreams"/>(<ph
+                                keyref="true"/>) to stop receiving the remote audio stream.</li>
+                            <li>Call <xref keyref="muteRemoteVideoStream"/>(<ph
+                                keyref="true"/>) or <xref
+                                keyref="muteAllRemoteVideoStreams"/>(<ph
+                                keyref="true"/>) to stop receiving the remote video stream.</li>
+                            </ul></li>
+                        </ul></li>
+                    <li><ph keyref="SUB_STATE_SUBSCRIBING"/>(2): Publishing.</li>
+                    <li><ph keyref="SUB_STATE_SUBSCRIBED"
+                        />(3): The remote stream is received, and the subscription is successful.</li>
+                    </ul></pd>
             </plentry>
             <plentry id="newState">
                 <pt>newState</pt>
-                <pd>The current subscribing status, see <apiname
+                <pd props="ios mac cpp unity flutter">The current subscribing status, see <apiname
                     keyref="STREAM_SUBSCRIBE_STATE"/> for details.</pd>
+                <pd props="android">The current subscribing status.<ul>
+                    <li><ph keyref="SUB_STATE_IDLE"/>(0): The initial publishing state after joining the channel.</li>
+                    <li><ph keyref="SUB_STATE_NO_SUBSCRIBED"/>(1): Fails to subscribe to the remote stream. Possible reasons:<ul>
+                        <li>Remote users:<ul>
+                            <li>Calls <xref keyref="muteLocalAudioStream"
+                                />(<codeph><ph keyref="true"/></codeph>) or <xref
+                                keyref="muteLocalVideoStream"/>(<codeph><ph
+                                keyref="true"/></codeph>) to stop sending local media stream.</li>
+                            <li>Calls <xref keyref="disableAudio"/>or <xref
+                                keyref="disableVideo"/> to disable the local audio or video module.</li>
+                            <li>Calls <xref keyref="enableLocalAudio"/>(<ph
+                                keyref="false"/>) or <xref
+                                keyref="enableLocalVideo"/>(<ph keyref="false"
+                                />) to disable local audio or video capture.</li>
+                            <li>The role of the remote user is audience.</li>
+                            </ul></li>
+                        <li>The local user calls the following method to stop receiving the remote media stream:<ul>
+                            <li>Call <xref keyref="muteRemoteAudioStream"/>(<ph
+                                keyref="true"/>) or <xref
+                                keyref="muteAllRemoteAudioStreams"/>(<ph
+                                keyref="true"/>) to stop receiving the remote audio stream.</li>
+                            <li>Call <xref keyref="muteRemoteVideoStream"/>(<ph
+                                keyref="true"/>) or <xref
+                                keyref="muteAllRemoteVideoStreams"/>(<ph
+                                keyref="true"/>) to stop receiving the remote video stream.</li>
+                            </ul></li>
+                        </ul></li>
+                    <li><ph keyref="SUB_STATE_SUBSCRIBING"/>(2): Publishing.</li>
+                    <li><ph keyref="SUB_STATE_SUBSCRIBED"
+                        />(3): The remote stream is received, and the subscription is successful.</li>
+                    </ul></pd>
             </plentry>
             <plentry id="elapseSinceLastState">
                 <pt>elapseSinceLastState</pt>
