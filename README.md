@@ -307,7 +307,16 @@ YiCAT 的翻译会使英文文档中的代码原型出现格式问题。你必�
 
 ##  5. <a name='API-1'></a>从 API 文档自动构建用于自动化填充代码注释的文档模板
 
-目前不需要你任何事情。文档模板在这里。研发负责自动抓取最新的模板填充注释。
+文档模板文件（JSON 文件）会在 https://github.com/AgoraIO/agora_doc_source/releases/tag/main 自动生成。SDK 研发可以通过脚本自动抓取。
+
+如果你需要为某分支生成 JSON 文件，你需要在以下文件中添加你的分支：
+
+https://github.com/AgoraIO/agora_doc_source/blob/master/.github/sync.yml
+
+RTC Electron 4.x SDK: https://github.com/AgoraIO/agora_doc_source/blob/master/.github/workflows/python-app-3.8.200-electron-yaxi.yml
+RTC Unity 4.x SDK: https://github.com/AgoraIO/agora_doc_source/blob/master/.github/workflows/python-app-3.8.200-framework.yml
+RTC RN 4.x SDK: https://github.com/AgoraIO/agora_doc_source/blob/master/.github/workflows/python-app-3.8.200-kelu.yml
+RTC Flutter 4.x SDK: https://github.com/AgoraIO/agora_doc_source/blob/master/.github/workflows/python-app-ng-flutter.yml
 
 ##  6. <a name='BetaAPI'></a>（Beta）API 原型自动填充
 
