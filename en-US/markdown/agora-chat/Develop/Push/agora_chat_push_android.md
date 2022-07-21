@@ -47,13 +47,13 @@ This section guides you through how to integrate FCM with Agora Chat.
 
 1. Log in to [Agora Console](https://console.agora.io/), and click **Project Management** in the left navigation bar.
 
-2. On the **Project Management** page, select the project item that has Chat enabled, and click **Config** in the **Action** column.
+2. On the **Project Management** page, locate the project that has Chat enabled and click **Config**.
 
-3. On the project edit page, select **Config** next to **Chat**.
+3. On the project edit page, click **Config** next to **Chat**.
 
-4. On the project config page, select F
+4. On the project config page, select **Features** > **Push Certificate** and click **Add Push Certificate**.
 
-3. Add `/chat` after the URL of the project config page, and press **Enter**.
+5. In the pop-up window, select the **GOOGLE** tab, and configure the following fields:
 
 4. In the **Push Notifications** module, click **Add Push Certificate**.
 
@@ -443,17 +443,15 @@ ChatClient.getInstance().pushManager().getPreferredNotificationLanguage(new Valu
 
 Agora Chat allows users to use ready-made templates for push notifications.
 
-You can create and provide push templates for users in [Agora Console](https://console.agora.io/) by referring to the following steps:
+You can create and provide push templates for users by referring to the following steps:
 
-1. In the left-side panel, select **Project Management**.
+1. Log in to [Agora Console](https://console.agora.io/), and click **Project Management** in the left navigation bar.
 
-2. On the **Project Management** page, select the **Config** button in the **Action** column of the project for which you want to set push templates.
+2. On the **Project Management** page, locate the project that has Chat enable and click **Config**.
 
-3. On the project details page, select the **Config** button in the **Agora Chat** section.
+3. On the project edit page, click **Config** next to **Chat**.
 
-4. In the left-side panel of the Agora Chat configuration page, select **Push Template**.
-
-5. On the **Push Template** page, click **Add Push Template**, and configure the fields in the pop-up window, as shown in the following figure:
+4. On the project config page, select **Features** > **Push Template** and click **Add Push Template**, and configure the fields in the pop-up window, as shown in the following figure:
 
 ![](https://web-cdn.agora.io/docs-files/1655445229699)
 
