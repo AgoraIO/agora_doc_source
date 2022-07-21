@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_contentinspectconfig">
     <title><ph keyref="ContentInspectConfig"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Configuration of video content moderation. </ph><ph id="shortdesc">Configuration of video content moderation.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Configuration of video content moderation.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -58,34 +58,34 @@
             /></title>
             <parml>
             <plentry props="android">
-                <pt>CONTENT_INSPECT_TYPE_INVALID CONTENT_INSPECT_TYPE_INVALID</pt>
-                <pd>(Default) This module has no actual function. (Default) This module has no actual function. Do not set <parmname>type</parmname> to this value. Do not set <parmname>type</parmname> to this value.</pd>
+                <pt>CONTENT_INSPECT_TYPE_INVALID</pt>
+                <pd>(Default) This module has no actual function. Do not set <parmname>type</parmname> to this value.</pd>
             </plentry>
             <plentry props="android">
-                <pt>CONTENT_INSPECT_TYPE_MODERATION CONTENT_INSPECT_TYPE_MODERATION</pt>
-                <pd>Video content moderation. Video content moderation. SDK takes screenshots and inspect video content of video stream in the channel, and uploads the screenshots and moderation results. SDK takes screenshots and inspect video content of video stream in the channel, and uploads the screenshots and moderation results.</pd>
+                <pt>CONTENT_INSPECT_TYPE_MODERATION</pt>
+                <pd>Video content moderation. SDK takes screenshots and inspect video content of video stream in the channel, and uploads the screenshots and moderation results.</pd>
             </plentry>
             <plentry props="android">
-                <pt>CONTENT_INSPECT_SUPERVISE CONTENT_INSPECT_SUPERVISE</pt>
-                <pd>Screenshots capture. Screenshots capture. SDK takes screenshots of the video stream in the channel and uploads them. SDK takes screenshots of the video stream in the channel and uploads them.</pd>
+                <pt>CONTENT_INSPECT_SUPERVISE</pt>
+                <pd>Screenshots capture. SDK takes screenshots of the video stream in the channel and uploads them.</pd>
             </plentry>
             <plentry>
-                <pt>extraInfo extraInfo</pt>
+                <pt>extraInfo</pt>
                 <pd>
-                    <p>Additional information for video content moderation, with a maximum length of 1024 bytes. Additional information for video content moderation, with a maximum length of 1024 bytes.</p>
-                    <p>The SDK sends the screenshots and additional information on the video content to the Agora content moderation server. Once the content moderation process is completed, the Agora content moderation server sends the additional information and the content moderation results to your server. The SDK sends the screenshots and additional information on the video content to the Agora content moderation server. Once the content moderation process is completed, the Agora content moderation server sends the additional information and the content moderation results to your server.</p>
+                    <p>Additional information for video content moderation, with a maximum length of 1024 bytes.</p>
+                    <p>The SDK sends the screenshots and additional information on the video content to the Agora content moderation server. Once the content moderation process is completed, the Agora content moderation server sends the additional information and the content moderation results to your server.</p>
                 </pd>
             </plentry>
             <plentry>
-                <pt>modules modules</pt>
+                <pt>modules</pt>
                 <pd>
-                    <p>Video content moderation module. Video content moderation module. See <xref keyref="ContentInspectModule"/>. See <xref keyref="ContentInspectModule"/>.</p>
-                    <p>A maximum of 32 instances can be configured<apiname keyref="ContentInspectModule"/>,<apiname keyref="MAX_CONTENT_INSPECT_MODULE_COUNT"/> and the value range of is an integer in [1,32]. A maximum of 32 instances can be configured<apiname keyref="ContentInspectModule"/>,<apiname keyref="MAX_CONTENT_INSPECT_MODULE_COUNT"/> and the value range of is an integer in [1,32].</p>
-                    <note type="attention">A video content moderation module can only be configured with one instance at most. A video content moderation module can only be configured with one instance at most.</note> </pd>
+                    <p>Video content moderation module. See <xref keyref="ContentInspectModule"/>.</p>
+                    <p>A maximum of 32 <apiname keyref="ContentInspectModule"/> instances can be configured,and the value range of <apiname keyref="MAX_CONTENT_INSPECT_MODULE_COUNT"/> is an integer in [1,32].</p>
+                    <note type="attention">A video content moderation module can only be configured with one instance at most.</note> </pd>
             </plentry>
             <plentry>
-                <pt>moduleCount moduleCount</pt>
-                <pd>The number of video content moderation modules, that is,the number of configured <apiname keyref="ContentInspectModule"/> instances, must be the same as the number of instances configured in <parmname>modules</parmname>. The number of video content moderation modules, that is,the number of configured <apiname keyref="ContentInspectModule"/> instances, must be the same as the number of instances configured in <parmname>modules</parmname>. The maximum number is 32. The maximum number is 32.</pd>
+                <pt>moduleCount</pt>
+                <pd>The number of video content moderation modules, that is,the number of configured <apiname keyref="ContentInspectModule"/> instances, must be the same as the number of instances configured in <parmname>modules</parmname>. The maximum number is 32.</pd>
             </plentry>
             </parml> </section>
     </refbody>
