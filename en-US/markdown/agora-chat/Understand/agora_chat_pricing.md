@@ -34,7 +34,7 @@ If your MAU exceeds the included usage of the pricing plan, the excess usage fee
 
 | Agora Chat plan | Unit price of excess usage (US$/MAU) |
 | :-------------- | :----------------------------------- |
-| Free            |    N/A *       |
+| Free            |    N/A*       |
 | Starter         | 0.05     |
 | Pro             | 0.05        |
 | Enterprise      | Customized           |
@@ -54,6 +54,7 @@ Chat provides the translation and content moderation features to meet your busin
 | AI-Powered Content Moderation | $1.5/1,000 transactions** |
 
 *The number of characters count special characters and white spaces. For example, "I love you!" contains 11 characters in total, with eight letters, two white spaces, and one special character.  
+
 **AI-Powered Content Moderation supports text moderation and image moderation. For text moderation, each transaction equals 3 KB of text content (roughly around 30 sentences). For image moderation, each image counts one transaction.
 
 ## Plan management
