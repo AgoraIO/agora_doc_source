@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audioframe">
     <title><ph keyref="AudioFrame"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Raw audio data. </ph><ph id="shortdesc">Raw audio data.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Raw audio data.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p props="rtc-ng" outputclass="codeblock">
@@ -158,69 +158,63 @@
             /> </title>
             <parml>
             <plentry props="cpp unity">
-                <pt>type type</pt>
+                <pt>type</pt>
                 <pd>
-                    <p>The type of the audio frame. See <xref keyref="AUDIO_FRAME_TYPE"/>. The type of the audio frame. See <xref keyref="AUDIO_FRAME_TYPE"/>.</p>
+                    <p>The type of the audio frame. See <xref keyref="AUDIO_FRAME_TYPE"/>.</p>
                 </pd>
             </plentry>
             <plentry>
                 <pt props="rtc"><ph props="android">numOfSamples</ph><ph
                     props="cpp unity">samples</ph><ph props="ios mac"
-                    >samplesPerChannel </ph><ph props="android">numOfSamples</ph><ph
-                    props="cpp unity">samples</ph><ph props="ios mac"
                     >samplesPerChannel</ph></pt>
-                <pt props="rtc-ng">samplesPerChannel samplesPerChannel</pt>
-                <pd>The number of samples per channel in the audio frame. The number of samples per channel in the audio frame.</pd>
+                <pt props="rtc-ng">samplesPerChannel</pt>
+                <pd>The number of samples per channel in the audio frame.</pd>
             </plentry>
             <plentry>
-                <pt>bytesPerSample bytesPerSample</pt>
-                <pd>The number of bytes per audio sample, which is usually 16-bit (2 bytes). The number of bytes per audio sample, which is usually 16-bit (2 bytes).</pd>
+                <pt>bytesPerSample</pt>
+                <pd>The number of bytes per audio sample, which is usually 16-bit (2 bytes).</pd>
             </plentry>
             <plentry>
-                <pt props="rtc">channels channels</pt>
+                <pt props="rtc">channels</pt>
                 <pt props="rtc-ng"><ph props="cpp ios mac unity">channels</ph><ph
-                    props="android">channelNums </ph><ph props="cpp ios mac unity">channels</ph><ph
                     props="android">channelNums</ph></pt>
                 <pd>
-                    <p>The number of audio channels (the data are interleaved if it is stereo). The number of audio channels (the data are interleaved if it is stereo).<ul id="ul_zxz_2wt_r4b">
-                    <li>1: Mono. 1: Mono.</li>
-                    <li>2: Stereo. 2: Stereo.</li>
+                    <p>The number of audio channels (the data are interleaved if it is stereo).<ul id="ul_zxz_2wt_r4b">
+                    <li>1: Mono.</li>
+                    <li>2: Stereo.</li>
                     </ul></p>
                 </pd>
             </plentry>
             <plentry>
-                <pt props="rtc">samplesPerSec samplesPerSec</pt>
-                <pt props="rtc-ng"><ph props="cpp ios mac unity">samplesPerSec</ph><ph props="android">sampleRataHz </ph><ph props="cpp ios mac unity">samplesPerSec</ph><ph props="android">sampleRataHz</ph></pt>
-                <pd>The number of samples per channel in the audio frame. The number of samples per channel in the audio frame.</pd>
+                <pt props="rtc">samplesPerSec</pt>
+                <pt props="rtc-ng"><ph props="cpp ios mac unity">samplesPerSec</ph><ph props="android">sampleRataHz</ph></pt>
+                <pd>The number of samples per channel in the audio frame.</pd>
             </plentry>
             <plentry>
                 <pt props="rtc-ng"><ph props="cpp ios mac unity">buffer</ph><ph
-                    props="android">bytes </ph><ph props="cpp ios mac unity">buffer</ph><ph
                     props="android">bytes</ph></pt>
                 <pt props="rtc"><ph props="cpp unity">buffer</ph><ph
-                    props="android">samples </ph><ph props="cpp unity">buffer</ph><ph
                     props="android">samples</ph></pt>
                 <pd>
-                    <p>The data buffer of the audio frame. When the audio frame uses a stereo channel, the data buffer is interleaved. The data buffer of the audio frame. When the audio frame uses a stereo channel, the data buffer is interleaved.</p>
-                    <p>The size of the data buffer is as follows: <codeph>buffer</codeph> = <codeph>samples</codeph> ×<codeph>channels</codeph> × <codeph>bytesPerSample</codeph>. The size of the data buffer is as follows: <codeph>buffer</codeph> = <codeph>samples</codeph> ×<codeph>channels</codeph> × <codeph>bytesPerSample</codeph>.</p>
+                    <p>The data buffer of the audio frame. When the audio frame uses a stereo channel, the data buffer is interleaved.</p>
+                    <p>The size of the data buffer is as follows: <codeph>buffer</codeph> = <codeph>samples</codeph> ×<codeph>channels</codeph> × <codeph>bytesPerSample</codeph>.</p>
                 </pd>
             </plentry>
             <plentry props="cpp unity ios mac">
-                <pt>renderTimeMs renderTimeMs</pt>
+                <pt>renderTimeMs</pt>
                 <pd>
-                    <p>The timestamp (ms) of the external audio frame. The timestamp (ms) of the external audio frame.</p>
-                    <p>You can use this timestamp to restore the order of the captured audio frame, and synchronize audio and video frames in video scenarios, including scenarios where external video sources are used. You can use this timestamp to restore the order of the captured audio frame, and synchronize audio and video frames in video scenarios, including scenarios where external video sources are used.</p>
+                    <p>The timestamp (ms) of the external audio frame.</p>
+                    <p>You can use this timestamp to restore the order of the captured audio frame, and synchronize audio and video frames in video scenarios, including scenarios where external video sources are used.</p>
                 </pd>
             </plentry>
             <plentry props="ios mac cpp unity">
                 <pt><ph props="ios mac">avsyncType</ph><ph props="cpp unity"
-                    >avsync_type </ph><ph props="ios mac">avsyncType</ph><ph props="cpp unity"
                     >avsync_type</ph></pt>
-                <pd>A reserved parameter. A reserved parameter.</pd>
+                <pd>A reserved parameter.</pd>
             </plentry>
             <plentry props="rtc-ng">
-                <pt props="android">timestamp timestamp</pt>
-                <pd props="android">The timestamp (ms) of the audio frame. The timestamp (ms) of the audio frame.</pd>
+                <pt props="android">timestamp</pt>
+                <pd props="android">The timestamp (ms) of the audio frame.</pd>
             </plentry>
             </parml> </section>
     </refbody>
