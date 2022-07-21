@@ -1,4 +1,14 @@
-This page provides release notes for the Agora Chat SDK for C#.
+This page provides release notes for the Agora Chat Flutter SDK.
+
+## v1.0.6
+
+v1.0.6 was released on July 21.
+
+#### Issues fixed
+
+- The callbacks for messaging thread were not triggered on iOS.
+- The callbacks for reaction were not triggered in iOS.
+- Occassional crashes occured on Android when retrieving conversations from the server.
 
 ## v1.0.5
 
