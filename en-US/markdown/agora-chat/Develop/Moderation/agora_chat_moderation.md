@@ -8,7 +8,7 @@ Delivering a safe and appropriate chat environment to your users is essential. A
 ## Prerequisites
 
 - You have created a valid [Agora developer account](/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#create-an-agora-account).
-- You have subscribed to the Pro or Enterprise pricing plan of Agora Chat.
+- Moderation is not enabled by default. To use this feature, you need to subscribe to the **Pro** or **Enterprise** [pricing plan](./agora_chat_plan) and enable it in [Agora Console](https://console.agora.io/).
 
 ## Enable the moderation feature
 
@@ -32,9 +32,11 @@ The following table summarizes the message management tools provided by Agora Ch
 
 To use the reporting feature, you need to call the reporting API when you develop your application. For details, see the following documents:
 
-- [Implement the reporting feature (Android)]()
-- [Implement the reporting feature (iOS)]()
-- [Implement the reporting feature (Web)]()
+- [Implement the reporting feature (Android)](/en/agora-chat/agora_chat_reporting_android?platform=Android)
+- [Implement the reporting feature (iOS)](/en/agora-chat/agora_chat_reporting_ios?platform=iOS)
+- [Implement the reporting feature (Web)](/en/agora-chat/agora_chat_reporting_web?platform=Web)
+- [Implement the reporting feature (React Native)](/en/agora-chat/agora_chat_reporting_rn?platform=React%20Native)
+- [Implement the reporting feature (Flutter)](/en/agora-chat/agora_chat_reporting_flutter?platform=Flutter)
 
 After a user reports a message from the application, moderators can check and deal with the report on Agora Console:
 
