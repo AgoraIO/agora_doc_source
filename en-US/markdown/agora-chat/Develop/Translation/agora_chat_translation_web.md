@@ -1,6 +1,6 @@
 Translation is a popular feature widely used in real-time chat apps. To enable translation, the Agora Chat SDK has integrated the Microsoft Azure Translation API, which enables messages to be translated either when they are being sent or after they are received.
 
-The SDK supports transtion in the following use cases:
+The SDK supports translation in the following use cases:
 
 - On-demand translation, where the SDK translates the text message after the recipient receives it.
 - Automatic translation, where the SDK translates the text message when the sender sends it. The recipient receives both the original message and the translation simultaneously.
@@ -11,7 +11,7 @@ Before proceeding, ensure that your development environment meets the following 
 
 - Your project integrates a version of the Agora Chat SDK later than v1.0.3 and has implemented the basic [real-time chat functionalities](./agora_chat_get_started_web?platform=Web).
 - You understand the API call frequency limit as described in [Limitations](./agora_chat_limitation?platform=Web).
-- Translation is not enabled by default. To use this feature, you need to subscribe to the **Pro** or **Enterprise** pricing plan and contact support@agora.io to enable it.
+- Translation is not enabled by default. To use this feature, you need to subscribe to the **Pro** or **Enterprise** [pricing plan](./agora_chat_plan) and enable it in [Agora Console](https://console.agora.io/).
 - Because this feature is enabled by the Microsoft Azure Translation API, ensure that you understand the supported target languages as described in [Language support](https://docs.microsoft.com/en-us/azure).
 
 ## Understand the tech
