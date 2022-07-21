@@ -479,12 +479,12 @@ const groupListener: ChatGroupEventListener = new (class
     console.log(`onSharedFileDeleted:`, params.groupId, params.fileId);
   }
   // Occurs when a member is added to the chat group allow list.
-  onWhiteListAdded(params: { groupId: string; members: string[] }): void {
-    console.log(`onWhiteListAdded:`, params.groupId, params.members);
+  onAllowListAdded(params: { groupId: string; members: string[] }): void {
+    console.log(`onAllowListAdded:`, params.groupId, params.members);
   }
   // Occurs when a member is removed from the chat group allow list.
-  onWhiteListRemoved(params: { groupId: string; members: string[] }): void {
-    console.log(`onWhiteListRemoved:`, params.groupId, params.members);
+  onAllowListRemoved(params: { groupId: string; members: string[] }): void {
+    console.log(`onAllowListRemoved:`, params.groupId, params.members);
   }
   // Occurs when all chat group members are muted or unmuted.
   onAllGroupMemberMuteStateChanged(params: {
