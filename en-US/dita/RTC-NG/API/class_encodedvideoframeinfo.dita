@@ -6,139 +6,105 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="unity" outputclass="language-csharp">public class EncodedVideoFrameInfo
-    {
-        public EncodedVideoFrameInfo()
-        {
-            codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_H264;
-            width = 0;
-            height = 0;
-            framesPerSecond = 0;
-            frameType = VIDEO_FRAME_TYPE_NATIVE.VIDEO_FRAME_TYPE_BLANK_FRAME;
-            rotation = VIDEO_ORIENTATION.VIDEO_ORIENTATION_0;
-            trackId = 0;
-            renderTimeMs = 0;
-            uid = 0;
-            streamType = VIDEO_STREAM_TYPE.VIDEO_STREAM_HIGH;
-
-        }
-
-        public EncodedVideoFrameInfo(ref EncodedVideoFrameInfo rhs)
-        {
-            codecType = rhs.codecType;
-            width = rhs.width;
-            height = rhs.width;
-            framesPerSecond = rhs.framesPerSecond;
-            frameType = rhs.frameType;
-            rotation = rhs.rotation;
-            trackId = rhs.trackId;;
-            renderTimeMs = rhs.renderTimeMs;
-            uid = rhs.uid;
-            streamType = rhs.streamType;
-        }
-
-        public VIDEO_CODEC_TYPE codecType { set; get; }
-        public int width { set; get; }
-        public int height { set; get; }
-        public int framesPerSecond { set; get; }
-        public VIDEO_FRAME_TYPE_NATIVE frameType { set; get; }
-        public VIDEO_ORIENTATION rotation { set; get; }
-        public int trackId { set; get; }
-        public int64_t renderTimeMs { set; get; }
-        public uint uid { set; get; }
-        public VIDEO_STREAM_TYPE streamType { set; get; }
-    }</codeblock>
             <codeblock props="android" outputclass="language-java">public class EncodedVideoFrameInfo {
-        public int codecType;
-        public int width;
-        public int height;
-        public int framesPerSecond;
-        public int frameType;
-        public int rotation;
+    public int codecType;
+    public int width;
+    public int height;
+    public int framesPerSecond;
+    public int frameType;
+    public int rotation;
 
-        public int trackId;
-        public long captureTimeMs;
-        public int uid;
+    public int trackId;
+    public long captureTimeMs;
+    public int uid;
+    public int streamType;
 
-    public EncodedVideoFrameInfo() {
-      codecType = Constants.VIDEO_CODEC_H264;
-      width = 0;
-      height = 0;
-      framesPerSecond = 0;
-      frameType = Constants.VIDEO_FRAME_TYPE_BLANK_FRAME;
-      rotation = Constants.VIDEO_ORIENTATION_0;
-      trackId = 0;
-      captureTimeMs = 0;
-      uid = 0;
-    }
-
-    @CalledByNative
-    public EncodedVideoFrameInfo(int codecType, int width, int height, int framesPerSecond,
-        int frameType, int rotation, int trackId, long captureTimeMs, int uid) {
-      this.codecType = codecType;
-      this.width = width;
-      this.height = height;
-      this.framesPerSecond = framesPerSecond;
-      this.frameType = frameType;
-      this.rotation = rotation;
-      this.trackId = trackId;
-      this.captureTimeMs = captureTimeMs;
-      this.uid = uid;
-    }
-
-    @CalledByNative
-    public int getCodecType() {
-      return codecType;
-    }
-
-    @CalledByNative
-    public int getWidth() {
-      return width;
-    }
-    @CalledByNative
-    public int getHeight() {
-      return height;
-    }
-    @CalledByNative
-    public int getFramesPerSecond() {
-      return framesPerSecond;
-    }
-    @CalledByNative
-    public int getFrameType() {
-      return frameType;
-    }
-    @CalledByNative
-    public int getRotation() {
-      return rotation;
-    }
-    @CalledByNative
-    public int getTrackId() {
-      return trackId;
-    }
-    @CalledByNative
-    public long getCaptureTimeMs() {
-      return captureTimeMs;
-    }
-    @CalledByNative
-    public int getUid() {
-      return uid;
-    }
-
-    @Override
-    public String toString() {
-      StringBuilder sb = new StringBuilder();
-      sb.append("codecType=").append(codecType);
-      sb.append(" width=").append(width);
-      sb.append(" height=").append(height);
-      sb.append(" framesPerSecond=").append(framesPerSecond);
-      sb.append(" frameType=").append(frameType);
-      sb.append(" rotation=").append(rotation);
-      sb.append(" trackId=").append(trackId);
-      sb.append(" captureTimeMs=").append(captureTimeMs);
-      sb.append(" uid=").append(uid);
-      return sb.toString();
-    }
+  public EncodedVideoFrameInfo() {
+    codecType = Constants.VIDEO_CODEC_H264;
+    width = 0;
+    height = 0;
+    framesPerSecond = 0;
+    frameType = Constants.VIDEO_FRAME_TYPE_BLANK_FRAME;
+    rotation = Constants.VIDEO_ORIENTATION_0;
+    trackId = 0;
+    captureTimeMs = 0;
+    uid = 0;
+    streamType = Constants.VIDEO_STREAM_HIGH;
   }
+
+  @CalledByNative
+  public EncodedVideoFrameInfo(int codecType, int width, int height, int framesPerSecond,
+      int frameType, int rotation, int trackId, long captureTimeMs, int uid, int streamType) {
+    this.codecType = codecType;
+    this.width = width;
+    this.height = height;
+    this.framesPerSecond = framesPerSecond;
+    this.frameType = frameType;
+    this.rotation = rotation;
+    this.trackId = trackId;
+    this.captureTimeMs = captureTimeMs;
+    this.uid = uid;
+    this.streamType = streamType;
+  }
+
+  @CalledByNative
+  public int getCodecType() {
+    return codecType;
+  }
+
+  @CalledByNative
+  public int getWidth() {
+    return width;
+  }
+  @CalledByNative
+  public int getHeight() {
+    return height;
+  }
+  @CalledByNative
+  public int getFramesPerSecond() {
+    return framesPerSecond;
+  }
+  @CalledByNative
+  public int getFrameType() {
+    return frameType;
+  }
+  @CalledByNative
+  public int getRotation() {
+    return rotation;
+  }
+  @CalledByNative
+  public int getTrackId() {
+    return trackId;
+  }
+  @CalledByNative
+  public long getCaptureTimeMs() {
+    return captureTimeMs;
+  }
+  @CalledByNative
+  public int getUid() {
+    return uid;
+  }
+  @CalledByNative
+  public int getStreamType() {
+    return streamType;
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("codecType=").append(codecType);
+    sb.append(" width=").append(width);
+    sb.append(" height=").append(height);
+    sb.append(" framesPerSecond=").append(framesPerSecond);
+    sb.append(" frameType=").append(frameType);
+    sb.append(" rotation=").append(rotation);
+    sb.append(" trackId=").append(trackId);
+    sb.append(" captureTimeMs=").append(captureTimeMs);
+    sb.append(" uid=").append(uid);
+    sb.append(" streamType=").append(streamType);
+    return sb.toString();
+  }
+}
   </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraEncodedVideoFrameInfo: NSObject
 
@@ -155,40 +121,97 @@
 @end
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct EncodedVideoFrameInfo {
-                    EncodedVideoFrameInfo()
-                    : codecType(VIDEO_CODEC_H264),
-                    width(0),
-                    height(0),
-                    framesPerSecond(0),
-                    frameType(VIDEO_FRAME_TYPE_BLANK_FRAME),
-                    rotation(VIDEO_ORIENTATION_0),
-                    trackId(0),
-                    captureTimeMs(0),
-                    uid(0),
-                    streamType(VIDEO_STREAM_HIGH) {}
-                    EncodedVideoFrameInfo(const EncodedVideoFrameInfo&amp; rhs)
-                    : codecType(rhs.codecType),
-                    width(rhs.width),
-                    height(rhs.height),
-                    framesPerSecond(rhs.framesPerSecond),
-                    frameType(rhs.frameType),
-                    rotation(rhs.rotation),
-                    trackId(rhs.trackId),
-                    decodeTimeMs(rhs.decodeTimeMs),
-                    uid(rhs.uid),
-                    streamType(rhs.streamType) {}
-                    VIDEO_CODEC_TYPE codecType;
-                    int width;
-                    int height;
-                    int framesPerSecond;
-                    VIDEO_FRAME_TYPE frameType;
-                    VIDEO_ORIENTATION rotation;
-                    int trackId;
-                    int64_t captureTimeMs;
-                    uid_t uid;
-                    VIDEO_STREAM_TYPE streamType;
-                    };
-                </codeblock> </p>
+  EncodedVideoFrameInfo()
+    : codecType(VIDEO_CODEC_H264),
+      width(0),
+      height(0),
+      framesPerSecond(0),
+      frameType(VIDEO_FRAME_TYPE_BLANK_FRAME),
+      rotation(VIDEO_ORIENTATION_0),
+      trackId(0),
+      captureTimeMs(0),
+      uid(0),
+      streamType(VIDEO_STREAM_HIGH) {}
+
+  EncodedVideoFrameInfo(const EncodedVideoFrameInfo&amp; rhs)
+    : codecType(rhs.codecType),
+      width(rhs.width),
+      height(rhs.height),
+      framesPerSecond(rhs.framesPerSecond),
+      frameType(rhs.frameType),
+      rotation(rhs.rotation),
+      trackId(rhs.trackId),
+      captureTimeMs(rhs.captureTimeMs),
+      uid(rhs.uid),
+      streamType(rhs.streamType) {}
+
+  EncodedVideoFrameInfo&amp; operator=(const EncodedVideoFrameInfo&amp; rhs) {
+    if (this == &amp;rhs) return *this;
+    codecType = rhs.codecType;
+    width = rhs.width;
+    height = rhs.height;
+    framesPerSecond = rhs.framesPerSecond;
+    frameType = rhs.frameType;
+    rotation = rhs.rotation;
+    trackId = rhs.trackId;
+    captureTimeMs = rhs.captureTimeMs;
+    uid = rhs.uid;
+    streamType = rhs.streamType;
+    return *this;
+  }
+    VIDEO_CODEC_TYPE codecType;
+    int width;
+    int height;
+    int framesPerSecond;
+    VIDEO_FRAME_TYPE frameType;
+    VIDEO_ORIENTATION rotation;
+    int trackId;    int64_t captureTimeMs;
+    uid_t uid;
+    VIDEO_STREAM_TYPE streamType;
+};
+</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class EncodedVideoFrameInfo
+  {
+      public EncodedVideoFrameInfo()
+      {
+          codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_H264;
+          width = 0;
+          height = 0;
+          framesPerSecond = 0;
+          frameType = VIDEO_FRAME_TYPE_NATIVE.VIDEO_FRAME_TYPE_BLANK_FRAME;
+          rotation = VIDEO_ORIENTATION.VIDEO_ORIENTATION_0;
+          trackId = 0;
+          renderTimeMs = 0;
+          uid = 0;
+          streamType = VIDEO_STREAM_TYPE.VIDEO_STREAM_HIGH;
+
+      }
+
+      public EncodedVideoFrameInfo(ref EncodedVideoFrameInfo rhs)
+      {
+          codecType = rhs.codecType;
+          width = rhs.width;
+          height = rhs.width;
+          framesPerSecond = rhs.framesPerSecond;
+          frameType = rhs.frameType;
+          rotation = rhs.rotation;
+          trackId = rhs.trackId;;
+          renderTimeMs = rhs.renderTimeMs;
+          uid = rhs.uid;
+          streamType = rhs.streamType;
+      }
+
+      public VIDEO_CODEC_TYPE codecType { set; get; }
+      public int width { set; get; }
+      public int height { set; get; }
+      public int framesPerSecond { set; get; }
+      public VIDEO_FRAME_TYPE_NATIVE frameType { set; get; }
+      public VIDEO_ORIENTATION rotation { set; get; }
+      public int trackId { set; get; }
+      public int64_t renderTimeMs { set; get; }
+      public uint uid { set; get; }
+      public VIDEO_STREAM_TYPE streamType { set; get; }
+  }</codeblock> </p>
         </section>
         <section id="parameters">
             <title><text
@@ -197,10 +220,12 @@
             <parml>
             <plentry>
                 <pt>codecType</pt>
-                <pd props="ios mac cpp unity">The codec type of the local video stream. See <xref keyref="VIDEO_CODEC_TYPE"/>. The default value is <codeph><ph keyref="VIDEO_CODEC_H264"/> (2)</codeph>.</pd>
+                <pd props="ios mac cpp unity">The codec type of the local video stream. See <xref
+                    keyref="VIDEO_CODEC_TYPE"/>. The default value is <codeph><ph
+                    keyref="VIDEO_CODEC_H264"/> (2)</codeph>.</pd>
                 <pd props="android">The codec type of the video:<ul id="ul_hkm_4qy_4qb">
-                    <li>1: VP8</li>
-                    <li>2: (Default) H264</li>
+                    <li>1: VP8.</li>
+                    <li>2: (Default) H264.</li>
                     <li props="hide">5: VP9.</li>
                     </ul></pd>
             </plentry>
@@ -221,46 +246,55 @@
             </plentry>
             <plentry>
                 <pt>frameType</pt>
-                <pd props="ios mac cpp unity">The video frame type, see <xref keyref="VIDEO_FRAME_TYPE"/>.</pd>
-                <pd props="android">The video frame type.<ul id="ul_djl_sqy_4qb">
-                    <li>0: (Default) <ph keyref="VIDEO_FRAME_TYPE_BLANK_FRAME" />, blank frame.</li>
-                    <li>3: <ph keyref="VIDEO_FRAME_TYPE_KEY_FRAME"/>, keyframe.</li>
-                    <li>4: <ph keyref="VIDEO_FRAME_TYPE_DELTA_FRAME" />, the Delta frame.</li>
-                    <li>5:<ph keyref="VIDEO_FRAME_TYPE_B_FRAME"/> , the B frame</li>
-                    <li>6: <ph keyref="VIDEO_FRAME_TYPE_UNKNOWN"/>, unknown frame</li>
+                <pd props="ios mac cpp unity">The video frame type, see <xref
+                    keyref="VIDEO_FRAME_TYPE"/>.</pd>
+                <pd props="android">The video frame type:<ul id="ul_djl_sqy_4qb">
+                    <li>0: (Default) <ph keyref="VIDEO_FRAME_TYPE_BLANK_FRAME"
+                        />, blank frame.</li>
+                    <li>3: <ph keyref="VIDEO_FRAME_TYPE_KEY_FRAME"/>, the keyframe.</li>
+                    <li>4: <ph keyref="VIDEO_FRAME_TYPE_DELTA_FRAME"
+                        />, the Delta frame.</li>
+                    <li>5: <ph keyref="VIDEO_FRAME_TYPE_B_FRAME"/>, the B frame.</li>
+                    <li>6: <ph keyref="VIDEO_FRAME_TYPE_UNKNOWN"/>, unknown frame.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>rotation</pt>
-                <pd props="ios mac cpp unity">The rotation information of the video frame, see <xref keyref="VIDEO_ORIENTATION"/>.</pd>
-                <pd props="android">The rotation information of the video frame, as the following:<ul>
-                        <li>0: (Default) 0 degree.</li>
-                        <li>90: 90 degrees.</li>
-                        <li>180: 80 degrees.</li>
-                        <li>270: 270 degrees.</li>
-                        </ul> </pd>
+                <pd props="ios mac cpp unity">The rotation information of the video frame, see <xref
+                    keyref="VIDEO_ORIENTATION"/>.</pd>
+                <pd props="android">Rotation information of the video frame, as the following:<ul>
+                    <li>0: (Default) 0 degree.</li>
+                    <li>90: 90 degrees.</li>
+                    <li>180: 180 degrees.</li>
+                    <li>270: 270 degrees.</li>
+                    </ul> </pd>
             </plentry>
             <plentry>
                 <pt>trackId</pt>
                 <pd>Reserved for future use.</pd>
                 <pd>The track ID. Used in scenarios with multiple video tracks in the channel.</pd>
             </plentry>
-                <plentry props="android ios mac cpp">
-                    <pt>captureTimeMs</pt>
-                    <pd>The Unix timestamp (ms) for rendering externally encoded video frames.</pd>
-                </plentry>
+            <plentry props="android ios mac cpp">
+                <pt>captureTimeMs</pt>
+                <pd>The Unix timestamp (ms) for capturing the external encoded video frames.</pd>
+            </plentry>
             <plentry props="unity">
-                    <pt>renderTimeMs</pt>
-                    <pd>The Unix timestamp (ms) for rendering the external encoded video frames.</pd>
-                </plentry>
+                <pt>renderTimeMs</pt>
+                <pd>The Unix timestamp (ms) for rendering the external encoded video frames.</pd>
+            </plentry>
             <plentry>
                 <pt>uid</pt>
                 <pd>The user ID to push the the external encoded video frame.</pd>
             </plentry>
-            <plentry props="ios mac cpp unity">
-                    <pt>streamType</pt>
-                    <pd>The type of video streams. See <xref keyref="REMOTE_VIDEO_STREAM_TYPE"/>.</pd>
-                </plentry>
+            <plentry>
+                <pt>streamType</pt>
+                <pd><ph>The type of video streams. </ph><ph props="apple cpp">See <xref keyref="REMOTE_VIDEO_STREAM_TYPE"/></ph>.</pd>
+                <pd props="android">
+                    <ul>
+                      <li><ph keyref="REMOTE_VIDEO_STREAM_HIGH"/>(0): High-quality stream, that is, a high-resolution and high-bitrate video stream.</li>
+                      <li><ph keyref="REMOTE_VIDEO_STREAM_LOW"/>(1): Low-quality stream, that is, a low-resolution and low-bitrate video stream.</li>
+                      </ul> </pd>
+            </plentry>
             </parml> </section>
     </refbody>
 </reference>
