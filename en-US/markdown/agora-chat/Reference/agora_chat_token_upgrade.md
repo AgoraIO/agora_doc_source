@@ -225,7 +225,7 @@ AccessToken2 supports the following versions of the Agora RTC SDK：
 
 RTC SDKs that use AccessToken2 can interoperate with RTC SDKs that use AccessToken. Also, the RTC SDK that supports AccessToken2 also supports AccessToken. 
 
-<div class="alert info">If you use other RTC extentions, such as Agora Cloud Recording and Media Push, contact <a href="mailto:sales@agora.io">sales@agora.io</a> for technical support before upgrading to AccessToken2. </div>
+<div class="alert info">If you use other RTC extentions, such as Agora Cloud Recording and Media Push, contact <a href="mailto:support@agora.io">support@agora.io</a> for technical support before upgrading to AccessToken2. </div>
 
 ### Token generator libraries
 

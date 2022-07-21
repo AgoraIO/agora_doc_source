@@ -296,7 +296,7 @@ message.chatType = AgoraChatTypeChat;
 
 ### Recall messages
 
-After sending a message, you can recall it using the `recallMessage` method. The default time limit for recalling a message is two minutes after the message. To customize this time limit, contact sales@agora.io.
+After sending a message, you can recall it using the `recallMessage` method. The default time limit for recalling a message is two minutes after the message. To customize this time limit, contact support@agora.io.
 
 Refer to the following code sample to recall a message:
 
@@ -573,7 +573,7 @@ Refer to the following code to implement read receipts for the specified message
 
 For chat group messages, when the group owner or an admin sends a messge, they can set whether to require a message read receipt.
 
-<div class="alert note">You need to contact sales@agora.io to enable the group message read receipt feature. Once enabled, this feature applies to the chat group owner and chat group admins only.</div>
+<div class="alert note">You need to contact support@agora.io to enable the group message read receipt feature. Once enabled, this feature applies to the chat group owner and chat group admins only.</div>
 
 To receive the chat message receipt, the message sender needs to set `isNeedGroupAck` as `YES` when sending the message.
 

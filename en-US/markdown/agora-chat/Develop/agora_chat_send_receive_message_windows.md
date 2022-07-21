@@ -74,7 +74,7 @@ SDKClient.Instance.ChatManager.RemoveChatManagerDelegate(adelegate);
 
 ### Recall a message
 
-Two minutes after a user sends a message, this user can withdraw it. Contact sales@agora.io if you want to adjust the time limit.
+Two minutes after a user sends a message, this user can withdraw it. Contact support@agora.io if you want to adjust the time limit.
 
 ```C#
 // Call `RecallMessage` to recall the message.

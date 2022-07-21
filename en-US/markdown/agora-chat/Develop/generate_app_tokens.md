@@ -22,7 +22,7 @@ An Agora Chat app token is valid for a maximum of **24 hours**. When you call Ag
 ## Preprequisites
 
 - A valid [Agora account](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#create-an-agora-account)
-- An [Agora project](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#create-an-agora-project) with the [App Certificate](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#get-the-app-certificate) and Agora Chat enabled. To enable Agora Chat, contact support@agora.io.
+- An [Agora project](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#create-an-agora-project) with the [App Certificate](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#get-the-app-certificate) and Agora Chat enabled. See [Enable and Configure Chat Service](./enable_agora_chat) for details.
 
 - The [App ID](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#get-the-app-id) , `org_name` and `app_name` of your Agora project, see [Enable and Configure Agora Chat](./enable_agora_chat).
 
@@ -30,7 +30,7 @@ If your network environment has a firewall, Agora provides firewall whitelists s
 
 ## Implement the authentication flow
 
-This section shows how to implement autentication with an Agora Chat app token step by step.
+This section shows how to implement authentication with an Agora Chat app token step by step.
 
 ### Create an app token server
 

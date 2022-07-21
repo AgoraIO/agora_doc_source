@@ -24,8 +24,7 @@ A user token is a dynamic key generated on your app server that is valid for a m
 Ensure that you meet the following requirements before proceeding:
 
 - A valid [Agora Account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up).
-- An Agora project with Agora Chat enabled.
-  To enable Agora Chat, contact support@agora.io.
+- An Agora project with Agora Chat enabled. See [Enable and Configure Chat Service](./enable_agora_chat) for details.
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
 
 ## Implement the authentication flow
