@@ -4,7 +4,7 @@ The presence feature enables users to publicly display their online presence sta
 
 This page shows how to use the Agora Chat RESTful API to implement presence in your project. Before calling the following methods, ensure that you meet the following:
 - You understand the call frequency limit of the Chat RESTful APIs as described in [Limitations](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side).
-- You have activated the presence feature in [Agora Console](http://console.staging.agora.io/).
+- You have activated the presence feature in [Agora Console](http://console.agora.io/).
 
 
 ## Common parameters <a name="param"></a>

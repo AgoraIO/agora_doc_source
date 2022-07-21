@@ -4,10 +4,10 @@ You can use the HTTP callbacks to synchronize messages on your own server, or mo
 
 ## Understand the tech
 
-According to whether the message delivery is intervented, the callbacks are divided in two categories:
+According to whether the message delivery is intervened, the callbacks are divided in two categories:
 
 - Pre-delivery callbacks: Mainly used for content moderation. When the Agora Chat server receives a message from the client app, it sends a request to your app server and waits for a response that decides if the message delivery is passed or rejected. Pre-delivery callbacks only apply to messages sent from your client apps.
-- Post-delivery callbacks: Maily used for data synchronization. When certain events occur, for example, a user sends out a message or gets offline, the Agora Chat server sends a request to your app server and does not validate the response content. Post-delivery callbacks apply to messages and other events sent from you client and server apps.
+- Post-delivery callbacks: Mainly used for data synchronization. When certain events occur, for example, a user sends out a message or gets offline, the Agora Chat server sends a request to your app server and does not validate the response content. Post-delivery callbacks apply to messages and other events sent from you client and server apps.
 
 The following table summarizes the differences between the two categories of callbacks.
 
@@ -49,8 +49,10 @@ As shown in the figure, the workflow of post-delivery callbacks is as follows:
 
 To use the HTTP callbacks, you must meet the following requirements:
 
-- Have an Agora project with Agora Chat enabled.
-- Subscribe to a Pro or Enterprise pricing plan.
+- You have an Agora project with Agora Chat [enabled](./enable_agora_chat).
+- You understand the API call frequency limit as described in [Limitations](./agora_chat_limitation?platform=Android).
+- The HTTP callback feature is not enabled by default. To use this feature, you need to subscribe to the **Pro** or **Enterprise** [pricing plan](./agora_chat_plan) and enable it in [Agora Console](https://console.agora.io/).
+<div class="alert note">You must contact <a href="mailto:support@agora.io">support@agora.io</a> to disable this feature as this operation will delete all the relevant configurations.</div>
 
 ## Configure callback rules
 

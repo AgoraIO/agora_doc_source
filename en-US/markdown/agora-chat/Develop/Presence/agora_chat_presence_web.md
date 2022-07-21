@@ -37,7 +37,7 @@ Before proceeding, ensure that your environment meets the following requirements
 
 - You have initialized the Agora Chat SDK. For details, see [Get Started with Web](./agora_chat_get_started_web).
 - You understand the API call frequency limit as described in [Limitations](./agora_chat_limitation).
-- You have activated the presence feature in [Agora Console](http://console.staging.agora.io/).
+- You have activated the presence feature in [Agora Console](http://console.agora.io/).
 
 
 ## Implementation

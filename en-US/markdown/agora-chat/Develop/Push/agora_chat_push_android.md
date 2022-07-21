@@ -12,7 +12,9 @@ Assume that User A sends a message to User B, but User B goes offline before rec
 
 Before proceeding, ensure that you meet the following requirements:
 - You have initialized the Agora Chat SDK. For details, see [Get Started with Android](./agora_chat_get_started_android).
-- You have activated the advanced features for push in [Agora Console](https://console.agora.io/). Advanced features allow you to set the push notification mode, do-not-disturb mode, and custom push template. 
+- You understand the call frequency limit of the Agora Chat APIs supported by different pricing plans as described in [Limitations](./agora_chat_limitation).
+- You have activated the advanced features for push in [Agora Console](https://console.agora.io/). Advanced features allow you to set the push notification mode, do-not-disturb mode, and custom push template.
+<div class="alert note">You must contact <a href="mailto:support@agora.io">support@agora.io</a> to disable the advanced features for push as this operation will delete all the relevant configurations.</div>
 
 
 ## Integrate FCM with Agora Chat
@@ -45,9 +47,13 @@ This section guides you through how to integrate FCM with Agora Chat.
 
 1. Log in to [Agora Console](https://console.agora.io/), and click **Project Management** in the left navigation bar.
 
-2. In the **Project Management** page, select the project item used to enable Agora Chat, and click **Config** in the **Action** column.
+2. On the **Project Management** page, locate the project that has Chat enabled and click **Config**.
 
-3. Add `/chat` after the URL of the project config page, and press **Enter**.
+3. On the project edit page, click **Config** next to **Chat**.
+
+4. On the project config page, select **Features** > **Push Certificate** and click **Add Push Certificate**.
+
+5. In the pop-up window, select the **GOOGLE** tab, and configure the following fields:
 
 4. In the **Push Notifications** module, click **Add Push Certificate**.
 
@@ -437,17 +443,15 @@ ChatClient.getInstance().pushManager().getPreferredNotificationLanguage(new Valu
 
 Agora Chat allows users to use ready-made templates for push notifications.
 
-You can create and provide push templates for users in [Agora Console](https://console.agora.io/) by referring to the following steps:
+You can create and provide push templates for users by referring to the following steps:
 
-1. In the left-side panel, select **Project Management**.
+1. Log in to [Agora Console](https://console.agora.io/), and click **Project Management** in the left navigation bar.
 
-2. On the **Project Management** page, select the **Config** button in the **Action** column of the project for which you want to set push templates.
+2. On the **Project Management** page, locate the project that has Chat enable and click **Config**.
 
-3. On the project details page, select the **Config** button in the **Agora Chat** section.
+3. On the project edit page, click **Config** next to **Chat**.
 
-4. In the left-side panel of the Agora Chat configuration page, select **Push Template**.
-
-5. On the **Push Template** page, click **Add Push Template**, and configure the fields in the pop-up window, as shown in the following figure:
+4. On the project config page, select **Features** > **Push Template** and click **Add Push Template**, and configure the fields in the pop-up window, as shown in the following figure:
 
 ![](https://web-cdn.agora.io/docs-files/1655445229699)
 

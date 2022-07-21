@@ -24,6 +24,8 @@ Before proceeding, ensure that your environment meets the following requirements
 - The project integrates a version of the Agora Chat SDK later than v1.0.3 and has implemented the [basic real-time chat functionalities](./agora_chat_get_started_ios?platform=iOS).
 - You understand the API call frequency limit as described in [Limitations](./agora_chat_limitation?platform=iOS).
 
+<div class="alert info">The reaction feature is supported by all types of <a href="https://docs.agora.io/en/agora-chat/agora_chat_plan">Pricing Plans</a> and is enabled by default once you have enabled Chat in <a href="https://console.agora.io/">Agora Console</a>.</div>
+
 ## Implementation
 
 This section introduces how to implement reaction functionalities in your project.

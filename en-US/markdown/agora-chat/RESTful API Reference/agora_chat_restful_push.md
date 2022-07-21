@@ -2,7 +2,11 @@
 
 This page shows how to call Chat RESTful APIs to set the display name, display style, push notification mode, and do-not-disturb (DND) mode.
 
-Before calling the following methods, make sure you understand the call frequency limit of the Chat RESTful APIs as described in [Limitations](./agora_chat_limitation#call-limit-of-server-side).
+Before calling the following methods, ensure that you meet the following:
+- You understand the call frequency limit of the Chat RESTful APIs as described in [Limitations](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side).
+- You have activated the advanced features for push in [Agora Console](https://console.agora.io/). Advanced features allow you to set the push notification mode, do-not-disturb mode, and custom push template.
+
+<div class="alert note">You must contact <a href="mailto:support@agora.io">support@agora.io</a> to disable the advanced features for push as this operation will delete all the relevant configurations.</div>
 
 ## Common parameters
 
