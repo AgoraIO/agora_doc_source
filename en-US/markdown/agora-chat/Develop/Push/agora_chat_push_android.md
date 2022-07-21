@@ -14,7 +14,7 @@ Before proceeding, ensure that you meet the following requirements:
 - You have initialized the Agora Chat SDK. For details, see [Get Started with Android](./agora_chat_get_started_android).
 - You understand the call frequency limit of the Agora Chat APIs supported by different pricing plans as described in [Limitations](./agora_chat_limitation).
 - You have activated the advanced features for push in [Agora Console](https://console.agora.io/). Advanced features allow you to set the push notification mode, do-not-disturb mode, and custom push template.
-<div class="alert note">You must contact <a href="mailto:support@agora.io">support@agora.io</a> to disable this feature as this operation will delete all the relevant configurations.</div>
+<div class="alert note">You must contact <a href="mailto:support@agora.io">support@agora.io</a> to disable the advanced features for push as this operation will delete all the relevant configurations.</div>
 
 
 ## Integrate FCM with Agora Chat
@@ -47,7 +47,11 @@ This section guides you through how to integrate FCM with Agora Chat.
 
 1. Log in to [Agora Console](https://console.agora.io/), and click **Project Management** in the left navigation bar.
 
-2. In the **Project Management** page, select the project item used to enable Agora Chat, and click **Config** in the **Action** column.
+2. On the **Project Management** page, select the project item that has Chat enabled, and click **Config** in the **Action** column.
+
+3. On the project edit page, select **Config** next to **Chat**.
+
+4. On the project config page, select F
 
 3. Add `/chat` after the URL of the project config page, and press **Enter**.
 
