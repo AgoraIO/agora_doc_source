@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startrhythmplayer">
     <title><ph keyref="startRhythmPlayer"/></title>
-    <shortdesc id="short">Enables the virtual metronome.</shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Enables the virtual metronome.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -34,23 +34,23 @@
             <note type="attention" id="rhythm_play">
             <ul>
             <li props="cpp unity">This method is for Android and iOS only.</li>
-            <li>After enabling the virtual metronome, the SDK plays the specified audio effect file from the beginning, and controls the playback duration of each file according to beatsPerMinuteyou set in . For example, if you set beatsPerMinute as 60, the SDK plays one beat every second. If the file duration exceeds the beat duration, the SDK only plays the audio within the beat duration.</li>
-            <li>By default, the sound of the virtual metronome is published in the channel. If you do not want the sound to be heard by the remote users, you can set publishRhythmPlayerTrack in  as .</li>
+            <li>After enabling the virtual metronome, the SDK plays the specified audio effect file from the beginning, and controls the playback duration of each file according to <parmname>beatsPerMinute</parmname>you set in <xref keyref="AgoraRhythmPlayerConfig"/>. For example, if you set <parmname>beatsPerMinute</parmname> as <codeph>60</codeph>, the SDK plays one beat every second. If the file duration exceeds the beat duration, the SDK only plays the audio within the beat duration.</li>
+            <li>By default, the sound of the virtual metronome is published in the channel. If you do not want the sound to be heard by the remote users, you can set <parmname>publishRhythmPlayerTrack</parmname> in <xref keyref="ChannelMediaOptions"/> as <codeph><ph keyref="false"/></codeph>.</li>
             </ul></note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>sound1</pt>
-                <pd>The absolute path or URL address (including the filename extensions) of the file for the downbeat. For example: . For the audio file formats supported by this method, see What formats of audio files does the Agora RTC SDK support.</pd>
+                <pd>The absolute path or URL address (including the filename extensions) of the file for the downbeat. For example: <codeph><ph keyref="filePath-example"/></codeph>. For the audio file formats supported by this method, see <xref keyref="audio-format">What formats of audio files does the Agora RTC SDK support</xref>.</pd>
             </plentry>
             <plentry>
                 <pt>sound2</pt>
-                <pd>The absolute path or URL address (including the filename extensions) of the file for the upbeats. For example: . For the audio file formats supported by this method, see What formats of audio files does the Agora RTC SDK support.</pd>
+                <pd>The absolute path or URL address (including the filename extensions) of the file for the upbeats. For example: <codeph><ph keyref="filePath-example"/></codeph>. For the audio file formats supported by this method, see <xref keyref="audio-format">What formats of audio files does the Agora RTC SDK support</xref>.</pd>
             </plentry>
             <plentry>
                 <pt>config</pt>
-                <pd>The metronome configuration. See .</pd>
+                <pd>The metronome configuration. See <xref keyref="AgoraRhythmPlayerConfig"/>.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity">
@@ -58,7 +58,7 @@
             <ul>
             <li>0: Success.</li>
             <li>&lt; 0: Failure.<ul>
-                <li>-22: Cannot find audio effect files. Please set the correct paths for sound1 and sound2.</li>
+                <li>-22: Cannot find audio effect files. Please set the correct paths for <parmname>sound1</parmname> and <parmname>sound2</parmname>.</li>
                 </ul></li>
             </ul> </section>
     </refbody>
