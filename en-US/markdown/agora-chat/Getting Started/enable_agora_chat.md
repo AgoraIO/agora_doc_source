@@ -18,11 +18,10 @@ Before enabling the Agora Chat service, make sure that you have the following:
 
 3. In the **Features** section of the **Edit Project** page, click **Enable** next to **Chat** to enable the service.
 
-Once the Chat service is enabled, you are redirected to the Chat config page. You can then enable the below advanced features of Chat based on your business requirements:
+4. Once the Chat service is enabled, you are redirected to the Chat config page. You can then enable the below advanced features of Chat based on your business requirements:
 
-<img width="50%" src="https://web-cdn.agora.io/docs-files/1658310228255" />
-
-<img width="50%" src="https://web-cdn.agora.io/docs-files/1658310318751" />
+![](https://web-cdn.agora.io/docs-files/1658310228255)
+![](https://web-cdn.agora.io/docs-files/1658310318751)
 
 For details about these advanced features, see the following:
 - [Message Callback](./agora_chat_set_up_webhooks)
@@ -48,7 +47,7 @@ Follow these steps to get the project information:
 
 1. Find the project that has enabled the Chat service on the [Project management](https://console.agora.io/projects) page at Agora Console, and click **Config**.
 2. On the project edit page, find **Chat** and click **Config**.
-3. On the project config page, get the values of **Data Center**, **AppKey**, **OrgName**, **AppName**, **WebSocketAddress**, and **REST API**.
+3. On the project config page, get the values of **Data Center**, **AppKey**, **OrgName**, **AppName**, and **WebSocketAddress**, and **REST API**.
 
 
 ## Next steps

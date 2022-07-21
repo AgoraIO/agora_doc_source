@@ -41,22 +41,27 @@ A user buys the Starter Agora Chat plan, which includes 5,000 MAU, and uses the 
 
 Before using Agora Chat, refer to the following steps to subscribe to a plan:
 
-1. Log in to [Agora Console](https://console.agora.io/), on the left navigation bar, click **Package** > **Chat** > **Subscribe** on the left navigation bar.
+1. Log in to [Agora Console](https://console.agora.io/), on the left navigation bar, click **Pricing Plan** > **Agora Chat IM** > **Subscribe** on the left navigation bar.
 2. Check [pricing plan details](./agora_chat_plan?platform=All%20Platforms), choose the plan you want to use, click **Subscribe**, and make the payment.
 
-Subscription takes effect immediately. After subscribing to a plan, you can click **Package** > **Chat** > **Manage**, and on this page you can click **Show More** to view your subscription details.
+Subscription takes effect immediately. After subscribing to a plan, you can click **Pricing Plan** > **Agora Chat IM** > **Management**, and on this page you can click **Details** to view your subscription details.
 
+> By default, subscription to Agora Chat pricing plans is automatically renewed. You can cancel it or switch to another plan at any time.
 
-### Unsubscribe from a plan
+### Unsubscribe from a plan or switch to another plan
 
-By default, your subscription to Agora Chat pricing plans is automatically renewed. You must contact [support@agora.io](mailto:support@agora.io) to proceed with the unsubscription as this operation will delete all the Chat-related data.
+To unsubscribe from an Agora Chat pricing plan or switch to another plan, do the following:
 
+#### To unsubscribe from a plan
 
-### Switch to another plan
+1. Click **Pricing Plan** > **Agora Chat IM** > **Management**, and on this page you can click **Details** to view your subscription details.
+2. Click **Cancel**.
+
+#### To switch to another plan
 
 If you want to upgrade your present plan, you can click the Subscribe button of another plan; if you want to downgrade your present plan, contact [support@agora.io](mailto:support@agora.io):
 
-1. On **Package** > **Chat** > **Subscribe** page, you can choose the plan you want to use and click **Subscribe**.
+1. On **Pricing Plan** > **Agora Chat IM** > **Subscribe** page, you can choose the plan you want to use and click **Subscribe**.
 2. Read the content in the pop-up, and then click **Save**.
 
 Unsubscribing from a plan or switching to another plan takes effect on the first day of the next month. For the current month, you still have access to the features and APIs provided by the plan. The subscription fee you paid for this month is not refunded, and any excess usage that occurs in this month is charged.
