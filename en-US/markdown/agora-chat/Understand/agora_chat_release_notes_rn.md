@@ -1,4 +1,46 @@
-This page provides release notes for the Agora Chat SDK for C#.
+This page provides release notes for the Agora React Native Chat SDK.
+
+## v1.0.6
+
+v1.0.6 was released on July 22, 2022.
+
+#### Compatibility changes
+
+The following APIs are renamed:
+
+- `deleteRemoteConversation` is renamed `removeConversationFromServer`.
+- `loadAllConversations` is renamed `getAllConversations`.
+- `getConversationsFromServer` is renamed `fetchAllConversations`.
+- `getUnreadMessageCount` is renamed `getUnreadCount`.
+- `fetchLatestMessage` is renamed `getLatestMessage`.
+- `fetchLastReceivedMessage` is renamed `getLatestReceivedMessage`.
+- `unreadCount` is renamed `getConversationUnreadCount`.
+- `getMessagesFromTime` is renamed `getMessageWithTimestamp`.
+- `WhiteList` is renamed `AllowList`.
+- `BlackList` is renamed `BlockList`.
+
+The following API are removed:
+
+- `getMessageById`
+- `insertMessage`
+- `appendMessage`
+
+#### New features
+
+- Adds a `isOnline` field in chat messages.
+
+#### Improvements
+
+- Updated the API example.
+- The dependent native SDK (iOS and Android) was upgraded to v3.9.4.
+- React-Native was upgraded to 0.66.4 LTS version.
+- The Android platform no longer needed to perform additional operations.
+- `agora-react-native-chat` was changed to `react-native-agora-chat`.
+
+#### Issues fixed
+
+- Type declaration entry point was incorrect.
+
 
 ## v1.0.5
 
