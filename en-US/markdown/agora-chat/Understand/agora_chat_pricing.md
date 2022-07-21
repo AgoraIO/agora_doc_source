@@ -10,30 +10,51 @@ Each month, Agora calculates your bill for using Agora Chat, [issues your bill, 
 
 When each month finishes, Agora calculates your usage of Agora Chat in your [Agora account](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=Android#create-an-agora-account). After deducting the usage included in your plan, Agora multiplies any excess usage by the corresponding unit price and adds this to the plan fee to get the total cost for that month. The formula is as follows:
 
-**Total cost = plan fee + excess usage** × **unit price of the excess usage**
+**Total cost = Plan fee + Excess usage × Unit price of the excess usage + (Optional) Add-on fee** 
 
-### Usage
+### Plan fee
 
 Agora bills you based on the total number of MAUs (Monthly Active Users) in the [Agora account](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=Android#create-an-agora-account).
 
 > An active user is a user who calls the login method to log in to the Agora Chat server and sets up a long-lived connection at some point during the month.
 
-### The pricing plan usage
-
 Agora Chat offers four pricing plans: Free, Starter, Pro, and Enterprise. See [details of each pricing plan](./agora_chat_plan) for their features and limitations. The following table outlines the base fee and included usage for each plan:
 
-| Agora Chat plan | Fee (US$)  | Included usage (MAU) | Unit price of excess usage (US$/MAU) |
-| :-------------- | :--------- | :------------------- | :----------------------------------- |
-| Free            | 0          | 500                  | Subscribe to the pricing plan        |
-| Starter         | 299        | 5,000                | 0.05                                 |
-| Pro             | 699        | 5,000                | 0.05                                 |
-| Enterprise      | Customized | Customized           | Customized                           |
+| Agora Chat plan | Fee (US$)  | Included usage (MAU) | 
+| :-------------- | :--------- | :------------------- | 
+| Free            | 0          | 500                  | 
+| Starter         | 349        | 5,000                | 
+| Pro             | 699        | 5,000                | 
+| Enterprise      | Customized | Customized           | 
 
 
+### Price of excess usage
 
-## Examples
+If your MAU exceeds the included usage of the pricing plan, the excess usage fees are incurred. The following table outlines the unit price of excess usage for each plan:
 
-A user buys the Starter Agora Chat plan, which includes 5,000 MAU, and uses the Agora Chat service in Project A and Project B. For that month, the total number of MAU for Project A is 2,370 and for Project B is 7,865. Therefore, the total cost of that month's Agora Chat is as follows: (2,370 + 7,865 - 5,000) * 0.05 + 299 = US$560.75.
+| Agora Chat plan | Unit price of excess usage (US$/MAU) |
+| :-------------- | :----------------------------------- |
+| Free            |    N/A *       |
+| Starter         | 0.05     |
+| Pro             | 0.05        |
+| Enterprise      | Customized           |
+
+*The Free plan does not allow you to exceed the included usage of MAU. Once the MAU exceeds 500, the server declines the subsequent login requests.
+
+For example, a user buys the Starter Agora Chat plan, which includes 5,000 MAU, and uses the Agora Chat service in Project A and Project B. For that month, the total number of MAU for Project A is 2,370 and for Project B is 7,865. Therefore, the total cost of that month's Agora Chat is as follows: (2,370 + 7,865 - 5,000) * 0.05 + 299 = US$560.75.
+
+
+### (Optional) Add-on fee
+
+Chat provides the translation and content moderation features to meet your business requirements. Once enabled these features, the add-on fees are incurred. The following table outlines the pricing of these two features:
+
+| Add-on service | Pricing |
+| :-------------- | :----------------------------------- |
+| Translation | $0.02/1,000 characters* |
+| AI-Powered Content Moderation | $1.5/1,000 transactions** |
+
+*The number of characters count special characters and white spaces. For example, "I love you!" contains 11 characters in total, with eight letters, two white spaces, and one special character.  
+**AI-Powered Content Moderation supports text moderation and image moderation. For text moderation, each transaction equals 3 KB of text content (roughly around 30 sentences). For image moderation, each image counts one transaction.
 
 ## Plan management
 
