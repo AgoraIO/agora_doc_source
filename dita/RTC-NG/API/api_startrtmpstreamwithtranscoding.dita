@@ -25,8 +25,8 @@
             <p>调用该方法后，SDK 会在本地触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调，报告推流的状态。</p>
             <note type="attention" id="note">
             <ul>
-            <li props="rtc-ng">请确保已开通旁路推流服务。</li>
-            <li props="rtc">请确保已开通旁路推流服务，详见进阶功能<xref keyref="guide-cdn-streaming">旁路推流</xref>中的前提条件。</li>
+            <li>请确保已开通旁路推流服务。</li>
+            <li props="hide">请确保已开通旁路推流服务，详见进阶功能<xref keyref="guide-cdn-streaming">旁路推流</xref>中的前提条件。</li>
             <li>请在加入频道后调用该方法。</li>
             <li>只有直播场景下的主播才能调用该方法。</li>
             <li>调用该方法推流失败后，如果你想要重新推流，那么请你务必先调用 <xref keyref="stopRtmpStream"/>，再调用该方法重推，否则 SDK 会返回与上次推流失败时一样的错误码。</li>
@@ -50,6 +50,7 @@
             <ul>
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。
+                
                 <ul props="android ios mac">
                 <li>-2：url 为空或为长度为 0 的字符串。</li>
                 <li>-7：调用该方法前，未初始化 SDK。</li>

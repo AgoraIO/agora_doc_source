@@ -17,17 +17,21 @@
                <p outputclass="codeblock" props="rtc">
                <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstLocalVideoFrame(int width, int height, int elapsed)</codeblock></p>
                <p outputclass="codeblock">
-               <codeblock props="android" outputclass="language-java">public void onFirstLocalVideoFrame(int width, int height, int elapsed) {}</codeblock>
+               <codeblock props="android" outputclass="language-java">public void onFirstLocalVideoFrame(
+      Constants.VideoSourceType source, int width, int height, int elapsed) {}
+</codeblock>
                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
                      firstLocalVideoFrameWithSize:(CGSize)size
-                     elapsed:(NSInteger)elapsed;</codeblock>
-               <codeblock props="cpp" outputclass="language-cpp">virtual void onFirstLocalVideoFrame(int width,
-     int height,
-     int elapsed) {
-     (void)width;
-     (void)height;
-     (void)elapsed;
-     }</codeblock>
+                     elapsed:(NSInteger)elapsed
+                     sourceType:(AgoraVideoSourceType)sourceType;
+</codeblock>
+               <codeblock props="cpp" outputclass="language-cpp">virtual void onFirstLocalVideoFrame(VIDEO_SOURCE_TYPE source, int width, int height, int elapsed) {
+    (void)source;
+    (void)width;
+    (void)height;
+    (void)elapsed;
+  }
+</codeblock>
                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.FIRST_LOCAL_VIDEO_FRAME, cb: (
      width: number,
      height: number,
@@ -47,7 +51,11 @@
                     <pt/>
                     <pd/>
                </plentry>
-               <plentry props="ios mac">
+                <plentry conkeyref="onLocalVideoStateChanged/source">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                    <plentry props="ios mac">
                     <pt>size</pt>
                     <pd>本地渲染视频的尺寸。</pd>
                </plentry>
@@ -65,8 +73,7 @@
                </plentry>
                <plentry>
                     <pt>elapsed</pt>
-                    <pd> 从调用 <apiname keyref="joinChannel2"/> 到发生此事件过去的时间（毫秒）。如果在 <apiname keyref="joinChannel2"/> 前调用了 <xref keyref="startPreview"/>，则是从
-                                   <apiname keyref="startPreview"/> 到发生此事件过去的时间。</pd>
+                    <pd>从调用 <apiname keyref="joinChannel2"/> 到发生此事件过去的时间（毫秒）。如果在 <apiname keyref="joinChannel2"/> 前调用了 <xref keyref="startPreview"/>，则是从 <apiname keyref="startPreview"/> 到发生此事件过去的时间。</pd>
                </plentry>
                </parml> </section>
      </refbody>

@@ -27,27 +27,21 @@ class AgoraVideoViewState extends State<AgoraVideoView> with RtcRenderMixin {
     if (defaultTargetPlatform == TargetPlatform.macOS ||
         defaultTargetPlatform == TargetPlatform.windows) {
       return AgoraRtcRenderTexture(
-        key: widget.key,
-        controller: widget.videoViewController,
-      );
+          key: widget.key, controller: widget.controller);
     }
 
-    if (widget.videoViewController.useFlutterTexture) {
+    if (widget.controller.useFlutterTexture) {
       if (defaultTargetPlatform == TargetPlatform.android) {
         return const Text(
             'Flutter texture render is not supported on Android.');
       }
 
       return AgoraRtcRenderTexture(
-        key: widget.key,
-        controller: widget.videoViewController,
-      );
+          key: widget.key, controller: widget.controller);
     }
 
     return AgoraRtcRenderPlatformView(
-      key: widget.key,
-      controller: widget.videoViewController,
-    );
+        key: widget.key, controller: widget.controller);
   }
 
   // Future<void> _setView() async {
@@ -98,14 +92,26 @@ class _AgoraRtcRenderPlatformViewState extends State<AgoraRtcRenderPlatformView>
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    debugPrint('_AgoraRtcRenderPlatformViewState dispose');
+    _disposeRender();
+  }
+
+  @override
   void didUpdateWidget(covariant AgoraRtcRenderPlatformView oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     debugPrint(
         'didUpdateWidget oldWidget.controller.isSame(widget.controller): ${oldWidget.controller.isSame(widget.controller)}');
+    _didUpdateWidget(oldWidget);
+  }
+
+  Future<void> _didUpdateWidget(
+      covariant AgoraRtcRenderPlatformView oldWidget) async {
     if (!oldWidget.controller.isSame(widget.controller)) {
-      oldWidget.controller.dispose();
-      _setupVideo();
+      await oldWidget.controller.dispose();
+      await _setupVideo();
     }
   }
 
@@ -122,8 +128,15 @@ class _AgoraRtcRenderPlatformViewState extends State<AgoraRtcRenderPlatformView>
   Future<void> _setupVideo() async {
     _nativeViewIntPtr =
         (await getMethodChannel()!.invokeMethod<int>('getNativeViewPtr'))!;
+    if (!mounted) return;
     widget.controller.setupView(_nativeViewIntPtr);
     // widget.controller._rtcEngine?.startPreview();
+  }
+
+  Future<void> _disposeRender() async {
+    // if (!mounted) return;
+    await widget.controller.disposeRender();
+    await getMethodChannel()!.invokeMethod<int>('deleteNativeViewPtr');
   }
 }
 
@@ -150,9 +163,12 @@ class _AgoraRtcRenderTextureState extends State<AgoraRtcRenderTexture>
   }
 
   Future<void> _initialize() async {
+    final oldTextureId = widget.controller.getTextureId();
     await widget.controller.initialize();
     // textureId = widget.controller.getTextureId();
-    setState(() {});
+    if (oldTextureId != widget.controller.getTextureId()) {
+      setState(() {});
+    }
   }
 
   @override
@@ -161,9 +177,15 @@ class _AgoraRtcRenderTextureState extends State<AgoraRtcRenderTexture>
 
     debugPrint(
         'didUpdateWidget oldWidget.controller.isSame(widget.controller): ${oldWidget.controller.isSame(widget.controller)}');
+    _didUpdateWidget(oldWidget);
+  }
+
+  Future<void> _didUpdateWidget(
+      covariant AgoraRtcRenderTexture oldWidget) async {
     if (!oldWidget.controller.isSame(widget.controller)) {
       oldWidget.controller.dispose();
       // textureId = kTextureNotInit;
+      if (!mounted) return;
       _initialize();
     } else {
       widget.controller.setTextureId(oldWidget.controller.getTextureId());

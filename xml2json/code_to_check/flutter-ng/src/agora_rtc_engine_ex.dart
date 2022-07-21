@@ -15,90 +15,82 @@ class RtcConnection {
 }
 
 abstract class RtcEngineEx implements RtcEngine {
-  void joinChannelEx(
+  Future<void> joinChannelEx(
       {required String token,
       required RtcConnection connection,
       required ChannelMediaOptions options});
 
-  void leaveChannelEx(RtcConnection connection);
+  Future<void> leaveChannelEx(RtcConnection connection);
 
-  void updateChannelMediaOptionsEx(
+  Future<void> updateChannelMediaOptionsEx(
       {required ChannelMediaOptions options,
       required RtcConnection connection});
 
-  void setVideoEncoderConfigurationEx(
+  Future<void> setVideoEncoderConfigurationEx(
       {required VideoEncoderConfiguration config,
       required RtcConnection connection});
 
-  void setupRemoteVideoEx(
+  Future<void> setupRemoteVideoEx(
       {required VideoCanvas canvas, required RtcConnection connection});
 
-  void muteRemoteAudioStreamEx(
+  Future<void> muteRemoteAudioStreamEx(
       {required int uid,
       required bool mute,
       required RtcConnection connection});
 
-  void muteRemoteVideoStreamEx(
+  Future<void> muteRemoteVideoStreamEx(
       {required int uid,
       required bool mute,
       required RtcConnection connection});
 
-  void setRemoteVideoStreamTypeEx(
+  Future<void> setRemoteVideoStreamTypeEx(
       {required int uid,
       required VideoStreamType streamType,
       required RtcConnection connection});
 
-  void setRemoteVoicePositionEx(
+  Future<void> setRemoteVoicePositionEx(
       {required int uid,
       required double pan,
       required double gain,
       required RtcConnection connection});
 
-  void setRemoteUserSpatialAudioParamsEx(
+  Future<void> setRemoteUserSpatialAudioParamsEx(
       {required int uid,
       required SpatialAudioParams params,
       required RtcConnection connection});
 
-  void setRemoteRenderModeEx(
+  Future<void> setRemoteRenderModeEx(
       {required int uid,
       required RenderModeType renderMode,
       required VideoMirrorModeType mirrorMode,
       required RtcConnection connection});
 
-  void enableLoopbackRecordingEx(
+  Future<void> enableLoopbackRecordingEx(
       {required RtcConnection connection,
       required bool enabled,
       String? deviceName});
 
-  ConnectionStateType getConnectionStateEx(RtcConnection connection);
+  Future<ConnectionStateType> getConnectionStateEx(RtcConnection connection);
 
-  void enableEncryptionEx(
+  Future<void> enableEncryptionEx(
       {required RtcConnection connection,
       required bool enabled,
       required EncryptionConfig config});
 
-  int createDataStreamEx(
-      {required bool reliable,
-      required bool ordered,
-      required RtcConnection connection});
-
-  int createDataStreamEx2(
-      {required DataStreamConfig config, required RtcConnection connection});
-
-  void sendStreamMessageEx(
+  Future<void> sendStreamMessageEx(
       {required int streamId,
-      required int data,
+      required Uint8List data,
       required int length,
       required RtcConnection connection});
 
-  void addVideoWatermarkEx(
+  Future<void> addVideoWatermarkEx(
       {required String watermarkUrl,
       required WatermarkOptions options,
       required RtcConnection connection});
 
-  void clearVideoWatermarkEx(RtcConnection connection);
+  Future<void> clearVideoWatermarkEx(RtcConnection connection);
 
-  void sendCustomReportMessageEx(
+  Future<void> sendCustomReportMessageEx(
       {required String id,
       required String category,
       required String event,
@@ -106,32 +98,35 @@ abstract class RtcEngineEx implements RtcEngine {
       required int value,
       required RtcConnection connection});
 
-  void enableAudioVolumeIndicationEx(
+  Future<void> enableAudioVolumeIndicationEx(
       {required int interval,
       required int smooth,
       required bool reportVad,
       required RtcConnection connection});
 
-  UserInfo getUserInfoByUserAccountEx(
+  Future<UserInfo> getUserInfoByUserAccountEx(
       {required String userAccount, required RtcConnection connection});
 
-  UserInfo getUserInfoByUidEx(
+  Future<UserInfo> getUserInfoByUidEx(
       {required int uid, required RtcConnection connection});
 
-  void setVideoProfileEx(
+  Future<void> setVideoProfileEx(
       {required int width,
       required int height,
       required int frameRate,
       required int bitrate});
 
-  void enableDualStreamModeEx(
+  Future<void> enableDualStreamModeEx(
       {required VideoSourceType sourceType,
       required bool enabled,
       required SimulcastStreamConfig streamConfig,
       required RtcConnection connection});
 
-  void addPublishStreamUrlEx(
+  Future<void> addPublishStreamUrlEx(
       {required String url,
       required bool transcodingEnabled,
       required RtcConnection connection});
+
+  Future<int> createDataStreamEx(
+      {required DataStreamConfig config, required RtcConnection connection});
 }

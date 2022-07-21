@@ -11,13 +11,11 @@
         <mapref href="config/relations-rtc-api.ditamap" format="ditamap"/>
         <mapref href="config/keys-rtc-api-flutter.ditamap" format="ditamap" processing-role="resource-only"/>
         <topicref href="config/keys-rtc-links-flutter.ditamap" format="ditamap"/>
-        <topicref href="config/keys-rtc-ng-links.ditamap" format="ditamap"/>
     </topichead>
     <topichead navtitle="Flutter API Reference">
         <topicref href="API/rtc_api_overview.dita"/>
         <topicref chunk="to-content" keyref="IRtcEngine">
             <topicref keyref="addHandler" toc="no"/>
-            <topicref keyref="addInjectStreamUrl" toc="no"/>
             <topicref keyref="addPublishStreamUrl" toc="no"/>
             <topicref keyref="addVideoWatermark2" toc="no"/>
             <topicref keyref="adjustAudioMixingPlayoutVolume" toc="no"/>
@@ -46,6 +44,7 @@
             <topicref keyref="enableLastmileTest" toc="no"/>
             <topicref keyref="enableLocalAudio" toc="no"/>
             <topicref keyref="enableLocalVideo" toc="no"/>
+            <topicref keyref="enableLocalVoicePitchCallback" toc="no"/>
             <topicref keyref="enableLoopbackRecording" toc="no"/>
             <topicref keyref="enableRemoteSuperResolution" toc="no"/>
             <topicref keyref="enableSoundPositionIndication" toc="no"/>
@@ -95,7 +94,6 @@
             <topicref keyref="registerLocalUserAccount" toc="no"/>
             <topicref keyref="registerMediaMetadataObserver" toc="no"/>
             <topicref keyref="release" toc="no"/>
-            <topicref keyref="removeInjectStreamUrl" toc="no"/>
             <topicref keyref="removePublishStreamUrl" toc="no"/>
             <topicref keyref="renewToken" toc="no"/>
             <topicref keyref="resumeAllChannelMediaRelay" toc="no"/>
@@ -157,6 +155,7 @@
             <topicref keyref="setRemoteVideoStreamType" toc="no"/>
             <topicref keyref="setRemoteVoicePosition" toc="no"/>
             <topicref keyref="setScreenCaptureContentHint" toc="no"/>
+            <topicref keyref="setScreenCaptureScenario" toc="no"/>
             <topicref keyref="setVideoDenoiserOptions" toc="no"/>
             <topicref keyref="setVideoEncoderConfiguration" toc="no"/>
             <topicref keyref="setVoiceBeautifierParameters" toc="no"/>
@@ -170,7 +169,7 @@
             <topicref keyref="startEchoTest2" toc="no"/>
             <topicref keyref="startLastmileProbeTest" toc="no"/>
             <topicref keyref="startPreview" toc="no"/>
-            <topicref keyref="startScreenCapture" toc="no"/>
+            <topicref keyref="startScreenCaptureMobile" toc="no"/>
             <topicref keyref="startScreenCaptureByDisplayId" toc="no"/>
             <topicref keyref="startScreenCaptureByScreenRect" toc="no"/>
             <topicref keyref="startScreenCaptureByWindowId" toc="no"/>
@@ -194,6 +193,7 @@
             <topicref keyref="updateChannelMediaRelay" toc="no"/>
             <topicref keyref="updateRtmpTranscoding" toc="no"/>
             <topicref keyref="updateScreenCaptureParameters" toc="no"/>
+            <topicref keyref="updateScreenCaptureParametersMobile" toc="no"/>
             <topicref keyref="updateScreenCaptureRegion1" toc="no"/>
             <topicref keyref="uploadLogFile" toc="no"/>
         </topicref>
@@ -242,13 +242,14 @@
             <topicref keyref="onLocalUserRegistered" toc="no"/>
             <topicref keyref="onLocalVideoStateChanged" toc="no"/>
             <topicref keyref="onLocalVideoStats" toc="no"/>
+            <topicref keyref="onLocalVoicePitchInHz" toc="no"/>
             <topicref keyref="onMetadataReceived" toc="no"/>
             <topicref keyref="onMediaEngineLoadSuccess" toc="no"/>
             <topicref keyref="onMediaEngineStartCallSuccess" toc="no"/>
             <topicref keyref="onMicrophoneEnabled" toc="no"/>
             <topicref keyref="onNetworkQuality" toc="no"/>
-            <topicref keyref="onNetworkTypeChanged" toc="no"/>
             <topicref keyref="onProxyConnected" toc="no"/>
+            <topicref keyref="onNetworkTypeChanged" toc="no"/>
             <topicref keyref="onRejoinChannelSuccess" toc="no"/>
             <topicref keyref="onRemoteAudioMixingBegin" toc="no"/>
             <topicref keyref="onRemoteAudioMixingEnd" toc="no"/>
@@ -266,7 +267,6 @@
             <topicref keyref="onRtmpStreamingStateChanged" toc="no"/>
             <topicref keyref="onScreenCaptureInfoUpdated" toc="no"/>
             <topicref keyref="onSnapshotTaken" toc="no"/>
-            <topicref keyref="onStreamInjectedStatus" toc="no"/>
             <topicref keyref="onStreamMessage" toc="no"/>
             <topicref keyref="onStreamMessageError" toc="no"/>
             <topicref keyref="onStreamPublished" toc="no"/>
@@ -295,8 +295,6 @@
         </topicref>
         <topicref keyref="IChannel" chunk="to-content">
             <topicref keyref="createChannel" toc="no"/>
-            <topicref keyref="IChannel_addInjectStreamUrl" toc="no"/>
-            <topicref keyref="IChannel_addPublishStreamUrl" toc="no"/>
             <topicref keyref="IChannel_adjustUserPlaybackSignalVolume" toc="no"/>
             <topicref keyref="IChannel_channelId" toc="no"/>
             <topicref keyref="IChannel_createDataStream1" toc="no"/>
@@ -319,8 +317,6 @@
             <topicref keyref="IChannel_registerMediaMetadataObserver" toc="no"/>
             <topicref keyref="IChannel_release" toc="no"/>
             <topicref keyref="IChannel_releaseAll" toc="no"/>
-            <topicref keyref="IChannel_removeInjectStreamUrl" toc="no"/>
-            <topicref keyref="IChannel_removePublishStreamUrl" toc="no"/>
             <topicref keyref="IChannel_renewToken" toc="no"/>
             <topicref keyref="IChannel_resumeAllChannelMediaRelay" toc="no"/>
             <topicref keyref="IChannel_sendMetadata" toc="no"/>
@@ -331,7 +327,6 @@
             <topicref keyref="IChannel_setDefaultMuteAllRemoteVideoStreams" toc="no"/>
             <topicref keyref="IChannel_setEncryptionMode" toc="no"/>
             <topicref keyref="IChannel_setEncryptionSecret" toc="no"/>
-            <topicref keyref="IChannel_setLiveTranscoding" toc="no"/>
             <topicref keyref="IChannel_setMaxMetadataSize" toc="no"/>
             <topicref keyref="IChannel_setRemoteDefaultVideoStreamType" toc="no"/>
             <topicref keyref="IChannel_setRemoteUserPriority" toc="no"/>
@@ -358,12 +353,12 @@
             <topicref keyref="IChannel_onClientRoleChanged" toc="no"/>
             <topicref keyref="IChannel_onConnectionLost" toc="no"/>
             <topicref keyref="IChannel_onConnectionStateChanged" toc="no"/>
+            <topicref keyref="IChannel_onFirstRemoteVideoFrame" toc="no"/>
             <topicref keyref="IChannel_onJoinChannelSuccess" toc="no"/>
             <topicref keyref="IChannel_onLeaveChannel" toc="no"/>
             <topicref keyref="IChannel_onLocalPublishFallbackToAudioOnly" toc="no"/>
             <topicref keyref="IChannel_onMetadataReceived" toc="no"/>
             <topicref keyref="IChannel_onNetworkQuality" toc="no"/>
-            <topicref keyref="IChannel_onProxyConnected" toc="no"/>
             <topicref keyref="IChannel_onRejoinChannelSuccess" toc="no"/>
             <topicref keyref="IChannel_onRemoteAudioStateChanged" toc="no"/>
             <topicref keyref="IChannel_onRemoteAudioStats" toc="no"/>
@@ -374,7 +369,6 @@
             <topicref keyref="IChannel_onRtcStats" toc="no"/>
             <topicref keyref="IChannel_onRtmpStreamingEvent" toc="no"/>
             <topicref keyref="IChannel_onRtmpStreamingStateChanged" toc="no"/>
-            <topicref keyref="IChannel_onStreamInjectedStatus" toc="no"/>
             <topicref keyref="IChannel_onStreamMessage" toc="no"/>
             <topicref keyref="IChannel_onStreamMessageError" toc="no"/>
             <topicref keyref="IChannel_onTokenPrivilegeWillExpire" toc="no"/>
@@ -385,11 +379,6 @@
             <topicref keyref="IChannel_onVideoPublishStateChanged" toc="no"/>
             <topicref keyref="IChannel_onVideoSizeChanged" toc="no"/>
             <topicref keyref="IChannel_onVideoSubscribeStateChanged" toc="no"/>
-        </topicref>
-        <topicref keyref="RtcEngineExtension" chunk="to-content">
-            <topicref keyref="getAssetAbsolutePath" toc="no"/>
-            <topicref keyref="enumerateDisplays" toc="no"/>
-            <topicref keyref="enumerateWindows" toc="no"/>
         </topicref>
         <topicref keyref="RtcSurfaceView" chunk="to-content">
             <topicref keyref="RtcSurfaceViewConstructor" toc="no"/>
@@ -467,7 +456,6 @@
             <topicref keyref="AUDIO_REVERB_PRESET" toc="no"/>
             <topicref keyref="AUDIO_REVERB_TYPE" toc="no"/>
             <topicref keyref="AUDIO_ROUTE_TYPE" toc="no"/>
-            <topicref keyref="AUDIO_SAMPLE_RATE_TYPE" toc="no"/>
             <topicref keyref="AUDIO_SCENARIO_TYPE" toc="no"/>
             <topicref keyref="AUDIO_SESSION_OPERATION_RESTRICTION" toc="no"/>
             <topicref keyref="BACKGROUND_SOURCE_TYPE" toc="no"/>
@@ -486,11 +474,11 @@
             <topicref keyref="DEGRADATION_PREFERENCE" toc="no"/>
             <topicref keyref="EchoTestConfiguration" toc="no"/>
             <topicref keyref="ENCRYPTION_MODE" toc="no"/>
+            <topicref keyref="ERR_SCREEN_CAPTURE" toc="no"/>
             <topicref keyref="EXCLUDE_WINDOW_ERROR" toc="no"/>
             <topicref keyref="EXPERIENCE_POOR_REASON" toc="no"/>
             <topicref keyref="EXPERIENCE_QUALITY_TYPE" toc="no"/>
             <topicref keyref="FRAME_RATE" toc="no"/>
-            <topicref keyref="INJECT_STREAM_STATUS" toc="no"/>
             <topicref keyref="LASTMILE_PROBE_RESULT_STATE" toc="no"/>
             <topicref keyref="LIGHTENING_CONTRAST_LEVEL" toc="no"/>
             <topicref keyref="LOCAL_AUDIO_STREAM_ERROR" toc="no"/>
@@ -555,7 +543,6 @@
             <topicref keyref="ContentInspectType" toc="no"/>
             <topicref keyref="DataStreamConfig" toc="no"/>
             <topicref keyref="EncryptionConfig" toc="no"/>
-            <topicref keyref="InjectStreamConfig" toc="no"/>
             <topicref keyref="LastmileProbeConfig" toc="no"/>
             <topicref keyref="LastmileProbeOneWayResult" toc="no"/>
             <topicref keyref="LastmileProbeResult" toc="no"/>
@@ -575,8 +562,12 @@
             <topicref keyref="RtcEngineConfig" toc="no"/>
             <topicref keyref="RtcImage" toc="no"/>
             <topicref keyref="RtcStats" toc="no"/>
+            <topicref keyref="ScreenAudioParameters" toc="no"/>
             <topicref keyref="ScreenCaptureParameters" toc="no"/>
+            <topicref keyref="ScreenCaptureParameters2" toc="no"/>
+            <topicref keyref="ScreenVideoParameters" toc="no"/>
             <topicref keyref="ScreenCaptureInfo" toc="no"/>
+            <topicref keyref="ScreenScenarioType" toc="no"/>
             <topicref keyref="TranscodingUser" toc="no"/>
             <topicref keyref="UserInfo" toc="no"/>
             <topicref keyref="VideoDimensions" toc="no"/>

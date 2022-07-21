@@ -3,101 +3,103 @@ import 'package:agora_rtc_ng/src/binding_forward_export.dart';
 abstract class MediaPlayer {
   int getMediaPlayerId();
 
-  void open({required String url, required int startPos});
+  Future<void> open({required String url, required int startPos});
 
-  void play();
+  Future<void> play();
 
-  void pause();
+  Future<void> pause();
 
-  void stop();
+  Future<void> stop();
 
-  void resume();
+  Future<void> resume();
 
-  void seek(int newPos);
+  Future<void> seek(int newPos);
 
-  void setAudioPitch(int pitch);
+  Future<void> setAudioPitch(int pitch);
 
-  int getDuration();
+  Future<int> getDuration();
 
-  int getPlayPosition();
+  Future<int> getPlayPosition();
 
-  int getStreamCount();
+  Future<int> getStreamCount();
 
-  PlayerStreamInfo getStreamInfo(int index);
+  Future<PlayerStreamInfo> getStreamInfo(int index);
 
-  void setLoopCount(int loopCount);
+  Future<void> setLoopCount(int loopCount);
 
-  void muteAudio(bool audioMute);
+  Future<void> muteAudio(bool audioMute);
 
-  bool isAudioMuted();
+  Future<bool> isAudioMuted();
 
-  void muteVideo(bool videoMute);
+  Future<void> muteVideo(bool videoMute);
 
-  bool isVideoMuted();
+  Future<bool> isVideoMuted();
 
-  void setPlaybackSpeed(int speed);
+  Future<void> setPlaybackSpeed(int speed);
 
-  void selectAudioTrack(int index);
+  Future<void> selectAudioTrack(int index);
 
-  void setPlayerOption({required String key, required int value});
+  Future<void> takeScreenshot(String filename);
 
-  void setPlayerOption2({required String key, required String value});
+  Future<void> selectInternalSubtitle(int index);
 
-  void takeScreenshot(String filename);
+  Future<void> setExternalSubtitle(String url);
 
-  void selectInternalSubtitle(int index);
+  Future<MediaPlayerState> getState();
 
-  void setExternalSubtitle(String url);
+  Future<void> mute(bool mute);
 
-  MediaPlayerState getState();
+  Future<bool> getMute();
 
-  void mute(bool mute);
+  Future<void> adjustPlayoutVolume(int volume);
 
-  bool getMute();
+  Future<int> getPlayoutVolume();
 
-  void adjustPlayoutVolume(int volume);
+  Future<void> adjustPublishSignalVolume(int volume);
 
-  int getPlayoutVolume();
+  Future<int> getPublishSignalVolume();
 
-  void adjustPublishSignalVolume(int volume);
+  Future<void> setView(int view);
 
-  int getPublishSignalVolume();
-
-  void setView(int view);
-
-  void setRenderMode(RenderModeType renderMode);
+  Future<void> setRenderMode(RenderModeType renderMode);
 
   void registerPlayerSourceObserver(MediaPlayerSourceObserver observer);
 
   void unregisterPlayerSourceObserver(MediaPlayerSourceObserver observer);
 
-  void setAudioDualMonoMode(AudioDualMonoMode mode);
+  Future<void> setAudioDualMonoMode(AudioDualMonoMode mode);
 
-  String getPlayerSdkVersion();
+  Future<String> getPlayerSdkVersion();
 
-  String getPlaySrc();
+  Future<String> getPlaySrc();
 
-  void openWithAgoraCDNSrc({required String src, required int startPos});
+  Future<void> openWithAgoraCDNSrc(
+      {required String src, required int startPos});
 
-  void getAgoraCDNLineCount();
+  Future<void> getAgoraCDNLineCount();
 
-  void switchAgoraCDNLineByIndex(int index);
+  Future<void> switchAgoraCDNLineByIndex(int index);
 
-  void getCurrentAgoraCDNIndex();
+  Future<void> getCurrentAgoraCDNIndex();
 
-  void enableAutoSwitchAgoraCDN(bool enable);
+  Future<void> enableAutoSwitchAgoraCDN(bool enable);
 
-  void renewAgoraCDNSrcToken({required String token, required int ts});
+  Future<void> renewAgoraCDNSrcToken({required String token, required int ts});
 
-  void switchAgoraCDNSrc({required String src, bool syncPts = false});
+  Future<void> switchAgoraCDNSrc({required String src, bool syncPts = false});
 
-  void switchSrc({required String src, bool syncPts = true});
+  Future<void> switchSrc({required String src, bool syncPts = true});
 
-  void preloadSrc({required String src, required int startPos});
+  Future<void> preloadSrc({required String src, required int startPos});
 
-  void playPreloadedSrc(String src);
+  Future<void> playPreloadedSrc(String src);
 
-  void unloadSrc(String src);
+  Future<void> unloadSrc(String src);
 
-  void setSpatialAudioParams(SpatialAudioParams params);
+  Future<void> setSpatialAudioParams(SpatialAudioParams params);
+
+  Future<void> setPlayerOptionInInt({required String key, required int value});
+
+  Future<void> setPlayerOptionInString(
+      {required String key, required String value});
 }

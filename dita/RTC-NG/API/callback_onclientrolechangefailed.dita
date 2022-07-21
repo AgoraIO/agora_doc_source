@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_onclientrolechangefailed">
+    <title><ph keyref="onClientRoleChangeFailed"/></title>
+    <shortdesc id="short"><ph id="shortdesc">直播场景下切换用户角色失败回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onClientRoleChangeFailed"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onClientRoleChangeFailed(int reason, int currentRole) {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didClientRoleChangeFailed:(AgoraClientRoleChangeFailedReason)reason currentRole:(AgoraClientRole)currentRole;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onClientRoleChangeFailed(CLIENT_ROLE_CHANGE_FAILED_REASON reason, CLIENT_ROLE_TYPE currentRole) {
+   (void)reason;
+   (void)currentRole;
+}</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+       <section id="detailed_desc">
+            <p>直播场景下，本地用户加入频道后调用 <xref keyref="setClientRole1"/> 切换用户角色失败时，SDK 会触发该回调，报告切换失败的原因和当前的用户角色。</p>
+        </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <parml>
+            <plentry>
+                <pt>reason</pt>
+                <pd props="ios mac cpp">切换用户角色失败的原因。详见 <xref keyref="CLIENT_ROLE_CHANGE_FAILED_REASON"/></pd>
+                <pd props="android">切换用户角色失败的原因。
+                    <ul>
+                        <li><ph keyref="CLIENT_ROLE_CHANGE_FAILED_TOO_MANY_BROADCASTERS"/>(1): 频道内主播人数达到上限。
+                            <note type="note">该枚举仅在开启 128 人功能后报告。主播人数的上限根据开启 128 人功能时实际配置的人数而定。</note></li>
+                        <li><ph keyref="CLIENT_ROLE_CHANGE_FAILED_NOT_AUTHORIZED"/>(2): 请求被服务端拒绝。建议提示用户重新尝试切换用户角色。</li>
+                        <li><ph keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT"/>(3): 请求超时。建议提示用户检查网络连接状况后重新尝试切换用户角色。</li>
+                        <li><ph keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED"/>(4): 网络连接断开。可根据 <xref keyref="onConnectionStateChanged"/> 报告的 <parmname>reason</parmname>，排查网络连接失败的具体原因。</li>
+                    </ul></pd>
+            </plentry>
+            <plentry>
+                <pt>currentRole</pt>
+                <pd props="ios mac cpp">当前用户角色。详见 <xref keyref="CLIENT_ROLE_TYPE"/></pd>
+                <pd props="android">当前用户角色。
+                    <ul>
+                        <li><ph keyref="CLIENT_ROLE_BROADCASTER"/>(1): 主播。主播可以发流也可以收流。</li>
+                        <li><ph keyref="CLIENT_ROLE_AUDIENCE"/>(2): 观众。观众只能收流不能发流。</li>
+                    </ul></pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

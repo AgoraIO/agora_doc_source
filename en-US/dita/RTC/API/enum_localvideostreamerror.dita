@@ -55,6 +55,10 @@
                     <p>8: Fails to find a local video capture device.</p>
                 </pd>
             </plentry>
+            <plentry props="mac flutter">
+                <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_DEVICE_DISCONNECTED"/></pt>
+                <pd>9: (macOS only) The external camera currently in use is disconnected (such as being unplugged).</pd>
+            </plentry>
             <plentry props="rtc">
                 <pt props="mac cpp flutter"><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_INVALID_ID"/></pt>
                 <pd props="mac cpp flutter">10: (macOS and Windows only) The SDK cannot find the video device in the video device list. Check whether the ID of the video device is valid.</pd>
@@ -75,6 +79,7 @@
                     <p>12: The error code indicates that a window shared by the window ID has been closed, or a full-screen window shared by the window ID has exited full-screen mode. After exiting full-screen mode, remote users cannot see the shared window. To prevent remote users from seeing a black screen, Agora recommends that you immediately stop screen sharing.</p>
                     <p>Common scenarios for reporting this error code:
                     
+                    
                     <ul>
                     <li>When the local user closes the shared window, the SDK reports this error code.</li>
                     <li>The local user shows some slides in full-screen mode first, and then shares the cpp of the slides. After the user exits full-screen mode, the SDK reports this error code.</li>
@@ -82,9 +87,21 @@
                     </ul></p>
                 </pd>
             </plentry>
-            <plentry props="android ios mac cpp cs">
+            <plentry props="android mac cpp cs flutter">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_OCCLUDED"/></pt>
                 <pd>13: (Windows only) The window being shared is overlapped by another window, so the overlapped area is blacked out by the SDK during window sharing.</pd>
+            </plentry>
+            <plentry props="ios flutter">
+                <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_EXTENSION_CAPTURE_STARTED"/></pt>
+                <pd>13: (iOS only) The screen sharing extension process starts.</pd>
+            </plentry>
+            <plentry props="ios flutter">
+                <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_EXTENSION_CAPTURE_STOPED"/></pt>
+                <pd>14: (iOS only) The screen sharing extension process ends.</pd>
+            </plentry>
+            <plentry props="ios flutter">
+                <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_EXTENSION_CAPTURE_DISCONNECTED"/></pt>
+                <pd>15: (iOS only) The screen sharing extension process quits unexpectedly.</pd>
             </plentry>
             <plentry props="android ios mac cpp cs">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_NOT_SUPPORTED"/></pt>

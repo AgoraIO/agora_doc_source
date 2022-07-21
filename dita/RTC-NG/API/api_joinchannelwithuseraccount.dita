@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_joinchannelwithuseraccount">
     <title><ph keyref="joinChannelWithUserAccount1"/></title>
-    <shortdesc id="short"><ph id="shortdesc">使用 User Account 加入频道。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">使用 User Account 和 Token 加入频道。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -16,8 +16,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)joinChannelByToken:(NSString * _Nullable)token
                 channelId:(NSString * _Nonnull)channelId
               userAccount:(NSString * _Nonnull)userAccount
-              joinSuccess:(void(^ _Nullable)(NSString * _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock>
-           </p>
+              joinSuccess:(void(^ _Nullable)(NSString * _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock> </p>
             <p outputclass="codeblock" props="rtc">
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)joinChannelByUserAccount:(NSString* _Nonnull)userAccount token:(NSString* _Nullable)token channelId:(NSString* _Nonnull)channelId joinSuccess:(void (^_Nullable)(NSString* _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock></p>
             <p outputclass="codeblock">
@@ -40,6 +39,7 @@
             </dl>
             <p>该方法允许本地用户使用 User Account 加入频道。成功加入频道后，会触发以下回调：
    
+            
             
             <ul>
             <li>本地：<xref keyref="onLocalUserRegistered"/>、<xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/> 回调。</li>
@@ -75,6 +75,7 @@
             <ul>
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。
+                
                 
                 <ul>
                 <li>-2(ERR_INVALID_ARGUMENT): 参数无效。</li>

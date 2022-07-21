@@ -8,10 +8,11 @@ class AudioDeviceManagerImpl implements AudioDeviceManager {
   }
 
   @override
-  List<AudioDeviceInfo> enumeratePlaybackDevices() {
+  Future<List<AudioDeviceInfo>> enumeratePlaybackDevices() async {
     const apiType = 'AudioDeviceManager_enumeratePlaybackDevices';
     final param = createParams({});
-    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
     if (callApiResult.irisReturnCode < 0) {
       throw AgoraRtcException(code: callApiResult.irisReturnCode);
     }
@@ -21,10 +22,11 @@ class AudioDeviceManagerImpl implements AudioDeviceManager {
   }
 
   @override
-  List<AudioDeviceInfo> enumerateRecordingDevices() {
+  Future<List<AudioDeviceInfo>> enumerateRecordingDevices() async {
     const apiType = 'AudioDeviceManager_enumerateRecordingDevices';
     final param = createParams({});
-    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
     if (callApiResult.irisReturnCode < 0) {
       throw AgoraRtcException(code: callApiResult.irisReturnCode);
     }
@@ -34,10 +36,11 @@ class AudioDeviceManagerImpl implements AudioDeviceManager {
   }
 
   @override
-  void setPlaybackDevice(String deviceId) {
+  Future<void> setPlaybackDevice(String deviceId) async {
     const apiType = 'AudioDeviceManager_setPlaybackDevice';
     final param = createParams({'deviceId': deviceId});
-    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
     if (callApiResult.irisReturnCode < 0) {
       throw AgoraRtcException(code: callApiResult.irisReturnCode);
     }
@@ -49,10 +52,11 @@ class AudioDeviceManagerImpl implements AudioDeviceManager {
   }
 
   @override
-  String getPlaybackDevice() {
+  Future<String> getPlaybackDevice() async {
     const apiType = 'AudioDeviceManager_getPlaybackDevice';
     final param = createParams({});
-    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
     if (callApiResult.irisReturnCode < 0) {
       throw AgoraRtcException(code: callApiResult.irisReturnCode);
     }
@@ -63,10 +67,11 @@ class AudioDeviceManagerImpl implements AudioDeviceManager {
   }
 
   @override
-  AudioDeviceInfo getPlaybackDeviceInfo() {
+  Future<AudioDeviceInfo> getPlaybackDeviceInfo() async {
     const apiType = 'AudioDeviceManager_getPlaybackDeviceInfo';
     final param = createParams({});
-    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
     if (callApiResult.irisReturnCode < 0) {
       throw AgoraRtcException(code: callApiResult.irisReturnCode);
     }
@@ -76,10 +81,11 @@ class AudioDeviceManagerImpl implements AudioDeviceManager {
   }
 
   @override
-  void setPlaybackDeviceVolume(int volume) {
+  Future<void> setPlaybackDeviceVolume(int volume) async {
     const apiType = 'AudioDeviceManager_setPlaybackDeviceVolume';
     final param = createParams({'volume': volume});
-    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
     if (callApiResult.irisReturnCode < 0) {
       throw AgoraRtcException(code: callApiResult.irisReturnCode);
     }
@@ -91,10 +97,11 @@ class AudioDeviceManagerImpl implements AudioDeviceManager {
   }
 
   @override
-  int getPlaybackDeviceVolume() {
+  Future<int> getPlaybackDeviceVolume() async {
     const apiType = 'AudioDeviceManager_getPlaybackDeviceVolume';
     final param = createParams({});
-    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
     if (callApiResult.irisReturnCode < 0) {
       throw AgoraRtcException(code: callApiResult.irisReturnCode);
     }
@@ -105,10 +112,11 @@ class AudioDeviceManagerImpl implements AudioDeviceManager {
   }
 
   @override
-  void setRecordingDevice(String deviceId) {
+  Future<void> setRecordingDevice(String deviceId) async {
     const apiType = 'AudioDeviceManager_setRecordingDevice';
     final param = createParams({'deviceId': deviceId});
-    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
     if (callApiResult.irisReturnCode < 0) {
       throw AgoraRtcException(code: callApiResult.irisReturnCode);
     }
@@ -120,10 +128,11 @@ class AudioDeviceManagerImpl implements AudioDeviceManager {
   }
 
   @override
-  String getRecordingDevice() {
+  Future<String> getRecordingDevice() async {
     const apiType = 'AudioDeviceManager_getRecordingDevice';
     final param = createParams({});
-    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
     if (callApiResult.irisReturnCode < 0) {
       throw AgoraRtcException(code: callApiResult.irisReturnCode);
     }
@@ -134,10 +143,11 @@ class AudioDeviceManagerImpl implements AudioDeviceManager {
   }
 
   @override
-  AudioDeviceInfo getRecordingDeviceInfo() {
+  Future<AudioDeviceInfo> getRecordingDeviceInfo() async {
     const apiType = 'AudioDeviceManager_getRecordingDeviceInfo';
     final param = createParams({});
-    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
     if (callApiResult.irisReturnCode < 0) {
       throw AgoraRtcException(code: callApiResult.irisReturnCode);
     }
@@ -147,10 +157,11 @@ class AudioDeviceManagerImpl implements AudioDeviceManager {
   }
 
   @override
-  void setRecordingDeviceVolume(int volume) {
+  Future<void> setRecordingDeviceVolume(int volume) async {
     const apiType = 'AudioDeviceManager_setRecordingDeviceVolume';
     final param = createParams({'volume': volume});
-    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
     if (callApiResult.irisReturnCode < 0) {
       throw AgoraRtcException(code: callApiResult.irisReturnCode);
     }
@@ -162,10 +173,11 @@ class AudioDeviceManagerImpl implements AudioDeviceManager {
   }
 
   @override
-  int getRecordingDeviceVolume() {
+  Future<int> getRecordingDeviceVolume() async {
     const apiType = 'AudioDeviceManager_getRecordingDeviceVolume';
     final param = createParams({});
-    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
     if (callApiResult.irisReturnCode < 0) {
       throw AgoraRtcException(code: callApiResult.irisReturnCode);
     }
@@ -176,10 +188,11 @@ class AudioDeviceManagerImpl implements AudioDeviceManager {
   }
 
   @override
-  void setPlaybackDeviceMute(bool mute) {
+  Future<void> setPlaybackDeviceMute(bool mute) async {
     const apiType = 'AudioDeviceManager_setPlaybackDeviceMute';
     final param = createParams({'mute': mute});
-    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
     if (callApiResult.irisReturnCode < 0) {
       throw AgoraRtcException(code: callApiResult.irisReturnCode);
     }
@@ -191,10 +204,11 @@ class AudioDeviceManagerImpl implements AudioDeviceManager {
   }
 
   @override
-  bool getPlaybackDeviceMute() {
+  Future<bool> getPlaybackDeviceMute() async {
     const apiType = 'AudioDeviceManager_getPlaybackDeviceMute';
     final param = createParams({});
-    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
     if (callApiResult.irisReturnCode < 0) {
       throw AgoraRtcException(code: callApiResult.irisReturnCode);
     }
@@ -205,10 +219,11 @@ class AudioDeviceManagerImpl implements AudioDeviceManager {
   }
 
   @override
-  void setRecordingDeviceMute(bool mute) {
+  Future<void> setRecordingDeviceMute(bool mute) async {
     const apiType = 'AudioDeviceManager_setRecordingDeviceMute';
     final param = createParams({'mute': mute});
-    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
     if (callApiResult.irisReturnCode < 0) {
       throw AgoraRtcException(code: callApiResult.irisReturnCode);
     }
@@ -220,10 +235,11 @@ class AudioDeviceManagerImpl implements AudioDeviceManager {
   }
 
   @override
-  bool getRecordingDeviceMute() {
+  Future<bool> getRecordingDeviceMute() async {
     const apiType = 'AudioDeviceManager_getRecordingDeviceMute';
     final param = createParams({});
-    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
     if (callApiResult.irisReturnCode < 0) {
       throw AgoraRtcException(code: callApiResult.irisReturnCode);
     }
@@ -234,10 +250,11 @@ class AudioDeviceManagerImpl implements AudioDeviceManager {
   }
 
   @override
-  void startPlaybackDeviceTest(String testAudioFilePath) {
+  Future<void> startPlaybackDeviceTest(String testAudioFilePath) async {
     const apiType = 'AudioDeviceManager_startPlaybackDeviceTest';
     final param = createParams({'testAudioFilePath': testAudioFilePath});
-    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
     if (callApiResult.irisReturnCode < 0) {
       throw AgoraRtcException(code: callApiResult.irisReturnCode);
     }
@@ -249,10 +266,11 @@ class AudioDeviceManagerImpl implements AudioDeviceManager {
   }
 
   @override
-  void stopPlaybackDeviceTest() {
+  Future<void> stopPlaybackDeviceTest() async {
     const apiType = 'AudioDeviceManager_stopPlaybackDeviceTest';
     final param = createParams({});
-    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
     if (callApiResult.irisReturnCode < 0) {
       throw AgoraRtcException(code: callApiResult.irisReturnCode);
     }
@@ -264,10 +282,11 @@ class AudioDeviceManagerImpl implements AudioDeviceManager {
   }
 
   @override
-  void startRecordingDeviceTest(int indicationInterval) {
+  Future<void> startRecordingDeviceTest(int indicationInterval) async {
     const apiType = 'AudioDeviceManager_startRecordingDeviceTest';
     final param = createParams({'indicationInterval': indicationInterval});
-    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
     if (callApiResult.irisReturnCode < 0) {
       throw AgoraRtcException(code: callApiResult.irisReturnCode);
     }
@@ -279,10 +298,11 @@ class AudioDeviceManagerImpl implements AudioDeviceManager {
   }
 
   @override
-  void stopRecordingDeviceTest() {
+  Future<void> stopRecordingDeviceTest() async {
     const apiType = 'AudioDeviceManager_stopRecordingDeviceTest';
     final param = createParams({});
-    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
     if (callApiResult.irisReturnCode < 0) {
       throw AgoraRtcException(code: callApiResult.irisReturnCode);
     }
@@ -294,10 +314,11 @@ class AudioDeviceManagerImpl implements AudioDeviceManager {
   }
 
   @override
-  void startAudioDeviceLoopbackTest(int indicationInterval) {
+  Future<void> startAudioDeviceLoopbackTest(int indicationInterval) async {
     const apiType = 'AudioDeviceManager_startAudioDeviceLoopbackTest';
     final param = createParams({'indicationInterval': indicationInterval});
-    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
     if (callApiResult.irisReturnCode < 0) {
       throw AgoraRtcException(code: callApiResult.irisReturnCode);
     }
@@ -309,10 +330,11 @@ class AudioDeviceManagerImpl implements AudioDeviceManager {
   }
 
   @override
-  void stopAudioDeviceLoopbackTest() {
+  Future<void> stopAudioDeviceLoopbackTest() async {
     const apiType = 'AudioDeviceManager_stopAudioDeviceLoopbackTest';
     final param = createParams({});
-    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
     if (callApiResult.irisReturnCode < 0) {
       throw AgoraRtcException(code: callApiResult.irisReturnCode);
     }
@@ -324,10 +346,11 @@ class AudioDeviceManagerImpl implements AudioDeviceManager {
   }
 
   @override
-  void release() {
+  Future<void> release() async {
     const apiType = 'AudioDeviceManager_release';
     final param = createParams({});
-    final callApiResult = apiCaller.callIrisApi(apiType, jsonEncode(param));
+    final callApiResult =
+        await apiCaller.callIrisApi(apiType, jsonEncode(param));
     if (callApiResult.irisReturnCode < 0) {
       throw AgoraRtcException(code: callApiResult.irisReturnCode);
     }

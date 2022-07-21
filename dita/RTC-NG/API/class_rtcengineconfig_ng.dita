@@ -2,8 +2,12 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_rtcengineconfig_ng">
     <title><ph keyref="RtcEngineConfig"/></title>
+<<<<<<< HEAD
     <shortdesc id="short"><ph id="shortdesc"><apiname keyref="RtcEngineConfig"
         /> 定义。</ph></shortdesc>
+=======
+    <shortdesc id="short"><ph id="shortdesc"><apiname keyref="RtcEngineConfig"/> 定义。</ph></shortdesc>
+>>>>>>> cfeb007970ff35e94d96678c980e7d4f10d1d09d
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -14,7 +18,6 @@
   public IAgoraEventHandler mEventHandler;
   public int mChannelProfile;
   public int mAudioScenario;
-  public boolean mEnableAudioDevice;
   public List&lt;String&gt; mExtensionList;
   public IMediaExtensionObserver mExtensionObserver;
   public LogConfig mLogConfig;
@@ -46,7 +49,6 @@
     mAppId = "";
     mChannelProfile = Constants.CHANNEL_PROFILE_LIVE_BROADCASTING;
     mEventHandler = null;
-    mEnableAudioDevice = true;
     mAudioScenario = Constants.AUDIO_SCENARIO_HIGH_DEFINITION;
     mAreaCode = Constants.AreaCode.AREA_CODE_GLOB;
     mExtensionList = new ArrayList&lt;&gt;();
@@ -79,11 +81,6 @@
   }
 
   @CalledByNative
-  public boolean isAudioDeviceEnabled() {
-    return mEnableAudioDevice;
-  }
-
-  @CalledByNative
   public int getAreaCode() {
     return Constants.AreaCode.getValue(mAreaCode);
   }
@@ -112,7 +109,6 @@
   IRtcEngineEventHandler* eventHandler;
   const char* appId;
   void* context;
-  bool enableAudioDevice;
   CHANNEL_PROFILE_TYPE channelProfile;
   AUDIO_SCENARIO_TYPE audioScenario;
   unsigned int areaCode;
@@ -120,7 +116,7 @@
 
   RtcEngineContext()
       : eventHandler(NULL), appId(NULL), context(NULL),
-        enableAudioDevice(true), channelProfile(CHANNEL_PROFILE_LIVE_BROADCASTING),
+        channelProfile(CHANNEL_PROFILE_LIVE_BROADCASTING),
         audioScenario(AUDIO_SCENARIO_HIGH_DEFINITION),
         areaCode(AREA_CODE_GLOB),
         logConfig() {}
@@ -161,8 +157,7 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
             /></title>
             <parml>
             <plentry props="cpp android unity">
@@ -187,20 +182,25 @@
                 </pd>
             </plentry>
             <plentry props="android">
-                  <pt>mNativeLibPath</pt>
-                  <pd><p>指定 <codeph>.so</codeph> 文件的存储目录。存储目录必须为有效的 app 的私有目录，可以通过 <codeph>Context.getDir()</codeph> 获取。</p>
+                <pt>mNativeLibPath</pt>
+                <pd>
+                    <p>指定 <codeph>.so</codeph> 文件的存储目录。存储目录必须为有效的 app 的私有目录，可以通过 <codeph>Context.getDir()</codeph> 获取。</p>
                     <ul>
-                      <li>如果你设置了该参数，SDK 会在你指定的目录下自动加载 <codeph>.so</codeph> 文件，使 app 在运行时动态加载需要的 <codeph>.so</codeph> 文件，从而减小 app 的包体积。</li>
-                      <li>如果你不设置该参数或将其设置为 null，SDK 会从 app 默认的 <codeph>nativeLibraryPath</codeph> 中加载打包所需的 <codeph>.so</codeph> 文件，相对于上一种方式，app 的包体积会增加。</li></ul>
-                    <note type="attention"><ul>
-                      <li>该设置仅适用于手动集成 SDK，不适用于通过 Maven Central 或 JitPack 集成 SDK 的情况。</li>
-                      <li>务必确保你设置的路径为有效路径，否则会导致 <xref keyref="IRtcEngine"/> 创建失败。</li></ul></note>
-                  </pd>
-                </plentry>
-            <plentry props="android cpp unity">
-                <pt props="cpp unity">enableAudioDevice</pt>
-                <pt props="android">mEnableAudioDevice</pt>
+                    <li>如果你设置了该参数，SDK 会在你指定的目录下自动加载 <codeph>.so</codeph> 文件，使 app 在运行时动态加载需要的 <codeph>.so</codeph> 文件，从而减小 app 的包体积。</li>
+                    <li>如果你不设置该参数或将其设置为 null，SDK 会从 app 默认的 <codeph>nativeLibraryPath</codeph> 中加载打包所需的 <codeph>.so</codeph> 文件，相对于上一种方式，app 的包体积会增加。</li>
+                    </ul>
+                    <note type="attention">
+                    <ul>
+                    <li>该设置仅适用于手动集成 SDK，不适用于通过 Maven Central 或 JitPack 集成 SDK 的情况。</li>
+                    <li>务必确保你设置的路径为有效路径，否则会导致 <xref keyref="IRtcEngine"/> 创建失败。</li>
+                    </ul></note> </pd>
+            </plentry>
+            <plentry props="unity">
+                <pt>enableAudioDevice</pt>
                 <pd>设置是否允许 SDK 使用音频设备：
+                    
+                    
+                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>:（默认）允许。</li>
                     <li><codeph><ph keyref="false"/></codeph>: 禁止。</li>
@@ -224,16 +224,21 @@
                 <pt props="cpp ios mac unity">areaCode</pt>
                 <pt props="android">mAreaCode</pt>
                 <pd>服务器的访问区域。该功能为高级设置，适用于有访问安全限制的场景。支持的区域详见 <xref keyref="AREA_CODE"/>。区域码支持位操作。
+                    
+                    
+                    
                     <p>指定访问区域后，集成了 Agora SDK 的 app 会连接指定区域内的 Agora 服务器。</p>
                 </pd>
             </plentry>
             <plentry>
                 <pt props="cpp ios mac unity">logConfig</pt>
                 <pt props="android">mLogConfig</pt>
-                <pd><p>设置 Agora SDK 输出的日志文件。详见 <xref keyref="LogConfig"/>。</p>
-                        <p>默认情况下，SDK 会生成 5 个 SDK 日志文件和 5 个 API 调用日志文件，规则如下：</p>
-                        <ul conkeyref="setLogFileSize/logprinciple"><li></li></ul>
-                      </pd>
+                <pd>
+                    <p>设置 Agora SDK 输出的日志文件。详见 <xref keyref="LogConfig"/>。</p>
+                    <p>默认情况下，SDK 会生成 5 个 SDK 日志文件和 5 个 API 调用日志文件，规则如下：</p>
+                    <ul conkeyref="setLogFileSize/logprinciple">
+                    <li/>
+                    </ul> </pd>
             </plentry>
             <plentry props="android">
                 <pt>mExtensionList</pt>

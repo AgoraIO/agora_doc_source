@@ -45,30 +45,229 @@ Map<String, dynamic> _$RtcEngineEventHandlerOnRejoinChannelSuccessJsonToJson(
 RtcEngineEventHandlerOnWarningJson _$RtcEngineEventHandlerOnWarningJsonFromJson(
         Map<String, dynamic> json) =>
     RtcEngineEventHandlerOnWarningJson(
-      warn: json['warn'] as int?,
+      warn: $enumDecodeNullable(_$WarnCodeTypeEnumMap, json['warn']),
       msg: json['msg'] as String?,
     );
 
 Map<String, dynamic> _$RtcEngineEventHandlerOnWarningJsonToJson(
         RtcEngineEventHandlerOnWarningJson instance) =>
     <String, dynamic>{
-      'warn': instance.warn,
+      'warn': _$WarnCodeTypeEnumMap[instance.warn],
       'msg': instance.msg,
     };
+
+const _$WarnCodeTypeEnumMap = {
+  WarnCodeType.warnInvalidView: 8,
+  WarnCodeType.warnInitVideo: 16,
+  WarnCodeType.warnPending: 20,
+  WarnCodeType.warnNoAvailableChannel: 103,
+  WarnCodeType.warnLookupChannelTimeout: 104,
+  WarnCodeType.warnLookupChannelRejected: 105,
+  WarnCodeType.warnOpenChannelTimeout: 106,
+  WarnCodeType.warnOpenChannelRejected: 107,
+  WarnCodeType.warnSwitchLiveVideoTimeout: 111,
+  WarnCodeType.warnSetClientRoleTimeout: 118,
+  WarnCodeType.warnOpenChannelInvalidTicket: 121,
+  WarnCodeType.warnOpenChannelTryNextVos: 122,
+  WarnCodeType.warnChannelConnectionUnrecoverable: 131,
+  WarnCodeType.warnChannelConnectionIpChanged: 132,
+  WarnCodeType.warnChannelConnectionPortChanged: 133,
+  WarnCodeType.warnChannelSocketError: 134,
+  WarnCodeType.warnAudioMixingOpenError: 701,
+  WarnCodeType.warnAdmRuntimePlayoutWarning: 1014,
+  WarnCodeType.warnAdmRuntimeRecordingWarning: 1016,
+  WarnCodeType.warnAdmRecordAudioSilence: 1019,
+  WarnCodeType.warnAdmPlayoutMalfunction: 1020,
+  WarnCodeType.warnAdmRecordMalfunction: 1021,
+  WarnCodeType.warnAdmIosCategoryNotPlayandrecord: 1029,
+  WarnCodeType.warnAdmIosSamplerateChange: 1030,
+  WarnCodeType.warnAdmRecordAudioLowlevel: 1031,
+  WarnCodeType.warnAdmPlayoutAudioLowlevel: 1032,
+  WarnCodeType.warnAdmWindowsNoDataReadyEvent: 1040,
+  WarnCodeType.warnApmHowling: 1051,
+  WarnCodeType.warnAdmGlitchState: 1052,
+  WarnCodeType.warnAdmImproperSettings: 1053,
+  WarnCodeType.warnAdmWinCoreNoRecordingDevice: 1322,
+  WarnCodeType.warnAdmWinCoreNoPlayoutDevice: 1323,
+  WarnCodeType.warnAdmWinCoreImproperCaptureRelease: 1324,
+};
 
 RtcEngineEventHandlerOnErrorJson _$RtcEngineEventHandlerOnErrorJsonFromJson(
         Map<String, dynamic> json) =>
     RtcEngineEventHandlerOnErrorJson(
-      err: json['err'] as int?,
+      err: $enumDecodeNullable(_$ErrorCodeTypeEnumMap, json['err']),
       msg: json['msg'] as String?,
     );
 
 Map<String, dynamic> _$RtcEngineEventHandlerOnErrorJsonToJson(
         RtcEngineEventHandlerOnErrorJson instance) =>
     <String, dynamic>{
-      'err': instance.err,
+      'err': _$ErrorCodeTypeEnumMap[instance.err],
       'msg': instance.msg,
     };
+
+const _$ErrorCodeTypeEnumMap = {
+  ErrorCodeType.errOk: 0,
+  ErrorCodeType.errFailed: 1,
+  ErrorCodeType.errInvalidArgument: 2,
+  ErrorCodeType.errNotReady: 3,
+  ErrorCodeType.errNotSupported: 4,
+  ErrorCodeType.errRefused: 5,
+  ErrorCodeType.errBufferTooSmall: 6,
+  ErrorCodeType.errNotInitialized: 7,
+  ErrorCodeType.errInvalidState: 8,
+  ErrorCodeType.errNoPermission: 9,
+  ErrorCodeType.errTimedout: 10,
+  ErrorCodeType.errCanceled: 11,
+  ErrorCodeType.errTooOften: 12,
+  ErrorCodeType.errBindSocket: 13,
+  ErrorCodeType.errNetDown: 14,
+  ErrorCodeType.errNetNobufs: 15,
+  ErrorCodeType.errJoinChannelRejected: 17,
+  ErrorCodeType.errLeaveChannelRejected: 18,
+  ErrorCodeType.errAlreadyInUse: 19,
+  ErrorCodeType.errAborted: 20,
+  ErrorCodeType.errInitNetEngine: 21,
+  ErrorCodeType.errResourceLimited: 22,
+  ErrorCodeType.errInvalidAppId: 101,
+  ErrorCodeType.errInvalidChannelName: 102,
+  ErrorCodeType.errNoServerResources: 103,
+  ErrorCodeType.errTokenExpired: 109,
+  ErrorCodeType.errInvalidToken: 110,
+  ErrorCodeType.errConnectionInterrupted: 111,
+  ErrorCodeType.errConnectionLost: 112,
+  ErrorCodeType.errNotInChannel: 113,
+  ErrorCodeType.errSizeTooLarge: 114,
+  ErrorCodeType.errBitrateLimit: 115,
+  ErrorCodeType.errTooManyDataStreams: 116,
+  ErrorCodeType.errStreamMessageTimeout: 117,
+  ErrorCodeType.errSetClientRoleNotAuthorized: 119,
+  ErrorCodeType.errDecryptionFailed: 120,
+  ErrorCodeType.errInvalidUserId: 121,
+  ErrorCodeType.errClientIsBannedByServer: 123,
+  ErrorCodeType.errWatermarkParam: 124,
+  ErrorCodeType.errWatermarkPath: 125,
+  ErrorCodeType.errWatermarkPng: 126,
+  ErrorCodeType.errWatermarkrInfo: 127,
+  ErrorCodeType.errWatermarkArgb: 128,
+  ErrorCodeType.errWatermarkRead: 129,
+  ErrorCodeType.errEncryptedStreamNotAllowedPublish: 130,
+  ErrorCodeType.errLicenseCredentialInvalid: 131,
+  ErrorCodeType.errInvalidUserAccount: 134,
+  ErrorCodeType.errCertRaw: 157,
+  ErrorCodeType.errCertJsonPart: 158,
+  ErrorCodeType.errCertJsonInval: 159,
+  ErrorCodeType.errCertJsonNomem: 160,
+  ErrorCodeType.errCertCustom: 161,
+  ErrorCodeType.errCertCredential: 162,
+  ErrorCodeType.errCertSign: 163,
+  ErrorCodeType.errCertFail: 164,
+  ErrorCodeType.errCertBuf: 165,
+  ErrorCodeType.errCertNull: 166,
+  ErrorCodeType.errCertDuedate: 167,
+  ErrorCodeType.errCertRequest: 168,
+  ErrorCodeType.errPcmsendFormat: 200,
+  ErrorCodeType.errPcmsendBufferoverflow: 201,
+  ErrorCodeType.errLogoutOther: 400,
+  ErrorCodeType.errLogoutUser: 401,
+  ErrorCodeType.errLogoutNet: 402,
+  ErrorCodeType.errLogoutKicked: 403,
+  ErrorCodeType.errLogoutPacket: 404,
+  ErrorCodeType.errLogoutTokenExpired: 405,
+  ErrorCodeType.errLogoutOldversion: 406,
+  ErrorCodeType.errLogoutTokenWrong: 407,
+  ErrorCodeType.errLogoutAlreadyLogout: 408,
+  ErrorCodeType.errLoginOther: 420,
+  ErrorCodeType.errLoginNet: 421,
+  ErrorCodeType.errLoginFailed: 422,
+  ErrorCodeType.errLoginCanceled: 423,
+  ErrorCodeType.errLoginTokenExpired: 424,
+  ErrorCodeType.errLoginOldVersion: 425,
+  ErrorCodeType.errLoginTokenWrong: 426,
+  ErrorCodeType.errLoginTokenKicked: 427,
+  ErrorCodeType.errLoginAlreadyLogin: 428,
+  ErrorCodeType.errJoinChannelOther: 440,
+  ErrorCodeType.errSendMessageOther: 440,
+  ErrorCodeType.errSendMessageTimeout: 441,
+  ErrorCodeType.errQueryUsernumOther: 450,
+  ErrorCodeType.errQueryUsernumTimeout: 451,
+  ErrorCodeType.errQueryUsernumByuser: 452,
+  ErrorCodeType.errLeaveChannelOther: 460,
+  ErrorCodeType.errLeaveChannelKicked: 461,
+  ErrorCodeType.errLeaveChannelByuser: 462,
+  ErrorCodeType.errLeaveChannelLogout: 463,
+  ErrorCodeType.errLeaveChannelDisconnected: 464,
+  ErrorCodeType.errInviteOther: 470,
+  ErrorCodeType.errInviteReinvite: 471,
+  ErrorCodeType.errInviteNet: 472,
+  ErrorCodeType.errInvitePeerOffline: 473,
+  ErrorCodeType.errInviteTimeout: 474,
+  ErrorCodeType.errInviteCantRecv: 475,
+  ErrorCodeType.errLoadMediaEngine: 1001,
+  ErrorCodeType.errStartCall: 1002,
+  ErrorCodeType.errStartCamera: 1003,
+  ErrorCodeType.errStartVideoRender: 1004,
+  ErrorCodeType.errAdmGeneralError: 1005,
+  ErrorCodeType.errAdmJavaResource: 1006,
+  ErrorCodeType.errAdmSampleRate: 1007,
+  ErrorCodeType.errAdmInitPlayout: 1008,
+  ErrorCodeType.errAdmStartPlayout: 1009,
+  ErrorCodeType.errAdmStopPlayout: 1010,
+  ErrorCodeType.errAdmInitRecording: 1011,
+  ErrorCodeType.errAdmStartRecording: 1012,
+  ErrorCodeType.errAdmStopRecording: 1013,
+  ErrorCodeType.errAdmRuntimePlayoutError: 1015,
+  ErrorCodeType.errAdmRuntimeRecordingError: 1017,
+  ErrorCodeType.errAdmRecordAudioFailed: 1018,
+  ErrorCodeType.errAdmInitLoopback: 1022,
+  ErrorCodeType.errAdmStartLoopback: 1023,
+  ErrorCodeType.errAdmNoPermission: 1027,
+  ErrorCodeType.errAdmRecordAudioIsActive: 1033,
+  ErrorCodeType.errAdmAndroidJniJavaResource: 1101,
+  ErrorCodeType.errAdmAndroidJniNoRecordFrequency: 1108,
+  ErrorCodeType.errAdmAndroidJniNoPlaybackFrequency: 1109,
+  ErrorCodeType.errAdmAndroidJniJavaStartRecord: 1111,
+  ErrorCodeType.errAdmAndroidJniJavaStartPlayback: 1112,
+  ErrorCodeType.errAdmAndroidJniJavaRecordError: 1115,
+  ErrorCodeType.errAdmAndroidOpenslCreateEngine: 1151,
+  ErrorCodeType.errAdmAndroidOpenslCreateAudioRecorder: 1153,
+  ErrorCodeType.errAdmAndroidOpenslStartRecorderThread: 1156,
+  ErrorCodeType.errAdmAndroidOpenslCreateAudioPlayer: 1157,
+  ErrorCodeType.errAdmAndroidOpenslStartPlayerThread: 1160,
+  ErrorCodeType.errAdmIosInputNotAvailable: 1201,
+  ErrorCodeType.errAdmIosActivateSessionFail: 1206,
+  ErrorCodeType.errAdmIosVpioInitFail: 1210,
+  ErrorCodeType.errAdmIosVpioReinitFail: 1213,
+  ErrorCodeType.errAdmIosVpioRestartFail: 1214,
+  ErrorCodeType.errAdmIosSetRenderCallbackFail: 1219,
+  ErrorCodeType.errAdmIosSessionSampleratrZero: 1221,
+  ErrorCodeType.errAdmWinCoreInit: 1301,
+  ErrorCodeType.errAdmWinCoreInitRecording: 1303,
+  ErrorCodeType.errAdmWinCoreInitPlayout: 1306,
+  ErrorCodeType.errAdmWinCoreInitPlayoutNull: 1307,
+  ErrorCodeType.errAdmWinCoreStartRecording: 1309,
+  ErrorCodeType.errAdmWinCoreCreateRecThread: 1311,
+  ErrorCodeType.errAdmWinCoreCaptureNotStartup: 1314,
+  ErrorCodeType.errAdmWinCoreCreateRenderThread: 1319,
+  ErrorCodeType.errAdmWinCoreRenderNotStartup: 1320,
+  ErrorCodeType.errAdmWinCoreNoRecordingDevice: 1322,
+  ErrorCodeType.errAdmWinCoreNoPlayoutDevice: 1323,
+  ErrorCodeType.errAdmWinWaveInit: 1351,
+  ErrorCodeType.errAdmWinWaveInitRecording: 1353,
+  ErrorCodeType.errAdmWinWaveInitMicrophone: 1354,
+  ErrorCodeType.errAdmWinWaveInitPlayout: 1355,
+  ErrorCodeType.errAdmWinWaveInitSpeaker: 1356,
+  ErrorCodeType.errAdmWinWaveStartRecording: 1357,
+  ErrorCodeType.errAdmWinWaveStartPlayout: 1358,
+  ErrorCodeType.errAdmNoRecordingDevice: 1359,
+  ErrorCodeType.errAdmNoPlayoutDevice: 1360,
+  ErrorCodeType.errVdmCameraNotAuthorized: 1501,
+  ErrorCodeType.errVdmWinDeviceInUse: 1502,
+  ErrorCodeType.errVcmUnknownError: 1600,
+  ErrorCodeType.errVcmEncoderInitError: 1601,
+  ErrorCodeType.errVcmEncoderEncodeError: 1602,
+  ErrorCodeType.errVcmEncoderSetError: 1603,
+};
 
 RtcEngineEventHandlerOnAudioQualityJson
     _$RtcEngineEventHandlerOnAudioQualityJsonFromJson(
@@ -79,7 +278,7 @@ RtcEngineEventHandlerOnAudioQualityJson
               : RtcConnection.fromJson(
                   json['connection'] as Map<String, dynamic>),
           remoteUid: json['remoteUid'] as int?,
-          quality: json['quality'] as int?,
+          quality: $enumDecodeNullable(_$QualityTypeEnumMap, json['quality']),
           delay: json['delay'] as int?,
           lost: json['lost'] as int?,
         );
@@ -89,10 +288,22 @@ Map<String, dynamic> _$RtcEngineEventHandlerOnAudioQualityJsonToJson(
     <String, dynamic>{
       'connection': instance.connection?.toJson(),
       'remoteUid': instance.remoteUid,
-      'quality': instance.quality,
+      'quality': _$QualityTypeEnumMap[instance.quality],
       'delay': instance.delay,
       'lost': instance.lost,
     };
+
+const _$QualityTypeEnumMap = {
+  QualityType.qualityUnknown: 0,
+  QualityType.qualityExcellent: 1,
+  QualityType.qualityGood: 2,
+  QualityType.qualityPoor: 3,
+  QualityType.qualityBad: 4,
+  QualityType.qualityVbad: 5,
+  QualityType.qualityDown: 6,
+  QualityType.qualityUnsupported: 7,
+  QualityType.qualityDetecting: 8,
+};
 
 RtcEngineEventHandlerOnLastmileProbeResultJson
     _$RtcEngineEventHandlerOnLastmileProbeResultJsonFromJson(
@@ -118,10 +329,9 @@ RtcEngineEventHandlerOnAudioVolumeIndicationJson
               ? null
               : RtcConnection.fromJson(
                   json['connection'] as Map<String, dynamic>),
-          speakers: json['speakers'] == null
-              ? null
-              : AudioVolumeInfo.fromJson(
-                  json['speakers'] as Map<String, dynamic>),
+          speakers: (json['speakers'] as List<dynamic>?)
+              ?.map((e) => AudioVolumeInfo.fromJson(e as Map<String, dynamic>))
+              .toList(),
           speakerNumber: json['speakerNumber'] as int?,
           totalVolume: json['totalVolume'] as int?,
         );
@@ -130,7 +340,7 @@ Map<String, dynamic> _$RtcEngineEventHandlerOnAudioVolumeIndicationJsonToJson(
         RtcEngineEventHandlerOnAudioVolumeIndicationJson instance) =>
     <String, dynamic>{
       'connection': instance.connection?.toJson(),
-      'speakers': instance.speakers?.toJson(),
+      'speakers': instance.speakers?.map((e) => e.toJson()).toList(),
       'speakerNumber': instance.speakerNumber,
       'totalVolume': instance.totalVolume,
     };
@@ -179,17 +389,36 @@ RtcEngineEventHandlerOnAudioDeviceStateChangedJson
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnAudioDeviceStateChangedJson(
           deviceId: json['deviceId'] as String?,
-          deviceType: json['deviceType'] as int?,
-          deviceState: json['deviceState'] as int?,
+          deviceType:
+              $enumDecodeNullable(_$MediaDeviceTypeEnumMap, json['deviceType']),
+          deviceState: $enumDecodeNullable(
+              _$MediaDeviceStateTypeEnumMap, json['deviceState']),
         );
 
 Map<String, dynamic> _$RtcEngineEventHandlerOnAudioDeviceStateChangedJsonToJson(
         RtcEngineEventHandlerOnAudioDeviceStateChangedJson instance) =>
     <String, dynamic>{
       'deviceId': instance.deviceId,
-      'deviceType': instance.deviceType,
-      'deviceState': instance.deviceState,
+      'deviceType': _$MediaDeviceTypeEnumMap[instance.deviceType],
+      'deviceState': _$MediaDeviceStateTypeEnumMap[instance.deviceState],
     };
+
+const _$MediaDeviceTypeEnumMap = {
+  MediaDeviceType.unknownAudioDevice: -1,
+  MediaDeviceType.audioPlayoutDevice: 0,
+  MediaDeviceType.audioRecordingDevice: 1,
+  MediaDeviceType.videoRenderDevice: 2,
+  MediaDeviceType.videoCaptureDevice: 3,
+  MediaDeviceType.audioApplicationPlayoutDevice: 4,
+};
+
+const _$MediaDeviceStateTypeEnumMap = {
+  MediaDeviceStateType.mediaDeviceStateIdle: 0,
+  MediaDeviceStateType.mediaDeviceStateActive: 1,
+  MediaDeviceStateType.mediaDeviceStateDisabled: 2,
+  MediaDeviceStateType.mediaDeviceStateNotPresent: 4,
+  MediaDeviceStateType.mediaDeviceStateUnplugged: 8,
+};
 
 RtcEngineEventHandlerOnAudioMixingFinishedJson
     _$RtcEngineEventHandlerOnAudioMixingFinishedJsonFromJson(
@@ -234,13 +463,14 @@ RtcEngineEventHandlerOnMediaDeviceChangedJson
     _$RtcEngineEventHandlerOnMediaDeviceChangedJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnMediaDeviceChangedJson(
-          deviceType: json['deviceType'] as int?,
+          deviceType:
+              $enumDecodeNullable(_$MediaDeviceTypeEnumMap, json['deviceType']),
         );
 
 Map<String, dynamic> _$RtcEngineEventHandlerOnMediaDeviceChangedJsonToJson(
         RtcEngineEventHandlerOnMediaDeviceChangedJson instance) =>
     <String, dynamic>{
-      'deviceType': instance.deviceType,
+      'deviceType': _$MediaDeviceTypeEnumMap[instance.deviceType],
     };
 
 RtcEngineEventHandlerOnNetworkQualityJson
@@ -319,13 +549,13 @@ RtcEngineEventHandlerOnLastmileQualityJson
     _$RtcEngineEventHandlerOnLastmileQualityJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnLastmileQualityJson(
-          quality: json['quality'] as int?,
+          quality: $enumDecodeNullable(_$QualityTypeEnumMap, json['quality']),
         );
 
 Map<String, dynamic> _$RtcEngineEventHandlerOnLastmileQualityJsonToJson(
         RtcEngineEventHandlerOnLastmileQualityJson instance) =>
     <String, dynamic>{
-      'quality': instance.quality,
+      'quality': _$QualityTypeEnumMap[instance.quality],
     };
 
 RtcEngineEventHandlerOnFirstLocalVideoFrameJson
@@ -730,7 +960,7 @@ RtcEngineEventHandlerOnApiCallExecutedJson
     _$RtcEngineEventHandlerOnApiCallExecutedJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnApiCallExecutedJson(
-          err: json['err'] as int?,
+          err: $enumDecodeNullable(_$ErrorCodeTypeEnumMap, json['err']),
           api: json['api'] as String?,
           result: json['result'] as String?,
         );
@@ -738,7 +968,7 @@ RtcEngineEventHandlerOnApiCallExecutedJson
 Map<String, dynamic> _$RtcEngineEventHandlerOnApiCallExecutedJsonToJson(
         RtcEngineEventHandlerOnApiCallExecutedJson instance) =>
     <String, dynamic>{
-      'err': instance.err,
+      'err': _$ErrorCodeTypeEnumMap[instance.err],
       'api': instance.api,
       'result': instance.result,
     };
@@ -1055,7 +1285,7 @@ RtcEngineEventHandlerOnStreamMessageErrorJson
                   json['connection'] as Map<String, dynamic>),
           remoteUid: json['remoteUid'] as int?,
           streamId: json['streamId'] as int?,
-          code: json['code'] as int?,
+          code: $enumDecodeNullable(_$ErrorCodeTypeEnumMap, json['code']),
           missed: json['missed'] as int?,
           cached: json['cached'] as int?,
         );
@@ -1066,7 +1296,7 @@ Map<String, dynamic> _$RtcEngineEventHandlerOnStreamMessageErrorJsonToJson(
       'connection': instance.connection?.toJson(),
       'remoteUid': instance.remoteUid,
       'streamId': instance.streamId,
-      'code': instance.code,
+      'code': _$ErrorCodeTypeEnumMap[instance.code],
       'missed': instance.missed,
       'cached': instance.cached,
     };
@@ -1384,15 +1614,6 @@ Map<String, dynamic>
           'muted': instance.muted,
         };
 
-const _$MediaDeviceTypeEnumMap = {
-  MediaDeviceType.unknownAudioDevice: -1,
-  MediaDeviceType.audioPlayoutDevice: 0,
-  MediaDeviceType.audioRecordingDevice: 1,
-  MediaDeviceType.videoRenderDevice: 2,
-  MediaDeviceType.videoCaptureDevice: 3,
-  MediaDeviceType.audioApplicationPlayoutDevice: 4,
-};
-
 RtcEngineEventHandlerOnRtmpStreamingStateChangedJson
     _$RtcEngineEventHandlerOnRtmpStreamingStateChangedJsonFromJson(
             Map<String, dynamic> json) =>
@@ -1469,14 +1690,14 @@ RtcEngineEventHandlerOnStreamPublishedJson
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnStreamPublishedJson(
           url: json['url'] as String?,
-          error: json['error'] as int?,
+          error: $enumDecodeNullable(_$ErrorCodeTypeEnumMap, json['error']),
         );
 
 Map<String, dynamic> _$RtcEngineEventHandlerOnStreamPublishedJsonToJson(
         RtcEngineEventHandlerOnStreamPublishedJson instance) =>
     <String, dynamic>{
       'url': instance.url,
-      'error': instance.error,
+      'error': _$ErrorCodeTypeEnumMap[instance.error],
     };
 
 RtcEngineEventHandlerOnStreamUnpublishedJson
@@ -1558,14 +1779,34 @@ RtcEngineEventHandlerOnChannelMediaRelayEventJson
     _$RtcEngineEventHandlerOnChannelMediaRelayEventJsonFromJson(
             Map<String, dynamic> json) =>
         RtcEngineEventHandlerOnChannelMediaRelayEventJson(
-          code: json['code'] as int?,
+          code: $enumDecodeNullable(
+              _$ChannelMediaRelayEventEnumMap, json['code']),
         );
 
 Map<String, dynamic> _$RtcEngineEventHandlerOnChannelMediaRelayEventJsonToJson(
         RtcEngineEventHandlerOnChannelMediaRelayEventJson instance) =>
     <String, dynamic>{
-      'code': instance.code,
+      'code': _$ChannelMediaRelayEventEnumMap[instance.code],
     };
+
+const _$ChannelMediaRelayEventEnumMap = {
+  ChannelMediaRelayEvent.relayEventNetworkDisconnected: 0,
+  ChannelMediaRelayEvent.relayEventNetworkConnected: 1,
+  ChannelMediaRelayEvent.relayEventPacketJoinedSrcChannel: 2,
+  ChannelMediaRelayEvent.relayEventPacketJoinedDestChannel: 3,
+  ChannelMediaRelayEvent.relayEventPacketSentToDestChannel: 4,
+  ChannelMediaRelayEvent.relayEventPacketReceivedVideoFromSrc: 5,
+  ChannelMediaRelayEvent.relayEventPacketReceivedAudioFromSrc: 6,
+  ChannelMediaRelayEvent.relayEventPacketUpdateDestChannel: 7,
+  ChannelMediaRelayEvent.relayEventPacketUpdateDestChannelRefused: 8,
+  ChannelMediaRelayEvent.relayEventPacketUpdateDestChannelNotChange: 9,
+  ChannelMediaRelayEvent.relayEventPacketUpdateDestChannelIsNull: 10,
+  ChannelMediaRelayEvent.relayEventVideoProfileUpdate: 11,
+  ChannelMediaRelayEvent.relayEventPauseSendPacketToDestChannelSuccess: 12,
+  ChannelMediaRelayEvent.relayEventPauseSendPacketToDestChannelFailed: 13,
+  ChannelMediaRelayEvent.relayEventResumeSendPacketToDestChannelSuccess: 14,
+  ChannelMediaRelayEvent.relayEventResumeSendPacketToDestChannelFailed: 15,
+};
 
 RtcEngineEventHandlerOnLocalPublishFallbackToAudioOnlyJson
     _$RtcEngineEventHandlerOnLocalPublishFallbackToAudioOnlyJsonFromJson(
@@ -2100,28 +2341,6 @@ Map<String, dynamic>
           'stats': instance.stats?.toJson(),
         };
 
-SnapshotCallbackOnSnapshotTakenJson
-    _$SnapshotCallbackOnSnapshotTakenJsonFromJson(Map<String, dynamic> json) =>
-        SnapshotCallbackOnSnapshotTakenJson(
-          channel: json['channel'] as String?,
-          uid: json['uid'] as int?,
-          filePath: json['filePath'] as String?,
-          width: json['width'] as int?,
-          height: json['height'] as int?,
-          errCode: json['errCode'] as int?,
-        );
-
-Map<String, dynamic> _$SnapshotCallbackOnSnapshotTakenJsonToJson(
-        SnapshotCallbackOnSnapshotTakenJson instance) =>
-    <String, dynamic>{
-      'channel': instance.channel,
-      'uid': instance.uid,
-      'filePath': instance.filePath,
-      'width': instance.width,
-      'height': instance.height,
-      'errCode': instance.errCode,
-    };
-
 MediaPlayerSourceObserverOnPlayerSourceStateChangedJson
     _$MediaPlayerSourceObserverOnPlayerSourceStateChangedJsonFromJson(
             Map<String, dynamic> json) =>
@@ -2228,14 +2447,12 @@ MediaPlayerSourceObserverOnMetaDataJson
     _$MediaPlayerSourceObserverOnMetaDataJsonFromJson(
             Map<String, dynamic> json) =>
         MediaPlayerSourceObserverOnMetaDataJson(
-          data: json['data'] as int?,
           length: json['length'] as int?,
         );
 
 Map<String, dynamic> _$MediaPlayerSourceObserverOnMetaDataJsonToJson(
         MediaPlayerSourceObserverOnMetaDataJson instance) =>
     <String, dynamic>{
-      'data': instance.data,
       'length': instance.length,
     };
 

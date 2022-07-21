@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_lowlightenhanceoptions">
+  <title> <ph keyref="LowlightEnhanceOptions"/> </title>
+  <shortdesc id="short"> <ph id="shortdesc">暗光增强选项。</ph> </shortdesc>
+  <refbody>
+    <section id="prototype">
+      <p outputclass="codeblock">
+      <codeblock props="android" outputclass="language-java">public class LowLightEnhanceOptions {
+    public static final int LOW_LIGHT_ENHANCE_AUTO = 0;
+    public static final int LOW_LIGHT_ENHANCE_MANUAL = 1;
+    public static final int LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY = 0;
+    public static final int LOW_LIGHT_ENHANCE_LEVEL_FAST = 1;
+    public int lowlightEnhanceMode;
+    public int lowlightEnhanceLevel;
+
+  public LowLightEnhanceOptions() {
+    lowlightEnhanceMode = LOW_LIGHT_ENHANCE_AUTO;
+    lowlightEnhanceLevel = LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY;
+  }
+
+  public LowLightEnhanceOptions(int mode, int level) {
+    lowlightEnhanceMode = mode;
+    lowlightEnhanceLevel = level;
+  }
+}</codeblock>
+      <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLowlightEnhanceOptions : NSObject
+@property(nonatomic, assign) AgoraLowlightEnhanceMode mode;
+@property(nonatomic, assign) AgoraLowlightEnhanceLevel level;
+@end</codeblock>
+      <codeblock props="cpp" outputclass="language-cpp">struct LowlightEnhanceOptions {
+    enum LOW_LIGHT_ENHANCE_MODE {
+        LOW_LIGHT_ENHANCE_AUTO = 0,
+        LOW_LIGHT_ENHANCE_MANUAL = 1,
+  };
+    enum LOW_LIGHT_ENHANCE_LEVEL {
+        LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY = 0,
+        LOW_LIGHT_ENHANCE_LEVEL_FAST = 1,
+  };
+
+    LOW_LIGHT_ENHANCE_MODE mode;
+
+    LOW_LIGHT_ENHANCE_LEVEL level;
+
+  LowlightEnhanceOptions(LOW_LIGHT_ENHANCE_MODE lowlightMode, LOW_LIGHT_ENHANCE_LEVEL lowlightLevel) : mode(lowlightMode), level(lowlightLevel) {}
+
+  LowlightEnhanceOptions() : mode(LOW_LIGHT_ENHANCE_AUTO), level(LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY) {}
+};
+</codeblock>
+      <codeblock props="cs" outputclass="language-csharp"/>
+      <codeblock props="electron" outputclass="language-typescript"/>
+      <codeblock props="rn" outputclass="language-typescript"/>
+      <codeblock props="flutter" outputclass="language-dart"/> </p>
+    </section>
+    <section id="parameters">
+      <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/>
+      </title>
+      <parml>
+      <plentry>
+        <pt>level</pt>
+        <pd><ph>暗光增强等级。</ph><ph props="apple cpp">详见 <xref keyref="LOW_LIGHT_ENHANCE_LEVEL"/>。</ph>
+          <ul props="android">
+          <li><ph keyref="LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY"/>0:（默认）优先画质的暗光增强，会处理视频图像的亮度、细节、噪声，消耗的性能适中，处理速度适中，综合画质最优。</li>
+          <li><ph keyref="LOW_LIGHT_ENHANCE_LEVEL_FAST"/>1：优先性能的暗光增强，会处理视频图像的亮度、细节，消耗的性能较少，处理速度较快。</li>
+          </ul> </pd>
+      </plentry>
+      <plentry>
+        <pt>mode</pt>
+        <pd><ph>暗光增强模式。</ph><ph props="apple cpp">详见 <xref keyref="LOW_LIGHT_ENHANCE_MODE"/>。</ph>
+          <ul props="android">
+          <li><ph keyref="LOW_LIGHT_ENHANCE_AUTO"/>0:（默认）自动模式。SDK 会根据环境光亮度自动开启或关闭暗光增强功能，以适时补光和防止过曝。</li>
+          <li><ph keyref="LOW_LIGHT_ENHANCE_MANUAL" />1：手动模式。用户需手动开启或关闭暗光增强功能。 </li>
+          </ul> </pd>
+      </plentry>
+      </parml> </section>
+  </refbody>
+</reference>
