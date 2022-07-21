@@ -13,7 +13,7 @@ This page introduces how to use the Agora Chat SDK to implement these functional
 
 ## Understand the tech
 
-The Agora Chat SDK provides a `Message` class that defines the message type, and a `ChatManager` class that allows you to send, recieve, recall, and retrieve messages.
+The Agora Chat SDK provides a `Message` class that defines the message type, and a `ChatManager` class that allows you to send, receive, recall, and retrieve messages.
 
 ## Prerequisites
 
@@ -23,7 +23,7 @@ Before proceeding, ensure that you meet the following requirements:
 - You understand the [API call frequency limits](./agora_chat_limitation_web?platform=Web).
 
 
-## Send and recieve messages
+## Send and receive messages
 
 The process of sending and receiving a message is as follows:
 
@@ -468,7 +468,7 @@ function sendPrivateText() {
 
 ### Recall messages
 
-After sending a message, you can recall it using the `recallMessage` method. The default time limit for recalling a message is two minutes after the message. To customize this time limit, contact sales@agora.io.
+After sending a message, you can recall it using the `recallMessage` method. The default time limit for recalling a message is two minutes after the message. To customize this time limit, contact support@agora.io.
 
 Refer to the following code sample to recall a message:
 
@@ -630,7 +630,7 @@ Refer to the following code to implement read receipts for the specified message
 
 For chat group messages, when the group owner or admin sends a message, they can set whether to require a message read receipt.
 
-<div class="alert note">You need to contact sales@agora.io to enable the group message read receipt feature. Once enabled, this feature applies to the chat group owner and chat group admin only.</div>
+<div class="alert note">You need to contact support@agora.io to enable the group message read receipt feature. Once enabled, this feature applies to the chat group owner and chat group admin only.</div>
 
 1. Enable group message read receipt
 

@@ -64,7 +64,7 @@ TextMessageBody body = new TextMessageBody("The message content");
 body.setTargetLanguages(languageList);
 ```
 
-The SDK sends both the original message and the translated message. After the recipient recieves the message, call `getTranslations` to retrieve the translated message:
+The SDK sends both the original message and the translated message. After the recipient receives the message, call `getTranslations` to retrieve the translated message:
 
 ```java
 TextMessageBody body = (TextMessageBody)message.getBody();

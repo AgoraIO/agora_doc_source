@@ -74,7 +74,7 @@ ChatMessage textMessage = ChatMessage.createTxtSendMessage(
 );
 ```
 
-The SDK sends both the original message and the translated message. After the recipient recieves the message, call `translation` to retrieve the translated message:
+The SDK sends both the original message and the translated message. After the recipient receives the message, call `translation` to retrieve the translated message:
 
 ```dart
 ChatTextMessageBody body = receiveMessage.body as ChatTextMessageBody;

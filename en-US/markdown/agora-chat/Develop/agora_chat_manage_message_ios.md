@@ -34,7 +34,7 @@ NSArray *conversations = [[AgoraChatClient sharedClient].chatManager getAllConve
 
 ### Retrieve messages in the specified conversation
 
-Refer to the following code sample to retrieve the messages in the specified converation:
+Refer to the following code sample to retrieve the messages in the specified conversation:
 
 ```Objective-C
 // Retrieves the conversation ID
@@ -107,7 +107,7 @@ NSArray<Message *> *messages = [conversation loadMessagesWithKeyword:keyword tim
 
 ### Import messages
 
-Call `importMessages` to import multiple messages to the specified conversation. This applies to scenarios where chat users want to formard messages from another converation.
+Call `importMessages` to import multiple messages to the specified conversation. This applies to scenarios where chat users want to formard messages from another conversation.
 
 ```Objective-C
 [[AgoraChatClient sharedClient].chatManager importMessages:messages completion:nil];

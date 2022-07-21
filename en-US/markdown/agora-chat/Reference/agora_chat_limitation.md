@@ -94,4 +94,4 @@ When a chatroom ([createChatRoom](https://hyphenateinc.github.io/android_referen
 
 For each App Key, the call frequency limit of all methods is 500 per second. This total limit applies to all pricing plans; however, the call frequency limit of each method varies. For details about each method, see [Chat RESTful API Reference](./agora_chat_restful_overview).
 
-<div class="alert info">If the provided call frequency limit cannot meet your business requirements, contact <a href="mailto:sales@agora.io">sales@agora.io</a>.</div>
+<div class="alert info">If the provided call frequency limit cannot meet your business requirements, contact <a href="mailto:support@agora.io">support@agora.io</a>.</div>

@@ -52,7 +52,7 @@ message.chatType = AgoraChatTypeGroupChat;
 
 You can use `AgoraChatManagerDelegate` to listen for message events. You can add multiple delegates to listen for multiple events. When you no longer listen for an event, ensure that you remove the listener.
 
-When a message arrives, the recipient recieves an `messagesDidReceive` callback. Each callback contains one or more messages. You can traverse the message list, and parse and render these messages in this callback and render these messages.
+When a message arrives, the recipient receives an `messagesDidReceive` callback. Each callback contains one or more messages. You can traverse the message list, and parse and render these messages in this callback and render these messages.
 
 ```Objective-C
 // Adds the delegate.

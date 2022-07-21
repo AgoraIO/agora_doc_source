@@ -14,7 +14,7 @@ This page introduces how to use the Agora Chat SDK to implement these functional
 
 ## Understand the tech
 
-The Agora Chat SDK provides a `Message` class that defines the message type, and a `ChatManager` class that allows you to send, recieve, recall, and retrieve messages.
+The Agora Chat SDK provides a `Message` class that defines the message type, and a `ChatManager` class that allows you to send, receive, recall, and retrieve messages.
 
 ## Prerequisites
 
@@ -24,7 +24,7 @@ Before proceeding, ensure that you meet the following requirements:
 - You understand the [API call frequency limits](./agora_chat_limitation_ios?platform=iOS).
 
 
-## Send and recieve messages
+## Send and receive messages
 
 The process of sending and receiving a message is as follows:
 
@@ -296,7 +296,7 @@ message.chatType = AgoraChatTypeChat;
 
 ### Recall messages
 
-After sending a message, you can recall it using the `recallMessage` method. The default time limit for recalling a message is two minutes after the message. To customize this time limit, contact sales@agora.io.
+After sending a message, you can recall it using the `recallMessage` method. The default time limit for recalling a message is two minutes after the message. To customize this time limit, contact support@agora.io.
 
 Refer to the following code sample to recall a message:
 
@@ -319,8 +319,8 @@ The followings are the core methods for managing the local messages:
 - `deleteConversation`: Deletes the conversation on the local device.
 - `unreadMessagesCount`: Retrieves the count of the unread messages in the specified conversation.
 - `loadMessagesStartFromId`: Searches for messages using keywords or the timestamp from the local database.
-- `importMessages`: Imports the specified historial message to the database.
-- `insertMessage`: Inserts the specified historial message into the conversation.
+- `importMessages`: Imports the specified historical message to the database.
+- `insertMessage`: Inserts the specified historical message into the conversation.
 
 ### Retrieve local conversations
 
@@ -381,28 +381,28 @@ AgoraConversation *conversation = [[AgoraChatClient sharedClient].chatManager ge
 You can delete the specified conversation or the specified message in the current conversation from the local device. Refer to the following code:
 
 ```Objective-C
-// Set whether to delete all the historial messages in the current conversation.
+// Set whether to delete all the historical messages in the current conversation.
 [[AgoraChatClient sharedClient].chatManager deleteConversation:conversationId isDeleteMessages:YES completion:nil];
 // Delete the specified conversations.
 NSArray *conversations = @ { @"conversationID1", @"conversationID2" };
 [[AgoraChatClient sharedClient].chatManager deleteConversations:conversations isDeleteMessages:YES completion:nil];
-// Delete the specified historial messages in the current conversation.
+// Delete the specified historical messages in the current conversation.
 AgoraConversation *conversation = [[AgoraChatClient sharedClient].chatManager getConversation:conversationId type:type createIfNotExist:YES];
 [conversation deleteMessageWithId:.messageId error:nil];
 ```
 
-### Search historial messages
+### Search historical messages
 
-Refer to the following code to search the historial messages. You can use fields such as keyword, timestamp, and sender for the search.
+Refer to the following code to search the historical messages. You can use fields such as keyword, timestamp, and sender for the search.
 
 ```Objective-C
 // Call searchMsgFromDB to search for messages in the current conversation.
 NSArray<Message *> *messages = [conversation loadMessagesWithKeyword:keyword timestamp:0 count:50 fromUser:nil searchDirection:MessageSearchDirectionDown];
 ```
 
-### Import historial messages to the local database
+### Import historical messages to the local database
 
-You can import a historial message to the local database by constructing a `ChatMessage` object:
+You can import a historical message to the local database by constructing a `ChatMessage` object:
 
 ```Objective-C
 [[AgoraChatClient sharedClient].chatManager importMessages:messages completion:nil];
@@ -418,9 +418,9 @@ AgoraConversation *conversation = [[AgoraChatClient sharedClient].chatManager ge
 [conversation insertMessage:message error:nil];
 ```
 
-## Retrieve historial messages from the server
+## Retrieve historical messages from the server
 
-The Agora Chat SDK also stores historial messages on the chat server, and you can retrieve these historial messages by conversations.
+The Agora Chat SDK also stores historical messages on the chat server, and you can retrieve these historical messages by conversations.
 
 The followings are the core methods for retrieving historical messages from the server
 - `getConversationsFromServer`: Retrieves the conversation list from the server.
@@ -446,7 +446,7 @@ Refer to the following code sample to retrieve the conversation list from the se
 
 ### Retrieve the historical messages of the specified conversation by pagination
 
-Refer to the following code to retrieve the historial messages from the specified conversation by pagination. For each method call, a maximum number of 50 messages are returned.
+Refer to the following code to retrieve the historical messages from the specified conversation by pagination. For each method call, a maximum number of 50 messages are returned.
 
 ```Objective-C
 [[AgoraChatClient sharedClient].chatManager asyncFetchHistoryMessagesFromServer:conversationId conversationType:conversationType startMessageId:messageId pageSize:pageSize completion:^(AgoraCursorResult * aResult, AgoraError * aError) {
@@ -573,7 +573,7 @@ Refer to the following code to implement read receipts for the specified message
 
 For chat group messages, when the group owner or an admin sends a messge, they can set whether to require a message read receipt.
 
-<div class="alert note">You need to contact sales@agora.io to enable the group message read receipt feature. Once enabled, this feature applies to the chat group owner and chat group admins only.</div>
+<div class="alert note">You need to contact support@agora.io to enable the group message read receipt feature. Once enabled, this feature applies to the chat group owner and chat group admins only.</div>
 
 To receive the chat message receipt, the message sender needs to set `isNeedGroupAck` as `YES` when sending the message.
 

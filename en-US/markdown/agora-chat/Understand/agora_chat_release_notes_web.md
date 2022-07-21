@@ -94,7 +94,7 @@ This release made the following improvmenets:
 **Fixed issues**
 
 This release fixed the following issues:
-- The delivery acknowledgement was not recieved.
+- The delivery acknowledgement was not received.
 - The group announcement could not be set as null.
 - An error was reported when muting a specified user during chat.
 

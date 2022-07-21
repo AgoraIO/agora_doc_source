@@ -10,7 +10,7 @@ The Agora Chat SDK uses `ChatManager` and `ChatConversation` to manage local mes
 - `ChatManage.deleteConversation`: Deletes the specified conversation.
 - `ChatConversation.getConversationUnreadCount`: Retrieves the count of unread messages in the specified conversation.
 - `ChatManager.getUnreadCount`: Retrieves the count of all unread messages.
-- `ChatManager.removeConversationFromServer`: Deletes the conversation and historial messages from the server.
+- `ChatManager.removeConversationFromServer`: Deletes the conversation and historical messages from the server.
 - `ChatManager.searchMsgFromDB`: Searches for messages from the local database.
 
 ## Prerequisites
@@ -41,7 +41,7 @@ ChatClient.getInstance()
 
 ### Retrieve messages in the specified conversation
 
-You can retrieve the messages in the specified converation from the local database by specifying the conversation ID and chat type:
+You can retrieve the messages in the specified conversation from the local database by specifying the conversation ID and chat type:
 
 ```typescript
 // Sepcify the conversation ID.
@@ -135,7 +135,7 @@ ChatClient.getInstance()
 
 ### Delete conversations and historical messages
 
-The SDK provides two methods, which enables you to delete the conversations and historial messages on the local device and on the server respectively.
+The SDK provides two methods, which enables you to delete the conversations and historical messages on the local device and on the server respectively.
 
 To delete them on the local device, call `deleteConversation`:
 
@@ -208,7 +208,7 @@ ChatClient.getInstance().chatManager.searchMsgFromDB(
 
 ### Import messages
 
-Call `importMessages` to import multiple messages to the specified conversation. This applies to scenarios where chat users want to formard messages from another converation.
+Call `importMessages` to import multiple messages to the specified conversation. This applies to scenarios where chat users want to formard messages from another conversation.
 
 ```typescript
 // Construct the messages.

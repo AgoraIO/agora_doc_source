@@ -35,7 +35,7 @@ List<Conversation>list = SDKClient.Instance.ChatManager.LoadAllConversations();
 
 ### Retrieve messages in the specified conversation
 
-Refer to the following code sample to retrieve the messages in the specified converation:
+Refer to the following code sample to retrieve the messages in the specified conversation:
 
 ```C#
 // Get the specified conversation on the local device.
@@ -119,7 +119,7 @@ List<Message> list = SDKClient.Instance.ChatManager.SearchMsgFromDB(keywords, ti
 
 ### Import messages
 
-Call `ImportMessages` to import multiple messages to the specified conversation. This applies to scenarios where chat users want to formard messages from another converation.
+Call `ImportMessages` to import multiple messages to the specified conversation. This applies to scenarios where chat users want to formard messages from another conversation.
 
 ```C#
 SDKClient.Instance.ChatManager.ImportMessages(msgs);

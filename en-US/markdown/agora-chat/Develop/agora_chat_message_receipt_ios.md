@@ -93,7 +93,7 @@ In one-to-one chats, the SDK supports sending both the conversation read receipt
 
  To implement the message read receipt, take the following steps:
 
- 1. Send a converation read receipt when the recipient enters the conversation.
+ 1. Send a conversation read receipt when the recipient enters the conversation.
 
     ```Objective-C
     [[AgoraChatClient sharedClient].chatManager sendMessageReadAck:messageId toUser:conversationId completion:nil];

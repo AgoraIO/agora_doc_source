@@ -14,7 +14,7 @@ This page introduces how to use the Agora Chat SDK to implement these functional
 
 ## Understand the tech
 
-The Agora Chat SDK provides a `ChatMessage` class that defines the message type, and a `ChatManager` class that allows you to send, recieve, recall, and retrieve messages.
+The Agora Chat SDK provides a `ChatMessage` class that defines the message type, and a `ChatManager` class that allows you to send, receive, recall, and retrieve messages.
 
 ## Prerequisites
 
@@ -24,7 +24,7 @@ Before proceeding, ensure that you meet the following requirements:
 - You understand the [API call frequency limits](./agora_chat_limitation_android?platform=Android).
 
 
-## Send and recieve messages
+## Send and receive messages
 
 The process of sending and receiving a message is as follows:
 
@@ -260,7 +260,7 @@ message.getStringAttribute("attribute1",null);message.getBooleanAttribute("attri
 
 ### Recall messages
 
-After sending a message, you can recall it using the `recallMessage` method. The default time limit for recalling a message is two minutes after the message. To customize this time limit, contact sales@agora.io.
+After sending a message, you can recall it using the `recallMessage` method. The default time limit for recalling a message is two minutes after the message. To customize this time limit, contact support@agora.io.
 
 Refer to the following code sample to recall a message:
 
@@ -278,8 +278,8 @@ The followings are the core methods for managing the local messages:
 - `getUnreadMsgCount`: Retrieves the count of the unread messages in the specified conversation.
 - `getUnreadMessageCount`: Retrieves the count of all the unread messages.
 - `searchMsgFromDS`: Searches for messages using keywords or the timestamp from the local database.
-- `importMessages`: Imports the specified historial message to the database.
-- `insertMessage`: Inserts the specified historial message into the conversation.
+- `importMessages`: Imports the specified historical message to the database.
+- `insertMessage`: Inserts the specified historical message into the conversation.
 
 ### Retrieve local conversations
 
@@ -347,18 +347,18 @@ Conversation conversation = ChatClient.getInstance().chatManager().getConversati
 conversation.removeMessage(deleteMsg.msgId);
 ```
 
-### Search historial messages
+### Search historical messages
 
-Refer to the following code to search the historial messages. You can use fields such as keyword, timestamp, and sender for the search.
+Refer to the following code to search the historical messages. You can use fields such as keyword, timestamp, and sender for the search.
 
 ```java
 // Call searchMsgFromDB to search for messages in the current conversation.
 List<ChatMessage> messages = conversation.searchMsgFromDB(keywords, timeStamp, maxCount, from, Conversation.SearchDirection.UP);
 ```
 
-### Import historial messages to the local database
+### Import historical messages to the local database
 
-You can import a historial message to the local database by constructing a `ChatMessage` object:
+You can import a historical message to the local database by constructing a `ChatMessage` object:
 
 ```java
 ChatClient.getInstance().chatManager().importMessages(msgs);
@@ -376,9 +376,9 @@ conversation.insertMessage(message);
 ChatClient.getInstance().chatManager().saveMessage(message);
 ```
 
-## Retrieve historial messages from the server
+## Retrieve historical messages from the server
 
-The Agora Chat SDK also stores historial messages on the chat server, and you can retrieve these historial messages by conversations.
+The Agora Chat SDK also stores historical messages on the chat server, and you can retrieve these historical messages by conversations.
 
 The followings are the core methods for retrieving historical messages from the server
 - `asyncFetchConversationsFromServer`: Retrieves the conversation list from the server.
@@ -405,7 +405,7 @@ ChatClient.getInstance().chatManager().asyncFetchConversationsFromServer(new Val
 
 ### Retrieve the historical messages of the specified conversation by pagination
 
-Refer to the following code to retrieve the historial messages from the specified conversation by pagination. For each method call, a maximum number of 50 messages are returned.
+Refer to the following code to retrieve the historical messages from the specified conversation by pagination. For each method call, a maximum number of 50 messages are returned.
 
 ```java
 try {
@@ -569,7 +569,7 @@ Refer to the following code to implement read receipts for the specified message
 
 For chat group messages, when the group owner or an admin sends a messge, they can set whether to require a message read receipt.
 
-<div class="alert note">You need to contact sales@agora.io to enable the group message read receipt feature. Once enabled, this feature applies to the chat group owner and chat group admins only.</div>
+<div class="alert note">You need to contact support@agora.io to enable the group message read receipt feature. Once enabled, this feature applies to the chat group owner and chat group admins only.</div>
 
 To receive the chat message receipt, the message sender needs to set `setIsNeedGroupAck` as true when sending the message.
 
