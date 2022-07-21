@@ -12,7 +12,7 @@ The Agora Chat SDK uses `ChatManager` to manage local messages. Followings are t
 - `getUnreadMessageCount`: Retrieves the count of all unread messages.
 - `deleteConversation`: Deletes the conversation from the server.
 - `searchMsgFromDB`: Searches for messages from the local database.
-- `Conversation.insertMessage`: Inserts messages in the specified conversation.
+- `Conversation.importMessages`: Inserts messages in the specified conversation.
 
 ## Prerequisites
 
@@ -108,7 +108,7 @@ ChatClient.getInstance().chatManager().importMessages(msgs);
 
 ### Insert messages
 
-If you want to insert a message to the current conversation without actually sending the message, construct the message body and call `insertMessage`. This can be used to send notification messages such as "XXX recalls a message", "XXX joins the chat group", and "Typing ...".
+If you want to insert a message to the current conversation without actually sending the message, construct the message body and call `importMessages`. This can be used to send notification messages such as "XXX recalls a message", "XXX joins the chat group", and "Typing ...".
 
 ```java
 ChatClient.getInstance().chatManager().importMessages(msgs);

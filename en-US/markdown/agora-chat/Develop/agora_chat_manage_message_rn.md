@@ -12,7 +12,6 @@ The Agora Chat SDK uses `ChatManager` and `ChatConversation` to manage local mes
 - `ChatManager.getUnreadCount`: Retrieves the count of all unread messages.
 - `ChatManager.removeConversationFromServer`: Deletes the conversation and historial messages from the server.
 - `ChatManager.searchMsgFromDB`: Searches for messages from the local database.
-- `ChatConversation.insertMessage`: Inserts messages in the specified conversation.
 
 ## Prerequisites
 
