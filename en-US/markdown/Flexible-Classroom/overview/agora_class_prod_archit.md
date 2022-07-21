@@ -2,19 +2,17 @@
 
 The following figure shows the overall product architecture of Flexible Classroom:
 
-![](https://web-cdn.agora.io/docs-files/1652707409645)
+![](https://web-cdn.agora.io/docs-files/1658392957746)
 
 ## Basic features
 
 | <span style="white-space:nowrap;">Feature&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span> | Description |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| Real-time audio and video interaction | <li>In a one-to-one classroom, both the teacher and student can send and receive audio and video streams by default.</li><li>In a small classroom or a lecture hall, students do not send audio and video streams by default. During the class, students can "go onto the stage" and address the class.</li> |
-| Real-time messaging | The teacher and students can send text messages, emojis, and pictures. |
-| Interactive whiteboard | The teacher and students can draw and make notes on the whiteboard. Flexible Classroom supports rich drawing tools, including brushes, text boxes, shapes, erasers, paging, and laser pointer. |
-| Courseware management | Teachers can upload files in classrooms to help students better understand the class. Supported formats include PPT, PPTX, DOC, DOCX, PDF, MP3, MP4, PNG, JPG, and GIF. |
-| Cloud recording | Teachers can start recording in the classroom. Flexible Classroom uses [Web Page Recording](/en/cloud-recording/cloud_recording_webpage_mode?platform=RESTful) to record the audio, video, and whiteboard content in a single file and provides a link for students after the recording finishes. |
-| Enabling screen sharing | Teachers can share their screens, windows, or browser tabs with students in class. |
-| Teaching tools | <li>Rewards: Teachers can reward students with virtual credits, such as stars and trophies, for good performance during the class.</li><li>The answer selector: This tool is applicable to scenarios where the teacher asks a single-choice or multiple-choice question and requests the whole class to answer the question together. The teacher can set up the choices and the correct answer, and then trigger answering. The teacher can see the number of students who have submitted an answer and the percentage that are correct in real time.</li><li>The polling tool: This tool is applicable to scenarios where the teacher wants to get feedback from the whole class. The teacher can set up the subject, choices, and start and end time of the poll. Flexible Classroom also provides live visualization of polling results.</li><li>The countdown timer: The teacher can find the countdown timer in the toolbox and set an initial value. After the teacher clicks the start button, students see a countdown window.</li><li>Breakout rooms: The teacher can create breakout rooms and manually assign students to each breakout room. A class supports up to 20 breakout rooms with a maximum of 17 members in each room. The features that are available in breakout rooms include real-time audio and video interaction, messaging, whiteboarding, and screen sharing. After the breakout session begins, the teacher and teaching assistants have the ability to dynamically join or leave any of the breakout rooms. They can also send announcements to all the breakout rooms. Students are notified in their chat to check for the announcements.</li> |
+| Real-time audio and video interaction | <li>Multi-people audio and video call</li><li>Recording</li><li>Screen sharing</li><li>On/off stage</li><li>Taking screenshots</li> |
+| Real-time messaging | <li>Text messages</li><li>Emoji</li><li>Images</li><li>Muting all</li><li>Announcement</li> |
+| Interactive whiteboard | <li>Supports rich drawing tools, including brushes, text boxes, shapes, erasers, paging, laser pointer, undo, and redo.</li><li>Allows teachers and teaching assistants to save contents on the whiteboard to their local device as JPG images.</li><li>Allows teachers and teaching assistants on the PC to drop local images to the whiteboard area and insert the images into the whiteboard.</li> |
+| Courseware management | Allows teachers to upload files in classrooms to help students better understand the class. Supported formats include PPT, PPTX, DOC, DOCX, PDF, MP3, MP4, PNG, JPG, and GIF. |
+| Teaching tools | <li>Rewards: Teachers can reward students with virtual credits, such as stars and trophies, for good performance during the class.</li><li>Pop-up quiz: This tool is applicable to scenarios where the teacher asks a single-choice or multiple-choice question and requests the whole class to answer the question together. The teacher can set up the choices and the correct answer, and then trigger answering. The teacher can see the number of students who have submitted an answer and the percentage that are correct in real time.</li><li>Polling tool: This tool is applicable to scenarios where the teacher wants to get feedback from the whole class. The teacher can set up the subject, choices, and start and end time of the poll. Flexible Classroom also provides live visualization of polling results.</li><li>Countdown timer: The teacher can find the countdown timer in the toolbox and set an initial value. After the teacher clicks the start button, students see a countdown window.</li><li>Breakout rooms: Supports the "breakout rooms" feature in small classrooms. Teachers can create breakout rooms manually (the teacher manually assigns students to each breakout room) or automatically (after the teacher sets up the number of breakout rooms, the system randomly assigns the whole class to breakout rooms). No matter which way the teacher chooses, a class supports up to 20 breakout rooms with a maximum of 17 members in each room. The features that are available in breakout rooms include real-time audio and video interaction, messaging, whiteboard, and screen sharing. After the breakout session begins, the teacher and teaching assistants have the ability to dynamically join or leave any of the breakout rooms. They can also send announcements to all the breakout rooms. Students are notified in their chat to check for the announcements.</li><li>Remote control: Supports the "remote control" feature in one-to-one and small classrooms. This feature is only available on Windows and macOS clients. To see the remote control option, a participant must share their screen. Teachers can either request access for remote control of the student sharing their screen or ask a student to remotely control the teacher's own screen.</li> |
 
 ## Advanced features
 
@@ -101,10 +99,11 @@ The following figure shows the overall product architecture of Flexible Classroo
     <td>Change the classroom colors.</td>
   </tr>
   <tr>
-    <td rowspan="4">Widget</td>
+    <td>Widget</td>
     <td>Implements pluggable widgets, such as the interactive whiteboard, pop-up quiz, and countdown timer.</td>
   </tr>
   <tr>
+    <td rowspan="3"></td>
     <td>Configures the resolution of recording files.</td>
   </tr>
   <tr>
