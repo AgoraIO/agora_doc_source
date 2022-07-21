@@ -263,13 +263,13 @@ ChatClient.getInstance()
 
 #### Add a member to the chat group allow list
 
-Only the chat group owner and admins can call `addWhiteList` to add the specified member to the chat group allow list. Members in the chat group allow list can send chat group messages even when the chat group owner or admin has muted all chat group members. However, if a member is already in the chat group mute list, adding this member to the allow list does not enable them to send messages. The mute list takes precedence.
+Only the chat group owner and admins can call `addAllowList` to add the specified member to the chat group allow list. Members in the chat group allow list can send chat group messages even when the chat group owner or admin has muted all chat group members. However, if a member is already in the chat group mute list, adding this member to the allow list does not enable them to send messages. The mute list takes precedence.
 
 The following code sample shows how to add a member to the chat group allow list:
 
 ```typescript
 ChatClient.getInstance()
-  .groupManager.addWhiteList(groupId, members)
+  .groupManager.addAllowList(groupId, members)
   .then(() => {
     console.log("add white list success.");
   })
@@ -280,13 +280,13 @@ ChatClient.getInstance()
 
 #### Remove a member from the chat group allow list
 
-Only the chat group owner and admins can call `removeWhiteList` to remove the specified member from the chat group allow list.
+Only the chat group owner and admins can call `removeAllowList` to remove the specified member from the chat group allow list.
 
 The following code sample shows how to remove a member from the chat group allow list:
 
 ```typescript
 ChatClient.getInstance()
-  .groupManager.removeWhiteList(groupId, members)
+  .groupManager.removeAllowList(groupId, members)
   .then(() => {
     console.log("remove white list success.");
   })
@@ -297,13 +297,13 @@ ChatClient.getInstance()
 
 #### Check whether a user is added to the allow list
 
-All chat group members can call `isMemberInWhiteListFromServer` to check whether they are added to the chat group allow list.
+All chat group members can call `isMemberInAllowListFromServer` to check whether they are added to the chat group allow list.
 
 The following code sample shows how to check whether a user is on the chat group allow list:
 
 ```typescript
 ChatClient.getInstance()
-  .groupManager.isMemberInWhiteListFromServer(groupId)
+  .groupManager.isMemberInAllowListFromServer(groupId)
   .then((isMember) => {
     console.log("is member success: ", isMember);
   })
@@ -314,13 +314,13 @@ ChatClient.getInstance()
 
 #### Retrieve the chat group allow list
 
-Only the chat group owner and admins can call `fetchWhiteListFromServer` to retrieve the chat group allow list.
+Only the chat group owner and admins can call `fetchAllowListFromServer` to retrieve the chat group allow list.
 
 The following code sample shows how to retrieve the chat group allow list:
 
 ```typescript
 ChatClient.getInstance()
-  .groupManager.fetchWhiteListFromServer(groupId)
+  .groupManager.fetchAllowListFromServer(groupId)
   .then(() => {
     console.log("get white list success.");
   })

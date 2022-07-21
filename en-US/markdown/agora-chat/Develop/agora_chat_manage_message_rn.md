@@ -6,13 +6,12 @@ This page introduces how to use the Agora Chat SDK to implement these functional
 
 The Agora Chat SDK uses `ChatManager` and `ChatConversation` to manage local messages. Followings are the core methods:
 
-- `ChatManager.loadAllConversations`: Loads the conversation list on the local device.
+- `ChatManager.getAllConversations`: Loads the conversation list on the local device.
 - `ChatManage.deleteConversation`: Deletes the specified conversation.
-- `ChatConversation.getUnreadMessageCount`: Retrieves the count of unread messages in the specified conversation.
-- `ChatManager.getUnreadMessageCount`: Retrieves the count of all unread messages.
-- `ChatManager.deleteRemoteConversation`: Deletes the conversation and historial messages from the server.
+- `ChatConversation.getConversationUnreadCount`: Retrieves the count of unread messages in the specified conversation.
+- `ChatManager.getUnreadCount`: Retrieves the count of all unread messages.
+- `ChatManager.removeConversationFromServer`: Deletes the conversation and historial messages from the server.
 - `ChatManager.searchMsgFromDB`: Searches for messages from the local database.
-- `ChatConversation.insertMessage`: Inserts messages in the specified conversation.
 
 ## Prerequisites
 
@@ -27,11 +26,11 @@ This section shows how to implement managing messages.
 
 ### Retrieve conversations
 
-Call `loadAllConversations` to retrieve all the conversations on the local device:
+Call `getAllConversations` to retrieve all the conversations on the local device:
 
 ```typescript
 ChatClient.getInstance()
-  .chatManager.loadAllConversations()
+  .chatManager.getAllConversations()
   .then(() => {
     console.log("Loading conversations succeeds");
   })
@@ -71,9 +70,9 @@ Refer to the following code example to retrieve the count of unread messages:
 const convId = "convId";
 // Specify the conversation type. For details, see descriptions in ChatConversationType.
 const convType = ChatConversationType.PeerChat;
-// Call unreadCount to retrieve the count of unread messages in the current conversation.
+// Call getConversationUnreadCount to retrieve the count of unread messages in the current conversation.
 ChatClient.getInstance()
-  .chatManager.unreadCount(convId, convType)
+  .chatManager.getConversationUnreadCount(convId, convType)
   .then((count) => {
     console.log("Getting conversations succeeds: ", count);
   })
@@ -89,7 +88,7 @@ Refer to the following code example to retrieve the count of all unread messages
 
 ```typescript
 ChatClient.getInstance()
-  .chatManager.getUnreadMessageCount()
+  .chatManager.getUnreadCount()
   .then((count) => {
     console.log("Getting all conversations succeeds: ", count);
   })
@@ -156,7 +155,7 @@ ChatClient.getInstance()
   });
 ```
 
-To delete them on the server, call `deleteRemoteConversation`:
+To delete them on the server, call `removeConversationFromServer`:
 
 ```typescript
 // Specify the conversation ID
@@ -165,9 +164,9 @@ const convId = "convId";
 const isDeleteMessage = true;
 // Specify the conversation type. For details, see descriptions in ChatConversationType.
 const convType = ChatConversationType.PeerChat;
-// Call deleteRemoteConversation.
+// Call removeConversationFromServer.
 ChatClient.getInstance()
-  .chatManager.deleteRemoteConversation(convId, convType, isDeleteMessage)
+  .chatManager.removeConversationFromServer(convId, convType, isDeleteMessage)
   .then(() => {
     console.log("Removing conversations succeeds: ");
   })

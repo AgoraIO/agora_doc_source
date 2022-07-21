@@ -6,7 +6,7 @@ This page introduces how to use the Agora Chat SDK to retrieve messages from the
 
 The Agora Chat SDK uses `ChatManager` to retrieve historical messages from the server. Followings are the core methods:
 
-- `getConversationsFromServer`: Retrieve a list of conversations stored on the server.
+- `fetchAllConversations`: Retrieve a list of conversations stored on the server.
 - `fetchHistoryMessages`: Retrieve the historical messages in the specified conversation from the server.
 
 ## Prerequsites
@@ -23,11 +23,11 @@ This section shows how to implement retrieving conversations and messages.
 
 ### Retrieve a list of conversations from the server
 
-Call `getConversationsFromServer` to retrieve all the conversations from the server. We recommend calling this method when the app is first installed, or when there is no conversation on the local device. Otherwise, you can call `loadAllConversations` to retrieve conversations on the local device.
+Call `fetchAllConversations` to retrieve all the conversations from the server. We recommend calling this method when the app is first installed, or when there is no conversation on the local device. Otherwise, you can call `getAllConversations` to retrieve conversations on the local device.
 
 ```typescript
 ChatClient.getInstance()
-  .chatManager.getConversationsFromServer()
+  .chatManager.fetchAllConversations()
   .then(() => {
     console.log("load conversions success");
   })
