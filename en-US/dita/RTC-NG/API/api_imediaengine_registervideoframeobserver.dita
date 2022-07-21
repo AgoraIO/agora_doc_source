@@ -22,12 +22,11 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p>You need to implement the <xref keyref="IVideoFrameObserver"/> class in this method and register callbacks according to your scenarios. After registering the video observer, the SDK
-triggers the above-mentioned callbacks every time a video frame is captured.</p>
+            <p>You need to implement the <xref keyref="IVideoFrameObserver"/> class in this method and register callbacks according to your scenarios. After you successfully register the video frame observer, the SDK triggers the registered callbacks each time a video frame is received.</p>
             <note type="attention">
             <ul>
             <li>在处理回调时，你需要考虑视频帧中 <parmname>width</parmname> 和 <parmname>height</parmname>
-参数的变化，因为观测得到的视频帧可能会随以下情况变化： 
+参数的变化，因为观测得到的视频帧可能会随以下情况变化：
                 <ul id="ul_qms_zys_r4b">
                 <li>When the network condition deteriorates, the video resolution decreases incrementally.</li>
                 <li>If the user adjusts the video profile, the resolution of the video returned in the callbacks also changes.</li>
