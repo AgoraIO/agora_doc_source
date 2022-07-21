@@ -84,7 +84,7 @@ const msg = ChatMessage.createTextMessage(
 );
 ```
 
-The SDK sends both the original message and the translated message. After the recipient recieves the message, call `translations` to retrieve the translated message:
+The SDK sends both the original message and the translated message. After the recipient receives the message, call `translations` to retrieve the translated message:
 
 ```typescript
 const body = result.body as ChatTextMessageBody;

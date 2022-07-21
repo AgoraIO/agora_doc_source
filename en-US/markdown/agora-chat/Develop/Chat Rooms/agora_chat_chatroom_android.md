@@ -33,7 +33,7 @@ This section introduces how to call the APIs provided by the Agora Chat SDK to i
 ChatRoom  chatRoom = ChatClient.getInstance().chatroomManager().createChatRoom(subject, description, welcomMessage, maxUserCount, members);
 
 // Only the chat room owner can call destroyChatRoom to disband the chat room.
-// Once the chat room is disbanded, all members of that chat room recieve the onChatRoomDestroyed callback and are immediately removed from the chat room.
+// Once the chat room is disbanded, all members of that chat room receive the onChatRoomDestroyed callback and are immediately removed from the chat room.
 ChatClient.getInstance().chatroomManager().destroyChatRoom(chatRoomId);
 ```
 
@@ -136,7 +136,7 @@ To manage the messages in the chat room, the chat room owner and admin can add a
 // The chat room owner or admin can call muteChatRoomMembers to add the specified user to the chat room block list. The muted member and all the other chat room admins or owner receive the onMuteListAdded callback.
 ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().muteChatRoomMembers(chatRoomId, members, duration);
 
-// The chat room owner or admin can call unMuteChatRoomMembers to remove the specified user from the chat room block list. The unmuted member and all the other chat room admins or owner recieve the onMuteListRemoved callback.
+// The chat room owner or admin can call unMuteChatRoomMembers to remove the specified user from the chat room block list. The unmuted member and all the other chat room admins or owner receive the onMuteListRemoved callback.
 ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().unMuteChatRoomMembers(chatRoomId, members);
 
 // The chat room owner or admin can call fetchChatRoomMuteList to fetch the mute list of the current chat room.

@@ -163,7 +163,7 @@ Follow the steps to create and send a message, and listen for the result of send
 
 You can use `ChatManagerListener` to listen for message events. You can add multiple `ChatManagerListener` objects to listen for multiple events. When you no longer listen for an event, for example, when you call `dispose`, ensure that you remove the object.
 
-When a message arrives, the recipient recieves an `onMessgesReceived` callback. Each callback contains one or more messages. You can traverse the message list, and parse and render these messages in this callback.
+When a message arrives, the recipient receives an `onMessgesReceived` callback. Each callback contains one or more messages. You can traverse the message list, and parse and render these messages in this callback.
 
 ```dart
 // Inherits and implements ChatManagerListener

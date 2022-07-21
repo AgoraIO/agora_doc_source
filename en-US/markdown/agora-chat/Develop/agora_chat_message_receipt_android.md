@@ -79,7 +79,7 @@ In one-to-one chats, the SDK supports sending both the conversation read receipt
     1. When a user enters the conversation UI, check whether the conversation contains unread messages. If yes, call `ackConversationRead` to send a conversation read receipt.
     
     ```java
-    // The message receiver calls ackConversationRead to send the converation read receipt.
+    // The message receiver calls ackConversationRead to send the conversation read receipt.
     // This is an asynchronous method.
     try {
         ChatClient.getInstance().chatManager().ackConversationRead(conversationId);
@@ -92,11 +92,11 @@ In one-to-one chats, the SDK supports sending both the conversation read receipt
     2. The message sender listens for message events and receives the conversation read receipt in `onConversationRead`.
 
     ```java
-    // The message sender calls addConversationListener to listen for converation events.
+    // The message sender calls addConversationListener to listen for conversation events.
     ChatClient.getInstance().chatManager().addConversationListener(new ConversationListener() {
                 ...
                 @Override
-                // Occurs when the all the messages in the converation is read.
+                // Occurs when the all the messages in the conversation is read.
                 public void onConversationRead(String from, String to) {
                     // Add follow-up logics such as poping up a notification.
                 }
@@ -109,10 +109,10 @@ In one-to-one chats, the SDK supports sending both the conversation read receipt
 
     To implement the message read receipt, take the following steps:
 
-    1. Send a converation read receipt when the recipient enters the conversation.
+    1. Send a conversation read receipt when the recipient enters the conversation.
 
     ```java
-    // The message receiver calls ackMessageRead to send the converation read receipt.
+    // The message receiver calls ackMessageRead to send the conversation read receipt.
     try {
         ChatClient.getInstance().chatManager().ackMessageRead(conversationId);
     }catch (ChatException e) {

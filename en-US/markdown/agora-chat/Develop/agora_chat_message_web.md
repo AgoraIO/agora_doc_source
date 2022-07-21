@@ -13,7 +13,7 @@ This page introduces how to use the Agora Chat SDK to implement these functional
 
 ## Understand the tech
 
-The Agora Chat SDK provides a `Message` class that defines the message type, and a `ChatManager` class that allows you to send, recieve, recall, and retrieve messages.
+The Agora Chat SDK provides a `Message` class that defines the message type, and a `ChatManager` class that allows you to send, receive, recall, and retrieve messages.
 
 ## Prerequisites
 
@@ -23,7 +23,7 @@ Before proceeding, ensure that you meet the following requirements:
 - You understand the [API call frequency limits](./agora_chat_limitation_web?platform=Web).
 
 
-## Send and recieve messages
+## Send and receive messages
 
 The process of sending and receiving a message is as follows:
 

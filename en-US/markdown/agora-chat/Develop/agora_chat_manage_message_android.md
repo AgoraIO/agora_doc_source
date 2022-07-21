@@ -35,7 +35,7 @@ Map<String, Conversation> conversations = ChatClient.getInstance().chatManager()
 
 ### Retrieve messages in the specified conversation
 
-Refer to the following code sample to retrieve the messages in the specified converation:
+Refer to the following code sample to retrieve the messages in the specified conversation:
 
 ```java
 Conversation conversation = ChatClient.getInstance().chatManager().getConversation(username);
@@ -100,7 +100,7 @@ List<ChatMessage> messages = conversation.searchMsgFromDB(keywords, timeStamp, m
 
 ### Import messages
 
-Call `importMessages` to import multiple messages to the specified conversation. This applies to scenarios where chat users want to formard messages from another converation.
+Call `importMessages` to import multiple messages to the specified conversation. This applies to scenarios where chat users want to formard messages from another conversation.
 
 ```java
 ChatClient.getInstance().chatManager().importMessages(msgs);

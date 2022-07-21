@@ -46,7 +46,7 @@ The Agora Chat SDK supports sending and receiving messages, managing historical 
 
 You can implement the following features with the chat APIs.
 
-### Send and recieve messages
+### Send and receive messages
 
 All chat users can send and receive messages.
 - In one-to-one chats, two users send messages to each other. 
@@ -71,7 +71,7 @@ Since messages are stored with the read status, with their read status, you can 
 
 Once a user has read all the messages, the number of the unread messages are cleared. You can also clear the number of unread messages for the specified conversation or all the conversations.
 
-### Delete conversation and historial messages
+### Delete conversation and historical messages
 
 You can delete the conversations on the local device, and while doing so, you can choose whether to clear the chat history or not.
 
@@ -91,9 +91,9 @@ You can insert a message to the conversation. This can be applied to use cases s
 
 Apart from the local device, you can also retrieve conversations from the server. 
 
-### Retrieve historial messages of the specified conversation
+### Retrieve historical messages of the specified conversation
 
-The Agora Chat SDK stores historial messages in the chat server, and you can retrieve historical messages in each conversation from the server with pagination. The time duration for storing historical messages varies according to your pricing plan. See [Limitations of message storage duration](#limitations).
+The Agora Chat SDK stores historical messages in the chat server, and you can retrieve historical messages in each conversation from the server with pagination. The time duration for storing historical messages varies according to your pricing plan. See [Limitations of message storage duration](#limitations).
 
 ### Message delievery receipt
 
@@ -107,7 +107,7 @@ In one-to-one chats and group chats, the SDK supports sending a message read rec
 
 ## Limitations of message storage duration
 
-The storage duration for historial messages varies according to your pricing plans:
+The storage duration for historical messages varies according to your pricing plans:
 
 | Agora Chat plan | Message storage duration (days) |
 |--- | --- |

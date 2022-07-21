@@ -62,7 +62,7 @@ message.setChatType(ChatType.GroupChat);
 
 You can use `MessageListener` to listen for message events. You can add multiple `MessageListener`s to listen for multiple events. When you no longer listen for an event, ensure that you remove the listener.
 
-When a message arrives, the recipient recieves an `onMessgesReceived` callback. Each callback contains one or more messages. You can traverse the message list, and parse and render these messages in this callback and render these messages.
+When a message arrives, the recipient receives an `onMessgesReceived` callback. Each callback contains one or more messages. You can traverse the message list, and parse and render these messages in this callback and render these messages.
 
 ```java
 ChatClient.getInstance().chatManager().addMessageListener(msgListener);

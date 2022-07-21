@@ -54,7 +54,7 @@ SDKClient.Instance.ChatManager.SendMessage(ref msg, new CallBack(
 
 You can use `IChatManagerDelegate` to listen for message events. You can add multiple `IChatManagerDelegates` to listen for multiple events. When you no longer listen for an event, ensure that you remove the delegate.
 
-When a message arrives, the recipient recieves an `OnMessgesReceived` callback. Each callback contains one or more messages. You can traverse the message list, and parse and render these messages in this callback and render these messages.
+When a message arrives, the recipient receives an `OnMessgesReceived` callback. Each callback contains one or more messages. You can traverse the message list, and parse and render these messages in this callback and render these messages.
 
 ```C#
 // Inherit and instantiate IChatManagerDelegate.

@@ -57,7 +57,7 @@ function sendPrivateText() {
 
 You can use `addEventHandler` to listen for message events. You can add multiple events. When you no longer listen for an event, ensure that you remove the handler.
 
-When a message arrives, the recipient recieves an `onXXXMessage` callback. Each callback contains one or more messages. You can traverse the message list, and parse and render these messages in this callback and render these messages.
+When a message arrives, the recipient receives an `onXXXMessage` callback. Each callback contains one or more messages. You can traverse the message list, and parse and render these messages in this callback and render these messages.
 
 ```javascript
 // Use `addEventHandler` to listen for callback events.

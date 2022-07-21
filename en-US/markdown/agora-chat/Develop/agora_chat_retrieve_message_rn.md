@@ -1,4 +1,4 @@
-The Agora Chat SDK stores historical messages on the chat server. When a chat user logs in from a different device, you can retrieve the historial messages from the server, so that the user can also browse these messages on the new device.
+The Agora Chat SDK stores historical messages on the chat server. When a chat user logs in from a different device, you can retrieve the historical messages from the server, so that the user can also browse these messages on the new device.
 
 This page introduces how to use the Agora Chat SDK to retrieve messages from the server.
 
@@ -38,11 +38,11 @@ ChatClient.getInstance()
 
 By default, the SDK retrieves the last ten conversations in the past seven days, and each conversation contains one last historical message. To adjust the time limit or the number of conversations retrieved, contact support@agora.io.
 
-### Retrieve historial messages of the specified conversation
+### Retrieve historical messages of the specified conversation
 
-After retrieving conversations, you can retrieve historial messages by pagination from the server. 
+After retrieving conversations, you can retrieve historical messages by pagination from the server. 
 
-To ensure data reliablity, we recommend retrieving less than 50 historical messages for each method call. To retrieve more than 50 historial messages, call this method multiple times. Once the messages are retrieved, the SDK automatically updates these messages in the local database.
+To ensure data reliablity, we recommend retrieving less than 50 historical messages for each method call. To retrieve more than 50 historical messages, call this method multiple times. Once the messages are retrieved, the SDK automatically updates these messages in the local database.
 
 ```typescript
 // Specify the conversation ID.
@@ -51,7 +51,7 @@ const convId = "convId";
 const convType = ChatConversationType.PeerChat;
 // Specify the maximum count of the retrieved messages.
 const pageSize = 10;
-// Specify the message ID from which to retrieve the historial messages.
+// Specify the message ID from which to retrieve the historical messages.
 const startMsgId = "";
 ChatClient.getInstance()
   .chatManager.fetchHistoryMessages(convId, chatType, pageSize, startMsgId)
