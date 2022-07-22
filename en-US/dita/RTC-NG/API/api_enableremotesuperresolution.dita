@@ -28,14 +28,14 @@
                 <dd>v3.5.1</dd>
             </dlentry>
             </dl>
-            <p>This function can effectively improve the resolution of the remote video picture seen by the local user, that is, the width and height (pixels) of the video received by the specified remote user are enlarged to 2 times.</p>
+            <p>This function can effectively improve the resolution of the remote video picture seen by the local user, that is, the width and height (pixels) of the video received by the specified remote user are enlarged to 2 times original size.</p>
             <p props="rtc">After you call this method, the SDK triggers the <xref keyref="onUserSuperResolutionEnabled"/> callback to report whether you have successfully enabled super resolution.</p>
             <p props="rtc-ng">After calling this method, you can confirm whether super resolution is successfully enabled through the remote video stream statistics (<xref keyref="RemoteVideoStats" />) in the <xref keyref="onRemoteVideoStats" /> callback:<ul>
                 <li>If the parameter <parmname>superResolutionType</parmname> >0: Super resolution is enabled.</li>
                 <li>If parameter <parmname>superResolutionType</parmname> =0: Super resolution is not enabled.</li></ul>
             </p>
             <note type="caution">
-            <p props="cpp unity flutter">The super resolution feature requires extra system resources. To balance the visual experience and system consumption, this feature can only be enabled for a single remote user. If the local user uses super resolution on Android, the original resolution of the remote user's video cannot exceed 640 × 360 pixels; if the local user uses super resolution on iOS, the original resolution of the remote user's video cannot exceed 640 × 480 pixels.</p>
+            <p props="cpp unity flutter">The super resolution feature requires extra system resources. To balance the visual experience and system resource consumption, this feature can only be enabled for a single remote user. If the local user uses super resolution on Android, the original resolution of the remote user's video cannot exceed 640 × 360 pixels; if the local user uses super resolution on iOS, the original resolution of the remote user's video cannot exceed 640 × 480 pixels.</p>
             <p props="android ios">The super resolution feature requires extra system resources. To balance the visual experience and system consumption, this feature can only be enabled for a single remote user. If the local user uses super resolution on Android, the original resolution of the remote user's video cannot exceed<ph props="android"> 640 × 360</ph><ph props="ios">640 × 480 </ph>pixels.</p>
             <p props="rtc">If you exceed these limitations, the SDK triggers the <xref keyref="onWarning"/> callback and returns all corresponding warning codes:<ul>
             <li><ph keyref="WARN_SUPER_RESOLUTION_STREAM_OVER_LIMITATION"/>: 1610. The origin resolution of the remote video is beyond the range where super resolution can be applied.</li>
