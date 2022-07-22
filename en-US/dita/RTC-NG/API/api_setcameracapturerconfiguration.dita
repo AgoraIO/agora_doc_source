@@ -23,10 +23,10 @@
       CameraCapturerConfiguration config);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p props="rtc">For a video call or the interactive live video streaming, generally the SDK controls the camera output parameters. When the default camera capturer settings do not meet special requirements or cause performance problems, we recommend using this method to set the camera capturer configuration:<ul>
-            <li>If the resolution or frame rate of the captured raw video data are higher than those set by <xref keyref="setVideoEncoderConfiguration"/>, processing video frames requires extra CPU and RAM usage and degrades performance. Agora recommends setting the camera capture configuration to <ph keyref="CAPTURER_OUTPUT_PREFERENCE_PERFORMANCE"/> (1) to avoid such problems.</li>
-            <li>If you do not need a local video preview or are willing to sacrifice preview quality, we recommend setting the preference as <ph keyref="CAPTURER_OUTPUT_PREFERENCE_PERFORMANCE"/> (1) to optimize CPU and RAM usage.</li>
-            <li>If you want better quality for the local video preview, we recommend setting config as <ph keyref="CAPTURER_OUTPUT_PREFERENCE_PREVIEW"/> (2).</li>
+            <p props="rtc">For a video call or interactive live video streaming, the SDK typically controls the camera output parameters automatically. When the default camera capture settings do not meet special requirements or cause performance problems, Agora recommends using this method to set the camera capture configuration:<ul>
+            <li>If the resolution or frame rate of the captured raw video data is higher than that set by <xref keyref="setVideoEncoderConfiguration"/>, processing video frames requires extra CPU and RAM usage and degrades performance. Agora recommends setting the camera capture configuration to <ph keyref="CAPTURER_OUTPUT_PREFERENCE_PERFORMANCE"/> (1) to avoid such problems.</li>
+            <li>If you do not need a local video preview or are willing to sacrifice preview quality, Agora recommends setting the preference as <ph keyref="CAPTURER_OUTPUT_PREFERENCE_PERFORMANCE"/> (1) to optimize CPU and RAM usage.</li>
+            <li>If you want better quality for the local video preview, Agora recommends setting config as <ph keyref="CAPTURER_OUTPUT_PREFERENCE_PREVIEW"/> (2).</li>
             <li>To customize the width and height of the video image captured by the local camera, set the camera capture configuration as <ph keyref="CAPTURER_OUTPUT_PREFERENCE_MANUAL"/> (3).</li>
             </ul> </p>
             <note type="attention">
@@ -38,7 +38,7 @@
             <parml>
             <plentry>
                 <pt>config</pt>
-                <pd>The camera capturer configuration. See <xref keyref="CameraCapturerConfiguration"/>.<note props="cpp unity">In this method, you do not need to set the <parmname>deviceId</parmname> parameter.</note></pd>
+                <pd>The camera capture configuration. See <xref keyref="CameraCapturerConfiguration"/>.<note props="cpp unity">In this method, you do not need to set the <parmname>deviceId</parmname> parameter.</note></pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity">
