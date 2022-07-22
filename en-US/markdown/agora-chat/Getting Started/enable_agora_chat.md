@@ -18,6 +18,8 @@ Before enabling the Agora Chat service, make sure that you have the following:
 
 3. In the **Features** section of the **Edit Project** page, click **Enable** next to **Chat** to enable the service.
 
+<img src="https://web-cdn.agora.io/docs-files/1658461427680">
+
 Once the Chat service is enabled, you are redirected to the Chat config page. You can then enable the below advanced features of Chat based on your business requirements.
 
 <img width="50%" src="https://web-cdn.agora.io/docs-files/1658310228255" />
