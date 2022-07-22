@@ -1,6 +1,6 @@
 ## v1.5.0
 
-v1.5.0 was released on July 20, 2022.
+v1.5.0 was released on July 22, 2022.
 
 #### Sunset features
 
