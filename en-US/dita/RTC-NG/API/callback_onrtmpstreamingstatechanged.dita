@@ -55,7 +55,7 @@
                 <pt>state</pt>
                 <pd props="ios mac cpp">The current state of the media push. See <xref keyref="RTMP_STREAM_PUBLISH_STATE"/>.</pd>
                 <pd props="android">The current state of the media push.<ul>
-                    <li><ph keyref="RTMP_STREAM_PUBLISH_STATE_IDLE"/>0: The media push has not started or has ended. This state is also triggered after you remove a media push URL from the CDN by calling <xref keyref="removePublishStreamUrl"/>.</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_STATE_IDLE"/>(0): The media push has not started or has ended. This state is also triggered after you remove a media push URL from the CDN by calling <xref keyref="removePublishStreamUrl"/>.</li>
                     <li><ph keyref="RTMP_STREAM_PUBLISH_STATE_CONNECTING"/>(1): The SDK is connecting to Agora media push server and the CDN server. This state is triggered after you call the <xref keyref="addPublishStreamUrl"/> method.</li>
                     <li><ph keyref="RTMP_STREAM_PUBLISH_STATE_RUNNING"/>(2): The media push publishes. The media push publishes successfully and returns this state.</li>
                     <li><ph keyref="RTMP_STREAM_PUBLISH_STATE_RECOVERING"/>(3): The media push is recovering. When exceptions occur to the CDN, or the media push is interrupted, the SDK tries to resume media push and returns this state.<ul>
@@ -63,7 +63,7 @@
                         <li>If the media push does not resume within 60 seconds or server errors occur, <ph keyref="RTMP_STREAM_PUBLISH_STATE_FAILURE"/>(4) returns. You can also reconnect to the server by calling the <xref keyref="removePublishStreamUrl"/> and <xref keyref="addPublishStreamUrl"/> methods.</li>
                         </ul> </li>
                     <li><ph keyref="RTMP_STREAM_PUBLISH_STATE_FAILURE"/>(4): Media push fails. See error codes for the detailed error information. You can also call the <xref keyref="addPublishStreamUrl"/> method to start media push again.</li>
-                    <li><ph keyref="RTMP_STREAM_PUBLISH_STATE_DISCONNECTING"/>(5): The SDK is disconnecting from the Agora media push server and CDN server. When you call <xref keyref="removePublishStreamUrl"/> or <xref keyref="stopRtmpStream"/> to stop the media push normally, the SDK reports the media push state as <apiname keyref="RTMP_STREAM_PUBLISH_STATE_DISCONNECTING"/>, <apiname keyref="RTMP_STREAM_PUBLISH_STATE_IDLE"/> in sequence.</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_STATE_DISCONNECTING"/>(5): The SDK is disconnecting from the Agora media push server and CDN server. When you call <xref keyref="removePublishStreamUrl"/> or <xref keyref="stopRtmpStream"/> to stop the media push normally, the SDK reports the media push state as <apiname keyref="RTMP_STREAM_PUBLISH_STATE_DISCONNECTING"/> and <apiname keyref="RTMP_STREAM_PUBLISH_STATE_IDLE"/> in sequence.</li>
                     </ul></pd>
             </plentry>
             <plentry id="errCode">
