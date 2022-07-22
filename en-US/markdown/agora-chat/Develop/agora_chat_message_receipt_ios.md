@@ -105,16 +105,16 @@ In one-to-one chats, the SDK supports sending both the conversation read receipt
     // Occurs when the message is received.
     - (void)messagesDidReceive:(NSArray *)aMessages
     {
-        for (Message *message in aMessages) {
+        for (AgoraChatMessage *message in aMessages) {
             // Sends a message read receipt
             [self sendReadAckForMessage:message];
         }
     }
 
-    - (void)sendReadAckForMessage:(Message *)aMessage
+    - (void)sendReadAckForMessage:(AgoraChatMessage *)aMessage
     {
         // The received message
-        if (aMessage.direction == EMMessageDirectionSend || aMessage.isReadAcked || aMessage.chatType != EMChatTypeChat)
+        if (aMessage.direction == AgoraChatMessageDirectionSend || aMessage.isReadAcked || aMessage.chatType != AgoraChatTypeChat)
             return;
     
         MessageBody *body = aMessage.body;
@@ -132,7 +132,7 @@ In one-to-one chats, the SDK supports sending both the conversation read receipt
     // Occurs when the message read receipt is received
     - (void)messagesDidRead:(NSArray *)aMessages
     {
-        for (Message *message in aMessages) {
+        for (AgoraChatMessage *message in aMessages) {
             // Adds handling logics
         }
     }
@@ -147,17 +147,17 @@ Follow the steps to implement chat message read receipts.
 1. For chat group messages, the group owner and admins can set to require the message read receipt when sending the message.
 
     ```Objective-C
-    Message *message = [[Message alloc] initWithConversationID:to from:from to:to body:aBody ext:aExt];
+    AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:to from:from to:to body:aBody ext:aExt];
     message.isNeedGroupAck = YES;
     ```
 
 2. After the group member reads the chat group message, call `sendGroupMessageReadAck` from the group member's client to send a message read receipt:
 
     ```Objective-C
-    - (void)sendGroupMessageReadAck:(Message *)msg
+    - (void)sendGroupMessageReadAck:(AgoraChatMessage *)msg
     {
         if (msg.isNeedGroupAck && !msg.isReadAcked) {
-            [[AgoraChatClient sharedClient].chatManager sendGroupMessageReadAck:msg.messageId toGroup:msg.conversationId content:@"123" completion:^(EMError *error) {
+            [[AgoraChatClient sharedClient].chatManager sendGroupMessageReadAck:msg.messageId toGroup:msg.conversationId content:@"123" completion:^(AgoraChatError *error) {
                 if (error) {
                 
                 }
@@ -170,9 +170,9 @@ Follow the steps to implement chat message read receipts.
 
     ```Objective-C
     // Occurs when the group message is received.
-    - (void)groupMessageDidRead:(Message *)aMessage groupAcks:(NSArray *)aGroupAcks
+    - (void)groupMessageDidRead:(AgoraChatMessage *)aMessage groupAcks:(NSArray *)aGroupAcks
     {
-        for (GroupMessageAck *messageAck in aGroupAcks) {
+        for (AgoraChatGroupMessageAck *messageAck in aGroupAcks) {
             //receive group message read ack
         }
     } 
@@ -190,7 +190,7 @@ Follow the steps to implement chat message read receipts.
     *  @param  aPageSize            The number of messages retrieved
     *  @param  aCompletionBlock     The completion callback
     */
-    [[AgoraChatClient sharedClient].chatManager asyncFetchGroupMessageAcksFromServer:messageId groupId:groupId startGroupAckId:nil pageSize:pageSize completion:^(EMCursorResult *aResult, EMError *error, int totalCount) {
+    [[AgoraChatClient sharedClient].chatManager asyncFetchGroupMessageAcksFromServer:messageId groupId:groupId startGroupAckId:nil pageSize:pageSize completion:^(AgoraChatCursorResult *aResult, AgoraChatError *error, int totalCount) {
         // Add subsequent logics, for example, refreshing the UI
     }];
     ```

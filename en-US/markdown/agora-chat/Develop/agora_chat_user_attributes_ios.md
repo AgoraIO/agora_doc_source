@@ -36,7 +36,7 @@ userInfo.sign = @"hello world";
 userInfo.phone = @"12333333333";
 userInfo.mail = @"123456@qq.com";
 userInfo.gender = 1;
-[AgoraChatClient.sharedClient.userInfoManager updateOwnUserInfo:userInfo completion:^(AgoraUserInfo *aUserInfo, AgoraError *aError)      
+[AgoraChatClient.sharedClient.userInfoManager updateOwnUserInfo:userInfo completion:^(AgoraUserInfo *aUserInfo, AgoraChatError *aError)      
 
 }];        
 ```
@@ -46,7 +46,7 @@ The following sample code uses avatar as an example to show how to set the speci
 ```Objective-C
 NSString *url = @"https://download-sdk.oss-cn-beijing.aliyuncs.com/downloads/IMDemo/avatar/Image1.png";
  
-[[AgoraChatClient sharedClient].userInfoManager updateOwnUserInfo:url withType:AgoraUserInfoTypeAvatarURL completion:^(AgoraUserInfo *aUserInfo, AgoraError *aError) {
+[[AgoraChatClient sharedClient].userInfoManager updateOwnUserInfo:url withType:AgoraUserInfoTypeAvatarURL completion:^(AgoraUserInfo *aUserInfo, AgoraChatError *aError) {
         if (aUserInfo && completion) {
             completion(aUserInfo);
         }
@@ -60,7 +60,7 @@ You can use `fetchUserInfoById` to retrieve the user attributes of the specified
 Refer to the following code example to retrieve all the attributes of the specified user:
 
 ```Objective-C
-[[AgoraChatClient sharedClient].userInfoManager fetchUserInfoById:@[AgoraChatClient.sharedClient.currentUsername] 		completion:^(NSDictionary *aUserDatas, AgoraError *aError) {               
+[[AgoraChatClient sharedClient].userInfoManager fetchUserInfoById:@[AgoraChatClient.sharedClient.currentUsername] 		completion:^(NSDictionary *aUserDatas, AgoraChatError *aError) {               
 }];
 ```
 
@@ -69,7 +69,7 @@ The following sample code shows how to retrieve the specified attributes of the 
 ```Objective-C
 NSString *userIds = @[@"user1",@"user2"];
 NSArray<NSNumber *> *userInfoTypes = @[@(AgoraUserInfoTypeAvatarURL),@(AgoraUserInfoTypePhone),@(AgoraUserInfoTypeMail)];
-[[AgoraChatClient sharedClient].userInfoManager fetchUserInfoById:userIds type:userInfoTypes completion:^(NSDictionary *aUserDatas, AgoraError *aError) {
+[[AgoraChatClient sharedClient].userInfoManager fetchUserInfoById:userIds type:userInfoTypes completion:^(NSDictionary *aUserDatas, AgoraChatError *aError) {
               
 }];
 ```
@@ -98,20 +98,20 @@ Namecard messages are custom messages that include the user ID, nickname, avator
 Followings are the sample code for creating and sending a namecard message:
 
 ```Objective-C
-CustomMessageBody *body = [[CustomMessageBody alloc] init];
+AgoraChatCustomMessageBody *body = [[AgoraChatCustomMessageBody alloc] init];
     body.event = @"userCard";
     NSDictionary *messageExt = @{@"userId":AgoraChatClient.sharedClient.currentUsername,
                           @"nickname":@"nickname",
                           @"avatar":@"https://download-sdk.oss-cn-beijing.aliyuncs.com/downloads/IMDemo/avatar/Image1.png"
                         };
     body.ext = messageExt;
-    Message *message = [[Message alloc] initWithConversationID:@"conversationID"
+    AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:@"conversationID"
                                                           from:@"sender"
                                                             to:@"receiver"
                                                           body:body
                                                            ext:nil];
     // send message
-    [[AgoraChatClient sharedClient].chatManager sendMessage:message progress:nil completion:^(Message *message, AgoraError *error) {
+    [[AgoraChatClient sharedClient].chatManager sendMessage:message progress:nil completion:^(AgoraChatMessage *message, AgoraChatError *error) {
     }];
 ```
 

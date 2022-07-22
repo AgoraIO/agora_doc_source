@@ -40,7 +40,7 @@ Refer to the following code sample to retrieve the messages in the specified con
 // Retrieves the conversation ID
 AgoraConversation *conversation = [[AgoraChatClient sharedClient].chatManager getConversation:conversationId type:type createIfNotExist:YES];
 // Only one message is loaded during SDK initialization. Call loadMessagesStartFromId to retrieve more messages.
-NSArray<Message *> *messages = [conversation loadMessagesStartFromId:startMsgId count:count searchDirection:MessageSearchDirectionUp];
+NSArray<AgoraChatMessage *> *messages = [conversation loadMessagesStartFromId:startMsgId count:count searchDirection:MessageSearchDirectionUp];
 ```
 
 ### Retrieve the count of unread messages in the specified conversation
@@ -102,7 +102,7 @@ AgoraConversation *conversation = [[AgoraChatClient sharedClient].chatManager ge
 Call `loadMessagesWithKeyword` to search for messages by keywords, timestamp, and message sender:
 
 ```Objective-C
-NSArray<Message *> *messages = [conversation loadMessagesWithKeyword:keyword timestamp:0 count:50 fromUser:nil searchDirection:MessageSearchDirectionDown];
+NSArray<AgoraChatMessage *> *messages = [conversation loadMessagesWithKeyword:keyword timestamp:0 count:50 fromUser:nil searchDirection:MessageSearchDirectionDown];
 ```
 
 ### Import messages

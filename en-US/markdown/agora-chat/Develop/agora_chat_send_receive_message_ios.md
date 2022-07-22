@@ -34,8 +34,8 @@ Use the `AgoraChatTextMessageBody` class to create a text message, and then send
 
 ```Objective-C
 // Call initWithText to create a text message. Set content as the text content and toChatUsername to the username to whom you want to send this text message.
-TextMessageBody *textMessageBody = [[TextMessageBody alloc] initWithText:content];
-Message *message = [[Message alloc] initWithConversationID:toChatUsername
+AgoraChatTextMessageBody *textMessageBody = [[AgoraChatTextMessageBody alloc] initWithText:content];
+AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toChatUsername
                                                       from:fromChatUsername
                                                         to:toChatUsername
                                                       body:textMessageBody
@@ -59,10 +59,10 @@ When a message arrives, the recipient receives an `messagesDidReceive` callback.
 [[AgoraChatClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
 
 // Occurs when the message is received.
-- (void)messagesDidReceive:(NSArray *)aMessages
+- (void)messagesDidReceive:(NSArray<AgoraChatMessage*> *)aMessages
 {
   // Traverse the message list
-  for (Message *message in aMessages) {
+  for (AgoraChatMessage *message in aMessages) {
     // Parse the message and display it on the UI
   }
 }
@@ -89,7 +89,7 @@ Two minutes after a user sends a message, this user can withdraw it. Contact sup
     }];
 ```
 
-You can also use `messageDidRecall` to listen for the message recall state:
+You can also use `messagesDidRecall` to listen for the message recall state:
 
 ```Objective-C
 /**
@@ -110,13 +110,13 @@ Refer to the following code example to create and send a voice message:
 
 ```Objective-C
 // Set localPath as the local path of the voice file and displayName the display name of the attachment.
-VoiceMessageBody *body = [[VoiceMessageBody alloc] initWithLocalPath:localPath
+AgoraChatVoiceMessageBody *body = [[AgoraChatVoiceMessageBody alloc] initWithLocalPath:localPath
                           							     displayName:displayName];
-Message *message = [[Message alloc] initWithConversationID:toChatUsername
+AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toChatUsername
                                                       from:fromChatUsername 
                      									                  to:toChatUsername 
                      								                  body:body
-                                                       ext:messageExt];
+                                                       ext:nil];
 message.chatType = AgoraChatTypeChat;
 // Set the chat type as Group chat. You can also set is as chat (one-to-one chat) or chat room.
 message.chatType = AgoraChatTypeGroupChat;
@@ -129,7 +129,7 @@ message.chatType = AgoraChatTypeGroupChat;
 When the recipient receives the message, refer to the following code example to get the audio file:
 
 ```Objective-C
-VoiceMessageBody *voiceBody = (VoiceMessageBody *)message.body;
+AgoraChatVoiceMessageBody *voiceBody = (AgoraChatVoiceMessageBody *)message.body;
 // Retrieves the path of the audio file on the server.
 NSString *voiceRemotePath = voiceBody.remotePath;
 // Retrieves the path of the audio file on the local device.
@@ -144,9 +144,9 @@ Refer to the following code example to create and send an image message:
 
 ```Objective-C
 // Set imageData as the path of the image file on the local device, and displayName as the display name of the file.
-ImageMessageBody *body = [[ImageMessageBody alloc] initWithData:imageData
+AgoraChatImageMessageBody *body = [[AgoraChatImageMessageBody alloc] initWithData:imageData
                           							            displayName:displayName];
-Message *message = [[Message alloc] initWithConversationID:toChatUsername
+AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toChatUsername
                                                       from:fromChatUsername 
                      									                  to:toChatUsername 
                      								                  body:body
@@ -163,7 +163,7 @@ message.chatType = AgoraChatTypeGroupChat;
 When the recipient receives the message, refer to the following code example to get the thumbnail and attachment file of the image message:
 
 ```Objective-C
-ImageMessageBody *body = (ImageMessageBody *)message.body;
+AgoraChatImageMessageBody *body = (AgoraChatImageMessageBody *)message.body;
 // Retrieves the path of the image file on the server.
 NSString *remotePath = body.remotePath;
 // Retrieves the path of the image thumbnail from the server.
@@ -184,11 +184,11 @@ Refer to the following code example to create and send a video message:
 
 ```Objective-C
 // Set localPath as the path of the video file on the local device and displayName the display name of the video file.
-VideoMessageBody *body = [[VideoMessageBody alloc] initWithLocalPath:localPath displayName:@"displayName"];
+AgoraChatVideoMessageBody *body = [[AgoraChatVideoMessageBody alloc] initWithLocalPath:localPath displayName:@"displayName"];
 // The duration of the video file
 body.duration = duration;
 
-Message *message = [[Message alloc] initWithConversationID:toChatUsername
+AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toChatUsername
                                                       from:fromChatUsername 
                      									                  to:toChatUsername 
                      								                  body:body
@@ -210,7 +210,7 @@ If you do not want the SDK to automatically download the video thumbnail, set `[
 To download the actual video file, call `SChatClient.getInstance().chatManager().downloadAttachment(message)`, and get the path of the video file from the `getLocalUri` member in `messageBody`.
 
 ```Objective-C
-VideoMessageBody *body = (VideoMessageBody *)message.body;
+AgoraChatVideoMessageBody *body = (AgoraChatVideoMessageBody *)message.body;
 // Retrieves the path of the video file from the server.
 NSString *remotePath = body.remotePath;
 // Retrieves the thumbnail of the video file from the server.
@@ -227,9 +227,9 @@ Refer to the following code example to create, send, and receive a file message:
 
 ```Objective-C
 // Set fileData as the path of the file on the local device, and fileName the display name of the attachment file.
-EMFileMessageBody *body = [[EMFileMessageBody alloc]initWithData:fileData 
+AgoraChatFileMessageBody *body = [[AgoraChatFileMessageBody  initWithData:fileData 
                            							            displayName:fileName];
-Message *message = [[Message alloc] initWithConversationID:toChatUsername
+AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toChatUsername
                                                       from:fromChatUsername 
                      								                    to:toChatUsername 
                      								                  body:body
@@ -248,7 +248,7 @@ While sending a file message, refer to the following sample code to get the prog
 ```Objective-C
 [[AgoraChatClient sharedClient].chatManager sendMessage:message progress:^(int progress) {
 		//progress indicates the progress of uploading the attachment
-} completion:^(Message *message, AgoraError *error) {
+} completion:^(AgoraChatMessage *message, AgoraChatError *error) {
     //error indicates the result of sending the message, and message indicates the sent message
 }];
 ```
@@ -256,7 +256,7 @@ While sending a file message, refer to the following sample code to get the prog
 When the recipient receives the message, refer to the following code example to get the attachment file:
 
 ```Objective-C
-FileMessageBody *body = (FileMessageBody *)message.body;
+AgoraChatFileMessageBody *body = (AgoraChatFileMessageBody *)message.body;
 // Retrieves the path of the attachment file from the server.
 NSString *remotePath = body.remotePath;
 // Retrieves the path of the attachment file on the local device.
@@ -269,8 +269,8 @@ To send and receive a location message, you need to integrate a third-party map 
 
 ```Objective-C
 // Sets the latitude and longitude information of the location.
-LocationMessageBody *body = [[LocationMessageBody alloc] initWithLatitude:latitude longitude:longitude address:aAddress];
-Message *message = [[Message alloc] initWithConversationID:toChatUsername
+AgoraChatLocationMessageBody *body = [[AgoraChatLocationMessageBody alloc] initWithLatitude:latitude longitude:longitude address:aAddress];
+AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toChatUsername
                                                       from:fromChatUsername 
                      									                  to:toChatUsername 
                      								                  body:body
@@ -292,8 +292,8 @@ CMD messages are command messages that instruct a specified user to take a certa
 
 ```Objective
 // Use action to customize the CMD message
-CmdMessageBody *body = [[CmdMessageBody alloc] initWithAction:action];
-Message *message = [[Message alloc] initWithConversationID:toChatUsername
+AgoraChatCmdMessageBody *body = [[AgoraChatCmdMessageBody alloc] initWithAction:action];
+AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toChatUsername
                                                       from:fromChatUsername 
                      									                  to:toChatUsername 
                      								                  body:body
@@ -312,7 +312,7 @@ To notify the recipient that a CMD message is received, use a seperate delegate 
 ```Objective-C
 // Occurs when the CMD message is received.
 - (void)cmdMessagesDidReceive:(NSArray *)aCmdMessages{
-  for (Message *message in aCmdMessages) {
+  for (AgoraChatMessage *message in aCmdMessages) {
         CmdMessageBody *body = (CmdMessageBody *)message.body;
         // Parse the message body
     }
@@ -328,8 +328,8 @@ The following code example shows how to create and send a customized message:
 ```Objective-C
 // Set event as the custom message event, for example "userCard".
 // Set ext as the extension field of the event, for example as uid, nichname, and avator.
-CustomMessageBody* body = [[CustomMessageBody alloc] initWithEvent:@"userCard" ext:@{@"uid":aUid ,@"nickname":aNickName,@"avatar":aUrl}];
-Message *message = [[Message alloc] initWithConversationID:toChatUsername
+AgoraChatCustomMessageBody* body = [[AgoraChatCustomMessageBody alloc] initWithEvent:@"userCard" ext:@{@"uid":aUid ,@"nickname":aNickName,@"avatar":aUrl}];
+AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toChatUsername
                                                       from:fromChatUsername 
                      									                  to:toChatUsername 
                      								                  body:body
@@ -349,10 +349,10 @@ message.chatType = AgoraChatTypeGroupChat;
 If the message types listed above do not meet your requirements, you can use message extensions to add attributes to the message. This can be applied in more complicated messaging scenarios.
 
 ```Objective-C
-TextMessageBody *textMessageBody = [[TextMessageBody alloc] initWithText:content];
+AgoraChatTextMessageBody *textMessageBody = [[AgoraChatTextMessageBody alloc] initWithText:content];
 // Adds the message extension.
 NSDictionary *messageExt = @{@"attribute":@"value"};
-Message *message = [[Message alloc] initWithConversationID:toChatUsername
+AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toChatUsername
                                                        from:fromChatUsername 
                      																		 to:toChatUsername 
                      																	 body:textMessageBody
@@ -367,7 +367,7 @@ message.chatType = AgoraChatTypeChat;
 - (void)messagesDidReceive:(NSArray *)aMessages
 {
   // Traverse the message list
-  for (Message *message in aMessages) {
+  for (AgoraChatMessage *message in aMessages) {
      //value indicates the value of the attribute field in the message extension
      NSString *value = [message.ext objectForKey:@"attribute"];
   }

@@ -40,7 +40,7 @@ Call `addContact` to add the specified user as a contact:
  *  @param aMessage         The invitation message
  *  @param aCompletionBlock The completion block of this method
  */        
-[[EMClient sharedClient].contactManager addContact:@"aUsername" message:@"Message" completion:^(NSString *aUsername, EMError *aError) {
+[[AgoraChatClient sharedClient].contactManager addContact:@"aUsername" message:@"Message" completion:^(NSString *aUsername, AgoraChatError *aError) {
     if (!aError) {
         NSLog(@"Adding the contact succeeds %@",aUsername);
     } else {
@@ -57,11 +57,11 @@ Use `ContactListener` to add the following callback events. When a user receives
 /*
  *  Adds a contact manager delegate
  */
-[[EMClient sharedClient].contactManager addDelegate:self delegateQueue:nil];
+[[AgoraChatClient sharedClient].contactManager addDelegate:self delegateQueue:nil];
 /*
  * Removes the contact manager delegate
  */
-[[EMClient sharedClient].contactManager removeDelegate:self];
+[[AgoraChatClient sharedClient].contactManager removeDelegate:self];
 ```
 
 ```Objective-C
@@ -88,7 +88,7 @@ After receiving `friendRequestDidReceiveFromUser`, call `approveFriendRequestFro
  *  @param aUsername        The username that sends the contact invitation
  *  @param aCompletionBlock The completion block of this method
  */                          
-[[EMClient sharedClient].contactManager approveFriendRequestFromUser:@"aUsername" completion:^(NSString *aUsername, EMError *aError) {
+[[AgoraChatClient sharedClient].contactManager approveFriendRequestFromUser:@"aUsername" completion:^(NSString *aUsername, AgoraChatError *aError) {
     if (!aError) {
         NSLog(@"Approving the contact invitation succeeds");
     } else {
@@ -104,7 +104,7 @@ After receiving `friendRequestDidReceiveFromUser`, call `approveFriendRequestFro
  *  @param aUsername        The username that sends the contact invitation
  *  @param aCompletionBlock The completion block of this method
  */
-[[EMClient sharedClient].contactManager declineFriendRequestFromUser:@"aUsername" completion:^(NSString *aUsername, EMError *aError) {
+[[AgoraChatClient sharedClient].contactManager declineFriendRequestFromUser:@"aUsername" completion:^(NSString *aUsername, AgoraChatError *aError) {
     if (!aError) {
         NSLog(@"Declining the contact invitation succeeds.");
     } else {
@@ -143,7 +143,7 @@ Call `deleteContact` to delete the specified contact.
  *  @param aIsDeleteConversation    Whether to delete the conversation with the contact
  *  @param aCompletionBlock         The completion block for this method
  */
-[[EMClient sharedClient].contactManager deleteContact:@"aUsername" isDeleteConversation:aIsDeleteConversation completion:^(NSString *aUsername, EMError *aError) {
+[[AgoraChatClient sharedClient].contactManager deleteContact:@"aUsername" isDeleteConversation:aIsDeleteConversation completion:^(NSString *aUsername, AgoraChatError *aError) {
     if (!aError) {
         NSLog(@"Removing the contact succeeds");
     } else {
@@ -168,7 +168,7 @@ To get the contact list, you can call `getContactsFromServerWithCompletion` to r
 
 ```Objective-C
 // Retrieves a list of contacts from the server
-[[EMClient sharedClient].contactManager getContactsFromServerWithCompletion:^(NSArray *aList, EMError *aError) {
+[[AgoraChatClient sharedClient].contactManager getContactsFromServerWithCompletion:^(NSArray *aList, AgoraChatError *aError) {
     if (!aError) {
         NSLog(@"Retrieving the contact list succeeds %@",aList);
     } else {
@@ -179,7 +179,7 @@ To get the contact list, you can call `getContactsFromServerWithCompletion` to r
 
 ```Objective-C
 // Retrieves a list of contacts from the local database
-NSArray *userlist = [[EMClient sharedClient].contactManager getContacts];
+NSArray *userlist = [[AgoraChatClient sharedClient].contactManager getContacts];
 ```
 
 ### Manage the block list
@@ -199,7 +199,7 @@ Call `addUserToBlackList` to add the specified user to the block list.
  *  @param aUsername        The usernames to be added to the block list
  *  @param aCompletionBlock The completion block of this method
  */              
-[[EMClient sharedClient].contactManager addUserToBlackList:@"aUsername" completion:^(NSString *aUsername, EMError *aError) {
+[[AgoraChatClient sharedClient].contactManager addUserToBlackList:@"aUsername" completion:^(NSString *aUsername, AgoraChatError *aError) {
     if (!aError) {
         NSLog(@"Adding the contact to the block list succeeds");
     } else {
@@ -219,7 +219,7 @@ To remove the specified user from the block list, call `removeUserFromBlackList`
  *  @param aUsername        The usernames to be removed from the block list
  *  @param aCompletionBlock The completion block for this method call
  */
-[[EMClient sharedClient].contactManager removeUserFromBlackList:@"aUsername" completion:^(NSString *aUsername, EMError *aError) {
+[[AgoraChatClient sharedClient].contactManager removeUserFromBlackList:@"aUsername" completion:^(NSString *aUsername, AgoraChatError *aError) {
     if (!aError) {
         NSLog(@"Removing the user from the block list succeeds");
     } else {
@@ -236,7 +236,7 @@ To get the block list, call `getBlackListFromServerWithCompletion` to retrieve a
 /*
  *  Retrieve the block list fromn server
  */
-[[EMClient sharedClient].contactManager getBlackListFromServerWithCompletion:^(NSArray *aList, EMError *aError) {
+[[AgoraChatClient sharedClient].contactManager getBlackListFromServerWithCompletion:^(NSArray *aList, AgoraChatError *aError) {
     if (!aError) {
         NSLog(@"Retrieving the block list from server succeeds %@",aList);
     } else {
@@ -248,7 +248,7 @@ To get the block list, call `getBlackListFromServerWithCompletion` to retrieve a
 After retrieving the block list from the server, you can also call `getBlackList` to retrieve the block list from the local database.
 
 ```Objective-C
-NSArray *blockList = [[EMClient sharedClient].contactManager getBlackList];
+NSArray *blockList = [[AgoraChatClient sharedClient].contactManager getBlackList];
 ```
 
 ## Reference

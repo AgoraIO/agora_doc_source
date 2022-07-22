@@ -26,7 +26,7 @@ This section shows how to implement retrieving conversations and messages.
 Call `getConversationsFromServer` to retrieve all the conversations from the server. We recommend calling this method when the app is first installed, or when there is no conversation on the local device. Otherwise, you can call `getAllConversations` to retrieve conversations on the local device.
 
 ```Objective-C
-[[AgoraChatClient sharedClient].chatManager getConversationsFromServer:^(NSArray *aCoversations, AgoraError *aError) {
+[[AgoraChatClient sharedClient].chatManager getConversationsFromServer:^(NSArray *aCoversations, AgoraChatError *aError) {
    if (!aError) {
       for (AgoraConversation *conversation in aCoversations) {
         // Parse the conversation 
