@@ -25,7 +25,7 @@ This section shows how to manage user attributes and contacts with the methods p
 
 Chat users can set and update their own attributes. Refer to the code example to set all the user attributes:
 
-```Objective-C
+```objective-c
 // Sets the user attributes.
 AgoraUserInfo *userInfo = [[AgoraUserInfo alloc] init];
 userInfo.userId = AgoraChatClient.sharedClient.currentUsername;
@@ -43,7 +43,7 @@ userInfo.gender = 1;
 
 The following sample code uses avatar as an example to show how to set the specified user attribute:
 
-```Objective-C
+```objective-c
 NSString *url = @"https://download-sdk.oss-cn-beijing.aliyuncs.com/downloads/IMDemo/avatar/Image1.png";
  
 [[AgoraChatClient sharedClient].userInfoManager updateOwnUserInfo:url withType:AgoraUserInfoTypeAvatarURL completion:^(AgoraUserInfo *aUserInfo, AgoraChatError *aError) {
@@ -59,14 +59,14 @@ You can use `fetchUserInfoById` to retrieve the user attributes of the specified
 
 Refer to the following code example to retrieve all the attributes of the specified user:
 
-```Objective-C
+```objective-c
 [[AgoraChatClient sharedClient].userInfoManager fetchUserInfoById:@[AgoraChatClient.sharedClient.currentUsername] 		completion:^(NSDictionary *aUserDatas, AgoraChatError *aError) {               
 }];
 ```
 
 The following sample code shows how to retrieve the specified attributes of the user.
 
-```Objective-C
+```objective-c
 NSString *userIds = @[@"user1",@"user2"];
 NSArray<NSNumber *> *userInfoTypes = @[@(AgoraUserInfoTypeAvatarURL),@(AgoraUserInfoTypePhone),@(AgoraUserInfoTypeMail)];
 [[AgoraChatClient sharedClient].userInfoManager fetchUserInfoById:userIds type:userInfoTypes completion:^(NSDictionary *aUserDatas, AgoraChatError *aError) {
@@ -97,7 +97,7 @@ Namecard messages are custom messages that include the user ID, nickname, avator
 
 Followings are the sample code for creating and sending a namecard message:
 
-```Objective-C
+```objective-c
 AgoraChatCustomMessageBody *body = [[AgoraChatCustomMessageBody alloc] init];
     body.event = @"userCard";
     NSDictionary *messageExt = @{@"userId":AgoraChatClient.sharedClient.currentUsername,

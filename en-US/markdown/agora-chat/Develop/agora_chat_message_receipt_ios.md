@@ -50,7 +50,7 @@ To send a message delievery receipt, take the following steps:
 
 2. Once the recipient receives the message, the SDK triggers `messageDidDeliver` on the message sender's client, notifying the message sender that the message has been delivered to the recipent.
 
-    ```Objective-C
+    ```objective-c
     - (void)messagesDidDeliver:(NSArray *)aMessages
     {
 
@@ -73,14 +73,14 @@ In one-to-one chats, the SDK supports sending both the conversation read receipt
 
  1. When a user enters the conversation UI, check whether the conversation contains unread messages. If yes, call `ackConversationRead` to send a conversation read receipt.
 
-    ```Objective-C
+    ```objective-c
     [[AgoraChatClient sharedClient].chatManager ackConversationRead:conversationId completion:nil];
     ```
     
 
  2. The message sender listens for message events and receives the conversation read receipt in `onConversationRead`.
 
-    ```Objective-C
+    ```objective-c
     - (void)onConversationRead:(NSString *)from to:(NSString *)to
     {
         // Add handling logics, for example, for refreshing the UI
@@ -95,13 +95,13 @@ In one-to-one chats, the SDK supports sending both the conversation read receipt
 
  1. Send a conversation read receipt when the recipient enters the conversation.
 
-    ```Objective-C
+    ```objective-c
     [[AgoraChatClient sharedClient].chatManager sendMessageReadAck:messageId toUser:conversationId completion:nil];
     ```
 
  2. When a new message arrives, send the message read receipt and add proper handling logics for the different message types.
 
-    ```Objective-C
+    ```objective-c
     // Occurs when the message is received.
     - (void)messagesDidReceive:(NSArray *)aMessages
     {
@@ -128,7 +128,7 @@ In one-to-one chats, the SDK supports sending both the conversation read receipt
 
  3. The message sender listens for the message receipt:
 
-    ```Objective-C
+    ```objective-c
     // Occurs when the message read receipt is received
     - (void)messagesDidRead:(NSArray *)aMessages
     {
@@ -146,14 +146,14 @@ Follow the steps to implement chat message read receipts.
 
 1. For chat group messages, the group owner and admins can set to require the message read receipt when sending the message.
 
-    ```Objective-C
+    ```objective-c
     AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:to from:from to:to body:aBody ext:aExt];
     message.isNeedGroupAck = YES;
     ```
 
 2. After the group member reads the chat group message, call `sendGroupMessageReadAck` from the group member's client to send a message read receipt:
 
-    ```Objective-C
+    ```objective-c
     - (void)sendGroupMessageReadAck:(AgoraChatMessage *)msg
     {
         if (msg.isNeedGroupAck && !msg.isReadAcked) {
@@ -168,7 +168,7 @@ Follow the steps to implement chat message read receipts.
 
 3. The message sender listens for the message read receipt.
 
-    ```Objective-C
+    ```objective-c
     // Occurs when the group message is received.
     - (void)groupMessageDidRead:(AgoraChatMessage *)aMessage groupAcks:(NSArray *)aGroupAcks
     {
@@ -180,7 +180,7 @@ Follow the steps to implement chat message read receipts.
 
 4. The message sender can get the detailed informaiton of the read receipt using `asyncFetchGroupMessageAcksFromServer`.
 
-    ```Objective-C
+    ```objective-c
     /**
     * Fetches the details of the group chat message read receipt.
     *

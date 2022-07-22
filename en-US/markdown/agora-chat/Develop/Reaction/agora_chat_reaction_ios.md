@@ -34,7 +34,7 @@ This section introduces how to implement reaction functionalities in your projec
 
 Call `addReaction` to add a reaction to the specified message. You can use `messageReactionDidChange` to listen for the state of adding the reaction.
 
-```Objective-C
+```objective-c
 // Add a reaction
 [AgoraChatClient.sharedClient.chatManager addReaction:"reaction" toMessage:"messageId" completion:^(AgoraChatError * _Nullable error) {
 	refreshBlock(error, changeSelectedStateHandle);
@@ -50,7 +50,7 @@ Call `addReaction` to add a reaction to the specified message. You can use `mess
 
 Call `removeReaction` to remove the specified reaction. You can also listen for the reaction change in `messageReactionDidChange`.
 
-```Objective-C
+```objective-c
 // Remove the reaction.
 [AgoraChatClient.sharedClient.chatManager removeReaction:"reaction" fromMessage:"messageId" completion:^(AgoraChatError * _Nullable error) {
 	refreshBlock(error, changeSelectedStateHandle);
@@ -66,7 +66,7 @@ Call `removeReaction` to remove the specified reaction. You can also listen for 
 
 Call `getReactionList` to retrieve a list of reactions from the server. This method also returns the basic information of the reactions, including the content of the reaction, the number of users that added or removed the reaction, and a list of the first three user IDs that added or removed the reaction.
 
-```Objective-C
+```objective-c
 [AgoraChatClient.sharedClient.chatManager getReactionList:@["messageId"] groupId:@"groupId" chatType:AgoraChatTypeChat completion:^(NSDictionary<NSString *, AgoraChatMessageReaction *> * _Nonnull, AgoraChatError * _Nullable) {
                     
 }];
@@ -76,7 +76,7 @@ Call `getReactionList` to retrieve a list of reactions from the server. This met
 
 Call `getReactionDetail` to get the detailed information of the reaction from the server. The detailed information includes the reaction content, the number of users that added or removed the reaction, and the complete list of user IDs that added or removed the reaction.
 
-```Objective-C
+```objective-c
 [AgoraChatClient.sharedClient.chatManager getReactionDetail:@"messageId" reaction:@"reaction" cursor:nil pageSize:30 completion:^(AgoraChatMessageReaction * _Nonnull, NSString * _Nullable cursor, AgoraChatError * _Nullable) {
             
 }];

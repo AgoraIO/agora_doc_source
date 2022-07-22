@@ -33,7 +33,7 @@ AgoraChatCallKit is developed upon `Agora_Chat_iOS`, `Masonry`, `AgoraRtcEngine_
 
 3. Open the `Podfile` file, and add `use_frameworks` and the `AgoraChatCallKit` framework. Remember to replace `AppName` with the target name of your project.
 
-   ```Objective-C
+   ```objective-c
     use_frameworks!
     // Replace AppName with the name of your project
     target 'AppName' do
@@ -64,7 +64,7 @@ This section introduces the core steps for implementing audio and video calls in
 
 Call `init` to initialize the AgoraChatCallKit.
 
-```Objective-C
+```objective-c
 AgoraChatCallConfig *config = [[AgoraChatCallConfig alloc] init];
 config.agoraAppId = @"agoraAppId";
 config.enableRTCTokenValidate = YES;
@@ -74,7 +74,7 @@ config.enableIosCallKit = YES;
 
 In this method, you need to set the `AgoraChatCallConfig` interface. Some of the configurations include the following:
 
-```Objective-C
+```objective-c
 @interface AgoraChatCallConfig : NSObject
 /**
  * The timeout duration for the call invitation, in seconds. The default value is 30.
@@ -112,21 +112,21 @@ From the caller's client, call `startSingleCallWithUId` or `startInviteUsers` to
 
 - One-to-one audio call
 
-    ```Objective-C
+    ```objective-c
     [AgoraChatCallManager.sharedManager startSingleCallWithUId:userId type:AgoraChatCallType1v1Audio ext:nil completion:^(NSString * callId, AgoraChatCallError * aError) {
     }];
     ```
 
 - One-to-one video call
 
-    ```Objective-C
+    ```objective-c
     [AgoraChatCallManager.sharedManager startSingleCallWithUId:userId type:AgoraChatCallType1v1Video ext:nil completion:^(NSString * callId, AgoraChatCallError * aError) {
     }];
     ```
 
 - Group audio call
 
-    ```Objective-C
+    ```objective-c
     ConfInviteUsersViewController *controller = [[ConfInviteUsersViewController alloc] initWithGroupId:groupId excludeUsers:@[AgoraChatClient.sharedClient.currentUsername]];
     controller.didSelectedUserList = ^(NSArray * _Nonnull aInviteUsers) {
         for (NSString *strId in aInviteUsers) {
@@ -149,7 +149,7 @@ From the caller's client, call `startSingleCallWithUId` or `startInviteUsers` to
 
 - Group video call
 
-    ```Objective-C
+    ```objective-c
     ConfInviteUsersViewController *controller = [[ConfInviteUsersViewController alloc] initWithGroupId:groupId excludeUsers:@[AgoraChatClient.sharedClient.currentUsername]];
     controller.didSelectedUserList = ^(NSArray * _Nonnull aInviteUsers) {
         for (NSString *strId in aInviteUsers) {
@@ -178,7 +178,7 @@ The following screenshot gives an example of the user interface after sending a 
 
 Once a call invitaion is sent, the callee receives the invitation in the `callDidReceive` callback.
 
-```Objective-C
+```objective-c
 - (void)callDidReceive:(EaseCallType)aType inviter:(NSString*_Nonnull)user ext:(NSDictionary*)aExt
 {
 
@@ -194,7 +194,7 @@ If the callee is online and available for a call, you can pop out a user interfa
 
 In call sessions with multiple users, these users can also send call invitations to other users. After sending the invitation, the SDK triggers the `multiCallDidInvitingWithCurVC` callback in `AgoraChatCallDelegate` on the sender's client.
 
-```Objective-C
+```objective-c
 /**
  * Occurs when the local user sends a call invitation during a group call.
  * vc     The current UI view controller.
@@ -233,7 +233,7 @@ During the call, you can also listen for the following callback events:
 
 - `callDidJoinChannel`, occurs when the local user successfully joins the call.
 
-    ```Objective-C
+    ```objective-c
     - (void)callDidJoinChannel:(NSString*_Nonnull)aChannelName uid:(NSUInteger)aUid
     {
         [self _fetchUserMapsFromServer:aChannelName];
@@ -242,7 +242,7 @@ During the call, you can also listen for the following callback events:
 
 - `remoteuserDidJoinChannel`, occurs when the remote user successfully joins the call.
 
-    ```Objective-C
+    ```objective-c
     -(void)remoteUserDidJoinChannel:( NSString*_Nonnull)aChannelName uid:(NSInteger)aUid username:(NSString*_Nullable)aUserName
     {
         if (aUserName.length > 0) {
@@ -262,7 +262,7 @@ During the call, you can also listen for the following callback events:
 A one-to-one call ends as soon as one of the two users hangs up, while a group call ends only after the local user hangs up. When the call ends, the SDK triggers the `callDidEnd` callback.
 
 
-```Objective-C
+```objective-c
 - (void)callDidEnd:(NSString*_Nonnull)aChannelName reason:(AgoarChatCallEndReason)aReason time:(int)aTm type:(AgoraChatCallType)aType
 {
     NSString *msg = @"";
@@ -302,7 +302,7 @@ This section contains extra steps you can take for the audio and video call func
 
 If exceptions or errors occur during a call, the SDK triggers the `callDidOccurError` callback, which reports the detailed information of the exception in `AgoraChatCallError`. 
 
-```Objective-C
+```objective-c
 - (void)callDidOccurError:(AgoraChatCallError *_Nonnull)aError
 {
 }
@@ -312,7 +312,7 @@ If exceptions or errors occur during a call, the SDK triggers the `callDidOccurE
 
 After a user joins the call, you can call `setUser` to modify the avatar and nickname of the current user and the other users in the channel. 
 
-```Objective-C
+```objective-c
 AgoraChatCallUser *user = [AgoraChatCallUser userWithNickName:info.nickname image:[NSURL URLWithString:info.avatarUrl]];
 [[AgoraChatCallManager.sharedManager getAgoraChatCallConfig] setUser:userId info:user];
 ```
@@ -321,7 +321,7 @@ AgoraChatCallUser *user = [AgoraChatCallUser userWithNickName:info.nickname imag
 
 To enhance communication security, Agora recommends that you authenticate app users with the RTC token before they join a call. To do this, you need to make sure that the [Primary Certificate of your project is enabled](https://docs.agora.io/en/All/faq/appid_to_token), and `enableRTCTokenValidate` in the AgoraChatCallKit is set to `YES`.
 
-```Objective-C
+```objective-c
 config.enableRTCTokenValidate = YES;  
 [AgoraChatCallManager.sharedManager initWithConfig:config delegate:self];
 ```

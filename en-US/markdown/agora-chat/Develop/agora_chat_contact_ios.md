@@ -32,7 +32,7 @@ Use this section to understand how to send a contact invitation, listen for cont
 
 Call `addContact` to add the specified user as a contact:
 
-```Objective-C
+```objective-c
 /*
  *  Adds a contact.
  *
@@ -53,7 +53,7 @@ Call `addContact` to add the specified user as a contact:
 
 Use `ContactListener` to add the following callback events. When a user receives a contact invitation, you can accept or decline the invitation.
 
-```Objective-C
+```objective-c
 /*
  *  Adds a contact manager delegate
  */
@@ -64,7 +64,7 @@ Use `ContactListener` to add the following callback events. When a user receives
 [[AgoraChatClient sharedClient].contactManager removeDelegate:self];
 ```
 
-```Objective-C
+```objective-c
 /*
  *  Occurs when a contact invitation is received.
  *
@@ -81,7 +81,7 @@ Use `ContactListener` to add the following callback events. When a user receives
 
 After receiving `friendRequestDidReceiveFromUser`, call `approveFriendRequestFromUser` or `declineFriendRequestFromUser` to accept or decline the invitation.
 
-```Objective-C
+```objective-c
 /*
  *  Approves the contact invitation.
  *
@@ -97,7 +97,7 @@ After receiving `friendRequestDidReceiveFromUser`, call `approveFriendRequestFro
 }];
 ```
 
-```Objective-C
+```objective-c
 /*
  *  Declines the contact invitation.
  *
@@ -115,7 +115,7 @@ After receiving `friendRequestDidReceiveFromUser`, call `approveFriendRequestFro
 
 Once you accept or decline the contact invitation, the user that sends the invitation receives the `friendRequestDidApprove` or `friendRequestDidDecline` callback
 
-```Objective-C
+```objective-c
 /*
  * Occurs when the peer user accepts your contact invitation.
  */
@@ -123,7 +123,7 @@ Once you accept or decline the contact invitation, the user that sends the invit
 { }
 ```
 
-```Objective-C
+```objective-c
 /*
  * Occurs when the peer user declines your contact invitation.
  */
@@ -135,7 +135,7 @@ Once you accept or decline the contact invitation, the user that sends the invit
 
 Call `deleteContact` to delete the specified contact. 
 
-```Objective-C
+```objective-c
 /*
  *  Deletes the contact.
  *
@@ -154,7 +154,7 @@ Call `deleteContact` to delete the specified contact.
 
 Once the contact is deleted, both users receive the `friendshipDidRemoveByUser` callback.
 
-```Objective-C
+```objective-c
 /*
  * Occurs when the contact is removed.
  */
@@ -166,7 +166,7 @@ Once the contact is deleted, both users receive the `friendshipDidRemoveByUser` 
 
 To get the contact list, you can call `getContactsFromServerWithCompletion` to retrieve contacts from the server. After that, you can also call `getContacts` to retrieve contacts from the local database.
 
-```Objective-C
+```objective-c
 // Retrieves a list of contacts from the server
 [[AgoraChatClient sharedClient].contactManager getContactsFromServerWithCompletion:^(NSArray *aList, AgoraChatError *aError) {
     if (!aError) {
@@ -177,7 +177,7 @@ To get the contact list, you can call `getContactsFromServerWithCompletion` to r
 }];
 ```
 
-```Objective-C
+```objective-c
 // Retrieves a list of contacts from the local database
 NSArray *userlist = [[AgoraChatClient sharedClient].contactManager getContacts];
 ```
@@ -192,7 +192,7 @@ You can add a specified user to your block list. Once you do that, you can still
 
 Call `addUserToBlackList` to add the specified user to the block list.
 
-```Objective-C
+```objective-c
 /*
  *  Adds the user to the block list.
  *
@@ -212,7 +212,7 @@ Call `addUserToBlackList` to add the specified user to the block list.
 
 To remove the specified user from the block list, call `removeUserFromBlackList`.
 
-```Objective-C
+```objective-c
 /*
  *  Removes the user from the block list.
  *
@@ -232,7 +232,7 @@ To remove the specified user from the block list, call `removeUserFromBlackList`
 
 To get the block list, call `getBlackListFromServerWithCompletion` to retrieve a list of blocked users from the server. 
 
-```Objective-C
+```objective-c
 /*
  *  Retrieve the block list fromn server
  */
@@ -247,7 +247,7 @@ To get the block list, call `getBlackListFromServerWithCompletion` to retrieve a
 
 After retrieving the block list from the server, you can also call `getBlackList` to retrieve the block list from the local database.
 
-```Objective-C
+```objective-c
 NSArray *blockList = [[AgoraChatClient sharedClient].contactManager getBlackList];
 ```
 

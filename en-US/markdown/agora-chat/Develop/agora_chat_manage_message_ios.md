@@ -28,7 +28,7 @@ This section shows how to implement managing messages.
 
 Call `getAllConversations` to retrieve all the conversations on the local device:
 
-```Objective-C
+```objective-c
 NSArray *conversations = [[AgoraChatClient sharedClient].chatManager getAllConversations];
 ```
 
@@ -36,7 +36,7 @@ NSArray *conversations = [[AgoraChatClient sharedClient].chatManager getAllConve
 
 Refer to the following code sample to retrieve the messages in the specified conversation:
 
-```Objective-C
+```objective-c
 // Retrieves the conversation ID
 AgoraConversation *conversation = [[AgoraChatClient sharedClient].chatManager getConversation:conversationId type:type createIfNotExist:YES];
 // Only one message is loaded during SDK initialization. Call loadMessagesStartFromId to retrieve more messages.
@@ -47,7 +47,7 @@ NSArray<AgoraChatMessage *> *messages = [conversation loadMessagesStartFromId:st
 
 Refer to the following code example to retrieve the count of unread messages:
 
-```Objective-C
+```objective-c
 // Retrieves the ID of the specified conversation.
 AgoraConversation *conversation = [[AgoraChatClient sharedClient].chatManager getConversation:conversationId type:type createIfNotExist:YES];
 // Retrieves the count of unread messages.
@@ -59,7 +59,7 @@ NSInteger unreadCount = conversation.unreadMessagesCount;
 
 Refer to the following code example to retrieve the count of all unread messages:
 
-```Objective-C
+```objective-c
 NSArray *conversations = [[AgoraChatClient sharedClient].chatManager getAllConversations];
 NSInteger unreadCount = 0;
 for (AgoraConversation *conversation in conversations) {
@@ -72,7 +72,7 @@ for (AgoraConversation *conversation in conversations) {
 
 Refer to the following code example to mark the specified messages as read:
 
-```Objective-C
+```objective-c
 AgoraConversation *conversation = [[AgoraChatClient sharedClient].chatManager getConversation:conversationId type:type createIfNotExist:YES];
 // Marks all messages of the specified conversation as read.
 [conversation markAllMessagesAsRead:nil];
@@ -86,7 +86,7 @@ You can delete conversations on both the local device and the server.
 
 To delete them on the local device, call `deleteConversation` and `removeMessage`:
 
-```Objective-C
+```objective-c
 // Deletes the specified conversation. To keep the historical messages, set isDeleteMessages as NO.
 [[AgoraChatClient sharedClient].chatManager deleteConversation:conversationId isDeleteMessages:YES completion:nil];
 // Deletes the specified conversation.
@@ -101,7 +101,7 @@ AgoraConversation *conversation = [[AgoraChatClient sharedClient].chatManager ge
 
 Call `loadMessagesWithKeyword` to search for messages by keywords, timestamp, and message sender:
 
-```Objective-C
+```objective-c
 NSArray<AgoraChatMessage *> *messages = [conversation loadMessagesWithKeyword:keyword timestamp:0 count:50 fromUser:nil searchDirection:MessageSearchDirectionDown];
 ```
 
@@ -109,7 +109,7 @@ NSArray<AgoraChatMessage *> *messages = [conversation loadMessagesWithKeyword:ke
 
 Call `importMessages` to import multiple messages to the specified conversation. This applies to scenarios where chat users want to formard messages from another conversation.
 
-```Objective-C
+```objective-c
 [[AgoraChatClient sharedClient].chatManager importMessages:messages completion:nil];
 ```
 
@@ -117,7 +117,7 @@ Call `importMessages` to import multiple messages to the specified conversation.
 
 If you want to insert a message to the current conversation without actually sending the message, construct the message body and call `insertMessage`. This can be used to send notification messages such as "XXX recalls a message", "XXX joins the chat group", and "Typing ...".
 
-```Objective-C
+```objective-c
 // Inserts a message to the specified conversation.
 AgoraConversation *conversation = [[AgoraChatClient sharedClient].chatManager getConversation:conversationId type:type createIfNotExist:YES];
 [conversation insertMessage:message error:nil];

@@ -30,7 +30,7 @@ This section introduces how to integrate translation functionalities into your p
 
 In both on-demand translation and automatic translation scenarios, call `fetchSupportLanguages` to query the supported languages for translation first:
 
-```Objective-C
+```objective-c
 [AgoraChatClient.sharedClient.chatManager fetchSupportedLangurages:^(NSArray<AgoraChatLanguage *> * _Nullable languages, AgoraChatError * _Nullable error) {
                     
 }];
@@ -40,7 +40,7 @@ In both on-demand translation and automatic translation scenarios, call `fetchSu
 
 When the recipient receives a text message, call `translateMessage` to translate the message. When the translation finishes, the translated message is stored in the message. 
 
-```Objective-C
+```objective-c
 // Only text messages can be translated.
 [AgoraChatClient.sharedClient.chatManager translateMessage:message targetLanguages:@[@"en"] completion:^(AgoraChatMessage *message, AgoraChatError *error) {
     // Get the translation.
@@ -53,7 +53,7 @@ When the recipient receives a text message, call `translateMessage` to translate
 
 When creating a text message, the sender enables automatic translation by setting `AgoraChatTextMessageBody.targetLanguages` as the target language for translation:
 
-```Objective-C
+```objective-c
 AgoraChatTextMessageBody* msgBody = [[AgoraChatTextMessageBody alloc] initWithText:@"Hello!!"];
 msgBody.targetLanguages = @[@"en",@"ja"];
 AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:@"to" from:@"from" to:@"to" body:msgBody ext:nil];
@@ -62,7 +62,7 @@ AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:@"t
 
 The SDK sends both the original message and the translated message. Once the recipient receives the message, refer to the following code sample to get the translation:
 
-```Objective-C
+```objective-c
 - (void)messagesDidReceive:(NSArray *)aMessages
 {
     for (AgoraChatChatMessage *msg in aMessages) {
