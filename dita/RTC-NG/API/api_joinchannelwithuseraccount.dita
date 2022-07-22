@@ -37,7 +37,7 @@
                 <dd>v2.8.0</dd>
             </dlentry>
             </dl>
-            <p>该方法允许本地用户使用 User Account 加入频道。成功加入频道后，会触发以下回调：
+            <p>该方法允许本地用户使用 User Account 和 Token 加入频道。成功加入频道后，会触发以下回调：
    
             
             
@@ -75,13 +75,11 @@
             <ul>
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。
-                
-                
                 <ul>
-                <li>-2(ERR_INVALID_ARGUMENT): 参数无效。</li>
-                <li>-3(ERR_NOT_READY): SDK 初始化失败，请尝试重新初始化 SDK。</li>
-                <li>-5(ERR_REFUSED): 调用被拒绝。</li>
-                <li>-17(ERR_JOIN_CHANNEL_REJECTED): 加入频道被拒绝。由于 SDK 仅支持用户同一时间加入一个 <xref keyref="IRtcEngine"/> 频道， 当已经加入 <xref keyref="IRtcEngine"/> 频道的用户使用有效的频道名再次调用 <xref keyref="IRtcEngine"/> 类中的加入频道方法时，会返回此错误码。</li>
+                <li>2: 参数无效。</li>
+                <li>3: SDK 初始化失败，请尝试重新初始化 SDK。</li>
+                <li>5: 调用被拒绝。</li>
+                <li>17: 加入频道被拒绝。由于 SDK 仅支持用户同一时间加入一个 <xref keyref="IRtcEngine"/> 频道， 当已经加入 <xref keyref="IRtcEngine"/> 频道的用户使用有效的频道名再次调用 <xref keyref="IRtcEngine"/> 类中的加入频道方法时，会返回此错误码。</li>
                 </ul></li>
             </ul> </section>
     </refbody>
