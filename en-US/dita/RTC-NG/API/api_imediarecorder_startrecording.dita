@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediarecorder_startrecording">
     <title><ph keyref="startRecording"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Starts recording the local audio and video.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Starts recording the local audio or video.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -52,13 +52,13 @@
             <ul>
             <li>0: Success.</li>
             <li>&lt; 0: Failure.<ul>
-                <li>-2: The parameter is invalid. You need to ensure the following:<ul>
+                <li>2: The parameter is invalid. You need to ensure the following:<ul>
                     <li>The specified path of the recording file exists and is writable.</li>
                     <li>The specified format of the recording file is supported.</li>
                     <li>The maximum recording duration is correctly set.</li>
                     </ul></li>
-                <li>-4:<xref keyref="IRtcEngine"/>  does not support the request. The recording is ongoing or the recording stops because an error occurs.</li>
-                <li>-<ph>7:<xref keyref="IRtcEngine"/> A method is called before  is initialized. </ph><ph props="android apple">Ensure that you have called  before calling this method<xref keyref="getMediaRecorder"/></ph>.</li>
+                <li>4: <xref keyref="IRtcEngine"/> does not support the request. The recording is ongoing or the recording stops because an error occurs.</li>
+                <li><ph>7: A method is called before <xref keyref="IRtcEngine"/> is initialized. </ph><ph props="android apple">Ensure that you have called <xref keyref="getMediaRecorder"/> before calling this method</ph>.</li>
                 </ul></li>
             </ul> </section>
     </refbody>
