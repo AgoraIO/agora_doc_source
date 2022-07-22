@@ -55,44 +55,44 @@
                         <li><ph keyref="ERR_OK"/>(0): No error.</li>
                         <li><ph keyref="ERR_FAILED"/>(1): General error with no classified reason. Try calling the method again.</li>
                         <li><ph keyref="ERR_INVALID_ARGUMENT"/>(2): An invalid parameter is used. For example, the specified channel name includes illegal characters. Reset the parameter.</li>
-                        <li><ph keyref="ERR_NOT_READY"/>(3): The SDK is not ready. Possible reasons:<ul>
-                            <li>The <xref keyref="IRtcEngine"/> initialization fails. Please reinitialize the <apiname keyref="IRtcEngine"/>.</li>
-                            <li>No user has joined the channel when the method is called. Please check your code logic.</li>
-                            <li>The user has not left the channel when the <xref keyref="rate"/> or <xref keyref="complain"/> method is called. Please check your code logic.</li>
+                        <li><ph keyref="ERR_NOT_READY"/>(3): The SDK is not ready. Possible reasons include the following:<ul>
+                            <li>The <xref keyref="IRtcEngine"/> initialization fails. Reinitialize the <apiname keyref="IRtcEngine"/>.</li>
+                            <li>No user has joined the channel when the method is called. Check your code logic.</li>
+                            <li>The user has not left the channel when the <xref keyref="rate"/> or <xref keyref="complain"/> method is called. Check your code logic.</li>
                             <li>The audio module is disabled. The program is not complete.</li>
                             </ul></li>
-                        <li><ph keyref="ERR_NOT_SUPPORTED"/>(4): <apiname keyref="IRtcEngine"/> does not support the request. Possible reasons:<ul>
-                            <li props="android">The <xref keyref="setBeautyEffectOptions"/> method is called on devices running versions earlier than Android 5.0. Please check the Android version.</li>
-                            <li>The built-in encryption mode is incorrect or the SDK fails to load the external encryption library. Please check the encryption mode setting or reload the external encryption library.</li>
+                        <li><ph keyref="ERR_NOT_SUPPORTED"/>(4): <apiname keyref="IRtcEngine"/> does not support the request. Possible reasons include the following:<ul>
+                            <li props="android">The <xref keyref="setBeautyEffectOptions"/> method is called on devices running versions earlier than Android 5.0. Check the Android version.</li>
+                            <li>The built-in encryption mode is incorrect, or the SDK fails to load the external encryption library. Check the encryption mode setting, or reload the external encryption library.</li>
                             </ul></li>
-                        <li><ph keyref="ERR_REFUSED"/>(5): The request is rejected. Possible reasons:<ul>
-                            <li>The <apiname keyref="IRtcEngine"/> initialization fails. Please reinitialize the <apiname keyref="IRtcEngine"/>.</li>
-                            <li>The channel name is set as the empty string <codeph>""</codeph> when joining the channel. Please reset the channel name.</li>
-                            <li>When the <xref keyref="joinChannelEx"/> method is called to join multiple channels, the specified channel name is already in use. Please reset the channel name.</li>
+                        <li><ph keyref="ERR_REFUSED"/>(5): The request is rejected. Possible reasons include the following:<ul>
+                            <li>The <apiname keyref="IRtcEngine"/> initialization fails. Reinitialize the <apiname keyref="IRtcEngine"/>.</li>
+                            <li>The channel name is set as the empty string <codeph>""</codeph> when joining the channel. Reset the channel name.</li>
+                            <li>When the <xref keyref="joinChannelEx"/> method is called to join multiple channels, the specified channel name is already in use. Reset the channel name.</li>
                             </ul></li>
                         <li><ph keyref="ERR_BUFFER_TOO_SMALL"/> (6): The buffer size is insufficient to store the returned data.</li>
                         <li><ph keyref="ERR_NOT_INITIALIZED"/> (7): A method is called before the initialization of <apiname keyref="IRtcEngine"/>. Ensure that the <apiname keyref="IRtcEngine"/> object is initialized before using this method.</li>
                         <li><ph keyref="ERR_INVALID_STATE"/> (8): Invalid state.</li>
                         <li><ph keyref="ERR_NO_PERMISSION"/>(9): Permission to access is not granted. Check whether your app has access to the audio and video device.</li>
                         <li><ph keyref="ERR_TIMEDOUT"/>(10): A timeout occurs. Some API calls require the SDK to return the execution result. This error occurs if the SDK takes too long (more than 10 seconds) to return the result.</li>
-                        <li><ph keyref="ERR_JOIN_CHANNEL_REJECTED"/>(17): The request to join the channel is rejected. Possible reasons:<ul>
+                        <li><ph keyref="ERR_JOIN_CHANNEL_REJECTED"/>(17): The request to join the channel is rejected. Possible reasons include the following:<ul>
                             <li>The user is already in the channel. Agora recommends using the <xref keyref="onConnectionStateChanged"/> callback to get whether the user is in the channel. Do not call this method to join the channel unless you receive the <apiname keyref="CONNECTION_STATE_DISCONNECTED"/>(1) state.</li>
                             <li>After calling <xref keyref="startEchoTest2"/> for the call test, the user tries to join the channel without calling <xref keyref="stopEchoTest"/> to end the current test. To join a channel, the call test must be ended by calling <apiname keyref="stopEchoTest"/>.</li>
                             </ul></li>
-                        <li><ph keyref="ERR_LEAVE_CHANNEL_REJECTED"/>(18): Fails to leave the channel. Possible reasons:<ul>
+                        <li><ph keyref="ERR_LEAVE_CHANNEL_REJECTED"/>(18): Fails to leave the channel. Possible reasons include the following:<ul>
                             <li>The user has left the channel before calling the <xref keyref="leaveChannel"/> method. Stop calling this method to clear this error.</li>
-                            <li>The user calls <apiname keyref="leaveChannel"/> method to leave the channel before joining the channel. In this case, no extra operation is needed.</li>
+                            <li>The user calls the <apiname keyref="leaveChannel"/> method to leave the channel before joining the channel. In this case, no extra operation is needed.</li>
                             </ul></li>
                         <li><ph keyref="ERR_ALREADY_IN_USE"/>(19): Resources are already in use.</li>
                         <li><ph keyref="ERR_ABORTED"/>(20): The request is abandoned by the SDK, possibly because the request has been sent too frequently.</li>
                         <li><ph keyref="ERR_RESOURCE_LIMITED"/>(22): The SDK fails to allocate resources because your app uses too many system resources or system resources are insufficient.</li>
-                        <li><ph keyref="ERR_INVALID_APP_ID"/>(101): The App ID is invalid. Please rejoin the channel with a valid App ID.</li>
-                        <li><ph keyref="ERR_INVALID_CHANNEL_NAME"/>(102): The channel name is invalid. Possibly because the data types of some parameters are incorrect. Please rejoin the channel with a valid channel name.</li>
+                        <li><ph keyref="ERR_INVALID_APP_ID"/>(101): The App ID is invalid. Rejoin the channel with a valid App ID.</li>
+                        <li><ph keyref="ERR_INVALID_CHANNEL_NAME"/>(102): The channel name is invalid. The data types of some parameters could be incorrect. Rejoin the channel with a valid channel name.</li>
                         <li><ph keyref="ERR_NO_SERVER_RESOURCES"/>(103): Fails to get server resources in the specified region. Try another region when initializing <apiname keyref="IRtcEngine"/>.</li>
-                        <li><ph keyref="ERR_TOKEN_EXPIRED"/>(109): The current token has expired. Please apply for a new token on the server and call <xref keyref="renewToken"/>.<dl outputclass="deprecated">
+                        <li><ph keyref="ERR_TOKEN_EXPIRED"/>(109): The current token has expired. Apply for a new token on the server and call <xref keyref="renewToken"/>.<dl outputclass="deprecated">
                             <dlentry>
                                 <dt>Deprecated:</dt>
-                                <dd>This enumerator is deprecated Please use <apiname keyref="CONNECTION_CHANGED_TOKEN_EXPIRED"/>(9) in the <xref keyref="onConnectionStateChanged"/> callback instead.</dd>
+                                <dd>This enumerator is deprecated. Use <apiname keyref="CONNECTION_CHANGED_TOKEN_EXPIRED"/>(9) in the <xref keyref="onConnectionStateChanged"/> callback instead.</dd>
                             </dlentry>
                             </dl>
                         </li>
@@ -103,7 +103,7 @@
                             <dl>
                             <dlentry>
                                 <dt>Deprecated:</dt>
-                                <dd>This enumerator is deprecated Please use <apiname keyref="CONNECTION_CHANGED_INVALID_TOKEN"/>(8) in the <xref keyref="onConnectionStateChanged"/> callback instead.</dd>
+                                <dd>This enumerator is deprecated. Use <apiname keyref="CONNECTION_CHANGED_INVALID_TOKEN"/>(8) in the <xref keyref="onConnectionStateChanged"/> callback instead.</dd>
                             </dlentry>
                             </dl>
                         </li>
@@ -114,8 +114,8 @@
                         <li><ph keyref="ERR_BITRATE_LIMIT"/>(115): The data bitrate exceeds 6 KB/s when calling the <apiname keyref="sendStreamMessage"/> method.</li>
                         <li><ph keyref="ERR_TOO_MANY_DATA_STREAMS"/>(116): More than five data streams are created when calling the <xref keyref="createDataStream2"/> method.</li>
                         <li><ph keyref="ERR_STREAM_MESSAGE_TIMEOUT"/>(117): The data stream transmission times out.</li>
-                        <li><ph keyref="ERR_SET_CLIENT_ROLE_NOT_AUTHORIZED"/>(119): Switching roles fails, try rejoining the channel.</li>
-                        <li><ph keyref="ERR_DECRYPTION_FAILED"/>(120): Decryption fails. The user might have entered an incorrect password to join the channel. Check the entered password or tell the user to try rejoining the channel.</li>
+                        <li><ph keyref="ERR_SET_CLIENT_ROLE_NOT_AUTHORIZED"/>(119): Switching roles fails; try rejoining the channel.</li>
+                        <li><ph keyref="ERR_DECRYPTION_FAILED"/>(120): Decryption fails. The user might have entered an incorrect password to join the channel. Check the entered password, or tell the user to try rejoining the channel.</li>
                         <li><ph keyref="ERR_INVALID_USER_ID"/>(121): The user ID is invalid.</li>
                         <li><ph keyref="ERR_CLIENT_IS_BANNED_BY_SERVER"/>(123): The user is banned by the server.</li>
                         <li><ph keyref="ERR_ENCRYPTED_STREAM_NOT_ALLOWED_PUBLISH"/>(130): The SDK does not support pushing encrypted streams to CDN. Stream encryption is enabled when the user calls the <xref keyref="addPublishStreamUrl"/> method.</li>
