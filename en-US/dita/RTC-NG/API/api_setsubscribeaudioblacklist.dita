@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setsubscribeaudioblacklist">
     <title><ph keyref="setSubscribeAudioBlacklist"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Set the blacklist of subscriptions for audio streams.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Set the blocklist of subscriptions for audio streams.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -27,9 +27,9 @@
             <note type="attention" id="note">
             <ul>
             <li id="order">You can call this method either before or after joining a channel.</li>
-            <li>The blacklist is not affected by the setting in <xref keyref="muteRemoteAudioStream"/> , <xref keyref="muteAllRemoteAudioStreams"/> and <parmname>autoSubscribeAudio</parmname> in <xref keyref="ChannelMediaOptions"/>.</li>
-            <li id="effect">Once the blacklist of subscriptions is set, it is effective even if you leave the current channel and rejoin the channel.</li>
-            <li id="priority">If a user is added in the whitelist and blacklist at the same time, only the blacklist takes effect.</li>
+            <li>The blacklist is not affected by the setting in <xref keyref="muteRemoteAudioStream"/>, <xref keyref="muteAllRemoteAudioStreams"/> and <parmname>autoSubscribeAudio</parmname> in <xref keyref="ChannelMediaOptions"/>.</li>
+            <li id="effect">Once the blocklist of subscriptions is set, it is effective even if you leave the current channel and rejoin the channel.</li>
+            <li id="priority">If a user is added in the safelist and blocklist at the same time, only the blocklist takes effect.</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -38,13 +38,13 @@
                 <pt props="android cpp">uidList</pt>
                 <pt props="apple">blacklist</pt>
                 <pd>
-                    <p>The ID list of users that you do not want to subscribe to.</p>
+                    <p>The user ID list of users that you do not want to subscribe to.</p>
                     <p>If you want to specify the audio streams of a user that you do not want to subscribe to, add the ID of that user in this list. If you want to remove a user from the blocklist, you need to call the <xref keyref="setSubscribeAudioBlacklist"/> method to update the user ID list; this means you only add the <codeph>uid</codeph> of users that you do not want to subscribe to in the new user ID list.</p>
                 </pd>
             </plentry>
             <plentry props="cpp" id="uidnumber">
                 <pt>uidNumber</pt>
-                <pd>The number of users in the ID list.</pd>
+                <pd>The number of users in the user ID list.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
