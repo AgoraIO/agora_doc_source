@@ -54,14 +54,10 @@ This section guides you through how to integrate FCM with Agora Chat.
 4. On the project config page, select **Features** > **Push Certificate** and click **Add Push Certificate**.
 
 5. In the pop-up window, select the **GOOGLE** tab, and configure the following fields:
-
-4. In the **Push Notifications** module, click **Add Push Certificate**.
-
-5. In the pop-up window, select the **GOOGLE** tab, and configure the following fields:
   - **Certificate Name**: Fill in the [Sender ID](#token).
-  - **Push Secret**: Fill in the [Server Key](#token).
+  - **Push Key**: Fill in the [Server Key](#token).
 
-![](https://web-cdn.agora.io/docs-files/1649906171334)
+<img src="https://web-cdn.agora.io/docs-files/1658462250450">
 
 ### 3. Enable FCM in Agora Chat
 

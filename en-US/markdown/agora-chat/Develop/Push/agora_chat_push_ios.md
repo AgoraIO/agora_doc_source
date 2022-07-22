@@ -78,16 +78,16 @@ Follow the steps to upload the certificates to Agora Console:
 4. On the project config page, select **Features** > **Push Certificate** and click **Add Push Certificate**.
 
 5. In the pop-up window, select the **APPLE** tab, and configure the following fields:
-   - **Bind ID**: Fill in the [bundle ID](#step1-2) specified when the App ID was created.
    - **Certificate Type**: Select the [file type](#step1-4) specified when the certificate was exported. In this case, select **p12**.
    - **Certificate Name**: Fill in the [name](#step1-4) specified when the certificate was exported.
-   - **Certificate Secret**: Fill in the [secret](#step1-4) specified when the certificate was exported.
-   - **Upload**: Upload the [certificate](#step1-4) exported.
-   - **Environment**: Select **Development** or **Production Environment**. Upload the `p12` file for the development and production environments in turn.
+   - **Push Key**: Fill in the [secret](#step1-4) specified when the certificate was exported.
+   - **Upload Certificate**: Upload the [certificate](#step1-4) exported.
+   - **Integration Environment**: Select **Development** or **Production Environment**. Upload the `p12` file for the development and production environments in turn.
+   - **Bind ID**: Fill in the [bundle ID](#step1-2) specified when the App ID was created.
 
     Click **Save** to add the push certificate.
 
-![](https://web-cdn.agora.io/docs-files/1649907692419)
+<img src="https://web-cdn.agora.io/docs-files/1658462476793">
 
 ### 3. Enable APN in Agora Chat SDK
 
