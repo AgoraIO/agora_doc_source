@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setsubscribeaudiowhitelist">
     <title><ph keyref="setSubscribeAudioWhitelist"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the safelist of subscriptions for audio streams.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the whitelist of subscriptions for audio streams.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -27,8 +27,8 @@
             <note>
             <ul>
             <li conkeyref="setSubscribeAudioBlacklist/order"/>
-            <li>The safelist is not affected by the setting in <xref keyref="muteRemoteAudioStream"/>, <xref keyref="muteAllRemoteAudioStreams"/> and <parmname>autoSubscribeAudio</parmname> in <xref keyref="ChannelMediaOptions"/>.</li>
-            <li id="effect">Once the safelist of subscriptions is set, it is effective even if you leave the current channel and rejoin the channel.</li>
+            <li>The whitelist is not affected by the setting in <xref keyref="muteRemoteAudioStream"/>, <xref keyref="muteAllRemoteAudioStreams"/> and <parmname>autoSubscribeAudio</parmname> in <xref keyref="ChannelMediaOptions"/>.</li>
+            <li id="effect">Once the whitelist of subscriptions is set, it is effective even if you leave the current channel and rejoin the channel.</li>
             <li conkeyref="setSubscribeAudioBlacklist/priority"/>
             </ul> </note> </section>
         <section id="parameters">
@@ -39,7 +39,8 @@
                 <pt props="apple">whitelist</pt>
                 <pd>
                     <p>The user ID list of users that you want to subscribe to.</p>
-                    <p>If you want to specify the audio streams of a user for subscription, add the user ID in this list. If you want to remove a user from the safelist, you need to call the <xref keyref="setSubscribeAudioWhitelist"/> method to update the user ID list; this means you only add the <codeph>uid</codeph> of users that you want to subscribe to in the new user ID list.</p></pd>
+                    <p>If you want to specify the audio streams of a user for subscription, add the user ID in this list. If you want to remove a user from the whitelist, you need to call the <xref keyref="setSubscribeAudioWhitelist"/> method to update the user ID list; this means you only add the <parmname>uid</parmname> of users that you want to subscribe to in the new user ID list.</p>
+                </pd>
             </plentry>
             <plentry props="cpp" id="uidnumber">
                 <pt>uidNumber</pt>
