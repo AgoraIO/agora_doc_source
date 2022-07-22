@@ -6,14 +6,14 @@ v1.0.6 was released on Jul 22, 2022.
 
 #### New features
 
-- Supports marking whether a message is an online message by using the `onlineState` member in `ChatMessage`.
-- Adds an error code 509 `MESSAGECURRENTLIMITING` in `ChatError`, which means that the chat group message has exceeded the concurrent limit.
-- Adds an `groupSpecificationDidUpdate` callback in `ChatEMGroupManagerDelegate`, which occurs when the state specification updates.
-- Adds a `bindDeviceToken` method in `ChatPushManager`, which binds the device token.
+- Supports marking whether a message is an online message by using the `onlineState` member in `AgoraChatMessage`.
+- Adds an error code 509 `AGORAMESSAGECURRENTLIMITING` in `AgoraChatError`, which means that the chat group message has exceeded the concurrent limit.
+- Adds an `groupSpecificationDidUpdate` callback in `AgoraChatGroupManagerDelegate`, which occurs when the state specification updates.
+- Adds a `bindDeviceToken` method in `AgoraChatPushManager`, which binds the device token.
 
 #### Improvements
 
-- Improved thread-related methods and classes. Compared with earlier releases, this release used `ChatThread` to replace `ChatThreadInfo`.
+- Improved thread-related methods and classes. Compared with earlier releases, this release used `AgoraChatThread` to replace `AgoraChatThreadInfo`.
 - Assigned a value to `aGroupName` in the `groupInvitationDidReceive` callback.
 - Upgraded the network link library.
 - Supported sending messages with a remote address as the attachment.
