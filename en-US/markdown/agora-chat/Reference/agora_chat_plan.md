@@ -24,7 +24,7 @@ This page lists the details of the pricing plans for Agora Chat.
 | :----------------------------------- | :--: | :-----: | :----: | :--------: |
 | Total number of groups               | 100  | 10,000  | 50,000 |  Custom (100,000 by default)   |
 | Number of group members              | 100  |   250   | 1,000  |   Custom (5,000 by default)    |
-| Number of groups that users can join | 100  |  1,000  | 2,000  |   Custome (10,000 by default)   |
+| Number of groups that users can join | 100  |  1,000  | 2,000  |   Custom (10,000 by default)   |
 
 ## Chatroom
 

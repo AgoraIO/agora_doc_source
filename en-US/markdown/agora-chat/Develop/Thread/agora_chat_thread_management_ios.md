@@ -47,7 +47,7 @@ The following code sample shows how to create a thread in a chat group:
 // threadName: The name of a thread. The maximum length of a thread name is 64 characters.
 // messageId: The ID of a message, from which a thread is created.
 // parentId: The ID of a chat group where a thread resides.
-[[AgoraChatClient sharedClient].threadManager createChatThread:self.threadName messageId:self.message.message.messageId parentId:self.message.message.to completion:^(AgoraChatThread *thread, AgoraChatError *aError) {
+[[AgoraChatClient sharedClient].threadManager createChatThread:self.threadName messageId:self.message.messageId parentId:self.message.to completion:^(AgoraChatThread *thread, AgoraChatError *aError) {
     if (!aError) {
 
     } else {

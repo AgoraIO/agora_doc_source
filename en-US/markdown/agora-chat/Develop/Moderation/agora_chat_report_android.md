@@ -19,7 +19,7 @@ Before proceeding, ensure that you meet the following requirements:
 The following code sample shows how to call the reporting API:
 
 ```java
-EMClient.getInstance().chatManager().asyncReportMessage(msgid, label, reason, new EMCallBack() {
+AgoraChatClient.getInstance().chatManager().asyncReportMessage(msgid, label, reason, new EMCallBack() {
         @Override
         public void onSuccess() {
 
