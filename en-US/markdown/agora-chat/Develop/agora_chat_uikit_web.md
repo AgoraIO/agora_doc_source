@@ -1,4 +1,4 @@
-Instant messaging connects people wherever they are and allows them to communicate with others in real time. With built-in user interfaces (UI) for the conversation list and contact list, the [Agora Chat UIKit](https://github.com/AgoraIO-Usecase/AgoraChat-UIKit-web) enables you to quickly embed real-time messaging into your app without requiring extra effort on the UI.
+Instant messaging connects people wherever they are and allows them to communicate with others in real time. With built-in user interfaces (UI) for the conversation list and contact list, the [Agora Chat UIKit](https://github.com/AgoraIO-Usecase/Agoraagora-chat-uikit-web) enables you to quickly embed real-time messaging into your app without requiring extra effort on the UI.
 
 This page shows a sample code to add peer-to-peer messaging into your app by using the Agora Chat UIKit.
 
@@ -66,13 +66,13 @@ This sections introduces how to create an app and add the Chat UIKit to the proj
    To add the UIKit using npm:
 
    ```shell
-   npm install chat-uikit --save
+   npm install agora-chat-uikit --save
    ```
 
    To add the UIKit using yarn
 
    ```shell
-   yarn add chat-uikit
+   yarn add agora-chat-uikit
    ```
 
 ## Implementation
@@ -91,7 +91,7 @@ This section introduces the steps you need to take to quickly implement one-to-o
    ```javascript
     // App.js
     import React, {Component} from 'react';
-    import { EaseApp } from "chat-uikit"
+    import { EaseApp } from "agora-chat-uikit"
     import './App.scss';
 
     class App extends Component {
@@ -146,7 +146,7 @@ As a conversation component, `EaseChat` can be applied in a wide range of use ca
 
 ```javascript
 import React, { useState } from "react";
-import { EaseChat } from "chat-uikit";
+import { EaseChat } from "agora-chat-uikit";
 	const addListen = (res) => {
     if(res.isLogin){
        	const WebIM = EaseChat.getSdk()
