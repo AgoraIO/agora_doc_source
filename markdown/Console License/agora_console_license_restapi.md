@@ -23,8 +23,262 @@ Agora 控制台 RESTful API 仅支持 HTTPS 协议。发送请求时，你需要
 对于每个 Agora 账号（非每个 App ID），本页每个 API 的调用频率上限为每秒 10 次。如果调用频率超出限制，参考 [如何处理服务端 RESTful API 调用超出频率限制](https://docs.agora.io/cn/Video/faq/restful_api_call_frequency) 优化调用频率。
 
 
-## 激活 License
+## 激活控制台 License
+
+激活控制台 License。
+
+### 接口原型
+- 方法：`POST`
+- 接入点：`https://api.agora.io/dabiz/license/v2/active`
+
+### 请求参数
+
+#### 查询参数
+
+在请求路径中传入以下查询参数：
+
+| 参数 | 类型 | 描述 |
+|:---|:---|:---|
+|`pid`| | |
+|`appid`| | |
+|`licenseKey`| | |
+
+### 请求示例
+
+#### 请求路径
+
+```http
+https://api.agora.io/dabiz/license/v2/active?pid=02F51997A07B46C5810020A0F163EC30&appid=a6d6dba434be4b6683fad1aba6a7f75e&licenseKey=123456
+```
+
+### 响应参数
+
+如果状态码为 `200`，则请求成功，响应包体中包含如下参数：
+
+| 参数 | 类型 | 描述 |
+|:---|:---|:---|
+|`license`| | |
+|`skuView`| Array |<li><code>product</code></li><li><code>name</code></li><code>mediaType</code></li><code>minutes</code></li><code>period</code></li> |
+
+如果状态码不为 `200`，则请求失败。你可以根据返回的 [状态码](https://docs.agora.io/cn/Agora%20Platform/agora_console_restapi?platform=All%20Platforms#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81) 和响应包体中 `message` 字段的描述进行错误排查。
+
+### 响应示例
+
+请求成功的响应示例：
+
+```json
+{
+    "code": 200,
+    "data": {
+        "license": "A9423D665DF145D990628CFDB491FD43",
+        "skuView": {
+            "product": 1,
+            "name": "演示申请01",
+            "mediaType": 1,
+            "minutes": 100,
+            "period": "00:00~23:59"
+        }
+    }
+}
+```
+
+
+## 续期控制台 License
+
+续期控制台 License。
+
+### 接口原型
+- 方法：`POST`
+- 接入点：`https://api.agora.io/dabiz/license/v1/renew`
+
+### 请求参数
+
+#### 查询参数
+
+在请求路径中传入以下查询参数：
+
+| 参数 | 类型 | 描述 |
+|:---|:---|:---|
+|`appid`| | |
+|`renewPid`| | |
+|`license`| | License Value |
+
+### 请求示例
+
+#### 请求路径
+
+```http
+https://api.agora.io/dabiz/license/v2/active?pid=02F51997A07B46C5810020A0F163EC30&appid=a6d6dba434be4b6683fad1aba6a7f75e&licenseKey=123456
+```
+
+### 响应参数
+
+如果状态码为 `200`，则请求成功。
+
+如果状态码不为 `200`，则请求失败。你可以根据返回的 [状态码](https://docs.agora.io/cn/Agora%20Platform/agora_console_restapi?platform=All%20Platforms#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81) 和响应包体中 `message` 字段的描述进行错误排查。
+
+### 响应示例
+
+请求成功的响应示例：
+
+```json
+{
+    "code": 200,
+    "message": "license续期成功"
+}
+```
+
+
+## 分配控制台 License
+
+<div class="alert note">请确保对应销售已在控制台为你的账号开启配额权限。</div>
+
+将控制台 License 分配给指定项目。
+
+### 接口原型
+- 方法：`POST`
+- 接入点：`https://api.agora.io/dabiz/license/v1/allocate`
+
+### 请求参数
+
+#### 查询参数
+
+在请求路径中传入以下查询参数：
+
+| 参数 | 类型 | 描述 |
+|:---|:---|:---|
+|`appid`| | |
+
+#### 请求包体参数
+
+在请求包体中传入以下参数：
+
+| 参数 | 类型 | 描述 |
+|:---|:---|:---|
+|`pid`| | |
+|`count`| | |
+|`creator`| | |
+
+### 请求示例
+
+#### 请求路径
+
+```http
+https://api.agora.io/dabiz/license/v1/allocate?appid=a6d6dba434be4b6683fad1aba6a7f75e
+```
+
+#### 请求包体
+
+```json
+{
+    "pid": "02F51997A07B46C5810020A0F163EC30",
+    "count": 5,
+    "creator": "wangwei"
+}
+```
+
+### 响应参数
+
+如果状态码为 `200`，则请求成功，响应包体中包含如下参数：
+
+| 参数 | 类型 | 描述 |
+|:---|:---|:---|
+|`message`| | |
+????
+
+如果状态码不为 `200`，则请求失败。你可以根据返回的 [状态码](https://docs.agora.io/cn/Agora%20Platform/agora_console_restapi?platform=All%20Platforms#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81) 和响应包体中 `message` 字段的描述进行错误排查。
+
+### 响应示例
+
+请求成功的响应示例：
+
+```json
+{
+    "code": 200,
+    "message": "配额成功！"
+}
+```
+
+
+## 查询控制台 License 配额
+
+<div class="alert note">请确保对应销售已在控制台为你的账号开启查询配额权限。</div>
+
+查询指定批次的控制台 License 配额历史。
+
+### 接口原型
+- 方法：`GET`
+- 接入点：`https://api.agora.io/dabiz/license/v1/product/allocations`
+
+### 请求参数
+
+#### 查询参数
+
+在请求路径中传入以下查询参数：
+
+| 参数 | 类型 | 描述 |
+|:---|:---|:---|
+|`page`| | |
+|`size`| | |
+|`pid`| | |
+|`appid`| | |
+
+### 请求示例
+
+#### 请求路径
+
+```http
+https://api.agora.io/dabiz/license/v1/product/allocations?page=1&size=10&appid=a6d6dba434be4b6683fad1aba6a7f75e&pid=02F51997A07B46C5810020A0F163EC30
+```
+
+### 响应参数
+
+如果状态码为 `200`，则请求成功，响应包体中包含如下参数：
+
+| 参数 | 类型 | 描述 |
+|:---|:---|:---|
+|`count`| | |
+|`list`| Array | <li>pid</li><li>type</li><li>vid</li><li>creator</li><li>count</li><li>createTime</li> |
+
+如果状态码不为 `200`，则请求失败。你可以根据返回的 [状态码](https://docs.agora.io/cn/Agora%20Platform/agora_console_restapi?platform=All%20Platforms#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81) 和响应包体中 `message` 字段的描述进行错误排查。
+
+### 响应示例
+
+请求成功的响应示例：
+
+```json
+{
+    "code": 200,
+    "data": {
+        "count": 2,
+        "list": [
+            {
+                "pid": "02F51997A07B46C5810020A0F163EC30",
+                "type": 1,
+                "vid": 975823,
+                "creator": "wangwei",
+                "count": 5,
+                "createTime": "2022-07-22 09:10:12"
+            },
+            {
+                "pid": "02F51997A07B46C5810020A0F163EC30",
+                "type": 1,
+                "vid": 975823,
+                "creator": "wangwei",
+                "count": 5,
+                "createTime": "2022-07-21 09:02:26"
+            }
+        ]
+    }
+}
+```
 
 
 
 
+```json
+{
+    "code": 200,
+    "message": "增加单个预授权成功"
+}
+```
