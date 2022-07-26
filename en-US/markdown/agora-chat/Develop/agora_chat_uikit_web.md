@@ -25,7 +25,7 @@ Before proceeding, ensure that your development environment meets the following 
   - Safari 11 or later
 - A valid [Agora account](https://console.agora.io/).
 - An Agora project that has [enabled the Chat service](./enable_agora_chat?platform=Web#enable-the-agora-chat-service).
-- An [App key](./agora-chat/enable_agora_chat?platform=Web#get-the-information-of-the-agora-chat-project) and [a user token generated on your app server](/agora-chat/generate_user_tokens?platform=Web).
+- An [App key](./enable_agora_chat?platform=Web#get-the-information-of-the-agora-chat-project) and [a user token generated on your app server](./generate_user_tokens?platform=Web).
 
 ## Project setup
 
@@ -66,13 +66,13 @@ This sections introduces how to create an app and add the Chat UIKit to the proj
    To add the UIKit using npm:
 
    ```shell
-   npm install chat-uikit --save
+   npm install agora-chat-uikit --save
    ```
 
    To add the UIKit using yarn
 
    ```shell
-   yarn add chat-uikit
+   yarn add agora-chat-uikit
    ```
 
 ## Implementation
@@ -91,7 +91,7 @@ This section introduces the steps you need to take to quickly implement one-to-o
    ```javascript
     // App.js
     import React, {Component} from 'react';
-    import { EaseApp } from "chat-uikit"
+    import { EaseApp } from "agora-chat-uikit"
     import './App.scss';
 
     class App extends Component {
@@ -134,7 +134,7 @@ In your terminal, run the following command to launch the app:
 npm run start
 ```
 
-You can see the app launch in your browser. Before you can send a message, refer to [Add a contact](./agora-chat/manage_user_friend_web?platform=Web#manage-contacts) or [Join a chat group](./agora-chat/agora_chat_group_web?platform=Web#join-and-leave-a-chat-group) to add a contact or join a chat group.
+You can see the app launch in your browser. Before you can send a message, refer to [Add a contact](./manage_user_friend_web?platform=Web#manage-contacts) or [Join a chat group](./agora_chat_group_web?platform=Web#join-and-leave-a-chat-group) to add a contact or join a chat group.
 
 ## Next steps
 
@@ -146,7 +146,7 @@ As a conversation component, `EaseChat` can be applied in a wide range of use ca
 
 ```javascript
 import React, { useState } from "react";
-import { EaseChat } from "chat-uikit";
+import { EaseChat } from "agora-chat-uikit";
 	const addListen = (res) => {
     if(res.isLogin){
        	const WebIM = EaseChat.getSdk()
