@@ -349,8 +349,14 @@ POST https://api.agora.io/dabiz/license/v1/pad/add?licenseKey={licensekey}&appid
 POST https://api.agora.io/dabiz/license/v1/pad/upload?appid={appId}
 ```
 
+body 选 form-data
+key 选 file，value 上传文件
+
 ```json
-报错
+{
+    "code": 200,
+    "message": "预授权文件上传成功"
+}
 ```
 
 
@@ -359,6 +365,8 @@ POST https://api.agora.io/dabiz/license/v1/pad/upload?appid={appId}
 ```http
 POST https://api.agora.io/dabiz/license/v1/pad/delete?appid={appid}
 ```
+
+body
 
 ```json
 {
