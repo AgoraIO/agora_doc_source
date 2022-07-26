@@ -2,6 +2,8 @@
 
 本页面介绍 Agora 控制台 License RESTful API 的详细信息。
 
+
+
 ## 基本信息
 
 本节介绍所有 Agora 控制台 License RESTful API 的基本信息。
@@ -23,7 +25,8 @@ Agora 控制台 RESTful API 仅支持 HTTPS 协议。发送请求时，你需要
 对于每个 Agora 账号（非每个 App ID），本页每个 API 的调用频率上限为每秒 10 次。如果调用频率超出限制，参考 [如何处理服务端 RESTful API 调用超出频率限制](https://docs.agora.io/cn/Video/faq/restful_api_call_frequency) 优化调用频率。
 
 
-## 激活控制台 License
+
+## 激活接口
 
 激活控制台 License。
 
@@ -83,7 +86,7 @@ https://api.agora.io/dabiz/license/v2/active?pid=02F51997A07B46C5810020A0F163EC3
 ```
 
 
-## 续期控制台 License
+## 续期接口
 
 续期控制台 License。
 
@@ -108,7 +111,7 @@ https://api.agora.io/dabiz/license/v2/active?pid=02F51997A07B46C5810020A0F163EC3
 #### 请求路径
 
 ```http
-https://api.agora.io/dabiz/license/v2/active?pid=02F51997A07B46C5810020A0F163EC30&appid=a6d6dba434be4b6683fad1aba6a7f75e&licenseKey=123456
+https://api.agora.io/dabiz/license/v2/active?pid=02F51997A07B46C5810020A0F163EC30&appid=a6d6dba434be4b6683fad1aba6a7f75e&license=123456
 ```
 
 ### 响应参数
@@ -129,11 +132,11 @@ https://api.agora.io/dabiz/license/v2/active?pid=02F51997A07B46C5810020A0F163EC3
 ```
 
 
-## 分配控制台 License
+## 配额接口
 
 <div class="alert note">请确保对应销售已在控制台为你的账号开启配额权限。</div>
 
-将控制台 License 分配给指定项目。
+将指定数量的控制台 License 分配给指定项目。
 
 ### 接口原型
 - 方法：`POST`
@@ -195,7 +198,7 @@ https://api.agora.io/dabiz/license/v1/allocate?appid=a6d6dba434be4b6683fad1aba6a
 ```json
 {
     "code": 200,
-    "message": "配额成功！"
+    "message": "license配额成功"
 }
 ```
 
@@ -275,10 +278,135 @@ https://api.agora.io/dabiz/license/v1/product/allocations?page=1&size=10&appid=a
 
 
 
+## 开启预授权
+
+```http
+POST https://api.agora.io/dabiz/license/v1/pad/add?licenseKey={licensekey}&appid={appid}
+```
+
+```json
+{
+    "code": 200,
+    "message": "配置成功！"
+}
+```
+
+
+## 清空预授权
+
+```http
+POST https://api.agora.io/dabiz/license/v1/pad/clear?appid={appid}
+```
+
+```json
+{
+    "code": 200,
+    "message": "清空预授权成功"
+}
+```
+
+
+## 增加单个预授权
+
+```http
+POST https://api.agora.io/dabiz/license/v1/pad/add?licenseKey={licensekey}&appid={appid}
+```
 
 ```json
 {
     "code": 200,
     "message": "增加单个预授权成功"
 }
+```
+
+
+## 查询指定预授权
+
+```http
+POST https://api.agora.io/dabiz/license/v1/pad/add?licenseKey={licensekey}&appid={appid}
+```
+
+```json
+{
+    "code": 200,
+    "data": [
+        {
+            "id": 16,
+            "cid": 717241,
+            "vid": 975823,
+            "licenseKey": "12345",
+            "createTime": "2022-07-26 04:01:41"
+        }
+    ]
+}
+```
+
+
+## 上传预授权
+
+
+```http
+POST https://api.agora.io/dabiz/license/v1/pad/upload?appid={appId}
+```
+
+```json
+报错
+```
+
+
+## 删除预授权
+
+```http
+POST https://api.agora.io/dabiz/license/v1/pad/delete?appid={appid}
+```
+
+```json
+{
+    "code": 200,
+    "message": "删除预授权成功"
+}
+```
+
+
+## 查询预授权
+
+```http
+GET https://api.agora.io/dabiz/license/v1/pads?page={page}&size={size}&appid={appid}
+```
+
+```json
+{
+    "code": 200,
+    "data": {
+        "count": 2,
+        "list": [
+            {
+                "id": 20,
+                "cid": 717241,
+                "vid": 975823,
+                "licenseKey": "12345",
+                "createTime": "2022-07-26 05:18:03"
+            },
+            {
+                "id": 19,
+                "cid": 717241,
+                "vid": 975823,
+                "licenseKey": "54321",
+                "createTime": "2022-07-26 05:17:18"
+            }
+        ]
+    }
+}
+```
+
+
+## 导出预授权
+
+```http
+GET https://api.agora.io/dabiz/license/v1/pads/export?appid={appid}
+```
+
+```json
+12345
+54321
 ```
