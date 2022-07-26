@@ -1,41 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_videosourcesetlogfile">
-    <title><ph keyref="videoSourceSetLogFile"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置 SDK Native 层 <codeph>videoSource</codeph>
-进程的日志。</ph></shortdesc>
+    <title><ph keyref="videoSourceSetLogFile" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the log file for the <codeph>videoSource</codeph> instance in the Native layer.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="videoSourceSetLogFile"/>
+                <indexterm keyref="videoSourceSetLogFile" />
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+                <codeblock props="android" outputclass="language-java" />
+                <codeblock props="ios mac" outputclass="language-objectivec" />
+                <codeblock props="cpp" outputclass="language-cpp" />
+                <codeblock props="electron" outputclass="language-typescript">videoSourceSetLogFile(filePath: string): number</codeblock>
+                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
+            </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated">
-            <dlentry>
-                <dt>Deprecated:</dt>
-                <dd>该方法已废弃，建议改用 <xref keyref="videoSourceInitializeWithContext"/> 设置日志文件。</dd>
-            </dlentry>
+                <dlentry>
+                    <dt>Deprecated:</dt>
+                    <dd>This method is deprecated. Please use <xref keyref="videoSourceInitializeWithContext" /> instead.</dd>
+                </dlentry>
             </dl>
-            <p>The method for the second instance.</p>
-            <note type="attention">
-            <ul>
-            <li>如需调用本方法，请在初始化 <codeph>videoSource</codeph> 对象后立即调用，否则可能造成输出日志不完整。</li>
-            <li><codeph>videoSource</codeph> 进程和主进程的默认日志文件路径相同，你需要修改文件路径，避免日志文件被覆盖。</li>
-            </ul> </note> </section>
-        <section id="parameters" conkeyref="setLogFile/parameters"/>
-        <section id="return_values" conkeyref="setLogFile/return_values"/>
+            <p>A method for the second instance.</p>
+            <note type="attention"><ul>
+                <li>Ensure that you call this method immediately after initializing <codeph>videoSource</codeph>; otherwise, the output log may not be complete.</li>
+                <li>The default path for the log file of <codeph>videoSource</codeph> is the same with the main thread. Ensure that you change the log file path to avoid overwriting the log.</li>
+            </ul>
+                </note>
+        </section>
+        <section id="parameters" conkeyref="setLogFile/parameters" />
+        <section id="return_values" conkeyref="setLogFile/return_values" />
     </refbody>
 </reference>

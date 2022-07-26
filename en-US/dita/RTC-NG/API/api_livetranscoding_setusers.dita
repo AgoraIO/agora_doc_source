@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_livetranscoding_setusers">
-    <title><ph keyref="setUsers"/></title>
-    <shortdesc id="short"><ph id="shortdesc">批量设置用户。</ph></shortdesc>
+    <title><ph keyref="setUsers" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the users in batches in the CDN live streaming.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setUsers"/>
+                <indexterm keyref="setUsers" />
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public void setUsers(ArrayList&lt;TranscodingUser> users) {
+            <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="android" outputclass="language-java">public void setUsers(ArrayList&lt;TranscodingUser&gt; users) {
     transcodingUsers.clear();
     if (users != null) {
       for (TranscodingUser user : users) {
@@ -22,22 +22,21 @@
     }
     userCount = transcodingUsers.size();
   }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
-        </section>
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="cpp" outputclass="language-cpp" />
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p></section>
         <section id="detailed_desc">
-            <p id="detailed">该方法用于设置参与合图的全部用户。 该方法会使用新的 <apiname>TranscodingUser</apiname> 数据替换原有的数据。</p>
+            <p id="detailed">This method sets all users involved in the CDN live stream. This method replaces the old user data with the new <apiname>TranscodingUser</apiname> data.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry id="users">
                 <pt>users</pt>
-                <pd>所有参与合图的用户，定义详见 <xref keyref="TranscodingUser"/>。</pd>
+                <pd>All users involved in the CDN live streaming. See <xref keyref="TranscodingUser" /> for details.</pd>
             </plentry>
             </parml> </section>
     </refbody>
