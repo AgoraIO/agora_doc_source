@@ -1,55 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onmicrophoneenabled">
-    <title><ph keyref="onMicrophoneEnabled"/></title>
-    <shortdesc id="short">Occurs when the microphone is enabled/disabled.<ph id="shortdesc"></ph></shortdesc>
+    <title><ph keyref="onMicrophoneEnabled" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the microphone is enabled/disabled.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onMicrophoneEnabled"/>
+                <indexterm keyref="onMicrophoneEnabled" />
             </keywords>
         </metadata>
     </prolog>
-    <refbody>
-        <section id="prototype">
-            <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onMicrophoneEnabled(bool enabled) { (void)enabled; }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnMicrophoneEnabled(bool enabled)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+    <refbody><section id="prototype">
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java" />
+                <codeblock props="ios mac" outputclass="language-objectivec" />
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onMicrophoneEnabled(bool enabled) { (void)enabled; }</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.MICROPHONE_ENABLED, cb: (enabled: boolean) =&gt; void): this;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnMicrophoneEnabled(bool enabled)</codeblock>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">EnabledCallback? microphoneEnabled;</codeblock>
+        </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated">
-            <dlentry>
-                <dt>Deprecated:</dt>
-                <dd>
-                    <p>请改用 <xref keyref="onLocalAudioStateChanged"/> 回调的：
-                    <ul>
-                    <li><apiname keyref="LOCAL_AUDIO_STREAM_STATE_STOPPED"/>(0)。</li>
-                    <li><apiname keyref="LOCAL_AUDIO_STREAM_STATE_RECORDING"/>(1)。</li>
-                    </ul></p>
-                </dd>
-            </dlentry>
+                <dlentry>
+                    <dt>Deprecated:</dt>
+                    <dd>
+                        <p>Please use the <xref keyref="onLocalAudioStateChanged" /> callback:<ul>
+                                <li><apiname keyref="LOCAL_AUDIO_STREAM_STATE_STOPPED" />(0).</li>
+                                <li><apiname keyref="LOCAL_AUDIO_STREAM_STATE_RECORDING" />(1).</li>
+                            </ul></p>
+                    </dd>
+                </dlentry>
             </dl>
-            <p>该回调是由本地用户调用 <xref keyref="enableLocalAudio"/> 方法开启或关闭本地音频采集触发的。</p>
+            <p>The SDK triggers this callback when the local user<xref keyref="enableLocalAudio" /> resumes or stops capturing the local audio stream by calling the method.</p>
         </section>
         <section id="parameters">
-            <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
-            <plentry>
-                <pt>enabled</pt>
-                <pd>
-                    <p>麦克风状态：
-                    <ul>
-                    <li><codeph><ph keyref="true"/></codeph>：麦克风已启用。</li>
-                    <li><codeph><ph keyref="false"/></codeph>：麦克风已禁用。</li>
-                    </ul></p>
-                </pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>enabled</pt>
+                    <pd>
+                        <p>Whether the microphone is enabled/disabled:<ul>
+                                <li><codeph><ph keyref="true" /></codeph>: The microphone is enabled.</li>
+                                <li><codeph><ph keyref="false" /></codeph>: The microphone is disabled.</li>
+                            </ul></p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>
