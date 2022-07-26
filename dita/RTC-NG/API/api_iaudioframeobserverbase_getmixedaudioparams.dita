@@ -24,7 +24,10 @@
         </section>
         <section id="detailed_desc">
             <p>你需要在调用 <xref keyref="registerAudioFrameObserver"/> 方法时注册该回调。成功注册音频数据观测器后，SDK 会触发该回调，你可以在该回调的返回值中设置 SDK 采集的音频数据格式。</p>
-            <note type="attention">SDK 会通过你在返回值中设置的 <xref keyref="AudioParams"/> 计算采样间隔，计算公式为<equation-inline>采样间隔 = <parmname>samplesPerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>。请确保采样间隔不小于 0.01 秒。SDK 会根据该采样间隔触发 <apiname keyref="onMixedAudioFrame"/> 回调。</note> </section>
+            <note type="attention">
+                <p>SDK 会通过你在返回值中设置的 <xref keyref="AudioParams"/> 计算采样间隔，计算公式为<equation-inline>采样间隔 = <parmname>samplesPerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>。</p>
+                <p>请确保采样间隔不小于 0.01 秒。</p>
+                <p>SDK 会根据该采样间隔触发 <apiname keyref="onMixedAudioFrame"/> 回调。</p></note> </section>
         <section id="return_values">
             <title>返回值</title>
             <p>设置采集和播放音频混音后的数据格式，详见 <xref keyref="AudioParams"/>。</p>
