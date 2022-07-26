@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_contentinspectmodule">
+    <title><ph keyref="ContentInspectModule"/></title>
+    <shortdesc id="short"><ph id="shortdesc"><apiname keyref="ContentInspectModule"/>Structure to configure the type and frequency of the video content moderation module.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="android" outputclass="language-java">public static class ContentInspectModule {
+  public int type;
+  public int interval;
+  public ContentInspectModule() {
+    type = CONTENT_INSPECT_TYPE_INVALID;
+    interval = 0;
+  }</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraContentInspectModule: NSObject
+@property (assign, nonatomic) AgoraContentInspectType type;
+
+@property (assign, nonatomic) NSInteger interval;
+@end</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">struct ContentInspectModule {
+  CONTENT_INSPECT_TYPE type;
+  unsigned int interval;
+  ContentInspectModule() {
+    type = CONTENT_INSPECT_INVALID;
+    interval = 0;
+  }
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">public class ContentInspectModule {
+        public CONTENT_INSPECT_TYPE type;
+        public uint frequency;
+    };</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="parameters">
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry>
+                <pt>type</pt>
+                <pd props="ios mac cpp">The type of video content moderation module. See <xref keyref="CONTENT_INSPECT_TYPE"/>.</pd>
+                <pd props="android unity">
+                    <p>The type of video content moderation module.<ul>
+                    <li><ph keyref="CONTENT_INSPECT_INVALID"/>(0): (Default) This module has no actual function. Do not set to this value.</li>
+                    <li><ph keyref="CONTENT_INSPECT_MODERATION"/>(1): Video content moderation. SDK takes screenshots, inspects video content of the video stream in the channel, and uploads the screenshots and moderation results.</li>
+                    <li><ph keyref="CONTENT_INSPECT_SUPERVISE"/>(2): Screenshot capture. SDK takes screenshots of the video stream in the channel and uploads them.</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>interval</pt>
+                <pd>The frequency (in seconds) of video content moderation. The value should be set as larger than 0. If set as 0 (default), the video content is not inspected. Agora recommends that you set the value as 10; you can also adjust it according to your business needs.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_selectaudiotrack">
-    <title><ph keyref="selectAudioTrack" /></title>
+    <title><ph keyref="selectAudioTrack_IMediaPlayer"/></title>
     <shortdesc id="short"><ph id="shortdesc">Selects the audio track used during playback.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="selectAudioTrack" />
+                <indexterm keyref="selectAudioTrack_IMediaPlayer"/>
             </keywords>
         </metadata>
     </prolog>
@@ -21,33 +21,31 @@
             <codeblock props="android" outputclass="language-java">public abstract int selectAudioTrack(int index);</codeblock> </p>
             <p outputclass="codeblock">
             <codeblock props="cpp" outputclass="language-cpp">virtual int selectAudioTrack(int index) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; selectAudioTrack(int index);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-                <dlentry props="native">
-                    <dt>Since</dt>
-                    <dd>v3.5.1</dd>
-                </dlentry>
-            </dl>
-            <p>If the media file has multiple audio tracks, you can call this method to select the audio track used during playback.</p>
-        </section>
-        <section id="parameters"><title>Parameters</title>
+            <p>After getting the track index of the audio file, you can call this method to specify any track to play. For example, if different tracks of a multi-track file store songs in different languages, you can call this method to set the playback language.</p>
+            <note type="attention" id="note"><ph props="rtc-ng">You need to call this method after calling <xref keyref="getStreamInfo"/> to get the audio stream index value. </ph><ph props="rtc">Call this method after calling <xref keyref="startAudioMixing2"/> and receiving the <xref keyref="onAudioMixingStateChanged"/> (<apiname keyref="AUDIO_MIXING_STATE_PLAYING"/>) callback.</ph></note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
             <parml>
-                <plentry>
-                    <pt props="android ios cpp flutter">index</pt>
-                    <pd>The index of the audio track.</pd>
-                </plentry>
-            </parml>
-        </section>
-        <section id="return_values" props="native electron unity">
+            <plentry props="unity">
+                <pt>playerId</pt>
+                <pd>The ID of the media player.</pd>
+            </plentry>
+            <plentry>
+                <pt>index
+</pt>
+                <pd>The index of the audio track.</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
             <title>Returns</title>
             <ul>
-                <li>0: Success.</li>
-                <li>&lt; 0: Failure.</li>
-            </ul>
-        </section>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
     </refbody>
 </reference>

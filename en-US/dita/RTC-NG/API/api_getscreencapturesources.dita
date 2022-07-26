@@ -14,7 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (NSArray&lt;AgoraScreenCaptureSourceInfo*>* _Nullable)getScreenCaptureSourcesWithThumbSize:(NSSize)thumbSize iconSize:(NSSize)iconSize includeScreen:(BOOL)includeScreen;
+</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual IScreenCaptureSourceList* getScreenCaptureSources(const SIZE&amp; thumbSize, const SIZE&amp; iconSize, const bool includeScreen) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp"/>
@@ -22,38 +23,30 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-                <dlentry props="native">
-                    <dt>Since</dt>
-                    <dd>v3.5.2</dd>
-                </dlentry>
-            </dl>
-            <p>You can call this method before sharing a screen or window to get a list of shareable screens and windows, which enables a user to use thumbnails in the list to easily choose a particular screen or window to share. This list also contains important information such as window ID and screen ID, with which you can call<xref keyref="startScreenCaptureByWindowId"/>  or<xref keyref="startScreenCaptureByDisplayId"/>  to start the sharing.</p>
-            <note type="note" props="rtc-ng">This method applies to Windows only.</note>
-            <note type="note" props="rtc">This method applies to macOS and Windows only.</note>
-        </section>
+            <p>You can call this method before sharing a screen or window to get a list of shareable screens and windows, which enables a user to use thumbnails in the list to choose a particular screen or window to share. This list also contains important information such as window ID and screen ID, with which you can call <xref keyref="startScreenCaptureByWindowId"/> or <xref keyref="startScreenCaptureByDisplayId"/> to start the sharing.</p>
+            <note type="note" props="cpp">This method applies to macOS and Windows only.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>thumbSize</pt>
-                <pd>The target size of the screen or window thumbnail (the width and height are in pixels). See <xref keyref="SIZE-link"/>. The SDK scales the original image to make the length of the longest side of the image the same as that of the target size without distorting the original image. For example, if the original image is 400 × 300 and <parmname>thumbSize</parmname> is 100 × 100, the actual size of the thumbnail is 100 × 75. If the target size is larger than the original size, the thumbnail is the original image and the SDK does not scale it.</pd>
+                <pd><ph>The target size of the screen or window thumbnail (the width and height are in pixels). </ph><ph props="cpp">See <xref keyref="SIZE-link"/>. </ph><ph>The SDK scales the original image to make the length of the longest side of the image the same as that of the target size without distorting the original image. For example, if the original image is 400 × 300 and <parmname>thumbSize</parmname> is 100 × 100, the actual size of the<parmname> thumbnail</parmname> is 100 × 75. If the target size is larger than the original size, the thumbnail is the original image and the SDK does not scale it.</ph></pd>
             </plentry>
-                <plentry>
-                    <pt>iconSize</pt>
-                    <pd>The target size of the icon corresponding to the application program (the width and height are in pixels). See <apiname keyref="SIZE-link"/>. The SDK scales the original image to make the length of the longest side of the image the same as that of the target size without distorting the original image. For example, if the original image is 400 × 300 and <parmname>iconSize</parmname> is 100 × 100, the actual size of the icon is 100 × 75. If the target size is larger than the original size, the icon is the original image and the SDK does not scale it.</pd>
-                </plentry>
-                <plentry>
-                    <pt>includeScreen</pt>
-                    <pd>Whether the SDK returns the screen information in addition to the window information:<ul>
-                        <li><codeph><ph keyref="true"/></codeph>: The SDK returns the screen and window information.</li>
-                        <li><codeph><ph keyref="false"/></codeph>: The SDK returns the window information only.</li>
-                        </ul></pd>
-                </plentry>
+            <plentry>
+                <pt>iconSize</pt>
+                <pd><ph>The target size of the icon corresponding to the application program (the width and height are in pixels). </ph><ph props="cpp">See <xref keyref="SIZE-link"/>. </ph><ph>The SDK scales the original image to make the length of the longest side of the image the same as that of the target size without distorting the original image. For example, if the original image is 400 × 300 and <parmname>iconSize</parmname> is 100 × 100, the actual size of the<parmname> icon</parmname> is 100 × 75. If the target size is larger than the original size, the icon is the original image and the SDK does not scale it.</ph></pd>
+            </plentry>
+            <plentry>
+                <pt>includeScreen</pt>
+                <pd>Whether the SDK returns the screen information in addition to the window information:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: The SDK returns screen and window information.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: The SDK returns the window information only.</li>
+                    </ul></pd>
+            </plentry>
             </parml> </section>
         <section id="return_values">
             <title>Returns</title>
-            <p><xref keyref="IScreenCaptureSourceList"/></p>
+            <p><xref keyref="IScreenCaptureSourceList" props="cpp"/><xref keyref="ScreenCaptureSourceInfo" props="mac"/></p>
         </section>
     </refbody>
 </reference>

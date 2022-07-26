@@ -15,7 +15,8 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">int getVideoFormatPreference();
 </codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (AgoraVideoFormat)getVideoPixelFormatPreference;</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (AgoraVideoFormat)getVideoFormatPreference;
+</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual VIDEO_PIXEL_FORMAT getVideoFormatPreference() { return VIDEO_PIXEL_DEFAULT; }</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual VIDEO_FRAME_TYPE GetVideoFormatPreference()
@@ -27,10 +28,41 @@
         </section>
         <section id="detailed_desc">
             <p>If you want to get raw video data in a color encoding format other than YUV 420, register this callback when calling <xref keyref="registerVideoFrameObserver"/>. After you successfully register the video frame observer, the SDK triggers this callback each time it receives a video frame. You need to set your preferred video data in the return value of this callback.</p>
-            <note type="note">If you want the video captured by the sender to be the original format, set the original video data format to <apiname keyref="VIDEO_PIXEL_DEFAULT"/> in the return value. On different platforms, the original video pixel format is also different, for the actual video pixel format, see <xref keyref="VideoFrame"/>.</note> </section>
+            <note type="note" props="hide">If you want the video captured by the sender to be the original format, set the original video data format to <apiname keyref="VIDEO_PIXEL_DEFAULT"/> in the return value. On different platforms, the original video pixel format is also different, for the actual video pixel format, see <xref keyref="VideoFrame"/>.</note> </section>
         <section id="return_values">
             <title>Returns</title>
-            <p>Sets the video format. <ph props="cpp ios mac">See <xref keyref="VIDEO_PIXEL_FORMAT"/>.</ph></p>
+            <p><ph>Sets the video format. </ph><ph props="cpp ios mac">See <xref keyref="VIDEO_PIXEL_FORMAT"/>.</ph></p>
+            <p props="android">
+            <note id="default" props="hide">
+                    <p>According to different observation locations and collection scenarios, the actual video pixel format corresponding to this enumeration value is different. Agora recommends that you do not use this value. Some common situations are listed below.</p>
+                    <ul>
+                        <li>When the observation position is <apiname keyref="POSITION_POST_CAPTURER"/>:<ul>
+                            <li props="ios">Only video with pixel format CVPixelBufferRef is supported.</li>
+                            <li props="android">When the user collects video data in YUV format, or the resolution of the captured video is less than 256 × 256, the supported video pixel format is I420; in other cases, the Texture format is supported.</li>
+                            <li props="mac cpp">Only video with pixel format I420 is supported.</li>
+                            </ul></li>
+                        <li>When the observation position is <apiname keyref="POSITION_PRE_ENCODER"/>:<ul>
+                            <li props="ios">Only video with pixel format CVPixelBufferRef is supported.</li>
+                            <li props="android">When the user collects video data in YUV format, or the resolution of the captured video is less than 256 × 256, the supported video pixel format is I420; in other cases, the Texture format is supported.</li>
+                            <li props="mac cpp">Only video with pixel format I420 is supported.</li>
+                            </ul></li>
+                        <li>When the observation position is <apiname keyref="POSITION_PRE_RENDERER"/>:<ul>
+                            <li props="ios mac">Video with pixel format CVPixelBufferRef is supported by default.</li>
+                            <li props="android">Video with a pixel format of Texture is supported by default.</li>
+                            <li props="cpp">Video with pixel format I420 is supported.</li>
+                            </ul></li>
+                    </ul>
+                </note>
+            <ul>
+            <li><ph keyref="VIDEO_PIXEL_DEFAULT"/>(0): Raw video.</li>
+            <li><ph keyref="VIDEO_PIXEL_I420"/>(1): I420.</li>
+            <li props="hide"><ph keyref="VIDEO_PIXEL_BGRA"/>(2): BGRA.</li>
+            <li props="hide"><ph keyref="VIDEO_PIXEL_NV21"/>(3): NV21.</li>
+            <li><ph keyref="VIDEO_PIXEL_RGBA"/>(4): RGBA.</li>
+            <li props="hide"><ph keyref="VIDEO_PIXEL_NV12"/>(8): NV12.</li>
+            <li props="hide"><ph keyref="VIDEO_TEXTURE_2D"/>(10): TEXTURE_2D.</li>
+            <li><ph keyref="VIDEO_PIXEL_I422"/>(16): I422.</li>
+            </ul></p>
         </section>
     </refbody>
 </reference>

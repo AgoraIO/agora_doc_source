@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_enablecontentinspect">
+    <title><ph keyref="enableContentInspect"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Enables/Disables video content moderation.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableContentInspect"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int enableContentInspect(boolean enabled, ContentInspectConfig config);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableContentInspect:(BOOL)enabled config:(AgoraContentInspectConfig* _Nonnull)config;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int enableContentInspect(bool enabled, const media::ContentInspectConfig &amp;config) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int EnableContentInspect(bool enabled, ContentInspectConfig config);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/></p>
+        </section>
+        <section id="detailed_desc">
+            <p>When video content moderation is enabled, the SDK takes screenshots, reviews the content, and uploads videos sent by local users based on the type and frequency of the content moderation module you set in <xref keyref="ContentInspectConfig"/>. After content moderation, the Agora content moderation server sends the results to your app server in HTTPS requests and sends all screenshots to the third-party cloud storage service.</p>
+            <p>If you set the <parmname>type</parmname> in <apiname keyref="ContentInspectModule"/> to <apiname keyref="CONTENT_INSPECT_TYPE_MODERATION"/>, after the moderation is completed, the SDK triggers the <xref keyref="onContentInspectResult"/> callback and report the moderation result.</p>                                                       
+            <note>Before calling this method, ensure that the Agora content moderation service has been enabled. Contact &lt;xref keyref="mailto-link"/> to enable the service.<xref keyref="enable-contentinspect"></xref></note>
+        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>enabled</pt>
+                <pd>Whether to enable video content moderation:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Enable video content moderation.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Disable video content moderation.</li>
+                    </ul></pd>
+            </plentry>
+            <plentry>
+                <pt>config</pt>
+                <pd>Configuration of video content moderation. See <xref keyref="ContentInspectConfig"/>.</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul></section>
+    </refbody>
+</reference>

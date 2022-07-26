@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_videodenoiseroptions">
+    <title> <ph keyref="VideoDenoiserOptions"/> </title>
+    <shortdesc id="short"><ph id="shortdesc">Video noise reduction options.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class VideoDenoiserOptions {
+    public static final int VIDEO_DENOISER_AUTO = 0;
+    public static final int VIDEO_DENOISER_MANUAL = 1;
+    public static final int VIDEO_DENOISER_LEVEL_HIGH_QUALITY = 0;
+    public static final int VIDEO_DENOISER_LEVEL_FAST = 1;
+    public static final int VIDEO_DENOISER_LEVEL_STRENGTH = 2;
+    public int denoiserMode;
+    public int denoiserLevel;
+
+  public VideoDenoiserOptions() {
+    denoiserMode = VIDEO_DENOISER_AUTO;
+    denoiserLevel = VIDEO_DENOISER_LEVEL_HIGH_QUALITY;
+  }
+
+  public VideoDenoiserOptions(int mode, int level) {
+    denoiserMode = mode;
+    denoiserLevel = level;
+  }
+}
+</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoDenoiserOptions : NSObject
+@property(nonatomic, assign) AgoraVideoDenoiserMode mode;
+@property(nonatomic, assign) AgoraVideoDenoiserLevel level;
+@end
+</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">struct VideoDenoiserOptions {
+    enum VIDEO_DENOISER_MODE {
+        VIDEO_DENOISER_AUTO = 0,
+        VIDEO_DENOISER_MANUAL = 1,
+  };
+    enum VIDEO_DENOISER_LEVEL {
+        VIDEO_DENOISER_LEVEL_HIGH_QUALITY = 0,
+        VIDEO_DENOISER_LEVEL_FAST = 1,
+        VIDEO_DENOISER_LEVEL_STRENGTH = 2,
+  };
+    VIDEO_DENOISER_MODE mode;
+    VIDEO_DENOISER_LEVEL level;
+
+  VideoDenoiserOptions(VIDEO_DENOISER_MODE denoiserMode, VIDEO_DENOISER_LEVEL denoiserLevel) : mode(denoiserMode), level(denoiserLevel) {}
+  VideoDenoiserOptions() : mode(VIDEO_DENOISER_AUTO), level(VIDEO_DENOISER_LEVEL_HIGH_QUALITY) {}
+};
+</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="parameters">
+            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/> </title>
+            <parml>
+            <plentry>
+                <pt>level</pt>
+                <pd><ph>Video noise reduction level. </ph><ph props="apple cpp">For more details, see <xref keyref="VIDEO_DENOISER_LEVEL"/>.</ph><ul props="android">
+                    <li><ph keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY"/>0: (Default) Promotes video quality during low-light enhancement. It processes the brightness, details, and noise of the video image. The performance consumption is moderate, the processing speed is moderate, and the overall video quality is optimal.</li>
+                    <li><ph keyref="VIDEO_DENOISER_LEVEL_FAST"/>1: Promotes reducing performance consumption during video noise reduction. It prioritizes reducing performance consumption over video noise reduction quality. The performance consumption is lower, and the video noise reduction speed is faster. To avoid a noticeable shadowing effect (shadows trailing behind moving objects) in the processed video, Agora recommends that you use FAST when the camera is fixed.</li>
+                    <li><ph keyref="VIDEO_DENOISER_LEVEL_STRENGTH"/>2: Enhanced video noise reduction. It prioritizes video noise reduction quality over reducing performance consumption. The performance consumption is higher, the video noise reduction speed is slower, and the video noise reduction quality is better.  If <parmname keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY"/> is not enough for your video noise reduction needs, you can use this enumerator.</li>
+                  </ul>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>mode</pt>
+                <pd><ph>Video noise reduction mode. </ph><ph props="apple cpp">For more details, see <xref keyref="VIDEO_DENOISER_MODE"/>.</ph><ul props="android">
+                    <li><ph keyref="VIDEO_DENOISER_AUTO"/>0: (Default) Automatic mode. The SDK automatically enables or disables the video noise reduction feature according to the ambient light.</li>
+                    <li><ph keyref="VIDEO_DENOISER_MANUAL"/>1: Manual mode. Users need to enable or disable the video noise reduction feature manually.</li>
+                  </ul>
+                </pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

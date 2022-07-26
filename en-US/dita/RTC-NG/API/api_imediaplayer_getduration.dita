@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_getduration">
-    <title><ph keyref="getDuration" /></title>
+    <title><ph keyref="getDuration"/></title>
     <shortdesc id="short"><ph id="shortdesc">Gets the duration of the media resource.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="getDuration" />
+                <indexterm keyref="getDuration"/>
             </keywords>
         </metadata>
     </prolog>
@@ -20,25 +20,31 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (NSInteger)getDuration;
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int getDuration(int64_t&amp; duration) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters">
+            <title>Parameters</title>
             <parml>
-
-                <plentry>
-                    <pt>duration</pt>
-                    <pd>Output parameter. The total duration (ms) of the media file.</pd>
-                </plentry>
-            </parml>
-        </section>
+            <plentry props="unity">
+                <pt>playerId</pt>
+                <pd>The ID of the media player.</pd>
+            </plentry>
+            <plentry props="cpp unity">
+                <pt>duration</pt>
+                <pd>An output parameter. The total duration (ms) of the media file.</pd>
+            </plentry>
+            </parml> </section>
         <section id="return_values">
             <title>Returns</title>
-            <ul id="ul_uns_l2y_hqb">
-                <li>0: Success.</li>
-                <li>&lt; 0: Failure.</li>
-            </ul>
-        </section>
+            <ul id="ul_uns_l2y_hqb" props="cpp unity">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> 
+        <ul props="apple android">
+            <li>If the method call succeeds, the SDK returns the total duration(ms) of the media file.</li>
+            <li>≤ 0: Failure.</li>
+        </ul></section>
     </refbody>
 </reference>

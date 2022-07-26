@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_iscameratorchsupported">
     <title><ph keyref="isCameraTorchSupported"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Checks whether the device supports enabling the flash.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Checks whether the device supports camera flash.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -22,12 +22,12 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;bool?&gt; isCameraTorchSupported();</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>This method needs to be called after the camera is started (for example, by calling <xref keyref="startPreview"/> or <xref keyref="joinChannel2"/>).</p>
             <note type="attention">
             <ul>
             <li props="cpp unity">This method is for Android and iOS only.</li>
-            <li>The app enables the front camera by default. If your front camera does not support the flash function, this method returns <ph keyref="false"/>. If you want to check whether the rear camera supports the flash function, call<xref keyref="switchCamera"/>  before this method.</li>
-            <li props="ios cpp unity">On iPads with system version 15, even if <xref keyref="isCameraTorchSupported"/> returns <parmname>true</parmname>, you might fail to successfully enable the flash by calling <xref keyref="setCameraTorchOn"/> due to system issues.</li>
+            <li conkeyref="isCameraAutoFocusFaceModeSupported/sequence"/>
+            <li>The app enables the front camera by default. If your front camera does not support enabling the flash, this method returns <ph keyref="false"/>. If you want to check whether the rear camera supports the flash function, call <xref keyref="switchCamera"/> before this method.</li>
+            <li props="ios cpp unity">On iPads with system version 15, even if <xref keyref="isCameraTorchSupported"/> returns <codeph><ph keyref="true"/></codeph>, you might fail to successfully enable the flash by calling <xref keyref="setCameraTorchOn"/> due to system issues.</li>
             </ul></note> </section>
         <section id="return_values">
             <title>Returns</title>
