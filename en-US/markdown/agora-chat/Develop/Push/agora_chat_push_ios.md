@@ -101,7 +101,7 @@ Follow the steps to upload the certificates to Agora Console:
     [application registerForRemoteNotifications];
     
     // Initialize Options and set AppKey
-    AgoraOptions *options = [AgoraOptions optionsWithAppkey:@"XXXX#XXXX"];
+    AgoraChatOptions *options = [AgoraChatOptions optionsWithAppkey:@"XXXX#XXXX"];
     
     // Fill in the name specified when uploading the certificate
     options.apnsCertName = @"PushCertName";
@@ -116,7 +116,7 @@ Follow the steps to upload the certificates to Agora Console:
 
 ```objective-c
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    [AgoraChatClient.sharedClient registerForRemoteNotificationsWithDeviceToken:deviceToken completion:^(AgoraError *aError) {
+    [AgoraChatClient.sharedClient registerForRemoteNotificationsWithDeviceToken:deviceToken completion:^(AgoraChatError *aError) {
         if (aError) {
             NSLog(@"bind deviceToken error: %@", aError.errorDescription);
         }
@@ -344,7 +344,7 @@ The following code sample shows how to clear the push notification setting of a 
 You can call `updatePushDisplayName` to set the nickname displayed in your push notifications, as shown in the following code sample:
 
 ```objective-c
-[AgoraChatClient.sharedClient.pushManager updatePushDisplayName:@"displayName" completion:^(NSString * aDisplayName, AgoraError * aError) {
+[AgoraChatClient.sharedClient.pushManager updatePushDisplayName:@"displayName" completion:^(NSString * aDisplayName, AgoraChatError * aError) {
     if (aError) 
     {
         NSLog(@"update push display name error: %@", aError.errorDescription);
@@ -357,7 +357,7 @@ You can also call `updatePushDisplayStyle` to set the display style of push noti
 ```objective-c
 // `AgoraPushDisplayStyleSimpleBanner` indicates that only "You have a new message" displays.
 // To display the message content, set `DisplayStyle` to `AgoraPushDisplayStyleMessageSummary`.
-[AgoraChatClient.sharedClient.pushManager updatePushDisplayStyle:AgoraPushDisplayStyleSimpleBanner completion:^(AgoraError * aError)
+[AgoraChatClient.sharedClient.pushManager updatePushDisplayStyle:AgoraPushDisplayStyleSimpleBanner completion:^(AgoraChatError * aError)
 {
     if(aError)
     {
@@ -453,8 +453,8 @@ If the ready-made templates do not meet your requirements, Agora Chat also enabl
 The following code sample shows how to add an extension field in push notifications:
 
 ```objective-c
-TextMessageBody *body = [[TextMessageBody alloc] initWithText:@"test"];
-Message *message = [[Message alloc] initWithConversationID:conversationId from:currentUsername to:conversationId body:body ext:nil];
+AgoraChatTextMessageBody *body = [[AgoraChatTextMessageBody alloc] initWithText:@"test"];
+AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:conversationId from:currentUsername to:conversationId body:body ext:nil];
 message.ext = @{@"em_apns_ext":@{@"extern":@"custom string"}}; 
 message.chatType = AgoraChatTypeChat; 
 [AgoraChatClient.sharedClient.chatManager sendMessage:message progress:nil completion:nil];
@@ -502,8 +502,8 @@ An example is as follows:
 The following code sample shows how to customize the display style in push notifications:
 
 ```objective-c
-TextMessageBody *body = [[TextMessageBody alloc] initWithText:@"test"];
-Message *message = [[Message alloc] initWithConversationID:conversationId from:currentUsername to:conversationId body:body ext:nil];
+AgoraChatTextMessageBody *body = [[AgoraChatTextMessageBody alloc] initWithText:@"test"];
+AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:conversationId from:currentUsername to:conversationId body:body ext:nil];
 message.ext = @{@"em_apns_ext":@{@"em_push_content":@"custom push content"}}; 
 message.chatType = AgoraChatTypeChat; 
 [AgoraChatClient.sharedClient.chatManager sendMessage:message progress:nil completion:nil];
@@ -551,8 +551,8 @@ To use a custom sound for push notifications, you need to add the audio file to 
 The following sample code customizes the sound of the push notification:
 
 ```objective-c
-TextMessageBody *body = [[TextMessageBody alloc] initWithText:@"test"];
-Message *message = [[Message alloc] initWithConversationID:conversationId from:currentUsername to:conversationId body:body ext:nil];
+AgoraChatTextMessageBody *body = [[AgoraChatTextMessageBody alloc] initWithText:@"test"];
+AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:conversationId from:currentUsername to:conversationId body:body ext:nil];
 message.ext = @{@"em_apns_ext":@{@"em_push_sound":@"custom.caf"}};
 message.chatType = AgoraChatTypeChat; 
 [AgoraChatClient.sharedClient.chatManager sendMessage:message progress:nil completion:nil];
@@ -600,8 +600,8 @@ Once you force a push notification to a user, the user receives the message rega
 The following sample code forces a push notification:
 
 ```objective-c
-TextMessageBody *body = [[TextMessageBody alloc] initWithText:@"test"];
-Message *message = [[Message alloc] initWithConversationID:conversationId from:currentUsername to:conversationId body:body ext:nil];
+AgoraChatTextMessageBody *body = [[AgoraChatTextMessageBody alloc] initWithText:@"test"];
+AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:conversationId from:currentUsername to:conversationId body:body ext:nil];
 message.ext = @{@"em_force_notification":@YES};
 message.chatType = AgoraChatTypeChat; 
 [AgoraChatClient.sharedClient.chatManager sendMessage:message progress:nil completion:nil];
@@ -621,8 +621,8 @@ If the receiver uses a device running iOS 10.0 or later, you can refer to the fo
 [`UNNotificationServiceExtension`](https://developer.apple.com/documentation/usernotifications/unnotificationserviceextension?language=objc) extension. 
 
 ```objective-c
-TextMessageBody *body = [[TextMessageBody alloc] initWithText:@"test"];
-Message *message = [[Message alloc] initWithConversationID:conversationId from:currentUsername to:conversationId body:body ext:nil];
+AgoraChatTextMessageBody *body = [[AgoraChatTextMessageBody alloc] initWithText:@"test"];
+AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:conversationId from:currentUsername to:conversationId body:body ext:nil];
 message.ext = @{@"em_apns_ext":@{@"em_push_mutable_content":@YES}}; 
 message.chatType = AgoraChatTypeChat; 
 [AgoraChatClient.sharedClient.chatManager sendMessage:message progress:nil completion:nil];

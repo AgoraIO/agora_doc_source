@@ -19,7 +19,7 @@ Before proceeding, ensure that you meet the following requirements:
 The following code sample shows how to call the reporting API:
 
 ```objectivec
-[EMClient.sharedClient.chatManager reportMessageWithId:msgId
+[AgoraChatClient.sharedClient.chatManager reportMessageWithId:msgId
                                                        tag:tag
                                                     reason:reason
                                                 completion:nil];

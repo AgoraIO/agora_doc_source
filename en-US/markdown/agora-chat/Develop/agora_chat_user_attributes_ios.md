@@ -15,7 +15,7 @@ The Agora Chat SDK uses `UserInfoManager` to retrieve, set, and modify user attr
 Before proceeding, ensure that you meet the following requirements:
 
 - You have integrated the Agora Chat SDK, initialized the SDK and implemented the functionality of registering accounts and login. For details, see [Get Started with Agora Chat](./agora_chat_get_started_ios?platform=iOS).
-- Have a thorough understanding of the API call frequency limit, the maximum size of all the attributes of a specified user, and the maximum size of all user attribtues in an app. For details, see [Known limitations](./agora_chat_limitation?platform=iOS).
+- Have a thorough understanding of the API call frequency limit, the maximum size of all the attributes of a specified user, and the maximum size of all user attributes in an app. For details, see [Known limitations](./agora_chat_limitation?platform=iOS).
 
 ## Implementation
 
@@ -27,7 +27,7 @@ Chat users can set and update their own attributes. Refer to the code example to
 
 ```objective-c
 // Sets the user attributes.
-AgoraUserInfo *userInfo = [[AgoraUserInfo alloc] init];
+AgoraChatUserInfo *userInfo = [[AgoraChatUserInfo alloc] init];
 userInfo.userId = AgoraChatClient.sharedClient.currentUsername;
 userInfo.nickName = @"agora";
 userInfo.avatarUrl = @"http://www.agora.io";
@@ -36,7 +36,7 @@ userInfo.sign = @"hello world";
 userInfo.phone = @"12333333333";
 userInfo.mail = @"123456@qq.com";
 userInfo.gender = 1;
-[AgoraChatClient.sharedClient.userInfoManager updateOwnUserInfo:userInfo completion:^(AgoraUserInfo *aUserInfo, AgoraChatError *aError)      
+[AgoraChatClient.sharedClient.userInfoManager updateOwnUserInfo:userInfo completion:^(AgoraChatUserInfo *aUserInfo, AgoraChatError *aError)      
 
 }];        
 ```
@@ -46,7 +46,7 @@ The following sample code uses avatar as an example to show how to set the speci
 ```objective-c
 NSString *url = @"https://download-sdk.oss-cn-beijing.aliyuncs.com/downloads/IMDemo/avatar/Image1.png";
  
-[[AgoraChatClient sharedClient].userInfoManager updateOwnUserInfo:url withType:AgoraUserInfoTypeAvatarURL completion:^(AgoraUserInfo *aUserInfo, AgoraChatError *aError) {
+[[AgoraChatClient sharedClient].userInfoManager updateOwnUserInfo:url withType:AgoraChatUserInfoTypeAvatarURL completion:^(AgoraChatUserInfo *aUserInfo, AgoraChatError *aError) {
         if (aUserInfo && completion) {
             completion(aUserInfo);
         }
@@ -68,7 +68,7 @@ The following sample code shows how to retrieve the specified attributes of the 
 
 ```objective-c
 NSString *userIds = @[@"user1",@"user2"];
-NSArray<NSNumber *> *userInfoTypes = @[@(AgoraUserInfoTypeAvatarURL),@(AgoraUserInfoTypePhone),@(AgoraUserInfoTypeMail)];
+NSArray<NSNumber *> *userInfoTypes = @[@(AgoraChatUserInfoTypeAvatarURL),@(AgoraChatUserInfoTypePhone),@(AgoraChatUserInfoTypeMail)];
 [[AgoraChatClient sharedClient].userInfoManager fetchUserInfoById:userIds type:userInfoTypes completion:^(NSDictionary *aUserDatas, AgoraChatError *aError) {
               
 }];
