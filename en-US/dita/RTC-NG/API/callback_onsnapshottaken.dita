@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onsnapshottaken">
     <title><ph keyref="onSnapshotTaken"/></title>
-    <shortdesc id="short">Reports the result of taking a video snapshot.<ph id="shortdesc"></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Reports the result of taking a video snapshot.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,86 +14,61 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onSnapshotTaken(
-      String channel, int uid, String filePath, int width, int height, int errCode) {}
+      int uid, String filePath, int width, int height, int errCode);
 </codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine snapshotTaken:(NSString* _Nonnull)channel uid:(NSUInteger)uid filePath:(NSString* _Nonnull)filePath width:(NSInteger)width height:(NSInteger)height errCode:(NSInteger)errCode;
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine snapshotTaken:(NSUInteger)uid filePath:(NSString* _Nonnull)filePath width:(NSInteger)width height:(NSInteger)height errCode:(NSInteger)errCode;
 </codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onSnapshotTaken(const char* channel, uid_t uid, const char* filePath, int width, int height, int errCode) {
-    (void)channel;
-    (void)uid;
-    (void)filePath;
-    (void)width;
-    (void)height;
-    (void)errCode;
-  }
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onSnapshotTaken(uid_t uid, const char* filePath, int width, int height, int errCode) {
+  (void)uid;
+  (void)filePath;
+  (void)width;
+  (void)height;
+  (void)errCode;
+}
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnSnapshotTaken(string channel, uint uid, string filePath, int width, int height, int errCode)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">onSnapshotTaken?(
-  connection: RtcConnection,
-  filePath: string,
-  width: number,
-  height: number,
-  errCode: number
-): void;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, String filePath, int width,
-      int height, int errCode)? onSnapshotTaken;
-</codeblock> </p>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/></p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>Since</dt>
-                <dd>v3.5.2</dd>
-            </dlentry>
-            </dl>
-            <p>成功调用 <xref keyref="takeSnapshot"/> 后，SDK 触发该回调报告截图是否成功和获取截图的详情。</p>
+            <p>After a successful <xref keyref="takeSnapshot"/> method call, the SDK triggers this callback to report whether the snapshot is successfully taken, as well as the details for that snapshot.</p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="native">
+            <plentry props="unity">
                 <pt>channel</pt>
                 <pd>The channel name.</pd>
             </plentry>
-            <plentry props="native">
+            <plentry>
                 <pt>uid</pt>
-                <pd>The user ID. 如果 <parmname>uid</parmname> 为 0，表示本地用户。</pd>
+                <pd>The user ID. A <parmname>uid</parmname> of 0 indicates the local user.</pd>
             </plentry>
-            <plentry conkeyref="joinChannelEx/connection" props="unity flutter electron rn">
-                <pt/>
-                <pd/>
-            </plentry>
-                <plentry>
+            <plentry>
                 <pt>filePath</pt>
-                <pd>截图的本地保存路径。</pd>
+                <pd>The local path of the snapshot.</pd>
             </plentry>
             <plentry>
                 <pt>width</pt>
-                <pd>图片宽度（px）。</pd>
+                <pd>The width (px) of the snapshot.</pd>
             </plentry>
             <plentry>
                 <pt>height</pt>
-                <pd>图片高度（px）。</pd>
+                <pd>The height (px) of the snapshot.</pd>
             </plentry>
             <plentry>
                 <pt>errCode</pt>
-                <pd>截图成功的提示或失败的原因。
-
-
-                    <ul>
-                    <li>0：截图成功。</li>
-                    <li>&lt; 0: 截图失败。
-
-
-                        <ul>
-                        <li>-1：写入文件失败或 JPEG 编码失败。</li>
-                        <li>-2：<apiname keyref="takeSnapshot"/> 方法调用成功后 1 秒内没有发现指定用户的视频流。</li>
+                <pd>The message that confirms success or gives the reason why the snapshot is not successfully taken:<ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure:<ul>
+                        <li>-1: The SDK fails to write data to a file or encode a JPEG image.</li>
+                        <li>-2: The SDK does not find the video stream of the specified user within one second after the <apiname keyref="takeSnapshot"/> method call succeeds.</li>
+                        <li>-3: Calling the <apiname keyref="takeSnapshot"/> method too frequently. Call the <apiname keyref="takeSnapshot"/> method after receiving the <apiname keyref="onSnapshotTaken"/> callback from the previous call.</li>
                         </ul></li>
                     </ul></pd>
             </plentry>

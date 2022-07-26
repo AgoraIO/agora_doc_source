@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onscreencaptureinfoupdated">
     <title> <ph keyref="onScreenCaptureInfoUpdated"/> </title>
-    <shortdesc id="short"><ph id="shortdesc">屏幕共享信息更新回调。</ph> </shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the screen sharing information is updated.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -19,19 +19,17 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnScreenCaptureInfoUpdated(ScreenCaptureInfo info)</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">OnScreenCaptureInfoUpdated? screenCaptureInfoUpdated;</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>调用 <xref keyref="startScreenCaptureByDisplayId"/> 或 <xref keyref="startScreenCaptureByScreenRect"/> 开启屏幕共享，并通过 <parmname>excludeWindowList</parmname> 屏蔽指定窗口时，如果窗口屏蔽失败，SDK 会触发该回调。</p>
-            <note type="attention" props="cpp flutter">This method applies to Windows only.</note> </section>
+            <p>When you call <xref keyref="startScreenCaptureByDisplayId"/> or <xref keyref="startScreenCaptureByScreenRect"/> to start screen sharing and use the <parmname>excludeWindowList</parmname> attribute to block the specified window, the SDK triggers this callback if the window blocking fails.</p>
+            <note type="attention" props="cpp flutter">This callback is for Windows only.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>info</pt>
-                <pd>
-                    <p>屏幕共享信息。 See <xref keyref="ScreenCaptureInfo"/>.</p>
-                </pd>
+                <pd><p>Screen sharing information. See <xref keyref="ScreenCaptureInfo"/>.</p></pd>
             </plentry>
             </parml> </section>
     </refbody>
