@@ -2,18 +2,32 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_recorderinfo">
     <title><ph keyref="RecorderInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc">录制文件信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">The information about the file that is recorded.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="android" outputclass="language-java">public class RecorderInfo {
+  public String fileName;
+  public int durationMs;
+  public int fileSize;
+
+  @CalledByNative
+  public RecorderInfo(String fileName, int durationMs, int fileSize) {
+    this.fileName = fileName;
+    this.durationMs = durationMs;
+    this.fileSize = fileSize;
+  }
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaRecorderInfo : NSObject
+@property(copy, nonatomic) NSString* _Nonnull recorderFileName;
+@property(assign, nonatomic) NSUInteger durationMs;
+@property(assign, nonatomic) NSUInteger fileSize;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct RecorderInfo {
   const char* fileName;
   unsigned int durationMs;
   unsigned int fileSize;
 
-  RecorderInfo() = default;
+  RecorderInfo() : fileName(NULL), durationMs(0), fileSize(0) {}
   RecorderInfo(const char* name, unsigned int dur, unsigned int size) : fileName(name), durationMs(dur), fileSize(size) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
@@ -26,21 +40,20 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
-                <pt>fileName</pt>
-                <pd>录制文件的绝对存储路径。</pd>
+                <pt props="android cpp">filename</pt>
+                <pt props="ios mac">recorderFileName</pt>
+                <pd>The absolute path of the recording file.</pd>
             </plentry>
             <plentry>
                 <pt>durationMs</pt>
-                <pd>录制文件的时长，单位为毫秒。</pd>
+                <pd>The recording duration (ms).</pd>
             </plentry>
             <plentry>
                 <pt>fileSize</pt>
-                <pd>录制文件的大小，单位为字节。</pd>
+                <pd>The size (bytes) of the recording file.</pd>
             </plentry>
             </parml> </section>
     </refbody>

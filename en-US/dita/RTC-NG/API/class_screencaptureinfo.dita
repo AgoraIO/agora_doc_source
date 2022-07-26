@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_screencaptureinfo">
-    <title> <ph keyref="ScreenCaptureInfo"/> </title>
-    <shortdesc id="short"><ph id="shortdesc">屏幕共享信息。</ph> </shortdesc>
+    <title> <ph keyref="ScreenCaptureInfo" /> </title>
+    <shortdesc id="short"><ph id="shortdesc">Screen sharing information.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="cpp" outputclass="language-cpp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="cpp" outputclass="language-cpp" />
+            <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public class ScreenCaptureInfo
    {
       public ScreenCaptureInfo()
@@ -23,25 +23,32 @@
       public string graphicsCardType;
       public EXCLUDE_WINDOW_ERROR errCode;
    };</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">class ScreenCaptureInfo {
+                  final String graphicsCardType;
+                
+                  final ExcludeWindowError errCode;
+                
+                  const ScreenCaptureInfo(this.graphicsCardType, this.errCode);
+                  factory ScreenCaptureInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+                      _$ScreenCaptureInfoFromJson(json);
+                
+                  Map&lt;String, dynamic&gt; toJson() =&gt; _$ScreenCaptureInfoToJson(this);
+                }</codeblock> </p>
         </section>
         <section id="parameters">
-            <title> <text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /> </title>
+            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>
             <parml>
             <plentry>
                 <pt>graphicsCardType</pt>
                 <pd>
-                    <p>显卡类型，包含显卡的型号信息。</p>
+                    <p>Graphics card type, including model information for the graphics card.</p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>errCode</pt>
                 <pd>
-                    <p>屏幕共享时，屏蔽窗口的错误码。 See <xref keyref="EXCLUDE_WINDOW_ERROR"
-                    />.</p>
+                    <p>Error code that blocks the window when sharing the screen. See <xref keyref="EXCLUDE_WINDOW_ERROR" />.</p>
                 </pd>
             </plentry>
             </parml> </section>

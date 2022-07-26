@@ -1,10 +1,10 @@
 # Error Codes and Warning Codes
 
-When you make an API call to access an Agora SDK, the SDK may return error codes or warning codes: **Error codes are returned** when a problem that cannot be recovered without app intervention has occurred. **Warning codes are returned** when a problem that might be resolved automatically has occurred. Warning codes provide information but normally do not require any action.
+When you make an API call to access an Agora SDK, the SDK may return error codes or warning codes: **Error codes** are returned when a problem that cannot be recovered without app intervention has occurred. **Warning codes** are returned when a problem that might be resolved automatically has occurred. Warning codes provide information but normally do not require any action.
 
-This article provides descriptions and troubleshooting tips for common Agora SDK error and warning codes. If you receive an error code not included here, Agora recommends you [contact ](support@agora.io )so that the technical support team can help resolve the issue.
+This article provides descriptions and troubleshooting tips for common Agora SDK error and warning codes. If you receive a response that is not included here, Agora recommends you [submit a ticket](https://agora-ticket.agora.io/) so that our technical support team can help resolve the issue.
 
-<div class="alert note">An error code can be a negative number. In such a case, it should be read as if it were positive. For example, if the SDK returns error code <code>-2</code>, you should refer to 2 in the error code table<code></code>.</div>
+<div class="alert note">An error code can be a negative number. In such a case, it should be read as if it were positive. For example, if the SDK returns error code <code>-2</code>, you should refer to <code>2</code> in the error code table.</div>
 
 The error and warning codes may be returned in the following ways:
 
@@ -19,31 +19,31 @@ The error and warning codes may be returned in the following ways:
 | :----- | :----------------------------------------------------------- |
 | `0` | No error occurs. |
 | `1` | A general error occurs (no specified reason). Try calling the method again. |
-| `2` | An invalid parameter is used. For example, the specified channel name includes illegal characters. Reset the parameter. |
-| `3` | The SDK is not ready. Possible reasons:<ul><li>[IRtcEngine] fails to initialize. Please re-initialize [IRtcEngine].</li><li>No user has joined the channel when the method is called. Please check the your code logic.</li><li>Users have not left the channel when the [rate] and [complain] methods are called. Please check the your code logic.</li><li>The audio module is disabled.</li><li>The program is not complete.</li></ul> |
+| `2` | An invalid parameter is used. For example, the specified channel name includes illegal characters. Please reset the parameters. |
+| `3` | The SDK is not ready. Possible reasons:<ul><li>[IRtcEngine] fails to initialize. Please re-initialize [IRtcEngine].</li><li>No user has joined the channel when the method is called. Please check your code logic.</li><li>Users have not left the channel when the [rate] and [complain] methods are called. Please check your code logic.</li><li>The audio module is disabled.</li><li>The program is not complete.</li></ul> |
 | `4` | [IRtcEngine] does not support the request. Possible reasons:<ul><li>The [setBeautyEffectOptions] method is called on devices running versions earlier than Android 4.4. Please check the Android version.</li><li>The built-in encryption mode is incorrect or the SDK fails to load the external encryption library. Please check the encryption mode setting or reload the external encryption library.</li></ul> |
 | `5` | The request is rejected. A possible reason: [IRtcEngine] fails to initialize. Please re-initialize [IRtcEngine]. |
 | `6` | The buffer size is insufficient to store the returned data. |
-| `7` | IRtcEngine] is not initialized[. Ensure that the [IRtcEngine ]instance is created and initialized before calling the method. |
+| `7` | ]IRtcEngine[ is not initialized. Ensure that the [IRtcEngine] instance is created and initialized before calling the method. |
 | `9` | Permission to access is not granted. Check whether your app has access to the audio and video device. |
 | `10` | A timeout occurs. Some API calls require the SDK to return the execution result. This error occurs if the SDK takes too long (more than 10 seconds) to return the result. |
-| `17` | The request to join the channel is rejected. Typical reasons include:<ul><li>The user is already in the channel and still calls a method (for example, [joinChannel2]) to join the channel. Stop calling this method to clear this error.</li><li>The user tries to join a[ channel during a call test started by calling startEchoTest2]. To join a channel, the call test must be ended by calling [stopEchoTest].</li></ul> |
+| `17` | The request to join the channel is rejected. Typical reasons include:<ul><li>The user is already in the channel and still calls a method (for example, [joinChannel2]) to join the channel. Stop calling this method to clear this error.</li><li>The user tries to join a channel during a call test started by calling [startEchoTest2]. To join a channel, the call test must be ended by calling [stopEchoTest].</li></ul> |
 | `18` | The request to leave the channel is rejected. Typical reasons include:<ul><li>The user has left the channel but still calls a method (for example, [leaveChannel]) to leave the channel. Stop calling this method to clear this error.</li><li>The user is not in the channel and calls a method to leave the channel. In this case, no extra operation is needed.</li></ul> |
 | `19` | Resources are already in use. |
 | `20` | The request is abandoned by the SDK, possibly because the request has been sent too frequently. |
-| `21` | IRtcEngine] fails to initialize and has crashed because of[ specific Windows firewall settings. |
+| `21` | ]IRtcEngine[ fails to initialize and has crashed because of specific Windows firewall settings. |
 | `22` | The SDK fails to allocate resources because your app uses too many system resources or system resources are insufficient. |
 | `101` | The specified App ID is invalid. Please rejoin the channel with a valid App ID. |
 | `102` | The channel name is not valid. A possible reason is that the parameter's data type is incorrect. Please rejoin the channel with a valid channel name. |
-| `103` | Fails to get server resources in the specified region. Try[ another region when initializing IRtcEngine]. |
-| `109` | **Note**: This method is deprecated as of v2.4.1. Please use [CONNECTION_CHANGED_TOKEN_EXPIRED](9) in the [onConnectionStateChanged ]callback instead. </br>The current token has expired. Please apply for a new token on the server and call [renewToken]. |
-| `110` | **Note**: This method is deprecated as of v2.4.1. Please use [CONNECTION_CHANGED_INVALID_TOKEN](8) in the [onConnectionStateChanged ]callback instead. </br>The token is invalid. Typical reasons include:<ul><li>App Certificate is enabled in Agora Console, but the code still uses App ID for authentication. Once App Certificate is enabled for a project, you must use token-based authentication.</li><li>The user ID used to generate the token is not the same as the one used to join the channel.</li></ul> |
+| `103` | Fails to get server resources in the specified region. Try another region when initializing [IRtcEngine]. |
+| `109` | **Note**: This method is deprecated as of v2.4.1. Please use [CONNECTION_CHANGED_TOKEN_EXPIRED](9) in the [onConnectionStateChanged] callback instead. </br>The current token has expired. Please apply for a new token on the server and call [renewToken]. |
+| `110` | **Note**: This method is deprecated as of v2.4.1. Please use [CONNECTION_CHANGED_INVALID_TOKEN](8) in the [onConnectionStateChanged] callback instead. </br>The token is invalid. Typical reasons include:<ul><li>App Certificate is enabled in Agora Console, but the code still uses App ID for authentication. Once App Certificate is enabled for a project, you must use token-based authentication.</li><li>The user ID used to generate the token is not the same as the one used to join the channel.</li></ul> |
 | `111` | The network connection is interrupted. This error occurs when the SDK has connected to the server but lost connection for more than 4 seconds. |
 | `112` | The network connection is lost.  This error occurs when the connection is interrupted and the SDK cannot reconnect to the server within 10 seconds. |
 | `113` | The user is not in the channel when calling the method. |
-| `114` | The[ data size exceeds 1024 bytes when calling the sendStreamMessage] method. |
-| `115` | The[ data bitrate exceeds 6 Kbps when calling the sendStreamMessage] method. |
-| `116` | More than[ five data streams are created] when calling the createDataStream2 method. |
+| `114` | The data size exceeds 1024 bytes when calling the [sendStreamMessage] method. |
+| `115` | The data bitrate exceeds 6 Kbps when calling the [sendStreamMessage] method. |
+| `116` | More than five data streams are created when calling the [createDataStream2] method. |
 | `117` | The data stream transmission times out. |
 | `119` | Switching roles fails. |
 | `120` | Decryption fails. The user might have entered an incorrect password to join the channel. Check the entered password or tell the user to try rejoining the channel. |
@@ -68,7 +68,7 @@ The error and warning codes may be returned in the following ways:
 | Enumerator | Description |
 | :----- | :----------------------------------------------------------- |
 | `130` | Stream encryption is enabled when the user calls the [addPublishStreamUrl] method. The SDK does not support pushing encrypted streams to CDN. |
-| `151` | An error occurs when pushing streams to CDN. Please remove] the current URL address[ by calling[ the removePublishStreamUrl method, and then add a new address by calling the addPublishStreamUrl] method. |
+| `151` | An error occurs when pushing streams to CDN. Please remove the current URL address by calling the ]removePublishStreamUrl[ method, and then add a new address by calling the [addPublishStreamUrl] method. |
 | `152` | The host has published more than 10 URLs. Please delete the unnecessary URLs before adding new ones. |
 | `153` | The host is making changes to other hosts' URLs, such as updating parameters and disabling a URL. Please check your app logic. |
 | `154` | An error occurs in Agora's streaming server. Call the [addPublishStreamUrl] method to push the stream again. |
@@ -131,10 +131,10 @@ The error and warning codes may be returned in the following ways:
 
 | Enumerator | Description |
 | :----- | :----------------------------------------------------------- |
-| `1003` | **Note**: This method is deprecated as of v2.4.1. Please use [LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE](4) in the [onLocalVideoStateChanged ]callback instead. </br>The camera fails to start. Check whether the camera is already in use by another app, or try rejoining the channel. |
+| `1003` | **Note**: This method is deprecated as of v2.4.1. Please use [LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE](4) in the [onLocalVideoStateChanged] callback instead. </br>The camera fails to start. Check whether the camera is already in use by another app, or try rejoining the channel. |
 | `1004` | The video rendering module fails to start. |
 | `1510` | Permission to access the camera is not granted. Check whether permission to access the camera permission is granted. |
-| `1512` | **Note**: This method is deprecated as** of** v2.4.1. Please use [LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY](3) in the [onLocalVideoStateChanged ]callback instead. </br>The camera is already in use. |
+| `1512` | **Note**: This method is deprecated as of v2.4.1. Please use [LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY](3) in the [onLocalVideoStateChanged] callback instead. </br>The camera is already in use. |
 | `1600` | An unknown error occurs. |
 | `1601` | Video encoding initialization fails. Try rejoining the channel. |
 | `1602` | Video encoding fails. Try rejoining the channel. |
@@ -155,15 +155,15 @@ The error and warning codes may be returned in the following ways:
 | :----- | :----------------------------------------------------------- |
 | `8` | The specified view is invalid. The video call function requires a specified view. |
 | `16` | The video module fails to initialize. A possible reason is that the video source is occupied. When this warning occurs, users cannot make a video call, but the voice call function is not affected. |
-| `20` | 请求处于待定状态。 The request is pending, usually because some modules are not ready, causing the SDK to postpone processing the request. |
+| `20` | The request is pending, usually because some modules are not ready, causing the SDK to postpone processing the request. |
 | `103` | 103: No channel resources are available. Maybe because the server cannot allocate any channel resource. |
 | `104` | A timeout occurs when the SDK is searching for a specified channel. When receiving a request to join a channel, the SDK searches for the channel first. This warning usually occurs when the network connection is too poor for the SDK to connect to the server. |
-| `105` | **Note**: This method is deprecated as of v2.4.1. Please use [CONNECTION_CHANGED_REJECTED_BY_SERVER](10) in the [onConnectionStateChanged ]callback instead. </br>105: The server rejected the request to look up the channel. The server cannot process this request or the request is illegal. |
+| `105` | **Note**: This method is deprecated as of v2.4.1. Please use [CONNECTION_CHANGED_REJECTED_BY_SERVER](10) in the [onConnectionStateChanged] callback instead. </br>105: The server rejected the request to look up the channel. The server cannot process this request or the request is illegal. |
 | `106` | A timeout occurs when joining the channel. Once the specified channel is found, the SDK starts joining the channel. This warning usually occurs when the network connection is too poor for the SDK to connect to the server. |
 | `107` | 105: The server rejected the request to look up the channel. The server cannot process this request or the request is illegal. |
 | `111` | A timeout occurs when switching to the live video. |
 | `118` | A timeout occurs when setting user roles in the live-streaming profile. |
-| `121` | to join the channel. |
+| `121` | The ticket to join the channel is invalid. |
 | `122` | The SDK is trying to connect to another server. |
 | `131` | The channel connection cannot be recovered. |
 | `132` | The IP address has changed. |
@@ -184,7 +184,7 @@ The error and warning codes may be returned in the following ways:
 | `1052` | The system threads for recording and playback cannot be arranged due to high CPU usage. |
 | `1053` | A residual echo is detected. This may be caused by the delayed scheduling of system threads or a signal overflow. |
 | `1323` | No playback device is available. Ensure that a proper audio device is connected. |
-| `1,324` | The recording device is released improperly. Possible solutions: Disable and re-enable the audio device. Restart the device on which your app is running. Update the sound card driver. |
+| `1324` | The recording device is released improperly. Possible solutions: Disable and re-enable the audio device. Restart the device on which your app is running. Update the sound card driver. |
 | `1610` | The original resolution of the remote video is beyond the range (640 × 480) where the super-resolution algorithm can be applied. |
 | `1611` | Another user is using super resolution. |
 | `1612` | The device does not support super resolution. |

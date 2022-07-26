@@ -1,73 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_plugin">
-    <title><ph keyref="Plugin"/></title>
-    <shortdesc id="short"><ph id="shortdesc">用于配置和管理插件的接口。</ph></shortdesc>
+    <title><ph keyref="Plugin" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Interface for configuring and managing plug-ins.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+                <codeblock props="android" outputclass="language-java" />
+                <codeblock props="ios mac" outputclass="language-objectivec" />
+                <codeblock props="cpp" outputclass="language-cpp" />
+                <codeblock props="electron" outputclass="language-typescript">export interface Plugin {
+    id: string;
+    enable: () =&gt; number;
+    disable: () =&gt; number;
+    setParameter: (param: string) =&gt; number;
+    getParameter: (paramKey: string) =&gt; string;
+    }</codeblock>
+                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
+            </p>
         </section>
         <section id="detailed_desc">
-            <p>调用 <xref keyref="registerPlugin"/> 注册插件后，你可以通过 <xref keyref="getPlugins"/> 获取
-<apiname keyref="Plugin"/> 接口。</p>
+            <p>After calling <xref keyref="registerPlugin" /> to register a plugin, you can get the <apiname keyref="Plugin" /> interface through <xref keyref="getPlugins" />.</p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
-            <plentry>
-                <pt>id</pt>
-                <pd>用于标识插件的 ID。</pd>
-            </plentry>
-            <plentry>
-                <pt>enable</pt>
-                <pd>开启插件。</pd>
-                <pd><b>返回值</b>
-                    <ul>
-                    <li>0: Success.</li>
-                    <li>&lt; 0: Failure.</li>
-                    </ul></pd>
-            </plentry>
-            <plentry>
-                <pt>disable</pt>
-                <pd>关闭插件。</pd>
-                <pd><b>返回值</b>
-                    <ul>
-                    <li>0: Success.</li>
-                    <li>&lt; 0: Failure.</li>
-                    </ul></pd>
-            </plentry>
-            <plentry>
-                <pt>setParameter</pt>
-                <pd>设置插件参数。 调用 <apiname>getParameter</apiname> 获取到 Value 值后，你可以调用本方法将包含 Key 和 Value 值的 JSON 字符串数据传递给 C++ 层。</pd>
-                <pd><b>Parameters</b>
-                    <parml>
-                    <plentry>
-                        <pt>param</pt>
-                        <pd>包含 Key 和 Value 值的 JSON 字符串。</pd>
-                    </plentry>
-                    </parml></pd>
-            </plentry>
-            <plentry>
-                <pt>getParameter</pt>
-                <pd>获取插件参数。 如果你想在使用插件时将 JSON 字符串数据传递给 C++ 层，你需要调用该方法和 <apiname>setParameter</apiname>获取并设置参数。</pd>
-                <pd><b>Parameters</b>
-                    <parml>
-                    <plentry>
-                        <pt>paramKey</pt>
-                        <pd>The key.</pd>
-                    </plentry>
-                    </parml></pd>
-                <pd><b>返回值</b>
-                    <p>The value corresponding to the key.</p>
-                </pd>
-            </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>id</pt>
+                    <pd>The ID of the plugin.</pd>
+                </plentry>
+                <plentry>
+                    <pt>enable</pt>
+                    <pd>Enable the plugin.</pd>
+                    <pd><b>Returns</b><ul>
+                            <li>0: Success.</li>
+                            <li>&lt; 0: Failure.</li>
+                        </ul></pd>
+                </plentry>
+                <plentry>
+                    <pt>disable</pt>
+                    <pd>Disable the plugin.</pd>
+                    <pd><b>Returns</b><ul>
+                            <li>0: Success.</li>
+                            <li>&lt; 0: Failure.</li>
+                        </ul></pd>
+                </plentry>
+                <plentry>
+                    <pt>setParameter</pt>
+                    <pd>Set the plugin parameters. After calling <apiname>getParameter</apiname> to get the value, you can call this method to pass a JSON string containing a key and a value to the C++ layer.</pd>
+                    <pd><b>Parameter</b><parml>
+                            <plentry>
+                                <pt>param</pt>
+                                <pd>A JSON string containing a key and a value.</pd>
+                            </plentry>
+                        </parml></pd>
+                </plentry>
+                <plentry>
+                    <pt>getParameter</pt>
+                    <pd>Get the plugin parameters. If you want to pass the JSON string to the C++ layer when using the plugin, you need to call this method to get the plugin parameters and then call <apiname>setParameter</apiname> to the parameters.</pd>
+                    <pd><b>Parameter</b><parml>
+                            <plentry>
+                                <pt>paramKey</pt>
+                                <pd>The key.</pd>
+                            </plentry>
+                        </parml></pd>
+                    <pd><b>Returns</b><p>The value corresponding to the key.</p></pd>
+                </plentry>
+            </parml>
+        </section>
     </refbody>
 </reference>
