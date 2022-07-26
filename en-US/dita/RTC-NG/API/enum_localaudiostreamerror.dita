@@ -17,39 +17,44 @@
                </plentry>
                <plentry>
                     <pt> <ph keyref="LOCAL_AUDIO_STREAM_ERROR_DEVICE_NO_PERMISSION"/> </pt>
-                    <pd>2: No permission to use the local audio device. Remind your users to grant permission.</pd>
+                    <pd>2: No permission to use the local audio capturing device. Remind your users to grant permission.<dl outputclass="deprecated">
+                              <dlentry>
+                                  <dt>Deprecated:</dt>
+                                  <dd>This enumerator is deprecated. Please use <xref keyref="RECORD_AUDIO"/> in the <xref keyref="onPermissionError"/> callback instead.</dd>
+                              </dlentry>
+                              </dl></pd>
                </plentry>
                <plentry props="android ios cpp unity">
                     <pt> <ph keyref="LOCAL_AUDIO_STREAM_ERROR_DEVICE_BUSY"/> </pt>
-                    <pd><ph>3: <ph props="cpp unity">(Android and iOS only)</ph> The local audio capture device is used. Remind your users to check whether another application occupies the microphone. Local audio capture automatically resumes after the microphone is idle for about five seconds. You can also try to rejoin the channel after the microphone is idle.</ph></pd>
+                    <pd><ph>3:<ph props="cpp unity"> (Android and iOS only) </ph>The local audio capture device is used. Remind your users to check whether another application occupies the microphone. Local audio capture automatically resumes after the microphone is idle for about five seconds. You can also try to rejoin the channel after the microphone is idle.</ph></pd>
                </plentry>
                <plentry>
                     <pt> <ph keyref="LOCAL_AUDIO_STREAM_ERROR_RECORD_FAILURE"/> </pt>
-                    <pd>4: The local audio capture failed.</pd>
+                    <pd>4: The local audio capture fails.</pd>
                </plentry>
                <plentry>
                     <pt> <ph keyref="LOCAL_AUDIO_STREAM_ERROR_ENCODE_FAILURE"/> </pt>
-                    <pd>5: The local audio encoding failed.</pd>
+                    <pd>5: The local audio encoding fails.</pd>
                </plentry>
-               <plentry props="rtc">
+               <plentry props="cpp">
                     <pt><ph keyref="LOCAL_AUDIO_STREAM_ERROR_NO_RECORDING_DEVICE"/></pt>
-                    <pd>6: (Windows only) The application cannot find the local audio capture device.  Remind your users to check whether the microphone is connected to the device properly in the control plane of the device or if the microphone is working properly.</pd>
+                    <pd>6: (Windows only) The application cannot find the local audio capture device. Remind your users to check whether the microphone is connected to the device properly in the control plane of the device or if the microphone is working properly.</pd>
                </plentry>
-               <plentry props="rtc">
+               <plentry props="cpp">
                     <pt><ph keyref="LOCAL_AUDIO_STREAM_ERROR_NO_PLAYOUT_DEVICE"/></pt>
-                    <pd>7: (Windows only) The application cannot find the local audio playback device.  Remind your users to check whether the speaker is connected to the device properly in the control plane of the device or if the speaker is working properly. </pd>
+                    <pd>7: (Windows only) The application cannot find the local audio playback device. Remind your users to check whether the speaker is connected to the device properly in the control plane of the device or if the speaker is working properly.</pd>
                </plentry>
-                    <plentry props="rtc">
-                    <pt> <ph keyref="LOCAL_AUDIO_STREAM_ERROR_INTERRUPTED"/> </pt>
-                    <pd>8: (Android and iOS only) The local audio capture is interrupted by a system call, Siri, or alarm clock.  Remind your users to end the phone call, Siri, or alarm clock if the local audio capture is required.</pd>
-               </plentry>
-               <plentry props="rtc">
+                    <plentry props="cpp">
+                    <pt><ph keyref="LOCAL_AUDIO_STREAM_ERROR_INTERRUPTED"/> </pt>
+                    <pd>8: (Android and iOS only) The local audio capture is interrupted by a system call, Siri, or alarm clock. Remind your users to end the phone call, Siri, or alarm clock if the local audio capture is required.</pd>
+                    </plentry>
+               <plentry props="cpp">
                     <pt><ph keyref="LOCAL_AUDIO_STREAM_ERROR_RECORD_INVALID_ID"/></pt>
-                    <pd>9: (Windows only) The ID of the local audio-capture device is invalid.  Check the audio capture device ID.</pd>
+                    <pd>9: (Windows only) The ID of the local audio-capture device is invalid. Check the audio capture device ID.</pd>
                </plentry>
-               <plentry props="rtc">
+               <plentry props="cpp">
                     <pt><ph keyref="LOCAL_AUDIO_STREAM_ERROR_PLAYOUT_INVALID_ID"/></pt>
-                    <pd>10: (Windows only) The ID of the local audio-playback device is invalid.  Check the audio playback device ID.</pd>
+                    <pd>10: (Windows only) The ID of the local audio-playback device is invalid. Check the audio playback device ID.</pd>
                </plentry>
                </parml> </section>
      </refbody>

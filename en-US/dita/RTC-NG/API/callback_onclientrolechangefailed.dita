@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_onclientrolechangefailed">
+    <title><ph keyref="onClientRoleChangeFailed"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the user role switch fails in the interactive live streaming.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onClientRoleChangeFailed"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onClientRoleChangeFailed(int reason, int currentRole) {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didClientRoleChangeFailed:(AgoraClientRoleChangeFailedReason)reason currentRole:(AgoraClientRole)currentRole;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onClientRoleChangeFailed(CLIENT_ROLE_CHANGE_FAILED_REASON reason, CLIENT_ROLE_TYPE currentRole) {
+   (void)reason;
+   (void)currentRole;
+}</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+       <section id="detailed_desc">
+            <p>In the live broadcasting channel profile, when the local user calls <xref keyref="setClientRole1"/> to switch their user role after joining the channel but the switch fails, the SDK triggers this callback to report the reason for the failure and the current user role.</p>
+        </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <parml>
+            <plentry>
+                <pt>reason</pt>
+                <pd props="ios mac cpp">The reason for a user role switch failure. See <xref keyref="CLIENT_ROLE_CHANGE_FAILED_REASON"/>.</pd>
+                <pd props="android">The reason for the user role switch failure.<ul>
+                        <li><ph keyref="CLIENT_ROLE_CHANGE_FAILED_TOO_MANY_BROADCASTERS"/>(1): The number of hosts in the channel is already at the upper limit.<note type="note">This enumerator is reported only when the support for 128 users is enabled. The maximum number of hosts is based on the actual number of hosts configured when you enable the 128-user feature.</note></li>
+                        <li><ph keyref="CLIENT_ROLE_CHANGE_FAILED_NOT_AUTHORIZED"/>(2): The request is rejected by the Agora server. Agora recommends you prompt the user to try to switch their user role again.</li>
+                        <li><ph keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT"/>(3): The request is timed out. Agora recommends you prompt the user to check the network connection and try to switch their user role again.</li>
+                        <li><ph keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED"/>(4): The SDK connection fails. You can use <parmname>reason</parmname> reported in the <xref keyref="onConnectionStateChanged"/> callback to troubleshoot the failure.</li>
+                    </ul></pd>
+            </plentry>
+            <plentry>
+                <pt>currentRole</pt>
+                <pd props="ios mac cpp">Current user role. See <xref keyref="CLIENT_ROLE_TYPE"/>.</pd>
+                <pd props="android">Current user role.<ul>
+                        <li><ph keyref="CLIENT_ROLE_BROADCASTER"/>(1): Host. A host can both send and receive streams.</li>
+                        <li><ph keyref="CLIENT_ROLE_AUDIENCE"/>(2): Audience. An audience member can only receive streams.</li>
+                    </ul></pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

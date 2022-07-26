@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setvideodenoiseroptions">
+    <title> <ph keyref="setVideoDenoiserOptions"/> </title>
+    <shortdesc id="short"><ph id="shortdesc">Sets video noise reduction.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setVideoDenoiserOptions"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setVideoDenoiserOptions(boolean enabled, VideoDenoiserOptions options);
+</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setVideoDenoiserOptions:(BOOL)enable options:(AgoraVideoDenoiserOptions* _Nullable)options NS_SWIFT_NAME(setVideoDenoiserOptions(_:options:));
+</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setVideoDenoiserOptions(bool enabled, const VideoDenoiserOptions&amp; options) = 0;
+</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>Underlit environments and low-end video capture devices can cause video images to contain significant noise, which affects video quality. In real-time interactive scenarios, video noise also consumes bitstream resources and reduces encoding efficiency during encoding.</p>
+            <p>You can call this method to enable the video noise reduction feature and set the options of the video noise reduction effect.</p>
+            <note type="attention">
+            <ul>
+                <li>Call this method after calling <xref keyref="enableVideo"/>.</li>
+                <li>Video noise reduction has certain requirements for equipment performance. If your device overheats after you enable video noise reduction, Agora recommends modifying the video noise reduction options to a less performance-consuming level or disabling video noise reduction entirely.</li>
+                <li>Both this method and <xref keyref="setExtensionProperty"/> can turn on color enhancement:<ul>
+                        <li>When you use the SDK to capture video, Agora recommends this method (this method only works for video captured by the SDK).</li>
+                        <li>When you use an external video source to implement custom video capture, or send an external video source to the SDK, Agora recommends using <apiname keyref="setExtensionProperty"/>.</li>
+                    </ul></li>
+            </ul> </note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt props="android cpp">enabled</pt>
+                <pt props="ios mac">enable</pt>
+                <pd>Whether to enable video noise reduction:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Enable video noise reduction.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) Disable video noise reduction.</li>
+                    </ul> </pd>
+            </plentry>
+            <plentry>
+                <pt>options</pt>
+                <pd>The video noise reduction options. See <xref keyref="VideoDenoiserOptions"/>.</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
+    </refbody>
+</reference>

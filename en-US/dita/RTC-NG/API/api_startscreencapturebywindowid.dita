@@ -27,11 +27,11 @@
         </section>
         <section id="detailed_desc">
             <p id="desc">This method shares a window or part of the window. You need to specify the ID of the window to be shared.</p>
-            <p conkeyref="startScreenCapture/apisequence"/>
+            <p conkeyref="startScreenCaptureByDisplayId/apisequence"/>
             <note type="attention" id="note" props="cpp unity">
                 <ul><li>Applies to the macOS and Windows platforms only.</li>
                 <li>The window sharing feature of the Agora SDK relies on WGC (Windows Graphics Capture) or GDI (Graphics Device Interface) capture, and WGC cannot be set to disable mouse capture on systems earlier than Windows 10 2004. Therefore, <codeph>captureMouseCursor(false)</codeph> might not work when you start window sharing on a device with a system earlier than Windows 10 2004. See <xref keyref="cursor"/>.</li></ul></note>
-            <p props="cpp">Since v3.0.0, this method supports window sharing of UWP (Universal Windows Platform) applications. Agora tests the mainstream UWP applications by using the lastest SDK, see details as follows:</p>
+            <p props="cpp">This method supports window sharing of UWP (Universal Windows Platform) applications. Agora tests the mainstream UWP applications by using the lastest SDK, see details as follows:</p>
             <p props="cpp"> <table id="table_lvk_tfs_r4b">
             <tgroup cols="4">
                 <colspec colnum="1" colname="col1"/>
@@ -159,7 +159,7 @@
             <parml>
             <plentry>
                 <pt>windowId</pt>
-                <pd>The ID of the window to be shared.<p props="electron">You can get the display ID (macOS) or ScreenRect (Windows) by calling <xref keyref="getWindowsInfo"/>.</p>
+                <pd>The ID of the window to be shared.<p props="electron">You can get the windowId by calling <xref keyref="getWindowsInfo"/>.</p>
                 </pd>
             </plentry>
             <plentry props="cpp electron unity flutter">

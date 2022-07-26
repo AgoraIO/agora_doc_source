@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_oncontentinspectresult">
+    <title><ph keyref="onContentInspectResult"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Reports the result of video content moderation.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onContentInspectResult"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onContentInspectResult(int result) {}
+</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine contentInspectResult:(AgoraContentInspectResult)result;
+</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onContentInspectResult(media::CONTENT_INSPECT_RESULT result) { (void)result; }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnContentInspectResult(CONTENT_INSPECT_RESULT result)</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">OnContentInspectResult? contentInspectResult;</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>After calling <xref keyref="enableContentInspect"/> to enable the video content moderation, and setting the <parmname>type</parmname> parameter in <xref keyref="ContentInspectConfig"/> to<apiname keyref="CONTENT_INSPECT_MODERATION"/>, the SDK triggers the <xref keyref="onContentInspectResult"/> callback and reports the result of video content moderation.</p>
+        </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <parml>
+            <plentry>
+                <pt>result</pt>
+                <pd props="cpp ios mac unity">The results of video content moderation. See <xref keyref="CONTENT_INSPECT_RESULT"/>.</pd>
+                <pd props="android">
+                    <p>The results of video content moderation:<ul>
+                    <li><ph keyref="CONTENT_INSPECT_NEUTRAL"/>(1): The image does not contain inappropriate elements.</li>
+                    <li><ph keyref="CONTENT_INSPECT_SEXY"/>(2): The image is sexually suggestive.</li>
+                    <li><ph keyref="CONTENT_INSPECT_PORN"/>(3): The image is pornographic.</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

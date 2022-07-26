@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setenablespeakerphone_ng">
     <title><ph keyref="setEnableSpeakerphone"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Enables/Disables the speakerphone temporarily.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Enables/Disables the audio route to the speakerphone.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,14 +20,13 @@
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </section>
         <section id="detailed_desc">
-            <note props="cpp unity">This method applies to Android and iOS only.</note>
-            <p>After a successful method call, the SDK triggers the <xref keyref="onAudioRouteChanged"/> callback.</p>
-            <p>You can call this method before joining a channel, when in a channel, or after leaving a channel. However, Agora recommends calling this method only when you are in a channel to change the audio route temporarily.</p>
+            <p>If the default audio route of the SDK (see <xref keyref="guide-audio-route">Set the Audio Route</xref>) or the setting in <xref keyref="setDefaultAudioRouteToSpeakerphone"/> cannot meet your requirements, you can call this method to switch the current audio route. After a successful method call, the SDK triggers the <xref keyref="onAudioRouteChanged"/> callback.<xref keyref="setEnableSpeakerphone"/></p>
+            <p>This method only sets the audio route in the current channel and does not influence the default audio route. If the user leaves the current channel and joins another channel, the default audio route is used.</p>
             <note type="attention">
             <ul>
-            <li>If you do not have a clear requirement for transient settings, Agora recommends calling the steady API <xref keyref="setDefaultAudioRouteToSpeakerphone"/> to set the audio route.</li>
-            <li>Any user behavior or audio-related API call might change the transient setting of <apiname keyref="setEnableSpeakerphone"/>. See <xref keyref="guide-audio-route">Audio Route</xref> for detailed change principles.</li>
-            <li props="ios cpp unity">Due to system limitations, if the user uses an external audio playback device such as a Bluetooth or wired headset on an iOS device, this method does not take effect.</li>
+            <li props="cpp unity">This method applies to Android and iOS only.</li>
+            <li>Call this method after joining a channel.</li>
+            <li>If the user uses an external audio playback device such as a Bluetooth or wired headset, this method does not take effect, and the SDK plays audio through the external device. When the user uses multiple external devices, the SDK plays audio through the last connected device.</li>
             </ul></note> </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -37,9 +36,9 @@
                 <pt props="ios mac">enableSpeaker</pt>
                 <pt props="cpp unity">speakerOn</pt>
                 <pd>
-                    <p>Whether to set the speakerphone as the default audio route:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Set the speakerphone as the audio route temporarily.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Do not set the speakerphone as the audio route.</li>
+                    <p>Sets whether to enable the speakerphone or earpiece:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Enable the speakerphone. The audio route is the speakerphone.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Disable the speakerphone. The audio route is the earpiece.</li>
                     </ul></p>
                 </pd>
             </plentry>
