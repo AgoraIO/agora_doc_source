@@ -1,76 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setvoiceconversionpreset">
-    <title><ph keyref="setVoiceConversionPreset" /></title>
+    <title><ph keyref="setVoiceConversionPreset"/></title>
     <shortdesc id="short"><ph id="shortdesc">Sets a preset voice beautifier effect.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setVoiceConversionPreset" />
+                <indexterm keyref="setVoiceConversionPreset"/>
             </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
+    <refbody>
+        <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setVoiceConversionPreset(int preset);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setVoiceConversionPreset:(AgoraVoiceConversionPreset)preset;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setVoiceConversionPreset(VOICE_CONVERSION_PRESET preset) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">setVoiceConversionPreset(preset: VOICE_CONVERSION_PRESET): number</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetVoiceConversionPreset(VOICE_CONVERSION_PRESET preset);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setVoiceConversionPreset(VoiceConversionPreset preset);</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
-                <dlentry props="native">
-                    <dt>Since</dt>
-                    <dd>v3.3.1</dd>
-                </dlentry>
+            <dlentry>
+                <dt>Since</dt>
+                <dd>v3.3.1</dd>
+            </dlentry>
             </dl>
-            <p>Call this method to set a preset voice beautifier effect for the local user who sends an audio stream. After setting an audio effect, all users in the channel can hear the effect. You can set different audio effects for different scenarios. See Set the Voice Beautifier and Audio Effects.</p>
-            <p>To achieve better audio effect quality, Agora recommends that you call <xref keyref="setAudioProfile" /> and set the <parmname>profile</parmname> to <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY" />(4) or <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO" />(5) and <parmname>scenario</parmname> to <apiname keyref="AUDIO_SCENARIO_GAME_STREAMING" />(3) before calling this method.</p>
+            <p>调用该方法可以为本地发流用户设置 SDK
+Sets a preset voice beautifier effect. After setting an audio effect, all users in the channel can hear the effect. You can set different audio effects for different scenarios. See Set the Voice Beautifier and Audio Effects.</p>
+            <p>To achieve better audio effect quality, Agora recommends that you call  and set<xref keyref="setAudioProfile"/> the <parmname>profile</parmname> to<apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> (4) or<apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/> (5) and <parmname>scenario</parmname> to <apiname keyref="AUDIO_SCENARIO_GAME_STREAMING"/>(3) before calling this method.</p>
             <note type="attention">
-                <ul>
-                    <li>You can call this method either before or after joining a channel.</li>
-                    <li>Do not set<apiname keyref="setAudioProfile" /> the <parmname>profile</parmname> parameter in to <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD" />(1)<ph props="cpp"> or <apiname keyref="AUDIO_PROFILE_IOT" />(6)</ph>, or the method does not take effect.</li>
-                    <li>This method works best with the human voice. Agora does not recommend using this method for audio containing music.</li>
-                    <li>After calling <apiname keyref="setVoiceConversionPreset" />, Agora recommends not calling the following methods, or the settings in <apiname keyref="setVoiceConversionPreset" /> are overridden :<ul>
-                            <li><xref keyref="setAudioEffectPreset" /></li>
-                            <li><xref keyref="setAudioEffectParameters" /></li>
-                            <li><xref keyref="setVoiceBeautifierPreset" /></li>
-                            <li><xref keyref="setVoiceBeautifierParameters" /></li>
-                            <li><xref keyref="setLocalVoiceReverbPreset" /></li>
-                            <li><xref keyref="setLocalVoiceChanger" /></li>
-                            <li><xref keyref="setLocalVoicePitch" /></li>
-                            <li><xref keyref="setLocalVoiceEqualization" /></li>
-                            <li><xref keyref="setLocalVoiceReverb" /></li>
-                        </ul>
-                    </li>
-                </ul>
-            </note>
-        </section>
-        <section id="parameters"><title>Parameters</title>
+            <ul>
+            <li>You can call this method either before or after joining a channel.</li>
+            <li>请勿将 <apiname keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为
+<apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1)<ph props="cpp">:
+或 <apiname keyref="AUDIO_PROFILE_IOT"/>(6)</ph>，否则该方法不生效。</li>
+            <li>This method works best with the human voice. Agora does not recommend using this method for audio containing music.</li>
+            <li>After<apiname keyref="setVoiceConversionPreset"/> calling<apiname keyref="setVoiceConversionPreset"/> , Agora recommends not calling the following methods, or the settings in  are overridden:<ul>
+                <li><xref keyref="setAudioEffectPreset"/></li>
+                <li><xref keyref="setAudioEffectParameters"/></li>
+                <li><xref keyref="setVoiceBeautifierPreset"/></li>
+                <li><xref keyref="setVoiceBeautifierParameters"/></li>
+                <li><xref keyref="setLocalVoiceReverbPreset"/></li>
+                <li><xref keyref="setLocalVoicePitch"/></li>
+                <li><xref keyref="setLocalVoiceEqualization"/></li>
+                <li><xref keyref="setLocalVoiceReverb"/></li>
+                </ul> </li>
+            </ul> </note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
             <parml>
-                <plentry>
-                    <pt>preset</pt>
-                    <pd><p props="ios mac cpp unity flutter">The options for the preset voice beautifier effects: <xref keyref="VOICE_CONVERSION_PRESET" />.</p>
-                        <p props="android">The options for SDK preset voice conversion effects.<ul>
-                                <li><ph keyref="VOICE_CONVERSION_OFF" />: Turn off voice conversion effects and use the original voice.</li>
-                                <li><ph keyref="VOICE_CHANGER_NEUTRAL" />: A gender-neutral voice. To avoid audio distortion, ensure that you use this enumerator to process a female-sounding voice.</li>
-                                <li><ph keyref="VOICE_CHANGER_SWEET" />: A sweet voice. To avoid audio distortion, ensure that you use this enumerator to process a female-sounding voice.</li>
-                                <li><ph keyref="VOICE_CHANGER_SOLID" />: A steady voice. To avoid audio distortion, ensure that you use this enumerator to process a male-sounding voice.</li>
-                                <li><ph keyref="VOICE_CHANGER_BASS" />: A deep voice. To avoid audio distortion, ensure that you use this enumerator to process a male-sounding voice.</li>
-                            </ul>
-                        </p>
-                    </pd>
-                </plentry>
-            </parml>
-        </section>
+            <plentry>
+                <pt>preset</pt>
+                <pd>
+                    <p props="ios mac cpp unity flutter">The options for the preset voice beautifier effects: <xref keyref="VOICE_CONVERSION_PRESET"/>.</p>
+                    <p props="android">The options for SDK preset voice conversion effects.<ul>
+                    <li><ph keyref="VOICE_CONVERSION_OFF"/>: Turn off voice conversion effects and use the original voice.</li>
+                    <li><ph keyref="VOICE_CHANGER_NEUTRAL"/>:
+A gender-neutral voice. To avoid audio distortion, ensure that you use this enumerator to process a female-sounding voice.</li>
+                    <li><ph keyref="VOICE_CHANGER_SWEET"/>:
+A sweet voice. To avoid audio distortion, ensure that you use this enumerator to process a female-sounding voice.</li>
+                    <li><ph keyref="VOICE_CHANGER_SOLID"/>:
+A steady voice. To avoid audio distortion, ensure that you use this enumerator to process a male-sounding voice.</li>
+                    <li><ph keyref="VOICE_CHANGER_BASS"/>: A deep voice. To avoid audio distortion, ensure that you use this enumerator to process a male-sounding voice.</li>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            </parml> </section>
         <section id="return_values" props="native electron unity">
             <title>Returns</title>
             <ul>
-                <li>0: Success.</li>
-                <li>&lt; 0: Failure.</li>
-            </ul>
-        </section></refbody>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
+    </refbody>
 </reference>
