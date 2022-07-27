@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_switchsrc">
-    <title><ph keyref="switchSrc" /></title>
+    <title><ph keyref="switchSrc"/></title>
     <shortdesc id="short"><ph id="shortdesc">Switches the media resource being played.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="switchSrc" />
+                <indexterm keyref="switchSrc"/>
             </keywords>
         </metadata>
     </prolog>
@@ -21,46 +21,48 @@
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int switchSrc(const char* src, bool syncPts) = 0;
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
             <p>You can call this method to switch the media resource to be played according to the current network status.  For example:<ul>
-                <li>When the network is poor, the media resource to be played is switched to a media resource address with a lower bitrate.</li>
-                <li>When the network is good, the media resource to be played is switched to a media resource address with a higher bitrate.</li>
-                </ul></p>
-            <p>After calling this method, if you receive the <apiname keyref="PLAYER_EVENT_SWITCH_COMPLETE" /> event in the <xref keyref="onPlayerEvent" /> callback, the switch is successful; If you receive the <apiname keyref="PLAYER_EVENT_SWITCH_ERROR" /> event in the <xref keyref="onPlayerEvent" /> callback, the switch fails.</p>
-            <p>If you want to customize CDN routes for playing the media resource, call the <xref keyref="switchAgoraCDNSrc" /> method to switch media resources. Agora changes the CDN route through the self-developed scheduling center to improve the viewing user experience. If you do not need to customize CDN routes for playing the media resource, call the <xref keyref="switchSrc" /> method to switch media resources. </p>
+            <li>When the network is poor, the media resource to be played is switched to a media resource address with a lower bitrate.</li>
+            <li>When the network is good, the media resource to be played is switched to a media resource address with a higher bitrate.</li>
+            </ul></p>
+            <p>After calling this method, if you receive the <xref keyref="onPlayerEvent"/> event in the <apiname keyref="PLAYER_EVENT_SWITCH_COMPLETE"/> callback, the switch is successful; If you receive the <xref keyref="onPlayerEvent"/> event in the <apiname keyref="PLAYER_EVENT_SWITCH_ERROR"/> callback, the switch fails.</p>
+            <p props="cn">If you want to customize CDN routes for playing the media resource, call the <xref keyref="switchAgoraCDNSrc"/> method to switch media resources. Agora changes the CDN route through the self-developed scheduling center to improve the viewing user experience. If you do not need to customize CDN routes for playing the media resource, call the <xref keyref="switchSrc"/> method to switch media resources.</p>
             <note type="attention">
-                <ul>
-                    <li>Ensure that you call this method after <xref keyref="open" />.</li>
-                    <li>To ensure normal playback, pay attention to the following when calling this method:<ul>
-                        <li>Do not call this method when playback is paused.</li>
-                        <li>Do not call the <xref keyref="seek" /> method during switching.</li>
-                        <li>Before switching the media resource, make sure that the playback position does not exceed the total duration of the media resource to be switched.</li>
-                        </ul></li>
-                </ul>
-            </note>
-        </section>
-        <section id="parameters"><title>Parameters</title>
+            <ul>
+            <li>Ensure that you call this method after <xref keyref="open"/>.</li>
+            <li>To ensure normal playback, pay attention to the following when calling this method:<ul>
+                <li>Do not call this method when playback is paused.</li>
+                <li>Do not call the <xref keyref="seek"/> method during switching.</li>
+                <li>Before switching the media resource, make sure that the playback position does not exceed the total duration of the media resource to be switched.</li>
+                </ul></li>
+            </ul> </note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
             <parml>
-                <plentry conkeyref="switchAgoraCDNSrc/src">
-                    <pt />
-                    <pd />
-                </plentry>
-                <plentry conkeyref="switchAgoraCDNSrc/syncPts">
-                    <pt />
-                    <pd />
-                </plentry>
-            </parml>
-        </section>
+            <plentry id="src">
+        <pt>src</pt>
+        <pd>The URL of the media resource.</pd>
+      </plentry>
+      <plentry id="syncPts">
+        <pt>syncPts</pt>
+        <pd>Whether to synchronize the playback position (ms) before and after the switch:<ul>
+          <li><codeph><ph keyref="true"/></codeph>: Synchronize the playback position before and after the switch.</li>
+          <li><codeph><ph keyref="false"/></codeph>: (Default) Do not synchronize the playback position before and after the switch.</li>
+          </ul>
+          <p>Make sure to set this parameter as <codeph><ph keyref="false"/></codeph> if you need to play live streams, or the switch fails. If you need to play on-demand streams, you can set the value of this parameter according to your scenarios.</p>
+        </pd>
+      </plentry>
+            </parml> </section>
         <section id="return_values">
             <title>Returns</title>
             <ul>
-                <li>0: Success.</li>
-                <li>&lt; 0: Failure.</li>
-            </ul>
-        </section>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
     </refbody>
 </reference>
