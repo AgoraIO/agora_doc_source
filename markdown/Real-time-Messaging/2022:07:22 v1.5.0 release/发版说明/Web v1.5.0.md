@@ -1,10 +1,10 @@
 ## 1.5.0 版
 
-该版本于 2022 年 7 月 22 日发布。
+该版本于 2022 年 7 月 27 日发布。
 
 #### 功能下架
 
-[富媒体传输](./upload_download_media_cpp)、[历史消息](./rtm_get_event) 和 [离线消息](./messaging_restful#history) 功能于该版本正式下线。旧版本 SDK 会继续支持，已集成这些功能的用户不受影响。
+[富媒体传输](./upload_download_media_web)、[历史消息](./rtm_get_event) 和 [离线消息](./messaging_restful#history) 功能于该版本正式下线。旧版本 SDK 会继续支持，已集成这些功能的用户不受影响。
 
 #### 问题修复
 

@@ -1,10 +1,10 @@
 ## v1.5.0
 
-v1.5.0 was released on July 22, 2022.
+v1.5.0 was released on July 27, 2022.
 
 #### Sunset features
 
-[Image or file messages](./upload_download_media_cpp), [historical messages](./rtm_get_event), and [offline messages](./messaging_restful#history) are deprecated as of this release. If you have integrated these features in a previous release, you can continue to use them.
+[Image or file messages](./upload_download_media_java), [historical messages](./rtm_get_event), and [offline messages](./messaging_restful#history) are deprecated as of this release. If you have integrated these features in a previous release, you can continue to use them.
 
 #### API changes
 
