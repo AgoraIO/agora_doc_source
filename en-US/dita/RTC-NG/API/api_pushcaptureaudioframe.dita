@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_pushcaptureaudioframe">
     <title><ph keyref="pushCaptureAudioFrame1"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Push external audio frames that are not processed by the SDK echo cancellation module.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Pushes external audio frames that are not processed by the SDK echo cancellation module.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -22,7 +22,7 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p>The local user can call to<apiname keyref="pushCaptureAudioFrame1"/> push the locally collected audio frame to the remote user, but the audio frame will not be processed by the SDK's echo cancellation module. To prevent the local user from hearing his own echo, the remote user needs to call and successively<xref keyref="pullAudioFrame"/><xref keyref="pushReverseAudioFrame1"/> to push the audio frame collected by himself and the received audio frame to the custom echo cancellation module for processing.</p>
+            <p>The local user can call <apiname keyref="pushCaptureAudioFrame1"/> to push the locally collected audio frame to the remote user, but the audio frame will not be processed by the SDK's echo cancellation module. To prevent the local user from hearing his own echo, the remote user needs to call <xref keyref="pullAudioFrame"/> and <xref keyref="pushReverseAudioFrame1"/> successively to push the audio frame collected by himself and the received audio frame to the custom echo cancellation module for processing.</p>
             <note type="attention">Call<xref keyref="enableEchoCancellationExternal"/> this method after calling<xref keyref="joinChannel2"/> ().</note> </section>
         <section id="parameters">
             <title>Parameters</title>
