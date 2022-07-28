@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onfirstremoteaudiodecoded">
     <title><ph keyref="onFirstRemoteAudioDecoded"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the first audio frame sent by a specified remote user is received.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the SDK decodes the first remote audio frame for playback.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -43,7 +43,7 @@
             </dl>
             <p>The SDK triggers this callback under one of the following circumstances:<ul>
             <li>The remote user joins the channel and sends the audio stream.</li>
-            <li>The remote user stops sending the audio stream and re-sends it after 15 seconds,  and the possible reasons include:<ul>
+            <li>The remote user stops sending the audio stream and re-sends it after 15 seconds, and the possible reasons include:<ul>
                 <li>The remote user leaves the channel.</li>
                 <li>The remote user is offline.</li>
                 <li>The remote user calls <xref keyref="muteLocalAudioStream"/> to stop sending the video stream.</li>
@@ -57,7 +57,7 @@
             <parml>
             <plentry props="ios mac">
                 <pt>engine</pt>
-                <pd><xref keyref="IRtcEngine"/> object.</pd>
+                <pd>The <xref keyref="IRtcEngine"/> object.</pd>
             </plentry>
             <plentry props="unity electron rn flutter" conkeyref="joinChannelEx/connection">
                 <pt/>
