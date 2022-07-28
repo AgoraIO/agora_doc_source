@@ -4,7 +4,7 @@ In real-time messaging apps, messages are transmitted from the message sender to
 
 The Agora Chat SDK supports the following types of messages.
 
-### Text messagegs
+### Text messages
 
 The message content is text, including hyperlinks and emojis. The maximum data length of a text message is 5 KB.
 
