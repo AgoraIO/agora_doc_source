@@ -26,7 +26,7 @@ Agora 控制台 RESTful API 仅支持 HTTPS 协议。发送请求时，你需要
 
 
 
-## 激活接口
+## 激活
 
 激活控制台 License。
 
@@ -42,16 +42,16 @@ Agora 控制台 RESTful API 仅支持 HTTPS 协议。发送请求时，你需要
 
 | 参数 | 类型 | 描述 |
 |:---|:---|:---|
-|`pid`| | |
-|`appid`| | |
-|`licenseKey`| | |
+|`pid`| String | 由 SKU、有效期、品类定义的 License 标识。 |
+|`licenseKey`| String | 激活并关联 License 的账号 ID 或设备 ID。 |
+|`appid`| String | 声网分配给每个项目的唯一标识。 |
 
 ### 请求示例
 
 #### 请求路径
 
 ```http
-https://api.agora.io/dabiz/license/v2/active?pid=02F51997A07B46C5810020A0F163EC30&appid=a6d6dba434be4b6683fad1aba6a7f75e&licenseKey=123456
+https://api.agora.io/dabiz/license/v2/active?pid=02F51997A07B46C5810020A0F163EC30&licenseKey=123456&appid=a6d6dba434be4b6683fad1aba6a7f75e
 ```
 
 ### 响应参数
@@ -60,8 +60,8 @@ https://api.agora.io/dabiz/license/v2/active?pid=02F51997A07B46C5810020A0F163EC3
 
 | 参数 | 类型 | 描述 |
 |:---|:---|:---|
-|`license`| | |
-|`skuView`| Array |<li><code>product</code></li><li><code>name</code></li><code>mediaType</code></li><code>minutes</code></li><code>period</code></li> |
+|`license`| String | 被激活的 License 的值。 |
+|`skuView`| Array | SKU 能力集：<li><code>product</code> (Integer): <ul><li><code>1</code>: RTC</li><li><code>2</code>: RTSA</li><li><code>3</code>: FPA</li></ul></li><li><code>name</code> (String): SKU 的名称</li><li><code>mediaType</code> (Integer):<ul><li><code>1</code>: 音频</li><li><code>2</code>: 视频</li><li><code>3</code>: 音视频</li></ul></li><li><code>minutes</code> (integer): License 分钟数上限</li><li><code>period</code> (String): License 使用时间段</li> |
 
 如果状态码不为 `200`，则请求失败。你可以根据返回的 [状态码](https://docs.agora.io/cn/Agora%20Platform/agora_console_restapi?platform=All%20Platforms#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81) 和响应包体中 `message` 字段的描述进行错误排查。
 
@@ -86,9 +86,9 @@ https://api.agora.io/dabiz/license/v2/active?pid=02F51997A07B46C5810020A0F163EC3
 ```
 
 
-## 续期接口
+## 续期
 
-续期控制台 License。
+激活控制台 License 的续期额度。
 
 ### 接口原型
 - 方法：`POST`
@@ -102,16 +102,16 @@ https://api.agora.io/dabiz/license/v2/active?pid=02F51997A07B46C5810020A0F163EC3
 
 | 参数 | 类型 | 描述 |
 |:---|:---|:---|
-|`appid`| | |
-|`renewPid`| | |
-|`license`| | License Value |
+|`appid`| String | 声网分配给每个项目的唯一标识。 |
+|`renewId`| String | 对某个 PID 进行续期操作后生成的 renewId，renewId 继承 PID 除有效期以外的全部属性。续期申请通过后，由销售提供。 |
+|`license`| String | 被激活的 License 的值。续期申请通过后，由销售提供。 |
 
 ### 请求示例
 
 #### 请求路径
 
 ```http
-https://api.agora.io/dabiz/license/v2/active?pid=02F51997A07B46C5810020A0F163EC30&appid=a6d6dba434be4b6683fad1aba6a7f75e&license=123456
+https://api.agora.io/dabiz/license/v1/renew?renewId=47503548C5E947F288A24B1EB5576270&license=85B38F2B02A5418792FC78B17466656F&appid=a6d6dba434be4b6683fad1aba6a7f75e
 ```
 
 ### 响应参数
@@ -132,9 +132,7 @@ https://api.agora.io/dabiz/license/v2/active?pid=02F51997A07B46C5810020A0F163EC3
 ```
 
 
-## 配额接口
-
-<div class="alert note">请确保对应销售已在控制台为你的账号开启配额权限。</div>
+## 配额
 
 将指定数量的控制台 License 分配给指定项目。
 
@@ -150,7 +148,7 @@ https://api.agora.io/dabiz/license/v2/active?pid=02F51997A07B46C5810020A0F163EC3
 
 | 参数 | 类型 | 描述 |
 |:---|:---|:---|
-|`appid`| | |
+|`appid`| String | 声网分配给每个项目的唯一标识。 |
 
 #### 请求包体参数
 
@@ -158,9 +156,9 @@ https://api.agora.io/dabiz/license/v2/active?pid=02F51997A07B46C5810020A0F163EC3
 
 | 参数 | 类型 | 描述 |
 |:---|:---|:---|
-|`pid`| | |
-|`count`| | |
-|`creator`| | |
+|`pid`| String | 由 SKU、有效期、品类定义的 License 标识。 |
+|`count`| Integer | License 的数量。 |
+|`creator`| String | 执行配额操作的用户名。 |
 
 ### 请求示例
 
@@ -182,12 +180,7 @@ https://api.agora.io/dabiz/license/v1/allocate?appid=a6d6dba434be4b6683fad1aba6a
 
 ### 响应参数
 
-如果状态码为 `200`，则请求成功，响应包体中包含如下参数：
-
-| 参数 | 类型 | 描述 |
-|:---|:---|:---|
-|`message`| | |
-????
+如果状态码为 `200`，则请求成功。
 
 如果状态码不为 `200`，则请求失败。你可以根据返回的 [状态码](https://docs.agora.io/cn/Agora%20Platform/agora_console_restapi?platform=All%20Platforms#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81) 和响应包体中 `message` 字段的描述进行错误排查。
 
@@ -203,11 +196,9 @@ https://api.agora.io/dabiz/license/v1/allocate?appid=a6d6dba434be4b6683fad1aba6a
 ```
 
 
-## 查询控制台 License 配额
+## 查询配额
 
-<div class="alert note">请确保对应销售已在控制台为你的账号开启查询配额权限。</div>
-
-查询指定批次的控制台 License 配额历史。
+查询指定 License 分配给指定项目的详情。
 
 ### 接口原型
 - 方法：`GET`
@@ -221,17 +212,17 @@ https://api.agora.io/dabiz/license/v1/allocate?appid=a6d6dba434be4b6683fad1aba6a
 
 | 参数 | 类型 | 描述 |
 |:---|:---|:---|
-|`page`| | |
-|`size`| | |
-|`pid`| | |
-|`appid`| | |
+|`page`| Integer | 查询页码。 |
+|`size`| Integer | 分页大小。 |
+|`pid`| String | 由 SKU、有效期、品类定义的 License 标识。 |
+|`appid`| String | 声网分配给每个项目的唯一标识。 |
 
 ### 请求示例
 
 #### 请求路径
 
 ```http
-https://api.agora.io/dabiz/license/v1/product/allocations?page=1&size=10&appid=a6d6dba434be4b6683fad1aba6a7f75e&pid=02F51997A07B46C5810020A0F163EC30
+https://api.agora.io/dabiz/license/v1/product/allocations?page=1&size=2&pid=02F51997A07B46C5810020A0F163EC30&appid=a6d6dba434be4b6683fad1aba6a7f75e
 ```
 
 ### 响应参数
@@ -240,8 +231,8 @@ https://api.agora.io/dabiz/license/v1/product/allocations?page=1&size=10&appid=a
 
 | 参数 | 类型 | 描述 |
 |:---|:---|:---|
-|`count`| | |
-|`list`| Array | <li>pid</li><li>type</li><li>vid</li><li>creator</li><li>count</li><li>createTime</li> |
+|`count`| Integer | 配额次数。 |
+|`list`| Array | 配额详情列表：<li>`pid` (String): 分配额度的 License。</li><li>`type` (Integer): <ul><li>`1`: 正式<li>`2`: 测试</li></ul></li><li>`vid` (String): 被分配 License 额度的项目。VID 为声网分配给每个项目的内部唯一标识，与 App ID 为映射关系。// TODO: 控制台上展现 VID，用户如何得知对应的是哪个 App ID？</li><li>`creator` (String): 执行配额操作的用户名。</li><li>`count` (Integer): 分配的 License 数量。</li><li>`createTime` (String): 执行配额操作的时间。</li> |
 
 如果状态码不为 `200`，则请求失败。你可以根据返回的 [状态码](https://docs.agora.io/cn/Agora%20Platform/agora_console_restapi?platform=All%20Platforms#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81) 和响应包体中 `message` 字段的描述进行错误排查。
 
@@ -280,28 +271,44 @@ https://api.agora.io/dabiz/license/v1/product/allocations?page=1&size=10&appid=a
 
 ## 开启预授权
 
+开启预授权功能。
+
+### 接口原型
+- 方法：`POST`
+- 接入点：`https://api.agora.io/dabiz/license/v1/vendor/pad/switch`
+
+### 请求参数
+
+#### 查询参数
+
+在请求路径中传入以下查询参数：
+
+| 参数 | 类型 | 描述 |
+|:---|:---|:---|
+|`appid`| String | 声网分配给每个项目的唯一标识。 |
+
+### 请求示例
+
+#### 请求路径
+
 ```http
-POST https://api.agora.io/dabiz/license/v1/pad/add?licenseKey={licensekey}&appid={appid}
+https://api.agora.io/dabiz/license/v1/vendor/pad/switch?appid=a6d6dba434be4b6683fad1aba6a7f75e
 ```
+
+### 响应参数
+
+如果状态码为 `200`，则请求成功。
+
+如果状态码不为 `200`，则请求失败。你可以根据返回的 [状态码](https://docs.agora.io/cn/Agora%20Platform/agora_console_restapi?platform=All%20Platforms#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81) 和响应包体中 `message` 字段的描述进行错误排查。
+
+### 响应示例
+
+请求成功的响应示例：
 
 ```json
 {
     "code": 200,
     "message": "配置成功！"
-}
-```
-
-
-## 清空预授权
-
-```http
-POST https://api.agora.io/dabiz/license/v1/pad/clear?appid={appid}
-```
-
-```json
-{
-    "code": 200,
-    "message": "清空预授权成功"
 }
 ```
 
@@ -319,30 +326,7 @@ POST https://api.agora.io/dabiz/license/v1/pad/add?licenseKey={licensekey}&appid
 }
 ```
 
-
-## 查询指定预授权
-
-```http
-POST https://api.agora.io/dabiz/license/v1/pad/add?licenseKey={licensekey}&appid={appid}
-```
-
-```json
-{
-    "code": 200,
-    "data": [
-        {
-            "id": 16,
-            "cid": 717241,
-            "vid": 975823,
-            "licenseKey": "12345",
-            "createTime": "2022-07-26 04:01:41"
-        }
-    ]
-}
-```
-
-
-## 上传预授权
+## 批量上传预授权
 
 
 ```http
@@ -372,6 +356,72 @@ body
 {
     "code": 200,
     "message": "删除预授权成功"
+}
+```
+
+
+## 清空预授权
+
+清空预授权设置。
+
+### 接口原型
+- 方法：`POST`
+- 接入点：`https://api.agora.io/dabiz/license/v1/pad/clear`
+
+### 请求参数
+
+#### 查询参数
+
+在请求路径中传入以下查询参数：
+
+| 参数 | 类型 | 描述 |
+|:---|:---|:---|
+|`appid`| String | 声网分配给每个项目的唯一标识。 |
+
+### 请求示例
+
+#### 请求路径
+
+```http
+https://api.agora.io/dabiz/license/v1/pad/clear?appid=a6d6dba434be4b6683fad1aba6a7f75e
+```
+
+### 响应参数
+
+如果状态码为 `200`，则请求成功。
+
+如果状态码不为 `200`，则请求失败。你可以根据返回的 [状态码](https://docs.agora.io/cn/Agora%20Platform/agora_console_restapi?platform=All%20Platforms#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81) 和响应包体中 `message` 字段的描述进行错误排查。
+
+### 响应示例
+
+请求成功的响应示例：
+
+```json
+{
+    "code": 200,
+    "message": "清空预授权成功"
+}
+```
+
+
+## 查询指定预授权
+
+```http
+POST https://api.agora.io/dabiz/license/v1/pad/add?licenseKey={licensekey}&appid={appid}
+```
+
+```json
+{
+    "code": 200,
+    "data": [
+        {
+            "id": 16,
+            "cid": 717241,
+            "vid": 975823,
+            "licenseKey": "12345",
+            "createTime": "2022-07-26 04:01:41"
+        }
+    ]
 }
 ```
 

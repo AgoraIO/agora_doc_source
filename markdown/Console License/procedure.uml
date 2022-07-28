@@ -1,0 +1,25 @@
+@startuml
+autonumber
+skinparam backgroundColor transparent
+
+participant "用户" as user
+participant "OpenAPI" as api
+participant "控制台" as console
+participant "销售" as sales
+
+==前提条件==
+user -> console: 注册账号 (CID)
+user -> console: 创建项目 (App ID)
+==申请 License==
+user -> sales: 申请：联系销售申请 License 额度
+sales -> sales: 商务流程：付款、审批等
+user --> api: (可选) 预分配：为项目分配 License 额度
+user --> api: (可选) 预授权：上传预授权白名单
+user -> api: 激活：传入 LicenseKey 激活账号或设备
+==续期 License==
+user -> sales: 续期：联系销售申请 License 续期额度
+sales -> sales: 商务流程：付款、审批等
+user -> api: 续期激活：传入 Renew PID 和 License Value 激活续期额度
+==查询用量==
+user -> console: 查询：查看 License 的使用情况
+@enduml
