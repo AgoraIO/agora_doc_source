@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_enablewirelessaccelerate">
     <title><ph keyref="enableWirelessAccelerate"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Enables or disable Wi-Fi acceleration.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Enables or disables Wi-Fi acceleration.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -23,10 +23,10 @@
         </section>
         <section id="detailed_desc">
             <p>Since this version, the SDK enables Wi-Fi acceleration by default. This function will only take effect when the SDK finds a Wi-Fi router with an integrated acceleration plug-in, allowing the router to reasonably allocate Wi-Fi spectrum resources to reduce packet loss rate and delay, thereby reducing audio and video freezes.</p>
-            <p>When the router provides acceleration services, the SDK will periodically triggera <xref keyref="onWlAccStats"/> callback to report the Wi-Fi connection optimization data, and trigger a <xref keyref="onWlAccMessage"/> callback when the Wi-Fi connection quality is poor to report the reason for the poor Wi-Fi connection quality and improve Wi-Fi Action suggestions for the connection.</p>
+            <p>When the router provides acceleration services, the SDK will periodically trigger a <xref keyref="onWlAccStats"/> callback to report the Wi-Fi connection optimization data, and trigger a <xref keyref="onWlAccMessage"/> callback when the Wi-Fi connection quality is poor to report the reason for the poor Wi-Fi connection quality and improve Wi-Fi Action suggestions for the connection.</p>
             <note type="note">
             <ul id="ul_w5c_nzq_tsb">
-            <li>Wi-Fi acceleration is disabled by default. It must be used in conjunction with a router with an integrated acceleration plug-in. For details, see<xref keyref="faq-wifi-routers"> Which Wi-Fi routers support the acceleration function</xref>. If the Wi-Fi router does not support acceleration, system performance will not suffer.</li>
+            <li>Wi-Fi acceleration is disabled by default. It must be used in conjunction with a router with an integrated acceleration plug-in. For details, see <xref keyref="faq-wifi-routers"> Which Wi-Fi routers support the acceleration function</xref>. If the Wi-Fi router does not support acceleration, system performance will not suffer.</li>
             <li>After the acceleration function takes effect, the router's app will display the acceleration effect and the name of the accelerated app. If you don't want to display the name of the accelerated app in the router's app, please call <codeph>enableWirelessAccelerate(false)</codeph> to turn off acceleration.</li>
             <li>In addition to audio and video streams, the Wi-Fi acceleration function provided by Agora can also be applied to other third-party service streams, such as private signaling, courseware, and RTMP protocols. For other requirements, contact sales-us@agora.io.</li>
             </ul> </note> </section>
