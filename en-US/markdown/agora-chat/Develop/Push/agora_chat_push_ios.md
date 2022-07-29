@@ -504,7 +504,11 @@ The following code sample shows how to customize the display style in push notif
 ```objective-c
 AgoraChatTextMessageBody *body = [[AgoraChatTextMessageBody alloc] initWithText:@"test"];
 AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:conversationId from:currentUsername to:conversationId body:body ext:nil];
-message.ext = @{@"em_apns_ext":@{@"em_push_content":@"custom push content"}}; 
+message.ext = @{@"em_apns_ext":@{
+    @"em_alert_title": @"customTitle",
+    @"em_alert_subTitle": @"customSubTitle",
+    @"em_alert_body": @"customBody"
+}};
 message.chatType = AgoraChatTypeChat; 
 [AgoraChatClient.sharedClient.chatManager sendMessage:message progress:nil completion:nil];
 ```
@@ -516,7 +520,9 @@ message.chatType = AgoraChatTypeChat;
 | `from`            | The username of the sender.  |
 | `to`              | The username of the receiver. |
 | `em_apns_ext`     | The extension field.     |
-| `em_push_content` | The extension content.  |
+| `em_alert_title` | The title of push notifications.  |
+| `em_alert_subTitle` | The subtitle of push notifications.  |
+| `em_alert_body` | The content of push notifications.  |
 
 
 An example is as follows:
