@@ -23,13 +23,18 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
-        </section>
+        <codeblock props="flutter" outputclass="language-dart">final void Function(
+            RtcConnection connection,
+            ClientRoleChangeFailedReason reason,
+            ClientRoleType currentRole)? onClientRoleChangeFailed;
+        </codeblock> </p>
+      </section>
        <section id="detailed_desc">
             <p>In the live broadcasting channel profile, when the local user calls <xref keyref="setClientRole1"/> to switch their user role after joining the channel but the switch fails, the SDK triggers this callback to report the reason for the failure and the current user role.</p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
             <plentry>
                 <pt>reason</pt>
