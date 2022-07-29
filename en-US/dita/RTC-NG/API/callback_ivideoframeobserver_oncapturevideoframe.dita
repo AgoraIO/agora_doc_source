@@ -17,7 +17,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onCaptureVideoFrame:(AgoraOutputVideoFrame * _Nonnull)videoFrame;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual bool onCaptureVideoFrame(VideoFrame&amp; videoFrame) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnCaptureVideoFrame(VideoFrame videoFrame)
+            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnCaptureVideoFrame(VideoFrame videoFrame, VideoFrameBufferConfig config)
         {
             return true;
         }</codeblock>
@@ -35,6 +35,10 @@
                 <pt>videoFrame</pt>
                 <pd><ph>The video frame. </ph><ph props="cpp ios mac unity">See <xref keyref="VideoFrame"/>.</ph></pd>
             </plentry>
+                <plentry props="unity" id="config">
+                    <pt>config</pt>
+                    <pd>视频帧设置，详见 <xref keyref="VideoFrameBufferConfig"/>。</pd>
+                </plentry>
             </parml> </section>
         <section id="return_values">
             <title>Returns</title>
