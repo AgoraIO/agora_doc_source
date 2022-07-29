@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onvideopublishstatechanged">
-    <title><ph keyref="onVideoPublishStateChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the video publishing state changes.</ph></shortdesc>
+    <title> <ph keyref="onVideoPublishStateChanged"/> </title>
+    <shortdesc id="short"><ph id="shortdesc">视频发布状态改变回调。</ph> </shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -30,16 +30,21 @@ elapseSinceLastState:(int)elapseSinceLastState;
     (void)elapseSinceLastState;
   }
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.VIDEO_PUBLISH_STATE_CHANGED, cb: (
-     channel: string,
-     oldState: STREAM_PUBLISH_STATE,
-     newState: STREAM_PUBLISH_STATE,
-     elapseSinceLastState: number
-     ) =&gt; void): this;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">onVideoPublishStateChanged?(channel: string, oldState: StreamPublishState, newState: StreamPublishState, elapseSinceLastState: number): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnVideoPublishStateChanged(string channel, STREAM_PUBLISH_STATE oldState,
             STREAM_PUBLISH_STATE newState, int elapseSinceLastState)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">StreamPublishStateCallback? videoPublishStateChanged;</codeblock> </p>
+            <codeblock props="rn" outputclass="language-typescript">onVideoPublishStateChanged?(
+  channel: string,
+  oldState: StreamPublishState,
+  newState: StreamPublishState,
+  elapseSinceLastState: number
+): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(
+      String channel,
+      StreamPublishState oldState,
+      StreamPublishState newState,
+      int elapseSinceLastState)? onVideoPublishStateChanged;
+</codeblock></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
@@ -50,15 +55,15 @@ elapseSinceLastState:(int)elapseSinceLastState;
             </dl>
         </section>
         <section id="parameters">
-            <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <title> <ph keyref="callback-section-title"/> </title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt/>
                 <pd/>
             </plentry>
             <plentry>
-                <pt props="android cpp unity flutter">channel</pt>
+                <pt props="android cpp unity flutter electron rn">channel</pt>
                 <pt props="ios mac">channelId</pt>
                 <pd>The channel name.</pd>
             </plentry>
