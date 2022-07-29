@@ -17,10 +17,13 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (NSArray&lt;AgoraScreenCaptureSourceInfo*>* _Nullable)getScreenCaptureSourcesWithThumbSize:(NSSize)thumbSize iconSize:(NSSize)iconSize includeScreen:(BOOL)includeScreen;
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual IScreenCaptureSourceList* getScreenCaptureSources(const SIZE&amp; thumbSize, const SIZE&amp; iconSize, const bool includeScreen) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract getScreenCaptureSources(thumbSize: SIZE, iconSize: SIZE, includeScreen: boolean): ScreenCaptureSourceInfo[];</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract ScreenCaptureSourceInfo[] GetScreenCaptureSources(SIZE thumbSize, SIZE iconSize, bool includeScreen);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;List&lt;ScreenCaptureSourceInfo>> getScreenCaptureSources(
+    {required Size thumbSize,
+    required Size iconSize,
+    required bool includeScreen});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>You can call this method before sharing a screen or window to get a list of shareable screens and windows, which enables a user to use thumbnails in the list to choose a particular screen or window to share. This list also contains important information such as window ID and screen ID, with which you can call <xref keyref="startScreenCaptureByWindowId"/> or <xref keyref="startScreenCaptureByDisplayId"/> to start the sharing.</p>
@@ -46,7 +49,8 @@
             </parml> </section>
         <section id="return_values">
             <title>Returns</title>
-            <p><xref keyref="IScreenCaptureSourceList" props="cpp"/><xref keyref="ScreenCaptureSourceInfo" props="mac"/></p>
+            <p props="native"><xref keyref="IScreenCaptureSourceList"/></p>
+            <p props="electron unity"><xref keyref="ScreenCaptureSourceInfo"/>数组。</p>
         </section>
     </refbody>
 </reference>
