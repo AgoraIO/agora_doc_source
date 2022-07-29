@@ -13,26 +13,29 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
             <codeblock props="mac" outputclass="language-objectivec">- (int)startScreenCaptureByWindowId:(UInt32)windowId
                 regionRect:(CGRect)regionRect
                 captureParams:(AgoraScreenCaptureParameters *_Nonnull)captureParams;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int StartScreenCaptureByWindowId(UInt64 windowId, Rectangle regionRect, ScreenCaptureParameters captureParams);</codeblock>
-            <codeblock props="android" outputclass="language-java"/>
             <codeblock props="cpp" outputclass="language-cpp">virtual int startScreenCaptureByWindowId(view_t windowId,
                 const Rectangle&amp; regionRect,
                 const ScreenCaptureParameters&amp; captureParams) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract startScreenCaptureByWindowId(windowId: any, regionRect: Rectangle, captureParams: ScreenCaptureParameters): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int StartScreenCaptureByWindowId(UInt64 windowId, Rectangle regionRect, ScreenCaptureParameters captureParams);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> startScreenCaptureByWindowId(
+    {required int windowId,
+    required Rectangle regionRect,
+    required ScreenCaptureParameters captureParams});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p id="desc">This method shares a window or part of the window. You need to specify the ID of the window to be shared.</p>
             <p conkeyref="startScreenCaptureByDisplayId/apisequence"/>
-            <note type="attention" id="note" props="cpp unity">
+            <note type="attention" id="note" props="cpp unity flutter electron">
                 <ul><li>Applies to the macOS and Windows platforms only.</li>
                 <li>The window sharing feature of the Agora SDK relies on WGC (Windows Graphics Capture) or GDI (Graphics Device Interface) capture, and WGC cannot be set to disable mouse capture on systems earlier than Windows 10 2004. Therefore, <codeph>captureMouseCursor(false)</codeph> might not work when you start window sharing on a device with a system earlier than Windows 10 2004. See <xref keyref="cursor"/>.</li></ul></note>
-            <p props="cpp">This method supports window sharing of UWP (Universal Windows Platform) applications. Agora tests the mainstream UWP applications by using the lastest SDK, see details as follows:</p>
-            <p props="cpp"> <table id="table_lvk_tfs_r4b">
+            <p props="cpp flutter electron">This method supports window sharing of UWP (Universal Windows Platform) applications. Agora tests the mainstream UWP applications by using the lastest SDK, see details as follows:</p>
+            <p props="cpp flutter electron"> <table id="table_lvk_tfs_r4b">
             <tgroup cols="4">
                 <colspec colnum="1" colname="col1"/>
                 <colspec colnum="2" colname="col2"/>
@@ -159,7 +162,7 @@
             <parml>
             <plentry>
                 <pt>windowId</pt>
-                <pd>The ID of the window to be shared.<p props="electron">You can get the windowId by calling <xref keyref="getWindowsInfo"/>.</p>
+                <pd>指定待共享的窗口 ID。
                 </pd>
             </plentry>
             <plentry props="cpp electron unity flutter">
@@ -167,10 +170,14 @@
                 <pd>(Optional) Sets the relative location of the region to the screen. If you do not set this parameter, the SDK shares the whole screen. See <xref keyref="Rectangle"/>. If the specified region overruns the window, the SDK shares only the region within it; if you set width or height as 0, the SDK shares the whole window.</pd>
             </plentry>
             <plentry props="mac">
-                <pt props="rtc">rectangle</pt>
-                <pt props="rtc-ng">regionRect</pt>
+                <pt>regionRect</pt>
                 <pd>
-                    <p>(Optional) The relative location of the region to the window. If you do not set this parameter, the SDK shares the whole window.  It consists of the following parameters:<ul>
+                    <p>(Optional) The relative location of the region to the window. If you do not set this parameter, the SDK shares the whole window.  由如下参数组成：
+
+
+
+                    
+                    <ul>
                     <li>x: The horizontal offset from the top-left corner.</li>
                     <li>y: The vertical offset from the top-left corner.</li>
                     <li>width: The width of the region.</li>
@@ -184,7 +191,7 @@
                 <pd>Screen sharing configurations. The default video dimension is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges. See <xref keyref="ScreenCaptureParameters"/>.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native electron unity rn">
             <title>Returns</title>
             <ul>
             <li>0: Success.</li>
