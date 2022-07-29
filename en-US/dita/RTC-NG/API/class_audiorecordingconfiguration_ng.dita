@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audiorecordingconfiguration_ng">
-    <title><ph keyref="AudioRecordingConfiguration"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Recording configuration.</ph></shortdesc>
+    <title> <ph keyref="AudioRecordingConfiguration"/> </title>
+    <shortdesc id="short"><ph id="shortdesc">录音配置。</ph> </shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -70,7 +70,13 @@
       quality(rhs.quality),
       recordingChannel(rhs.recordingChannel) {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export class AudioRecordingConfiguration {
+  filePath?: string
+  encode?: boolean
+  sampleRate?: number
+  fileRecordingType?: AudioFileRecordingType
+  quality?: AudioRecordingQualityType
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class AudioRecordingConfiguration
     {
         public AudioRecordingConfiguration()
@@ -107,32 +113,71 @@
         public AUDIO_FILE_RECORDING_TYPE fileRecordingType { set; get; }
         public AUDIO_RECORDING_QUALITY_TYPE quality { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">export class AudioRecordingConfiguration {
+  filePath?: string;
+  encode?: boolean;
+  sampleRate?: number;
+  fileRecordingType?: AudioFileRecordingType;
+  quality?: AudioRecordingQualityType;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class AudioRecordingConfiguration {
+  const AudioRecordingConfiguration(
+      {this.filePath,
+      this.encode,
+      this.sampleRate,
+      this.fileRecordingType,
+      this.quality});
+
+  @JsonKey(name: 'filePath')
+  final String? filePath;
+  @JsonKey(name: 'encode')
+  final bool? encode;
+  @JsonKey(name: 'sampleRate')
+  final int? sampleRate;
+  @JsonKey(name: 'fileRecordingType')
+  final AudioFileRecordingType? fileRecordingType;
+  @JsonKey(name: 'quality')
+  final AudioRecordingQualityType? quality;
+  factory AudioRecordingConfiguration.fromJson(Map&lt;String, dynamic> json) =>
+      _$AudioRecordingConfigurationFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$AudioRecordingConfigurationToJson(this);
+}</codeblock> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry id="filepath">
                 <pt>filePath</pt>
-                <pd>The absolute path (including the filename extensions) of the recording file. For example: <codeph><ph
-                    keyref="filePath-example"/></codeph>.<note id="note_scm_klz_mqb" type="attention">
+                <pd>The absolute path (including the filename extensions) of the recording file. 例如：<codeph><ph keyref="filePath-example"/></codeph>。
+
+
+
+                    
+                    <note id="note_scm_klz_mqb" type="attention">
                     <p>Ensure that the directory for the log files exists and is writable.</p>
-                    </note></pd>
+                    </note> </pd>
             </plentry>
             <plentry>
-                <pt props="cpp unity">encode</pt>
+                <pt props="cpp unity electron rn flutter">encode</pt>
                 <pt props="android ios mac">codec</pt>
-                <pd>Whether to encode the audio data:<ul id="ul_bnv_mlz_mqb">
+                <pd>设置是否编码音频数据：
+
+
+                    
+                    <ul id="ul_bnv_mlz_mqb">
                     <li><codeph><ph keyref="true"/></codeph>: Encode audio data in AAC.</li>
                     <li><codeph><ph keyref="false"/></codeph>: (Default) Do not encode audio data and save the recorded audio data directly.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>sampleRate</pt>
-                <pd>Recording sample rate (Hz).<ul id="ul_pqs_slz_mqb">
+                <pd>录音采样率（Hz）。
+
+
+                    
+                    <ul id="ul_pqs_slz_mqb">
                     <li>16000</li>
-                    <li>(Default) 32000</li>
+                    <li>32000 （默认）</li>
                     <li>44100.</li>
                     <li>48000.</li>
                     </ul>
@@ -141,11 +186,16 @@
                     </note></pd>
             </plentry>
             <plentry>
-                <pt props="cpp unity">fileRecordingType</pt>
+                <pt props="cpp unity electron rn flutter">fileRecordingType</pt>
                 <pt props="android ios mac">fileRecordOption</pt>
                 <pd>
-                    <p props="ios mac cpp unity">Recording content. See <xref keyref="AUDIO_RECORDING_POSITION"/>.</p>
-                    <p props="android">Recording content:<ul>
+                    <p props="ios mac cpp unity flutter">Recording content. See <xref keyref="AUDIO_RECORDING_POSITION"/>.</p>
+                    <p props="android">录音内容：
+
+
+
+                    
+                    <ul>
                     <li><ph keyref="AUDIO_RECORDING_POSITION_RECORDING"/>(1): Only records the audio of the local user.</li>
                     <li><ph keyref="AUDIO_RECORDING_POSITION_MIXED_PLAYBACK"/>(2): Only records the audio of all remote users.</li>
                     <li><ph keyref="AUDIO_RECORDING_POSITION_MIXED_RECORDING_AND_PLAYBACK"/>(3): (Default) Records the mixed audio of the local and all remote users.</li>
@@ -155,7 +205,7 @@
             <plentry>
                 <pt>quality</pt>
                 <pd>
-                    <p props="ios mac cpp unity">Recording quality. See <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>.</p>
+                    <p props="ios mac cpp unity  electron rn flutter">Recording quality. See <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>.</p>
                     <p props="android">Recording quality:<ul>
                     <li><ph keyref="AUDIO_RECORDING_QUALITY_LOW"/>(0): Low quality. For example, the size of an AAC file with a sample rate of 32,000 Hz and a recording duration of 10 minutes is around 1.2 MB.</li>
                     <li><ph keyref="AUDIO_RECORDING_QUALITY_MEDIUM"/>(1): (Default) Medium quality. For example, the size of an AAC file with a sample rate of 32,000 Hz and a recording duration of 10 minutes is around 2 MB.</li>
@@ -164,7 +214,7 @@
                     </ul> </p>
                     <note id="note_hrx_mmz_mqb" type="attention">
                     <p>Note: This parameter applies to AAC files only.</p>
-                    </note></pd>
+                    </note> </pd>
             </plentry>
                 <plentry>
                     <pt>recordingChannel</pt>
