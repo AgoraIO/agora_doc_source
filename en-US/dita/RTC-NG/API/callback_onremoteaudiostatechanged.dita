@@ -25,15 +25,22 @@
      (void)reason;
      (void)elapsed;
      }</codeblock>
-               <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.REMOTE_AUDIO_STATE_CHANGED, cb: (
-     uid: number,
-     state: REMOTE_AUDIO_STATE,
-     reason: REMOTE_AUDIO_STATE_REASON,
-     elapsed: number
-     ) =&gt; void): this;</codeblock>
-               <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteAudioStateChanged(RtcConnection connection, uint remoteUid, REMOTE_AUDIO_STATE state, REMOTE_AUDIO_STATE_REASON reason, int elapsed) {}</codeblock>                    
-               <codeblock props="rn" outputclass="language-typescript"/>
-               <codeblock props="flutter" outputclass="language-dart">RemoteAudioStateCallback? remoteAudioStateChanged;</codeblock> </p>
+               <codeblock props="electron" outputclass="language-typescript">onRemoteAudioStateChanged?(connection: RtcConnection, remoteUid: number, state: RemoteAudioState, reason: RemoteAudioStateReason, elapsed: number): void;</codeblock>
+               <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteAudioStateChanged(RtcConnection connection, uint remoteUid, REMOTE_AUDIO_STATE state, REMOTE_AUDIO_STATE_REASON reason, int elapsed) {}</codeblock>
+               <codeblock props="rn" outputclass="language-typescript">onRemoteAudioStateChanged?(
+  connection: RtcConnection,
+  remoteUid: number,
+  state: RemoteAudioState,
+  reason: RemoteAudioStateReason,
+  elapsed: number
+): void;</codeblock>
+               <codeblock props="flutter" outputclass="language-dart">final void Function(
+      RtcConnection connection,
+      int remoteUid,
+      RemoteAudioState state,
+      RemoteAudioStateReason reason,
+      int elapsed)? onRemoteAudioStateChanged;
+</codeblock> </p>
           </section>
           <section id="detailed_desc">
                <dl outputclass="since" props="rtc">
@@ -42,23 +49,25 @@
                     <dd>v2.9.0</dd>
                </dlentry>
                </dl>
-               <p id="desc">When the audio state of a remote user (in the voice/video call channel) or host (in the live streaming channel) changes, the SDK triggers this callback to report the current state of the remote audio stream.</p>
-               <note id="note" type="attention">This callback can be inaccurate when the number of users (in the communication profile) or hosts (in the live broadcasting profile) in a channel exceeds 17.</note> </section>
+               <p id="desc"
+               >When the audio state of a remote user (in the voice/video call channel) or host (in the live streaming channel) changes, the SDK triggers this callback to report the current state of the remote audio stream.</p>
+               <note id="note" type="attention"
+               >This callback can be inaccurate when the number of users (in the communication profile) or hosts (in the live broadcasting profile) in a channel exceeds 17.</note> </section>
           <section id="parameters">
                <title><ph keyref="callback-section-title"/></title>
-               <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+               <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
                <parml>
                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                     <pt/>
                     <pd/>
                </plentry>
-               <plentry props="rtc-ng">
-                    <pt props="unity">connection</pt>
-                    <pd props="unity">The connection information. See <xref keyref="RtcConnection"/>.</pd>
+               <plentry props="unity flutter rn electron">
+                    <pt>connection</pt>
+                    <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
                </plentry>
                <plentry id="uid">
-                    <pt props="native electron flutter">uid</pt>
-                    <pt props="unity"><ph props="rtc">uid</ph><ph props="rtc-ng">remoteUid</ph></pt>
+                    <pt props="native">uid</pt>
+                    <pt props="unity flutter rn electron">remoteUid</pt>
                     <pd>The ID of the remote user whose audio state changes.</pd>
                </plentry>
                <plentry id="state">
@@ -74,7 +83,7 @@
                </plentry>
                <plentry id="reason">
                     <pt>reason</pt>
-                    <pd props="ios mac cpp unity">The reason of the remote audio state change, see <xref keyref="REMOTE_AUDIO_STATE_REASON"/>.</pd>
+                    <pd props="ios mac cpp unity electron rn flutter">The reason of the remote audio state change, see <xref keyref="REMOTE_AUDIO_STATE_REASON"/>.</pd>
                     <pd props="android">Remote audio state reasons.<ul>
                          <li><ph keyref="REMOTE_AUDIO_STATE_REASON_INTERNAL"/>(0): The SDK reports this reason when the audio state changes.</li>
                          <li><ph keyref="REMOTE_AUDIO_STATE_REASON_NETWORK_CONGESTION"/>(1): Network congestion.</li>
