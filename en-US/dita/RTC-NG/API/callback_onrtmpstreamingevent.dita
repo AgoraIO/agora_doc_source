@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onrtmpstreamingevent">
-    <title><ph keyref="onRtmpStreamingEvent"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Reports events during the media push.</ph></shortdesc>
+    <title> <ph keyref="onRtmpStreamingEvent"/> </title>
+    <shortdesc id="short"><ph id="shortdesc">旁路推流事件回调。</ph> </shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -13,32 +13,31 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onRtmpStreamingEvent(String url, int event) {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine rtmpStreamingEventWithUrl:(NSString* _Nonnull)url eventCode:(AgoraRtmpStreamingEvent)eventCode;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void onRtmpStreamingEvent(const char* url, RTMP_STREAMING_EVENT eventCode) {
   (void)url;
   (void)eventCode;
 }</codeblock>
-            <codeblock props="android" outputclass="language-java">public void onRtmpStreamingEvent(String url, int event) {}</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine rtmpStreamingEventWithUrl:(NSString* _Nonnull)url eventCode:(AgoraRtmpStreamingEvent)eventCode;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.RTMP_STREAMING_EVENT, cb: (
-    url: string,
-    eventCode: RTMP_STREAMING_EVENT) =&gt; void
-    ): this;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">onRtmpStreamingEvent?(url: string, eventCode: RtmpStreamingEvent): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnRtmpStreamingEvent(string url, RTMP_STREAMING_EVENT eventCode)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">RtmpStreamingEventCallback? rtmpStreamingEvent;</codeblock></p>
+            <codeblock props="rn" outputclass="language-typescript">onRtmpStreamingEvent?(url: string, eventCode: RtmpStreamingEvent): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(String url, RtmpStreamingEvent eventCode)?
+      onRtmpStreamingEvent;
+</codeblock> </p>
         </section>
         <section id="parameters">
-            <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <title> <ph keyref="callback-section-title"/> </title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
             <plentry id="url">
                 <pt>url</pt>
                 <pd>The streaming URL of media push.</pd>
             </plentry>
             <plentry id="eventCode">
-                <pt props="ios mac cpp unity">eventCode</pt>
+                <pt props="ios mac cpp unity electron rn flutter">eventCode</pt>
                 <pt props="android">event</pt>
-                <pd props="ios mac cpp unity">The event code of media push. See <xref keyref="RTMP_STREAMING_EVENT"/>.</pd>
+                <pd props="ios mac cpp unity electron rn flutter">The event code of media push. See <xref keyref="RTMP_STREAMING_EVENT"/>.</pd>
                 <pd props="android">The event code of media push.<ul>
                     <li><ph keyref="RTMP_STREAMING_EVENT_FAILED_LOAD_IMAGE"/>(1): An error occurs when you add a background image or a watermark image in the media push.</li>
                     <li><ph keyref="RTMP_STREAMING_EVENT_URL_ALREADY_IN_USE"/>(2): The streaming URL is already being used for media push. If you want to start new media push, use a new media push URL.</li>
