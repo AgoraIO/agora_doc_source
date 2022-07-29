@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_externalvideoframe_ng">
-    <title><ph keyref="ExternalVideoFrame"/></title>
+    <title><ph keyref="ExternalVideoFrame" /></title>
     <shortdesc id="short"><ph id="shortdesc">The external video frame.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -93,10 +93,27 @@
                     uint8_t* metadata_buffer;
                     int metadata_size;
                     };</codeblock>
-                    <codeblock props="unity" outputclass="language-csharp">public class ExternalVideoFrame
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp">public class ExternalVideoFrame
     {
         public ExternalVideoFrame()
         {
+            this.type = VIDEO_BUFFER_TYPE.VIDEO_BUFFER_RAW_DATA;
+            this.format = VIDEO_PIXEL_FORMAT.VIDEO_PIXEL_UNKNOWN;
+            this.buffer = null;
+            this.stride = 0;
+            this.height = 0;
+            this.cropLeft = 0;
+            this.cropTop = 0;
+            this.cropRight = 0;
+            this.cropBottom = 0;
+            this.rotation = 0;
+            this.timestamp = 0;
+            this.eglContext = null;
+            this.eglType = EGL_CONTEXT_TYPE.EGL_CONTEXT10;
+            this.textureId = 0;
+            this.metadata_buffer = null;
+            this.metadata_size = 0;
         }
 
         public ExternalVideoFrame(VIDEO_BUFFER_TYPE type, VIDEO_PIXEL_FORMAT format, byte[] buffer, int stride,
@@ -121,7 +138,6 @@
             this.metadata_buffer = metadata_buffer;
             this.metadata_size = metadata_size;
         }
-
         public VIDEO_BUFFER_TYPE type { set; get; }
         public VIDEO_PIXEL_FORMAT format { set; get; }
         public byte[] buffer { set; get; }
@@ -138,15 +154,17 @@
         public int textureId { set; get; }
         public byte[] metadata_buffer { set; get; }
         public int metadata_size { set; get; }
-    }</codeblock> </p>
+    }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock> </p>
         </section>
         <section id="detailed_desc" props="android">
             <dl outputclass="deprecated">
-       <dlentry>
-  <dt>Deprecated:</dt>
-  <dd>This class is deprecated.</dd>
-       </dlentry>
-   </dl>
+            <dlentry>
+                <dt>Deprecated:</dt>
+                <dd>This class is deprecated.</dd>
+            </dlentry>
+            </dl>
         </section>
         <section id="parameters">
    <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
