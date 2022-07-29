@@ -20,10 +20,15 @@
   (void)errorType;
 }
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">onEncryptionError?(connection: RtcConnection, errorType: EncryptionErrorType): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnEncryptionError(RtcConnection connection, ENCRYPTION_ERROR_TYPE errorType) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">onEncryptionError?(
+  connection: RtcConnection,
+  errorType: EncryptionErrorType
+): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, EncryptionErrorType errorType)?
+      onEncryptionError;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>When encryption is enabled by calling <xref keyref="enableEncryption"/>, the SDK triggers this callback if an error occurs in encryption or decryption on the sender or the receiver side.</p>
@@ -35,9 +40,9 @@
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="rtc-ng">
-                <pt props="unity">connection</pt>
-                <pd props="unity">The connection information. See <xref keyref="RtcConnection"/>.</pd>
+            <plentry props="unity electron rn flutter">
+                <pt>connection</pt>
+                <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
             </plentry>
             <plentry>
                 <pt>errorType</pt>
