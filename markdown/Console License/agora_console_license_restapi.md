@@ -12,10 +12,6 @@
 
 所有请求都发送给域名：`api.agora.io`。
 
-### 数据格式
-
-所有 HTTP 请求头部的 `Content-Type` 类型为 `application/json`。所有请求和响应内容的格式均为 JSON。所有的请求 URL 和请求包体内容都区分大小写。
-
 ### 认证方式
 
 Agora 控制台 RESTful API 仅支持 HTTPS 协议。发送请求时，你需要使用 Agora 提供的客户 ID 和客户密钥生成一个 Base64 算法编码的凭证，并填入 HTTP 请求头部的 `Authorization` 字段中。详见 [如何在 RESTful API 中进行 HTTP 基本认证和 Token 认证](https://docs.agora.io/cn/Video/faq/restful_authentication)。
@@ -43,7 +39,7 @@ Agora 控制台 RESTful API 仅支持 HTTPS 协议。发送请求时，你需要
 | 参数 | 类型 | 描述 |
 |:---|:---|:---|
 |`pid`| String | 由 SKU、有效期、品类定义的 License 标识。 |
-|`licenseKey`| String | 激活并关联 License 的账号 ID 或设备 ID。 |
+|`licenseKey`| String | 账号 ID 或设备 ID。 |
 |`appid`| String | 声网分配给每个项目的唯一标识。 |
 
 ### 请求示例
@@ -51,7 +47,7 @@ Agora 控制台 RESTful API 仅支持 HTTPS 协议。发送请求时，你需要
 #### 请求路径
 
 ```http
-https://api.agora.io/dabiz/license/v2/active?pid=02F51997A07B46C5810020A0F163EC30&licenseKey=123456&appid=a6d6dba434be4b6683fad1aba6a7f75e
+https://api.agora.io/dabiz/license/v2/active?pid=02F51997A07B46C5810020A0F163EC30&licenseKey=111&appid=a6d6dba434be4b6683fad1aba6a7f75e
 ```
 
 ### 响应参数
@@ -61,7 +57,7 @@ https://api.agora.io/dabiz/license/v2/active?pid=02F51997A07B46C5810020A0F163EC3
 | 参数 | 类型 | 描述 |
 |:---|:---|:---|
 |`license`| String | 被激活的 License 的值。 |
-|`skuView`| Array | SKU 能力集：<li><code>product</code> (Integer): <ul><li><code>1</code>: RTC</li><li><code>2</code>: RTSA</li><li><code>3</code>: FPA</li></ul></li><li><code>name</code> (String): SKU 的名称</li><li><code>mediaType</code> (Integer):<ul><li><code>1</code>: 音频</li><li><code>2</code>: 视频</li><li><code>3</code>: 音视频</li></ul></li><li><code>minutes</code> (integer): License 分钟数上限</li><li><code>period</code> (String): License 使用时间段</li> |
+|`skuView`| Array | SKU 能力集：<li>`product` (Integer): <ul><li>`1`: RTC</li><li>`2`: RTSA</li><li>`3`: FPA</li></ul></li><li>`name` (String): SKU 的名称</li><li>`mediaType` (Integer):<ul><li>`1`: 音频</li><li>`2`: 视频</li><li>`3`: 音视频</li></ul></li><li>`minutes` (integer): License 分钟数上限</li><li>`period` (String): License 使用时间段</li> |
 
 如果状态码不为 `200`，则请求失败。你可以根据返回的 [状态码](https://docs.agora.io/cn/Agora%20Platform/agora_console_restapi?platform=All%20Platforms#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81) 和响应包体中 `message` 字段的描述进行错误排查。
 
@@ -73,7 +69,7 @@ https://api.agora.io/dabiz/license/v2/active?pid=02F51997A07B46C5810020A0F163EC3
 {
     "code": 200,
     "data": {
-        "license": "A9423D665DF145D990628CFDB491FD43",
+        "license": "1D653F55A3B84DA9BC0615926B476016",
         "skuView": {
             "product": 1,
             "name": "演示申请01",
@@ -141,6 +137,12 @@ https://api.agora.io/dabiz/license/v1/renew?renewId=47503548C5E947F288A24B1EB557
 - 接入点：`https://api.agora.io/dabiz/license/v1/allocate`
 
 ### 请求参数
+
+#### 请求头部
+
+| 参数 | 类型 | 描述 |
+|:---|:---|:---|
+|`Content-Type`| String | 设为 `application/json`。 |
 
 #### 查询参数
 
@@ -232,7 +234,7 @@ https://api.agora.io/dabiz/license/v1/product/allocations?page=1&size=2&pid=02F5
 | 参数 | 类型 | 描述 |
 |:---|:---|:---|
 |`count`| Integer | 配额次数。 |
-|`list`| Array | 配额详情列表：<li>`pid` (String): 分配额度的 License。</li><li>`type` (Integer): <ul><li>`1`: 正式<li>`2`: 测试</li></ul></li><li>`vid` (String): 被分配 License 额度的项目。VID 为声网分配给每个项目的内部唯一标识，与 App ID 为映射关系。// TODO: 控制台上展现 VID，用户如何得知对应的是哪个 App ID？</li><li>`creator` (String): 执行配额操作的用户名。</li><li>`count` (Integer): 分配的 License 数量。</li><li>`createTime` (String): 执行配额操作的时间。</li> |
+|`list`| Array | 配额详情列表：<li>`pid` (String): 分配额度的 License。</li><li>`type` (Integer): <ul><li>`1`: 正式<li>`2`: 测试</li></ul></li><li>`vid` (String): 被分配 License 额度的项目。声网分配给每个项目的内部唯一标识，与 App ID 为映射关系。// TODO: 控制台上展现 VID，用户如何得知对应的是哪个 App ID？</li><li>`creator` (String): 执行配额操作的用户名。</li><li>`count` (Integer): 分配的 License 数量。</li><li>`createTime` (String): 执行配额操作的时间。</li> |
 
 如果状态码不为 `200`，则请求失败。你可以根据返回的 [状态码](https://docs.agora.io/cn/Agora%20Platform/agora_console_restapi?platform=All%20Platforms#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81) 和响应包体中 `message` 字段的描述进行错误排查。
 
@@ -272,6 +274,7 @@ https://api.agora.io/dabiz/license/v1/product/allocations?page=1&size=2&pid=02F5
 ## 开启预授权
 
 开启预授权功能。
+<div class="alert note">再次调用该接口即可关闭预授权功能。</div>
 
 ### 接口原型
 - 方法：`POST`
@@ -315,9 +318,40 @@ https://api.agora.io/dabiz/license/v1/vendor/pad/switch?appid=a6d6dba434be4b6683
 
 ## 增加单个预授权
 
+将指定 LicenseKey 加入预授权白名单。
+
+### 接口原型
+- 方法：`POST`
+- 接入点：`https://api.agora.io/dabiz/license/v1/pad/add`
+
+### 请求参数
+
+#### 查询参数
+
+在请求路径中传入以下查询参数：
+
+| 参数 | 类型 | 描述 |
+|:---|:---|:---|
+|`licenseKey`| String | 账号 ID 或设备 ID。 |
+|`appid`| String | 声网分配给每个项目的唯一标识。 |
+
+### 请求示例
+
+#### 请求路径
+
 ```http
-POST https://api.agora.io/dabiz/license/v1/pad/add?licenseKey={licensekey}&appid={appid}
+https://api.agora.io/dabiz/license/v1/pad/add?licenseKey=12345&appid=a6d6dba434be4b6683fad1aba6a7f75e
 ```
+
+### 响应参数
+
+如果状态码为 `200`，则请求成功。
+
+如果状态码不为 `200`，则请求失败。你可以根据返回的 [状态码](https://docs.agora.io/cn/Agora%20Platform/agora_console_restapi?platform=All%20Platforms#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81) 和响应包体中 `message` 字段的描述进行错误排查。
+
+### 响应示例
+
+请求成功的响应示例：
 
 ```json
 {
@@ -326,15 +360,61 @@ POST https://api.agora.io/dabiz/license/v1/pad/add?licenseKey={licensekey}&appid
 }
 ```
 
-## 批量上传预授权
 
+## 上传预授权文件
+// TODO: 需要帮忙review下
+上传预授权白名单文件。
+
+### 接口原型
+- 方法：`POST`
+- 接入点：`https://api.agora.io/dabiz/license/v1/pad/upload`
+
+### 请求参数
+
+#### 请求头部
+
+| 参数 | 类型 | 描述 |
+|:---|:---|:---|
+|`Content-Type`| String | 设为 `multipart/form-data`。 |
+
+#### 查询参数
+
+在请求路径中传入以下查询参数：
+
+| 参数 | 类型 | 描述 |
+|:---|:---|:---|
+|`appid`| String | 声网分配给每个项目的唯一标识。 |
+
+#### 请求包体参数
+
+| 参数 | 类型 | 描述 |
+|:---|:---|:---|
+|`KEY`| String | 设为 `file`。 |
+|`VALUE`| String | 选择包含 LicenseKey 白名单的文本文件。 |
+
+### 请求示例
+
+#### 请求路径
 
 ```http
-POST https://api.agora.io/dabiz/license/v1/pad/upload?appid={appId}
+https://api.agora.io/dabiz/license/v1/pad/upload?appid=a6d6dba434be4b6683fad1aba6a7f75e
 ```
 
-body 选 form-data
-key 选 file，value 上传文件
+### 请求包体
+
+```json
+file=@pad.txt
+```
+
+### 响应参数
+
+如果状态码为 `200`，则请求成功。
+
+如果状态码不为 `200`，则请求失败。你可以根据返回的 [状态码](https://docs.agora.io/cn/Agora%20Platform/agora_console_restapi?platform=All%20Platforms#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81) 和响应包体中 `message` 字段的描述进行错误排查。
+
+### 响应示例
+
+请求成功的响应示例：
 
 ```json
 {
@@ -345,12 +425,63 @@ key 选 file，value 上传文件
 
 
 ## 删除预授权
+// TODO: 为啥我没删除成功 
+
+将指定 LicenseKey 移除预授权白名单。
+
+### 接口原型
+- 方法：`POST`
+- 接入点：`https://api.agora.io/dabiz/license/v1/pad/delete`
+
+### 请求参数
+
+#### 请求头部
+
+| 参数 | 类型 | 描述 |
+|:---|:---|:---|
+|`Content-Type`| String | 设为 `application/json`。 |
+
+#### 查询参数
+
+在请求路径中传入以下查询参数：
+
+| 参数 | 类型 | 描述 |
+|:---|:---|:---|
+|`appid`| String | 声网分配给每个项目的唯一标识。 |
+
+#### 请求包体参数
+
+| 参数 | 类型 | 描述 |
+|:---|:---|:---|
+|`ids`| Array | 移除预授权白名单的账号 ID 或设备 ID。 |
+
+### 请求示例
+
+#### 请求路径
 
 ```http
-POST https://api.agora.io/dabiz/license/v1/pad/delete?appid={appid}
+https://api.agora.io/dabiz/license/v1/pad/delete?appid=a6d6dba434be4b6683fad1aba6a7f75e
 ```
 
-body
+#### 请求包体
+
+```json
+{
+"ids": [
+54321
+]
+}
+```
+
+### 响应参数
+
+如果状态码为 `200`，则请求成功。
+
+如果状态码不为 `200`，则请求失败。你可以根据返回的 [状态码](https://docs.agora.io/cn/Agora%20Platform/agora_console_restapi?platform=All%20Platforms#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81) 和响应包体中 `message` 字段的描述进行错误排查。
+
+### 响应示例
+
+请求成功的响应示例：
 
 ```json
 {
@@ -404,11 +535,50 @@ https://api.agora.io/dabiz/license/v1/pad/clear?appid=a6d6dba434be4b6683fad1aba6
 ```
 
 
-## 查询指定预授权
+## 查询单个预授权
+
+查询指定设备 ID 或账号 ID 是否添加到预授权白名单。
+
+### 接口原型
+- 方法：`GET`
+- 接入点：`https://api.agora.io/dabiz/license/v1/pads/search`
+
+### 请求参数
+
+#### 查询参数
+
+在请求路径中传入以下查询参数：
+
+| 参数 | 类型 | 描述 |
+|:---|:---|:---|
+|`licenseKey`| String | 账号 ID 或设备 ID。 |
+|`appid`| String | 声网分配给每个项目的唯一标识。 |
+
+### 请求示例
+
+#### 请求路径
 
 ```http
-POST https://api.agora.io/dabiz/license/v1/pad/add?licenseKey={licensekey}&appid={appid}
+https://api.agora.io/dabiz/license/v1/pads/search?licenseKey=12345&appid=a6d6dba434be4b6683fad1aba6a7f75e
 ```
+
+### 响应参数
+
+如果状态码为 `200`，则请求成功，响应包体中包含如下参数：
+
+| 参数 | 类型 | 描述 |
+|:---|:---|:---|
+|`id`| String | 指定 LicenseKey 在预授权白名单中的序列号。 |
+|`cid`| String | 声网分配给每个企业 (组织) 的唯一标识。 |
+|`vid`| String | 声网分配给每个项目的内部唯一标识，与 App ID 为映射关系。 |
+|`licenseKey`| String | 账号 ID 或设备 ID。 |
+|`createTime`| String | 指定 LicenseKey 被添加到预授权白名单的时间。 |
+
+如果状态码不为 `200`，则请求失败。你可以根据返回的 [状态码](https://docs.agora.io/cn/Agora%20Platform/agora_console_restapi?platform=All%20Platforms#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81) 和响应包体中 `message` 字段的描述进行错误排查。
+
+### 响应示例
+
+请求成功的响应示例：
 
 ```json
 {
@@ -428,9 +598,46 @@ POST https://api.agora.io/dabiz/license/v1/pad/add?licenseKey={licensekey}&appid
 
 ## 查询预授权
 
+查询预授权白名单。
+
+### 接口原型
+- 方法：`GET`
+- 接入点：`https://api.agora.io/dabiz/license/v1/pads`
+
+### 请求参数
+
+#### 查询参数
+
+在请求路径中传入以下查询参数：
+
+| 参数 | 类型 | 描述 |
+|:---|:---|:---|
+|`page`| Integer | 查询页码。 |
+|`size`| Integer | 分页大小。 |
+|`appid`| String | 声网分配给每个项目的唯一标识。 |
+
+### 请求示例
+
+#### 请求路径
+
 ```http
-GET https://api.agora.io/dabiz/license/v1/pads?page={page}&size={size}&appid={appid}
+https://api.agora.io/dabiz/license/v1/pads?page=1&size=10&appid=a6d6dba434be4b6683fad1aba6a7f75e
 ```
+
+### 响应参数
+
+如果状态码为 `200`，则请求成功，响应包体中包含如下参数：
+
+| 参数 | 类型 | 描述 |
+|:---|:---|:---|
+|`count`| Integer | 预授权白名单中 LicenseKey 的数量。 |
+|`list`| Array | 预授权白名单详情：<li>`id` (String): 指定 LicenseKey 在预授权白名单中的序列号</li><li>`cid` (String): 声网分配给每个企业 (组织) 的唯一标识</li><li>`vid` (String): 声网分配给每个项目的内部唯一标识，与 App ID 为映射关系</li><li>`licenseKey` (String)</li> (String): 账号 ID 或设备 ID。<li>`createTime` (String)</li>: 指定 LicenseKey 被添加到预授权白名单的时间。 |
+
+如果状态码不为 `200`，则请求失败。你可以根据返回的 [状态码](https://docs.agora.io/cn/Agora%20Platform/agora_console_restapi?platform=All%20Platforms#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81) 和响应包体中 `message` 字段的描述进行错误排查。
+
+### 响应示例
+
+请求成功的响应示例：
 
 ```json
 {
@@ -460,9 +667,39 @@ GET https://api.agora.io/dabiz/license/v1/pads?page={page}&size={size}&appid={ap
 
 ## 导出预授权
 
+导出预授权白名单。
+
+### 接口原型
+- 方法：`GET`
+- 接入点：`https://api.agora.io/dabiz/license/v1/pads/export`
+
+### 请求参数
+
+#### 查询参数
+
+在请求路径中传入以下查询参数：
+
+| 参数 | 类型 | 描述 |
+|:---|:---|:---|
+|`appid`| String | 声网分配给每个项目的唯一标识。 |
+
+### 请求示例
+
+#### 请求路径
+
 ```http
-GET https://api.agora.io/dabiz/license/v1/pads/export?appid={appid}
+https://api.agora.io/dabiz/license/v1/pads/export?appid=a6d6dba434be4b6683fad1aba6a7f75e
 ```
+
+### 响应参数
+
+如果请求成功，会返回预授权白名单列表。如果
+
+如果请求失败，你可以根据返回的响应包体中 `message` 字段的描述进行错误排查。
+
+### 响应示例
+
+请求成功的响应示例：
 
 ```json
 12345
