@@ -107,7 +107,7 @@ License 提供 OpenAPI 和 Console 两种使用途径，具体流程如下：
 合同约定的 License 能力集，其中包含 License 能力 (音频、视频、音视频)、License 分钟数上限、 License 使用时间段。SKU 全局唯一。
 
 ### 品类
-License 用于绑定账号或用于绑定设备。
+账号 License 或设备 License。
 
 ### 有效期
 测试 License 有效期以月为单位，正式 License 有效期以年为单位。有效期从激活 License 开始计算。
