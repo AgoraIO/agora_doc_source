@@ -142,7 +142,6 @@ To enable one-to-one text messaging quickly, Agora has deployed an app server to
                              pwd:(NSString *)pwd
                       completion:(void (^)(NSInteger statusCode, NSString *aUsername))aCompletionBlock
    {
-       //NSString *hkURl = @"https://hk-test.easemob.com/app/chat/user/register";
        NSURL *url = [NSURL URLWithString:@"https://a41.chat.agora.io/app/chat/user/register"];
        NSMutableURLRequest *request = [NSMutableURLRequest
                                                    requestWithURL:url];
@@ -169,7 +168,6 @@ To enable one-to-one text messaging quickly, Agora has deployed an app server to
                           pwd:(NSString *)pwd
                    completion:(void (^)(NSInteger statusCode, NSString *response))aCompletionBlock
    {
-       //NSString *hkURl = @"https://hk-test.easemob.com/app/chat/user/login";
        NSURL *url = [NSURL URLWithString:@"https://a41.chat.agora.io/app/chat/user/login"];
        NSMutableURLRequest *request = [NSMutableURLRequest
                                                    requestWithURL:url];
