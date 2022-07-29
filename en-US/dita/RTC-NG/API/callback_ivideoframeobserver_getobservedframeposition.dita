@@ -12,20 +12,12 @@
     </prolog>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
+            <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">int getObservedFramePosition();</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (unsigned int)getObservedFramePosition;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual uint32_t getObservedFramePosition() {
                 return base::POSITION_POST_CAPTURER | base::POSITION_PRE_RENDERER;
                 }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual VIDEO_OBSERVER_POSITION GetObservedFramePosition()
-        {
-            return VIDEO_OBSERVER_POSITION.POSITION_POST_CAPTURER | VIDEO_OBSERVER_POSITION.POSITION_PRE_RENDERER;
-        }</codeblock> </p>
-            <p outputclass="codeblock" props="rtc">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">virtual uint32_t getObservedFramePosition() { return static_cast&lt;uint32_t&gt;(POSITION_POST_CAPTURER | POSITION_PRE_RENDERER); }</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual VIDEO_OBSERVER_POSITION GetObservedFramePosition()
         {
@@ -35,12 +27,6 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>Since</dt>
-                <dd>v3.0.1</dd>
-            </dlentry>
-            </dl>
             <p>After successfully registering the video data observer, the SDK uses this callback to determine whether to trigger the <xref keyref="onCaptureVideoFrame"/> , <xref keyref="onRenderVideoFrame"/>, and <xref keyref="onPreEncodeVideoFrame"/> callbacks at each specific video frame processing position, so that you can observe the locally collected video data, the video data sent by the remote end, and the video data before encoding. You can set one or more positions you need to observe by modifying the return value according to your scenarios:</p>
             <p>
             <ul>
@@ -57,7 +43,7 @@
             </ul> </note> </section>
         <section id="return_values">
             <title>Returns</title>
-            <p props="cpp ios mac">A bit mask that controls the frame position of the video observer. See <xref keyref="VIDEO_OBSERVER_POSITION"/>.</p>
+            <p props="cpp ios mac unity">A bit mask that controls the frame position of the video observer. See <xref keyref="VIDEO_OBSERVER_POSITION"/>.</p>
             <p props="android">A bit mask that controls the frame position of the video observer.<ul>
             <li><apiname keyref="POSITION_POST_CAPTURER"/>(1 &lt;&lt; 0): The position after capturing the video data, which corresponds to the <apiname keyref="onCaptureVideoFrame"/> callback.</li>
             <li><apiname keyref="POSITION_PRE_RENDERER"/>(1 &lt;&lt; 1): The position before receiving the remote video data, which corresponds to the <apiname keyref="onRenderVideoFrame"/> callback.</li>
