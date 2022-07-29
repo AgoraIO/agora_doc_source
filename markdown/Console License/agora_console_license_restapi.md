@@ -317,7 +317,7 @@ https://api.agora.io/dabiz/license/v1/pad/add?licenseKey=12345&appid=a6d6dba434b
 
 
 ## 上传预授权文件
-// TODO: 需要帮忙review下
+
 上传预授权白名单文件。
 
 ### 接口原型
@@ -345,7 +345,7 @@ https://api.agora.io/dabiz/license/v1/pad/add?licenseKey=12345&appid=a6d6dba434b
 | 参数 | 类型 | 描述 |
 |:---|:---|:---|
 |`KEY`| String | 设为 `file`。 |
-|`VALUE`| String | 选择包含 LicenseKey 白名单的文本文件。 |
+|`VALUE`| String | 选择 LicenseKey 白名单的文本文件。 |
 
 ### 请求示例
 
@@ -380,9 +380,8 @@ file=@pad.txt
 
 
 ## 删除预授权
-// TODO: 为啥我没删除成功 
 
-将指定 LicenseKey 移除预授权白名单。
+将指定 LicenseKey 预授权白名单。
 
 ### 接口原型
 - 方法：`POST`
@@ -492,7 +491,7 @@ https://api.agora.io/dabiz/license/v1/pad/clear?appid=a6d6dba434be4b6683fad1aba6
 
 ## 查询单个预授权
 
-查询指定设备 ID 或账号 ID 是否添加到预授权白名单。
+查询指定 LicenseKey 是否添加到预授权白名单。
 
 ### 接口原型
 - 方法：`GET`
@@ -523,9 +522,9 @@ https://api.agora.io/dabiz/license/v1/pads/search?licenseKey=12345&appid=a6d6dba
 
 | 参数 | 类型 | 描述 |
 |:---|:---|:---|
-|`id`| String | 指定 LicenseKey 在预授权白名单中的序列号。 |
+|`id`| String | 预授权白名单的序列号。 |
 |`cid`| String | 声网分配给每个企业 (组织) 的唯一标识。 |
-|`vid`| String | 声网分配给每个项目的内部唯一标识，与 App ID 为映射关系。 |
+|`vid`| String | 声网分配给每个项目的内部标识，与 App ID 为映射关系。 |
 |`licenseKey`| String | 账号 ID 或设备 ID。 |
 |`createTime`| String | 指定 LicenseKey 被添加到预授权白名单的时间。 |
 
@@ -586,7 +585,7 @@ https://api.agora.io/dabiz/license/v1/pads?page=1&size=10&appid=a6d6dba434be4b66
 | 参数 | 类型 | 描述 |
 |:---|:---|:---|
 |`count`| Integer | 预授权白名单中 LicenseKey 的数量。 |
-|`list`| Array | 预授权白名单详情：<li>`id` (String): 指定 LicenseKey 在预授权白名单中的序列号</li><li>`cid` (String): 声网分配给每个企业 (组织) 的唯一标识</li><li>`vid` (String): 声网分配给每个项目的内部唯一标识，与 App ID 为映射关系</li><li>`licenseKey` (String)</li> (String): 账号 ID 或设备 ID。<li>`createTime` (String)</li>: 指定 LicenseKey 被添加到预授权白名单的时间。 |
+|`list`| Array | 预授权白名单详情：<li>`id` (String): 指定 LicenseKey 在预授权白名单中的序列号。</li><li>`cid` (String): 声网分配给每个企业 (组织) 的唯一标识。</li><li>`vid` (String): 声网分配给每个项目的内部唯一标识，与 App ID 为映射关系。</li><li>`licenseKey` (String): 账号 ID 或设备 ID。</li><li>`createTime` (String): 指定 LicenseKey 被添加到预授权白名单的时间。</li> |
 
 如果状态码不为 `200`，则请求失败。你可以根据返回的 [状态码](https://docs.agora.io/cn/Agora%20Platform/agora_console_restapi?platform=All%20Platforms#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81) 和响应包体中 `message` 字段的描述进行错误排查。
 
@@ -648,7 +647,7 @@ https://api.agora.io/dabiz/license/v1/pads/export?appid=a6d6dba434be4b6683fad1ab
 
 ### 响应参数
 
-如果请求成功，会返回预授权白名单列表。如果
+如果请求成功，会返回预授权白名单列表。
 
 如果请求失败，你可以根据返回的响应包体中 `message` 字段的描述进行错误排查。
 
@@ -664,7 +663,7 @@ https://api.agora.io/dabiz/license/v1/pads/export?appid=a6d6dba434be4b6683fad1ab
 
 ## 续期
 
-激活控制台 License 的续期额度。
+激活 License 的续期额度。
 
 ### 接口原型
 - 方法：`POST`
