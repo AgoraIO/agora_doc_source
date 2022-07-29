@@ -21,7 +21,8 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnContentInspectResult(CONTENT_INSPECT_RESULT result)</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">OnContentInspectResult? contentInspectResult;</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(ContentInspectResult result)? onContentInspectResult;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>After calling <xref keyref="enableContentInspect"/> to enable the video content moderation, and setting the <parmname>type</parmname> parameter in <xref keyref="ContentInspectConfig"/> to<apiname keyref="CONTENT_INSPECT_MODERATION"/>, the SDK triggers the <xref keyref="onContentInspectResult"/> callback and reports the result of video content moderation.</p>
