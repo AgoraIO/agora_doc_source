@@ -23,14 +23,16 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p props="unity">Before calling this method, you need to set <parmname props="unity">mEnableAudioDevice</parmname> in <xref keyref="RtcEngineConfig"/> as <codeph><ph keyref="false"/></codeph>, and call <xref keyref="setExternalAudioSink"/> to notify the app to enable and set the external rendering.</p>
+            <p>使用该方法前，你需要在 <xref keyref="RtcEngineConfig"/> 中设置 <parmname props="android">mEnableAudioDevice</parmname><parmname props="ios mac cpp">enableAudioDevice</parmname> 为 <codeph><ph keyref="false"/></codeph>， 并调用 <xref keyref="setExternalAudioSink"/> 通知 app 开启并设置外部渲染。</p>
             <p>After a successful method call, the app pulls the decoded and mixed audio data for playback.</p>
             <note type="attention">
             <ul>
-            <li props="unity">This method only supports pulling data from custom audio source. If you need to pull the data captured by the SDK, do not call this method.</li>
+            <li>This method only supports pulling data from custom audio source. If you need to pull the data captured by the SDK, do not call this method.</li>
             <li>Call this method after joining a channel.</li>
-            <li props="unity">Once you enable the external audio sink, the app does not retrieve any audio data from the <xref keyref="onPlaybackAudioFrame"/> callback.</li>
-            <li>The difference between this method and the <apiname keyref="onPlaybackAudioFrame"/> callback is as follows:<ul>
+            <li>Once you enable the external audio sink, the app does not retrieve any audio data from the <xref keyref="onPlaybackAudioFrame"/> callback.</li>
+            <li>该方法和 <apiname keyref="onPlaybackAudioFrame"/> 回调相比，区别在于：
+
+                <ul>
                 <li>The SDK sends the audio data to the app through the <apiname keyref="onPlaybackAudioFrame"/> callback. Any delay in processing the audio frames may result in audio jitter.</li>
                 <li>After a successful method call, the app automatically pulls the audio data from the SDK. After setting the audio data parameters, the SDK adjusts the frame buffer and avoids problems caused by jitter in the external audio playback.</li>
                 </ul></li>
