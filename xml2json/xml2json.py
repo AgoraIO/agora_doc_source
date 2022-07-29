@@ -195,11 +195,9 @@ for topichead in dita_file_root.iter("topichead"):
                 json_hide_id_list.append(dita_id)
 
 
-
 print("--------------- Hide id list ------------------------")
 print(json_hide_id_list)
 print("--------------- Hide id list ------------------------")
-
 
 # Target platform
 
