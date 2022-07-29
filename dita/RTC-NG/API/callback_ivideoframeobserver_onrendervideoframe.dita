@@ -12,24 +12,14 @@
     </prolog>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
+            <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">boolean onRenderVideoFrame(String channelId, int uid, VideoFrame videoFrame);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onRenderVideoFrame:(AgoraOutputVideoFrame * _Nonnull)videoFrame
     uid:(NSUInteger)uid
     channelId:(NSString * _Nonnull)channelId;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual bool onRenderVideoFrame(const char* channelId, rtc::uid_t remoteUid, VideoFrame&amp; videoFrame) = 0;
-</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnRenderVideoFrame(uint uid, VideoFrame videoFrame)
-        {
-            return true;
-        }</codeblock> </p>
-            <p outputclass="codeblock" props="rtc">
-            <codeblock props="android" outputclass="language-java">boolean onRenderVideoFrame(int uid, VideoFrame videoFrame);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onRenderVideoFrame:(AgoraOutputVideoFrame * _Nonnull)videoFrame
-    uid:(NSUInteger)uid ;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual bool onRenderVideoFrame(unsigned int uid, VideoFrame&amp; videoFrame) = 0;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual bool onRenderVideoFrame(const char* channelId, rtc::uid_t remoteUid, VideoFrame&amp; videoFrame) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnRenderVideoFrame(uint uid, VideoFrame videoFrame)
+            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnRenderVideoFrame(string channelId, uint uid, VideoFrame videoFrame)
         {
             return true;
         }</codeblock>
@@ -51,9 +41,9 @@
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="rtc-ng">
-                <pt props="native">channelId</pt>
-                <pd props="native">频道 ID。</pd>
+            <plentry>
+                <pt>channelId</pt>
+                <pd>频道 ID。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">

@@ -12,28 +12,21 @@
     </prolog>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="unity" outputclass="language-csharp">public abstract int GetDuration(int playerId, ref Int64 duration);</codeblock> </p>
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">long getDuration();
-</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (NSInteger)getDuration;
-</codeblock>
+            <codeblock props="android" outputclass="language-java">long getDuration();</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (NSInteger)getDuration;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int getDuration(int64_t&amp; duration) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="electron" outputclass="language-typescript">abstract getDuration(): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int GetDuration(ref Int64 duration);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract getDuration(): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; getDuration();</codeblock> </p>
         </section>
-        <section id="parameters">
+        <section id="parameters" props="cpp unity">
             <title>Parameters</title>
             <parml>
-            <plentry props="unity">
-                <pt>playerId</pt>
-                <pd>The ID of the media player.</pd>
-            </plentry>
-            <plentry props="cpp unity">
+            <plentry>
                 <pt>duration</pt>
-                <pd>An output parameter. The total duration (ms) of the media file.</pd>
+                <pd>Output parameter. The total duration (ms) of the media file.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
@@ -41,10 +34,12 @@
             <ul id="ul_uns_l2y_hqb" props="cpp unity">
             <li>0: Success.</li>
             <li>&lt; 0: Failure.</li>
-            </ul> 
-        <ul props="apple android">
-            <li>If the method call succeeds, the SDK returns the total duration(ms) of the media file.</li>
-            <li>≤ 0: Failure.</li>
-        </ul></section>
+            </ul>
+            <p props="electron rn flutter">The total duration (ms) of the media file.</p>
+            <ul props="apple android">
+                <li>If the method call succeeds, the SDK returns the total duration(ms) of the media file.</li>
+                <li>≤ 0: Failure.</li>
+            </ul>
+            </section>
     </refbody>
 </reference>

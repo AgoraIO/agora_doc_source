@@ -43,7 +43,7 @@
             <relcell>
                 <topicref keyref="ContentInspectConfig"/>
             </relcell>
-        </relrow>        
+        </relrow>
         <relrow>
             <relcell>
                 <topicref keyref="setAudioRangeMode"/>
@@ -686,6 +686,14 @@
         </relrow>
         <relrow>
             <relcell>
+                <topicref keyref="onClientRoleChangeFailed"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="CLIENT_ROLE_CHANGE_FAILED_REASON"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
                 <topicref keyref="onUserOffline"/>
             </relcell>
             <relcell>
@@ -785,6 +793,7 @@
             <relcell>
                 <topicref keyref="LocalVideoStats"/>
                 <topicref keyref="VIDEO_CODEC_TYPE"/>
+                <topicref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE"/>
                 <topicref keyref="QUALITY_ADAPT_INDICATION" props="cpp ios mac"/>
             </relcell>
         </relrow>
@@ -812,6 +821,7 @@
             </relcell>
             <relcell>
                 <topicref keyref="AUDIO_MIXING_STATE_TYPE"/>
+                <topicref keyref="AUDIO_MIXING_REASON_TYPE"/>
             </relcell>
         </relrow>
         <relrow>
@@ -908,6 +918,7 @@
                 <topicref keyref="onMixedAudioFrame"/>
             </relcell>
             <relcell>
+                <topicref keyref="AudioParams"/>
                 <topicref keyref="AudioFrame"/>
                 <topicref keyref="AUDIO_FRAME_TYPE"/>
             </relcell>
@@ -965,7 +976,7 @@
                 <topicref keyref="UserAudioSpectrumInfo"/>
             </relcell>
         </relrow>
-        <relrow props="cpp android">
+        <relrow props="hide">
             <relcell>
                 <topicref keyref="pushEncodedVideoImage"/>
             </relcell>
@@ -975,10 +986,10 @@
         </relrow>
         <relrow props="cpp android">
             <relcell>
-                <topicref keyref="registerVideoEncodedImageReceiver"/>
+                <topicref keyref="registerVideoEncodedFrameObserver"/>
             </relcell>
             <relcell>
-                <topicref keyref="IVideoEncodedImageReceiver"/>
+                <topicref keyref="IVideoEncodedFrameObserver"/>
                 <topicref keyref="IVideoFrameObserver"/>
             </relcell>
         </relrow>
@@ -1332,7 +1343,7 @@
         </relrow>
         <relrow props="cpp android">
             <relcell>
-                <topicref keyref="onEncodedVideoImageReceived"/>
+                <topicref keyref="OnEncodedVideoFrameReceived"/>
             </relcell>
             <relcell>
                 <topicref keyref="EncodedVideoFrameInfo"/>
@@ -1436,12 +1447,12 @@
                 <topicref keyref="MEDIA_SOURCE_TYPE"/>
             </relcell>
         </relrow>
-        <relrow props="cpp">
+        <relrow props="cpp mac">
             <relcell>
                 <topicref keyref="getScreenCaptureSources"/>
             </relcell>
             <relcell>
-                <topicref keyref="SIZE" props="hide"/>
+                <topicref keyref="SIZE" props="cpp"/>
                 <topicref keyref="IScreenCaptureSourceList"/>
             </relcell>
         </relrow>
@@ -1469,6 +1480,75 @@
             </relcell>
             <relcell>
                 <topicref keyref="VideoFormat"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="setSpatialAudioParams"/>
+                <topicref keyref="setRemoteUserSpatialAudioParams"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="SpatialAudioParams"/>
+            </relcell>
+        </relrow>
+        <relrow props="android ios cpp">
+            <relcell>
+                <topicref keyref="startScreenCapture"/>
+                <topicref keyref="updateScreenCapture" props="ios cpp"/>
+                <topicref keyref="updateScreenCaptureParameters" props="android"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="ScreenCaptureParameters2"/>
+                <topicref keyref="ScreenAudioParameters"/>
+                <topicref keyref="ScreenVideoParameters"/>
+            </relcell>
+        </relrow>
+        <relrow props="mac">
+            <relcell>
+                <topicref keyref="getDefaultDevice_IAudioDeviceCollection"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="AgoraRtcDeviceInfo"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="setLocalAccessPoint"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="LocalAccessPointConfiguration"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="startRecording"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="MediaRecorderConfiguration"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="startEchoTest"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="EchoTestConfiguration"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="enableVideoImageSource"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="ImageTrackOptions"/>
+            </relcell>
+        </relrow>
+       <relrow>
+            <relcell>
+                <topicref keyref="setAudioScenario"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="AUDIO_SCENARIO_TYPE"/>
             </relcell>
         </relrow>
     </reltable>
@@ -1670,24 +1750,27 @@
                 <topicref keyref="onLastmileProbeResult"/>
             </relcell>
         </relrow>
-        <relrow props="cpp ios mac android">
+        <relrow props="native">
             <relcell>
+                <topicref keyref="getRecordAudioParams"/>
                 <topicref keyref="setRecordingAudioFrameParameters"/>
             </relcell>
             <relcell>
                 <topicref keyref="onRecordAudioFrame"/>
             </relcell>
         </relrow>
-        <relrow props="android ios mac cpp">
+        <relrow props="native">
             <relcell>
+                <topicref keyref="getPlaybackAudioParams"/>
                 <topicref keyref="setPlaybackAudioFrameParameters"/>
             </relcell>
             <relcell>
                 <topicref keyref="onPlaybackAudioFrame"/>
             </relcell>
         </relrow>
-        <relrow props="android ios mac cpp">
+        <relrow props="native">
             <relcell>
+                <topicref keyref="getMixedAudioParams"/>
                 <topicref keyref="setMixedAudioFrameParameters"/>
             </relcell>
             <relcell>
@@ -1875,6 +1958,7 @@
         <relrow>
             <relcell>
                 <topicref keyref="takeSnapshot"/>
+                <topicref keyref="takeSnapshotEx"/>
             </relcell>
             <relcell>
                 <topicref keyref="onSnapshotTaken"/>
@@ -1930,6 +2014,14 @@
             </relcell>
             <relcell>
                 <topicref keyref="onContentInspectResult"/>
+            </relcell>
+        </relrow>
+        <relrow props="ios">
+            <relcell>
+                <topicref keyref="startScreenCapture"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="onLocalVideoStateChanged"/>
             </relcell>
         </relrow>
     </reltable>

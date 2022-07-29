@@ -5,39 +5,38 @@
     <shortdesc id="short"><ph id="shortdesc">Starts the video capture device test.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="startDeviceTest" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="startDeviceTest" />
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="cpp" outputclass="language-cpp">virtual int startDeviceTest(view_t hwnd) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">startVideoDeviceTest(): number</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public abstract int StartDeviceTest(view_t hwnd);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startVideoDeviceTest(int hwnd)</codeblock>
-        </p>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="cpp" outputclass="language-cpp">virtual int startDeviceTest(view_t hwnd) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract startDeviceTest(hwnd: any): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int StartDeviceTest(view_t hwnd);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startDeviceTest(int hwnd);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-   
-   <p>This method tests whether the video-capture device is working properly. Before calling this method, ensure that you have already called the <xref keyref="enableVideo" /> method, and the window handle (hwnd) parameter is valid.</p>
+            <p>This method tests whether the video-capture device is working properly. Before calling this method, ensure that you have already called the <xref keyref="enableVideo" />  method, and the window handle (hwnd) parameter is valid.</p>
         </section>
-        <section id="parameters" props="cpp unity"><title>Parameters</title>
-   <parml>
-       <plentry>
-  <pt>hwnd</pt>
-  <pd>The window handle used to display the screen.</pd>
-       </plentry>
-   </parml>
-        </section>
-        <section id="return_values" props="native electron unity">
-   <title>Returns</title>
-   <ul>
-       <li>0: Success.</li>
-       <li>&lt; 0: Failure.</li>
-   </ul>
-        </section></refbody>
+        <section id="parameters" props="cpp unity">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>hwnd</pt>
+                <pd>The window handle of the view.</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron unity rn">
+            <title>Returns</title>
+            <ul>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
+    </refbody>
 </reference>

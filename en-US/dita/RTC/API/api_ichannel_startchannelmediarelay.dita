@@ -24,7 +24,6 @@
         </section>
         <section id="detailed_desc">
             <p>After a successful method call, the SDK triggers the <xref keyref="IChannel_onChannelMediaRelayStateChanged" /> and <xref keyref="IChannel_onChannelMediaRelayEvent" /> callbacks, and these callbacks return the state and events of the media stream relay.
-
             <ul>
             <li>If the <apiname keyref="IChannel_onChannelMediaRelayStateChanged" /> callback returns <apiname keyref="RELAY_STATE_RUNNING" /> (2) and <apiname keyref="RELAY_OK" /> (0), and the <apiname keyref="IChannel_onChannelMediaRelayEvent" /> callback returns <apiname keyref="RELAY_EVENT_PACKET_SENT_TO_DEST_CHANNEL" /> (4), it means that the SDK starts relaying media streams between the source channel and the destination channel.</li>
             <li>If the <apiname keyref="IChannel_onChannelMediaRelayStateChanged" /> callback returns <apiname keyref="RELAY_STATE_FAILURE" /> (3), an exception occurs during the media stream relay.</li>
@@ -34,7 +33,7 @@
             <li>Call this method after joining the channel.</li>
             <li>This method takes effect only when you are a host in a live streaming channel.</li>
             <li>After a successful method call, if you want to call this method again, ensure that you call the <xref keyref="IChannel_stopChannelMediaRelay" /> method to quit the current relay.</li>
-            <li>You need to <xref keyref="mailto-link-saleus" /> before implementing this function.</li>
+            <li>You need to <xref keyref="ticket-link" /> before implementing this function.</li>
             <li>We do not support string user accounts in this API.</li>
             </ul> </note> </section>
         <section id="parameters" conkeyref="startChannelMediaRelay/parameters" />

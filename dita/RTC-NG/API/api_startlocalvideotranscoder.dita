@@ -17,10 +17,12 @@
             <codeblock props="ios mac" outputclass="language-objectivec"/>
             <codeblock props="cpp" outputclass="language-cpp">virtual int startLocalVideoTranscoder(const LocalTranscoderConfiguration&amp; config) = 0;
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="electron" outputclass="language-typescript">abstract startLocalVideoTranscoder(config: LocalTranscoderConfiguration): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript">abstract startLocalVideoTranscoder(
+            config: LocalTranscoderConfiguration
+            ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startLocalVideoTranscoder(LocalTranscoderConfiguration config);</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>调用该方法后，你可以在本地将多路视频流合并为一路视频流。常见场景如下：
@@ -39,11 +41,11 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul id="ul_ahk_23f_3qb">
-            <li>0: 方法调用成功。</li>
-            <li>&lt; 0: 方法调用失败。</li>
+            <li>0: 方法调用成功</li>
+            <li>&lt; 0: 方法调用失败</li>
             </ul> </section>
     </refbody>
 </reference>

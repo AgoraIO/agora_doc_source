@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onrtmpstreamingstatechanged">
-    <title><ph keyref="onRtmpStreamingStateChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc">旁路推流状态发生改变回调。</ph></shortdesc>
+    <title> <ph keyref="onRtmpStreamingStateChanged"/> </title>
+    <shortdesc id="short"> <ph id="shortdesc">旁路推流状态发生改变回调。</ph> </shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -21,26 +21,23 @@
   (void)state;
   (void)errCode;
 }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(
-  evt: EngineEvents.RTMP_STREAMING_STATE_CHANGED,
-  cb: (
-    url: string,
-    state: RTMP_STREAM_PUBLISH_STATE,
-    errCode: RTMP_STREAM_PUBLISH_ERROR
-  ) =&gt; void
-): this;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnRtmpStreamingStateChanged(string url, RTMP_STREAM_PUBLISH_STATE state,
-            RTMP_STREAM_PUBLISH_ERROR errCode)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">RtmpStreamingStateCallback? rtmpStreamingStateChanged;</codeblock> </p>
+            <codeblock props="electron" outputclass="language-typescript">onRtmpStreamingStateChanged?(url: string, state: RtmpStreamPublishState, errCode: RtmpStreamPublishErrorType): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnRtmpStreamingStateChanged(string url, RTMP_STREAM_PUBLISH_STATE state, RTMP_STREAM_PUBLISH_ERROR_TYPE errCode) { }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onRtmpStreamingStateChanged?(
+            url: string,
+            state: RtmpStreamPublishState,
+            errCode: RtmpStreamPublishErrorType
+            ): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(String url, RtmpStreamPublishState state,
+            RtmpStreamPublishErrorType errCode)? onRtmpStreamingStateChanged;
+            </codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>旁路推流状态发生改变时，SDK会触发该回调，并在回调中明确状态发生改变的 URL 地址及当前推流状态。
-   该回调方便推流用户了解当前的推流状态；推流出错时，你可以通过返回的错误码了解出错的原因，方便排查问题。</p>
+            <p>旁路推流状态发生改变时，SDK会触发该回调，并在回调中明确状态发生改变的 URL 地址及当前推流状态。该回调方便推流用户了解当前的推流状态；推流出错时，你可以通过返回的错误码了解出错的原因，方便排查问题。</p>
         </section>
         <section id="parameters">
             <title> <ph keyref="callback-section-title"/> </title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt/>
@@ -54,7 +51,7 @@
             </plentry>
             <plentry id="state">
                 <pt>state</pt>
-                <pd props="ios mac cpp">当前的推流状态，详见 <xref keyref="RTMP_STREAM_PUBLISH_STATE"/>。</pd>
+                <pd props="ios mac cpp electron unity rn flutter">当前的推流状态，详见 <xref keyref="RTMP_STREAM_PUBLISH_STATE"/>。</pd>
                 <pd props="android">当前的推流状态:
                 
                     <ul>
@@ -73,7 +70,7 @@
             </plentry>
             <plentry id="errCode">
                 <pt>errCode</pt>
-                <pd props="ios mac cpp">推流错误信息，详见 <xref keyref="RTMP_STREAM_PUBLISH_ERROR"/>。</pd>
+                <pd props="ios mac cpp electron unity rn flutter">推流错误信息，详见 <xref keyref="RTMP_STREAM_PUBLISH_ERROR"/>。</pd>
                 <pd props="android">推流错误信息。
                     <ul>
                     <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_OK"/> (0)：推流成功。</li>

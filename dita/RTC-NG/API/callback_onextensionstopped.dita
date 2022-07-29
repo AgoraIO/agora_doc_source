@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_onextensionstopped">
+    <title><ph keyref="onExtensionStopped"/></title>
+    <shortdesc id="short"><ph id="shortdesc">插件禁用回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onExtensionStopped"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">void onStopped(String provider, String extension);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onExtensionStopped:(NSString * __nullable)provider
+                 extension:(NSString * __nullable)extension;
+</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onExtensionStopped(const char* provider, const char* extension) {
+    (void)provider;
+    (void)extension;
+  }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">onExtensionStopped?(provider: string, extName: string): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnExtensionStopped(string provider, string ext_name) { }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onExtensionStopped?(provider: string, extName: string): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(String provider, String extName)? onExtensionStopped;
+</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>当调用 <codeph><xref keyref="enableExtension"/>(<q><ph keyref="false"/></q>)</codeph> 禁用插件成功时，插件会触发该回调。</p>
+        </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry conkeyref="setExtensionProperty/vendor">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="onExtensionEvent/extension">
+                <pt/>
+                <pd/>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

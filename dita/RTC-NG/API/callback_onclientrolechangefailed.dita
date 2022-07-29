@@ -23,13 +23,18 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
-        </section>
+        <codeblock props="flutter" outputclass="language-dart">final void Function(
+            RtcConnection connection,
+            ClientRoleChangeFailedReason reason,
+            ClientRoleType currentRole)? onClientRoleChangeFailed;
+        </codeblock> </p>
+      </section>
        <section id="detailed_desc">
             <p>直播场景下，本地用户加入频道后调用 <xref keyref="setClientRole1"/> 切换用户角色失败时，SDK 会触发该回调，报告切换失败的原因和当前的用户角色。</p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
             <plentry>
                 <pt>reason</pt>

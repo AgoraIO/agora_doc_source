@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_videoviewcontroller">
+    <title><ph keyref="VideoViewController"/></title>
+    <shortdesc id="short"><ph id="shortdesc">A <xref keyref="AgoraVideoView"
+        /> controller for rendering local and remote video.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp"/>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">class VideoViewController
+    with VideoViewControllerBaseMixin
+    implements VideoViewControllerBase {
+  VideoViewController({
+    required this.rtcEngine,
+    required this.canvas,
+    this.useFlutterTexture = false,
+    this.useAndroidSurfaceView = false,
+  }) : connection = const RtcConnection();
+
+  VideoViewController.remote({
+    required this.rtcEngine,
+    required this.canvas,
+    required this.connection,
+    this.useFlutterTexture = false,
+    this.useAndroidSurfaceView = false,
+  }) : assert(connection.channelId != null);
+
+  @override
+  final RtcEngine rtcEngine;
+
+  @override
+  final VideoCanvas canvas;
+
+  @override
+  final RtcConnection connection;
+
+  @override
+  final bool useFlutterTexture;
+
+  @override
+  final bool useAndroidSurfaceView;
+
+  @protected
+  @override
+  int getVideoSourceType() {
+    return canvas.uid! == 0
+        ? VideoSourceType.videoSourceCamera.value()
+        : VideoSourceType.videoSourceRemote.value();
+  }
+}
+</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>On different platforms, the default view corresponding to this class is different:<ul>
+            <li>Android: <xref keyref="TextureView-link"/>. If you want to use <xref keyref="SurfaceView-link"/>, set the <codeph>useAndroidSurfaceView</codeph> property to <codeph>true</codeph>.</li>
+            <li>iOS: <xref keyref="UIView-link"/>. If you want to use Flutter Texture, set the <codeph>useFlutterTexture</codeph> property to <codeph>true</codeph>.</li>
+            <li>macOS and Windows: <xref keyref="FlutterTexture-link"/>.</li>
+            </ul> </p>
+        </section>
+        <section id="parameters">
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry id="rtcengine">
+                <pt>rtcEngine</pt>
+                <pd><xref keyref="IRtcEngine"/>.</pd>
+            </plentry>
+            <plentry id="canvas">
+                <pt>canvas</pt>
+                <pd>Local video display properties. See <xref keyref="VideoCanvas"/>.</pd>
+            </plentry>
+            <plentry id="connection">
+                <pt>connection</pt>
+                <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
+            </plentry>
+            <plentry id="fluttertexture">
+                <pt>useFlutterTexture</pt>
+                <pd>Whether to use <codeph>FlutterTexture</codeph> to render video:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Use <codeph>FlutterTexture</codeph> to render video.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Do not use <codeph>FlutterTexture</codeph> to render video.</li>
+                    </ul>
+                    <note><codeph>FlutterTexture</codeph> applies to iOS, macOS and Windows platforms.</note></pd>
+            </plentry>
+            <plentry id="androidsurfaceview">
+                <pt>useAndroidSurfaceView</pt>
+                <pd>Whether to use Android <codeph>SurfaceView</codeph> to render video:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Use Android <codeph>SurfaceView</codeph> to render video.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Do not use Android <codeph>SurfaceView</codeph> to render video.</li>
+                    </ul>
+                    <note>Android <codeph>SurfaceView</codeph> applies to Android platform only.</note></pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

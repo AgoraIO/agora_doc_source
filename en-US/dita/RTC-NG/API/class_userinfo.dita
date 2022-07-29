@@ -5,11 +5,11 @@
     <shortdesc id="short"><ph id="shortdesc">The information of the user.</ph></shortdesc>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
+            <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class UserInfo {
                     public int uid;
                     public String userAccount;
-                    
+
                     @CalledByNative
                     public UserInfo(int uid, String userAccount) {
                     this.uid = uid;
@@ -18,24 +18,10 @@
                     }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">
             public struct UserInfo
-    {  
-        public uint uid; 
-        public string userAccount; 
-    }</codeblock></p>
-            <p outputclass="codeblock" props="rtc">
-            <codeblock props="android" outputclass="language-java">public class UserInfo {
-                    public int uid;
-                    public String userAccount;
-                    }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">struct UserInfo {
-                    uid_t uid;
-                    char userAccount[MAX_USER_ACCOUNT_LENGTH];
-                    UserInfo()
-                    : uid(0) {
-                    userAccount[0] = '\0';
-                    }
-                    };</codeblock></p>
-            <p outputclass="codeblock">
+    {
+        public uint uid;
+        public string userAccount;
+    }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraUserInfo: NSObject
  @property(assign, nonatomic) NSUInteger uid;
  @property (copy, nonatomic) NSString * _Nullable userAccount;
@@ -48,46 +34,46 @@
                     userAccount[0] = '\0';
                     }
                     };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">export interface UserInfo {
-    uid: number;
-    userAccount: string;
-    }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript">export class UserInfo {
+  uid?: number
+  userAccount?: string
+}</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class UserInfo {
+  uid?: number;
+  userAccount?: string;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class UserInfo {
+  const UserInfo({this.uid, this.userAccount});
 
-  int uid;
-  String userAccount;
-
-  UserInfo(
-    this.uid,
-    this.userAccount,
-  );
-
-  factory UserInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  @JsonKey(name: 'uid')
+  final int? uid;
+  @JsonKey(name: 'userAccount')
+  final String? userAccount;
+  factory UserInfo.fromJson(Map&lt;String, dynamic> json) =>
       _$UserInfoFromJson(json);
-
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$UserInfoToJson(this);
-}</codeblock> </p>
+  Map&lt;String, dynamic> toJson() => _$UserInfoToJson(this);
+}
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
-   <dl outputclass="since" props="rtc">
-       <dlentry props="native">
-  <dt>Since</dt>
-  <dd>v2.8.0</dd>
-       </dlentry>
-   </dl>
+            <dl outputclass="since" props="rtc">
+            <dlentry>
+                <dt>Since</dt>
+                <dd>v2.8.0</dd>
+            </dlentry>
+            </dl>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
-   <parml>
-       <plentry>
-  <pt>uid</pt>
-  <pd>User ID</pd>
-       </plentry>
-       <plentry>
-  <pt>userAccount</pt>
-           <pd>The user account. <ph props="cpp unity">The maximum data length is <xref keyref="MAX_USER_ACCOUNT_LENGTH_TYPE" />.</ph></pd>
-       </plentry>
-   </parml>
-        </section></refbody>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <parml>
+            <plentry>
+                <pt>uid</pt>
+                <pd>The user ID.</pd>
+            </plentry>
+            <plentry>
+                <pt>userAccount</pt>
+                <pd>User account. <ph props="cpp rn unity electron flutter" >The maximum data length is <xref keyref="MAX_USER_ACCOUNT_LENGTH_TYPE"/>.</ph></pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
 </reference>

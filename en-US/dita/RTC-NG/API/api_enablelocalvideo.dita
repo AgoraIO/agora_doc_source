@@ -5,53 +5,49 @@
     <shortdesc id="short"><ph id="shortdesc">Enables/Disables the local video capture.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="enableLocalVideo" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="enableLocalVideo" />
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-            
+    <refbody>
+        <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int enableLocalVideo(boolean enabled);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableLocalVideo:(BOOL)enabled;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int enableLocalVideo(bool enabled) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">enableLocalVideo(enabled: boolean): number</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract enableLocalVideo(enabled: boolean): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int EnableLocalVideo(bool enabled);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript">abstract enableLocalVideo(enabled: boolean): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableLocalVideo(bool enabled);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-
-   <p id="desc1">This method disables or re-enables the local video capturer, and does not affect receiving the remote video stream.</p>
-   <p>After calling <xref keyref="enableVideo" />, the local video capturer is enabled by default. You can call <xref keyref="enableLocalVideo" />(<codeph><ph keyref="false" /></codeph>) to disable the local video capturer. If you want to re-enable the local video, call <apiname keyref="enableLocalVideo" />(<codeph><ph keyref="true" /></codeph>).</p>
-   <p>After the local video capturer is successfully disabled or re-enabled, the SDK triggers the callback on the remote client<xref keyref="onRemoteVideoStateChanged" />.</p>
-   <note type="attention">
-       <ul>
-  <li>You can call this method either before or after joining a channel.</li>
-  <li>This method enables the internal engine and is valid after .</li>
-       </ul>
-   </note>
-        </section>
-        <section id="parameters"><title>Parameters</title>
-   <parml>
-       <plentry>
-  <pt>enabled</pt>
-  <pd>
-      <p>Whether to enable the local video capture.</p>
-      <ul>
- <li><codeph><ph keyref="true" /></codeph>: (Default) Enable the local video capture.</li>
- <li><codeph><ph keyref="false" /></codeph>: Disables the local video capture. Once the local video is disabled, the remote users can no longer receive the video stream of this user, while this user can still receive the video streams of the other remote users. When set to <codeph><ph keyref="false" /></codeph>, this method does not require a local camera.</li>
-      </ul>
-  </pd>
-       </plentry>
-   </parml>
-        </section>
-        <section id="return_values" props="native electron unity">
-   <title>Returns</title>
-   <ul>
-       <li>0: Success.</li>
-       <li>&lt; 0: Failure.</li>
-   </ul>
-        </section></refbody>
+            <p id="desc1">This method disables or re-enables the local video capturer, and does not affect receiving the remote video stream.</p>
+            <p>After calling <xref keyref="enableVideo" />, the local video capturer is enabled by default. You can call <xref keyref="enableLocalVideo" />(<codeph><ph keyref="false" /></codeph>) to disable the local video capturer. If you want to re-enable the local video, call <apiname keyref="enableLocalVideo" />(<codeph><ph keyref="true" /></codeph>).</p>
+            <p>After the local video capturer is successfully disabled or re-enabled, the SDK triggers the <xref keyref="onRemoteVideoStateChanged" /> callback on the remote client.</p>
+            <note type="attention">
+            <ul>
+            <li>You can call this method either before or after joining a channel.</li>
+            <li>This method enables the internal engine and is valid after leaving the channel.</li>
+            </ul> </note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>enabled</pt>
+                <pd>
+                    <p>Whether to enable the local video capture.</p>
+                    <ul>
+                    <li><codeph><ph keyref="true" /></codeph>: (Default) Enable the local video capture.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Disables the local video capture. Once the local video is disabled, the remote users can no longer receive the video stream of this user, while this user can still receive the video streams of the other remote users. When set to <codeph><ph keyref="false" /></codeph>, this method does not require a local camera.</li>
+                    </ul> </pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron unity rn">
+            <title>Returns</title>
+            <ul>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
+    </refbody>
 </reference>

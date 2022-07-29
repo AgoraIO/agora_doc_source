@@ -5,7 +5,7 @@
     <shortdesc id="short"><ph id="shortdesc">The statistics of the remote video stream.</ph></shortdesc>
     <refbody>
         <section id="prototype">
-            <p props="rtc-ng" outputclass="codeblock">
+            <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public static class RemoteVideoStats {
     public int uid;
     public int delay;
@@ -61,165 +61,115 @@
   int publishDuration;
   int superResolutionType;
 };</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export class RemoteVideoStats {
+  uid?: number
+  delay?: number
+  width?: number
+  height?: number
+  receivedBitrate?: number
+  decoderOutputFrameRate?: number
+  rendererOutputFrameRate?: number
+  frameLossRate?: number
+  packetLossRate?: number
+  rxStreamType?: VideoStreamType
+  totalFrozenTime?: number
+  frozenRate?: number
+  avSyncTimeMs?: number
+  totalActiveTime?: number
+  publishDuration?: number
+  superResolutionType?: number
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class RemoteVideoStats
     {
-        public RemoteVideoStats()
-        {
-        }
-        public RemoteVideoStats(uint uid, int delay, int width, int height, int receivedBitrate,
-            int decoderOutputFrameRate, int rendererOutputFrameRate, int frameLossRate, int packetLossRate,
-            VIDEO_STREAM_TYPE rxStreamType, int totalFrozenTime, int frozenRate, int avSyncTimeMs, int totalActiveTime,
-            int publishDuration)
-        {
-            this.uid = uid;
-            this.delay = delay;
-            this.width = width;
-            this.height = height;
-            this.receivedBitrate = receivedBitrate;
-            this.decoderOutputFrameRate = decoderOutputFrameRate;
-            this.rendererOutputFrameRate = rendererOutputFrameRate;
-            this.frameLossRate = frameLossRate;
-            this.packetLossRate = packetLossRate;
-            this.rxStreamType = rxStreamType;
-            this.totalFrozenTime = totalFrozenTime;
-            this.frozenRate = frozenRate;
-            this.avSyncTimeMs = avSyncTimeMs;
-            this.totalActiveTime = totalActiveTime;
-            this.totalFrozenTime = totalFrozenTime;
-        }
-
         public uint uid { set; get; }
-
         public int delay { set; get; }
-
         public int width { set; get; }
-
         public int height { set; get; }
-
         public int receivedBitrate { set; get; }
-
         public int decoderOutputFrameRate { set; get; }
-
         public int rendererOutputFrameRate { set; get; }
-
         public int frameLossRate { set; get; }
-
         public int packetLossRate { set; get; }
-
         public VIDEO_STREAM_TYPE rxStreamType { set; get; }
-
         public int totalFrozenTime { set; get; }
-
         public int frozenRate { set; get; }
-
         public int avSyncTimeMs { set; get; }
-
         public int totalActiveTime { set; get; }
-
         public int publishDuration { set; get; }
-    }</codeblock> </p>
-            <p props="rtc" outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public static class RemoteVideoStats {
-    public int uid;
-    @Deprecated
-    public int delay;
-    public int width;
-    public int height;
-    public int receivedBitrate;
-    public int decoderOutputFrameRate;
-    public int rendererOutputFrameRate;
-    public int packetLossRate;
-    public int rxStreamType;
-    public int totalFrozenTime;
-    public int frozenRate;
-    public int totalActiveTime;
-    public int publishDuration;
-}</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcRemoteVideoStats : NSObject
-@property(assign, nonatomic) NSUInteger uid;
-@property(assign, nonatomic) NSUInteger __deprecated delay;
-@property(assign, nonatomic) NSUInteger width;
-@property(assign, nonatomic) NSUInteger height;
-@property(assign, nonatomic) NSUInteger receivedBitrate;
-@property(assign, nonatomic) NSUInteger decoderOutputFrameRate;
-@property(assign, nonatomic) NSUInteger rendererOutputFrameRate;
-@property(assign, nonatomic) NSUInteger packetLossRate;
-@property(assign, nonatomic) AgoraVideoStreamType rxStreamType;
-@property(assign, nonatomic) NSUInteger totalFrozenTime;
-@property(assign, nonatomic) NSUInteger frozenRate;
-@property(assign, nonatomic) NSUInteger totalActiveTime;
-@property(assign, nonatomic) NSInteger publishDuration;
-@end</codeblock>
-            <codeblock props="cpp unity" outputclass="language-cpp">struct RemoteVideoStats {
-  uid_t uid;
-  int delay;
-  int width;
-  int height;
-  int receivedBitrate;
-  int decoderOutputFrameRate;
-  int rendererOutputFrameRate;
-  int packetLossRate;
-  REMOTE_VIDEO_STREAM_TYPE rxStreamType;
-  int totalFrozenTime;
-  int frozenRate;
-  int totalActiveTime;
-  int publishDuration;
-};</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">export interface RemoteVideoStats {
-    uid: number;
-    delay: number;
-    width: number;
-    height: number;
-    receivedBitrate: number;
-    decoderOutputFrameRate: number;
-    rendererOutputFrameRate: number;
-    rxStreamType: REMOTE_VIDEO_STREAM_TYPE;
-    totalFrozenTime: number;
-    frozenRate: number;
-    packetLossRate: number;
-    totalActiveTime: number;
-    publishDuration: number;
+        public int superResolutionType { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">
-class RemoteVideoStats {
-  int uid;
+            <codeblock props="rn" outputclass="language-typescript">export class RemoteVideoStats {
+  uid?: number;
+  delay?: number;
+  width?: number;
+  height?: number;
+  receivedBitrate?: number;
+  decoderOutputFrameRate?: number;
+  rendererOutputFrameRate?: number;
+  frameLossRate?: number;
+  packetLossRate?: number;
+  rxStreamType?: VideoStreamType;
+  totalFrozenTime?: number;
+  frozenRate?: number;
+  avSyncTimeMs?: number;
+  totalActiveTime?: number;
+  publishDuration?: number;
+  superResolutionType?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class RemoteVideoStats {
+  const RemoteVideoStats(
+      {this.uid,
+      this.delay,
+      this.width,
+      this.height,
+      this.receivedBitrate,
+      this.decoderOutputFrameRate,
+      this.rendererOutputFrameRate,
+      this.frameLossRate,
+      this.packetLossRate,
+      this.rxStreamType,
+      this.totalFrozenTime,
+      this.frozenRate,
+      this.avSyncTimeMs,
+      this.totalActiveTime,
+      this.publishDuration,
+      this.superResolutionType});
 
-  @Deprecated(
-      'In scenarios where audio and video are synchronized, you can get the video  delay data from networkTransportDelay and jitterBufferDelay in RemoteAudioStats.')
-  int delay;
-  int width;
-  int height;
-  int receivedBitrate;
-  int decoderOutputFrameRate;
-  int rendererOutputFrameRate;
-  int packetLossRate;
-  VideoStreamType rxStreamType;
-  int totalFrozenTime;
-  int frozenRate;
-  int totalActiveTime;
-  int publishDuration;
-
-  RemoteVideoStats(
-    this.uid,
-    this.delay,
-    this.width,
-    this.height,
-    this.receivedBitrate,
-    this.decoderOutputFrameRate,
-    this.rendererOutputFrameRate,
-    this.packetLossRate,
-    this.rxStreamType,
-    this.totalFrozenTime,
-    this.frozenRate,
-    this.totalActiveTime,
-    this.publishDuration,
-  );
-
-  factory RemoteVideoStats.fromJson(Map&lt;String, dynamic&gt; json) =>
+  @JsonKey(name: 'uid')
+  final int? uid;
+  @JsonKey(name: 'delay')
+  final int? delay;
+  @JsonKey(name: 'width')
+  final int? width;
+  @JsonKey(name: 'height')
+  final int? height;
+  @JsonKey(name: 'receivedBitrate')
+  final int? receivedBitrate;
+  @JsonKey(name: 'decoderOutputFrameRate')
+  final int? decoderOutputFrameRate;
+  @JsonKey(name: 'rendererOutputFrameRate')
+  final int? rendererOutputFrameRate;
+  @JsonKey(name: 'frameLossRate')
+  final int? frameLossRate;
+  @JsonKey(name: 'packetLossRate')
+  final int? packetLossRate;
+  @JsonKey(name: 'rxStreamType')
+  final VideoStreamType? rxStreamType;
+  @JsonKey(name: 'totalFrozenTime')
+  final int? totalFrozenTime;
+  @JsonKey(name: 'frozenRate')
+  final int? frozenRate;
+  @JsonKey(name: 'avSyncTimeMs')
+  final int? avSyncTimeMs;
+  @JsonKey(name: 'totalActiveTime')
+  final int? totalActiveTime;
+  @JsonKey(name: 'publishDuration')
+  final int? publishDuration;
+  @JsonKey(name: 'superResolutionType')
+  final int? superResolutionType;
+  factory RemoteVideoStats.fromJson(Map&lt;String, dynamic> json) =>
       _$RemoteVideoStatsFromJson(json);
-
-  Map&lt;String, dynamic&gt; toJson() => _$RemoteVideoStatsToJson(this);
+  Map&lt;String, dynamic> toJson() => _$RemoteVideoStatsToJson(this);
 }</codeblock> </p>
         </section>
         <section id="parameters">
@@ -267,7 +217,7 @@ class RemoteVideoStats {
                 <pt>rendererOutputFrameRate</pt>
                 <pd>The render output frame rate (fps) of the remote video.</pd>
             </plentry>
-            <plentry props="rtc-ng">
+            <plentry>
                 <pt>frameLossRate</pt>
                 <pd>Remote video packet loss rate (%).</pd>
             </plentry>
@@ -277,55 +227,47 @@ class RemoteVideoStats {
             </plentry>
             <plentry>
                 <pt>rxStreamType</pt>
-                <pd><ph>The type of the remote video stream. </ph><ph props="ios mac cpp unity">See <xref keyref="REMOTE_VIDEO_STREAM_TYPE"/>.</ph><p props="android">
+                <pd><ph>The type of the remote video stream. </ph><ph props="ios mac cpp unity rn electron flutter">See <xref keyref="REMOTE_VIDEO_STREAM_TYPE"/>.</ph>
+                    <p props="android">
                     <ul>
-                    <li><ph keyref="REMOTE_VIDEO_STREAM_HIGH" />(0): High-quality stream, that is, a high-resolution and high-bitrate video stream.</li>
-                    <li><ph keyref="REMOTE_VIDEO_STREAM_LOW"/>(1): Low-quality stream, that is, a low-resolution and low-bitrate video stream.</li>
-                    </ul> </p>
+                   <li><ph keyref="REMOTE_VIDEO_STREAM_HIGH" />(0): High-quality stream, that is, a high-resolution and high-bitrate video stream.</li>
+                   <li><ph keyref="REMOTE_VIDEO_STREAM_LOW" />(1): Low-quality stream, that is, a low-resolution and low-bitrate video stream.</li>
+               </ul>
+               </p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>totalFrozenTime</pt>
                 <pd>The total freeze time (ms) of the remote video stream after the remote user joins the channel. In a video session where the frame rate is set to no less than 5 fps, video freeze occurs when the time interval between two adjacent renderable video frames is more than 500 ms.</pd>
-       </plentry>
-       <plentry>
-  <pt>frozenRate</pt>
-  <pd>The total video freeze time as a percentage (%) of the total time when the video is available. The video is considered available when the remote user neither stops sending the audio stream nor disables the audio module after joining the channel.</pd>
-       </plentry>
-       <plentry>
-                    <pt>totalActiveTime</pt>
-                    <pd>
-                        <dl outputclass="since" props="rtc">
-                            <dlentry>
-                                <dt>Since</dt>
-                                <dd>v3.0.1</dd>
-                            </dlentry>
-                        </dl>
-                        <p>The total active time (ms) of the video.</p>
-                        <p>The total effective duration of the video is the duration of the call after the remote user or host joins the channel and neither stops sending the video stream nor disables the video module.</p></pd>
-                </plentry>
-       <plentry>
-                    <pt>publishDuration</pt>
-                    <pd>
-                        <dl outputclass="since" props="rtc">
-                            <dlentry>
-                                <dt>Since</dt>
-                                <dd>v3.1.0</dd>
-                            </dlentry>
-                        </dl>
-                        <p>The total duration (ms) of the remote video stream.</p></pd>
-                </plentry>
-                <plentry  props="rtc-ng">
-                    <pt>superResolutionType</pt>
-                    <pd>The state of super resolution:<ul>
-                            <li>>0: Super resolution is enabled.</li>
+            </plentry>
+            <plentry>
+                <pt>frozenRate</pt>
+                <pd>The total video freeze time as a percentage (%) of the total time when the video is available. The video is considered available when the remote user neither stops sending the audio stream nor disables the audio module after joining the channel.</pd>
+            </plentry>
+            <plentry>
+                <pt>totalActiveTime</pt>
+                <pd>
+                    <p>The total freeze time (ms) of the remote video stream after the remote user joins the channel.</p>
+                    <p>The total effective duration of the video is the duration of the call after the remote user or host joins the channel and neither stops sending the video stream nor disables the video module.</p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>publishDuration</pt>
+                <pd>
+                    <p>The total duration (ms) of the remote video stream.</p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>superResolutionType</pt>
+                <pd>The state of super resolution:<ul>
+                            <li>&gt;0: Super resolution is enabled.</li>
                             <li>=0: Super resolution is not enabled.</li></ul>
                     </pd>
-                </plentry>
-                <plentry props="rtc-ng">
-                    <pt>avSyncTimeMs</pt>
-                    <pd>The amount of time (ms) that the audio is ahead of the video.<note type="attention">If this value is negative, the audio is lagging behind the video.</note></pd>
-                </plentry>
-   </parml>
-        </section></refbody>
+            </plentry>
+            <plentry>
+                <pt>avSyncTimeMs</pt>
+                <pd>The amount of time (ms) that the audio is ahead of the video.<note type="attention">If this value is negative, the audio is lagging behind the video.</note></pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
 </reference>

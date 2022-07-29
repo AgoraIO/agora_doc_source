@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setencryptionmode">
-    <title><ph keyref="setEncryptionMode"/></title>
+    <title><ph keyref="setEncryptionMode" /></title>
     <shortdesc id="short"><ph id="shortdesc">启用内置的加密方案。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setEncryptionMode"/>
+                <indexterm keyref="setEncryptionMode" />
             </keywords>
         </metadata>
     </prolog>
@@ -16,20 +16,20 @@
             <codeblock props="android" outputclass="language-java">public abstract int setEncryptionMode(String encryptionMode);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setEncryptionMode:(NSString * _Nullable)encryptionMode;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setEncryptionMode(const char* encryptionMode) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">setEncryptionMode(encryptionMode: string): number</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract setEncryptionMode(encryptionMode: string): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetEncryptionMode(string encryptionMode);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setEncryptionMode(EncryptionMode encryptionMode);</codeblock> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract setEncryptionMode(encryptionMode: string): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setEncryptionMode(String encryptionMode);</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated">
             <dlentry>
                 <dt>弃用：</dt>
-                <dd>请改用 <xref keyref="enableEncryption"/> 方法。</dd>
+                <dd>请改用 <xref keyref="enableEncryption" /> 方法。</dd>
             </dlentry>
             </dl>
-            <p id="desc"><ph props="rtc-ng">Agora Video SDK 支持内置加密方案，默认支持 AES-128-GCM。</ph><ph props="rtc">Agora Video SDK 支持内置加密方案，默认支持 AES-128-XTS。</ph>如需采用其他加密方案，可以调用本方法。同一频道内的所有用户必须设置相同的加密方式和 <parmname>secret</parmname> 才能进行通话。关于这几种加密方式的区别，请参考 AES 加密算法的相关资料。</p>
-            <note type="attention">在调用本方法前，请先调用 <xref keyref="setEncryptionSecret"/> 启用内置加密功能。</note> </section>
+            <p id="desc">Agora Video SDK 支持内置加密方案，默认支持 AES-128-GCM。如需采用其他加密方案，可以调用本方法。同一频道内的所有用户必须设置相同的加密方式和 <parmname>secret</parmname> 才能进行通话。关于这几种加密方式的区别，请参考 AES 加密算法的相关资料。</p>
+            <note type="attention">在调用本方法前，请先调用 <xref keyref="setEncryptionSecret" /> 启用内置加密功能。</note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
@@ -37,6 +37,7 @@
                 <pt>encryptionMode</pt>
                 <pd>
                     <p>加密模式：
+
                     <ul>
                     <li>"<codeph>aes-128-xts</codeph>": 128 位 AES 加密，XTS 模式；</li>
                     <li>"<codeph>aes-128-ecb</codeph>": 128 位 AES 加密，ECB 模式；</li>
@@ -44,13 +45,12 @@
                     <li>"<codeph>sm4-128-ecb</codeph>": 128 位 SM4 加密，ECB 模式；</li>
                     <li>"<codeph>aes-128-gcm</codeph>": 128 位 AES 加密，GCM 模式；</li>
                     <li>"<codeph>aes-256-gcm</codeph>": 256 位 AES 加密，GCM 模式；</li>
-                    <li props="rtc-ng">"": 设置为空字符串时，默认使用加密方式 "<codeph>aes-128-gcm</codeph>"。</li>
-                    <li props="rtc">"": 设置为空字符串时，默认使用加密方式 "<codeph>aes-128-xts</codeph>"。</li>
+                    <li>"": 设置为空字符串时，默认使用加密方式 "<codeph>aes-128-gcm</codeph>"。</li>
                     </ul> </p>
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功</li>

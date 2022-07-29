@@ -2,16 +2,21 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_packet">
     <title><ph keyref="Packet"/></title>
-    <shortdesc id="short"><ph id="shortdesc"><apiname keyref="Packet"/> 定义。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc"><apiname keyref="Packet"
+        /> 定义。</ph></shortdesc>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
+            <p outputclass="codeblock">
             <codeblock props="cpp" outputclass="language-cpp">struct Packet {
                     const unsigned char* buffer;
                     unsigned int size;
-                    
+
                     Packet() : buffer(NULL), size(0) {}
                     };</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export class Packet {
+  buffer?: Uint8Array
+  size?: number
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class Packet
     {
         public Packet()
@@ -23,25 +28,25 @@
             this.buffer = buffer;
             this.size = size;
         }
-        
+
         public byte[] buffer { set; get; }
-        
+
         public uint size { set; get; }
     }
-    </codeblock></p>
-            <p outputclass="codeblock" props="rtc">
-            <codeblock props="cpp" outputclass="language-cpp">struct Packet {
-	const unsigned char* buffer;
-	unsigned int size;
-	};</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-             <codeblock props="unity" outputclass="language-csharp">public struct Packet
-	{
-		public IntPtr buffer;
-		public IntPtr size;
-	};</codeblock>
+    </codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">class Packet {
+  const Packet({this.buffer, this.size});
+
+  @JsonKey(name: 'buffer', ignore: true)
+  final Uint8List? buffer;
+  @JsonKey(name: 'size')
+  final int? size;
+  factory Packet.fromJson(Map&lt;String, dynamic> json) => _$PacketFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$PacketToJson(this);
+}
+</codeblock>
+            </p>
         </section>
         <section id="parameters">
             <title><text

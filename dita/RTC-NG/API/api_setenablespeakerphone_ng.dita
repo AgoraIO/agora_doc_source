@@ -17,14 +17,14 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int setEnableSpeakerphone(bool speakerOn) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetEnableSpeakerphone(bool speakerOn);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </section>
+            <codeblock props="rn" outputclass="language-typescript">abstract setEnableSpeakerphone(speakerOn: boolean): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setEnableSpeakerphone(bool speakerOn);</codeblock> </section>
         <section id="detailed_desc">
             <p>如果 SDK 默认的音频路由（见<xref keyref="guide-audio-route">音频路由</xref>）或 <xref keyref="setDefaultAudioRouteToSpeakerphone"/> 的设置无法满足你的需求，你可以调用 <xref keyref="setEnableSpeakerphone"/> 切换当前的音频路由。成功改变音频路由后，SDK 会触发 <xref keyref="onAudioRouteChanged"/> 回调。</p>
             <p>该方法只设置用户在当前频道内使用的音频路由，不会影响 SDK 默认的音频路由。如果用户离开当前频道并加入新的频道，则用户还是会使用 SDK 默认的音频路由。</p>
             <note type="attention">
             <ul>
-            <li props="cpp unity">该方法仅适用于 Android 和 iOS 平台。</li>
+            <li props="cpp unity flutter">该方法仅适用于 Android 和 iOS 平台。</li>
             <li>该方法需要在加入频道后调用。</li>
             <li>如果用户使用了蓝牙耳机、有线耳机等外接音频播放设备，则该方法的设置无效，音频只会通过外接设备播放。当有多个外接设备时，音频会通过最后一个接入的设备播放。</li>
             </ul></note> </section>
@@ -34,7 +34,7 @@
             <plentry>
                 <pt props="android">enabled</pt>
                 <pt props="ios mac">enableSpeaker</pt>
-                <pt props="cpp unity">speakerOn</pt>
+                <pt props="cpp unity flutter rn">speakerOn</pt>
                 <pd>
                     <p>设置是否开启扬声器播放：
                     
@@ -45,7 +45,7 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native unity rn">
             <title>返回值</title>
             <ul id="ul_ahk_23f_3qb">
             <li>0: 方法调用成功。</li>

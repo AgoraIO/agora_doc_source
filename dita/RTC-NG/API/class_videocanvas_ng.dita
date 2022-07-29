@@ -5,7 +5,7 @@
     <shortdesc id="short"><ph id="shortdesc">视频画布对象的属性。</ph></shortdesc>
     <refbody>
         <section id="prototype">
-            <p props="rtc-ng" outputclass="codeblock">
+            <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class VideoCanvas {
 
   public static final int RENDER_MODE_HIDDEN = 1;
@@ -29,54 +29,99 @@
 @property(nonatomic, assign) int sourceId;
 
 @end</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export class VideoCanvas {
+  view?: any
+  renderMode?: RenderModeType
+  mirrorMode?: VideoMirrorModeType
+  uid?: number
+  isScreenView?: boolean
+  priv?: number[]
+  priv_size?: number
+  sourceType?: VideoSourceType
+  cropArea?: Rectangle
+  setupMode?: VideoViewSetupMode
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class VideoCanvas
     {
         public VideoCanvas()
         {
             view = 0;
-            renderMode = (int) RENDER_MODE_TYPE.RENDER_MODE_HIDDEN;
+            renderMode = RENDER_MODE_TYPE.RENDER_MODE_HIDDEN;
             uid = 0;
             mirrorMode = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_AUTO;
-            isScreenView = false;
-            priv = null;
-            priv_size = 0;
-            sourceType = VIDEO_SOURCE_TYPE.VIDEO_SOURCE_CAMERA_PRIMARY;
-        }
+            sourceType = VIDEO_SOURCE_TYPE.VIDEO_SOURCE_CAMERA_PRIMARY;        }
 
-        public VideoCanvas(view_t? view, RENDER_MODE_TYPE renderMode,
-             bool isScreenView, byte[] priv, uint priv_size,
-            VIDEO_SOURCE_TYPE sourceType, uint uid = 0,
-            VIDEO_MIRROR_MODE_TYPE mirrorMode = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_AUTO)
+        public VideoCanvas(view_t v, RENDER_MODE_TYPE m, VIDEO_MIRROR_MODE_TYPE mt, uint u)
         {
-            this.view = view ?? 0;
-            this.renderMode = (int) renderMode;
-            this.uid = uid;
-            this.mirrorMode = mirrorMode;
-            this.sourceType = sourceType;
+            this.view = v;
+            this.renderMode = m;
+            this.mirrorMode = mt;
+            this.uid = u;
+            this.sourceType = VIDEO_SOURCE_TYPE.VIDEO_SOURCE_CAMERA_PRIMARY;        }
+
+        public VideoCanvas(view_t v, RENDER_MODE_TYPE m, VIDEO_MIRROR_MODE_TYPE mt, string u)
+        {
+            this.view = v;
+            this.renderMode = m;
+            this.mirrorMode = mt;
+            this.uid = 0;
+            this.sourceType = VIDEO_SOURCE_TYPE.VIDEO_SOURCE_CAMERA_PRIMARY;
         }
         public view_t view { set; get; }
-        public int renderMode { set; get; }
+        public RENDER_MODE_TYPE renderMode { set; get; }
         public VIDEO_MIRROR_MODE_TYPE mirrorMode { set; get; }
         public uint uid { set; get; }
         public VIDEO_SOURCE_TYPE sourceType { set; get; }
-    }</codeblock> </p>
-            <p props="rtc" outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">struct VideoCanvas {
-  view_t view;
-  media::base::RENDER_MODE_TYPE renderMode;
-  VIDEO_MIRROR_MODE_TYPE mirrorMode;
-  uid_t uid;
-  VIDEO_SOURCE_TYPE sourceType;
-  VideoCanvas(view_t v, media::base::RENDER_MODE_TYPE m, VIDEO_MIRROR_MODE_TYPE mt, uid_t u)
-      : view(v), renderMode(m), mirrorMode(mt), uid(u), sourceType(VIDEO_SOURCE_CAMERA_PRIMARY) {}
-};
-</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+    }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class VideoCanvas {
+  view?: any;
+  renderMode?: RenderModeType;
+  mirrorMode?: VideoMirrorModeType;
+  uid?: number;
+  isScreenView?: boolean;
+  priv?: number[];
+  priv_size?: number;
+  sourceType?: VideoSourceType;
+  cropArea?: Rectangle;
+  setupMode?: VideoViewSetupMode;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class VideoCanvas {
+  const VideoCanvas(
+      {this.view,
+      this.renderMode,
+      this.mirrorMode,
+      this.uid,
+      this.isScreenView,
+      this.priv,
+      this.privSize,
+      this.sourceType,
+      this.cropArea,
+      this.setupMode});
+
+  @JsonKey(name: 'view')
+  final int? view;
+  @JsonKey(name: 'renderMode')
+  final RenderModeType? renderMode;
+  @JsonKey(name: 'mirrorMode')
+  final VideoMirrorModeType? mirrorMode;
+  @JsonKey(name: 'uid')
+  final int? uid;
+  @JsonKey(name: 'isScreenView')
+  final bool? isScreenView;
+  @JsonKey(name: 'priv', ignore: true)
+  final Uint8List? priv;
+  @JsonKey(name: 'priv_size')
+  final int? privSize;
+  @JsonKey(name: 'sourceType')
+  final VideoSourceType? sourceType;
+  @JsonKey(name: 'cropArea')
+  final Rectangle? cropArea;
+  @JsonKey(name: 'setupMode')
+  final VideoViewSetupMode? setupMode;
+  factory VideoCanvas.fromJson(Map&lt;String, dynamic> json) =>
+      _$VideoCanvasFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$VideoCanvasToJson(this);
+}</codeblock> </p>
         </section>
         <section id="detailed_desc"> </section>
         <section id="parameters">
@@ -91,8 +136,8 @@
             <plentry>
                 <pt>renderMode</pt>
                 <pd>
-                    <p props="ios mac cpp unity">视频渲染模式，详见 <xref
-                    keyref="RENDER_MODE_TYPE"/>。</p>
+                    <p props="ios mac cpp unity electron rn flutter"
+                    >视频渲染模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</p>
                     <p props="android">
                     <ul conkeyref="setLocalRenderMode2/rendermodetype">
                     <li/>
@@ -102,8 +147,8 @@
             <plentry>
                 <pt>mirrorMode</pt>
                 <pd>
-                    <p props="ios mac cpp unity">视图镜像模式，详见 <xref
-                    keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
+                    <p props="ios mac cpp unity electron rn flutter"
+                    >视图镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
                     <p props="android">
                     <ul conkeyref="setLocalRenderMode2/videomirrormodetype">
                     <li/>

@@ -30,16 +30,14 @@
             </dl>
             <p>You can call this method either before or after joining the channel to set the user role as audience or host.</p>
             <p>If you call this method to switch the user role after joining the channel, the SDK triggers the following callbacks:
-                <ul>
-                    <li>Calls <xref keyref="IChannel_muteLocalAudioStream" /> and <xref keyref="IChannel_muteLocalVideoStream" /> to change the publishing state.</li>
-                    <li>Triggers <xref keyref="IChannel_onClientRoleChanged" /> or <xref keyref="IChannel_onClientRoleChangeFailed" /> on the local client.</li>
-                    <li>Triggers <xref keyref="IChannel_onUserJoined" /> or <xref keyref="IChannel_onUserOffline" /> (USER_OFFLINE_BECOME_AUDIENCE) on the remote client.</li>
-                    </ul></p>
+            <ul>
+            <li>The local client: <xref keyref="IChannel_onClientRoleChanged" />.</li>
+            <li>The remote client: <xref keyref="IChannel_onUserJoined" /> or <xref keyref="IChannel_onUserOffline" />.</li>
+            </ul></p>
             <note type="attention">
             <ul>
             <li>This method only takes effect when the channel profile is live interactive streaming (when the <parmname>profile</parmname> parameter in <xref keyref="setChannelProfile" /> set as <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING" />).</li>
             <li props="native">The difference between this method and <xref keyref="IChannel_setClientRole1" />[1/2] is that this method can set the user level in addition to the user role.
-
                 <ul conkeyref="setClientRole2/diff">
                 <li />
                 </ul> </li>

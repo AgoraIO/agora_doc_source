@@ -13,49 +13,55 @@
      <refbody>
           <section id="prototype">
                <p outputclass="codeblock">
+               <codeblock props="android" outputclass="language-java">public void onFirstRemoteVideoFrame(int uid, int width, int height, int elapsed) {}</codeblock>
+               <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+         firstRemoteVideoFrameOfUid:(NSUInteger)uid size:(CGSize)size elapsed:(NSInteger)elapsed;</codeblock>
                <codeblock props="cpp" outputclass="language-cpp">virtual void onFirstRemoteVideoFrame(uid_t userId, int width, int height, int elapsed) {
                     (void)userId;
                     (void)width;
                     (void)height;
                     (void)elapsed;
                     }</codeblock>
-               <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstRemoteVideoFrame(RtcConnection connection, uint remoteUid, int width, int height, int elapsed) {}</codeblock></p>
-               <p outputclass="codeblock">
-               <codeblock props="android" outputclass="language-java">public void onFirstRemoteVideoFrame(int uid, int width, int height, int elapsed) {}</codeblock>
-               <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
-         firstRemoteVideoFrameOfUid:(NSUInteger)uid size:(CGSize)size elapsed:(NSInteger)elapsed;</codeblock>
-               <codeblock props="electron" outputclass="language-typescript"/>
-               <codeblock props="rn" outputclass="language-typescript"/>
-               <codeblock props="flutter" outputclass="language-dart"/>
-               </p>
+               <codeblock props="electron" outputclass="language-typescript">onFirstRemoteVideoFrame?(connection: RtcConnection, remoteUid: number, width: number, height: number, elapsed: number): void;</codeblock>
+               <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstRemoteVideoFrame(RtcConnection connection, uint remoteUid, int width, int height, int elapsed) {}</codeblock>
+               <codeblock props="rn" outputclass="language-typescript">onFirstRemoteVideoFrame?(
+  connection: RtcConnection,
+  remoteUid: number,
+  width: number,
+  height: number,
+  elapsed: number
+): void;</codeblock>
+               <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, int width,
+      int height, int elapsed)? onFirstRemoteVideoFrame;
+</codeblock> </p>
           </section>
           <section id="parameters">
                <title><ph keyref="callback-section-title"/></title>
-               <p conkeyref="onJoinChannelSuccess/callback-desc"
-               props="flutter rn"/>
+               <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
                <parml>
                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                     <pt/>
                     <pd/>
                </plentry>
                <plentry>
-                    <pt props="ios mac android electron flutter">uid</pt>
-                    <pt props="cpp unity">userId</pt>
+                    <pt props="ios mac android flutter">uid</pt>
+                    <pt props="electron rn flutter unity">remoteUid</pt>
+                    <pt props="cpp">userId</pt>
                     <pd>用户 ID，指定是哪个用户的视频流。</pd>
                </plentry>
                <plentry props="ios mac">
                     <pt>size</pt>
                     <pd>视频流尺寸。</pd>
                </plentry>
-               <plentry props="unity">
+               <plentry props="unity electron rn flutter">
                     <pt>connection</pt>
                     <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
                </plentry>
-               <plentry props="android cpp unity">
+               <plentry props="android cpp unity electron rn flutter">
                     <pt>width</pt>
                     <pd>视频流宽（px）。</pd>
                </plentry>
-               <plentry props="android cpp unity">
+               <plentry props="android cpp unity electron rn flutter">
                     <pt>height</pt>
                     <pd>视频流高（px）。</pd>
                </plentry>

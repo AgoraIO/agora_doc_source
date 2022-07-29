@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_registermediametadataobserver">
-    <title><ph keyref="registerMediaMetadataObserver"/></title>
+    <title><ph keyref="registerMediaMetadataObserver" /></title>
     <shortdesc id="short"><ph id="shortdesc">Registers the metadata observer.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="registerMediaMetadataObserver"/>
+                <indexterm keyref="registerMediaMetadataObserver" />
             </keywords>
         </metadata>
     </prolog>
@@ -17,36 +17,35 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)setMediaMetadataDelegate:(id&lt;AgoraMediaMetadataDelegate&gt; _Nullable)metadataDelegate withType:(AgoraMetadataType)type;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int registerMediaMetadataObserver(IMetadataObserver *observer, IMetadataObserver::METADATA_TYPE type) = 0;
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript">registerMediaMetadataObserver(type: METADATA_TYPE = 0): number </codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int RegisterMediaMetadataObserver(METADATA_TYPE type);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; registerMediaMetadataObserver();</codeblock> </p>
+            <codeblock props="electron" outputclass="language-typescript">abstract registerMediaMetadataObserver(observer: IMetadataObserver, type: MetadataType): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract void RegisterMediaMetadataObserver(IMetadataObserver observer, METADATA_TYPE type);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract registerMediaMetadataObserver(
+    observer: IMetadataObserver,
+    type: MetadataType
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">void unregisterMediaMetadataObserver(
+    {required MetadataObserver observer, required MetadataType type});</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>Since</dt>
-                <dd>v2.4.1</dd>
-            </dlentry>
-            </dl>
-            <p props="android ios mac cpp">You need to implement the <xref keyref="IMetadataObserver"/> class and specify the metadata type in this method. This method enables you to add synchronized metadata in the video stream for more diversified
+            <p>You need to implement the <xref keyref="IMetadataObserver" /> class and specify the metadata type in this method. This method enables you to add synchronized metadata in the video stream for more diversified
  live interactive streaming, such as sending shopping links, digital coupons, and online quizzes.</p>
-            <p props="android ios mac cpp">A successful call of this method triggers the <xref keyref="getMaxMetadataSize"/> callback.</p>
-            <note type="attention">Call this method before <apiname keyref="joinChannel2"/>.</note>
-        </section>
-        <section id="parameters" props="android apple cpp unity">
+            <p props="native flutter unity">A successful call of this method triggers the <xref keyref="getMaxMetadataSize" /> callback.</p>
+            <note type="attention">Call this method before <apiname keyref="joinChannel2" />.</note> </section>
+        <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry props="cpp android ios mac">
+            <plentry>
                 <pt>observer</pt>
-                <pd>The metadata observer. See <xref keyref="IMetadataObserver"/>.</pd>
+                <pd>The metadata observer. See <xref keyref="IMetadataObserver" />.</pd>
             </plentry>
             <plentry id="metadatatype">
                 <pt>type</pt>
-                <pd><p>The metadata type. The SDK currently only supports <apiname keyref="VIDEO_METADATA"/>. <ph props="ios mac cpp unity">See <xref keyref="METADATA_TYPE"/>.</ph></p></pd>
+                <pd>
+                    <p>The metadata type. The SDK currently only supports <apiname keyref="VIDEO_METADATA" />. See <ph props="ios mac cpp unity rn electron"><xref keyref="METADATA_TYPE" /></ph>.</p>
+                </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="android apple cpp electron unity">
+        <section id="return_values" props="native electron rn">
             <title>Returns</title>
             <ul>
             <li>0: Success.</li>

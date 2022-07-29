@@ -51,56 +51,112 @@
         {
             dimensions = new VideoDimensions(1920, 1080);
             frameRate = 5;
-            bitrate = (int) BITRATE.STANDARD_BITRATE;
+            bitrate = (int)BITRATE.STANDARD_BITRATE;
             captureMouseCursor = true;
             windowFocus = false;
             excludeWindowList = new view_t[0];
             excludeWindowCount = 0;
         }
-        public ScreenCaptureParameters(int width, int height, int frameRate, BITRATE bitrate, bool captureMouseCursor,
-            bool windowFocus, view_t[] excludeWindowList = null, int excludeWindowCount = 0)
+
+        public ScreenCaptureParameters(ref VideoDimensions d, int f, int b)
+        {
+            dimensions = new VideoDimensions(d.width, d.height);
+            frameRate = f;
+            bitrate = b;
+            captureMouseCursor = true;
+            windowFocus = false;
+            excludeWindowList = new view_t[0];
+            excludeWindowCount = 0;
+        }
+
+        public ScreenCaptureParameters(int width, int height, int f, int b)
         {
             dimensions = new VideoDimensions(width, height);
-            this.frameRate = frameRate;
-            this.bitrate = (int) bitrate;
-            this.captureMouseCursor = captureMouseCursor;
-            this.windowFocus = windowFocus;
-            this.excludeWindowList = excludeWindowList ?? new view_t[0];
-            this.excludeWindowCount = excludeWindowCount;
+            frameRate = f;
+            bitrate = b;
+            captureMouseCursor = true;
+            windowFocus = false;
+            excludeWindowList = new view_t[0];
+            excludeWindowCount = 0;
         }
-        public ScreenCaptureParameters(VideoDimensions dimensions, int frameRate, BITRATE bitrate,
-            bool captureMouseCursor, bool windowFocus, view_t[] excludeWindowList = null, int excludeWindowCount = 0)
+
+        public ScreenCaptureParameters(int width, int height, int f, int b, bool cur, bool fcs)
         {
-            this.dimensions = dimensions;
-            this.frameRate = frameRate;
-            this.bitrate = (int) bitrate;
-            this.captureMouseCursor = captureMouseCursor;
-            this.windowFocus = windowFocus;
-            this.excludeWindowList = excludeWindowList ?? new view_t[0];
-            this.excludeWindowCount = excludeWindowCount;
+            dimensions = new VideoDimensions(width, height);
+            frameRate = f;
+            bitrate = b;
+            captureMouseCursor = cur;
+            windowFocus = fcs;
+            excludeWindowList = new view_t[0];
+            excludeWindowCount = 0;
         }
 
+        public ScreenCaptureParameters(int width, int height, int f, int b, view_t[] ex, int cnt)
+        {
+            dimensions = new VideoDimensions(width, height);
+            frameRate = f;
+            bitrate = b;
+            captureMouseCursor = true;
+            windowFocus = false;
+            excludeWindowList = ex;
+            excludeWindowCount = cnt;
+        }
+
+        public ScreenCaptureParameters(int width, int height, int f, int b, bool cur, bool fcs, view_t[] ex, int cnt)
+        {
+            dimensions = new VideoDimensions(width, height);
+            frameRate = f;
+            bitrate = b;
+            captureMouseCursor = cur;
+            windowFocus = fcs;
+            excludeWindowList = ex;
+            excludeWindowCount = cnt;
+        }
         public VideoDimensions dimensions { set; get; }
-
         public int frameRate { set; get; }
-
         public int bitrate { set; get; }
-
         public bool captureMouseCursor { set; get; }
-
         public bool windowFocus { set; get; }
-
         public view_t[] excludeWindowList { set; get; }
-
         public int excludeWindowCount { set; get; }
-    }</codeblock> </p>
+    }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">class ScreenCaptureParameters {
+  const ScreenCaptureParameters(
+      {this.dimensions,
+      this.frameRate,
+      this.bitrate,
+      this.captureMouseCursor,
+      this.windowFocus,
+      this.excludeWindowList,
+      this.excludeWindowCount});
+
+  @JsonKey(name: 'dimensions')
+  final VideoDimensions? dimensions;
+  @JsonKey(name: 'frameRate')
+  final int? frameRate;
+  @JsonKey(name: 'bitrate')
+  final int? bitrate;
+  @JsonKey(name: 'captureMouseCursor')
+  final bool? captureMouseCursor;
+  @JsonKey(name: 'windowFocus')
+  final bool? windowFocus;
+  @JsonKey(name: 'excludeWindowList')
+  final List&lt;int>? excludeWindowList;
+  @JsonKey(name: 'excludeWindowCount')
+  final int? excludeWindowCount;
+  factory ScreenCaptureParameters.fromJson(Map&lt;String, dynamic> json) =>
+      _$ScreenCaptureParametersFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$ScreenCaptureParametersToJson(this);
+}</codeblock>
+            </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <note type="note" props="mac cpp unity">共享的屏幕流的视频属性只需通过 <xref keyref="ScreenCaptureParameters"/> 设置，与 <xref keyref="setVideoEncoderConfiguration"/> 无关。</note>
             <parml>
             <plentry>
-                <pt props="mac cpp unity flutter">dimensions</pt>
+                <pt props="mac cpp unity flutter electron rn">dimensions</pt>
                 <pd>
                     <p><ph props="flutter">编码共享视频的最大像素值。</ph><ph props="mac">共享的屏幕流的视频编码分辨率。</ph><ph props="unity cpp">在 Windows 和 macOS 平台上，表示共享的屏幕流的视频编码分辨率。</ph><ph
                             props="cpp">详见 <xref keyref="VideoDimensions"/>。默认值为 1920 × 1080，即 2073600 像素。该像素值为计费标准。</ph></p>
@@ -119,7 +175,7 @@
                 <pt>bitrate</pt>
                 <pd><ph props="unity flutter">共享视频的码率。</ph><ph props="mac">共享的屏幕流的视频编码码率。</ph><ph props="unity cpp" >在 Windows 和 macOS 平台上，表示共享的屏幕流的视频编码码率。</ph><ph>单位为 Kbps；默认值为 0，表示 SDK 根据当前共享屏幕的分辨率计算出一个合理的值。</ph></pd>
             </plentry>
-            <plentry props="mac cpp unity">
+            <plentry props="mac cpp unity electron rn flutter">
                 <pt>captureMouseCursor</pt>
                 <pd>
                     <p>是否采集鼠标用于屏幕共享：
@@ -130,10 +186,13 @@
                     </ul></p>
                 </pd>
             </plentry>
-            <plentry props="mac cpp unity">
+            <plentry props="mac cpp unity electron rn flutter">
                 <pt>windowFocus</pt>
                 <pd>
                     <p>调用 <xref keyref="startScreenCaptureByWindowId"/> 方法共享窗口时，是否将该窗口前置：
+
+
+
 
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 前置窗口。</li>
@@ -141,7 +200,7 @@
                     </ul></p>
                 </pd>
             </plentry>
-            <plentry props="mac cpp unity">
+            <plentry props="mac cpp unity electron rn flutter">
                 <pt>excludeWindowList</pt>
                 <pd>待屏蔽窗口的 ID 列表。调用 <xref keyref="startScreenCaptureByDisplayId"/> 开启屏幕共享时，你可以通过该参数屏蔽指定的窗口。你可以在调用 <xref keyref="updateScreenCaptureParameters"/> 更新屏幕共享的配置参数时，通过该参数动态屏蔽指定的窗口。</pd>
             </plentry>
@@ -165,17 +224,9 @@
                 <pd><ph props="cpp">（仅适用于 macOS）</ph><ph>描边的宽度 (px)。默认值为 5，取值范围为 (0,50]。</ph>
                     <note>该参数仅在 <parmname>highLighted</parmname> 设置为 <codeph><ph keyref="true"/></codeph> 时生效。</note></pd>
             </plentry>
-            <plentry props="cpp unity electron">
+            <plentry props="cpp unity electron rn flutter">
                 <pt>excludeWindowCount</pt>
                 <pd>待屏蔽窗口的数量。</pd>
-            </plentry>
-            <plentry props="electron">
-                <pt>width</pt>
-                <pd>屏幕共享区域的宽。</pd>
-            </plentry>
-            <plentry props="electron">
-                <pt>height</pt>
-                <pd>屏幕共享区域的高。</pd>
             </plentry>
             </parml> </section>
     </refbody>

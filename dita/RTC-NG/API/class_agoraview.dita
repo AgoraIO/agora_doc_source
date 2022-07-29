@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_agoraview">
+    <title><ph keyref="AgoraView"/></title>
+    <shortdesc id="short"><ph id="shortdesc">自定义标签的属性。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp"/>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript">interface AgoraView {
+  "video-source-type": VideoSourceType;
+  uid: number;
+  "channel-id": string;
+  "renderer-content-mode": RenderModeType;
+  "renderer-mirror": boolean;
+  style: any;
+}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>该自定义标签的使用方式如下：</p>
+            <p outputclass="codeblock">
+            <codeblock outputclass="language-html">&lt;agora-view video-source-type="{VideoSourceType.VideoSourceCamera}" channel-id="" uid="{0}">&lt;/agora-view></codeblock>
+            </p>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry>
+                <pt>video-source-type</pt>
+                <pd>视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+            </plentry>
+            <plentry>
+                <pt>uid</pt>
+                <pd>远端用户 ID。</pd>
+            </plentry>
+            <plentry>
+                <pt>channel-id</pt>
+                <pd>
+                    <p conkeyref="joinChannel2/channelID_desc"/>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>renderer-content-mode</pt>
+                <pd>视频渲染模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</pd>
+            </plentry>
+            <plentry>
+                <pt>renderer-mirror</pt>
+                <pd>渲染视频时，是否开启视频镜像:
+
+                    <ul>
+                    <li><codeph><ph keyref="true"/></codeph>: 开启镜像。</li>
+                    <li><codeph><ph keyref="false"/></codeph>: 不开启镜像。</li>
+                    </ul></pd>
+            </plentry>
+            <plentry>
+                <pt>style</pt>
+                <pd>元素的行内样式。详见 <xref keyref="style-attribute"/>。</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

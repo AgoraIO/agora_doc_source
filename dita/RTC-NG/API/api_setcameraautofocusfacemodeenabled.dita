@@ -19,25 +19,27 @@
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetCameraAutoFocusFaceModeEnabled(bool enabled);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract setCameraAutoFocusFaceModeEnabled(enabled: boolean): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setCameraAutoFocusFaceModeEnabled(bool enabled);</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p props="android">SDK 默认关闭人脸自动对焦。如需自行设置人脸自动对焦，请调用该方法。</p>
             <p props="ios">SDK 默认开启人脸自动对焦。如需自行设置人脸自动对焦，请调用该方法。</p>
+            <p props="rn flutter">SDK 默认在 Android 平台关闭人脸自动对焦，在 iOS 平台开启人脸自动对焦。如需自行设置人脸自动对焦，请调用该方法。</p>
             <note type="attention">
             <ul>
-            <li props="cpp unity">该方法仅适用于 Android 和 iOS。</li>
+            <li props="cpp unity flutter">该方法仅适用于 Android 和 iOS。</li>
             <li>该方法需在摄像头启动后调用，如 <xref keyref="joinChannel2"/>、<xref keyref="enableVideo"/> 或者 <xref keyref="enableLocalVideo"/> 之后。</li>
             </ul></note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry>
-                <pt props="android cpp unity">enabled</pt>
+                <pt props="android cpp unity rn flutter">enabled</pt>
                 <pt props="ios">enable</pt>
                 <pd>
                     <p>是否开启人脸对焦：
+
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 开启人脸对焦功能。</li>
                     <li><codeph><ph keyref="false"/></codeph>: 关闭人脸对焦功能。</li>
@@ -45,9 +47,9 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native unity rn">
             <title>返回值</title>
-            <ul props="android cpp unity">
+            <ul props="android cpp unity rn">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。</li>
             </ul>

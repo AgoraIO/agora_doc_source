@@ -21,7 +21,7 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual bool OnEncodedVideoFrameReceived(rtc::uid_t uid, const uint8_t* imageBuffer, size_t length,
                                            const rtc::EncodedVideoFrameInfo&amp; videoEncodedFrameInfo) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnEncodedVideoImageReceived(byte[] imageBuffer, UInt64 length, EncodedVideoFrameInfo videoEncodedFrameInfo)
+            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnEncodedVideoImageReceived(IntPtr imageBufferPtr, UInt64 length, EncodedVideoFrameInfo videoEncodedFrameInfo)
                 {
                     return true;
                 }</codeblock>
@@ -37,7 +37,8 @@
             </plentry>
             <plentry>
                 <pt props="ios mac">videoData</pt>
-                <pt props="cpp unity">imageBuffer</pt>
+                <pt props="cpp">imageBuffer</pt>
+                <pt props="unity">imageBufferPtr</pt>
                 <pt props="android">buffer</pt>
                 <pd props="cpp unity android">视频图像 buffer。</pd>
                 <pd props="ios mac">视频图像数据。</pd>

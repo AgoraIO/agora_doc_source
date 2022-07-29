@@ -12,36 +12,34 @@
     </prolog>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnPlayerSrcInfoChanged(SrcInfo from, SrcInfo to) {}</codeblock>
-            </p>
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">void onPlayerSrcInfoChanged(SrcInfo from, SrcInfo to);
+            <codeblock props="android" outputclass="language-java">void onPlayerSrcInfoChanged(SrcInfo from, SrcInfo to);
 </codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol> _Nonnull)playerKit playerSrcInfoDidChange:(AgoraMediaPlayerSrcInfo *_Nonnull)to from:(AgoraMediaPlayerSrcInfo *_Nonnull)from;
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol> _Nonnull)playerKit playerSrcInfoDidChange:(AgoraMediaPlayerSrcInfo *_Nonnull)to from:(AgoraMediaPlayerSrcInfo *_Nonnull)from;
 </codeblock>
-                <codeblock props="cpp" outputclass="language-cpp">virtual void onPlayerSrcInfoChanged(const media::base::SrcInfo&amp; from, const media::base::SrcInfo&amp; to) = 0;
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onPlayerSrcInfoChanged(const media::base::SrcInfo&amp; from, const media::base::SrcInfo&amp; to) = 0;
 </codeblock>
-                <codeblock props="electron" outputclass="language-typescript"/>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
-            </p>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnPlayerSrcInfoChanged(SrcInfo from, SrcInfo to) {}</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onPlayerSrcInfoChanged?(from: SrcInfo, to: SrcInfo): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(SrcInfo from, SrcInfo to)? onPlayerSrcInfoChanged;
+</codeblock> </p>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters">
+            <title>参数</title>
             <parml>
-                <plentry conkeyref="onPlayerEvent/playerkit" props="ios mac">
-                    <pt/>
-                    <pd/>
-                </plentry>
-                <plentry>
-                    <pt>from</pt>
-                    <pd>变化前，媒体资源播放时的视频码率相关信息。详见 <xref keyref="SrcInfo"/>。</pd>
-                </plentry>
-                <plentry>
-                    <pt>to</pt>
-                    <pd>变化后，媒体资源播放时的视频码率相关信息。详见 <xref keyref="SrcInfo"/>。</pd>
-                </plentry>
-            </parml>
-        </section>
+            <plentry conkeyref="onPlayerEvent/playerkit" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry>
+                <pt>from</pt>
+                <pd>变化前，媒体资源播放时的视频码率相关信息。详见 <xref keyref="SrcInfo"/>。</pd>
+            </plentry>
+            <plentry>
+                <pt>to</pt>
+                <pd>变化后，媒体资源播放时的视频码率相关信息。详见 <xref keyref="SrcInfo"/>。</pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

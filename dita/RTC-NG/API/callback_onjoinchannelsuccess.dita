@@ -13,7 +13,6 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnJoinChannelSuccess(RtcConnection connection, int elapsed) {}</codeblock>
             <codeblock props="android" outputclass="language-java">public void onJoinChannelSuccess(String channel, int uid, int elapsed) {}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
         didJoinChannel:(NSString * _Nonnull)channel withUid:(NSUInteger)uid elapsed:(NSInteger) elapsed;</codeblock>
@@ -24,12 +23,12 @@
      (void)uid;
      (void)elapsed;
      }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(
-  evt: EngineEvents.JOINED_CHANNEL,
-  cb: (channel: string, uid: number, elapsed: number) =&gt; void
-): this;</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">UidWithElapsedAndChannelCallback? joinChannelSuccess;</codeblock> </p>
+            <codeblock props="electron" outputclass="language-typescript">onJoinChannelSuccess?(connection: RtcConnection, elapsed: number): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnJoinChannelSuccess(RtcConnection connection, int elapsed) {}</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onJoinChannelSuccess?(connection: RtcConnection, elapsed: number): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int elapsed)?
+      onJoinChannelSuccess;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p id="desc">该回调方法表示该客户端成功加入了指定的频道。</p>
@@ -50,7 +49,7 @@
                 <pt>uid</pt>
                 <pd>加入频道的用户 ID。</pd>
             </plentry>
-            <plentry props="unity">
+            <plentry props="unity flutter electron rn">
                 <pt>connection</pt>
                 <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
             </plentry>

@@ -16,10 +16,10 @@
             <codeblock props="android" outputclass="language-java">public abstract int setLogFileSize(long fileSizeInKBytes);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLogFileSize:(NSUInteger)fileSizeInKBytes;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setLogFileSize(unsigned int fileSizeInKBytes) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript">abstract setLogFileSize(fileSizeInKBytes: number): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetLogFileSize(uint fileSizeInKBytes);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract setLogFileSize(fileSizeInKBytes: number): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLogFileSize(int fileSizeInKBytes);</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated">
@@ -30,18 +30,18 @@
             </dl>
             <p>By default, the SDK generates five SDK log files and five API call log files with the following rules:</p>
             <ul id="logprinciple">
-                <li>The SDK log files are: <codeph>agorasdk.log</codeph>, <codeph>agorasdk.1.log</codeph>, <codeph>agorasdk.2.log</codeph>, <codeph>agorasdk.3.log</codeph>, and <codeph>agorasdk.4.log</codeph>.</li>
-                <li>The API call log files are: <codeph>agoraapi.log</codeph>, <codeph>agoraapi.1.log</codeph>, <codeph>agoraapi.2.log</codeph>, <codeph>agoraapi.3.log</codeph>, and <codeph>agoraapi.4.log</codeph>.</li>
-                <li>The default size for each SDK log file is 1,024 KB; the default size for each API call log file is 2,048 KB. These log files are encoded in UTF-8.</li>
-                <li>The SDK writes the latest logs in <codeph>agorasdk.log</codeph> or <codeph>agoraapi.log</codeph>.</li>
-                <li>When <codeph>agorasdk.log</codeph> is full, the SDK processes the log files in the following order:<ol>
-                    <li>Delete the <codeph>agorasdk.4.log</codeph> file (if any).</li>
-                    <li>Rename <codeph>agorasdk.3.log</codeph> to <codeph>agorasdk.4.log</codeph>.</li>
-                    <li>Rename <codeph>agorasdk.2.log</codeph> to <codeph>agorasdk.3.log</codeph>.</li>
-                    <li>Rename <codeph>agorasdk.1.log</codeph> to <codeph>agorasdk.2.log</codeph>.</li>
-                    <li>Create a new <codeph>agorasdk.log</codeph> file.</li>
-                    </ol></li>
-                <li>The overwrite rules for the <codeph>agoraapi.log</codeph> file are the same as for <codeph>agorasdk.log</codeph>.</li>
+            <li>The SDK log files are: <codeph>agorasdk.log</codeph>, <codeph>agorasdk.1.log</codeph>, <codeph>agorasdk.2.log</codeph>, <codeph>agorasdk.3.log</codeph>, and <codeph>agorasdk.4.log</codeph>.</li>
+            <li>The API call log files are: <codeph>agoraapi.log</codeph>, <codeph>agoraapi.1.log</codeph>, <codeph>agoraapi.2.log</codeph>, <codeph>agoraapi.3.log</codeph>, and <codeph>agoraapi.4.log</codeph>.</li>
+            <li>The default size for each SDK log file is 1,024 KB; the default size for each API call log file is 2,048 KB. These log files are encoded in UTF-8.</li>
+            <li>The SDK writes the latest logs in <codeph>agorasdk.log</codeph> or <codeph>agoraapi.log</codeph>.</li>
+            <li>When <codeph>agorasdk.log</codeph> is full, the SDK processes the log files in the following order:<ol>
+                <li>Delete the <codeph>agorasdk.4.log</codeph> file (if any).</li>
+                <li>Rename <codeph>agorasdk.3.log</codeph> to <codeph>agorasdk.4.log</codeph>.</li>
+                <li>Rename <codeph>agorasdk.2.log</codeph> to <codeph>agorasdk.3.log</codeph>.</li>
+                <li>Rename <codeph>agorasdk.1.log</codeph> to <codeph>agorasdk.2.log</codeph>.</li>
+                <li>Create a new <codeph>agorasdk.log</codeph> file.</li>
+                </ol></li>
+            <li>The overwrite rules for the <codeph>agoraapi.log</codeph> file are the same as for <codeph>agorasdk.log</codeph>.</li>
             </ul>
             <note id="note_qwq_w2g_3qb">
             <p>This method is used to set the size of the <codeph>agorasdk.log</codeph> file only and does not effect the <codeph>agoraapi.log file</codeph>.</p>
@@ -56,7 +56,7 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity rn">
             <title>Returns</title>
             <ul id="ul_ahk_23f_3qb">
             <li>0: Success.</li>

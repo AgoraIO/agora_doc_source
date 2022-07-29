@@ -32,18 +32,23 @@ elapseSinceLastState:(int)elapseSinceLastState;</codeblock>
      (void)newState;
      (void)elapseSinceLastState;
      }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.AUDIO_SUBSCRIBE_STATE_CHANGED, cb: (
-     channel: string,
-     uid: number,
-     oldState: STREAM_SUBSCRIBE_STATE,
-     newState: STREAM_SUBSCRIBE_STATE,
-     elapseSinceLastState: number
-     ) =&gt; void): this;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">onAudioSubscribeStateChanged?(channel: string, uid: number, oldState: StreamSubscribeState, newState: StreamSubscribeState, elapseSinceLastState: number): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioSubscribeStateChanged(string channel, uint uid, STREAM_SUBSCRIBE_STATE oldState,
             STREAM_SUBSCRIBE_STATE newState, int elapseSinceLastState)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">StreamSubscribeStateCallback? audioSubscribeStateChanged;</codeblock>
-            </p>
+            <codeblock props="rn" outputclass="language-typescript">onAudioSubscribeStateChanged?(
+  channel: string,
+  uid: number,
+  oldState: StreamSubscribeState,
+  newState: StreamSubscribeState,
+  elapseSinceLastState: number
+): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(
+      String channel,
+      int uid,
+      StreamSubscribeState oldState,
+      StreamSubscribeState newState,
+      int elapseSinceLastState)? onAudioSubscribeStateChanged;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
@@ -55,21 +60,20 @@ elapseSinceLastState:(int)elapseSinceLastState;</codeblock>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"
-            />
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt/>
                 <pd/>
             </plentry>
             <plentry>
-                <pt props="android cpp unity flutter">channel</pt>
+                <pt props="android cpp unity flutter electron rn">channel</pt>
                 <pt props="ios mac">channelId</pt>
                 <pd>The channel name.</pd>
             </plentry>
             <plentry id="uid">
                 <pt>uid</pt>
-                <pd>The ID of the remote user.</pd>
+                <pd>The user ID of the remote user.</pd>
             </plentry>
             <plentry id="oldState">
                 <pt>oldState</pt>

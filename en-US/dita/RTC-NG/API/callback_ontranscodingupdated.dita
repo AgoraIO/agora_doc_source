@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_ontranscodingupdated">
-    <title><ph keyref="onTranscodingUpdated" /></title>
+    <title><ph keyref="onTranscodingUpdated"/></title>
     <shortdesc id="short"><ph id="shortdesc">Occurs when the publisher's transcoding is updated.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="onTranscodingUpdated" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="onTranscodingUpdated"/>
+            </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public void onTranscodingUpdated() {}</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngineTranscodingUpdated:(AgoraRtcEngineKit * _Nonnull)engine;</codeblock>
-                <codeblock props="cpp" outputclass="language-cpp">virtual void onTranscodingUpdated()</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.TRANSCODING_UPDATED, cb: () =&gt; void): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnTranscodingUpdated()</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">EmptyCallback? transcodingUpdated;</codeblock>
-            </p>
+            <codeblock props="android" outputclass="language-java">public void onTranscodingUpdated() {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngineTranscodingUpdated:(AgoraRtcEngineKit * _Nonnull)engine;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onTranscodingUpdated()</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">onTranscodingUpdated?(): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnTranscodingUpdated()</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onTranscodingUpdated?(): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function()? onTranscodingUpdated;
+</codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>When the <xref keyref="LiveTranscoding" /> class in the <xref keyref="setLiveTranscoding" /> method updates, the SDK triggers the <apiname keyref="onTranscodingUpdated" /> callback to report the update information.</p>
-            <note type="attention" id="note">If you call the <apiname keyref="setLiveTranscoding" />
-                method to set the <apiname keyref="LiveTranscoding" /> class for the first time, the
-                SDK does not trigger this callback.</note>
-        </section>
-        <section id="parameters" props="ios mac"> <title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/> <parml>
+            <p>When the <xref keyref="LiveTranscoding" /> class in the <xref keyref="setLiveTranscoding" /> method updates, the SDK triggers the <apiname keyref="onTranscodingUpdated"/> callback to report the update information.</p>
+            <note type="attention" id="note">If you call the <apiname keyref="setLiveTranscoding"/> method to set the <apiname keyref="LiveTranscoding" /> class for the first time, the SDK does not trigger this callback.</note> </section>
+        <section id="parameters" props="ios mac">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt />
-                <pd />
+                <pt/>
+                <pd/>
             </plentry>
             </parml> </section>
     </refbody>

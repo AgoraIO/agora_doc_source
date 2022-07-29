@@ -5,43 +5,45 @@
     <shortdesc id="short"><ph id="shortdesc">获取当前播放设备静音状态。</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="getPlaybackDeviceMute" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="getPlaybackDeviceMute" />
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="cpp" outputclass="language-cpp">virtual int getPlaybackDeviceMute(bool *mute) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">getAudioPlaybackDeviceMute(): boolean</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public abstract bool GetPlaybackDeviceMute();</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">Future&lt;bool?&gt; getAudioPlaybackDeviceMute()</codeblock>
-        </p>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="cpp" outputclass="language-cpp">virtual int getPlaybackDeviceMute(bool *mute) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract getPlaybackDeviceMute(): boolean;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract bool GetPlaybackDeviceMute();</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;bool&gt; getPlaybackDeviceMute();</codeblock> </p>
         </section>
-        <section id="parameters" props="cpp"><title>参数</title>
-   <parml>
-       <plentry>
-  <pt>mute</pt>
-  <pd><p>播放设备静音状态：
-      <ul>
-<li><codeph><ph keyref="true" /></codeph>: 播放设备为静音状态。</li>
-<li><codeph><ph keyref="false" /></codeph>: 播放设备为非静音状态。</li>
-  </ul></p></pd>
-       </plentry>
-   </parml>
-        </section>
+        <section id="parameters" props="cpp">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt>mute</pt>
+                <pd>
+                    <p>播放设备静音状态：
+                    <ul>
+                    <li><codeph><ph keyref="true" /></codeph>: 播放设备为静音状态。</li>
+                    <li><codeph><ph keyref="false" /></codeph>: 播放设备为非静音状态。</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            </parml> </section>
         <section id="return_values">
-   <title>返回值</title>
-   <ul props="cpp">
-       <li>0: 方法调用成功。</li>
-       <li>&lt; 0: 方法调用失败。</li>
-   </ul>
+            <title>返回值</title>
+            <ul props="cpp">
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。</li>
+            </ul>
             <ul props="electron unity flutter">
-<li><codeph><ph keyref="true" /></codeph>: 播放设备为静音状态。</li>
-<li><codeph><ph keyref="false" /></codeph>: 播放设备为非静音状态。</li>
-  </ul>
-        </section></refbody>
+            <li><codeph><ph keyref="true" /></codeph>: 播放设备为静音状态。</li>
+            <li><codeph><ph keyref="false" /></codeph>: 播放设备为非静音状态。</li>
+            </ul> </section>
+    </refbody>
 </reference>

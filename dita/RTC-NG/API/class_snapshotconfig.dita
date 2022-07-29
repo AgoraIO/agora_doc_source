@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_snapshotconfig">
+    <title><ph keyref="SnapShotConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc">视频截图设置。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="cpp" outputclass="language-cpp" />
+            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp">public class SnapShotConfig
+    {
+        public SnapShotConfig()
+        {
+            channel = null;
+            uid = 0;
+            filePath = null;
+        }
+
+        public string channel;
+        public uint uid;
+        public string filePath;
+    }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class SnapShotConfig {
+  channel?: string;
+  uid?: number;
+  filePath?: string;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class SnapShotConfig {
+  const SnapShotConfig({this.channel, this.uid, this.filePath});
+
+  @JsonKey(name: 'channel')
+  final String? channel;
+  @JsonKey(name: 'uid')
+  final int? uid;
+  @JsonKey(name: 'filePath')
+  final String? filePath;
+  factory SnapShotConfig.fromJson(Map&lt;String, dynamic> json) =>
+      _$SnapShotConfigFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$SnapShotConfigToJson(this);
+}</codeblock> </p>
+        </section>
+        <section id="parameters">
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
+            <parml>
+            <plentry>
+                <pt>channel</pt>
+                <pd>频道名。</pd>
+            </plentry>
+            <plentry>
+                <pt>uid</pt>
+                <pd>用户 ID。如果要对本地用户的视频截图，<codeph>uid</codeph> 设为 0。</pd>
+            </plentry>
+            <plentry>
+                <pt>filePath</pt>
+                <pd>
+                    <p>截图的本地保存路径，需精确到文件名及格式， 例如：
+
+
+                    <ul>
+                    <li>Windows: <ph>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\example.jpg</ph></li>
+                    <li>iOS: <ph>/App Sandbox/Library/Caches/example.jpg</ph></li>
+                    <li>macOS: <ph>～/Library/Logs/example.jpg</ph></li>
+                    <li>Android: <ph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.jpg</ph></li>
+                    </ul>请确保目录存在且可写。</p>
+                </pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

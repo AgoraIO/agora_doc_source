@@ -29,17 +29,21 @@ elapseSinceLastState:(int)elapseSinceLastState;</codeblock>
      (void)newState;
      (void)elapseSinceLastState;
      }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.AUDIO_PUBLISH_STATE_CHANGED, cb: (
-     channel: string,
-     oldState: STREAM_PUBLISH_STATE,
-     newState: STREAM_PUBLISH_STATE,
-     elapseSinceLastState: number
-     ) =&gt; void): this;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">onAudioPublishStateChanged?(channel: string, oldState: StreamPublishState, newState: StreamPublishState, elapseSinceLastState: number): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioPublishStateChanged(string channel, STREAM_PUBLISH_STATE oldState,
             STREAM_PUBLISH_STATE newState, int elapseSinceLastState)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">StreamPublishStateCallback? audioPublishStateChanged;</codeblock>
-            </p>
+            <codeblock props="rn" outputclass="language-typescript">onAudioPublishStateChanged?(
+  channel: string,
+  oldState: StreamPublishState,
+  newState: StreamPublishState,
+  elapseSinceLastState: number
+): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(
+      String channel,
+      StreamPublishState oldState,
+      StreamPublishState newState,
+      int elapseSinceLastState)? onAudioPublishStateChanged;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
@@ -51,15 +55,15 @@ elapseSinceLastState:(int)elapseSinceLastState;</codeblock>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"
-            />
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt/>
                 <pd/>
             </plentry>
             <plentry>
-                <pt props="android cpp unity flutter">channel</pt>
+                <pt props="android cpp unity flutter electron rn flutter"
+                    >channel</pt>
                 <pt props="ios mac">channelId</pt>
                 <pd>频道名。</pd>
             </plentry>

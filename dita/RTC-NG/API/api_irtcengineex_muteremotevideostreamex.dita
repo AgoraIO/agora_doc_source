@@ -18,10 +18,18 @@
                           mute:(BOOL)mute
                     connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int muteRemoteVideoStreamEx(uid_t uid, bool mute, const RtcConnection&amp; connection) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract muteRemoteVideoStreamEx(uid: number, mute: boolean, connection: RtcConnection): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int MuteRemoteVideoStreamEx(uint uid, bool mute, RtcConnection connection);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract muteRemoteVideoStreamEx(
+    uid: number,
+    mute: boolean,
+    connection: RtcConnection
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> muteRemoteVideoStreamEx(
+      {required int uid,
+      required bool mute,
+      required RtcConnection connection});
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>该方法停止/恢复接收某一个指定远端用户的视频流。在加入频道前或后都可以调用。该方法的设置在离开频道后失效。</p>
@@ -36,12 +44,10 @@
                 </pd>
             </plentry>
             <plentry>
-                <pt props="ios mac cpp unity">mute</pt>
+                <pt props="ios mac cpp rn unity electron flutter">mute</pt>
                 <pt props="android">muted</pt>
                 <pd>
                     <p>是否停止接收某个远端用户的视频：
-               
-                    
                     
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 停止接收。</li>

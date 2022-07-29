@@ -17,17 +17,18 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngineDidAudioEffectFinish:(AgoraRtcEngineKit * _Nonnull)engine soundId:(int)soundId;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioEffectFinished(int soundId) {
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.AUDIO_EFFECT_FINISHED, cb: (soundId: number) =&gt; void): this;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">onAudioEffectFinished?(soundId: number): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioEffectFinished(int soundId)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">SoundIdCallback? audioEffectFinished;</codeblock> </p>
+            <codeblock props="rn" outputclass="language-typescript">onAudioEffectFinished?(soundId: number): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(int soundId)? onAudioEffectFinished;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p id="desc">当播放音效结束后，会触发该回调。</p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt/>

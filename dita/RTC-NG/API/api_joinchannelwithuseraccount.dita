@@ -13,15 +13,12 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="android" outputclass="language-java">public abstract int joinChannelWithUserAccount(
+                    String token, String channelName, String userAccount);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)joinChannelByToken:(NSString * _Nullable)token
                 channelId:(NSString * _Nonnull)channelId
               userAccount:(NSString * _Nonnull)userAccount
               joinSuccess:(void(^ _Nullable)(NSString * _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock> </p>
-            <p outputclass="codeblock" props="rtc">
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)joinChannelByUserAccount:(NSString* _Nonnull)userAccount token:(NSString* _Nullable)token channelId:(NSString* _Nonnull)channelId joinSuccess:(void (^_Nullable)(NSString* _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock></p>
-            <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int joinChannelWithUserAccount(
-      String token, String channelName, String userAccount);</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int joinChannelWithUserAccount(const char* token,
     const char* channelId,
     const char* userAccount) = 0;</codeblock>
@@ -31,16 +28,7 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-            <dlentry>
-                <dt>自从</dt>
-                <dd>v2.8.0</dd>
-            </dlentry>
-            </dl>
             <p>该方法允许本地用户使用 User Account 和 Token 加入频道。成功加入频道后，会触发以下回调：
-   
-            
-            
             <ul>
             <li>本地：<xref keyref="onLocalUserRegistered"/>、<xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/> 回调。</li>
             <li>通信场景下的用户和直播场景下的主播加入频道后，远端会依次触发 <xref keyref="onUserJoined"/> 和 <xref keyref="onUserInfoUpdated"/> 回调。</li>

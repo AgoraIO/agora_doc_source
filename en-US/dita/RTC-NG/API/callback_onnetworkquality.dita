@@ -13,7 +13,6 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnNetworkQuality(RtcConnection connection, uint remoteUid, int txQuality, int rxQuality) {}</codeblock>
             <codeblock props="android" outputclass="language-java">public void onNetworkQuality(int uid, int txQuality, int rxQuality) {}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
     networkQuality:(NSUInteger)uid
@@ -24,48 +23,50 @@
     (void)txQuality;
     (void)rxQuality;
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.NETWORK_QUALITY, cb: (
-    uid: number,
-    txquality: QUALITY_TYPE,
-    rxquality: QUALITY_TYPE
-    ) =&gt; void
-    ): this;</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">NetworkQualityWithUidCallback? networkQuality;</codeblock> </p>
+            <codeblock props="electron" outputclass="language-typescript">onNetworkQuality?(connection: RtcConnection, remoteUid: number, txQuality: number, rxQuality: number): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnNetworkQuality(RtcConnection connection, uint remoteUid, int txQuality, int rxQuality) {}</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onNetworkQuality?(
+  connection: RtcConnection,
+  remoteUid: number,
+  txQuality: number,
+  rxQuality: number
+): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid,
+      QualityType txQuality, QualityType rxQuality)? onNetworkQuality;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p id="desc1">This callback reports the last mile network conditions of each user in the channel. Last mile refers to the connection between the local device and Agora's edge server.</p>
             <p id="desc2">The SDK triggers this callback once every two seconds. If a channel includes multiple users, the SDK triggers this callback as many times.</p>
-            <note type="note"><ph><parmname>txQuality</parmname> is <codeph props="cpp android unity">UNKNOWN</codeph><codeph props="ios mac">Unknown</codeph> when the user is not sending a stream; <parmname>rxQuality</parmname> is <codeph props="cpp android unity">UNKNOWN</codeph><codeph props="ios mac">Unknown</codeph> when the user is not receiving a stream.</ph></note>
-        </section>
+            <note type="note"><ph><parmname>txQuality</parmname> is <codeph props="cpp android unity">UNKNOWN</codeph><codeph props="ios mac electron rn">Unknown</codeph> when the user is not sending a stream; <parmname>rxQuality</parmname> is <codeph props="cpp android unity">UNKNOWN</codeph><codeph props="ios mac electron rn">Unknown</codeph> when the user is not receiving a stream.</ph></note> </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="unity">
+            <plentry props="unity flutter electron rn">
                 <pt>connection</pt>
                 <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
             </plentry>
             <plentry id="uid">
-                <pt props="native electron flutter">uid</pt>
-                <pt props="unity">remoteUid</pt>
+                <pt props="native">uid</pt>
+                <pt props="unity flutter electron rn">remoteUid</pt>
                 <pd>
                     <p>The user ID. The network quality of the user with this user ID is reported.</p>
                 </pd>
             </plentry>
             <plentry id="txQuality">
                 <pt>txQuality</pt>
-                <pd>Uplink network quality rating of the user in terms of the transmission bit rate, packet loss rate, average RTT (Round-Trip Time) and jitter of the uplink network. This parameter is a quality rating helping you understand how well the current uplink network conditions can support the selected video encoder configuration. For example, a 1000 Kbps uplink network may be adequate for video frames with a resolution of 640 × 480 and a frame rate of 15 fps in the LIVE_BROADCASTING profile, but may be inadequate for resolutions higher than 1280 × 720. <ph props="ios mac cpp electron unity">See <xref keyref="QUALITY_TYPE"/>.</ph><ul conkeyref="RemoteAudioStats/qualitytype" props="android">
+                <pd>Uplink network quality rating of the user in terms of the transmission bit rate, packet loss rate, average RTT (Round-Trip Time) and jitter of the uplink network. This parameter is a quality rating helping you understand how well the current uplink network conditions can support the selected video encoder configuration. For example, a 1000 Kbps uplink network may be adequate for video frames with a resolution of 640 × 480 and a frame rate of 15 fps in the LIVE_BROADCASTING profile, but may be inadequate for resolutions higher than 1280 × 720. <ph props="ios mac cpp unity electron flutter">See <xref keyref="QUALITY_TYPE"/>.</ph><ul conkeyref="RemoteAudioStats/qualitytype" props="android">
                     <li/>
                     </ul> </pd>
             </plentry>
             <plentry id="rxQuality">
                 <pt>rxQuality</pt>
-                <pd>Downlink network quality rating of the user in terms of packet loss rate, average RTT, and jitter of the downlink network. <ph props="ios mac cpp electron unity">See <xref keyref="QUALITY_TYPE"/>.</ph><ul conkeyref="RemoteAudioStats/qualitytype" props="android">
+                <pd>Downlink network quality rating of the user in terms of packet loss rate, average RTT, and jitter of the downlink network. <ph props="ios mac cpp unity electron flutter">See <xref keyref="QUALITY_TYPE"/>.</ph><ul conkeyref="RemoteAudioStats/qualitytype" props="android">
                     <li/>
                     </ul></pd>
             </plentry>

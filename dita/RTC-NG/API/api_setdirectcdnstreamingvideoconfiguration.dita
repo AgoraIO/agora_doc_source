@@ -18,13 +18,16 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual
             int setDirectCdnStreamingVideoConfiguration(const VideoEncoderConfiguration&amp; config)
             = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract setDirectCdnStreamingVideoConfiguration(config: VideoEncoderConfiguration): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetDirectCdnStreamingVideoConfiguration(VideoEncoderConfiguration config);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract setDirectCdnStreamingVideoConfiguration(
+    config: VideoEncoderConfiguration
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setDirectCdnStreamingVideoConfiguration(
+      VideoEncoderConfiguration config);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p><ph>该方法仅对摄像头采集、屏幕共享或自采集的视频有效。</ph><ph props="native">即对在 <xref keyref="DirectCdnStreamingMediaOptions"/> 中设置 <parmname>publishCameraTrack</parmname> 或 <parmname>publishCustomVideoTrack</parmname> 为 <codeph><ph keyref="true"/></codeph> 时所采集的视频有效。</ph></p>
+            <p><ph>该方法仅对摄像头采集、屏幕共享或自采集的视频有效。</ph><ph props="native rn">即对在 <xref keyref="DirectCdnStreamingMediaOptions" /> 中设置 <parmname>publishCameraTrack</parmname> 或 <parmname>publishCustomVideoTrack</parmname> 为 <codeph><ph keyref="true" /></codeph> 时所采集的视频有效。</ph></p>
         </section>
         <section id="parameters">
             <title>参数</title>
@@ -34,7 +37,7 @@
                 <pd/>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native unity rn">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功</li>

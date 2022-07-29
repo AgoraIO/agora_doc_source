@@ -32,27 +32,64 @@
   unsigned short txPacketLossRate;
   int audioDeviceDelay;
 };</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export class LocalAudioStats {
+  numChannels?: number
+  sentSampleRate?: number
+  sentBitrate?: number
+  internalCodec?: number
+  txPacketLossRate?: number
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class LocalAudioStats
     {
         public LocalAudioStats()
         {
         }
-        public LocalAudioStats(int numChannels, int sentSampleRate, int sentBitrate, int internalCodec)
+
+        public LocalAudioStats(int numChannels, int sentSampleRate, int sentBitrate, int internalCodec, ushort txPacketLossRate)
         {
             this.numChannels = numChannels;
             this.sentSampleRate = sentSampleRate;
             this.sentBitrate = sentBitrate;
             this.internalCodec = internalCodec;
+            this.txPacketLossRate = txPacketLossRate;
         }
-
         public int numChannels { set; get; }
-
         public int sentSampleRate { set; get; }
-
         public int sentBitrate { set; get; }
-
         public int internalCodec { set; get; }
-    }</codeblock> </p>
+        public ushort txPacketLossRate { set; get; }
+    }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class LocalAudioStats {
+  numChannels?: number;
+  sentSampleRate?: number;
+  sentBitrate?: number;
+  internalCodec?: number;
+  txPacketLossRate?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class LocalAudioStats {
+  const LocalAudioStats(
+      {this.numChannels,
+      this.sentSampleRate,
+      this.sentBitrate,
+      this.internalCodec,
+      this.txPacketLossRate});
+
+  @JsonKey(name: 'numChannels')
+  final int? numChannels;
+  @JsonKey(name: 'sentSampleRate')
+  final int? sentSampleRate;
+  @JsonKey(name: 'sentBitrate')
+  final int? sentBitrate;
+  @JsonKey(name: 'internalCodec')
+  final int? internalCodec;
+  @JsonKey(name: 'txPacketLossRate')
+  final int? txPacketLossRate;
+  factory LocalAudioStats.fromJson(Map&lt;String, dynamic> json) =>
+      _$LocalAudioStatsFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$LocalAudioStatsToJson(this);
+}
+</codeblock>
+            </p>
         </section>
         <section id="parameters">
             <title><text

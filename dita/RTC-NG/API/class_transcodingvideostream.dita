@@ -40,14 +40,35 @@
         alpha(1.0),
         mirror(false) {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export class TranscodingVideoStream {
+  sourceType?: MediaSourceType
+  remoteUserUid?: number
+  imageUrl?: string
+  x?: number
+  y?: number
+  width?: number
+  height?: number
+  zOrder?: number
+  alpha?: number
+  mirror?: boolean
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class TranscodingVideoStream
     {
         public TranscodingVideoStream()
         {
+            this.sourceType = MEDIA_SOURCE_TYPE.PRIMARY_CAMERA_SOURCE;
+            remoteUserUid = 0;
+            imageUrl = null;
+            x = 0;
+            y = 0;
+            width = 0;
+            height = 0;
+            zOrder = 0;
+            alpha = 1.0;
+            mirror = false;
         }
 
-        public TranscodingVideoStream(VIDEO_SOURCE_TYPE sourceType, uint remoteUserUid,
+        public TranscodingVideoStream(MEDIA_SOURCE_TYPE sourceType, uint remoteUserUid,
             string imageUrl, int x, int y, int width, int height, int zOrder, double alpha,
             bool mirror)
         {
@@ -62,9 +83,10 @@
             this.alpha = alpha;
             this.mirror = mirror;
         }
-        public VIDEO_SOURCE_TYPE sourceType { set; get; }
+
+        public MEDIA_SOURCE_TYPE sourceType { set; get; }
         public uint remoteUserUid { set; get; }
-        public string imageUrl { set; get; } 
+        public string imageUrl { set; get; }
         public int x { set; get; }
         public int y { set; get; }
         public int width { set; get; }
@@ -73,8 +95,74 @@
         public double alpha { set; get; }
         public bool mirror { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">export class TranscodingVideoStream {
+  sourceType?: MediaSourceType;
+  remoteUserUid?: number;
+  imageUrl?: string;
+  x?: number;
+  y?: number;
+  width?: number;
+  height?: number;
+  zOrder?: number;
+  alpha?: number;
+  mirror?: boolean;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class TranscodingVideoStream {
+  const TranscodingVideoStream(
+      {this.sourceType,
+      this.remoteUserUid,
+      this.imageUrl,
+      this.x,
+      this.y,
+      this.width,
+      this.height,
+      this.zOrder,
+      this.alpha,
+      this.mirror});
+
+  @JsonKey(name: 'sourceType')
+  final MediaSourceType? sourceType;
+  @JsonKey(name: 'remoteUserUid')
+  final int? remoteUserUid;
+  @JsonKey(name: 'imageUrl')
+  final String? imageUrl;
+  @JsonKey(name: 'x')
+  final int? x;
+  @JsonKey(name: 'y')
+  final int? y;
+  @JsonKey(name: 'width')
+  final int? width;
+  @JsonKey(name: 'height')
+  final int? height;
+  @JsonKey(name: 'zOrder')
+  final int? zOrder;
+  @JsonKey(name: 'alpha')
+  final double? alpha;
+  @JsonKey(name: 'mirror')
+  final bool? mirror;
+  factory TranscodingVideoStream.fromJson(Map&lt;String, dynamic> json) =>
+      _$TranscodingVideoStreamFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$TranscodingVideoStreamToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class LocalTranscoderConfiguration {
+  const LocalTranscoderConfiguration(
+      {this.streamCount,
+      this.videoInputStreams,
+      this.videoOutputConfiguration});
+
+  @JsonKey(name: 'streamCount')
+  final int? streamCount;
+  @JsonKey(name: 'VideoInputStreams')
+  final List&lt;TranscodingVideoStream>? videoInputStreams;
+  @JsonKey(name: 'videoOutputConfiguration')
+  final VideoEncoderConfiguration? videoOutputConfiguration;
+  factory LocalTranscoderConfiguration.fromJson(Map&lt;String, dynamic> json) =>
+      _$LocalTranscoderConfigurationFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$LocalTranscoderConfigurationToJson(this);
+}</codeblock>
+            </p>
         </section>
         <section id="parameters">
             <title><text
@@ -91,15 +179,17 @@
                 <pt>remoteUserUid</pt>
                 <pd>
                     <p>远端用户 ID。
-                    <note id="note_m2h_lxn_3qb" type="attention"
-                    >请仅在参与本地合图的视频源类型为 <apiname keyref="VIDEO_SOURCE_REMOTE"
-                    /> 时，使用该参数。</note></p>
+
+
+                    <note id="note_m2h_lxn_3qb" type="attention">请仅在参与本地合图的视频源类型为 <apiname keyref="VIDEO_SOURCE_REMOTE" /> 时，使用该参数。</note></p>
                 </pd>
             </plentry>
             <plentry props="ios mac">
                 <pt>connectionId</pt>
                 <pd>
                     <p>远端用户对应的连接 ID。
+
+
                     <note id="note_m5b_qxn_3qb" type="attention">
                     <ul id="ul_llv_qxn_3qb">
                     <li>请仅在参与本地合图的视频源类型为 <apiname keyref="VIDEO_SOURCE_REMOTE"
@@ -112,31 +202,30 @@
                 <pt>imageUrl</pt>
                 <pd>
                     <p>图像的 URL。
-                    <note id="note_rm5_xxn_3qb" type="attention"
-                    >请仅在参与本地合图的视频源类型为 <codeph props="cpp"
-                    >RTC_IMAGE</codeph><codeph props="ios mac"
-                    >Image</codeph> 时，使用该参数。</note></p>
+
+
+                    <note id="note_rm5_xxn_3qb" type="attention">请仅在参与本地合图的视频源类型为 <codeph props="cpp">RTC_IMAGE</codeph><codeph props="ios mac">Image</codeph> 时，使用该参数。</note></p>
                 </pd>
             </plentry>
-            <plentry props="cpp unity">
+            <plentry props="cpp unity electron rn flutter">
                 <pt>x</pt>
                 <pd>
                     <p>参与本地合图的视频的左上角相对于合图画布左上角（原点）的横向位移。</p>
                 </pd>
             </plentry>
-            <plentry props="cpp unity">
+            <plentry props="cpp unity electron rn flutter">
                 <pt>y</pt>
                 <pd>
                     <p>参与本地合图的视频的左上角相对于合图画布左上角（原点）的纵向位移。</p>
                 </pd>
             </plentry>
-            <plentry props="cpp unity">
+            <plentry props="cpp unity electron rn flutter">
                 <pt>width</pt>
                 <pd>
                     <p>参与本地合图的视频的宽度 (px)。</p>
                 </pd>
             </plentry>
-            <plentry props="cpp unity">
+            <plentry props="cpp unity electron rn flutter">
                 <pt>height</pt>
                 <pd>
                     <p>参与本地合图的视频的高度 (px)。</p>
@@ -149,7 +238,9 @@
             <plentry>
                 <pt>zOrder</pt>
                 <pd>参与本地合图的视频所属的图层的编号。取值范围为 [0,100]。
-                        
+
+
+
                     <ul>
                     <li>
                         0:（默认值）图层在最下层。</li>
@@ -162,16 +253,19 @@
                     <p>参与本地合图的视频的透明度。取值范围为 [0.0,1.0]。 0.0 表示透明度为完全透明，1.0 表示透明度为完全不透明。</p>
                 </pd>
             </plentry>
-            <plentry props="cpp unity">
+            <plentry props="cpp unity electron rn flutter">
                 <pt>mirror</pt>
                 <pd>是否对参与本地合图的的视频进行镜像：
+
+
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 镜像。</li>
                     <li><codeph><ph keyref="false"/></codeph>: （默认值）不镜像。</li>
                     </ul>
                     <note id="note_erc_ryn_3qb" type="attention"
-                    >该参数仅对视频源类型为 <codeph props="cpp">CAMERA</codeph><codeph
-                    props="ios mac">Camera</codeph> 的视频生效。</note></pd>
+                    >该参数仅对视频源类型为 <codeph props="cpp unity flutter"
+                    >CAMERA</codeph><codeph props="ios mac"
+                    >Camera</codeph> 的视频生效。</note></pd>
             </plentry>
             </parml> </section>
     </refbody>

@@ -17,10 +17,14 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setupRemoteVideoEx:(AgoraRtcVideoCanvas* _Nonnull)remote
                connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setupRemoteVideoEx(const VideoCanvas&amp; canvas, const RtcConnection&amp; connection) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract setupRemoteVideoEx(canvas: VideoCanvas, connection: RtcConnection): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetupRemoteVideoEx(VideoCanvas canvas, RtcConnection connection);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract setupRemoteVideoEx(
+    canvas: VideoCanvas,
+    connection: RtcConnection
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setupRemoteVideoEx(
+    {required VideoCanvas canvas, required RtcConnection connection});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>该方法绑定远端用户和显示视图，并设置远端用户视图在本地显示时的渲染模式和镜像模式，只影响本地用户看到的视频画面。</p>
@@ -36,7 +40,7 @@
             <parml>
             <plentry>
                 <pt props="android ios mac">remote</pt>
-                <pt props="cpp unity">canvas</pt>
+                <pt props="cpp unity rn electron flutter">canvas</pt>
                 <pd>
                     <p>视频画布信息。详见 <xref keyref="VideoCanvas"/>。</p>
                 </pd>
@@ -46,7 +50,7 @@
                 <pd/>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul>
             <li>0：方法调用成功。</li>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_mediaplayercontroller_create">
+    <title><ph keyref="create_MediaPlayerController"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Creates a <apiname keyref="MediaPlayerController"/>.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="create_MediaPlayerController"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp"/>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">static Future&lt;MediaPlayerController> create({
+required RtcEngine rtcEngine,
+required VideoCanvas canvas,
+bool useFlutterTexture = false,
+bool useAndroidSurfaceView = false,
+})</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>
+                <note>
+                    <ul>
+                        <li>Make sure the <apiname keyref="IRtcEngine"/> is initialized before you call this method.</li>
+                        <li>Make sure to call this method before calling other APIs in <xref keyref="IMediaPlayer"/>.</li>
+                    </ul>
+                </note>
+            </p>
+        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry conkeyref="VideoViewController/rtcengine">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry conkeyref="VideoViewController/canvas">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry conkeyref="VideoViewController/fluttertexture">
+                <pt/>
+                <pd/>
+            </plentry>
+                <plentry conkeyref="VideoViewController/androidsurfaceview">
+                <pt/>
+                <pd/>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <p><xref keyref="MediaPlayerController"/> object.</p>
+        </section>
+    </refbody>
+</reference>

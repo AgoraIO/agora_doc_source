@@ -12,38 +12,26 @@
     </prolog>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
+            <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setCloudProxy(int proxyType);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setCloudProxy:(AgoraCloudProxyType)proxyType NS_SWIFT_NAME(setCloudProxy(_:));</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int setCloudProxy(CLOUD_PROXY_TYPE proxyType) = 0;</codeblock> </p>
-            <p outputclass="codeblock" props="rtc">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setCloudProxy(CLOUD_PROXY_TYPE proxyType) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">setCloudProxy(type: CLOUD_PROXY_TYPE): number</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract setCloudProxy(proxyType: CloudProxyType): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetCloudProxy(CLOUD_PROXY_TYPE proxyType);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">abstract setCloudProxy(proxyType: CloudProxyType): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setCloudProxy(CloudProxyType proxyType);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>自从</dt>
-                <dd>3.3.0</dd>
-            </dlentry>
-            </dl>
             <p>当用户的网络访问受到防火墙限制时，你需要将 Agora 提供的 IP 和端口号添加到防火墙白名单，然后调用该方法开启云代理，并通过 <parmname>proxyType</parmname> 参数设置云代理类型。</p>
             <p>成功连接云代理后，SDK 会触发 <xref keyref="onConnectionStateChanged"/> (<ph keyref="CONNECTION_STATE_CONNECTING"/>, <ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER"/>) 回调。
             </p>
-            <p props="rtc">自 v3.6.2 起，当用户调用该方法并成功加入频道后，SDK 会触发 <xref keyref="onProxyConnected"/> 回调，报告用户 ID、连接的代理类型和用户调用 <xref keyref="joinChannel1"/> 到 SDK 触发该回调的经过的时间等。</p>
             <p>如果你想关闭已设置的 Force UDP 或 Force TCP 云代理，请调用 <codeph><apiname keyref="setCloudProxy"/> (<apiname keyref="NONE_PROXY"/>)</codeph>。</p>
             <p>如果你想更改已设置的云代理类型，请先调用 <codeph><apiname keyref="setCloudProxy"/> (<apiname keyref="NONE_PROXY"/>)</codeph>，再调用 <apiname keyref="setCloudProxy"/> 并传入你期望的 <parmname>proxyType</parmname> 值。
             </p>
             <note type="attention">
             <ul>
             <li>Agora 推荐你在频道外调用该方法。</li>
-            <li props="rtc">对 3.3.x 版 SDK，使用 Force UDP 云代理时，旁路推流和跨频道媒体流转发功能不可用。对 3.4.0 及之后版 SDK，如果用户处于内网防火墙环境下，使用 Force UDP 云代理时，旁路推流和跨频道媒体流转发功能不可用。</li>
-            <li props="rtc-ng">如果用户处于内网防火墙环境下，使用 Force UDP 云代理时，旁路推流和跨频道媒体流转发功能不可用。</li>
+            <li>如果用户处于内网防火墙环境下，使用 Force UDP 云代理时，旁路推流和跨频道媒体流转发功能不可用。</li>
             <li>使用 Force UDP 云代理时，调用 <xref keyref="startAudioMixing2"/> 方法时无法播放 HTTP 协议的在线音频文件。旁路推流和跨频道媒体流转发功能会使用 TCP 协议的云代理。</li>
             </ul></note></section>
         <section id="parameters">
@@ -52,10 +40,10 @@
             <plentry>
                 <pt>proxyType</pt>
                 <pd>
-                    <p props="ios mac cpp electron unity flutter">云代理类型，详见 <xref keyref="CLOUD_PROXY_TYPE"/>。</p>
+                    <p props="ios mac cpp electron unity flutter rn">云代理类型，详见 <xref keyref="CLOUD_PROXY_TYPE" />。</p>
                     <p props="android"><ph>云代理类型。</ph>
                     <ul>
-                    <li><ph keyref="NONE_PROXY"/><ph>（0）：自动模式。</ph><ph props="rtc-ng">SDK 默认开启该模式。</ph><ph>在该模式下，SDK 优先连接 SD-RTN™，如果连接失败，自动切换到 TLS 443。</ph><ph props="rtc">自 v3.6.2 起，SDK 默认开启该模式。</ph></li>
+                    <li><ph keyref="NONE_PROXY"/>（0）：自动模式。SDK 默认开启该模式。在该模式下，SDK 优先连接 SD-RTN™，如果连接失败，自动切换到 TLS 443。</li>
                     <li><ph keyref="UDP_PROXY"/>（1）：UDP 协议的云代理，即 Force UDP 云代理模式。在该模式下，SDK 始终通过 UDP 协议传输数据。</li>
                     <li><ph keyref="TCP_PROXY"/>（2）：TCP（加密）协议的云代理，即 Force TCP 云代理模式。在该模式下，SDK 始终通过 TLS 443 传输数据。</li>
                     </ul></p>
@@ -63,12 +51,12 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native cpp unity electron">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功。</li>
             <li> &lt; 0: 方法调用失败。
-                
+
                 <ul>
                 <li>-2: 传入的参数无效。</li>
                 <li>-7: SDK 尚未初始化。</li>

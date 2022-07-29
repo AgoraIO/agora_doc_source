@@ -32,18 +32,23 @@
      (void)newState;
      (void)elapseSinceLastState;
      }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.VIDEO_SUBSCRIBE_STATE_CHANGED, cb: (
-     channel: string,
-     uid: number,
-     oldState: STREAM_SUBSCRIBE_STATE,
-     newState: STREAM_SUBSCRIBE_STATE,
-     elapseSinceLastState: number
-     ) =&gt; void): this;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">onVideoSubscribeStateChanged?(channel: string, uid: number, oldState: StreamSubscribeState, newState: StreamSubscribeState, elapseSinceLastState: number): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnVideoSubscribeStateChanged(string channel, uint uid, STREAM_SUBSCRIBE_STATE oldState,
             STREAM_SUBSCRIBE_STATE newState, int elapseSinceLastState)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">StreamSubscribeStateCallback? videoSubscribeStateChanged;</codeblock>
-            </p>
+            <codeblock props="rn" outputclass="language-typescript">onVideoSubscribeStateChanged?(
+  channel: string,
+  uid: number,
+  oldState: StreamSubscribeState,
+  newState: StreamSubscribeState,
+  elapseSinceLastState: number
+): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(
+      String channel,
+      int uid,
+      StreamSubscribeState oldState,
+      StreamSubscribeState newState,
+      int elapseSinceLastState)? onVideoSubscribeStateChanged;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
@@ -71,7 +76,7 @@
             </plentry>
             <plentry>
                 <pt>oldState</pt>
-                <pd props="ios mac cpp unity">The previous subscribing status, see <xref keyref="STREAM_SUBSCRIBE_STATE"/> for details.</pd>
+                <pd props="ios mac cpp unity electron rn flutter">The previous subscribing status, see <xref keyref="STREAM_SUBSCRIBE_STATE"/> for details.</pd>
                 <pd props="android">The previous subscription status.<ul>
                     <li><ph keyref="SUB_STATE_IDLE"/>(0): The initial publishing state after joining the channel.</li>
                     <li><ph keyref="SUB_STATE_NO_SUBSCRIBED"/>(1): Fails to subscribe to the remote stream. Possible reasons:<ul>
@@ -92,7 +97,7 @@
             </plentry>
             <plentry>
                 <pt>newState</pt>
-                <pd props="ios mac cpp unity">The current subscribing status, see <apiname keyref="STREAM_SUBSCRIBE_STATE"/> for details.</pd>
+                <pd props="ios mac cpp unity electron rn flutter">The current subscribing status, see <apiname keyref="STREAM_SUBSCRIBE_STATE"/> for details.</pd>
                 <pd props="android">The current subscription status.<ul>
                     <li><ph keyref="SUB_STATE_IDLE"/>(0): The initial publishing state after joining the channel.</li>
                     <li><ph keyref="SUB_STATE_NO_SUBSCRIBED"/>(1): Fails to subscribe to the remote stream. Possible reasons:<ul>

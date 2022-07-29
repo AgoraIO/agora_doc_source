@@ -1,51 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onuserjoined">
-    <title><ph keyref="onUserJoined" /></title>
-        <shortdesc id="short"><ph id="shortdesc">Occurs when a remote user (COMMUNICATION)/ host (LIVE_BROADCASTING) joins the channel.</ph></shortdesc>
-    <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public void onUserJoined(int uid, int elapsed) {}</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+    <title> <ph keyref="onUserJoined"/> </title>
+    <shortdesc id="short"> <ph id="shortdesc">Occurs when a remote user (COMMUNICATION)/ host (LIVE_BROADCASTING) joins the channel.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onUserJoined(int uid, int elapsed) {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
     didJoinedOfUid:(NSUInteger)uid elapsed:(NSInteger)elapsed;</codeblock>
-                <codeblock props="cpp" outputclass="language-cpp">virtual void onUserJoined(uid_t uid, int elapsed) {
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onUserJoined(uid_t uid, int elapsed) {
     (void)uid;
     (void)elapsed;
     }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.USER_JOINED, cb: (uid: number, elapsed: number) =&gt; void): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserJoined(uint uid, int elapsed)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">UidWithElapsedCallback? userJoined;</codeblock>
-        </p>
-   </section>
-   <section id="detailed_desc">
-  <ul id="detailed_desc_scene">
-   <li>In a communication channel, this callback indicates that a remote user joins the channel. The SDK also triggers this callback to report the existing users in the channel when a user joins the channel.</li>
-   <li>In a live-broadcast channel, this callback indicates that a host joins the channel. The SDK also triggers this callback to report the existing hosts in the channel when a host joins the channel. Agora recommends limiting the number of hosts to 17.</li>
-        </ul>
-  <p>The SDK triggers this callback under one of the following circumstances:<ul>
-   <li>A remote user/host joins the channel by calling the <apiname keyref="joinChannel2" /> method.</li>
-   <li>A remote user switches the user role to the host after joining the channel.</li>
-   <li>A remote user/host rejoins the channel after a network interruption.</li>
-        </ul></p>
-   </section>
-   <section id="parameters">
-  <title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-  <parml>
-                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                    <pt />
-                    <pd />
-                </plentry>
-                <plentry id="uid">
-                    <pt>uid</pt>
-                    <pd>The ID of the user or host who joins the channel.</pd>
-                </plentry>
-                <plentry>
-                    <pt>elapsed</pt>
-                    <pd>Time delay (ms) from the local user calling <apiname keyref="joinChannel2" />
-                        until this callback is triggered.</pd>
-                </plentry>
-            </parml>
-   </section>
+            <codeblock props="electron" outputclass="language-typescript">onUserJoined?(connection: RtcConnection, remoteUid: number, elapsed: number): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserJoined(RtcConnection connection, uint remoteUid, int elapsed) {}</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onUserJoined?(
+  connection: RtcConnection,
+  remoteUid: number,
+  elapsed: number
+): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, int elapsed)?
+      onUserJoined;
+</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <ul id="detailed_desc_scene">
+            <li>In a communication channel, this callback indicates that a remote user joins the channel. The SDK also triggers this callback to report the existing users in the channel when a user joins the channel.</li>
+            <li>In a live-broadcast channel, this callback indicates that a host joins the channel. The SDK also triggers this callback to report the existing hosts in the channel when a host joins the channel. Agora recommends limiting the number of hosts to 17.</li>
+            </ul>
+            <p>The SDK triggers this callback under one of the following circumstances:<ul>
+            <li>A remote user/host joins the channel by calling the <apiname keyref="joinChannel2"/> method.</li>
+            <li>A remote user switches the user role to the host after joining the channel.</li>
+            <li>A remote user/host rejoins the channel after a network interruption.</li>
+            </ul> </p>
+        </section>
+        <section id="parameters">
+            <title> <ph keyref="callback-section-title"/> </title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <parml>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry props="unity electron rn flutter">
+                <pt>connection</pt>
+                <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
+            </plentry>
+            <plentry id="uid">
+                <pt props="native">uid</pt>
+                <pt props="unity electron rn flutter">remoteUid</pt>
+                <pd>The ID of the user or host who joins the channel.</pd>
+            </plentry>
+            <plentry>
+                <pt>elapsed</pt>
+                <pd>Time delay (ms) from the local user calling <apiname keyref="joinChannel2"/> until this callback is triggered.</pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

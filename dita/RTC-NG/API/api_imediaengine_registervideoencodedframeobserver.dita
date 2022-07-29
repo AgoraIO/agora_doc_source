@@ -19,7 +19,7 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int registerVideoEncodedFrameObserver(IVideoEncodedFrameObserver* observer) = 0;
 </codeblock></p>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public abstract void RegisterVideoEncodedImageReceiver(IAgoraRtcVideoEncodedImageReceiver videoEncodedImageReceiver);</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract void RegisterVideoEncodedImageReceiver(IVideoEncodedImageReceiver videoEncodedImageReceiver, OBSERVER_MODE mode = OBSERVER_MODE.INTPTR);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </section>
         <section id="detailed_desc">
@@ -39,8 +39,12 @@
                 <pd props="android cpp unity">视频帧接收观测器，详见 <xref keyref="IVideoEncodedFrameObserver"/>。</pd>
                 <pd props="ios mac">接口对象实例。详见 <xref keyref="IVideoEncodedFrameObserver"/>。如果传入 <ph keyref="NULL"/>，则表示取消注册。</pd>
             </plentry>
+                <plentry props="unity">
+                    <pt>mode</pt>
+                    <pd>视频数据回调模式，详见 <xref keyref="OBSERVER_MODE"/>。</pd>
+                </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native">
             <title>返回值</title>
             <ul id="ul_z2p_4jf_3qb">
             <li>0：方法调用成功。</li>

@@ -31,15 +31,82 @@
   bool primaryMonitor;
   ScreenCaptureSourceInfo() : type(ScreenCaptureSourceType_Unknown), sourceId(nullptr), sourceName(nullptr), processPath(nullptr), sourceTitle(nullptr), primaryMonitor(false) {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript">export class ScreenCaptureSourceInfo {
+  type?: ScreenCaptureSourceType
+  sourceId?: any
+  sourceName?: string
+  thumbImage?: ThumbImageBuffer
+  iconImage?: ThumbImageBuffer
+  processPath?: string
+  sourceTitle?: string
+  primaryMonitor?: boolean
+  isOccluded?: boolean
+}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class ScreenCaptureSourceInfo
+    {
+        public ScreenCaptureSourceType type { set; get; }
+        public view_t sourceId { set; get; }
+        public string sourceName { set; get; }
+        public ThumbImageBuffer thumbImage { set; get; }
+        public ThumbImageBuffer iconImage { set; get; }
+
+        public string processPath { set; get; }
+        public string sourceTitle { set; get; }
+        public bool primaryMonitor { set; get; }
+
+        public ScreenCaptureSourceInfo()
+        {
+            type = ScreenCaptureSourceType.ScreenCaptureSourceType_Unknown;
+            sourceId = 0;
+            sourceName = "";
+            processPath = "";
+            sourceTitle = "";
+            primaryMonitor = false;
+            thumbImage = new ThumbImageBuffer();
+            iconImage = new ThumbImageBuffer();
+        }
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
-        </section>
-        <section id="detailed_desc">
+            <codeblock props="flutter" outputclass="language-dart">class ScreenCaptureSourceInfo {
+  const ScreenCaptureSourceInfo(
+      {this.type,
+      this.sourceId,
+      this.sourceName,
+      this.thumbImage,
+      this.iconImage,
+      this.processPath,
+      this.sourceTitle,
+      this.primaryMonitor,
+      this.isOccluded});
+
+  @JsonKey(name: 'type')
+  final ScreenCaptureSourceType? type;
+  @JsonKey(name: 'sourceId')
+  final int? sourceId;
+  @JsonKey(name: 'sourceName')
+  final String? sourceName;
+  @JsonKey(name: 'thumbImage')
+  final ThumbImageBuffer? thumbImage;
+  @JsonKey(name: 'iconImage')
+  final ThumbImageBuffer? iconImage;
+  @JsonKey(name: 'processPath')
+  final String? processPath;
+  @JsonKey(name: 'sourceTitle')
+  final String? sourceTitle;
+  @JsonKey(name: 'primaryMonitor')
+  final bool? primaryMonitor;
+  @JsonKey(name: 'isOccluded')
+  final bool? isOccluded;
+  factory ScreenCaptureSourceInfo.fromJson(Map&lt;String, dynamic> json) =>
+      _$ScreenCaptureSourceInfoFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$ScreenCaptureSourceInfoToJson(this);
+}</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>type</pt>

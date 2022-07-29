@@ -18,8 +18,9 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int enableRemoteSuperResolution(uid_t userId, bool enable) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int EnableRemoteSuperResolution(uint userId, bool enable);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableRemoteSuperResolution(int userId, bool enable);</codeblock> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract enableRemoteSuperResolution(userId: number, enable: boolean): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableRemoteSuperResolution(
+                {required int userId, required bool enable});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
@@ -37,15 +38,11 @@
             <note type="caution">
             <p props="cpp unity flutter">The super resolution feature requires extra system resources. To balance the visual experience and system resource consumption, this feature can only be enabled for a single remote user. If the local user uses super resolution on Android, the original resolution of the remote user's video cannot exceed 640 × 360 pixels; if the local user uses super resolution on iOS, the original resolution of the remote user's video cannot exceed 640 × 480 pixels.</p>
             <p props="android ios">The super resolution feature requires extra system resources. To balance the visual experience and system consumption, this feature can only be enabled for a single remote user. If the local user uses super resolution on Android, the original resolution of the remote user's video cannot exceed <ph props="android">640 × 360</ph><ph props="ios">640 × 480 </ph> pixels.</p>
-            <p props="rtc">If you exceed these limitations, the SDK triggers the <xref keyref="onWarning"/> callback and returns all corresponding warning codes:<ul>
-            <li><ph keyref="WARN_SUPER_RESOLUTION_STREAM_OVER_LIMITATION"/>: 1610. The origin resolution of the remote video is beyond the range where super resolution can be applied.</li>
-            <li><ph keyref="WARN_SUPER_RESOLUTION_USER_COUNT_OVER_LIMITATION"/>: 1611. Super resolution is already being used on another remote user's video.</li>
-            <li><ph keyref="WARN_SUPER_RESOLUTION_DEVICE_NOT_SUPPORTED"/>: 1612. The device does not support using super resolution.</li>
-            </ul></p>
+            <p props="rn">The super resolution feature requires extra system resources. To balance the visual experience and system consumption, this feature can only be enabled for a single remote user. If the local user uses super resolution on Android, the original resolution of the remote user's video cannot exceed 640 × 360 pixels; if the local user uses super resolution on iOS, the original resolution of the remote user's video cannot exceed 640 × 480 pixels.</p>
             </note>
             <note type="attention">
             <ul>
-            <li props="cpp unity flutter rn">This method applies to Android and iOS only.</li>
+            <li props="cpp unity flutter">This method is for Android and iOS only.</li>
             <li>Before calling this method, ensure that you have integrated the following dynamic libraries:<ul>
                 <li props="android cpp unity flutter rn">Android: <ph>libagora_super_resolution_extension.so</ph></li>
                 <li props="ios cpp unity flutter rn">iOS: <ph>AgoraSuperResolutionExtension.xcframework</ph></li>
@@ -82,7 +79,7 @@
             <title>Parameters</title>
             <parml>
             <plentry>
-                <pt props="cpp unity flutter">userId</pt>
+                <pt props="cpp unity flutter rn">userId</pt>
                 <pt props="android ios">uid</pt>
                 <pd>The user ID of the remote user.</pd>
             </plentry>
@@ -94,14 +91,11 @@
                     </ul></pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="electron unity native" >
+        <section id="return_values" props="rn unity native" >
             <title>Returns</title>
             <ul>
             <li>0: Success.</li>
-            <li>&lt; 0: Failure.<ul props="rtc">
-                <li>-157: The dynamic library for super resolution is not integrated.</li>
-                </ul></li>
-            </ul>
-        </section>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
     </refbody>
 </reference>

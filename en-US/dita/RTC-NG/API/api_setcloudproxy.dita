@@ -1,71 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setcloudproxy">
-    <title> <ph keyref="setCloudProxy" /> </title>
+    <title> <ph keyref="setCloudProxy"/> </title>
     <shortdesc id="short"><ph id="shortdesc">Sets the Agora cloud proxy service.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setCloudProxy" />
+                <indexterm keyref="setCloudProxy"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
+            <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setCloudProxy(int proxyType);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setCloudProxy:(AgoraCloudProxyType)proxyType NS_SWIFT_NAME(setCloudProxy(_:));</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int setCloudProxy(CLOUD_PROXY_TYPE proxyType) = 0;</codeblock> </p>
-            <p outputclass="codeblock" props="rtc">
-            <codeblock props="android" outputclass="language-java" />
-            <codeblock props="ios mac" outputclass="language-objectivec" />
             <codeblock props="cpp" outputclass="language-cpp">virtual int setCloudProxy(CLOUD_PROXY_TYPE proxyType) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">setCloudProxy(type: CLOUD_PROXY_TYPE): number</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract setCloudProxy(proxyType: CloudProxyType): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetCloudProxy(CLOUD_PROXY_TYPE proxyType);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript">abstract setCloudProxy(proxyType: CloudProxyType): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setCloudProxy(CloudProxyType proxyType);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>Since</dt>
-                <dd>3.3.0</dd>
-            </dlentry>
-            </dl>
             <p>When users' network access is restricted by a firewall, configure the firewall to allow specific IP addresses and ports provided by Agora; then, call this method to enable the cloud proxy and set the cloud proxy type with the <parmname>proxyType</parmname> parameter.</p>
-            <p>After successfully connecting to the cloud proxy, the SDK triggers the <xref keyref="onConnectionStateChanged" /> (<ph keyref="CONNECTION_STATE_CONNECTING" />, <ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER" />) callback.</p>
-            <p props="rtc">As of v3.6.2, when a user calls this method and then joins a channel successfully, the SDK triggers the <xref keyref="onProxyConnected" /> callback to report the user ID, the proxy type connected, and the time calculated from when the user calling the <xref keyref="joinChannel1" /> method to the callback is triggered.</p>
-            <p>To disable the cloud proxy that has been set, call the <codeph><apiname keyref="setCloudProxy" />(<apiname keyref="NONE_PROXY" />)</codeph>. </p>
-            <p>To change the cloud proxy type that has been set, call the <codeph><apiname keyref="setCloudProxy" />(<apiname keyref="NONE_PROXY" />)</codeph> first, and then call the <apiname keyref="setCloudProxy" /> to set the <parmname>proxyType</parmname> you want.</p>
+            <p>After successfully connecting to the cloud proxy, the SDK triggers the <xref keyref="onConnectionStateChanged"/> (<ph keyref="CONNECTION_STATE_CONNECTING"/>, <ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER"/>) callback.</p>
+            <p>To disable the cloud proxy that has been set, call the <codeph><apiname keyref="setCloudProxy"/> (<apiname keyref="NONE_PROXY"/>)</codeph>.</p>
+            <p>To change the cloud proxy type that has been set, call the <codeph><apiname keyref="setCloudProxy"/> (<apiname keyref="NONE_PROXY"/>)</codeph> first, and then call the <apiname keyref="setCloudProxy"/> to set the <parmname>proxyType</parmname> you want.</p>
             <note type="attention">
             <ul>
             <li>Agora recommends that you call this method before joining the channel or after leaving the channel.</li>
-            <li props="rtc">For the SDK v3.3.x, when users use the Force UDP cloud proxy, the services for Media Push and cohosting across channels are not available; for the SDK v3.4.0 or later, when users behind a firewall use the Force UDP cloud proxy, the services for Media Push and cohosting across channels are not available.</li>
-            <li props="rtc-ng">When a user is behind a firewall and uses the Force UDP cloud proxy, the services for Media Push and cohosting across channels are not available.</li>
-            <li>When you use the Force UDP cloud proxy, note that an error would occur when calling the <xref keyref="startAudioMixing2" /> method to play online music files in the HTTP protocol. The services for Media Push and cohosting across channels use the cloud proxy with the TCP protocol.</li>
+            <li>When a user is behind a firewall and uses the Force UDP cloud proxy, the services for Media Push and cohosting across channels are not available.</li>
+            <li>When you use the Force TCP cloud proxy, note that an error would occur when calling the <xref keyref="startAudioMixing2"/> method to play online music files in the HTTP protocol. The services for Media Push and cohosting across channels use the cloud proxy with the TCP protocol.</li>
             </ul></note></section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>proxyType</pt>
-                <pd><p props="ios mac cpp electron unity flutter">The type of the cloud proxy. See <xref keyref="CLOUD_PROXY_TYPE" />.</p>
+                <pd>
+                    <p props="ios mac cpp electron unity flutter rn">The type of the cloud proxy. See <xref keyref="CLOUD_PROXY_TYPE" />.</p>
                     <p props="android"><ph>Type of the cloud proxy.</ph><ul>
-                        <li><ph keyref="NONE_PROXY" /><ph>(0): The automatic mode.  </ph><ph props="rtc-ng">The SDK has this mode enabled by default. </ph><ph>In this mode, the SDK attempts a direct connection to SD-RTN™ and automatically switches to TCP/TLS 443 if the attempt fails. </ph><ph props="rtc">As of v3.6.2, the SDK has this mode enabled by default.</ph></li>
-                        <li><ph keyref="UDP_PROXY" />(1): The cloud proxy for the UDP protocol, that is, the Force UDP cloud proxy mode. In this mode, the SDK always transmits data over UDP.</li>
-                        <li><ph keyref="TCP_PROXY" />(2): The cloud proxy for the TCP (encryption) protocol, that is, the Force TCP cloud proxy mode. In this mode, the SDK always transmits data over TCP/TLS 443.</li>
+                    <li><ph keyref="NONE_PROXY"/>(0): The automatic mode. The SDK has this mode enabled by default. In this mode, the SDK attempts a direct connection to SD-RTN™ and automatically switches to TCP/TLS 443 if the attempt fails.</li>
+                    <li><ph keyref="UDP_PROXY"/>(1): The cloud proxy for the UDP protocol, that is, the Force UDP cloud proxy mode. In this mode, the SDK always transmits data over UDP.</li>
+                    <li><ph keyref="TCP_PROXY"/>(2): The cloud proxy for the TCP (encryption) protocol, that is, the Force TCP cloud proxy mode. In this mode, the SDK always transmits data over TCP/TLS 443.</li>
                     </ul></p>
-                    <p>This parameter is mandatory. The SDK reports an error if you do not pass in a value.</p></pd>
+                    <p>This parameter is mandatory. The SDK reports an error if you do not pass in a value.</p>
+                </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native cpp unity electron">
+        <section id="return_values" props="native electron unity rn">
             <title>Returns</title>
             <ul>
-                <li>0: Success.</li>
-                <li> &lt; 0: Failure.<ul>
-                    <li>-2: The parameter is invalid.</li>
-                    <li>-7: The SDK is not initialized.</li>
-                    </ul> </li>
+            <li>0: Success.</li>
+            <li> &lt; 0: Failure.<ul>
+                <li>-2: The parameter is invalid.</li>
+                <li>-7: The SDK is not initialized.</li>
+                </ul> </li>
             </ul></section>
     </refbody>
 </reference>

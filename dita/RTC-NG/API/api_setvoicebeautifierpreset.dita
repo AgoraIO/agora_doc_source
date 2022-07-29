@@ -16,10 +16,10 @@
             <codeblock props="android" outputclass="language-java">public abstract int setVoiceBeautifierPreset(int preset);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setVoiceBeautifierPreset:(AgoraVoiceBeautifierPreset)preset;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setVoiceBeautifierPreset(VOICE_BEAUTIFIER_PRESET preset) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">setVoiceBeautifierPreset(preset: VOICE_BEAUTIFIER_PRESET): number</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract setVoiceBeautifierPreset(preset: VoiceBeautifierPreset): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetVoiceBeautifierPreset(VOICE_BEAUTIFIER_PRESET preset);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setVoiceBeautifierPreset(VoiceBeautifierPreset preset);</codeblock> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract setVoiceBeautifierPreset(preset: VoiceBeautifierPreset): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setVoiceBeautifierPreset(VoiceBeautifierPreset preset);</codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>调用该方法可以为本地发流用户设置预设的人声美化效果。设置美声效果后，频道内所有用户都能听到该效果。根据不同的场景，你可以为用户设置不同的美声效果。<ph props="android ios">各美声效果的适用场景可参考<xref keyref="guide-voice-changer" format="html" scope="external">设置人声效果</xref>。</ph></p>
@@ -27,10 +27,9 @@
             <note type="attention">
             <ul>
             <li>该方法在加入频道前后都能调用。</li>
-            <li>请勿将 <apiname keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1)<ph props="cpp"> 或 <apiname keyref="AUDIO_PROFILE_IOT"/>(6)</ph>，否则该方法不生效。</li>
+            <li>请勿将 <apiname keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1)<ph props="cpp rn electron flutter"> 或 <apiname keyref="AUDIO_PROFILE_IOT"/>(6)</ph>，否则该方法不生效。</li>
             <li>该方法对人声的处理效果最佳，Agora 不推荐调用该方法处理含音乐的音频数据。</li>
             <li>调用 <apiname keyref="setVoiceBeautifierPreset"/>，Agora 不推荐调用以下方法，否则 <apiname keyref="setVoiceBeautifierPreset"/> 设置的效果会被覆盖：
-      
                 <ul>
                 <li><xref keyref="setAudioEffectPreset"/></li>
                 <li><xref keyref="setAudioEffectParameters"/></li>
@@ -48,16 +47,14 @@
             <plentry>
                 <pt>preset</pt>
                 <pd>
-                    <p props="ios mac cpp unity flutter">预设的美声效果选项，详见 <xref keyref="VOICE_BEAUTIFIER_PRESET"/>。</p>
+                    <p props="ios mac cpp unity flutter rn electron">预设的美声效果选项，详见 <xref keyref="VOICE_BEAUTIFIER_PRESET"/>。</p>
                     <p props="android">预设的美声效果选项：
-                   
                     <ul>
                     <li><ph keyref="VOICE_BEAUTIFIER_OFF"/>: 原声，即关闭美声效果。</li>
                     <li><ph keyref="CHAT_BEAUTIFIER_MAGNETIC"/>: 磁性（男）。</li>
                     <li><ph keyref="CHAT_BEAUTIFIER_FRESH"/>: 清新（女）。</li>
                     <li><ph keyref="CHAT_BEAUTIFIER_VITALITY"/>: 活力（女）。</li>
-                    <li><ph keyref="SINGING_BEAUTIFIER"/>: 歌唱美声。
-                                    
+                    <li><ph keyref="SINGING_BEAUTIFIER"/>: 歌唱美声。                        
                         <ul>
                         <li>如果调用 <xref keyref="setVoiceBeautifierPreset"/>(<ph keyref="SINGING_BEAUTIFIER"/>)，你可以美化男声并添加歌声在小房间的混响效果。请勿用于设置女声，否则音频会失真。</li>
                         <li>如果调用 <xref keyref="setVoiceBeautifierParameters"/>(<ph keyref="SINGING_BEAUTIFIER"/>, param1, param2)，你可以美化男声或女声并添加混响效果。</li>
@@ -80,7 +77,7 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功</li>

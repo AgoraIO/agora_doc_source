@@ -18,12 +18,17 @@
 reasonCode:(AgoraAudioMixingReasonCode)reasonCode;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioMixingStateChanged(AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_REASON_TYPE reason) {
     (void)state;
-    (void)reason;
-  }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+    (void)errorCode;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">onAudioMixingStateChanged?(state: AudioMixingStateType, errorCode: AudioMixingErrorType): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioMixingStateChanged(AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_ERROR_TYPE errorCode) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">onAudioMixingStateChanged?(
+  state: AudioMixingStateType,
+  errorCode: AudioMixingErrorType
+): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(
+          AudioMixingStateType state, AudioMixingErrorType errorCode)?
+      onAudioMixingStateChanged;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>该回调在音乐文件播放状态发生改变时触发，并报告当前的播放状态和错误码。</p>
@@ -33,7 +38,7 @@ reasonCode:(AgoraAudioMixingReasonCode)reasonCode;</codeblock>
             <parml>
             <plentry>
                 <pt>state</pt>
-                <pd><ph>音乐文件播放状态。</ph><ph props="ios mac cpp unity">详见 <xref keyref="AUDIO_MIXING_STATE_TYPE"/>。</ph>
+                <pd><ph>音乐文件播放状态。</ph><ph props="ios mac cpp unity electron rn flutter">详见 <xref keyref="AUDIO_MIXING_STATE_TYPE"/>。</ph>
                     <p props="android">
                     <ul>
                     <li><ph keyref="AUDIO_MIXING_STATE_PLAYING"/> (710): 音乐文件正常播放。</li>
@@ -44,6 +49,10 @@ reasonCode:(AgoraAudioMixingReasonCode)reasonCode;</codeblock>
                     <li props="hide"><ph keyref="AUDIO_MIXING_STATE_ALL_LOOPS_COMPLETED"/> (716): 音乐文件已结束循环播放。</li>
                     </ul> </p>
                 </pd>
+            </plentry>
+            <plentry props="electron unity flutter">
+                <pt>errorCode</pt>
+                <pd>错误码。<ph props="electron rn flutter">详见 <xref keyref="AUDIO_MIXING_ERROR_TYPE"/>。</ph></pd>
             </plentry>
             <plentry>
                 <pt props="android ios mac">reasonCode</pt>

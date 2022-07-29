@@ -5,75 +5,90 @@
     <shortdesc id="short"><ph id="shortdesc">Reasons causing the change of the connection state.</ph></shortdesc>
     <refbody>
         <section id="parameters">
-   <title>Enumerator</title>
-   <parml>
-       <plentry>
-  <pt><ph keyref="CONNECTION_CHANGED_CONNECTING"/></pt>
-  <pd>0: The SDK is connecting to the Agora edge server.</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CONNECTION_CHANGED_JOIN_SUCCESS"/></pt>
-  <pd>1: The SDK has joined the channel successfully.</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CONNECTION_CHANGED_INTERRUPTED"/></pt>
-  <pd>2: The connection between the SDK and the Agora edge server is interrupted.</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CONNECTION_CHANGED_BANNED_BY_SERVER"/></pt>
-  <pd>3: The connection between the SDK and the Agora edge server is banned by the Agora edge server. This error occurs when the user is kicked out of the channel by the server.</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CONNECTION_CHANGED_JOIN_FAILED"/></pt>
-  <pd>4: The SDK fails to join the channel. When the SDK fails to join the channel for more than 20 minutes, this error occurs and the SDK stops reconnecting to the channel.</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CONNECTION_CHANGED_LEAVE_CHANNEL"/></pt>
-  <pd>5: The SDK has left the channel.</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CONNECTION_CHANGED_INVALID_APP_ID"/></pt>
-  <pd>6: The connection failed because the App ID is not valid. Please rejoin the channel with a valid App ID.</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CONNECTION_CHANGED_INVALID_CHANNEL_NAME"/></pt>
-  <pd>7: The connection failed since channel name is not valid. Please rejoin the channel with a valid channel name.</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CONNECTION_CHANGED_INVALID_TOKEN"/></pt>
-  <pd><p>8: The connection failed because the token is not valid. Typical reasons include:<ul>
-      <li>The App Certificate for the project is enabled in Agora Console, but you do not use a token when joining the channel. If you enable the App Certificate, you must use a token to join the channel.</li>
-      <li>The uid specified when calling <apiname keyref="joinChannel2"/> to join the channel is inconsistent with the uid passed in when generating the token.</li>
-  </ul></p></pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CONNECTION_CHANGED_TOKEN_EXPIRED"/></pt>
-  <pd>9: The connection failed since token is expired.</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CONNECTION_CHANGED_REJECTED_BY_SERVER"/></pt>
-  <pd><p>10: The connection is rejected by server. Typical reasons include:<ul>
-      <li>The user is already in the channel and still calls a method, for example, <apiname keyref="joinChannel2" />, to join the channel. Stop calling this method to clear this error.</li>
-      <li>The user tries to join the channel when conducting  a pre-call test. The user needs to call the channel after the call test ends.</li>
-  </ul>
-  </p></pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER"/></pt>
-  <pd>11: The connection state changed to reconnecting because the SDK has set a proxy server.</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CONNECTION_CHANGED_RENEW_TOKEN"/></pt>
-  <pd>12: The connection state changed because the token is renewed.</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED"/></pt>
-  <pd>13: The IP address of the client has changed, possibly because the network type, IP address, or port has been changed.</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CONNECTION_CHANGED_KEEP_ALIVE_TIMEOUT"/></pt>
-  <pd>14: Timeout for the keep-alive of the connection between the SDK and the Agora edge server. The connection state changes to <ph keyref="CONNECTION_STATE_RECONNECTING"/>.</pd>
-       </plentry>
-   </parml>
-        </section></refbody>
+            <title>Enumerator</title>
+            <parml>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_CONNECTING"/></pt>
+                <pd>0: The SDK is connecting to the Agora edge server.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_JOIN_SUCCESS"/></pt>
+                <pd>1: The SDK has joined the channel successfully.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_INTERRUPTED"/></pt>
+                <pd>2: The connection between the SDK and the Agora edge server is interrupted.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_BANNED_BY_SERVER"/></pt>
+                <pd>3: The connection between the SDK and the Agora edge server is banned by the Agora edge server. This error occurs when the user is kicked out of the channel by the server.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_JOIN_FAILED"/></pt>
+                <pd>4: The SDK fails to join the channel. When the SDK fails to join the channel for more than 20 minutes, this error occurs and the SDK stops reconnecting to the channel.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_LEAVE_CHANNEL"/></pt>
+                <pd>5: The SDK has left the channel.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_INVALID_APP_ID"/></pt>
+                <pd>6: The connection failed because the App ID is not valid. Please rejoin the channel with a valid App ID.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_INVALID_CHANNEL_NAME"/></pt>
+                <pd>7: The connection failed since channel name is not valid. Please rejoin the channel with a valid channel name.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_INVALID_TOKEN"/></pt>
+                <pd>
+                    <p>8: The connection failed because the token is not valid. Typical reasons include:<ul>
+                    <li>The App Certificate for the project is enabled in Agora Console, but you do not use a token when joining the channel. If you enable the App Certificate, you must use a token to join the channel.</li>
+                    <li>The uid specified when calling <apiname keyref="joinChannel2"/> to join the channel is inconsistent with the uid passed in when generating the token.</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_TOKEN_EXPIRED"/></pt>
+                <pd>9: The connection failed since token is expired.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_REJECTED_BY_SERVER"/></pt>
+                <pd>
+                    <p>10: The connection is rejected by server. Typical reasons include:<ul>
+                    <li>The user is already in the channel and still calls a method, for example, <apiname keyref="joinChannel2"/>, to join the channel. Stop calling this method to clear this error.</li>
+                    <li>The user tries to join the channel when conducting a pre-call test. The user needs to call the channel after the call test ends.</li>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER"/></pt>
+                <pd>11: The connection state changed to reconnecting because the SDK has set a proxy server.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_RENEW_TOKEN"/></pt>
+                <pd>12: The connection state changed because the token is renewed.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED"/></pt>
+                <pd>13: The IP address of the client has changed, possibly because the network type, IP address, or port has been changed.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_KEEP_ALIVE_TIMEOUT"/></pt>
+                <pd>14: Timeout for the keep-alive of the connection between the SDK and the Agora edge server. The connection state changes to .</pd>
+            </plentry>
+            <plentry props="rtc-ng">
+                <pt><ph keyref="CONNECTION_CHANGED_REJOIN_SUCCESS"/></pt>
+                <pd>15: The SDK has rejoined the channel successfully.</pd>
+            </plentry>
+            <plentry props="rtc-ng">
+                <pt><ph keyref="CONNECTION_CHANGED_LOST"/></pt>
+                <pd>16: The connection between the SDK and the server is lost.</pd>
+            </plentry>
+            <plentry props="rtc-ng">
+                <pt><ph keyref="CONNECTION_CHANGED_ECHO_TEST"/></pt>
+                <pd>17: The connection state changes due to the echo test.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
 </reference>

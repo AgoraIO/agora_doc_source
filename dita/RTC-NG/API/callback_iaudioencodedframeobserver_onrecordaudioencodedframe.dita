@@ -20,7 +20,7 @@
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void OnRecordAudioEncodedFrame(const uint8_t* frameBuffer,  int length, const EncodedAudioFrameInfo&amp; audioEncodedFrameInfo) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnRecordAudioEncodedFrame(uint frameBuffer,  int length, 
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnRecordAudioEncodedFrame(IntPtr frameBufferPtr, int length,
                                                     EncodedAudioFrameInfo audioEncodedFrameInfo)
         {
 
@@ -29,8 +29,7 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p>调用 <xref keyref="registerAudioEncodedFrameObserver"/> 并将音频编码内容设为 <ph keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_RECORD"/>
-                后，你可以通过该回调获取本地用户的音频编码数据。</p>
+            <p>调用 <xref keyref="registerAudioEncodedFrameObserver"/> 并将音频编码内容设为 <ph keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_RECORD"/> 后，你可以通过该回调获取本地用户的音频编码数据。</p>
         </section>
         <section id="parameters">
             <title>参数</title>
@@ -38,7 +37,8 @@
             <plentry>
                 <pt props="android">buffer</pt>
                 <pt props="ios mac">frameData</pt>
-                <pt props="cpp unity">frameBuffer</pt>
+                <pt props="cpp">frameBuffer</pt>
+                <pt props="unity">frameBufferPtr</pt>
                 <pd>音频 buffer。</pd>
             </plentry>
             <plentry props="cpp unity">
@@ -65,7 +65,6 @@
             <plentry props="android" id="codecType">
                 <pt>codecType</pt>
                 <pd>音频编码类型：
-                    
                     <ul>
                     <li><ph keyref="AUDIO_CODEC_OPUS"/>(1): OPUS 编码格式。</li>
                     <li><ph keyref="AUDIO_CODEC_AACLC"/>(8): LC-AAC 编码格式。</li>

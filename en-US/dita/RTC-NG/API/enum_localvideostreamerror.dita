@@ -36,34 +36,34 @@
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_ENCODE_FAILURE"/></pt>
                 <pd>5: The local video encoding fails.</pd>
             </plentry>
-            <plentry props="ios cpp flutter">
+            <plentry props="ios cpp rn unity flutter">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_INBACKGROUND"/></pt>
-                <pd>6:<ph props="cpp flutter"> (For iOS only) </ph>The app is in the background. Remind the user that video capture cannot be performed normally when the app is in the background.</pd>
+                <pd>6:<ph props="cpp rn unity flutter"> (For iOS only) </ph>The app is in the background. Remind the user that video capture cannot be performed normally when the app is in the background.</pd>
             </plentry>
-            <plentry props="ios cpp flutter">
+            <plentry props="ios cpp rn unity flutter">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_MULTIPLE_FOREGROUND_APPS"/></pt>
-                <pd>7:<ph props="cpp flutter"> (For iOS only) </ph> The current application window is running in Slide Over, Split View, or Picture in Picture mode, and another app is occupying the camera. Remind the user that the application cannot capture video properly when the app is running in Slide Over, Split View, or Picture in Picture mode and another app is occupying the camera.</pd>
+                <pd>7:<ph props="cpp rn unity flutter"> (For iOS only) </ph> The current application window is running in Slide Over, Split View, or Picture in Picture mode, and another app is occupying the camera. Remind the user that the application cannot capture video properly when the app is running in Slide Over, Split View, or Picture in Picture mode and another app is occupying the camera.</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_NOT_FOUND"/></pt>
                 <pd>8: Fails to find a local video capture device. Remind the user to check whether the camera is connected to the device properly or the camera is working properly, and then to rejoin the channel.</pd>
             </plentry>
-            <plentry props="cpp mac">
+            <plentry props="cpp mac electron unity flutter">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_DISCONNECTED"/></pt>
-                <pd>9: (macOS only) The video capture device currently in use is disconnected (such as being unplugged).</pd>
+                <pd>9: <ph props="cpp electron unity flutter">(For macOS only)</ph> The video capture device currently in use is disconnected (such as being unplugged).</pd>
             </plentry>
-            <plentry props="mac cpp flutter">
+            <plentry props="mac cpp unity flutter">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_INVALID_ID"/></pt>
-                <pd><ph>10:</ph><ph props="cpp flutter"> (macOS and Windows only)</ph><ph> The SDK cannot find the video device in the video device list. Check whether the ID of the video device is valid.</ph></pd>
+                <pd><ph>10:</ph><ph props="cpp unity flutter"> (macOS and Windows only)</ph><ph> The SDK cannot find the video device in the video device list. Check whether the ID of the video device is valid.</ph></pd>
             </plentry>
             <plentry props="android cpp mac flutter">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_MINIMIZED"/></pt>
-                <pd><ph>11:</ph><ph props="cpp flutter"> (macOS only)</ph><ph> The shared window is minimized when you call <xref keyref="startScreenCaptureByWindowId"/> to share a window. The SDK cannot share a minimized window. You can cancel the minimization of this window at the application layer, for example by maximizing this window.</ph></pd>
+                <pd><ph>11:</ph><ph props="cpp unity flutter"> (macOS only)</ph><ph> The shared window is minimized when you call <xref keyref="startScreenCaptureByWindowId"/> to share a window. The SDK cannot share a minimized window. You can cancel the minimization of this window at the application layer, for example by maximizing this window.</ph></pd>
             </plentry>
             <plentry props="android cpp mac flutter">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_CLOSED"/></pt>
                 <pd>
-                    <p><ph>12:</ph><ph props="cpp flutter"> (macOS and Windows only)</ph><ph> The error code indicates that a window shared by the window ID has been closed or a full-screen window shared by the window ID has exited full-screen mode. After exiting full-screen mode, remote users cannot see the shared window. To prevent remote users from seeing a black screen, Agora recommends that you immediately stop screen sharing.</ph></p>
+                    <p><ph>12:</ph><ph props="cpp unity flutter"> (macOS and Windows only)</ph><ph> The error code indicates that a window shared by the window ID has been closed or a full-screen window shared by the window ID has exited full-screen mode. After exiting full-screen mode, remote users cannot see the shared window. To prevent remote users from seeing a black screen, Agora recommends that you immediately stop screen sharing.</ph></p>
                     <p>Common scenarios for reporting this error code:<ul>
                     <li>When the local user closes the shared window, the SDK reports this error code.</li>
                     <li>The local user shows some slides in full-screen mode first, and then shares the windows of the slides. After the user exits full-screen mode, the SDK reports this error code.</li>

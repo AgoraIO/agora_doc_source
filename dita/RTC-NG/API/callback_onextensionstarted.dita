@@ -12,8 +12,6 @@
     </prolog>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnExtensionStarted(string provider, string extension) {}</codeblock></p>
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">void onStarted(String provider, String extension);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)onExtensionStarted:(NSString * __nullable)provider
@@ -23,9 +21,11 @@
   (void)provider;
   (void)extension;
 }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="electron" outputclass="language-typescript">onExtensionStarted?(provider: string, extName: string): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnExtensionStarted(string provider, string ext_name) { }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onExtensionStarted?(provider: string, extName: string): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(String provider, String extName)? onExtensionStarted;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>当调用 <codeph><xref keyref="enableExtension"/>(<q><ph keyref="true"/></q>)</codeph> 启用插件成功时，插件会触发该回调。</p>
@@ -37,9 +37,11 @@
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry conkeyref="setExtensionProperty/extension">
-                <pt/>
-                <pd/>
+            <plentry>
+                <pt props="native">extension</pt>
+                <pt props="unity">ext_name</pt>
+                <pt props="electron rn flutter">extName</pt>
+                <pd>插件名称。</pd>
             </plentry>
             </parml> </section>
     </refbody>

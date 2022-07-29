@@ -23,15 +23,15 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p props="unity">使用该方法前，你需要在 <xref keyref="RtcEngineConfig"/> 中设置 <parmname props="unity">enableAudioDevice</parmname> 为 <codeph><ph keyref="false"/></codeph>， 并调用 <xref keyref="setExternalAudioSink"/> 通知 app 开启并设置外部渲染。</p>
+            <p>使用该方法前，你需要在 <xref keyref="RtcEngineConfig"/> 中设置 <parmname props="android">mEnableAudioDevice</parmname><parmname props="ios mac cpp">enableAudioDevice</parmname> 为 <codeph><ph keyref="false"/></codeph>， 并调用 <xref keyref="setExternalAudioSink"/> 通知 app 开启并设置外部渲染。</p>
             <p>调用该方法后，app 会采取主动拉取的方式获取远端已解码和混音后的音频数据，用于音频播放。</p>
             <note type="attention">
             <ul>
-            <li props="unity">该方法仅支持拉取自采集的数据。如果你需要拉取 SDK 采集的数据，请不要调用该方法。</li>
+            <li>该方法仅支持拉取自采集的数据。如果你需要拉取 SDK 采集的数据，请不要调用该方法。</li>
             <li>该方法需要在加入频道后调用。</li>
-            <li props="unity">开启外部音频渲染后，app 将无法从 <xref keyref="onPlaybackAudioFrame"/> 回调中获得数据。</li>
+            <li>开启外部音频渲染后，app 将无法从 <xref keyref="onPlaybackAudioFrame"/> 回调中获得数据。</li>
             <li>该方法和 <apiname keyref="onPlaybackAudioFrame"/> 回调相比，区别在于：
-               
+
                 <ul>
                 <li>SDK 通过 <apiname keyref="onPlaybackAudioFrame"/> 回调将音频数据传输给 app。如果 app 处理延时，可能会导致音频播放抖动。</li>
                 <li>调用该方法后 app 会主动拉取音频数据。通过设置音频数据，SDK 可以调整缓存，帮助 app 处理延时，从而有效避免音频播放抖动。</li>

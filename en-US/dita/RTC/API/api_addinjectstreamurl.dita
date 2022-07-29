@@ -17,6 +17,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)addInjectStreamUrl:(NSString* _Nonnull)url config:(AgoraLiveInjectStreamConfig* _Nonnull)config;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int addInjectStreamUrl(const char* url, const InjectStreamConfig&amp; config) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">addInjectStreamUrl(url: string, config: InjectStreamConfig): number</codeblock>
+            <codeblock props="unity" outputclass="language-csharp" />
             <codeblock props="cs" outputclass="language-csharp">public abstract int AddInjectStreamUrl(string url, InjectStreamConfig config);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">addInjectStreamUrl(
     url: string,
@@ -43,7 +44,6 @@
                 <pt>url</pt>
                 <pd>
                     <p>The URL address to be added to the ongoing streaming. Valid protocols are RTMP, HLS, and HTTP-FLV.
-                    
                     <ul>
                     <li>Supported audio codec type: AAC.</li>
                     <li>Supported video codec type: H264 (AVC).</li>
@@ -60,7 +60,6 @@
             <ul>
             <li>0: Success.</li>
             <li>&lt; 0: Failure.
-                
                 <ul>
                 <li><codeph>ERR_INVALID_ARGUMENT</codeph> (-2): The injected URL does not exist. Call this method again to inject the stream and ensure that the URL is valid.</li>
                 <li><codeph>ERR_NOT_READY</codeph> (-3): The user is not in the channel.</li>

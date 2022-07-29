@@ -20,12 +20,13 @@
 }</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnPermissionError(PERMISSION_TYPE permissionType) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">onPermissionError?(permissionType: PermissionType): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(PermissionType permissionType)? onPermissionError;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>When the SDK fails to get the device permission, the SDK triggers this callback to report which device permission cannot be got.</p>
-            <note type="attention" props="cpp">This method is for Android and iOS only.</note> </section>
+            <note type="attention" props="cpp unity flutter">This method is for Android and iOS only.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
@@ -36,8 +37,8 @@
             <plentry>
                 <pt props="android">permission</pt>
                 <pt props="ios mac">type</pt>
-                <pt props="cpp unity">permissionType</pt>
-                <pd props="ios mac cpp unity">The type of the device permission. See <xref keyref="PERMISSION_TYPE"/>.</pd>
+                <pt props="cpp unity electron rn flutter">permissionType</pt>
+                <pd props="ios mac cpp unity electron rn flutter">The type of the device permission. See <xref keyref="PERMISSION_TYPE"/>.</pd>
                 <pd props="android">The type of the device permission.<ul>
                    <li><ph keyref="RECORD_AUDIO"/>(0): Permission for the audio capture device.</li>
                    <li><ph keyref="CAMERA"/>(1): Permission for the camera.</li>

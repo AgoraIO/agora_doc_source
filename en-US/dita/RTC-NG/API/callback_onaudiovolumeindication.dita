@@ -24,15 +24,17 @@
     (void)speakerNumber;
     (void)totalVolume;
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.AUDIO_VOLUME_INDICATION, cb: (
-    speakers: AudioVolumeInfo[],
-    speakerNumber: number,
-    totalVolume: number
-    ) =&gt; void
-    ): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioVolumeIndication(RtcConnection connection, AudioVolumeInfo[] speakers, uint speakerNumber, int totalVolume) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">AudioVolumeCallback? audioVolumeIndication;</codeblock> </p>
+            <codeblock props="electron" outputclass="language-typescript">onAudioVolumeIndication?(connection: RtcConnection, speakers: AudioVolumeInfo[], speakerNumber: number, totalVolume: number): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioVolumeIndication(RtcConnection connection, AudioVolumeInfo[] speakers, uint speakerNumber, int totalVolume) {}</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onAudioVolumeIndication?(
+  connection: RtcConnection,
+  speakers: AudioVolumeInfo[],
+  speakerNumber: number,
+  totalVolume: number
+): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, List&lt;AudioVolumeInfo> speakers,
+      int speakerNumber, int totalVolume)? onAudioVolumeIndication;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>By default, this callback is disabled. You can enable it by calling <xref keyref="enableAudioVolumeIndication"/>. Once this callback is enabled and users send streams in the channel, the SDK triggers the <apiname keyref="onAudioVolumeIndication"/> callback according to the time interval set in <apiname keyref="enableAudioVolumeIndication"/>. The SDK triggers two independent <apiname keyref="onAudioVolumeIndication"/> callbacks simultaneously, which separately report the volume information of the local user who sends a stream and the remote users (up to three) whose instantaneous volume is the highest.</p>
@@ -42,21 +44,21 @@
             </note> </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="rtc-ng">
-                <pt props="unity">connection</pt>
-                <pd props="unity">The connection information. See <xref keyref="RtcConnection"/>.</pd>
+            <plentry props="unity electron rn flutter">
+                <pt>connection</pt>
+                <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
             </plentry>
-            <plentry>
+            <plentry props="native unity electron rn flutter">
                 <pt>speakers</pt>
                 <pd>The volume information of the users. See <xref keyref="AudioVolumeInfo"/>. An empty <parmname>speakers</parmname> array in the callback indicates that no remote user is in the channel or sending a stream at the moment.</pd>
             </plentry>
-            <plentry props="cpp unity">
+            <plentry props="cpp unity electron rn flutter">
                 <pt>speakerNumber</pt>
                 <pd>
                     <p>The total number of users.<ul>
@@ -65,7 +67,7 @@
                     </ul> </p>
                 </pd>
             </plentry>
-            <plentry>
+            <plentry props="native unity electron rn flutter">
                 <pt>totalVolume</pt>
                 <pd>
                     <p>The volume of the speaker. The value ranges between 0 (lowest volume) and 255 (highest volume).<ul>

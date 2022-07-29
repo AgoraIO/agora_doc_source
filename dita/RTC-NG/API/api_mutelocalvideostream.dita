@@ -12,15 +12,14 @@
     </prolog>
     <refbody>
         <section id="prototype">
-            
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int muteLocalVideoStream(boolean muted);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)muteLocalVideoStream:(BOOL)mute;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int muteLocalVideoStream(bool mute) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">muteLocalVideoStream(mute: boolean): number</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract muteLocalVideoStream(mute: boolean): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int MuteLocalVideoStream(bool mute);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; muteLocalVideoStream(bool muted);</codeblock> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract muteLocalVideoStream(mute: boolean): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; muteLocalVideoStream(bool mute);</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>成功调用该方法后，远端会触发 <xref keyref="onUserMuteVideo"/> 回调。</p>
@@ -34,11 +33,13 @@
             <title>参数</title>
             <parml>
             <plentry>
-                <pt props="android flutter">muted</pt>
-                <pt props="ios mac cpp unity">mute</pt>
+                <pt props="android">muted</pt>
+                <pt props="ios mac cpp unity flutter rn electron">mute</pt>
                 <pd id="mute">
                     <p>是否取消发送本地视频流。
-                        
+
+
+
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 取消发送本地视频流。</li>
                     <li><codeph><ph keyref="false"/></codeph>: （默认）发送本地视频流。</li>
@@ -46,7 +47,7 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul id="ul_gkv_dxc_f4b">
             <li>0: 方法调用成功</li>

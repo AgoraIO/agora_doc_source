@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_unloadeffect">
-    <title><ph keyref="unloadEffect"/></title>
+    <title><ph keyref="unloadEffect" /></title>
     <shortdesc id="short"><ph id="shortdesc">从内存释放某个预加载的音效文件。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="unloadEffect"/>
+                <indexterm keyref="unloadEffect" />
             </keywords>
         </metadata>
     </prolog>
@@ -18,10 +18,10 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)unloadEffect:(int)soundId;
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int unloadEffect(int soundId) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">unloadEffect(soundId: number): number</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract unloadEffect(soundId: number): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int UnloadEffect(int soundId);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; unloadEffect(int soundId);</codeblock> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract unloadEffect(soundId: number): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; unloadEffect(int soundId);</codeblock></p>
         </section>
         <section id="parameters">
             <title>参数</title>
@@ -31,7 +31,7 @@
                 <pd>指定音效文件的 ID。每个音效文件均有唯一的 ID。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功</li>

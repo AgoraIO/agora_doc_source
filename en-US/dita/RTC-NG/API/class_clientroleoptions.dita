@@ -35,23 +35,33 @@
         {
             this.audienceLatencyLevel = audienceLatencyLevel;
         }
-        
         public AUDIENCE_LATENCY_LEVEL_TYPE audienceLatencyLevel;
     }
-    </codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class ClientRoleOptions {
+  audienceLatencyLevel?: AudienceLatencyLevelType;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class ClientRoleOptions {
+  const ClientRoleOptions({this.audienceLatencyLevel});
+
+  @JsonKey(name: 'audienceLatencyLevel')
+  final AudienceLatencyLevelType? audienceLatencyLevel;
+  factory ClientRoleOptions.fromJson(Map&lt;String, dynamic> json) =>
+      _$ClientRoleOptionsFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$ClientRoleOptionsToJson(this);
+}</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/> </title>
             <parml>
-            <plentry id="audiencelatencylevel">
+            <plentry>
                 <pt>audienceLatencyLevel</pt>
-                <pd><ph>The latency level of an audience member in interactive live streaming. </ph><ph
-                    props="ios mac cpp unity electron flutter">See <xref keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/>.</ph><ul props="android">
-                    <li><ph keyref="AUDIENCE_LATENCY_LEVEL_LOW_LATENCY"/>(1): Low latency.</li>
-                    <li><ph keyref="AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY"/>(2): (Default) Ultra low latency.</li>
-                    </ul></pd>
+                <pd><ph>The latency level of an audience member in interactive live streaming. </ph><ph props="ios mac cpp unity electron rn flutter">See <xref keyref="AUDIENCE_LATENCY_LEVEL_TYPE" />.</ph>
+                    <ul props="android">
+                    <li><ph keyref="AUDIENCE_LATENCY_LEVEL_LOW_LATENCY"/>1: Low latency.</li>
+                    <li><ph keyref="AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY"/>2: (Default) Ultra low latency.</li>
+                    </ul> </pd>
             </plentry>
             </parml> </section>
     </refbody>

@@ -17,10 +17,13 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (NSArray&lt;AgoraScreenCaptureSourceInfo*>* _Nullable)getScreenCaptureSourcesWithThumbSize:(NSSize)thumbSize iconSize:(NSSize)iconSize includeScreen:(BOOL)includeScreen;
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual IScreenCaptureSourceList* getScreenCaptureSources(const SIZE&amp; thumbSize, const SIZE&amp; iconSize, const bool includeScreen) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract getScreenCaptureSources(thumbSize: SIZE, iconSize: SIZE, includeScreen: boolean): ScreenCaptureSourceInfo[];</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract ScreenCaptureSourceInfo[] GetScreenCaptureSources(SIZE thumbSize, SIZE iconSize, bool includeScreen);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;List&lt;ScreenCaptureSourceInfo>> getScreenCaptureSources(
+    {required Size thumbSize,
+    required Size iconSize,
+    required bool includeScreen});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>屏幕共享或窗口共享前，你可以调用该方法获取可共享的屏幕和窗口的对象列表，方便用户通过列表中的缩略图选择共享某个显示器的屏幕或某个窗口。列表中包含窗口 ID 和屏幕 ID 等重要信息，你可以获取到 ID 后再调用 <xref keyref="startScreenCaptureByWindowId"/> 或 <xref keyref="startScreenCaptureByDisplayId"/> 开启共享。</p>
@@ -47,7 +50,8 @@
             </parml> </section>
         <section id="return_values">
             <title>返回值</title>
-            <p><xref keyref="IScreenCaptureSourceList" props="cpp"/><xref keyref="ScreenCaptureSourceInfo" props="mac"/></p>
+            <p props="native"><xref keyref="IScreenCaptureSourceList"/></p>
+            <p props="electron unity"><xref keyref="ScreenCaptureSourceInfo"/> 数组。</p>
         </section>
     </refbody>
 </reference>

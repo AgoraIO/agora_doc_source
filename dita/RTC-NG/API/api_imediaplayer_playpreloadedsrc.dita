@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_playpreloadedsrc">
-    <title><ph keyref="playPreloadedSrc"/></title>
+    <title><ph keyref="playPreloadedSrc" /></title>
     <shortdesc id="short"><ph id="shortdesc">播放预加载的媒体资源。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="playPreloadedSrc"/>
+                <indexterm keyref="playPreloadedSrc" />
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="unity" outputclass="language-csharp">public abstract int PlayPreloadedSrc(string src);</codeblock> </p>
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">int playPreloadedSrc(String src);
 </codeblock>
@@ -21,13 +19,14 @@
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int playPreloadedSrc(const char* src) = 0;
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="electron" outputclass="language-typescript">abstract playPreloadedSrc(src: string): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int PlayPreloadedSrc(string src);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract playPreloadedSrc(src: string): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; playPreloadedSrc(String src);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>调用 <xref keyref="preloadSrc"/> 方法将媒体资源预加载到播放列表后，可以调用该方法播放已预加载的媒体资源。调用该方法后，如果你收到 <xref keyref="onPlayerSourceStateChanged"/> 回调报告状态 <apiname keyref="PLAYER_STATE_PLAYING"/>，则表示播放成功。</p>
-            <p>如果你想更换播放的预加载媒体资源，你可以再次调用该方法并指定新的媒体资源路径。如果你想重新播放媒体资源，你需要在播放前调用 <xref keyref="preloadSrc"/> 重新将该媒体资源预加载到播放列表。如果你想清空播放列表，请调用 <xref keyref="stop"/>。</p>
+            <p>调用 <xref keyref="preloadSrc" /> 方法将媒体资源预加载到播放列表后，可以调用该方法播放已预加载的媒体资源。调用该方法后，如果你收到 <xref keyref="onPlayerSourceStateChanged" /> 回调报告状态 <apiname keyref="PLAYER_STATE_PLAYING" />，则表示播放成功。</p>
+            <p>如果你想更换播放的预加载媒体资源，你可以再次调用该方法并指定新的媒体资源路径。如果你想重新播放媒体资源，你需要在播放前调用 <xref keyref="preloadSrc" /> 重新将该媒体资源预加载到播放列表。如果你想清空播放列表，请调用 <xref keyref="stop" />。</p>
             <note type="note">
             <p>如果你在播放暂停时调用该方法，该方法会在恢复播放后才生效。</p>
             </note> </section>
@@ -36,10 +35,10 @@
             <parml>
             <plentry>
                 <pt>src</pt>
-                <pd>播放列表中的媒体资源 URL 地址，必须与 <apiname keyref="preloadSrc"/> 方法设置的 <parmname>src</parmname> 一致，否则无法播放。</pd>
+                <pd>播放列表中的媒体资源 URL 地址，必须与 <apiname keyref="preloadSrc" /> 方法设置的 <parmname>src</parmname> 一致，否则无法播放。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功。</li>

@@ -19,14 +19,14 @@
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetCameraTorchOn(bool isOn);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setCameraTorchOn(bool isOn);</codeblock> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract setCameraTorchOn(isOn: boolean): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setCameraTorchOn(bool isOn);</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <note type="attention">
             <ul>
-            <li props="cpp">该方法仅适用于 Android 和 iOS。</li>
-            <li>请在启动摄像头之前调用该方法，如 <xref keyref="joinChannel2"/>、<xref keyref="enableVideo"/> 或者 <xref keyref="enableLocalVideo"/> 之前。</li>
+            <li props="cpp unity flutter">该方法仅适用于 Android 和 iOS。</li>
+            <li>请在启动摄像头之前调用该方法，如 <xref keyref="joinChannel2" />、<xref keyref="enableVideo" /> 或者 <xref keyref="enableLocalVideo" /> 之前。</li>
             </ul></note> </section>
         <section id="parameters">
             <title>参数</title>
@@ -35,6 +35,7 @@
                 <pt>isOn</pt>
                 <pd>
                     <p>是否打开闪光灯：
+
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 打开闪光灯。</li>
                     <li><codeph><ph keyref="false"/></codeph>:（默认）关闭闪光灯。</li>
@@ -42,7 +43,7 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native unity rn">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功。</li>

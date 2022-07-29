@@ -26,9 +26,8 @@
             <p conkeyref="setClientRole2/preview" />
             <p>If you call this method to switch the user role after joining the channel, the SDK triggers the following callbacks:
             <ul>
-                    <li>Calls <xref keyref="muteLocalAudioStream" /> and <xref keyref="muteLocalVideoStream" /> to change the publishing state.</li>
-                    <li>Triggers <xref keyref="onClientRoleChanged" /> or <xref keyref="onClientRoleChangeFailed" /> on the local client.</li>
-                    <li>Triggers <xref keyref="onUserJoined" /> or <xref keyref="onUserOffline" /> (USER_OFFLINE_BECOME_AUDIENCE) on the remote client.</li>
+            <li>The local client: <xref keyref="onClientRoleChanged" />.</li>
+            <li>The remote client: <xref keyref="onUserJoined" /> or <codeph><xref keyref="onUserOffline" />(<apiname keyref="USER_OFFLINE_BECOME_AUDIENCE" />)</codeph>.</li>
             </ul></p>
             <note type="attention" props="rtc">This method only takes effect when the channel profile is live interactive streaming (when the <parmname>profile</parmname> parameter in <xref keyref="setChannelProfile" /> set as <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING" />).</note> </section>
         <section id="parameters">
@@ -39,7 +38,6 @@
                 <pd id="clientrole">
                     <p props="ios mac cpp electron cs">The user role. See <xref keyref="CLIENT_ROLE_TYPE" /> for details.</p>
                     <p props="android">The user role:
-
                     <ul id="clientroletype">
                     <li><ph keyref="CLIENT_ROLE_BROADCASTER" />(1): Broadcaster.</li>
                     <li><ph keyref="CLIENT_ROLE_AUDIENCE" />(2): Audience.</li>
@@ -52,7 +50,6 @@
             <ul>
             <li>0: Success.</li>
             <li>&lt; 0: Failure.
-
                 <ul>
                 <li>-1: A general error occurs (no specified reason).</li>
                 <li>-2: The parameter is invalid.</li>

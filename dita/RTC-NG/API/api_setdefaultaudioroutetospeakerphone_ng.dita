@@ -19,18 +19,22 @@
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract setDefaultAudioRouteToSpeakerphone(
+    defaultToSpeaker: boolean
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <note props="cpp unity">
+            <note props="cpp unity flutter">
             <p>该方法仅适用于 Android 和 iOS 平台。</p>
             </note>
             <p>手机设备一般有两个音频路由，一个是位于顶部的听筒，播放声音偏小；一个是位于底部的扬声器，播放声音偏大。设置默认的音频路由，就是在没有外接设备的前提下，设置系统使用听筒还是扬声器播放音频。</p>
         </section>
         <section>
             <p>不同的 Agora 场景下，系统默认的音频路由也不同。具体如下：
-            
+
+
+
             <ul id="ul_kq3_tpf_3qb">
             <li>语音通话：听筒</li>
             <li>语音直播：扬声器</li>
@@ -47,14 +51,16 @@
             <plentry>
                 <pt>defaultToSpeaker</pt>
                 <pd>是否使用扬声器作为默认的音频路由：
-                    
+
+
+
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 设置默认音频路由为扬声器。</li>
                     <li><codeph><ph keyref="false"/></codeph>: 设置默认音频路由为听筒。</li>
                     </ul></pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul id="ul_ahk_23f_3qb">
             <li>0: 方法调用成功</li>

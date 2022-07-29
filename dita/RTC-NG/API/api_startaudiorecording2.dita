@@ -15,17 +15,13 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java"/>
             <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int startAudioRecording(const char* filePath, 
-    int sampleRate, 
+            <codeblock props="cpp" outputclass="language-cpp">virtual int startAudioRecording(const char* filePath,
+    int sampleRate,
     AUDIO_RECORDING_QUALITY_TYPE quality) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">startAudioRecording(filePath: string,
-    sampleRate: number,
-    quality: AUDIO_RECORDING_QUALITY_TYPE
-    ): number </codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int StartAudioRecording(string filePath, int sampleRate, AUDIO_RECORDING_QUALITY_TYPE quality);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startAudioRecording(String filePath,
-      AudioSampleRateType sampleRate, AudioRecordingQuality quality);</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart"/></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated">
@@ -34,14 +30,9 @@
                 <dd>请改用 <xref keyref="startAudioRecording3"/>。</dd>
             </dlentry>
             </dl>
-            <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>自从</dt>
-                <dd>v2.9.1</dd>
-            </dlentry>
-            </dl>
             <p>Agora SDK 支持通话过程中在客户端进行录音。调用该方法后，你可以录制频道内所有用户的音频，并得到一个包含所有用户声音的录音文件。录音文件格式可以为:
-  
+
+
             <ul>
             <li>.wav: 文件大，音质保真度较高。</li>
             <li>.aac: 文件小，音质保真度较低。</li>
@@ -49,7 +40,7 @@
             <note type="attention">
             <ul>
             <li>请确保你在该方法中指定的路径存在并且可写。</li>
-            <li>该接口需在 <apiname keyref="joinChannel2"/> 之后调用。如果调用 <xref keyref="leaveChannel"/> 时还在录音，录音会自动停止。</li>
+            <li>该接口需在 <apiname keyref="joinChannel2"/> 之后调用。如果调用 <xref keyref="leaveChannel" props="native unity"/> <xref keyref="leaveChannel2" props="rn electron flutter"/> 时还在录音，录音会自动停止。</li>
             <li>为保证录音效果，当 <parmname>sampleRate</parmname> 设为 44.1 kHz 或 48 kHz 时，建议将 <parmname>quality</parmname> 设为 <apiname keyref="AUDIO_RECORDING_QUALITY_MEDIUM"/> 或 <apiname keyref="AUDIO_RECORDING_QUALITY_HIGH"/> 。</li>
             </ul> </note> </section>
         <section id="parameters">
@@ -63,7 +54,8 @@
                 <pt>sampleRate</pt>
                 <pd>
                     <p>录音采样率（Hz），可以设为以下值：
- 
+
+
                     <ul>
                     <li>16000</li>
                     <li>32000（默认）</li>
@@ -77,7 +69,7 @@
                 <pd>录音音质。详见 <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/> 。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功</li>

@@ -47,12 +47,24 @@
   BeautyOptions() : lighteningContrastLevel(LIGHTENING_CONTRAST_NORMAL), lighteningLevel(0), smoothnessLevel(0), rednessLevel(0), sharpnessLevel(0) {}
 };
 </codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export class BeautyOptions {
+  lighteningContrastLevel?: LighteningContrastLevel
+  lighteningLevel?: number
+  smoothnessLevel?: number
+  rednessLevel?: number
+  sharpnessLevel?: number
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class BeautyOptions
     {
         public BeautyOptions()
         {
             lighteningContrastLevel = LIGHTENING_CONTRAST_LEVEL.LIGHTENING_CONTRAST_NORMAL;
+            this.lighteningLevel = 0;
+            this.smoothnessLevel = 0;
+            this.rednessLevel = 0;
+            this.sharpnessLevel = 0;
         }
+
         public BeautyOptions(
             LIGHTENING_CONTRAST_LEVEL lighteningContrastLevel, float lighteningLevel, float smoothnessLevel,
             float rednessLevel, float sharpnessLevel)
@@ -75,7 +87,42 @@
         public float sharpnessLevel { set; get; }
     }
 
-    }</codeblock> </p>
+        public LIGHTENING_CONTRAST_LEVEL lighteningContrastLevel { set; get; }
+        public float lighteningLevel { set; get; }
+        public float smoothnessLevel { set; get; }
+        public float rednessLevel { set; get; }
+        public float sharpnessLevel { set; get; }
+    }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class BeautyOptions {
+  lighteningContrastLevel?: LighteningContrastLevel;
+  lighteningLevel?: number;
+  smoothnessLevel?: number;
+  rednessLevel?: number;
+  sharpnessLevel?: number;
+}</codeblock>
+<codeblock props="flutter" outputclass="language-dart">class BeautyOptions {
+    const BeautyOptions(
+        {this.lighteningContrastLevel,
+        this.lighteningLevel,
+        this.smoothnessLevel,
+        this.rednessLevel,
+        this.sharpnessLevel});
+  
+    @JsonKey(name: 'lighteningContrastLevel')
+    final LighteningContrastLevel? lighteningContrastLevel;
+    @JsonKey(name: 'lighteningLevel')
+    final double? lighteningLevel;
+    @JsonKey(name: 'smoothnessLevel')
+    final double? smoothnessLevel;
+    @JsonKey(name: 'rednessLevel')
+    final double? rednessLevel;
+    @JsonKey(name: 'sharpnessLevel')
+    final double? sharpnessLevel;
+    factory BeautyOptions.fromJson(Map&lt;String, dynamic> json) =>
+        _$BeautyOptionsFromJson(json);
+    Map&lt;String, dynamic> toJson() => _$BeautyOptionsToJson(this);
+  }</codeblock>
+            </p>
         </section>
         <section id="parameters">
             <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/>
@@ -109,7 +156,7 @@
                     <p>The redness level, in the range [0.0,1.0], where 0.0 means the original redness. The default value is <ph props="ios">0.1</ph><ph props="android">0.1</ph><ph props="cpp unity">0.0</ph>. The higher the value, the greater the redness level.</p>
                 </pd>
             </plentry>
-            <plentry props="native unity">
+            <plentry>
                 <pt>sharpnessLevel</pt>
                 <pd>
                     <p>The sharpness level, in the range [0.0,1.0], where 0.0 means the original sharpness. The default value is <ph props="ios">0.1</ph><ph props="android">0.3</ph><ph props="cpp unity">0.0</ph>. The larger the value, the greater the sharpness level.</p>

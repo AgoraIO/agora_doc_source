@@ -19,23 +19,30 @@
   }
   public CaptureFormat captureFormat;
 }</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraCameraCapturerConfiguration: NSObject
+    @property (assign, nonatomic) AgoraCameraDirection cameraDirection;
+    @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct CameraCapturerConfiguration {
   CAMERA_DIRECTION cameraDirection;
   char deviceId[MAX_DEVICE_ID_LENGTH];
   VideoFormat format;
 };</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraCameraCapturerConfiguration: NSObject
-@property (assign, nonatomic) AgoraCameraDirection cameraDirection;
-@end</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export class CameraCapturerConfiguration {
+  cameraDirection?: CameraDirection
+  deviceId?: string
+  format?: VideoFormat
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class CameraCapturerConfiguration
     {
         public CameraCapturerConfiguration()
         {
-            cameraDirection = null;
+            deviceId = "";
+            cameraDirection = CAMERA_DIRECTION.CAMERA_FRONT;
+            format = new VideoFormat();
         }
 
         public CameraCapturerConfiguration(string deviceId, VideoFormat format,
-            CAMERA_DIRECTION? cameraDirection = null)
+            CAMERA_DIRECTION cameraDirection)
         {
             this.deviceId = deviceId;
             this.format = format;
@@ -44,29 +51,45 @@
 
         public string deviceId { set; get; }
         public VideoFormat format { set; get; }
-        public CAMERA_DIRECTION? cameraDirection { set; get; }
-    }</codeblock></p>
+        public CAMERA_DIRECTION cameraDirection { set; get; }
+    }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class CameraCapturerConfiguration {
+  cameraDirection?: CameraDirection;
+  deviceId?: string;
+  format?: VideoFormat;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class CameraCapturerConfiguration {
+  const CameraCapturerConfiguration(
+      {this.cameraDirection, this.deviceId, this.format});
+
+  @JsonKey(name: 'cameraDirection')
+  final CameraDirection? cameraDirection;
+  @JsonKey(name: 'deviceId')
+  final String? deviceId;
+  @JsonKey(name: 'format')
+  final VideoFormat? format;
+  factory CameraCapturerConfiguration.fromJson(Map&lt;String, dynamic> json) =>
+      _$CameraCapturerConfigurationFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$CameraCapturerConfigurationToJson(this);
+}</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
                 <pt>cameraDirection</pt>
                 <pd>
-                    <note type="attention" props="cpp unity"
-                    >This parameter applies to Android and iOS only.</note>The camera direction. <ph props="ios cpp android">See <xref keyref="CAMERA_DIRECTION"/>.</ph></pd>
+                    <note type="attention" props="cpp unity electron rn flutter">This parameter applies to Android and iOS only.</note><ph>The camera direction. </ph>See .<ph props="ios cpp unity android rn flutter"><xref keyref="CAMERA_DIRECTION" /></ph></pd>
             </plentry>
-            <plentry props="cpp android unity">
-                <pt props="cpp unity">format</pt>
+            <plentry props="cpp android unity electron rn flutter">
+                <pt props="cpp unity electron rn flutter">format</pt>
                 <pt props="android">captureFormat</pt>
                 <pd>See <xref keyref="VideoFormat"/>.</pd>
             </plentry>
-            <plentry props="cpp unity">
+            <plentry props="cpp unity electron rn flutter">
                 <pt>deviceId</pt>
-                <pd>
-                    <note type="attention" props="cpp unity">This method applies to Windows only.</note>The device ID of the playback device. <ph props="cpp">The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>.</ph></pd>
+                <pd><ph>The device ID of the playback device. </ph><ph props="cpp electron rn flutter">The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE" /> .</ph></pd>
             </plentry>
             </parml> </section>
     </refbody>

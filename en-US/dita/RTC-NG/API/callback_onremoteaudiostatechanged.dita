@@ -25,15 +25,22 @@
      (void)reason;
      (void)elapsed;
      }</codeblock>
-               <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.REMOTE_AUDIO_STATE_CHANGED, cb: (
-     uid: number,
-     state: REMOTE_AUDIO_STATE,
-     reason: REMOTE_AUDIO_STATE_REASON,
-     elapsed: number
-     ) =&gt; void): this;</codeblock>
-               <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteAudioStateChanged(RtcConnection connection, uint remoteUid, REMOTE_AUDIO_STATE state, REMOTE_AUDIO_STATE_REASON reason, int elapsed) {}</codeblock>                    
-               <codeblock props="rn" outputclass="language-typescript"/>
-               <codeblock props="flutter" outputclass="language-dart">RemoteAudioStateCallback? remoteAudioStateChanged;</codeblock> </p>
+               <codeblock props="electron" outputclass="language-typescript">onRemoteAudioStateChanged?(connection: RtcConnection, remoteUid: number, state: RemoteAudioState, reason: RemoteAudioStateReason, elapsed: number): void;</codeblock>
+               <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteAudioStateChanged(RtcConnection connection, uint remoteUid, REMOTE_AUDIO_STATE state, REMOTE_AUDIO_STATE_REASON reason, int elapsed) {}</codeblock>
+               <codeblock props="rn" outputclass="language-typescript">onRemoteAudioStateChanged?(
+  connection: RtcConnection,
+  remoteUid: number,
+  state: RemoteAudioState,
+  reason: RemoteAudioStateReason,
+  elapsed: number
+): void;</codeblock>
+               <codeblock props="flutter" outputclass="language-dart">final void Function(
+      RtcConnection connection,
+      int remoteUid,
+      RemoteAudioState state,
+      RemoteAudioStateReason reason,
+      int elapsed)? onRemoteAudioStateChanged;
+</codeblock> </p>
           </section>
           <section id="detailed_desc">
                <dl outputclass="since" props="rtc">
@@ -52,13 +59,13 @@
                     <pt/>
                     <pd/>
                </plentry>
-               <plentry props="rtc-ng">
-                    <pt props="unity">connection</pt>
-                    <pd props="unity">The connection information. See <xref keyref="RtcConnection"/>.</pd>
+               <plentry props="unity flutter rn electron">
+                    <pt>connection</pt>
+                    <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
                </plentry>
                <plentry id="uid">
-                    <pt props="native electron flutter">uid</pt>
-                    <pt props="unity"><ph props="rtc">uid</ph><ph props="rtc-ng">remoteUid</ph></pt>
+                    <pt props="native">uid</pt>
+                    <pt props="unity flutter rn electron">remoteUid</pt>
                     <pd>The ID of the remote user whose audio state changes.</pd>
                </plentry>
                <plentry id="state">

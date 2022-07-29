@@ -1,36 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_size">
-    <title><ph keyref="SIZE" /></title>
+    <title><ph keyref="SIZE"/></title>
     <shortdesc id="short"><ph id="shortdesc">The target size of the thumbnail or icon.</ph></shortdesc>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="android" outputclass="language-java" />
-            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
             <codeblock props="cpp" outputclass="language-cpp">struct SIZE {
   int width;
   int height;
   SIZE() : width(0), height(0) {}
   SIZE(int ww, int hh) : width(ww), height(hh) {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript">export class SIZE {
+  width?: number
+  height?: number
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
-            <p outputclass="codeblock" props="rtc">
-            <codeblock props="android" outputclass="language-java" />
-            <codeblock props="ios mac" outputclass="language-objectivec" />
-            <codeblock props="cpp" outputclass="language-cpp">struct SIZE {
-  int width;
-  int height;
-  SIZE() : width(0), height(0) {}
-  SIZE(int w, int h) : width(w), height(h) {}
-};</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="rn" outputclass="language-typescript">export class SIZE {
+  width?: number;
+  height?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class Size {
+  const Size({this.width, this.height});
+
+  @JsonKey(name: 'width')
+  final int? width;
+  @JsonKey(name: 'height')
+  final int? height;
+  factory Size.fromJson(Map&lt;String, dynamic> json) => _$SizeFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$SizeToJson(this);
+}</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
@@ -39,10 +41,11 @@
                 <dd>v3.5.2</dd>
             </dlentry>
             </dl>
-            <p><note props="hide">This method applies to macOS only.</note></p>
+            <p>
+            <note props="hide">This method applies to macOS only.</note></p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
                 <pt>width</pt>

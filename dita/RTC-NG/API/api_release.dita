@@ -12,12 +12,6 @@
     </prolog>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="cpp" outputclass="language-cpp">virtual void release(bool sync = false) = 0;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract void Dispose(bool sync = false);</codeblock></p>
-            <p outputclass="codeblock" props="rtc">
-            <codeblock props="cpp" outputclass="language-cpp">AGORA_CPP_API static void release (bool sync = false);</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract void Dispose(bool sync = false);</codeblock></p>
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public static synchronized void destroy() {
                 if (mInstance == null)
@@ -28,16 +22,18 @@
                 }
             </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">+ (void)destroy;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">release(sync: boolean = false): number</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; destroy();</codeblock> 
-        </p></section>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void release(bool sync = false) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract release(sync?: boolean): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract void Dispose(bool sync = false);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract release(sync?: boolean): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> release({bool sync = false});</codeblock></p>
+        </section>
         <section id="detailed_desc">
             <p>该方法释放 Agora SDK 使用的所有资源。有些 app 只在用户需要时才进行实时音视频通信，不需要时则将资源释放出来用于其他操作， 该方法适用于此类情况。</p>
-            <p props="cpp">调用该方法后，你将无法再使用 SDK 的其它方法和回调。如需再次使用实时音视频通信功能， 你必须依次重新调用 <xref keyref="createAgoraRtcEngine"/> 和 <xref keyref="create2"/> 方法创建一个新的 <apiname keyref="IRtcEngine"/> 对象。</p>
-            <p props="android ios mac unity">调用该方法后，你将无法再使用 SDK 的其它方法和回调。如需再次使用实时音视频通信功能，你必须依次重新调用 <xref keyref="create2"/> 方法创建一个新的 <apiname keyref="IRtcEngine"/> 对象。</p>
+            <p props="cpp unity flutter rn electron">调用该方法后，你将无法再使用 SDK 的其它方法和回调。如需再次使用实时音视频通信功能， 你必须依次重新调用 <xref keyref="createAgoraRtcEngine"/> 和 <xref keyref="create2"/> 方法创建一个新的 <apiname keyref="IRtcEngine"/> 对象。</p>
+            <p props="android ios mac">调用该方法后，你将无法再使用 SDK 的其它方法和回调。如需再次使用实时音视频通信功能，你必须依次重新调用 <xref keyref="create2"/> 方法创建一个新的 <apiname keyref="IRtcEngine"/> 对象。</p>
             <note type="attention">如需在销毁后再次创建 <apiname keyref="IRtcEngine"/> 对象，需要等待 <apiname keyref="release"/> 方法执行结束后再创建实例。</note> </section>
-        <section id="parameters" props="cpp unity electron">
+        <section id="parameters" props="cpp unity electron flutter rn">
             <title>参数</title>
             <parml>
             <plentry>
@@ -45,7 +41,7 @@
                 <pd>
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 该方法为同步调用。需要等待 <apiname keyref="IRtcEngine"/> 资源释放后才能执行其他操作，所以我们建议在子线程中调用该方法，避免主线程阻塞。此外，我们不建议在 SDK 的回调中调用 <apiname keyref="release"/>，否则由于 SDK 要等待回调返回才能回收相关的对象资源，会造成死锁。SDK 会自动检测这种死锁并转为异步调用，但是检测本身会消耗额外的时间。</li>
-                    <li><codeph><ph keyref="false"/></codeph>: 该方法为异步调用。不需要等待 <apiname keyref="IRtcEngine"/> 资源释放后就能执行其他操作。使用异步调用时要注意，不要在该调用后立即卸载 SDK 动态库，否则可能会因为 SDK 的清理线程还没有退出而崩溃。</li>
+                    <li><codeph><ph keyref="false"/></codeph>: 该方法为异步调用。不需要等待 <apiname keyref="IRtcEngine"/> 资源释放后就能执行其他操作。使用异步调用时要注意，不要在调用该方法后立即卸载 SDK 动态库，否则可能会因为 SDK 的清理线程还没有退出而崩溃。</li>
                     </ul> </pd>
             </plentry>
             </parml> </section>

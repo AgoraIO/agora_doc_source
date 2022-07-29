@@ -19,10 +19,11 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual void onStreamUnpublished(const char *url) {
     (void)url;
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.STREAM_UNPUBLISHED, cb: (url: string) =&gt; void): this;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">onStreamUnpublished?(url: string): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnStreamUnpublished(string url)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">UrlCallback? streamUnpublished;</codeblock> </p>
+            <codeblock props="rn" outputclass="language-typescript">onStreamUnpublished?(url: string): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(String url)? onStreamUnpublished;
+</codeblock></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated">
@@ -34,7 +35,7 @@
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt/>

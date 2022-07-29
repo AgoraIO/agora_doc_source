@@ -24,15 +24,17 @@
     (void)speakerNumber;
     (void)totalVolume;
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.AUDIO_VOLUME_INDICATION, cb: (
-    speakers: AudioVolumeInfo[],
-    speakerNumber: number,
-    totalVolume: number
-    ) =&gt; void
-    ): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioVolumeIndication(RtcConnection connection, AudioVolumeInfo[] speakers, uint speakerNumber, int totalVolume) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">AudioVolumeCallback? audioVolumeIndication;</codeblock> </p>
+            <codeblock props="electron" outputclass="language-typescript">onAudioVolumeIndication?(connection: RtcConnection, speakers: AudioVolumeInfo[], speakerNumber: number, totalVolume: number): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioVolumeIndication(RtcConnection connection, AudioVolumeInfo[] speakers, uint speakerNumber, int totalVolume) {}</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onAudioVolumeIndication?(
+  connection: RtcConnection,
+  speakers: AudioVolumeInfo[],
+  speakerNumber: number,
+  totalVolume: number
+): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, List&lt;AudioVolumeInfo> speakers,
+      int speakerNumber, int totalVolume)? onAudioVolumeIndication;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>该回调默认禁用，你可以通过 <xref keyref="enableAudioVolumeIndication"/> 开启。 开启后，只要频道内有发流用户，SDK 会在加入频道后按 <apiname keyref="enableAudioVolumeIndication"/> 中设置的时间间隔触发 <apiname keyref="onAudioVolumeIndication"/> 回调。每次会触发两个 <apiname keyref="onAudioVolumeIndication"/> 回调，一个报告本地发流用户的音量相关信息，另一个报告瞬时音量最高的远端用户（最多 3 位）的音量相关信息。</p>
@@ -42,21 +44,21 @@
             </note> </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="rtc-ng">
-                <pt props="unity">connection</pt>
-                <pd props="unity">Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+            <plentry props="unity electron rn flutter">
+                <pt>connection</pt>
+                <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
             </plentry>
-            <plentry>
+            <plentry props="native unity electron rn flutter">
                 <pt>speakers</pt>
                 <pd>用户音量信息，详见 <xref keyref="AudioVolumeInfo"/> 数组。如果 <parmname>speakers</parmname> 为空，则表示远端用户不发流或没有远端用户。</pd>
             </plentry>
-            <plentry props="cpp unity">
+            <plentry props="cpp unity electron rn flutter">
                 <pt>speakerNumber</pt>
                 <pd>
                     <p>用户数量。
@@ -67,7 +69,7 @@
                     </ul> </p>
                 </pd>
             </plentry>
-            <plentry>
+            <plentry props="native unity electron rn flutter">
                 <pt>totalVolume</pt>
                 <pd>
                     <p>混音后的总音量，取值范围为 [0,255]。

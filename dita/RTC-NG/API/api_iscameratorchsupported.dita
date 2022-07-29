@@ -17,17 +17,17 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)isCameraTorchSupported NS_SWIFT_NAME(isCameraTorchSupported());</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual bool isCameraTorchSupported() = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int IsCameraTorchSupported();</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;bool?&gt; isCameraTorchSupported();</codeblock> </p>
-        </section>
+            <codeblock props="unity" outputclass="language-csharp">public abstract bool IsCameraTorchSupported();</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract isCameraTorchSupported(): boolean;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;bool&gt; isCameraTorchSupported();</codeblock> </p>
+            </section>
         <section id="detailed_desc">
             <note type="attention">
             <ul>
-            <li props="cpp unity">该方法仅适用于 Android 和 iOS。</li>
+            <li props="cpp unity flutter">该方法仅适用于 Android 和 iOS。</li>
             <li conkeyref="isCameraAutoFocusFaceModeSupported/sequence"/>
             <li>一般情况下，app 默认开启前置摄像头，因此如果你的前置摄像头不支持闪光灯常开，直接使用该方法会返回 <ph keyref="false"/>。如果需要检查后置摄像头是否支持闪光灯常开，需要先使用 <xref keyref="switchCamera"/> 切换摄像头，再使用该方法。</li>
-            <li props="ios cpp unity">在系统版本 15 的 iPad 上，即使 <xref keyref="isCameraTorchSupported"/> 返回 <codeph><ph keyref="true"/></codeph>，也可能因系统问题导致你无法通过 <xref keyref="setCameraTorchOn"/> 成功开启闪光灯。</li>
+            <li props="ios cpp unity rn flutter">在系统版本 15 的 iPad 上，即使 <xref keyref="isCameraTorchSupported"/> 返回 <codeph><ph keyref="true"/></codeph>，也可能因系统问题导致你无法通过 <xref keyref="setCameraTorchOn"/> 成功开启闪光灯。</li>
             </ul></note> </section>
         <section id="return_values">
             <title>返回值</title>

@@ -66,25 +66,115 @@
                        duration(0) {
     memset(codecName, 0, sizeof(codecName));
     memset(language, 0, sizeof(language));</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public struct PlayerStreamInfo {
+            <codeblock props="electron" outputclass="language-typescript">export class PlayerStreamInfo {
+  streamIndex?: number
+  streamType?: MediaStreamType
+  codecName?: string
+  language?: string
+  videoFrameRate?: number
+  videoBitRate?: number
+  videoWidth?: number
+  videoHeight?: number
+  videoRotation?: number
+  audioSampleRate?: number
+  audioChannels?: number
+  audioBitsPerSample?: number
+  duration?: number
+}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class PlayerStreamInfo
+        public int streamIndex { set; get; }
+        public MEDIA_STREAM_TYPE streamType;
+        public string codecName { set; get; }
+        public string language { set; get; }
+        public int videoFrameRate { set; get; }
+        public int videoBitRate { set; get; }
+        public int videoWidth { set; get; }
+        public int videoHeight { set; get; }
+        public int videoRotation { set; get; }
+        public int audioSampleRate { set; get; }
+        public int audioChannels { set; get; }
+        public int audioBitsPerSample { set; get; }
+        public int64_t duration { set; get; }
 
-      public int streamIndex;
-      public MEDIA_STREAM_TYPE streamType;
-      public string codecName;
-      public string language;
-      public int videoFrameRate;
-      public int videoBitRate;
-      public int videoWidth;
-      public int videoHeight;
-      public int videoRotation;
-      public int audioSampleRate;
-      public int audioChannels;
-      public int audioBitsPerSample;
-      public Int64 duration;
-   };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        public PlayerStreamInfo()
+        {
+            streamIndex = 0;
+            streamType = MEDIA_STREAM_TYPE.STREAM_TYPE_UNKNOWN;
+            videoFrameRate = 0;
+            videoBitRate = 0;
+            videoWidth = 0;
+            videoHeight = 0;
+            videoRotation = 0;
+            audioSampleRate = 0;
+            audioChannels = 0;
+            audioBitsPerSample = 0;
+            duration = 0;
+            codecName = null;
+            language = null;
+        }
+    };</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class PlayerStreamInfo {
+  streamIndex?: number;
+  streamType?: MediaStreamType;
+  codecName?: string;
+  language?: string;
+  videoFrameRate?: number;
+  videoBitRate?: number;
+  videoWidth?: number;
+  videoHeight?: number;
+  videoRotation?: number;
+  audioSampleRate?: number;
+  audioChannels?: number;
+  audioBitsPerSample?: number;
+  duration?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class PlayerStreamInfo {
+  const PlayerStreamInfo(
+      {this.streamIndex,
+      this.streamType,
+      this.codecName,
+      this.language,
+      this.videoFrameRate,
+      this.videoBitRate,
+      this.videoWidth,
+      this.videoHeight,
+      this.videoRotation,
+      this.audioSampleRate,
+      this.audioChannels,
+      this.audioBitsPerSample,
+      this.duration});
+
+  @JsonKey(name: 'streamIndex')
+  final int? streamIndex;
+  @JsonKey(name: 'streamType')
+  final MediaStreamType? streamType;
+  @JsonKey(name: 'codecName')
+  final String? codecName;
+  @JsonKey(name: 'language')
+  final String? language;
+  @JsonKey(name: 'videoFrameRate')
+  final int? videoFrameRate;
+  @JsonKey(name: 'videoBitRate')
+  final int? videoBitRate;
+  @JsonKey(name: 'videoWidth')
+  final int? videoWidth;
+  @JsonKey(name: 'videoHeight')
+  final int? videoHeight;
+  @JsonKey(name: 'videoRotation')
+  final int? videoRotation;
+  @JsonKey(name: 'audioSampleRate')
+  final int? audioSampleRate;
+  @JsonKey(name: 'audioChannels')
+  final int? audioChannels;
+  @JsonKey(name: 'audioBitsPerSample')
+  final int? audioBitsPerSample;
+  @JsonKey(name: 'duration')
+  final int? duration;
+  factory PlayerStreamInfo.fromJson(Map&lt;String, dynamic> json) =>
+      _$PlayerStreamInfoFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$PlayerStreamInfoToJson(this);
+}</codeblock>
+            </p>
         </section>
         <section id="parameters">
             <title><text
@@ -96,10 +186,9 @@
                 <pd>媒体流的索引值。</pd>
             </plentry>
             <plentry>
-                <pt props="ios mac cpp unity">streamType</pt>
+                <pt props="ios mac cpp unity electron rn flutter">streamType</pt>
                 <pt props="android">mediaStreamType</pt>
-                <pd><ph>此条媒体流的类型。</ph><ph props="ios mac cpp unity">详见 <xref
-                    keyref="MEDIA_STREAM_TYPE"/>。</ph>
+                <pd><ph>此条媒体流的类型。</ph><ph props="ios mac cpp unity electron rn flutter">详见 <xref keyref="MEDIA_STREAM_TYPE" />。</ph>
                     <ul props="android">
                     <li><ph keyref="STREAM_TYPE_UNKNOWN"/> (0): 未知类型。</li>
                     <li><ph keyref="STREAM_TYPE_VIDEO"/> (1): 视频流。</li>
@@ -132,7 +221,7 @@
                 <pd>该参数仅对视频流生效，表示视频高度 (pixel)。</pd>
             </plentry>
             <plentry>
-                <pt props="android unity cpp">videoRotation</pt>
+                <pt props="android unity cpp electron rn flutter">videoRotation</pt>
                 <pt props="ios mac">rotation</pt>
                 <pd>该参数仅对视频流生效，表示旋转角度。</pd>
             </plentry>
@@ -144,8 +233,8 @@
                 <pt>audioChannels</pt>
                 <pd>该参数仅对音频流生效，表示声道数。</pd>
             </plentry>
-            <plentry props="android cpp unity">
-                <pt props="cpp unity">audioBitsPerSample</pt>
+            <plentry props="android cpp unity electron rn flutter">
+                <pt props="cpp unity electron rn flutter">audioBitsPerSample</pt>
                 <pt props="android">audioBytesPerSample</pt>
                 <pd>该参数仅对音频流生效，表示每个音频采样点的位数 (bit)。</pd>
             </plentry>

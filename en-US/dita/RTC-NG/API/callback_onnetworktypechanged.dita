@@ -12,19 +12,18 @@
     </prolog>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnNetworkTypeChanged(RtcConnection connection, NETWORK_TYPE type) {}</codeblock></p>
-            <p outputclass="codeblock" props="rtc">
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnNetworkTypeChanged(NETWORK_TYPE type)</codeblock></p>
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onNetworkTypeChanged(int type) {}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine networkTypeChanged:(AgoraNetworkType)type;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void onNetworkTypeChanged(NETWORK_TYPE type) {
     (void)type;
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.NETWORK_TYPE_CHANGED, cb: (type: NETWORK_TYPE) =&gt; void): this;</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">NetworkTypeCallback? networkTypeChanged;</codeblock> </p>
+            <codeblock props="electron" outputclass="language-typescript">onNetworkTypeChanged?(connection: RtcConnection, type: NetworkType): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnNetworkTypeChanged(RtcConnection connection, NETWORK_TYPE type) {}</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onNetworkTypeChanged?(connection: RtcConnection, type: NetworkType): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, NetworkType type)?
+      onNetworkTypeChanged;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
@@ -43,14 +42,14 @@
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="rtc-ng">
-                <pt props="unity">connection</pt>
-                <pd props="unity">The connection information. See <xref keyref="RtcConnection"/>.</pd>
+            <plentry props="unity electron rn flutter">
+                <pt>connection</pt>
+                <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
             </plentry>
             <plentry>
                 <pt>type</pt>
                 <pd>
-                    <p props="ios mac cpp unity flutter">Network types: See <xref keyref="NETWORK_TYPE"/>.</p>
+                    <p props="ios mac cpp unity flutter electron rn">Network types: See <xref keyref="NETWORK_TYPE"/>.</p>
                     <p props="android">Network types:<ul>
                     <li><ph keyref="NETWORK_TYPE_UNKNOWN"/>(-1): The network type is unknown.</li>
                     <li><ph keyref="NETWORK_TYPE_DISCONNECTED"/>(0): The SDK disconnects from the network.</li>

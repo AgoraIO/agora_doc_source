@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setdefaultaudioroutetospeakerphone_ng">
-    <title><ph keyref="setDefaultAudioRouteToSpeakerphone" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the default audio playback route</ph></shortdesc>
+    <title><ph keyref="setDefaultAudioRouteToSpeakerphone"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the default audio playback route.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setDefaultAudioRouteToSpeakerphone" />
+                <indexterm keyref="setDefaultAudioRouteToSpeakerphone"/>
             </keywords>
         </metadata>
     </prolog>
@@ -17,46 +17,46 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setDefaultAudioRouteToSpeakerphone:(BOOL)defaultToSpeaker;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker) = 0;
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract setDefaultAudioRouteToSpeakerphone(
+    defaultToSpeaker: boolean
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <note props="cpp">
-                <p>This method applies to Android and iOS only.</p>
+            <note props="cpp unity flutter">
+            <p>This method is for Android and iOS only.</p>
             </note>
             <p>Most mobile phones have two audio routes: an earpiece at the top, and a speakerphone at the bottom. The earpiece plays at a lower volume, and the speakerphone at a higher volume. When setting the default audio route, you determine whether audio playback comes through the earpiece or speakerphone when no external audio device is connected.</p>
         </section>
         <section>
             <p>Depending on the scenario, Agora uses different default audio routes. See the following:<ul id="ul_kq3_tpf_3qb">
-                <li>Voice call: Earpiece.</li>
-                <li>Audio broadcast: Speakerphone.</li>
-                <li>Video call: Speakerphone.</li>
-                <li>Video broadcast: Speakerphone.</li>
-            </ul></p> <p>You can call this method to change the default audio route. You can call this method before, during, or after a call. After a successful method call, the SDK triggers the <xref keyref="onAudioRouteChanged" /> callback.</p>
-            <note type="note">
-                <ul>
-                    <li><apiname keyref="setDefaultAudioRouteToSpeakerphone" /> is a steady API, and the setting of this method takes effect until you call <xref keyref="release" /> to destroy the engine.</li>
-                    <li>The setting for this method only applies to the audio route of the mobile device itself. If the user connects an external device, the SDK uses the external device as the audio route. See <xref keyref="guide-audio-route">Audio Route</xref> for detailed change principles.</li>
-                </ul>
-            </note>
-        </section>
-        <section id="parameters"><title>Parameters</title>
+            <li>Voice call: Earpiece.</li>
+            <li>Audio broadcast: Speakerphone.</li>
+            <li>Video call: Speakerphone.</li>
+            <li>Video broadcast: Speakerphone.</li>
+            </ul></p>
+            <p>You can call this method to change the default audio route. You can call this method before, during, or after a call. After a successful method call, the SDK triggers the <xref keyref="onAudioRouteChanged"/> callback.</p>
+            <note>
+            <p><ph>The system audio route changes when an external audio device, such as a headphone or a Bluetooth audio device, is connected. </ph><ph props="native">See <xref keyref="guide-audio-route">Audio Route</xref> for detailed change principles.</ph></p>
+            </note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
             <parml>
-                <plentry>
-                    <pt>defaultToSpeaker</pt>
-                    <pd>Whether to set the speakerphone as the default audio route:<ul><li><codeph><ph keyref="true" /></codeph>: Set the speakerphone as the default audio route.</li>
-                        <li><codeph><ph keyref="false" /></codeph>: Set the earpiece as the default audio route.</li></ul></pd>
-                </plentry>
-            </parml>
-        </section>
-        <section id="return_values">
+            <plentry>
+                <pt>defaultToSpeaker</pt>
+                <pd>Whether to set the speakerphone as the default audio route:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Set the speakerphone as the default audio route.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Set the earpiece as the default audio route.</li>
+                    </ul></pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron unity rn">
             <title>Returns</title>
             <ul id="ul_ahk_23f_3qb">
-                <li>0: Success.</li>
-                <li>&lt; 0: Failure.</li>
-            </ul>
-        </section>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
     </refbody>
 </reference>

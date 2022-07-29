@@ -109,12 +109,10 @@
                 <pt props="ios mac">sourceInfo</pt>
                 <pd>
                     <p>The information of the source channel <xref keyref="ChannelMediaInfo" />. It contains the following members:
-                    
                     <ul>
                     <li>channelName: The name of the source channel. The default value is , which means the SDK applies the name of the current channel.<codeph /><codeph><ph keyref="NULL" /></codeph></li>
                     <li><codeph>uid</codeph>: The unique ID to identify the relay stream in the source channel. The default value is 0, which means the SDK generates a random <codeph>UID</codeph>. You must set it as 0.</li>
                     <li><codeph>token</codeph>: The token for joining the source channel<codeph />. It is generated with the <codeph>channelName</codeph> and <codeph>uid</codeph> you set in <codeph>srcInfo</codeph>.
-                        
                         <ul>
                         <li>If you have not enabled the App Certificate, set this parameter as the default value <codeph><ph keyref="NULL" /></codeph> , which means the SDK applies the App ID.</li>
                         <li>If you have enabled the App Certificate, you must use the <codeph>token</codeph> generated with the <codeph>channelName</codeph> and <codeph>uid</codeph>, and the <codeph>uid</codeph> must be set as 0.</li>
@@ -127,12 +125,10 @@
                 <pt props="ios mac">destinationInfos</pt>
                 <pd>
                     <p>The information of the destination channel <apiname keyref="ChannelMediaInfo" />. It contains the following members:
-                    
                     <ul>
                     <li><codeph>channelName</codeph>: The name of the destination channel.</li>
                     <li><codeph>uid</codeph>: The unique ID to identify the relay stream in the destination channel. The value ranges from 0 to (2<sup>32</sup>-1). To avoid UID conflicts, this `UID` must be different from any other `UID` in the destination channel. The default value is 0, which means the SDK generates a random `UID`. Do not set this parameter as the `UID` of the host in the destination channel, and ensure that this `UID` is different from any other `UID` in the channel.</li>
                     <li><codeph>token</codeph>: The <codeph>token</codeph> for joining the destination channel. It is generated with the <codeph>channelName</codeph> and <codeph>uid</codeph> you set in <codeph>destInfos</codeph>.
-                        
                         <ul>
                         <li>If you have not enabled the App Certificate, set this parameter as the default value <codeph><ph keyref="NULL" /></codeph> , which means the SDK applies the App ID.</li>
                         <li>If you have enabled the App Certificate, you must use the <codeph>token</codeph> generated with the <codeph>channelName</codeph> and <codeph>uid</codeph>.</li>

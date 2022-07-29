@@ -5,89 +5,94 @@
     <shortdesc id="short"><ph id="shortdesc">网络连接状态发生变化的原因。</ph></shortdesc>
     <refbody>
         <section id="parameters">
-   <title>枚举值</title>
-   <parml>
-       <plentry>
-  <pt><ph keyref="CONNECTION_CHANGED_CONNECTING"/></pt>
-  <pd>0: 建立网络连接中。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CONNECTION_CHANGED_JOIN_SUCCESS"/></pt>
-  <pd>1: 成功加入频道。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CONNECTION_CHANGED_INTERRUPTED"/></pt>
-  <pd>2: 网络连接中断。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CONNECTION_CHANGED_BANNED_BY_SERVER"/></pt>
-  <pd>3: 网络连接被服务器禁止。服务端踢人场景时会报这个错。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CONNECTION_CHANGED_JOIN_FAILED"/></pt>
-  <pd>4: 加入频道失败。SDK 在尝试加入频道 20 分钟后还是没能加入频道，会返回该状态，并停止尝试重连。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CONNECTION_CHANGED_LEAVE_CHANNEL"/></pt>
-  <pd>5: 离开频道。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CONNECTION_CHANGED_INVALID_APP_ID"/></pt>
-  <pd>6: 不是有效的 APP ID。请更换有效的 APP ID 重新加入频道。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CONNECTION_CHANGED_INVALID_CHANNEL_NAME"/></pt>
-  <pd>7: 不是有效的频道名。请更换有效的频道名重新加入频道。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CONNECTION_CHANGED_INVALID_TOKEN"/></pt>
-  <pd><p>8: 生成的 Token 无效。一般有以下原因：
-  <ul>
-      <li>在控制台上启用了 App Certificate，但加入频道未使用 Token。当启用了 App Certificate，必须使用 Token。</li>
-      <li>在调用 <apiname keyref="joinChannel2"/> 加入频道时指定的用户 ID 与生成 Token 时传入的用户 ID 不一致。</li>
-  </ul></p></pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CONNECTION_CHANGED_TOKEN_EXPIRED"/></pt>
-  <pd>9: 当前使用的 Token 过期，不再有效，需要重新在你的服务端申请生成 Token。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CONNECTION_CHANGED_REJECTED_BY_SERVER"/></pt>
-  <pd><p>10: 此用户被服务器禁止。一般有以下原因：
-  <ul>
-      <li>用户已进入频道，再次调用加入频道的 API，例如 <apiname keyref="joinChannel2" />，会返回此状态。停止调用该方法即可。</li>
-      <li>用户在进行通话测试时尝试加入频道。等待通话测试结束后再加入频道即可。</li>
-  </ul>
-  </p></pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER"/></pt>
-  <pd>11: 由于设置了代理服务器，SDK 尝试重连。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CONNECTION_CHANGED_RENEW_TOKEN"/></pt>
-  <pd>12: 更新 Token 引起网络连接状态改变。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED"/></pt>
-  <pd>13: 客户端 IP 地址变更，可能是由于网络类型，或网络运营商的 IP 或端口发生改变引起。</pd>
-       </plentry>
-       <plentry>
-  <pt><ph keyref="CONNECTION_CHANGED_KEEP_ALIVE_TIMEOUT"/></pt>
-  <pd>14: SDK 和服务器连接保活超时，进入自动重连状态。</pd>
-       </plentry>
-                <plentry props="rtc-ng">
-                    <pt><ph keyref="CONNECTION_CHANGED_REJOIN_SUCCESS"/></pt>
-                    <pd>15: 重新加入频道成功。</pd>
-                </plentry>
-                <plentry props="rtc-ng">
-                    <pt><ph keyref="CONNECTION_CHANGED_LOST"/></pt>
-                    <pd>16: SDK 和服务器失去连接。</pd>
-                </plentry>
-                <plentry props="rtc-ng">
-                    <pt><ph keyref="CONNECTION_CHANGED_ECHO_TEST"/></pt>
-                    <pd>17: 连接状态变化由回声测试引起。</pd>
-                </plentry>
-   </parml>
-        </section></refbody>
+            <title>枚举值</title>
+            <parml>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_CONNECTING"/></pt>
+                <pd>0: 建立网络连接中。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_JOIN_SUCCESS"/></pt>
+                <pd>1: 成功加入频道。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_INTERRUPTED"/></pt>
+                <pd>2: 网络连接中断。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_BANNED_BY_SERVER"/></pt>
+                <pd>3: 网络连接被服务器禁止。服务端踢人场景时会报这个错。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_JOIN_FAILED"/></pt>
+                <pd>4: 加入频道失败。SDK 在尝试加入频道 20 分钟后还是没能加入频道，会返回该状态，并停止尝试重连。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_LEAVE_CHANNEL"/></pt>
+                <pd>5: 离开频道。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_INVALID_APP_ID"/></pt>
+                <pd>6: 不是有效的 APP ID。请更换有效的 APP ID 重新加入频道。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_INVALID_CHANNEL_NAME"/></pt>
+                <pd>7: 不是有效的频道名。请更换有效的频道名重新加入频道。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_INVALID_TOKEN"/></pt>
+                <pd>
+                    <p>8: 生成的 Token 无效。一般有以下原因：
+
+                    <ul>
+                    <li>在控制台上启用了 App Certificate，但加入频道未使用 Token。当启用了 App Certificate，必须使用 Token。</li>
+                    <li>在调用 <apiname keyref="joinChannel2"/> 加入频道时指定的用户 ID 与生成 Token 时传入的用户 ID 不一致。</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_TOKEN_EXPIRED"/></pt>
+                <pd>9: 当前使用的 Token 过期，不再有效，需要重新在你的服务端申请生成 Token。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_REJECTED_BY_SERVER"/></pt>
+                <pd>
+                    <p>10: 此用户被服务器禁止。一般有以下原因：
+
+                    <ul>
+                    <li>用户已进入频道，再次调用加入频道的 API，例如 <apiname keyref="joinChannel2"/>，会返回此状态。停止调用该方法即可。</li>
+                    <li>用户在进行通话测试时尝试加入频道。等待通话测试结束后再加入频道即可。</li>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER"/></pt>
+                <pd>11: 由于设置了代理服务器，SDK 尝试重连。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_RENEW_TOKEN"/></pt>
+                <pd>12: 更新 Token 引起网络连接状态改变。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED"/></pt>
+                <pd>13: 客户端 IP 地址变更，可能是由于网络类型，或网络运营商的 IP 或端口发生改变引起。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_KEEP_ALIVE_TIMEOUT"/></pt>
+                <pd>14: SDK 和服务器连接保活超时，进入自动重连状态。</pd>
+            </plentry>
+            <plentry props="rtc-ng">
+                <pt><ph keyref="CONNECTION_CHANGED_REJOIN_SUCCESS"/></pt>
+                <pd>15: 重新加入频道成功。</pd>
+            </plentry>
+            <plentry props="rtc-ng">
+                <pt><ph keyref="CONNECTION_CHANGED_LOST"/></pt>
+                <pd>16: SDK 和服务器失去连接。</pd>
+            </plentry>
+            <plentry props="rtc-ng">
+                <pt><ph keyref="CONNECTION_CHANGED_ECHO_TEST"/></pt>
+                <pd>17: 连接状态变化由回声测试引起。</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
 </reference>

@@ -18,10 +18,16 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setVideoEncoderConfigurationEx:(AgoraVideoEncoderConfiguration* _Nonnull)config
                            connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setVideoEncoderConfigurationEx(const VideoEncoderConfiguration&amp; config, const RtcConnection&amp; connection) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract setVideoEncoderConfigurationEx(config: VideoEncoderConfiguration, connection: RtcConnection): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetVideoEncoderConfigurationEx(VideoEncoderConfiguration config, RtcConnection connection);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract setVideoEncoderConfigurationEx(
+    config: VideoEncoderConfiguration,
+    connection: RtcConnection
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setVideoEncoderConfigurationEx(
+      {required VideoEncoderConfiguration config,
+      required RtcConnection connection});
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p id="desc">每一种视频编码属性对应一系列视频相关参数设置，包含分辨率、帧率和码率。</p>

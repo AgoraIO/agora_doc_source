@@ -78,57 +78,140 @@
     unsigned short txPacketLossRate;
     CAPTURE_BRIGHTNESS_LEVEL_TYPE captureBrightnessLevel;
 };</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export class LocalVideoStats {
+  uid?: number
+  sentBitrate?: number
+  sentFrameRate?: number
+  captureFrameRate?: number
+  captureFrameWidth?: number
+  captureFrameHeight?: number
+  regulatedCaptureFrameRate?: number
+  regulatedCaptureFrameWidth?: number
+  regulatedCaptureFrameHeight?: number
+  encoderOutputFrameRate?: number
+  encodedFrameWidth?: number
+  encodedFrameHeight?: number
+  rendererOutputFrameRate?: number
+  targetBitrate?: number
+  targetFrameRate?: number
+  qualityAdaptIndication?: QualityAdaptIndication
+  encodedBitrate?: number
+  encodedFrameCount?: number
+  codecType?: VideoCodecType
+  txPacketLossRate?: number
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class LocalVideoStats
     {
         public LocalVideoStats()
         {
         }
-        public LocalVideoStats(uint uid, int sentBitrate, int sentFrameRate, int encoderOutputFrameRate,
-            int rendererOutputFrameRate, int targetBitrate, int targetFrameRate, QUALITY_ADAPT_INDICATION qualityAdaptIndication,
-            int encodedBitrate, int encodedFrameWidth,int encodedFrameHeight, int encodedFrameCount,
-            VIDEO_CODEC_TYPE codecType)
-        {
-            this.uid = uid;
-            this.sentBitrate = sentBitrate;
-            this.sentFrameRate = sentFrameRate;
-            this.encoderOutputFrameRate = encoderOutputFrameRate;
-            this.rendererOutputFrameRate = rendererOutputFrameRate;
-            this.targetBitrate = targetBitrate;
-            this.targetFrameRate = targetFrameRate;
-            this.qualityAdaptIndication = qualityAdaptIndication;
-            this.encodedBitrate = encodedBitrate;
-            this.encodedFrameWidth = encodedFrameWidth;
-            this.encodedFrameHeight = encodedFrameHeight;
-            this.encodedFrameCount = encodedFrameCount;
-            this.codecType = codecType;
-        }
 
         public uint uid { set; get; }
-
         public int sentBitrate { set; get; }
-
         public int sentFrameRate { set; get; }
-
         public int encoderOutputFrameRate { set; get; }
-
-        public int rendererOutputFrameRate { set; get; }
-
-        public int targetBitrate { set; get; }
-
-        public int targetFrameRate { set; get; }
-
-        public QUALITY_ADAPT_INDICATION qualityAdaptIndication;
-
-        public int encodedBitrate { set; get; }
-
         public int encodedFrameWidth { set; get; }
-
         public int encodedFrameHeight { set; get; }
-
+        public int rendererOutputFrameRate { set; get; }
+        public int targetBitrate { set; get; }
+        public int targetFrameRate { set; get; }
+        public QUALITY_ADAPT_INDICATION qualityAdaptIndication { set; get; }
+        public int encodedBitrate { set; get; }
         public int encodedFrameCount { set; get; }
-
         public VIDEO_CODEC_TYPE codecType { set; get; }
-    }</codeblock> </p>
+        public ushort txPacketLossRate { set; get; }
+    }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class LocalVideoStats {
+  uid?: number;
+  sentBitrate?: number;
+  sentFrameRate?: number;
+  captureFrameRate?: number;
+  captureFrameWidth?: number;
+  captureFrameHeight?: number;
+  regulatedCaptureFrameRate?: number;
+  regulatedCaptureFrameWidth?: number;
+  regulatedCaptureFrameHeight?: number;
+  encoderOutputFrameRate?: number;
+  encodedFrameWidth?: number;
+  encodedFrameHeight?: number;
+  rendererOutputFrameRate?: number;
+  targetBitrate?: number;
+  targetFrameRate?: number;
+  qualityAdaptIndication?: QualityAdaptIndication;
+  encodedBitrate?: number;
+  encodedFrameCount?: number;
+  codecType?: VideoCodecType;
+  txPacketLossRate?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class LocalVideoStats {
+  const LocalVideoStats(
+      {this.uid,
+      this.sentBitrate,
+      this.sentFrameRate,
+      this.captureFrameRate,
+      this.captureFrameWidth,
+      this.captureFrameHeight,
+      this.regulatedCaptureFrameRate,
+      this.regulatedCaptureFrameWidth,
+      this.regulatedCaptureFrameHeight,
+      this.encoderOutputFrameRate,
+      this.encodedFrameWidth,
+      this.encodedFrameHeight,
+      this.rendererOutputFrameRate,
+      this.targetBitrate,
+      this.targetFrameRate,
+      this.qualityAdaptIndication,
+      this.encodedBitrate,
+      this.encodedFrameCount,
+      this.codecType,
+      this.txPacketLossRate});
+
+  @JsonKey(name: 'uid')
+  final int? uid;
+  @JsonKey(name: 'sentBitrate')
+  final int? sentBitrate;
+  @JsonKey(name: 'sentFrameRate')
+  final int? sentFrameRate;
+  @JsonKey(name: 'captureFrameRate')
+  final int? captureFrameRate;
+  @JsonKey(name: 'captureFrameWidth')
+  final int? captureFrameWidth;
+  @JsonKey(name: 'captureFrameHeight')
+  final int? captureFrameHeight;
+  @JsonKey(name: 'regulatedCaptureFrameRate')
+  final int? regulatedCaptureFrameRate;
+  @JsonKey(name: 'regulatedCaptureFrameWidth')
+  final int? regulatedCaptureFrameWidth;
+  @JsonKey(name: 'regulatedCaptureFrameHeight')
+  final int? regulatedCaptureFrameHeight;
+  @JsonKey(name: 'encoderOutputFrameRate')
+  final int? encoderOutputFrameRate;
+  @JsonKey(name: 'encodedFrameWidth')
+  final int? encodedFrameWidth;
+  @JsonKey(name: 'encodedFrameHeight')
+  final int? encodedFrameHeight;
+  @JsonKey(name: 'rendererOutputFrameRate')
+  final int? rendererOutputFrameRate;
+  @JsonKey(name: 'targetBitrate')
+  final int? targetBitrate;
+  @JsonKey(name: 'targetFrameRate')
+  final int? targetFrameRate;
+  @JsonKey(name: 'qualityAdaptIndication')
+  final QualityAdaptIndication? qualityAdaptIndication;
+  @JsonKey(name: 'encodedBitrate')
+  final int? encodedBitrate;
+  @JsonKey(name: 'encodedFrameCount')
+  final int? encodedFrameCount;
+  @JsonKey(name: 'codecType')
+  final VideoCodecType? codecType;
+  @JsonKey(name: 'txPacketLossRate')
+  final int? txPacketLossRate;
+  factory LocalVideoStats.fromJson(Map&lt;String, dynamic> json) =>
+      _$LocalVideoStatsFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$LocalVideoStatsToJson(this);
+}
+</codeblock>
+            </p>
         </section>
         <section id="parameters">
             <title><text
@@ -193,9 +276,9 @@
                 <pt>qualityAdaptIndication</pt>
                 <pd><ph>The quality adaption of the local video stream in the reported interval (based on the target frame rate and target bitrate). </ph><ph props="cpp ios mac unity">See <xref keyref="QUALITY_ADAPT_INDICATION"/>.</ph><p props="android">
                     <ul>
-                    <li><ph keyref="ADAPT_NONE"/>(0): The local video quality stays the same.</li>
-                    <li><ph keyref="ADAPT_UP_BANDWIDTH"/>(1): The local video quality improves because the network bandwidth increases.</li>
-                    <li><ph keyref="ADAPT_DOWN_BANDWIDTH"/>(2): The local video quality deteriorates because the network bandwidth decreases.</li>
+                    <li><ph keyref="ADAPT_NONE" />(0): The local video quality stays the same.</li>
+                    <li><ph keyref="ADAPT_UP_BANDWIDTH" />(1): The local video quality improves because the network bandwidth increases.</li>
+                    <li><ph keyref="ADAPT_DOWN_BANDWIDTH" />(2): The local video quality deteriorates because the network bandwidth decreases.</li>
                     </ul> </p>
                 </pd>
             </plentry>
@@ -219,11 +302,10 @@
             </plentry>
             <plentry>
                 <pt>codecType</pt>
-                <pd><ph>The codec type of the local video. </ph><ph props="ios mac cpp unity">See <xref
-                    keyref="VIDEO_CODEC_TYPE"/>.</ph><p props="android">
+                <pd><ph>The codec type of the local video. </ph><ph props="ios mac cpp unity electron rn flutter">See <xref keyref="VIDEO_CODEC_TYPE" />.</ph><p props="android">
                     <ul>
-                    <li><ph keyref="VIDEO_CODEC_VP8"/>(1): VP8.</li>
-                    <li><ph keyref="VIDEO_CODEC_H264"/>(2): (Default) H.264.</li>
+                    <li><ph keyref="VIDEO_CODEC_VP8" />(1): VP8.</li>
+                    <li><ph keyref="VIDEO_CODEC_H264" />(2): (Default) H.264.</li>
                     </ul> </p>
                 </pd>
             </plentry>
@@ -233,8 +315,7 @@
             </plentry>
             <plentry>
                 <pt>captureBrightnessLevel</pt>
-                <pd props="ios mac cpp unity">The brightness level of the video image captured by the local camera. See <xref
-                    keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE"/>.</pd>
+                <pd props="ios mac cpp unity electron rn flutter">The brightness level of the video image captured by the local camera. See <xref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE"/>.</pd>
                 <pd props="android">The brightness level of the video image captured by the local camera.<ul>
                     <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_INVALID"/>(-1): The SDK does not detect the brightness level of the video image. Wait a few seconds to get the brightness level from <parmname>captureBrightnessLevel</parmname> in the next callback.</li>
                     <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_NORMAL"/>(0): The brightness level of the video image is normal.</li>

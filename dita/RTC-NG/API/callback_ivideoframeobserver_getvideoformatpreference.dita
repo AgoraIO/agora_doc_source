@@ -19,9 +19,10 @@
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual VIDEO_PIXEL_FORMAT getVideoFormatPreference() { return VIDEO_PIXEL_DEFAULT; }</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public virtual VIDEO_FRAME_TYPE GetVideoFormatPreference()
+            <codeblock props="unity" outputclass="language-csharp">public virtual VIDEO_OBSERVER_FRAME_TYPE GetVideoFormatPreference()
         {
-            return VIDEO_FRAME_TYPE.FRAME_TYPE_RGBA;
+            return VIDEO_OBSERVER_FRAME_TYPE.FRAME_TYPE_RGBA;
+        }
         }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
@@ -32,6 +33,9 @@
         <section id="return_values">
             <title>返回值</title>
             <p><ph>设置 SDK 输出的原始数据格式。</ph><ph props="cpp ios mac">详见 <xref keyref="VIDEO_PIXEL_FORMAT"/>。</ph></p>
+            <ul props="unity" id="ul_chl_tpg_s4b">
+                <li><apiname keyref="FRAME_TYPE_YUV420"/> (0)：（默认） YUV420 格式。</li>
+                <li><apiname keyref="FRAME_TYPE_RGBA"/> (2)： RGBA 格式。</li></ul>    
             <p props="android">
             <note id="default" props="hide">
                     <p>在不同观测位置和采集场景下，该枚举值对应的实际视频像素格式都不同，Agora 建议你不要使用该值。以下列出了一些常见的情况。</p>

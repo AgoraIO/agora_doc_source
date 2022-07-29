@@ -25,15 +25,22 @@
      (void)reason;
      (void)elapsed;
      }</codeblock>
-               <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.REMOTE_AUDIO_STATE_CHANGED, cb: (
-     uid: number,
-     state: REMOTE_AUDIO_STATE,
-     reason: REMOTE_AUDIO_STATE_REASON,
-     elapsed: number
-     ) =&gt; void): this;</codeblock>
-               <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteAudioStateChanged(RtcConnection connection, uint remoteUid, REMOTE_AUDIO_STATE state, REMOTE_AUDIO_STATE_REASON reason, int elapsed) {}</codeblock>                    
-               <codeblock props="rn" outputclass="language-typescript"/>
-               <codeblock props="flutter" outputclass="language-dart">RemoteAudioStateCallback? remoteAudioStateChanged;</codeblock> </p>
+               <codeblock props="electron" outputclass="language-typescript">onRemoteAudioStateChanged?(connection: RtcConnection, remoteUid: number, state: RemoteAudioState, reason: RemoteAudioStateReason, elapsed: number): void;</codeblock>
+               <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteAudioStateChanged(RtcConnection connection, uint remoteUid, REMOTE_AUDIO_STATE state, REMOTE_AUDIO_STATE_REASON reason, int elapsed) {}</codeblock>
+               <codeblock props="rn" outputclass="language-typescript">onRemoteAudioStateChanged?(
+  connection: RtcConnection,
+  remoteUid: number,
+  state: RemoteAudioState,
+  reason: RemoteAudioStateReason,
+  elapsed: number
+): void;</codeblock>
+               <codeblock props="flutter" outputclass="language-dart">final void Function(
+      RtcConnection connection,
+      int remoteUid,
+      RemoteAudioState state,
+      RemoteAudioStateReason reason,
+      int elapsed)? onRemoteAudioStateChanged;
+</codeblock> </p>
           </section>
           <section id="detailed_desc">
                <dl outputclass="since" props="rtc">
@@ -42,23 +49,25 @@
                     <dd>v2.9.0</dd>
                </dlentry>
                </dl>
-               <p id="desc">远端用户（通信场景）或主播（直播场景）的音频状态发生改变时，SDK 会触发该回调向本地用户报告当前的远端音频流状态。</p>
-               <note id="note" type="attention">频道内的用户（通信场景）或主播（直播场景）人数超过 17 人时，该回调可能不准确。</note> </section>
+               <p id="desc"
+               >远端用户（通信场景）或主播（直播场景）的音频状态发生改变时，SDK 会触发该回调向本地用户报告当前的远端音频流状态。</p>
+               <note id="note" type="attention"
+               >频道内的用户（通信场景）或主播（直播场景）人数超过 17 人时，该回调可能不准确。</note> </section>
           <section id="parameters">
                <title><ph keyref="callback-section-title"/></title>
-               <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+               <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
                <parml>
                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                     <pt/>
                     <pd/>
                </plentry>
-               <plentry props="rtc-ng">
-                    <pt props="unity">connection</pt>
-                    <pd props="unity">Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+               <plentry props="unity flutter rn electron">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
                </plentry>
                <plentry id="uid">
-                    <pt props="native electron flutter">uid</pt>
-                    <pt props="unity"><ph props="rtc">uid</ph><ph props="rtc-ng">remoteUid</ph></pt>
+                    <pt props="native">uid</pt>
+                    <pt props="unity flutter rn electron">remoteUid</pt>
                     <pd>发生音频状态改变的远端用户 ID。</pd>
                </plentry>
                <plentry id="state">
@@ -76,7 +85,7 @@
                </plentry>
                <plentry id="reason">
                     <pt>reason</pt>
-                    <pd props="ios mac cpp unity"> 远端音频流状态改变的具体原因，详见 <xref keyref="REMOTE_AUDIO_STATE_REASON"/>。</pd>
+                    <pd props="ios mac cpp unity electron rn flutter"> 远端音频流状态改变的具体原因，详见 <xref keyref="REMOTE_AUDIO_STATE_REASON"/>。</pd>
                     <pd props="android">远端音频流状态改变的具体原因。
                     
                          <ul>

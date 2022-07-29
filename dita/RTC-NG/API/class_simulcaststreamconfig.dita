@@ -38,8 +38,13 @@
     return dimensions == rhs.dimensions &amp;&amp; bitrate == rhs.bitrate &amp;&amp; framerate == rhs.framerate;
   }
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public class SimulcastStreamConfig {
+            <codeblock props="electron" outputclass="language-typescript">export class SimulcastStreamConfig {
+  dimensions?: VideoDimensions
+  bitrate?: number
+  framerate?: number
+}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class SimulcastStreamConfig
+    {
         public SimulcastStreamConfig()
         {
             dimensions = new VideoDimensions(160, 120);
@@ -57,8 +62,25 @@
         public int bitrate { set; get; }
         public int framerate { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">export class SimulcastStreamConfig {
+  dimensions?: VideoDimensions;
+  bitrate?: number;
+  framerate?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class SimulcastStreamConfig {
+  const SimulcastStreamConfig({this.dimensions, this.bitrate, this.framerate});
+
+  @JsonKey(name: 'dimensions')
+  final VideoDimensions? dimensions;
+  @JsonKey(name: 'bitrate')
+  final int? bitrate;
+  @JsonKey(name: 'framerate')
+  final int? framerate;
+  factory SimulcastStreamConfig.fromJson(Map&lt;String, dynamic> json) =>
+      _$SimulcastStreamConfigFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$SimulcastStreamConfigToJson(this);
+}</codeblock>
+            </p>
         </section>
         <section id="parameters">
             <title><text
@@ -67,8 +89,7 @@
             <parml>
             <plentry>
                 <pt>dimensions</pt>
-                <pd>视频尺寸<ph props="android cpp unity">，详见 <xref
-                    keyref="VideoDimensions"/></ph>。默认值为 160 × 120。</pd>
+                <pd><ph>视频尺寸。</ph><ph props="android cpp unity electron rn">详见 <xref keyref="VideoDimensions" />。</ph><ph>默认值为 160 × 120。</ph></pd>
             </plentry>
             <plentry>
                 <pt>bitrate</pt>

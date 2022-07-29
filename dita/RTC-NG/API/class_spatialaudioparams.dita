@@ -61,18 +61,56 @@
   Optional&lt;bool> enable_air_absorb;
   Optional&lt;double> speaker_attenuation;
 };</codeblock>
-      <codeblock props="electron" outputclass="language-typescript"/>
-      <codeblock props="unity" outputclass="language-csharp">public class SpatialAudioParams
+<codeblock props="electron" outputclass="language-typescript">export class SpatialAudioParams {
+  speaker_azimuth?: number
+  speaker_elevation?: number
+  speaker_distance?: number
+  speaker_orientation?: number
+  enable_blur?: boolean
+  enable_air_absorb?: boolean
+}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class SpatialAudioParams : OptionalJsonParse
     {
-        public double speaker_azimuth { set; get; }
-        public double speaker_elevation { set; get; }
-        public double speaker_distance { set; get; }
-        public int speaker_orientation { set; get; }
-        public bool enable_blur { set; get; }
-        public bool enable_air_absorb { set; get; }
-    };</codeblock>
-      <codeblock props="rn" outputclass="language-typescript"/>
-      <codeblock props="flutter" outputclass="language-dart"/> </p>
+        public Optional&lt;double&gt; speaker_azimuth = new Optional&lt;double&gt;();
+        public Optional&lt;double&gt; speaker_elevation = new Optional&lt;double&gt;();
+        public Optional&lt;double&gt; speaker_distance = new Optional&lt;double&gt;();
+        public Optional&lt;int&gt; speaker_orientation = new Optional&lt;int&gt;();
+        public Optional&lt;bool&gt; enable_blur = new Optional&lt;bool&gt;();
+        public Optional&lt;bool&gt; enable_air_absorb = new Optional&lt;bool&gt;();
+    }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class SpatialAudioParams {
+  speaker_azimuth?: number;
+  speaker_elevation?: number;
+  speaker_distance?: number;
+  speaker_orientation?: number;
+  enable_blur?: boolean;
+  enable_air_absorb?: boolean;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class SpatialAudioParams {
+  const SpatialAudioParams(
+      {this.speakerAzimuth,
+      this.speakerElevation,
+      this.speakerDistance,
+      this.speakerOrientation,
+      this.enableBlur,
+      this.enableAirAbsorb});
+
+  @JsonKey(name: 'speaker_azimuth')
+  final double? speakerAzimuth;
+  @JsonKey(name: 'speaker_elevation')
+  final double? speakerElevation;
+  @JsonKey(name: 'speaker_distance')
+  final double? speakerDistance;
+  @JsonKey(name: 'speaker_orientation')
+  final int? speakerOrientation;
+  @JsonKey(name: 'enable_blur')
+  final bool? enableBlur;
+  @JsonKey(name: 'enable_air_absorb')
+  final bool? enableAirAbsorb;
+  factory SpatialAudioParams.fromJson(Map&lt;String, dynamic> json) =>
+      _$SpatialAudioParamsFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$SpatialAudioParamsToJson(this);
+}</codeblock>
     </section>
     <section id="parameters">
       <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
