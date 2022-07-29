@@ -4,10 +4,10 @@ name: Awesome JSON CI build for NG Unity SDK
 on:
     push:
         branches:
-            - '3.8.200-framework-suri'
+            - 'release/rtc-ng/3.8.200-framework'
     pull_request:
         branches:
-            - '3.8.200-framework-suri'
+            - 'release/rtc-ng/3.8.200-framework'
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -33,7 +33,7 @@ jobs:
                   cd xml2json
          
                   echo "Running for unity NG CN (test)"
-                  python xml2json.py --working_dir ../dita/RTC-NG --platform_tag unity --json_file unity_en_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path unity-ng
+                  python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag unity --json_file unity_en_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path unity-ng
 
             - name: Upload Unity NG JSON to release 
               uses: svenstaro/upload-release-action@v2
