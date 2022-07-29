@@ -88,7 +88,7 @@ License 提供 OpenAPI 和 Console 两种使用途径，具体流程如下：
 
 3. 进入 **License** 页面后，你可以在 **用量查看** 和 **购买记录** 页签查看 License 的使用情况。
 
-![](https://web-cdn.agora.io/docs-files/1659089165706)
+![](https://web-cdn.agora.io/docs-files/1658917840914)
 
 ![](https://web-cdn.agora.io/docs-files/1658918100541)
 
@@ -114,6 +114,9 @@ License 提供 OpenAPI 和 Console 两种使用途径，具体流程如下：
 
 ### PID  
 由 SKU、有效期、品类 (账号 License 或设备 License) 定义的 License 标识。License 申请通过后，你可以在 [控制台](https://console.agora.io/license/usage) 的 License 页面查看关联的 PID。无论 License 的申请数量，只要 SKU、有效期、品类不变，申请到的 License 额度均归属于同一个 PID。CID 是 License 额度关联的顶级维度，用户也可以将 PID 下的 License 额度分配给某个 App ID。
+
+### VID
+声网分配给每个项目的内部标识，与 App ID 映射。你可以在 [控制台](https://console.agora.io/license/usage) 的 License 页面查看 PID 分配给了哪些 VID。
 
 ### LicenseKey
 账号 ID 或设备 ID。用户为某个账号或设备激活 License 时，传入 LicenseKey 消耗一个 License。此外，用户可以执行预授权操作，仅在白名单中的 LicenseKey 可以通过校验激活 License。

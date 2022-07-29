@@ -189,7 +189,7 @@ https://api.agora.io/dabiz/license/v1/product/allocations?page=1&size=2&pid=02F5
 | 参数 | 类型 | 描述 |
 |:---|:---|:---|
 |`count`| Integer | 配额次数。 |
-|`list`| Array | 配额详情列表：<ul><li>`pid` (String): 	由 SKU、有效期、品类定义的 License 标识。</li></ul><ul><li>`type` (Integer): <ul><li>`1`: 正式<li>`2`: 测试</li></li></ul><li>`creator` (String): 执行配额操作的用户名。</li><li>`count` (Integer): License 的数量。</li><li>`createTime` (String): 执行配额操作的时间。</li> |
+|`list`| Array | 配额详情列表：<ul><li>`pid` (String): 	由 SKU、有效期、品类定义的 License 标识。</li></ul><ul><li>`type` (Integer): <ul><li>`1`: 正式<li>`2`: 测试</li></li></ul><li>`vid` (String): 声网分配给每个项目的内部标识，与 App ID 为映射关系。</li><li>`creator` (String): 执行配额操作的用户名。</li><li>`count` (Integer): License 的数量。</li><li>`createTime` (String): 执行配额操作的时间。</li> |
 
 如果状态码不为 `200`，则请求失败。你可以根据返回的 [状态码](https://docs.agora.io/cn/Agora%20Platform/agora_console_restapi?platform=All%20Platforms#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81) 和响应包体中 `message` 字段的描述进行错误排查。
 
@@ -206,6 +206,7 @@ https://api.agora.io/dabiz/license/v1/product/allocations?page=1&size=2&pid=02F5
             {
                 "pid": "02F51997A07B46C5810020A0F163EC30",
                 "type": 1,
+                "vid": 975823,
                 "creator": "wangwei",
                 "count": 5,
                 "createTime": "2022-07-22 09:10:12"
@@ -213,6 +214,7 @@ https://api.agora.io/dabiz/license/v1/product/allocations?page=1&size=2&pid=02F5
             {
                 "pid": "02F51997A07B46C5810020A0F163EC30",
                 "type": 1,
+                "vid": 975823,
                 "creator": "wangwei",
                 "count": 5,
                 "createTime": "2022-07-21 09:02:26"
@@ -522,6 +524,7 @@ https://api.agora.io/dabiz/license/v1/pads/search?licenseKey=12345&appid=a6d6dba
 |:---|:---|:---|
 |`id`| String | 预授权白名单的序列号。 |
 |`cid`| String | 声网分配给每个企业 (组织) 的唯一标识。 |
+|`vid`| String | 声网分配给每个项目的内部标识，与 App ID 为映射关系。 |
 |`licenseKey`| String | 账号 ID 或设备 ID。 |
 |`createTime`| String | 指定 LicenseKey 被添加到预授权白名单的时间。 |
 
@@ -538,6 +541,7 @@ https://api.agora.io/dabiz/license/v1/pads/search?licenseKey=12345&appid=a6d6dba
         {
             "id": 16,
             "cid": 717241,
+            "vid": 975823,
             "licenseKey": "12345",
             "createTime": "2022-07-26 04:01:41"
         }
@@ -581,7 +585,7 @@ https://api.agora.io/dabiz/license/v1/pads?page=1&size=10&appid=a6d6dba434be4b66
 | 参数 | 类型 | 描述 |
 |:---|:---|:---|
 |`count`| Integer | 预授权白名单中 LicenseKey 的数量。 |
-|`list`| Array | 预授权白名单详情：<li>`id` (String): 指定 LicenseKey 在预授权白名单中的序列号。</li><li>`cid` (String): 声网分配给每个企业 (组织) 的唯一标识。</li><li>`licenseKey` (String): 账号 ID 或设备 ID。</li><li>`createTime` (String): 指定 LicenseKey 被添加到预授权白名单的时间。</li> |
+|`list`| Array | 预授权白名单详情：<li>`id` (String): 指定 LicenseKey 在预授权白名单中的序列号。</li><li>`cid` (String): 声网分配给每个企业 (组织) 的唯一标识。</li><li>`vid` (String): 声网分配给每个项目的内部唯一标识，与 App ID 为映射关系。</li><li>`licenseKey` (String): 账号 ID 或设备 ID。</li><li>`createTime` (String): 指定 LicenseKey 被添加到预授权白名单的时间。</li> |
 
 如果状态码不为 `200`，则请求失败。你可以根据返回的 [状态码](https://docs.agora.io/cn/Agora%20Platform/agora_console_restapi?platform=All%20Platforms#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81) 和响应包体中 `message` 字段的描述进行错误排查。
 
@@ -598,12 +602,14 @@ https://api.agora.io/dabiz/license/v1/pads?page=1&size=10&appid=a6d6dba434be4b66
             {
                 "id": 20,
                 "cid": 717241,
+                "vid": 975823,
                 "licenseKey": "12345",
                 "createTime": "2022-07-26 05:18:03"
             },
             {
                 "id": 19,
                 "cid": 717241,
+                "vid": 975823,
                 "licenseKey": "54321",
                 "createTime": "2022-07-26 05:17:18"
             }
