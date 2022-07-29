@@ -1,6 +1,6 @@
 # RESTful API 参考
 
-本页面介绍 Agora 控制台 License RESTful API 的详细信息。
+本页面介绍控制台 License RESTful API 的详细信息。
 
 
 
@@ -57,7 +57,7 @@ https://api.agora.io/dabiz/license/v2/active?pid=02F51997A07B46C5810020A0F163EC3
 | 参数 | 类型 | 描述 |
 |:---|:---|:---|
 |`license`| String | 被激活的 License 的值。 |
-|`skuView`| Array | SKU 能力集：<li>`product` (Integer): <ul><li>`1`: RTC</li><li>`2`: RTSA</li><li>`3`: FPA</li></ul></li><li>`name` (String): SKU 的名称</li><li>`mediaType` (Integer):<ul><li>`1`: 音频</li><li>`2`: 视频</li><li>`3`: 音视频</li></ul></li><li>`minutes` (integer): License 分钟数上限</li><li>`period` (String): License 使用时间段</li> |
+|`skuView`| Array | SKU 能力集：<li>`product` (Integer): <ul>&nbsp;<li>`1`: RTC</li>&nbsp;<li>`2`: RTSA</li>&nbsp;<li>`3`: FPA</li></ul></li><li>`name` (String): SKU 的名称</li><li>`mediaType` (Integer):<ul><li>`1`: 音频</li><li>`2`: 视频</li><li>`3`: 音视频</li></ul></li><li>`minutes` (integer): License 分钟数上限</li><li>`period` (String): License 使用时间段</li> |
 
 如果状态码不为 `200`，则请求失败。你可以根据返回的 [状态码](https://docs.agora.io/cn/Agora%20Platform/agora_console_restapi?platform=All%20Platforms#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81) 和响应包体中 `message` 字段的描述进行错误排查。
 
@@ -81,51 +81,6 @@ https://api.agora.io/dabiz/license/v2/active?pid=02F51997A07B46C5810020A0F163EC3
 }
 ```
 
-
-## 续期
-
-激活控制台 License 的续期额度。
-
-### 接口原型
-- 方法：`POST`
-- 接入点：`https://api.agora.io/dabiz/license/v1/renew`
-
-### 请求参数
-
-#### 查询参数
-
-在请求路径中传入以下查询参数：
-
-| 参数 | 类型 | 描述 |
-|:---|:---|:---|
-|`appid`| String | 声网分配给每个项目的唯一标识。 |
-|`renewId`| String | 对某个 PID 进行续期操作后生成的 renewId，renewId 继承 PID 除有效期以外的全部属性。续期申请通过后，由销售提供。 |
-|`license`| String | 被激活的 License 的值。续期申请通过后，由销售提供。 |
-
-### 请求示例
-
-#### 请求路径
-
-```http
-https://api.agora.io/dabiz/license/v1/renew?renewId=47503548C5E947F288A24B1EB5576270&license=85B38F2B02A5418792FC78B17466656F&appid=a6d6dba434be4b6683fad1aba6a7f75e
-```
-
-### 响应参数
-
-如果状态码为 `200`，则请求成功。
-
-如果状态码不为 `200`，则请求失败。你可以根据返回的 [状态码](https://docs.agora.io/cn/Agora%20Platform/agora_console_restapi?platform=All%20Platforms#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81) 和响应包体中 `message` 字段的描述进行错误排查。
-
-### 响应示例
-
-请求成功的响应示例：
-
-```json
-{
-    "code": 200,
-    "message": "license续期成功"
-}
-```
 
 
 ## 配额
@@ -704,4 +659,50 @@ https://api.agora.io/dabiz/license/v1/pads/export?appid=a6d6dba434be4b6683fad1ab
 ```json
 12345
 54321
+```
+
+
+## 续期
+
+激活控制台 License 的续期额度。
+
+### 接口原型
+- 方法：`POST`
+- 接入点：`https://api.agora.io/dabiz/license/v1/renew`
+
+### 请求参数
+
+#### 查询参数
+
+在请求路径中传入以下查询参数：
+
+| 参数 | 类型 | 描述 |
+|:---|:---|:---|
+|`appid`| String | 声网分配给每个项目的唯一标识。 |
+|`renewId`| String | 对某个 PID 进行续期操作后生成的 renewId，renewId 继承 PID 除有效期以外的全部属性。续期申请通过后，由销售提供。 |
+|`license`| String | 被激活的 License 的值。续期申请通过后，由销售提供。 |
+
+### 请求示例
+
+#### 请求路径
+
+```http
+https://api.agora.io/dabiz/license/v1/renew?renewId=47503548C5E947F288A24B1EB5576270&license=85B38F2B02A5418792FC78B17466656F&appid=a6d6dba434be4b6683fad1aba6a7f75e
+```
+
+### 响应参数
+
+如果状态码为 `200`，则请求成功。
+
+如果状态码不为 `200`，则请求失败。你可以根据返回的 [状态码](https://docs.agora.io/cn/Agora%20Platform/agora_console_restapi?platform=All%20Platforms#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81) 和响应包体中 `message` 字段的描述进行错误排查。
+
+### 响应示例
+
+请求成功的响应示例：
+
+```json
+{
+    "code": 200,
+    "message": "license续期成功"
+}
 ```
