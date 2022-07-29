@@ -5,7 +5,7 @@
     <shortdesc id="short"><ph id="shortdesc">Video encoder configurations.</ph></shortdesc>
     <refbody>
         <section id="prototype">
-            <p props="rtc-ng" outputclass="codeblock">
+            <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class VideoEncoderConfiguration {
     static public class VideoDimensions {
         public int width;
@@ -259,48 +259,119 @@
         degradationPreference(MAINTAIN_QUALITY),
         mirrorMode(VIDEO_MIRROR_MODE_DISABLED) {}
 };</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export class VideoEncoderConfiguration {
+  codecType?: VideoCodecType
+  dimensions?: VideoDimensions
+  frameRate?: number
+  bitrate?: number
+  minBitrate?: number
+  orientationMode?: OrientationMode
+  degradationPreference?: DegradationPreference
+  mirrorMode?: VideoMirrorModeType
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class VideoEncoderConfiguration
     {
-        public VideoEncoderConfiguration()
-        {
-            dimensions = null;
-            frameRate = FRAME_RATE.FRAME_RATE_FPS_15;
-            codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_GENERIC_H264;
-            bitrate = (int) BITRATE.STANDARD_BITRATE;
-            minBitrate = (int) BITRATE.DEFAULT_MIN_BITRATE;
-            orientationMode = ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE;
-            degradationPreference = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
-            mirrorMode = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_AUTO;
-        }
-        public VideoEncoderConfiguration(VideoDimensions dimensions,
-            FRAME_RATE frameRate = FRAME_RATE.FRAME_RATE_FPS_15,
-            VIDEO_CODEC_TYPE codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_GENERIC_H264,
-            BITRATE bitrate = BITRATE.STANDARD_BITRATE, BITRATE minBitrate = BITRATE.DEFAULT_MIN_BITRATE,
-            ORIENTATION_MODE orientationMode = ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE,
-            DEGRADATION_PREFERENCE degradationPreference = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY,
-            VIDEO_MIRROR_MODE_TYPE mirrorMode = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_AUTO)
-        {
-            this.dimensions = dimensions ?? new VideoDimensions();
-            this.frameRate = frameRate;
-            this.codecType = codecType;
-            this.bitrate = (int) bitrate;
-            this.minBitrate = (int) minBitrate;
-            this.orientationMode = orientationMode;
-            this.degradationPreference = degradationPreference;
-            this.mirrorMode = mirrorMode;
-
-        public VideoDimensions dimensions { set; get; }
-        public FRAME_RATE frameRate { set; get; }
         public VIDEO_CODEC_TYPE codecType { set; get; }
+        public VideoDimensions dimensions { set; get; }
+        public int frameRate { set; get; }
         public int bitrate { set; get; }
         public int minBitrate { set; get; }
         public ORIENTATION_MODE orientationMode { set; get; }
         public DEGRADATION_PREFERENCE degradationPreference { set; get; }
         public VIDEO_MIRROR_MODE_TYPE mirrorMode { set; get; }
-        }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"></codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/></p>
+        public VideoEncoderConfiguration(ref VideoDimensions d, int f, int b, ORIENTATION_MODE m, VIDEO_MIRROR_MODE_TYPE mirror = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_DISABLED)
+        {
+            codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_H264;
+            dimensions = d;
+            frameRate = f;
+            bitrate = b;
+            minBitrate = (int)BITRATE.DEFAULT_MIN_BITRATE;
+            orientationMode = m;
+            degradationPreference = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
+            mirrorMode = mirror;
+        }
+
+
+        public VideoEncoderConfiguration(int width, int height, int f, int b, ORIENTATION_MODE m, VIDEO_MIRROR_MODE_TYPE mirror = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_DISABLED)
+        {
+            codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_H264;
+            dimensions = new VideoDimensions(width, height);
+            frameRate = f;
+            bitrate = b;
+            minBitrate = (int)BITRATE.DEFAULT_MIN_BITRATE;
+            orientationMode = m;
+            degradationPreference = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
+            mirrorMode = mirror;
+        }
+
+
+        public VideoEncoderConfiguration(ref VideoEncoderConfiguration config)
+        {
+            codecType = config.codecType;
+            dimensions = config.dimensions;
+            frameRate = config.frameRate;
+            bitrate = config.bitrate;
+            minBitrate = config.minBitrate;
+            orientationMode = config.orientationMode;
+            degradationPreference = config.degradationPreference;
+            mirrorMode = config.mirrorMode;
+        }
+
+
+        public VideoEncoderConfiguration()
+        {
+            codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_H264;
+            dimensions = new VideoDimensions((int)FRAME_WIDTH.FRAME_WIDTH_640, (int)FRAME_HEIGHT.FRAME_HEIGHT_360);
+            frameRate = (int)FRAME_RATE.FRAME_RATE_FPS_15;
+            bitrate = (int)BITRATE.STANDARD_BITRATE;
+            minBitrate = (int)BITRATE.DEFAULT_MIN_BITRATE;
+            orientationMode = ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE;
+            degradationPreference = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
+            mirrorMode = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_DISABLED;
+        }
+    }
+        </codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class VideoEncoderConfiguration {
+  codecType?: VideoCodecType;
+  dimensions?: VideoDimensions;
+  frameRate?: number;
+  bitrate?: number;
+  minBitrate?: number;
+  orientationMode?: OrientationMode;
+  degradationPreference?: DegradationPreference;
+  mirrorMode?: VideoMirrorModeType;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class VideoEncoderConfiguration {
+  const VideoEncoderConfiguration(
+      {this.codecType,
+      this.dimensions,
+      this.frameRate,
+      this.bitrate,
+      this.minBitrate,
+      this.orientationMode,
+      this.degradationPreference,
+      this.mirrorMode});
+
+  @JsonKey(name: 'codecType')
+  final VideoCodecType? codecType;
+  @JsonKey(name: 'dimensions')
+  final VideoDimensions? dimensions;
+  @JsonKey(name: 'frameRate')
+  final int? frameRate;
+  @JsonKey(name: 'bitrate')
+  final int? bitrate;
+  @JsonKey(name: 'minBitrate')
+  final int? minBitrate;
+  @JsonKey(name: 'orientationMode')
+  final OrientationMode? orientationMode;
+  @JsonKey(name: 'degradationPreference')
+  final DegradationPreference? degradationPreference;
+  @JsonKey(name: 'mirrorMode')
+  final VideoMirrorModeType? mirrorMode;
+  factory VideoEncoderConfiguration.fromJson(Map&lt;String, dynamic> json) =>
+      _$VideoEncoderConfigurationFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$VideoEncoderConfigurationToJson(this);
+}</codeblock> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
@@ -312,6 +383,7 @@
                         props="android cpp unity">See <xref
                         keyref="VideoDimensions"/>.</ph></pd>
                 <pd>
+                    <p props="cpp unity electron rn flutter">视频编码的分辨率（px），详见 <xref keyref="VideoDimensions" />。 该参数用于衡量编码质量，以长 × 宽表示，默认值为 640 × 360。 用户可以自行设置分辨率。</p>
                     <p props="android ios mac">Users can set the resolution by themselves, or directly select the desired resolution from the following list:<ul>
                             <li><ph keyref="VD_120x120"/>: The video resolution is 120 × 120.</li>
                             <li><ph keyref="VD_160x120"/>: The video resolution is 160 × 120.</li>
@@ -341,7 +413,7 @@
                             </note> </p>
                 </pd>
             </plentry>
-            <plentry props="ios mac cpp unity">
+            <plentry props="ios mac cpp unity electron rn flutter">
                 <pt>codecType</pt>
                 <pd>The codec type of the local video stream. See <xref keyref="VIDEO_CODEC_TYPE"/>.</pd>
             </plentry>
@@ -356,8 +428,8 @@
             <plentry>
                 <pt>bitrate</pt>
                 <pd>
-                    <p>The encoding bitrate (Kbps) of the video.</p>
-                    <ul>
+                    <p><ph>视频编码码率，单位为 Kbps。 </ph><ph props="unity">详见 <xref keyref="BITRATE"/>。</ph></p>
+                    <ul props="native flutter">
                     <li><option keyref="STANDARD_BITRATE"/>: (Recommended) Standard bitrate mode. In this mode, the video bitrate is twice the base bitrate.</li>
                     <li><option keyref="COMPATIBLE_BITRATE"/>: Adaptive bitrate mode. In this mode, the video bitrate is the same as the base bitrate. If you choose this mode in the interactive streaming profile, the video frame rate may be lower than the set value.</li>
                     </ul>
@@ -381,8 +453,7 @@
             <plentry>
                 <pt>mirrorMode</pt>
                 <pd>
-                    <p props="android">Whether to enable mirroring mode when sending encoded video, only affects the video images seen by remote users. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.</p>
-                    <p props="ios mac cpp unity" >Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.</p>
+                    <p>Whether to enable mirroring mode when sending encoded video, only affects the video images seen by remote users. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.</p>
                     <note type="attention">By default, the video is not mirrored.</note> </pd>
             </plentry>
             </parml> </section>
