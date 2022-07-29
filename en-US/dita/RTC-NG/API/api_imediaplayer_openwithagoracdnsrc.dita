@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_openwithagoracdnsrc">
-    <title> <ph keyref="openWithAgoraCDNSrc" /> </title>
+    <title> <ph keyref="openWithAgoraCDNSrc"/> </title>
     <shortdesc id="short"><ph id="shortdesc">Opens the media resource, and requests all the CDN routes of the media resources through the self-developed scheduling center.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="openWithAgoraCDNSrc" />
+                <indexterm keyref="openWithAgoraCDNSrc"/>
             </keywords>
         </metadata>
     </prolog>
@@ -19,23 +19,21 @@
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int openWithAgoraCDNSrc(const char* src, int64_t startPos) = 0;
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript">abstract openWithAgoraCDNSrc(src: string, startPos: number): number;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int OpenWithAgoraCDNSrc(string src, Int64 startPos);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">abstract openWithAgoraCDNSrc(src: string, startPos: number): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> openWithAgoraCDNSrc(
-      {required String src, required int startPos});
-</codeblock> </p>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p>After you call this method, Agora opens the media resources and tries to obtain all the CDN routes for playing the media resource. By default, Agora uses the first CDN route for playing, and you can call the <xref keyref="switchAgoraCDNLineByIndex" /> method to switch routes.</p>
-            <p id="auth">If you want to improve the security of the connection and the privacy of media files, <xref keyref="ticket-link" /> to determine the <parmname>sign</parmname> and the <parmname>ts </parmname> fields for authentication. Once the fields are determined, use them as the <codeph>query parameter</codeph> of the URL to update the URL of the media resource. For example:<ul>
-            <li>The URL of the media file to be opened <codeph>:rtmp://$domain/$appName/$streamName</codeph>.</li>
+            <note type="attention" conkeyref="open/note"/>
+            <p>After you call this method, Agora opens the media resources and tries to obtain all the CDN routes for playing the media resource. By default, Agora uses the first CDN route for playing, and you can call the <xref keyref="switchAgoraCDNLineByIndex"/> method to switch routes.</p>
+            <p id="auth">If you want to improve the security of the connection and the privacy of media files, contact <xref keyref="ticket-link"/> to determine the <parmname>sign</parmname> and the <parmname>ts</parmname> fields for authentication. Once the fields are determined, use them as the <codeph>query parameter</codeph> of the URL to update the URL of the media resource. For example:<ul>
+            <li>The URL of the media file to be opened<codeph>: rtmp://$domain/$appName/$streamName</codeph></li>
             <li>The URL updated by the authentication of the media file to be opened<codeph>: rtmp://$domain/$appName/$streamName?ts=$ts&amp;sign=$sign</codeph></li>
             </ul>
             <note>
             <p>Authentication information:<ul>
-            <li><parmname>sign</parmname>: An encrypted string calculated according to the MD5 algorithm based on <codeph>authKey</codeph>, <codeph>appName</codeph>, <codeph>streamName</codeph> and <codeph>ts</codeph>. You need to <xref keyref="ticket-link" /> for your <codeph>authKey</codeph>.</li>
-            <li><parmname>ts</parmname>: The timestamp when the authentication information <parmname> expires</parmname>. You can set the validity period of the authentication information according to your scenarios. For example, <codeph>24h</codeph> or <codeph>1h30m20s</codeph>.</li>
+            <li><parmname>sign</parmname>: An encrypted string calculated according to the MD5 algorithm based on <codeph>authKey</codeph>, <codeph>appName</codeph>, <codeph>streamName</codeph>, and<codeph>ts</codeph>. You need to <xref keyref="ticket-link"/> for your <codeph>authKey</codeph>.</li>
+            <li><parmname>ts</parmname>: The timestamp when the authentication information expires. You can set the validity period of the authentication information according to your scenarios. For example, <codeph>24h</codeph> or <codeph>1h30m20s</codeph>.</li>
             </ul></p>
             </note></p>
         </section>
@@ -51,7 +49,7 @@
                 <pd>The starting position (ms) for playback. The default value is 0. This value can be empty if the media resource to be played is live streams.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values">
             <title>Returns</title>
             <ul>
             <li>0: Success.</li>

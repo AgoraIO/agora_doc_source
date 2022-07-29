@@ -7,15 +7,18 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class EncodedVideoFrameInfo {
-  public int codecType;
-  public int width;
-  public int height;
-  public int framesPerSecond;
-  public int frameType;
-  public int rotation;
-  public int trackId;
-  public long renderTimeMs;
-  public int uid;
+    public int codecType;
+    public int width;
+    public int height;
+    public int framesPerSecond;
+    public int frameType;
+    public int rotation;
+
+    public int trackId;
+    public long captureTimeMs;
+    public int uid;
+    public int streamType;
+
   public EncodedVideoFrameInfo() {
     codecType = Constants.VIDEO_CODEC_H264;
     width = 0;
@@ -24,12 +27,14 @@
     frameType = Constants.VIDEO_FRAME_TYPE_BLANK_FRAME;
     rotation = Constants.VIDEO_ORIENTATION_0;
     trackId = 0;
-    renderTimeMs = 0;
+    captureTimeMs = 0;
     uid = 0;
+    streamType = Constants.VIDEO_STREAM_HIGH;
   }
+
   @CalledByNative
   public EncodedVideoFrameInfo(int codecType, int width, int height, int framesPerSecond,
-      int frameType, int rotation, int trackId, long renderTimeMs, long ：, int uid) {
+      int frameType, int rotation, int trackId, long captureTimeMs, int uid, int streamType) {
     this.codecType = codecType;
     this.width = width;
     this.height = height;
@@ -37,13 +42,16 @@
     this.frameType = frameType;
     this.rotation = rotation;
     this.trackId = trackId;
-    this.renderTimeMs = renderTimeMs;
+    this.captureTimeMs = captureTimeMs;
     this.uid = uid;
+    this.streamType = streamType;
   }
+
   @CalledByNative
   public int getCodecType() {
     return codecType;
   }
+
   @CalledByNative
   public int getWidth() {
     return width;
@@ -69,13 +77,18 @@
     return trackId;
   }
   @CalledByNative
-  public long getRenderTimeMs() {
-    return renderTimeMs;
+  public long getCaptureTimeMs() {
+    return captureTimeMs;
   }
   @CalledByNative
   public int getUid() {
     return uid;
   }
+  @CalledByNative
+  public int getStreamType() {
+    return streamType;
+  }
+
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -86,13 +99,27 @@
     sb.append(" frameType=").append(frameType);
     sb.append(" rotation=").append(rotation);
     sb.append(" trackId=").append(trackId);
-    sb.append(" renderTimeMs=").append(renderTimeMs);
+    sb.append(" captureTimeMs=").append(captureTimeMs);
     sb.append(" uid=").append(uid);
+    sb.append(" streamType=").append(streamType);
     return sb.toString();
   }
 }
+  </codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraEncodedVideoFrameInfo: NSObject
+
+@property (assign, nonatomic) AgoraVideoCodecType codecType;
+@property (assign, nonatomic) NSInteger width;
+@property (assign, nonatomic) NSInteger height;
+@property (assign, nonatomic) NSInteger framesPerSecond;
+@property (assign, nonatomic) AgoraVideoFrameType frameType;
+@property (assign, nonatomic) NSInteger rotation;
+@property (assign, nonatomic) NSInteger trackId;
+@property (assign, nonatomic) NSInteger captureTimeMs;
+@property (assign, nonatomic) NSInteger uid;
+@property (assign, nonatomic) AgoraVideoStreamType streamType;
+@end
 </codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
             <codeblock props="cpp" outputclass="language-cpp">struct EncodedVideoFrameInfo {
                     EncodedVideoFrameInfo()
                     : codecType(VIDEO_CODEC_H264),
@@ -245,8 +272,8 @@
                 <pt>codecType</pt>
                 <pd props="cpp unity electron rn flutter">The codec type of the local video stream. See <xref keyref="VIDEO_CODEC_TYPE" />. The default value is  <codeph><ph keyref="VIDEO_CODEC_H264" />(2)</codeph>.</pd>
                 <pd props="android">The codec type of the video:<ul id="ul_hkm_4qy_4qb">
-                    <li>1: VP8</li>
-                    <li>2: (Default) H264</li>
+                    <li>1: VP8.</li>
+                    <li>2: (Default) H264.</li>
                     <li props="hide">5: VP9.</li>
                     </ul></pd>
             </plentry>
@@ -267,7 +294,7 @@
             </plentry>
             <plentry>
                 <pt>frameType</pt>
-                <pd props="cpp unity electron rn flutter">The video frame type, see <xref keyref="VIDEO_FRAME_TYPE" />.</pd>
+                <pd props="ios mac cpp unity electron rn flutter">The video frame type, see <xref keyref="VIDEO_FRAME_TYPE" />.</pd>
                 <pd props="android">The video frame type:<ul id="ul_djl_sqy_4qb">
                     <li>0: (Default) <ph keyref="VIDEO_FRAME_TYPE_BLANK_FRAME"/>, blank frame.</li>
                     <li>3: <ph keyref="VIDEO_FRAME_TYPE_KEY_FRAME"/>, keyframe.</li>
@@ -278,11 +305,11 @@
             </plentry>
             <plentry>
                 <pt>rotation</pt>
-                <pd props="cpp unity electron rn flutter">The rotation information of the video frame, see <xref keyref="VIDEO_ORIENTATION" />.</pd>
+                <pd props="ios mac cpp unity electron rn flutter">The rotation information of the video frame, see <xref keyref="VIDEO_ORIENTATION"/>.</pd>
                 <pd props="android">Rotation information of the video frame, as the following:<ul>
                     <li>0: (Default) 0 degree.</li>
                     <li>90: 90 degrees.</li>
-                    <li>180: 80 degrees.</li>
+                    <li>180: 180 degrees.</li>
                     <li>270: 270 degrees.</li>
                     </ul> </pd>
             </plentry>
@@ -291,17 +318,26 @@
                 <pd>Reserved for future use.</pd>
                 <pd>The track ID. Used in scenarios with multiple video tracks in the channel.</pd>
             </plentry>
-            <plentry>
+            <plentry props="android ios mac cpp">
+                <pt>captureTimeMs</pt>
+                <pd>The Unix timestamp (ms) for capturing the external encoded video frames.</pd>
+            </plentry>
+            <plentry props="unity">
                 <pt>renderTimeMs</pt>
-                <pd>The Unix timestamp (ms) when the video frame is rendered. This timestamp can be used to guide the rendering of the video frame. It is required.</pd>
+                <pd>The Unix timestamp (ms) for rendering the external encoded video frames.</pd>
             </plentry>
             <plentry>
                 <pt>uid</pt>
                 <pd>The user ID to push the the external encoded video frame.</pd>
             </plentry>
-            <plentry props="cpp unity electron rn flutter">
+            <plentry>
                 <pt>streamType</pt>
-                <pd>The type of video streams.</pd>
+                <pd><ph>The type of video streams. </ph><ph props="ios mac cpp unity electron rn flutter">See <xref keyref="REMOTE_VIDEO_STREAM_TYPE"/>.</ph></pd>
+                <pd props="android">
+                    <ul>
+                      <li><ph keyref="REMOTE_VIDEO_STREAM_HIGH"/>(0): High-quality stream, that is, a high-resolution and high-bitrate video stream.</li>
+                      <li><ph keyref="REMOTE_VIDEO_STREAM_LOW"/>(1): Low-quality stream, that is, a low-resolution and low-bitrate video stream.</li>
+                      </ul> </pd>
             </plentry>
             </parml> </section>
     </refbody>

@@ -49,11 +49,26 @@
             </plentry>
             <plentry>
                 <pt>state</pt>
-                <pd>The state of the local audio. See <xref keyref="LOCAL_AUDIO_STREAM_STATE"/>.</pd>
+                <pd props="ios mac cpp unity">The state of the local audio. See <xref keyref="LOCAL_AUDIO_STREAM_STATE"/>.</pd>
+                <pd props="android">The state of the local audio.<ul>
+                    <li><ph keyref="LOCAL_AUDIO_STREAM_STATE_STOPPED"/>(0): The local video is in the initial state.</li>
+                    <li><ph keyref="LOCAL_AUDIO_STREAM_STATE_RECORDING"/>(1): The local video capturing device starts successfully.</li>
+                    <li><ph keyref="LOCAL_AUDIO_STREAM_STATE_ENCODING"/>(2): The first video frame is successfully encoded.</li>
+                    <li><ph keyref="LOCAL_AUDIO_STREAM_STATE_FAILED"/>(3): Fails to start the local video.</li>
+                </ul></pd>
             </plentry>
             <plentry>
                 <pt>error</pt>
-                <pd>Local audio state error codes. See <xref keyref="LOCAL_AUDIO_STREAM_ERROR"/>.</pd>
+                <pd props="ios mac cpp unity">Local audio state error codes. See <xref keyref="LOCAL_AUDIO_STREAM_ERROR"/>.</pd>
+                <pd props="android">Local audio state error codes.<ul>
+                    <li><ph keyref="LOCAL_AUDIO_STREAM_ERROR_OK"/>0: The local audio is normal.</li>
+                    <li><ph keyref="LOCAL_AUDIO_STREAM_ERROR_FAILURE"/>1: No specified reason for the local audio failure. Remind your users to try to rejoin the channel.</li>
+                    <li><ph keyref="LOCAL_AUDIO_STREAM_ERROR_DEVICE_NO_PERMISSION"/>2: No permission to use the local audio device. Remind your users to grant permission.</li>
+                    <li><ph keyref="LOCAL_AUDIO_STREAM_ERROR_DEVICE_BUSY"/>3: The microphone is in use. Remind your users to check whether another application occupies the microphone. Local audio capture automatically resumes after the microphone is idle for about five seconds. You can also try to rejoin the channel after the microphone is idle.</li>
+                    <li><ph keyref="LOCAL_AUDIO_STREAM_ERROR_RECORD_FAILURE"/>4: The local audio capture failed.</li>
+                    <li><ph keyref="LOCAL_AUDIO_STREAM_ERROR_ENCODE_FAILURE"/>5: The local audio encoding fails.</li>
+                    <li><ph keyref="LOCAL_AUDIO_STREAM_ERROR_INTERRUPTED"/>8: The local audio capture is interrupted by system calls, Siri, and alarm clocks. Remind your users to end the phone call, Siri, or alarm clock if the local audio capture is required.</li>
+                </ul></pd>
             </plentry>
             </parml> </section>
     </refbody>

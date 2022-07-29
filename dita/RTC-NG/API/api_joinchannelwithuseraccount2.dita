@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_joinchannelwithuseraccount2">
     <title><ph keyref="joinChannelWithUserAccount2"/></title>
-    <shortdesc id="short"><ph id="shortdesc">使用 User Account 加入频道，并设置是否自动订阅音频或视频流。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">使用 User Account 和 Token 加入频道，并设置是否自动订阅音频或视频流。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -45,8 +45,7 @@
                 <dd>v3.3.0</dd>
             </dlentry>
             </dl>
-            <p id="desc1">该方法允许本地用户使用 User Account 加入频道。成功加入频道后，会触发以下回调：
-
+            <p id="desc1">该方法允许本地用户使用 User Account 加入频道。成功加入频道后，会触发以下回调： 
             <ul>
             <li>本地：<xref keyref="onLocalUserRegistered"/>、<xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/> 回调。</li>
             <li>远端：通信场景下的用户和直播场景下的主播加入频道后，远端会分别触发 <xref keyref="onUserJoined"/> 和 <xref keyref="onUserInfoUpdated"/> 回调。</li>
@@ -72,7 +71,6 @@
                 <pt>userAccount</pt>
                 <pd>
                     <p>用户 User Account。该参数用于标识实时音视频互动频道中的用户。你需要自行设置和管理用户的 User Account，并确保同一频道中每个用户的 User Account 是唯一的。 该参数为必填，最大不超过 255 字节，不可填 <ph keyref="NULL"/>。以下为支持的字符集范围（共 89 个字符）：
-
                     <ul>
                     <li>26 个小写英文字母 a-z</li>
                     <li>26 个大写英文字母 A-Z</li>

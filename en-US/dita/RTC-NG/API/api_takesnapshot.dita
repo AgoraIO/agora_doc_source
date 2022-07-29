@@ -1,54 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_takesnapshot">
-    <title><ph keyref="takeSnapshot" /></title>
+    <title><ph keyref="takeSnapshot"/></title>
     <shortdesc id="short"><ph id="shortdesc">Takes a snapshot of a video stream.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="takeSnapshot" />
+                <indexterm keyref="takeSnapshot"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int takeSnapshot(String channel, int uid, String filePath);
-</codeblock>
-            <codeblock props="ios mac">- (NSInteger)takeSnapshot:(NSString* _Nonnull)channel uid:(NSInteger)uid filePath:(NSString* _Nonnull)filePath;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int takeSnapshot(const char* channel, uid_t uid, const char* filePath) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">abstract takeSnapshot(config: SnapShotConfig): number;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int TakeSnapshot(SnapShotConfig config);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">abstract takeSnapshot(config: SnapShotConfig): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> takeSnapshot(SnapShotConfig config);</codeblock></p>
+            <codeblock props="ios mac">- (NSInteger)takeSnapshot:(NSInteger)uid filePath:(NSString* _Nonnull)filePath;</codeblock>
+            <codeblock props="android" outputclass="language-java">public abstract int takeSnapshot(int uid, String filePath);</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int takeSnapshot(uid_t uid, const char* filePath)  = 0;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int TakeSnapshot(string channel, uint uid, string filePath);</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/></p>
         </section>
         <section id="detailed_desc">
-            <p>This method takes a snapshot of a video stream from the specified user, generates a JPG image, and saves it to the specified path.</p>
-            <p><ph>The method is asynchronous, and the SDK has not taken the snapshot when the method call returns. </ph><ph props="native rn electron flutter">After a successful method call, the SDK triggers the <xref keyref="onSnapshotTaken"/> callback to report whether the snapshot is successfully taken, as well as the details for that snapshot.</ph></p>
+            <p id="desc1">This method takes a snapshot of a video stream from the specified user, generates a JPG image, and saves it to the specified path.</p>
+            <p id="desc2"><ph>The method is asynchronous, and the SDK has not taken the snapshot when the method call returns. </ph><ph props="native">After a successful method call, the SDK triggers the <xref keyref="onSnapshotTaken"/> callback to report whether the snapshot is successfully taken, as well as the details for that snapshot.</ph></p>
             <note type="attention">
             <ul>
             <li>Call this method after joining a channel.</li>
+            <li>This method takes a snapshot of the published video stream specified in <xref keyref="ChannelMediaOptions"/>.</li>
             <li>If the user's video has been preprocessed, for example, watermarked or beautified, the resulting snapshot includes the pre-processing effect.</li>
             </ul></note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry props="native">
-                <pt>channel</pt>
-                <pd>The channel name.</pd>
-            </plentry>
-            <plentry props="native">
+            <plentry id="uid" props="native">
                 <pt>uid</pt>
-                <pd>The user ID. Set <codeph>uid</codeph> as 0 if you want to take a snapshot of the local user's video.</pd>
+                <pd>The user ID. Set uid as 0 if you want to take a snapshot of the local user's video.</pd>
             </plentry>
-            <plentry props="native">
+            <plentry id="filepath">
                 <pt>filePath</pt>
                 <pd>
                     <p>The local path (including filename extensions) of the snapshot. For example:<ul>
-                    <li props="cpp flutter">Windows: <ph>C:\Users\&lt;user_name>\AppData\Local\Agora\&lt;process_name>\example.jpg</ph></li>
-                    <li props="cpp ios flutter">iOS: <ph>/App Sandbox/Library/Caches/example.jpg</ph></li>
-                    <li props="cpp mac flutter ">macOS: <ph>～/Library/Logs/example.jpg</ph></li>
-                    <li props="cpp android flutter">Android: <ph>/storage/emulated/0/Android/data/&lt;package name>/files/example.jpg</ph></li>
+                    <li props="cpp unity">Windows: <codeph>C:\Users\&lt;user_name>\AppData\Local\Agora\&lt;process_name>\example.jpg</codeph></li>
+                    <li props="cpp ios unity">iOS: <codeph>/App Sandbox/Library/Caches/example.jpg</codeph></li>
+                    <li props="cpp mac unity">macOS: <codeph>～/Library/Logs/example.jpg</codeph></li>
+                    <li props="cpp android unity">Android: <codeph>/storage/emulated/0/Android/data/&lt;package name>/files/example.jpg</codeph></li>
                     </ul>Ensure that the path you specify exists and is writable.</p>
                 </pd>
             </plentry>

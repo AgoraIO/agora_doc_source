@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startrtmpstreamwithtranscoding">
-    <title> <ph keyref="startRtmpStreamWithTranscoding" /> </title>
-    <shortdesc id="short"><ph id="shortdesc">Starts Media Push and sets the transcoding configuration.</ph></shortdesc>
+    <title> <ph keyref="startRtmpStreamWithTranscoding"/> </title>
+    <shortdesc id="short"><ph id="shortdesc">Starts media push and sets the transcoding configuration.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="startRtmpStreamWithTranscoding" />
+                <indexterm keyref="startRtmpStreamWithTranscoding"/>
             </keywords>
         </metadata>
     </prolog>
@@ -26,27 +26,27 @@
     {required String url, required LiveTranscoding transcoding});</codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>You can call this method to push a live audio-and-video stream to the specified CDN address and set the transcoding configuration. This method can push media streams to only one CDN address at a time, so if you need to push streams to multiple addresses, call this method multiple times.</p>
-            <p>After you call this method, the SDK triggers the <xref keyref="onRtmpStreamingStateChanged" /> callback on the local client to report the state of the streaming.</p>
+            <p>You can call this method to push an audio or video stream to the specified CDN address and set the transcoding configuration. This method can push media streams to only one CDN address at a time, so if you need to push streams to multiple addresses, call this method multiple times.</p>
+            <p>After you call this method, the SDK triggers the <xref keyref="onRtmpStreamingStateChanged"/> callback on the local client to report the state of the media push.</p>
             <note type="attention" id="note">
             <ul>
-            <li props="rtc-ng">Ensure that you enable the Media Push service before using this function.</li>
-            <li props="rtc">Ensure that you enable the RTMP Converter service before using this function. See Prerequisites in <xref keyref="guide-cdn-streaming">Push Streams to CDN</xref>.</li>
+            <li>Ensure that you enable the media push service before using this function.</li>
+            <li props="hide">Ensure that you enable the media push service before using this function. See Prerequisites in <xref keyref="guide-cdn-streaming">Media Push</xref>.</li>
             <li>Call this method after joining a channel.</li>
             <li>Only hosts in the LIVE_BROADCASTING profile can call this method.</li>
-            <li>If you want to retry pushing streams after a failed push, make sure to call <xref keyref="stopRtmpStream" /> first, then call this method to retry pushing streams; otherwise, the SDK returns the same error code as the last failed push.</li>
+            <li>If you want to retry pushing streams after a failed push, make sure to call <xref keyref="stopRtmpStream"/> first, then call this method to retry pushing streams; otherwise, the SDK returns the same error code as the last failed push.</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry id="url">
                 <pt>url</pt>
-                <pd>The address of Media Push. The format is RTMP or RTMPS. The character length cannot exceed 1024 bytes. Special characters such as Chinese characters are not supported.</pd>
+                <pd>The address of media push. The format is RTMP or RTMPS. The character length cannot exceed 1024 bytes. Special characters such as Chinese characters are not supported.</pd>
             </plentry>
             <plentry id="transcoding">
                 <pt>transcoding</pt>
                 <pd>
-                    <p>The transcoding configuration for Media Push. See <xref keyref="LiveTranscoding" />.</p>
+                    <p>The transcoding configuration for media push. See <xref keyref="LiveTranscoding"/>.</p>
                 </pd>
             </plentry>
             </parml> </section>

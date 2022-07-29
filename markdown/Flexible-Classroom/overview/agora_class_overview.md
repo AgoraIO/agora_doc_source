@@ -18,14 +18,16 @@
 
 ## 课堂角色说明
 
-灵动课堂支持老师、学生、助教、观众四种角色。
+灵动课堂支持以下角色：
 
-| 角色 | 说明                                                         | 支持的客户端                                                                 |
-| :--- | :----------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| 老师 | 1 个教室只能有 1 个老师，老师拥有最大的权限。                | <li>Web</li><li>macOS</li><li>Windows</li>                                   |
-| 学生 | 学生可在教室里听课并参与互动。教室内学生人数上限视班型而定。 | <li>Web</li><li>macOS</li><li>Windows</li><li>Android</li><li>iOS</li><li>H5 |
-| 助教 | 助教主要负责协助老师教学。教室内助教人数上限视班型而定。     | <li>Web</li><li>macOS</li><li>Windows</li>                                   |
-| 观众 | 观众只听课不参与互动。类似于隐身模式，教室内不可见。         | <li>Web</li><li>macOS</li><li>Windows</li>                                   |
+| 课堂角色 | Android                      | iOS                          | Web                          | macOS                        | Windows                      | H5                           |
+| :------- | :--------------------------- | :--------------------------- | :--------------------------- | :--------------------------- | :--------------------------- | ---------------------------- |
+| 老师     | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font>   |
+| 学生     | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> |
+| 助教     | <font color="red">✘</font>   | <font color="red">✘</font>   | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font>   |
+| 观众     | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font>   |
+
+<div class="alert info">灵动课堂 macOS 和 Windows 客户端基于 Electron 框架开发。</div>
 
 ## 课堂展示
 

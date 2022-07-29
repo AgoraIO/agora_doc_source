@@ -5,20 +5,20 @@
     <shortdesc id="short"><ph id="shortdesc">音频数据的使用模式。</ph></shortdesc>
     <refbody>
         <section id="parameters">
-            <title>枚举值</title>
-            <parml>
-            <plentry>
-                <pt><ph keyref="RAW_AUDIO_FRAME_OP_MODE_READ_ONLY"/></pt>
-                <pd>0: 只读模式，<ph props="cpp">用户仅从 <xref keyref="AudioFrame"/> 获取原始数据，不作任何修改。</ph><ph props="electron">用户仅获取 SDK 返回的原始数据，不作任何修改。</ph>例如: 若用户通过 Agora SDK 采集数据，自己进行旁路推流，则可以选择该模式。</pd>
-            </plentry>
-            <plentry props="rtc">
-                <pt><ph keyref="RAW_AUDIO_FRAME_OP_MODE_WRITE_ONLY"/></pt>
-                <pd>1: 只写模式，<ph props="cpp">用户替换 <xref keyref="AudioFrame"/> 中的数据以供 SDK 编码传输。</ph><ph props="electron">用户替换 SDK 返回的原始视频，并返回给 SDK 进行编码传输。</ph>例如: 若用户自行采集数据，可选择该模式。</pd>
-            </plentry>
-            <plentry>
-                <pt><ph keyref="RAW_AUDIO_FRAME_OP_MODE_READ_WRITE"/></pt>
-                <pd>2: 读写模式, <ph props="cpp">用户从 <xref keyref="AudioFrame"/> 获取并修改数据，并返回给 SDK 进行编码传输。</ph><ph props="electron">用户修改 SDK 返回的原始视频，并返回给 SDK 进行编码传输。</ph>例如: 若用户自己有音效处理模块，且想要根据实际需要对数据进行前处理(例如变声)，则可以选择该模式。</pd>
-            </plentry>
-            </parml> </section>
-    </refbody>
+   <title>枚举值</title>
+   <parml>
+       <plentry>
+  <pt><ph keyref="RAW_AUDIO_FRAME_OP_MODE_READ_ONLY"/></pt>
+  <pd>0: 只读模式，<ph props="cpp">用户仅从 <xref keyref="AudioFrame"/> 获取原始数据，不作任何修改。</ph><ph props="electron">用户仅获取 SDK 返回的原始数据，不作任何修改。</ph>例如: 若用户通过 Agora SDK 采集数据，自己进行旁路推流，则可以选择该模式。</pd>
+       </plentry>
+       <plentry props="hide">
+  <pt><ph keyref="RAW_AUDIO_FRAME_OP_MODE_WRITE_ONLY"/></pt>
+  <pd>1: 只写模式，<ph props="cpp">用户替换 <xref keyref="AudioFrame"/> 中的数据以供 SDK 编码传输。</ph><ph props="electron">用户替换 SDK 返回的原始视频，并返回给 SDK 进行编码传输。</ph>例如: 若用户自行采集数据，可选择该模式。</pd>
+       </plentry>
+       <plentry>
+  <pt><ph keyref="RAW_AUDIO_FRAME_OP_MODE_READ_WRITE"/></pt>
+  <pd>2: 读写模式, <ph props="cpp">用户从 <xref keyref="AudioFrame"/> 获取并修改数据，并返回给 SDK 进行编码传输。</ph><ph props="electron">用户修改 SDK 返回的原始视频，并返回给 SDK 进行编码传输。</ph>例如: 若用户自己有音效处理模块，且想要根据实际需要对数据进行前处理(例如变声)，则可以选择该模式。</pd>
+       </plentry>
+   </parml>
+        </section></refbody>
 </reference>

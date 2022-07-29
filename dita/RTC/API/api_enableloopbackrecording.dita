@@ -31,9 +31,7 @@
             <note type="attention" id="note">
             <ul>
             <li props="cpp flutter">该方法仅适用于 macOS 和 Windows 平台。</li>
-            <li props="rtc"><ph props="cpp mac electron flutter">macOS 系统默认声卡不支持采集功能，如需开启此功能需要 App 自己启用一个虚拟声卡，并将该虚拟声卡的名字作为
-                            <parmname>deviceName</parmname> 传入 SDK。 Agora 测试并推荐 soundflower
-          作为虚拟声卡。</ph></li>
+            <li props="rtc"><ph props="cpp mac electron flutter">macOS 系统默认声卡不支持采集功能，如果你需要使用该功能，请启用一个虚拟声卡，并将该虚拟声卡的名字传入 <codeph>deviceName</codeph> 参数。Agora 推荐你启用 <xref keyref="guide-agoraald">AgoraALD (Agora Audio Loopback Device)</xref> 并向该参数传入 <codeph>"AgoraALD"</codeph>。</ph></li>
             <li>该方法在加入频道前后都能调用。</li>
             </ul> </note> </section>
         <section id="parameters">
@@ -42,7 +40,6 @@
             <plentry>
                 <pt>enabled</pt>
                 <pd>是否开启声卡采集:
-                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 开启声卡采集。</li>
                     <li><codeph><ph keyref="false"/></codeph>:（默认）关闭声卡采集。</li>
@@ -50,8 +47,7 @@
             </plentry>
             <plentry props="android ios mac cpp electron cs flutter">
                 <pt>deviceName</pt>
-                <pd>声卡的设备名。默认设为 <ph keyref="NULL"/>，即使用当前声卡采集。 如果用户使用虚拟声卡，如 "Soundflower"，可以将虚拟声卡名称
-      "Soundflower" 作为参数，SDK 会找到对应的虚拟声卡设备，并开始采集。</pd>
+                <pd>声卡的设备名。默认为空，代表使用当前声卡采集。如果你使用虚拟声卡，如 AgoraALD（Agora Audio Loopback Device），你可以将该参数设置为声卡的名称（<codeph>"AgoraALD"</codeph>）。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron cs">

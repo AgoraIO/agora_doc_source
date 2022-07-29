@@ -21,6 +21,7 @@
     public long totalActiveTime;
     public long publishDuration;
     public long qoeQuality;
+    public int qualityChangedReason;
   }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcRemoteAudioStats : NSObject
 @property(assign, nonatomic) NSUInteger uid;
@@ -37,6 +38,7 @@
 @property(assign, nonatomic) NSUInteger frozenRate;
 @property(assign, nonatomic) NSUInteger mosValue;
 @property(assign, nonatomic) NSInteger qoeQuality;
+@property(assign, nonatomic) AgoraExperiencePoorReason qualityChangedReason;
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct RemoteAudioStats
 {
@@ -54,6 +56,7 @@
   int totalActiveTime;
   int publishDuration;
   int qoeQuality;
+  int qualityChangedReason;
 
   RemoteAudioStats() :
     uid(0),
@@ -68,8 +71,9 @@
     frozenRate(0),
     mosValue(0),
     totalActiveTime(0),
-    publishDuration(0){}
+    publishDuration(0),
     qoeQuality(0) {}
+    qualityChangedReason(0){}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class RemoteAudioStats {
   uid?: number
@@ -229,10 +233,12 @@
             <plentry>
                 <pt>jitterBufferDelay</pt>
                 <pd>
-                    <p>音频接收端到网络抖动缓冲的网络延迟（毫秒）。</p>
-                    <note type="attention">
-                    <p>当接收端为观众且 <xref keyref="ClientRoleOptions" /> 的 <parmname>audienceLatencyLevel</parmname> 为 1 时，该参数不生效。</p>
-                    </note> </pd>
+                    <p>音频接收端到网络抖动缓冲的网络延迟（毫秒）。
+                    
+                    
+                    
+                    <note type="attention">当接收端为观众且 <xref keyref="ClientRoleOptions"/> 的 <parmname>audienceLatencyLevel</parmname> 为 1 时，该参数不生效。</note></p>
+                </pd>
             </plentry>
             <plentry>
                 <pt>audioLossRate</pt>
@@ -274,12 +280,24 @@
             <plentry>
                 <pt>qoeQuality</pt>
                 <pd>
-                    <p>接收远端音频时，本地用户的主观体验质量。<ph props="ios mac cpp electron rn">详见 <xref keyref="EXPERIENCE_QUALITY_TYPE" />。</ph>
+                    <p><ph>接收远端音频时，本地用户的主观体验质量。</ph><ph props="ios mac cpp electron rn">详见 <xref keyref="EXPERIENCE_QUALITY_TYPE"/>。</ph>
                     <ul props="android">
-                    <li><ph keyref="EXPERIENCE_QUALITY_GOOD"
-                        /> (0)：主观体验质量较好。</li>
+                    <li><ph keyref="EXPERIENCE_QUALITY_GOOD"/> (0)：主观体验质量较好。</li>
                     <li><ph keyref="EXPERIENCE_QUALITY_BAD"/> (1)：主观体验质量较差。</li>
                     </ul></p>
+                </pd>
+            </plentry>
+            <plentry props="native">
+                <pt>qualityChangedReason</pt>
+                <pd>
+                    <p><ph>接收远端音频时，本地用户主观体验质量较差的原因。</ph><ph props="ios mac cpp">详见 <xref keyref="EXPERIENCE_POOR_REASON"/>。</ph>
+                    <ul props="android">
+                    <li><ph keyref="EXPERIENCE_REASON_NONE"/> (0): 无原因，说明主观体验质量较好。</li>
+                    <li><ph keyref="REMOTE_NETWORK_QUALITY_POOR"/> (1): 远端用户的网络较差。</li>
+                    <li><ph keyref="LOCAL_NETWORK_QUALITY_POOR"/> (2): 本地用户的网络较差。</li>
+                    <li><ph keyref="WIRELESS_SIGNAL_POOR"/> (4): 本地用户的 Wi-Fi 或者移动数据网络信号弱。</li>
+                    <li><ph keyref="WIFI_BLUETOOTH_COEXIST"/> (8): 本地用户同时开启 Wi-Fi 和蓝牙，二者信号互相干扰，导致音频传输质量下降。</li>
+                    </ul> </p>
                 </pd>
             </plentry>
             <plentry>

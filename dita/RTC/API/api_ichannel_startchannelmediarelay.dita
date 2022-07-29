@@ -25,6 +25,8 @@
         <section id="detailed_desc">
             <p>成功调用该方法后，SDK 会触发 <xref keyref="IChannel_onChannelMediaRelayStateChanged"/> 和 <xref keyref="IChannel_onChannelMediaRelayEvent"/> 回调，并在回调中报告当前的跨频道媒体流转发状态和事件。
        
+            
+            
             <ul>
             <li>如果 <apiname keyref="IChannel_onChannelMediaRelayStateChanged"/> 回调报告 <apiname keyref="RELAY_STATE_RUNNING"/> (2) 和 <apiname keyref="RELAY_OK"/> (0)，且 <apiname keyref="IChannel_onChannelMediaRelayEvent"/> 回调报告 <apiname keyref="RELAY_EVENT_PACKET_SENT_TO_DEST_CHANNEL"/> (4)， 则表示 SDK 开始在源频道和目标频道之间转发媒体流。</li>
             <li>如果 <apiname keyref="IChannel_onChannelMediaRelayStateChanged"/> 回调报告 <apiname keyref="RELAY_STATE_FAILURE"/> (3)， 则表示跨频道媒体流转发出现异常。</li>

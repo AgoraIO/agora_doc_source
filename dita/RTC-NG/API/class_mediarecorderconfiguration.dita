@@ -6,8 +6,28 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="android" outputclass="language-java">public static class MediaRecorderConfiguration {
+    public String storagePath;
+    public int containerFormat = CONTAINER_MP4;
+    public int streamType = STREAM_TYPE_BOTH;
+    public int maxDurationMs = 120000;
+    public int recorderInfoUpdateInterval = 0;
+
+    public MediaRecorderConfiguration(String storagePath, int containerFormat, int streamType,
+        int maxDurationMs, int recorderInfoUpdateInterval) {
+      this.storagePath = storagePath;
+      this.containerFormat = containerFormat;
+      this.streamType = streamType;
+      this.maxDurationMs = maxDurationMs;
+      this.recorderInfoUpdateInterval = recorderInfoUpdateInterval;
+    }
+  }</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaRecorderConfiguration : NSObject
+@property(copy, nonatomic) NSString* _Nonnull storagePath;
+@property(assign, nonatomic) AgoraMediaRecorderContainerFormat containerFormat;
+@property(assign, nonatomic) AgoraMediaRecorderStreamType streamType;
+@property(assign, nonatomic) NSUInteger maxDurationMs;
+@property(assign, nonatomic) NSUInteger recorderInfoUpdateInterval;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct MediaRecorderConfiguration {
   const char* storagePath;
   MediaRecorderContainerFormat containerFormat;
@@ -15,7 +35,7 @@
   int maxDurationMs;
   int recorderInfoUpdateInterval;
 
-  MediaRecorderConfiguration() : storagePath(nullptr), containerFormat(FORMAT_MP4), streamType(STREAM_TYPE_BOTH), maxDurationMs(120000), recorderInfoUpdateInterval(0) {}
+  MediaRecorderConfiguration() : storagePath(NULL), containerFormat(FORMAT_MP4), streamType(STREAM_TYPE_BOTH), maxDurationMs(120000), recorderInfoUpdateInterval(0) {}
   MediaRecorderConfiguration(const char* path, MediaRecorderContainerFormat format, MediaRecorderStreamType type, int duration, int interval) : storagePath(path), containerFormat(format), streamType(type), maxDurationMs(duration), recorderInfoUpdateInterval(interval) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
@@ -34,8 +54,7 @@
         </section>
         <section id="parameters">
             <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
                 <pt>storagePath</pt>
@@ -50,16 +69,22 @@
             </plentry>
             <plentry>
                 <pt>containerFormat</pt>
-                <pd>录制文件的格式。详见 <xref keyref="MediaRecorderContainerFormat"
-                    />。</pd>
+                <pd props="cpp ios mac electron rn flutter unity">录制文件的格式。详见 <xref keyref="MediaRecorderContainerFormat"/>。</pd>
+                <pd props="android">录制文件的格式，目前仅支持 <apiname keyref="FORMAT_MP4"/>。</pd>
             </plentry>
             <plentry>
                 <pt>streamType</pt>
-                <pd>录制内容。详见 <xref keyref="MediaRecorderStreamType"/>。</pd>
+                <pd props="cpp ios mac">录制内容。详见 <xref keyref="MediaRecorderStreamType"/>。</pd>
+                <pd props="android">录制内容：
+                <ul>
+                    <li><apiname keyref="STREAM_TYPE_AUDIO"/>：仅音频。</li>
+                    <li><apiname keyref="STREAM_TYPE_VIDEO"/>：仅视频。</li>
+                    <li><apiname keyref="STREAM_TYPE_BOTH"/>：（默认）音视频。</li>
+                </ul></pd>
             </plentry>
             <plentry>
                 <pt>maxDurationMs</pt>
-                <pd>最大录制时长，单位为毫秒，默认值为 120,000。</pd>
+                <pd>最大录制时长，单位为毫秒，默认值为 120000。</pd>
             </plentry>
             <plentry>
                 <pt>recorderInfoUpdateInterval</pt>

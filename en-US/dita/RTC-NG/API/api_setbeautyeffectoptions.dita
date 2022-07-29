@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setbeautyeffectoptions">
-    <title><ph keyref="setBeautyEffectOptions" /></title>
+    <title><ph keyref="setBeautyEffectOptions"/></title>
     <shortdesc id="short"><ph id="shortdesc">Sets the image enhancement options.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setBeautyEffectOptions" />
+                <indexterm keyref="setBeautyEffectOptions"/>
             </keywords>
         </metadata>
     </prolog>
@@ -16,30 +16,19 @@
             <codeblock props="android" outputclass="language-java">public abstract int setBeautyEffectOptions(boolean enabled, BeautyOptions options);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setBeautyEffectOptions:(BOOL)enable options:(AgoraBeautyOptions* _Nullable)options;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setBeautyEffectOptions(bool enabled, BeautyOptions options) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">abstract setBeautyEffectOptions(enabled: boolean, options: BeautyOptions, type?: MediaSourceType): number;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int SetBeautyEffectOptions(bool enabled, BeautyOptions options, MEDIA_SOURCE_TYPE type = MEDIA_SOURCE_TYPE.PRIMARY_CAMERA_SOURCE);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">abstract setBeautyEffectOptions(
-    enabled: boolean,
-    options: BeautyOptions,
-    type?: MediaSourceType
-  ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setBeautyEffectOptions(
-    {required bool enabled,
-    required BeautyOptions options,
-    MediaSourceType type = MediaSourceType.primaryCameraSource});</codeblock> </p>
+            <codeblock props="electron" outputclass="language-typescript">setBeautyEffectOptions(enabled: boolean, options: BeautyOptions): number</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int SetBeautyEffectOptions(bool enabled, BeautyOptions options);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setBeautyEffectOptions(bool enabled, BeautyOptions options);</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>Enables or disables image enhancement, and sets the options.</p>
-            <p>Enabling the image enhancement function involves a series of method calls. The calling sequence is as follows:<ol>
-            <li props="android">Call <codeph><xref keyref="addExtension" />(<q>agora_video_process</q>)</codeph> during <xref keyref="IRtcEngine" /> initialization to integrate the video enhancement dynamic library in the project.</li>
-            <li props="ios">Link the extension library <codeph>AgoraVideoProcessExtension.xcframework</codeph> in the project file.</li>
-            <li props="mac">Link the extension library <codeph>AgoraVideoProcessExtension.framework</codeph> in the project file.</li>
-            <li props="cpp unity rn electron flutter">Call <codeph><xref keyref="loadExtensionProvider" />(<q>libagora_video_process_extension.dll</q>)</codeph> during <xref keyref="IRtcEngine" /> initialization to specify the extension library path.</li>
-            <li>Call <codeph><xref keyref="enableExtension" />(<q>agora</q>, <q>beauty</q>, <q><ph keyref="true" /></q>)</codeph> to enable the extension.</li>
-            <li>Call <xref keyref="enableVideo" /> to enable the video module.</li>
-            <li>Call this method to enable the image enhancement function.</li>
-            </ol></p>
-            <note type="note" props="android">This method only applies to Android 5.0 or later.</note> </section>
+            <note type="note">
+                <ul>
+                    <li>Call this method before calling <xref keyref="enableVideo"/> or <xref keyref="startPreview"/>.</li>
+                    <li props="android">This method only applies to Android 5.0 or later.</li>
+                </ul>
+            </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_getextensionproperty2">
+    <title><ph keyref="getExtensionProperty2"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Gets detailed information of the extension.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getExtensionProperty2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract String getExtensionProperty(
+      String provider, String extension, String key, Constants.MediaSourceType sourceType);
+</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (NSString * _Nullable)getExtensionPropertyWithVendor:(NSString * __nonnull)provider
+                                             extension:(NSString * __nonnull)extension
+                                                   key:(NSString * __nonnull)key
+                                            sourceType:(AgoraMediaSourceType)sourceType;
+</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int getExtensionProperty(
+      const char* provider, const char* extension,
+      const char* key, char* value, int buf_len, agora::media::MEDIA_SOURCE_TYPE type = agora::media::UNKNOWN_MEDIA_SOURCE) = 0;
+</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <p/>
+        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry conkeyref="setExtensionProperty/vendor">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="setExtensionProperty/extension">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="setExtensionProperty/key">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry>
+                <pt>sourceType</pt>
+                <pd>Source type of the extension. See <xref keyref="MEDIA_SOURCE_TYPE"/>.</pd>
+            </plentry>
+            <plentry conkeyref="setExtensionProperty/value" props="cpp">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry props="cpp">
+                <pt>buf_len</pt>
+                <pd>Maximum length of the JSON string indicating the extension property. The maximum value is 512 bytes.</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
+    </refbody>
+</reference>

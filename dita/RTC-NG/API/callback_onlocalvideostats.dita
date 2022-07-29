@@ -13,10 +13,14 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public void onLocalVideoStats(LocalVideoStats stats) {}</codeblock>
+            <codeblock props="android" outputclass="language-java">public void onLocalVideoStats(Constants.VideoSourceType source, LocalVideoStats stats) {}
+</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
-    localVideoStats:(AgoraRtcLocalVideoStats * _Nonnull)stats;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onLocalVideoStats(const LocalVideoStats&amp; stats) {
+ localVideoStats:(AgoraRtcLocalVideoStats * _Nonnull)stats
+ sourceType:(AgoraVideoSourceType)sourceType;
+</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onLocalVideoStats(VIDEO_SOURCE_TYPE source, const LocalVideoStats&amp; stats) {
+    (void)source;
     (void)stats;
     }</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onLocalVideoStats?(connection: RtcConnection, stats: LocalVideoStats): void;</codeblock>
@@ -41,6 +45,10 @@
                 <pt>connection</pt>
                 <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
             </plentry>
+                <plentry conkeyref="onLocalVideoStateChanged/source">
+                    <pt/>
+                    <pd/>
+                </plentry>
             <plentry>
                 <pt>stats</pt>
                 <pd>本地视频流统计信息。详见 <xref keyref="LocalVideoStats"/>。</pd>

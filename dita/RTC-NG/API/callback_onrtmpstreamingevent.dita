@@ -13,26 +13,18 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public void onRtmpStreamingEvent(String url, RTMP_STREAMING_EVENT event) {}</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine rtmpStreamingEventWithUrl:(NSString* _Nonnull)url eventCode:(AgoraRtmpStreamingEvent)eventCode;</codeblock>
+            <codeblock props="android" outputclass="language-java">public void onRtmpStreamingEvent(String url, int event) {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine rtmpStreamingEventWithUrl:(NSString* _Nonnull)url eventCode:(AgoraRtmpStreamingEvent)eventCode;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void onRtmpStreamingEvent(const char* url, RTMP_STREAMING_EVENT eventCode) {
-                    (void)url;
-                    (void)eventCode;
-                  }</codeblock>
+  (void)url;
+  (void)eventCode;
+}</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onRtmpStreamingEvent?(url: string, eventCode: RtmpStreamingEvent): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnRtmpStreamingEvent(string url, RTMP_STREAMING_EVENT eventCode)</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onRtmpStreamingEvent?(url: string, eventCode: RtmpStreamingEvent): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(String url, RtmpStreamingEvent eventCode)?
       onRtmpStreamingEvent;
 </codeblock> </p>
-        </section>
-        <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>自从</dt>
-                <dd>v3.1.0</dd>
-            </dlentry>
-            </dl>
         </section>
         <section id="parameters">
             <title> <ph keyref="callback-section-title"/> </title>
@@ -43,8 +35,17 @@
                 <pd>旁路推流 URL。</pd>
             </plentry>
             <plentry id="eventCode">
-                <pt>eventCode</pt>
-                <pd>旁路推流事件码。详见 <xref keyref="RTMP_STREAMING_EVENT"/>。</pd>
+                <pt props="ios mac cpp unity electron rn flutter">eventCode</pt>
+                <pt props="android">event</pt>
+                <pd props="ios mac cpp unity electron rn flutter">旁路推流事件码。详见 <xref keyref="RTMP_STREAMING_EVENT"/>。</pd>
+                <pd props="android">旁路推流事件码。
+                
+                    <ul>
+                    <li><ph keyref="RTMP_STREAMING_EVENT_FAILED_LOAD_IMAGE"/> (1): 旁路推流时，添加背景图或水印出错。</li>
+                    <li><ph keyref="RTMP_STREAMING_EVENT_URL_ALREADY_IN_USE"/> (2): 该推流 URL 已用于推流。如果你想开始新的推流，请使用新的推流 URL。</li>
+                    <li><ph keyref="RTMP_STREAMING_EVENT_ADVANCED_FEATURE_NOT_SUPPORT"/> (3): 功能不支持。</li>
+                    <li><ph keyref="RTMP_STREAMING_EVENT_REQUEST_TOO_OFTEN"/> (4): 预留参数。</li>
+                    </ul></pd>
             </plentry>
             </parml> </section>
     </refbody>

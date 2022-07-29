@@ -4,24 +4,34 @@
     <title><ph keyref="AUDIO_EFFECT_PRESET"/></title>
     <shortdesc id="short"><ph id="shortdesc">预设的音效选项。</ph></shortdesc>
     <refbody>
-        <section id="detailed_desc">
-            <p>为获取更好的人声效果，Agora 建议在使用以下预设音效前将 <xref keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> 或 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>：</p>
-            <ul id="ul_hpp_hsd_p4b">
-            <li><ph keyref="ROOM_ACOUSTICS_KTV"/></li>
-            <li><ph keyref="ROOM_ACOUSTICS_VOCAL_CONCERT"/></li>
-            <li><ph keyref="ROOM_ACOUSTICS_STUDIO"/></li>
-            <li><ph keyref="ROOM_ACOUSTICS_PHONOGRAPH"/></li>
-            <li><ph keyref="ROOM_ACOUSTICS_SPACIAL"/></li>
-            <li><ph keyref="ROOM_ACOUSTICS_ETHEREAL"/></li>
-            <li><ph keyref="VOICE_CHANGER_EFFECT_UNCLE"/></li>
-            <li><ph keyref="VOICE_CHANGER_EFFECT_OLDMAN"/></li>
-            <li><ph keyref="VOICE_CHANGER_EFFECT_BOY"/></li>
-            <li><ph keyref="VOICE_CHANGER_EFFECT_SISTER"/></li>
-            <li><ph keyref="VOICE_CHANGER_EFFECT_GIRL"/></li>
-            <li><ph keyref="VOICE_CHANGER_EFFECT_PIGKING"/></li>
-            <li><ph keyref="VOICE_CHANGER_EFFECT_HULK"/></li>
-            <li><ph keyref="PITCH_CORRECTION"/></li>
-            </ul> </section>
+        <section id="detailed_desc">为获取更好的音效，Agora 建议在使用预设音效前，调用 <xref keyref="setAudioProfile"/> 并按照如下推荐设置 <parmname>profile</parmname> 参数。 <table frame="all" rowsep="1" colsep="1">
+            <tgroup cols="2" align="left">
+                <colspec colname="c1" colnum="1" colwidth="1*"/>
+                <colspec colname="c2" colnum="2" colwidth="1*"/>
+                <thead>
+                    <row>
+                        <entry>预设音效</entry>
+                        <entry><parmname>profile</parmname></entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <ul>
+                                <li><ph keyref="ROOM_ACOUSTICS_VIRTUAL_STEREO"/></li>
+                                <li><ph keyref="ROOM_ACOUSTICS_3D_VOICE"/></li>
+                                <li><ph keyref="ROOM_ACOUSTICS_VIRTUAL_SURROUND_SOUND"/></li>
+                            </ul>
+                        </entry>
+                        <entry><apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/> 或 <apiname keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO"/></entry>
+                    </row>
+                    <row>
+                        <entry>其他预设音效（除 <xref keyref="AUDIO_EFFECT_OFF"/> 以外）</entry>
+                        <entry><apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> 或 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/></entry>
+                    </row>
+                </tbody>
+            </tgroup>
+            </table></section>
         <section id="parameters">
             <title>枚举值</title>
             <parml>
@@ -47,9 +57,8 @@
             </plentry>
             <plentry>
                 <pt><ph keyref="ROOM_ACOUSTICS_VIRTUAL_STEREO"/></pt>
-                <pd>
-                    <p>虚拟立体声，即 SDK 将单声道的音频渲染出双声道的音效。</p>
-                    <note type="attention">使用该预设音效前，你需要将 <xref keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> 或 <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>，否则该预设音效的设置无效。</note> </pd>
+                <pd>虚拟立体声，即 SDK 将单声道的音频渲染出双声道的音效。
+  </pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="ROOM_ACOUSTICS_SPACIAL"/></pt>
@@ -60,14 +69,16 @@
                 <pd>空灵。</pd>
             </plentry>
             <plentry>
+                <pt><ph keyref="ROOM_ACOUSTICS_VIRTUAL_SURROUND_SOUND"/></pt>
+                <pd>虚拟环绕声，即 SDK 在双声道的基础上产生仿真的环绕声场，从而营造出具有环绕感的音效。
+               
+                    <note type="attention">启用虚拟环绕声后，用户需要使用支持双声道的音频播放设备才能听到预期效果。</note> </pd>
+            </plentry>
+            <plentry>
                 <pt><ph keyref="ROOM_ACOUSTICS_3D_VOICE"/></pt>
                 <pd>
                     <p>3D 人声，即 SDK 将音频渲染出在用户周围环绕的效果。环绕周期默认为 10 秒。设置该音效后，你还可以调用 <xref keyref="setAudioEffectParameters"/> 修改环绕周期。</p>
-                    <note type="attention">
-                    <ul id="ul_gnm_3sd_p4b">
-                    <li>使用该预设音效前，你需要将 <xref keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <ph keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO"/> 或 <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>，否则该预设音效的设置无效。</li>
-                    <li>启用 3D 人声后，用户需要使用支持双声道的音频播放设备才能听到预期效果。</li>
-                    </ul> </note> </pd>
+                    <note type="attention">启用 3D 人声后，用户需要使用支持双声道的音频播放设备才能听到预期效果。</note> </pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="VOICE_CHANGER_EFFECT_UNCLE"/></pt>
@@ -109,15 +120,11 @@
             </plentry>
             <plentry>
                 <pt><ph keyref="STYLE_TRANSFORMATION_RNB"/></pt>
-                <pd>
-                    <p>R&amp;B。</p>
-                    <note type="attention">使用该预设音效前，你需要将 <xref keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> 或 <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>，否则该预设音效的设置无效。</note> </pd>
+                <pd>R&amp;B。</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="STYLE_TRANSFORMATION_POPULAR"/></pt>
-                <pd>
-                    <p>流行。</p>
-                    <note type="attention">使用该预设音效前，你需要将 <xref keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> 或 <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>，否则该预设音效的设置无效。</note> </pd>
+                <pd>流行。</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="PITCH_CORRECTION"/></pt>

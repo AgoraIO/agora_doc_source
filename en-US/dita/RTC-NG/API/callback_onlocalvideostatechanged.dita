@@ -39,10 +39,10 @@
                 <dd>v2.4.1</dd>
             </dlentry>
             </dl>
-            <p id="desc1">When the state of the local video stream changes, the SDK triggers this callback to report the current state. This callback indicates the state of the local video stream and allows you to troubleshoot issues when exceptions occur.</p>
+            <p id="desc1">When the state of the local video stream changes, the SDK triggers this callback to report the current state. This callback indicates the state of the local video stream, including camera capturing and video encoding, and allows you to troubleshoot issues when exceptions occur.</p>
             <p>The SDK triggers the <apiname keyref="onLocalVideoStateChanged"/> callback with the state code of <codeph><ph keyref="LOCAL_VIDEO_STREAM_STATE_FAILED"/></codeph> and error code of <codeph><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/></codeph> in the following situations:<ul>
             <li>The app switches to the background, and the system gets the camera resource.</li>
-            <li>The camera starts normally, but does not output vide frames for four consecutive seconds.</li>
+            <li>The camera starts normally, but does not output video frames for four consecutive seconds.</li>
             </ul></p>
             <p>When the camera outputs the captured video frames, if the video frames are the same for 15 consecutive frames, the SDK triggers the <apiname keyref="onLocalVideoStateChanged"/> callback with the state code of <apiname keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/> and error code of <apiname keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/>. Note that the video frame duplication detection is only available for video frames with a resolution greater than 200 × 200, a frame rate greater than or equal to 10 fps, and a bitrate less than 20 Kbps.</p>
             <note id="note" type="attention">For some device models, the SDK does not trigger this callback when the state of the local video changes while the local video capturing device is in use, so you have to make your own timeout judgment.</note> </section>
@@ -58,8 +58,13 @@
                 <pt>connection</pt>
                 <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
             </plentry>
+                <plentry id="source">
+                    <pt props="apple">sourceType</pt>
+                    <pt props="android cpp">source</pt>
+                    <pd>The capture type of the custom video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
             <plentry>
-                <pt props="native unity flutter electron rn">state</pt>
+                <pt>state</pt>
                 <pd>
                     <p props="ios mac cpp unity electron rn flutter">The state of the local video. See <xref keyref="LOCAL_VIDEO_STREAM_STATE"/>.</p>
                     <p props="android">
@@ -80,11 +85,10 @@
                     <ul>
                     <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_OK"/>(0): The local video is normal.</li>
                     <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_FAILURE"/>(1): No specified reason for the local video failure.</li>
-                    <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_NO_PERMISSION"/>(2): No permission to use the local video capturing device. Remind the user to grant permission and rejoin the channel.</li>
                     <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY"/>(3): The local video capturing device is in use. Remind the user to check whether another application occupies the camera.</li>
                     <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/>(4): The local video capture failed. Remind the user to check whether the video capture device is working properly or the camera is occupied by another application, and then to rejoin the channel.<ul>
                         <li>If your app runs in the background on a device running Android 9 or later, you cannot access the camera.</li>
-                        <li>If your app runs on a device running Android 6 or later, this error is reported if the camera is occupied by a third-party app and is not released in time. Once the camera is released, the SDK triggers this callback again, reporting <codeph>state</codeph><codeph>CAPTURING</codeph>, and <codeph>error</codeph><codeph>ERROR_OK</codeph>.</li>
+                        <li>If your app runs on a device running Android 6 or later, this error is reported if the camera is occupied by a third-party app and is not released in time. Once the camera is released, the SDK triggers this callback again, reporting <codeph>state</codeph> of <codeph>CAPTURING</codeph>, and <codeph>error</codeph> of <codeph>ERROR_OK</codeph>.</li>
                         </ul></li>
                     <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_ENCODE_FAILURE"/>(5): The local video encoding fails.</li>
                     </ul> </p>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setwidgetactive">
+    <title><ph keyref="setWidgetActive"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置 Widget 状态为活跃。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setWidgetActive"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-kotlin"/>
+                <codeblock props="ios mac" outputclass="language-swift">void setWidgetActive(String widgetId,
+                    String ownerUuid,
+                    Map&lt;String: Any> roomProperties,
+                    AgoraWidgetFrame syncFrame,
+                    Callback&lt;Void> success,
+                    Callback&lt;Error> failure)</codeblock>
+                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="web" outputclass="language-typescript"/>
+            </p>
+        </section>
+        <section id="parameters"><title>参数</title>
+            <parml>
+                <plentry>
+                    <pt>widgetId</pt>
+                    <pd>Widget 的 ID。</pd>
+                </plentry>
+                <plentry>
+                    <pt>ownerUuid</pt>
+                    <pd>Widget 所属者的用户 ID。可为空。当用户离线时，其所拥有的 Widget 会触发 <apiname>onWidgetInactive</apiname> 回调。</pd>
+                </plentry>
+                <plentry>
+                    <pt>roomProperties</pt>
+                    <pd>更新 </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -182,9 +182,9 @@ print("--------------- Topic ref list ------------------------")
 print(rust_topicref_list)
 print("--------------- Topic ref list ------------------------")
 
-# Collect the hide API which mark props="hide" in <topichead> or <keydef>
+# Collect the hide API which mark props="hide" or "cn" in <topichead> or <keydef>
 for topichead in dita_file_root.iter("topichead"):
-    is_hide_topichead: bool = True if topichead.get("props") is not None and topichead.get("props") == "hide" else False
+    is_hide_topichead: bool = True if topichead.get("props") is not None and topichead.get("props") == "hide" or topichead.get("props") is not None and topichead.get("props") == "cn" else False
 
     for keydef in topichead.iter("keydef"):
         if keydef.get("href") is not None:
@@ -193,7 +193,6 @@ for topichead in dita_file_root.iter("topichead"):
                 json_hide_id_list.append(dita_id)
             elif keydef.get("props") is not None and keydef.get("props") == "hide":
                 json_hide_id_list.append(dita_id)
-        
 
 
 print("--------------- Hide id list ------------------------")
@@ -207,20 +206,17 @@ props_platform_list = ["windows", "rust", "java", "python", "csharp", "objective
 
 
 def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_path, platform="rust"):
-    try:
-        tree = ET.parse(file_dir)
-    except Exception as ex:
-        print("\n")
-        print("Woops!\n")
-        print("It most likely an error occur when parsing the xml file: {}\n".format(file_dir))
-        print("You can try to find out which line parse error, such like error below:\n")
-        print("xml.etree.ElementTree.ParseError: not well-formed (invalid token): line 19, column 73")
-        print("\nIt means that the the error occur on line 19 of {} file, so you can check if there any unexpected format in that line.\n".format(file_dir))
-        print("The exception detail show below:\n")
-        print(ex)
 
-        raise ex
-        
+    text = ""
+
+    with open(file_dir, "r", encoding='utf-8') as f:
+        text= f.read()
+        text = re.sub('\s+(?=<)', '', text)
+
+    with open(file_dir, "w", encoding='utf-8') as f:
+        f.write(text)
+
+    tree = ET.parse(file_dir)
     root = tree.getroot()
 
     # Iterate over all dita files
@@ -255,7 +251,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             if platform_tag not in child.get("props") and "native" not in child.get(
                     "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
                      "props") and "native" in child.get(
-                 "props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
+                 "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or child.get("props") == "hide" or child.get("props") == "cn":
                  print("------------------- Tag to remove ---------------------------")
                  print(child)
                  print(child.text)
@@ -742,7 +738,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                     for text in keydef.itertext():
                         href_text = href_text + text
                     xref.text = href_text
-                href_text = ""    
+                href_text = ""
 
             if sys.platform == 'darwin' or sys.platform == 'linux':
                 print("macOS")
@@ -764,8 +760,8 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                     dir = None
                     print(xref.text)
                 else:
-                    dir = None 
-            """         
+                    dir = None
+            """
             if dir is not None:
                 print(dir)
                 dita_file_tree = ET.parse(dir)
@@ -880,7 +876,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             if platform_tag not in child.get("props") and "native" not in child.get(
                     "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
                      "props") and "native" in child.get(
-                 "props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
+                 "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
                  print("------------------- Tag to remove ---------------------------")
                  print(child)
                  print(child.text)
@@ -902,7 +898,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             if platform_tag not in child.get("props") and "native" not in child.get(
                     "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
                      "props") and "native" in child.get(
-                 "props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
+                 "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
                  print("------------------- Tag to remove ---------------------------")
                  print(child)
                  print(child.text)
@@ -925,7 +921,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             if platform_tag not in child.get("props") and "native" not in child.get(
                     "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
                      "props") and "native" in child.get(
-                 "props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
+                 "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
                  print("------------------- Tag to remove ---------------------------")
                  print(child)
                  print(child.text)
@@ -1027,12 +1023,16 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                 param_name = child.find("pt").text
                 if param_name is None and child.find("./pt/ph") is not None:
                     param_name = child.find("./pt/ph").text
-                    
-                else:
+
+                elif child.text is not None:
                     print("Something unexpected happened for " + child.text)
-                  
+
+                elif child.text is None:
+                    print("No text for this node")
+                    print(child)
+
                 if child.find("./pd") is not None:
-                
+
                     for text in child.find("./pd").itertext():
                         if text is not None:
                             print(text)
@@ -1146,13 +1146,12 @@ def merge_JsonFiles(files):
     warning = json.loads("{\"id\": \"enum_warningcode\", \"name\": \"WarningCode\", \"description\": \"Warning codes. See https://docs.agora.io/en/Interactive%20Broadcast/error_rtc.\", \"parameters\": [], \"returns\": \"\"}")
 
     result.append(error)
-    result.append(warning)    
+    result.append(warning)
 
     with open(json_file, 'w', encoding="utf-8") as output_file:
         json.dump(result, output_file, ensure_ascii=False, indent=4)
 
 
-    
 
 
 def replace_newline():
@@ -1219,13 +1218,13 @@ def replace_newline():
     replaced_file_text = re.sub('id="callback_iaudioframeobserverbase_', 'id="callback_iaudioframeobserver_', replaced_file_text)
     replaced_file_text = re.sub('"LOCAL_VIDEO_STREAM_ERROR_DEVICE_NOT_FOUND": ""', '"LOCAL_VIDEO_STREAM_ERROR_DEVICE_NOT_FOUND": "8: Fails to find a local video capture device."', replaced_file_text)
     replaced_file_text = re.sub('{ "LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY": "3: The local video capturing device is in use." },', '{ "LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY": "3: The local video capturing device is in use." }, { "LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE": "4: The local video capture fails. Check whether the capturing device is working properly." },', replaced_file_text)
-    
-    
+
+
     # ------------------ Special processing for Flutter classes ------------------------------------------
 
     # { "LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY": "3: The local video capturing device is in use." },
     # { "LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY": "3: The local video capturing device is in use." }, { "LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE": "4: The local video capture fails. Check whether the capturing device is working properly." },
-    
+
     input_file.close()
 
     output_file = open(json_file, 'w', encoding="utf-8")

@@ -27,29 +27,27 @@
         <section id="detailed_desc">
             <p>After you successfully register the video frame observer, the SDK triggers this callback each time it receives a video frame. In this callback, you can get the video data captured by the local camera. You can then pre-process the data according to your scenarios.</p>
             <p>After pre-processing, you can send the processed video data back to the SDK by this callback.</p>
-            <note type="attention" id="note">
-            <ul>
-  <li>If you get the video data in RGBA color encoding format, Agora does not support using this callback to send the processed data in RGBA color encoding format back to the SDK.</li>
-            <li>The video data obtained through this callback has not undergone preprocessing, such as watermarking, cropping content, rotating, or image enhancement.</li>
-            </ul> </note> </section>
+            <note type="attention" id="note">The video data that this callback gets has not been pre-processed, without the watermark, the cropped content, the rotation, and the image enhancement.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry id="videoframe">
                 <pt>videoFrame</pt>
-                <pd><ph>The video frame.</ph> <ph props="cpp ios mac unity">See <xref keyref="VideoFrame"/>.</ph></pd>
+                <pd><ph>The video frame. </ph><ph props="cpp ios mac unity">See <xref keyref="VideoFrame"/>.</ph></pd>
             </plentry>
-                <plentry props="unity" id="config">
-                    <pt>config</pt>
-                    <pd>The configuration of the video frame. See <xref keyref="VideoFrameBufferConfig"/>.</pd>
-                </plentry>
             </parml> </section>
         <section id="return_values">
             <title>Returns</title>
             <p id="return">
             <ul>
-            <li><codeph><ph keyref="true"/></codeph>: Sets the SDK to receive the video frame.</li>
-            <li><codeph><ph keyref="false"/></codeph>: Sets the SDK to discard the video frame.</li>
+            <li>When the video processing mode is <apiname keyref="PROCESS_MODE_READ_ONLY"/>:<ul>
+                <li><codeph><ph keyref="true"/></codeph>:The SDK ignores this return value.</li>
+                <li><codeph><ph keyref="false"/></codeph>:The SDK ignores this return value.</li>
+                </ul></li>
+            <li>When the video processing mode is <apiname keyref="PROCESS_MODE_READ_WRITE"/>:<ul>
+                <li><codeph><ph keyref="true"/></codeph>: Sets the SDK to receive the video frame.</li>
+                <li><codeph><ph keyref="false"/></codeph>: Sets the SDK to discard the video frame.</li>
+                </ul></li>
             </ul></p>
         </section>
     </refbody>

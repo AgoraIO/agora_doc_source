@@ -13,7 +13,7 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public void onPermissionError(PERMISSION permission) {}</codeblock>
+            <codeblock props="android" outputclass="language-java">public void onPermissionError(int permission) {}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine permissionError:(AgoraPermissionType)type;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void onPermissionError(PERMISSION_TYPE permissionType) {
   (void)permissionType;
@@ -38,7 +38,11 @@
                 <pt props="android">permission</pt>
                 <pt props="ios mac">type</pt>
                 <pt props="cpp unity electron rn flutter">permissionType</pt>
-                <pd>The type of the device permission. See <xref keyref="PERMISSION_TYPE"/>.</pd>
+                <pd props="ios mac cpp unity electron rn flutter">The type of the device permission. See <xref keyref="PERMISSION_TYPE"/>.</pd>
+                <pd props="android">The type of the device permission.<ul>
+                   <li><ph keyref="RECORD_AUDIO"/>(0): Permission for the audio capture device.</li>
+                   <li><ph keyref="CAMERA"/>(1): Permission for the camera.</li>
+                </ul></pd>
             </plentry>
             </parml> </section>
     </refbody>

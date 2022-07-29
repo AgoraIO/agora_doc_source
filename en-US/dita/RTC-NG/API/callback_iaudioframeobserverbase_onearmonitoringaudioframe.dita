@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_iaudioframeobserverbase_onearmonitoringaudioframe">
+    <title><ph keyref="onEarMonitoringAudioFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Gets the in-ear monitoring raw audio frame.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onEarMonitoringAudioFrame"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract boolean onEarMonitoringAudioFrame(int type, int samplesPerChannel,
+    int bytesPerSample, int channels, int samplesPerSec, ByteBuffer buffer, long renderTimeMs,
+    int avsync_type);
+</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onEarMonitoringAudioFrame:(AgoraAudioFrame* _Nonnull)frame;
+</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual bool onEarMonitoringAudioFrame(AudioFrame&amp; audioFrame) = 0;</codeblock></p>
+        </section>
+        <section id="detailed_desc">
+            <note type="note" id="note">If you want to set the format of the in-ear monitoring audio frame, Agora recommends that you call the <xref keyref="registerAudioFrameObserver"/> method to register an audio frame observer before calling the <xref keyref="setEarMonitoringAudioFrameParameters"/> method to set the format of the in-ear monitoring audio frame.</note> </section>
+        <section id="parameters" conkeyref="onMixedAudioFrame/parameters"/>
+        <section id="return_values" conkeyref="onMixedAudioFrame/return_values"/>
+    </refbody>
+</reference>

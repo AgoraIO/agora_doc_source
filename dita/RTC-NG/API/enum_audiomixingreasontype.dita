@@ -4,17 +4,13 @@
     <title><ph keyref="AUDIO_MIXING_REASON_TYPE"/></title>
     <shortdesc id="short"><ph id="shortdesc">音乐文件播放状态改变的原因。在 <xref keyref="onAudioMixingStateChanged"/> 回调中报告。</ph></shortdesc>
     <refbody>
-        <section id="detailed_desc">
-            <dl outputclass="since" props="android ios mac cpp">
-            <dlentry>
-                <dt>自从</dt>
-                <dd>v3.4.0</dd>
-            </dlentry>
-            </dl>
-        </section>
         <section id="parameters">
             <title>枚举值</title>
             <parml>
+            <plentry>
+                <pt><ph keyref="AUDIO_MIXING_REASON_OK"/></pt>
+                <pd>0: 成功打开音乐文件。</pd>
+            </plentry>
             <plentry>
                 <pt><ph keyref="AUDIO_MIXING_REASON_CAN_NOT_OPEN"/></pt>
                 <pd>701: 音乐文件打开出错。例如，本地音乐文件不存在、文件格式不支持或无法访问在线音乐文件 URL。</pd>
@@ -27,31 +23,31 @@
                 <pt><ph keyref="AUDIO_MIXING_REASON_INTERRUPTED_EOF"/></pt>
                 <pd>703: 音乐文件播放中断。</pd>
             </plentry>
-            <plentry props="rtc">
+            <plentry props="hide">
                 <pt><ph keyref="AUDIO_MIXING_REASON_STARTED_BY_USER"/></pt>
                 <pd>720: 成功调用 <apiname>startAudioMixing</apiname> 播放音乐文件。</pd>
             </plentry>
-            <plentry props="rtc">
+            <plentry>
                 <pt><ph keyref="AUDIO_MIXING_REASON_ONE_LOOP_COMPLETED"/></pt>
                 <pd>721: 音乐文件完成一次循环播放。</pd>
             </plentry>
-            <plentry props="rtc">
+            <plentry props="hide">
                 <pt><ph keyref="AUDIO_MIXING_REASON_START_NEW_LOOP"/></pt>
                 <pd>722: 音乐文件开始新的一次循环播放。</pd>
             </plentry>
-            <plentry props="rtc">
+            <plentry>
                 <pt><ph keyref="AUDIO_MIXING_REASON_ALL_LOOPS_COMPLETED"/></pt>
                 <pd>723: 音乐文件完成所有循环播放。</pd>
             </plentry>
-            <plentry props="rtc">
+            <plentry>
                 <pt><ph keyref="AUDIO_MIXING_REASON_STOPPED_BY_USER"/></pt>
                 <pd>724: 成功调用 <xref keyref="stopAudioMixing"/> 停止播放音乐文件。</pd>
             </plentry>
-            <plentry props="rtc">
+            <plentry props="hide">
                 <pt><ph keyref="AUDIO_MIXING_REASON_PAUSED_BY_USER"/></pt>
                 <pd>725: 成功调用 <xref keyref="pauseAudioMixing"/> 暂停播放音乐文件。</pd>
             </plentry>
-            <plentry props="rtc">
+            <plentry props="hide">
                 <pt><ph keyref="AUDIO_MIXING_REASON_RESUMED_BY_USER"/></pt>
                 <pd>726: 成功调用 <xref keyref="resumeAudioMixing"/> 恢复播放音乐文件。</pd>
             </plentry>

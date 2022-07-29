@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startdirectcdnstreaming">
-    <title><ph keyref="startDirectCdnStreaming" /></title>
+    <title><ph keyref="startDirectCdnStreaming"/></title>
     <shortdesc id="short"><ph id="shortdesc">Starts pushing media streams to the CDN directly.</ph></shortdesc>
     <prolog>
         <metadata>
@@ -10,65 +10,59 @@
             </keywords>
         </metadata>
     </prolog>
-    <refbody>
-        <section id="prototype">
-            <codeblock props="android" outputclass="language-java">public abstract int startDirectCdnStreaming(IDirectCdnStreamingEventHandler eventHandler,
+    <refbody><section id="prototype">
+<p outputclass="codeblock">
+        <codeblock props="android" outputclass="language-java">public abstract int startDirectCdnStreaming(IDirectCdnStreamingEventHandler eventHandler,
             String publishUrl, DirectCdnStreamingMediaOptions options);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)startDirectCdnStreaming:(id&lt;AgoraDirectCdnStreamingEventDelegate&gt; _Nonnull)delegate publishUrl:(NSString * _Nonnull)publishUrl mediaOptions:(AgoraDirectCdnStreamingMediaOptions * _Nonnull)options;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int startDirectCdnStreaming(IDirectCdnStreamingEventHandler* eventHandler,
+        <codeblock props="ios mac" outputclass="language-objectivec">- (int)startDirectCdnStreaming:(id&lt;AgoraDirectCdnStreamingEventDelegate> _Nonnull)delegate publishUrl:(NSString * _Nonnull)publishUrl mediaOptions:(AgoraDirectCdnStreamingMediaOptions * _Nonnull)options;</codeblock>
+        <codeblock props="cpp" outputclass="language-cpp">virtual int startDirectCdnStreaming(IDirectCdnStreamingEventHandler* eventHandler,
             const char* publishUrl, const DirectCdnStreamingMediaOptions&amp; options) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">abstract startDirectCdnStreaming(eventHandler: IDirectCdnStreamingEventHandler, publishUrl: string, options: DirectCdnStreamingMediaOptions): number;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int StartDirectCdnStreaming(string publishUrl, DirectCdnStreamingMediaOptions options);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">abstract startDirectCdnStreaming(
-    eventHandler: IDirectCdnStreamingEventHandler,
-    publishUrl: string,
-    options: DirectCdnStreamingMediaOptions
-  ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> startDirectCdnStreaming(
-    {required DirectCdnStreamingEventHandler eventHandler,
-    required String publishUrl,
-    required DirectCdnStreamingMediaOptions options});</codeblock> </section>
+        <codeblock props="electron" outputclass="language-typescript"></codeblock>
+        <codeblock props="unity" outputclass="language-csharp"></codeblock>
+        <codeblock props="rn" outputclass="language-typescript"></codeblock>
+        <codeblock props="flutter" outputclass="language-dart"></codeblock>
+        </p></section>
         <section id="detailed_desc">
             <p>Aogra does not support pushing streams to one URL repeatedly.</p>
-            <p>Media options</p>
-            <p>Agora does not support setting the value of <parmname>publishCameraTrack</parmname> and <parmname>publishCustomVideoTrack</parmname> as <codeph><ph keyref="true" /></codeph>, or the value of <parmname>publishMicrophoneTrack</parmname> and <parmname>publishCustomAudioTrack</parmname> as <codeph><ph keyref="true" /></codeph> at the same time. When choosing media setting options (<xref keyref="DirectCdnStreamingMediaOptions" />) you can refer to the following examples:</p>
+            <p><b>Media options</b></p>
+            <p>Agora does not support setting the value of <parmname>publishCameraTrack</parmname> and <parmname>publishCustomVideoTrack</parmname> as <codeph><ph keyref="true"/></codeph>, or the value of <parmname>publishMicrophoneTrack</parmname> and <parmname>publishCustomAudioTrack</parmname> as <codeph><ph keyref="true"/></codeph> at the same time. When choosing media setting options (<xref keyref="DirectCdnStreamingMediaOptions"/>) you can refer to the following examples:</p>
             <p>If you want to push audio and video streams published by the host to the CDN, the media setting options should be set as follows:</p>
+            <ul><li><parmname>publishCameraTrack</parmname> is set as <codeph><ph keyref="true"/></codeph>.</li>
+                <li><parmname>publishMicrophoneTrack</parmname> is set as <codeph><ph keyref="true"/></codeph>.</li>
+                 <li><parmname>publishCustomAudioTrack</parmname> is set as <codeph><ph keyref="false"/></codeph> (Default).</li>
+                <li><parmname>publishCustomVideoTrack</parmname> is set as <codeph><ph keyref="false"/></codeph> (Default).</li>
+             </ul>
+            <p>If you want to push external audio and video streams, ensure the following:</p>
             <ul>
-            <li><parmname>publishCameraTrack</parmname> is set as <codeph><ph keyref="true" /></codeph></li>
-            <li><parmname>publishMicrophoneTrack</parmname> is set as <codeph><ph keyref="true" /></codeph></li>
-            <li><parmname>publishCustomAudioTrack</parmname> is set as <codeph><ph keyref="false" /></codeph> (Default)</li>
-            <li><parmname>publishCustomVideoTrack</parmname> is set as <codeph><ph keyref="false" /></codeph> (Default)</li>
+                <li props="android cpp unity"><parmname>publishCustomAudioTrack</parmname> is set as <codeph><ph keyref="true"/></codeph> and call the <xref props="android" keyref="pushAudioFrame2"/><xref props="cpp unity" keyref="pushAudioFrame"/> method.</li>
+                <li props="ios mac"><parmname>publishCustomAudioTrack</parmname> is set as <codeph><ph keyref="true"/></codeph> and call the <xref keyref="pushExternalAudioFrameSampleBuffer1"/> or <xref keyref="pushAudioFrame2"/> method.</li>
+                <li><parmname>publishCustomVideoTrack</parmname> is set as <codeph><ph keyref="true"/></codeph> and call the <xref keyref="pushVideoFrame"/> method.</li>
+                <li><parmname>publishCameraTrack</parmname> is set as <codeph><ph keyref="false"/></codeph> (Default).</li>
+                <li><parmname>publishMicrophoneTrack</parmname> is set as <codeph><ph keyref="false"/></codeph> (Default).</li>
             </ul>
-            <p props="android ios mac cpp unity">If you want to push external audio and video streams, ensure the following:</p>
-            <ul props="android ios mac cpp unity">
-            <li props="android cpp unity"><parmname>publishCustomAudioTrack</parmname> is set as <codeph><ph keyref="true" /></codeph> and call the <xref props="android" keyref="pushAudioFrame2" /><xref props="cpp unity" keyref="pushAudioFrame" /> method</li>
-            <li props="ios mac"><parmname>publishCustomAudioTrack</parmname> is set as <codeph><ph keyref="true" /></codeph> and call the <xref keyref="pushExternalAudioFrameSampleBuffer1" /> or <xref keyref="pushAudioFrame2" /> method</li>
-            <li><parmname>publishCustomVideoTrack</parmname> is set as <codeph><ph keyref="true" /></codeph> and call the <xref keyref="pushDirectCdnStreamingCustomVideoFrame" /> method</li>
-            <li><parmname>publishCameraTrack</parmname> is set as <codeph><ph keyref="false" /></codeph> (Default)</li>
-            <li><parmname>publishMicrophoneTrack</parmname> is set as <codeph><ph keyref="false" /></codeph> (Default)</li>
-            </ul> </section>
-        <section id="parameters">
-            <title>Parameters</title>
+        </section>
+        <section id="parameters"><title>Parameters</title>
             <parml>
-            <plentry>
-                <pt props="android cpp flutter rn">eventHandler</pt>
-                <pt props="ios mac">delegate</pt>
-                <pd>See <xref keyref="onDirectCdnStreamingStateChanged" /> and <xref keyref="onDirectCdnStreamingStats" />.</pd>
-            </plentry>
-            <plentry>
-                <pt>publishUrl</pt>
-                <pd>The CDN live streaming URL.</pd>
-            </plentry>
-            <plentry>
-                <pt>options</pt>
-                <pd>The media setting options for the host. See <xref keyref="DirectCdnStreamingMediaOptions" />.</pd>
-            </plentry>
-            </parml> </section>
-        <section id="return_values" props="native unity">
+                <plentry>
+                    <pt props="android cpp flutter rn">eventHandler</pt>
+                    <pt props="ios mac">delegate</pt>
+                    <pd>See <xref keyref="onDirectCdnStreamingStateChanged"/> and <xref keyref="onDirectCdnStreamingStats"/>.</pd>
+                </plentry>
+                <plentry>
+                    <pt>publishUrl</pt>
+                    <pd>The CDN live streaming URL.</pd>
+                </plentry>
+                <plentry>
+                    <pt>options</pt>
+                    <pd>The media setting options for the host. See <xref keyref="DirectCdnStreamingMediaOptions"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
             <title>Returns</title>
             <ul>
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure.</li>
-            </ul> </section>
-    </refbody>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section></refbody>
 </reference>

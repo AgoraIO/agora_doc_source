@@ -25,6 +25,7 @@
         <section id="detailed_desc">
             <p props="rtc">一般的视频通话或直播中，默认由 SDK 自动控制摄像头的输出参数。在如下特殊场景中，默认的参数无法满足需求或可能引起设备性能问题，我们推荐调用该方法设置摄像头的采集偏好:
             
+            
             <ul>
             <li>使用原始音视频数据自采集接口时，如果 SDK 输出的分辨率和帧率高于 <xref keyref="setVideoEncoderConfiguration"/> 中指定的参数，在后续处理视频帧的时候，比如美颜功能时，会需要更高的 CPU 及内存，容易导致性能问题。在这种情况下，我们推荐将摄像头采集偏好设置为 <ph keyref="CAPTURER_OUTPUT_PREFERENCE_PERFORMANCE"/>(1)， 避免性能问题。</li>
             <li>如果没有本地预览功能或者对预览质量没有要求，我们推荐将采集偏好设置为 <ph keyref="CAPTURER_OUTPUT_PREFERENCE_PERFORMANCE"/>(1)，以优化 CPU 和内存的资源分配。</li>

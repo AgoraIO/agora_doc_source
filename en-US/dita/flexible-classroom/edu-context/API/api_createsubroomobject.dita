@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_createsubroomobject">
+    <title><ph keyref="createSubRoomObject"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Creates the sub-room object.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="createSubRoomObject"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-kotlin">abstract fun createSubRoomObject(subRoomUuid: String): AgoraEduContextSubRoom</codeblock>
+                <codeblock props="ios mac" outputclass="language-swift">AgoraEduContextSubRoom createSubRoomObject(String subRoomUuid)</codeblock>
+                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="web" outputclass="language-typescript"/>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <p>After the sub-room object is created, the life cycle of the object can be managed from the outside.</p>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+            <parml>
+                <plentry>
+                    <pt>subRoomUuid</pt>
+                    <pd>The sub-room ID.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <p>Returns the sub-room object <xref keyref="AgoraEduSubRoomContext"/>. If the local user is not in the user list of the <parmname> subRoomUuid</parmname>, the SDK returns an empty object.</p>
+        </section>
+    </refbody>
+</reference>

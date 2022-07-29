@@ -15,8 +15,8 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java"/>
             <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int startScreenCaptureByScreenRect(const Rectangle&amp; screenRect, 
-     const Rectangle&amp; regionRect, 
+            <codeblock props="cpp" outputclass="language-cpp">virtual int startScreenCaptureByScreenRect(const Rectangle&amp; screenRect,
+     const Rectangle&amp; regionRect,
      const ScreenCaptureParameters&amp; captureParams) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">startScreenCaptureByScreen(screenSymbol: ScreenSymbol,
      regionRect: Rectangle,
@@ -29,12 +29,12 @@
       [Rectangle? regionRect, ScreenCaptureParameters? captureParams]);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>自从</dt>
-                <dd>v2.4.0</dd>
-            </dlentry>
-            </dl>
+            <dl outputclass="deprecated">
+                <dlentry>
+                    <dt>弃用：</dt>
+                    <dd><ph>该方法已废弃。</ph><ph props="cpp flutter">请改用 <xref keyref="startScreenCaptureByDisplayId"/>。如果你需要在设备外接其他显示屏的情况下开启屏幕共享，Agora 强烈建议你使用 <apiname keyref="startScreenCaptureByDisplayId"/>。</ph> </dd>
+                </dlentry>
+                </dl>
             <p id="desc">共享一个屏幕或该屏幕的部分区域。你需要在该方法中指定想要共享的屏幕区域。</p>
             <note type="attention" id="note">
             <ul>
@@ -54,7 +54,7 @@
             </plentry>
             <plentry>
                 <pt>regionRect</pt>
-                <pd>(可选）指定待共享区域相对于整个屏幕的位置。如不填，则表示共享整个屏幕。详见 <xref keyref="Rectangle"/>。如果设置的共享区域超出了屏幕的边界，则只共享屏幕内的内容；如果将 width 或 height 设为 0 ，则共享整个屏幕。</pd>
+                <pd>（可选）指定待共享区域相对于整个屏幕的位置。如不填，则表示共享整个屏幕。详见 <xref keyref="Rectangle"/>。如果设置的共享区域超出了屏幕的边界，则只共享屏幕内的内容；如果将 width 或 height 设为 0 ，则共享整个屏幕。</pd>
             </plentry>
             <plentry>
                 <pt>captureParams</pt>

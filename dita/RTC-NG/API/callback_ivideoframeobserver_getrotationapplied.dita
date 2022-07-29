@@ -14,7 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">boolean getRotationApplied();</codeblock>
-            <codeblock props="ios mac">- (BOOL)getRotationApplied;</codeblock>
+            <codeblock props="ios mac">- (BOOL)getRotationApplied;</codeblock> </p>
             <codeblock props="cpp" outputclass="language-cpp">virtual bool getRotationApplied() { return false; }</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp"/>
@@ -25,7 +25,12 @@
             <p props="cpp android">如果你希望获取的视频数据已根据 <apiname keyref="VideoFrame"/> 中的旋转信息 <parmname>rotation</parmname> 进行旋转，需要在调用 <xref keyref="registerVideoFrameObserver"/> 方法时注册该回调。成功注册视频数据观测器后，SDK 会在捕捉到每个视频帧时触发该回调，你需要在该回调的返回值中设置是否对采集到的视频数据进行旋转。</p>
             <p props="ios mac"><ph props="rtc">如果你希望获取的视频数据已根据 <xref keyref="VideoFrame"/> 中的旋转信息 <parmname>rotation</parmname> 进行旋转，需要在调用 <xref keyref="registerVideoFrameObserver"/> 方法时注册该回调。成功注册视频数据观测器后，SDK 会在捕捉到每个视频帧时触发该回调，你需要在该回调的返回值中设置是否对采集到的视频数据进行旋转。</ph></p>
             <p props="ios mac"><ph props="rtc-ng">如果你在采集端已经根据 <xref keyref="VideoFrame"/> 中的旋转信息 <parmname>rotation</parmname> 进行旋转，就无需调用该方法设置视频数据旋转。</ph></p>
-            <note type="attention">该功能仅支持 RGBA 和 YUV420 格式的视频数据。</note> </section>
+            <note type="attention" id="note1">
+                <ul>
+                    <li>该功能仅支持视频处理模式为 <apiname keyref="PROCESS_MODE_READ_ONLY"/> 的场景。</li>
+                    <li>该功能仅支持 RGBA 和 YUV420 格式的视频数据。</li>
+                </ul>
+            </note> </section>
         <section id="return_values">
             <title>返回值</title>
             <p>设置 SDK 输出视频数据时是否作旋转处理：

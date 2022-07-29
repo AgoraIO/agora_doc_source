@@ -12,6 +12,7 @@
   public int sentBitrate;
   public int internalCodec;
   public int txPacketLossRate;
+  public int audioDeviceDelay;
 };</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcLocalAudioStats : NSObject
 @property(assign, nonatomic) NSUInteger numChannels;
@@ -19,6 +20,7 @@
 @property(assign, nonatomic) NSUInteger sentBitrate;
 @property(assign, nonatomic) NSUInteger internalCodec;
 @property(assign, nonatomic) NSUInteger txPacketLossRate;
+@property(assign, nonatomic) NSUInteger audioDeviceDelay;
 
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct LocalAudioStats
@@ -28,6 +30,7 @@
   int sentBitrate;
   int internalCodec;
   unsigned short txPacketLossRate;
+  int audioDeviceDelay;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LocalAudioStats {
   numChannels?: number
@@ -113,6 +116,10 @@
                 <pt>internalCodec</pt>
                 <pd>内部的 payload 类型。</pd>
             </plentry>
+            <plentry>
+                <pt>audioDeviceDelay</pt>
+                <pd>播放或录制音频时，音频设备模块的延时。</pd>
+            </plentry>                
             </parml> </section>
     </refbody>
 </reference>

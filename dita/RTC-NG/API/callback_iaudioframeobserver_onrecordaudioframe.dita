@@ -28,7 +28,7 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <note type="note">为保证采集到的音频数据格式符合预期，Agora 推荐你在调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器后，调用 <xref keyref="setRecordingAudioFrameParameters"/> 方法设置采集的音频数据格式。</note> </section>
+            <note type="note">为保证采集到的音频数据格式符合预期，Agora 推荐你在调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器后，调用 <xref keyref="getRecordAudioParams"/> 方法设置采集的音频数据格式。SDK 会根据 <apiname keyref="getRecordAudioParams"/> 回调返回值中设置的 <parmname>AudioParams</parmname> 计算采样间隔， 并根据该采样间隔触发 <apiname keyref="onRecordAudioFrame"/> 回调。</note> </section>
         <section id="parameters" conkeyref="onMixedAudioFrame/parameters"/>
         <section id="return_values" conkeyref="onMixedAudioFrame/return_values"/>
     </refbody>

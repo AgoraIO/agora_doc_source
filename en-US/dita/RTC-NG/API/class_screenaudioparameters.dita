@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_screenaudioparameters">
+    <title><ph keyref="ScreenAudioParameters"/></title>
+    <shortdesc id="short"><ph id="shortdesc">The audio configuration for the shared screen stream.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">  public static class AudioCaptureParameters {
+        public int sampleRate = 16000;
+        public int channels = 2;
+        public int captureSignalVolume = 100;
+
+    @CalledByNative("AudioCaptureParameters")
+    public int getSampleRate() {
+      return sampleRate;
+    }
+
+    @CalledByNative("AudioCaptureParameters")
+    public int getChannels() {
+      return channels;
+    }
+
+    @CalledByNative("AudioCaptureParameters")
+    public int getCaptureSignalVolume() {
+      return captureSignalVolume;
+    }
+
+    @Override
+    public String toString() {
+      return "AudioCaptureParameters{"
+          + "sampleRate=" + sampleRate + ", channels=" + channels
+          + ", captureSignalVolume=" + captureSignalVolume + '}';
+    }
+  }
+</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenAudioParameters : NSObject
+@property(assign, nonatomic) NSInteger captureSignalVolume;
+@end
+</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">struct ScreenAudioParameters {
+#if defined(__ANDROID__)
+    int sampleRate = 16000;
+    int channels = 2;
+#endif
+    int captureSignalVolume = 100;
+};
+</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>Only available where <parmname>captureAudio</parmname> is <codeph><ph keyref="true"/></codeph>.</p>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+                <plentry props="android cpp">
+                    <pt>sampleRate</pt>
+                    <pd>Audio sample rate (Hz). The default value is 16000.</pd>
+                </plentry>
+                <plentry props="android cpp">
+                    <pt>channels</pt>
+                    <pd>The number of audio channels. The default value is 2, which means stereo.</pd>
+                </plentry>
+            <plentry>
+                <pt>captureSignalVolume</pt>
+                <pd>The volume of the captured system audio. The value range is [0, 100]. The default value is 100.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

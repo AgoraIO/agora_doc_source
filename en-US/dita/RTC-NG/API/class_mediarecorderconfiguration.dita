@@ -2,12 +2,32 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_mediarecorderconfiguration">
     <title><ph keyref="MediaRecorderConfiguration"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Local audio and video stream recording configuration.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Configurations for the local audio and video recording.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="android" outputclass="language-java">public static class MediaRecorderConfiguration {
+    public String storagePath;
+    public int containerFormat = CONTAINER_MP4;
+    public int streamType = STREAM_TYPE_BOTH;
+    public int maxDurationMs = 120000;
+    public int recorderInfoUpdateInterval = 0;
+
+    public MediaRecorderConfiguration(String storagePath, int containerFormat, int streamType,
+        int maxDurationMs, int recorderInfoUpdateInterval) {
+      this.storagePath = storagePath;
+      this.containerFormat = containerFormat;
+      this.streamType = streamType;
+      this.maxDurationMs = maxDurationMs;
+      this.recorderInfoUpdateInterval = recorderInfoUpdateInterval;
+    }
+  }</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaRecorderConfiguration : NSObject
+@property(copy, nonatomic) NSString* _Nonnull storagePath;
+@property(assign, nonatomic) AgoraMediaRecorderContainerFormat containerFormat;
+@property(assign, nonatomic) AgoraMediaRecorderStreamType streamType;
+@property(assign, nonatomic) NSUInteger maxDurationMs;
+@property(assign, nonatomic) NSUInteger recorderInfoUpdateInterval;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct MediaRecorderConfiguration {
   const char* storagePath;
   MediaRecorderContainerFormat containerFormat;
@@ -15,7 +35,7 @@
   int maxDurationMs;
   int recorderInfoUpdateInterval;
 
-  MediaRecorderConfiguration() : storagePath(nullptr), containerFormat(FORMAT_MP4), streamType(STREAM_TYPE_BOTH), maxDurationMs(120000), recorderInfoUpdateInterval(0) {}
+  MediaRecorderConfiguration() : storagePath(NULL), containerFormat(FORMAT_MP4), streamType(STREAM_TYPE_BOTH), maxDurationMs(120000), recorderInfoUpdateInterval(0) {}
   MediaRecorderConfiguration(const char* path, MediaRecorderContainerFormat format, MediaRecorderStreamType type, int duration, int interval) : storagePath(path), containerFormat(format), streamType(type), maxDurationMs(duration), recorderInfoUpdateInterval(interval) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
@@ -33,35 +53,39 @@
             <p/>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
                 <pt>storagePath</pt>
                 <pd>The absolute path (including the filename extensions) of the recording file. For example:<ul>
-                    <li>Windows: <codeph>C:\Users\&lt;user_name>\AppData\Local\Agora\&lt;process_name>\example.jpg</codeph></li>
-                    <li>iOS:<codeph> /App Sandbox/Library/Caches/example.jpg</codeph></li>
-                    <li>macOS: <codeph>～/Library/Logs/example.jpg</codeph></li>
-                    <li>Android:<codeph> /storage/emulated/0/Android/data/&lt;package name>/files/example.jpg</codeph></li>
+                    <li>Windows: <codeph>C:\Users\&lt;user_name>\AppData\Local\Agora\&lt;process_name>\example.mp4</codeph></li>
+                    <li>iOS: <codeph>/App Sandbox/Library/Caches/example.mp4</codeph></li>
+                    <li>macOS: <codeph>/Library/Logs/example.mp4</codeph></li>
+                    <li>Android: <codeph>/storage/emulated/0/Android/data/&lt;package name>/files/example.mp4</codeph></li>
                     </ul>
-                    <note type="attention">Ensure that the path for the recording file exists and is writable.</note></pd>
+                    <note type="attention">Ensure that the directory for the log files exists and is writable.</note></pd>
             </plentry>
             <plentry>
                 <pt>containerFormat</pt>
-                <pd>The format of the recording file. See <xref keyref="MediaRecorderContainerFormat"/>.</pd>
+                <pd props="cpp ios mac unity flutter">The format of the recording file. See <xref keyref="MediaRecorderContainerFormat"/>.</pd>
+                <pd props="android">The format of the recording file. Only <apiname keyref="FORMAT_MP4"/> is supported.</pd>
             </plentry>
             <plentry>
                 <pt>streamType</pt>
-                <pd>The recording content. See <xref keyref="MediaRecorderStreamType"/>.</pd>
+                <pd props="cpp ios mac unity flutter">The recording content. See <xref keyref="MediaRecorderStreamType"/>.</pd>
+                <pd props="android">The recording content:<ul>
+                    <li><apiname keyref="STREAM_TYPE_AUDIO"/>: Only audio.</li>
+                    <li><apiname keyref="STREAM_TYPE_VIDEO"/>: Only video.</li>
+                    <li><apiname keyref="STREAM_TYPE_BOTH"/>: (Default) Audio and video.</li>
+                </ul></pd>
             </plentry>
             <plentry>
                 <pt>maxDurationMs</pt>
-                <pd>The maximum recording duration in milliseconds, the default value is 120,000.</pd>
+                <pd>The maximum recording duration, in milliseconds. The default value is 120000.</pd>
             </plentry>
             <plentry>
                 <pt>recorderInfoUpdateInterval</pt>
-                    <pd>The interval (ms) of updating the recording information. The value range is [1000,10000]. The SDK triggers the <xref keyref="onRecorderInfoUpdated" /> callback to report the updated recording information according to interval you set in this parameter.</pd>
+                <pd>The interval (ms) of updating the recording information. The value range is [1000,10000]. Based on the value you set in this parameter, the SDK triggers the <xref keyref="onRecorderInfoUpdated"/> callback to report the updated recording information.</pd>
             </plentry>
             </parml> </section>
     </refbody>

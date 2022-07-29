@@ -1,57 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onstreaminjectedstatus">
-     <title> <ph keyref="onStreamInjectedStatus"/> </title>
-     <shortdesc id="short"> <ph id="shortdesc">输入在线媒体流状态回调。</ph> </shortdesc>
-     <prolog>
-          <metadata>
-               <keywords>
-                    <indexterm keyref="onStreamInjectedStatus"/>
-               </keywords>
-          </metadata>
-     </prolog>
-     <refbody>
-          <section id="prototype">
-               <p outputclass="codeblock">
-               <codeblock props="android" outputclass="language-java">public void onStreamInjectedStatus(String url, int uid, int status) {}</codeblock>
-               <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+    <title><ph keyref="onStreamInjectedStatus"/></title>
+    <shortdesc id="short"><ph id="shortdesc">输入在线媒体流状态回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onStreamInjectedStatus"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onStreamInjectedStatus(String url, int uid, int status) {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
     streamInjectedStatusOfUrl:(NSString * _Nonnull)url uid:(NSUInteger)uid status:(AgoraInjectStreamStatus)status;</codeblock>
-               <codeblock props="cpp" outputclass="language-cpp">virtual void onStreamInjectedStatus(const char* url, uid_t uid, int status) {
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onStreamInjectedStatus(const char* url, uid_t uid, int status) {
      (void)url;
      (void)uid;
      (void)status;
      }</codeblock>
-               <codeblock props="electron" outputclass="language-typescript"/>
-               <codeblock props="unity" outputclass="language-csharp">public virtual void OnStreamInjectedStatus(string url, uint uid, int status)</codeblock>
-               <codeblock props="rn" outputclass="language-typescript"/>
-               <codeblock props="flutter" outputclass="language-dart"/> </p>
-          </section>
-          <section id="detailed_desc">
-               <note conkeyref="addInjectStreamUrl/inject-sunset-note" props="en"/> </section>
-          <section id="parameters">
-               <title> <ph keyref="callback-section-title"/> </title>
-               <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
-               <parml>
-               <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                    <pt/>
-                    <pd/>
-               </plentry>
-               <plentry id="url">
-                    <pt>url</pt>
-                    <pd>在线媒体流的地址。</pd>
-               </plentry>
-               <plentry id="uid">
-                    <pt>uid</pt>
-                    <pd>用户 ID。</pd>
-               </plentry>
-               <plentry id="status">
-                    <pt>status</pt>
-                    <pd>
-                              输入的在线媒体流状态:
-                              <xref keyref="INJECT_STREAM_STATUS"/>
-                              。
-                         </pd>
-               </plentry>
-               </parml> </section>
-     </refbody>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnStreamInjectedStatus(string url, uint uid, int status)</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <note conkeyref="addInjectStreamUrl/inject-sunset-note" props="en"/> </section>
+            <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <parml>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry id="url">
+                <pt>url</pt>
+                <pd>在线媒体流的地址。</pd>
+            </plentry>
+            <plentry id="uid">
+                <pt>uid</pt>
+                <pd>用户 ID。</pd>
+            </plentry>
+            <plentry id="status">
+                <pt>status</pt>
+                <pd props="apple cpp electron rn flutter unity">输入的在线媒体流状态: <xref keyref="INJECT_STREAM_STATUS"/> 。</pd>
+                <pd props="android">输入的在线媒体流状态：
+                <ul>
+                    <li><ph keyref="INJECT_STREAM_STATUS_START_SUCCESS"/> 0: 外部视频流导入成功。</li>
+                    <li><ph keyref="INJECT_STREAM_STATUS_START_ALREADY_EXISTS"/> 1: 外部视频流已存在。</li>
+                    <li><ph keyref="INJECT_STREAM_STATUS_START_UNAUTHORIZED"/> 2: 外部视频流导入未经授权。</li>
+                    <li><ph keyref="INJECT_STREAM_STATUS_START_TIMEDOUT"/> 3: 导入外部视频流超时。</li>
+                    <li><ph keyref="INJECT_STREAM_STATUS_START_FAILED"/> 4: 外部视频流导入失败。</li>
+                    <li><ph keyref="INJECT_STREAM_STATUS_STOP_SUCCESS"/> 5: 外部视频流停止导入成功。</li>
+                    <li><ph keyref="INJECT_STREAM_STATUS_STOP_NOT_FOUND"/> 6: 未找到要停止导入的外部视频流。</li>
+                    <li><ph keyref="INJECT_STREAM_STATUS_STOP_UNAUTHORIZED"/> 7: 要停止导入的外部视频流未经授权。</li>
+                    <li><ph keyref="INJECT_STREAM_STATUS_STOP_TIMEDOUT"/> 8: 停止导入外部视频流超时。</li>
+                    <li><ph keyref="INJECT_STREAM_STATUS_STOP_FAILED"/> 9: 停止导入外部视频流失败。</li>
+                    <li><ph keyref="INJECT_STREAM_STATUS_BROKEN"/> 10: 导入的外部视频流被中断。</li>
+                </ul>
+                </pd>
+            </plentry>
+            </parml>
+        </section>
+    </refbody>
 </reference>

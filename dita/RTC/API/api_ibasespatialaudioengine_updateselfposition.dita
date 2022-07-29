@@ -25,6 +25,7 @@
         <section id="detailed_desc">
             <p id="effect">在不同类下调用该方法时，作用不同：
             
+            
             <ul>
             <li>在 <xref keyref="ICloudSpatialAudioEngine"/> 类下调用该方法时，SDK 会向 Agora 空间音效服务器更新本地用户的空间位置。Agora 空间音效服务器会根据本地和远端用户的世界坐标和音频接收范围计算用户的空间音效参数。</li>
             <li>在 <xref keyref="ILocalSpatialAudioEngine"/> 类下，该方法需要和 <xref keyref="updateRemotePosition"/> 搭配使用。SDK 会根据该方法和 <apiname keyref="updateRemotePosition"/> 设置的参数计算本地和远端用户之间的相对位置，从而计算用户的空间音效参数。</li>
@@ -33,6 +34,7 @@
             <ul>
             <li>该方法需要在 <xref keyref="enterRoom"/> 后调用。</li>
             <li>如果在 <apiname keyref="ICloudSpatialAudioEngine"/> 类下调用该方法，需注意：
+                
                 
                 <ul>
                 <li>多次调用该方法时，Agora 推荐调用时间间隔为 [120,7000) 毫秒，否则 SDK 和 Agora 空间音效服务器会失去同步。</li>

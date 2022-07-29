@@ -1,22 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_updatescreencaptureparameters">
-    <title><ph keyref="updateScreenCaptureParameters" /></title>
-    <shortdesc id="short"><ph id="shortdesc">更新屏幕共享的参数配置。</ph></shortdesc>
-    <prolog>
-        <metadata>
-            <keywords>
-                <indexterm keyref="updateScreenCaptureParameters" />
-            </keywords>
-        </metadata>
-    </prolog>
+<reference id="class_contentinspectconfig">
+    <title><ph keyref="ContentInspectConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc">视频内容审核配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
-            <codeblock props="mac" outputclass="language-objectivec">- (int)updateScreenCaptureParameters:(AgoraScreenCaptureParameters * _Nonnull)captureParams;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int updateScreenCaptureParameters(const ScreenCaptureParameters&amp; captureParams) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp">public class ContentInspectConfig
+    {
+        public bool DeviceWork;
+        public bool CloudWork;
+        public CONTENT_INSPECT_DEVICE_TYPE DeviceworkType;</codeblock>
+            <codeblock props="android">public class ContentInspectConfig {
+  public final static int CONTENT_INSPECT_TYPE_INVALID = 0;
+  public final static int CONTENT_INSPECT_TYPE_MODERATION = 1;
+  public final static int CONTENT_INSPECT_TYPE_SUPERVISE = 2;
+  public static final int MAX_CONTENT_INSPECT_MODULE_COUNT = 32;
+  public String extraInfo;
+  public ContentInspectModule[] modules;
+  public int moduleCount;
+
+  public static class ContentInspectModule {
+    public int type;
+    public int interval;
+
+    public ContentInspectModule() {
+      type = CONTENT_INSPECT_TYPE_INVALID;
+      interval = 0;
+    }
+  }</codeblock>
+            <codeblock props="ios mac">__attribute__((visibility("default"))) @interface AgoraContentInspectConfig: NSObject
+@property (nonatomic, copy) NSString* _Nullable extraInfo;
+@property(copy, nonatomic) NSArray&lt;AgoraContentInspectModule*>* _Nullable modules;
+@end</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">struct ContentInspectConfig {
+  const char* extraInfo;
+
+  ContentInspectModule modules[MAX_CONTENT_INSPECT_MODULE_COUNT];
+  int moduleCount;
+   ContentInspectConfig&amp; operator=(const ContentInspectConfig&amp; rth)
+	{
+        extraInfo = rth.extraInfo;
+        moduleCount = rth.moduleCount;
+		memcpy(&amp;modules, &amp;rth.modules,  MAX_CONTENT_INSPECT_MODULE_COUNT * sizeof(ContentInspectModule));
+		return *this;
+	}
+  ContentInspectConfig() :extraInfo(NULL), moduleCount(0){}
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int UpdateScreenCaptureParameters(ScreenCaptureParameters captureParams);</codeblock>
             <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; updateScreenCaptureParameters(
@@ -25,9 +56,39 @@
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry>
+            <plentry props="untiy flutter">
                 <pt>captureParams</pt>
                 <pd>屏幕共享的编码参数配置。默认的分辨率为 1920 x 1080，即 2073600 像素。该像素值为计费标准。详见 <xref keyref="ScreenCaptureParameters" />。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt>CONTENT_INSPECT_TYPE_INVALID</pt>
+                <pd>（默认）该功能模块无实际功能。请不要将 <parmname>type</parmname> 设为该值。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt>CONTENT_INSPECT_TYPE_MODERATION</pt>
+                <pd>视频鉴黄。SDK 会对本地用户发送的视频进行截图、鉴黄，并将截图和审核结果上传。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt>CONTENT_INSPECT_SUPERVISE</pt>
+                <pd>视频截图。SDK 会对本地用户发送的视频进行截图并上传。</pd>
+            </plentry>
+            <plentry>
+                <pt>extraInfo</pt>
+                <pd>
+                    <p>视频内容审核的附加信息，最大长度为 1024 字节。</p>
+                    <p>SDK 会将附加信息和截图一起上传至 Agora 内容审核服务器；审核完成后，Agora 内容审核服务器会将附加信息随审核结果一起发送给你的服务器。</p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>modules</pt>
+                <pd>
+                    <p>视频内容审核模块。详见 <xref keyref="ContentInspectModule"/>。</p>
+                    <p>最多支持配置 32 个 <apiname keyref="ContentInspectModule"/> 实例，<parmname>MAX_CONTENT_INSPECT_MODULE_COUNT</parmname> 的取值范围为 [1,32] 中的整数。</p>
+                    <note type="attention">一个视频内容审核模块最多只能配置一个实例。</note> </pd>
+            </plentry>
+            <plentry>
+                <pt>moduleCount</pt>
+                <pd>视频内容审核模块数，即配置的 <apiname keyref="ContentInspectModule"/> 实例的数量，必须与 <parmname>modules</parmname> 中配置的实例个数一致。最大值为 32。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity rn">

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_iaudiodevicemanager_followsystemrecordingdevice">
     <title><ph keyref="followSystemRecordingDevice"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the audio playback device used by the SDK to follow the system default audio playback device.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the audio recording device used by the SDK to follow the system default audio recording device.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -13,25 +13,24 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="mac" outputclass="language-objectivec">(int) followSystemRecordingDevice:(BOOL)enable;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int followSystemRecordingDevice(bool enable) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int FollowSystemRecordingDevice(bool enable);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart"/></p>
         </section>
         <section><ph keyref="callback-section-title"/>
             <parml id="parml_ywj_tf3_5sb">
             <plentry>
                 <pt>enable</pt>
-                <pd>Whether to follow the system default audio playback device:<ul id="ul_zwj_tf3_5sb">
-                    <li><ph keyref="true"/>: Follow. The SDK immediately switches the audio playback device when the system default audio playback device changes.</li>
-                    <li><ph keyref="false"/>: Do not follow. The SDK switches the audio playback device to the system default audio playback device only when the currently used audio playback device is disconnected.</li>
+                <pd>Whether to follow the system default audio recording device:<ul id="ul_zwj_tf3_5sb">
+                    <li><codeph><ph keyref="true"/></codeph>: Follow. The SDK immediately switches the audio recording device when the system default audio recording device changes.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Do not follow. The SDK switches the audio recording device to the system default audio recording device only when the currently used audio recording device is disconnected.</li>
                     </ul></pd>
             </plentry>
             </parml></section>
-        <section id="return_values" props="native unity electron">
+        <section id="return_values" props="mac cpp unity electron">
             <title>Returns</title>
             <ul>
             <li>0: Success.</li>

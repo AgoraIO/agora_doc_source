@@ -45,6 +45,7 @@
             <p props="rtc">你可以从 <xref keyref="onVirtualBackgroundSourceEnabled"/> 回调了解虚拟背景是否成功开启和相应的出错原因。</p>
             <p props="rtc-ng">开启虚拟背景功能涉及一系列方法的调用，调用顺序如下： 
             
+            
             <ol>
             <li props="android">在初始化 <xref keyref="IRtcEngine"/> 时调用 <codeph><xref keyref="addExtension"/>(<q>agora_segmentation_extension</q>)</codeph>，在项目中集成虚拟背景动态库。</li>
             <li props="ios">在项目文件中链接动态库 <codeph>AgoraVideoSegmentationExtension.xcframework</codeph></li>
@@ -59,6 +60,7 @@
             <li props="rtc">调用该方法前，请确保你已集成相应的动态库。
                 
                 
+                
                 <ul props="android cpp rn flutter ios mac electron">
                 <li props="android cpp rn flutter">Android: <ph>libagora_segmentation_extension.so</ph></li>
                 <li props="ios cpp rn flutter">iOS: <ph>AgoraVideoSegmentationExtension.xcframework</ph></li>
@@ -67,6 +69,7 @@
                 </ul></li>
             <li props="rtc">该方法需要在 <xref keyref="enableVideo"/> 后调用。</li>
             <li>该功能对设备性能要求较高，Agora 推荐你在搭载如下芯片的设备上使用：    
+                
                 
                 <ul>
                 <li props="android cpp rn flutter">骁龙 700 系列 750G 及以上</li>
@@ -77,6 +80,7 @@
                 <li props="mac cpp cs electron">CPU 为 i5 及更好的设备</li>
                 <li props="ios cpp rn flutter">搭载 A9 及以上芯片的如下设备：
                     
+                    
                     <ul>
                     <li>iPhone 6S 及以上</li>
                     <li>iPad Air 第三代及以上</li>
@@ -86,6 +90,7 @@
                     </ul></li>
                 </ul></li>
             <li>Agora 建议你在满足如下条件的场景中使用该功能：   
+                
                 
                 <ul>
                 <li>使用高清摄像设备、摄像环境光照均匀。</li>
@@ -99,6 +104,7 @@
                 <pt props="cpp android cs flutter">enabled</pt>
                 <pt props="ios mac">enable</pt>
                 <pd>是否开启虚拟背景：
+                    
                     
                     
                     <ul>
@@ -121,7 +127,9 @@
                 <pd>视频源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。
                     
                     
+                    
                     <note type="attention">在该方法中，该参数仅支持以下两种设置： 
+                    
                     
                     
                     <ul>
@@ -135,6 +143,7 @@
             <ul>
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。      
+                
                 
                 
                 <ul props="rtc-ng">

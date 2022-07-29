@@ -13,10 +13,14 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public void onFirstLocalVideoFramePublished(int elapsed) {}</codeblock>
+            <codeblock props="android" outputclass="language-java">public void onFirstLocalVideoFramePublished(Constants.VideoSourceType source, int elapsed) {}
+</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
-                    firstLocalVideoFramePublishedWithElapsed:(NSInteger)elapsed;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onFirstLocalVideoFramePublished(int elapsed) {
+                 firstLocalVideoFramePublishedWithElapsed:(NSInteger)elapsed
+                 sourceType:(AgoraVideoSourceType)sourceType;
+</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">  virtual void onFirstLocalVideoFramePublished(VIDEO_SOURCE_TYPE source, int elapsed) {
+    (void)source;
     (void)elapsed;
     }</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onFirstLocalVideoFramePublished?(connection: RtcConnection, elapsed: number): void;</codeblock>
@@ -37,10 +41,8 @@
             </dlentry>
             </dl>
             <p>SDK 会在以下三种时机触发该回调：
-
-
-
-
+       
+            
             <ul>
             <li>开启本地视频的情况下，调用 <apiname keyref="joinChannel2"/> 成功加入频道后。</li>
             <li>调用 <xref keyref="muteLocalVideoStream"/>(<codeph><ph keyref="true"/></codeph>)，再调用 <apiname keyref="muteLocalVideoStream"/>(<codeph><ph keyref="false"/></codeph>) 后。</li>
@@ -59,6 +61,10 @@
             <plentry props="unity electron rn flutter">
                 <pt>connection</pt>
                 <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+            <plentry conkeyref="onLocalVideoStateChanged/source">
+                    <pt/>
+                    <pd/>
+                </plentry>
             </plentry>
             <plentry>
                 <pt>elapsed</pt>

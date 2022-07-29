@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audiospectrumdata">
-    <title><ph keyref="AudioSpectrumData" /></title>
+    <title><ph keyref="AudioSpectrumData"/></title>
     <shortdesc id="short"><ph id="shortdesc">The audio spectrum data.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -10,7 +10,7 @@
   private float[] audioSpectrumData;
   private int dataLength;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
             <codeblock props="cpp" outputclass="language-cpp">struct AudioSpectrumData {
   const float *audioSpectrumData;
   int dataLength;
@@ -46,19 +46,17 @@
   }</codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
                 <pt>audioSpectrumData</pt>
                 <pd>
-                    <p>The audio spectrum data. Agora divides the audio frequency into 160 frequency domains, and reports the energy value of each frequency domain through this parameter. The value range of each energy type is [0, 1].</p>
+                    <p>The audio spectrum data. Agora divides the audio frequency into 256 frequency domains, and reports the energy value of each frequency domain through this parameter. The value range of each energy type is [-300, 1] and the unit is dBFS.</p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>dataLength</pt>
-                <pd>
-                    <p>The length of the audio spectrum data in byte.</p>
-                </pd>
+                <pd>The audio spectrum data length is 256.</pd>
             </plentry>
             </parml> </section>
     </refbody>

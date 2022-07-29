@@ -51,7 +51,10 @@
             mirrorMode = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_AUTO;
             sourceType = VIDEO_SOURCE_TYPE.VIDEO_SOURCE_CAMERA_PRIMARY;        }
 
-        public VideoCanvas(view_t v, RENDER_MODE_TYPE m, VIDEO_MIRROR_MODE_TYPE mt, uint u)
+        public VideoCanvas(view_t? view, RENDER_MODE_TYPE renderMode,
+             bool isScreenView, byte[] priv, uint priv_size,
+            VIDEO_SOURCE_TYPE sourceType, uint uid = 0,
+            VIDEO_MIRROR_MODE_TYPE mirrorMode = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_AUTO)
         {
             this.view = v;
             this.renderMode = m;

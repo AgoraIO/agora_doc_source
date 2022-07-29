@@ -13,11 +13,10 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int startScreenCapture(
-      Intent mediaProjectionPermissionResultData, ScreenCaptureParameters parameters);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int startScreenCapture(void* mediaProjectionPermissionResultData,
-                               const ScreenCaptureParameters&amp; captureParams) = 0;
+            <codeblock props="android" outputclass="language-java">public abstract int startScreenCapture(ScreenCaptureParameters screenCaptureParameters);
+</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (int)startScreenCapture:(AgoraScreenCaptureParameters2* _Nonnull)parameters NS_SWIFT_NAME(startScreenCapture(_:));</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp"> virtual int startScreenCapture(const ScreenCaptureParameters2&amp; captureParams) = 0;
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int StartScreenCapture(byte[] mediaProjectionPermissionResultData, ScreenCaptureParameters captureParams);</codeblock>
@@ -25,32 +24,38 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p>After successfully calling this method, you can share the entire screen through <xref keyref="MediaProjection-link">MediaProjection</xref>, an Android native class.</p>
-            <p id="apisequence">There are two ways to start screen sharing, you can choose one according to the actual needs:<ul>
-            <li><ph>Call this method before joining a channel, and then call <xref keyref="joinChannel2"/> to join a channel and set <parmname>publishScreenTrack</parmname> <ph props="cpp unity">or <parmname>publishSecondaryScreenTrack</parmname></ph> to <codeph><ph keyref="true"/></codeph> to start screen sharing.</ph></li>
-            <li><ph>Call this method after joining a channel, and then call <xref keyref="updateChannelMediaOptions"/> and set <parmname>publishScreenTrack</parmname> <ph props="cpp unity">or <parmname>publishSecondaryScreenTrack</parmname></ph> to <codeph><ph keyref="true"/></codeph> to start screen sharing.</ph></li>
+            <p props="unity">After successfully calling this method, you can share the entire screen through <xref keyref="MediaProjection-link">MediaProjection</xref>, an Android native class.</p>
+            <p props="android ios cpp unity">There are two ways to start screen sharing, you can choose one according to the actual needs:<ul>
+            <li>Call this method before joining a channel, and then call <xref keyref="joinChannel2"/> to join a channel and set <parmname>publishScreenCaptureVideo</parmname><ph props="unity"> or <parmname>publishSecondaryScreenTrack</parmname> </ph> to <codeph><ph keyref="true"/></codeph> to start screen sharing.</li>
+            <li>Call this method after joining a channel, and then call <xref keyref="updateChannelMediaOptions"/> and set <parmname>publishScreenCaptureVideo</parmname><ph props="unity"> or <parmname>publishSecondaryScreenTrack</parmname> </ph> to <codeph><ph keyref="true"/></codeph> to start screen sharing.</li>
+            </ul></p>
+            <p props="ios">When the screen sharing extension process starts, ends, or quits unexpectedly, the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and reports following states:<ul>
+            <li><apiname keyref="AgoraLocalVideoStreamErrorExtensionCaptureStarted"/>(13): The extension for the screen sharing process starts.</li>
+            <li><apiname keyref="AgoraLocalVideoStreamErrorExtensionCaptureStoped"/>(14): The extension for the screen sharing process ends.</li>
+            <li><apiname keyref="AgoraLocalVideoStreamErrorExtensionCaptureDisconnected"/>(15): The extension for the screen sharing process exits unexpectedly.</li>
             </ul></p>
             <note type="attention">
             <ul>
             <li props="cpp unity">This method is for Android only.</li>
-            <li>Before calling this method, you need to implement <xref keyref="onActivityResult-link">onActivityResult</xref>, an Android native callback, and obtain the value of the <parmname>data</parmname> parameter in this callback.</li>
-            <li>When sharing the screen on Android 10 or later, to avoid the Android system from triggering <xref keyref="SecurityException-link">SecurityException</xref>, you need to call <xref keyref="startForeground-link">startForeground</xref> (the Android native method) before calling <xref keyref="MediaProjection-link">MediaProjection</xref> to notify the user that the current device starts screen sharing.</li>
+            <li props="ios">Screen sharing is only available for iOS 12 or later.</li>
+            <li props="cpp ios">The billing for the screen sharing stream is based on the <parmname>dimensions</parmname> in <apiname keyref="ScreenVideoParameters"/>. When you do not pass in a value, Agora bills you at 1280 × 720; when you pass a value in, Agora bills you at that value. For details, see <xref keyref="guide-bill"/>.</li>
+            <li props="ios">If you are using the custom audio source instead of the SDK to capture audio, Agora recommends you add the keep-alive processing logic to your application to avoid screen sharing stopping when the application goes to the background.</li>
+            <li props="ios">This feature requires high-performance device , and Agora recommends that you use it on iPhone X and later models.</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry>
+            <plentry props="unity">
                 <pt>mediaProjectionPermissionResultData</pt>
                 <pd>
                     <p>Pass in the <parmname>data</parmname> parameter of the <apiname>onActivity</apiname> callback.</p>
                 </pd>
             </plentry>
-            <plentry>
-                <pt props="android">parameters</pt>
+            <plentry id="params">
+                <pt props="ios">parameters</pt>
+                <pt props="android">ScreenCaptureParameters</pt>
                 <pt props="cpp unity">captureParams</pt>
-                <pd>
-                    <p>The screen sharing encoding parameters. The default video dimension is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges. See <xref keyref="ScreenCaptureParameters"/>.</p>
-                </pd>
+                <pd>The screen sharing encoding parameters. The default video dimension is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges. See <xref keyref="ScreenCaptureParameters" props="unity"/><xref keyref="ScreenCaptureParameters2" props="android ios cpp"/>.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
@@ -58,7 +63,7 @@
             <ul>
             <li>0: Success.</li>
             <li>&lt; 0: Failure.<ul>
-                <li>-2: <parmname>mediaProjectionPermissionResultData</parmname> is null.</li>
+                <li>-2: The parameter is null.</li>
                 </ul></li>
             </ul> </section>
     </refbody>

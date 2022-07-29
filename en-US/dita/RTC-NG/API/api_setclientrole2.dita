@@ -32,11 +32,12 @@
             <p>If you call this method to switch the user role after joining a channel, the SDK automatically does the following:<ul>
             <li>Calls <xref keyref="muteLocalAudioStream"/> and <xref keyref="muteLocalVideoStream"/> to change the publishing state.</li>
             <li>Triggers <xref keyref="onClientRoleChanged"/> on the local client.</li>
-            <li>Triggers <xref keyref="onUserJoined"/> or <xref keyref="onUserOffline"/> on the remote client.</li>
+            <li>Triggers <xref keyref="onUserOffline"/> or <xref keyref="onUserJoined"/> on the remote client.</li>
             </ul></p>
+            <p props="ios" id="screenshare">In the screen sharing scenario, if the host becomes an audience member and then becomes a host again, you need to call this method to set the user role as the host, and then call <xref keyref="updateScreenCapture"/> and set <parmname>captureAudio</parmname> to <codeph><ph keyref="true"/></codeph>, otherwise audience member cannot receive the audio stream sent by the host.</p>
             <p props="native unity">The difference between this method and <xref keyref="setClientRole1"/> is that this method can set the user level in addition to the user role.<ul id="diff">
             <li>The user role (<parmname>role</parmname>) determines the permissions that the SDK grants to a user, such as permission to send local streams, receive remote streams, and push streams to a CDN address.</li>
-            <li>The user level (<parmname>level</parmname>) determines the level of services that a user can enjoy within the permissions of the user's role. For example, an audience member can choose to receive remote streams with low latency or ultra-low latency. <b>User level affects the pricing of services.</b></li>
+            <li>The user level (<parmname>level</parmname>) determines the <parmname>level</parmname> of services that a user can enjoy within the permissions of the user's role. For example, an audience member can choose to receive remote streams with low latency or ultra-low latency. <b>User level affects the pricing of services.</b></li>
             </ul></p>
             <note type="attention">This method applies to the interactive live streaming profile (the <parmname>profile</parmname> parameter of <xref keyref="setChannelProfile"/> is <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING"/>) only.</note> </section>
         <section id="parameters">

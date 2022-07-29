@@ -25,23 +25,31 @@
             <p>After you successfully register the video frame observer, the SDK triggers this callback each time it receives a video frame. In this callback, you can get the video data captured from the second camera before encoding and then process the data according to your particular scenarios.</p>
             <p>After processing, you can send the processed video data back to the SDK in this callback.</p>
             <note type="attention">
-            <ul>
-            <li>This callback is for Windows.</li>
-            <li>You need to set <apiname keyref="POSITION_PRE_ENCODER"/>(1 &lt;&lt; 2) as a frame position by <xref keyref="getObservedFramePosition"/> before you can use this callback to get the video data captured from the second screen and before encoding.</li>
-            <li>The video data that this callback gets has been preprocessed, with its content cropped and rotated, and the image enhanced.</li>
-            <li>This callback does not support sending processed RGBA video data back to the SDK.</li>
-            </ul></note> </section>
+                <ul>
+                    <li>This callback applies to Windows only.</li>
+                    <li>You need to set <apiname keyref="POSITION_PRE_ENCODER"/>(1 &amp;lt;&amp;lt; 2) as a frame position by <xref keyref="getObservedFramePosition"/> before you can use this callback to get the video data captured from the second screen and before encoding.</li>
+                    <li>The video data that this callback gets has been preprocessed, with its content cropped and rotated, and the image enhanced.</li>
+                    <li>This callback does not support sending processed RGBA video data back to the SDK.</li>
+                </ul>
+            </note>
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry conkeyref="onCaptureVideoFrame/videoframe">
-                <pt/>
-                <pd/>
-            </plentry>
-            </parml> </section>
+                <plentry conkeyref="onCaptureVideoFrame/videoframe">
+                    <pt/>
+                    <pd/>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values">
             <title>Returns</title>
-            <p conkeyref="onCaptureVideoFrame/return"/>
+            <p id="return">
+                <ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Sets the SDK to receive the video frame.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Sets the SDK to discard the video frame.</li>
+                </ul>
+            </p>
         </section>
     </refbody>
 </reference>

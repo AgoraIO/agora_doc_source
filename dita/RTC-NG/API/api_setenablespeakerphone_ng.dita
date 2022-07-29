@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setenablespeakerphone_ng">
     <title><ph keyref="setEnableSpeakerphone"/></title>
-    <shortdesc id="short"><ph id="shortdesc">暂态设置启用或关闭扬声器。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">开启或关闭扬声器播放。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,14 +20,13 @@
             <codeblock props="rn" outputclass="language-typescript">abstract setEnableSpeakerphone(speakerOn: boolean): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setEnableSpeakerphone(bool speakerOn);</codeblock> </section>
         <section id="detailed_desc">
-            <note props="cpp unity flutter">该方法仅适用于 Android 和 iOS 平台。</note>
-            <p>成功改变音频路由后，SDK 会触发 <xref keyref="onAudioRouteChanged"/> 回调。</p>
-            <p>该 API 可以在加入频道前、频道中、离开频道后调用。但是由于该 API 为暂态行为，我们推荐你在频道中调用，用来临时改变音频路由。</p>
+            <p>如果 SDK 默认的音频路由（见<xref keyref="guide-audio-route">音频路由</xref>）或 <xref keyref="setDefaultAudioRouteToSpeakerphone"/> 的设置无法满足你的需求，你可以调用 <xref keyref="setEnableSpeakerphone"/> 切换当前的音频路由。成功改变音频路由后，SDK 会触发 <xref keyref="onAudioRouteChanged"/> 回调。</p>
+            <p>该方法只设置用户在当前频道内使用的音频路由，不会影响 SDK 默认的音频路由。如果用户离开当前频道并加入新的频道，则用户还是会使用 SDK 默认的音频路由。</p>
             <note type="attention">
             <ul>
-            <li>如无明确的暂态设置需求，Agora 推荐调用稳态 API <xref keyref="setDefaultAudioRouteToSpeakerphone"/> 设置音频路由。</li>
-            <li>任何用户行为或者音频相关 API 的调用都有可能改变 <apiname keyref="setEnableSpeakerphone"/> 的暂态设置。<ph props="native">详细的路由更改原则请参考<xref keyref="guide-audio-route">音频路由</xref>。</ph></li>
-            <li props="ios cpp unity rn">由于系统限制，在 iOS 设备上，如果用户使用了蓝牙耳机、有线耳机等外接音频播放设备，则该方法无法将音频路由设置为扬声器。</li>
+            <li props="cpp unity flutter">该方法仅适用于 Android 和 iOS 平台。</li>
+            <li>该方法需要在加入频道后调用。</li>
+            <li>如果用户使用了蓝牙耳机、有线耳机等外接音频播放设备，则该方法的设置无效，音频只会通过外接设备播放。当有多个外接设备时，音频会通过最后一个接入的设备播放。</li>
             </ul></note> </section>
         <section id="parameters">
             <title>参数</title>
@@ -37,13 +36,11 @@
                 <pt props="ios mac">enableSpeaker</pt>
                 <pt props="cpp unity flutter rn">speakerOn</pt>
                 <pd>
-                    <p>是否使用扬声器作为当前音频路由：
-
-
-
+                    <p>设置是否开启扬声器播放：
+                    
                     <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: 暂时设置扬声器为音频路由。</li>
-                    <li><codeph><ph keyref="false"/></codeph>: 不将当前音频路由设为扬声器。</li>
+                    <li><codeph><ph keyref="true"/></codeph>: 开启。音频路由为扬声器。</li>
+                    <li><codeph><ph keyref="false"/></codeph>: 关闭。音频路由为听筒。</li>
                     </ul></p>
                 </pd>
             </plentry>

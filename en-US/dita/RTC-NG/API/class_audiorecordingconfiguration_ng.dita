@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audiorecordingconfiguration_ng">
-    <title> <ph keyref="AudioRecordingConfiguration"/> </title>
-    <shortdesc id="short"><ph id="shortdesc"
-        >Recording configuration.</ph></shortdesc>
+    <title><ph keyref="AudioRecordingConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Recording configuration.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -13,12 +12,14 @@
   public boolean codec;
   public int fileRecordOption;
   public int quality;
+  int recordingChannel;
 
   public AudioRecordingConfiguration() {
     sampleRate = 32000;
     codec = true;
     fileRecordOption = Constants.AUDIO_FILE_RECORDING_MIXED;
-    quality = Constants.AUDIO_RECORDING_QUALITY_LOW;
+    quality = Constants.AUDIO_RECORDING_QUALITY_MEDIUM;
+    recordingChannel = 1;
   }
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioRecordingConfiguration: NSObject
@@ -27,6 +28,7 @@
 @property (assign, nonatomic) NSUInteger sampleRate;
 @property (assign, nonatomic) AgoraAudioFileRecordingType fileRecordOption;
 @property (assign, nonatomic) AgoraAudioRecordingQuality quality;
+@property (assign, nonatomic) NSInteger recordingChannel;
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct AudioRecordingConfiguration {
   const char* filePath;
@@ -34,34 +36,39 @@
   int sampleRate;
   AUDIO_FILE_RECORDING_TYPE fileRecordingType;
   AUDIO_RECORDING_QUALITY_TYPE quality;
+  int recordingChannel;
 
   AudioRecordingConfiguration()
     : filePath(NULL),
       encode(false),
       sampleRate(32000),
       fileRecordingType(AUDIO_FILE_RECORDING_MIXED),
-      quality(AUDIO_RECORDING_QUALITY_LOW) {}
+      quality(AUDIO_RECORDING_QUALITY_LOW),
+      recordingChannel(1) {}
 
   AudioRecordingConfiguration(const char* file_path, int sample_rate, AUDIO_RECORDING_QUALITY_TYPE quality_type)
     : filePath(file_path),
       encode(false),
       sampleRate(sample_rate),
       fileRecordingType(AUDIO_FILE_RECORDING_MIXED),
-      quality(quality_type) {}
+      quality(quality_type),
+      recordingChannel(channel) {}
 
   AudioRecordingConfiguration(const char* file_path, bool enc, int sample_rate, AUDIO_FILE_RECORDING_TYPE type, AUDIO_RECORDING_QUALITY_TYPE quality_type)
     : filePath(file_path),
       encode(enc),
       sampleRate(sample_rate),
       fileRecordingType(type),
-      quality(quality_type) {}
+      quality(quality_type),
+      recordingChannel(channel) {}
 
   AudioRecordingConfiguration(const AudioRecordingConfiguration &amp;rhs)
     : filePath(rhs.filePath),
       encode(rhs.encode),
       sampleRate(rhs.sampleRate),
       fileRecordingType(rhs.fileRecordingType),
-      quality(rhs.quality) {}
+      quality(rhs.quality),
+      recordingChannel(rhs.recordingChannel) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class AudioRecordingConfiguration {
   filePath?: string
@@ -191,16 +198,25 @@
                 <pt>quality</pt>
                 <pd>
                     <p props="ios mac cpp unity electron rn flutter">Recording quality. See <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>.</p>
-                    <p props="android">Recording quality:
-                    <ul>
+                    <p props="android">Recording quality:<ul>
                     <li><ph keyref="AUDIO_RECORDING_QUALITY_LOW"/>(0): Low quality. For example, the size of an AAC file with a sample rate of 32,000 Hz and a recording duration of 10 minutes is around 1.2 MB.</li>
                     <li><ph keyref="AUDIO_RECORDING_QUALITY_MEDIUM"/>(1): (Default) Medium quality. For example, the size of an AAC file with a sample rate of 32,000 Hz and a recording duration of 10 minutes is around 2 MB.</li>
                     <li><ph keyref="AUDIO_RECORDING_QUALITY_HIGH"/>(2): High quality. For example, the size of an AAC file with a sample rate of 32,000 Hz and a recording duration of 10 minutes is around 3.5 MB.</li>
+                        <li><ph keyref="AUDIO_RECORDING_QUALITY_ULTRA_HIGH"/>(3): Ultra high quality. The sample rate is 32 kHz, and the file size is around 7.5 MB after 10 minutes of recording.</li>
                     </ul> </p>
                     <note id="note_hrx_mmz_mqb" type="attention">
-                    <p>This parameter applies to AAC files only.</p>
-                    </note> </pd>
+                    <p>Note: This parameter applies to AAC files only.</p>
+                    </note></pd>
             </plentry>
+                <plentry props="native">
+                    <pt>recordingChannel</pt>
+                    <pd>The audio channel of recording: The parameter supports the following values:<ul><li>1: (Default) Mono.</li>
+                        <li>2: Stereo.</li></ul>
+                        <note type="note"><p>The actual recorded audio channel is related to the audio channel that you capture.<ul>
+                                <li>If the captured audio is mono and <parmname>recordingChannel</parmname> is <codeph>2</codeph>, the recorded audio is the dual-channel data that is copied from mono data, not stereo.</li>
+                                <li>If the captured audio is dual channel and <parmname>recordingChannel</parmname> is <codeph>1</codeph>, the recorded audio is the mono data that is mixed by dual-channel data.</li></ul><ph>The integration scheme also affects the final recorded audio channel. Therefore, to record in stereo, contact <xref keyref="ticket-link"/>technical support for assistance.</ph></p></note>
+</pd>
+                </plentry>
             </parml> </section>
     </refbody>
 </reference>

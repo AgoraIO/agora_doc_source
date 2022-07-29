@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_mediasource">
+    <title><ph keyref="MediaSource"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Information related to the media file to be played and the playback scenario configurations.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class MediaPlayerSource {
+  public MediaPlayerSource() {
+    this.startPos = 0;
+    this.enableCache = false;
+    this.url = null;
+    this.uri = null;
+    this.autoPlay = true;
+    this.provider = null;
+  }
+  String url;
+  String uri;
+  long startPos;
+  boolean autoPlay;
+  Boolean isAgoraSource;
+  Boolean isLiveSource;
+  boolean enableCache;
+  IMediaPlayerCustomDataProvider provider;
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaSource : NSObject
+@property(copy, nonatomic) NSString *_Nullable url;
+@property(copy, nonatomic) NSString *_Nullable uri;
+@property(assign, nonatomic) NSUInteger startPos;
+@property(assign, nonatomic) BOOL enableCache;
+@property(assign, nonatomic) BOOL autoPlay;
+@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable isAgoraSource;
+@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable isLiveSource;
+@property(copy, nonatomic) AgoraRtcMediaPlayerCustomSourceOnReadCallback _Nonnull playerOnReadCallback;
+@property(copy, nonatomic) AgoraRtcMediaPlayerCustomSourceOnSeekCallback _Nonnull playerOnSeekCallback;
+@end
+@end</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">struct MediaSource {
+  const char* url;
+  const char* uri;
+  int64_t startPos;
+  bool autoPlay;
+  bool enableCache;
+  Optional&lt;bool> isAgoraSource;
+  Optional&lt;bool> isLiveSource;
+  IMediaPlayerCustomDataProvider* provider;
+
+  MediaSource() : url(NULL), uri(NULL), startPos(0), autoPlay(true), enableCache(false),
+                  provider(NULL){
+  }
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/></p></section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry>
+                <pt>url</pt>
+                <pd>
+                    <p>The URL of the media file to be played.</p>
+                    <note><ph>If you need to open a custom media resource, you do not have to pass in a value to the <parmname>url</parmname>.</ph></note></pd>
+            </plentry>
+            <plentry conkeyref="open2/uri">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry>
+                <pt>startPos</pt>
+                <pd>The starting position (ms) for playback. The default value is 0.</pd>
+            </plentry>
+            <plentry>
+                <pt>autoPlay</pt>
+                <pd>Whether to enable autoplay once the media file is opened:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: (Default) Enable autoplay.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Disable autoplay.</li>
+                    </ul>
+                    <note>
+                    <p>If autoplay is disabled, you need to call the <xref keyref="play"/> method to play a media file after it is opened.</p>
+                    </note></pd>
+            </plentry>
+            <plentry>
+                <pt>enableCache</pt>
+                <pd>Whether to cache the media file when it is being played:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>:Enable caching.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) Disable caching.</li>
+                    </ul>
+                    <note>
+                    <ul>
+                    <li>If you need to enable caching, pass in a value to <parmname>uri</parmname>; otherwise, caching is based on the <parmname>url</parmname> of the media file.</li>
+                    <li>If you enable this function, the Media Player caches part of the media file being played on your local device, and you can play the cached media file without internet connection. The statistics about the media file being cached are updated every second after the media file is played. See <xref keyref="CacheStatistics"/>.</li>
+                    </ul> </note></pd>
+            </plentry>
+            <plentry>
+                <pt>isAgoraSource</pt>
+                <pd>Whether the media resource to be opened is a live stream or on-demand video distributed through Media Broadcast service:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: The media resource is a live stream or on-demand video distributed through Media Broadcast service.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: The media resource is not a live stream or on-demand video distributed through Media Broadcast service.</li>
+                    </ul>
+                    <note>
+                    <p>If you need to open a live stream or on-demand video distributed through Broadcast Streaming service, pass in the URL of the media resource to <parmname>url</parmname>, and set <parmname>isAgoraSource</parmname> as <codeph><ph keyref="true"/></codeph>; otherwise, you don't need to set the <parmname>isAgoraSource</parmname> parameter.</p>
+                    </note></pd>
+            </plentry>
+            <plentry>
+                <pt>isLiveSource</pt>
+                <pd>Whether the media resource to be opened is a live stream:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: The media resource is a live stream.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) The media resource is not a live stream.</li>
+                    </ul>
+                    <p>If the media resource you want to open is a live stream, Agora recommends that you set this parameter as <codeph><ph keyref="true"/></codeph> so that the live stream can be loaded more quickly.</p>
+                    <note>
+                    <p>If the media resource you open is not a live stream, but you set <parmname>isLiveSource</parmname> as <codeph><ph keyref="true"/></codeph>, the media resource is not to be loaded more quickly.</p>
+                    </note> </pd>
+            </plentry>
+            <plentry props="android cpp">
+                <pt>provider</pt>
+                <pd>
+                    <p>The callback for custom media resource files. See <xref keyref="IMediaPlayerCustomDataProvider"/>.</p>
+                    <note>
+                    <p>If you need to open a custom media resource, such as an encrypted media file, pass in a value to <parmname>provider</parmname> rather than to <parmname>url</parmname>.</p>
+                    </note></pd>
+            </plentry>
+            <plentry props="apple">
+                <pt>playerOnReadCallback</pt>
+                <pd>
+                    <p>Occurs when the SDK reads the media resource data. See <xref keyref="onReadData"/>.</p>
+                    <note id="note">
+                    <p>If you need to open a custom media resource, such as an encrypted media file, pass in values to <parmname>playerOnReadCallback</parmname> and <parmname>playerOnSeekCallback</parmname> instead of to <parmname>url</parmname>.</p>
+                    </note></pd>
+            </plentry>
+            <plentry props="apple">
+                <pt>playerOnSeekCallback</pt>
+                <pd>
+                    <p>Occurs when the SDK seeks the media resource data. See <xref keyref="onSeek"/>.</p>
+                    <note conkeyref="MediaSource/note">
+                    <p/>
+                    </note></pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

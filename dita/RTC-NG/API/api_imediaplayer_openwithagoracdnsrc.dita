@@ -27,8 +27,9 @@
 </codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>调用该方法后，Agora 会打开媒体资源并通过自研调度中心请求媒体资源的所有 CDN 线路。Agora 默认使用第一个线路，你也可以通过 <xref keyref="switchAgoraCDNLineByIndex" /> 自行切换线路。</p>
-            <p id="auth">如果你希望保障连接和播放媒体资源的安全性，你可以<xref keyref="ticket-link" />协商鉴权字段 (<parmname>sign</parmname>) 和鉴权过期时间 (<parmname>ts</parmname>)。确定字段后，请将其作为 URL 的 <codeph>query parameter</codeph> 以更新媒体资源的网路路径。例如：
+            <note type="attention" conkeyref="open/note"/>
+            <p>调用该方法后，Agora 会打开媒体资源并通过自研调度中心请求媒体资源的所有 CDN 线路。Agora 默认使用第一个线路，你也可以通过 <xref keyref="switchAgoraCDNLineByIndex"/> 自行切换线路。</p>
+            <p id="auth">如果你希望保障连接和播放媒体资源的安全性，你可以<xref keyref="ticket-link"/>协商鉴权字段 (<parmname>sign</parmname>) 和鉴权过期时间 (<parmname>ts</parmname>)。确定字段后，请将其作为 URL 的 <codeph>query parameter</codeph> 以更新媒体资源的网路路径。例如：
             <ul>
             <li>媒体资源网络路径为 <codeph>rtmp://$domain/$appName/$streamName</codeph></li>
             <li>通过鉴权信息更新过的媒体资源网络路径为 <codeph>rtmp://$domain/$appName/$streamName?ts=$ts&amp;sign=$sign</codeph></li>

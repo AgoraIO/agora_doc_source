@@ -7,15 +7,18 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class EncodedVideoFrameInfo {
-  public int codecType;
-  public int width;
-  public int height;
-  public int framesPerSecond;
-  public int frameType;
-  public int rotation;
-  public int trackId;
-  public long renderTimeMs;
-  public int uid;
+    public int codecType;
+    public int width;
+    public int height;
+    public int framesPerSecond;
+    public int frameType;
+    public int rotation;
+
+    public int trackId;
+    public long captureTimeMs;
+    public int uid;
+    public int streamType;
+
   public EncodedVideoFrameInfo() {
     codecType = Constants.VIDEO_CODEC_H264;
     width = 0;
@@ -24,12 +27,14 @@
     frameType = Constants.VIDEO_FRAME_TYPE_BLANK_FRAME;
     rotation = Constants.VIDEO_ORIENTATION_0;
     trackId = 0;
-    renderTimeMs = 0;
+    captureTimeMs = 0;
     uid = 0;
+    streamType = Constants.VIDEO_STREAM_HIGH;
   }
+
   @CalledByNative
   public EncodedVideoFrameInfo(int codecType, int width, int height, int framesPerSecond,
-      int frameType, int rotation, int trackId, long renderTimeMs, long ：, int uid) {
+      int frameType, int rotation, int trackId, long captureTimeMs, int uid, int streamType) {
     this.codecType = codecType;
     this.width = width;
     this.height = height;
@@ -37,13 +42,16 @@
     this.frameType = frameType;
     this.rotation = rotation;
     this.trackId = trackId;
-    this.renderTimeMs = renderTimeMs;
+    this.captureTimeMs = captureTimeMs;
     this.uid = uid;
+    this.streamType = streamType;
   }
+
   @CalledByNative
   public int getCodecType() {
     return codecType;
   }
+
   @CalledByNative
   public int getWidth() {
     return width;
@@ -69,13 +77,18 @@
     return trackId;
   }
   @CalledByNative
-  public long getRenderTimeMs() {
-    return renderTimeMs;
+  public long getCaptureTimeMs() {
+    return captureTimeMs;
   }
   @CalledByNative
   public int getUid() {
     return uid;
   }
+  @CalledByNative
+  public int getStreamType() {
+    return streamType;
+  }
+
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -86,49 +99,78 @@
     sb.append(" frameType=").append(frameType);
     sb.append(" rotation=").append(rotation);
     sb.append(" trackId=").append(trackId);
-    sb.append(" renderTimeMs=").append(renderTimeMs);
+    sb.append(" captureTimeMs=").append(captureTimeMs);
     sb.append(" uid=").append(uid);
+    sb.append(" streamType=").append(streamType);
     return sb.toString();
   }
 }
+  </codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraEncodedVideoFrameInfo: NSObject
+
+@property (assign, nonatomic) AgoraVideoCodecType codecType;
+@property (assign, nonatomic) NSInteger width;
+@property (assign, nonatomic) NSInteger height;
+@property (assign, nonatomic) NSInteger framesPerSecond;
+@property (assign, nonatomic) AgoraVideoFrameType frameType;
+@property (assign, nonatomic) NSInteger rotation;
+@property (assign, nonatomic) NSInteger trackId;
+@property (assign, nonatomic) NSInteger captureTimeMs;
+@property (assign, nonatomic) NSInteger uid;
+@property (assign, nonatomic) AgoraVideoStreamType streamType;
+@end
 </codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
             <codeblock props="cpp" outputclass="language-cpp">struct EncodedVideoFrameInfo {
-                    EncodedVideoFrameInfo()
-                    : codecType(VIDEO_CODEC_H264),
-                    width(0),
-                    height(0),
-                    framesPerSecond(0),
-                    frameType(VIDEO_FRAME_TYPE_BLANK_FRAME),
-                    rotation(VIDEO_ORIENTATION_0),
-                    trackId(0),
-                    renderTimeMs(0),
-                    uid(0),
-                    streamType(VIDEO_STREAM_HIGH) {}
-                    EncodedVideoFrameInfo(const EncodedVideoFrameInfo&amp; rhs)
-                    : codecType(rhs.codecType),
-                    width(rhs.width),
-                    height(rhs.height),
-                    framesPerSecond(rhs.framesPerSecond),
-                    frameType(rhs.frameType),
-                    rotation(rhs.rotation),
-                    trackId(rhs.trackId),
-                    renderTimeMs(rhs.renderTimeMs),
-                    uid(rhs.uid),
-                    streamType(rhs.streamType) {}
-                    VIDEO_CODEC_TYPE codecType;
-                    int width;
-                    int height;
-                    int framesPerSecond;
-                    VIDEO_FRAME_TYPE frameType;
-                    VIDEO_ORIENTATION rotation;
-                    int trackId;
-                    int64_t renderTimeMs;
-                    uid_t uid;
-                    VIDEO_STREAM_TYPE streamType;
-                    };
-                </codeblock>
-            <codeblock props="electron" outputclass="language-typescript">export class EncodedVideoFrameInfo {
+  EncodedVideoFrameInfo()
+    : codecType(VIDEO_CODEC_H264),
+      width(0),
+      height(0),
+      framesPerSecond(0),
+      frameType(VIDEO_FRAME_TYPE_BLANK_FRAME),
+      rotation(VIDEO_ORIENTATION_0),
+      trackId(0),
+      captureTimeMs(0),
+      uid(0),
+      streamType(VIDEO_STREAM_HIGH) {}
+
+  EncodedVideoFrameInfo(const EncodedVideoFrameInfo&amp; rhs)
+    : codecType(rhs.codecType),
+      width(rhs.width),
+      height(rhs.height),
+      framesPerSecond(rhs.framesPerSecond),
+      frameType(rhs.frameType),
+      rotation(rhs.rotation),
+      trackId(rhs.trackId),
+      captureTimeMs(rhs.captureTimeMs),
+      uid(rhs.uid),
+      streamType(rhs.streamType) {}
+
+  EncodedVideoFrameInfo&amp; operator=(const EncodedVideoFrameInfo&amp; rhs) {
+    if (this == &amp;rhs) return *this;
+    codecType = rhs.codecType;
+    width = rhs.width;
+    height = rhs.height;
+    framesPerSecond = rhs.framesPerSecond;
+    frameType = rhs.frameType;
+    rotation = rhs.rotation;
+    trackId = rhs.trackId;
+    captureTimeMs = rhs.captureTimeMs;
+    uid = rhs.uid;
+    streamType = rhs.streamType;
+    return *this;
+  }
+    VIDEO_CODEC_TYPE codecType;
+    int width;
+    int height;
+    int framesPerSecond;
+    VIDEO_FRAME_TYPE frameType;
+    VIDEO_ORIENTATION rotation;
+    int trackId;    int64_t captureTimeMs;
+    uid_t uid;
+    VIDEO_STREAM_TYPE streamType;
+};
+</codeblock>
+<codeblock props="electron" outputclass="language-typescript">export class EncodedVideoFrameInfo {
   codecType?: VideoCodecType
   width?: number
   height?: number
@@ -243,10 +285,9 @@
             <parml>
             <plentry>
                 <pt>codecType</pt>
-                <pd props="cpp unity electron rn flutter">视频编码类型，详见 <xref keyref="VIDEO_CODEC_TYPE" />。默认值为 <codeph><ph keyref="VIDEO_CODEC_H264" />(2)</codeph>。</pd>
+                <pd props="ios mac cpp unity electron rn flutter">视频编码类型，详见 <xref keyref="VIDEO_CODEC_TYPE"/>。默认值为 <codeph><ph keyref="VIDEO_CODEC_H264"/> (2)</codeph>。</pd>
                 <pd props="android">视频编解码类型：
 
-                    
                     <ul id="ul_hkm_4qy_4qb">
                     <li>1：VP8。</li>
                     <li>2：（默认）H264。</li>
@@ -270,10 +311,9 @@
             </plentry>
             <plentry>
                 <pt>frameType</pt>
-                <pd props="cpp unity electron rn flutter">视频帧的类型，详见 <xref keyref="VIDEO_FRAME_TYPE" />。</pd>
+                <pd props="ios mac cpp unity electron rn flutter">视频帧的类型，详见 <xref keyref="VIDEO_FRAME_TYPE"/>。</pd>
                 <pd props="android">视频帧的类型：
 
-                    
                     <ul id="ul_djl_sqy_4qb">
                     <li>0：（默认）<ph keyref="VIDEO_FRAME_TYPE_BLANK_FRAME"
                         />，空白帧。</li>
@@ -286,10 +326,9 @@
             </plentry>
             <plentry>
                 <pt>rotation</pt>
-                <pd props="cpp unity electron rn flutter">视频帧的旋转信息，详见 <xref keyref="VIDEO_ORIENTATION" />。</pd>
+                <pd props="ios mac cpp unity electron rn flutter">视频帧的旋转信息，详见 <xref keyref="VIDEO_ORIENTATION"/>。</pd>
                 <pd props="android">视频帧的旋转信息，取值如下：
 
-                    
                     <ul>
                     <li>0：（默认）不旋转。</li>
                     <li>90：顺时针旋转 90 度。</li>
@@ -302,17 +341,26 @@
                 <pd>预留参数。</pd>
                 <pd>轨道 ID。适用于频道中有多个视频轨道的场景。</pd>
             </plentry>
-            <plentry>
+            <plentry props="android ios mac cpp">
+                <pt>captureTimeMs</pt>
+                <pd>采集外部编码视频帧的 Unix 时间戳 (ms)。</pd>
+            </plentry>
+            <plentry props="unity">
                 <pt>renderTimeMs</pt>
-                <pd>视频帧被渲染时的 Unix 时间戳（毫秒）。该时间戳可用于指导渲染视频帧。该参数为必填。</pd>
+                <pd>渲染外部编码视频帧的的 Unix 时间戳 (ms)。</pd>
             </plentry>
             <plentry>
                 <pt>uid</pt>
                 <pd>推送外部编码视频帧的用户 ID。</pd>
             </plentry>
-            <plentry props="cpp unity electron rn flutter">
+            <plentry>
                 <pt>streamType</pt>
-                <pd>视频流类型。</pd>
+                <pd><ph>视频流类型。</ph><ph props="apple cpp">详见 <xref keyref="REMOTE_VIDEO_STREAM_TYPE"/>。</ph></pd>
+                <pd props="android">
+                    <ul>
+                      <li><ph keyref="REMOTE_VIDEO_STREAM_HIGH"/> (0)：视频大流，即高分辨率、高码率视频流。</li>
+                      <li><ph keyref="REMOTE_VIDEO_STREAM_LOW"/> (1)：视频小流，即低分辨率、低码率视频流。</li>
+                      </ul> </pd>
             </plentry>
             </parml> </section>
     </refbody>

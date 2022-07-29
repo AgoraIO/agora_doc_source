@@ -2,8 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_rtcengineconfig_ng">
     <title><ph keyref="RtcEngineConfig"/></title>
-    <shortdesc id="short"><ph id="shortdesc"><apiname keyref="RtcEngineConfig"
-        />定义。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc"><apiname keyref="RtcEngineConfig"/> 定义。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -14,7 +13,6 @@
   public IAgoraEventHandler mEventHandler;
   public int mChannelProfile;
   public int mAudioScenario;
-  public boolean mEnableAudioDevice;
   public List&lt;String&gt; mExtensionList;
   public IMediaExtensionObserver mExtensionObserver;
   public LogConfig mLogConfig;
@@ -46,7 +44,6 @@
     mAppId = "";
     mChannelProfile = Constants.CHANNEL_PROFILE_LIVE_BROADCASTING;
     mEventHandler = null;
-    mEnableAudioDevice = true;
     mAudioScenario = Constants.AUDIO_SCENARIO_HIGH_DEFINITION;
     mAreaCode = Constants.AreaCode.AREA_CODE_GLOB;
     mExtensionList = new ArrayList&lt;&gt;();
@@ -79,11 +76,6 @@
   }
 
   @CalledByNative
-  public boolean isAudioDeviceEnabled() {
-    return mEnableAudioDevice;
-  }
-
-  @CalledByNative
   public int getAreaCode() {
     return Constants.AreaCode.getValue(mAreaCode);
   }
@@ -112,7 +104,6 @@
   IRtcEngineEventHandler* eventHandler;
   const char* appId;
   void* context;
-  bool enableAudioDevice;
   CHANNEL_PROFILE_TYPE channelProfile;
   AUDIO_SCENARIO_TYPE audioScenario;
   unsigned int areaCode;
@@ -120,7 +111,7 @@
 
   RtcEngineContext()
       : eventHandler(NULL), appId(NULL), context(NULL),
-        enableAudioDevice(true), channelProfile(CHANNEL_PROFILE_LIVE_BROADCASTING),
+        channelProfile(CHANNEL_PROFILE_LIVE_BROADCASTING),
         audioScenario(AUDIO_SCENARIO_HIGH_DEFINITION),
         areaCode(AREA_CODE_GLOB),
         logConfig() {}
@@ -220,8 +211,7 @@
             </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
             /></title>
             <parml>
             <plentry props="cpp android unity">
@@ -261,8 +251,7 @@
                     <note type="attention">
                     <ul>
                     <li>该设置仅适用于手动集成 SDK，不适用于通过 Maven Central 或 JitPack 集成 SDK 的情况。</li>
-                    <li>务必确保你设置的路径为有效路径，否则会导致 <xref keyref="IRtcEngine"
-                        /> 创建失败。</li>
+                    <li>务必确保你设置的路径为有效路径，否则会导致 <xref keyref="IRtcEngine"/> 创建失败。</li>
                     </ul></note> </pd>
             </plentry>
             <plentry props="android cpp unity electron rn">
@@ -293,12 +282,8 @@
             <plentry>
                 <pt props="cpp ios mac unity electron rn flutter">areaCode</pt>
                 <pt props="android">mAreaCode</pt>
-                <pd>服务器的访问区域。该功能为高级设置，适用于有访问安全限制的场景。支持的区域详见 <xref
-                    keyref="AREA_CODE"/>。区域码支持位操作。
-
-
-                    <p>指定访问区域后，集成了 Agora SDK 的 app 会连接指定区域内的 Agora 服务器。</p>
-                </pd>
+                <pd>服务器的访问区域。该功能为高级设置，适用于有访问安全限制的场景。支持的区域详见 <xref keyref="AREA_CODE"/>。区域码支持位操作。</pd>
+                <pd>指定访问区域后，集成了 Agora SDK 的 app 会连接指定区域内的 Agora 服务器。</pd>
             </plentry>
             <plentry>
                 <pt props="cpp ios mac unity electron rn flutter">logConfig</pt>
@@ -321,7 +306,7 @@
             </plentry>
             <plentry props="ios mac">
                 <pt>mediaFilterExtensions</pt>
-                <pd> <xref keyref="AgoraMediaFilterExtensionDelegate"/> 实例。</pd>
+                <pd><xref keyref="AgoraMediaFilterExtensionDelegate"/> 实例。</pd>
             </plentry>
             </parml> </section>
     </refbody>

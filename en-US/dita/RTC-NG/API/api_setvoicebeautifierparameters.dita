@@ -34,12 +34,13 @@
             <note type="attention">
             <ul>
             <li>You can call this method either before or after joining a channel.</li>
-            <li>Do not set the <parmname>profile</parmname> parameter in <apiname keyref="setAudioProfile"/> to <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1)<ph props="cpp rn electron unity flutter"> or <apiname keyref="AUDIO_PROFILE_IOT"/>(6)</ph>, or the method does not take effect.</li>
+            <li>Do not set the <parmname>profile</parmname> parameter in <apiname keyref="setAudioProfile"/> to <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1)<ph props="cpp"> or <apiname keyref="AUDIO_PROFILE_IOT"/>(6)</ph>, or the method does not take effect.</li>
             <li>This method works best with the human voice. Agora does not recommend using this method for audio containing music.</li>
             <li>After calling <apiname keyref="setVoiceBeautifierParameters"/>, Agora recommends not calling the following methods, because they can override settings in <apiname keyref="setVoiceBeautifierParameters"/>:<ul>
                 <li><xref keyref="setAudioEffectPreset"/></li>
                 <li><xref keyref="setAudioEffectParameters"/></li>
                 <li><xref keyref="setVoiceBeautifierPreset"/></li>
+                <li><xref keyref="setLocalVoiceReverbPreset"/></li>
                 <li><xref keyref="setLocalVoicePitch"/></li>
                 <li><xref keyref="setLocalVoiceEqualization"/></li>
                 <li><xref keyref="setLocalVoiceReverb"/></li>
@@ -52,7 +53,7 @@
             <plentry>
                 <pt>preset</pt>
                 <pd>The option for the preset audio effect:<ul>
-                    <li><codeph>SINGING_BEAUTIFIER:</codeph> The singing beautifier effect.</li>
+                    <li><codeph>SINGING_BEAUTIFIER</codeph>: The singing beautifier effect.</li>
                     </ul> </pd>
             </plentry>
             <plentry>

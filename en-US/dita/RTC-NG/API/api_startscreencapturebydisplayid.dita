@@ -17,9 +17,12 @@
             <codeblock props="mac" outputclass="language-objectivec">- (int)startScreenCaptureByDisplayId:(UInt32)displayId
                 regionRect:(CGRect)regionRect
                 captureParams:(AgoraScreenCaptureParameters *_Nonnull)captureParams;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp"/>
-            <codeblock props="electron" outputclass="language-typescript">abstract startScreenCaptureByDisplayId(displayId: number, regionRect: Rectangle, captureParams: ScreenCaptureParameters): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int StartScreenCaptureByDisplayId(uint displayId, Rectangle regionRect, ScreenCaptureParameters captureParams);</codeblock>
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int startScreenCaptureByDisplayId(uint32_t displayId, const Rectangle&amp; regionRect,
+                                            const ScreenCaptureParameters&amp; captureParams) = 0;
+</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> startScreenCaptureByDisplayId(
     {required int displayId,
@@ -27,20 +30,18 @@
     required ScreenCaptureParameters captureParams});</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>This method shares a screen or part of the screen. You need to specify the ID of the screen to be shared in this method.</p>
-            <p conkeyref="startScreenCapture/apisequence"/>
-            <note type="attention" props="cpp flutter unity">
-            <ul>
-            <li>This method applies to macOS only.</li>
-            <li props="hide">On the Windows platform, if the user device is connected to another display, to avoid screen sharing issues, use this method to start sharing instead of using <xref keyref="startScreenCaptureByScreenRect"/>.</li>
-            </ul> </note> </section>
+            <p>This method shares a screen or part of the screen.</p>
+            <p id="apisequence">There are two ways to start screen sharing, you can choose one according to the actual needs:<ul>
+                <li>Call this method before joining a channel, and then call <xref keyref="joinChannel2"/> to join a channel and set <parmname>publishScreenTrack</parmname> or <parmname>publishSecondaryScreenTrack</parmname> to <codeph><ph keyref="true"/></codeph> to start screen sharing.</li>
+                <li>Call this method after joining a channel, and then call <xref keyref="updateChannelMediaOptions"/> and set <parmname>publishScreenTrack</parmname> or <parmname>publishSecondaryScreenTrack</parmname> to <codeph><ph keyref="true"/></codeph> to start screen sharing.</li>
+                </ul></p>
+            <note type="attention" props="cpp flutter unity">This method is for Windows and macOS only.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>displayId</pt>
-                <pd>The display ID of the screen to be shared. This parameter specifies which screen you want to share.<p props="rtc"><ph props="native">For more information on how to get the display ID, see <xref keyref="guide-screensharing"/> or get the display ID from <parmname>sourceId</parmname> returned by <xref keyref="getScreenCaptureSources"/>.</ph></p>
-                    <p props="rtc-ng"><ph props="native">For more information on how to get the display ID, see <xref keyref="guide-screensharing"/>.</ph></p>
+                <pd>The display ID of the screen to be shared.<p props="native">For more information on how to get the display ID, see <xref keyref="guide-screensharing">Share the Screen</xref>.</p>
                 </pd>
             </plentry>
             <plentry props="cpp unity flutter electron">
@@ -54,9 +55,8 @@
                     <li>y: The vertical offset from the top-left corner.</li>
                     <li>width: The width of the region.</li>
                     <li>height: The height of the region.</li>
-                    </ul>
-                    <p>If the specified region overruns the screen, the SDK shares only the region within it; if you set width or height as 0, the SDK shares the whole screen.</p>
-                </pd>
+                    </ul></pd>
+                <pd>If the specified region overruns the screen, the SDK shares only the region within it; if you set width or height as 0, the SDK shares the whole screen.</pd>
             </plentry>
             <plentry>
                 <pt>captureParams</pt>
@@ -67,7 +67,10 @@
             <title>Returns</title>
             <ul>
             <li>0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <li>&lt; 0: Failure.<ul id="err">
+                <li><codeph>ERR_INVALID_STATE</codeph>: The screen sharing state is invalid. Probably because you have shared other screens or windows. Try calling <xref keyref="stopScreenCapture"/> to stop the current sharing and start sharing the screen again.</li>
+                <li><codeph>ERR_INVALID_ARGUMENT</codeph>: The parameter is invalid.</li>
+                </ul> </li>
             </ul> </section>
     </refbody>
 </reference>
