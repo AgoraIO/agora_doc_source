@@ -65,11 +65,85 @@
         , audioChannels(1)
     {}
     };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
-        </section>
+<codeblock props="electron" outputclass="language-typescript">export class InjectStreamConfig {
+    width?: number
+    height?: number
+    videoGop?: number
+    videoFramerate?: number
+    videoBitrate?: number
+    audioSampleRate?: AudioSampleRateType
+    audioBitrate?: number
+    audioChannels?: number
+  }</codeblock>
+              <codeblock props="unity" outputclass="language-csharp">public class InjectStreamConfig
+      {
+          public InjectStreamConfig()
+          {
+              width = 0;
+              height = 0;
+              videoGop = 30;
+              videoFramerate = 15;
+              videoBitrate = 400;
+              audioSampleRate = AUDIO_SAMPLE_RATE_TYPE.AUDIO_SAMPLE_RATE_48000;
+              audioBitrate = 48;
+              audioChannels = 1;
+          }
+  
+          public InjectStreamConfig(int width, int height, int videoGop, int videoFramerate, int videoBitrate,
+              AUDIO_SAMPLE_RATE_TYPE audioSampleRate, int audioBitrate, int audioChannels)
+          {
+              this.width = width;
+              this.height = height;
+              this.videoGop = videoGop;
+              this.videoFramerate = videoFramerate;
+              this.videoBitrate = videoBitrate;
+              this.audioSampleRate = audioSampleRate;
+              this.audioBitrate = audioBitrate;
+              this.audioChannels = audioChannels;
+          }
+  
+          public int width { set; get; }
+          public int height { set; get; }
+          public int videoGop { set; get; }
+          public int videoFramerate { set; get; }
+          public int videoBitrate { set; get; }
+          public AUDIO_SAMPLE_RATE_TYPE audioSampleRate { set; get; }
+          public int audioBitrate { set; get; }
+          public int audioChannels { set; get; }
+      }</codeblock>
+              <codeblock props="rn" outputclass="language-typescript"/>
+              <codeblock props="flutter" outputclass="language-dart">class InjectStreamConfig {
+    const InjectStreamConfig(
+        {this.width,
+        this.height,
+        this.videoGop,
+        this.videoFramerate,
+        this.videoBitrate,
+        this.audioSampleRate,
+        this.audioBitrate,
+        this.audioChannels});
+  
+    @JsonKey(name: 'width')
+    final int? width;
+    @JsonKey(name: 'height')
+    final int? height;
+    @JsonKey(name: 'videoGop')
+    final int? videoGop;
+    @JsonKey(name: 'videoFramerate')
+    final int? videoFramerate;
+    @JsonKey(name: 'videoBitrate')
+    final int? videoBitrate;
+    @JsonKey(name: 'audioSampleRate')
+    final AudioSampleRateType? audioSampleRate;
+    @JsonKey(name: 'audioBitrate')
+    final int? audioBitrate;
+    @JsonKey(name: 'audioChannels')
+    final int? audioChannels;
+    factory InjectStreamConfig.fromJson(Map&lt;String, dynamic> json) =>
+        _$InjectStreamConfigFromJson(json);
+    Map&lt;String, dynamic> toJson() => _$InjectStreamConfigToJson(this);
+  }</codeblock> </p>
+          </section>
         <section id="detailed_desc">
             <note conkeyref="addInjectStreamUrl/inject-sunset-note"/> </section>
         <section id="parameters">
@@ -77,11 +151,11 @@
             conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
             /></title>
             <parml>
-            <plentry props="android cpp">
+            <plentry props="android cpp unity flutter electron rn">
                 <pt>width</pt>
                 <pd>The width of the external video stream after injecting. The default value is 0, which means the width of the video is the same as that of the original.</pd>
             </plentry>
-            <plentry props="android cpp">
+            <plentry props="android cpp unity flutter electron rn">
                 <pt>height</pt>
                 <pd>The height of the external video stream after injecting. The default value is 0, which means the height of the video is the same as that of the original.</pd>
             </plentry>
@@ -121,7 +195,10 @@
             <plentry>
                 <pt>audioChannels</pt>
                 <pd>
-                    <p>The number of channels of the external audio stream after injecting.<ul>
+                    <p>外部音频流输入后的频道数。
+
+                    
+                    <ul>
                     <li>1: Mono (default)</li>
                     <li>2: Stereo.</li>
                     </ul> </p>
