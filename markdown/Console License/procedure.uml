@@ -1,0 +1,19 @@
+@startuml
+autonumber
+skin rose
+
+participant "用户" as user
+participant "OpenAPI" as api
+participant "控制台" as console
+participant "销售" as sales
+
+user -> sales: 申请：联系销售申请 License 额度
+sales -> sales: 商务流程：付款、审批等
+user --> api: (可选) 预分配：为项目分配 License 额度
+user --> api: (可选) 预授权：上传预授权白名单
+user -> api: 激活：传入 LicenseKey 激活账号或设备
+user -> sales: 申请续期：联系销售申请 License 续期额度
+sales -> sales: 商务流程：付款、审批等
+user -> api: 激活续期：传入 Renew PID 和 License Value 激活续期额度
+user -> console: 查询：查看 License 的使用情况
+@enduml
