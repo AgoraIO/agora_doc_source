@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_addpublishstreamurlex">
+    <title><ph keyref="addPublishStreamUrlEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc">增加旁路推流地址。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="addPublishStreamUrlEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int addPublishStreamUrlEx(
+                String url, boolean transcodingEnabled, RtcConnection connection);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)addPublishStreamUrlEx:(NSString * _Nonnull)url
+          transcodingEnabled:(BOOL)transcodingEnabled
+                  connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int addPublishStreamUrlEx(const char* url, bool transcodingEnabled, const RtcConnection&amp; connection) = 0;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int AddPublishStreamUrlEx(string url, bool transcodingEnabled, RtcConnection connection);</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract addPublishStreamUrlEx(url: string, transcodingEnabled: boolean, connection: RtcConnection): number;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract addPublishStreamUrlEx(
+    url: string,
+    transcodingEnabled: boolean,
+    connection: RtcConnection
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">  Future&lt;void> addPublishStreamUrlEx(
+      {required String url,
+      required bool transcodingEnabled,
+      required RtcConnection connection});
+</codeblock></p>
+        </section>
+        <section id="detailed_desc">
+            <p>调用该方法后，你可以根据 <xref keyref="RtcConnection"/> 选择向 CDN 推送任意一路 RTMP 或 RTMPS 协议的媒体流。SDK 会在本地触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调，报告增加旁路推流地址的状态。</p>
+            <note type="attention" id="note">
+            <ul>
+            <li>该方法需要在加入频道后调用。</li>
+            <li>请确保已开通旁路推流的功能。</li>
+            <li>只有直播场景中角色为主播的用户才能调用该方法。</li>
+            <li>该方法每次只能增加一路旁路推流地址。若需推送多路流，则需多次调用该方法。</li>
+            <li props="rtc-ng">在一个 <xref keyref="IRtcEngineEx"/> 实例中，最多只能推送一路上行媒体流（比如通过 <apiname keyref="RtcConnection"/> 选择正在发布的摄像头采集的视频流或者屏幕共享视频流）到 CDN。</li>
+            </ul> </note> </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry conkeyref="addPublishStreamUrl/url">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="addPublishStreamUrl/transcoding">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="joinChannelEx/connection">
+                <pt/>
+                <pd/>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <ul>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。
+
+                
+                <ul>
+                <li>-2: 参数无效，一般是 URL 为空或是长度为 0 的字符串。</li>
+                <li>-7: 推流时未初始化引擎。</li>
+                </ul> </li>
+            </ul> </section>
+    </refbody>
+</reference>

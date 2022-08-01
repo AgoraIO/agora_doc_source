@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onrtmpstreamingstatechanged">
+    <title> <ph keyref="onRtmpStreamingStateChanged"/> </title>
+    <shortdesc id="short"> <ph id="shortdesc">旁路推流状态发生改变回调。</ph> </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRtmpStreamingStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onRtmpStreamingStateChanged(String url, int state, int errCode) {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine rtmpStreamingChangedToState:(NSString* _Nonnull)url state:(AgoraRtmpStreamingState)state errCode:(AgoraRtmpStreamingErrorCode)errCode;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onRtmpStreamingStateChanged(const char* url, RTMP_STREAM_PUBLISH_STATE state,
+                                         RTMP_STREAM_PUBLISH_ERROR_TYPE errCode) {
+  (void)url;
+  (void)state;
+  (void)errCode;
+}</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">onRtmpStreamingStateChanged?(url: string, state: RtmpStreamPublishState, errCode: RtmpStreamPublishErrorType): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnRtmpStreamingStateChanged(string url, RTMP_STREAM_PUBLISH_STATE state, RTMP_STREAM_PUBLISH_ERROR_TYPE errCode) { }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onRtmpStreamingStateChanged?(
+            url: string,
+            state: RtmpStreamPublishState,
+            errCode: RtmpStreamPublishErrorType
+            ): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(String url, RtmpStreamPublishState state,
+            RtmpStreamPublishErrorType errCode)? onRtmpStreamingStateChanged;
+            </codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>旁路推流状态发生改变时，SDK会触发该回调，并在回调中明确状态发生改变的 URL 地址及当前推流状态。该回调方便推流用户了解当前的推流状态；推流出错时，你可以通过返回的错误码了解出错的原因，方便排查问题。</p>
+        </section>
+        <section id="parameters">
+            <title> <ph keyref="callback-section-title"/> </title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <parml>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry id="url">
+                <pt>url</pt>
+                <pd>
+                    <p>推流状态发生改变的 URL 地址。</p>
+                </pd>
+            </plentry>
+            <plentry id="state">
+                <pt>state</pt>
+                <pd props="ios mac cpp electron unity rn flutter">当前的推流状态，详见 <xref keyref="RTMP_STREAM_PUBLISH_STATE"/>。</pd>
+                <pd props="android">当前的推流状态:
+                
+                    <ul>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_STATE_IDLE"/> (0)：推流未开始或已结束。成功调用 <xref keyref="removePublishStreamUrl"/> 方法删除推流地址后，也会返回该状态。</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_STATE_CONNECTING"/> (1)：正在连接 Agora 推流服务器和 CDN 服务器。调用 <xref keyref="addPublishStreamUrl"/> 方法后，会返回该状态。</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_STATE_RUNNING"/> (2)：推流正在进行。成功推流后，会返回该状态。</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_STATE_RECOVERING"/> (3)：正在恢复推流。当 CDN 出现异常，或推流短暂中断时，SDK 会自动尝试恢复推流，并返回该状态。 
+                    
+                        <ul>
+                        <li>如成功恢复推流，则进入状态 <ph keyref="RTMP_STREAM_PUBLISH_STATE_RUNNING"/>(2)。</li>
+                        <li>如服务器出错或 60 秒内未成功恢复，则进入状态 <ph keyref="RTMP_STREAM_PUBLISH_STATE_FAILURE"/>(4)。如果觉得 60 秒太长，也可以主动调用 <xref keyref="removePublishStreamUrl"/> 和 <xref keyref="addPublishStreamUrl"/> 方法尝试重连。</li>
+                        </ul> </li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_STATE_FAILURE"/> (4)：推流失败。失败后，你可以通过返回的错误码排查错误原因，也可以再次调用 <xref keyref="addPublishStreamUrl"/> 重新尝试推流。</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_STATE_DISCONNECTING"/> (5)：SDK 正在与 Agora 推流服务器和 CDN 服务器断开连接。 当你调用 <xref keyref="removePublishStreamUrl"/> 或 <xref keyref="stopRtmpStream"/> 方法正常结束推流时，SDK 会依次报告推流状态为 <apiname keyref="RTMP_STREAM_PUBLISH_STATE_DISCONNECTING"/>、<apiname keyref="RTMP_STREAM_PUBLISH_STATE_IDLE"/>。</li>
+                    </ul></pd>
+            </plentry>
+            <plentry id="errCode">
+                <pt>errCode</pt>
+                <pd props="ios mac cpp electron unity rn flutter">推流错误信息，详见 <xref keyref="RTMP_STREAM_PUBLISH_ERROR"/>。</pd>
+                <pd props="android">推流错误信息。
+                    <ul>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_OK"/> (0)：推流成功。</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_INVALID_ARGUMENT"/> (1)：参数无效。请检查输入参数是否正确。如果你在调用 <xref keyref="addPublishStreamUrl"/> 前没有调用 <xref keyref="setLiveTranscoding"/> 设置转码参数，SDK 会返回该错误。</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_ENCRYPTED_STREAM_NOT_ALLOWED"/> (2)：推流已加密，不能推流。</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_CONNECTION_TIMEOUT"/> (3)：推流超时未成功。可调用 <xref keyref="addPublishStreamUrl"/> 重新推流。</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_INTERNAL_SERVER_ERROR"/> (4)：推流服务器出现错误。请调用 <xref keyref="addPublishStreamUrl"/> 重新推流。</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_RTMP_SERVER_ERROR"/> (5)：CDN 服务器出现错误。</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_TOO_OFTEN"/> (6)：预留参数。</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_REACH_LIMIT"/> (7)：单个主播的推流地址数目达到上限 10。请删掉一些不用的推流地址再增加推流地址。</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_NOT_AUTHORIZED"/> (8)：主播操作不属于自己的流。例如更新其他主播的流参数、停止其他主播的流。请检查 App 逻辑。</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_STREAM_NOT_FOUND"/> (9)：服务器未找到这个流。</li>
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_ERROR_FORMAT_NOT_SUPPORTED"/> (10)：推流地址格式有错误。请检查推流地址格式是否正确。</li>
+                    <li props="native"><ph keyref="RTMP_STREAM_PUBLISH_ERROR_NOT_BROADCASTER"/> (11)：用户角色不是主播，该用户无法使用推流功能。请检查你的应用代码逻辑。</li>
+                    <li props="native"><ph keyref="RTMP_STREAM_PUBLISH_ERROR_TRANSCODING_NO_MIX_STREAM"/> (13)：非转码推流情况下，调用了 <xref keyref="updateRtmpTranscoding"/> 或 <xref keyref="setLiveTranscoding"/> 方法更新转码属性。请检查你的应用代码逻辑。</li>
+                    <li props="native"><ph keyref="RTMP_STREAM_PUBLISH_ERROR_NET_DOWN"/> (14)：主播的网络出错。</li>
+                    <li props="native"><ph keyref="RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID"/> (15)：你的 App ID 没有使用 Agora 推流服务的权限。<ph props="rtc">请参考<xref keyref="guide-cdn-streaming">旁路推流</xref>中的前提条件开启推流服务。</ph></li>
+                    <li props="native"><ph keyref="RTMP_STREAM_UNPUBLISH_ERROR_OK"/> (100)：推流已正常结束。当你调用 <xref keyref="removePublishStreamUrl"/> 结束推流后，SDK 会返回该值。</li>
+                    </ul> </pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

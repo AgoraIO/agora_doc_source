@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_createcustomencodedvideotrack_ng">
+    <title>createCustomEncodedVideoTrack</title>
+    <shortdesc id="short"><ph id="shortdesc">创建一个自定义的编码后的视频轨道。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="createCustomEncodedVideoTrack"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int createCustomEncodedVideoTrack(EncodedVideoTrackOptions encodedOpt);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (unsigned int)createCustomEncodedVideoTrack:(AgoraEncodedVideoTrackOptions* _Nonnull)encodedVideoTrackOption;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual video_track_id_t createCustomEncodedVideoTrack(const SenderOptions&amp; sender_option) = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>通过该方法你可以在频道中发布多路自定义采集视频。调用步骤如下：
+            
+            <ul>
+            <li>成功创建视频轨道后，调用 <xref keyref="joinChannel2"/> 加入频道时设置 <xref keyref="ChannelMediaOptions"/> 的 <codeph>customVideoTrackId</codeph>，或在加入频道后调用 <xref keyref="updateChannelMediaOptions"/> 设置 <codeph>customVideoTrackId</codeph>。</li>
+            <li>调用 <xref keyref="pushEncodedVideoImage" props="android cpp"/> 发布自定义采集视频到频道中。</li>
+            </ul></p>
+        </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt props="android">encodedOpt</pt>
+                <pt props="ios mac">encodedVideoTrackOption</pt>
+                <pt props="cpp">sender_option</pt>
+                <pd>视频编码选项。详见 <xref keyref="SenderOptions"/>。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <ul>
+            <li>0: 方法调用成功，返回视频轨道 ID，即 SDK 为该视频轨道生成的唯一标识。</li>
+            <li>&lt; 0: 方法调用失败。</li>
+            </ul> </section>
+    </refbody>
+</reference>
