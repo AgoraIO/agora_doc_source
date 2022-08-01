@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onremoteaudiostatechanged">
+     <title> <ph keyref="onRemoteAudioStateChanged"/> </title>
+     <shortdesc id="short"> <ph id="shortdesc">远端音频流状态发生改变回调。</ph> </shortdesc>
+     <prolog>
+          <metadata>
+               <keywords>
+                    <indexterm keyref="onRemoteAudioStateChanged"/>
+               </keywords>
+          </metadata>
+     </prolog>
+     <refbody>
+          <section id="prototype">
+               <p outputclass="codeblock"> 
+               <codeblock props="android" outputclass="language-java">public void onRemoteAudioStateChanged(int uid, int state, int reason, int elapsed) {}</codeblock>
+               <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+     remoteAudioStateChangedOfUid:(NSUInteger)uid state:(AgoraAudioRemoteState)state reason:(AgoraAudioRemoteReason)reason elapsed:(NSInteger)elapsed;</codeblock>
+               <codeblock props="cpp" outputclass="language-cpp">virtual void onRemoteAudioStateChanged(uid_t uid,
+     REMOTE_AUDIO_STATE state,
+     REMOTE_AUDIO_STATE_REASON reason,
+     int elapsed) {
+     (void)uid;
+     (void)state;
+     (void)reason;
+     (void)elapsed;
+     }</codeblock>
+               <codeblock props="electron" outputclass="language-typescript">onRemoteAudioStateChanged?(connection: RtcConnection, remoteUid: number, state: RemoteAudioState, reason: RemoteAudioStateReason, elapsed: number): void;</codeblock>
+               <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteAudioStateChanged(RtcConnection connection, uint remoteUid, REMOTE_AUDIO_STATE state, REMOTE_AUDIO_STATE_REASON reason, int elapsed) {}</codeblock>
+               <codeblock props="rn" outputclass="language-typescript">onRemoteAudioStateChanged?(
+  connection: RtcConnection,
+  remoteUid: number,
+  state: RemoteAudioState,
+  reason: RemoteAudioStateReason,
+  elapsed: number
+): void;</codeblock>
+               <codeblock props="flutter" outputclass="language-dart">final void Function(
+      RtcConnection connection,
+      int remoteUid,
+      RemoteAudioState state,
+      RemoteAudioStateReason reason,
+      int elapsed)? onRemoteAudioStateChanged;
+</codeblock> </p>
+          </section>
+          <section id="detailed_desc">
+               <dl outputclass="since" props="rtc">
+               <dlentry props="native">
+                    <dt>自从</dt>
+                    <dd>v2.9.0</dd>
+               </dlentry>
+               </dl>
+               <p id="desc"
+               >远端用户（通信场景）或主播（直播场景）的音频状态发生改变时，SDK 会触发该回调向本地用户报告当前的远端音频流状态。</p>
+               <note id="note" type="attention"
+               >频道内的用户（通信场景）或主播（直播场景）人数超过 17 人时，该回调可能不准确。</note> </section>
+          <section id="parameters">
+               <title><ph keyref="callback-section-title"/></title>
+               <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+               <parml>
+               <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                    <pt/>
+                    <pd/>
+               </plentry>
+               <plentry props="unity flutter rn electron">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+               </plentry>
+               <plentry id="uid">
+                    <pt props="native">uid</pt>
+                    <pt props="unity flutter rn electron">remoteUid</pt>
+                    <pd>发生音频状态改变的远端用户 ID。</pd>
+               </plentry>
+               <plentry id="state">
+                    <pt>state</pt>
+                    <pd props="ios mac cpp unity"> 远端音频流状态，详见 <xref keyref="REMOTE_AUDIO_STATE"/>。</pd>
+                    <pd props="android"> 远端音频流状态。
+                    
+                         <ul>
+                         <li><ph keyref="REMOTE_AUDIO_STATE_STOPPED"/> (0): 远端音频默认初始状态。在 <apiname keyref="REMOTE_AUDIO_STATE_REASON_LOCAL_MUTED"/>、<apiname keyref="REMOTE_AUDIO_STATE_REASON_REMOTE_MUTED"/> 或 <apiname keyref="REMOTE_AUDIO_STATE_REASON_REMOTE_OFFLINE"/> 的情况下，会报告该状态。</li>
+                         <li><ph keyref="REMOTE_AUDIO_STATE_STARTING"/> (1): 本地用户已接收远端音频首包。</li>
+                         <li><ph keyref="REMOTE_AUDIO_STATE_DECODING"/> (2): 远端音频流正在解码，正常播放。在 <apiname keyref="REMOTE_AUDIO_STATE_REASON_NETWORK_RECOVERY"/>、<apiname keyref="REMOTE_AUDIO_STATE_REASON_LOCAL_UNMUTED"/> 或 <apiname keyref="REMOTE_AUDIO_STATE_REASON_REMOTE_UNMUTED"/> 的情况下， 会报告该状态。</li>
+                         <li><ph keyref="REMOTE_AUDIO_STATE_FROZEN"/> (3): 远端音频流卡顿。在 <apiname keyref="REMOTE_AUDIO_STATE_REASON_NETWORK_CONGESTION"/>的情况下，会报告该状态。</li>
+                         <li><ph keyref="REMOTE_AUDIO_STATE_FAILED"/> (4): 远端音频流播放失败。在 <apiname keyref="REMOTE_AUDIO_STATE_REASON_INTERNAL"/> 的情况下，会报告该状态。</li>
+                         </ul></pd>
+               </plentry>
+               <plentry id="reason">
+                    <pt>reason</pt>
+                    <pd props="ios mac cpp unity electron rn flutter"> 远端音频流状态改变的具体原因，详见 <xref keyref="REMOTE_AUDIO_STATE_REASON"/>。</pd>
+                    <pd props="android">远端音频流状态改变的具体原因。
+                    
+                         <ul>
+                         <li><ph keyref="REMOTE_AUDIO_STATE_REASON_INTERNAL"/> (0): 音频状态发生改变时，会报告该原因。</li>
+                         <li><ph keyref="REMOTE_AUDIO_STATE_REASON_NETWORK_CONGESTION"/> (1): 网络阻塞。</li>
+                         <li><ph keyref="REMOTE_AUDIO_STATE_REASON_NETWORK_RECOVERY"/> (2): 网络恢复正常。</li>
+                         <li><ph keyref="REMOTE_AUDIO_STATE_REASON_LOCAL_MUTED"/> (3): 本地用户停止接收远端音频流或本地用户禁用音频模块。</li>
+                         <li><ph keyref="REMOTE_AUDIO_STATE_REASON_LOCAL_UNMUTED"/> (4): 本地用户恢复接收远端音频流或本地用户启动音频模块。</li>
+                         <li><ph keyref="REMOTE_AUDIO_STATE_REASON_REMOTE_MUTED"/> (5): 远端用户停止发送音频流或远端用户禁用音频模块。</li>
+                         <li><ph keyref="REMOTE_AUDIO_STATE_REASON_REMOTE_UNMUTED"/> (6): 远端用户恢复发送音频流或远端用户启用音频模块。</li>
+                         <li><ph keyref="REMOTE_AUDIO_STATE_REASON_REMOTE_OFFLINE"/> (7): 远端用户离开频道。</li>
+                         </ul> </pd>
+               </plentry>
+               <plentry>
+                    <pt>elapsed</pt>
+                    <pd> 从本地用户调用 <apiname keyref="joinChannel2"/> 方法到发生本事件经历的时间，单位为毫秒。</pd>
+               </plentry>
+               </parml> </section>
+     </refbody>
+</reference>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onconnectionstatechanged">
+    <title><ph keyref="onConnectionStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc">网络连接状态已改变回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onConnectionStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onConnectionStateChanged(int state, int reason) {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+                    connectionStateChanged:(AgoraConnectionState)state
+                    reason:(AgoraConnectionChangedReason)reason;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onConnectionStateChanged(CONNECTION_STATE_TYPE state, CONNECTION_CHANGED_REASON_TYPE reason) {
+     (void)state;
+     (void)reason;
+     }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">onConnectionStateChanged?(connection: RtcConnection, state: ConnectionStateType, reason: ConnectionChangedReasonType): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnConnectionStateChanged(RtcConnection connection, CONNECTION_STATE_TYPE state, CONNECTION_CHANGED_REASON_TYPE reason) {}</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onConnectionStateChanged?(
+  connection: RtcConnection,
+  state: ConnectionStateType,
+  reason: ConnectionChangedReasonType
+): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, ConnectionStateType state,
+      ConnectionChangedReasonType reason)? onConnectionStateChanged;
+</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since" props="rtc">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v2.3.2</dd>
+            </dlentry>
+            </dl>
+            <p id="desc">该回调在网络连接状态发生改变的时候触发，并告知用户当前的网络连接状态和引起网络状态改变的原因。</p>
+        </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <parml>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry props="unity electron rn flutter">
+                <pt>connection</pt>
+                <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+            </plentry>
+            <plentry id="state">
+                <pt>state</pt>
+                <pd>
+                    <p id="connectionstate">当前网络连接状态。<ph props="ios mac cpp unity flutter electron rn">详见 <xref keyref="CONNECTION_STATE_TYPE"/>。</ph></p>
+                    <ul props="android">
+                    <li><ph keyref="CONNECTION_STATE_DISCONNECTED"/>
+                                    (1)：网络连接断开。</li>
+                    <li><ph keyref="CONNECTION_STATE_CONNECTING"/>
+                                    (2)：建立网络连接中。</li>
+                    <li><ph keyref="CONNECTION_STATE_CONNECTED"/>
+                                    (3)：网络已连接。</li>
+                    <li><ph keyref="CONNECTION_STATE_RECONNECTING"/>
+                                    (4)：重新建立网络连接中 。</li>
+                    <li><ph keyref="CONNECTION_STATE_FAILED"/>
+                                    (5)：网络连接失败 。</li>
+                    </ul> </pd>
+            </plentry>
+            <plentry id="reason">
+                <pt>reason</pt>
+                <pd>
+                    <p props="ios mac cpp unity flutter electron rn">引起当前网络连接状态改变的原因。详见 <xref keyref="CONNECTION_CHANGED_REASON_TYPE"/>。</p>
+                    <p props="android">
+                    <ul>
+                    <li><ph keyref="CONNECTION_CHANGED_CONNECTING"/> (0)：建立网络连接中 。</li>
+                    <li><ph keyref="CONNECTION_CHANGED_JOIN_SUCCESS"/> (1)：成功加入频道 。</li>
+                    <li><ph keyref="CONNECTION_CHANGED_INTERRUPTED"/> (2)：网络连接中断 。</li>
+                    <li><ph keyref="CONNECTION_CHANGED_BANNED_BY_SERVER"/> (3)：网络连接被服务器禁止 。</li>
+                    <li><ph keyref="CONNECTION_CHANGED_JOIN_FAILED"/> (4)：加入频道失败 。</li>
+                    <li><ph keyref="CONNECTION_CHANGED_LEAVE_CHANNEL"/> (5)：离开频道 。</li>
+                    <li><ph keyref="CONNECTION_CHANGED_INVALID_APP_ID"/> (6)：不是有效的 APP ID。请更换有效的 APP ID 重新加入频道 。</li>
+                    <li><ph keyref="CONNECTION_CHANGED_INVALID_CHANNEL_NAME"/> (7)：不是有效的频道名。请更换有效的频道名重新加入频道。</li>
+                    <li><ph keyref="CONNECTION_CHANGED_INVALID_TOKEN"/> (8)：生成的 Token 无效。一般有以下原因：
+
+
+
+                        <ul id="ul_pf4_kcx_qqb">
+                        <li>在控制台上启用了 App Certificate，但加入频道未使用 Token。当启用了 App Certificate，必须使用 Token。</li>
+                        <li>在调用 <xref keyref="joinChannel1" props="native unity"/><xref keyref="joinChannel2" props="electron rn flutter"/> 加入频道时指定的 uid 与生成 Token 时传入的 uid 不一致。</li>
+                        </ul> </li>
+                    <li><ph keyref="CONNECTION_CHANGED_TOKEN_EXPIRED"/> (9)：当前使用的 Token 过期，不再有效，需要重新在你的服务端申请生成 Token 。</li>
+                    <li><ph keyref="CONNECTION_CHANGED_REJECTED_BY_SERVER"/> (10)：此用户被服务器禁止 。</li>
+                    <li><ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER"/> (11)：由于设置了代理服务器，SDK 尝试重连 。</li>
+                    <li><ph keyref="CONNECTION_CHANGED_RENEW_TOKEN"/> (12)：更新 Token 引起网络连接状态改变 。</li>
+                    <li><ph keyref="CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED"/> (13)：客户端 IP 地址变更，可能是由于网络类型，或网络运营商的 IP 或端口发生改变引起 。</li>
+                    <li><ph keyref="CONNECTION_CHANGED_KEEP_ALIVE_TIMEOUT"/> (14)：SDK 和服务器连接保活超时，进入自动重连状态 。</li>
+                    <li><ph keyref="CONNECTION_CHANGED_REJOIN_SUCCESS"/> (15)：重新加入频道成功。</li>
+                    <li><ph keyref="CONNECTION_CHANGED_LOST"/> (16)：SDK 和服务器失去连接 。</li>
+                    <li><ph keyref="CONNECTION_CHANGED_ECHO_TEST"/> (17)：连接状态变化由回声测试引起。</li>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

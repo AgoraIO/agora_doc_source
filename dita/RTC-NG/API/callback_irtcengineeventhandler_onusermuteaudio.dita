@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onusermuteaudio">
+    <title> <ph keyref="onUserMuteAudio"/> </title>
+    <shortdesc id="short"> <ph id="shortdesc">远端用户（通信场景）/主播（直播场景）停止或恢复发送音频流回调。</ph> </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onUserMuteAudio"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onUserMuteAudio(int uid, boolean muted) {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didAudioMuted:(BOOL)muted byUid:(NSUInteger)uid;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onUserMuteAudio(uid_t uid, bool muted) {
+    (void)uid;
+    (void)muted;
+    }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">onUserMuteAudio?(connection: RtcConnection, remoteUid: number, muted: boolean): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserMuteAudio(RtcConnection connection, uint remoteUid, bool muted) { }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onUserMuteAudio?(
+  connection: RtcConnection,
+  remoteUid: number,
+  muted: boolean
+): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, bool muted)?
+      onUserMuteAudio;
+</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="deprecated" props="hide">
+            <dlentry>
+                <dt>弃用：</dt>
+                <dd>请改用 <xref keyref="onRemoteAudioStateChanged"/>。</dd>
+            </dlentry>
+            </dl>
+            <note props="unity">该方法即将废弃，Agora 推荐你使用 <xref keyref="onRemoteAudioStateChanged"/>。</note>
+            <p>该回调是由远端用户调用 <xref keyref="muteLocalAudioStream"/> 方法关闭或开启音频发送触发的。</p>
+            <note type="attention">频道内的用户（通信场景）或主播（直播场景）人数超过 17 人时，该回调可能不准确。</note> </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <parml>
+                <plentry props="unity electron rn flutter" conkeyref="joinChannelEx/connection">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry>
+                    <pt props="native">uid</pt>
+                    <pt props="unity electron rn flutter">remoteUid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry>
+                    <pt>muted</pt>
+                    <pd>该用户是否静音：
+                        <ul>
+                        <li><codeph><ph keyref="true"/></codeph>: 该用户已将音频静音。</li>
+                        <li><codeph><ph keyref="false"/></codeph>: 该用户取消了音频静音。</li>
+                        </ul> </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

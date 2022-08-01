@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onproxyconnected">
+    <title><ph keyref="onProxyConnected"/></title>
+    <shortdesc id="short"><ph id="shortdesc">代理连接状态回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onProxyConnected"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onProxyConnected(
+    String channel, int uid, int proxyType, String localProxyIp, int elapsed) {}</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onProxyConnected(const char* channel, uid_t uid, PROXY_TYPE proxyType, const char* localProxyIp, int elapsed) {
+  (void)channel;
+  (void)uid;
+  (void)proxyType;
+  (void)localProxyIp;
+  (void)elapsed;
+}</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnProxyConnected(string channel, uint uid, PROXY_TYPE proxyType, string localProxyIp, int elapsed)</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>通过该回调你可以监听 SDK 连接代理的状态。例如，当用户调用 <xref keyref="setCloudProxy"/> 设置代理并成功加入频道后， SDK 会触发该回调报告用户 ID、连接的代理类型和从调用 <xref keyref="joinChannel1"/> 到触发该回调经过的时间等。</p>
+        </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <parml>
+            <plentry>
+                <pt>channel</pt>
+                <pd>频道名称。</pd>
+            </plentry>
+            <plentry id="uid">
+                <pt>uid</pt>
+                <pd>用户 ID</pd>
+            </plentry>
+            <plentry id="proxyType">
+                <pt>proxyType</pt>
+                <pd props="ios mac cpp unity">连接上的代理类型。详见 <xref keyref="CLOUD_PROXY_TYPE"/>。</pd>
+                <pd props="android">连接上的代理类型。
+                <ul>
+                    <li><ph keyref="NONE_PROXY_TYPE"/> (0): 预留参数，暂不支持。</li>
+                    <li><ph keyref="UDP_PROXY_TYPE"/> (1): UDP 协议的云代理，即 Force UDP 云代理模式。在该模式下，SDK 始终通过 UDP 协议传输数据。</li>
+                    <li><ph keyref="TCP_PROXY_TYPE"/> (2): TCP（加密）协议的云代理，即 Force TCP 云代理模式。在该模式下，SDK 始终通过 TLS 443 传输数据。</li>
+                    <li><ph keyref="LOCAL_PROXY_TYPE"/> (3): 预留参数，暂不支持。</li>
+                    <li><ph keyref="TCP_PROXY_AUTO_FALLBACK_TYPE"/> (4): 自动模式。在该模式下，SDK 优先连接 SD-RTN™，如果连接失败，自动切换为 TLS 443。</li>
+                </ul></pd>
+            </plentry>
+            <plentry id="localProxyIp">
+                <pt>localProxyIp</pt>
+                <pd>预留参数，暂不支持。</pd>
+            </plentry>
+            <plentry id="elapsed">
+                <pt>elapsed</pt>
+                <pd>从调用 <apiname keyref="joinChannel1"/> 到 SDK 触发该回调的经过的时间（毫秒）。</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>
