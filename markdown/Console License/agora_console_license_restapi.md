@@ -47,7 +47,7 @@ Agora 控制台 RESTful API 仅支持 HTTPS 协议。发送请求时，你需要
 #### 请求路径
 
 ```http
-https://api.agora.io/dabiz/license/v2/active?pid=02F51997A07B46C5810020A0F163EC30&licenseKey=111&appid=a6d6dba434be4b6683fad1aba6a7f75e
+https://api.agora.io/dabiz/license/v2/active?pid=02F5xxxxxxxxxxxxxxxxxxxxxxxxEC30&licenseKey=111&appid=a6d6xxxxxxxxxxxxxxxxxxxxxxxxf75e
 ```
 
 ### 响应参数
@@ -69,7 +69,7 @@ https://api.agora.io/dabiz/license/v2/active?pid=02F51997A07B46C5810020A0F163EC3
 {
     "code": 200,
     "data": {
-        "license": "1D653F55A3B84DA9BC0615926B476016",
+        "license": "1D65xxxxxxxxxxxxxxxxxxxxxxxx6016",
         "skuView": {
             "product": 1,
             "name": "演示申请01",
@@ -122,7 +122,7 @@ https://api.agora.io/dabiz/license/v2/active?pid=02F51997A07B46C5810020A0F163EC3
 #### 请求路径
 
 ```http
-https://api.agora.io/dabiz/license/v2/allocate?appid=a6d6dba434be4b6683fad1aba6a7f75e
+https://api.agora.io/dabiz/license/v2/allocate?appid=a6d6xxxxxxxxxxxxxxxxxxxxxxxxf75e
 ```
 
 #### 请求包体
@@ -131,7 +131,7 @@ https://api.agora.io/dabiz/license/v2/allocate?appid=a6d6dba434be4b6683fad1aba6a
 {
     "pid": "02F51997A07B46C5810020A0F163EC30",
     "count": 5,
-    "creator": "wangwei"
+    "creator": "xxxxxxx"
 }
 ```
 
@@ -179,7 +179,7 @@ https://api.agora.io/dabiz/license/v2/allocate?appid=a6d6dba434be4b6683fad1aba6a
 #### 请求路径
 
 ```http
-https://api.agora.io/dabiz/license/v2/product/allocations?page=1&size=2&pid=02F51997A07B46C5810020A0F163EC30&appid=a6d6dba434be4b6683fad1aba6a7f75e
+https://api.agora.io/dabiz/license/v2/product/allocations?page=1&size=2&pid=02F5xxxxxxxxxxxxxxxxxxxxxxxxEC30&appid=a6d6xxxxxxxxxxxxxxxxxxxxxxxxf75e
 ```
 
 ### 响应参数
@@ -204,16 +204,16 @@ https://api.agora.io/dabiz/license/v2/product/allocations?page=1&size=2&pid=02F5
         "count": 2,
         "list": [
             {
-                "pid": "02F51997A07B46C5810020A0F163EC30",
+                "pid": "02F5xxxxxxxxxxxxxxxxxxxxxxxxEC30",
                 "type": 1,
-                "creator": "wangwei",
+                "creator": "xxxxxxx",
                 "count": 5,
                 "createTime": "2022-07-22 09:10:12"
             },
             {
-                "pid": "02F51997A07B46C5810020A0F163EC30",
+                "pid": "02F5xxxxxxxxxxxxxxxxxxxxxxxxEC30",
                 "type": 1,
-                "creator": "wangwei",
+                "creator": "xxxxxxx",
                 "count": 5,
                 "createTime": "2022-07-21 09:02:26"
             }
@@ -248,7 +248,7 @@ https://api.agora.io/dabiz/license/v2/product/allocations?page=1&size=2&pid=02F5
 #### 请求路径
 
 ```http
-https://api.agora.io/dabiz/license/v2/vendor/pad/switch?appid=a6d6dba434be4b6683fad1aba6a7f75e
+https://api.agora.io/dabiz/license/v2/vendor/pad/switch?appid=a6d6xxxxxxxxxxxxxxxxxxxxxxxxf75e
 ```
 
 ### 响应参数
@@ -293,7 +293,7 @@ https://api.agora.io/dabiz/license/v2/vendor/pad/switch?appid=a6d6dba434be4b6683
 #### 请求路径
 
 ```http
-https://api.agora.io/dabiz/license/v2/pad/add?licenseKey=12345&appid=a6d6dba434be4b6683fad1aba6a7f75e
+https://api.agora.io/dabiz/license/v2/pad/add?licenseKey=12345&appid=a6d6xxxxxxxxxxxxxxxxxxxxxxxxf75e
 ```
 
 ### 响应参数
@@ -350,7 +350,7 @@ https://api.agora.io/dabiz/license/v2/pad/add?licenseKey=12345&appid=a6d6dba434b
 #### 请求路径
 
 ```http
-https://api.agora.io/dabiz/license/v2/pad/upload?appid=a6d6dba434be4b6683fad1aba6a7f75e
+https://api.agora.io/dabiz/license/v2/pad/upload?appid=a6d6xxxxxxxxxxxxxxxxxxxxxxxxf75e
 ```
 
 ### 请求包体
@@ -412,7 +412,7 @@ file=@pad.txt
 #### 请求路径
 
 ```http
-https://api.agora.io/dabiz/license/v2/pad/delete?appid=a6d6dba434be4b6683fad1aba6a7f75e
+https://api.agora.io/dabiz/license/v2/pad/delete?appid=a6d6xxxxxxxxxxxxxxxxxxxxxxxxf75e
 ```
 
 #### 请求包体
@@ -466,7 +466,7 @@ https://api.agora.io/dabiz/license/v2/pad/delete?appid=a6d6dba434be4b6683fad1aba
 #### 请求路径
 
 ```http
-https://api.agora.io/dabiz/license/v2/pad/clear?appid=a6d6dba434be4b6683fad1aba6a7f75e
+https://api.agora.io/dabiz/license/v2/pad/clear?appid=a6d6xxxxxxxxxxxxxxxxxxxxxxxxf75e
 ```
 
 ### 响应参数
@@ -493,7 +493,7 @@ https://api.agora.io/dabiz/license/v2/pad/clear?appid=a6d6dba434be4b6683fad1aba6
 
 ### 接口原型
 - 方法：`GET`
-- 接入点：`https://api.agora.io/dabiz/license/v1/pads/search`
+- 接入点：`https://api.agora.io/dabiz/license/v2/pads/search`
 
 ### 请求参数
 
@@ -511,7 +511,7 @@ https://api.agora.io/dabiz/license/v2/pad/clear?appid=a6d6dba434be4b6683fad1aba6
 #### 请求路径
 
 ```http
-https://api.agora.io/dabiz/license/v1/pads/search?licenseKey=12345&appid=a6d6dba434be4b6683fad1aba6a7f75e
+https://api.agora.io/dabiz/license/v2/pads/search?licenseKey=12345&appid=a6d6xxxxxxxxxxxxxxxxxxxxxxxxf75e
 ```
 
 ### 响应参数
@@ -537,7 +537,7 @@ https://api.agora.io/dabiz/license/v1/pads/search?licenseKey=12345&appid=a6d6dba
     "data": [
         {
             "id": 16,
-            "cid": 717241,
+            "cid": xxxxxx,
             "licenseKey": "12345",
             "createTime": "2022-07-26 04:01:41"
         }
@@ -571,7 +571,7 @@ https://api.agora.io/dabiz/license/v1/pads/search?licenseKey=12345&appid=a6d6dba
 #### 请求路径
 
 ```http
-https://api.agora.io/dabiz/license/v1/pads?page=1&size=10&appid=a6d6dba434be4b6683fad1aba6a7f75e
+https://api.agora.io/dabiz/license/v2/pads?page=1&size=10&appid=a6d6xxxxxxxxxxxxxxxxxxxxxxxxf75e
 ```
 
 ### 响应参数
@@ -597,13 +597,13 @@ https://api.agora.io/dabiz/license/v1/pads?page=1&size=10&appid=a6d6dba434be4b66
         "list": [
             {
                 "id": 20,
-                "cid": 717241,
+                "cid": xxxxxx,
                 "licenseKey": "12345",
                 "createTime": "2022-07-26 05:18:03"
             },
             {
                 "id": 19,
-                "cid": 717241,
+                "cid": xxxxxx,
                 "licenseKey": "54321",
                 "createTime": "2022-07-26 05:17:18"
             }
@@ -636,7 +636,7 @@ https://api.agora.io/dabiz/license/v1/pads?page=1&size=10&appid=a6d6dba434be4b66
 #### 请求路径
 
 ```http
-https://api.agora.io/dabiz/license/v2/pads/export?appid=a6d6dba434be4b6683fad1aba6a7f75e
+https://api.agora.io/dabiz/license/v2/pads/export?appid=a6d6xxxxxxxxxxxxxxxxxxxxxxxxf75e
 ```
 
 ### 响应参数
@@ -680,7 +680,7 @@ https://api.agora.io/dabiz/license/v2/pads/export?appid=a6d6dba434be4b6683fad1ab
 #### 请求路径
 
 ```http
-https://api.agora.io/dabiz/license/v1/renew?renewId=47503548C5E947F288A24B1EB5576270&license=85B38F2B02A5418792FC78B17466656F&appid=a6d6dba434be4b6683fad1aba6a7f75e
+https://api.agora.io/dabiz/license/v2/renew?renewId=4750xxxxxxxxxxxxxxxxxxxxxxxx6270&license=85B3xxxxxxxxxxxxxxxxxxxxxxxx656F&appid=a6d6xxxxxxxxxxxxxxxxxxxxxxxxf75e
 ```
 
 ### 响应参数
