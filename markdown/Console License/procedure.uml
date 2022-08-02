@@ -1,5 +1,4 @@
 @startuml
-autonumber
 skin rose
 
 participant "用户" as user
@@ -7,13 +6,13 @@ participant "OpenAPI" as api
 participant "控制台" as console
 participant "销售" as sales
 
-user -> sales: 申请：联系销售申请 License 额度
+user -> sales: <b>1</b> 申请：联系销售申请 License
 sales -> sales: 商务流程：付款、审批等
-user --> api: (可选) 预分配：为项目分配 License 额度
-user --> api: (可选) 预授权：上传预授权白名单
-user -> api: 激活：传入 LicenseKey 激活账号或设备
-user -> sales: 申请续期：联系销售申请 License 续期额度
+user --> api: <b>2</b> (可选) 预分配：为项目分配 License
+user --> api: <b>3</b> (可选) 预授权：添加 License 预授权白名单
+user -> api: <b>4</b> 激活：为账号或设备激活 License
+user -> sales: <b>5</b> 申请续期：联系销售申请续期 License
 sales -> sales: 商务流程：付款、审批等
-user -> api: 激活续期：传入 Renew PID 和 License Value 激活续期额度
-user -> console: 查询：查看 License 的使用情况
+user -> api: <b>6</b> 续期：续期 License
+user -> console: <b>7</b> 查询：查看 License 的用量和购买记录
 @enduml
