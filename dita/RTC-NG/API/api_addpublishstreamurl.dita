@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_addpublishstreamurl">
+    <title> <ph keyref="addPublishStreamUrl" /> </title>
+    <shortdesc id="short"> <ph id="shortdesc">增加旁路推流地址。</ph> </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="addPublishStreamUrl" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int addPublishStreamUrl(String url, boolean transcodingEnabled);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)addPublishStreamUrl:(NSString* _Nonnull)url transcodingEnabled:(BOOL)transcodingEnabled;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int addPublishStreamUrl(const char* url, bool transcodingEnabled) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract addPublishStreamUrl(url: string, transcodingEnabled: boolean): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int AddPublishStreamUrl(string url, bool transcodingEnabled);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract addPublishStreamUrl(
+    url: string,
+    transcodingEnabled: boolean
+  ): number;</codeblock>
+  <codeblock props="flutter" outputclass="language-dart">Future&lt;void> addPublishStreamUrl(
+    {required String url, required bool transcodingEnabled});</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="deprecated">
+            <dlentry>
+                <dt>弃用：</dt>
+                <dd>该方法已废弃。请根据实际情况改用 <xref keyref="startRtmpStreamWithoutTranscoding" /> 或 <xref keyref="startRtmpStreamWithTranscoding" />。</dd>
+            </dlentry>
+            </dl>
+            <p>调用该方法后，你可以向 CDN 推送 RTMP 或 RTMPS 协议的媒体流。SDK 会在本地触发 <xref keyref="onRtmpStreamingStateChanged" /> 回调，报告增加旁路推流地址的状态。</p>
+            <note type="attention" id="note">
+            <ul>
+            <li>该方法需要在加入频道后调用。</li>
+            <li><ph>请确保已开通旁路推流的功能。</ph><ph props="hide">详见进阶功能<xref keyref="guide-cdn-streaming">旁路推流</xref> 中的前提条件。</ph></li>
+            <li>只有直播场景中角色为主播的用户才能调用该方法。</li>
+            <li>该方法每次只能增加一路旁路推流地址。若需推送多路流，则需多次调用该方法。</li>
+            </ul> </note> </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry id="url">
+                <pt>url</pt>
+                <pd>旁路推流地址，格式为 RTMP 或 RTMPS。该字符长度不能超过 1024 字节，不支持中文字符等特殊字符。</pd>
+            </plentry>
+            <plentry id="transcoding">
+                <pt>transcodingEnabled</pt>
+                <pd>
+                    <p id="transcoding-desc">是否转码。<xref keyref="term-transocding">转码</xref>是指在旁路推流时对音视频流进行转码处理后再推送到其他 CDN 服务器。多适用于频道内有多个主播，需要进行混流、合图的场景。
+                    <ul>
+                    <li><codeph><ph keyref="true" /></codeph>: 转码。</li>
+                    <li><codeph><ph keyref="false" /></codeph>: 不转码。</li>
+                    </ul></p>
+                    <note type="attention">如果该参数设为 <codeph><ph keyref="true" /></codeph>，需先调用 <xref keyref="setLiveTranscoding" /> 方法。</note> </pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron unity rn">
+            <title>返回值</title>
+            <ul>
+            <li>0: 方法调用成功。</li>
+            <li>
+                    &lt; 0: 方法调用失败。
+
+                <ul>
+                <li>-2: 参数无效，一般是 URL 为空或是长度为 0 的字符串。</li>
+                <li>-7: 推流时未初始化引擎。</li>
+                </ul> </li>
+            </ul> </section>
+    </refbody>
+</reference>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setvideorenderfps">
+    <title><ph keyref="setVideoRenderFPS"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置本地视频渲染帧率（JavaScript 层）。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setVideoRenderFPS"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>Agora SDK 会自动控制 JavaScript 层视频渲染，如果你觉得应用显示的视频帧率过低，你可以调用该方法设置视频渲染帧率。</p>
+            <note type="attention">
+            <ul>
+            <li>该方法只影响本地渲染，不影响远端用户所见。</li>
+            <li>为保证视频质量，请在设置视频渲染分辨率时，相应地调整视频渲染帧率。详见 <xref keyref="setVideoRenderDimension"/>。</li>
+            </ul> </note> </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt>fps</pt>
+                <pd>本地视频渲染帧率 (fps)。不能超过 30 fps。</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

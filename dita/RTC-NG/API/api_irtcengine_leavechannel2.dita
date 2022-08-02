@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_leavechannel2">
+    <title><ph keyref="leaveChannel2"/></title>
+    <shortdesc id="short"><ph id="shortdesc">离开频道。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="leaveChannel2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int leaveChannel(LeaveChannelOptions options);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)leaveChannel:(AgoraLeaveChannelOptions * _Nonnull)options
+  leaveChannelBlock:(void (^ _Nullable)(AgoraChannelStats * _Nonnull))leaveChannelBlock;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int leaveChannel(const LeaveChannelOptions&amp; options) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract leaveChannel(options?: LeaveChannelOptions): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int LeaveChannel(LeaveChannelOptions options); </codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract leaveChannel(options?: LeaveChannelOptions): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; leaveChannel({LeaveChannelOptions? options});
+</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>离开频道，即挂断或退出通话。</p>
+            <p>加入频道后，必须调用本方法或 <xref keyref="leaveChannel" props="native unity"/> <xref keyref="leaveChannel2" props="rn electron flutter"/> 结束通话，才能开始下一次通话。</p>
+            <p>不管当前是否在通话中，都可以调用该方法，没有副作用。该方法会把会话相关的所有资源释放掉。</p>
+            <p>该方法是异步操作，调用返回时并没有真正退出频道。在真正退出频道后，SDK 会触发 <xref keyref="onLeaveChannel"/> 回调。
+                    成功调用该方法离开频道后，本地会触发<apiname keyref="onLeaveChannel"/> 回调；
+                通信场景下的用户和直播场景下的主播离开频道后，远端会触发 <xref keyref="onUserOffline"/> 回调。</p>
+            <note conkeyref="leaveChannel/note" props="native flutter unity electron rn"/> </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml id="parml_jsr_dky_hqb">
+            <plentry>
+                <pt>options</pt>
+                <pd>离开频道的选项，详见 <xref keyref="LeaveChannelOptions"/>。</pd>
+            </plentry>
+            <plentry props="ios mac" id="leavechannelblock">
+                <pt>leaveChannelBlock</pt>
+                <pd>
+                    <p>成功离开频道的回调，提供通话相关的统计信息，详见 <xref keyref="RtcStats"/> 。</p>
+                </pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron unity rn">
+            <title>返回值</title>
+            <ul>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。</li>
+            </ul> </section>
+    </refbody>
+</reference>
