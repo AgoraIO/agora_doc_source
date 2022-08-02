@@ -9,13 +9,12 @@ The Agora Chat SDK uses `ChatManager` to retrieve historical messages from the s
 - `fetchAllConversations`: Retrieve a list of conversations stored on the server.
 - `fetchHistoryMessages`: Retrieve the historical messages in the specified conversation from the server.
 
-## Prerequsites
+## Prerequisites
 
 Before proceeding, ensure that you meet the following requirements:
 
 - You have integrated the Agora Chat SDK, initialized the SDK, and implemented the functionality of users logging in. For details, [Get Started with Agora Chat](./agora_chat_get_started_rn?platform=React%20Native).
 - You understand the [API call frequency limits](./agora_chat_limitation?platform=React%20Native).
-- Retrieving conversations from the server is not enabled by default. To implement this feature, contact support@agora.io to enable the service. 
 
 ## Implementation
 
