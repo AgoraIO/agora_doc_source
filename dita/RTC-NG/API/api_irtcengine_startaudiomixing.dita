@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startaudiomixing">
+    <title><ph keyref="startAudioMixing" /></title>
+    <shortdesc id="short"><ph id="shortdesc">开始播放音乐文件。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startAudioMixing" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int startAudioMixing(
+      String filePath, boolean loopback, boolean replace, int cycle);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)startAudioMixing:(NSString *  _Nonnull)filePath
+               loopback:(BOOL)loopback
+                replace:(BOOL)replace
+                  cycle:(NSInteger)cycle;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int startAudioMixing(const char* filePath,
+    bool loopback,
+    bool replace,
+    int cycle) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract startAudioMixing(filePath: string, loopback: boolean, replace: boolean, cycle: number, startPos?: number): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int StartAudioMixing(string filePath, bool loopback, bool replace, int cycle);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="deprecated" props="native">
+            <dlentry>
+                <dt>弃用：</dt>
+                <dd>请改用 <xref keyref="startAudioMixing2" />。</dd>
+            </dlentry>
+            </dl>
+            <p id="audiomixing_detailed">该方法支持将本地或在线音乐文件和麦克风采集的音频进行混音或替换。成功播放音乐文件后，本地会触发 <xref keyref="onAudioMixingStateChanged" /> (<apiname keyref="AUDIO_MIXING_STATE_PLAYING" />) 回调。播放结束后，本地会触发 <apiname keyref="onAudioMixingStateChanged" /> (<apiname keyref="AUDIO_MIXING_STATE_STOPPED" />) 回调。</p>
+            <note type="attention" id="audiomixing_note">
+            <ul>
+            <li>该方法在加入频道前后均可调用。如需多次调用 <apiname keyref="startAudioMixing" />，请确保调用间隔大于 500 ms。</li>
+            <li>如果本地音乐文件不存在、文件格式不支持或无法访问在线音乐文件 URL，则 SDK 会报告警告码 701。</li>
+            <li props="android cpp unity" id="principle">在 Android 平台上调用该方法时，请注意如下事项：
+                <ul>
+                <li>请确保使用 Android 4.2 或以上设备，且 API Level 不低于 16。</li>
+                <li>如果播放的是在线音乐文件，Agora 建议不要使用重定向地址。重定向地址在某些机型上可能无法打开。</li>
+                <li>如果在模拟器上调用该方法，则请确保音乐文件在 <codeph>/sdcard/</codeph> 目录下，且格式为 MP3。</li>
+                </ul></li>
+            </ul> </note> </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry conkeyref="playEffect2/filepath" props="unity">
+                <pt />
+                <pd />
+            </plentry>
+            <plentry props="native">
+                <pt>filePath</pt>
+                <pd>
+                    <p conkeyref="playEffect3/filepath" />
+                </pd>
+            </plentry>
+            <plentry id="loopback">
+                <pt>loopback</pt>
+                <pd>
+                    <p>是否只在本地播放音乐文件：
+
+                    <ul>
+                    <li><codeph><ph keyref="true" /></codeph>: 只在本地播放音乐文件，只有本地用户能听到音乐。</li>
+                    <li><codeph><ph keyref="false" /></codeph>: 将本地播放的音乐文件发布至远端，本地用户和远端用户都能听到音乐。</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            <plentry id="replace">
+                <pt>replace</pt>
+                <pd>
+                    <p>是否用音乐文件替换麦克风采集的音频：
+
+                    <ul>
+                    <li><codeph><ph keyref="true" /></codeph>: 替换。用户只能听到音乐。</li>
+                    <li><codeph><ph keyref="false" /></codeph>: 不替换。用户可以听到音乐和麦克风采集的音频。</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            <plentry id="cycle">
+                <pt>cycle</pt>
+                <pd>
+                    <p>音乐文件的播放次数。
+
+                    <ul>
+                    <li>≥ 0: 播放次数。例如，0 表示不播放；1 表示播放 1 次。</li>
+                    <li>-1: 无限循环播放。</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <ul>
+            <li>0: 方法调用成功</li>
+            <li>&lt; 0: 方法调用失败</li>
+            </ul> </section>
+    </refbody>
+</reference>
