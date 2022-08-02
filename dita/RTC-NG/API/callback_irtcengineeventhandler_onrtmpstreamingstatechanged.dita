@@ -53,13 +53,13 @@
                 <pt>state</pt>
                 <pd props="ios mac cpp electron unity rn flutter">当前的推流状态，详见 <xref keyref="RTMP_STREAM_PUBLISH_STATE"/>。</pd>
                 <pd props="android">当前的推流状态:
-                
+
                     <ul>
                     <li><ph keyref="RTMP_STREAM_PUBLISH_STATE_IDLE"/> (0)：推流未开始或已结束。成功调用 <xref keyref="removePublishStreamUrl"/> 方法删除推流地址后，也会返回该状态。</li>
                     <li><ph keyref="RTMP_STREAM_PUBLISH_STATE_CONNECTING"/> (1)：正在连接 Agora 推流服务器和 CDN 服务器。调用 <xref keyref="addPublishStreamUrl"/> 方法后，会返回该状态。</li>
                     <li><ph keyref="RTMP_STREAM_PUBLISH_STATE_RUNNING"/> (2)：推流正在进行。成功推流后，会返回该状态。</li>
-                    <li><ph keyref="RTMP_STREAM_PUBLISH_STATE_RECOVERING"/> (3)：正在恢复推流。当 CDN 出现异常，或推流短暂中断时，SDK 会自动尝试恢复推流，并返回该状态。 
-                    
+                    <li><ph keyref="RTMP_STREAM_PUBLISH_STATE_RECOVERING"/> (3)：正在恢复推流。当 CDN 出现异常，或推流短暂中断时，SDK 会自动尝试恢复推流，并返回该状态。
+
                         <ul>
                         <li>如成功恢复推流，则进入状态 <ph keyref="RTMP_STREAM_PUBLISH_STATE_RUNNING"/>(2)。</li>
                         <li>如服务器出错或 60 秒内未成功恢复，则进入状态 <ph keyref="RTMP_STREAM_PUBLISH_STATE_FAILURE"/>(4)。如果觉得 60 秒太长，也可以主动调用 <xref keyref="removePublishStreamUrl"/> 和 <xref keyref="addPublishStreamUrl"/> 方法尝试重连。</li>
@@ -87,7 +87,7 @@
                     <li props="native"><ph keyref="RTMP_STREAM_PUBLISH_ERROR_NOT_BROADCASTER"/> (11)：用户角色不是主播，该用户无法使用推流功能。请检查你的应用代码逻辑。</li>
                     <li props="native"><ph keyref="RTMP_STREAM_PUBLISH_ERROR_TRANSCODING_NO_MIX_STREAM"/> (13)：非转码推流情况下，调用了 <xref keyref="updateRtmpTranscoding"/> 或 <xref keyref="setLiveTranscoding"/> 方法更新转码属性。请检查你的应用代码逻辑。</li>
                     <li props="native"><ph keyref="RTMP_STREAM_PUBLISH_ERROR_NET_DOWN"/> (14)：主播的网络出错。</li>
-                    <li props="native"><ph keyref="RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID"/> (15)：你的 App ID 没有使用 Agora 推流服务的权限。<ph props="rtc">请参考<xref keyref="guide-cdn-streaming">旁路推流</xref>中的前提条件开启推流服务。</ph></li>
+                    <li props="native"><ph keyref="RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID"/> (15)：你的 App ID 没有使用 Agora 推流服务的权限。<ph props="hide">请参考<xref keyref="guide-cdn-streaming">旁路推流</xref>中的前提条件开启推流服务。</ph></li>
                     <li props="native"><ph keyref="RTMP_STREAM_UNPUBLISH_ERROR_OK"/> (100)：推流已正常结束。当你调用 <xref keyref="removePublishStreamUrl"/> 结束推流后，SDK 会返回该值。</li>
                     </ul> </pd>
             </plentry>
