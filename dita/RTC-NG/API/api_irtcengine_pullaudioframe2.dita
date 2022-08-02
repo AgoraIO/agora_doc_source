@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_pullaudioframe2">
+    <title><ph keyref="pullAudioFrame2"/></title>
+    <shortdesc id="short"><ph id="shortdesc">拉取远端音频数据。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="pullAudioFrame2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int pullPlaybackAudioFrame(ByteBuffer data, int lengthInByte);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>使用该方法前，你需要调用 <codeph><xref keyref="setExternalAudioSink"/>(<parmname>enabled</parmname>: <ph keyref="true"/>)</codeph> 通知 app 开启并设置外部渲染。</p>
+            <p>调用该方法后，app 会采取主动拉取的方式获取远端已解码和混音后的音频数据，用于音频播放。</p>
+            <note type="attention">
+            <ul>
+            <li>该方法需要在加入频道后调用。</li>
+            <li>该方法和 <apiname keyref="onPlaybackAudioFrame"/> 回调相比，区别在于： 
+                
+                
+                <ul>
+                <li><apiname keyref="onPlaybackAudioFrame"/>：SDK 通过该回调将音频数据传输给 app。如果 app 处理延时，可能会导致音频播放抖动。</li>
+                <li><apiname keyref="pullAudioFrame"/>：App 主动拉取音频数据。通过设置音频数据，SDK 可以调整缓存，帮助 app 处理延时，从而有效避免音频播放抖动。</li>
+                </ul></li>
+            </ul> </note> </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt>data</pt>
+                <pd>待拉取的远端音频数据，数据类型为 <codeph>ByteBuffer</codeph>。</pd>
+            </plentry>
+            <plentry>
+                <pt>lengthInByte</pt>
+                <pd>远端音频数据长度，单位为字节。 该参数的值由音频数据时长、<apiname keyref="setExternalAudioSink"/> 的 <parmname>sampleRate</parmname> 和 <parmname>channels</parmname> 参数确定。<parmname>lengthInByte</parmname> = <parmname>sampleRate</parmname>/1000 × 2 × <parmname>channels</parmname> × 音频数据时长 (ms)。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <ul>
+            <li>0：方法调用成功。</li>
+            <li>&lt; 0：方法调用失败。</li>
+            </ul> </section>
+    </refbody>
+</reference>
