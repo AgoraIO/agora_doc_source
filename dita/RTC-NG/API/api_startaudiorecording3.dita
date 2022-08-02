@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_startaudiorecording3">
+    <title><ph keyref="startAudioRecording3"/></title>
+    <shortdesc id="short"><ph id="shortdesc">开始客户端录音。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startAudioRecording3"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int startAudioRecording(AudioFileRecordingConfig config);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)startAudioRecordingWithConfig:(AgoraAudioRecordingConfiguration * _Nonnull)config;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int startAudioRecording(const AudioFileRecordingConfig&amp; config) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract startAudioRecording(config: AudioRecordingConfiguration): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int StartAudioRecording(AudioRecordingConfiguration config);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract startAudioRecording(config: AudioRecordingConfiguration): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> startAudioRecording(AudioRecordingConfiguration config);</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>Agora SDK 支持通话过程中在客户端进行录音。调用该方法后，你可以录制频道内用户的音频，并得到一个录音文件。录音文件格式可以为:
+
+
+            <ul>
+            <li>WAV: 音质保真度较高，文件较大。例如，采样率为 32000 Hz，录音时长为 10 分钟的文件大小约为 73 M。</li>
+            <li>AAC: 音质保真度较低，文件较小。例如，采样率为 32000 Hz，录音音质为 <ph keyref="AUDIO_RECORDING_QUALITY_MEDIUM"/>，录音时长为 10 分钟的文件大小约为 2 M。</li>
+            </ul></p>
+            <p>用户离开频道后，录音会自动停止。</p>
+            <note type="attention">该方法需要在加入频道后调用。</note> </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt>config</pt>
+                <pd>录音配置。详见 <xref keyref="AudioRecordingConfiguration"/>。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron unity rn">
+            <title>返回值</title>
+            <ul>
+            <li>0: 方法调用成功</li>
+            <li>&lt; 0: 方法调用失败</li>
+            </ul> </section>
+    </refbody>
+</reference>

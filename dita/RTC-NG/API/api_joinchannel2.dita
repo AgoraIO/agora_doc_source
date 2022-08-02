@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_joinchannel2">
+    <title><ph keyref="joinChannel2"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置媒体选项并加入频道。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="joinChannel2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int joinChannel(
+      String token, String channelId, int uid, ChannelMediaOptions options);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)joinChannelByToken:(NSString * _Nullable)token
+                channelId:(NSString * _Nonnull)channelId
+                      uid:(NSUInteger)uid
+             mediaOptions:(AgoraRtcChannelMediaOptions * _Nonnull)mediaOptions
+              joinSuccess:(void(^ _Nullable)(NSString * _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int joinChannel(const char* token, const char* channelId, uid_t uid,
+                          const ChannelMediaOptions&amp; options) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract joinChannelWithOptions(token: string, channelId: string, uid: number, options: ChannelMediaOptions): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int JoinChannel(string token, string channelId, uint uid,
+                                ChannelMediaOptions options);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract joinChannelWithOptions(token: string, channelId: string, uid: number, options: ChannelMediaOptions): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> joinChannelWithOptions(
+    {required String token,
+    required String channelId,
+    required int uid,
+    required ChannelMediaOptions options});</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <p id="desc1">该方法让用户加入通话频道，在同一个频道内的用户可以互相通话，多个用户加入同一个频道，可以群聊。 使用不同 App ID 的 app 不能互通。</p>
+            <p id="desc2">成功调用该方法加入频道后会触发以下回调：
+
+
+
+
+
+            <ul>
+            <li>本地会触发 <xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/> 回调。</li>
+            <li>通信场景下的用户和直播场景下的主播加入频道后，远端会触发 <xref keyref="onUserJoined"/> 回调。</li>
+            </ul></p>
+            <p id="desc3">在网络状况不理想的情况下，客户端可能会与 Agora 服务器失去连接；SDK 会自动尝试重连，重连成功后，本地会触发 <xref keyref="onRejoinChannelSuccess"/> 回调。</p>
+            <p props="native unity">相比 <xref keyref="joinChannel1"/>，该方法增加了 <parmname>options</parmname> 参数，用于配置用户加入频道时是否自动订阅频道内所有远端音视频流。默认情况下，用户订阅频道内所有其他用户的音频流和视频流，因此会产生用量并影响计费。如果想取消订阅，可以通过设置 <parmname>options</parmname> 参数或相应的 <apiname>mute</apiname> 方法实现。</p>
+            <note id="note_cyz_w1l_mqb" type="attention">
+            <ul id="ul_sz1_y1l_mqb">
+            <li>该方法允许用户一次加入仅一个频道。</li>
+            <li>请务必确保用于生成 Token 的 App ID 和 <xref keyref="initialize"/> 方法初始化引擎时用的是同一个 App ID，否则使用 Token 加入频道失败。</li>
+            </ul> </note> </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry id="token">
+                <pt>token</pt>
+                <pd>
+                    <p><ph>在服务端生成的用于鉴权的动态密钥。详见<xref keyref="guide-token" props="native">使用 Token 鉴权</xref>。</ph></p>
+                </pd>
+            </plentry>
+            <plentry id="channelID">
+                <pt>channelId</pt>
+                <pd>
+                    <p id="channelID_desc">频道名。该参数标识用户进行实时音视频互动的频道。App ID 一致的前提下，填入相同频道名的用户会进入同一个频道进行音视频互动。该参数为长度在 64 字节以内的字符串。以下为支持的字符集范围（共 89 个字符）:
+
+
+
+                    <ul id="char_support">
+                    <li>26 个小写英文字母 a~z</li>
+                    <li>26 个大写英文字母 A~Z</li>
+                    <li>10 个数字 0~9</li>
+                    <li>空格</li>
+                    <li>"!"、"#"、"$"、"%"、"&amp;"、"("、")"、"+"、"-"、":"、";"、"&lt;"、"="、"."、"&gt;"、"?"、"@"、"["、"]"、"^"、"_"、"{"、"}"、"|"、"~"、","</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            <plentry id="uid">
+                <pt>uid</pt>
+                <pd>用户 ID。该参数用于标识在实时音视频互动频道中的用户。你需要自行设置和管理用户 ID，并确保同一频道内的每个用户 ID 是唯一的。该参数为 32 位无符号整数。 建议设置范围：1 到 2<sup>32</sup>-1。如果不指定（即设为 0），SDK 会自动分配一个，并在 <apiname keyref="onJoinChannelSuccess"/> 回调中返回， app 层必须记住该返回值并维护，SDK 不对该返回值进行维护。</pd>
+            </plentry>
+            <plentry id="options">
+                <pt props="android cpp electron unity rn flutter">options</pt>
+                <pt props="ios mac">mediaOptions</pt>
+                <pd>
+                    <p id="options_desc">频道媒体设置选项。详见 <xref keyref="ChannelMediaOptions"/>。</p>
+                </pd>
+            </plentry>
+            <plentry props="ios mac" id="joinsuccessblock">
+                <pt>joinSuccessBlock</pt>
+                <pd>成功加入频道回调。<codeph>joinSuccessBlock</codeph> 优先级高于 <xref keyref="onJoinChannelSuccess"/>，两个同时存在时，<apiname keyref="onJoinChannelSuccess"/> 会被忽略。需要有 <apiname keyref="onJoinChannelSuccess"/> 回调时，请将 <codeph>joinSuccessBlock</codeph> 设置为 <codeph>nil</codeph>。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native unity rn electron">
+            <title>返回值</title>
+            <ul>
+            <li>0：方法调用成功。</li>
+            <li>&lt; 0：方法调用失败。
+
+
+
+                <ul>
+                <li>-2：传入的参数无效。例如，使用了不合法的 Token，<parmname>uid</parmname> 参数未设置为整型，<xref keyref="ChannelMediaOptions"/> 结构体成员值不合法。你需要填入有效的参数，重新加入频道。</li>
+                <li>-3：<xref keyref="IRtcEngine"/> 对象初始化失败。你需要重新初始化 <apiname keyref="IRtcEngine"/> 对象。</li>
+                <li>-7：<apiname keyref="IRtcEngine"/> 对象尚未初始化。你需要在调用该方法前成功初始化 <apiname keyref="IRtcEngine"/> 对象。</li>
+                <li>-8：<apiname keyref="IRtcEngine"/> 对象内部状态错误。可能的原因是：调用 <xref keyref="startEchoTest2"/> 开始通话回路测试后，未调用 <xref keyref="stopEchoTest"/> 停止测试就调用该方法加入频道。你需要在该方法前调用 <apiname keyref="stopEchoTest"/>。</li>
+                <li>-17：加入频道被拒绝。可能的原因是用户已经在频道中。Agora 推荐通过 <xref keyref="onConnectionStateChanged"/> 回调判断用户是否在频道中。除收到 <apiname keyref="CONNECTION_STATE_DISCONNECTED"/>(1) 状态外，不要再次调用该方法加入频道。</li>
+                <li>-102：频道名无效。你需要在 <parmname>channelId</parmname> 中填入有效的频道名，重新加入频道。</li>
+                <li>-121：用户 ID 无效。你需要在 <parmname>uid</parmname> 中填入有效的用户 ID，重新加入频道。</li>
+                </ul></li>
+            </ul> </section>
+    </refbody>
+</reference>
