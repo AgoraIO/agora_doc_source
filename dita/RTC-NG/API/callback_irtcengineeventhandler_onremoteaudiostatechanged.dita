@@ -12,7 +12,7 @@
      </prolog>
      <refbody>
           <section id="prototype">
-               <p outputclass="codeblock"> 
+               <p outputclass="codeblock">
                <codeblock props="android" outputclass="language-java">public void onRemoteAudioStateChanged(int uid, int state, int reason, int elapsed) {}</codeblock>
                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
      remoteAudioStateChangedOfUid:(NSUInteger)uid state:(AgoraAudioRemoteState)state reason:(AgoraAudioRemoteReason)reason elapsed:(NSInteger)elapsed;</codeblock>
@@ -43,16 +43,8 @@
 </codeblock> </p>
           </section>
           <section id="detailed_desc">
-               <dl outputclass="since" props="rtc">
-               <dlentry props="native">
-                    <dt>自从</dt>
-                    <dd>v2.9.0</dd>
-               </dlentry>
-               </dl>
-               <p id="desc"
-               >远端用户（通信场景）或主播（直播场景）的音频状态发生改变时，SDK 会触发该回调向本地用户报告当前的远端音频流状态。</p>
-               <note id="note" type="attention"
-               >频道内的用户（通信场景）或主播（直播场景）人数超过 17 人时，该回调可能不准确。</note> </section>
+               <p id="desc">远端用户（通信场景）或主播（直播场景）的音频状态发生改变时，SDK 会触发该回调向本地用户报告当前的远端音频流状态。</p>
+               <note id="note" type="attention">频道内的用户（通信场景）或主播（直播场景）人数超过 17 人时，该回调可能不准确。</note> </section>
           <section id="parameters">
                <title><ph keyref="callback-section-title"/></title>
                <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
@@ -74,7 +66,7 @@
                     <pt>state</pt>
                     <pd props="ios mac cpp unity"> 远端音频流状态，详见 <xref keyref="REMOTE_AUDIO_STATE"/>。</pd>
                     <pd props="android"> 远端音频流状态。
-                    
+
                          <ul>
                          <li><ph keyref="REMOTE_AUDIO_STATE_STOPPED"/> (0): 远端音频默认初始状态。在 <apiname keyref="REMOTE_AUDIO_STATE_REASON_LOCAL_MUTED"/>、<apiname keyref="REMOTE_AUDIO_STATE_REASON_REMOTE_MUTED"/> 或 <apiname keyref="REMOTE_AUDIO_STATE_REASON_REMOTE_OFFLINE"/> 的情况下，会报告该状态。</li>
                          <li><ph keyref="REMOTE_AUDIO_STATE_STARTING"/> (1): 本地用户已接收远端音频首包。</li>
@@ -87,7 +79,7 @@
                     <pt>reason</pt>
                     <pd props="ios mac cpp unity electron rn flutter"> 远端音频流状态改变的具体原因，详见 <xref keyref="REMOTE_AUDIO_STATE_REASON"/>。</pd>
                     <pd props="android">远端音频流状态改变的具体原因。
-                    
+
                          <ul>
                          <li><ph keyref="REMOTE_AUDIO_STATE_REASON_INTERNAL"/> (0): 音频状态发生改变时，会报告该原因。</li>
                          <li><ph keyref="REMOTE_AUDIO_STATE_REASON_NETWORK_CONGESTION"/> (1): 网络阻塞。</li>
