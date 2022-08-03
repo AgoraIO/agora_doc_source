@@ -8,8 +8,8 @@
 
 ## 前提条件
 
--   在 Agora 控制台[开通灵动课堂服务](/cn/agora-class/agora_class_enable?platform=Web)。
--   在 Agora 控制台获取 [Agora App ID](/cn/Agora%20Platform/get_appid_token#获取-app-id) 和 [App 证书](/cn/Agora%20Platform/get_appid_token#获取-app-证书)。
+-   在声网控制台[开通灵动课堂服务](/cn/agora-class/agora_class_enable?platform=Web)。
+-   在声网控制台获取 [Agora App ID](/cn/Agora%20Platform/get_appid_token#获取-app-id) 和 [App 证书](/cn/Agora%20Platform/get_appid_token#获取-app-证书)。
 -   一个有效的 Apple 开发者账号。
 -   一台 iOS 设备（iPhone 或 iPad）。模拟机可能出现功能缺失或者性能问题，所以推荐使用真机。此外，灵动课堂 iOS 端要求运行在 iOS 10 或以上版本。
 
@@ -41,16 +41,18 @@
     ```
 
     ```bash
-    git checkout release/apaas/{VERSION}
+    git checkout release/{VERSION}
     ```
 
-    例如要切换到 2.1.0 版本分支，执行以下命令：
+    例如要切换到 2.6.1 版本分支，执行以下命令：
 
     ```bash
-    git checkout release/apaas/2.1.0
+    git checkout release/2.6.1
     ```
 
-    Agora 建议你切换到最新的发版分支。
+    声网建议你切换到最新发版分支。参考下图在 GitHub 仓库中查看最新发版分支：
+
+    ![](https://web-cdn.agora.io/docs-files/1658914881145)
 
 3. 运行以下命令将 apaas-extapp-ios 仓库克隆到本地。
 
@@ -62,20 +64,14 @@
 
     ![](https://web-cdn.agora.io/docs-files/1648725190226)
 
-4. 运行以下命令进入 apaas-extapp-ios 目录并切换分支至指定版本。将 {VERSION} 替换为要切换的版本号：
+4. 运行以下命令进入 apaas-extapp-ios 目录并切换分支至指定版本。将 {VERSION} 替换为要切换的版本号（建议与 CloudClass-iOS 的版本保持一致）：
 
     ```bash
     cd apaas-extapp-ios
     ```
 
     ```bash
-    git checkout release/apaas/{VERSION}
-    ```
-
-    例如要切换到 2.1.0 版本分支，执行以下命令：
-
-    ```bash
-    git checkout release/apaas/2.1.0
+    git checkout release/{VERSION}
     ```
 
 ## 启动灵动课堂
@@ -100,21 +96,21 @@
 
 3. 成功安装依赖包后，在“访达”窗口中打开 CloudClass-iOS 文件夹，双击 `AgoraEducation.xcworkspace` 在 Xcode 中打开项目。
 
-    ![](https://web-cdn.agora.io/docs-files/1648725644218)
+   ![](https://web-cdn.agora.io/docs-files/1648725644218)
 
-    ![](https://web-cdn.agora.io/docs-files/1648725725804)
+   ![](https://web-cdn.agora.io/docs-files/1648725725804)
 
 4. 在项目 TARGETS 下的 Signing & Capabilities 界面勾选 Automatically manage signing，配置你的 Apple 开发者账号和 Bundle Identifier。
 
-    ![](https://web-cdn.agora.io/docs-files/1648725848162)
+   ![](https://web-cdn.agora.io/docs-files/1648725848162)
 
 5. 连接上你的 iOS 设备后，点击 Xcode 左上角的运行按钮运行项目。
 
-    ![](https://web-cdn.agora.io/docs-files/1648725959472)
+   ![](https://web-cdn.agora.io/docs-files/1648725959472)
 
 6. 运行成功后，你可以在 iOS 设备上看到以下画面。输入房间名、用户名，选择一种班型，然后点击**加入**，即可进入灵动课堂。
 
-    ![](https://web-cdn.agora.io/docs-files/1648726024179)
+   ![](https://web-cdn.agora.io/docs-files/1648726024179)
 
 ## 后续步骤
 

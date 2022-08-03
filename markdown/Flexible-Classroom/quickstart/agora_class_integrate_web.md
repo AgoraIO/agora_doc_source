@@ -1,4 +1,4 @@
-本文详细介绍如何将灵动课堂集成到你自己的 Web/Electron 项目中。
+本文详细介绍如何将灵动课堂集成到你自己的 Web 项目中。
 
 ## 技术原理
 
@@ -16,7 +16,7 @@
 
 ## 集成方式
 
-灵动课堂 Web/Electron 端支持以下三种集成方式：
+灵动课堂 Web 端支持以下三种集成方式：
 
 -   通过 CDN 集成
 -   通过 [npm](https://www.npmjs.com/package/agora-classroom-sdk) 集成
@@ -43,7 +43,7 @@
     ```
     import {AgoraEduSDK} from 'agora-classroom-sdk'
     ```
-
+    
 3. 在项目的 JavaScript 代码中调用 [AgoraEduSDK.config](/cn/agora-class/agora_class_api_ref_web?platform=Web#config) 和 [AgoraEduSDK.launch](/cn/agora-class/agora_class_api_ref_web?platform=Web#launch) 方法启动课堂。
 
 #### 使用 CDN 集成
@@ -51,58 +51,60 @@
 1. 在项目的 HTML 文件中添加以下代码：
 
     ```html
-    <script src="https://download.agora.io/edu-apaas/release/edu_sdk@2.4.0.bundle.js"></script>
+    <script src="https://download.agora.io/edu-apaas/release/edu_sdk@2.6.1.bundle.js"></script>
     ```
 
 2. 在项目的 JavaScript 代码中调用 [AgoraEduSDK.config](/cn/agora-class/agora_class_api_ref_web?platform=Web#config) 和 [AgoraEduSDK.launch](/cn/agora-class/agora_class_api_ref_web?platform=Web#launch) 方法启动课堂。
+
 
 #### 示例代码
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <script src="https://download.agora.io/edu-apaas/release/edu_sdk@2.4.0.bundle.js"></script>
-    </head>
-
-    <body>
-        <style>
-            #root {
-                width: 100%;
-                height: 100%;
-            }
-        </style>
-        <div id="root"></div>
-        <script type="text/javascript">
-            // 配置 SDK。
-            // 填入你的 App ID。
-            AgoraEduSDK.config({appId: "Your App ID"});
-            // 启动课堂。
-            AgoraEduSDK.launch(document.querySelector("#root"), {
-                userUuid: "user id",
-                userName: "user name",
-                roomUuid: "room id",
-                roleType: 1, // 用户角色：1 为老师，2 为学生。
-                roomType: 0, // 房间类型：0 为一对一，2 为大班课，4 为小班课。
-                roomName: "room name",
-                pretest: true, // 是否开启课前设备检测。
-                rtmToken: "rtm token",
-                language: "zh", // 界面语言。
-                duration: 60 * 30, // 课程时间，单位为秒。
-                recordUrl: "https://solutions-apaas.agora.io/apaas/record/dev/2.3.3/record_page.html",
-                courseWareList: [],
-                listener: (evt, args) => {},
-            })
-                .then(() => {
-                    console.log("start launch");
-                })
-                .catch(e => {
-                    console.error("fail to launch", e);
-                });
-        </script>
-    </body>
+ 
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://download.agora.io/edu-apaas/release/edu_sdk@2.6.1.bundle.js"></script>
+</head>
+ 
+<body>
+    <style>
+        #root {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <div id="root"></div>
+    <script type="text/javascript">
+        // 配置 SDK。
+        // 填入你的 App ID。
+        AgoraEduSDK.config({ appId: 'Your App ID' });
+        // 启动课堂。
+        AgoraEduSDK.launch(document.querySelector('#root'), {
+            userUuid: 'user id',
+            userName: 'user name',
+            roomUuid: 'room id',
+            roleType: 1, // 用户角色：1 为老师，2 为学生。
+            roomType: 0, // 房间类型：0 为一对一，2 为大班课，4 为小班课。
+            roomName: 'room name',
+            pretest: true, // 是否开启课前设备检测。
+            rtmToken: 'rtm token',
+            language: 'zh', // 界面语言。
+            duration: 60 * 30, // 课程时间，单位为秒。
+            recordUrl: 'https://solutions-apaas.agora.io/apaas/record/dev/2.3.3/record_page.html',
+            courseWareList: [],
+            listener: (evt, args) => {
+            },
+        }).then(() => {
+            console.log('start launch');
+        }).catch((e) => {
+            console.error('fail to launch', e);
+        });
+    </script>
+</body>
+ 
 </html>
 ```
 
@@ -120,38 +122,46 @@
     git clone https://github.com/AgoraIO-Community/CloudClass-Desktop.git
     ```
 
-1. 进入项目目录后，切换至最新发版分支。
+2. 运行以下命令切换分支至指定版本，将 {VERSION} 替换为要切换的版本号：
 
+    ```bash
+    git checkout release/{VERSION}
     ```
-    git checkout release/apaas/x.y.z
+
+    例如要切换到 2.6.0 版本分支，执行以下命令：
+
+    ```bash
+    git checkout release/2.6.0
     ```
 
-    <div class="alert info">x.y.z 请替换为版本号。你可在<a href="/cn/agora-class/release_agora_class_web?platform=Web">发版说明</a>中获取最新版本号。</div>
+    声网建议你切换到最新发版分支。参考下图在 GitHub 仓库中查看最新发版分支：
 
-1. 成功拉取代码后，根据你的实际需求，参考[自定义课堂 UI 文档](/cn/agora-class/agora_class_custom_ui_web?platform=Web)修改代码。
+    ![](https://web-cdn.agora.io/docs-files/1658916187924)
 
-1. 修改完代码后，按照以下步骤进行调试：
+3. 成功拉取代码后，根据你的实际需求，参考[自定义课堂 UI 文档](/cn/agora-class/agora_class_custom_ui_web?platform=Web)修改代码。
+
+4. 修改完代码后，按照以下步骤进行调试：
 
     1. 执行以下命令安装依赖库：
 
-        ```
+        ```bash
         yarn install
         ```
 
-        ```
+        ```bash
         yarn bootstrap
         ```
 
     2. 通过以下命令以开发模式运行项目。
 
-        - 启动 Web 开发模式：`yarn dev`
-        - 启动 Electron 开发模式：`yarn dev:electron`
+       ```bash
+       yarn dev
+       ```
 
-    3. 完成开发后，通过以下命令打包 SDK 或应用：
+5. 完成开发后，通过以下命令打包 SDK JS 文件：
 
-        - 打包 SDK JS 文件：`yarn pack:classroom:sdk`
+   ```bash
+   yarn pack:classroom:sdk
+   ```
 
-        <div class="alert info">打包完成的 JS 文件会输出至 <code>packages/agora-classroom-sdk/lib/edu_sdk.bundle.js</code>。</div>
-
-        - 打包 Electron macOS 客户端：`yarn pack:electron:mac`
-        - 打包 Electron Windows 客户端：`yarn pack:electron:win`
+<div class="alert info">打包完成的 JS 文件会输出至 <code>packages/agora-classroom-sdk/lib/edu_sdk.bundle.js</code>。</div>
