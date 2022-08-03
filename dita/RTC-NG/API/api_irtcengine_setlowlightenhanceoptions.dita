@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setlowlightenhanceoptions">
+    <title> <ph keyref="setLowlightEnhanceOptions"/> </title>
+    <shortdesc id="short"> <ph id="shortdesc">设置暗光增强功能。</ph> </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setLowlightEnhanceOptions"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setLowlightEnhanceOptions(boolean enabled, LowLightEnhanceOptions options);
+</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLowlightEnhanceOptions:(BOOL)enable options:(AgoraLowlightEnhanceOptions* _Nullable)options NS_SWIFT_NAME(setLowlightEnhanceOptions(_:options:));
+</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setLowlightEnhanceOptions(bool enabled, const LowlightEnhanceOptions&amp; options) = 0;
+</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>暗光增强功能可以在光线亮度偏低（如背光、阴天、暗场景）和亮度不均匀的环境下自适应调整视频画面的亮度值，恢复或凸显图像的细节信息，最终提升视频图像的整体视觉效果。</p>
+            <p>你可以调用该方法开启暗光增强功能并设置暗光增强的效果。</p>
+            <note type="attention">
+            <ul>
+                <li>请在 <xref keyref="enableVideo"/> 后调用该方法。</li>
+                <li>暗光增强对设备性能有一定要求。开启暗光增强后，如果设备出现严重发烫等问题，Agora 推荐你将暗光增强等级修改为消耗性能较少的等级或关闭暗光增强功能。</li>
+                <li>该方法和 <xref keyref="setExtensionProperty"/> 均可开启暗光增强功能：
+                    <ul>
+                        <li>当你使用 SDK 采集视频时，Agora 推荐使用该方法（该方法只可对 SDK 采集的视频起作用）。</li>
+                        <li>当你使用外部的视频源实现自定义视频采集，或者将外部视频源发送给 SDK 时，Agora 推荐使用 <apiname keyref="setExtensionProperty"/> 方法。</li>
+                    </ul></li>
+            </ul> </note> </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt props="android cpp">enabled</pt>
+                <pt props="ios mac">enable</pt>
+                <pd>是否开启暗光增强功能：<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: 开启暗光增强功能。</li>
+                    <li><codeph><ph keyref="false"/></codeph>:（默认）关闭暗光增强功能。</li>
+                    </ul></pd>
+            </plentry>
+            <plentry>
+                <pt>options</pt>
+                <pd>暗光增强选项，用于设置暗光增强的效果。详见 <xref keyref="LowlightEnhanceOptions"/>。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <ul>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。</li>
+            </ul> </section>
+    </refbody>
+</reference>

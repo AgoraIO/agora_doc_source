@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onwlaccmessage">
+    <title> <ph keyref="onWlAccMessage"/> </title>
+    <shortdesc id="short"> <ph id="shortdesc">报告 Wi-Fi 连接质量不佳的原因和改善 Wi-Fi 连接的操作建议。</ph> </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onWlAccMessage"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onWlAccMessage(WLACC_MESSAGE_REASON reason, WLACC_SUGGEST_ACTION action, const char* wlAccMsg) {
+    (void)reason;
+    (void)action;
+    (void)wlAccMsg;
+  }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnWlAccMessage(WLACC_MESSAGE_REASON reason, WLACC_SUGGEST_ACTION action, string wlAccMsg)</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/></p>
+        </section>
+        <section id="detailed_desc">
+            <p>
+                调用
+                <xref keyref="enableWirelessAccelerate"/>
+                (true) 开启 Wi-Fi 加速功能后，当 Wi-Fi 连接质量不佳时，SDK 会触发该回调，报告 Wi-Fi 连接质量不佳的原因和改善 Wi-Fi 连接的操作建议。
+            </p>
+            <note type="note" id="note_x12_m2r_tsb">
+            <p>
+                    Agora 强烈建议你在 app 中展示将该回调报告的
+                    <codeph>action</codeph>
+                    和
+                    <codeph>wlAccMsg</codeph>
+                    ，提示用户采取网络优化措施，以获得更好的音视频体验。
+                </p>
+            </note> </section>
+        <section id="parameters">
+            <title>参数</title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <parml id="parml_g54_dvq_tsb">
+            <plentry>
+                <pt>reason</pt>
+                <pd>
+                    <p>
+                            Wi-Fi 连接质量不佳的原因。详见
+                            <xref keyref="WLACC_MESSAGE_REASON"/>
+                            。
+                        </p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>action</pt>
+                <pd>
+                    <p>
+                            改善 Wi-Fi 连接质量的操作建议。详见
+                            <xref keyref="WLACC_SUGGEST_ACTION"/>
+                            。
+                        </p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>wlAccMsg</pt>
+                <pd>
+                        根据
+                        <codeph>action</codeph>
+                        的值提供的详细帮助信息：
+                        
+                    
+                    <ul id="ul_fcz_hvq_tsb">
+                    <li>
+                                当
+                                <codeph>action</codeph>
+                                为 ，该参数的值为
+                                <codeph>NULL</codeph>
+                                。
+                            </li>
+                    <li>
+                                当
+                                <codeph>action</codeph>
+                                为
+                                <codeph> <ph keyref="WLACC_SUGGEST_ACTION_CONNECT_SSID"/> </codeph>
+                                ，该参数的值为推荐用户连接的网络名称（SSID）。
+                            </li>
+                    <li>
+                                当
+                                <codeph>action</codeph>
+                                为
+                                <codeph> <ph keyref="WLACC_SUGGEST_ACTION_CHECK_5G"/> </codeph>
+                                ，该参数的值为开启路由器 5G 频道的操作步骤的链接。
+                            </li>
+                    <li>
+                                当
+                                <codeph>action</codeph>
+                                为
+                                <codeph> <ph keyref="WLACC_SUGGEST_ACTION_MODIFY_SSID"/> </codeph>
+                                ，该参数的值为修改网络名称（SSID）的操作步骤的链接。
+                            </li>
+                    </ul> </pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>
