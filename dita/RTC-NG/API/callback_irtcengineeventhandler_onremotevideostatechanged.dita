@@ -37,12 +37,6 @@
                <codeblock props="flutter" outputclass="language-dart"/> </p>
           </section>
           <section id="detailed_desc">
-               <dl outputclass="since" props="rtc">
-               <dlentry props="native">
-                    <dt>自从</dt>
-                    <dd>v2.9.0</dd>
-               </dlentry>
-               </dl>
                <note id="note" type="attention">频道内的用户（通信场景）或主播（直播场景）人数超过 17 人时，该回调可能不准确。</note> </section>
           <section id="parameters">
                <title> <ph keyref="callback-section-title"/> </title>
@@ -59,7 +53,7 @@
                </plentry>
                <plentry id="uid">
                     <pt props="native flutter">uid</pt>
-                    <pt props="unity electron rn"> <ph props="rtc">uid</ph> <ph props="rtc-ng">remoteUid</ph> </pt>
+                    <pt props="unity electron rn">remoteUid</pt>
                     <pd>发生视频状态改变的远端用户 ID。</pd>
                </plentry>
                <plentry id="state">
@@ -69,8 +63,8 @@
                          <p props="android">远端视频流状态：
 
 
-                         
-                         
+
+
                          <ul>
                          <li> <ph keyref="REMOTE_VIDEO_STATE_STOPPED"/>(0)：远端视频默认初始状态。在 <codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED(3)</codeph>、<codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED(5)</codeph> 或 <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE(7)</codeph> 的情况下，会报告该状态。</li>
                          <li> <ph keyref="REMOTE_VIDEO_STATE_STARTING"/>(1)：本地用户已接收远端视频首包。</li>
