@@ -106,6 +106,12 @@
    ![](https://web-cdn.agora.io/docs-files/1631178001176)
    ![](https://web-cdn.agora.io/docs-files/1631178086130)
 
+## 配置 CDN 推拉流功能
+
+灵动课堂支持 CDN 推拉流功能，即，支持将老师的流（音视频流、白板、或混合了音视频和白板的流）推到一路 CDN 地址，支持学生拉取 CDN 流观看教学。只有开通该功能，你才可以通过 `EduRoomTypeEnum` 和 `EduRoomSubtypeEnum` 设置课堂类型为职业教育大班课。
+
+如需开通该功能，请[提交工单](https://agora-ticket.agora.io/)联系声网技术支持。
+
 ## 注意事项
 
 ~4c2dbcc0-d2a7-11ec-8e95-1b7dfd4b7cb0~

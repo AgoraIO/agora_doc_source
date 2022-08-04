@@ -93,15 +93,22 @@
 | `resourceId` | String  | Agora 云端录制服务的 `resourceId`。仅当 `state` 为 `1` 时有此字段。 |
 | `state`      | Integer | 当前录制状态：<ul><li>`0`: 录制已结束</li><li>`1`: 录制中</li></ul> |
 | `startTime`  | Number | 录制开始时间，Unix 时间戳（毫秒），UTC 时间。录制开始后此字段有值。 |
+| `streamingUrl`|Object | 经由页面录制后推到 CDN 的流地址。学生可以通过该地址观看教学。  |
 
 **示例**
+
 ```json
 {
     "recordId":"xxx",
     "sid":"xxx",
     "resourceId":"xxx",
     "state":1,
-    "startTime":1611564500488
+    "startTime":1611564500488,
+    "streamingUrl": {
+            "rtmp": "",
+            "flv": "",
+            "hls": ""
+        }
 }
 ```
 

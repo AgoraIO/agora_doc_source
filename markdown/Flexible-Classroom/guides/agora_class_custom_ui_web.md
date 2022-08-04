@@ -94,6 +94,8 @@
 | `/big-class`    | 互动直播大班课场景           |
 | `/big-class-h5` | 针对 H5 的互动直播大班课场景 |
 | `/mid-class`    | 在线互动小班课场景           |
+|`/vocational-class` | 职业教育场景|
+|`/vocational-class-h5`  |针对 H5 的职业教育场景 |
 
 ### UI 组件关系示意图
 

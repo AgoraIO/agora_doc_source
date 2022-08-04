@@ -16,7 +16,7 @@ static config(params: ConfigParams):void
 | :------- | :------------------------------------------------- |
 | `params` | 全局配置参数，详见 [ConfigParams](#configparams)。 |
 
-### launch
+### launch //TODO Web 有新增 vocationalLaunch 方法吗？
 
 ```typescript
 static launch(dom: Element, option: LaunchOption):Promise<void>
@@ -61,6 +61,7 @@ export type LaunchOption = {
     roleType: EduRoleTypeEnum;
     roomType: EduRoomTypeEnum;
     roomSubtype?: EduRoomSubtypeEnum;
+    roomServiceType?: EduRoomServiceTypeEnum;
     roomName: string;
     listener: ListenerCallback;
     pretest: boolean;
@@ -91,6 +92,7 @@ export type LaunchOption = {
 | `roleType`               | （必填）用户在课堂中的角色，详见 [EduRoleTypeEnum](#eduroletypeenum)。                                                                                                                              |
 | `roomType`               | （必填）课堂类型，详见 [EduRoomTypeEnum](#eduroomtypeenum)。                                                                                                                                        |
 | `roomSubtype`               | （选填）课堂子类型，详见 [EduRoomSubtypeEnum](#eduroomsubtypeenum)。默认值为 `EduRoomSubtypeEnum.Standard`。                                                                                                                                        |
+| `roomServiceType`  |（选填）职业教育大班课使用的服务类型。详见 [EduRoomServiceTypeEnum](#eduroomservicetypeenum)。默认值为 //TODO(input 是否有默认值)  |
 | `listener`               | （必填）课堂启动状态：<li>`ready`: 课堂准备完毕。</li><li>`destroyed`: 课堂已销毁。</li>                                                                                                            |
 | `pretest`                | （必填）是否开启课前设备检测：<li>`true`: 开启课前设备检测。开启后，在加入课堂前会弹出设备检测页面，测试终端用户的摄像头、麦克风和扬声器是否能正常工作。</li><li>`false`: 不开启课前设备检测。</li> |
 | `language`               | （必填）课堂界面的语言，详见 [LanguageEnum](#languageenum)。                                                                                                                                        |
@@ -113,6 +115,7 @@ export type MediaOptions = {
     screenShareEncoderConfiguration?: EduVideoEncoderConfiguration;
     encryptionConfig?: MediaEncryptionConfig;
     channelProfile?: ChannelProfile;
+    //TODO(input 缺少代码)
 };
 ```
 
@@ -124,6 +127,7 @@ export type MediaOptions = {
 | `screenShareEncoderConfiguration` | 屏幕共享视频流编码参数配置，详见 [EduVideoEncoderConfiguration](#eduvideoencoderconfiguration)。   |
 | `encryptionConfig`                | 媒体流加密配置，详见 [MediaEncryptionConfig](#mediaencryptionconfig)。                             |
 | `channelProfile`                | 频道配置，详见 [ChannelProfile](#channelprofile)。                             |
+| `web`   | 用于配置浏览器编码格式和频道场景：<ul><li>`codec`: 浏览器编码格式，可以为如下：<ul><li>`"vp8"`: VP8 编码。</li><li>`"h264"`: H.264 编码。</li></li></ul><li>`mode`: 频道场景，可以为如下：<ul><li>`"rtc"`: 通信模式，一般用于一对多或一对一的小班课。</li><li>`"live"`: 直播模式，相较于通信模式，更低费用，同时延迟相较于通信模式较大。</li></ul></li></ul>
 
 ### EduVideoEncoderConfiguration
 
@@ -170,8 +174,6 @@ export declare interface MediaEncryptionConfig {
 export enum ChannelProfile {
   Communication = 0,
   LiveBroadcasting = 1,
-  BlendCDN = 2,
-  MixRTCCDN = 3,
 }
 ```
 
@@ -181,8 +183,6 @@ export enum ChannelProfile {
 | :----- | :----------------------------------------------------------------------------------------------------------------------- |
 | `Communication` | 通信模式，一般用于一对多或一对一的小班课。 |
 | `LiveBroadcasting`  | 直播模式，相较于通信模式，更低费用，同时延迟相较于通信模式较大。 |
-| `BlendCDN` | 融合 CDN 模式，一般用于直播课，无法进行音视频互动。|
-| `MixRTCCDN` | 融合 CDN 和 RTC 的混合模式。|
 
 ### MediaEncryptionMode
 
@@ -354,7 +354,7 @@ export enum EduRoomTypeEnum {
 | 参数             | 描述                                                                                             |
 | :--------------- | :----------------------------------------------------------------------------------------------- |
 | `Room1v1Class`   | `0`: 1 对 1 互动教学。1 位老师对 1 名学生进行专属在线辅导教学。                                  |
-| `RoomBigClass`   | `2`: 互动直播大班课。1 位老师进行在线教学，多名学生实时观看和收听。大班课中课堂人数上限为 5000。 |
+| `RoomBigClass`   | `2`: 大班课。1 位老师进行在线教学，多名学生实时观看和收听：<li>当 `roomSubtype` 为 `EduRoomSubtypeEnum.Standard` 时，`RoomBigClass` 代表互动直播大班课。老师和学生均使用声网 RTC 服务，课堂人数上限为 5000。</li><li>当 `roomSubtype` 为 `EduRoomSubtypeEnum.Vocational` 时，`RoomBigClass` 代表职业教育大班课。除去声网 RTC 服务外，老师和学生还使用灵动课堂 CDN 推拉流功能，课堂人数无上限。</li> |
 | `RoomSmallClass` | `4`: 在线互动小班课。1 位老师进行在线教学，多名学生实时观看和收听。小班课中课堂人数上限为 200    |
 
 ### EduRoomSubtypeEnum
@@ -371,7 +371,27 @@ export enum EduRoomSubtypeEnum {
 | 参数             | 描述                                                                                             |
 | :--------------- | :----------------------------------------------------------------------------------------------- |
 | `Standard`   | `0`: 标准的灵动课堂。                                |
-| `Vocational`   | `1`: 当 `roomType` 设为 `EduRoomTypeEnum.RoomBigClass` 时，再将 `roomSubtype` 设为 `EduRoomSubtypeEnum.Vocational`，则为职业教育大班课。 |
+| `Vocational`   | `1`: 当 `roomType` 设为 `EduRoomTypeEnum.RoomBigClass` 时，再将 `roomSubtype` 设为 `EduRoomSubtypeEnum.Vocational`，则为职业教育大班课。职业教育大班课需先配置 CDN 推拉流功能。 |
+
+### EduRoomServiceTypeEnum
+
+```typescript
+//TODO(input 缺少代码)
+```
+
+职业教育大班课使用的服务类型。在 [LaunchOption](#launchoption) 中设置。
+
+**注意**：`EduRoomServiceTypeEnum` 仅在 `EduRoomTypeEnum` 为 `RoomBigClass(2)` 且 `EduRoomSubtypeEnum` 为 `Vocational(1)` 的情况下有效。
+
+| 参数             | 描述                                                                                             |
+| :--------------- | :----------------------------------------------------------------------------------------------- |
+|`livePremium`  | 课堂使用 RTC 服务。频道为直播模式，延时为超低延时。与互动直播大班课逻辑一致。   |
+|`liveStandard`  |课堂使用 RTC 服务。频道为直播模式，延时为低延时。  |
+|`CDN`  | 课堂使用 CDN 推拉流服务。老师的音视频流推到 CDN 上，学生通过拉取 CDN 流实时观看老师的音视频。CDN 服务的延时比 RTC 服务延时高。 |
+|`fusion`  | 课堂使用 RTC 和 CDN 推拉流服务。老师的音视频流既发送到 RTC 频道内，又推到 CDN 上。学生既可以通过拉取 CDN 流实时观看老师的音视频流，又可以通过上台与老师实时互动。CDN 服务的延时比 RTC 服务延时高。  |
+|`mixStreamCDN` | 课堂使用 CDN 推拉流服务。老师的音视频流和白板经由页面录制后实时推到 CDN 上，学生通过拉取 CDN 流实时观看老师的音视频和白板。CDN 服务的延时比 RTC 服务延时高。  |
+|`hostingScene`  | 课堂使用 CDN 推拉流服务。老师的音视频流和白板经由页面录制后推到 CDN 上，学生通过拉取 CDN 流观看老师的音视频和白板录像。  |
+
 
 ### LanguageEnum
 
