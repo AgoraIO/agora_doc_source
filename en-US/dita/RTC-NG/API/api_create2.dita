@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_create2">
-    <title><ph keyref="create2"/></title>
+<reference id="api_initialize">
+    <title><ph keyref="initialize"/></title>
     <shortdesc id="short"><ph props="ios mac android electron">Creates and initializes <xref keyref="IRtcEngine"/>. </ph><ph props="cpp flutter unity" id="shortdesc">Initializes <apiname keyref="IRtcEngine"/>.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="create2"/>
+                <indexterm keyref="initialize"/>
             </keywords>
         </metadata>
     </prolog>
@@ -27,9 +27,9 @@
             <p>All called methods provided by the <apiname keyref="IRtcEngine"/> class are executed asynchronously. Agora recommends calling these methods in the same thread.</p>
             <note type="attention">
             <ul>
-            <li props="cpp flutter rn electron">Before calling other APIs, you must call <xref keyref="createAgoraRtcEngine" /> and <apiname keyref="IRtcEngine" /> to create and initialize the <apiname keyref="create2" /> object.</li>
+            <li props="cpp flutter rn electron">Before calling other APIs, you must call <xref keyref="createAgoraRtcEngine" /> and <apiname keyref="IRtcEngine" /> to create and initialize the <apiname keyref="initialize" /> object.</li>
             <li props="android ios mac">Before calling other APIs, you must call this method to create the <apiname keyref="IRtcEngine" /> object.</li>
-            <li props="android ios mac">You can create the <apiname keyref="IRtcEngine" /> instance either by calling this method or by calling <xref keyref="create1" />. The difference between <apiname keyref="create1" /> and this method is that this method supports more configurations when creating the <apiname keyref="IRtcEngine" /> instance, for example, specifying the region for connection and setting the log files.</li>
+            <li props="android ios mac">You can create the <apiname keyref="IRtcEngine" /> instance either by calling this method or by calling <xref keyref="creat" />. The difference between <apiname keyref="creat" /> and this method is that this method supports more configurations when creating the <apiname keyref="IRtcEngine" /> instance, for example, specifying the region for connection and setting the log files.</li>
             <li>The SDK supports creating only one <apiname keyref="IRtcEngine" /> instance for an app.</li>
             </ul> </note> </section>
         <section id="parameters">
@@ -44,7 +44,7 @@
             </plentry>
             <plentry props="ios mac">
                 <pt>delegate</pt>
-                <pd conkeyref="create1/handler"/>
+                <pd conkeyref="creat/handler"/>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity rn">
@@ -60,7 +60,7 @@
                 <li>-101: The App ID is invalid.</li>
                 </ul></li>
             </ul></section>
-        <section props="android" conkeyref="create1/return_values"/>
-        <section props="android" conkeyref="create1/section_yqx_kwq_4qb"/>
+        <section props="android" conkeyref="creat/return_values"/>
+        <section props="android" conkeyref="creat/section_yqx_kwq_4qb"/>
     </refbody>
 </reference>
