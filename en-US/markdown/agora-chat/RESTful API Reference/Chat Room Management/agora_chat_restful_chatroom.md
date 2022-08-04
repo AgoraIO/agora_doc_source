@@ -39,7 +39,7 @@ In order to improve the security of the project, Agora uses a token (dynamic key
 
 ## Creating a chat room
 
-Creats a chat room.
+Creates a chat room.
 
 ### HTTP request
 
@@ -65,6 +65,7 @@ The request body is a JSON object, which contains the following fields:
 
 | Field | Type | Description | Required |
 | :------------ | :--------- | :--------------------------------------- | :------- |
+| `groupid` | String | The custom group ID. It cannot exceed 18 digits and cannot start with zero (0). This field is disabled by default. To enable this field, contact [support@agora.io](mailto:support@agora.io).  | No |
 | `name` | String | The chat room name which can contain a maximum of 128 characters. | Yes |
 | `description` | String | The chat room description which can contain a maximum of 512 characters. | Yes |
 | `maxusers` | Int | The maximum number of members (including the chat room creator) that can join a chat room. | No |
