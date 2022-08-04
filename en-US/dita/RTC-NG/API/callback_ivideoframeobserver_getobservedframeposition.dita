@@ -19,9 +19,9 @@
                 return base::POSITION_POST_CAPTURER | base::POSITION_PRE_RENDERER;
                 }</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public virtual VIDEO_OBSERVER_POSITION GetObservedFramePosition()
+            <codeblock props="unity" outputclass="language-csharp">public virtual VIDEO_MODULE_POSITION GetObservedFramePosition()
         {
-            return VIDEO_OBSERVER_POSITION.POSITION_POST_CAPTURER | VIDEO_OBSERVER_POSITION.POSITION_PRE_RENDERER;
+            return VIDEO_MODULE_POSITION.POSITION_POST_CAPTURER | VIDEO_MODULE_POSITION.POSITION_PRE_RENDERER;
         }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
@@ -41,7 +41,7 @@
             </ul> </note> </section>
         <section id="return_values">
             <title>Returns</title>
-            <p props="cpp ios mac unity">A bit mask that controls the frame position of the video observer. See <xref keyref="VIDEO_OBSERVER_POSITION"/>.</p>
+            <p props="cpp ios mac unity">A bit mask that controls the frame position of the video observer. See <xref keyref="VIDEO_MODULE_POSITION"/>.</p>
             <p props="android">A bit mask that controls the frame position of the video observer.<ul>
             <li><apiname keyref="POSITION_POST_CAPTURER"/>(1 &lt;&lt; 0): The position after capturing the video data, which corresponds to the <apiname keyref="onCaptureVideoFrame"/> callback.</li>
             <li><apiname keyref="POSITION_PRE_RENDERER"/>(1 &lt;&lt; 1): The position before receiving the remote video data, which corresponds to the <apiname keyref="onRenderVideoFrame"/> callback.</li>

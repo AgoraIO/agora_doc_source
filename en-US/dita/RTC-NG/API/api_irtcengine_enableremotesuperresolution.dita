@@ -23,15 +23,8 @@
                 {required int userId, required bool enable});</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>Since</dt>
-                <dd>v3.5.1</dd>
-            </dlentry>
-            </dl>
             <p>This function can effectively improve the resolution of the remote video picture seen by the local user, that is, the width and height (pixels) of the video received by the specified remote user are enlarged to 2 times original size.</p>
-            <p props="rtc">After you call this method, the SDK triggers the <xref keyref="onUserSuperResolutionEnabled"/> callback to report whether you have successfully enabled super resolution.</p>
-            <p props="rtc-ng">After calling this method, you can confirm whether super resolution is successfully enabled through the remote video stream statistics (<xref keyref="RemoteVideoStats" />) in the <xref keyref="onRemoteVideoStats" /> callback:<ul>
+            <p>After calling this method, you can confirm whether super resolution is successfully enabled through the remote video stream statistics (<xref keyref="RemoteVideoStats" />) in the <xref keyref="onRemoteVideoStats" /> callback:<ul>
                 <li>If the parameter <parmname>superResolutionType</parmname> >0: Super resolution is enabled.</li>
                 <li>If parameter <parmname>superResolutionType</parmname> =0: Super resolution is not enabled.</li></ul>
             </p>
