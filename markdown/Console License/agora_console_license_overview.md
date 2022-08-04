@@ -123,7 +123,7 @@ CID 下关联两批 License (PID 1、PID 2) 并创建三个启用 License 功能
 
 #### 添加预授权
 
-启用预授权后，用户可以调用 [上传预授权文件接口](./agora_console_license_restapi#上传预授权文件) 将 LicenseKey 批量添加至白名单，或带哦用 [增加单个预授权接口](./agora_console_license_restapi#增加单个预授权) 将单个 LicenseKey 添加至白名单。
+启用预授权后，用户可以调用 [上传预授权文件接口](./agora_console_license_restapi#上传预授权文件) 将 LicenseKey 批量添加至白名单，或调用 [增加单个预授权接口](./agora_console_license_restapi#增加单个预授权) 将单个 LicenseKey 添加至白名单。
 
 #### 移除预授权
 
