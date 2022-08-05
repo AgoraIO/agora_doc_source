@@ -30,6 +30,26 @@ void launch(AgoraEduLaunchConfig config,
 | `success` | 调用成功。                                                         |
 | `failure` | 调用失败。                                                         |
 
+### vocationalLaunch
+
+```swift
+void vocationalLaunch(AgoraEduLaunchConfig config,
+        AgoraEduServiceType serviceType,
+        Callback<Void> success,
+        Callback<Error> failure)
+```
+
+启动灵动课堂职业教育大班课服务。
+
+**参数**
+
+| 参数      | 描述                                                               |
+| :-------- | :----------------------------------------------------------------- |
+| `config`  | 课堂启动配置，详见 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。 |
+| `serviceType`  | 职业教育大班课使用的服务类型，详见 [AgoraEduServiceType](#agoraeduservicetype)。 |
+| `success` | 调用成功。                                                         |
+| `failure` | 调用失败。                                                         |
+
 ### setDelegate
 
 ```swift
@@ -108,6 +128,19 @@ Classroom SDK 退出回调。
 | `small`    | `4`: 在线互动小班课。1 位老师进行在线教学，多名学生实时观看和收听。小班课中课堂人数上限为 200。                  |
 | `lecture`  | `2`: 互动直播大班课。1 位老师进行在线教学，多名学生实时观看和收听。学生人数无上限。大班课中课堂人数上限为 5000。 |
 
+### AgoraEduServiceType
+
+职业教育大班课使用的服务类型。在 [AgoraEduLaunchConfig](#agoraedulaunchconfig) 中设置。
+
+| 属性       | 描述                                                                                                             |
+| :--------- | :--------------------------------------------------------------------------------------------------------------- |
+| `livePremium` | 课堂使用 RTC 服务。频道为直播模式，延时为超低延时。与互动直播大班课逻辑一致。                                                  |
+| `liveStandard`    | 课堂使用 RTC 服务。频道为直播模式，延时为低延时。                  |
+| `CDN`  | 课堂使用 CDN 推拉流服务。老师的音视频流推到 CDN 上，学生通过拉取 CDN 流实时观看老师的音视频。CDN 服务的延时比 RTC 服务延时高。 |
+| `fusion`  | 课堂使用 RTC 和 CDN 推拉流服务。老师的音视频流既发送到 RTC 频道内，又推到 CDN 上。学生既可以通过拉取 CDN 流实时观看老师的音视频流，又可以通过上台与老师实时互动。CDN 服务的延时比 RTC 服务延时高。  |
+| `mixStreamCDN` | 课堂使用 CDN 推拉流服务。老师的音视频流和白板经由页面录制后实时推到 CDN 上，学生通过拉取 CDN 流实时观看老师的音视频和白板。CDN 服务的延时比 RTC 服务延时高。  |
+| `hostingScene`  | 课堂使用 CDN 推拉流服务。老师的音视频流和白板经由页面录制后推到 CDN 上，学生通过拉取 CDN 流观看老师的音视频和白板录像。  |
+
 ### AgoraEduMediaEncryptionMode
 
 媒体流加密模式。用于 [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfig)。
@@ -154,6 +187,7 @@ Classroom SDK 退出回调。
 | `roomName`       | 课堂名，String 型。用于课堂内显示，长度在 64 字节以内。                                                                                                                                                                                                                                                                                                                      |
 | `roomUuid`       | 课堂 ID，String 型。这是课堂的全局唯一标识。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "\_", " {", "}", "\|", "~", ","                                                |
 | `roomType`       | 课堂类型，详见 [AgoraEduRoomType](#agoraeduroomtype)。                                                                                                                                                                                                                                                                                                                       |
+| `AgoraEduServiceType`       | 职业教育大班课使用的服务类型。详见 [AgoraEduServiceType](#agoraeduservicetype)。                                                                                                                                                                                                                                                                                                                       |
 | `token`          | 用于鉴权的 RTM Token，String 型。                                                                                                                                                                                                                                                                                                                                            |
 | `appId`          | Agora App ID，String 型。                                                                                                                                                                                                                                                                                                                                                    |
 | `startTime`      | 课堂开始时间，单位为毫秒，以第一个进入课堂的用户传入的参数为准。                                                                                                                                                                                                                                                                                                             |
@@ -208,3 +242,5 @@ Classroom SDK 退出回调。
 | `frameRate`       | 视频帧率 (fps)，Int 型，默认值为 15，                          |
 | `bitRate`         | 视频码率 (Kbps)，Int 型，默认值为 200。                        |
 | `mirrorMode`      | 视频镜像模式，详见 [AgoraEduMirrorMode](#agoraedumirrormode)。 |
+
+
