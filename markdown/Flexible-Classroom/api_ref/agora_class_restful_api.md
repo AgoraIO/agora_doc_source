@@ -127,6 +127,7 @@ https://api.agora.io/edu/apps/{your_app_Id}/v2/rooms/test_class/users/123/exit
 | `roomProperties.processes`                   | Object  | （非必填）申请邀请流程。                                     |
 | `roomProperties.processes.handsUp`           | Object  | （非必填）上台设置。                                         |
 | `roomProperties.processes.handsUp.maxAccept` | Integer | （非必填）上台人数上限。                                     |
+| `roomProperties.xxx` | xxx //TODO|（非必填）| 职业教育大班课中，你从声网获取到的老师的 CDN 流地址。|
 
 #### 请求示例
 

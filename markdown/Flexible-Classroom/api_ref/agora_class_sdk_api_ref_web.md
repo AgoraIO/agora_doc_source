@@ -110,12 +110,15 @@ export type LaunchOption = {
 ### MediaOptions
 
 ```typescript
-export type MediaOptions = {
+export declare type MediaOptions = {
     cameraEncoderConfiguration?: EduVideoEncoderConfiguration;
     screenShareEncoderConfiguration?: EduVideoEncoderConfiguration;
     encryptionConfig?: MediaEncryptionConfig;
     channelProfile?: ChannelProfile;
-    //TODO(input 缺少代码)
+    web?: {
+        codec: SDK_CODEC;
+        mode: SDK_MODE;
+    };
 };
 ```
 
@@ -376,7 +379,14 @@ export enum EduRoomSubtypeEnum {
 ### EduRoomServiceTypeEnum
 
 ```typescript
-//TODO(input 缺少代码)
+export enum EduRoomServiceTypeEnum {
+  LivePremium = 0,
+  LiveStandard = 1,
+  CDN = 2,
+  Fusion = 3,
+  MixStreamCDN = 4,
+  HostingScene = 5,
+}
 ```
 
 职业教育大班课使用的服务类型。在 [LaunchOption](#launchoption) 中设置。
@@ -385,12 +395,12 @@ export enum EduRoomSubtypeEnum {
 
 | 参数             | 描述                                                                                             |
 | :--------------- | :----------------------------------------------------------------------------------------------- |
-|`livePremium`  | 课堂使用 RTC 服务。频道为直播模式，延时为超低延时。与互动直播大班课逻辑一致。   |
-|`liveStandard`  |课堂使用 RTC 服务。频道为直播模式，延时为低延时。  |
+|`LivePremium`  | 课堂使用 RTC 服务。频道为直播模式，延时为超低延时。与互动直播大班课逻辑一致。   |
+|`LiveStandard`  |课堂使用 RTC 服务。频道为直播模式，延时为低延时。又称极速直播模式。 |
 |`CDN`  | 课堂使用 CDN 推拉流服务。老师的音视频流推到 CDN 上，学生通过拉取 CDN 流实时观看老师的音视频。CDN 服务的延时比 RTC 服务延时高。 |
-|`fusion`  | 课堂使用 RTC 和 CDN 推拉流服务。老师的音视频流既发送到 RTC 频道内，又推到 CDN 上。学生既可以通过拉取 CDN 流实时观看老师的音视频流，又可以通过上台与老师实时互动。CDN 服务的延时比 RTC 服务延时高。  |
-|`mixStreamCDN` | 课堂使用 CDN 推拉流服务。老师的音视频流和白板经由页面录制后实时推到 CDN 上，学生通过拉取 CDN 流实时观看老师的音视频和白板。CDN 服务的延时比 RTC 服务延时高。  |
-|`hostingScene`  | 课堂使用 CDN 推拉流服务。老师的音视频流和白板经由页面录制后推到 CDN 上，学生通过拉取 CDN 流观看老师的音视频和白板录像。  |
+|`Fusion`  | 课堂使用 RTC 和 CDN 推拉流服务。老师的音视频流既发送到 RTC 频道内，又推到 CDN 上。学生既可以通过拉取 CDN 流实时观看老师的音视频流，又可以通过上台与老师实时互动。CDN 服务的延时比 RTC 服务延时高。  |
+|`MixStreamCDN` | 课堂使用 CDN 推拉流服务。老师的音视频流和白板经由页面录制后实时推到 CDN 上，学生通过拉取 CDN 流实时观看老师的音视频和白板。CDN 服务的延时比 RTC 服务延时高。  |
+|`HostingScene`  | 课堂使用 CDN 推拉流服务。老师的音视频流和白板经由页面录制后推到 CDN 上，学生通过拉取 CDN 流观看老师的音视频和白板录像。  |
 
 
 ### LanguageEnum
