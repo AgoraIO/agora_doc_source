@@ -16,7 +16,7 @@ static config(params: ConfigParams):void
 | :------- | :------------------------------------------------- |
 | `params` | 全局配置参数，详见 [ConfigParams](#configparams)。 |
 
-### launch //TODO Web 有新增 vocationalLaunch 方法吗？
+### launch
 
 ```typescript
 static launch(dom: Element, option: LaunchOption):Promise<void>
@@ -92,7 +92,7 @@ export type LaunchOption = {
 | `roleType`               | （必填）用户在课堂中的角色，详见 [EduRoleTypeEnum](#eduroletypeenum)。                                                                                                                              |
 | `roomType`               | （必填）课堂类型，详见 [EduRoomTypeEnum](#eduroomtypeenum)。                                                                                                                                        |
 | `roomSubtype`               | （选填）课堂子类型，详见 [EduRoomSubtypeEnum](#eduroomsubtypeenum)。默认值为 `EduRoomSubtypeEnum.Standard`。                                                                                                                                        |
-| `roomServiceType`  |（选填）职业教育大班课使用的服务类型。详见 [EduRoomServiceTypeEnum](#eduroomservicetypeenum)。默认值为 //TODO(input 是否有默认值)  |
+| `roomServiceType`  |（选填）职业教育大班课使用的服务类型。详见 [EduRoomServiceTypeEnum](#eduroomservicetypeenum)。  |
 | `listener`               | （必填）课堂启动状态：<li>`ready`: 课堂准备完毕。</li><li>`destroyed`: 课堂已销毁。</li>                                                                                                            |
 | `pretest`                | （必填）是否开启课前设备检测：<li>`true`: 开启课前设备检测。开启后，在加入课堂前会弹出设备检测页面，测试终端用户的摄像头、麦克风和扬声器是否能正常工作。</li><li>`false`: 不开启课前设备检测。</li> |
 | `language`               | （必填）课堂界面的语言，详见 [LanguageEnum](#languageenum)。                                                                                                                                        |
