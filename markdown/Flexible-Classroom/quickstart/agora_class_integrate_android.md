@@ -42,7 +42,8 @@
 
     ```
     dependencies {
-          ...
+        ...
+        // 如果你使用 2.7.0 及以上版本，删除下面第一行代码
         implementation "io.github.agoraio-community:hyphenate:版本号"
         implementation "io.github.agoraio-community:AgoraEduCore:版本号"
         implementation "io.github.agoraio-community:AgoraEduUIKit:版本号"
@@ -54,10 +55,11 @@
 
     ```
     dependencies {
-     implementation "io.github.agoraio-community:hyphenate:2.2.0"
-     implementation "io.github.agoraio-community:AgoraEduCore:2.2.0"
-     implementation "io.github.agoraio-community:AgoraEduUIKit:2.2.0"
-     implementation "io.github.agoraio-community:AgoraClassSDK:2.2.0"
+        // 如果你使用 2.7.0 及以上版本，删除下面第一行代码
+        implementation "io.github.agoraio-community:hyphenate:2.2.0"
+        implementation "io.github.agoraio-community:AgoraEduCore:2.2.0"
+        implementation "io.github.agoraio-community:AgoraEduUIKit:2.2.0"
+        implementation "io.github.agoraio-community:AgoraClassSDK:2.2.0"
     }
     ```
 
