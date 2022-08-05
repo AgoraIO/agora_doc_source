@@ -137,7 +137,7 @@ class AgoraEduLaunchConfig(val userName: String,
 | `streamState`        | 用于控制学生上台后是否发音视频流，详见 [AgoraEduStreamState](#agoraedustreamstate)。                                                                                                                                                                                                                                                                             |
 | `latencyLevel`       | 观众端延时级别，详见 [AgoraEduLatencyLevel](#agoraedulatencylevel)。                                                                                                                                                                                                                                                                                             |
 | `userProperties`     | 由开发者自定义的用户属性。详见[如何设置自定义用户属性？](/cn/agora-class/faq/agora_class_custom_properties)                                                                                                                                                                                                                                                      |
-| `serviceType`     | 职业教育大班课使用的服务类型。详见 [AgoraServiceType](#agoraservicetype)。默                                                                                                                                                                                                                                                     |
+| `serviceType`     | 职业教育大班课使用的服务类型。详见 [AgoraServiceType](#agoraservicetype)。                                                                                                                                                                                                                                                     |
 
 
 ### AgoraEduEvent
@@ -194,7 +194,40 @@ public enum AgoraEduRoomType {
 
 ### AgoraServiceType
 
-职业教育大班课使用的服务类型。在 [AgoraEduLaunchConfig](#agoraedulaunchconfig) 中设置。
+```java
+enum class AgoraServiceType(var value: Int) {
+    Unknown(-1),
+
+    LivePremium(0),
+
+    LiveStandard(1),
+
+    CDN(2),
+
+    Fusion(3);
+
+    companion object {
+        fun serviceTypeIsValid(value: Int): Boolean {
+            return value == LivePremium.value ||
+                    value == LiveStandard.value ||
+                    value == CDN.value ||
+                    value == Fusion.value
+        }
+
+        fun fromValue(value: Int): AgoraServiceType {
+            return when (value) {
+                LivePremium.value -> LivePremium
+                LiveStandard.value -> LiveStandard
+                CDN.value -> CDN
+                Fusion.value -> Fusion
+                else -> Unknown
+            }
+        }
+    }
+}
+```
+
+职业教育大班课使用的服务类型，仅在 `AgoraEduRoomType` 为 `AgoraEduRoomTypeBig` 时有效。在 [AgoraEduLaunchConfig](#agoraedulaunchconfig) 中设置。
 
 | 属性       | 描述                                                                                                             |
 | :--------- | :--------------------------------------------------------------------------------------------------------------- |
@@ -202,6 +235,7 @@ public enum AgoraEduRoomType {
 | `liveStandard`    | 课堂使用 RTC 服务。频道为直播模式，延时为低延时。                  |
 | `CDN`  | 课堂使用 CDN 推拉流服务。老师的音视频流推到 CDN 上，学生通过拉取 CDN 流实时观看老师的音视频。CDN 服务的延时比 RTC 服务延时高。 |
 | `fusion`  | 课堂使用 RTC 和 CDN 推拉流服务。老师的音视频流既发送到 RTC 频道内，又推到 CDN 上。学生既可以通过拉取 CDN 流实时观看老师的音视频流，又可以通过上台与老师实时互动。CDN 服务的延时比 RTC 服务延时高。  |
+
 
 ### AgoraEduStreamState
 
