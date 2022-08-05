@@ -194,6 +194,39 @@ public enum AgoraEduRoomType {
 
 ### AgoraServiceType
 
+```java
+enum class AgoraServiceType(var value: Int) {
+    Unknown(-1),
+
+    LivePremium(0),
+
+    LiveStandard(1),
+
+    CDN(2),
+
+    Fusion(3);
+
+    companion object {
+        fun serviceTypeIsValid(value: Int): Boolean {
+            return value == LivePremium.value ||
+                    value == LiveStandard.value ||
+                    value == CDN.value ||
+                    value == Fusion.value
+        }
+
+        fun fromValue(value: Int): AgoraServiceType {
+            return when (value) {
+                LivePremium.value -> LivePremium
+                LiveStandard.value -> LiveStandard
+                CDN.value -> CDN
+                Fusion.value -> Fusion
+                else -> Unknown
+            }
+        }
+    }
+}
+```
+
 职业教育大班课使用的服务类型，仅在 `AgoraEduRoomType` 为 `AgoraEduRoomTypeBig` 时有效。在 [AgoraEduLaunchConfig](#agoraedulaunchconfig) 中设置。
 
 | 属性       | 描述                                                                                                             |
