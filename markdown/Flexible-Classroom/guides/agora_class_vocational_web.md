@@ -1,15 +1,15 @@
 # 职业教育大班课最佳实践
 
-本文介绍在灵动课堂中实现职业教育大班课的最佳实践。
+声网在职业教育大班课中定义了多种服务类型，方便你用于不同业务场景。你可以在 `launch` 的时候通过 `LaunchOption.roomServiceType` 选择服务类型：
 
-声网在职业教育大班课中定义了多种服务类型，方便你在不同业务场景中使用。你可以在 `launch` 的时候通过 `LaunchOption.roomServiceType` 选择服务类型：
-
-- `LivePremium`：
-- `LiveStandard`：
+- `LivePremium`
+- `LiveStandard`
 - `CDN`
 - `Fusion`
 - `MixStreamCDN`
 - `HostingScene`
+
+本文介绍职业教育大班课提供的各种服务类型，以及对应的实现方法。
 
 ## LivePremium 和 LiveStandard
 
@@ -95,7 +95,7 @@ LivePremium 是一种与互动直播大班课逻辑一致的职业教育大班�
 
 ## HostingScene
 
-`HostingScene` 是 CDN 录播课。课堂使用了 CDN 推拉流服务。老师的音视频流和白板经由页面录制后推到 CDN 上，学生通过拉取 CDN 流观看老师的音视频和白板的录像。学生无法上台互动，但可以通过 IM 消息与课堂中其他用户（如老师、助教老师、其他学生）互动。
+`HostingScene` 是 CDN 合流录播课。课堂使用了 CDN 推拉流服务。老师的音视频流和白板经由页面录制后推到 CDN 上，学生通过拉取 CDN 流观看老师的音视频和白板的录像。学生无法上台互动，但可以通过 IM 消息与课堂中其他用户（如老师、助教老师、其他学生）互动。
 
 ### 实现方法
 
