@@ -1,4 +1,4 @@
-A chat group allow list refers to a list of chat room members that can send group messages after the group owner or admins have muted all the group members using the [mute-all](./agora_chat_restful_group_mute?platform=RESTful#mute-all) method. Agora Chat provides a complete set of allow list management methods, including adding users to the allow list and removing them from it, as well as retrieving the members on the allow list.
+A chat group allow list refers to a list of chat room members that can send group messages after the group owner or admins have muted all the group members using the [mute-all](./agora_chat_restful_group_mute?platform=RESTful#muting-all-chat-group-members) method. Agora Chat provides a complete set of allow list management methods, including adding users to the allow list and removing them from it, as well as retrieving the members on the allow list.
 
 This page shows how to manage a chat group allow list using the Agora Chat RESTful APIs. Before calling the following methods, ensure that you understand the call frequency limit described in [Limitations](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side).
 
