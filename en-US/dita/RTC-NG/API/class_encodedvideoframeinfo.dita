@@ -170,48 +170,113 @@
     VIDEO_STREAM_TYPE streamType;
 };
 </codeblock>
+<codeblock props="electron" outputclass="language-typescript">export class EncodedVideoFrameInfo {
+  codecType?: VideoCodecType
+  width?: number
+  height?: number
+  framesPerSecond?: number
+  frameType?: VideoFrameType
+  rotation?: VideoOrientation
+  trackId?: number
+  renderTimeMs?: number
+  internalSendTs?: number
+  uid?: number
+  streamType?: VideoStreamType
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class EncodedVideoFrameInfo
-  {
-      public EncodedVideoFrameInfo()
-      {
-          codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_H264;
-          width = 0;
-          height = 0;
-          framesPerSecond = 0;
-          frameType = VIDEO_FRAME_TYPE_NATIVE.VIDEO_FRAME_TYPE_BLANK_FRAME;
-          rotation = VIDEO_ORIENTATION.VIDEO_ORIENTATION_0;
-          trackId = 0;
-          renderTimeMs = 0;
-          uid = 0;
-          streamType = VIDEO_STREAM_TYPE.VIDEO_STREAM_HIGH;
+    {
+        public EncodedVideoFrameInfo()
+        {
+            codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_H264;
+            width = 0;
+            height = 0;
+            framesPerSecond = 0;
+            frameType = VIDEO_FRAME_TYPE_NATIVE.VIDEO_FRAME_TYPE_BLANK_FRAME;
+            rotation = VIDEO_ORIENTATION.VIDEO_ORIENTATION_0;
+            trackId = 0;
+            renderTimeMs = 0;
+            uid = 0;
+            streamType = VIDEO_STREAM_TYPE.VIDEO_STREAM_HIGH;
 
-      }
+        }
 
-      public EncodedVideoFrameInfo(ref EncodedVideoFrameInfo rhs)
-      {
-          codecType = rhs.codecType;
-          width = rhs.width;
-          height = rhs.width;
-          framesPerSecond = rhs.framesPerSecond;
-          frameType = rhs.frameType;
-          rotation = rhs.rotation;
-          trackId = rhs.trackId;;
-          renderTimeMs = rhs.renderTimeMs;
-          uid = rhs.uid;
-          streamType = rhs.streamType;
-      }
+        public EncodedVideoFrameInfo(ref EncodedVideoFrameInfo rhs)
+        {
+            codecType = rhs.codecType;
+            width = rhs.width;
+            height = rhs.width;
+            framesPerSecond = rhs.framesPerSecond;
+            frameType = rhs.frameType;
+            rotation = rhs.rotation;
+            trackId = rhs.trackId; ;
+            renderTimeMs = rhs.renderTimeMs;
+            uid = rhs.uid;
+            streamType = rhs.streamType;
+        }
+        public VIDEO_CODEC_TYPE codecType { set; get; }
+        public int width { set; get; }
+        public int height { set; get; }
+        public int framesPerSecond { set; get; }
+        public VIDEO_FRAME_TYPE_NATIVE frameType { set; get; }
+        public VIDEO_ORIENTATION rotation { set; get; }
+        public int trackId { set; get; }
+        public int64_t renderTimeMs { set; get; }
+        public uint uid { set; get; }
+        public VIDEO_STREAM_TYPE streamType { set; get; }
+    }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class EncodedVideoFrameInfo {
+  codecType?: VideoCodecType;
+  width?: number;
+  height?: number;
+  framesPerSecond?: number;
+  frameType?: VideoFrameType;
+  rotation?: VideoOrientation;
+  trackId?: number;
+  renderTimeMs?: number;
+  internalSendTs?: number;
+  uid?: number;
+  streamType?: VideoStreamType;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class EncodedVideoFrameInfo {
+  const EncodedVideoFrameInfo(
+      {this.codecType,
+      this.width,
+      this.height,
+      this.framesPerSecond,
+      this.frameType,
+      this.rotation,
+      this.trackId,
+      this.renderTimeMs,
+      this.internalSendTs,
+      this.uid,
+      this.streamType});
 
-      public VIDEO_CODEC_TYPE codecType { set; get; }
-      public int width { set; get; }
-      public int height { set; get; }
-      public int framesPerSecond { set; get; }
-      public VIDEO_FRAME_TYPE_NATIVE frameType { set; get; }
-      public VIDEO_ORIENTATION rotation { set; get; }
-      public int trackId { set; get; }
-      public int64_t renderTimeMs { set; get; }
-      public uint uid { set; get; }
-      public VIDEO_STREAM_TYPE streamType { set; get; }
-  }</codeblock> </p>
+  @JsonKey(name: 'codecType')
+  final VideoCodecType? codecType;
+  @JsonKey(name: 'width')
+  final int? width;
+  @JsonKey(name: 'height')
+  final int? height;
+  @JsonKey(name: 'framesPerSecond')
+  final int? framesPerSecond;
+  @JsonKey(name: 'frameType')
+  final VideoFrameType? frameType;
+  @JsonKey(name: 'rotation')
+  final VideoOrientation? rotation;
+  @JsonKey(name: 'trackId')
+  final int? trackId;
+  @JsonKey(name: 'renderTimeMs')
+  final int? renderTimeMs;
+  @JsonKey(name: 'internalSendTs')
+  final int? internalSendTs;
+  @JsonKey(name: 'uid')
+  final int? uid;
+  @JsonKey(name: 'streamType')
+  final VideoStreamType? streamType;
+  factory EncodedVideoFrameInfo.fromJson(Map&lt;String, dynamic> json) =>
+      _$EncodedVideoFrameInfoFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$EncodedVideoFrameInfoToJson(this);
+}</codeblock></p>
         </section>
         <section id="parameters">
             <title><text
@@ -220,7 +285,7 @@
             <parml>
             <plentry>
                 <pt>codecType</pt>
-                <pd props="ios mac cpp unity">The codec type of the local video stream. See <xref keyref="VIDEO_CODEC_TYPE"/>. The default value is <codeph><ph keyref="VIDEO_CODEC_H264"/> (2)</codeph>.</pd>
+                <pd props="ios mac cpp unity electron rn flutter">The codec type of the local video stream. See <xref keyref="VIDEO_CODEC_TYPE"/>. The default value is <codeph><ph keyref="VIDEO_CODEC_H264"/> (2)</codeph>.</pd>
                 <pd props="android">The codec type of the video:<ul id="ul_hkm_4qy_4qb">
                     <li>1: VP8.</li>
                     <li>2: (Default) H264.</li>
@@ -244,20 +309,20 @@
             </plentry>
             <plentry>
                 <pt>frameType</pt>
-                <pd props="ios mac cpp unity">The video frame type, see <xref
-                    keyref="VIDEO_FRAME_TYPE"/>.</pd>
+                <pd props="ios mac cpp unity electron rn flutter">The video frame type, see <xref keyref="VIDEO_FRAME_TYPE"/>.</pd>
                 <pd props="android">The video frame type:<ul id="ul_djl_sqy_4qb">
-                    <li>0: (Default) <ph keyref="VIDEO_FRAME_TYPE_BLANK_FRAME"/>, blank frame.</li>
+                    <li>0: (Default) <ph keyref="VIDEO_FRAME_TYPE_BLANK_FRAME"
+                        />, blank frame.</li>
                     <li>3: <ph keyref="VIDEO_FRAME_TYPE_KEY_FRAME"/>, the keyframe.</li>
-                    <li>4: <ph keyref="VIDEO_FRAME_TYPE_DELTA_FRAME"/>, the Delta frame.</li>
+                    <li>4: <ph keyref="VIDEO_FRAME_TYPE_DELTA_FRAME"
+                        />, the Delta frame.</li>
                     <li>5: <ph keyref="VIDEO_FRAME_TYPE_B_FRAME"/>, the B frame.</li>
                     <li>6: <ph keyref="VIDEO_FRAME_TYPE_UNKNOWN"/>, unknown frame.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>rotation</pt>
-                <pd props="ios mac cpp unity">The rotation information of the video frame, see <xref
-                    keyref="VIDEO_ORIENTATION"/>.</pd>
+                <pd props="ios mac cpp unity electron rn flutter">The rotation information of the video frame, see <xref keyref="VIDEO_ORIENTATION"/>.</pd>
                 <pd props="android">Rotation information of the video frame, as the following:<ul>
                     <li>0: (Default) 0 degree.</li>
                     <li>90: 90 degrees.</li>
