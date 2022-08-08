@@ -5,7 +5,7 @@
     <shortdesc id="short"><ph id="shortdesc"><apiname keyref="ContentInspectModule"/>Structure to configure the type and frequency of the video content moderation module.</ph></shortdesc>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
+            <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public static class ContentInspectModule {
   public int type;
   public int interval;
@@ -13,7 +13,7 @@
     type = CONTENT_INSPECT_TYPE_INVALID;
     interval = 0;
   }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraContentInspectModule: NSObject
+      <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraContentInspectModule: NSObject
 @property (assign, nonatomic) AgoraContentInspectType type;
 
 @property (assign, nonatomic) NSInteger interval;
@@ -26,13 +26,19 @@
     interval = 0;
   }
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public class ContentInspectModule {
-        public CONTENT_INSPECT_TYPE type;
-        public uint frequency;
-    };</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+<codeblock props="electron" outputclass="language-typescript">export class ContentInspectModule {
+  type?: ContentInspectType
+  frequency?: number
+}</codeblock>
+      <codeblock props="unity" outputclass="language-csharp">public class ContentInspectModule {
+          public CONTENT_INSPECT_TYPE type;
+          public uint frequency;
+      };</codeblock>
+      <codeblock props="rn" outputclass="language-typescript">export class ContentInspectModule {
+  type?: ContentInspectType;
+  frequency?: number;
+}</codeblock>
+      <codeblock props="flutter" outputclass="language-dart"></codeblock> </p>
         </section>
         <section id="parameters">
             <title><text
@@ -40,7 +46,7 @@
             <parml>
             <plentry>
                 <pt>type</pt>
-                <pd props="ios mac cpp">The type of video content moderation module. See <xref keyref="CONTENT_INSPECT_TYPE"/>.</pd>
+                <pd props="apple cpp flutter">The type of video content moderation module. See <xref keyref="CONTENT_INSPECT_TYPE"/>.</pd>
                 <pd props="android unity">
                     <p>The type of video content moderation module.<ul>
                     <li><ph keyref="CONTENT_INSPECT_INVALID"/>(0): (Default) This module has no actual function. Do not set to this value.</li>
