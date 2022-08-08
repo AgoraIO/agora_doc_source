@@ -44,7 +44,7 @@ In order to improve the security of the project, Agora uses a token (dynamic key
 
 ## Creating a group
 
-Creats a new chat group and sets the group information. The group information includes the chat group name,  description, whether the group is public or private, the maximum number of chat group members (including the group owner), whether a user requesting to join the group requires approval, the group owner, and group members.
+Creates a new chat group and sets the group information. The group information includes the chat group name,  description, whether the group is public or private, the maximum number of chat group members (including the group owner), whether a user requesting to join the group requires approval, the group owner, and group members.
 
 ### HTTP request
 
@@ -60,17 +60,18 @@ For the descriptions of other path parameters, see [Common Parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
-| `Content-Type` | String | The content type. Set it as application/json.`` | Yes |
-| `Accept` | String | The content type. Set it as application/json.`` | Yes |
+| `Content-Type` | String | The content type. Set it as `application/json`. | Yes |
+| `Accept` | String | The content type. Set it as `application/json`. | Yes |
 | `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 #### Request body
 
 | Parameter | Type | Description | Required |
 | :------------- | :------ | :----------------------------------------------------------- | :------- |
+| `groupid` | String | The custom group ID. It cannot exceed 18 digits and cannot start with zero (0). This field is disabled by default. To enable this field, contact [support@agora.io](mailto:support@agora.io).  | No |
 | `groupname` | String | The group name. It cannot exceed 128 characters. The group name cannot contain "/" or spaces. You can use "+" to represent the space. | Yes |
 | `desc` | String | The group description. It cannot exceed 512 characters. The group name cannot contain "/" or spaces. You can use "+" to represent the space. | Yes |
-| `public` | Boolean | Whether the group is a public group. Public groups can be searched and chat users can apply to join a public group. Private groups cannot be searched, and chat users can join a private group only if the group owner or admin invites the user to join the group.<ul><li>`true`: Yes</li><li>`fale`: No</li></ul> | Yes |
+| `public` | Boolean | Whether the group is a public group. Public groups can be searched and chat users can apply to join a public group. Private groups cannot be searched, and chat users can join a private group only if the group owner or admin invites the user to join the group.<ul><li>`true`: Yes</li><li>`false`: No</li></ul> | Yes |
 | `maxusers` | String | The maximum number of chat group members (including the group owner). The default value is 200 and the maximum value is 2000.  The upper limit varies with your price plans. For details, see [Pricing Plan Details](./agora_chat_plan#group). | No |
 | `allowinvites` | Boolean | Whether a regular group member is allowed to invite other users to join the chat group.<ul><li>`true`: Yes.</li><li>`false`: No. Only the group owner or admin can invite other users to join the chat group. </li></ul> | No |
 | `membersonly` | Boolean | Whether the user requesting to join the public group requires approval from the group owner or admin:<ul><li>`true`: Yes.</li><li>`false`: (Default) No.</li></ul> | No |

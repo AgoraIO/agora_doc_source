@@ -11,7 +11,7 @@ The Agora Chat SDK allows you to implement the following features:
 - Retrieve the push notification setting of an app
 - Set the push notifications of a conversation
 - Retrieve the push notification settings of one conversation or multiple conversations
-- Clear the push notification setting of a conversation
+- Clear the push notification mode of a conversation
 - Set and retrieve the preferred language of push notifications
 
 
@@ -257,11 +257,11 @@ WebIM.conn.getSilentModeForConversations(params)
 ````
 
 
-### Clear the push notification setting of a conversation
+### Clear the push notification mode of a conversation
 
-You can call `clearRemindTypeForConversation` to clear the push notification setting of the specified conversation. Once the specific setting of a conversation is cleared, this conversation inherits the app setting by default.
+You can call `clearRemindTypeForConversation` to clear the push notification mode of the specified conversation. Once the specific setting of a conversation is cleared, this conversation inherits the app setting by default.
 
-The following code sample shows how to clear the push notification setting of a conversation:
+The following code sample shows how to clear the push notification mode of a conversation:
 
 ```` javascript
 const params = {

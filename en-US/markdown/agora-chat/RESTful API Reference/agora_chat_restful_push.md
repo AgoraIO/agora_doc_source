@@ -39,7 +39,7 @@ The following table lists common request and response parameters of the Chat RES
 | `data`  | JSON | The response details.  |
 
 
-## Authentication
+## Authorization
 
 Chat RESTful APIs require Bearer HTTP authentication. Every time an HTTP request is sent, the following `Authorization` field must be filled in the request header:
 

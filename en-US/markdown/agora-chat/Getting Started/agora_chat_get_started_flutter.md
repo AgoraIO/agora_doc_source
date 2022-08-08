@@ -267,7 +267,7 @@ import 'package:http/http.dart' as http;
 
 ```dart
 class HttpRequestManager {
-  static String host = "a41.easemob.com";
+  static String host = "a41.chat.agora.io";
   static String registerUrl = "/app/chat/user/register";
   static String loginUrl = "/app/chat/user/login";
   static Future<bool> registerToAppServer({

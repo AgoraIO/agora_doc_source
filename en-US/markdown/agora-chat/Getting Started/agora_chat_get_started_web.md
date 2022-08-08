@@ -203,7 +203,7 @@ To enable your app to send and receive messages between individual users, do the
 
 	// Gets the token from the app server
 	function refreshToken(username, password) {
-		postData("https://a41.easemob.com/app/chat/user/login", {
+		postData("https://a41.chat.agora.io/app/chat/user/login", {
 			userAccount: username,
 			userPassword: password,
 		}).then((res) => {
@@ -237,7 +237,7 @@ To enable your app to send and receive messages between individual users, do the
 			username = document.getElementById("userID").value.toString();
 			password = document.getElementById("password").value.toString();
 			// 1. Uses token to authenticate the user
-			postData("https://a41.easemob.com/app/chat/user/register", {
+			postData("https://a41.chat.agora.io/app/chat/user/register", {
 				userAccount: username,
 				userPassword: password,
 			})
@@ -263,7 +263,7 @@ To enable your app to send and receive messages between individual users, do the
 			username = document.getElementById("userID").value.toString();
 			password = document.getElementById("password").value.toString();
 			// 1. Uses a token for authentication
-			postData("https://a41.easemob.com/app/chat/user/login", {
+			postData("https://a41.chat.agora.io/app/chat/user/login", {
 				userAccount: username,
 				userPassword: password,
 			})
