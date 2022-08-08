@@ -59,9 +59,9 @@ Agora Chat is charged on a MAU (Monthly Active Users) basis. For details, see [P
 
 Refer to the following documentations to enable Agora Chat and use the Chat SDK to implement real-time chatting functionalities in your app:
 
-- [Enable and Configure Agora Chat]()
+- [Enable and Configure Agora Chat](./enable_agora_chat?platform=React%20Native)
 - [Get Started with Agora Chat](./agora-chat/agora_chat_get_started_rn?platform=React%20Native)
 - [Messages](./agora_chat_message_overview?platform=React%20Native)
 - [Chat Group](./agora_chat_group_overview?platform=React%20Native)
 - [Chat Room](./agora_chat_chatroom_overview?platform=React%20Native)
-- [API Reference]()
+- [API Reference](./api-ref?platform=React%20Native)

@@ -23,7 +23,7 @@ Before proceeding, ensure that your development environment meets the following 
   - Firefox 10 or later
   - Chrome 54 or later
   - Safari 11 or later
-- A valid [Agora account](https://console.agora.io/).
+- A valid [Agora account](https://docs.agora.io/en/AgoraPlatform/get_appid_token?platform=AllPlatforms#create-an-agora-account).
 - An Agora project that has [enabled the Chat service](./enable_agora_chat?platform=Web#enable-the-agora-chat-service).
 - An [App key](./enable_agora_chat?platform=Web#get-the-information-of-the-agora-chat-project) and [a user token generated on your app server](./generate_user_tokens?platform=Web).
 
@@ -221,7 +221,7 @@ In scenarios where you want to add your own business logic, you can use the vari
         .... })
     ```
 
-Refer to [EventHandlerType](./API%20Reference/im_ts/v1.0.1/interfaces/TYPS.EvevtHandlerType.EventHandlerType.html) for the complete list of callback events you can add.
+Refer to [EventHandlerType](https://docs.agora.io/en/agora-chat/API%20Reference/im_ts/v1.0.5/modules/EventHandler.html?transId=4977acf0-08eb-11ed-a46a-e58831549a58) for the complete list of callback events you can add.
 
 
 ## Reference
