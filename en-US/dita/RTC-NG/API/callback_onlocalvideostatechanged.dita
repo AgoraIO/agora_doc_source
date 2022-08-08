@@ -47,13 +47,7 @@
             </dlentry>
             </dl>
             <p id="desc1">When the state of the local video stream changes, the SDK triggers this callback to report the current state. This callback indicates the state of the local video stream, including camera capturing and video encoding, and allows you to troubleshoot issues when exceptions occur.</p>
-            <p>SDK 会在如下情况触发 <apiname keyref="onLocalVideoStateChanged"/> 回调，状态为 <codeph><ph keyref="LOCAL_VIDEO_STREAM_STATE_FAILED"/></codeph>，错误码为 <codeph><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/></codeph>：
-
-
-
-
-
-            <ul>
+            <p><codeph><ph keyref="LOCAL_VIDEO_STREAM_STATE_FAILED"/></codeph><codeph><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/></codeph>The SDK triggers the<apiname keyref="onLocalVideoStateChanged"/>  callback with the state code of  and error code of  in the following situations:<ul>
             <li>The app switches to the background, and the system gets the camera resource.</li>
             <li>The camera starts normally, but does not output video frames for four consecutive seconds.</li>
             </ul></p>
