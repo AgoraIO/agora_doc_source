@@ -127,7 +127,11 @@ https://api.agora.io/edu/apps/{your_app_Id}/v2/rooms/test_class/users/123/exit
 | `roomProperties.processes`                   | Object  | （非必填）申请邀请流程。                                     |
 | `roomProperties.processes.handsUp`           | Object  | （非必填）上台设置。                                         |
 | `roomProperties.processes.handsUp.maxAccept` | Integer | （非必填）上台人数上限。                                     |
-| `roomProperties.xxx` | xxx //TODO|（非必填）| 职业教育大班课中，你从声网获取到的老师的 CDN 流地址。|
+| `roomProperties.hostingScene` | Object|（非必填）职业教育大班课独有的房间属性。|
+| `roomProperties.hostingScene.videoURL` |String|（非必填）老师的 CDN 流地址（主播放地址）。|
+| `roomProperties.hostingScene.reserveVideoURL` | String|（非必填）老师的 CDN 流地址（备用播放地址）。|
+| `roomProperties.hostingScene.finishType` |Integer|（非必填）课堂结束方式：<li>0:录像播放结束时，自动结束课堂。</li><li>1: 用户点击结束课堂的按钮时，结束录像播放和课堂。</li>|
+
 
 #### 请求示例
 

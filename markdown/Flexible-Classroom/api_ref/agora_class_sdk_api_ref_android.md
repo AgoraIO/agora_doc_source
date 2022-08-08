@@ -138,7 +138,7 @@ class AgoraEduLaunchConfig(val userName: String,
 | `streamState`        | 用于控制学生上台后是否发音视频流，详见 [AgoraEduStreamState](#agoraedustreamstate)。                                                                                                                                                                                                                                                                             |
 | `latencyLevel`       | 观众端延时级别，详见 [AgoraEduLatencyLevel](#agoraedulatencylevel)。                                                                                                                                                                                                                                                                                             |
 | `userProperties`     | 由开发者自定义的用户属性。详见[如何设置自定义用户属性？](/cn/agora-class/faq/agora_class_custom_properties)                                                                                                                                                                                                                                                      |
-| `serviceType`     | 职业教育大班课使用的服务类型。详见 [AgoraServiceType](#agoraservicetype)。                                                                                                                                                                                                                                                     |
+| `serviceType`     | （非必填）职业教育大班课使用的服务类型。详见 [AgoraServiceType](#agoraservicetype)。                                                                                                                                                                                                                                                     |
 
 
 ### AgoraEduEvent
@@ -190,12 +190,12 @@ public enum AgoraEduRoomType {
 | 属性                    | 描述                                                                                             |
 | :---------------------- | :----------------------------------------------------------------------------------------------- |
 | `AgoraEduRoomType1V1`   | `0`: 1 对 1 互动教学。1 位老师对 1 名学生进行专属在线辅导教学。                                  |
-| `AgoraEduRoomTypeBig`   | `2`: 互动直播大班课。1 位老师进行在线教学，多名学生实时观看和收听。大班课中课堂人数上限为 5000。 |
+| `AgoraEduRoomTypeBig`   | `2`: 大班课。1 位老师进行在线教学，多名学生实时观看和收听：<li>当 `serviceType` 为空时，`RoomBigClass` 代表互动直播大班课。老师和学生均使用声网 RTC 服务，课堂人数上限为 5000。</li><li>当 `serviceType` 不为空时，`RoomBigClass` 代表职业教育大班课。除去声网 RTC 服务外，老师和学生还使用灵动课堂 CDN 推拉流功能，课堂人数无上限。</li>  |
 | `AgoraEduRoomTypeSmall` | `4`: 在线互动小班课。1 位老师进行在线教学，多名学生实时观看和收听。小班课中课堂人数上限为 200。  |
 
 ### AgoraServiceType
 
-```java
+```kotlin
 enum class AgoraServiceType(var value: Int) {
     Unknown(-1),
 

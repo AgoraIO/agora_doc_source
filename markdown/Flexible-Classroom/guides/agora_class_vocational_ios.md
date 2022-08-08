@@ -88,7 +88,7 @@ livePremium 是一种与互动直播大班课逻辑一致的职业教育大班�
     - 将 `roomType` 设为 `AgoraEduRoomTypeBig`
     - 将 `serviceType` 设为 `hostingScene`
 
-其他字段按需设置即可。
+    其他字段按需设置即可。发送请求后，你可以从服务端响应包体或者客户端房间属性变更事件获取老师的 CDN 流地址。
 
 设置完毕，学生端可以拉取该 CDN 流，观看老师的音视频和白板录像。
 
