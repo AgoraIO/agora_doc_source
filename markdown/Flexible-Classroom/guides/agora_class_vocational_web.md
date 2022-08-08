@@ -38,7 +38,7 @@ LivePremium 是一种与互动直播大班课逻辑一致的职业教育大班�
 
 ### 实现方法
 
-1. 配置 CDN 推拉流功能，详见[配置步骤]()。
+1. 配置 CDN 推拉流功能，详见[配置步骤](./agora_class_configure?platform=Web#配置-cdn-推拉流功能)。
 2. 客户端调用 `launch` 方法启动课堂时，`launchOption` 中的字段设置如下：
 
     - 将 `roomType` 设为 `RoomBigClass`
@@ -60,7 +60,7 @@ LivePremium 是一种与互动直播大班课逻辑一致的职业教育大班�
 
 ### 实现方法
 
-1. 配置 CDN 推拉流功能，详见[配置步骤]()。
+1. 配置 CDN 推拉流功能，详见[配置步骤](./agora_class_configure?platform=Web#配置-cdn-推拉流功能)。
 2. 客户端调用 `launch` 方法启动课堂时，`launchOption` 中的字段设置如下：
 
     - 将 `roomType` 设为 `RoomBigClass`
@@ -71,7 +71,7 @@ LivePremium 是一种与互动直播大班课逻辑一致的职业教育大班�
 
     其他字段按需设置即可。
 
-3. 服务端通过 RESTful API [设置录制状态]()，请求包体的字段设置如下：
+3. 服务端通过 RESTful API [设置录制状态](./agora-class/agora_class_restful_api?platform=All%20Platforms#设置录制状态)，请求包体的字段设置如下：
 
     - 将 `mode` 设为 `web`
     - 将 `webRecordConfig.publishRtmp` 设为 `true`
@@ -105,7 +105,3 @@ LivePremium 是一种与互动直播大班课逻辑一致的职业教育大班�
 这种场景下，你需要通过服务器时间对齐各端的课堂时间。你还需要在学生端将 IM 消息区域（区域 B）与老师的音视频和白板录播视频区域（区域 A）拼接起来。
 
 ![](https://web-cdn.agora.io/docs-files/1659949727363)
-
-### 注意事项
-
-老师的录像播放结束或课堂时间结束，都会被判断为课堂结束。
