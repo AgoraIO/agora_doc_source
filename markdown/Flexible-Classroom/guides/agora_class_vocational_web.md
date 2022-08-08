@@ -29,10 +29,6 @@ LivePremium 是一种与互动直播大班课逻辑一致的职业教育大班�
 
 其他字段按需设置即可。
 
-### 示例代码
-
-//TODO
-
 
 ## CDN 和 Fusion
 
@@ -53,13 +49,10 @@ LivePremium 是一种与互动直播大班课逻辑一致的职业教育大班�
 
     其他字段按需设置即可。
 
-3. 服务端通过 RESTful API [创建房间]() 时，将你获取到的老师的 CDN 流地址 //TODO(从哪里获取)填入 `roomProperties.xxx` //TODO 字段。设置完毕，学生端可以拉取该 CDN 流，实时观看老师的音视频。
+设置完毕，学生端可以拉取该 CDN 流，实时观看老师的音视频。
 
-这种场景下，你需要在学生端集成白板，在学生端将 IM 消息区域与老师的音视频和白板录的区域拼接起来。你还需要通过服务器时间对齐各端的课堂时间。
+这种场景下，你需要在学生端集成白板，在学生端将 IM 消息区域与老师的音视频和白板区域拼接起来。
 
-### 示例代码
-
-//TODO
 
 ## MixStreamCDN
 
@@ -83,48 +76,32 @@ LivePremium 是一种与互动直播大班课逻辑一致的职业教育大班�
     - 将 `mode` 设为 `web`
     - 将 `webRecordConfig.publishRtmp` 设为 `true`
 
-    其他字段按需设置即可。设置完毕，你可以从响应包体或者[录制状态变更事件]()中的 `streamingUrl` 字段获取老师的 CDN 流地址。
+    其他字段按需设置即可。发送请求后，你可以从服务端响应包体或者客户端房间属性变更事件中的 `streamingUrl` 字段获取老师的 CDN 流地址。
 
-4. 服务端通过 RESTful API [创建房间]()时，将你获取到的老师的 CDN 流地址填入 `roomProperties.xxx` //TODO 字段。设置完毕，学生端可以拉取该 CDN 流，实时观看老师的音视频和白板。
+设置完毕，学生端可以拉取该 CDN 流，实时观看老师的音视频和白板。
 
-这种场景下，你需要通过服务器时间对齐各端的课堂时间。你还需要在学生端将 IM 消息区域与老师的音视频和白板的直播视频区域拼接起来。
+这种场景下，你需要在学生端将 IM 消息区域与老师的音视频和白板的直播视频区域拼接起来。
 
-### 示例代码
-
-//TODO
 
 ## HostingScene
 
-`HostingScene` 是 CDN 合流录播课。课堂使用了 CDN 推拉流服务。老师的音视频流和白板经由页面录制后推到 CDN 上，学生通过拉取 CDN 流观看老师的音视频和白板的录像。学生无法上台互动，但可以通过 IM 消息与课堂中其他用户（如老师、助教老师、其他学生）互动。
+`HostingScene` 是 CDN 录播课。老师的音视频流和白板的录像文件存放在 CDN 上。学生通过 CDN 地址观看教学。各端的课堂时间由服务器时间对齐。学生无法上台互动，但可以通过 IM 消息与课堂中其他用户（如老师、助教老师、其他学生）互动。
 
 ### 实现方法
 
-1. 配置 CDN 推拉流功能，详见[配置步骤]()。
-2. 客户端调用 `launch` 方法启动课堂时，`launchOption` 中的字段设置如下：
+客户端调用 `launch` 方法启动课堂时，`launchOption` 中的字段设置如下：
 
-    - 将 `roomType` 设为 `RoomBigClass`
-    - 将 `roomSubtype` 设为 `Vocational`
-    - 将 `roomServiceType` 设为 `HostingScene`
-    - 将 `mediaOptions.web.codec` 设为 `"h264"`
-    - 将 `mediaOptions.web.mode` 设为 `"rtc"`
+- 将 `roomType` 设为 `RoomBigClass`
+- 将 `roomSubtype` 设为 `Vocational`
+- 将 `roomServiceType` 设为 `HostingScene`
+- 将 `mediaOptions.web.codec` 设为 `"h264"`
+- 将 `mediaOptions.web.mode` 设为 `"rtc"`
 
-    其他字段按需设置即可。
+其他字段按需设置即可。
 
-3. 服务端通过 RESTful API [设置录制状态]()，请求包体的字段设置如下：
-
-    - 将 `mode` 设为 `web`
-    - 将 `webRecordConfig.publishRtmp` 设为 `true`
-
-    其他字段按需设置即可。设置完毕，你可以从响应包体或者[录制状态变更事件]()中的 `streamingUrl` 字段获取老师的 CDN 流地址。
-
-4. 服务端通过 RESTful API [创建房间]()时，将你获取到的老师的 CDN 流地址填入 `roomProperties.xxx` //TODO 字段。设置完毕，学生端可以拉取该 CDN 流，观看老师的音视频和白板录像。
-
+设置完毕，学生端可以拉取 CDN 流，观看老师的音视频和白板录像。
 
 这种场景下，你需要通过服务器时间对齐各端的课堂时间。你还需要在学生端将 IM 消息区域与老师的音视频和白板录播视频区域拼接起来。
-
-### 示例代码
-
-//TODO
 
 ### 注意事项
 

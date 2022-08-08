@@ -110,7 +110,7 @@ export type LaunchOption = {
 ### MediaOptions
 
 ```typescript
-export declare type MediaOptions = {
+export type MediaOptions = {
     cameraEncoderConfiguration?: EduVideoEncoderConfiguration;
     screenShareEncoderConfiguration?: EduVideoEncoderConfiguration;
     encryptionConfig?: MediaEncryptionConfig;
@@ -374,7 +374,7 @@ export enum EduRoomSubtypeEnum {
 | 参数             | 描述                                                                                             |
 | :--------------- | :----------------------------------------------------------------------------------------------- |
 | `Standard`   | `0`: 标准的灵动课堂。                                |
-| `Vocational`   | `1`: 当 `roomType` 设为 `EduRoomTypeEnum.RoomBigClass` 时，再将 `roomSubtype` 设为 `EduRoomSubtypeEnum.Vocational`，则为职业教育大班课。职业教育大班课需先配置 CDN 推拉流功能。 |
+| `Vocational`   | `1`: 当 `roomType` 设为 `EduRoomTypeEnum.RoomBigClass` 时，再将 `roomSubtype` 设为 `EduRoomSubtypeEnum.Vocational`，则为职业教育大班课。|
 
 ### EduRoomServiceTypeEnum
 
@@ -395,12 +395,12 @@ export enum EduRoomServiceTypeEnum {
 
 | 参数             | 描述                                                                                             |
 | :--------------- | :----------------------------------------------------------------------------------------------- |
-|`LivePremium`  | 课堂使用 RTC 服务。频道为直播模式，延时为超低延时。与互动直播大班课逻辑一致。   |
-|`LiveStandard`  |课堂使用 RTC 服务。频道为直播模式，延时为低延时。又称极速直播模式。 |
-|`CDN`  | 课堂使用 CDN 推拉流服务。老师的音视频流推到 CDN 上，学生通过拉取 CDN 流实时观看老师的音视频。CDN 服务的延时比 RTC 服务延时高。 |
+|`LivePremium`  | 课堂使用 RTC 服务。频道为直播模式，延时为超低延时，约 400 毫秒。与互动直播大班课逻辑一致。   |
+|`LiveStandard`  |课堂使用 RTC 服务。频道为直播模式，延时为低延时，约 1 秒。又称极速直播模式。 |
+|`CDN`  | 课堂使用 CDN 推拉流服务。老师的音视频流推到 CDN 上，学生通过拉取 CDN 流实时观看老师的音视频。CDN 服务延时一般大于 4 秒。 |
 |`Fusion`  | 课堂使用 RTC 和 CDN 推拉流服务。老师的音视频流既发送到 RTC 频道内，又推到 CDN 上。学生既可以通过拉取 CDN 流实时观看老师的音视频流，又可以通过上台与老师实时互动。CDN 服务的延时比 RTC 服务延时高。  |
-|`MixStreamCDN` | 课堂使用 CDN 推拉流服务。老师的音视频流和白板经由页面录制后实时推到 CDN 上，学生通过拉取 CDN 流实时观看老师的音视频和白板。CDN 服务的延时比 RTC 服务延时高。  |
-|`HostingScene`  | 课堂使用 CDN 推拉流服务。老师的音视频流和白板经由页面录制后推到 CDN 上，学生通过拉取 CDN 流观看老师的音视频和白板录像。  |
+|`MixStreamCDN` | 课堂使用 CDN 推拉流服务。老师的音视频流和白板经由页面录制后实时推到 CDN 上，学生通过拉取 CDN 流实时观看老师的音视频和白板。CDN 服务延时一般大于 4 秒。  |
+|`HostingScene`  | 老师的音视频流和白板的录像文件存放在 CDN 上。学生通过 CDN 地址观看教学。各端的课堂时间通过服务器时间对齐。 |
 
 
 ### LanguageEnum
