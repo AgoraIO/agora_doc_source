@@ -23,7 +23,7 @@
     {required String url, required InjectStreamConfig config});</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <note id="inject-sunset-note" type="caution" props="hide">Agora will soon stop the service for injecting online media streams on the client. If you have not implemented this service, Agora recommends that you do not use it. For details, see <xref keyref="rtc-sunset">Service Sunset Plans</xref>.</note>
+            <note id="inject-sunset-note" type="caution" props="cn">Agora will soon stop the service for injecting online media streams on the client. If you have not implemented this service, Agora recommends that you do not use it. For details, see <xref keyref="rtc-sunset">Service Sunset Plans</xref>.</note>
             <note type="attention">
             <ul>
             <li props="hide">Ensure that you enable the Media Push service before using this function. See Prerequisites in <xref keyref="guide-cdn-streaming">Media Push</xref>.</li>
@@ -40,6 +40,7 @@
                 <pt>url</pt>
                 <pd>
                     <p>The URL address to be added to the ongoing streaming. Valid protocols are RTMP, HLS, and HTTP-FLV.
+                    
                     <ul>
                     <li>Supported audio codec type: AAC.</li>
                     <li>Supported video codec type: H264 (AVC).</li>
@@ -56,6 +57,7 @@
             <ul>
             <li>0: Success.</li>
             <li>&lt; 0: Failure.
+                
                 <ul>
                 <li><codeph>ERR_INVALID_ARGUMENT</codeph> (2): The injected URL does not exist. Call this method again to inject the stream and ensure that the URL is valid.</li>
                 <li><codeph>ERR_NOT_READY</codeph> (3): The user is not in the channel.</li>
