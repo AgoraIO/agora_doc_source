@@ -96,6 +96,7 @@ SDK 全局配置。用于 [setConfig](#setconfig) 方法。
 | :------ | :------------- |
 | `appId` | Agora App ID。 |
 
+
 ### AgoraEduLaunchConfig
 
 ```kotlin
@@ -206,24 +207,6 @@ enum class AgoraServiceType(var value: Int) {
 
     Fusion(3);
 
-    companion object {
-        fun serviceTypeIsValid(value: Int): Boolean {
-            return value == LivePremium.value ||
-                    value == LiveStandard.value ||
-                    value == CDN.value ||
-                    value == Fusion.value
-        }
-
-        fun fromValue(value: Int): AgoraServiceType {
-            return when (value) {
-                LivePremium.value -> LivePremium
-                LiveStandard.value -> LiveStandard
-                CDN.value -> CDN
-                Fusion.value -> Fusion
-                else -> Unknown
-            }
-        }
-    }
 }
 ```
 
@@ -231,10 +214,10 @@ enum class AgoraServiceType(var value: Int) {
 
 | 属性       | 描述                                                                                                             |
 | :--------- | :--------------------------------------------------------------------------------------------------------------- |
-| `livePremium` | 课堂使用 RTC 服务。频道为直播模式，延时为超低延时。与互动直播大班课逻辑一致。                                                  |
-| `liveStandard`    | 课堂使用 RTC 服务。频道为直播模式，延时为低延时。                  |
-| `CDN`  | 课堂使用 CDN 推拉流服务。老师的音视频流推到 CDN 上，学生通过拉取 CDN 流实时观看老师的音视频。CDN 服务的延时比 RTC 服务延时高。 |
-| `fusion`  | 课堂使用 RTC 和 CDN 推拉流服务。老师的音视频流既发送到 RTC 频道内，又推到 CDN 上。学生既可以通过拉取 CDN 流实时观看老师的音视频流，又可以通过上台与老师实时互动。CDN 服务的延时比 RTC 服务延时高。  |
+| `LivePremium` | 课堂使用 RTC 服务。频道为直播模式，延时为超低延时，约 400 毫秒。与互动直播大班课逻辑一致。                                                  |
+| `LiveStandard`    | 课堂使用 RTC 服务。频道为直播模式，延时为低延时，约 1 秒。又称极速直播模式。                  |
+| `CDN`  | 课堂使用 CDN 推拉流服务。老师的音视频流推到 CDN 上，学生通过拉取 CDN 流实时观看老师的音视频。CDN 服务延时一般大于 4 秒。 |
+| `Fusion`  | 课堂使用 RTC 和 CDN 推拉流服务。老师的音视频流既发送到 RTC 频道内，又推到 CDN 上。学生既可以通过拉取 CDN 流实时观看老师的音视频流，又可以通过上台与老师实时互动。CDN 服务的延时比 RTC 服务延时高。  |
 
 
 ### AgoraEduStreamState

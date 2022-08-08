@@ -25,23 +25,20 @@
     pod 'Protobuf', '3.17.0'
     pod 'CocoaLumberjack', '3.6.1'
     pod 'AliyunOSSiOS', '2.10.8'
-    pod 'Armin', '1.0.9'
-    pod 'Alamofire', '4.7.3'
+    pod 'Armin', '1.1.0'
     pod 'SSZipArchive', '2.4.2'
     pod 'SwifterSwift', '5.2.0'
     pod 'Masonry', '1.1.0'
     pod 'SDWebImage', '5.12.0'
-    pod 'WHToast', '0.0.7'
-    pod 'FLAnimatedImage', '3.8.6'
 
     # Agora libs
     pod 'AgoraRtm_iOS', '1.4.8'
-    pod 'Whiteboard', '2.16.17'
+    pod 'Whiteboard', '2.16.19'
     pod 'AgoraRtcEngine_iOS', '3.4.6'
-    pod 'HyphenateChat', '3.8.6'
+    pod 'Agora_Chat_iOS', '1.0.6'
 
     # Open-source libs
-    pod 'AgoraClassroomSDK_iOS', '2.4.0'
+    pod 'AgoraClassroomSDK_iOS', '2.7.0'
     ```
 
     下图仅为示例：
