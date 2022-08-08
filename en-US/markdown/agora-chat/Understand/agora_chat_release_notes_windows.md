@@ -22,4 +22,4 @@ Refer to the following documentations to enable Agora Chat and use the Chat SDK 
 - [Messages](./agora_chat_message_overview?platform=Windows)
 - [Chat Group](./agora_chat_group_overview?platform=Windows)
 - [Chat Room](./agora_chat_chatroom_overview?platform=Windows)
-- [API Reference](./agora-chat/API%20Reference/im_csharp/class_chat_s_d_k_1_1_s_d_k_client.html?transId=86800a60-e862-11ec-ba28-998741466f1a)
+- API Reference
