@@ -32,16 +32,14 @@
             <p>Call this method before calling <xref keyref="enableVideo"/> or <xref keyref="startPreview"/>.</p>
             <note type="attention">
             <ul>
-            <li>该功能对设备性能要求较高，Agora 推荐你在搭载如下芯片的设备上使用：
-                <ul>
+            <li>This function requires a high-performance device. Agora recommends that you use this function on devices with the following chips:<ul>
                 <li props="android unity cpp rn flutter">Snapdragon 700 series 750G and later</li>
                 <li props="android unity cpp rn flutter">Snapdragon 800 series 835 and later</li>
                 <li props="android unity cpp rn flutter">Dimensity 700 series 720 and later</li>
                 <li props="android unity cpp rn flutter">Kirin 800 series 810 and later</li>
                 <li props="android unity cpp rn flutter">Kirin 900 series 980 and later</li>
                 <li props="mac cpp unity electron">Devices with an i5 CPU and better</li>
-                <li props="ios cpp unity rn flutter">搭载 A9 及以上芯片的如下设备：
-                    <ul>
+                <li props="ios cpp unity rn flutter">Devices with an A9 chip and better, as follows:<ul>
                     <li>iPhone 6S and later</li>
                     <li>iPad Air 3rd generation and later</li>
                     <li>iPad 5th generation and later</li>
@@ -49,8 +47,7 @@
                     <li>iPad mini 5th generation and later</li>
                     </ul></li>
                 </ul></li>
-            <li>Agora 建议你在满足如下条件的场景中使用该功能：
-                <ul>
+            <li>Agora recommends that you use this function in scenarios that meet the following conditions:<ul>
                 <li>A high-definition camera device is used, and the environment is uniformly lit.</li>
                 <li>The captured video image is uncluttered, the user's portrait is half-length and largely unobstructed, and the background is a single color that differs from the color of the user's clothing.</li>
                 </ul></li>
@@ -61,8 +58,7 @@
             <plentry>
                 <pt props="cpp android unity flutter rn electron">enabled</pt>
                 <pt props="ios mac">enable</pt>
-                <pd>是否开启虚拟背景：
-                    <ul>
+                <pd>Whether to enable virtual background:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Enable virtual background.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Disable virtual background.</li>
                     </ul></pd>
@@ -79,9 +75,7 @@
             </plentry>
             <plentry props="cpp">
                 <pt>type</pt>
-                <pd>Type of the video source. 详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。
-                    <note type="attention">在该方法中，该参数仅支持以下两种设置：
-                    <ul>
+                <pd>Type of the video source. For details, see <xref keyref="MEDIA_SOURCE_TYPE"/>.<note type="attention">In this method, this parameter supports only the following two settings:<ul>
                     <li>The default value is <apiname keyref="PRIMARY_CAMERA_SOURCE"/>.</li>
                     <li>If you want to use the second camera to capture video, set this parameter to <apiname keyref="SECONDARY_CAMERA_SOURCE"/>.</li>
                     </ul></note></pd>
@@ -91,8 +85,7 @@
             <title>Returns</title>
             <ul>
             <li>0: Success.</li>
-            <li>&lt; 0: 方法调用失败。
-                <ul>
+            <li>&lt; 0: Failure.<ul>
                 <li>-1: The custom background image does not exist. Check the value of <parmname>source</parmname> in <xref keyref="VirtualBackgroundSource"/>.</li>
                 <li>-2: The color format of the custom background image is invalid. Check the value of <parmname>color</parmname> in <xref keyref="VirtualBackgroundSource"/>.</li>
                 <li>-3: The device does not support virtual background.</li>
