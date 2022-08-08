@@ -75,14 +75,31 @@
     qoeQuality(0) {}
     qualityChangedReason(0){}
 };</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export class RemoteAudioStats {
+  uid?: number
+  quality?: number
+  networkTransportDelay?: number
+  jitterBufferDelay?: number
+  audioLossRate?: number
+  numChannels?: number
+  receivedSampleRate?: number
+  receivedBitrate?: number
+  totalFrozenTime?: number
+  frozenRate?: number
+  mosValue?: number
+  totalActiveTime?: number
+  publishDuration?: number
+  qoeQuality?: number
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class RemoteAudioStats
     {
         public RemoteAudioStats()
         {
         }
+
         public RemoteAudioStats(uint uid, int quality, int networkTransportDelay, int jitterBufferDelay,
             int audioLossRate, int numChannels, int receivedSampleRate, int receivedBitrate, int totalFrozenTime,
-            int frozenRate, int mosValue, int totalActiveTime, int publishDuration)
+            int frozenRate, int mosValue, int totalActiveTime, int publishDuration, int qoeQuality)
         {
             this.uid = uid;
             this.quality = quality;
@@ -97,37 +114,96 @@
             this.mosValue = mosValue;
             this.totalActiveTime = totalActiveTime;
             this.publishDuration = publishDuration;
+            this.qoeQuality = qoeQuality;
         }
 
         public uint uid { set; get; }
-
         public int quality { set; get; }
-
         public int networkTransportDelay { set; get; }
-
         public int jitterBufferDelay { set; get; }
-
         public int audioLossRate { set; get; }
-
         public int numChannels { set; get; }
-
         public int receivedSampleRate { set; get; }
-
         public int receivedBitrate { set; get; }
-
         public int totalFrozenTime { set; get; }
-
         public int frozenRate { set; get; }
-
         public int mosValue { set; get; }
-
         public int totalActiveTime { set; get; }
-
         public int publishDuration { set; get; }
-    }</codeblock> </p>
+        public int qoeQuality { set; get; }
+    }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class RemoteAudioStats {
+  uid?: number;
+  quality?: number;
+  networkTransportDelay?: number;
+  jitterBufferDelay?: number;
+  audioLossRate?: number;
+  numChannels?: number;
+  receivedSampleRate?: number;
+  receivedBitrate?: number;
+  totalFrozenTime?: number;
+  frozenRate?: number;
+  mosValue?: number;
+  totalActiveTime?: number;
+  publishDuration?: number;
+  qoeQuality?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class RemoteAudioStats {
+  const RemoteAudioStats(
+      {this.uid,
+      this.quality,
+      this.networkTransportDelay,
+      this.jitterBufferDelay,
+      this.audioLossRate,
+      this.numChannels,
+      this.receivedSampleRate,
+      this.receivedBitrate,
+      this.totalFrozenTime,
+      this.frozenRate,
+      this.mosValue,
+      this.totalActiveTime,
+      this.publishDuration,
+      this.qoeQuality});
+
+  @JsonKey(name: 'uid')
+  final int? uid;
+  @JsonKey(name: 'quality')
+  final int? quality;
+  @JsonKey(name: 'networkTransportDelay')
+  final int? networkTransportDelay;
+  @JsonKey(name: 'jitterBufferDelay')
+  final int? jitterBufferDelay;
+  @JsonKey(name: 'audioLossRate')
+  final int? audioLossRate;
+  @JsonKey(name: 'numChannels')
+  final int? numChannels;
+  @JsonKey(name: 'receivedSampleRate')
+  final int? receivedSampleRate;
+  @JsonKey(name: 'receivedBitrate')
+  final int? receivedBitrate;
+  @JsonKey(name: 'totalFrozenTime')
+  final int? totalFrozenTime;
+  @JsonKey(name: 'frozenRate')
+  final int? frozenRate;
+  @JsonKey(name: 'mosValue')
+  final int? mosValue;
+  @JsonKey(name: 'totalActiveTime')
+  final int? totalActiveTime;
+  @JsonKey(name: 'publishDuration')
+  final int? publishDuration;
+  @JsonKey(name: 'qoeQuality')
+  final int? qoeQuality;
+  factory RemoteAudioStats.fromJson(Map&lt;String, dynamic> json) =>
+      _$RemoteAudioStatsFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$RemoteAudioStatsToJson(this);
+}
+</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>uid</pt>
@@ -136,12 +212,13 @@
             <plentry>
                 <pt>quality</pt>
                 <pd>
-                    <p>The quality of the audio stream sent by the user. <ph props="ios mac cpp electron unity">See <xref keyref="QUALITY_TYPE"/>.</ph></p>
+                    <p>The quality of the audio stream sent by the user. <ph props="ios mac cpp electron rn unity flutter">See <xref keyref="QUALITY_TYPE" />.</ph></p>
                     <p props="android">
                     <ul id="qualitytype">
                     <li><ph keyref="QUALITY_UNKNOWN"/>(0): The quality is unknown.</li>
                     <li><ph keyref="QUALITY_EXCELLENT"/>(1): The quality is excellent.</li>
-                    <li><ph keyref="QUALITY_GOOD"/>(2): The network quality seems excellent, but the bitrate can be slightly lower than excellent.</li>
+                    <li><ph keyref="QUALITY_GOOD"
+                        />(2): The network quality seems excellent, but the bitrate can be slightly lower than excellent.</li>
                     <li><ph keyref="QUALITY_POOR"/>(3): Users can feel the communication is slightly impaired.</li>
                     <li><ph keyref="QUALITY_BAD"/>(4): Users cannot communicate smoothly.</li>
                     <li><ph keyref="QUALITY_VBAD"/>(5): The quality is so bad that users can barely communicate.</li>
@@ -199,7 +276,7 @@
             <plentry>
                 <pt>qoeQuality</pt>
                 <pd>
-                    <p><ph>The Quality of Experience (QoE) of the local user when receiving a remote audio stream. </ph><ph props="ios mac cpp">See <xref keyref="EXPERIENCE_QUALITY_TYPE"/>.</ph><ul props="android">
+                    <p><ph>The Quality of Experience (QoE) of the local user when receiving a remote audio stream. </ph><ph props="ios mac cpp electron rn">See <xref keyref="EXPERIENCE_QUALITY_TYPE"/>.</ph><ul props="android">
                     <li><ph keyref="EXPERIENCE_QUALITY_GOOD"/>(0): The QoE of the local user is good.</li>
                     <li><ph keyref="EXPERIENCE_QUALITY_BAD"/>(1): The QoE of the local user is poor.</li>
                     </ul></p>
