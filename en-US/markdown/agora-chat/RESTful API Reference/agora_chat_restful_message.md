@@ -57,7 +57,7 @@ Follow the instructions below to implement sending messages:
 <div class="alert note"><ul>
 <li>When calling the RESTful API to send a message, you can use the <code>from</code> field to specify the message sender.</li>
 <li>If the data length of the request body exceeds 5 KB, error code 413 will be returned. The maximum data length of the request body and extension fields is 3 KB.</li>
-</ul></note>
+</ul></div>
 
 ### Send a one-to-one message
 
@@ -497,7 +497,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 - Send a text message
 
-    ```shell
+    ```json
     {
         "path": "/messages/chatgroups",
         "uri": "https://XXXX/XXXX/XXXX/messages/chatgroups",
@@ -515,7 +515,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 - Send an image message
 
-    ```shell
+    ```json
     {
         "path": "/messages/chatgroups",
         "uri": "https://XXXX/XXXX/XXXX/messages/chatgroups",
@@ -533,7 +533,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 - Send a voice message
 
-    ```shell
+    ```json
     {
         "path": "/messages/chatgroups",
         "uri": "https://XXXX/XXXX/XXXX/messages/chatgroups",
@@ -551,7 +551,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 - Send a video message
 
-    ```shell
+    ```json
     {
         "path": "/messages/chatgroups",
         "uri": "https://XXXX/XXXX/XXXX/messages/chatgroups",
@@ -569,7 +569,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 - Send a file message
 
-    ```shell
+    ```json
     {
         "path": "/messages/chatgroups",
         "uri": "https://XXXX/XXXX/XXXX/messages/chatgroups",
@@ -587,7 +587,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 - Send a location message
 
-    ```shell
+    ```json
     {
         "path": "/messages/chatgroups",
         "uri": "https://XXXX/XXXX/XXXX/messages/chatgroups",
@@ -605,7 +605,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 - Send a CMD message
 
-    ```shell
+    ```json
     {
         "path": "/messages/chatgroups",
         "uri": "https://XXXX/XXXX/XXXX/messages/chatgroups",
@@ -623,7 +623,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 - Send a custom message
 
-    ```shell
+    ```json
     {
         "path": "/messages/chatgroups",
         "uri": "https://XXXX/XXXX/XXXX/messages/chatgroups",
