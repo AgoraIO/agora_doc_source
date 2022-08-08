@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_onaudiopublishstatechanged">
+    <title><ph keyref="onAudioPublishStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the audio publishing state changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onAudioPublishStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onAudioPublishStateChanged(String channel, STREAM_PUBLISH_STATE oldState,
+      STREAM_PUBLISH_STATE newState, int elapseSinceLastState) {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit *_Nonnull)engine
+           didAudioPublishStateChange:(NSString * _Nonnull)channelId
+           oldState:(AgoraStreamPublishState)oldState
+           newState:(AgoraStreamPublishState)newState
+elapseSinceLastState:(int)elapseSinceLastState;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioPublishStateChanged(const char* channel,
+     STREAM_PUBLISH_STATE oldState,
+     STREAM_PUBLISH_STATE newState,
+     int elapseSinceLastState) {
+     (void)channel;
+     (void)oldState;
+     (void)newState;
+     (void)elapseSinceLastState;
+     }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">onAudioPublishStateChanged?(channel: string, oldState: StreamPublishState, newState: StreamPublishState, elapseSinceLastState: number): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioPublishStateChanged(string channel, STREAM_PUBLISH_STATE oldState,
+            STREAM_PUBLISH_STATE newState, int elapseSinceLastState)</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onAudioPublishStateChanged?(
+  channel: string,
+  oldState: StreamPublishState,
+  newState: StreamPublishState,
+  elapseSinceLastState: number
+): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(
+      String channel,
+      StreamPublishState oldState,
+      StreamPublishState newState,
+      int elapseSinceLastState)? onAudioPublishStateChanged;
+</codeblock> </p>
+        </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <parml>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry>
+                <pt props="android cpp unity flutter electron rn flutter">channel</pt>
+                <pt props="ios mac">channelId</pt>
+                <pd>The channel name.</pd>
+            </plentry>
+            <plentry id="oldState">
+                <pt>oldState</pt>
+                <pd>The previous subscribing status. See <xref keyref="STREAM_PUBLISH_STATE"/>.</pd>
+            </plentry>
+            <plentry id="newState">
+                <pt>newState</pt>
+                <pd>The current subscribing status. See <apiname keyref="STREAM_PUBLISH_STATE"/>.</pd>
+            </plentry>
+            <plentry id="elapseSinceLastState">
+                <pt>elapseSinceLastState</pt>
+                <pd>The time elapsed (ms) from the previous state to the current state.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>
