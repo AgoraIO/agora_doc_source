@@ -55,7 +55,7 @@ Use CocoaPods to integrate the Agora Chat SDK into your project.
    source 'https://github.com/CocoaPods/Specs.git'
    
    target 'AgoraChatExample' do
-       pod 'AgoraChat'
+       pod 'Agora_Chat_iOS'
        pod 'Masonry'
    end
    ```
