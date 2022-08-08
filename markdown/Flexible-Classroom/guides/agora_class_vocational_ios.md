@@ -23,7 +23,7 @@ livePremium 是一种与互动直播大班课逻辑一致的职业教育大班�
 
 - 将 `roomType` 设为 `AgoraEduRoomTypeBig`
 - 根据可接受的延时高低，将 `serviceType` 设为 `livePremium` 或 `liveStandard`
-- 如`serviceType` 设为 `livePremium`，将 `latencyLevel` 设为 `ultraLow`；如`serviceType` 设为 `liveStandard`，将 `latencyLevel` 设为 `low`。
+- 如果 `serviceType` 设为 `livePremium`，将 `latencyLevel` 设为 `ultraLow`；如果 `serviceType` 设为 `liveStandard`，将 `latencyLevel` 设为 `low`。
 
 其他字段按需设置即可。
 
@@ -65,7 +65,7 @@ livePremium 是一种与互动直播大班课逻辑一致的职业教育大班�
 
     - 将 `mode` 设为 `web`
     - 将 `webRecordConfig.publishRtmp` 设为 `true`
-    
+
     其他字段按需设置即可。
 
 

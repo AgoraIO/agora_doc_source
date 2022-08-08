@@ -241,7 +241,7 @@ func registerEventHandler(_ handler: AgoraEduMessageHandler)
 
 | 参数    | 描述                                                       |
 | :------ | :--------------------------------------------------------- |
-| `error` | 错误码。如 `error` 不为空，表示获取失败。                  |
+| `error` | 错误码。如果 `error` 不为空，表示获取失败。                  |
 | `list`  | 由多个消息对象组成的数组，详见 `AgoraEduContextChatInfo`。 |
 
 ### onUpdateConversationMessageList
@@ -254,5 +254,5 @@ func registerEventHandler(_ handler: AgoraEduMessageHandler)
 
 | 参数    | 描述                                                  |
 | :------ | :---------------------------------------------------- |
-| `error` | 错误码。如 `error` 不为空，表示获取失败。             |
+| `error` | 错误码。如果 `error` 不为空，表示获取失败。             |
 | `list`  | 由多个消息对象组成的数组，详见 `EduContextChatItem`。 |
