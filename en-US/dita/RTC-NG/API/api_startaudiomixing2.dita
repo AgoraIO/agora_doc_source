@@ -42,12 +42,10 @@ startPos?: number
             <li>If the local music file does not exist, the SDK does not support the file format, or the the SDK cannot access the music file URL, the SDK reports the warn code 701.</li>
             <li conkeyref="preloadEffect/audioFormats"/>
             <li conkeyref="startAudioMixing/principle" props="android cpp unity"/>
-            <li props="rn" id="principle">在 Android 平台上调用该方法时，请注意如下事项：
-
-                <ul>
-                <li>请确保使用 Android 4.2 或以上设备，且 API Level 不低于 16。</li>
-                <li>如果播放的是在线音乐文件，Agora 建议不要使用重定向地址。 重定向地址在某些机型上可能无法打开。</li>
-                <li>如果在模拟器上调用该方法，则请确保音乐文件在 <codeph>/sdcard/</codeph> 目录下，且格式为 MP3。</li>
+            <li props="rn" id="principle">On Android, there are following considerations:<ul>
+                <li>To use this method, ensure that the Android device is v4.2 or later, and the API version is v16 or later.</li>
+                <li>If you need to play an online music file, Agora does not recommend using the redirected URL address. Some Android devices may fail to open a redirected URL address.</li>
+                <li>If you call this method on an emulator, ensure that the music file is in the <codeph>/sdcard/</codeph> directory and the format is MP3.</li>
                 </ul></li>
             </ul> </note> </section>
         <section id="parameters">
@@ -69,24 +67,16 @@ startPos?: number
             <plentry props="electron unity rn flutter">
                 <pt>replace</pt>
                 <pd>
-                    <p>是否用音乐文件替换麦克风采集的音频：
-
-
-
-                    <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: 替换。 用户只能听到音乐。</li>
-                    <li><codeph><ph keyref="false"/></codeph>: 不替换。 用户可以听到音乐和麦克风采集的音频。</li>
+                    <p>Whether to replace the audio captured by the microphone with a music file:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Replace the audio captured by the microphone with a music file. Users can only hear the music.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Do not replace the audio captured by the microphone with a music file. Users can hear both music and audio captured by the microphone.</li>
                     </ul></p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>cycle</pt>
                 <pd>
-                    <p>音乐文件的播放次数。
-
-
-
-                    <ul>
+                    <p>The number of times the music file plays.<ul>
                     <li>≥ 0: The number of playback times. For example, 0 means that the SDK does not play the music file while 1 means that the SDK plays once.</li>
                     <li>-1: Play the music file in an infinite loop.</li>
                     </ul></p>
