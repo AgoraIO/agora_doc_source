@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audiorecordingconfiguration_ng">
     <title> <ph keyref="AudioRecordingConfiguration"/> </title>
-    <shortdesc id="short"><ph id="shortdesc">录音配置。</ph> </shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Recording configuration.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -148,36 +148,23 @@
             <parml>
             <plentry id="filepath">
                 <pt>filePath</pt>
-                <pd>The absolute path (including the filename extensions) of the recording file. 例如：<codeph><ph keyref="filePath-example"/></codeph>。
-
-
-
-                    
-                    <note id="note_scm_klz_mqb" type="attention">
+                <pd>The absolute path (including the filename extensions) of the recording file. <codeph><ph keyref="filePath-example"/></codeph>For example: .<note id="note_scm_klz_mqb" type="attention">
                     <p>Ensure that the directory for the log files exists and is writable.</p>
                     </note> </pd>
             </plentry>
             <plentry>
                 <pt props="cpp unity electron rn flutter">encode</pt>
                 <pt props="android ios mac">codec</pt>
-                <pd>设置是否编码音频数据：
-
-
-                    
-                    <ul id="ul_bnv_mlz_mqb">
+                <pd>Whether to encode the audio data:<ul id="ul_bnv_mlz_mqb">
                     <li><codeph><ph keyref="true"/></codeph>: Encode audio data in AAC.</li>
                     <li><codeph><ph keyref="false"/></codeph>: (Default) Do not encode audio data and save the recorded audio data directly.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>sampleRate</pt>
-                <pd>录音采样率（Hz）。
-
-
-                    
-                    <ul id="ul_pqs_slz_mqb">
+                <pd>Recording sample rate (Hz).<ul id="ul_pqs_slz_mqb">
                     <li>16000</li>
-                    <li>32000 （默认）</li>
+                    <li>(Default) 32000</li>
                     <li>44100.</li>
                     <li>48000.</li>
                     </ul>
@@ -190,12 +177,7 @@
                 <pt props="android ios mac">fileRecordOption</pt>
                 <pd>
                     <p props="ios mac cpp unity flutter">Recording content. See <xref keyref="AUDIO_RECORDING_POSITION"/>.</p>
-                    <p props="android">录音内容：
-
-
-
-                    
-                    <ul>
+                    <p props="android">Recording content:<ul>
                     <li><ph keyref="AUDIO_RECORDING_POSITION_RECORDING"/>(1): Only records the audio of the local user.</li>
                     <li><ph keyref="AUDIO_RECORDING_POSITION_MIXED_PLAYBACK"/>(2): Only records the audio of all remote users.</li>
                     <li><ph keyref="AUDIO_RECORDING_POSITION_MIXED_RECORDING_AND_PLAYBACK"/>(3): (Default) Records the mixed audio of the local and all remote users.</li>
