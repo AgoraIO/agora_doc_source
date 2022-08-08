@@ -31,22 +31,20 @@ This group of methods enables you to implement user system management, including
 
 | Name | Method | Request | Description |
 | :----------- | :----- | :----------------------------------------------- | :-------------------- |
-| Registering a user | POST | /{org_name}/{app_name}/users | Creates a user account. |
-| Registering multiple users | POST | /{org_name}/{app_name}/users | Creates multiple user accounts. |
-| Retrieving a user | GET | /{org_name}/{app_name}/users/{username} | Retrieves the information of the specified user. |
-| Retrieving multiple users. | GET | /{org_name}/{app_name}/users | Retrieves the information of the specified users. |
-| Deleting a user | DELETE | /{org_name}/{app_name}/users/{username} | Deletes the specified user. |
-| Deleting multiple users | DELETE | /{org_name}/{app_name}/users | Deletes all the users in the app. |
-| Modifying the password | PUT | /{org_name}/{app_name}/users/{username}/password | Changes the user's password. |
-| Banning a user | POST | /{org_name}/{app_name}/users/{username}/deactivate | Bans a user. |
-| Unbanning a user | POST | /{org_name}/{app_name}/users/{username}/activate | Unbans a user. |
-| Forcing a user offline | POST | /{org_name}/{app_name}/users/{username}/disconnect | Forcibly moves a user offline. |
-| Querying the online state | GET | /{org_name}/{app_name}/users/{username}/status | Queries whehter a user is online. |
-|
-| Querying the online state of multiple users | POST | /{org_name}/{app_name}/users/batch/status | Queries whether multiple users are online. |
-| Querying the number of offline messages | GET | /{org_name}/{app_name}/users/{owner_username}/offline_msg_count | Queries the number of offline messages a user has. |
-| Querying the delievery state of an offline message | GET | 
-/{org_name}/{app_name}/users/{username}/offline_msg_status/{msg_id} | Queries the delivery state of an offline message. |
+| Registering a user | POST | `/{org_name}/{app_name}/users` | Creates a user account. |
+| Registering multiple users | POST | `/{org_name}/{app_name}/users` | Creates multiple user accounts. |
+| Retrieving a user | GET | `/{org_name}/{app_name}/users/{username}` | Retrieves the information of the specified user. |
+| Retrieving multiple users. | GET | `/{org_name}/{app_name}/users` | Retrieves the information of the specified users. |
+| Deleting a user | DELETE | `/{org_name}/{app_name}/users/{username}` | Deletes the specified user. |
+| Deleting multiple users | DELETE | `/{org_name}/{app_name}/users` | Deletes all the users in the app. |
+| Modifying the password | PUT | `/{org_name}/{app_name}/users/{username}/password` | Changes the user's password. |
+| Banning a user | POST | `/{org_name}/{app_name}/users/{username}/deactivate` | Bans a user. |
+| Unbanning a user | POST | `/{org_name}/{app_name}/users/{username}/activate` | Unbans a user. |
+| Forcing a user offline | POST | `/{org_name}/{app_name}/users/{username}/disconnect` | Forcibly moves a user offline. |
+| Querying the online state | GET | `/{org_name}/{app_name}/users/{username}/status` | Queries whether a user is online. |
+| Querying the online state of multiple users | POST | `/{org_name}/{app_name}/users/batch/status` | Queries whether multiple users are online. |
+| Querying the number of offline messages | GET | `/{org_name}/{app_name}/users/{owner_username}/offline_msg_count` | Queries the number of offline messages a user has. |
+| Querying the delivery state of an offline message | GET | `/{org_name}/{app_name}/users/{username}/offline_msg_status/{msg_id}` | Queries the delivery state of an offline message. |
 
 ### Message push
 
@@ -54,9 +52,9 @@ This group of methods enables you to set the push message display mode, display 
 
 | Name | Method | Request | Description |
 | :------------------- | :--- | :-------------------------------------- | :------------------------------------------------------ |
-| Setting the display nickname | PUT | /{org_name}/{app_name}/users/{username} | Sets the display nickname of the push message. |
-| Setting the display options | PUT | /{org_name}/{app_name}/users/{username} | Sets whether the push messages are displayed as notifications only or details are visible. |
-| Setting do-not-disturb (DND) | PUT | /{org_name}/{app_name}/users/{username} | Sets whether to enable DND, and the time to enable and disable DND. |
+| Setting the display nickname | PUT | `/{org_name}/{app_name}/users/{username}` | Sets the display nickname of the push message. |
+| Setting the display options | PUT | `/{org_name}/{app_name}/users/{username}` | Sets whether the push messages are displayed as notifications only or details are visible. |
+| Setting do-not-disturb (DND) | PUT | `/{org_name}/{app_name}/users/{username}` | Sets whether to enable DND, and the time to enable and disable DND. |
 
 ### Sending messages and uploading/downloading files
 
@@ -64,13 +62,13 @@ This group of methods enables you to send text, image, voice, video, pass-throug
 
 | Name | Method | Request | Description |
 | :--------------- | :--- | :------------------------------------------ | :----------------------------------------------------------- |
-| Sending a message | POST | /{org_name}/{app_name}/messages | App admins use this method to send messages to users or groups, and support sending text, image, voice, video, pass-through, extension, and file messages. |
-| Uploading files | POST | /{org_name}/{app_name}/chatfiles | Uploads voice and image files. |
-| Downloading files | POST | /{org_name}/{app_name}/chatfiles/{uuid} | Downloads voice and image files. |
-| Retrieving historical messages | GET | /{org_name}/{app_name}/chatmessages/${time} | Retrieves chat historical messages |
-| Retrieving the conversation list | GET | /{org_name}/{app_name}/user/{username}/user_channels | Retrieves a list of conversations of the specified user.|
-| Recalling a message | POST | {org_name}/{app_name}/messages/recall | Recalls a message two minutes after it is sent. |
-| Deleting conversations from the server | DELETE | /{orgName}/{appName}/users/{userName}/user_channel | Deletes the conversation from the server. |
+| Sending a message | POST | `/{org_name}/{app_name}/messages` | App admins use this method to send messages to users or groups, and support sending text, image, voice, video, pass-through, extension, and file messages. |
+| Uploading files | POST | `/{org_name}/{app_name}/chatfiles` | Uploads voice and image files. |
+| Downloading files | POST | `/{org_name}/{app_name}/chatfiles/{uuid}` | Downloads voice and image files. |
+| Retrieving historical messages | GET | `/{org_name}/{app_name}/chatmessages/${time}` | Retrieves chat historical messages |
+| Retrieving the conversation list | GET | `/{org_name}/{app_name}/user/{username}/user_channels` | Retrieves a list of conversations of the specified user.|
+| Recalling a message | POST | `{org_name}/{app_name}/messages/recall` | Recalls a message two minutes after it is sent. |
+| Deleting conversations from the server | DELETE | `/{orgName}/{appName}/users/{userName}/user_channel` | Deletes the conversation from the server. |
 
 ### User attributes
 
@@ -78,11 +76,11 @@ This group of methods enables you to set, retrieve, and delete user attributes.
 
 | Name | Method | Request | Description |
 | :------------------------- | :----- | :---------------------------------------------- | :------------------------------------------- |
-| Setting user attributes | PUT | /{org_name}/{app_name}/metadata/user/{username} | Sets the user attributes for the specified user. |
-| Retrieving user attributes | GET | /{org_name}/{app_name}/metadata/user/{username} | Retrieves all the user attributes of the specified user. |
-| Retrieving the user attributes of multiple users | POST | /{org_name}/{app_name}/metadata/user/get | Retrieves multiple users' attributes by specifying the user name list and user attribute list. |
-| Deleting user attributes | DELETE | /{org_name}/{app_name}/metadata/user/{username} | Deletes all the user attributes for the specified user. |
-| Retrieving the total size of user attributes | GET | /{org_name}/{app_name}/metadata/user/capacity | Gets the total size of user attributes for all the users in the app. |
+| Setting user attributes | PUT | `/{org_name}/{app_name}/metadata/user/{username}` | Sets the user attributes for the specified user. |
+| Retrieving user attributes | GET | `/{org_name}/{app_name}/metadata/user/{username}` | Retrieves all the user attributes of the specified user. |
+| Retrieving the user attributes of multiple users | POST | `/{org_name}/{app_name}/metadata/user/get` | Retrieves multiple users' attributes by specifying the user name list and user attribute list. |
+| Deleting user attributes | DELETE | `/{org_name}/{app_name}/metadata/user/{username}` | Deletes all the user attributes for the specified user. |
+| Retrieving the total size of user attributes | GET | `/{org_name}/{app_name}/metadata/user/capacity` | Gets the total size of user attributes for all the users in the app. |
 
 ### Contact management
 
@@ -90,12 +88,12 @@ This group of methods enables you to manage the user's contact list and block li
 
 | Name | Method | Request | Description |
 | :----------- | :----- | :----------------------------------------------------------- | :--------------------- |
-| Adding a contact | POST | /{org_name}/{app_name}/users/{owner_username}/contacts/users/{friend_username} | Adds the specified user as a contact. |
-| Removing a contact | DELETE | /{org_name}/{app_name}/users/{owner_username}/contacts/users/{friend_username} | Removes the specified user from the contact list. |
-| Retrieving a contact list | GET | /{org_name}/{app_name}/users/{owner_username}/contacts/users | Retrieves the contact list. |
-| Retrieving a block list | GET | /{org_name}/{app_name}/users/{owner_username}/blocks/users | Retrieves the block list. |
-| Adding user to block list | POST | /{org_name}/{app_name}/users/{owner_username}/blocks/users | Add the specified user to the block list. |
-| Removing user from block list | DELETE | /{org_name}/{app_name}/users/{owner_username}/blocks/users/{blocked_username} | Removes the specified user from the block list. |
+| Adding a contact | POST | `/{org_name}/{app_name}/users/{owner_username}/contacts/users/{friend_username}` | Adds the specified user as a contact. |
+| Removing a contact | DELETE | `/{org_name}/{app_name}/users/{owner_username}/contacts/users/{friend_username}` | Removes the specified user from the contact list. |
+| Retrieving a contact list | GET | `/{org_name}/{app_name}/users/{owner_username}/contacts/users` | Retrieves the contact list. |
+| Retrieving a block list | GET | `/{org_name}/{app_name}/users/{owner_username}/blocks/users` | Retrieves the block list. |
+| Adding user to block list | POST | `/{org_name}/{app_name}/users/{owner_username}/blocks/users` | Add the specified user to the block list. |
+| Removing user from block list | DELETE | `/{org_name}/{app_name}/users/{owner_username}/blocks/users/{blocked_username}` | Removes the specified user from the block list. |
 
 ### Chat group management
 
@@ -103,12 +101,12 @@ This group of methods enables you to create, retrieve, modify, and delete chat g
 
 | Name | Method | Request | Description |
 | :------------------------------ | :----- | :--------------------------------------------- | :------------------------------------- |
-| Retrieving all chat groups in the app (Pagination) | GET | /{org_name}/{app_name}/chatgroups | Retrieves the information of all the groups in the app. |
-| Retrieving all the chat groups the user joins | GET | /{app_name}/users/{username}/joined_chatgroups | Retrieves all the groups the user joins by specifying the user name. |
-| Retrieving chat group details | GET | /{org_name}/{app_name}/chatgroups/{group_ids} | Retrieves the information of the group details by specifying the group ID. |
-| Creating a chat group | POST | /{org_name}/{app_name}/chatgroups | Creates a chat group. |
-| Modifying chat group information | PUT | /{org_name}/{app_name}/chatgroups/{group_id} | Modifies the group information. |
-| Deleting a chat group | DELETE | /{org_name}/{app_name}/chatgroups/{group_id} | Deletes a chat group. |
+| Retrieving all chat groups in the app (Pagination) | GET | `/{org_name}/{app_name}/chatgroups` | Retrieves the information of all the groups in the app. |
+| Retrieving all the chat groups the user joins | GET | `/{app_name}/users/{username}/joined_chatgroups` | Retrieves all the groups the user joins by specifying the user name. |
+| Retrieving chat group details | GET | `/{org_name}/{app_name}/chatgroups/{group_ids}` | Retrieves the information of the group details by specifying the group ID. |
+| Creating a chat group | POST | `/{org_name}/{app_name}/chatgroups` | Creates a chat group. |
+| Modifying chat group information | PUT | `/{org_name}/{app_name}/chatgroups/{group_id}` | Modifies the group information. |
+| Deleting a chat group | DELETE | `/{org_name}/{app_name}/chatgroups/{group_id}` | Deletes a chat group. |
 
 ### Chat group member management
 
@@ -116,15 +114,15 @@ This group of methods enables you to manage chat group members, including adding
 
 | Name | Method | Request | Description |
 | :--------------- | :----- | :----------------------------------------------------------- | :----------------------------- |
-| Retrieving chat group member list (Pagination) | GET | /{org_name}/{app_name}/chatgroups/{group_id}/users | Retrieves the member list of the chat group by pagination. |
-| Adding a chat group member | POST | /{org_name}/{app_name}/chatgroups/{group_id}/users/{username} | Adds a user to the group member list. |
-| Adding multiple group members | POST | /{org_name}/{app_name}/chatgroups/{chatgroupid}/users | Adds multiple users to the group member list. |
-| Removing a chat group member | DELETE | /{org_name}/{app_name}/chatgroups/{group_id}/users/{username} | Removes the specified user from the group member list. |
-| Removing multiple chat group members | DELETE | /{org_name}/{app_name}/chatgroups/{group_id}/users/{usernames} | Removes the specified users from the group members list. |
-| Retrieving chat group admin list | GET | /{org_name}/{app_name}/chatgroups/{group_id}/admin | Retrieves the group admin list. |
-| Adding a chat group admin. | POST | /{org_name}/{app_name}/chatgroups/{group_id}/admin | Adds the specified user to the group admin list. |
-| Removing a chat group admin | DELETE | /{org_name}/{app_name}/chatgroups/{group_id}/admin/{oldadmin} | Removes the specified user from the group admin list. |
-| Transferring chat group ownership | PUT | /{org_name}/{app_name}/chatgroups/{groupid} | Transfers the group owner privileges. |
+| Retrieving chat group member list (Pagination) | GET | `/{org_name}/{app_name}/chatgroups/{group_id}/users` | Retrieves the member list of the chat group by pagination. |
+| Adding a chat group member | POST | `/{org_name}/{app_name}/chatgroups/{group_id}/users/{username}` | Adds a user to the group member list. |
+| Adding multiple group members | POST | `/{org_name}/{app_name}/chatgroups/{chatgroupid}/users` | Adds multiple users to the group member list. |
+| Removing a chat group member | DELETE | `/{org_name}/{app_name}/chatgroups/{group_id}/users/{username}` | Removes the specified user from the group member list. |
+| Removing multiple chat group members | DELETE | `/{org_name}/{app_name}/chatgroups/{group_id}/users/{usernames}` | Removes the specified users from the group members list. |
+| Retrieving chat group admin list | GET | `/{org_name}/{app_name}/chatgroups/{group_id}/admin` | Retrieves the group admin list. |
+| Adding a chat group admin. | POST | `/{org_name}/{app_name}/chatgroups/{group_id}/admin` | Adds the specified user to the group admin list. |
+| Removing a chat group admin | DELETE | `/{org_name}/{app_name}/chatgroups/{group_id}/admin/{oldadmin}` | Removes the specified user from the group admin list. |
+| Transferring chat group ownership | PUT | `/{org_name}/{app_name}/chatgroups/{groupid}` | Transfers the group owner privileges. |
 
 ### Chat room management
 
@@ -132,12 +130,12 @@ This group of methods enables you to create, retrieve, modify, and delete chat r
 
 | Name | Method | Request | Description |
 | :---------------------- | :----- | :------------------------------------------------------- | :--------------------------------------- |
-| Retrieving all chat rooms | GET | /{org_name}/{app_name}/chatrooms | Retrieves the information of all the chat rooms in the app. |
-| Retrieving chat rooms a user joins | GET | /{org_name}/{app_name}/users/{username}/joined_chatrooms | Retrieves the chat rooms that a user joins by specifying the username. |
-| Retrieving chat room details | GET | /{org_name}/{app_name}/chatrooms/{chatroom_id} | Retrieves the details of the chat room by specifying the chat room ID. |
-| Creating a chat room | POST | /{org_name}/{app_name}/chatrooms | Creates a new chat room. |
-| Modifying chat room information | PUT | /{org_name}/{app_name}/chatrooms/{chatroom_id} | Modifies the chat room information. |
-| Deleting a chat room | DELETE | /{org_name}/{app_name}/chatrooms/{chatroom_id} | Deletes a chat room. |
+| Retrieving all chat rooms | GET | `/{org_name}/{app_name}/chatrooms` | Retrieves the information of all the chat rooms in the app. |
+| Retrieving chat rooms a user joins | GET | `/{org_name}/{app_name}/users/{username}/joined_chatrooms` | Retrieves the chat rooms that a user joins by specifying the username. |
+| Retrieving chat room details | GET | `/{org_name}/{app_name}/chatrooms/{chatroom_id}` | Retrieves the details of the chat room by specifying the chat room ID. |
+| Creating a chat room | POST | `/{org_name}/{app_name}/chatrooms` | Creates a new chat room. |
+| Modifying chat room information | PUT | `/{org_name}/{app_name}/chatrooms/{chatroom_id}` | Modifies the chat room information. |
+| Deleting a chat room | DELETE | `/{org_name}/{app_name}/chatrooms/{chatroom_id}` | Deletes a chat room. |
 
 ### Chat room member management
 
@@ -145,14 +143,14 @@ This group of methods enables you to add, retrieve, modify, and delete members f
 
 | Name | Method | Request | Description |
 | :------------------- | :----- | :----------------------------------------------------------- | :------------------------------- |
-| Retrieving chat room member list (Pagination) | GET | /{org_name}/{app_name}/chatrooms/{chatroom_id}/users | Retrieves the member list of the chat room by pagination. |
-| Adding a chat room member | POST | /{org_name}/{app_name}/chatrooms/{chatroomid}/users/{username} | Adds the specified user to the chat room member list. |
-| Adding multiple chat room members | POST | /{org_name}/{app_name}/chatrooms/{chatroomid}/users | Adds multiple specified users to the chat room member list. |
-| Removing a chat room member | DELETE | /{org_name}/{app_name}/chatrooms/{chatroomid}/users/{username} | Removes the specified user from the chat room member list. |
-| Removing multiple chat room members | DELETE | /{org_name}/{app_name}/chatrooms/{chatroomid}/users/{usernames} | Removes the specified users from the chat room member list. |
-| Retrieving chat room admin list | GET | /{org_name}/{app_name}/chatrooms/{chatroom_id}/admin | Retrieves the chat room admin list. |
-| Adding a chat room admin | POST | /{org_name}/{app_name}/chatrooms/{chatroom_id}/admin | Adds the specified user to the chat room admin list. |
-| Removing a chat room admin | DELETE | /{org_name}/{app_name}/chatrooms/{chatroom_id}/admin/{oldadmin} | Remove the specified user from the chat room admin list. |
+| Retrieving chat room member list (Pagination) | GET | `/{org_name}/{app_name}/chatrooms/{chatroom_id}/users` | Retrieves the member list of the chat room by pagination. |
+| Adding a chat room member | POST | `/{org_name}/{app_name}/chatrooms/{chatroomid}/users/{username}` | Adds the specified user to the chat room member list. |
+| Adding multiple chat room members | POST | `/{org_name}/{app_name}/chatrooms/{chatroomid}/users` | Adds multiple specified users to the chat room member list. |
+| Removing a chat room member | DELETE | `/{org_name}/{app_name}/chatrooms/{chatroomid}/users/{username}` | Removes the specified user from the chat room member list. |
+| Removing multiple chat room members | DELETE | `/{org_name}/{app_name}/chatrooms/{chatroomid}/users/{usernames}` | Removes the specified users from the chat room member list. |
+| Retrieving chat room admin list | GET | `/{org_name}/{app_name}/chatrooms/{chatroom_id}/admin` | Retrieves the chat room admin list. |
+| Adding a chat room admin | POST | `/{org_name}/{app_name}/chatrooms/{chatroom_id}/admin` | Adds the specified user to the chat room admin list. |
+| Removing a chat room admin | DELETE | `/{org_name}/{app_name}/chatrooms/{chatroom_id}/admin/{oldadmin}` | Remove the specified user from the chat room admin list. |
 
 ### Global mute
 
@@ -160,9 +158,9 @@ This group of methods enable you to mute any user ID in one-to-one chats, group 
 
 | Name | Method | Request | Description |
 | --- | --- | --- | --- |
-| Globally mute a specified user | POST | /{orgName}/{appName}/mutes | Mutes a specified user in one-to-one chats, chat groups, or chat rooms. |
-| Query the detailed information of global-mute | GET | /{orgName}/{appName}/mutes/username | Queries the detailed information of the global-mute settings of the specified user in one-to-one chats, group chats, or chatrooms.|
-| Retrieve all globally muted users | GET | /{orgName}/{appName}/mutes | Retrieves all the users that have been globally muted in the app. |
+| Globally mute a specified user | POST | `/{orgName}/{appName}/mutes` | Mutes a specified user in one-to-one chats, chat groups, or chat rooms. |
+| Query the detailed information of global-mute | GET | `/{orgName}/{appName}/mutes/username` | Queries the detailed information of the global-mute settings of the specified user in one-to-one chats, group chats, or chatrooms.|
+| Retrieve all globally muted users | GET | `/{orgName}/{appName}/mutes` | Retrieves all the users that have been globally muted in the app. |
 
 ### Reaction
 
@@ -170,10 +168,10 @@ This group of methods enable your chat users to reply the message with emojis.
 
 | Name | Method | Request | Description |
 | --- | --- | --- | --- |
-| Create a reaction | POST | /{org_name}/{app_name}/reaction/user/{userId} | Creats or adds a reaction to a specified message. |
-| Retrieve reactions with message IDs | GET | /{org_name}/{app_name}/reaction/user/{userId} | Retrieves the information of the reaction according to the message ID. |
-| Delete a reaction | DELETE | /{org_name}/{app_name}/reaction/user/{userId} | Deletes a reaction. |
-| Retrieve the detailed information of the reaction | GET | /{org_name}/{app_name}/reaction/user/{userId}/detail | Retrieves the detailed information of the reaction by specifying the message ID and reaction ID. |
+| Create a reaction | POST | `/{org_name}/{app_name}/reaction/user/{userId}` | Creates or adds a reaction to a specified message. |
+| Retrieve reactions with message IDs | GET | `/{org_name}/{app_name}/reaction/user/{userId}` | Retrieves the information of the reaction according to the message ID. |
+| Delete a reaction | DELETE | `/{org_name}/{app_name}/reaction/user/{userId}` | Deletes a reaction. |
+| Retrieve the detailed information of the reaction | GET | `/{org_name}/{app_name}/reaction/user/{userId}/detail` | Retrieves the detailed information of the reaction by specifying the message ID and reaction ID. |
 
 
 ## Request structure
