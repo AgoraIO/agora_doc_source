@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_onuserinfoupdated">
+    <title> <ph keyref="onUserInfoUpdated"/> </title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the SDK gets the user ID and user account of the remote user.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onUserInfoUpdated"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onUserInfoUpdated(int uid, UserInfo userInfo) {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didUserInfoUpdatedWithUserId:(NSUInteger)uid userInfo:(AgoraUserInfo* _Nonnull)userInfo;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onUserInfoUpdated(uid_t uid, const UserInfo&amp; info) {
+     (void)uid;
+     (void)info;
+     }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">onUserInfoUpdated?(uid: number, info: UserInfo): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserInfoUpdated(uint uid, UserInfo info)</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onUserInfoUpdated?(uid: number, info: UserInfo): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(int uid, UserInfo info)? onUserInfoUpdated;
+</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>After a remote user joins the channel, the SDK gets the UID and user account of the remote user, caches them in a mapping table object, and triggers this callback on the local client.</p>
+        </section>
+        <section id="parameters">
+            <title> <ph keyref="callback-section-title"/> </title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <parml>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry>
+                <pt>uid</pt>
+                <pd>The user ID of the remote user.</pd>
+            </plentry>
+            <plentry>
+                <pt props="android ios mac">userInfo</pt>
+                <pt props="cpp unity flutter electron rn">info</pt>
+                <pd>The UserInfo object that contains the user ID and user account of the remote user. See <xref keyref="UserInfo"/> for details.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>
