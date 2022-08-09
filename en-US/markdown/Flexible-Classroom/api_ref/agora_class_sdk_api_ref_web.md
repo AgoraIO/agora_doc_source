@@ -245,25 +245,97 @@ Encryption modes. Used in [MediaEncryptionConfig](#mediaencryptionconfig).
 The courseware pre-download configuration. Used when calling [`AgoraEduSDK.launch`](#launch).
 
 ```typescript
-export type CourseWareItem = {
-  resourceName: string,
-  resourceUuid: string,
-  ext: string,
-  url: string,
-  conversion: {
-    type: string,
-  },
-  size: number,
-  updateTime: number,
-  scenes: SceneDefinition[],
-  convert?: boolean,
-  taskUuid?: string,
-  taskToken?: string,
-  taskProgress?: NetlessTaskProgress
-}
+export type CloudDriveResourceConvertProgress = {
+    totalPageSize: number;
+    convertedPageSize: number;
+    convertedPercentage: number;
+    convertedFileList: {
+        name: string;
+        ppt: {
+            width: number;
+            height: number;
+            preview?: string;
+            src: string;
+        };
+    }[];
+    currentStep: string;
+};
 
-export type CourseWareList = CourseWareItem[]
+export type CourseWareItem = {
+    resourceName: string;
+    resourceUuid: string;
+    ext: string;
+    url?: string;
+    size: number;
+    updateTime: number;
+    taskUuid: string;
+    conversion: {
+        type: string;
+        preview: boolean;
+        scale: number;
+        outputFormat: string;
+    };
+    taskProgress?: CloudDriveResourceConvertProgress;
+};
+
+export type CourseWareList = CourseWareItem[];
 ```
+
+<details>
+<summary><font color="#3ab7f8">Sample code A: without the whiteboard conversion file</font></summary>
+<pre class="json show"><code class="language-json">courseWareList:
+[
+    {
+            resourceName: "mechanicalEnergy",
+            resourceUuid: "c06fed32d06268431601b0e0a804e70a",
+            ext: "mp4",
+            url: "https://gymoo-project-cdn.oss-cn-shenzhen.aliyuncs.com/hld_education/upload/9f4d3c149e6b3acfef378aca012780b3.mp4",
+            size: 4560284
+    }
+],
+</code></pre>
+</details>
+
+<details>
+<summary><font color="#3ab7f8">Sample code B: with the whiteboard conversion file</font></summary>
+<pre class="json show"><code class="language-json">courseWareList:
+[
+    {
+      resourceName: xxxxxxx,
+      resourceUuid: xxxxxxxxx,
+      ext: 'pptx',
+      url: 'https://xxxxxxxxxxxxxx',
+      size: 0,
+      updateTime: xxxxxxxx
+      taskUuid: 'xxxxxxxxx',
+      conversion: {
+            type: 'dynamic',
+            preview: true,
+            scale: 2,
+            outputFormat: 'png',
+            },
+      taskProgress: {
+        totalPageSize: 3,
+        convertedPageSize: 3,
+        convertedPercentage: 100,
+        convertedFileList: [
+            {
+                name: '1',
+                ppt: {
+                    src: 'pptx://convertcdn.netless.link/dynamicConvert/3bxxxxxxx/1.slide',
+                    width: 1280,
+                    height: 720,
+                    preview:'dddddddddddddddurl'
+                },
+            },
+            ...
+        ] as any,
+        currentStep: '',
+        },
+    },
+],
+</code></pre>
+</details>
 
 | Parameter | Description |
 | :------------- | :----------------------------------------------------------- |
@@ -272,12 +344,10 @@ export type CourseWareList = CourseWareItem[]
 | `ext` | The file suffix. |
 | `size` | The file size (bytes). |
 | `updateTime` | The latest modified time of the file. |
-| `conversion` | The file conversion configuration object, which contains the following fields:<ul><li>`type`: The conversion type:</li><ul><li>`"dynamic"`: Convert the file to a static picture.</li><li>`"static"`: Convert the file to dynamic HTML.</li></ul></ul> |
-| `url` | The address of the file. Flexible Classroom clients automatically convert files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in classrooms. If the suffix name is not listed above, you must set `url `and leave `scenes` empty. |
-| `scenes` | The download configuration of the converted file. When the file suffix is `"ppt"`, `"pptx"`, `"doc"`, `"docx"` or `"pdf"`, you must set `scenes` for downloading the converted file. |
 | `taskUuid` | The unique identifier of the file conversion task. |
-| `taskToken` | The token used by the file conversion task. |
-| `taskProgress` | The JSON object indicates the progress of the file conversion task. |
+| `conversion` | The file conversion configuration object, which contains the following fields:<ul><li>`static`: Convert the file in format of PPT, PPTX, DOC, DOCX, or PDF to a static picture in format of PNG, JPG, JPEG, or WEBP. The converted file doesn't keep the animation effects of the original file.</li><li>`dynamic`: Convert the file in format of PPTX edited with Microsoft Office to an HTML page. The converted file keeps the animation effects of the original file.</li><li>`preview`: A Boolean value that indicates whether you need preview on the left.</li><li>`scale`: A Number value indicates the conversion scale in the range of [0, 3].</li><li>`outputFormat`: A String value indicates the export format of the images after file conversion. You can set it as `png`.</li><ul></ul></ul> |
+| `url` | The address of the file. Flexible Classroom clients automatically convert files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in classrooms. If the suffix name is not listed above, you must set `url `. |
+| `taskProgress` | The JSON object `CloudDriveResourceConvertProgress` that indicates the progress of the file conversion task, which contains the following fields:<ul><li>`totalPageSize`: Total page size.</li><li>`convertedPageSize`: number of converted pages.</li><li>`convertedPercentage`: Conversion progress in percentage.</li><li>`convertedFileList`: List of converted file pages. Each file page represents a record that contains the following fields:<ul><li>`name`: Name of the file page.</li><li>`ppt`: Details of the slide included in the file page, which contains the following fields:<ul><li>`width`: width of the slide.</li><li>`height`: height of the slide.</li><li>`src`: Download URL of the converted page.</li><li>`preview`: URL of the preview image.</li></ul></li></ul></li><li>`currentStep`: Current step of the conversion task. The possible values are: `extracting` (extracting the resources), `generatingPreview` (generating the preview image, `mediaTranscode` (transcoding the media file), and `packaging`(packaging the file).</li></ul> |
 
 ### EduRoleTypeEnum
 
