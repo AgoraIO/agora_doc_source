@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_adjustaudiomixingplayoutvolume">
+    <title><ph keyref="adjustAudioMixingPlayoutVolume" /></title>
+    <shortdesc id="short"><ph id="shortdesc">调节音乐文件在本地播放的音量。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="adjustAudioMixingPlayoutVolume" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int adjustAudioMixingPlayoutVolume(int volume);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)adjustAudioMixingPlayoutVolume:(NSInteger)volume;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int adjustAudioMixingPlayoutVolume(int volume) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract adjustAudioMixingPlayoutVolume(volume: number): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int AdjustAudioMixingPlayoutVolume(int volume);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract adjustAudioMixingPlayoutVolume(volume: number): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; adjustAudioMixingPlayoutVolume(int volume);</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <note type="attention">
+       你需要在调用 <xref keyref="startAudioMixing2" /> 并收到 <codeph><apiname keyref="onAudioMixingStateChanged" />(<apiname keyref="AUDIO_MIXING_STATE_PLAYING" />)</codeph> 回调后调用该方法。
+   </note> </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt>volume</pt>
+                <pd>音乐文件音量。取值范围为 [0,100]，100 （默认值）为原始音量。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron unity rn">
+            <title>返回值</title>
+            <ul>
+            <li>0: 方法调用成功</li>
+            <li>&lt; 0: 方法调用失败</li>
+            </ul> </section>
+    </refbody>
+</reference>

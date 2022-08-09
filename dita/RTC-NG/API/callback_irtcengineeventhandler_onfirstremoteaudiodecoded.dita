@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onfirstremoteaudiodecoded">
+    <title><ph keyref="onFirstRemoteAudioDecoded"/></title>
+    <shortdesc id="short"><ph id="shortdesc">已解码远端音频首帧的回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onFirstRemoteAudioDecoded"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onFirstRemoteAudioDecoded(int uid, int elapsed) {
+    }
+</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine firstRemoteAudioFrameDecodedOfUid:(NSUInteger)uid elapsed:(NSInteger)elapsed;
+</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onFirstRemoteAudioDecoded(uid_t uid, int elapsed) {
+                (void)uid;
+                (void)elapsed;
+                }
+            </codeblock>
+            <codeblock props="electron" outputclass="language-typescript">onFirstRemoteAudioDecoded?(connection: RtcConnection, uid: number, elapsed: number): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstRemoteAudioDecoded(RtcConnection connection, uint uid, int elapsed) { }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onFirstRemoteAudioDecoded?(
+  connection: RtcConnection,
+  uid: number,
+  elapsed: number
+): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int uid, int elapsed)?
+      onFirstRemoteAudioDecoded;
+</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="deprecated">
+            <dlentry>
+                <dt>弃用：</dt>
+                <dd>请改用 <xref keyref="onRemoteAudioStateChanged"/> 。</dd>
+            </dlentry>
+            </dl>
+            <p>SDK 会在以下时机触发该回调：
+
+
+            <ul>
+            <li>远端用户首次上线后发送音频。</li>
+            <li>远端用户音频离线再上线发送音频。音频离线指本地在 15 秒内没有收到音频包，可能有如下原因：
+
+
+                <ul>
+                <li>远端用户离开频道</li>
+                <li>远端用户掉线</li>
+                <li>远端用户调用 <xref keyref="muteLocalAudioStream"/> 方法停止发送音频流</li>
+                <li>远端用户调用 <xref keyref="disableAudio"/> 方法关闭音频</li>
+                </ul> </li>
+            </ul> </p>
+        </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <parml>
+            <plentry props="ios mac">
+                <pt>engine</pt>
+                <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+            </plentry>
+            <plentry props="unity electron rn flutter" conkeyref="joinChannelEx/connection">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry>
+                <pt>uid</pt>
+                <pd>远端用户 ID。</pd>
+            </plentry>
+            <plentry>
+                <pt>elapsed</pt>
+                <pd id="elapsed">从本地用户调用 <apiname keyref="joinChannel2"/> 直至该回调触发的延迟，单位为毫秒。</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

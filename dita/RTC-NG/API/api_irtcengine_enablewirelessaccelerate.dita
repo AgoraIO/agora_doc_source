@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enablewirelessaccelerate">
+    <title><ph keyref="enableWirelessAccelerate"/></title>
+    <shortdesc id="short"><ph id="shortdesc">开启或关闭 Wi-Fi 加速功能 。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableWirelessAccelerate"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int enableWirelessAccelerate(bool enabled) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int EnableWirelessAccelerate(bool enabled);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>自该版本起，SDK 默认开启 Wi-Fi 加速功能。当 SDK 发现集成加速插件的 Wi-Fi 路由器后，该功能才会生效，使路由器合理分配 Wi-Fi 频谱资源，以降低丢包率和时延，从而减少音视频卡顿。</p>
+            <p>当路由器提供加速服务后，SDK 会周期性触发 <xref keyref="onWlAccStats"/> 回调，报告 Wi-Fi 连接优化数据，并在 Wi-Fi 连接质量不佳时触发 <xref keyref="onWlAccMessage"/> 回调，报告 Wi-Fi 连接质量不佳的原因和改善 Wi-Fi 连接的操作建议。</p>
+            <note type="note">
+            <ul id="ul_w5c_nzq_tsb">
+            <li>Wi-Fi 加速功能默认关闭。必须与集成加速插件的路由器配合使用才能生效，详见<xref keyref="faq-wifi-routers">哪些 Wi-Fi 路由器可支持加速功能</xref>。如果 Wi-Fi 路由器不支持加速功能，系统性能不会受损。</li>
+            <li>加速功能生效后，路由器的 app 会显示加速效果和被加速 app 的名称。如果你不想在路由器的 app 中展示被加速 app 的名称，请调用 <codeph>enableWirelessAccelerate(false)</codeph> 关闭加速功能。</li>
+            <li>Agora 提供的 Wi-Fi 加速功能除应用于音视频流，还可以应用于其他第三方业务流，如私有信令、课件、RTMP 协议等。如有需要，请联系 sales@agora.io。</li>
+            </ul> </note> </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml id="parml_g54_dvq_tsb">
+            <plentry>
+                <pt>enabled</pt>
+                <pd>设置是否开启 Wi-Fi 加速功能：
+
+
+                    
+                    
+                    
+                    
+                    
+                    <ul id="ul_fds_gfr_tsb">
+                    <li><codeph><ph keyref="true"/></codeph>：开启。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：关闭。</li>
+                    </ul></pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <ul id="ul_swd_fxq_tsb">
+            <li>0: 方法调用成功</li>
+            <li>&lt; 0: 方法调用失败</li>
+            </ul> </section>
+    </refbody>
+</reference>

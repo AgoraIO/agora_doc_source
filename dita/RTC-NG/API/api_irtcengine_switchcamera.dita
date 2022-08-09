@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_switchcamera">
+    <title><ph keyref="switchCamera"/></title>
+    <shortdesc id="short"><ph id="shortdesc">切换前置/后置摄像头。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="switchCamera"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int switchCamera();</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)switchCamera;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int switchCamera() = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int SwitchCamera();</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract switchCamera(): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; switchCamera();</codeblock></p>
+        </section>
+        <section id="detailed_desc">
+            <p>该方法需要在相机启动（如通过调用 <xref keyref="startPreview" props="native unity" /> <xref keyref="startPreview2" props="rn electron flutter" /> 或 <xref keyref="joinChannel2" /> 实现）后调用。</p>
+            <p props="cpp unity flutter">
+            <note type="attention">该方法仅适用于 Android 和 iOS。</note></p>
+        </section>
+        <section id="return_values" props="native unity rn">
+            <title>返回值</title>
+            <ul>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。</li>
+            </ul> </section>
+    </refbody>
+</reference>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_stoprtmpstream">
+    <title> <ph keyref="stopRtmpStream" /> </title>
+    <shortdesc id="short"> <ph id="shortdesc">结束旁路推流。</ph> </shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="stopRtmpStream" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int stopRtmpStream(String url);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)stopRtmpStream:(NSString* _Nonnull)url;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int stopRtmpStream(const char* url) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract stopRtmpStream(url: string): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int StopRtmpStream(string url);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract stopRtmpStream(url: string): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; stopRtmpStream(String url);</codeblock></p>
+        </section>
+        <section id="detailed_desc">
+            <p>调用该方法，你可以结束指定的旁路推流地址上的直播。该方法每次只能结束一个推流地址上的直播，如果你需要结束多个推流地址的直播，则需多次调用该方法。</p>
+            <p>调用该方法后，SDK 会在本地触发 <xref keyref="onRtmpStreamingStateChanged" /> 回调，报告推流的状态。</p>
+        </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry conkeyref="startRtmpStreamWithTranscoding/url">
+                <pt />
+                <pd />
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron unity rn">
+            <title>返回值</title>
+            <ul>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。</li>
+            </ul> </section>
+    </refbody>
+</reference>
