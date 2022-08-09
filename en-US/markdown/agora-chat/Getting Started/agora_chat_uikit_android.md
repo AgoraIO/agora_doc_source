@@ -309,7 +309,6 @@ To enable your app to send and receive messages between individual users, do the
 
     import static io.agora.cloud.HttpClientManager.Method_POST;
 
-
     public class MainActivity extends AppCompatActivity {
         private static final String NEW_LOGIN = "NEW_LOGIN";
         private static final String RENEW_TOKEN = "RENEW_TOKEN";
