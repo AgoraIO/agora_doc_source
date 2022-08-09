@@ -24,7 +24,7 @@ Agora Chat offers four pricing plans: Free, Starter, Pro, and Enterprise. See [d
 | :-------------- | :--------- | :------------------- | 
 | Free            | 0          | 500                  | 
 | Starter         | 349        | 5,000                | 
-| Pro             | 699        | 5,000                | 
+| Pro             | 699        | 10,000                | 
 | Enterprise      | Customized | Customized           | 
 
 
