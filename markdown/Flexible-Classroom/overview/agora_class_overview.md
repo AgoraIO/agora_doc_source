@@ -2,6 +2,8 @@
 
 灵动课堂覆盖 1 对 1 互动教学、在线互动小班课、互动直播大班课等多种班型，支持老师、学生、助教等多种课堂角色，具备实时音视频互动、实时消息互动、互动白板、实时录制、屏幕共享、教学组件（如云盘、奖杯）等丰富功能，支持通过云服务对课堂和用户等进行管理。此外，灵动课堂还支持自定义 UI 和自定义组件，支持业务功能的灵活拓展，可以与教学机构的业务系统（用户系统和排课系统）无缝对接。
 
+![](https://web-cdn.agora.io/docs-files/1654068243051)
+
 ## 教育解决方案区别
 
 ~a27d6b70-a96d-11eb-b31a-57565fd331e4~
@@ -10,22 +12,22 @@
 
 灵动课堂支持以下班型：
 
-| <span style="white-space:nowrap;">班型&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span> | 说明                                                                                                                                                                        | 适用场景                                                                 |
-| :-------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------- |
-| 1 对 1 互动教学                                                                         | 1 位老师对 1 名学生进行专属在线辅导教学。                                                                                                                                   | 适用于 1 对 1 VIP 个性化辅导教学。                                       |
-| 在线互动小班课                                                                          | 1 位老师进行在线教学，多名学生实时观看和收听。上课过程中，老师可邀请学生“上台”发言，与老师进行实时音视频互动。小班课中课堂人数上限为 200，如需更多，请联系 sales@agora.io。 | 适用于强调同伴学习、互动性和参与性的教学场景，班级人数一般不超过 20 人。 |
-| 互动直播大班课                                                                          | 1 位老师进行在线教学，多名学生实时观看和收听。上课过程中，学生可“举手”请求发言，与老师进行实时音视频互动。大班课中课堂人数上限为 5,000，如需更多，请联系 sales@agora.io。   | 常用于公开课或引流课，以老师讲授为主，助教老师辅助答疑。                 |
+| <span style="white-space:nowrap;">班型&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span> | 说明                                                         | 适用场景                                                     |
+| :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| 1 对 1 互动教学                                              | 1 位老师对 1 名学生进行专属在线辅导教学。                    | 适用于 1 对 1 VIP 个性化辅导教学。                           |
+| 在线互动小班课                                               | 1 位老师进行在线教学，多名学生实时观看和收听。上课过程中，老师可邀请学生“上台”发言，与老师进行实时音视频互动。小班课中课堂人数上限为 200，如需更多，请联系 sales@agora.io。 | 适用于强调同伴学习、互动性和参与性的教学场景，班级人数一般不超过 20 人。 |
+| 互动直播大班课                                               | 1 位老师进行在线教学，多名学生实时观看和收听。上课过程中，学生可“举手”请求发言，与老师进行实时音视频互动。大班课中课堂人数上限为 5,000，如需更多，请联系 sales@agora.io。 | 常用于公开课或引流课，以老师讲授为主，助教老师辅助答疑。     |
 
 ## 课堂角色说明
 
 灵动课堂支持以下角色：
 
-| 课堂角色 | Android                      | iOS                          | Web                          | macOS                        | Windows                      | H5                           |
-| :------- | :--------------------------- | :--------------------------- | :--------------------------- | :--------------------------- | :--------------------------- | ---------------------------- |
-| 老师     | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font>   |
-| 学生     | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> |
-| 助教     | <font color="red">✘</font>   | <font color="red">✘</font>   | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font>   |
-| 观众     | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font>   |
+| 课堂角色 | Android | iOS | Web | macOS | Windows | H5 |
+| :------- | :------- | :--- | :--- | :----- | :------- | -------- |
+| 老师   | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font>    | <font color="green">✔</font>      | <font color="green">✔</font>        | <font color="red">✘</font> |
+| 学生   | <font color="green">✔</font>        | <font color="green">✔</font>    | <font color="green">✔</font>    | <font color="green">✔</font>      | <font color="green">✔</font>        | <font color="green">✔</font> |
+| 助教   | <font color="red">✘</font>        | <font color="red">✘</font>    | <font color="green">✔</font>    | <font color="green">✔</font>      | <font color="green">✔</font>        | <font color="red">✘</font> |
+| 观众 | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font> |
 
 <div class="alert info">灵动课堂 macOS 和 Windows 客户端基于 Electron 框架开发。</div>
 
