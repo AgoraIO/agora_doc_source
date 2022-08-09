@@ -56,10 +56,8 @@ ChatClient.getInstance().groupManager().destroyGroup(groupId);
 
 Users can request to join a public chat group as follows:
 
-1. Call `getJoinedGroupsFromServer` to retrieve the list of the groups that the user is already in from the server. This prevents repetitive join requests.
-2. Call `getAllGroups` to retrieve the list of the groups that the user is already in from the local database.
-3. Call `getPublicGroupsFromServer` to retrieve the list of public groups by page. Users can obtain the ID of the group that they want to join.
-4. Call `joinGroup` to send a join request to the chat group:
+1. Call `getPublicGroupsFromServer` to retrieve the list of public groups by page. Users can obtain the ID of the group that they want to join.
+2. Call `joinGroup` to send a join request to the chat group:
     - If the type of the chat group is set to `GroupStylePublicJoin`, the request from the user is accepted automatically and the other chat group members receive the `onMemberJoined` callback.
     - If the type of the chat group is set to `GroupStylePublicNeedApproval`, the chat group owner and chat group admins receive the `onRequestToJoinReceived` callback and determine whether to accept the request from the user.
 
