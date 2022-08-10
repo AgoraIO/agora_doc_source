@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaengine_registervideoencodedframeobserver">
     <title><ph keyref="registerVideoEncodedFrameObserver"/></title>
-    <shortdesc id="short"><ph id="shortdesc">为编码后的视频图像注册视频帧接收观测器。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Registers a receiver object for the encoded video image.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -25,30 +25,30 @@
         <section id="detailed_desc">
             <note type="attention">
             <ul>
-            <li>请在加入频道后调用该方法。</li>
-            <li>如果你调用该方法注册了 <xref keyref="IVideoEncodedFrameObserver"/> 对象，则不能再注册 <xref keyref="IVideoFrameObserver"/> 对象。</li>
+            <li>Call this method after joining a channel.</li>
+            <li>If you register<xref keyref="IVideoEncodedFrameObserver"/> an  object, you cannot register<xref keyref="IVideoFrameObserver"/> an  object.</li>
             </ul> </note> </section>
         <section id="parameters">
-            <title>参数</title>
+            <title>Parameter</title>
             <parml>
             <plentry>
                 <pt props="ios mac">delegate</pt>
                 <pt props="android">receiver</pt>
                     <pt props="cpp">observer</pt>
                 <pt props="unity">videoEncodedImageReceiver</pt>
-                <pd props="android cpp unity">视频帧接收观测器，详见 <xref keyref="IVideoEncodedFrameObserver"/>。</pd>
-                <pd props="ios mac">接口对象实例。 详见 <xref keyref="IVideoEncodedFrameObserver"/>。 如果传入 <ph keyref="NULL"/>，则表示取消注册。</pd>
+                <pd props="android cpp unity">The IVideoEncodedImageReceiver object. See <xref keyref="IVideoEncodedFrameObserver"/>.</pd>
+                <pd props="ios mac">The observer object instance. See  for details<xref keyref="IVideoEncodedFrameObserver"/>. Set the value <ph keyref="NULL"/>as  to release the instance.</pd>
             </plentry>
                 <plentry props="unity">
                     <pt>mode</pt>
-                    <pd>视频数据回调模式，详见 <xref keyref="OBSERVER_MODE"/>。</pd>
+                    <pd>The video data callback mode. See <xref keyref="OBSERVER_MODE"/>.</pd>
                 </plentry>
             </parml> </section>
         <section id="return_values" props="native">
-            <title>返回值</title>
+            <title>Returns</title>
             <ul id="ul_z2p_4jf_3qb">
-            <li>0：方法调用成功。</li>
-            <li>&lt; 0: 方法调用失败。</li>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
 </reference>
