@@ -1,3 +1,5 @@
+<div class="alert note">Chat is free during public beta and below content illustrates the pricing of Chat after it reaches general availability.</div>
+
 This page explains how your bill for using Agora Chat is calculated.
 
 Note that if you have already signed a contract with Agora, the billing terms and conditions within that contract take precedence.
