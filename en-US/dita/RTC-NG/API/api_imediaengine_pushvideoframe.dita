@@ -15,7 +15,8 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract boolean pushExternalVideoFrame(AgoraVideoFrame frame);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)pushExternalVideoFrame:(AgoraVideoFrame * _Nonnull)frame;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int pushVideoFrame(ExternalVideoFrame *frame) = 0;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int pushVideoFrame(base::ExternalVideoFrame* frame, unsigned int videoTrackId = 0) = 0;
+</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int PushVideoFrame(ExternalVideoFrame frame);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
@@ -28,9 +29,10 @@
                 <dd>If you need to push video frames in I422 format, you need to use this method; otherwise, use  instead<xref keyref="pushVideoFrame2"/>.</dd>
             </dlentry>
             </dl>
-            <p id="desc1"><xref keyref="setExternalVideoSource"/><codeph><ph keyref="true"/></codeph><codeph><ph keyref="false"/></codeph>If you call  and set the <parmname>enabled</parmname> parameter as  and the <parmname>encodedFrame</parmname> parameter as , you can call this method to push the external raw video frame to the SDK.</p>
+            <p id="desc1" props="android ios mac unity"><xref keyref="setExternalVideoSource"/><codeph><ph keyref="true"/></codeph><codeph><ph keyref="false"/></codeph>If you call  and set the <parmname>enabled</parmname> parameter as  and the <parmname>encodedFrame</parmname> parameter as , you can call this method to push the external raw video frame to the SDK.</p>
+            <p props="cpp">调用 <xref keyref="createCustomVideoTrack"/> 方法获得视频轨道 ID，在每个频道的 <xref keyref="ChannelMediaOptions"/> 中，将 <parmname>customVideoTrackId</parmname> 参数设置为你想要发布的视频轨道 ID，并将 <parmname>publishCustomVideoTrack</parmname> 设置为 <codeph><ph keyref="true"/></codeph>后，你可以调用本方法将未编码的外部视频帧推送到 SDK。</p>
             <p props="android">You<xref keyref="pushVideoFrame2"/> can push the video frame either by calling this method or by calling . The difference is that<apiname keyref="pushVideoFrame"/> the  method does not support video data in texture format.</p>
-            </section>
+        </section>
         <section id="parameters">
             <title>Parameter</title>
             <parml>
@@ -40,6 +42,10 @@
                     <p>The external raw video frame to be pushed. See <xref keyref="ExternalVideoFrame"/>.</p>
                 </pd>
             </plentry>
+            <plentry id="videotrackid" props="cpp">
+                <pt>videoTrackId</pt>
+                <pd>The video track ID returned by calling<xref keyref="createCustomVideoTrack"/> the  method.</pd>
+            </plentry>    
             </parml> </section>
         <section id="return_values">
             <title>Returns</title>
