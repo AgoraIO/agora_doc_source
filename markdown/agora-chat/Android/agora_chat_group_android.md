@@ -48,18 +48,18 @@ Agora Chat SDK 提供了 `Group`, `GroupManager`, 和 `GroupChangeListener` 群�
 2、进群邀请是否需要对方同意 (`inviteNeedConfirm`) 的具体设置如下：
 
 - 进群邀请需要用户确认(`inviteNeedConfirm` 设置为 `true`)。创建群组并发出邀请后，根据受邀用户的 `autoAcceptGroupInvitation` 设置，处理逻辑如下：
-  - 用户设置自动接受群组邀请 (`autoAcceptGroupInvitation` 设置为 `true`)。受邀用户自动进群并收到 `GroupChangeListener#onAutoAcceptInvitationFromGroup` 回调，群主收到 `GroupChangeListener#onInvitationAccepted` 回调和 `GroupChangeListener#onMemberJoined` 回调，其他群成员收到 `EMGroupChangeListener#onMemberJoined` 回调。
+  - 用户设置自动接受群组邀请 (`autoAcceptGroupInvitation` 设置为 `true`)。受邀用户自动进群并收到 `GroupChangeListener#onAutoAcceptInvitationFromGroup` 回调，群主收到 `GroupChangeListener#onInvitationAccepted` 回调和 `GroupChangeListener#onMemberJoined` 回调，其他群成员收到 `GroupChangeListener#onMemberJoined` 回调。
   - 用户设置手动确认群组邀请 (`autoAcceptGroupInvitation` 设置为 `false`)，受邀用户收到 `GroupChangeListener#onInvitationReceived` 回调，并选择同意或拒绝入群邀请：
-     - 用户同意入群邀请后，群主收到 `GroupChangeListener#onInvitationAccepted` 回调和 `EMGroupChangeListener#onMemberJoined` 回调；其他群成员收到 `EMGroupChangeListener#onMemberJoined` 回调；
+     - 用户同意入群邀请后，群主收到 `GroupChangeListener#onInvitationAccepted` 回调和 `GroupChangeListener#onMemberJoined` 回调；其他群成员收到 `GroupChangeListener#onMemberJoined` 回调；
      - 用户拒绝入群邀请后，群主收到 `GroupChangeListener#groupInvitationDidDecline` 回调。
 
 流程如下：
 
 [![img](https://docs-im.easemob.com/_media/ccim/android/8.png?w=1500&tok=db0f36)](https://docs-im.easemob.com/_detail/ccim/android/8.png?id=ccim%3Aandroid%3Agroup2)
 
-- 进群邀请无需用户确认 (`inviteNeedConfirm` 设置为 `false`)。创建群组并发出邀请后，无视用户的 `autoAcceptGroupInvitation` 设置，受邀用户直接进群。用户收到 `EMGroupChangeListener#onAutoAcceptInvitationFromGroup` 回调；群主收到每个已加入成员对应的群组事件回调 `EMGroupChangeListener#onInvitationAccepted` 和 `EMGroupChangeListener#onMemberJoined`；先加入的群成员会收到群组事件回调 `EMGroupChangeListener#onMemberJoined`。
+- 进群邀请无需用户确认 (`inviteNeedConfirm` 设置为 `false`)。创建群组并发出邀请后，无视用户的 `autoAcceptGroupInvitation` 设置，受邀用户直接进群。用户收到 `GroupChangeListener#onAutoAcceptInvitationFromGroup` 回调；群主收到每个已加入成员对应的群组事件回调 `GroupChangeListener#onInvitationAccepted` 和 `GroupChangeListener#onMemberJoined`；先加入的群成员会收到群组事件回调 `GroupChangeListener#onMemberJoined`。
 
-用户可以调用 `createGroup` 方法创建群组，并通过 `EMGroupOptions` 参数设置群组名称、群组描述、群组成员和建群原因。
+用户可以调用 `createGroup` 方法创建群组，并通过 `GroupOptions` 参数设置群组名称、群组描述、群组成员和建群原因。
 
 用户加入群组后，将可以收到群消息。
 
@@ -154,7 +154,7 @@ ChatClient.getInstance().groupManager().unblockGroupMessage(groupId);
 
 ```java
 // 1、获取群组详情
-EMClient.getInstance().groupManager().asyncGetGroupFromServer(groupId, new ValueCallBack<Group>() {
+ChatClient.getInstance().groupManager().asyncGetGroupFromServer(groupId, new ValueCallBack<Group>() {
     @Override
     public void onSuccess(Group group) {
         // 2、检查用户是否屏蔽了该群的群消息

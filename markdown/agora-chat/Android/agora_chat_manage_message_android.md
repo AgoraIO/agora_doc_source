@@ -136,21 +136,24 @@ ChatClient.getInstance().chatManager().importMessages(msgs);
 示例代码如下：
 
 ```java
-ChatClient.getInstance().chatManager().insertMessages(msgs);
+// 将消息插入到指定会话中。
+Conversation conversation = ChatClient.getInstance().chatManager().getConversation(username);
+conversation.insertMessage(message);
+// 直接插入消息。
+ChatClient.getInstance().chatManager().saveMessage(message);
 ```
 
 ### 更新消息到 SDK 本地数据库
 
-如果需要更新消息用以下方法：
+如果需要更新消息可以选用以下方法的任意一种：
 
 ```java
-/**
-  *  更新消息到 SDK 本地数据库。
-  *  消息更新后，会话的 `latestMessage` 等属性进行相应更新，不能更新消息 ID。
-  *
-  *  @param msg 要更新的消息。
-  */
-public boolean updateMessage(ChatMessage msg)
+// 直接通过 `ChatManager` 更新 SDK 本地数据库消息
+ChatClient.getInstance().chatManager().updateMessage(message);
+
+// 先获取会话，再更新 SDK 本地数据库会话中的消息
+Conversation conversation = ChatClient.getInstance().chatManager().getConversation(conversationId);
+conversation.updateMessage(message);
 ```
 
 ## 下一步
