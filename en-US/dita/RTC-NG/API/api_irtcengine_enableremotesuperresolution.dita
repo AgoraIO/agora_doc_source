@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_enableremotesuperresolution">
+<reference id="api_irtcengine_enableremotesuperresolution">
     <title><ph keyref="enableRemoteSuperResolution"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Enables/Disables the super resolution algorithm for a remote user's video stream.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">开启或关闭远端视频超分辨率。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,36 +20,52 @@
             <codeblock props="unity" outputclass="language-csharp">public abstract int EnableRemoteSuperResolution(uint userId, bool enable);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract enableRemoteSuperResolution(userId: number, enable: boolean): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableRemoteSuperResolution(
-                {required int userId, required bool enable});</codeblock> </p>
+    {required int userId, required bool enable});</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>This function can effectively improve the resolution of the remote video picture seen by the local user, that is, the width and height (pixels) of the video received by the specified remote user are enlarged to 2 times original size.</p>
-            <p>After calling this method, you can confirm whether super resolution is successfully enabled through the remote video stream statistics (<xref keyref="RemoteVideoStats" />) in the <xref keyref="onRemoteVideoStats" /> callback:<ul>
-                <li>If the parameter <parmname>superResolutionType</parmname> >0: Super resolution is enabled.</li>
-                <li>If parameter <parmname>superResolutionType</parmname> =0: Super resolution is not enabled.</li></ul>
+            <p>该功能可以有效提升本地用户看到的远端视频画面的分辨率，即：将接收到的指定远端用户的视频宽和高（像素）均扩大为 2 倍。</p>
+            <p>调用该方法后，通过 <xref keyref="onRemoteVideoStats" /> 回调中的远端视频统计数据（<xref keyref="RemoteVideoStats" />），确认超分辨率是否成功开启：<ul>
+                <li>如果参数 <parmname>superResolutionType</parmname> >0：超分辨率已开启。</li>
+                <li>如果参数 <parmname>superResolutionType</parmname> =0：超分辨率未开启。</li></ul>
             </p>
             <note type="caution">
-            <p props="cpp unity flutter">The super resolution feature requires extra system resources. To balance the visual experience and system resource consumption, this feature can only be enabled for a single remote user. If the local user uses super resolution on Android, the original resolution of the remote user's video cannot exceed 640 × 360 pixels; if the local user uses super resolution on iOS, the original resolution of the remote user's video cannot exceed 640 × 480 pixels.</p>
-            <p props="android ios">The super resolution feature requires extra system resources. To balance the visual experience and system consumption, this feature can only be enabled for a single remote user. If the local user uses super resolution on Android, the original resolution of the remote user's video cannot exceed <ph props="android">640 × 360</ph><ph props="ios">640 × 480 </ph> pixels.</p>
-            <p props="rn">The super resolution feature requires extra system resources. To balance the visual experience and system consumption, this feature can only be enabled for a single remote user. If the local user uses super resolution on Android, the original resolution of the remote user's video cannot exceed 640 × 360 pixels; if the local user uses super resolution on iOS, the original resolution of the remote user's video cannot exceed 640 × 480 pixels.</p>
+            <p props="cpp unity flutter">超分辨率功能会额外耗费系统资源。 为平衡视觉体验和系统消耗，只可以对一个远端用户开启超分辨率，并且远端用户视频的原始分辨率在 Android 设备上不能超过 640 × 360，在 iOS 设备上不能超过 640 × 480。</p>
+            <p props="android ios">超分辨率功能会额外耗费系统资源。 为平衡视觉体验和系统消耗，只可以对一个远端用户开启超分辨率，并且远端用户视频的原始分辨率在设备上不能超过 <ph props="android">640 × 360</ph><ph props="ios">640 × 480</ph>。</p>
+            <p props="rn">超分辨率功能会额外耗费系统资源。 为平衡视觉体验和系统消耗，只可以对一个远端用户开启超分辨率，并且远端用户视频的原始分辨率在设备上不能超过 640 × 360（Android）或 640 × 480（iOS）。</p>
             </note>
             <note type="attention">
             <ul>
-            <li props="cpp unity flutter">This method is for Android and iOS only.</li>
-            <li>Before calling this method, ensure that you have integrated the following dynamic libraries:<ul>
+            <li props="cpp unity flutter">该方法仅适用于 Android 和 iOS 平台。</li>
+            <li>调用该方法前，请确保你已经集成相应的动态库：
+
+
+
+                <ul>
                 <li props="android cpp unity flutter rn">Android: <ph>libagora_super_resolution_extension.so</ph></li>
                 <li props="ios cpp unity flutter rn">iOS: <ph>AgoraSuperResolutionExtension.xcframework</ph></li>
                 </ul> </li>
-            <li>Because this method has certain system performance requirements, Agora recommends that you use the following devices or better:<ul>
-                <li props="android cpp unity flutter rn">Android:<ul>
-                    <li>VIVO: V1821A, NEX S, 1914A, 1916A, 1962A, 1824BA, X60, X60 Pro</li>
-                    <li>OPPO: PCCM00, Find X3</li>
-                    <li>OnePlus: A6000</li>
-                    <li>Xiaomi: Mi 8, Mi 9, Mi 10, Mi 11, MIX3, Redmi K20 Pro</li>
-                    <li>SAMSUNG: SM-G9600, SM-G9650, SM-N9600, SM-G9708, SM-G960U, SM-G9750, S20, S21</li>
-                    <li>HUAWEI: SEA-AL00, ELE-AL00, VOG-AL00, YAL-AL10, HMA-AL00, EVR-AN00, nova 4, nova 5 Pro, nova 6 5G, nova 7 5G, Mate 30, Mate 30 Pro, Mate 40, Mate 40 Pro, P40, P40 Pro, Huawei M6, MatePad 10.8</li>
+            <li>该方法对用户设备具有一定要求，Agora 推荐你使用如下或更好的设备：
+
+
+
+                <ul>
+                <li props="android cpp unity flutter rn">Android:
+
+
+
+                    <ul>
+                    <li>VIVO：V1821A，NEX S，1914A，1916A，1962A，1824BA，X60，X60 Pro</li>
+                    <li>OPPO：PCCM00，Find X3</li>
+                    <li>OnePlus：A6000</li>
+                    <li>Xiaomi：Mi 8，Mi 9，Mi 10，Mi 11，MIX3，Redmi K20 Pro</li>
+                    <li>SAMSUNG：SM-G9600，SM-G9650，SM-N9600，SM-G9708，SM-G960U，SM-G9750，S20，S21</li>
+                    <li>HUAWEI：SEA-AL00，ELE-AL00，VOG-AL00，YAL-AL10，HMA-AL00，EVR-AN00，nova 4，nova 5 Pro，nova 6 5G，nova 7 5G，Mate 30，Mate 30 Pro，Mate 40，Mate 40 Pro，P40，P40 Pro，华为平板 M6，MatePad 10.8</li>
                     </ul></li>
-                <li props="ios cpp unity flutter rn">iOS:<ul>
+                <li props="ios cpp unity flutter rn">iOS:
+
+
+
+                    <ul>
                     <li>iPhone XR</li>
                     <li>iPhone XS</li>
                     <li>iPhone XS Max</li>
@@ -60,35 +76,39 @@
                     <li>iPhone 12 mini</li>
                     <li>iPhone 12 Pro</li>
                     <li>iPhone 12 Pro Max</li>
-                    <li>iPhone 12 SE (2nd generation)</li>
-                    <li>iPad Pro 11-inch (3rd generation)</li>
-                    <li>iPad Pro 12.9-inch (3rd generation)</li>
-                    <li>iPad Air 3 (3rd generation)</li>
-                    <li>iPad Air 3 (4th generation)</li>
+                    <li>iPhone 12 SE（第二代）</li>
+                    <li>iPad Pro 11-inch（第三代）</li>
+                    <li>iPad Pro 12.9-inch（第三代）</li>
+                    <li>iPad Air（第三代）</li>
+                    <li>iPad Air（第四代）</li>
                     </ul></li>
                 </ul></li>
             </ul> </note> </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>参数</title>
             <parml>
             <plentry>
                 <pt props="cpp unity flutter rn">userId</pt>
                 <pt props="android ios">uid</pt>
-                <pd>The user ID of the remote user.</pd>
+                <pd>远端用户 ID。</pd>
             </plentry>
             <plentry>
                 <pt>enable</pt>
-                <pd>Whether to enable super resolution for the remote user’s video:<ul>
-                        <li><codeph><ph keyref="true"/></codeph>: Enable super resolution.</li>
-                        <li><codeph><ph keyref="false"/></codeph>: Disable super resolution.</li>
+                <pd>是否对远端视频开启超分辨率：
+
+
+
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>: 开启。</li>
+                        <li><codeph><ph keyref="false"/></codeph>: 关闭。</li>
                     </ul></pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="rn unity native" >
-            <title>Returns</title>
+        <section id="return_values" props="unity native rn">
+            <title>返回值</title>
             <ul>
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <li>0: 方法调用成功</li>
+            <li>&lt; 0: 方法调用失败</li>
             </ul> </section>
     </refbody>
 </reference>
