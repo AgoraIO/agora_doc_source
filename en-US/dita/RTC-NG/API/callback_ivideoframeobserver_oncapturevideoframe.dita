@@ -29,22 +29,26 @@
             <p>After pre-processing, you can send the processed video data back to the SDK by this callback.</p>
             <note type="attention" id="note">The video data that this callback gets has not been pre-processed, without the watermark, the cropped content, the rotation, and the image enhancement.</note> </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>Parameter</title>
             <parml>
             <plentry id="videoframe">
-                <pt>videoFrame</pt>
-                <pd><ph>The video frame. </ph><ph props="cpp ios mac unity">See <xref keyref="VideoFrame"/>.</ph></pd>
+                <pt>VideoFrame</pt>
+                <pd><ph>Video frame data. </ph>See  for details.<ph props="cpp ios mac unity"><xref keyref="VideoFrame"/></ph></pd>
             </plentry>
+                <plentry props="unity" id="config">
+                    <pt>config</pt>
+                    <pd>The configuration of the video frame, see <xref keyref="VideoFrameBufferConfig"/>.</pd>
+                </plentry>
             </parml> </section>
         <section id="return_values">
             <title>Returns</title>
             <p id="return">
             <ul>
-            <li>When the video processing mode is <apiname keyref="PROCESS_MODE_READ_ONLY"/>:<ul>
+            <li>When the video processing mode is<apiname keyref="PROCESS_MODE_READ_ONLY"/> :<ul>
                 <li><codeph><ph keyref="true"/></codeph>:The SDK ignores this return value.</li>
                 <li><codeph><ph keyref="false"/></codeph>:The SDK ignores this return value.</li>
                 </ul></li>
-            <li>When the video processing mode is <apiname keyref="PROCESS_MODE_READ_WRITE"/>:<ul>
+            <li>When the video processing mode is<apiname keyref="PROCESS_MODE_READ_WRITE"/> :<ul>
                 <li><codeph><ph keyref="true"/></codeph>: Sets the SDK to receive the video frame.</li>
                 <li><codeph><ph keyref="false"/></codeph>: Sets the SDK to discard the video frame.</li>
                 </ul></li>
