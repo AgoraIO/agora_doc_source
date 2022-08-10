@@ -25,10 +25,10 @@ Agora Chat SDK 提供 `ChatRoomManager` 和 `ChatRoom` 类用于聊天室属性�
 
 ### 获取和修改聊天室属性
 
-所有聊天室成员都可以调用 `fetchChatRoomFromServer` 来获取当前聊天室的详细信息，包括主题、公告、描述、成员类型和管理员列表。聊天室所有者和管理员还可以设置和更新聊天室信息。
+方法示例如下：
 
 ```java
-// The chat room member call fetchChatRoomFromServer to get the information of the specifeid chat room.
+// 所有聊天室成员都可以调用 `fetchChatRoomFromServer` 来获取当前聊天室的详细信息，包括主题、公告、描述、成员类型和管理员列表。
 ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().fetchChatRoomFromServer(chatRoomId);
 
 // 仅聊天室所有者和聊天室管理员可以调用 `changeChatRoomSubject` 方法设置和更新聊天室名称，聊天室名称的长度限制为 128 个字符。
