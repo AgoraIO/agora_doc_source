@@ -271,36 +271,6 @@
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class VideoEncoderConfiguration
     {
-        public VideoEncoderConfiguration()
-        {
-            dimensions = null;
-            frameRate = FRAME_RATE.FRAME_RATE_FPS_15;
-            codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_GENERIC_H264;
-            bitrate = (int) BITRATE.STANDARD_BITRATE;
-            minBitrate = (int) BITRATE.DEFAULT_MIN_BITRATE;
-            orientationMode = ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE;
-            degradationPreference = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
-            mirrorMode = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_AUTO;
-        }
-        public VideoEncoderConfiguration(VideoDimensions dimensions,
-            FRAME_RATE frameRate = FRAME_RATE.FRAME_RATE_FPS_15,
-            VIDEO_CODEC_TYPE codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_GENERIC_H264,
-            BITRATE bitrate = BITRATE.STANDARD_BITRATE, BITRATE minBitrate = BITRATE.DEFAULT_MIN_BITRATE,
-            ORIENTATION_MODE orientationMode = ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE,
-            DEGRADATION_PREFERENCE degradationPreference = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY,
-            VIDEO_MIRROR_MODE_TYPE mirrorMode = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_AUTO)
-        {
-            this.dimensions = dimensions ?? new VideoDimensions();
-            this.frameRate = frameRate;
-            this.codecType = codecType;
-            this.bitrate = (int) bitrate;
-            this.minBitrate = (int) minBitrate;
-            this.orientationMode = orientationMode;
-            this.degradationPreference = degradationPreference;
-            this.mirrorMode = mirrorMode;
-
-        public VideoDimensions dimensions { set; get; }
-        public FRAME_RATE frameRate { set; get; }
         public VIDEO_CODEC_TYPE codecType { set; get; }
         public VideoDimensions dimensions { set; get; }
         public int frameRate { set; get; }
@@ -404,20 +374,17 @@
 }</codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
                 <pt>dimensions</pt>
                     <pd><ph>The dimensions of the encoded video (px). This parameter measures the video encoding quality in the format of length × width. </ph><ph
-                        props="android apple">The default value is 640 × 360. </ph><ph
-                        props="android cpp unity">See <xref
-                        keyref="VideoDimensions"/>.</ph></pd>
+                        props="android apple">The default value is 640 × 360. </ph>See .<ph
+                        props="android cpp unity"><xref
+                        keyref="VideoDimensions"/></ph></pd>
                 <pd>
                     <p props="cpp unity electron rn flutter">The dimensions of the encoded video (px). See <xref keyref="VideoDimensions" />. This parameter measures the video encoding quality in the format of length × width. The default value is 640 × 360. You can set a custom value.</p>
-                    <p props="android ios mac">Users can set the resolution by themselves, or directly select the desired resolution from the following list.
-                            <ul>
+                    <p props="android ios mac">Users can set the resolution by themselves, or directly select the desired resolution from the following list:<ul>
                             <li><ph keyref="VD_120x120"/>: The video resolution is 120 × 120.</li>
                             <li><ph keyref="VD_160x120"/>: The video resolution is 160 × 120.</li>
                             <li><ph keyref="VD_180x180"/>: The video resolution is 180 × 180.</li>
@@ -439,11 +406,11 @@
                             <li><ph keyref="VD_3840x2160"/>: The video resolution is 3840 × 2160.</li>
                             </ul>
                             <note type="attention">
-                                <ul>
+                            <ul>
                                 <li>Whether the 720p resolution or above can be supported depends on the device. If the device cannot support 720p, the frame rate will be lower than the set value.</li>
-                                <li props="ios">iPhone does not support resolutions above 720p.</li>
+                                <li props="ios">iPhones do not support video frame dimensions above 720p.</li>
                             </ul>
-                            </note></p>
+                            </note> </p>
                 </pd>
             </plentry>
             <plentry props="ios mac cpp unity electron rn flutter">
@@ -461,11 +428,12 @@
             <plentry>
                 <pt>bitrate</pt>
                 <pd>
-                    <p><ph>The encoding bitrate (Kbps) of the video. </ph>See <ph props="unity"><xref keyref="BITRATE"/></ph>.</p>
+                    <p><ph>The encoding bitrate (Kbps) of the video. </ph>See .<ph props="unity"><xref keyref="BITRATE"/></ph></p>
                     <ul props="native flutter">
-                    <li><option keyref="STANDARD_BITRATE"/>: (Recommended) Standard bitrate mode. In this mode, the video bitrate is twice the base bitrate.</li>
-                    <li><option keyref="COMPATIBLE_BITRATE"/>: Adaptive bitrate mode. In this mode, the video bitrate is the same as the base bitrate. If you choose this mode in the interactive streaming profile, the video frame rate may be lower than the set value.</li>
-                    </ul></pd>
+                    <li><option keyref="STANDARD_BITRATE"/>:  (Recommended) Standard bitrate mode In this mode, the video bitrate is twice the base bitrate.</li>
+                    <li><option keyref="COMPATIBLE_BITRATE"/>: Adaptive bitrate mode In this mode, the video bitrate is the same as the base bitrate. If you choose this mode in the LIVE_BROADCASTING profile, the video frame rate may be lower than the set value.</li>
+                    </ul>
+                    </pd>
             </plentry>
             <plentry>
                 <pt>minBitrate</pt>
@@ -480,13 +448,12 @@
             </plentry>
             <plentry>
                 <pt>degradationPreference</pt>
-                <pd>Video degradation preference under limited bandwidth. For more details, see <xref keyref="DEGRADATION_PREFERENCE"/>.</pd>
+                <pd>Video degradation preference under limited bandwidth. See<xref keyref="DEGRADATION_PREFERENCE"/> .</pd>
             </plentry>
             <plentry>
                 <pt>mirrorMode</pt>
                 <pd>
-                    <p props="android">Whether to enable mirroring mode when sending encoded video, only affects the video images seen by remote users. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.</p>
-                    <p props="ios mac cpp unity electron rn flutter" >Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.</p>
+                    <p>Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.</p>
                     <note type="attention">By default, the video is not mirrored.</note> </pd>
             </plentry>
             </parml> </section>
