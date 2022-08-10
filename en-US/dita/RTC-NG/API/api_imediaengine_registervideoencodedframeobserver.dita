@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaengine_registervideoencodedframeobserver">
     <title><ph keyref="registerVideoEncodedFrameObserver"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Registers a receiver object for the encoded video image.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">为编码后的视频图像注册视频帧接收观测器。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -19,32 +19,36 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int registerVideoEncodedFrameObserver(IVideoEncodedFrameObserver* observer) = 0;
 </codeblock></p>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public abstract void RegisterVideoEncodedImageReceiver(IAgoraRtcVideoEncodedImageReceiver videoEncodedImageReceiver);</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract void RegisterVideoEncodedImageReceiver(IVideoEncodedImageReceiver videoEncodedImageReceiver, OBSERVER_MODE mode = OBSERVER_MODE.INTPTR);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </section>
         <section id="detailed_desc">
             <note type="attention">
             <ul>
-            <li>Call this method after joining a channel.</li>
-            <li>If you register an <xref keyref="IVideoEncodedFrameObserver"/> object, you cannot register an <xref keyref="IVideoFrameObserver"/> object.</li>
+            <li>请在加入频道后调用该方法。</li>
+            <li>如果你调用该方法注册了 <xref keyref="IVideoEncodedFrameObserver"/> 对象，则不能再注册 <xref keyref="IVideoFrameObserver"/> 对象。</li>
             </ul> </note> </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>参数</title>
             <parml>
             <plentry>
                 <pt props="ios mac">delegate</pt>
                 <pt props="android">receiver</pt>
                     <pt props="cpp">observer</pt>
                 <pt props="unity">videoEncodedImageReceiver</pt>
-                <pd props="android cpp unity">The observer object. See <xref keyref="IVideoEncodedFrameObserver"/>.</pd>
-                <pd props="ios mac">The observer object instance. See <xref keyref="IVideoEncodedFrameObserver"/>. Set the value as <ph keyref="NULL"/> to release the instance.</pd>
+                <pd props="android cpp unity">视频帧接收观测器，详见 <xref keyref="IVideoEncodedFrameObserver"/>。</pd>
+                <pd props="ios mac">接口对象实例。 详见 <xref keyref="IVideoEncodedFrameObserver"/>。 如果传入 <ph keyref="NULL"/>，则表示取消注册。</pd>
             </plentry>
+                <plentry props="unity">
+                    <pt>mode</pt>
+                    <pd>视频数据回调模式，详见 <xref keyref="OBSERVER_MODE"/>。</pd>
+                </plentry>
             </parml> </section>
-        <section id="return_values">
-            <title>Returns</title>
+        <section id="return_values" props="native">
+            <title>返回值</title>
             <ul id="ul_z2p_4jf_3qb">
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <li>0：方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。</li>
             </ul> </section>
     </refbody>
 </reference>
