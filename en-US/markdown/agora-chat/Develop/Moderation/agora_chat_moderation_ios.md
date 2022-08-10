@@ -30,13 +30,16 @@ The following table summarizes the message management tools provided by Agora Ch
 
 ### Implement the Reporting Feature
 
-To use the reporting feature, you need to call the reporting API when you develop your application. For details, see the following documents:
+The Agora Chat SDK provides a message reporting API, which allows end-users to report objectionable messages directly from their applications. After the Agora Chat server receives the report, it stores the report and displays it on Agora Console. Moderators can view the report items on the Agora Console and process the messages and message senders according to their content policy.
 
-- [Implement the reporting feature (Android)](/en/agora-chat/agora_chat_reporting_android?platform=Android)
-- [Implement the reporting feature (iOS)](/en/agora-chat/agora_chat_reporting_ios?platform=iOS)
-- [Implement the reporting feature (Web)](/en/agora-chat/agora_chat_reporting_web?platform=Web)
-- [Implement the reporting feature (React Native)](/en/agora-chat/agora_chat_reporting_rn?platform=React%20Native)
-- [Implement the reporting feature (Flutter)](/en/agora-chat/agora_chat_reporting_flutter?platform=Flutter)
+To use the reporting feature, refer to the following code sample to call the reporting API:
+
+```objective-c
+[AgoraChatClient.sharedClient.chatManager reportMessageWithId:msgId
+                                                       tag:tag
+                                                    reason:reason
+                                                completion:nil];
+```
 
 After a user reports a message from the application, moderators can check and deal with the report on Agora Console:
 
