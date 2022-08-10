@@ -113,6 +113,13 @@ await ChatClient.getInstance.chatManager
     .deleteConversation(conversationId, deleteMessage);
 ```
 
+```dart
+// Deletes the specified message from the specified conversation.
+ChatConversation? conversation = await ChatClient.getInstance.chatManager
+        .getConversation(conversationId);
+    conversation?.deleteMessage(messageId);
+```
+
 To delete them on the server, call `deleteRemoteConversation`:
 
 ```dart
