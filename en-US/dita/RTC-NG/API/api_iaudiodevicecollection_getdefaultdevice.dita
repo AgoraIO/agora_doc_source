@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_iaudiodevicecollection_getdefaultdevice">
     <title><ph keyref="getDefaultDevice_IAudioDeviceCollection"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Gets the default audio device of the system.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">获取系统默认的音频设备。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -21,37 +21,37 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc" props="cpp">
-            <ul><li>This method is for Windows and macOS only.</li>
-                <li>You need to call <xref keyref="enumeratePlaybackDevices" /> or <xref keyref="enumerateRecordingDevices" /> to get the device list before calling this method.</li></ul>
+            <ul><li>该方法仅适用于 Windows 和 macOS。</li>
+                <li>你需要先调用 <xref keyref="enumeratePlaybackDevices" /> 或 <xref keyref="enumerateRecordingDevices" /> 获取设备列表后，再调用该方法。</li></ul>
         </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>参数</title>
             <parml>
                 <plentry props="mac">
                     <pt>type</pt>
                     <pd>
-                        <p>The device type. See <xref keyref="MEDIA_DEVICE_TYPE"/>.</p>
+                        <p>设备的类型，详见 <xref keyref="MEDIA_DEVICE_TYPE"/>。</p>
                     </pd>
                 </plentry>
 
             <plentry props="cpp">
                 <pt>deviceName</pt>
-                <pd>Output parameter, the name of the system default audio device. The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>.</pd>
+                <pd>输出参数，系统默认的音频设备名称。 最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</pd>
             </plentry>
             <plentry props="cpp">
                     <pt>deviceId</pt>
-                    <pd>Output parameter, the device ID of the the system default audio device. The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>.</pd>
+                    <pd>输出参数，系统默认的音频设备 ID。 最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</pd>
                 </plentry>
             </parml> </section>
         <section id="return_values">
-            <title>Returns</title>
+            <title>返回值</title>
             <ul props="cpp">
-                <li>0: Success.</li>
-                <li>&lt; 0: Failure.</li>
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。</li>
             </ul>
             <ul props="mac">
-                <li>Returns the <xref keyref="AgoraRtcDeviceInfo"/> object containing the default audio device information when the call succeeds.</li>
-                <li>Returns <xref keyref="NULL"/> when the call fails.</li>
+                <li>调用成功时，返回 <xref keyref="AgoraRtcDeviceInfo"/> 对象，包含默认的音频设备信息。</li>
+                <li>调用失败时，返回 <xref keyref="NULL"/>。</li>
             </ul> </section>
     </refbody>
 </reference>
