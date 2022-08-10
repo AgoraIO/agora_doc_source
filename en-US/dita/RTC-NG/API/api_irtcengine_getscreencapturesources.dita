@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_getscreencapturesources">
+<reference id="api_irtcengine_getscreencapturesources">
     <title><ph keyref="getScreenCaptureSources"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Gets a list of shareable screens and windows.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">获取可共享的屏幕和窗口对象列表。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -26,31 +26,32 @@
     required bool includeScreen});</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>You can call this method before sharing a screen or window to get a list of shareable screens and windows, which enables a user to use thumbnails in the list to choose a particular screen or window to share. This list also contains important information such as window ID and screen ID, with which you can call <xref keyref="startScreenCaptureByWindowId"/> or <xref keyref="startScreenCaptureByDisplayId"/> to start the sharing.</p>
-            <note type="note" props="cpp">This method applies to macOS and Windows only.</note> </section>
+            <p>屏幕共享或窗口共享前，你可以调用该方法获取可共享的屏幕和窗口的对象列表，方便用户通过列表中的缩略图选择共享某个显示器的屏幕或某个窗口。 列表中包含窗口 ID 和屏幕 ID 等重要信息，你可以获取到 ID 后再调用 <xref keyref="startScreenCaptureByWindowId"/> 或 <xref keyref="startScreenCaptureByDisplayId"/> 开启共享。</p>
+            <note type="note" props="cpp">该方法仅适用于 macOS 和 Windows。</note> </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>参数</title>
             <parml>
             <plentry>
                 <pt>thumbSize</pt>
-                <pd><ph>The target size of the screen or window thumbnail (the width and height are in pixels). </ph><ph props="cpp">See <xref keyref="SIZE-link"/>. </ph><ph>The SDK scales the original image to make the length of the longest side of the image the same as that of the target size without distorting the original image. For example, if the original image is 400 × 300 and <parmname>thumbSize</parmname> is 100 × 100, the actual size of the<parmname> thumbnail</parmname> is 100 × 75. If the target size is larger than the original size, the thumbnail is the original image and the SDK does not scale it.</ph></pd>
+                <pd><ph>屏幕或窗口的缩略图的目标尺寸（宽高单位为像素）。 </ph><ph props="cpp">详见 <xref keyref="SIZE-link"/>。 </ph><ph>SDK 会在保证原图不变形的前提下，缩放原图，使图片最长边和目标尺寸的最长边的长度一致。 例如，原图宽高为 400 × 300，<parmname>thumbSize</parmname> 为 100 x 100，缩略图实际尺寸为 100 × 75。 如果目标尺寸大于原图尺寸，缩略图即为原图，SDK 不进行缩放操作。</ph></pd>
             </plentry>
             <plentry>
                 <pt>iconSize</pt>
-                <pd><ph>The target size of the icon corresponding to the application program (the width and height are in pixels). </ph><ph props="cpp">See <xref keyref="SIZE-link"/>. </ph><ph>The SDK scales the original image to make the length of the longest side of the image the same as that of the target size without distorting the original image. For example, if the original image is 400 × 300 and <parmname>iconSize</parmname> is 100 × 100, the actual size of the<parmname> icon</parmname> is 100 × 75. If the target size is larger than the original size, the icon is the original image and the SDK does not scale it.</ph></pd>
+                <pd><ph>程序所对应的图标的目标尺寸（宽高单位为像素）。 </ph><ph props="cpp">详见 <xref keyref="SIZE-link"/>。 </ph><ph>SDK 会在保证原图不变形的前提下，缩放原图，使图片最长边和目标尺寸的最长边的长度一致。 例如，原图宽高为 400 × 300，<parmname>iconSize</parmname> 为 100 × 100，图标实际尺寸为 100 × 75。 如果目标尺寸大于原图尺寸，图标即为原图，SDK 不进行缩放操作。</ph></pd>
             </plentry>
             <plentry>
                 <pt>includeScreen</pt>
-                <pd>Whether the SDK returns the screen information in addition to the window information:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: The SDK returns screen and window information.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: The SDK returns the window information only.</li>
+                <pd>除了窗口信息外，SDK 是否返回屏幕信息：
+                    <ul>
+                    <li><codeph><ph keyref="true"/></codeph>：SDK 返回屏幕和窗口信息。 </li>
+                    <li><codeph><ph keyref="false"/></codeph>：SDK 仅返回窗口信息。</li>
                     </ul></pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title>Returns</title>
-            <p><xref keyref="IScreenCaptureSourceList" props="cpp"/><xref keyref="ScreenCaptureSourceInfo" props="mac"/></p>
-            <p props="electron unity">The <xref keyref="ScreenCaptureSourceInfo"/> array.</p>
+            <title>返回值</title>
+            <p props="native"><xref keyref="IScreenCaptureSourceList"/></p>
+            <p props="electron unity"><xref keyref="ScreenCaptureSourceInfo"/>数组。</p>
         </section>
     </refbody>
 </reference>
