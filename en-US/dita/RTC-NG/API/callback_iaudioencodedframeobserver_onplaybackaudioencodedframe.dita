@@ -1,32 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_iaudioencodedframeobserver_onplaybackaudioencodedframe">
-    <title><ph keyref="onPlaybackAudioEncodedFrame" /></title>
+    <title><ph keyref="onPlaybackAudioEncodedFrame"/></title>
     <shortdesc id="short"><ph id="shortdesc">Gets the encoded audio data of all remote users.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onPlaybackAudioEncodedFrame" />
+                <indexterm keyref="onPlaybackAudioEncodedFrame"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public abstract void onPlaybackAudioEncodedFrame(
+            <codeblock props="android" outputclass="language-java">public abstract void onPlaybackAudioEncodedFrame(
       ByteBuffer buffer, int samplesPerChannel, int channels, int samplesPerSec, int codecType);
 </codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)onPlaybackEncodedAudioFrame:(NSData* _Nonnull)frameData info:(AgoraEncodedAudioFrameInfo* _Nonnull) info;</codeblock>
-                <codeblock props="cpp" outputclass="language-cpp">virtual void OnPlaybackAudioEncodedFrame(const uint8_t* frameBuffer,  int length, const EncodedAudioFrameInfo&amp; audioEncodedFrameInfo) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp" />
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onPlaybackEncodedAudioFrame:(NSData* _Nonnull)frameData info:(AgoraEncodedAudioFrameInfo* _Nonnull) info;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void OnPlaybackAudioEncodedFrame(const uint8_t* frameBuffer,  int length, const EncodedAudioFrameInfo&amp; audioEncodedFrameInfo) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnPlaybackAudioEncodedFrame(IntPtr frameBufferPtr, int length,
+                                                    EncodedAudioFrameInfo audioEncodedFrameInfo)
+        {
+
+        }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p>After calling <xref keyref="registerAudioEncodedFrameObserver" /> and setting the encoded audio as <ph keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_PLAYBACK" />, you can get encoded audio data of all remote users through this callback.</p>
+            <p>After calling<xref keyref="registerAudioEncodedFrameObserver"/> and setting the encoded audio as <ph keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_PLAYBACK"/>, you can get encoded audio data of all remote users through this callback.</p>
         </section>
-        <section id="parameters" conkeyref="onRecordAudioEncodedFrame/parameters" />
+        <section id="parameters" conkeyref="onRecordAudioEncodedFrame/parameters"/>
     </refbody>
 </reference>

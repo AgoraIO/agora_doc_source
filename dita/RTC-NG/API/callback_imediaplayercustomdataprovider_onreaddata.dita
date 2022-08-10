@@ -12,11 +12,6 @@
     </prolog>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="unity" outputclass="language-csharp">public virtual int OnReadData(byte[] buffer, int bufferSize, int playerId)
-        {
-            return 0;
-        }</codeblock> </p>
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">int onReadData(ByteBuffer buffer, int bufferSize);
 </codeblock>
@@ -25,6 +20,10 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int onReadData(unsigned char *buffer, int bufferSize) = 0;
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">public virtual int OnReadData(IntPtr bufferPtr, int bufferSize, int playerId)
+        {
+            return 0;
+        }</codeblock>                
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
@@ -39,16 +38,17 @@
                 <pd>媒体播放器协议。详见 <xref keyref="IMediaPlayer"/>。</pd>
             </plentry>
             <plentry>
-                <pt>buffer</pt>
-                <pd>输入参数，数据 Buffer，单位为字节。请将 SDK 报告的 <parmname>bufferSize</parmname> 数据写入到 <parmname>buffer</parmname> 中。</pd>
+                <pt props="native">buffer</pt>
+                <pt props="unity">bufferPtr</pt>
+                <pd>输入参数，数据 Buffer，单位为字节。请将 SDK 报告的 <parmname>bufferSize</parmname> 数据写入到此参数中。</pd>
             </plentry>
             <plentry>
                 <pt>bufferSize</pt>
                 <pd>数据 Buffer 的长度，单位为字节。</pd>
             </plentry>
-            <plentry props="rtc-ng">
-                <pt props="unity">playerId</pt>
-                <pd props="unity">播放器 ID。</pd>
+            <plentry props="unity">
+                <pt>playerId</pt>
+                <pd>播放器 ID。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">

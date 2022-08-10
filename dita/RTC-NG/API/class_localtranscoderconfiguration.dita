@@ -22,8 +22,20 @@
         videoOutputConfiguration() {}
 };
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public class LocalTranscoderConfiguration {
+            <codeblock props="electron" outputclass="language-typescript">export class LocalTranscoderConfiguration {
+  streamCount?: number
+  VideoInputStreams?: TranscodingVideoStream[]
+  videoOutputConfiguration?: VideoEncoderConfiguration
+}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class LocalTranscoderConfiguration
+    {
+        public LocalTranscoderConfiguration()
+        {
+            streamCount = 0;
+            VideoInputStreams = null;
+            videoOutputConfiguration = new VideoEncoderConfiguration();
+        }
+
         public LocalTranscoderConfiguration(uint streamCount, TranscodingVideoStream[] VideoInputStreams,
                                             VideoEncoderConfiguration videoOutputConfiguration)
         {
@@ -31,17 +43,40 @@
             this.VideoInputStreams = VideoInputStreams;
             this.videoOutputConfiguration = videoOutputConfiguration;
         }
+
         public uint streamCount { set; get; }
         public TranscodingVideoStream[] VideoInputStreams { set; get; }
         public VideoEncoderConfiguration videoOutputConfiguration { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">export class LocalTranscoderConfiguration {
+  streamCount?: number;
+  VideoInputStreams?: TranscodingVideoStream[];
+  videoOutputConfiguration?: VideoEncoderConfiguration;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class LocalTranscoderConfiguration {
+  const LocalTranscoderConfiguration(
+      {this.streamCount,
+      this.videoInputStreams,
+      this.videoOutputConfiguration});
+
+  @JsonKey(name: 'streamCount')
+  final int? streamCount;
+  @JsonKey(name: 'VideoInputStreams')
+  final List&lt;TranscodingVideoStream>? videoInputStreams;
+  @JsonKey(name: 'videoOutputConfiguration')
+  final VideoEncoderConfiguration? videoOutputConfiguration;
+  factory LocalTranscoderConfiguration.fromJson(Map&lt;String, dynamic> json) =>
+      _$LocalTranscoderConfigurationFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$LocalTranscoderConfigurationToJson(this);
+}</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
-            <plentry props="cpp unity">
+            <plentry props="cpp unity electron rn flutter">
                 <pt>streamCount</pt>
                 <pd>
                     <p>参与本地合图的视频流的数量。</p>
@@ -50,13 +85,15 @@
             <plentry>
                 <pt>VideoInputStreams</pt>
                 <pd>
-                    <p>参与本地合图的视频流。详见 <xref keyref="TranscodingVideoStream"/>。</p>
+                    <p>参与本地合图的视频流。详见 <xref keyref="TranscodingVideoStream"
+                    />。</p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>videoOutputConfiguration</pt>
                 <pd>
-                    <p>本地合图后，合图视频的编码配置。详见 <xref keyref="VideoEncoderConfiguration"/>。</p>
+                    <p>本地合图后，合图视频的编码配置。详见 <xref
+                    keyref="VideoEncoderConfiguration"/>。</p>
                 </pd>
             </plentry>
             </parml> </section>

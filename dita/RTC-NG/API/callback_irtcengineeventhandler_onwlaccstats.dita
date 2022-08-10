@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onwlaccstats">
+    <title><ph keyref="onWlAccStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc">报告 Wi-Fi 加速效果。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onWlAccStats"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onWlAccStats(WlAccStats currentStats, WlAccStats averageStats) {
+    (void)currentStats;
+    (void)averageStats;
+  }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">ublic virtual void OnWlAccStats(WlAccStats currentStats, WlAccStats averageStats)</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/></p>
+        </section>
+        <section id="detailed_desc">
+            <p>调用 <xref keyref="enableWirelessAccelerate"/> (true) 开启 Wi-Fi 加速功能后，SDK 每隔两秒触发一次该回调，报告当前的 Wi-Fi 加速效果和自加入频道后平均的 Wi-Fi 加速效果。Wi-Fi 加速效果用端到端延时、丢包率和音视频卡顿率三个指标下降的百分比来衡量。</p>
+        </section>
+        <section id="parameters">
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt>currentStats</pt>
+                <pd>当前的 Wi-Fi 加速效果。详见 <xref keyref="WlAccStats"/>。</pd>
+            </plentry>
+            <plentry>
+                <pt>averageStats</pt>
+                <pd>自加入频道后平均的 Wi-Fi 加速效果。详见 <xref keyref="WlAccStats"/> 。</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

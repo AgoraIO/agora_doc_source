@@ -31,7 +31,9 @@
             <note type="attention" id="note">
             <ul id="ul_pjq_swq_t4b">
             <li props="cpp flutter">This method applies to macOS and Windows only.</li>
-            <li props="cpp mac electron flutter">The default sound card on the macOS system does not support loopback audio capture. To enable this capture, you need to enable a virtual sound card and pass the name of the virtual sound card in the <codeph>deviceName</codeph> parameter. Agora recommends that you use <xref keyref="guide-agoraald">AgoraALD (Agora Audio Loopback Device)</xref> and pass in <codeph>"AgoraALD"</codeph>.</li>
+            <li props="cpp mac electron flutter">macOS does not support loopback capturing of the default sound card. To use this method, use a virtual sound card and pass its name
+                            to the SDK as the value of the<parmname>deviceName</parmname> parameter.  Based on tests, Agora recommends using soundflower
+          as the virtual sound card.</li>
             <li>You can call this method either before or after joining a channel.</li>
             </ul> </note> </section>
         <section id="parameters">
@@ -47,7 +49,7 @@
             </plentry>
             <plentry props="native cs electron flutter">
                 <pt>deviceName</pt>
-                <pd>The device name of the sound card. The default is set to nil, which means the SDK uses the current sound card to capture. If you are using a virtual sound card, such as AgoraALD (Agora Audio Loopback Device), set this parameter as the name of the sound card (<codeph>"AgoraALD"</codeph>).</pd>
+                <pd>The device name of the sound card. The default value is <ph keyref="NULL" /> (the default sound card). If you use a virtual sound card like "Soundflower", set this parameter as the name of the sound card, "Soundflower". The SDK will find the corresponding sound card and start capturing.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron cs">

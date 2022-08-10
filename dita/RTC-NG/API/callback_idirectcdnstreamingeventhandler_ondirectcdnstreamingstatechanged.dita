@@ -13,42 +13,45 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">void onDirectCdnStreamingStateChanged(
+            <codeblock props="android" outputclass="language-java">void onDirectCdnStreamingStateChanged(
     DirectCdnStreamingState state, DirectCdnStreamingError error, String message);</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)onDirectCdnStreamingStateChanged:(AgoraDirectCdnStreamingState)state
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onDirectCdnStreamingStateChanged:(AgoraDirectCdnStreamingState)state
                                    error:(AgoraDirectCdnStreamingError)error
                                  message:(NSString *_Nullable)message;</codeblock>
-                <codeblock props="cpp" outputclass="language-cpp">virtual void onDirectCdnStreamingStateChanged(DIRECT_CDN_STREAMING_STATE state, DIRECT_CDN_STREAMING_ERROR error, const char* message)  {
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onDirectCdnStreamingStateChanged(DIRECT_CDN_STREAMING_STATE state, DIRECT_CDN_STREAMING_ERROR error, const char* message)  {
   (void)state;
   (void)error;
   (void)message;
 };</codeblock>
-                <codeblock props="electron" outputclass="language-typescript"/>
-                <codeblock props="unity" outputclass="language-csharp"/>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
-            </p>
+            <codeblock props="electron" outputclass="language-typescript">onDirectCdnStreamingStateChanged?(state: DirectCdnStreamingState, error: DirectCdnStreamingError, message: string): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp"> public virtual void OnDirectCdnStreamingStateChanged(DIRECT_CDN_STREAMING_STATE state, DIRECT_CDN_STREAMING_ERROR error, string message) { }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export abstract class IDirectCdnStreamingEventHandler {
+  onDirectCdnStreamingStateChanged?(
+    state: DirectCdnStreamingState,
+    error: DirectCdnStreamingError,
+    message: string
+  ): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
             <p>主播端直接向 CDN 推流后，当推流状态改变时，SDK 会触发该回调向你报告新的状态、错误码和信息。你可以据此排查问题。</p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
-                <plentry>
-                    <pt>state</pt>
-                    <pd>当前推流状态。详见 <xref keyref="DIRECT_CDN_STREAMING_STATE"/>。</pd>
-                </plentry>
-                <plentry>
-                    <pt>error</pt>
-                    <pd>推流出错的原因。详见 <xref keyref="DIRECT_CDN_STREAMING_ERROR"/>。</pd>
-                </plentry>
-                <plentry>
-                    <pt>message</pt>
-                    <pd>状态改变对应的信息。</pd>
-                </plentry>
-            </parml>
-        </section>
+            <plentry>
+                <pt>state</pt>
+                <pd>当前推流状态。详见 <xref keyref="DIRECT_CDN_STREAMING_STATE"/>。</pd>
+            </plentry>
+            <plentry>
+                <pt>error</pt>
+                <pd>推流出错的原因。详见 <xref keyref="DIRECT_CDN_STREAMING_ERROR"/>。</pd>
+            </plentry>
+            <plentry>
+                <pt>message</pt>
+                <pd>状态改变对应的信息。</pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

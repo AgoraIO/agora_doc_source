@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_onremoteaudiotransportstats">
+    <title><ph keyref="onRemoteAudioTransportStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Reports the transport-layer statistics of each remote audio stream.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRemoteAudioTransportStats"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onRemoteAudioTransportStats(int uid, int delay, int lost, int rxKBitRate) {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+                  audioTransportStatsOfUid:(NSUInteger)uid
+                  delay:(NSUInteger)delay
+                  lost:(NSUInteger)lost
+                  rxKBitRate:(NSUInteger)rxKBitRate;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onRemoteAudioTransportStats(uid_t uid,
+     unsigned short delay,
+     unsigned short lost,
+     unsigned short rxKBitRate) {
+     (void)uid;
+     (void)delay;
+     (void)lost;
+     (void)rxKBitRate;
+     }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">onRemoteAudioTransportStats?(connection: RtcConnection, remoteUid: number, delay: number, lost: number, rxKBitRate: number): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteAudioTransportStats(RtcConnection connection, uint remoteUid, UInt16 delay, UInt16 lost, UInt16 rxKBitRate) {}</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onRemoteAudioTransportStats?(
+  connection: RtcConnection,
+  remoteUid: number,
+  delay: number,
+  lost: number,
+  rxKBitRate: number
+): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, int delay,
+      int lost, int rxKBitRate)? onRemoteAudioTransportStats;
+</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>
+            <dl outputclass="deprecated">
+            <dlentry>
+                <dt>Deprecated:</dt>
+                <dd>Please use <xref keyref="onRemoteAudioStats"/> instead.</dd>
+            </dlentry>
+            </dl>
+            </p>
+            <p id="desc">This callback reports the transport-layer statistics, such as the packet loss rate and network time delay, once every two seconds after the local user receives an audio packet from a remote user. During a call, when the user receives the video packet sent by the remote user/host, the callback is triggered every 2 seconds.</p>
+        </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <parml>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry props="unity electron rn flutter">
+                <pt>connection</pt>
+                <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
+            </plentry>
+            <plentry>
+                <pt props="native">uid</pt>
+                <pt props="unity flutter electron rn">remoteUid</pt>
+                <pd>The ID of the remote user sending the audio packets.</pd>
+            </plentry>
+            <plentry>
+                <pt>delay</pt>
+                <pd>The network delay (ms) from the sender to the receiver.</pd>
+            </plentry>
+            <plentry>
+                <pt>lost</pt>
+                <pd>The packet loss rate (%) of the audio packet sent from the remote user.</pd>
+            </plentry>
+            <plentry>
+                <pt>rxKBitRate</pt>
+                <pd>The bitrate of the received audio (Kbps).</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

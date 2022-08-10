@@ -17,22 +17,27 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec"/>
             <codeblock props="cpp" outputclass="language-cpp">virtual int createDataStreamEx(int* streamId, DataStreamConfig&amp; config, const RtcConnection&amp; connection) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-                <codeblock props="unity" outputclass="language-csharp">public abstract int CreateDataStreamEx(DataStreamConfig config, RtcConnection connection);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="electron" outputclass="language-typescript">abstract createDataStreamEx(config: DataStreamConfig, connection: RtcConnection): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int CreateDataStreamEx(ref int streamId, DataStreamConfig config, RtcConnection connection);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract createDataStreamEx(
+    config: DataStreamConfig,
+    connection: RtcConnection
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;int> createDataStreamEx(
+      {required DataStreamConfig config, required RtcConnection connection});
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p id="desc">Creates a data stream. Each user can create up to five data streams in a single channel.</p>
-            <p id="diff">Compared with <xref keyref="createDataStreamEx1"/>, this method does not support data reliability. If a data packet is not received five seconds after it was sent, the SDK directly discards the data.</p>
+            <p id="diff">Compared with <xref keyref="createDataStreamEx1" props="native unity"/> <xref keyref="createDataStreamEx2" props="rn electron flutter"/> , this method does not support data reliability. If a data packet is not received five seconds after it was sent, the SDK directly discards the data.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-       <plentry props="cpp ios mac" conkeyref="createDataStream2/streamId">
-       <pt/>
-       <pd/>
-       </plentry>
+            <plentry props="cpp ios mac unity" conkeyref="createDataStream2/streamId">
+                <pt/>
+                <pd/>
+            </plentry>
             <plentry id="config">
                 <pt>config</pt>
                 <pd>The configurations for the data stream. See <xref keyref="DataStreamConfig"/>.</pd>
@@ -46,7 +51,7 @@
             <title>Returns</title>
             <ul>
             <li props="cpp unity">0: The data stream is successfully created.</li>
-            <li props="android ios mac electron">ID of the created data stream, if the method call succeeds.</li>
+            <li props="android ios mac electron rn">ID of the created data stream, if the method call succeeds.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>

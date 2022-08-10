@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setextensionproperty">
+    <title><ph keyref="setExtensionProperty" /></title>
+    <shortdesc id="short"><ph id="shortdesc">设置插件的属性。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setExtensionProperty" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setExtensionProperty(
+      String provider, String extension, String key, String value);
+</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setExtensionPropertyWithVendor:(NSString * __nonnull)provider extension:(NSString * __nonnull)extension key:(NSString * __nonnull)key value:(NSString * __nonnull)value;
+</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setExtensionProperty(
+      const char* provider, const char* extension,
+      const char* key, const char* value, agora::media::MEDIA_SOURCE_TYPE type = agora::media::UNKNOWN_MEDIA_SOURCE) = 0;
+</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract setExtensionProperty(provider: string, extension: string, key: string, value: string, type?: MediaSourceType): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int SetExtensionProperty(string provider, string extension, string key, string value, MEDIA_SOURCE_TYPE type = MEDIA_SOURCE_TYPE.UNKNOWN_MEDIA_SOURCE);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract setExtensionProperty(
+    provider: string,
+    extension: string,
+    key: string,
+    value: string,
+    type?: MediaSourceType
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setExtensionProperty(
+    {required String provider,
+    required String extension,
+    required String key,
+    required String value,
+    MediaSourceType type = MediaSourceType.unknownMediaSource});</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>开启插件后，你可以调用该方法设置插件的属性。</p>
+        </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry id="vendor">
+                <pt>provider</pt>
+                <pd>提供插件的服务商名称。</pd>
+            </plentry>
+            <plentry id="extension">
+                <pt>extension</pt>
+                <pd>插件的名称。</pd>
+            </plentry>
+            <plentry id="key">
+                <pt>key</pt>
+                <pd>插件属性的 Key。</pd>
+            </plentry>
+            <plentry id="value">
+                <pt>value</pt>
+                <pd>插件属性 Key 对应的值。</pd>
+            </plentry>
+            <plentry conkeyref="enableExtension/source" props="cpp">
+                <pt />
+                <pd />
+            </plentry>
+            <plentry props="unity flutter rn electron" id="type">
+                <pt>type</pt>
+                <pd>媒体源类型，详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native unity">
+            <title>返回值</title>
+            <ul>
+            <li>0: 方法调用成功</li>
+            <li>&lt; 0: 方法调用失败</li>
+            </ul> </section>
+    </refbody>
+</reference>

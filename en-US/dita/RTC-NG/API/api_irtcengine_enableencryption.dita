@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_enableencryption">
+     <title> <ph keyref="enableEncryption" /> </title>
+     <shortdesc id="short"><ph id="shortdesc">Enables/Disables the built-in encryption.</ph></shortdesc>
+     <prolog>
+          <metadata>
+               <keywords>
+                    <indexterm keyref="enableEncryption" />
+               </keywords>
+          </metadata>
+     </prolog>
+     <refbody>
+          <section id="prototype">
+               <p outputclass="codeblock">
+               <codeblock props="android" outputclass="language-java">public abstract int enableEncryption(boolean enabled, EncryptionConfig config);</codeblock>
+               <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableEncryption:(bool)enabled encryptionConfig:(AgoraEncryptionConfig * _Nonnull)config;</codeblock>
+               <codeblock props="cpp" outputclass="language-cpp">virtual int enableEncryption(bool enabled, const EncryptionConfig&amp; config) = 0;</codeblock>
+               <codeblock props="electron" outputclass="language-typescript">abstract enableEncryption(enabled: boolean, config: EncryptionConfig): number;</codeblock>
+               <codeblock props="unity" outputclass="language-csharp">public abstract int EnableEncryption(bool enabled, EncryptionConfig config);</codeblock>
+               <codeblock props="rn" outputclass="language-typescript">abstract enableEncryption(enabled: boolean, config: EncryptionConfig): number;</codeblock>
+               <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableEncryption(
+    {required bool enabled, required EncryptionConfig config});</codeblock> </p>
+          </section>
+          <section id="detailed_desc">
+               <p id="desc1">In scenarios requiring high security, Agora recommends calling this method to enable the built-in encryption before joining a channel.</p>
+               <p id="desc2">All users in the same channel must use the same encryption mode and encryption key. After the user leaves the channel, the SDK automatically disables the built-in encryption. To enable the built-in encryption, call this method before the user joins the channel again.</p>
+               <note type="attention">If you enable the built-in encryption, you cannot use the media push function.</note> </section>
+          <section id="parameters">
+               <title>Parameters</title>
+               <parml>
+               <plentry>
+                    <pt>enabled</pt>
+                    <pd>
+                         <p>Whether to enable built-in encryption:<ul>
+                         <li><ph keyref="true" />: Enable the built-in encryption.</li>
+                         <li><ph keyref="false" />: Disable the built-in encryption.</li>
+                         </ul> </p>
+                    </pd>
+               </plentry>
+               <plentry>
+                    <pt>config</pt>
+                    <pd>Built-in encryption configurations. See <xref keyref="EncryptionConfig" />.</pd>
+               </plentry>
+               </parml> </section>
+          <section id="return_values" props="native electron unity rn">
+               <title>Returns</title>
+               <ul>
+               <li>0: Success.</li>
+               <li>&lt; 0: Failure.<ul>
+                    <li>-2: An invalid parameter is used. Set the parameter with a valid value.</li>
+                    <li>-4: The built-in encryption mode is incorrect or the SDK fails to load the external encryption library. Check the enumeration or reload the external encryption library.</li>
+                    <li>-7: The SDK is not initialized. Initialize the <xref keyref="IRtcEngine" /> instance before calling this method.</li>
+                    </ul> </li>
+               </ul> </section>
+     </refbody>
+</reference>

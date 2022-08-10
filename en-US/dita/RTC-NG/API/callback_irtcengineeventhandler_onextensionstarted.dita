@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_onextensionstarted">
+    <title><ph keyref="onExtensionStarted"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the extension is enabled.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onExtensionStarted"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">void onStarted(String provider, String extension);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onExtensionStarted:(NSString * __nullable)provider
+                 extension:(NSString * __nullable)extension;
+</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onExtensionStarted(const char* provider, const char* extension) {
+  (void)provider;
+  (void)extension;
+}</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">onExtensionStarted?(provider: string, extName: string): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnExtensionStarted(string provider, string ext_name) { }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onExtensionStarted?(provider: string, extName: string): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(String provider, String extName)? onExtensionStarted;
+</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>After a successful call of <codeph><xref keyref="enableExtension"/>(<q><ph keyref="true"/></q>)</codeph>, this callback is triggered.</p>
+        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry conkeyref="setExtensionProperty/vendor">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry>
+                <pt props="native">extension</pt>
+                <pt props="unity">ext_name</pt>
+                <pt props="electron rn flutter">extName</pt>
+                <pd>The name of the extension.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

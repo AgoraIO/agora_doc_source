@@ -12,12 +12,6 @@
     </prolog>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnPlaybackAudioEncodedFrame(uint frameBuffer,  int length, 
-                                                    EncodedAudioFrameInfo audioEncodedFrameInfo)
-        {
-
-        }</codeblock> </p>
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract void onPlaybackAudioEncodedFrame(
       ByteBuffer buffer, int samplesPerChannel, int channels, int samplesPerSec, int codecType);
@@ -25,12 +19,16 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)onPlaybackEncodedAudioFrame:(NSData* _Nonnull)frameData info:(AgoraEncodedAudioFrameInfo* _Nonnull) info;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void OnPlaybackAudioEncodedFrame(const uint8_t* frameBuffer,  int length, const EncodedAudioFrameInfo&amp; audioEncodedFrameInfo) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnPlaybackAudioEncodedFrame(IntPtr frameBufferPtr, int length,
+                                                    EncodedAudioFrameInfo audioEncodedFrameInfo)
+        {
+
+        }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p>调用 <xref keyref="registerAudioEncodedFrameObserver"/> 并将音频编码内容设为 <ph keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_PLAYBACK"/>
-                后，你可以通过该回调获取所有远端用户的音频编码数据。</p>
+            <p>调用 <xref keyref="registerAudioEncodedFrameObserver"/> 并将音频编码内容设为 <ph keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_PLAYBACK"/> 后，你可以通过该回调获取所有远端用户的音频编码数据。</p>
         </section>
         <section id="parameters" conkeyref="onRecordAudioEncodedFrame/parameters"/>
     </refbody>

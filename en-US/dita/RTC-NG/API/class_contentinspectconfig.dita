@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_contentinspectconfig">
+    <title><ph keyref="ContentInspectConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Configuration of video content moderation.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="unity" outputclass="language-csharp">public class ContentInspectConfig
+    {
+        public bool DeviceWork;
+        public bool CloudWork;
+        public CONTENT_INSPECT_DEVICE_TYPE DeviceworkType;</codeblock>
+            <codeblock props="android">public class ContentInspectConfig {
+  public final static int CONTENT_INSPECT_TYPE_INVALID = 0;
+  public final static int CONTENT_INSPECT_TYPE_MODERATION = 1;
+  public final static int CONTENT_INSPECT_TYPE_SUPERVISE = 2;
+  public static final int MAX_CONTENT_INSPECT_MODULE_COUNT = 32;
+  public String extraInfo;
+  public ContentInspectModule[] modules;
+  public int moduleCount;
+
+  public static class ContentInspectModule {
+    public int type;
+    public int interval;
+
+    public ContentInspectModule() {
+      type = CONTENT_INSPECT_TYPE_INVALID;
+      interval = 0;
+    }
+  }</codeblock>
+            <codeblock props="ios mac">__attribute__((visibility("default"))) @interface AgoraContentInspectConfig: NSObject
+@property (nonatomic, copy) NSString* _Nullable extraInfo;
+@property(copy, nonatomic) NSArray&lt;AgoraContentInspectModule*>* _Nullable modules;
+@end</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">struct ContentInspectConfig {
+  const char* extraInfo;
+
+  ContentInspectModule modules[MAX_CONTENT_INSPECT_MODULE_COUNT];
+  int moduleCount;
+   ContentInspectConfig&amp; operator=(const ContentInspectConfig&amp; rth)
+	{
+        extraInfo = rth.extraInfo;
+        moduleCount = rth.moduleCount;
+		memcpy(&amp;modules, &amp;rth.modules,  MAX_CONTENT_INSPECT_MODULE_COUNT * sizeof(ContentInspectModule));
+		return *this;
+	}
+  ContentInspectConfig() :extraInfo(NULL), moduleCount(0){}
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/></p>
+        </section>
+        <section id="detailed_desc"/>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry props="android">
+                <pt>CONTENT_INSPECT_TYPE_INVALID</pt>
+                <pd>(Default) This module has no actual function. Do not set <parmname>type</parmname> to this value.</pd>
+            </plentry>
+            <plentry props="android">
+                <pt>CONTENT_INSPECT_TYPE_MODERATION</pt>
+                <pd>Video content moderation. The SDK takes screenshots and inspect videos sent by local users, and uploads the screenshots and moderation results.</pd>
+            </plentry>
+            <plentry props="android">
+                <pt>CONTENT_INSPECT_SUPERVISE</pt>
+                <pd>Screenshots capture. The SDK takes screenshots of videos sent by local users and upload them.</pd>
+            </plentry>
+            <plentry>
+                <pt>extraInfo</pt>
+                <pd>
+                    <p>Additional information for video content moderation, with a maximum length of 1024 bytes.</p>
+                    <p>The SDK sends the screenshots and additional information on the video content to the Agora content moderation server. Once the content moderation process is completed, the Agora content moderation server sends the additional information and the content moderation results to your server.</p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>modules</pt>
+                <pd>
+                    <p>Video content moderation module. See <xref keyref="ContentInspectModule"/>.</p>
+                    <p>A maximum of 32 <apiname keyref="ContentInspectModule"/> instances can be configured, and the value range of <parmname>MAX_CONTENT_INSPECT_MODULE_COUNT</parmname> is an integer in [1,32].</p>
+                    <note type="attention">A video content moderation module can only be configured with one instance at most.</note> </pd>
+            </plentry>
+            <plentry>
+                <pt>moduleCount</pt>
+                <pd>The number of video content moderation modules, that is, the number of configured <apiname keyref="ContentInspectModule"/> instances, must be the same as the number of instances configured in <parmname>modules</parmname>. The maximum number is 32.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

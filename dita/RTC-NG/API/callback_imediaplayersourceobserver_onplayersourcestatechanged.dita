@@ -12,9 +12,6 @@
     </prolog>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnPlayerSourceStateChanged(int playerId, MEDIA_PLAYER_STATE state, MEDIA_PLAYER_ERROR ec) {}</codeblock>
-            </p>
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">void onPlayerStateChanged(Constants.MediaPlayerState state, Constants.MediaPlayerError error);
 </codeblock>
@@ -24,9 +21,15 @@
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void onPlayerSourceStateChanged(media::base::MEDIA_PLAYER_STATE state,
                                         media::base::MEDIA_PLAYER_ERROR ec) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="electron" outputclass="language-typescript">onPlayerSourceStateChanged?(state: MediaPlayerState, ec: MediaPlayerError): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnPlayerSourceStateChanged(MEDIA_PLAYER_STATE state, MEDIA_PLAYER_ERROR ec) { }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onPlayerSourceStateChanged?(
+  state: MediaPlayerState,
+  ec: MediaPlayerError
+): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(MediaPlayerState state, MediaPlayerError ec)?
+      onPlayerSourceStateChanged;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>当播放器状态改变时，SDK 会触发该回调，报告新的播放状态。</p>
@@ -38,17 +41,13 @@
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="rtc-ng">
-                <pt props="unity">playerId</pt>
-                <pd props="unity">播放器 ID。</pd>
-            </plentry>
             <plentry>
                 <pt>state</pt>
                 <pd>新的播放状态，详见 <xref keyref="MEDIA_PLAYER_STATE"/>。</pd>
             </plentry>
             <plentry>
                 <pt props="android ios mac">error</pt>
-                <pt props="cpp unity">ec</pt>
+                <pt props="cpp unity flutter rn electron">ec</pt>
                 <pd>播放器错误码，详见 <xref keyref="MEDIA_PLAYER_ERROR"/>。</pd>
             </plentry>
             </parml> </section>

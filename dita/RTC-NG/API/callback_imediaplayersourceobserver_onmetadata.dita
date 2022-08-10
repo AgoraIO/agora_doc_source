@@ -12,9 +12,6 @@
     </prolog>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnMetaData(int playerId, byte[] data, int length) {}</codeblock>
-            </p>
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">void onMetaData(Constants.MediaPlayerMetadataType type, byte[] data);
 </codeblock>
@@ -22,9 +19,11 @@
              didReceiveData:(NSString *_Nullable)data
                      length:(NSInteger)length;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void onMetaData(const void* data, int length) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="electron" outputclass="language-typescript">onMetaData?(data: Uint8Array, length: number): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnMetaData(byte[] data, int length) { }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onMetaData?(data: Uint8Array, length: number): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(Uint8List data, int length)? onMetaData;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>解析媒体附属信息后时，SDK 会触发该回调，报告媒体附属信息的数据类型和具体数据。</p>
@@ -36,10 +35,6 @@
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="rtc-ng">
-                <pt props="unity">playerId</pt>
-                <pd props="unity">播放器 ID。</pd>
-            </plentry>
             <plentry props="android">
                 <pt>type</pt>
                 <pd>媒体附属信息数据类型，详见 <xref keyref="MEDIA_PLAYER_METADATA_TYPE"/>。</pd>
@@ -48,7 +43,7 @@
                 <pt>data</pt>
                 <pd>具体数据，用户自定义格式的数据。</pd>
             </plentry>
-            <plentry props="ios mac cpp unity">
+            <plentry props="ios mac cpp unity electron rn flutter">
                 <pt>length</pt>
                 <pd>数据长度，单位为 byte。</pd>
             </plentry>

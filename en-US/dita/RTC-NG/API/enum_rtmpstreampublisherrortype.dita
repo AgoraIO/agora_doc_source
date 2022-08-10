@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_rtmpstreampublisherrortype">
+     <title><ph keyref="RTMP_STREAM_PUBLISH_ERROR_TYPE"/></title>
+     <shortdesc id="short"><ph id="shortdesc">Error codes of the RTMP or RTMPS streaming.</ph></shortdesc>
+     <refbody>
+          <section id="parameters">
+               <title>Enumerator</title>
+               <parml>
+               <plentry>
+                    <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_OK"/></pt>
+                    <pd>0: The RTMP or RTMPS streaming publishes successfully.</pd>
+               </plentry>
+               <plentry>
+                    <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_INVALID_ARGUMENT"/></pt>
+                    <pd>1: Invalid argument used. Check the parameter setting. For example, if you do not call <xref keyref="addPublishStreamUrl"/> to set the transcoding parameters before calling <xref keyref="setLiveTranscoding"/>, the SDK returns this error.</pd>
+               </plentry>
+               <plentry>
+                    <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_ENCRYPTED_STREAM_NOT_ALLOWED"/></pt>
+                    <pd>2: The RTMP or RTMPS streaming is encrypted and cannot be published.</pd>
+               </plentry>
+               <plentry>
+                    <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_CONNECTION_TIMEOUT"/></pt>
+                    <pd>3: Timeout for the RTMP or RTMPS streaming. Call the <xref keyref="addPublishStreamUrl"/> method to publish the streaming again.</pd>
+               </plentry>
+               <plentry>
+                    <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_INTERNAL_SERVER_ERROR"/></pt>
+                    <pd>4: An error occurs in Agora's streaming server. Call the <xref keyref="addPublishStreamUrl"/> method to publish the streaming again.</pd>
+               </plentry>
+               <plentry>
+                    <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_RTMP_SERVER_ERROR"/></pt>
+                    <pd>5: An error occurs in the CDN server.</pd>
+               </plentry>
+               <plentry>
+                    <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_TOO_OFTEN"/></pt>
+                    <pd>6: The RTMP or RTMPS streaming publishing requests are too frequent.</pd>
+               </plentry>
+               <plentry>
+                    <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_REACH_LIMIT"/></pt>
+                    <pd>7: The host publishes more than 10 URLs. Delete the unnecessary URLs before adding new ones.</pd>
+               </plentry>
+               <plentry>
+                    <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_NOT_AUTHORIZED"/></pt>
+                    <pd>8: The host manipulates other hosts' URLs. For example, the host updates or stops other hosts' streams. Check your app logic.</pd>
+               </plentry>
+               <plentry>
+                    <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_STREAM_NOT_FOUND"/></pt>
+                    <pd>9: Agora's server fails to find the RTMP or RTMPS streaming.</pd>
+               </plentry>
+               <plentry>
+                    <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_FORMAT_NOT_SUPPORTED"/></pt>
+                    <pd>10: The format of the RTMP or RTMPS streaming URL is not supported. Check whether the URL format is correct.</pd>
+               </plentry>
+               <plentry>
+                    <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_NOT_BROADCASTER"/> </pt>
+                    <pd>11: The user role is not host, so the user cannot use the CDN live streaming function. Check your app code logic.</pd>
+               </plentry>
+               <plentry>
+                    <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_TRANSCODING_NO_MIX_STREAM"/> </pt>
+                    <pd>13: The <xref keyref="updateRtmpTranscoding"/> or <xref keyref="setLiveTranscoding"/> method is called to update the transcoding configuration in a scenario where there is streaming without transcoding. Check your application code logic.</pd>
+               </plentry>
+               <plentry>
+                    <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_NET_DOWN"/> </pt>
+                    <pd>14: Errors occurred in the host's network.</pd>
+               </plentry>
+               <plentry>
+                    <pt><ph keyref="RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID"/> </pt>
+                    <pd><ph>15: Your App ID does not have permission to use the CDN live streaming function. </ph><ph props="hide">Refer to <xref keyref="guide-cdn-streaming">Prerequisites</xref> to enable the CDN live streaming permission.</ph></pd>
+               </plentry>
+               <plentry>
+                    <pt><ph keyref="RTMP_STREAM_UNPUBLISH_ERROR_OK"/> </pt>
+                    <pd>100: The streaming has been stopped normally. After you call <xref keyref="removePublishStreamUrl"/> to stop streaming, the SDK returns this value.</pd>
+               </plentry>
+               </parml></section>
+     </refbody>
+</reference>

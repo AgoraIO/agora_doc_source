@@ -12,121 +12,65 @@
         public bool CloudWork;
         public CONTENT_INSPECT_DEVICE_TYPE DeviceworkType;</codeblock>
             <codeblock props="android">public class ContentInspectConfig {
-  public final static int CONTENT_INSPECT_TYPE_WORK_DEVICE = 0;
-  public final static int CONTENT_INSPECT_TYPE_WORK_CLOUD = 1;
-  public final static int CONTENT_INSPECT_TYPE_WORK_DEVICE_CLOUD = 2;
   public final static int CONTENT_INSPECT_TYPE_INVALID = 0;
   public final static int CONTENT_INSPECT_TYPE_MODERATION = 1;
   public final static int CONTENT_INSPECT_TYPE_SUPERVISE = 2;
-  public final static int CONTENT_INSPECT_NEUTRAL = 1;
-  public final static int CONTENT_INSPECT_SEXY = 2;
-  public final static int CONTENT_INSPECT_PORN = 3;
-  public final static int CONTENT_INSPECT_VENDOR_AGORA = 1;
-  public static final int CONTENT_INSPECT_VENDOR_HIVE = 3;
   public static final int MAX_CONTENT_INSPECT_MODULE_COUNT = 32;
   public String extraInfo;
-  public int ContentWorkType;
   public ContentInspectModule[] modules;
   public int moduleCount;
+
   public static class ContentInspectModule {
     public int type;
-    public int vendor;
-    public String callbackUrl;
-    public String token;
-    public int frequency;
+    public int interval;
+
     public ContentInspectModule() {
       type = CONTENT_INSPECT_TYPE_INVALID;
-      vendor = CONTENT_INSPECT_VENDOR_AGORA;
-      frequency = 0;
+      interval = 0;
     }
-  }
-  public ContentInspectConfig() {
-    modules = new ContentInspectModule[MAX_CONTENT_INSPECT_MODULE_COUNT];
-    for (int i = 0; i &lt; MAX_CONTENT_INSPECT_MODULE_COUNT; i++) {
-      modules[i] = new ContentInspectModule();
-    }
-    moduleCount = 0;
-  }
-}</codeblock>
+  }</codeblock>
             <codeblock props="ios mac">__attribute__((visibility("default"))) @interface AgoraContentInspectConfig: NSObject
 @property (nonatomic, copy) NSString* _Nullable extraInfo;
-@property (assign, nonatomic) AgoraContentInspectWorkType ContentWorkType;
 @property(copy, nonatomic) NSArray&lt;AgoraContentInspectModule*>* _Nullable modules;
-@end
-</codeblock>
+@end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct ContentInspectConfig {
-  CONTENT_INSPECT_WORK_TYPE ContentWorkType;
-
   const char* extraInfo;
- 
+
   ContentInspectModule modules[MAX_CONTENT_INSPECT_MODULE_COUNT];
   int moduleCount;
    ContentInspectConfig&amp; operator=(const ContentInspectConfig&amp; rth)
-    {
-        ContentWorkType = rth.ContentWorkType;
+	{
         extraInfo = rth.extraInfo;
         moduleCount = rth.moduleCount;
-        memcpy(&amp;modules, &amp;rth.modules,  MAX_CONTENT_INSPECT_MODULE_COUNT * sizeof(ContentInspectModule));
-        return *this;
-    }
-  ContentInspectConfig() :ContentWorkType(CONTENT_INSPECT_WORK_CLOUD),extraInfo(NULL), moduleCount(0){}
+		memcpy(&amp;modules, &amp;rth.modules,  MAX_CONTENT_INSPECT_MODULE_COUNT * sizeof(ContentInspectModule));
+		return *this;
+	}
+  ContentInspectConfig() :extraInfo(NULL), moduleCount(0){}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">class ContentInspectConfig {
-                  final String? extraInfo;
-
-                  final List&lt;ContentInspectModule&gt; modules;
-
-                  final int moduleCount;
-
-                  const ContentInspectConfig(
-                      {required this.modules, this.extraInfo, this.moduleCount = 0});
-
-                  factory ContentInspectConfig.fromJson(Map&lt;String, dynamic&gt; json) =>
-                      _$ContentInspectConfigFromJson(json);
-
-                  Map&lt;String, dynamic&gt; toJson() => _$ContentInspectConfigToJson(this);
-                }</codeblock> </p>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int UpdateScreenCaptureParameters(ScreenCaptureParameters captureParams);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; updateScreenCaptureParameters(
+      ScreenCaptureParameters captureParams);</codeblock></p>
         </section>
-        <section id="detailed_desc"/>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title>参数</title>
             <parml>
-            <plentry>
-                <pt props="native">ContentWorkType</pt>
-                <pd>视频鉴黄的工作模式。详见 <xref keyref="CONTENT_INSPECT_WORK_TYPE"/>。                                       
-                    
-                    <ul props="android">
-                    <li><codeph>CONTENT_INSPECT_TYPE_WORK_DEVICE(0)</codeph>：客户端鉴黄，即通过 Agora SDK 对视频内容进行截图并进行鉴黄。</li>
-                    <li><codeph>CONTENT_INSPECT_TYPE_WORK_CLOUD(1)</codeph>：云端鉴黄，即通过 Agora SDK 对视频内容进行截图并上传至云端服务器，由云端内容审核服务进行鉴黄。</li>
-                    <li><codeph>CONTENT_INSPECT_TYPE_WORK_DEVICE_CLOUD(2)</codeph>：（默认）端云融合鉴黄，即先通过 Agora SDK 对视频内容截图并进行鉴黄，如果鉴黄结果不确定，则将视频截图上传至云端服务器，由云端内容审核服务再次鉴黄。</li>
-                    </ul> </pd>
-                <pd>
-                    <note type="attention">该属性仅适用于鉴黄模块（<apiname
-                    keyref="CONTENT_INSPECT_MODERATION"
-                    />）。如果将 <parmname>modules</parmname> 设置为其他模块，该属性不生效。</note></pd>
+            <plentry props="untiy flutter">
+                <pt>captureParams</pt>
+                <pd>屏幕共享的编码参数配置。默认的分辨率为 1920 x 1080，即 2073600 像素。该像素值为计费标准。详见 <xref keyref="ScreenCaptureParameters" />。</pd>
             </plentry>
-            <plentry props="unity">
-                <pt>DeviceWork</pt>
-                <pd>是否在设备端进行鉴黄。                  
-                   
-                    <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: 在设备端进行鉴黄。</li>
-                    <li><codeph><ph keyref="false"
-                        /></codeph>:（默认）不在设备端进行鉴黄。</li>
-                    </ul></pd>
+            <plentry props="android">
+                <pt>CONTENT_INSPECT_TYPE_INVALID</pt>
+                <pd>（默认）该功能模块无实际功能。请不要将 <parmname>type</parmname> 设为该值。</pd>
             </plentry>
-            <plentry props="unity">
-                <pt>CloudWork</pt>
-                <pd>是否在云端进行鉴黄。                                     
-                  
-                    <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: 在云端进行鉴黄。</li>
-                    <li><codeph><ph keyref="false"/></codeph>:（默认）不在云端进行鉴黄。</li>
-                    </ul></pd>
+            <plentry props="android">
+                <pt>CONTENT_INSPECT_TYPE_MODERATION</pt>
+                <pd>视频鉴黄。SDK 会对本地用户发送的视频进行截图、鉴黄，并将截图和审核结果上传。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt>CONTENT_INSPECT_SUPERVISE</pt>
+                <pd>视频截图。SDK 会对本地用户发送的视频进行截图并上传。</pd>
             </plentry>
             <plentry>
                 <pt>extraInfo</pt>
@@ -139,14 +83,12 @@
                 <pt>modules</pt>
                 <pd>
                     <p>视频内容审核模块。详见 <xref keyref="ContentInspectModule"/>。</p>
-                    <p>最多支持配置 32 个 <apiname keyref="ContentInspectModule"
-                    /> 实例，<parmname>MAX_CONTENT_INSPECT_MODULE_COUNT</parmname> 的取值范围为 [1,32] 中的整数。</p>
-                </pd>
+                    <p>最多支持配置 32 个 <apiname keyref="ContentInspectModule"/> 实例，<parmname>MAX_CONTENT_INSPECT_MODULE_COUNT</parmname> 的取值范围为 [1,32] 中的整数。</p>
+                    <note type="attention">一个视频内容审核模块最多只能配置一个实例。</note> </pd>
             </plentry>
             <plentry>
                 <pt>moduleCount</pt>
-                <pd>视频内容审核模块数，即配置的 <apiname keyref="ContentInspectModule"
-                    /> 实例的数量。最大值为 32。</pd>
+                <pd>视频内容审核模块数，即配置的 <apiname keyref="ContentInspectModule"/> 实例的数量，必须与 <parmname>modules</parmname> 中配置的实例个数一致。最大值为 32。</pd>
             </plentry>
             </parml> </section>
     </refbody>

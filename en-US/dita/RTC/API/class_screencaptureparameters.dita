@@ -118,19 +118,19 @@
             this.excludeWindowList = excludeWindowList ?? new view_t[0];
             this.excludeWindowCount = excludeWindowCount;
         }
-
+        
         public VideoDimensions dimensions { set; get; }
-
+        
         public int frameRate { set; get; }
-
+        
         public int bitrate { set; get; }
-
+        
         public bool captureMouseCursor { set; get; }
-
+        
         public bool windowFocus { set; get; }
-
+        
         public view_t[] excludeWindowList { set; get; }
-
+        
         public int excludeWindowCount { set; get; }
     }</codeblock> </p>
             <p props="rtc" outputclass="codeblock">
@@ -210,7 +210,7 @@
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">class ScreenCaptureParameters {
-
+  
   @JsonKey(includeIfNull: false)
   VideoDimensions? dimensions;
 
@@ -254,8 +254,7 @@
                     <p>The maximum dimensions of encoding the shared region.<ph props="android cpp cs"> For details, see <xref keyref="VideoDimensions" />.</ph> The default value is 1,920 × 1,080, that is,
                             2,073,600 pixels. Agora uses the value of this parameter to calculate the charges.</p>
                     <p>If the screen dimensions are different from the value of this parameter, Agora applies the following strategies for encoding. Suppose <codeph>dimensions</codeph> are set to 1,920 x 1,080:
-
-
+                    
                     <ul>
                     <li>If the value of the screen dimensions is lower than that of <codeph>dimensions</codeph>, for example, 1,000 x 1,000 pixels, the SDK uses 1,000 x 1,000 pixels
                                     for encoding.</li>
@@ -291,8 +290,7 @@
                 <pt props="cpp">captureMouseCursor</pt>
                 <pd props="cpp">
                     <p>Whether to capture the mouse in screen sharing:
-
-
+                    
                     <ul>
                     <li><codeph><ph keyref="true" /></codeph>: (Default) Capture the mouse.</li>
                     <li><codeph><ph keyref="false" /></codeph>: Do not capture the mouse.</li>
@@ -309,8 +307,7 @@
                     </dlentry>
                     </dl>
                     <p>Whether to bring the window to the front when calling the <xref keyref="startScreenCaptureByWindowId" /> method to share it:
-
-
+                    
                     <ul>
                     <li><codeph><ph keyref="true" /></codeph>:Bring the window to the front.</li>
                     <li><codeph><ph keyref="false" /></codeph>: (Default) Do not bring the window to the front.</li>
@@ -321,8 +318,7 @@
                 <pt props="cpp">windowFocus</pt>
                 <pd props="cpp">
                     <p>Whether to bring the window to the front when calling the <xref keyref="startScreenCaptureByWindowId" /> method to share it:
-
-
+                    
                     <ul>
                     <li><codeph><ph keyref="true" /></codeph>:Bring the window to the front.</li>
                     <li><codeph><ph keyref="false" /></codeph>: (Default) Do not bring the window to the front.</li>
@@ -360,33 +356,6 @@
             <plentry props="electron">
                 <pt>height</pt>
                 <pd>The height of the region.</pd>
-            </plentry>
-            <plentry props="cpp">
-                <pt>enableHighLight</pt>
-                <pd><p>(macOS only) Determines whether to place a border around the shared window or screen:
-                <ul>
-                    <li>
-                        <codeph><ph keyref="true" /></codeph>: Place a border.
-                    </li>
-                    <li>
-                        <codeph><ph keyref="false" /></codeph>: (Default) Do not place a border.
-                    </li>
-                </ul>
-                </p>
-                <note type="attention">When you share a part of a window or screen, the SDK places a border around the entire window or screen if you set <codeph>enableHighLight</codeph> as <codeph>true</codeph>.</note>
-                </pd>
-            </plentry>
-            <plentry props="cpp">
-                <pt>highLightWidth</pt>
-                <pd>
-                    (macOS only) The width (px) of the border. Defaults to 0, and the value range is [0,50].
-                </pd>
-            </plentry>
-            <plentry props="cpp">
-                <pt>highLightColor</pt>
-                <pd>
-                    (macOS only) The color of the border in RGBA format. The default value is 0xFF8CBF26.
-                </pd>
             </plentry>
             </parml> </section>
     </refbody>

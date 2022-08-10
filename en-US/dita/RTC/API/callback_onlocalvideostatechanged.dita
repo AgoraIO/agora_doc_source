@@ -50,7 +50,6 @@
             </dl>
             <p id="desc1">When the state of the local video stream changes (including the state of the video capture and encoding), the SDK triggers this callback to report the current state. This callback indicates the state of the local video stream, including camera capturing and video encoding, and allows you to troubleshoot issues when exceptions occur.</p>
             <p>The SDK triggers the <apiname keyref="onLocalVideoStateChanged"/> callback with the state code of <apiname keyref="LOCAL_VIDEO_STREAM_STATE_FAILED"/> and error code of <apiname keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/> in the following situations:
-            
             <ul>
             <li>The app switches to the background, and the system gets the camera resource.</li>
             <li>The camera starts normally, but does not output video for four consecutive seconds.</li>
@@ -91,7 +90,6 @@
                     <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_NO_PERMISSION"/>(2): No permission to use the local video capturing device.</li>
                     <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY"/>(3): The local video capturing device is in use.</li>
                     <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/>(4): The local video capture fails. Check whether the capturing device is working properly.
-                        
                         <ul id="ul_ygj_tdx_qqb">
                         <li>If your app runs in the background on a device running Android 9 or later, you cannot access the camera.</li>
                         <li>If your app runs on a device running Android 6 or later, this error is reported if the camera is occupied by a third-party app and not property released. Once the camera is released, the SDK triggers this callback again, reporting <codeph>state</codeph> <codeph>CAPTURING</codeph>, and <codeph>error</codeph> <codeph>ERROR_OK</codeph>.</li>

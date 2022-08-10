@@ -6,40 +6,44 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-kotlin"></codeblock>
-            <codeblock props="ios mac" outputclass="language-swift"></codeblock>
-            <codeblock props="windows" outputclass="language-cpp"></codeblock>
-            <codeblock props="web" outputclass="language-typescript"></codeblock>
-            </p>
+            <codeblock props="android" outputclass="language-kotlin">public class FcrAudioRawData {
+    public int samplesPerChannel;
+    public int bytesPerSample;
+    public int channels;
+    public int sampleRate;
+    public ByteBuffer buffer;
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-swift"/>
+            <codeblock props="windows" outputclass="language-cpp"/>
+            <codeblock props="web" outputclass="language-typescript"/> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
             <parml>
-                <plentry>
-                    <pt>samplesPerChannel</pt>
-                    <pd>Int64，每个声道的采样点数。</pd>
-                </plentry>
-                <plentry>
-                    <pt>bytesPerSample</pt>
-                    <pd>Int8，每个样本的字节数， 2 字节。</pd>
-                </plentry>
-                <plentry>
-                    <pt>channels</pt>
-                    <pd>Int8，声道数。</pd>
-                </plentry>
-                <plentry>
-                    <pt>sampleRate</pt>
-                    <pd>Int32，采样率。</pd>
-                </plentry>
-                <plentry>
-                    <pt>buffer</pt>
-                    <pd>指向音频数据内存的指针。buffer 的长度（字节） = (samplesPerChannel * channels * bytesPerSample)</pd>
-                </plentry>
-                <plentry>
-                    <pt>timestamp</pt>
-                    <pd>Int64，时间戳，单位毫秒。</pd>
-                </plentry>
-            </parml>
-        </section>
+            <plentry>
+                <pt>samplesPerChannel</pt>
+                <pd>每个声道的采样点数。</pd>
+            </plentry>
+            <plentry>
+                <pt>bytesPerSample</pt>
+                <pd>每个样本的字节数，2 字节。</pd>
+            </plentry>
+            <plentry>
+                <pt>channels</pt>
+                <pd>声道数。</pd>
+            </plentry>
+            <plentry>
+                <pt>sampleRate</pt>
+                <pd>采样率。</pd>
+            </plentry>
+            <plentry>
+                <pt>buffer</pt>
+                <pd>指向音频数据内存的指针。buffer 的长度（字节） = (samplesPerChannel * channels * bytesPerSample)</pd>
+            </plentry>
+            <plentry props="ios">
+                <pt>timestamp</pt>
+                <pd>时间戳，单位毫秒。</pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

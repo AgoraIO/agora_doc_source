@@ -12,11 +12,6 @@
     </prolog>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="unity" outputclass="language-csharp">public virtual int OnReadData(byte[] buffer, int bufferSize, int playerId)
-        {
-            return 0;
-        }</codeblock> </p>
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">int onReadData(ByteBuffer buffer, int bufferSize);
 </codeblock>
@@ -25,6 +20,10 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int onReadData(unsigned char *buffer, int bufferSize) = 0;
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">public virtual int OnReadData(IntPtr bufferPtr, int bufferSize, int playerId)
+        {
+            return 0;
+        }</codeblock>                
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
@@ -39,16 +38,17 @@
                 <pd>Media player protocol. See <xref keyref="IMediaPlayer"/>.</pd>
             </plentry>
             <plentry>
-                <pt>buffer</pt>
-                <pd>An input parameter. Data buffer (bytes). Write the <parmname>bufferSize</parmname> data reported by the SDK into <parmname>buffer</parmname>.</pd>
+                <pt props="native">buffer</pt>
+                <pt props="unity">bufferPtr</pt>
+                <pd>An input parameter. Data buffer (bytes). Write the <parmname>bufferSize </parmname>data reported by the SDK into this parameter.</pd>
             </plentry>
             <plentry>
                 <pt>bufferSize</pt>
                 <pd>The length of the data buffer (bytes).</pd>
             </plentry>
-            <plentry props="rtc-ng">
-                <pt props="unity">playerId</pt>
-                <pd props="unity">The ID of the media player.</pd>
+            <plentry props="unity">
+                <pt>playerId</pt>
+                <pd>The ID of the media player.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">

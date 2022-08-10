@@ -13,31 +13,31 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">int registerPlayerObserver(IMediaPlayerObserver playerObserver);
+            <codeblock props="android" outputclass="language-java">int registerPlayerObserver(IMediaPlayerObserver playerObserver);
 </codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec" />
-                <codeblock props="cpp" outputclass="language-cpp">virtual int registerPlayerSourceObserver(IMediaPlayerSourceObserver* observer) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp" />
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="cpp" outputclass="language-cpp">virtual int registerPlayerSourceObserver(IMediaPlayerSourceObserver* observer) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract registerPlayerSourceObserver(observer: IMediaPlayerSourceObserver): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript">abstract registerPlayerSourceObserver(
+    observer: IMediaPlayerSourceObserver
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">void registerPlayerSourceObserver(MediaPlayerSourceObserver observer);</codeblock> </p>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters">
+            <title>Parameters</title>
             <parml>
-                <plentry>
-                    <pt props="android">playerObserver</pt>
-                    <pt props="cpp">observer</pt>
-                    <pd>The player observer, listening for events during the playback. See <xref keyref="IMediaPlayerSourceObserver" />.</pd>
-                </plentry>
-            </parml>
-        </section>
-        <section id="return_values">
+            <plentry>
+                <pt props="android">playerObserver</pt>
+                <pt props="cpp rn electron flutter">observer</pt>
+                <pd>The player observer, listening for events during the playback. See <xref keyref="IMediaPlayerSourceObserver" />.</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron unity rn">
             <title>Returns</title>
             <ul id="ul_uns_l2y_hqb">
-                <li>0: Success.</li>
-                <li>&lt; 0: Failure.</li>
-            </ul>
-        </section>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
     </refbody>
 </reference>

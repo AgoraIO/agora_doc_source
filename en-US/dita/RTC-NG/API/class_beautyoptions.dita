@@ -27,25 +27,44 @@
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct BeautyOptions {
     enum LIGHTENING_CONTRAST_LEVEL {
-        LIGHTENING_CONTRAST_LOW = 0,
-        LIGHTENING_CONTRAST_NORMAL,
-        LIGHTENING_CONTRAST_HIGH
-    };
+            LIGHTENING_CONTRAST_LOW = 0,
+            LIGHTENING_CONTRAST_NORMAL = 1,
+            LIGHTENING_CONTRAST_HIGH = 2,
+  };
+
     LIGHTENING_CONTRAST_LEVEL lighteningContrastLevel;
+
     float lighteningLevel;
+
     float smoothnessLevel;
+
     float rednessLevel;
+
     float sharpnessLevel;
-    BeautyOptions(LIGHTENING_CONTRAST_LEVEL contrastLevel, float lightening, float smoothness, float redness, float sharpness) : lighteningContrastLevel(contrastLevel), lighteningLevel(lightening), smoothnessLevel(smoothness), rednessLevel(redness), sharpnessLevel(sharpness) {}
-    BeautyOptions() : lighteningContrastLevel(LIGHTENING_CONTRAST_NORMAL), lighteningLevel(0), smoothnessLevel(0), rednessLevel(0), sharpnessLevel(0) {}
+
+  BeautyOptions(LIGHTENING_CONTRAST_LEVEL contrastLevel, float lightening, float smoothness, float redness, float sharpness) : lighteningContrastLevel(contrastLevel), lighteningLevel(lightening), smoothnessLevel(smoothness), rednessLevel(redness), sharpnessLevel(sharpness) {}
+
+  BeautyOptions() : lighteningContrastLevel(LIGHTENING_CONTRAST_NORMAL), lighteningLevel(0), smoothnessLevel(0), rednessLevel(0), sharpnessLevel(0) {}
 };
 </codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export class BeautyOptions {
+  lighteningContrastLevel?: LighteningContrastLevel
+  lighteningLevel?: number
+  smoothnessLevel?: number
+  rednessLevel?: number
+  sharpnessLevel?: number
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class BeautyOptions
     {
         public BeautyOptions()
         {
             lighteningContrastLevel = LIGHTENING_CONTRAST_LEVEL.LIGHTENING_CONTRAST_NORMAL;
+            this.lighteningLevel = 0;
+            this.smoothnessLevel = 0;
+            this.rednessLevel = 0;
+            this.sharpnessLevel = 0;
         }
+
         public BeautyOptions(
             LIGHTENING_CONTRAST_LEVEL lighteningContrastLevel, float lighteningLevel, float smoothnessLevel,
             float rednessLevel, float sharpnessLevel)
@@ -56,48 +75,92 @@
             this.rednessLevel = rednessLevel;
             this.sharpnessLevel = sharpnessLevel;
         }
-        
+
         public LIGHTENING_CONTRAST_LEVEL lighteningContrastLevel { set; get; }
-        
+
         public float lighteningLevel { set; get; }
-        
+
         public float smoothnessLevel { set; get; }
-        
+
         public float rednessLevel { set; get; }
-        
+
         public float sharpnessLevel { set; get; }
     }
 
-    }</codeblock> </p>
+        public LIGHTENING_CONTRAST_LEVEL lighteningContrastLevel { set; get; }
+        public float lighteningLevel { set; get; }
+        public float smoothnessLevel { set; get; }
+        public float rednessLevel { set; get; }
+        public float sharpnessLevel { set; get; }
+    }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class BeautyOptions {
+  lighteningContrastLevel?: LighteningContrastLevel;
+  lighteningLevel?: number;
+  smoothnessLevel?: number;
+  rednessLevel?: number;
+  sharpnessLevel?: number;
+}</codeblock>
+<codeblock props="flutter" outputclass="language-dart">class BeautyOptions {
+    const BeautyOptions(
+        {this.lighteningContrastLevel,
+        this.lighteningLevel,
+        this.smoothnessLevel,
+        this.rednessLevel,
+        this.sharpnessLevel});
+  
+    @JsonKey(name: 'lighteningContrastLevel')
+    final LighteningContrastLevel? lighteningContrastLevel;
+    @JsonKey(name: 'lighteningLevel')
+    final double? lighteningLevel;
+    @JsonKey(name: 'smoothnessLevel')
+    final double? smoothnessLevel;
+    @JsonKey(name: 'rednessLevel')
+    final double? rednessLevel;
+    @JsonKey(name: 'sharpnessLevel')
+    final double? sharpnessLevel;
+    factory BeautyOptions.fromJson(Map&lt;String, dynamic> json) =>
+        _$BeautyOptionsFromJson(json);
+    Map&lt;String, dynamic> toJson() => _$BeautyOptionsToJson(this);
+  }</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title> <text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /> </title>
+            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/>
+            </title>
             <parml>
             <plentry>
                 <pt>lighteningContrastLevel</pt>
-                <pd><p>The contrast level, used with the <codeph>lighteningLevel</codeph> parameter. The larger the value, the greater the contrast between light and dark. <ph props="ios mac cpp unity">See <xref keyref="LIGHTENING_CONTRAST_LEVEL"/>.</ph><ul props="android">
+                <pd>
+                    <p>The contrast level, used with the <parmname>lighteningLevel</parmname> parameter. The larger the value, the greater the contrast between light and dark. <ph props="ios mac cpp unity">See <xref keyref="LIGHTENING_CONTRAST_LEVEL"/>.</ph><ul props="android">
                     <li><ph keyref="LIGHTENING_CONTRAST_LOW"/>(0): Low contrast level.</li>
-                    <li><ph keyref="LIGHTENING_CONTRAST_NORMAL"/>(1): (Default) Normal contrast level.</li>
+                    <li><ph keyref="LIGHTENING_CONTRAST_NORMAL"/>(1): Normal contrast level.</li>
                     <li><ph keyref="LIGHTENING_CONTRAST_HIGH"/>(2): High contrast level.</li>
-                </ul></p></pd>
+                    </ul></p>
+                </pd>
             </plentry>
             <plentry>
                 <pt>lighteningLevel</pt>
-                <pd><p>The brightness level. The value ranges from 0.0 (original) to 1.0. The default value is <ph props="ios">0.7</ph><ph props="android">0.6</ph><ph props="cpp unity">0.0</ph>. The greater the value, the greater the degree of whitening.</p></pd>
+                <pd>
+                    <p>The brightening level, in the range [0.0,1.0], where 0.0 means the original brightening. The default value is <ph props="ios">0.7</ph><ph props="android">0.6</ph><ph props="cpp unity">0.0</ph>. The higher the value, the greater the degree of brightening.</p>
+                </pd>
             </plentry>
             <plentry>
                 <pt>smoothnessLevel</pt>
-                <pd><p>The value ranges from 0.0 (original) to 1.0. The default value is <ph props="ios">0.5</ph><ph props="android">0.5</ph><ph props="cpp unity">0.0</ph>. The greater the value, the greater the degree of skin grinding.</p></pd>
+                <pd>
+                    <p>The smoothness level, in the range [0.0,1.0], where 0.0 means the original smoothness. The default value is <ph props="ios">0.5</ph><ph props="android">0.5</ph><ph props="cpp unity">0.0</ph>. The higher the value, the greater the smoothness level.</p>
+                </pd>
             </plentry>
             <plentry>
                 <pt>rednessLevel</pt>
-                <pd><p>The redness level. The value ranges from 0.0 (original) to 1.0. The default value is <ph props="ios">0.1</ph><ph props="android">0.1</ph><ph props="cpp unity">0.0</ph>. The larger the value, the greater the rosy degree.</p></pd>
+                <pd>
+                    <p>The redness level, in the range [0.0,1.0], where 0.0 means the original redness. The default value is <ph props="ios">0.1</ph><ph props="android">0.1</ph><ph props="cpp unity">0.0</ph>. The higher the value, the greater the redness level.</p>
+                </pd>
             </plentry>
-            <plentry props="native unity">
+            <plentry>
                 <pt>sharpnessLevel</pt>
-                <pd><p>The sharpness level. The value ranges from 0.0 (original) to 1.0. The default value is <ph props="ios">0.1</ph><ph props="android">0.3</ph><ph props="cpp unity">0.0</ph>. The larger the value, the greater the sharpening degree.</p></pd>
+                <pd>
+                    <p>The sharpness level, in the range [0.0,1.0], where 0.0 means the original sharpness. The default value is <ph props="ios">0.1</ph><ph props="android">0.3</ph><ph props="cpp unity">0.0</ph>. The larger the value, the greater the sharpness level.</p>
+                </pd>
             </plentry>
             </parml> </section>
     </refbody>

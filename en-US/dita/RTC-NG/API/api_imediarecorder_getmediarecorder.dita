@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediarecorder_getmediarecorder">
+    <title><ph keyref="getMediaRecorder"/></title>
+    <shortdesc id="short"><ph id="shortdesc"><ph props="android">Gets the <xref keyref="IMediaRecorder"/> object. </ph><ph props="ios mac">Creates an <xref keyref="IMediaRecorder"/> instance.</ph></ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getMediaRecorder"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public static synchronized AgoraMediaRecorder getMediaRecorder(RtcEngine engine) {
+    RtcEngineImpl engineImpl = (RtcEngineImpl) engine;
+    if (mRecorder == null) {
+      mRecorder = new AgoraMediaRecorder(engineImpl);
+    } else {
+      mRecorder.setEngine(engineImpl);
+    }
+    return mRecorder;
+  }</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">+ (instancetype _Nonnull)sharedMediaRecorderWithRtcEngine:(AgoraRtcEngineKit* _Nonnull)engine;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <note type="note">Make sure the <xref keyref="IRtcEngine"/> is initialized before you call this method.</note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>engine</pt>
+                <pd>The <xref keyref="IRtcEngine"/> object.</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <p>The <xref keyref="IMediaRecorder"/> object.</p>
+        </section>
+    </refbody>
+</reference>

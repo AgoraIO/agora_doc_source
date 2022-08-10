@@ -72,3 +72,7 @@ An example of the `storageConfig` JSON object:
     ]
 }
 ```
+
+## Considerations
+
+~8a061720-080f-11ed-a46a-e58831549a58~

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaengine_pushaudioframe">
-    <title><ph keyref="pushAudioFrame1" /></title>
+    <title><ph keyref="pushAudioFrame1"/></title>
     <shortdesc id="short"><ph id="shortdesc">推送外部音频帧。</ph></shortdesc>
     <prolog>
         <metadata>
@@ -12,28 +12,17 @@
     </prolog>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
+            <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int pushExternalAudioFrame(byte[] data, long timestamp);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)pushExternalAudioFrameRawData:(void * _Nonnull)data
                              samples:(NSInteger)samples
                             sourceId:(NSInteger)sourceId
-                           timestamp:(NSTimeInterval)timestamp;</codeblock> </p>
-            <p outputclass="codeblock" props="rtc">
-            <codeblock props="android" outputclass="language-java">public abstract int pushExternalAudioFrame(byte[] data, long timestamp);</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int pushAudioFrame(IAudioFrameObserver::AudioFrame* frame) = 0;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)pushExternalAudioFrameRawData:(void* _Nonnull)data samples:(NSUInteger)samples timestamp:(NSTimeInterval)timestamp;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int PushAudioFrame(AudioFrame frame);</codeblock>
+                           timestamp:(NSTimeInterval)timestamp;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp"/>
             <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
-        </section>
-        <section id="detailed_desc">
-            <dl outputclass="deprecated" props="rtc">
-            <dlentry props="cpp android ios mac">
-                <dt>弃用：</dt>
-                <dd>请改用 <xref keyref="pushAudioFrame2"/>。</dd>
-            </dlentry>
-            </dl>
         </section>
         <section id="parameters">
             <title>参数</title>
@@ -57,7 +46,7 @@
                 <pd>外部音频帧的时间戳（毫秒）。该参数为必填。你可以使用该时间戳还原音频帧顺序；在有视频的场景中（包含使用外部视频源的场景），该参数可以帮助实现音视频同步。</pd>
             </plentry>
             </parml>
-            <parml props="rtc-ng">
+            <parml>
             <plentry conkeyref="pushAudioFrame2/sourceid" props="ios mac">
                 <pt/>
                 <pd/>
@@ -65,20 +54,11 @@
             </parml> </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="rtc-ng">
+            <p>
             <ul>
             <li>0：方法调用成功。</li>
             <li>&lt; 0：方法调用失败。</li>
             </ul> </p>
-            <p props="rtc">
-            <ul props="cpp android electron unity rn flutter">
-            <li>0：方法调用成功。</li>
-            <li>&lt; 0：方法调用失败。</li>
-            </ul>
-            <ul props="ios mac">
-            <li><codeph><ph keyref="true"/></codeph>：方法调用成功。</li>
-            <li><codeph><ph keyref="false"/></codeph>：方法调用失败。</li>
-            </ul></p>
         </section>
     </refbody>
 </reference>

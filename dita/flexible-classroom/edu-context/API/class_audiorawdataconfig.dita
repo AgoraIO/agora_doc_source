@@ -6,32 +6,41 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-kotlin"></codeblock>
-            <codeblock props="ios mac" outputclass="language-swift"></codeblock>
-            <codeblock props="windows" outputclass="language-cpp"></codeblock>
-            <codeblock props="web" outputclass="language-typescript"></codeblock>
-            </p>
+            <codeblock props="android" outputclass="language-kotlin">public class FcrAudioRawDataConfig {
+    public int sampleRate = 48000;
+    public int samplesPerChannel = 1024;
+    public int channels = 1;
+    public int mode = 0;
+    public int position = 2;
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-swift"/>
+            <codeblock props="windows" outputclass="language-cpp"/>
+            <codeblock props="web" outputclass="language-typescript"/> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
             <parml>
-                <plentry>
-                    <pt>sampleRate</pt>
-                    <pd>Int32，采样率，可设为 8000，16000，32000，44100 或 48000。默认值 48000。</pd>
-                </plentry>
-                <plentry>
-                    <pt>samplesPerChannel</pt>
-                    <pd>Int64，每次回调时每个声道的样本点个数。默认值 1024。</pd>
-                </plentry>
-                <plentry>
-                    <pt>channels</pt>
-                    <pd>Int8，单声道或双声道。默认值 1。</pd>
-                </plentry>
-                <plentry>
-                    <pt>mode</pt>
-                    <pd>对音频数据的操作权限，详见 <xref keyref="FcrMediaRawDataOperationMode"/>。默认值 readOnly。</pd>
-                </plentry>
-            </parml>
-        </section>
+            <plentry>
+                <pt>sampleRate</pt>
+                <pd>采样率，可设为 8000，16000，32000，44100 或 48000。默认值 48000。</pd>
+            </plentry>
+            <plentry>
+                <pt>samplesPerChannel</pt>
+                <pd>每次回调时每个声道的样本点个数。默认值 1024。</pd>
+            </plentry>
+            <plentry>
+                <pt>channels</pt>
+                <pd>单声道或双声道。默认值 1。</pd>
+            </plentry>
+            <plentry>
+                <pt>mode</pt>
+                <pd props="ios">对音频数据的操作权限，详见 <xref keyref="FcrMediaRawDataOperationMode"/>。默认值 read only。</pd>
+                <pd props="android">对音频数据的操作权限，目前只读 <codeph>Constants.RAW_AUDIO_FRAME_OP_MODE_READ_ONLY</codeph>。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt>position</pt>
+                <pd>音频数据在管道中的位置，比如录制后、播放前等，可设为 <codeph>IAudioFrameObserver.POSITION_RECORD</codeph>。</pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

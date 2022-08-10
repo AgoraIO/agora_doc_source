@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_remotevoicepositioninfo">
     <title><ph keyref="RemoteVoicePositionInfo" /></title>
-    <shortdesc id="short"><ph id="shortdesc">The spatial position of the remote user or the media player.</ph></shortdesc>
+    <shortdesc id="short">The spatial position of the remote user or the media player.<ph id="shortdesc"></ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -25,20 +25,25 @@
 
   RemoteVoicePositionInfo() = default;
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript">export class RemoteVoicePositionInfo {
+  position?: number[]
+  forward?: number[]
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class RemoteVoicePositionInfo
     {
         public RemoteVoicePositionInfo(float[] position, float[] forward)
         {
-            this.position= position;
+            this.position = position;
             this.forward = forward;
         }
-      
         public float[] position { set; get; }
         public float[] forward { set; get; }
     };</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="rn" outputclass="language-typescript">export class RemoteVoicePositionInfo {
+  position?: number[];
+  forward?: number[];
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>

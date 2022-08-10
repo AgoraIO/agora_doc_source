@@ -24,7 +24,6 @@
         </section>
         <section id="detailed_desc">
             <p id="effect">When this method is called under different classes, the effect is different:
-            
             <ul>
             <li>When this method is called under the <xref keyref="ICloudSpatialAudioEngine" /> class, the SDK updates the spatial position of the local user to the Agora Spatial Audio Server. The Agora Spatial Audio Server calculates the user's spatial audio effect parameters according to the world coordinates and audio reception range of the local and remote users.</li>
             <li>Under the <xref keyref="ILocalSpatialAudioEngine" /> class, this method needs to be used with <xref keyref="updateRemotePosition" />. The SDK calculates the relative position between the local and remote users according to this method and the parameter settings in <apiname keyref="updateRemotePosition" />, and then calculates the user's spatial audio effect parameters.</li>
@@ -33,7 +32,6 @@
             <ul>
             <li>Call this method after <xref keyref="enterRoom" />.</li>
             <li>If you call this method under the <apiname keyref="ICloudSpatialAudioEngine" /> class, note the following:
-                
                 <ul>
                 <li>When you call this method multiple times, Agora recommends a call interval of [120,7000) milliseconds; otherwise, the SDK and the Agora Spatial Audio Server lose synchronization.</li>
                 <li>If the distance between the current spatial position and the last position is less than 0.2 meters or the rotation angle in each direction is less than 15 degrees, the SDK does not update the current spatial position.</li>

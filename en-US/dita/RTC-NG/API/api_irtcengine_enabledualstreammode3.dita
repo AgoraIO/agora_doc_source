@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_enabledualstreammode3">
+    <title><ph keyref="enableDualStreamMode3"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Enables/Disables dual-stream mode.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableDualStreamMode3"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int enableDualStreamMode(
+                    Constants.VideoSourceType sourceType, boolean enabled, SimulcastStreamConfig streamConfig);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableDualStreamMode:(AgoraVideoSourceType)sourceType
+                        enabled:(BOOL)enabled
+                        streamConfig:(AgoraSimulcastStreamConfig* _Nonnull)streamConfig;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int enableDualStreamMode(
+                            VIDEO_SOURCE_TYPE sourceType, bool enabled, const SimulcastStreamConfig&amp; streamConfig) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract enableDualStreamMode(enabled: boolean, sourceType?: VideoSourceType, streamConfig?: SimulcastStreamConfig): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int EnableDualStreamMode(VIDEO_SOURCE_TYPE sourceType, bool enabled, SimulcastStreamConfig streamConfig);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract enableDualStreamMode(
+    enabled: boolean,
+    sourceType?: VideoSourceType,
+    streamConfig?: SimulcastStreamConfig
+  ): number;</codeblock>
+  <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableDualStreamMode(
+    {required bool enabled,
+    VideoSourceType sourceType = VideoSourceType.videoSourceCameraPrimary,
+    SimulcastStreamConfig? streamConfig});</codeblock> </p>
+        </section>
+        <section id="detailed_desc" conkeyref="enableDualStreamMode2/detailed_desc" props="native flutter unity electron rn" />
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml id="parml_mfj_z3z_hqb">
+            <plentry conkeyref="enableDualStreamMode2/sourcetype" props="native flutter unity">
+                <pt />
+                <pd />
+            </plentry>
+            <plentry props="rn electron" id="sourcetype">
+                <pt>sourceType</pt>
+                <pd>
+                    <p>The capture type of the custom video source. See <xref keyref="VIDEO_SOURCE_TYPE" />.</p>
+                </pd>
+            </plentry>
+            <plentry conkeyref="enableDualStreamMode2/enabled" props="native flutter unity">
+                <pt />
+                <pd />
+            </plentry>
+            <plentry props="rn electron" id="enabled">
+                <pt>enabled</pt>
+                <pd>
+                    <p>Whether to enable dual-stream mode.<ul>
+                    <li><codeph><ph keyref="true" /></codeph>: Enable dual-stream mode.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Disable dual-stream mode.</li>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>streamConfig</pt>
+                <pd>
+                    <p>The configuration of the low-quality video stream. See <xref keyref="SimulcastStreamConfig"/> .</p>
+                </pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron unity rn">
+            <title>Returns</title>
+            <ul id="ul_bpp_x2z_hqb">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
+    </refbody>
+</reference>

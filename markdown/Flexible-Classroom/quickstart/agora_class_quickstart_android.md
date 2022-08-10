@@ -8,9 +8,9 @@
 
 ## 前提条件
 
--   在 Agora 控制台[开通灵动课堂服务](/cn/agora-class/agora_class_enable?platform=Web)。
--   在 Agora 控制台获取 [Agora App ID](/cn/Agora%20Platform/get_appid_token#获取-app-id) 和 [App 证书](/cn/Agora%20Platform/get_appid_token#获取-app-证书)。
--   一台 Android 设备。模拟机可能出现功能缺失或者性能问题，所以 Agora 推荐使用真机。此外，灵动课堂 Android 端要求运行在 Android 5.0 或以上版本。
+-   在声网控制台[开通灵动课堂服务](/cn/agora-class/agora_class_enable?platform=Web)。
+-   在声网控制台获取 [Agora App ID](/cn/Agora%20Platform/get_appid_token#获取-app-id) 和 [App 证书](/cn/Agora%20Platform/get_appid_token#获取-app-证书)。
+-   一台 Android 设备。模拟机可能出现功能缺失或者性能问题，所以声网推荐使用真机。此外，灵动课堂 Android 端要求运行在 Android 5.0 或以上版本。
 
 ## 准备开发环境
 
@@ -35,18 +35,18 @@
 2. 运行以下命令切换分支至指定版本，将 {VERSION} 替换为要切换的版本号：
 
     ```bash
-    git checkout release/apaas/{VERSION}
+    git checkout release/{VERSION}
     ```
 
-    例如要切换到 2.1.0 版本分支，执行以下命令：
+    例如要切换到 2.6.0 版本分支，执行以下命令：
 
     ```bash
-    git checkout release/apaas/2.1.0
+    git checkout release/2.6.0
     ```
 
-    Agora 建议你切换到最新发版分支。参考下图在 GitHub 仓库中查看最新发版分支：
+    声网建议你切换到最新发版分支。参考下图在 GitHub 仓库中查看最新发版分支：
 
-    ![](https://web-cdn.agora.io/docs-files/1648636502733)
+    ![](https://web-cdn.agora.io/docs-files/1658914705722)
 
 ## 启动灵动课堂
 
@@ -54,19 +54,19 @@
 
 1. 在 Android Studio 中导入 CloudClass-Android 项目。
 
-    ![](https://web-cdn.agora.io/docs-files/1648635239823)
+   ![](https://web-cdn.agora.io/docs-files/1648635239823)
 
 2. （可选）修改 `app/res/values/string_config.xml` 文件中的 `appId`、 `apiHost`、`reportHost` 参数值。如果没有配置，则使用灵动课堂的测试 App ID 运行项目。如果是正式的项目，一定要替换成你自己的 App ID。
 
-    ![](https://web-cdn.agora.io/docs-files/1648635527460)
+   ![](https://web-cdn.agora.io/docs-files/1648635527460)
 
 3. 在 Android Studio 中编译并运行 CloudClass-Android 项目。运行成功后，你可以在 Android 设备上看到以下画面：
 
-    ![](https://web-cdn.agora.io/docs-files/1648635613438)
+   ![](https://web-cdn.agora.io/docs-files/1648635613438)
 
 4. 输入房间名、用户名，选择一种班型，然后点击**加入**，即可进入灵动课堂，看到以下画面：
 
-    ![](https://web-cdn.agora.io/docs-files/1648635720196)
+   ![](https://web-cdn.agora.io/docs-files/1648635720196)
 
 ## 后续步骤
 

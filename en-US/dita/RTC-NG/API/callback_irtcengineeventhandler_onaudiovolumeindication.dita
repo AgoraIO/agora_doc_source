@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_onaudiovolumeindication">
+    <title><ph keyref="onAudioVolumeIndication"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Reports the volume information of users.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onAudioVolumeIndication"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onAudioVolumeIndication(AudioVolumeInfo[] speakers, int totalVolume) {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+        reportAudioVolumeIndicationOfSpeakers:(NSArray&lt;AgoraRtcAudioVolumeInfo *&gt; * _Nonnull)speakers
+        totalVolume:(NSInteger)totalVolume;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioVolumeIndication(const AudioVolumeInfo* speakers,
+    unsigned int speakerNumber,
+    int totalVolume) {
+    (void)speakers;
+    (void)speakerNumber;
+    (void)totalVolume;
+    }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">onAudioVolumeIndication?(connection: RtcConnection, speakers: AudioVolumeInfo[], speakerNumber: number, totalVolume: number): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioVolumeIndication(RtcConnection connection, AudioVolumeInfo[] speakers, uint speakerNumber, int totalVolume) {}</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onAudioVolumeIndication?(
+  connection: RtcConnection,
+  speakers: AudioVolumeInfo[],
+  speakerNumber: number,
+  totalVolume: number
+): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, List&lt;AudioVolumeInfo> speakers,
+      int speakerNumber, int totalVolume)? onAudioVolumeIndication;
+</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>By default, this callback is disabled. You can enable it by calling <xref keyref="enableAudioVolumeIndication"/>. Once this callback is enabled and users send streams in the channel, the SDK triggers the <apiname keyref="onAudioVolumeIndication"/> callback according to the time interval set in <apiname keyref="enableAudioVolumeIndication"/>. The SDK triggers two independent <apiname keyref="onAudioVolumeIndication"/> callbacks simultaneously, which separately report the volume information of the local user who sends a stream and the remote users (up to three) whose instantaneous volume is the highest.</p>
+            <note type="attention">
+            <p>Once this callback is enabled, if the local user calls the <xref keyref="muteLocalAudioStream"/> method for mute, the SDK continues to report the volume indication of the local user.</p>
+            <p>20 seconds after a remote user whose volume is one of the three highest in the channel stops publishing the audio stream, the callback excludes this user's information; 20 seconds after all remote users stop publishing audio streams, the SDK stops triggering the callback for remote users.</p>
+            </note> </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <parml>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry props="unity electron rn flutter">
+                <pt>connection</pt>
+                <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
+            </plentry>
+            <plentry props="native unity electron rn flutter">
+                <pt>speakers</pt>
+                <pd>The volume information of the users. See <xref keyref="AudioVolumeInfo"/>. An empty <parmname>speakers</parmname> array in the callback indicates that no remote user is in the channel or sending a stream at the moment.</pd>
+            </plentry>
+            <plentry props="cpp unity electron rn flutter">
+                <pt>speakerNumber</pt>
+                <pd>
+                    <p>The total number of users.<ul>
+                    <li>In the callback for the local user, if the local user is sending streams, the value of <parmname>speakerNumber</parmname> is 1.</li>
+                    <li>In the callback for remote users, the value range of <parmname>speakerNumber</parmname> is [0,3]. If the number of remote users who send streams is greater than or equal to three, the value of <parmname>speakerNumber</parmname> is 3.</li>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            <plentry props="native unity electron rn flutter">
+                <pt>totalVolume</pt>
+                <pd>
+                    <p>The volume of the speaker. The value ranges between 0 (lowest volume) and 255 (highest volume).<ul>
+                    <li>In the callback for the local user, <parmname>totalVolume</parmname> is the volume of the local user who sends a stream.</li>
+                    <li><ph>In the callback for remote users, <parmname>totalVolume</parmname> is the sum of the volume of the remote users (up to three) whose instantaneous volume are the highest. </ph><ph props="native">If the user calls <xref keyref="startAudioMixing2"/>, <parmname>totalVolume</parmname> is the volume after audio mixing.</ph></li>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

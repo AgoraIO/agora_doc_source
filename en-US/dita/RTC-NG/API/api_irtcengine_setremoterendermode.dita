@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setremoterendermode">
+    <title><ph keyref="setRemoteRenderMode1"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the video display mode of a specified remote user.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setRemoteRenderMode1"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setRemoteRenderMode(int userId, int renderMode);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setRemoteRenderMode:(NSUInteger)uid
+                      mode:(AgoraVideoRenderMode) mode;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setRemoteRenderMode(uid_t userId, RENDER_MODE_TYPE renderMode) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int SetRemoteRenderMode(uint userId, RENDER_MODE_TYPE renderMode);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="deprecated">
+            <dlentry>
+                <dt>Deprecated:</dt>
+                <dd>This method is deprecated. Use <xref keyref="setRemoteRenderMode2"/> instead.</dd>
+            </dlentry>
+            </dl>
+            <p>Call this method to set the video display mode of a specified remote user. This method can be called multiple times during a call to change the display mode.</p>
+        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>userId</pt>
+                <pd>The user ID of the remote user.</pd>
+            </plentry>
+            <plentry>
+                <pt>renderMode</pt>
+                <pd>
+                    <p props="ios mac cpp unity">The rendering mode of the remote user view. For details, see <xref keyref="RENDER_MODE_TYPE"/>.</p>
+                    <p props="android">The rendering mode of the remote user view.<ul>
+                    <li><ph keyref="RENDER_MODE_HIDDEN"/>(1): Hidden mode. Uniformly scale the video until it fills the visible boundaries (cropped). One dimension of the video may have clipped contents.</li>
+                    <li><ph keyref="RENDER_MODE_FIT"/>(2): Fit mode. Uniformly scale the video until one of its dimension fits the boundary (zoomed to fit). Areas that are not filled due to the disparity in the aspect ratio are filled with black.</li>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
+    </refbody>
+</reference>

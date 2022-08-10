@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_onstreammessage">
+    <title> <ph keyref="onStreamMessage"/> </title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the local user receives the data stream from the remote user.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onStreamMessage"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onStreamMessage(int uid, int streamId, byte[] data) {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+                receiveStreamMessageFromUid:(NSUInteger)uid
+                streamId:(NSInteger)streamId
+                data:(NSData * _Nonnull)data;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onStreamMessage(uid_t userId, int streamId, const char* data, size_t length, uint64_t sentTs) {
+                    (void)userId;
+                    (void)streamId;
+                    (void)data;
+                    (void)length;
+                    (void)sentTs;
+                  }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">onStreamMessage?(connection: RtcConnection, remoteUid: number, streamId: number, data: Uint8Array, length: number, sentTs: number): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnStreamMessage(RtcConnection connection, uint remoteUid, int streamId, byte[] data, uint length, UInt64 sentTs) { }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onStreamMessage?(
+  connection: RtcConnection,
+  remoteUid: number,
+  streamId: number,
+  data: Uint8Array,
+  length: number,
+  sentTs: number
+): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, int streamId,
+      Uint8List data, int length, int sentTs)? onStreamMessage;
+</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>The SDK triggers this callback when the local user receives the stream message that the remote user sends by calling the <xref keyref="sendStreamMessage"/> method.</p>
+        </section>
+        <section id="parameters">
+            <title> <ph keyref="callback-section-title"/> </title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <parml>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry props="unity electron rn flutter" conkeyref="joinChannelEx/connection">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry id="uid">
+                <pt props="android ios mac flutter">uid</pt>
+                <pt props="cpp">userId</pt>
+                <pt props="unity electron rn flutter">remoteUid</pt>
+                <pd>The ID of the remote user sending the message.</pd>
+            </plentry>
+            <plentry id="streamId">
+                <pt>streamId</pt>
+                <pd>The stream ID of the received message.</pd>
+            </plentry>
+            <plentry id="data">
+                <pt>data</pt>
+                <pd>received data.</pd>
+            </plentry>
+            <plentry id="length" props="cpp unity electron rn flutter">
+                <pt>length</pt>
+                <pd>The data length (byte).</pd>
+            </plentry>
+            <plentry props="cpp unity electron rn flutter">
+                <pt>sentTs</pt>
+                <pd>The time when the data stream is sent.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

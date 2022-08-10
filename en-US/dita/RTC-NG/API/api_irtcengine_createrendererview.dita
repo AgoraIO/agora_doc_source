@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_createrendererview">
+    <title><ph keyref="CreateRendererView"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Creates a RendererView.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="CreateRendererView"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public static SurfaceView CreateRendererView(Context context) {
+    return new SurfaceView(context);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="deprecated">
+              <dlentry>
+                  <dt>Deprecated:</dt>
+                  <dd>This method is deprecated. Use the Android native method <xref keyref="SurfaceView-link"/> instead.</dd>
+              </dlentry>
+            </dl>
+            <p>This method returns the SurfaceView type. The operation and layout of the view are managed by the app, and the Agora SDK renders the view provided by the app. The video display view must be created using this method instead of directly calling SurfaceView.</p>
+            <p>To use a SurfaceView, call this method; to use a TextureView, call <xref keyref="CreateTextureView"/>.<note type="attention">Call this in the main thread.</note></p>
+        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>context</pt>
+                <pd>The context of the Android Activity.</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <p>SurfaceView</p>
+        </section>
+    </refbody>
+</reference>

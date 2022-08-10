@@ -16,8 +16,13 @@
   WatermarkRatio(float x, float y, float width) : xRatio(x), yRatio(y), widthRatio(width) {}
 };
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public class WatermarkRatio {
+            <codeblock props="electron" outputclass="language-typescript">export class WatermarkRatio {
+  xRatio?: number
+  yRatio?: number
+  widthRatio?: number
+}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class WatermarkRatio
+    {
         public WatermarkRatio()
         {
             xRatio = 0.0f;
@@ -31,24 +36,43 @@
             yRatio = y;
             widthRatio = width;
         }
-
         public float xRatio { set; get; }
         public float yRatio { set; get; }
         public float widthRatio { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">export class WatermarkRatio {
+  xRatio?: number;
+  yRatio?: number;
+  widthRatio?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class WatermarkRatio {
+  const WatermarkRatio({this.xRatio, this.yRatio, this.widthRatio});
+
+  @JsonKey(name: 'xRatio')
+  final double? xRatio;
+  @JsonKey(name: 'yRatio')
+  final double? yRatio;
+  @JsonKey(name: 'widthRatio')
+  final double? widthRatio;
+  factory WatermarkRatio.fromJson(Map&lt;String, dynamic> json) =>
+      _$WatermarkRatioFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$WatermarkRatioToJson(this);
+}</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>水印在屏幕中的位置和大小由 <parmname>xRatio</parmname>、<parmname>yRatio</parmname> 和 <parmname>widthRatio</parmname> 共同决定：
-                
+
+
+            
             <ul>
             <li>(<parmname>xRatio</parmname>, <parmname>yRatio</parmname>) 指水印左上角的坐标，决定水印左上角到屏幕左上角的距离。</li>
             <li><parmname>widthRatio</parmname> 决定水印的宽度。</li>
             </ul></p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>xRatio</pt>

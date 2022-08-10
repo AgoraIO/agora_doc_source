@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_onfirstremoteaudiodecoded">
+    <title><ph keyref="onFirstRemoteAudioDecoded"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the SDK decodes the first remote audio frame for playback.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onFirstRemoteAudioDecoded"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onFirstRemoteAudioDecoded(int uid, int elapsed) {
+    }
+</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine firstRemoteAudioFrameDecodedOfUid:(NSUInteger)uid elapsed:(NSInteger)elapsed;
+</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onFirstRemoteAudioDecoded(uid_t uid, int elapsed) {
+                (void)uid;
+                (void)elapsed;
+                }
+            </codeblock>
+            <codeblock props="electron" outputclass="language-typescript">onFirstRemoteAudioDecoded?(connection: RtcConnection, uid: number, elapsed: number): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstRemoteAudioDecoded(RtcConnection connection, uint uid, int elapsed) { }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onFirstRemoteAudioDecoded?(
+  connection: RtcConnection,
+  uid: number,
+  elapsed: number
+): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int uid, int elapsed)?
+      onFirstRemoteAudioDecoded;
+</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="deprecated">
+            <dlentry>
+                <dt>Deprecated:</dt>
+                <dd>Use <xref keyref="onRemoteAudioStateChanged"/> instead.</dd>
+            </dlentry>
+            </dl>
+            <p>The SDK triggers this callback under one of the following circumstances:<ul>
+            <li>The remote user joins the channel and sends the audio stream.</li>
+            <li>The remote user stops sending the audio stream and re-sends it after 15 seconds, and the possible reasons include:<ul>
+                <li>The remote user leaves the channel.</li>
+                <li>The remote user is offline.</li>
+                <li>The remote user calls <xref keyref="muteLocalAudioStream"/> to stop sending the video stream.</li>
+                <li>The remote user calls <xref keyref="disableAudio"/> to disable video.</li>
+                </ul> </li>
+            </ul> </p>
+        </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <parml>
+            <plentry props="ios mac">
+                <pt>engine</pt>
+                <pd>The <xref keyref="IRtcEngine"/> object.</pd>
+            </plentry>
+            <plentry props="unity electron rn flutter" conkeyref="joinChannelEx/connection">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry>
+                <pt>uid</pt>
+                <pd>The user ID of the remote user.</pd>
+            </plentry>
+            <plentry>
+                <pt>elapsed</pt>
+                <pd id="elapsed">The time elapsed (ms) from the local user calling the <apiname keyref="joinChannel2"/> method until the SDK triggers this callback.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

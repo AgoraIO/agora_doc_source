@@ -8,8 +8,8 @@
 
 ## 前提条件
 
--   在 Agora 控制台[开通灵动课堂服务](/cn/agora-class/agora_class_enable?platform=Web)。
--   在 Agora 控制台获取 [Agora App ID](/cn/Agora%20Platform/get_appid_token#获取-app-id) 和 [App 证书](/cn/Agora%20Platform/get_appid_token#获取-app-证书)。
+-   在声网控制台[开通灵动课堂服务](/cn/agora-class/agora_class_enable?platform=Web)。
+-   在声网控制台获取 [Agora App ID](/cn/Agora%20Platform/get_appid_token#获取-app-id) 和 [App 证书](/cn/Agora%20Platform/get_appid_token#获取-app-证书)。
 -   推荐安装最新稳定版桌面端 [Google Chrome 浏览器](https://www.google.cn/chrome/)。
 
 <a name="dev-env"></a>
@@ -63,16 +63,18 @@
 2. 运行以下命令切换分支至指定版本，将 {VERSION} 替换为要切换的版本号：
 
     ```bash
-    git checkout release/apaas/{VERSION}
+    git checkout release/{VERSION}
     ```
 
-    例如要切换到 2.1.2 版本分支，执行以下命令：
+    例如要切换到 2.6.0 版本分支，执行以下命令：
 
     ```bash
-    git checkout release/apaas/2.1.2
+    git checkout release/2.6.9
     ```
 
-    Agora 建议你切换到最新的发版分支。
+    声网建议你切换到最新发版分支。参考下图在 GitHub 仓库中查看最新发版分支：
+
+    ![](https://web-cdn.agora.io/docs-files/1658916187924)
 
 ## 启动灵动课堂
 

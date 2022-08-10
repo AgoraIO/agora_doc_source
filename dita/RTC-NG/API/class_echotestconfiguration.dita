@@ -6,85 +6,92 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="android" outputclass="language-java">public class EchoTestConfiguration {
+  public SurfaceView view = null;
+  public boolean enableAudio = true;
+  public boolean enableVideo = true;
+  public String token = null;
+  public String channelId = null;
+
+  @CalledByNative
+  public EchoTestConfiguration(
+      SurfaceView view, boolean enableAudio, boolean enableVideo, String token, String channelId) {
+    this.view = view;
+    this.enableAudio = enableAudio;
+    this.enableVideo = enableVideo;
+    this.token = token;
+    this.channelId = channelId;
+  }
+
+  @CalledByNative
+  public EchoTestConfiguration() {
+    this.view = null;
+    this.enableAudio = true;
+    this.enableVideo = true;
+    this.token = null;
+    this.channelId = null;
+  }
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraEchoTestConfiguration) 
+__attribute__((visibility("default"))) @interface AgoraEchoTestConfiguration : NSObject
+@property(strong, nonatomic) VIEW_CLASS* _Nullable view NS_SWIFT_NAME(view);
+@property(assign, nonatomic) BOOL enableAudio NS_SWIFT_NAME(enableAudio);
+@property(assign, nonatomic) BOOL enableVideo NS_SWIFT_NAME(enableVideo);
+@property(copy, nonatomic) NSString* _Nullable token NS_SWIFT_NAME(token);
+@property(copy, nonatomic) NSString* _Nonnull channelId NS_SWIFT_NAME(channelId);
+@end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct EchoTestConfiguration {
   view_t view;
   bool enableAudio;
   bool enableVideo;
   const char* token;
   const char* channelId;
-  EchoTestConfiguration() : view(NULL), enableAudio(true), enableVideo(true), token(NULL), channelId(NULL) {}
-  EchoTestConfiguration(view_t v, bool ea, bool ev, const char* t, const char* c) : view(v), enableAudio(ea), enableVideo(ev), token(t), channelId(c) {}
+
+  EchoTestConfiguration(view_t v, bool ea, bool ev, const char* t, const char* c)
+   : view(v), enableAudio(ea), enableVideo(ev), token(t), channelId(c) {}
+  
+  EchoTestConfiguration()
+   : view(OPTIONAL_NULLPTR), enableAudio(true), enableVideo(true), token(OPTIONAL_NULLPTR), channelId(OPTIONAL_NULLPTR) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public struct EchoTestConfiguration {
-        public IntPtr view;
-        public bool enableAudio;
-        public bool enableVideo;
-        public string token;
-        public string channelId;
-    };</codeblock>
+            <codeblock props="unity" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">class EchoTestConfiguration {
-                  @JsonKey(includeIfNull: false)
-                  bool? enableAudio;
-                
-                  @JsonKey(includeIfNull: false)
-                  bool? enableVideo;
-
-                  @JsonKey(includeIfNull: false)
-                  String? token;
-
-                  @JsonKey(includeIfNull: false)
-                  String? channelId;
-
-                  EchoTestConfiguration({
-                    this.enableAudio,
-                    this.enableVideo,
-                    this.token,
-                    this.channelId,
-                  });
-                
-                  factory EchoTestConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =>
-                      _$EchoTestConfigurationFromJson(json);
-                
-                  Map&lt;String, dynamic&gt; toJson() => _$EchoTestConfigurationToJson(this);
-                }</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
-                    <pt>view</pt>
-                    <pd>用于渲染本地用户视频的视图。该参数仅适用于测试视频设备的场景，即该结构体中 <ph>enableVideo</ph> 为 <ph keyref="true"/>。</pd>
-                </plentry>
-                <plentry>
-                    <pt>enableAudio</pt>
-                    <pd>是否开启音频设备：
-                        <ul>
-                        <li><ph keyref="true"/>: (默认) 开启音频设备。如需测试音频设备，请设为 <ph keyref="true"/>。</li>
-                        <li><ph keyref="false"/>: 关闭音频设备。</li>
-                        </ul></pd>
-                </plentry>
-                <plentry>
-                    <pt>enableVideo</pt>
-                    <pd>是否开启视频设备：
-                        <ul>
-                        <li><ph keyref="true"/>: (默认) 开启音频设备。如需测试视频设备，请设为 <ph keyref="true"/>。</li>
-                        <li><ph keyref="false"/>: 关闭视频设备。</li>
-                        </ul></pd>
-                </plentry>
-                <plentry>
-                    <pt>token</pt>
-                    <pd>用于保证音视频通话回路测试安全性的 Token。如果你在 Agora 控制台未启用 App 证书，则不需要向该参数传值；
-                        如果你在 Agora 控制台已启用 App 证书，则必须向该参数传入 Token，且在你生成 Token 时使用的 <codeph>uid</codeph> 必须为 0xFFFFFFFF，
-                        使用的频道名必须为标识每个音视频通话回路测试的频道名。服务端生成 Token 的方式请参考<xref keyref="guide-token">使用 Token 鉴权</xref>。</pd>
-                </plentry>
-                <plentry>
-                    <pt>channelId</pt>
-                    <pd>标识每个音视频通话回路测试的频道名。为保证回路测试功能正常，同一个项目（App ID） 的各终端用户在不同设备上做音视频通话回路测试时，传入的标识每个回路测试的频道名不能相同。</pd>
-                </plentry>
+                <pt>view</pt>
+                <pd>用于渲染本地用户视频的视图。该参数仅适用于测试视频设备的场景，即该结构体中 <ph>enableVideo</ph> 为 <ph keyref="true"/>。</pd>
+            </plentry>
+            <plentry>
+                <pt>enableAudio</pt>
+                <pd>是否开启音频设备：
+                    <ul>
+                    <li><ph keyref="true"/>: (默认) 开启音频设备。如需测试音频设备，请设为 <ph keyref="true"/>。</li>
+                    <li><ph keyref="false"/>: 关闭音频设备。</li>
+                    </ul></pd>
+            </plentry>
+            <plentry>
+                <pt>enableVideo</pt>
+                <pd>是否开启视频设备：
+                        
+                    <ul>
+                    <li><ph keyref="true"/>: (默认) 开启视频设备。如需测试视频设备，请设为 <ph keyref="true"/>。</li>
+                    <li><ph keyref="false"/>: 关闭视频设备。</li>
+                    </ul></pd>
+            </plentry>
+            <plentry>
+                <pt>token</pt>
+                <pd>用于保证音视频通话回路测试安全性的 Token。如果你在 Agora 控制台未启用 App 证书，则不需要向该参数传值；如果你在 Agora 控制台已启用 App 证书，则必须向该参数传入 Token，且在你生成 Token 时使用的 <codeph>uid</codeph> 必须为 0xFFFFFFFF，使用的频道名必须为标识每个音视频通话回路测试的频道名。服务端生成 Token 的方式请参考<xref keyref="guide-token">使用 Token 鉴权</xref>。</pd>
+            </plentry>
+            <plentry>
+                <pt>channelId</pt>
+                <pd>标识每个音视频通话回路测试的频道名。为保证回路测试功能正常，同一个项目（App ID） 的各终端用户在不同设备上做音视频通话回路测试时，传入的标识每个回路测试的频道名不能相同。</pd>
+            </plentry>
             </parml> </section>
     </refbody>
 </reference>

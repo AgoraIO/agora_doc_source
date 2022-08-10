@@ -31,7 +31,7 @@
 @property(assign, nonatomic) double alpha;
 @property(assign, nonatomic) NSInteger audioChannel;
 @end</codeblock>
-            <codeblock props="cpp unity" outputclass="language-cpp">truct TranscodingUser {
+            <codeblock props="cpp" outputclass="language-cpp">truct TranscodingUser {
   uid_t uid;
   int x;
   int y;
@@ -50,56 +50,91 @@
         alpha(1.0),
         audioChannel(0) {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">export interface TranscodingUser {
-    uid: number;
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-    zOrder: number;
-    alpha: number;
-    audioChannel: number;
+            <codeblock props="electron" outputclass="language-typescript">export class TranscodingUser {
+  uid?: number
+  x?: number
+  y?: number
+  width?: number
+  height?: number
+  zOrder?: number
+  alpha?: number
+  audioChannel?: number
+}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class TranscodingUser
+    {
+        public TranscodingUser()
+        {
+            uid = 0;
+            x = 0;
+            y = 0;
+            width = 0;
+            height = 0;
+            zOrder = 0;
+            alpha = 1.0;
+            audioChannel = 0;
+        }
+
+        public TranscodingUser(uint uid, int x, int y, int width, int height, int zOrder, double alpha,
+            int audioChannel)
+        {
+            this.uid = uid;
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+            this.zOrder = zOrder;
+            this.alpha = alpha;
+            this.audioChannel = audioChannel;
+        }
+
+        public uint uid { set; get; }
+        public int x { set; get; }
+        public int y { set; get; }
+        public int width { set; get; }
+        public int height { set; get; }
+        public int zOrder { set; get; }
+        public double alpha { set; get; }
+        public int audioChannel { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">export class TranscodingUser {
+  uid?: number;
+  x?: number;
+  y?: number;
+  width?: number;
+  height?: number;
+  zOrder?: number;
+  alpha?: number;
+  audioChannel?: number;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class TranscodingUser {
-  
-  int uid;
+  const TranscodingUser(
+      {this.uid,
+      this.x,
+      this.y,
+      this.width,
+      this.height,
+      this.zOrder,
+      this.alpha,
+      this.audioChannel});
 
-  @JsonKey(includeIfNull: false)
-  int? x;
-
-  @JsonKey(includeIfNull: false)
-  int? y;
-
-  @JsonKey(includeIfNull: false)
-  int? width;
-
-  @JsonKey(includeIfNull: false)
-  int? height;
-
-  @JsonKey(includeIfNull: false)
-  int? zOrder;
-
-  @JsonKey(includeIfNull: false)
-  double? alpha;
-
-  @JsonKey(includeIfNull: false)
-  AudioChannel? audioChannel;
-
-  TranscodingUser(
-    this.uid, {
-    this.x,
-    this.y,
-    this.width,
-    this.height,
-    this.zOrder,
-    this.alpha,
-    this.audioChannel,
-  });
-
+  @JsonKey(name: 'uid')
+  final int? uid;
+  @JsonKey(name: 'x')
+  final int? x;
+  @JsonKey(name: 'y')
+  final int? y;
+  @JsonKey(name: 'width')
+  final int? width;
+  @JsonKey(name: 'height')
+  final int? height;
+  @JsonKey(name: 'zOrder')
+  final int? zOrder;
+  @JsonKey(name: 'alpha')
+  final double? alpha;
+  @JsonKey(name: 'audioChannel')
+  final int? audioChannel;
   factory TranscodingUser.fromJson(Map&lt;String, dynamic> json) =>
       _$TranscodingUserFromJson(json);
-
   Map&lt;String, dynamic> toJson() => _$TranscodingUserToJson(this);
 }</codeblock> </p>
         </section>
@@ -114,24 +149,21 @@
                     <p>主播的用户 ID。</p>
                 </pd>
             </plentry>
-            <plentry props="android cpp unity">
+            <plentry props="android cpp unity electron rn flutter">
                 <pt>x</pt>
                 <pd>
-                    <p>主播视频画面在输出视频画面的 x 坐标 (pixel)，以输出视频画面的左上角为原点。取值范围为[0,width]，width 为 <xref
-                    keyref="LiveTranscoding"/> 中设置的 <codeph>width</codeph>。</p>
+                    <p>主播视频画面在输出视频画面的 x 坐标 (pixel)，以输出视频画面的左上角为原点。取值范围为[0,width]，width 为 <xref keyref="LiveTranscoding"/> 中设置的 <codeph>width</codeph>。</p>
                 </pd>
             </plentry>
-            <plentry props="android cpp unity">
+            <plentry props="android cpp unity electron rn flutter">
                 <pt>y</pt>
-                <pd>主播视频画面在输出视频画面的 y 坐标 (pixel)，以输出视频画面的左上角为原点。取值范围为[0,height]，height 为 <xref
-                    keyref="LiveTranscoding"
-                    /> 中设置的 <codeph>height</codeph>。</pd>
+                <pd>主播视频画面在输出视频画面的 y 坐标 (pixel)，以输出视频画面的左上角为原点。取值范围为[0,height]，height 为 <xref keyref="LiveTranscoding"/> 中设置的 <codeph>height</codeph>。</pd>
             </plentry>
-            <plentry props="android cpp unity">
+            <plentry props="android cpp unity electron rn flutter">
                 <pt>width</pt>
                 <pd>主播视频画面的宽 (pixel)。</pd>
             </plentry>
-            <plentry props="android cpp unity">
+            <plentry props="android cpp unity electron rn flutter">
                 <pt>height</pt>
                 <pd>
                     <p>主播视频画面的高 (pixel)。</p>
@@ -145,6 +177,11 @@
                 <pt>zOrder</pt>
                 <pd>
                     <p>主播视频画面的图层编号。取值范围为 [0,100]。
+
+
+
+
+                    
                     
                     <ul>
                     <li>0:（默认）视频画面位于图层的最下层。</li>
@@ -160,6 +197,11 @@
                 <pt>alpha</pt>
                 <pd>
                     <p>主播视频画面的透明度。取值范围为 [0.0,1.0]。
+
+
+
+
+                    
                     
                     <ul>
                     <li>0.0: 完全透明。</li>
@@ -171,24 +213,22 @@
                 <pt>audioChannel</pt>
                 <pd>
                     <p>主播音频在输出音频中占用的声道。默认值为 0，取值范围为 [0,5]：
+
+
+
+
+                    
                     
                     <ul id="ul_ugm_rrh_v4b">
                     <li><codeph>0</codeph>: （推荐）默认混音设置，最多支持双声道，与主播上行音频相关。</li>
-                    <li><codeph>1</codeph>: 主播音频在输出音频的 FL 声道。如果主播上行音频是多声道，Agora
-                                    服务器会先把多声道混音成单声道。</li>
-                    <li><codeph>2</codeph>: 主播音频在输出音频的 FC 声道。如果主播上行音频是多声道，Agora
-                                    服务器会先把多声道混音成单声道。</li>
-                    <li><codeph>3</codeph>: 主播音频在输出音频的 FR 声道。如果主播上行音频是多声道，Agora
-                                    服务器会先把多声道混音成单声道。</li>
-                    <li><codeph>4</codeph>: 主播音频在输出音频的 BL 声道。如果主播上行音频是多声道，Agora
-                                    服务器会先把多声道混音成单声道。</li>
-                    <li><codeph>5</codeph>: 主播音频在输出音频的 BR 声道。如果主播上行音频是多声道，Agora
-                                    服务器会先把多声道混音成单声道。</li>
-                    <li><codeph>0xFF</codeph> 或取值大于 <codeph>5</codeph>: 该主播音频静音，Agora
-                                    服务器移除该主播的音频。</li>
+                    <li><codeph>1</codeph>: 主播音频在输出音频的 FL 声道。如果主播上行音频是多声道，Agora 服务器会先把多声道混音成单声道。</li>
+                    <li><codeph>2</codeph>: 主播音频在输出音频的 FC 声道。如果主播上行音频是多声道，Agora 服务器会先把多声道混音成单声道。</li>
+                    <li><codeph>3</codeph>: 主播音频在输出音频的 FR 声道。如果主播上行音频是多声道，Agora 服务器会先把多声道混音成单声道。</li>
+                    <li><codeph>4</codeph>: 主播音频在输出音频的 BL 声道。如果主播上行音频是多声道，Agora 服务器会先把多声道混音成单声道。</li>
+                    <li><codeph>5</codeph>: 主播音频在输出音频的 BR 声道。如果主播上行音频是多声道，Agora 服务器会先把多声道混音成单声道。</li>
+                    <li><codeph>0xFF</codeph> 或取值大于 <codeph>5</codeph>: 该主播音频静音，Agora 服务器移除该主播的音频。</li>
                     </ul>
-                    <note type="attention"
-                    >取值不为 <codeph>0</codeph> 时，需要使用特殊的播放器。</note></p>
+                    <note type="attention">取值不为 <codeph>0</codeph> 时，需要使用特殊的播放器。</note></p>
                 </pd>
             </plentry>
             </parml> </section>

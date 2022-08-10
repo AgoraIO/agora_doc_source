@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_onerror">
+    <title><ph keyref="onError"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Reports an error during SDK runtime.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onError"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onError(int err) {}
+</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didOccurError:(AgoraErrorCode)errorCode;
+</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onError(int err, const char* msg) {
+    (void)err;
+    (void)msg;
+  }
+</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <p id="desc">This callback indicates that an error (concerning network or media) occurs during SDK runtime. In most cases, the SDK cannot fix the issue and resume running. The SDK requires the application to take action or informs the user about the issue.</p>
+            <note type="attention" props="electron">The callback only reports errors in the Native layer. If you want to receive errors from the Electron layer, use <xref keyref="onApiError"/>.</note> </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <parml>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry props="apple cpp">
+                <pt props="apple">errorCode</pt>
+                <pt props="cpp">err</pt>
+                <pd>Error code. See <xref keyref="ERROR_CODE_TYPE"/>.</pd>
+            </plentry>
+            <plentry props="cpp">
+                <pt>msg</pt>
+                <pd>The error message.</pd>
+            </plentry>
+            <plentry props="android">
+                <pt>err</pt>
+                <pd>Error code.</pd>
+                <pd>
+                    <ul>
+                        <li><ph keyref="ERR_OK"/>(0): No error.</li>
+                        <li><ph keyref="ERR_FAILED"/>(1): General error with no classified reason. Try calling the method again.</li>
+                        <li><ph keyref="ERR_INVALID_ARGUMENT"/>(2): An invalid parameter is used. For example, the specified channel name includes illegal characters. Reset the parameter.</li>
+                        <li><ph keyref="ERR_NOT_READY"/>(3): The SDK is not ready. Possible reasons include the following:<ul>
+                            <li>The <xref keyref="IRtcEngine"/> initialization fails. Reinitialize the <apiname keyref="IRtcEngine"/>.</li>
+                            <li>No user has joined the channel when the method is called. Check your code logic.</li>
+                            <li>The user has not left the channel when the <xref keyref="rate"/> or <xref keyref="complain"/> method is called. Check your code logic.</li>
+                            <li>The audio module is disabled. The program is not complete.</li>
+                            </ul></li>
+                        <li><ph keyref="ERR_NOT_SUPPORTED"/>(4): <apiname keyref="IRtcEngine"/> does not support the request. Possible reasons include the following:<ul>
+                            <li props="android">The <xref keyref="setBeautyEffectOptions"/> method is called on devices running versions earlier than Android 5.0. Check the Android version.</li>
+                            <li>The built-in encryption mode is incorrect, or the SDK fails to load the external encryption library. Check the encryption mode setting, or reload the external encryption library.</li>
+                            </ul></li>
+                        <li><ph keyref="ERR_REFUSED"/>(5): The request is rejected. Possible reasons include the following:<ul>
+                            <li>The <apiname keyref="IRtcEngine"/> initialization fails. Reinitialize the <apiname keyref="IRtcEngine"/>.</li>
+                            <li>The channel name is set as the empty string <codeph>""</codeph> when joining the channel. Reset the channel name.</li>
+                            <li>When the <xref keyref="joinChannelEx"/> method is called to join multiple channels, the specified channel name is already in use. Reset the channel name.</li>
+                            </ul></li>
+                        <li><ph keyref="ERR_BUFFER_TOO_SMALL"/> (6): The buffer size is insufficient to store the returned data.</li>
+                        <li><ph keyref="ERR_NOT_INITIALIZED"/> (7): A method is called before the initialization of <apiname keyref="IRtcEngine"/>. Ensure that the <apiname keyref="IRtcEngine"/> object is initialized before using this method.</li>
+                        <li><ph keyref="ERR_INVALID_STATE"/> (8): Invalid state.</li>
+                        <li><ph keyref="ERR_NO_PERMISSION"/>(9): Permission to access is not granted. Check whether your app has access to the audio and video device.</li>
+                        <li><ph keyref="ERR_TIMEDOUT"/>(10): A timeout occurs. Some API calls require the SDK to return the execution result. This error occurs if the SDK takes too long (more than 10 seconds) to return the result.</li>
+                        <li><ph keyref="ERR_JOIN_CHANNEL_REJECTED"/>(17): The request to join the channel is rejected. Possible reasons include the following:<ul>
+                            <li>The user is already in the channel. Agora recommends using the <xref keyref="onConnectionStateChanged"/> callback to get whether the user is in the channel. Do not call this method to join the channel unless you receive the <apiname keyref="CONNECTION_STATE_DISCONNECTED"/>(1) state.</li>
+                            <li>After calling <xref keyref="startEchoTest2"/> for the call test, the user tries to join the channel without calling <xref keyref="stopEchoTest"/> to end the current test. To join a channel, the call test must be ended by calling <apiname keyref="stopEchoTest"/>.</li>
+                            </ul></li>
+                        <li><ph keyref="ERR_LEAVE_CHANNEL_REJECTED"/>(18): Fails to leave the channel. Possible reasons include the following:<ul>
+                            <li>The user has left the channel before calling the <xref keyref="leaveChannel"/> method. Stop calling this method to clear this error.</li>
+                            <li>The user calls the <apiname keyref="leaveChannel"/> method to leave the channel before joining the channel. In this case, no extra operation is needed.</li>
+                            </ul></li>
+                        <li><ph keyref="ERR_ALREADY_IN_USE"/>(19): Resources are already in use.</li>
+                        <li><ph keyref="ERR_ABORTED"/>(20): The request is abandoned by the SDK, possibly because the request has been sent too frequently.</li>
+                        <li><ph keyref="ERR_RESOURCE_LIMITED"/>(22): The SDK fails to allocate resources because your app uses too many system resources or system resources are insufficient.</li>
+                        <li><ph keyref="ERR_INVALID_APP_ID"/>(101): The App ID is invalid. Rejoin the channel with a valid App ID.</li>
+                        <li><ph keyref="ERR_INVALID_CHANNEL_NAME"/>(102): The channel name is invalid. The data types of some parameters could be incorrect. Rejoin the channel with a valid channel name.</li>
+                        <li><ph keyref="ERR_NO_SERVER_RESOURCES"/>(103): Fails to get server resources in the specified region. Try another region when initializing <apiname keyref="IRtcEngine"/>.</li>
+                        <li><ph keyref="ERR_TOKEN_EXPIRED"/>(109): The current token has expired. Apply for a new token on the server and call <xref keyref="renewToken"/>.<dl outputclass="deprecated">
+                            <dlentry>
+                                <dt>Deprecated:</dt>
+                                <dd>This enumerator is deprecated. Use <apiname keyref="CONNECTION_CHANGED_TOKEN_EXPIRED"/>(9) in the <xref keyref="onConnectionStateChanged"/> callback instead.</dd>
+                            </dlentry>
+                            </dl>
+                        </li>
+                        <li><ph keyref="ERR_INVALID_TOKEN"/>(110): Invalid token Typical reasons include:<ul>
+                            <li>App Certificate is enabled in Agora Console, but the code still uses App ID for authentication. Once App Certificate is enabled for a project, you must use token-based authentication.</li>
+                            <li>The <codeph>uid</codeph> used to generate the token is not the same as the <parmname>uid</parmname> used to join the channel.</li>
+                            </ul>
+                            <dl>
+                            <dlentry>
+                                <dt>Deprecated:</dt>
+                                <dd>This enumerator is deprecated. Use <apiname keyref="CONNECTION_CHANGED_INVALID_TOKEN"/>(8) in the <xref keyref="onConnectionStateChanged"/> callback instead.</dd>
+                            </dlentry>
+                            </dl>
+                        </li>
+                        <li><ph keyref="ERR_CONNECTION_INTERRUPTED"/>(111): The network connection is interrupted. The SDK triggers this callback when it loses connection with the server for more than four seconds after the connection is established.</li>
+                        <li><ph keyref="ERR_CONNECTION_LOST"/>(112): The network connection is lost. Occurs when the SDK cannot reconnect to Agora's edge server 10 seconds after its connection to the server is interrupted.</li>
+                        <li><ph keyref="ERR_NOT_IN_CHANNEL"/>(113): The user is not in the channel when calling the <xref keyref="sendStreamMessage"/> method.</li>
+                        <li><ph keyref="ERR_SIZE_TOO_LARGE"/>(114): The data size exceeds 1 KB when calling the <apiname keyref="sendStreamMessage"/>method.</li>
+                        <li><ph keyref="ERR_BITRATE_LIMIT"/>(115): The data bitrate exceeds 6 KB/s when calling the <apiname keyref="sendStreamMessage"/> method.</li>
+                        <li><ph keyref="ERR_TOO_MANY_DATA_STREAMS"/>(116): More than five data streams are created when calling the <xref keyref="createDataStream2"/> method.</li>
+                        <li><ph keyref="ERR_STREAM_MESSAGE_TIMEOUT"/>(117): The data stream transmission times out.</li>
+                        <li><ph keyref="ERR_SET_CLIENT_ROLE_NOT_AUTHORIZED"/>(119): Switching roles fails; try rejoining the channel.</li>
+                        <li><ph keyref="ERR_DECRYPTION_FAILED"/>(120): Decryption fails. The user might have entered an incorrect password to join the channel. Check the entered password, or tell the user to try rejoining the channel.</li>
+                        <li><ph keyref="ERR_INVALID_USER_ID"/>(121): The user ID is invalid.</li>
+                        <li><ph keyref="ERR_CLIENT_IS_BANNED_BY_SERVER"/>(123): The user is banned by the server.</li>
+                        <li><ph keyref="ERR_ENCRYPTED_STREAM_NOT_ALLOWED_PUBLISH"/>(130): The SDK does not support pushing encrypted streams to CDN. Stream encryption is enabled when the user calls the <xref keyref="addPublishStreamUrl"/> method.</li>
+                        <li><ph keyref="ERR_INVALID_USER_ACCOUNT"/>(134): The user account is invalid, possibly because it contains invalid parameters.</li>
+                        <li><ph keyref="ERR_LOAD_MEDIA_ENGINE"/>(1001): The SDK fails to load the media engine.</li>
+                        <li><ph keyref="ERR_ADM_GENERAL_ERROR"/>(1005): A general error occurs (no specified reason). Check whether the audio device is already in use by another app, or try rejoining the channel.</li>
+                        <li><ph keyref="ERR_ADM_INIT_PLAYOUT"/>(1008): An error occurs when initializing the playback device. Check whether the playback device is already in use by another app, or try rejoining the channel.</li>
+                        <li><ph keyref="ERR_ADM_START_PLAYOUT"/>(1009): An error occurs when starting the playback device. Check the playback device.</li>
+                        <li><ph keyref="ERR_ADM_STOP_PLAYOUT"/>(1010): An error occurs when stopping the playback device.</li>
+                        <li><ph keyref="ERR_ADM_INIT_RECORDING"/>(1011): An error occurs when initializing the recording device. Check the recording device, or try rejoining the channel.</li>
+                        <li><ph keyref="ERR_ADM_START_RECORDING"/>(1012): An error occurs when starting the recording device. Check the recording device.</li>
+                        <li><ph keyref="ERR_ADM_STOP_RECORDING"/>(1013): An error occurs when stopping the recording device.</li>
+                        <li><ph keyref="ERR_VDM_CAMERA_NOT_AUTHORIZED"/>(1501): Permission to access the camera is not granted. Check whether permission to access the camera permission is granted.</li>
+                        </ul></pd>
+                                </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

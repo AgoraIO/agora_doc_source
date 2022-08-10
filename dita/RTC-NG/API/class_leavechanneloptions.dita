@@ -24,24 +24,58 @@
   LeaveChannelOptions() : stopAudioMixing(true), stopAllEffect(true), stopMicrophoneRecording(true) {}
 };
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public class LeaveChannelOptions {
+            <codeblock props="electron" outputclass="language-typescript">export class LeaveChannelOptions {
+  stopAudioMixing?: boolean
+  stopAllEffect?: boolean
+  stopMicrophoneRecording?: boolean
+}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class LeaveChannelOptions
+    {
+        public LeaveChannelOptions()
+        {
+            stopAudioMixing = true;
+            stopAllEffect = true;
+            stopMicrophoneRecording = true;
+        }
+
         public bool stopAudioMixing { set; get; }
         public bool stopAllEffect { set; get; }
         public bool stopMicrophoneRecording { set; get; }
     };</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">export class LeaveChannelOptions {
+  stopAudioMixing?: boolean;
+  stopAllEffect?: boolean;
+  stopMicrophoneRecording?: boolean;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class LeaveChannelOptions {
+  const LeaveChannelOptions(
+      {this.stopAudioMixing, this.stopAllEffect, this.stopMicrophoneRecording});
+
+  @JsonKey(name: 'stopAudioMixing')
+  final bool? stopAudioMixing;
+  @JsonKey(name: 'stopAllEffect')
+  final bool? stopAllEffect;
+  @JsonKey(name: 'stopMicrophoneRecording')
+  final bool? stopMicrophoneRecording;
+  factory LeaveChannelOptions.fromJson(Map&lt;String, dynamic> json) =>
+      _$LeaveChannelOptionsFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$LeaveChannelOptionsToJson(this);
+}
+</codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>stopAudioMixing</pt>
                 <pd>离开频道时，是否停止播放音乐文件及混音：
                     <ul id="ul_ttv_f2n_3qb">
-                    <li><codeph><ph keyref="true"/></codeph>：（默认）停止播放音乐文件及混音。</li>
-                    <li><codeph><ph keyref="false"/></codeph>： 不停止播放音乐文件及混音。</li>
+                    <li><codeph><ph keyref="true"
+                        /></codeph>：（默认）停止播放音乐文件及混音。</li>
+                    <li><codeph><ph keyref="false"
+                        /></codeph>： 不停止播放音乐文件及混音。</li>
                     </ul> </pd>
             </plentry>
             <plentry>
@@ -54,7 +88,7 @@
             </plentry>
             <plentry>
                 <pt>stopMicrophoneRecording</pt>
-                <pd>离开频道时，是否停止麦克风采集：
+                <pd>离开频道时，是否停止麦克风采集：                    
                     <ul id="ul_dy1_s2n_3qb">
                     <li><codeph><ph keyref="true"/></codeph>：（默认）停止麦克风采集。</li>
                     <li><codeph><ph keyref="false"/></codeph>： 不停止麦克风采集。</li>
