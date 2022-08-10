@@ -26,15 +26,15 @@
             <dl outputclass="deprecated">
             <dlentry props="android">
                 <dt>Deprecated:</dt>
-                <dd>If you need to push video frames in I422 format, you need to use this method; otherwise, use  instead<xref keyref="pushVideoFrame2"/>.</dd>
+                <dd>If you need to push video frames in I422 format, you need to use this method; otherwise, use <xref keyref="pushVideoFrame2"/> instead.</dd>
             </dlentry>
             </dl>
-            <p id="desc1" props="android ios mac unity"><xref keyref="setExternalVideoSource"/><codeph><ph keyref="true"/></codeph><codeph><ph keyref="false"/></codeph>If you call  and set the <parmname>enabled</parmname> parameter as  and the <parmname>encodedFrame</parmname> parameter as , you can call this method to push the external raw video frame to the SDK.</p>
-            <p props="cpp">调用 <xref keyref="createCustomVideoTrack"/> 方法获得视频轨道 ID，在每个频道的 <xref keyref="ChannelMediaOptions"/> 中，将 <parmname>customVideoTrackId</parmname> 参数设置为你想要发布的视频轨道 ID，并将 <parmname>publishCustomVideoTrack</parmname> 设置为 <codeph><ph keyref="true"/></codeph>后，你可以调用本方法将未编码的外部视频帧推送到 SDK。</p>
-            <p props="android">You<xref keyref="pushVideoFrame2"/> can push the video frame either by calling this method or by calling . The difference is that<apiname keyref="pushVideoFrame"/> the  method does not support video data in texture format.</p>
+            <p id="desc1" props="android ios mac unity">If you call <xref keyref="setExternalVideoSource"/> and set the <parmname>enabled</parmname> parameter as <codeph><ph keyref="true"/></codeph> and the <parmname>encodedFrame</parmname> parameter as <codeph><ph keyref="false"/></codeph>, you can call this method to push the external raw video frame to the SDK.</p>
+            <p props="cpp">If you call <xref keyref="createCustomVideoTrack"/> method to get the video track ID, set the <parmname>customVideoTrackId</parmname> parameter to the video track ID you want to publish in the <xref keyref="ChannelMediaOptions"/> of each channel, and set the <parmname>publishCustomVideoTrack</parmname> parameter to <codeph><ph keyref="true"/></codeph>, you can call this method to push the unencoded external video frame to the SDK.</p>
+            <p props="android">You can push the video frame either by calling this method or by calling <xref keyref="pushVideoFrame2"/>. The difference is that the <apiname keyref="pushVideoFrame"/> method does not support video data in texture format.</p>
         </section>
         <section id="parameters">
-            <title>Parameter</title>
+            <title>Parameters</title>
             <parml>
             <plentry id="frame">
                 <pt>frame</pt>
@@ -44,7 +44,7 @@
             </plentry>
             <plentry id="videotrackid" props="cpp">
                 <pt>videoTrackId</pt>
-                <pd>The video track ID returned by calling<xref keyref="createCustomVideoTrack"/> the  method.</pd>
+                <pd>The video track ID returned by calling the <xref keyref="createCustomVideoTrack"/> method.</pd>
             </plentry>    
             </parml> </section>
         <section id="return_values">
