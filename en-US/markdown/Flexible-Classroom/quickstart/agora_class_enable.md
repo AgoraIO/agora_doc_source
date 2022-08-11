@@ -31,9 +31,9 @@ Follow these steps to enable the Flexible Classroom service in Agora Console:
 ## Next steps
 
 After enabling the Flexible Classroom service, you can read the following documents to quickly launch and join a flexible classroom:
-- [Launch a Flexible Classroom (Web)](/en/agora-class/agora_class_quickstart_web?platform=Web)
-- [Launch a Flexible Classroom (Android)](/en/agora-class/agora_class_quickstart_android?platform=Android)
-- [Launch a Flexible Classroom (iOS)](/en/agora-class/agora_class_quickstart_ios?platform=iOS)
-- [Launch a Flexible Classroom (Electron)](/en/agora-class/agora_class_quickstart_electron?platform=Electron)
+- [Configure Flexible Classroom (Web)](/en/agora-class/agora_class_configure?platform=Web)
+- [Configure Flexible Classroom (Android)](/en/agora-class/agora_class_configure?platform=Android)
+- [Configure Flexible Classroom (iOS)](/en/agora-class/agora_class_configure?platform=iOS)
+- [Configure Flexible Classroom (Electron)](/en/agora-class/agora_class_configure?platform=Electron)
 
 <div class="alert note">请注意，快速体验暂不支持实时消息功能。 如需试用实时消息功能，你还需配置灵动课堂中的环信 IM 模块，参考<a href="/cn/agora-class/agora_class_configure#配置环信-im">配置环信 IM</a>。</div>

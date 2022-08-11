@@ -34,9 +34,9 @@
 
 成功开通灵动课堂服务后，接下来你可根据目标平台、参考以下文档快速跑通灵动课堂 GitHub 项目并体验灵动课堂：
 
--   [快速启动灵动课堂 (Web)](/cn/agora-class/agora_class_quickstart_web?platform=Web)
--   [快速启动灵动课堂 (Android)](/cn/agora-class/agora_class_quickstart_android?platform=Android)
--   [快速启动灵动课堂 (iOS)](/cn/agora-class/agora_class_quickstart_ios?platform=iOS)
--   [快速启动灵动课堂 (Electron)](/cn/agora-class/agora_class_quickstart_electron?platform=Electron)
+-   [配置灵动课堂 (Web)](/cn/agora-class/agora_class_configure?platform=Web)
+-   [配置灵动课堂 (Android)](/cn/agora-class/agora_class_configure?platform=Android)
+-   [配置灵动课堂 (iOS)](/cn/agora-class/agora_class_configure?platform=iOS)
+-   [配置灵动课堂 (Electron)](/cn/agora-class/agora_class_configure?platform=Electron)
 
 <div class="alert note">请注意，快速体验暂不支持实时消息功能。如需试用实时消息功能，你还需配置灵动课堂中的环信 IM 模块，参考<a href="/cn/agora-class/agora_class_configure#配置环信-im">配置环信 IM</a>。</div>
