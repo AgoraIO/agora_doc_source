@@ -123,6 +123,8 @@ export type LaunchOption = {
     roomUuid: string;
     roleType: EduRoleTypeEnum;
     roomType: EduRoomTypeEnum;
+    roomSubtype?: EduRoomSubtypeEnum;
+    roomServiceType?: EduRoomServiceTypeEnum;
     roomName: string;
     listener: ListenerCallback;
     pretest: boolean;
@@ -152,6 +154,8 @@ export type LaunchOption = {
 | `roomName` | (Required) The room name for display in the classroom. The string length must be less than 64 bytes. |
 | `roleType` | (Required) The role of the user in the classroom. See [`EduRoleTypeEnum`](#eduroletypeenum). |
 | `roomType` | (Required) The classroom type. See [`EduRoomTypeEnum`](#eduroomtypeenum). |
+| `roomSubtype` | (Optional) The classroom subtype. See [EduRoomSubtypeEnum](#eduroomsubtypeenum). The default value is `EduRoomSubtypeEnum.Standard`. |
+| `roomServiceType`  | (Optional) The service type of vocational lecture hall. See [EduRoomServiceTypeEnum](#eduroomservicetypeenum).  |
 | `listener` | (Required) The state of classroom launching.<li>`ready`: The classroom is ready.</li><li>`destroyed`: The classroom has been destroyed.</li> |
 | `pretest` | (Required) Whether to enable the pre-class device test:<li>`true`: Enable the pre-class device test. After this function is enabled, end users can see a page for the device test before entering the classroom. They can check whether their camera, microphone, and speaker can work properly.</li><li>`false`: Disable the pre-class device test.</li> |
 | `language` | (Required) The UI language. See [`LanguageEnum`](#languageenum). |
@@ -171,6 +175,11 @@ export type MediaOptions = {
   cameraEncoderConfiguration?: EduVideoEncoderConfiguration;
   screenShareEncoderConfiguration?: EduVideoEncoderConfiguration;
   encryptionConfig?: MediaEncryptionConfig;
+  channelProfile?: ChannelProfile;
+    web?: {
+        codec: SDK_CODEC;
+        mode: SDK_MODE;
+    };
 };
 ```
 
@@ -181,6 +190,8 @@ Media options.
 | `cameraEncoderConfiguration` | The encoding configuration of the video stream captured by the camera. See [EduVideoEncoderConfiguration](#eduvideoencoderconfiguration). |
 | `screenShareEncoderConfiguration` | The encoding configuration of the screen-sharing stream. See [EduVideoEncoderConfiguration](#eduvideoencoderconfiguration). |
 | `encryptionConfig` | The media stream encryption configuration. See [MediaEncryptionConfig](#mediaencryptionconfig). |
+| `channelProfile` | The channel profile, see [ChannelProfile](#channelprofile).                             |
+| `web` | The configuration of web browser code format and channel profile:<ul><li>`codec`: code format of web browser. The values can be either of the following:<ul><li>`"vp8"`: VP8.</li><li>`"h264"`: H.264.</li></li></ul><li>`mode`: channel mode. The values can be either of the following:<ul><li>`"rtc"`: Communication mode, generally used for one-to-one or one-to-many classes.</li><li>`"live"`: Live-broadcasting mode, cost less and larger latency than the communication mode.</li></ul></li></ul>
 
 ### EduVideoEncoderConfiguration
 
@@ -217,6 +228,20 @@ The media stream encryption configuration. Used in [MediaOptions](#mediaoptions)
 | :----- | :----------------------------------------------------------- |
 | `mode` | Encryption mode. See [MediaEncryptionMode](#mediaencryptionmode). All users in the same classroom must use the same encryption mode and encryption key. |
 | `key` | The encryption key. |
+
+### ChannelProfile
+```typescript
+export enum ChannelProfile {
+  Communication = 0,
+  LiveBroadcasting = 1
+}
+```
+
+The channel profile configuration, used in [MediaOptions](#mediaoptions).
+| Parameter | Description |
+| :----- | :----------------------------------------------------------------------------------------------------------------------- |
+| `Communication` | Communication mode, generally used for one-to-one or one-to-many classes. |
+| `LiveBroadcasting`  | Live-broadcasting mode, cost less and larger latency than the communication mode. |
 
 ### MediaEncryptionMode
 
@@ -262,6 +287,7 @@ export type CloudDriveResourceConvertProgress = {
 };
 
 export type CourseWareItem = {
+
     resourceName: string;
     resourceUuid: string;
     ext: string;
@@ -277,7 +303,6 @@ export type CourseWareItem = {
     };
     taskProgress?: CloudDriveResourceConvertProgress;
 };
-
 export type CourseWareList = CourseWareItem[];
 ```
 
@@ -337,6 +362,7 @@ export type CourseWareList = CourseWareItem[];
 </code></pre>
 </details>
 
+
 | Parameter | Description |
 | :------------- | :----------------------------------------------------------- |
 | `resourceName` | The file name for display in the classroom. The string length must be less than 64 bytes. |
@@ -348,6 +374,50 @@ export type CourseWareList = CourseWareItem[];
 | `conversion` | The file conversion configuration object, which contains the following fields:<ul><li>`static`: Convert the file in format of PPT, PPTX, DOC, DOCX, or PDF to a static picture in format of PNG, JPG, JPEG, or WEBP. The converted file doesn't keep the animation effects of the original file.</li><li>`dynamic`: Convert the file in format of PPTX edited with Microsoft Office to an HTML page. The converted file keeps the animation effects of the original file.</li><li>`preview`: A Boolean value that indicates whether you need preview on the left.</li><li>`scale`: A Number value indicates the conversion scale in the range of [0, 3].</li><li>`outputFormat`: A String value indicates the export format of the images after file conversion. You can set it as `png`.</li><ul></ul></ul> |
 | `url` | The address of the file. Flexible Classroom clients automatically convert files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in classrooms. If the suffix name is not listed above, you must set `url `. |
 | `taskProgress` | The JSON object `CloudDriveResourceConvertProgress` that indicates the progress of the file conversion task, which contains the following fields:<ul><li>`totalPageSize`: Total page size.</li><li>`convertedPageSize`: number of converted pages.</li><li>`convertedPercentage`: Conversion progress in percentage.</li><li>`convertedFileList`: List of converted file pages. Each file page represents a record that contains the following fields:<ul><li>`name`: Name of the file page.</li><li>`ppt`: Details of the slide included in the file page, which contains the following fields:<ul><li>`width`: width of the slide.</li><li>`height`: height of the slide.</li><li>`src`: Download URL of the converted page.</li><li>`preview`: URL of the preview image.</li></ul></li></ul></li><li>`currentStep`: Current step of the conversion task. The possible values are: `extracting` (extracting the resources), `generatingPreview` (generating the preview image, `mediaTranscode` (transcoding the media file), and `packaging`(packaging the file).</li></ul> |
+
+
+### EduRoomSubtypeEnum
+```typescript
+export enum EduRoomSubtypeEnum {
+    Standard = 0,
+    Vocational = 1,
+}
+```
+
+The classroom subtype. Set in [LaunchOption](#launchoption).
+
+| Parameters | Description |
+| :--------- | :--------------------------------------------------------------------------------------------------------------- |
+| `Standard` | Standard flexible classroom. |
+| `Vocational`    | When `roomType` is set as `EduRoomTypeEnum.RoomBigClass` and `roomSubtype` is set as `EduRoomSubtypeEnum.Vocational`, this parameter indicates vocational lecture hall. |
+
+
+### EduRoomServiceTypeEnum
+
+```typescript
+export enum EduRoomServiceTypeEnum {
+  LivePremium = 0,
+  LiveStandard = 1,
+  CDN = 2,
+  Fusion = 3,
+  MixStreamCDN = 4,
+  HostingScene = 5,
+}
+```
+
+The service type of vocational lecture hall, set in [LaunchOption](#launchoption).
+
+**Note**: `EduRoomServiceTypeEnum` is only available when `EduRoomTypeEnum` is set as `RoomBigClass(2)` and `EduRoomSubtypeEnum` is set as `Vocational(1)`.
+
+
+| Parameters | Description |
+| :--------- | :--------------------------------------------------------------------------------------------------------------- |
+| `LivePremium` | The classroom uses RTC services in the channel profile of live broadcasting with ultra-low latency (about 400 ms). Functions the same as general lecture hall. |
+| `LiveStandard`    | The classroom uses RTC services in the channel profile of live broadcasting with low latency (about 1 s), which is also called standard live streaming.                  |
+| `CDN`  | The classroom uses CDN to pull and push streams. Teachers push audio and video streams to CDN, from which students pull the streams in real time. Generally the latency of CDN services is larger than 4 s. |
+| `Fusion`  | The classroom uses both RTC and CDN services. Teachers' audio and video streams are sent to RTC channels and also pushed to CDN. Therefore students can both pull the streams from CDN in real time and interact with teachers by speak up "on stage" in RTC channels. The latency of CDN services is larger than that of RTC services. |
+|`mixStreamCDN` | The classroom uses CDN services to pull and push streams. Teachers' audio and video streams and whiteboard date are recorded by web page recording and pushed to CDN in real time. Students take the class by pulling streams from CDN. Generally the latency of CDN services is larger than 4 s. |
+|`hostingScene`  | Teachers' audio and video streams and whiteboard date are recorded by web page recording and pushed to CDN. Students take the class by pulling streams from CDN. Times of different clients are aligned with the server's time. |
 
 ### EduRoleTypeEnum
 
@@ -384,7 +454,7 @@ The classroom type. Set in [`LaunchOption`](#launchoption).
 | Parameter | Description |
 | :--------------- | :----------------------------------------------------------- |
 | `Room1v1Class` | `0`: One-to-one Classroom. An online teacher gives an exclusive lesson to only one student. |
-| `RoomBigClass` | `2`: Lecture Hall. A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. There is no upper limit on the number of students. During the class, students can "raise their hands" to apply for speaking up. Once the teacher approves, the student can send their audio and video to interact with the teacher. |
+| `RoomBigClass` | `2`: Lecture Hall. A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. During the class, students can "raise their hands" to apply for speaking up. Once the teacher approves, the student can send their audio and video to interact with the teacher.<li>If `roomSubtype` is set as `EduRoomSubtypeEnum.Standard`, this value indicates general lecture hall. Teachers and students use RTC services. A teacher gives an online lesson to no more than 5000 students.</li><li>FIf `roomSubtype` is set as `EduRoomSubtypeEnum.Vocational`, this value indicates vocational lecture hall. Besides RTC services, teachers and students cal also use CDN to pull and push streams, where there is no upper limit on the number of students. |
 | `RoomSmallClass` | `4`: Small Classroom. A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. The maximum number of users in a classroom is 500. During the class, the teacher can invite students to speak up "on stage" and have real-time audio and video interactions with the teacher. |
 
 ### LanguageEnum
