@@ -1,44 +1,44 @@
-In real-time messaging apps, messages are transmitted from the message sender to the message receiver. This page provides an overview of the message types and message features supported by the Agora Chat SDK.
+In real-time messaing apps, messages are transmitted from the message sender to the message receiver. This page provides overview to the message types and message features supported by the Agora Chat SDK.
 
 ## Message types
 
 The Agora Chat SDK supports the following types of messages.
 
-### Text messagegs
+### Text messgegs
 
 The message content is text, including hyperlinks and emojis. The maximum data length of a text message is 5 KB.
 
 ### Image messages
 
-Image messages are essentially attachment messages. To send an image message, the sender needs to upload the image to the chat server. When the recipient receives the message, the SDK automatically downloads the image thumbnail. To download the image file, the user needs to tap the thumbnai. The maximum data length of an image message is 10 MB.
+Image messages are essentially attachment messages. To send an image message, you need to upload the image to the chat server. When the recipient receives the message, the SDK automatically downloads the image thumbnail. The maximum data length of an image message is 10 MB.
 
 ### Voice messages
 
-Voice messages are essentially attachment messages. To send a voice message, the sender needs to upload the audio file to the chat server. When the recepient receives a voice message, the SDK automatically downloads the audio file. The maximum data length of a voice message is 10 MB.
+Voice messages are essentially attachment messages. To send a voice message, you need to upload the audio file to the chat server. When the recepient receives a voice message, the SDK automatically downloads the audio file. The maximum data length of a voice message is 10 MB.
 
 ### Video messages
 
-Video messages are essentially attachment messages. To send a video message, the user needs to upload the video file to the chat server. When the recipient receives a video message, the SDK automatically downloads the video file thumbnail. To download the video file, the user needs to tap the thumbnail. The maximum data length of a video message is 10 MB.
+Video messages are essentially attachment messages. To send a video message, you need to upload the viode file to the chat server. When the recipient receives a video message, the SDK automatically downloads the video file thumbnail. To download the video file, the user needs to tap the thumbnail. The maximum data length of a video message is 10 MB.
 
 ### File messages
 
-File messages are essentially attachment messages. To send a file message, the user needs to upload the file to the chat server. When the recipient receives a file message, the SDK automatically downloads the file. The maximum data length of a file message is 10 MB.
+File messages are essentially attachment messages. To send a file message, you need to upload the file to the chat server. When the recipient receives a file message, the SDK automatically downloads the file. The maxinum data length of a file message is 10 MB.
 
 ### Location messages
 
-To send location messages, you need to use a third-party map service provider to get the longitude and latitude information of the location. When the recipient receives a location message, the SDK displays the location in the third-party map service provider according to the longitude and latitude information.
+To send location messages, you need to use a third-party map service provider to get the longtitude and latitude information of the location. When the recipient receives a location message, the SDK displays the location in the third-party map service provider according to the longtitude and latitude information.
 
 ### Command messages
 
-Command messages tell the recipient to take a certain action. After receiving a command message, the recipients deal with the command themselves. You do not need to render command messages on the user interface. You can use command messages to update the a user's avatar and nickname and then synchronize this update. Command messages are not stored in the local database. The maximum data length of a command message is 5 KB.
+Command messages tell the recipient to take a certain action. After receiving a command message, the recipients deal with the command themselves. You do not need to render command messages on the user interface. You can use command messages to update the avatar and nickname and synchronize this update. Command messages are not stored in the local database. The maximum data length of a command message is 5 KB.
 
 ### Extended messages
 
-In cases where text, attachment, and location messages do not meet your business requirements, you can use extended messages. One typical use case is sending messages that quote an earlier text or image message. The data length of an extended message cannot exceed that of the original message type.
+In cases where text, attachment, and location messages do not meet your business requirement, you can use extended messages. One typical use case is sending messages that quote an earlier text or image message. The data length of an extended message must not exceed that of the originial message type.
 
 ### Custom messages
 
-This is a self-defined message type. You can customize multiple message types and add a name to each type. Typical use cases are red-packet messages and template messages. The maximum data length of a custom message is 5 KB.
+This is a self-defined message type. You can customize multiple message types and add a name to each type. Typical use cases are red-packet messages and template messges. The maximum data length of a custom message is 5 KB.
 
 ## Message features
 
@@ -53,7 +53,7 @@ All chat users can send and receive messages.
 - In chat groups, group members send and receive messages in the chat group. 
 - In chat rooms, chat room members send and receive messages in the chat room.
 
-The messages exchanged between chat users in each of these scenarios are collectively known as a conversation.
+In the scenarios above, the messages between the two users, in each chat group, and in each chat room are also known as a conversation.
 
 ### Retrieve all local conversations
 
@@ -65,11 +65,11 @@ You can retrieve the messages of the specified conversation. When a user enters 
 
 ### Retrieve the number of unread messages
 
-Since messages are stored with the read status, with their read status, you can also retrieve the number of the unread messages in each conversation.
+Since messages are stored with the read status, you can also retrieve the number of the unread messages in each conversation.
 
 ### Set all messages read
 
-Once a user has read all the messages, the number of the unread messages are cleared. You can also clear the number of unread messages for the specified conversation or all the conversations.
+Once you read all the messages, the number of the unread messages are cleared. You can also clear the number of unread messages of the specified conversation or all the conversations.
 
 ### Delete conversation and historical messages
 
@@ -95,7 +95,7 @@ Apart from the local device, you can also retrieve conversations from the server
 
 The Agora Chat SDK stores historical messages in the chat server, and you can retrieve historical messages in each conversation from the server with pagination. The time duration for storing historical messages varies according to your pricing plan. See [Limitations of message storage duration](#limitations).
 
-### Message delievery receipt
+### Message delivery receipt
 
 The SDK supports sending a message delivery receipt when the message is successfully sent.
 
