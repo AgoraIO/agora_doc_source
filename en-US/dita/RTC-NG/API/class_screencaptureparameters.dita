@@ -42,17 +42,9 @@
   ScreenCaptureParameters(int width, int height, int f, int b, view_t *ex, int cnt)
     : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(true), windowFocus(false), excludeWindowList(ex), excludeWindowCount(cnt), highLightWidth(0), highLightColor(0), enableHighLight(false) {}
   ScreenCaptureParameters(int width, int height, int f, int b, bool cur, bool fcs, view_t *ex, int cnt)
-    : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(cur), windowFocus(fcs), excludeWindowList(ex), excludeWindowCount(cnt) {}
-};</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">export class ScreenCaptureParameters {
-  dimensions?: VideoDimensions
-  frameRate?: number
-  bitrate?: number
-  captureMouseCursor?: boolean
-  windowFocus?: boolean
-  excludeWindowList?: any[]
-  excludeWindowCount?: number
-}</codeblock>
+    : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(cur), windowFocus(fcs), excludeWindowList(ex), excludeWindowCount(cnt), highLightWidth(0), highLightColor(0), enableHighLight(false) {}
+};
+</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class ScreenCaptureParameters
     {
         public ScreenCaptureParameters()
@@ -160,19 +152,17 @@
             </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <note type="note" props="mac cpp unity">The video profiles of the shared screen stream are only set by <xref keyref="ScreenCaptureParameters"/>, independent of <xref keyref="setVideoEncoderConfiguration"/> .</note>
             <parml>
             <plentry>
-                <pt props="ios mac cpp unity flutter electron rn">dimensions</pt>
-                <pt props="android">videoDimensions</pt>
+                <pt props="mac cpp unity flutter electron rn">dimensions</pt>
                 <pd>
-                    <p>The maximum dimensions of encoding the shared region. See <xref keyref="VideoDimensions"/>. The default value is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges.</p>
-                    <p>If the aspect ratio is different between the encoding dimensions and screen dimensions, Agora applies the following algorithms for encoding. Suppose <codeph>dimensions</codeph> are 1920 x 1080:<ul>
-                    <li>If the value of the screen dimensions is lower than that of <codeph>dimensions</codeph>, for example, 1000 x 1000 pixels, the SDK uses 1000 x 1000 pixels for encoding.</li>
-                    <li>If the value of the screen dimensions is higher than that of <codeph>dimensions</codeph>, for example, 2000 x 1500, the SDK uses the maximum value under dimensions with the aspect ratio of the screen dimension (4:3) for encoding, that is, 1440 x 1080.</li>
-                    </ul></p>
+                    <p><ph props="flutter">The maximum dimensions of encoding the shared region. </ph><ph props="mac">The video encoding resolution of the shared screen stream. </ph><ph props="unity cpp">On Windows and macOS, it represents the video encoding resolution of the shared screen stream. </ph><ph props="cpp">See <xref keyref="VideoDimensions"/>. The default value is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges.</ph></p>
+                    <p>If the screen dimensions are different from the value of this parameter, Agora applies the following strategies for encoding. Suppose <parmname props="mac cpp unity flutter">dimensions</parmname> is set to 1920 x 1080:<ul>
+                            <li>If the value of the screen dimensions is lower than that of <parmname props="mac cpp unity flutter">dimensions</parmname>, for example, 1000 x 1000 pixels, the SDK uses 1000 x 1000 pixels for encoding.</li>
+                            <li>If the value of the screen dimensions is higher than that of <parmname props="mac cpp unity flutter">dimensions</parmname>, for example, 2000 x 1500, the SDK uses the maximum value under <parmname props="mac cpp unity flutter">dimensions</parmname> with the aspect ratio of the screen dimension (4:3) for encoding, that is, 1440 x 1080.</li>
+                            </ul></p>
                 </pd>
             </plentry>
             <plentry>
@@ -216,11 +206,11 @@
             </plentry>
             <plentry props="mac cpp">
                 <pt>highLightColor</pt>
-                <pd><ph props="cpp">(For macOS only) </ph><ph>The color of the border in RGBA format. The default value is 0xFF8CBF26.</ph><note>On macOS, <codeph>COLOR_CLASS</codeph> refers to <codeph>NSColor</codeph>.</note></pd>
+                <pd><ph props="cpp">(For macOS only)</ph><ph> The color of the border in RGBA format. The default value is 0xFF8CBF26.</ph><note>On macOS, <codeph>COLOR_CLASS</codeph> refers to <codeph>NSColor</codeph>.</note></pd>
             </plentry>
             <plentry props="mac cpp">
                 <pt>highLightWidth</pt>
-                <pd><ph props="cpp">(For macOS only) </ph><ph>The width (px) of the border. The default value is 5, and the value range is (0, 50].</ph><note>This parameter only takes effect when <parmname>highLighted</parmname> is set to <codeph><ph keyref="true"/></codeph>.</note></pd>
+                <pd><ph props="cpp">(For macOS only)</ph><ph> The width (px) of the border. The default value is 5, and the value range is (0, 50].</ph><note>This parameter only takes effect when <parmname>highLighted</parmname> is set to <codeph><ph keyref="true"/></codeph>.</note></pd>
             </plentry>
             <plentry props="cpp unity electron rn flutter">
                 <pt>excludeWindowCount</pt>
