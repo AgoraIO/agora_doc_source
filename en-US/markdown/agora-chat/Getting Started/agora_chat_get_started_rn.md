@@ -2,78 +2,73 @@ Instant messaging connects people wherever they are and allows them to communica
 
 This page shows a sample code to add peer-to-peer messaging into a Windows project by using the Agora Chat SDK.
 
-![image](./res/main.png)
+## Understand the tech
 
-## Project structure
+~338e0e30-e568-11ec-8e95-1b7dfd4b7cb0~
 
-The project uses a single app to combine a variety of functionalities.
+## Prerequisites
 
-| Function              | Location           |
-| --------------------- | ------------------ |
-| Init React Native SDK | [App.js](./App.js) |
-| Set Connect listener  | [App.js](./App.js) |
-| Register account      | [App.js](./App.js) |
-| Login to server       | [App.js](./App.js) |
-| Logout from server    | [App.js](./App.js) |
-| Send text message     | [App.js](./App.js) |
-| receive message       | [App.js](./App.js) |
-
-## How to run the sample project
-
-### Prerequisites
-
-Before proceeding, ensure that your development and run environment meets the following requirements.
+Before proceeding, ensure that your development and run environment meet the following requirements.
 
 If your target platform is iOS:
 
-- MacOS 10.15.7 or above
-- Xcode 12.4 or above, including command line tools
+- macOS 10.15.7 or later
+- Xcode 12.4 or later, including command line tools
 - React Native 0.63.4 or later
-- NodeJs 16 or above, including npm package management tool
+- NodeJs 16 or later, including npm package management tool
 - CocoaPods package management tool
 - Yarn compile and run tool
 - Watchman debugging tool
-- A physical or virtual mobile device running iOS 11.0 or later
+- A physical or virtual mobile device running iOS 10.0 or later
 
 If your target platform is Android:
 
-- MacOS 10.15.7 or above, Windows 10 or above
-- Android Studio 4.0 or above, including JDK 1.8 or above
+- macOS 10.15.7 or later, or Windows 10 or later
+- Android Studio 4.0 or later, including JDK 1.8 or later
 - React Native 0.63.4 or later
-- CocoaPods package management tool if your operating system is Macos.
-- Powershell 5.1 or above installed if your operating system is Windows.
-- NodeJs 16 or above, including npm package management tool
+- CocoaPods package management tool if your operating system is macOS.
+- Powershell 5.1 or later if your operating system is Windows.
+- NodeJs 16 or later, including npm package management tool
 - Yarn compile and run tool
 - Watchman debugging tool
 - A physical or virtual mobile device running Android 6.0 or later
 
-For more information, see [RN dev](https://reactnative.dev/).
+For more information, see [Setting up the environment](https://reactnative.dev/docs/environment-setup).
 
-### Steps to run
+## Project setup
 
-#### Create a demo project.
+Follow these steps to create a React Native project and add Agora Chat into your app.
 
 1. Make sure you have set up the development environment based on your operating system and target platform.
-2. In your terminal, run the following command to create a React Native project.
+2. In your terminal, run the following command to create a React Native project:
+
    ```sh
    npx react-native init token_login_demo
    cd token_login_demo
    yarn
    ```
-   A successful execution of this command generates a project named `token_login_demo` in the directory that you run the command.
+
+   A successful execution of this command generates a project named `token_login_demo` in the directory where you run the command.
+
 3. Run the following command to import the Chat SDK using yarn:
+
    ```sh
    yarn add react-native-agora-chat
    ```
-4. Execute the scripts or tools according to your target platform.
-   If your target platform is iOS:
+
+4. If your target platform is iOS, run the following command to execute the tools:
+
    ```sh
    cd ios && pod install && cd ..
    ```
 
-#### Implement sample code.
+## Implementation
 
-To send a one-to-one message, chat users should register a Chat account, log into Agora Chat, and send a text message.
+This section introduces the codes you need to add to your project to start one-to-one messaging.
+
+### Implement one-to-one messaging
+
+To send a one-to-one message, users must register a Chat account, log in to Agora Chat, and send a text message.
 
 Open `token_login_demo/App.js`, and replace the code with the following:
 
@@ -97,16 +92,19 @@ import {
 
 // The App Object.
 const App = () => {
-  // The settings.
+  // variable defines.
   const title = 'AgoraChatQuickstart';
+  const requestGetTokenUrl = 'https://a41.easemob.com/app/chat/user/login';
+  const requestRegistryAccountUrl =
+    'https://a41.easemob.com/app/chat/user/register';
   const [appKey, setAppKey] = React.useState('81446724#514456');
-  const [username, setUsername] = React.useState('asterisk0020');
-  const [password, setPassword] = React.useState('qwer');
+  const [username, setUsername] = React.useState('');
+  const [password, setPassword] = React.useState('');
   const [userId, setUserId] = React.useState('');
   const [content, setContent] = React.useState('');
   const [logText, setWarnText] = React.useState('Show log area');
 
-  // Output the console log.
+  // Output console logs.
   useEffect(() => {
     logText.split('\n').forEach((value, index, array) => {
       if (index === 0) {
@@ -115,7 +113,7 @@ const App = () => {
     });
   }, [logText]);
 
-  // Output the UI log.
+  // Output UI logs.
   const rollLog = text => {
     setWarnText(preLogText => {
       let newLogText = text;
@@ -147,13 +145,13 @@ const App = () => {
     });
   };
   const requestGetToken = () => {
-    return requestHttp('https://a1.easemob.com/app/chat/user/login');
+    return requestHttp(requestGetTokenUrl);
   };
   const requestRegistryAccount = () => {
-    return requestHttp('https://a1.easemob.com/app/chat/user/register');
+    return requestHttp(requestRegistryAccountUrl);
   };
 
-  // Register the listener for message.
+  // Register listeners for messaging.
   const setMessageListener = () => {
     let msgListener = {
       onMessagesReceived(messages) {
@@ -174,8 +172,8 @@ const App = () => {
     ChatClient.getInstance().chatManager.addMessageListener(msgListener);
   };
 
-  // Initialize sdk.
-  // Please initialize before calling any interface.
+  // Initilize the SDK.
+  // Initialize any interface before calling it.
   const init = () => {
     let o = new ChatOptions({
       autoLogin: false,
@@ -212,7 +210,7 @@ const App = () => {
       });
   };
 
-  // Register an account.
+  // Register an account for login.
   const registerAccount = () => {
     if (this.isInitialized === false || this.isInitialized === undefined) {
       rollLog('Perform initialization first.');
@@ -228,7 +226,7 @@ const App = () => {
       });
   };
 
-  // Login with account ID and token.
+  // Log in with an account ID and token.
   const loginWithToken = () => {
     if (this.isInitialized === false || this.isInitialized === undefined) {
       rollLog('Perform initialization first.');
@@ -264,7 +262,7 @@ const App = () => {
       });
   };
 
-  // Logout from server.
+  // Log out from server.
   const logout = () => {
     if (this.isInitialized === false || this.isInitialized === undefined) {
       rollLog('Perform initialization first.');
@@ -281,7 +279,7 @@ const App = () => {
       });
   };
 
-  // Send a text message.
+  // Send a text message to somebody.
   const sendmsg = () => {
     if (this.isInitialized === false || this.isInitialized === undefined) {
       rollLog('Perform initialization first.');
@@ -314,7 +312,7 @@ const App = () => {
       });
   };
 
-  // The UI render.
+  // Render the UI.
   return (
     <SafeAreaView>
       <View style={styles.titleContainer}>
@@ -403,7 +401,7 @@ const App = () => {
   );
 };
 
-// Set UI styles.
+// Sets UI styles.
 const styles = StyleSheet.create({
   titleContainer: {
     height: 60,
@@ -471,68 +469,49 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-#### Build and run your project
+### Build and run your project
 
-You are now ready to build and run the project your built!
+You are now ready to build and run the project you have built.
 
 To build and run the project on an iOS device, take the following steps:
 
-1. Connect an iPhone device to your computer and set the device to Developer mode.
-2. Open `token_login_demo/ios` and open `token_login_demo.xcworkspace` with Xcode.
+1. Connect an iPhone device to your computer, and set the device to Developer mode.
+2. Open `token_login_demo/ios`, and open `token_login_demo.xcworkspace` with Xcode.
 3. In **Targets** > **token_login_demo** > **Signing & Capabilities**, set the signing of the project.
 4. Click `Build` in Xcode to build the project. When the build succeeds, Xcode runs the project and installs it on your device. You see the app user interface.
 
-To build and run the project on an iOS silumator, take the following steps:
+To build and run the project on an iOS virtual device, take the following steps:
 
-1. Open `token_login_demo/ios` and open `token_login_demo.xcworkspace` with Xcode.
+1. Open `token_login_demo/ios`, and open `token_login_demo.xcworkspace` with Xcode.
 2. In Xcode, set `iPhone 13` as the iOS simulator.
-3. Click `Build` in Xcode to build the project. When the build succeeds, Xcode runs the project and installs it on the simulater. You see the app user interface.
+3. Click `Build` in Xcode to build the project. When the build succeeds, Xcode runs the project and installs it on the simulator. You see the app user interface.
 
 To build and run the project on an Android device, take the following steps:
 
 1. Open `token_login_demo/android` in Android Studio.
-2. Connect an Android device to your computer and set the device to USB debugging mode.
+2. Connect an Android device to your computer, and set the device to USB debugging mode.
 3. In terminal, type in `adb reverse tcp:8081 tcp:8081` to set up data forwarding.
 4. Run the following command to execute `"start": "react-native start"` in `package.json`:
 
-```sh
-yarn start
-```
+   ```sh
+   yarn start
+   ```
 
-1. Click `Build` in Android Studio to build the project. When the build succeeds, Android Studio runs the project and installs it on the device. You see the app interface.
+5. Click `Build` in Android Studio to build the project. When the build succeeds, Android Studio runs the project and installs it on the device. You see the app interface.
 
-#### Test your app
+  ![](https://web-cdn.agora.io/docs-files/1655259772037)
 
-Refer to the following steps to register a Chat account, log into Agora Chat and send and receive a message.
+## Test your app
 
-1. On one device or simulator, enter a username and password, click **SIGN UP** to register a Chat account.
-2. Click **SIGN IN** to log into Agora Chat.
-3. On a second device or simulator, repeat the above steps to create another account and log into Agora Chat. Ensure that you use a different user ID (username) on this device or simulator.
-4. From the first device or simulator, enter the username you set in step 3, type in the text message you want to send, and click **SEND TEXT**. You can receive the text message from the other device or simulator.
+Refer to the following steps to register a Chat account, log in to Agora Chat and send and receive a message.
 
-You can also read from the logs below to see whether you have successfully signed up, signed in, and sent a text message.
+1. On one device or simulator, enter a username and password, and click **SIGN UP** to register a Chat account.
+2. Click **SIGN IN** to log in to Agora Chat.
+3. On a second device or simulator, repeat the above steps to create another account and log in to Agora Chat. Ensure that you use a different user ID (username) on this device or simulator.
+4. From the first device or simulator, enter the username you set in step 3, type in the text message you want to send, and click **SEND TEXT**. You can receive the text message on the other device or simulator.
 
-## Feedback
+You can also read from the logs on the UI to see whether you have successfully signed up, signed in, and sent a text message.
 
-If you have any problems or suggestions regarding the sample projects, feel free to file an issue.
+## Next steps
 
-## Reference
-
-- [Product Overview](https://docs.agora.io/en/Interactive%20Broadcast/product_live?platform=React%20Native)
-- [API Reference](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/index.html)
-
-## Related resources
-
-- Check our [FAQ](https://docs.agora.io/en/faq) to see if your issue has been recorded.
-- Dive into [Agora SDK Samples](https://github.com/AgoraIO) to see more tutorials
-- Take a look at [Agora Use Case](https://github.com/AgoraIO-usecase) for more complicated real use case
-- Repositories managed by developer communities can be found at [Agora Community](https://github.com/AgoraIO-Community)
-- If you encounter problems during integration, feel free to ask questions in [Stack Overflow](https://stackoverflow.com/questions/tagged/agora.io)
-
-## Known issues
-
-Please do not use the latest node version 18, do not use the latest version 0.69 of react-native, and the latest version 18 of react. They have big compatibility issues with previous versions.
-
-## License
-
-The example project is under the MIT license.
+For demonstration purposes, Agora Chat provides an app server that enables you to quickly retrieve a token using the App Key given in this guide. In a production context, the best practice is for you to deploy your own token server, use your own [App Key](./enable_agora_chat?platform=React%20Native#get-the-information-of-the-agora-chat-project) to generate a token, and retrieve the token on the client side to log in to Agora. For how to implement a server that generates and serves tokens on request, see [Generate a User Token](./generate_user_tokens?platform=React%20Native).
