@@ -131,7 +131,11 @@
                 <stentry><xref keyref="onTokenPrivilegeWillExpire"/></stentry>
                 <stentry><ph conkeyref="onTokenPrivilegeWillExpire/shortdesc"/></stentry>
             </strow>
-            </simpletable> </section>
+            <strow>
+                <stentry><xref keyref="onError"/></stentry>
+                <stentry><ph conkeyref="onError/shortdesc"/></stentry>
+            </strow>
+        </simpletable> </section>
         <section id="section_zkk_djb_jqb">
             <title>Audio management</title>
             <simpletable>
@@ -305,6 +309,27 @@
                 <stentry><ph conkeyref="onSnapshotTaken/shortdesc"/></stentry>
             </strow>
             </simpletable> </section>
+            <section>
+                <title>Video content inspection</title>
+                <simpletable>
+                <sthead>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="enableContentInspect"/></stentry>
+                    <stentry><ph conkeyref="enableContentInspect/shortdesc"/></stentry>
+                </strow>
+                </simpletable> <simpletable>
+                <sthead>
+                    <stentry>Event</stentry>
+                    <stentry>Description</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="onContentInspectResult"/></stentry>
+                    <stentry><ph conkeyref="onContentInspectResult/shortdesc"/></stentry>
+                </strow>
+                </simpletable> </section>            
         <section>
             <title>Subscribing to and publishing audio and video streams</title>
             <simpletable>
@@ -615,7 +640,20 @@
                 <stentry><xref keyref="enableRemoteSuperResolution"/></stentry>
                 <stentry><ph conkeyref="enableRemoteSuperResolution/shortdesc"/></stentry>
             </strow>
-            </simpletable> </section>
+            <strow>
+                <stentry><xref keyref="setColorEnhanceOptions"/></stentry>
+                <stentry><ph conkeyref="setColorEnhanceOptions/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="setLowlightEnhanceOptions"/></stentry>
+                <stentry><ph conkeyref="setLowlightEnhanceOptions/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="setVideoDenoiserOptions"/></stentry>
+                <stentry><ph conkeyref="setVideoDenoiserOptions/shortdesc"/></stentry>
+            </strow>
+            </simpletable>
+        </section>
         <section props="android ios cpp">
             <title>Face detection</title>
             <note props="cpp">This method is for Android and iOS only.</note> <simpletable>
@@ -946,7 +984,7 @@
             </strow>
             </simpletable> </section>
         <section id="screen_capture" props="native electron">
-            <title>Screen sharing</title>
+            <title>Screen share API</title>
             <simpletable>
             <sthead>
                 <stentry>Method</stentry>
@@ -966,7 +1004,7 @@
             </strow>
             <strow props="cpp mac unity">
                 <stentry><xref keyref="startScreenCaptureByDisplayId"/></stentry>
-                <stentry><ph props="unity">(macOS only)</ph><ph conkeyref="startScreenCaptureByDisplayId/shortdesc"/></stentry>
+                <stentry><ph conkeyref="startScreenCaptureByDisplayId/shortdesc"/><ph props="unity">(For macOS only)</ph></stentry>
             </strow>
             <strow props="cpp unity">
                 <stentry><xref keyref="setScreenCaptureContentHint"/></stentry>
@@ -1293,7 +1331,7 @@
             </strow>
             </simpletable> </section>
         <section props="cpp" id="section_slv_yb1_jqb">
-            <title>Local video mixing</title>
+            <title>Local video transcoder</title>
             <simpletable>
             <sthead>
                 <stentry>Method</stentry>
@@ -1578,7 +1616,7 @@
             <strow>
                 <stentry><xref keyref="pushVideoFrame"/></stentry>
                 <stentry><ph conkeyref="pushVideoFrame/shortdesc"/></stentry>
-            </strow>
+            </strow>          
             <strow props="android">
                 <stentry><xref keyref="pushVideoFrame2"/></stentry>
                 <stentry><ph conkeyref="pushVideoFrame2/shortdesc"/></stentry>
