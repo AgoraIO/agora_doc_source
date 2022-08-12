@@ -2,79 +2,84 @@ Instant messaging connects people wherever they are and allows them to communica
 
 This page shows a sample code to add peer-to-peer messaging into a Windows project by using the Agora Chat SDK.
 
-## Understand the tech
+![image](./res/main.png)
 
-~338e0e30-e568-11ec-8e95-1b7dfd4b7cb0~
+## Project structure
 
-## Prerequisites
+The project uses a single app to combine a variety of functionalities.
 
-Before proceeding, ensure that your development and run environment meet the following requirements.
+| Function              | Location           |
+| --------------------- | ------------------ |
+| Init React Native SDK | [App.js](./App.js) |
+| Set Connect listener  | [App.js](./App.js) |
+| Register account      | [App.js](./App.js) |
+| Login to server       | [App.js](./App.js) |
+| Logout from server    | [App.js](./App.js) |
+| Send text message     | [App.js](./App.js) |
+| receive message       | [App.js](./App.js) |
+
+## How to run the sample project
+
+### Prerequisites
+
+Before proceeding, ensure that your development and run environment meets the following requirements.
 
 If your target platform is iOS:
 
-- macOS 10.15.7 or later
-- Xcode 12.4 or later, including command line tools
+- MacOS 10.15.7 or above
+- Xcode 12.4 or above, including command line tools
 - React Native 0.63.4 or later
-- NodeJs 16 or later, including npm package management tool
+- NodeJs 16 or above, including npm package management tool
 - CocoaPods package management tool
 - Yarn compile and run tool
 - Watchman debugging tool
-- A physical or virtual mobile device running iOS 10.0 or later
+- A physical or virtual mobile device running iOS 11.0 or later
 
 If your target platform is Android:
 
-- macOS 10.15.7 or later, or Windows 10 or later
-- Android Studio 4.0 or later, including JDK 1.8 or later
+- MacOS 10.15.7 or above, Windows 10 or above
+- Android Studio 4.0 or above, including JDK 1.8 or above
 - React Native 0.63.4 or later
-- CocoaPods package management tool if your operating system is macOS.
-- Powershell 5.1 or later if your operating system is Windows.
-- NodeJs 16 or later, including npm package management tool
+- CocoaPods package management tool if your operating system is Macos.
+- Powershell 5.1 or above installed if your operating system is Windows.
+- NodeJs 16 or above, including npm package management tool
 - Yarn compile and run tool
 - Watchman debugging tool
 - A physical or virtual mobile device running Android 6.0 or later
 
-For more information, see [Setting up the environment](https://reactnative.dev/docs/environment-setup).
+For more information, see [RN dev](https://reactnative.dev/).
 
-## Project setup
+### Steps to run
 
-Follow these steps to create a React Native project and add Agora Chat into your app.
+#### Create a demo project.
 
 1. Make sure you have set up the development environment based on your operating system and target platform.
-2. In your terminal, run the following command to create a React Native project:
-
+2. In your terminal, run the following command to create a React Native project.
    ```sh
    npx react-native init token_login_demo
    cd token_login_demo
    yarn
    ```
-
-   A successful execution of this command generates a project named `token_login_demo` in the directory where you run the command.
-
+   A successful execution of this command generates a project named `token_login_demo` in the directory that you run the command.
 3. Run the following command to import the Chat SDK using yarn:
-
    ```sh
-   yarn add agora-react-native-chat
+   yarn add react-native-agora-chat
    ```
-
-4. If your target platform is iOS, run the following command to execute the tools:
-
+4. Execute the scripts or tools according to your target platform.
+   If your target platform is iOS:
    ```sh
    cd ios && pod install && cd ..
    ```
 
-## Implementation
+#### Implement sample code.
 
-This section introduces the codes you need to add to your project to start one-to-one messaging.
-
-### Implement one-to-one messaging
-
-To send a one-to-one message, users must register a Chat account, log in to Agora Chat, and send a text message.
+To send a one-to-one message, chat users should register a Chat account, log into Agora Chat, and send a text message.
 
 Open `token_login_demo/App.js`, and replace the code with the following:
 
 ```javascript
 // Import depend packages.
-import React, { useEffect } from "react";
+import React, {useEffect} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -82,40 +87,40 @@ import {
   Text,
   TextInput,
   View,
-} from "react-native";
+} from 'react-native';
 import {
   ChatClient,
   ChatOptions,
   ChatMessageChatType,
   ChatMessage,
-} from "agora-react-native-chat";
+} from 'react-native-agora-chat';
 
 // The App Object.
 const App = () => {
-  // Variable definitions.
-  const title = "AgoraChatQuickstart";
-  const [appKey, setAppKey] = React.useState("81446724#514456");
-  const [username, setUsername] = React.useState("asterisk0020");
-  const [password, setPassword] = React.useState("qwer");
-  const [userId, setUserId] = React.useState("");
-  const [content, setContent] = React.useState("");
-  const [logText, setWarnText] = React.useState("Show log area");
+  // The settings.
+  const title = 'AgoraChatQuickstart';
+  const [appKey, setAppKey] = React.useState('81446724#514456');
+  const [username, setUsername] = React.useState('asterisk0020');
+  const [password, setPassword] = React.useState('qwer');
+  const [userId, setUserId] = React.useState('');
+  const [content, setContent] = React.useState('');
+  const [logText, setWarnText] = React.useState('Show log area');
 
-  // Output console logs.
+  // Output the console log.
   useEffect(() => {
-    logText.split("\n").forEach((value, index, array) => {
+    logText.split('\n').forEach((value, index, array) => {
       if (index === 0) {
         console.log(value);
       }
     });
   }, [logText]);
 
-  // Output UI logs.
-  const rollLog = (text) => {
-    setWarnText((preLogText) => {
+  // Output the UI log.
+  const rollLog = text => {
+    setWarnText(preLogText => {
       let newLogText = text;
       preLogText
-        .split("\n")
+        .split('\n')
         .filter((value, index, array) => {
           if (index > 8) {
             return false;
@@ -123,17 +128,17 @@ const App = () => {
           return true;
         })
         .forEach((value, index, array) => {
-          newLogText += "\n" + value;
+          newLogText += '\n' + value;
         });
       return newLogText;
     });
   };
 
-  const requestHttp = (url) => {
+  const requestHttp = url => {
     return fetch(url, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         userAccount: username,
@@ -142,25 +147,25 @@ const App = () => {
     });
   };
   const requestGetToken = () => {
-    return requestHttp("https://a1.easemob.com/app/chat/user/login");
+    return requestHttp('https://a1.easemob.com/app/chat/user/login');
   };
   const requestRegistryAccount = () => {
-    return requestHttp("https://a1.easemob.com/app/chat/user/register");
+    return requestHttp('https://a1.easemob.com/app/chat/user/register');
   };
 
-  // Register listeners for messaging.
+  // Register the listener for message.
   const setMessageListener = () => {
     let msgListener = {
       onMessagesReceived(messages) {
         for (let index = 0; index < messages.length; index++) {
-          rollLog("received msgId: " + messages[index].msgId);
+          rollLog('received msgId: ' + messages[index].msgId);
         }
       },
-      onCmdMessagesReceived: (messages) => {},
-      onMessagesRead: (messages) => {},
-      onGroupMessageRead: (groupMessageAcks) => {},
-      onMessagesDelivered: (messages) => {},
-      onMessagesRecalled: (messages) => {},
+      onCmdMessagesReceived: messages => {},
+      onMessagesRead: messages => {},
+      onGroupMessageRead: groupMessageAcks => {},
+      onMessagesDelivered: messages => {},
+      onMessagesRecalled: messages => {},
       onConversationsUpdate: () => {},
       onConversationRead: (from, to) => {},
     };
@@ -169,8 +174,8 @@ const App = () => {
     ChatClient.getInstance().chatManager.addMessageListener(msgListener);
   };
 
-  // Initilize the SDK.
-  // Initialize any interface before calling it.
+  // Initialize sdk.
+  // Please initialize before calling any interface.
   const init = () => {
     let o = new ChatOptions({
       autoLogin: false,
@@ -180,112 +185,112 @@ const App = () => {
     ChatClient.getInstance()
       .init(o)
       .then(() => {
-        rollLog("init success");
+        rollLog('init success');
         this.isInitialized = true;
         let listener = {
           onTokenWillExpire() {
-            rollLog("token expire.");
+            rollLog('token expire.');
           },
           onTokenDidExpire() {
-            rollLog("token did expire");
+            rollLog('token did expire');
           },
           onConnected() {
-            rollLog("login success.");
+            rollLog('login success.');
             setMessageListener();
           },
           onDisconnected(errorCode) {
-            rollLog("login fail: " + errorCode);
+            rollLog('login fail: ' + errorCode);
           },
         };
         ChatClient.getInstance().addConnectionListener(listener);
       })
-      .catch((error) => {
+      .catch(error => {
         rollLog(
-          "init fail: " +
-            (error instanceof Object ? JSON.stringify(error) : error)
+          'init fail: ' +
+            (error instanceof Object ? JSON.stringify(error) : error),
         );
       });
   };
 
-  // Register an account for login.
+  // Register an account.
   const registerAccount = () => {
     if (this.isInitialized === false || this.isInitialized === undefined) {
-      rollLog("Perform initialization first.");
+      rollLog('Perform initialization first.');
       return;
     }
-    rollLog("start register account ...");
+    rollLog('start register account ...');
     requestRegistryAccount()
-      .then((response) => {
+      .then(response => {
         rollLog(`register success: userName = ${username}, password = ******`);
       })
-      .catch((error) => {
-        rollLog("register fail: " + JSON.stringify(error));
+      .catch(error => {
+        rollLog('register fail: ' + JSON.stringify(error));
       });
   };
 
-  // Log in with an account ID and token.
+  // Login with account ID and token.
   const loginWithToken = () => {
     if (this.isInitialized === false || this.isInitialized === undefined) {
-      rollLog("Perform initialization first.");
+      rollLog('Perform initialization first.');
       return;
     }
-    rollLog("start request token ...");
+    rollLog('start request token ...');
     requestGetToken()
-      .then((response) => {
-        rollLog("request token success.");
+      .then(response => {
+        rollLog('request token success.');
         response
           .json()
-          .then((value) => {
+          .then(value => {
             rollLog(
-              `response token success: username = ${username}, token = ******`
+              `response token success: username = ${username}, token = ******`,
             );
             const token = value.accessToken;
-            rollLog("start login ...");
+            rollLog('start login ...');
             ChatClient.getInstance()
               .loginWithAgoraToken(username, token)
               .then(() => {
-                rollLog("login operation success.");
+                rollLog('login operation success.');
               })
-              .catch((reason) => {
-                rollLog("login fail: " + JSON.stringify(reason));
+              .catch(reason => {
+                rollLog('login fail: ' + JSON.stringify(reason));
               });
           })
-          .catch((error) => {
-            rollLog("response token fail:" + JSON.stringify(error));
+          .catch(error => {
+            rollLog('response token fail:' + JSON.stringify(error));
           });
       })
-      .catch((error) => {
-        rollLog("request token fail: " + JSON.stringify(error));
+      .catch(error => {
+        rollLog('request token fail: ' + JSON.stringify(error));
       });
   };
 
-  // Log out from server.
+  // Logout from server.
   const logout = () => {
     if (this.isInitialized === false || this.isInitialized === undefined) {
-      rollLog("Perform initialization first.");
+      rollLog('Perform initialization first.');
       return;
     }
-    rollLog("start logout ...");
+    rollLog('start logout ...');
     ChatClient.getInstance()
       .logout()
       .then(() => {
-        rollLog("logout success.");
+        rollLog('logout success.');
       })
-      .catch((reason) => {
-        rollLog("logout fail:" + JSON.stringify(reason));
+      .catch(reason => {
+        rollLog('logout fail:' + JSON.stringify(reason));
       });
   };
 
-  // Send a text message to somebody.
+  // Send a text message.
   const sendmsg = () => {
     if (this.isInitialized === false || this.isInitialized === undefined) {
-      rollLog("Perform initialization first.");
+      rollLog('Perform initialization first.');
       return;
     }
     let msg = ChatMessage.createTextMessage(
       userId,
       content,
-      ChatMessageChatType.PeerChat
+      ChatMessageChatType.PeerChat,
     );
     const callback = new (class {
       onProgress(locaMsgId, progress) {
@@ -295,21 +300,21 @@ const App = () => {
         rollLog(`send message fail: ${locaMsgId}, ${JSON.stringify(error)}`);
       }
       onSuccess(message) {
-        rollLog("send message success: " + message.localMsgId);
+        rollLog('send message success: ' + message.localMsgId);
       }
     })();
-    rollLog("start send message ...");
+    rollLog('start send message ...');
     ChatClient.getInstance()
       .chatManager.sendMessage(msg, callback)
       .then(() => {
-        rollLog("send message: " + msg.localMsgId);
+        rollLog('send message: ' + msg.localMsgId);
       })
-      .catch((reason) => {
-        rollLog("send fail: " + JSON.stringify(reason));
+      .catch(reason => {
+        rollLog('send fail: ' + JSON.stringify(reason));
       });
   };
 
-  // Render the UI.
+  // The UI render.
   return (
     <SafeAreaView>
       <View style={styles.titleContainer}>
@@ -321,7 +326,7 @@ const App = () => {
             multiline
             style={styles.inputBox}
             placeholder="Enter appkey"
-            onChangeText={(text) => setAppKey(text)}
+            onChangeText={text => setAppKey(text)}
             value={appKey}
           />
         </View>
@@ -335,7 +340,7 @@ const App = () => {
             multiline
             style={styles.inputBox}
             placeholder="Enter username"
-            onChangeText={(text) => setUsername(text)}
+            onChangeText={text => setUsername(text)}
             value={username}
           />
         </View>
@@ -344,7 +349,7 @@ const App = () => {
             multiline
             style={styles.inputBox}
             placeholder="Enter password"
-            onChangeText={(text) => setPassword(text)}
+            onChangeText={text => setPassword(text)}
             value={password}
           />
         </View>
@@ -364,7 +369,7 @@ const App = () => {
             multiline
             style={styles.inputBox}
             placeholder="Enter the username you want to send"
-            onChangeText={(text) => setUserId(text)}
+            onChangeText={text => setUserId(text)}
             value={userId}
           />
         </View>
@@ -373,7 +378,7 @@ const App = () => {
             multiline
             style={styles.inputBox}
             placeholder="Enter content"
-            onChangeText={(text) => setContent(text)}
+            onChangeText={text => setContent(text)}
             value={content}
           />
         </View>
@@ -398,66 +403,66 @@ const App = () => {
   );
 };
 
-// Sets UI styles.
+// Set UI styles.
 const styles = StyleSheet.create({
   titleContainer: {
     height: 60,
-    backgroundColor: "#6200ED",
+    backgroundColor: '#6200ED',
   },
   title: {
     lineHeight: 60,
     paddingLeft: 15,
-    color: "#fff",
+    color: '#fff',
     fontSize: 20,
-    fontWeight: "700",
+    fontWeight: '700',
   },
   inputCon: {
-    marginLeft: "5%",
-    width: "90%",
+    marginLeft: '5%',
+    width: '90%',
     height: 60,
     paddingBottom: 6,
     borderBottomWidth: 1,
-    borderBottomColor: "#ccc",
+    borderBottomColor: '#ccc',
   },
   inputBox: {
     marginTop: 15,
-    width: "100%",
+    width: '100%',
     fontSize: 14,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   buttonCon: {
-    marginLeft: "2%",
-    width: "96%",
-    flexDirection: "row",
+    marginLeft: '2%',
+    width: '96%',
+    flexDirection: 'row',
     marginTop: 20,
     height: 26,
-    justifyContent: "space-around",
-    alignItems: "center",
+    justifyContent: 'space-around',
+    alignItems: 'center',
   },
   eachBtn: {
     height: 40,
-    width: "28%",
+    width: '28%',
     lineHeight: 40,
-    textAlign: "center",
-    color: "#fff",
+    textAlign: 'center',
+    color: '#fff',
     fontSize: 16,
-    backgroundColor: "#6200ED",
+    backgroundColor: '#6200ED',
     borderRadius: 5,
   },
   btn2: {
     height: 40,
-    width: "45%",
+    width: '45%',
     lineHeight: 40,
-    textAlign: "center",
-    color: "#fff",
+    textAlign: 'center',
+    color: '#fff',
     fontSize: 16,
-    backgroundColor: "#6200ED",
+    backgroundColor: '#6200ED',
     borderRadius: 5,
   },
   logText: {
     padding: 10,
     marginTop: 10,
-    color: "#ccc",
+    color: '#ccc',
     fontSize: 14,
     lineHeight: 20,
   },
@@ -466,49 +471,68 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-### Build and run your project
+#### Build and run your project
 
-You are now ready to build and run the project you have built.
+You are now ready to build and run the project your built!
 
 To build and run the project on an iOS device, take the following steps:
 
-1. Connect an iPhone device to your computer, and set the device to Developer mode.
-2. Open `token_login_demo/ios`, and open `token_login_demo.xcworkspace` with Xcode.
+1. Connect an iPhone device to your computer and set the device to Developer mode.
+2. Open `token_login_demo/ios` and open `token_login_demo.xcworkspace` with Xcode.
 3. In **Targets** > **token_login_demo** > **Signing & Capabilities**, set the signing of the project.
 4. Click `Build` in Xcode to build the project. When the build succeeds, Xcode runs the project and installs it on your device. You see the app user interface.
 
-To build and run the project on an iOS virtual device, take the following steps:
+To build and run the project on an iOS silumator, take the following steps:
 
-1. Open `token_login_demo/ios`, and open `token_login_demo.xcworkspace` with Xcode.
+1. Open `token_login_demo/ios` and open `token_login_demo.xcworkspace` with Xcode.
 2. In Xcode, set `iPhone 13` as the iOS simulator.
-3. Click `Build` in Xcode to build the project. When the build succeeds, Xcode runs the project and installs it on the simulator. You see the app user interface.
+3. Click `Build` in Xcode to build the project. When the build succeeds, Xcode runs the project and installs it on the simulater. You see the app user interface.
 
 To build and run the project on an Android device, take the following steps:
 
 1. Open `token_login_demo/android` in Android Studio.
-2. Connect an Android device to your computer, and set the device to USB debugging mode.
+2. Connect an Android device to your computer and set the device to USB debugging mode.
 3. In terminal, type in `adb reverse tcp:8081 tcp:8081` to set up data forwarding.
 4. Run the following command to execute `"start": "react-native start"` in `package.json`:
 
-   ```sh
-   yarn start
-   ```
+```sh
+yarn start
+```
 
-5. Click `Build` in Android Studio to build the project. When the build succeeds, Android Studio runs the project and installs it on the device. You see the app interface.
+1. Click `Build` in Android Studio to build the project. When the build succeeds, Android Studio runs the project and installs it on the device. You see the app interface.
 
-  ![](https://web-cdn.agora.io/docs-files/1655259772037)
+#### Test your app
 
-## Test your app
+Refer to the following steps to register a Chat account, log into Agora Chat and send and receive a message.
 
-Refer to the following steps to register a Chat account, log in to Agora Chat and send and receive a message.
+1. On one device or simulator, enter a username and password, click **SIGN UP** to register a Chat account.
+2. Click **SIGN IN** to log into Agora Chat.
+3. On a second device or simulator, repeat the above steps to create another account and log into Agora Chat. Ensure that you use a different user ID (username) on this device or simulator.
+4. From the first device or simulator, enter the username you set in step 3, type in the text message you want to send, and click **SEND TEXT**. You can receive the text message from the other device or simulator.
 
-1. On one device or simulator, enter a username and password, and click **SIGN UP** to register a Chat account.
-2. Click **SIGN IN** to log in to Agora Chat.
-3. On a second device or simulator, repeat the above steps to create another account and log in to Agora Chat. Ensure that you use a different user ID (username) on this device or simulator.
-4. From the first device or simulator, enter the username you set in step 3, type in the text message you want to send, and click **SEND TEXT**. You can receive the text message on the other device or simulator.
+You can also read from the logs below to see whether you have successfully signed up, signed in, and sent a text message.
 
-You can also read from the logs on the UI to see whether you have successfully signed up, signed in, and sent a text message.
+## Feedback
 
-## Next steps
+If you have any problems or suggestions regarding the sample projects, feel free to file an issue.
 
-For demonstration purposes, Agora Chat provides an app server that enables you to quickly retrieve a token using the App Key given in this guide. In a production context, the best practice is for you to deploy your own token server, use your own [App Key](./enable_agora_chat?platform=React%20Native#get-the-information-of-the-agora-chat-project) to generate a token, and retrieve the token on the client side to log in to Agora. For how to implement a server that generates and serves tokens on request, see [Generate a User Token](./generate_user_tokens?platform=React%20Native).
+## Reference
+
+- [Product Overview](https://docs.agora.io/en/Interactive%20Broadcast/product_live?platform=React%20Native)
+- [API Reference](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/index.html)
+
+## Related resources
+
+- Check our [FAQ](https://docs.agora.io/en/faq) to see if your issue has been recorded.
+- Dive into [Agora SDK Samples](https://github.com/AgoraIO) to see more tutorials
+- Take a look at [Agora Use Case](https://github.com/AgoraIO-usecase) for more complicated real use case
+- Repositories managed by developer communities can be found at [Agora Community](https://github.com/AgoraIO-Community)
+- If you encounter problems during integration, feel free to ask questions in [Stack Overflow](https://stackoverflow.com/questions/tagged/agora.io)
+
+## Known issues
+
+Please do not use the latest node version 18, do not use the latest version 0.69 of react-native, and the latest version 18 of react. They have big compatibility issues with previous versions.
+
+## License
+
+The example project is under the MIT license.
