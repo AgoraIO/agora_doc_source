@@ -458,11 +458,6 @@
             <topicref keyref="unregisterPlayerSourceObserver" toc="no"/>
             <topicref keyref="unregisterVideoFrameObserver_IMediaPlayer" toc="no"/>
         </topicref>
-        <topicref keyref="IAudioEncodedFrameObserver" chunk="to-content" props="hide">
-            <topicref keyref="onMixedAudioEncodedFrame" toc="no" props="hide"/>
-            <topicref keyref="onPlaybackAudioEncodedFrame" toc="no" props="hide"/>
-            <topicref keyref="onRecordAudioEncodedFrame" toc="no" processing-role="resource-only"/>
-        </topicref>
         <topicref keyref="IAudioDeviceManager" chunk="to-content">
             <topicref keyref="enumeratePlaybackDevices" toc="no"/>
             <topicref keyref="enumerateRecordingDevices" toc="no"/>
@@ -492,48 +487,66 @@
         </topicref>
         <topicref keyref="IVideoDeviceManager" chunk="to-content">
             <topicref keyref="enumerateVideoDevices" toc="no"/>
+            <topicref keyref="getCapability" toc="no"/>
             <topicref keyref="getDevice_IVideoDeviceManager" toc="no"/>
+            <topicref keyref="numberOfCapabilities" toc="no"/>
             <topicref keyref="release_IVideoDeviceManager" toc="no"/>
             <topicref keyref="setDevice_IVideoDeviceManager" toc="no"/>
             <topicref keyref="startDeviceTest" toc="no" props="hide"/>
             <topicref keyref="stopDeviceTest" toc="no" props="hide"/>
         </topicref>
-        <topicref keyref="IMediaEngine" chunk="to-content" props="hide">
+        <topicref keyref="IMediaEngine" chunk="to-content">
             <topicref keyref="pullAudioFrame" toc="no"/>
             <topicref keyref="pushAudioFrame" toc="no"/>
-            <topicref keyref="pushEncodedVideoImage" toc="no"/>
-            <topicref keyref="pushEncodedVideoImageEx" toc="no"/>
+            <topicref keyref="pushEncodedVideoImage" toc="no" props="hide"/>
+            <topicref keyref="pushEncodedVideoImageEx" toc="no" props="hide"/>
             <topicref keyref="pushVideoFrame" toc="no"/>
             <topicref keyref="pushVideoFrameEx" toc="no"/>
             <topicref keyref="registerAudioFrameObserver" toc="no"/>
-            <topicref keyref="registerVideoEncodedImageReceiver" toc="no"/>
+            <topicref keyref="registerVideoEncodedFrameObserver" toc="no"/>
             <topicref keyref="registerVideoFrameObserver" toc="no"/>
             <topicref keyref="setExternalAudioSink" toc="no"/>
             <topicref keyref="setExternalAudioSource2" toc="no"/>
             <topicref keyref="setExternalVideoSource" toc="no"/>
         </topicref>
+        <topicref keyref="IMediaPlayerCacheManager" chunk="to-content">
+            <topicref keyref="enableAutoRemoveCache" toc="no"/>
+            <topicref keyref="getCacheDir" toc="no"/>
+            <topicref keyref="getCacheFileCount" toc="no"/>
+            <topicref keyref="getMaxCacheFileCount" toc="no"/>
+            <topicref keyref="getMaxCacheFileSize" toc="no"/>
+            <topicref keyref="removeAllCaches" toc="no"/>
+            <topicref keyref="removeCacheByUri" toc="no"/>
+            <topicref keyref="removeOldCache" toc="no"/>
+            <topicref keyref="setCacheDir" toc="no"/>
+            <topicref keyref="setMaxCacheFileCount" toc="no"/>
+            <topicref keyref="setMaxCacheFileSize" toc="no"/>
+        </topicref>
         <topicref keyref="IMediaPlayerCustomDataProvider" chunk="to-content" props="hide">
-            <topicref keyref="onReadData" toc="no"/>
-            <topicref keyref="onSeek" toc="no"/>
+            <topicref keyref="onReadData" toc="no" props="hide"/>
+            <topicref keyref="onSeek" toc="no" props="hide"/>
         </topicref>
         <topicref keyref="IMediaPlayerSourceObserver" chunk="to-content">
-            <topicref keyref="onAudioVolumeIndication_IMediaPlayerSourceObserver" toc="no" props="hide"/>
-            <topicref keyref="onAgoraCDNTokenWillExpire" toc="no" props="hide"/>
+            <topicref keyref="onAudioVolumeIndication_IMediaPlayerSourceObserver" toc="no"/>
+            <topicref keyref="onAgoraCDNTokenWillExpire" toc="no" props="cn"/>
             <topicref keyref="onMetaData" toc="no"/>
-            <topicref keyref="onPlayBufferUpdated" toc="no" props="hide"/>
+            <topicref keyref="onPlayBufferUpdated" toc="no"/>
             <topicref keyref="onPlayerEvent" toc="no"/>
-            <topicref keyref="onPlayerInfoUpdated" toc="no" props="hide"/>
+            <topicref keyref="onPlayerInfoUpdated" toc="no"/>
             <topicref keyref="onPlayerSourceStateChanged" toc="no"/>
-            <topicref keyref="onPlayerSrcInfoChanged" toc="no" props="hide"/>
+            <topicref keyref="onPlayerSrcInfoChanged" toc="no"/>
             <topicref keyref="onPositionChanged" toc="no"/>
-            <topicref keyref="onPreloadEvent" toc="no" props="hide"/>
+            <topicref keyref="onPreloadEvent" toc="no"/>
         </topicref>
-        <topicref keyref="IAudioFrameObserver" chunk="to-content" props="hide"/>
-        <topicref keyref="IAudioFrameObserverBase" chunk="to-content" props="hide">
-            <topicref keyref="AUDIO_FRAME_TYPE" toc="no"/>
+        <topicref keyref="IAudioFrameObserver" chunk="to-content"/>
+            <topicref keyref="onFrame_IAudioFrameObserver" toc="no" props="hide"/>
+            <topicref keyref="onPlaybackAudioFrameBeforeMixing" toc="no"/>
+        </topicref>
+        <topicref keyref="IAudioFrameObserverBase" chunk="to-content">
+            <topicref keyref="AUDIO_FRAME_TYPE" toc="no" props="hide"/>
             <topicref keyref="AudioFrame" toc="no"/>
             <topicref keyref="onFrame_IAudioFrameObserver" toc="no" props="hide"/>
-            <topicref keyref="onMixedAudioFrame" toc="no" props="hide"/>
+            <topicref keyref="onMixedAudioFrame" toc="no"/>
             <topicref keyref="onPlaybackAudioFrame" toc="no"/>
             <topicref keyref="onPlaybackAudioFrameBeforeMixing" toc="no"/>
             <topicref keyref="onRecordAudioFrame" toc="no"/>
