@@ -30,8 +30,11 @@ jobs:
               run: |
                   cd xml2json
                   python extract_proto_and_sync_to_dita_unity.py --code_location ./code_to_check/unity_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-unity.ditamap --decomment_code_location ./code_to_check/decommented
+                  rm -f ./code_to_check/decommented/*.*
                   python extract_proto_and_sync_to_dita_flutter.py --code_location ./code_to_check/flutter-ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-flutter.ditamap --decomment_code_location ./code_to_check/decommented
+                  rm -f ./code_to_check/decommented/*.*
                   python extract_proto_and_sync_to_dita_react_native.py --code_location ./code_to_check/rn_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-rn.ditamap --decomment_code_location ./code_to_check/decommented
+                  rm -f ./code_to_check/decommented/*.*
                   python extract_proto_and_sync_to_dita_electron.py --code_location ./code_to_check/electron_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-electron.ditamap --decomment_code_location ./code_to_check/decommented
             - name: Create Pull Request
               uses: peter-evans/create-pull-request@v4
