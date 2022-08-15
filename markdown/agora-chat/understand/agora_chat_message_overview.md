@@ -1,10 +1,10 @@
 # 消息概述
 
-在实时消息应用程序中，消息从消息发送者传输到消息接收者。本页面概述了 Agora Chat SDK 支持的消息类型和消息功能。
+在实时消息应用程序中，消息从消息发送者传输到消息接收者。本页面概述了 即时通讯（环信）SDK 支持的消息类型和消息功能。
 
 ## 消息类型
 
-Agora Chat SDK 支持以下类型的消息。
+即时通讯（环信）SDK 支持以下类型的消息。
 
 ### 文本消息
 
@@ -44,7 +44,7 @@ Agora Chat SDK 支持以下类型的消息。
 
 ## 消息功能
 
-Agora Chat SDK 支持收发消息、管理历史消息、管理消息已读回执。
+即时通讯（环信）SDK 支持收发消息、管理历史消息、管理消息已读回执。
 
 您可以使用聊天 API 实现以下功能。
 
@@ -96,7 +96,7 @@ Agora Chat SDK 支持收发消息、管理历史消息、管理消息已读回�
 
 ### 获取指定会话的历史消息
 
-Agora Chat SDK 将历史消息存储在聊天服务器中，用户可以通过分页从服务器中获取每个会话的历史消息。历史消息存储时间与套餐版本相关，详见 [套餐包详情](https://docs.agora.io/en/agora-chat/agora_chat_message_overview?platform=Android#limitations)。
+即时通讯（环信）SDK 将历史消息存储在聊天服务器中，用户可以通过分页从服务器中获取每个会话的历史消息。历史消息存储时间与套餐版本相关，详见 [套餐包详情](https://docs.agora.io/en/agora-chat/agora_chat_message_overview?platform=Android#limitations)。
 
 ### 消息送达回执
 
