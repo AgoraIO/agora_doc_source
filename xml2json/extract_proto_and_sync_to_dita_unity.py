@@ -58,6 +58,7 @@ def extract_rn_proto(cpp_code, content):
             result = text[1].upper() + text[2:]
         except IndexError as e:
             print("The string is less than 2 characters!")
+            result=""
 
         print("The matched C++ proto " + result)
         # Avoid Catastrophic Backtracking: https://www.regular-expressions.info/catastrophic.html
