@@ -320,7 +320,7 @@ https://github.com/AgoraIO/agora_doc_source/blob/master/.github/sync.yml
 
 ##  6. <a name='BetaAPI'></a>（Beta）API 原型自动填充
 
-目前仅适用于大重构 SDK 封装的框架 SDK。如果有需求联系 [wanglu](https://confluence.agoralab.co/display/~wanglu@agora.io)
+目前仅适用于大重构 SDK 封装的框架 SDK。如果有需求联系 Lutkin Wang
 
 ##  7. <a name='WIPDITA'></a>（WIP）DITA 文件格式排版自动修正
 
@@ -363,3 +363,5 @@ RTC 主版本 SDK：[https://github.com/AgoraDoc/doc_source/actions/workflows/Aw
 ###  9.3. <a name='-1'></a>获取压缩的文件包
 
 在 [https://github.com/AgoraDoc/doc_source/releases/tag/main](https://github.com/AgoraDoc/doc_source/releases/tag/main) 页面获取最新的文件包。
+
+
