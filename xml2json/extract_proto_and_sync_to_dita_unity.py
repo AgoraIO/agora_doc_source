@@ -54,7 +54,10 @@ def extract_rn_proto(cpp_code, content):
         text = text[:-1]
 
         # There is a symbol in position 0???
-        result = text[1].upper() + text[2:]
+        try:
+            result = text[1].upper() + text[2:]
+        except IndexError as e:
+            print("The string is less than 2 characters!")
 
         print("The matched C++ proto " + result)
         # Avoid Catastrophic Backtracking: https://www.regular-expressions.info/catastrophic.html
