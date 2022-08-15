@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_getaudiomixingplayoutvolume">
-    <title><ph keyref="getAudioMixingPlayoutVolume"/></title>
+    <title><ph keyref="getAudioMixingPlayoutVolume" /></title>
     <shortdesc id="short"><ph id="shortdesc">获取音乐文件的本地播放音量。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="getAudioMixingPlayoutVolume"/>
+                <indexterm keyref="getAudioMixingPlayoutVolume" />
             </keywords>
         </metadata>
     </prolog>
@@ -19,14 +19,14 @@
             <codeblock props="electron" outputclass="language-typescript">abstract getAudioMixingPlayoutVolume(): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int GetAudioMixingPlayoutVolume();</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract getAudioMixingPlayoutVolume(): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; getAudioMixingPlayoutVolume();</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; getAudioMixingPlayoutVolume();</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>该方法获取混音的音乐文件本地播放音量，方便排查音量相关问题。</p>
             <note type="attention">
-            <p>你需要在调用 <xref keyref="startAudioMixing2"/> 并收到 <codeph><apiname keyref="onAudioMixingStateChanged"/>(<apiname keyref="AUDIO_MIXING_STATE_PLAYING"/>)</codeph> 回调后调用该方法。</p>
+            <p>你需要在调用 <xref keyref="startAudioMixing2" /> 并收到 <codeph><apiname keyref="onAudioMixingStateChanged" />(<apiname keyref="AUDIO_MIXING_STATE_PLAYING" />)</codeph> 回调后调用该方法。</p>
             </note> </section>
-        <section id="return_values" props="native electron unity rn flutter">
+        <section id="return_values" props="native electron unity">
             <title>返回值</title>
             <ul>
             <li>≥ 0: 方法调用成功则返回音量值，范围为 [0,100]。</li>
