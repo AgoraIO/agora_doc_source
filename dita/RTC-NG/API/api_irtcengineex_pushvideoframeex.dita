@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_pushvideoframeex">
-    <title><ph keyref="pushVideoFrameEx"/></title>
+    <title><ph keyref="pushVideoFrameEx" /></title>
     <shortdesc id="short"><ph id="shortdesc">推送外部原始视频帧到 SDK。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="pushVideoFrameEx"/>
+                <indexterm keyref="pushVideoFrameEx" />
             </keywords>
         </metadata>
     </prolog>
@@ -16,35 +16,35 @@
             <codeblock props="android" outputclass="language-java">public abstract int pushExternalVideoFrameEx(AgoraVideoFrame frame, int videoTrackId);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)pushExternalVideoFrame:(AgoraVideoFrame * _Nonnull)frame videoTrackId:(NSUInteger)videoTrackId;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int pushVideoFrame(base::ExternalVideoFrame* frame, unsigned int videoTrackId = 0) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public abstract int PushVideoFrame(ExternalVideoFrame frame, RtcConnection connection);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated" props="android">
             <dlentry>
                 <dt>弃用：</dt>
-                <dd>该方法已废弃，请改用 <xref keyref="pushVideoFrameEx2"/>。</dd>
+                <dd>该方法已废弃，请改用 <xref keyref="pushVideoFrameEx2" />。</dd>
             </dlentry>
             </dl>
-            <p conkeyref="pushVideoFrame/desc1"/>
-            <p props="android">调用该方法或 <xref keyref="pushVideoFrameEx2"/> 均能将视频帧数据传递给SDK。区别为 <apiname keyref="pushVideoFrameEx"/> 方法不支持 texture 格式的视频数据。</p>
+            <p conkeyref="pushVideoFrame/desc1" />
+            <p props="android">调用该方法或 <xref keyref="pushVideoFrameEx2" /> 均能将视频帧数据传递给SDK。区别为 <apiname keyref="pushVideoFrameEx" /> 方法不支持 texture 格式的视频数据。</p>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry conkeyref="pushVideoFrame/frame">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry id="videotrackid" props="native">
                 <pt>videoTrackId</pt>
-                <pd>调用 <xref keyref="createCustomVideoTrack"/> 方法返回的视频轨道 ID。</pd>
+                <pd>调用 <xref keyref="createCustomVideoTrack" /> 方法返回的视频轨道 ID。</pd>
             </plentry>
             <plentry conkeyref="joinChannelEx/connection" props="unity">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             </parml> </section>
         <section id="return_values">

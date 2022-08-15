@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_mediasource">
-    <title><ph keyref="MediaSource"/></title>
+    <title><ph keyref="MediaSource" /></title>
     <shortdesc id="short"><ph id="shortdesc">需播放的媒体文件的相关信息及播放设置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -42,20 +42,20 @@
   int64_t startPos;
   bool autoPlay;
   bool enableCache;
-  Optional&lt;bool> isAgoraSource;
-  Optional&lt;bool> isLiveSource;
+  Optional&lt;bool&gt; isAgoraSource;
+  Optional&lt;bool&gt; isLiveSource;
   IMediaPlayerCustomDataProvider* provider;
 
   MediaSource() : url(NULL), uri(NULL), startPos(0), autoPlay(true), enableCache(false),
                   provider(NULL){
   }
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/></p></section>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /></p></section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>url</pt>
@@ -64,8 +64,8 @@
                     <note><ph>如果你打开媒体资源为自定义媒体资源，则无需向 <parmname>url</parmname> 传值。</ph></note></pd>
             </plentry>
             <plentry conkeyref="open2/uri">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry>
                 <pt>startPos</pt>
@@ -76,11 +76,11 @@
                 <pd>打开媒体文件后，是否开启自动播放：
 
                     <ul>
-                    <li><codeph><ph keyref="true"/></codeph>：（默认）开启自动播放。</li>
-                    <li><codeph><ph keyref="false"/></codeph>：关闭自动播放。</li>
+                    <li><codeph><ph keyref="true" /></codeph>：（默认）开启自动播放。</li>
+                    <li><codeph><ph keyref="false" /></codeph>：关闭自动播放。</li>
                     </ul>
                     <note>
-                    <p>如果你设置关闭自动播放，打开媒体文件后，还需再调用 <xref keyref="play"/> 方法来播放媒体文件。</p>
+                    <p>如果你设置关闭自动播放，打开媒体文件后，还需再调用 <xref keyref="play" /> 方法来播放媒体文件。</p>
                     </note></pd>
             </plentry>
             <plentry>
@@ -88,24 +88,24 @@
                 <pd>此次播放是否开启实时缓存功能：
 
                     <ul>
-                    <li><codeph><ph keyref="true"/></codeph>：开启实时缓存。</li>
-                    <li><codeph><ph keyref="false"/></codeph>：（默认）关闭实时缓存。</li>
+                    <li><codeph><ph keyref="true" /></codeph>：开启实时缓存。</li>
+                    <li><codeph><ph keyref="false" /></codeph>：（默认）关闭实时缓存。</li>
                     </ul>
                     <note>
                     <ul>
                     <li>如需开启实时缓存，请向 <parmname>uri</parmname> 传值，否则播放器会以媒体文件的 <parmname>url</parmname> 作为缓存索引。</li>
-                    <li>开启实时缓存后，播放器会预先缓存当前正在播放的媒体文件的部分数据到本地，当你下次播放该文件时播放器会直接从缓存中加载数据，可节省网络流量。当前缓存的媒体文件的相关统计数据会在媒体文件开始播放后每秒更新一次，详见 <xref keyref="CacheStatistics"/>。</li>
+                    <li>开启实时缓存后，播放器会预先缓存当前正在播放的媒体文件的部分数据到本地，当你下次播放该文件时播放器会直接从缓存中加载数据，可节省网络流量。当前缓存的媒体文件的相关统计数据会在媒体文件开始播放后每秒更新一次，详见 <xref keyref="CacheStatistics" />。</li>
                     </ul> </note></pd>
             </plentry>
             <plentry>
                 <pt>isAgoraSource</pt>
                 <pd>打开的媒体资源是否为通过 Agora 融合 CDN 分发的直播或点播流：
                     <ul>
-                    <li><codeph><ph keyref="true"/></codeph>：打开的媒体资源是 Agora 融合 CDN 分发的直播或点播流。</li>
-                    <li><codeph><ph keyref="false"/></codeph>：（默认）打开的媒体资源不是 Agora 融合 CDN 分发的直播或点播流。</li>
+                    <li><codeph><ph keyref="true" /></codeph>：打开的媒体资源是 Agora 融合 CDN 分发的直播或点播流。</li>
+                    <li><codeph><ph keyref="false" /></codeph>：（默认）打开的媒体资源不是 Agora 融合 CDN 分发的直播或点播流。</li>
                     </ul>
                     <note>
-                    <p>如果你需要打开的媒体资源为 Agora 融合 CDN 分发的直播流或点播流，请向 <parmname>url</parmname> 传入直播或点播流的 URL 并将 <parmname>isAgoraSource</parmname> 设置为 <codeph><ph keyref="true"/></codeph>，否则无需设置 <parmname>isAgoraSource</parmname>。</p>
+                    <p>如果你需要打开的媒体资源为 Agora 融合 CDN 分发的直播流或点播流，请向 <parmname>url</parmname> 传入直播或点播流的 URL 并将 <parmname>isAgoraSource</parmname> 设置为 <codeph><ph keyref="true" /></codeph>，否则无需设置 <parmname>isAgoraSource</parmname>。</p>
                     </note></pd>
             </plentry>
             <plentry>
@@ -114,18 +114,18 @@
 
 
                     <ul>
-                    <li><codeph><ph keyref="true"/></codeph>：直播流。</li>
-                    <li><codeph><ph keyref="false"/></codeph>：（默认）非直播流。</li>
+                    <li><codeph><ph keyref="true" /></codeph>：直播流。</li>
+                    <li><codeph><ph keyref="false" /></codeph>：（默认）非直播流。</li>
                     </ul>
-                    <p>如果你打开的媒体资源为直播流，Agora 推荐你将该参数设置为 <codeph><ph keyref="true"/></codeph>，可加快打开直播流的速度。</p>
+                    <p>如果你打开的媒体资源为直播流，Agora 推荐你将该参数设置为 <codeph><ph keyref="true" /></codeph>，可加快打开直播流的速度。</p>
                     <note>
-                    <p>仅当打开的媒体资源为直播流时，将 <parmname>isLiveSource</parmname> 设置为 <codeph><ph keyref="true"/></codeph> 后才可加快媒体资源的打开速度。</p>
+                    <p>仅当打开的媒体资源为直播流时，将 <parmname>isLiveSource</parmname> 设置为 <codeph><ph keyref="true" /></codeph> 后才可加快媒体资源的打开速度。</p>
                     </note> </pd>
             </plentry>
             <plentry props="android cpp">
                 <pt>provider</pt>
                 <pd>
-                    <p>自定义媒体资源文件的回调。详见 <xref keyref="IMediaPlayerCustomDataProvider"/>。</p>
+                    <p>自定义媒体资源文件的回调。详见 <xref keyref="IMediaPlayerCustomDataProvider" />。</p>
                     <note>
                     <p>如果你需要打开自定义的媒体资源，例如需要自行解密的媒体资源，直接向 <parmname>provider</parmname> 传值，无需再向 <parmname>url</parmname> 传值。</p>
                     </note></pd>
@@ -133,7 +133,7 @@
             <plentry props="apple">
                 <pt>playerOnReadCallback</pt>
                 <pd>
-                    <p>读取媒体资源数据回调。详见 <xref keyref="onReadData"/>。</p>
+                    <p>读取媒体资源数据回调。详见 <xref keyref="onReadData" />。</p>
                     <note id="note">
                     <p>如果你需要打开自定义的媒体资源，例如需要自行解密的媒体资源，直接向 <parmname>playerOnReadCallback</parmname> 及 <parmname>playerOnSeekCallback</parmname> 传值，无需再向 <parmname>url</parmname> 传值。</p>
                     </note></pd>
@@ -141,9 +141,9 @@
             <plentry props="apple">
                 <pt>playerOnSeekCallback</pt>
                 <pd>
-                    <p>定位媒体资源数据回调。详见 <xref keyref="onSeek"/>。</p>
+                    <p>定位媒体资源数据回调。详见 <xref keyref="onSeek" />。</p>
                     <note conkeyref="MediaSource/note">
-                    <p/>
+                    <p />
                     </note></pd>
             </plentry>
             </parml> </section>
