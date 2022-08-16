@@ -4,7 +4,7 @@
 
 ## 了解技术
 
-Agora Chat SDK 提供 `ChatRoomManager` 和 `ChatRoom` 类用于聊天室属性管理，可以实现以下功能：
+即时通讯 IM（环信）SDK 提供 `ChatRoomManager` 和 `ChatRoom` 类用于聊天室属性管理，可以实现以下功能：
 
 - 更新聊天室名称
 - 更新聊天室描述
@@ -21,7 +21,7 @@ Agora Chat SDK 提供 `ChatRoomManager` 和 `ChatRoom` 类用于聊天室属性�
 
 ## 实现方法
 
-本节介绍如何调用 Agora Chat SDK 提供的 API 来实现上述功能。
+本节介绍如何调用即时通讯 IM（环信）SDK 提供的 API 来实现上述功能。
 
 ### 获取和修改聊天室属性
 

@@ -1,13 +1,13 @@
 # 管理聊天室
 聊天室是支持多人沟通的即时通讯系统。聊天室中的成员没有固定关系，用户离线后，超过 5 分钟会自动退出聊天室。聊天室成员在离线后，不会收到推送消息。聊天室可以应用于直播、消息广播等。
 
-本页介绍如何使用 Agora Chat SDK 在应用中创建和管理聊天室。
+本页介绍如何使用即时通讯 IM（环信）SDK 在应用中创建和管理聊天室。
 
 消息相关内容见 [消息管理](https://docs-preprod.agora.io/en/agora-chat/agora_chat_message_overview?platform=Android)。
 
 ## 技术原理
 
-Agora Chat SDK 提供了聊天室管理的 `ChatManager` 和 `ChatRoom` 类，可以实现以下功能：
+即时通讯 IM（环信）SDK 提供了聊天室管理的 `ChatManager` 和 `ChatRoom` 类，可以实现以下功能：
 
 - 创建和解散聊天室
 - 加入和退出聊天室
@@ -27,7 +27,7 @@ Agora Chat SDK 提供了聊天室管理的 `ChatManager` 和 `ChatRoom` 类，�
 
 ## 实现方法
 
-本节介绍如何调用 Agora Chat SDK 提供的 API 来实现上述功能。
+本节介绍如何调用即时通讯 IM（环信）SDK 提供的 API 来实现上述功能。
 
 ### 创建和解散聊天室
 
