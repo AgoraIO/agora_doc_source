@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="callback_onremotevideostatechanged">
+<reference id="callback_irtcengineeventhandler_onremotevideostatechanged">
      <title> <ph keyref="onRemoteVideoStateChanged"/> </title>
      <shortdesc id="short"><ph id="shortdesc">Occurs when the remote video stream state changes.</ph></shortdesc>
      <prolog>
@@ -37,7 +37,7 @@
                <codeblock props="flutter" outputclass="language-dart"/> </p>
           </section>
           <section id="detailed_desc">
-               <note id="note" type="attention">This callback can be inaccurate when the number of users (in the communication profile) or hosts (in the live broadcasting profile) in a channel exceeds 17.</note> </section>
+               <note id="note" type="attention">This callback does not work properly when the number of users (in the voice/video call channel) or hosts (in the live streaming channel) in the channel exceeds 17.</note> </section>
           <section id="parameters">
                <title> <ph keyref="callback-section-title"/> </title>
                <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
@@ -48,7 +48,7 @@
                </plentry>
                <plentry props="unity electron rn">
                     <pt>connection</pt>
-                    <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
+                    <pd>The connection infomation. See <xref keyref="RtcConnection"/>.</pd>
                </plentry>
                <plentry id="uid">
                     <pt props="native flutter">uid</pt>
@@ -58,21 +58,21 @@
                <plentry id="state">
                     <pt>state</pt>
                     <pd>
-                         <p props="ios mac cpp unity flutter electron rn">The state of the remote video. See <xref keyref="REMOTE_VIDEO_STATE"/>.</p>
-                         <p props="android">The state of the remote video.<ul>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_STOPPED"/>(0): The remote video is in the initial state. The remote video is in the initial state, probably due to <codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED(3)</codeph>, <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED(5)</codeph>, or <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE(7)</codeph>.</li>
+                         <p props="ios mac cpp unity flutter electron rn">The state of the remote video, see <xref keyref="REMOTE_VIDEO_STATE"/>.</p>
+                         <p props="android">The state of the remote video:<ul>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_STOPPED"/>(0): The remote video is in the initial state. This status is reported in the case of <codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED(3)</codeph>, <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED(5)</codeph>, <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE(7)</codeph> or <codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK(8)</codeph>.</li>
                          <li><ph keyref="REMOTE_VIDEO_STATE_STARTING"/>(1): The first remote video packet is received.</li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_DECODING"/>(2): The remote audio stream is decoded and plays normally. The remote audio stream is decoded and plays normally, probably due to <codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY(2)</codeph>, <codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED(4)</codeph>, <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED(6)</codeph>, or <codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY(9)</codeph>.</li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_FROZEN"/>(3): The remote video is frozen. The remote video is frozen, probably due to <codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION(1)</codeph> or <codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK(8)</codeph>.</li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_FAILED"/>(4): The remote video fails to start. The remote video fails to start, probably due to <codeph>REMOTE_VIDEO_STATE_REASON_INTERNAL (0)</codeph>.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_DECODING"/>(2): The remote audio stream is decoded and plays normally. This status is reported in the case of <codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY(2)</codeph>, <codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED(4)</codeph>, <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED(6)</codeph> or <codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY(9)</codeph>.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_FROZEN"/>(3): The remote video is frozen. This state is reported in the case of <codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION(1)</codeph>.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_FAILED"/>(4): The remote video fails to start. The remote video fails to start, probably due to <codeph>REMOTE_VIDEO_STATE_REASON_INTERNAL(0)</codeph>.</li>
                          </ul> </p>
                     </pd>
                </plentry>
                <plentry id="reason">
                     <pt>reason</pt>
                     <pd>
-                         <p props="ios mac cpp unity flutter electron rn">The reason for the remote video state change. See <xref keyref="REMOTE_VIDEO_STATE_REASON"/>.</p>
-                         <p props="android">Remote audio state reasons.<ul>
+                         <p props="ios mac cpp unity flutter electron rn">The reason for the remote video state change, see <xref keyref="REMOTE_VIDEO_STATE_REASON"/>.</p>
+                         <p props="android">Remote audio state reasons:<ul>
                          <li><ph keyref="REMOTE_VIDEO_STATE_REASON_INTERNAL"/>(0): Internal reasons.</li>
                          <li><ph keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION"/>(1): Network congestion.</li>
                          <li><ph keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY"/>(2): Network recovery.</li>
@@ -88,7 +88,7 @@
                </plentry>
                <plentry>
                     <pt>elapsed</pt>
-                    <pd>Time elapsed (ms) from the local user calling the <apiname keyref="joinChannel2"/> method until the SDK triggers this callback.</pd>
+                    <pd>Time elapsed (ms) from the local user callingthe <apiname keyref="joinChannel2"/> method until the SDK triggers this callback.</pd>
                </plentry>
                </parml> </section>
      </refbody>
