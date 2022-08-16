@@ -1,6 +1,6 @@
 # 翻译消息
 
-翻译是实时聊天应用程序中广泛使用的一项流行功能。为实现翻译，Agora Chat SDK 集成了 Microsoft Azure Translation API，支持在发送或接收消息时对文本消息进行按需翻译或自动翻译：
+翻译是实时聊天应用程序中广泛使用的一项流行功能。为实现翻译，即时通讯 IM（环信）SDK 集成了 Microsoft Azure Translation API，支持在发送或接收消息时对文本消息进行按需翻译或自动翻译：
 
 - 按需翻译：接收方在收到文本消息后，将消息内容翻译为目标语言。
 - 自动翻译：发送方发送消息时，SDK 根据发送方设置的目标语言自动翻译文本内容，然后将消息原文和译文一起发送给接收方。
@@ -9,7 +9,7 @@
 
 开始前，请确保满足以下条件：
 
-- 项目集成了 v1.0.3 及以上版本的 Agora Chat SDK，并实现了基本的 [实时聊天功能](https://docs.agora.io/en/agora-chat/agora_chat_get_started_android?platform=Android)。
+- 项目集成了 v1.0.3 及以上版本的即时通讯 IM（环信）SDK，并实现了基本的 [实时聊天功能](https://docs.agora.io/en/agora-chat/agora_chat_get_started_android?platform=Android)。
 - 了解 [使用限制](https://docs.agora.io/en/agora-chat/agora_chat_limitation?platform=Android)。
 - 默认情况下不启用翻译。要使用此功能，需要在 [控制台](https://docs.agora.io/en/agora-chat/agora_chat_plan)[Agora Console](https://console.agora.io/) 中订阅 **Pro** 或 **Enterprise** 套餐并开启翻译服务。
 - 由于此功能由 Microsoft Azure 翻译 API 提供，开始前请确保你了解该功能支持的目标语言。详见 [语言支持](https://docs.microsoft.com/en-us/azure) 。

@@ -1,12 +1,12 @@
 # 管理本地消息
 
-在聊天应用程序中，对话由点对点聊天、聊天组或聊天室中的所有消息组成。Agora Chat SDK 支持按会话管理消息，包括检索和管理未读消息、删除本地设备上的历史消息、查找历史消息。
+在聊天应用程序中，对话由点对点聊天、聊天组或聊天室中的所有消息组成。即时通讯 IM（环信）SDK 支持按会话管理消息，包括检索和管理未读消息、删除本地设备上的历史消息、查找历史消息。
 
-本页介绍如何使用 Agora Chat SDK 实现这些功能。
+本页介绍如何使用即时通讯 IM（环信）SDK 实现这些功能。
 
 ## 了解技术
 
-Agora Chat SDK 通过 `ChatManager` 类管理用户设备上存储的消息会话数据。以下是核心方法：
+即时通讯 IM（环信）SDK 通过 `ChatManager` 类管理用户设备上存储的消息会话数据。以下是核心方法：
 
 - `loadAllConversations`：加载本地存储的会话列表;
 - `deleteConversation`： 删除本地存储的会话；
@@ -20,8 +20,8 @@ Agora Chat SDK 通过 `ChatManager` 类管理用户设备上存储的消息会�
 
 开始前，请确保满足以下条件：
 
-- 已 [集成 Agora Chat SDK](./agora_chat_get_started_android?platform=Android#集成-agora-chat-sdk)。
-- 了解消息相关限制和 Agora Chat API 的调用频率限制，详见 [限制条件](./agora_chat_limitation_android?platform=Android)。
+- 已 [集成即时通讯 IM（环信）SDK](./agora_chat_get_started_android?platform=Android#集成-agora-chat-sdk)。
+- 了解消息相关限制和即时通讯 IM（环信）API 的调用频率限制，详见 [限制条件](./agora_chat_limitation_android?platform=Android)。
 
 ## 实现方法
 

@@ -1,6 +1,6 @@
 # 发送和接收消息
 
-登录 Agora Chat 后，用户可以在单聊、群聊或聊天室中发送如下类型的消息：
+登录即时通讯 IM（环信）后，用户可以在单聊、群聊或聊天室中发送如下类型的消息：
 
 - 文本消息，包括超链接和表情符号。
 - 附件消息，包括图片、语音、视频和文件消息。
@@ -14,7 +14,7 @@
 
 ## 技术原理
 
-Agora Chat SDK 使用 `ChatManager` 类实现消息的发送、接收和撤回。
+即时通讯 IM（环信）SDK 使用 `ChatManager` 类实现消息的发送、接收和撤回。
 
 发送和接收消息的过程如下：
 
@@ -27,8 +27,8 @@ Agora Chat SDK 使用 `ChatManager` 类实现消息的发送、接收和撤回�
 
 开始前，请确保满足以下条件：
 
-- 已集成 [Agora Chat SDK](./agora_chat_get_started_android?platform=Android#集成-agora-chat-sdk)。
-- 了解消息相关限制和 Agora Chat API 的调用频率限制，详见 [限制条件](./agora_chat_limitation_android?platform=Android)。
+- 已集成 [即时通讯 IM（环信）SDK](./agora_chat_get_started_android?platform=Android#集成-agora-chat-sdk)。
+- 了解消息相关限制和即时通讯 IM（环信）API 的调用频率限制，详见 [限制条件](./agora_chat_limitation_android?platform=Android)。
 
 ## 实现方法
 

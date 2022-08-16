@@ -4,11 +4,11 @@
 
 用户在群聊中发送信息后，可以查看该消息的已读状态。
 
-本文介绍如何使用 Agora Chat SDK 在单聊和群聊中实现上述功能。
+本文介绍如何使用即时通讯 IM（环信）SDK 在单聊和群聊中实现上述功能。
 
 ## 技术原理
 
-Agora Chat SDK 在 `ChatManager` 类中提供消息回执。以下是核心方法：
+即时通讯 IM（环信）SDK 在 `ChatManager` 类中提供消息回执。以下是核心方法：
 
 - `ChatOptions.setRequireAck`：开启消息已读回执。
 - `ChatOptions.setRequireDeliveryAck`：开启消息送达回执。
@@ -39,7 +39,7 @@ Agora Chat SDK 在 `ChatManager` 类中提供消息回执。以下是核心方�
 
 开始前，请确保满足以下条件：
 
-- 完成 Agora Chat SDK 初始化，并实现了注册账号和登录功能。详情参见 [Agora Chat 入门](https://docs.agora.io/en/agora-chat/agora_chat_get_started_android?platform=Android)。
+- 完成即时通讯 IM（环信）SDK 初始化，并实现了注册账号和登录功能。详情参见 [即时通讯 IM（环信）入门](https://docs.agora.io/en/agora-chat/agora_chat_get_started_android?platform=Android)。
 - 了解 [使用限制](https://docs.agora.io/en/agora-chat/agora_chat_limitation?platform=Android)。
 - 默认情况下群聊的消息已读回执是关闭的。要使用此功能，请联系 [support@agora.io](mailto:support@agora.io)。
 
