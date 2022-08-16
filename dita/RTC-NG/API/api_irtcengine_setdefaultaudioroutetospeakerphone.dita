@@ -28,7 +28,10 @@
         </section>
         <section id="detailed_desc">
             <note props="cpp unity flutter">
-            <p>该方法仅适用于 Android 和 iOS 平台。</p>
+            <ul>
+                <li>该方法仅适用于 Android 和 iOS 平台。</li>
+                <li>该方法需要在加入频道前调用。如需在加入频道后切换音频路由，请调用 <xref keyref="setEnableSpeakerphone"/>。</li>
+            </ul>
             </note>
             <p>手机设备一般有两个音频路由，一个是位于顶部的听筒，播放声音偏小；一个是位于底部的扬声器，播放声音偏大。设置默认的音频路由，就是在没有外接设备的前提下，设置系统使用听筒还是扬声器播放音频。</p>
         </section>
@@ -43,7 +46,7 @@
             <li>视频通话：扬声器</li>
             <li>视频直播：扬声器</li>
             </ul></p>
-            <p>调用该 API 可以改变上述默认音频路由。在加入频道前、频道中、离开频道后，你都可以调用该方法。成功改变音频路由后，SDK 会触发 <xref keyref="onAudioRoutingChanged" /> 回调。</p>
+            <p>调用该 API 可以改变上述默认音频路由。成功改变音频路由后，SDK 会触发 <xref keyref="onAudioRoutingChanged"/> 回调。</p>
             <note>
             <p><ph>当手机插入外接设备，如蓝牙设备或耳机时，系统的音频路由会发生改变。</ph><ph props="native">详细的路由变化规律请参考 <xref keyref="guide-audio-route">音频路由</xref>。</ph></p>
             </note> </section>
