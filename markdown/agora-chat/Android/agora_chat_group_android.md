@@ -2,13 +2,13 @@
 
 群组是支持多人沟通的即时通讯系统。
 
-本页介绍如何使用 Agora Chat SDK 在你的应用中创建和管理群组。
+本页介绍如何使用即时通讯 IM（环信）SDK 在你的应用中创建和管理群组。
 
 如需查看消息相关内容，参见 [消息管理](https://docs-preprod.agora.io/en/agora-chat/agora_chat_message_overview?platform=Android)。
 
 ## 技术原理
 
-Agora Chat SDK 提供了 `Group`，`GroupManager` 和 `GroupChangeListener` 类用于群组管理，可以实现以下功能：
+即时通讯 IM（环信）SDK 提供了 `Group`，`GroupManager` 和 `GroupChangeListener` 类用于群组管理，可以实现以下功能：
 
 - 创建、解散群组
 - 加入、退出群组
@@ -22,13 +22,13 @@ Agora Chat SDK 提供了 `Group`，`GroupManager` 和 `GroupChangeListener` 类�
 
 开始前，请确保满足以下条件：
 
-- 完成 Agora Chat SDK 初始化，详见 [Android 入门](https://docs.agora.io/en/agora-chat/agora_chat_get_started_android?platform=Android)。
+- 完成即时通讯 IM（环信）SDK 初始化，详见 [Android 入门](https://docs.agora.io/en/agora-chat/agora_chat_get_started_android?platform=Android)。
 - 了解 [使用限制](https://docs.agora.io/en/agora-chat/agora_chat_limitation?platform=Android)中所述。
 - 了解群组和群成员的数量限制，详见 [套餐包详情](https://docs.agora.io/en/agora-chat/agora_chat_plan?platform=Android) 了解不同定价计划支持的群组和群组成员的数量。
 
 ## 实现方法
 
-本节介绍如何调用 Agora Chat SDK 提供的 API 实现上述功能。
+本节介绍如何调用即时通讯 IM（环信）SDK 提供的 API 实现上述功能。
 
 ### 创建和解散群组
 

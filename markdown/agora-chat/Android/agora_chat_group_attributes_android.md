@@ -2,7 +2,7 @@
 
 群组是支持多人沟通的即时通讯系统。
 
-本页介绍如何使用 Agora Chat SDK 管理应用中的群组属性。
+本页介绍如何使用即时通讯 IM（环信）SDK 管理应用中的群组属性。
 
 ## 技术原理
 
@@ -22,7 +22,7 @@ SDK 提供了 `Group`, `GroupManager` 和 `GroupChangeListener` 类用于群组�
 
 ## 实现方法
 
-本节介绍如何调用 Agora Chat SDK 提供的 API 实现上述功能。
+本节介绍如何调用即时通讯 IM（环信）SDK 提供的 API 实现上述功能。
 
 ### 修改群组名称
 
