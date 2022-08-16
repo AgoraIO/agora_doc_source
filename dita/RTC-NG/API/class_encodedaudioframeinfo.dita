@@ -46,6 +46,7 @@
             sampleRateHz = 0;
             samplesPerChannel = 0;
             numberOfChannels = 0;
+            captureTimeMs = 0;
         }
 
         public EncodedAudioFrameInfo(ref EncodedAudioFrameInfo rhs)
@@ -55,14 +56,21 @@
             samplesPerChannel = rhs.samplesPerChannel;
             numberOfChannels = rhs.numberOfChannels;
             advancedSettings = rhs.advancedSettings;
+            captureTimeMs = rhs.captureTimeMs;
         }
 
         public AUDIO_CODEC_TYPE codec { set; get; }
+
         public int sampleRateHz { set; get; }
+
         public int samplesPerChannel { set; get; }
+
         public int numberOfChannels { set; get; }
+
         public EncodedAudioFrameAdvancedSettings advancedSettings { set; get; }
-    }</codeblock>
+
+        public int64_t captureTimeMs;
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class EncodedAudioFrameInfo {
   codec?: AudioCodecType;
   sampleRateHz?: number;
