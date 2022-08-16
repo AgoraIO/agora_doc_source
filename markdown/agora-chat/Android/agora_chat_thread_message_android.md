@@ -4,7 +4,7 @@
 
 ## 技术原理
 
-Agora Chat SDK 提供 `ChatManager`、`ChatMessage` 和 `ChatThread` 类，可以实现以下功能：
+即时通讯 IM（环信）SDK 提供 `ChatManager`、`ChatMessage` 和 `ChatThread` 类，可以实现以下功能：
 
 - 发送子区消息
 - 接收子区消息
@@ -17,7 +17,7 @@ Agora Chat SDK 提供 `ChatManager`、`ChatMessage` 和 `ChatThread` 类，可�
 
 1. 客户端从应用服务器获取 token。
 2. 客户 A 和客户 B 登录 Agora Chat。
-3. 用户 A 向用户 B 发送消息，消息被发送到 Agora Chat 服务器，服务器将消息传递给用户 B。 B 收到消息后，SDK 触发事件。客户端 B 监听事件并获取消息。
+3. 用户 A 向用户 B 发送消息，消息被发送到即时通讯 IM（环信）服务器，服务器将消息传递给用户 B。 B 收到消息后，SDK 触发事件。客户端 B 监听事件并获取消息。
 
 子区创建和查看如下图：
 
@@ -33,7 +33,7 @@ Agora Chat SDK 提供 `ChatManager`、`ChatMessage` 和 `ChatThread` 类，可�
 
 ## 实现方法
 
-本节介绍如何调用 Agora Chat SDK 提供的 API 实现上述功能。
+本节介绍如何调用即时通讯 IM（环信）SDK 提供的 API 实现上述功能。
 
 ### 发送子区消息
 

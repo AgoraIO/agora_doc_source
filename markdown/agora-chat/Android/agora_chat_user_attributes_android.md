@@ -1,10 +1,10 @@
 # 用户属性
 
-加入 Agora Chat 频道后，用户可以根据需要更新用户的信息，如用户昵称、头像、邮箱、电话、性别、签名、生日等。
+使用即时通讯 IM（环信）时，用户可以根据需要更新用户的信息，如用户昵称、头像、邮箱、电话、性别、签名、生日等。
 
-本页介绍如何使用 Agora Chat SDK 实现用户属性管理。
+本页介绍如何使用即时通讯 IM（环信）SDK 实现用户属性管理。
 
-- 用户属性存储在 Agora Chat 服务器上。如果您有安全方面的顾虑，Agora 建议您自行管理用户属性。
+- 用户属性存储在即时通讯 IM（环信）服务器上。如果您有安全方面的顾虑，Agora 建议您自行管理用户属性。
 - 为保证信息安全，应用用户只能修改自己的用户属性。只有应用管理员可以修改其他用户的用户属性。
 
 ## 技术原理
@@ -20,12 +20,12 @@ SDK 提供一个 `UserInfoManager` 类，支持获取、设置及修改用户属
 
 设置用户属性前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [Agora Chat 入门](https://docs.agora.io/en/agora-chat/agora_chat_get_started_unity?platform=Unity)。
+- 完成 SDK 初始化，详见 [即时通讯 IM（环信）入门](https://docs.agora.io/en/agora-chat/agora_chat_get_started_unity?platform=Unity)。
 - 了解 [使用限制](https://docs.agora.io/en/agora-chat/agora_chat_limitation?platform=Unity)。
 
 ## 实现方法
 
-本节介绍如何使用 Agora Chat SDK 提供的方法管理用户属性。
+本节介绍如何使用即时通讯 IM（环信）SDK 提供的方法管理用户属性。
 
 ### 设置当前用户的属性
 
@@ -102,7 +102,7 @@ ChatClient.getInstance().userInfoManager().fetchUserInfoByAttribute(userId, user
 
 ### 管理用户头像
 
-Agora Chat SDK 仅支持存储头像文件的 URL 地址，不支持存储头像文件本身。要管理用户头像，需要使用第三方文件存储服务。
+即时通讯 IM（环信）SDK 仅支持存储头像文件的 URL 地址，不支持存储头像文件本身。要管理用户头像，需要使用第三方文件存储服务。
 
 要在应用中实现用户头像管理，请执行以下步骤：
 

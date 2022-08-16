@@ -6,11 +6,11 @@
 
 ![img](https://web-cdn.agora.io/docs-files/1655176216910)
 
-本文介绍如何使用 Agora Chat SDK 在应用中创建和管理子区。
+本文介绍如何使用即时通讯 IM（环信）SDK 在应用中创建和管理子区。
 
 ## 技术原理
 
-Agora Chat SDK 提供`ChatThreadManager`, `ChatThread`, `ChatThreadChangeListener`, 和 `ChatThreadEvent` 类用于子区管理，支持你通过调用 API 在项目中实现如下功能：
+即时通讯 IM（环信）SDK 提供`ChatThreadManager`, `ChatThread`, `ChatThreadChangeListener`, 和 `ChatThreadEvent` 类用于子区管理，支持你通过调用 API 在项目中实现如下功能：
 
 - 创建、解散子区
 - 加入、退出子区
@@ -33,7 +33,7 @@ Agora Chat SDK 提供`ChatThreadManager`, `ChatThread`, `ChatThreadChangeListene
 
 ## 实现方法
 
-本节介绍如何调用 Agora Chat SDK 提供的 API 实现上述功能。
+本节介绍如何调用即时通讯 IM（环信）SDK 提供的 API 实现上述功能。
 
 ### 创建子区
 

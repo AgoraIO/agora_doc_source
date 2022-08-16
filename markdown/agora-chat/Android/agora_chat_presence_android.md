@@ -6,11 +6,11 @@
 
 ![img](https://web-cdn.agora.io/docs-files/1655302046418)
 
-本文介绍如何使用 Agora Chat SDK 在项目中实现在线状态。
+本文介绍如何使用 即时通讯 IM（环信）SDK 在项目中实现在线状态。
 
 ## 技术原理
 
-Agora Chat SDK 提供 `Presence`、`PresenceManager` 和 `PresenceListener` 类用于管理在线状态订阅，包含如下核心方法：
+即时通讯 IM（环信）SDK 提供 `Presence`、`PresenceManager` 和 `PresenceListener` 类用于管理在线状态订阅，包含如下核心方法：
 
 - `subscribePresences`：订阅用户的在线状态；
 - `publishPresence`：发布自定义在线状态；
@@ -32,7 +32,7 @@ Agora Chat SDK 提供 `Presence`、`PresenceManager` 和 `PresenceListener` 类�
 
 使用在线状态功能前，请确保满足以下条件：
 
-- 初始化 Agora Chat SDK，详见 [Android 入门](https://docs.agora.io/en/agora-chat/agora_chat_get_started_android)。
+- 初始化即时通讯 IM（环信）SDK，详见 [Android 入门](https://docs.agora.io/en/agora-chat/agora_chat_get_started_android)。
 - 了解 [使用限制](https://docs.agora.io/en/agora-chat/agora_chat_limitation)。
 - 在 [Agora 控制台](http://console.agora.io/) 中启用在线状态功能。
 

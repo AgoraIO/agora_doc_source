@@ -1,12 +1,12 @@
 # 用户关系管理
 
-登录 Agora Chat 后，用户可以开始添加联系人并互相聊天。他们还可以管理这些联系人，例如添加、获取和删除联系人。他们还可以将指定的用户添加到黑名单列表以停止接收来自该用户的消息。
+登录即时通讯 IM（环信）后，用户可以开始添加联系人并互相聊天。他们还可以管理这些联系人，例如添加、获取和删除联系人。他们还可以将指定的用户添加到黑名单列表以停止接收来自该用户的消息。
 
-本页介绍如何使用 Agora Chat SDK 实现用户关系管理。
+本页介绍如何使用即时通讯 IM（环信）SDK 实现用户关系管理。
 
 ## 了解技术
 
-Agora Chat SDK 提供 `ContactManager` 类用于添加、删除和管理联系人。以下是核心方法：
+即时通讯 IM（环信）SDK 提供 `ContactManager` 类用于添加、删除和管理联系人。以下是核心方法：
 
 - `addContact` 申请添加好友。
 - `acceptInvitation` 同意好友申请。
@@ -21,7 +21,7 @@ Agora Chat SDK 提供 `ContactManager` 类用于添加、删除和管理联系�
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，并实现了注册账号和登录功能。详见 [Agora Chat 入门](https://docs.agora.io/en/agora-chat/agora_chat_get_started_android?platform=Android)。
+- 完成 SDK 初始化，并实现了注册账号和登录功能。详见 [即时通讯 IM（环信）入门](https://docs.agora.io/en/agora-chat/agora_chat_get_started_android?platform=Android)。
 - 了解 [使用限制](https://docs.agora.io/en/agora-chat/agora_chat_limitation?platform=Android)。
 
 ## 实现方法
