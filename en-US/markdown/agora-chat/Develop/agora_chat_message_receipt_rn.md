@@ -1,4 +1,4 @@
-After a user sends a message to another chat user or chat group, this user expects to know whether the message is delievered or read. The Agora Chat SDK provides the message receipt feature, which enables you to send a receipt to the message sender once the message is delievered or read.
+After a user sends a message to another chat user or chat group, this user expects to know whether the message is delivered or read. The Agora Chat SDK provides the message receipt feature, which enables you to send a receipt to the message sender once the message is delivered or read.
 
 This page introduces how to use the Agora Chat SDK to implement message receipt functionalities in one-to-one chats and chat groups.
 
@@ -64,7 +64,7 @@ To send a message delievery receipt, take the following steps:
     });
     ```
 
-2. Once the recipient receives the message, the SDK triggers `OnMessageDelivered` on the message sender's client, notifying the message sender that the message has been delivered to the recipent. Listen for the `onMessageDelivered` callback on the sender's client:
+2. Once the recipient receives the message, the SDK triggers `OnMessageDelivered` on the message sender's client, notifying the message sender that the message has been delivered to the recipient. Listen for the `onMessageDelivered` callback on the sender's client:
 
     ```typescript
     class ChatMessageEvent implements ChatMessageEventListener {
@@ -132,18 +132,18 @@ Follow the steps to implement conversation read receipts in one-to-one chats.
 
 3. The message sender listens for message events and receives the conversation read receipt in `onConversationRead`.
 
-```typescript
-class ChatMessageEvent implements ChatMessageEventListener {
-  onConversationRead(from: string, to?: string): void {
-    // `from` indicates the message recipient that sends this receipt, and `to` indicates the message sender that receives this receipt.
-    console.log(`onConversationRead: `, from, to);
-  }
-  // ...
-}
-// Add a chat message event.
-const listener = new ChatMessageEvent();
-ChatClient.getInstance().chatManager.addMessageListener(listener);
-```
+    ```typescript
+    class ChatMessageEvent implements ChatMessageEventListener {
+    onConversationRead(from: string, to?: string): void {
+        // `from` indicates the message recipient that sends this receipt, and `to` indicates the message sender that receives this receipt.
+        console.log(`onConversationRead: `, from, to);
+    }
+    // ...
+    }
+    // Add a chat message event.
+    const listener = new ChatMessageEvent();
+    ChatClient.getInstance().chatManager.addMessageListener(listener);
+    ```
 
 <div class="alert note">In scenarios where a user is logged in multiple devices, if the user sends a conversation read receipt from one device, the server sets the count of unread messages in the conversation as 0, and all the other devices receive `onConversationRead`.</div>
 

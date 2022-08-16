@@ -91,6 +91,7 @@ In one-to-one chats, the SDK supports sending both the conversation read receipt
 
     2. The message sender listens for message events and receives the conversation read receipt in `onConversationRead`.
 
+
     ```java
     // The message sender calls addConversationListener to listen for conversation events.
     ChatClient.getInstance().chatManager().addConversationListener(new ConversationListener() {

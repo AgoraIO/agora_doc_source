@@ -22,7 +22,7 @@ The process of sending and receiving a message is as follows:
 
 Before proceeding, ensure that you meet the following requirements:
 - You have integrated the Agora Chat SDK, initialized the SDK and implemented the functionality of registering accounts and login. For details, see [Get Started with Agora Chat](./agora_chat_get_started_flutter?platform=Flutter).
-- You understand the [API call frequency limits](/agora_chat_limitation?platform=Flutter).
+- You understand the [API call frequency limits](./agora_chat_limitation?platform=Flutter).
 
 ## Implementation
 

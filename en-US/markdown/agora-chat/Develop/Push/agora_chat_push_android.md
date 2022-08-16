@@ -73,7 +73,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging'
 }
 ```
-<div class="alert note"> For Gradle 5.0 and later, BoM is automatically enabled, whereas for earlier versions of Gradle, you need to enable the BoM feature. See [Firebase Android BoM](https://firebase.google.cn/docs/android/learn-more#bom) and [Firebase Android SDK Release Notes](https://firebase.google.cn/support/release-notes/android) for details.</div>
+<div class="alert note"> For Gradle 5.0 and later, BoM is automatically enabled, whereas for earlier versions of Gradle, you need to enable the BoM feature. See <a href="https://firebase.google.cn/docs/android/learn-more#bom">Firebase Android BoM</a> and <a href="https://firebase.google.cn/support/release-notes/android">Firebase Android SDK Release Notes</a> for details.</div>
 
 2. Sync the project with the gradle files, extend `FirebaseMessagingService`, and register `FirebaseMessagingService` in the `AndroidManifest.xml` file of your project.
 
