@@ -95,7 +95,7 @@ ChatClient.getInstance().contactManager().deleteContact(username);
 
 #### 获取联系人列表
 
-要获取联系人列表，您可以调用 `getAllContactsFromServer` 从服务器获取联系人列表。之后，你还可以调用 `getContactsFromLocal` 从本地数据库中获取联系人列表。
+要获取联系人列表，你可以调用 `getAllContactsFromServer` 从服务器获取联系人列表。之后，你还可以调用 `getContactsFromLocal` 从本地数据库中获取联系人列表。
 
 ```java
 // 从服务器获取好友列表。

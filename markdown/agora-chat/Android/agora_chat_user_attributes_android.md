@@ -4,7 +4,7 @@
 
 本页介绍如何使用即时通讯 IM（环信）SDK 实现用户属性管理。
 
-- 用户属性存储在即时通讯 IM（环信）服务器上。如果您有安全方面的顾虑，Agora 建议您自行管理用户属性。
+- 用户属性存储在即时通讯 IM（环信）服务器上。如果你有安全方面的顾虑，Agora 建议你自行管理用户属性。
 - 为保证信息安全，应用用户只能修改自己的用户属性。只有应用管理员可以修改其他用户的用户属性。
 
 ## 技术原理
@@ -98,7 +98,7 @@ ChatClient.getInstance().userInfoManager().fetchUserInfoByAttribute(userId, user
 
 ## 下一步
 
-本节介绍您可以使用用户属性和联系人管理在应用程序中实现的额外功能。
+本节介绍你可以使用用户属性和联系人管理在应用程序中实现的额外功能。
 
 ### 管理用户头像
 
@@ -137,7 +137,7 @@ ChatClient.getInstance().chatManager().sendMessage(message);
 
 ## 参考
 
-本节包含您在实施过程中可能需要了解的参考信息。
+本节包含你在实施过程中可能需要了解的参考信息。
 
 - 有关用户属性的详细信息，请参阅以下 API 参考：
   - [用户信息](https://docs.agora.io/en/agora-chat/.A/API Reference/im_java/classio_1_1agora_1_1chat_1_1_user_info.html)

@@ -129,7 +129,7 @@ MessageListener msgListener = new MessageListener() {
 
 #### 管理本地子区消息
 
-通过调用 [`getAllConversations`](https://docs.agora.io/en/agora-chat/agora_chat_message_android#retrieve-local-conversations)，您只能检索一对一聊天或群聊的对话。要检索线程的对话，请参阅以下代码示例：
+通过调用 [`getAllConversations`](https://docs.agora.io/en/agora-chat/agora_chat_message_android#retrieve-local-conversations)，你只能检索一对一聊天或群聊的对话。要检索线程的对话，请参阅以下代码示例：
 
 ```java
 // 需要指定会话类型为 `ChatConversationType.GroupChat`，且 `isChatThread` 设置为 `true`
