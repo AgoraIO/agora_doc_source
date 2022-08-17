@@ -6,62 +6,11 @@ import 'package:agora_rtc_ng/src/impl/api_caller.dart';
 import 'package:agora_rtc_ng/src/audio_device_manager.dart';
 import 'package:agora_rtc_ng/src/binding/audio_device_manager_impl.dart'
     as audio_device_manager_impl_binding;
-import 'package:meta/meta.dart';
 
-// class IAudioDeviceCollectionInernal implements IAudioDeviceCollection {
-//   @visibleForOverriding
-//   @override
-//   int getApplicationVolume() {
-//     throw UnimplementedError();
-//   }
-
-//   @visibleForOverriding
-//   @override
-//   void getCount() {
-//     throw UnimplementedError();
-//   }
-
-//   @visibleForOverriding
-//   @override
-//   String getDevice({required int index, required String deviceId}) {
-//     throw UnimplementedError();
-//   }
-
-//   @visibleForOverriding
-//   @override
-//   bool isApplicationMute() {
-//     throw UnimplementedError();
-//   }
-
-//   @visibleForOverriding
-//   @override
-//   void release() {
-//     throw UnimplementedError();
-//   }
-
-//   @visibleForOverriding
-//   @override
-//   void setApplicationMute(bool mute) {
-//     throw UnimplementedError();
-//   }
-
-//   @visibleForOverriding
-//   @override
-//   void setApplicationVolume(int volume) {
-//     throw UnimplementedError();
-//   }
-
-//   @visibleForOverriding
-//   @override
-//   void setDevice(String deviceId) {
-//     throw UnimplementedError();
-//   }
-// }
+// ignore_for_file: public_member_api_docs
 
 extension DeviceInfoListExt on List<AudioDeviceInfo> {
   void fill(dynamic rm) {
-    // assert(rm.containsKey('devices'));
-    // final devices = rm['devices'];
     final devicesList = List.from(rm);
     final List<AudioDeviceInfo> deviceInfoList = [];
     for (final d in devicesList) {
@@ -98,18 +47,8 @@ class AudioDeviceManagerImpl extends audio_device_manager_impl_binding
     final rm = callApiResult.data;
     final result = rm['result'];
 
-    // final devices = rm['devices'];
-    // final devicesList = List.from(devices);
     final List<AudioDeviceInfo> deviceInfoList = [];
     deviceInfoList.fill(result);
-    // for (final d in devicesList) {
-    //   final dm = Map<String, dynamic>.from(d);
-
-    //   deviceInfoList.add(DeviceInfo(
-    //     deviceId: dm['deviceId'],
-    //     deviceName: dm['deviceName'],
-    //   ));
-    // }
 
     return deviceInfoList;
   }
@@ -142,9 +81,8 @@ class AudioDeviceManagerImpl extends audio_device_manager_impl_binding
       throw AgoraRtcException(code: callApiResult.irisReturnCode);
     }
     final rm = callApiResult.data;
-    final result = rm['result'];
 
-    return AudioDeviceInfo.fromJson(result);
+    return AudioDeviceInfo.fromJson(rm);
   }
 
   @override
@@ -157,9 +95,8 @@ class AudioDeviceManagerImpl extends audio_device_manager_impl_binding
       throw AgoraRtcException(code: callApiResult.irisReturnCode);
     }
     final rm = callApiResult.data;
-    final result = rm['result'];
 
-    return AudioDeviceInfo.fromJson(result);
+    return AudioDeviceInfo.fromJson(rm);
   }
 
   @override
