@@ -1,73 +1,46 @@
-import { IRtcEngine } from './IAgoraRtcEngine';
 import { RtcConnection } from './IAgoraRtcEngineEx';
 
-export enum SaeConnectionStateType {
-  SaeConnectionStateConnecting = 0,
-  SaeConnectionStateConnected = 1,
-  SaeConnectionStateDisconnected = 2,
-  SaeConnectionStateReconnecting = 3,
-  SaeConnectionStateReconnected = 4,
-}
-
-export enum SaeConnectionChangedReasonType {
-  SaeConnectionChangedDefault = 0,
-  SaeConnectionChangedConnecting = 1,
-  SaeConnectionChangedCreateRoomFail = 2,
-  SaeConnectionChangedRtmDisconnect = 3,
-  SaeConnectionChangedRtmAborted = 4,
-  SaeConnectionChangedLostSync = 5,
-}
-
-export enum AudioRangeModeType {
-  AudioRangeModeWorld = 0,
-  AudioRangeModeTeam = 1,
-}
-
+/**
+ * @ignore
+ */
 export class RemoteVoicePositionInfo {
+  /**
+   * @ignore
+   */
   position?: number[];
+  /**
+   * @ignore
+   */
   forward?: number[];
 }
 
-export enum SaeDeployRegion {
-  SaeDeployRegionCn = 0x00000001,
-  SaeDeployRegionNa = 0x00000002,
-  SaeDeployRegionEu = 0x00000004,
-  SaeDeployRegionAs = 0x00000008,
-}
-
-export abstract class ICloudSpatialAudioEventHandler {
-  onTokenWillExpire?(): void;
-
-  onConnectionStateChange?(
-    state: SaeConnectionStateType,
-    reason: SaeConnectionChangedReasonType
-  ): void;
-
-  onTeammateLeft?(uid: number): void;
-
-  onTeammateJoined?(uid: number): void;
-}
-
-export class CloudSpatialAudioConfig {
-  rtcEngine?: IRtcEngine;
-  eventHandler?: ICloudSpatialAudioEventHandler;
-  appId?: string;
-  deployRegion?: number;
-}
-
-export class LocalSpatialAudioConfig {
-  rtcEngine?: IRtcEngine;
-}
-
+/**
+ * @ignore
+ */
 export abstract class IBaseSpatialAudioEngine {
+  /**
+   * @ignore
+   */
   abstract release(): void;
 
+  /**
+   * @ignore
+   */
   abstract setMaxAudioRecvCount(maxCount: number): number;
 
+  /**
+   * @ignore
+   */
   abstract setAudioRecvRange(range: number): number;
 
+  /**
+   * @ignore
+   */
   abstract setDistanceUnit(unit: number): number;
 
+  /**
+   * @ignore
+   */
   abstract updateSelfPosition(
     position: number[],
     axisForward: number[],
@@ -75,6 +48,9 @@ export abstract class IBaseSpatialAudioEngine {
     axisUp: number[]
   ): number;
 
+  /**
+   * @ignore
+   */
   abstract updateSelfPositionEx(
     position: number[],
     axisForward: number[],
@@ -83,66 +59,76 @@ export abstract class IBaseSpatialAudioEngine {
     connection: RtcConnection
   ): number;
 
+  /**
+   * @ignore
+   */
   abstract updatePlayerPositionInfo(
     playerId: number,
     positionInfo: RemoteVoicePositionInfo
   ): number;
 
+  /**
+   * @ignore
+   */
   abstract setParameters(params: string): number;
 
+  /**
+   * @ignore
+   */
   abstract muteLocalAudioStream(mute: boolean): number;
 
+  /**
+   * @ignore
+   */
   abstract muteAllRemoteAudioStreams(mute: boolean): number;
 }
 
-export abstract class ICloudSpatialAudioEngine extends IBaseSpatialAudioEngine {
-  abstract initialize(config: CloudSpatialAudioConfig): number;
-
-  abstract addEventHandler(
-    eventHandler: ICloudSpatialAudioEventHandler
-  ): number;
-
-  abstract removeEventHandler(
-    eventHandler: ICloudSpatialAudioEventHandler
-  ): number;
-
-  abstract enableSpatializer(enable: boolean, applyToTeam: boolean): number;
-
-  abstract setTeamId(teamId: number): number;
-
-  abstract setAudioRangeMode(rangeMode: AudioRangeModeType): number;
-
-  abstract enterRoom(token: string, roomName: string, uid: number): number;
-
-  abstract renewToken(token: string): number;
-
-  abstract exitRoom(): number;
-
-  abstract getTeammates(): number[];
-}
-
+/**
+ * @ignore
+ */
 export abstract class ILocalSpatialAudioEngine extends IBaseSpatialAudioEngine {
-  abstract initialize(config: LocalSpatialAudioConfig): number;
+  /**
+   * @ignore
+   */
+  abstract initialize(): number;
 
+  /**
+   * @ignore
+   */
   abstract updateRemotePosition(
     uid: number,
     posInfo: RemoteVoicePositionInfo
   ): number;
 
+  /**
+   * @ignore
+   */
   abstract updateRemotePositionEx(
     uid: number,
     posInfo: RemoteVoicePositionInfo,
     connection: RtcConnection
   ): number;
 
+  /**
+   * @ignore
+   */
   abstract removeRemotePosition(uid: number): number;
 
+  /**
+   * @ignore
+   */
   abstract removeRemotePositionEx(
     uid: number,
     connection: RtcConnection
   ): number;
 
+  /**
+   * @ignore
+   */
   abstract clearRemotePositions(): number;
 
+  /**
+   * @ignore
+   */
   abstract clearRemotePositionsEx(connection: RtcConnection): number;
 }
