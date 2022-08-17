@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startaudiomixing2">
-    <title><ph keyref="startAudioMixing2"/></title>
+    <title><ph keyref="startAudioMixing2" /></title>
     <shortdesc id="short"><ph id="shortdesc">开始播放音乐文件。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="startAudioMixing2"/>
+                <indexterm keyref="startAudioMixing2" />
             </keywords>
         </metadata>
     </prolog>
@@ -19,13 +19,13 @@
             <codeblock props="electron" outputclass="language-typescript">abstract startAudioMixing(filePath: string, loopback: boolean, replace: boolean, cycle: number, startPos?: number): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int StartAudioMixing(string filePath, bool loopback, bool replace, int cycle, int startPos);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract startAudioMixing(
-filePath: string,
-loopback: boolean,
-replace: boolean,
-cycle: number,
-startPos?: number
-): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> startAudioMixing(
+    filePath: string,
+    loopback: boolean,
+    replace: boolean,
+    cycle: number,
+    startPos?: number
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startAudioMixing(
   {required String filePath,
   required bool loopback,
   required bool replace,
@@ -35,13 +35,13 @@ startPos?: number
 </p>
         </section>
         <section id="detailed_desc">
-            <p id="audiomixing_detailed">该方法支持将本地或在线音乐文件和麦克风采集的音频进行混音或替换。成功播放音乐文件后，本地会触发 <codeph><xref keyref="onAudioMixingStateChanged"/>(<apiname keyref="AUDIO_MIXING_STATE_PLAYING"/>)</codeph> 回调。播放结束后，本地会触发 <codeph><apiname keyref="onAudioMixingStateChanged"/>(<apiname keyref="AUDIO_MIXING_STATE_STOPPED"/>)</codeph> 回调。</p>
+            <p id="audiomixing_detailed">该方法支持将本地或在线音乐文件和麦克风采集的音频进行混音或替换。成功播放音乐文件后，本地会触发 <codeph><xref keyref="onAudioMixingStateChanged" />(<apiname keyref="AUDIO_MIXING_STATE_PLAYING" />)</codeph> 回调。播放结束后，本地会触发 <codeph><apiname keyref="onAudioMixingStateChanged" />(<apiname keyref="AUDIO_MIXING_STATE_STOPPED" />)</codeph> 回调。</p>
             <note type="attention" id="audiomixing_note">
             <ul>
-            <li>该方法在加入频道前后均调用。如需多次调用 <apiname keyref="startAudioMixing2"/>，请确保调用间隔大于 500 ms。</li>
+            <li>该方法在加入频道前后均调用。如需多次调用 <apiname keyref="startAudioMixing2" />，请确保调用间隔大于 500 ms。</li>
             <li>如果本地音乐文件不存在、文件格式不支持或无法访问在线音乐文件 URL，则 SDK 会报告警告码 701。</li>
-            <li conkeyref="preloadEffect/audioFormats"/>
-            <li conkeyref="startAudioMixing/principle" props="android cpp unity"/>
+            <li conkeyref="preloadEffect/audioFormats" />
+            <li conkeyref="startAudioMixing/principle" props="android cpp unity" />
             <li props="rn" id="principle">在 Android 平台上调用该方法时，请注意如下事项：
 
                 <ul>
@@ -54,8 +54,8 @@ startPos?: number
             <title>参数</title>
             <parml>
             <plentry conkeyref="preloadEffect/filePath">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry>
                 <pt>loopback</pt>
@@ -63,8 +63,8 @@ startPos?: number
                     <p>是否只在本地播放音乐文件：
                            
                     <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: 只在本地播放音乐文件，只有本地用户能听到音乐。</li>
-                    <li><codeph><ph keyref="false"/></codeph>: 将本地播放的音乐文件发布至远端，本地用户和远端用户都能听到音乐。</li>
+                    <li><codeph><ph keyref="true" /></codeph>: 只在本地播放音乐文件，只有本地用户能听到音乐。</li>
+                    <li><codeph><ph keyref="false" /></codeph>: 将本地播放的音乐文件发布至远端，本地用户和远端用户都能听到音乐。</li>
                     </ul></p>
                 </pd>
             </plentry>
@@ -76,8 +76,8 @@ startPos?: number
 
 
                     <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: 替换。用户只能听到音乐。</li>
-                    <li><codeph><ph keyref="false"/></codeph>: 不替换。用户可以听到音乐和麦克风采集的音频。</li>
+                    <li><codeph><ph keyref="true" /></codeph>: 替换。用户只能听到音乐。</li>
+                    <li><codeph><ph keyref="false" /></codeph>: 不替换。用户可以听到音乐和麦克风采集的音频。</li>
                     </ul></p>
                 </pd>
             </plentry>

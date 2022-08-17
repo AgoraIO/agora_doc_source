@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_screencaptureparameters">
-    <title><ph keyref="ScreenCaptureParameters"/></title>
+    <title><ph keyref="ScreenCaptureParameters" /></title>
     <shortdesc id="short"><ph id="shortdesc">屏幕共享的参数配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="android" outputclass="language-java" />
             <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenCaptureParameters: NSObject
 @property (assign, nonatomic) CGSize dimensions;
 @property (assign, nonatomic) NSInteger frameRate;
@@ -142,7 +142,7 @@
         public uint highLightColor { set; get; }
         public bool enableHighLight { set; get; }
     };</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">class ScreenCaptureParameters {
   const ScreenCaptureParameters(
       {this.dimensions,
@@ -164,24 +164,23 @@
   @JsonKey(name: 'windowFocus')
   final bool? windowFocus;
   @JsonKey(name: 'excludeWindowList')
-  final List&lt;int>? excludeWindowList;
+  final List&lt;int&gt;? excludeWindowList;
   @JsonKey(name: 'excludeWindowCount')
   final int? excludeWindowCount;
-  factory ScreenCaptureParameters.fromJson(Map&lt;String, dynamic> json) =>
+  factory ScreenCaptureParameters.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$ScreenCaptureParametersFromJson(json);
-  Map&lt;String, dynamic> toJson() => _$ScreenCaptureParametersToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ScreenCaptureParametersToJson(this);
 }</codeblock>
             </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
-            <note type="note" props="mac cpp unity">共享的屏幕流的视频属性只需通过 <xref keyref="ScreenCaptureParameters"/> 设置，与 <xref keyref="setVideoEncoderConfiguration"/> 无关。</note>
+            <note type="note" props="mac cpp unity">共享的屏幕流的视频属性只需通过 <xref keyref="ScreenCaptureParameters" /> 设置，与 <xref keyref="setVideoEncoderConfiguration" /> 无关。</note>
             <parml>
             <plentry>
                 <pt props="mac cpp unity flutter electron rn">dimensions</pt>
                 <pd>
-                    <p><ph props="flutter">编码共享视频的最大像素值。</ph><ph props="mac">共享的屏幕流的视频编码分辨率。</ph><ph props="unity cpp">在 Windows 和 macOS 平台上，表示共享的屏幕流的视频编码分辨率。</ph><ph
-                            props="cpp">详见 <xref keyref="VideoDimensions"/>。默认值为 1920 × 1080，即 2073600 像素。该像素值为计费标准。</ph></p>
+                    <p><ph props="flutter">编码共享视频的最大像素值。</ph><ph props="mac">共享的屏幕流的视频编码分辨率。</ph><ph props="unity cpp">在 Windows 和 macOS 平台上，表示共享的屏幕流的视频编码分辨率。</ph><ph props="cpp">详见 <xref keyref="VideoDimensions" />。默认值为 1920 × 1080，即 2073600 像素。该像素值为计费标准。</ph></p>
                     <p>当共享的屏幕分辨率宽高比与该值设置不一致时，SDK 按如下策略进行编码。假设 <parmname props="mac cpp unity flutter">dimensions</parmname> 设为 1920 × 1080：
                             <ul>
                             <li>如果屏幕分辨率小于 <parmname props="mac cpp unity flutter">dimensions</parmname>，如 1000 × 1000，SDK 直接按 1000 × 1000 进行编码。</li>
@@ -191,11 +190,11 @@
             </plentry>
             <plentry>
                 <pt>frameRate</pt>
-                <pd><ph props="flutter">共享视频的帧率。</ph><ph props="mac">共享的屏幕流的视频编码帧率。</ph><ph props="unity cpp" >在 Windows 和 macOS 平台上，表示共享的屏幕流的视频编码帧率。</ph><ph>单位为 fps；默认值为 5，建议不要超过 15。</ph></pd>
+                <pd><ph props="flutter">共享视频的帧率。</ph><ph props="mac">共享的屏幕流的视频编码帧率。</ph><ph props="unity cpp">在 Windows 和 macOS 平台上，表示共享的屏幕流的视频编码帧率。</ph><ph>单位为 fps；默认值为 5，建议不要超过 15。</ph></pd>
             </plentry>
             <plentry>
                 <pt>bitrate</pt>
-                <pd><ph props="unity flutter">共享视频的码率。</ph><ph props="mac">共享的屏幕流的视频编码码率。</ph><ph props="unity cpp" >在 Windows 和 macOS 平台上，表示共享的屏幕流的视频编码码率。</ph><ph>单位为 Kbps；默认值为 0，表示 SDK 根据当前共享屏幕的分辨率计算出一个合理的值。</ph></pd>
+                <pd><ph props="unity flutter">共享视频的码率。</ph><ph props="mac">共享的屏幕流的视频编码码率。</ph><ph props="unity cpp">在 Windows 和 macOS 平台上，表示共享的屏幕流的视频编码码率。</ph><ph>单位为 Kbps；默认值为 0，表示 SDK 根据当前共享屏幕的分辨率计算出一个合理的值。</ph></pd>
             </plentry>
             <plentry props="mac cpp unity electron rn flutter">
                 <pt>captureMouseCursor</pt>
@@ -203,38 +202,38 @@
                     <p>是否采集鼠标用于屏幕共享：
 
                     <ul>
-                    <li><codeph><ph keyref="true"/></codeph>:（默认）采集鼠标。</li>
-                    <li><codeph><ph keyref="false"/></codeph>: 不采集鼠标。</li>
+                    <li><codeph><ph keyref="true" /></codeph>:（默认）采集鼠标。</li>
+                    <li><codeph><ph keyref="false" /></codeph>: 不采集鼠标。</li>
                     </ul></p>
                 </pd>
             </plentry>
             <plentry props="mac cpp unity electron rn flutter">
                 <pt>windowFocus</pt>
                 <pd>
-                    <p>调用 <xref keyref="startScreenCaptureByWindowId"/> 方法共享窗口时，是否将该窗口前置：
+                    <p>调用 <xref keyref="startScreenCaptureByWindowId" /> 方法共享窗口时，是否将该窗口前置：
 
 
 
 
                     <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: 前置窗口。</li>
-                    <li><codeph><ph keyref="false"/></codeph>:（默认）不前置窗口。</li>
+                    <li><codeph><ph keyref="true" /></codeph>: 前置窗口。</li>
+                    <li><codeph><ph keyref="false" /></codeph>:（默认）不前置窗口。</li>
                     </ul></p>
                 </pd>
             </plentry>
             <plentry props="mac cpp unity electron rn flutter">
                 <pt>excludeWindowList</pt>
-                <pd>待屏蔽窗口的 ID 列表。调用 <xref keyref="startScreenCaptureByDisplayId"/> 开启屏幕共享时，你可以通过该参数屏蔽指定的窗口。你可以在调用 <xref keyref="updateScreenCaptureParameters"/> 更新屏幕共享的配置参数时，通过该参数动态屏蔽指定的窗口。</pd>
+                <pd>待屏蔽窗口的 ID 列表。调用 <xref keyref="startScreenCaptureByDisplayId" /> 开启屏幕共享时，你可以通过该参数屏蔽指定的窗口。你可以在调用 <xref keyref="updateScreenCaptureParameters" /> 更新屏幕共享的配置参数时，通过该参数动态屏蔽指定的窗口。</pd>
             </plentry>
             <plentry props="mac cpp">
                 <pt props="mac">highLighted</pt>
                 <pt props="cpp">enableHighLight</pt>
                 <pd><ph props="cpp">（仅适用于 macOS）</ph><ph>是否对共享的窗口或屏幕进行描边：</ph>
                     <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: 描边。</li>
-                    <li><codeph><ph keyref="false"/></codeph>: （默认）不描边。</li>
+                    <li><codeph><ph keyref="true" /></codeph>: 描边。</li>
+                    <li><codeph><ph keyref="false" /></codeph>: （默认）不描边。</li>
                     </ul>
-                    <note>当你在共享窗口或屏幕的部分区域时，如果将该参数设置为 <codeph><ph keyref="true"/></codeph>，SDK 会对整个窗口或屏幕进行描边。</note></pd>
+                    <note>当你在共享窗口或屏幕的部分区域时，如果将该参数设置为 <codeph><ph keyref="true" /></codeph>，SDK 会对整个窗口或屏幕进行描边。</note></pd>
             </plentry>
             <plentry props="mac cpp">
                 <pt>highLightColor</pt>
@@ -244,7 +243,7 @@
             <plentry props="mac cpp">
                 <pt>highLightWidth</pt>
                 <pd><ph props="cpp">（仅适用于 macOS）</ph><ph>描边的宽度 (px)。默认值为 5，取值范围为 (0,50]。</ph>
-                    <note>该参数仅在 <parmname>highLighted</parmname> 设置为 <codeph><ph keyref="true"/></codeph> 时生效。</note></pd>
+                    <note>该参数仅在 <parmname>highLighted</parmname> 设置为 <codeph><ph keyref="true" /></codeph> 时生效。</note></pd>
             </plentry>
             <plentry props="cpp unity electron rn flutter">
                 <pt>excludeWindowCount</pt>
