@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_contentinspectconfig">
-    <title><ph keyref="ContentInspectConfig"/></title>
+    <title><ph keyref="ContentInspectConfig" /></title>
     <shortdesc id="short"><ph id="shortdesc">视频内容审核配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -31,7 +31,7 @@
   }</codeblock>
             <codeblock props="ios mac">__attribute__((visibility("default"))) @interface AgoraContentInspectConfig: NSObject
 @property (nonatomic, copy) NSString* _Nullable extraInfo;
-@property(copy, nonatomic) NSArray&lt;AgoraContentInspectModule*>* _Nullable modules;
+@property(copy, nonatomic) NSArray&lt;AgoraContentInspectModule*&gt;* _Nullable modules;
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct ContentInspectConfig {
   const char* extraInfo;
@@ -47,9 +47,23 @@
 	}
   ContentInspectConfig() :extraInfo(NULL), moduleCount(0){}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export class ContentInspectConfig {
+  
+  extraInfo?: string;
+  
+  modules?: ContentInspectModule[];
+  
+  moduleCount?: number;
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int UpdateScreenCaptureParameters(ScreenCaptureParameters captureParams);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript">export class ContentInspectConfig {
+  
+  extraInfo?: string;
+  
+  modules?: ContentInspectModule[];
+  
+  moduleCount?: number;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; updateScreenCaptureParameters(
       ScreenCaptureParameters captureParams);</codeblock></p>
         </section>
@@ -82,13 +96,13 @@
             <plentry>
                 <pt>modules</pt>
                 <pd>
-                    <p>视频内容审核模块。详见 <xref keyref="ContentInspectModule"/>。</p>
-                    <p>最多支持配置 32 个 <apiname keyref="ContentInspectModule"/> 实例，<parmname>MAX_CONTENT_INSPECT_MODULE_COUNT</parmname> 的取值范围为 [1,32] 中的整数。</p>
+                    <p>视频内容审核模块。详见 <xref keyref="ContentInspectModule" />。</p>
+                    <p>最多支持配置 32 个 <apiname keyref="ContentInspectModule" /> 实例，<parmname>MAX_CONTENT_INSPECT_MODULE_COUNT</parmname> 的取值范围为 [1,32] 中的整数。</p>
                     <note type="attention">一个视频内容审核模块最多只能配置一个实例。</note> </pd>
             </plentry>
             <plentry>
                 <pt>moduleCount</pt>
-                <pd>视频内容审核模块数，即配置的 <apiname keyref="ContentInspectModule"/> 实例的数量，必须与 <parmname>modules</parmname> 中配置的实例个数一致。最大值为 32。</pd>
+                <pd>视频内容审核模块数，即配置的 <apiname keyref="ContentInspectModule" /> 实例的数量，必须与 <parmname>modules</parmname> 中配置的实例个数一致。最大值为 32。</pd>
             </plentry>
             </parml> </section>
     </refbody>

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_lastmileproberesult">
-    <title><ph keyref="LastmileProbeResult"/></title>
-    <shortdesc id="short"><ph id="shortdesc"
-        >上下行 Last mile 网络质量探测结果。</ph></shortdesc>
+    <title><ph keyref="LastmileProbeResult" /></title>
+    <shortdesc id="short"><ph id="shortdesc">上下行 Last mile 网络质量探测结果。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -37,10 +36,14 @@
 @property (strong, nonatomic) AgoraLastmileProbeOneWayResult *_Nonnull downlinkReport;
 @end</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LastmileProbeResult {
-  state?: LastmileProbeResultState
-  uplinkReport?: LastmileProbeOneWayResult
-  downlinkReport?: LastmileProbeOneWayResult
-  rtt?: number
+  
+  state?: LastmileProbeResultState;
+  
+  uplinkReport?: LastmileProbeOneWayResult;
+  
+  downlinkReport?: LastmileProbeOneWayResult;
+  
+  rtt?: number;
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class LastmileProbeResult
     {
@@ -64,9 +67,13 @@
         public uint rtt { set; get; }
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class LastmileProbeResult {
+  
   state?: LastmileProbeResultState;
+  
   uplinkReport?: LastmileProbeOneWayResult;
+  
   downlinkReport?: LastmileProbeOneWayResult;
+  
   rtt?: number;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class LastmileProbeResult {
@@ -81,17 +88,15 @@
   final LastmileProbeOneWayResult? downlinkReport;
   @JsonKey(name: 'rtt')
   final int? rtt;
-  factory LastmileProbeResult.fromJson(Map&lt;String, dynamic> json) =>
+  factory LastmileProbeResult.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$LastmileProbeResultFromJson(json);
-  Map&lt;String, dynamic> toJson() => _$LastmileProbeResultToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$LastmileProbeResultToJson(this);
 }
 </codeblock>
             </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>state</pt>
@@ -101,22 +106,19 @@
 
 
                     <ul>
-                    <li><ph keyref="LASTMILE_PROBE_RESULT_COMPLETE"
-                        /> (1)：表示本次 Last-mile 质量探测是完整的。</li>
-                    <li><ph keyref="LASTMILE_PROBE_RESULT_INCOMPLETE_NO_BWE"
-                        /> (2)：表示本次 Last-mile 质量探测未进行带宽预测，因此结果不完整。一个可能的原因是测试资源暂时受限。</li>
-                    <li><ph keyref="LASTMILE_PROBE_RESULT_UNAVAILABLE"
-                        /> (3)：未进行 Last-mile 质量探测。一个可能的原因是网络连接中断。</li>
+                    <li><ph keyref="LASTMILE_PROBE_RESULT_COMPLETE" /> (1)：表示本次 Last-mile 质量探测是完整的。</li>
+                    <li><ph keyref="LASTMILE_PROBE_RESULT_INCOMPLETE_NO_BWE" /> (2)：表示本次 Last-mile 质量探测未进行带宽预测，因此结果不完整。一个可能的原因是测试资源暂时受限。</li>
+                    <li><ph keyref="LASTMILE_PROBE_RESULT_UNAVAILABLE" /> (3)：未进行 Last-mile 质量探测。一个可能的原因是网络连接中断。</li>
                     </ul> </p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>uplinkReport</pt>
-                <pd>上行网络质量报告。详见 <xref keyref="LastmileProbeOneWayResult"/>。</pd>
+                <pd>上行网络质量报告。详见 <xref keyref="LastmileProbeOneWayResult" />。</pd>
             </plentry>
             <plentry>
                 <pt>downlinkReport</pt>
-                <pd>下行网络质量报告。详见 <xref keyref="LastmileProbeOneWayResult"/>。</pd>
+                <pd>下行网络质量报告。详见 <xref keyref="LastmileProbeOneWayResult" />。</pd>
             </plentry>
             <plentry>
                 <pt>rtt</pt>

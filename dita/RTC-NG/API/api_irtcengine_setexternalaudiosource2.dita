@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setexternalaudiosource2">
-    <title><ph keyref="setExternalAudioSource2"/></title>
+    <title><ph keyref="setExternalAudioSource2" /></title>
     <shortdesc id="short"><ph id="shortdesc">设置外部音频采集参数。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setExternalAudioSource2"/>
+                <indexterm keyref="setExternalAudioSource2" />
             </keywords>
         </metadata>
     </prolog>
@@ -27,10 +27,24 @@
                                    int sourceNumber,
                                    bool localPlayback = false,
                                    bool publish = true) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract setExternalAudioSource(
+    enabled: boolean,
+    sampleRate: number,
+    channels: number,
+    sourceNumber?: number,
+    localPlayback?: boolean,
+    publish?: boolean
+  ): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetExternalAudioSource(bool enabled, int sampleRate, int channels, int sourceNumber, bool localPlayback = false, bool publish = true);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract setExternalAudioSource(
+    enabled: boolean,
+    sampleRate: number,
+    channels: number,
+    sourceNumber?: number,
+    localPlayback?: boolean,
+    publish?: boolean
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
             <note type="attention">请在加入频道前调用该方法。</note> </section>
@@ -43,8 +57,8 @@
                     <p>是否开启使用外部音频源的功能：
 
                     <ul>
-                    <li><codeph><ph keyref="true"/></codeph>：开启外部音频源。</li>
-                    <li><codeph><ph keyref="false"/></codeph>：（默认）关闭外部音频源。</li>
+                    <li><codeph><ph keyref="true" /></codeph>：开启外部音频源。</li>
+                    <li><codeph><ph keyref="false" /></codeph>：（默认）关闭外部音频源。</li>
                     </ul></p>
                 </pd>
             </plentry>
@@ -58,7 +72,7 @@
             </plentry>
             <plentry>
                 <pt>sourceNumber</pt>
-                <pd><ph>外部音频源的数量，取值为正整数。</ph><ph props="hide">多个音频源会被混音。</ph><ph>SDK 会根据该参数值创建对应数量的自采集音频轨道，并从 0 开始为音频轨道命名。你可以在 <xref keyref="ChannelMediaOptions"/> 中，设置 <parmname>publishCustomAudioSourceId</parmname> 为你想要发布的音频轨道 ID。</ph></pd>
+                <pd><ph>外部音频源的数量，取值为正整数。</ph><ph props="hide">多个音频源会被混音。</ph><ph>SDK 会根据该参数值创建对应数量的自采集音频轨道，并从 0 开始为音频轨道命名。你可以在 <xref keyref="ChannelMediaOptions" /> 中，设置 <parmname>publishCustomAudioSourceId</parmname> 为你想要发布的音频轨道 ID。</ph></pd>
             </plentry>
             <plentry>
                 <pt>localPlayback</pt>
@@ -66,8 +80,8 @@
                     <p>是否在本地播放外部音频源：
 
                     <ul>
-                    <li><codeph><ph keyref="true"/></codeph>：在本地播放。</li>
-                    <li><codeph><ph keyref="false"/></codeph>：（默认）不在本地播放。</li>
+                    <li><codeph><ph keyref="true" /></codeph>：在本地播放。</li>
+                    <li><codeph><ph keyref="false" /></codeph>：（默认）不在本地播放。</li>
                     </ul></p>
                 </pd>
             </plentry>
@@ -77,8 +91,8 @@
                     <p>是否将音频发布到远端：
 
                     <ul id="ul_agk_dnf_3qb">
-                    <li><codeph><ph keyref="true"/></codeph>：（默认）发布到远端。</li>
-                    <li><codeph><ph keyref="false"/></codeph>：不发布到远端。</li>
+                    <li><codeph><ph keyref="true" /></codeph>：（默认）发布到远端。</li>
+                    <li><codeph><ph keyref="false" /></codeph>：不发布到远端。</li>
                     </ul></p>
                 </pd>
             </plentry>

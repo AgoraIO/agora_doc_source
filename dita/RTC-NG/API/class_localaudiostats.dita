@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_localaudiostats">
-    <title><ph keyref="LocalAudioStats"/></title>
+    <title><ph keyref="LocalAudioStats" /></title>
     <shortdesc id="short"><ph id="shortdesc">本地音频统计数据。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -33,11 +33,18 @@
   int audioDeviceDelay;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LocalAudioStats {
-  numChannels?: number
-  sentSampleRate?: number
-  sentBitrate?: number
-  internalCodec?: number
-  txPacketLossRate?: number
+  
+  numChannels?: number;
+  
+  sentSampleRate?: number;
+  
+  sentBitrate?: number;
+  
+  internalCodec?: number;
+  
+  txPacketLossRate?: number;
+  
+  audioDeviceDelay?: number;
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class LocalAudioStats
     {
@@ -60,11 +67,18 @@
         public ushort txPacketLossRate { set; get; }
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class LocalAudioStats {
+  
   numChannels?: number;
+  
   sentSampleRate?: number;
+  
   sentBitrate?: number;
+  
   internalCodec?: number;
+  
   txPacketLossRate?: number;
+  
+  audioDeviceDelay?: number;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class LocalAudioStats {
   const LocalAudioStats(
@@ -84,17 +98,15 @@
   final int? internalCodec;
   @JsonKey(name: 'txPacketLossRate')
   final int? txPacketLossRate;
-  factory LocalAudioStats.fromJson(Map&lt;String, dynamic> json) =>
+  factory LocalAudioStats.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$LocalAudioStatsFromJson(json);
-  Map&lt;String, dynamic> toJson() => _$LocalAudioStatsToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$LocalAudioStatsToJson(this);
 }
 </codeblock>
             </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>numChannels</pt>
