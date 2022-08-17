@@ -123,7 +123,21 @@
 </codeblock>
       <codeblock props="cs" outputclass="language-csharp"/>
       <codeblock props="electron" outputclass="language-typescript"/>
-      <codeblock props="unity" outputclass="language-csharp"/>
+      <codeblock props="unity" outputclass="language-csharp">public class ScreenCaptureParameters2
+    {
+        public bool captureAudio { set; get; }
+        public ScreenAudioParameters audioParams { set; get; }
+        public bool captureVideo { set; get; }
+        public ScreenVideoParameters videoParams { set; get; }
+
+        public ScreenCaptureParameters2()
+        {
+            captureAudio = false;
+            audioParams = new ScreenAudioParameters();
+            captureAudio = true;
+            videoParams = new ScreenVideoParameters();
+        }
+    };</codeblock>
       <codeblock props="rn" outputclass="language-typescript"/>
       <codeblock props="flutter" outputclass="language-dart"/> </p>
     </section>

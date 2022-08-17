@@ -95,11 +95,26 @@
     {
         public RemoteAudioStats()
         {
+            uid = 0;
+            quality = 0;
+            networkTransportDelay = 0;
+            jitterBufferDelay = 0;
+            audioLossRate = 0;
+            numChannels = 0;
+            receivedSampleRate = 0;
+            receivedBitrate = 0;
+            totalFrozenTime = 0;
+            frozenRate = 0;
+            mosValue = 0;
+            totalActiveTime = 0;
+            publishDuration = 0;
+            qoeQuality = 0;
+            qualityChangedReason = 0;
         }
 
         public RemoteAudioStats(uint uid, int quality, int networkTransportDelay, int jitterBufferDelay,
             int audioLossRate, int numChannels, int receivedSampleRate, int receivedBitrate, int totalFrozenTime,
-            int frozenRate, int mosValue, int totalActiveTime, int publishDuration, int qoeQuality)
+            int frozenRate, int mosValue, int totalActiveTime, int publishDuration, int qoeQuality, int qualityChangedReason)
         {
             this.uid = uid;
             this.quality = quality;
@@ -115,6 +130,7 @@
             this.totalActiveTime = totalActiveTime;
             this.publishDuration = publishDuration;
             this.qoeQuality = qoeQuality;
+            this.qualityChangedReason = qualityChangedReason;
         }
 
         public uint uid { set; get; }
@@ -131,7 +147,8 @@
         public int totalActiveTime { set; get; }
         public int publishDuration { set; get; }
         public int qoeQuality { set; get; }
-    }</codeblock>
+        public int qualityChangedReason { set; get; }
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class RemoteAudioStats {
   uid?: number;
   quality?: number;

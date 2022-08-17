@@ -30,7 +30,25 @@
 };</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="unity" outputclass="language-csharp">public class LocalAccessPointConfiguration
+    {
+        public string[] ipList { set; get; }
+        public int ipListSize { set; get; }
+        public string[] domainList { set; get; }
+        public int domainListSize { set; get; }
+        public string verifyDomainName { set; get; }
+        public LOCAL_PROXY_MODE mode { set; get; }
+
+        public LocalAccessPointConfiguration()
+        {
+            ipList = new string[0];
+            ipListSize = 0;
+            domainList = new string[0];
+            domainListSize = 0;
+            verifyDomainName = "";
+            mode = LOCAL_PROXY_MODE.kConnectivityFirst;
+        }
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>

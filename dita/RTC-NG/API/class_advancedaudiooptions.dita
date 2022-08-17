@@ -38,13 +38,10 @@
       <codeblock props="electron" outputclass="language-typescript">export class AdvancedAudioOptions {
   audioProcessingChannels?: AudioProcessingChannels
 }</codeblock>
-      <codeblock props="unity" outputclass="language-csharp">public class AdvancedAudioOptions
+      <codeblock props="unity" outputclass="language-csharp">public class AdvancedAudioOptions : OptionalJsonParse
     {
-        public AUDIO_PROCESSING_CHANNELS audioProcessingChannels { set; get; }
-        public AdvancedAudioOptions()
-        {
-            audioProcessingChannels = AUDIO_PROCESSING_CHANNELS.AUDIO_PROCESSING_MONO;
-        }
+        public Optional&lt;int> audioProcessingChannels = new Optional&lt;int>();
+
     };</codeblock>
       <codeblock props="rn" outputclass="language-typescript">export class AdvancedAudioOptions {
   audioProcessingChannels?: AudioProcessingChannels;

@@ -133,7 +133,7 @@
             eventHandler = null;
             appId = "";
             context = 0;
-            enableAudioDevice = true;
+
             channelProfile = CHANNEL_PROFILE_TYPE.CHANNEL_PROFILE_LIVE_BROADCASTING;
             audioScenario = AUDIO_SCENARIO_TYPE.AUDIO_SCENARIO_DEFAULT;
             areaCode = AREA_CODE.AREA_CODE_GLOB;
@@ -141,31 +141,18 @@
             useExternalEglContext = false;
         }
 
-
         public RtcEngineContext(string appId, UInt64 context,
-            bool enableAudioDevice, CHANNEL_PROFILE_TYPE channelProfile, AUDIO_SCENARIO_TYPE audioScenario,
+            CHANNEL_PROFILE_TYPE channelProfile, AUDIO_SCENARIO_TYPE audioScenario,
             AREA_CODE areaCode = AREA_CODE.AREA_CODE_CN,
             LogConfig logConfig = null)
         {
             this.appId = appId;
             this.context = context;
-            this.enableAudioDevice = enableAudioDevice;
             this.channelProfile = channelProfile;
             this.audioScenario = audioScenario;
             this.areaCode = areaCode;
             this.logConfig = logConfig ?? new LogConfig();
         }
-
-        private IRtcEngineEventHandler eventHandler = null;
-        public string appId { set; get; }
-        public UInt64 context { set; get; }
-        public bool enableAudioDevice { set; get; }
-        public CHANNEL_PROFILE_TYPE channelProfile { set; get; }
-        public AUDIO_SCENARIO_TYPE audioScenario { set; get; }
-        public LogConfig logConfig { set; get; }
-        public AREA_CODE areaCode { set; get; }
-        public Optional&lt;THREAD_PRIORITY_TYPE&gt; threadPriority = new Optional&lt;THREAD_PRIORITY_TYPE&gt;();
-        public bool useExternalEglContext { set; get; }
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class RtcEngineContext {
   appId?: string;

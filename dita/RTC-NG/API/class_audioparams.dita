@@ -41,7 +41,29 @@
 };</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="unity" outputclass="language-csharp">public class AudioParams
+    {
+        public int sample_rate { set; get; }
+        public int channels { set; get; }
+        public RAW_AUDIO_FRAME_OP_MODE_TYPE mode { set; get; }
+        public int samples_per_call { set; get; }
+
+        public AudioParams()
+        {
+            sample_rate = 0;
+            channels = 0;
+            mode = RAW_AUDIO_FRAME_OP_MODE_TYPE.RAW_AUDIO_FRAME_OP_MODE_READ_ONLY;
+            samples_per_call = 0;
+        }
+
+        public AudioParams(int samplerate, int channel, RAW_AUDIO_FRAME_OP_MODE_TYPE type, int samplesPerCall)
+        {
+            sample_rate = samplerate;
+            channels = channel;
+            mode = type;
+            samples_per_call = samplesPerCall;
+        }
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>

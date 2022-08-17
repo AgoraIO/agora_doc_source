@@ -24,10 +24,14 @@
   playerId?: string
   deviceId?: string
 }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class PlayerUpdatedInfo {
-                public string playerId;
-                public string deviceId;
-            };</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class PlayerUpdatedInfo : OptionalJsonParse
+    {
+        public Optional&lt;string> playerId = new Optional&lt;string>();
+
+        public Optional&lt;string> deviceId = new Optional&lt;string>();
+
+        public Optional&lt;CacheStatistics> cacheStatistics = new Optional&lt;CacheStatistics>();
+    }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class PlayerUpdatedInfo {
   playerId?: string;
   deviceId?: string;

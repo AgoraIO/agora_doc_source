@@ -49,6 +49,23 @@
 };
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">public class VideoDenoiserOptions
+    {
+        public VIDEO_DENOISER_MODE mode { set; get; }
+        public VIDEO_DENOISER_LEVEL level { set; get; }
+
+        public VideoDenoiserOptions(VIDEO_DENOISER_MODE denoiserMode, VIDEO_DENOISER_LEVEL denoiserLevel)
+        {
+            mode = denoiserMode;
+            level = denoiserLevel;
+        }
+
+        public VideoDenoiserOptions()
+        {
+            mode = VIDEO_DENOISER_MODE.VIDEO_DENOISER_AUTO;
+            level = VIDEO_DENOISER_LEVEL.VIDEO_DENOISER_LEVEL_HIGH_QUALITY;
+        }
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
