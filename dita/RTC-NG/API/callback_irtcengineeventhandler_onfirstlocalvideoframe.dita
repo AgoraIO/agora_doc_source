@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onfirstlocalvideoframe">
-     <title> <ph keyref="onFirstLocalVideoFrame"/> </title>
+     <title> <ph keyref="onFirstLocalVideoFrame" /> </title>
      <shortdesc id="short"> <ph id="shortdesc">已显示本地视频首帧回调。</ph> </shortdesc>
      <prolog>
           <metadata>
                <keywords>
-                    <indexterm keyref="onFirstLocalVideoFrame"/>
+                    <indexterm keyref="onFirstLocalVideoFrame" />
                </keywords>
           </metadata>
      </prolog>
@@ -28,14 +28,19 @@
     (void)elapsed;
   }
                </codeblock>
-               <codeblock props="electron" outputclass="language-typescript">onFirstLocalVideoFrame?(connection: RtcConnection, width: number, height: number, elapsed: number): void;</codeblock>
+               <codeblock props="electron" outputclass="language-typescript">  onFirstLocalVideoFrame?(
+    connection: RtcConnection,
+    width: number,
+    height: number,
+    elapsed: number
+  ): void;</codeblock>
                <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstLocalVideoFrame(RtcConnection connection, int width, int height, int elapsed) {}</codeblock>
-               <codeblock props="rn" outputclass="language-typescript">onFirstLocalVideoFrame?(
-               connection: RtcConnection,
-               width: number,
-               height: number,
-               elapsed: number
-               ): void;</codeblock>
+               <codeblock props="rn" outputclass="language-typescript">  onFirstLocalVideoFrame?(
+    connection: RtcConnection,
+    width: number,
+    height: number,
+    elapsed: number
+  ): void;</codeblock>
                <codeblock props="flutter" outputclass="language-dart">final void Function(
                RtcConnection connection, int width, int height, int elapsed)?
                onFirstLocalVideoFrame;</codeblock></p>
@@ -44,16 +49,16 @@
                <p id="desc">本地视频首帧显示在本地视图上时，SDK 会触发此回调。</p>
           </section>
           <section id="parameters">
-               <title><ph keyref="callback-section-title"/></title>
-               <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+               <title><ph keyref="callback-section-title" /></title>
+               <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter" />
                <parml>
                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                    <pt/>
-                    <pd/>
+                    <pt />
+                    <pd />
                </plentry>
                 <plentry conkeyref="onLocalVideoStateChanged/source">
-                    <pt/>
-                    <pd/>
+                    <pt />
+                    <pd />
                 </plentry>
                     <plentry props="ios mac">
                     <pt>size</pt>
@@ -61,7 +66,7 @@
                </plentry>
                <plentry props="unity electron rn flutter">
                     <pt>connection</pt>
-                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection" />。</pd>
                </plentry>
                <plentry props="android cpp unity electron rn flutter">
                     <pt>width</pt>
@@ -73,7 +78,7 @@
                </plentry>
                <plentry>
                     <pt>elapsed</pt>
-                    <pd>从调用 <apiname keyref="joinChannel2"/> 到发生此事件过去的时间（毫秒）。如果在 <apiname keyref="joinChannel2"/> 前调用了 <xref keyref="startPreview" props="native unity"/> <xref keyref="startPreview2" props="rn electron flutter"/>，则是从 <apiname keyref="startPreview" props="native unity"/> <apiname keyref="startPreview2" props="rn electron flutter"/>到发生此事件过去的时间。</pd>
+                    <pd>从调用 <apiname keyref="joinChannel2" /> 到发生此事件过去的时间（毫秒）。如果在 <apiname keyref="joinChannel2" /> 前调用了 <xref keyref="startPreview" props="native unity" /> <xref keyref="startPreview2" props="rn electron flutter" />，则是从 <apiname keyref="startPreview" props="native unity" /> <apiname keyref="startPreview2" props="rn electron flutter" />到发生此事件过去的时间。</pd>
                </plentry>
                </parml> </section>
      </refbody>
