@@ -51,7 +51,27 @@
   }
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="unity" outputclass="language-csharp">public class MediaSource : OptionalJsonParse
+    {
+        public string url { set; get; }
+        public string uri { set; get; }
+        public int64_t startPos { set; get; }
+        public bool autoPlay { set; get; }
+        public bool enableCache { set; get; }
+        public Optional&lt;bool> isAgoraSource = new Optional&lt;bool>();
+        public Optional&lt;bool> isLiveSource = new Optional&lt;bool>();
+        public IMediaPlayerCustomDataProvider provider { set; get; }
+
+        public MediaSource()
+        {
+            url = "";
+            uri = "";
+            startPos = 0;
+            autoPlay = true;
+            enableCache = false;
+            provider = null;
+        }
+    }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/></p></section>
         <section id="parameters">

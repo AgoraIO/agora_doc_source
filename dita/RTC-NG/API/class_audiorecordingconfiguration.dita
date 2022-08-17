@@ -81,30 +81,33 @@
     {
         public AudioRecordingConfiguration()
         {
-            filePath = null;
+            filePath = "";
             encode = false;
             sampleRate = 32000;
             fileRecordingType = AUDIO_FILE_RECORDING_TYPE.AUDIO_FILE_RECORDING_MIXED;
             quality = AUDIO_RECORDING_QUALITY_TYPE.AUDIO_RECORDING_QUALITY_LOW;
+            recordingChannel = 1;
         }
 
-        public AudioRecordingConfiguration(string file_path, int sample_rate, AUDIO_RECORDING_QUALITY_TYPE quality_type)
+        public AudioRecordingConfiguration(string file_path, int sample_rate, AUDIO_RECORDING_QUALITY_TYPE quality_type, int channel)
         {
             this.filePath = file_path;
             this.encode = false;
             this.sampleRate = sample_rate;
             this.fileRecordingType = AUDIO_FILE_RECORDING_TYPE.AUDIO_FILE_RECORDING_MIXED;
             this.quality = quality_type;
+            recordingChannel = channel;
         }
 
         public AudioRecordingConfiguration(string file_path, bool enc, int sample_rate,
-                                        AUDIO_FILE_RECORDING_TYPE type, AUDIO_RECORDING_QUALITY_TYPE quality_type)
+                                        AUDIO_FILE_RECORDING_TYPE type, AUDIO_RECORDING_QUALITY_TYPE quality_type, int channel)
         {
             this.filePath = file_path;
             this.encode = enc;
             this.sampleRate = sample_rate;
             this.fileRecordingType = type;
             this.quality = quality_type;
+            this.recordingChannel = channel;
         }
 
         public string filePath { set; get; }
@@ -112,7 +115,8 @@
         public int sampleRate { set; get; }
         public AUDIO_FILE_RECORDING_TYPE fileRecordingType { set; get; }
         public AUDIO_RECORDING_QUALITY_TYPE quality { set; get; }
-    }</codeblock>
+        public int recordingChannel { set; get; }
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class AudioRecordingConfiguration {
   filePath?: string;
   encode?: boolean;

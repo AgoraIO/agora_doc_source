@@ -47,7 +47,23 @@
   LowlightEnhanceOptions() : mode(LOW_LIGHT_ENHANCE_AUTO), level(LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY) {}
 };
 </codeblock>
-      <codeblock props="cs" outputclass="language-csharp"/>
+      <codeblock props="unity" outputclass="language-csharp">public class LowlightEnhanceOptions
+    {
+        public LOW_LIGHT_ENHANCE_MODE mode { set; get; }
+        public LOW_LIGHT_ENHANCE_LEVEL level { set; get; }
+
+        public LowlightEnhanceOptions(LOW_LIGHT_ENHANCE_MODE lowlightMode, LOW_LIGHT_ENHANCE_LEVEL lowlightLevel)
+        {
+            mode = lowlightMode;
+            level = lowlightLevel;
+        }
+
+        public LowlightEnhanceOptions()
+        {
+            mode = LOW_LIGHT_ENHANCE_MODE.LOW_LIGHT_ENHANCE_AUTO;
+            level = LOW_LIGHT_ENHANCE_LEVEL.LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY;
+        }
+    };</codeblock>
       <codeblock props="electron" outputclass="language-typescript"/>
       <codeblock props="rn" outputclass="language-typescript"/>
       <codeblock props="flutter" outputclass="language-dart"/> </p>

@@ -54,7 +54,32 @@ __attribute__((visibility("default"))) @interface AgoraEchoTestConfiguration : N
    : view(OPTIONAL_NULLPTR), enableAudio(true), enableVideo(true), token(OPTIONAL_NULLPTR), channelId(OPTIONAL_NULLPTR) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="unity" outputclass="language-csharp">public class EchoTestConfiguration
+    {
+        public view_t view { set; get; }
+        public bool enableAudio { set; get; }
+        public bool enableVideo { set; get; }
+        public string token { set; get; }
+        public string channelId { set; get; }
+
+        public EchoTestConfiguration(view_t v, bool ea, bool ev, string t, string c)
+        {
+            view = v;
+            enableAudio = ea;
+            enableVideo = ev;
+            token = t;
+            channelId = c;
+        }
+
+        public EchoTestConfiguration()
+        {
+            view = 0;
+            enableAudio = true;
+            enableVideo = true;
+            token = "";
+            channelId = "";
+        }
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>

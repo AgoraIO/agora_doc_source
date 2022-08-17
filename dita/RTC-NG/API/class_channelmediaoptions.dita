@@ -161,7 +161,9 @@
       {
           public Optional&lt;bool&gt; publishCameraTrack = new Optional&lt;bool&gt;();
           public Optional&lt;bool&gt; publishSecondaryCameraTrack = new Optional&lt;bool&gt;();
-          public Optional&lt;bool&gt; publishAudioTrack = new Optional&lt;bool&gt;();
+          public Optional&lt;bool> publishMicrophoneTrack = new Optional&lt;bool>();
+          public Optional&lt;bool> publishScreenCaptureVideo = new Optional&lt;bool>();
+          public Optional&lt;bool> publishScreenCaptureAudio = new Optional&lt;bool>();
           public Optional&lt;bool&gt; publishScreenTrack = new Optional&lt;bool&gt;();
           public Optional&lt;bool&gt; publishSecondaryScreenTrack = new Optional&lt;bool&gt;();
           public Optional&lt;bool&gt; publishCustomAudioTrack = new Optional&lt;bool&gt;();
@@ -184,39 +186,12 @@
           public Optional&lt;int&gt; audioDelayMs = new Optional&lt;int&gt;();
           public Optional&lt;int&gt; mediaPlayerAudioDelayMs = new Optional&lt;int&gt;();
           public Optional&lt;string&gt; token = new Optional&lt;string&gt;();
+          public Optional&lt;bool> publishRhythmPlayerTrack = new Optional&lt;bool>();
+          public Optional&lt;bool> isInteractiveAudience = new Optional&lt;bool>();
+          public Optional&lt;video_track_id_t> customVideoTrackId = new Optional&lt;video_track_id_t>();
+          public Optional&lt;bool> isAudioFilterable = new Optional&lt;bool>();
   
-          public ChannelMediaOptions() { }
-  
-  
-          void SetAll(ref ChannelMediaOptions change)
-          {
-              this.publishCameraTrack = change.publishCameraTrack;
-              this.publishSecondaryCameraTrack = change.publishSecondaryCameraTrack;
-              this.publishAudioTrack = change.publishAudioTrack;
-              this.publishScreenTrack = change.publishScreenTrack;
-              this.publishSecondaryScreenTrack = change.publishSecondaryScreenTrack;
-              this.publishTrancodedVideoTrack = change.publishTrancodedVideoTrack;
-              this.publishCustomAudioTrack = change.publishCustomAudioTrack;
-              this.publishDirectCustomAudioTrack = change.publishDirectCustomAudioTrack;
-              this.publishCustomAudioSourceId = change.publishCustomAudioSourceId;
-              this.publishCustomAudioTrackEnableAec = change.publishCustomAudioTrackEnableAec;
-              this.publishCustomVideoTrack = change.publishCustomVideoTrack;
-              this.publishEncodedVideoTrack = change.publishEncodedVideoTrack;
-              this.publishMediaPlayerAudioTrack = change.publishMediaPlayerAudioTrack;
-              this.publishMediaPlayerVideoTrack = change.publishMediaPlayerVideoTrack;
-              this.autoSubscribeAudio = change.autoSubscribeAudio;
-              this.autoSubscribeVideo = change.autoSubscribeVideo;
-              this.publishMediaPlayerId = change.publishMediaPlayerId;
-              this.enableAudioRecordingOrPlayout = change.enableAudioRecordingOrPlayout;
-              this.clientRoleType = change.clientRoleType;
-              this.audienceLatencyLevel = change.audienceLatencyLevel;
-              this.defaultVideoStreamType = change.defaultVideoStreamType;
-              this.channelProfile = change.channelProfile;
-              this.audioDelayMs = change.audioDelayMs;
-              this.mediaPlayerAudioDelayMs = change.mediaPlayerAudioDelayMs;
-              this.token = change.token;
-             }
-      }</codeblock>
+       }</codeblock>
               <codeblock props="rn" outputclass="language-typescript">export class ChannelMediaOptions {
     publishCameraTrack?: boolean;
     publishSecondaryCameraTrack?: boolean;

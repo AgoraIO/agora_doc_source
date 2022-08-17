@@ -39,26 +39,29 @@
   internalCodec?: number
   txPacketLossRate?: number
 }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class LocalAudioStats
-    {
-        public LocalAudioStats()
-        {
-        }
-
-        public LocalAudioStats(int numChannels, int sentSampleRate, int sentBitrate, int internalCodec, ushort txPacketLossRate)
+            <codeblock props="unity" outputclass="language-csharp">public LocalAudioStats(int numChannels, int sentSampleRate, int sentBitrate, int internalCodec, ushort txPacketLossRate, int audioDeviceDelay)
         {
             this.numChannels = numChannels;
             this.sentSampleRate = sentSampleRate;
             this.sentBitrate = sentBitrate;
             this.internalCodec = internalCodec;
             this.txPacketLossRate = txPacketLossRate;
+            this.audioDeviceDelay = audioDeviceDelay;
         }
+
         public int numChannels { set; get; }
+
         public int sentSampleRate { set; get; }
+
         public int sentBitrate { set; get; }
+
         public int internalCodec { set; get; }
+
         public ushort txPacketLossRate { set; get; }
-    }</codeblock>
+
+        public int audioDeviceDelay { set; get; }
+    }
+</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class LocalAudioStats {
   numChannels?: number;
   sentSampleRate?: number;

@@ -39,18 +39,21 @@
             deviceId = "";
             cameraDirection = CAMERA_DIRECTION.CAMERA_FRONT;
             format = new VideoFormat();
+            this.followEncodeDimensionRatio = true;
         }
 
         public CameraCapturerConfiguration(string deviceId, VideoFormat format,
-            CAMERA_DIRECTION cameraDirection)
+            CAMERA_DIRECTION cameraDirection, bool followEncodeDimensionRatio)
         {
             this.deviceId = deviceId;
             this.format = format;
             this.cameraDirection = cameraDirection;
+            this.followEncodeDimensionRatio = followEncodeDimensionRatio;
         }
 
         public string deviceId { set; get; }
         public VideoFormat format { set; get; }
+        public bool followEncodeDimensionRatio { set; get; }
         public CAMERA_DIRECTION cameraDirection { set; get; }
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class CameraCapturerConfiguration {

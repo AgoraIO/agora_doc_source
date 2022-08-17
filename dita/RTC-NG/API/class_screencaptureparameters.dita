@@ -56,6 +56,9 @@
             windowFocus = false;
             excludeWindowList = new view_t[0];
             excludeWindowCount = 0;
+            highLightWidth = 0;
+            highLightColor = 0;
+            enableHighLight = false;
         }
 
         public ScreenCaptureParameters(ref VideoDimensions d, int f, int b)
@@ -67,6 +70,9 @@
             windowFocus = false;
             excludeWindowList = new view_t[0];
             excludeWindowCount = 0;
+            highLightWidth = 0;
+            highLightColor = 0;
+            enableHighLight = false;
         }
 
         public ScreenCaptureParameters(int width, int height, int f, int b)
@@ -78,6 +84,9 @@
             windowFocus = false;
             excludeWindowList = new view_t[0];
             excludeWindowCount = 0;
+            highLightWidth = 0;
+            highLightColor = 0;
+            enableHighLight = false;
         }
 
         public ScreenCaptureParameters(int width, int height, int f, int b, bool cur, bool fcs)
@@ -89,6 +98,9 @@
             windowFocus = fcs;
             excludeWindowList = new view_t[0];
             excludeWindowCount = 0;
+            highLightWidth = 0;
+            highLightColor = 0;
+            enableHighLight = false;
         }
 
         public ScreenCaptureParameters(int width, int height, int f, int b, view_t[] ex, int cnt)
@@ -100,6 +112,9 @@
             windowFocus = false;
             excludeWindowList = ex;
             excludeWindowCount = cnt;
+            highLightWidth = 0;
+            highLightColor = 0;
+            enableHighLight = false;
         }
 
         public ScreenCaptureParameters(int width, int height, int f, int b, bool cur, bool fcs, view_t[] ex, int cnt)
@@ -111,7 +126,11 @@
             windowFocus = fcs;
             excludeWindowList = ex;
             excludeWindowCount = cnt;
+            highLightWidth = 0;
+            highLightColor = 0;
+            enableHighLight = false;
         }
+
         public VideoDimensions dimensions { set; get; }
         public int frameRate { set; get; }
         public int bitrate { set; get; }
@@ -119,7 +138,10 @@
         public bool windowFocus { set; get; }
         public view_t[] excludeWindowList { set; get; }
         public int excludeWindowCount { set; get; }
-    }</codeblock>
+        public int highLightWidth { set; get; }
+        public uint highLightColor { set; get; }
+        public bool enableHighLight { set; get; }
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">class ScreenCaptureParameters {
   const ScreenCaptureParameters(

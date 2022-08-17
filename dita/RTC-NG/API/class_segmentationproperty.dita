@@ -36,11 +36,17 @@
 };
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public class SegmentationProperty {
-                public SEG_MODEL_TYPE modelType;
-                public int preferVelocity;
-                public float greenCapacity;
-            };</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class SegmentationProperty
+    {
+        public SEG_MODEL_TYPE modelType { set; get; }
+        public float greenCapacity { set; get; }
+
+        public SegmentationProperty()
+        {
+            modelType = SEG_MODEL_TYPE.SEG_MODEL_AI;
+            greenCapacity = 0.5f;
+        }
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
