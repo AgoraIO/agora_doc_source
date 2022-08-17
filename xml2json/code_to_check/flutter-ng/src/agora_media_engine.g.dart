@@ -2,12 +2,15 @@
 
 // ignore_for_file: non_constant_identifier_names, deprecated_member_use_from_same_package, unused_element
 
-part of 'audio_device_manager.dart';
+part of 'agora_media_engine.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-const _$MaxDeviceIdLengthTypeEnumMap = {
-  MaxDeviceIdLengthType.maxDeviceIdLength: 512,
+const _$AudioMixingDualMonoModeEnumMap = {
+  AudioMixingDualMonoMode.audioMixingDualMonoAuto: 0,
+  AudioMixingDualMonoMode.audioMixingDualMonoL: 1,
+  AudioMixingDualMonoMode.audioMixingDualMonoR: 2,
+  AudioMixingDualMonoMode.audioMixingDualMonoMix: 3,
 };
