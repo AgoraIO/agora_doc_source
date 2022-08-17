@@ -1,15 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audiopcmframe">
-    <title> <ph keyref="AudioPcmFrame" /> </title>
+    <title> <ph keyref="AudioPcmFrame"/> </title>
     <shortdesc id="short"> <ph id="shortdesc">外部 PCM 格式音频帧的信息。</ph> </shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
-            <codeblock props="ios mac" outputclass="language-objectivec" />
-            <codeblock props="cpp" outputclass="language-cpp" />
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioPcmFrame: NSObject
+                @property (assign, nonatomic) uint32_t captureTimestamp;
+                @property (assign, nonatomic) size_t samplesPerChannel;
+                @property (assign, nonatomic) int sampleRateHz;
+                @property (assign, nonatomic) size_t channelNumbers;
+                @property (strong, nonatomic) NSData* __nonnull pcmBuffer;
+                @property (assign, nonatomic) BytesPerSampleType bytesPerSample;
+               @end
+            </codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">struct AudioPcmFrame {
+                OPTIONAL_ENUM_SIZE_T {
+                  kMaxDataSizeSamples = 3840,
+                  kMaxDataSizeBytes = kMaxDataSizeSamples * sizeof(int16_t),
+                };
+              
+                uint32_t capture_timestamp;
+                size_t samples_per_channel_;
+                int sample_rate_hz_;
+                size_t num_channels_;
+                rtc::BYTES_PER_SAMPLE bytes_per_sample;
+                int16_t data_[kMaxDataSizeSamples];
+              };
+            </codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">
         public struct AudioPcmFrame {
         public UInt32 capture_timestamp;
@@ -19,35 +40,48 @@
         public BYTES_PER_SAMPLE bytes_per_sample;
         public Int16[] data_;
     };</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="parameters">
-            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>
+            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/> </title>
             <parml>
+            <plentry props="cpp">
+                <pt>OPTIONAL_ENUM_SIZE_T</pt>
+                <pd>PCM 格式音频帧缓冲大小。初始值为 3840。</pd>
+            </plentry>                
             <plentry>
-                <pt>capture_timestamp</pt>
+                <pt props="cpp unity">capture_timestamp</pt>
+                <pt props="ios mac">captureTimestamp</pt>
                 <pd>音频帧的时间戳 (ms)。</pd>
             </plentry>
             <plentry>
-                <pt>samples_per_channel_</pt>
+                <pt props="cpp unity">samples_per_channel_</pt>
+                <pt props="ios mac">samplesPerChannel</pt>
                 <pd>每个声道的采样点数。</pd>
             </plentry>
             <plentry>
-                <pt>sample_rate_hz_</pt>
+                <pt props="cpp unity">sample_rate_hz_</pt>
+                <pt props="ios mac">sampleRateHz</pt>
                 <pd>音频采样率 (Hz)。</pd>
             </plentry>
             <plentry>
-                <pt>num_channels_</pt>
+                <pt props="cpp unity">num_channels_</pt>
+                <pt props="ios mac">channelNumbers</pt>
                 <pd>音频声道数。</pd>
             </plentry>
             <plentry>
-                <pt>bytes_per_sample</pt>
+                <pt props="cpp unity">bytes_per_sample</pt>
+                <pt props="ios mac">bytesPerSample</pt>
                 <pd>音频数据的字节数。</pd>
             </plentry>
-            <plentry>
+            <plentry props="cpp unity">
                 <pt>data_</pt>
-                <pd>音频数据的最大字节。</pd>
+                <pd>音频帧数据。</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>pcmBuffer</pt>
+                <pd>缓存中的音频帧数量。</pd>
             </plentry>
             </parml> </section>
     </refbody>
