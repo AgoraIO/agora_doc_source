@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onuserenablevideo">
-    <title> <ph keyref="onUserEnableVideo"/> </title>
+    <title> <ph keyref="onUserEnableVideo" /> </title>
     <shortdesc id="short"> <ph id="shortdesc">远端用户开/关视频模块回调。</ph> </shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onUserEnableVideo"/>
+                <indexterm keyref="onUserEnableVideo" />
             </keywords>
         </metadata>
     </prolog>
@@ -21,7 +21,11 @@
     (void)uid;
     (void)enabled;
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onUserEnableVideo?(connection: RtcConnection, remoteUid: number, enabled: boolean): void;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onUserEnableVideo?(
+    connection: RtcConnection,
+    remoteUid: number,
+    enabled: boolean
+  ): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserEnableVideo(RtcConnection connection, uint remoteUid, bool enabled) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onUserEnableVideo?(
   connection: RtcConnection,
@@ -36,29 +40,29 @@
             <dl outputclass="deprecated" props="hide">
             <dlentry>
                 <dt>弃用：</dt>
-                <dd>请改用 <xref keyref="onRemoteVideoStateChanged"/> 回调的：
+                <dd>请改用 <xref keyref="onRemoteVideoStateChanged" /> 回调的：
                     <ul>
-                    <li> <apiname keyref="REMOTE_VIDEO_STATE_STOPPED"/>(0) 和 <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED"/>(5) 。</li>
-                    <li> <apiname keyref="REMOTE_VIDEO_STATE_DECODING"/>(2) 和 <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED"/>(6)。</li>
+                    <li> <apiname keyref="REMOTE_VIDEO_STATE_STOPPED" />(0) 和 <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED" />(5) 。</li>
+                    <li> <apiname keyref="REMOTE_VIDEO_STATE_DECODING" />(2) 和 <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED" />(6)。</li>
                     </ul> </dd>
             </dlentry>
             </dl>
-            <note props="unity">该方法即将废弃，Agora 推荐你改用 <xref keyref="onRemoteVideoStateChanged"/>。</note>
+            <note props="unity">该方法即将废弃，Agora 推荐你改用 <xref keyref="onRemoteVideoStateChanged" />。</note>
             <p id="desc1">关闭视频功能是指该用户只能进行语音通话，不能显示、发送自己的视频，也不能接收、显示别人的视频。</p>
-            <p>该回调是由远端用户调用 <xref keyref="enableVideo"/> 或 <xref keyref="disableVideo"/> 方法开启或关闭视频模块触发的。
+            <p>该回调是由远端用户调用 <xref keyref="enableVideo" /> 或 <xref keyref="disableVideo" /> 方法开启或关闭视频模块触发的。
             </p>
         </section>
         <section id="parameters">
-            <title> <ph keyref="callback-section-title"/> </title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <title> <ph keyref="callback-section-title" /> </title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn" />
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry props="unity flutter electron rn">
                 <pt>connection</pt>
-                <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                <pd>Connection 信息。详见 <xref keyref="RtcConnection" />。</pd>
             </plentry>
             <plentry>
                 <pt props="native">uid</pt>
@@ -69,8 +73,8 @@
                 <pt>enabled</pt>
                 <pd>
                     <ul>
-                    <li> <codeph><ph keyref="true"/></codeph>: 该用户已启用视频功能。</li>
-                    <li> <codeph><ph keyref="false"/></codeph>: 该用户已关闭视频功能。</li>
+                    <li> <codeph><ph keyref="true" /></codeph>: 该用户已启用视频功能。</li>
+                    <li> <codeph><ph keyref="false" /></codeph>: 该用户已关闭视频功能。</li>
                     </ul> </pd>
             </plentry>
             </parml> </section>

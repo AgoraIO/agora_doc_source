@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_oncameraexposureareachanged">
-    <title><ph keyref="onCameraExposureAreaChanged"/></title>
+    <title><ph keyref="onCameraExposureAreaChanged" /></title>
     <shortdesc id="short"><ph id="shortdesc">摄像头曝光区域已改变回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onCameraExposureAreaChanged"/>
+                <indexterm keyref="onCameraExposureAreaChanged" />
             </keywords>
         </metadata>
     </prolog>
@@ -21,7 +21,12 @@
      (void)width;
      (void)height;
      }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">  onCameraExposureAreaChanged?(
+    x: number,
+    y: number,
+    width: number,
+    height: number
+  ): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnCameraExposureAreaChanged(int x, int y, int width, int height)</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onCameraExposureAreaChanged?(
   x: number,
@@ -34,11 +39,11 @@
 </codeblock> </p>
         </section>
         <section id="detailed_desc" props="android ios cpp electron rn">
-            <p>该回调是由本地用户调用 <xref keyref="setCameraExposurePosition"/> 方法改变曝光位置触发的。</p>
+            <p>该回调是由本地用户调用 <xref keyref="setCameraExposurePosition" /> 方法改变曝光位置触发的。</p>
             <note type="attention" props="cpp unity">该回调仅适用于 Android 和 iOS。</note> </section>
         <section id="parameters">
-            <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <title><ph keyref="callback-section-title" /></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter" />
             <parml props="cpp unity electron rn">
             <plentry>
                 <pt>x</pt>
@@ -59,8 +64,8 @@
             </parml>
             <parml props="android ios mac">
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry>
                 <pt>rect</pt>

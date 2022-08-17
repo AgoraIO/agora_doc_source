@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onaudioquality">
-    <title><ph keyref="onAudioQuality"/></title>
+    <title><ph keyref="onAudioQuality" /></title>
     <shortdesc id="short"><ph id="shortdesc">远端声音质量回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onAudioQuality"/>
+                <indexterm keyref="onAudioQuality" />
             </keywords>
         </metadata>
     </prolog>
@@ -21,7 +21,13 @@
   (void)delay;
   (void)lost;
 }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onAudioQuality?(connection: RtcConnection, remoteUid: number, quality: QualityType, delay: number, lost: number): void;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onAudioQuality?(
+    connection: RtcConnection,
+    remoteUid: number,
+    quality: QualityType,
+    delay: number,
+    lost: number
+  ): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioQuality(RtcConnection connection, uint remoteUid, int quality, UInt16 delay, UInt16 lost) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onAudioQuality?(
   connection: RtcConnection,
@@ -39,23 +45,23 @@
             <dl outputclass="deprecated">
             <dlentry>
                 <dt>弃用：</dt>
-                <dd>请改用 <xref keyref="onRemoteAudioStats"/>。</dd>
+                <dd>请改用 <xref keyref="onRemoteAudioStats" />。</dd>
             </dlentry>
             </dl>
             </p>
             <p>该回调描述远端用户在通话中的音频质量，针对每个远端用户/主播每 2 秒触发一次。如果远端同时存在多个用户/主播，该回调每 2 秒会被触发多次。</p>
         </section>
         <section id="parameters">
-            <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <title><ph keyref="callback-section-title" /></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter" />
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry props="unity flutter electron rn">
                 <pt>connection</pt>
-                <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                <pd>Connection 信息。详见 <xref keyref="RtcConnection" />。</pd>
             </plentry>
             <plentry>
                 <pt props="native">uid</pt>
@@ -64,9 +70,9 @@
             </plentry>
             <plentry>
                 <pt>quality</pt>
-                <pd>语音质量。<ph props="ios mac cpp unity flutter electron rn">详见 <xref keyref="QUALITY_TYPE"/>。</ph>
+                <pd>语音质量。<ph props="ios mac cpp unity flutter electron rn">详见 <xref keyref="QUALITY_TYPE" />。</ph>
                     <ul conkeyref="RemoteAudioStats/qualitytype" props="android">
-                    <li/>
+                    <li />
                     </ul> </pd>
             </plentry>
             <plentry>

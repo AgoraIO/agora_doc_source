@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onrtcstats">
-    <title> <ph keyref="onRtcStats"/> </title>
+    <title> <ph keyref="onRtcStats" /> </title>
     <shortdesc id="short"> <ph id="shortdesc">当前通话统计信息回调。</ph> </shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onRtcStats"/>
+                <indexterm keyref="onRtcStats" />
             </keywords>
         </metadata>
     </prolog>
@@ -19,7 +19,7 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual void onRtcStats(const RtcStats&amp; stats) {
     (void)stats;
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onRtcStats?(connection: RtcConnection, stats: RtcStats): void;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onRtcStats?(connection: RtcConnection, stats: RtcStats): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnRtcStats(RtcConnection connection, RtcStats stats) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onRtcStats?(connection: RtcConnection, stats: RtcStats): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, RtcStats stats)? onRtcStats;
@@ -29,23 +29,23 @@
             <p id="desc">SDK 定期向 App 报告当前通话的统计信息，每两秒触发一次。</p>
         </section>
         <section id="parameters">
-            <title> <ph keyref="callback-section-title"/> </title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <title> <ph keyref="callback-section-title" /> </title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter" />
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry props="unity flutter electron rn">
                 <pt>connection</pt>
-                <pd> Connection 信息。详见 <xref keyref="RtcConnection"/> 。 </pd>
+                <pd> Connection 信息。详见 <xref keyref="RtcConnection" /> 。 </pd>
             </plentry>
             <plentry id="param">
                 <pt>stats</pt>
                 <pd>
                     <p>
                             RTC 引擎统计数据，详见
-                            <xref keyref="RtcStats"/>
+                            <xref keyref="RtcStats" />
                             。
                         </p>
                 </pd>

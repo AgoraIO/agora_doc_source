@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_imediaplayersourceobserver_onplayersourcestatechanged">
-    <title><ph keyref="onPlayerSourceStateChanged"/></title>
+    <title><ph keyref="onPlayerSourceStateChanged" /></title>
     <shortdesc id="short"><ph id="shortdesc">报告播放器状态改变。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onPlayerSourceStateChanged"/>
+                <indexterm keyref="onPlayerSourceStateChanged" />
             </keywords>
         </metadata>
     </prolog>
@@ -21,7 +21,10 @@
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void onPlayerSourceStateChanged(media::base::MEDIA_PLAYER_STATE state,
                                         media::base::MEDIA_PLAYER_ERROR ec) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onPlayerSourceStateChanged?(state: MediaPlayerState, ec: MediaPlayerError): void;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onPlayerSourceStateChanged?(
+    state: MediaPlayerState,
+    ec: MediaPlayerError
+  ): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnPlayerSourceStateChanged(MEDIA_PLAYER_STATE state, MEDIA_PLAYER_ERROR ec) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onPlayerSourceStateChanged?(
   state: MediaPlayerState,
@@ -38,17 +41,17 @@
             <title>参数</title>
             <parml>
             <plentry conkeyref="onPlayerEvent/playerkit" props="ios mac">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry>
                 <pt>state</pt>
-                <pd>新的播放状态，详见 <xref keyref="MEDIA_PLAYER_STATE"/>。</pd>
+                <pd>新的播放状态，详见 <xref keyref="MEDIA_PLAYER_STATE" />。</pd>
             </plentry>
             <plentry>
                 <pt props="android ios mac">error</pt>
                 <pt props="cpp unity flutter rn electron">ec</pt>
-                <pd>播放器错误码，详见 <xref keyref="MEDIA_PLAYER_ERROR"/>。</pd>
+                <pd>播放器错误码，详见 <xref keyref="MEDIA_PLAYER_ERROR" />。</pd>
             </plentry>
             </parml> </section>
     </refbody>

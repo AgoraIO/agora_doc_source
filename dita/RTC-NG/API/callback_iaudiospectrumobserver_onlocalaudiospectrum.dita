@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_iaudiospectrumobserver_onlocalaudiospectrum">
-    <title><ph keyref="onLocalAudioSpectrum"/></title>
+    <title><ph keyref="onLocalAudioSpectrum" /></title>
     <shortdesc id="short"><ph id="shortdesc">获取本地音频频谱。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onLocalAudioSpectrum"/>
+                <indexterm keyref="onLocalAudioSpectrum" />
             </keywords>
         </metadata>
     </prolog>
@@ -17,16 +17,16 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onLocalAudioSpectrum:(NSArray&lt;NSNumber *&gt; * _Nullable)audioSpectrumData;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual bool onLocalAudioSpectrum(const AudioSpectrumData&amp; data) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">  onLocalAudioSpectrum?(data: AudioSpectrumData): boolean;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual bool OnLocalAudioSpectrum(AudioSpectrumData data)
         {
             return true;
         }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
-            <p>成功调用 <xref keyref="registerAudioSpectrumObserver"/> 实现 <xref keyref="IAudioSpectrumObserver"/> 中的 <apiname keyref="onLocalAudioSpectrum"/> 回调并调用 <xref keyref="enableAudioSpectrumMonitor"/> 开启音频频谱监测后，SDK 会按照你设置的时间间隔触发该回调，报告编码后的本地音频数据的频谱。</p>
+            <p>成功调用 <xref keyref="registerAudioSpectrumObserver" /> 实现 <xref keyref="IAudioSpectrumObserver" /> 中的 <apiname keyref="onLocalAudioSpectrum" /> 回调并调用 <xref keyref="enableAudioSpectrumMonitor" /> 开启音频频谱监测后，SDK 会按照你设置的时间间隔触发该回调，报告编码后的本地音频数据的频谱。</p>
         </section>
         <section id="parameters">
             <title>参数</title>
@@ -34,7 +34,7 @@
             <plentry>
                 <pt props="android cpp unity">data</pt>
                 <pt props="ios mac">audioSpectrumData</pt>
-                <pd props="android cpp unity">本地用户的音频频谱数据。详见 <xref keyref="AudioSpectrumData"/>。</pd>
+                <pd props="android cpp unity">本地用户的音频频谱数据。详见 <xref keyref="AudioSpectrumData" />。</pd>
                 <pd props="ios mac">本地用户的音频频谱数据。Agora 将声音频率分为 160 个频域，通过该参数报告各频域的能量值， 每个能量值的取值范围为 [0,1]。</pd>
             </plentry>
             </parml> </section>
@@ -42,8 +42,8 @@
             <title>返回值</title>
             <p>是否接收频谱数据：
             <ul>
-            <li><codeph><ph keyref="true"/></codeph>: 接收。</li>
-            <li><codeph><ph keyref="false"/></codeph>: 不接收。</li>
+            <li><codeph><ph keyref="true" /></codeph>: 接收。</li>
+            <li><codeph><ph keyref="false" /></codeph>: 不接收。</li>
             </ul></p>
         </section>
     </refbody>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onvideopublishstatechanged">
-    <title> <ph keyref="onVideoPublishStateChanged"/> </title>
+    <title> <ph keyref="onVideoPublishStateChanged" /> </title>
     <shortdesc id="short"> <ph id="shortdesc">视频发布状态改变回调。</ph> </shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onVideoPublishStateChanged"/>
+                <indexterm keyref="onVideoPublishStateChanged" />
             </keywords>
         </metadata>
     </prolog>
@@ -30,7 +30,13 @@ elapseSinceLastState:(int)elapseSinceLastState;
     (void)elapseSinceLastState;
   }
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onVideoPublishStateChanged?(channel: string, oldState: StreamPublishState, newState: StreamPublishState, elapseSinceLastState: number): void;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onVideoPublishStateChanged?(
+    source: VideoSourceType,
+    channel: string,
+    oldState: StreamPublishState,
+    newState: StreamPublishState,
+    elapseSinceLastState: number
+  ): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnVideoPublishStateChanged(string channel, STREAM_PUBLISH_STATE oldState,
             STREAM_PUBLISH_STATE newState, int elapseSinceLastState)</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onVideoPublishStateChanged?(
@@ -49,12 +55,12 @@ elapseSinceLastState:(int)elapseSinceLastState;
         <section id="detailed_desc">
         </section>
         <section id="parameters">
-            <title> <ph keyref="callback-section-title"/> </title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <title> <ph keyref="callback-section-title" /> </title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter" />
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry>
                 <pt props="android cpp unity flutter electron rn">channel</pt>
@@ -62,16 +68,16 @@ elapseSinceLastState:(int)elapseSinceLastState;
                 <pd>频道名。</pd>
             </plentry>
             <plentry conkeyref="onLocalVideoStateChanged/source">
-                    <pt/>
-                    <pd/>
+                    <pt />
+                    <pd />
                 </plentry>
                 <plentry>
                 <pt>oldState</pt>
-                <pd>之前的发布状态，详见 <xref keyref="STREAM_PUBLISH_STATE"/>。</pd>
+                <pd>之前的发布状态，详见 <xref keyref="STREAM_PUBLISH_STATE" />。</pd>
             </plentry>
             <plentry>
                 <pt>newState</pt>
-                <pd>当前的发布状态，详见 <apiname keyref="STREAM_PUBLISH_STATE"/>。</pd>
+                <pd>当前的发布状态，详见 <apiname keyref="STREAM_PUBLISH_STATE" />。</pd>
             </plentry>
             <plentry>
                 <pt>elapseSinceLastState</pt>

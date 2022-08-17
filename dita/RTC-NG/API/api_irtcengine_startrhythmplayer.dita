@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startrhythmplayer">
-    <title><ph keyref="startRhythmPlayer"/></title>
+    <title><ph keyref="startRhythmPlayer" /></title>
     <shortdesc id="short"><ph id="shortdesc">开启虚拟节拍器。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="startRhythmPlayer"/>
+                <indexterm keyref="startRhythmPlayer" />
             </keywords>
         </metadata>
     </prolog>
@@ -17,14 +17,14 @@
     String sound1, String sound2, AgoraRhythmPlayerConfig config);</codeblock>
             <codeblock props="ios" outputclass="language-objectivec">- (int)startRhythmPlayer:(NSString * _Nonnull)sound1 sound2:(NSString * _Nonnull)sound2 config:(AgoraRhythmPlayerConfig *  _Nullable)config;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int startRhythmPlayer(const char* sound1, const char* sound2, const AgoraRhythmPlayerConfig&amp; config) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public abstract int StartRhythmPlayer(string sound1, string sound2, AgoraRhythmPlayerConfig config);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract startRhythmPlayer(
   sound1: string,
   sound2: string,
   config: AgoraRhythmPlayerConfig
 ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> startRhythmPlayer(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startRhythmPlayer(
     {required String sound1,
     required String sound2,
     required AgoraRhythmPlayerConfig config});</codeblock></p>
@@ -35,25 +35,25 @@
             <note type="attention" id="rhythm_play">
             <ul>
             <li props="cpp unity flutter">该方法仅适用于 Android 和 iOS。</li>
-            <li>开启虚拟节拍器后，SDK 会从头开始播放指定的音频文件，并根据你在 <xref keyref="AgoraRhythmPlayerConfig"/> 中设置的 <parmname>beatsPerMinute</parmname> 控制每个文件的播放时长。例如，将 <parmname>beatsPerMinute</parmname> 设为 <codeph>60</codeph>，则 SDK 会 1 秒播放 1 个节拍。如果文件时长超过了节拍时长，则 SDK 只播放节拍时长部分的音频。</li>
-            <li>虚拟节拍器的声音默认会发布至远端，如果你不希望远端用户听到虚拟节拍器的声音，你可以将 <xref keyref="ChannelMediaOptions"/> 中的 <parmname>publishRhythmPlayerTrack</parmname> 设为 <codeph><ph keyref="false"/></codeph>。</li>
+            <li>开启虚拟节拍器后，SDK 会从头开始播放指定的音频文件，并根据你在 <xref keyref="AgoraRhythmPlayerConfig" /> 中设置的 <parmname>beatsPerMinute</parmname> 控制每个文件的播放时长。例如，将 <parmname>beatsPerMinute</parmname> 设为 <codeph>60</codeph>，则 SDK 会 1 秒播放 1 个节拍。如果文件时长超过了节拍时长，则 SDK 只播放节拍时长部分的音频。</li>
+            <li>虚拟节拍器的声音默认会发布至远端，如果你不希望远端用户听到虚拟节拍器的声音，你可以将 <xref keyref="ChannelMediaOptions" /> 中的 <parmname>publishRhythmPlayerTrack</parmname> 设为 <codeph><ph keyref="false" /></codeph>。</li>
             </ul></note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry>
                 <pt>sound1</pt>
-                <pd>强拍文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如 <codeph><ph keyref="filePath-example"/></codeph>。支持的音频文件格式见 <xref keyref="audio-format">Agora RTC SDK 支持播放哪些格式的音频文件</xref>。
+                <pd>强拍文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如 <codeph><ph keyref="filePath-example" /></codeph>。支持的音频文件格式见 <xref keyref="audio-format">Agora RTC SDK 支持播放哪些格式的音频文件</xref>。
                     </pd>
             </plentry>
             <plentry>
                 <pt>sound2</pt>
-                <pd>弱拍文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如 <codeph><ph keyref="filePath-example"/></codeph>。支持的音频文件格式见 <xref keyref="audio-format">Agora RTC SDK 支持播放哪些格式的音频文件</xref>。
+                <pd>弱拍文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如 <codeph><ph keyref="filePath-example" /></codeph>。支持的音频文件格式见 <xref keyref="audio-format">Agora RTC SDK 支持播放哪些格式的音频文件</xref>。
                     </pd>
             </plentry>
             <plentry>
                 <pt>config</pt>
-                <pd>节拍器配置。详见 <xref keyref="AgoraRhythmPlayerConfig"/>。</pd>
+                <pd>节拍器配置。详见 <xref keyref="AgoraRhythmPlayerConfig" />。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native rn unity">

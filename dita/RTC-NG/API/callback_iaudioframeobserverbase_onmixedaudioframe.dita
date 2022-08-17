@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_iaudioframeobserverbase_onmixedaudioframe">
-    <title><ph keyref="onMixedAudioFrame"/></title>
+    <title><ph keyref="onMixedAudioFrame" /></title>
     <shortdesc id="short"><ph id="shortdesc">获取采集和播放音频混音后的数据。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onMixedAudioFrame"/>
+                <indexterm keyref="onMixedAudioFrame" />
             </keywords>
         </metadata>
     </prolog>
@@ -18,20 +18,20 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onMixedAudioFrame:(AgoraAudioFrame* _Nonnull)frame;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual bool onMixedAudioFrame(AudioFrame&amp; audioFrame) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">  onMixedAudioFrame?(channelId: string, audioFrame: AudioFrame): boolean;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual bool OnMixedAudioFrame(string channelId, AudioFrame audio_frame)
         {
             return true;
         }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
             <p>
             <note type="attention">
             <ul>
             <li>该方法仅返回单通道数据。</li>
-            <li>为保证采集和播放音频混音后的数据格式符合预期，Agora 推荐你在调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器后，调用 <xref keyref="setMixedAudioFrameParameters"/> 方法设置采集和播放音频混音后的音频数据格式。</li>
+            <li>为保证采集和播放音频混音后的数据格式符合预期，Agora 推荐你在调用 <xref keyref="registerAudioFrameObserver" /> 注册音频观测器后，调用 <xref keyref="setMixedAudioFrameParameters" /> 方法设置采集和播放音频混音后的音频数据格式。</li>
             </ul></note> </p>
         </section>
         <section id="parameters">
@@ -40,7 +40,7 @@
             <plentry>
                 <pt props="cpp unity">audioFrame</pt>
                 <pt props="ios mac">frame</pt>
-                <pd>音频原始数据。详见 <xref keyref="AudioFrame"/>。</pd>
+                <pd>音频原始数据。详见 <xref keyref="AudioFrame" />。</pd>
             </plentry>
             <plentry props="unity" id="id">
                 <pt>channelId</pt>

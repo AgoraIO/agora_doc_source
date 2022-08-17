@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_playeffect2">
-    <title><ph keyref="playEffect2"/></title>
+    <title><ph keyref="playEffect2" /></title>
     <shortdesc id="short"><ph id="shortdesc">播放指定的本地或在线音效文件。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="playEffect2"/>
+                <indexterm keyref="playEffect2" />
             </keywords>
         </metadata>
     </prolog>
@@ -31,13 +31,13 @@
     double pan,
     int gain,
     bool publish = false) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp">public abstract int PlayEffect(int soundId, string filePath, int loopCount, double pitch, double pan, int gain, bool publish = false, int startPos = 0);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
-        <p id="playEffect-desc"> 你可以多次调用该方法，传入不同的 <parmname>soundID</parmname> 和 <parmname>filePath</parmname>，同时播放多个音效文件。为获得最佳用户体验，Agora 推荐同时播放的音效文件不超过 3 个。 音效文件播放结束后，SDK 会触发 <apiname keyref="onAudioEffectFinished"/> 回调。
+        <p id="playEffect-desc"> 你可以多次调用该方法，传入不同的 <parmname>soundID</parmname> 和 <parmname>filePath</parmname>，同时播放多个音效文件。为获得最佳用户体验，Agora 推荐同时播放的音效文件不超过 3 个。 音效文件播放结束后，SDK 会触发 <apiname keyref="onAudioEffectFinished" /> 回调。
         <note type="attention">
             <ul>
             <li>该方法需要在加入频道后调用。</li>
@@ -55,14 +55,14 @@
 
 
 
-                    <note type="attention">如果你已通过 <xref keyref="preloadEffect"/> 将音效加载至内存，请确保该参数与 <apiname keyref="preloadEffect"/> 中设置的 <parmname>soundId</parmname> 相同。</note></pd>
+                    <note type="attention">如果你已通过 <xref keyref="preloadEffect" /> 将音效加载至内存，请确保该参数与 <apiname keyref="preloadEffect" /> 中设置的 <parmname>soundId</parmname> 相同。</note></pd>
             </plentry>
             <plentry id="filepath">
                 <pt>filePath</pt>
                 <pd>
-                    <p props="cpp">支持在线文件的 URL 地址，本地文件的 URI 地址、绝对路径或以 <codeph>/assets/</codeph> 开头的路径。例如 <codeph><ph keyref="filePath-example"/></codeph>。</p>
-                    <p props="android">播放文件的绝对路径或 URL 地址，需精确到文件名及后缀。通过绝对路径访问本地文件可能会遇到权限问题，Agora 推荐使用 URL 地址访问本地文件。例如 <codeph><ph keyref="filePath-example"/></codeph>。</p>
-                    <note type="attention">如果你已通过 <xref keyref="preloadEffect"/> 将音效加载至内存，请确保该参数与 <apiname keyref="preloadEffect"/> 中设置的 <parmname>filePath</parmname> 相同。</note> </pd>
+                    <p props="cpp">支持在线文件的 URL 地址，本地文件的 URI 地址、绝对路径或以 <codeph>/assets/</codeph> 开头的路径。例如 <codeph><ph keyref="filePath-example" /></codeph>。</p>
+                    <p props="android">播放文件的绝对路径或 URL 地址，需精确到文件名及后缀。通过绝对路径访问本地文件可能会遇到权限问题，Agora 推荐使用 URL 地址访问本地文件。例如 <codeph><ph keyref="filePath-example" /></codeph>。</p>
+                    <note type="attention">如果你已通过 <xref keyref="preloadEffect" /> 将音效加载至内存，请确保该参数与 <apiname keyref="preloadEffect" /> 中设置的 <parmname>filePath</parmname> 相同。</note> </pd>
             </plentry>
             <plentry id="loopcount">
                 <pt>loopCount</pt>
@@ -113,9 +113,9 @@
 
 
                     <ul>
-                    <li><codeph><ph keyref="true"/></codeph>:
+                    <li><codeph><ph keyref="true" /></codeph>:
                                     将音效发布至远端。本地用户和远端用户都能听到音效。</li>
-                    <li><codeph><ph keyref="false"/></codeph>:
+                    <li><codeph><ph keyref="false" /></codeph>:
                                     不将音效发布至远端。只有本地用户能听到音效。</li>
                     </ul></p>
                 </pd>

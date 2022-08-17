@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onuserenablelocalvideo">
-    <title> <ph keyref="onUserEnableLocalVideo"/> </title>
+    <title> <ph keyref="onUserEnableLocalVideo" /> </title>
     <shortdesc id="short"> <ph id="shortdesc">远端用户开/关本地视频采集回调。</ph> </shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onUserEnableLocalVideo"/>
+                <indexterm keyref="onUserEnableLocalVideo" />
             </keywords>
         </metadata>
     </prolog>
@@ -21,7 +21,11 @@
     (void)uid;
     (void)enabled;
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onUserEnableLocalVideo?(connection: RtcConnection, remoteUid: number, enabled: boolean): void;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onUserEnableLocalVideo?(
+    connection: RtcConnection,
+    remoteUid: number,
+    enabled: boolean
+  ): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserEnableLocalVideo(RtcConnection connection, uint remoteUid, bool enabled) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onUserEnableLocalVideo?(
   connection: RtcConnection,
@@ -36,26 +40,26 @@
             <dl outputclass="deprecated" props="hide">
             <dlentry>
                 <dt>弃用：</dt>
-                <dd>请改用 <xref keyref="onRemoteVideoStateChanged"/>回调的：
+                <dd>请改用 <xref keyref="onRemoteVideoStateChanged" />回调的：
                     <ul>
-                    <li> <apiname keyref="REMOTE_VIDEO_STATE_STOPPED"/>(0) 和 <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED"/>(5)。</li>
-                    <li> <apiname keyref="REMOTE_VIDEO_STATE_DECODING"/> (2) 和 <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED"/>(6)。</li>
+                    <li> <apiname keyref="REMOTE_VIDEO_STATE_STOPPED" />(0) 和 <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED" />(5)。</li>
+                    <li> <apiname keyref="REMOTE_VIDEO_STATE_DECODING" /> (2) 和 <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED" />(6)。</li>
                     </ul> </dd>
             </dlentry>
             </dl>
-            <p id="desc">该回调是由远端用户调用 <xref keyref="enableLocalVideo"/> 方法开启或关闭视频采集触发的。</p>
+            <p id="desc">该回调是由远端用户调用 <xref keyref="enableLocalVideo" /> 方法开启或关闭视频采集触发的。</p>
         </section>
         <section id="parameters">
-            <title> <ph keyref="callback-section-title"/> </title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <title> <ph keyref="callback-section-title" /> </title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter" />
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry props="unity electron rn flutter" conkeyref="joinChannelEx/connection">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry>
                 <pt props="native">uid</pt>
@@ -67,8 +71,8 @@
                 <pd>
                     <p>远端用户是否启用视频采集：
                     <ul>
-                    <li> <codeph><ph keyref="true"/></codeph>: 该用户已启用视频功能。启用后，其他用户可以接收到该用户的视频流。</li>
-                    <li> <codeph><ph keyref="false"/></codeph>: 该用户已关闭视频功能。关闭后，该用户仍然可以接收其他用户的视频流，但其他用户接收不到该用户的视频流。</li>
+                    <li> <codeph><ph keyref="true" /></codeph>: 该用户已启用视频功能。启用后，其他用户可以接收到该用户的视频流。</li>
+                    <li> <codeph><ph keyref="false" /></codeph>: 该用户已关闭视频功能。关闭后，该用户仍然可以接收其他用户的视频流，但其他用户接收不到该用户的视频流。</li>
                     </ul> </p>
                 </pd>
             </plentry>

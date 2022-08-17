@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onuserjoined">
-    <title> <ph keyref="onUserJoined"/> </title>
+    <title> <ph keyref="onUserJoined" /> </title>
     <shortdesc id="short"> <ph id="shortdesc">远端用户（通信场景）/主播（直播场景）加入当前频道回调。</ph> </shortdesc>
     <refbody>
         <section id="prototype">
@@ -13,7 +13,11 @@
     (void)uid;
     (void)elapsed;
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onUserJoined?(connection: RtcConnection, remoteUid: number, elapsed: number): void;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onUserJoined?(
+    connection: RtcConnection,
+    remoteUid: number,
+    elapsed: number
+  ): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserJoined(RtcConnection connection, uint remoteUid, int elapsed) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onUserJoined?(
   connection: RtcConnection,
@@ -31,22 +35,22 @@
             </ul>
             <p>该回调在如下情况下会被触发：
             <ul>
-            <li>远端用户/主播调用 <apiname keyref="joinChannel2"/> 方法加入频道。</li>
+            <li>远端用户/主播调用 <apiname keyref="joinChannel2" /> 方法加入频道。</li>
             <li>远端用户加入频道后将用户角色改变为主播。</li>
             <li>远端用户/主播网络中断后重新加入频道。</li>
             </ul> </p>
         </section>
         <section id="parameters">
-            <title> <ph keyref="callback-section-title"/> </title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <title> <ph keyref="callback-section-title" /> </title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter" />
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry props="unity electron rn flutter">
                 <pt>connection</pt>
-                <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                <pd>Connection 信息。详见 <xref keyref="RtcConnection" />。</pd>
             </plentry>
             <plentry id="uid">
                 <pt props="native">uid</pt>
@@ -55,7 +59,7 @@
             </plentry>
             <plentry>
                 <pt>elapsed</pt>
-                <pd>从本地用户调用 <apiname keyref="joinChannel2"/> 到该回调触发的延迟（毫秒)。
+                <pd>从本地用户调用 <apiname keyref="joinChannel2" /> 到该回调触发的延迟（毫秒)。
                     </pd>
             </plentry>
             </parml> </section>

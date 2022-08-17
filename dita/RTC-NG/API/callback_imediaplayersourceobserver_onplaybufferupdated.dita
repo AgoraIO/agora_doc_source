@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_imediaplayersourceobserver_onplaybufferupdated">
-    <title> <ph keyref="onPlayBufferUpdated"/> </title>
+    <title> <ph keyref="onPlayBufferUpdated" /> </title>
     <shortdesc id="short"> <ph id="shortdesc">报告当前缓冲数据能播放的时间。</ph> </shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onPlayBufferUpdated"/>
+                <indexterm keyref="onPlayBufferUpdated" />
             </keywords>
         </metadata>
     </prolog>
@@ -20,7 +20,7 @@
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void onPlayBufferUpdated(int64_t playCachedBuffer) = 0;
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">  onPlayBufferUpdated?(playCachedBuffer: number): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnPlayBufferUpdated(Int64 playCachedBuffer) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onPlayBufferUpdated?(playCachedBuffer: number): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(int playCachedBuffer)? onPlayBufferUpdated;
@@ -33,16 +33,16 @@
             
             
             <ul>
-            <li>当缓冲数据支持的播放时间小于阈值（默认为 0）时，返回 <apiname keyref="PLAYER_EVENT_BUFFER_LOW"/>。</li>
-            <li>当缓冲数据支持的播放时间大于阈值（默认为 0）时，返回 <apiname keyref="PLAYER_EVENT_BUFFER_RECOVER"/>。</li>
+            <li>当缓冲数据支持的播放时间小于阈值（默认为 0）时，返回 <apiname keyref="PLAYER_EVENT_BUFFER_LOW" />。</li>
+            <li>当缓冲数据支持的播放时间大于阈值（默认为 0）时，返回 <apiname keyref="PLAYER_EVENT_BUFFER_RECOVER" />。</li>
             </ul> </p>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry conkeyref="onPlayerEvent/playerkit" props="ios mac">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry>
                 <pt>playCachedBuffer</pt>

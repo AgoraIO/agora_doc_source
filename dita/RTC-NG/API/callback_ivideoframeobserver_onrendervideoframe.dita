@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_ivideoframeobserver_onrendervideoframe">
-    <title><ph keyref="onRenderVideoFrame"/></title>
+    <title><ph keyref="onRenderVideoFrame" /></title>
     <shortdesc id="short"><ph id="shortdesc">获取远端发送的视频数据。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onRenderVideoFrame"/>
+                <indexterm keyref="onRenderVideoFrame" />
             </keywords>
         </metadata>
     </prolog>
@@ -18,17 +18,21 @@
     uid:(NSUInteger)uid
     channelId:(NSString * _Nonnull)channelId;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual bool onRenderVideoFrame(const char* channelId, rtc::uid_t remoteUid, VideoFrame&amp; videoFrame) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">  onRenderVideoFrame?(
+    channelId: string,
+    remoteUid: number,
+    videoFrame: VideoFrame
+  ): boolean;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual bool OnRenderVideoFrame(string channelId, uint uid, VideoFrame videoFrame)
         {
             return true;
         }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
             <p>成功注册视频数据观测器后，SDK 会在捕捉到每个视频帧时触发该回调。你可以在回调中获取远端发送的视频数据，然后根据场景需要，对视频数据进行处理。</p>
-            <note type="attention">该功能仅支持视频处理模式为 <apiname keyref="PROCESS_MODE_READ_ONLY"/> 的场景。</note> </section>
+            <note type="attention">该功能仅支持视频处理模式为 <apiname keyref="PROCESS_MODE_READ_ONLY" /> 的场景。</note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
@@ -38,8 +42,8 @@
                 <pd>发送该帧视频的远端用户 ID。</pd>
             </plentry>
             <plentry conkeyref="onCaptureVideoFrame/videoframe">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry>
                 <pt>channelId</pt>
@@ -49,8 +53,8 @@
         <section id="return_values">
             <title>返回值</title>
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>：SDK 忽略该返回值。</li>
-                            <li><codeph><ph keyref="false"/></codeph>：SDK 忽略该返回值。</li>
+                            <li><codeph><ph keyref="true" /></codeph>：SDK 忽略该返回值。</li>
+                            <li><codeph><ph keyref="false" /></codeph>：SDK 忽略该返回值。</li>
                         </ul>
         </section>
     </refbody>

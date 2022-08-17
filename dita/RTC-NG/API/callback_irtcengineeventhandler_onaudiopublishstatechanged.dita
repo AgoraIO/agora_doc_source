@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onaudiopublishstatechanged">
-    <title><ph keyref="onAudioPublishStateChanged"/></title>
+    <title><ph keyref="onAudioPublishStateChanged" /></title>
     <shortdesc id="short"><ph id="shortdesc">音频发布状态改变回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onAudioPublishStateChanged"/>
+                <indexterm keyref="onAudioPublishStateChanged" />
             </keywords>
         </metadata>
     </prolog>
@@ -29,7 +29,12 @@ elapseSinceLastState:(int)elapseSinceLastState;</codeblock>
      (void)newState;
      (void)elapseSinceLastState;
      }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onAudioPublishStateChanged?(channel: string, oldState: StreamPublishState, newState: StreamPublishState, elapseSinceLastState: number): void;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onAudioPublishStateChanged?(
+    channel: string,
+    oldState: StreamPublishState,
+    newState: StreamPublishState,
+    elapseSinceLastState: number
+  ): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioPublishStateChanged(string channel, STREAM_PUBLISH_STATE oldState,
             STREAM_PUBLISH_STATE newState, int elapseSinceLastState)</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onAudioPublishStateChanged?(
@@ -46,26 +51,25 @@ elapseSinceLastState:(int)elapseSinceLastState;</codeblock>
 </codeblock> </p>
         </section>
         <section id="parameters">
-            <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <title><ph keyref="callback-section-title" /></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter" />
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry>
-                <pt props="android cpp unity flutter electron rn flutter"
-                    >channel</pt>
+                <pt props="android cpp unity flutter electron rn flutter">channel</pt>
                 <pt props="ios mac">channelId</pt>
                 <pd>频道名。</pd>
             </plentry>
             <plentry id="oldState">
                 <pt>oldState</pt>
-                <pd>之前的发布状态，详见 <xref keyref="STREAM_PUBLISH_STATE"/>。</pd>
+                <pd>之前的发布状态，详见 <xref keyref="STREAM_PUBLISH_STATE" />。</pd>
             </plentry>
             <plentry id="newState">
                 <pt>newState</pt>
-                <pd>当前的发布状态，详见 <apiname keyref="STREAM_PUBLISH_STATE"/>。</pd>
+                <pd>当前的发布状态，详见 <apiname keyref="STREAM_PUBLISH_STATE" />。</pd>
             </plentry>
             <plentry id="elapseSinceLastState">
                 <pt>elapseSinceLastState</pt>
