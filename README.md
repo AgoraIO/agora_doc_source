@@ -8,6 +8,7 @@
 [![Awesome OxygenScript for DITA doc building (NG SDK)](https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding.yml/badge.svg)](https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding.yml)
 
 <!-- vscode-markdown-toc -->
+<!-- vscode-markdown-toc -->
 * 1. [概览](#)
 	* 1.1. [DITA map 架构](#DITAmap)
 	* 1.2. [内容重用机制](#-1)
