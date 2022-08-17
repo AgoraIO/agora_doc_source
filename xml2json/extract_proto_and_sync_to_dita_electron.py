@@ -41,6 +41,14 @@ def extract_rn_proto(cpp_code, content):
     # abstract getErrorDescription(code: number): string;
     # abstract updateChannelMediaOptions(options: ChannelMediaOptions): number;
     #
+    #   onRemoteVideoTransportStats?(
+    # connection: RtcConnection,
+    # remoteUid: number,
+    # delay: number,
+    # lost: number,
+    # rxKBitRate: number
+    # ): void;
+    #
 
     dart_code = []
 
@@ -72,7 +80,7 @@ def extract_rn_proto(cpp_code, content):
         #     newState: STREAM_PUBLISH_STATE,
         #     elapseSinceLastState: number
         #   ): void;
-        rn_proto_re = r'[A-Za-z]{1,10}[\s]{0,1}[\?]{0,1}' + re.escape(text) + r'[0-9\s]{0,1}\([A-Za-z_\s\n\?,\[\]\<\>:\)]{0,200};'
+        rn_proto_re = r'[A-Za-z]{0,10}[\s]{0,1}[\?]{0,1}' + re.escape(text) + r'[0-9\s]{0,1}\([A-Za-z_\s\n\?,\[\]\<\>:\)]{0,200};'
         print(rn_proto_re)
         result = re.findall(rn_proto_re, content)
 
