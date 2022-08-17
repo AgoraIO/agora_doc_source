@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setvoicebeautifierparameters">
-    <title><ph keyref="setVoiceBeautifierParameters"/></title>
+    <title><ph keyref="setVoiceBeautifierParameters" /></title>
     <shortdesc id="short"><ph id="shortdesc">设置预设美声效果的参数。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setVoiceBeautifierParameters"/>
+                <indexterm keyref="setVoiceBeautifierParameters" />
             </keywords>
         </metadata>
     </prolog>
@@ -23,31 +23,31 @@
   param1: number,
   param2: number
 ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setVoiceBeautifierParameters(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setVoiceBeautifierParameters(
   {required VoiceBeautifierPreset preset,
   required int param1,
   required int param2});</codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>调用该方法可以设置歌唱美声效果的性别特征和混响效果。该方法对本地发流用户进行设置。设置后，频道内所有用户都能听到该效果。</p>
-            <p>为获取更好的人声效果，Agora 推荐你在调用该方法前将 <xref keyref="setAudioProfile"/> 的 <parmname>scenario</parmname> 设为 <apiname keyref="AUDIO_SCENARIO_GAME_STREAMING"/>(3)，并将 <parmname>profile</parmname> 设为 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/>(4) 或 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>(5)。</p>
+            <p>为获取更好的人声效果，Agora 推荐你在调用该方法前将 <xref keyref="setAudioProfile" /> 的 <parmname>scenario</parmname> 设为 <apiname keyref="AUDIO_SCENARIO_GAME_STREAMING" />(3)，并将 <parmname>profile</parmname> 设为 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY" />(4) 或 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO" />(5)。</p>
             <note type="attention">
             <ul>
             <li>该方法在加入频道前后都能调用。</li>
-            <li>请勿将 <apiname keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1)<ph props="cpp rn electron unity flutter"> 或 <apiname keyref="AUDIO_PROFILE_IOT"/>(6)</ph>，否则该方法不生效。</li>
+            <li>请勿将 <apiname keyref="setAudioProfile" /> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD" />(1)<ph props="cpp rn electron unity flutter"> 或 <apiname keyref="AUDIO_PROFILE_IOT" />(6)</ph>，否则该方法不生效。</li>
             <li>该方法对人声的处理效果最佳，Agora 不推荐调用该方法处理含音乐的音频数据。</li>
-            <li>调用 <apiname keyref="setVoiceBeautifierParameters"/>，Agora 不推荐调用以下方法，否则 <apiname keyref="setVoiceBeautifierParameters"/> 设置的效果会被覆盖：
+            <li>调用 <apiname keyref="setVoiceBeautifierParameters" />，Agora 不推荐调用以下方法，否则 <apiname keyref="setVoiceBeautifierParameters" /> 设置的效果会被覆盖：
 
 
 
                 <ul>
-                <li><xref keyref="setAudioEffectPreset"/></li>
-                <li><xref keyref="setAudioEffectParameters"/></li>
-                <li><xref keyref="setVoiceBeautifierPreset"/></li>
-                <li><xref keyref="setLocalVoicePitch"/></li>
-                <li><xref keyref="setLocalVoiceEqualization"/></li>
-                <li><xref keyref="setLocalVoiceReverb"/></li>
-                <li><xref keyref="setVoiceConversionPreset"/></li>
+                <li><xref keyref="setAudioEffectPreset" /></li>
+                <li><xref keyref="setAudioEffectParameters" /></li>
+                <li><xref keyref="setVoiceBeautifierPreset" /></li>
+                <li><xref keyref="setLocalVoicePitch" /></li>
+                <li><xref keyref="setLocalVoiceEqualization" /></li>
+                <li><xref keyref="setLocalVoiceReverb" /></li>
+                <li><xref keyref="setVoiceConversionPreset" /></li>
                 </ul> </li>
             </ul> </note> </section>
         <section id="parameters">
