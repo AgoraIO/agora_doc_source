@@ -288,6 +288,8 @@ def main():
             elif name.startswith("callback_"):
                 dart_protos = extract_dart_proto_callback(code, content)
                 print(dart_protos)
+                dart_file_list.append(file)
+                dart_proto_list.append(dart_struct)
             elif name.startswith("class_"):
                 dart_struct = extract_cpp_struct_dart_class(code, content)
                 print(dart_struct)
