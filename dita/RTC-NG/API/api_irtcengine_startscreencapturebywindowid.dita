@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startscreencapturebywindowid">
-    <title><ph keyref="startScreenCaptureByWindowId"/></title>
+    <title><ph keyref="startScreenCaptureByWindowId" /></title>
     <shortdesc id="short"><ph id="shortdesc">通过窗口 ID 共享窗口。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="startScreenCaptureByWindowId"/>
+                <indexterm keyref="startScreenCaptureByWindowId" />
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="android" outputclass="language-java" />
             <codeblock props="mac" outputclass="language-objectivec">- (int)startScreenCaptureByWindowId:(UInt32)windowId
                 regionRect:(CGRect)regionRect
                 captureParams:(AgoraScreenCaptureParameters *_Nonnull)captureParams;</codeblock>
@@ -22,25 +22,25 @@
                 const ScreenCaptureParameters&amp; captureParams) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract startScreenCaptureByWindowId(windowId: any, regionRect: Rectangle, captureParams: ScreenCaptureParameters): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int StartScreenCaptureByWindowId(UInt64 windowId, Rectangle regionRect, ScreenCaptureParameters captureParams);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> startScreenCaptureByWindowId(
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startScreenCaptureByWindowId(
     {required int windowId,
     required Rectangle regionRect,
     required ScreenCaptureParameters captureParams});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p id="desc">共享一个窗口或该窗口的部分区域。用户需要在该方法中指定想要共享的窗口 ID。</p>
-            <p conkeyref="startScreenCaptureByDisplayId/apisequence"/>
+            <p conkeyref="startScreenCaptureByDisplayId/apisequence" />
             <note type="attention" id="note" props="cpp unity flutter electron">
                 <ul><li>该方法仅适用于 macOS 和 Windows 平台。</li>
-                <li>Agora SDK 的窗口共享功能依赖于 WGC（Windows Graphics Capture）或 GDI（Graphics Device Interface）采集，WGC 在早于 Windows 10 2004 的系统上无法设置关闭鼠标采集，因此，当你在搭载早于 Windows 10 2004 系统的设备上进行窗口共享时，可能出现 <codeph>captureMouseCursor(false)</codeph> 不生效的现象。详见 <xref keyref="cursor"/>。</li></ul></note>
+                <li>Agora SDK 的窗口共享功能依赖于 WGC（Windows Graphics Capture）或 GDI（Graphics Device Interface）采集，WGC 在早于 Windows 10 2004 的系统上无法设置关闭鼠标采集，因此，当你在搭载早于 Windows 10 2004 系统的设备上进行窗口共享时，可能出现 <codeph>captureMouseCursor(false)</codeph> 不生效的现象。详见 <xref keyref="cursor" />。</li></ul></note>
             <p props="cpp flutter electron">该方法支持共享通用 Windows 平台（UWP）应用窗口。声网使用最新版 SDK 对主流的 UWP 应用进行了测试，结果如下：</p>
             <p props="cpp flutter electron"> <table id="table_lvk_tfs_r4b">
             <tgroup cols="4">
-                <colspec colnum="1" colname="col1"/>
-                <colspec colnum="2" colname="col2"/>
-                <colspec colnum="3" colname="col3"/>
-                <colspec colnum="4" colname="col4"/>
+                <colspec colnum="1" colname="col1" />
+                <colspec colnum="2" colname="col2" />
+                <colspec colnum="3" colname="col3" />
+                <colspec colnum="4" colname="col4" />
                 <thead>
                     <row>
                         <entry><b>系统版本</b></entry>
@@ -167,7 +167,7 @@
             </plentry>
             <plentry props="cpp electron unity flutter">
                 <pt>regionRect</pt>
-                <pd>（可选）指定待共享区域相对于整个屏幕的位置。如不填，则表示共享整个屏幕。详见 <xref keyref="Rectangle"/>。如果设置的共享区域超出了窗口的边界，则只共享窗口内的内容；如果宽或高为 0，则共享整个窗口。</pd>
+                <pd>（可选）指定待共享区域相对于整个屏幕的位置。如不填，则表示共享整个屏幕。详见 <xref keyref="Rectangle" />。如果设置的共享区域超出了窗口的边界，则只共享窗口内的内容；如果宽或高为 0，则共享整个窗口。</pd>
             </plentry>
             <plentry props="mac">
                 <pt>regionRect</pt>
@@ -188,7 +188,7 @@
             </plentry>
             <plentry>
                 <pt>captureParams</pt>
-                <pd>屏幕共享的参数配置。默认的分辨率为 1920 x 1080，即 2073600 像素。该像素值为计费标准。详见 <xref keyref="ScreenCaptureParameters"/>。</pd>
+                <pd>屏幕共享的参数配置。默认的分辨率为 1920 x 1080，即 2073600 像素。该像素值为计费标准。详见 <xref keyref="ScreenCaptureParameters" />。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity rn">
@@ -196,7 +196,7 @@
             <ul>
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。
-            <ul conkeyref="startScreenCaptureByDisplayId/err"><li></li></ul></li>
+            <ul conkeyref="startScreenCaptureByDisplayId/err"><li /></ul></li>
             </ul> </section>
     </refbody>
 </reference>
