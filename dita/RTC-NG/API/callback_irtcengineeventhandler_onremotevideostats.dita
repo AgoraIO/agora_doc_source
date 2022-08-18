@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onremotevideostats">
-    <title> <ph keyref="onRemoteVideoStats"/> </title>
+    <title> <ph keyref="onRemoteVideoStats" /> </title>
     <shortdesc id="short"> <ph id="shortdesc">通话中远端视频流的统计信息回调。</ph> </shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onRemoteVideoStats"/>
+                <indexterm keyref="onRemoteVideoStats" />
             </keywords>
         </metadata>
     </prolog>
@@ -19,29 +19,29 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual void onRemoteVideoStats(const RemoteVideoStats&amp; stats) {
     (void)stats;
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onRemoteVideoStats?(connection: RtcConnection, stats: RemoteVideoStats): void;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onRemoteVideoStats?(connection: RtcConnection, stats: RemoteVideoStats): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteVideoStats(RtcConnection connection, RemoteVideoStats stats) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">onRemoteVideoStats?(connection: RtcConnection, stats: RemoteVideoStats): void;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">  onRemoteVideoStats?(connection: RtcConnection, stats: RemoteVideoStats): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
             <p id="desc">该回调描述远端用户在通话中端到端的视频流统计信息， 针对每个远端用户/主播每 2 秒触发一次。如果远端同时存在多个用户/主播， 该回调每 2 秒会被触发多次。</p>
         </section>
         <section id="parameters">
-            <title> <ph keyref="callback-section-title"/> </title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <title> <ph keyref="callback-section-title" /> </title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter" />
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry props="unity electron rn">
                 <pt>connection</pt>
-                <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                <pd>Connection 信息。详见 <xref keyref="RtcConnection" />。</pd>
             </plentry>
             <plentry id="stats">
                 <pt>stats</pt>
-                <pd>远端视频统计数据。详见 <xref keyref="RemoteVideoStats"/>。</pd>
+                <pd>远端视频统计数据。详见 <xref keyref="RemoteVideoStats" />。</pd>
             </plentry>
             </parml> </section>
     </refbody>

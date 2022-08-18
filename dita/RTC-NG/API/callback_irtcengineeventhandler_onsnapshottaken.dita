@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onsnapshottaken">
-    <title><ph keyref="onSnapshotTaken"/></title>
+    <title><ph keyref="onSnapshotTaken" /></title>
     <shortdesc id="short"><ph id="shortdesc">视频截图结果回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onSnapshotTaken"/>
+                <indexterm keyref="onSnapshotTaken" />
             </keywords>
         </metadata>
     </prolog>
@@ -23,29 +23,37 @@
   (void)errCode;
 }
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">  onSnapshotTaken?(
+    connection: RtcConnection,
+    uid: number,
+    filePath: string,
+    width: number,
+    height: number,
+    errCode: number
+  ): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnSnapshotTaken(RtcConnection connection, uint uid, string filePath, int width, int height, int errCode) { }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">onSnapshotTaken?(
-  connection: RtcConnection,
-  filePath: string,
-  width: number,
-  height: number,
-  errCode: number
-): void;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onSnapshotTaken?(
+    connection: RtcConnection,
+    uid: number,
+    filePath: string,
+    width: number,
+    height: number,
+    errCode: number
+  ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, String filePath, int width,
       int height, int errCode)? onSnapshotTaken;
 </codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>成功调用 <xref keyref="takeSnapshot"/> 后，SDK 触发该回调报告截图是否成功和获取截图的详情。</p>
+            <p>成功调用 <xref keyref="takeSnapshot" /> 后，SDK 触发该回调报告截图是否成功和获取截图的详情。</p>
         </section>
         <section id="parameters">
-            <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <title><ph keyref="callback-section-title" /></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter" />
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry props="native">
                 <pt>channel</pt>
@@ -56,8 +64,8 @@
                 <pd>用户 ID。如果 <parmname>uid</parmname> 为 0，表示本地用户。</pd>
             </plentry>
             <plentry conkeyref="joinChannelEx/connection" props="unity flutter electron rn">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
                 <plentry>
                 <pt>filePath</pt>
@@ -83,8 +91,8 @@
 
                         <ul>
                         <li>-1：写入文件失败或 JPEG 编码失败。</li>
-                        <li>-2：<apiname keyref="takeSnapshot"/> 方法调用成功后 1 秒内没有发现指定用户的视频流。</li>
-                        <li>-3：<apiname keyref="takeSnapshot"/> 方法调用过于频繁。</li>
+                        <li>-2：<apiname keyref="takeSnapshot" /> 方法调用成功后 1 秒内没有发现指定用户的视频流。</li>
+                        <li>-3：<apiname keyref="takeSnapshot" /> 方法调用过于频繁。</li>
                         </ul></li>
                     </ul></pd>
             </plentry>

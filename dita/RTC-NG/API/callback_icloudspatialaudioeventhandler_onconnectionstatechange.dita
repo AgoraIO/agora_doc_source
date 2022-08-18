@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_icloudspatialaudioeventhandler_onconnectionstatechange">
-    <title><ph keyref="onConnectionStateChange"/></title>
+    <title><ph keyref="onConnectionStateChange" /></title>
     <shortdesc id="short"><ph id="shortdesc">SDK 与 Agora 空间音效服务器连接状态已改变回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onConnectionStateChange"/>
+                <indexterm keyref="onConnectionStateChange" />
             </keywords>
         </metadata>
     </prolog>
@@ -16,10 +16,10 @@
             <codeblock props="android" outputclass="language-java">public void onConnectionStateChange(int state, int reason);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)csaEngine:(AgoraCloudSpatialAudioKit* _Nonnull)engine connectionDidChangedToState:(AgoraSaeConnectionState)state withReason:(AgoraSaeConnectionChangedReason)reason;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void onConnectionStateChange(SAE_CONNECTION_STATE_TYPE state, SAE_CONNECTION_CHANGED_REASON_TYPE reason) {}</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnConnectionStateChange(SAE_CONNECTION_STATE_TYPE state, SAE_CONNECTION_CHANGED_REASON_TYPE reason) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">该回调在 SDK 与 Agora 空间音效服务器连接状态发生改变时触发，并告知用户当前的连接状态和引起连接状态改变的原因。</section>
         <section id="parameters">
@@ -27,29 +27,29 @@
             <parml>
             <plentry props="ios mac" id="cloudengine">
                 <pt>engine</pt>
-                <pd><xref keyref="ICloudSpatialAudioEngine"/>。</pd>
+                <pd><xref keyref="ICloudSpatialAudioEngine" />。</pd>
             </plentry>
             <plentry>
                 <pt>state</pt>
-                <pd><ph>SDK 与 Agora 空间音效服务器的连接状态。</ph><ph props="ios mac cpp unity">详见 <xref keyref="SAE_CONNECTION_STATE_TYPE"/>。</ph>
+                <pd><ph>SDK 与 Agora 空间音效服务器的连接状态。</ph><ph props="ios mac cpp unity">详见 <xref keyref="SAE_CONNECTION_STATE_TYPE" />。</ph>
                     <ul props="android">
-                    <li><ph keyref="SAE_CONNECTION_STATE_CONNECTING"/> (0): 建立连接中。</li>
-                    <li><ph keyref="SAE_CONNECTION_STATE_CONNECTED"/> (1): 已连接。该状态下，<xref keyref="updateSelfPosition"/> 等空间音效设置才会生效。</li>
-                    <li><ph keyref="SAE_CONNECTION_STATE_DISCONNECTED"/> (2): 连接断开。</li>
-                    <li><ph keyref="SAE_CONNECTION_STATE_RECONNECTING"/> (3): 重新建立连接中。</li>
-                    <li><ph keyref="SAE_CONNECTION_STATE_RECONNECTED"/> (4): 已重新建立连接。</li>
+                    <li><ph keyref="SAE_CONNECTION_STATE_CONNECTING" /> (0): 建立连接中。</li>
+                    <li><ph keyref="SAE_CONNECTION_STATE_CONNECTED" /> (1): 已连接。该状态下，<xref keyref="updateSelfPosition" /> 等空间音效设置才会生效。</li>
+                    <li><ph keyref="SAE_CONNECTION_STATE_DISCONNECTED" /> (2): 连接断开。</li>
+                    <li><ph keyref="SAE_CONNECTION_STATE_RECONNECTING" /> (3): 重新建立连接中。</li>
+                    <li><ph keyref="SAE_CONNECTION_STATE_RECONNECTED" /> (4): 已重新建立连接。</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>reason</pt>
-                <pd><ph>SDK 与 Agora 空间音效服务器连接状态发生改变的原因。</ph><ph props="ios mac cpp unity">详见 <xref keyref="SAE_CONNECTION_CHANGED_REASON_TYPE"/>。</ph>
+                <pd><ph>SDK 与 Agora 空间音效服务器连接状态发生改变的原因。</ph><ph props="ios mac cpp unity">详见 <xref keyref="SAE_CONNECTION_CHANGED_REASON_TYPE" />。</ph>
                     <ul props="android">
-                    <li><ph keyref="SAE_CONNECTION_CHANGED_DEFAULT"/> (0): 正常。</li>
-                    <li><ph keyref="SAE_CONNECTION_CHANGED_CONNECTING"/> (1): SDK 建立连接中。</li>
-                    <li><ph keyref="SAE_CONNECTION_CHANGED_CREATE_ROOM_FAIL"/> (2): SDK 创建房间失败。</li>
-                    <li><ph keyref="SAE_CONNECTION_CHANGED_RTM_DISCONNECT"/> (3): SDK 与 RTM 系统连接中断。</li>
-                    <li><ph keyref="SAE_CONNECTION_CHANGED_RTM_ABORTED"/> (4): 用户被 RTM 系统踢出。</li>
-                    <li><ph keyref="SAE_CONNECTION_CHANGED_LOST_SYNC"/> (5): SDK 超过 15 秒未收到 Agora 空间音效服务器的消息。</li>
+                    <li><ph keyref="SAE_CONNECTION_CHANGED_DEFAULT" /> (0): 正常。</li>
+                    <li><ph keyref="SAE_CONNECTION_CHANGED_CONNECTING" /> (1): SDK 建立连接中。</li>
+                    <li><ph keyref="SAE_CONNECTION_CHANGED_CREATE_ROOM_FAIL" /> (2): SDK 创建房间失败。</li>
+                    <li><ph keyref="SAE_CONNECTION_CHANGED_RTM_DISCONNECT" /> (3): SDK 与 RTM 系统连接中断。</li>
+                    <li><ph keyref="SAE_CONNECTION_CHANGED_RTM_ABORTED" /> (4): 用户被 RTM 系统踢出。</li>
+                    <li><ph keyref="SAE_CONNECTION_CHANGED_LOST_SYNC" /> (5): SDK 超过 15 秒未收到 Agora 空间音效服务器的消息。</li>
                     </ul></pd>
             </plentry>
             </parml> </section>

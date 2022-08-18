@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onfirstremotevideodecoded">
-    <title><ph keyref="onFirstRemoteVideoDecoded"/></title>
+    <title><ph keyref="onFirstRemoteVideoDecoded" /></title>
     <shortdesc id="short"><ph id="shortdesc">已接收到远端视频并完成解码回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onFirstRemoteVideoDecoded"/>
+                <indexterm keyref="onFirstRemoteVideoDecoded" />
             </keywords>
         </metadata>
     </prolog>
@@ -25,15 +25,21 @@
     (void)height;
     (void)elapsed;
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onFirstRemoteVideoDecoded?(connection: RtcConnection, remoteUid: number, width: number, height: number, elapsed: number): void;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onFirstRemoteVideoDecoded?(
+    connection: RtcConnection,
+    remoteUid: number,
+    width: number,
+    height: number,
+    elapsed: number
+  ): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstRemoteVideoDecoded(RtcConnection connection, uint remoteUid, int width, int height, int elapsed) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">onFirstRemoteVideoDecoded?(
-  connection: RtcConnection,
-  remoteUid: number,
-  width: number,
-  height: number,
-  elapsed: number
-): void;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onFirstRemoteVideoDecoded?(
+    connection: RtcConnection,
+    remoteUid: number,
+    width: number,
+    height: number,
+    elapsed: number
+  ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, int width,
       int height, int elapsed)? onFirstRemoteVideoDecoded;
 </codeblock> </p>
@@ -52,22 +58,22 @@
                 <ul id="ul_ycz_f34_npb">
                 <li>远端用户离开频道。</li>
                 <li>远端用户掉线。</li>
-                <li>远端用户调用 <xref keyref="muteLocalVideoStream"/> 方法停止发送本地视频流。</li>
-                <li>远端用户调用 <xref keyref="disableVideo"/> 方法关闭视频模块。</li>
+                <li>远端用户调用 <xref keyref="muteLocalVideoStream" /> 方法停止发送本地视频流。</li>
+                <li>远端用户调用 <xref keyref="disableVideo" /> 方法关闭视频模块。</li>
                 </ul> </li>
             </ul> </p>
         </section>
         <section id="parameters">
-            <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <title><ph keyref="callback-section-title" /></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter" />
             <parml>
             <plentry props="native">
                 <pt>uid</pt>
                 <pd>用户 ID，指定是哪个用户的视频流。</pd>
             </plentry>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry props="ios mac">
                 <pt>size</pt>
@@ -75,7 +81,7 @@
             </plentry>
             <plentry props="unity electron rn flutter">
                 <pt>connection</pt>
-                <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                <pd>Connection 信息。详见 <xref keyref="RtcConnection" />。</pd>
             </plentry>
             <plentry props="unity electron rn flutter">
                 <pt>remoteUid</pt>
@@ -91,7 +97,7 @@
             </plentry>
             <plentry>
                 <pt>elapsed</pt>
-                <pd>从本地调用 <apiname keyref="joinChannel2"/> 开始到该回调触发的延迟（毫秒)。</pd>
+                <pd>从本地调用 <apiname keyref="joinChannel2" /> 开始到该回调触发的延迟（毫秒)。</pd>
             </plentry>
             </parml> </section>
     </refbody>
