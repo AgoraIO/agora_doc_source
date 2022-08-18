@@ -18,8 +18,8 @@
 开始前，请确保满足以下条件：
 
 - 完成 SDK 初始化，详见 [iOS 入门](https://docs.agora.io/en/agora-chat/agora_chat_get_started_ios?platform=iOS)。
-- 了解即时通讯 IM 的 [使用限制](https://docs.agora.io/en/agora-chat/agora_chat_limitation?platform=iOS)中所述。
-- 了解群组和群成员的数量限制，详见 [套餐包详情](https://docs.agora.io/en/agora-chat/agora_chat_plan?platform=iOS)中所述，您了解不同定价计划支持的群组和群组成员的数量。
+- 了解即时通讯 IM 的 [使用限制](https://docs.agora.io/en/agora-chat/agora_chat_limitation?platform=iOS)。
+- 了解群组和群成员的数量限制，详见 [套餐包详情](https://docs.agora.io/en/agora-chat/agora_chat_plan?platform=iOS)。
 
 ## 实现方法
 
@@ -36,16 +36,22 @@
 3. 从群组中删除群组成员。
    群主和群组管理员可以从群组中删除群组成员，而群组成员没有此权限。删除群组成员后，该群组成员会收到 `didLeaveGroup` 回调，所有其他群组成员都会收到 `userDidLeaveGroup` 回调。
 
-请参考以下示例代码添加和删除用户：
+#### 群组成员邀请用户加群：
 
-```objectivec
-// 群组成员邀请用户加群：
+```objective-c
 [[AgoraChatClient sharedClient].groupManager addMembers:@{@"member1",@"member2"}
                                                                                                toGroup:@"groupID"
                                                                                                  message:@"message"
                                                                                           completion:nil];
+```
 
-// 仅群主和群管理员可以调用 `removeMembers` 方法将指定成员移出群组。被踢出群组后，被踢群成员将会收到群组事件回调 `AgoraChatGroupChangeListener#onUserRemoved`，其他成员将会收到回调 `AgoraChatGroupChangeListener#onMemberExited`。被移出群组后，该用户还可以再次加入群组。
+### 群组踢人
+
+仅群主和群管理员可以调用 `removeMembers` 方法将指定成员移出群组。被踢出群组后，被踢群成员将会收到群组事件回调 `AgoraChatGroupChangeListener#onUserRemoved`，其他成员将会收到回调 `AgoraChatGroupChangeListener#onMemberExited`。被移出群组后，该用户还可以再次加入群组。
+
+示例代码如下：
+
+```objective-c
 [[AgoraChatClient sharedClient].groupManager removeMembers:@{@"member"}
                                                                                                   fromGroup:@"groupsID"
                                                                                                  completion:nil];
@@ -54,26 +60,47 @@
 ### 管理群主和群管理员
 
 1. 转移群组所有权。
-   群主可以将所有权转让给指定的群组成员。所有权转移后，原聊天群所有者成为群成员。所有其他群组成员都会收到`groupOwnerDidUpdate`回调。
+   群主可以将所有权转让给指定的群组成员。所有权转移后，原聊天群所有者成为群成员。所有其他群组成员都会收到 `groupOwnerDidUpdate` 回调。
 2. 添加群组管理员。
-   群主可以添加管理员。添加到群组管理员列表后，新添加的管理员和其他群组管理员都会收到`groupAdminListDidUpdate`回调。
+   群主可以添加管理员。添加到群组管理员列表后，新添加的管理员和其他群组管理员都会收到 `groupAdminListDidUpdate` 回调。
 3. 删除群组管理员。
-   群主可以删除管理员。从群组管理员列表中删除后，删除的管理员和其他群组管理员会收到`groupAdminListDidUpdate`回调。
+   群主可以删除管理员。从群组管理员列表中删除后，删除的管理员和其他群组管理员会收到 `groupAdminListDidUpdate` 回调。
 
-请参考以下示例代码来管理群组的所有权和管理员：
 
-```objectivec
+#### 转移群组所有权
+
+仅群主可以调用 `updateGroupOwner` 方法将权限移交给群组中指定成员。成功移交后，原群主变为普通成员，其他群组成员收到 `AgoraChatGroupManagerDelegate#groupOwnerDidUpdate` 回调。
+
+```objective-c
 // 仅群主可以调用 `updateGroupOwner` 方法将权限移交给群组中指定成员。
 [[AgoraChatClient sharedClient].groupManager updateGroupOwner:@"groupID"
                                                                                                          newOwner:@"newOwner"
                                                                                                                  error:nil];
+```
 
-// 仅群主可以调用 `addAdmin` 方法添加群管理员。
+#### 添加群组管理员
+
+仅群主可以调用 `addAdmin` 方法添加群管理员。成功添加后，添加为管理员的成员和其他管理员会接收到群组事件回调 `AgoraChatGroupManagerDelegate#groupAdminListDidUpdate`。
+
+管理员除了不能散群组等少数权限外，拥有对群组的绝大部分权限。
+
+示例代码如下：
+
+```objective-c
 [[AgoraChatClient sharedClient].groupManager addAdmin:@"member"
                                                                                            toGroup:@"groupID"
                                                                                                  error:nil];
+```
 
-// 仅群主可以调用 `removeAdmin` 方法移除群管理员。
+#### 移除群组管理员权限
+
+仅群主可以调用 `removeAdmin` 方法移除群管理员。
+
+指定群管理员若被群主移除管理员权限，只具备普通群成员的权限。移除管理员权限的成员和其他管理员会接收到群组事件回调 `AgoraChatGroupManagerDelegate#groupAdminListDidUpdate`。
+
+示例代码如下：
+
+```objective-c
 [[AgoraChatClient sharedClient].groupManager removeAdmin:@"admin"
                                                                                             fromGroup:@"groupID"
                                                                                                       error:nil];
@@ -83,21 +110,37 @@
 
 群主及群管理员可以将群组中的指定群成员加入或者移出群黑名单。群成员被加入黑名单后将无法收发群消息。
 
-参考以下示例代码管理群组黑名单：
+#### 将群成员拉入群组黑名单
 
-```objectivec
-// 仅群主和群管理员可以调用 `blockMembers` 方法将指定成员添加至黑名单。
-// 被加入黑名单后，该成员收到 `AgoraChatGroupManagerDelegate#OnUserRemovedFromGroup` 回调，其他群成员收到 `AgoraChatGroupManagerDelegate#OnMemberExitedFromGroup` 回调。被加入黑名单后，该成员无法再收发群组消息并被移出群组，黑名单中的成员如想再次加入群组，群主或群管理员必须先将其移除黑名单。
+仅群主和群管理员可以调用 `blockMembers` 方法将指定成员添加至黑名单。被加入黑名单后，该成员收到 `AgoraChatGroupManagerDelegate#OnUserRemovedFromGroup` 回调，其他群成员收到 `EMGroupManagerDelegate#OnMemberExitedFromGroup` 回调。被加入黑名单后，该成员无法再收发群组消息并被移出群组，黑名单中的成员如想再次加入群组，群主或群管理员必须先将其移除黑名单。
+
+示例代码如下：
+
+```objective-c
 [[AgoraChatClient sharedClient].groupManager blockMembers:members
                                                                                                  fromGroup:@"groupID"
                                                                                               completion:nil];
+```
 
-// 仅群主和群管理员可以调用 `unblockUser` 方法将成员移出群组黑名单。指定用户被群主或者群管理员移出群黑名单后，可以再次申请加入群组。
+#### 将成员移出群组黑名单
+
+仅群主和群管理员可以调用 `unblockUser` 方法将成员移出群组黑名单。指定用户被群主或者群管理员移出群黑名单后，可以再次申请加入群组。
+
+示例代码如下：
+
+```objective-c
 [[AgoraChatClient sharedClient].groupManager unblockMembers:members
                                                       fromGroup:@"groupId"
                                                      completion:nil];
+```
 
-// 仅群主和群管理员可以调用 `getGroupBlacklistFromServerWithId` 方法获取当前群组的黑名单。默认最多取 200 个。
+#### 获取群组的黑名单用户列表
+
+仅群主和群管理员可以调用 `getGroupBlacklistFromServerWithId` 方法获取当前群组的黑名单。默认最多取 200 个。
+
+示例代码如下：
+
+```objective-c
 [[AgoraChatClient sharedClient].groupManager getGroupBlacklistFromServerWithId:@"groupId"
                                               pageNumber:pageNumber
                                                   pageSize:pageSize
