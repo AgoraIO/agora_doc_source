@@ -1,21 +1,65 @@
-
+/**
+ * @ignore
+ */
 export enum RhythmPlayerStateType {
-RhythmPlayerStateIdle = 810,
-RhythmPlayerStateOpening = 811,
-RhythmPlayerStateDecoding = 812,
-RhythmPlayerStatePlaying = 813,
-RhythmPlayerStateFailed = 814,
+  /**
+   * @ignore
+   */
+  RhythmPlayerStateIdle = 810,
+  /**
+   * @ignore
+   */
+  RhythmPlayerStateOpening = 811,
+  /**
+   * @ignore
+   */
+  RhythmPlayerStateDecoding = 812,
+  /**
+   * @ignore
+   */
+  RhythmPlayerStatePlaying = 813,
+  /**
+   * @ignore
+   */
+  RhythmPlayerStateFailed = 814,
 }
 
+/**
+ * @ignore
+ */
 export enum RhythmPlayerErrorType {
-RhythmPlayerErrorOk = 0,
-RhythmPlayerErrorFailed = 1,
-RhythmPlayerErrorCanNotOpen = 801,
-RhythmPlayerErrorCanNotPlay = 802,
-RhythmPlayerErrorFileOverDurationLimit = 803,
+  /**
+   * @ignore
+   */
+  RhythmPlayerErrorOk = 0,
+  /**
+   * @ignore
+   */
+  RhythmPlayerErrorFailed = 1,
+  /**
+   * @ignore
+   */
+  RhythmPlayerErrorCanNotOpen = 801,
+  /**
+   * @ignore
+   */
+  RhythmPlayerErrorCanNotPlay = 802,
+  /**
+   * @ignore
+   */
+  RhythmPlayerErrorFileOverDurationLimit = 803,
 }
 
+/**
+ * @ignore
+ */
 export class AgoraRhythmPlayerConfig {
-  beatsPerMeasure?: number
-  beatsPerMinute?: number
+  /**
+   * @ignore
+   */
+  beatsPerMeasure?: number;
+  /**
+   * @ignore
+   */
+  beatsPerMinute?: number;
 }

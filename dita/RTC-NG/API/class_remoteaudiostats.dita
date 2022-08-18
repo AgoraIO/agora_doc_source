@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_remoteaudiostats">
-    <title><ph keyref="RemoteAudioStats"/></title>
+    <title><ph keyref="RemoteAudioStats" /></title>
     <shortdesc id="short"><ph id="shortdesc">远端用户的音频统计数据。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -76,30 +76,61 @@
     qualityChangedReason(0){}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class RemoteAudioStats {
-  uid?: number
-  quality?: number
-  networkTransportDelay?: number
-  jitterBufferDelay?: number
-  audioLossRate?: number
-  numChannels?: number
-  receivedSampleRate?: number
-  receivedBitrate?: number
-  totalFrozenTime?: number
-  frozenRate?: number
-  mosValue?: number
-  totalActiveTime?: number
-  publishDuration?: number
-  qoeQuality?: number
+  
+  uid?: number;
+  
+  quality?: number;
+  
+  networkTransportDelay?: number;
+  
+  jitterBufferDelay?: number;
+  
+  audioLossRate?: number;
+  
+  numChannels?: number;
+  
+  receivedSampleRate?: number;
+  
+  receivedBitrate?: number;
+  
+  totalFrozenTime?: number;
+  
+  frozenRate?: number;
+  
+  mosValue?: number;
+  
+  totalActiveTime?: number;
+  
+  publishDuration?: number;
+  
+  qoeQuality?: number;
+  
+  qualityChangedReason?: number;
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class RemoteAudioStats
     {
         public RemoteAudioStats()
         {
+            uid = 0;
+            quality = 0;
+            networkTransportDelay = 0;
+            jitterBufferDelay = 0;
+            audioLossRate = 0;
+            numChannels = 0;
+            receivedSampleRate = 0;
+            receivedBitrate = 0;
+            totalFrozenTime = 0;
+            frozenRate = 0;
+            mosValue = 0;
+            totalActiveTime = 0;
+            publishDuration = 0;
+            qoeQuality = 0;
+            qualityChangedReason = 0;
         }
 
         public RemoteAudioStats(uint uid, int quality, int networkTransportDelay, int jitterBufferDelay,
             int audioLossRate, int numChannels, int receivedSampleRate, int receivedBitrate, int totalFrozenTime,
-            int frozenRate, int mosValue, int totalActiveTime, int publishDuration, int qoeQuality)
+            int frozenRate, int mosValue, int totalActiveTime, int publishDuration, int qoeQuality, int qualityChangedReason)
         {
             this.uid = uid;
             this.quality = quality;
@@ -115,6 +146,7 @@
             this.totalActiveTime = totalActiveTime;
             this.publishDuration = publishDuration;
             this.qoeQuality = qoeQuality;
+            this.qualityChangedReason = qualityChangedReason;
         }
 
         public uint uid { set; get; }
@@ -131,22 +163,39 @@
         public int totalActiveTime { set; get; }
         public int publishDuration { set; get; }
         public int qoeQuality { set; get; }
-    }</codeblock>
+        public int qualityChangedReason { set; get; }
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class RemoteAudioStats {
+  
   uid?: number;
+  
   quality?: number;
+  
   networkTransportDelay?: number;
+  
   jitterBufferDelay?: number;
+  
   audioLossRate?: number;
+  
   numChannels?: number;
+  
   receivedSampleRate?: number;
+  
   receivedBitrate?: number;
+  
   totalFrozenTime?: number;
+  
   frozenRate?: number;
+  
   mosValue?: number;
+  
   totalActiveTime?: number;
+  
   publishDuration?: number;
+  
   qoeQuality?: number;
+  
+  qualityChangedReason?: number;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class RemoteAudioStats {
   const RemoteAudioStats(
@@ -193,17 +242,15 @@
   final int? publishDuration;
   @JsonKey(name: 'qoeQuality')
   final int? qoeQuality;
-  factory RemoteAudioStats.fromJson(Map&lt;String, dynamic> json) =>
+  factory RemoteAudioStats.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$RemoteAudioStatsFromJson(json);
-  Map&lt;String, dynamic> toJson() => _$RemoteAudioStatsToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$RemoteAudioStatsToJson(this);
 }
 </codeblock>
             </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>uid</pt>
@@ -215,14 +262,13 @@
                     <p>远端用户发送的音频流质量。<ph props="ios mac cpp electron rn unity flutter">详见 <xref keyref="QUALITY_TYPE" />。</ph></p>
                     <p props="android">
                     <ul id="qualitytype">
-                    <li><ph keyref="QUALITY_UNKNOWN"/> (0)：质量未知。</li>
-                    <li><ph keyref="QUALITY_EXCELLENT"/> (1)：质量极好。</li>
-                    <li><ph keyref="QUALITY_GOOD"
-                        /> (2)：用户主观感觉和极好差不多，但码率可能略低于极好。</li>
-                    <li><ph keyref="QUALITY_POOR"/> (3)：用户主观感受有瑕疵但不影响沟通。</li>
-                    <li><ph keyref="QUALITY_BAD"/> (4)：勉强能沟通但不顺畅。</li>
-                    <li><ph keyref="QUALITY_VBAD"/> (5)：网络质量非常差，基本不能沟通。</li>
-                    <li><ph keyref="QUALITY_DOWN"/> (6)：网络连接断开，完全无法沟通。</li>
+                    <li><ph keyref="QUALITY_UNKNOWN" /> (0)：质量未知。</li>
+                    <li><ph keyref="QUALITY_EXCELLENT" /> (1)：质量极好。</li>
+                    <li><ph keyref="QUALITY_GOOD" /> (2)：用户主观感觉和极好差不多，但码率可能略低于极好。</li>
+                    <li><ph keyref="QUALITY_POOR" /> (3)：用户主观感受有瑕疵但不影响沟通。</li>
+                    <li><ph keyref="QUALITY_BAD" /> (4)：勉强能沟通但不顺畅。</li>
+                    <li><ph keyref="QUALITY_VBAD" /> (5)：网络质量非常差，基本不能沟通。</li>
+                    <li><ph keyref="QUALITY_DOWN" /> (6)：网络连接断开，完全无法沟通。</li>
                     </ul> </p>
                 </pd>
             </plentry>
@@ -237,7 +283,7 @@
                     
                     
                     
-                    <note type="attention">当接收端为观众且 <xref keyref="ClientRoleOptions"/> 的 <parmname>audienceLatencyLevel</parmname> 为 1 时，该参数不生效。</note></p>
+                    <note type="attention">当接收端为观众且 <xref keyref="ClientRoleOptions" /> 的 <parmname>audienceLatencyLevel</parmname> 为 1 时，该参数不生效。</note></p>
                 </pd>
             </plentry>
             <plentry>
@@ -280,23 +326,23 @@
             <plentry>
                 <pt>qoeQuality</pt>
                 <pd>
-                    <p><ph>接收远端音频时，本地用户的主观体验质量。</ph><ph props="ios mac cpp electron rn">详见 <xref keyref="EXPERIENCE_QUALITY_TYPE"/>。</ph>
+                    <p><ph>接收远端音频时，本地用户的主观体验质量。</ph><ph props="ios mac cpp electron rn">详见 <xref keyref="EXPERIENCE_QUALITY_TYPE" />。</ph>
                     <ul props="android">
-                    <li><ph keyref="EXPERIENCE_QUALITY_GOOD"/> (0)：主观体验质量较好。</li>
-                    <li><ph keyref="EXPERIENCE_QUALITY_BAD"/> (1)：主观体验质量较差。</li>
+                    <li><ph keyref="EXPERIENCE_QUALITY_GOOD" /> (0)：主观体验质量较好。</li>
+                    <li><ph keyref="EXPERIENCE_QUALITY_BAD" /> (1)：主观体验质量较差。</li>
                     </ul></p>
                 </pd>
             </plentry>
             <plentry props="native">
                 <pt>qualityChangedReason</pt>
                 <pd>
-                    <p><ph>接收远端音频时，本地用户主观体验质量较差的原因。</ph><ph props="ios mac cpp">详见 <xref keyref="EXPERIENCE_POOR_REASON"/>。</ph>
+                    <p><ph>接收远端音频时，本地用户主观体验质量较差的原因。</ph><ph props="ios mac cpp">详见 <xref keyref="EXPERIENCE_POOR_REASON" />。</ph>
                     <ul props="android">
-                    <li><ph keyref="EXPERIENCE_REASON_NONE"/> (0): 无原因，说明主观体验质量较好。</li>
-                    <li><ph keyref="REMOTE_NETWORK_QUALITY_POOR"/> (1): 远端用户的网络较差。</li>
-                    <li><ph keyref="LOCAL_NETWORK_QUALITY_POOR"/> (2): 本地用户的网络较差。</li>
-                    <li><ph keyref="WIRELESS_SIGNAL_POOR"/> (4): 本地用户的 Wi-Fi 或者移动数据网络信号弱。</li>
-                    <li><ph keyref="WIFI_BLUETOOTH_COEXIST"/> (8): 本地用户同时开启 Wi-Fi 和蓝牙，二者信号互相干扰，导致音频传输质量下降。</li>
+                    <li><ph keyref="EXPERIENCE_REASON_NONE" /> (0): 无原因，说明主观体验质量较好。</li>
+                    <li><ph keyref="REMOTE_NETWORK_QUALITY_POOR" /> (1): 远端用户的网络较差。</li>
+                    <li><ph keyref="LOCAL_NETWORK_QUALITY_POOR" /> (2): 本地用户的网络较差。</li>
+                    <li><ph keyref="WIRELESS_SIGNAL_POOR" /> (4): 本地用户的 Wi-Fi 或者移动数据网络信号弱。</li>
+                    <li><ph keyref="WIFI_BLUETOOTH_COEXIST" /> (8): 本地用户同时开启 Wi-Fi 和蓝牙，二者信号互相干扰，导致音频传输质量下降。</li>
                     </ul> </p>
                 </pd>
             </plentry>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaengine_pushvideoframe">
-    <title><ph keyref="pushVideoFrame"/></title>
+    <title><ph keyref="pushVideoFrame" /></title>
     <shortdesc id="short"><ph id="shortdesc">推送外部原始视频帧到 SDK。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="pushVideoFrame"/>
+                <indexterm keyref="pushVideoFrame" />
             </keywords>
         </metadata>
     </prolog>
@@ -16,20 +16,26 @@
             <codeblock props="android" outputclass="language-java">public abstract boolean pushExternalVideoFrame(AgoraVideoFrame frame);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)pushExternalVideoFrame:(AgoraVideoFrame * _Nonnull)frame;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int pushVideoFrame(ExternalVideoFrame *frame) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int PushVideoFrame(ExternalVideoFrame frame);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="electron" outputclass="language-typescript">abstract pushVideoFrame(
+    frame: ExternalVideoFrame,
+    videoTrackId?: number
+  ): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int PushVideoFrame(ExternalVideoFrame frame, uint videoTrackId = 0);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract pushVideoFrame(
+    frame: ExternalVideoFrame,
+    videoTrackId?: number
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated">
             <dlentry props="android">
                 <dt>弃用：</dt>
-                <dd>如果你需要推送 I422 格式的视频帧，请使用该方法。其他情况下，请改用 <xref keyref="pushVideoFrame2"/>。</dd>
+                <dd>如果你需要推送 I422 格式的视频帧，请使用该方法。其他情况下，请改用 <xref keyref="pushVideoFrame2" />。</dd>
             </dlentry>
             </dl>
-            <p id="desc1">调用 <xref keyref="setExternalVideoSource"/> 方法，设置 <parmname>enabled</parmname> 参数为 <codeph><ph keyref="true"/></codeph>、<parmname>encodedFrame</parmname> 参数为 <codeph><ph keyref="false"/></codeph> 后，你可以调用本方法将未编码的外部视频帧推送到 SDK。</p>
-            <p props="android">调用该方法或 <xref keyref="pushVideoFrame2"/> 均能将视频帧数据传递给SDK。区别为 <apiname keyref="pushVideoFrame"/> 方法不支持 texture 格式的视频数据。</p>
+            <p id="desc1">调用 <xref keyref="setExternalVideoSource" /> 方法，设置 <parmname>enabled</parmname> 参数为 <codeph><ph keyref="true" /></codeph>、<parmname>encodedFrame</parmname> 参数为 <codeph><ph keyref="false" /></codeph> 后，你可以调用本方法将未编码的外部视频帧推送到 SDK。</p>
+            <p props="android">调用该方法或 <xref keyref="pushVideoFrame2" /> 均能将视频帧数据传递给SDK。区别为 <apiname keyref="pushVideoFrame" /> 方法不支持 texture 格式的视频数据。</p>
             </section>
         <section id="parameters">
             <title>参数</title>
@@ -37,7 +43,7 @@
             <plentry id="frame">
                 <pt>frame</pt>
                 <pd>
-                    <p>待推送的视频帧。详见 <xref keyref="ExternalVideoFrame"/>。</p>
+                    <p>待推送的视频帧。详见 <xref keyref="ExternalVideoFrame" />。</p>
                 </pd>
             </plentry>
             </parml> </section>
@@ -48,8 +54,8 @@
             <li>&lt; 0：方法调用失败。</li>
             </ul>
             <ul props="android ios mac">
-            <li><codeph><ph keyref="true"/></codeph>：推送成功。</li>
-            <li><codeph><ph keyref="false"/></codeph>：推送失败。</li>
+            <li><codeph><ph keyref="true" /></codeph>：推送成功。</li>
+            <li><codeph><ph keyref="false" /></codeph>：推送失败。</li>
             </ul> </section>
     </refbody>
 </reference>

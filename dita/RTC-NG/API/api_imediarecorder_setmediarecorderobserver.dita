@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediarecorder_setmediarecorderobserver">
-    <title><ph keyref="setMediaRecorderObserver"/></title>
-    <shortdesc id="short"><ph id="shortdesc">注册 <xref keyref="IMediaRecorderObserver"/> 对象。</ph></shortdesc>
+    <title><ph keyref="setMediaRecorderObserver" /></title>
+    <shortdesc id="short"><ph id="shortdesc">注册 <xref keyref="IMediaRecorderObserver" /> 对象。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setMediaRecorderObserver"/>
+                <indexterm keyref="setMediaRecorderObserver" />
             </keywords>
         </metadata>
     </prolog>
@@ -22,27 +22,33 @@
     return engine.setMediaRecorderObserver(callback, connection);
   }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setMediaRecorderDelegate:(AgoraRtcConnection * _Nonnull)connection
-                       delegate:(id&lt;AgoraMediaRecorderDelegate> _Nullable)delegate;</codeblock>
+                       delegate:(id&lt;AgoraMediaRecorderDelegate&gt; _Nullable)delegate;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setMediaRecorderObserver(const RtcConnection&amp; connection, media::IMediaRecorderObserver* callback) = 0;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="electron" outputclass="language-typescript">abstract setMediaRecorderObserver(
+    connection: RtcConnection,
+    callback: IMediaRecorderObserver
+  ): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int SetMediaRecorderObserver(RtcConnection connection, IMediaRecorderObserver callback);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract setMediaRecorderObserver(
+    connection: RtcConnection,
+    callback: IMediaRecorderObserver
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
-            <p>该方法需要在初始化 <xref keyref="IRtcEngine"/> 对象后调用。</p>
+            <p>该方法需要在初始化 <xref keyref="IRtcEngine" /> 对象后调用。</p>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry conkeyref="joinChannelEx/connection">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry>
                 <pt>callback</pt>
-                <pd>本地音视频流录制回调，详见 <xref keyref="IMediaRecorderObserver"/>。</pd>
+                <pd>本地音视频流录制回调，详见 <xref keyref="IMediaRecorderObserver" />。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_playerupdatedinfo">
-    <title><ph keyref="PlayerUpdatedInfo"/></title>
+    <title><ph keyref="PlayerUpdatedInfo" /></title>
     <shortdesc id="short"><ph id="shortdesc">媒体播放器相关信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -21,16 +21,28 @@
   Optional&lt;const char*&gt; deviceId;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class PlayerUpdatedInfo {
-  playerId?: string
-  deviceId?: string
-}</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class PlayerUpdatedInfo {
-                public string playerId;
-                public string deviceId;
-            };</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">export class PlayerUpdatedInfo {
+  
   playerId?: string;
+  
   deviceId?: string;
+  
+  cacheStatistics?: CacheStatistics;
+}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class PlayerUpdatedInfo : OptionalJsonParse
+    {
+        public Optional&lt;string&gt; playerId = new Optional&lt;string&gt;();
+
+        public Optional&lt;string&gt; deviceId = new Optional&lt;string&gt;();
+
+        public Optional&lt;CacheStatistics&gt; cacheStatistics = new Optional&lt;CacheStatistics&gt;();
+    }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class PlayerUpdatedInfo {
+  
+  playerId?: string;
+  
+  deviceId?: string;
+  
+  cacheStatistics?: CacheStatistics;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class PlayerUpdatedInfo {
   const PlayerUpdatedInfo({this.playerId, this.deviceId});
@@ -39,14 +51,14 @@
   final String? playerId;
   @JsonKey(name: 'deviceId')
   final String? deviceId;
-  factory PlayerUpdatedInfo.fromJson(Map&lt;String, dynamic> json) =>
+  factory PlayerUpdatedInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$PlayerUpdatedInfoFromJson(json);
-  Map&lt;String, dynamic> toJson() => _$PlayerUpdatedInfoToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$PlayerUpdatedInfoToJson(this);
 }
 </codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>playerId</pt>
@@ -60,7 +72,7 @@
                 <pt>cacheStatistics</pt>
                 <pd>
                     <p>当前缓存的媒体文件的相关统计数据。</p>
-                    <p>调用 <xref keyref="openWithMediaSource"/> 方法且设置 <parmname>enableCache</parmname> 成员为 <codeph><ph keyref="true"/></codeph> 后，当前缓存的媒体文件的相关统计数据会在媒体文件开始播放后每秒更新一次，详见 <xref keyref="CacheStatistics"/>。</p>
+                    <p>调用 <xref keyref="openWithMediaSource" /> 方法且设置 <parmname>enableCache</parmname> 成员为 <codeph><ph keyref="true" /></codeph> 后，当前缓存的媒体文件的相关统计数据会在媒体文件开始播放后每秒更新一次，详见 <xref keyref="CacheStatistics" />。</p>
                 </pd>
             </plentry>
             </parml> </section>

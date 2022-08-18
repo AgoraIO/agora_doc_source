@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_spatialaudioparams">
-  <title><ph keyref="SpatialAudioParams"/></title>
+  <title><ph keyref="SpatialAudioParams" /></title>
   <shortdesc id="short"><ph id="shortdesc">空间音效参数。</ph></shortdesc>
   <refbody>
     <section id="prototype">
@@ -53,21 +53,29 @@
 @property(strong, nonatomic) AgoraRtcDoubleOptional* _Nullable speaker_attenuation;
 @end</codeblock>
       <codeblock props="cpp" outputclass="language-cpp">struct SpatialAudioParams {
-  Optional&lt;double> speaker_azimuth;
-  Optional&lt;double> speaker_elevation;
-  Optional&lt;double> speaker_distance;
-  Optional&lt;int> speaker_orientation;
-  Optional&lt;bool> enable_blur;
-  Optional&lt;bool> enable_air_absorb;
-  Optional&lt;double> speaker_attenuation;
+  Optional&lt;double&gt; speaker_azimuth;
+  Optional&lt;double&gt; speaker_elevation;
+  Optional&lt;double&gt; speaker_distance;
+  Optional&lt;int&gt; speaker_orientation;
+  Optional&lt;bool&gt; enable_blur;
+  Optional&lt;bool&gt; enable_air_absorb;
+  Optional&lt;double&gt; speaker_attenuation;
 };</codeblock>
 <codeblock props="electron" outputclass="language-typescript">export class SpatialAudioParams {
-  speaker_azimuth?: number
-  speaker_elevation?: number
-  speaker_distance?: number
-  speaker_orientation?: number
-  enable_blur?: boolean
-  enable_air_absorb?: boolean
+  
+  speaker_azimuth?: number;
+  
+  speaker_elevation?: number;
+  
+  speaker_distance?: number;
+  
+  speaker_orientation?: number;
+  
+  enable_blur?: boolean;
+  
+  enable_air_absorb?: boolean;
+  
+  speaker_attenuation?: number;
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class SpatialAudioParams : OptionalJsonParse
     {
@@ -77,14 +85,23 @@
         public Optional&lt;int&gt; speaker_orientation = new Optional&lt;int&gt;();
         public Optional&lt;bool&gt; enable_blur = new Optional&lt;bool&gt;();
         public Optional&lt;bool&gt; enable_air_absorb = new Optional&lt;bool&gt;();
+        Optional&lt;double&gt; speaker_attenuation = new Optional&lt;double&gt;();
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class SpatialAudioParams {
+  
   speaker_azimuth?: number;
+  
   speaker_elevation?: number;
+  
   speaker_distance?: number;
+  
   speaker_orientation?: number;
+  
   enable_blur?: boolean;
+  
   enable_air_absorb?: boolean;
+  
+  speaker_attenuation?: number;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class SpatialAudioParams {
   const SpatialAudioParams(
@@ -107,13 +124,13 @@
   final bool? enableBlur;
   @JsonKey(name: 'enable_air_absorb')
   final bool? enableAirAbsorb;
-  factory SpatialAudioParams.fromJson(Map&lt;String, dynamic> json) =>
+  factory SpatialAudioParams.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$SpatialAudioParamsFromJson(json);
-  Map&lt;String, dynamic> toJson() => _$SpatialAudioParamsToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$SpatialAudioParamsToJson(this);
 }</codeblock></p>
     </section>
     <section id="parameters">
-      <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+      <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
       <parml>
       <plentry>
         <pt>speaker_azimuth</pt>
@@ -151,17 +168,16 @@
         <pt>enable_blur</pt>
         <pd>是否开启声音模糊处理：
           <ul>
-          <li><codeph><ph keyref="true"/></codeph>: 开启模糊处理。</li>
-          <li><codeph><ph keyref="false"/></codeph>: （默认）关闭模糊处理。</li>
+          <li><codeph><ph keyref="true" /></codeph>: 开启模糊处理。</li>
+          <li><codeph><ph keyref="false" /></codeph>: （默认）关闭模糊处理。</li>
           </ul></pd>
       </plentry>
       <plentry>
         <pt>enable_air_absorb</pt>
         <pd>是否开启空气衰减，即模拟声音在空气中传播的音色衰减效果：在一定的传输距离下，高频声音衰减速度快、低频声音衰减速度慢。
           <ul>
-          <li><codeph><ph keyref="true"
-            /></codeph>: （默认）开启空气衰减。需确认 <parmname>speaker_attenuation</parmname> 的值不为 <codeph>0</codeph>，否则该设置不生效。</li>
-          <li><codeph><ph keyref="false"/></codeph>: 关闭空气衰减。</li>
+          <li><codeph><ph keyref="true" /></codeph>: （默认）开启空气衰减。需确认 <parmname>speaker_attenuation</parmname> 的值不为 <codeph>0</codeph>，否则该设置不生效。</li>
+          <li><codeph><ph keyref="false" /></codeph>: 关闭空气衰减。</li>
           </ul></pd>
       </plentry>
       <plentry>

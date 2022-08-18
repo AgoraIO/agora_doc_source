@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_localvideostats">
-    <title><ph keyref="LocalVideoStats"/></title>
+    <title><ph keyref="LocalVideoStats" /></title>
     <shortdesc id="short"><ph id="shortdesc">本地视频流统计信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -79,26 +79,50 @@
     CAPTURE_BRIGHTNESS_LEVEL_TYPE captureBrightnessLevel;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LocalVideoStats {
-  uid?: number
-  sentBitrate?: number
-  sentFrameRate?: number
-  captureFrameRate?: number
-  captureFrameWidth?: number
-  captureFrameHeight?: number
-  regulatedCaptureFrameRate?: number
-  regulatedCaptureFrameWidth?: number
-  regulatedCaptureFrameHeight?: number
-  encoderOutputFrameRate?: number
-  encodedFrameWidth?: number
-  encodedFrameHeight?: number
-  rendererOutputFrameRate?: number
-  targetBitrate?: number
-  targetFrameRate?: number
-  qualityAdaptIndication?: QualityAdaptIndication
-  encodedBitrate?: number
-  encodedFrameCount?: number
-  codecType?: VideoCodecType
-  txPacketLossRate?: number
+  
+  uid?: number;
+  
+  sentBitrate?: number;
+  
+  sentFrameRate?: number;
+  
+  captureFrameRate?: number;
+  
+  captureFrameWidth?: number;
+  
+  captureFrameHeight?: number;
+  
+  regulatedCaptureFrameRate?: number;
+  
+  regulatedCaptureFrameWidth?: number;
+  
+  regulatedCaptureFrameHeight?: number;
+  
+  encoderOutputFrameRate?: number;
+  
+  encodedFrameWidth?: number;
+  
+  encodedFrameHeight?: number;
+  
+  rendererOutputFrameRate?: number;
+  
+  targetBitrate?: number;
+  
+  targetFrameRate?: number;
+  
+  qualityAdaptIndication?: QualityAdaptIndication;
+  
+  encodedBitrate?: number;
+  
+  encodedFrameCount?: number;
+  
+  codecType?: VideoCodecType;
+  
+  txPacketLossRate?: number;
+  
+  captureBrightnessLevel?: CaptureBrightnessLevelType;
+  
+  dualStreamEnabled?: boolean;
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class LocalVideoStats
     {
@@ -109,6 +133,12 @@
         public uint uid { set; get; }
         public int sentBitrate { set; get; }
         public int sentFrameRate { set; get; }
+        public int captureFrameRate { set; get; }
+        public int captureFrameWidth { set; get; }
+        public int captureFrameHeight { set; get; }
+        public int regulatedCaptureFrameRate { set; get; }
+        public int regulatedCaptureFrameWidth { set; get; 
+        public int regulatedCaptureFrameHeight { set; get; }
         public int encoderOutputFrameRate { set; get; }
         public int encodedFrameWidth { set; get; }
         public int encodedFrameHeight { set; get; }
@@ -120,28 +150,53 @@
         public int encodedFrameCount { set; get; }
         public VIDEO_CODEC_TYPE codecType { set; get; }
         public ushort txPacketLossRate { set; get; }
-    }</codeblock>
+        public CAPTURE_BRIGHTNESS_LEVEL_TYPE captureBrightnessLevel { set; get; }
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class LocalVideoStats {
+  
   uid?: number;
+  
   sentBitrate?: number;
+  
   sentFrameRate?: number;
+  
   captureFrameRate?: number;
+  
   captureFrameWidth?: number;
+  
   captureFrameHeight?: number;
+  
   regulatedCaptureFrameRate?: number;
+  
   regulatedCaptureFrameWidth?: number;
+  
   regulatedCaptureFrameHeight?: number;
+  
   encoderOutputFrameRate?: number;
+  
   encodedFrameWidth?: number;
+  
   encodedFrameHeight?: number;
+  
   rendererOutputFrameRate?: number;
+  
   targetBitrate?: number;
+  
   targetFrameRate?: number;
+  
   qualityAdaptIndication?: QualityAdaptIndication;
+  
   encodedBitrate?: number;
+  
   encodedFrameCount?: number;
+  
   codecType?: VideoCodecType;
+  
   txPacketLossRate?: number;
+  
+  captureBrightnessLevel?: CaptureBrightnessLevelType;
+  
+  dualStreamEnabled?: boolean;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class LocalVideoStats {
   const LocalVideoStats(
@@ -206,17 +261,15 @@
   final VideoCodecType? codecType;
   @JsonKey(name: 'txPacketLossRate')
   final int? txPacketLossRate;
-  factory LocalVideoStats.fromJson(Map&lt;String, dynamic> json) =>
+  factory LocalVideoStats.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$LocalVideoStatsFromJson(json);
-  Map&lt;String, dynamic> toJson() => _$LocalVideoStatsToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$LocalVideoStatsToJson(this);
 }
 </codeblock>
             </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>uid</pt>
@@ -325,14 +378,14 @@
             </plentry>
             <plentry>
                 <pt>captureBrightnessLevel</pt>
-                <pd props="ios mac cpp unity">本地采集的画质亮度级别。详见 <xref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE"/>。</pd>
+                <pd props="ios mac cpp unity">本地采集的画质亮度级别。详见 <xref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE" />。</pd>
                 <pd props="android">本地采集的画质亮度级别。
                 
                     <ul>
-                    <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_INVALID"/> (-1): SDK 未检测出本地采集的画质亮度级别。请等待几秒，通过下一次回调的 <parmname>captureBrightnessLevel</parmname> 获取亮度级别。</li>
-                    <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_NORMAL"/> (0): 本地采集的画质亮度正常。</li>
-                    <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_BRIGHT"/> (1): 本地采集的画质亮度偏亮。</li>
-                    <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_DARK"/> (2): 本地采集的画质亮度偏暗。</li>
+                    <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_INVALID" /> (-1): SDK 未检测出本地采集的画质亮度级别。请等待几秒，通过下一次回调的 <parmname>captureBrightnessLevel</parmname> 获取亮度级别。</li>
+                    <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_NORMAL" /> (0): 本地采集的画质亮度正常。</li>
+                    <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_BRIGHT" /> (1): 本地采集的画质亮度偏亮。</li>
+                    <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_DARK" /> (2): 本地采集的画质亮度偏暗。</li>
                     </ul></pd>
             </plentry>
             </parml> </section>

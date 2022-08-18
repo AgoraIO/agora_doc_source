@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_screenaudioparameters">
-    <title><ph keyref="ScreenAudioParameters"/></title>
+    <title><ph keyref="ScreenAudioParameters" /></title>
     <shortdesc id="short"><ph id="shortdesc">共享屏幕流的音频配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -46,17 +46,43 @@
     int captureSignalVolume = 100;
 };
 </codeblock>
-            <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="electron" outputclass="language-typescript">export class ScreenAudioParameters {
+  
+  sampleRate?: number;
+  
+  channels?: number;
+  
+  captureSignalVolume?: number;
+}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class ScreenAudioParameters
+    {
+        public int sampleRate { set; get; }
+        public int channels { set; get; }
+        public int captureSignalVolume { set; get; }
+
+        public ScreenAudioParameters()
+        {
+            sampleRate = 16000;
+            channels = 2;
+            captureSignalVolume = 100;
+        }
+    };</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class ScreenAudioParameters {
+  
+  sampleRate?: number;
+  
+  channels?: number;
+  
+  captureSignalVolume?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
-            <p>仅适用于 <parmname>captureAudio</parmname> 为 <codeph><ph keyref="true"/></codeph> 的场景。</p>
+            <p>仅适用于 <parmname>captureAudio</parmname> 为 <codeph><ph keyref="true" /></codeph> 的场景。</p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
                 <plentry props="android cpp">
                     <pt>sampleRate</pt>

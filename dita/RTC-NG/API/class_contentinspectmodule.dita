@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_contentinspectmodule">
-    <title><ph keyref="ContentInspectModule"/></title>
-    <shortdesc id="short"><ph id="shortdesc"><apiname keyref="ContentInspectModule"/> 结构体，用于配置视频内容审核模块的类型和频率。</ph></shortdesc>
+    <title><ph keyref="ContentInspectModule" /></title>
+    <shortdesc id="short"><ph id="shortdesc"><apiname keyref="ContentInspectModule" /> 结构体，用于配置视频内容审核模块的类型和频率。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -27,32 +27,42 @@
   }
 };</codeblock>
 <codeblock props="electron" outputclass="language-typescript">export class ContentInspectModule {
-  type?: ContentInspectType
-  frequency?: number
-}</codeblock>
-      <codeblock props="unity" outputclass="language-csharp">public class ContentInspectModule {
-          public CONTENT_INSPECT_TYPE type;
-          public uint frequency;
-      };</codeblock>
-      <codeblock props="rn" outputclass="language-typescript">export class ContentInspectModule {
+  
   type?: ContentInspectType;
-  frequency?: number;
+  
+  interval?: number;
 }</codeblock>
-      <codeblock props="flutter" outputclass="language-dart"></codeblock> </p>
+      <codeblock props="unity" outputclass="language-csharp">public class ContentInspectModule
+    {
+        public CONTENT_INSPECT_TYPE type;
+        public uint interval;
+
+        public ContentInspectModule()
+        {
+            type = CONTENT_INSPECT_TYPE.CONTENT_INSPECT_INVALID;
+            interval = 0;
+        }
+    };</codeblock>
+      <codeblock props="rn" outputclass="language-typescript">export class ContentInspectModule {
+  
+  type?: ContentInspectType;
+  
+  interval?: number;
+}</codeblock>
+      <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>type</pt>
-                <pd props="apple cpp flutter">视频内容审核模块的类型。详见 <xref keyref="CONTENT_INSPECT_TYPE"/>。</pd>
+                <pd props="apple cpp flutter">视频内容审核模块的类型。详见 <xref keyref="CONTENT_INSPECT_TYPE" />。</pd>
                 <pd props="android unity">
                     <p>视频内容审核模块的类型：                                       
                     <ul>
-                    <li><ph keyref="CONTENT_INSPECT_INVALID"/>(0)：（默认）该功能模块无实际功能。请不要设为该值。</li>
-                    <li><ph keyref="CONTENT_INSPECT_MODERATION"/>(1)：视频鉴黄。SDK 会对视频流进行截图、鉴黄，并将截图和审核结果上传。</li>
-                    <li><ph keyref="CONTENT_INSPECT_SUPERVISE"/>(2)：视频截图。SDK 会对视频流进行截图并上传。</li>
+                    <li><ph keyref="CONTENT_INSPECT_INVALID" />(0)：（默认）该功能模块无实际功能。请不要设为该值。</li>
+                    <li><ph keyref="CONTENT_INSPECT_MODERATION" />(1)：视频鉴黄。SDK 会对视频流进行截图、鉴黄，并将截图和审核结果上传。</li>
+                    <li><ph keyref="CONTENT_INSPECT_SUPERVISE" />(2)：视频截图。SDK 会对视频流进行截图并上传。</li>
                     </ul></p>
                 </pd>
             </plentry>

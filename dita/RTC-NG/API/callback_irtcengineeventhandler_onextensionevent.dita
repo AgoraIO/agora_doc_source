@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onextensionevent">
-    <title><ph keyref="onExtensionEvent"/></title>
+    <title><ph keyref="onExtensionEvent" /></title>
     <shortdesc id="short"><ph id="shortdesc">插件事件回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onExtensionEvent"/>
+                <indexterm keyref="onExtensionEvent" />
             </keywords>
         </metadata>
     </prolog>
@@ -27,14 +27,19 @@
   (void)value;
   }
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onExtensionEvent?(provider: string, extName: string, key: string, value: string): void;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnExtensionEvent(string provider, string ext_name, string key, string value) { }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">onExtensionEvent?(
-  provider: string,
-  extName: string,
-  key: string,
-  value: string
-): void;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onExtensionEvent?(
+    provider: string,
+    extension: string,
+    key: string,
+    value: string
+  ): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnExtensionEvent(string provider, string extension, string key, string value) { }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onExtensionEvent?(
+    provider: string,
+    extension: string,
+    key: string,
+    value: string
+  ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(
           String provider, String extName, String key, String value)?
       onExtensionEvent;
@@ -47,8 +52,8 @@
             <title>参数</title>
             <parml>
             <plentry conkeyref="setExtensionProperty/vendor">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry id="extension">
                 <pt props="native">extension</pt>
@@ -57,12 +62,12 @@
                 <pd>插件名称。</pd>
             </plentry>
             <plentry conkeyref="setExtensionProperty/key">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry conkeyref="setExtensionProperty/value">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             </parml> </section>
     </refbody>

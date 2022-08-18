@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_screencaptureparameters2">
-  <title><ph keyref="ScreenCaptureParameters2"/></title>
+  <title><ph keyref="ScreenCaptureParameters2" /></title>
   <shortdesc id="short"><ph id="shortdesc">屏幕共享的参数配置。</ph></shortdesc>
   <refbody>
     <section id="prototype">
@@ -121,46 +121,59 @@
     ScreenVideoParameters videoParams;
 };
 </codeblock>
-      <codeblock props="cs" outputclass="language-csharp"/>
-      <codeblock props="electron" outputclass="language-typescript"/>
-      <codeblock props="unity" outputclass="language-csharp"/>
-      <codeblock props="rn" outputclass="language-typescript"/>
-      <codeblock props="flutter" outputclass="language-dart"/> </p>
+      <codeblock props="cs" outputclass="language-csharp" />
+      <codeblock props="electron" outputclass="language-typescript" />
+      <codeblock props="unity" outputclass="language-csharp">public class ScreenCaptureParameters2
+    {
+        public bool captureAudio { set; get; }
+        public ScreenAudioParameters audioParams { set; get; }
+        public bool captureVideo { set; get; }
+        public ScreenVideoParameters videoParams { set; get; }
+
+        public ScreenCaptureParameters2()
+        {
+            captureAudio = false;
+            audioParams = new ScreenAudioParameters();
+            captureAudio = true;
+            videoParams = new ScreenVideoParameters();
+        }
+    };</codeblock>
+      <codeblock props="rn" outputclass="language-typescript" />
+      <codeblock props="flutter" outputclass="language-dart" /> </p>
     </section>
     <section id="detailed_desc">
-      <p/>
+      <p />
     </section>
     <section id="parameters">
-      <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+      <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
       <parml>
       <plentry>
         <pt>captureAudio</pt>
         <pd>屏幕共享时是否采集系统音频：
           <ul>
-          <li><codeph><ph keyref="true"/></codeph>: 采集系统音频。</li>
-          <li><codeph><ph keyref="false"/></codeph>: （默认）不采集系统音频。</li>
+          <li><codeph><ph keyref="true" /></codeph>: 采集系统音频。</li>
+          <li><codeph><ph keyref="false" /></codeph>: （默认）不采集系统音频。</li>
           </ul>
-          <note props="android" >受系统限制，采集系统音频仅适用于 Android API 级别为 29 及以上，即 Android 10 及以上。</note></pd>
+          <note props="android">受系统限制，采集系统音频仅适用于 Android API 级别为 29 及以上，即 Android 10 及以上。</note></pd>
       </plentry>
       <plentry props="cpp ios">
         <pt>audioParams</pt>
-        <pd>共享屏幕流的音频配置。详见 <xref keyref="ScreenAudioParameters"/>。
-          <note type="attention">该参数仅在 <parmname>captureAudio</parmname> 为 <codeph><ph keyref="true"/></codeph> 时生效。</note></pd>
+        <pd>共享屏幕流的音频配置。详见 <xref keyref="ScreenAudioParameters" />。
+          <note type="attention">该参数仅在 <parmname>captureAudio</parmname> 为 <codeph><ph keyref="true" /></codeph> 时生效。</note></pd>
       </plentry>
       <plentry>
         <pt>captureVideo</pt>
         <pd>屏幕共享时是否采集屏幕：
           <ul>
-          <li><codeph><ph keyref="true"/></codeph>:（默认）采集屏幕。</li>
-          <li><codeph><ph keyref="false"/></codeph>: 不采集屏幕。</li>
+          <li><codeph><ph keyref="true" /></codeph>:（默认）采集屏幕。</li>
+          <li><codeph><ph keyref="false" /></codeph>: 不采集屏幕。</li>
           </ul>
-          <note props="android"
-          >受系统限制，采集屏幕仅适用于 Android API 级别为 21 及以上，即 Android 5 及以上。</note></pd>
+          <note props="android">受系统限制，采集屏幕仅适用于 Android API 级别为 21 及以上，即 Android 5 及以上。</note></pd>
       </plentry>
       <plentry props="cpp ios">
         <pt>videoParams</pt>
-        <pd>共享屏幕流的视频编码配置。详见 <xref keyref="ScreenVideoParameters"/>。
-          <note type="attention">该参数仅在 <parmname>captureVideo</parmname> 为 <codeph><ph keyref="true"/></codeph> 时生效。</note></pd>
+        <pd>共享屏幕流的视频编码配置。详见 <xref keyref="ScreenVideoParameters" />。
+          <note type="attention">该参数仅在 <parmname>captureVideo</parmname> 为 <codeph><ph keyref="true" /></codeph> 时生效。</note></pd>
       </plentry>
       </parml> </section>
   </refbody>

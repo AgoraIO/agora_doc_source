@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onencryptionerror">
-    <title><ph keyref="onEncryptionError"/></title>
+    <title><ph keyref="onEncryptionError" /></title>
     <shortdesc id="short"><ph id="shortdesc">内置加密出错回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onEncryptionError"/>
+                <indexterm keyref="onEncryptionError" />
             </keywords>
         </metadata>
     </prolog>
@@ -20,38 +20,41 @@
   (void)errorType;
 }
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onEncryptionError?(connection: RtcConnection, errorType: EncryptionErrorType): void;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onEncryptionError?(
+    connection: RtcConnection,
+    errorType: EncryptionErrorType
+  ): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnEncryptionError(RtcConnection connection, ENCRYPTION_ERROR_TYPE errorType) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">onEncryptionError?(
-  connection: RtcConnection,
-  errorType: EncryptionErrorType
-): void;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onEncryptionError?(
+    connection: RtcConnection,
+    errorType: EncryptionErrorType
+  ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, EncryptionErrorType errorType)?
       onEncryptionError;
 </codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>调用 <xref keyref="enableEncryption"/> 开启加密后， 如果发流端、收流端出现加解密出错，SDK 会触发该回调。</p>
+            <p>调用 <xref keyref="enableEncryption" /> 开启加密后， 如果发流端、收流端出现加解密出错，SDK 会触发该回调。</p>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry props="unity electron rn flutter">
                 <pt>connection</pt>
-                <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                <pd>Connection 信息。详见 <xref keyref="RtcConnection" />。</pd>
             </plentry>
             <plentry>
                 <pt>errorType</pt>
-                <pd props="ios mac cpp unity">错误类型，详见 <xref keyref="ENCRYPTION_ERROR_TYPE"/>。</pd>
+                <pd props="ios mac cpp unity">错误类型，详见 <xref keyref="ENCRYPTION_ERROR_TYPE" />。</pd>
                 <pd props="android">错误类型。
                 <ul>
-                    <li><ph keyref="ENCRYPTION_ERROR_INTERNAL_FAILURE"/> (0): 内部原因。</li>
-                    <li><ph keyref="ENCRYPTION_ERROR_DECRYPTION_FAILURE"/> (1): 解密错误。请确保接收端和发送端使用的加密模式或密钥一致。</li>
-                    <li><ph keyref="ENCRYPTION_ERROR_ENCRYPTION_FAILURE"/> (2): 加密错误。</li>
+                    <li><ph keyref="ENCRYPTION_ERROR_INTERNAL_FAILURE" /> (0): 内部原因。</li>
+                    <li><ph keyref="ENCRYPTION_ERROR_DECRYPTION_FAILURE" /> (1): 解密错误。请确保接收端和发送端使用的加密模式或密钥一致。</li>
+                    <li><ph keyref="ENCRYPTION_ERROR_ENCRYPTION_FAILURE" /> (2): 加密错误。</li>
                 </ul></pd>
             </plentry>
             </parml> </section>
