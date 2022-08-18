@@ -138,7 +138,7 @@ def extract_cpp_struct_dart_class(cpp_code, content):
         # A lazy (also called non-greedy or reluctant) quantifier always attempts to repeat the sub-pattern as few times as possible, before exploring longer matches by expansion.
         # Here we use lazy ones
         dart_proto_re = r'(class|mixin|abstract class)\s{0,10}' + re.escape(
-            text) + r'\s{0,10}\{\s{0,10}[A-Za-z_0-9\s\n\?\[\]\.,;\{\}\(\)<>=$@:]{0,2000}?(?<!\s\s)\}(?!\))'
+            text) + r'\s{0,10}\{\s{0,10}[A-Za-z_0-9\s\n\?\[\]\.,;\{\}\(\)\<\>\=\$\@\:\'\{\}]{0,2000}?(?<!\s\s)\}(?!\))'
         print(dart_proto_re)
         result = re.search(dart_proto_re, content)
 
