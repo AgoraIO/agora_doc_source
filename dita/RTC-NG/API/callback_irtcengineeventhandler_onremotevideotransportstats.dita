@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onremotevideotransportstats">
-    <title> <ph keyref="onRemoteVideoTransportStats"/> </title>
+    <title> <ph keyref="onRemoteVideoTransportStats" /> </title>
     <shortdesc id="short"> <ph id="shortdesc">通话中远端视频流传输的统计信息回调。</ph> </shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onRemoteVideoTransportStats"/>
+                <indexterm keyref="onRemoteVideoTransportStats" />
             </keywords>
         </metadata>
     </prolog>
@@ -28,15 +28,21 @@
      (void)lost;
      (void)rxKBitRate;
      }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onRemoteVideoTransportStats?(connection: RtcConnection, remoteUid: number, delay: number, lost: number, rxKBitRate: number): void;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onRemoteVideoTransportStats?(
+    connection: RtcConnection,
+    remoteUid: number,
+    delay: number,
+    lost: number,
+    rxKBitRate: number
+  ): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteVideoTransportStats(RtcConnection connection, uint remoteUid, UInt16 delay, UInt16 lost, UInt16 rxKBitRate) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">onRemoteVideoTransportStats?(
-  connection: RtcConnection,
-  remoteUid: number,
-  delay: number,
-  lost: number,
-  rxKBitRate: number
-): void;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onRemoteVideoTransportStats?(
+    connection: RtcConnection,
+    remoteUid: number,
+    delay: number,
+    lost: number,
+    rxKBitRate: number
+  ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, int delay,
       int lost, int rxKBitRate)? onRemoteVideoTransportStats;
 </codeblock> </p>
@@ -45,23 +51,23 @@
             <dl outputclass="deprecated">
             <dlentry>
                 <dt>弃用：</dt>
-                <dd>该回调已被废弃，请改用 <xref keyref="onRemoteVideoStats"/>。</dd>
+                <dd>该回调已被废弃，请改用 <xref keyref="onRemoteVideoStats" />。</dd>
             </dlentry>
             </dl>
             <p id="desc1">该回调描述远端用户通话中端到端的网络统计信息，通过视频包计算，用客观的数据，如丢包、 网络延迟等，展示当前网络状态。</p>
             <p id="desc2">通话中，当用户收到远端用户/主播发送的视频数据包后，会每 2 秒触发一次该回调。</p>
         </section>
         <section id="parameters">
-            <title> <ph keyref="callback-section-title"/> </title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <title> <ph keyref="callback-section-title" /> </title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter" />
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry props="unity flutter rn electron">
                 <pt>connection</pt>
-                <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                <pd>Connection 信息。详见 <xref keyref="RtcConnection" />。</pd>
             </plentry>
             <plentry>
                 <pt props="native">uid</pt>
