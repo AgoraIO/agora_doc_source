@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onfirstremotevideoframe">
-     <title> <ph keyref="onFirstRemoteVideoFrame"/> </title>
+     <title> <ph keyref="onFirstRemoteVideoFrame" /> </title>
      <shortdesc id="short"><ph id="shortdesc">渲染器已接收首帧远端视频回调。</ph></shortdesc>
      <prolog>
           <metadata>
                <keywords>
-                    <indexterm keyref="onFirstRemoteVideoFrame"/>
+                    <indexterm keyref="onFirstRemoteVideoFrame" />
                </keywords>
           </metadata>
      </prolog>
@@ -22,26 +22,32 @@
                     (void)height;
                     (void)elapsed;
                     }</codeblock>
-               <codeblock props="electron" outputclass="language-typescript">onFirstRemoteVideoFrame?(connection: RtcConnection, remoteUid: number, width: number, height: number, elapsed: number): void;</codeblock>
+               <codeblock props="electron" outputclass="language-typescript">  onFirstRemoteVideoFrame?(
+    connection: RtcConnection,
+    remoteUid: number,
+    width: number,
+    height: number,
+    elapsed: number
+  ): void;</codeblock>
                <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstRemoteVideoFrame(RtcConnection connection, uint remoteUid, int width, int height, int elapsed) {}</codeblock>
-               <codeblock props="rn" outputclass="language-typescript">onFirstRemoteVideoFrame?(
-  connection: RtcConnection,
-  remoteUid: number,
-  width: number,
-  height: number,
-  elapsed: number
-): void;</codeblock>
+               <codeblock props="rn" outputclass="language-typescript">  onFirstRemoteVideoFrame?(
+    connection: RtcConnection,
+    remoteUid: number,
+    width: number,
+    height: number,
+    elapsed: number
+  ): void;</codeblock>
                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, int width,
       int height, int elapsed)? onFirstRemoteVideoFrame;
 </codeblock> </p>
           </section>
           <section id="parameters">
-               <title><ph keyref="callback-section-title"/></title>
-               <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+               <title><ph keyref="callback-section-title" /></title>
+               <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter" />
                <parml>
                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                    <pt/>
-                    <pd/>
+                    <pt />
+                    <pd />
                </plentry>
                <plentry>
                     <pt props="ios mac android flutter">uid</pt>
@@ -55,7 +61,7 @@
                </plentry>
                <plentry props="unity electron rn flutter">
                     <pt>connection</pt>
-                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection" />。</pd>
                </plentry>
                <plentry props="android cpp unity electron rn flutter">
                     <pt>width</pt>
@@ -67,7 +73,7 @@
                </plentry>
                <plentry>
                     <pt>elapsed</pt>
-                    <pd> 从本地调用 <apiname keyref="joinChannel2"/> 到发生此事件过去的时间（毫秒)。</pd>
+                    <pd> 从本地调用 <apiname keyref="joinChannel2" /> 到发生此事件过去的时间（毫秒)。</pd>
                </plentry>
                </parml> </section>
      </refbody>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_createcustomvideotrack">
-    <title><ph keyref="createCustomVideoTrack"/></title>
+    <title><ph keyref="createCustomVideoTrack" /></title>
     <shortdesc id="short"><ph id="shortdesc">创建一个自定义的视频轨道。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="createCustomVideoTrack"/>
+                <indexterm keyref="createCustomVideoTrack" />
             </keywords>
         </metadata>
     </prolog>
@@ -16,19 +16,19 @@
             <codeblock props="android" outputclass="language-java">public abstract int createCustomVideoTrack();</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (unsigned int)createCustomVideoTrack;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual video_track_id_t createCustomVideoTrack() = 0;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="electron" outputclass="language-typescript">abstract createCustomVideoTrack(): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract video_track_id_t CreateCustomVideoTrack();</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract createCustomVideoTrack(): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; createCustomVideoTrack();</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>当你需要在频道中发布多路自定义采集视频时，可参考以下步骤：           
             
             <ol>
             <li>调用该方法创建视频轨道并获得视频轨道 ID。</li>
-            <li>在每个频道的 <xref keyref="ChannelMediaOptions"/> 中，将 <parmname>customVideoTrackId</parmname> 参数设置为你想要发布的视频轨道 ID，并将 <parmname>publishCustomVideoTrack</parmname> 设置为 <codeph><ph keyref="true"/></codeph>。</li>
-            <li>调用 <xref keyref="pushVideoFrameEx2" props="android"/><xref keyref="pushVideoFrameEx" props="ios mac cpp"/> 将 <parmname>customVideoTrackId</parmname> 指定为你想要发布的自定义视频轨道 ID，即可实现在多个频道中发布对应的自定义视频源。</li>
+            <li>在每个频道的 <xref keyref="ChannelMediaOptions" /> 中，将 <parmname>customVideoTrackId</parmname> 参数设置为你想要发布的视频轨道 ID，并将 <parmname>publishCustomVideoTrack</parmname> 设置为 <codeph><ph keyref="true" /></codeph>。</li>
+            <li>调用 <xref keyref="pushVideoFrameEx2" props="android" /><xref keyref="pushVideoFrameEx" props="ios mac cpp" /> 将 <parmname>customVideoTrackId</parmname> 指定为你想要发布的自定义视频轨道 ID，即可实现在多个频道中发布对应的自定义视频源。</li>
             </ol></p>
         </section>
         <section id="return_values">

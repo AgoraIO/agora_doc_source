@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onaudiomixingstatechanged">
-    <title><ph keyref="onAudioMixingStateChanged"/></title>
+    <title><ph keyref="onAudioMixingStateChanged" /></title>
     <shortdesc id="short"><ph id="shortdesc">音乐文件的播放状态已改变回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onAudioMixingStateChanged"/>
+                <indexterm keyref="onAudioMixingStateChanged" />
             </keywords>
         </metadata>
     </prolog>
@@ -19,12 +19,15 @@ reasonCode:(AgoraAudioMixingReasonCode)reasonCode;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioMixingStateChanged(AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_REASON_TYPE reason) {
     (void)state;
     (void)errorCode;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onAudioMixingStateChanged?(state: AudioMixingStateType, errorCode: AudioMixingErrorType): void;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onAudioMixingStateChanged?(
+    state: AudioMixingStateType,
+    reason: AudioMixingReasonType
+  ): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioMixingStateChanged(AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_REASON_TYPE reason) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">onAudioMixingStateChanged?(
-  state: AudioMixingStateType,
-  errorCode: AudioMixingErrorType
-): void;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onAudioMixingStateChanged?(
+    state: AudioMixingStateType,
+    reason: AudioMixingReasonType
+  ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(
           AudioMixingStateType state, AudioMixingErrorType errorCode)?
       onAudioMixingStateChanged;
@@ -38,32 +41,32 @@ reasonCode:(AgoraAudioMixingReasonCode)reasonCode;</codeblock>
             <parml>
             <plentry>
                 <pt>state</pt>
-                <pd><ph>音乐文件播放状态。</ph><ph props="ios mac cpp unity electron rn flutter">详见 <xref keyref="AUDIO_MIXING_STATE_TYPE"/>。</ph>
+                <pd><ph>音乐文件播放状态。</ph><ph props="ios mac cpp unity electron rn flutter">详见 <xref keyref="AUDIO_MIXING_STATE_TYPE" />。</ph>
                     <p props="android">
                     <ul>
-                    <li><ph keyref="AUDIO_MIXING_STATE_PLAYING"/> (710): 音乐文件正常播放。</li>
-                    <li><ph keyref="AUDIO_MIXING_STATE_PAUSED"/> (711): 音乐文件暂停播放。</li>
-                    <li><ph keyref="AUDIO_MIXING_STATE_STOPPED"/> (713): 音乐文件停止播放。</li>
-                    <li><ph keyref="AUDIO_MIXING_STATE_FAILED"/> (714): 音乐文件报错。SDK 会在 <parmname>errorCode</parmname> 参数中返回具体的报错原因。</li>
-                    <li props="hide"><ph keyref="AUDIO_MIXING_STATE_COMPLETED"/>(715): 音乐文件已结束一次播放。</li>
-                    <li props="hide"><ph keyref="AUDIO_MIXING_STATE_ALL_LOOPS_COMPLETED"/> (716): 音乐文件已结束循环播放。</li>
+                    <li><ph keyref="AUDIO_MIXING_STATE_PLAYING" /> (710): 音乐文件正常播放。</li>
+                    <li><ph keyref="AUDIO_MIXING_STATE_PAUSED" /> (711): 音乐文件暂停播放。</li>
+                    <li><ph keyref="AUDIO_MIXING_STATE_STOPPED" /> (713): 音乐文件停止播放。</li>
+                    <li><ph keyref="AUDIO_MIXING_STATE_FAILED" /> (714): 音乐文件报错。SDK 会在 <parmname>errorCode</parmname> 参数中返回具体的报错原因。</li>
+                    <li props="hide"><ph keyref="AUDIO_MIXING_STATE_COMPLETED" />(715): 音乐文件已结束一次播放。</li>
+                    <li props="hide"><ph keyref="AUDIO_MIXING_STATE_ALL_LOOPS_COMPLETED" /> (716): 音乐文件已结束循环播放。</li>
                     </ul> </p>
                 </pd>
             </plentry>
             <plentry props="electron unity flutter">
                 <pt>errorCode</pt>
-                <pd>错误码。<ph props="electron rn flutter">详见 <xref keyref="AUDIO_MIXING_ERROR_TYPE"/>。</ph></pd>
+                <pd>错误码。<ph props="electron rn flutter">详见 <xref keyref="AUDIO_MIXING_ERROR_TYPE" />。</ph></pd>
             </plentry>
             <plentry>
                 <pt props="android ios mac">reasonCode</pt>
                 <pt props="cpp">reason</pt>
-                <pd><ph>错误码。</ph><ph props="ios mac cpp unity">详见 <xref keyref="AUDIO_MIXING_REASON_TYPE"/>。</ph>
+                <pd><ph>错误码。</ph><ph props="ios mac cpp unity">详见 <xref keyref="AUDIO_MIXING_REASON_TYPE" />。</ph>
                     <p props="android">
                     <ul>
-                    <li><ph keyref="AUDIO_MIXING_REASON_OK"/>(0): 正常。</li>
-                    <li><ph keyref="AUDIO_MIXING_REASON_CAN_NOT_OPEN"/> (701): 音乐文件打开出错。</li>
-                    <li><ph keyref="AUDIO_MIXING_REASON_TOO_FREQUENT_CALL"/> (702): 音乐文件打开太频繁。</li>
-                    <li><ph keyref="AUDIO_MIXING_REASON_INTERRUPTED_EOF"/> (703): 音乐文件播放异常中断。</li>
+                    <li><ph keyref="AUDIO_MIXING_REASON_OK" />(0): 正常。</li>
+                    <li><ph keyref="AUDIO_MIXING_REASON_CAN_NOT_OPEN" /> (701): 音乐文件打开出错。</li>
+                    <li><ph keyref="AUDIO_MIXING_REASON_TOO_FREQUENT_CALL" /> (702): 音乐文件打开太频繁。</li>
+                    <li><ph keyref="AUDIO_MIXING_REASON_INTERRUPTED_EOF" /> (703): 音乐文件播放异常中断。</li>
                     </ul> </p>
                 </pd>
             </plentry>

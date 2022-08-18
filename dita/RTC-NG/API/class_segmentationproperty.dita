@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_segmentationproperty">
-    <title><ph keyref="SegmentationProperty"/></title>
+    <title><ph keyref="SegmentationProperty" /></title>
     <shortdesc id="short"><ph id="shortdesc">背景图像的处理属性。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -35,7 +35,12 @@
   SegmentationProperty() : modelType(SEG_MODEL_AI), greenCapacity(0.5){}
 };
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export class SegmentationProperty {
+  
+  modelType?: SegModelType;
+  
+  greenCapacity?: number;
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class SegmentationProperty
     {
         public SEG_MODEL_TYPE modelType { set; get; }
@@ -47,20 +52,23 @@
             greenCapacity = 0.5f;
         }
     };</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">export class SegmentationProperty {
+  
+  modelType?: SegModelType;
+  
+  greenCapacity?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
-            <p/>
+            <p />
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>modelType</pt>
-                <pd><ph>进行背景处理的算法。</ph><ph props="ios mac cpp">详见 <xref keyref="SEG_MODEL_TYPE"/>。</ph>
+                <pd><ph>进行背景处理的算法。</ph><ph props="ios mac cpp">详见 <xref keyref="SEG_MODEL_TYPE" />。</ph>
                     <ul props="android">
                     <li><ph keyref="SEG_MODEL_AI" />(1): (默认) 适用于所有场景下的背景处理算法。</li>
                     <li><ph keyref="SEG_MODEL_GREEN" />(2): 仅适用于绿幕背景下的背景处理算法。</li>
@@ -73,13 +81,13 @@
                     <li>0: 不开启双边滤波功能。</li>
                     <li>1: (默认)开启双边滤波功能，在绿幕场景下的虚拟背景效果更好。 </li>
                     </ul>
-                    <note type="note">该参数仅在 <parmname>modelType</parmname> 设置为 <apiname keyref="SEG_MODEL_GREEN"/> 时生效。</note></pd>
+                    <note type="note">该参数仅在 <parmname>modelType</parmname> 设置为 <apiname keyref="SEG_MODEL_GREEN" /> 时生效。</note></pd>
             </plentry>
             <plentry>
                 <pt>greenCapacity</pt>
                 <pd>
                     <p>对画面中绿颜色（即不同程度的绿色）识别的精度范围。取值范围为 [0,1]，默认值为 0.5。取值越大，代表可识别的绿色范围越大。当该参数取值过大时，人像边缘和人像范围内的绿色也会被识别。Agora 推荐你根据实际效果动态调整该参数的值。</p>
-                    <note type="note">该参数仅在 <parmname>modelType</parmname> 设置为 <apiname keyref="SEG_MODEL_GREEN"/> 时生效。</note> </pd>
+                    <note type="note">该参数仅在 <parmname>modelType</parmname> 设置为 <apiname keyref="SEG_MODEL_GREEN" /> 时生效。</note> </pd>
             </plentry>
             </parml> </section>
     </refbody>
