@@ -57,11 +57,45 @@ def extract_dart_proto(cpp_code, content):
         dart_proto_re = r'[A-Za-z]{1,100}[<]{0,1}[A-Za-z_]{0,100}[\?]{0,1}[>]{0,1}' + re.escape(text) + r'[0-9\s]{0,1}\([0-9A-Za-z_\s\n\?,\[\]]{0,100}\);{0,1}'
         print(dart_proto_re)
         result = re.findall(dart_proto_re, content)
-
+        
         for code in result:
             print(code)
             dart_code.append(code)
+        
+        # print(dart_code)
 
+    else:
+        dart_code = ["There are no corresponding names available"]
+        print("There are no corresponding names available")
+
+    return dart_code
+
+def extract_dart_proto_callback(cpp_code, content):
+    #
+    # final void Function(RtcConnection connection, int uid)? onActiveSpeaker;
+    #
+
+    dart_code = []
+
+    print(cpp_code)
+
+    cpp_core = re.search(r'\s[A-Za-z]{0,50}\(', cpp_code)
+
+    if cpp_core is not None:
+        text = cpp_core[0]
+        text = text[:-1]
+
+        print("The matched C++ proto " + text)
+        # Avoid Catastrophic Backtracking: https://www.regular-expressions.info/catastrophic.html
+        # dart_proto_re = r'[A-Za-z]{1,100}[<]{0,1}[A-Za-z_]{0,100}[\?]{0,1}[>]{0,1}' + re.escape(text) + r'[0-9\s]{0,1}\([0-9A-Za-z_\s\n\?,\[\]]{0,100}\);{0,1}'
+        dart_proto_re = r'[A-Za-z]{0,20}[\s]{0,1}[A-Za-z]{0,20}[\s]{0,1}[A-Za-z]{0,20}[\s]{0,1}\([0-9A-Za-z_\s\n\?,\[\]]{0,100}\)?' + re.escape(text) + r';'
+        print(dart_proto_re)
+        result = re.findall(dart_proto_re, content)
+        
+        for code in result:
+            print(code)
+            dart_code.append(code)
+        
         # print(dart_code)
 
     else:
@@ -104,7 +138,7 @@ def extract_cpp_struct_dart_class(cpp_code, content):
         # A lazy (also called non-greedy or reluctant) quantifier always attempts to repeat the sub-pattern as few times as possible, before exploring longer matches by expansion.
         # Here we use lazy ones
         dart_proto_re = r'(class|mixin|abstract class)\s{0,10}' + re.escape(
-            text) + r'\s{0,10}\{\s{0,10}[A-Za-z_0-9\s\n\?\[\]\.,;\{\}\(\)<>=$@:]{0,2000}?(?<!\s\s)\}(?!\))'
+            text) + r'\s{0,10}\{\s{0,10}[A-Za-z_0-9\s\n\?\[\]\.,;\{\}\(\)\<\>\=\$\@\:\'\{\}]{0,2000}?(?<!\s\s)\}(?!\))'
         print(dart_proto_re)
         result = re.search(dart_proto_re, content)
 
@@ -219,7 +253,7 @@ def main():
         for file, code in dictionary.items():
             name = os.path.basename(file)
             print(name)
-            if name.startswith("api_") or name.startswith("callback_"):
+            if name.startswith("api_"):
                 dart_protos = extract_dart_proto(code, content)
                 print(dart_protos)
 
@@ -251,6 +285,11 @@ def main():
                             dart_file_list.append(file)
                             dart_proto_list.append(dart_proro)
 
+            elif name.startswith("callback_"):
+                dart_protos = extract_dart_proto_callback(code, content)
+                print(dart_protos)
+                dart_file_list.append(file)
+                dart_proto_list.append(dart_struct)
             elif name.startswith("class_"):
                 dart_struct = extract_cpp_struct_dart_class(code, content)
                 print(dart_struct)
