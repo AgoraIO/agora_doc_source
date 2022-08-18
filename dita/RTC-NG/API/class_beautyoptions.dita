@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_beautyoptions">
-    <title> <ph keyref="BeautyOptions"/> </title>
+    <title> <ph keyref="BeautyOptions" /> </title>
     <shortdesc id="short"> <ph id="shortdesc">美颜选项。</ph> </shortdesc>
     <refbody>
         <section id="prototype">
@@ -48,11 +48,16 @@
 };
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class BeautyOptions {
-  lighteningContrastLevel?: LighteningContrastLevel
-  lighteningLevel?: number
-  smoothnessLevel?: number
-  rednessLevel?: number
-  sharpnessLevel?: number
+  
+  lighteningContrastLevel?: LighteningContrastLevel;
+  
+  lighteningLevel?: number;
+  
+  smoothnessLevel?: number;
+  
+  rednessLevel?: number;
+  
+  sharpnessLevel?: number;
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class BeautyOptions
     {
@@ -94,10 +99,15 @@
         public float sharpnessLevel { set; get; }
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class BeautyOptions {
+  
   lighteningContrastLevel?: LighteningContrastLevel;
+  
   lighteningLevel?: number;
+  
   smoothnessLevel?: number;
+  
   rednessLevel?: number;
+  
   sharpnessLevel?: number;
 }</codeblock>
 <codeblock props="flutter" outputclass="language-dart">class BeautyOptions {
@@ -118,24 +128,24 @@
     final double? rednessLevel;
     @JsonKey(name: 'sharpnessLevel')
     final double? sharpnessLevel;
-    factory BeautyOptions.fromJson(Map&lt;String, dynamic> json) =>
+    factory BeautyOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
         _$BeautyOptionsFromJson(json);
-    Map&lt;String, dynamic> toJson() => _$BeautyOptionsToJson(this);
+    Map&lt;String, dynamic&gt; toJson() =&gt; _$BeautyOptionsToJson(this);
   }</codeblock>
             </p>
         </section>
         <section id="parameters">
-            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/>
+            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" />
             </title>
             <parml>
             <plentry>
                 <pt>lighteningContrastLevel</pt>
                 <pd>
-                    <p>对比度，常与 <parmname>lighteningLevel</parmname> 搭配使用。取值越大，明暗对比程度越大。<ph props="ios mac cpp unity electron rn flutter">详见 <xref keyref="LIGHTENING_CONTRAST_LEVEL"/>。</ph>
+                    <p>对比度，常与 <parmname>lighteningLevel</parmname> 搭配使用。取值越大，明暗对比程度越大。<ph props="ios mac cpp unity electron rn flutter">详见 <xref keyref="LIGHTENING_CONTRAST_LEVEL" />。</ph>
                     <ul props="android">
-                    <li><ph keyref="LIGHTENING_CONTRAST_LOW"/> (0)：低对比度。</li>
-                    <li><ph keyref="LIGHTENING_CONTRAST_NORMAL"/> (1)：正常对比度。</li>
-                    <li><ph keyref="LIGHTENING_CONTRAST_HIGH"/> (2)：高对比度。</li>
+                    <li><ph keyref="LIGHTENING_CONTRAST_LOW" /> (0)：低对比度。</li>
+                    <li><ph keyref="LIGHTENING_CONTRAST_NORMAL" /> (1)：正常对比度。</li>
+                    <li><ph keyref="LIGHTENING_CONTRAST_HIGH" /> (2)：高对比度。</li>
                     </ul></p>
                 </pd>
             </plentry>

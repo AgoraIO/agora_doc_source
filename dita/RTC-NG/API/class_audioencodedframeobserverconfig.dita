@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audioencodedframeobserverconfig">
-    <title> <ph keyref="AudioEncodedFrameObserverConfig"/> </title>
+    <title> <ph keyref="AudioEncodedFrameObserverConfig" /> </title>
     <shortdesc id="short"> <ph id="shortdesc">编码后音频的观测器设置。</ph> </shortdesc>
     <refbody>
         <section id="prototype">
@@ -26,7 +26,12 @@
     : postionType(AUDIO_ENCODED_FRAME_OBSERVER_POSITION_PLAYBACK),
       encodingType(AUDIO_ENCODING_TYPE_OPUS_48000_MEDIUM){}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export class AudioEncodedFrameObserverConfig {
+  
+  postionType?: AudioEncodedFrameObserverPosition;
+  
+  encodingType?: AudioEncodingType;
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class AudioEncodedFrameObserverConfig
     {
         public AudioEncodedFrameObserverConfig()
@@ -44,7 +49,12 @@
         public AUDIO_ENCODED_FRAME_OBSERVER_POSITION postionType { set; get; }
         public AUDIO_ENCODING_TYPE encodingType { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">export class AudioEncodedFrameObserverConfig {
+  
+  postionType?: AudioEncodedFrameObserverPosition;
+  
+  encodingType?: AudioEncodingType;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class AudioEncodedFrameObserverConfig {
   const AudioEncodedFrameObserverConfig({this.postionType, this.encodingType});
 
@@ -52,70 +62,48 @@
   final AudioEncodedFrameObserverPosition? postionType;
   @JsonKey(name: 'encodingType')
   final AudioEncodingType? encodingType;
-  factory AudioEncodedFrameObserverConfig.fromJson(Map&lt;String, dynamic> json) =>
+  factory AudioEncodedFrameObserverConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$AudioEncodedFrameObserverConfigFromJson(json);
-  Map&lt;String, dynamic> toJson() =>
+  Map&lt;String, dynamic&gt; toJson() =&gt;
       _$AudioEncodedFrameObserverConfigToJson(this);
 }
 </codeblock>
             </p>
         </section>
         <section id="parameters">
-            <title> <text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /> </title>
+            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>
             <parml>
             <plentry>
                 <pt>postionType</pt>
                 <pd>
-                    <p props="cpp flutter ios mac unity">音频编码内容。详见 <xref
-                            keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION"
-                            />。</p>
+                    <p props="cpp flutter ios mac unity">音频编码内容。详见 <xref keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION" />。</p>
                     <p props="android">音频编码内容：
 
                     <ul>
-                    <li> <ph
-                        keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_RECORD"
-                        />(1)：仅编码本地用户的音频。</li>
-                    <li> <ph
-                        keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_PLAYBACK"
-                        />(2)：仅编码所有远端用户的音频。</li>
-                    <li> <ph
-                        keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_MIXED"
-                        />(3)：编码本地和所有远端用户混音后的音频。</li>
+                    <li> <ph keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_RECORD" />(1)：仅编码本地用户的音频。</li>
+                    <li> <ph keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_PLAYBACK" />(2)：仅编码所有远端用户的音频。</li>
+                    <li> <ph keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_MIXED" />(3)：编码本地和所有远端用户混音后的音频。</li>
                     </ul> </p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>encodingType</pt>
                 <pd>
-                    <p props="cpp flutter ios mac unity">音频编码类型。详见 <xref
-                            keyref="AUDIO_ENCODING_TYPE"/>。</p>
+                    <p props="cpp flutter ios mac unity">音频编码类型。详见 <xref keyref="AUDIO_ENCODING_TYPE" />。</p>
                     <p props="android">音频编码类型：
 
                     <ul>
-                    <li> <ph keyref="AUDIO_ENCODING_TYPE_AAC_16000_LOW"
-                        />：AAC 编码格式，16000 Hz 采样率，低音质。音频时长为 10 分钟的文件编码后大小约为 1.2 MB。</li>
-                    <li> <ph keyref="AUDIO_ENCODING_TYPE_AAC_16000_MEDIUM"
-                        />：AAC 编码格式，16000 Hz 采样率，中音质。音频时长为 10 分钟的文件编码后大小约为 2 MB。</li>
-                    <li> <ph keyref="AUDIO_ENCODING_TYPE_AAC_32000_LOW"
-                        />：AAC 编码格式，32000 Hz 采样率，低音质。音频时长为 10 分钟的文件编码后大小约为 1.2 MB。</li>
-                    <li> <ph keyref="AUDIO_ENCODING_TYPE_AAC_32000_MEDIUM"
-                        />：AAC 编码格式，32000 Hz 采样率，中音质。音频时长为 10 分钟的文件编码后大小约为 2 MB。</li>
-                    <li> <ph keyref="AUDIO_ENCODING_TYPE_AAC_32000_HIGH"
-                        />：AAC 编码格式，32000 Hz 采样率，高音质。音频时长为 10 分钟的文件编码后大小约为 3.5 MB。</li>
-                    <li> <ph keyref="AUDIO_ENCODING_TYPE_AAC_48000_MEDIUM"
-                        />：AAC 编码格式，48000 Hz 采样率，中音质。音频时长为 10 分钟的文件编码后大小约为 2 MB。</li>
-                    <li> <ph keyref="AUDIO_ENCODING_TYPE_AAC_48000_HIGH"
-                        />：AAC 编码格式，48000 Hz 采样率，高音质。音频时长为 10 分钟的文件编码后大小约为 3.5 MB。</li>
-                    <li> <ph keyref="AUDIO_ENCODING_TYPE_OPUS_16000_LOW"
-                        />：OPUS 编码格式，16000 Hz 采样率，低音质。音频时长为 10 分钟的文件编码后大小约为 2 MB。</li>
-                    <li> <ph keyref="AUDIO_ENCODING_TYPE_OPUS_16000_MEDIUM"
-                        />：OPUS 编码格式，16000 Hz 采样率，中音质。音频时长为 10 分钟的文件编码后大小约为 2 MB。</li>
-                    <li> <ph keyref="AUDIO_ENCODING_TYPE_OPUS_48000_MEDIUM"
-                        />：OPUS 编码格式，48000 Hz 采样率，中音质。音频时长为 10 分钟的文件编码后大小约为 2 MB。</li>
-                    <li> <ph keyref="AUDIO_ENCODING_TYPE_OPUS_48000_HIGH"
-                        />：OPUS 编码格式，48000 Hz 采样率，高音质。音频时长为 10 分钟的文件编码后大小约为 3.5 MB。</li>
+                    <li> <ph keyref="AUDIO_ENCODING_TYPE_AAC_16000_LOW" />：AAC 编码格式，16000 Hz 采样率，低音质。音频时长为 10 分钟的文件编码后大小约为 1.2 MB。</li>
+                    <li> <ph keyref="AUDIO_ENCODING_TYPE_AAC_16000_MEDIUM" />：AAC 编码格式，16000 Hz 采样率，中音质。音频时长为 10 分钟的文件编码后大小约为 2 MB。</li>
+                    <li> <ph keyref="AUDIO_ENCODING_TYPE_AAC_32000_LOW" />：AAC 编码格式，32000 Hz 采样率，低音质。音频时长为 10 分钟的文件编码后大小约为 1.2 MB。</li>
+                    <li> <ph keyref="AUDIO_ENCODING_TYPE_AAC_32000_MEDIUM" />：AAC 编码格式，32000 Hz 采样率，中音质。音频时长为 10 分钟的文件编码后大小约为 2 MB。</li>
+                    <li> <ph keyref="AUDIO_ENCODING_TYPE_AAC_32000_HIGH" />：AAC 编码格式，32000 Hz 采样率，高音质。音频时长为 10 分钟的文件编码后大小约为 3.5 MB。</li>
+                    <li> <ph keyref="AUDIO_ENCODING_TYPE_AAC_48000_MEDIUM" />：AAC 编码格式，48000 Hz 采样率，中音质。音频时长为 10 分钟的文件编码后大小约为 2 MB。</li>
+                    <li> <ph keyref="AUDIO_ENCODING_TYPE_AAC_48000_HIGH" />：AAC 编码格式，48000 Hz 采样率，高音质。音频时长为 10 分钟的文件编码后大小约为 3.5 MB。</li>
+                    <li> <ph keyref="AUDIO_ENCODING_TYPE_OPUS_16000_LOW" />：OPUS 编码格式，16000 Hz 采样率，低音质。音频时长为 10 分钟的文件编码后大小约为 2 MB。</li>
+                    <li> <ph keyref="AUDIO_ENCODING_TYPE_OPUS_16000_MEDIUM" />：OPUS 编码格式，16000 Hz 采样率，中音质。音频时长为 10 分钟的文件编码后大小约为 2 MB。</li>
+                    <li> <ph keyref="AUDIO_ENCODING_TYPE_OPUS_48000_MEDIUM" />：OPUS 编码格式，48000 Hz 采样率，中音质。音频时长为 10 分钟的文件编码后大小约为 2 MB。</li>
+                    <li> <ph keyref="AUDIO_ENCODING_TYPE_OPUS_48000_HIGH" />：OPUS 编码格式，48000 Hz 采样率，高音质。音频时长为 10 分钟的文件编码后大小约为 3.5 MB。</li>
                     </ul> </p>
                 </pd>
             </plentry>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_getextensionproperty2">
-    <title><ph keyref="getExtensionProperty2"/></title>
+    <title><ph keyref="getExtensionProperty2" /></title>
     <shortdesc id="short"><ph id="shortdesc">获取插件的详细信息。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="getExtensionProperty2"/>
+                <indexterm keyref="getExtensionProperty2" />
             </keywords>
         </metadata>
     </prolog>
@@ -25,37 +25,49 @@
       const char* provider, const char* extension,
       const char* key, char* value, int buf_len, agora::media::MEDIA_SOURCE_TYPE type = agora::media::UNKNOWN_MEDIA_SOURCE) = 0;
 </codeblock>
-            <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="electron" outputclass="language-typescript">abstract getExtensionProperty(
+    provider: string,
+    extension: string,
+    key: string,
+    bufLen: number,
+    type?: MediaSourceType
+  ): string;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int GetExtensionProperty(string provider, string extension, string key, ref string value, int buf_len, MEDIA_SOURCE_TYPE type = MEDIA_SOURCE_TYPE.UNKNOWN_MEDIA_SOURCE);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract getExtensionProperty(
+    provider: string,
+    extension: string,
+    key: string,
+    bufLen: number,
+    type?: MediaSourceType
+  ): string;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
-            <p/>
+            <p />
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry conkeyref="setExtensionProperty/vendor">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry conkeyref="setExtensionProperty/extension">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry conkeyref="setExtensionProperty/key">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry>
                 <pt>sourceType</pt>
-                <pd>插件的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
+                <pd>插件的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE" />。</pd>
             </plentry>
             <plentry conkeyref="setExtensionProperty/value" props="cpp">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry props="cpp">
                 <pt>buf_len</pt>

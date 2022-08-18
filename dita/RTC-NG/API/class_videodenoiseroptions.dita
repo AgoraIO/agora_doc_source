@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videodenoiseroptions">
-    <title> <ph keyref="VideoDenoiserOptions"/> </title>
+    <title> <ph keyref="VideoDenoiserOptions" /> </title>
     <shortdesc id="short"> <ph id="shortdesc">视频降噪选项。</ph> </shortdesc>
     <refbody>
         <section id="prototype">
@@ -48,7 +48,12 @@
   VideoDenoiserOptions() : mode(VIDEO_DENOISER_AUTO), level(VIDEO_DENOISER_LEVEL_HIGH_QUALITY) {}
 };
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export class VideoDenoiserOptions {
+  
+  mode?: VideoDenoiserMode;
+  
+  level?: VideoDenoiserLevel;
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class VideoDenoiserOptions
     {
         public VIDEO_DENOISER_MODE mode { set; get; }
@@ -66,28 +71,33 @@
             level = VIDEO_DENOISER_LEVEL.VIDEO_DENOISER_LEVEL_HIGH_QUALITY;
         }
     };</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">export class VideoDenoiserOptions {
+  
+  mode?: VideoDenoiserMode;
+  
+  level?: VideoDenoiserLevel;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="parameters">
-            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/> </title>
+            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>
             <parml>
             <plentry>
                 <pt>level</pt>
-                <pd><ph>视频降噪等级。</ph><ph props="apple cpp">详见 <xref keyref="VIDEO_DENOISER_LEVEL"/>。</ph>
+                <pd><ph>视频降噪等级。</ph><ph props="apple cpp">详见 <xref keyref="VIDEO_DENOISER_LEVEL" />。</ph>
                   <ul props="android">
-                    <li><ph keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY"/>0:（默认）优先画质的暗光增强，会处理视频图像的亮度、细节、噪声，消耗的性能适中，处理速度适中，综合画质最优。</li>
-                    <li><ph keyref="VIDEO_DENOISER_LEVEL_FAST"/>1：优先性能的视频降噪。是在性能消耗和视频降噪效果中侧重于节省性能的等级。性能消耗较少，视频降噪速度较快。为避免处理后的视频有明显的拖影效果，Agora 推荐你在摄像头固定的情况下使用该设置。</li>
-                    <li><ph keyref="VIDEO_DENOISER_LEVEL_STRENGTH"/>2：强效的视频降噪。是在性能消耗和视频降噪效果中侧重于视频降噪效果的等级。性能消耗较多，视频降噪速度较慢，视频降噪效果较好。如果 <parmname keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY"/> 不能满足你的视频降噪需求，你可以使用该设置。</li>
+                    <li><ph keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY" />0:（默认）优先画质的暗光增强，会处理视频图像的亮度、细节、噪声，消耗的性能适中，处理速度适中，综合画质最优。</li>
+                    <li><ph keyref="VIDEO_DENOISER_LEVEL_FAST" />1：优先性能的视频降噪。是在性能消耗和视频降噪效果中侧重于节省性能的等级。性能消耗较少，视频降噪速度较快。为避免处理后的视频有明显的拖影效果，Agora 推荐你在摄像头固定的情况下使用该设置。</li>
+                    <li><ph keyref="VIDEO_DENOISER_LEVEL_STRENGTH" />2：强效的视频降噪。是在性能消耗和视频降噪效果中侧重于视频降噪效果的等级。性能消耗较多，视频降噪速度较慢，视频降噪效果较好。如果 <parmname keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY" /> 不能满足你的视频降噪需求，你可以使用该设置。</li>
                   </ul>
                 </pd>
             </plentry>
             <plentry>
                 <pt>mode</pt>
-                <pd><ph>视频降噪模式。</ph><ph props="apple cpp">详见 <xref keyref="VIDEO_DENOISER_MODE"/>。</ph>
+                <pd><ph>视频降噪模式。</ph><ph props="apple cpp">详见 <xref keyref="VIDEO_DENOISER_MODE" />。</ph>
                   <ul props="android">
-                    <li><ph keyref="VIDEO_DENOISER_AUTO"/>0:（默认）自动模式。SDK 会根据环境光亮度自动开启或关闭视频降噪功能。</li>
-                    <li><ph keyref="VIDEO_DENOISER_MANUAL"/>1：手动模式。用户需手动开启或关闭视频降噪功能。</li>
+                    <li><ph keyref="VIDEO_DENOISER_AUTO" />0:（默认）自动模式。SDK 会根据环境光亮度自动开启或关闭视频降噪功能。</li>
+                    <li><ph keyref="VIDEO_DENOISER_MANUAL" />1：手动模式。用户需手动开启或关闭视频降噪功能。</li>
                   </ul>
                 </pd>
             </plentry>

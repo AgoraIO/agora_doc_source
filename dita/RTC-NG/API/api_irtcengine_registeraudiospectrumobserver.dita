@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_registeraudiospectrumobserver">
-    <title><ph keyref="registerAudioSpectrumObserver"/></title>
+    <title><ph keyref="registerAudioSpectrumObserver" /></title>
     <shortdesc id="short"><ph id="shortdesc">注册音频频谱观测器。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="registerAudioSpectrumObserver"/>
+                <indexterm keyref="registerAudioSpectrumObserver" />
             </keywords>
         </metadata>
     </prolog>
@@ -17,14 +17,18 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)registerAudioSpectrumDelegate:(id&lt;AgoraAudioSpectrumDelegate&gt; _Nullable )delegate;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int registerAudioSpectrumObserver(agora::media::IAudioSpectrumObserver * observer) = 0;
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract registerAudioSpectrumObserver(
+    observer: IAudioSpectrumObserver
+  ): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract void RegisterAudioSpectrumObserver(IAudioSpectrumObserver observer);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract registerAudioSpectrumObserver(
+    observer: IAudioSpectrumObserver
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">void registerAudioSpectrumObserver(AudioSpectrumObserver observer);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>成功注册音频频谱观测器并调用 <xref keyref="enableAudioSpectrumMonitor"/> 开启音频频谱监测后，SDK
-                会按照你设置的时间间隔报告你在 <xref keyref="IAudioSpectrumObserver"/> 类中实现的回调。</p>
+            <p>成功注册音频频谱观测器并调用 <xref keyref="enableAudioSpectrumMonitor" /> 开启音频频谱监测后，SDK
+                会按照你设置的时间间隔报告你在 <xref keyref="IAudioSpectrumObserver" /> 类中实现的回调。</p>
             <note type="attention" id="note_qwk_mjf_3qb">该方法在加入频道前后均可调用。</note> </section>
         <section id="parameters">
             <title>参数</title>
@@ -33,7 +37,7 @@
                 <pt props="android cpp unity">observer</pt>
                 <pt props="ios mac">delegate</pt>
                 <pd>
-                    <p>音频频谱观测器。详见 <xref keyref="IAudioSpectrumObserver"/>。</p>
+                    <p>音频频谱观测器。详见 <xref keyref="IAudioSpectrumObserver" />。</p>
                 </pd>
             </plentry>
             </parml> </section>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onextensionerror">
-    <title><ph keyref="onExtensionError"/></title>
+    <title><ph keyref="onExtensionError" /></title>
     <shortdesc id="short"><ph id="shortdesc">插件出错回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onExtensionError"/>
+                <indexterm keyref="onExtensionError" />
             </keywords>
         </metadata>
     </prolog>
@@ -25,7 +25,12 @@
     (void)error;
     (void)message;
   }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onExtensionErrored?(provider: string, extName: string, error: number, msg: string): void;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onExtensionError?(
+    provider: string,
+    extension: string,
+    error: number,
+    message: string
+  ): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnExtensionError(string provider, string extension, int error, string message) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onExtensionErrored?(
   provider: string,
@@ -38,14 +43,14 @@
 </codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>当调用 <codeph><xref keyref="enableExtension"/>(<q><ph keyref="true"/></q>)</codeph> 启用插件失败或者插件运行出错时， 插件会触发该回调并上报错误码和错误原因。</p>
+            <p>当调用 <codeph><xref keyref="enableExtension" />(<q><ph keyref="true" /></q>)</codeph> 启用插件失败或者插件运行出错时， 插件会触发该回调并上报错误码和错误原因。</p>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry conkeyref="setExtensionProperty/vendor">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry>
                 <pt props="native">extension</pt>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_iaudiodevicemanager_followsystemplaybackdevice">
-    <title><ph keyref="followSystemPlaybackDevice"/></title>
+    <title><ph keyref="followSystemPlaybackDevice" /></title>
     <shortdesc id="short"><ph id="shortdesc">设置 SDK 使用的音频播放设备跟随系统默认的音频播放设备。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="followSystemPlaybackDevice"/>
+                <indexterm keyref="followSystemPlaybackDevice" />
             </keywords>
         </metadata>
     </prolog>
@@ -15,12 +15,12 @@
             <p outputclass="codeblock">
             <codeblock props="mac" outputclass="language-objectivec">(int) followSystemPlaybackDevice:(BOOL)enable;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int followSystemPlaybackDevice(bool enable) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract followSystemPlaybackDevice(enable: boolean): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int FollowSystemPlaybackDevice(bool enable);</codeblock>
-            <codeblock props="flutter" outputclass="language-dart"/></p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; followSystemPlaybackDevice(bool enable);</codeblock></p>
         </section>
         <section id="parameters">
-            <title><ph keyref="callback-section-title"/></title>
+            <title><ph keyref="callback-section-title" /></title>
             <parml>
             <plentry>
                 <pt>enable</pt>
@@ -28,8 +28,8 @@
                         
                     
                     <ul id="ul_l4n_jf3_5sb">
-                    <li><codeph><ph keyref="true"/></codeph>：跟随。当系统默认音频播放设备发生改变时，SDK 立即切换音频播放设备。</li>
-                    <li><codeph><ph keyref="false"/></codeph>：不跟随。只有当 SDK 使用的音频播放设备被移除后，SDK 才切换至系统默认的音频播放设备。</li>
+                    <li><codeph><ph keyref="true" /></codeph>：跟随。当系统默认音频播放设备发生改变时，SDK 立即切换音频播放设备。</li>
+                    <li><codeph><ph keyref="false" /></codeph>：不跟随。只有当 SDK 使用的音频播放设备被移除后，SDK 才切换至系统默认的音频播放设备。</li>
                     </ul></pd>
             </plentry>
             </parml> </section>
