@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setcolorenhanceoptions">
-    <title> <ph keyref="setColorEnhanceOptions"/> </title>
+    <title> <ph keyref="setColorEnhanceOptions" /> </title>
     <shortdesc id="short"><ph id="shortdesc">设置色彩增强功能。</ph> </shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setColorEnhanceOptions"/>
+                <indexterm keyref="setColorEnhanceOptions" />
             </keywords>
         </metadata>
     </prolog>
@@ -19,22 +19,30 @@
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setColorEnhanceOptions(bool enabled, const ColorEnhanceOptions&amp; options) = 0;
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract setColorEnhanceOptions(
+    enabled: boolean,
+    options: ColorEnhanceOptions,
+    type?: MediaSourceType
+  ): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetColorEnhanceOptions(bool enabled, ColorEnhanceOptions options, MEDIA_SOURCE_TYPE type = MEDIA_SOURCE_TYPE.PRIMARY_CAMERA_SOURCE);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract setColorEnhanceOptions(
+    enabled: boolean,
+    options: ColorEnhanceOptions,
+    type?: MediaSourceType
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
             <p>摄像头采集到的视频画面可能存在色彩失真的现象。色彩增强功能可以通过智能调节饱和度和对比度等视频特性，提升视频色彩丰富度和色彩还原度，最终使视频画面更生动。</p>
             <p>你可以调用该方法开启色彩增强功能并设置色彩增强的效果。</p>
             <note type="attention">
             <ul>
-            <li>请在 <xref keyref="enableVideo"/> 后调用该方法。</li>
+            <li>请在 <xref keyref="enableVideo" /> 后调用该方法。</li>
             <li>色彩增强对设备性能有一定要求。开启色彩增强后，如果设备出现严重发烫等问题，Agora 推荐你将色彩增强等级修改为消耗性能较少的等级或关闭色彩增强功能。</li>
-            <li>该方法和 <xref keyref="setExtensionProperty"/> 均可开启色彩增强功能：
+            <li>该方法和 <xref keyref="setExtensionProperty" /> 均可开启色彩增强功能：
                 <ul>
                     <li>当你使用 SDK 采集视频时，Agora 推荐使用该方法（该方法只可对 SDK 采集的视频起作用）。</li>
-                    <li>当你使用外部的视频源实现自定义视频采集，或者将外部视频源发送给 SDK 时，Agora 推荐使用 <apiname keyref="setExtensionProperty"/> 方法。</li>
+                    <li>当你使用外部的视频源实现自定义视频采集，或者将外部视频源发送给 SDK 时，Agora 推荐使用 <apiname keyref="setExtensionProperty" /> 方法。</li>
                 </ul></li>
             </ul> </note> </section>
         <section id="parameters">
@@ -45,13 +53,13 @@
                 <pt props="ios mac">enable</pt>
                 <pd>是否开启色彩增强功能：
                    <ul>
-                    <li><codeph><ph keyref="true"/></codeph>：开启色彩增强功能。</li>
-                    <li><codeph><ph keyref="false"/></codeph>：（默认）关闭色彩增强功能。</li>
+                    <li><codeph><ph keyref="true" /></codeph>：开启色彩增强功能。</li>
+                    <li><codeph><ph keyref="false" /></codeph>：（默认）关闭色彩增强功能。</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>options</pt>
-                <pd>色彩增强选项，用于设置色彩增强的效果。详见 <xref keyref="ColorEnhanceOptions"/>。</pd>
+                <pd>色彩增强选项，用于设置色彩增强的效果。详见 <xref keyref="ColorEnhanceOptions" />。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
