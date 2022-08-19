@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_complain">
-    <title><ph keyref="complain" /></title>
+    <title><ph keyref="complain"/></title>
     <shortdesc id="short"><ph id="shortdesc">投诉通话质量。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="complain" />
+                <indexterm keyref="complain"/>
             </keywords>
         </metadata>
     </prolog>
@@ -30,7 +30,7 @@
             <parml>
             <plentry>
                 <pt>callId</pt>
-                <pd>通话 ID。你可以通过调用 <xref keyref="getCallId" /> 获取该参数。</pd>
+                <pd>通话 ID。你可以通过调用 <xref keyref="getCallId"/> 获取该参数。</pd>
             </plentry>
             <plentry>
                 <pt>description</pt>
@@ -42,11 +42,15 @@
             <ul>
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。
-
-
                 <ul>
-                <li>-2(<codeph>ERR_INVALID_ARGUMENT</codeph>)。</li>
-                <li>-3(<codeph>ERR_NOT_READY</codeph>)。</li>
+                <li>-2: 参数无效。</li>
+                <li>-3：SDK 尚未准备好。可能的原因有：
+                            <ul>
+                            <li><xref keyref="IRtcEngine" /> 初始化失败。请重新初始化 <apiname keyref="IRtcEngine" />。 </li>
+                            <li>调用方法时用户尚未加入频道。请检查方法的调用逻辑。 </li>
+                            <li>调用 <xref keyref="rate" /> 或 <xref keyref="complain" /> 方法时用户尚未离开频道。请检查方法的调用逻辑。 </li>
+                            <li>请检查是否已开启音频模块。请检查程序集完整性。</li>
+                            </ul></li>
                 </ul></li>
             </ul> </section>
     </refbody>
