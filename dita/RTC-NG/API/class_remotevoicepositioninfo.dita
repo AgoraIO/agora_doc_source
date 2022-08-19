@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_remotevoicepositioninfo">
-    <title><ph keyref="RemoteVoicePositionInfo" /></title>
+    <title><ph keyref="RemoteVoicePositionInfo"/></title>
     <shortdesc id="short"><ph id="shortdesc">远端用户或媒体播放器的空间位置信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -47,18 +47,34 @@
   
   forward?: number[];
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">class RemoteVoicePositionInfo {
+  const RemoteVoicePositionInfo({this.position, this.forward});
+
+  @JsonKey(name: 'position')
+  final List&lt;double>? position;
+
+  @JsonKey(name: 'forward')
+  final List&lt;double>? forward;
+
+  factory RemoteVoicePositionInfo.fromJson(Map&lt;String, dynamic> json) =>
+      _$RemoteVoicePositionInfoFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$RemoteVoicePositionInfoToJson(this);
+}</codeblock>
+            </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry conkeyref="updateSelfPosition/position">
-                <pt />
-                <pd />
+                <pt/>
+                <pd/>
             </plentry>
             <plentry>
                 <pt>forward</pt>
-                <pd conkeyref="updateSelfPosition/axisforward_desc" />
+                <pd conkeyref="updateSelfPosition/axisforward_desc"/>
             </plentry>
             </parml> </section>
     </refbody>
