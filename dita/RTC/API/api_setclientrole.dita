@@ -23,11 +23,11 @@
         </section>
         <section id="detailed_desc">
             <p id="desc">在加入频道前和加入频道后均可调用该方法设置用户角色。</p>
-            <p conkeyref="setClientRole2/preview"/>
             <p>该方法在加入频道前后均可调用。如果你在加入频道后调用该方法切换用户角色，调用成功后，SDK 会自动进行如下操作：
             <ul>
             <li>调用 <xref keyref="muteLocalAudioStream"/> 和 <xref keyref="muteLocalVideoStream"/> 修改发布状态。</li>
-            <li>本地会触发 <xref keyref="onClientRoleChanged"/> 或 <xref keyref="onClientRoleChangeFailed"/> 回调。</li>
+            <li props="native flutter">本地会触发 <xref keyref="onClientRoleChanged"/> 或 <xref keyref="onClientRoleChangeFailed"/> 回调。</li>
+            <li props="unity">本地会触发 <xref keyref="onClientRoleChanged"/> 回调。</li>
             <li>远端会触发 <xref keyref="onUserJoined"/> 或 <codeph><xref keyref="onUserOffline"/>(<apiname keyref="USER_OFFLINE_BECOME_AUDIENCE"/>)</codeph> 回调。</li>
             </ul></p>
             <note type="attention" props="rtc">该方法仅在频道场景为直播（<xref keyref="setChannelProfile"/> 中 <parmname>profile</parmname> 设为 <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING"/>）时生效。</note> </section>
