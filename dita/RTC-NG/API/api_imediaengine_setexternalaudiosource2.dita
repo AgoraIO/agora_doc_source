@@ -27,10 +27,30 @@
                                    int sourceNumber,
                                    bool localPlayback = false,
                                    bool publish = true) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract setExternalAudioSource(
+    enabled: boolean,
+    sampleRate: number,
+    channels: number,
+    sourceNumber?: number,
+    localPlayback?: boolean,
+    publish?: boolean
+  ): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetExternalAudioSource(bool enabled, int sampleRate, int channels, int sourceNumber, bool localPlayback = false, bool publish = true);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract setExternalAudioSource(
+    enabled: boolean,
+    sampleRate: number,
+    channels: number,
+    sourceNumber?: number,
+    localPlayback?: boolean,
+    publish?: boolean
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future<void> setExternalAudioSource(
+      {required bool enabled,
+      required int sampleRate,
+      required int channels,
+      int sourceNumber = 1,
+      bool localPlayback = false,
+      bool publish = true});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <note type="attention">请在加入频道前调用该方法。</note> </section>
@@ -83,7 +103,7 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="android ios mac cpp electron unity rn">
             <title>返回值</title>
             <ul id="ul_cff_fnf_3qb">
             <li>0：方法调用成功。</li>
