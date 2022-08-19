@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_playerstreaminfo">
-    <title><ph keyref="PlayerStreamInfo"/></title>
+    <title><ph keyref="PlayerStreamInfo" /></title>
     <shortdesc id="short"><ph id="shortdesc">The detailed information of the media stream.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -67,21 +67,35 @@
     memset(codecName, 0, sizeof(codecName));
     memset(language, 0, sizeof(language));</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class PlayerStreamInfo {
-  streamIndex?: number
-  streamType?: MediaStreamType
-  codecName?: string
-  language?: string
-  videoFrameRate?: number
-  videoBitRate?: number
-  videoWidth?: number
-  videoHeight?: number
-  videoRotation?: number
-  audioSampleRate?: number
-  audioChannels?: number
-  audioBitsPerSample?: number
-  duration?: number
+  
+  streamIndex?: number;
+  
+  streamType?: MediaStreamType;
+  
+  codecName?: string;
+  
+  language?: string;
+  
+  videoFrameRate?: number;
+  
+  videoBitRate?: number;
+  
+  videoWidth?: number;
+  
+  videoHeight?: number;
+  
+  videoRotation?: number;
+  
+  audioSampleRate?: number;
+  
+  audioChannels?: number;
+  
+  audioBitsPerSample?: number;
+  
+  duration?: number;
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class PlayerStreamInfo
+    {
         public int streamIndex { set; get; }
         public MEDIA_STREAM_TYPE streamType;
         public string codecName { set; get; }
@@ -93,9 +107,8 @@
         public int videoRotation { set; get; }
         public int audioSampleRate { set; get; }
         public int audioChannels { set; get; }
-        public int audioBitsPerSample { set; get; }
+        public int audioBitsPerSample { set; get; 
         public int64_t duration { set; get; }
-
         public PlayerStreamInfo()
         {
             streamIndex = 0;
@@ -109,23 +122,36 @@
             audioChannels = 0;
             audioBitsPerSample = 0;
             duration = 0;
-            codecName = null;
-            language = null;
+            codecName = "";
+            language = "";
         }
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class PlayerStreamInfo {
+  
   streamIndex?: number;
+  
   streamType?: MediaStreamType;
+  
   codecName?: string;
+  
   language?: string;
+  
   videoFrameRate?: number;
+  
   videoBitRate?: number;
+  
   videoWidth?: number;
+  
   videoHeight?: number;
+  
   videoRotation?: number;
+  
   audioSampleRate?: number;
+  
   audioChannels?: number;
+  
   audioBitsPerSample?: number;
+  
   duration?: number;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class PlayerStreamInfo {
@@ -170,16 +196,14 @@
   final int? audioBitsPerSample;
   @JsonKey(name: 'duration')
   final int? duration;
-  factory PlayerStreamInfo.fromJson(Map&lt;String, dynamic> json) =>
+  factory PlayerStreamInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$PlayerStreamInfoFromJson(json);
-  Map&lt;String, dynamic> toJson() => _$PlayerStreamInfoToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$PlayerStreamInfoToJson(this);
 }</codeblock>
             </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>streamIndex</pt>
@@ -189,10 +213,10 @@
                 <pt props="ios mac cpp unity electron rn flutter">streamType</pt>
                 <pt props="android">mediaStreamType</pt>
                 <pd><ph>The type of the media stream. </ph><ph props="ios mac cpp unity electron rn flutter">See <xref keyref="MEDIA_STREAM_TYPE" />.</ph><ul props="android">
-                    <li><ph keyref="STREAM_TYPE_UNKNOWN"/>(0): The type is unknown.</li>
-                    <li><ph keyref="STREAM_TYPE_VIDEO"/>(1): The video stream.</li>
-                    <li><ph keyref="STREAM_TYPE_AUDIO"/>(2): The audio stream.</li>
-                    <li><ph keyref="STREAM_TYPE_SUBTITLE"/>(3): The subtitle stream.</li>
+                    <li><ph keyref="STREAM_TYPE_UNKNOWN" />(0): The type is unknown.</li>
+                    <li><ph keyref="STREAM_TYPE_VIDEO" />(1): The video stream.</li>
+                    <li><ph keyref="STREAM_TYPE_AUDIO" />(2): The audio stream.</li>
+                    <li><ph keyref="STREAM_TYPE_SUBTITLE" />(3): The subtitle stream.</li>
                     </ul> </pd>
             </plentry>
             <plentry>

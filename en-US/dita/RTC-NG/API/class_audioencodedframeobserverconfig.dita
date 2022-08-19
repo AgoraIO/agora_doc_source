@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audioencodedframeobserverconfig">
-    <title> <ph keyref="AudioEncodedFrameObserverConfig"/> </title>
+    <title> <ph keyref="AudioEncodedFrameObserverConfig" /> </title>
     <shortdesc id="short"><ph id="shortdesc">Observer settings for encoded audio.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -26,7 +26,12 @@
     : postionType(AUDIO_ENCODED_FRAME_OBSERVER_POSITION_PLAYBACK),
       encodingType(AUDIO_ENCODING_TYPE_OPUS_48000_MEDIUM){}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export class AudioEncodedFrameObserverConfig {
+  
+  postionType?: AudioEncodedFrameObserverPosition;
+  
+  encodingType?: AudioEncodingType;
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class AudioEncodedFrameObserverConfig
     {
         public AudioEncodedFrameObserverConfig()
@@ -44,7 +49,12 @@
         public AUDIO_ENCODED_FRAME_OBSERVER_POSITION postionType { set; get; }
         public AUDIO_ENCODING_TYPE encodingType { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">export class AudioEncodedFrameObserverConfig {
+  
+  postionType?: AudioEncodedFrameObserverPosition;
+  
+  encodingType?: AudioEncodingType;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class AudioEncodedFrameObserverConfig {
   const AudioEncodedFrameObserverConfig({this.postionType, this.encodingType});
 
@@ -52,50 +62,44 @@
   final AudioEncodedFrameObserverPosition? postionType;
   @JsonKey(name: 'encodingType')
   final AudioEncodingType? encodingType;
-  factory AudioEncodedFrameObserverConfig.fromJson(Map&lt;String, dynamic> json) =>
+  factory AudioEncodedFrameObserverConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$AudioEncodedFrameObserverConfigFromJson(json);
-  Map&lt;String, dynamic> toJson() =>
+  Map&lt;String, dynamic&gt; toJson() =&gt;
       _$AudioEncodedFrameObserverConfigToJson(this);
 }
 </codeblock>
             </p>
         </section>
         <section id="parameters">
-            <title> <text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /> </title>
+            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>
             <parml>
             <plentry>
                 <pt>postionType</pt>
                 <pd>
-                    <p props="cpp flutter ios mac unity">Audio profile. See <xref keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION"/>.</p>
+                    <p props="cpp flutter ios mac unity">Audio profile. See <xref keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION" />.</p>
                     <p props="android">Audio profile:<ul>
-                    <li><ph
-                        keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_RECORD"/>(1): Only encode the audio of the local user.</li>
-                    <li><ph
-                        keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_PLAYBACK"/>(2): Only encode the audio of all remote users.</li>
-                    <li><ph
-                        keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_MIXED"/>(3): Records the mixed audio of the local and all remote users.</li>
+                    <li><ph keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_RECORD" />(1): Only encode the audio of the local user.</li>
+                    <li><ph keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_PLAYBACK" />(2): Only encode the audio of all remote users.</li>
+                    <li><ph keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_MIXED" />(3): Records the mixed audio of the local and all remote users.</li>
                     </ul> </p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>encodingType</pt>
                 <pd>
-                    <p props="cpp flutter ios mac unity">Audio encoding type. See <xref keyref="AUDIO_ENCODING_TYPE"/>.</p>
+                    <p props="cpp flutter ios mac unity">Audio encoding type. See <xref keyref="AUDIO_ENCODING_TYPE" />.</p>
                     <p props="android">Audio encoding type:<ul>
-                    <li><ph keyref="AUDIO_ENCODING_TYPE_AAC_16000_LOW"/>: AAC encoding format, 16000 Hz sampling rate, low quality. A file with an audio duration of 10 minutes is approximately 1.2 MB after encoding.</li>
-                    <li><ph keyref="AUDIO_ENCODING_TYPE_AAC_16000_MEDIUM"/>: AAC encoding format, 16000 Hz sampling rate, medium quality. A file with an audio duration of 10 minutes is approximately 2 MB after encoding.</li>
-                    <li><ph keyref="AUDIO_ENCODING_TYPE_AAC_32000_LOW"/>: AAC encoding format, 32000 Hz sampling rate, low quality. A file with an audio duration of 10 minutes is approximately 1.2 MB after encoding.</li>
-                    <li><ph keyref="AUDIO_ENCODING_TYPE_AAC_32000_MEDIUM"/>: AAC encoding format, 32000 Hz sampling rate, medium quality. A file with an audio duration of 10 minutes is approximately 2 MB after encoding.</li>
-                    <li><ph keyref="AUDIO_ENCODING_TYPE_AAC_32000_HIGH"/>: AAC encoding format, 32000 Hz sampling rate, high quality. A file with an audio duration of 10 minutes is approximately 3.5 MB after encoding.</li>
-                    <li><ph keyref="AUDIO_ENCODING_TYPE_AAC_48000_MEDIUM"/>: AAC encoding format, 48000 Hz sampling rate, medium quality. A file with an audio duration of 10 minutes is approximately 2 MB after encoding.</li>
-                    <li><ph keyref="AUDIO_ENCODING_TYPE_AAC_48000_HIGH"/>: AAC encoding format, 48000 Hz sampling rate, high quality. A file with an audio duration of 10 minutes is approximately 3.5 MB after encoding.</li>
-                    <li><ph keyref="AUDIO_ENCODING_TYPE_OPUS_16000_LOW"/>: OPUS encoding format, 16000 Hz sampling rate, low quality. A file with an audio duration of 10 minutes is approximately 2 MB after encoding.</li>
-                    <li><ph keyref="AUDIO_ENCODING_TYPE_OPUS_16000_MEDIUM"/>: OPUS encoding format, 16000 Hz sampling rate, medium quality. A file with an audio duration of 10 minutes is approximately 2 MB after encoding.</li>
-                    <li><ph keyref="AUDIO_ENCODING_TYPE_OPUS_48000_MEDIUM"/>: OPUS encoding format, 48000 Hz sampling rate, medium quality. A file with an audio duration of 10 minutes is approximately 2 MB after encoding.</li>
-                    <li><ph keyref="AUDIO_ENCODING_TYPE_OPUS_48000_HIGH"
-                        />: OPUS encoding format, 48000 Hz sampling rate, high quality. A file with an audio duration of 10 minutes is approximately 3.5 MB after encoding.</li>
+                    <li><ph keyref="AUDIO_ENCODING_TYPE_AAC_16000_LOW" />: AAC encoding format, 16000 Hz sampling rate, low quality. A file with an audio duration of 10 minutes is approximately 1.2 MB after encoding.</li>
+                    <li><ph keyref="AUDIO_ENCODING_TYPE_AAC_16000_MEDIUM" />: AAC encoding format, 16000 Hz sampling rate, medium quality. A file with an audio duration of 10 minutes is approximately 2 MB after encoding.</li>
+                    <li><ph keyref="AUDIO_ENCODING_TYPE_AAC_32000_LOW" />: AAC encoding format, 32000 Hz sampling rate, low quality. A file with an audio duration of 10 minutes is approximately 1.2 MB after encoding.</li>
+                    <li><ph keyref="AUDIO_ENCODING_TYPE_AAC_32000_MEDIUM" />: AAC encoding format, 32000 Hz sampling rate, medium quality. A file with an audio duration of 10 minutes is approximately 2 MB after encoding.</li>
+                    <li><ph keyref="AUDIO_ENCODING_TYPE_AAC_32000_HIGH" />: AAC encoding format, 32000 Hz sampling rate, high quality. A file with an audio duration of 10 minutes is approximately 3.5 MB after encoding.</li>
+                    <li><ph keyref="AUDIO_ENCODING_TYPE_AAC_48000_MEDIUM" />: AAC encoding format, 48000 Hz sampling rate, medium quality. A file with an audio duration of 10 minutes is approximately 2 MB after encoding.</li>
+                    <li><ph keyref="AUDIO_ENCODING_TYPE_AAC_48000_HIGH" />: AAC encoding format, 48000 Hz sampling rate, high quality. A file with an audio duration of 10 minutes is approximately 3.5 MB after encoding.</li>
+                    <li><ph keyref="AUDIO_ENCODING_TYPE_OPUS_16000_LOW" />: OPUS encoding format, 16000 Hz sampling rate, low quality. A file with an audio duration of 10 minutes is approximately 2 MB after encoding.</li>
+                    <li><ph keyref="AUDIO_ENCODING_TYPE_OPUS_16000_MEDIUM" />: OPUS encoding format, 16000 Hz sampling rate, medium quality. A file with an audio duration of 10 minutes is approximately 2 MB after encoding.</li>
+                    <li><ph keyref="AUDIO_ENCODING_TYPE_OPUS_48000_MEDIUM" />: OPUS encoding format, 48000 Hz sampling rate, medium quality. A file with an audio duration of 10 minutes is approximately 2 MB after encoding.</li>
+                    <li><ph keyref="AUDIO_ENCODING_TYPE_OPUS_48000_HIGH" />: OPUS encoding format, 48000 Hz sampling rate, high quality. A file with an audio duration of 10 minutes is approximately 3.5 MB after encoding.</li>
                     </ul> </p>
                 </pd>
             </plentry>
