@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_open">
-    <title><ph keyref="open"/></title>
+    <title><ph keyref="open" /></title>
     <shortdesc id="short"><ph id="shortdesc">Opens the media resource.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="open"/>
+                <indexterm keyref="open" />
             </keywords>
         </metadata>
     </prolog>
@@ -18,21 +18,22 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)open:(NSString *)url startPos:(NSInteger)startPos;
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int open(const char* url, int64_t startPos) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="electron" outputclass="language-typescript">abstract open(url: string, startPos: number): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int Open(string url, Int64 startPos);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract open(url: string, startPos: number): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; open({required String url, required int startPos});</codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p props="cn">If you want to choose the CDN route for playing the media resource, you can call the <xref keyref="openWithAgoraCDNSrc"/> method. Agora changes the CDN route through the self-developed scheduling center to improve the viewing user experience. If you want to choose the CDN route for playing the media resource, you can call the <xref keyref="open"/> method.</p>
+            <p props="cn">If you want to choose the CDN route for playing the media resource, you can call the <xref keyref="openWithAgoraCDNSrc" /> method. Agora changes the CDN route through the self-developed scheduling center to improve the viewing user experience. If you want to choose the CDN route for playing the media resource, you can call the <xref keyref="open" /> method.</p>
             <note type="attention" id="note">
-            <p>This method is called asynchronously. If you need to play a media file, make sure you receive the <xref keyref="onPlayerSourceStateChanged"/> callback reporting <apiname keyref="PLAYER_STATE_OPEN_COMPLETED"/> before calling the <xref keyref="play"/> method to play the file.</p>
+            <p>This method is called asynchronously. If you need to play a media file, make sure you receive the <xref keyref="onPlayerSourceStateChanged" /> callback reporting <apiname keyref="PLAYER_STATE_OPEN_COMPLETED" /> before calling the <xref keyref="play" /> method to play the file.</p>
             </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>url</pt>
-                <pd>The path of the media file. Both local path and online path are supported.<note type="attention" props="android">If you need to open a media file through URI, use <xref keyref="open2"/> instead.</note></pd>
+                <pd>The path of the media file. Both local path and online path are supported.<note type="attention" props="android">If you need to open a media file through URI, use <xref keyref="open2" /> instead.</note></pd>
             </plentry>
             <plentry>
                 <pt>startPos</pt>

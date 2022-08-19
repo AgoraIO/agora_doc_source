@@ -25,8 +25,8 @@
     int samplesPerCall) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setRecordingAudioFrameParameters(sampleRate: number, channel: number, mode: RawAudioFrameOpModeType, samplesPerCall: number): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetRecordingAudioFrameParameters(int sampleRate, int channel, RAW_AUDIO_FRAME_OP_MODE_TYPE mode, int samplesPerCall);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setRecordingAudioFrameParameters(
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRecordingAudioFrameParameters(
     {required int sampleRate,
     required int channel,
     required RawAudioFrameOpModeType mode,
@@ -51,7 +51,7 @@
             <plentry>
                 <pt>channel</pt>
                 <pd props="native unity flutter">
-                    <p>The number of channels returned in the <apiname keyref="onRecordAudioFrame"/> callback:<ul>
+                    <p>The number of channels returned in the <apiname keyref="onRecordAudioFrame" /> callback:<ul>
                     <li>1: Mono (one channel).</li>
                     <li>2: Stereo (two channels).</li>
                     </ul></p>
@@ -66,14 +66,14 @@
             <plentry>
                 <pt>mode</pt>
                 <pd props="native unity flutter">
-                    <p props="ios mac cpp unity flutter">The use mode of the audio frame. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>.</p>
-                    <p conkeyref="registerAudioFrameObserver2_IMediaPlayer/mode" props="android"/>
+                    <p props="ios mac cpp unity flutter">The use mode of the audio frame. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />.</p>
+                    <p conkeyref="registerAudioFrameObserver2_IMediaPlayer/mode" props="android" />
                 </pd>
                 <pd props="electron">The use mode of the returned data from the SDK. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />.</pd>
             </plentry>
             <plentry>
                 <pt>samplesPerCall</pt>
-                <pd props="native unity flutter">The number of data samples returned in the <apiname keyref="onRecordAudioFrame"/> callback, such as 1024 for the media push.</pd>
+                <pd props="native unity flutter">The number of data samples returned in the <apiname keyref="onRecordAudioFrame" /> callback, such as 1024 for the media push.</pd>
                 <pd props="electron">The number of data samples returned in the SDK, such as 1024 for the media push.</pd>
             </plentry>
             </parml> </section>

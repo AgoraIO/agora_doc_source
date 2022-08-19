@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_channelmediarelayconfiguration">
-    <title> <ph keyref="ChannelMediaRelayConfiguration"/> </title>
-    <shortdesc>The definition of <apiname keyref="ChannelMediaRelayConfiguration"/>.</shortdesc>
+    <title> <ph keyref="ChannelMediaRelayConfiguration" /> </title>
+    <shortdesc>The definition of <apiname keyref="ChannelMediaRelayConfiguration" />.</shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -73,12 +73,12 @@
     @JsonKey(name: 'srcInfo')
     final ChannelMediaInfo? srcInfo;
     @JsonKey(name: 'destInfos')
-    final List&lt;ChannelMediaInfo>? destInfos;
+    final List&lt;ChannelMediaInfo&gt;? destInfos;
     @JsonKey(name: 'destCount')
     final int? destCount;
-    factory ChannelMediaRelayConfiguration.fromJson(Map&lt;String, dynamic> json) =>
+    factory ChannelMediaRelayConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
         _$ChannelMediaRelayConfigurationFromJson(json);
-    Map&lt;String, dynamic> toJson() => _$ChannelMediaRelayConfigurationToJson(this);
+    Map&lt;String, dynamic&gt; toJson() =&gt; _$ChannelMediaRelayConfigurationToJson(this);
   }</codeblock>
             </p>
         </section>
@@ -90,10 +90,10 @@
                 <pt props="ios mac">sourceInfo</pt>
                 <pd>
                     <p>The information of the source channel <xref keyref="ChannelMediaInfo" />. It contains the following members:<ul>
-                    <li><codeph>channelName</codeph>: The name of the source channel. The default value is <codeph><ph keyref="NULL"/></codeph>, which means the SDK applies the name of the current channel.</li>
+                    <li><codeph>channelName</codeph>: The name of the source channel. The default value is <codeph><ph keyref="NULL" /></codeph>, which means the SDK applies the name of the current channel.</li>
                     <li><codeph>uid</codeph>: The unique ID to identify the relay stream in the source channel. The default value is 0, which means the SDK generates a random <codeph>uid</codeph>. You must set it as 0.</li>
                     <li><codeph>token</codeph>: The <codeph>token</codeph> for joining the source channel. It is generated with the <codeph>channelName</codeph> and <codeph>uid</codeph> you set in <codeph>srcInfo</codeph>.<ul>
-                        <li>If you have not enabled the App Certificate, set this parameter as the default value <codeph><ph keyref="NULL"/></codeph>, which means the SDK applies the App ID.</li>
+                        <li>If you have not enabled the App Certificate, set this parameter as the default value <codeph><ph keyref="NULL" /></codeph>, which means the SDK applies the App ID.</li>
                         <li>If you have enabled the App Certificate, you must use the <codeph>token</codeph> generated with the <codeph>channelName</codeph> and <codeph>uid</codeph>, and the <codeph>uid</codeph> must be set as 0.</li>
                         </ul> </li>
                     </ul> </p>
@@ -107,7 +107,7 @@
                     <li><codeph>channelName</codeph>: The name of the destination channel.</li>
                     <li><codeph>uid</codeph>: The unique ID to identify the relay stream in the destination channel. The value ranges from 0 to (2<sup>32</sup>-1). To avoid UID conflicts, this UID must be different from any other UID in the destination channel. The default value is 0, which means the SDK generates a random UID. Do not set this parameter as the UID of the host in the destination channel, and ensure that this UID is different from any other UID in the channel.</li>
                     <li><codeph>token</codeph>: The <codeph>token</codeph> for joining the destination channel. It is generated with the <codeph>channelName</codeph> and <codeph>uid</codeph> you set in <codeph>destInfos</codeph>.<ul>
-                        <li>If you have not enabled the App Certificate, set this parameter as the default value <codeph><ph keyref="NULL"/></codeph>, which means the SDK applies the App ID.</li>
+                        <li>If you have not enabled the App Certificate, set this parameter as the default value <codeph><ph keyref="NULL" /></codeph>, which means the SDK applies the App ID.</li>
                         <li>If you have enabled the App Certificate, you must use the <codeph>token</codeph> generated with the <codeph>channelName</codeph> and <codeph>uid</codeph>.</li>
                         </ul> </li>
                     </ul> </p>
@@ -115,7 +115,7 @@
             </plentry>
             <plentry props="cpp unity electron rn flutter">
                 <pt>destCount</pt>
-                <pd>The number of destination channels. The default value is 0, and the value range is from 0 to 4. Ensure that the value of this parameter corresponds to the number of <apiname keyref="ChannelMediaInfo"/> structs you define in <codeph>destInfo</codeph>.</pd>
+                <pd>The number of destination channels. The default value is 0, and the value range is from 0 to 4. Ensure that the value of this parameter corresponds to the number of <apiname keyref="ChannelMediaInfo" /> structs you define in <codeph>destInfo</codeph>.</pd>
             </plentry>
             </parml> </section>
     </refbody>

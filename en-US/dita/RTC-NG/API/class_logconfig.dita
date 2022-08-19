@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_logconfig">
-    <title><ph keyref="LogConfig"/></title>
+    <title><ph keyref="LogConfig" /></title>
     <shortdesc id="short"><ph id="shortdesc">Configuration of Agora SDK log files.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -61,34 +61,32 @@
   final int? fileSizeInKB;
   @JsonKey(name: 'level')
   final LogLevel? level;
-  factory LogConfig.fromJson(Map&lt;String, dynamic> json) =>
+  factory LogConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$LogConfigFromJson(json);
-  Map&lt;String, dynamic> toJson() => _$LogConfigToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$LogConfigToJson(this);
 }</codeblock>
             </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>filePath</pt>
                 <pd>
                     <p>The complete path of the log files. Ensure that the path for the log file exists and is writable. You can use this parameter to rename the log files.</p>
                     <p props="cpp unity electron rn">The default file path is:<ul>
-                    <li props="cpp unity rn flutter">Android：<filepath id="android-path">/storage/emulated/0/Android/data/&lt;packagename>/files/agorasdk.log</filepath>.</li>
+                    <li props="cpp unity rn flutter">Android：<filepath id="android-path">/storage/emulated/0/Android/data/&lt;packagename&gt;/files/agorasdk.log</filepath>.</li>
                     <li props="cpp unity rn flutter">iOS：<filepath id="ios-path">App Sandbox/Library/caches/agorasdk.log</filepath>.</li>
                     <li props="cpp unity electron flutter">macOS<ul id="mac-path">
-                        <li>If Sandbox is enabled:<filepath> App~/Library/Logs/agorasdk.log.</filepath> For example, <filepath>/Users/&lt;username>/Library/Containers/&lt;AppBundleIdentifier>/Data/Library/Logs/agorasdk.log</filepath>.</li>
+                        <li>If Sandbox is enabled:<filepath> App~/Library/Logs/agorasdk.log.</filepath> For example, <filepath>/Users/&lt;username&gt;/Library/Containers/&lt;AppBundleIdentifier&gt;/Data/Library/Logs/agorasdk.log</filepath>.</li>
                         <li>If Sandbox is disabled: <filepath>~/Library/Logs/agorasdk.log.</filepath></li>
                         </ul></li>
-                    <li props="cpp unity electron flutter">Windows：<filepath>C:\Users\&lt;user_name>\AppData\Local\Agora\&lt;process_name>\agorasdk.log</filepath>。</li>
+                    <li props="cpp unity electron flutter">Windows：<filepath>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\agorasdk.log</filepath>。</li>
                     </ul></p>
-                    <p props="android">The default path is <filepath>/storage/emulated/0/Android/data/&lt;packagename>/files/agorasdk.log</filepath>.</p>
+                    <p props="android">The default path is <filepath>/storage/emulated/0/Android/data/&lt;packagename&gt;/files/agorasdk.log</filepath>.</p>
                     <p props="ios">The default path is <filepath>AppSandbox/Library/caches/agorasdk.log</filepath>.</p>
                     <p props="mac">The default path is:<ul>
-                    <li>If Sandbox is enabled: <filepath>App~/Library/Logs/agorasdk.log.</filepath> For example, <filepath>/Users/&lt;username>/Library/Containers/&lt;AppBundleIdentifier>/Data/Library/Logs/agorasdk.log</filepath>.</li>
+                    <li>If Sandbox is enabled: <filepath>App~/Library/Logs/agorasdk.log.</filepath> For example, <filepath>/Users/&lt;username&gt;/Library/Containers/&lt;AppBundleIdentifier&gt;/Data/Library/Logs/agorasdk.log</filepath>.</li>
                     <li>If Sandbox is disabled: <filepath>~/Library/Logs/agorasdk.log</filepath>.</li>
                     </ul> </p>
                 </pd>
@@ -104,7 +102,7 @@
             <plentry>
                 <pt>level</pt>
                 <pd>
-                    <p>The output level of the SDK log file. See <xref keyref="LOG_LEVEL"/>.</p>
+                    <p>The output level of the SDK log file. See <xref keyref="LOG_LEVEL" />.</p>
                     <p>For example, if you set the log level to WARN, the SDK outputs the logs within levels FATAL, ERROR, and WARN.</p>
                 </pd>
             </plentry>

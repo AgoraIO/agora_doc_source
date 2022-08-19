@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_clientroleoptions">
-    <title><ph keyref="ClientRoleOptions"/></title>
+    <title><ph keyref="ClientRoleOptions" /></title>
     <shortdesc id="short"><ph id="shortdesc">The detailed options of a user.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -24,13 +24,16 @@
   ClientRoleOptions()
     : audienceLatencyLevel(AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY),
 };</codeblock>
-                <codeblock props="electron" outputclass="language-typescript"></codeblock>
+<codeblock props="electron" outputclass="language-typescript">export class ClientRoleOptions {
+    audienceLatencyLevel?: AudienceLatencyLevelType
+  }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class ClientRoleOptions
     {
         public ClientRoleOptions()
         {
-            audienceLatencyLevel = AUDIENCE_LATENCY_LEVEL_TYPE.AUDIENCE_LATENCY_LEVEL_LOW_LATENCY;
+            audienceLatencyLevel = AUDIENCE_LATENCY_LEVEL_TYPE.AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY;
         }
+
         public ClientRoleOptions(AUDIENCE_LATENCY_LEVEL_TYPE audienceLatencyLevel)
         {
             this.audienceLatencyLevel = audienceLatencyLevel;
@@ -46,21 +49,21 @@
 
   @JsonKey(name: 'audienceLatencyLevel')
   final AudienceLatencyLevelType? audienceLatencyLevel;
-  factory ClientRoleOptions.fromJson(Map&lt;String, dynamic> json) =>
+  factory ClientRoleOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$ClientRoleOptionsFromJson(json);
-  Map&lt;String, dynamic> toJson() => _$ClientRoleOptionsToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ClientRoleOptionsToJson(this);
 }</codeblock>
             </p>
         </section>
         <section id="parameters">
-            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/> </title>
+            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>
             <parml>
                 <plentry id="audiencelatencylevel">
                     <pt>audienceLatencyLevel</pt>
                 <pd><ph>The latency level of an audience member in interactive live streaming. </ph><ph props="ios mac cpp unity electron rn flutter">See <xref keyref="AUDIENCE_LATENCY_LEVEL_TYPE" />.</ph>
                     <ul props="android">
-                    <li><ph keyref="AUDIENCE_LATENCY_LEVEL_LOW_LATENCY"/>1: Low latency.</li>
-                    <li><ph keyref="AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY"/>2: (Default) Ultra low latency.</li>
+                    <li><ph keyref="AUDIENCE_LATENCY_LEVEL_LOW_LATENCY" />1: Low latency.</li>
+                    <li><ph keyref="AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY" />2: (Default) Ultra low latency.</li>
                     </ul> </pd>
             </plentry>
             </parml> </section>
