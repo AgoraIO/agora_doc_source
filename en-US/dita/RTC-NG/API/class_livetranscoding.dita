@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_livetranscoding">
-  <title> <ph keyref="LiveTranscoding"/> </title>
+  <title> <ph keyref="LiveTranscoding" /> </title>
   <shortdesc id="short"><ph id="shortdesc">Transcoding configurations for Media Push.</ph></shortdesc>
   <refbody>
     <section id="prototype">
@@ -282,29 +282,52 @@
   LiveTranscoding() : width(360), height(640), videoBitrate(400), videoFramerate(15), lowLatency(false), videoGop(30), videoCodecProfile(VIDEO_CODEC_PROFILE_HIGH), backgroundColor(0x000000), videoCodecType(VIDEO_CODEC_H264_FOR_STREAM), userCount(0), transcodingUsers(NULL), transcodingExtraInfo(NULL), metadata(NULL), watermark(NULL), watermarkCount(0), backgroundImage(NULL), backgroundImageCount(0), audioSampleRate(AUDIO_SAMPLE_RATE_48000), audioBitrate(48), audioChannels(1), audioCodecProfile(AUDIO_CODEC_PROFILE_LC_AAC), advancedFeatures(NULL), advancedFeatureCount(0) {}
 };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class LiveTranscoding {
-  width?: number
-  height?: number
-  videoBitrate?: number
-  videoFramerate?: number
-  lowLatency?: boolean
-  videoGop?: number
-  videoCodecProfile?: VideoCodecProfileType
-  backgroundColor?: number
-  videoCodecType?: VideoCodecTypeForStream
-  userCount?: number
-  transcodingUsers?: TranscodingUser[]
-  transcodingExtraInfo?: string
-  metadata?: string
-  watermark?: RtcImage[]
-  watermarkCount?: number
-  backgroundImage?: RtcImage[]
-  backgroundImageCount?: number
-  audioSampleRate?: AudioSampleRateType
-  audioBitrate?: number
-  audioChannels?: number
-  audioCodecProfile?: AudioCodecProfileType
-  advancedFeatures?: LiveStreamAdvancedFeature[]
-  advancedFeatureCount?: number
+  
+  width?: number;
+  
+  height?: number;
+  
+  videoBitrate?: number;
+  
+  videoFramerate?: number;
+  
+  lowLatency?: boolean;
+  
+  videoGop?: number;
+  
+  videoCodecProfile?: VideoCodecProfileType;
+  
+  backgroundColor?: number;
+  
+  videoCodecType?: VideoCodecTypeForStream;
+  
+  userCount?: number;
+  
+  transcodingUsers?: TranscodingUser[];
+  
+  transcodingExtraInfo?: string;
+  
+  metadata?: string;
+  
+  watermark?: RtcImage[];
+  
+  watermarkCount?: number;
+  
+  backgroundImage?: RtcImage[];
+  
+  backgroundImageCount?: number;
+  
+  audioSampleRate?: AudioSampleRateType;
+  
+  audioBitrate?: number;
+  
+  audioChannels?: number;
+  
+  audioCodecProfile?: AudioCodecProfileType;
+  
+  advancedFeatures?: LiveStreamAdvancedFeature[];
+  
+  advancedFeatureCount?: number;
 }</codeblock>
       <codeblock props="unity" outputclass="language-csharp">public class LiveTranscoding
     {
@@ -392,28 +415,51 @@
         public uint advancedFeatureCount { set; get; }
     }</codeblock>
       <codeblock props="rn" outputclass="language-typescript">export class LiveTranscoding {
+  
   width?: number;
+  
   height?: number;
+  
   videoBitrate?: number;
+  
   videoFramerate?: number;
+  
   lowLatency?: boolean;
+  
   videoGop?: number;
+  
   videoCodecProfile?: VideoCodecProfileType;
+  
   backgroundColor?: number;
+  
   videoCodecType?: VideoCodecTypeForStream;
+  
   userCount?: number;
+  
   transcodingUsers?: TranscodingUser[];
+  
   transcodingExtraInfo?: string;
+  
   metadata?: string;
+  
   watermark?: RtcImage[];
+  
   watermarkCount?: number;
+  
   backgroundImage?: RtcImage[];
+  
   backgroundImageCount?: number;
+  
   audioSampleRate?: AudioSampleRateType;
+  
   audioBitrate?: number;
+  
   audioChannels?: number;
+  
   audioCodecProfile?: AudioCodecProfileType;
+  
   advancedFeatures?: LiveStreamAdvancedFeature[];
+  
   advancedFeatureCount?: number;
 }</codeblock>
       <codeblock props="flutter" outputclass="language-dart">class LiveTranscoding {
@@ -463,17 +509,17 @@
   @JsonKey(name: 'userCount')
   final int? userCount;
   @JsonKey(name: 'transcodingUsers')
-  final List&lt;TranscodingUser>? transcodingUsers;
+  final List&lt;TranscodingUser&gt;? transcodingUsers;
   @JsonKey(name: 'transcodingExtraInfo')
   final String? transcodingExtraInfo;
   @JsonKey(name: 'metadata')
   final String? metadata;
   @JsonKey(name: 'watermark')
-  final List&lt;RtcImage>? watermark;
+  final List&lt;RtcImage&gt;? watermark;
   @JsonKey(name: 'watermarkCount')
   final int? watermarkCount;
   @JsonKey(name: 'backgroundImage')
-  final List&lt;RtcImage>? backgroundImage;
+  final List&lt;RtcImage&gt;? backgroundImage;
   @JsonKey(name: 'backgroundImageCount')
   final int? backgroundImageCount;
   @JsonKey(name: 'audioSampleRate')
@@ -485,19 +531,17 @@
   @JsonKey(name: 'audioCodecProfile')
   final AudioCodecProfileType? audioCodecProfile;
   @JsonKey(name: 'advancedFeatures')
-  final List&lt;LiveStreamAdvancedFeature>? advancedFeatures;
+  final List&lt;LiveStreamAdvancedFeature&gt;? advancedFeatures;
   @JsonKey(name: 'advancedFeatureCount')
   final int? advancedFeatureCount;
-  factory LiveTranscoding.fromJson(Map&lt;String, dynamic> json) =>
+  factory LiveTranscoding.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$LiveTranscodingFromJson(json);
-  Map&lt;String, dynamic> toJson() => _$LiveTranscodingToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$LiveTranscodingToJson(this);
 }</codeblock>
       </p>
     </section>
     <section id="parameters">
-      <title><text
-      conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-      /></title>
+      <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
       <parml>
       <plentry props="android cpp electron rn unity flutter">
         <pt>width</pt>
@@ -533,14 +577,14 @@
         <pt>videoBitrate</pt>
         <pd>
           <p>Bitrate of the output video stream for Media Push in Kbps. The default value is 400 Kbps.</p>
-          <p props="native">Set this parameter according to the <xref keyref="video-profile-table" >Video profile</xref> table. If you set a bitrate beyond the proper range, the SDK automatically adapts it to a value within the range.</p>
+          <p props="native">Set this parameter according to the <xref keyref="video-profile-table">Video profile</xref> table. If you set a bitrate beyond the proper range, the SDK automatically adapts it to a value within the range.</p>
         </pd>
       </plentry>
       <plentry>
         <pt>videoFrameRate</pt>
         <pd>
           <p>Frame rate (in fps) of the output video stream set for Media Push. The default value is 15 , and the value range is (0,30].</p>
-          <note type="attention" >The Agora server adjusts any value over 30 to 30.</note></pd>
+          <note type="attention">The Agora server adjusts any value over 30 to 30.</note></pd>
       </plentry>
       <plentry>
         <pt>lowLatency</pt>
@@ -553,8 +597,8 @@
           </dl>
           <p>Latency mode:</p>
           <ul>
-          <li><codeph><ph keyref="true"/></codeph>: Low latency with unassured quality.</li>
-          <li><codeph><ph keyref="false"/></codeph>: (Default) High latency with assured quality.</li>
+          <li><codeph><ph keyref="true" /></codeph>: Low latency with unassured quality.</li>
+          <li><codeph><ph keyref="false" /></codeph>: (Default) High latency with assured quality.</li>
           </ul></pd>
       </plentry>
       <plentry>
@@ -564,7 +608,7 @@
       <plentry>
         <pt>videoCodecProfile</pt>
         <pd>
-          <p>Video codec profile type for Media Push. Set it as 66, 77, or 100 (default). See <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/> for details.</p>
+          <p>Video codec profile type for Media Push. Set it as 66, 77, or 100 (default). See <xref keyref="VIDEO_CODEC_PROFILE_TYPE" /> for details.</p>
           <note type="attention">If you set this parameter to any other value, Agora adjusts it to the default value.</note></pd>
       </plentry>
       <plentry>
@@ -574,7 +618,7 @@
       <plentry>
         <pt>transcodingUsers</pt>
         <pd>
-          <p>Manages the user layout configuration in the Media Push. Agora supports a maximum of 17 transcoding users in a Media Push channel. See <xref keyref="TranscodingUser"/>.</p>
+          <p>Manages the user layout configuration in the Media Push. Agora supports a maximum of 17 transcoding users in a Media Push channel. See <xref keyref="TranscodingUser" />.</p>
         </pd>
       </plentry>
       <plentry>
@@ -601,7 +645,7 @@
           <dl outputclass="deprecated">
           <dlentry>
             <dt>Deprecated</dt>
-            <dd>This parameter is deprecated. Use <xref keyref="setBackgroundColor"/> instead.</dd>
+            <dd>This parameter is deprecated. Use <xref keyref="setBackgroundColor" /> instead.</dd>
           </dlentry>
           </dl>
         </pd>
@@ -615,7 +659,7 @@
           <dl outputclass="deprecated" props="android">
           <dlentry>
             <dt>Deprecated</dt>
-            <dd>This parameter is deprecated. Use <xref keyref="getUserCount"/> instead.</dd>
+            <dd>This parameter is deprecated. Use <xref keyref="getUserCount" /> instead.</dd>
           </dlentry>
           </dl>
           <p>The number of users in the video mixing. The value range is [0,17].</p>
@@ -639,7 +683,7 @@
           <dl outputclass="deprecated" props="android ios mac">
           <dlentry>
             <dt>Deprecated</dt>
-            <dd props="android">Please use <xref keyref="addWatermark"/> instead.</dd>
+            <dd props="android">Please use <xref keyref="addWatermark" /> instead.</dd>
             <dd props="ios mac">Use <parmname>watermarkArray</parmname>.</dd>
           </dlentry>
           </dl>
@@ -662,12 +706,12 @@
       </plentry>
       <plentry props="ios mac">
         <pt>backgroundImageArray</pt>
-        <pd>An array of background images on the live video. See <xref keyref="RtcImage"/>. You can use <parmname>backgroundImageArray</parmname> to add one or more <parmname>background</parmname> images. The image format needs to be PNG. The total number of watermarks and background images on a live video must be greater than or equal to 0 and less than or equal to 10.</pd>
+        <pd>An array of background images on the live video. See <xref keyref="RtcImage" />. You can use <parmname>backgroundImageArray</parmname> to add one or more <parmname>background</parmname> images. The image format needs to be PNG. The total number of watermarks and background images on a live video must be greater than or equal to 0 and less than or equal to 10.</pd>
       </plentry>
       <plentry>
         <pt>audioSampleRate</pt>
         <pd>
-          <p>The audio sampling rate (Hz) of the output media stream. See <xref keyref="AUDIO_SAMPLE_RATE_TYPE"/>.</p>
+          <p>The audio sampling rate (Hz) of the output media stream. See <xref keyref="AUDIO_SAMPLE_RATE_TYPE" />.</p>
         </pd>
       </plentry>
       <plentry>
@@ -690,12 +734,11 @@
       </plentry>
       <plentry>
         <pt>audioCodecProfile</pt>
-        <pd>Audio codec profile type for Media Push. See <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/>.</pd>
+        <pd>Audio codec profile type for Media Push. See <xref keyref="AUDIO_CODEC_PROFILE_TYPE" />.</pd>
       </plentry>
       <plentry props="ios mac">
         <pt>watermarkArray</pt>
-        <pd>The array of watermarks on the live video. See <xref keyref="RtcImage"
-          />. You can add one or more <parmname>watermarks </parmname>using <parmname>watermarkArray</parmname>. The image format needs to be PNG. The total number of watermarks and background images on a live video must be greater than or equal to 0 and less than or equal to 10.</pd>
+        <pd>The array of watermarks on the live video. See <xref keyref="RtcImage" />. You can add one or more <parmname>watermarks </parmname>using <parmname>watermarkArray</parmname>. The image format needs to be PNG. The total number of watermarks and background images on a live video must be greater than or equal to 0 and less than or equal to 10.</pd>
       </plentry>
       <plentry props="cpp unity electron rn flutter">
         <pt>watermarkCount</pt>
@@ -707,7 +750,7 @@
       </plentry>
       <plentry props="cpp unity electron rn flutter">
         <pt>advancedFeatures</pt>
-        <pd>Advanced features of the Media Push with transcoding. See <xref keyref="LiveStreamAdvancedFeature"/>.</pd>
+        <pd>Advanced features of the Media Push with transcoding. See <xref keyref="LiveStreamAdvancedFeature" />.</pd>
       </plentry>
       <plentry props="cpp unity electron rn flutter">
         <pt>advancedFeatureCount</pt>

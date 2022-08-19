@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_playeffect2">
-    <title><ph keyref="playEffect2"/></title>
+    <title><ph keyref="playEffect2" /></title>
     <shortdesc id="short"><ph id="shortdesc">Plays the specified local or online sound effect file.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="playEffect2"/>
+                <indexterm keyref="playEffect2" />
             </keywords>
         </metadata>
     </prolog>
@@ -31,13 +31,13 @@
     double pan,
     int gain,
     bool publish = false) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp">public abstract int PlayEffect(int soundId, string filePath, int loopCount, double pitch, double pan, int gain, bool publish = false, int startPos = 0);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
-            <p id="playEffect-desc">To play multiple audio effect files at the same time, call this method multiple times with different <parmname>soundId</parmname> and <parmname>filePath</parmname>. For the best user experience, Agora recommends playing no more than three audio effect files at the same time. After the playback of an audio effect file completes, the SDK triggers the <apiname keyref="onAudioEffectFinished"/> callback.<note type="attention">
+            <p id="playEffect-desc">To play multiple audio effect files at the same time, call this method multiple times with different <parmname>soundId</parmname> and <parmname>filePath</parmname>. For the best user experience, Agora recommends playing no more than three audio effect files at the same time. After the playback of an audio effect file completes, the SDK triggers the <apiname keyref="onAudioEffectFinished" /> callback.<note type="attention">
             <ul>
             <li>Call this method after joining a channel.</li>
             <li>Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See <xref keyref="filePath-link">Supported Formats</xref> for details.</li>
@@ -48,14 +48,14 @@
             <parml>
             <plentry id="soundid">
                 <pt>soundId</pt>
-                <pd>The audio effect ID. The ID of each audio effect file is unique.<note type="attention">If you have loaded the audio effect into memory via <xref keyref="preloadEffect"/>, make sure this parameter is  the same as the <parmname>soundId</parmname> set in <apiname keyref="preloadEffect"/>.</note></pd>
+                <pd>The audio effect ID. The ID of each audio effect file is unique.<note type="attention">If you have loaded the audio effect into memory via <xref keyref="preloadEffect" />, make sure this parameter is  the same as the <parmname>soundId</parmname> set in <apiname keyref="preloadEffect" />.</note></pd>
             </plentry>
             <plentry id="filepath">
                 <pt>filePath</pt>
                 <pd>
-                    <p props="cpp">Agora supports using a URI address, an absolute path, or a path that starts with <codeph>/assets/</codeph>. For example: <codeph><ph keyref="filePath-example"/></codeph>.</p>
-                    <p props="android">Windows: The absolute path or URL address (including the suffixes of the filename) of the audio effect file. You might encounter permission issues if you use an absolute path to access a local file, so Agora recommends using a URI address instead. For example: <codeph><ph keyref="filePath-example"/></codeph>.</p>
-                    <note type="attention">If you have loaded the audio effect into memory via <xref keyref="preloadEffect"/>, make sure this parameter is the same as the <parmname>filePath</parmname> set in <apiname keyref="preloadEffect"/>.</note> </pd>
+                    <p props="cpp">Agora supports using a URI address, an absolute path, or a path that starts with <codeph>/assets/</codeph>. For example: <codeph><ph keyref="filePath-example" /></codeph>.</p>
+                    <p props="android">Windows: The absolute path or URL address (including the suffixes of the filename) of the audio effect file. You might encounter permission issues if you use an absolute path to access a local file, so Agora recommends using a URI address instead. For example: <codeph><ph keyref="filePath-example" /></codeph>.</p>
+                    <note type="attention">If you have loaded the audio effect into memory via <xref keyref="preloadEffect" />, make sure this parameter is the same as the <parmname>filePath</parmname> set in <apiname keyref="preloadEffect" />.</note> </pd>
             </plentry>
             <plentry id="loopcount">
                 <pt>loopCount</pt>
@@ -88,9 +88,9 @@
                 <pt>publish</pt>
                 <pd>
                     <p>Whether to publish the audio effect to the remote users.<ul>
-                    <li><codeph><ph keyref="true"/></codeph>:
+                    <li><codeph><ph keyref="true" /></codeph>:
 Publish the audio effect to the remote users. Both the local user and remote users can hear the audio effect.</li>
-                    <li><codeph><ph keyref="false"/></codeph>:
+                    <li><codeph><ph keyref="false" /></codeph>:
 Do not publish the audio effect to the remote users. Only the local user can hear the audio effect.</li>
                     </ul></p>
                 </pd>
