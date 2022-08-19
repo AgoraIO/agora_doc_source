@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_iaudioframeobserverbase_getmixedaudioparams">
-    <title><ph keyref="getMixedAudioParams"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the audio format for the <xref keyref="onMixedAudioFrame"/> callback.</ph></shortdesc>
+    <title><ph keyref="getMixedAudioParams" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the audio format for the <xref keyref="onMixedAudioFrame" /> callback.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="getMixedAudioParams"/>
+                <indexterm keyref="getMixedAudioParams" />
             </keywords>
         </metadata>
     </prolog>
@@ -16,21 +16,21 @@
             <codeblock props="android" outputclass="language-java">public abstract AudioParams getMixedAudioParams();</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (AgoraAudioParams* _Nonnull)getMixedAudioParams NS_SWIFT_NAME(getMixedAudioParams());</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual AudioParams getMixedAudioParams() = 0;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
-            <p>Register the callback when calling the <xref keyref="registerAudioFrameObserver"/> method. After you successfully register the audio observer, the SDK triggers this callback, and you can set the audio format in the return value of this callback.</p>
+            <p>Register the callback when calling the <xref keyref="registerAudioFrameObserver" /> method. After you successfully register the audio observer, the SDK triggers this callback, and you can set the audio format in the return value of this callback.</p>
             <note type="attention">
-                <p>The SDK calculates the sample interval according to the <xref keyref="AudioParams"/> you set in the return value of this callback.<equation-inline><parmname>Sample</parmname> interval (<parmname>sec</parmname>) = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>.</p>
+                <p>The SDK calculates the sample interval according to the <xref keyref="AudioParams" /> you set in the return value of this callback.<equation-inline><parmname>Sample</parmname> interval (<parmname>sec</parmname>) = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>.</p>
                 <p>Ensure that the sample interval ≥ 0.01 (s).</p>
-                <p>The SDK triggers the <apiname keyref="onMixedAudioFrame"/> callback according to the sampling interval.</p></note> </section>
+                <p>The SDK triggers the <apiname keyref="onMixedAudioFrame" /> callback according to the sampling interval.</p></note> </section>
         <section id="return_values">
             <title>Returns</title>
-            <p>Sets the audio format. See <xref keyref="AudioParams"/>.</p>
+            <p>Sets the audio format. See <xref keyref="AudioParams" />.</p>
         </section>
     </refbody>
 </reference>
