@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_pushcaptureaudioframe">
-    <title><ph keyref="pushCaptureAudioFrame1"/></title>
+    <title><ph keyref="pushCaptureAudioFrame1" /></title>
     <shortdesc id="short"><ph id="shortdesc">Pushes external audio frames that are not processed by the SDK echo cancellation module.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="pushCaptureAudioFrame1"/>
+                <indexterm keyref="pushCaptureAudioFrame1" />
             </keywords>
         </metadata>
     </prolog>
@@ -16,28 +16,28 @@
             <codeblock props="android" outputclass="language-java">public abstract int pushCaptureAudioFrame(byte[] data, int lengthInByte);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)pushCaptureAudioFrame:(AgoraAudioFrame* _Nonnull)audioFrame;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int pushCaptureAudioFrame(IAudioFrameObserver::AudioFrame* frame) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="electron" outputclass="language-typescript">abstract pushCaptureAudioFrame(frame: AudioFrame): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript">abstract pushCaptureAudioFrame(frame: AudioFrame): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; pushCaptureAudioFrame(AudioFrame frame);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>The local user can call <apiname keyref="pushCaptureAudioFrame1"/> to push the locally collected audio frame to the remote user, but the audio frame will not be processed by the SDK's echo cancellation module. To prevent the local user from hearing his own echo, the remote user needs to call <xref keyref="pullAudioFrame"/> and <xref keyref="pushReverseAudioFrame1"/> successively to push the audio frame collected by himself and the received audio frame to the custom echo cancellation module for processing.</p>
-            <note type="attention">Call<xref keyref="enableEchoCancellationExternal"/> this method after calling<xref keyref="joinChannel2"/> ().</note> </section>
+            <p>The local user can call <apiname keyref="pushCaptureAudioFrame1" /> to push the locally collected audio frame to the remote user, but the audio frame will not be processed by the SDK's echo cancellation module. To prevent the local user from hearing his own echo, the remote user needs to call <xref keyref="pullAudioFrame" /> and <xref keyref="pushReverseAudioFrame1" /> successively to push the audio frame collected by himself and the received audio frame to the custom echo cancellation module for processing.</p>
+            <note type="attention">Call<xref keyref="enableEchoCancellationExternal" /> this method after calling<xref keyref="joinChannel2" /> ().</note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry props="cpp ios mac" conkeyref="pushReverseAudioFrame1/frame">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry props="android" conkeyref="pushReverseAudioFrame1/data">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry props="android" conkeyref="pullAudioFrame/length">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             </parml> </section>
         <section id="return_values">

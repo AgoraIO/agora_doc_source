@@ -19,7 +19,7 @@
             <codeblock props="electron" outputclass="language-typescript">abstract setAVSyncSource(channelId: string, uid: number): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetAVSyncSource(string channelId, uint uid);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setAVSyncSource(channelId: string, uid: number): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setAVSyncSource({required String channelId, required int uid});</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAVSyncSource({required String channelId, required int uid});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>The same user may use two devices to send audio streams and video streams respectively. To ensure the time synchronization of the audio and video heard and seen by the receiver, you can call this method on the video sender and pass in the channel of the audio sender. name, user ID. The SDK will automatically adjust the sent video stream based on the timestamp of the sent audio stream to ensure that even when the upstream network conditions of the two senders are inconsistent (such as using Wi-Fi and 4G networks respectively), the The received audio and video have time synchronization.</p>

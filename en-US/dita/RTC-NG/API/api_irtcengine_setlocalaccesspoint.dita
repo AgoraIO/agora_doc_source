@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setlocalaccesspoint">
-    <title><ph keyref="setLocalAccessPoint"/></title>
+    <title><ph keyref="setLocalAccessPoint" /></title>
     <shortdesc id="short"><ph id="shortdesc">Configure the connection with the native access module of the Agora network private media server.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setLocalAccessPoint"/>
+                <indexterm keyref="setLocalAccessPoint" />
             </keywords>
         </metadata>
     </prolog>
@@ -16,17 +16,17 @@
             <codeblock props="android" outputclass="language-java">public abstract int setLocalAccessPoint(LocalAccessPointConfiguration config);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLocalAccessPoint:(AgoraLocalAccessPointConfiguration* _Nonnull)config NS_SWIFT_NAME(setLocalAccessPoint(withConfig:));</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setLocalAccessPoint(const LocalAccessPointConfiguration&amp; config) = 0;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="electron" outputclass="language-typescript">abstract setLocalAccessPoint(config: LocalAccessPointConfiguration): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int SetLocalAccessPoint(LocalAccessPointConfiguration config);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract setLocalAccessPoint(config: LocalAccessPointConfiguration): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLocalAccessPoint(LocalAccessPointConfiguration config);</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>After successfully deploying the Agora private media server and integrating Agora Native SDK v4.0.0 on the intranet terminal, you can call this method to specify the Local Access Point and assign the Native access module to the SDK.</p>
             <note type="attention">
             <ul>
-            <li>This method takes effect only after the Agora hybrid cloud solution is deployed. You can get in touch <xref keyref="mailto-link"/> to understand and deploy Agora Hybrid Cloud.</li>
+            <li>This method takes effect only after the Agora hybrid cloud solution is deployed. You can get in touch <xref keyref="mailto-link" /> to understand and deploy Agora Hybrid Cloud.</li>
             <li>Ensure that you call this method before joining a channel.</li>
             </ul> </note> </section>
         <section id="parameters">
@@ -34,7 +34,7 @@
             <parml>
             <plentry>
                 <pt>config</pt>
-                <pd>Local Access Point configuration. See <xref keyref="LocalAccessPointConfiguration"/>.</pd>
+                <pd>Local Access Point configuration. See <xref keyref="LocalAccessPointConfiguration" />.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">

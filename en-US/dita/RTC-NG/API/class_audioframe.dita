@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audioframe">
-    <title><ph keyref="AudioFrame"/></title>
+    <title><ph keyref="AudioFrame" /></title>
     <shortdesc id="short"><ph id="shortdesc">Raw audio data.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -83,7 +83,24 @@
                    avsync_type(0) {}
   };
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript">export class AudioFrame {
+  
+  type?: AudioFrameType;
+  
+  samplesPerChannel?: number;
+  
+  bytesPerSample?: BytesPerSample;
+  
+  channels?: number;
+  
+  samplesPerSec?: number;
+  
+  buffer?: Uint8Array;
+  
+  renderTimeMs?: number;
+  
+  avsync_type?: number;
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class AudioFrame
     {
         public AudioFrame()
@@ -120,8 +137,25 @@
         public long renderTimeMs { set; get; }
         public int avsync_type { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart"/></p>
+            <codeblock props="rn" outputclass="language-typescript">export class AudioFrame {
+  
+  type?: AudioFrameType;
+  
+  samplesPerChannel?: number;
+  
+  bytesPerSample?: BytesPerSample;
+  
+  channels?: number;
+  
+  samplesPerSec?: number;
+  
+  buffer?: Uint8Array;
+  
+  renderTimeMs?: number;
+  
+  avsync_type?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock> </p>
         </section>
         <section id="parameters">
             <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>
