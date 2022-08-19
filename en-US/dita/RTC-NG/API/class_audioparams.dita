@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audioparams">
-    <title><ph keyref="AudioParams"/></title>
+    <title><ph keyref="AudioParams" /></title>
     <shortdesc id="short"><ph id="shortdesc">Audio data format.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -39,27 +39,67 @@
   AudioParams() : sample_rate(0), channels(0), mode(rtc::RAW_AUDIO_FRAME_OP_MODE_READ_ONLY), samples_per_call(0) {}
   AudioParams(int samplerate, int channel, rtc::RAW_AUDIO_FRAME_OP_MODE_TYPE type, int samplesPerCall) : sample_rate(samplerate), channels(channel), mode(type), samples_per_call(samplesPerCall) {}
 };</codeblock>
-            <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="electron" outputclass="language-typescript">export class AudioParams {
+  
+  sample_rate?: number;
+  
+  channels?: number;
+  
+  mode?: RawAudioFrameOpModeType;
+  
+  samples_per_call?: number;
+}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class AudioParams
+    {
+        public int sample_rate { set; get; }
+        public int channels { set; get; }
+        public RAW_AUDIO_FRAME_OP_MODE_TYPE mode { set; get; }
+        public int samples_per_call { set; get; }
+
+        public AudioParams()
+        {
+            sample_rate = 0;
+            channels = 0;
+            mode = RAW_AUDIO_FRAME_OP_MODE_TYPE.RAW_AUDIO_FRAME_OP_MODE_READ_ONLY;
+            samples_per_call = 0;
+        }
+
+        public AudioParams(int samplerate, int channel, RAW_AUDIO_FRAME_OP_MODE_TYPE type, int samplesPerCall)
+        {
+            sample_rate = samplerate;
+            channels = channel;
+            mode = type;
+            samples_per_call = samplesPerCall;
+        }
+    };</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class AudioParams {
+  
+  sample_rate?: number;
+  
+  channels?: number;
+  
+  mode?: RawAudioFrameOpModeType;
+  
+  samples_per_call?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
-            <p>You can pass the <apiname keyref="AudioParams"/> object in the return value of the following callbacks to set the audio data format of the corresponding callback report:<ul>
-                <li><xref keyref="getRecordAudioParams"/>: Sets the audio data format for the <xref keyref="onRecordAudioFrame"/> callback.</li>
-                <li><xref keyref="getPlaybackAudioParams"/>: Sets the audio data format for the <xref keyref="onPlaybackAudioFrame"/> callback.</li>
-                <li><xref keyref="getMixedAudioParams"/>: Sets the audio data format for the <xref keyref="onMixedAudioFrame"/> callback.</li>
+            <p>You can pass the <apiname keyref="AudioParams" /> object in the return value of the following callbacks to set the audio data format of the corresponding callback report:<ul>
+                <li><xref keyref="getRecordAudioParams" />: Sets the audio data format for the <xref keyref="onRecordAudioFrame" /> callback.</li>
+                <li><xref keyref="getPlaybackAudioParams" />: Sets the audio data format for the <xref keyref="onPlaybackAudioFrame" /> callback.</li>
+                <li><xref keyref="getMixedAudioParams" />: Sets the audio data format for the <xref keyref="onMixedAudioFrame" /> callback.</li>
             </ul></p>
             <note type="attention">
                 <ul>
-                    <li>The SDK calculates the sampling interval through the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname>, and <parmname>channel</parmname> parameters in <apiname keyref="AudioParams"/>, and triggers the <apiname keyref="onRecordAudioFrame"/>, <apiname keyref="onPlaybackAudioFrame"/>, and <apiname keyref="onMixedAudioFrame"/> callbacks according to the sampling interval.</li>
+                    <li>The SDK calculates the sampling interval through the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname>, and <parmname>channel</parmname> parameters in <apiname keyref="AudioParams" />, and triggers the <apiname keyref="onRecordAudioFrame" />, <apiname keyref="onPlaybackAudioFrame" />, and <apiname keyref="onMixedAudioFrame" /> callbacks according to the sampling interval.</li>
                     <li><equation-inline><parmname>Sample</parmname> interval (<parmname>sec</parmname>) = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>.</li>
                     <li>Ensure that the sample interval ≥ 0.01 (s).</li>
                 </ul></note>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt props="android ios mac">sampleRate</pt>
@@ -82,10 +122,10 @@
             </plentry> 
             <plentry>
                 <pt>mode</pt>
-                <pd props="ios mac cpp">The use mode of the audio data. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>.</pd>
+                <pd props="ios mac cpp">The use mode of the audio data. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />.</pd>
                 <pd props="android">The use mode of the audio data, which can be set as either of the following values:<ul>
-                    <li><ph keyref="RAW_AUDIO_FRAME_OP_MODE_READ_ONLY"/>(0): Read-only mode<ph props="cpp">, where users only read the original data from <xref keyref="AudioFrame"/> without any modification</ph>. For example, when users acquire the data with the Agora SDK, then start the media push.</li>            
-                    <li><ph keyref="RAW_AUDIO_FRAME_OP_MODE_READ_WRITE"/>(2): Read and write mode<ph props="cpp">, where users read the data from <xref keyref="AudioFrame"/>, modify it, and then play it</ph>. <ph props="electron">Users read the data returned by the SDK, modify it, and then play it. </ph>For example, when users have their own audio-effect processing module and perform some voice preprocessing, such as a voice change.</li>
+                    <li><ph keyref="RAW_AUDIO_FRAME_OP_MODE_READ_ONLY" />(0): Read-only mode<ph props="cpp">, where users only read the original data from <xref keyref="AudioFrame" /> without any modification</ph>. For example, when users acquire the data with the Agora SDK, then start the media push.</li>            
+                    <li><ph keyref="RAW_AUDIO_FRAME_OP_MODE_READ_WRITE" />(2): Read and write mode<ph props="cpp">, where users read the data from <xref keyref="AudioFrame" />, modify it, and then play it</ph>. <ph props="electron">Users read the data returned by the SDK, modify it, and then play it. </ph>For example, when users have their own audio-effect processing module and perform some voice preprocessing, such as a voice change.</li>
                 </ul>                     
                 </pd>       
             </plentry>

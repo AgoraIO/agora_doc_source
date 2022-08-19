@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setupremotevideoex">
-    <title><ph keyref="setupRemoteVideoEx"/></title>
+    <title><ph keyref="setupRemoteVideoEx" /></title>
     <shortdesc id="short"><ph id="shortdesc">Initializes the video view of a remote user.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setupRemoteVideoEx"/>
+                <indexterm keyref="setupRemoteVideoEx" />
             </keywords>
         </metadata>
     </prolog>
@@ -17,23 +17,26 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setupRemoteVideoEx:(AgoraRtcVideoCanvas* _Nonnull)remote
                connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setupRemoteVideoEx(const VideoCanvas&amp; canvas, const RtcConnection&amp; connection) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">abstract setupRemoteVideoEx(canvas: VideoCanvas, connection: RtcConnection): number;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract setupRemoteVideoEx(
+    canvas: VideoCanvas,
+    connection: RtcConnection
+  ): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetupRemoteVideoEx(VideoCanvas canvas, RtcConnection connection);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setupRemoteVideoEx(
     canvas: VideoCanvas,
     connection: RtcConnection
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setupRemoteVideoEx(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setupRemoteVideoEx(
     {required VideoCanvas canvas, required RtcConnection connection});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>This method initializes the video view of a remote stream on the local device. It affects only the video view that the local user sees. Call this method to bind the remote video stream to a video view and to set the rendering and mirror modes of the video view.</p>
-            <p>The application specifies the uid of the remote video in the <xref keyref="VideoCanvas"/> method before the remote user joins the channel.</p>
-            <p>If the remote uid is unknown to the application, set it after the application receives the <xref keyref="onUserJoined"/> callback. If the Video Recording function is enabled, the Video Recording Service joins the channel as a dummy client, causing other clients to also receive the <codeph>onUserJoined</codeph> callback. Do not bind the dummy client to the application view because the dummy client does not send any video streams.</p>
+            <p>The application specifies the uid of the remote video in the <xref keyref="VideoCanvas" /> method before the remote user joins the channel.</p>
+            <p>If the remote uid is unknown to the application, set it after the application receives the <xref keyref="onUserJoined" /> callback. If the Video Recording function is enabled, the Video Recording Service joins the channel as a dummy client, causing other clients to also receive the <codeph>onUserJoined</codeph> callback. Do not bind the dummy client to the application view because the dummy client does not send any video streams.</p>
             <p>To unbind the remote user from the view, set the <parmname>view</parmname> parameter to NULL.</p>
             <p>Once the remote user leaves the channel, the SDK unbinds the remote user.</p>
             <note type="attention" props="android ios mac">
-            <p>To update the rendering or mirror mode of the remote video view during a call, use the <xref keyref="setRemoteRenderModeEx2"/> method.</p>
+            <p>To update the rendering or mirror mode of the remote video view during a call, use the <xref keyref="setRemoteRenderModeEx2" /> method.</p>
             </note> </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -42,12 +45,12 @@
                 <pt props="android ios mac">remote</pt>
                 <pt props="cpp unity rn electron flutter">canvas</pt>
                 <pd>
-                    <p>The remote video view settings. See <xref keyref="VideoCanvas"/>.</p>
+                    <p>The remote video view settings. See <xref keyref="VideoCanvas" />.</p>
                 </pd>
             </plentry>
             <plentry conkeyref="joinChannelEx/connection">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity rn">
