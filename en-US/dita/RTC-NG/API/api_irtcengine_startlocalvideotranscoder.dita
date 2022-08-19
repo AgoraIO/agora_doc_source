@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startlocalvideotranscoder">
-    <title><ph keyref="startLocalVideoTranscoder"/></title>
+    <title><ph keyref="startLocalVideoTranscoder" /></title>
     <shortdesc id="short"><ph id="shortdesc">Starts the local video mixing.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="startLocalVideoTranscoder"/>
+                <indexterm keyref="startLocalVideoTranscoder" />
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
             <codeblock props="cpp" outputclass="language-cpp">virtual int startLocalVideoTranscoder(const LocalTranscoderConfiguration&amp; config) = 0;
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="electron" outputclass="language-typescript">abstract startLocalVideoTranscoder(config: LocalTranscoderConfiguration): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript">abstract startLocalVideoTranscoder(
+            config: LocalTranscoderConfiguration
+            ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startLocalVideoTranscoder(LocalTranscoderConfiguration config);</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>After calling this method, you can merge multiple video streams into one video stream locally. Common scenarios include the following:<ul>
@@ -34,7 +36,7 @@
             <plentry>
                 <pt>config</pt>
                 <pd>
-                    <p>Configuration of the local video mixing. See <xref keyref="LocalTranscoderConfiguration"/>.</p>
+                    <p>Configuration of the local video mixing. See <xref keyref="LocalTranscoderConfiguration" />.</p>
                 </pd>
             </plentry>
             </parml> </section>

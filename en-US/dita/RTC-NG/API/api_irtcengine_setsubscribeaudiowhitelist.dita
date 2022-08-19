@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setsubscribeaudiowhitelist">
-    <title><ph keyref="setSubscribeAudioWhitelist"/></title>
+    <title><ph keyref="setSubscribeAudioWhitelist" /></title>
     <shortdesc id="short"><ph id="shortdesc">Sets the whitelist of subscriptions for audio streams.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setSubscribeAudioWhitelist"/>
+                <indexterm keyref="setSubscribeAudioWhitelist" />
             </keywords>
         </metadata>
     </prolog>
@@ -14,22 +14,22 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setSubscribeAudioWhitelist(int[] uidList);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setSubscribeAudioWhitelist:(NSArray &lt;NSNumber *> *_Nonnull)whitelist;</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setSubscribeAudioWhitelist:(NSArray &lt;NSNumber *&gt; *_Nonnull)whitelist;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setSubscribeAudioWhitelist(uid_t* uidList, int uidNumber) = 0;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
             <p>You can call this method to specify the audio streams of a user that you want to subscribe to.</p>
             <note>
             <ul>
-            <li conkeyref="setSubscribeAudioBlacklist/order"/>
-            <li>The whitelist is not affected by the setting in <xref keyref="muteRemoteAudioStream"/>, <xref keyref="muteAllRemoteAudioStreams"/> and <parmname>autoSubscribeAudio</parmname> in <xref keyref="ChannelMediaOptions"/>.</li>
+            <li conkeyref="setSubscribeAudioBlacklist/order" />
+            <li>The whitelist is not affected by the setting in <xref keyref="muteRemoteAudioStream" />, <xref keyref="muteAllRemoteAudioStreams" /> and <parmname>autoSubscribeAudio</parmname> in <xref keyref="ChannelMediaOptions" />.</li>
             <li id="effect">Once the whitelist of subscriptions is set, it is effective even if you leave the current channel and rejoin the channel.</li>
-            <li conkeyref="setSubscribeAudioBlacklist/priority"/>
+            <li conkeyref="setSubscribeAudioBlacklist/priority" />
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -39,7 +39,7 @@
                 <pt props="apple">whitelist</pt>
                 <pd>
                     <p>The user ID list of users that you want to subscribe to.</p>
-                    <p>If you want to specify the audio streams of a user for subscription, add the user ID in this list. If you want to remove a user from the whitelist, you need to call the <xref keyref="setSubscribeAudioWhitelist"/> method to update the user ID list; this means you only add the <parmname>uid</parmname> of users that you want to subscribe to in the new user ID list.</p>
+                    <p>If you want to specify the audio streams of a user for subscription, add the user ID in this list. If you want to remove a user from the whitelist, you need to call the <xref keyref="setSubscribeAudioWhitelist" /> method to update the user ID list; this means you only add the <parmname>uid</parmname> of users that you want to subscribe to in the new user ID list.</p>
                 </pd>
             </plentry>
             <plentry props="cpp" id="uidnumber">

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setremotevideostreamtype">
-     <title> <ph keyref="setRemoteVideoStreamType"/> </title>
+     <title> <ph keyref="setRemoteVideoStreamType" /> </title>
      <shortdesc id="short"><ph id="shortdesc">Sets the stream type of the remote video.</ph></shortdesc>
      <prolog>
           <metadata>
                <keywords>
-                    <indexterm keyref="setRemoteVideoStreamType"/>
+                    <indexterm keyref="setRemoteVideoStreamType" />
                </keywords>
           </metadata>
      </prolog>
@@ -23,14 +23,14 @@
     uid: number,
     streamType: VideoStreamType
   ): number;</codeblock>
-               <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setRemoteVideoStreamType(
+               <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRemoteVideoStreamType(
     {required int uid, required VideoStreamType streamType});</codeblock></p>
           </section>
           <section id="detailed_desc">
-               <p id="desc1">Under limited network conditions, if the publisher has not disabled the dual-stream mode using <xref keyref="enableDualStreamMode3"/>(<ph keyref="false"/>), the receiver can choose to receive either the high-quality video stream (the high resolution, and high bitrate video stream) or the low-quality video stream (the low resolution, and low bitrate video stream). The high-quality video stream has a higher resolution and bitrate, and the low-quality video stream has a lower resolution and bitrate.</p>
+               <p id="desc1">Under limited network conditions, if the publisher has not disabled the dual-stream mode using <xref keyref="enableDualStreamMode3" />(<ph keyref="false" />), the receiver can choose to receive either the high-quality video stream (the high resolution, and high bitrate video stream) or the low-quality video stream (the low resolution, and low bitrate video stream). The high-quality video stream has a higher resolution and bitrate, and the low-quality video stream has a lower resolution and bitrate.</p>
                <p id="desc2">By default, users receive the high-quality video stream. Call this method if you want to switch to the low-quality video stream. This method allows the app to adjust the corresponding video stream type based on the size of the video window to reduce the bandwidth and resources. The aspect ratio of the low-quality video stream is the same as the high-quality video stream. Once the resolution of the high-quality video stream is set, the system automatically sets the resolution, frame rate, and bitrate of the low-quality video stream.</p>
-               <p id="desc3">The method result returns in the <xref keyref="onApiCallExecuted"/> callback.</p>
-               <note type="attention">You can call this method either before or after joining a channel. If you call both <apiname keyref="setRemoteVideoStreamType"/> and <xref keyref="setRemoteDefaultVideoStreamType"/>, the setting of <apiname keyref="setRemoteVideoStreamType"/> takes effect.</note> </section>
+               <p id="desc3">The method result returns in the <xref keyref="onApiCallExecuted" /> callback.</p>
+               <note type="attention">You can call this method either before or after joining a channel. If you call both <apiname keyref="setRemoteVideoStreamType" /> and <xref keyref="setRemoteDefaultVideoStreamType" />, the setting of <apiname keyref="setRemoteVideoStreamType" /> takes effect.</note> </section>
           <section id="parameters">
                <title>Parameters</title>
                <parml>
@@ -41,7 +41,7 @@
                <plentry>
                     <pt>streamType</pt>
                     <pd>
-                         <p props="ios mac cpp electron unity flutter rn">The video stream type: <xref keyref="REMOTE_VIDEO_STREAM_TYPE"/>.</p>
+                         <p props="ios mac cpp electron unity flutter rn">The video stream type: <xref keyref="REMOTE_VIDEO_STREAM_TYPE" />.</p>
                          <p props="android">The video stream type:<ul>
                          <li>0: High-quality video stream.</li>
                          <li>1: Low-quality video stream.</li>

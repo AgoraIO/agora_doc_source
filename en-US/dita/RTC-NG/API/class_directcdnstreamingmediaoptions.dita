@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_directcdnstreamingmediaoptions">
-    <title><ph keyref="DirectCdnStreamingMediaOptions"/></title>
+    <title><ph keyref="DirectCdnStreamingMediaOptions" /></title>
     <shortdesc id="short"><ph id="shortdesc">The media setting options for the host.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -29,105 +29,54 @@
 
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct DirectCdnStreamingMediaOptions {
-  Optional&lt;bool> publishCameraTrack;
-  Optional&lt;bool> publishMicrophoneTrack;
-  Optional&lt;bool> publishCustomAudioTrack;
-  Optional&lt;bool> publishCustomVideoTrack;
-  Optional&lt;video_track_id_t> customVideoTrackId;  
-};</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">export class DirectCdnStreamingMediaOptions {
-  publishCameraTrack?: boolean
-  publishMicrophoneTrack?: boolean
-  publishCustomAudioTrack?: boolean
-  publishCustomVideoTrack?: boolean
-  publishMediaPlayerAudioTrack?: boolean
-  publishMediaPlayerId?: number
-}</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class DirectCdnStreamingMediaOptions : OptionalJsonParse
-    {
-        public Optional&lt;bool&gt; publishCameraTrack = new Optional&lt;bool&gt;();
-        public Optional&lt;bool&gt; publishMicrophoneTrack = new Optional&lt;bool&gt;();
-        public Optional&lt;bool&gt; publishCustomAudioTrack = new Optional&lt;bool&gt;();
-        public Optional&lt;bool&gt; publishCustomVideoTrack = new Optional&lt;bool&gt;();
-    }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">export class DirectCdnStreamingMediaOptions {
-  publishCameraTrack?: boolean;
-  publishMicrophoneTrack?: boolean;
-  publishCustomAudioTrack?: boolean;
-  publishCustomVideoTrack?: boolean;
-  publishMediaPlayerAudioTrack?: boolean;
-  publishMediaPlayerId?: number;
-}</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class DirectCdnStreamingMediaOptions {
-  const DirectCdnStreamingMediaOptions(
-      {this.publishCameraTrack,
-      this.publishMicrophoneTrack,
-      this.publishCustomAudioTrack,
-      this.publishCustomVideoTrack,
-      this.publishMediaPlayerAudioTrack,
-      this.publishMediaPlayerId});
+    Optional&lt;bool&gt; publishCameraTrack;
+    Optional&lt;bool&gt; publishMicrophoneTrack;
+    Optional&lt;bool&gt; publishCustomAudioTrack;
+    Optional&lt;bool&gt; publishCustomVideoTrack;
+    Optional&lt;bool&gt; publishMediaPlayerAudioTrack;
+    Optional&lt;int&gt; publishMediaPlayerId;
+    Optional&lt;video_track_id_t&gt; customVideoTrackId;
 
-  @JsonKey(name: 'publishCameraTrack')
-  final bool? publishCameraTrack;
-  @JsonKey(name: 'publishMicrophoneTrack')
-  final bool? publishMicrophoneTrack;
-  @JsonKey(name: 'publishCustomAudioTrack')
-  final bool? publishCustomAudioTrack;
-  @JsonKey(name: 'publishCustomVideoTrack')
-  final bool? publishCustomVideoTrack;
-  @JsonKey(name: 'publishMediaPlayerAudioTrack')
-  final bool? publishMediaPlayerAudioTrack;
-  @JsonKey(name: 'publishMediaPlayerId')
-  final int? publishMediaPlayerId;
-  factory DirectCdnStreamingMediaOptions.fromJson(Map&lt;String, dynamic> json) =>
-      _$DirectCdnStreamingMediaOptionsFromJson(json);
-  Map&lt;String, dynamic> toJson() => _$DirectCdnStreamingMediaOptionsToJson(this);
-}</codeblock>
-            </p>
-        </section>
+  DirectCdnStreamingMediaOptions() {}
+  ~DirectCdnStreamingMediaOptions() {}
+
+};</codeblock></p></section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>publishCameraTrack</pt>
                 <pd>Sets whether to publish the video captured by the camera:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Publish the video captured by the camera.</li>
-                    <li><codeph><ph keyref="false"
-                        /></codeph>: (Default) Do not publish the video captured by the camera.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: Publish the video captured by the camera.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the video captured by the camera.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>publishMicrophoneTrack</pt>
                 <pd>Sets whether to publish the audio captured by the microphone:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Publish the audio captured by the microphone.</li>
-                    <li><codeph><ph keyref="false"
-                        /></codeph>: (Default) Do not publish the audio captured by the microphone.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: Publish the audio captured by the microphone.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the audio captured by the microphone.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>publishCustomAudioTrack</pt>
                 <pd>Sets whether to publish the captured audio from a custom source:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Publish the captured audio from a custom source.</li>
-                    <li><codeph><ph keyref="false"
-                        /></codeph>: (Default) Do not publish the captured audio from the custom source.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: Publish the captured audio from a custom source.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the captured audio from the custom source.</li>
                     </ul></pd>
             </plentry>
             <plentry props="hide">
                 <pt>publishMediaPlayerAudioTrack</pt>
                 <pd>Sets whether to publish the audio from the media player:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Publish the audio from the media player.</li>
-                    <li><codeph><ph keyref="false"
-                        /></codeph>: (Default) Do not publish the audio from the media player.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: Publish the audio from the media player.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the audio from the media player.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>publishCustomVideoTrack</pt>
                 <pd>Sets whether to publish the captured video from a custom source:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Publish the captured video from a custom source.</li>
-                    <li><codeph><ph keyref="false"
-                        /></codeph>: (Default) Do not publish the captured video from the custom source.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: Publish the captured video from a custom source.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the captured video from the custom source.</li>
                     </ul></pd>
             </plentry>
             <plentry props="hide">
@@ -135,8 +84,8 @@
                 <pd>The ID of the media player to be published. The default value is 0.</pd>
             </plentry>
             <plentry conkeyref="ChannelMediaOptions/customvideotrackid">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>               
             </parml> </section>
     </refbody>

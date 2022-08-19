@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_channelmediaoptions">
-    <title><ph keyref="ChannelMediaOptions"/></title>
+    <title><ph keyref="ChannelMediaOptions" /></title>
     <shortdesc id="short"><ph id="shortdesc">The channel media options.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -82,233 +82,232 @@
 
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct ChannelMediaOptions {
-  Optional&lt;bool> publishCameraTrack;
-  Optional&lt;bool> publishSecondaryCameraTrack;
-  Optional&lt;bool> publishMicrophoneTrack;
+  Optional&lt;bool&gt; publishCameraTrack;
+  Optional&lt;bool&gt; publishSecondaryCameraTrack;
+  Optional&lt;bool&gt; publishMicrophoneTrack;
 
   #if defined(__ANDROID__) || (defined(TARGET_OS_IPHONE) &amp;&amp; TARGET_OS_IPHONE)
-  Optional&lt;bool> publishScreenCaptureVideo;
-  Optional&lt;bool> publishScreenCaptureAudio;
+  Optional&lt;bool&gt; publishScreenCaptureVideo;
+  Optional&lt;bool&gt; publishScreenCaptureAudio;
   #else
-  Optional&lt;bool> publishScreenTrack;
-  Optional&lt;bool> publishSecondaryScreenTrack;
+  Optional&lt;bool&gt; publishScreenTrack;
+  Optional&lt;bool&gt; publishSecondaryScreenTrack;
   #endif
 
-  Optional&lt;bool> publishCustomAudioTrack;
-  Optional&lt;int> publishCustomAudioSourceId;
-  Optional&lt;bool> publishCustomAudioTrackEnableAec;
-  Optional&lt;bool> publishDirectCustomAudioTrack;
-  Optional&lt;bool> publishCustomAudioTrackAec;
-  Optional&lt;bool> publishCustomVideoTrack;
-  Optional&lt;bool> publishEncodedVideoTrack;
-  Optional&lt;bool> publishMediaPlayerAudioTrack;
-  Optional&lt;bool> publishMediaPlayerVideoTrack;
-  Optional&lt;bool> publishTrancodedVideoTrack;
-  Optional&lt;bool> autoSubscribeAudio;
-  Optional&lt;bool> autoSubscribeVideo;
-  Optional&lt;bool> enableAudioRecordingOrPlayout;
-  Optional&lt;int> publishMediaPlayerId;
-  Optional&lt;CLIENT_ROLE_TYPE> clientRoleType;
-  Optional&lt;AUDIENCE_LATENCY_LEVEL_TYPE> audienceLatencyLevel;
-  Optional&lt;VIDEO_STREAM_TYPE> defaultVideoStreamType;
-  Optional&lt;CHANNEL_PROFILE_TYPE> channelProfile;
-  Optional&lt;int> audioDelayMs;
-  Optional&lt;int> mediaPlayerAudioDelayMs;
-  Optional&lt;const char*> token;
-  Optional&lt;bool> enableBuiltInMediaEncryption;
-  Optional&lt;bool> publishRhythmPlayerTrack;
-  Optional&lt;bool> isInteractiveAudience;
+  Optional&lt;bool&gt; publishCustomAudioTrack;
+  Optional&lt;int&gt; publishCustomAudioSourceId;
+  Optional&lt;bool&gt; publishCustomAudioTrackEnableAec;
+  Optional&lt;bool&gt; publishDirectCustomAudioTrack;
+  Optional&lt;bool&gt; publishCustomAudioTrackAec;
+  Optional&lt;bool&gt; publishCustomVideoTrack;
+  Optional&lt;bool&gt; publishEncodedVideoTrack;
+  Optional&lt;bool&gt; publishMediaPlayerAudioTrack;
+  Optional&lt;bool&gt; publishMediaPlayerVideoTrack;
+  Optional&lt;bool&gt; publishTrancodedVideoTrack;
+  Optional&lt;bool&gt; autoSubscribeAudio;
+  Optional&lt;bool&gt; autoSubscribeVideo;
+  Optional&lt;bool&gt; enableAudioRecordingOrPlayout;
+  Optional&lt;int&gt; publishMediaPlayerId;
+  Optional&lt;CLIENT_ROLE_TYPE&gt; clientRoleType;
+  Optional&lt;AUDIENCE_LATENCY_LEVEL_TYPE&gt; audienceLatencyLevel;
+  Optional&lt;VIDEO_STREAM_TYPE&gt; defaultVideoStreamType;
+  Optional&lt;CHANNEL_PROFILE_TYPE&gt; channelProfile;
+  Optional&lt;int&gt; audioDelayMs;
+  Optional&lt;int&gt; mediaPlayerAudioDelayMs;
+  Optional&lt;const char*&gt; token;
+  Optional&lt;bool&gt; enableBuiltInMediaEncryption;
+  Optional&lt;bool&gt; publishRhythmPlayerTrack;
+  Optional&lt;bool&gt; isInteractiveAudience;
 
-  Optional&lt;video_track_id_t> customVideoTrackId;
+  Optional&lt;video_track_id_t&gt; customVideoTrackId;
 
-  Optional&lt;bool> isAudioFilterable;
+  Optional&lt;bool&gt; isAudioFilterable;
 
   ChannelMediaOptions() {}
-  ~ChannelMediaOptions() {}
-</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">export class ChannelMediaOptions {
-  publishCameraTrack?: boolean
-  publishSecondaryCameraTrack?: boolean
-  publishAudioTrack?: boolean
-  publishScreenTrack?: boolean
-  publishSecondaryScreenTrack?: boolean
-  publishCustomAudioTrack?: boolean
-  publishCustomAudioSourceId?: number
-  publishCustomAudioTrackEnableAec?: boolean
-  publishDirectCustomAudioTrack?: boolean
-  publishCustomAudioTrackAec?: boolean
-  publishCustomVideoTrack?: boolean
-  publishEncodedVideoTrack?: boolean
-  publishMediaPlayerAudioTrack?: boolean
-  publishMediaPlayerVideoTrack?: boolean
-  publishTrancodedVideoTrack?: boolean
-  autoSubscribeAudio?: boolean
-  autoSubscribeVideo?: boolean
-  startPreview?: boolean
-  enableAudioRecordingOrPlayout?: boolean
-  publishMediaPlayerId?: number
-  clientRoleType?: ClientRoleType
-  audienceLatencyLevel?: AudienceLatencyLevelType
-  defaultVideoStreamType?: VideoStreamType
-  channelProfile?: ChannelProfileType
-  audioDelayMs?: number
-  mediaPlayerAudioDelayMs?: number
-  token?: string
-  enableBuiltInMediaEncryption?: boolean
-  publishRhythmPlayerTrack?: boolean
-  audioOptionsExternal?: AudioOptionsExternal
-}</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class ChannelMediaOptions : OptionalJsonParse
-    {
-        public Optional&lt;bool&gt; publishCameraTrack = new Optional&lt;bool&gt;();
-        public Optional&lt;bool&gt; publishSecondaryCameraTrack = new Optional&lt;bool&gt;();
-        public Optional&lt;bool&gt; publishAudioTrack = new Optional&lt;bool&gt;();
-        public Optional&lt;bool&gt; publishScreenTrack = new Optional&lt;bool&gt;();
-        public Optional&lt;bool&gt; publishSecondaryScreenTrack = new Optional&lt;bool&gt;();
-        public Optional&lt;bool&gt; publishCustomAudioTrack = new Optional&lt;bool&gt;();
-        public Optional&lt;int&gt; publishCustomAudioSourceId = new Optional&lt;int&gt;();
-        public Optional&lt;bool&gt; publishCustomAudioTrackEnableAec = new Optional&lt;bool&gt;();
-        public Optional&lt;bool&gt; publishDirectCustomAudioTrack = new Optional&lt;bool&gt;();
-        public Optional&lt;bool&gt; publishCustomVideoTrack = new Optional&lt;bool&gt;();
-        public Optional&lt;bool&gt; publishEncodedVideoTrack = new Optional&lt;bool&gt;();
-        public Optional&lt;bool&gt; publishMediaPlayerAudioTrack = new Optional&lt;bool&gt;();
-        public Optional&lt;bool&gt; publishMediaPlayerVideoTrack = new Optional&lt;bool&gt;();
-        public Optional&lt;bool&gt; publishTrancodedVideoTrack = new Optional&lt;bool&gt;();
-        public Optional&lt;bool&gt; autoSubscribeAudio = new Optional&lt;bool&gt;();
-        public Optional&lt;bool&gt; autoSubscribeVideo = new Optional&lt;bool&gt;();
-        public Optional&lt;bool&gt; enableAudioRecordingOrPlayout = new Optional&lt;bool&gt;();
-        public Optional&lt;int&gt; publishMediaPlayerId = new Optional&lt;int&gt;();
-        public Optional&lt;CLIENT_ROLE_TYPE&gt; clientRoleType = new Optional&lt;CLIENT_ROLE_TYPE&gt;();
-        public Optional&lt;AUDIENCE_LATENCY_LEVEL_TYPE&gt; audienceLatencyLevel = new Optional&lt;AUDIENCE_LATENCY_LEVEL_TYPE&gt;();
-        public Optional&lt;VIDEO_STREAM_TYPE&gt; defaultVideoStreamType = new Optional&lt;VIDEO_STREAM_TYPE&gt;();
-        public Optional&lt;CHANNEL_PROFILE_TYPE&gt; channelProfile = new Optional&lt;CHANNEL_PROFILE_TYPE&gt;();
-        public Optional&lt;int&gt; audioDelayMs = new Optional&lt;int&gt;();
-        public Optional&lt;int&gt; mediaPlayerAudioDelayMs = new Optional&lt;int&gt;();
-        public Optional&lt;string&gt; token = new Optional&lt;string&gt;();
-
-        public ChannelMediaOptions() { }
-
-
-        void SetAll(ref ChannelMediaOptions change)
-        {
-            this.publishCameraTrack = change.publishCameraTrack;
-            this.publishSecondaryCameraTrack = change.publishSecondaryCameraTrack;
-            this.publishAudioTrack = change.publishAudioTrack;
-            this.publishScreenTrack = change.publishScreenTrack;
-            this.publishSecondaryScreenTrack = change.publishSecondaryScreenTrack;
-            this.publishTrancodedVideoTrack = change.publishTrancodedVideoTrack;
-            this.publishCustomAudioTrack = change.publishCustomAudioTrack;
-            this.publishDirectCustomAudioTrack = change.publishDirectCustomAudioTrack;
-            this.publishCustomAudioSourceId = change.publishCustomAudioSourceId;
-            this.publishCustomAudioTrackEnableAec = change.publishCustomAudioTrackEnableAec;
-            this.publishCustomVideoTrack = change.publishCustomVideoTrack;
-            this.publishEncodedVideoTrack = change.publishEncodedVideoTrack;
-            this.publishMediaPlayerAudioTrack = change.publishMediaPlayerAudioTrack;
-            this.publishMediaPlayerVideoTrack = change.publishMediaPlayerVideoTrack;
-            this.autoSubscribeAudio = change.autoSubscribeAudio;
-            this.autoSubscribeVideo = change.autoSubscribeVideo;
-            this.publishMediaPlayerId = change.publishMediaPlayerId;
-            this.enableAudioRecordingOrPlayout = change.enableAudioRecordingOrPlayout;
-            this.clientRoleType = change.clientRoleType;
-            this.audienceLatencyLevel = change.audienceLatencyLevel;
-            this.defaultVideoStreamType = change.defaultVideoStreamType;
-            this.channelProfile = change.channelProfile;
-            this.audioDelayMs = change.audioDelayMs;
-            this.mediaPlayerAudioDelayMs = change.mediaPlayerAudioDelayMs;
-            this.token = change.token;
-           }
-    }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">export class ChannelMediaOptions {
-  publishCameraTrack?: boolean;
-  publishSecondaryCameraTrack?: boolean;
-  publishAudioTrack?: boolean;
-  publishScreenTrack?: boolean;
-  publishSecondaryScreenTrack?: boolean;
-  publishCustomAudioTrack?: boolean;
-  publishCustomAudioSourceId?: number;
-  publishCustomAudioTrackEnableAec?: boolean;
-  publishDirectCustomAudioTrack?: boolean;
-  publishCustomAudioTrackAec?: boolean;
-  publishCustomVideoTrack?: boolean;
-  publishEncodedVideoTrack?: boolean;
-  publishMediaPlayerAudioTrack?: boolean;
-  publishMediaPlayerVideoTrack?: boolean;
-  publishTrancodedVideoTrack?: boolean;
-  autoSubscribeAudio?: boolean;
-  autoSubscribeVideo?: boolean;
-  startPreview?: boolean;
-  enableAudioRecordingOrPlayout?: boolean;
-  publishMediaPlayerId?: number;
-  clientRoleType?: ClientRoleType;
-  audienceLatencyLevel?: AudienceLatencyLevelType;
-  defaultVideoStreamType?: VideoStreamType;
-  channelProfile?: ChannelProfileType;
-  audioDelayMs?: number;
-  mediaPlayerAudioDelayMs?: number;
-  token?: string;
-  enableBuiltInMediaEncryption?: boolean;
-  publishRhythmPlayerTrack?: boolean;
-  audioOptionsExternal?: AudioOptionsExternal;
-}</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class ChannelMediaOptions {
-    const ChannelMediaOptions(
-        {this.publishCameraTrack,
-        this.publishSecondaryCameraTrack,
-        this.publishAudioTrack,
-        this.publishScreenTrack,
-        this.publishSecondaryScreenTrack,
-        this.publishCustomAudioTrack,
-        this.publishCustomAudioSourceId,
-        this.publishCustomAudioTrackEnableAec,
-        this.publishDirectCustomAudioTrack,
-        this.publishCustomAudioTrackAec,
-        this.publishCustomVideoTrack,
-        this.publishEncodedVideoTrack,
-        this.publishMediaPlayerAudioTrack,
-        this.publishMediaPlayerVideoTrack,
-        this.publishTrancodedVideoTrack,
-        this.autoSubscribeAudio,
-        this.autoSubscribeVideo,
-        this.startPreview,
-        this.enableAudioRecordingOrPlayout,
-        this.publishMediaPlayerId,
-        this.clientRoleType,
-        this.audienceLatencyLevel,
-        this.defaultVideoStreamType,
-        this.channelProfile,
-        this.audioDelayMs,
-        this.mediaPlayerAudioDelayMs,
-        this.token,
-        this.enableBuiltInMediaEncryption,
-        this.publishRhythmPlayerTrack,
-        this.audioOptionsExternal});</codeblock> </p>
-        </section>
+  ~ChannelMediaOptions() {}</codeblock>
+  <codeblock props="electron" outputclass="language-typescript">export class ChannelMediaOptions {
+    publishCameraTrack?: boolean
+    publishSecondaryCameraTrack?: boolean
+    publishAudioTrack?: boolean
+    publishScreenTrack?: boolean
+    publishSecondaryScreenTrack?: boolean
+    publishCustomAudioTrack?: boolean
+    publishCustomAudioSourceId?: number
+    publishCustomAudioTrackEnableAec?: boolean
+    publishDirectCustomAudioTrack?: boolean
+    publishCustomAudioTrackAec?: boolean
+    publishCustomVideoTrack?: boolean
+    publishEncodedVideoTrack?: boolean
+    publishMediaPlayerAudioTrack?: boolean
+    publishMediaPlayerVideoTrack?: boolean
+    publishTrancodedVideoTrack?: boolean
+    autoSubscribeAudio?: boolean
+    autoSubscribeVideo?: boolean
+    startPreview?: boolean
+    enableAudioRecordingOrPlayout?: boolean
+    publishMediaPlayerId?: number
+    clientRoleType?: ClientRoleType
+    audienceLatencyLevel?: AudienceLatencyLevelType
+    defaultVideoStreamType?: VideoStreamType
+    channelProfile?: ChannelProfileType
+    audioDelayMs?: number
+    mediaPlayerAudioDelayMs?: number
+    token?: string
+    enableBuiltInMediaEncryption?: boolean
+    publishRhythmPlayerTrack?: boolean
+    audioOptionsExternal?: AudioOptionsExternal
+  }</codeblock>
+              <codeblock props="unity" outputclass="language-csharp">public class ChannelMediaOptions : OptionalJsonParse
+      {
+          public Optional&lt;bool&gt; publishCameraTrack = new Optional&lt;bool&gt;();
+          public Optional&lt;bool&gt; publishSecondaryCameraTrack = new Optional&lt;bool&gt;();
+          public Optional&lt;bool&gt; publishAudioTrack = new Optional&lt;bool&gt;();
+          public Optional&lt;bool&gt; publishScreenTrack = new Optional&lt;bool&gt;();
+          public Optional&lt;bool&gt; publishSecondaryScreenTrack = new Optional&lt;bool&gt;();
+          public Optional&lt;bool&gt; publishCustomAudioTrack = new Optional&lt;bool&gt;();
+          public Optional&lt;int&gt; publishCustomAudioSourceId = new Optional&lt;int&gt;();
+          public Optional&lt;bool&gt; publishCustomAudioTrackEnableAec = new Optional&lt;bool&gt;();
+          public Optional&lt;bool&gt; publishDirectCustomAudioTrack = new Optional&lt;bool&gt;();
+          public Optional&lt;bool&gt; publishCustomVideoTrack = new Optional&lt;bool&gt;();
+          public Optional&lt;bool&gt; publishEncodedVideoTrack = new Optional&lt;bool&gt;();
+          public Optional&lt;bool&gt; publishMediaPlayerAudioTrack = new Optional&lt;bool&gt;();
+          public Optional&lt;bool&gt; publishMediaPlayerVideoTrack = new Optional&lt;bool&gt;();
+          public Optional&lt;bool&gt; publishTrancodedVideoTrack = new Optional&lt;bool&gt;();
+          public Optional&lt;bool&gt; autoSubscribeAudio = new Optional&lt;bool&gt;();
+          public Optional&lt;bool&gt; autoSubscribeVideo = new Optional&lt;bool&gt;();
+          public Optional&lt;bool&gt; enableAudioRecordingOrPlayout = new Optional&lt;bool&gt;();
+          public Optional&lt;int&gt; publishMediaPlayerId = new Optional&lt;int&gt;();
+          public Optional&lt;CLIENT_ROLE_TYPE&gt; clientRoleType = new Optional&lt;CLIENT_ROLE_TYPE&gt;();
+          public Optional&lt;AUDIENCE_LATENCY_LEVEL_TYPE&gt; audienceLatencyLevel = new Optional&lt;AUDIENCE_LATENCY_LEVEL_TYPE&gt;();
+          public Optional&lt;VIDEO_STREAM_TYPE&gt; defaultVideoStreamType = new Optional&lt;VIDEO_STREAM_TYPE&gt;();
+          public Optional&lt;CHANNEL_PROFILE_TYPE&gt; channelProfile = new Optional&lt;CHANNEL_PROFILE_TYPE&gt;();
+          public Optional&lt;int&gt; audioDelayMs = new Optional&lt;int&gt;();
+          public Optional&lt;int&gt; mediaPlayerAudioDelayMs = new Optional&lt;int&gt;();
+          public Optional&lt;string&gt; token = new Optional&lt;string&gt;();
+  
+          public ChannelMediaOptions() { }
+  
+  
+          void SetAll(ref ChannelMediaOptions change)
+          {
+              this.publishCameraTrack = change.publishCameraTrack;
+              this.publishSecondaryCameraTrack = change.publishSecondaryCameraTrack;
+              this.publishAudioTrack = change.publishAudioTrack;
+              this.publishScreenTrack = change.publishScreenTrack;
+              this.publishSecondaryScreenTrack = change.publishSecondaryScreenTrack;
+              this.publishTrancodedVideoTrack = change.publishTrancodedVideoTrack;
+              this.publishCustomAudioTrack = change.publishCustomAudioTrack;
+              this.publishDirectCustomAudioTrack = change.publishDirectCustomAudioTrack;
+              this.publishCustomAudioSourceId = change.publishCustomAudioSourceId;
+              this.publishCustomAudioTrackEnableAec = change.publishCustomAudioTrackEnableAec;
+              this.publishCustomVideoTrack = change.publishCustomVideoTrack;
+              this.publishEncodedVideoTrack = change.publishEncodedVideoTrack;
+              this.publishMediaPlayerAudioTrack = change.publishMediaPlayerAudioTrack;
+              this.publishMediaPlayerVideoTrack = change.publishMediaPlayerVideoTrack;
+              this.autoSubscribeAudio = change.autoSubscribeAudio;
+              this.autoSubscribeVideo = change.autoSubscribeVideo;
+              this.publishMediaPlayerId = change.publishMediaPlayerId;
+              this.enableAudioRecordingOrPlayout = change.enableAudioRecordingOrPlayout;
+              this.clientRoleType = change.clientRoleType;
+              this.audienceLatencyLevel = change.audienceLatencyLevel;
+              this.defaultVideoStreamType = change.defaultVideoStreamType;
+              this.channelProfile = change.channelProfile;
+              this.audioDelayMs = change.audioDelayMs;
+              this.mediaPlayerAudioDelayMs = change.mediaPlayerAudioDelayMs;
+              this.token = change.token;
+             }
+      }</codeblock>
+              <codeblock props="rn" outputclass="language-typescript">export class ChannelMediaOptions {
+    publishCameraTrack?: boolean;
+    publishSecondaryCameraTrack?: boolean;
+    publishAudioTrack?: boolean;
+    publishScreenTrack?: boolean;
+    publishSecondaryScreenTrack?: boolean;
+    publishCustomAudioTrack?: boolean;
+    publishCustomAudioSourceId?: number;
+    publishCustomAudioTrackEnableAec?: boolean;
+    publishDirectCustomAudioTrack?: boolean;
+    publishCustomAudioTrackAec?: boolean;
+    publishCustomVideoTrack?: boolean;
+    publishEncodedVideoTrack?: boolean;
+    publishMediaPlayerAudioTrack?: boolean;
+    publishMediaPlayerVideoTrack?: boolean;
+    publishTrancodedVideoTrack?: boolean;
+    autoSubscribeAudio?: boolean;
+    autoSubscribeVideo?: boolean;
+    startPreview?: boolean;
+    enableAudioRecordingOrPlayout?: boolean;
+    publishMediaPlayerId?: number;
+    clientRoleType?: ClientRoleType;
+    audienceLatencyLevel?: AudienceLatencyLevelType;
+    defaultVideoStreamType?: VideoStreamType;
+    channelProfile?: ChannelProfileType;
+    audioDelayMs?: number;
+    mediaPlayerAudioDelayMs?: number;
+    token?: string;
+    enableBuiltInMediaEncryption?: boolean;
+    publishRhythmPlayerTrack?: boolean;
+    audioOptionsExternal?: AudioOptionsExternal;
+  }</codeblock>
+              <codeblock props="flutter" outputclass="language-dart">class ChannelMediaOptions {
+      const ChannelMediaOptions(
+          {this.publishCameraTrack,
+          this.publishSecondaryCameraTrack,
+          this.publishAudioTrack,
+          this.publishScreenTrack,
+          this.publishSecondaryScreenTrack,
+          this.publishCustomAudioTrack,
+          this.publishCustomAudioSourceId,
+          this.publishCustomAudioTrackEnableAec,
+          this.publishDirectCustomAudioTrack,
+          this.publishCustomAudioTrackAec,
+          this.publishCustomVideoTrack,
+          this.publishEncodedVideoTrack,
+          this.publishMediaPlayerAudioTrack,
+          this.publishMediaPlayerVideoTrack,
+          this.publishTrancodedVideoTrack,
+          this.autoSubscribeAudio,
+          this.autoSubscribeVideo,
+          this.startPreview,
+          this.enableAudioRecordingOrPlayout,
+          this.publishMediaPlayerId,
+          this.clientRoleType,
+          this.audienceLatencyLevel,
+          this.defaultVideoStreamType,
+          this.channelProfile,
+          this.audioDelayMs,
+          this.mediaPlayerAudioDelayMs,
+          this.token,
+          this.enableBuiltInMediaEncryption,
+          this.publishRhythmPlayerTrack,
+          this.audioOptionsExternal});</codeblock> </p>
+          </section>
         <section id="detailed_desc">
-            <p>Agora supports publishing multiple audio streams and one video stream at the same time and in the same <xref keyref="RtcConnection"/>. For example, <parmname>publishAudioTrack</parmname>, <parmname>publishCustomAudioTrack</parmname> and <parmname>publishMediaPlayerAudioTrack</parmname> can be <codeph><ph keyref="true"/></codeph> at the same time; but only one of <parmname>publishCameraTrack</parmname>, <parmname>publishScreenTrack</parmname>, <parmname>publishCustomVideoTrack</parmname>, and <parmname>publishEncodedVideoTrack</parmname> can be <codeph><ph keyref="true"/></codeph> at the same time.</p>
+            <p>Agora supports publishing multiple audio streams and one video stream at the same time and in the same <xref keyref="RtcConnection" />. For example, <parmname>publishAudioTrack</parmname>, <parmname>publishCustomAudioTrack</parmname> and <parmname>publishMediaPlayerAudioTrack</parmname> can be <codeph><ph keyref="true" /></codeph> at the same time; but only one of <parmname>publishCameraTrack</parmname>, <parmname>publishScreenTrack</parmname>, <parmname>publishCustomVideoTrack</parmname>, and <parmname>publishEncodedVideoTrack</parmname> can be <codeph><ph keyref="true" /></codeph> at the same time.</p>
         </section>
         <section id="parameters">
-            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/> </title>
+            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>
             <parml>
             <plentry>
                 <pt>publishCameraTrack</pt>
                 <pd>Whether to publish the video captured by the camera:<ul id="ul_vx5_np5_3qb">
-                    <li><codeph><ph keyref="true"/></codeph>: (Default) Publish the video captured by the camera.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured by the camera.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: (Default) Publish the video captured by the camera.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Do not publish the video captured by the camera.</li>
                     </ul> </pd>
             </plentry>
             <plentry props="cpp unity electron rn flutter">
                 <pt>publishSecondaryCameraTrack</pt>
                 <pd>Whether to publish the video captured by the second camera:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: (Default) Publish the video captured by the second camera.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured by the second camera.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: (Default) Publish the video captured by the second camera.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Do not publish the video captured by the second camera.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt props="native">publishMicrophoneTrack</pt>
                 <pt props="unity electron rn flutter">publishAudioTrack</pt>
                 <pd>Whether to publish the captured audio:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: (Default) Publish the captured audio.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Do not publish the captured audio.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: (Default) Publish the captured audio.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Do not publish the captured audio.</li>
                     </ul>
                     <note type="note" props="native">Since v4.0.0, the parameter name has been changed from <parmname>publishAudioTrack</parmname> to <parmname>publishMicrophoneTrack</parmname>.</note>
                 </pd>
@@ -318,8 +317,8 @@
                 <pt props="mac cpp unity electron rn flutter">publishScreenTrack</pt>
                 <pd>
                     <p>Whether to publish the captured video from the screen:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Publish the captured video from the screen.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the captured video from the screen.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: Publish the captured video from the screen.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the captured video from the screen.</li>
                     </ul></p>
                     <note type="attention" props="cpp unity electron rn flutter">This parameter applies to Android and iOS only.</note> </pd>
             </plentry>
@@ -327,8 +326,8 @@
                 <pt props="android ios cpp">publishScreenCaptureAudio</pt>
                 <pd>
                     <p>Whether to publish the captured video from the screen:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Publish the captured video from the screen.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the captured video from the screen.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: Publish the captured video from the screen.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the captured video from the screen.</li>
                     </ul></p>
                     <p>
                     <note type="attention" props="cpp">This parameter applies to Android and iOS only.</note></p>
@@ -338,8 +337,8 @@
                 <pt>publishSecondaryScreenTrack</pt>
                 <pd>
                     <p>Whether to publish the captured video from the secondary screen:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Publish the captured video from the second screen.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the captured video from the second screen.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: Publish the captured video from the second screen.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the captured video from the second screen.</li>
                     </ul> </p>
                 </pd>
             </plentry>
@@ -347,77 +346,77 @@
                 <pt>publishTrancodedVideoTrack</pt>
                 <pd>
                     <p>Whether to publish the local transcoded video.<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Publish the local transcoded video.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the local transcoded video.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: Publish the local transcoded video.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the local transcoded video.</li>
                     </ul> </p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>publishCustomAudioTrack</pt>
                 <pd>Whether to publish the captured audio from a custom source:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Publish the captured audio from a custom source.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the captured audio from the custom source.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: Publish the captured audio from a custom source.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the captured audio from the custom source.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>publishCustomAudioSourceId</pt>
-                <pd>The ID of the custom audio source to publish. The default value is 0.<p>If you have set the value of <parmname>sourceNumber</parmname> greater than 1 in <xref keyref="setExternalAudioSource2"/>, the SDK creates the corresponding number of custom audio tracks and assigns an ID to each audio track starting from 0.</p>
+                <pd>The ID of the custom audio source to publish. The default value is 0.<p>If you have set the value of <parmname>sourceNumber</parmname> greater than 1 in <xref keyref="setExternalAudioSource2" />, the SDK creates the corresponding number of custom audio tracks and assigns an ID to each audio track starting from 0.</p>
                 </pd>
             </plentry>
             <plentry props="cpp unity electron rn flutter">
                 <pt>publishCustomAudioTrackEnableAec</pt>
                 <pd>Whether to enable AEC when publishing the captured audio from a custom source:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Enable AEC when publishing the captured audio from a custom source.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not enable AEC when publishing the captured audio from a custom source.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: Enable AEC when publishing the captured audio from a custom source.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Do not enable AEC when publishing the captured audio from a custom source.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>publishCustomVideoTrack</pt>
                 <pd>Whether to publish the captured video from a custom source:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Publish the captured video from a custom source.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the captured video from the custom source.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: Publish the captured video from a custom source.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the captured video from the custom source.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>publishEncodedVideoTrack</pt>
                 <pd>Whether to publish the encoded video:<ul id="ul_ljg_4q5_3qb">
-                    <li><codeph><ph keyref="true"/></codeph>: Publish the encoded video.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the encoded video.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: Publish the encoded video.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the encoded video.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>publishMediaPlayerAudioTrack</pt>
                 <pd>Whether to publish the audio from the media player:<ul id="ul_gr3_rq5_3qb">
-                    <li><codeph><ph keyref="true"/></codeph>: Publish the audio from the media player.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the audio from the media player.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: Publish the audio from the media player.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the audio from the media player.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>publishMediaPlayerVideoTrack</pt>
                 <pd>Whether to publish the video from the media player:<ul id="ul_gtd_tq5_3qb">
-                    <li><codeph><ph keyref="true"/></codeph>: Publish the video from the media player.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the video from the media player.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: Publish the video from the media player.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the video from the media player.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>autoSubscribeAudio</pt>
                 <pd>Whether to automatically subscribe to all remote audio streams when the user joins a channel:<ul id="ul_gxf_vq5_3qb">
-                    <li><codeph><ph keyref="true"/></codeph>: (Default) Subscribe to all remote audio streams.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Do not subscribe to any remote audio stream.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: (Default) Subscribe to all remote audio streams.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Do not subscribe to any remote audio stream.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>autoSubscribeVideo</pt>
                 <pd>Whether to subscribe to all remote video streams when the user joins the channel:<ul id="ul_gfh_xq5_3qb">
-                    <li><codeph><ph keyref="true"/></codeph>: (Default) Subscribe to all remote video streams.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Do not subscribe to any remote video stream.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: (Default) Subscribe to all remote video streams.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Do not subscribe to any remote video stream.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>enableAudioRecordingOrPlayout</pt>
                 <pd>Whether to enable audio capturing or playback:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: (Default) Enable audio capturing and playback.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Do not enable audio capturing or playback.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: (Default) Enable audio capturing and playback.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Do not enable audio capturing or playback.</li>
                     </ul></pd>
             </plentry>
             <plentry>
@@ -426,19 +425,19 @@
             </plentry>
             <plentry>
                 <pt>clientRoleType</pt>
-                <pd conkeyref="setClientRole1/clientrole"/>
+                <pd conkeyref="setClientRole1/clientrole" />
             </plentry>
             <plentry conkeyref="ClientRoleOptions/audiencelatencylevel">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry>
                 <pt>defaultVideoStreamType</pt>
-                <pd conkeyref="setRemoteDefaultVideoStreamType/defaultstreamtype"/>
+                <pd conkeyref="setRemoteDefaultVideoStreamType/defaultstreamtype" />
             </plentry>
             <plentry>
                 <pt>channelProfile</pt>
-                <pd conkeyref="setChannelProfile/channelprofiletype"/>
+                <pd conkeyref="setChannelProfile/channelprofiletype" />
             </plentry>
             <plentry props="hide">
                 <pt>audioDelayMs</pt>
@@ -450,8 +449,8 @@
             <plentry props="hide">
                 <pt>publishCustomAudioTrackAec</pt>
                 <pd>Whether to publish audio frames processed by an external echo cancellation module.<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Publish audio frames processed by an external echo cancellation module.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Do not publish to publish audio frames processed by an external echo cancellation module.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: Publish audio frames processed by an external echo cancellation module.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Do not publish to publish audio frames processed by an external echo cancellation module.</li>
                     </ul> </pd>
             </plentry>
             <plentry>
@@ -460,39 +459,39 @@
                     <p>(Optional) The token generated on your server for authentication. See <xref keyref="guide-token">Authenticate Your Users with Token</xref>.</p>
                     <note type="caution">
                     <ul>
-                    <li>This parameter takes effect only when calling <xref keyref="updateChannelMediaOptions"/> or <xref keyref="updateChannelMediaOptionsEx"/>.</li>
-                    <li>Ensure that the App ID, channel name, and user name used for creating the token are the same ones as those used by the <xref keyref="initialize"/> method for initializing the RTC engine, and those used by the <xref keyref="joinChannel2"/> and <xref keyref="joinChannelEx"/> methods for joining the channel.</li>
+                    <li>This parameter takes effect only when calling <xref keyref="updateChannelMediaOptions" /> or <xref keyref="updateChannelMediaOptionsEx" />.</li>
+                    <li>Ensure that the App ID, channel name, and user name used for creating the token are the same ones as those used by the <xref keyref="initialize" /> method for initializing the RTC engine, and those used by the <xref keyref="joinChannel2" /> and <xref keyref="joinChannelEx" /> methods for joining the channel.</li>
                     </ul></note></pd>
             </plentry>
             <plentry props="hide">
                 <pt>startPreview</pt>
                 <pd>Whether to automatically start the preview when joining a channel.<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: (Default) Automatically start preview. Ensure that you have called the <xref keyref="setupLocalVideo"/> method to set the local video property; otherwise, the preview will not be enabled.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Do not automatically start preview.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: (Default) Automatically start preview. Ensure that you have called the <xref keyref="setupLocalVideo" /> method to set the local video property; otherwise, the preview will not be enabled.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Do not automatically start preview.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>publishRhythmPlayerTrack</pt>
                 <pd>Whether to publish the sound of the metronome to remote users:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: (Default) Publish the sound of the metronome. Both the local user and remote users can hear the metronome.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Do not publish processed audio frames. Only the local user can hear the metronome.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: (Default) Publish the sound of the metronome. Both the local user and remote users can hear the metronome.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Do not publish processed audio frames. Only the local user can hear the metronome.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>isInteractiveAudience</pt>
                 <pd>Whether to enable interactive mode:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Enable interactive mode. Local users receive low-latency and smooth video from remote users.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not enable interactive mode. Local users receive the video of the remote user with the default settings.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: Enable interactive mode. Local users receive low-latency and smooth video from remote users.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Do not enable interactive mode. Local users receive the video of the remote user with the default settings.</li>
                     </ul>
                     <note type="attention">
                     <ul>
-                    <li>This parameter is used to implement the cohost across channels scenario only. The cohosts need to call <xref keyref="joinChannelEx"/> method to join the other host's channel as an audience member, and set <parmname>isInteractiveAudience</parmname> to <codeph><ph keyref="true"/></codeph>.</li>
-                    <li>This parameter takes effect only when the user role is <apiname keyref="CLIENT_ROLE_AUDIENCE"/>.</li>
+                    <li>This parameter is used to implement the cohost across channels scenario only. The cohosts need to call <xref keyref="joinChannelEx" /> method to join the other host's channel as an audience member, and set <parmname>isInteractiveAudience</parmname> to <codeph><ph keyref="true" /></codeph>.</li>
+                    <li>This parameter takes effect only when the user role is <apiname keyref="CLIENT_ROLE_AUDIENCE" />.</li>
                     </ul> </note> </pd>
             </plentry>
             <plentry id="customvideotrackid">
                 <pt>customVideoTrackId</pt>
-                <pd>The video track ID returned by calling the <xref keyref="createCustomVideoTrack"/> method.</pd>
+                <pd>The video track ID returned by calling the <xref keyref="createCustomVideoTrack" /> method.</pd>
             </plentry>
             </parml> </section>
     </refbody>
