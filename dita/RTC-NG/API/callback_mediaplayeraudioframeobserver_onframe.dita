@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_mediaplayeraudioframeobserver_onframe">
     <title><ph keyref="onFrame_MediaPlayerAudioFrameObserver" /></title>
-    <shortdesc id="short"><ph id="shortdesc" /></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">已获取音频帧回调。</shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,25 +20,20 @@
             <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp" />
             <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(AudioPcmFrame frame)? onFrame;</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>自从</dt>
-                <dd>v</dd>
-            </dlentry>
-            </dl>
-            <p />
+            <p>注册音频数据观测器后，每次接收到一帧音频帧时，都会触发该回调，报告音频帧信息。</p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title" /></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn" />
             <parml>
-            <plentry>
-                <pt />
-                <pd />
-            </plentry>
+                <plentry props="android cpp unity">
+                    <pt props="android cpp">frame</pt>
+                    <pt props="unity">videoFrame</pt>
+                    <pd><ph>音频帧信息。</ph><ph props="android">详见 <ph keyref="AudioFrame"/>。</ph><ph props="cpp unity">详见 <ph keyref="AudioPcmFrame"/>。</ph></pd>
+                </plentry>
             </parml> </section>
     </refbody>
 </reference>

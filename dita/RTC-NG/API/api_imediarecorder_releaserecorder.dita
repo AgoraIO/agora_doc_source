@@ -23,10 +23,10 @@
   }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">+ (void)destroy;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void releaseRecorder() = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract release(): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract release(): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> release();</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p><ph>该方法释放 <xref keyref="IMediaRecorder"/> 对象使用的 <xref keyref="IRtcEngine"/> 对象和其他所有资源。</ph><ph props="android apple">调用该方法后，如果需要再次开启录制，需要重新调用 <xref keyref="getMediaRecorder"/> 获取 <xref keyref="IMediaRecorder"/> 对象。</ph></p>

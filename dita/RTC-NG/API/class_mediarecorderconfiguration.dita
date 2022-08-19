@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_mediarecorderconfiguration">
-    <title><ph keyref="MediaRecorderConfiguration" /></title>
+    <title><ph keyref="MediaRecorderConfiguration"/></title>
     <shortdesc id="short"><ph id="shortdesc">本地音视频流录制配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -69,17 +69,47 @@
   
   recorderInfoUpdateInterval?: number;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">class MediaRecorderConfiguration {
+  const MediaRecorderConfiguration(
+      {this.storagePath,
+      this.containerFormat,
+      this.streamType,
+      this.maxDurationMs,
+      this.recorderInfoUpdateInterval});
+
+  @JsonKey(name: 'storagePath')
+  final String? storagePath;
+
+  @JsonKey(name: 'containerFormat')
+  final MediaRecorderContainerFormat? containerFormat;
+
+  @JsonKey(name: 'streamType')
+  final MediaRecorderStreamType? streamType;
+
+  @JsonKey(name: 'maxDurationMs')
+  final int? maxDurationMs;
+
+  @JsonKey(name: 'recorderInfoUpdateInterval')
+  final int? recorderInfoUpdateInterval;
+
+  factory MediaRecorderConfiguration.fromJson(Map&lt;String, dynamic> json) =>
+      _$MediaRecorderConfigurationFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$MediaRecorderConfigurationToJson(this);
+}</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p />
+            <p/>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>storagePath</pt>
                 <pd>录音文件在本地保存的绝对路径，需精确到文件名及格式。例如：
+                    
                     <ul>
                     <li>Windows: <codeph>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\example.mp4</codeph></li>
                     <li>iOS: <codeph>/App Sandbox/Library/Caches/example.mp4</codeph></li>
@@ -90,18 +120,19 @@
             </plentry>
             <plentry>
                 <pt>containerFormat</pt>
-                <pd props="cpp ios mac electron rn flutter unity">录制文件的格式。详见 <xref keyref="MediaRecorderContainerFormat" />。</pd>
-                <pd props="android">录制文件的格式，目前仅支持 <apiname keyref="FORMAT_MP4" />。</pd>
+                <pd props="cpp ios mac electron rn flutter unity">录制文件的格式。详见 <xref keyref="MediaRecorderContainerFormat"/>。</pd>
+                <pd props="android">录制文件的格式，目前仅支持 <apiname keyref="FORMAT_MP4"/>。</pd>
             </plentry>
             <plentry>
                 <pt>streamType</pt>
-                <pd props="cpp ios mac">录制内容。详见 <xref keyref="MediaRecorderStreamType" />。</pd>
+                <pd props="cpp ios mac electron rn flutter unity">录制内容。详见 <xref keyref="MediaRecorderStreamType"/>。</pd>
                 <pd props="android">录制内容：
-                <ul>
-                    <li><apiname keyref="STREAM_TYPE_AUDIO" />：仅音频。</li>
-                    <li><apiname keyref="STREAM_TYPE_VIDEO" />：仅视频。</li>
-                    <li><apiname keyref="STREAM_TYPE_BOTH" />：（默认）音视频。</li>
-                </ul></pd>
+                
+                    <ul>
+                    <li><apiname keyref="STREAM_TYPE_AUDIO"/>：仅音频。</li>
+                    <li><apiname keyref="STREAM_TYPE_VIDEO"/>：仅视频。</li>
+                    <li><apiname keyref="STREAM_TYPE_BOTH"/>：（默认）音视频。</li>
+                    </ul></pd>
             </plentry>
             <plentry>
                 <pt>maxDurationMs</pt>
@@ -109,7 +140,7 @@
             </plentry>
             <plentry>
                 <pt>recorderInfoUpdateInterval</pt>
-                <pd>录制信息更新间隔，单位为毫秒，取值范围为 [1000,10000]。SDK 会根据该值的设置触发 <xref keyref="onRecorderInfoUpdated" /> 回调，报告更新后的录制信息。</pd>
+                <pd>录制信息更新间隔，单位为毫秒，取值范围为 [1000,10000]。SDK 会根据该值的设置触发 <xref keyref="onRecorderInfoUpdated"/> 回调，报告更新后的录制信息。</pd>
             </plentry>
             </parml> </section>
     </refbody>
