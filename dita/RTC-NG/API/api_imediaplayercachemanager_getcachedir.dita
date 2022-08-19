@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayercachemanager_getcachedir">
-    <title><ph keyref="getCacheDir" /></title>
+    <title><ph keyref="getCacheDir"/></title>
     <shortdesc id="short"><ph id="shortdesc">获取缓存文件的储存路径。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="getCacheDir" />
+                <indexterm keyref="getCacheDir"/>
             </keywords>
         </metadata>
     </prolog>
@@ -16,33 +16,33 @@
             <codeblock props="android" outputclass="language-java">String getCacheDir();</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (NSString *)cacheDir;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int getCacheDir(char* path, int length) = 0;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="cs" outputclass="language-csharp"/>
             <codeblock props="electron" outputclass="language-typescript">abstract getCacheDir(length: number): string;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int GetCacheDir(out string path, int length);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract getCacheDir(length: number): string;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;String> getCacheDir(int length);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>如果你在调用该方法前未曾调用 <xref keyref="setCacheDir" /> 方法自定义缓存文件的储存路径，该方法返回的为 SDK 默认的缓存文件储存路径。</p>
+            <p>如果你在调用该方法前未曾调用 <xref keyref="setCacheDir"/> 方法自定义缓存文件的储存路径，该方法返回的为 SDK 默认的缓存文件储存路径。</p>
         </section>
-        <section props="cpp">
+        <section props="cpp electron unity rn flutter">
             <title>参数</title>
             <parml>
-            <plentry>
+            <plentry props="cpp unity">
                 <pt>path</pt>
                 <pd>输出参数，缓存文件的储存路径。</pd>
             </plentry>
             <plentry>
                 <pt>length</pt>
-                <pd>输入参数，缓存文件储存路径字符串的最大长度，根据你在 <parmname>path</parmname> 中获得的缓存文件储存路径字符串来填写。</pd>
+                <pd>输入参数，缓存文件储存路径字符串的最大长度<p props="cpp unity">，根据你在 <parmname>path</parmname> 中获得的缓存文件储存路径字符串来填写</p>。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title>返回值</title>
             <ul>
             <li props="cpp">0：方法调用成功。</li>
-            <li props="apple android">方法调用成功时，返回缓存文件的储存路径。</li>
-            <li>&lt; 0：方法调用失败，详见 <xref keyref="MEDIA_PLAYER_ERROR" />。</li>
+            <li props="apple android electron unity rn flutter">方法调用成功时，返回缓存文件的储存路径。</li>
+            <li>&lt; 0：方法调用失败，详见 <xref keyref="MEDIA_PLAYER_ERROR"/>。</li>
             </ul> </section>
     </refbody>
 </reference>

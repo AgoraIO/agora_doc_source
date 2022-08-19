@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_ivideoframeobserver_onrendervideoframe">
-    <title><ph keyref="onRenderVideoFrame" /></title>
+    <title><ph keyref="onRenderVideoFrame"/></title>
     <shortdesc id="short"><ph id="shortdesc">获取远端发送的视频数据。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onRenderVideoFrame" />
+                <indexterm keyref="onRenderVideoFrame"/>
             </keywords>
         </metadata>
     </prolog>
@@ -32,11 +32,12 @@
     remoteUid: number,
     videoFrame: VideoFrame
   ): boolean;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(String channelId, int remoteUid, VideoFrame videoFrame)?
+      onRenderVideoFrame;</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>成功注册视频数据观测器后，SDK 会在捕捉到每个视频帧时触发该回调。你可以在回调中获取远端发送的视频数据，然后根据场景需要，对视频数据进行处理。</p>
-            <note type="attention">该功能仅支持视频处理模式为 <apiname keyref="PROCESS_MODE_READ_ONLY" /> 的场景。</note> </section>
+            <note type="attention">该功能仅支持视频处理模式为 <apiname keyref="PROCESS_MODE_READ_ONLY"/> 的场景。</note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
@@ -46,20 +47,19 @@
                 <pd>发送该帧视频的远端用户 ID。</pd>
             </plentry>
             <plentry conkeyref="onCaptureVideoFrame/videoframe">
-                <pt />
-                <pd />
+                <pt/>
+                <pd/>
             </plentry>
             <plentry>
                 <pt>channelId</pt>
                 <pd>频道 ID。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
-                        <ul>
-                            <li><codeph><ph keyref="true" /></codeph>：SDK 忽略该返回值。</li>
-                            <li><codeph><ph keyref="false" /></codeph>：SDK 忽略该返回值。</li>
-                        </ul>
-        </section>
+            <ul>
+            <li><codeph><ph keyref="true"/></codeph>：SDK 忽略该返回值。</li>
+            <li><codeph><ph keyref="false"/></codeph>：SDK 忽略该返回值。</li>
+            </ul> </section>
     </refbody>
 </reference>
