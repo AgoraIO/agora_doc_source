@@ -14,7 +14,7 @@ The error codes and error messages might be returned in the following ways:
 | 2          | `NETWORK_ERROR`                  | Disconnections between the SDK and the server happen due to the network problems. |
 | 4          | `EXCEED_SERVICE_LIMIT`           |The service limit is exceeded, for example, the total number of the registered users or their friends exceeds the plan limit. |
 | 100        | `INVALID_APP_KEY`                | The App Key is invalid. Log in again using a valid App Key.  |
-| 101        | `INVALID_USER_NAME`              |  The user ID is empty, or the format of the parameter is incorrect. Use a [valid user ID](https://confluence.agoralab.co/pages/viewpage.action?pageId=846791321). |
+| 101        | `INVALID_USER_NAME`              |  The user ID is empty, or the format of the parameter is incorrect. Use a [valid user ID](./agora_chat_restful_registration). |
 | 102        | `INVALID_PASSWORD`               | The password entered to log in is empty or incorrect. Log in again using the correct password. |
 | 104        | `INVALID_TOKEN`                  | The token entered to log in is empty or incorrect. Log in again using the correct token. |
 | 200        | `USER_ALREADY_LOGIN`             |  The user has already logged in. Do not log in repeatedly.    |

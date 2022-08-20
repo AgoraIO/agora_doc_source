@@ -71,7 +71,7 @@ This status code indicates that the specified resources of the API request could
 | `404` | `organization_application_not_found` | "Could not find application for {org_url} from URI: {app_url}/token." | The error message returned because the specified organization or application does not exist.      |
 | `404` | `service_resource_not_found` | "Service resource not found." | The error message returned because the specified user, chat group, or chat room does not exist. |
 | `404` | `service_resource_not_found` | "Service resource not found." | The error message returned because either the specified user being queried or removed does not exist, or dirty data blocks the proper read operation. To address the dirty read problem, you can pass in the UUID to delete the existing user and register with the same username again. |
-| `404` | `storage_object_not_found` | "Failed to find chat message history download url for appkey: {app_key}, time: {yyyymmddhh}." | The error message returned because no chat history exists within the queried time period. To double check, [submit a ticket]((https://agora-ticket.agora.io/)) to Agora Support. |
+| `404` | `storage_object_not_found` | "Failed to find chat message history download url for appkey: {app_key}, time: {yyyymmddhh}." | The error message returned because no chat history exists within the queried time period. To double check, [submit a ticket](https://agora-ticket.agora.io/) to Agora Support. |
 
 ### 405 Method Not Allowed
 This status code indicates that the method of the API request is not supported by the server.
