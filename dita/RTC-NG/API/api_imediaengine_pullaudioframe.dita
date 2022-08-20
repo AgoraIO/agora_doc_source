@@ -33,6 +33,7 @@
             <li>该方法和 <apiname keyref="onPlaybackAudioFrame"/> 回调相比，区别在于：
 
                 
+                
                 <ul>
                 <li>SDK 通过 <apiname keyref="onPlaybackAudioFrame"/> 回调将音频数据传输给 app。如果 app 处理延时，可能会导致音频播放抖动。</li>
                 <li>调用该方法后 app 会主动拉取音频数据。通过设置音频数据，SDK 可以调整缓存，帮助 app 处理延时，从而有效避免音频播放抖动。</li>
@@ -62,10 +63,9 @@
             </ul>
             <ul props="ios mac">
             <li><codeph><ph keyref="true"/></codeph>：方法调用成功。</li>
-            <li><codeph><ph keyref="false"/></codeph>：方法调用失败。</li></ul>
-            <param><plentry props="electron rn">
-            <pt>AudioFrame</pt>
-            <pd>音频数据。</pd></plentry></param>
-            </section>
+            <li><codeph><ph keyref="false"/></codeph>：方法调用失败。</li>
+            </ul>
+            <p props="electron rn">返回音频数据，详见 <xref keyref="AudioFrame"/>。</p>
+        </section>
     </refbody>
 </reference>
