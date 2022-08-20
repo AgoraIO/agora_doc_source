@@ -84,21 +84,13 @@
   };
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class AudioFrame {
-  
   type?: AudioFrameType;
-  
   samplesPerChannel?: number;
-  
   bytesPerSample?: BytesPerSample;
-  
   channels?: number;
-  
   samplesPerSec?: number;
-  
   buffer?: Uint8Array;
-  
   renderTimeMs?: number;
-  
   avsync_type?: number;
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class AudioFrame
@@ -138,29 +130,30 @@
         public int avsync_type { set; get; }
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class AudioFrame {
-  
   type?: AudioFrameType;
-  
   samplesPerChannel?: number;
-  
   bytesPerSample?: BytesPerSample;
-  
   channels?: number;
-  
   samplesPerSec?: number;
-  
   buffer?: Uint8Array;
-  
   renderTimeMs?: number;
-  
   avsync_type?: number;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">class AudioFrame {
+  const AudioFrame(
+      {this.type,
+      this.samplesPerChannel,
+      this.bytesPerSample,
+      this.channels,
+      this.samplesPerSec,
+      this.buffer,
+      this.renderTimeMs,
+      this.avsyncType});</codeblock> </p>
         </section>
         <section id="parameters">
             <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>
             <parml>
-            <plentry props="cpp unity">
+            <plentry props="cpp unity rn electron flutter">
                 <pt>type</pt>
                 <pd>
                     <p>音频帧类型，详见 <xref keyref="AUDIO_FRAME_TYPE" />。</p>
@@ -175,7 +168,7 @@
                 <pd>每个采样点的字节数: 对于 PCM 来说，一般使用 16 bit，即两个字节。</pd>
             </plentry>
             <plentry>
-                <pt><ph props="cpp ios mac unity">channels</ph><ph props="android">channelNums</ph></pt>
+                <pt><ph props="cpp ios mac unity electron rn flutter">channels</ph><ph props="android">channelNums</ph></pt>
                 <pd>
                     <p>声道数量(如果是立体声，数据是交叉的)。
                         <ul id="ul_zxz_2wt_r4b">
@@ -185,12 +178,12 @@
                 </pd>
             </plentry>
             <plentry>
-                <pt props="cpp ios mac unity">samplesPerSec</pt>
+                <pt props="cpp ios mac unity electron rn flutter">samplesPerSec</pt>
                 <pt props="android">sampleRataHz</pt>
                 <pd>每声道每秒的采样点数。</pd>
             </plentry>
             <plentry>
-                <pt props="cpp ios mac">buffer</pt>
+                <pt props="cpp ios mac electron rn flutter">buffer</pt>
                     <pt props="android">bytes</pt>
                 <pt props="unity">RawBuffer</pt>
                 <pd>
@@ -198,7 +191,7 @@
                     <p>缓存区数据大小 <codeph>buffer</codeph> = <codeph>samples</codeph> × <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>。</p>
                 </pd>
             </plentry>
-            <plentry props="cpp unity ios mac">
+            <plentry props="cpp unity ios mac rn electron flutter">
                 <pt>renderTimeMs</pt>
                 <pd>
                     <p>外部音频帧的渲染时间戳。</p>
@@ -206,7 +199,7 @@
                 </pd>
             </plentry>
             <plentry props="ios mac cpp unity">
-                <pt> <ph props="ios mac">avsyncType</ph> <ph props="cpp unity">avsync_type</ph> </pt>
+                <pt> <ph props="ios mac flutter">avsyncType</ph> <ph props="cpp unity electron rn">avsync_type</ph> </pt>
                 <pd>保留参数。</pd>
             </plentry>
             <plentry props="android">
