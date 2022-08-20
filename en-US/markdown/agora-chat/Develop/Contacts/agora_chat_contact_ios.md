@@ -250,8 +250,3 @@ After retrieving the block list from the server, you can also call `getBlackList
 ```objective-c
 NSArray *blockList = [[AgoraChatClient sharedClient].contactManager getBlackList];
 ```
-
-## Reference
-
-For detailed information on user attributes, refer to the following API Reference:
-- [IAgoraChatContactManager](./API%20Reference/im_oc/protocol_i_agora_chat_contact_manager-p.html)

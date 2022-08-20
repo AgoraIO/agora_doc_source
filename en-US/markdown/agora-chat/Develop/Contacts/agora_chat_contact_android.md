@@ -137,8 +137,3 @@ After retrieving the block list from the server, you can also call `getBlackList
 ```java
 ChatClient.getInstance().contactManager().getBlackListUsernames();
 ```
-
-## Reference
-
-For detailed information on user attributes, refer to the following API Reference:
-- [ContactManager](.API%20Reference/im_java/classio_1_1agora_1_1chat_1_1_contact_manager.html)

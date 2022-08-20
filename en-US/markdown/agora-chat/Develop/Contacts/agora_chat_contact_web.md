@@ -130,8 +130,3 @@ To get the block list, call `getBlocklist`.
 ```javascript
 WebIM.conn.getBlocklist();
 ```
-
-## Reference
-
-For detailed information on user attributes, refer to the following API Reference:
-- [Contact](./API%20Reference/im_ts/modules/Contact.html)
