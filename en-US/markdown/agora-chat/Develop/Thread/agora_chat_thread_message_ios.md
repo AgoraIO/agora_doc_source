@@ -53,7 +53,7 @@ message.isChatThreadMessage = self.isChatThread;
 }];
 ```
 
-For more information about sending a message, see [Send Messages](./agora_chat_message_ios?platform=iOS#send-and-receive-messages).
+For more information about sending a message, see [Send Messages](./agora_chat_send_receive_message_ios?platform=iOS#send-a-text-message).
 
 
 ### Receive a thread message
@@ -73,12 +73,12 @@ Once a thread has a new message, all chat group members receive the `AgoraChatTh
 [[AgoraChatClient sharedClient].chatManager removeDelegate:self];
 ```
 
-For more information about receiving a message, see [Receive Messages](./agora_chat_message_ios?platform=iOS#send-and-receive-messages).
+For more information about receiving a message, see [Receive Messages](./agora_chat_send_receive_message_ios?platform=iOS#receive-a-message).
 
 
 ### Recall a thread message
 
-For details about how to recall a message, refer to [Recall Messages](./agora_chat_message_ios?platform=iOS#recall-messages).
+For details about how to recall a message, refer to [Recall Messages](./agora_chat_send_receive_message_ios?platform=iOS#recall-a-message).
 
 Once a message is recalled in a thread, all chat group members receive the `AgoraChatThreadManagerDelegate#onChatThreadUpdated` callback. Thread members can also listen for the `AgoraChatManagerDelegate#messagesInfoDidRecall` callback, as shown in the following code sample:
 
@@ -91,4 +91,4 @@ Once a message is recalled in a thread, all chat group members receive the `Agor
 
 ### Retrieve thread messages from the server
 
-For details about how to retrieve messages from the server, see [Retrieve Historical Messages](./agora_chat_message_ios?platform=iOS#retrieve-historical-messages-from-the-server).
+For details about how to retrieve messages from the server, see [Retrieve Historical Messages](./agora_chat_retrieve_message_ios?platform=iOS#retrieve-historical-messages-of-the-specified-conversation).

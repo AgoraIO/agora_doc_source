@@ -54,7 +54,7 @@ function sendTextMessage() {
 };
 ```
 
-For more information about sending a message, see [Send Messages](./agora_chat_message_web?platform=Web#send-and-receive-messages).
+For more information about sending a message, see [Send Messages](./agora_chat_send_receive_message_web?platform=Web#send-a-text-message).
 
 
 ### Receive a thread message
@@ -74,7 +74,7 @@ connection.addEventHandler('THREADMESSAGE',{
 });
 ```
 
-For more information about receiving a message, see [Receive Messages](./agora_chat_message_web?platform=Web#send-and-receive-messages).
+For more information about receiving a message, see [Receive Messages](./agora_chat_send_receive_message_web?platform=Web#receive-a-message).
 
 
 ### Recall a thread message
@@ -107,9 +107,9 @@ conn.addEventHandler('MESSAGES',{
 })
 ```
 
-For more information about recalling a message, see [Recall Messages](./agora_chat_message_web?platform=Web#recall-messages).
+For more information about recalling a message, see [Recall Messages](./agora_chat_send_receive_message_web?platform=Web#recall-a-message).
 
 
 ### Retrieve thread messages from the server
 
-For details about how to retrieve messages from the server, see [Retrieve Historical Messages](./agora_chat_message_web?platform=Web#retrieve-historical-messages-of-the-specified-conversation).
+For details about how to retrieve messages from the server, see [Retrieve Historical Messages](./agora_chat_retrieve_message_web?platform=Web#retrieve-historical-messages-of-the-specified-conversation).

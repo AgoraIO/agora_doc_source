@@ -62,7 +62,7 @@ message.setMessageStatusCallback(new CallBack() {
 ChatClient.getInstance().chatManager().sendMessage(message);
 ```
 
-For more information about sending a message, see [Send Messages](./agora_chat_message_android?platform=Android#send-and-receive-messages).
+For more information about sending a message, see [Send Messages](./agora_chat_send_receive_message_android?platform=Android#send-a-text-message).
 
 
 ### Receive a thread message
@@ -89,12 +89,12 @@ ChatClient.getInstance().chatManager().addMessageListener(msgListener);
 ChatClient.getInstance().chatManager().removeMessageListener(msgListener);
 ```
 
-For more information about receiving a message, see [Receive Messages](./agora_chat_message_android?platform=Android#send-and-receive-messages).
+For more information about receiving a message, see [Receive Messages](./agora_chat_send_receive_message_android?platform=Android#receive-a-message).
 
 
 ### Recall a thread message
 
-For details about how to recall a message, refer to [Recall Messages](./agora_chat_message_android?platform=Android#recall-messages).
+For details about how to recall a message, refer to [Recall Messages](./agora_chat_send_receive_message_android?platform=Android#recall-a-message).
 
 Once a message is recalled in a thread, all chat group members receive the `ChatThreadChangeListener#onChatThreadUpdated` callback. Thread members can also listen for the `MessageListener#onMessageRecalled` callback, as shown in the following code sample:
 
@@ -122,11 +122,11 @@ When you join a thread, messages are displayed in chronological order by default
 
 #### Retrieve thread messages from the server
 
-For details about how to retrieve messages from the server, see [Retrieve Historical Messages](./agora_chat_message_android?platform=Android#retrieve-historical-messages-from-the-server).
+For details about how to retrieve messages from the server, see [Retrieve Historical Messages](./agora_chat_retrieve_message_android?platform=Android#retrieve-historical-messages-of-the-specified-conversation).
 
 #### Retrieve the conversation of a thread from the memory and local database
 
-By calling [`getAllConversations`](./agora_chat_message_android#retrieve-local-conversations), you can only retrieve the conversations of one-to-one chats or group chats. To retrieve the conversation of a thread, refer to the following code sample:
+By calling [`getAllConversations`](./agora_chat_manage_message_android?platform=Android#retrieve-conversations), you can only retrieve the conversations of one-to-one chats or group chats. To retrieve the conversation of a thread, refer to the following code sample:
 
 ```java
 // Sets the conversation type to group chat as a thread belongs to a chat group.
