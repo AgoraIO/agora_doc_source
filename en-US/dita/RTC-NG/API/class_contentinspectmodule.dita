@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_contentinspectmodule">
-    <title><ph keyref="ContentInspectModule"/></title>
-    <shortdesc id="short"><ph id="shortdesc"><apiname keyref="ContentInspectModule"/>Structure to configure the type and frequency of the video content moderation module.</ph></shortdesc>
+    <title><ph keyref="ContentInspectModule" /></title>
+    <shortdesc id="short"><ph id="shortdesc"><apiname keyref="ContentInspectModule" />Structure to configure the type and frequency of the video content moderation module.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -13,7 +13,7 @@
     type = CONTENT_INSPECT_TYPE_INVALID;
     interval = 0;
   }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraContentInspectModule: NSObject
+      <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraContentInspectModule: NSObject
 @property (assign, nonatomic) AgoraContentInspectType type;
 
 @property (assign, nonatomic) NSInteger interval;
@@ -26,26 +26,42 @@
     interval = 0;
   }
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public class ContentInspectModule {
+<codeblock props="electron" outputclass="language-typescript">export class ContentInspectModule {
+  
+  type?: ContentInspectType;
+  
+  interval?: number;
+}</codeblock>
+      <codeblock props="unity" outputclass="language-csharp">public class ContentInspectModule
+    {
         public CONTENT_INSPECT_TYPE type;
-        public uint frequency;
+        public uint interval;
+
+        public ContentInspectModule()
+        {
+            type = CONTENT_INSPECT_TYPE.CONTENT_INSPECT_INVALID;
+            interval = 0;
+        }
     };</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+      <codeblock props="rn" outputclass="language-typescript">export class ContentInspectModule {
+  
+  type?: ContentInspectType;
+  
+  interval?: number;
+}</codeblock>
+      <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>type</pt>
-                <pd props="ios mac cpp">The type of video content moderation module. See <xref keyref="CONTENT_INSPECT_TYPE"/>.</pd>
+                <pd props="ios mac cpp">The type of video content moderation module. See <xref keyref="CONTENT_INSPECT_TYPE" />.</pd>
                 <pd props="android unity">
                     <p>The type of video content moderation module.<ul>
-                    <li><ph keyref="CONTENT_INSPECT_INVALID"/>(0): (Default) This module has no actual function. Do not set to this value.</li>
-                    <li><ph keyref="CONTENT_INSPECT_MODERATION"/>(1): Video content moderation. SDK takes screenshots, inspects video content of the video stream in the channel, and uploads the screenshots and moderation results.</li>
-                    <li><ph keyref="CONTENT_INSPECT_SUPERVISE"/>(2): Screenshot capture. SDK takes screenshots of the video stream in the channel and uploads them.</li>
+                    <li><ph keyref="CONTENT_INSPECT_INVALID" />(0): (Default) This module has no actual function. Do not set to this value.</li>
+                    <li><ph keyref="CONTENT_INSPECT_MODERATION" />(1): Video content moderation. SDK takes screenshots, inspects video content of the video stream in the channel, and uploads the screenshots and moderation results.</li>
+                    <li><ph keyref="CONTENT_INSPECT_SUPERVISE" />(2): Screenshot capture. SDK takes screenshots of the video stream in the channel and uploads them.</li>
                     </ul></p>
                 </pd>
             </plentry>

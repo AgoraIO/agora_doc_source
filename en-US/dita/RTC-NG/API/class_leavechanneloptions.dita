@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_leavechanneloptions">
-    <title><ph keyref="LeaveChannelOptions"/></title>
-    <shortdesc id="short"><ph id="shortdesc"
-        >The options for leaving a channel.</ph></shortdesc>
+    <title><ph keyref="LeaveChannelOptions" /></title>
+    <shortdesc id="short"><ph id="shortdesc">The options for leaving a channel.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -26,9 +25,12 @@
 };
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LeaveChannelOptions {
-  stopAudioMixing?: boolean
-  stopAllEffect?: boolean
-  stopMicrophoneRecording?: boolean
+  
+  stopAudioMixing?: boolean;
+  
+  stopAllEffect?: boolean;
+  
+  stopMicrophoneRecording?: boolean;
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class LeaveChannelOptions
     {
@@ -44,8 +46,11 @@
         public bool stopMicrophoneRecording { set; get; }
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class LeaveChannelOptions {
+  
   stopAudioMixing?: boolean;
+  
   stopAllEffect?: boolean;
+  
   stopMicrophoneRecording?: boolean;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class LeaveChannelOptions {
@@ -58,24 +63,22 @@
   final bool? stopAllEffect;
   @JsonKey(name: 'stopMicrophoneRecording')
   final bool? stopMicrophoneRecording;
-  factory LeaveChannelOptions.fromJson(Map&lt;String, dynamic> json) =>
+  factory LeaveChannelOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$LeaveChannelOptionsFromJson(json);
-  Map&lt;String, dynamic> toJson() => _$LeaveChannelOptionsToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$LeaveChannelOptionsToJson(this);
 }
 </codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>stopAudioMixing</pt>
                 <pd>Whether to stop playing and mixing the music file when a user leaves the channel.
                     
                     <ul id="ul_ttv_f2n_3qb">
-                    <li><codeph><ph keyref="true"/></codeph>: (Default) Stop playing and mixing the music file.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Do not stop playing and mixing the music file.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: (Default) Stop playing and mixing the music file.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Do not stop playing and mixing the music file.</li>
                     </ul> </pd>
             </plentry>
             <plentry>
@@ -83,8 +86,8 @@
                 <pd>Whether to stop playing all audio effects when a user leaves the channel.
                     
                     <ul id="ul_tgl_m2n_3qb">
-                    <li><codeph><ph keyref="true"/></codeph>: (Default) Stop playing all audio effects.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Do not stop playing any audio effect.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: (Default) Stop playing all audio effects.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Do not stop playing any audio effect.</li>
                     </ul></pd>
             </plentry>
             <plentry>
@@ -92,8 +95,8 @@
                 <pd>Whether to stop microphone recording when a user leaves the channel.                 
                     
                     <ul id="ul_dy1_s2n_3qb">
-                    <li><codeph><ph keyref="true"/></codeph>: (Default) Stop microphone recording.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Do not stop microphone recording.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: (Default) Stop microphone recording.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Do not stop microphone recording.</li>
                     </ul></pd>
             </plentry>
             </parml> </section>
