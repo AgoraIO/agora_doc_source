@@ -17,7 +17,7 @@ The Agora Chat SDK uses `UserInfoManager` to retrieve, set, and modify user attr
 Before proceeding, ensure that you meet the following requirements:
 
 - You have integrated the Agora Chat SDK, initialized the SDK and implemented the functionality of registering accounts and login. For details, see [Get Started with Agora Chat](./agora_chat_get_started_unity?platform=Unity).
-- Have a thorough understanding of the API call frequency limit, the maximum size of all the attributes of a specified user, and the maximum size of all user attribtues in an app. For details, see [Known limitations](./agora_chat_limitation?platform=Unity).
+- Have a thorough understanding of the API call frequency limit, the maximum size of all the attributes of a specified user, and the maximum size of all user attributes in an app. For details, see [Known limitations](./agora_chat_limitation?platform=Unity).
 
 ## Implementation
 
@@ -106,15 +106,15 @@ To implement user avatar management in your app, take the following steps:
 
 ### Create and send a namecard using user attributes
 
-Namecard messages are custom messages that include the user ID, nickname, avator, email address, and phone number of the specified user. To create and send a namecard, take the following steps:
+Namecard messages are custom messages that include the user ID, nickname, avatar, email address, and phone number of the specified user. To create and send a namecard, take the following steps:
 
 1. Create a custom message and set the `event` of the custom message as `USER_CARD_EVENT`.
-2. Add `userId`, `getNickname`, and `getAvatarUrl` as fileds in `params`. Send the custom message.
+2. Add `userId`, `getNickname`, and `getAvatarUrl` as fields in `params`. Send the custom message.
 
 Followings are the sample code for creating and sending a namecard message:
 
 ```java
-// Creates a cutom message
+// Creates a custom message
 ChatMessage message = ChatMessage.createSendMessage(ChatMessage.Type.CUSTOM);
                 CustomMessageBody body = new CustomMessageBody(DemoConstant.USER_CARD_EVENT);
                 Map<String,String> params = new HashMap<>();
@@ -127,11 +127,3 @@ ChatMessage message = ChatMessage.createSendMessage(ChatMessage.Type.CUSTOM);
 // Sends the custom message
 ChatClient.getInstance().chatManager().sendMessage(message);
 ```
-
-## Reference
-
-This section includes reference information that you may need to know during the implementation.
-
-- For detailed information on user attributes, refer to the following API Reference:
-  - [UserInfo](.A/API%20Reference/im_java/classio_1_1agora_1_1chat_1_1_user_info.html)
-  - [UserInfoManager](./API%20Reference/im_java/classio_1_1agora_1_1chat_1_1_user_info_manager.html)

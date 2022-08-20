@@ -16,7 +16,7 @@ The Agora Chat SDK uses `ChatUserInfoManager` to retrieve, set, and modify user 
 Before proceeding, ensure that you meet the following requirements:
 
 - Have a project that has implemented [the basic real-time chat functionalities](./agora_chat_get_started_flutter?platform=Flutter).
-- Have a thorough understanding of the API call frequency limit, the maximum size of all the attributes of a specified user, and the maximum size of all user attribtues in an app. For details, see [Known limitations](./agora_chat_limitation?platform=Flutter).
+- Have a thorough understanding of the API call frequency limit, the maximum size of all the attributes of a specified user, and the maximum size of all user attributes in an app. For details, see [Known limitations](./agora_chat_limitation?platform=Flutter).
 
 ## Implementation
 
@@ -76,6 +76,6 @@ The Agora Chat SDK only supports storing the URL address of the avatar file rath
 
 To implement user avatar management in your app, take the following steps:
 
-1. Upload the avator file to the third-party file storage service. Once the file is successfully uploaded, you get a URL address of the avatar file.
+1. Upload the avatar file to the third-party file storage service. Once the file is successfully uploaded, you get a URL address of the avatar file.
 2. Set the `avatarUrl` parameter in user attributes as the URL address of the avatar file.
 3. To display the avatar, call `fetchUserInfoById` to retrieve the URL of the avatar file, and then render the image on the local UI.

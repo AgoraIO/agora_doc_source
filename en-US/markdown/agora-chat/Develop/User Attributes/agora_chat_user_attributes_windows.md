@@ -110,11 +110,3 @@ SDKClient.Instance.ChatManager.SendMessage(ref msg, new CallBack(
    }
 ));
 ```
-
-## Reference
-
-This section includes reference information that you may need to know during the implementation.
-
-- For detailed information on user attributes, refer to the following API Reference:
-  - [UserInfo](.API%20Reference/im_csharp/class_chat_s_d_k_1_1_user_info.html?transId=86800a60-e862-11ec-ba28-998741466f1a)
-  - [IUserInfoManager](./agora-chat/API%20Reference/im_csharp/class_chat_s_d_k_1_1_i_user_info_manager.html?transId=86800a60-e862-11ec-ba28-998741466f1a)

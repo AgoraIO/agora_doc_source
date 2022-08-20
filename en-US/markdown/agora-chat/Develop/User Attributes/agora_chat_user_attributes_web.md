@@ -146,11 +146,3 @@ WebIM.conn.send(msg).then((res)=>{
     console.log('error')
 });
 ```
-
-## Reference
-
-This section includes reference information that you may need to know during the implementation.
-
-- For detailed information on user attributes, refer to the following API Reference:
-  - [AgoraChatUserInfo](./API%20Reference/im_oc/interface_agora_chat_user_info.html)
-  - [fetchUserInfoById](./API%20Reference/im_ts/modules/Contact.html)

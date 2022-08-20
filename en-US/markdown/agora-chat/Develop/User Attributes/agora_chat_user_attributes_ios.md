@@ -114,11 +114,3 @@ AgoraChatCustomMessageBody *body = [[AgoraChatCustomMessageBody alloc] init];
     [[AgoraChatClient sharedClient].chatManager sendMessage:message progress:nil completion:^(AgoraChatMessage *message, AgoraChatError *error) {
     }];
 ```
-
-## Reference
-
-This section includes reference information that you may need to know during the implementation.
-
-- For detailed information on user attributes, refer to the following API Reference:
-  - [AgoraChatUserInfo](./API%20Reference/im_oc/interface_agora_chat_user_info.html)
-  - [IAgoraChatUserInfoManager](./API%20Reference/im_oc/protocol_i_agora_chat_user_info_manager-p.html)
