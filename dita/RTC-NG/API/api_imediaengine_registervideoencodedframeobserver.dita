@@ -25,7 +25,7 @@
             <codeblock props="rn" outputclass="language-typescript">abstract registerVideoEncodedFrameObserver(
     observer: IVideoEncodedFrameObserver
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </section>
+            <codeblock props="flutter" outputclass="language-dart">void registerVideoEncodedFrameObserver(VideoEncodedFrameObserver observer);</codeblock> </section>
         <section id="detailed_desc">
             <note type="attention">
             <ul>
@@ -38,21 +38,25 @@
             <plentry>
                 <pt props="ios mac">delegate</pt>
                 <pt props="android">receiver</pt>
-                    <pt props="cpp">observer</pt>
+                <pt props="cpp electron rn flutter">observer</pt>
                 <pt props="unity">videoEncodedImageReceiver</pt>
-                <pd props="android cpp unity">视频帧接收观测器，详见 <xref keyref="IVideoEncodedFrameObserver" />。</pd>
+                <pd props="android cpp unity rn electron flutter">视频帧接收观测器，详见 <xref keyref="IVideoEncodedFrameObserver" />。</pd>
                 <pd props="ios mac">接口对象实例。详见 <xref keyref="IVideoEncodedFrameObserver" />。如果传入 <ph keyref="NULL" />，则表示取消注册。</pd>
             </plentry>
-                <plentry props="unity">
-                    <pt>mode</pt>
-                    <pd>视频数据回调模式，详见 <xref keyref="OBSERVER_MODE" />。</pd>
-                </plentry>
+            <plentry props="unity">
+                <pt>mode</pt>
+                <pd>视频数据回调模式，详见 <xref keyref="OBSERVER_MODE" />。</pd>
+            </plentry>
             </parml> </section>
-        <section id="return_values" props="native">
+        <section id="return_values" props="native electron rn">
             <title>返回值</title>
-            <ul id="ul_z2p_4jf_3qb">
+            <ul props="android cpp electron rn">
             <li>0：方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。</li>
+            </ul>
+            <ul props="mac ios">
+            <li><codeph><ph keyref="true"/></codeph>: 方法调用成功。</li>
+            <li><codeph><ph keyref="false"/></codeph>: 方法调用失败。</li>
             </ul> </section>
     </refbody>
 </reference>

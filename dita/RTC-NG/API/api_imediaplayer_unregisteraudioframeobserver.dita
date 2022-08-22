@@ -16,20 +16,25 @@
             <codeblock props="android" outputclass="language-java" />
             <codeblock props="ios mac" outputclass="language-objectivec" />
             <codeblock props="cpp" outputclass="language-cpp">virtual int unregisterAudioFrameObserver(media::base::IAudioFrameObserver* observer) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript">abstract unregisterAudioFrameObserver(
+    observer: IMediaPlayerAudioFrameObserver
+  ): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract void UnregisterAudioFrameObserver();</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract unregisterAudioFrameObserver(
+    observer: IMediaPlayerAudioFrameObserver
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">void unregisterAudioFrameObserver(MediaPlayerAudioFrameObserver observer);</codeblock> </p>
         </section>
-        <section id="parameters" props="cpp">
+        <section id="parameters" props="cpp electron rn flutter">
             <title>参数</title>
             <parml>
             <plentry>
                 <pt>observer</pt>
-                <pd>音频帧观测器，详见 <xref keyref="IAudioFrameObserver" />。</pd>
+                <pd props="cpp">音频帧观测器，详见 <xref keyref="IAudioFrameObserver" />。</pd>
+                <pd props="electron rn flutter">音频帧观测器，详见 <xref keyref="IMediaPlayerAudioFrameObserver" />。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="cpp">
+        <section id="return_values" props="cpp electron rn">
             <title>返回值</title>
             <ul id="ul_uns_l2y_hqb">
             <li>0: 方法调用成功。</li>
