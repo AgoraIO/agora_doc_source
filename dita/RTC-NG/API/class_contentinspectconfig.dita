@@ -70,8 +70,23 @@
   
   moduleCount?: number;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; updateScreenCaptureParameters(
-      ScreenCaptureParameters captureParams);</codeblock></p>
+            <codeblock props="flutter" outputclass="language-dart">class ContentInspectConfig {
+
+  const ContentInspectConfig({this.extraInfo, this.modules, this.moduleCount});
+  @JsonKey(name: 'extraInfo')
+  final String? extraInfo;
+
+  @JsonKey(name: 'modules')
+  final List&lt;ContentInspectModule>? modules;
+
+  @JsonKey(name: 'moduleCount')
+  final int? moduleCount;
+
+  factory ContentInspectConfig.fromJson(Map&lt;String, dynamic> json) =>
+      _$ContentInspectConfigFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$ContentInspectConfigToJson(this);
+}</codeblock></p>
         </section>
         <section id="parameters">
             <title>参数</title>

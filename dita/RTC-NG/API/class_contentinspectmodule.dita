@@ -49,7 +49,18 @@
   
   interval?: number;
 }</codeblock>
-      <codeblock props="flutter" outputclass="language-dart" /> </p>
+      <codeblock props="flutter" outputclass="language-dart">class ContentInspectModule {
+
+  const ContentInspectModule({this.type, this.interval});
+  @JsonKey(name: 'type')
+  final ContentInspectType? type;
+  @JsonKey(name: 'interval')
+  final int? interval;
+  factory ContentInspectModule.fromJson(Map&lt;String, dynamic> json) =>
+      _$ContentInspectModuleFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$ContentInspectModuleToJson(this);
+}</codeblock> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>

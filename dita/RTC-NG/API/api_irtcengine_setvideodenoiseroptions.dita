@@ -31,7 +31,10 @@
     options: VideoDenoiserOptions,
     type?: MediaSourceType
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setVideoDenoiserOptions(
+      {required bool enabled,
+      required VideoDenoiserOptions options,
+      MediaSourceType type = MediaSourceType.primaryCameraSource});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>采光不足的环境和低端视频采集设备会使视频图像含有明显的噪声，影响视频画质。在实时互动场景下，视频噪声还会在编码过程中占用码流资源并降低编码效率。</p>
@@ -64,9 +67,9 @@
                 <pt>options</pt>
                 <pd>视频降噪选项，用于设置视频降噪的效果。详见 <xref keyref="VideoDenoiserOptions"/>。</pd>
             </plentry>
-                <plentry props="electron unity rn flutter" conkeyref="setLowlightEnhanceOptions/type">
-                    <pt></pt>
-                    <pd></pd>
+                <plentry props="cpp rn unity electron flutter" conkeyref="setLowlightEnhanceOptions/type">
+                    <pt/>
+                    <pd/>
                 </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity rn">
