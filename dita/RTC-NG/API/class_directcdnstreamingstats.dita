@@ -36,15 +36,10 @@
     int audioBitrate;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class DirectCdnStreamingStats {
-  
   videoWidth?: number;
-  
   videoHeight?: number;
-  
   fps?: number;
-  
   videoBitrate?: number;
-  
   audioBitrate?: number;
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class DirectCdnStreamingStats
@@ -56,18 +51,40 @@
         public int audioBitrate { set; get; }
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class DirectCdnStreamingStats {
-  
   videoWidth?: number;
-  
   videoHeight?: number;
-  
   fps?: number;
-  
   videoBitrate?: number;
-  
   audioBitrate?: number;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">class DirectCdnStreamingStats {
+  const DirectCdnStreamingStats(
+      {this.videoWidth,
+      this.videoHeight,
+      this.fps,
+      this.videoBitrate,
+      this.audioBitrate});
+
+  @JsonKey(name: 'videoWidth')
+  final int? videoWidth;
+
+  @JsonKey(name: 'videoHeight')
+  final int? videoHeight;
+
+  @JsonKey(name: 'fps')
+  final int? fps;
+
+  @JsonKey(name: 'videoBitrate')
+  final int? videoBitrate;
+
+  @JsonKey(name: 'audioBitrate')
+  final int? audioBitrate;
+
+  factory DirectCdnStreamingStats.fromJson(Map<String, dynamic> json) =>
+      _$DirectCdnStreamingStatsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DirectCdnStreamingStatsToJson(this);
+}</codeblock> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
