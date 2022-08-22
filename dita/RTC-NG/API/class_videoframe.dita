@@ -211,11 +211,34 @@
                 <pt>avsync_type</pt>
                 <pd>保留参数。</pd>
             </plentry>
+            <plentry props="cpp electron unity flutter">
+                <pt>metadata_buffer</pt>
+                <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的数据缓冲区，默认值为 <codeph><ph keyref="null"/></codeph>。</pd>
+            </plentry>
+            <plentry props="cpp electron unity flutter">
+                <pt>metadata_size</pt>
+                <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的大小，默认值为 <codeph>0</codeph>。</pd>
+            </plentry>
+            <plentry props="cpp unity">
+                <pt>sharedContext</pt>
+                <pd>该参数仅适用于 Texture 格式的视频数据。<ul id="ul_fsv_shd_krb">
+                    <li>当使用 Khronos 定义的 OpenGL 接口 (javax.microedition.khronos.egl.*)时，需要将 eglContext 设置给这个字段。</li>
+                    <li>当使用 Android 定义的 OpenGL 接口 (android.opengl.*)时，需要将 eglContext 设置给这个字段。</li>
+                </ul></pd>
+            </plentry>
+            <plentry props="cpp electron unity flutter">
+                <pt>textureId</pt>
+                <pd>该参数仅适用于 Texture 格式的视频数据。指该视频帧的 Texture ID。</pd>
+            </plentry>
+            <plentry props="cpp electron unity flutter">
+                <pt>matrix</pt>
+                <pd>该参数仅适用于 Texture 格式的视频数据。为一个输入的 4x4 变换矩阵，典型值为一个单位矩阵。</pd>
+            </plentry>
             <plentry props="ios mac">
                 <pt>pixelBuffer</pt>
                 <pd>将数据填充到 CVPixelBuffer。</pd>
             </plentry>
-            <plentry props="hide">
+            <plentry>
                 <pt>alphaBuffer</pt>
                 <pd>
                     <p>表示人像分割算法的输出数据，跟视频帧的尺寸一致。每个像素点的取值范围为 [0,255]，其中 0 表示背景；255 代表前景（人像）。</p>
