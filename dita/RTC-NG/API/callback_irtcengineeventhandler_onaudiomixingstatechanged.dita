@@ -18,7 +18,7 @@
 reasonCode:(AgoraAudioMixingReasonCode)reasonCode;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioMixingStateChanged(AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_REASON_TYPE reason) {
     (void)state;
-    (void)errorCode;</codeblock>
+    (void)reason;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onAudioMixingStateChanged?(
     state: AudioMixingStateType,
     reason: AudioMixingReasonType
@@ -29,7 +29,7 @@ reasonCode:(AgoraAudioMixingReasonCode)reasonCode;</codeblock>
     reason: AudioMixingReasonType
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(
-          AudioMixingStateType state, AudioMixingErrorType errorCode)?
+          AudioMixingStateType state, AudioMixingReasonType reason)?
       onAudioMixingStateChanged;
 </codeblock> </p>
         </section>
@@ -47,20 +47,16 @@ reasonCode:(AgoraAudioMixingReasonCode)reasonCode;</codeblock>
                     <li><ph keyref="AUDIO_MIXING_STATE_PLAYING" /> (710): 音乐文件正常播放。</li>
                     <li><ph keyref="AUDIO_MIXING_STATE_PAUSED" /> (711): 音乐文件暂停播放。</li>
                     <li><ph keyref="AUDIO_MIXING_STATE_STOPPED" /> (713): 音乐文件停止播放。</li>
-                    <li><ph keyref="AUDIO_MIXING_STATE_FAILED" /> (714): 音乐文件报错。SDK 会在 <parmname>errorCode</parmname> 参数中返回具体的报错原因。</li>
+                    <li><ph keyref="AUDIO_MIXING_STATE_FAILED" /> (714): 音乐文件报错。详见错误码。</li>
                     <li props="hide"><ph keyref="AUDIO_MIXING_STATE_COMPLETED" />(715): 音乐文件已结束一次播放。</li>
                     <li props="hide"><ph keyref="AUDIO_MIXING_STATE_ALL_LOOPS_COMPLETED" /> (716): 音乐文件已结束循环播放。</li>
                     </ul> </p>
                 </pd>
             </plentry>
-            <plentry props="electron unity flutter">
-                <pt>errorCode</pt>
-                <pd>错误码。<ph props="electron rn flutter">详见 <xref keyref="AUDIO_MIXING_ERROR_TYPE" />。</ph></pd>
-            </plentry>
             <plentry>
                 <pt props="android ios mac">reasonCode</pt>
-                <pt props="cpp">reason</pt>
-                <pd><ph>错误码。</ph><ph props="ios mac cpp unity">详见 <xref keyref="AUDIO_MIXING_REASON_TYPE" />。</ph>
+                <pt props="cpp eletron rn flutter unity">reason</pt>
+                <pd><ph>错误码。</ph><ph props="ios mac cpp unity electron rn flutter">详见 <xref keyref="AUDIO_MIXING_REASON_TYPE" />。</ph>
                     <p props="android">
                     <ul>
                     <li><ph keyref="AUDIO_MIXING_REASON_OK" />(0): 正常。</li>
