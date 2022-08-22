@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_ivideoframeobserver_onscreencapturevideoframe">
-    <title><ph keyref="onScreenCaptureVideoFrame" /></title>
+    <title><ph keyref="onScreenCaptureVideoFrame"/></title>
     <shortdesc id="short"><ph id="shortdesc">获取从屏幕采集到的视频数据。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onScreenCaptureVideoFrame" />
+                <indexterm keyref="onScreenCaptureVideoFrame"/>
             </keywords>
         </metadata>
     </prolog>
@@ -17,28 +17,26 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onScreenCaptureVideoFrame:(AgoraOutputVideoFrame * _Nonnull)videoFrame;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual bool onScreenCaptureVideoFrame(VideoFrame&amp; videoFrame) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onScreenCaptureVideoFrame?(videoFrame: VideoFrame): boolean;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="unity" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript">  onScreenCaptureVideoFrame?(videoFrame: VideoFrame): boolean;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(VideoFrame videoFrame)? onScreenCaptureVideoFrame;</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>成功注册视频数据观测器后，SDK 会在捕捉到每个视频帧时触发该回调。你可以在回调中获取从屏幕采集到的视频数据，然后根据场景需要，对视频数据进行前处理。</p>
             <p>完成前处理后，你可以在该回调中，传入处理后的视频数据将其发送回 SDK。</p>
             <note type="attention">
-                <ul>
-                    <li>如果你获取到的视频数据类型为 RGBA，Agora 不支持将处理后的 RGBA 数据通过该回调再发送回 SDK。</li>
-                    <li>此处获取的视频数据未经过前处理，如水印、裁剪、旋转和美颜等。</li>
-                </ul>
-            </note>
-        </section>
-        <section id="parameters" conkeyref="onCaptureVideoFrame/parameters" />
-        <section id="return_values">
+            <ul>
+            <li>如果你获取到的视频数据类型为 RGBA，Agora 不支持将处理后的 RGBA 数据通过该回调再发送回 SDK。</li>
+            <li>此处获取的视频数据未经过前处理，如水印、裁剪、旋转和美颜等。</li>
+            </ul> </note> </section>
+        <section id="parameters" conkeyref="onCaptureVideoFrame/parameters"/>
+        <section id="return_values" props="native electron rn">
             <title>返回值</title>
-            <p id="return">     
-                <ul>
-                <li><codeph><ph keyref="true" /></codeph>：设置 SDK 接收视频帧。</li>
-                <li><codeph><ph keyref="false" /></codeph>：设置 SDK 丢弃视频帧。</li>
-                </ul></p>
+            <p id="return">
+            <ul>
+            <li><codeph><ph keyref="true"/></codeph>：设置 SDK 接收视频帧。</li>
+            <li><codeph><ph keyref="false"/></codeph>：设置 SDK 丢弃视频帧。</li>
+            </ul></p>
         </section>
     </refbody>
 </reference>
