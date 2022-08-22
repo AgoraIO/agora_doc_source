@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startpreview2">
-    <title><ph keyref="startPreview2"/></title>
+    <title><ph keyref="startPreview2" /></title>
     <shortdesc id="short"><ph id="shortdesc">Enables the local video preview and specifies the video source for the preview.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="startPreview2"/>
+                <indexterm keyref="startPreview2" />
             </keywords>
         </metadata>
     </prolog>
@@ -15,30 +15,30 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int startPreview(Constants.VideoSourceType sourceType);
 </codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="ios mac" outputclass="language-objectivec" />
             <codeblock props="cpp" outputclass="language-cpp">virtual int startPreview(VIDEO_SOURCE_TYPE sourceType) = 0;
 </codeblock>
-            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="cs" outputclass="language-csharp" />
             <codeblock props="electron" outputclass="language-typescript">abstract startPreview(sourceType?: VideoSourceType): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int StartPreview(VIDEO_SOURCE_TYPE sourceType);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract startPreview(sourceType?: VideoSourceType): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> startPreview(
-    {VideoSourceType sourceType = VideoSourceType.videoSourceCameraPrimary});</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startPreview(
+            {VideoSourceType sourceType = VideoSourceType.videoSourceCameraPrimary});</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p conkeyref="startPreview/seq" props="native electron rn"/>
+            <p conkeyref="startPreview/seq" props="native electron rn" />
             <note type="attention">
             <ul>
             <li>The local preview enables the mirror mode by default.</li>
-            <li>After the local video preview is enabled, if you call <xref keyref="leaveChannel" props="native unity"/><xref keyref="leaveChannel2" props="rn electron flutter"/> to exit the channel, the local preview remains until you call <xref keyref="stopPreview2"/> to disable it.</li>
-            <li>The video source type set in this method needs to be consistent with the video source type of <xref keyref="VideoCanvas"/> you set in <xref keyref="setupLocalVideo"/>.</li>
+            <li>After the local video preview is enabled, if you call <xref keyref="leaveChannel" props="native unity" /><xref keyref="leaveChannel2" props="rn electron flutter" /> to exit the channel, the local preview remains until you call <xref keyref="stopPreview2" /> to disable it.</li>
+            <li>The video source type set in this method needs to be consistent with the video source type of <xref keyref="VideoCanvas" /> you set in <xref keyref="setupLocalVideo" />.</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry conkeyref="VideoCanvas/sourcetype">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             </parml> </section>
         <section id="return_values" props="native unity rn electron">

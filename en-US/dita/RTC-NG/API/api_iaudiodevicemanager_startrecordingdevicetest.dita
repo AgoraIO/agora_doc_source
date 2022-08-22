@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_iaudiodevicemanager_startrecordingdevicetest">
-    <title><ph keyref="startRecordingDeviceTest"/></title>
+    <title><ph keyref="startRecordingDeviceTest" /></title>
     <shortdesc id="short"><ph id="shortdesc">Starts the audio recording device test.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="startRecordingDeviceTest"/>
+                <indexterm keyref="startRecordingDeviceTest" />
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="android" outputclass="language-java" />
             <codeblock props="mac" outputclass="language-objectivec">- (int)startRecordingDeviceTest:(int)indicationInterval;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int startRecordingDeviceTest(int indication_Interval) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract startRecordingDeviceTest(indicationInterval: number): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int StartRecordingDeviceTest(int indicationInterval);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">abstract startRecordingDeviceTest(indicationInterval: number): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startRecordingDeviceTest(int indicationInterval);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>This method tests whether the audio capture device works properly. After calling this method, the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback at the time interval set in this method, which reports <parmname>uid</parmname> = 0 and the volume information of the capturing device.</p>
+            <p>This method tests whether the audio capture device works properly. After calling this method, the SDK triggers the <xref keyref="onAudioVolumeIndication" /> callback at the time interval set in this method, which reports <parmname>uid</parmname> = 0 and the volume information of the capturing device.</p>
             <note type="attention">Ensure that you call this method before joining a channel.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -30,7 +30,7 @@
             <plentry>
                 <pt props="mac unity flutter">indicationInterval</pt>
                 <pt props="cpp">indication_Interval</pt>
-                <pd>The time interval (ms) at which the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback. Agora recommends setting a value greater than 200 ms. This value must not be less than 10 ms; otherwise, you can not receive the <apiname keyref="onAudioVolumeIndication"/> callback.</pd>
+                <pd>The time interval (ms) at which the SDK triggers the <xref keyref="onAudioVolumeIndication" /> callback. Agora recommends setting a value greater than 200 ms. This value must not be less than 10 ms; otherwise, you can not receive the <apiname keyref="onAudioVolumeIndication" /> callback.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity rn">

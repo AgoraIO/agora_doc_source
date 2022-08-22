@@ -41,7 +41,7 @@
         <section id="detailed_desc">
             <p props="android apple">成功获取 <xref keyref="IMediaRecorder"/> 对象后，你可以调用该方法开启本地音视频流录制。</p>
             <p props="cpp">调用 <xref keyref="queryInterface"/> 方法获取 <xref keyref="IMediaRecorder"/> 对象后，你可以调用该方法开启本地音视频流录制。</p>
-            <p props="electron unity rn flutter">调用 <xref keyref="queryInterface"/> 方法获取 <xref keyref="IMediaRecorder"/> 对象后，你可以调用该方法开启本地音视频流录制。</p>
+            <p props="electron unity rn flutter">调用 <xref keyref="getMediaRecorder"/> 方法获取 <xref keyref="IMediaRecorder"/> 对象后，你可以调用该方法开启本地音视频流录制。</p>
             <p>该方法录制的是本地麦克风采集的、编码为 AAC 格式的音频或本地摄像头采集的、编码为 H.264 格式的视频。只有当检测到可录制的音视频流时，才能成功生成录制文件；当没有可录制的音视频或录制中的音视频流中断超过 5 秒后，SDK 会停止录制，并触发 <codeph><apiname keyref="onRecorderStateChanged"/>(<apiname keyref="RECORDER_STATE_ERROR"/>, <apiname keyref="RECORDER_ERROR_NO_STREAM"/>)</codeph> 回调。</p>
             <p>开启本地音视频流录制后，当视频分辨率在录制过程中发生变化时，SDK 会停止录制；当音频采样率和声道数发生变化时，SDK 会持续录制并生成单个 MP4 录制文件。</p>
             <note type="attention">该方法需要在加入频道后调用。</note> </section>

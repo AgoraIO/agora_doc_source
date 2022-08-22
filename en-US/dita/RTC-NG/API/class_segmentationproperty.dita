@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_segmentationproperty">
-    <title><ph keyref="SegmentationProperty"/></title>
+    <title><ph keyref="SegmentationProperty" /></title>
     <shortdesc id="short"><ph id="shortdesc">Processing properties for background images.</ph></shortdesc>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock">
-            <codeblock props="unity" outputclass="language-csharp">public class SegmentationProperty {
-        public SEG_MODEL_TYPE modelType;
-        public int preferVelocity;
-        public float greenCapacity;
-    };</codeblock> </p>
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class SegmentationProperty {
   public static final int SEG_MODEL_AI = 1;
@@ -41,21 +35,40 @@
   SegmentationProperty() : modelType(SEG_MODEL_AI), greenCapacity(0.5){}
 };
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="electron" outputclass="language-typescript">export class SegmentationProperty {
+  
+  modelType?: SegModelType;
+  
+  greenCapacity?: number;
+}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class SegmentationProperty
+    {
+        public SEG_MODEL_TYPE modelType { set; get; }
+        public float greenCapacity { set; get; }
+
+        public SegmentationProperty()
+        {
+            modelType = SEG_MODEL_TYPE.SEG_MODEL_AI;
+            greenCapacity = 0.5f;
+        }
+    };</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class SegmentationProperty {
+  
+  modelType?: SegModelType;
+  
+  greenCapacity?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
-            <p/>
+            <p />
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>modelType</pt>
-                <pd><ph>The type of algorithms to user for background processing. </ph><ph props="ios mac cpp">See <xref keyref="SEG_MODEL_TYPE"/>.</ph><ul props="android">
+                <pd><ph>The type of algorithms to user for background processing. </ph><ph props="ios mac cpp">See <xref keyref="SEG_MODEL_TYPE" />.</ph><ul props="android">
                     <li><ph keyref="SEG_MODEL_AI" />(1): (Default) Use the algorithm suitable for all scenarios.</li>
                     <li><ph keyref="SEG_MODEL_GREEN" />(2): Use the algorithm designed specifically for scenarios with a green screen background.</li>
                     </ul></pd>
@@ -66,13 +79,13 @@
                     <li>0: Disable bilateral filtering.</li>
                     <li>1: (Default) Enable bilateral filtering. This improves the virtual background effect in green screen background scenarios.</li>
                     </ul>
-                    <note type="note">This parameter only takes effect when <parmname>modelType</parmname> is set to <apiname keyref="SEG_MODEL_GREEN"/>.</note></pd>
+                    <note type="note">This parameter only takes effect when <parmname>modelType</parmname> is set to <apiname keyref="SEG_MODEL_GREEN" />.</note></pd>
             </plentry>
             <plentry>
                 <pt>greenCapacity</pt>
                 <pd>
                     <p>The range of accuracy for identifying green colors (different shades of green) in the view. The value range is [0,1], and the default value is 0.5. The larger the value, the wider the range of identifiable shades of green. When the value of this parameter is too large, the edge of the portrait and the green color in the portrait range are also detected. Agora recommends that you dynamically adjust the value of this parameter according to the actual effect.</p>
-                    <note type="note">This parameter only takes effect when <parmname>modelType</parmname> is set to <apiname keyref="SEG_MODEL_GREEN"/>.</note> </pd>
+                    <note type="note">This parameter only takes effect when <parmname>modelType</parmname> is set to <apiname keyref="SEG_MODEL_GREEN" />.</note> </pd>
             </plentry>
             </parml> </section>
     </refbody>

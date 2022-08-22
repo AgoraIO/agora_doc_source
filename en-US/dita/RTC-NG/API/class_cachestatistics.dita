@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_cachestatistics">
-    <title><ph keyref="CacheStatistics"/></title>
+    <title><ph keyref="CacheStatistics" /></title>
     <shortdesc id="short"><ph id="shortdesc">Statistics about the media files being cached.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -27,14 +27,31 @@
   int64_t cacheSize;
   int64_t downloadSize;
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p></section>
+            <codeblock props="electron" outputclass="language-typescript">export class CacheStatistics {
+  
+  fileSize?: number;
+  
+  cacheSize?: number;
+  
+  downloadSize?: number;
+}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class CacheStatistics
+    {
+        public Int64 fileSize { set; get; }
+        public Int64 cacheSize { set; get; }
+        public Int64 downloadSize { set; get; }
+    };</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class CacheStatistics {
+  
+  fileSize?: number;
+  
+  cacheSize?: number;
+  
+  downloadSize?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart" /> </p></section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>fileSize</pt>

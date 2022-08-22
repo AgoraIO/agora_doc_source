@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_iaudiodevicemanager_enumeraterecordingdevices">
-    <title><ph keyref="enumerateRecordingDevices"/></title>
+    <title><ph keyref="enumerateRecordingDevices" /></title>
     <shortdesc id="short"><ph id="shortdesc">Enumerates the audio capture devices.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="enumerateRecordingDevices"/>
+                <indexterm keyref="enumerateRecordingDevices" />
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
             <codeblock props="cpp" outputclass="language-cpp">virtual IAudioDeviceCollection* enumerateRecordingDevices() = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract enumerateRecordingDevices(): AudioDeviceInfo[];</codeblock>
             <codeblock props="unity" outputclass="language-csharp">abstract DeviceInfo[] EnumerateRecordingDevices();</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">abstract enumerateRecordingDevices(): AudioDeviceInfo[];</codeblock>
             <codeblock props="flutter" outputclass="language-dart">List&lt;AudioDeviceInfo&gt; enumerateRecordingDevices();</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p props="cpp">This method returns an <xref keyref="IAudioDeviceCollection"/> object, which includes all audio capture devices in the system. With the <apiname keyref="IAudioDeviceCollection"></apiname> object, the app can enumerate the audio capture devices. The app must call the <xref keyref="release_IAudioDeviceCollection"/> method to release the object after using it.</p>
+            <p props="cpp">This method returns an <xref keyref="IAudioDeviceCollection" /> object, which includes all audio capture devices in the system. With the <apiname keyref="IAudioDeviceCollection" /> object, the app can enumerate the audio capture devices. The app must call the <xref keyref="release_IAudioDeviceCollection" /> method to release the object after using it.</p>
         </section>
         <section id="return_values">
             <title>Returns</title>
             <ul>
-            <li props="cpp">An <xref keyref="IAudioDeviceCollection"/> object, which includes all the audio capture devices, if the method call succeeds. </li>
+            <li props="cpp">An <xref keyref="IAudioDeviceCollection" /> object, which includes all the audio capture devices, if the method call succeeds. </li>
             <li props="unity">A DeviceInfo array, which includes the device ID and device name of all the audio capture devices, if the method call succeeds.</li>
-            <li props="electron flutter">A <xref keyref="AudioDeviceInfo"/> array, which includes all the audio capture devices, if the method call succeeds.</li>
+            <li props="electron flutter">A <xref keyref="AudioDeviceInfo" /> array, which includes all the audio capture devices, if the method call succeeds.</li>
             </ul> </section>
     </refbody>
 </reference>
