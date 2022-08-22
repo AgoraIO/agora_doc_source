@@ -30,7 +30,14 @@
                 int16_t data_[kMaxDataSizeSamples];
               };
             </codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript">export class AudioPcmFrame {
+  capture_timestamp?: number;
+  samples_per_channel_?: number;
+  sample_rate_hz_?: number;
+  num_channels_?: number;
+  bytes_per_sample?: BytesPerSample;
+  data_?: number[];
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">
         public struct AudioPcmFrame {
         public UInt32 capture_timestamp;
@@ -40,8 +47,46 @@
         public BYTES_PER_SAMPLE bytes_per_sample;
         public Int16[] data_;
     };</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="rn" outputclass="language-typescript">export class AudioPcmFrame {
+  capture_timestamp?: number;
+  samples_per_channel_?: number;
+  sample_rate_hz_?: number;
+  num_channels_?: number;
+  bytes_per_sample?: BytesPerSample;
+  data_?: number[];
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class AudioPcmFrame {
+  const AudioPcmFrame(
+      {this.captureTimestamp,
+      this.samplesPerChannel,
+      this.sampleRateHz,
+      this.numChannels,
+      this.bytesPerSample,
+      this.data});
+
+  @JsonKey(name: 'capture_timestamp')
+  final int? captureTimestamp;
+
+  @JsonKey(name: 'samples_per_channel_')
+  final int? samplesPerChannel;
+
+  @JsonKey(name: 'sample_rate_hz_')
+  final int? sampleRateHz;
+
+  @JsonKey(name: 'num_channels_')
+  final int? numChannels;
+
+  @JsonKey(name: 'bytes_per_sample')
+  final BytesPerSample? bytesPerSample;
+
+  @JsonKey(name: 'data_')
+  final List<int>? data;
+
+  factory AudioPcmFrame.fromJson(Map<String, dynamic> json) =>
+      _$AudioPcmFrameFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AudioPcmFrameToJson(this);
+}</codeblock> </p>
         </section>
         <section id="parameters">
             <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>
@@ -51,32 +96,34 @@
                 <pd>PCM 格式音频帧缓冲大小。初始值为 3840。</pd>
             </plentry>                
             <plentry>
-                <pt props="cpp unity">capture_timestamp</pt>
-                <pt props="ios mac">captureTimestamp</pt>
+                <pt props="cpp unity rn electron">capture_timestamp</pt>
+                <pt props="ios mac flutter">captureTimestamp</pt>
                 <pd>音频帧的时间戳 (ms)。</pd>
             </plentry>
             <plentry>
-                <pt props="cpp unity">samples_per_channel_</pt>
-                <pt props="ios mac">samplesPerChannel</pt>
+                <pt props="cpp unity rn electron">samples_per_channel_</pt>
+                <pt props="ios mac flutter">samplesPerChannel</pt>
                 <pd>每个声道的采样点数。</pd>
             </plentry>
             <plentry>
-                <pt props="cpp unity">sample_rate_hz_</pt>
-                <pt props="ios mac">sampleRateHz</pt>
+                <pt props="cpp unity rn electron">sample_rate_hz_</pt>
+                <pt props="ios mac flutter">sampleRateHz</pt>
                 <pd>音频采样率 (Hz)。</pd>
             </plentry>
             <plentry>
-                <pt props="cpp unity">num_channels_</pt>
+                <pt props="cpp unity rn electron">num_channels_</pt>
                 <pt props="ios mac">channelNumbers</pt>
+                <pt props="flutter">numChannels</pt>
                 <pd>音频声道数。</pd>
             </plentry>
             <plentry>
-                <pt props="cpp unity">bytes_per_sample</pt>
-                <pt props="ios mac">bytesPerSample</pt>
+                <pt props="cpp unity rn electron flutter">bytes_per_sample</pt>
+                <pt props="ios mac flutter">bytesPerSample</pt>
                 <pd>音频数据的字节数。</pd>
             </plentry>
-            <plentry props="cpp unity">
-                <pt>data_</pt>
+            <plentry>
+                <pt props="cpp unity rn electron">data_</pt>
+                <pt props="flutter">data</pt>
                 <pd>音频帧数据。</pd>
             </plentry>
             <plentry props="ios mac">
