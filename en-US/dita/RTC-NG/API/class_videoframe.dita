@@ -37,19 +37,11 @@
   rotation(0),
   renderTimeMs(0),
   avsync_type(0),
-  VIDEO_PIXEL_FORMAT type;
-  int width;
-  int height;
-  int yStride;
-  int uStride;
-  int vStride;
-  uint8_t* yBuffer;
-  uint8_t* uBuffer;
-  uint8_t* vBuffer;
-  int rotation;
-  int64_t renderTimeMs;
-  int avsync_type;
-};
+  metadata_buffer(NULL),
+  metadata_size(0),
+  sharedContext(0),
+  textureId(0),
+  alphaBuffer(NULL){}
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoFrame {
   
@@ -91,7 +83,7 @@
     {
         public VideoFrame()
         {
-            type = VIDEO_PIXEL_FORMAT.VIDEO_PIXEL_UNKNOWN;
+            type = VIDEO_PIXEL_FORMAT.VIDEO_PIXEL_DEFAULT;
             width = 0;
             height = 0;
             yStride = 0;
@@ -100,23 +92,62 @@
             yBuffer = new byte[0];
             uBuffer = new byte[0];
             vBuffer = new byte[0];
+            yBufferPtr = IntPtr.Zero;
+            uBufferPtr = IntPtr.Zero;
+            vBufferPtr = IntPtr.Zero;
             rotation = 0;
             renderTimeMs = 0;
             avsync_type = 0;
-
+            metadata_buffer = IntPtr.Zero;
+            metadata_size = 0;
+            sharedContext = IntPtr.Zero;
+            textureId = 0;
+            matrix = new float[16];
         }
+
         public VIDEO_PIXEL_FORMAT type;
+
         public int width;
+
         public int height;
+
         public int yStride;
+
         public int uStride;
-        public int vStride; 
+
+        public int vStride;
+
         public byte[] yBuffer;
+
+        public IntPtr yBufferPtr;
+
         public byte[] uBuffer;
+
+        public IntPtr uBufferPtr;
+
         public byte[] vBuffer;
+
+        public IntPtr vBufferPtr;
+
         public int rotation;
+
         public long renderTimeMs;
+
         public int avsync_type;
+
+        public IntPtr metadata_buffer;
+
+        public int metadata_size;
+
+        public IntPtr sharedContext;
+
+        public int textureId;
+
+        public float[] matrix;
+
+        public byte[] alphaBuffer;
+
+        public IntPtr alphaBufferPtr;
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class VideoFrame {
   
@@ -154,7 +185,82 @@
   
   alphaBuffer?: Uint8Array;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">class VideoFrame {
+  const VideoFrame(
+      {this.type,
+      this.width,
+      this.height,
+      this.yStride,
+      this.uStride,
+      this.vStride,
+      this.yBuffer,
+      this.uBuffer,
+      this.vBuffer,
+      this.rotation,
+      this.renderTimeMs,
+      this.avsyncType,
+      this.metadataBuffer,
+      this.metadataSize,
+      this.textureId,
+      this.matrix,
+      this.alphaBuffer});
+
+  @JsonKey(name: 'type')
+  final VideoPixelFormat? type;
+
+  @JsonKey(name: 'width')
+  final int? width;
+
+  @JsonKey(name: 'height')
+  final int? height;
+
+  @JsonKey(name: 'yStride')
+  final int? yStride;
+
+  @JsonKey(name: 'uStride')
+  final int? uStride;
+
+  @JsonKey(name: 'vStride')
+  final int? vStride;
+
+  @JsonKey(name: 'yBuffer', ignore: true)
+  final Uint8List? yBuffer;
+
+  @JsonKey(name: 'uBuffer', ignore: true)
+  final Uint8List? uBuffer;
+
+  @JsonKey(name: 'vBuffer', ignore: true)
+  final Uint8List? vBuffer;
+
+  @JsonKey(name: 'rotation')
+  final int? rotation;
+
+  @JsonKey(name: 'renderTimeMs')
+  final int? renderTimeMs;
+
+  @JsonKey(name: 'avsync_type')
+  final int? avsyncType;
+
+  @JsonKey(name: 'metadata_buffer', ignore: true)
+  final Uint8List? metadataBuffer;
+
+  @JsonKey(name: 'metadata_size')
+  final int? metadataSize;
+
+  @JsonKey(name: 'textureId')
+  final int? textureId;
+
+  @JsonKey(name: 'matrix')
+  final List&lt;double&gt;? matrix;
+
+  @JsonKey(name: 'alphaBuffer', ignore: true)
+  final Uint8List? alphaBuffer;
+
+  factory VideoFrame.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$VideoFrameFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoFrameToJson(this);
+}</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>The video data format is YUV420. The buffer provides a pointer to a pointer. This interface cannot modify the pointer of the buffer but can modify the content of the buffer.</p>

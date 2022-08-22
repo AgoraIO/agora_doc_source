@@ -83,9 +83,29 @@
   
   samples_per_call?: number;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">class AudioParams {
+  const AudioParams(
+      {this.sampleRate, this.channels, this.mode, this.samplesPerCall});
+
+  @JsonKey(name: 'sample_rate')
+  final int? sampleRate;
+
+  @JsonKey(name: 'channels')
+  final int? channels;
+
+  @JsonKey(name: 'mode')
+  final RawAudioFrameOpModeType? mode;
+
+  @JsonKey(name: 'samples_per_call')
+  final int? samplesPerCall;
+
+  factory AudioParams.fromJson(Map&lt;String, dynamic> json) =>
+      _$AudioParamsFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$AudioParamsToJson(this);
+}</codeblock></p>
         </section>
-        <section id="detailed_desc">
+        <section props="native unity" id="detailed_desc">
             <p>你可以在以下回调的返回值中传入 <apiname keyref="AudioParams" /> 对象，用于设置对应回调报告的音频数据格式：
             <ul>
                 <li><xref keyref="getRecordAudioParams" />：设置 <xref keyref="onRecordAudioFrame" /> 回调的数据格式。</li>

@@ -2,11 +2,11 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_imediaplayeraudioframeobserver_onframe">
     <title><ph keyref="onFrame_IMediaPlayerAudioFrameObserver" /></title>
-    <shortdesc id="short"><ph id="shortdesc" /></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">已获取音频帧回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onFrame" />
+                <indexterm keyref="onFrame_IMediaPlayerAudioFrameObserver" />
             </keywords>
         </metadata>
     </prolog>
@@ -17,28 +17,30 @@
             <codeblock props="ios mac" outputclass="language-objectivec" />
             <codeblock props="cpp" outputclass="language-cpp" />
             <codeblock props="cs" outputclass="language-csharp" />
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="electron" outputclass="language-typescript">onFrame?(frame: AudioPcmFrame): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnFrame(AudioPcmFrame videoFrame)</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onFrame?(frame: AudioPcmFrame): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(AudioPcmFrame frame)? onFrame;</codeblock></p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>自从</dt>
-                <dd>v</dd>
-            </dlentry>
-            </dl>
-            <p />
+            <p>注册音频帧观测器后，每次接收到一帧音频帧时，都会触发该回调，报告音频帧信息。</p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title" /></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn" />
             <parml>
             <plentry>
-                <pt />
-                <pd />
+                <pt props="unity">videoFrame</pt>
+                <pt props="electron rn flutter">frame</pt>
+                <pd>
+                    <p>音频帧信息，详见 <xref keyref="AudioPcmFrame" />。</p>
+                </pd>
             </plentry>
-            </parml> </section>
+            </parml>
+        </section>
+        <section props="unity" id="return_values">
+            <title>返回值</title>
+                <p>无实际含义。</p>
+        </section>
     </refbody>
 </reference>

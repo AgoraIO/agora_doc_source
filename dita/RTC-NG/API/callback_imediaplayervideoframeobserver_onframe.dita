@@ -2,11 +2,11 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_imediaplayervideoframeobserver_onframe">
     <title><ph keyref="onFrame_IMediaplayerVideoFrameObserver" /></title>
-    <shortdesc id="short"><ph id="shortdesc" /></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">已获取视频帧回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onFrame" />
+                <indexterm keyref="onFrame_IMediaplayerVideoFrameObserver" />
             </keywords>
         </metadata>
     </prolog>
@@ -17,28 +17,22 @@
             <codeblock props="ios mac" outputclass="language-objectivec" />
             <codeblock props="cpp" outputclass="language-cpp" />
             <codeblock props="cs" outputclass="language-csharp" />
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript">onFrame?(frame: VideoFrame): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="rn" outputclass="language-typescript">onFrame?(frame: VideoFrame): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(VideoFrame frame)? onFrame;</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since" props="rtc">
-            <dlentry props="native">
-                <dt>自从</dt>
-                <dd>v</dd>
-            </dlentry>
-            </dl>
-            <p />
+            <p>注册视频观测器后，每次接收到一帧视频时，都会触发该回调，报告视频帧信息。</p>
         </section>
         <section id="parameters">
-            <title><ph keyref="callback-section-title" /></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn" />
+            <title>参数</title>
             <parml>
             <plentry>
-                <pt />
-                <pd />
+                <pt>frame</pt>
+                <pd>视频帧信息，详见 <xref keyref="VideoFrame"/>。</pd>
             </plentry>
-            </parml> </section>
+            </parml>
+        </section>
     </refbody>
 </reference>

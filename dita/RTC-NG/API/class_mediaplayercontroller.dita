@@ -13,24 +13,24 @@
             <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp" />
             <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">abstract class MediaPlayerController extends MediaPlayer
-    implements VideoViewControllerBase {
-  static Future&lt;MediaPlayerController&gt; create({
-    required RtcEngine rtcEngine,
-    required VideoCanvas canvas,
-    bool useFlutterTexture = false,
-    bool useAndroidSurfaceView = false,
-  }) async {
-    final mp = await rtcEngine.createMediaPlayer();
-    final mediaPlayer = mp as MediaPlayerImpl;
-    mediaPlayer.rtcEngine = rtcEngine;
-    mediaPlayer.canvas = canvas;
-    mediaPlayer.connection = null;
-    mediaPlayer.useFlutterTexture = useFlutterTexture;
-    mediaPlayer.useAndroidSurfaceView = useAndroidSurfaceView;
+            <codeblock props="flutter" outputclass="language-dart">abstract class MediaPlayerController
+    implements MediaPlayer, VideoViewControllerBase {
 
-    return mediaPlayer;
-  }
+  factory MediaPlayerController(
+          {required RtcEngine rtcEngine,
+          required VideoCanvas canvas,
+          RtcConnection? connection,
+          bool useFlutterTexture = false,
+          bool useAndroidSurfaceView = false}) =>
+      MediaPlayerControllerImpl(
+        rtcEngine,
+        canvas,
+        connection,
+        useFlutterTexture,
+        useAndroidSurfaceView,
+      );
+
+  Future&lt;void> initialize();
 }
 </codeblock> </p>
         </section>
