@@ -1,39 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_mediaplayeraudioframeobserver_onframe">
-    <title><ph keyref="onFrame_MediaPlayerAudioFrameObserver" /></title>
-    <shortdesc id="short"><ph id="shortdesc">已获取音频帧回调。</shortdesc>
+    <title><ph keyref="onFrame_MediaPlayerAudioFrameObserver"/></title>
+    <shortdesc id="short"><ph id="shortdesc">已获取音频帧回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onFrame" />
+                <indexterm keyref="onFrame"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
-            <codeblock props="ios mac" outputclass="language-objectivec" />
-            <codeblock props="cpp" outputclass="language-cpp" />
-            <codeblock props="cs" outputclass="language-csharp" />
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp"/>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript">onFrame?(frame: AudioPcmFrame): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnFrame(AudioPcmFrame videoFrame)
+        {
+            return true;
+        }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onFrame?(frame: AudioPcmFrame): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(AudioPcmFrame frame)? onFrame;</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>注册音频数据观测器后，每次接收到一帧音频帧时，都会触发该回调，报告音频帧信息。</p>
         </section>
         <section id="parameters">
-            <title><ph keyref="callback-section-title" /></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn" />
+            <title><ph keyref="callback-section-title"/></title>
             <parml>
-                <plentry>
-                    <pt props="cpp flutter">frame</pt>
-                    <pt props="unity">videoFrame</pt>
-                    <pd><ph>音频帧信息。</ph><ph props="android">详见 <ph keyref="AudioFrame"/>。</ph><ph props="cpp unity">详见 <ph keyref="AudioPcmFrame"/>。</ph></pd>
-                </plentry>
+            <plentry>
+                <pt props="cpp flutter">frame</pt>
+                <pt props="unity">videoFrame</pt>
+                <pd props="android">音频帧信息。详见 <ph keyref="AudioFrame"/>。</pd>
+                <pd props="cpp unity flutter">音频帧信息。详见 <ph keyref="AudioPcmFrame"/>。</pd>
+            </plentry>
             </parml> </section>
     </refbody>
 </reference>
