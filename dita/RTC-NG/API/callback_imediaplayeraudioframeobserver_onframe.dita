@@ -18,13 +18,7 @@
             <codeblock props="cpp" outputclass="language-cpp" />
             <codeblock props="cs" outputclass="language-csharp" />
             <codeblock props="electron" outputclass="language-typescript">onFrame?(frame: AudioPcmFrame): void;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class IMediaPlayerAudioFrameObserver
-    {
-        public virtual bool OnFrame(AudioPcmFrame videoFrame)
-        {
-            return true;
-        }
-    }</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnFrame(AudioPcmFrame videoFrame)</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onFrame?(frame: AudioPcmFrame): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(AudioPcmFrame frame)? onFrame;</codeblock></p>
         </section>
@@ -32,7 +26,8 @@
             <p>注册音频帧观测器后，每次接收到一帧音频帧时，都会触发该回调，报告音频帧信息。</p>
         </section>
         <section id="parameters">
-            <title>参数</title>
+            <title><ph keyref="callback-section-title" /></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn" />
             <parml>
             <plentry>
                 <pt props="unity">videoFrame</pt>
