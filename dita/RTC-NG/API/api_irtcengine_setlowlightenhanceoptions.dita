@@ -31,7 +31,10 @@
     options: LowlightEnhanceOptions,
     type?: MediaSourceType
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setLowlightEnhanceOptions(
+      {required bool enabled,
+      required LowlightEnhanceOptions options,
+      MediaSourceType type = MediaSourceType.primaryCameraSource});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>暗光增强功能可以在光线亮度偏低（如背光、阴天、暗场景）和亮度不均匀的环境下自适应调整视频画面的亮度值，恢复或凸显图像的细节信息，最终提升视频图像的整体视觉效果。</p>
@@ -51,7 +54,7 @@
             <title>参数</title>
             <parml>
             <plentry>
-                <pt props="android cpp">enabled</pt>
+                <pt props="android cpp electron unity rn flutter">enabled</pt>
                 <pt props="ios mac">enable</pt>
                 <pd>是否开启暗光增强功能：
                     <ul>
@@ -63,8 +66,12 @@
                 <pt>options</pt>
                 <pd>暗光增强选项，用于设置暗光增强的效果。详见 <xref keyref="LowlightEnhanceOptions" />。</pd>
             </plentry>
+                <plentry props="cpp rn unity electron flutter" id="type">
+                    <pt>type</pt>
+                    <pd>媒体资源类型，详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
+                </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功。</li>

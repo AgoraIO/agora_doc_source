@@ -122,7 +122,12 @@
 };
 </codeblock>
       <codeblock props="cs" outputclass="language-csharp" />
-      <codeblock props="electron" outputclass="language-typescript" />
+      <codeblock props="electron" outputclass="language-typescript">export class ScreenCaptureParameters2 {
+  captureAudio?: boolean;
+  audioParams?: ScreenAudioParameters
+  captureVideo?: boolean;
+  videoParams?: ScreenVideoParameters;
+}</codeblock>
       <codeblock props="unity" outputclass="language-csharp">public class ScreenCaptureParameters2
     {
         public bool captureAudio { set; get; }
@@ -138,8 +143,38 @@
             videoParams = new ScreenVideoParameters();
         }
     };</codeblock>
-      <codeblock props="rn" outputclass="language-typescript" />
-      <codeblock props="flutter" outputclass="language-dart" /> </p>
+      <codeblock props="rn" outputclass="language-typescript">export class ScreenCaptureParameters2 {
+
+  captureAudio?: boolean;
+  audioParams?: ScreenAudioParameters;
+  captureVideo?: boolean;
+  videoParams?: ScreenVideoParameters;
+}</codeblock>
+      <codeblock props="flutter" outputclass="language-dart">class ScreenCaptureParameters2 {
+
+  const ScreenCaptureParameters2(
+      {this.captureAudio,
+      this.audioParams,
+      this.captureVideo,
+      this.videoParams});
+
+  @JsonKey(name: 'captureAudio')
+  final bool? captureAudio;
+
+  @JsonKey(name: 'audioParams')
+  final ScreenAudioParameters? audioParams;
+
+  @JsonKey(name: 'captureVideo')
+  final bool? captureVideo;
+
+  @JsonKey(name: 'videoParams')
+  final ScreenVideoParameters? videoParams;
+
+  factory ScreenCaptureParameters2.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$ScreenCaptureParameters2FromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ScreenCaptureParameters2ToJson(this);
+}</codeblock> </p>
     </section>
     <section id="detailed_desc">
       <p />
