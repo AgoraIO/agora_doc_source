@@ -18,10 +18,17 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int getCapability(const char* deviceIdUTF8, const uint32_t deviceCapabilityNumber, VideoFormat&amp; capability) = 0;
 </codeblock>
             <codeblock props="cs" outputclass="language-csharp" />
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript">abstract getCapability(
+    deviceIdUTF8: string,
+    deviceCapabilityNumber: number
+  ): VideoFormat;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int GetCapability(string deviceIdUTF8, uint deviceCapabilityNumber, out VideoFormat capability);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract getCapability(
+    deviceIdUTF8: string,
+    deviceCapabilityNumber: number
+  ): VideoFormat;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;VideoFormat&gt; getCapability(
+      {required String deviceIdUTF8, required int deviceCapabilityNumber});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>After calling <xref keyref="numberOfCapabilities" /> to get the number of video formats supported by the video capture device, you can call this method to get the specific video frame information supported by the specified index number.</p>
