@@ -18,11 +18,19 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int startScreenCaptureByScreenRect(const Rectangle&amp; screenRect,
      const Rectangle&amp; regionRect,
      const ScreenCaptureParameters&amp; captureParams) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">abstract startScreenCaptureByScreenRect(screenRect: Rectangle, regionRect: Rectangle, captureParams: ScreenCaptureParameters): number;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract startScreenCaptureByScreenRect(
+    screenRect: Rectangle,
+    regionRect: Rectangle,
+    captureParams: ScreenCaptureParameters
+  ): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int StartScreenCaptureByScreenRect(Rectangle screenRect, Rectangle regionRect,
             ScreenCaptureParameters captureParams);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> startScreenCaptureByScreenRect(
+            <codeblock props="rn" outputclass="language-typescript">abstract startScreenCaptureByScreenRect(
+    screenRect: Rectangle,
+    regionRect: Rectangle,
+    captureParams: ScreenCaptureParameters
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startScreenCaptureByScreenRect(
     {required Rectangle screenRect,
     required Rectangle regionRect,
     required ScreenCaptureParameters captureParams});</codeblock> </p>
@@ -31,11 +39,11 @@
             <dl outputclass="deprecated">
                 <dlentry>
                     <dt>Deprecated:</dt>
-                    <dd>This method is deprecated. Use <xref keyref="startScreenCaptureByDisplayId"/> instead. Agora strongly recommends using <apiname keyref="startScreenCaptureByDisplayId"/> if you need to start screen sharing on a device connected to another display.</dd>
+                    <dd>This method is deprecated. Use <xref keyref="startScreenCaptureByDisplayId" /> instead. Agora strongly recommends using <apiname keyref="startScreenCaptureByDisplayId" /> if you need to start screen sharing on a device connected to another display.</dd>
                 </dlentry>
                 </dl>
    <p id="desc">This method shares a screen or part of the screen. You need to specify the area of the screen to be shared.</p>
-   <p conkeyref="startScreenCaptureByDisplayId/apisequence"/>
+   <p conkeyref="startScreenCaptureByDisplayId/apisequence" />
    <note type="attention" id="note">This method applies to Windows only.</note>
         </section>
         <section id="parameters"><title>Parameters</title>
@@ -50,7 +58,7 @@
        </plentry>
        <plentry>
   <pt>regionRect</pt>
-  <pd props="cpp unity flutter electron"><ph props="cpp unity">(Optional)</ph> Sets the relative location of the region to the screen. If you do not set this parameter, the SDK shares the whole screen. See <xref keyref="Rectangle"/>. If the specified region overruns the screen, the SDK shares only the region within it; if you set width or height as 0, the SDK shares the whole screen.</pd>
+  <pd props="cpp unity flutter electron"><ph props="cpp unity">(Optional)</ph> Sets the relative location of the region to the screen. If you do not set this parameter, the SDK shares the whole screen. See <xref keyref="Rectangle" />. If the specified region overruns the screen, the SDK shares only the region within it; if you set width or height as 0, the SDK shares the whole screen.</pd>
        </plentry>
        <plentry>
   <pt>captureParams</pt>
@@ -62,7 +70,7 @@
             <title>Returns</title>
             <ul>
             <li>0: Success.</li>
-            <li>&lt; 0: Failure.<ul conkeyref="startScreenCaptureByDisplayId/err"><li></li></ul>
+            <li>&lt; 0: Failure.<ul conkeyref="startScreenCaptureByDisplayId/err"><li /></ul>
             </li>
             </ul> </section>
     </refbody>

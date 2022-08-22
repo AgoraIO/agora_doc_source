@@ -26,11 +26,11 @@
         </section>
         <section id="detailed_desc">
             <p>成功注册音频观测器后，SDK 会在捕捉到每个音频帧的时候触发该回调。</p>
-            <p>在多频道场景下，如果你希望从多个频道获取音频数据，则需要将该回调的返回值设为 <ph keyref="true"/>。 成功设置后，SDK 会触发 <xref keyref="onPlaybackAudioFrameBeforeMixingEx"/> 回调，向你发送接收的混音前的音频帧，并报告该音频帧来自哪个频道。</p>
+            <p>在多频道场景下，如果你希望从多个频道获取音频数据，则需要将该回调的返回值设为 <codeph><ph keyref="true"/></codeph>。 成功设置后，SDK 会触发 <xref keyref="onPlaybackAudioFrameBeforeMixingEx"/> 回调，向你发送接收的混音前的音频帧，并报告该音频帧来自哪个频道。</p>
             <note type="attention">
             <ul>
-            <li>一旦你将该回调的返回值设为 <ph keyref="true"/>，则 SDK 只触发 <apiname keyref="onPlaybackAudioFrameBeforeMixingEx"/> 来返回接收到的混音前的音频数据。<xref keyref="onPlaybackAudioFrameBeforeMixing"/> 将不会被触发。在多频道场景下，我们建议你将该回调的返回值设为 <ph keyref="true"/>。</li>
-            <li>如果你将该回调的返回值设为 <ph keyref="false"/>，则 SDK 只触发 <apiname keyref="onPlaybackAudioFrameBeforeMixing"/> 来返回接收到的音频数据。</li>
+            <li>一旦你将该回调的返回值设为 <codeph><ph keyref="true"/></codeph>，则 SDK 只触发 <apiname keyref="onPlaybackAudioFrameBeforeMixingEx"/> 来返回接收到的混音前的音频数据。<xref keyref="onPlaybackAudioFrameBeforeMixing"/> 将不会被触发。在多频道场景下，我们建议你将该回调的返回值设为 <codeph><ph keyref="true"/></codeph>。</li>
+            <li>如果你将该回调的返回值设为 <codeph><ph keyref="false"/></codeph>，则 SDK 只触发 <apiname keyref="onPlaybackAudioFrameBeforeMixing"/> 来返回接收到的音频数据。</li>
             </ul> </note> </section>
         <section id="return_values">
             <title>返回值</title>

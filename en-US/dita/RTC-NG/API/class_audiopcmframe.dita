@@ -1,15 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audiopcmframe">
-    <title> <ph keyref="AudioPcmFrame"/> </title>
+    <title> <ph keyref="AudioPcmFrame" /> </title>
     <shortdesc id="short"><ph id="shortdesc">The parameters of the audio frame in PCM format.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioPcmFrame: NSObject
+                @property (assign, nonatomic) uint32_t captureTimestamp;
+                @property (assign, nonatomic) size_t samplesPerChannel;
+                @property (assign, nonatomic) int sampleRateHz;
+                @property (assign, nonatomic) size_t channelNumbers;
+                @property (strong, nonatomic) NSData* __nonnull pcmBuffer;
+                @property (assign, nonatomic) BytesPerSampleType bytesPerSample;
+               @end
+            </codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">struct AudioPcmFrame {
+                OPTIONAL_ENUM_SIZE_T {
+                  kMaxDataSizeSamples = 3840,
+                  kMaxDataSizeBytes = kMaxDataSizeSamples * sizeof(int16_t),
+                };
+              
+                uint32_t capture_timestamp;
+                size_t samples_per_channel_;
+                int sample_rate_hz_;
+                size_t num_channels_;
+                rtc::BYTES_PER_SAMPLE bytes_per_sample;
+                int16_t data_[kMaxDataSizeSamples];
+              };
+            </codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export class AudioPcmFrame {
+  capture_timestamp?: number;
+  samples_per_channel_?: number;
+  sample_rate_hz_?: number;
+  num_channels_?: number;
+  bytes_per_sample?: BytesPerSample;
+  data_?: number[];
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">
         public struct AudioPcmFrame {
         public UInt32 capture_timestamp;
@@ -19,11 +47,49 @@
         public BYTES_PER_SAMPLE bytes_per_sample;
         public Int16[] data_;
     };</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">export class AudioPcmFrame {
+  capture_timestamp?: number;
+  samples_per_channel_?: number;
+  sample_rate_hz_?: number;
+  num_channels_?: number;
+  bytes_per_sample?: BytesPerSample;
+  data_?: number[];
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class AudioPcmFrame {
+  const AudioPcmFrame(
+      {this.captureTimestamp,
+      this.samplesPerChannel,
+      this.sampleRateHz,
+      this.numChannels,
+      this.bytesPerSample,
+      this.data});
+
+  @JsonKey(name: 'capture_timestamp')
+  final int? captureTimestamp;
+
+  @JsonKey(name: 'samples_per_channel_')
+  final int? samplesPerChannel;
+
+  @JsonKey(name: 'sample_rate_hz_')
+  final int? sampleRateHz;
+
+  @JsonKey(name: 'num_channels_')
+  final int? numChannels;
+
+  @JsonKey(name: 'bytes_per_sample')
+  final BytesPerSample? bytesPerSample;
+
+  @JsonKey(name: 'data_')
+  final List&lt;int&gt;? data;
+
+  factory AudioPcmFrame.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$AudioPcmFrameFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$AudioPcmFrameToJson(this);
+}</codeblock> </p>
         </section>
         <section id="parameters">
-            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/> </title>
+            <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>
             <parml>
             <plentry>
                 <pt>capture_timestamp</pt>

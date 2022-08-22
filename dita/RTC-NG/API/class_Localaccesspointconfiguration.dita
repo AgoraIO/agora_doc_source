@@ -75,7 +75,39 @@
   
   mode?: LocalProxyMode;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">class LocalAccessPointConfiguration {
+
+  const LocalAccessPointConfiguration(
+      {this.ipList,
+      this.ipListSize,
+      this.domainList,
+      this.domainListSize,
+      this.verifyDomainName,
+      this.mode});
+
+  @JsonKey(name: 'ipList')
+  final List&lt;String>? ipList;
+
+  @JsonKey(name: 'ipListSize')
+  final int? ipListSize;
+
+  @JsonKey(name: 'domainList')
+  final List&lt;String>? domainList;
+
+  @JsonKey(name: 'domainListSize')
+  final int? domainListSize;
+
+  @JsonKey(name: 'verifyDomainName')
+  final String? verifyDomainName;
+
+  @JsonKey(name: 'mode')
+  final LocalProxyMode? mode;
+
+  factory LocalAccessPointConfiguration.fromJson(Map&lt;String, dynamic> json) =>
+      _$LocalAccessPointConfigurationFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$LocalAccessPointConfigurationToJson(this);
+}</codeblock> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
@@ -84,7 +116,7 @@
                 <pt>ipList</pt>
                 <pd>Local Access Point 的对内 IP 地址列表。ipList 和 domainList 必须至少填一个。</pd>
             </plentry>
-            <plentry props="cpp">
+            <plentry props="cpp electron unity rn flutter">
                 <pt>ipListSize</pt>
                 <pd>Local Access Point 对内 IP 地址的数量。该参数的值必须和你填入的 IP 地址的数量一致。</pd>
             </plentry>
@@ -92,7 +124,7 @@
                 <pt>domainList</pt>
                 <pd>Local Access Point 的域名列表。SDK 会根据你填入的域名解析出 Local Access Point 的 IP 地址。域名解析的超时时间为 10 秒。ipList 和 domainList 必须至少填一个。如果你同时指定 IP 地址和域名，SDK 会将根据域名解析出来的 IP 地址和你指定的 IP 地址合并、去重，然后随机连接一个 IP 来实现负载均衡。</pd>
             </plentry>
-            <plentry props="cpp">
+            <plentry props="cpp electron unity rn flutter">
                 <pt>domainListSize</pt>
                 <pd>Local Access Point 域名的数量。该参数的值必须和你填入的域名的数量一致。</pd>
             </plentry>
@@ -103,7 +135,7 @@
             <plentry>
                 <pt>mode</pt>
                 <pd>
-                    <p props="ios mac cpp">连接模式。详见 <xref keyref="LOCAL_PROXY_MODE" />。</p>
+                    <p props="ios mac cpp electron unity rn flutter">连接模式。详见 <xref keyref="LOCAL_PROXY_MODE" />。</p>
                     <p props="android">连接模式：
                     
                     <ul>

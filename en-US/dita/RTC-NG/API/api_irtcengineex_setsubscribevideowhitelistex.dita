@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_setsubscribevideowhitelistex">
-    <title><ph keyref="setSubscribeVideoWhitelistEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc" conkeyref="setSubscribeVideoWhitelist/shortdesc"/></shortdesc>
+    <title><ph keyref="setSubscribeVideoWhitelistEx" /></title>
+    <shortdesc id="short"><ph id="shortdesc" conkeyref="setSubscribeVideoWhitelist/shortdesc" /></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setSubscribeVideoWhitelistEx"/>
+                <indexterm keyref="setSubscribeVideoWhitelistEx" />
             </keywords>
         </metadata>
     </prolog>
@@ -14,13 +14,24 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setSubscribeVideoWhitelistEx(int[] uidList, RtcConnection connection);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setSubscribeVideoWhitelistEx:(NSArray &lt;NSNumber *> *_Nonnull)whitelist connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setSubscribeVideoWhitelistEx:(NSArray &lt;NSNumber *&gt; *_Nonnull)whitelist connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setSubscribeVideoWhitelistEx(uid_t* uidList, int uidNumber, const RtcConnection&amp; connection) = 0;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="electron" outputclass="language-typescript">abstract setSubscribeVideoWhitelistEx(
+    uidList: number[],
+    uidNumber: number,
+    connection: RtcConnection
+  ): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int SetSubscribeVideoWhitelistEx(uint[] uidList, int uidNumber, RtcConnection connection);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract setSubscribeVideoWhitelistEx(
+    uidList: number[],
+    uidNumber: number,
+    connection: RtcConnection
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setSubscribeVideoWhitelistEx(
+      {required List&lt;int&gt; uidList,
+      required int uidNumber,
+      required RtcConnection connection});</codeblock> </p>
         </section>
         <section id="detailed_desc" conkeyref="setSubscribeVideoWhitelist/detailed_desc">
         </section>
@@ -28,16 +39,16 @@
             <title>Parameters</title>
             <parml>
             <plentry conkeyref="setSubscribeVideoWhitelist/list">
-                <pt></pt>
-                <pd></pd>
+                <pt />
+                <pd />
             </plentry>
                 <plentry conkeyref="setSubscribeAudioWhitelist/uidnumber" props="cpp">
-                    <pt></pt>
-                    <pd></pd>
+                    <pt />
+                    <pd />
                 </plentry>
                 <plentry conkeyref="joinChannelEx/connection">
-                    <pt></pt>
-                    <pd></pd>
+                    <pt />
+                    <pd />
                 </plentry>
             </parml> </section>
         <section id="return_values" conkeyref="setSubscribeAudioBlacklist/return_values">

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_iaudiodevicemanager_followsystemplaybackdevice">
-    <title><ph keyref="followSystemPlaybackDevice"/></title>
+    <title><ph keyref="followSystemPlaybackDevice" /></title>
     <shortdesc id="short"><ph id="shortdesc">Sets the audio playback device used by the SDK to follow the system default audio playback device.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="followSystemPlaybackDevice"/>
+                <indexterm keyref="followSystemPlaybackDevice" />
             </keywords>
         </metadata>
     </prolog>
@@ -15,18 +15,19 @@
             <p outputclass="codeblock">
             <codeblock props="mac" outputclass="language-objectivec">(int) followSystemPlaybackDevice:(BOOL)enable;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int followSystemPlaybackDevice(bool enable) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract followSystemPlaybackDevice(enable: boolean): number;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract followSystemPlaybackDevice(enable: boolean): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int FollowSystemPlaybackDevice(bool enable);</codeblock>
-            <codeblock props="flutter" outputclass="language-dart"/></p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; followSystemPlaybackDevice(bool enable);</codeblock></p>
         </section>
         <section id="parameters">
-            <title><ph keyref="callback-section-title"/></title>
+            <title><ph keyref="callback-section-title" /></title>
             <parml>
             <plentry>
                 <pt>enable</pt>
                 <pd>Whether to follow the system default audio playback device:<ul id="ul_l4n_jf3_5sb">
-                    <li><codeph><ph keyref="true"/></codeph>: Follow. The SDK immediately switches the audio playback device when the system default audio playback device changes.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Do not follow. The SDK switches the audio playback device to the system default audio playback device only when the currently used audio recording device is disconnected.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: Follow. The SDK immediately switches the audio playback device when the system default audio playback device changes.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Do not follow. The SDK switches the audio playback device to the system default audio playback device only when the currently used audio recording device is disconnected.</li>
                     </ul></pd>
             </plentry>
             </parml> </section>

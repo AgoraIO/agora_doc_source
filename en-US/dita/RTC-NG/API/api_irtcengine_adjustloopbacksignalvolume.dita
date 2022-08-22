@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_adjustloopbacksignalvolume">
-    <title><ph keyref="adjustLoopbackSignalVolume"/></title>
+    <title><ph keyref="adjustLoopbackSignalVolume" /></title>
     <shortdesc id="short"><ph id="shortdesc">Adjusts the volume of the signal captured by the sound card.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="adjustLoopbackSignalVolume"/>
+                <indexterm keyref="adjustLoopbackSignalVolume" />
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="android" outputclass="language-java" />
             <codeblock props="mac" outputclass="language-objectivec">- (int)adjustLoopbackSignalVolume:(NSInteger)volume;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int adjustLoopbackSignalVolume(int volume) = 0;
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int AdjustLoopbackRecordingSignalVolume(int volume);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="electron" outputclass="language-typescript">abstract adjustLoopbackSignalVolume(volume: number): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int AdjustLoopbackSignalVolume(int volume);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract adjustLoopbackSignalVolume(volume: number): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; adjustLoopbackSignalVolume(int volume);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>After calling <xref keyref="enableLoopbackRecording"/> to enable loopback audio capturing, you can call this method to adjust the volume of the signal captured by the sound card.</p>
+            <p>After calling <xref keyref="enableLoopbackRecording" /> to enable loopback audio capturing, you can call this method to adjust the volume of the signal captured by the sound card.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry conkeyref="adjustAudioMixingVolume/volume">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             </parml> </section>
         <section id="return_values">

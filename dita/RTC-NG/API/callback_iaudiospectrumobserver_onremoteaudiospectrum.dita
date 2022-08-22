@@ -18,7 +18,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onRemoteAudioSpectrum:(NSArray&lt;AgoraAudioSpectrumInfo *&gt; * _Nullable)AudioSpectrumInfo;
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual bool onRemoteAudioSpectrum(const UserAudioSpectrumInfo * spectrums, unsigned int spectrumNumber) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">  onRemoteAudioSpectrum?(
+            <codeblock props="electron" outputclass="language-typescript">onRemoteAudioSpectrum?(
     spectrums: UserAudioSpectrumInfo[],
     spectrumNumber: number
   ): boolean;</codeblock>
@@ -26,11 +26,13 @@
         {
             return true;
         }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">  onRemoteAudioSpectrum?(
+            <codeblock props="rn" outputclass="language-typescript">onRemoteAudioSpectrum?(
     spectrums: UserAudioSpectrumInfo[],
     spectrumNumber: number
   ): boolean;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(
+        List&lt;UserAudioSpectrumInfo> spectrums, int spectrumNumber)?
+    onRemoteAudioSpectrum;</codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>成功调用 <xref keyref="registerAudioSpectrumObserver" /> 实现 <xref keyref="IAudioSpectrumObserver" /> 中的 <apiname keyref="onRemoteAudioSpectrum" /> 回调并调用 <xref keyref="enableAudioSpectrumMonitor" /> 开启音频频谱监测后，SDK 会按照你设置的时间间隔触发该回调，报告接收到的远端音频数据的频谱。</p>
@@ -41,19 +43,15 @@
             <plentry>
                 <pt props="android">userAudioSpectrumInfos</pt>
                 <pt props="ios mac">AudioSpectrumInfo</pt>
-                <pt props="cpp unity">spectrums</pt>
-                <pd>
-                    <p>远端用户的音频频谱信息，详见 <xref keyref="UserAudioSpectrumInfo" />。 数组数量等于 SDK 监测到的远端用户数量，数组为空表示没有监测到远端用户的音频频谱。</p>
-                </pd>
+                <pt props="cpp unity rn electron flutter">spectrums</pt>
+                <pd>远端用户的音频频谱信息，详见 <xref keyref="UserAudioSpectrumInfo" />。 数组数量等于 SDK 监测到的远端用户数量，数组为空表示没有监测到远端用户的音频频谱</pd>
             </plentry>
-            <plentry props="android cpp unity">
+            <plentry props="android cpp unity rn electron flutter">
                 <pt>spectrumNumber</pt>
-                <pd>
-                    <p>远端用户的数量。</p>
-                </pd>
+                <pd>远端用户的数量。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section props="native rn electron unity" id="return_values">
             <title>返回值</title>
             <p>是否接收频谱数据：
             <ul>

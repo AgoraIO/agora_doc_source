@@ -93,7 +93,24 @@
                     uint8_t* metadata_buffer;
                     int metadata_size;
                     };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript">export class ExternalVideoFrame {
+  type?: VideoBufferType;
+  format?: VideoPixelFormat;
+  buffer?: Uint8Array;
+  stride?: number;
+  height?: number;
+  cropLeft?: number;
+  cropTop?: number;
+  cropRight?: number;
+  cropBottom?: number;
+  rotation?: number;
+  timestamp?: number;
+  eglType?: EglContextType;
+  textureId?: number;
+  matrix?: number[];
+  metadata_buffer?: Uint8Array;
+  metadata_size?: number;
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class ExternalVideoFrame
     {
         public ExternalVideoFrame()
@@ -155,8 +172,97 @@
         public byte[] metadata_buffer { set; get; }
         public int metadata_size { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock> </p>
+            <codeblock props="rn" outputclass="language-typescript">export class ExternalVideoFrame {
+  type?: VideoBufferType;
+  format?: VideoPixelFormat;
+  buffer?: Uint8Array;
+  stride?: number;
+  height?: number;
+  cropLeft?: number;
+  cropTop?: number;
+  cropRight?: number;
+  cropBottom?: number;
+  rotation?: number;
+  timestamp?: number;
+  eglType?: EglContextType;
+  textureId?: number;
+  matrix?: number[];
+  metadata_buffer?: Uint8Array;
+  metadata_size?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class ExternalVideoFrame {
+
+  const ExternalVideoFrame(
+      {this.type,
+      this.format,
+      this.buffer,
+      this.stride,
+      this.height,
+      this.cropLeft,
+      this.cropTop,
+      this.cropRight,
+      this.cropBottom,
+      this.rotation,
+      this.timestamp,
+      this.eglType,
+      this.textureId,
+      this.matrix,
+      this.metadataBuffer,
+      this.metadataSize});
+
+  @JsonKey(name: 'type')
+  final VideoBufferType? type;
+
+  @JsonKey(name: 'format')
+  final VideoPixelFormat? format;
+
+  @JsonKey(name: 'buffer', ignore: true)
+  final Uint8List? buffer;
+
+  @JsonKey(name: 'stride')
+  final int? stride;
+
+  @JsonKey(name: 'height')
+  final int? height;
+
+  @JsonKey(name: 'cropLeft')
+  final int? cropLeft;
+
+  @JsonKey(name: 'cropTop')
+  final int? cropTop;
+
+  @JsonKey(name: 'cropRight')
+  final int? cropRight;
+
+  @JsonKey(name: 'cropBottom')
+  final int? cropBottom;
+
+  @JsonKey(name: 'rotation')
+  final int? rotation;
+
+  @JsonKey(name: 'timestamp')
+  final int? timestamp;
+
+  @JsonKey(name: 'eglType')
+  final EglContextType? eglType;
+
+  @JsonKey(name: 'textureId')
+  final int? textureId;
+
+  @JsonKey(name: 'matrix')
+  final List&lt;double&gt;? matrix;
+
+  @JsonKey(name: 'metadata_buffer', ignore: true)
+  final Uint8List? metadataBuffer;
+
+  @JsonKey(name: 'metadata_size')
+  final int? metadataSize;
+
+  factory ExternalVideoFrame.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$ExternalVideoFrameFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ExternalVideoFrameToJson(this);
+}</codeblock> </p>
         </section>
         <section id="detailed_desc" props="android">
             <dl outputclass="deprecated">
@@ -167,17 +273,17 @@
             </dl>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
    <parml>
        <plentry props="cpp unity">
                     <pt>type</pt>
                     <pd>
-                        <p>The buffer type. See <xref keyref="VIDEO_BUFFER_TYPE"/>.</p>
+                        <p>The buffer type. See <xref keyref="VIDEO_BUFFER_TYPE" />.</p>
                     </pd>
                 </plentry>
        <plentry>
   <pt>format</pt>
-           <pd props="cpp unity" id="windows-format">The pixel format. See <xref keyref="VIDEO_PIXEL_FORMAT"/>.</pd>
+           <pd props="cpp unity" id="windows-format">The pixel format. See <xref keyref="VIDEO_PIXEL_FORMAT" />.</pd>
            <pd props="ios mac" id="oc-format">The format of the incoming video frame. This parameter must be specified as one of the following values:<ul>
                    <li>1: I420</li>
                    <li>2: BGRA</li>
@@ -245,8 +351,8 @@
                 <plentry props="android">
                     <pt>syncMode</pt>
                     <pd>Set whether to enable the synchronization mode. After enabling, the SDK waits while Texture processing. This parameter only applies to video data in Texture format.<ul id="ul_oxx_wmy_4qb">
-                        <li><codeph><ph keyref="true"/></codeph>: Enable sync mode.</li>
-                        <li><codeph><ph keyref="false"/></codeph>: Disable sync mode.</li>
+                        <li><codeph><ph keyref="true" /></codeph>: Enable sync mode.</li>
+                        <li><codeph><ph keyref="false" /></codeph>: Disable sync mode.</li>
                         </ul></pd>
                 </plentry>
        <plentry props="android">
