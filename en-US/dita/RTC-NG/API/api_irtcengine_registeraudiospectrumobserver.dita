@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_registeraudiospectrumobserver">
-    <title><ph keyref="registerAudioSpectrumObserver"/></title>
+    <title><ph keyref="registerAudioSpectrumObserver" /></title>
     <shortdesc id="short"><ph id="shortdesc">Registers an audio spectrum observer.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="registerAudioSpectrumObserver"/>
+                <indexterm keyref="registerAudioSpectrumObserver" />
             </keywords>
         </metadata>
     </prolog>
@@ -17,14 +17,18 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)registerAudioSpectrumDelegate:(id&lt;AgoraAudioSpectrumDelegate&gt; _Nullable )delegate;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int registerAudioSpectrumObserver(agora::media::IAudioSpectrumObserver * observer) = 0;
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract registerAudioSpectrumObserver(
+    observer: IAudioSpectrumObserver
+  ): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract void RegisterAudioSpectrumObserver(IAudioSpectrumObserver observer);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract registerAudioSpectrumObserver(
+    observer: IAudioSpectrumObserver
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">void registerAudioSpectrumObserver(AudioSpectrumObserver observer);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>After successfully registering the Audio Spectrum Observer and calling the <xref keyref="enableAudioSpectrumMonitor"/> Audio Spectrum Monitor, the SDK
-Callbacks you implement in your class will be reported at intervals you<xref keyref="IAudioSpectrumObserver"/> set.</p>
+            <p>After successfully registering the Audio Spectrum Observer and calling the <xref keyref="enableAudioSpectrumMonitor" /> Audio Spectrum Monitor, the SDK
+Callbacks you implement in your class will be reported at intervals you<xref keyref="IAudioSpectrumObserver" /> set.</p>
             <note type="attention" id="note_qwk_mjf_3qb">You can call this method either before or after joining a channel.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -33,7 +37,7 @@ Callbacks you implement in your class will be reported at intervals you<xref key
                 <pt props="android cpp unity">observer</pt>
                 <pt props="ios mac">delegate</pt>
                 <pd>
-                    <p>The audio spectrum observer. See <xref keyref="IAudioSpectrumObserver"/>.</p>
+                    <p>The audio spectrum observer. See <xref keyref="IAudioSpectrumObserver" />.</p>
                 </pd>
             </plentry>
             </parml> </section>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setlowlightenhanceoptions">
-    <title> <ph keyref="setLowlightEnhanceOptions"/> </title>
+    <title> <ph keyref="setLowlightEnhanceOptions" /> </title>
     <shortdesc id="short"><ph id="shortdesc">Sets low-light enhancement.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setLowlightEnhanceOptions"/>
+                <indexterm keyref="setLowlightEnhanceOptions" />
             </keywords>
         </metadata>
     </prolog>
@@ -19,21 +19,30 @@
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setLowlightEnhanceOptions(bool enabled, const LowlightEnhanceOptions&amp; options) = 0;
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="electron" outputclass="language-typescript">abstract setLowlightEnhanceOptions(
+    enabled: boolean,
+    options: LowlightEnhanceOptions,
+    type?: MediaSourceType
+  ): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int SetLowlightEnhanceOptions(bool enabled, LowlightEnhanceOptions options, MEDIA_SOURCE_TYPE type = MEDIA_SOURCE_TYPE.PRIMARY_CAMERA_SOURCE);</codeblock>
+            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript">abstract setLowlightEnhanceOptions(
+    enabled: boolean,
+    options: LowlightEnhanceOptions,
+    type?: MediaSourceType
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
             <p>The low-light enhancement feature can adaptively adjust the brightness value of the video captured in situations with low or uneven lighting, such as backlit, cloudy, or dark scenes. It restores or highlights the image details and improves the overall visual effect of the video.</p>
             <p>You can call this method to enable the color enhancement feature and set the options of the color enhancement effect.</p>
             <note type="attention">
             <ul>
-                <li>Call this method after calling <xref keyref="enableVideo"/>.</li>
+                <li>Call this method after calling <xref keyref="enableVideo" />.</li>
                 <li>Dark light enhancement has certain requirements for equipment performance. The low-light enhancement feature has certain performance requirements on devices. If your device overheats after you enable low-light enhancement, Agora recommends modifying the low-light enhancement options to a less performance-consuming level or disabling low-light enhancement entirely.</li>
-                <li>Both this method and <xref keyref="setExtensionProperty"/> can turn on color enhancement:<ul>
+                <li>Both this method and <xref keyref="setExtensionProperty" /> can turn on color enhancement:<ul>
                         <li>When you use the SDK to capture video, Agora recommends this method (this method only works for video captured by the SDK).</li>
-                        <li>When you use an external video source to implement custom video capture, or send an external video source to the SDK, Agora recommends using <apiname keyref="setExtensionProperty"/>.</li>
+                        <li>When you use an external video source to implement custom video capture, or send an external video source to the SDK, Agora recommends using <apiname keyref="setExtensionProperty" />.</li>
                     </ul></li>
             </ul> </note> </section>
         <section id="parameters">
@@ -43,13 +52,13 @@
                 <pt props="android cpp">enabled</pt>
                 <pt props="ios mac">enable</pt>
                 <pd>Whether to enable low-light enhancement function:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Enable low-light enhancement function.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: (Default) Disable low light enhancement function.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: Enable low-light enhancement function.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Disable low light enhancement function.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>options</pt>
-                <pd>The low-light enhancement options. See <xref keyref="LowlightEnhanceOptions"/>.</pd>
+                <pd>The low-light enhancement options. See <xref keyref="LowlightEnhanceOptions" />.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">

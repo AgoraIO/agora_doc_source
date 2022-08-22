@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_advancedaudiooptions">
-  <title> <ph keyref="AdvancedAudioOptions"/> </title>
+  <title> <ph keyref="AdvancedAudioOptions" /> </title>
   <shortdesc id="short"><ph id="shortdesc">The advanced options for audio.</ph></shortdesc>
   <refbody>
     <section id="prototype">
@@ -36,37 +36,35 @@
   AdvancedAudioOptions(): audioProcessingChannels(AUDIO_PROCESSING_MONO) {}
 };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class AdvancedAudioOptions {
-  audioProcessingChannels?: AudioProcessingChannels
+  
+  audioProcessingChannels?: number;
 }</codeblock>
-      <codeblock props="unity" outputclass="language-csharp">public class AdvancedAudioOptions
+      <codeblock props="unity" outputclass="language-csharp">public class AdvancedAudioOptions : OptionalJsonParse
     {
-        public AUDIO_PROCESSING_CHANNELS audioProcessingChannels { set; get; }
-        public AdvancedAudioOptions()
-        {
-            audioProcessingChannels = AUDIO_PROCESSING_CHANNELS.AUDIO_PROCESSING_MONO;
-        }
+        public Optional&lt;int&gt; audioProcessingChannels = new Optional&lt;int&gt;();
+
     };</codeblock>
       <codeblock props="rn" outputclass="language-typescript">export class AdvancedAudioOptions {
-  audioProcessingChannels?: AudioProcessingChannels;
+  
+  audioProcessingChannels?: number;
 }</codeblock>
       <codeblock props="flutter" outputclass="language-dart">class AdvancedAudioOptions {
   const AdvancedAudioOptions({this.audioProcessingChannels});
 
   @JsonKey(name: 'audioProcessingChannels')
   final AudioProcessingChannels? audioProcessingChannels;
-  factory AdvancedAudioOptions.fromJson(Map&lt;String, dynamic> json) =>
+  factory AdvancedAudioOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$AdvancedAudioOptionsFromJson(json);
-  Map&lt;String, dynamic> toJson() => _$AdvancedAudioOptionsToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$AdvancedAudioOptionsToJson(this);
 }</codeblock> </p>
     </section>
     <section id="parameters">
-      <title> <text
-      conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/>
+      <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" />
       </title>
       <parml>
       <plentry>
         <pt>audioProcessingChannels</pt>
-        <pd>The number of channels for audio preprocessing. See <xref keyref="AUDIO_PROCESSING_CHANNELS"/>.</pd>
+        <pd>The number of channels for audio preprocessing. See <xref keyref="AUDIO_PROCESSING_CHANNELS" />.</pd>
       </plentry>
       </parml> </section>
   </refbody>

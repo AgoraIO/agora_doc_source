@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_encodedvideoframeinfo">
-    <title><ph keyref="EncodedVideoFrameInfo"/></title>
+    <title><ph keyref="EncodedVideoFrameInfo" /></title>
     <shortdesc id="short"><ph id="shortdesc">The information about the external encoded video frame.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -121,52 +121,76 @@
 @end
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct EncodedVideoFrameInfo {
-                    EncodedVideoFrameInfo()
-                    : codecType(VIDEO_CODEC_H264),
-                    width(0),
-                    height(0),
-                    framesPerSecond(0),
-                    frameType(VIDEO_FRAME_TYPE_BLANK_FRAME),
-                    rotation(VIDEO_ORIENTATION_0),
-                    trackId(0),
-                    renderTimeMs(0),
-                    uid(0),
-                    streamType(VIDEO_STREAM_HIGH) {}
-                    EncodedVideoFrameInfo(const EncodedVideoFrameInfo&amp; rhs)
-                    : codecType(rhs.codecType),
-                    width(rhs.width),
-                    height(rhs.height),
-                    framesPerSecond(rhs.framesPerSecond),
-                    frameType(rhs.frameType),
-                    rotation(rhs.rotation),
-                    trackId(rhs.trackId),
-                    renderTimeMs(rhs.renderTimeMs),
-                    uid(rhs.uid),
-                    streamType(rhs.streamType) {}
-                    VIDEO_CODEC_TYPE codecType;
-                    int width;
-                    int height;
-                    int framesPerSecond;
-                    VIDEO_FRAME_TYPE frameType;
-                    VIDEO_ORIENTATION rotation;
-                    int trackId;
-                    int64_t renderTimeMs;
-                    uid_t uid;
-                    VIDEO_STREAM_TYPE streamType;
-                    };
-                </codeblock>
-            <codeblock props="electron" outputclass="language-typescript">export class EncodedVideoFrameInfo {
-  codecType?: VideoCodecType
-  width?: number
-  height?: number
-  framesPerSecond?: number
-  frameType?: VideoFrameType
-  rotation?: VideoOrientation
-  trackId?: number
-  renderTimeMs?: number
-  internalSendTs?: number
-  uid?: number
-  streamType?: VideoStreamType
+  EncodedVideoFrameInfo()
+    : codecType(VIDEO_CODEC_H264),
+      width(0),
+      height(0),
+      framesPerSecond(0),
+      frameType(VIDEO_FRAME_TYPE_BLANK_FRAME),
+      rotation(VIDEO_ORIENTATION_0),
+      trackId(0),
+      captureTimeMs(0),
+      uid(0),
+      streamType(VIDEO_STREAM_HIGH) {}
+
+  EncodedVideoFrameInfo(const EncodedVideoFrameInfo&amp; rhs)
+    : codecType(rhs.codecType),
+      width(rhs.width),
+      height(rhs.height),
+      framesPerSecond(rhs.framesPerSecond),
+      frameType(rhs.frameType),
+      rotation(rhs.rotation),
+      trackId(rhs.trackId),
+      captureTimeMs(rhs.captureTimeMs),
+      uid(rhs.uid),
+      streamType(rhs.streamType) {}
+
+  EncodedVideoFrameInfo&amp; operator=(const EncodedVideoFrameInfo&amp; rhs) {
+    if (this == &amp;rhs) return *this;
+    codecType = rhs.codecType;
+    width = rhs.width;
+    height = rhs.height;
+    framesPerSecond = rhs.framesPerSecond;
+    frameType = rhs.frameType;
+    rotation = rhs.rotation;
+    trackId = rhs.trackId;
+    captureTimeMs = rhs.captureTimeMs;
+    uid = rhs.uid;
+    streamType = rhs.streamType;
+    return *this;
+  }
+    VIDEO_CODEC_TYPE codecType;
+    int width;
+    int height;
+    int framesPerSecond;
+    VIDEO_FRAME_TYPE frameType;
+    VIDEO_ORIENTATION rotation;
+    int trackId;    int64_t captureTimeMs;
+    uid_t uid;
+    VIDEO_STREAM_TYPE streamType;
+};
+</codeblock>
+<codeblock props="electron" outputclass="language-typescript">export class EncodedVideoFrameInfo {
+  
+  codecType?: VideoCodecType;
+  
+  width?: number;
+  
+  height?: number;
+  
+  framesPerSecond?: number;
+  
+  frameType?: VideoFrameType;
+  
+  rotation?: VideoOrientation;
+  
+  trackId?: number;
+  
+  captureTimeMs?: number;
+  
+  uid?: number;
+  
+  streamType?: VideoStreamType;
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class EncodedVideoFrameInfo
     {
@@ -210,16 +234,25 @@
         public VIDEO_STREAM_TYPE streamType { set; get; }
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class EncodedVideoFrameInfo {
+  
   codecType?: VideoCodecType;
+  
   width?: number;
+  
   height?: number;
+  
   framesPerSecond?: number;
+  
   frameType?: VideoFrameType;
+  
   rotation?: VideoOrientation;
+  
   trackId?: number;
-  renderTimeMs?: number;
-  internalSendTs?: number;
+  
+  captureTimeMs?: number;
+  
   uid?: number;
+  
   streamType?: VideoStreamType;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class EncodedVideoFrameInfo {
@@ -258,15 +291,13 @@
   final int? uid;
   @JsonKey(name: 'streamType')
   final VideoStreamType? streamType;
-  factory EncodedVideoFrameInfo.fromJson(Map&lt;String, dynamic> json) =>
+  factory EncodedVideoFrameInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$EncodedVideoFrameInfoFromJson(json);
-  Map&lt;String, dynamic> toJson() => _$EncodedVideoFrameInfoToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$EncodedVideoFrameInfoToJson(this);
 }</codeblock></p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>codecType</pt>
@@ -296,16 +327,16 @@
                 <pt>frameType</pt>
                 <pd props="ios mac cpp unity electron rn flutter">The video frame type, see <xref keyref="VIDEO_FRAME_TYPE" />.</pd>
                 <pd props="android">The video frame type:<ul id="ul_djl_sqy_4qb">
-                    <li>0: (Default) <ph keyref="VIDEO_FRAME_TYPE_BLANK_FRAME"/>, blank frame.</li>
-                    <li>3: <ph keyref="VIDEO_FRAME_TYPE_KEY_FRAME"/>, keyframe.</li>
-                    <li>4:<ph keyref="VIDEO_FRAME_TYPE_DELTA_FRAME"/>, the Delta frame.</li>
-                    <li>5:<ph keyref="VIDEO_FRAME_TYPE_B_FRAME"/>, the B frame</li>
-                    <li>6: <ph keyref="VIDEO_FRAME_TYPE_UNKNOWN"/>, unknown frame</li>
+                    <li>0: (Default) <ph keyref="VIDEO_FRAME_TYPE_BLANK_FRAME" />, blank frame.</li>
+                    <li>3: <ph keyref="VIDEO_FRAME_TYPE_KEY_FRAME" />, keyframe.</li>
+                    <li>4:<ph keyref="VIDEO_FRAME_TYPE_DELTA_FRAME" />, the Delta frame.</li>
+                    <li>5:<ph keyref="VIDEO_FRAME_TYPE_B_FRAME" />, the B frame</li>
+                    <li>6: <ph keyref="VIDEO_FRAME_TYPE_UNKNOWN" />, unknown frame</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>rotation</pt>
-                <pd props="ios mac cpp unity electron rn flutter">The rotation information of the video frame, see <xref keyref="VIDEO_ORIENTATION"/>.</pd>
+                <pd props="ios mac cpp unity electron rn flutter">The rotation information of the video frame, see <xref keyref="VIDEO_ORIENTATION" />.</pd>
                 <pd props="android">Rotation information of the video frame, as the following:<ul>
                     <li>0: (Default) 0 degree.</li>
                     <li>90: 90 degrees.</li>
@@ -332,11 +363,11 @@
             </plentry>
             <plentry>
                 <pt>streamType</pt>
-                <pd><ph>The type of video streams. </ph><ph props="ios mac cpp unity electron rn flutter">See <xref keyref="REMOTE_VIDEO_STREAM_TYPE"/>.</ph></pd>
+                <pd><ph>The type of video streams. </ph><ph props="ios mac cpp unity electron rn flutter">See <xref keyref="REMOTE_VIDEO_STREAM_TYPE" />.</ph></pd>
                 <pd props="android">
                     <ul>
-                      <li><ph keyref="REMOTE_VIDEO_STREAM_HIGH"/>(0): High-quality stream, that is, a high-resolution and high-bitrate video stream.</li>
-                      <li><ph keyref="REMOTE_VIDEO_STREAM_LOW"/>(1): Low-quality stream, that is, a low-resolution and low-bitrate video stream.</li>
+                      <li><ph keyref="REMOTE_VIDEO_STREAM_HIGH" />(0): High-quality stream, that is, a high-resolution and high-bitrate video stream.</li>
+                      <li><ph keyref="REMOTE_VIDEO_STREAM_LOW" />(1): Low-quality stream, that is, a low-resolution and low-bitrate video stream.</li>
                       </ul> </pd>
             </plentry>
             </parml> </section>
