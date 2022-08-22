@@ -18,9 +18,9 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int updateScreenCapture(const ScreenCaptureParameters2&amp; captureParams) = 0;
 </codeblock>
             <codeblock props="cs" outputclass="language-csharp" />
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript">abstract updateScreenCapture(captureParams: ScreenCaptureParameters2): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int UpdateScreenCapture(ScreenCaptureParameters2 captureParams);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript">abstract updateScreenCapture(captureParams: ScreenCaptureParameters2): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; updateScreenCapture(ScreenCaptureParameters2 captureParams);</codeblock> </p>
         </section>
         <section id="detailed_desc">
@@ -31,19 +31,18 @@
             <parml>
             <plentry>
                 <pt props="ios">parameters</pt>
-                <pt props="cpp">captureParams</pt>
+                <pt props="cpp electron unity rn flutter">captureParams</pt>
                 <pd>屏幕共享的编码参数配置。默认的分辨率为 1920 x 1080，即 2073600 像素。该像素值为计费标准。详见 <xref keyref="ScreenCaptureParameters2" />。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="ios cpp electron unity rn">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。 
-                    
-                <ul conkeyref="startScreenCaptureByDisplayId/err" props="cpp mac unity">
-                <li />
-                </ul> </li>
+                    <ul conkeyref="startScreenCaptureByDisplayId/err" props="ios cpp rn unity electron">
+                    <li/>
+                    </ul> </li>
             </ul> </section>
     </refbody>
 </reference>
