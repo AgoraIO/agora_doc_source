@@ -6,15 +6,94 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">int selectInternalSubtitle(int index);
+            <codeblock props="android" outputclass="language-java">  public static class AudioCaptureParameters {
+        public int sampleRate = 16000;
+        public int channels = 2;
+        public int captureSignalVolume = 100;
+
+    @CalledByNative("AudioCaptureParameters")
+    public int getSampleRate() {
+      return sampleRate;
+    }
+
+    @CalledByNative("AudioCaptureParameters")
+    public int getChannels() {
+      return channels;
+    }
+
+    @CalledByNative("AudioCaptureParameters")
+    public int getCaptureSignalVolume() {
+      return captureSignalVolume;
+    }
+
+    @Override
+    public String toString() {
+      return "AudioCaptureParameters{"
+          + "sampleRate=" + sampleRate + ", channels=" + channels
+          + ", captureSignalVolume=" + captureSignalVolume + '}';
+    }
+  }
 </codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)selectInternalSubtitle:(int)index;
+            <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenAudioParameters : NSObject
+@property(assign, nonatomic) NSInteger captureSignalVolume;
+@end
 </codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int selectInternalSubtitle(int index) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp">public abstract int SelectInternalSubtitle(int playerId, int index);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="cpp" outputclass="language-cpp">struct ScreenAudioParameters {
+#if defined(__ANDROID__)
+    int sampleRate = 16000;
+    int channels = 2;
+#endif
+    int captureSignalVolume = 100;
+};
+</codeblock>
+            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="electron" outputclass="language-typescript">export class ScreenAudioParameters {
+  
+  sampleRate?: number;
+  
+  channels?: number;
+  
+  captureSignalVolume?: number;
+}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class ScreenAudioParameters
+    {
+        public int sampleRate { set; get; }
+        public int channels { set; get; }
+        public int captureSignalVolume { set; get; }
+
+        public ScreenAudioParameters()
+        {
+            sampleRate = 16000;
+            channels = 2;
+            captureSignalVolume = 100;
+        }
+    };</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class ScreenAudioParameters {
+  
+  sampleRate?: number;
+  
+  channels?: number;
+  
+  captureSignalVolume?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class ScreenAudioParameters {
+  const ScreenAudioParameters(
+      {this.sampleRate, this.channels, this.captureSignalVolume});
+
+  @JsonKey(name: 'sampleRate')
+  final int? sampleRate;
+
+  @JsonKey(name: 'channels')
+  final int? channels;
+
+  @JsonKey(name: 'captureSignalVolume')
+  final int? captureSignalVolume;
+
+  factory ScreenAudioParameters.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$ScreenAudioParametersFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ScreenAudioParametersToJson(this);
+}</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>Only available where <parmname>captureAudio</parmname> is <codeph><ph keyref="true" /></codeph>.</p>
