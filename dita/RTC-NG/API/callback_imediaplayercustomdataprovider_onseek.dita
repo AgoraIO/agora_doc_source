@@ -20,7 +20,7 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int64_t onSeek(int64_t offset, int whence) = 0;
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp">public virtual Int64 OnSeek(Int64 offset, int whence, int playerId)
+            <codeblock props="unity" outputclass="language-csharp">public virtual Int64 OnSeek(Int64 offset, int whence)
         {
             return 0;
         }</codeblock>
@@ -52,10 +52,6 @@
                     <li>2：起点为数据的尾，定位后的实际数据偏移量为文件长度加上 <parmname>offset</parmname>。</li>
                     <li>65536：不执行定位操作，返回文件大小。建议在播放 MP3、WAV 等纯音频文件时使用该参数值。</li>
                     </ul></pd>
-            </plentry>
-            <plentry props="unity">
-                <pt>playerId</pt>
-                <pd>播放器 ID。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
