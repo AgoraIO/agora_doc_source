@@ -10,6 +10,8 @@
 
 为保证用户信息安全，环信即时通讯 IM 仅支持用户本人或 app 管理员设置用户属性。
 
+在调用以下方法之前，请确保您了解 Agora Chat RESTful API 的调用频率限制，如[限制](https://docs.agora.io/en/agora-chat/agora_chat_limitation?platform=RESTful#call-limit-of-server-side)中所述。
+
 ## <a name="param"></a>公共参数
 
 以下表格列举了即时通讯 RESTful API 的公共请求参数和响应参数：

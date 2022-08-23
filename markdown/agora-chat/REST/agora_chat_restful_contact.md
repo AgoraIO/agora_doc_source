@@ -264,7 +264,7 @@ POST https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users
 
 | 参数             | 类型   | 是否必需 | 描述                                                         |
 | :--------------- | :----- | :------- | :----------------------------------------------------------- |
-| `owner_username` | String | 是    | 你的用户 ID。                                                 |
+| `owner_username` | String | 是    | 被操作用户的用户 ID。                                                 |
 
 本方法的其他路径参数说明详见 [公共参数](#pubparam)。
 
