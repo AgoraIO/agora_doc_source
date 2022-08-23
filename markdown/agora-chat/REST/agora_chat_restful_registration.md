@@ -384,19 +384,19 @@ GET https://api.agora.io/{org_name}/{app_name}/users
 
 参数及说明详见[公共参数](#param)。
 
-#### 查询参数
-
-| 参数     | 类型   | 描述                                                                                                                                                                                                                                                      | 是否必填 |
-| :------- | :----- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
-| `limit`  | Number | 请求查询用户的数量。默认值 `10`，取值范围 [1,100]。<br>用户列表默认按照注册用户时间的升序显示。                                                                                                                                                           | 否       |
-| `cursor` | String | 游标，用于分页显示用户列表。<br>第一次发起批量查询用户请求时无需设置 `cursor`，请求成功后会获得第一页用户列表。从响应 body 中获取 `cursor`，并在下一次请求的 URL 中传入该 `cursor`，直到响应 body 中不再有 `cursor` 字段，则表示已查询到 app 中所有用户。 | 否       |
-
 #### 请求 header
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Accept`        | String | `application/json`     | 是       |
 | `Authorization` | String | Bearer ${YourAppToken} | 是       |
+
+##### 请求 body
+
+| 参数     | 类型   | 描述                                                                                                                                                                                                                                                      | 是否必填 |
+| :------- | :----- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
+| `limit`  | Number | 请求查询用户的数量。默认值 `10`，取值范围 [1,100]。<br>用户列表默认按照注册用户时间的升序显示。                                                                                                                                                           | 否       |
+| `cursor` | String | 游标，用于分页显示用户列表。<br>第一次发起批量查询用户请求时无需设置 `cursor`，请求成功后会获得第一页用户列表。从响应 body 中获取 `cursor`，并在下一次请求的 URL 中传入该 `cursor`，直到响应 body 中不再有 `cursor` 字段，则表示已查询到 app 中所有用户。 | 否       |
 
 ### HTTP 响应
 
@@ -473,7 +473,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 #### 请求示例二
 
-使用[响应示例一](#http1)中的 `cursor`，继续按照注册时间升序查询下一页用户列表，该页面用户数量为 2：
+使用 [响应示例一](#http1) 中的 `cursor`，继续按照注册时间升序查询下一页用户列表，该页面用户数量为 2：
 
 ```shell
 # 将 <YourAppToken> 替换为你在服务端生成的 app token
@@ -544,9 +544,9 @@ DELETE https://api.agora.io/{org_name}/{app_name}/users/{username}
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含字段及说明详见[公共参数](#param)。
+如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含字段及说明详见 [公共参数](#param)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -585,7 +585,9 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 
 ## 批量删除用户
 
-删除 app 下所有用户。如果删除的多个用户中包含群组或者聊天室的管理员，该用户管理的群组和聊天室也会相应被删除。
+删除 app 下指定多个用户。建议一次删除的用户数量不要超过 100。
+
+如果删除的多个用户中包含群组或者聊天室的管理员，该用户管理的群组和聊天室也会相应被删除。
 
 ### HTTP 请求
 
@@ -659,7 +661,7 @@ PUT https://api.agora.io/{org_name}/{app_name}/users/{username}/password
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -908,7 +910,7 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/status
 
 | 参数            | 类型   | 描述                                | 是否必填 |
 | :-------------- | :----- | :---------------------------------- | :------- |
-| `Content-Type`  | String | 内容类型。填入 `application/json`。 | 是       |
+| `Accept`        | String    | 内容类型。请填 `application/json`。    | 是                                                         |
 | `Authorization` | String | Bearer ${YourAppToken}              | 是       |
 
 ### HTTP 响应
@@ -1044,7 +1046,7 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/offline_msg_coun
 
 | 参数            | 类型   | 描述                                | 是否必填 |
 | :-------------- | :----- | :---------------------------------- | :------- |
-| `Content-Type`  | String | 内容类型。填入 `application/json`。 | 是       |
+| `Accept`        | String    | 内容类型。请填 `application/json`。 | 是                                                            |
 | `Authorization` | String | Bearer ${YourAppToken}              | 是       |
 
 ### HTTP 响应
@@ -1108,7 +1110,7 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/offline_msg_status/{ms
 
 | 参数            | 类型   | 描述                                | 是否必填 |
 | :-------------- | :----- | :---------------------------------- | :------- |
-| `Content-Type`  | String | 内容类型。填入 `application/json`。 | 是       |
+| `Accept`        | String    | 内容类型。请填 `application/json`。    | 是                                                         |
 | `Authorization` | String | Bearer ${YourAppToken}              | 是       |
 
 ### HTTP 响应
