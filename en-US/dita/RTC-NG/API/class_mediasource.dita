@@ -103,7 +103,42 @@
   
   isLiveSource?: boolean;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /></p></section>
+            <codeblock props="flutter" outputclass="language-dart">class MediaSource {
+  const MediaSource(
+      {this.url,
+      this.uri,
+      this.startPos,
+      this.autoPlay,
+      this.enableCache,
+      this.isAgoraSource,
+      this.isLiveSource});
+
+  @JsonKey(name: 'url')
+  final String? url;
+
+  @JsonKey(name: 'uri')
+  final String? uri;
+
+  @JsonKey(name: 'startPos')
+  final int? startPos;
+
+  @JsonKey(name: 'autoPlay')
+  final bool? autoPlay;
+
+  @JsonKey(name: 'enableCache')
+  final bool? enableCache;
+
+  @JsonKey(name: 'isAgoraSource')
+  final bool? isAgoraSource;
+  
+  @JsonKey(name: 'isLiveSource')
+  final bool? isLiveSource;
+
+  factory MediaSource.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$MediaSourceFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$MediaSourceToJson(this);
+}</codeblock></p></section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>

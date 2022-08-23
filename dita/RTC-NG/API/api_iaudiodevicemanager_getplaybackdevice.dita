@@ -17,25 +17,25 @@
             <codeblock props="ios mac" outputclass="language-objectivec" />
             <codeblock props="cpp" outputclass="language-cpp">virtual int getPlaybackDevice(char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract getPlaybackDevice(): string;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract string GetPlaybackDevice();</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int GetPlaybackDevice(ref string deviceId);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract getPlaybackDevice(): string;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;String&gt; getPlaybackDevice();</codeblock> </p>
         </section>
-        <section id="parameters" props="cpp">
+        <section id="parameters" props="cpp unity">
             <title>参数</title>
             <parml>
             <plentry>
                 <pt>deviceId</pt>
-                <pd>输出参数，当前音频播放设备的设备 ID。最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE" />。</pd>
+                <pd><ph>输出参数，当前音频播放设备的设备 ID。</ph><ph props="cpp">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE" />。</ph></pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title>返回值</title>
-            <ul props="cpp">
+            <ul props="cpp unity">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。</li>
             </ul>
-            <p props="unity flutter electron">当前音频播放设备。</p>
+            <p props="flutter electron rn flutter">当前音频播放设备。</p>
         </section>
     </refbody>
 </reference>
