@@ -21,7 +21,7 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual void onPreloadEvent(const char* src, media::base::PLAYER_PRELOAD_EVENT event) = 0;
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onPreloadEvent?(src: string, event: PlayerPreloadEvent): void;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnPreloadEvent(string src, PLAYER_PRELOAD_EVENT @event) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onPreloadEvent?(src: string, event: PlayerPreloadEvent): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(String src, PlayerPreloadEvent event)? onPreloadEvent;
 </codeblock> </p>
@@ -33,12 +33,13 @@
                 <pt />
                 <pd />
             </plentry>
-            <plentry props="android cpp flutter">
-                <pt>src</pt>
-                <pd>媒体资源的路径。</pd>
-            </plentry>
+            <plentry props="android cpp unity flutter rn electron">
+                    <pt>src</pt>
+                    <pd>媒体资源的路径。</pd>
+                </plentry>
             <plentry>
-                <pt>event</pt>
+                <pt props="native flutter rn electron">event</pt>
+                <pt props="unity">@event</pt>
                 <pd>预加载媒体资源时发生的事件。详见 <xref keyref="PLAYER_PRELOAD_EVENT" />。</pd>
             </plentry>
             </parml> </section>
