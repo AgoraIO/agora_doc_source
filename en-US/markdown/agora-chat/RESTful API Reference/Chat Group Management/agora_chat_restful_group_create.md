@@ -68,7 +68,6 @@ For the descriptions of other path parameters, see [Common Parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :------------- | :------ | :----------------------------------------------------------- | :------- |
-| `groupid` | String | The custom group ID. It cannot exceed 18 digits and cannot start with zero (0). This field is disabled by default. To enable this field, contact [support@agora.io](mailto:support@agora.io).  | No |
 | `groupname` | String | The group name. It cannot exceed 128 characters. The group name cannot contain "/" or spaces. You can use "+" to represent the space. | Yes |
 | `desc` | String | The group description. It cannot exceed 512 characters. The group name cannot contain "/" or spaces. You can use "+" to represent the space. | Yes |
 | `public` | Boolean | Whether the group is a public group. Public groups can be searched and chat users can apply to join a public group. Private groups cannot be searched, and chat users can join a private group only if the group owner or admin invites the user to join the group.<ul><li>`true`: Yes</li><li>`false`: No</li></ul> | Yes |
