@@ -76,7 +76,24 @@
   
   captureSignalVolume?: number;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">class ScreenAudioParameters {
+  const ScreenAudioParameters(
+      {this.sampleRate, this.channels, this.captureSignalVolume});
+
+  @JsonKey(name: 'sampleRate')
+  final int? sampleRate;
+
+  @JsonKey(name: 'channels')
+  final int? channels;
+
+  @JsonKey(name: 'captureSignalVolume')
+  final int? captureSignalVolume;
+
+  factory ScreenAudioParameters.fromJson(Map<String, dynamic> json) =>
+      _$ScreenAudioParametersFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ScreenAudioParametersToJson(this);
+}</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>仅适用于 <parmname>captureAudio</parmname> 为 <codeph><ph keyref="true" /></codeph> 的场景。</p>
@@ -84,11 +101,11 @@
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
-                <plentry props="android cpp">
+                <plentry props="android cpp rn electron unity flutter">
                     <pt>sampleRate</pt>
                     <pd>音频采样率 (Hz)。默认值为 16000。</pd>
                 </plentry>
-                <plentry props="android cpp">
+                <plentry props="android cpp rn electron unity flutter">
                     <pt>channels</pt>
                     <pd>声道数。默认值为 2，表示双声道。</pd>
                 </plentry>
