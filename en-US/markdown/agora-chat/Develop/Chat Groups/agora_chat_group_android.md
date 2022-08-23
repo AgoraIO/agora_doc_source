@@ -66,12 +66,6 @@ Users can call `leaveGroup` to leave a chat group. Once a user leaves the group,
 Refer to the following sample code to join and leave a chat group:
 
 ```java
-// Call getJoinedGroups to retrieve the list of joined groups from the server.
-List<Group> grouplist = ChatClient.getInstance().groupManager().getJoinedGroupsFromServer();
-
-// Call getAllGroups to retrieve the list of joined groups from the local database.
-List<Group> grouplist = ChatClient.getInstance().groupManager().getAllGroups();
-
 // List public groups by page.
 CursorResult<GroupInfo> result = ChatClient.getInstance().groupManager().getPublicGroupsFromServer(pageSize, cursor);
 List<GroupInfo> groupsList = List<GroupInfo> returnGroups = result.getData();
