@@ -32,7 +32,11 @@
     sourceType?: ExternalVideoSourceType,
     encodedVideoOption?: SenderOptions
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setExternalVideoSource(
+    {required bool enabled,
+    required bool useTexture,
+    ExternalVideoSourceType sourceType = ExternalVideoSourceType.videoFrame,
+    SenderOptions encodedVideoOption = const SenderOptions()});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <note type="attention">请在加入频道前调用该方法。</note> </section>
@@ -41,7 +45,7 @@
             <parml>
             <plentry>
                 <pt props="ios mac android">enable</pt>
-                <pt props="cpp unity">enabled</pt>
+                <pt props="cpp unity electron rn flutter">enabled</pt>
                 <pd>是否启用外部视频源： 
                     <ul>
                     <li><codeph><ph keyref="true" /></codeph>: 启用外部视频源。SDK 准备接收外部视频帧。</li>
@@ -60,17 +64,17 @@
                 <pt>sourceType</pt>
                 <pd>是否对外部视频帧编码，详见 <xref keyref="EXTERNAL_VIDEO_SOURCE_TYPE" />。</pd>
             </plentry>
-            <plentry props="unity cpp">
+            <plentry props="unity cpp electron rn flutter">
                 <pt>encodedVideoOption</pt>
-                <pd props="unity">视频编码选项。</pd>
-                <pd props="cpp">视频编码选项。如果 <parmname>sourceType</parmname> 为 <apiname keyref="ENCODED_VIDEO_FRAME" />，则需要设置该参数。你可以<xref keyref="ticket-link" />联系技术支持了解如何设置该参数。</pd>
+                <pd>视频编码选项。如果 <parmname>sourceType</parmname> 为 <apiname keyref="ENCODED_VIDEO_FRAME" />，则需要设置该参数。你可以<xref keyref="ticket-link" />联系技术支持了解如何设置该参数。</pd>
             </plentry>
             </parml> </section>
-        <section>
+        <section id="return_values" props="android cpp electron unity rn">
             <title>返回值</title>
             <ul>
             <li>0：方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。</li>
-            </ul> </section>
+            </ul>
+        </section>
     </refbody>
 </reference>

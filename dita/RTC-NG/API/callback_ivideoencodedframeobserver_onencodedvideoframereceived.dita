@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_ivideoencodedframeobserver_onencodedvideoframereceived">
-    <title><ph keyref="OnEncodedVideoFrameReceived" /></title>
+    <title><ph keyref="OnEncodedVideoFrameReceived"/></title>
     <shortdesc id="short"><ph id="shortdesc">报告 SDK 接收到编码后的视频图像。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="OnEncodedVideoFrameReceived" />
+                <indexterm keyref="OnEncodedVideoFrameReceived"/>
             </keywords>
         </metadata>
     </prolog>
@@ -20,38 +20,49 @@
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual bool OnEncodedVideoFrameReceived(rtc::uid_t uid, const uint8_t* imageBuffer, size_t length,
                                            const rtc::EncodedVideoFrameInfo&amp; videoEncodedFrameInfo) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnEncodedVideoImageReceived(IntPtr imageBufferPtr, UInt64 length, EncodedVideoFrameInfo videoEncodedFrameInfo)
-                {
-                    return true;
-                }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="electron" outputclass="language-typescript">onEncodedVideoFrameReceived?(
+    uid: number,
+    imageBuffer: Uint8Array,
+    length: number,
+    videoEncodedFrameInfo: EncodedVideoFrameInfo
+  ): boolean;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnEncodedVideoFrameReceived(uint uid, IntPtr imageBufferPtr, UInt64 length, EncodedVideoFrameInfo videoEncodedFrameInfo)
+        {
+            return true;
+        }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onEncodedVideoFrameReceived?(
+    uid: number,
+    imageBuffer: Uint8Array,
+    length: number,
+    videoEncodedFrameInfo: EncodedVideoFrameInfo
+  ): boolean;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(int uid, Uint8List imageBuffer, int length,
+      EncodedVideoFrameInfo videoEncodedFrameInfo)? onEncodedVideoFrameReceived;</codeblock> </p>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry props="cpp">
+            <plentry props="cpp electron unity rn flutter">
                 <pt>uid</pt>
                 <pd>远端用户 ID。</pd>
             </plentry>
             <plentry>
                 <pt props="ios mac">videoData</pt>
-                <pt props="cpp">imageBuffer</pt>
+                <pt props="cpp electron rn flutter">imageBuffer</pt>
                 <pt props="unity">imageBufferPtr</pt>
                 <pt props="android">buffer</pt>
-                <pd props="cpp unity android">视频图像 buffer。</pd>
+                <pd props="cpp unity android electron rn flutter">视频图像 buffer。</pd>
                 <pd props="ios mac">视频图像数据。</pd>
             </plentry>
-            <plentry props="cpp unity ios mac">
+            <plentry props="cpp unity ios mac electron rn flutter">
                 <pt>length</pt>
                 <pd>视频图像的数据长度。</pd>
             </plentry>
             <plentry>
                 <pt props="android">info</pt>
                 <pt props="ios mac">videoFrameInfo</pt>
-                <pt props="cpp unity">videoEncodedFrameInfo</pt>
-                <pd>编码后的视频帧信息，详见 <xref keyref="EncodedVideoFrameInfo" />。</pd>
+                <pt props="cpp unity electron rn flutter">videoEncodedFrameInfo</pt>
+                <pd>编码后的视频帧信息，详见 <xref keyref="EncodedVideoFrameInfo"/>。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">

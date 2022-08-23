@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_iaudioframeobserverbase_onrecordaudioframe">
-    <title><ph keyref="onRecordAudioFrame" /></title>
+    <title><ph keyref="onRecordAudioFrame"/></title>
     <shortdesc id="short"><ph id="shortdesc">获得采集的音频。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onRecordAudioFrame" />
+                <indexterm keyref="onRecordAudioFrame"/>
             </keywords>
         </metadata>
     </prolog>
@@ -25,11 +25,12 @@
             return true;
         }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onRecordAudioFrame?(channelId: string, audioFrame: AudioFrame): boolean;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(String channelId, AudioFrame audioFrame)?
+      onRecordAudioFrame</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <note type="note">为保证采集到的音频数据格式符合预期，Agora 推荐你在调用 <xref keyref="registerAudioFrameObserver" /> 注册音频观测器后，调用 <xref keyref="getRecordAudioParams" /> 方法设置采集的音频数据格式。SDK 会根据 <apiname keyref="getRecordAudioParams" /> 回调返回值中设置的 <parmname>AudioParams</parmname> 计算采样间隔， 并根据该采样间隔触发 <apiname keyref="onRecordAudioFrame" /> 回调。</note> </section>
-        <section id="parameters" conkeyref="onMixedAudioFrame/parameters" />
-        <section id="return_values" conkeyref="onMixedAudioFrame/return_values" />
+            <note type="note">为保证采集到的音频数据格式符合预期，Agora 推荐你在调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器后，调用 <xref keyref="getRecordAudioParams"/> 方法设置采集的音频数据格式。SDK 会根据 <apiname keyref="getRecordAudioParams"/> 回调返回值中设置的 <parmname>AudioParams</parmname> 计算采样间隔，并根据该采样间隔触发 <apiname keyref="onRecordAudioFrame"/> 回调。</note> </section>
+        <section id="parameters" conkeyref="onMixedAudioFrame/parameters"/>
+        <section id="return_values" conkeyref="onMixedAudioFrame/return_values"/>
     </refbody>
 </reference>
