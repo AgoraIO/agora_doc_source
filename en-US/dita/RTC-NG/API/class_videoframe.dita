@@ -6,7 +6,261 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="android" outputclass="language-java">public class VideoFrame implements RefCounted {
+    public interface Buffer extends RefCounted {
+        @CalledByNative("Buffer") int getWidth();
+
+        @CalledByNative("Buffer") int getHeight();
+
+        @CalledByNative("Buffer") I420Buffer toI420();
+
+        @Override @CalledByNative("Buffer") void retain();
+
+        @Override @CalledByNative("Buffer") void release();
+
+        @CalledByNative("Buffer")
+    Buffer cropAndScale(
+        int cropX, int cropY, int cropWidth, int cropHeight, int scaleWidth, int scaleHeight);
+
+        @CalledByNative("Buffer") @Nullable Buffer mirror(int frameRotation);
+
+        @CalledByNative("Buffer") @Nullable Buffer rotate(int frameRotation);
+        @CalledByNative("Buffer")
+    @Nullable
+    Buffer transform(int cropX, int cropY, int cropWidth, int cropHeight, int scaleWidth,
+        int scaleHeight, int frameRotation);
+  }
+
+    public interface I420Buffer extends Buffer {
+        @CalledByNative("I420Buffer") ByteBuffer getDataY();
+        @CalledByNative("I420Buffer") ByteBuffer getDataU();
+        @CalledByNative("I420Buffer") ByteBuffer getDataV();
+
+    @CalledByNative("I420Buffer") int getStrideY();
+    @CalledByNative("I420Buffer") int getStrideU();
+    @CalledByNative("I420Buffer") int getStrideV();
+  }
+
+    public interface I422Buffer extends Buffer {
+    @CalledByNative("I422Buffer") ByteBuffer getDataY();
+    @CalledByNative("I422Buffer") ByteBuffer getDataU();
+    @CalledByNative("I422Buffer") ByteBuffer getDataV();
+
+    @CalledByNative("I422Buffer") int getStrideY();
+    @CalledByNative("I422Buffer") int getStrideU();
+    @CalledByNative("I422Buffer") int getStrideV();
+  }
+  public interface RgbaBuffer extends Buffer {
+    @CalledByNative("RgbaBuffer") ByteBuffer getData();
+  }
+    public interface TextureBuffer extends Buffer {
+        enum Type {
+            OES(GLES11Ext.GL_TEXTURE_EXTERNAL_OES),
+            RGB(GLES20.GL_TEXTURE_2D);
+
+      private final int glTarget;
+
+      private Type(final int glTarget) {
+        this.glTarget = glTarget;
+      }
+
+      public int getGlTarget() {
+        return glTarget;
+      }
+    }
+
+    enum ContextType {
+      EGL_CONTEXT_10,
+      EGL_CONTEXT_14;
+    }
+
+    Type getType();
+
+        @CalledByNative("TextureBuffer") int getTextureId();
+
+        Matrix getTransformMatrix();
+
+        EglBase.Context getEglBaseContext();
+
+    @CalledByNative("TextureBuffer") long getNativeEglContext();
+
+    @CalledByNative("TextureBuffer") int getEglContextType();
+
+    @CalledByNative("TextureBuffer") float[] getTransformMatrixArray();
+
+        @CalledByNative("TextureBuffer") int getSequence();
+  }
+
+  public interface ColorSpace {
+    enum Range {
+      Invalid(0),
+      Limited(1),
+      Full(2),
+      Derived(3);
+      private final int range;
+      private Range(int range) {
+        this.range = range;
+      }
+      public int getRange() {
+        return range;
+      };
+    }
+
+    enum Matrix {
+      RGB(0),
+      BT709(1),
+      Unspecified(2),
+      FCC(4),
+      BT470BG(5),
+      SMPTE170M(6),
+      SMPTE240M(7),
+      YCOCG(8),
+      BT2020_NCL(9),
+      BT2020_CL(10),
+      SMPTE2085(11),
+      CDNCLS(12),
+      CDCLS(13),
+      BT2100_ICTCP(14);
+      private final int matrix;
+      private Matrix(int matrix) {
+        this.matrix = matrix;
+      }
+      public int getMatrix() {
+        return matrix;
+      };
+    }
+
+    enum Transfer {
+      BT709(1),
+      Unspecified(2),
+      GAMMA22(4),
+      GAMMA28(5),
+      SMPTE170M(6),
+      SMPTE240M(7),
+      LINEAR(8),
+      LOG(9),
+      LOG_SQRT(10),
+      IEC61966_2_4(11),
+      BT1361_ECG(12),
+      IEC61966_2_1(13),
+      BT2020_10(14),
+      BT2020_12(15),
+      SMPTEST2084(16),
+      SMPTEST428(17),
+      ARIB_STD_B67(18);
+      private final int transfer;
+      private Transfer(int transfer) {
+        this.transfer = transfer;
+      }
+      public int getTransfer() {
+        return transfer;
+      }
+    }
+
+    enum Primary {
+      BT709(1),
+      Unspecified(2),
+      BT470M(4),
+      BT470BG(5),
+      kSMPTE170M(6),   private Buffer buffer;
+
+    private int rotation;
+
+    private long timestampNs;
+  private ColorSpace colorSpace;
+
+  private float sampleAspectRatio;
+
+  private VideoFrameMetaInfo metaInfo = new VideoFrameMetaInfo();
+
+    private byte[] alphaBuffer;
+
+    public VideoFrame(Buffer buffer, int rotation, long timestampNs) {
+    this(buffer, rotation, timestampNs, null, null, 1.0f);
+  }
+
+  @CalledByNative
+  public VideoFrame(Buffer buffer, int rotation, long timestampNs, ColorSpace colorSpace,
+      byte[] alphaBuffer, float sampleAspectRatio) {
+    if (buffer == null) {
+      throw new IllegalArgumentException("buffer not allowed to be null");
+    }
+    if (rotation % 90 != 0) {
+      throw new IllegalArgumentException("rotation must be a multiple of 90");
+    }
+    this.buffer = buffer;
+    this.rotation = rotation;
+    this.timestampNs = timestampNs;
+    this.colorSpace = colorSpace;
+    this.alphaBuffer = alphaBuffer;
+    this.sampleAspectRatio = sampleAspectRatio;
+  }
+
+  public float getSampleAspectRatio() {
+    return sampleAspectRatio;
+  }
+
+    @CalledByNative
+  public Buffer getBuffer() {
+    return buffer;
+  }
+
+    @CalledByNative
+  public int getRotation() {
+    return rotation;
+  }
+
+    @CalledByNative
+  public long getTimestampNs() {
+    return timestampNs;
+  }
+
+  @CalledByNative
+  public VideoFrameMetaInfo getMetaInfo() {
+    return metaInfo;
+  }
+
+    public int getRotatedWidth() {
+    if (rotation % 180 == 0) {
+      return buffer.getWidth();
+    }
+    return buffer.getHeight();
+  }
+
+    public int getRotatedHeight() {
+    if (rotation % 180 == 0) {
+      return buffer.getHeight();
+    }
+    return buffer.getWidth();
+  }
+
+    public void replaceBuffer(Buffer buffer, int rotation, long timestampNs) {
+    release();
+    this.buffer = buffer;
+    this.rotation = rotation;
+    this.timestampNs = timestampNs;
+  }
+
+  public ColorSpace getColorSpace() {
+    return colorSpace;
+  }
+
+  public byte[] getAlphaBuffer() {
+    return alphaBuffer;
+  }
+
+    @Override
+  public void retain() {
+    buffer.retain();
+  }
+
+    @Override
+  @CalledByNative
+  public void release() {
+    buffer.release();
+  }
+}
+</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraOutputVideoFrame : NSObject
 @property (nonatomic, assign) NSInteger type;
 @property (nonatomic, assign) int width;
