@@ -45,6 +45,8 @@
 
 注册一个用户。
 
+对于每个 App Key，此方法的调用频率限制为每秒 100 次。
+
 ### HTTP 请求
 
 ```http
@@ -82,9 +84,9 @@ POST https://{host}/{org_name}/{app_name}/users
 | :------------------ | :----- | :--------------------------------------------------------------------------------------------------------- |
 | `entities.nickname` | String | 推送消息时，在消息推送通知栏内显示的用户昵称。<br>该字段为消息推送显示的用户昵称，而非用户属性的用户昵称。 |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -130,6 +132,8 @@ curl -X POST -H 'Content-Type: application/json' -H 'Authorization:Bearer <YourA
 
 一个请求内注册多个用户。
 
+对于每个 App Key，此方法的调用频率限制为每秒 100 次。
+
 ### HTTP 请求
 
 ```http
@@ -138,7 +142,7 @@ POST https://api.agora.io/{org_name}/{app_name}/users
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -298,6 +302,8 @@ curl -X POST -H 'Content-Type: application/json' -H 'Authorization:Bearer <YourA
 
 查询单个用户的详细信息。
 
+对于每个 App Key，此方法的调用频率限制为每秒 100 次。
+
 ### HTTP 请求
 
 ```http
@@ -350,29 +356,44 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 ```json
 {
-    "action": "get",
     "path": "/users",
     "uri": "http://XXXX/XXXX/XXXX/users/XXXX",
     "entities": [
         {
-            "uuid": "0ffe2d80-XXXX-XXXX-8d66-279e3e1c214b",
+            "notification_no_disturbing": true,
+            "created": 1644826508795,
+            "notification_no_disturbing_start": 20,
+            "notification_no_disturbing_end": 7,
             "type": "user",
-            "created": 1542795196504,
-            "modified": 1542795196504,
+            "uuid": "393d9960-XXXX-XXXX-809a-c5eb15f20aa8",
+            "nickname": "test",
+            "notification_display_style": 1,
+            "modified": 1661242753511,
+            "notification_ignored_users": [
+                "hx_test1"
+            ],
+            "pushInfo": [
+                {
+                    "device_Id": "0f581e52-XXXX-XXXX-8774-f804a49571f5",
+                    "device_token": "160XXXX892",
+                    "notifier_name": "XXXX#1cXXXX807d"
+                }
+            ],
             "username": "XXXX",
-            "activated": true,
-            "nickname": "testuser"
+            "activated": true
         }
     ],
-    "timestamp": 1542798985011,
-    "duration": 6,
-    "count": 1
+    "count": 1,
+    "action": "get",
+    "duration": 4
 }
 ```
 
 ## 批量查询用户详情
 
 按照注册时间升序，查询多个用户的信息列表。
+
+对于每个 App Key，此方法的调用频率限制为每秒 100 次。
 
 ### HTTP 请求
 
@@ -417,9 +438,9 @@ GET https://api.agora.io/{org_name}/{app_name}/users
 | `entities.device_token`                       | String | 推送 token。若用户没有推送 token，则响应中不返回。                                                                                                                                                                                    |
 | `count`                                       | Number | 返回用户数量。                                                                                                                                                                                                                        |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
-如果返回的 HTTP 状态码非 200，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码非 200，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -523,6 +544,8 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 删除单个用户。如果删除的用户是群组或者聊天室的管理员，该用户管理的群组和聊天室也会相应被删除。
 
+对于每个 App Key，此方法的调用频率限制为每秒 100 次。
+
 ### HTTP 请求
 
 ```http
@@ -589,6 +612,8 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 
 如果删除的多个用户中包含群组或者聊天室的管理员，该用户管理的群组和聊天室也会相应被删除。
 
+对于每个 App Key，此方法的调用频率限制为每秒 30 次。
+
 ### HTTP 请求
 
 ```http
@@ -653,6 +678,8 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 
 修改用户密码，无需提供原密码。
 
+对于每个 App Key，此方法的调用频率限制为每秒 100 次。
+
 ### HTTP 请求
 
 ```http
@@ -711,6 +738,8 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 ## 封禁用户
 
 禁用一个用户账户。该用户会立即下线，且无法登录直到解除封禁。
+
+对于每个 App Key，此方法的调用频率限制为每秒 100 次。
 
 ### HTTP 请求
 
@@ -779,6 +808,8 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 解禁一个已被禁用的用户账户。解禁后，该用户恢复登录功能。
 
+对于每个 App Key，此方法的调用频率限制为每秒 100 次。
+
 ### HTTP 请求
 
 ```http
@@ -787,7 +818,7 @@ POST https://api.agora.io/{org_name}/{app_name}/users/{username}/activate
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -829,9 +860,11 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 }
 ```
 
-## 强制下线
+## 强制用户离线
 
 强制下线一个用户，被下线的用户需要重新登录才能正常使用。
+
+对于每个 App Key，此方法的调用频率限制为每秒 100 次。
 
 ### HTTP 请求
 
@@ -841,7 +874,7 @@ POST https://api.agora.io/{org_name}/{app_name}/users/{username}/disconnect
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -862,8 +895,8 @@ POST https://api.agora.io/{org_name}/{app_name}/users/{username}/disconnect
 | `data`        | JSON | 返回数据详情。                                    |
 | `data.result` | Bool | 下线结果，仅显示为 `true`，表示用户已被强制下线。 |
 
-其他字段及说明详见[公共参数](#param)。
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+其他字段及说明详见 [公共参数](#param)。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -892,9 +925,11 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 }
 ```
 
-### 获取单个用户在线状态（status）
+## 获取单个用户在线状态（status）
 
 该方法获取单个用户的在线状态。你可以调用该方法查询指定用户是否在线。
+
+对于每个 App Key，此方法的调用频率限制为每秒 100 次。
 
 ### HTTP 请求
 
@@ -904,13 +939,13 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/status
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
 | 参数            | 类型   | 描述                                | 是否必填 |
 | :-------------- | :----- | :---------------------------------- | :------- |
-| `Accept`        | String    | 内容类型。请填 `application/json`。    | 是                                                         |
+| `Accept`        | String | 内容类型。请填 `application/json`。 | 是       |
 | `Authorization` | String | Bearer ${YourAppToken}              | 是       |
 
 ### HTTP 响应
@@ -923,9 +958,9 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/status
 | :--------- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `username` | String | 数据格式为 "用户 ID": "当前在线状态"。例如用户 user1 的在线状态：如果该用户在线，则返回 "user1": "online"；如果不在线，则返回 "user1": "offline"。 |
 
-其他字段说明详见[公共参数](#param)。
+其他字段说明详见 [公共参数](#param)。
 
-如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考[状态码汇总表](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考 [状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -958,6 +993,8 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 该接口不对用户 ID 进行校验。若查询不存在的用户 ID 的状态，则返回的状态为 `offline`。
 
+对于每个 App Key，此方法的调用频率限制为每秒 50 次。
+
 ### HTTP 请求
 
 ```http
@@ -966,7 +1003,7 @@ POST https://{host}{org_name}/{app_name}/users/batch/status
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -1028,6 +1065,8 @@ curl -X POST http://XXXX/XXXX/XXXX/users/batch/status -H 'Authorization: Bearer 
 
 获取即时通讯用户的离线消息数量。
 
+对于每个 App Key，此方法的调用频率限制为每秒 100 次。
+
 ### HTTP 请求
 
 ```http
@@ -1046,7 +1085,7 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/offline_msg_coun
 
 | 参数            | 类型   | 描述                                | 是否必填 |
 | :-------------- | :----- | :---------------------------------- | :------- |
-| `Accept`        | String    | 内容类型。请填 `application/json`。 | 是                                                            |
+| `Accept`        | String | 内容类型。请填 `application/json`。 | 是       |
 | `Authorization` | String | Bearer ${YourAppToken}              | 是       |
 
 ### HTTP 响应
@@ -1061,7 +1100,7 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/offline_msg_coun
 
 其他字段说明详见[公共参数](#param)。
 
-如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考 [状态码汇总表](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考 [状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 ### 示例
 
 #### 请求示例
@@ -1087,9 +1126,11 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 }
 ```
 
-## 获取某条离线消息状态
+## 查询离线消息的投递状态
 
 该方法获取指定离线消息的投递状态。
+
+对于每个 App Key，此方法的调用频率限制为每秒 100 次。
 
 ### HTTP 请求
 
@@ -1110,7 +1151,7 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/offline_msg_status/{ms
 
 | 参数            | 类型   | 描述                                | 是否必填 |
 | :-------------- | :----- | :---------------------------------- | :------- |
-| `Accept`        | String    | 内容类型。请填 `application/json`。    | 是                                                         |
+| `Accept`        | String | 内容类型。请填 `application/json`。 | 是       |
 | `Authorization` | String | Bearer ${YourAppToken}              | 是       |
 
 ### HTTP 响应
@@ -1125,7 +1166,7 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/offline_msg_status/{ms
 
 其他字段说明详见[公共参数](#param)。
 
-如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考[状态码汇总表](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考[状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -1151,3 +1192,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
   "count": 0
 }
 ```
+
+## 状态码
+
+有关详细信息，请参阅 [HTTP 状态代码](https://docs.agora.io/en/agora-chat/agora_chat_status_code?platform=RESTful)。

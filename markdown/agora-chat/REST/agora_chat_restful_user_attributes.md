@@ -10,7 +10,7 @@
 
 为保证用户信息安全，环信即时通讯 IM 仅支持用户本人或 app 管理员设置用户属性。
 
-在调用以下方法之前，请确保您了解 Agora Chat RESTful API 的调用频率限制，如[限制](https://docs.agora.io/en/agora-chat/agora_chat_limitation?platform=RESTful#call-limit-of-server-side)中所述。
+在调用以下方法之前，请了解 [使用限制](https://docs.agora.io/en/agora-chat/agora_chat_limitation?platform=RESTful#call-limit-of-server-side)中所述。
 
 ## <a name="param"></a>公共参数
 
@@ -33,7 +33,7 @@
 | `organization`    | String | 即时通讯服务分配给每个企业（组织）的唯一标识。等同于 `org_name`。 |
 | `application`     | String | 即时通讯服务分配给每个 app 的唯一内部标识，无需关注。             |
 | `applicationName` | String | 即时通讯服务分配给每个 app 的唯一标识。等同于 `app_name`。        |
-| `uri`             | String | 请求 URL。                                                        |
+| `uri`             | String | 请求 URI。                                                        |
 | `entities`        | JSON   | 返回实体信息。                                                    |
 | `timestamp`       | Long   | HTTP 响应的 Unix 时间戳（毫秒）。                                 |
 | `duration`        | Number | 从发送 HTTP 请求到响应的时长（毫秒）。                            |
@@ -92,9 +92,9 @@ JSONString = ‘{“name”:“ken”, “employer”:“easemob”, “title”
 | :----- | :--- | :----------------------------------------------------- |
 | `data` | JSON | 返回数据详情。包含你在本次请求中设置的用户属性键值对。 |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[状态码汇总表](https://confluence.agoralab.co/pages/viewpage.action?pageId=849347765)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [状态码](https://confluence.agoralab.co/pages/viewpage.action?pageId=849347765)了解可能的原因。
 
 ### 示例
 
@@ -133,7 +133,7 @@ GET https://{host} /{org_name}/{app_name}/metadata/user/{username}
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -152,9 +152,9 @@ GET https://{host} /{org_name}/{app_name}/metadata/user/{username}
 | :----- | :--- | :------------------------------------------------------------------------------------------------------------- |
 | `data` | JSON | 返回数据详情。包含该用户所有用户属性键值对。<br>如果 `data` 为空，请确认用户名是否存在或该用户是否有用户属性。 |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -221,9 +221,9 @@ POST https://{host} /{org_name}/{app_name}/metadata/user/get
 | :----- | :--- | :----------------------------------------------------------------------------------------------------------- |
 | `data` | JSON | 返回数据详情。包含该用户所有用户属性键值对。<br>如果 `data` 为空，请确认用户名是否存在或用户是否有用户属性。 |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -283,7 +283,7 @@ GET https://{host} /{org_name}/{app_name}/metadata/user/capacity
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -303,7 +303,7 @@ GET https://{host} /{org_name}/{app_name}/metadata/user/capacity
 
 其他字段及说明详见 [公共参数](#param)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -335,7 +335,7 @@ DELETE https://{host} /{org_name}/{app_name}/metadata/user/{username}
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -353,7 +353,7 @@ DELETE https://{host} /{org_name}/{app_name}/metadata/user/{username}
 | :----- | :--- | :-------------------------------------------------------------------------------------------------------------------------- |
 | `data` | Bool | 用户属性是否删除成功。`data` 为 `true` 表示删除成功。<br>如果指定的用户不存在，或指定用户的用户属性不存在，也视为删除成功。 |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -376,3 +376,7 @@ curl -X DELETE -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/
     "data": true
 }
 ```
+
+## 状态码
+
+有关详细信息，请参阅[HTTP 状态代码](https://docs.agora.io/en/agora-chat/agora_chat_status_code?platform=RESTful)。
