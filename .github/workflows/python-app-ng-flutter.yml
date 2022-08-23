@@ -22,17 +22,19 @@ jobs:
                   cd xml2json
                   python -m pip install --upgrade pip
                   if  [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-            - name: Run json creation
+            - name: Run CN json creation
               run: |
                   cd xml2json
                   echo "Running for flutter NG"
                   python xml2json.py --working_dir ../dita/RTC-NG --platform_tag flutter --json_file flutter_cn_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path flutter-ng
-            - name: Run json creation
+            - name: Run EN json creation
+              if: always()
               run: |
                   cd xml2json
                   echo "Running for flutter NG"
                   python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag flutter --json_file flutter_en_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path flutter-ng
-            - name: Upload Flutter NG JSON to release
+            - name: Upload Flutter NG CN JSON to release
+              if: always()
               uses: svenstaro/upload-release-action@v2
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -41,7 +43,8 @@ jobs:
                   tag: main
                   overwrite: true
                   body: "Template file for automatic comment population."
-            - name: Upload Flutter NG JSON to release
+            - name: Upload Flutter NG EN JSON to release
+              if: always()
               uses: svenstaro/upload-release-action@v2
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
