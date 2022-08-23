@@ -50,7 +50,20 @@
   
   fps?: number;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">class ImageTrackOptions {
+  const ImageTrackOptions({this.imageUrl, this.fps});
+
+  @JsonKey(name: 'imageUrl')
+  final String? imageUrl;
+
+  @JsonKey(name: 'fps')
+  final int? fps;
+
+  factory ImageTrackOptions.fromJson(Map&lt;String, dynamic> json) =>
+      _$ImageTrackOptionsFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$ImageTrackOptionsToJson(this);
+}</codeblock> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
