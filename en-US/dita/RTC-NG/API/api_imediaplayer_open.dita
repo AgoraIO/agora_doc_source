@@ -24,23 +24,24 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; open({required String url, required int startPos});</codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p props="cn">If you want to choose the CDN route for playing the media resource, you can call the <xref keyref="openWithAgoraCDNSrc" /> method. Agora changes the CDN route through the self-developed scheduling center to improve the viewing user experience. If you want to choose the CDN route for playing the media resource, you can call the <xref keyref="open" /> method.</p>
+            <p props="cn">If you want to choose the CDN route for playing the media resource, you can call the  method<xref keyref="openWithAgoraCDNSrc" />. Agora changes the CDN route through the self-developed scheduling center to improve the viewing user experience. If you want to choose the CDN route for playing the media resource, you can call the method <xref keyref="open" />.</p>
             <note type="attention" id="note">
-            <p>This method is called asynchronously. If you need to play a media file, make sure you receive the <xref keyref="onPlayerSourceStateChanged" /> callback reporting <apiname keyref="PLAYER_STATE_OPEN_COMPLETED" /> before calling the <xref keyref="play" /> method to play the file.</p>
+            <p>This method is called asynchronously. If you need to play a media file, make sure you receive the<xref keyref="onPlayerSourceStateChanged" />  callback reporting<apiname keyref="PLAYER_STATE_OPEN_COMPLETED" />  before calling the<xref keyref="play" />  method to play the file.</p>
             </note> </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>Parameter</title>
             <parml>
             <plentry>
                 <pt>url</pt>
-                <pd>The path of the media file. Both local path and online path are supported.<note type="attention" props="android">If you need to open a media file through URI, use <xref keyref="open2" /> instead.</note></pd>
+                <pd>The path of the media file. Both local path and online path are supported.<note type="attention" props="android">在 Android 平台上，如果你需要打开 URI 格式的文件，请使用 <xref keyref="open2" />。</note>
+                    <note type="attention" props="rn flutter electron unity">在 Android 平台上，如果你需要打开 URI 格式的文件，请使用 <xref keyref="open" />。</note></pd>
             </plentry>
             <plentry>
                 <pt>startPos</pt>
-                <pd>The starting position (ms) for playback. The default value is 0.</pd>
+                <pd>The starting position (ms) for playback. Default value is 0.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
             <title>Returns</title>
             <ul id="ul_uns_l2y_hqb">
             <li>0: Success.</li>
