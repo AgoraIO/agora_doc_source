@@ -1,3 +1,5 @@
+# 用户关系管理 REST API
+
 好友管理是指添加好友、移除好友、添加黑名单、移除黑名单等操作。
 
 本文展示如何调用 Agora 即时通讯 RESTful API 管理好友。调用以下方法前，请先参考[限制条件](./agora_chat_limitation)了解即时通讯 RESTful API 的调用频率限制。
@@ -177,7 +179,7 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 
 ## 获取好友列表
 
-获取本地用户的好友列表。
+获取指定用户的好友列表。
 
 ### HTTP 请求
 
@@ -189,7 +191,7 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/contacts/users
 
 | 参数           | 类型   | 描述               | 是否必需 |
 | :------------- | :----- | :----------------- | :------- |
-| `owner_username` | String | 本地用户的用户名。 | 是       |
+| `owner_username` | String | 指定用户的用户名。 | 是       |
 
 其他字段说明详见[公共参数](#pubparam)。
 
@@ -213,7 +215,7 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/contacts/users
 
 其他字段说明详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码汇总表](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码汇总表](#code) 了解可能的原因。
 
 ### 示例
 
@@ -252,7 +254,11 @@ POST https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users
 
 #### 路径参数
 
-本方法的路径参数说明详见 [公共参数](#pubparam)。
+| 参数             | 类型   | 是否必需 | 描述                                                         |
+| :--------------- | :----- | :------- | :----------------------------------------------------------- |
+| `owner_username` | String | 是    | 你的用户 ID。                                                 |
+
+本方法的其他路径参数说明详见 [公共参数](#pubparam)。
 
 #### 请求 header
 
@@ -278,7 +284,7 @@ POST https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users
 
 | 参数 | 类型  | 描述                           |
 | :--- | :---- | :----------------------------- |
-| `data` | Array | 添加到黑名单列表的用户名数组。 |
+| `data` | Array | 添加到黑名单列表的用户名列表。 |
 
 其他字段说明详见[公共参数](#pubparam)。
 
