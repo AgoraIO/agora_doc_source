@@ -30,25 +30,33 @@
             <note type="attention">
             <ul>
             <li>Call this method after joining a channel.</li>
-            <li>If you register an <xref keyref="IVideoEncodedFrameObserver" /> object, you cannot register an <xref keyref="IVideoFrameObserver" /> object.</li>
+            <li>If you register<xref keyref="IVideoEncodedFrameObserver" /> an  object, you cannot register<xref keyref="IVideoFrameObserver" /> an  object.</li>
             </ul> </note> </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>Parameter</title>
             <parml>
             <plentry>
                 <pt props="ios mac">delegate</pt>
                 <pt props="android">receiver</pt>
-                    <pt props="cpp">observer</pt>
+                <pt props="cpp electron rn flutter">observer</pt>
                 <pt props="unity">videoEncodedImageReceiver</pt>
-                <pd props="android cpp unity">The observer object. See <xref keyref="IVideoEncodedFrameObserver" />.</pd>
-                <pd props="ios mac">The observer object instance. See <xref keyref="IVideoEncodedFrameObserver" />. Set the value as <ph keyref="NULL" /> to release the instance.</pd>
+                <pd props="android cpp unity rn electron flutter">The video frame observer object. See <xref keyref="IVideoEncodedFrameObserver" />.</pd>
+                <pd props="ios mac">The observer object instance. See <xref keyref="IVideoEncodedFrameObserver" />. Set the value <ph keyref="NULL" />as  to release the instance.</pd>
+            </plentry>
+            <plentry props="unity">
+                <pt>mode</pt>
+                <pd>The video data callback mode. See <xref keyref="OBSERVER_MODE" />.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron rn">
             <title>Returns</title>
-            <ul id="ul_z2p_4jf_3qb">
+            <ul props="android cpp electron rn">
             <li>0: Success.</li>
             <li>&lt; 0: Failure.</li>
+            </ul>
+            <ul props="mac ios">
+            <li><codeph><ph keyref="true"/></codeph>: Success.</li>
+            <li><codeph><ph keyref="false"/></codeph>: Failure.</li>
             </ul> </section>
     </refbody>
 </reference>
