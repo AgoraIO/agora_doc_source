@@ -37,8 +37,7 @@ elapseSinceLastState:(int)elapseSinceLastState;
     newState: StreamPublishState,
     elapseSinceLastState: number
   ): void;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnVideoPublishStateChanged(string channel, STREAM_PUBLISH_STATE oldState,
-            STREAM_PUBLISH_STATE newState, int elapseSinceLastState)</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnVideoPublishStateChanged(VIDEO_SOURCE_TYPE source, string channel, STREAM_PUBLISH_STATE oldState, STREAM_PUBLISH_STATE newState, int elapseSinceLastState) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onVideoPublishStateChanged?(
     source: VideoSourceType,
     channel: string,
@@ -47,6 +46,7 @@ elapseSinceLastState:(int)elapseSinceLastState;
     elapseSinceLastState: number
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(
+      VideoSourceType source,
       String channel,
       StreamPublishState oldState,
       StreamPublishState newState,
@@ -68,9 +68,10 @@ elapseSinceLastState:(int)elapseSinceLastState;
                 <pt props="ios mac">channelId</pt>
                 <pd>频道名。</pd>
             </plentry>
-            <plentry conkeyref="onLocalVideoStateChanged/source">
-                    <pt />
-                    <pd />
+            <plentry id="source">
+                    <pt props="apple">sourceType</pt>
+                    <pt props="android cpp unity electron rn flutter">source</pt>
+                    <pd>视频源的类型。详见 <xref keyref="VIDEO_SOURCE_TYPE" />。</pd>
                 </plentry>
                 <plentry>
                 <pt>oldState</pt>
