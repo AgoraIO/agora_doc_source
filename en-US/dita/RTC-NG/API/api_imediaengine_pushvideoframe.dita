@@ -25,21 +25,21 @@
     frame: ExternalVideoFrame,
     videoTrackId?: number
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; pushVideoFrame(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> pushVideoFrame(
     {required ExternalVideoFrame frame, int videoTrackId = 0});</codeblock></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated">
             <dlentry props="android">
                 <dt>Deprecated:</dt>
-                <dd>If you need to push video frames in I422 format, you need to use this method; otherwise, use <xref keyref="pushVideoFrame2" /> instead.</dd>
+                <dd>If you need to push video frames in I422 format, you need to use this method; otherwise, use  instead<xref keyref="pushVideoFrame2" />.</dd>
             </dlentry>
             </dl>
-            <p id="desc1">If you call <xref keyref="setExternalVideoSource" /> and set the <parmname>enabled</parmname> parameter as <codeph><ph keyref="true" /></codeph> and the <parmname>encodedFrame</parmname> parameter as <codeph><ph keyref="false" /></codeph>, you can call this method to push the external raw video frame to the SDK.</p>
-            <p props="android">You can push the video frame either by calling this method or by calling <xref keyref="pushVideoFrame2" />. The difference is that the <apiname keyref="pushVideoFrame" /> method does not support video data in Texture format.</p>
-            </section>
+            <p id="desc1"><ph props="android ios mac unity">调用 <xref keyref="setExternalVideoSource"/> 方法，设置 <parmname>enabled</parmname> 参数为 <codeph><ph keyref="true"/></codeph>、<parmname>encodedFrame</parmname> 参数为 <codeph><ph keyref="false"/></codeph> 后，</ph><ph props="cpp">或调用 <xref keyref="createCustomVideoTrack"/> 方法获得视频轨道 ID，在每个频道的 <xref keyref="ChannelMediaOptions"/> 中，将 <parmname>customVideoTrackId</parmname> 参数设置为你想要发布的视频轨道 ID，并将 <parmname>publishCustomVideoTrack</parmname> 设置为 <codeph><ph keyref="true"/></codeph>后，</ph>你可以调用本方法将未编码的外部视频帧推送到 SDK。</p>
+            <p props="android">You<xref keyref="pushVideoFrame2"/> can push the video frame either by calling this method or by calling . The difference is that<apiname keyref="pushVideoFrame"/> the  method does not support video data in texture format.</p>
+        </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>Parameter</title>
             <parml>
             <plentry id="frame">
                 <pt>frame</pt>
@@ -47,16 +47,20 @@
                     <p>The external raw video frame to be pushed. See <xref keyref="ExternalVideoFrame" />.</p>
                 </pd>
             </plentry>
+            <plentry id="videotrackid" props="cpp electron unity rn flutter">
+                <pt>videoTrackId</pt>
+                <pd>The video track ID returned by calling<xref keyref="createCustomVideoTrack"/> the  method. The default value is 0.</pd>
+            </plentry>    
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native unity rn electron">
             <title>Returns</title>
-            <ul props="cpp unity">
+            <ul props="cpp unity rn electron">
             <li>0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul>
             <ul props="android ios mac">
-            <li><codeph><ph keyref="true" /></codeph>: Success.</li>
-            <li><codeph><ph keyref="false" /></codeph>: Failure.</li>
+            <li><codeph><ph keyref="true" /></codeph>: Pushes the external raw video frame to the SDK successfully.</li>
+            <li><codeph><ph keyref="false" /></codeph>: Fails to push external raw video frame to the SDK.</li>
             </ul> </section>
     </refbody>
 </reference>
