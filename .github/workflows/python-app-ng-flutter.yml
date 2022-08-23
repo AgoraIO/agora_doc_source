@@ -33,7 +33,7 @@ jobs:
                   cd xml2json
                   echo "Running for flutter NG"
                   python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag flutter --json_file flutter_en_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path flutter-ng
-            - name: Upload Flutter NG JSON to release
+            - name: Upload Flutter NG CN JSON to release
               if: always()
               uses: svenstaro/upload-release-action@v2
               with:
@@ -43,7 +43,7 @@ jobs:
                   tag: main
                   overwrite: true
                   body: "Template file for automatic comment population."
-            - name: Upload Flutter NG JSON to release
+            - name: Upload Flutter NG EN JSON to release
               if: always()
               uses: svenstaro/upload-release-action@v2
               with:
