@@ -19,13 +19,21 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)onRecordEncodedAudioFrame:(NSData* _Nonnull)frameData info:(AgoraEncodedAudioFrameInfo* _Nonnull) info;
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void OnRecordAudioEncodedFrame(const uint8_t* frameBuffer,  int length, const EncodedAudioFrameInfo&amp; audioEncodedFrameInfo) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">onRecordAudioEncodedFrame?(
+    frameBuffer: Uint8Array,
+    length: number,
+    audioEncodedFrameInfo: EncodedAudioFrameInfo
+  ): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnRecordAudioEncodedFrame(IntPtr frameBufferPtr, int length,
                                                     EncodedAudioFrameInfo audioEncodedFrameInfo)
         {
 
         }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">onRecordAudioEncodedFrame?(
+    frameBuffer: Uint8Array,
+    length: number,
+    audioEncodedFrameInfo: EncodedAudioFrameInfo
+  ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
@@ -37,16 +45,16 @@
             <plentry>
                 <pt props="android">buffer</pt>
                 <pt props="ios mac">frameData</pt>
-                <pt props="cpp">frameBuffer</pt>
+                <pt props="cpp electron rn">frameBuffer</pt>
                 <pt props="unity">frameBufferPtr</pt>
                 <pd>音频 buffer。</pd>
             </plentry>
-            <plentry props="cpp unity">
+            <plentry props="cpp electron unity rn">
                 <pt>length</pt>
                 <pd>音频数据长度，单位为字节。</pd>
             </plentry>
-            <plentry props="ios mac cpp unity">
-                <pt props="cpp unity">audioEncodedFrameInfo</pt>
+            <plentry props="ios mac cpp electron unity rn">
+                <pt props="cpp electron unity rn">audioEncodedFrameInfo</pt>
                 <pt props="ios mac">info</pt>
                 <pd>编码后音频的信息。详见 <xref keyref="EncodedAudioFrameInfo"/>。</pd>
             </plentry>
@@ -65,6 +73,7 @@
             <plentry props="android" id="codecType">
                 <pt>codecType</pt>
                 <pd>音频编码类型：
+                    
                     <ul>
                     <li><ph keyref="AUDIO_CODEC_OPUS"/>(1): OPUS 编码格式。</li>
                     <li><ph keyref="AUDIO_CODEC_AACLC"/>(8): LC-AAC 编码格式。</li>
