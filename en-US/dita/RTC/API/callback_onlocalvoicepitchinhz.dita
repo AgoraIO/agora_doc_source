@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_onlocalvoicepitchinhz">
+    <title><ph keyref="onLocalVoicePitchInHz"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Reports the voice pitch of the local user.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onLocalVoicePitchInHz"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">OnLocalVoicePitchInHz? localVoicePitchInHz;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <p>After the local audio capture is enabled and you call <xref keyref="enableLocalVoicePitchCallback"/>, the SDK triggers the <apiname keyref="onLocalVoicePitchInHz"/> callback at the time interval set in <apiname keyref="enableLocalVoicePitchCallback"/>.
+            </p>
+            <note type="attention">After this callback is enabled, if the user disables the local audio capture, for example, by calling <xref keyref="enableLocalAudio">enableLocalAudio(false)</xref>, the SDK immediately stops sending the <apiname keyref="onLocalVoicePitchInHz"/> callback.
+            </note>
+        </section>
+        <section id="parameters">
+            <title>
+                <ph keyref="callback-section-title" />
+            </title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn" />
+            <parml>
+                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                    <pt />
+                    <pd />
+                </plentry>
+                <plentry>
+                    <pt>pitchInHz</pt>
+                    <pd>The voice pitch (Hz) of the local user.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>
