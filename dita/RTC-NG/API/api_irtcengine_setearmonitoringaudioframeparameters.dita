@@ -27,7 +27,7 @@
             <p>该方法用于设置 <xref keyref="onEarMonitoringAudioFrame"/> 回调的耳返音频数据格式。</p>
             <note type="attention">
             <ul>
-            <li props="cpp">该方法仅适用于 Android 和 iOS。</li>
+            <li props="unity">该方法仅适用于 Android 和 iOS。</li>
             <li>调用该方法前，你需要先调用 <xref keyref="enableInEarMonitoring2"/>，将 <parmname>includeAudioFilters</parmname> 设置为 <apiname keyref="EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS"/> 或 <apiname keyref="EAR_MONITORING_FILTER_NOISE_SUPPRESSION"/>。</li>
             <li>SDK 会通过该方法中的 <parmname>samplesPerCall</parmname>、<parmname>sampleRate</parmname> 和 <parmname>channel</parmname> 参数计算出采样间隔，计算公式为<equation-inline>采样间隔 = <parmname>samplesPerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>。请确保采样间隔不小于 0.01 秒。<ph>SDK 会根据该采样间隔触发 <apiname keyref="onEarMonitoringAudioFrame"/> 回调。</ph></li>
             </ul></note> </section>
@@ -42,6 +42,7 @@
                 <pt>channel</pt>
                 <pd>
                     <p><apiname keyref="onEarMonitoringAudioFrame"/> 中报告音频的声道数，可设置为 1 或 2:                                                                            
+                    
                     <ul>
                     <li>1: 单声道。</li>
                     <li>2: 双声道。</li>
@@ -51,7 +52,7 @@
             <plentry>
                 <pt>mode</pt>
                 <pd>
-                    <p props="cpp ios">音频帧的使用模式，详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</p>
+                    <p props="cpp ios mac">音频帧的使用模式，详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</p>
                     <p conkeyref="registerAudioFrameObserver2_IMediaPlayer/mode" props="android"/>
                 </pd>
             </plentry>
