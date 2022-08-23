@@ -46,6 +46,8 @@
 
 将同一个 App Key 下的用户添加为好友。不同套餐版本支持的用户好友数不同，其中免费版支持的最多好友数为 100。详情请参考 [限制条件](./agora_chat_limitation)。
 
+对于每个 App Key，此方法的调用频率限制为每秒 100 次。
+
 ### HTTP 请求
 
 ```http
@@ -114,6 +116,8 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 将用户从好友列表中移除。
 
+对于每个 App Key，此方法的调用频率限制为每秒 100 次。
+
 ### HTTP 请求
 
 ```http
@@ -142,7 +146,7 @@ DELETE https://{host}/{org_name}/{app_name}/users/{owner_username}/contacts/user
 
 如果返回的 HTTP 状态码为 200，表示请求成功，响应 Body 中的字段说明详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码汇总表](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code)了解可能的原因。
 
 ### 示例
 
@@ -168,7 +172,7 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
         "created": 1542356523769,
         "modified": 1542597334500,
         "username": "user2",
-        "activated": true
+        "activated": true,
       }
     ],
     "action": "delete",
@@ -180,6 +184,8 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 ## 获取好友列表
 
 获取指定用户的好友列表。
+
+对于每个 App Key，此方法的调用频率限制为每秒 100 次。
 
 ### HTTP 请求
 
@@ -193,13 +199,13 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/contacts/users
 | :------------- | :----- | :----------------- | :------- |
 | `owner_username` | String | 指定用户的用户名。 | 是       |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他字段说明详见 [公共参数](#pubparam)。
 
 #### 请求 Header
 
 | 参数          | 类型   | 描述                                                         | 是否必需 |
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
-| `Accept`  | String | 参数类型。填入 `application/json`                                   | 是       |
+| `Accept`  | String | 参数类型。填入 `application/json`。                                   | 是       |
 | `Authorization` | String | `Bearer ${YourAppToken}` | 是       |
 
 ### HTTP 响应
@@ -213,9 +219,9 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/contacts/users
 | `data`  | Array  | 返回的好友列表数据。 |
 | `count` | Number | 好友数量。           |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他字段说明详见 [公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码汇总表](#code) 了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
 
 ### 示例
 
@@ -244,7 +250,9 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 ## 添加黑名单
 
-将指定用户添加到黑名单。添加后，黑名单中的用户无法给本地用户发消息。每个用户的黑名单人数上限为 500。
+将指定用户添加到黑名单。添加后，黑名单中的用户无法给该用户发消息。每个用户的黑名单人数上限为 500。
+
+对于每个 App Key，此方法的调用频率限制为每秒 50 次。
 
 ### HTTP 请求
 
@@ -286,9 +294,9 @@ POST https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users
 | :--- | :---- | :----------------------------- |
 | `data` | Array | 添加到黑名单列表的用户名列表。 |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他字段说明详见 [公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码汇总表](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code)了解可能的原因。
 
 ### 示例
 
@@ -320,6 +328,8 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 获取当前用户的黑名单列表。
 
+对于每个 App Key，此方法的调用频率限制为每秒 50 次。
+
 ### HTTP 请求
 
 ```http
@@ -338,7 +348,7 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users
 
 | 参数          | 类型   | 描述                                                         | 是否必需 |
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
-| `Accept`  | String | 内容类型。填入 `application/json`                                   | 是       |
+| `Accept`  | String | 内容类型。填入 `application/json`。                                  | 是       |
 | `Authorization` | String | `Bearer ${YourAppToken}`| 是       |
 
 ### HTTP 响应
@@ -351,9 +361,9 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users
 | :--- | :---- | :------------------------- |
 | `data` | Array | 黑名单列表中的用户名数组。 |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他字段说明详见 [公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码汇总表](#state)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#state) 了解可能的原因。
 
 ### 示例
 
@@ -383,6 +393,8 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 将指定用户从黑名单中移除。移除后，该用户恢复为好友或未添加为好友的普通用户关系，可以发送和接收消息。
 
+对于每个 App Key，此方法的调用频率限制为每秒 50 次。
+
 ### HTTP 请求
 
 ```http
@@ -396,7 +408,7 @@ DELETE https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users/
 | `owner_username` | String | 本地用户的用户名。| 是 |
 | `blocked_username` | String | 待移除黑名单的用户名。 | 是       |
 
-其他路径参数说明详见[公共参数](#pubparam)。
+其他路径参数说明详见 [公共参数](#pubparam)。
 
 #### 请求 header
 
@@ -411,7 +423,7 @@ DELETE https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users/
 
 如果返回的 HTTP 状态码为 200，表示请求成功，响应 Body 中的字段说明详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码汇总表](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code)了解可能的原因。
 
 ### 示例
 
@@ -447,12 +459,6 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 ```
 
 <a name="code"></a>
-## 状态码汇总表
+## 状态码
 
-| 状态码              | 描述                                                         |
-| :------------------ | :----------------------------------------------------------- |
-| 200                 | 请求成功。                                                   |
-| 401                 | 鉴权失败。可能的原因是缺少 token、token 错误或 token 过期。请重新获取 token 后再试。 |
-| 404                 | 添加人或被添加人不存在。                                     |
-| 429，503 或其他 5xx | 调用频率超出上限，请暂停并稍后重试。如果你有更高调用频率需求，请联系技术支持。 |
-| 500                 | 服务器内部错误，无法完成请求，请联系技术支持。               |
+有关详细信息，请参阅[HTTP 状态代码](https://docs.agora.io/en/agora-chat/agora_chat_status_code?platform=RESTful)。
