@@ -2,7 +2,7 @@
 
 用户登录即时通讯 IM 后就可以创建群组、修改群组消息、删除创建的群组。
 
-本文展示如何调用 Agora 即时通讯 RESTful API 创建、获取、修改并删除群组。调用以下方法前，请先参考[限制条件](./agora_chat_limitation)了解即时通讯 RESTful API 的调用频率限制。
+本文展示如何调用即时通讯 RESTful API 创建、获取、修改并删除群组。调用以下方法前，请先参考 [限制条件](./agora_chat_limitation)了解即时通讯 RESTful API 的调用频率限制。
 
 <a name="pubparam"></a>
 
@@ -31,7 +31,7 @@
 | `path`            | String | 请求路径，属于请求 URL 的一部分，无需关注。                              |
 | `entities`        | JSON   | 返回实体信息。                                                           |
 | `data`            | Array  | 实际请求到的数据。                                                       |
-| `Long`            | Number | 响应的 Unix 时间戳（毫秒）。                                             |
+| `timestamp`            | Number | 响应的 Unix 时间戳（毫秒）。                                             |
 | `duration`        | Number | 从发送请求到响应的时长（毫秒）。                                         |
 
 ## 认证方式
@@ -54,7 +54,7 @@ POST https://{host}/{org_name}/{app_name}/chatgroups
 
 #### 请求 header
 
-| 参数            | 类型   | 描述                              | 是否必需 |
+| 参数            | 类型   | 描述                              | 是否必填 |
 | :-------------- | :----- | :-------------------------------- | :------- |
 | `Content-Type`  | String | 内容类型。请填 `application/json` | 是       |
 | `Accept`        | String | 内容类型。请填 `application/json` | 是       |
@@ -62,7 +62,7 @@ POST https://{host}/{org_name}/{app_name}/chatgroups
 
 #### 请求 body
 
-| 参数                  | 类型    | 描述                                                                                                                                                                             | 是否必需 |
+| 参数                  | 类型    | 描述                                                                                                                                                                             | 是否必填 |
 | :-------------------- | :------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
 | `groupname`           | String  | 群组名称，最大长度为 128 个字符。不支持 “/”。如果群组名称有空格，则使用 “+” 代替。                                                                                               | 是       |
 | `desc`                | String  | 群组描述，最大长度为 512 个字符。不支持 “/”。如果群组名称有空格，则使用 “+” 代替。                                                                                               | 是       |
@@ -136,7 +136,7 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_ids}
 
 #### 路径参数
 
-| 参数        | 类型   | 描述                                                                  | 是否必需 |
+| 参数        | 类型   | 描述                                                                  | 是否必填 |
 | :---------- | :----- | :-------------------------------------------------------------------- | :------- |
 | `group_ids` | String | 想获取详情的群组 ID。如果想获取多个群组的详情，则使用英文的逗号隔开。 | 是       |
 
@@ -144,9 +144,9 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_ids}
 
 #### 请求 header
 
-| 参数            | 类型   | 描述                              | 是否必需 |
+| 参数            | 类型   | 描述                              | 是否必填 |
 | :-------------- | :----- | :-------------------------------- | :------- |
-| `Accept`        | String | 参数类型。填入 `application/json` | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json` | 是       |
 | `Authorization` | String | `Bearer ${YourAppToken}`          | 是       |
 
 ### HTTP 响应
@@ -225,7 +225,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 ## 修改群组信息
 
-修改指定的群组消息。该方法仅支持修改 `groupname`、`desc`、`maxusers`、`membersonly`、`allowinvites` 和 `custom` 字段。如果传入其他字段，或传入的字段不存在，则不能修改的字段会抛出异常。
+修改指定的群组消息。该方法仅支持修改 `groupname`、`description`、`maxusers`、`membersonly`、`allowinvites` 和 `custom` 字段。如果传入其他字段，或传入的字段不存在，则不能修改的字段会抛出异常。
 
 ### HTTP 请求
 
@@ -235,7 +235,7 @@ PUT https://{host}/{org_name}/{app_name}/chatgroups/{group_id}
 
 #### 路径参数
 
-| 参数       | 类型   | 描述      | 是否必需 |
+| 参数       | 类型   | 描述      | 是否必填 |
 | :--------- | :----- | :-------- | :------- |
 | `group_id` | String | 群组 ID。 | 是       |
 
@@ -243,18 +243,18 @@ PUT https://{host}/{org_name}/{app_name}/chatgroups/{group_id}
 
 #### 请求 header
 
-| 参数            | 类型   | 描述                              | 是否必需 |
+| 参数            | 类型   | 描述                              | 是否必填 |
 | :-------------- | :----- | :-------------------------------- | :------- |
-| `Content-Type`  | String | 参数类型。填入 `application/json` | 是       |
-| `Accept`        | String | 参数类型。填入 `application/json` | 是       |
+| `Content-Type`  | String | 内容类型。填入 `application/json` | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json` | 是       |
 | `Authorization` | String | `Bearer ${YourAppToken}`          | 是       |
 
 #### 请求 body
 
-| 参数           | 类型    | 描述                                                                                                                     | 是否必需 |
+| 参数           | 类型    | 描述                                                                                                                     | 是否必填 |
 | :------------- | :------ | :----------------------------------------------------------------------------------------------------------------------- | :------- |
 | `groupname`    | String  | 群组名称，最大长度为 128 个字符。不支持 “/”。如果群组名称有空格，则使用 “+” 代替。                                       | 是       |
-| `desc`         | String  | 群组描述，最大长度为 512 个字符。不支持 “/”。如果群组名称有空格，则使用 “+” 代替。                                       | 是       |
+| `description`         | String  | 群组描述，最大长度为 512 个字符。不支持 “/”。如果群组名称有空格，则使用 “+” 代替。                                       | 是       |
 | `maxusers`     | String  | 群组成员（包含群主）数量最大值。默认值为 200，最大值为 2000。不同套餐支持的人数上限不同，详情可以参考计费文档            | 否       |
 | `allowinvites` | Boolean | 是否允许群组成员邀请别人加入群组：<ul><li>`true`：允许</li><li>`false`：不允许。只有群主或者群管理员才可以加人</li></ul> | 否       |
 | `membersonly`  | Boolean | 用户加入公开群是否需要群主或者群管理员批准：<ul><li>`true`：需要</li><li>`false`：(默认) 不需要</li></ul>                | 否       |
@@ -268,11 +268,11 @@ PUT https://{host}/{org_name}/{app_name}/chatgroups/{group_id}
 
 | 字段                | 类型 | 说明                                                                                                                          |
 | :------------------ | :--- | :---------------------------------------------------------------------------------------------------------------------------- |
-| `data.description`  | Bool | 群组描述：<ul><li>`true`：修改成功;</li><li> `false`：修改失败。</li></ul>                                                    |
-| `data.maxusers`     | Bool | 群组最大成员数：<ul><li>`true`：修改成功;</li><li>`false`：修改失败。</li></ul>                                               |
-| `data.groupname`    | Bool | 群组名称：<ul><li>`true`：修改成功;</li><li> `false`：修改失败。</li></ul>                                                    |
-| `data.membersonly`  | Bool | 加入群组是否需要群主或者群管理员审批：<ul><li>`true`：是;</li><li>`false`：否。</li></ul>                                     |
-| `data.allowinvites` | Bool | 是否允许群成员邀请别人加入此群<ul><li>`true`：允许群成员邀请人加入此群;</li><li>`false`：只有群主才可以往群里加人。</li></ul> |
+| `data.description`  | Bool | 群组描述：<ul><li>`true`：修改成功；</li><li> `false`：修改失败。</li></ul>                                                    |
+| `data.maxusers`     | Bool | 群组最大成员数：<ul><li>`true`：修改成功；</li><li>`false`：修改失败。</li></ul>                                               |
+| `data.groupname`    | Bool | 群组名称：<ul><li>`true`：修改成功；</li><li> `false`：修改失败。</li></ul>                                                    |
+| `data.membersonly`  | Bool | 加入群组是否需要群主或者群管理员审批：<ul><li>`true`：是；</li><li>`false`：否。</li></ul>                                     |
+| `data.allowinvites` | Bool | 是否允许群成员邀请别人加入此群<ul><li>`true`：允许群成员邀请人加入此群；</li><li>`false`：只有群主才可以往群里加人。</li></ul> |
 
 其他相应字段说明详见[公共参数](#pubparam)。
 
@@ -328,7 +328,7 @@ DELETE https://{host}//{org_name}/{app_name}/chatgroups/{group_id}
 
 #### 路径参数
 
-| 参数       | 类型   | 描述      | 是否必需 |
+| 参数       | 类型   | 描述      | 是否必填 |
 | :--------- | :----- | :-------- | :------- |
 | `group_id` | String | 群组 ID。 | 是       |
 
@@ -336,9 +336,9 @@ DELETE https://{host}//{org_name}/{app_name}/chatgroups/{group_id}
 
 #### 请求 header
 
-| 参数            | 类型   | 描述                              | 是否必需 |
+| 参数            | 类型   | 描述                              | 是否必填 |
 | :-------------- | :----- | :-------------------------------- | :------- |
-| `Accept`        | String | 参数类型。填入 `application/json` | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json` | 是       |
 | `Authorization` | String | `Bearer ${YourAppToken}`          | 是       |
 
 ### HTTP 响应
@@ -400,14 +400,14 @@ GET https://{host}/{org_name}/{app_name}/chatgroups?limit={N}&cursor={cursor}
 
 #### 请求 header
 
-| 参数            | 类型   | 描述                              | 是否必需 |
+| 参数            | 类型   | 描述                              | 是否必填 |
 | :-------------- | :----- | :-------------------------------- | :------- |
-| `Accept`        | String | 参数类型。填入 `application/json` | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json` | 是       |
 | `Authorization` | String | `Bearer ${YourAppToken}`          | 是       |
 
 #### 请求 body
 
-| 参数     | 类型   | 描述                                                                                               | 是否必需 |
+| 参数     | 类型   | 描述                                                                                               | 是否必填 |
 | :------- | :----- | :------------------------------------------------------------------------------------------------- | :------- |
 | `limit`  | String | 一次请求获取的群组数量。                                                                           | 否       |
 | `cursor` | String | 分页页码。如果你需要分页获取群组详情，则需要设置该参数。设置后，服务器会从游标起始的地方进行查询。 | 否       |
@@ -506,7 +506,7 @@ GET https://{host}/{app_name}/users/{username}/joined_chatgroups?pagesize={}&pag
 
 #### 请求 header
 
-| 参数            | 类型   | 描述                              | 是否必需 |
+| 参数            | 类型   | 描述                              | 是否必填 |
 | :-------------- | :----- | :-------------------------------- | :------- |
 | `Accept`        | String | 内容类型。填入 `application/json` | 是       |
 | `Authorization` | String | `Bearer ${YourAppToken}`          | 是       |
