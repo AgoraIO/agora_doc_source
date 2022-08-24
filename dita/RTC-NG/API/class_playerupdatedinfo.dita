@@ -17,8 +17,9 @@
 @property(strong, nonatomic) AgoraMediaPlayerCacheStatistics *_Nullable cacheStatistics;
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct PlayerUpdatedInfo {
-  Optional&lt;const char*&gt; playerId;
-  Optional&lt;const char*&gt; deviceId;
+  Optional&lt;const char*> playerId;
+  Optional&lt;const char*> deviceId;
+  Optional&lt;CacheStatistics> cacheStatistics;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class PlayerUpdatedInfo {
   
@@ -68,7 +69,7 @@
                 <pt>deviceId</pt>
                 <pd>设备 ID，标识一个设备。</pd>
             </plentry>
-            <plentry props="android ios">
+            <plentry>
                 <pt>cacheStatistics</pt>
                 <pd>
                     <p>当前缓存的媒体文件的相关统计数据。</p>
