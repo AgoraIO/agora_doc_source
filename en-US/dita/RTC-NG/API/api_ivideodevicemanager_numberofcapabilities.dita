@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ivideodevicemanager_numberofcapabilities">
     <title><ph keyref="numberOfCapabilities" /></title>
-    <shortdesc id="short"><ph id="shortdesc">获取指定视频采集设备支持的视频格式数量。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Gets the number of video formats supported by the specified video capture device.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -24,22 +24,22 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; numberOfCapabilities(String deviceIdUTF8);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>视频采集设备可能支持多种视频格式，每一种格式都支持不同的视频帧宽度、视频帧高度、帧率组合。</p>
-            <p>你可以通过调用该方法，获取指定的视频采集设备可支持多少种视频格式，然后调用 <xref keyref="getCapability" /> 获取指定视频格式下的具体视频帧信息。</p>
+            <p>Video capture devices may support multiple video formats, and each format supports different combinations of video frame width, video frame height, and frame rate.</p>
+            <p>You can call this method to get how many video formats the specified video capture device can support, and then call  to get<xref keyref="getCapability" /> the specific video frame information in the specified video format.</p>
         </section>
         <section id="parameters">
-            <title>参数</title>
+            <title>Parameter</title>
             <parml>
             <plentry id="id">
                 <pt>deviceIdUTF8</pt>
-                <pd>视频采集设备的 ID。</pd>
+                <pd>The ID of the video capture device.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="cpp electron unity rn">
-            <title>返回值</title>
+            <title>Returns</title>
             <ul>
-            <li>&gt; 0: 方法调用成功。 返回该设备支持的视频格式数量。 例如：如果指定的摄像头支持 10 种不同的视频格式，则返回值为 10。</li>
-            <li>≤ 0: 方法调用失败。</li>
+            <li>0: Success. Returns the number of video formats supported by this device. For example: If the specified camera supports 10 different video formats, the return value is 10.</li>
+            <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
 </reference>
