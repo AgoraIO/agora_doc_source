@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_ivideoframeobserver_oncapturevideoframe">
     <title><ph keyref="onCaptureVideoFrame"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获取本地摄像头采集到的视频数据。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs each time the SDK receives a video frame captured by the local camera.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -25,39 +25,37 @@
             <codeblock props="flutter" outputclass="language-dart">final void Function(VideoFrame videoFrame)? onCaptureVideoFrame;</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>成功注册视频数据观测器后，SDK 会在捕捉到每个视频帧时触发该回调。 你可以在回调中获取本地摄像头采集到的视频数据，然后根据场景需要，对视频数据进行前处理。</p>
-            <p>完成前处理后，你可以在该回调中，传入处理后的视频数据将其发送回 SDK。</p>
-            <note type="attention" id="note">此处获取的视频数据未经过前处理，如水印、裁剪、旋转和美颜等。</note> </section>
+            <p>After you successfully register the video frame observer, the SDK triggers this callback each time it receives a video frame. In this callback, you can get the video data captured by the local camera. You can then pre-process the data according to your scenarios.</p>
+            <p>After pre-processing, you can send the processed video data back to the SDK through this callback.</p>
+            <note type="attention" id="note">The video data that this callback gets has not been pre-processed, and is not watermarked, cropped, rotated or beautified.</note> </section>
         <section id="parameters">
-            <title>参数</title>
+            <title>Parameter</title>
             <parml>
             <plentry id="videoframe">
                 <pt>videoFrame</pt>
-                <pd>视频帧数据。 详见 <xref keyref="VideoFrame"/>。</pd>
+                <pd>The video frame. See  for details<xref keyref="VideoFrame"/>.</pd>
             </plentry>
             <plentry props="unity" id="config">
                 <pt>config</pt>
-                <pd>视频帧设置，详见 <xref keyref="VideoFrameBufferConfig"/>。</pd>
+                <pd>The configuration of the video frame. See <xref keyref="VideoFrameBufferConfig"/>.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title>返回值</title>
+            <title>Returns</title>
             <p id="return">
             <ul>
-            <li props="native electron rn">当视频处理模式为 <apiname keyref="PROCESS_MODE_READ_ONLY"/> 时：
-                <ul>
-                <li><codeph><ph keyref="true"/></codeph>：SDK 忽略该返回值。</li>
-                <li><codeph><ph keyref="false"/></codeph>：SDK 忽略该返回值。</li>
+            <li props="native electron rn">When the video processing mode is<apiname keyref="PROCESS_MODE_READ_ONLY"/> :<ul>
+                <li><codeph><ph keyref="true"/></codeph>:The SDK ignores this return value.</li>
+                <li><codeph><ph keyref="false"/></codeph>:The SDK ignores this return value.</li>
                 </ul></li>
-            <li props="native electron rn">当视频处理模式为 <apiname keyref="PROCESS_MODE_READ_WRITE"/> 时：
-                <ul>
-                <li><codeph><ph keyref="true"/></codeph>：设置 SDK 接收视频帧。</li>
-                <li><codeph><ph keyref="false"/></codeph>：设置 SDK 丢弃视频帧。</li>
+            <li props="native electron rn">When the video processing mode is<apiname keyref="PROCESS_MODE_READ_WRITE"/> :<ul>
+                <li><codeph><ph keyref="true"/></codeph>: Sets the SDK to receive the video frame.</li>
+                <li><codeph><ph keyref="false"/></codeph>: Sets the SDK to discard the video frame.</li>
                 </ul></li>                              
             </ul>
                 <ul props="unity">
-                <li><codeph><ph keyref="true"/></codeph>：设置 SDK 接收视频帧。</li>
-                <li><codeph><ph keyref="false"/></codeph>：设置 SDK 丢弃视频帧。</li>
+                <li><codeph><ph keyref="true"/></codeph>: Sets the SDK to receive the video frame.</li>
+                <li><codeph><ph keyref="false"/></codeph>: Sets the SDK to discard the video frame.</li>
                 </ul>            
             </p>
         </section>
