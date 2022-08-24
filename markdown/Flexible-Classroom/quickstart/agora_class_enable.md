@@ -16,19 +16,19 @@
 
 1. 进入 Agora 控制台的<a href="https://console.agora.io/projects" target="_blank">项目管理</a>页面，选择需要开通灵动课堂服务的项目，点击**编辑**按钮。
 
-    ![](https://web-cdn.agora.io/docs-files/1641282981459)
+   ![](https://web-cdn.agora.io/docs-files/1641282981459)
 
 2. 在**拓展能力**下，找到**灵动课堂**，点击**启用**。
 
-    ![](https://web-cdn.agora.io/docs-files/1641283154171)
+   ![](https://web-cdn.agora.io/docs-files/1641283154171)
 
 3. 仔细阅读弹窗提示，点击**启用**。
 
-    ![](https://web-cdn.agora.io/docs-files/1641283263841)
+   ![](https://web-cdn.agora.io/docs-files/1641283263841)
 
 4. 成功开通灵动课堂服务后，状态会变为"已启用"，开启按钮会切换为配置按钮，如下图所示。
 
-    ![](https://web-cdn.agora.io/docs-files/1641283823693)
+   ![](https://web-cdn.agora.io/docs-files/1641283823693)
 
 ## 后续步骤
 
