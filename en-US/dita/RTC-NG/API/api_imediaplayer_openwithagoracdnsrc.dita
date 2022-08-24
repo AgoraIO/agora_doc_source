@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_openwithagoracdnsrc">
     <title> <ph keyref="openWithAgoraCDNSrc" /> </title>
-    <shortdesc id="short"><ph id="shortdesc">打开媒体资源，并通过自研调度中心请求媒体资源的所有 CDN 线路。</ph> </shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Opens the media resource, and requests all the CDN routes of the media resources through the self-developed scheduling center.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -28,37 +28,35 @@
         </section>
         <section id="detailed_desc">
             <note type="attention" conkeyref="open/note" />
-            <p>调用该方法后，Agora 会打开媒体资源并通过自研调度中心请求媒体资源的所有 CDN 线路。 Agora 默认使用第一个线路，你也可以通过 <xref keyref="switchAgoraCDNLineByIndex" /> 自行切换线路。</p>
-            <p id="auth">如果你希望保障连接和播放媒体资源的安全性，你可以<xref keyref="ticket-link" />协商鉴权字段 (<parmname>sign</parmname>) 和鉴权过期时间 (<parmname>ts</parmname>)。 确定字段后，请将其作为 URL 的 <codeph>query parameter</codeph> 以更新媒体资源的网路路径。 例如：
-            <ul>
-            <li>媒体资源网络路径为 <codeph>rtmp://$domain/$appName/$streamName</codeph></li>
-            <li>通过鉴权信息更新过的媒体资源网络路径为 <codeph>rtmp://$domain/$appName/$streamName?ts=$ts&amp;sign=$sign</codeph></li>
+            <p>After you call this method, Agora opens the media resources and tries to obtain all the CDN routes for playing the media resource. By default, Agora uses the first CDN route for playing, and you can call<xref keyref="switchAgoraCDNLineByIndex" /> the  method to switch routes.</p>
+            <p id="auth">If you want to improve the security of the connection and the privacy of media files, contact  to<xref keyref="ticket-link" /> determine the <parmname>sign</parmname> and the <parmname>ts  </parmname>fields for authentication. Once the fields are determined, use them as the<codeph> query parameter</codeph> of the URL to update the URL of the media resource. For example:<ul>
+            <li>The URL of the media file to be opened<codeph>: rtmp://$domain/$appName/$streamName</codeph></li>
+            <li>The URL updated by the authentication of the media file to be opened<codeph>: rtmp://$domain/$appName/$streamName?ts=$ts&amp;sign=$sign</codeph></li>
             </ul>
             <note>
-            <p>鉴权信息说明：
-            <ul>
-            <li><parmname>sign</parmname> : 通过 <codeph>authKey</codeph> + <codeph>appName</codeph> + <codeph>streamName</codeph> + <codeph>ts</codeph> 进行 md5 算法加密得出的鉴权字段。 你需要<xref keyref="ticket-link" />咨询你的 <codeph>authKey</codeph> 字段内容。</li>
-            <li><parmname>ts</parmname> : 鉴权过期时间。 你可以指定再过多久鉴权过期。 例如， <codeph>24h</codeph> 或 <codeph>1h30m20s</codeph>。</li>
+            <p>Authentication information:<ul>
+            <li><parmname>sign</parmname>: An encrypted string calculated according to the MD5 algorithm based on <codeph>authKey</codeph>, <codeph>appName</codeph>, <codeph>streamName</codeph>, and<codeph> ts</codeph>. You need to<xref keyref="ticket-link" />  for your <codeph>authKey</codeph>.</li>
+            <li><parmname>ts</parmname>: The timestamp when the authentication information<parmname> expires</parmname>. You can set the validity period of the authentication information according to your scenarios. For example, <codeph>24h</codeph> or <codeph>1h30m20s</codeph>.</li>
             </ul></p>
             </note></p>
         </section>
         <section id="parameters">
-            <title>参数</title>
+            <title>Parameter</title>
             <parml>
             <plentry>
                 <pt>src</pt>
-                <pd>媒体资源的网络路径。</pd>
+                <pd>The URL of the media resource.</pd>
             </plentry>
             <plentry>
                 <pt>startPos</pt>
-                <pd>设置起始播放位置 (毫秒)，默认值为 0。 如果媒体资源为直播流，则无需赋值。</pd>
+                <pd>The starting position (ms) for playback. Default value is 0. This value can be empty if the media resource to be played is live streams.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity rn">
-            <title>返回值</title>
+            <title>Returns</title>
             <ul>
-            <li>0: 方法调用成功。</li>
-            <li>&lt; 0: 方法调用失败。</li>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
 </reference>
