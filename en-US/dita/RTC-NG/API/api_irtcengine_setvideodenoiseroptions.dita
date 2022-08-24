@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_setvideodenoiseroptions">
-    <title> <ph keyref="setVideoDenoiserOptions" /> </title>
-    <shortdesc id="short"><ph id="shortdesc">Sets video noise reduction.</ph></shortdesc>
+<reference id="api_irtcengine_setvideodenoiseroptions">
+    <title> <ph keyref="setVideoDenoiserOptions"/> </title>
+    <shortdesc id="short"><ph id="shortdesc">设置视频降噪功能。</ph> </shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setVideoDenoiserOptions" />
+                <indexterm keyref="setVideoDenoiserOptions"/>
             </keywords>
         </metadata>
     </prolog>
@@ -25,50 +25,58 @@
     type?: MediaSourceType
   ): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetVideoDenoiserOptions(bool enabled, VideoDenoiserOptions options, MEDIA_SOURCE_TYPE type = MEDIA_SOURCE_TYPE.PRIMARY_CAMERA_SOURCE);</codeblock>
-            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="cs" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript">abstract setVideoDenoiserOptions(
     enabled: boolean,
     options: VideoDenoiserOptions,
     type?: MediaSourceType
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setVideoDenoiserOptions(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setVideoDenoiserOptions(
       {required bool enabled,
       required VideoDenoiserOptions options,
       MediaSourceType type = MediaSourceType.primaryCameraSource});</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>Underlit environments and low-end video capture devices can cause video images to contain significant noise, which affects video quality. In real-time interactive scenarios, video noise also consumes bitstream resources and reduces encoding efficiency during encoding.</p>
-            <p>You can call this method to enable the video noise reduction feature and set the options of the video noise reduction effect.</p>
+            <p>采光不足的环境和低端视频采集设备会使视频图像含有明显的噪声，影响视频画质。 在实时互动场景下，视频噪声还会在编码过程中占用码流资源并降低编码效率。</p>
+            <p>你可以调用该方法开启视频降噪功能并设置视频降噪的效果。</p>
             <note type="attention">
             <ul>
-                <li>Call this method after calling <xref keyref="enableVideo" />.</li>
-                <li>Video noise reduction has certain requirements for equipment performance. If your device overheats after you enable video noise reduction, Agora recommends modifying the video noise reduction options to a less performance-consuming level or disabling video noise reduction entirely.</li>
-                <li>Both this method and <xref keyref="setExtensionProperty" /> can turn on color enhancement:<ul>
-                        <li>When you use the SDK to capture video, Agora recommends this method (this method only works for video captured by the SDK).</li>
-                        <li>When you use an external video source to implement custom video capture, or send an external video source to the SDK, Agora recommends using <apiname keyref="setExtensionProperty" />.</li>
-                    </ul></li>
+            <li>请在 <xref keyref="enableVideo"/> 后调用该方法。</li>
+            <li>视频降噪对设备性能有一定要求。 开启视频降噪后，如果设备出现严重发烫等问题，Agora 推荐你将视频降噪等级修改为消耗性能较少的等级或关闭视频降噪功能。</li>
+            <li>该方法和 <xref keyref="setExtensionProperty"/> 均可开启视频降噪功能：
+                    
+                <ul>
+                <li>当你使用 SDK 采集视频时，Agora 推荐使用该方法（该方法只可对 SDK 采集的视频起作用）。</li>
+                <li>当你使用外部的视频源实现自定义视频采集，或者将外部视频源发送给 SDK 时，Agora 推荐使用 <apiname keyref="setExtensionProperty"/> 方法。</li>
+                </ul></li>
             </ul> </note> </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>参数</title>
             <parml>
             <plentry>
-                <pt props="android cpp">enabled</pt>
+                <pt props="android cpp unity electron rn flutter">enabled</pt>
                 <pt props="ios mac">enable</pt>
-                <pd>Whether to enable video noise reduction:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Enable video noise reduction.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: (Default) Disable video noise reduction.</li>
+                <pd>是否开启视频降噪功能：
+                    
+                    <ul>
+                    <li><codeph><ph keyref="true"/></codeph>: 开启视频降噪功能。</li>
+                    <li><codeph><ph keyref="false"/></codeph>:（默认）关闭视频降噪功能。</li>
                     </ul> </pd>
             </plentry>
             <plentry>
                 <pt>options</pt>
-                <pd>The video noise reduction options. See <xref keyref="VideoDenoiserOptions" />.</pd>
+                <pd>视频降噪选项，用于设置视频降噪的效果。 详见 <xref keyref="VideoDenoiserOptions"/>。</pd>
             </plentry>
+                <plentry props="cpp rn unity electron flutter" conkeyref="setLowlightEnhanceOptions/type">
+                    <pt/>
+                    <pd/>
+                </plentry>
             </parml> </section>
-        <section id="return_values">
-            <title>Returns</title>
+        <section id="return_values" props="native electron unity rn">
+            <title>返回值</title>
             <ul>
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。</li>
             </ul> </section>
     </refbody>
 </reference>
