@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setsubscribeaudioblacklist">
     <title><ph keyref="setSubscribeAudioBlacklist" /></title>
-    <shortdesc id="short"><ph id="shortdesc">设置音频订阅黑名单。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Set the blacklist of subscriptions for audio streams.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -26,39 +26,39 @@
     uidList: number[],
     uidNumber: number
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setSubscribeAudioBlacklist(
-      {required List&lt;int&gt; uidList, required int uidNumber});</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setSubscribeAudioBlacklist(
+      {required List&lt;int> uidList, required int uidNumber});</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>你可以调用该方法指定不订阅的音频流。</p>
+            <p>You can call this method to specify the audio streams of a user that you do not want to subscribe to.</p>
             <note type="attention" id="note">
             <ul>
-            <li id="order">该方法在加入频道前后均可调用。</li>
-            <li>音频订阅黑名单不受 <xref keyref="muteRemoteAudioStream" />、<xref keyref="muteAllRemoteAudioStreams" /> 以及 <xref keyref="ChannelMediaOptions" /> 中的 <parmname>autoSubscribeAudio</parmname> 影响。</li>
-            <li id="effect">设置订阅黑名单后，如果离开当前频道后再重新加入频道，黑名单依然生效。</li>
-            <li id="priority">如果某个用户同时在音频订阅黑名单和白名单中，仅订阅黑名单生效。</li>
+            <li id="order">You can call this method either before or after joining a channel.</li>
+            <li>The blacklist is not affected by the setting<xref keyref="muteRemoteAudioStream" /> in ,<xref keyref="muteAllRemoteAudioStreams" /><xref keyref="ChannelMediaOptions" />  and <parmname>autoSubscribeAudio</parmname> in .</li>
+            <li id="effect">Once the blacklist of subscriptions is set, it is effective even if you leave the current channel and rejoin the channel.</li>
+            <li id="priority">If a user is added in the whitelist and blacklist at the same time, only the blacklist takes effect.</li>
             </ul> </note> </section>
         <section id="parameters">
-            <title>参数</title>
+            <title>Parameter</title>
             <parml>
             <plentry id="list">
                 <pt props="android cpp electron unity rn flutter">uidList</pt>
                 <pt props="apple">blacklist</pt>
                 <pd>
-                    <p>订阅黑名单的用户 ID 列表。</p>
-                    <p>如果你想指定不订阅某一发流用户的音频流，将该用户的 ID 加入此列表中。 如果你想要将某一用户从订阅黑名单中移除，需要重新调用 <xref keyref="setSubscribeAudioBlacklist" /> 方法更新订阅黑名单的用户 ID 列表，使其不包含你想移除的用户的 <parmname>uid</parmname>。</p>
+                    <p>The user ID list of users that you do not want to subscribe to.</p>
+                    <p>If you want to specify the audio streams of a user that you do not want to subscribe to, add the user ID in this list. If you want to remove a user from the blacklist, you need to call the<xref keyref="setSubscribeAudioBlacklist" />  method to update the user ID list; this means you only add the uid of users that you do not want to subscribe to in the new user ID list<parmname></parmname>.</p>
                 </pd>
             </plentry>
             <plentry props="cpp electron unity rn flutter" id="uidnumber">
                 <pt>uidNumber</pt>
-                <pd>黑名单用户 ID 列表中的用户数量。</pd>
+                <pd>The number of users in the user ID list.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity rn">
-            <title>返回值</title>
+            <title>Returns</title>
             <ul>
-            <li>0: 方法调用成功。</li>
-            <li>&lt; 0: 方法调用失败。</li>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
 </reference>
