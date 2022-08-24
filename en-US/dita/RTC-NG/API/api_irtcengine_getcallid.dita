@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_getcallid">
+<reference id="api_irtcengine_getcallid">
     <title><ph keyref="getCallId" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Retrieves the call ID.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">获取通话 ID。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -22,26 +22,27 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;String&gt; getCallId();</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>When a user joins a channel on a client, a <parmname>callId</parmname> is generated to identify the call from the client. Some methods, for example, <xref keyref="rate" /> and <xref keyref="complain" />, need to be called after a call ends. These methods require the <parmname>callId</parmname> parameter.</p>
-            <note type="attention">Call this method after joining a channel.</note> </section>
-        <section id="parameters" props="cpp unity">
-            <title>Parameters</title>
+            <p>客户端在每次加入频道后会生成一个对应的 <parmname>callId</parmname>，标识该客户端的此次通话。 有些方法，如 <xref keyref="rate" />、<xref keyref="complain" /> 等，
+需要在通话结束后调用，向 SDK 提交反馈。 这些方法中需要填入指定的 <parmname>callId</parmname> 参数。</p>
+            <note type="attention">该方法需要在加入频道后调用。</note> </section>
+        <section id="parameters" props="cpp">
+            <title>参数</title>
             <parml>
             <plentry>
                 <pt>callId</pt>
-                <pd>Output parameter, the current call ID.</pd>
+                <pd>输出参数，当前的通话 ID。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title>Returns</title>
-            <p props="android ios mac flutter">The current call ID.</p>
+            <title>返回值</title>
+            <p props="android ios mac flutter">通话 ID。</p>
             <ul props="cpp">
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <li>0: 方法调用成功</li>
+            <li>&lt; 0: 方法调用失败</li>
             </ul>
             <ul props="unity rn electron">
-            <li>The current call ID, if the method succeeds.</li>
-            <li>The empty string "", if the method call fails.</li>
+            <li>方法调用成功则返回当前的通话 ID。</li>
+            <li>方法调用失败则返回空字符串。</li>
             </ul> </section>
     </refbody>
 </reference>
