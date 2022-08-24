@@ -1,5 +1,3 @@
-# 职业教育大班课最佳实践
-
 声网在职业教育大班课中定义了多种服务类型，方便你用于不同业务场景。你可以在 `vocationalLaunch` 的时候通过 `config.serviceType` 选择服务类型：
 
 - `livePremium`
@@ -43,6 +41,13 @@ livePremium 是一种与互动直播大班课逻辑一致的职业教育大班�
 
     其他字段按需设置即可。
 
+3. 服务端通过 RESTful API [设置录制状态](./agora_class_restful_api?platform=All%20Platforms#设置录制状态)，请求包体的字段设置如下：
+
+    - 将 `mode` 设为 `web`
+    - 将 `webRecordConfig.publishRtmp` 设为 `true`
+
+    其他字段按需设置即可。发送请求后，你可以从服务端响应包体或者客户端房间属性变更事件获取老师的 CDN 流地址。
+
 设置完毕，学生端可以拉取该 CDN 流，实时观看老师的音视频。
 
 这种场景下，你需要在学生端集成白板，在学生端将 IM 消息区域与老师的音视频和白板区域拼接起来。
@@ -61,7 +66,7 @@ livePremium 是一种与互动直播大班课逻辑一致的职业教育大班�
 
     其他字段按需设置即可。
 
-3. 服务端通过 RESTful API [设置录制状态](./agora-class/agora_class_restful_api?platform=All%20Platforms#设置录制状态)，请求包体的字段设置如下：
+3. 服务端通过 RESTful API [设置录制状态](./agora_class_restful_api?platform=All%20Platforms#设置录制状态)，请求包体的字段设置如下：
 
     - 将 `mode` 设为 `web`
     - 将 `webRecordConfig.publishRtmp` 设为 `true`
@@ -94,3 +99,4 @@ livePremium 是一种与互动直播大班课逻辑一致的职业教育大班�
 这种场景下，你需要通过服务器时间对齐各端的课堂时间。你还需要在学生端将 IM 消息区域（区域 B）与老师的音视频和白板录播视频区域（区域 A）拼接起来。
 
 ![](https://web-cdn.agora.io/docs-files/1659949727363)
+
