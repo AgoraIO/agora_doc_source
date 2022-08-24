@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_muteallremotevideostreams">
+<reference id="api_irtcengine_muteallremotevideostreams">
     <title><ph keyref="muteAllRemoteVideoStreams" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Stops or resumes subscribing to the video streams of all remote users.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">取消或恢复订阅所有远端用户的视频流。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -22,27 +22,35 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; muteAllRemoteVideoStreams(bool mute);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p id="desc">After successfully calling this method, the local user stops or resumes subscribing to the audio streams of all remote users, including all subsequent users.</p>
-            <note type="attention" id="note">Call this method after joining a channel.</note> </section>
+            <p id="desc">成功调用该方法后，本地用户会取消或恢复订阅所有远端用户的视频流，包括在调用该方法后加入频道的用户的视频流。</p>
+            <note type="attention" id="note"><ul>
+                <li>该方法需要在加入频道后调用。</li>
+                <li>如果需要在加入频道前设置默认不订阅远端用户视频流，可以在调用 <xref keyref="joinChannel2"/> 加入频道时设置 <parmname>autoSubscribeVideo</parmname> 为 <codeph><ph keyref="false"/></codeph>。</li>
+            </ul></note>
+        </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>参数</title>
             <parml>
             <plentry>
                 <pt props="android">muted</pt>
                 <pt props="ios mac cpp unity flutter rn electron">mute</pt>
                 <pd>
-                    <p>Whether to stop subscribing to the video streams of all remote users.<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Stop subscribing to the video streams of all remote users.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: (Default) Subscribe to the audio streams of all remote users by default.</li>
+                    <p>是否取消订阅所有远端用户的视频流。
+
+
+
+                    <ul>
+                    <li><codeph><ph keyref="true" /></codeph>: 取消订阅所有用户的视频流。</li>
+                    <li><codeph><ph keyref="false" /></codeph>:（默认）订阅所有用户的视频流。</li>
                     </ul> </p>
                 </pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity rn">
-            <title>Returns</title>
+            <title>返回值</title>
             <ul>
-            <li>0: Success.</li>
-            <li> &lt; 0: Failure.</li>
+            <li>0: 方法调用成功。</li>
+            <li> &lt; 0: 方法调用失败。</li>
             </ul> </section>
     </refbody>
 </reference>
