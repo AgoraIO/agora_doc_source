@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_ivideoframeobserver_onscreencapturevideoframe">
     <title><ph keyref="onScreenCaptureVideoFrame"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获取从屏幕采集到的视频数据。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs each time the SDK receives a video frame captured by the screen.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -22,20 +22,20 @@
             <codeblock props="flutter" outputclass="language-dart">final void Function(VideoFrame videoFrame)? onScreenCaptureVideoFrame;</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>成功注册视频数据观测器后，SDK 会在捕捉到每个视频帧时触发该回调。 你可以在回调中获取从屏幕采集到的视频数据，然后根据场景需要，对视频数据进行前处理。</p>
-            <p>完成前处理后，你可以在该回调中，传入处理后的视频数据将其发送回 SDK。</p>
+            <p>After you successfully register the video frame observer, the SDK triggers this callback each time it receives a video frame. In this callback, you can get the video data for screen sharing. You can then pre-process the data according to your scenarios.</p>
+            <p>After pre-processing, you can send the processed video data back to the SDK by this callback.</p>
             <note type="attention">
             <ul>
-            <li>如果你获取到的视频数据类型为 RGBA，Agora 不支持将处理后的 RGBA 数据通过该回调再发送回 SDK。</li>
-            <li>此处获取的视频数据未经过前处理，如水印、裁剪、旋转和美颜等。</li>
+            <li>This callback does not support sending processed RGBA video data back to the SDK.</li>
+            <li>The video data that this callback gets has not been pre-processed, without the watermark, the cropped content, the rotation, and the image enhancement.</li>
             </ul> </note> </section>
         <section id="parameters" conkeyref="onCaptureVideoFrame/parameters"/>
         <section id="return_values" props="native electron rn">
-            <title>返回值</title>
+            <title>Returns</title>
             <p id="return">
             <ul>
-            <li><codeph><ph keyref="true"/></codeph>：设置 SDK 接收视频帧。</li>
-            <li><codeph><ph keyref="false"/></codeph>：设置 SDK 丢弃视频帧。</li>
+            <li><codeph><ph keyref="true"/></codeph>: Sets the SDK to receive the video frame.</li>
+            <li><codeph><ph keyref="false"/></codeph>: Sets the SDK to discard the video frame.</li>
             </ul></p>
         </section>
     </refbody>
