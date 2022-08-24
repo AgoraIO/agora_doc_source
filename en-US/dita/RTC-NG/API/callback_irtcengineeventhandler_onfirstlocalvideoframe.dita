@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onfirstlocalvideoframe">
      <title> <ph keyref="onFirstLocalVideoFrame" /> </title>
-     <shortdesc id="short"><ph id="shortdesc">已显示本地视频首帧回调。</ph> </shortdesc>
+     <shortdesc id="short"><ph id="shortdesc">Occurs when the first local video frame is displayed on the local video view.</ph></shortdesc>
      <prolog>
           <metadata>
                <keywords>
@@ -46,7 +46,7 @@
                onFirstLocalVideoFrame;</codeblock></p>
           </section>
           <section id="detailed_desc">
-               <p id="desc">本地视频首帧显示在本地视图上时，SDK 会触发此回调。</p>
+               <p id="desc">The SDK triggers this callback when the first local video frame is displayed on the local video view.</p>
           </section>
           <section id="parameters">
                <title><ph keyref="callback-section-title" /></title>
@@ -62,23 +62,23 @@
                 </plentry>
                     <plentry props="ios mac">
                     <pt>size</pt>
-                    <pd>本地渲染视频的尺寸。</pd>
+                    <pd>The size of the renderd local view.</pd>
                </plentry>
                <plentry props="unity electron rn flutter">
                     <pt>connection</pt>
-                    <pd>Connection 信息。 详见 <xref keyref="RtcConnection" />。</pd>
+                    <pd>The connection infomation. See  for details<xref keyref="RtcConnection" />.</pd>
                </plentry>
                <plentry props="android cpp unity electron rn flutter">
                     <pt>width</pt>
-                    <pd>本地渲染视频的宽 (px) 。</pd>
+                    <pd>The width (px) of the first local video frame.</pd>
                </plentry>
                <plentry props="android cpp unity electron rn flutter">
                     <pt>height</pt>
-                    <pd>本地渲染视频的高 (px)。</pd>
+                    <pd>The height (px) of the first local video frame.</pd>
                </plentry>
                <plentry>
                     <pt>elapsed</pt>
-                    <pd>从调用 <apiname keyref="joinChannel2" /> 到发生此事件过去的时间（毫秒）。 如果在 <apiname keyref="joinChannel2" /> 前调用了 <xref keyref="startPreview" props="native unity" /> <xref keyref="startPreview2" props="rn electron flutter" />，则是从 <apiname keyref="startPreview" props="native unity" /> <apiname keyref="startPreview2" props="rn electron flutter" />到发生此事件过去的时间。</pd>
+                    <pd>Time elapsed<apiname keyref="joinChannel2" /> (ms) from the local user calling  until the SDK triggers this callback. If you call   before calling<apiname keyref="joinChannel2" /><xref keyref="startPreview" props="native unity" /><xref keyref="startPreview2" props="rn electron flutter" />  , then this parameter is the <apiname keyref="startPreview" props="native unity" /><apiname keyref="startPreview2" props="rn electron flutter" /> time elapsed from calling the   method until the SDK triggers this callback.</pd>
                </plentry>
                </parml> </section>
      </refbody>
