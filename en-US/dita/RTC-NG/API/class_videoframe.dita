@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videoframe">
     <title><ph keyref="VideoFrame" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Video frame information.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">视频帧的属性设置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -505,83 +505,141 @@
   final int? textureId;
 
   @JsonKey(name: 'matrix')
-  final List&lt;double&gt;? matrix;
+  final List&lt;double>? matrix;
 
   @JsonKey(name: 'alphaBuffer', ignore: true)
   final Uint8List? alphaBuffer;
 
-  factory VideoFrame.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory VideoFrame.fromJson(Map&lt;String, dynamic> json) =>
       _$VideoFrameFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoFrameToJson(this);
+  Map&lt;String, dynamic> toJson() => _$VideoFrameToJson(this);
 }</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>The video data format is YUV420. The buffer provides a pointer to a pointer. This interface cannot modify the pointer of the buffer but can modify the content of the buffer.</p>
+            <p>视频数据的格式为 YUV420。 缓冲区给出的是指向指针的指针，该接口不能修改缓冲区的指针，只能修改缓冲区的内容。</p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
-            <plentry>
+            <plentry props="apple cpp unity">
                 <pt>type</pt>
                 <pd props="cpp unity" conkeyref="ExternalVideoFrame/windows-format" />
                 <pd props="ios mac" conkeyref="ExternalVideoFrame/oc-format" />
             </plentry>
-            <plentry>
+            <plentry props="apple cpp unity">
                 <pt>width</pt>
-                <pd>Video pixel width.</pd>
+                <pd>视频像素宽度。</pd>
             </plentry>
-            <plentry>
+            <plentry props="apple cpp unity">
                 <pt>height</pt>
-                <pd>Video pixel height.</pd>
+                <pd>视频像素高度。</pd>
             </plentry>
-            <plentry>
+            <plentry props="apple cpp unity">
                 <pt>yStride</pt>
-                <pd>For YUV data, the line span of the Y buffer; for RGBA data, the total data length.</pd>
+                <pd>对 YUV 数据，表示 Y 缓冲区的行跨度；对 RGBA 数据，表示总的数据长度。</pd>
             </plentry>
-            <plentry>
+            <plentry props="apple cpp unity">
                 <pt>uStride</pt>
-                <pd>For YUV data, the line span of the U buffer; for RGBA data, the value is 0.</pd>
+                <pd>对 YUV 数据，表示 U 缓冲区的行跨度；对 RGBA 数据，值为 0。</pd>
             </plentry>
-            <plentry>
+            <plentry props="apple cpp unity">
                 <pt>vStride</pt>
-                <pd>For YUV data, the line span of the V buffer; for RGBA data, the value is 0.</pd>
+                <pd>对 YUV 数据，表示 V 缓冲区的行跨度；对 RGBA 数据，值为 0。</pd>
             </plentry>
-            <plentry>
+            <plentry props="apple cpp unity">
                 <pt>yBuffer</pt>
-                <pd>For YUV data, the pointer to the Y buffer; for RGBA data, the data buffer.</pd>
+                <pd>对 YUV 数据，表示 Y 缓冲区的指针；对 RGBA 数据，表示数据缓冲区。</pd>
             </plentry>
-            <plentry>
+            <plentry props="apple cpp unity">
                 <pt>uBuffer</pt>
-                <pd>For YUV data, the pointer to the U buffer; for RGBA data, the value is NULL.</pd>
+                <pd>对 YUV 数据，表示 U 缓冲区的指针；对 RGBA 数据，值为空。</pd>
             </plentry>
-            <plentry>
+            <plentry props="apple cpp unity">
                 <pt>vBuffer</pt>
-                <pd>For YUV data, the pointer to the V buffer; for RGBA data, the value is 0.</pd>
+                <pd>对 YUV 数据，表示 V 缓冲区的指针；对 RGBA 数据，值为空。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt>I420Buffer</pt>
+                <pd>I420 视频帧的缓冲区，包括 Y、U、V 平面的数据。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt>I422Buffer</pt>
+                <pd>I422 视频帧的缓冲区，包括 Y、U、V 平面的数据。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt>TextureBuffer</pt>
+                <pd>Texture 视频帧的缓冲区，可以为 OES 或 RGB 格式。 。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt>colorSpace</pt>
+                <pd>表示视频帧的色彩空间。 详见 <xref keyref="videocolorspace-link"/>。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt>buffer</pt>
+                <pd>缓冲区的数据。
+                    <note type="caution">该参数不可为空，否则会发生异常。</note></pd>
             </plentry>
             <plentry>
                 <pt>rotation</pt>
-                <pd>The clockwise rotation angle of the video frame before rendering. The supported values are 0, 90, 180, or 270 degrees.</pd>
+                <pd>在渲染视频前设置该帧的顺时针旋转角度，目前支持 0 度、90 度、180 度，和 270 度。</pd>
             </plentry>
-            <plentry>
+            <plentry props="apple cpp unity">
                 <pt>renderTimeMs</pt>
-                <pd>The Unix timestamp (ms) when the video frame is rendered. This timestamp can be used to guide the rendering of the video frame. It is required.</pd>
+                <pd>视频帧被渲染时的 Unix 时间戳（毫秒）。 该时间戳可用于指导渲染视频帧。 该参数为必填。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt>timestampNs</pt>
+                <pd>视频帧的时间戳（纳秒）。</pd>
+            </plentry>
+            <plentry props="apple cpp unity">
+                <pt>avsync_type</pt>
+                <pd>保留参数。</pd>
             </plentry>
             <plentry>
-                <pt>avsync_type</pt>
-                <pd>Reserved for future use.</pd>
+                <pt>metadata_buffer</pt>
+                <pd>该参数仅适用于 Texture 格式的视频数据。 指 MetaData 的数据缓冲区，默认值为 <codeph>NULL</codeph>。</pd>
+            </plentry>
+            <plentry>
+                <pt>metadata_size</pt>
+                <pd>该参数仅适用于 Texture 格式的视频数据。 指 MetaData 的大小，默认值为 <codeph>0</codeph>。</pd>
+            </plentry>
+            <plentry>
+                <pt>sharedContext</pt>
+                <pd></pd>
+            </plentry>
+            <plentry>
+                <pt>textureId</pt>
+                <pd>该参数仅适用于 Texture 格式的视频数据。 为一个输入的 4x4 变换矩阵，典型值为一个单位矩阵。</pd>
+            </plentry>
+            <plentry>
+                <pt>matrix</pt>
+                <pd></pd>
             </plentry>
             <plentry props="ios mac">
                 <pt>pixelBuffer</pt>
-                <pd>Fills the data to CVPixelBuffer.</pd>
+                <pd>将数据填充到 CVPixelBuffer。</pd>
             </plentry>
-            <plentry props="hide">
+            <plentry>
                 <pt>alphaBuffer</pt>
                 <pd>
-                    <p>Indicates the output data of the portrait segmentation algorithm, which is consistent with the size of the video frame. The value range of each pixel is [0,255], where 0 represents the background; 255 represents the foreground (portrait).</p>
-                    <p>In the costom video renderer scenario, you can use this parameter to render the video background into various effects, such as: transparent, solid color, picture, video and so on.<note>You can <xref keyref="ticket-link" /> to activate this parameter.</note></p>
+                    <p>表示人像分割算法的输出数据，跟视频帧的尺寸一致。 每个像素点的取值范围为 [0,255]，其中 0 表示背景；255 代表前景（人像）。</p>
+                    <p>在用户自定义视频渲染场景下，该参数可帮助实现将视频背景自渲染为各种效果，例如：透明、纯色、图片、视频等等。
+                    <note>该参数需要<xref keyref="ticket-link" />联系技术支持开通。</note></p>
                 </pd>
             </plentry>
-            </parml> </section>
+            <plentry props="android">
+                <pt>sourceType</pt>
+                <pd></pd>
+            </plentry>
+            <plentry props="android">
+                <pt>sampleAspectRatio</pt>
+                <pd></pd>
+            </plentry>
+            <plentry props="android">
+                <pt>metaInfo</pt>
+                <pd></pd>
+            </plentry>
+        </parml></section>
     </refbody>
 </reference>
