@@ -1,8 +1,9 @@
-群组黑名单是指群组中既看不到也接收不到群组消息的用户列表。即时通讯提供整套的黑名单管理方法，支持查看、添加、移除黑名单等。
+聊天群白名单列表是指在群主或管理员使用 [全员禁言](https://docs.agora.io/en/agora-chat/agora_chat_restful_group_mute?platform=RESTful#muting-all-chat-group-members) 方法将所有群成员禁言后，可以发送群消息的聊天室成员列表。即时通讯提供了一套完整的允许列表管理方法，包括将用户添加到白名单列表中、将其从其中删除，以及查询白名单列表中的成员。
 
-本节展示如何调用 Agora 即时通讯 RESTful API 管理群组黑名单。调用以下方法前，请先参考[限制条件](./agora_chat_limitation)了解即时通讯 RESTful API 的调用频率限制。
+本页面展示了如何使即时通讯 RESTful API 管理群组白名单列表。在调用以下方法之前，请确保了解 [使用限制](https://docs.agora.io/en/agora-chat/agora_chat_limitation?platform=RESTful#call-limit-of-server-side)。
 
 <a name="pubparam"></a>
+
 ## 公共参数
 
 以下表格列举了即时通讯 RESTful API 的公共请求参数和响应参数。
@@ -10,7 +11,7 @@
 ### 请求参数
 
 | 参数       | 类型   | 描述                                                         | 是否必填 |
-| :--------- | :----- | :----------------------------------------------------------- | :------- |
+| :--------- | :--- | :----------------------------------------------------------- | :----- |
 | `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 [Agora 控制台](https://console.agora.io/)获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat)。 | 是       |
 | `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 [Agora 控制台](https://console.agora.io/)获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat)。 | 是       |
 | `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 [Agora 控制台](https://console.agora.io/)获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat)。 | 是       |
@@ -39,14 +40,14 @@
 
 ~458499a0-7908-11ec-bcb4-b56a01c83d2e~
 
-## 查询群组黑名单
+## 查询群组白名单
 
-查询一个群组黑名单中的用户列表。
+查询一个群组白名单中的用户列表。
 
 ### HTTP 请求
 
 ```shell
-GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users
+GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/white/users
 ```
 
 #### 路径参数
@@ -61,14 +62,14 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users
 
 | 参数          | 类型   | 描述                                                         | 是否必需 |
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
-| `Content-Type`  | String | 内容类型。填入 `application/json`                                   | 是       |
+| `Accept`   | String   |内容类型。请填 `application/json` | 是  |
 | `Authorization` | String | `Bearer ${YourAppToken}` | 是       |
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中 `data` 字段中就包含群组黑名单用户的 ID。
+如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中 `data` 字段中就包含群组白名单用户的 ID。其他参数详见[公共参数](#pubparam)。
 
 如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码](#code)了解可能的原因。
 
@@ -79,7 +80,7 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users
 ```shell
 # 将 <YourAppToken> 替换为你在服务端生成的 App Token
 
-curl -X GET -H ``'Accept: application/json'` `-H ``'Authorization: Bearer <YourAppToken>'` `'http://XXXX/XXXX/XXXX/chatgroups/66016455491585/blocks/users'
+curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' 'http://XXXX/XXXX/XXXX/chatgroups/{The group ID}/white/users'
 ```
 
 #### 响应示例
@@ -87,46 +88,47 @@ curl -X GET -H ``'Accept: application/json'` `-H ``'Authorization: Bearer <YourA
 ```json
 {
     "action": "get",
-    "application": "8be024f0-XXXX-XXXX-b697-5d598d5f8402",
-    "uri": "http://XXXX/XXXX/XXXX/chatgroups/67178793598977/blocks/users",
+    "application": "5cf28979-XXXX-XXXX-b969-60141fb9c75d",
+    "uri": "http://XXXX/XXXX/XXXX/chatgroups/1208XXXX5169153/white/users",
     "entities": [],
     "data": [
-      "user2",
-      "user3"
+        "username1",
+        "username1",
+        "username3",
+        "username4",
+        "username5"
     ],
-    "timestamp": 1543466293681,
-    "duration": 0,
+    "timestamp": 1594724947117,
+    "duration": 3,
     "organization": "XXXX",
     "applicationName": "XXXX",
-    "count": 2
+    "count": 5
 }
 ```
 
-## 添加单个用户至群组黑名单
+## 添加单个成员至群组白名单列表
 
-将指定用户添加进群组的黑名单列表。注意群主无法加入群组黑名单。
-
-用户一旦被添加进群组黑名单，会收到消息：You are kicked out of the group xxx。成功后，该用户不能查看该群组的消息，也接收不到群组的新消息。
+此方法将指定用户添加至群组白名单列表。在群组所有者或管理员使用 [全员禁言](https://docs.agora.io/en/agora-chat/agora_chat_restful_group_allowlist?platform=RESTful) 方法将所有群组成员禁言后，群组白名单列表中的成员仍然可以发送群组消息。
 
 ### HTTP 请求
 
 ```http
-POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users/{username}
+POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/white/users/{username}
 ```
 
 #### 路径参数
 
 | 参数     | 类型   | 描述      | 是否必需 |
-| :------- | :----- | :-------- | :------- |
+| :--------- | :--- | :------------------------------ | :----- |
 | `group_id` | String | 群组 ID。 | 是       |
+| `username` | String  | 要添加到群组白名单的用户 ID。 | 是   |
 
 其他路径参数说明详见[公共参数](#pubparam)。
 
 #### 请求 header
 
 | 参数          | 类型   | 描述                                                         | 是否必需 |
-| :------------ | :----- | :----------------------------------------------------------- | :------- |
-| `Content-Type`  | String | 内容类型。填入 `application/json`                                   | 是       |
+| :-------------- | :--- | :----------------------------------------------------------- | :----- |
 | `Accept`  | String | 内容类型。填入 `application/json`                                   | 是       |
 | `Authorization` | String | `Bearer ${YourAppToken}` | 是       |
 
@@ -137,11 +139,12 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users/{us
 如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中 data 字段的说明见下文。
 
 | 参数    | 类型    | 描述                                              |
-| :------ | :------ | :------------------------------------------------ |
-| `result`  | Boolean | 是否成功将指定用户添加到黑名单：<ul><li>`true`：是</li><li>`false`：否</li></ul> |
+| :-------- | :----- | :----------------------------------------------------------- |
+| `result`  | Boolean | 是否成功将指定用户添加到白名单：<ul><li>`true`：是</li><li>`false`：否</li></ul> |
+| `reason`  | String   | 未能将成员添加到允许列表的原因。                             |
 | `groupid` | String  | 群组 ID。                                         |
 | `action`  | String  | 执行操作。                                        |
-| `user`    | String  | 被添加到群组黑名单的用户 ID。                     |
+| `user`    | String  | 被添加到群组白名单的用户 ID。                     |
 
 其他字段说明详见[公共参数](#pubparam)。
 
@@ -154,46 +157,43 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users/{us
 ```shell
 # 将 <YourAppToken> 替换为你在服务端生成的 App Token
 
-curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/chatgroups/66016455491585/blocks/users/user1'
+curl -X POST -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' 'http://XXXX/XXXX/XXXX/chatgroups/{The group ID}/white/users/{username}'
 ```
 
 #### 响应示例
 
 ```json
-{
     "action": "post",
-    "application": "8be024f0-XXXX-XXXX-b697-5d598d5f8402",
-    "uri": "http://XXXX/XXXX/XXXX/chatgroups/66016455491585/blocks/users/user1",
+    "application": "5cf28979-XXXX-XXXX-b969-60141fb9c75d",
+    "uri": "http://XXXX/XXXX/XXXX/chatgroups/120824965169153/white/users/username1",
     "entities": [],
     "data": {
-      "result": true,
-      "action": "add_blocks",
-      "user": "user1",
-      "groupid": "66016455491585"
+        "result": true,
+        "action": "add_user_whitelist",
+        "user": "username1",
+        "groupid": "1208XXXX5169153"
     },
-    "timestamp": 1542539577124,
-    "duration": 27,
+    "timestamp": 1594724293063,
+    "duration": 4,
     "organization": "XXXX",
     "applicationName": "XXXX"
 }
 ```
 
-## 批量添加用户至群组黑名单
+## 批量添加用户至群组白名单
 
-添加多个指定用户进一个群组的黑名单。你一次最多可以添加 60 个用户进群组黑名单。注意群主无法被添加至群组黑名单。
-
-用户一旦被添加进群组黑名单，该用户记看不到该群组的消息，也接收不到群组的消息。
+此方法将多个成员添加到群组白名单列表中。每次方法调用最多可以将 60 个组成员添加到白名单列表。
 
 ### HTTP 请求
 
-```shell
-POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users
+```http
+POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/white/users
 ```
 
 #### 路径参数
 
 | 参数     | 类型   | 描述      | 是否必需 |
-| :------- | :----- | :-------- | :------- |
+| :--------- | :--- | :---------- | :----- |
 | `group_id` | String | 群组 ID。 | 是       |
 
 其他路径参数说明详见[公共参数](#pubparam)。
@@ -201,16 +201,15 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users
 #### 请求 header
 
 | 参数          | 类型   | 描述                                                         | 是否必需 |
-| :------------ | :----- | :----------------------------------------------------------- | :------- |
+| :-------------- | :--- | :----------------------------------------------------------- | :----- |
 | `Content-Type`  | String | 内容类型。填入 `application/json`                                   | 是       |
-| `Accept`  | String | 内容类型。填入 `application/json`                                   | 是       |
 | `Authorization` | String | `Bearer ${YourAppToken}` | 是       |
 
 #### 请求 body
 
 | 参数      | 类型  | 描述                            | 是否必须 |
 | :-------- | :---- | :------------------------------ | :------- |
-| `usernames` | Array | 待添加至群组黑名单中的用户 ID。 | 是       |
+| `usernames` | Array | 待添加至群组白名单中的用户 ID。 | 是       |
 
 ### HTTP 响应
 
@@ -220,11 +219,11 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users
 
 | 参数    | 类型    | 描述                                              |
 | :------ | :------ | :------------------------------------------------ |
-| `result`  | Boolean | 是否成功将指定用户添加到黑名单：<ul><li>`true`：是</li><li>`false`：否</li></ul> |
+| `result`  | Boolean | 是否成功将指定用户添加到白名单：<ul><li>`true`：是</li><li>`false`：否</li></ul> |
 | `reason`  | String  | 添加失败的原因。                                  |
 | `groupid` | String  | 群组 ID。                                         |
 | `action`  | String  | 执行操作。                                        |
-| `user`    | String  | 被添加到群组黑名单的用户 ID。                     |
+| `user`    | String  | 被添加到群组白名单的用户 ID。                     |
 
 其他字段说明详见[公共参数](#pubparam)。
 
@@ -237,11 +236,7 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users
 ```shell
 # 将 <YourAppToken> 替换为你在服务端生成的 App Token
 
-curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' -d '{
-    "usernames": [
-      "user3","user4"
-    ]
-}' 'http://XXXX/XXXX/XXXX/chatgroups/66016455491585/blocks/users'
+curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' -d '{"usernames" : ["user1"]}' 'http://XXXX/XXXX/XXXX/chatgroups/{The group ID}/white/users'
 ```
 
 #### 响应示例
@@ -249,113 +244,38 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 ```json
 {
     "action": "post",
-    "application": "8be024f0-XXXX-XXXX-b697-5d598d5f8402",
-    "uri": "http://XXXX/XXXX/XXXX/chatgroups/66016455491585/blocks/users",
+    "application": "5cf28979-XXXX-XXXX-b969-60141fb9c75d",
+    "uri": "http://XXXX/XXXX/XXXX/chatgroups/1208XXXX5169153/white/users",
     "entities": [],
     "data": [
-      {
-        "result": false,
-        "action": "add_blocks",
-        "reason": "user: user3 doesn't exist in group: 66016455491585",
-        "user": "user3",
-        "groupid": "66016455491585"
-      },
-      {
-        "result": true,
-        "action": "add_blocks",
-        "user": "user4",
-        "groupid": "66016455491585"
-      }
+        {
+            "result": true,
+            "action": "add_user_whitelist",
+            "user": "username1",
+            "groupid": "1208XXXX5169153"
+        },
+        {
+            "result": true,
+            "action": "add_user_whitelist",
+            "user": "username2",
+            "groupid": "1208XXXX5169153"
+        }
     ],
-    "timestamp": 1542540095540,
-    "duration": 16,
+    "timestamp": 1594724634191,
+    "duration": 2,
     "organization": "XXXX",
     "applicationName": "XXXX"
 }
 ```
 
-## 从群组黑名单移除单个用户
+## 从群组白名单中删除成员
 
-将指定用户移出群组黑名单。对于群组黑名单中的用户，如果需要将其再次加入群组，需要先将其从群组黑名单中移除。
-
-### HTTP 请求
-
-```shell
-DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users/{username}
-```
-
-#### 路径参数
-
-| 参数     | 类型   | 描述      | 是否必需 |
-| :------- | :----- | :-------- | :------- |
-| `group_id` | String | 群组 ID。 | 是       |
-
-其他路径参数说明详见[公共参数](#pubparam)。
-
-#### 请求 header
-
-| 参数          | 类型   | 描述                                                         | 是否必需 |
-| :------------ | :----- | :----------------------------------------------------------- | :------- |
-| `Accept`  | String | 内容类型。填入 `application/json`                                   | 是       |
-| `Authorization` | String |  `Bearer ${YourAppToken}` | 是       |
-
-### HTTP 响应
-
-#### 响应 body
-
-如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中 data 字段的说明见下文。
-
-| 参数    | 类型    | 描述                                              |
-| :------ | :------ | :------------------------------------------------ |
-| `result`  | Boolean | 是否成功将指定用户添加到黑名单：<ul><li>`true`：是。</li><li>`false`：否。</li></ul> |
-| `groupid` | String  | 群组 ID。                                         |
-| `action`  | String  | 执行操作。                                        |
-| `user`    | String  | 被从群组黑名单移除的用户 ID。                     |
-
-其他字段说明详见[公共参数](#pubparam)。
-
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码](#code)了解可能的原因。
-
-### 示例
-
-#### 请求示例
-
-```shell
-# 将 <YourAppToken> 替换为你在服务端生成的 App Token
-
-curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/chatgroups/66016455491585/blocks/users/user1'
-```
-
-#### 响应示例
-
-```json
-{
-    "action": "delete",
-    "application": "8be024f0-XXXX-XXXX-b697-5d598d5f8402",
-    "uri": "http://XXXX/XXXX/XXXX/chatgroups/66016455491585/blocks/users/user1",
-    "entities": [],
-    "data": {
-      "result": true,
-      "action": "remove_blocks",
-      "user": "user1",
-      "groupid": "66016455491585"
-    },
-    "timestamp": 1542540470679,
-    "duration": 45,
-    "organization": "XXXX",
-    "applicationName": "XXXX"
-}
-```
-
-
-## 从群组黑名单批量移除用户
-
-将多名指定用户从群组黑名单中移除。对于群组黑名单中的用户，如果需要将其再次加入群组，需要先将其从群组黑名单中移除。
+此方法从群组白名单中删除指定的群组成员。每次方法调用最多可以从白名单列表中删除 60 个组成员。
 
 ### HTTP 请求
 
-```shell
-DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users/{usernames}
+```http
+DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/white/users/{username}
 ```
 
 #### 路径参数
@@ -363,7 +283,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users/{
 | 参数      | 类型   | 描述                                      | 是否必需 |
 | :-------- | :----- | :---------------------------------------- | :------- |
 | `group_id`  | String | 群组 ID。                                 | 是       |
-| `usernames` | String | 用户 ID。多个用户 ID 之间使用英文逗号隔开 | 是       |
+| `usernames` | String | 用户 ID。多个用户 ID 之间使用英文逗号隔开。 | 是       |
 
 其他路径参数说明详见[公共参数](#pubparam)。
 
@@ -381,11 +301,12 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users/{
 如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中 `data` 字段的说明见下文。
 
 | 参数    | 类型    | 描述                                              |
-| :------ | :------ | :------------------------------------------------ |
-| `result`  | Boolean | 是否成功将指定用户添加到黑名单：<ul><li>`true`：是。</li><li>`false`：否。</li></ul> |
+| :-------- | :----- | :----------------------------------------------------------- |
+| `result`  | Bool | 群组成员是否成功从群组白名单中删除。<ul><li>`true`：是。</li><li>`false`：否。</li></ul> |
+| `reason`  | String  | 未能从允许列表中删除成员的原因。                             |
 | `groupid` | String  | 群组 ID。                                         |
 | `action`  | String  | 执行操作。                                        |
-| `user`    | String  | 被从群组黑名单移除的用户 ID。                     |
+| `user`    | String  | 被从群组白名单移除的用户 ID。                     |
 
 其他字段说明详见[公共参数](#pubparam)。
 
@@ -398,7 +319,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users/{
 ```shell
 # 将 <YourAppToken> 替换为你在服务端生成的 App Token
 
-curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/chatgroups/66016455491585/blocks/users/user1%2Cuser2'
+curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' 'http://XXXX/XXXX/XXXX/chatgroups/1208XXXX5169153/white/users/{username}'
 ```
 
 #### 响应示例
@@ -406,31 +327,32 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 ```json
 {
     "action": "delete",
-    "application": "8be024f0-XXXX-XXXX-b697-5d598d5f8402",
-    "uri": "http://XXXX/XXXX/XXXX/chatgroups/66XXXX85/blocks/users/user1%2Cuser2",
+    "application": "5cf28979-XXXX-XXXX-b969-60141fb9c75d",
+    "uri": "http://XXXX/XXXX/XXXX/chatgroups/1208XXXX5169153/white/users/username1,username2",
     "entities": [],
     "data": [
-      {
-        "result": true,
-        "action": "remove_blocks",
-        "user": "user1",
-        "groupid": "66XXXX85"
-      },
-      {
-        "result": true,
-        "action": "remove_blocks",
-        "user": "user2",
-        "groupid": "66XXXX85"
-      }
+        {
+            "result": true,
+            "action": "remove_user_whitelist",
+            "user": "username1",
+            "groupid": "1208XXXX5169153"
+        },
+        {
+            "result": true,
+            "action": "remove_user_whitelist",
+            "user": "username2",
+            "groupid": "1208XXXX5169153"
+        }
     ],
-    "timestamp": 1542541014655,
-    "duration": 29,
+    "timestamp": 1594725137704,
+    "duration": 1,
     "organization": "XXXX",
     "applicationName": "XXXX"
 }
 ```
 
 <a name="code"></a>
+
 ## 状态码
 
 有关详细信息，请参阅 [HTTP 状态代码](https://docs.agora.io/en/agora-chat/agora_chat_status_code?platform=RESTful)。
