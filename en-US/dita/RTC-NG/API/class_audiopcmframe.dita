@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audiopcmframe">
     <title> <ph keyref="AudioPcmFrame" /> </title>
-    <shortdesc id="short"><ph id="shortdesc">外部 PCM 格式音频帧的信息。</ph> </shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">The parameters of the audio frame in PCM format.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -80,12 +80,12 @@
   final BytesPerSample? bytesPerSample;
 
   @JsonKey(name: 'data_')
-  final List&lt;int&gt;? data;
+  final List&lt;int>? data;
 
-  factory AudioPcmFrame.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory AudioPcmFrame.fromJson(Map&lt;String, dynamic> json) =>
       _$AudioPcmFrameFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$AudioPcmFrameToJson(this);
+  Map&lt;String, dynamic> toJson() => _$AudioPcmFrameToJson(this);
 }</codeblock> </p>
         </section>
         <section id="parameters">
@@ -98,33 +98,33 @@
             <plentry>
                 <pt props="cpp unity rn electron">capture_timestamp</pt>
                 <pt props="ios mac flutter">captureTimestamp</pt>
-                <pd>音频帧的时间戳 (ms)。</pd>
+                <pd>The timestamp (ms) of the audio frame.</pd>
             </plentry>
             <plentry>
                 <pt props="cpp unity rn electron">samples_per_channel_</pt>
                 <pt props="ios mac flutter">samplesPerChannel</pt>
-                <pd>每个声道的采样点数。</pd>
+                <pd>The number of samples per channel in the audio frame.</pd>
             </plentry>
             <plentry>
                 <pt props="cpp unity rn electron">sample_rate_hz_</pt>
                 <pt props="ios mac flutter">sampleRateHz</pt>
-                <pd>音频采样率 (Hz)。</pd>
+                <pd>Audio sample rate (Hz).</pd>
             </plentry>
             <plentry>
                 <pt props="cpp unity rn electron">num_channels_</pt>
                 <pt props="ios mac">channelNumbers</pt>
                 <pt props="flutter">numChannels</pt>
-                <pd>音频声道数。</pd>
+                <pd>The number of audio channels.</pd>
             </plentry>
             <plentry>
                 <pt props="cpp unity rn electron flutter">bytes_per_sample</pt>
                 <pt props="ios mac flutter">bytesPerSample</pt>
-                <pd>音频数据的字节数。</pd>
+                <pd>The number of bytes per sample.</pd>
             </plentry>
             <plentry>
                 <pt props="cpp unity rn electron">data_</pt>
                 <pt props="flutter">data</pt>
-                <pd>音频帧数据。</pd>
+                <pd>The video frame.</pd>
             </plentry>
             <plentry props="ios mac">
                 <pt>pcmBuffer</pt>
