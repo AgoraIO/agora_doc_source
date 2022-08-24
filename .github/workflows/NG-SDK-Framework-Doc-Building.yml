@@ -1,0 +1,155 @@
+# This workflow will use OxygenScript to build features.
+
+name: (NG SDK Frameworks)Awesome OxygenScript for DITA doc building 
+
+on:
+    push:
+        # branches: [ master, 'release/**' ]
+        branches: ["release/rtc-ng/4.0.0-framework"]
+
+    pull_request:
+        # branches: [ master, 'release/**' ]
+        branches: ["release/rtc-ng/4.0.0-framework"]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v3
+            - uses: montudor/action-zip@v1
+            - name: Set up JDK 8
+              uses: actions/setup-java@v3
+              with:
+                  java-version: "8.0.332+9"
+                  distribution: "temurin"
+            - name: DITA doc building
+              run: |
+                  cd scripts/oxygen/scripts
+                  echo "Start building docs for Flutter CN"
+                  echo "-----------------------------------------------------------------------------------------------"
+                  echo "-----------------------------------------------------------------------------------------------"
+                  ./transform.sh -i ../../../dita/RTC-NG/RTC_NG_API_Flutter.ditamap -sn "DITA Map HTML5 - NG Flutter" -s ../../../.github/workflows/NG-Flutter-cn.scenarios -v
+                  echo "Start building docs for RN CN"
+                  echo "-----------------------------------------------------------------------------------------------"
+                  echo "-----------------------------------------------------------------------------------------------"
+                  ./transform.sh -i ../../../dita/RTC-NG/RTC_NG_API_RN.ditamap -sn "DITA Map HTML5 - NG RN" -s ../../../.github/workflows/NG-RN-cn.scenarios -v
+                  echo "Start building docs for Unity CN"
+                  echo "-----------------------------------------------------------------------------------------------"
+                  echo "-----------------------------------------------------------------------------------------------"
+                  ./transform.sh -i ../../../dita/RTC-NG/RTC_NG_API_Unity.ditamap -sn "DITA Map HTML5 - NG Unity" -s ../../../.github/workflows/NG-Unity-cn.scenarios -v
+                  echo "Start building docs for Electron CN"
+                  echo "-----------------------------------------------------------------------------------------------"
+                  echo "-----------------------------------------------------------------------------------------------"
+                  ./transform.sh -i ../../../dita/RTC-NG/RTC_NG_API_Electron.ditamap -sn "DITA Map HTML5 - NG Electron" -s ../../../.github/workflows/NG-Electron-cn.scenarios -v
+
+                  echo "Start building docs for Flutter EN"
+                  echo "-----------------------------------------------------------------------------------------------"
+                  echo "-----------------------------------------------------------------------------------------------"          
+                  ./transform.sh -i ../../../en-US/dita/RTC-NG/RTC_NG_API_Flutter.ditamap -sn "DITA Map HTML5 - NG Flutter" -s ../../../.github/workflows/NG-Flutter-en.scenarios -v
+                  echo "Start building docs for RN EN"
+                  echo "-----------------------------------------------------------------------------------------------"
+                  echo "-----------------------------------------------------------------------------------------------"              
+                  ./transform.sh -i ../../../en-US/dita/RTC-NG/RTC_NG_API_RN.ditamap -sn "DITA Map HTML5 - NG RN" -s ../../../.github/workflows/NG-RN-en.scenarios -v
+                  echo "Start building docs for Flutter EN"
+                  echo "-----------------------------------------------------------------------------------------------"
+                  echo "-----------------------------------------------------------------------------------------------"   
+                  ./transform.sh -i ../../../en-US/dita/RTC-NG/RTC_NG_API_Unity.ditamap -sn "DITA Map HTML5 - NG Unity" -s ../../../.github/workflows/NG-Unity-en.scenarios -v
+                  echo "Start building docs for Electron EN"
+                  echo "-----------------------------------------------------------------------------------------------"
+                  echo "-----------------------------------------------------------------------------------------------"     
+                  ./transform.sh -i ../../../en-US/dita/RTC-NG/RTC_NG_API_Electron.ditamap -sn "DITA Map HTML5 - NG Electron" -s ../../../.github/workflows/NG-Electron-en.scenarios -v
+            - name: zip files
+              run: |
+                  cd dita/RTC-NG/out
+                  zip -qq -r flutter_ng_cn_doc.zip "flutter-ng"
+                  zip -qq -r rn_ng_cn_doc.zip "rn-ng"
+                  zip -qq -r unity_ng_cn_doc.zip "unity-ng"
+                  zip -qq -r electron_ng_cn_doc.zip "electron-ng"
+
+                  cd ../../../en-US/dita/RTC-NG/out
+                  zip -qq -r flutter_ng_en_doc.zip "flutter-ng"
+                  zip -qq -r rn_ng_en_doc.zip "rn-ng"
+                  zip -qq -r unity_ng_en_doc.zip "unity-ng"
+                  zip -qq -r electron_ng_en_doc.zip "electron-ng"
+
+            - name: Upload Flutter NG CN doc to release
+              if: always()
+              uses: svenstaro/upload-release-action@v2
+              with:
+                  repo_token: ${{ secrets.GITHUB_TOKEN }}
+                  file: dita/RTC-NG/out/flutter_ng_cn_doc.zip
+                  asset_name: flutter_ng_cn_doc.zip
+                  tag: main
+                  overwrite: true
+                  body: "DITA docs."
+            - name: Upload Flutter NG EN doc to release
+              if: always()
+              uses: svenstaro/upload-release-action@v2
+              with:
+                  repo_token: ${{ secrets.GITHUB_TOKEN }}
+                  file: en-US/dita/RTC-NG/out/flutter_ng_en_doc.zip
+                  asset_name: flutter_ng_en_doc.zip
+                  tag: main
+                  overwrite: true
+                  body: "DITA docs."
+            - name: Upload RN NG CN doc to release
+              if: always()
+              uses: svenstaro/upload-release-action@v2
+              with:
+                  repo_token: ${{ secrets.GITHUB_TOKEN }}
+                  file: dita/RTC-NG/out/rn_ng_cn_doc.zip
+                  asset_name: rn_ng_cn_doc.zip
+                  tag: main
+                  overwrite: true
+                  body: "DITA docs."
+            - name: Upload RN NG EN doc to release
+              if: always()
+              uses: svenstaro/upload-release-action@v2
+              with:
+                  repo_token: ${{ secrets.GITHUB_TOKEN }}
+                  file: en-US/dita/RTC-NG/out/rn_ng_en_doc.zip
+                  asset_name: rn_ng_en_doc.zip
+                  tag: main
+                  overwrite: true
+                  body: "DITA docs."
+            - name: Upload Unity NG CN doc to release
+              if: always()
+              uses: svenstaro/upload-release-action@v2
+              with:
+                  repo_token: ${{ secrets.GITHUB_TOKEN }}
+                  file: dita/RTC-NG/out/unity_ng_cn_doc.zip
+                  asset_name: unity_ng_cn_doc.zip
+                  tag: main
+                  overwrite: true
+                  body: "DITA docs."
+            - name: Upload Unity NG EN doc to release
+              if: always()
+              uses: svenstaro/upload-release-action@v2
+              with:
+                  repo_token: ${{ secrets.GITHUB_TOKEN }}
+                  file: en-US/dita/RTC-NG/out/unity_ng_en_doc.zip
+                  asset_name: unity_ng_en_doc.zip
+                  tag: main
+                  overwrite: true
+                  body: "DITA docs."
+            - name: Upload Electron NG CN doc to release
+              if: always()
+              uses: svenstaro/upload-release-action@v2
+              with:
+                  repo_token: ${{ secrets.GITHUB_TOKEN }}
+                  file: dita/RTC-NG/out/electron_ng_cn_doc.zip
+                  asset_name: electron_ng_cn_doc.zip
+                  tag: main
+                  overwrite: true
+                  body: "DITA docs."
+            - name: Upload Electron NG EN doc to release
+              if: always()
+              uses: svenstaro/upload-release-action@v2
+              with:
+                  repo_token: ${{ secrets.GITHUB_TOKEN }}
+                  file: en-US/dita/RTC-NG/out/electron_ng_en_doc.zip
+                  asset_name: electron_ng_en_doc.zip
+                  tag: main
+                  overwrite: true
+                  body: "DITA docs."
