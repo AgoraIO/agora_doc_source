@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_setsubscribeaudiowhitelist">
-    <title><ph keyref="setSubscribeAudioWhitelist" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the whitelist of subscriptions for audio streams.</ph></shortdesc>
+<reference id="api_irtcengine_setsubscribeaudiowhitelist">
+    <title><ph keyref="setSubscribeAudioWhitelist"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置音频订阅白名单。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setSubscribeAudioWhitelist" />
+                <indexterm keyref="setSubscribeAudioWhitelist"/>
             </keywords>
         </metadata>
     </prolog>
@@ -16,7 +16,7 @@
             <codeblock props="android" outputclass="language-java">public abstract int setSubscribeAudioWhitelist(int[] uidList);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setSubscribeAudioWhitelist:(NSArray &lt;NSNumber *&gt; *_Nonnull)whitelist;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setSubscribeAudioWhitelist(uid_t* uidList, int uidNumber) = 0;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="cs" outputclass="language-csharp"/>
             <codeblock props="electron" outputclass="language-typescript">abstract setSubscribeAudioWhitelist(
     uidList: number[],
     uidNumber: number
@@ -26,34 +26,40 @@
     uidList: number[],
     uidNumber: number
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setSubscribeAudioWhitelist(
-      {required List&lt;int&gt; uidList, required int uidNumber});</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setSubscribeAudioWhitelist(
+      {required List&lt;int> uidList, required int uidNumber});</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>You can call this method to specify the audio streams of a user that you want to subscribe to.</p>
+            <p>你可以调用该方法指定想要订阅的音频流。</p>
             <note>
             <ul>
-            <li conkeyref="setSubscribeAudioBlacklist/order" />
-            <li>The whitelist is not affected by the setting in <xref keyref="muteRemoteAudioStream" />, <xref keyref="muteAllRemoteAudioStreams" /> and <parmname>autoSubscribeAudio</parmname> in <xref keyref="ChannelMediaOptions" />.</li>
-            <li id="effect">Once the whitelist of subscriptions is set, it is effective even if you leave the current channel and rejoin the channel.</li>
-            <li conkeyref="setSubscribeAudioBlacklist/priority" />
+            <li conkeyref="setSubscribeAudioBlacklist/order"/>
+            <li>音频订阅白名单不受 <xref keyref="muteRemoteAudioStream"/>、<xref keyref="muteAllRemoteAudioStreams"/> 以及 <xref keyref="ChannelMediaOptions"/> 中的 <parmname>autoSubscribeAudio</parmname> 的影响。</li>
+            <li id="effect">设置订阅白名单后，如果离开当前频道后再重新加入频道，白名单依然生效。</li>
+            <li conkeyref="setSubscribeAudioBlacklist/priority"/>
             </ul> </note> </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>参数</title>
             <parml>
             <plentry id="list">
-                <pt props="android cpp">uidList</pt>
+                <pt props="android cpp electron rn flutter unity">uidList</pt>
                 <pt props="apple">whitelist</pt>
                 <pd>
-                    <p>The user ID list of users that you want to subscribe to.</p>
-                    <p>If you want to specify the audio streams of a user for subscription, add the user ID in this list. If you want to remove a user from the whitelist, you need to call the <xref keyref="setSubscribeAudioWhitelist" /> method to update the user ID list; this means you only add the <parmname>uid</parmname> of users that you want to subscribe to in the new user ID list.</p>
+                    <p>音频订阅白名单的用户 ID 列表。</p>
+                    <p>如果你想指定订阅某一发流用户的音频流，将该用户的 ID 加入此列表中。 如果你想要将某一用户从订阅白名单中移除，需要重新调用 <xref keyref="setSubscribeAudioWhitelist"/> 方法更新音频订阅白名单的用户 ID 列表，使其不包含你想移除的用户的 <parmname>uid</parmname>。</p>
                 </pd>
             </plentry>
-            <plentry props="cpp" id="uidnumber">
+            <plentry props="cpp electron unity rn flutter" id="uidnumber">
                 <pt>uidNumber</pt>
-                <pd>The number of users in the user ID list.</pd>
+                <pd>白名单用户 ID 列表中的用户数量。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" conkeyref="setSubscribeAudioBlacklist/return_values"> </section>
+        <section id="return_values" props="native electron unity rn">
+            <title>返回值</title>
+            <ul>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。</li>
+            </ul>
+        </section>
     </refbody>
 </reference>
