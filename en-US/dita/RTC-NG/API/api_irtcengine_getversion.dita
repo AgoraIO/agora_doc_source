@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_getversion">
-    <title><ph keyref="getVersion" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Gets the SDK version.</ph></shortdesc>
+<reference id="api_irtcengine_getversion">
+    <title><ph keyref="getVersion"/></title>
+    <shortdesc id="short"><ph id="shortdesc">获取 SDK 版本。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="getVersion" />
+                <indexterm keyref="getVersion"/>
             </keywords>
         </metadata>
     </prolog>
@@ -21,10 +21,18 @@
             <codeblock props="rn" outputclass="language-typescript">abstract getVersion(): SDKBuildInfo;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;SDKBuildInfo&gt; getVersion();</codeblock> </p>
         </section>
-        <section id="return_values">
-            <title>Returns</title>
-            <p props="native unity">The SDK version number. The format is a string.</p>
-            <p props="flutter">The SDK version number. The format is a string. See <xref keyref="SDKBuildInfo" />.</p>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry props="cpp unity">
+                <pt>build</pt>
+                <pd>编译号。</pd>
+            </plentry>
+            </parml> </section>
+            <section id="return_values">
+            <title>返回值</title>
+            <p props="native unity">当前的 SDK 版本号。 格式为字符串。</p>
+            <p props="electron rn flutter"><xref keyref="SDKBuildInfo"/>对象。</p>
         </section>
     </refbody>
 </reference>
