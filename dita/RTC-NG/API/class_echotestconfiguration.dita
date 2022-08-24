@@ -103,7 +103,34 @@ __attribute__((visibility("default"))) @interface AgoraEchoTestConfiguration : N
   
   channelId?: string;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">class EchoTestConfiguration {
+  const EchoTestConfiguration(
+      {this.view,
+      this.enableAudio,
+      this.enableVideo,
+      this.token,
+      this.channelId});
+
+  @JsonKey(name: 'view')
+  final int? view;
+
+  @JsonKey(name: 'enableAudio')
+  final bool? enableAudio;
+
+  @JsonKey(name: 'enableVideo')
+  final bool? enableVideo;
+
+  @JsonKey(name: 'token')
+  final String? token;
+
+  @JsonKey(name: 'channelId')
+  final String? channelId;
+
+  factory EchoTestConfiguration.fromJson(Map&lt;String, dynamic> json) =>
+      _$EchoTestConfigurationFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$EchoTestConfigurationToJson(this);
+}</codeblock></p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
