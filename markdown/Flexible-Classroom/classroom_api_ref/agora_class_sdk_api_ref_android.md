@@ -97,7 +97,7 @@ SDK 全局配置。用于 [setConfig](#setconfig) 方法。
 | `appId` | Agora App ID。 |
 
 
-### AgoraEduLaunchConfig
+### AgoraEduLaunchConfig 
 
 ```kotlin
 class AgoraEduLaunchConfig(val userName: String,
@@ -117,6 +117,7 @@ class AgoraEduLaunchConfig(val userName: String,
                            val userProperties: MutableMap<String, String>? = null,
                            val widgetConfigs: MutableList<AgoraWidgetConfig>? = null) : Parcelable,
                            val serviceType: AgoraServiceType = AgoraServiceType.LivePremium
+                           var uiMode: AgoraEduUIMode = AgoraEduUIMode.LIGHT
 ```
 
 课堂启动配置。用于 [launch](#launch) 方法。
@@ -139,6 +140,7 @@ class AgoraEduLaunchConfig(val userName: String,
 | `latencyLevel`       | 观众端延时级别，详见 [AgoraEduLatencyLevel](#agoraedulatencylevel)。                                                                                                                                                                                                                                                                                             |
 | `userProperties`     | 由开发者自定义的用户属性。详见[如何设置自定义用户属性？](/cn/agora-class/faq/agora_class_custom_properties)                                                                                                                                                                                                                                                      |
 | `serviceType`     | （非必填）职业教育大班课使用的服务类型。详见 [AgoraServiceType](#agoraservicetype)。                                                                                                                                                                                                                                                     |
+| `uiMode`| （非必填）课堂界面模式，详见 [AgoraEduUIMode](#agoraeduuimode)。  |
 
 
 ### AgoraEduEvent
@@ -219,6 +221,15 @@ enum class AgoraServiceType(var value: Int) {
 | `CDN`  | 课堂使用 CDN 推拉流服务。老师的音视频流推到 CDN 上，学生通过拉取 CDN 流实时观看老师的音视频。CDN 服务延时一般大于 4 秒。 |
 | `Fusion`  | 课堂使用 RTC 和 CDN 推拉流服务。老师的音视频流既发送到 RTC 频道内，又推到 CDN 上。学生既可以通过拉取 CDN 流实时观看老师的音视频流，又可以通过上台与老师实时互动。CDN 服务的延时比 RTC 服务延时高。  |
 
+
+###  AgoraEduUIMode 
+
+课堂界面显示模式。在  [AgoraEduLaunchConfig](#agoraedulaunchconfig) 中设置。
+
+| 参数         | 描述                                                                             |
+| :----------- | :------------------------------------------------------------------------------- |
+| `LIGHT`   | （默认）明亮模式。    |
+|  `DARK`  |  暗黑模式。   |
 
 ### AgoraEduStreamState
 
@@ -373,3 +384,5 @@ enum class EduMirrorMode(val value: Int) {
 | `AUTO`     | SDK 默认关闭镜像模式。 |
 | `ENABLED`  | 开启镜像模式。         |
 | `DISABLED` | 关闭镜像模式。         |
+
+

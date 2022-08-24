@@ -79,6 +79,7 @@ export type LaunchOption = {
     mediaOptions?: MediaOptions;
     latencyLevel?: 1 | 2;
     platform?: Platform;
+    uiMode?: FcrMultiThemeMode;
 };
 ```
 
@@ -106,6 +107,7 @@ export type LaunchOption = {
 | `mediaOptions`           | （选填）媒体流相关设置，包含媒体流加密、摄像头视频流编码参数配置和屏幕共享视频流编码参数配置，详见 `MediaOptions`。                                                                                 |
 | `latencyLevel`           | （选填）观众端延时级别：<li>`1`: 低延时。发流端与观众端的延时为 1500 ms - 2000 ms。</li><li>`2`:（默认）超低延时。发流端与观众端的延时为 400 ms - 800 ms。</li>                                     |
 | `platform`               | （选填）适用平台，可设为 `'PC'` 和 `'H5'`。                                                                                                                                                         |
+| `uiMode` |（选填）课堂界面模式，详见 [FcrMultiThemeMode](#fcrmultithememode)。 |
 
 ### MediaOptions
 
@@ -322,6 +324,23 @@ export type CourseWareList = CourseWareItem[];
 | `url`          | 文件访问地址。灵动课堂客户端会对后缀名为 `"ppt"`、`"pptx"`、`"doc"`、`"docx"`、`"pdf"` 的文件默认开启文件转换，以用于课堂内白板展示。如果后缀名非上述所列，必须设置 `url`。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | `taskProgress` | 文件转换任务进度对象 `CloudDriveResourceConvertProgress`，包含以下字段：<ul><li>`totalPageSize`: 总页数。</li><li>`convertedPageSize`: 已转换的页数。</li><li>`convertedPercentage`: 转换进度（百分比）。</li><li>`convertedFileList`: 已转换的文档页列表，每页文档对应一条数据，每条数据包含以下字段：<ul><li>`name`: 文档页名称。</li><li>`ppt`: 文档页包含的一个幻灯片的具体信息，包含以下字段：<ul><li>`width`: 幻灯片页面宽度。</li><li>`height`: 幻灯片页面高度。</li><li>`src`: 完成转换的页面的 URL 下载地址。</li><li>`preview`: 缩略图 URL。</li></ul></li></ul></li><li>`currentStep`: 文档转换任务当前的步骤。可为 `extracting`（正在提取资源）、`generatingPreview`（正在生成预览图）、`mediaTranscode`（媒体文件转换）、`packaging`（打包中）。</li></ul> |
 
+### FcrMultiThemeMode
+
+```typescript
+export enum FcrMultiThemeMode {
+  light = 'light',
+  dark = 'dark',
+}
+```
+
+课堂界面显示模式。在 [LaunchOption](#launchoption) 中设置。
+
+| 参数        | 描述                      |
+| :---------- | :------------------------ |
+| `light`  | （默认）明亮模式。 |
+| `dark`   | 暗黑模式。 |
+
+
 ### EduRoleTypeEnum
 
 ```typescript
@@ -415,3 +434,4 @@ export type LanguageEnum = "en" | "zh";
 | :----- | :----- |
 | `"en"` | 英文。 |
 | `"zh"` | 中文。 |
+

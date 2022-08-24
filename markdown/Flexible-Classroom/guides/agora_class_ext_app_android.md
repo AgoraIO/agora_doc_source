@@ -1,10 +1,10 @@
 ## 概览
 
-扩展应用 ExtApp 能够帮助开发者实现一个自定义插件并嵌入灵动课堂内，例如倒计时、骰子等。你可以将通过 ExtApp 实现的插件理解为一个相对独立的 App，有自己的生命周期和数据管理，但是又依赖于 Agora Classroom SDK。开发者可以自定义插件的 UI，传递自定义数据和监听数据变化。
+扩展应用 ExtApp 是灵动课堂的补充插件。你可以将 ExtApp 理解为一个相对独立的 App，有自己的生命周期和数据管理，但是又依赖于 Agora Classroom SDK。你可以通过 ExtApp 自定义插件的 UI，传递自定义数据和监听数据变化，在灵动课堂内嵌入自定义插件，例如倒计时、骰子等。
 
 ExtApp 的源码位于 GitHub 上 [CloudClass-Android](https://github.com/AgoraIO-Community/CloudClass-Android) 仓库中 `extapp` 目录下。
 
-下文介绍通过扩展应用 ExtApp 实现自定义插件并在灵动课堂内嵌入该插件的基本步骤。
+下文介绍通过扩展应用 ExtApp 来在灵动课堂内嵌入自定义插件的基本步骤。
 
 ## 操作步骤
 
@@ -151,7 +151,7 @@ AgoraEduSDK.registerExtApps(Arrays.asList(
 
 默认情况下，成功注册的插件会显示在灵动课堂工具栏的 ToolBox 弹窗中显示。
 
-如果你想要为该插件自定义一个入口，你可修改 `agoraui/src/main/kotlin/io/agora/uikit/impl/container` 路径下 `AgoraUI1v1Container.kt`、`AgoraUILargeClassContainer.kt` 和 `AgoraUISmallClassContainer.kt` 文件，在灵动课堂中为该插件添加一个入口，然后在点击或者显示该插件时调用以下方法即可。
+如果你想要为该插件自定义一个入口，你可修改 `agoraui/src/main/kotlin/io/agora/uikit/impl/container` 路径下 `AgoraUI1v1Container.kt`、`AgoraUILargeClassContainer.kt` 和 `AgoraUISmallClassContainer.kt` 文件，在灵动课堂三大场景中为该插件添加一个入口，然后在点击或者显示该插件时调用以下方法即可。
 
 ```java
 // 在 launchExtApp 方法中传入插件 ID。

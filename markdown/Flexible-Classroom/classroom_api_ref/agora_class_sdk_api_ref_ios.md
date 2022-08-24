@@ -132,7 +132,7 @@ Classroom SDK 退出回调。
 
 ### AgoraEduServiceType
 
-职业教育大班课使用的服务类型，仅在 `AgoraEduRoomType` 为 `lecture` 或 `vocational` 时生效。在 [AgoraEduLaunchConfig](#agoraedulaunchconfig) 中设置。
+职业教育大班课使用的服务类型，仅在 `AgoraEduRoomType` 为 `lecture` 或 `vocational` 时生效。
 
 | 属性       | 描述                                                                                                             |
 | :--------- | :--------------------------------------------------------------------------------------------------------------- |
@@ -244,5 +244,6 @@ Classroom SDK 退出回调。
 | `frameRate`       | 视频帧率 (fps)，Int 型，默认值为 15，                          |
 | `bitRate`         | 视频码率 (Kbps)，Int 型，默认值为 200。                        |
 | `mirrorMode`      | 视频镜像模式，详见 [AgoraEduMirrorMode](#agoraedumirrormode)。 |
+
 
 
