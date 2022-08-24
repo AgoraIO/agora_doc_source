@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_preloadsrc">
     <title><ph keyref="preloadSrc" /></title>
-    <shortdesc id="short"><ph id="shortdesc">预加载媒体资源。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Preloads a media resource.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -26,14 +26,14 @@
 </codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>你可以调用该方法将一个媒体资源预加载到播放列表中。 如果需要预加载多个媒体资源，你可以多次调用该方法。</p>
-            <p props="native rn electron">调用该方法后，如果收到 <xref keyref="onPreloadEvent" /> 回调报告事件 <apiname keyref="PLAYER_PRELOAD_EVENT_COMPLETE" />，则预加载成功；如果你收到 <xref keyref="onPreloadEvent" /> 回调报告事件 <apiname keyref="PLAYER_PRELOAD_EVENT_ERROR" />，则预加载失败。</p>
-            <p>预加载成功后，如果你想播放媒体资源，请调用 <xref keyref="playPreloadedSrc" />；如果你想清空播放列表，请调用 <xref keyref="stop" />。</p>
+            <p>You can call this method to preload a media resource into the playlist.  If you need to preload multiple media resources, you can call this method multiple times.</p>
+            <p props="native rn electron">After calling this method, if you receive the<xref keyref="onPreloadEvent" />  event in the  callback<apiname keyref="PLAYER_PRELOAD_EVENT_COMPLETE" />, the preload is successful; If you receive<xref keyref="onPreloadEvent" /> the  event in the  callback<apiname keyref="PLAYER_PRELOAD_EVENT_ERROR" />, the preload fails.</p>
+            <p>If the preload is successful and you want to play the media resource, call<xref keyref="playPreloadedSrc" /> ; if you want to clear the playlist, call <xref keyref="stop" />.</p>
             <note type="note">
-            <p>Agora 不支持你预加载重复的媒体资源到播放列表，但支持你将正在播放的媒体资源再次预加载到播放列表。</p>
+            <p>Agora does not support preloading duplicate media resources to the playlist. However, you can preload the media resources that are being played to the playlist again.</p>
             </note> </section>
         <section id="parameters">
-            <title>参数</title>
+            <title>Parameter</title>
             <parml>
             <plentry conkeyref="switchSrc/src">
                 <pt />
@@ -41,14 +41,14 @@
             </plentry>
             <plentry>
                 <pt>startPos</pt>
-                <pd>预加载到播放列表后，开始播放时的起始位置（毫秒）。 预加载直播流时，将该参数设置为 0。</pd>
+                <pd>The starting position (ms) for playing after the media resource is preloaded to the playlist. When preloading a live stream, set this parameter to 0.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity rn">
-            <title>返回值</title>
+            <title>Returns</title>
             <ul>
-            <li>0: 方法调用成功。</li>
-            <li>&lt; 0: 方法调用失败。</li>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
 </reference>
