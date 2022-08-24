@@ -248,6 +248,6 @@ curl -X GET -H 'Accept: application/json' 'http://XXXX/XXXX/XXXX/chatgroups/1013
 }
 ```
 
-## 状态码
+## <a name="code"></code> 状态码
 
 有关详细信息，请参阅 [HTTP 状态代码](https://docs.agora.io/en/agora-chat/agora_chat_status_code?platform=RESTful)。

@@ -21,9 +21,9 @@
 | 参数              | 类型   | 描述                                                                     |
 | :---------------- | :----- | :----------------------------------------------------------------------- |
 | `action`          | String | 请求方式。                                                               |
-| `organization`    | String | 组织 ID，等同于 org_name，即时通讯服务分配给每个企业（组织）的唯一标识。 |
-| `application`     | String | 系统内为 app 生成的唯一内部标识，无需关注。                              |
-| `applicationName` | String | App ID，等同于 app_name，即时通讯服务分配给每个 app 的唯一标识。         |
+| `organization`    | String | 即时通讯服务分配给每个企业（组织）的唯一标识。等同于 `org_name`。 |
+| `application`     | String | 即时通讯服务分配给每个 app 的唯一内部标识，无需关注。             |
+| `applicationName` | String | 即时通讯服务分配给每个 app 的唯一标识。等同于 `app_name`。        |
 | `uri`             | String | 请求 URL。                                                               |
 | `path`            | String | 请求路径，属于请求 URL 的一部分，无需关注。                              |
 | `entities`        | JSON   | 返回实体信息。                                                           |
@@ -717,7 +717,6 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 }
 ```
 
-<a name="code"></code>
-## 状态码
+## <a name="code"></code> 状态码
 
 有关详细信息，请参阅 [HTTP 状态代码](https://docs.agora.io/en/agora-chat/agora_chat_status_code?platform=RESTful)。
