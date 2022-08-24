@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_imediaplayercustomdataprovider_onseek">
     <title><ph keyref="onSeek" /></title>
-    <shortdesc id="short"><ph id="shortdesc">定位媒体资源数据回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the SDK seeks the media resource data.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -28,38 +28,36 @@
             <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
-            <p props="android ios">使用 <xref keyref="openWithMediaSource" /> 打开自定义媒体资源时，SDK 会触发该回调，向你请求定位到媒体资源中的指定位置。</p>
-            <p props="cpp mac">使用 <xref keyref="openWithCustomSource" /> 打开自定义媒体资源时，SDK 会触发该回调，向你请求定位到媒体资源中的指定位置。</p>
+            <p props="android ios">When you<xref keyref="openWithMediaSource" /> call the  method to open a custom media resource, the SDK triggers this callback to request the specified location in the media resource.</p>
+            <p props="cpp mac">When you<xref keyref="openWithCustomSource" /> call the  method to open a custom media resource, the SDK triggers this callback to request the specified location in the media resource.</p>
         </section>
         <section id="parameters">
-            <title>参数</title>
+            <title>Parameter</title>
             <parml>
             <plentry props="ios mac">
                 <pt>playerKit</pt>
-                <pd>媒体播放器协议。 详见 <xref keyref="IMediaPlayer" />。</pd>
+                <pd>Media player protocol. See  for details<xref keyref="IMediaPlayer" />.</pd>
             </plentry>
             <plentry>
                 <pt>offset</pt>
-                <pd>输入参数。 定位位置相对于起点的偏移量，单位为字节。 取值可正可负。</pd>
+                <pd>An input parameter. The offset of the target position relative to the starting point, in bytes. The value can be positive or negative.</pd>
             </plentry>
             <plentry>
                 <pt>whence</pt>
-                <pd>输入参数。 表示定位的起点位置。 可以为如下值：
-
-                    <ul>
-                    <li>0：起点为数据的头，定位后的实际数据偏移量为 <parmname>offset</parmname>。</li>
-                    <li>1：起点为当前位置，定位后的实际数据偏移量为当前位置加上 <parmname>offset</parmname>。</li>
-                    <li>2：起点为数据的尾，定位后的实际数据偏移量为文件长度加上 <parmname>offset</parmname>。</li>
-                    <li>65536：不执行定位操作，返回文件大小。 建议在播放 MP3、WAV 等纯音频文件时使用该参数值。</li>
+                <pd>An input parameter. The starting point. You can set it as one of the following values:<ul>
+                    <li>0: The starting point is the head of the data, and the actual data offset after seeking is <parmname>offset</parmname>.</li>
+                    <li>1: The starting point is the current position, and the actual data offset after seeking is the current position plus <parmname>offset</parmname>.</li>
+                    <li>2: The starting point is the end of the data, and the actual data offset after seeking is the whole data length plus <parmname>offset</parmname>.</li>
+                    <li>65536: Do not perform position seeking, return the file size. Agora recommends that you use this parameter value when playing pure audio files such as MP3 and WAV.</li>
                     </ul></pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title>返回值</title>
+            <title>Returns</title>
             <ul>
-            <li>当 <parmname>whence</parmname> 为 <parmname>65536</parmname> 时，返回媒体文件大小。</li>
-            <li>当 <parmname>whence</parmname> 为 <parmname>0</parmname>/<parmname>1</parmname>/<parmname>2</parmname> 时，返回实际定位后的数据偏移量。</li>
-            <li>-1：定位失败。</li>
+            <li><parmname>When </parmname><parmname>whence</parmname> is <parmname>65536</parmname>, the media file size is returned.</li>
+            <li><parmname>When whence</parmname> is <parmname>0</parmname>, <parmname>1</parmname>, or <parmname>2</parmname>, the actual data offset after the seeking is returned.</li>
+            <li>-1: Seeking failed.</li>
             </ul> </section>
     </refbody>
 </reference>
