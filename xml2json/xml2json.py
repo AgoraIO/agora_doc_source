@@ -216,6 +216,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
     with open(file_dir, "w", encoding='utf-8') as f:
         f.write(text)
 
+    print("-------------Parsing file in " + file_dir + " -----------------------")
     tree = ET.parse(file_dir)
     root = tree.getroot()
 
