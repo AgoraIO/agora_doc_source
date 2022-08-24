@@ -33,6 +33,7 @@ jobs:
                   echo "Running for electron NG"
                   python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag electron --json_file electron_ng_en.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path electron-ng
             - name: Upload electron NG JSON to release
+              if: always()
               uses: svenstaro/upload-release-action@v2
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -42,6 +43,7 @@ jobs:
                   overwrite: true
                   body: "Template file for automatic comment population."
             - name: Upload electron NG JSON to release
+              if: always()
               uses: svenstaro/upload-release-action@v2
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}

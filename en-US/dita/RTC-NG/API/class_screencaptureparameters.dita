@@ -45,7 +45,19 @@
     : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(cur), windowFocus(fcs), excludeWindowList(ex), excludeWindowCount(cnt), highLightWidth(0), highLightColor(0), enableHighLight(false) {}
 };
 </codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class ScreenCaptureParameters
+        <codeblock props="electron" outputclass="language-typescript">export class ScreenCaptureParameters {
+  dimensions?: VideoDimensions;
+  frameRate?: number;
+  bitrate?: number;
+  captureMouseCursor?: boolean;
+  windowFocus?: boolean;
+  excludeWindowList?: any[];
+  excludeWindowCount?: number;
+  highLightWidth?: number;
+  highLightColor?: number;
+  enableHighLight?: boolean;
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class ScreenCaptureParameters
     {
         public ScreenCaptureParameters()
         {
@@ -191,8 +203,7 @@
   factory ScreenCaptureParameters.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$ScreenCaptureParametersFromJson(json);
   Map&lt;String, dynamic&gt; toJson() =&gt; _$ScreenCaptureParametersToJson(this);
-}</codeblock>
-            </p>
+}</codeblock> </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>

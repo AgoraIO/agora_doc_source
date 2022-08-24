@@ -76,7 +76,24 @@
   
   captureSignalVolume?: number;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">class ScreenAudioParameters {
+  const ScreenAudioParameters(
+      {this.sampleRate, this.channels, this.captureSignalVolume});
+
+  @JsonKey(name: 'sampleRate')
+  final int? sampleRate;
+
+  @JsonKey(name: 'channels')
+  final int? channels;
+
+  @JsonKey(name: 'captureSignalVolume')
+  final int? captureSignalVolume;
+
+  factory ScreenAudioParameters.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$ScreenAudioParametersFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ScreenAudioParametersToJson(this);
+}</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>Only available where <parmname>captureAudio</parmname> is <codeph><ph keyref="true" /></codeph>.</p>

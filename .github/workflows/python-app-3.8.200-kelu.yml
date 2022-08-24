@@ -28,11 +28,13 @@ jobs:
                   echo "Running for RN NG"
                   python xml2json.py --working_dir ../dita/RTC-NG --platform_tag rn --json_file rn_cn_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path rn-ng
             - name: Run json creation
+              if: always()
               run: |
                   cd xml2json
                   echo "Running for RN NG"
                   python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag rn --json_file rn_en_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path rn-ng
             - name: Upload RN NG JSON to release
+              if: always()
               uses: svenstaro/upload-release-action@v2
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -42,6 +44,7 @@ jobs:
                   overwrite: true
                   body: "Template file for automatic comment population."
             - name: Upload RN NG JSON to release
+              if: always()
               uses: svenstaro/upload-release-action@v2
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}

@@ -14,12 +14,29 @@
   SIZE() : width(0), height(0) {}
   SIZE(int ww, int hh) : width(ww), height(hh) {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">export class SIZE {
+            <codeblock props="electron" outputclass="language-typescript">export class Size {
   width?: number
   height?: number
 }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp" />
-            <codeblock props="rn" outputclass="language-typescript">export class SIZE {
+            <codeblock props="unity" outputclass="language-csharp">public class SIZE
+    {
+        public int width { set; get; }
+
+        public int height { set; get; }
+
+        public SIZE()
+        {
+            width = 0;
+            height = 0;
+        }
+
+        public SIZE(int ww, int hh)
+        {
+            width = ww;
+            height = hh;
+        }
+    };</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class Size {
   width?: number;
   height?: number;
 }</codeblock>
@@ -30,8 +47,8 @@
   final int? width;
   @JsonKey(name: 'height')
   final int? height;
-  factory SIZE.fromJson(Map<String, dynamic> json) => _$SIZEFromJson(json);
-  Map<String, dynamic> toJson() => _$SIZEToJson(this);
+  factory SIZE.fromJson(Map&lt;String, dynamic> json) => _$SIZEFromJson(json);
+  Map&lt;String, dynamic> toJson() => _$SIZEToJson(this);
 }</codeblock> </p>
         </section>
         <section id="detailed_desc">
