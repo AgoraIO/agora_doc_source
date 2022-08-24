@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_joinchannelwithuseraccountex">
     <title><ph keyref="joinChannelWithUserAccountEx" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Joins the channel with a user account, and configures whether to automatically subscribe to audio or video streams after joining the channel.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">使用 User Account 加入频道，并设置是否自动订阅音频或视频流。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -45,18 +45,20 @@
     required ChannelMediaOptions options});</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p props="native flutter unity" conkeyref="joinChannelWithUserAccount2/desc1" />
-            <p props="rn electron" id="desc1">This method allows a user to join the channel with the user account. After the user successfully joins the channel, the SDK triggers the following callbacks:
+            <p props="native flutter" conkeyref="joinChannelWithUserAccount2/desc1" />
+            <p props="rn electron" id="desc1">该方法允许本地用户使用 User Account 加入频道。 成功加入频道后，会触发以下回调：
+
+
             <ul>
-            <li>The local client: <xref keyref="onLocalUserRegistered" />, <xref keyref="onJoinChannelSuccess" /> and <xref keyref="onConnectionStateChanged" /> callbacks.</li>
-            <li>The remote client: The <xref keyref="onUserJoined" /> callback if the user is in the COMMUNICATION profile, and the <xref keyref="onUserInfoUpdated" /> callback if the user is a host in the LIVE_BROADCASTING profile.</li>
+            <li>本地：<xref keyref="onLocalUserRegistered" />、<xref keyref="onJoinChannelSuccess" /> 和 <xref keyref="onConnectionStateChanged" /> 回调。</li>
+            <li>远端：通信场景下的用户和直播场景下的主播加入频道后，远端会分别触发 <xref keyref="onUserJoined" /> 和 <xref keyref="onUserInfoUpdated" /> 回调。</li>
             </ul></p>
-            <p props="native flutter unity" conkeyref="joinChannelWithUserAccount2/desc2" />
-            <p props="rn electron" id="desc2">Once a user joins the channel, the user subscribes to the audio and video streams of all the other users in the channel by default, giving rise to usage and billing calculation. To stop subscribing to a specified stream or all remote streams, call the corresponding <apiname>mute</apiname> methods.</p>
+            <p props="native flutter" conkeyref="joinChannelWithUserAccount2/desc2" />
+            <p props="rn electron" id="desc2">用户成功加入频道后，默认订阅频道内所有其他用户的音频流和视频流，因此产生用量并影响计费。 如果想取消订阅，可以通过调用相应的 <apiname>mute</apiname> 方法实现。</p>
             <note conkeyref="joinChannelWithUserAccount1/note" props="native flutter unity" />
-            <note type="attention" id="note" props="rn electron">To ensure smooth communication, use the same parameter type to identify the user. For example, if a user joins the channel with a user ID, then ensure all the other users use the user ID too. The same applies to the user account. If a user joins the channel with the Agora Web SDK, ensure that the ID of the user is set to the same parameter type.</note> </section>
+            <note type="attention" id="note" props="rn electron">为保证通信质量，请确保频道内使用同一类型的数据标识用户身份。 即同一频道内需要统一使用 UID 或 User Account。 如果有用户通过 Agora Web SDK 加入频道，请确保 Web 加入的用户也是同样类型。</note> </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>参数</title>
             <parml>
             <plentry conkeyref="joinChannel2/token">
                 <pt />
@@ -72,16 +74,18 @@
                 <pt />
                 <pd />
             </plentry>
-            <plentry props="rn electron" id="userAccount">
+            <plentry props="rn electron flutter" id="userAccount">
                 <pt>userAccount</pt>
                 <pd>
-                    <p>The user account. This parameter is used to identify the user in the channel for real-time audio and video engagement. You need to set and manage user accounts yourself and ensure that each user account in the same channel is unique. The maximum length of this parameter is 255 bytes. Ensure that you set this parameter and do not set it as <ph keyref="NULL" />. Supported characters are (89 in total):
+                    <p>用户 User Account。 该参数用于标识实时音视频互动频道中的用户。 你需要自行设置和管理用户的 User Account，并确保同一频道中每个用户的 User Account 是唯一的。 该参数为必填，最大不超过 255 字节，不可填 <ph keyref="NULL" />。 以下为支持的字符集范围（共 89 个字符）：
+
+
                     <ul>
-                    <li>The 26 lowercase English letters: a to z.</li>
-                    <li>The 26 uppercase English letters: A to Z.</li>
-                    <li>All numeric characters: 0 to 9.</li>
-                    <li>Space</li>
-                    <li>"!", "#", "$", "%", "&amp;amp;", "(", ")", "+", "-", ":", ";", "&amp;lt;", "= ", ".", "&amp;gt;", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","</li>
+                    <li>26 个小写英文字母 a-z</li>
+                    <li>26 个大写英文字母 A-Z</li>
+                    <li>10 个数字 0-9</li>
+                    <li>空格</li>
+                    <li>"!"、"#"、"$"、"%"、"&amp;"、"("、")"、"+"、"-"、":"、";"、"&lt;"、"="、"."、">"、"?"、"@"、"["、"]"、"^"、"_"、"{"、"}"、"|"、"~"、","</li>
                     </ul></p>
                 </pd>
             </plentry>
@@ -101,11 +105,11 @@
                 <pd />
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity">
-            <title>Returns</title>
+        <section id="return_values" props="native electron rn">
+            <title>返回值</title>
             <ul>
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。</li>
             </ul> </section>
     </refbody>
 </reference>
