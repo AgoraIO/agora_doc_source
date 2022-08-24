@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_setremoterendermodeex2">
     <title><ph keyref="setRemoteRenderModeEx2" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the video display mode of a specified remote user.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">设置远端视图显示模式。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -27,24 +27,26 @@
             <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
-            <p>After initializing the video view of a remote user, you can call this method to update its rendering and mirror modes. This method affects only the video view that the local user sees.<note id="note_dpq_mtr_mqb" type="attention">
+            <p>初始化远端用户视图后，你可以调用该方法更新远端用户视图在本地显示时的渲染和镜像模式。 该方法只影响本地用户看到的视频画面。
+            <note id="note_dpq_mtr_mqb" type="attention">
             <ul id="ul_ft3_ntr_mqb">
-            <li>Please call this method after initializing the remote view by calling the <xref keyref="setupRemoteVideo" /> method.</li>
-            <li>During a call, you can call this method as many times as necessary to update the display mode of the video view of a remote user.</li>
+            <li props="native flutter electron rn">请在调用 <xref keyref="setupRemoteVideo" /> 方法初始化远端视图后，调用该方法。</li>
+            <li>你可以在通话中多次调用该方法，多次更新远端用户视图的显示模式。</li>
             </ul> </note></p>
         </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>参数</title>
             <parml>
             <plentry>
                 <pt>uid</pt>
-                <pd>The user ID of the remote user.</pd>
+                <pd>远端用户 ID。</pd>
             </plentry>
             <plentry>
                 <pt>renderMode</pt>
                 <pd>
-                    <p props="ios mac cpp unity">The video display mode of the remote user. For details, see <xref keyref="RENDER_MODE_TYPE" />.</p>
-                    <p props="android">The video display mode of the remote user:<ul conkeyref="setLocalRenderMode2/rendermodetype">
+                    <p props="ios mac cpp unity">远端视图显示模式，详见 <xref keyref="RENDER_MODE_TYPE" />。</p>
+                    <p props="android">远端视图显示模式：
+                    <ul conkeyref="setLocalRenderMode2/rendermodetype">
                     <li />
                     </ul> </p>
                 </pd>
@@ -52,8 +54,9 @@
             <plentry>
                 <pt>mirrorMode</pt>
                 <pd>
-                    <p props="ios mac cpp unity">The mirror mode of the remote user view. For details, see <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</p>
-                    <p props="android">The mirror mode of the remote user view:<ul conkeyref="setLocalRenderMode2/videomirrormodetype">
+                    <p props="ios mac cpp unity">远端用户视图的镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE" />。</p>
+                    <p props="android">远端用户视图的镜像模式：
+                    <ul conkeyref="setLocalRenderMode2/videomirrormodetype">
                     <li />
                     </ul> </p>
                 </pd>
@@ -64,10 +67,10 @@
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title>Returns</title>
+            <title>返回值</title>
             <ul>
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <li>0：方法调用成功。</li>
+            <li>&lt; 0：方法调用失败。</li>
             </ul> </section>
     </refbody>
 </reference>
