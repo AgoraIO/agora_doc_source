@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setrecordingaudioframeparameters">
     <title><ph keyref="setRecordingAudioFrameParameters" /></title>
-    <shortdesc id="short"><ph id="shortdesc">设置采集的原始音频数据格式。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the format of the captured raw audio data.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -43,56 +43,54 @@
     required int samplesPerCall});</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>该方法设置 <xref keyref="onRecordAudioFrame" /> 回调的采集音频格式。</p>
+            <p>Sets the<xref keyref="onRecordAudioFrame" /> audio format for the  callback.</p>
             <note type="attention">
             <ul>
-            <li>该方法需要在加入频道前调用。</li>
-            <li>SDK 会通过该方法中的 <parmname>samplesPerCall</parmname>、<parmname>sampleRate</parmname> 和 <parmname>channel</parmname> 参数计算出采样间隔，计算公式为<equation-inline>采样间隔 = <parmname>samplesPerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>。 请确保采样间隔不小于 0.01 秒。 <ph props="android ios mac cpp unity">SDK 会根据该采样间隔触发 <apiname keyref="onRecordAudioFrame" /> 回调。</ph></li>
+            <li>Ensure that you call this method before joining a channel.</li>
+            <li>The SDK calculates the sampling interval based on the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname> and <parmname>channel</parmname> parameters set in this method.<equation-inline><parmname>Sample</parmname> interval (<parmname>sec</parmname>) = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>. Ensure that the sample interval ≥ 0.01 (s). <ph props="android ios mac cpp unity">The SDK triggers the  callback according to the sampling interval<apiname keyref="onRecordAudioFrame" />.</ph></li>
             </ul> </note> </section>
         <section id="parameters">
-            <title>参数</title>
+            <title>Parameter</title>
             <parml>
             <plentry>
                 <pt>sampleRate</pt>
-                <pd props="native unity flutter rn"><apiname keyref="onRecordAudioFrame" />中返回数据的采样率，可设置为 8000、 16000、 32000、44100 或 48000。</pd>
-                <pd props="electron">SDK 返回数据的采样率 (Hz)，可设置为 8000、 16000、 32000、 44100 或 48000。</pd>
+                <pd props="native unity flutter rn"><apiname keyref="onRecordAudioFrame" />The sample rate returned in the  callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
+                <pd props="electron">The sample rate returned in the SDK, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
             </plentry>
             <plentry>
                 <pt>channel</pt>
                 <pd props="native unity flutter rn">
-                    <p><apiname keyref="onRecordAudioFrame" />中返回数据的通道数，可设置为 1 或 2:
-                    <ul>
-                    <li>1: 单声道。</li>
-                    <li>2: 双声道。</li>
+                    <p><apiname keyref="onRecordAudioFrame" />The number of channels returned in the  callback:<ul>
+                    <li>1: Mono.</li>
+                    <li>2: Stereo.</li>
                     </ul></p>
                 </pd>
                 <pd props="electron">
-                    <p>SDK 返回数据的通道数。 取值可为 1 或 2：
-                    <ul>
-                    <li>1: 单声道。</li>
-                    <li>2: 双声道。</li>
+                    <p>The number of channels returned by the SDK. You can set the value as 1 or 2:<ul>
+                    <li>1: Mono.</li>
+                    <li>2: Stereo.</li>
                     </ul></p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>mode</pt>
                 <pd props="native unity flutter rn">
-                    <p props="ios mac cpp unity flutter">音频帧的使用模式，详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />。</p>
+                    <p props="ios mac cpp unity flutter">The use mode of the audio frame. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />.</p>
                     <p conkeyref="registerAudioFrameObserver2_IMediaPlayer/mode" props="android" />
                 </pd>
-                <pd props="electron">SDK 返回数据的使用模式，详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />。</pd>
+                <pd props="electron">The use mode of the returned data from the SDK. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />.</pd>
             </plentry>
             <plentry>
                 <pt>samplesPerCall</pt>
-                <pd props="native unity flutter rn"><apiname keyref="onRecordAudioFrame" />中返回数据的采样点数，如旁路推流应用中通常为 1024。</pd>
-                <pd props="electron">SDK 返回数据的采样点数，如旁路推流应用中通常为 1024。</pd>
+                <pd props="native unity flutter rn"><apiname keyref="onRecordAudioFrame" />The number of data samples returned in the  callback, such as 1024 for the media push.</pd>
+                <pd props="electron">The number of data samples returned in the SDK, such as 1024 for the media push.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native unity electron rn">
-            <title>返回值</title>
+            <title>Returns</title>
             <ul>
-            <li>0：方法调用成功。</li>
-            <li>&lt; 0：方法调用失败。</li>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
 </reference>
