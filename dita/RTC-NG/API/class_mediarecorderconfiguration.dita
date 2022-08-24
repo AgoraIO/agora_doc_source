@@ -69,7 +69,35 @@
   
   recorderInfoUpdateInterval?: number;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">class MediaRecorderConfiguration {
+
+  const MediaRecorderConfiguration(
+      {this.storagePath,
+      this.containerFormat,
+      this.streamType,
+      this.maxDurationMs,
+      this.recorderInfoUpdateInterval});
+
+  @JsonKey(name: 'storagePath')
+  final String? storagePath;
+
+  @JsonKey(name: 'containerFormat')
+  final MediaRecorderContainerFormat? containerFormat;
+
+  @JsonKey(name: 'streamType')
+  final MediaRecorderStreamType? streamType;
+
+  @JsonKey(name: 'maxDurationMs')
+  final int? maxDurationMs;
+
+  @JsonKey(name: 'recorderInfoUpdateInterval')
+  final int? recorderInfoUpdateInterval;
+
+  factory MediaRecorderConfiguration.fromJson(Map&lt;String, dynamic> json) =>
+      _$MediaRecorderConfigurationFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$MediaRecorderConfigurationToJson(this);
+}</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p />
@@ -95,7 +123,8 @@
             </plentry>
             <plentry>
                 <pt>streamType</pt>
-                <pd props="cpp ios mac">录制内容。详见 <xref keyref="MediaRecorderStreamType" />。</pd>
+                <pd props="ios mac cpp rn unity electron flutter">录制内容。详见 <xref
+                        keyref="MediaRecorderStreamType"/>。</pd>
                 <pd props="android">录制内容：
                 <ul>
                     <li><apiname keyref="STREAM_TYPE_AUDIO" />：仅音频。</li>
