@@ -26,7 +26,8 @@
     sourceId: number,
     volume: number
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> adjustCustomAudioPublishVolume(
+      {required int sourceId, required int volume});</codeblock> </p>
         </section>
         <section id="detailed_desc"> 
             <note type="attention">在调用该方法前，请确保你已经调用 <xref keyref="setExternalAudioSource2" /> 方法创建自定义采集的音频轨道。</note>
@@ -44,7 +45,7 @@
                     <pd>自定义采集音频的播放音量，取值范围为 [0,100]。0 表示静音，100 表示原始音量。</pd>
                 </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section props="native rn electron unity" id="return_values">
             <title>返回值</title>
             <ul>
             <li>0：方法调用成功。</li>
