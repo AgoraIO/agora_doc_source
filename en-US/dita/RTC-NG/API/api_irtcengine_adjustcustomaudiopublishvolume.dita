@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_adjustcustomaudiopublishvolume">
     <title><ph keyref="adjustCustomAudioPublishVolume" /></title>
-    <shortdesc id="short"><ph id="shortdesc">调节自定义采集的外部音频源在远端播放的音量。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Adjusts the volume of the custom external audio source when it is published in the channel.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -26,29 +26,30 @@
     sourceId: number,
     volume: number
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> adjustCustomAudioPublishVolume(
+      {required int sourceId, required int volume});</codeblock> </p>
         </section>
         <section id="detailed_desc"> 
-            <note type="attention">在调用该方法前，请确保你已经调用 <xref keyref="setExternalAudioSource2" /> 方法创建自定义采集的音频轨道。</note>
-            <p>调用该方法设置音频在远端播放的音量后，如果你想重新调整音量，你可以再次调用该方法。</p>
+            <note type="attention">Ensure you have called the<xref keyref="setExternalAudioSource2" />  method to create an external audio track.</note>
+            <p>If you want to change the volume of the audio to be published, you need to call this method again.</p>
         </section>
         <section id="parameters">
-            <title>参数</title>
+            <title>Parameter</title>
             <parml>
             <plentry>
                 <pt>sourceId</pt>
-                <pd>外部音频源的 ID。 如果你要发布自定义的外部音频源，则将该参数设置为你想要发布的自定义音频轨道 ID。</pd>
+                <pd>The ID of external audio source. If you want to publish a custom external audio source, set this parameter to the ID of the corresponding custom audio track you want to publish.</pd>
             </plentry>
                 <plentry>
                     <pt>volume</pt>
-                    <pd>自定义采集音频的播放音量，取值范围为 [0,100]。 0 表示静音，100 表示原始音量。</pd>
+                    <pd>The volume of the audio source. The value can range from 0 to 100. 0 means mute; 100 means the original volume.</pd>
                 </plentry>
             </parml> </section>
         <section props="native rn electron unity" id="return_values">
-            <title>返回值</title>
+            <title>Returns</title>
             <ul>
-            <li>0：方法调用成功。</li>
-            <li>&lt; 0：方法调用失败。</li>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
             </ul>
         </section>
     </refbody>
