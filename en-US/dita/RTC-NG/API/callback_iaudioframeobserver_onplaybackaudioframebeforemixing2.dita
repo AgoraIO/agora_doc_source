@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_iaudioframeobserver_onplaybackaudioframebeforemixing2">
+    <title><ph keyref="onPlaybackAudioFrameBeforeMixing2"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Retrieves the unmixed audio frame of a specified user.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPlaybackAudioFrameBeforeMixing2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnPlaybackAudioFrameBeforeMixing(string channel_id,
+                                                        string uid,
+                                                        AudioFrame audio_frame)
+        {
+            return false;
+        }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" props="hide">
+            <p>After you successfully register the audio frame observer, if you set the return value of <xref keyref="isMultipleChannelFrameWanted_IAudioFrameObserver"/> as <codeph><ph keyref="true"/></codeph>, the SDK triggers this callback each time it receives an audio frame from any of the channels.</p>
+        </section>
+        <section id="parameters">
+            <title>Parameter</title>
+            <parml>
+            <plentry>
+                <pt>channel_id</pt>
+                <pd>The channel name that the audio frame came from.</pd>
+            </plentry>
+            <plentry>
+                <pt>uid</pt>
+                <pd>The ID of the user sending the audio frame.</pd>
+            </plentry>
+            <plentry>
+                <pt>audio_Frame</pt>
+                <pd>The audio frame. See <xref keyref="AudioFrame"/>.</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <p>Reserved for future use.</p>
+        </section>
+    </refbody>
+</reference>
