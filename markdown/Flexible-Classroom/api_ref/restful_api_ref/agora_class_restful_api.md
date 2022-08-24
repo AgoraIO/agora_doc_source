@@ -132,7 +132,6 @@ https://api.agora.io/edu/apps/{your_app_Id}/v2/rooms/test_class/users/123/exit
 | `roomProperties.hostingScene.reserveVideoURL` | String|（非必填）老师的 CDN 流地址（备用播放地址）。|
 | `roomProperties.hostingScene.finishType` |Integer|（非必填）课堂结束方式：<li>0:录像播放结束时，自动结束课堂。</li><li>1: 用户点击结束课堂的按钮时，结束录像播放和课堂。</li>|
 
-
 #### 请求示例
 
 **请求包体**
@@ -1682,3 +1681,4 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 | 409             | 30409101   | 课程状态冲突，课程已结束。                                   |
 | 500             | 500        | 服务器内部错误，无法完成请求。                               |
 | 503             | N/A        | 服务器内部错误。充当网关或代理的服务器未从远端服务器获取响应。 |
+
