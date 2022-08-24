@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_renewagoracdnsrctoken">
     <title><ph keyref="renewAgoraCDNSrcToken" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Renew the authentication information for the URL of the media resource to be played.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">更新媒体资源网络路径的鉴权信息。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -26,28 +26,28 @@
 </codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>When the authentication information expires (exceeds the <parmname>ts</parmname> field), you can call the <xref keyref="openWithAgoraCDNSrc" /> method to reopen the media resource or the <xref keyref="switchAgoraCDNSrc" /> method to switch the media resource, and then pass in the authenticated URL (with the <parmname>ts</parmname> field updated) of the media resource.</p>
-            <p>If your authentication information expires when you call the <xref keyref="switchAgoraCDNLineByIndex" /> to switch the CDN route for playing the media resource, you need to call this method to pass in the updated authentication information to update the authentication information of the media resource URL. After updating the authentication information, you need to call <xref keyref="switchAgoraCDNLineByIndex" /> to complete the route switching.</p>
+            <p>当鉴权信息过期（超出 <parmname>ts</parmname> 时间）时，你可以调用 <xref keyref="openWithAgoraCDNSrc" /> 或 <xref keyref="switchAgoraCDNSrc" /> 重新打开或切换媒体资源，并传入带新鉴权信息（如更新 <parmname>ts</parmname> 字段内容）的媒体资源网络路径。</p>
+            <p>如果你在切换媒体资源线路 (<xref keyref="switchAgoraCDNLineByIndex" />) 时遇到鉴权信息过期，你需要调用该方法并传入新的鉴权信息，以更新该媒体资源网络路径的鉴权信息。 更新鉴权信息后，你还需调用 <xref keyref="switchAgoraCDNLineByIndex" /> 才能完成线路切换。</p>
             <note type="attention">
-            <p>To avoid frequent expiration of authentication information, ensure that you set the <parmname>ts</parmname> field appropriately or <xref keyref="ticket-link" /> according to the scenario requirements.</p>
+            <p>为避免鉴权信息频繁过期，请务必根据场景需求设置合适的 <parmname>ts</parmname> 字段内容或<xref keyref="ticket-link" />。</p>
             </note> </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>参数</title>
             <parml>
             <plentry>
                 <pt>token</pt>
-                <pd>The authentication field. See the <parmname>sign</parmname> field of the authentication information.</pd>
+                <pd>鉴权字段。 即鉴权信息中的 <parmname>sign</parmname> 字段。</pd>
             </plentry>
             <plentry>
                 <pt>ts</pt>
-                <pd>The timestamp when the authentication information expires. See the <parmname>ts</parmname> field of the authentication information.</pd>
+                <pd>鉴权过期时间。 即鉴权信息中的 <parmname>ts</parmname> 字段。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
-            <title>Returns</title>
+        <section id="return_values" props="native electron unity rn">
+            <title>返回值</title>
             <ul>
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。</li>
             </ul> </section>
     </refbody>
 </reference>
