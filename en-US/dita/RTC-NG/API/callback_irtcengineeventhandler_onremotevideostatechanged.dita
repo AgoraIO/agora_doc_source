@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onremotevideostatechanged">
      <title> <ph keyref="onRemoteVideoStateChanged" /> </title>
-     <shortdesc id="short"><ph id="shortdesc">远端视频状态发生改变回调。</ph> </shortdesc>
+     <shortdesc id="short"><ph id="shortdesc">Occurs when the remote video stream state changes.</ph></shortdesc>
      <prolog>
           <metadata>
                <keywords>
@@ -48,7 +48,7 @@
       int elapsed)? onRemoteVideoStateChanged;</codeblock> </p>
           </section>
           <section id="detailed_desc">
-               <note id="note" type="attention">频道内的用户（通信场景）或主播（直播场景）人数超过 17 人时，该回调可能不准确。</note> </section>
+               <note id="note" type="attention">This callback does not work properly when the number of users (in the voice/video call channel) or hosts (in the live streaming channel) in the channel exceeds 17.</note> </section>
           <section id="parameters">
                <title> <ph keyref="callback-section-title" /> </title>
                <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter" />
@@ -59,53 +59,47 @@
                </plentry>
                <plentry props="rn unity electron flutter">
                          <pt>connection</pt>
-                         <pd>Connection 信息。 详见 <xref keyref="RtcConnection"/>。</pd>
+                         <pd>The connection infomation. See  for details<xref keyref="RtcConnection"/>.</pd>
                     </plentry>
                <plentry id="uid">
                     <pt props="native">uid</pt>
                     <pt props="rn unity electron flutter">remoteUid</pt>
-                    <pd>发生视频状态改变的远端用户 ID。</pd>
+                    <pd>The ID of the remote user whose video state changes.</pd>
                </plentry>
                <plentry id="state">
                     <pt>state</pt>
                     <pd>
-                         <p props="ios mac cpp unity flutter electron rn">远端视频流状态，详见 <xref keyref="REMOTE_VIDEO_STATE" />。</p>
-                         <p props="android">远端视频流状态：
-
-
-
-
-                         <ul>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_STOPPED"/>(0)：远端视频默认初始状态。 在 <codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED(3)</codeph>、<codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED(5)</codeph>、<codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE(7)</codeph> 或 <codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK(8)</codeph> 的情况下，会报告该状态。</li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_STARTING"/>(1)：本地用户已接收远端视频首包。</li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_DECODING"/>(2)：远端视频流正常解码播放。 在 <codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY(2)</codeph>、<codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED(4)</codeph>、<codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED(6)</codeph> 或 <codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY(9)</codeph> 的情况下，会报告该状态。</li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_FROZEN"/>(3)：远端视频流卡顿。 在 <codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION(1)</codeph> 的情况下，会报告该状态。</li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_FAILED"/>(4)：远端视频流播放失败。 在 <codeph>REMOTE_VIDEO_STATE_REASON_INTERNAL(0)</codeph> 的情况下，会报告该状态。</li>
+                         <p props="ios mac cpp unity flutter electron rn">The state of the remote video, see <xref keyref="REMOTE_VIDEO_STATE" />.</p>
+                         <p props="android">The state of the remote video:<ul>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_STOPPED"/>(0): The remote video is in the initial state. This status is reported in the case of <codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED(3)</codeph>, <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED(5)</codeph>, <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE(7)</codeph> or <codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK(8)</codeph>.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_STARTING"/>(1): The first remote video packet is received.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_DECODING"/>(2): The remote audio stream is decoded and plays normally. This status is reported in the case of <codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY(2)</codeph>, <codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED(4)</codeph>, <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED(6)</codeph> or <codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY(9)</codeph>.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_FROZEN"/>(3): The remote video is frozen. This state is reported in the case of <codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION(1)</codeph>.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_FAILED"/>(4): The remote video fails to start. The <codeph>remote video</codeph> fails to start, probably due to <codeph>REMOTE_VIDEO_STATE_REASON_INTERNAL(0)</codeph>.</li>
                          </ul> </p>
                     </pd>
                </plentry>
                <plentry id="reason">
                     <pt>reason</pt>
                     <pd>
-                         <p props="ios mac cpp unity flutter electron rn">远端视频流状态改变的具体原因，详见 <xref keyref="REMOTE_VIDEO_STATE_REASON" />。</p>
-                         <p props="android">远端视频流状态改变的具体原因：
-                         <ul>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_INTERNAL" />(0)：内部原因。</li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION" />(1)：网络阻塞。</li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY" />(2)：网络恢复正常。</li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED" />(3)：本地用户停止接收远端视频流或本地用户禁用视频模块。</li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED" />(4)：本地用户恢复接收远端视频流或本地用户启动视频模块。</li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED" />(5)：远端用户停止发送视频流或远端用户禁用视频模块。</li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED" />(6)：远端用户恢复发送视频流或远端用户启用视频模块。</li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE" />(7)：远端用户离开频道。</li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK" />(8)：远端视频流已回退为音频流。</li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY" />(9)：回退的远端音频流恢复为视频流。</li>
+                         <p props="ios mac cpp unity flutter electron rn">The reason for the remote video state change, see <xref keyref="REMOTE_VIDEO_STATE_REASON" />.</p>
+                         <p props="android">Remote audio state reasons:<ul>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_INTERNAL" />(0): Internal reasons.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION" />(1): Network congestion.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY" />(2): Network recovery.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED" />(3): The local user stops receiving the remote video stream or disables the video module.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED" />(4): The local user resumes receiving the remote video stream or enables the video module.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED" />(5): The remote user stops sending the video stream or disables the video module.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED" />(6): The remote user resumes sending the video stream or enables the video module.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE" />(7): The remote user leaves the channel.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK" />(8): The remote media stream falls back to the audio-only stream due to poor network conditions.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY" />(9): The remote media stream switches back to the video stream after the network conditions improve.</li>
                          </ul> </p>
                     </pd>
                </plentry>
                <plentry>
                     <pt>elapsed</pt>
-                    <pd>从本地用户调用 <apiname keyref="joinChannel2" /> 方法到发生本事件经历的时间，单位为毫秒。</pd>
+                    <pd>Time elapsed (ms) from the local user callingthe<apiname keyref="joinChannel2" />  method until the SDK triggers this callback.</pd>
                </plentry>
                </parml> </section>
      </refbody>
