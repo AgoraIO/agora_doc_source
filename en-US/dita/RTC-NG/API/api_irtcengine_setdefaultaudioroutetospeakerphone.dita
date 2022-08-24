@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_setdefaultaudioroutetospeakerphone">
-    <title><ph keyref="setDefaultAudioRouteToSpeakerphone" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the default audio playback route.</ph></shortdesc>
+<reference id="api_irtcengine_setdefaultaudioroutetospeakerphone">
+    <title><ph keyref="setDefaultAudioRouteToSpeakerphone"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置默认的音频路由。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -28,37 +28,48 @@
         </section>
         <section id="detailed_desc">
             <note props="cpp unity flutter">
-            <p>This method is for Android and iOS only.</p>
+            <ul>
+                <li>该方法仅适用于 Android 和 iOS 平台。</li>
+                <li>该方法需要在加入频道前调用。 如需在加入频道后切换音频路由，请调用 <xref keyref="setEnableSpeakerphone"/>。</li>
+            </ul>
             </note>
-            <p>Most mobile phones have two audio routes: an earpiece at the top, and a speakerphone at the bottom. The earpiece plays at a lower volume, and the speakerphone at a higher volume. When setting the default audio route, you determine whether audio playback comes through the earpiece or speakerphone when no external audio device is connected.</p>
+            <p>手机设备一般有两个音频路由，一个是位于顶部的听筒，播放声音偏小；一个是位于底部的扬声器，播放声音偏大。 设置默认的音频路由，就是在没有外接设备的前提下，设置系统使用听筒还是扬声器播放音频。</p>
         </section>
         <section>
-            <p>Depending on the scenario, Agora uses different default audio routes. See the following:<ul id="ul_kq3_tpf_3qb">
-            <li>Voice call: Earpiece.</li>
-            <li>Audio broadcast: Speakerphone.</li>
-            <li>Video call: Speakerphone.</li>
-            <li>Video broadcast: Speakerphone.</li>
+            <p>不同的 Agora 场景下，系统默认的音频路由也不同。 具体如下：
+
+
+
+            <ul id="ul_kq3_tpf_3qb">
+            <li>语音通话：听筒</li>
+            <li>语音直播：扬声器</li>
+            <li>视频通话：扬声器</li>
+            <li>视频直播：扬声器</li>
             </ul></p>
-            <p>You can call this method to change the default audio route. You can call this method before, during, or after a call. After a successful method call, the SDK triggers the <xref keyref="onAudioRoutingChanged" /> callback.</p>
+            <p>调用该 API 可以改变上述默认音频路由。 成功改变音频路由后，SDK 会触发 <xref keyref="onAudioRoutingChanged"/> 回调。</p>
             <note>
-            <p><ph>The system audio route changes when an external audio device, such as a headphone or a Bluetooth audio device, is connected. </ph><ph props="native">See <xref keyref="guide-audio-route">Audio Route</xref> for detailed change principles.</ph></p>
+            <p><ph>当手机插入外接设备，如蓝牙设备或耳机时，系统的音频路由会发生改变。 </ph><ph props="native">详细的路由变化规律请参考 <xref keyref="guide-audio-route">音频路由</xref>。</ph></p>
             </note> </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>参数</title>
             <parml>
             <plentry>
                 <pt>defaultToSpeaker</pt>
-                <pd>Whether to set the speakerphone as the default audio route:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Set the speakerphone as the default audio route.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Set the earpiece as the default audio route.</li>
+                <pd>是否使用扬声器作为默认的音频路由：
+
+
+
+                    <ul>
+                    <li><codeph><ph keyref="true" /></codeph>: 设置默认音频路由为扬声器。</li>
+                    <li><codeph><ph keyref="false" /></codeph>: 设置默认音频路由为听筒。</li>
                     </ul></pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity rn">
-            <title>Returns</title>
+            <title>返回值</title>
             <ul id="ul_ahk_23f_3qb">
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <li>0: 方法调用成功</li>
+            <li>&lt; 0: 方法调用失败</li>
             </ul> </section>
     </refbody>
 </reference>
