@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_registeraudioencodedframeobserver">
     <title><ph keyref="registerAudioEncodedFrameObserver" /></title>
-    <shortdesc id="short"><ph id="shortdesc">注册音频编码数据观测器。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Registers an encoded audio observer.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -35,17 +35,17 @@
             <p>
             <note id="note_igp_ygf_3qb" type="attention">
             <ul id="ul_mvp_zgf_3qb">
-            <li>请在加入频道后调用该方法。</li>
-            <li>由于该方法和 <xref keyref="startAudioRecording3" /> 都会设置音频内容和音质，Agora 不推荐该方法和 <apiname keyref="startAudioRecording3" /> 一起使用。 否则，只有后调用的方法会生效。</li>
+            <li>Call this method after joining a channel.</li>
+            <li>This method and<xref keyref="startAudioRecording3" />  both set the audio content and audio quality. Agora recommends not using this method and<apiname keyref="startAudioRecording3" />  together; otherwise, only the method called later will take effect.</li>
             </ul> </note> </p>
         </section>
         <section id="parameters">
-            <title>参数</title>
+            <title>Parameter</title>
             <parml>
             <plentry>
                 <pt>config</pt>
                 <pd>
-                    <p>编码后音频的观测器设置。 详见 <xref keyref="AudioEncodedFrameObserverConfig" />。</p>
+                    <p>Observer settings for the encoded audio. See  for details<xref keyref="AudioEncodedFrameObserverConfig" />.</p>
                 </pd>
             </plentry>
             </parml>
@@ -54,16 +54,16 @@
                 <pt props="android cpp unity flutter">observer</pt>
                 <pt props="ios mac">delegate</pt>
                 <pd>
-                    <p>编码后音频的观测器。 详见 <xref keyref="IAudioEncodedFrameObserver" />。</p>
+                    <p>The encoded audio observer. See  for details<xref keyref="IAudioEncodedFrameObserver" />.</p>
                 </pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native rn electron">
-            <title>返回值</title>
+            <title>Returns</title>
             <ul id="ul_ahk_23f_3qb" props="native">
-            <li>0: 方法调用成功</li>
-            <li>&lt; 0: 方法调用失败</li>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
             </ul>
-        <p props="rn electron">一个 <xref keyref="IAudioEncodedFrameObserver" /> 对象。</p></section>
+        <p props="rn electron">An<xref keyref="IAudioEncodedFrameObserver"/>  object.</p></section>
     </refbody>
 </reference>
