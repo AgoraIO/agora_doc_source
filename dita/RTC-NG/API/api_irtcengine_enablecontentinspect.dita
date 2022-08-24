@@ -25,7 +25,8 @@
     enabled: boolean,
     config: ContentInspectConfig
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /></p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableContentInspect(
+      {required bool enabled, required ContentInspectConfig config});</p>
         </section>
         <section id="detailed_desc">
             <p>开启视频内容审核后，SDK 会根据你在 <xref keyref="ContentInspectConfig"/> 中设置的内容审核模块类型和频率对本地用户发送的视频进行截图、审核和上传。审核完成后，Agora 内容审核服务器会以 HTTPS 请求的形式，向你的服务器发送审核结果，并将所有截图发送至你指定的第三方云存储。</p>
@@ -48,7 +49,7 @@
                 <pd>内容审核配置。详见 <xref keyref="ContentInspectConfig" />。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native unity rn electron">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功</li>
