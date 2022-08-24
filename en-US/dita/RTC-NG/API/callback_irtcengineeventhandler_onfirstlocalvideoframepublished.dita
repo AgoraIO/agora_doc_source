@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onfirstlocalvideoframepublished">
     <title><ph keyref="onFirstLocalVideoFramePublished" /></title>
-    <shortdesc id="short"><ph id="shortdesc">已发布本地视频首帧回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the first video frame is published.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -37,12 +37,11 @@
 </codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>SDK 会在以下三种时机触发该回调：
-            <ul>
-            <li>开启本地视频的情况下，调用 <apiname keyref="joinChannel2" /> 成功加入频道后。</li>
-            <li>调用 <xref keyref="muteLocalVideoStream" />(<codeph><ph keyref="true" /></codeph>)，再调用 <apiname keyref="muteLocalVideoStream" />(<codeph><ph keyref="false" /></codeph>) 后。</li>
-            <li>调用 <xref keyref="disableVideo" />，再调用 <xref keyref="enableVideo" /> 后。</li>
-            <li props="android ios mac cpp">调用 <xref keyref="pushVideoFrame" /> 成功向 SDK 推送视频帧后。</li>
+            <p>The SDK triggers this callback under one of the following circumstances:<ul>
+            <li>The local client enables the video<apiname keyref="joinChannel2" /> module and calls  successfully.</li>
+            <li><codeph><ph keyref="true" /></codeph><codeph><ph keyref="false" /></codeph>The local<apiname keyref="muteLocalVideoStream" /> client calls <xref keyref="muteLocalVideoStream" />() and () in sequence.</li>
+            <li>The local client calls<xref keyref="disableVideo" />  and  in <xref keyref="enableVideo" />sequence.</li>
+            <li props="android ios mac cpp">The<xref keyref="pushVideoFrame" /> local client calls  to successfully push the video frame to the SDK.</li>
             </ul> </p>
         </section>
         <section id="parameters">
@@ -55,7 +54,7 @@
             </plentry>
             <plentry props="unity electron rn flutter">
                 <pt>connection</pt>
-                <pd>Connection 信息。 详见 <xref keyref="RtcConnection" />。</pd>
+                <pd>The connection infomation. See  for details<xref keyref="RtcConnection" />.</pd>
             </plentry>
                 <plentry conkeyref="onLocalVideoStateChanged/source" props="native">
                     <pt />
@@ -63,7 +62,7 @@
                 </plentry>
             <plentry>
                 <pt>elapsed</pt>
-                <pd>从调用 <apiname keyref="joinChannel2" /> 方法到触发该回调的时间间隔（毫秒）。</pd>
+                <pd>Time elapsed<apiname keyref="joinChannel2" /> (ms) from the local user calling  until the SDK triggers this callback.</pd>
             </plentry>
             </parml> </section>
     </refbody>
