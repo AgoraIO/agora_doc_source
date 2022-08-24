@@ -77,7 +77,20 @@
   
   level?: VideoDenoiserLevel;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">class VideoDenoiserOptions {
+  const VideoDenoiserOptions({this.mode, this.level});
+
+  @JsonKey(name: 'mode')
+  final VideoDenoiserMode? mode;
+
+  @JsonKey(name: 'level')
+  final VideoDenoiserLevel? level;
+
+  factory VideoDenoiserOptions.fromJson(Map&amp;lt;String, dynamic&gt; json) =&gt;
+      _$VideoDenoiserOptionsFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoDenoiserOptionsToJson(this);
+}</codeblock> </p>
         </section>
         <section id="parameters">
             <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>
