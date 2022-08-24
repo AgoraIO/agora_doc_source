@@ -42,7 +42,8 @@
 
     ```
     dependencies {
-          ...
+        ...
+        // 如果你使用 2.7.0 及以上版本，删除下面第一行代码
         implementation "io.github.agoraio-community:hyphenate:版本号"
         implementation "io.github.agoraio-community:AgoraEduCore:版本号"
         implementation "io.github.agoraio-community:AgoraEduUIKit:版本号"
@@ -54,11 +55,12 @@
 
     ```
     dependencies {
-     implementation "io.github.agoraio-community:hyphenate:2.2.0"
-     implementation "io.github.agoraio-community:AgoraEduCore:2.2.0"
-     implementation "io.github.agoraio-community:AgoraEduUIKit:2.2.0"
-     implementation "io.github.agoraio-community:AgoraClassSDK:2.2.0"
-    }
+        // 如果你使用 2.7.0 及以上版本，删除下面第一行代码
+        implementation "io.github.agoraio-community:hyphenate:2.2.0"
+        implementation "io.github.agoraio-community:AgoraEduCore:2.2.0"
+        implementation "io.github.agoraio-community:AgoraEduUIKit:2.2.0"
+        implementation "io.github.agoraio-community:AgoraClassSDK:2.2.0"
+        }
     ```
 
     <div class="alert info">点击<a href="https://search.maven.org/search?q=io.github.agoraio-community" target="_blank">此处</a>查看灵动课堂最新版本。</div>
@@ -70,7 +72,7 @@
         val appId = "" // 填入你的 App ID。
         val rtmToken = "" // 填入你的 RTM Token。
         val streamState = AgoraEduStreamState(videoState = 1, audioState = 1)
-
+    
         val config = AgoraEduLaunchConfig(
             "xiaoming", // 用户名。
             "xiaoming2", // 用户 ID。
@@ -84,13 +86,14 @@
             AgoraEduRegion.cn, // 默认区域。
             null,
             null,
-            streamState, // 用户上台默认是否发流： 1 为是，0 为 否
-            AgoraEduLatencyLevel.AgoraEduLatencyLevelUltraLow, // 默认延时等级
+            streamState, // 用户上台默认是否发流： 1 为是，0 为 否。
+            AgoraEduLatencyLevel.AgoraEduLatencyLevelUltraLow, // 默认延时等级。
             null,
             null
         )
-
+    
         config.appId = appId
+        config.uiMode = AgoraEduUIMode.LIGHT // 设置课堂界面为明亮模式。如需界面为暗黑模式，设为 AgoraEduUIMode.DARK 即可。
         AgoraClassroomSDK.setConfig(AgoraClassSdkConfig(appId))
         AgoraClassroomSDK.launch(this, config, AgoraEduLaunchCallback { event ->
             Log.e(TAG, ":launch-课堂状态:" + event.name)
@@ -100,11 +103,11 @@
 
 4. 为防止代码混淆，在 `/Gradle Scripts/proguard-rules.pro` 文件中添加以下代码：
 
-    ```
-    -keep class io.agora.**{*;}
-    -keep class com.agora.**{*;}
-    -keep class com.hyphenate.**{*;}
-    ```
+   ```
+   -keep class io.agora.**{*;}
+   -keep class com.agora.**{*;}
+   -keep class com.hyphenate.**{*;}
+   ```
 
 ## 更多信息
 
