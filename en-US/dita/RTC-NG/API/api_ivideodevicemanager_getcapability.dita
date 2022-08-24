@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ivideodevicemanager_getcapability">
     <title><ph keyref="getCapability" /></title>
-    <shortdesc id="short"><ph id="shortdesc">获取视频采集设备在指定的视频格式下的详细视频帧信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Gets the detailed video frame information of the video capture device in the specified video format.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -27,14 +27,14 @@
     deviceIdUTF8: string,
     deviceCapabilityNumber: number
   ): VideoFormat;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;VideoFormat&gt; getCapability(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;VideoFormat> getCapability(
       {required String deviceIdUTF8, required int deviceCapabilityNumber});</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>在调用 <xref keyref="numberOfCapabilities" /> 获取视频采集设备支持的视频格式数量后，你可以调用该方法获取指定索引号支持的具体视频帧信息。</p>
+            <p>After calling<xref keyref="numberOfCapabilities" />  to get the number of video formats supported by the video capture device, you can call this method to get the specific video frame information supported by the specified index number.</p>
         </section>
         <section id="parameters">
-            <title>参数</title>
+            <title>Parameter</title>
             <parml>
             <plentry conkeyref="numberOfCapabilities/id">
                 <pt />
@@ -42,18 +42,18 @@
             </plentry>
             <plentry>
                 <pt>deviceCapabilityNumber</pt>
-                <pd>视频格式的索引号。 如果 <apiname keyref="numberOfCapabilities" /> 的返回值为 i，则该参数取值范围为[0,i)。</pd>
+                <pd>The index number of the video format. If<apiname keyref="numberOfCapabilities" /> the return value of  is i, the value range of this parameter is [0,i).</pd>
             </plentry>
             <plentry props="cpp unity">
                 <pt>capability</pt>
-                <pd>输出参数。 表示指定视频格式的具体信息，包括宽度（px），高度（px）和帧率（fps）。 详见 <xref keyref="VideoFormat" />。</pd>
+                <pd>Output parameter. Indicates the specific information of the specified video format, including width (px), height (px), and frame rate (fps). See  for details<xref keyref="VideoFormat" />.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title>返回值</title>
+            <title>Returns</title>
             <ul props="cpp unity">
-            <li>0: 方法调用成功。</li>
-            <li>&lt; 0: 方法调用失败。</li></ul>
-            <p props="electron rn flutter">指定视频格式的具体信息，包括宽度（px），高度（px）和帧率（fps）。 详见 <xref keyref="VideoFormat" />。</p></section>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li></ul>
+            <p props="electron rn flutter">Indicates the specific information of the specified video format, including width (px), height (px), and frame rate (fps). See  for details<xref keyref="VideoFormat" />.</p></section>
     </refbody>
 </reference>
