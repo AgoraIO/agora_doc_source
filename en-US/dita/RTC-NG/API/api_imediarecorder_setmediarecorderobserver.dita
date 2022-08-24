@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediarecorder_setmediarecorderobserver">
     <title><ph keyref="setMediaRecorderObserver" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Registers an <xref keyref="IMediaRecorderObserver" /> object.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">注册 <xref keyref="IMediaRecorderObserver" /> 对象。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -34,13 +34,15 @@
     connection: RtcConnection,
     callback: IMediaRecorderObserver
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setMediaRecorderObserver(
+      {required RtcConnection connection,
+      required MediaRecorderObserver callback});</codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>Make sure the <xref keyref="IRtcEngine" /> is initialized before you call this method.</p>
+            <p>该方法需要在初始化 <xref keyref="IRtcEngine" /> 对象后调用。</p>
         </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>参数</title>
             <parml>
             <plentry conkeyref="joinChannelEx/connection">
                 <pt />
@@ -48,14 +50,14 @@
             </plentry>
             <plentry>
                 <pt>callback</pt>
-                <pd>The callbacks for recording local audio and video streams. See <xref keyref="IMediaRecorderObserver" />.</pd>
+                <pd>本地音视频流录制回调，详见 <xref keyref="IMediaRecorderObserver" />。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
-            <title>Returns</title>
+        <section id="return_values" props="native rn electron unity">
+            <title>返回值</title>
             <ul>
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。</li>
             </ul> </section>
     </refbody>
 </reference>
