@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_setplaybackaudioframebeforemixingparameters">
+<reference id="api_irtcengine_setplaybackaudioframebeforemixingparameters">
     <title><ph keyref="setPlaybackAudioFrameBeforeMixingParameters" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the audio data format reported by <xref keyref="onPlaybackAudioFrameBeforeMixing" />.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">设置 <xref keyref="onPlaybackAudioFrameBeforeMixing" /> 报告的音频数据格式。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -26,31 +26,32 @@
     sampleRate: number,
     channel: number
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setPlaybackAudioFrameBeforeMixingParameters(
+      {required int sampleRate, required int channel});</codeblock> </p>
         </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>参数</title>
             <parml>
             <plentry>
-                <pt>sampleRate<b /></pt>
+                <pt><b>sampleRate</b></pt>
                 <pd>
-                    <p>The sample rate (Hz) of the audio data, which can be set as <codeph>8000</codeph>, <codeph>16000</codeph>, <codeph>32000</codeph>, <codeph>44100</codeph>, or <codeph>48000</codeph>.</p>
+                    <p>音频数据采样率 (Hz)，可设置为 <codeph>8000</codeph>、 <codeph>16000</codeph>、<codeph>32000</codeph>、 <codeph>44100</codeph> 或 <codeph>48000</codeph>。</p>
                 </pd>
             </plentry>
             </parml>
             <parml id="parml_imv_m3g_3qb">
             <plentry>
-                <pt>channel<b /></pt>
+                <pt><b>channel</b></pt>
                 <pd>
-                    <p>The number of channels of the external audio source, which can be set as <codeph>1</codeph>(Mono) or <codeph>2</codeph>(Stereo).</p>
+                    <p>音频数据声道数，可设置为 <codeph>1</codeph>（单声道） 或 <codeph>2</codeph>（双声道） 。</p>
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
-            <title>Returns</title>
+        <section id="return_values" props="native electron rn unity">
+            <title>返回值</title>
             <ul id="ul_ahk_23f_3qb">
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <li>0: 方法调用成功</li>
+            <li>&lt; 0: 方法调用失败</li>
             </ul> </section>
     </refbody>
 </reference>
