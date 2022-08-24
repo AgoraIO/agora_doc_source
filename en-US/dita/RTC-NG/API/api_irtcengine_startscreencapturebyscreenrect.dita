@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_startscreencapturebyscreenrect">
+<reference id="api_irtcengine_startscreencapturebyscreenrect">
     <title><ph keyref="startScreenCaptureByScreenRect" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Shares the whole or part of a screen by specifying the screen rect.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">通过指定区域共享屏幕。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -38,39 +38,36 @@
         <section id="detailed_desc">
             <dl outputclass="deprecated">
                 <dlentry>
-                    <dt>Deprecated:</dt>
-                    <dd>This method is deprecated. Use <xref keyref="startScreenCaptureByDisplayId" /> instead. Agora strongly recommends using <apiname keyref="startScreenCaptureByDisplayId" /> if you need to start screen sharing on a device connected to another display.</dd>
+                    <dt>弃用：</dt>
+                    <dd>该方法已废弃。 请改用 <xref keyref="startScreenCaptureByDisplayId" />。 如果你需要在设备外接其他显示屏的情况下开启屏幕共享，Agora 强烈建议你使用 <apiname keyref="startScreenCaptureByDisplayId" />。</dd>
                 </dlentry>
                 </dl>
-   <p id="desc">This method shares a screen or part of the screen. You need to specify the area of the screen to be shared.</p>
+   <p id="desc">共享一个屏幕或该屏幕的部分区域。 你需要在该方法中指定想要共享的屏幕区域。</p>
    <p conkeyref="startScreenCaptureByDisplayId/apisequence" />
-   <note type="attention" id="note">This method applies to Windows only.</note>
+   <note type="attention" id="note">该方法仅适用于 Windows 平台。</note>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>参数</title>
    <parml>
-       <plentry props="cpp unity flutter eletron">
+       <plentry props="cpp unity flutter electron">
   <pt>screenRect</pt>
-  <pd>Sets the relative location of the screen to the virtual screen.</pd>
-       </plentry>
-       <plentry props="electron">
-  <pt>screenSymbol</pt>
-  <pd>The display ID (macOS) or ScreenRect (Windows) that identifies the screen. See <xref keyref="ScreenSymbol" />. You can get the windowId by calling <xref keyref="getScreensInfo" />.</pd>
+  <pd>指定待共享的屏幕相对于虚拟屏的位置。</pd>
        </plentry>
        <plentry>
   <pt>regionRect</pt>
-  <pd props="cpp unity flutter electron"><ph props="cpp unity">(Optional)</ph> Sets the relative location of the region to the screen. If you do not set this parameter, the SDK shares the whole screen. See <xref keyref="Rectangle" />. If the specified region overruns the screen, the SDK shares only the region within it; if you set width or height as 0, the SDK shares the whole screen.</pd>
-       </plentry>
+  <pd props="cpp unity flutter electron"><ph props="cpp unity">(可选）</ph>指定待共享区域相对于整个屏幕的位置。 如不填，则表示共享整个屏幕。 详见 <xref keyref="Rectangle" />。 如果设置的共享区域超出了屏幕的边界，则只共享屏幕内的内容；如果将 width 或 height 设为 0 ，则共享整个屏幕。</pd>
+</plentry>
        <plentry>
   <pt>captureParams</pt>
-  <pd>The screen sharing encoding parameters. The default video dimension is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges. See <xref keyref="ScreenCaptureParameters" />.</pd>
+  <pd>屏幕共享的编码参数配置。 默认的分辨率为 1920 x 1080，即 2073600 像素。 该像素值为计费标准。 详见 <xref keyref="ScreenCaptureParameters" />。</pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values" props="native electron unity rn">
-            <title>Returns</title>
+            <title>返回值</title>
             <ul>
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure.<ul conkeyref="startScreenCaptureByDisplayId/err"><li /></ul>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。
+                <ul conkeyref="startScreenCaptureByDisplayId/err"><li /></ul>
             </li>
             </ul> </section>
     </refbody>
