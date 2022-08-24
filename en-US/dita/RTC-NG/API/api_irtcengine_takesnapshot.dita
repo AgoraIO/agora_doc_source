@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_takesnapshot">
     <title><ph keyref="takeSnapshot" /></title>
-    <shortdesc id="short"><ph id="shortdesc">获取视频截图。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Takes a snapshot of a video stream.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -19,42 +19,41 @@
             <codeblock props="electron" outputclass="language-typescript">abstract takeSnapshot(uid: number, filePath: string): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int TakeSnapshot(uint uid, string filePath);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract takeSnapshot(uid: number, filePath: string): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; takeSnapshot({required int uid, required String filePath});</codeblock></p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> takeSnapshot({required int uid, required String filePath});</codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p id="desc1">该方法用于对指定用户的视频流进行截图，生成一张 JPG 格式的图片，并保存至指定的路径。</p>
-            <p id="desc2">该方法是异步操作，调用返回时 SDK 并没有真正获取截图。 成功调用该方法后，SDK 会触发 <xref keyref="onSnapshotTaken" /> 回调报告截图是否成功和获取截图的详情。</p>
+            <p id="desc1">This method takes a snapshot of a video stream from the specified user, generates a JPG image, and saves it to the specified path.</p>
+            <p id="desc2">The method is asynchronous, and the SDK has not taken the snapshot when the method call returns.  After a successful method call, the SDK triggers the  callback to<xref keyref="onSnapshotTaken" /> report whether the snapshot is successfully taken, as well as the details for that snapshot.</p>
             <note type="attention">
             <ul>
-            <li>该方法需要在加入频道后调用。</li>
-            <li>该方法对 <xref keyref="ChannelMediaOptions" /> 中指定发布的视频流进行截图。</li>
-            <li>如果用户的视频经过前处理，例如，添加了水印或美颜，生成的截图会包含前处理效果。</li>
+            <li>Call this method after joining a channel.</li>
+            <li>This method takes<xref keyref="ChannelMediaOptions"/> a snapshot of the published video stream specified in .</li>
+            <li>If the user's video has been preprocessed, for example, watermarked or beautified, the resulting snapshot includes the pre-processing effect.</li>
             </ul></note> </section>
         <section id="parameters">
-            <title>参数</title>
+            <title>Parameter</title>
             <parml>
             <plentry id="uid">
                 <pt>uid</pt>
-                <pd>用户 ID。 如果要对本地用户的视频截图，则设为 0。</pd>
+                <pd>The user ID. Set uid as 0 if you want to take a snapshot of the local user's video.</pd>
             </plentry>
             <plentry id="filepath">
                 <pt>filePath</pt>
                 <pd>
-                    <p>截图的本地保存路径，需精确到文件名及格式， 例如： 
-                    <ul>
-                    <li props="cpp unity flutter electron">Windows: <codeph>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\example.jpg</codeph></li>
-                    <li props="cpp ios unity flutter rn">iOS: <codeph>/App Sandbox/Library/Caches/example.jpg</codeph></li>
+                    <p>The local path (including filename extensions) of the snapshot. For example:<ul>
+                    <li props="cpp unity flutter electron"><codeph>                    C:\Users\&lt;user_name>\AppData\Local\Agora\&lt;process_name>\example.jpg</codeph></li>
+                    <li props="cpp ios unity flutter rn"><codeph>                    /AppSandbox/Library/Caches/example.jpg</codeph></li>
                     <li props="cpp mac unity flutter electron">macOS: <codeph>～/Library/Logs/example.jpg</codeph></li>
-                    <li props="cpp android unity flutter rn">Android: <codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.jpg</codeph></li>
-                    </ul>请确保目录存在且可写。</p>
+                    <li props="cpp android unity flutter rn"><codeph>                    /storage/emulated/0/Android/data/&lt;packagename>/files/example.jpg</codeph></li>
+                    </ul>Ensure that the path you specify exists and is writable.</p>
                 </pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native unity rn electron">
-            <title>返回值</title>
+            <title>Returns</title>
             <ul>
-            <li>0: 方法调用成功。</li>
-            <li>&lt; 0: 方法调用失败。</li>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
 </reference>
