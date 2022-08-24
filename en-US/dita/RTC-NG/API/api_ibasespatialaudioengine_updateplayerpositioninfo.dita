@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ibasespatialaudioengine_updateplayerpositioninfo">
     <title><ph keyref="updatePlayerPositionInfo" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Updates the spatial position of the media player.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">更新媒体播放器的空间位置。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -25,28 +25,37 @@
     playerId: number,
     positionInfo: RemoteVoicePositionInfo
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> updatePlayerPositionInfo(
+      {required int playerId, required RemoteVoicePositionInfo positionInfo});</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>After a successful update, the local user can hear the change in the spatial position of the media player.</p>
+            <p>成功更新后，本地用户可以听到媒体播放器空间位置的变化。</p>
         </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>参数</title>
             <parml>
             <plentry>
                 <pt>playerId</pt>
-                <pd>The media player ID, which can be obtained in <xref keyref="getMediaPlayerId" />.</pd>
+                <pd><ph>媒体播放器 ID。 </ph><ph props="native">可通过 <xref keyref="getMediaPlayerId" /> 获取。</ph></pd>
             </plentry>
-            <plentry>
+            <plentry props="native electron rn flutter">
                 <pt>positionInfo</pt>
-                <pd>The spatial position of the media player. See <xref keyref="RemoteVoicePositionInfo" /> for details.</pd>
+                <pd>媒体播放器的空间位置信息。 详见 <xref keyref="RemoteVoicePositionInfo" />。</pd>
+            </plentry>
+            <plentry props="unity">
+                <pt>position</pt>
+                <pd>在世界坐标系中的坐标。 该参数是长度为 3 的数组，三个值依次表示前、右、上的坐标值。</pd>
+            </plentry>
+            <plentry props="unity">
+                <pt>forward</pt>
+                <pd>在世界坐标系前轴的单位向量。 该参数是长度为 3 的数组，三个值依次表示前、右、上的坐标值。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
-            <title>Returns</title>
+        <section id="return_values" props="native electron unity rn">
+            <title>返回值</title>
             <ul>
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。</li>
             </ul> </section>
     </refbody>
 </reference>
