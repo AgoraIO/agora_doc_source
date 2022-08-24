@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setmixedaudioframeparameters">
     <title><ph keyref="setMixedAudioFrameParameters" /></title>
-    <shortdesc id="short"><ph id="shortdesc">设置 <xref keyref="onMixedAudioFrame" /> 报告的音频数据格式。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets<xref keyref="onMixedAudioFrame" /> the audio data format reported by .</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -35,12 +35,12 @@
     required int samplesPerCall});</codeblock> </p>
         </section>
         <section id="parameters">
-            <title>参数</title>
+            <title>Parameter</title>
             <parml>
             <plentry>
                 <pt>sampleRate</pt>
                 <pd>
-                    <p>音频数据采样率 (Hz)，可设置为 <codeph>8000</codeph>、 <codeph>16000</codeph>、<codeph>32000</codeph>、 <codeph>44100</codeph> 或 <codeph>48000</codeph>。</p>
+                    <p>The sample rate (Hz) of the audio data, which can be set as <codeph>8000</codeph>, <codeph>16000</codeph>, <codeph>32000</codeph>, <codeph>44100</codeph>, or <codeph>48000</codeph>.</p>
                 </pd>
             </plentry>
             </parml>
@@ -48,7 +48,7 @@
             <plentry>
                 <pt>channel</pt>
                 <pd>
-                    <p>音频数据声道数，可设置为 <codeph>1</codeph>（单声道） 或 <codeph>2</codeph>（双声道）。</p>
+                    <p>The number of channels of the audio data, which can be set as <codeph>1</codeph> (Mono) or <codeph>2 </codeph>(Stereo).</p>
                 </pd>
             </plentry>
             </parml>
@@ -56,18 +56,18 @@
             <plentry>
                 <pt>samplesPerCall</pt>
                 <pd>
-                    <p>音频数据采样点数。 旁路推流场景下通常设为 <codeph>1024</codeph>。</p>
+                    <p>Sets the number of samples. In media push scenarios, set it as <codeph>1024</codeph>.</p>
                 </pd>
             </plentry>
             </parml>
             <note id="note_n1y_cgg_3qb">
-            <p>SDK 会根据该方法设置的采样间隔（秒）定期触发 <apiname keyref="onMixedAudioFrame" /> 回调。 采样间隔 = <codeph>samplesPerCall</codeph>/(<codeph>sampleRate</codeph> x <codeph>channel</codeph>)。 请确保你的取值能满足采样间隔大于或等于 0.01 秒。</p>
+            <p>The SDK triggers the  callback according to the sample interval<apiname keyref="onMixedAudioFrame" />. <codeph>Sample</codeph> interval (sec) = <codeph>samplePerCall</codeph>/(<codeph>sampleRate</codeph> × <codeph>channel</codeph>). Ensure that the value of sample interval more than or equal to 0.01.</p>
             </note> </section>
         <section id="return_values" props="native unity electron rn">
-            <title>返回值</title>
+            <title>Returns</title>
             <ul id="ul_ahk_23f_3qb">
-            <li>0: 方法调用成功</li>
-            <li>&lt; 0: 方法调用失败</li>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
 </reference>
