@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audioframe">
     <title><ph keyref="AudioFrame" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Raw audio data.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">原始音频数据。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -153,58 +153,58 @@
         <section id="parameters">
             <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>
             <parml>
-            <plentry props="cpp unity">
+            <plentry props="cpp unity rn electron flutter">
                 <pt>type</pt>
                 <pd>
-                    <p>The type of the audio frame. See <xref keyref="AUDIO_FRAME_TYPE" />.</p>
+                    <p>音频帧类型，详见 <xref keyref="AUDIO_FRAME_TYPE" />。</p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>samplesPerChannel</pt>
-                <pd>The number of samples per channel in the audio frame.</pd>
+                <pd>每个声道的采样点数。</pd>
             </plentry>
             <plentry>
                 <pt>bytesPerSample</pt>
-                <pd>The number of bytes per audio sample, which is usually 16-bit (2 bytes).</pd>
+                <pd>每个采样点的字节数: 对于 PCM 来说，一般使用 16 bit，即两个字节。</pd>
             </plentry>
             <plentry>
-                <pt><ph props="cpp ios mac unity">channels</ph><ph props="android">channelNums</ph></pt>
+                <pt><ph props="cpp ios mac unity electron rn flutter">channels</ph><ph props="android">channelNums</ph></pt>
                 <pd>
-                    <p>The number of audio channels (the data are interleaved if it is stereo).
-                    <ul id="ul_zxz_2wt_r4b">
-                    <li>1: Mono.</li>
-                    <li>2: Stereo.</li>
+                    <p>声道数量(如果是立体声，数据是交叉的)。
+                        <ul id="ul_zxz_2wt_r4b">
+                    <li>1: 单声道</li>
+                    <li>2: 双声道</li>
                     </ul> </p>
                 </pd>
             </plentry>
             <plentry>
-                <pt props="cpp ios mac unity">samplesPerSec</pt>
+                <pt props="cpp ios mac unity electron rn flutter">samplesPerSec</pt>
                 <pt props="android">sampleRataHz</pt>
-                <pd>The number of samples per channel in the audio frame.</pd>
+                <pd>每声道每秒的采样点数。</pd>
             </plentry>
             <plentry>
-                <pt props="cpp ios mac">buffer</pt>
+                <pt props="cpp ios mac electron rn flutter">buffer</pt>
                     <pt props="android">bytes</pt>
                 <pt props="unity">RawBuffer</pt>
                 <pd>
-                    <p>The data buffer of the audio frame. When the audio frame uses a stereo channel, the data buffer is interleaved.</p>
-                    <p>The size of the data buffer is as follows: <codeph>buffer</codeph> = <codeph>samples</codeph> × <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>.</p>
+                    <p>声音数据缓存区（如果是立体声，数据是交叉存储的）。</p>
+                    <p>缓存区数据大小 <codeph>buffer</codeph> = <codeph>samples</codeph> × <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>。</p>
                 </pd>
             </plentry>
-            <plentry props="cpp unity ios mac">
+            <plentry props="cpp unity ios mac rn electron flutter">
                 <pt>renderTimeMs</pt>
                 <pd>
-                    <p>The timestamp (ms) of the external audio frame.</p>
-                    <p>You can use this timestamp to restore the order of the captured audio frame, and synchronize audio and video frames in video scenarios, including scenarios where external video sources are used.</p>
+                    <p>外部音频帧的渲染时间戳。</p>
+                    <p>你可以使用该时间戳还原音频帧顺序；在有视频的场景中（包含使用外部视频源的场景），该参数可以用于实现音视频同步。</p>
                 </pd>
             </plentry>
             <plentry props="ios mac cpp unity">
-                <pt><ph props="ios mac">avsyncType</ph> <ph props="cpp unity">avsync_type</ph> </pt>
-                <pd>Reserved for future use.</pd>
+                <pt><ph props="ios mac flutter">avsyncType</ph> <ph props="cpp unity electron rn">avsync_type</ph> </pt>
+                <pd>保留参数。</pd>
             </plentry>
             <plentry props="android">
                 <pt>timestamp</pt>
-                <pd>The timestamp (ms) of the audio frame.</pd>
+                <pd>>音频帧的时间戳。</pd>
             </plentry>
             </parml> </section>
     </refbody>
