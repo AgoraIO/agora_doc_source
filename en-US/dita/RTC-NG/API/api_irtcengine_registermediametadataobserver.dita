@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_registermediametadataobserver">
+<reference id="api_irtcengine_registermediametadataobserver">
     <title><ph keyref="registerMediaMetadataObserver" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Registers the metadata observer.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">注册媒体 metadata 观测器用于接收或发送 metadata。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -30,29 +30,28 @@
       {required MetadataObserver observer, required MetadataType type});</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>You need to implement the <xref keyref="IMetadataObserver" /> class and specify the metadata type in this method. This method enables you to add synchronized metadata in the video stream for more diversified
- live interactive streaming, such as sending shopping links, digital coupons, and online quizzes.</p>
-            <p props="native flutter unity">A successful call of this method triggers the <xref keyref="getMaxMetadataSize" /> callback.</p>
-            <note type="attention">Call this method before <apiname keyref="joinChannel2" />.</note> </section>
+            <p>你需要自行实现 <xref keyref="IMetadataObserver" /> 类并在本方法中指定 metadata 类型。 本方法允许你为视频流添加同步的 metadata，用于多样化的直播互动，如发送购物链接、电子优惠券和在线测试。</p>
+            <p props="native unity">调用该方法成功后，SDK 会触发 <xref keyref="getMaxMetadataSize" /> 回调。</p>
+            <note type="attention">请在 <apiname keyref="joinChannel2" /> 前调用该方法。</note> </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>参数</title>
             <parml>
             <plentry>
                 <pt>observer</pt>
-                <pd>The metadata observer. See <xref keyref="IMetadataObserver" />.</pd>
+                <pd>metadata 观测器。 详见 <xref keyref="IMetadataObserver" />。</pd>
             </plentry>
             <plentry id="metadatatype">
                 <pt>type</pt>
                 <pd>
-                    <p>The metadata type. The SDK currently only supports <apiname keyref="VIDEO_METADATA" />. See <ph props="ios mac cpp unity rn electron"><xref keyref="METADATA_TYPE" /></ph>.</p>
+                    <p>metadata 类型。 目前仅支持 <apiname keyref="VIDEO_METADATA" />。 <ph props="ios mac cpp unity rn electron">详见 <xref keyref="METADATA_TYPE" />。</ph></p>
                 </pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron rn">
-            <title>Returns</title>
+            <title>返回值</title>
             <ul>
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <li>0：方法调用成功。</li>
+            <li>&lt; 0：方法调用失败。</li>
             </ul> </section>
     </refbody>
 </reference>
