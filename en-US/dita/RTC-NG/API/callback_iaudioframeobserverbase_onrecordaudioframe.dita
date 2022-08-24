@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_iaudioframeobserverbase_onrecordaudioframe">
     <title><ph keyref="onRecordAudioFrame"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获得采集的音频。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Gets the captured audio frame.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -29,7 +29,7 @@
       onRecordAudioFrame</codeblock> </p>
         </section>
         <section id="detailed_desc" props="native unity">
-            <note type="note">为保证采集到的音频数据格式符合预期，Agora 推荐你在调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器后，调用 <xref keyref="getRecordAudioParams"/> 方法设置采集的音频数据格式。 SDK 会根据 <apiname keyref="getRecordAudioParams"/> 回调返回值中设置的 <parmname>AudioParams</parmname> 计算采样间隔，并根据该采样间隔触发 <apiname keyref="onRecordAudioFrame"/> 回调。</note> </section>
+            <note type="note">If you want to set the format of the captured audio frame, Agora recommends that you call the  method to<xref keyref="registerAudioFrameObserver"/> set the format of the audio frame after calling<xref keyref="getRecordAudioParams"/> the  method to register an audio frame observer. The SDK calculates the<apiname keyref="getRecordAudioParams"/> sampling interval according to the AudioParams set in the<parmname></parmname>  callback return value, and triggers the  callback according to the sampling interval<apiname keyref="onRecordAudioFrame"/>.</note> </section>
         <section id="parameters" conkeyref="onMixedAudioFrame/parameters"/>
         <section id="return_values" conkeyref="onMixedAudioFrame/return_values"/>
     </refbody>
