@@ -34,7 +34,8 @@
     length: number,
     audioEncodedFrameInfo: EncodedAudioFrameInfo
   ): void;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(Uint8List frameBuffer, int length,
+      EncodedAudioFrameInfo audioEncodedFrameInfo)? onRecordAudioEncodedFrame;</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>调用 <xref keyref="registerAudioEncodedFrameObserver"/> 并将音频编码内容设为 <ph keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_RECORD"/> 后，你可以通过该回调获取本地用户的音频编码数据。</p>
@@ -45,16 +46,16 @@
             <plentry>
                 <pt props="android">buffer</pt>
                 <pt props="ios mac">frameData</pt>
-                <pt props="cpp electron rn">frameBuffer</pt>
+                <pt props="cpp electron rn flutter">frameBuffer</pt>
                 <pt props="unity">frameBufferPtr</pt>
                 <pd>音频 buffer。</pd>
             </plentry>
-            <plentry props="cpp electron unity rn">
+            <plentry props="cpp electron unity rn flutter">
                 <pt>length</pt>
                 <pd>音频数据长度，单位为字节。</pd>
             </plentry>
-            <plentry props="ios mac cpp electron unity rn">
-                <pt props="cpp electron unity rn">audioEncodedFrameInfo</pt>
+            <plentry props="ios mac cpp electron unity rn flutter">
+                <pt props="cpp electron unity rn flutter">audioEncodedFrameInfo</pt>
                 <pt props="ios mac">info</pt>
                 <pd>编码后音频的信息。详见 <xref keyref="EncodedAudioFrameInfo"/>。</pd>
             </plentry>
