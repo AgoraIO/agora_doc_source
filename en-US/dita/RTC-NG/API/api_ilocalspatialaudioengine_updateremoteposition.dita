@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ilocalspatialaudioengine_updateremoteposition">
     <title><ph keyref="updateRemotePosition" /></title>
-    <shortdesc id="short"><ph id="shortdesc">更新远端用户的空间位置信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Updates the spatial position of the specified remote user.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -25,13 +25,14 @@
     uid: number,
     posInfo: RemoteVoicePositionInfo
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> updateRemotePosition(
+      {required int uid, required RemoteVoicePositionInfo posInfo});</codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>成功调用该方法后，SDK 会根据本地和远端用户的相对位置计算空间音效参数。</p>
-            <note type="note">该方法需要在 <xref keyref="joinChannel2" /> 后调用。</note> </section>
+            <p>After successfully calling this method, the SDK calculates the spatial audio parameters based on the relative position of the local and remote user.</p>
+            <note type="note">Call this method<xref keyref="joinChannel2" /> after .</note> </section>
         <section id="parameters">
-            <title>参数</title>
+            <title>Parameter</title>
             <parml>
             <plentry conkeyref="removeRemotePosition/uid">
                 <pt />
@@ -39,22 +40,22 @@
             </plentry>
             <plentry props="native flutter rn electron">
                 <pt>posInfo</pt>
-                <pd>远端用户的空间位置信息。 详见 <xref keyref="RemoteVoicePositionInfo" />。</pd>
+                <pd>The spatial position of the remote user. See  for details<xref keyref="RemoteVoicePositionInfo" />.</pd>
             </plentry>
             <plentry props="unity">
                 <pt>position</pt>
-                <pd>在世界坐标系中的坐标。 该参数是长度为 3 的数组，三个值依次表示前、右、上的坐标值。</pd>
+                <pd>The coordinates in the world coordinate system. This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn.</pd>
             </plentry>
             <plentry props="unity">
                 <pt>forward</pt>
-                <pd>在世界坐标系前轴的单位向量。 该参数是长度为 3 的数组，三个值依次表示前、右、上的坐标值。</pd>
+                <pd>The unit vector of the x axis in the coordinate system. This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity rn">
-            <title>返回值</title>
+            <title>Returns</title>
             <ul>
-            <li>0: 方法调用成功。</li>
-            <li>&lt; 0: 方法调用失败。</li>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
 </reference>
