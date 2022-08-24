@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enablevideoimagesource">
     <title><ph keyref="enableVideoImageSource" /></title>
-    <shortdesc id="short"><ph id="shortdesc">设置是否开启垫片推流功能。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets whether to replace the current video feeds with images when publishing video streams.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -27,34 +27,34 @@
     enable: boolean,
     options: ImageTrackOptions
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableVideoImageSource(
+      {required bool enable, required ImageTrackOptions options});</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <note type="attention">Agora 推荐你在加入频道后调用该方法。</note>
-            <p>在发布视频流时，你可以调用该方法使用自定义图片来替代当前发布的视频流画面进行推流。</p>
-            <p>开启该功能后，你可以通过 <xref keyref="ImageTrackOptions" /> 参数自定义垫片图片；在你关闭垫片功能之后，远端用户看到的依旧是当前你发布的视频流画面。</p>
+            <note type="attention">Agora recommends that you call this method after joining a channel.</note>
+            <p>When publishing video streams, you can call this method to replace the current video feeds with custom images.</p>
+            <p>Once you enable this function, you can<xref keyref="ImageTrackOptions" /> select images to replace the video feeds through the  parameter. If you disable this function, the remote users see the video feeds that you publish.</p>
         </section>
         <section id="parameters">
-            <title>参数</title>
+            <title>Parameter</title>
             <parml>
             <plentry>
                 <pt>enable</pt>
-                <pd>是否开启垫片推流：
-                <ul>
-                    <li><codeph><ph keyref="true" /></codeph>：开启垫片推流。</li>
-                    <li><codeph><ph keyref="false" /></codeph>：（默认）关闭垫片推流。</li>
+                <pd>Whether to replace the current video feeds with custom images:<ul>
+                    <li><codeph><ph keyref="true" /></codeph>: Replace the current video feeds with custom images.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Do not replace the current video feeds with custom images.</li>
                 </ul></pd>
             </plentry>
                 <plentry>
                     <pt>options</pt>
-                    <pd>垫片图片设置，详见 <xref keyref="ImageTrackOptions" />。</pd>
+                    <pd>Image configurations. See <xref keyref="ImageTrackOptions" />.</pd>
                 </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity rn">
-            <title>返回值</title>
+            <title>Returns</title>
             <ul>
-            <li>0：方法调用成功。</li>
-            <li>&lt; 0：方法调用失败。</li></ul>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li></ul>
         </section>
     </refbody>
 </reference>
