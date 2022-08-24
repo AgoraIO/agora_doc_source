@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_livetranscoding">
-  <title> <ph keyref="LiveTranscoding"/> </title>
+  <title> <ph keyref="LiveTranscoding" /> </title>
   <shortdesc id="short"> <ph id="shortdesc">旁路推流的转码属性。</ph> </shortdesc>
   <refbody>
     <section id="prototype">
@@ -463,17 +463,17 @@
   @JsonKey(name: 'userCount')
   final int? userCount;
   @JsonKey(name: 'transcodingUsers')
-  final List&lt;TranscodingUser>? transcodingUsers;
+  final List&lt;TranscodingUser&gt;? transcodingUsers;
   @JsonKey(name: 'transcodingExtraInfo')
   final String? transcodingExtraInfo;
   @JsonKey(name: 'metadata')
   final String? metadata;
   @JsonKey(name: 'watermark')
-  final List&lt;RtcImage>? watermark;
+  final List&lt;RtcImage&gt;? watermark;
   @JsonKey(name: 'watermarkCount')
   final int? watermarkCount;
   @JsonKey(name: 'backgroundImage')
-  final List&lt;RtcImage>? backgroundImage;
+  final List&lt;RtcImage&gt;? backgroundImage;
   @JsonKey(name: 'backgroundImageCount')
   final int? backgroundImageCount;
   @JsonKey(name: 'audioSampleRate')
@@ -485,19 +485,17 @@
   @JsonKey(name: 'audioCodecProfile')
   final AudioCodecProfileType? audioCodecProfile;
   @JsonKey(name: 'advancedFeatures')
-  final List&lt;LiveStreamAdvancedFeature>? advancedFeatures;
+  final List&lt;LiveStreamAdvancedFeature&gt;? advancedFeatures;
   @JsonKey(name: 'advancedFeatureCount')
   final int? advancedFeatureCount;
-  factory LiveTranscoding.fromJson(Map&lt;String, dynamic> json) =>
+  factory LiveTranscoding.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$LiveTranscodingFromJson(json);
-  Map&lt;String, dynamic> toJson() => _$LiveTranscodingToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$LiveTranscodingToJson(this);
 }</codeblock>
       </p>
     </section>
     <section id="parameters">
-      <title><text
-      conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-      /></title>
+      <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
       <parml>
       <plentry props="android cpp electron rn unity flutter">
         <pt>width</pt>
@@ -536,16 +534,14 @@
         <pt>videoBitrate</pt>
         <pd>
           <p>用于旁路直播的输出视频的码率。单位为 Kbps。400 Kbps 为默认值。</p>
-          <p props="native">你可以根据<xref keyref="video-profile-table"
-          >视频属性</xref>参考表中的码率值进行设置；如果设置的码率超出合理范围，Agora 服务器会在合理区间内自动调整码率值。</p>
+          <p props="native">你可以根据<xref keyref="video-profile-table">视频属性</xref>参考表中的码率值进行设置；如果设置的码率超出合理范围，Agora 服务器会在合理区间内自动调整码率值。</p>
         </pd>
       </plentry>
       <plentry>
         <pt>videoFrameRate</pt>
         <pd>
           <p>用于旁路直播的输出视频的帧率。取值范围是 (0,30]，单位为 fps。15 fps 为默认值。</p>
-          <note type="attention"
-          >Agora 服务器会将高于 30 fps 的帧率统一调整为 30 fps。</note></pd>
+          <note type="attention">Agora 服务器会将高于 30 fps 的帧率统一调整为 30 fps。</note></pd>
       </plentry>
       <plentry>
         <pt>lowLatency</pt>
@@ -558,8 +554,8 @@
           </dl>
           <p>低延时模式</p>
           <ul>
-          <li><codeph><ph keyref="true"/></codeph>: 低延时，不保证画质。</li>
-          <li><codeph><ph keyref="false"/></codeph>:（默认值）高延时，保证画质。</li>
+          <li><codeph><ph keyref="true" /></codeph>: 低延时，不保证画质。</li>
+          <li><codeph><ph keyref="false" /></codeph>:（默认值）高延时，保证画质。</li>
           </ul></pd>
       </plentry>
       <plentry>
@@ -569,28 +565,24 @@
       <plentry>
         <pt>videoCodecProfile</pt>
         <pd>
-          <p>用于旁路直播的输出视频的编码规格。可以设置为 66、77 或 100，详见 <xref
-          keyref="VIDEO_CODEC_PROFILE_TYPE"/>。</p>
+          <p>用于旁路直播的输出视频的编码规格。可以设置为 66、77 或 100，详见 <xref keyref="VIDEO_CODEC_PROFILE_TYPE" />。</p>
           <note type="attention">如果你把这个参数设为其他值，Agora 服务器会将其调整为默认值。</note></pd>
       </plentry>
       <plentry>
         <pt>videoCodecType</pt>
-        <pd>用于旁路直播的输出视频的编解码类型。详见 <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"
-          />。</pd>
+        <pd>用于旁路直播的输出视频的编解码类型。详见 <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM" />。</pd>
       </plentry>
       <plentry>
         <pt>transcodingUsers</pt>
         <pd>
-          <p>用于管理参与旁路直播的视频转码合图的用户。最多支持 17 人同时参与转码合图。详见 <xref
-          keyref="TranscodingUser"/>。</p>
+          <p>用于管理参与旁路直播的视频转码合图的用户。最多支持 17 人同时参与转码合图。详见 <xref keyref="TranscodingUser" />。</p>
         </pd>
       </plentry>
       <plentry>
         <pt props="ios mac cpp unity electron rn flutter">transcodingExtraInfo</pt>
         <pt props="android">userConfigExtraInfo</pt>
         <pd>
-          <p>预留参数：用户自定义的发送到旁路推流客户端的信息，用于填充 H264/H265 视频中 SEI 帧内容。长度限制：4096 字节。关于 SEI 的详细信息，详见 <xref
-          keyref="faq-sei">SEI 帧相关问题</xref>。</p>
+          <p>预留参数：用户自定义的发送到旁路推流客户端的信息，用于填充 H264/H265 视频中 SEI 帧内容。长度限制：4096 字节。关于 SEI 的详细信息，详见 <xref keyref="faq-sei">SEI 帧相关问题</xref>。</p>
         </pd>
       </plentry>
       <plentry props="ios mac">
@@ -612,7 +604,7 @@
           <dl outputclass="deprecated">
           <dlentry>
             <dt>弃用</dt>
-            <dd>已废弃，Agora 不推荐使用。请改用 <xref keyref="setBackgroundColor"/> 方法。</dd>
+            <dd>已废弃，Agora 不推荐使用。请改用 <xref keyref="setBackgroundColor" /> 方法。</dd>
           </dlentry>
           </dl>
         </pd>
@@ -626,7 +618,7 @@
           <dl outputclass="deprecated" props="android">
           <dlentry>
             <dt>弃用</dt>
-            <dd>已废弃，Agora 不推荐使用。请改用 <xref keyref="getUserCount"/> 方法。</dd>
+            <dd>已废弃，Agora 不推荐使用。请改用 <xref keyref="getUserCount" /> 方法。</dd>
           </dlentry>
           </dl>
           <p>参与合图的用户数量，默认 0。取值范围为 [0,17]。</p>
@@ -650,7 +642,7 @@
           <dl outputclass="deprecated" props="android ios mac">
           <dlentry>
             <dt>弃用</dt>
-            <dd props="android">请改用 <xref keyref="addWatermark"/>。</dd>
+            <dd props="android">请改用 <xref keyref="addWatermark" />。</dd>
             <dd props="ios mac">请改用 <parmname>watermarkArray</parmname>。</dd>
           </dlentry>
           </dl>
@@ -664,9 +656,7 @@
           <dl props="android ios mac" outputclass="deprecated">
           <dlentry>
             <dt>弃用</dt>
-            <dd><ph>请改用 <parmname props="android"
-              >addBackgroundImage</parmname><parmname props="ios mac"
-              >backgroundImageArray</parmname>。</ph></dd>
+            <dd><ph>请改用 <parmname props="android">addBackgroundImage</parmname><parmname props="ios mac">backgroundImageArray</parmname>。</ph></dd>
           </dlentry>
           </dl>
           <p>直播视频上的背景图。图片格式需为 PNG。详见 <xref keyref="RtcImage" />。</p>
@@ -675,14 +665,12 @@
       </plentry>
       <plentry props="ios mac">
         <pt>backgroundImageArray</pt>
-        <pd>直播视频上的背景图数组。详见 <xref keyref="RtcImage"
-          />。你可以使用 <parmname>backgroundImageArray</parmname> 添加一张或多张背景图。图片格式需为 PNG。直播视频上的水印和背景图的总数量需大于等于 0 且小于等于 10。</pd>
+        <pd>直播视频上的背景图数组。详见 <xref keyref="RtcImage" />。你可以使用 <parmname>backgroundImageArray</parmname> 添加一张或多张背景图。图片格式需为 PNG。直播视频上的水印和背景图的总数量需大于等于 0 且小于等于 10。</pd>
       </plentry>
       <plentry>
         <pt>audioSampleRate</pt>
         <pd>
-          <p>用于旁路推流的输出媒体流的音频采样率 (Hz)，详见 <xref keyref="AUDIO_SAMPLE_RATE_TYPE"
-          />。</p>
+          <p>用于旁路推流的输出媒体流的音频采样率 (Hz)，详见 <xref keyref="AUDIO_SAMPLE_RATE_TYPE" />。</p>
         </pd>
       </plentry>
       <plentry>
@@ -705,13 +693,12 @@
       </plentry>
       <plentry>
         <pt>audioCodecProfile</pt>
-        <pd>用于旁路直播输出音频的编码规格。详见 <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/>。
+        <pd>用于旁路直播输出音频的编码规格。详见 <xref keyref="AUDIO_CODEC_PROFILE_TYPE" />。
                     </pd>
       </plentry>
       <plentry props="ios mac">
         <pt>watermarkArray</pt>
-        <pd> 直播视频上的水印数组。详见 <xref keyref="RtcImage"
-          />。你可以使用 <parmname>watermarkArray</parmname> 添加一张或多张水印。图片格式需为 PNG。直播视频上的水印和背景图的总数量需大于等于 0 且小于等于 10。 </pd>
+        <pd> 直播视频上的水印数组。详见 <xref keyref="RtcImage" />。你可以使用 <parmname>watermarkArray</parmname> 添加一张或多张水印。图片格式需为 PNG。直播视频上的水印和背景图的总数量需大于等于 0 且小于等于 10。 </pd>
       </plentry>
       <plentry props="cpp unity electron rn flutter">
         <pt>watermarkCount</pt>
@@ -723,7 +710,7 @@
       </plentry>
       <plentry props="cpp unity electron rn flutter">
         <pt>advancedFeatures</pt>
-        <pd>转码推流的高级功能。详见 <xref keyref="LiveStreamAdvancedFeature"/>。</pd>
+        <pd>转码推流的高级功能。详见 <xref keyref="LiveStreamAdvancedFeature" />。</pd>
       </plentry>
       <plentry props="cpp unity electron rn flutter">
         <pt>advancedFeatureCount</pt>
