@@ -6,62 +6,66 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public static class ContentInspectModule {
-  public int type;
-  public int interval;
-  public ContentInspectModule() {
-    type = CONTENT_INSPECT_TYPE_INVALID;
-    interval = 0;
-  }</codeblock>
-      <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraContentInspectModule: NSObject
-@property (assign, nonatomic) AgoraContentInspectType type;
-
-@property (assign, nonatomic) NSInteger interval;
-@end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct ContentInspectModule {
-  CONTENT_INSPECT_TYPE type;
-  unsigned int interval;
-  ContentInspectModule() {
-    type = CONTENT_INSPECT_INVALID;
-    interval = 0;
+            <codeblock props="android" outputclass="language-java">public class CacheStatistics {
+  @CalledByNative
+  public CacheStatistics() {
+    fileSize = 0;
+    cacheSize = 0;
+    downloadSize = 0;
   }
+  private long fileSize;
+  private long cacheSize;
+  private long downloadSize;
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaPlayerCacheStatistics : NSObject
+@property(assign, nonatomic) NSInteger fileSize;
+@property(assign, nonatomic) NSInteger cacheSize;
+@property(assign, nonatomic) NSInteger downloadSize;
+@end</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">struct CacheStatistics {
+  int64_t fileSize;
+  int64_t cacheSize;
+  int64_t downloadSize;
 };</codeblock>
-<codeblock props="electron" outputclass="language-typescript">export class ContentInspectModule {
+            <codeblock props="electron" outputclass="language-typescript">export class CacheStatistics {
   
-  type?: ContentInspectType;
+  fileSize?: number;
   
-  interval?: number;
+  cacheSize?: number;
+  
+  downloadSize?: number;
 }</codeblock>
-      <codeblock props="unity" outputclass="language-csharp">public class ContentInspectModule
+            <codeblock props="unity" outputclass="language-csharp">public class CacheStatistics
     {
-        public CONTENT_INSPECT_TYPE type;
-        public uint interval;
-
-        public ContentInspectModule()
-        {
-            type = CONTENT_INSPECT_TYPE.CONTENT_INSPECT_INVALID;
-            interval = 0;
-        }
+        public Int64 fileSize { set; get; }
+        public Int64 cacheSize { set; get; }
+        public Int64 downloadSize { set; get; }
     };</codeblock>
-      <codeblock props="rn" outputclass="language-typescript">export class ContentInspectModule {
+            <codeblock props="rn" outputclass="language-typescript">export class CacheStatistics {
   
-  type?: ContentInspectType;
+  fileSize?: number;
   
-  interval?: number;
+  cacheSize?: number;
+  
+  downloadSize?: number;
 }</codeblock>
-      <codeblock props="flutter" outputclass="language-dart">class ContentInspectModule {
+            <codeblock props="flutter" outputclass="language-dart">class CacheStatistics {
+  const CacheStatistics({this.fileSize, this.cacheSize, this.downloadSize});
 
-  const ContentInspectModule({this.type, this.interval});
-  @JsonKey(name: 'type')
-  final ContentInspectType? type;
-  @JsonKey(name: 'interval')
-  final int? interval;
-  factory ContentInspectModule.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
-      _$ContentInspectModuleFromJson(json);
+  @JsonKey(name: 'fileSize')
+  final int? fileSize;
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$ContentInspectModuleToJson(this);
-}</codeblock> </p>
-        </section>
+  @JsonKey(name: 'cacheSize')
+  final int? cacheSize;
+
+  @JsonKey(name: 'downloadSize')
+  final int? downloadSize;
+
+  factory CacheStatistics.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$CacheStatisticsFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$CacheStatisticsToJson(this);
+}</codeblock> </p></section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
