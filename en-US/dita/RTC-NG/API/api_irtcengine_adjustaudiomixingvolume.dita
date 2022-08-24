@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_adjustaudiomixingvolume">
-    <title><ph keyref="adjustAudioMixingVolume" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Adjusts the volume during audio mixing.</ph></shortdesc>
+<reference id="api_irtcengine_adjustaudiomixingvolume">
+    <title><ph keyref="adjustAudioMixingVolume"/></title>
+    <shortdesc id="short"><ph id="shortdesc">调节音乐文件的播放音量。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="adjustAudioMixingVolume" />
+                <indexterm keyref="adjustAudioMixingVolume"/>
             </keywords>
         </metadata>
     </prolog>
@@ -22,25 +22,25 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; adjustAudioMixingVolume(int volume);</codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>This method adjusts the audio mixing volume on both the local client and remote clients.</p>
+            <p>该方法调节混音音乐文件在本端和远端的播放音量大小。</p>
             <note type="attention">
             <ul>
-            <li props="native flutter unity rn electron">Call this method after the <xref keyref="startAudioMixing2" /> method.</li>
-            <li props="native">Calling this method does not affect the volume ofaudio effect file playback invoked by the <xref keyref="playEffect3" /> method.</li>
+            <li>该方法需要在 <xref keyref="startAudioMixing2"/> 后调用。</li>
+            <li props="native">调用该方法不影响调用 <xref keyref="playEffect3"/> 播放音效文件的音量。</li>
             </ul> </note> </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>参数</title>
             <parml>
             <plentry id="volume">
                 <pt>volume</pt>
-                <pd>Audio mixing volume. The value ranges between 0 and 100. The default value is 100, the original volume.</pd>
+                <pd>音乐文件音量范围为 0~100。 100 （默认值）为原始文件音量。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity rn">
-            <title>Returns</title>
+            <title>返回值</title>
             <ul>
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <li>0: 方法调用成功</li>
+            <li>&lt; 0: 方法调用失败</li>
             </ul> </section>
     </refbody>
 </reference>
